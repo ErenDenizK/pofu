@@ -2,7 +2,7 @@ id: asset-koke-island-2
 type: asset
 title_tr: koke-island-2
 title_en: koke-island-2 (plate)
-status: cut
+status: in-production
 horizon: now
 summary: 'Edit the attached island plate from stage 0 to stage 2: the first warm light.
   Repaint about two thirds of the moss on Koke''s hump and on the lawn a fresh living
@@ -14,7 +14,8 @@ links:
   variant_of:
   - asset-koke-island-0
 art:
-  images: []
+  images:
+  - design/art/masters/koke-island-2/koke-island-2.png
   jobs:
   - batch-39-koke-production:koke-island-2
 sources:
@@ -23,8 +24,9 @@ kind: plate
 batch: batch-39-koke-production
 size: 1536x1024
 notes:
-- 'Skipped without generation: true dependency koke-island-0 failed after its one
-  allowed retry. Skipped after the sole unchanged-prompt retry. All four candidates
+- 'Historical original batch-39 run before the separately authorized koke-repost-2026-11-06
+  operation: Skipped without generation: true dependency koke-island-0 failed after
+  its one allowed retry. Skipped after the sole unchanged-prompt retry. All four candidates
   pass every hard QA check but cannot be delivered within the mandatory614400-byte
   lossless master cap. Maximum-effort exact lossless WebP sizes are878932,871858,878880,889080bytes;
   the full1536x1024 PNGs are1.32MB. The manifest supplies no soft-delivery scale,
@@ -37,3 +39,13 @@ notes:
   start without a deliverable parent. Propose a lead-authored soft-delivery scale
   and salvage these retained originals rather than regenerating. Independent character
   chain continues; light warnings remain advisory.'
+- 'Current operation koke-repost-2026-11-06: promoted; take 2. Take2 is the only fully
+  eligible initial candidate. Both hard-pass; take1 shows the peeking dormouse with
+  both eyes visible, contrary to the explicit one-eye peek, so it is manually excluded
+  despite lower load1.48. Take2 shows one warm dark eye behind the left boulder, the
+  two nearest groups open in butter-yellow and blush-pink, all three remaining groups
+  still closed, the same sleeping Koke, a leafy crown shoot, greener moss and first
+  warm crown/flower light with cooler far side. Four stones, five total flower groups,
+  two ferns, rake, boulders, outline/camera and rooted positions remain. No rays/halo/petals/open
+  Koke eye or new prop. Take2 load1.5244; source-bound edit of the actual uploaded
+  stage0 with canonical half-size delivery, no extra generation.'

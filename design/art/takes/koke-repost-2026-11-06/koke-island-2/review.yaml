@@ -1,0 +1,220 @@
+batch: batch-39-koke-production
+contact_sheet: design/art/takes/koke-repost-2026-11-06/koke-island-2/contact.jpg
+jobs:
+  koke-island-2:
+    pick: 2
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Take2 is the only fully eligible
+      initial candidate. Both hard-pass; take1 shows the peeking dormouse with both
+      eyes visible, contrary to the explicit one-eye peek, so it is manually excluded
+      despite lower load1.48. Take2 shows one warm dark eye behind the left boulder,
+      the two nearest groups open in butter-yellow and blush-pink, all three remaining
+      groups still closed, the same sleeping Koke, a leafy crown shoot, greener moss
+      and first warm crown/flower light with cooler far side. Four stones, five total
+      flower groups, two ferns, rake, boulders, outline/camera and rooted positions
+      remain. No rays/halo/petals/open Koke eye or new prop. Take2 load1.5244; source-bound
+      edit of the actual uploaded stage0 with canonical half-size delivery, no extra
+      generation.
+qa_reports:
+  2:
+    job: koke-island-2
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 60 (R1 51)
+      value: 59.7
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 39 (at most 22), p98 93 (at least 90), spread 55
+        (at least 60)'
+      value: 54.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 71 (band 55-90)'
+      value: 71.3
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.19 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.192
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.3 (at least 3.5)'
+      value: 5.29
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.3 (R1 5.3)
+      value: 2.32
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.5
+      value: 1.5244
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.3, p95 12.2, off-palette 5.2% (top: #BBBB44 (0.9%), #CCBB44
+        (0.7%))'
+      value: 3.2639
+    - check: edit_silhouette
+      status: pass
+      message: 100% of the parent's shape kept
+      value: 1.0
+    - check: edit_stability
+      status: warn
+      message: 40% of the parent level unchanged
+      value: 0.3955
+    - check: edit_chroma
+      status: pass
+      message: chroma x2.60 of the parent level (drift compounds along a chain)
+      value: 2.6004
+    info:
+      parent_canvas:
+        source:
+        - 768
+        - 512
+        target:
+        - 1536
+        - 1024
+      metrics_raw:
+        L_p5: 49.8
+        L_p50: 86.5
+        L_p95: 93.3
+        C_p50: 16.4
+        C_p95: 64.7
+        C_p99: 74.2
+        detail: 2.88
+      metrics_locked:
+        L_p5: 50.2
+        L_p50: 86.4
+        L_p95: 93.2
+        C_p50: 16.4
+        C_p95: 59.7
+        C_p99: 64.7
+        detail: 2.32
+    fingerprint: 8207684eeaf1a027
+  1:
+    job: koke-island-2
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 60 (R1 51)
+      value: 59.5
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 39 (at most 22), p98 94 (at least 90), spread 54
+        (at least 60)'
+      value: 54.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 71 (band 55-90)'
+      value: 70.9
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.21 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.212
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.1 (at least 3.5)'
+      value: 5.14
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.2 (R1 5.3)
+      value: 2.25
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.5
+      value: 1.48
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.4, p95 12.5, off-palette 5.7% (top: #BBBB44 (1.2%), #CCBB44
+        (0.6%))'
+      value: 3.3627
+    - check: edit_silhouette
+      status: pass
+      message: 100% of the parent's shape kept
+      value: 1.0
+    - check: edit_stability
+      status: pass
+      message: 59% of the parent level unchanged
+      value: 0.5915
+    - check: edit_chroma
+      status: pass
+      message: chroma x2.03 of the parent level (drift compounds along a chain)
+      value: 2.025
+    info:
+      parent_canvas:
+        source:
+        - 768
+        - 512
+        target:
+        - 1536
+        - 1024
+      metrics_raw:
+        L_p5: 49.1
+        L_p50: 88.0
+        L_p95: 94.0
+        C_p50: 12.8
+        C_p95: 63.8
+        C_p99: 73.3
+        detail: 2.82
+      metrics_locked:
+        L_p5: 49.5
+        L_p50: 87.9
+        L_p95: 93.9
+        C_p50: 12.8
+        C_p95: 59.5
+        C_p99: 64.4
+        detail: 2.25
+    fingerprint: 8207684eeaf1a027
+manual_review:
+  excluded_takes:
+  - 1
+  note: Take2 is the only fully eligible initial candidate. Both hard-pass; take1
+    shows the peeking dormouse with both eyes visible, contrary to the explicit one-eye
+    peek, so it is manually excluded despite lower load1.48. Take2 shows one warm
+    dark eye behind the left boulder, the two nearest groups open in butter-yellow
+    and blush-pink, all three remaining groups still closed, the same sleeping Koke,
+    a leafy crown shoot, greener moss and first warm crown/flower light with cooler
+    far side. Four stones, five total flower groups, two ferns, rake, boulders, outline/camera
+    and rooted positions remain. No rays/halo/petals/open Koke eye or new prop. Take2
+    load1.5244; source-bound edit of the actual uploaded stage0 with canonical half-size
+    delivery, no extra generation.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-3dff1789-3410-4f9e-ab14-4c15016695c5.png
+  original_generated_png_sha256: 0a547b87d27b70a6d69569460acf93179d7400488198cc063a852af6e08186c0
+  inbox_png_sha256: 3307517414c28bef8a3a79852de9eb8573d0843c4bcb67d7ace169a1b97806ef
+  rgba_sha256: 88c85569cd6810dcd92d55a8d62a7d5c00e7a49b34eb7baa74a28e9e4334f272
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 8207684eeaf1a027
+- take: 2
+  source_file: /workspace/generated_images/exec-4169d6f4-8e57-45cf-8865-6a092bab8f8b.png
+  original_generated_png_sha256: 2d12f29ae8e6f4eee373589987ba9e79a54159739e265c728277e4167bf5e9d6
+  inbox_png_sha256: 3020e9b489b5e2d202c6ae380ecf029daa110bfa07f3387ae0587cd2b3f9e972
+  rgba_sha256: 372b78ff54a24d621d486942e98c86e28ac2d0ba4f96a66504229ba877508710
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 8207684eeaf1a027

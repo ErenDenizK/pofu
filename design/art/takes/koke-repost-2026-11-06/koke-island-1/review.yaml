@@ -1,0 +1,214 @@
+batch: batch-39-koke-production
+contact_sheet: design/art/takes/koke-repost-2026-11-06/koke-island-1/contact.jpg
+jobs:
+  koke-island-1:
+    pick: 2
+    publication: promoted; founder review pending
+    note: 'auto-picked by QA; founder review pending. Both initial takes clear hard
+      QA and preserve the approved stage0 composition: the same sleeping face/body,
+      five closed flower groups, four stepping stones, two ferns, boulders and rake.
+      About one third of the moss/lawn greens in irregular patches while most remains
+      grey; the crown sprout has exactly three leaves. No new resident, open flower,
+      open eye, glow, petal or text. Take2 wins the lower style-lock load0.7487 versus0.8072.
+      Full locked source review confirms the sparse early healing stage; the day/cool-light
+      warnings remain advisory. Source parent is the actual re-promoted/upload-verified
+      stage0, independently edited, not a previous growth stage.'
+qa_reports:
+  2:
+    job: koke-island-1
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 30 (R1 51)
+      value: 29.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 46 (at most 22), p98 94 (at least 90), spread 48
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 48.4
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 75 (band 55-90)'
+      value: 75.0
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.34 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.337
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.5 (at least 3.5)'
+      value: 4.47
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.0 (R1 5.3)
+      value: 2.01
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.7487
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.3, p95 4.1, off-palette 0.0%
+      value: 2.3024
+    - check: edit_silhouette
+      status: pass
+      message: 100% of the parent's shape kept
+      value: 1.0
+    - check: edit_stability
+      status: pass
+      message: 62% of the parent level unchanged
+      value: 0.6208
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.91 of the parent level (drift compounds along a chain)
+      value: 1.9053
+    info:
+      parent_canvas:
+        source:
+        - 768
+        - 512
+        target:
+        - 1536
+        - 1024
+      metrics_raw:
+        L_p5: 56.6
+        L_p50: 90.1
+        L_p95: 94.3
+        C_p50: 12.1
+        C_p95: 31.3
+        C_p99: 44.9
+        detail: 2.57
+      metrics_locked:
+        L_p5: 57.0
+        L_p50: 90.1
+        L_p95: 94.2
+        C_p50: 12.0
+        C_p95: 29.9
+        C_p99: 42.6
+        detail: 2.01
+    fingerprint: b1ee76fee46761ef
+  1:
+    job: koke-island-1
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 27 (R1 51)
+      value: 26.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 47 (at most 22), p98 94 (at least 90), spread 47
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 46.7
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 73 (band 55-90)'
+      value: 72.7
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.39 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.392
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.1 (at least 3.5)'
+      value: 4.12
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.9 (R1 5.3)
+      value: 1.88
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.8072
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.4, p95 4.1, off-palette 0.0%
+      value: 2.3813
+    - check: edit_silhouette
+      status: pass
+      message: 100% of the parent's shape kept
+      value: 1.0
+    - check: edit_stability
+      status: warn
+      message: 46% of the parent level unchanged
+      value: 0.4574
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.92 of the parent level (drift compounds along a chain)
+      value: 1.9246
+    info:
+      parent_canvas:
+        source:
+        - 768
+        - 512
+        target:
+        - 1536
+        - 1024
+      metrics_raw:
+        L_p5: 56.6
+        L_p50: 89.1
+        L_p95: 93.9
+        C_p50: 12.2
+        C_p95: 28.7
+        C_p99: 38.5
+        detail: 2.45
+      metrics_locked:
+        L_p5: 57.1
+        L_p50: 89.0
+        L_p95: 93.7
+        C_p50: 12.1
+        C_p95: 26.9
+        C_p99: 37.5
+        detail: 1.88
+    fingerprint: b1ee76fee46761ef
+manual_review:
+  excluded_takes: []
+  note: 'Both initial takes clear hard QA and preserve the approved stage0 composition:
+    the same sleeping face/body, five closed flower groups, four stepping stones,
+    two ferns, boulders and rake. About one third of the moss/lawn greens in irregular
+    patches while most remains grey; the crown sprout has exactly three leaves. No
+    new resident, open flower, open eye, glow, petal or text. Take2 wins the lower
+    style-lock load0.7487 versus0.8072. Full locked source review confirms the sparse
+    early healing stage; the day/cool-light warnings remain advisory. Source parent
+    is the actual re-promoted/upload-verified stage0, independently edited, not a
+    previous growth stage.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-9bda14f6-a78e-498d-bd7d-f3212846f61b.png
+  original_generated_png_sha256: df01813dc596b924a45be773ec18c1a8e31a16ed93b8716c252a89c2df237c02
+  inbox_png_sha256: a7ffb72b11f73d1804f591930c786e833e939ea7272195732f5a36105acd9787
+  rgba_sha256: 65a87c33745edc2849bed25534dd2be4927a5a4a9c4f4a92a6e77481433c00b2
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: b1ee76fee46761ef
+- take: 2
+  source_file: /workspace/generated_images/exec-cc76bcd0-cf37-4fb6-98ee-6dac7d7e3fb9.png
+  original_generated_png_sha256: 9430a95def57cc5d5947a555bae2806f415bd518093bb4be7b018a1398498b99
+  inbox_png_sha256: 08d16fcb2723efdb22e99daf9e0ea603fc73d182e1012e9fc57b1352a6f4149c
+  rgba_sha256: 4a14acb9b35a5a4c1ce5d627f094a3f4c5812cce06a498fd135f5420a6bea526
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: b1ee76fee46761ef

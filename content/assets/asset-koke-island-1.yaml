@@ -2,7 +2,7 @@ id: asset-koke-island-1
 type: asset
 title_tr: koke-island-1
 title_en: koke-island-1 (plate)
-status: cut
+status: in-production
 horizon: now
 summary: 'Edit the attached island plate from stage 0 to stage 1: the moss is waking.
   Repaint about a third of the moss on Koke''s hump and on the lawn, in irregular
@@ -14,7 +14,8 @@ links:
   variant_of:
   - asset-koke-island-0
 art:
-  images: []
+  images:
+  - design/art/masters/koke-island-1/koke-island-1.png
   jobs:
   - batch-39-koke-production:koke-island-1
 sources:
@@ -23,8 +24,9 @@ kind: plate
 batch: batch-39-koke-production
 size: 1536x1024
 notes:
-- 'Skipped without generation: true dependency koke-island-0 failed after its one
-  allowed retry. Skipped after the sole unchanged-prompt retry. All four candidates
+- 'Historical original batch-39 run before the separately authorized koke-repost-2026-11-06
+  operation: Skipped without generation: true dependency koke-island-0 failed after
+  its one allowed retry. Skipped after the sole unchanged-prompt retry. All four candidates
   pass every hard QA check but cannot be delivered within the mandatory614400-byte
   lossless master cap. Maximum-effort exact lossless WebP sizes are878932,871858,878880,889080bytes;
   the full1536x1024 PNGs are1.32MB. The manifest supplies no soft-delivery scale,
@@ -37,3 +39,12 @@ notes:
   start without a deliverable parent. Propose a lead-authored soft-delivery scale
   and salvage these retained originals rather than regenerating. Independent character
   chain continues; light warnings remain advisory.'
+- 'Current operation koke-repost-2026-11-06: promoted; take 2. Both initial takes
+  clear hard QA and preserve the approved stage0 composition: the same sleeping face/body,
+  five closed flower groups, four stepping stones, two ferns, boulders and rake. About
+  one third of the moss/lawn greens in irregular patches while most remains grey;
+  the crown sprout has exactly three leaves. No new resident, open flower, open eye,
+  glow, petal or text. Take2 wins the lower style-lock load0.7487 versus0.8072. Full
+  locked source review confirms the sparse early healing stage; the day/cool-light
+  warnings remain advisory. Source parent is the actual re-promoted/upload-verified
+  stage0, independently edited, not a previous growth stage.'

@@ -1,0 +1,346 @@
+{
+  "batch": "batch-39-koke-production",
+  "source_count": 4,
+  "original_branch": "art/batch-39-koke-production/all",
+  "original_commit": "859f7e854149e7919300c54989cf0776e1636d91",
+  "sources": [
+    {
+      "batch": "batch-39-koke-production",
+      "job": "koke-island-0",
+      "take": 1,
+      "round": 1,
+      "logical_run": "20261105-b39-island-root",
+      "source_file": "/workspace/generated_images/exec-6f31f095-e8f5-4b8f-ac68-f805d3c28a71.png",
+      "returned_at": "2026-11-05T23:42:05.380Z",
+      "prompt_sha256": "35fedce40fec596ecb9746ad017959724ad75ed25fbf60df82719d50bcba8f6b",
+      "fingerprint": "b3e58bbf45d02f65",
+      "saved_at": "2026-11-05T23:42:05.774855+00:00",
+      "original_generated_png_sha256": "64ea6cd92fd8872010ce914ec15d709484929ea90a47942d8a6b02cc9c09a439",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "rgba_sha256": "1983e055bfd5491a3f341b136319a80679aace66d81f0d4b64a1fc10a4304253",
+      "evaluation_take": 1,
+      "original_take": 1,
+      "original_run": "batch-39-koke-production",
+      "original_callback": "/workspace/art-operator-runtime/run-20261105-night/batch-39-koke-production/generated-koke-island-0-t1.json",
+      "original_callback_sha256": "c1d3e0986503ebc3c1811084b171efe3cad952c2e01f77db1cdeb2791e7062b4",
+      "original_tool_callback": "/workspace/art-operator-runtime/run-20261105-night/batch-39-koke-production/callback-koke-island-0-t1.json",
+      "original_tool_callback_sha256": "398960ea94173fcabc0cf22f27d321ec7b16e725f68db00905c80428f03eb4ff",
+      "original_sidecar": {
+        "job": "koke-island-0",
+        "take": 1,
+        "batch": "batch-39-koke-production",
+        "fingerprint": "b3e58bbf45d02f65",
+        "prompt": "REFERENCES (attached, in this order):\n1. The home island: copy ONLY its camera, its plate proportions (shallow top, rounded banded body) and its soft painting. Do not copy its lawn, its colors, its round door or its pebbles.\n2. The small island plate: the Koke island is this size in the frame (a small plate, narrower than home). Copy the size and the earth body's proportions only.\n3. A finished station of the game: every prop on Koke's island is at this scale and in this finish (do not draw this stall).\n4. The sea of clouds below every island: paint the clouds like this.\n\nA game plate for a cozy mobile game: Koke, a small island where a big\nmossy creature sleeps, in the game, on a still overcast-bright\nnoon. STAGE 0, STUCK. The island is a floating diorama plate with a\nshallow top about a fifth as deep as it is wide, over a soft rounded\nearth body with gentle bands, a small plate: about 62 percent of the\nimage width, centered. The top is a low rounded lawn of moss and\nshort grass. At the back centre sleeps Koke: a huge round mound of\nmoss about as tall as a windmill, like a plump hill, its soft fur\nmade of moss. It has a round sleepy face low on the near side, a\nsmall blunt snout, two tiny round ears, eyes gently closed with\nsoft lids, the corners of its mouth slightly down, and four stubby\nlegs tucked under its belly, one front paw curled in front of it.\nSTUCK STATE: the whole creature and the whole island are faded and\ngrey: the moss is a dull grey-sage, like a dusty blanket, chroma\nabout 40 percent of a healthy meadow, under a flat cool light with\nsoft cool shadows and no warm light anywhere. Around it, five small\nclusters of flowers stand tightly closed, each a ring of\nshut grey-lilac and grey-blue buds with drooping leaves. A few\nrounded mossy boulders, a path of four stepping stones from the\nfront lip to Koke's side, two soft ferns, and a small wooden rake\nleaning on a boulder. ONE SIGN OF LIFE only: on the crown of the\nhump a single tiny bright fresh-green sprout of two leaves, the\nonly vivid colour in the picture. The mood is quiet and sad, but it\nis a sleeping creature, not a dead one: gentle, never eerie.\nGAME CAMERA (this is how the island looks inside the game): exactly\nthe camera of the attached home island, a low front three-quarter\nview about 20 degrees above the horizon, a pale sky with soft far\nclouds above and the sea of clouds below rising to the island's\nunderside. Every prop is at the scale of the attached tea stall.\nNo characters other than Koke.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: scary or hollow eyes, teeth, claws, a skull, bones, rot, ruins, fog walls, gloom, darkness, a sad crying face, a pointed or spiky underside, a drop or anything falling off the island, a copy of the home island's green lawn and round door, a whale shape, text, letters, zzz, a border, harsh shadows, outlines, photorealism, a 3D render look\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nKey light #FFF6EC from the upper left; fill #BFD6EE; rim #FFE9C9 along the edge facing away from the key. Shadows are tinted #A99BC4 (never grey or black) and fall toward the lower right; paint a contact shadow in that hue under every object that touches the ground or another form, firmest in the subject plane.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, opaque, full bleed, landscape 1536 x 1024.\n",
+        "attachments": [
+          {
+            "path": "design/art/masters/island-main-l-v3/island-main-l-v3.webp",
+            "role": "The home island: copy ONLY its camera, its plate proportions (shallow top, rounded banded body) and its soft painting. Do not copy its lawn, its colors, its round door or its pebbles."
+          },
+          {
+            "path": "design/art/masters/island-main-s/island-main-s.png",
+            "role": "The small island plate: the Koke island is this size in the frame (a small plate, narrower than home). Copy the size and the earth body's proportions only."
+          },
+          {
+            "path": "design/art/stations/tea-stall-5/tea-stall-5.png",
+            "role": "A finished station of the game: every prop on Koke's island is at this scale and in this finish (do not draw this stall)."
+          },
+          {
+            "path": "design/art/masters/cloud-sea/cloud-sea.png",
+            "role": "The sea of clouds below every island: paint the clouds like this."
+          }
+        ],
+        "background": "transparent",
+        "generated_at": "2026-11-05T23:43:47+00:00",
+        "backend": "codex-cloud",
+        "source_file": "/workspace/generated_images/exec-6f31f095-e8f5-4b8f-ac68-f805d3c28a71.png",
+        "account": {
+          "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+          "kind": "chatgpt-plan"
+        }
+      },
+      "original_sidecar_path": "/workspace/art-20261105-koke-production/design/art/inbox/batch-39-koke-production/plate__koke-island-0--t1.json",
+      "original_sidecar_sha256": "c26310e1db337521120441e4cb625ae16f9a5dead1b776bbec48f4ed1406c845",
+      "original_packet": {
+        "batch": "batch-39-koke-production",
+        "job": "koke-island-0",
+        "worktree": "/workspace/art-20261105-koke-production",
+        "prompt": "REFERENCES (attached, in this order):\n1. The home island: copy ONLY its camera, its plate proportions (shallow top, rounded banded body) and its soft painting. Do not copy its lawn, its colors, its round door or its pebbles.\n2. The small island plate: the Koke island is this size in the frame (a small plate, narrower than home). Copy the size and the earth body's proportions only.\n3. A finished station of the game: every prop on Koke's island is at this scale and in this finish (do not draw this stall).\n4. The sea of clouds below every island: paint the clouds like this.\n\nA game plate for a cozy mobile game: Koke, a small island where a big\nmossy creature sleeps, in the game, on a still overcast-bright\nnoon. STAGE 0, STUCK. The island is a floating diorama plate with a\nshallow top about a fifth as deep as it is wide, over a soft rounded\nearth body with gentle bands, a small plate: about 62 percent of the\nimage width, centered. The top is a low rounded lawn of moss and\nshort grass. At the back centre sleeps Koke: a huge round mound of\nmoss about as tall as a windmill, like a plump hill, its soft fur\nmade of moss. It has a round sleepy face low on the near side, a\nsmall blunt snout, two tiny round ears, eyes gently closed with\nsoft lids, the corners of its mouth slightly down, and four stubby\nlegs tucked under its belly, one front paw curled in front of it.\nSTUCK STATE: the whole creature and the whole island are faded and\ngrey: the moss is a dull grey-sage, like a dusty blanket, chroma\nabout 40 percent of a healthy meadow, under a flat cool light with\nsoft cool shadows and no warm light anywhere. Around it, five small\nclusters of flowers stand tightly closed, each a ring of\nshut grey-lilac and grey-blue buds with drooping leaves. A few\nrounded mossy boulders, a path of four stepping stones from the\nfront lip to Koke's side, two soft ferns, and a small wooden rake\nleaning on a boulder. ONE SIGN OF LIFE only: on the crown of the\nhump a single tiny bright fresh-green sprout of two leaves, the\nonly vivid colour in the picture. The mood is quiet and sad, but it\nis a sleeping creature, not a dead one: gentle, never eerie.\nGAME CAMERA (this is how the island looks inside the game): exactly\nthe camera of the attached home island, a low front three-quarter\nview about 20 degrees above the horizon, a pale sky with soft far\nclouds above and the sea of clouds below rising to the island's\nunderside. Every prop is at the scale of the attached tea stall.\nNo characters other than Koke.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: scary or hollow eyes, teeth, claws, a skull, bones, rot, ruins, fog walls, gloom, darkness, a sad crying face, a pointed or spiky underside, a drop or anything falling off the island, a copy of the home island's green lawn and round door, a whale shape, text, letters, zzz, a border, harsh shadows, outlines, photorealism, a 3D render look\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nKey light #FFF6EC from the upper left; fill #BFD6EE; rim #FFE9C9 along the edge facing away from the key. Shadows are tinted #A99BC4 (never grey or black) and fall toward the lower right; paint a contact shadow in that hue under every object that touches the ground or another form, firmest in the subject plane.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, opaque, full bleed, landscape 1536 x 1024.\n",
+        "refs": [
+          "/workspace/art-20261105-koke-production/design/art/masters/island-main-l-v3/island-main-l-v3.webp",
+          "/workspace/art-20261105-koke-production/design/art/masters/island-main-s/island-main-s.png",
+          "/workspace/art-20261105-koke-production/design/art/stations/tea-stall-5/tea-stall-5.png",
+          "/workspace/art-20261105-koke-production/design/art/masters/cloud-sea/cloud-sea.png"
+        ],
+        "reference_sha256": {
+          "/workspace/art-20261105-koke-production/design/art/masters/island-main-l-v3/island-main-l-v3.webp": "f2e539ed4eb75131b0d90454c1b12dbfd8737935fe95e3564956ea967c5ffa29",
+          "/workspace/art-20261105-koke-production/design/art/masters/island-main-s/island-main-s.png": "75840e71b906b9fcc63c1b2572429024ce901fa7357c974c43916416573a05a7",
+          "/workspace/art-20261105-koke-production/design/art/stations/tea-stall-5/tea-stall-5.png": "c9a9f018b2dc6bcb1189f497f750dd98e80c69610c10ba3c71081d8b84d157b3",
+          "/workspace/art-20261105-koke-production/design/art/masters/cloud-sea/cloud-sea.png": "bb693d333d53fd5fc3e385335fc912574ccda580ac018bc12c2143c12031579a"
+        },
+        "fingerprint": "b3e58bbf45d02f65",
+        "prompt_sha256": "35fedce40fec596ecb9746ad017959724ad75ed25fbf60df82719d50bcba8f6b",
+        "transparent": false
+      },
+      "original_packet_file": "/workspace/art-operator-runtime/run-20261105-night/batch-39-koke-production/packet-koke-island-0.json",
+      "original_packet_sha256": "00486686fd475d532f9580c90e5fdbe6e3e7b29442cb4e1871301753f96a01e7"
+    },
+    {
+      "batch": "batch-39-koke-production",
+      "job": "koke-island-0",
+      "take": 2,
+      "round": 1,
+      "logical_run": "20261105-b39-island-root",
+      "source_file": "/workspace/generated_images/exec-c9402a32-9851-49a4-9159-bd1aa43cf471.png",
+      "returned_at": "2026-11-05T23:42:42.696Z",
+      "prompt_sha256": "35fedce40fec596ecb9746ad017959724ad75ed25fbf60df82719d50bcba8f6b",
+      "fingerprint": "b3e58bbf45d02f65",
+      "saved_at": "2026-11-05T23:42:42.993346+00:00",
+      "original_generated_png_sha256": "7236fbcac63645a1f1e2477047c1c3a69a0f54335cf3f4a9dc17b67a71fb80a0",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "rgba_sha256": "e9253337769e545d4d8471dbb1c93566a4ec371c1fdc183bfa13c321c4f7d2c4",
+      "evaluation_take": 2,
+      "original_take": 2,
+      "original_run": "batch-39-koke-production",
+      "original_callback": "/workspace/art-operator-runtime/run-20261105-night/batch-39-koke-production/generated-koke-island-0-t2.json",
+      "original_callback_sha256": "0de3c91ec75174a9020f46645d09660ec23de98619a91e56c0b3d22093e2982a",
+      "original_tool_callback": "/workspace/art-operator-runtime/run-20261105-night/batch-39-koke-production/callback-koke-island-0-t2.json",
+      "original_tool_callback_sha256": "469243a4291a4e8eac5b85f16836042011333981992fcce6b55431c7101b42a6",
+      "original_sidecar": {
+        "job": "koke-island-0",
+        "take": 2,
+        "batch": "batch-39-koke-production",
+        "fingerprint": "b3e58bbf45d02f65",
+        "prompt": "REFERENCES (attached, in this order):\n1. The home island: copy ONLY its camera, its plate proportions (shallow top, rounded banded body) and its soft painting. Do not copy its lawn, its colors, its round door or its pebbles.\n2. The small island plate: the Koke island is this size in the frame (a small plate, narrower than home). Copy the size and the earth body's proportions only.\n3. A finished station of the game: every prop on Koke's island is at this scale and in this finish (do not draw this stall).\n4. The sea of clouds below every island: paint the clouds like this.\n\nA game plate for a cozy mobile game: Koke, a small island where a big\nmossy creature sleeps, in the game, on a still overcast-bright\nnoon. STAGE 0, STUCK. The island is a floating diorama plate with a\nshallow top about a fifth as deep as it is wide, over a soft rounded\nearth body with gentle bands, a small plate: about 62 percent of the\nimage width, centered. The top is a low rounded lawn of moss and\nshort grass. At the back centre sleeps Koke: a huge round mound of\nmoss about as tall as a windmill, like a plump hill, its soft fur\nmade of moss. It has a round sleepy face low on the near side, a\nsmall blunt snout, two tiny round ears, eyes gently closed with\nsoft lids, the corners of its mouth slightly down, and four stubby\nlegs tucked under its belly, one front paw curled in front of it.\nSTUCK STATE: the whole creature and the whole island are faded and\ngrey: the moss is a dull grey-sage, like a dusty blanket, chroma\nabout 40 percent of a healthy meadow, under a flat cool light with\nsoft cool shadows and no warm light anywhere. Around it, five small\nclusters of flowers stand tightly closed, each a ring of\nshut grey-lilac and grey-blue buds with drooping leaves. A few\nrounded mossy boulders, a path of four stepping stones from the\nfront lip to Koke's side, two soft ferns, and a small wooden rake\nleaning on a boulder. ONE SIGN OF LIFE only: on the crown of the\nhump a single tiny bright fresh-green sprout of two leaves, the\nonly vivid colour in the picture. The mood is quiet and sad, but it\nis a sleeping creature, not a dead one: gentle, never eerie.\nGAME CAMERA (this is how the island looks inside the game): exactly\nthe camera of the attached home island, a low front three-quarter\nview about 20 degrees above the horizon, a pale sky with soft far\nclouds above and the sea of clouds below rising to the island's\nunderside. Every prop is at the scale of the attached tea stall.\nNo characters other than Koke.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: scary or hollow eyes, teeth, claws, a skull, bones, rot, ruins, fog walls, gloom, darkness, a sad crying face, a pointed or spiky underside, a drop or anything falling off the island, a copy of the home island's green lawn and round door, a whale shape, text, letters, zzz, a border, harsh shadows, outlines, photorealism, a 3D render look\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nKey light #FFF6EC from the upper left; fill #BFD6EE; rim #FFE9C9 along the edge facing away from the key. Shadows are tinted #A99BC4 (never grey or black) and fall toward the lower right; paint a contact shadow in that hue under every object that touches the ground or another form, firmest in the subject plane.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, opaque, full bleed, landscape 1536 x 1024.\n",
+        "attachments": [
+          {
+            "path": "design/art/masters/island-main-l-v3/island-main-l-v3.webp",
+            "role": "The home island: copy ONLY its camera, its plate proportions (shallow top, rounded banded body) and its soft painting. Do not copy its lawn, its colors, its round door or its pebbles."
+          },
+          {
+            "path": "design/art/masters/island-main-s/island-main-s.png",
+            "role": "The small island plate: the Koke island is this size in the frame (a small plate, narrower than home). Copy the size and the earth body's proportions only."
+          },
+          {
+            "path": "design/art/stations/tea-stall-5/tea-stall-5.png",
+            "role": "A finished station of the game: every prop on Koke's island is at this scale and in this finish (do not draw this stall)."
+          },
+          {
+            "path": "design/art/masters/cloud-sea/cloud-sea.png",
+            "role": "The sea of clouds below every island: paint the clouds like this."
+          }
+        ],
+        "background": "transparent",
+        "generated_at": "2026-11-05T23:43:48+00:00",
+        "backend": "codex-cloud",
+        "source_file": "/workspace/generated_images/exec-c9402a32-9851-49a4-9159-bd1aa43cf471.png",
+        "account": {
+          "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+          "kind": "chatgpt-plan"
+        }
+      },
+      "original_sidecar_path": "/workspace/art-20261105-koke-production/design/art/inbox/batch-39-koke-production/plate__koke-island-0--t2.json",
+      "original_sidecar_sha256": "e8099477c4f88628d725a8e112ab58670d5a2f73509c310ae56f8d585c09ec1b",
+      "original_packet": {
+        "batch": "batch-39-koke-production",
+        "job": "koke-island-0",
+        "worktree": "/workspace/art-20261105-koke-production",
+        "prompt": "REFERENCES (attached, in this order):\n1. The home island: copy ONLY its camera, its plate proportions (shallow top, rounded banded body) and its soft painting. Do not copy its lawn, its colors, its round door or its pebbles.\n2. The small island plate: the Koke island is this size in the frame (a small plate, narrower than home). Copy the size and the earth body's proportions only.\n3. A finished station of the game: every prop on Koke's island is at this scale and in this finish (do not draw this stall).\n4. The sea of clouds below every island: paint the clouds like this.\n\nA game plate for a cozy mobile game: Koke, a small island where a big\nmossy creature sleeps, in the game, on a still overcast-bright\nnoon. STAGE 0, STUCK. The island is a floating diorama plate with a\nshallow top about a fifth as deep as it is wide, over a soft rounded\nearth body with gentle bands, a small plate: about 62 percent of the\nimage width, centered. The top is a low rounded lawn of moss and\nshort grass. At the back centre sleeps Koke: a huge round mound of\nmoss about as tall as a windmill, like a plump hill, its soft fur\nmade of moss. It has a round sleepy face low on the near side, a\nsmall blunt snout, two tiny round ears, eyes gently closed with\nsoft lids, the corners of its mouth slightly down, and four stubby\nlegs tucked under its belly, one front paw curled in front of it.\nSTUCK STATE: the whole creature and the whole island are faded and\ngrey: the moss is a dull grey-sage, like a dusty blanket, chroma\nabout 40 percent of a healthy meadow, under a flat cool light with\nsoft cool shadows and no warm light anywhere. Around it, five small\nclusters of flowers stand tightly closed, each a ring of\nshut grey-lilac and grey-blue buds with drooping leaves. A few\nrounded mossy boulders, a path of four stepping stones from the\nfront lip to Koke's side, two soft ferns, and a small wooden rake\nleaning on a boulder. ONE SIGN OF LIFE only: on the crown of the\nhump a single tiny bright fresh-green sprout of two leaves, the\nonly vivid colour in the picture. The mood is quiet and sad, but it\nis a sleeping creature, not a dead one: gentle, never eerie.\nGAME CAMERA (this is how the island looks inside the game): exactly\nthe camera of the attached home island, a low front three-quarter\nview about 20 degrees above the horizon, a pale sky with soft far\nclouds above and the sea of clouds below rising to the island's\nunderside. Every prop is at the scale of the attached tea stall.\nNo characters other than Koke.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: scary or hollow eyes, teeth, claws, a skull, bones, rot, ruins, fog walls, gloom, darkness, a sad crying face, a pointed or spiky underside, a drop or anything falling off the island, a copy of the home island's green lawn and round door, a whale shape, text, letters, zzz, a border, harsh shadows, outlines, photorealism, a 3D render look\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nKey light #FFF6EC from the upper left; fill #BFD6EE; rim #FFE9C9 along the edge facing away from the key. Shadows are tinted #A99BC4 (never grey or black) and fall toward the lower right; paint a contact shadow in that hue under every object that touches the ground or another form, firmest in the subject plane.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, opaque, full bleed, landscape 1536 x 1024.\n",
+        "refs": [
+          "/workspace/art-20261105-koke-production/design/art/masters/island-main-l-v3/island-main-l-v3.webp",
+          "/workspace/art-20261105-koke-production/design/art/masters/island-main-s/island-main-s.png",
+          "/workspace/art-20261105-koke-production/design/art/stations/tea-stall-5/tea-stall-5.png",
+          "/workspace/art-20261105-koke-production/design/art/masters/cloud-sea/cloud-sea.png"
+        ],
+        "reference_sha256": {
+          "/workspace/art-20261105-koke-production/design/art/masters/island-main-l-v3/island-main-l-v3.webp": "f2e539ed4eb75131b0d90454c1b12dbfd8737935fe95e3564956ea967c5ffa29",
+          "/workspace/art-20261105-koke-production/design/art/masters/island-main-s/island-main-s.png": "75840e71b906b9fcc63c1b2572429024ce901fa7357c974c43916416573a05a7",
+          "/workspace/art-20261105-koke-production/design/art/stations/tea-stall-5/tea-stall-5.png": "c9a9f018b2dc6bcb1189f497f750dd98e80c69610c10ba3c71081d8b84d157b3",
+          "/workspace/art-20261105-koke-production/design/art/masters/cloud-sea/cloud-sea.png": "bb693d333d53fd5fc3e385335fc912574ccda580ac018bc12c2143c12031579a"
+        },
+        "fingerprint": "b3e58bbf45d02f65",
+        "prompt_sha256": "35fedce40fec596ecb9746ad017959724ad75ed25fbf60df82719d50bcba8f6b",
+        "transparent": false
+      },
+      "original_packet_file": "/workspace/art-operator-runtime/run-20261105-night/batch-39-koke-production/packet-koke-island-0.json",
+      "original_packet_sha256": "00486686fd475d532f9580c90e5fdbe6e3e7b29442cb4e1871301753f96a01e7"
+    },
+    {
+      "batch": "batch-39-koke-production",
+      "job": "koke-island-0",
+      "take": 3,
+      "round": 2,
+      "logical_run": "20261105-b39-island-root",
+      "source_file": "/workspace/generated_images/exec-12b3043e-e916-49e8-9ffd-a3f79d0416e7.png",
+      "returned_at": "2026-11-05T23:48:14.641Z",
+      "prompt_sha256": "35fedce40fec596ecb9746ad017959724ad75ed25fbf60df82719d50bcba8f6b",
+      "fingerprint": "b3e58bbf45d02f65",
+      "saved_at": "2026-11-05T23:48:14.941007+00:00",
+      "original_generated_png_sha256": "a10186bf8ce0b8b3e4515e188dd1f43223129ab51689758186d83abff44403b6",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "rgba_sha256": "c6ab282fd21f795e35540385c8faebdbe237c87893a418f8733a2f4823fa6552",
+      "evaluation_take": 3,
+      "original_take": 3,
+      "original_run": "batch-39-koke-production",
+      "original_callback": "/workspace/art-operator-runtime/run-20261105-night/batch-39-koke-production/generated-koke-island-0-t3.json",
+      "original_callback_sha256": "8abb855c60068688ecd2db146b6abc573cec87334a4468968885f83d39dd1fbe",
+      "original_tool_callback": "/workspace/art-operator-runtime/run-20261105-night/batch-39-koke-production/callback-koke-island-0-t3.json",
+      "original_tool_callback_sha256": "3584956f7f3999e35a903fed61a5023d27b5b9f5c17a67098743a1c4bb49f640",
+      "original_sidecar": {
+        "job": "koke-island-0",
+        "take": 3,
+        "batch": "batch-39-koke-production",
+        "fingerprint": "b3e58bbf45d02f65",
+        "prompt": "REFERENCES (attached, in this order):\n1. The home island: copy ONLY its camera, its plate proportions (shallow top, rounded banded body) and its soft painting. Do not copy its lawn, its colors, its round door or its pebbles.\n2. The small island plate: the Koke island is this size in the frame (a small plate, narrower than home). Copy the size and the earth body's proportions only.\n3. A finished station of the game: every prop on Koke's island is at this scale and in this finish (do not draw this stall).\n4. The sea of clouds below every island: paint the clouds like this.\n\nA game plate for a cozy mobile game: Koke, a small island where a big\nmossy creature sleeps, in the game, on a still overcast-bright\nnoon. STAGE 0, STUCK. The island is a floating diorama plate with a\nshallow top about a fifth as deep as it is wide, over a soft rounded\nearth body with gentle bands, a small plate: about 62 percent of the\nimage width, centered. The top is a low rounded lawn of moss and\nshort grass. At the back centre sleeps Koke: a huge round mound of\nmoss about as tall as a windmill, like a plump hill, its soft fur\nmade of moss. It has a round sleepy face low on the near side, a\nsmall blunt snout, two tiny round ears, eyes gently closed with\nsoft lids, the corners of its mouth slightly down, and four stubby\nlegs tucked under its belly, one front paw curled in front of it.\nSTUCK STATE: the whole creature and the whole island are faded and\ngrey: the moss is a dull grey-sage, like a dusty blanket, chroma\nabout 40 percent of a healthy meadow, under a flat cool light with\nsoft cool shadows and no warm light anywhere. Around it, five small\nclusters of flowers stand tightly closed, each a ring of\nshut grey-lilac and grey-blue buds with drooping leaves. A few\nrounded mossy boulders, a path of four stepping stones from the\nfront lip to Koke's side, two soft ferns, and a small wooden rake\nleaning on a boulder. ONE SIGN OF LIFE only: on the crown of the\nhump a single tiny bright fresh-green sprout of two leaves, the\nonly vivid colour in the picture. The mood is quiet and sad, but it\nis a sleeping creature, not a dead one: gentle, never eerie.\nGAME CAMERA (this is how the island looks inside the game): exactly\nthe camera of the attached home island, a low front three-quarter\nview about 20 degrees above the horizon, a pale sky with soft far\nclouds above and the sea of clouds below rising to the island's\nunderside. Every prop is at the scale of the attached tea stall.\nNo characters other than Koke.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: scary or hollow eyes, teeth, claws, a skull, bones, rot, ruins, fog walls, gloom, darkness, a sad crying face, a pointed or spiky underside, a drop or anything falling off the island, a copy of the home island's green lawn and round door, a whale shape, text, letters, zzz, a border, harsh shadows, outlines, photorealism, a 3D render look\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nKey light #FFF6EC from the upper left; fill #BFD6EE; rim #FFE9C9 along the edge facing away from the key. Shadows are tinted #A99BC4 (never grey or black) and fall toward the lower right; paint a contact shadow in that hue under every object that touches the ground or another form, firmest in the subject plane.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, opaque, full bleed, landscape 1536 x 1024.\n",
+        "attachments": [
+          {
+            "path": "design/art/masters/island-main-l-v3/island-main-l-v3.webp",
+            "role": "The home island: copy ONLY its camera, its plate proportions (shallow top, rounded banded body) and its soft painting. Do not copy its lawn, its colors, its round door or its pebbles."
+          },
+          {
+            "path": "design/art/masters/island-main-s/island-main-s.png",
+            "role": "The small island plate: the Koke island is this size in the frame (a small plate, narrower than home). Copy the size and the earth body's proportions only."
+          },
+          {
+            "path": "design/art/stations/tea-stall-5/tea-stall-5.png",
+            "role": "A finished station of the game: every prop on Koke's island is at this scale and in this finish (do not draw this stall)."
+          },
+          {
+            "path": "design/art/masters/cloud-sea/cloud-sea.png",
+            "role": "The sea of clouds below every island: paint the clouds like this."
+          }
+        ],
+        "background": "transparent",
+        "generated_at": "2026-11-05T23:49:06+00:00",
+        "backend": "codex-cloud",
+        "source_file": "/workspace/generated_images/exec-12b3043e-e916-49e8-9ffd-a3f79d0416e7.png",
+        "account": {
+          "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+          "kind": "chatgpt-plan"
+        }
+      },
+      "original_sidecar_path": "/workspace/art-20261105-koke-production/design/art/inbox/batch-39-koke-production/plate__koke-island-0--t3.json",
+      "original_sidecar_sha256": "dabdd06846c20721f4f8e4e22eb0c3af9d28cd50adfa1500447cd0bd0364d647",
+      "original_packet": {
+        "batch": "batch-39-koke-production",
+        "job": "koke-island-0",
+        "worktree": "/workspace/art-20261105-koke-production",
+        "prompt": "REFERENCES (attached, in this order):\n1. The home island: copy ONLY its camera, its plate proportions (shallow top, rounded banded body) and its soft painting. Do not copy its lawn, its colors, its round door or its pebbles.\n2. The small island plate: the Koke island is this size in the frame (a small plate, narrower than home). Copy the size and the earth body's proportions only.\n3. A finished station of the game: every prop on Koke's island is at this scale and in this finish (do not draw this stall).\n4. The sea of clouds below every island: paint the clouds like this.\n\nA game plate for a cozy mobile game: Koke, a small island where a big\nmossy creature sleeps, in the game, on a still overcast-bright\nnoon. STAGE 0, STUCK. The island is a floating diorama plate with a\nshallow top about a fifth as deep as it is wide, over a soft rounded\nearth body with gentle bands, a small plate: about 62 percent of the\nimage width, centered. The top is a low rounded lawn of moss and\nshort grass. At the back centre sleeps Koke: a huge round mound of\nmoss about as tall as a windmill, like a plump hill, its soft fur\nmade of moss. It has a round sleepy face low on the near side, a\nsmall blunt snout, two tiny round ears, eyes gently closed with\nsoft lids, the corners of its mouth slightly down, and four stubby\nlegs tucked under its belly, one front paw curled in front of it.\nSTUCK STATE: the whole creature and the whole island are faded and\ngrey: the moss is a dull grey-sage, like a dusty blanket, chroma\nabout 40 percent of a healthy meadow, under a flat cool light with\nsoft cool shadows and no warm light anywhere. Around it, five small\nclusters of flowers stand tightly closed, each a ring of\nshut grey-lilac and grey-blue buds with drooping leaves. A few\nrounded mossy boulders, a path of four stepping stones from the\nfront lip to Koke's side, two soft ferns, and a small wooden rake\nleaning on a boulder. ONE SIGN OF LIFE only: on the crown of the\nhump a single tiny bright fresh-green sprout of two leaves, the\nonly vivid colour in the picture. The mood is quiet and sad, but it\nis a sleeping creature, not a dead one: gentle, never eerie.\nGAME CAMERA (this is how the island looks inside the game): exactly\nthe camera of the attached home island, a low front three-quarter\nview about 20 degrees above the horizon, a pale sky with soft far\nclouds above and the sea of clouds below rising to the island's\nunderside. Every prop is at the scale of the attached tea stall.\nNo characters other than Koke.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: scary or hollow eyes, teeth, claws, a skull, bones, rot, ruins, fog walls, gloom, darkness, a sad crying face, a pointed or spiky underside, a drop or anything falling off the island, a copy of the home island's green lawn and round door, a whale shape, text, letters, zzz, a border, harsh shadows, outlines, photorealism, a 3D render look\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nKey light #FFF6EC from the upper left; fill #BFD6EE; rim #FFE9C9 along the edge facing away from the key. Shadows are tinted #A99BC4 (never grey or black) and fall toward the lower right; paint a contact shadow in that hue under every object that touches the ground or another form, firmest in the subject plane.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, opaque, full bleed, landscape 1536 x 1024.\n",
+        "refs": [
+          "/workspace/art-20261105-koke-production/design/art/masters/island-main-l-v3/island-main-l-v3.webp",
+          "/workspace/art-20261105-koke-production/design/art/masters/island-main-s/island-main-s.png",
+          "/workspace/art-20261105-koke-production/design/art/stations/tea-stall-5/tea-stall-5.png",
+          "/workspace/art-20261105-koke-production/design/art/masters/cloud-sea/cloud-sea.png"
+        ],
+        "reference_sha256": {
+          "/workspace/art-20261105-koke-production/design/art/masters/island-main-l-v3/island-main-l-v3.webp": "f2e539ed4eb75131b0d90454c1b12dbfd8737935fe95e3564956ea967c5ffa29",
+          "/workspace/art-20261105-koke-production/design/art/masters/island-main-s/island-main-s.png": "75840e71b906b9fcc63c1b2572429024ce901fa7357c974c43916416573a05a7",
+          "/workspace/art-20261105-koke-production/design/art/stations/tea-stall-5/tea-stall-5.png": "c9a9f018b2dc6bcb1189f497f750dd98e80c69610c10ba3c71081d8b84d157b3",
+          "/workspace/art-20261105-koke-production/design/art/masters/cloud-sea/cloud-sea.png": "bb693d333d53fd5fc3e385335fc912574ccda580ac018bc12c2143c12031579a"
+        },
+        "fingerprint": "b3e58bbf45d02f65",
+        "prompt_sha256": "35fedce40fec596ecb9746ad017959724ad75ed25fbf60df82719d50bcba8f6b",
+        "transparent": false
+      },
+      "original_packet_file": "/workspace/art-operator-runtime/run-20261105-night/batch-39-koke-production/packet-koke-island-0.json",
+      "original_packet_sha256": "00486686fd475d532f9580c90e5fdbe6e3e7b29442cb4e1871301753f96a01e7"
+    },
+    {
+      "batch": "batch-39-koke-production",
+      "job": "koke-island-0",
+      "take": 4,
+      "round": 2,
+      "logical_run": "20261105-b39-island-root",
+      "source_file": "/workspace/generated_images/exec-7e7a7585-d47f-4ce5-9264-5eedc731bd83.png",
+      "returned_at": "2026-11-05T23:48:52.662Z",
+      "prompt_sha256": "35fedce40fec596ecb9746ad017959724ad75ed25fbf60df82719d50bcba8f6b",
+      "fingerprint": "b3e58bbf45d02f65",
+      "saved_at": "2026-11-05T23:48:52.953112+00:00",
+      "original_generated_png_sha256": "848a2b48f676758c6c07891a4fd8199da74bd036ad1c356315cf2ceb7e03cf48",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "rgba_sha256": "097a2274198d14f17bed36aaf0ce9fe55b8808dff9fe641b6447209b730ee49d",
+      "evaluation_take": 4,
+      "original_take": 4,
+      "original_run": "batch-39-koke-production",
+      "original_callback": "/workspace/art-operator-runtime/run-20261105-night/batch-39-koke-production/generated-koke-island-0-t4.json",
+      "original_callback_sha256": "ae5466b0a0b028f0d91f2e167acf2daa8aad5ef597866208b536ee1e820b0592",
+      "original_tool_callback": "/workspace/art-operator-runtime/run-20261105-night/batch-39-koke-production/callback-koke-island-0-t4.json",
+      "original_tool_callback_sha256": "574aa62e7d410df97911b9bb7e891393ac73c0e32bf613f04f3b3a25bdecfacf",
+      "original_sidecar": {
+        "job": "koke-island-0",
+        "take": 4,
+        "batch": "batch-39-koke-production",
+        "fingerprint": "b3e58bbf45d02f65",
+        "prompt": "REFERENCES (attached, in this order):\n1. The home island: copy ONLY its camera, its plate proportions (shallow top, rounded banded body) and its soft painting. Do not copy its lawn, its colors, its round door or its pebbles.\n2. The small island plate: the Koke island is this size in the frame (a small plate, narrower than home). Copy the size and the earth body's proportions only.\n3. A finished station of the game: every prop on Koke's island is at this scale and in this finish (do not draw this stall).\n4. The sea of clouds below every island: paint the clouds like this.\n\nA game plate for a cozy mobile game: Koke, a small island where a big\nmossy creature sleeps, in the game, on a still overcast-bright\nnoon. STAGE 0, STUCK. The island is a floating diorama plate with a\nshallow top about a fifth as deep as it is wide, over a soft rounded\nearth body with gentle bands, a small plate: about 62 percent of the\nimage width, centered. The top is a low rounded lawn of moss and\nshort grass. At the back centre sleeps Koke: a huge round mound of\nmoss about as tall as a windmill, like a plump hill, its soft fur\nmade of moss. It has a round sleepy face low on the near side, a\nsmall blunt snout, two tiny round ears, eyes gently closed with\nsoft lids, the corners of its mouth slightly down, and four stubby\nlegs tucked under its belly, one front paw curled in front of it.\nSTUCK STATE: the whole creature and the whole island are faded and\ngrey: the moss is a dull grey-sage, like a dusty blanket, chroma\nabout 40 percent of a healthy meadow, under a flat cool light with\nsoft cool shadows and no warm light anywhere. Around it, five small\nclusters of flowers stand tightly closed, each a ring of\nshut grey-lilac and grey-blue buds with drooping leaves. A few\nrounded mossy boulders, a path of four stepping stones from the\nfront lip to Koke's side, two soft ferns, and a small wooden rake\nleaning on a boulder. ONE SIGN OF LIFE only: on the crown of the\nhump a single tiny bright fresh-green sprout of two leaves, the\nonly vivid colour in the picture. The mood is quiet and sad, but it\nis a sleeping creature, not a dead one: gentle, never eerie.\nGAME CAMERA (this is how the island looks inside the game): exactly\nthe camera of the attached home island, a low front three-quarter\nview about 20 degrees above the horizon, a pale sky with soft far\nclouds above and the sea of clouds below rising to the island's\nunderside. Every prop is at the scale of the attached tea stall.\nNo characters other than Koke.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: scary or hollow eyes, teeth, claws, a skull, bones, rot, ruins, fog walls, gloom, darkness, a sad crying face, a pointed or spiky underside, a drop or anything falling off the island, a copy of the home island's green lawn and round door, a whale shape, text, letters, zzz, a border, harsh shadows, outlines, photorealism, a 3D render look\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nKey light #FFF6EC from the upper left; fill #BFD6EE; rim #FFE9C9 along the edge facing away from the key. Shadows are tinted #A99BC4 (never grey or black) and fall toward the lower right; paint a contact shadow in that hue under every object that touches the ground or another form, firmest in the subject plane.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, opaque, full bleed, landscape 1536 x 1024.\n",
+        "attachments": [
+          {
+            "path": "design/art/masters/island-main-l-v3/island-main-l-v3.webp",
+            "role": "The home island: copy ONLY its camera, its plate proportions (shallow top, rounded banded body) and its soft painting. Do not copy its lawn, its colors, its round door or its pebbles."
+          },
+          {
+            "path": "design/art/masters/island-main-s/island-main-s.png",
+            "role": "The small island plate: the Koke island is this size in the frame (a small plate, narrower than home). Copy the size and the earth body's proportions only."
+          },
+          {
+            "path": "design/art/stations/tea-stall-5/tea-stall-5.png",
+            "role": "A finished station of the game: every prop on Koke's island is at this scale and in this finish (do not draw this stall)."
+          },
+          {
+            "path": "design/art/masters/cloud-sea/cloud-sea.png",
+            "role": "The sea of clouds below every island: paint the clouds like this."
+          }
+        ],
+        "background": "transparent",
+        "generated_at": "2026-11-05T23:49:06+00:00",
+        "backend": "codex-cloud",
+        "source_file": "/workspace/generated_images/exec-7e7a7585-d47f-4ce5-9264-5eedc731bd83.png",
+        "account": {
+          "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+          "kind": "chatgpt-plan"
+        }
+      },
+      "original_sidecar_path": "/workspace/art-20261105-koke-production/design/art/inbox/batch-39-koke-production/plate__koke-island-0--t4.json",
+      "original_sidecar_sha256": "e8f3bdc8bdca2fde8c6a19bc15ed884a7916cb48cc58a1346d86c10c4059ff1f",
+      "original_packet": {
+        "batch": "batch-39-koke-production",
+        "job": "koke-island-0",
+        "worktree": "/workspace/art-20261105-koke-production",
+        "prompt": "REFERENCES (attached, in this order):\n1. The home island: copy ONLY its camera, its plate proportions (shallow top, rounded banded body) and its soft painting. Do not copy its lawn, its colors, its round door or its pebbles.\n2. The small island plate: the Koke island is this size in the frame (a small plate, narrower than home). Copy the size and the earth body's proportions only.\n3. A finished station of the game: every prop on Koke's island is at this scale and in this finish (do not draw this stall).\n4. The sea of clouds below every island: paint the clouds like this.\n\nA game plate for a cozy mobile game: Koke, a small island where a big\nmossy creature sleeps, in the game, on a still overcast-bright\nnoon. STAGE 0, STUCK. The island is a floating diorama plate with a\nshallow top about a fifth as deep as it is wide, over a soft rounded\nearth body with gentle bands, a small plate: about 62 percent of the\nimage width, centered. The top is a low rounded lawn of moss and\nshort grass. At the back centre sleeps Koke: a huge round mound of\nmoss about as tall as a windmill, like a plump hill, its soft fur\nmade of moss. It has a round sleepy face low on the near side, a\nsmall blunt snout, two tiny round ears, eyes gently closed with\nsoft lids, the corners of its mouth slightly down, and four stubby\nlegs tucked under its belly, one front paw curled in front of it.\nSTUCK STATE: the whole creature and the whole island are faded and\ngrey: the moss is a dull grey-sage, like a dusty blanket, chroma\nabout 40 percent of a healthy meadow, under a flat cool light with\nsoft cool shadows and no warm light anywhere. Around it, five small\nclusters of flowers stand tightly closed, each a ring of\nshut grey-lilac and grey-blue buds with drooping leaves. A few\nrounded mossy boulders, a path of four stepping stones from the\nfront lip to Koke's side, two soft ferns, and a small wooden rake\nleaning on a boulder. ONE SIGN OF LIFE only: on the crown of the\nhump a single tiny bright fresh-green sprout of two leaves, the\nonly vivid colour in the picture. The mood is quiet and sad, but it\nis a sleeping creature, not a dead one: gentle, never eerie.\nGAME CAMERA (this is how the island looks inside the game): exactly\nthe camera of the attached home island, a low front three-quarter\nview about 20 degrees above the horizon, a pale sky with soft far\nclouds above and the sea of clouds below rising to the island's\nunderside. Every prop is at the scale of the attached tea stall.\nNo characters other than Koke.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: scary or hollow eyes, teeth, claws, a skull, bones, rot, ruins, fog walls, gloom, darkness, a sad crying face, a pointed or spiky underside, a drop or anything falling off the island, a copy of the home island's green lawn and round door, a whale shape, text, letters, zzz, a border, harsh shadows, outlines, photorealism, a 3D render look\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nKey light #FFF6EC from the upper left; fill #BFD6EE; rim #FFE9C9 along the edge facing away from the key. Shadows are tinted #A99BC4 (never grey or black) and fall toward the lower right; paint a contact shadow in that hue under every object that touches the ground or another form, firmest in the subject plane.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, opaque, full bleed, landscape 1536 x 1024.\n",
+        "refs": [
+          "/workspace/art-20261105-koke-production/design/art/masters/island-main-l-v3/island-main-l-v3.webp",
+          "/workspace/art-20261105-koke-production/design/art/masters/island-main-s/island-main-s.png",
+          "/workspace/art-20261105-koke-production/design/art/stations/tea-stall-5/tea-stall-5.png",
+          "/workspace/art-20261105-koke-production/design/art/masters/cloud-sea/cloud-sea.png"
+        ],
+        "reference_sha256": {
+          "/workspace/art-20261105-koke-production/design/art/masters/island-main-l-v3/island-main-l-v3.webp": "f2e539ed4eb75131b0d90454c1b12dbfd8737935fe95e3564956ea967c5ffa29",
+          "/workspace/art-20261105-koke-production/design/art/masters/island-main-s/island-main-s.png": "75840e71b906b9fcc63c1b2572429024ce901fa7357c974c43916416573a05a7",
+          "/workspace/art-20261105-koke-production/design/art/stations/tea-stall-5/tea-stall-5.png": "c9a9f018b2dc6bcb1189f497f750dd98e80c69610c10ba3c71081d8b84d157b3",
+          "/workspace/art-20261105-koke-production/design/art/masters/cloud-sea/cloud-sea.png": "bb693d333d53fd5fc3e385335fc912574ccda580ac018bc12c2143c12031579a"
+        },
+        "fingerprint": "b3e58bbf45d02f65",
+        "prompt_sha256": "35fedce40fec596ecb9746ad017959724ad75ed25fbf60df82719d50bcba8f6b",
+        "transparent": false
+      },
+      "original_packet_file": "/workspace/art-operator-runtime/run-20261105-night/batch-39-koke-production/packet-koke-island-0.json",
+      "original_packet_sha256": "00486686fd475d532f9580c90e5fdbe6e3e7b29442cb4e1871301753f96a01e7"
+    }
+  ],
+  "new_generation_calls": 0,
+  "evaluation_context": {
+    "packet_sha256": "f4cfab90ac9b122e05102b42000debc64ee3a9c470c1927fe9f52c74dfaa988f",
+    "prompt_unchanged": true,
+    "reference_fingerprint_unchanged": true
+  }
+}

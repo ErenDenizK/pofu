@@ -2,7 +2,7 @@ id: asset-koke-island-0
 type: asset
 title_tr: koke-island-0
 title_en: koke-island-0 (plate)
-status: cut
+status: in-production
 horizon: now
 summary: 'A game plate for a cozy mobile game: Koke, a small island where a big mossy
   creature sleeps, in the game, on a still overcast-bright noon. STAGE 0, STUCK. The
@@ -11,7 +11,8 @@ summary: 'A game plate for a cozy mobile game: Koke, a small island where a big 
   62 percent of the image width, centered. The top is a low rounded lawn of moss and
   short grass. At …'
 art:
-  images: []
+  images:
+  - design/art/masters/koke-island-0/koke-island-0.png
   jobs:
   - batch-39-koke-production:koke-island-0
 sources:
@@ -20,17 +21,30 @@ kind: plate
 batch: batch-39-koke-production
 size: 1536x1024
 notes:
-- 'batch-39-koke-production skipped after four takes: Skipped after the sole unchanged-prompt
-  retry. All four candidates pass every hard QA check but cannot be delivered within
-  the mandatory614400-byte lossless master cap. Maximum-effort exact lossless WebP
-  sizes are878932,871858,878880,889080bytes; the full1536x1024 PNGs are1.32MB. The
-  manifest supplies no soft-delivery scale, and no manual downscale, lossy master,
-  palette change or pixel cleanup is allowed. delivery-preflight.json binds the exact
-  candidate RGBA hashes and compression sizes. Canonical Harmony C_mean values are8.454,8.619,10.790,8.384;
-  C_p50 values7.329,6.300,10.669,7.288. The same explicitly documented warm-bright
-  subject-pixel proxy gives0.385375,0.469174,0.531015,0.365659; these observations
-  are not a new QA threshold. Arc evidence is retained in arc-measurements.json. No
-  stage0-to4 comparison is claimed because the four true plate dependents cannot start
-  without a deliverable parent. Propose a lead-authored soft-delivery scale and salvage
-  these retained originals rather than regenerating. Independent character chain continues;
-  light warnings remain advisory.'
+- 'Historical original batch-39 run before the separately authorized koke-repost-2026-11-06
+  operation: batch-39-koke-production skipped after four takes: Skipped after the
+  sole unchanged-prompt retry. All four candidates pass every hard QA check but cannot
+  be delivered within the mandatory614400-byte lossless master cap. Maximum-effort
+  exact lossless WebP sizes are878932,871858,878880,889080bytes; the full1536x1024
+  PNGs are1.32MB. The manifest supplies no soft-delivery scale, and no manual downscale,
+  lossy master, palette change or pixel cleanup is allowed. delivery-preflight.json
+  binds the exact candidate RGBA hashes and compression sizes. Canonical Harmony C_mean
+  values are8.454,8.619,10.790,8.384; C_p50 values7.329,6.300,10.669,7.288. The same
+  explicitly documented warm-bright subject-pixel proxy gives0.385375,0.469174,0.531015,0.365659;
+  these observations are not a new QA threshold. Arc evidence is retained in arc-measurements.json.
+  No stage0-to4 comparison is claimed because the four true plate dependents cannot
+  start without a deliverable parent. Propose a lead-authored soft-delivery scale
+  and salvage these retained originals rather than regenerating. Independent character
+  chain continues; light warnings remain advisory.'
+- 'Current operation koke-repost-2026-11-06: promoted; take 2. Retained-source re-post
+  only: all four original takes clear every hard canonical QA check; take2 has the
+  lowest style-lock load 0.5178. Full locked and official half-size delivered views
+  retain the gentle grey-sage sleeping mound, five shut bud groups, four stepping
+  stones, two fern groups, rake, rounded moss boulders and sole vivid crown sprout.
+  No teeth, claws, text, copied round door or added resident. The canonical deliver.scale
+  0.5 produces 768 × 512 without changing the retained source or full-size QA. The
+  original composition occupies roughly 80 percent of the frame versus the approximate
+  62 percent brief; this inherited framing observation is explicitly disclosed for
+  founder review and is not hidden by a source crop or an invented numeric QA waiver.
+  Source/callback identities and original generation time/account remain preserved.
+  Light warnings stay advisory; no regeneration.'

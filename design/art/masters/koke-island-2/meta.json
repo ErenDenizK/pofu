@@ -1,0 +1,133 @@
+{
+  "job": "koke-island-2",
+  "batch": "batch-39-koke-production",
+  "asset": "plate__koke-island-2",
+  "take": 2,
+  "takes_considered": 2,
+  "approved_at": "2026-11-06T02:01:37+00:00",
+  "image": "design/art/masters/koke-island-2/koke-island-2.png",
+  "raw": "design/art/masters/koke-island-2/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "8207684eeaf1a027",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nEdit the attached island plate from stage 0 to stage 2: the first\nwarm light. Repaint about two thirds of the moss on Koke's hump and\non the lawn a fresh living green, with a few brighter patches on its\nback; only the underside and the far side stay grey. The two\nflower clusters nearest the viewer are open: soft round blossoms\nin butter yellow and blush pink with green leaves; the other three\nclusters have swollen buds, still shut. The first warm light of the\npicture appears: a soft low warm sun from the upper left lands on\nthe crown of Koke's hump and on the open flowers, warming them to\nhoney and gold, while the rest stays in cooler light. Behind the\nboulder on the left a tiny round grey-brown dormouse with big round\nears peeks out with one eye, at the size of a bagel, curious and\nshy. The sprout on the crown is now a small leafy shoot. The picture\nis more colourful overall (chroma about 70 percent of a healthy\nmeadow). Koke is still asleep, eyes closed, its mouth now a calm\nstraight line. Every shape, prop, stone, outline, the island's size,\nthe camera and the composition stay exactly where they are in the\nattached image.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: light rays, a glow or halo, petals in the air, an open eye, new props, moving or resizing anything, scary details, text\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nKey light #FFF6EC from the upper left; fill #BFD6EE; rim #FFE9C9 along the edge facing away from the key. Shadows are tinted #A99BC4 (never grey or black) and fall toward the lower right; paint a contact shadow in that hue under every object that touches the ground or another form, firmest in the subject plane.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, opaque, full bleed, landscape 1536 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/koke-island-0/koke-island-0.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-06T01:45:01+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "fit": null,
+  "emit_region": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "opaque, as this kind must be"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1536x1024"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "warn",
+        "message": "chroma p95 60 (R1 51)",
+        "value": 59.7
+      },
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 39 (at most 22), p98 93 (at least 90), spread 55 (at least 60)",
+        "value": 54.6
+      },
+      {
+        "check": "light_median",
+        "status": "pass",
+        "message": "day/subject: median L 71 (band 55-90)",
+        "value": 71.3
+      },
+      {
+        "check": "light_haze",
+        "status": "pass",
+        "message": "day/subject: dark-channel haze 0.19 (at most 0.20; no true dark means a wash)",
+        "value": 0.192
+      },
+      {
+        "check": "light_contrast",
+        "status": "pass",
+        "message": "day/subject: p75 local contrast 5.3 (at least 3.5)",
+        "value": 5.29
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 2.3 (R1 5.3)",
+        "value": 2.32
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 1.5",
+        "value": 1.5244
+      },
+      {
+        "check": "palette_drift",
+        "status": "warn",
+        "message": "mean dE 3.3, p95 12.2, off-palette 5.2% (top: #BBBB44 (0.9%), #CCBB44 (0.7%))",
+        "value": 3.2639
+      },
+      {
+        "check": "edit_silhouette",
+        "status": "pass",
+        "message": "100% of the parent's shape kept",
+        "value": 1.0
+      },
+      {
+        "check": "edit_stability",
+        "status": "warn",
+        "message": "40% of the parent level unchanged",
+        "value": 0.3955
+      },
+      {
+        "check": "edit_chroma",
+        "status": "pass",
+        "message": "chroma x2.60 of the parent level (drift compounds along a chain)",
+        "value": 2.6004
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Take2 is the only fully eligible initial candidate. Both hard-pass; take1 shows the peeking dormouse with both eyes visible, contrary to the explicit one-eye peek, so it is manually excluded despite lower load1.48. Take2 shows one warm dark eye behind the left boulder, the two nearest groups open in butter-yellow and blush-pink, all three remaining groups still closed, the same sleeping Koke, a leafy crown shoot, greener moss and first warm crown/flower light with cooler far side. Four stones, five total flower groups, two ferns, rake, boulders, outline/camera and rooted positions remain. No rays/halo/petals/open Koke eye or new prop. Take2 load1.5244; source-bound edit of the actual uploaded stage0 with canonical half-size delivery, no extra generation.",
+  "deliver": {
+    "scale": 0.5,
+    "original_size": [
+      1536,
+      1024
+    ],
+    "delivered_size": [
+      768,
+      512
+    ]
+  }
+}
