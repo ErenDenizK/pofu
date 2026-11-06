@@ -22,6 +22,9 @@ links:
   - asset-simit-sleepy
   - asset-simit-surprised
   - asset-simit-proud
+  - asset-simit-step-a
+  - asset-simit-step-b
+  - asset-simit-work-beat
 sources:
 - doc: docs/product/game-design.md
   anchor: '#8-residents-neighbors'

@@ -1,0 +1,50 @@
+{
+ "after": {
+  "C_mean": 18.016,
+  "C_p50": 13.544,
+  "C_p95": 40.919,
+  "L_mean": 84.204,
+  "L_p2": 22.125,
+  "L_p98": 96.464,
+  "detail": 5.899,
+  "edge": 0.266,
+  "tint_a": 4.893,
+  "tint_b": 8.801,
+  "warmth_b": 14.996
+ },
+ "before": {
+  "C_mean": 18.016,
+  "C_p50": 13.544,
+  "C_p95": 40.919,
+  "L_mean": 84.204,
+  "L_p2": 22.125,
+  "L_p98": 96.464,
+  "detail": 5.899,
+  "edge": 0.266,
+  "tint_a": 4.893,
+  "tint_b": 8.801,
+  "warmth_b": 14.996
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "char",
+ "matched_to": "char",
+ "outliers_after": [],
+ "outliers_before": [],
+ "ppu": 29.0,
+ "reference": false,
+ "score_after": 95.7,
+ "score_before": 95.7,
+ "shipped": false,
+ "source": "design/art/masters/goat-step-a/goat-step-a.webp",
+ "source_sha": "d79a8f722721f21b"
+}

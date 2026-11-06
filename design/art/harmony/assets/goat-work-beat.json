@@ -1,0 +1,54 @@
+{
+ "after": {
+  "C_mean": 19.501,
+  "C_p50": 14.925,
+  "C_p95": 43.437,
+  "L_mean": 83.181,
+  "L_p2": 20.417,
+  "L_p98": 96.48,
+  "detail": 7.873,
+  "edge": 0.2,
+  "tint_a": 4.645,
+  "tint_b": 8.818,
+  "warmth_b": 16.518
+ },
+ "before": {
+  "C_mean": 19.501,
+  "C_p50": 14.925,
+  "C_p95": 43.437,
+  "L_mean": 83.181,
+  "L_p2": 20.417,
+  "L_p98": 96.48,
+  "detail": 7.873,
+  "edge": 0.2,
+  "tint_a": 4.645,
+  "tint_b": 8.818,
+  "warmth_b": 16.518
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "char",
+ "matched_to": "char",
+ "outliers_after": [
+  "detail"
+ ],
+ "outliers_before": [
+  "detail"
+ ],
+ "ppu": 29.0,
+ "reference": false,
+ "score_after": 92.2,
+ "score_before": 92.2,
+ "shipped": false,
+ "source": "design/art/masters/goat-work-beat/goat-work-beat.webp",
+ "source_sha": "00c83af793f49d99"
+}

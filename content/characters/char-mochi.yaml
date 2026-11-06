@@ -15,6 +15,9 @@ notes:
 links:
   uses_asset:
   - asset-mochi
+  - asset-mochi-step-a
+  - asset-mochi-step-b
+  - asset-mochi-work-beat
   - asset-mochi-v2
   - asset-mochi-work
   - asset-mochi-eyes-happy

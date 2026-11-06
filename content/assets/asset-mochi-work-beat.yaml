@@ -4,16 +4,17 @@ title_tr: mochi-work-beat
 title_en: mochi-work-beat (char)
 status: in-production
 horizon: now
-summary: >-
-  Edit the attached character, the bunny Mochi, into one animation frame: holding a small
-  tea glass on a saucer in both paws in front of her chest, offering it. Keep the face, the
-  colours, the fur, the size and the exact position on the canvas the same; change only the
-  legs and paws and a slight sway, as a cute cartoon step, never a realistic gait.
+summary: 'Edit the attached character, the bunny Mochi, into one animation frame:
+  holding a small tea glass on a saucer in both paws in front of her chest, offering
+  it. Keep the face, the colours, the fur, the size and the exact position on the
+  canvas the same; change only the legs and paws and a slight sway, as a cute cartoon
+  step, never a realistic gait.'
 links:
   variant_of:
   - asset-mochi-v2
 art:
-  images: []
+  images:
+  - design/art/masters/mochi-work-beat/mochi-work-beat.webp
   jobs:
   - batch-59-resident-walks:mochi-work-beat
 sources:

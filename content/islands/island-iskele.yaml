@@ -35,6 +35,9 @@ links:
   - sys-rituals
   uses_asset:
   - asset-harbor-island-s
+  - asset-goat-step-a
+  - asset-goat-step-b
+  - asset-goat-work-beat
   - asset-harbor-horn-1
   - asset-harbor-crates-1
   - asset-harbor-lamp-1

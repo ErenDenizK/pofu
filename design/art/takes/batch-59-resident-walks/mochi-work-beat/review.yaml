@@ -1,0 +1,212 @@
+batch: batch-59-resident-walks
+contact_sheet: design/art/takes/batch-59-resident-walks/mochi-work-beat/contact.jpg
+jobs:
+  mochi-work-beat:
+    pick: 1
+    publication: promoted; founder review pending
+    note: 'auto-picked by QA; founder review pending. Take1 is manually eligible:
+      ONE physical tea glass on ONE saucer held in BOTH paws at chest height, offering
+      it, with preserved Mochi face, cream fur, long curl-free ears, scale and framing
+      except named paw/leg pose and slight sway. Full sources/official locked and
+      28px proper-alpha views reviewed. Exclude take2 ONLY for a new broad faint real-alpha
+      side backing outside the approved silhouette that survives canonical locking,
+      distinguished from alpha0 hiddenRGB and normal fine fur fringe. Both tea poses
+      otherwise match the brief; no nativeUIglass or style-WARN exclusion. Normal
+      eligible ranking therefore chooses take1 (Harmony88.3), no extra generation
+      or force.'
+qa_reports:
+  2:
+    job: mochi-work-beat
+    take: 2
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 36 (R1 51)
+      value: 36.1
+    - check: light_values
+      status: pass
+      message: 'day/subject: L p2 21 (at most 22), p98 97 (at least 90), spread 76
+        (at least 60)'
+      value: 76.2
+    - check: light_median
+      status: warn
+      message: 'day/subject: median L 91 (band 55-90)'
+      value: 91.1
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.12 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.125
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.8 (at least 3.5)'
+      value: 4.77
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.1 (R1 5.3)
+      value: 4.1
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.3, p95 3.6, off-palette 2.7% (top: #AA3322 (0.3%), #BB4422
+        (0.2%))'
+      value: 1.2828
+    - check: ground_line
+      status: pass
+      message: feet at 88.3% of the height (contract 88%)
+      value: 0.8828
+    - check: harmony
+      status: pass
+      message: 'harmony score 89 against the char reference (outliers: detail)'
+      value: 89.0
+    - check: edit_silhouette
+      status: pass
+      message: 98% of the parent's shape kept
+      value: 0.9777
+    - check: edit_stability
+      status: pass
+      message: 91% of the parent level unchanged
+      value: 0.913
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.17 of the parent level (drift compounds along a chain)
+      value: 1.1689
+    info:
+      metrics_raw:
+        L_p5: 56.2
+        L_p50: 91.2
+        L_p95: 96.9
+        C_p50: 10.6
+        C_p95: 36.1
+        C_p99: 79.6
+        detail: 4.12
+      metrics_locked:
+        L_p5: 56.2
+        L_p50: 91.2
+        L_p95: 96.9
+        C_p50: 10.6
+        C_p95: 36.1
+        C_p99: 60.4
+        detail: 4.1
+    fingerprint: 7b4d026962dfc23b
+  1:
+    job: mochi-work-beat
+    take: 1
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 37 (R1 51)
+      value: 37.0
+    - check: light_values
+      status: pass
+      message: 'day/subject: L p2 21 (at most 22), p98 97 (at least 90), spread 77
+        (at least 60)'
+      value: 76.7
+    - check: light_median
+      status: warn
+      message: 'day/subject: median L 91 (band 55-90)'
+      value: 91.1
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.07 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.067
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.1 (at least 3.5)'
+      value: 5.14
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.4 (R1 5.3)
+      value: 4.39
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.3, p95 4.1, off-palette 2.8% (top: #992211 (0.2%), #AA3322
+        (0.2%))'
+      value: 1.3359
+    - check: ground_line
+      status: pass
+      message: feet at 88.0% of the height (contract 88%)
+      value: 0.8802
+    - check: harmony
+      status: pass
+      message: 'harmony score 88 against the char reference (outliers: detail)'
+      value: 88.3
+    - check: edit_silhouette
+      status: pass
+      message: 98% of the parent's shape kept
+      value: 0.9832
+    - check: edit_stability
+      status: pass
+      message: 90% of the parent level unchanged
+      value: 0.9035
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.17 of the parent level (drift compounds along a chain)
+      value: 1.1679
+    info:
+      metrics_raw:
+        L_p5: 52.6
+        L_p50: 91.2
+        L_p95: 96.8
+        C_p50: 10.6
+        C_p95: 37.0
+        C_p99: 74.9
+        detail: 4.4
+      metrics_locked:
+        L_p5: 52.6
+        L_p50: 91.2
+        L_p95: 96.8
+        C_p50: 10.6
+        C_p95: 37.0
+        C_p99: 59.9
+        detail: 4.39
+    fingerprint: 7b4d026962dfc23b
+manual_review:
+  excluded_takes:
+  - 2
+  note: 'Take1 is manually eligible: ONE physical tea glass on ONE saucer held in
+    BOTH paws at chest height, offering it, with preserved Mochi face, cream fur,
+    long curl-free ears, scale and framing except named paw/leg pose and slight sway.
+    Full sources/official locked and 28px proper-alpha views reviewed. Exclude take2
+    ONLY for a new broad faint real-alpha side backing outside the approved silhouette
+    that survives canonical locking, distinguished from alpha0 hiddenRGB and normal
+    fine fur fringe. Both tea poses otherwise match the brief; no nativeUIglass or
+    style-WARN exclusion. Normal eligible ranking therefore chooses take1 (Harmony88.3),
+    no extra generation or force.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-06e76591-55d5-4782-996d-7e53e4b52517.png
+  original_generated_png_sha256: 6c2911baf8ab3638af7fdaa2e80ac6f5b08598a6f62fbefe149f507940a3f41e
+  inbox_png_sha256: 64831f2d9d7eb1c0a9db5ff0b3c4ab9d4fefb7f9c4e1fe192e1450ed1b084873
+  rgba_sha256: d780f30a65789ffa4b3d9bd5b4969296e172d67abbe0304c24fd2ee4b174479c
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 7b4d026962dfc23b
+- take: 2
+  source_file: /workspace/generated_images/exec-5b5bdc39-908f-41aa-9de9-95f38fedc037.png
+  original_generated_png_sha256: 0c3263451faeb845f2d098573e400cbbdfdf732d94b6e6d0e652d6ce17232cb1
+  inbox_png_sha256: b631dacf08f8764d55b9e67734682af222aa756366450755c795108e5c38dba9
+  rgba_sha256: 769fddd3400cdb48b417f8478d6d9ca3cdc621854b356c6f13545b01f66eb3b8
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 7b4d026962dfc23b

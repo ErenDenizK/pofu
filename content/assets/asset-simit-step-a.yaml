@@ -2,14 +2,14 @@ id: asset-simit-step-a
 type: asset
 title_tr: simit-step-a
 title_en: simit-step-a (char)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  Edit the attached character, the kitten Simit, into one animation frame: the left foot (the
-  viewer's right) lifted and stepping forward, the right foot planted, the body leaning a
-  tiny bit forward, his ears and tail swaying slightly back. Keep the face, the colours, the
-  fur, the size and the exact position on the canvas the same; change only the legs and paws
-  and a slight sway, as a cute cartoon step, never a realist…
+summary: 'Edit the attached character, the kitten Simit, into one animation frame:
+  the left foot (the viewer''s right) lifted and stepping forward, the right foot
+  planted, the body leaning a tiny bit forward, his ears and tail swaying slightly
+  back. Keep the face, the colours, the fur, the size and the exact position on the
+  canvas the same; change only the legs and paws and a slight sway, as a cute cartoon
+  step, never a realist…'
 links:
   variant_of:
   - asset-simit-kitten
@@ -22,3 +22,16 @@ sources:
 kind: char
 batch: batch-59-resident-walks
 size: 1024x1536
+notes:
+- 'batch-59-resident-walks skipped after four takes: Skipped after the sole unchanged-prompt
+  retry. All four actual official takes remain hard-QA ineligible: t1 palette_drift;
+  t2 palette_drift; t3 palette_drift; t4 edit_silhouette. Initial full-source/locked
+  manual review found correct step direction, identity and framing, with source-view
+  glow only hidden RGB under alpha0; this does not waive any hard check. No promotion
+  or force, no further generation. Other Simit frames directly reference the approved
+  external simit-kitten base, so they are independent and continue. Automated failures:
+  t1 palette_drift: mean dE 3.7, p95 14.8, off-palette 9.3% (top: #CC7733 (2.1%),
+  #DD8844 (2.1%)); t2 palette_drift: mean dE 3.9, p95 14.4, off-palette 8.9% (top:
+  #DD8844 (1.9%), #CC7733 (1.7%)); t3 palette_drift: mean dE 3.7, p95 14.9, off-palette
+  9.3% (top: #CC7733 (2.0%), #DD8844 (1.9%)); t4 edit_silhouette: 83% of the parent''s
+  shape kept.'
