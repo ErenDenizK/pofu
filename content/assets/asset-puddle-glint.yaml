@@ -4,13 +4,14 @@ title_tr: puddle-glint
 title_en: puddle-glint (ui)
 status: in-production
 horizon: now
-summary: >-
-  A small shimmer of reflected sky light on a wet patch of ground, seen from a low camera
-  about 17 degrees above the ground, so it is a flat soft ellipse about three times as wide
-  as tall, centered, filling about 60 percent of the width: a soft pale silver-blue sheen
-  with one or two tiny brighter highlights near its upper edge, fading smoothly to black.
+summary: 'A small shimmer of reflected sky light on a wet patch of ground, seen from
+  a low camera about 17 degrees above the ground, so it is a flat soft ellipse about
+  three times as wide as tall, centered, filling about 60 percent of the width: a
+  soft pale silver-blue sheen with one or two tiny brighter highlights near its upper
+  edge, fading smoothly to black.'
 art:
-  images: []
+  images:
+  - design/art/ui/ui-puddle-glint/ui-puddle-glint.png
   jobs:
   - batch-44-weather-fx:puddle-glint
 sources:
@@ -18,3 +19,9 @@ sources:
 kind: ui
 batch: batch-44-weather-fx
 size: 1024x1024
+notes:
+- 'batch-44-weather-fx: promoted take 1. auto-picked by QA; founder review pending.
+  Both have single flat roughly3:1 pale silver-blue shimmer at the low camera, one/two
+  tiny highlights near the upper edge, soft black falloff, no outline/rings/disc/ground
+  texture. Whole canonical1024x512 reviewed; hard QA passes, normalzero fallback then
+  ordinal1.'

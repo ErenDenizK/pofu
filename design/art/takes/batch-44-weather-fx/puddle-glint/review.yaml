@@ -1,0 +1,147 @@
+batch: batch-44-weather-fx
+contact_sheet: design/art/takes/batch-44-weather-fx/puddle-glint/contact.jpg
+jobs:
+  puddle-glint:
+    pick: 1
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. auto-picked by QA; founder review
+      pending. Both have single flat roughly3:1 pale silver-blue shimmer at the low
+      camera, one/two tiny highlights near the upper edge, soft black falloff, no
+      outline/rings/disc/ground texture. Whole canonical1024x512 reviewed; hard QA
+      passes, normalzero fallback then ordinal1.
+qa_reports:
+  2:
+    job: puddle-glint
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x512
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: glow chroma p95 16 on 29% lit pixels (additive profile)
+      value: 15.7997
+    - check: additive_background
+      status: pass
+      message: 'border luma p99 0.004 (near-black, at most 0.05): the glow dies before
+        the edge'
+      value: 0.0039
+    - check: additive_falloff
+      status: pass
+      message: 0.02% of the image has a hard edge (luma step over 0.08 per px at 256
+        px; soft falloff, at most 0.8%)
+      value: 0.0002
+    - check: additive_banding
+      status: pass
+      message: 167 of 167 luma levels used across the falloff (100%; low means banding)
+      value: 1.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.6 (R1 5.3)
+      value: 0.59
+    info:
+      lock_skipped: 'additive glow: black stays black'
+      metrics_raw:
+        L_p5: 0.0
+        L_p50: 0.6
+        L_p95: 60.3
+        C_p50: 0.5
+        C_p95: 14.9
+        C_p99: 16.0
+        detail: 0.59
+      metrics_locked:
+        L_p5: 0.0
+        L_p50: 0.6
+        L_p95: 60.3
+        C_p50: 0.5
+        C_p95: 14.9
+        C_p99: 16.0
+        detail: 0.59
+    fingerprint: 0c2f6fc139884d33
+  1:
+    job: puddle-glint
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x512
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: glow chroma p95 15 on 31% lit pixels (additive profile)
+      value: 14.6622
+    - check: additive_background
+      status: pass
+      message: 'border luma p99 0.004 (near-black, at most 0.05): the glow dies before
+        the edge'
+      value: 0.0039
+    - check: additive_falloff
+      status: pass
+      message: 0.00% of the image has a hard edge (luma step over 0.08 per px at 256
+        px; soft falloff, at most 0.8%)
+      value: 0.0
+    - check: additive_banding
+      status: pass
+      message: 159 of 159 luma levels used across the falloff (100%; low means banding)
+      value: 1.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.6 (R1 5.3)
+      value: 0.59
+    info:
+      lock_skipped: 'additive glow: black stays black'
+      metrics_raw:
+        L_p5: 0.0
+        L_p50: 1.6
+        L_p95: 59.2
+        C_p50: 0.8
+        C_p95: 13.7
+        C_p99: 14.8
+        detail: 0.59
+      metrics_locked:
+        L_p5: 0.0
+        L_p50: 1.6
+        L_p95: 59.2
+        C_p50: 0.8
+        C_p95: 13.7
+        C_p99: 14.8
+        detail: 0.59
+    fingerprint: 0c2f6fc139884d33
+manual_review:
+  excluded_takes: []
+  note: auto-picked by QA; founder review pending. Both have single flat roughly3:1
+    pale silver-blue shimmer at the low camera, one/two tiny highlights near the upper
+    edge, soft black falloff, no outline/rings/disc/ground texture. Whole canonical1024x512
+    reviewed; hard QA passes, normalzero fallback then ordinal1.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-9b1c2940-42c0-44d6-ab1b-c3f26e9914c3.png
+  original_generated_png_sha256: 9418671f775aca67df0b9517d3f1da4fa1696b8a0ff54bc6e5dd5838fe0e0623
+  inbox_png_sha256: 7848f8ae6dc0eceebb4a908503265fdc27c46624cc53b25e3fa6a860afc79c57
+  rgba_sha256: ed227a8dbb30847f63b5d6e2e67943f940d1b99ba6ea48761e331f4a7ba79fd3
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 0c2f6fc139884d33
+- take: 2
+  source_file: /workspace/generated_images/exec-7f787958-6400-4560-979f-bb01bf594323.png
+  original_generated_png_sha256: 703d20cd515b9ec57ebc25de49d3174cc16064f0525ff243416bed44200c0dd1
+  inbox_png_sha256: b237e335143f5ffa22b194ef1b4288ab88fae395a3a023f268f8f4463f4cf6af
+  rgba_sha256: 8a86461e613ff64c0f0442d86917ef04ebb4087204f4cc040b53ca20dd9ffed5
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 0c2f6fc139884d33
