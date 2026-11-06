@@ -2,14 +2,14 @@ id: asset-koke-standing
 type: asset
 title_tr: koke-standing
 title_en: koke-standing (char)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  Edit the attached moss creature, Koke, so she stands up, wide awake and happy: the heap
-  rises onto four sturdy stubby legs, the body held up round and plump, the head lifted and
-  turned to the viewer, both eyes open, big, round and warm brown with catchlights, a soft
-  happy smile with a blush on each cheek, the small ears perked. Her whole back is in flower:
-  soft blossoms in butter yellow, blush pink, lilac and white a…
+summary: 'Edit the attached moss creature, Koke, so she stands up, wide awake and
+  happy: the heap rises onto four sturdy stubby legs, the body held up round and plump,
+  the head lifted and turned to the viewer, both eyes open, big, round and warm brown
+  with catchlights, a soft happy smile with a blush on each cheek, the small ears
+  perked. Her whole back is in flower: soft blossoms in butter yellow, blush pink,
+  lilac and white a…'
 links:
   variant_of:
   - asset-koke-asleep
@@ -22,3 +22,22 @@ sources:
 kind: char
 batch: batch-39-koke-production
 size: 1024x1024
+notes:
+- 'batch-39-koke-production skipped after four takes: Skipped after the sole unchanged-prompt
+  retry. All four takes hard-fail palette_drift, edit_silhouette and edit_stability
+  under the unchanged authored region profile. Alpha overlap0.6218/0.6054/0.6666/0.6741;
+  parent kept0.2015/0.2050/0.2112/0.1893; palette mean dE4.6591/4.9762/4.7602/4.1974
+  with recorded off-palette failures. An expressive standing/flowering pose cannot
+  bypass the hard checks. All four source PNGs and exact QA preserved; no third generation
+  round, threshold/manifest/palette edits or forced promotion. No true dependents;
+  the passing registered one-eye reaction and other island jobs continue. Automated
+  failures: t1 palette_drift: mean dE 4.7, p95 15.2, off-palette 15.7% (top: #888822
+  (0.9%), #99AA33 (0.8%)), edit_silhouette: 62% of the parent''s shape kept, edit_stability:
+  20% of the parent level unchanged; t2 palette_drift: mean dE 5.0, p95 15.4, off-palette
+  15.2% (top: #BBCC55 (0.8%), #CCCC55 (0.8%)), edit_silhouette: 61% of the parent''s
+  shape kept, edit_stability: 20% of the parent level unchanged; t3 palette_drift:
+  mean dE 4.8, p95 14.7, off-palette 14.0% (top: #AABB44 (0.9%), #CCCC55 (0.8%)),
+  edit_silhouette: 67% of the parent''s shape kept, edit_stability: 21% of the parent
+  level unchanged; t4 palette_drift: mean dE 4.2, p95 13.7, off-palette 10.3% (top:
+  #AABB44 (0.8%), #BBBB55 (0.7%)), edit_silhouette: 67% of the parent''s shape kept,
+  edit_stability: 19% of the parent level unchanged.'
