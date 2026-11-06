@@ -1,0 +1,206 @@
+# Batch 59: resident walk and work frames (production; real ids, promoted on pass).
+#
+# The life pass (#277) moves the residents (walks, work beats), but they
+# slide with hops: there is no step art. The founder (2026-11-06) wants the
+# residents to work and move naturally. Each resident gets two step frames
+# (left foot forward, right foot forward) and one work frame, as EDITS of
+# its approved base on the SAME canvas (the rig method of batch-41), so code
+# alternates them in place: step-a, base, step-b, base at ~6 frames a second
+# while walking, and base/work for a work beat.
+#
+# Review: only the legs (and a small lean, ears or tail sway) change; the
+# face, colours, size and position on the canvas are the base's; the two
+# steps mirror each other; reads at 28 pt; cute, never a realistic gait.
+
+batch: batch-59-resident-walks
+title: Resident walk and work frames (Mochi, Simit, Fındık, the goat)
+status: open
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: mochi-v2, kind: char, name: mochi-v2, external: batch-03-home-island, master: design/art/masters/mochi-v2/mochi-v2.webp}
+  - {id: simit-kitten, kind: char, name: simit-kitten, external: retry-2026-11-03, master: design/art/masters/simit-kitten/simit-kitten.webp}
+  - {id: findik, kind: char, name: findik-base, external: batch-03-home-island, master: design/art/masters/findik-base/findik-base.webp}
+  - {id: harbor-goat, kind: char, name: harbor-goat, external: batch-14-harbor, master: design/art/masters/harbor-goat/harbor-goat.webp}
+
+  - id: mochi-step-a
+    kind: char
+    name: mochi-step-a
+    size: 1024x1536
+    edit_of: mochi-v2
+    chat: "Pofu · Residents"
+    light: {cell: day, layer: subject}
+    acceptance: {edit_mode: region}
+    notes: "the bunny Mochi, frame step-a. Review per the header: same canvas, size and face; only the legs/paws (and a slight sway) change."
+    prompt:
+      - text: |
+          Edit the attached character, the bunny Mochi, into one animation frame: the left foot (the viewer's right) lifted and stepping forward, the right foot planted, the body leaning a tiny bit forward, her long ears swaying slightly back. Keep the face, the colours, the fur, the size and the exact position on the canvas the same; change only the legs and paws and a slight sway, as a cute cartoon step, never a realistic gait.
+      - block: edit-keep-v1
+      - text: "AVOID: motion lines, dust clouds, a ground, a shadow, a different size, moving the character on the canvas, text"
+
+  - id: mochi-step-b
+    kind: char
+    name: mochi-step-b
+    size: 1024x1536
+    edit_of: mochi-v2
+    chat: "Pofu · Residents"
+    light: {cell: day, layer: subject}
+    acceptance: {edit_mode: region}
+    notes: "the bunny Mochi, frame step-b. Review per the header: same canvas, size and face; only the legs/paws (and a slight sway) change."
+    prompt:
+      - text: |
+          Edit the attached character, the bunny Mochi, into one animation frame: the right foot (the viewer's left) lifted and stepping forward, the left foot planted, the mirror of the other step, her long ears swaying slightly back. Keep the face, the colours, the fur, the size and the exact position on the canvas the same; change only the legs and paws and a slight sway, as a cute cartoon step, never a realistic gait.
+      - block: edit-keep-v1
+      - text: "AVOID: motion lines, dust clouds, a ground, a shadow, a different size, moving the character on the canvas, text"
+
+  - id: mochi-work-beat
+    kind: char
+    name: mochi-work-beat
+    size: 1024x1536
+    edit_of: mochi-v2
+    chat: "Pofu · Residents"
+    light: {cell: day, layer: subject}
+    acceptance: {edit_mode: region}
+    notes: "the bunny Mochi, frame work. Review per the header: same canvas, size and face; only the legs/paws (and a slight sway) change."
+    prompt:
+      - text: |
+          Edit the attached character, the bunny Mochi, into one animation frame: holding a small tea glass on a saucer in both paws in front of her chest, offering it. Keep the face, the colours, the fur, the size and the exact position on the canvas the same; change only the legs and paws and a slight sway, as a cute cartoon step, never a realistic gait.
+      - block: edit-keep-v1
+      - text: "AVOID: motion lines, dust clouds, a ground, a shadow, a different size, moving the character on the canvas, text"
+
+  - id: simit-step-a
+    kind: char
+    name: simit-step-a
+    size: 1024x1536
+    edit_of: simit-kitten
+    chat: "Pofu · Residents"
+    light: {cell: day, layer: subject}
+    acceptance: {edit_mode: region}
+    notes: "the kitten Simit, frame step-a. Review per the header: same canvas, size and face; only the legs/paws (and a slight sway) change."
+    prompt:
+      - text: |
+          Edit the attached character, the kitten Simit, into one animation frame: the left foot (the viewer's right) lifted and stepping forward, the right foot planted, the body leaning a tiny bit forward, his ears and tail swaying slightly back. Keep the face, the colours, the fur, the size and the exact position on the canvas the same; change only the legs and paws and a slight sway, as a cute cartoon step, never a realistic gait.
+      - block: edit-keep-v1
+      - text: "AVOID: motion lines, dust clouds, a ground, a shadow, a different size, moving the character on the canvas, text"
+
+  - id: simit-step-b
+    kind: char
+    name: simit-step-b
+    size: 1024x1536
+    edit_of: simit-kitten
+    chat: "Pofu · Residents"
+    light: {cell: day, layer: subject}
+    acceptance: {edit_mode: region}
+    notes: "the kitten Simit, frame step-b. Review per the header: same canvas, size and face; only the legs/paws (and a slight sway) change."
+    prompt:
+      - text: |
+          Edit the attached character, the kitten Simit, into one animation frame: the right foot (the viewer's left) lifted and stepping forward, the left foot planted, the mirror of the other step, his ears and tail swaying slightly back. Keep the face, the colours, the fur, the size and the exact position on the canvas the same; change only the legs and paws and a slight sway, as a cute cartoon step, never a realistic gait.
+      - block: edit-keep-v1
+      - text: "AVOID: motion lines, dust clouds, a ground, a shadow, a different size, moving the character on the canvas, text"
+
+  - id: simit-work-beat
+    kind: char
+    name: simit-work-beat
+    size: 1024x1536
+    edit_of: simit-kitten
+    chat: "Pofu · Residents"
+    light: {cell: day, layer: subject}
+    acceptance: {edit_mode: region}
+    notes: "the kitten Simit, frame work. Review per the header: same canvas, size and face; only the legs/paws (and a slight sway) change."
+    prompt:
+      - text: |
+          Edit the attached character, the kitten Simit, into one animation frame: holding a small round simit bagel up in both paws, proud. Keep the face, the colours, the fur, the size and the exact position on the canvas the same; change only the legs and paws and a slight sway, as a cute cartoon step, never a realistic gait.
+      - block: edit-keep-v1
+      - text: "AVOID: motion lines, dust clouds, a ground, a shadow, a different size, moving the character on the canvas, text"
+
+  - id: findik-step-a
+    kind: char
+    name: findik-step-a
+    size: 870x1306
+    edit_of: findik
+    chat: "Pofu · Residents"
+    light: {cell: day, layer: subject}
+    acceptance: {edit_mode: region}
+    notes: "the hedgehog Fındık, frame step-a. Review per the header: same canvas, size and face; only the legs/paws (and a slight sway) change."
+    prompt:
+      - text: |
+          Edit the attached character, the hedgehog Fındık, into one animation frame: the left foot (the viewer's right) lifted and stepping forward, the right foot planted, the body leaning a tiny bit forward, his spines swaying slightly back. Keep the face, the colours, the fur, the size and the exact position on the canvas the same; change only the legs and paws and a slight sway, as a cute cartoon step, never a realistic gait.
+      - block: edit-keep-v1
+      - text: "AVOID: motion lines, dust clouds, a ground, a shadow, a different size, moving the character on the canvas, text"
+
+  - id: findik-step-b
+    kind: char
+    name: findik-step-b
+    size: 870x1306
+    edit_of: findik
+    chat: "Pofu · Residents"
+    light: {cell: day, layer: subject}
+    acceptance: {edit_mode: region}
+    notes: "the hedgehog Fındık, frame step-b. Review per the header: same canvas, size and face; only the legs/paws (and a slight sway) change."
+    prompt:
+      - text: |
+          Edit the attached character, the hedgehog Fındık, into one animation frame: the right foot (the viewer's left) lifted and stepping forward, the left foot planted, the mirror of the other step, his spines swaying slightly back. Keep the face, the colours, the fur, the size and the exact position on the canvas the same; change only the legs and paws and a slight sway, as a cute cartoon step, never a realistic gait.
+      - block: edit-keep-v1
+      - text: "AVOID: motion lines, dust clouds, a ground, a shadow, a different size, moving the character on the canvas, text"
+
+  - id: findik-work-beat
+    kind: char
+    name: findik-work-beat
+    size: 870x1306
+    edit_of: findik
+    chat: "Pofu · Residents"
+    light: {cell: day, layer: subject}
+    acceptance: {edit_mode: region}
+    notes: "the hedgehog Fındık, frame work. Review per the header: same canvas, size and face; only the legs/paws (and a slight sway) change."
+    prompt:
+      - text: |
+          Edit the attached character, the hedgehog Fındık, into one animation frame: holding a tiny wooden mallet raised in one paw, about to tap. Keep the face, the colours, the fur, the size and the exact position on the canvas the same; change only the legs and paws and a slight sway, as a cute cartoon step, never a realistic gait.
+      - block: edit-keep-v1
+      - text: "AVOID: motion lines, dust clouds, a ground, a shadow, a different size, moving the character on the canvas, text"
+
+  - id: goat-step-a
+    kind: char
+    name: goat-step-a
+    size: 1024x1536
+    edit_of: harbor-goat
+    chat: "Pofu · Residents"
+    light: {cell: day, layer: subject}
+    acceptance: {edit_mode: region}
+    notes: "the harbor goat, frame step-a. Review per the header: same canvas, size and face; only the legs/paws (and a slight sway) change."
+    prompt:
+      - text: |
+          Edit the attached character, the harbor goat, into one animation frame: its left foot (the viewer's right) lifted and stepping forward, the right foot planted, the body leaning a tiny bit forward, its ears and beard swaying slightly back. Keep the face, the colours, the fur, the size and the exact position on the canvas the same; change only the legs and paws and a slight sway, as a cute cartoon step, never a realistic gait.
+      - block: edit-keep-v1
+      - text: "AVOID: motion lines, dust clouds, a ground, a shadow, a different size, moving the character on the canvas, text"
+
+  - id: goat-step-b
+    kind: char
+    name: goat-step-b
+    size: 1024x1536
+    edit_of: harbor-goat
+    chat: "Pofu · Residents"
+    light: {cell: day, layer: subject}
+    acceptance: {edit_mode: region}
+    notes: "the harbor goat, frame step-b. Review per the header: same canvas, size and face; only the legs/paws (and a slight sway) change."
+    prompt:
+      - text: |
+          Edit the attached character, the harbor goat, into one animation frame: its right foot (the viewer's left) lifted and stepping forward, the left foot planted, the mirror of the other step, its ears and beard swaying slightly back. Keep the face, the colours, the fur, the size and the exact position on the canvas the same; change only the legs and paws and a slight sway, as a cute cartoon step, never a realistic gait.
+      - block: edit-keep-v1
+      - text: "AVOID: motion lines, dust clouds, a ground, a shadow, a different size, moving the character on the canvas, text"
+
+  - id: goat-work-beat
+    kind: char
+    name: goat-work-beat
+    size: 1024x1536
+    edit_of: harbor-goat
+    chat: "Pofu · Residents"
+    light: {cell: day, layer: subject}
+    acceptance: {edit_mode: region}
+    notes: "the harbor goat, frame work. Review per the header: same canvas, size and face; only the legs/paws (and a slight sway) change."
+    prompt:
+      - text: |
+          Edit the attached character, the harbor goat, into one animation frame: with a small coil of rope hanging from its mouth, as if tidying the pier. Keep the face, the colours, the fur, the size and the exact position on the canvas the same; change only the legs and paws and a slight sway, as a cute cartoon step, never a realistic gait.
+      - block: edit-keep-v1
+      - text: "AVOID: motion lines, dust clouds, a ground, a shadow, a different size, moving the character on the canvas, text"

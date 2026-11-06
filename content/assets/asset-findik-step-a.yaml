@@ -1,0 +1,24 @@
+id: asset-findik-step-a
+type: asset
+title_tr: findik-step-a
+title_en: findik-step-a (char)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached character, the hedgehog Fındık, into one animation frame: the left foot
+  (the viewer's right) lifted and stepping forward, the right foot planted, the body leaning
+  a tiny bit forward, his spines swaying slightly back. Keep the face, the colours, the fur,
+  the size and the exact position on the canvas the same; change only the legs and paws and
+  a slight sway, as a cute cartoon step, never a realistic g…
+links:
+  variant_of:
+  - asset-findik
+art:
+  images: []
+  jobs:
+  - batch-59-resident-walks:findik-step-a
+sources:
+- doc: tools/imagegen/manifest/batch-59-resident-walks.yaml
+kind: char
+batch: batch-59-resident-walks
+size: 870x1306
