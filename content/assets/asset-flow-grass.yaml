@@ -4,13 +4,14 @@ title_tr: flow-grass
 title_en: flow-grass (ui)
 status: in-production
 horizon: now
-summary: >-
-  A game tile for a cozy mobile puzzle, seen straight from above with a very slight tilt,
-  lit softly from the upper left, filling the canvas edge to edge (full bleed): a quiet bank
-  of short soft green grass in two close greens, a few tiny pale clover leaves, nothing else.
-  Even enough at the edges to sit beside other tiles. No groove, no water, no stones.
+summary: 'A game tile for a cozy mobile puzzle, seen straight from above with a very
+  slight tilt, lit softly from the upper left, filling the canvas edge to edge (full
+  bleed): a quiet bank of short soft green grass in two close greens, a few tiny pale
+  clover leaves, nothing else. Even enough at the edges to sit beside other tiles.
+  No groove, no water, no stones.'
 art:
-  images: []
+  images:
+  - design/art/ui/ui-flow-grass/ui-flow-grass.png
   jobs:
   - batch-64-flow-pieces:flow-grass
 sources:
