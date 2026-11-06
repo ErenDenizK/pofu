@@ -1,0 +1,670 @@
+# Fresh exploration variation; never promoted. Source inventory and fixed policy preserved.
+batch: batch-30b-decor-seasons-1-v2
+title: 'Fresh spring wish-ribbons and quiet summer rest: compact season decor variations'
+status: open
+refs:
+  tea-stall-1: design/art/stations/tea-stall-1/tea-stall-1.png
+defaults:
+  variants: 2
+jobs:
+- id: decor-bench
+  kind: prop
+  name: decor-bench
+  external: batch-08-decor-pilot
+- id: island-main-s
+  kind: world
+  name: island-main-s
+  external: batch-01-slice
+- id: cloud-sea
+  kind: world
+  name: cloud-sea
+  external: batch-04-sky
+- id: x-decor-bahar-ribbon-tree-v2
+  kind: prop
+  name: x-decor-bahar-ribbon-tree-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Decor
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. Bahar (spring): the wish-ribbon tree. Review: a small tree
+    hung with ribbons, the Hıdırellez wish tree; reads at 64 px. Fresh-v2 review:
+    Exactly12 tied ribbon units, not ends; rose/mint/mustard/lilac/cream, pale blossoms,
+    slim trunk, earth mound/stone ring. No furry foliage.'
+  attach:
+  - ref: decor-guide
+    role: 'The decor guide: footprint ellipse, anchor cross and height bar. Follow
+      it, then remove it.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors,
+      finish and scale exactly (do not draw the bench unless asked).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Style reference only: match Pofu''s soft painterly finish; do not draw
+      a hamster or transfer fur, eyes or hamster colors to the objects or scene.'
+  prompt:
+  - text: 'A small young tree with a slim honey trunk and a round crown of soft
+
+      fresh-green leaves with a few pale blossoms, hung all over with a dozen
+
+      short soft ribbons in rose, mint, mustard, lilac and cream tied to its
+
+      branches, on a small mound of earth with a ring of stones. It stands on
+
+      the guide''s ground ellipse, centered on the cross, never wider than the
+
+      ellipse and never taller than the height bar; it is small, a third of the
+
+      image width at most.
+
+      '
+  - text: 'FRESH VARIATION: Turn honey trunk slightly right; a compact round fresh-green
+      crown carries the dozen ribbons as FOUR separated front-visible groups of THREE,
+      with stone-ring mound tucked below.'
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'MATERIAL SCOPE: R1 transfers soft painterly handling and controlled rounded
+      values only, never subject matter. Paint only the inanimate objects explicitly
+      named above. Wood is smooth matte honey wood, clay is matte clay, paper stays
+      folded paper, cloth is soft cloth and foliage has smooth matte leaf surfaces.
+      No fur fibers, furry silhouettes, animal eyes, faces, paws or limbs on any object
+      or plant. Do not draw Pofu, a hamster or his head curl. Preserve every specified
+      color, component, count and state. SOURCE SIZE AND GUIDE: At the requested 1024x1024
+      canvas, the complete silhouette should be about 280-310 pixels wide, 27-30 percent
+      of the canvas width, with large empty transparent margins. Include every part
+      of the explicitly named object group within that full width. The guide ellipse
+      is a limit, not a request to fill its 360 pixel width. The original at-most-one-third
+      cap still applies. Stand on the guide cross and baseline, below its height bar,
+      then remove every magenta guide mark. No painted floor, background, grass patch
+      or cast ground shadow; only contact occlusion where forms touch. LIGHT alone
+      sets hour, key/fill/rim direction, contact-shadow hue and full subject-plane
+      values. Keep day/subject; seasonal warm local colors do not change the hour
+      to golden or night. No global grey-white veil or lifted subject blacks. AVOID:
+      text, letters, numbers, logos, watermark, border, frame, UI controls, painted
+      glass, guide marks, extra objects or living animals/characters, outlines, grain,
+      cloth weave, photorealism or a 3D render look.'
+- id: x-decor-bahar-tulip-pots-v2
+  kind: prop
+  name: x-decor-bahar-tulip-pots-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Decor
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. Bahar (spring): the tulip pots. Review: two pots of tulips,
+    three colors; the shapes are tulips, not flowers in general. Fresh-v2 review:
+    Exactly2 different-size clay pots; recognizable red/rose/cream tulips, broad sage
+    leaves. Do not invent an exact bloom count.'
+  attach:
+  - ref: decor-guide
+    role: 'The decor guide: footprint ellipse, anchor cross and height bar. Follow
+      it, then remove it.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors,
+      finish and scale exactly (do not draw the bench unless asked).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Style reference only: match Pofu''s soft painterly finish; do not draw
+      a hamster or transfer fur, eyes or hamster colors to the objects or scene.'
+  prompt:
+  - text: 'Two chunky round terracotta clay pots of different sizes, each holding
+      a
+
+      tight bunch of plump tulips in red, rose and cream with broad sage leaves.
+
+      It stands on the guide''s ground ellipse, centered on the cross, never
+
+      wider than the ellipse and never taller than the height bar; it is small,
+
+      a third of the image width at most.
+
+      '
+  - text: 'FRESH VARIATION: Small terracotta pot front-left, larger pot just behind/right;
+      compact overlapping rims but two distinct tight tulip bunches.'
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'MATERIAL SCOPE: R1 transfers soft painterly handling and controlled rounded
+      values only, never subject matter. Paint only the inanimate objects explicitly
+      named above. Wood is smooth matte honey wood, clay is matte clay, paper stays
+      folded paper, cloth is soft cloth and foliage has smooth matte leaf surfaces.
+      No fur fibers, furry silhouettes, animal eyes, faces, paws or limbs on any object
+      or plant. Do not draw Pofu, a hamster or his head curl. Preserve every specified
+      color, component, count and state. SOURCE SIZE AND GUIDE: At the requested 1024x1024
+      canvas, the complete silhouette should be about 280-310 pixels wide, 27-30 percent
+      of the canvas width, with large empty transparent margins. Include every part
+      of the explicitly named object group within that full width. The guide ellipse
+      is a limit, not a request to fill its 360 pixel width. The original at-most-one-third
+      cap still applies. Stand on the guide cross and baseline, below its height bar,
+      then remove every magenta guide mark. No painted floor, background, grass patch
+      or cast ground shadow; only contact occlusion where forms touch. LIGHT alone
+      sets hour, key/fill/rim direction, contact-shadow hue and full subject-plane
+      values. Keep day/subject; seasonal warm local colors do not change the hour
+      to golden or night. No global grey-white veil or lifted subject blacks. AVOID:
+      text, letters, numbers, logos, watermark, border, frame, UI controls, painted
+      glass, guide marks, extra objects or living animals/characters, outlines, grain,
+      cloth weave, photorealism or a 3D render look.'
+- id: x-decor-bahar-kite-v2
+  kind: prop
+  name: x-decor-bahar-kite-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Decor
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. Bahar (spring): the kite. Review: a kite resting against a
+    stake, a classic diamond shape, cheerful. Fresh-v2 review: Coral/cream/sea-blue
+    quarters, rose/mustard bows, honey stake, coiled string/spool; entire long tail
+    remains in width envelope, not flying/cropped.'
+  attach:
+  - ref: decor-guide
+    role: 'The decor guide: footprint ellipse, anchor cross and height bar. Follow
+      it, then remove it.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors,
+      finish and scale exactly (do not draw the bench unless asked).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Style reference only: match Pofu''s soft painterly finish; do not draw
+      a hamster or transfer fur, eyes or hamster colors to the objects or scene.'
+  prompt:
+  - text: 'A diamond kite of coral, cream and sea-blue quarters with a long wavy
+
+      ribbon tail of rose and mustard bows, resting tilted on the ground against
+
+      a short honey-wood stake with its string coiled round a wooden spool. It
+
+      stands on the guide''s ground ellipse, centered on the cross, never wider
+
+      than the ellipse and never taller than the height bar; it is small, a
+
+      third of the image width at most.
+
+      '
+  - text: 'FRESH VARIATION: Lean diamond gently left on its short stake; long bow
+      tail makes a narrow vertical S beside it, coiled wooden spool close at front-right.'
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'MATERIAL SCOPE: R1 transfers soft painterly handling and controlled rounded
+      values only, never subject matter. Paint only the inanimate objects explicitly
+      named above. Wood is smooth matte honey wood, clay is matte clay, paper stays
+      folded paper, cloth is soft cloth and foliage has smooth matte leaf surfaces.
+      No fur fibers, furry silhouettes, animal eyes, faces, paws or limbs on any object
+      or plant. Do not draw Pofu, a hamster or his head curl. Preserve every specified
+      color, component, count and state. SOURCE SIZE AND GUIDE: At the requested 1024x1024
+      canvas, the complete silhouette should be about 280-310 pixels wide, 27-30 percent
+      of the canvas width, with large empty transparent margins. Include every part
+      of the explicitly named object group within that full width. The guide ellipse
+      is a limit, not a request to fill its 360 pixel width. The original at-most-one-third
+      cap still applies. Stand on the guide cross and baseline, below its height bar,
+      then remove every magenta guide mark. No painted floor, background, grass patch
+      or cast ground shadow; only contact occlusion where forms touch. LIGHT alone
+      sets hour, key/fill/rim direction, contact-shadow hue and full subject-plane
+      values. Keep day/subject; seasonal warm local colors do not change the hour
+      to golden or night. No global grey-white veil or lifted subject blacks. AVOID:
+      text, letters, numbers, logos, watermark, border, frame, UI controls, painted
+      glass, guide marks, extra objects or living animals/characters, outlines, grain,
+      cloth weave, photorealism or a 3D render look.'
+- id: x-decor-bahar-nest-v2
+  kind: prop
+  name: x-decor-bahar-nest-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Decor
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. Bahar (spring): the nest. Review: a round twig nest with eggs
+    on a small stump; soft and sweet, not messy. Fresh-v2 review: Exactly3 pale blue-grey
+    speckled eggs, honey twig/straw nest, cream down LINING only, low pale stump/tiny
+    green sprout; no bird/furry stump.'
+  attach:
+  - ref: decor-guide
+    role: 'The decor guide: footprint ellipse, anchor cross and height bar. Follow
+      it, then remove it.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors,
+      finish and scale exactly (do not draw the bench unless asked).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Style reference only: match Pofu''s soft painterly finish; do not draw
+      a hamster or transfer fur, eyes or hamster colors to the objects or scene.'
+  prompt:
+  - text: 'A round nest woven of honey-gold twigs and straw, lined with soft cream
+
+      down, holding three pale blue-grey speckled eggs, resting on a low cut
+
+      stump of pale wood with a tiny green sprout beside it. It stands on the
+
+      guide''s ground ellipse, centered on the cross, never wider than the
+
+      ellipse and never taller than the height bar; it is small, a third of the
+
+      image width at most.
+
+      '
+  - text: 'FRESH VARIATION: Rotate low stump left; three eggs form an open triangle
+      in down-lined nest, tiny sprout visible at right foot.'
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'MATERIAL SCOPE: R1 transfers soft painterly handling and controlled rounded
+      values only, never subject matter. Paint only the inanimate objects explicitly
+      named above. Wood is smooth matte honey wood, clay is matte clay, paper stays
+      folded paper, cloth is soft cloth and foliage has smooth matte leaf surfaces.
+      No fur fibers, furry silhouettes, animal eyes, faces, paws or limbs on any object
+      or plant. Do not draw Pofu, a hamster or his head curl. Preserve every specified
+      color, component, count and state. The explicitly required cream down is soft
+      lining INSIDE the nest only; never fur on the stump, straw, twigs or eggs. No
+      bird or hatchling. SOURCE SIZE AND GUIDE: At the requested 1024x1024 canvas,
+      the complete silhouette should be about 280-310 pixels wide, 27-30 percent of
+      the canvas width, with large empty transparent margins. Include every part of
+      the explicitly named object group within that full width. The guide ellipse
+      is a limit, not a request to fill its 360 pixel width. The original at-most-one-third
+      cap still applies. Stand on the guide cross and baseline, below its height bar,
+      then remove every magenta guide mark. No painted floor, background, grass patch
+      or cast ground shadow; only contact occlusion where forms touch. LIGHT alone
+      sets hour, key/fill/rim direction, contact-shadow hue and full subject-plane
+      values. Keep day/subject; seasonal warm local colors do not change the hour
+      to golden or night. No global grey-white veil or lifted subject blacks. AVOID:
+      text, letters, numbers, logos, watermark, border, frame, UI controls, painted
+      glass, guide marks, extra objects or living animals/characters, outlines, grain,
+      cloth weave, photorealism or a 3D render look.'
+- id: x-corner-bahar-v2
+  kind: plate
+  name: x-corner-bahar-v2
+  size: 1536x1024
+  canvas: 1536x1024
+  chat: Pofu · Exploration
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. A cozy composed corner of the Bahar (spring) set. Review: unmistakably
+    spring and Hıdırellez; soft, fresh, never busy. Fresh-v2 review: Independent spring/Hidirellez
+    corner: ribbon tree, exactly2 tulip pots, kite/tail, nest with exactly3 eggs,
+    tiny white lawn flowers/path. Many ribbons, not imported prop exact12; same island,
+    no characters.'
+  attach:
+  - ref: approved:island-main-s
+    role: 'The home island: the same painting, the same low camera (about 20 degrees),
+      the same softness and scale of a floating island. Do not draw a different island.'
+  - ref: approved:cloud-sea
+    role: 'The sea of clouds below every island: paint the clouds like this.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors,
+      finish and scale exactly (do not draw the bench unless asked).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Style reference only: match Pofu''s soft painterly finish; do not draw
+      a hamster or transfer fur, eyes or hamster colors to the objects or scene.'
+  prompt:
+  - text: 'A concept painting for a cozy mobile game: one quiet corner of the home
+
+      island Ayçiçeği, dressed with a decor set, from the same low camera (about
+
+      20 degrees) as the attached island and in its painting, softly cropped to
+
+      a corner of lawn, a few path stones and the edge of the island over the
+
+      clouds. Spring corner: a young tree hung with many soft wish ribbons in
+
+      rose, mint, mustard and cream, two clay pots of tulips in red, rose and
+
+      cream, a small kite with a ribbon tail staked in the grass, and a round
+
+      twig nest with three pale speckled eggs on a stump, fresh light-green lawn
+
+      with tiny white flowers. Warm daylight, calm, uncluttered, every piece
+
+      small and in the scale of the attached bench; no characters.
+
+      '
+  - text: 'FRESH VARIATION: Fresh shallow diagonal path lower-left to back-right:
+      tree back-right, pots near-left, staked kite front-right, nest behind path,
+      generous lawn and original island edge/clouds.'
+  - block: style-anchor-v2
+  - text: 'MATERIAL SCOPE: R1 transfers soft painterly handling and controlled rounded
+      values only, never subject matter. Paint only the inanimate objects explicitly
+      named above. Wood is smooth matte honey wood, clay is matte clay, paper stays
+      folded paper, cloth is soft cloth and foliage has smooth matte leaf surfaces.
+      No fur fibers, furry silhouettes, animal eyes, faces, paws or limbs on any object
+      or plant. Do not draw Pofu, a hamster or his head curl. Preserve every specified
+      color, component, count and state. CAMERA AND SCENE: Match the approved home
+      island''s low front three-quarter camera, about 20 degrees above the horizon,
+      same lawn/island edge and cloud family. No composition guide is attached or
+      to be invented. Paint a complete opaque 1536x1024 landscape corner with the
+      requested lawn, path and cloud context. This is an independent corner composition,
+      not an assembly of newly selected sprite candidates. LIGHT alone sets hour,
+      key/fill/rim direction, contact-shadow hue and full subject-plane values. Keep
+      day/subject; seasonal warm local colors do not change the hour to golden or
+      night. No global grey-white veil or lifted subject blacks. AVOID: text, letters,
+      numbers, logos, watermark, border, frame, UI controls, painted glass, guide
+      marks, extra objects or living animals/characters, outlines, grain, cloth weave,
+      photorealism or a 3D render look.'
+- id: x-decor-yaz-hammock-v2
+  kind: prop
+  name: x-decor-yaz-hammock-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Decor
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. Yaz (summer): the hammock. Review: a hammock slung low between
+    two posts; reads as rest at 64 px. Fresh-v2 review: Coral/cream STRIPES, not checks;
+    exactly2 posts, pair of sandals, cushion, gentle cloth curve. Remains ground profile.'
+  attach:
+  - ref: decor-guide
+    role: 'The decor guide: footprint ellipse, anchor cross and height bar. Follow
+      it, then remove it.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors,
+      finish and scale exactly (do not draw the bench unless asked).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Style reference only: match Pofu''s soft painterly finish; do not draw
+      a hamster or transfer fur, eyes or hamster colors to the objects or scene.'
+  prompt:
+  - text: 'A hammock of coral and cream stripes slung in a gentle curve between two
+
+      short honey-wood posts with round tops, a small soft cushion at one end
+
+      and a pair of sandals below. It stands on the guide''s ground ellipse,
+
+      centered on the cross, never wider than the ellipse and never taller than
+
+      the height bar; it is small, a third of the image width at most.
+
+      '
+  - text: 'FRESH VARIATION: Angle low hammock near-left to back-right between short
+      round-top posts; cushion at rear end, two sandals tucked visibly below middle.'
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'MATERIAL SCOPE: R1 transfers soft painterly handling and controlled rounded
+      values only, never subject matter. Paint only the inanimate objects explicitly
+      named above. Wood is smooth matte honey wood, clay is matte clay, paper stays
+      folded paper, cloth is soft cloth and foliage has smooth matte leaf surfaces.
+      No fur fibers, furry silhouettes, animal eyes, faces, paws or limbs on any object
+      or plant. Do not draw Pofu, a hamster or his head curl. Preserve every specified
+      color, component, count and state. SOURCE SIZE AND GUIDE: At the requested 1024x1024
+      canvas, the complete silhouette should be about 280-310 pixels wide, 27-30 percent
+      of the canvas width, with large empty transparent margins. Include every part
+      of the explicitly named object group within that full width. The guide ellipse
+      is a limit, not a request to fill its 360 pixel width. The original at-most-one-third
+      cap still applies. Stand on the guide cross and baseline, below its height bar,
+      then remove every magenta guide mark. No painted floor, background, grass patch
+      or cast ground shadow; only contact occlusion where forms touch. LIGHT alone
+      sets hour, key/fill/rim direction, contact-shadow hue and full subject-plane
+      values. Keep day/subject; seasonal warm local colors do not change the hour
+      to golden or night. No global grey-white veil or lifted subject blacks. AVOID:
+      text, letters, numbers, logos, watermark, border, frame, UI controls, painted
+      glass, guide marks, extra objects or living animals/characters, outlines, grain,
+      cloth weave, photorealism or a 3D render look.'
+- id: x-decor-yaz-ice-cream-cart-v2
+  kind: prop
+  name: x-decor-yaz-ice-cream-cart-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Decor
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. Yaz (summer): the ice-cream cart. Review: a little cart with
+    a scalloped awning and cones; matte, toy-like. Fresh-v2 review: Two wheels, mint/cream
+    body, coral/cream scalloped awning, OPEN lid, rose/pistachio/cream scoops, exactly2
+    cones/holder, small handle bell. No text.'
+  attach:
+  - ref: decor-guide
+    role: 'The decor guide: footprint ellipse, anchor cross and height bar. Follow
+      it, then remove it.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors,
+      finish and scale exactly (do not draw the bench unless asked).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Style reference only: match Pofu''s soft painterly finish; do not draw
+      a hamster or transfer fur, eyes or hamster colors to the objects or scene.'
+  prompt:
+  - text: 'A small two-wheeled ice-cream cart in mint and cream with a scalloped
+
+      awning in coral and cream, a lid open to show three scoops in rose,
+
+      pistachio and cream, two cones in a holder, and a small bell on the
+
+      handle. It stands on the guide''s ground ellipse, centered on the cross,
+
+      never wider than the ellipse and never taller than the height bar; it is
+
+      small, a third of the image width at most.
+
+      '
+  - text: 'FRESH VARIATION: Turn compact cart left, lid open backward; separate three
+      scoops across opening, both cones near front holder, handle bell unobstructed.'
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'MATERIAL SCOPE: R1 transfers soft painterly handling and controlled rounded
+      values only, never subject matter. Paint only the inanimate objects explicitly
+      named above. Wood is smooth matte honey wood, clay is matte clay, paper stays
+      folded paper, cloth is soft cloth and foliage has smooth matte leaf surfaces.
+      No fur fibers, furry silhouettes, animal eyes, faces, paws or limbs on any object
+      or plant. Do not draw Pofu, a hamster or his head curl. Preserve every specified
+      color, component, count and state. SOURCE SIZE AND GUIDE: At the requested 1024x1024
+      canvas, the complete silhouette should be about 280-310 pixels wide, 27-30 percent
+      of the canvas width, with large empty transparent margins. Include every part
+      of the explicitly named object group within that full width. The guide ellipse
+      is a limit, not a request to fill its 360 pixel width. The original at-most-one-third
+      cap still applies. Stand on the guide cross and baseline, below its height bar,
+      then remove every magenta guide mark. No painted floor, background, grass patch
+      or cast ground shadow; only contact occlusion where forms touch. LIGHT alone
+      sets hour, key/fill/rim direction, contact-shadow hue and full subject-plane
+      values. Keep day/subject; seasonal warm local colors do not change the hour
+      to golden or night. No global grey-white veil or lifted subject blacks. AVOID:
+      text, letters, numbers, logos, watermark, border, frame, UI controls, painted
+      glass, guide marks, extra objects or living animals/characters, outlines, grain,
+      cloth weave, photorealism or a 3D render look.'
+- id: x-decor-yaz-beach-umbrella-v2
+  kind: prop
+  name: x-decor-yaz-beach-umbrella-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Decor
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. Yaz (summer): the beach umbrella. Review: a big striped umbrella
+    planted in sand; a folded towel at its foot. Fresh-v2 review: Sea-blue/cream stripes,
+    honey pole/pale sand, FOLDED cream towel/coral stripe, round pail. Large relative
+    to towel, not1024 canvas.'
+  attach:
+  - ref: decor-guide
+    role: 'The decor guide: footprint ellipse, anchor cross and height bar. Follow
+      it, then remove it.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors,
+      finish and scale exactly (do not draw the bench unless asked).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Style reference only: match Pofu''s soft painterly finish; do not draw
+      a hamster or transfer fur, eyes or hamster colors to the objects or scene.'
+  prompt:
+  - text: 'A large round beach umbrella in sea-blue and cream stripes tilted slightly
+
+      on a slim honey pole planted in a small mound of pale sand, a folded cream
+
+      towel with a coral stripe and a round pail beside it. It stands on the
+
+      guide''s ground ellipse, centered on the cross, never wider than the
+
+      ellipse and never taller than the height bar; it is small, a third of the
+
+      image width at most.
+
+      '
+  - text: 'FRESH VARIATION: Tilt open round canopy left; folded towel shows compressed
+      layered cloth front-left, round pail close front-right of small sand mound.'
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'MATERIAL SCOPE: R1 transfers soft painterly handling and controlled rounded
+      values only, never subject matter. Paint only the inanimate objects explicitly
+      named above. Wood is smooth matte honey wood, clay is matte clay, paper stays
+      folded paper, cloth is soft cloth and foliage has smooth matte leaf surfaces.
+      No fur fibers, furry silhouettes, animal eyes, faces, paws or limbs on any object
+      or plant. Do not draw Pofu, a hamster or his head curl. Preserve every specified
+      color, component, count and state. SOURCE SIZE AND GUIDE: At the requested 1024x1024
+      canvas, the complete silhouette should be about 280-310 pixels wide, 27-30 percent
+      of the canvas width, with large empty transparent margins. Include every part
+      of the explicitly named object group within that full width. The guide ellipse
+      is a limit, not a request to fill its 360 pixel width. The original at-most-one-third
+      cap still applies. Stand on the guide cross and baseline, below its height bar,
+      then remove every magenta guide mark. No painted floor, background, grass patch
+      or cast ground shadow; only contact occlusion where forms touch. LIGHT alone
+      sets hour, key/fill/rim direction, contact-shadow hue and full subject-plane
+      values. Keep day/subject; seasonal warm local colors do not change the hour
+      to golden or night. No global grey-white veil or lifted subject blacks. AVOID:
+      text, letters, numbers, logos, watermark, border, frame, UI controls, painted
+      glass, guide marks, extra objects or living animals/characters, outlines, grain,
+      cloth weave, photorealism or a 3D render look.'
+- id: x-decor-yaz-paper-boat-v2
+  kind: prop
+  name: x-decor-yaz-paper-boat-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Decor
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. Yaz (summer): the paper boat. Review: a folded paper boat,
+    big and simple; reads at 64 px. Fresh-v2 review: Folded PAPER cream boat, blue-grey
+    inner fold, coral flag/toothpick mast, round sage cushion. No wood hull/water
+    pool/cargo/text.'
+  attach:
+  - ref: decor-guide
+    role: 'The decor guide: footprint ellipse, anchor cross and height bar. Follow
+      it, then remove it.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors,
+      finish and scale exactly (do not draw the bench unless asked).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Style reference only: match Pofu''s soft painterly finish; do not draw
+      a hamster or transfer fur, eyes or hamster colors to the objects or scene.'
+  prompt:
+  - text: 'A large folded paper boat in cream with a pale blue-grey inner fold and
+      a
+
+      tiny coral flag on a toothpick mast, resting on its keel on a small round
+
+      sage cushion. It stands on the guide''s ground ellipse, centered on the
+
+      cross, never wider than the ellipse and never taller than the height bar;
+
+      it is small, a third of the image width at most.
+
+      '
+  - text: 'FRESH VARIATION: Rotate paper hull slightly right on sage cushion, expose
+      blue-grey inner fold; tiny flag/mast just behind center, keel visibly touches
+      cushion.'
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'MATERIAL SCOPE: R1 transfers soft painterly handling and controlled rounded
+      values only, never subject matter. Paint only the inanimate objects explicitly
+      named above. Wood is smooth matte honey wood, clay is matte clay, paper stays
+      folded paper, cloth is soft cloth and foliage has smooth matte leaf surfaces.
+      No fur fibers, furry silhouettes, animal eyes, faces, paws or limbs on any object
+      or plant. Do not draw Pofu, a hamster or his head curl. Preserve every specified
+      color, component, count and state. SOURCE SIZE AND GUIDE: At the requested 1024x1024
+      canvas, the complete silhouette should be about 280-310 pixels wide, 27-30 percent
+      of the canvas width, with large empty transparent margins. Include every part
+      of the explicitly named object group within that full width. The guide ellipse
+      is a limit, not a request to fill its 360 pixel width. The original at-most-one-third
+      cap still applies. Stand on the guide cross and baseline, below its height bar,
+      then remove every magenta guide mark. No painted floor, background, grass patch
+      or cast ground shadow; only contact occlusion where forms touch. LIGHT alone
+      sets hour, key/fill/rim direction, contact-shadow hue and full subject-plane
+      values. Keep day/subject; seasonal warm local colors do not change the hour
+      to golden or night. No global grey-white veil or lifted subject blacks. AVOID:
+      text, letters, numbers, logos, watermark, border, frame, UI controls, painted
+      glass, guide marks, extra objects or living animals/characters, outlines, grain,
+      cloth weave, photorealism or a 3D render look.'
+- id: x-corner-yaz-v2
+  kind: plate
+  name: x-corner-yaz-v2
+  size: 1536x1024
+  canvas: 1536x1024
+  chat: Pofu · Exploration
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. A cozy composed corner of the Yaz (summer) set. Review: unmistakably
+    summer; sunny, lazy, quiet. Fresh-v2 review: Independent summer corner, all4 named
+    groups, approved island/cloud low camera, day LIGHT. Do not import prop-only exact
+    scoop/cone/flag/cushion counts; no residents.'
+  attach:
+  - ref: approved:island-main-s
+    role: 'The home island: the same painting, the same low camera (about 20 degrees),
+      the same softness and scale of a floating island. Do not draw a different island.'
+  - ref: approved:cloud-sea
+    role: 'The sea of clouds below every island: paint the clouds like this.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors,
+      finish and scale exactly (do not draw the bench unless asked).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Style reference only: match Pofu''s soft painterly finish; do not draw
+      a hamster or transfer fur, eyes or hamster colors to the objects or scene.'
+  prompt:
+  - text: 'A concept painting for a cozy mobile game: one quiet corner of the home
+
+      island Ayçiçeği, dressed with a decor set, from the same low camera (about
+
+      20 degrees) as the attached island and in its painting, softly cropped to
+
+      a corner of lawn, a few path stones and the edge of the island over the
+
+      clouds. Summer corner: a striped coral-and-cream hammock slung between two
+
+      poles, a round ice-cream cart in mint and cream with a scalloped awning, a
+
+      large beach umbrella in sea-blue and cream stripes with a folded towel,
+
+      and a paper boat on the lawn''s edge; warm day-cell local colors, warm lawn.
+      Warm
+
+      daylight, calm, uncluttered, every piece small and in the scale of the
+
+      attached bench; no characters.
+
+      '
+  - text: 'FRESH VARIATION: New calm curved path: hammock back-left, cart back-right,
+      umbrella front-left with folded towel, boat near-right island edge/clouds.'
+  - block: style-anchor-v2
+  - text: 'MATERIAL SCOPE: R1 transfers soft painterly handling and controlled rounded
+      values only, never subject matter. Paint only the inanimate objects explicitly
+      named above. Wood is smooth matte honey wood, clay is matte clay, paper stays
+      folded paper, cloth is soft cloth and foliage has smooth matte leaf surfaces.
+      No fur fibers, furry silhouettes, animal eyes, faces, paws or limbs on any object
+      or plant. Do not draw Pofu, a hamster or his head curl. Preserve every specified
+      color, component, count and state. CAMERA AND SCENE: Match the approved home
+      island''s low front three-quarter camera, about 20 degrees above the horizon,
+      same lawn/island edge and cloud family. No composition guide is attached or
+      to be invented. Paint a complete opaque 1536x1024 landscape corner with the
+      requested lawn, path and cloud context. This is an independent corner composition,
+      not an assembly of newly selected sprite candidates. LIGHT alone sets hour,
+      key/fill/rim direction, contact-shadow hue and full subject-plane values. Keep
+      day/subject; seasonal warm local colors do not change the hour to golden or
+      night. No global grey-white veil or lifted subject blacks. AVOID: text, letters,
+      numbers, logos, watermark, border, frame, UI controls, painted glass, guide
+      marks, extra objects or living animals/characters, outlines, grain, cloth weave,
+      photorealism or a 3D render look.'
+light_standard: true

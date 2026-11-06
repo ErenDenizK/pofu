@@ -1,0 +1,33 @@
+id: asset-x-decor-yaz-ice-cream-cart-v2
+type: asset
+title_tr: x-decor-yaz-ice-cream-cart-v2
+title_en: x-decor-yaz-ice-cream-cart-v2 (prop)
+status: planned
+horizon: now
+summary: >-
+  A small two-wheeled ice-cream cart in mint and cream with a scalloped awning in coral and
+  cream, a lid open to show three scoops in rose, pistachio and cream, two cones in a holder,
+  and a small bell on the handle. It stands on the guide's ground ellipse, centered on the
+  cross, never wider than the ellipse and never taller than the height bar; it is small, a
+  third of the image width at most.
+art:
+  images: []
+  jobs:
+  - batch-30b-decor-seasons-1-v2:x-decor-yaz-ice-cream-cart-v2
+sources:
+- doc: tools/imagegen/manifest/batch-30b-decor-seasons-1-v2.yaml
+kind: prop
+batch: batch-30b-decor-seasons-1-v2
+size: 1024x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Selected take 2; auto-picked by QA; founder review pending. Registration remains planned
+  and art.images is empty.
+- >-
+  auto-picked by QA; founder review pending. Independent source and locked review confirms
+  both carts preserve two wheels with the rear partly occluded, mint/cream body, scalloped
+  coral/cream awning, open lid with exactly three rose/pistachio/cream scoops, two cones in
+  holder and handle bell. Take1 visible locked width360px exceeds literal341.33px cap. Take2
+  width296px passes, official hard QA passes and lock load2.4383; it is the only eligible
+  initial take. No invented complete-wheel-visibility threshold.

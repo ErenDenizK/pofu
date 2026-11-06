@@ -1,0 +1,35 @@
+id: asset-x-corner-yaz-v2
+type: asset
+title_tr: x-corner-yaz-v2
+title_en: x-corner-yaz-v2 (plate)
+status: planned
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: one quiet corner of the home island Ayçiçeği,
+  dressed with a decor set, from the same low camera (about 20 degrees) as the attached island
+  and in its painting, softly cropped to a corner of lawn, a few path stones and the edge
+  of the island over the clouds. Summer corner: a striped coral-and-cream hammock slung between
+  two poles, a round ice-cream cart in mint and cream with…
+art:
+  images: []
+  jobs:
+  - batch-30b-decor-seasons-1-v2:x-corner-yaz-v2
+sources:
+- doc: tools/imagegen/manifest/batch-30b-decor-seasons-1-v2.yaml
+kind: plate
+batch: batch-30b-decor-seasons-1-v2
+size: 1536x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Selected take 1; auto-picked by QA; founder review pending. Registration remains planned
+  and art.images is empty.
+- >-
+  auto-picked by QA; founder review pending. Independent original and official locked review:
+  take1 meets its own independent corner brief with coral/cream striped hammock between two
+  posts, mint/cream scalloped cart, open sea-blue/cream beach umbrella with folded towel and
+  paper boat near the lawn edge, preserving quiet curved path, home-island edge/cloud family
+  and low camera. No residents, text or UI. Take2 has coral/cream checked plaid hammock rather
+  than stripes and is manually excluded. Both official hard QA pass; take1 load0.9229 is eligible.
+  No individual sprite cushion/flag/cone-count/open-lid/width constraint is invented for this
+  independent plate. Exploration style/light warnings are advisory.

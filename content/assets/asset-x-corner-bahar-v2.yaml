@@ -1,0 +1,34 @@
+id: asset-x-corner-bahar-v2
+type: asset
+title_tr: x-corner-bahar-v2
+title_en: x-corner-bahar-v2 (plate)
+status: planned
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: one quiet corner of the home island Ayçiçeği,
+  dressed with a decor set, from the same low camera (about 20 degrees) as the attached island
+  and in its painting, softly cropped to a corner of lawn, a few path stones and the edge
+  of the island over the clouds. Spring corner: a young tree hung with many soft wish ribbons
+  in rose, mint, mustard and cream, two clay pots of tulips …
+art:
+  images: []
+  jobs:
+  - batch-30b-decor-seasons-1-v2:x-corner-bahar-v2
+sources:
+- doc: tools/imagegen/manifest/batch-30b-decor-seasons-1-v2.yaml
+kind: plate
+batch: batch-30b-decor-seasons-1-v2
+size: 1536x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Selected take 2; auto-picked by QA; founder review pending. Registration remains planned
+  and art.images is empty.
+- >-
+  auto-picked by QA; founder review pending. Independent full-size original and locked review:
+  take1 contains four eggs and fails the exact three-egg brief. Take2 has exactly three eggs
+  and preserves the spring tree with many ribbons, exactly two clay tulip pots, staked kite
+  and tail, nest and stump, lawn, path, cloud-edge home reference family and no residents,
+  text or UI. Both opaque plates have no hard QA failures; take2 is the only manually eligible
+  take, lock load1.4272. No prop-width or exact12 ribbon constraint is imposed on this independent
+  plate.

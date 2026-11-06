@@ -1,0 +1,35 @@
+id: asset-x-decor-yaz-paper-boat-v2
+type: asset
+title_tr: x-decor-yaz-paper-boat-v2
+title_en: x-decor-yaz-paper-boat-v2 (prop)
+status: planned
+horizon: now
+summary: >-
+  A large folded paper boat in cream with a pale blue-grey inner fold and a tiny coral flag
+  on a toothpick mast, resting on its keel on a small round sage cushion. It stands on the
+  guide's ground ellipse, centered on the cross, never wider than the ellipse and never taller
+  than the height bar; it is small, a third of the image width at most.
+art:
+  images: []
+  jobs:
+  - batch-30b-decor-seasons-1-v2:x-decor-yaz-paper-boat-v2
+sources:
+- doc: tools/imagegen/manifest/batch-30b-decor-seasons-1-v2.yaml
+kind: prop
+batch: batch-30b-decor-seasons-1-v2
+size: 1024x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Selected take 3; auto-picked by QA; founder review pending. Registration remains planned
+  and art.images is empty.
+- >-
+  auto-picked by QA; founder review pending. After the sole unchanged-prompt retry, take3
+  is the only eligible candidate: visible locked alpha-over24 width336px meets literal one-third
+  of1024 cap341.33px. Initial1/2 and retry4 widths360/359/359px exceed it and are excluded,
+  including take4 despite its lower lock load. Independent full-subject original and locked
+  review confirms take3 cream folded paper boat, blue-grey inner fold, tiny coral flag on
+  toothpick mast and keel visibly touching round sage cushion. Paper stays paper with clear
+  fold faces; no fur, extra objects, text or guide. Official hard QA passes; eligible load0.9596/Harmony70.5.
+  Exploration style/light warnings advisory. All four immutable originals retained; no manual
+  resize, alpha cleanup or third round.
