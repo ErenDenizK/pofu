@@ -1,0 +1,211 @@
+batch: batch-45-beautiful-wounds
+manifest: tools/imagegen/manifest/batch-45-beautiful-wounds.yaml
+manifest_sha256: 76008f3117f50b58d4b037b6ab2cb8164cc2f68868f8f14932b29df37575f743
+contact_sheet: design/art/takes/batch-45-beautiful-wounds/x-home-night-key/contact.jpg
+jobs:
+  x-home-night-key:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Both originals and official
+      locked outputs depict the authored clear-night scene on the recognizable home
+      base: one large moon high upper-right; cool silver-blue rims and coloured blue-violet
+      shade; readable blue-green grass; ONE curved amber lamp beside ONE small round
+      hamster whose lamp-side cheek/paw are warmed and far side is cool; the tea burner
+      warms its front and teapot; the existing round door glows from inside; low fireflies,
+      stars and faint horizon warmth. Multiple warm practicals are explicitly required
+      for healthy-home night, so no wounded-stage0 single-practical rule is imported.
+      Both eligible; take1 wins lower lock load. The attached home plate is bare,
+      so lamp/hamster/stall are deliberate named additions. The brief calls a small
+      hamster but supplies no R1 identity attachment: no pixel-registered Pofu rig
+      claim is made. No text/border/neon/lens flare; light/median/haze/palette warnings
+      remain visible and advisory. Never promoted.'
+qa_reports:
+  1:
+    job: x-home-night-key
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 47 (R1 51)
+      value: 47.3
+    - check: light_values
+      status: warn
+      message: 'night/subject: L p2 30 (at most 8), p98 84 (at least 58), spread 54
+        (at least 42) (warn-only until the founder has seen the light pilot)'
+      value: 54.1
+    - check: light_median
+      status: warn
+      message: 'night/subject: median L 55 (band 18-50)'
+      value: 55.2
+    - check: light_haze
+      status: warn
+      message: 'night/subject: dark-channel haze 0.22 (at most 0.10; no true dark
+        means a wash)'
+      value: 0.216
+    - check: light_contrast
+      status: pass
+      message: 'night/subject: p75 local contrast 4.1 (at least 2.8)'
+      value: 4.14
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.9 (R1 5.3)
+      value: 2.94
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.5
+      value: 1.5038
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 6.1, p95 12.7, off-palette 5.9% (top: #335577 (0.9%), #336688
+        (0.8%)) (advisory in an exploration)'
+      value: 6.1362
+    info:
+      metrics_raw:
+        L_p5: 19.6
+        L_p50: 49.6
+        L_p95: 76.6
+        C_p50: 29.5
+        C_p95: 47.5
+        C_p99: 55.2
+        detail: 3.56
+      metrics_locked:
+        L_p5: 23.7
+        L_p50: 49.6
+        L_p95: 76.1
+        C_p50: 29.4
+        C_p95: 47.3
+        C_p99: 53.2
+        detail: 2.94
+    fingerprint: 4b664b41bf2aa337
+  2:
+    job: x-home-night-key
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 43 (R1 51)
+      value: 43.4
+    - check: light_values
+      status: warn
+      message: 'night/subject: L p2 29 (at most 8), p98 84 (at least 58), spread 55
+        (at least 42) (warn-only until the founder has seen the light pilot)'
+      value: 55.2
+    - check: light_median
+      status: warn
+      message: 'night/subject: median L 50 (band 18-50)'
+      value: 50.5
+    - check: light_haze
+      status: warn
+      message: 'night/subject: dark-channel haze 0.22 (at most 0.10; no true dark
+        means a wash)'
+      value: 0.22
+    - check: light_contrast
+      status: pass
+      message: 'night/subject: p75 local contrast 4.1 (at least 2.8)'
+      value: 4.09
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.1 (R1 5.3)
+      value: 3.06
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.5
+      value: 1.5148
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 5.8, p95 12.2, off-palette 5.4% (top: #446677 (1.6%), #446688
+        (0.5%)) (advisory in an exploration)'
+      value: 5.7531
+    info:
+      metrics_raw:
+        L_p5: 18.1
+        L_p50: 48.4
+        L_p95: 77.1
+        C_p50: 28.8
+        C_p95: 43.7
+        C_p99: 50.7
+        detail: 3.69
+      metrics_locked:
+        L_p5: 23.2
+        L_p50: 48.4
+        L_p95: 76.5
+        C_p50: 28.5
+        C_p95: 43.4
+        C_p99: 49.1
+        detail: 3.06
+    fingerprint: 4b664b41bf2aa337
+manual_review:
+  observed_note: 'Both originals and official locked outputs depict the authored clear-night
+    scene on the recognizable home base: one large moon high upper-right; cool silver-blue
+    rims and coloured blue-violet shade; readable blue-green grass; ONE curved amber
+    lamp beside ONE small round hamster whose lamp-side cheek/paw are warmed and far
+    side is cool; the tea burner warms its front and teapot; the existing round door
+    glows from inside; low fireflies, stars and faint horizon warmth. Multiple warm
+    practicals are explicitly required for healthy-home night, so no wounded-stage0
+    single-practical rule is imported. Both eligible; take1 wins lower lock load.
+    The attached home plate is bare, so lamp/hamster/stall are deliberate named additions.
+    The brief calls a small hamster but supplies no R1 identity attachment: no pixel-registered
+    Pofu rig claim is made. No text/border/neon/lens flare; light/median/haze/palette
+    warnings remain visible and advisory. Never promoted.'
+  excluded_takes: []
+sources:
+- batch: batch-45-beautiful-wounds
+  job: x-home-night-key
+  take: 1
+  round: 1
+  logical_run: 20261106-b45-r1-home-mist-night
+  source_file: /workspace/generated_images/exec-2dcf6598-8285-40ef-b271-d949e99d5211.png
+  returned_at: '2026-11-06T07:11:42.817Z'
+  prompt_sha256: f8ee55e1f4d940cabbb257df9e5c3c937df87411ab05ada3a0f34db9024eba3d
+  fingerprint: 4b664b41bf2aa337
+  saved_at: '2026-11-06T07:11:43.171097+00:00'
+  original_generated_png_sha256: 62405aa509ea70187c7fb8b236ad99c0672efaec772af1a9bed913b6b1b909e4
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 165c6bd10578f6aaba61cc94fda9dd930392e76aadc9a89acbdd8558d84e4651
+  inbox_png_sha256: 4b299a6c355fea815648aa8e9f40b2c6cedc2fbd6dba6db5422ab9e5d1940862
+  qa_sha256: 186af91872d9b7dd9aef7a65b43ae88fc5d54f8243a54e00d25aa663b022e083
+- batch: batch-45-beautiful-wounds
+  job: x-home-night-key
+  take: 2
+  round: 1
+  logical_run: 20261106-b45-r1-home-mist-night
+  source_file: /workspace/generated_images/exec-2b598db4-ddd3-46f6-b993-041643c9cc74.png
+  returned_at: '2026-11-06T07:10:15.549Z'
+  prompt_sha256: f8ee55e1f4d940cabbb257df9e5c3c937df87411ab05ada3a0f34db9024eba3d
+  fingerprint: 4b664b41bf2aa337
+  saved_at: '2026-11-06T07:10:15.980157+00:00'
+  original_generated_png_sha256: 0b6fded6c9dc1af7159fc839020a805454d4076c7ebd4aecc71b227d6c9da169
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 9722d84f5f17484957f55ad5df15de18d3ccdd35f13cb0f12ee1f515bfa3c14d
+  inbox_png_sha256: 7bf597354928baaa95800e9f0604d779e11092050e7482463e3233b5878d3dbc
+  qa_sha256: 78968179280a58ecd503ab9c383b19a20cd6e71489819f7fc29524b236beb0fc
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published

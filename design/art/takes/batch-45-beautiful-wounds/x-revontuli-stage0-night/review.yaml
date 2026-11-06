@@ -1,0 +1,212 @@
+batch: batch-45-beautiful-wounds
+manifest: tools/imagegen/manifest/batch-45-beautiful-wounds.yaml
+manifest_sha256: 76008f3117f50b58d4b037b6ab2cb8164cc2f68868f8f14932b29df37575f743
+contact_sheet: design/art/takes/batch-45-beautiful-wounds/x-revontuli-stage0-night/contact.jpg
+jobs:
+  x-revontuli-stage0-night:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Both originals and official
+      locked outputs show exactly THREE wooden lantern towers: ONE upright and TWO
+      visibly leaning/half fallen, with dark dislodged lanterns in snow-dusted grass,
+      a stone path, one honey-warm standing-tower lantern/pool, a luminous blue-violet
+      starry sky, cool moon rims and one faint green aurora thread rather than the
+      full healed aurora. No fire, shards, horror, text or extra lit tower. Both eligible;
+      take2 wins lower lock load. Take2 additionally draws a small home-like round
+      earth-face door: disclose this unwanted camera-reference leakage, not an invented
+      unique-island/zero-extra-prop gate absent from this manifest. The warm peach
+      earth body remains an advisory colour limitation; this is a concept target with
+      visible light/palette warnings, not a production-ready night plate or registered
+      home reconstruction. Specific night target and LIGHT override unchanged legacy
+      high-key/milky prose; no prompt or pixel change. Never promoted.'
+qa_reports:
+  1:
+    job: x-revontuli-stage0-night
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 42 (R1 51)
+      value: 42.2
+    - check: light_values
+      status: warn
+      message: 'night/subject: L p2 32 (at most 8), p98 90 (at least 58), spread 58
+        (at least 42) (warn-only until the founder has seen the light pilot)'
+      value: 57.9
+    - check: light_median
+      status: warn
+      message: 'night/subject: median L 72 (band 18-50) (warn-only until the founder
+        has seen the light pilot)'
+      value: 72.1
+    - check: light_haze
+      status: warn
+      message: 'night/subject: dark-channel haze 0.31 (at most 0.10; no true dark
+        means a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.306
+    - check: light_contrast
+      status: pass
+      message: 'night/subject: p75 local contrast 4.7 (at least 2.8)'
+      value: 4.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.8 (R1 5.3)
+      value: 2.8
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.3
+      value: 1.2561
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.1, p95 7.0, off-palette 0.2% (top: #555599 (0.1%), #446677
+        (0.1%))'
+      value: 3.1086
+    info:
+      metrics_raw:
+        L_p5: 22.4
+        L_p50: 65.6
+        L_p95: 88.3
+        C_p50: 20.5
+        C_p95: 42.3
+        C_p99: 43.6
+        detail: 3.4
+      metrics_locked:
+        L_p5: 24.9
+        L_p50: 65.6
+        L_p95: 88.1
+        C_p50: 20.3
+        C_p95: 42.2
+        C_p99: 43.4
+        detail: 2.8
+    fingerprint: 5c304a2d3cd1a308
+  2:
+    job: x-revontuli-stage0-night
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 38 (R1 51)
+      value: 37.8
+    - check: light_values
+      status: warn
+      message: 'night/subject: L p2 37 (at most 8), p98 88 (at least 58), spread 51
+        (at least 42) (warn-only until the founder has seen the light pilot)'
+      value: 50.9
+    - check: light_median
+      status: warn
+      message: 'night/subject: median L 72 (band 18-50) (warn-only until the founder
+        has seen the light pilot)'
+      value: 71.8
+    - check: light_haze
+      status: warn
+      message: 'night/subject: dark-channel haze 0.34 (at most 0.10; no true dark
+        means a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.341
+    - check: light_contrast
+      status: pass
+      message: 'night/subject: p75 local contrast 4.4 (at least 2.8)'
+      value: 4.42
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.6 (R1 5.3)
+      value: 2.62
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.2
+      value: 1.1526
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.1, p95 7.1, off-palette 0.0% (top: #445577 (0.0%))'
+      value: 3.1126
+    info:
+      metrics_raw:
+        L_p5: 25.0
+        L_p50: 67.5
+        L_p95: 87.6
+        C_p50: 20.2
+        C_p95: 37.9
+        C_p99: 39.0
+        detail: 3.21
+      metrics_locked:
+        L_p5: 26.2
+        L_p50: 67.5
+        L_p95: 87.4
+        C_p50: 20.0
+        C_p95: 37.8
+        C_p99: 38.6
+        detail: 2.62
+    fingerprint: 5c304a2d3cd1a308
+manual_review:
+  observed_note: 'Both originals and official locked outputs show exactly THREE wooden
+    lantern towers: ONE upright and TWO visibly leaning/half fallen, with dark dislodged
+    lanterns in snow-dusted grass, a stone path, one honey-warm standing-tower lantern/pool,
+    a luminous blue-violet starry sky, cool moon rims and one faint green aurora thread
+    rather than the full healed aurora. No fire, shards, horror, text or extra lit
+    tower. Both eligible; take2 wins lower lock load. Take2 additionally draws a small
+    home-like round earth-face door: disclose this unwanted camera-reference leakage,
+    not an invented unique-island/zero-extra-prop gate absent from this manifest.
+    The warm peach earth body remains an advisory colour limitation; this is a concept
+    target with visible light/palette warnings, not a production-ready night plate
+    or registered home reconstruction. Specific night target and LIGHT override unchanged
+    legacy high-key/milky prose; no prompt or pixel change. Never promoted.'
+  excluded_takes: []
+sources:
+- batch: batch-45-beautiful-wounds
+  job: x-revontuli-stage0-night
+  take: 1
+  round: 1
+  logical_run: 20261106-b45-r1-revontuli-rain
+  source_file: /workspace/generated_images/exec-8cba23b3-a142-4c5e-9aec-a295c5ef1575.png
+  returned_at: '2026-11-06T07:05:21.681Z'
+  prompt_sha256: 98c03cff404a556fa58fb435918a0a6e6dace02ea560c7c9891885e7d1827327
+  fingerprint: 5c304a2d3cd1a308
+  saved_at: '2026-11-06T07:05:22.120951+00:00'
+  original_generated_png_sha256: 1e08029a38c47f3133d8be0c8a92a16c05523310bcd775043b982d088971330e
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 19226c46329f9f5f4756e1adec5c8da3681df3df335039eb421c23ff50d449d3
+  inbox_png_sha256: f76253ae1f85623ae0c0fdf9df8c0a0da559b6f79351f745b6aedc161307985d
+  qa_sha256: 279bda55e0738a3d0a1cf7c61a3153be0b9369decbb114041e79555f86ff3e0c
+- batch: batch-45-beautiful-wounds
+  job: x-revontuli-stage0-night
+  take: 2
+  round: 1
+  logical_run: 20261106-b45-r1-revontuli-rain
+  source_file: /workspace/generated_images/exec-6e4b20dd-fc66-4db2-b3f1-8490b053b3cf.png
+  returned_at: '2026-11-06T07:06:41.995Z'
+  prompt_sha256: 98c03cff404a556fa58fb435918a0a6e6dace02ea560c7c9891885e7d1827327
+  fingerprint: 5c304a2d3cd1a308
+  saved_at: '2026-11-06T07:06:42.443646+00:00'
+  original_generated_png_sha256: 2659d3d0105c51cf64f4ae64842cd26d86a36ec4a34f751696d8767b0c0cda33
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 83191754b2191fa1be17e0ad8d239b0fd373ba4a37f3304909d8b2d83485056c
+  inbox_png_sha256: 5a7fa243003749d6bf932de0c38865743475f633d6be4a2baed0b87f2c68bd24
+  qa_sha256: f048c591b59120177de2d91d9604d0e572a8d45b28abb9a20ab7582494c75f7c
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published

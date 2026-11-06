@@ -1,0 +1,209 @@
+batch: batch-45-beautiful-wounds
+manifest: tools/imagegen/manifest/batch-45-beautiful-wounds.yaml
+manifest_sha256: 76008f3117f50b58d4b037b6ab2cb8164cc2f68868f8f14932b29df37575f743
+contact_sheet: design/art/takes/batch-45-beautiful-wounds/x-emanet-stage0-fog/contact.jpg
+jobs:
+  x-emanet-stage0-fog:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both original and official locked
+      takes show the five named lost things (one umbrella, one boot, teacup, kite
+      and toy boat), an unlabeled closed wooden shed at the rear, a single door-front
+      honey lantern, clear nearer objects and increasingly fog-veiled rear forms.
+      No face, ghost, horror, text or extra lit practical. Both are eligible; take2
+      has the lower lock load and clearer front-cast shadows. Take1 additionally draws
+      a small round earth-face door resembling the camera reference; this unused detail
+      is disclosed as reference leakage rather than inventing a new uniqueness/zero-extra-prop
+      rejection. The home attachment supplies camera/proportions/finish only, not
+      an exact home layout. Warm pastel earth/objects and modest value range remain
+      advisory concept limitations recorded by light/palette warnings; no hidden grade
+      or changed threshold. Never promoted.
+qa_reports:
+  1:
+    job: x-emanet-stage0-fog
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 28 (R1 51)
+      value: 27.7
+    - check: light_values
+      status: warn
+      message: 'dusk/subject: L p2 54 (at most 12), p98 86 (at least 68), spread 32
+        (at least 48) (warn-only until the founder has seen the light pilot)'
+      value: 31.8
+    - check: light_median
+      status: warn
+      message: 'dusk/subject: median L 72 (band 28-60) (warn-only until the founder
+        has seen the light pilot)'
+      value: 71.8
+    - check: light_haze
+      status: warn
+      message: 'dusk/subject: dark-channel haze 0.47 (at most 0.14; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.467
+    - check: light_contrast
+      status: warn
+      message: 'dusk/subject: p75 local contrast 2.7 (at least 3.0)'
+      value: 2.73
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.11
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.75
+    - check: palette_drift
+      status: warn
+      message: mean dE 2.9, p95 5.4, off-palette 0.0%
+      value: 2.8784
+    info:
+      metrics_raw:
+        L_p5: 58.7
+        L_p50: 70.9
+        L_p95: 85.0
+        C_p50: 18.8
+        C_p95: 27.9
+        C_p99: 30.9
+        detail: 1.49
+      metrics_locked:
+        L_p5: 58.9
+        L_p50: 70.9
+        L_p95: 84.8
+        C_p50: 18.7
+        C_p95: 27.7
+        C_p99: 30.4
+        detail: 1.11
+    fingerprint: 365f2781c0e388de
+  2:
+    job: x-emanet-stage0-fog
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 25 (R1 51)
+      value: 24.6
+    - check: light_values
+      status: warn
+      message: 'dusk/subject: L p2 52 (at most 12), p98 83 (at least 68), spread 30
+        (at least 48) (warn-only until the founder has seen the light pilot)'
+      value: 30.3
+    - check: light_median
+      status: warn
+      message: 'dusk/subject: median L 69 (band 28-60) (warn-only until the founder
+        has seen the light pilot)'
+      value: 69.4
+    - check: light_haze
+      status: warn
+      message: 'dusk/subject: dark-channel haze 0.49 (at most 0.14; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.49
+    - check: light_contrast
+      status: warn
+      message: 'dusk/subject: p75 local contrast 2.4 (at least 3.0)'
+      value: 2.41
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.05
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.7208
+    - check: palette_drift
+      status: warn
+      message: mean dE 3.1, p95 5.5, off-palette 0.0%
+      value: 3.0895
+    info:
+      metrics_raw:
+        L_p5: 55.6
+        L_p50: 67.8
+        L_p95: 83.6
+        C_p50: 18.3
+        C_p95: 24.8
+        C_p99: 32.9
+        detail: 1.4
+      metrics_locked:
+        L_p5: 55.7
+        L_p50: 67.8
+        L_p95: 83.5
+        C_p50: 18.2
+        C_p95: 24.6
+        C_p99: 32.1
+        detail: 1.05
+    fingerprint: 365f2781c0e388de
+manual_review:
+  observed_note: Both original and official locked takes show the five named lost
+    things (one umbrella, one boot, teacup, kite and toy boat), an unlabeled closed
+    wooden shed at the rear, a single door-front honey lantern, clear nearer objects
+    and increasingly fog-veiled rear forms. No face, ghost, horror, text or extra
+    lit practical. Both are eligible; take2 has the lower lock load and clearer front-cast
+    shadows. Take1 additionally draws a small round earth-face door resembling the
+    camera reference; this unused detail is disclosed as reference leakage rather
+    than inventing a new uniqueness/zero-extra-prop rejection. The home attachment
+    supplies camera/proportions/finish only, not an exact home layout. Warm pastel
+    earth/objects and modest value range remain advisory concept limitations recorded
+    by light/palette warnings; no hidden grade or changed threshold. Never promoted.
+  excluded_takes: []
+sources:
+- batch: batch-45-beautiful-wounds
+  job: x-emanet-stage0-fog
+  take: 1
+  round: 1
+  logical_run: 20261106-b45-r1-koke-emanet
+  source_file: /workspace/generated_images/exec-e8fe8ed7-6b47-40ee-8e6d-9853a64dcf6e.png
+  returned_at: '2026-11-06T07:04:23.310Z'
+  prompt_sha256: aae35da09da5c62a4611ac760425cfbddadceb7ab6c68bd997993e7c518d7246
+  fingerprint: 365f2781c0e388de
+  saved_at: '2026-11-06T07:04:23.638877+00:00'
+  original_generated_png_sha256: 4d82d0350739020bb1b8c95a19a9672e9dd6b9569d3627abdcee535e3492f95d
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: bb22fd94e38222d3d4fa75d6de7dcda4c5688370c45c21f2ad1759fdd940c9c1
+  inbox_png_sha256: a1eb9e603c78f879b332b4042200af3fc4731347d62dbbc1688ae5bf5f2410fa
+  qa_sha256: 89f26177d43cd6606fa1d599a0e6da8fea0d578b1c8c8e9145bc05dff9a066f5
+- batch: batch-45-beautiful-wounds
+  job: x-emanet-stage0-fog
+  take: 2
+  round: 1
+  logical_run: 20261106-b45-r1-koke-emanet
+  source_file: /workspace/generated_images/exec-4153f81a-a625-4800-bb21-f75e90689b00.png
+  returned_at: '2026-11-06T07:03:46.090Z'
+  prompt_sha256: aae35da09da5c62a4611ac760425cfbddadceb7ab6c68bd997993e7c518d7246
+  fingerprint: 365f2781c0e388de
+  saved_at: '2026-11-06T07:03:46.523730+00:00'
+  original_generated_png_sha256: e0180103d741e6fba54afa99453068c955abec320b5f4109462c590eae080378
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: bdebd5ca7cea5a5bbd907d59bb310c149128f84adbd8cb7d9617fb93c6b55816
+  inbox_png_sha256: 26a22301b9342729426588a39e0bdddcf9ead62baacf0244126216c541345f01
+  qa_sha256: 92851403dc6d35cc2f5f363cac62a431fe8af621843c76c932a540bcff7b086a
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
