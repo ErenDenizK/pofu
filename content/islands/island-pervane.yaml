@@ -1,21 +1,27 @@
 id: island-pervane
 type: island
 title_tr: Pervane
-title_en: The lantern islet (Fanus's satellite)
+title_en: The lantern islet (filler)
 status: idea
 horizon: maybe
-summary: >-
-  A floating glass lantern at dusk, home of the wordless compass moth. Lit only by hand and only at dusk; moths come to a quiet light. In Persian and Ottoman poetry the pervane is the moth that circles the candle. Satellite of Fanus in the glass constellation.
+summary: 'Story map (canonical): a filler between Olta and Emanet. Moths circle a lamp; Mochi
+  lights a lantern for Pofu and he takes a short walk alone for the first time. Secret for
+  Book Three: the only light allowed to stay on.'
 notes:
-- >-
-  Design loop 1 (2026-11-03): the "good light" beat. A light kept for someone is not a light left on; Mochi lights one for Pofu when he travels.
-- >-
-  The moth stays wordless (story-delivery.md 3.3); this islet is where it sleeps.
+- Reconciled 2026-11-06 with the canonical Book One story map (docs/product/story-map/book-one.md);
+  older notes below are history where they disagree.
+- 'Design loop 1 (2026-11-03): the "good light" beat. A light kept for someone is not a light
+  left on; Mochi lights one for Pofu when he travels.'
+- The moth stays wordless (story-delivery.md 3.3); this islet is where it sleeps.
 links:
   related:
   - island-fanus
   - char-mochi
 sources:
+- doc: docs/product/story-map/book-one.md
 - doc: docs/product/design-loop/loop-1.md
   anchor: '#3-islands-and-clusters'
 source: lead-brainstorm
+unlock:
+  day: 27
+  rule_en: 'Filler: a random quiet day after Olta, before Emanet (story map)'

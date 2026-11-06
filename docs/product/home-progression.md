@@ -273,23 +273,34 @@ number.
 Each main wonder island leaves one material when it is finished, and its
 rounds after that pay one more now and then (one per three rounds,
 never more than one a day). Fillers leave decor, never a material, so a
-random filler can never gate home.
+random filler can never gate home. The one exception is **Koke**, the
+first filler and the arc's tutorial ([story map](story-map/book-one.md)
+§9), which always comes on the first journey, so its moss can never gate
+home by chance. Order and roles follow the
+[Book One story map](story-map/book-one.md); there are no fixed days
+("Kapı, gün değil"), so the days below are typical only.
 
-| Material (TR) | From | Typical first day | Used for |
+| Material (TR) | From (story map order) | Typical first day | Used for |
 |---|---|---|---|
-| moss (*yosun*) | Koke | ~8 | pond L4; mastery L6 |
-| water (*berrak su*) | Çağlayan | ~14 | tea stall L5; the Su pair's stream; mastery L7 |
-| keepsake (*emanet*) | Emanet | ~20 | workshop L4, pier L5; mastery L8 |
-| light (*ışık*) | Revontuli | ~33 | pond L5, lighthouse L5; mastery L9 |
-| wax and honey (*bal mumu*) | Arı | ~40 | windmill L5; the hive |
-| sea glass (*deniz camı*) | Gezgin, at the finale | ~45 | mastery L10 (the golden level) |
+| moss (*yosun*) | Koke (first filler, tutorial) | ~8 | pond L4; mastery L6 |
+| water (*berrak su*) | Çağlayan (main 1) | ~14 | tea stall L5; the Su pair's stream; mastery L7 |
+| light (*ışık*) | Revontuli (main 2) | ~20 | pond L5, lighthouse L5; mastery L9 |
+| keepsake (*emanet*): the polished finds | Emanet (main 3; "atölyeye cilalı buluntular") | ~33 | workshop L4, pier L5; mastery L8 |
+| wax and honey (*bal mumu*) | Arı, the home hive upgrade (after Emanet; not an island) | ~40 | windmill L5; the hive |
+| sea glass (*deniz camı*) | the finale (Mehtap's full-moon night) | ~45 | mastery L10 (the golden level) |
+
+Separate from these home materials, each main island also leaves one
+piece on Nazlı's back and one lasting gift at home (the map's EVE HEDİYE;
+[the roots](../design/island-undersides.md) §4).
 
 Rules: materials are counted in single digits, shown as small painted
 objects (world objects, ADR-0018), never bought, never expire, have no
 cap, and are debited only by a build. If the story order changes, each
 material moves with its island.
 
-**The hive (gift station from Arı).** Opens at IL9 when Arı is done.
+**The hive (gift station from Arı).** Arı is the map's home upgrade
+("Kovan eve gelir"), arriving after Emanet; the hive opens at IL9 once it
+has come (Saturday: honey).
 Costs 1 wax plus 20 · 30 · 45 · 60 · 80 seeds (235). Levels: a straw
 skep; two skeps and lavender; a painted hive box; a bee path over the
 garden (code); a honey stand by the tea stall. L5 payoff: bees visit every
@@ -306,7 +317,7 @@ family, swapped at no cost.
 | Set | Arrives | Pieces from | Set effect (stays) |
 |---|---|---|---|
 | 1 Bahçe (bench, paper lanterns, toy sailboat, mailbox) | IL7 | seeds, 10 · 15 · 20 · 25 | the paper lanterns sway and glow at dusk |
-| 2 Ada hediyeleri | as main islands finish | one gift per island (Koke's moss stool, Çağlayan's water bell, Emanet's lost umbrella, Revontuli's light jar) | a soft wind chime when a gift is tapped |
+| 2 Ada hediyeleri | as main islands finish | one gift per main island, as the story map's EVE HEDİYE (Çağlayan: the pond fountain flows; Revontuli: one more lantern on the bridge; Emanet: the Wednesday parcel and polished finds; Mehtap: the telescope on the Tepe), plus Koke's moss stool | a soft wind chime when a gift is tapped |
 | 3 Sakinler | resident heart 5 | one piece per resident | residents visit each other's stations on calm evenings |
 | 4 Liman | İskele complete | seeds, 20 · 25 · 30 · 35 | a fishing line and a lantern on the water at night |
 | one per season (section 10) | with that season, first year | seeds, 20 to 40 each | the season's own light effect, all year |
@@ -336,7 +347,7 @@ mastery level for all eight stations costs about 1,100 to 1,700 seeds, a
 season's quiet income after the bloom (about 40 to 50 a day). **All eight
 at L10 ("Altın Ada")** is the year's second transformation: the island
 edge turns to gold at dusk and the hilltop telescope finds the last dark
-star, timed to meet Mehtap, the year's finale (game plan §6), if the
+star, timed to meet Mehtap's telescope (Book One's finale gift, story map), if the
 player is there; it arrives on its own whenever they get there.
 
 ## 10. Seasons and add-ons (no FOMO)
@@ -363,9 +374,11 @@ only, so it never resets anything:
 1. a **wonder island** (new story), which brings one material, one
    resident and one gift to home;
 2. a **hilltop add-on**, a small station of three levels built on the
-   Tepe (Fanus: a glass greenhouse; Çömlek: a kiln by the workshop;
-   Mehtap: the moon telescope), built with seeds and its island's
-   material;
+   Tepe (Fanus: a glass greenhouse; Çömlek: a kiln by the workshop),
+   built with seeds; Fanus and Çömlek are Book One fillers (story map),
+   so these add-ons are their later-book growth, not their arrival.
+   Mehtap's telescope on the Tepe is Book One's finale gift, not an
+   add-on;
 3. a **decor set**.
 
 ## 11. The timeline
@@ -394,24 +407,24 @@ week 2 is two to eight days later (full bloom day 67).
 | 13 | 27 | tea stall 4: string lights (15) | **6** | back terrace; Fındık moves in; path lamps |
 | 14 | 27 | lighthouse 1 (16) | 6 | waterfall restored: water |
 | 15 | 30 | workshop 1 (17) | 6 | |
-| 16 | 30 | lighthouse 2 (18) | 6 | Emanet arrives |
+| 16 | 30 | lighthouse 2 (18) | 6 | Revontuli arrives |
 | 17 | 30 | pond 3 (19) | 6 | |
 | 19 | 30 | workshop 2 (20) | **7** | decor spots, set 1; the island melody |
-| 20 | 30 | **garden 5** (21) | 7 | first L5 ceremony; Emanet done: keepsake |
+| 20 | 30 | **garden 5** (21) | 7 | first L5 ceremony; Revontuli done: light (Olta follows) |
 | 21 | 30 | bagel cart 4 (22) | 7 | a decor piece (bench) |
 | 23 | 34 | pier 3: the ferry (23) | 7 | Çanlar (filler) may drift in |
 | 25 | 34 | lighthouse 3 (24) | 7 | |
 | 26 | 34 | pond 4 (25) | 7 | Mochi heart 4 |
 | 28 | 34 | **tea stall 5** (26) | 7 | second L5 |
-| 30 | 34 | workshop 3 (27) | 7 | Revontuli arrives |
+| 30 | 34 | workshop 3 (27) | 7 | Emanet arrives |
 | 32 | 34 | **bagel cart 5** (28) | **8** | **pair Çay ve simit**; windmill slot; birds |
-| 33 | 34 | windmill 1 (29) | 8 | Revontuli done: light |
+| 33 | 34 | windmill 1 (29) | 8 | Emanet done: keepsake |
 | 35 | 34 | windmill 2 (30) | 8 | decor set 1 complete (lanterns) |
-| 37 | 34 | pier 4 (31) | 8 | Arı arrives |
+| 37 | 34 | pier 4 (31) | 8 | Arı: the hive comes home |
 | 39 | 34 | windmill 3 (32) | 8 | |
-| 42 | 34 | lighthouse 4: the beam (33) | 8 | Arı done: wax |
+| 42 | 34 | lighthouse 4: the beam (33) | 8 | Arı's first honey: wax |
 | 44 | 39 | **pond 5** (34) | **9** | **pair Su**; the hill gate; the hive slot |
-| 45 | 39 | hive 1 | 9 | Gezgin finale: sea glass |
+| 45 | 39 | hive 1 | 9 | the finale (Mehtap, full moon): sea glass |
 | 46 | 39 | workshop 4 (35) | 9 | |
 | 49 | 39 | **pier 5** (36) | 9 | |
 | 51 | 44 | windmill 4 (37) | 9 | |
@@ -433,7 +446,7 @@ Decor and hive spending, not in the model, move the bloom by a few days
 | days 60 to 70 | the hilltop; hive L2 to L5 (the bees); decor sets 3 and 4; residents' heart 5 scenes |
 | next season change | mastery cap 7; the season set and visitor; Book Two's first island (Fanus) with its hilltop add-on |
 | each six weeks | one wonder island, one hilltop add-on, one mastery level for every station, one season set |
-| about 9 months | all stations at L10, **Altın Ada**; Mehtap and the year's finale |
+| about 9 months | all stations at L10, **Altın Ada** (Book One's finale, Mehtap, came near day 45) |
 | year two | Kitap opens (game plan §6); seasons return with new sets; nothing old is reset |
 
 Nothing in the tail is a daily obligation; a missed month costs nothing

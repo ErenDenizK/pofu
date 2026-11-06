@@ -330,10 +330,14 @@ same PR as this file.
 | `CLAUDE.md` | One rule: this file is Book One's canonical story; anything shown to the founder is committed the same day. |
 | [founder input](../founder-input.md) | The 2026-11-06 evening entry. |
 
-**Not changed here (follow-ups):** [home progression](../home-progression.md)
-§7 and [monetization v2](../monetization-v2.md) §2.1 still list materials
-and acts by the old days and Arı as an island (the materials still work;
-the act lists need the new order); `content/islands/*.yaml` predate both.
+**Follow-up, same day (same PR):** [home progression](../home-progression.md)
+§7 and its timeline follow the map's order (Koke's moss kept as the
+tutorial's one exception; Arı's wax from the home hive); [monetization
+v2](../monetization-v2.md) §2.1 maps the acts to the map (Prologue =
+Açılış + Gezgin; Act I = Çağlayan + Revontuli up to Olta; Act II = Emanet;
+Act III = Mehtap; the free cut after Act I); art queue row B-A calls Fanus
+and Çömlek Book One fillers; fourteen `content/islands/*.yaml` files carry
+the map's summary, role and order.
 
 ## 8. Open decisions for the lead
 

@@ -4,13 +4,17 @@ title_tr: Fanus
 title_en: The bell jar
 status: idea
 horizon: maybe
-summary: >-
-  A tall glass bell jar floating in the sky with a tiny cloud forest inside: ferns, orchids, a thumb-sized waterfall and warm rain that never leaves the glass. Toy: wipe the condensation with a finger; it beads back. Game: picross on fogged panes, revealing flowers. Resident: Zümrüt, a shy glass frog.
+summary: 'Story map (canonical): a filler between Olta and Emanet. A shy, transparent glass
+  frog, Zümrüt, in a jar of warm rain; dates are written on the sunflowers inside the jar.
+  Secret for Book Two: the jar can be read.'
 notes:
-- >-
-  Revision 2026-11-03 (archipelago-system.md 1A, 11): replaces Ayna as wonder 7 (43 tended days). Goods: orchid cuttings; requests Revontuli's ice. Gift to home: a glass cloche on the windowsill, then a greenhouse whose rare flowers join the garden game.
-- >-
-  The glass is the terrarium rim shader of look-dev section C. Origin to be chosen by a native writer (a cloud forest of Costa Rica or Borneo).
+- Reconciled 2026-11-06 with the canonical Book One story map (docs/product/story-map/book-one.md);
+  older notes below are history where they disagree.
+- 'Revision 2026-11-03 (archipelago-system.md 1A, 11): replaces Ayna as wonder 7 (43 tended
+  days). Goods: orchid cuttings; requests Revontuli''s ice. Gift to home: a glass cloche on
+  the windowsill, then a greenhouse whose rare flowers join the garden game.'
+- The glass is the terrarium rim shader of look-dev section C. Origin to be chosen by a native
+  writer (a cloud forest of Costa Rica or Borneo).
 links:
   requires:
   - island-aycicegi
@@ -22,6 +26,7 @@ links:
   supersedes:
   - island-ayna
 sources:
+- doc: docs/product/story-map/book-one.md
 - doc: docs/archive/archipelago-system.md
   anchor: '#11-island-concepts'
 - doc: docs/archive/archipelago-system.md
@@ -32,5 +37,5 @@ ritual_en: 'Fogged panes (picross); echo: a greenhouse at home'
 residents:
 - char-zumrut
 unlock:
-  day: 43
-  rule_en: 'Wonder island 7: 43 tended days'
+  day: 25
+  rule_en: 'Filler: a random quiet day after Olta, before Emanet (story map)'

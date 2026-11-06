@@ -1,21 +1,30 @@
 id: island-olta
 type: island
 title_tr: Olta
-title_en: The ice-fishing hole (Revontuli's satellite)
+title_en: 'The ice-fishing hole: Book One''s midpoint (not an island)'
 status: idea
 horizon: maybe
-summary: >-
-  A round floe with one round hole in it, a stool and a lantern, at polar dawn. The island's game is to wait: lower a line, put the phone down, and something from the bottom of the sky bites. Satellite of Revontuli in the cold constellation.
+summary: 'Story map (canonical): the book''s midpoint, a story stop at Revontuli''s ice hole,
+  not a new island. The line brings up the old Keeper''s lantern; Mochi looks a long time:
+  "Onu tanırdım." The question turns from who the Keeper is to whether Pofu will go like him.
+  The lantern rides with the duo until it hangs on Nazlı''s hook at the finale.'
 notes:
-- >-
-  Design loop 1 (2026-11-03): takes Revontuli's ice-fishing ritual and gives it its own islet. Midpoint of the duo's arc: the hole gives back a switched-off lantern labelled in the old keeper's hand, and Mochi admits she knew them.
-- >-
-  Six-axis profile and schedule in content/islands/profiles.yaml.
+- Reconciled 2026-11-06 with the canonical Book One story map (docs/product/story-map/book-one.md);
+  older notes below are history where they disagree.
+- 'Design loop 1 (2026-11-03): takes Revontuli''s ice-fishing ritual and gives it its own
+  islet. Midpoint of the duo''s arc: the hole gives back a switched-off lantern labelled in
+  the old keeper''s hand, and Mochi admits she knew them.'
+- Six-axis profile and schedule in content/islands/profiles.yaml.
 links:
   related:
   - island-revontuli
   - char-mochi
 sources:
+- doc: docs/product/story-map/book-one.md
 - doc: docs/product/design-loop/loop-1.md
   anchor: '#3-islands-and-clusters'
 source: lead-brainstorm
+unlock:
+  day: 22
+  rule_en: 'The midpoint: a few quiet days after Revontuli blooms; no filler between (story
+    map)'

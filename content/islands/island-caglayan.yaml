@@ -4,27 +4,25 @@ title_tr: Çağlayan
 title_en: The island that pours
 status: idea
 horizon: maybe
-summary: 'A mossy limestone wonder island with a waterfall that pours off its edge
-  forever into the sea of clouds. Lore hook: where does the water come from, and where
-  does it go? Its game (Flow grammar): rotate channel stones to route Damla''s leaf
-  boats; stages add a spring, a mill, and the edge (boats sent over it wash up on
-  İskele''s pier days later). Answer: the falls water every island. Material: water
-  drops. Learning: the water cycle.'
+summary: 'Story map (canonical): main island 1, noon, the flow game''s debut. A waterfall
+  frozen in mid-air under the noon sun. Resident Damla, a puzzled otter with an empty cup,
+  ends at the top of the falls with a full one. Söz line 1 on the mill stone. Gift: home''s
+  pond fountain flows (Tuesday: Damla visits) and a small pool on Nazlı''s back.'
 notes:
-- 'Design loop 2 (docs/product/design-loop/loop-2.md): the water cluster''s own light
-  (hard white noon, deep cerulean, turquoise shadows, a spray halo, no cloud sea visible);
-  the pools are windows that hold other islands'' hours, so a cleared pool is a piece
-  of night or dusk inside noon; at home the çeşme basin is the only place that shows
-  another hour.'
-- 'Revision 2026-11-03 (archipelago-system.md 1A, 11): wonder 1 on day 4; silhouette:
-  three stacked travertine terraces, the fall pouring off the lowest; free in cut
-  C2. Goods: jars of falls water. Gift to home: a spring, then morning rainbows.'
-- 'Signature motion: a painted ribbon with a Metal layerEffect scrolling noise, Canvas
-  mist where it meets the clouds, a mist rainbow at golden hour.'
-- 'Rumours: water heard at night; a bottle the vapur brings (the water never stops
-  here); a mist rainbow caught by the lighthouse beam.'
-- Proposed first Plus island; test making it free in the friends beta (open question
-  5).
+- Reconciled 2026-11-06 with the canonical Book One story map (docs/product/story-map/book-one.md);
+  older notes below are history where they disagree.
+- 'Design loop 2 (docs/product/design-loop/loop-2.md): the water cluster''s own light (hard
+  white noon, deep cerulean, turquoise shadows, a spray halo, no cloud sea visible); the pools
+  are windows that hold other islands'' hours, so a cleared pool is a piece of night or dusk
+  inside noon; at home the çeşme basin is the only place that shows another hour.'
+- 'Revision 2026-11-03 (archipelago-system.md 1A, 11): wonder 1 on day 4; silhouette: three
+  stacked travertine terraces, the fall pouring off the lowest; free in cut C2. Goods: jars
+  of falls water. Gift to home: a spring, then morning rainbows.'
+- 'Signature motion: a painted ribbon with a Metal layerEffect scrolling noise, Canvas mist
+  where it meets the clouds, a mist rainbow at golden hour.'
+- 'Rumours: water heard at night; a bottle the vapur brings (the water never stops here);
+  a mist rainbow caught by the lighthouse beam.'
+- Proposed first Plus island; test making it free in the friends beta (open question 5).
 - 'Art: about 13 images; the water is code.'
 links:
   requires:
@@ -43,6 +41,7 @@ links:
   - asset-caglayan-island-3
   - asset-caglayan-island-4
 sources:
+- doc: docs/product/story-map/book-one.md
 - doc: docs/archive/archipelago-system.md
   anchor: '#11-island-concepts'
 - doc: docs/archive/archipelago-system.md
@@ -53,6 +52,5 @@ ritual_en: 'Leaf boats (Flow); echo: morning rainbows at home'
 residents:
 - char-damla
 unlock:
-  day: 4
-  rule_en: 'Wonder island 1: 3 tended days and its rumours (compressed into days 2
-    and 3)'
+  day: 10
+  rule_en: 'Main island 1: the first door after Gezgin arrives (story map; Kapı, gün değil)'

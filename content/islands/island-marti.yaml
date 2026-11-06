@@ -1,22 +1,29 @@
 id: island-marti
 type: island
 title_tr: Martı Kayası
-title_en: The gull rock (Gezgin's satellite)
+title_en: The gull rock (filler)
 status: idea
 horizon: maybe
-summary: >-
-  A sea stack with a lighthouse-white cap that follows Nazlı the whale the way gulls follow a vapur. The gulls trade back trinkets they snatched (toss simit, get a found thing). Storks rest here on the real migration dates. Satellite of Gezgin in the journey constellation.
+summary: 'Story map (canonical): a filler that drifts in at random after Çağlayan. The gulls
+  trade odds and ends; one holds out a stork feather; Mochi''s tea stirs. Secret for Book
+  Two: the way to Fener Kayası.'
 notes:
-- >-
-  Design loop 1 (2026-11-03): replaces Leylek as the home of the stork migration beat; Lale rests here and remembers carrying "a small one with a squeaky door" south (the old keeper thread).
-- >-
-  Six-axis profile and schedule in content/islands/profiles.yaml; checked by tools/content/island_metrics.py.
+- Reconciled 2026-11-06 with the canonical Book One story map (docs/product/story-map/book-one.md);
+  older notes below are history where they disagree.
+- 'Design loop 1 (2026-11-03): replaces Leylek as the home of the stork migration beat; Lale
+  rests here and remembers carrying "a small one with a squeaky door" south (the old keeper
+  thread).'
+- Six-axis profile and schedule in content/islands/profiles.yaml; checked by tools/content/island_metrics.py.
 links:
   related:
   - island-gezgin
   - island-leylek
   - char-lale
 sources:
+- doc: docs/product/story-map/book-one.md
 - doc: docs/product/design-loop/loop-1.md
   anchor: '#3-islands-and-clusters'
 source: lead-brainstorm
+unlock:
+  day: 16
+  rule_en: 'Filler: a random quiet day after Çağlayan (story map)'

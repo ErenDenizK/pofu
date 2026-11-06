@@ -4,13 +4,18 @@ title_tr: Emanet
 title_en: The lost-and-found
 status: idea
 horizon: maybe
-summary: >-
-  A crooked office on stilts at the end of the cloud current where everything that falls off an island ends up; the keepsake museum, told through objects. Boncuk the magpie must give every shiny thing back. Game (Deduce): from small clues (a sesame seed, a wet paw print) return each object to its owner.
+summary: 'Story map (canonical): main island 3, afternoon, a story island (one return a day,
+  no game engine). A lost-and-found where nothing is lost, only kept in trust. Theme: handing
+  over; resting when tired is keeping too. Boncuk the magpie ends polishing cups at the counter.
+  Söz line 7 under the scale; Mochi gives away her unopened linden tin. Gift: a parcel at
+  the door on Wednesdays, polished finds for the workshop, a teal plank on Nazlı''s back.'
 notes:
-- >-
-  Revision 2026-11-03 (archipelago-system.md 1A, 11): wonder 6; silhouette strengthened: the office on stilts is built from lost things (an umbrella roof, a teacup water tank, a top-hat chimney). Gift to home: a lost-and-found box, then a display shelf in the den.
-- >-
-  No completion percentage, no empty slots shown.
+- Reconciled 2026-11-06 with the canonical Book One story map (docs/product/story-map/book-one.md);
+  older notes below are history where they disagree.
+- 'Revision 2026-11-03 (archipelago-system.md 1A, 11): wonder 6; silhouette strengthened:
+  the office on stilts is built from lost things (an umbrella roof, a teacup water tank, a
+  top-hat chimney). Gift to home: a lost-and-found box, then a display shelf in the den.'
+- No completion percentage, no empty slots shown.
 links:
   requires:
   - island-aycicegi
@@ -20,15 +25,17 @@ links:
   - sys-island-toys
   - sys-island-materials
 sources:
+- doc: docs/product/story-map/book-one.md
 - doc: docs/archive/archipelago-system.md
   anchor: '#11-island-concepts'
 - doc: docs/archive/archipelago-system.md
   anchor: '#3-the-island-schema'
 source: lead-brainstorm
-theme_en: 'A lost-and-found office on stilts in the cloud current'
-ritual_en: 'Who lost this? (Deduce)'
+theme_en: A lost-and-found office on stilts in the cloud current
+ritual_en: One return a day (story island); the fog parts where you touch
 residents:
 - char-boncuk
 unlock:
-  day: 34
-  rule_en: 'Wonder island 6: 34 tended days'
+  day: 30
+  rule_en: 'Main island 3: after Olta and the fillers Fanus and Pervane (story map; Kapı,
+    gün değil)'

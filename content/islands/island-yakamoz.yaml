@@ -1,18 +1,24 @@
 id: island-yakamoz
 type: island
 title_tr: Yakamoz
-title_en: The moon's reflection (Mehtap's satellite)
+title_en: The moon's reflection (Book Two's door)
 status: idea
 horizon: maybe
-summary: >-
-  The moon's reflection, left on the cloud sea, became a disc of shallow glowing water you can wade in; plankton light up where Pofu steps. Ritual, no game. Satellite of Mehtap in the moon constellation.
+summary: 'Story map (canonical): Book Two''s door. The moon''s reflection on the sea shows
+  the one light the sky does not; it arrives as an object days after the finale.'
 notes:
-- >-
-  Design loop 1 (2026-11-03): rung 10 of the spine. The reflection holds one light the sky does not: a window still lit beyond the ring, where Book Two sails.
+- Reconciled 2026-11-06 with the canonical Book One story map (docs/product/story-map/book-one.md);
+  older notes below are history where they disagree.
+- 'Design loop 1 (2026-11-03): rung 10 of the spine. The reflection holds one light the sky
+  does not: a window still lit beyond the ring, where Book Two sails.'
 links:
   related:
   - island-yildiz
 sources:
+- doc: docs/product/story-map/book-one.md
 - doc: docs/product/design-loop/loop-1.md
   anchor: '#3-islands-and-clusters'
 source: lead-brainstorm
+unlock:
+  day: 50
+  rule_en: Days after the finale settles (story map)
