@@ -1,0 +1,21 @@
+id: asset-growth-bridge
+type: asset
+title_tr: growth-bridge
+title_en: growth-bridge (prop)
+status: in-production
+horizon: now
+summary: >-
+  A single small lawn piece for a cozy mobile game, as a game sprite on a transparent background,
+  in exactly the painting style, light and finish of the attached home island and tea stall.
+  A small arched wooden footbridge across a pond inlet, seen from the home camera about 17
+  degrees above: a low arch of honey-wood planks with two short rope-and-post railings and
+  little round cream post caps, resting on two small ston…
+art:
+  images: []
+  jobs:
+  - batch-65-growth-pieces:growth-bridge
+sources:
+- doc: tools/imagegen/manifest/batch-65-growth-pieces.yaml
+kind: prop
+batch: batch-65-growth-pieces
+size: 1024x1024

@@ -1,0 +1,21 @@
+id: asset-growth-lily-pad
+type: asset
+title_tr: growth-lily-pad
+title_en: growth-lily-pad (prop)
+status: in-production
+horizon: now
+summary: >-
+  A single small lawn piece for a cozy mobile game, as a game sprite on a transparent background,
+  in exactly the painting style, light and finish of the attached home island and tea stall.
+  One floating lily pad: a round soft green leaf with a small wedge notch cut out, a lighter
+  green inner area, and one small pale-pink lotus blossom with a honey-yellow centre sitting
+  on it. Flat on the water as seen from about 17 degr…
+art:
+  images: []
+  jobs:
+  - batch-65-growth-pieces:growth-lily-pad
+sources:
+- doc: tools/imagegen/manifest/batch-65-growth-pieces.yaml
+kind: prop
+batch: batch-65-growth-pieces
+size: 1024x1024

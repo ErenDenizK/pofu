@@ -1,0 +1,21 @@
+id: asset-growth-gull
+type: asset
+title_tr: growth-gull
+title_en: growth-gull (prop)
+status: in-production
+horizon: now
+summary: >-
+  A single small lawn piece for a cozy mobile game, as a game sprite on a transparent background,
+  in exactly the painting style, light and finish of the attached home island and tea stall.
+  One small plump sea gull in gentle flight seen from the side and slightly below, wings lifted
+  in a soft open V, a cream-white body with soft pale-grey wings and wingtips, a tiny honey-orange
+  beak, a small dark round eye. Round and so…
+art:
+  images: []
+  jobs:
+  - batch-65-growth-pieces:growth-gull
+sources:
+- doc: tools/imagegen/manifest/batch-65-growth-pieces.yaml
+kind: prop
+batch: batch-65-growth-pieces
+size: 1024x1024

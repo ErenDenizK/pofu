@@ -1,0 +1,22 @@
+id: asset-growth-lantern-string-lit
+type: asset
+title_tr: growth-lantern-string-lit
+title_en: growth-lantern-string-lit (prop)
+status: in-production
+horizon: now
+summary: >-
+  Light the lanterns from inside: every small round paper lantern now glows warm candle-amber,
+  a little brighter toward its middle, painted as soft broad shapes. Only the lantern paper
+  changes: the cord, the posts and the lantern caps keep their exact day colors (the app adds
+  the glow, the halos and the night grade).
+links:
+  variant_of:
+  - asset-growth-lantern-string
+art:
+  images: []
+  jobs:
+  - batch-65-growth-pieces:growth-lantern-string-lit
+sources:
+- doc: tools/imagegen/manifest/batch-65-growth-pieces.yaml
+kind: prop
+batch: batch-65-growth-pieces

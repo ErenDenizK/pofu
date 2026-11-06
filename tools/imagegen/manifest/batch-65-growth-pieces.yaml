@@ -1,0 +1,394 @@
+# Batch 65: the home's growth pieces (production; real ids, promoted on pass).
+#
+# The home adds a visible change at every island level (IslandGrowth). Today
+# they are code-drawn stand-ins (GrowthArt.swift); `GrowthView` swaps in the
+# baked sprite named `growth-<kind>` when WorldArt has one, so these ids are
+# exactly the game's asset-name hooks. The painted target is the home growth
+# strip, batch-57 (design/art/takes/batch-57-home-growth-strip/x-growth-il{1,3,5,7,10}/,
+# selected takes): match its look exactly. Each piece is attached to
+# tea-stall-5 for scale and finish: the home lawn at the game camera (about
+# 17 degrees above), transparent background, no ground shadow (the app
+# draws it).
+#
+# Animation is code: the app moves, flaps, sways and fades one sprite
+# (IslandGrowth.motion and GrowthArt time), so the gull, the dragonfly and
+# the steam are ONE sprite each, not frames.
+#
+# Terrace and hilltop are transparent bank sprites anchored by their feet
+# (GrowthArt draws them in a box of 220x50 and 130x46 at the piece's
+# point), not plate edits: the game stands them on the lawn, so no
+# registration with island-main-l-v3 is needed. Their earth and grass are
+# attached from the plate to match.
+#
+# The lantern string has a night edit, growth-lantern-string-lit, an edit
+# of the day sprite with an emit_region over the lantern bodies (the
+# emissive-by-difference pipeline, batch-36); the glow, halos and the night
+# grade are code.
+#
+# Ground-line pieces: fit: {ground: true} is only supported for root `char`
+# jobs (tools/imagegen/README.md), so props use the default fit; the game
+# anchors every sprite by the bottom centre of its canvas.
+#
+# Review: each reads at its game size on the lawn, painted like the
+# batch-57 strip (same finish, light and scale as tea-stall-5); the flag
+# looks like no country's flag; nothing carries a ground shadow, text or a
+# border.
+
+batch: batch-65-growth-pieces
+title: The home's growth pieces (stones, flag, gull, steam, bridge, pond, terrace, lanterns, gate, hilltop)
+status: open
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: tea-stall-5, kind: station, name: tea-stall-5, external: batch-01-slice}
+  - {id: island-main-l-v3, kind: world, name: island-main-l-v3, external: batch-05-fixes-pilot, master: design/art/masters/island-main-l-v3/island-main-l-v3.webp}
+
+  - id: growth-path-stone
+    kind: prop
+    name: growth-path-stone
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: true
+    palettes: [world-foliage, world-props]
+    chat: "Pofu · Home growth"
+    light: {cell: day, layer: subject}
+    notes: "A flat rounded stone, warm cream, readable as an oval at 20 pt wide. Review: painted like the batch-57 home growth strip, at the scale of tea-stall-5 in the game camera; transparent, no ground shadow."
+    attach:
+      - ref: approved:tea-stall-5
+        role: "A finished piece on the home lawn: match its painting, light, finish and camera exactly; the scale reference (do not draw the stall)."
+    prompt:
+      - text: |
+          A single small lawn piece for a cozy mobile game, as a game sprite
+          on a transparent background, in exactly the painting style, light
+          and finish of the attached home island and tea stall. One small flat path stone: a rounded warm-cream sandstone pebble about twice as wide as tall, lying flat on the lawn, a soft lighter top and a slightly darker lower rim, a tiny tuft of grass at one edge. Seen from the home camera, about 17 degrees above, so it is a low flat oval. Thumb-sized at game scale.
+          Centered, its feet or base on the bottom edge of the picture,
+          lit softly from the upper left.
+      - block: prop-style-v2
+      - text: "AVOID: path stone, a tuft of grass, a ground shadow, a background, text, letters, a border, characters"
+
+  - id: growth-stepping-stone
+    kind: prop
+    name: growth-stepping-stone
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: true
+    palettes: [world-foliage, world-props]
+    chat: "Pofu · Home growth"
+    light: {cell: day, layer: subject}
+    notes: "A pale grey flat stone with a moss patch, readable at 16 pt wide. Review: painted like the batch-57 home growth strip, at the scale of tea-stall-5 in the game camera; transparent, no ground shadow."
+    attach:
+      - ref: approved:tea-stall-5
+        role: "A finished piece on the home lawn: match its painting, light, finish and camera exactly; the scale reference (do not draw the stall)."
+    prompt:
+      - text: |
+          A single small lawn piece for a cozy mobile game, as a game sprite
+          on a transparent background, in exactly the painting style, light
+          and finish of the attached home island and tea stall. One flat round steppingstone for the pond's edge: a pale grey-sage river stone, low and wide, a patch of fresh green moss on one side, a thin darker rim, lying flat as seen from about 17 degrees above.
+          Centered, its feet or base on the bottom edge of the picture,
+          lit softly from the upper left.
+      - block: prop-style-v2
+      - text: "AVOID: a ground shadow, a background, text, letters, a border, characters"
+
+  - id: growth-hill-stone
+    kind: prop
+    name: growth-hill-stone
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: true
+    palettes: [world-foliage, world-props]
+    chat: "Pofu · Home growth"
+    light: {cell: day, layer: subject}
+    notes: "A small rounded sand-coloured flat stone, readable at 14 pt wide. Review: painted like the batch-57 home growth strip, at the scale of tea-stall-5 in the game camera; transparent, no ground shadow."
+    attach:
+      - ref: approved:tea-stall-5
+        role: "A finished piece on the home lawn: match its painting, light, finish and camera exactly; the scale reference (do not draw the stall)."
+    prompt:
+      - text: |
+          A single small lawn piece for a cozy mobile game, as a game sprite
+          on a transparent background, in exactly the painting style, light
+          and finish of the attached home island and tea stall. One flat hill-path stone: a rounded warm-sand stone, slightly smaller and paler than a path stone, with a little moss on its shaded side, lying flat as seen from about 17 degrees above.
+          Centered, its feet or base on the bottom edge of the picture,
+          lit softly from the upper left.
+      - block: prop-style-v2
+      - text: "AVOID: a ground shadow, a background, text, letters, a border, characters"
+
+  - id: growth-flag-pole
+    kind: prop
+    name: growth-flag-pole
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: true
+    palettes: [world-foliage, world-props]
+    chat: "Pofu · Home growth"
+    light: {cell: day, layer: subject}
+    notes: "One cream pennant with a single small honey sunflower on a wooden pole; not a tricolour, no stripes, nothing that reads as a national flag. Review: painted like the batch-57 home growth strip, at the scale of tea-stall-5 in the game camera; transparent, no ground shadow."
+    attach:
+      - ref: approved:tea-stall-5
+        role: "A finished piece on the home lawn: match its painting, light, finish and camera exactly; the scale reference (do not draw the stall)."
+    prompt:
+      - text: |
+          A single small lawn piece for a cozy mobile game, as a game sprite
+          on a transparent background, in exactly the painting style, light
+          and finish of the attached home island and tea stall. A harbor flag on a slim wooden pole standing on a tiny mound of grass: a straight pale honey-wood pole with a small round finial, and a soft cream triangular pennant with a gently wavy edge flying to the right from near the top, with one small honey-yellow sunflower painted on the cream cloth (a simple round flower shape, no letters). The pole is about twice the height of the attached tea stall's counter. It must not look like any country's flag: no stripes, no bands of colour, no crosses, no stars, no crescent.
+          Centered, its feet or base on the bottom edge of the picture,
+          lit softly from the upper left.
+      - block: prop-style-v2
+      - text: "AVOID: pennant with stripes, tricolour, cross, star, crescent, national flag, a ground shadow, a background, text, letters, a border, characters"
+
+  - id: growth-gull
+    kind: prop
+    name: growth-gull
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: true
+    palettes: [world-foliage, world-props]
+    chat: "Pofu · Home growth"
+    light: {cell: day, layer: subject}
+    notes: "One cream-and-grey gull, wings in a soft V, round and plush. Review: painted like the batch-57 home growth strip, at the scale of tea-stall-5 in the game camera; transparent, no ground shadow."
+    attach:
+      - ref: approved:tea-stall-5
+        role: "A finished piece on the home lawn: match its painting, light, finish and camera exactly; the scale reference (do not draw the stall)."
+    prompt:
+      - text: |
+          A single small lawn piece for a cozy mobile game, as a game sprite
+          on a transparent background, in exactly the painting style, light
+          and finish of the attached home island and tea stall. One small plump sea gull in gentle flight seen from the side and slightly below, wings lifted in a soft open V, a cream-white body with soft pale-grey wings and wingtips, a tiny honey-orange beak, a small dark round eye. Round and soft like a storybook bird, fills about the width of a hand at game scale. One sprite; the app moves and flaps it.
+          Centered, its feet or base on the bottom edge of the picture,
+          lit softly from the upper left.
+      - block: prop-style-v2
+      - text: "AVOID: a realistic bird, sharp talons, a fish, a ground shadow, a background, text, letters, a border, characters"
+
+  - id: growth-steam
+    kind: prop
+    name: growth-steam
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: true
+    palettes: [world-foliage, world-props]
+    chat: "Pofu · Home growth"
+    light: {cell: day, layer: subject}
+    notes: "One soft translucent steam plume, readable on both sky and lawn. Review: painted like the batch-57 home growth strip, at the scale of tea-stall-5 in the game camera; transparent, no ground shadow."
+    attach:
+      - ref: approved:tea-stall-5
+        role: "A finished piece on the home lawn: match its painting, light, finish and camera exactly; the scale reference (do not draw the stall)."
+    prompt:
+      - text: |
+          A single small lawn piece for a cozy mobile game, as a game sprite
+          on a transparent background, in exactly the painting style, light
+          and finish of the attached home island and tea stall. One soft curl of steam rising from a chimney or a teapot: a pale warm-white wispy S-shaped plume of three or four overlapping round puffs, thickest at the bottom, thinning and fading toward the top, gentle translucent edges. One sprite; the app rises and fades it.
+          Centered, its feet or base on the bottom edge of the picture,
+          lit softly from the upper left.
+      - block: prop-style-v2
+      - text: "AVOID: smoke, a dark colour, a chimney, a pot, a ground shadow, a background, text, letters, a border, characters"
+
+  - id: growth-bridge
+    kind: prop
+    name: growth-bridge
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: true
+    palettes: [world-foliage, world-props]
+    chat: "Pofu · Home growth"
+    light: {cell: day, layer: subject}
+    notes: "A low honey-wood arched bridge with short rails and stone footings, the arch open and transparent underneath. Review: painted like the batch-57 home growth strip, at the scale of tea-stall-5 in the game camera; transparent, no ground shadow."
+    attach:
+      - ref: approved:tea-stall-5
+        role: "A finished piece on the home lawn: match its painting, light, finish and camera exactly; the scale reference (do not draw the stall)."
+      - ref: approved:island-main-l-v3
+        role: "The home plate: match its grass, earth, rim stones and light exactly (do not draw the island)."
+    prompt:
+      - text: |
+          A single small lawn piece for a cozy mobile game, as a game sprite
+          on a transparent background, in exactly the painting style, light
+          and finish of the attached home island and tea stall. A small arched wooden footbridge across a pond inlet, seen from the home camera about 17 degrees above: a low arch of honey-wood planks with two short rope-and-post railings and little round cream post caps, resting on two small stone footings at the ends with a tuft of grass at each. About 100 pt wide at game scale. The area under the arch is empty and transparent.
+          Centered, its feet or base on the bottom edge of the picture,
+          lit softly from the upper left.
+      - block: prop-style-v2
+      - text: "AVOID: water under the bridge, a path, a character, steep arch, a ground shadow, a background, text, letters, a border, characters"
+
+  - id: growth-lily-pad
+    kind: prop
+    name: growth-lily-pad
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: true
+    palettes: [world-foliage, world-props]
+    chat: "Pofu · Home growth"
+    light: {cell: day, layer: subject}
+    notes: "One green lily pad with a single small pink blossom, a low oval. Review: painted like the batch-57 home growth strip, at the scale of tea-stall-5 in the game camera; transparent, no ground shadow."
+    attach:
+      - ref: approved:tea-stall-5
+        role: "A finished piece on the home lawn: match its painting, light, finish and camera exactly; the scale reference (do not draw the stall)."
+    prompt:
+      - text: |
+          A single small lawn piece for a cozy mobile game, as a game sprite
+          on a transparent background, in exactly the painting style, light
+          and finish of the attached home island and tea stall. One floating lily pad: a round soft green leaf with a small wedge notch cut out, a lighter green inner area, and one small pale-pink lotus blossom with a honey-yellow centre sitting on it. Flat on the water as seen from about 17 degrees above, a low oval. No water drawn around it.
+          Centered, its feet or base on the bottom edge of the picture,
+          lit softly from the upper left.
+      - block: prop-style-v2
+      - text: "AVOID: water, ripples, a frog, a ground shadow, a background, text, letters, a border, characters"
+
+  - id: growth-reeds
+    kind: prop
+    name: growth-reeds
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: true
+    palettes: [world-foliage, world-props]
+    chat: "Pofu · Home growth"
+    light: {cell: day, layer: subject}
+    notes: "A clump of four reeds, two with brown cattail heads. Review: painted like the batch-57 home growth strip, at the scale of tea-stall-5 in the game camera; transparent, no ground shadow."
+    attach:
+      - ref: approved:tea-stall-5
+        role: "A finished piece on the home lawn: match its painting, light, finish and camera exactly; the scale reference (do not draw the stall)."
+    prompt:
+      - text: |
+          A single small lawn piece for a cozy mobile game, as a game sprite
+          on a transparent background, in exactly the painting style, light
+          and finish of the attached home island and tea stall. A small clump of pond reeds: four slender soft sage-green stalks of different heights leaning gently apart, two of them topped with small plump cocoa-brown cattail heads, grass-green blade leaves at the base, standing on a tiny mound of mud-brown earth. About 24 pt wide and 36 pt tall at game scale.
+          Centered, its feet or base on the bottom edge of the picture,
+          lit softly from the upper left.
+      - block: prop-style-v2
+      - text: "AVOID: water, a pond, a bird, flowers, a ground shadow, a background, text, letters, a border, characters"
+
+  - id: growth-dragonfly
+    kind: prop
+    name: growth-dragonfly
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: true
+    palettes: [world-foliage, world-props]
+    chat: "Pofu · Home growth"
+    light: {cell: day, layer: subject}
+    notes: "One turquoise dragonfly with four translucent wings spread, hovering. Review: painted like the batch-57 home growth strip, at the scale of tea-stall-5 in the game camera; transparent, no ground shadow."
+    attach:
+      - ref: approved:tea-stall-5
+        role: "A finished piece on the home lawn: match its painting, light, finish and camera exactly; the scale reference (do not draw the stall)."
+    prompt:
+      - text: |
+          A single small lawn piece for a cozy mobile game, as a game sprite
+          on a transparent background, in exactly the painting style, light
+          and finish of the attached home island and tea stall. One tiny dragonfly seen from above and slightly to the side, hovering: a slim soft turquoise body, a small round head with big dark eyes, two pairs of delicate translucent pale-blue wings spread flat, a faint cream sheen on them. Round and cute, never realistic. One sprite; the app hovers it and flutters it.
+          Centered, its feet or base on the bottom edge of the picture,
+          lit softly from the upper left.
+      - block: prop-style-v2
+      - text: "AVOID: a realistic insect, a spider-like leg, a dark body, a flower, a ground shadow, a background, text, letters, a border, characters"
+
+  - id: growth-terrace
+    kind: prop
+    name: growth-terrace
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: true
+    palettes: [world-foliage, world-props]
+    chat: "Pofu · Home growth"
+    light: {cell: day, layer: subject}
+    notes: "A long low grassy bank with a short earth face and tapering ends, the same grass and earth painting as the home plate; reads as part of the lawn. Review: painted like the batch-57 home growth strip, at the scale of tea-stall-5 in the game camera; transparent, no ground shadow."
+    attach:
+      - ref: approved:tea-stall-5
+        role: "A finished piece on the home lawn: match its painting, light, finish and camera exactly; the scale reference (do not draw the stall)."
+      - ref: approved:island-main-l-v3
+        role: "The home plate: match its grass, earth, rim stones and light exactly (do not draw the island)."
+    prompt:
+      - text: |
+          A single small lawn piece for a cozy mobile game, as a game sprite
+          on a transparent background, in exactly the painting style, light
+          and finish of the attached home island and tea stall. The back terrace, a grassy rise: a long low gentle bank of lawn about four times as wide as tall, with a soft lighter grass top and lip, a short earthy face below it in the same warm cocoa-brown earth as the attached island's earth body with a few rim stones and root tufts, softly rounded ends that taper into the ground so it blends into the lawn. It is painted to stand on the home lawn behind the workshop, a transparent background around it. Nothing stands on it.
+          Centered, its feet or base on the bottom edge of the picture,
+          lit softly from the upper left.
+      - block: prop-style-v2
+      - text: "AVOID: buildings, trees, steps, characters, a straight hard edge, a ground shadow, a background, text, letters, a border, characters"
+
+  - id: growth-lantern-string
+    kind: prop
+    name: growth-lantern-string
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: true
+    palettes: [world-foliage, world-props]
+    chat: "Pofu · Home growth"
+    light: {cell: day, layer: subject}
+    notes: "Two short posts, a drooping cord and seven small unlit paper lanterns in coral, cream and honey. Review: painted like the batch-57 home growth strip, at the scale of tea-stall-5 in the game camera; transparent, no ground shadow."
+    attach:
+      - ref: approved:tea-stall-5
+        role: "A finished piece on the home lawn: match its painting, light, finish and camera exactly; the scale reference (do not draw the stall)."
+    prompt:
+      - text: |
+          A single small lawn piece for a cozy mobile game, as a game sprite
+          on a transparent background, in exactly the painting style, light
+          and finish of the attached home island and tea stall. A string of small warm paper lanterns hung along a terrace: a thin cord drooping in two gentle curves between two short honey-wood posts, with seven small round paper lanterns hanging from it in soft coral, cream and honey colours, each with a tiny cap, DAY state: the paper is plain, matte and unlit (the app adds the glow at night). About 200 pt wide and 76 pt tall at game scale, the lowest lantern near the middle.
+          Centered, its feet or base on the bottom edge of the picture,
+          lit softly from the upper left.
+      - block: prop-style-v2
+      - text: "AVOID: glowing lanterns, light rays, a halo, a night sky, a ground shadow, a background, text, letters, a border, characters"
+
+  - id: growth-gate
+    kind: prop
+    name: growth-gate
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: true
+    palettes: [world-foliage, world-props]
+    chat: "Pofu · Home growth"
+    light: {cell: day, layer: subject}
+    notes: "A shut arched sandstone gate with a wooden door and a carved sunflower above it. Review: painted like the batch-57 home growth strip, at the scale of tea-stall-5 in the game camera; transparent, no ground shadow."
+    attach:
+      - ref: approved:tea-stall-5
+        role: "A finished piece on the home lawn: match its painting, light, finish and camera exactly; the scale reference (do not draw the stall)."
+      - ref: approved:island-main-l-v3
+        role: "The home plate: match its grass, earth, rim stones and light exactly (do not draw the island)."
+    prompt:
+      - text: |
+          A single small lawn piece for a cozy mobile game, as a game sprite
+          on a transparent background, in exactly the painting style, light
+          and finish of the attached home island and tea stall. A small gate at the end of the hill path: a round-topped arch of pale sandstone with a honey-wood double door shut in it, a carved sunflower (a simple round bloom) above the door in the arch, small rim stones at its feet, and a few tufts of grass and one little flower at the base. Inside the closed door a thin warm seam of light is NOT drawn (the app adds the soft glow behind it). About 84 pt wide and tall at game scale.
+          Centered, its feet or base on the bottom edge of the picture,
+          lit softly from the upper left.
+      - block: prop-style-v2
+      - text: "AVOID: an open door, light, a glow, rays, text, a character, a ground shadow, a background, text, letters, a border, characters"
+
+  - id: growth-hilltop
+    kind: prop
+    name: growth-hilltop
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: true
+    palettes: [world-foliage, world-props]
+    chat: "Pofu · Home growth"
+    light: {cell: day, layer: subject}
+    notes: "A small grassy hill top with one round tree, wildflowers, a short earth face and an empty patch for a bench. Review: painted like the batch-57 home growth strip, at the scale of tea-stall-5 in the game camera; transparent, no ground shadow."
+    attach:
+      - ref: approved:tea-stall-5
+        role: "A finished piece on the home lawn: match its painting, light, finish and camera exactly; the scale reference (do not draw the stall)."
+      - ref: approved:island-main-l-v3
+        role: "The home plate: match its grass, earth, rim stones and light exactly (do not draw the island)."
+    prompt:
+      - text: |
+          A single small lawn piece for a cozy mobile game, as a game sprite
+          on a transparent background, in exactly the painting style, light
+          and finish of the attached home island and tea stall. The hilltop terrace above the gate: a small round grassy hill top, about three times as wide as tall, with a soft lighter grass lip, a short warm cocoa-brown earth face with rim stones, a few wildflowers at the edge, and one small round-crowned tree standing near the middle (a short trunk, a plump soft green crown). A bare patch of lawn to its right for a bench, left empty. The hill tapers into the ground at its ends. A transparent background around it.
+          Centered, its feet or base on the bottom edge of the picture,
+          lit softly from the upper left.
+      - block: prop-style-v2
+      - text: "AVOID: a bench, buildings, characters, a straight hard edge, a ground shadow, a background, text, letters, a border, characters"
+
+  - id: growth-lantern-string-lit
+    kind: prop
+    name: growth-lantern-string-lit
+    edit_of: growth-lantern-string
+    emit_region: [{x: 0.05, y: 0.30, w: 0.90, h: 0.50}]   # the paper lanterns along the cord
+    chat: "Pofu · Home growth"
+    light: {cell: day, layer: subject}
+    notes: "Source of the lantern string's emissive overlay (difference against growth-lantern-string). Review: only the paper of the lanterns glows warm candle-amber, a little brighter toward each middle; the cord, the posts and the caps are unchanged; no halo, no rays."
+    prompt:
+      - text: |
+          Light the lanterns from inside: every small round paper lantern now
+          glows warm candle-amber, a little brighter toward its middle,
+          painted as soft broad shapes. Only the lantern paper changes: the
+          cord, the posts and the lantern caps keep their exact day colors
+          (the app adds the glow, the halos and the night grade).
+      - block: edit-keep-v1
+      - text: "AVOID: light rays, a glow or halo outside the paper, light on the cord or the posts, a night sky, darkening anything, blown yellow-white highlights, text."

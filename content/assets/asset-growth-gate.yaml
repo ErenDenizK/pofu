@@ -1,0 +1,21 @@
+id: asset-growth-gate
+type: asset
+title_tr: growth-gate
+title_en: growth-gate (prop)
+status: in-production
+horizon: now
+summary: >-
+  A single small lawn piece for a cozy mobile game, as a game sprite on a transparent background,
+  in exactly the painting style, light and finish of the attached home island and tea stall.
+  A small gate at the end of the hill path: a round-topped arch of pale sandstone with a honey-wood
+  double door shut in it, a carved sunflower (a simple round bloom) above the door in the
+  arch, small rim stones at its feet, and a few t…
+art:
+  images: []
+  jobs:
+  - batch-65-growth-pieces:growth-gate
+sources:
+- doc: tools/imagegen/manifest/batch-65-growth-pieces.yaml
+kind: prop
+batch: batch-65-growth-pieces
+size: 1024x1024

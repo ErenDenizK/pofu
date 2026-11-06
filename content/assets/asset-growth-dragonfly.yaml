@@ -1,0 +1,21 @@
+id: asset-growth-dragonfly
+type: asset
+title_tr: growth-dragonfly
+title_en: growth-dragonfly (prop)
+status: in-production
+horizon: now
+summary: >-
+  A single small lawn piece for a cozy mobile game, as a game sprite on a transparent background,
+  in exactly the painting style, light and finish of the attached home island and tea stall.
+  One tiny dragonfly seen from above and slightly to the side, hovering: a slim soft turquoise
+  body, a small round head with big dark eyes, two pairs of delicate translucent pale-blue
+  wings spread flat, a faint cream sheen on them. Rou…
+art:
+  images: []
+  jobs:
+  - batch-65-growth-pieces:growth-dragonfly
+sources:
+- doc: tools/imagegen/manifest/batch-65-growth-pieces.yaml
+kind: prop
+batch: batch-65-growth-pieces
+size: 1024x1024

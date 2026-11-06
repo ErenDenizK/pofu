@@ -1,0 +1,21 @@
+id: asset-growth-hilltop
+type: asset
+title_tr: growth-hilltop
+title_en: growth-hilltop (prop)
+status: in-production
+horizon: now
+summary: >-
+  A single small lawn piece for a cozy mobile game, as a game sprite on a transparent background,
+  in exactly the painting style, light and finish of the attached home island and tea stall.
+  The hilltop terrace above the gate: a small round grassy hill top, about three times as
+  wide as tall, with a soft lighter grass lip, a short warm cocoa-brown earth face with rim
+  stones, a few wildflowers at the edge, and one small ro…
+art:
+  images: []
+  jobs:
+  - batch-65-growth-pieces:growth-hilltop
+sources:
+- doc: tools/imagegen/manifest/batch-65-growth-pieces.yaml
+kind: prop
+batch: batch-65-growth-pieces
+size: 1024x1024
