@@ -114,65 +114,30 @@ grow, and each week ends with a screenshot sheet or a short video for him.
   provenance (a written assignment or masters regenerated on the founder's
   plan). Release in Türkiye, then global.
 
-## Next, in order (plan of 2026-11-06)
+## Next: every track, in parallel (plan of 2026-11-06)
 
-The founder (2026-11-06): plan everything worth doing (technical, game
-design, flow and progression, the app) and drive the scope. Four phases;
-inside a phase the tracks run in parallel (at most three agents), and
-Codex works its queue the whole time.
+The founder (2026-11-06): no dated phases and no betting on one thing for
+long; every track takes a step every round unless it truly waits on
+another. Membership day needs no big preparation (a day or two after it
+arrives); what matters is the screens, the UI, how the game and the app
+are used, and the gate and shield, which must be a design masterpiece.
+The lead keeps this list current: each track names its next step only.
 
-### Phase A, the look foundation (to 2026-11-09)
-
-1. **Light and colour:** merge SW-1 harmony (#258) and SW-3 sky and fog
-   (#256, after its Koke stage-0 tuning); then SW-2 weather and the screen
-   haze ([sky and weather v1](design/sky-and-weather-v1.md) §2.2, §2.2b).
-2. **Night lighting:** tune nightlab (#257) against the painted night key
-   (batch-45) and real normals from the light-direction pilot
-   (batch-47); then an ADR (delit then relit, per-pixel lights, hemisphere
-   ambient, cached composite) and the Metal port in two PRs (the shader
-   and the baked companions; per-class and Pofu-specific normal tuning).
-   Founder notes to meet: no hard-edged light (soft round falloff, never a
-   diagonal cut), Pofu's form not angular, the island's underside takes
-   light as a volume, characters and effects seated in the night light.
-3. **Icons:** the flat icon sheets (batch-46); the winner replaces the
-   place control's glyph and the SF Symbols in menus, vectorised if it
-   pays.
-4. **Koke finished:** integrate the four promoted takes (row 0-k); one
-   Koke on screen (the plate's Koke and the pose sprites never overlap).
-
-### Phase B, the Book One spine (to 2026-11-16)
-
-5. **Flow engine and Çağlayan:** a game-design note first (pieces,
-   puzzles per stage, the difficulty ramp, no fail state, hints, 60-90 s a
-   puzzle), then `PofuGames` flow, then Çağlayan on the wonder-island
-   model with its batch-43 art and the dry-rock echo.
-6. **The flow audit:** a `PofuCore` test that plays a typical player
-   through days 1-21 and asserts every beat lands (the harbor on day 3,
-   Koke, Çağlayan on day 10, a gift or a change every day, no dead day),
-   plus one for a heavy scroller (the screen haze shows, nothing is lost).
-7. **Every level a living change:** a screenshot sheet of home at IL1 to
-   IL10; each step must add something you can see and something that
-   moves; IL1 gets its decor (it is sparse).
-8. **Residents, wave 3:** resident-to-resident scenes (ten, written with
-   the `pofu-story` skill), residents visit daily, reactions by mood.
-
-### Phase C, ready for membership day 1 (to 2026-11-24)
-
-9. **App:** onboarding (pick the apps, the first resisted reach, Pofu
-   wakes); the painted shield meets the real Screen Time shield; a widget
-   and the week page that share the sky and count the clear days; the
-   accessibility pass (VoiceOver, Dynamic Type, Reduce Motion); haptics.
-10. **Business:** the membership day-1 checklist (founder); the TestFlight
-    friends beta; monetization v2 waits for the founder's yes.
-11. **Health:** the frame meter after weather and the night relight
-    (settled frames 0 Hz); the snail drift in `integrate.py`; prune merged
-    worktrees and branches.
-
-### Phase D, after the membership
-
-12. **Emanet** (the fog island, the screen haze's language at its most
-    beautiful), **Çanlar** (the recall game with bells), **Revontuli**, the
-    Gezgin rig, sound (weather and the arc), the App Store assets.
+| Track | Next step | Waits on |
+|---|---|---|
+| **The gate and the shield** (the top design priority) | Spec "the gate v2": the system shield at its best (painted icon, the hour's colours, the voice) and the in-app gate as a living painted scene; three concept directions from Codex (batch-48); then build | nothing |
+| **Codex's concepts in use** | An inventory of every exploration take with a use for each (screen, moment, sticker, background, inspiration); wire the best into the game and app | nothing |
+| **Light and colour** | Merge SW-1 (#258) and SW-3 (#256, Koke stage 0 tuned); SW-2 weather and the screen haze | SW-3 for SW-2 |
+| **Night lighting** | Tune nightlab to the night key (batch-45) and real normals (batch-47); the ADR; the Metal port. No hard-edged light; Pofu's form round; the island's underside lit as a volume; characters and effects seated | the batch-45 and 47 takes |
+| **Icons** | The flat icon sheets (batch-46); the winner replaces the place control's glyph and the menu symbols | the takes |
+| **Koke** | Integrate row 0-k's takes; one Koke on screen | 0-k |
+| **Çağlayan and flow** | A game-design note for the flow game, then `PofuGames` flow, then Çağlayan with batch-43 | nothing (the art arrives in parallel) |
+| **Game flow** | The flow audit: a `PofuCore` test that plays days 1-21 for a typical player and for a heavy scroller; no dead day | nothing |
+| **Home growth** | A screenshot sheet of IL1 to IL10; every level adds something seen and something moving; IL1's decor | nothing |
+| **Residents** | Wave 3: ten resident-to-resident scenes (`pofu-story`), daily visits | nothing |
+| **App** | Onboarding (pick the apps, the first resisted reach, Pofu wakes); the widget and the week page sharing the sky; accessibility; haptics | the gate spec for the onboarding's look |
+| **Health** | The frame meter after weather and night; the snail drift in `integrate.py`; prune worktrees | nothing |
+| **Later** | Emanet, Çanlar (recall), Revontuli, the Gezgin rig, sound, App Store assets; membership day 1 when the account arrives | the membership |
 
 ## Day 1 of the paid membership
 

@@ -472,3 +472,10 @@ His views (translated), not orders; the decisions are ours. Handled in
 3. Some lit spots shine too sharply; the shaft's lit area is cut like a diagonal line instead of a round falloff. Handled: SW-3's Koke tuning (narrow, soft gaussian shaft ending on the sprout, a round pool); a rule in the plan (no hard-edged light).
 4. Pofu's normal map is a little angular; Pofu gets his own normal tuning later. Handled: plan step 2 and the light-direction pilot (`batch-47`, real normals by photometric stereo).
 5. At night the lights are still not balanced: the island's 3D surfaces (its underside) take light badly; backgrounds are saved, characters, a few objects and effects are not seated yet. Handled: the night lighting track (plan step 2), tuned against the night key and the pilot's normals.
+
+## 2026-11-06 (midday, later): no dated phases; the gate as a masterpiece; use Codex's concepts
+
+1. Do not box the work into dated phases; AI time estimates run long and surprises come; move every direction a step at a time, in parallel, waiting only where one thing truly needs another. Handled: the roadmap's plan is now a table of parallel tracks, each with its next step only.
+2. No heavy preparation for after 2026-11-24; a day or two after the membership arrives is enough. What matters: the screens, the UI, how the game and the app are used, the gate (the wall) and the shield menu. Handled: the gate and the shield are the top design track.
+3. Codex produced many concepts and small images while idle: try ways to use them, or at least take ideas from them; did we make visuals for the wall? Handled: an inventory of every exploration take with a proposed use (`docs/design/concept-inventory.md`).
+4. The wall must not stay a plain wall with plain text; screens like the wall must be a wow, a design masterpiece; every point of the game should feel that way, with fun coming forward deeper in the game; he wants to fly a little further on design. Handled: "the gate v2" spec and three Codex concept directions (batch-48).
