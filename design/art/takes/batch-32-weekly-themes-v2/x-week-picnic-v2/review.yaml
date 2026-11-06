@@ -1,0 +1,450 @@
+batch: batch-32-weekly-themes-v2
+manifest: tools/imagegen/manifest/batch-32-weekly-themes-v2.yaml
+manifest_sha256: acb31cd072d7e0c9e67f12d197a68faed5a23d9d1e38ca01233743c98e677f40
+contact_sheet: design/art/takes/batch-32-weekly-themes-v2/x-week-picnic-v2/contact.jpg
+jobs:
+  x-week-picnic-v2:
+    pick: none
+    publication: skipped after one allowed retry
+    note: 'SKIPPED after the sole unchanged-prompt retry. All four official normalized
+      complete-group widths are 677, 712, 636 and 718 px, exceeding the original literal
+      one-third-frame bound of 341.33 px. No hard automated check fails: aggregate
+      QA is warning-only, and style/light/Harmony warnings remain advisory. The unchanged
+      source manual width still excludes every take. The preferred raw drawing range
+      is never used as an added gate. No inventory item is omitted to force the group
+      smaller, and no manual resize, crop, alpha/pixel cleanup, third pair, prompt/profile/QA
+      change or promotion is performed. All four original PNGs, exact frozen prompt/reference
+      fingerprints, canonical reports and q90 takes are retained. The night theme
+      stays a day-cell sprite with unlit lamps; no baked night light is claimed. This
+      independent job has no true dependents; other jobs continue.'
+qa_reports:
+  1:
+    job: x-week-picnic-v2
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 63 (R1 51) (advisory in an exploration)
+      value: 62.6
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 39 (at most 22), p98 92 (at least 90), spread 53
+        (at least 60)'
+      value: 53.1
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 71 (band 55-90)'
+      value: 70.7
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.08 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.078
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 8.2 (at least 3.5)'
+      value: 8.18
+    - check: detail_budget
+      status: pass
+      message: detail at display size 5.9 (R1 5.3)
+      value: 5.94
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 4.6
+      value: 4.5836
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 6.4, p95 20.1, off-palette 21.2% (top: #BB6633 (2.8%), #AA5522
+        (1.5%)) (advisory in an exploration)'
+      value: 6.412
+    - check: decor_anchor
+      status: warn
+      message: top y 456 above the height bar (500); width 677 px wider than the footprint
+        (360) (advisory in an exploration)
+      value: 888.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 57 against the world reference (outliers: C_p95, L_p2,
+        detail, edge)'
+      value: 57.0
+    info:
+      fit_skipped: needs x0.53, below x0.6 (a real art failure)
+      registration:
+        dx: 5
+        dy: 46
+      metrics_raw:
+        L_p5: 44.7
+        L_p50: 70.8
+        L_p95: 90.9
+        C_p50: 42.9
+        C_p95: 73.5
+        C_p99: 80.1
+        detail: 7.5
+      metrics_locked:
+        L_p5: 45.4
+        L_p50: 70.7
+        L_p95: 90.2
+        C_p50: 42.8
+        C_p95: 62.6
+        C_p99: 64.6
+        detail: 5.94
+    fingerprint: d9525e80db93b385
+  2:
+    job: x-week-picnic-v2
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 62 (R1 51) (advisory in an exploration)
+      value: 62.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 43 (at most 22), p98 93 (at least 90), spread 50
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 50.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 72 (band 55-90)'
+      value: 71.5
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.10 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.102
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 7.7 (at least 3.5)'
+      value: 7.68
+    - check: detail_budget
+      status: pass
+      message: detail at display size 5.3 (R1 5.3)
+      value: 5.29
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 3.9
+      value: 3.9495
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 5.1, p95 17.4, off-palette 13.2% (top: #AA5522 (1.7%), #DD8833
+        (1.3%)) (advisory in an exploration)'
+      value: 5.0862
+    - check: decor_anchor
+      status: warn
+      message: width 712 px wider than the footprint (360) (advisory in an exploration)
+      value: 888.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 62 against the world reference (outliers: C_p95, detail,
+        edge)'
+      value: 62.0
+    info:
+      fit_skipped: needs x0.51, below x0.6 (a real art failure)
+      registration:
+        dx: 8
+        dy: 6
+      metrics_raw:
+        L_p5: 46.2
+        L_p50: 71.6
+        L_p95: 91.9
+        C_p50: 39.2
+        C_p95: 70.6
+        C_p99: 76.5
+        detail: 6.74
+      metrics_locked:
+        L_p5: 46.8
+        L_p50: 71.5
+        L_p95: 90.9
+        C_p50: 39.2
+        C_p95: 62.1
+        C_p99: 64.4
+        detail: 5.29
+    fingerprint: d9525e80db93b385
+  3:
+    job: x-week-picnic-v2
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 62 (R1 51) (advisory in an exploration)
+      value: 61.7
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 41 (at most 22), p98 93 (at least 90), spread 52
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 51.8
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 72 (band 55-90)'
+      value: 72.1
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.06 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.063
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 8.9 (at least 3.5)'
+      value: 8.94
+    - check: detail_budget
+      status: pass
+      message: detail at display size 5.8 (R1 5.3)
+      value: 5.84
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 4.1
+      value: 4.0697
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 5.7, p95 19.8, off-palette 18.9% (top: #AA5522 (2.5%), #BB6622
+        (2.0%)) (advisory in an exploration)'
+      value: 5.7276
+    - check: decor_anchor
+      status: warn
+      message: width 636 px wider than the footprint (360) (advisory in an exploration)
+      value: 888.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 60 against the world reference (outliers: C_p95, L_p2,
+        detail, edge)'
+      value: 60.5
+    info:
+      fit_skipped: needs x0.57, below x0.6 (a real art failure)
+      registration:
+        dx: 4
+        dy: -1
+      metrics_raw:
+        L_p5: 44.9
+        L_p50: 72.1
+        L_p95: 92.1
+        C_p50: 36.4
+        C_p95: 71.8
+        C_p99: 78.1
+        detail: 7.32
+      metrics_locked:
+        L_p5: 45.5
+        L_p50: 72.1
+        L_p95: 91.5
+        C_p50: 36.6
+        C_p95: 61.7
+        C_p99: 64.7
+        detail: 5.84
+    fingerprint: d9525e80db93b385
+  4:
+    job: x-week-picnic-v2
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 62 (R1 51) (advisory in an exploration)
+      value: 61.6
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 41 (at most 22), p98 93 (at least 90), spread 52
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 52.1
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 72 (band 55-90)'
+      value: 71.6
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.09 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.09
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 7.8 (at least 3.5)'
+      value: 7.76
+    - check: detail_budget
+      status: pass
+      message: detail at display size 5.3 (R1 5.3)
+      value: 5.28
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 3.9
+      value: 3.8765
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 5.2, p95 19.4, off-palette 12.8% (top: #994411 (1.4%), #DD7733
+        (1.2%)) (advisory in an exploration)'
+      value: 5.1513
+    - check: decor_anchor
+      status: warn
+      message: width 718 px wider than the footprint (360) (advisory in an exploration)
+      value: 888.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 61 against the world reference (outliers: C_p95, L_p2,
+        detail, edge)'
+      value: 61.3
+    info:
+      fit_skipped: needs x0.50, below x0.6 (a real art failure)
+      registration:
+        dx: 8
+        dy: 16
+      metrics_raw:
+        L_p5: 46.6
+        L_p50: 71.6
+        L_p95: 91.2
+        C_p50: 39.3
+        C_p95: 69.9
+        C_p99: 77.5
+        detail: 6.72
+      metrics_locked:
+        L_p5: 47.3
+        L_p50: 71.6
+        L_p95: 90.4
+        C_p50: 39.4
+        C_p95: 61.6
+        C_p99: 63.9
+        detail: 5.28
+    fingerprint: d9525e80db93b385
+manual_review:
+  observed_note: 'SKIPPED after the sole unchanged-prompt retry. All four official
+    normalized complete-group widths are 677, 712, 636 and 718 px, exceeding the original
+    literal one-third-frame bound of 341.33 px. No hard automated check fails: aggregate
+    QA is warning-only, and style/light/Harmony warnings remain advisory. The unchanged
+    source manual width still excludes every take. The preferred raw drawing range
+    is never used as an added gate. No inventory item is omitted to force the group
+    smaller, and no manual resize, crop, alpha/pixel cleanup, third pair, prompt/profile/QA
+    change or promotion is performed. All four original PNGs, exact frozen prompt/reference
+    fingerprints, canonical reports and q90 takes are retained. The night theme stays
+    a day-cell sprite with unlit lamps; no baked night light is claimed. This independent
+    job has no true dependents; other jobs continue.'
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+sources:
+- batch: batch-32-weekly-themes-v2
+  job: x-week-picnic-v2
+  take: 1
+  round: 1
+  logical_run: 20261106-b32-v2
+  source_file: /workspace/generated_images/exec-cc4dfc1d-826a-4bde-9e7e-aa8343bd8431.png
+  returned_at: '2026-11-06T03:14:39.781Z'
+  prompt_sha256: b246c3d154dc4ef269c97d8219950f94a13daacd2a3a61b705d7018f4d89222b
+  fingerprint: d9525e80db93b385
+  saved_at: '2026-11-06T03:14:40.144655+00:00'
+  original_generated_png_sha256: 611baa92df151897fefa3ec6e84f43ef74c0213e1022a7f276c89fa01953299f
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 9b15ab062eb1954735c5a8a7a72ae503a3b058a7a51c79f76228c825b95ac194
+  inbox_png_sha256: 704f2f4ed3f467c417a542cc1b9202b7f296d36fdd1be20bd6a57931eff66bc1
+  qa_sha256: d0f9d4d316f78d2ff0dcac0ca434a0c4c4b5ba2adab4b9bf8f6895290f003ac0
+- batch: batch-32-weekly-themes-v2
+  job: x-week-picnic-v2
+  take: 2
+  round: 1
+  logical_run: 20261106-b32-v2
+  source_file: /workspace/generated_images/exec-213470a9-f54c-44ee-998d-4fbb64aa5845.png
+  returned_at: '2026-11-06T03:15:23.992Z'
+  prompt_sha256: b246c3d154dc4ef269c97d8219950f94a13daacd2a3a61b705d7018f4d89222b
+  fingerprint: d9525e80db93b385
+  saved_at: '2026-11-06T03:15:24.286080+00:00'
+  original_generated_png_sha256: 80fcd40cc74bb319ef6f0f25e9f56e6c4846093a4e7d168674cfaa84d0c00b24
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 64570d9204d64ad2cd85049a9beefc6e49eb21a406382bdc723ede1e53ce6580
+  inbox_png_sha256: ab1e440d7b82d46431742f40fd72bd190aae4e264da9e8f8934fa537304c3e21
+  qa_sha256: 84300494aec525c73af3be763563019a0637a203853eaf9a3c118b789b7ee839
+- batch: batch-32-weekly-themes-v2
+  job: x-week-picnic-v2
+  take: 3
+  round: 2
+  logical_run: 20261106-b32-v2
+  source_file: /workspace/generated_images/exec-e9491ef2-6853-424f-841f-a168a0af7b34.png
+  returned_at: '2026-11-06T03:23:04.976Z'
+  prompt_sha256: b246c3d154dc4ef269c97d8219950f94a13daacd2a3a61b705d7018f4d89222b
+  fingerprint: d9525e80db93b385
+  saved_at: '2026-11-06T03:23:05.316313+00:00'
+  original_generated_png_sha256: 21b84cdd6757a23b769a21ec186828ea6e68db1915261a4785d0a6c53bfbd047
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: ab142eb1d6e062075b0d1a09ea503df7aecc4ebe8342278907cd174a629a8d90
+  inbox_png_sha256: e8e3126135895eda19fd85abda1923aa4fd919877191fecdc65b14fbb9fd651a
+  qa_sha256: ed3706a74df968285ae860ce37ccee97ea76b998e789ab0ee5f5da1bd2fb3967
+- batch: batch-32-weekly-themes-v2
+  job: x-week-picnic-v2
+  take: 4
+  round: 2
+  logical_run: 20261106-b32-v2
+  source_file: /workspace/generated_images/exec-db0b2579-337d-4958-b8ba-cf989fce4bc9.png
+  returned_at: '2026-11-06T03:24:25.361Z'
+  prompt_sha256: b246c3d154dc4ef269c97d8219950f94a13daacd2a3a61b705d7018f4d89222b
+  fingerprint: d9525e80db93b385
+  saved_at: '2026-11-06T03:24:25.696745+00:00'
+  original_generated_png_sha256: 1a2761ea437378e59a9ebff4ae1e18a536940f84f30344cdd030142c6f8c0d0a
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 0387c2d07a599e3a0d6a860bfd639a170f9bac718ba494186f53f3738a6f9949
+  inbox_png_sha256: d709d11ea4fbfb29abec350f426a5491fe89ce5ae1a1d36474ddb05b487a66cd
+  qa_sha256: 605a0c1901cff2cbcc5d2ab57b25b20328c251fbdd0e27bb9604ec773ebb8465
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+variation_proof_sha256: 54af99e66149a4cf0c62805a47a26688a3e3cd1c245ae84418d3894dd15bbd6f
