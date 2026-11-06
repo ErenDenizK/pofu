@@ -1,0 +1,80 @@
+# Batch 60: the earth face, painted in (production; real ids, promoted on pass).
+#
+# The founder (2026-11-06): the island's base looks patched: the residents'
+# doors and pieces are separate sprites pasted on the earth body, with their
+# own light and edges. Placeholders are fine for now, but the right fix is
+# parts Codex fits to the plate. These are EDITS of the home plate
+# (island-main-l-v3) that paint the doors INTO the earth: same texture,
+# light, bands and soft shadows, so nothing reads as a sticker. The game
+# swaps the plate by island level (home layout §3 slots H1-H3), and the
+# separate door sprites retire. Night: each door's window becomes a lit edit
+# later (the emissive-by-difference pipeline).
+#
+# Places on the earth face, as a fraction of the earth body's width from its
+# left edge, all at the same height as Pofu's door (home layout H1-H3):
+# Pofu's door about 23 % (exists), Mochi's door about 60 %, Fındık's door
+# about 88 %.
+#
+# Review: the doors look carved and set into the earth like Pofu's own, with
+# the same wood, rim stones, ambient occlusion and light; nothing else on
+# the plate moved (outline, lawn, stones, roots); each level adds only its
+# door.
+
+batch: batch-60-earth-face
+title: The earth face painted in (home plate with the residents' doors, by island level)
+status: open
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: island-main-l-v3, kind: world, name: island-main-l-v3, external: batch-05-fixes-pilot, master: design/art/masters/island-main-l-v3/island-main-l-v3.webp}
+  - {id: door-mochi, kind: prop, name: door-mochi, external: batch-33-home-showcase, master: design/art/masters/door-mochi/door-mochi.png}
+  - {id: door-findik, kind: prop, name: door-findik, external: batch-33-home-showcase, master: design/art/masters/door-findik/door-findik.png}
+
+  - id: island-main-face-il2
+    kind: world
+    name: island-main-face-il2
+    edit_of: island-main-l-v3
+    light: {cell: day, layer: subject}
+    acceptance: {edit_mode: region}
+    notes: "IL2: Mochi's door painted into the earth at about 60 % of the body's width, level with Pofu's door. Review per the header."
+    attach:
+      - ref: approved:door-mochi
+        role: "Mochi's door design: its rose colour, round shape and small tulip-glass sign; paint it INTO the earth, not pasted."
+    prompt:
+      - text: |
+          Edit the attached floating island: paint a second small round door
+          into its earth body, set into the earth exactly like the existing
+          round wooden door on the left, at the same height, at about 60
+          percent of the earth body's width from its left edge. This door is
+          painted a soft rose with a small round window and a tiny sign with
+          a tulip-shaped tea glass, as in the attached door design, framed by
+          the same rim of small stones, with the same soft shadow inside its
+          recess and the same light as the rest of the earth. Everything else
+          stays exactly as it is.
+      - block: edit-keep-v1
+      - text: "AVOID: a pasted-on look, a different light or texture, a frame of another style, moving or resizing anything, characters, text"
+
+  - id: island-main-face-il6
+    kind: world
+    name: island-main-face-il6
+    edit_of: island-main-face-il2
+    light: {cell: day, layer: subject}
+    acceptance: {edit_mode: region}
+    notes: "IL6: Fındık's door added at about 88 % of the body's width (an edit of the IL2 face, so Mochi's door is kept). Review per the header."
+    attach:
+      - ref: approved:door-findik
+        role: "Fındık's door design: sage green, a small gear sign, a wrench on a nail; paint it INTO the earth."
+    prompt:
+      - text: |
+          Edit the attached floating island: paint a third small round door
+          into its earth body, set into the earth exactly like the other two
+          round doors, at the same height, at about 88 percent of the earth
+          body's width from its left edge. This door is painted a soft sage
+          green with a small round window, a tiny gear-shaped sign and a
+          small wrench hanging on a nail beside it, as in the attached door
+          design, framed by the same rim of small stones, with the same soft
+          recess shadow and light. Everything else stays exactly as it is.
+      - block: edit-keep-v1
+      - text: "AVOID: a pasted-on look, a different light or texture, moving or resizing anything, characters, text"

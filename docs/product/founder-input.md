@@ -502,3 +502,8 @@ His views (translated), not orders; the decisions are ours. Handled in
 3. Residents should work and move more naturally (animation). Handled: a thread in the tracker; a behaviour and animation spec follows it.
 4. Gather everything talked about but not built, every possible improvement (logic, technical, system, visual, animation, design), keep the context: one clear picture of what happened, where we go, what became of each decision. Handled: `docs/tracker.md` (an Opus pass over every founder message, doc, PR and the code).
 5. File hygiene: archive old rules, tiring ADRs and whatever leads to context rot; improve the working environment, since we stay in it. Handled: a hygiene pass (archive, a leaner CLAUDE.md and AGENTS.md, one docs map).
+
+## 2026-11-06 (late morning, later): the island bases look patched
+
+1. Placeholders are fine for the island bases for now, but parts Codex fits to them would be much better; today they look like patches. Handled: `batch-60-earth-face` (row 0-e): the residents' doors painted into the home plate's earth by island level, replacing the pasted door sprites; the roots follow the same rule (painted to fit, from `batch-49`'s concepts).
+2. He will look at everything in an hour. Noted: a one-page summary with images is ready for him.
