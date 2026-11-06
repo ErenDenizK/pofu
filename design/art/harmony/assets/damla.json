@@ -1,0 +1,54 @@
+{
+ "after": {
+  "C_mean": 27.948,
+  "C_p50": 33.517,
+  "C_p95": 39.979,
+  "L_mean": 66.078,
+  "L_p2": 20.006,
+  "L_p98": 94.453,
+  "detail": 9.412,
+  "edge": 0.201,
+  "tint_a": 5.021,
+  "tint_b": 9.524,
+  "warmth_b": 21.698
+ },
+ "before": {
+  "C_mean": 27.948,
+  "C_p50": 33.517,
+  "C_p95": 39.979,
+  "L_mean": 66.078,
+  "L_p2": 20.006,
+  "L_p98": 94.453,
+  "detail": 9.412,
+  "edge": 0.201,
+  "tint_a": 5.021,
+  "tint_b": 9.524,
+  "warmth_b": 21.698
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "char",
+ "matched_to": "char",
+ "outliers_after": [
+  "detail"
+ ],
+ "outliers_before": [
+  "detail"
+ ],
+ "ppu": 29.0,
+ "reference": false,
+ "score_after": 87.4,
+ "score_before": 87.4,
+ "shipped": false,
+ "source": "design/art/masters/damla/damla.webp",
+ "source_sha": "b14260ea5d4ba652"
+}
