@@ -1,0 +1,54 @@
+batch: lead-picks-2026-11-06-gate
+source_batch: batch-58-gate-round-door
+contact_sheet_reference: design/art/takes/batch-58-gate-round-door/gate-door-scene/contact.jpg
+contact_reference_role: historical retained root; not a new child take
+jobs:
+  gate-door-scene:
+    pick: none
+    publication: retained native-delivery skip
+    new_generated_takes: 0
+    note: 'The lead selected retained gate-door-scene take 2 under queue row 0-r,
+      2026-11-06 afternoon; palette_drift is the only authorized force exception.
+      Native 1024x1536 delivery is still ineligible: the canonical locked PNG is 1776305
+      bytes, exact lossless WebP is 1216068 bytes with the ordinary recipe and 1212432
+      bytes at q100, all above the exclusive 614400-byte upload cap. No force, promotion,
+      new generation, source resize, lossy master, Harmony claim or retry-budget reset
+      occurred. The four historical originals, QA, locked outputs, q90 takes and contact
+      sheet remain unchanged. Lead follow-up requested: author a consistent explicit
+      delivery profile (for example deliver.scale 0.5 for the root AND all registered
+      layers), then re-post the named retained root without regeneration; the operator
+      has not changed any manifest, canvas, acceptance rule or source pixel.'
+lead_selected_take: 2
+eligible_for_promotion: false
+authorized_force_checks:
+- palette_drift
+retained_original_count: 4
+historical_take_proofs:
+- take: 1
+  source_png_sha256: b50406dcb42a2c91cf409390658b7eb1022822ccfceb35f76f4faeedd52f5d70
+  source_rgba_sha256: 62635780fa940b51003ccbc714022063a380add8cb656200adf97891edc5286b
+  historical_q90_take: design/art/takes/batch-58-gate-round-door/gate-door-scene/ui__gate-door-scene--t1.webp
+  historical_q90_sha256: f87f714dc22b4ad7751af1d2554f5bd2069e2dcac069f0201d69e8b4cd0ddacd
+  qa_sha256: 907ca2011186eff72c97d6505b34c528ccd0b6d986b6dddc6c2676b4f99d39df
+  locked_sha256: 6408304f6f351251b8c555c6a534458af51b71a4fe9cb91f11e0c72bea0a2e2a
+- take: 2
+  source_png_sha256: 87522910cf2faecfc063963b8557a598ee917805a61bb599f53f85eb12f095d3
+  source_rgba_sha256: b080b7e39ecdddb38ca2cae46f219b8e3424ee5cdec09834230a0c744a68b6e5
+  historical_q90_take: design/art/takes/batch-58-gate-round-door/gate-door-scene/ui__gate-door-scene--t2.webp
+  historical_q90_sha256: 4ad157a906dba45d466df5adf8249e2001f1d06d570177b6fd55476d27ef67db
+  qa_sha256: c668b7048d494b1d8ccad37c7b7bfc113d0c7332d60330b54c666cf9a9815443
+  locked_sha256: a95d80ce3bb0482d023f076597ad01c7d6af704275993cd2de2400b00c12dab4
+- take: 3
+  source_png_sha256: c3b6ea7ee4d8a3469dfb18ac5257cd38ac834a113c92714cff457bbc8a4e99ac
+  source_rgba_sha256: 0dc30260ad0b30939383603ed19b664bc347d0085b96d42b718589d2ac907dda
+  historical_q90_take: design/art/takes/batch-58-gate-round-door/gate-door-scene/ui__gate-door-scene--t3.webp
+  historical_q90_sha256: 4a14e354d801c14bc917ca19c8415edb6c9bb20b94fbe6aa6db24de72e46a54b
+  qa_sha256: 2fb6faa212d192a0fb69246c20627c28efce96c79e2d2fd76f01a07f48de1b14
+  locked_sha256: a01da23773fa5e4912c55c8327e85d6e93572bb236153645163b12f1cd41d613
+- take: 4
+  source_png_sha256: b2481d1cff00d696c559d2b6c7e872a6b2f62f19130a1f685e167b6753843c1d
+  source_rgba_sha256: 2512b9ac8597279e72ed7e27038b7fc55b9d715614944b19fc3c83a02a3a596f
+  historical_q90_take: design/art/takes/batch-58-gate-round-door/gate-door-scene/ui__gate-door-scene--t4.webp
+  historical_q90_sha256: 4add7ea14d6c5bce08111a71c1fb02a38fd01fafb98db39aca526b3f1eaa2bab
+  qa_sha256: f110628e0e63f8d20644c2101195df87ec1e51b75cfea621ea951c980a781075
+  locked_sha256: da541f2f5524a18ca40e27893ae2043b625a45b9ec3c3ec047d4964d243aafd2
