@@ -98,8 +98,8 @@ public struct ShieldContext: Hashable, Sendable {
     public var reachesThisHour: Int
     /// Pofu's wellbeing, `0...1`.
     public var wellbeing: Double
-    /// Calm, as a multiplier (ADR-0015); `nil` until calm exists in
-    /// `PofuCore`, and the copy then leaves it out.
+    /// Calm, as a multiplier (ADR-0015). The shield never shows it: a
+    /// multiplier is jargon at the moment of reaching (UI v3, section 3).
     public var calm: Double?
     /// Today's measured guarded time reached the daily hour.
     public var isPastDailyHour: Bool
@@ -346,11 +346,6 @@ struct ShieldWords {
         language == .turkish ? turkish : english
     }
 
-    private func calmText(_ calm: Double) -> String {
-        let text = String(format: "%.1f", locale: Locale(identifier: "en_US_POSIX"), calm)
-        return "×" + (language == .turkish ? text.replacingOccurrences(of: ".", with: ",") : text)
-    }
-
     private func ordinal(_ number: Int) -> String {
         if language == .turkish { return "\(number)." }
         let tens = number % 100
@@ -394,11 +389,8 @@ struct ShieldWords {
     }
 
     var passEndedTitle: String { pick("Süre doldu.", "Time's up.") }
-    func passEndedSubtitle(minutes: Int, calm: Double?) -> String {
-        if let calm {
-            return pick("\(minutes) dakika bitti. Huzur \(calmText(calm)) seni bekliyor.", "\(minutes) minutes are up. Calm is waiting at \(calmText(calm)).")
-        }
-        return pick("\(minutes) dakika bitti. Kapıya döndüm.", "\(minutes) minutes are up. I'm back at the door.")
+    func passEndedSubtitle(minutes: Int) -> String {
+        pick("\(minutes) dakika bitti. Kapıya döndüm.", "\(minutes) minutes are up. I'm back at the door.")
     }
 
     func breathTitle(atNight: Bool) -> String {
@@ -423,52 +415,28 @@ struct ShieldWords {
         return [pick("Yine mi \(name)?", "\(name) again?"), pick("Hı. \(name). Anladım.", "Oh. \(name). I see.")]
     }
     func jealousSubtitle(reachesThisHour: Int) -> String {
-        pick("Bu saat \(ordinal(reachesThisHour)) kez. Onda olup bende olmayan ne?", "\(ordinal(reachesThisHour)) time this hour. What does it have that I don't?")
+        pick("Bu saat \(ordinal(reachesThisHour)) kez. Onda ne var, bende yok?", "\(ordinal(reachesThisHour)) time this hour. What does it have that I don't?")
     }
 
     var kindTitle: String { pick("Buradayım.", "I'm here.") }
-    func kindSubtitle(reachesThisHour: Int, calm: Double?) -> String {
-        if calm != nil {
-            return pick("Bu saat \(ordinal(reachesThisHour)) kez. Huzur yine büyür, acele yok.", "\(ordinal(reachesThisHour)) time this hour. Calm grows back; no rush.")
-        }
-        return pick("Bu saat \(ordinal(reachesThisHour)) kez. Acele yok.", "\(ordinal(reachesThisHour)) time this hour. No rush.")
+    func kindSubtitle(reachesThisHour: Int) -> String {
+        pick("Bu saat \(ordinal(reachesThisHour)) kez. Acele yok.", "\(ordinal(reachesThisHour)) time this hour. No rush.")
     }
 
     var secondTitles: [String] { [pick("Az önce de geldik.", "We were just here."), pick("Bir daha mı?", "Once more?")] }
-    func secondSubtitle(calm: Double?) -> String {
-        if let calm {
-            return pick("Huzur \(calmText(calm)) · büyüyor. Boş verirsen büyümeye devam eder.", "Calm \(calmText(calm)) · growing. Skip it and it keeps growing.")
-        }
-        return pick("Boş vermek hâlâ tek dokunuş.", "Skipping is still one tap.")
-    }
+    var secondSubtitle: String { pick("Boş vermek hâlâ tek dokunuş.", "Skipping is still one tap.") }
 
     var morningTitles: [String] { [pick("Günaydın. Önce ben.", "Morning. Me first."), pick("Güne akışla mı başlıyoruz?", "Starting with the feed?")] }
-    func morningSubtitle(calm: Double?) -> String {
-        if let calm {
-            return pick("Güne akışla başlamayalım. Huzur \(calmText(calm)).", "Let's not start the day with the feed. Calm \(calmText(calm)).")
-        }
-        return pick("Güne akışla başlamayalım.", "Let's not start the day with the feed.")
-    }
+    var morningSubtitle: String { pick("Çay demleniyor, akış bekleyebilir.", "The tea is brewing; the feed can wait.") }
 
     func dayTitles(_ naming: ShieldAppNaming) -> [String] {
         let wait = naming.name.map { pick("\($0) bekleyebilir.", "\($0) can wait.") } ?? pick("Bu bekleyebilir.", "This can wait.")
         return [pick("Hop! Bir saniye.", "Hop! One second."), wait]
     }
-    func daySubtitle(calm: Double?) -> String {
-        if let calm {
-            return pick("Ben buradayım. Huzur \(calmText(calm)) · büyüyor.", "I'm right here. Calm \(calmText(calm)) · growing.")
-        }
-        return pick("Ben buradayım.", "I'm right here.")
-    }
+    var daySubtitle: String { pick("Ben buradayım. Bir şey kaçmıyor.", "I'm right here. Nothing is slipping away.") }
 
     var eveningTitles: [String] { [pick("Akşam akışı mı?", "Evening scroll?"), pick("Günün en zor saati.", "The hardest hour.")] }
-    func eveningSubtitle(calm: Double?) -> String {
-        guard let calm else { return pick("Bu saatler en zoru.", "These hours are the hardest.") }
-        if calm >= 1.8 {
-            return pick("Bu saatler en zoru. Huzur \(calmText(calm)), neredeyse dolu.", "These hours are the hardest. Calm \(calmText(calm)), almost full.")
-        }
-        return pick("Bu saatler en zoru. Huzur \(calmText(calm)) · büyüyor.", "These hours are the hardest. Calm \(calmText(calm)) · growing.")
-    }
+    var eveningSubtitle: String { pick("Yorgun el en çok şimdi uzanır. Yanındayım.", "Tired hands reach most now. I'm beside you.") }
 }
 
 // MARK: - The ladder
@@ -515,7 +483,7 @@ private struct ShieldCopyWriter {
                 line: .passEnded,
                 icon: .relieved,
                 title: words.passEndedTitle,
-                lineOne: words.passEndedSubtitle(minutes: context.endedPassMinutes ?? 0, calm: context.calm),
+                lineOne: words.passEndedSubtitle(minutes: context.endedPassMinutes ?? 0),
                 withTally: false,
                 primary: .init(label: words.doneClose, intent: .closeAfterPass),
                 open: openPath(label: words.aBitMore)
@@ -565,24 +533,24 @@ private struct ShieldCopyWriter {
                 line: .kind,
                 icon: .curious,
                 title: words.kindTitle,
-                lineOne: words.kindSubtitle(reachesThisHour: context.reachesThisHour, calm: context.calm),
+                lineOne: words.kindSubtitle(reachesThisHour: context.reachesThisHour),
                 withTally: true,
                 primary: primary,
                 open: open
             )
         }
         if context.reachesThisHour == 2 {
-            return copy(line: .second, icon: .curious, title: variant(words.secondTitles), lineOne: words.secondSubtitle(calm: context.calm), withTally: true, primary: primary, open: open)
+            return copy(line: .second, icon: .curious, title: variant(words.secondTitles), lineOne: words.secondSubtitle, withTally: true, primary: primary, open: open)
         }
         let proud = context.resistedToday >= 3 && context.resistedToday * 2 >= context.reachesToday
         let icon: ShieldIcon = proud ? .proud : .curious
         switch context.hour {
         case 6..<11:
-            return copy(line: .morning, icon: icon, title: variant(words.morningTitles), lineOne: words.morningSubtitle(calm: context.calm), withTally: true, primary: primary, open: open)
+            return copy(line: .morning, icon: icon, title: variant(words.morningTitles), lineOne: words.morningSubtitle, withTally: true, primary: primary, open: open)
         case 17..<24:
-            return copy(line: .evening, icon: icon, title: variant(words.eveningTitles), lineOne: words.eveningSubtitle(calm: context.calm), withTally: true, primary: primary, open: open)
+            return copy(line: .evening, icon: icon, title: variant(words.eveningTitles), lineOne: words.eveningSubtitle, withTally: true, primary: primary, open: open)
         default:
-            return copy(line: .day, icon: icon, title: variant(words.dayTitles(naming)), lineOne: words.daySubtitle(calm: context.calm), withTally: true, primary: primary, open: open)
+            return copy(line: .day, icon: icon, title: variant(words.dayTitles(naming)), lineOne: words.daySubtitle, withTally: true, primary: primary, open: open)
         }
     }
 
