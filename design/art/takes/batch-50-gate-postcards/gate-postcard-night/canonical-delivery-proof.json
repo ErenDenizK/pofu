@@ -1,0 +1,27 @@
+{
+  "metadata": {
+    "scale": 0.5,
+    "original_size": [
+      1024,
+      1536
+    ],
+    "delivered_size": [
+      512,
+      768
+    ]
+  },
+  "master_rgba_sha256": "3a1b64cdf8e8124e04dcb7eef138f20011a2e8d7b4c277e2fc426017463e49cb",
+  "locked_png_sha256": "89f7cb58acf22e33cbb09b0cf7758a6fc7632e175e2a69edd1b94efbede673d2",
+  "raw": {
+    "raw_sha256": "e262590272aba07af51dca9d893de9248369bc083663fb153d190a727ad50228",
+    "source_sha256": "e8e06d5dcb61c03383470b98aa539f41a15727f9c039421095a9a3c37d24273f",
+    "encoding": "webp lossless",
+    "official_canonical_bytes_identical": true
+  },
+  "canonical_context_sha256": "efe1606108b82abb3b22378fc1ae4382adacac2ee7f0d73ccd63c32990b97cc3",
+  "preview": {
+    "all_alpha_and_visible_rgb_identical": true,
+    "canonical_rgba_sha256": "3a1b64cdf8e8124e04dcb7eef138f20011a2e8d7b4c277e2fc426017463e49cb",
+    "preview_rgba_sha256": "3a1b64cdf8e8124e04dcb7eef138f20011a2e8d7b4c277e2fc426017463e49cb"
+  }
+}
