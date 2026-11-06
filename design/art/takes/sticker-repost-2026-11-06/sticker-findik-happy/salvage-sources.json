@@ -1,0 +1,272 @@
+{
+  "batch": "batch-42-stickers",
+  "source_count": 4,
+  "original_branch": "art/batch-42-stickers/all",
+  "original_commit": "b77792fc184547204c0710b19223c68b5a64fde1",
+  "sources": [
+    {
+      "batch": "batch-42-stickers",
+      "job": "sticker-findik-happy",
+      "take": 1,
+      "round": 1,
+      "logical_run": "b42-residents-a",
+      "source_file": "/workspace/generated_images/exec-4550d4ed-38fb-4b99-b55c-52012116585d.png",
+      "returned_at": "2026-11-06T02:17:07.616Z",
+      "prompt_sha256": "138fe67ef961b93a5d09311f6e19e6ba8fc9ec22629070bc8ef4fdf311696fd0",
+      "fingerprint": "f7f20bf46148dedc",
+      "saved_at": "2026-11-06T02:17:08.966672+00:00",
+      "original_generated_png_sha256": "664c0db72eb9bfc8b5562a74b74613bc04cd255f5bb09810370f30d02052212e",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "rgba_sha256": "cec6390caa662dd1f079e8a9c87ab280ad1c769d29bddea28609234621363c50",
+      "evaluation_take": 1,
+      "original_take": 1,
+      "original_run": "batch-42-stickers",
+      "original_callback": "/workspace/art-operator-runtime/run-20261106/batch-42-stickers/generated-sticker-findik-happy-t1.json",
+      "original_callback_sha256": "f68c250b33eb6a59ebef96cf3d97eacc7453994812028df6e2a7908702f45ad8",
+      "original_tool_callback": "/workspace/art-operator-runtime/run-20261106/batch-42-stickers/callback-sticker-findik-happy-t1.json",
+      "original_tool_callback_sha256": "39ca66e6f2c54d98276714adb92679361caa26a104c79ed62a08fa48d789256d",
+      "original_sidecar": {
+        "job": "sticker-findik-happy",
+        "take": 1,
+        "batch": "batch-42-stickers",
+        "fingerprint": "f7f20bf46148dedc",
+        "prompt": "REFERENCES (attached, in this order):\n1. Fındık, the hedgehog: his exact look, spines, colors and eyes.\n\nA single full-body sticker of Fındık the hedgehog in the exact attached look, eyes as happy closed arcs, a small smile, spines relaxed. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.\n\nAVOID: text, a white outline, a background, teeth, tears, motion lines, a different design.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+        "attachments": [
+          {
+            "path": "design/art/masters/findik-base/findik-base.webp",
+            "role": "Fındık, the hedgehog: his exact look, spines, colors and eyes."
+          }
+        ],
+        "background": "transparent",
+        "generated_at": "2026-11-06T02:17:11+00:00",
+        "backend": "codex-cloud",
+        "source_file": "/workspace/generated_images/exec-4550d4ed-38fb-4b99-b55c-52012116585d.png",
+        "account": {
+          "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+          "kind": "chatgpt-plan"
+        }
+      },
+      "original_sidecar_path": "/workspace/art-20261106-stickers/design/art/inbox/batch-42-stickers/char__sticker-findik-happy--t1.json",
+      "original_sidecar_sha256": "7b224b29d6669ce11d1d97a152225acaa04297cbba3121465975856242e59675",
+      "original_sidecar_archive": "/workspace/art-operator-runtime/run-20261106/completed-art-checkout-backups/run-20261106--batch-42-stickers.tar.gz",
+      "original_sidecar_archive_member": "design/art/inbox/batch-42-stickers/char__sticker-findik-happy--t1.json",
+      "original_packet": {
+        "batch": "batch-42-stickers",
+        "job": "sticker-findik-happy",
+        "worktree": "/workspace/art-20261106-stickers",
+        "prompt": "REFERENCES (attached, in this order):\n1. Fındık, the hedgehog: his exact look, spines, colors and eyes.\n\nA single full-body sticker of Fındık the hedgehog in the exact attached look, eyes as happy closed arcs, a small smile, spines relaxed. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.\n\nAVOID: text, a white outline, a background, teeth, tears, motion lines, a different design.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+        "refs": [
+          "/workspace/art-20261106-stickers/design/art/masters/findik-base/findik-base.webp"
+        ],
+        "reference_sha256": {
+          "/workspace/art-20261106-stickers/design/art/masters/findik-base/findik-base.webp": "e9bd389e4f6efd7ae9873a6aebc09e6056b83be4529af8d99241ea5481bd6055"
+        },
+        "fingerprint": "f7f20bf46148dedc",
+        "prompt_sha256": "138fe67ef961b93a5d09311f6e19e6ba8fc9ec22629070bc8ef4fdf311696fd0",
+        "transparent": true
+      },
+      "original_packet_sha256": "062d3c02f9ac135ef4ad16dc6287cc43e8d3da4e638226896e1041f7a464a6fb"
+    },
+    {
+      "batch": "batch-42-stickers",
+      "job": "sticker-findik-happy",
+      "take": 2,
+      "round": 1,
+      "logical_run": "b42-residents-a",
+      "source_file": "/workspace/generated_images/exec-2d5f5dce-c265-4166-bb74-fcc425d033df.png",
+      "returned_at": "2026-11-06T02:16:21.525Z",
+      "prompt_sha256": "138fe67ef961b93a5d09311f6e19e6ba8fc9ec22629070bc8ef4fdf311696fd0",
+      "fingerprint": "f7f20bf46148dedc",
+      "saved_at": "2026-11-06T02:16:21.932354+00:00",
+      "original_generated_png_sha256": "3a74232a8469d5e30b8ba707e54b6f6842f84d3d0b8c74d75820f23669324003",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "rgba_sha256": "6c49bf597993ff09e9b2d9973c3e550cb59b6584ce2eb9c2a6248fc25adcbf26",
+      "evaluation_take": 2,
+      "original_take": 2,
+      "original_run": "batch-42-stickers",
+      "original_callback": "/workspace/art-operator-runtime/run-20261106/batch-42-stickers/generated-sticker-findik-happy-t2.json",
+      "original_callback_sha256": "e9a7e622baaabf60b37925d88f5305b96e0894ef320e96f8b66c1ed1ac87146c",
+      "original_tool_callback": "/workspace/art-operator-runtime/run-20261106/batch-42-stickers/callback-sticker-findik-happy-t2.json",
+      "original_tool_callback_sha256": "e2be754c261fdea56c467b1f21b3f9020cdba5dc93444f144baa1ad03ac045ad",
+      "original_sidecar": {
+        "job": "sticker-findik-happy",
+        "take": 2,
+        "batch": "batch-42-stickers",
+        "fingerprint": "f7f20bf46148dedc",
+        "prompt": "REFERENCES (attached, in this order):\n1. Fındık, the hedgehog: his exact look, spines, colors and eyes.\n\nA single full-body sticker of Fındık the hedgehog in the exact attached look, eyes as happy closed arcs, a small smile, spines relaxed. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.\n\nAVOID: text, a white outline, a background, teeth, tears, motion lines, a different design.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+        "attachments": [
+          {
+            "path": "design/art/masters/findik-base/findik-base.webp",
+            "role": "Fındık, the hedgehog: his exact look, spines, colors and eyes."
+          }
+        ],
+        "background": "transparent",
+        "generated_at": "2026-11-06T02:17:11+00:00",
+        "backend": "codex-cloud",
+        "source_file": "/workspace/generated_images/exec-2d5f5dce-c265-4166-bb74-fcc425d033df.png",
+        "account": {
+          "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+          "kind": "chatgpt-plan"
+        }
+      },
+      "original_sidecar_path": "/workspace/art-20261106-stickers/design/art/inbox/batch-42-stickers/char__sticker-findik-happy--t2.json",
+      "original_sidecar_sha256": "788a5d72239e8c784518d11f2aef764a10d0a6e793ddc6fa2745a87e0a3e3007",
+      "original_sidecar_archive": "/workspace/art-operator-runtime/run-20261106/completed-art-checkout-backups/run-20261106--batch-42-stickers.tar.gz",
+      "original_sidecar_archive_member": "design/art/inbox/batch-42-stickers/char__sticker-findik-happy--t2.json",
+      "original_packet": {
+        "batch": "batch-42-stickers",
+        "job": "sticker-findik-happy",
+        "worktree": "/workspace/art-20261106-stickers",
+        "prompt": "REFERENCES (attached, in this order):\n1. Fındık, the hedgehog: his exact look, spines, colors and eyes.\n\nA single full-body sticker of Fındık the hedgehog in the exact attached look, eyes as happy closed arcs, a small smile, spines relaxed. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.\n\nAVOID: text, a white outline, a background, teeth, tears, motion lines, a different design.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+        "refs": [
+          "/workspace/art-20261106-stickers/design/art/masters/findik-base/findik-base.webp"
+        ],
+        "reference_sha256": {
+          "/workspace/art-20261106-stickers/design/art/masters/findik-base/findik-base.webp": "e9bd389e4f6efd7ae9873a6aebc09e6056b83be4529af8d99241ea5481bd6055"
+        },
+        "fingerprint": "f7f20bf46148dedc",
+        "prompt_sha256": "138fe67ef961b93a5d09311f6e19e6ba8fc9ec22629070bc8ef4fdf311696fd0",
+        "transparent": true
+      },
+      "original_packet_sha256": "062d3c02f9ac135ef4ad16dc6287cc43e8d3da4e638226896e1041f7a464a6fb"
+    },
+    {
+      "batch": "batch-42-stickers",
+      "job": "sticker-findik-happy",
+      "take": 3,
+      "round": 2,
+      "logical_run": "b42-residents-retries",
+      "source_file": "/workspace/generated_images/exec-d58b64ff-88bb-479f-9ea9-6e10a8805c6d.png",
+      "returned_at": "2026-11-06T02:22:03.904Z",
+      "prompt_sha256": "138fe67ef961b93a5d09311f6e19e6ba8fc9ec22629070bc8ef4fdf311696fd0",
+      "fingerprint": "f7f20bf46148dedc",
+      "saved_at": "2026-11-06T02:22:04.272735+00:00",
+      "original_generated_png_sha256": "d6a8c5b779510c90d8d4e5e0b3f077888813fb2135b1c2255d36931402b52960",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "rgba_sha256": "d0b908f00834ff751638e3d3095e2be0371edddb905d8b835ebbb3ce9520ede2",
+      "evaluation_take": 3,
+      "original_take": 3,
+      "original_run": "batch-42-stickers",
+      "original_callback": "/workspace/art-operator-runtime/run-20261106/batch-42-stickers/generated-sticker-findik-happy-t3.json",
+      "original_callback_sha256": "099c5ad49de1f38f867c7efb93d4531c93dc5ea1c564dfb0a63bebce95453a5a",
+      "original_tool_callback": "/workspace/art-operator-runtime/run-20261106/batch-42-stickers/callback-sticker-findik-happy-t3.json",
+      "original_tool_callback_sha256": "ead0ae3c00d15f16b607ebd0dc5193415e734d7d0de8f4f7a9a86c41b4bb91af",
+      "original_sidecar": {
+        "job": "sticker-findik-happy",
+        "take": 3,
+        "batch": "batch-42-stickers",
+        "fingerprint": "f7f20bf46148dedc",
+        "prompt": "REFERENCES (attached, in this order):\n1. Fındık, the hedgehog: his exact look, spines, colors and eyes.\n\nA single full-body sticker of Fındık the hedgehog in the exact attached look, eyes as happy closed arcs, a small smile, spines relaxed. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.\n\nAVOID: text, a white outline, a background, teeth, tears, motion lines, a different design.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+        "attachments": [
+          {
+            "path": "design/art/masters/findik-base/findik-base.webp",
+            "role": "Fındık, the hedgehog: his exact look, spines, colors and eyes."
+          }
+        ],
+        "background": "transparent",
+        "generated_at": "2026-11-06T02:22:19+00:00",
+        "backend": "codex-cloud",
+        "source_file": "/workspace/generated_images/exec-d58b64ff-88bb-479f-9ea9-6e10a8805c6d.png",
+        "account": {
+          "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+          "kind": "chatgpt-plan"
+        }
+      },
+      "original_sidecar_path": "/workspace/art-20261106-stickers/design/art/inbox/batch-42-stickers/char__sticker-findik-happy--t3.json",
+      "original_sidecar_sha256": "93e217fbcae8421426b9e7f0995442d860cedc86f0571235d1e4699a5e191dba",
+      "original_sidecar_archive": "/workspace/art-operator-runtime/run-20261106/completed-art-checkout-backups/run-20261106--batch-42-stickers.tar.gz",
+      "original_sidecar_archive_member": "design/art/inbox/batch-42-stickers/char__sticker-findik-happy--t3.json",
+      "original_packet": {
+        "batch": "batch-42-stickers",
+        "job": "sticker-findik-happy",
+        "worktree": "/workspace/art-20261106-stickers",
+        "prompt": "REFERENCES (attached, in this order):\n1. Fındık, the hedgehog: his exact look, spines, colors and eyes.\n\nA single full-body sticker of Fındık the hedgehog in the exact attached look, eyes as happy closed arcs, a small smile, spines relaxed. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.\n\nAVOID: text, a white outline, a background, teeth, tears, motion lines, a different design.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+        "refs": [
+          "/workspace/art-20261106-stickers/design/art/masters/findik-base/findik-base.webp"
+        ],
+        "reference_sha256": {
+          "/workspace/art-20261106-stickers/design/art/masters/findik-base/findik-base.webp": "e9bd389e4f6efd7ae9873a6aebc09e6056b83be4529af8d99241ea5481bd6055"
+        },
+        "fingerprint": "f7f20bf46148dedc",
+        "prompt_sha256": "138fe67ef961b93a5d09311f6e19e6ba8fc9ec22629070bc8ef4fdf311696fd0",
+        "transparent": true
+      },
+      "original_packet_sha256": "062d3c02f9ac135ef4ad16dc6287cc43e8d3da4e638226896e1041f7a464a6fb"
+    },
+    {
+      "batch": "batch-42-stickers",
+      "job": "sticker-findik-happy",
+      "take": 4,
+      "round": 2,
+      "logical_run": "b42-residents-retries",
+      "source_file": "/workspace/generated_images/exec-9dfbd434-9638-401c-80b1-f1a76cc94bc5.png",
+      "returned_at": "2026-11-06T02:21:14.789Z",
+      "prompt_sha256": "138fe67ef961b93a5d09311f6e19e6ba8fc9ec22629070bc8ef4fdf311696fd0",
+      "fingerprint": "f7f20bf46148dedc",
+      "saved_at": "2026-11-06T02:21:15.360601+00:00",
+      "original_generated_png_sha256": "6f9613ccaa43c7874b3d3b0d3f1509a0dcfdd9013bb504e0af676a5b7ae65e09",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "rgba_sha256": "4fdb2070842dd031b426b969150a27d21cfe37182c146f389e452ae71b16227d",
+      "evaluation_take": 4,
+      "original_take": 4,
+      "original_run": "batch-42-stickers",
+      "original_callback": "/workspace/art-operator-runtime/run-20261106/batch-42-stickers/generated-sticker-findik-happy-t4.json",
+      "original_callback_sha256": "21ffddca6f61d59e5b1406dd9a9df549c08fcac908367d69554f6ccd41a2ab18",
+      "original_tool_callback": "/workspace/art-operator-runtime/run-20261106/batch-42-stickers/callback-sticker-findik-happy-t4.json",
+      "original_tool_callback_sha256": "765e53a7d27c8cefebb340e5966582e2032bc415a707983f7e9a5040ba435383",
+      "original_sidecar": {
+        "job": "sticker-findik-happy",
+        "take": 4,
+        "batch": "batch-42-stickers",
+        "fingerprint": "f7f20bf46148dedc",
+        "prompt": "REFERENCES (attached, in this order):\n1. Fındık, the hedgehog: his exact look, spines, colors and eyes.\n\nA single full-body sticker of Fındık the hedgehog in the exact attached look, eyes as happy closed arcs, a small smile, spines relaxed. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.\n\nAVOID: text, a white outline, a background, teeth, tears, motion lines, a different design.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+        "attachments": [
+          {
+            "path": "design/art/masters/findik-base/findik-base.webp",
+            "role": "Fındık, the hedgehog: his exact look, spines, colors and eyes."
+          }
+        ],
+        "background": "transparent",
+        "generated_at": "2026-11-06T02:22:20+00:00",
+        "backend": "codex-cloud",
+        "source_file": "/workspace/generated_images/exec-9dfbd434-9638-401c-80b1-f1a76cc94bc5.png",
+        "account": {
+          "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+          "kind": "chatgpt-plan"
+        }
+      },
+      "original_sidecar_path": "/workspace/art-20261106-stickers/design/art/inbox/batch-42-stickers/char__sticker-findik-happy--t4.json",
+      "original_sidecar_sha256": "09c9db281856fc4d079d7681da0d334be11f5bbab49f2ba3ac84d4ae619ed6c8",
+      "original_sidecar_archive": "/workspace/art-operator-runtime/run-20261106/completed-art-checkout-backups/run-20261106--batch-42-stickers.tar.gz",
+      "original_sidecar_archive_member": "design/art/inbox/batch-42-stickers/char__sticker-findik-happy--t4.json",
+      "original_packet": {
+        "batch": "batch-42-stickers",
+        "job": "sticker-findik-happy",
+        "worktree": "/workspace/art-20261106-stickers",
+        "prompt": "REFERENCES (attached, in this order):\n1. Fındık, the hedgehog: his exact look, spines, colors and eyes.\n\nA single full-body sticker of Fındık the hedgehog in the exact attached look, eyes as happy closed arcs, a small smile, spines relaxed. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.\n\nAVOID: text, a white outline, a background, teeth, tears, motion lines, a different design.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+        "refs": [
+          "/workspace/art-20261106-stickers/design/art/masters/findik-base/findik-base.webp"
+        ],
+        "reference_sha256": {
+          "/workspace/art-20261106-stickers/design/art/masters/findik-base/findik-base.webp": "e9bd389e4f6efd7ae9873a6aebc09e6056b83be4529af8d99241ea5481bd6055"
+        },
+        "fingerprint": "f7f20bf46148dedc",
+        "prompt_sha256": "138fe67ef961b93a5d09311f6e19e6ba8fc9ec22629070bc8ef4fdf311696fd0",
+        "transparent": true
+      },
+      "original_packet_sha256": "062d3c02f9ac135ef4ad16dc6287cc43e8d3da4e638226896e1041f7a464a6fb"
+    }
+  ]
+}
