@@ -2,13 +2,12 @@ id: asset-lighthouse-5-blue
 type: asset
 title_tr: lighthouse-5-blue
 title_en: lighthouse-5-blue (station)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  Recolor the lighthouse to its blue option. The coral stripes of the tower, the coral cap
-  and the coral flag become soft sea-blue; the cream stripes stay cream. The lit lamp room's
-  glow, the honey balcony and its rail, the round window, the door, the flowers at the foot
-  and the base keep their exact colors.
+summary: Recolor the lighthouse to its blue option. The coral stripes of the tower,
+  the coral cap and the coral flag become soft sea-blue; the cream stripes stay cream.
+  The lit lamp room's glow, the honey balcony and its rail, the round window, the
+  door, the flowers at the foot and the base keep their exact colors.
 links:
   variant_of:
   - asset-lighthouse-5
@@ -20,3 +19,16 @@ sources:
 - doc: tools/imagegen/manifest/batch-40-home-ladder-gaps.yaml
 kind: station
 batch: batch-40-home-ladder-gaps
+notes:
+- 'batch-40-home-ladder-gaps skipped after four takes: One unchanged-prompt retry
+  exhausted. All four takes hard-fail the existing chroma_ceiling check: p95 values63.0,61.1,60.8,62.0.
+  Takes1,2,4 also hard-fail palette_drift with mean dE5.5762,4.7205,5.3816. These
+  official failures alone exclude every take; no extra manual geometry or clipping
+  failure is invented. Exact approved parent, original PNG/RGBA hashes and official
+  source/locked QA preserved. No source recoloring, threshold waiver, extra generation,
+  master or Harmony promotion. Automated failures: t1 chroma_ceiling: chroma p95 63
+  (R1 51), palette_drift: mean dE 5.6, p95 12.9, off-palette 9.1% (top: #88BBCC (2.3%),
+  #CC7722 (0.6%)); t2 chroma_ceiling: chroma p95 61 (R1 51), palette_drift: mean dE
+  4.7, p95 11.7, off-palette 4.5% (top: #CC7722 (0.5%), #CC7733 (0.4%)); t3 chroma_ceiling:
+  chroma p95 61 (R1 51); t4 chroma_ceiling: chroma p95 62 (R1 51), palette_drift:
+  mean dE 5.4, p95 13.0, off-palette 10.0% (top: #88BBCC (2.9%), #88BBDD (1.5%)).'
