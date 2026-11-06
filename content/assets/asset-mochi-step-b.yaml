@@ -4,17 +4,18 @@ title_tr: mochi-step-b
 title_en: mochi-step-b (char)
 status: in-production
 horizon: now
-summary: >-
-  Edit the attached character, the bunny Mochi, into one animation frame: the right foot (the
-  viewer's left) lifted and stepping forward, the left foot planted, the mirror of the other
-  step, her long ears swaying slightly back. Keep the face, the colours, the fur, the size
-  and the exact position on the canvas the same; change only the legs and paws and a slight
-  sway, as a cute cartoon step, never a realistic gait.
+summary: 'Edit the attached character, the bunny Mochi, into one animation frame:
+  the right foot (the viewer''s left) lifted and stepping forward, the left foot planted,
+  the mirror of the other step, her long ears swaying slightly back. Keep the face,
+  the colours, the fur, the size and the exact position on the canvas the same; change
+  only the legs and paws and a slight sway, as a cute cartoon step, never a realistic
+  gait.'
 links:
   variant_of:
   - asset-mochi-v2
 art:
-  images: []
+  images:
+  - design/art/masters/mochi-step-b/mochi-step-b.webp
   jobs:
   - batch-59-resident-walks:mochi-step-b
 sources:

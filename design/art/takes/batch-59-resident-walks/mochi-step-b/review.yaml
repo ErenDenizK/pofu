@@ -1,0 +1,219 @@
+batch: batch-59-resident-walks
+contact_sheet: design/art/takes/batch-59-resident-walks/mochi-step-b/contact.jpg
+jobs:
+  mochi-step-b:
+    pick: 2
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Both originals and official locked
+      takes preserve Mochi face, cream fur, long curl-free ears, scale and registered
+      framing, with the viewer-left foot raised and opposite foot planted, a genuine
+      opposite-foot frame rather than mirroring the whole face. Full source/locked
+      and 28px proper-alpha review passed. Raw-view warm glow is alpha0 hidden RGB
+      only. Both reports WARN/no hard failure; no lock_load check for registered edits,
+      so ordinary equal-load ranking chooses take2 by Harmony86.9 versus86.5. No new
+      background, shadow, motion marks or text; no force or new style gate.
+qa_reports:
+  2:
+    job: mochi-step-b
+    take: 2
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 33 (R1 51)
+      value: 32.6
+    - check: light_values
+      status: pass
+      message: 'day/subject: L p2 20 (at most 22), p98 98 (at least 90), spread 78
+        (at least 60)'
+      value: 77.6
+    - check: light_median
+      status: warn
+      message: 'day/subject: median L 93 (band 55-90)'
+      value: 93.0
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.26 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.263
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 3.8 (at least 3.5)'
+      value: 3.84
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.0 (R1 5.3)
+      value: 3.97
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 0.8, p95 1.7, off-palette 0.9% (top: #441100 (0.1%), #551100
+        (0.1%))'
+      value: 0.7549
+    - check: ground_line
+      status: pass
+      message: feet at 87.8% of the height (contract 88%)
+      value: 0.8783
+    - check: harmony
+      status: pass
+      message: 'harmony score 87 against the char reference (outliers: C_p95)'
+      value: 86.9
+    - check: edit_silhouette
+      status: warn
+      message: 91% of the parent's shape kept
+      value: 0.9092
+    - check: edit_stability
+      status: pass
+      message: 78% of the parent level unchanged
+      value: 0.7785
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.03 of the parent level (drift compounds along a chain)
+      value: 1.031
+    info:
+      metrics_raw:
+        L_p5: 65.5
+        L_p50: 93.0
+        L_p95: 97.1
+        C_p50: 8.8
+        C_p95: 32.6
+        C_p99: 43.9
+        detail: 3.97
+      metrics_locked:
+        L_p5: 65.5
+        L_p50: 93.0
+        L_p95: 97.1
+        C_p50: 8.8
+        C_p95: 32.6
+        C_p99: 43.9
+        detail: 3.97
+    fingerprint: 0b7ece00e2b2117c
+  1:
+    job: mochi-step-b
+    take: 1
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: edit_alignment
+      status: pass
+      message: the edit rescaled the object x1.000 and moved it; aligned back to the
+        parent
+      value: 0.9996
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 32 (R1 51)
+      value: 31.6
+    - check: light_values
+      status: pass
+      message: 'day/subject: L p2 21 (at most 22), p98 97 (at least 90), spread 76
+        (at least 60)'
+      value: 76.5
+    - check: light_median
+      status: warn
+      message: 'day/subject: median L 92 (band 55-90)'
+      value: 92.1
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.27 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.271
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 3.6 (at least 3.5)'
+      value: 3.56
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.7 (R1 5.3)
+      value: 3.67
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 0.8, p95 1.7, off-palette 0.9% (top: #883311 (0.1%), #441100
+        (0.1%))'
+      value: 0.8072
+    - check: ground_line
+      status: pass
+      message: feet at 88.0% of the height (contract 88%)
+      value: 0.8802
+    - check: harmony
+      status: pass
+      message: 'harmony score 86 against the char reference (outliers: C_p95)'
+      value: 86.5
+    - check: edit_silhouette
+      status: warn
+      message: 92% of the parent's shape kept
+      value: 0.9221
+    - check: edit_stability
+      status: pass
+      message: 82% of the parent level unchanged
+      value: 0.8171
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.06 of the parent level (drift compounds along a chain)
+      value: 1.0624
+    info:
+      alignment:
+        scale: 0.9996
+        cx: 515.0
+        cy: 1353.0
+        dx: 0
+        dy: 0
+      metrics_raw:
+        L_p5: 66.7
+        L_p50: 91.7
+        L_p95: 96.5
+        C_p50: 9.3
+        C_p95: 31.4
+        C_p99: 42.5
+        detail: 3.65
+      metrics_locked:
+        L_p5: 66.8
+        L_p50: 92.1
+        L_p95: 96.8
+        C_p50: 9.3
+        C_p95: 31.6
+        C_p99: 42.7
+        detail: 3.67
+    fingerprint: 0b7ece00e2b2117c
+manual_review:
+  excluded_takes: []
+  note: Both originals and official locked takes preserve Mochi face, cream fur, long
+    curl-free ears, scale and registered framing, with the viewer-left foot raised
+    and opposite foot planted, a genuine opposite-foot frame rather than mirroring
+    the whole face. Full source/locked and 28px proper-alpha review passed. Raw-view
+    warm glow is alpha0 hidden RGB only. Both reports WARN/no hard failure; no lock_load
+    check for registered edits, so ordinary equal-load ranking chooses take2 by Harmony86.9
+    versus86.5. No new background, shadow, motion marks or text; no force or new style
+    gate.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-27ee51ee-fadf-4d7e-90fe-2bd18aa6c1c4.png
+  original_generated_png_sha256: cb4bf8c3e5e28c720a826e17b44495c2821a3c90b0308d41b2607bfe19e1ed09
+  inbox_png_sha256: 91a9add9e0c6567d670a3a8396bd43cbda7cfa849e654cd1c3fa6ae41dae1b51
+  rgba_sha256: 02df177fc319362715df3099025817d05e2182af418a714fd384d73f409c6ddb
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 0b7ece00e2b2117c
+- take: 2
+  source_file: /workspace/generated_images/exec-c1dbb639-f408-4422-a000-98a7c5927a11.png
+  original_generated_png_sha256: 962b1743af878e6cd9bfdaf32541bd2adef945193f878323955afcae66378e40
+  inbox_png_sha256: 9db7443d12f432769d8b70cda257f8bab31a3d30b794d47f5a013cee9baa95a0
+  rgba_sha256: 81254488317b0d81eda4391fa72381a374f6cf37d7b86dc3b3317b4e1aebcd76
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 0b7ece00e2b2117c
