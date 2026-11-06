@@ -1,0 +1,218 @@
+batch: batch-57-home-growth-strip
+manifest: tools/imagegen/manifest/batch-57-home-growth-strip.yaml
+manifest_sha256: fc7a87434d3aa50ca6d2dd4207e4fafd52a1547085e2f8bca0520f96642118e8
+contact_sheet: design/art/takes/batch-57-home-growth-strip/x-growth-il7/contact.jpg
+jobs:
+  x-growth-il7:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Both initial originals are eligible
+      after root and independent bound review experience-pilot-b57-il5-il7-review-20261106T094058Z.json
+      (b8370767): raised back terrace and steps, identifiable open-front workshop
+      with tools/workbench, WHITE/cream lighthouse on the requested back terrace,
+      lamps along paths, extensive flower borders and flowering vines trailing over
+      rim/down earth body all present; no characters or text. The main oval/banded
+      body/original cross-window door/stone groups/four original roots remain recognizable.
+      Take1 wins normal lowest lock load1.1585 versus1.1992; original light-values/haze
+      warnings remain advisory, every hard QA check passes. Extra empty tea table/stools
+      and bench are nonexclusive decorative props, not a new hard inventory ban. Earlier
+      IL5pond/pier/extra doors and IL3bridge/cart are not visibly retained; disclose
+      that continuity limitation under the exact independent IL7 prose, do not certify
+      all prior station completeness or registered slot geometry. Typed IL7 lighthouse
+      placement follows the specific manifest rather than the older harbor location;
+      no hidden prompt/reference/pixel/QA change, force or retry. All originals, official
+      initial source/QA/locked seals and thumbnail/ref proofs preserved. Exploration
+      only; auto-picked by QA; founder review pending; never promoted.'
+qa_reports:
+  1:
+    job: x-growth-il7
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 31 (R1 51)
+      value: 30.6
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 59 (at most 22), p98 96 (at least 90), spread 37
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 36.8
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 83 (band 55-90)'
+      value: 82.6
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.36 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.365
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.8 (at least 3.5)'
+      value: 4.76
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.4 (R1 5.3)
+      value: 3.43
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.2
+      value: 1.1585
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.7, p95 5.0, off-palette 0.0%
+      value: 1.6583
+    info:
+      metrics_raw:
+        L_p5: 63.3
+        L_p50: 84.2
+        L_p95: 94.9
+        C_p50: 20.1
+        C_p95: 31.8
+        C_p99: 36.7
+        detail: 4.23
+      metrics_locked:
+        L_p5: 63.9
+        L_p50: 84.2
+        L_p95: 94.6
+        C_p50: 19.9
+        C_p95: 30.6
+        C_p99: 34.7
+        detail: 3.43
+    fingerprint: 9e50c9d2d5e0da50
+  2:
+    job: x-growth-il7
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 38 (R1 51)
+      value: 38.5
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 59 (at most 22), p98 96 (at least 90), spread 37
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 36.8
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 82 (band 55-90)'
+      value: 81.6
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.32 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.322
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.6 (at least 3.5)'
+      value: 4.62
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.6 (R1 5.3)
+      value: 3.59
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.2
+      value: 1.1992
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.5, p95 4.0, off-palette 0.0%
+      value: 1.5096
+    info:
+      metrics_raw:
+        L_p5: 62.2
+        L_p50: 86.6
+        L_p95: 95.1
+        C_p50: 19.0
+        C_p95: 40.0
+        C_p99: 45.2
+        detail: 4.39
+      metrics_locked:
+        L_p5: 62.8
+        L_p50: 86.5
+        L_p95: 94.9
+        C_p50: 19.2
+        C_p95: 38.5
+        C_p99: 43.7
+        detail: 3.59
+    fingerprint: 9e50c9d2d5e0da50
+manual_review:
+  observed_note: 'Both initial originals are eligible after root and independent bound
+    review experience-pilot-b57-il5-il7-review-20261106T094058Z.json (b8370767): raised
+    back terrace and steps, identifiable open-front workshop with tools/workbench,
+    WHITE/cream lighthouse on the requested back terrace, lamps along paths, extensive
+    flower borders and flowering vines trailing over rim/down earth body all present;
+    no characters or text. The main oval/banded body/original cross-window door/stone
+    groups/four original roots remain recognizable. Take1 wins normal lowest lock
+    load1.1585 versus1.1992; original light-values/haze warnings remain advisory,
+    every hard QA check passes. Extra empty tea table/stools and bench are nonexclusive
+    decorative props, not a new hard inventory ban. Earlier IL5pond/pier/extra doors
+    and IL3bridge/cart are not visibly retained; disclose that continuity limitation
+    under the exact independent IL7 prose, do not certify all prior station completeness
+    or registered slot geometry. Typed IL7 lighthouse placement follows the specific
+    manifest rather than the older harbor location; no hidden prompt/reference/pixel/QA
+    change, force or retry. All originals, official initial source/QA/locked seals
+    and thumbnail/ref proofs preserved. Exploration only; auto-picked by QA; founder
+    review pending; never promoted.'
+  excluded_takes: []
+sources:
+- batch: batch-57-home-growth-strip
+  job: x-growth-il7
+  take: 1
+  round: 1
+  logical_run: 20261106-b57-home-growth-strip
+  source_file: /workspace/generated_images/exec-7eca46ce-1187-4f78-a2e8-d1a62f4f9d17.png
+  returned_at: '2026-11-06T09:21:58.895Z'
+  prompt_sha256: 82c879ab4359d47538b3440d61d131663f8d4ee582fe6cb0aefad0083bff3abe
+  fingerprint: 9e50c9d2d5e0da50
+  saved_at: '2026-11-06T09:21:59.328329+00:00'
+  original_generated_png_sha256: 8926c279803ac0de06c6c41c8494053d31edb7175097d17a8b27a886a8d80743
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 47346c9b94c45a7a0a621f9b6020bd70e4a5018660d7a2030e57371196fc3805
+  inbox_png_sha256: d70f4eabc1d07b0ad814975ca46b790450d84b232f2ee36938be11530ae81b4c
+  qa_sha256: c4045d7990c92df3ed0fa90a6a9f67df936971a848cdcaefc7802ce48cdc50d8
+- batch: batch-57-home-growth-strip
+  job: x-growth-il7
+  take: 2
+  round: 1
+  logical_run: 20261106-b57-home-growth-strip
+  source_file: /workspace/generated_images/exec-fa3b75b9-422c-4353-b669-d2f26dd436f9.png
+  returned_at: '2026-11-06T09:20:20.612Z'
+  prompt_sha256: 82c879ab4359d47538b3440d61d131663f8d4ee582fe6cb0aefad0083bff3abe
+  fingerprint: 9e50c9d2d5e0da50
+  saved_at: '2026-11-06T09:20:21.027317+00:00'
+  original_generated_png_sha256: c02548ac680cde5eebf05192d10bf50da0f6c550ea4ac3686ec6bfa616defda9
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: df3838080c994ac48385faeb9acf72dc400f8b4a694a7bdfb9bd836d1f7eb6cb
+  inbox_png_sha256: a8a4fdb5acc8056260047afc6702a51b42550129f8d160de8393d00ee69b6023
+  qa_sha256: 9d7137db73fb0d2206b650a3e769c59b70a8f00686e38bb79af98f2cf1cb8043
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
