@@ -35,6 +35,9 @@ links:
   - sys-rituals
   uses_asset:
   - asset-harbor-island-s
+  - asset-goat-step-a
+  - asset-goat-step-b
+  - asset-goat-work-beat
   - asset-harbor-horn-1
   - asset-harbor-crates-1
   - asset-harbor-lamp-1
@@ -45,9 +48,6 @@ links:
   - asset-goat-sleepy
   - asset-goat-proud
   - asset-sticker-goat-indignant
-  - asset-goat-step-a
-  - asset-goat-step-b
-  - asset-goat-work-beat
 sources:
 - doc: docs/archive/archipelago-system.md
   anchor: '#11-island-concepts'

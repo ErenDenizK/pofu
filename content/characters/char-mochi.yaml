@@ -15,6 +15,9 @@ notes:
 links:
   uses_asset:
   - asset-mochi
+  - asset-mochi-step-a
+  - asset-mochi-step-b
+  - asset-mochi-work-beat
   - asset-mochi-v2
   - asset-mochi-work
   - asset-mochi-eyes-happy
@@ -28,9 +31,6 @@ links:
   - asset-sticker-mochi-thinking
   - asset-sticker-mochi-sulky
   - asset-sticker-duo-tea
-  - asset-mochi-step-a
-  - asset-mochi-step-b
-  - asset-mochi-work-beat
   inspired_by:
   - asset-concept-bunny
   related:
