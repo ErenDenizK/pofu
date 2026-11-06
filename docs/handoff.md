@@ -5,6 +5,34 @@ and `docs/product/founder-input.md`, then delete what is done. Keep the
 last two entries; older ones move to
 [archive/handoff-2026-11.md](archive/handoff-2026-11.md).
 
+## 2026-11-06 (morning, after the overnight run)
+
+**Done (merged overnight):** light and shadow v2 in three PRs: sun shadows
+from baked silhouettes (#222), night light from real sources with ground
+pools and a source table (#229), the level-up ceremony and cloud shadows
+(#240); art integrated: showcase (#225), experience set (#243), lit
+lighthouse / path lamp / Mochi's door, resident reactions by mood (#247);
+UI pass without makeshift controls, stickers in the UI with SF stand-ins
+(#239); the Koke prototype, the first wonder island end to end (#244).
+Pipeline: soft half-scale delivery (#220, #227), char ground fit and masked
+lit edits (#237). Docs: island healing arc with a variety table, production
+backlog P1-P4 before explorations (AGENTS.md), Koke spec. Codex delivered
+and the lead merged ~20 art PRs (Nazlı rig, Koke 0-2 + two poses, glows,
+critters, curtains, launch sky, reactions, style options).
+
+**Running:** Koke art + framing + the sticker canvas fix
+(feat/koke-art-and-framing).
+
+**Known gaps:** sun shadows read faint at the default zoom (placement is
+right, see shadow-debug); IL1 is still sparse; station sheet level card
+clipped; garden game pause/result buttons; style-option picker; windmill-1
+lit, frog, guest door/stall, hive-4/5 parked; Koke stages 3-4 and two poses
+missing (code fallbacks).
+
+**Next:** the founder's device test sets priorities; then tune shadows on
+device, Koke's remaining art, the style picker, Çağlayan (flow engine) per
+the game plan, resident relationship scenes.
+
 ## 2026-11-05 (overnight plan)
 
 The founder tests on his iPhone tomorrow; tonight every track grows and the
