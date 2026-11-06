@@ -50,6 +50,9 @@ public struct WorldLook: Hashable, Sendable {
     /// A fixed grade instead of the light's (screenshots: before and
     /// after a grade change); `nil` follows the hour and Pofu's state.
     public var gradeOverride: WorldGrade?
+    /// A fixed sky (screenshots: rain, mist, a rainbow); `nil` follows the
+    /// seeded weather of the date.
+    public var weatherOverride: WeatherConditions?
     /// The frame-time counter in a corner (debug).
     public var frameMeter: Bool
     /// The feel numbers the tuning lab panel tunes live (look round 4).

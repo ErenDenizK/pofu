@@ -114,6 +114,44 @@
       "sky": {"value": 0.88, "chroma": 0.55, "toward": "#9EAEC0", "amount": 0.3},
       "key": {"intensity": 0.7},
       "practicals": {"window": 0.55}
+    },
+    "weather": {
+      "$note": "Sky and weather v1 section 2.2 and 2.2b. Each row is layered over the hour like unwell is. key and fill are the spec's percentages; the grade's gain carries them (0.7 key + 0.3 fill) with a floor so the ground never reads gloomy (rain: the lawn stays above L* 55). Weather never follows the player. screenHaze is the player's sky (the unwell state's drawn haze): cool lilac-grey, value kept over chroma, never taking anything back; it is never weather mist (pale peach, from the sea at dawn).",
+      "overcast": {
+        "key": 0.7, "fill": 1.05, "fogExtra": 0.0,
+        "grade": {"gain": [0.80, 0.81, 0.83], "saturation": 0.9, "contrast": 0.8, "vignette": 0.1},
+        "character": {"gain": [0.99, 0.99, 1.0], "contrast": 0.96},
+        "sky": {"value": 0.92, "chroma": 0.7, "toward": "#AEB8C6", "amount": 0.35},
+        "practicals": {"window": 0.3}
+      },
+      "lightRain": {
+        "key": 0.5, "fill": 1.1, "fogExtra": 0.05,
+        "grade": {"lift": [0.012, 0.015, 0.024], "gain": [0.80, 0.84, 0.90], "saturation": 0.82, "contrast": 0.68, "vignette": 0.14},
+        "character": {"gain": [0.98, 0.99, 1.0], "contrast": 0.94},
+        "sky": {"value": 0.86, "chroma": 0.6, "toward": "#8E9DB2", "amount": 0.45},
+        "practicals": {"window": 0.85}
+      },
+      "mist": {
+        "key": 0.85, "fill": 1.0, "fogExtra": 0.15,
+        "grade": {"gain": [0.96, 0.93, 0.90], "saturation": 0.95, "contrast": 0.9, "vignette": 0.06},
+        "character": {"gain": [1.0, 0.99, 0.98], "contrast": 0.98},
+        "sky": {"value": 1.0, "chroma": 0.85, "toward": "#F2D4C0", "amount": 0.4},
+        "practicals": {"window": 0.3}
+      },
+      "goldenHaze": {
+        "key": 1.0, "fill": 1.0, "fogExtra": 0.04,
+        "grade": {"gain": [1.05, 1.0, 0.92], "saturation": 1.08, "contrast": 1.0},
+        "character": {"gain": [1.02, 1.0, 0.97]},
+        "sky": {"value": 1.0, "chroma": 1.1, "toward": "#FFD9A0", "amount": 0.22},
+        "practicals": {"window": 0.0}
+      },
+      "screenHaze": {
+        "key": 0.85, "fill": 1.0, "fogExtra": 0.18,
+        "grade": {"gamma": [0.98, 0.98, 1.0], "gain": [0.96, 0.95, 1.03], "saturation": 0.8, "contrast": 1.04, "vignette": 0.26},
+        "character": {"gain": [0.99, 0.99, 1.0]},
+        "sky": {"value": 0.94, "chroma": 0.6, "toward": "#A79CC6", "amount": 0.45},
+        "practicals": {"window": 0.5}
+      }
     }
   }
 }

@@ -91,6 +91,10 @@ public struct GameState: Hashable, Sendable {
     /// Whether the bedtime window in progress is still a calm night:
     /// `nil` outside one, or when Pofu did not see it begin.
     public internal(set) var calmNightCandidate: Bool?
+    /// The first local day the game ran: the weather's shuffled bags start
+    /// here (sky and weather v1 section 2.2b). Saves from before it load
+    /// with `nil` and take their first day on the next day roll.
+    public internal(set) var firstDay: LocalDay?
     /// Days Pofu observed, cumulative (never "in a row", A4).
     public internal(set) var tendedDays: Int
     /// Calm nights, cumulative.
@@ -118,6 +122,7 @@ public struct GameState: Hashable, Sendable {
         self.recentOpens = []
         self.today = nil
         self.calmNightCandidate = nil
+        self.firstDay = nil
         self.tendedDays = 0
         self.calmNights = 0
         self.quietRunMinutes = 0
@@ -147,7 +152,7 @@ extension GameState: Codable {
 
     private enum CodingKeys: String, CodingKey {
         case version, clock, lastSignalAt, awaitingReturn, guarded, foregroundSince, recentOpens, today
-        case calmNightCandidate, tendedDays, calmNights, quietRunMinutes, care, calm, stations, rounds, visitors, wonders
+        case calmNightCandidate, firstDay, tendedDays, calmNights, quietRunMinutes, care, calm, stations, rounds, visitors, wonders
     }
 
     /// A state from a newer build fails with `unsupportedVersion`; any
@@ -167,6 +172,7 @@ extension GameState: Codable {
         recentOpens = try container.decodeIfPresent([Date].self, forKey: .recentOpens) ?? []
         today = try container.decodeIfPresent(GameDay.self, forKey: .today)
         calmNightCandidate = try container.decodeIfPresent(Bool.self, forKey: .calmNightCandidate)
+        firstDay = try container.decodeIfPresent(LocalDay.self, forKey: .firstDay)
         tendedDays = max(0, try container.decodeIfPresent(Int.self, forKey: .tendedDays) ?? 0)
         calmNights = max(0, try container.decodeIfPresent(Int.self, forKey: .calmNights) ?? 0)
         quietRunMinutes = max(0, try container.decodeIfPresent(Int.self, forKey: .quietRunMinutes) ?? 0)
@@ -189,6 +195,7 @@ extension GameState: Codable {
         try container.encode(recentOpens, forKey: .recentOpens)
         try container.encodeIfPresent(today, forKey: .today)
         try container.encodeIfPresent(calmNightCandidate, forKey: .calmNightCandidate)
+        try container.encodeIfPresent(firstDay, forKey: .firstDay)
         try container.encode(tendedDays, forKey: .tendedDays)
         try container.encode(calmNights, forKey: .calmNights)
         try container.encode(quietRunMinutes, forKey: .quietRunMinutes)
@@ -384,6 +391,9 @@ public struct WorldSnapshot: Hashable, Sendable {
     public var isHolding: Bool
     public var tendedDays: Int
     public var calmNights: Int
+    /// The first local day the game ran: the weather's shuffled bags start
+    /// here (sky and weather v1 section 2.2b); `nil` for a game not yet started.
+    public var firstDay: LocalDay?
     public var homeStage: Int
     /// The island level (*Ada seviyesi*), 1 to 10.
     public var islandLevel: Int
@@ -441,7 +451,8 @@ public struct WorldSnapshot: Hashable, Sendable {
         invitationOpen: Bool = false,
         metResidents: [ResidentID] = [],
         invited: ResidentID? = nil,
-        koke: WonderStatus = WonderStatus()
+        koke: WonderStatus = WonderStatus(),
+        firstDay: LocalDay? = nil
     ) {
         self.clock = clock
         self.activity = activity
@@ -471,5 +482,6 @@ public struct WorldSnapshot: Hashable, Sendable {
         self.metResidents = metResidents
         self.invited = invited
         self.koke = koke
+        self.firstDay = firstDay
     }
 }

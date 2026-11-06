@@ -26,6 +26,7 @@ SWIFT = REPO / "Packages" / "PofuKit" / "Sources" / "PofuWorld" / "Look" / "Colo
 CELLS = ("dawn", "day", "golden", "dusk", "night")
 SKY = ("zenith", "horizon", "glow", "cloudLight", "cloudShade", "tint")
 GRADE_FIELDS = ("black", "white", "lift", "gamma", "gain", "contrast", "pivot", "saturation", "vignette")
+WEATHER = ("overcast", "lightRain", "mist", "goldenHaze", "screenHaze")
 HEX = re.compile(r"^#[0-9A-Fa-f]{6}$")
 
 
@@ -91,6 +92,21 @@ def validate(script: dict) -> list[str]:
         colour("unwell.sky.toward", unwell["sky"]["toward"])
         if unwell["sky"]["value"] > 1:
             problems.append("unwell.sky.value: the unwell sky is never brighter than the hour's")
+    weather = script.get("states", {}).get("weather", {})
+    for name in WEATHER:
+        w = weather.get(name)
+        if not w:
+            problems.append(f"missing weather {name}")
+            continue
+        grade(f"weather.{name}.grade", w["grade"])
+        grade(f"weather.{name}.character", w["character"])
+        colour(f"weather.{name}.sky.toward", w["sky"]["toward"])
+        if w["sky"]["value"] > 1:
+            problems.append(f"weather.{name}.sky.value: a weather sky is never brighter than the hour's")
+        if not 0 < w["key"] <= 1.2 or not 0 < w["fill"] <= 1.2:
+            problems.append(f"weather.{name}: key and fill are fractions of the hour's")
+        if w["character"].get("saturation", 1) < 1:
+            problems.append(f"weather.{name}.character: Pofu's saturation is never cut (< 1)")
     return problems
 
 
@@ -133,6 +149,26 @@ def _point(p) -> str:
 def _light(l: dict) -> str:
     direction = f", from: {_point(l['from'])}" if "from" in l else ""
     return f"ScriptLight(colour: {_rgb(l['colour'])}, intensity: {_num(l['intensity'] if 'intensity' in l else l['strength'])}{direction})"
+
+
+def _state(u: dict, i: str) -> str:
+    lines = [
+        "ColourState(",
+        f"{i}    grade: {_grade(u['grade'], i + '    ')},",
+        f"{i}    character: {_grade(u['character'], i + '    ')},",
+        f"{i}    skyValue: {_num(u['sky']['value'])},",
+        f"{i}    skyChroma: {_num(u['sky']['chroma'])},",
+        f"{i}    skyToward: {_hex(u['sky']['toward'])},",
+        f"{i}    skyAmount: {_num(u['sky']['amount'])},",
+        f"{i}    keyIntensity: {_num(u.get('key', {}).get('intensity', u.get('key')) if isinstance(u.get('key'), dict) else u['key'])},",
+    ]
+    if "fill" in u:
+        lines.append(f"{i}    fillIntensity: {_num(u['fill'])},")
+    if "fogExtra" in u:
+        lines.append(f"{i}    fogExtra: {_num(u['fogExtra'])},")
+    lines.append(f"{i}    windowFloor: {_num(u['practicals']['window'])}")
+    lines.append(f"{i})")
+    return i + "\n".join(lines)
 
 
 def swift(script: dict) -> str:
@@ -180,24 +216,12 @@ def swift(script: dict) -> str:
     for k in script["schedule"]["keys"]:
         sun = _point(k["sun"]) if "sun" in k else "nil"
         out.append(f"        Key(minute: {_num(k['minute'])}, cell: .{k['cell']}, sun: {sun}),")
-    u = script["states"]["unwell"]
-    i = "        "
-    out += [
-        "    ]",
-        "",
-        "    static let generatedUnwell = ColourState(",
-        f"{i}grade: {_grade(u['grade'], i)},",
-        f"{i}character: {_grade(u['character'], i)},",
-        f"{i}skyValue: {_num(u['sky']['value'])},",
-        f"{i}skyChroma: {_num(u['sky']['chroma'])},",
-        f"{i}skyToward: {_hex(u['sky']['toward'])},",
-        f"{i}skyAmount: {_num(u['sky']['amount'])},",
-        f"{i}keyIntensity: {_num(u['key']['intensity'])},",
-        f"{i}windowFloor: {_num(u['practicals']['window'])}",
-        "    )",
-        "}",
-        "",
-    ]
+    out += ["    ]", "", "    static let generatedUnwell = " + _state(script["states"]["unwell"], "        ").lstrip() + "", ""]
+    out += ["    /// The weather rows and the screen haze (sky and weather v1 section 2.2, 2.2b), by name.",
+            "    static let generatedWeather: [String: ColourState] = ["]
+    for name in WEATHER:
+        out.append(f'        "{name}": ' + _state(script["states"]["weather"][name], "        ").lstrip() + ",")
+    out += ["    ]", "}", ""]
     return "\n".join(out)
 
 

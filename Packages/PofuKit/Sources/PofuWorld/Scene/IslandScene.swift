@@ -421,6 +421,7 @@ private struct SceneFrame<Bubble: View>: View {
 
     @Environment(\.worldLook) private var look
     @Environment(\.worldStillFrame) private var still
+    @Environment(\.screenHazeClearing) private var hazeClearing
 
     var body: some View {
         let pose = rig.pose
@@ -449,14 +450,24 @@ private struct SceneFrame<Bubble: View>: View {
         let interactive = rig.pinchStart == nil
         let minute = look.hourOverride.map { $0 * 60 }
             ?? world.clock.map { SkyModel.minuteOfDay($0, calendar: .current) } ?? 12 * 60
+        // The world's weather (the date's seeded bag, or the screenshot's) and
+        // the player's screen haze (wellbeing only): two skies that never mix.
+        let conditions = look.weatherOverride
+            ?? WeatherForecast.conditions(clock: world.clock, firstDay: world.firstDay, hour: minute / 60, calendar: .current)
+        let rawHaze = look.grade ? ScreenHaze.amount(wellbeing: world.wellbeing) : 0
+        let atmosphere = look.grade
+            ? Atmosphere(conditions: conditions, haze: ScreenHaze.parted(rawHaze, parting: hazeClearing?.partingTarget(at: Date()) ?? 0))
+            : .clear
         let baseLight = WorldLight.at(
             hour: minute / 60,
             wellbeing: world.wellbeing,
             calm: world.calm,
             isBedtime: world.isBedtime
-        )
-        // The colour script's sky, overcast when Pofu is unwell.
+        ).withAtmosphere(atmosphere)
+        // The colour script's sky, overcast when Pofu is unwell, then the
+        // weather's and the haze's.
         let palette = SkyModel.palette(minuteOfDay: minute, isBedtime: world.isBedtime, unwell: look.grade ? baseLight.unwell : 0)
+            .atmospheric(atmosphere)
         // The living sky places the sun; the light follows it.
         let light = baseLight.withSun(x: palette.sun.x, y: palette.sun.y)
         // One sun (or moon) for every shadow on the ground (light and shadow v2).
@@ -506,7 +517,8 @@ private struct SceneFrame<Bubble: View>: View {
             f.maxRadius *= rack
             return f
         }()
-        let animation: Animation? = still ? nil : .easeInOut(duration: 2.5)
+        // Weather crossfades over 8 s (6 to 10 s, section 2.2).
+        let animation: Animation? = still ? nil : .easeInOut(duration: atmosphere.isClear ? 2.5 : 8)
         // Settled: the ambient layers hold still, so the frame is cached.
         let ambientPaused = look.hd2d && !model.needsFrames && build == nil
         // The visit and the lawn's small life: the critters move only in the
@@ -529,12 +541,15 @@ private struct SceneFrame<Bubble: View>: View {
 
         ZStack(alignment: .topLeading) {
             ZStack(alignment: .topLeading) {
-                LivingSky(palette: sky, offset: offset, far: FarSky.Look(z: z, cell: light.cell, grade: grade, koke: farKoke))
+                LivingSky(palette: sky, offset: offset, far: FarSky.Look(z: z, cell: light.cell, grade: grade, koke: farKoke, mist: atmosphere.mist))
                     .environment(\.worldAmbientPaused, ambientPaused)
                     .animation(animation, value: sky)
 
+                // The rainbow, soft and pastel, behind the island and its fog.
+                WeatherRainbow(atmosphere: atmosphere, size: size, seaLine: fogSeaLine, offset: offset)
+
                 // Height fog behind the island, densest at the cloud-sea line.
-                FogCards(layer: .behind, horizon: sky.horizon, offset: offset, size: size, seaLine: fogSeaLine)
+                FogCards(layer: .behind, horizon: sky.horizon, mist: atmosphere.mist, offset: offset, size: size, seaLine: fogSeaLine)
                     .environment(\.worldAmbientPaused, ambientPaused)
 
                 WorldCanvas(
@@ -623,7 +638,15 @@ private struct SceneFrame<Bubble: View>: View {
 
                 // One fog card across the island's base: the foot dissolves,
                 // the top stays clear.
-                FogCards(layer: .front, horizon: sky.horizon, offset: offset, size: size, seaLine: fogSeaLine)
+                FogCards(layer: .front, horizon: sky.horizon, mist: atmosphere.mist, offset: offset, size: size, seaLine: fogSeaLine)
+                    .environment(\.worldAmbientPaused, ambientPaused)
+
+                // Rain, splash ticks and puddle glints in front of the island.
+                WeatherRain(atmosphere: atmosphere, pose: pose, offset: offset, size: size, horizon: sky.horizon)
+                    .environment(\.worldAmbientPaused, ambientPaused)
+
+                // The screen haze (the player's sky): from the harbor side.
+                ScreenHazeLayer(haze: rawHaze, sunX: palette.sun.x, offset: offset, size: size, seaLine: fogSeaLine)
                     .environment(\.worldAmbientPaused, ambientPaused)
 
                 if look.grade {

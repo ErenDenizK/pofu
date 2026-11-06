@@ -226,7 +226,8 @@ public struct WorldClock: Sendable {
             invitationOpen: state.visitors.inviteOpenSince != nil,
             metResidents: state.visitors.met,
             invited: state.visitors.invitation?.resident,
-            koke: WonderIslands.status(game: state, day: day)
+            koke: WonderIslands.status(game: state, day: day),
+            firstDay: state.firstDay
         )
     }
 
@@ -387,6 +388,9 @@ public struct WorldClock: Sendable {
             if today.observed {
                 state.tendedDays += 1
             }
+        }
+        if state.firstDay == nil {
+            state.firstDay = day
         }
         state.today = GameDay(day: day)
         delta.arrivals += state.stations.settleArrivals(

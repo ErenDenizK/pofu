@@ -221,23 +221,126 @@ extension ColourScript {
     ]
 
     static let generatedUnwell = ColourState(
-        grade: WorldGrade(
-            black: 0.14,
-            gamma: GradeRGB(0.95, 0.96, 0.98),
-            gain: GradeRGB(0.94, 0.97, 1.025),
-            saturation: 0.55,
-            vignette: 0.24
+            grade: WorldGrade(
+                black: 0.14,
+                gamma: GradeRGB(0.95, 0.96, 0.98),
+                gain: GradeRGB(0.94, 0.97, 1.025),
+                saturation: 0.55,
+                vignette: 0.24
+            ),
+            character: WorldGrade(
+                gain: GradeRGB(0.97, 0.98, 1.0),
+                contrast: 1.02,
+                saturation: 0.78
+            ),
+            skyValue: 0.88,
+            skyChroma: 0.55,
+            skyToward: PofuRGB(hex: 0x9EAEC0),
+            skyAmount: 0.3,
+            keyIntensity: 0.7,
+            windowFloor: 0.55
+        )
+
+    /// The weather rows and the screen haze (sky and weather v1 section 2.2, 2.2b), by name.
+    static let generatedWeather: [String: ColourState] = [
+        "overcast": ColourState(
+            grade: WorldGrade(
+                gain: GradeRGB(0.8, 0.81, 0.83),
+                contrast: 0.8,
+                saturation: 0.9,
+                vignette: 0.1
+            ),
+            character: WorldGrade(
+                gain: GradeRGB(0.99, 0.99, 1.0),
+                contrast: 0.96
+            ),
+            skyValue: 0.92,
+            skyChroma: 0.7,
+            skyToward: PofuRGB(hex: 0xAEB8C6),
+            skyAmount: 0.35,
+            keyIntensity: 0.7,
+            fillIntensity: 1.05,
+            fogExtra: 0.0,
+            windowFloor: 0.3
         ),
-        character: WorldGrade(
-            gain: GradeRGB(0.97, 0.98, 1.0),
-            contrast: 1.02,
-            saturation: 0.78
+        "lightRain": ColourState(
+            grade: WorldGrade(
+                lift: GradeRGB(0.012, 0.015, 0.024),
+                gain: GradeRGB(0.8, 0.84, 0.9),
+                contrast: 0.68,
+                saturation: 0.82,
+                vignette: 0.14
+            ),
+            character: WorldGrade(
+                gain: GradeRGB(0.98, 0.99, 1.0),
+                contrast: 0.94
+            ),
+            skyValue: 0.86,
+            skyChroma: 0.6,
+            skyToward: PofuRGB(hex: 0x8E9DB2),
+            skyAmount: 0.45,
+            keyIntensity: 0.5,
+            fillIntensity: 1.1,
+            fogExtra: 0.05,
+            windowFloor: 0.85
         ),
-        skyValue: 0.88,
-        skyChroma: 0.55,
-        skyToward: PofuRGB(hex: 0x9EAEC0),
-        skyAmount: 0.3,
-        keyIntensity: 0.7,
-        windowFloor: 0.55
-    )
+        "mist": ColourState(
+            grade: WorldGrade(
+                gain: GradeRGB(0.96, 0.93, 0.9),
+                contrast: 0.9,
+                saturation: 0.95,
+                vignette: 0.06
+            ),
+            character: WorldGrade(
+                gain: GradeRGB(1.0, 0.99, 0.98),
+                contrast: 0.98
+            ),
+            skyValue: 1.0,
+            skyChroma: 0.85,
+            skyToward: PofuRGB(hex: 0xF2D4C0),
+            skyAmount: 0.4,
+            keyIntensity: 0.85,
+            fillIntensity: 1.0,
+            fogExtra: 0.15,
+            windowFloor: 0.3
+        ),
+        "goldenHaze": ColourState(
+            grade: WorldGrade(
+                gain: GradeRGB(1.05, 1.0, 0.92),
+                contrast: 1.0,
+                saturation: 1.08
+            ),
+            character: WorldGrade(
+                gain: GradeRGB(1.02, 1.0, 0.97)
+            ),
+            skyValue: 1.0,
+            skyChroma: 1.1,
+            skyToward: PofuRGB(hex: 0xFFD9A0),
+            skyAmount: 0.22,
+            keyIntensity: 1.0,
+            fillIntensity: 1.0,
+            fogExtra: 0.04,
+            windowFloor: 0.0
+        ),
+        "screenHaze": ColourState(
+            grade: WorldGrade(
+                gamma: GradeRGB(0.98, 0.98, 1.0),
+                gain: GradeRGB(0.96, 0.95, 1.03),
+                contrast: 1.04,
+                saturation: 0.8,
+                vignette: 0.26
+            ),
+            character: WorldGrade(
+                gain: GradeRGB(0.99, 0.99, 1.0)
+            ),
+            skyValue: 0.94,
+            skyChroma: 0.6,
+            skyToward: PofuRGB(hex: 0xA79CC6),
+            skyAmount: 0.45,
+            keyIntensity: 0.85,
+            fillIntensity: 1.0,
+            fogExtra: 0.18,
+            windowFloor: 0.5
+        ),
+    ]
 }
