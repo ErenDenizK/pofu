@@ -113,7 +113,11 @@ public struct WorldHome: View {
         .sensoryFeedback(.impact(flexibility: .soft, intensity: 0.5), trigger: home.collectTaps)
         .sensoryFeedback(.selection, trigger: home.collectTicks)
         .sensoryFeedback(.success, trigger: home.collectSuccesses)
-        .sensoryFeedback(.impact(weight: .medium), trigger: home.buildSwaps)
+        // The level-up lights come on with the swap: the palette's rising
+        // growth pattern (three transients and a soft tail) rides the flare.
+        .onChange(of: home.buildSwaps) { _, _ in
+            PofuHaptics.shared.play(.growth)
+        }
         .sensoryFeedback(.success, trigger: home.buildSettles)
         // TODO(haptics): the last level's three-transient celebration
         // (design language §11) needs Core Haptics; `.success` until then.
@@ -234,7 +238,7 @@ public struct WorldHome: View {
                 } label: {
                     Text(verbatim: WorldStrings.beatAction(beat))
                         .font(PofuFont.headline)
-                        .frame(maxWidth: .infinity, minHeight: PofuSize.buttonHeight - 8)
+                        .frame(maxWidth: .infinity, minHeight: PofuSize.minimumTouch)
                 }
                 .pofuActionStyle(.primary)
                 .transition(.opacity)
@@ -451,8 +455,7 @@ struct RepairBanner: View {
                     .font(PofuFont.headline)
                     .padding(.horizontal, PofuSpacing.s)
             }
-            .buttonStyle(.glassProminent)
-            .tint(PofuColor.accent)
+            .pofuActionStyle(.primary)
             PofuIconButton(systemName: "gearshape", label: WorldStrings.settings, action: onSettings)
         }
         .padding(.leading, PofuSpacing.m)

@@ -1,0 +1,28 @@
+[
+  {
+    "take": 1,
+    "canvas": [
+      1024,
+      1536
+    ],
+    "locked_png_bytes": 725126,
+    "lossless_default_bytes": 490630,
+    "best_lossless_webp": "/workspace/art-operator-runtime/run-20261105-night/batch-41-resident-reactions/encoding-probes/goat-surprised/t1-lossless.webp",
+    "best_lossless_webp_bytes": 490630,
+    "rgba_sha256": "0ed9d54b459de566b335433940554e9d9816e10b78ae40ab1b44fe4563fedc92",
+    "eligible_delivery": true
+  },
+  {
+    "take": 2,
+    "canvas": [
+      1024,
+      1536
+    ],
+    "locked_png_bytes": 743086,
+    "lossless_default_bytes": 502804,
+    "best_lossless_webp": "/workspace/art-operator-runtime/run-20261105-night/batch-41-resident-reactions/encoding-probes/goat-surprised/t2-lossless.webp",
+    "best_lossless_webp_bytes": 502804,
+    "rgba_sha256": "89ae7d5cf332a6105436650e8cc201facb229bf29e7b385beba06dd56361c435",
+    "eligible_delivery": true
+  }
+]

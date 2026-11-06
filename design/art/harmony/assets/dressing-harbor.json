@@ -1,0 +1,55 @@
+{
+ "after": {
+  "C_mean": 32.929,
+  "C_p50": 36.704,
+  "C_p95": 49.023,
+  "L_mean": 69.369,
+  "L_p2": 47.299,
+  "L_p98": 90.628,
+  "detail": 2.223,
+  "edge": 0.49,
+  "tint_a": -0.044,
+  "tint_b": -4.116,
+  "warmth_b": 27.902
+ },
+ "before": {
+  "C_mean": 26.495,
+  "C_p50": 29.533,
+  "C_p95": 39.439,
+  "L_mean": 69.37,
+  "L_p2": 47.299,
+  "L_p98": 90.649,
+  "detail": 2.222,
+  "edge": 0.49,
+  "tint_a": 0.024,
+  "tint_b": -3.064,
+  "warmth_b": 22.449
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.243,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "sheet",
+ "matched_to": "world",
+ "outliers_after": [
+  "edge"
+ ],
+ "outliers_before": [
+  "C_p95",
+  "edge"
+ ],
+ "ppu": 4.103,
+ "reference": false,
+ "score_after": 86.8,
+ "score_before": 78.4,
+ "shipped": false,
+ "source": "design/art/masters/dressing-harbor/dressing-harbor.webp",
+ "source_sha": "93748c13762cc0e4"
+}

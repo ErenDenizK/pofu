@@ -1,0 +1,28 @@
+[
+  {
+    "take": 1,
+    "canvas": [
+      1024,
+      1536
+    ],
+    "locked_png_bytes": 897834,
+    "lossless_default_bytes": 593344,
+    "best_lossless_webp": "/workspace/art-operator-runtime/run-20261105-night/batch-41-resident-reactions/encoding-probes/mochi-proud/t1-lossless.webp",
+    "best_lossless_webp_bytes": 593344,
+    "rgba_sha256": "2c16bed4e256d747422ed4693a36c3961660ad4fce30cb976145c6a5e3d18d5b",
+    "eligible_delivery": true
+  },
+  {
+    "take": 2,
+    "canvas": [
+      1024,
+      1536
+    ],
+    "locked_png_bytes": 1154374,
+    "lossless_default_bytes": 783646,
+    "best_lossless_webp": "/workspace/art-operator-runtime/run-20261105-night/batch-41-resident-reactions/encoding-probes/mochi-proud/t2-lossless-max-effort.webp",
+    "best_lossless_webp_bytes": 767690,
+    "rgba_sha256": "fa12d3e9da150a8d6a7724112b3f5709d968c9d6636645adfdc6e6d7cc4c3a4a",
+    "eligible_delivery": false
+  }
+]

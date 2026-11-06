@@ -1,12 +1,10 @@
 import Foundation
 import PofuCore
 
-/// What a piece of dressing is (experience v1 §6). The meadow's art is
-/// shipped (`dressing-meadow`, one sheet cut into twelve sprites); the
-/// garden's and the harbor's follow with the Codex jobs `dressing-garden`
-/// and `dressing-harbor`. Until a family ships the scene draws a code-drawn
-/// stand-in, and a baked sprite named `art` replaces it as soon as one
-/// exists.
+/// What a piece of dressing is (experience v1 §6). All three families are
+/// shipped as sheets cut into baked sprites (`dressing-meadow`,
+/// `dressing-garden`, `dressing-harbor`); the scene draws a code-drawn
+/// stand-in only for a piece whose sprite is missing from the bundle.
 public enum DressingKind: String, CaseIterable, Hashable, Sendable {
     // Meadow
     case grassTuft, wildflowers, pebbles, mushroomRing
@@ -34,11 +32,13 @@ public enum DressingKind: String, CaseIterable, Hashable, Sendable {
 
     /// How many painted variants the kind has: the meadow sheet holds three
     /// tufts and a clover, three flower clumps and a foxglove, a pebble
-    /// group, a flat stone and a mossy stone, and one toadstool ring.
+    /// group, a flat stone and a mossy stone, and one toadstool ring; the
+    /// garden's sheet a single crate and a stack of two.
     public var variantCount: Int {
         switch self {
         case .grassTuft, .wildflowers: 4
         case .pebbles: 3
+        case .crate: 2
         default: 1
         }
     }
@@ -132,7 +132,7 @@ public enum IslandDressing {
         // The garden's and the tea stall's small signs of life grow in.
         piece("garden-can", .wateringCan, -118, -4, 3...10),
         piece("garden-sack", .seedSack, -120, 12, 5...10),
-        piece("tea-crate", .crate, 205, -4, 3...10),
+        piece("tea-crate", .crate, 205, -4, 3...10, variant: 1),
         piece("tea-flowers", .wildflowers, 200, 12, 6...10, variant: 1, touchable: true),
         // The harbor's first dressing waits at the bridge's foot from IL3.
         piece("bridge-rope", .rope, 222, 4, 3...10),

@@ -1,0 +1,444 @@
+batch: batch-40-home-ladder-gaps
+contact_sheet: design/art/takes/batch-40-home-ladder-gaps/bagel-cart-5-blue/contact.jpg
+jobs:
+  bagel-cart-5-blue:
+    pick: none
+    publication: skipped after one allowed retry
+    note: One unchanged-prompt retry exhausted. Take1 and retry takes3/4 change the
+      explicitly protected coral cloth stripe to blue in original and official locked
+      image. Take2 preserves the coral cloth but recolors the protected cream/honey
+      wooden outer front-wheel rim entirely blue; the source permits coral trim accents
+      rather than this wooden rim. All four official WARN results remain WARN, excluded
+      only for source-literal protected-color changes. Historical parent right-edge
+      clipping and actual geometry are accepted unchanged, not made into an invented
+      gate. Exact source/locked/QA/reference hashes preserved. No third round, pixel
+      correction or master promotion.
+qa_reports:
+  3:
+    job: bagel-cart-5-blue
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 55 (R1 51)
+      value: 54.6
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 44 (at most 22), p98 92 (at least 90), spread 49
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 48.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 77 (band 55-90)'
+      value: 76.6
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.15 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.149
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.2 (at least 3.5)'
+      value: 4.25
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.4 (R1 5.3)
+      value: 2.37
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 0.9569
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.5, p95 12.9, off-palette 5.7% (top: #77BBCC (1.0%), #77BBDD
+        (0.4%))'
+      value: 3.5221
+    - check: station_anchor
+      status: pass
+      message: on the parent's anchor
+      value: 909.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 82 against the world reference (outliers: edge)'
+      value: 81.6
+    - check: edit_silhouette
+      status: pass
+      message: 99% of the parent's shape kept
+      value: 0.9861
+    - check: edit_structure
+      status: pass
+      message: light structure matches the parent (r 0.97)
+      value: 0.9735
+    - check: edit_lightness
+      status: pass
+      message: mean lightness moved by 1.3 L (the same lightness was asked)
+      value: 1.2571
+    info:
+      registration:
+        dx: 0
+        dy: 0
+      metrics_raw:
+        L_p5: 49.7
+        L_p50: 76.6
+        L_p95: 90.6
+        C_p50: 33.8
+        C_p95: 55.3
+        C_p99: 58.9
+        detail: 2.93
+      metrics_locked:
+        L_p5: 50.2
+        L_p50: 76.6
+        L_p95: 90.4
+        C_p50: 33.6
+        C_p95: 54.6
+        C_p99: 57.7
+        detail: 2.37
+    fingerprint: c19423f719f84c97
+  2:
+    job: bagel-cart-5-blue
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 52 (R1 51)
+      value: 51.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 38 (at most 22), p98 93 (at least 90), spread 54
+        (at least 60)'
+      value: 54.4
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 75 (band 55-90)'
+      value: 75.2
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.12 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.125
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.7 (at least 3.5)'
+      value: 4.65
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.5 (R1 5.3)
+      value: 2.55
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 0.9949
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.8, p95 12.9, off-palette 5.9% (top: #77BBCC (1.4%), #663311
+        (0.6%))'
+      value: 3.8214
+    - check: station_anchor
+      status: pass
+      message: on the parent's anchor
+      value: 908.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 79 against the world reference (outliers: L_p2, edge)'
+      value: 79.1
+    - check: edit_silhouette
+      status: pass
+      message: 98% of the parent's shape kept
+      value: 0.985
+    - check: edit_structure
+      status: pass
+      message: light structure matches the parent (r 0.94)
+      value: 0.9427
+    - check: edit_lightness
+      status: pass
+      message: mean lightness moved by 0.7 L (the same lightness was asked)
+      value: 0.6818
+    info:
+      registration:
+        dx: 0
+        dy: 0
+      metrics_raw:
+        L_p5: 44.3
+        L_p50: 75.2
+        L_p95: 90.1
+        C_p50: 32.8
+        C_p95: 52.5
+        C_p99: 55.7
+        detail: 3.13
+      metrics_locked:
+        L_p5: 44.9
+        L_p50: 75.2
+        L_p95: 90.0
+        C_p50: 32.7
+        C_p95: 51.8
+        C_p99: 54.6
+        detail: 2.55
+    fingerprint: c19423f719f84c97
+  4:
+    job: bagel-cart-5-blue
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 50 (R1 51)
+      value: 50.3
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 42 (at most 22), p98 93 (at least 90), spread 51
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 51.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 76 (band 55-90)'
+      value: 76.5
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.14 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.141
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.7 (at least 3.5)'
+      value: 4.66
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.6 (R1 5.3)
+      value: 2.64
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 0.9502
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.1, p95 11.2, off-palette 4.6% (top: #66BBCC (1.2%), #77BBCC
+        (0.4%))'
+      value: 3.1424
+    - check: station_anchor
+      status: pass
+      message: on the parent's anchor
+      value: 908.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 82 against the world reference (outliers: detail, edge)'
+      value: 82.4
+    - check: edit_silhouette
+      status: pass
+      message: 98% of the parent's shape kept
+      value: 0.984
+    - check: edit_structure
+      status: pass
+      message: light structure matches the parent (r 0.95)
+      value: 0.9546
+    - check: edit_lightness
+      status: pass
+      message: mean lightness moved by 0.7 L (the same lightness was asked)
+      value: 0.7241
+    info:
+      registration:
+        dx: 0
+        dy: 0
+      metrics_raw:
+        L_p5: 47.3
+        L_p50: 76.6
+        L_p95: 90.3
+        C_p50: 33.2
+        C_p95: 50.8
+        C_p99: 53.5
+        detail: 3.21
+      metrics_locked:
+        L_p5: 47.6
+        L_p50: 76.5
+        L_p95: 90.2
+        C_p50: 33.1
+        C_p95: 50.3
+        C_p99: 52.7
+        detail: 2.64
+    fingerprint: c19423f719f84c97
+  1:
+    job: bagel-cart-5-blue
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 54 (R1 51)
+      value: 54.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 44 (at most 22), p98 92 (at least 90), spread 48
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 48.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 76 (band 55-90)'
+      value: 75.9
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.14 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.141
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.2 (at least 3.5)'
+      value: 4.19
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.3 (R1 5.3)
+      value: 2.34
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 0.9657
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.5, p95 11.9, off-palette 4.8% (top: #BB6633 (0.5%), #663311
+        (0.4%))'
+      value: 3.482
+    - check: station_anchor
+      status: pass
+      message: on the parent's anchor
+      value: 908.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 82 against the world reference (outliers: edge)'
+      value: 82.3
+    - check: edit_silhouette
+      status: pass
+      message: 98% of the parent's shape kept
+      value: 0.9827
+    - check: edit_structure
+      status: pass
+      message: light structure matches the parent (r 0.97)
+      value: 0.9682
+    - check: edit_lightness
+      status: pass
+      message: mean lightness moved by 0.8 L (the same lightness was asked)
+      value: 0.7821
+    info:
+      registration:
+        dx: 0
+        dy: 0
+      metrics_raw:
+        L_p5: 48.2
+        L_p50: 76.0
+        L_p95: 90.2
+        C_p50: 34.0
+        C_p95: 55.1
+        C_p99: 59.5
+        detail: 2.92
+      metrics_locked:
+        L_p5: 48.7
+        L_p50: 75.9
+        L_p95: 90.0
+        C_p50: 34.0
+        C_p95: 54.4
+        C_p99: 58.2
+        detail: 2.34
+    fingerprint: c19423f719f84c97
+manual_review:
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+  note: One unchanged-prompt retry exhausted. Take1 and retry takes3/4 change the
+    explicitly protected coral cloth stripe to blue in original and official locked
+    image. Take2 preserves the coral cloth but recolors the protected cream/honey
+    wooden outer front-wheel rim entirely blue; the source permits coral trim accents
+    rather than this wooden rim. All four official WARN results remain WARN, excluded
+    only for source-literal protected-color changes. Historical parent right-edge
+    clipping and actual geometry are accepted unchanged, not made into an invented
+    gate. Exact source/locked/QA/reference hashes preserved. No third round, pixel
+    correction or master promotion.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-64d80155-c9b8-4d5e-bd0f-45e07bfb4b98.png
+  original_generated_png_sha256: b5ed40b8758e4c6333d07964b8f66841b363907306c2226feed3e1061fabdec5
+  inbox_png_sha256: 8fc90277b88ab0561ba9ca21898bf19a84f3f8e3952bb488bd704369602ef025
+  rgba_sha256: 655812c073cf18e0e3fb8beb180442cc7f78fb75aa05bc6a2f7c43dd08f8f924
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: c19423f719f84c97
+- take: 2
+  source_file: /workspace/generated_images/exec-0e63b107-3016-428c-9dac-9544f762d835.png
+  original_generated_png_sha256: 4a11c0a0b160830b1e14168d8b0890fac70a815564f2fc65f325136f4a578d00
+  inbox_png_sha256: 18820ae63f7e0be55f793c0c3fde3fe6c6dc417a9effc877617658dd452ebb67
+  rgba_sha256: b2306a4b2da7b78d8bca6fefe96ec54ee641921a6b21eebf412c7c286c8d513c
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: c19423f719f84c97
+- take: 3
+  source_file: /workspace/generated_images/exec-a9bfd3a9-a1ba-4cc0-832a-ba1deb8f4903.png
+  original_generated_png_sha256: ebe8134c2274c323ec4e576dd24feb3b2e993b610e26bec3c1e6cf6790119c42
+  inbox_png_sha256: ac8a6c450db00dd2bb8a71741499b3cd9b2ccedcad4cbed991c7988502c83714
+  rgba_sha256: 1e82b8929dece1a9ab53e90f4f175ee2b2abe72b5e5b3efa0073fc05a971f479
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: c19423f719f84c97
+- take: 4
+  source_file: /workspace/generated_images/exec-71d0724b-a6a2-4f74-b12a-a614bb50ea5e.png
+  original_generated_png_sha256: 151329523c07d0ce94535aa7b2813f6f960ca04e2837ba2840b744bbfa3880d6
+  inbox_png_sha256: 95ea882579cd928d1904ebe82800e8372af78a9c123e1cd5c2e2e7904053245f
+  rgba_sha256: c120cddd41e427748c64f3629d13c436116aeaf272d84e6d0dfe213ebc75ecd9
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: c19423f719f84c97

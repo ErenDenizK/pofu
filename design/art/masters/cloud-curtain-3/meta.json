@@ -1,0 +1,130 @@
+{
+  "job": "cloud-curtain-3",
+  "batch": "batch-35-experience",
+  "asset": "world__cloud-curtain-3",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-06T00:41:15+00:00",
+  "image": "design/art/masters/cloud-curtain-3/cloud-curtain-3.png",
+  "raw": "design/art/masters/cloud-curtain-3/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "0ef4bb9b0af53443",
+  "prompt": "REFERENCES (attached, in this order):\n1. The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall).\n2. The sea of clouds below every island: paint the clouds like this, in the same finish.\n\nThe back layer of a loading curtain, on a transparent background: a few long, thin, slightly curved cloud\nwisps in soft cream and pale peach, stretched horizontally across the upper and middle of the image,\nfaint and airy, with plenty of transparent space between them. They run off the canvas at both sides.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: a sky behind the clouds, a background, an island, text, outlines, hard edges, black or grey clouds, dark shadows, rain, characters, a border\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, landscape 1536 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/stations/tea-stall-1/tea-stall-1.png",
+      "role": "The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall)."
+    },
+    {
+      "path": "design/art/masters/cloud-sea/cloud-sea.png",
+      "role": "The sea of clouds below every island: paint the clouds like this, in the same finish."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-05T23:50:55+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "fit": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1536x1024"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 10 (R1 51)",
+        "value": 9.6
+      },
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 87 (at most 22), p98 94 (at least 90), spread 7 (at least 60) (warn-only until the founder has seen the light pilot)",
+        "value": 7.0
+      },
+      {
+        "check": "light_median",
+        "status": "warn",
+        "message": "day/subject: median L 91 (band 55-90)",
+        "value": 90.6
+      },
+      {
+        "check": "light_haze",
+        "status": "warn",
+        "message": "day/subject: dark-channel haze 0.82 (at most 0.20; no true dark means a wash) (warn-only until the founder has seen the light pilot)",
+        "value": 0.816
+      },
+      {
+        "check": "light_contrast",
+        "status": "warn",
+        "message": "day/subject: p75 local contrast 0.7 (at least 3.5) (warn-only until the founder has seen the light pilot)",
+        "value": 0.71
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 0.6 (R1 5.3)",
+        "value": 0.63
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 0.3",
+        "value": 0.265
+      },
+      {
+        "check": "no_guide_magenta",
+        "status": "pass",
+        "message": "0 guide-magenta pixels (per 1024^2)",
+        "value": 0.0
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 0.9, p95 2.2, off-palette 0.0%",
+        "value": 0.8765
+      },
+      {
+        "check": "harmony",
+        "status": "warn",
+        "message": "harmony score 39 against the world reference (outliers: C_p95, L_p2, edge)",
+        "value": 39.3
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Both original, full locked and official half-delivered takes are manually eligible and have no hard QA failures: a few long thin cream/peach cloud wisps across the upper and middle frame with ample genuine transparent gaps and side runoff, faint and airy, no sky, island, text or unrelated objects. No numerical cloud count is invented for the authored few. Take1 has the lowest eligible style-lock load0.2650. The official authored scale0.5 export creates768x512 from the saved1536x1024 lock; preserve exact master RGBA and delivery/preview proofs. No manual source edits, cleanup or threshold waiver. Own Harmony shard and real measure/check required; light warnings are advisory.",
+  "deliver": {
+    "scale": 0.5,
+    "original_size": [
+      1536,
+      1024
+    ],
+    "delivered_size": [
+      768,
+      512
+    ]
+  }
+}

@@ -1,0 +1,448 @@
+batch: batch-30c-decor-seasons-2-v2
+manifest: tools/imagegen/manifest/batch-30c-decor-seasons-2-v2.yaml
+manifest_sha256: ea5cacbf97d06a6c7df0fdc0cfe18e40fe973d63e48e965cce6438809fb462ce
+contact_sheet: design/art/takes/batch-30c-decor-seasons-2-v2/x-decor-guz-pumpkin-lanterns-v2/contact.jpg
+jobs:
+  x-decor-guz-pumpkin-lanterns-v2:
+    pick: none
+    publication: skipped after one allowed retry
+    note: 'Skipped after exactly one unchanged-prompt retry: all four original and
+      official locked alpha-composites have exactly three differently sized carved
+      pumpkins with unlit pale cut faces and no extra prop, but their complete posted
+      silhouette widths are 665, 670, 632 and 672 px, each above the literal at-most-one-third
+      341.33 px cap on 1024. Hard QA is warn rather than fail; these are manual guide
+      exclusions, not a style threshold. No source shrink, prompt revision or threshold
+      workaround. Four immutable originals retained; no true dependent exists in this
+      variation, so independent jobs continue.'
+qa_reports:
+  1:
+    job: x-decor-guz-pumpkin-lanterns-v2
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 59 (R1 51)
+      value: 58.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 41 (at most 22), p98 91 (at least 90), spread 50
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 50.1
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 66 (band 55-90)'
+      value: 66.4
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.14 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.141
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 3.0 (at least 3.5)'
+      value: 3.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.0 (R1 5.3)
+      value: 1.97
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.3
+      value: 2.3099
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 7.0, p95 13.9, off-palette 23.3% (top: #BB6633 (5.5%), #CC7744
+        (3.1%)) (advisory in an exploration)'
+      value: 6.9664
+    - check: decor_anchor
+      status: warn
+      message: top y 400 above the height bar (500); width 666 px wider than the footprint
+        (360) (advisory in an exploration)
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 73 against the world reference (outliers: C_p95, L_p2,
+        edge)'
+      value: 73.4
+    info:
+      fit_skipped: needs x0.54, below x0.6 (a real art failure)
+      registration:
+        dx: 18
+        dy: 110
+      metrics_raw:
+        L_p5: 44.2
+        L_p50: 66.6
+        L_p95: 89.4
+        C_p50: 48.2
+        C_p95: 59.9
+        C_p99: 61.8
+        detail: 2.84
+      metrics_locked:
+        L_p5: 44.6
+        L_p50: 66.5
+        L_p95: 89.1
+        C_p50: 47.9
+        C_p95: 58.8
+        C_p99: 60.3
+        detail: 1.97
+    fingerprint: e3c05ee284727de1
+  2:
+    job: x-decor-guz-pumpkin-lanterns-v2
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 61 (R1 51) (advisory in an exploration)
+      value: 61.2
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 42 (at most 22), p98 92 (at least 90), spread 50
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 50.4
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 67 (band 55-90)'
+      value: 67.0
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.13 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.129
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.4 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.39
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.7 (R1 5.3)
+      value: 1.71
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.8
+      value: 2.8231
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 8.1, p95 15.8, off-palette 33.6% (top: #BB6633 (5.8%), #DD7744
+        (5.7%)) (advisory in an exploration)'
+      value: 8.1231
+    - check: decor_anchor
+      status: warn
+      message: top y 370 above the height bar (500); width 670 px wider than the footprint
+        (360) (advisory in an exploration)
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 72 against the world reference (outliers: C_p95, L_p2,
+        edge)'
+      value: 72.3
+    info:
+      fit_skipped: needs x0.54, below x0.6 (a real art failure)
+      registration:
+        dx: 23
+        dy: 81
+      metrics_raw:
+        L_p5: 45.4
+        L_p50: 67.0
+        L_p95: 90.0
+        C_p50: 51.7
+        C_p95: 63.4
+        C_p99: 64.7
+        detail: 2.4
+      metrics_locked:
+        L_p5: 45.8
+        L_p50: 67.0
+        L_p95: 89.8
+        C_p50: 50.7
+        C_p95: 61.2
+        C_p99: 61.8
+        detail: 1.71
+    fingerprint: e3c05ee284727de1
+  3:
+    job: x-decor-guz-pumpkin-lanterns-v2
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 60 (R1 51) (advisory in an exploration)
+      value: 60.5
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 44 (at most 22), p98 92 (at least 90), spread 49
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 48.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 68 (band 55-90)'
+      value: 68.5
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.15 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.153
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.9 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.86
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.9 (R1 5.3)
+      value: 1.85
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.4
+      value: 2.4284
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 7.1, p95 14.4, off-palette 23.9% (top: #BB6633 (5.6%), #CC7744
+        (4.4%)) (advisory in an exploration)'
+      value: 7.0946
+    - check: decor_anchor
+      status: warn
+      message: top y 412 above the height bar (500); width 633 px wider than the footprint
+        (360) (advisory in an exploration)
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 75 against the world reference (outliers: C_p95, edge)'
+      value: 74.8
+    info:
+      fit_skipped: needs x0.57, below x0.6 (a real art failure)
+      registration:
+        dx: 4
+        dy: 42
+      metrics_raw:
+        L_p5: 47.2
+        L_p50: 68.5
+        L_p95: 90.7
+        C_p50: 51.8
+        C_p95: 62.2
+        C_p99: 63.5
+        detail: 2.61
+      metrics_locked:
+        L_p5: 47.7
+        L_p50: 68.5
+        L_p95: 90.4
+        C_p50: 50.7
+        C_p95: 60.5
+        C_p99: 61.2
+        detail: 1.85
+    fingerprint: e3c05ee284727de1
+  4:
+    job: x-decor-guz-pumpkin-lanterns-v2
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 60 (R1 51)
+      value: 59.6
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 42 (at most 22), p98 92 (at least 90), spread 50
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 49.8
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 67 (band 55-90)'
+      value: 67.4
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.14 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.145
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.8 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.82
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.7 (R1 5.3)
+      value: 1.73
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.4
+      value: 2.4229
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 7.1, p95 14.0, off-palette 21.9% (top: #BB6633 (4.1%), #CC7744
+        (3.3%)) (advisory in an exploration)'
+      value: 7.0562
+    - check: decor_anchor
+      status: warn
+      message: top y 377 above the height bar (500); width 673 px wider than the footprint
+        (360) (advisory in an exploration)
+      value: 887.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 75 against the world reference (outliers: C_p95, edge)'
+      value: 74.9
+    info:
+      fit_skipped: needs x0.53, below x0.6 (a real art failure)
+      registration:
+        dx: 12
+        dy: 78
+      metrics_raw:
+        L_p5: 46.2
+        L_p50: 67.4
+        L_p95: 90.1
+        C_p50: 50.4
+        C_p95: 60.7
+        C_p99: 61.9
+        detail: 2.48
+      metrics_locked:
+        L_p5: 46.6
+        L_p50: 67.4
+        L_p95: 89.9
+        C_p50: 49.7
+        C_p95: 59.6
+        C_p99: 60.3
+        detail: 1.73
+    fingerprint: e3c05ee284727de1
+manual_review:
+  observed_note: 'Skipped after exactly one unchanged-prompt retry: all four original
+    and official locked alpha-composites have exactly three differently sized carved
+    pumpkins with unlit pale cut faces and no extra prop, but their complete posted
+    silhouette widths are 665, 670, 632 and 672 px, each above the literal at-most-one-third
+    341.33 px cap on 1024. Hard QA is warn rather than fail; these are manual guide
+    exclusions, not a style threshold. No source shrink, prompt revision or threshold
+    workaround. Four immutable originals retained; no true dependent exists in this
+    variation, so independent jobs continue.'
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+sources:
+- batch: batch-30c-decor-seasons-2-v2
+  job: x-decor-guz-pumpkin-lanterns-v2
+  take: 1
+  round: 1
+  logical_run: 20261106-b30c-v2-first-roots
+  source_file: /workspace/generated_images/exec-85bfa565-ec8b-42da-8f66-2500ad4fcbea.png
+  returned_at: '2026-11-06T00:45:09.354Z'
+  prompt_sha256: c9e5e92cf9e5c765604e892b4497a9a9fd5a0b2ab5ad4f6c35e75a3322906c15
+  fingerprint: e3c05ee284727de1
+  saved_at: '2026-11-06T00:45:09.712700+00:00'
+  original_generated_png_sha256: eea277759cfb2b7288bfe326dce651fbfd8bb8dd378541b0e24ea6eb2fd86ac6
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: c6d45c46d1a82e0c2b2685efa8ed6df020ffdc60f4d17713c33d46e39efa7681
+  inbox_png_sha256: 8ce5aa825d3b45598e69b7c8554778f4d93a017f44c6c1014d6db9f77b023c90
+  qa_sha256: 83e9fbb92c74d592a85802da58c818519600d3249b066d18473c473c9a6a4e77
+- batch: batch-30c-decor-seasons-2-v2
+  job: x-decor-guz-pumpkin-lanterns-v2
+  take: 2
+  round: 1
+  logical_run: 20261106-b30c-v2-first-roots
+  source_file: /workspace/generated_images/exec-b22c6047-3c01-4d39-8503-1a9fdc19654d.png
+  returned_at: '2026-11-06T00:45:54.910Z'
+  prompt_sha256: c9e5e92cf9e5c765604e892b4497a9a9fd5a0b2ab5ad4f6c35e75a3322906c15
+  fingerprint: e3c05ee284727de1
+  saved_at: '2026-11-06T00:45:55.259234+00:00'
+  original_generated_png_sha256: 47ffbf896a4675e014b6336635ae17cb86ef832617b1d1125e41198a677253ba
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: d3fcb2e6b19ef6745c97959320eed24800b972c7848ba06c8494f68831bfbda5
+  inbox_png_sha256: 28c8df9428e5d22bfa8e135bb9cdc77662fba677ad98e1770d08c7f8cfa4e33c
+  qa_sha256: 592a22c2e1c44596585aea376d69fb5cbcd1d74d53143acf2c9a65efa8118b9d
+- batch: batch-30c-decor-seasons-2-v2
+  job: x-decor-guz-pumpkin-lanterns-v2
+  take: 3
+  round: 2
+  logical_run: 20261106-b30c-v2-pumpkin-retry
+  source_file: /workspace/generated_images/exec-b5673ce2-1350-4b78-ba14-82d8aa836987.png
+  returned_at: '2026-11-06T00:47:38.155Z'
+  prompt_sha256: c9e5e92cf9e5c765604e892b4497a9a9fd5a0b2ab5ad4f6c35e75a3322906c15
+  fingerprint: e3c05ee284727de1
+  saved_at: '2026-11-06T00:47:40.394073+00:00'
+  original_generated_png_sha256: b08ff8da18f61e149703007af80e3960ca7578e6d1867f1762e040b5c8d786af
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: a7c832b3cc61f5c28e13384cfbd45a5221b8082f637c8e7c50f7be22d22f6662
+  inbox_png_sha256: 515f0a12d4a3540de44e9d9d078d6dfd474277d6d3b77e6c04bce18b2e9d8fe8
+  qa_sha256: 6a0daf35112181176f366f8a0dc131a47041381973999be67b994976ff70e130
+- batch: batch-30c-decor-seasons-2-v2
+  job: x-decor-guz-pumpkin-lanterns-v2
+  take: 4
+  round: 2
+  logical_run: 20261106-b30c-v2-pumpkin-retry
+  source_file: /workspace/generated_images/exec-58de65f6-80e2-4eda-bf49-c4f5bb80d2db.png
+  returned_at: '2026-11-06T00:48:11.073Z'
+  prompt_sha256: c9e5e92cf9e5c765604e892b4497a9a9fd5a0b2ab5ad4f6c35e75a3322906c15
+  fingerprint: e3c05ee284727de1
+  saved_at: '2026-11-06T00:48:14.474113+00:00'
+  original_generated_png_sha256: 50b8ccec2469cea6dc3f4afaa8a95fa08d3488809908fceb16622afd647966c7
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 443f743813519d35766718c1e67d09af51b158710068e1f09dc40f3e0929bf79
+  inbox_png_sha256: 7e009d5802fcde87b844a54a40534702e62a01cbe4750d770f9f424ae85fb8f1
+  qa_sha256: 1b341334086c2b57e13cbc5ac73b14d91a5f4cf529ade8138ee969e81afda0a8
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+variation_proof_sha256: a6b42f3fbfdb3ab513b04eb9c4e1ea02889b0542875eb6cff926b45df031def0

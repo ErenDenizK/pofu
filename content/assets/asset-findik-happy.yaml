@@ -4,16 +4,17 @@ title_tr: findik-happy
 title_en: findik-happy (char)
 status: in-production
 horizon: now
-summary: >-
-  Edit the attached hedgehog, Fındık, into his happy face. Change only the eyes and mouth:
-  both eyes become happy closed arcs, the classic smiling ^ shape, each a thick soft dark
-  upward-curved arc at the height of the top of the original eye; the small mouth widens into
-  a slightly bigger smile. His spines, body, paws, colors and size stay exactly as they are.
+summary: 'Edit the attached hedgehog, Fındık, into his happy face. Change only the
+  eyes and mouth: both eyes become happy closed arcs, the classic smiling ^ shape,
+  each a thick soft dark upward-curved arc at the height of the top of the original
+  eye; the small mouth widens into a slightly bigger smile. His spines, body, paws,
+  colors and size stay exactly as they are.'
 links:
   variant_of:
   - asset-findik
 art:
-  images: []
+  images:
+  - design/art/masters/findik-happy/findik-happy.webp
   jobs:
   - batch-41-resident-reactions:findik-happy
 sources:

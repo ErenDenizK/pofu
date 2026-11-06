@@ -2,14 +2,14 @@ id: asset-tea-stall-4-iznik
 type: asset
 title_tr: tea-stall-4-iznik
 title_en: tea-stall-4-iznik (station)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  Recolor the tea stall to its Iznik blue option. Every rose, blush and coral part becomes
-  Iznik blue: the awning's rose stripes become soft cobalt-blue stripes alternating with cream,
-  and the cloth on the little table and the cloth over the counter's end become cobalt-blue
-  and cream. The string of cream bulbs, the kettle, the tulip glasses, the stools, the counter,
-  the poles and the wood keep their exact colors.
+summary: 'Recolor the tea stall to its Iznik blue option. Every rose, blush and coral
+  part becomes Iznik blue: the awning''s rose stripes become soft cobalt-blue stripes
+  alternating with cream, and the cloth on the little table and the cloth over the
+  counter''s end become cobalt-blue and cream. The string of cream bulbs, the kettle,
+  the tulip glasses, the stools, the counter, the poles and the wood keep their exact
+  colors.'
 links:
   variant_of:
   - asset-tea-stall-4
@@ -21,3 +21,19 @@ sources:
 - doc: tools/imagegen/manifest/batch-40-home-ladder-gaps.yaml
 kind: station
 batch: batch-40-home-ladder-gaps
+notes:
+- 'batch-40-home-ladder-gaps skipped after four takes: One unchanged-prompt retry
+  exhausted. All four takes hard-fail palette_drift with mean dE4.4206,4.1309,5.6026,4.4375
+  and also fail the declared recolor edit_structure check at r0.4531,0.4506,0.2711,0.4897.
+  Correct blue fabrics and retained bulb string or inventory do not waive those official
+  failures. Source PNGs, exact parent references and official QA are preserved; no
+  custom greater-than0.9 stability or pixel-zero gate was imported. No master promoted,
+  no Harmony or station consumer changes for this failed variant. Automated failures:
+  t1 palette_drift: mean dE 4.4, p95 29.1, off-palette 13.9% (top: #4466AA (3.9%),
+  #445599 (2.9%)), edit_structure: light structure matches the parent (r 0.45); t2
+  palette_drift: mean dE 4.1, p95 26.6, off-palette 14.4% (top: #5577BB (6.0%), #4466AA
+  (4.6%)), edit_structure: light structure matches the parent (r 0.45); t3 palette_drift:
+  mean dE 5.6, p95 28.0, off-palette 19.7% (top: #4466AA (8.0%), #5577BB (4.8%)),
+  edit_structure: light structure matches the parent (r 0.27); t4 palette_drift: mean
+  dE 4.4, p95 28.0, off-palette 14.7% (top: #4466AA (4.1%), #5577BB (4.0%)), edit_structure:
+  light structure matches the parent (r 0.49).'

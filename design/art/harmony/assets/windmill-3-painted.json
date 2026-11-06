@@ -1,0 +1,54 @@
+{
+ "after": {
+  "C_mean": 15.878,
+  "C_p50": 15.297,
+  "C_p95": 41.454,
+  "L_mean": 79.494,
+  "L_p2": 61.459,
+  "L_p98": 90.964,
+  "detail": 2.47,
+  "edge": 0.453,
+  "tint_a": 3.486,
+  "tint_b": 8.909,
+  "warmth_b": 14.741
+ },
+ "before": {
+  "C_mean": 15.878,
+  "C_p50": 15.297,
+  "C_p95": 41.454,
+  "L_mean": 79.494,
+  "L_p2": 61.459,
+  "L_p98": 90.964,
+  "detail": 2.47,
+  "edge": 0.453,
+  "tint_a": 3.486,
+  "tint_b": 8.909,
+  "warmth_b": 14.741
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "station",
+ "matched_to": "world",
+ "outliers_after": [
+  "edge"
+ ],
+ "outliers_before": [
+  "edge"
+ ],
+ "ppu": 8.533,
+ "reference": false,
+ "score_after": 79.4,
+ "score_before": 79.4,
+ "shipped": false,
+ "source": "design/art/stations/windmill-3-painted/windmill-3-painted.png",
+ "source_sha": "9294ff99d71ddc25"
+}

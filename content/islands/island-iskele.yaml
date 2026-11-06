@@ -40,6 +40,10 @@ links:
   - asset-harbor-lamp-1
   - asset-harbor-goat
   - asset-harbor-ferry-1
+  - asset-goat-happy
+  - asset-goat-surprised
+  - asset-goat-sleepy
+  - asset-goat-proud
 sources:
 - doc: docs/archive/archipelago-system.md
   anchor: '#11-island-concepts'

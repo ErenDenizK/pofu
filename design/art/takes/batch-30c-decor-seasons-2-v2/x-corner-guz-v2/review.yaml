@@ -1,0 +1,205 @@
+batch: batch-30c-decor-seasons-2-v2
+manifest: tools/imagegen/manifest/batch-30c-decor-seasons-2-v2.yaml
+manifest_sha256: ea5cacbf97d06a6c7df0fdc0cfe18e40fe973d63e48e965cce6438809fb462ce
+contact_sheet: design/art/takes/batch-30c-decor-seasons-2-v2/x-corner-guz-v2/contact.jpg
+jobs:
+  x-corner-guz-v2:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Both original and official locked
+      opaque paintings preserve the independent corner inventory: exactly three separately
+      readable carved lanterns in a shallow front-left row, path stones curving back-right
+      toward leaf heap, small round pipe stove and chestnut cone front-right, plum
+      scarf stand behind and a few drifting leaves. Familiar lawn/edge over clouds
+      is cropped, with no copied whole island, root system, door, resident or reference
+      bench. Carved motifs are permitted here; no individual prop face, stripe, leg
+      or stool requirements were imported. Both eligible for unchanged QA ranking;
+      day lighting and local autumn colors; exploration never promoted.'
+qa_reports:
+  1:
+    job: x-corner-guz-v2
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 48 (R1 51)
+      value: 48.0
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 39 (at most 22), p98 93 (at least 90), spread 54
+        (at least 60)'
+      value: 54.2
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 82 (band 55-90)'
+      value: 81.6
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.19 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.188
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.0 (at least 3.5)'
+      value: 4.01
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.5 (R1 5.3)
+      value: 2.46
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.1
+      value: 1.1182
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.8, p95 8.5, off-palette 2.7% (top: #AA5566 (0.2%), #995566
+        (0.2%))'
+      value: 2.755
+    info:
+      metrics_raw:
+        L_p5: 55.4
+        L_p50: 85.2
+        L_p95: 94.7
+        C_p50: 19.9
+        C_p95: 49.3
+        C_p99: 60.9
+        detail: 3.24
+      metrics_locked:
+        L_p5: 55.8
+        L_p50: 85.0
+        L_p95: 94.5
+        C_p50: 20.0
+        C_p95: 48.0
+        C_p99: 58.5
+        detail: 2.46
+    fingerprint: a1680c6356044e81
+  2:
+    job: x-corner-guz-v2
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 52 (R1 51)
+      value: 51.5
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 43 (at most 22), p98 93 (at least 90), spread 50
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 50.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 83 (band 55-90)'
+      value: 83.0
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.22 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.216
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.3 (at least 3.5)'
+      value: 4.28
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.4 (R1 5.3)
+      value: 2.4
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.1
+      value: 1.1171
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.9, p95 11.1, off-palette 4.5% (top: #DD8844 (0.3%), #EE8844
+        (0.3%))'
+      value: 2.8964
+    info:
+      metrics_raw:
+        L_p5: 53.8
+        L_p50: 85.8
+        L_p95: 94.8
+        C_p50: 23.1
+        C_p95: 53.5
+        C_p99: 64.0
+        detail: 3.19
+      metrics_locked:
+        L_p5: 54.2
+        L_p50: 85.7
+        L_p95: 94.7
+        C_p50: 23.2
+        C_p95: 51.5
+        C_p99: 61.0
+        detail: 2.4
+    fingerprint: a1680c6356044e81
+manual_review:
+  observed_note: 'Both original and official locked opaque paintings preserve the
+    independent corner inventory: exactly three separately readable carved lanterns
+    in a shallow front-left row, path stones curving back-right toward leaf heap,
+    small round pipe stove and chestnut cone front-right, plum scarf stand behind
+    and a few drifting leaves. Familiar lawn/edge over clouds is cropped, with no
+    copied whole island, root system, door, resident or reference bench. Carved motifs
+    are permitted here; no individual prop face, stripe, leg or stool requirements
+    were imported. Both eligible for unchanged QA ranking; day lighting and local
+    autumn colors; exploration never promoted.'
+  excluded_takes: []
+sources:
+- batch: batch-30c-decor-seasons-2-v2
+  job: x-corner-guz-v2
+  take: 1
+  round: 1
+  logical_run: 20261106-b30c-v2-autumn-corner
+  source_file: /workspace/generated_images/exec-d0e14466-b957-440e-974d-9dc03b74ed93.png
+  returned_at: '2026-11-06T00:49:27.239Z'
+  prompt_sha256: 2d4d7df672aa70bfe4c3852d08871199cd5d6f6e1ee6392cecf8dd2435871245
+  fingerprint: a1680c6356044e81
+  saved_at: '2026-11-06T00:49:33.766650+00:00'
+  original_generated_png_sha256: 039792ec79e3bcafba766f4e3c44870744b15cdd122d5077ac62618ebdbf7c46
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 55f172846afdbd383935f6f4fbabe930e08305fb05cabfdea369bbda314a4bc2
+  inbox_png_sha256: 599e63278ce3ebe0e1d142538813409977e2c35df2c982e4910c7beb7c913b3a
+  qa_sha256: 381d0b4c23706b4ed2dbf4de232f007ed3797c6f02e91efe0b1448793d0823eb
+- batch: batch-30c-decor-seasons-2-v2
+  job: x-corner-guz-v2
+  take: 2
+  round: 1
+  logical_run: 20261106-b30c-v2-autumn-corner
+  source_file: /workspace/generated_images/exec-63d74856-7e34-4e96-8f04-e6830fd66693.png
+  returned_at: '2026-11-06T00:49:57.710Z'
+  prompt_sha256: 2d4d7df672aa70bfe4c3852d08871199cd5d6f6e1ee6392cecf8dd2435871245
+  fingerprint: a1680c6356044e81
+  saved_at: '2026-11-06T00:49:58.074024+00:00'
+  original_generated_png_sha256: 6bb29221a787c5a06dcca0ac22a287906e237302f5bcdbf2fba9dccbf8a5cf11
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: fd3e09828c3021890e16622526d4a08a75ea48b9c5d5b3c7c055ceee639874fe
+  inbox_png_sha256: f7e0f3eee7122c2ae8d1e47a0af3b3ae040dad4ee6cea0c745e70d0a7329c34e
+  qa_sha256: b51c7ba8e25c1d0936ed8c4d77a9d0532ac39712187834b48ffb52e6d43a2e4d
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+variation_proof_sha256: a6b42f3fbfdb3ab513b04eb9c4e1ea02889b0542875eb6cff926b45df031def0

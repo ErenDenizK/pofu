@@ -1,0 +1,176 @@
+batch: batch-35-experience
+contact_sheet: design/art/takes/batch-35-experience/dressing-harbor/contact.jpg
+jobs:
+  dressing-harbor:
+    pick: 1
+    publication: promoted; founder review pending
+    note: 'auto-picked by QA; founder review pending. Both original and official locked
+      initial takes are independently visually eligible: exactly ten separated units
+      in five columns/two rows, thick cream rope coil, red-cream buoy, slatted crate,
+      coarse sage folded net, single diagonal oar, barrel with two honey bands, unlit
+      paper lantern buoy, mooring post with rope loop, two flat fish crates as one
+      stack, pale blue-grey tin bucket. Matte toy-like materials; no fish, text, floor,
+      cast shadow, fine net weave or metallic shine. Both hard QA pass with lock_load0
+      and no Harmony ranking check, deterministic tie selects take1. Exact RGBA lossless-cap
+      preflight fits614400 without resizing. Advisory light warnings retained.'
+qa_reports:
+  2:
+    job: dressing-harbor
+    take: 2
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 42 (R1 51)
+      value: 42.0
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 51 (at most 22), p98 92 (at least 90), spread 40
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 40.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 73 (band 55-90)'
+      value: 73.0
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 8.1 (at least 3.5)'
+      value: 8.05
+    - check: detail_budget
+      status: pass
+      message: detail at display size 5.1 (R1 5.3)
+      value: 5.06
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.0, p95 2.4, off-palette 0.0%
+      value: 0.9677
+    info:
+      metrics_raw:
+        L_p5: 54.5
+        L_p50: 73.0
+        L_p95: 89.7
+        C_p50: 31.7
+        C_p95: 42.0
+        C_p99: 43.7
+        detail: 4.91
+      metrics_locked:
+        L_p5: 54.5
+        L_p50: 73.0
+        L_p95: 89.7
+        C_p50: 31.7
+        C_p95: 42.0
+        C_p99: 43.7
+        detail: 5.06
+    fingerprint: 9023a0afe50a7033
+  1:
+    job: dressing-harbor
+    take: 1
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 39.5
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 48 (at most 22), p98 91 (at least 90), spread 43
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 43.2
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 70 (band 55-90)'
+      value: 69.9
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 8.9 (at least 3.5)'
+      value: 8.9
+    - check: detail_budget
+      status: pass
+      message: detail at display size 5.3 (R1 5.3)
+      value: 5.28
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.1, p95 2.7, off-palette 0.0%
+      value: 1.13
+    info:
+      metrics_raw:
+        L_p5: 50.8
+        L_p50: 69.9
+        L_p95: 88.4
+        C_p50: 29.5
+        C_p95: 39.5
+        C_p99: 41.7
+        detail: 5.15
+      metrics_locked:
+        L_p5: 50.8
+        L_p50: 69.9
+        L_p95: 88.4
+        C_p50: 29.5
+        C_p95: 39.5
+        C_p99: 41.7
+        detail: 5.28
+    fingerprint: 9023a0afe50a7033
+manual_review:
+  excluded_takes: []
+  note: 'Both original and official locked initial takes are independently visually
+    eligible: exactly ten separated units in five columns/two rows, thick cream rope
+    coil, red-cream buoy, slatted crate, coarse sage folded net, single diagonal oar,
+    barrel with two honey bands, unlit paper lantern buoy, mooring post with rope
+    loop, two flat fish crates as one stack, pale blue-grey tin bucket. Matte toy-like
+    materials; no fish, text, floor, cast shadow, fine net weave or metallic shine.
+    Both hard QA pass with lock_load0 and no Harmony ranking check, deterministic
+    tie selects take1. Exact RGBA lossless-cap preflight fits614400 without resizing.
+    Advisory light warnings retained.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-f440ad4a-d840-49bc-9b80-5a70a835aed6.png
+  original_generated_png_sha256: fa08c75e0a44aa22a3ebac507ab23c7d2a4208d94cf5a0605d402e0e9f9baa07
+  inbox_png_sha256: 2f37cad04e4f2cda76204b08af4b8cc60ee8cfaae78f1e63c5b2cc3418a5bf2b
+  rgba_sha256: 15d5fe1bf089130a1ab64b2565a2523120bdd49a2b2c22b5a256cc285e1fea9c
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 9023a0afe50a7033
+- take: 2
+  source_file: /workspace/generated_images/exec-f093edf3-96da-4793-a2f7-da732801005b.png
+  original_generated_png_sha256: d8c41919b2b4550a4b175c5f1a2f4a72d323d1ae16912312fe35d4a3ab00e4e1
+  inbox_png_sha256: 30754c540abb42ab1e521f6d18d784ae1da9d1e6029965e7c0ecda81f28c5a00
+  rgba_sha256: 469700d41222996585767b35ec348f25bd67cda034d50d0c64a6d4eb943a7721
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 9023a0afe50a7033

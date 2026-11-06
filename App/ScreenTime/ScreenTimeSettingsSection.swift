@@ -96,11 +96,13 @@ struct ScreenTimeSettingsSection: View {
                     .font(PofuFont.footnote)
                     .foregroundStyle(PofuColor.textSecondary)
                 Button("Open Settings") { openSettings() }
+                    .buttonStyle(PofuTextButtonStyle())
             }
         case .focusMayHide:
             VStack(alignment: .leading, spacing: PofuSpacing.xs) {
                 Label("With Focus on, my notification may not arrive.", systemImage: "moon")
                 Button("Open Settings") { openSettings() }
+                    .buttonStyle(PofuTextButtonStyle())
             }
         }
     }

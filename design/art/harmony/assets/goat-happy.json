@@ -1,0 +1,54 @@
+{
+ "after": {
+  "C_mean": 18.123,
+  "C_p50": 13.826,
+  "C_p95": 39.813,
+  "L_mean": 86.459,
+  "L_p2": 59.521,
+  "L_p98": 96.133,
+  "detail": 5.741,
+  "edge": 0.232,
+  "tint_a": 4.878,
+  "tint_b": 8.879,
+  "warmth_b": 15.201
+ },
+ "before": {
+  "C_mean": 18.123,
+  "C_p50": 13.826,
+  "C_p95": 39.813,
+  "L_mean": 86.459,
+  "L_p2": 59.521,
+  "L_p98": 96.133,
+  "detail": 5.741,
+  "edge": 0.232,
+  "tint_a": 4.878,
+  "tint_b": 8.879,
+  "warmth_b": 15.201
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "char",
+ "matched_to": "char",
+ "outliers_after": [
+  "L_p2"
+ ],
+ "outliers_before": [
+  "L_p2"
+ ],
+ "ppu": 29.0,
+ "reference": false,
+ "score_after": 79.7,
+ "score_before": 79.7,
+ "shipped": false,
+ "source": "design/art/masters/goat-happy/goat-happy.webp",
+ "source_sha": "06b99e24f6117dcd"
+}

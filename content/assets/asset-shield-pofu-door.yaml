@@ -2,16 +2,17 @@ id: asset-shield-pofu-door
 type: asset
 title_tr: shield-pofu-door
 title_en: shield-pofu-door (sheet)
-status: planned
+status: in-production
 horizon: later
-summary: >-
-  A sheet of three small scenes in one row, each showing Pofu the hamster, in his exact attached
-  look, standing at his round wooden door (the attached island's round door: a round honey-wood
-  door with a small round window, set in a low rounded cream wall segment), the same door
-  and the same place in all three, evenly spaced with wide empty space between them: (1) calm:
-  standing relaxed beside the door, a soft content s…
+summary: 'A sheet of three small scenes in one row, each showing Pofu the hamster,
+  in his exact attached look, standing at his round wooden door (the attached island''s
+  round door: a round honey-wood door with a small round window, set in a low rounded
+  cream wall segment), the same door and the same place in all three, evenly spaced
+  with wide empty space between them: (1) calm: standing relaxed beside the door,
+  a soft content s…'
 art:
-  images: []
+  images:
+  - design/art/masters/shield-pofu-door/shield-pofu-door.webp
   jobs:
   - batch-35-experience:shield-pofu-door
 sources:

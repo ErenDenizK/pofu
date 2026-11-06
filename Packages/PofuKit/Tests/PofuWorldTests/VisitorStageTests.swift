@@ -344,6 +344,36 @@ struct VisitorStageTests {
         }
     }
 
+    @Test func critterFramesAreBakedAndSwapInPlace() throws {
+        for kind in [CritterKind.butterfly, .snail, .bird] {
+            _ = try #require(WorldArt.sprite(kind.art), "\(kind) has a rest sprite")
+            for frame in 0..<kind.spriteFrames.count {
+                let name = kind.art(frame: frame)
+                let sprite = try #require(WorldArt.sprite(name), "\(name) is not baked")
+                let box = try #require(sprite.sharp)
+                // Every frame stands on the same baseline: its box ends at the feet or above them.
+                #expect(box.maxY <= 2 && box.maxY >= -2, "\(name) leaves the baseline")
+                #expect(box.width < 30 && box.height < 30, "\(name) is too big for the lawn")
+            }
+            #expect(kind.art(frame: 0) == kind.art)
+        }
+        // The stand-ins keep the kinds without a sheet.
+        #expect(CritterKind.ladybug.art(frame: 3) == "critter-ladybug")
+        #expect(CritterKind.bird.art(frame: 1) == "critter-bird-3")
+        #expect(CritterKind.bird.art(frame: -3) == CritterKind.bird.art(frame: 1))
+    }
+
+    @Test func aBirdsFramesStayInItsSheet() {
+        let bird = Critters.all.first { $0.kind == .bird }
+        var frames = Set<Int>()
+        if let bird {
+            for t in stride(from: 0.0, through: 30, by: 0.05) {
+                frames.insert(CritterMotion.pose(of: bird, at: t, isAmbient: true).frame)
+            }
+        }
+        #expect(frames == [0, 1, 2, 3], "the bird hops, lands and sings")
+    }
+
     @Test func theJobsCoverEveryCodexName() {
         let arts = Set(CritterKind.allCases.map(\.art))
         #expect(arts.isSuperset(of: ["critter-butterfly", "critter-snail", "critter-bird", "critter-ladybug"]))

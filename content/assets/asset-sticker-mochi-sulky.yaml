@@ -1,0 +1,20 @@
+id: asset-sticker-mochi-sulky
+type: asset
+title_tr: sticker-mochi-sulky
+title_en: sticker-mochi-sulky (char)
+status: in-production
+horizon: now
+summary: >-
+  A single full-body sticker of Mochi the bunny in the exact attached look, cheeks puffed,
+  a small pout, eyes looking sideways, ears drooping a little. Centred on a plain transparent
+  background with wide empty space around it, drawn complete with the whole body. No text,
+  no speech bubbles, no floating hearts, no sticker border, no ground shadow.
+art:
+  images: []
+  jobs:
+  - batch-42-stickers:sticker-mochi-sulky
+sources:
+- doc: tools/imagegen/manifest/batch-42-stickers.yaml
+kind: char
+batch: batch-42-stickers
+size: 1024x1024

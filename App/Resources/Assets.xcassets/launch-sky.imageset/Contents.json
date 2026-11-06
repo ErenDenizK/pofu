@@ -1,8 +1,8 @@
 {
   "images": [
     {
-      "idiom": "universal",
       "filename": "launch-sky@3x.png",
+      "idiom": "universal",
       "scale": "3x"
     }
   ],

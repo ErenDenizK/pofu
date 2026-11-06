@@ -146,9 +146,9 @@ enum ShieldDoorMood: String {
 /// Pofu's face for the shield, small: the shield draws its icon at about
 /// 60 points, and the extension has only a few megabytes to work with.
 ///
-/// The icon is `shield-pofu-door-<mood>.png` when the bundle carries the
-/// plate. Until the Codex art exists, a code-drawn door with the portrait
-/// in front of it stands in under the same name. Older mood images
+/// The icon is `shield-pofu-door-<mood>.png`, the painted plate cut from the
+/// Codex sheet (`tools/assets/integrate.py`). Should a bundle lack it, a
+/// code-drawn door with the portrait in front of it stands in. Older mood images
 /// (`pofu-proud.png`, ...) and the base portrait remain the fallbacks, and
 /// "unwell" is the base desaturated (never a guilt picture).
 enum ShieldIconImage {

@@ -4,17 +4,17 @@ title_tr: goat-surprised
 title_en: goat-surprised (char)
 status: in-production
 horizon: now
-summary: >-
-  Edit the attached baby goat into a surprised reaction. Change only the face and ears: the
-  flat pressed mouth becomes a small round soft "o", both eyes grow slightly rounder and wider
-  with their catchlights kept, the brows lift, and the two floppy ears lift a little more
-  upright. The horn buds, beard tuft, tan patch, body, paws, colors and size stay exactly
-  as they are.
+summary: 'Edit the attached baby goat into a surprised reaction. Change only the face
+  and ears: the flat pressed mouth becomes a small round soft "o", both eyes grow
+  slightly rounder and wider with their catchlights kept, the brows lift, and the
+  two floppy ears lift a little more upright. The horn buds, beard tuft, tan patch,
+  body, paws, colors and size stay exactly as they are.'
 links:
   variant_of:
   - asset-harbor-goat
 art:
-  images: []
+  images:
+  - design/art/masters/goat-surprised/goat-surprised.webp
   jobs:
   - batch-41-resident-reactions:goat-surprised
 sources:

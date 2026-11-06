@@ -1,0 +1,20 @@
+id: asset-sticker-findik-happy
+type: asset
+title_tr: sticker-findik-happy
+title_en: sticker-findik-happy (char)
+status: in-production
+horizon: now
+summary: >-
+  A single full-body sticker of Fındık the hedgehog in the exact attached look, eyes as happy
+  closed arcs, a small smile, spines relaxed. Centred on a plain transparent background with
+  wide empty space around it, drawn complete with the whole body. No text, no speech bubbles,
+  no floating hearts, no sticker border, no ground shadow.
+art:
+  images: []
+  jobs:
+  - batch-42-stickers:sticker-findik-happy
+sources:
+- doc: tools/imagegen/manifest/batch-42-stickers.yaml
+kind: char
+batch: batch-42-stickers
+size: 1024x1024

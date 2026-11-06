@@ -94,6 +94,7 @@ rows here whenever an idea comes, without waiting for the founder.
 | P1 | `batch-39-koke-production` | Koke, the first story island, playable: the island plate at arc stages 0 to 4 in the game camera ([healing arc](island-healing-arc.md)) and Koke in four poses (asleep, one eye open, stretching, standing) | about 9 | **READY** once its manifest is on main |
 | P2 | `batch-40-home-ladder-gaps` | Every home station and prop level the [home progression](../product/home-progression.md) §4.2 and §9 needs that has no master yet, so each level is a visible step | the lead lists them | **READY** once its manifest is on main |
 | P3 | `batch-41-resident-reactions` | Mochi, Simit, Fındık and the goat: happy, surprised, sleepy, proud as rig poses (the Pofu rig method), for visitors and level-ups | about 16 | **READY** once its manifest is on main |
+| P4 | `batch-42-stickers` | Stickers for the game (visitor letters and gift cards, the residents' reaction bubbles, the week page and Today summary): Pofu x6, Mochi x3, Simit, Fındık, the goat, one duo; code swaps them in by asset name over SF Symbol stand-ins (`Sticker`) | 12 | **READY** once its manifest is on main |
 
 ## The backlog
 

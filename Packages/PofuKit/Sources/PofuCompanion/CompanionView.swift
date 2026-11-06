@@ -483,7 +483,7 @@ private struct EyeMapping {
         } label: {
             Text(verbatim: "Celebrate")
         }
-        .buttonStyle(.borderedProminent)
+        .buttonStyle(PofuPrimaryButtonStyle())
     }
     .padding(PofuSpacing.xl)
     .background(Color(red: 0.99, green: 0.93, blue: 0.9))

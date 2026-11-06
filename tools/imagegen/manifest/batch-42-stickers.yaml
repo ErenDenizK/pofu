@@ -1,0 +1,243 @@
+# Batch 42: stickers (production; real ids, promoted on pass).
+#
+# The best of the batch-23 exploration stickers (x-sticker-*, never promotable)
+# recreated as real assets, so the game can use them in visitor letters and
+# gift cards, the residents' reaction bubbles and the week page / Today
+# summary. In code: `Sticker` (PofuDesignSystem) maps each id here to the
+# asset name `sticker-<id>`, with an SF Symbol stand-in until the art lands.
+#
+# One sticker per job, full body, centred on a transparent 1024 x 1024 canvas
+# with clear space around it, so code scales it to 28 to 96 pt without a cut.
+# No painted text, no speech bubbles, no floating hearts, no sticker border.
+# Each is a pose of the approved character at the SAME look (R1 for Pofu,
+# the approved masters for the others); never a different design.
+#
+# Review checks: reads at 28 pt from the face and posture alone; the
+# character is unmistakable; colours and proportions are the base's; the goat
+# stays indignant (its happy is a reluctant half-smile). 12 jobs.
+#
+# Tracks: `pofu` (6), `mochi` (3), `residents` (3: simit, findik, goat),
+# `duo` (1); all independent.
+
+batch: batch-42-stickers
+title: "Stickers (Pofu x6, Mochi x3, Simit, Fındık, the goat, one duo)"
+status: open
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: mochi-v2, kind: char, name: mochi-v2, external: batch-03-home-island, master: design/art/masters/mochi-v2/mochi-v2.webp}
+  - {id: simit-kitten, kind: char, name: simit-kitten, external: retry-2026-11-03, master: design/art/masters/simit-kitten/simit-kitten.webp}
+  - {id: findik, kind: char, name: findik-base, external: batch-03-home-island, master: design/art/masters/findik-base/findik-base.webp}
+  - {id: harbor-goat, kind: char, name: harbor-goat, external: batch-14-harbor, master: design/art/masters/harbor-goat/harbor-goat.webp}
+
+  - id: sticker-pofu-happy
+    kind: char
+    name: sticker-pofu-happy
+    size: 1024x1024
+    transparent: true
+    chat: "Pofu · Stickers"
+    light: {cell: day, layer: subject}
+    notes: "pofu-happy: reads at emoji size from the eyes and mouth alone; he is always unmistakably Pofu."
+    attach:
+      - ref: R1
+        role: "Pofu, the hamster: his exact look, fur, colors, eyes and signature curl."
+    prompt:
+      - text: |
+          A single full-body sticker of Pofu the hamster in the exact attached look, eyes closed in a smile, paws up, a wide content smile. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.
+      - text: "AVOID: text, a white outline, a background, teeth, tears, motion lines, a different design."
+
+  - id: sticker-pofu-sleepy
+    kind: char
+    name: sticker-pofu-sleepy
+    size: 1024x1024
+    transparent: true
+    chat: "Pofu · Stickers"
+    light: {cell: day, layer: subject}
+    notes: "pofu-sleepy: reads at emoji size from the eyes and mouth alone; he is always unmistakably Pofu."
+    attach:
+      - ref: R1
+        role: "Pofu, the hamster: his exact look, fur, colors, eyes and signature curl."
+    prompt:
+      - text: |
+          A single full-body sticker of Pofu the hamster in the exact attached look, eyes half closed, head drooping, a tiny yawn. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.
+      - text: "AVOID: text, a white outline, a background, teeth, tears, motion lines, a different design."
+
+  - id: sticker-pofu-surprised
+    kind: char
+    name: sticker-pofu-surprised
+    size: 1024x1024
+    transparent: true
+    chat: "Pofu · Stickers"
+    light: {cell: day, layer: subject}
+    notes: "pofu-surprised: reads at emoji size from the eyes and mouth alone; he is always unmistakably Pofu."
+    attach:
+      - ref: R1
+        role: "Pofu, the hamster: his exact look, fur, colors, eyes and signature curl."
+    prompt:
+      - text: |
+          A single full-body sticker of Pofu the hamster in the exact attached look, eyes wide, mouth a small round O, fur puffed. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.
+      - text: "AVOID: text, a white outline, a background, teeth, tears, motion lines, a different design."
+
+  - id: sticker-pofu-proud
+    kind: char
+    name: sticker-pofu-proud
+    size: 1024x1024
+    transparent: true
+    chat: "Pofu · Stickers"
+    light: {cell: day, layer: subject}
+    notes: "pofu-proud: reads at emoji size from the eyes and mouth alone; he is always unmistakably Pofu."
+    attach:
+      - ref: R1
+        role: "Pofu, the hamster: his exact look, fur, colors, eyes and signature curl."
+    prompt:
+      - text: |
+          A single full-body sticker of Pofu the hamster in the exact attached look, chest out, chin up, eyes bright, a small content smile. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.
+      - text: "AVOID: text, a white outline, a background, teeth, tears, motion lines, a different design."
+
+  - id: sticker-pofu-waving
+    kind: char
+    name: sticker-pofu-waving
+    size: 1024x1024
+    transparent: true
+    chat: "Pofu · Stickers"
+    light: {cell: day, layer: subject}
+    notes: "pofu-waving: reads at emoji size from the eyes and mouth alone; he is always unmistakably Pofu."
+    attach:
+      - ref: R1
+        role: "Pofu, the hamster: his exact look, fur, colors, eyes and signature curl."
+    prompt:
+      - text: |
+          A single full-body sticker of Pofu the hamster in the exact attached look, one paw raised in a friendly wave, a warm smile, eyes open. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.
+      - text: "AVOID: text, a white outline, a background, teeth, tears, motion lines, a different design."
+
+  - id: sticker-pofu-tea
+    kind: char
+    name: sticker-pofu-tea
+    size: 1024x1024
+    transparent: true
+    chat: "Pofu · Stickers"
+    light: {cell: day, layer: subject}
+    notes: "pofu-tea: reads at emoji size from the eyes and mouth alone; he is always unmistakably Pofu."
+    attach:
+      - ref: R1
+        role: "Pofu, the hamster: his exact look, fur, colors, eyes and signature curl."
+    prompt:
+      - text: |
+          A single full-body sticker of Pofu the hamster in the exact attached look, holding a small tulip-shaped tea glass in both paws, eyes closed in a cosy smile. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.
+      - text: "AVOID: text, a white outline, a background, teeth, tears, motion lines, a different design."
+
+  - id: sticker-mochi-happy
+    kind: char
+    name: sticker-mochi-happy
+    size: 1024x1024
+    transparent: true
+    chat: "Pofu · Stickers"
+    light: {cell: day, layer: subject}
+    notes: "mochi-happy: the ears, body and colors are the approved master's."
+    attach:
+      - ref: approved:mochi-v2
+        role: "Mochi, the bunny: her exact look, fur, colors and eyes."
+    prompt:
+      - text: |
+          A single full-body sticker of Mochi the bunny in the exact attached look, eyes as happy closed arcs, a wider smile, a blush, ears up. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.
+      - text: "AVOID: text, a white outline, a background, teeth, tears, motion lines, a different design."
+
+  - id: sticker-mochi-thinking
+    kind: char
+    name: sticker-mochi-thinking
+    size: 1024x1024
+    transparent: true
+    chat: "Pofu · Stickers"
+    light: {cell: day, layer: subject}
+    notes: "mochi-thinking: the ears, body and colors are the approved master's."
+    attach:
+      - ref: approved:mochi-v2
+        role: "Mochi, the bunny: her exact look, fur, colors and eyes."
+    prompt:
+      - text: |
+          A single full-body sticker of Mochi the bunny in the exact attached look, one paw at her chin, eyes looking up and aside, one ear tilted, a small thoughtful mouth. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.
+      - text: "AVOID: text, a white outline, a background, teeth, tears, motion lines, a different design."
+
+  - id: sticker-mochi-sulky
+    kind: char
+    name: sticker-mochi-sulky
+    size: 1024x1024
+    transparent: true
+    chat: "Pofu · Stickers"
+    light: {cell: day, layer: subject}
+    notes: "mochi-sulky: the ears, body and colors are the approved master's."
+    attach:
+      - ref: approved:mochi-v2
+        role: "Mochi, the bunny: her exact look, fur, colors and eyes."
+    prompt:
+      - text: |
+          A single full-body sticker of Mochi the bunny in the exact attached look, cheeks puffed, a small pout, eyes looking sideways, ears drooping a little. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.
+      - text: "AVOID: text, a white outline, a background, teeth, tears, motion lines, a different design."
+
+  - id: sticker-simit-happy
+    kind: char
+    name: sticker-simit-happy
+    size: 1024x1024
+    transparent: true
+    chat: "Pofu · Stickers"
+    light: {cell: day, layer: subject}
+    notes: "Simit happy: the base's body and colors."
+    attach:
+      - ref: approved:simit-kitten
+        role: "Simit, the kitten: her exact look, fur, colors and eyes."
+    prompt:
+      - text: |
+          A single full-body sticker of Simit the kitten in the exact attached look, eyes as happy closed arcs, a small smile, tail up. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.
+      - text: "AVOID: text, a white outline, a background, teeth, tears, motion lines, a different design."
+
+  - id: sticker-findik-happy
+    kind: char
+    name: sticker-findik-happy
+    size: 1024x1024
+    transparent: true
+    chat: "Pofu · Stickers"
+    light: {cell: day, layer: subject}
+    notes: "Fındık happy: the base's body and colors."
+    attach:
+      - ref: approved:findik
+        role: "Fındık, the hedgehog: his exact look, spines, colors and eyes."
+    prompt:
+      - text: |
+          A single full-body sticker of Fındık the hedgehog in the exact attached look, eyes as happy closed arcs, a small smile, spines relaxed. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.
+      - text: "AVOID: text, a white outline, a background, teeth, tears, motion lines, a different design."
+
+  - id: sticker-goat-indignant
+    kind: char
+    name: sticker-goat-indignant
+    size: 1024x1024
+    transparent: true
+    chat: "Pofu · Stickers"
+    light: {cell: day, layer: subject}
+    notes: "Goat indignant: in character, never a different animal."
+    attach:
+      - ref: approved:harbor-goat
+        role: "The harbor goat: its exact look, fur, colors and eyes."
+    prompt:
+      - text: |
+          A single full-body sticker of the harbor goat in the exact attached look, chin lifted, a closed-eyed huff, indignant and a little proud, a reluctant half-smile. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.
+      - text: "AVOID: text, a white outline, a background, teeth, tears, motion lines, a different design."
+
+  - id: sticker-duo-tea
+    kind: char
+    name: sticker-duo-tea
+    size: 1024x1024
+    transparent: true
+    chat: "Pofu · Stickers"
+    light: {cell: day, layer: subject}
+    notes: "Pofu and Mochi: tea for two. The size relation holds (Pofu about her height); the pair reads as one unit."
+    attach:
+      - ref: R1
+        role: "Pofu, the hamster: his exact look, fur, colors, eyes and signature curl."
+      - ref: approved:mochi-v2
+        role: "Mochi, the bunny: her exact look, fur, colors and eyes."
+    prompt:
+      - text: |
+          A single full-body sticker of Pofu the hamster and Mochi the bunny together, both in their exact attached looks and correct relative size, side by side, each holding a small tulip-shaped tea glass and clinking gently, smiling. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.
+      - text: "AVOID: text, a white outline, a background, teeth, tears, motion lines, a different design."

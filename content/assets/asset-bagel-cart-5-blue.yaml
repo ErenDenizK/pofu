@@ -2,13 +2,13 @@ id: asset-bagel-cart-5-blue
 type: asset
 title_tr: bagel-cart-5-blue
 title_en: bagel-cart-5-blue (station)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  Recolor the bagel cart to its blue option. The coral-and-cream striped roof of the little
-  kiosk becomes sea-blue and cream stripes, the flag on top becomes sea-blue, and any coral
-  accent on the cart's trim becomes soft sea-blue. The bagels, the pole of rings, the cloth,
-  the little bench, the wood and the cart's body keep their exact colors.
+summary: Recolor the bagel cart to its blue option. The coral-and-cream striped roof
+  of the little kiosk becomes sea-blue and cream stripes, the flag on top becomes
+  sea-blue, and any coral accent on the cart's trim becomes soft sea-blue. The bagels,
+  the pole of rings, the cloth, the little bench, the wood and the cart's body keep
+  their exact colors.
 links:
   variant_of:
   - asset-bagel-cart-5
@@ -20,3 +20,13 @@ sources:
 - doc: tools/imagegen/manifest/batch-40-home-ladder-gaps.yaml
 kind: station
 batch: batch-40-home-ladder-gaps
+notes:
+- 'batch-40-home-ladder-gaps skipped after four takes: One unchanged-prompt retry
+  exhausted. Take1 and retry takes3/4 change the explicitly protected coral cloth
+  stripe to blue in original and official locked image. Take2 preserves the coral
+  cloth but recolors the protected cream/honey wooden outer front-wheel rim entirely
+  blue; the source permits coral trim accents rather than this wooden rim. All four
+  official WARN results remain WARN, excluded only for source-literal protected-color
+  changes. Historical parent right-edge clipping and actual geometry are accepted
+  unchanged, not made into an invented gate. Exact source/locked/QA/reference hashes
+  preserved. No third round, pixel correction or master promotion.'

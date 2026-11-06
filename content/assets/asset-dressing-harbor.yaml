@@ -2,16 +2,17 @@ id: asset-dressing-harbor
 type: asset
 title_tr: dressing-harbor
 title_en: dressing-harbor (sheet)
-status: planned
+status: in-production
 horizon: later
-summary: >-
-  A sheet of ten small harbor props for a cozy island diorama, in a grid of five columns by
-  two rows, each piece complete and separate with wide empty space around it, none touching:
-  row 1, a coil of thick cream rope, a round red-and-cream buoy, a small wooden shipping crate
-  with plain slats, a folded fishing net in soft sage-green mesh shown as a plump pile, and
-  a single wooden oar leaning on nothing (drawn lying at a…
+summary: 'A sheet of ten small harbor props for a cozy island diorama, in a grid of
+  five columns by two rows, each piece complete and separate with wide empty space
+  around it, none touching: row 1, a coil of thick cream rope, a round red-and-cream
+  buoy, a small wooden shipping crate with plain slats, a folded fishing net in soft
+  sage-green mesh shown as a plump pile, and a single wooden oar leaning on nothing
+  (drawn lying at a…'
 art:
-  images: []
+  images:
+  - design/art/masters/dressing-harbor/dressing-harbor.webp
   jobs:
   - batch-35-experience:dressing-harbor
 sources:

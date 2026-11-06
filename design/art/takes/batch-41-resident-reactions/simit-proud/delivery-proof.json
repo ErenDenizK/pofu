@@ -1,0 +1,28 @@
+[
+  {
+    "take": 1,
+    "canvas": [
+      1024,
+      1536
+    ],
+    "locked_png_bytes": 856213,
+    "lossless_default_bytes": 583680,
+    "best_lossless_webp": "/workspace/art-operator-runtime/run-20261105-night/batch-41-resident-reactions/encoding-probes/simit-proud/t1-lossless.webp",
+    "best_lossless_webp_bytes": 583680,
+    "rgba_sha256": "0cb708ff983cb8d4d3a244707f10a8ae01a17713808614df807827ba5a4d5949",
+    "eligible_delivery": true
+  },
+  {
+    "take": 2,
+    "canvas": [
+      1024,
+      1536
+    ],
+    "locked_png_bytes": 847844,
+    "lossless_default_bytes": 570764,
+    "best_lossless_webp": "/workspace/art-operator-runtime/run-20261105-night/batch-41-resident-reactions/encoding-probes/simit-proud/t2-lossless.webp",
+    "best_lossless_webp_bytes": 570764,
+    "rgba_sha256": "9d780faf779a3270af4f093fc5d479d523c57b3e77a26e357c12b2af506bfd0b",
+    "eligible_delivery": true
+  }
+]

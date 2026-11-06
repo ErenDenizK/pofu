@@ -208,6 +208,43 @@ final class LookScreenshotTests: XCTestCase {
         try write(try await wide(hour: 12, debug: true), name: "shadow-debug-1200", to: folder)
     }
 
+    /// Light and shadow v2 (LS-3): a çay ocağı level-up at 12:00 and at
+    /// 22:30 frozen at 0, 300, 600 and 900 ms (`levelup-<ms>ms-<hour>`; the
+    /// ceremony of light starts with the art swap at 420 ms), and the noon
+    /// island with its cloud shadows (`clouds-1200`).
+    @MainActor
+    func testRenderTheLevelUpLight() async throws {
+        let scene = try XCTUnwrap(
+            UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first,
+            "the test needs the host app's window scene"
+        )
+        let folder = outputFolder()
+        try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
+        let after = IslandSamples.world(
+            clock: Date(timeIntervalSinceReferenceDate: 815_000_000),
+            tendedDays: 120,
+            levels: [.garden: 3, .teaStall: 2, .pond: 2, .workshop: 1, .windmill: 2],
+            jar: IslandSamples.midWeekJar,
+            islands: [.home, .harbor],
+            islandLevel: 8
+        )
+        for (id, hour) in [("1200", 12.0), ("2230", 22.5)] {
+            for ms in [0, 300, 600, 900] {
+                let model = IslandSceneModel(framing: .island)
+                model.holdStationPan(from: .teaStall, to: .teaStall, at: 0)
+                let home = WorldHomeModel(now: { Date() })
+                home.buildStation(.teaStall, maxLevel: 5) { _ in BuildReceipt(station: .teaStall, level: 2, cost: Energy(10)) }
+                home.freeze(at: Double(ms) / 1000)
+                let view = LookScene(world: after, model: model, home: home).environment(\.worldLook, WorldLook(hourOverride: hour))
+                try write(try await render(AnyView(view), in: scene, settle: 1400), name: "levelup-\(ms)ms-\(id)", to: folder)
+            }
+        }
+        let model = IslandSceneModel(framing: .island)
+        model.holdEstablishingShot()
+        let view = LookScene(world: world(wellbeing: 78), model: model).environment(\.worldLook, WorldLook(hourOverride: 12))
+        try write(try await render(AnyView(view), in: scene, settle: 1400), name: "clouds-1200", to: folder)
+    }
+
     // MARK: - Where things are in a frame
 
     /// The island's rows and every character's box in a frame, in unit
@@ -499,11 +536,12 @@ final class LookScreenshotTests: XCTestCase {
 private struct LookScene: View {
     let world: WorldSnapshot
     let model: IslandSceneModel
+    var home: WorldHomeModel?
     var still = true
 
     var body: some View {
         // The scene carries the one place control itself (PlaceControl).
-        IslandScene(world: world, model: model) {
+        IslandScene(world: world, model: model, home: home) {
             SpeechBubble {
                 Text(verbatim: "Sen yokken bahçe 12 çekirdek topladı.")
             }

@@ -1,0 +1,143 @@
+{
+  "job": "windmill-4-painted",
+  "batch": "batch-40-home-ladder-gaps",
+  "asset": "station__windmill-4-painted",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-06T00:34:48+00:00",
+  "image": "design/art/stations/windmill-4-painted/windmill-4-painted.png",
+  "raw": "design/art/stations/windmill-4-painted/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "956ec14d9d672f5b",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nPaint the four cream sail cloths with a simple painted pattern: each sail cloth gets two soft sage-green bands along its long edges, a honey band in the middle and a round honey sun on its outer end, drawn as broad flat shapes. The sail frames, the tower, the string of lanterns along the cap, the door, the sacks and everything else stay exactly as they are.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: changing the shape, size or position of any part, new props, a different camera, a baked shadow, a glow, text.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/stations/windmill-4/windmill-4.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-06T00:25:01+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": {
+    "dx": 0,
+    "dy": 0
+  },
+  "alignment": null,
+  "fit": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 35 (R1 51)",
+        "value": 34.6
+      },
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 67 (at most 22), p98 90 (at least 90), spread 23 (at least 60) (warn-only until the founder has seen the light pilot)",
+        "value": 22.6
+      },
+      {
+        "check": "light_median",
+        "status": "pass",
+        "message": "day/subject: median L 81 (band 55-90)",
+        "value": 81.1
+      },
+      {
+        "check": "light_haze",
+        "status": "warn",
+        "message": "day/subject: dark-channel haze 0.47 (at most 0.20; no true dark means a wash) (warn-only until the founder has seen the light pilot)",
+        "value": 0.467
+      },
+      {
+        "check": "light_contrast",
+        "status": "warn",
+        "message": "day/subject: p75 local contrast 3.1 (at least 3.5)",
+        "value": 3.09
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 2.1 (R1 5.3)",
+        "value": 2.07
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 0.7",
+        "value": 0.7026
+      },
+      {
+        "check": "no_guide_magenta",
+        "status": "pass",
+        "message": "0 guide-magenta pixels (per 1024^2)",
+        "value": 0.0
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.2, p95 4.0, off-palette 0.0% (top: #888866 (0.0%), #998866 (0.0%))",
+        "value": 1.1771
+      },
+      {
+        "check": "station_anchor",
+        "status": "pass",
+        "message": "on the parent's anchor",
+        "value": 902.0
+      },
+      {
+        "check": "harmony",
+        "status": "warn",
+        "message": "harmony score 64 against the world reference (outliers: C_p95, L_p2, edge)",
+        "value": 63.5
+      },
+      {
+        "check": "edit_silhouette",
+        "status": "pass",
+        "message": "98% of the parent's shape kept",
+        "value": 0.9848
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "84% of the parent level unchanged",
+        "value": 0.8408
+      },
+      {
+        "check": "edit_chroma",
+        "status": "warn",
+        "message": "chroma x1.37 of the parent level (drift compounds along a chain)",
+        "value": 1.3671
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Independent source and locked review verifies take1: all four sails each have two sage long-edge bands, one honey central band and one round honey sun at the outer end; all four frames/hub, six cap lanterns, tower/door and three seed sacks retain their same-level reference geometry and colors. No broad haze, glow or background. Take2 remains excluded by official hard edit_chroma1.4667, not a borrowed manual threshold. Take1 is the only eligible initial candidate. Stable prelinked windmill consumer remains byte-identical. Founder review pending."
+}

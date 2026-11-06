@@ -1,10 +1,13 @@
 {
-  "_doc": "Master -> app imageset map for the vertical slice (tools/assets/integrate.py). `master` is an art folder under design/art (the lock-light re-lock wins, then .png, then .webp). target `games` writes a flat PNG into PofuGames/Resources at `scale` px per point, fitted into `points` and never upscaled; target `world` names an imageset baked into World.xcassets by design/prototypes/interactions/tools/preblur.py (integrate.py runs it, then checks the imageset exists). target `ui` is the same flat bake into PofuDesignSystem/Resources (the painted menu art, named paint-*; PofuPaint in the design system lists them). target `glow` bakes an additive glow on black (a Codex glow-* sprite) into World.xcassets as a white-on-alpha imageset named by `name` (alpha is the brightest channel), fitted into `points` at `scale`; the app tints it per source and adds it.",
+  "_doc": "Master -> app imageset map for the vertical slice (tools/assets/integrate.py). `master` is an art folder under design/art (the lock-light re-lock wins, then .png, then .webp). target `games` writes a flat PNG into PofuGames/Resources at `scale` px per point, fitted into `points` and never upscaled; target `world` names an imageset baked into World.xcassets by design/prototypes/interactions/tools/preblur.py (integrate.py runs it, then checks the imageset exists). target `ui` is the same flat bake into PofuDesignSystem/Resources (the painted menu art, named paint-*; PofuPaint in the design system lists them). target `glow` bakes an additive glow on black (a Codex glow-* sprite) into World.xcassets as a white-on-alpha imageset named by `name` (alpha is the brightest channel), fitted into `points` at `scale`; the app tints it per source and adds it. target `sprite` bakes a coloured alpha sprite (optionally one `cell` of a sheet, `alpha_floor` clearing the halation round it) into World.xcassets for screen-space drawing (the fireflies); `shield` bakes a cell of a sheet as a square PNG for the shield extension and its replica; `app` bakes a plate into the app's own catalog as a @3x imageset (the launch sky, restored to `size`, and the cloud curtain), with harmony's correction.",
   "targets": {
     "games": "Packages/PofuKit/Sources/PofuGames/Resources",
     "world": "Packages/PofuKit/Sources/PofuWorld/Resources/World.xcassets",
     "ui": "Packages/PofuKit/Sources/PofuDesignSystem/Resources",
-    "glow": "Packages/PofuKit/Sources/PofuWorld/Resources/World.xcassets"
+    "glow": "Packages/PofuKit/Sources/PofuWorld/Resources/World.xcassets",
+    "sprite": "Packages/PofuKit/Sources/PofuWorld/Resources/World.xcassets",
+    "shield": "Packages/PofuKit/Sources/PofuCompanion/Resources",
+    "app": "App/Resources/Assets.xcassets"
   },
   "entries": [
     {
@@ -601,6 +604,254 @@
       "target": "world",
       "name": "dressing-mushroom-ring",
       "master": "design/art/masters/dressing-meadow"
+    },
+    {
+      "target": "glow",
+      "name": "glow-window-spill",
+      "master": "design/art/ui/ui-glow-window-spill",
+      "points": [
+        256,
+        256
+      ],
+      "scale": 2
+    },
+    {
+      "target": "glow",
+      "name": "glow-warm-halo",
+      "master": "design/art/ui/ui-glow-warm-halo",
+      "points": [
+        128,
+        128
+      ],
+      "scale": 2
+    },
+    {
+      "target": "glow",
+      "name": "glow-pond-shimmer",
+      "master": "design/art/ui/ui-glow-pond-shimmer",
+      "points": [
+        256,
+        128
+      ],
+      "scale": 2
+    },
+    {
+      "target": "sprite",
+      "name": "firefly-1",
+      "master": "design/art/ui/ui-firefly",
+      "cell": [
+        119,
+        421,
+        334,
+        617
+      ],
+      "points": [
+        16,
+        16
+      ],
+      "scale": 3
+    },
+    {
+      "target": "sprite",
+      "name": "firefly-2",
+      "master": "design/art/ui/ui-firefly",
+      "cell": [
+        472,
+        423,
+        698,
+        639
+      ],
+      "points": [
+        16,
+        16
+      ],
+      "scale": 3
+    },
+    {
+      "target": "sprite",
+      "name": "firefly-3",
+      "master": "design/art/ui/ui-firefly",
+      "cell": [
+        800,
+        423,
+        1051,
+        663
+      ],
+      "points": [
+        16,
+        16
+      ],
+      "scale": 3
+    },
+    {
+      "target": "app",
+      "name": "launch-sky",
+      "master": "design/art/masters/launch-sky",
+      "size": [
+        1290,
+        2796
+      ]
+    },
+    {
+      "target": "app",
+      "name": "cloud-curtain-1",
+      "master": "design/art/masters/cloud-curtain-1"
+    },
+    {
+      "target": "app",
+      "name": "cloud-curtain-2",
+      "master": "design/art/masters/cloud-curtain-2"
+    },
+    {
+      "target": "app",
+      "name": "cloud-curtain-3",
+      "master": "design/art/masters/cloud-curtain-3"
+    },
+    {
+      "target": "shield",
+      "name": "shield-pofu-door-calm",
+      "master": "design/art/masters/shield-pofu-door",
+      "cell": [
+        0,
+        340,
+        524,
+        700
+      ],
+      "alpha_floor": 40,
+      "points": [
+        180,
+        180
+      ],
+      "scale": 2
+    },
+    {
+      "target": "shield",
+      "name": "shield-pofu-door-proud",
+      "master": "design/art/masters/shield-pofu-door",
+      "cell": [
+        524,
+        340,
+        1038,
+        700
+      ],
+      "alpha_floor": 40,
+      "points": [
+        180,
+        180
+      ],
+      "scale": 2
+    },
+    {
+      "target": "shield",
+      "name": "shield-pofu-door-sleepy",
+      "master": "design/art/masters/shield-pofu-door",
+      "cell": [
+        1038,
+        340,
+        1536,
+        700
+      ],
+      "alpha_floor": 40,
+      "points": [
+        180,
+        180
+      ],
+      "scale": 2
+    },
+    {
+      "target": "world",
+      "name": "dressing-watering-can",
+      "master": "design/art/masters/dressing-garden"
+    },
+    {
+      "target": "world",
+      "name": "dressing-seed-sack",
+      "master": "design/art/masters/dressing-garden"
+    },
+    {
+      "target": "world",
+      "name": "dressing-twine",
+      "master": "design/art/masters/dressing-garden"
+    },
+    {
+      "target": "world",
+      "name": "dressing-crate",
+      "master": "design/art/masters/dressing-garden"
+    },
+    {
+      "target": "world",
+      "name": "dressing-crate-2",
+      "master": "design/art/masters/dressing-garden"
+    },
+    {
+      "target": "world",
+      "name": "dressing-trowel",
+      "master": "design/art/masters/dressing-garden"
+    },
+    {
+      "target": "world",
+      "name": "dressing-rope",
+      "master": "design/art/masters/dressing-harbor"
+    },
+    {
+      "target": "world",
+      "name": "dressing-barrel",
+      "master": "design/art/masters/dressing-harbor"
+    },
+    {
+      "target": "world",
+      "name": "critter-butterfly",
+      "master": "design/art/masters/critter-butterfly"
+    },
+    {
+      "target": "world",
+      "name": "critter-butterfly-2",
+      "master": "design/art/masters/critter-butterfly"
+    },
+    {
+      "target": "world",
+      "name": "critter-butterfly-3",
+      "master": "design/art/masters/critter-butterfly"
+    },
+    {
+      "target": "world",
+      "name": "critter-butterfly-4",
+      "master": "design/art/masters/critter-butterfly"
+    },
+    {
+      "target": "world",
+      "name": "critter-snail",
+      "master": "design/art/masters/critter-snail"
+    },
+    {
+      "target": "world",
+      "name": "critter-snail-2",
+      "master": "design/art/masters/critter-snail"
+    },
+    {
+      "target": "world",
+      "name": "critter-snail-3",
+      "master": "design/art/masters/critter-snail"
+    },
+    {
+      "target": "world",
+      "name": "critter-bird",
+      "master": "design/art/masters/critter-bird"
+    },
+    {
+      "target": "world",
+      "name": "critter-bird-2",
+      "master": "design/art/masters/critter-bird"
+    },
+    {
+      "target": "world",
+      "name": "critter-bird-3",
+      "master": "design/art/masters/critter-bird"
+    },
+    {
+      "target": "world",
+      "name": "critter-bird-4",
+      "master": "design/art/masters/critter-bird"
     }
   ]
 }

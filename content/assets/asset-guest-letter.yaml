@@ -2,16 +2,17 @@ id: asset-guest-letter
 type: asset
 title_tr: guest-letter
 title_en: guest-letter (sheet)
-status: planned
+status: in-production
 horizon: later
-summary: >-
-  A sheet of one small handwritten letter drawn twice in a single row, evenly spaced with
-  wide empty space between them: (1) folded: a small cream envelope-style fold sealed with
-  a round honey-colored wax dot, a tiny sunflower seed pressed into the wax; (2) open: the
-  same letter unfolded flat as a soft cream sheet with slightly curled corners and a few faint
-  blank horizontal bands where lines of writing would be, no le…
+summary: 'A sheet of one small handwritten letter drawn twice in a single row, evenly
+  spaced with wide empty space between them: (1) folded: a small cream envelope-style
+  fold sealed with a round honey-colored wax dot, a tiny sunflower seed pressed into
+  the wax; (2) open: the same letter unfolded flat as a soft cream sheet with slightly
+  curled corners and a few faint blank horizontal bands where lines of writing would
+  be, no le…'
 art:
-  images: []
+  images:
+  - design/art/masters/guest-letter/guest-letter.png
   jobs:
   - batch-35-experience:guest-letter
 sources:

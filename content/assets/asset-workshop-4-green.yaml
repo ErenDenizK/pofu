@@ -2,13 +2,13 @@ id: asset-workshop-4-green
 type: asset
 title_tr: workshop-4-green
 title_en: workshop-4-green (station)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  Add a pair of small rounded sage-green wooden shutters, open flat against the wall, one
-  on each side of the arched doorway, and a third pair around the tool board's frame. Each
-  shutter is a chunky rounded panel with a small round cut-out, painted sage green with a
-  cream edge. The chimney, the restored clock and everything else stay exactly as they are.
+summary: Add a pair of small rounded sage-green wooden shutters, open flat against
+  the wall, one on each side of the arched doorway, and a third pair around the tool
+  board's frame. Each shutter is a chunky rounded panel with a small round cut-out,
+  painted sage green with a cream edge. The chimney, the restored clock and everything
+  else stay exactly as they are.
 links:
   variant_of:
   - asset-workshop-4
@@ -20,3 +20,15 @@ sources:
 - doc: tools/imagegen/manifest/batch-40-home-ladder-gaps.yaml
 kind: station
 batch: batch-40-home-ladder-gaps
+notes:
+- 'batch-40-home-ladder-gaps skipped after four takes: One unchanged-prompt retry
+  exhausted. Take1 and retry take4 contain only three distinct panels rather than
+  the two explicitly named pairs. Take2 is excluded by official hard palette_drift4.5163.
+  Retry take3 has four panels but visibly narrows and recenters the original doorway
+  and shifts the protected tool board right to accommodate them; arch and opening
+  shape change beyond added-panel occlusion. Source versus locked comparison binds
+  this concrete failure, without importing a numeric stability gate. Existing source
+  has no visible clock: none is invented and its absence is not a rejection. Exact
+  parent and all four originals/reports preserved. No master promoted. Automated failures:
+  t2 palette_drift: mean dE 4.5, p95 14.3, off-palette 10.7% (top: #884422 (1.6%),
+  #995522 (1.4%)).'

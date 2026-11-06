@@ -1,0 +1,30 @@
+{
+  "plate__koke-island-0--t1": {
+    "png_bytes": 1327867,
+    "lossless_default_bytes": 925210,
+    "rgba_sha256": "84e020604a99cae7df0d298da23caab08e994195701b97433ef83cfeb8f1b715",
+    "lossless_max_effort_bytes": 878932,
+    "eligible_upload_cap": false
+  },
+  "plate__koke-island-0--t2": {
+    "png_bytes": 1321015,
+    "lossless_default_bytes": 917664,
+    "rgba_sha256": "e8480a67625d8037a7d242eb30d7cd60e4e93f180d2ec1141ca23ddf2f5ffbe2",
+    "lossless_max_effort_bytes": 871858,
+    "eligible_upload_cap": false
+  },
+  "plate__koke-island-0--t3": {
+    "png_bytes": 1320047,
+    "lossless_default_bytes": 923664,
+    "rgba_sha256": "e5e97208ac3ff743e49035be64bd0eefbc12592cd676cd081563637480c9c349",
+    "lossless_max_effort_bytes": 878880,
+    "eligible_upload_cap": false
+  },
+  "plate__koke-island-0--t4": {
+    "png_bytes": 1329698,
+    "lossless_default_bytes": 923776,
+    "rgba_sha256": "4cf1524bd2cad3e6a0eb5ee1b4f0843b49c496f02aa56c845c7c7c58cae0024f",
+    "lossless_max_effort_bytes": 889080,
+    "eligible_upload_cap": false
+  }
+}

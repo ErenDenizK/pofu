@@ -2,14 +2,14 @@ id: asset-critter-ladybug
 type: asset
 title_tr: critter-ladybug
 title_en: critter-ladybug (sheet)
-status: planned
+status: cut
 horizon: later
-summary: >-
-  A sheet of one small ladybug drawn three times in a single row, left to right, evenly spaced
-  with wide empty space between them: (1) at rest on a single broad green leaf, shown together
-  as one sprite; (2) walking, alone, legs in the first step position; (3) walking, alone,
-  legs in the second step position. A plump round ladybug in warm coral-red with five soft
-  dark-plum spots, a small plum head and six short chunky l…
+summary: 'A sheet of one small ladybug drawn three times in a single row, left to
+  right, evenly spaced with wide empty space between them: (1) at rest on a single
+  broad green leaf, shown together as one sprite; (2) walking, alone, legs in the
+  first step position; (3) walking, alone, legs in the second step position. A plump
+  round ladybug in warm coral-red with five soft dark-plum spots, a small plum head
+  and six short chunky l…'
 art:
   images: []
   jobs:
@@ -19,3 +19,16 @@ sources:
 kind: sheet
 batch: batch-35-experience
 size: 1536x1024
+notes:
+- 'batch-35-experience skipped after four takes: The sole unchanged-prompt retry is
+  exhausted. Independent native-resolution review of take 1 finds only four painted
+  plum shell spots rather than the required five, so it is manually excluded despite
+  advisory-only automated status. Takes 2, 3 and 4 all fail canonical palette_drift
+  (mean dE 4.7183, 4.6495 and 4.7102). The resting leaf and three creature states
+  are present, and no extra six-visible-legs gate is invented under side-view occlusion.
+  No palette edits, threshold waivers or third round. Skip only this independent job
+  and preserve all four originals. Automated failures: t2 palette_drift: mean dE 4.7,
+  p95 11.1, off-palette 1.9% (top: #CC6655 (1.0%), #DD6655 (0.2%)); t3 palette_drift:
+  mean dE 4.6, p95 11.7, off-palette 4.2% (top: #DD6655 (1.3%), #CC6655 (1.1%)); t4
+  palette_drift: mean dE 4.7, p95 11.0, off-palette 1.8% (top: #CC6655 (0.8%), #DD7755
+  (0.2%)).'

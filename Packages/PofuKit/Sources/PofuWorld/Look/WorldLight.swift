@@ -210,6 +210,24 @@ public enum LookTuning {
     /// art's opacity at full source strength; the pool is alpha over the
     /// lawn, so it cannot add more than this much of its colour.
     public static let poolArtOpacity = 0.45
+    /// The window spill art (`glow-window-spill`): the square art's side as a
+    /// multiple of the source's reach, and its opacity at full strength.
+    public static let windowSpillArtScale = 1.15
+    public static let windowSpillOpacity = 0.6
+    /// The pond's shimmer art (`glow-pond-shimmer`) at full strength.
+    public static let pondShimmerOpacity = 0.5
+    /// A halo's art (`glow-warm-halo`) draws this much wider than the radius
+    /// the bloom fades out at: the painted disc has a soft rim.
+    public static let warmHaloArtScale = 1.15
+    /// The fireflies (`firefly-1...4`, four frames of one bug: belly dim,
+    /// warming, bright, dim): how many, how wide in world units, the halo's
+    /// radius, and the frame a blink 0.25...1 shows.
+    public static let fireflyCount = 18
+    public static let fireflyWidth = 9.0
+    public static let fireflyHaloRadius = 10.0
+    public static func fireflyFrame(blink: Double) -> Int {
+        blink < 0.45 ? 0 : blink < 0.75 ? 1 : 2
+    }
 }
 
 extension Lens {

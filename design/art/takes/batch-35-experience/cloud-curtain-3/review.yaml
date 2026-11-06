@@ -1,0 +1,197 @@
+batch: batch-35-experience
+contact_sheet: design/art/takes/batch-35-experience/cloud-curtain-3/contact.jpg
+jobs:
+  cloud-curtain-3:
+    pick: 1
+    publication: promoted; founder review pending
+    note: 'auto-picked by QA; founder review pending. Both original, full locked and
+      official half-delivered takes are manually eligible and have no hard QA failures:
+      a few long thin cream/peach cloud wisps across the upper and middle frame with
+      ample genuine transparent gaps and side runoff, faint and airy, no sky, island,
+      text or unrelated objects. No numerical cloud count is invented for the authored
+      few. Take1 has the lowest eligible style-lock load0.2650. The official authored
+      scale0.5 export creates768x512 from the saved1536x1024 lock; preserve exact
+      master RGBA and delivery/preview proofs. No manual source edits, cleanup or
+      threshold waiver. Own Harmony shard and real measure/check required; light warnings
+      are advisory.'
+qa_reports:
+  2:
+    job: cloud-curtain-3
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 13 (R1 51)
+      value: 13.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 87 (at most 22), p98 94 (at least 90), spread 8
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 7.7
+    - check: light_median
+      status: warn
+      message: 'day/subject: median L 91 (band 55-90)'
+      value: 90.7
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.77 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.769
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 0.8 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 0.85
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.8 (R1 5.3)
+      value: 0.79
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.3
+      value: 0.3464
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.7, p95 1.7, off-palette 0.0%
+      value: 0.7283
+    - check: harmony
+      status: warn
+      message: 'harmony score 39 against the world reference (outliers: C_p95, L_p2,
+        edge)'
+      value: 39.4
+    info:
+      metrics_raw:
+        L_p5: 87.0
+        L_p50: 90.8
+        L_p95: 94.3
+        C_p50: 9.3
+        C_p95: 13.5
+        C_p99: 14.5
+        detail: 0.9
+      metrics_locked:
+        L_p5: 87.1
+        L_p50: 90.7
+        L_p95: 94.2
+        C_p50: 9.2
+        C_p95: 13.4
+        C_p99: 14.3
+        detail: 0.79
+    fingerprint: 0ef4bb9b0af53443
+  1:
+    job: cloud-curtain-3
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 10 (R1 51)
+      value: 9.6
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 87 (at most 22), p98 94 (at least 90), spread 7
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 7.0
+    - check: light_median
+      status: warn
+      message: 'day/subject: median L 91 (band 55-90)'
+      value: 90.6
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.82 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.816
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 0.7 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 0.71
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.6 (R1 5.3)
+      value: 0.63
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.3
+      value: 0.265
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.9, p95 2.2, off-palette 0.0%
+      value: 0.8765
+    - check: harmony
+      status: warn
+      message: 'harmony score 39 against the world reference (outliers: C_p95, L_p2,
+        edge)'
+      value: 39.3
+    info:
+      metrics_raw:
+        L_p5: 87.5
+        L_p50: 90.7
+        L_p95: 93.9
+        C_p50: 8.0
+        C_p95: 9.7
+        C_p99: 10.0
+        detail: 0.73
+      metrics_locked:
+        L_p5: 87.6
+        L_p50: 90.6
+        L_p95: 93.8
+        C_p50: 8.0
+        C_p95: 9.6
+        C_p99: 9.8
+        detail: 0.63
+    fingerprint: 0ef4bb9b0af53443
+manual_review:
+  excluded_takes: []
+  note: 'Both original, full locked and official half-delivered takes are manually
+    eligible and have no hard QA failures: a few long thin cream/peach cloud wisps
+    across the upper and middle frame with ample genuine transparent gaps and side
+    runoff, faint and airy, no sky, island, text or unrelated objects. No numerical
+    cloud count is invented for the authored few. Take1 has the lowest eligible style-lock
+    load0.2650. The official authored scale0.5 export creates768x512 from the saved1536x1024
+    lock; preserve exact master RGBA and delivery/preview proofs. No manual source
+    edits, cleanup or threshold waiver. Own Harmony shard and real measure/check required;
+    light warnings are advisory.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-31f4d7a0-3916-46bb-9ccf-53ed6ef36062.png
+  original_generated_png_sha256: eba1f5d8756563d50adf38d68437309abd98ba0678eb0f60bef8ea96bf9200a6
+  inbox_png_sha256: f5327a7256eef38c8c210b47d8edbdc5ee7187393e60552ff4bc4d732a38296c
+  rgba_sha256: 0d81ecba2170646d672fba13c777e6a226d64c03fe05340addd3a4061ddc1ff0
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 0ef4bb9b0af53443
+- take: 2
+  source_file: /workspace/generated_images/exec-2ec249c2-9217-4be8-9271-15f7b01fbbf2.png
+  original_generated_png_sha256: 706050e820c12af6c8e5561b16510ff502e03e5e643fb3b8b9cbb1ea7c138025
+  inbox_png_sha256: 1dca91d0e600f64cc34fbcf3ff8530347bbe7913b0a98ef0aa128e0c1c6b0574
+  rgba_sha256: 13d657b04196fd82dd6caff42beab15e72f29ee10123de6362f05e6a6d7f9463
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 0ef4bb9b0af53443

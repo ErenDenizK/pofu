@@ -1,0 +1,54 @@
+{
+ "after": {
+  "C_mean": 28.944,
+  "C_p50": 29.409,
+  "C_p95": 41.083,
+  "L_mean": 72.564,
+  "L_p2": 49.727,
+  "L_p98": 90.918,
+  "detail": 2.2,
+  "edge": 0.474,
+  "tint_a": 5.938,
+  "tint_b": 10.868,
+  "warmth_b": 26.302
+ },
+ "before": {
+  "C_mean": 28.944,
+  "C_p50": 29.409,
+  "C_p95": 41.083,
+  "L_mean": 72.564,
+  "L_p2": 49.727,
+  "L_p98": 90.918,
+  "detail": 2.2,
+  "edge": 0.474,
+  "tint_a": 5.938,
+  "tint_b": 10.868,
+  "warmth_b": 26.302
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "sheet",
+ "matched_to": "world",
+ "outliers_after": [
+  "edge"
+ ],
+ "outliers_before": [
+  "edge"
+ ],
+ "ppu": 4.103,
+ "reference": false,
+ "score_after": 82.2,
+ "score_before": 82.2,
+ "shipped": false,
+ "source": "design/art/masters/dressing-garden/dressing-garden.webp",
+ "source_sha": "b316918dafd0cf76"
+}

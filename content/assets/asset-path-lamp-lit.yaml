@@ -2,7 +2,7 @@ id: asset-path-lamp-lit
 type: asset
 title_tr: path-lamp-lit
 title_en: path-lamp-lit (prop)
-status: in-production
+status: cut
 horizon: now
 summary: 'Light the path lamp: the plump round paper-glass lantern now glows from
   inside, a soft warm candle-amber filling the whole glass shape, a little brighter
@@ -22,3 +22,15 @@ sources:
 - doc: tools/imagegen/manifest/batch-36-lit-ladder-pilot.yaml
 kind: prop
 batch: batch-36-lit-ladder-pilot
+notes:
+- 'batch-36-lit-ladder-pilot skipped after four takes: All four takes fail official
+  edit_chroma (1.5392,1.5092,1.5549,1.5111) and fall below this pilot manual edit_stability
+  greater than0.9 (0.6835,0.6975,0.6723,0.6891). Independent source and locked reviews
+  also show cap, hook and post color changes outside the permitted lantern glass;
+  brighter ivory-yellow flame cores weaken the requested soft amber. One unchanged-prompt
+  retry exhausted; no master promoted, no thresholds waived. Source hashes and exact
+  per-part evidence preserved in runtime independent reviews. Automated failures:
+  t1 edit_chroma: chroma x1.54 of the parent level (drift compounds along a chain);
+  t2 edit_chroma: chroma x1.51 of the parent level (drift compounds along a chain);
+  t3 edit_chroma: chroma x1.55 of the parent level (drift compounds along a chain);
+  t4 edit_chroma: chroma x1.51 of the parent level (drift compounds along a chain).'

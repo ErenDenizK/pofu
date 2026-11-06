@@ -1,0 +1,24 @@
+{
+  "metadata": {
+    "scale": 0.5,
+    "original_size": [
+      1024,
+      512
+    ],
+    "delivered_size": [
+      512,
+      256
+    ]
+  },
+  "rgba_sha256": "44ae688b3cb4d6551282f7b944f2ea2ff9e2ef46437f47b9f1efdb48c63a30b0",
+  "full_locked_sha256": "89522284b4821273b7900bafdb3a3e3876f70ff5f269ed39aefbd32f28cce803",
+  "official_preview_sha256": "e84935ec9eca690b22488dac7aa3de2d49cee116b8408b2f0e09b27b86ff5b18",
+  "preview_equivalence": {
+    "all_alpha_and_visible_rgb_identical": true,
+    "hidden_rgb_difference_pixels": 0,
+    "canonical_rgba_sha256": "44ae688b3cb4d6551282f7b944f2ea2ff9e2ef46437f47b9f1efdb48c63a30b0",
+    "preview_rgba_sha256": "44ae688b3cb4d6551282f7b944f2ea2ff9e2ef46437f47b9f1efdb48c63a30b0"
+  },
+  "canonical_tool_context_sha256": "4a5cf2f208996111c68a33f1284e75d0453048718d1f3ecd6acde744bfd5f7c8",
+  "recipe": "Official check_upload.downscale on the saved selected full locked take; official promote exported exact RGBA. Preview alpha and every visible RGB pixel are identical; only fully invisible WebP RGB may differ. No local pixel edits."
+}

@@ -1,0 +1,602 @@
+# Fresh autumn/winter decor variations, authorized BACKLOG cycle.
+# EXPLORATION ONLY: never promote. All ten jobs are independent.
+# Original inventories, references, guide/camera families and day LIGHT remain fixed.
+batch: batch-30c-decor-seasons-2-v2
+title: 'Season decor sets v2: compact autumn staging and open winter corners'
+status: open
+refs:
+  tea-stall-1: design/art/stations/tea-stall-1/tea-stall-1.png
+defaults:
+  variants: 2
+jobs:
+- id: decor-bench
+  kind: prop
+  name: decor-bench
+  external: batch-08-decor-pilot
+- id: island-main-s
+  kind: world
+  name: island-main-s
+  external: batch-01-slice
+- id: cloud-sea
+  kind: world
+  name: cloud-sea
+  external: batch-04-sky
+- id: x-decor-guz-pumpkin-lanterns-v2
+  kind: prop
+  name: x-decor-guz-pumpkin-lanterns-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Decor
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. Güz (autumn): the pumpkin lanterns. Review: three pumpkins with soft carved faces
+    and a lamp inside that code can light; friendly, never spooky. Fresh v2 arrangement: Compact triangle:
+    small cream front-left, mustard behind, larger rust-orange right; all carved smiles/eyes visible,
+    curly sage vines tucked inward. Exploration only; never promote. Review literal inventory, material
+    scope, full silhouette and original footprint requirements.'
+  attach:
+  - ref: decor-guide
+    role: 'The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors, finish and scale exactly
+      (do not draw the bench unless asked).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Style reference only: match Pofu''s soft painterly finish; do not draw a hamster or transfer
+      fur, eyes or hamster colors to the objects or scene.'
+  prompt:
+  - text: 'A fresh compact autumn grouping of exactly three plump pumpkins of different sizes: the small
+      cream pumpkin at front left, the medium mustard pumpkin slightly behind it, and the larger rust-orange
+      pumpkin on the right, forming a close triangle. Turn every carved front toward the viewer so each
+      pumpkin has exactly two small round carved eye holes and one gentle round carved smile, all clearly
+      visible. The cut-outs are filled with pale cream and remain unlit. Keep the sage stems and small
+      curly sage vines tucked inward between the pumpkins, never spreading the footprint. These are carved
+      vegetable lanterns with friendly cut-outs, never living faces or animals.'
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'MATERIAL SCOPE NEUTRAL: render every literal part named above in its own named material, never
+      as a mascot. The generic STYLE and R1 transfer only soft 2D painterly finish, rounded shapes, clean
+      edges and controlled local values. Keep the stated colors and material identities, with broad matte
+      planes and restrained soft shading. Never transfer hamster fur, plush fibers, hairy outlines, eyes,
+      anatomy or hamster colors to other forms. Only explicitly requested carved or sculpted features
+      are allowed, in their stated materials. No added living animals, mascot, Pofu head curl or copied
+      full hamster body. The appended LIGHT block alone controls light direction and shadow hue. Keep
+      true darks in recesses and clean highlights; no milky global veil, grain, outlines or 3D-render
+      finish.'
+  - text: The carved eye holes and smiles explicitly requested above are permitted pumpkin carving only;
+      no separate eyes, cheeks, ears, paws, living anatomy or emitted light.
+  - text: 'DECOR FOOTPRINT: use the attached decor guide and the ground-standing profile. Center the complete
+      silhouette on its cross, with its front at the footprint''s front edge and below its height bar.
+      Aim for a native full silhouette width of 280-310 pixels on the 1024-pixel canvas; the complete
+      visible object must be at most one third of the canvas width (341.33 pixels), including every stated
+      part and small extension. The 280-310 target is not a minimum. Keep the entire object inside the
+      transparent canvas with clear margins. Remove every guide mark.'
+  - text: 'AVOID: text, letters, numbers, labels, logos, watermarks, UI chrome, buttons, painted UI glass,
+      borders, sticker outlines, guide markings, magenta, floor, added terrain patch, scene background
+      or baked ground cast shadow. Output an isolated transparent PNG. Use only tiny contact occlusion
+      where the requested forms touch. Do not draw the reference bench, the attached hamster or any extra
+      object.'
+- id: x-decor-guz-chestnut-stove-v2
+  kind: prop
+  name: x-decor-guz-chestnut-stove-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Decor
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. Güz (autumn): the chestnut stove. Review: a little stove with a chimney pipe and
+    a cone of chestnuts; steam is code. Fresh v2 arrangement: Round dark-sage stove turned right, short
+    bent pipe left; ordinary wood stool/chestnut cone close front-left, tiny scoop alongside cone inside
+    width. Exploration only; never promote. Review literal inventory, material scope, full silhouette
+    and original footprint requirements.'
+  attach:
+  - ref: decor-guide
+    role: 'The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors, finish and scale exactly
+      (do not draw the bench unless asked).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Style reference only: match Pofu''s soft painterly finish; do not draw a hamster or transfer
+      fur, eyes or hamster colors to the objects or scene.'
+  prompt:
+  - text: 'A fresh compact chestnut-warming arrangement: a small round matte dark-sage stove turned slightly
+      toward the right, standing on exactly three short legs. Its little door has a round warm-cream window;
+      the short bent chimney pipe bends toward the left. Tuck an ordinary small wooden stool close to
+      the stove at front left, carrying a paper cone of chestnuts and a tiny wooden scoop beside the cone.
+      Keep the scoop, cone, stool, stove legs and complete pipe individually legible while fitting tightly
+      within the total silhouette. The stool is ordinary solid wood, with no folded or upholstered state.'
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'MATERIAL SCOPE NEUTRAL: render every literal part named above in its own named material, never
+      as a mascot. The generic STYLE and R1 transfer only soft 2D painterly finish, rounded shapes, clean
+      edges and controlled local values. Keep the stated colors and material identities, with broad matte
+      planes and restrained soft shading. Never transfer hamster fur, plush fibers, hairy outlines, eyes,
+      anatomy or hamster colors to other forms. Only explicitly requested carved or sculpted features
+      are allowed, in their stated materials. No added living animals, mascot, Pofu head curl or copied
+      full hamster body. The appended LIGHT block alone controls light direction and shadow hue. Keep
+      true darks in recesses and clean highlights; no milky global veil, grain, outlines or 3D-render
+      finish.'
+  - text: Do not paint steam, smoke or an external light pool; steam is a code effect.
+  - text: 'DECOR FOOTPRINT: use the attached decor guide and the ground-standing profile. Center the complete
+      silhouette on its cross, with its front at the footprint''s front edge and below its height bar.
+      Aim for a native full silhouette width of 280-310 pixels on the 1024-pixel canvas; the complete
+      visible object must be at most one third of the canvas width (341.33 pixels), including every stated
+      part and small extension. The 280-310 target is not a minimum. Keep the entire object inside the
+      transparent canvas with clear margins. Remove every guide mark.'
+  - text: 'AVOID: text, letters, numbers, labels, logos, watermarks, UI chrome, buttons, painted UI glass,
+      borders, sticker outlines, guide markings, magenta, floor, added terrain patch, scene background
+      or baked ground cast shadow. Output an isolated transparent PNG. Use only tiny contact occlusion
+      where the requested forms touch. Do not draw the reference bench, the attached hamster or any extra
+      object.'
+- id: x-decor-guz-scarf-v2
+  kind: prop
+  name: x-decor-guz-scarf-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Decor
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. Güz (autumn): the scarf. Review: a long scarf on a short stand; it goes on the
+    sunflower in the app, so it must hang free. Fresh v2 arrangement: Honey T stand turned right; long
+    striped scarf descends in narrow front-left curve to ground, shorter tasselled end beside upright.
+    Exploration only; never promote. Review literal inventory, material scope, full silhouette and original
+    footprint requirements.'
+  attach:
+  - ref: decor-guide
+    role: 'The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors, finish and scale exactly
+      (do not draw the bench unless asked).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Style reference only: match Pofu''s soft painterly finish; do not draw a hamster or transfer
+      fur, eyes or hamster colors to the objects or scene.'
+  prompt:
+  - text: 'A fresh narrow autumn scarf arrangement: a slim short honey-wood T-shaped stand turned slightly
+      toward the right supports one long soft scarf patterned in plum and mustard stripes, with small
+      tassels. The long end drapes freely down the front-left side in a narrow gentle curve until it reaches
+      the ground at the stand''s foot. The shorter tasselled end falls close beside the upright. Leave
+      a little transparent separation between the two cloth ends so their free drape reads clearly. Keep
+      the full T stand, both ends and every tassel within the compact silhouette. This remains a ground-standing
+      decor object.'
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'MATERIAL SCOPE NEUTRAL: render every literal part named above in its own named material, never
+      as a mascot. The generic STYLE and R1 transfer only soft 2D painterly finish, rounded shapes, clean
+      edges and controlled local values. Keep the stated colors and material identities, with broad matte
+      planes and restrained soft shading. Never transfer hamster fur, plush fibers, hairy outlines, eyes,
+      anatomy or hamster colors to other forms. Only explicitly requested carved or sculpted features
+      are allowed, in their stated materials. No added living animals, mascot, Pofu head curl or copied
+      full hamster body. The appended LIGHT block alone controls light direction and shadow hue. Keep
+      true darks in recesses and clean highlights; no milky global veil, grain, outlines or 3D-render
+      finish.'
+  - text: Keep the cloth striped, never checkered, and freely draped rather than folded into a bundle.
+  - text: 'DECOR FOOTPRINT: use the attached decor guide and the ground-standing profile. Center the complete
+      silhouette on its cross, with its front at the footprint''s front edge and below its height bar.
+      Aim for a native full silhouette width of 280-310 pixels on the 1024-pixel canvas; the complete
+      visible object must be at most one third of the canvas width (341.33 pixels), including every stated
+      part and small extension. The 280-310 target is not a minimum. Keep the entire object inside the
+      transparent canvas with clear margins. Remove every guide mark.'
+  - text: 'AVOID: text, letters, numbers, labels, logos, watermarks, UI chrome, buttons, painted UI glass,
+      borders, sticker outlines, guide markings, magenta, floor, added terrain patch, scene background
+      or baked ground cast shadow. Output an isolated transparent PNG. Use only tiny contact occlusion
+      where the requested forms touch. Do not draw the reference bench, the attached hamster or any extra
+      object.'
+- id: x-decor-guz-leaf-pile-v2
+  kind: prop
+  name: x-decor-guz-leaf-pile-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Decor
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. Güz (autumn): the leaf pile. Review: a heap of leaves you want to jump into; the
+    colors are the island''s, not neon. Fresh v2 arrangement: Slightly taller compact heap; a few scattered
+    leaves close at front foot, rake nearly upright at left instead of spreading sideways. Exploration
+    only; never promote. Review literal inventory, material scope, full silhouette and original footprint
+    requirements.'
+  attach:
+  - ref: decor-guide
+    role: 'The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors, finish and scale exactly
+      (do not draw the bench unless asked).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Style reference only: match Pofu''s soft painterly finish; do not draw a hamster or transfer
+      fur, eyes or hamster colors to the objects or scene.'
+  prompt:
+  - text: A fresh compact autumn leaf heap, a little taller through its middle rather than spread broadly
+      sideways. Build the round heap from distinct broad fallen leaves in rust, mustard, rose and cream.
+      Keep a few scattered leaves very close to the front foot of the heap. Lean one small wooden rake
+      almost upright against its left side, with its full handle and head visible and contained within
+      the total silhouette. The heap should read as layered leaves at small size, with softly rounded
+      leaf shapes, never a fluffy or furry mass. Include the scattered leaves and complete rake in the
+      same compact footprint.
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'MATERIAL SCOPE NEUTRAL: render every literal part named above in its own named material, never
+      as a mascot. The generic STYLE and R1 transfer only soft 2D painterly finish, rounded shapes, clean
+      edges and controlled local values. Keep the stated colors and material identities, with broad matte
+      planes and restrained soft shading. Never transfer hamster fur, plush fibers, hairy outlines, eyes,
+      anatomy or hamster colors to other forms. Only explicitly requested carved or sculpted features
+      are allowed, in their stated materials. No added living animals, mascot, Pofu head curl or copied
+      full hamster body. The appended LIGHT block alone controls light direction and shadow hue. Keep
+      true darks in recesses and clean highlights; no milky global veil, grain, outlines or 3D-render
+      finish.'
+  - text: No added basket, tree, character, lawn patch or floor beneath the leaves.
+  - text: 'DECOR FOOTPRINT: use the attached decor guide and the ground-standing profile. Center the complete
+      silhouette on its cross, with its front at the footprint''s front edge and below its height bar.
+      Aim for a native full silhouette width of 280-310 pixels on the 1024-pixel canvas; the complete
+      visible object must be at most one third of the canvas width (341.33 pixels), including every stated
+      part and small extension. The 280-310 target is not a minimum. Keep the entire object inside the
+      transparent canvas with clear margins. Remove every guide mark.'
+  - text: 'AVOID: text, letters, numbers, labels, logos, watermarks, UI chrome, buttons, painted UI glass,
+      borders, sticker outlines, guide markings, magenta, floor, added terrain patch, scene background
+      or baked ground cast shadow. Output an isolated transparent PNG. Use only tiny contact occlusion
+      where the requested forms touch. Do not draw the reference bench, the attached hamster or any extra
+      object.'
+- id: x-corner-guz-v2
+  kind: plate
+  name: x-corner-guz-v2
+  size: 1536x1024
+  canvas: 1536x1024
+  chat: Pofu · Exploration
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. A cozy composed corner of the Güz (autumn) set. Review: unmistakably autumn; warm,
+    golden, cozy. Fresh v2 arrangement: Three pumpkins in shallow front-left row; path bends back-right
+    toward leaf heap, stove/pipe/cone front-right, scarf stand behind, few drifting leaves. Exploration
+    only; never promote. Review literal inventory, material scope, full silhouette and original footprint
+    requirements.'
+  attach:
+  - ref: approved:island-main-s
+    role: 'The home island: the same painting, the same low camera (about 20 degrees), the same softness
+      and scale of a floating island. Do not draw a different island.'
+  - ref: approved:cloud-sea
+    role: 'The sea of clouds below every island: paint the clouds like this.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors, finish and scale exactly
+      (do not draw the bench unless asked).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Style reference only: match Pofu''s soft painterly finish; do not draw a hamster or transfer
+      fur, eyes or hamster colors to the objects or scene.'
+  prompt:
+  - text: A genuinely fresh autumn composition of one quiet cropped corner of the same home island Ayçiçeği.
+      Arrange exactly three carved pumpkin lanterns in a shallow row across the front left, with each
+      lantern separately readable. Let a few path stones curve back toward the right to a heap of red,
+      mustard and rust fallen leaves. Put a small round chestnut stove with its pipe and a paper cone
+      of chestnuts at the front right; place a plum scarf on its stand behind that stove group. A few
+      leaves drift down through the otherwise quiet space. Keep all decor small in the scale of the attached
+      bench, with open breathing room between the groups. Autumn warmth comes from the local autumn colors
+      under clear day lighting.
+  - block: style-anchor-v2
+  - text: 'MATERIAL SCOPE NEUTRAL: render every literal part named above in its own named material, never
+      as a mascot. The generic STYLE and R1 transfer only soft 2D painterly finish, rounded shapes, clean
+      edges and controlled local values. Keep the stated colors and material identities, with broad matte
+      planes and restrained soft shading. Never transfer hamster fur, plush fibers, hairy outlines, eyes,
+      anatomy or hamster colors to other forms. Only explicitly requested carved or sculpted features
+      are allowed, in their stated materials. No added living animals, mascot, Pofu head curl or copied
+      full hamster body. The appended LIGHT block alone controls light direction and shadow hue. Keep
+      true darks in recesses and clean highlights; no milky global veil, grain, outlines or 3D-render
+      finish.'
+  - text: Carved lantern motifs are allowed as cuts in the pumpkins. This is an independent corner composition
+      from its listed references; keep its own stated inventory without importing the individual prop
+      briefs.
+  - text: 'CROPPED QUIET CORNER: use the approved home island''s fixed low front three-quarter camera,
+      about 20 degrees above the horizon, and its painting, softness and scale. This is the same home
+      island, softly cropped to a corner of lawn, a few path stones and the familiar island edge over
+      clouds. Do not recopy the whole island, its root system or door. Fill the 1536x1024 image as an
+      opaque composed concept painting; no transparent cutout, invented guide, ellipse, cross or height
+      bar. Use proper soft contact shadows at the scene''s object contacts and cloud depth in the distance;
+      keep the subject plane clear and readable. Seasonal color is local material color. All scene lighting
+      remains day/subject under the appended LIGHT authority.'
+  - text: 'AVOID: borders, text, letters, numbers, labels, logos, watermarks, UI chrome, buttons, painted
+      UI glass, guide markings, saturated colors, harsh shadows, outlines, photorealism, a 3D render look,
+      living characters or animals. Do not replace the familiar home with a different island shape or
+      draw the reference bench unless requested.'
+- id: x-decor-kis-sled-v2
+  kind: prop
+  name: x-decor-kis-sled-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Decor
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. Kış (winter): the sled. Review: a toy sled with curled runners; reads at 64 px.
+    Fresh v2 arrangement: Lean honey sled front-left to back-right against low snow mound; curled runners
+    clear, coral rope close front, cushion as compressed folded layers on seat. Exploration only; never
+    promote. Review literal inventory, material scope, full silhouette and original footprint requirements.'
+  attach:
+  - ref: decor-guide
+    role: 'The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors, finish and scale exactly
+      (do not draw the bench unless asked).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Style reference only: match Pofu''s soft painterly finish; do not draw a hamster or transfer
+      fur, eyes or hamster colors to the objects or scene.'
+  prompt:
+  - text: 'A fresh compact winter sled arrangement: a small honey-wood sled leans diagonally from the
+      front left toward the back right against a low soft mound of snow. Show its complete curled-up runners
+      and keep its coral rope handle loop close to the front of the sled. On the seat lies a folded striped
+      cushion, visibly compressed into overlapping cloth layers with a clear fold, rather than open, inflated
+      or puffed into a full seat pad. Keep the low supporting snow mound close behind the sled, and retain
+      enough separation to read the runners, rope and folded cloth at small size. The snow mound is the
+      requested support, never a broad terrain patch.'
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'MATERIAL SCOPE NEUTRAL: render every literal part named above in its own named material, never
+      as a mascot. The generic STYLE and R1 transfer only soft 2D painterly finish, rounded shapes, clean
+      edges and controlled local values. Keep the stated colors and material identities, with broad matte
+      planes and restrained soft shading. Never transfer hamster fur, plush fibers, hairy outlines, eyes,
+      anatomy or hamster colors to other forms. Only explicitly requested carved or sculpted features
+      are allowed, in their stated materials. No added living animals, mascot, Pofu head curl or copied
+      full hamster body. The appended LIGHT block alone controls light direction and shadow hue. Keep
+      true darks in recesses and clean highlights; no milky global veil, grain, outlines or 3D-render
+      finish.'
+  - text: No extra sled, open inflated cushion, scattered snow scene or floor beyond the requested low
+      snow mound.
+  - text: 'DECOR FOOTPRINT: use the attached decor guide and the ground-standing profile. Center the complete
+      silhouette on its cross, with its front at the footprint''s front edge and below its height bar.
+      Aim for a native full silhouette width of 280-310 pixels on the 1024-pixel canvas; the complete
+      visible object must be at most one third of the canvas width (341.33 pixels), including every stated
+      part and small extension. The 280-310 target is not a minimum. Keep the entire object inside the
+      transparent canvas with clear margins. Remove every guide mark.'
+  - text: 'AVOID: text, letters, numbers, labels, logos, watermarks, UI chrome, buttons, painted UI glass,
+      borders, sticker outlines, guide markings, magenta, floor, added terrain patch, scene background
+      or baked ground cast shadow. Output an isolated transparent PNG. Use only tiny contact occlusion
+      where the requested forms touch. Do not draw the reference bench, the attached hamster or any extra
+      object.'
+- id: x-decor-kis-snowman-pofu-v2
+  kind: prop
+  name: x-decor-kis-snowman-pofu-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Decor
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. Kış (winter): the snowman Pofu. Review: a snowman with a hamster''s round ears
+    and cheeks; it must read as Pofu without copying his face. Fresh v2 arrangement: Turn three-ball snow
+    figure left; one twig bends inward holding single seed near middle ball, other arm down; plum scarf
+    across distinct snow forms. Exploration only; never promote. Review literal inventory, material scope,
+    full silhouette and original footprint requirements.'
+  attach:
+  - ref: decor-guide
+    role: 'The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors, finish and scale exactly
+      (do not draw the bench unless asked).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Style reference only: match Pofu''s soft painterly finish; do not draw a hamster or transfer
+      fur, eyes or hamster colors to the objects or scene.'
+  prompt:
+  - text: 'A fresh plump winter snow figure turned gently toward the left, built from exactly three distinct
+      soft white snowballs. Give its top snowball exactly two small round hamster-shaped ears sculpted
+      from smooth snow, exactly two big glossy dark eyes, one tiny pink nose and round pink cheeks. A
+      plum knitted scarf crosses the separate snow forms without hiding their three-ball construction.
+      It has exactly two twig arms: one bends inward to hold exactly one small seed in a stick hand near
+      the middle snowball, while the other arm angles down close to the body. Keep both twigs, the complete
+      seed and both round snow ears within the compact silhouette. It is an inanimate smooth snow sculpture,
+      recognizable through the requested simple sculpted features without copying Pofu''s face or full
+      hamster body.'
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'MATERIAL SCOPE NEUTRAL: render every literal part named above in its own named material, never
+      as a mascot. The generic STYLE and R1 transfer only soft 2D painterly finish, rounded shapes, clean
+      edges and controlled local values. Keep the stated colors and material identities, with broad matte
+      planes and restrained soft shading. Never transfer hamster fur, plush fibers, hairy outlines, eyes,
+      anatomy or hamster colors to other forms. Only explicitly requested carved or sculpted features
+      are allowed, in their stated materials. No added living animals, mascot, Pofu head curl or copied
+      full hamster body. The appended LIGHT block alone controls light direction and shadow hue. Keep
+      true darks in recesses and clean highlights; no milky global veil, grain, outlines or 3D-render
+      finish.'
+  - text: Only this snow figure's explicitly named snow ears, dark eyes, pink nose and cheeks, two twig
+      arms and one seed are permitted here. Preserve the requested small eye highlights; no fur, living
+      hamster anatomy, paws, extra arms, extra seeds or Pofu head curl.
+  - text: 'DECOR FOOTPRINT: use the attached decor guide and the ground-standing profile. Center the complete
+      silhouette on its cross, with its front at the footprint''s front edge and below its height bar.
+      Aim for a native full silhouette width of 280-310 pixels on the 1024-pixel canvas; the complete
+      visible object must be at most one third of the canvas width (341.33 pixels), including every stated
+      part and small extension. The 280-310 target is not a minimum. Keep the entire object inside the
+      transparent canvas with clear margins. Remove every guide mark.'
+  - text: 'AVOID: text, letters, numbers, labels, logos, watermarks, UI chrome, buttons, painted UI glass,
+      borders, sticker outlines, guide markings, magenta, floor, added terrain patch, scene background
+      or baked ground cast shadow. Output an isolated transparent PNG. Use only tiny contact occlusion
+      where the requested forms touch. Do not draw the reference bench, the attached hamster or any extra
+      object.'
+- id: x-decor-kis-salep-pot-v2
+  kind: prop
+  name: x-decor-kis-salep-pot-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Decor
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. Kış (winter): the salep pot. Review: a pot on a stand with two small cups; steam
+    is code, the form is a plump pot. Fresh v2 arrangement: Lidded pot/stand behind compact tray, short
+    spout left; two cups separated across tray front so salep/cinnamon/rims remain visible. Exploration
+    only; never promote. Review literal inventory, material scope, full silhouette and original footprint
+    requirements.'
+  attach:
+  - ref: decor-guide
+    role: 'The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors, finish and scale exactly
+      (do not draw the bench unless asked).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Style reference only: match Pofu''s soft painterly finish; do not draw a hamster or transfer
+      fur, eyes or hamster colors to the objects or scene.'
+  prompt:
+  - text: 'A fresh compact winter salep arrangement: a plump matte copper-cream pot stands just behind
+      a small tray, with its short spout turned toward the left. The pot has a domed lid with a small
+      knob and rests on a small round stand. Retain the required tiny warm-cream light directly beneath
+      the pot within the stand, with no light spreading onto an external floor. Place exactly two small
+      cups of pale creamy salep separately across the front of the tray, so each cup''s rim, creamy surface
+      and light dusting of cinnamon are visible. Keep the tray, both cup handles if present, spout, lid
+      knob and complete stand within the compact silhouette.'
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'MATERIAL SCOPE NEUTRAL: render every literal part named above in its own named material, never
+      as a mascot. The generic STYLE and R1 transfer only soft 2D painterly finish, rounded shapes, clean
+      edges and controlled local values. Keep the stated colors and material identities, with broad matte
+      planes and restrained soft shading. Never transfer hamster fur, plush fibers, hairy outlines, eyes,
+      anatomy or hamster colors to other forms. Only explicitly requested carved or sculpted features
+      are allowed, in their stated materials. No added living animals, mascot, Pofu head curl or copied
+      full hamster body. The appended LIGHT block alone controls light direction and shadow hue. Keep
+      true darks in recesses and clean highlights; no milky global veil, grain, outlines or 3D-render
+      finish.'
+  - text: The tiny warm-cream light beneath the pot is required and confined to the stand. No steam or
+      smoke, added spoons, additional cups or external floor glow; steam is code.
+  - text: 'DECOR FOOTPRINT: use the attached decor guide and the ground-standing profile. Center the complete
+      silhouette on its cross, with its front at the footprint''s front edge and below its height bar.
+      Aim for a native full silhouette width of 280-310 pixels on the 1024-pixel canvas; the complete
+      visible object must be at most one third of the canvas width (341.33 pixels), including every stated
+      part and small extension. The 280-310 target is not a minimum. Keep the entire object inside the
+      transparent canvas with clear margins. Remove every guide mark.'
+  - text: 'AVOID: text, letters, numbers, labels, logos, watermarks, UI chrome, buttons, painted UI glass,
+      borders, sticker outlines, guide markings, magenta, floor, added terrain patch, scene background
+      or baked ground cast shadow. Output an isolated transparent PNG. Use only tiny contact occlusion
+      where the requested forms touch. Do not draw the reference bench, the attached hamster or any extra
+      object.'
+- id: x-decor-kis-star-string-v2
+  kind: prop
+  name: x-decor-kis-star-string-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  decor: hang
+  chat: Pofu · Decor
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. Kış (winter): the star string. Review: a string of soft stars between two poles,
+    hung high, lit by code. Fresh v2 arrangement: Two very short complete round-top poles, shallow gently
+    uneven sag, exactly8 separated flat rounded five-point stars alternating cream/pale gold. Exploration
+    only; never promote. Review literal inventory, material scope, full silhouette and original footprint
+    requirements.'
+  attach:
+  - ref: decor-guide
+    role: 'The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors, finish and scale exactly
+      (do not draw the bench unless asked).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Style reference only: match Pofu''s soft painterly finish; do not draw a hamster or transfer
+      fur, eyes or hamster colors to the objects or scene.'
+  prompt:
+  - text: A fresh compact high-hanging winter star string, with a thin line in a shallow gently uneven
+      sag between exactly two very short slim honey-wood poles with round tops. Show both complete poles.
+      Hang exactly eight separate soft five-pointed stars along the line, each a flat rounded shape, alternating
+      cream and pale gold. Keep each whole star separate enough to count, with five rounded points per
+      star. Use no extra sparkle shapes, star-shaped highlights or motes. The line and both poles form
+      one narrow hanging decor silhouette; none of the eight stars is clipped or hidden.
+  - text: 'HANGING CAMERA AND PLACEMENT: use the same fixed low front three-quarter game camera, about
+      20 degrees above the horizon, and the attached guide''s high hanging band. This is decor:hang. Put
+      the top of the complete silhouette at y=300; keep its bottom at or above y=620 and its complete
+      height at most 300 pixels. Aim for complete width 280-310 pixels on the 1024-pixel canvas, always
+      at most one third (341.33 pixels). Include both full poles, their round tops, the line and every
+      star within this envelope. Center the hanging silhouette horizontally, with clear canvas margins.
+      Remove every guide mark; do not use ground-standing placement.'
+  - block: style-anchor-v2
+  - text: 'MATERIAL SCOPE NEUTRAL: render every literal part named above in its own named material, never
+      as a mascot. The generic STYLE and R1 transfer only soft 2D painterly finish, rounded shapes, clean
+      edges and controlled local values. Keep the stated colors and material identities, with broad matte
+      planes and restrained soft shading. Never transfer hamster fur, plush fibers, hairy outlines, eyes,
+      anatomy or hamster colors to other forms. Only explicitly requested carved or sculpted features
+      are allowed, in their stated materials. No added living animals, mascot, Pofu head curl or copied
+      full hamster body. The appended LIGHT block alone controls light direction and shadow hue. Keep
+      true darks in recesses and clean highlights; no milky global veil, grain, outlines or 3D-render
+      finish.'
+  - text: No painted glow or lighting effects; the star lights are driven by code. Keep exactly eight
+      whole stars and two complete poles.
+  - text: 'AVOID: text, letters, numbers, labels, logos, watermarks, UI chrome, buttons, painted UI glass,
+      borders, sticker outlines, guide markings, magenta, floor, added terrain patch, scene background
+      or baked ground cast shadow. Output an isolated transparent PNG. Use only tiny contact occlusion
+      where the requested forms touch. Do not draw the reference bench, the attached hamster or any extra
+      object.'
+- id: x-corner-kis-v2
+  kind: plate
+  name: x-corner-kis-v2
+  size: 1536x1024
+  canvas: 1536x1024
+  chat: Pofu · Exploration
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. A cozy composed corner of the Kış (winter) set. Review: unmistakably winter; quiet,
+    snowy, warm at the centre. Fresh v2 arrangement: Open snowy composition: star line back-left, snowman
+    back-right, sled/snow mound front-left, pot/two cups warm foreground center, quiet path/original island/cloud
+    edge. Exploration only; never promote. Review literal inventory, material scope, full silhouette and
+    original footprint requirements.'
+  attach:
+  - ref: approved:island-main-s
+    role: 'The home island: the same painting, the same low camera (about 20 degrees), the same softness
+      and scale of a floating island. Do not draw a different island.'
+  - ref: approved:cloud-sea
+    role: 'The sea of clouds below every island: paint the clouds like this.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors, finish and scale exactly
+      (do not draw the bench unless asked).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Style reference only: match Pofu''s soft painterly finish; do not draw a hamster or transfer
+      fur, eyes or hamster colors to the objects or scene.'
+  prompt:
+  - text: A genuinely fresh open winter composition of one quiet cropped corner of the same home island
+      Ayçiçeği. Place a soft star-light string between two poles at the back left, and a plump snowman
+      with two round hamster-shaped snow ears and a plum scarf at the back right. A small wooden sled
+      leans against a snowy mound at the front left. Bring a copper-cream salep pot on a small stand and
+      exactly two cups into the warm foreground near the center, separated from the sled and snowman.
+      A thin blanket of snow covers the lawn around a few quiet path stones, with the familiar island
+      edge over clouds still visible in the crop. Keep every decor piece small in the scale of the attached
+      bench. Cool lilac belongs to the local snow and winter colors under day lighting, with the requested
+      warm glow around the pot as the calm center.
+  - block: style-anchor-v2
+  - text: 'MATERIAL SCOPE NEUTRAL: render every literal part named above in its own named material, never
+      as a mascot. The generic STYLE and R1 transfer only soft 2D painterly finish, rounded shapes, clean
+      edges and controlled local values. Keep the stated colors and material identities, with broad matte
+      planes and restrained soft shading. Never transfer hamster fur, plush fibers, hairy outlines, eyes,
+      anatomy or hamster colors to other forms. Only explicitly requested carved or sculpted features
+      are allowed, in their stated materials. No added living animals, mascot, Pofu head curl or copied
+      full hamster body. The appended LIGHT block alone controls light direction and shadow hue. Keep
+      true darks in recesses and clean highlights; no milky global veil, grain, outlines or 3D-render
+      finish.'
+  - text: The hamster-shaped ears belong to the inanimate snow figure, never a living resident. This independent
+      corner retains only its own stated inventory and states; do not import additional individual-prop
+      requirements.
+  - text: 'CROPPED QUIET CORNER: use the approved home island''s fixed low front three-quarter camera,
+      about 20 degrees above the horizon, and its painting, softness and scale. This is the same home
+      island, softly cropped to a corner of lawn, a few path stones and the familiar island edge over
+      clouds. Do not recopy the whole island, its root system or door. Fill the 1536x1024 image as an
+      opaque composed concept painting; no transparent cutout, invented guide, ellipse, cross or height
+      bar. Use proper soft contact shadows at the scene''s object contacts and cloud depth in the distance;
+      keep the subject plane clear and readable. Seasonal color is local material color. All scene lighting
+      remains day/subject under the appended LIGHT authority.'
+  - text: 'AVOID: borders, text, letters, numbers, labels, logos, watermarks, UI chrome, buttons, painted
+      UI glass, guide markings, saturated colors, harsh shadows, outlines, photorealism, a 3D render look,
+      living characters or animals. Do not replace the familiar home with a different island shape or
+      draw the reference bench unless requested.'

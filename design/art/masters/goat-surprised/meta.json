@@ -1,0 +1,133 @@
+{
+  "job": "goat-surprised",
+  "batch": "batch-41-resident-reactions",
+  "asset": "char__goat-surprised",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-06T01:07:03+00:00",
+  "image": "design/art/masters/goat-surprised/goat-surprised.png",
+  "raw": "design/art/masters/goat-surprised/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "42711238fa21e26e",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nEdit the attached baby goat into a surprised reaction. Change only the face and ears: the flat pressed mouth becomes a small round soft \"o\", both eyes grow slightly rounder and wider with their catchlights kept, the brows lift, and the two floppy ears lift a little more upright. The horn buds, beard tuft, tan patch, body, paws, colors and size stay exactly as they are.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: tears, a worried look, teeth, a ground shadow, text, motion lines.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, portrait 1024 x 1536.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/harbor-goat/harbor-goat.webp",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-06T00:25:52+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "char-guard",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": {
+    "scale": 0.9902,
+    "cx": 507.5,
+    "cy": 1372.0,
+    "dx": 2,
+    "dy": -1
+  },
+  "fit": null,
+  "qa": {
+    "status": "pass",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1024x1536"
+      },
+      {
+        "check": "edit_alignment",
+        "status": "pass",
+        "message": "the edit rescaled the object x1.010 and moved it; aligned back to the parent",
+        "value": 0.9902
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 40 (R1 51)",
+        "value": 39.8
+      },
+      {
+        "check": "light_values",
+        "status": "pass",
+        "message": "day/subject: L p2 20 (at most 22), p98 96 (at least 90), spread 76 (at least 60)",
+        "value": 76.3
+      },
+      {
+        "check": "light_median",
+        "status": "pass",
+        "message": "day/subject: median L 89 (band 55-90)",
+        "value": 89.1
+      },
+      {
+        "check": "light_haze",
+        "status": "pass",
+        "message": "day/subject: dark-channel haze 0.18 (at most 0.20; no true dark means a wash)",
+        "value": 0.184
+      },
+      {
+        "check": "light_contrast",
+        "status": "pass",
+        "message": "day/subject: p75 local contrast 3.7 (at least 3.5)",
+        "value": 3.7
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 3.6 (R1 5.3)",
+        "value": 3.61
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.0, p95 2.8, off-palette 0.7% (top: #441100 (0.1%), #662211 (0.1%))",
+        "value": 1.0011
+      },
+      {
+        "check": "ground_line",
+        "status": "pass",
+        "message": "feet at 89.3% of the height (contract 88%)",
+        "value": 0.8926
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 93 against the char reference (outliers: detail)",
+        "value": 92.8
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "80% of the parent level unchanged",
+        "value": 0.7951
+      },
+      {
+        "check": "edit_chroma",
+        "status": "pass",
+        "message": "chroma x1.03 of the parent level (drift compounds along a chain)",
+        "value": 1.028
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Independent source/parent/locked review accepts both initial takes: small round o mouth, wider catchlit eyes, raised brows and slightly lifted floppy ears; two horn buds, beard, tan patch, body/paws/framing preserved, no backdrop, cast shadow, text or motion lines. Both pass every QA check. Character-guard applies no grading, so take1 wins higher Harmony92.8 vs91.4. Exact full-canvas lossless490630 bytes preserves locked RGBA. No added stability threshold or pixel edits. Independent evidence: independent-reviews/review-mochi-proud-goat-surprised.json."
+}

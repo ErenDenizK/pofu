@@ -1,0 +1,48 @@
+{
+  "operation": "batch-35-experience",
+  "authorized_by_root": true,
+  "original_art_base": "472d90e157efe774bdd62ac4eb894aedfdd89576",
+  "upstream_fix_sha": "ba4dfa498597e2a27817fc2efc68906113d34e36",
+  "applied_fix_sha": "0442198da007ddcb91d176822128c0ca1ece0339",
+  "art_branch_dependency_files": [
+    "tools/imagegen/pipeline.py",
+    "tools/imagegen/qa.py",
+    "tools/imagegen/run.py",
+    "tools/imagegen/tests/test_explicit_prop_fit.py",
+    "tools/imagegen/tests/test_post_delivery.py"
+  ],
+  "exact_tool_blobs": {
+    "tools/imagegen/pipeline.py": {
+      "sha256": "aae932cb0d4cde19910902dd48f42a02ee4a389a3917331d515a6eb10f219f74",
+      "upstream_blob": "95259b2bd3b8f150f8cb249926bc92b209393f3e",
+      "applied_blob": "95259b2bd3b8f150f8cb249926bc92b209393f3e"
+    },
+    "tools/imagegen/qa.py": {
+      "sha256": "96d90d5f71c33c5bba9f61e7a4169a8959d7823982740c604a69dadebb582777",
+      "upstream_blob": "97aa46322d17ff3e28f2894bd430dc970065afa7",
+      "applied_blob": "97aa46322d17ff3e28f2894bd430dc970065afa7"
+    },
+    "tools/imagegen/run.py": {
+      "sha256": "bb7a4b337806c3a33d3baedcfd46e274a7a2987cc3ca6670b89e406ac7d6757a",
+      "upstream_blob": "7f419493864f58e8ede8de5838416382c350d4af",
+      "applied_blob": "7f419493864f58e8ede8de5838416382c350d4af"
+    },
+    "tools/imagegen/tests/test_explicit_prop_fit.py": {
+      "sha256": "920cc8edbcb263199e8a37e3ecd23f07713f9f9f153ae447d70cdfd50c86315d",
+      "upstream_blob": "a92c9fd3fb2edf3a048836737349b990ae3d257f",
+      "applied_blob": "a92c9fd3fb2edf3a048836737349b990ae3d257f"
+    },
+    "tools/imagegen/tests/test_post_delivery.py": {
+      "sha256": "2f35c35b551647c80cdfb37b3e9223bb69194515b3f51e275bacbd9d417033c7",
+      "upstream_blob": "6f9570635c269c7b9909f711b19ae0796b18c7d5",
+      "applied_blob": "6f9570635c269c7b9909f711b19ae0796b18c7d5"
+    }
+  },
+  "upstream_publication": {
+    "receipt_path": "/workspace/art-operator-runtime/run-20261105-night/batch-35-experience/runtime-support/upstream-tool-fix-publication.json",
+    "receipt_sha256": "31b29d666ce5d05d0134954a1f673da95c48175486e86ff476bbf4a9646fe967",
+    "pr": 227
+  },
+  "applied_after_verified_art_head": "38045931d2002980fd71a487681e8475e36ebf01",
+  "policy": "Root-reviewed exact five-blob published tooling dependency; no merge, manifest edits, QA changes or artwork changes. No earlier ordinary post markers were modified."
+}

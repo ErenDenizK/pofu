@@ -1,0 +1,143 @@
+{
+  "job": "workshop-5-green",
+  "batch": "batch-40-home-ladder-gaps",
+  "asset": "station__workshop-5-green",
+  "take": 2,
+  "takes_considered": 2,
+  "approved_at": "2026-11-06T00:52:35+00:00",
+  "image": "design/art/stations/workshop-5-green/workshop-5-green.png",
+  "raw": "design/art/stations/workshop-5-green/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "e03ecc1bb7a90f41",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nAdd a pair of small rounded sage-green wooden shutters, open flat against the wall, one on each side of the arched doorway, and a third pair on the lower wall at the right. Each shutter is a chunky rounded panel with a small round cut-out, painted sage green with a cream edge. The big gear sign, the chimney, the clock and everything else stay exactly as they are.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: changing the shape, size or position of any part, new props, a different camera, a baked shadow, a glow, text.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/stations/workshop-5/workshop-5.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-06T00:36:32+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": {
+    "dx": 0,
+    "dy": 0
+  },
+  "alignment": null,
+  "fit": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "warn",
+        "message": "chroma p95 53 (R1 51)",
+        "value": 53.0
+      },
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 49 (at most 22), p98 90 (at least 90), spread 41 (at least 60) (warn-only until the founder has seen the light pilot)",
+        "value": 40.8
+      },
+      {
+        "check": "light_median",
+        "status": "pass",
+        "message": "day/subject: median L 77 (band 55-90)",
+        "value": 77.3
+      },
+      {
+        "check": "light_haze",
+        "status": "warn",
+        "message": "day/subject: dark-channel haze 0.22 (at most 0.20; no true dark means a wash)",
+        "value": 0.224
+      },
+      {
+        "check": "light_contrast",
+        "status": "pass",
+        "message": "day/subject: p75 local contrast 4.7 (at least 3.5)",
+        "value": 4.74
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 2.8 (R1 5.3)",
+        "value": 2.82
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 0.7",
+        "value": 0.7456
+      },
+      {
+        "check": "no_guide_magenta",
+        "status": "pass",
+        "message": "0 guide-magenta pixels (per 1024^2)",
+        "value": 0.0
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.7, p95 7.7, off-palette 0.5% (top: #BB7722 (0.1%), #BB6622 (0.1%))",
+        "value": 1.6797
+      },
+      {
+        "check": "station_anchor",
+        "status": "pass",
+        "message": "on the parent's anchor",
+        "value": 910.0
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 82 against the world reference (outliers: edge)",
+        "value": 81.9
+      },
+      {
+        "check": "edit_silhouette",
+        "status": "pass",
+        "message": "99% of the parent's shape kept",
+        "value": 0.9869
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "91% of the parent level unchanged",
+        "value": 0.9079
+      },
+      {
+        "check": "edit_chroma",
+        "status": "pass",
+        "message": "chroma x1.01 of the parent level (drift compounds along a chain)",
+        "value": 1.0145
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Independent original and locked review selects take2: four separate sage shutters in the two explicitly named pairs, round cut-outs and cream edges; exact actual gear sign, chimney, four-blade pinwheel, five tools, doorway, bench and vice remain. Historical left-edge clipping is preserved from the frozen approved parent, not corrected or treated as a new failure. The actual parent has no visible clock, so none is invented. Take1 adds unrequested solid wood across the protected open bench gap outside shutter outlines and is excluded. Take2 has lower eligible lock0.7456 and Harmony81.9. Three existing planned workshop nodes were linked once before this first success; failed variants remain cut with no images. Founder review pending."
+}

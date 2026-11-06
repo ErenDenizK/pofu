@@ -1,0 +1,107 @@
+{
+  "job": "gift-parcel",
+  "batch": "batch-35-experience",
+  "asset": "sheet__gift-parcel",
+  "take": 2,
+  "takes_considered": 2,
+  "approved_at": "2026-11-05T23:05:02+00:00",
+  "image": "design/art/masters/gift-parcel/gift-parcel.png",
+  "raw": "design/art/masters/gift-parcel/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "24e688aa13ca04ef",
+  "prompt": "REFERENCES (attached, in this order):\n1. The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall).\n2. The palette card for props: use only these colors (and mixes of them).\n\nA sheet of one small gift parcel drawn twice in a single row, evenly spaced with wide empty space between\nthem: (1) closed: a plump square parcel wrapped in warm kraft-cream paper tied with cream twine in a simple\nbow, a small dried sprig tucked under the knot; (2) open: the same parcel with the paper folded back and\nthe twine untied and lying loose, the inside a soft empty nest of cream paper shreds with a small round\nwarm-honey hollow in it. Chunky, matte, toy-like, seen from the same low front three-quarter camera.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: a ribbon with a pattern, text, glitter, a floor, a ground shadow, cast shadows, outlines, a background, a visible gift item\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, landscape 1536 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/stations/tea-stall-1/tea-stall-1.png",
+      "role": "The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall)."
+    },
+    {
+      "path": "design/reference/palette-card-world-props.png",
+      "role": "The palette card for props: use only these colors (and mixes of them)."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-05T22:59:40+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "char-guard",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "fit": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1536x1024"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 40 (R1 51)",
+        "value": 40.3
+      },
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 60 (at most 22), p98 93 (at least 90), spread 33 (at least 60) (warn-only until the founder has seen the light pilot)",
+        "value": 32.7
+      },
+      {
+        "check": "light_median",
+        "status": "pass",
+        "message": "day/subject: median L 77 (band 55-90)",
+        "value": 76.6
+      },
+      {
+        "check": "light_haze",
+        "status": "warn",
+        "message": "day/subject: dark-channel haze 0.27 (at most 0.20; no true dark means a wash)",
+        "value": 0.271
+      },
+      {
+        "check": "light_contrast",
+        "status": "pass",
+        "message": "day/subject: p75 local contrast 5.6 (at least 3.5)",
+        "value": 5.63
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 3.4 (R1 5.3)",
+        "value": 3.38
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 0.0",
+        "value": 0.0
+      },
+      {
+        "check": "palette_drift",
+        "status": "warn",
+        "message": "mean dE 2.7, p95 4.7, off-palette 0.0%",
+        "value": 2.7134
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Both initial takes satisfy the two-state parcel sheet: a closed kraft-cream wrap with cream twine and dried sprig, and an open wrap with loose twine, paper shreds and an empty warm-honey hollow. No visible gift object, text, floor or cast shadow; the apparent RGB haze outside the parcels is fully transparent. Take 2 has the lowest style-lock load (0.0000 versus 0.0012). Light-profile warnings remain recorded for founder review."
+}

@@ -1,0 +1,58 @@
+{
+ "after": {
+  "C_mean": 7.127,
+  "C_p50": 7.767,
+  "C_p95": 9.506,
+  "L_mean": 90.449,
+  "L_p2": 87.08,
+  "L_p98": 94.002,
+  "detail": 0.641,
+  "edge": 2.18,
+  "tint_a": 2.609,
+  "tint_b": 6.559,
+  "warmth_b": 6.559
+ },
+ "before": {
+  "C_mean": 7.127,
+  "C_p50": 7.767,
+  "C_p95": 9.506,
+  "L_mean": 90.449,
+  "L_p2": 87.08,
+  "L_p98": 94.002,
+  "detail": 0.641,
+  "edge": 2.18,
+  "tint_a": 2.609,
+  "tint_b": 6.559,
+  "warmth_b": 6.559
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": true,
+ "kind": "world",
+ "matched_to": "world",
+ "outliers_after": [
+  "C_p95",
+  "L_p2",
+  "edge"
+ ],
+ "outliers_before": [
+  "C_p95",
+  "L_p2",
+  "edge"
+ ],
+ "ppu": 4.103,
+ "reference": false,
+ "score_after": 40.3,
+ "score_before": 40.3,
+ "shipped": false,
+ "source": "design/art/masters/cloud-curtain-3/cloud-curtain-3.png",
+ "source_sha": "606c819053fe453e"
+}

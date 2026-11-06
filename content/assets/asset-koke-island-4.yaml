@@ -2,14 +2,14 @@ id: asset-koke-island-4
 type: asset
 title_tr: koke-island-4
 title_en: koke-island-4 (plate)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  Edit the attached island plate from stage 0 to stage 4, healed: the signature moment. Koke
-  stands up: the hump has risen onto four sturdy stubby legs, standing on the lawn where it
-  slept, its head lifted and turned to the viewer, both eyes open, big round and warm brown
-  with catchlights, a soft happy smile, its small ears perked. It is covered in rich living
-  moss, thick like fur, and its whole back is in flower: blos…
+summary: 'Edit the attached island plate from stage 0 to stage 4, healed: the signature
+  moment. Koke stands up: the hump has risen onto four sturdy stubby legs, standing
+  on the lawn where it slept, its head lifted and turned to the viewer, both eyes
+  open, big round and warm brown with catchlights, a soft happy smile, its small ears
+  perked. It is covered in rich living moss, thick like fur, and its whole back is
+  in flower: blos…'
 links:
   variant_of:
   - asset-koke-island-0
@@ -22,3 +22,18 @@ sources:
 kind: plate
 batch: batch-39-koke-production
 size: 1536x1024
+notes:
+- 'Skipped without generation: true dependency koke-island-0 failed after its one
+  allowed retry. Skipped after the sole unchanged-prompt retry. All four candidates
+  pass every hard QA check but cannot be delivered within the mandatory614400-byte
+  lossless master cap. Maximum-effort exact lossless WebP sizes are878932,871858,878880,889080bytes;
+  the full1536x1024 PNGs are1.32MB. The manifest supplies no soft-delivery scale,
+  and no manual downscale, lossy master, palette change or pixel cleanup is allowed.
+  delivery-preflight.json binds the exact candidate RGBA hashes and compression sizes.
+  Canonical Harmony C_mean values are8.454,8.619,10.790,8.384; C_p50 values7.329,6.300,10.669,7.288.
+  The same explicitly documented warm-bright subject-pixel proxy gives0.385375,0.469174,0.531015,0.365659;
+  these observations are not a new QA threshold. Arc evidence is retained in arc-measurements.json.
+  No stage0-to4 comparison is claimed because the four true plate dependents cannot
+  start without a deliverable parent. Propose a lead-authored soft-delivery scale
+  and salvage these retained originals rather than regenerating. Independent character
+  chain continues; light warnings remain advisory.'

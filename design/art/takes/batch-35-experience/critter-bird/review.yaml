@@ -1,0 +1,173 @@
+batch: batch-35-experience
+contact_sheet: design/art/takes/batch-35-experience/critter-bird/contact.jpg
+jobs:
+  critter-bird:
+    pick: 1
+    publication: promoted; founder review pending
+    note: 'auto-picked by QA; founder review pending. Both initial takes show exactly
+      four separated matching dusty-blue birds with cream bellies and honey beaks:
+      left perch, right-facing open-beak chirp, raised wings, lowered wings. Original
+      and official locked images independently reviewed. Small floating honey chirp
+      accents beside the second beak are disclosed; they are non-letter sound accents,
+      not text or speech bubbles. No floor, cast shadow or background. Select the
+      lowest eligible style-lock load using canonical QA reports; advisory light warnings
+      remain for founder review.'
+qa_reports:
+  2:
+    job: critter-bird
+    take: 2
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 17 (R1 51)
+      value: 16.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 59 (at most 22), p98 89 (at least 90), spread 30
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 30.4
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 73 (band 55-90)'
+      value: 73.3
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.26 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.263
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.0 (at least 3.5)'
+      value: 3.96
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.1 (R1 5.3)
+      value: 3.14
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.8, p95 1.9, off-palette 0.0%
+      value: 0.8464
+    info:
+      metrics_raw:
+        L_p5: 62.3
+        L_p50: 73.3
+        L_p95: 87.7
+        C_p50: 10.5
+        C_p95: 16.9
+        C_p99: 35.4
+        detail: 2.95
+      metrics_locked:
+        L_p5: 62.3
+        L_p50: 73.3
+        L_p95: 87.7
+        C_p50: 10.5
+        C_p95: 16.9
+        C_p99: 35.4
+        detail: 3.14
+    fingerprint: 75dff31685151cdb
+  1:
+    job: critter-bird
+    take: 1
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 19 (R1 51)
+      value: 18.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 58 (at most 22), p98 89 (at least 90), spread 31
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 31.2
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 72 (band 55-90)'
+      value: 72.4
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.5 (at least 3.5)'
+      value: 6.46
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.5 (R1 5.3)
+      value: 3.49
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.9, p95 1.9, off-palette 0.0%
+      value: 0.9085
+    info:
+      metrics_raw:
+        L_p5: 61.0
+        L_p50: 72.4
+        L_p95: 87.4
+        C_p50: 12.1
+        C_p95: 18.8
+        C_p99: 39.6
+        detail: 3.29
+      metrics_locked:
+        L_p5: 61.0
+        L_p50: 72.4
+        L_p95: 87.4
+        C_p50: 12.1
+        C_p95: 18.8
+        C_p99: 39.6
+        detail: 3.49
+    fingerprint: 75dff31685151cdb
+manual_review:
+  excluded_takes: []
+  note: 'Both initial takes show exactly four separated matching dusty-blue birds
+    with cream bellies and honey beaks: left perch, right-facing open-beak chirp,
+    raised wings, lowered wings. Original and official locked images independently
+    reviewed. Small floating honey chirp accents beside the second beak are disclosed;
+    they are non-letter sound accents, not text or speech bubbles. No floor, cast
+    shadow or background. Select the lowest eligible style-lock load using canonical
+    QA reports; advisory light warnings remain for founder review.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-45d4a3a8-42a8-4720-88bd-b091ce23f13e.png
+  original_generated_png_sha256: 492ef32f8a9ee07020dc489cbeecc108f00aed4e751e9539eb979537c327b1c0
+  inbox_png_sha256: c63cbed2486a1563ff5fbba6686e7a83dacee9f09d6e61f9a3622965c7912b50
+  rgba_sha256: a8d32ca8213157c044521f2641f2fc229c1fb59efccad02055bab4c005b4b15e
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 75dff31685151cdb
+- take: 2
+  source_file: /workspace/generated_images/exec-75d42bd6-55cc-4dbb-9a1f-253bc05ebc96.png
+  original_generated_png_sha256: ab9605ce1617f2116aa61eaffedac6ebb740898824bd87ae8342156d1ec47318
+  inbox_png_sha256: 1ab92466487a7272df2b45bf02d7f80104e9be8db9e8267a3987d449c027a862
+  rgba_sha256: 6f1630489f1ef962446b6e7719e09cc1bc51867028df90378aa1dcacbffeebe3
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 75dff31685151cdb

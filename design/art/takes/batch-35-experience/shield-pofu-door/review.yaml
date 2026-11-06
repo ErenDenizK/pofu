@@ -1,0 +1,183 @@
+batch: batch-35-experience
+contact_sheet: design/art/takes/batch-35-experience/shield-pofu-door/contact.jpg
+jobs:
+  shield-pofu-door:
+    pick: 2
+    publication: promoted; founder review pending
+    note: 'auto-picked by QA; founder review pending. Both original and official locked
+      candidates are independently visually eligible: exactly three complete separate
+      scenes with the same Pofu and honey round door/window in a low cream wall segment.
+      Calm has gentle open eyes; proud has lifted chin/chest and a paw on the frame;
+      sleepy droops, yawns and leans with heavy lids. Signature curl is retained only
+      on Pofu, cheeks are natural and unpuffed, and no island, lettering, sparkle,
+      extra limbs or background is painted. Take2 has the lowest eligible lock load0.0100
+      versus0.0138. The canonical sheet char-guard preserves the fur finish without
+      a prop-lock override; no manual pixel edits. Exact-RGBA lossless preflight verifies
+      its553930-byte WebP can preserve the full1536x1024 master under614400 without
+      resizing. Real Harmony measure/check and own shard accompany the master; advisory
+      light warnings remain for founder review.'
+qa_reports:
+  1:
+    job: shield-pofu-door
+    take: 1
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 43 (R1 51)
+      value: 42.7
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 50 (at most 22), p98 95 (at least 90), spread 46
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 45.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 86 (band 55-90)'
+      value: 85.5
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.18 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.184
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.5 (at least 3.5)'
+      value: 6.53
+    - check: detail_budget
+      status: warn
+      message: detail at display size 6.7 (R1 5.3)
+      value: 6.67
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0138
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.8, p95 5.5, off-palette 1.1% (top: #EE7766 (0.1%), #662211
+        (0.1%))'
+      value: 1.7781
+    info:
+      metrics_raw:
+        L_p5: 60.3
+        L_p50: 85.6
+        L_p95: 94.5
+        C_p50: 22.6
+        C_p95: 42.7
+        C_p99: 51.4
+        detail: 6.58
+      metrics_locked:
+        L_p5: 60.3
+        L_p50: 85.6
+        L_p95: 94.5
+        C_p50: 22.6
+        C_p95: 42.7
+        C_p99: 51.4
+        detail: 6.67
+    fingerprint: 2c7fcf6eee9b3cb4
+  2:
+    job: shield-pofu-door
+    take: 2
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 45 (R1 51)
+      value: 44.7
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 48 (at most 22), p98 94 (at least 90), spread 46
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 45.9
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 83 (band 55-90)'
+      value: 83.2
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.22 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.216
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.2 (at least 3.5)'
+      value: 6.23
+    - check: detail_budget
+      status: warn
+      message: detail at display size 6.5 (R1 5.3)
+      value: 6.55
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.01
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.8, p95 5.6, off-palette 0.9% (top: #EE7766 (0.1%), #DD7755
+        (0.1%))'
+      value: 1.7755
+    info:
+      metrics_raw:
+        L_p5: 57.1
+        L_p50: 83.2
+        L_p95: 93.3
+        C_p50: 25.7
+        C_p95: 44.7
+        C_p99: 52.0
+        detail: 6.47
+      metrics_locked:
+        L_p5: 57.1
+        L_p50: 83.2
+        L_p95: 93.3
+        C_p50: 25.7
+        C_p95: 44.7
+        C_p99: 52.0
+        detail: 6.55
+    fingerprint: 2c7fcf6eee9b3cb4
+manual_review:
+  excluded_takes: []
+  note: 'Both original and official locked candidates are independently visually eligible:
+    exactly three complete separate scenes with the same Pofu and honey round door/window
+    in a low cream wall segment. Calm has gentle open eyes; proud has lifted chin/chest
+    and a paw on the frame; sleepy droops, yawns and leans with heavy lids. Signature
+    curl is retained only on Pofu, cheeks are natural and unpuffed, and no island,
+    lettering, sparkle, extra limbs or background is painted. Take2 has the lowest
+    eligible lock load0.0100 versus0.0138. The canonical sheet char-guard preserves
+    the fur finish without a prop-lock override; no manual pixel edits. Exact-RGBA
+    lossless preflight verifies its553930-byte WebP can preserve the full1536x1024
+    master under614400 without resizing. Real Harmony measure/check and own shard
+    accompany the master; advisory light warnings remain for founder review.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-60b5eda8-1e95-4724-a4fa-944481055b4b.png
+  original_generated_png_sha256: f0d5cec5baf766fbbf73bd1de3d6af5ecffee3e556d6b76daf9fdcd9a6b30a8c
+  inbox_png_sha256: 3e98cc671ac4f94506abf08ac082538a618ab2389106a73f4ea401e35e9fcb0d
+  rgba_sha256: e0aa7677848aa03eb0eee149c7185b9c23cd01aefcc87a0a20b2dc884eeddefd
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 2c7fcf6eee9b3cb4
+- take: 2
+  source_file: /workspace/generated_images/exec-fe0eaaa5-3130-45e3-becb-2965b0b4fb62.png
+  original_generated_png_sha256: 3727836dce02da35ed2c3cbb4e2f64d03e39462eb8456c8d3f3d427c4eef4dda
+  inbox_png_sha256: 661573f509fcc347c81b688f7cdfefcbd7bb6af434e7ad46b41a1d925c5633e1
+  rgba_sha256: 683003ce103709859dbf5baa98066bfd1a970fa69b65aa9093cb3a01e334b8f8
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 2c7fcf6eee9b3cb4

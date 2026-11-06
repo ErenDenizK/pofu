@@ -1,0 +1,246 @@
+batch: batch-30c-decor-seasons-2-v2
+manifest: tools/imagegen/manifest/batch-30c-decor-seasons-2-v2.yaml
+manifest_sha256: ea5cacbf97d06a6c7df0fdc0cfe18e40fe973d63e48e965cce6438809fb462ce
+contact_sheet: design/art/takes/batch-30c-decor-seasons-2-v2/x-decor-guz-scarf-v2/contact.jpg
+jobs:
+  x-decor-guz-scarf-v2:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both original and official locked
+      alpha-composites show the slim honey-wood T stand, one freely draped plum/mustard
+      striped scarf, complete tassels, long end curving to its foot and shorter end
+      near the upright with visible transparent separation. Matte cloth stays cloth,
+      not a living mascot or fur; no text, scenery or ground cast shadow. Whole posted
+      widths are 260 and 238 px, within the one-third cap; 280-310 is a target and
+      not a minimum. Both are eligible for unchanged QA ranking. Ground-standing,
+      not hanging; exploration only and never promoted.
+qa_reports:
+  1:
+    job: x-decor-guz-scarf-v2
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 60 (R1 51) (advisory in an exploration)
+      value: 60.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 36 (at most 22), p98 84 (at least 90), spread 49
+        (at least 60)'
+      value: 48.7
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 68 (band 55-90)'
+      value: 68.5
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 9.2 (at least 3.5)'
+      value: 9.15
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.0 (R1 5.3)
+      value: 1.96
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.5
+      value: 1.4684
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 6.0, p95 13.6, off-palette 17.0% (top: #BB6677 (2.9%), #AA5566
+        (2.8%)) (advisory in an exploration)'
+      value: 6.0346
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 46 against the world reference (outliers: C_p95, L_p2,
+        L_p98, detail, edge)'
+      value: 45.7
+    info:
+      fit:
+        scale: 0.7266
+        anchor:
+        - 484.5
+        - 804
+      registration:
+        dx: 28
+        dy: 84
+      metrics_raw:
+        L_p5: 39.8
+        L_p50: 68.0
+        L_p95: 83.7
+        C_p50: 46.2
+        C_p95: 61.8
+        C_p99: 63.1
+        detail: 2.76
+      metrics_locked:
+        L_p5: 40.5
+        L_p50: 68.5
+        L_p95: 83.3
+        C_p50: 46.2
+        C_p95: 60.1
+        C_p99: 60.9
+        detail: 1.96
+    fingerprint: e66312c03113b9a5
+  2:
+    job: x-decor-guz-scarf-v2
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 58 (R1 51)
+      value: 57.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 33 (at most 22), p98 84 (at least 90), spread 51
+        (at least 60)'
+      value: 51.2
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 64 (band 55-90)'
+      value: 63.6
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 9.3 (at least 3.5)'
+      value: 9.34
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.5 (R1 5.3)
+      value: 2.47
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.2
+      value: 2.1603
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 5.9, p95 11.4, off-palette 0.6% (top: #994444 (0.3%), #884422
+        (0.1%)) (advisory in an exploration)'
+      value: 5.8763
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 44 against the world reference (outliers: C_p95, L_p2,
+        L_p98, detail, edge)'
+      value: 44.5
+    info:
+      fit:
+        scale: 0.6016
+        anchor:
+        - 472.5
+        - 817
+      registration:
+        dx: 40
+        dy: 70
+      metrics_raw:
+        L_p5: 35.3
+        L_p50: 63.4
+        L_p95: 81.8
+        C_p50: 46.5
+        C_p95: 58.5
+        C_p99: 59.4
+        detail: 3.47
+      metrics_locked:
+        L_p5: 35.7
+        L_p50: 63.6
+        L_p95: 81.4
+        C_p50: 46.3
+        C_p95: 57.9
+        C_p99: 58.5
+        detail: 2.47
+    fingerprint: e66312c03113b9a5
+manual_review:
+  observed_note: Both original and official locked alpha-composites show the slim
+    honey-wood T stand, one freely draped plum/mustard striped scarf, complete tassels,
+    long end curving to its foot and shorter end near the upright with visible transparent
+    separation. Matte cloth stays cloth, not a living mascot or fur; no text, scenery
+    or ground cast shadow. Whole posted widths are 260 and 238 px, within the one-third
+    cap; 280-310 is a target and not a minimum. Both are eligible for unchanged QA
+    ranking. Ground-standing, not hanging; exploration only and never promoted.
+  excluded_takes: []
+sources:
+- batch: batch-30c-decor-seasons-2-v2
+  job: x-decor-guz-scarf-v2
+  take: 1
+  round: 1
+  logical_run: 20261106-b30c-v2-scarf
+  source_file: /workspace/generated_images/exec-6df5f363-70db-4190-b489-1a51b8facce1.png
+  returned_at: '2026-11-06T00:47:22.056Z'
+  prompt_sha256: 991951985e95ca4be47abfa2f0eefc4b7199b99f1db2dc9780189bbd6191615e
+  fingerprint: e66312c03113b9a5
+  saved_at: '2026-11-06T00:47:22.407422+00:00'
+  original_generated_png_sha256: 375ef25454e1132f33daf7decc169843e420260edd2e8d9db2cceaeb3d9fe319
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: e80a6884f9b364c4eaa3a0af6df5c14f1bff087ff807799422c711b31baa348d
+  inbox_png_sha256: 42260bd3440f1fa367a018da1bf8acbd3d9c2a41c318ae4542ae95c5b41a4543
+  qa_sha256: 18ad5056bb0248301dd9de6feffadb8118e64856520f4fd2234156ce1d6c9a9b
+- batch: batch-30c-decor-seasons-2-v2
+  job: x-decor-guz-scarf-v2
+  take: 2
+  round: 1
+  logical_run: 20261106-b30c-v2-scarf
+  source_file: /workspace/generated_images/exec-dcc8fa0c-e0e4-4f41-8dd1-b3340b3e5cbc.png
+  returned_at: '2026-11-06T00:46:37.820Z'
+  prompt_sha256: 991951985e95ca4be47abfa2f0eefc4b7199b99f1db2dc9780189bbd6191615e
+  fingerprint: e66312c03113b9a5
+  saved_at: '2026-11-06T00:46:38.183692+00:00'
+  original_generated_png_sha256: b260dfbd4586e0d14c67b536dc97f38f2fd2549edc302a3bf3ae30474ca81380
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 74a0de74ed032a4bf86431b855c11e838d5dee96df5131cfef76fd08ddbe59db
+  inbox_png_sha256: 9d6a4a3c71271c1c24d7146120decc6b7112e0bea9158684fecf48d01d62d4b2
+  qa_sha256: 1650259dbcca3ae04adb184c94a39c3cd12b0401d4fcc88fdc0b534bde280137
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+variation_proof_sha256: a6b42f3fbfdb3ab513b04eb9c4e1ea02889b0542875eb6cff926b45df031def0

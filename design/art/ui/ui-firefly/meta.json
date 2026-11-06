@@ -1,0 +1,89 @@
+{
+  "job": "firefly",
+  "batch": "batch-35-experience",
+  "asset": "ui__firefly",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-05T23:27:35+00:00",
+  "image": "design/art/ui/ui-firefly/ui-firefly.png",
+  "raw": "design/art/ui/ui-firefly/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "ec5b08ffafde1251",
+  "prompt": "REFERENCES (attached, in this order):\n1. The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall).\n2. The palette card for props: use only these colors (and mixes of them).\n\nA sprite sheet of one firefly shown four times in a single row, left to right, evenly spaced with wide empty\nspace between them: (1) body dim, abdomen a faint warm amber; (2) the abdomen glowing, a small warm yellow\ncore; (3) at its brightest, a warm yellow-white core with a soft honey-gold halo; (4) fading, amber again.\nEach firefly is tiny, a plump rounded body of soft dark plum-brown with two pale translucent wings and two\nshort antennae, seen from the side. Chunky and toy-like, never realistic. On a plain transparent\nbackground.\n\nUI OBJECT: a painted object that the app places under or inside native\niOS glass controls. Never paint glass, frosted panels, buttons, frames,\nprogress bars or any interface chrome: the app draws all glass and all\ncontrols natively. The object is centered with a generous transparent\nmargin of about 10% on every side.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: realistic insects, thin legs, detailed wings, outlines, text, a floor, a ground shadow, a jar, a person, a hard glow ring\n\nOutput: one image, transparent background PNG, landscape 1536 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/stations/tea-stall-1/tea-stall-1.png",
+      "role": "The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall)."
+    },
+    {
+      "path": "design/reference/palette-card-world-props.png",
+      "role": "The palette card for props: use only these colors (and mixes of them)."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-05T23:10:44+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "fit": null,
+  "qa": {
+    "status": "pass",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1536x1024"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 39 (R1 51)",
+        "value": 39.2
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 43 (R1 59)",
+        "value": 42.8
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 2.2 (R1 5.3)",
+        "value": 2.23
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 1.2",
+        "value": 1.2349
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 0.9, p95 1.9, off-palette 0.0%",
+        "value": 0.8711
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Both initial takes show exactly four separated matching plum-brown fireflies with two pale wings and two short antennae: dim amber, rising yellow core, brightest soft honey halo, then fading amber. Original and official locked images independently reviewed: no hard glow ring, text, floor or unrelated object. Select the lowest eligible style-lock load using the canonical QA reports. This UI asset is excluded by the authoritative Harmony catalog; run the real measure/check pair and retain its proof without fabricating an asset shard."
+}

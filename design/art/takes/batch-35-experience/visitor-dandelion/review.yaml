@@ -1,0 +1,405 @@
+batch: batch-35-experience
+contact_sheet: design/art/takes/batch-35-experience/visitor-dandelion/contact.jpg
+jobs:
+  visitor-dandelion:
+    pick: none
+    publication: skipped after one allowed retry
+    note: 'All four takes exhaust the sole unchanged-prompt retry and fail official
+      decor_anchor height. Official top y values are 196, 40, 197 and 175 against
+      the height bar at 500; takes 1, 2 and 4 also exceed the 360px footprint. The
+      minimum fit scale remains unchanged and no manual resizing or alpha cleanup
+      is performed. Independent original and locked review confirms clean single dandelion
+      seeds, but they are ineligible at the authored guide geometry. Skip this job
+      only; there are no true dependents. Automated failures: t1 decor_anchor: top
+      y 196 above the height bar (500); width 458 px wider than the footprint (360);
+      t2 decor_anchor: top y 40 above the height bar (500); width 525 px wider than
+      the footprint (360); t3 decor_anchor: top y 197 above the height bar (500);
+      t4 decor_anchor: top y 175 above the height bar (500); width 462 px wider than
+      the footprint (360).'
+qa_reports:
+  1:
+    job: visitor-dandelion
+    take: 1
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 19 (R1 51)
+      value: 18.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 66 (at most 22), p98 95 (at least 90), spread 29
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 28.9
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 89 (band 55-90)'
+      value: 89.4
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.68 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.682
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.1 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.14
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.57
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 0.9972
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.1, p95 3.8, off-palette 0.0%
+      value: 1.0927
+    - check: decor_anchor
+      status: fail
+      message: top y 196 above the height bar (500); width 458 px wider than the footprint
+        (360)
+      value: 888.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 65 against the world reference (outliers: C_p95, L_p2)'
+      value: 64.7
+    info:
+      fit_skipped: needs x0.56, below x0.6 (a real art failure)
+      registration:
+        dx: 16
+        dy: 27
+      metrics_raw:
+        L_p5: 77.3
+        L_p50: 89.5
+        L_p95: 95.0
+        C_p50: 8.1
+        C_p95: 19.9
+        C_p99: 37.1
+        detail: 2.52
+      metrics_locked:
+        L_p5: 77.9
+        L_p50: 89.4
+        L_p95: 94.5
+        C_p50: 8.0
+        C_p95: 18.8
+        C_p99: 36.9
+        detail: 1.57
+    fingerprint: 84f75b4be9eac2e6
+  3:
+    job: visitor-dandelion
+    take: 3
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 21 (R1 51)
+      value: 21.0
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 58 (at most 22), p98 95 (at least 90), spread 37
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 36.7
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 87 (band 55-90)'
+      value: 87.2
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.64 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.643
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.5 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.46
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.7 (R1 5.3)
+      value: 1.68
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 0.9956
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.7, p95 5.6, off-palette 0.0%
+      value: 1.7264
+    - check: decor_anchor
+      status: fail
+      message: top y 197 above the height bar (500)
+      value: 888.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 61 against the world reference (outliers: C_p95, edge)'
+      value: 61.4
+    info:
+      fit_skipped: needs x0.56, below x0.6 (a real art failure)
+      registration:
+        dx: 1
+        dy: 17
+      metrics_raw:
+        L_p5: 73.7
+        L_p50: 87.4
+        L_p95: 94.5
+        C_p50: 7.1
+        C_p95: 22.6
+        C_p99: 31.0
+        detail: 2.63
+      metrics_locked:
+        L_p5: 74.4
+        L_p50: 87.3
+        L_p95: 94.2
+        C_p50: 6.9
+        C_p95: 21.0
+        C_p99: 30.8
+        detail: 1.68
+    fingerprint: 84f75b4be9eac2e6
+  4:
+    job: visitor-dandelion
+    take: 4
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 28 (R1 51)
+      value: 28.0
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 56 (at most 22), p98 95 (at least 90), spread 39
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 38.9
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 88 (band 55-90)'
+      value: 87.6
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.67 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.67
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.3 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.31
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.56
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 0.966
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.4, p95 4.1, off-palette 0.0%
+      value: 1.3802
+    - check: decor_anchor
+      status: fail
+      message: top y 175 above the height bar (500); width 462 px wider than the footprint
+        (360)
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 76 against the world reference (outliers: C_p95)'
+      value: 75.5
+    info:
+      fit_skipped: needs x0.54, below x0.6 (a real art failure)
+      registration:
+        dx: 0
+        dy: 11
+      metrics_raw:
+        L_p5: 71.8
+        L_p50: 87.8
+        L_p95: 94.6
+        C_p50: 7.0
+        C_p95: 28.0
+        C_p99: 34.1
+        detail: 2.5
+      metrics_locked:
+        L_p5: 72.8
+        L_p50: 87.7
+        L_p95: 94.2
+        C_p50: 6.9
+        C_p95: 28.0
+        C_p99: 34.0
+        detail: 1.56
+    fingerprint: 84f75b4be9eac2e6
+  2:
+    job: visitor-dandelion
+    take: 2
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 24 (R1 51)
+      value: 23.5
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 62 (at most 22), p98 94 (at least 90), spread 32
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 31.7
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 88 (band 55-90)'
+      value: 88.4
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.65 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.651
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.5 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.45
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.8 (R1 5.3)
+      value: 1.76
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.948
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.6, p95 4.6, off-palette 0.0%
+      value: 1.5773
+    - check: decor_anchor
+      status: fail
+      message: top y 40 above the height bar (500); width 525 px wider than the footprint
+        (360)
+      value: 888.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 58 against the world reference (outliers: C_p95, L_p2,
+        edge)'
+      value: 57.7
+    info:
+      fit_skipped: needs x0.46, below x0.6 (a real art failure)
+      registration:
+        dx: 12
+        dy: -42
+      metrics_raw:
+        L_p5: 77.5
+        L_p50: 88.4
+        L_p95: 94.3
+        C_p50: 7.1
+        C_p95: 24.6
+        C_p99: 40.5
+        detail: 2.73
+      metrics_locked:
+        L_p5: 78.7
+        L_p50: 88.5
+        L_p95: 93.7
+        C_p50: 7.0
+        C_p95: 23.5
+        C_p99: 40.2
+        detail: 1.76
+    fingerprint: 84f75b4be9eac2e6
+manual_review:
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+  note: All four takes exhaust the sole unchanged-prompt retry and fail official decor_anchor
+    height. Official top y values are 196, 40, 197 and 175 against the height bar
+    at 500; takes 1, 2 and 4 also exceed the 360px footprint. The minimum fit scale
+    remains unchanged and no manual resizing or alpha cleanup is performed. Independent
+    original and locked review confirms clean single dandelion seeds, but they are
+    ineligible at the authored guide geometry. Skip this job only; there are no true
+    dependents.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-ab5a6455-be9a-45ba-b010-6ab936c7a4ad.png
+  original_generated_png_sha256: 0305c4efdc8f915c201752f1ac421f958ca87b3c399ef03b761dacfd0131f101
+  inbox_png_sha256: 8bb49b2f86284e2bb241b5baedf259b013a102f77cbc585a0102593bb5a18762
+  rgba_sha256: 81c554e6abfbcb6e99783ee4ce826b6e84346071c9c2352135a46fca40503244
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 84f75b4be9eac2e6
+- take: 2
+  source_file: /workspace/generated_images/exec-c86697c5-5e14-4272-865e-69699f65b0de.png
+  original_generated_png_sha256: f84a8b22926b1f10ed7561acc6b669c5fc99b76e68950070921dfe8dd188e659
+  inbox_png_sha256: 521139ce859b439fd5316f583dc99ff597a766219f60a6c62b90878508c2d9a3
+  rgba_sha256: 34be2444f71b8f1ae5338a9aca2b0cea4b3bf07be7d96c73bfe921d28fb3010a
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 84f75b4be9eac2e6
+- take: 3
+  source_file: /workspace/generated_images/exec-61d9b0fb-7199-4eeb-a82b-7aa70c1a55f5.png
+  original_generated_png_sha256: 33cc4448b2fe84150015568855b434cd25ee13fd6b57e38cc117dfa892b46308
+  inbox_png_sha256: 946ad3afa01a2dbcc2a0a3bd05c88f1bdce25ec993f323e1abc9e29f638fdf3c
+  rgba_sha256: 51cec6ec7857a108c81bdef54f86a603f8a911afa71f8254f0e21997b0cb465f
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 84f75b4be9eac2e6
+- take: 4
+  source_file: /workspace/generated_images/exec-3ba13262-ae31-4112-953e-f82251a02d46.png
+  original_generated_png_sha256: 062472908aadcccbbbf49493f92db79ea57495c1508bdee2975e58d7dd1eed9b
+  inbox_png_sha256: aac7cde6a161b2f7edc9a746db0534d65eb090f8c15ffe047bc38a403fec4904
+  rgba_sha256: 2c21a20f992e5f5ecf9b7f0e9d4751ee2455c416a946175bd7679d5e94a22d14
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 84f75b4be9eac2e6

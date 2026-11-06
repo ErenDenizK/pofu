@@ -303,13 +303,63 @@ MEADOW_CELLS = {
 }
 
 
+def _sheet_cell(sheet, ppu, harmony_as, cell, anchor=None, **extra):
+    """One piece of a sheet: the master, the cell to cut and the piece's anchor (default: the bottom
+    centre, 6 px above the cell's edge). `flip` mirrors the cut, `alpha_floor` clears the faint halation
+    a generator leaves between pieces."""
+    x0, y0, x1, y1 = cell
+    return {"src": _master(sheet), "cell": cell, "ppu": ppu,
+            "anchor": anchor or ((x0 + x1) / 2, y1 - 6), "max_ppu": STATION_MAX_PPU, "harmony_as": harmony_as,
+            # A sheet is measured once, whole (harmony.py), not once per piece.
+            "harmony": False, **extra}
+
+
 def _cell(name, cell):
     """One piece of the meadow sheet: the master, the cell to cut and the piece's bottom centre."""
-    x0, y0, x1, y1 = cell
-    return {"src": _master(MEADOW_SHEET), "cell": cell, "ppu": MEADOW_PPU,
-            "anchor": ((x0 + x1) / 2, y1 - 6), "max_ppu": STATION_MAX_PPU, "harmony_as": "dressing-meadow",
-            # The sheet is measured once, whole (harmony.py), not once per piece.
-            "harmony": False}
+    return _sheet_cell(MEADOW_SHEET, MEADOW_PPU, "dressing-meadow", cell)
+
+
+# The garden's and the harbor's dressing sheets (`dressing-garden`, `dressing-harbor`: ten pieces each on
+# a transparent 1536 x 1024 canvas, two rows of five). Only the pieces the lawn wears are cut; the rest
+# wait for a slot (the pot, bucket, gloves and rake; the buoy, net, oar, lantern, bollard, trays and
+# pail). One scale per sheet, 13 source px per unit: the watering can is 24 units wide, a crate 20.
+GARDEN_SHEET = os.path.join(ART, "masters", "dressing-garden")
+HARBOR_SHEET = os.path.join(ART, "masters", "dressing-harbor")
+DRESSING_PPU = 13.0
+GARDEN_CELLS = {
+    "dressing-watering-can": (27, 192, 348, 442),
+    "dressing-seed-sack": (353, 186, 616, 448),
+    "dressing-twine": (653, 242, 869, 452),
+    "dressing-crate": (929, 221, 1198, 434),
+    "dressing-crate-2": (1236, 170, 1502, 445),
+    "dressing-trowel": (60, 577, 292, 876),
+}
+HARBOR_CELLS = {
+    "dressing-rope": (46, 279, 307, 493),
+    "dressing-barrel": (40, 593, 299, 889),
+}
+
+# The critters' pose sheets (`critter-butterfly`, `-snail`, `-bird`): one row of frames each, one scale per
+# sheet and one baseline (every cell's bottom edge is the same line, 6 px under the feet), so the frames
+# swap in place. The butterflies and the first two bird frames face left on the sheet; they are mirrored
+# so that every critter sprite faces right and `CritterView` flips by the pose. Frame 1 of each is the
+# rest pose (the snail's sheet is cut middle, right, left, so its extended pose is the rest); the butterfly's fifth frame (wings closed again) repeats the first and is not cut.
+CRITTER_BUTTERFLY_SHEET = os.path.join(ART, "masters", "critter-butterfly")
+CRITTER_SNAIL_SHEET = os.path.join(ART, "masters", "critter-snail")
+CRITTER_BIRD_SHEET = os.path.join(ART, "masters", "critter-bird")
+CRITTER_PPU = {"butterfly": 16.0, "snail": 26.0, "bird": 17.0}
+BUTTERFLY_CELLS = [(76, 407, 266, 634), (349, 443, 582, 634), (611, 476, 918, 634), (961, 476, 1219, 634)]
+SNAIL_CELLS = [(548, 404, 943, 688), (1077, 378, 1438, 688), (81, 419, 393, 688)]
+BIRD_CELLS = [(66, 411, 326, 653), (407, 398, 711, 653), (790, 384, 1092, 653), (1174, 411, 1487, 653)]
+CRITTER_CELLS = {
+    **{f"critter-butterfly{'' if i == 0 else f'-{i + 1}'}": (CRITTER_BUTTERFLY_SHEET, "butterfly", c, True)
+       for i, c in enumerate(BUTTERFLY_CELLS)},
+    **{f"critter-snail{'' if i == 0 else f'-{i + 1}'}": (CRITTER_SNAIL_SHEET, "snail", c, False)
+       for i, c in enumerate(SNAIL_CELLS)},
+    **{f"critter-bird{'' if i == 0 else f'-{i + 1}'}": (CRITTER_BIRD_SHEET, "bird", c, i < 2)
+       for i, c in enumerate(BIRD_CELLS)},
+}
+CRITTER_ALPHA_FLOOR = 24
 
 
 def _fixed(folder, ppu, anchor="centre"):
@@ -375,6 +425,11 @@ APP_SOURCES = {
     **{f"hive-{lvl}": {**_station(f"hive-{lvl}"), "ppu": 1024 / 120 / HIVE_SIZE} for lvl in range(1, HIVE_LEVELS + 1)},
     # The meadow's lawn dressing, cut from its sheet.
     **{name: _cell(name, cell) for name, cell in MEADOW_CELLS.items()},
+    # The garden's and the harbor's dressing, and the critters' frames, cut from their sheets.
+    **{name: _sheet_cell(GARDEN_SHEET, DRESSING_PPU, "dressing-garden", cell) for name, cell in GARDEN_CELLS.items()},
+    **{name: _sheet_cell(HARBOR_SHEET, DRESSING_PPU, "dressing-harbor", cell) for name, cell in HARBOR_CELLS.items()},
+    **{name: _sheet_cell(sheet, CRITTER_PPU[kind], sheet.rsplit("/", 1)[-1], cell, flip=flip, alpha_floor=CRITTER_ALPHA_FLOOR)
+       for name, (sheet, kind, cell, flip) in CRITTER_CELLS.items()},
     # The sky (batch 04), in screen points: far isles in the haze, clouds and the cloud sea.
     "far-isle-1": _sky("far-isle-1", 300),
     "far-isle-2": _sky("far-isle-2", 160),
@@ -420,6 +475,14 @@ WALK_ROWS = 20
 FOOT_DEPTH = 0.30
 FOOT_MAX_POINTS = 16
 APP_FEATHER = 8.0
+
+
+def _alpha_floor(img, floor):
+    """Alpha below `floor` goes to 0 and the rest is remapped to 0..255: the faint halation round a piece
+    (a generator's glow) is cut away instead of being cut off at the cell's edge."""
+    r, g, b, a = img.split()
+    a = a.point(lambda v: 0 if v <= floor else round((v - floor) * 255 / (255 - floor)))
+    return Image.merge("RGBA", (r, g, b, a))
 
 
 def _trim(img, margin=2):
@@ -624,6 +687,11 @@ def app_main():
             x0, y0 = spec["cell"][:2]
             src = src.crop(tuple(spec["cell"]))
             spec = {**spec, "anchor": (spec["anchor"][0] - x0, spec["anchor"][1] - y0)}
+            if spec.get("alpha_floor"):
+                src = _alpha_floor(src, spec["alpha_floor"])
+            if spec.get("flip"):
+                src = src.transpose(Image.FLIP_LEFT_RIGHT)
+                spec = {**spec, "anchor": (src.width - spec["anchor"][0], spec["anchor"][1])}
         if alt == "--round2":
             src = _round2_copper(harmony, harmony_cfg, name, src)
         if alt in PLATE_COMPARE:

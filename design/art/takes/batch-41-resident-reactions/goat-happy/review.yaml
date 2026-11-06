@@ -1,0 +1,203 @@
+batch: batch-41-resident-reactions
+contact_sheet: design/art/takes/batch-41-resident-reactions/goat-happy/contact.jpg
+jobs:
+  goat-happy:
+    pick: 1
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Both initial takes hard-pass
+      and show closed happy arcs, relaxed brows and a small reluctant closed smile,
+      without a wide grin or teeth. Horn buds, floppy ears, beard tuft, tan patch,
+      body and paws preserve the approved goat. Both global edit stability .9546 and
+      central belly/paws kept .9999 support the visual identity review. Character-guard
+      applies no grading; take1 wins Harmony79.7 vs79.4. Exact full-canvas lossless
+      WebP455890 bytes fits the cap. Light warnings remain visible; no local pixel
+      edits or further generation. The existing harbor consumer receives only its
+      four planned reaction links with this first family success, with no invented
+      goat character node.
+qa_reports:
+  1:
+    job: goat-happy
+    take: 1
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 39.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 60 (at most 22), p98 96 (at least 90), spread 36
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 36.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 89 (band 55-90)'
+      value: 89.4
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.34 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.345
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 3.1 (at least 3.5)'
+      value: 3.12
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.0 (R1 5.3)
+      value: 2.98
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.0, p95 2.7, off-palette 0.7% (top: #552211 (0.1%), #662211
+        (0.1%))'
+      value: 0.9635
+    - check: ground_line
+      status: pass
+      message: feet at 89.3% of the height (contract 88%)
+      value: 0.8932
+    - check: harmony
+      status: pass
+      message: 'harmony score 80 against the char reference (outliers: L_p2)'
+      value: 79.7
+    - check: edit_stability
+      status: pass
+      message: 95% of the parent level unchanged
+      value: 0.9546
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.02 of the parent level (drift compounds along a chain)
+      value: 1.0204
+    info:
+      metrics_raw:
+        L_p5: 69.6
+        L_p50: 89.4
+        L_p95: 95.5
+        C_p50: 13.6
+        C_p95: 39.9
+        C_p99: 45.9
+        detail: 2.96
+      metrics_locked:
+        L_p5: 69.6
+        L_p50: 89.4
+        L_p95: 95.5
+        C_p50: 13.6
+        C_p95: 39.9
+        C_p99: 45.9
+        detail: 2.98
+    fingerprint: 95a237d2bcb5c7f5
+  2:
+    job: goat-happy
+    take: 2
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 40.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 61 (at most 22), p98 96 (at least 90), spread 35
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 34.9
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 90 (band 55-90)'
+      value: 89.6
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.34 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.341
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 3.2 (at least 3.5)'
+      value: 3.17
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.1 (R1 5.3)
+      value: 3.1
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 0.9, p95 2.5, off-palette 0.2% (top: #BB4433 (0.0%), #AA5533
+        (0.0%))'
+      value: 0.8705
+    - check: ground_line
+      status: pass
+      message: feet at 89.4% of the height (contract 88%)
+      value: 0.8939
+    - check: harmony
+      status: pass
+      message: 'harmony score 79 against the char reference (outliers: L_p2)'
+      value: 79.4
+    - check: edit_stability
+      status: pass
+      message: 95% of the parent level unchanged
+      value: 0.9546
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.00 of the parent level (drift compounds along a chain)
+      value: 0.9955
+    info:
+      metrics_raw:
+        L_p5: 70.8
+        L_p50: 89.6
+        L_p95: 95.6
+        C_p50: 13.5
+        C_p95: 40.4
+        C_p99: 45.1
+        detail: 3.08
+      metrics_locked:
+        L_p5: 70.8
+        L_p50: 89.6
+        L_p95: 95.6
+        C_p50: 13.5
+        C_p95: 40.4
+        C_p99: 45.1
+        detail: 3.1
+    fingerprint: 95a237d2bcb5c7f5
+manual_review:
+  excluded_takes: []
+  note: Both initial takes hard-pass and show closed happy arcs, relaxed brows and
+    a small reluctant closed smile, without a wide grin or teeth. Horn buds, floppy
+    ears, beard tuft, tan patch, body and paws preserve the approved goat. Both global
+    edit stability .9546 and central belly/paws kept .9999 support the visual identity
+    review. Character-guard applies no grading; take1 wins Harmony79.7 vs79.4. Exact
+    full-canvas lossless WebP455890 bytes fits the cap. Light warnings remain visible;
+    no local pixel edits or further generation. The existing harbor consumer receives
+    only its four planned reaction links with this first family success, with no invented
+    goat character node.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-889cdd89-fd52-4b29-af9f-9203cb842eb1.png
+  original_generated_png_sha256: b00846ef6154ede2225e98b15994120a4ad705a69a45b435616a05da60d4cdf3
+  inbox_png_sha256: 36e059920d4a1da77e72f9a5c07a710b77a5108aff0117a41a7957006e25dde8
+  rgba_sha256: 8b385ac976d77af0a14da10117ae58ff73ea6fd2bb38d30e4ea2f1e861f9a19f
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 95a237d2bcb5c7f5
+- take: 2
+  source_file: /workspace/generated_images/exec-b94492a9-9749-47cb-bee8-04e583808a1e.png
+  original_generated_png_sha256: 695d111b5ed685db6f960bc22390e59330ca054595ed1f737e54f7854a2cd86c
+  inbox_png_sha256: e3ee4cd2bb48aedabfae596f64c9fe755cb3291ec61afcddb0eaff9f4b75b58c
+  rgba_sha256: e37523d4a550b3ea646b3d4e3a0804d9360d5920fd720ff9a91122697b2c9daa
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 95a237d2bcb5c7f5

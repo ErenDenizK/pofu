@@ -39,6 +39,22 @@ explorations, not a node whose status is `cut`) against the app's asset catalogs
 | `goat-work` | `GoatPose.work` on the harbor, from the pier's first level (the goat coils the rope). |
 | `harbor-bell` | Harbor dressing that comes with the bagel cart (`harborProps`), L4's bell on its post at the lawn's left end. |
 
+## Experience art (feat/integrate-experience-art)
+
+Batch 35 (`docs/design/experience-v1.md` sections 2, 3 and 6): each piece replaced a code-drawn stand-in by name.
+
+| Art | Where it shows |
+|---|---|
+| `glow-window-spill`, `glow-warm-halo`, `glow-pond-shimmer` | White-on-alpha `glow` imagesets (like `glow-ground-pool`), tinted per source and added. The window spill is the lit windows' trapezoid on the grass in the baked light map (`PoolMapArt`), the pond shimmer the pond's ellipse at pond level 5, the warm halo the bloom round the ember, the path lamps and the calm lantern (`HD2DLayer.drawHalo`; the tight cores stay code). Sizes and opacities are `LookTuning`. |
+| `firefly` (sheet of four frames) | `firefly-1` to `-3` (dim, warming, bright; the fourth repeats the first), cut by `integrate.py` (target `sprite`). They replace the code dots at night: same 18 flies and blink, battery-gated by the frame policy's `particles`, drawn over the graded world with the painted halo, mirrored by their drift. |
+| `launch-sky`, `cloud-curtain-1` to `-3` | The app's own catalog (target `app`, `@3x`). The sky was delivered at half scale and is restored to its declared 1290 x 2796 (the only upscale; it is a soft sky) with harmony's correction; `UILaunchScreen` and `LaunchCurtain` already looked them up by name. |
+| `shield-pofu-door` (three scenes) | `shield-pofu-door-calm`, `-proud`, `-sleepy` (target `shield`): the scene cut from the sheet, halation cleared, trimmed, on a square 360 px canvas, in `PofuCompanion/Resources` and listed in `project.yml` for the shield extension. `ShieldIconImage` already loads them by name and keeps its drawn door as the fallback. The shield is one still per mood. |
+| `dressing-garden` | Six of its ten pieces (`dressing-watering-can`, `-seed-sack`, `-twine`, `-crate`, `-crate-2` the stack, `-trowel`), cut by `GARDEN_CELLS` in `preblur.py` at 13 source px per unit. The pot, bucket, gloves and rake wait for a slot. |
+| `dressing-harbor` | `dressing-rope` and `dressing-barrel` (`HARBOR_CELLS`) at the bridge's foot. The buoy, net, oar, lantern, bollard, trays and pail wait for a slot. |
+| `critter-butterfly`, `-snail`, `-bird` | Frames cut by `CRITTER_CELLS` (one scale and one baseline per sheet; the left-facing frames mirrored so every sprite faces right). `CritterKind.spriteFrames` maps a pose's `frame` to the sheet: four wing poses, the snail's stretch and crouch, the bird's wings up, down and song; `CritterView` mirrors by the pose's facing. Rest is frame 0. The ladybug and the frog keep their stand-ins. |
+
+Vividness: the garden's and the harbor's dressing are `prop`s (the meadow's stay `plant`s); the critters are left as painted, with harmony's correction only.
+
 ## Shadow silhouettes
 
 `python3 -I tools/assets/shadows.py run` writes `<imageset>-shadow.imageset` for every casting sprite

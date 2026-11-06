@@ -1,0 +1,177 @@
+batch: batch-35-experience
+contact_sheet: design/art/takes/batch-35-experience/dressing-garden/contact.jpg
+jobs:
+  dressing-garden:
+    pick: 1
+    publication: promoted; founder review pending
+    note: 'auto-picked by QA; founder review pending. Both original and official locked
+      initial takes are independently visually eligible: exactly ten separated inventory
+      units in a five-column/two-row grid, round sage watering can, twine-tied sack
+      with sunflower seeds, coil of cream twine, single honey crate, two-crate stack,
+      hand trowel, terracotta sprout pot, wooden bucket, paired cream gloves, hand
+      rake. Matte low camera and clean alpha, no ground, text, shine or touching unrelated
+      units. Both hard QA pass, lock_load0 and no Harmony ranking check; deterministic
+      tie selects take1. Runtime lossless-cap preflight verifies exact RGBA WebP delivery
+      can fit614400 without resizing; canonical promotion alone creates the master.
+      Light warnings remain advisory.'
+qa_reports:
+  1:
+    job: dressing-garden
+    take: 1
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 41 (R1 51)
+      value: 41.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 50 (at most 22), p98 91 (at least 90), spread 41
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 41.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 74 (band 55-90)'
+      value: 73.7
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 8.7 (at least 3.5)'
+      value: 8.65
+    - check: detail_budget
+      status: pass
+      message: detail at display size 5.4 (R1 5.3)
+      value: 5.36
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.9, p95 2.0, off-palette 0.0%
+      value: 0.903
+    info:
+      metrics_raw:
+        L_p5: 54.8
+        L_p50: 73.7
+        L_p95: 89.1
+        C_p50: 29.4
+        C_p95: 41.1
+        C_p99: 42.1
+        detail: 5.18
+      metrics_locked:
+        L_p5: 54.8
+        L_p50: 73.7
+        L_p95: 89.1
+        C_p50: 29.4
+        C_p95: 41.1
+        C_p99: 42.1
+        detail: 5.36
+    fingerprint: c357a5eaae0deaeb
+  2:
+    job: dressing-garden
+    take: 2
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 41 (R1 51)
+      value: 40.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 51 (at most 22), p98 90 (at least 90), spread 39
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 39.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 73 (band 55-90)'
+      value: 73.2
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 8.4 (at least 3.5)'
+      value: 8.43
+    - check: detail_budget
+      status: pass
+      message: detail at display size 5.4 (R1 5.3)
+      value: 5.36
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.9, p95 2.1, off-palette 0.0%
+      value: 0.9302
+    info:
+      metrics_raw:
+        L_p5: 54.9
+        L_p50: 73.2
+        L_p95: 87.9
+        C_p50: 31.7
+        C_p95: 40.8
+        C_p99: 41.7
+        detail: 5.18
+      metrics_locked:
+        L_p5: 54.9
+        L_p50: 73.2
+        L_p95: 87.9
+        C_p50: 31.7
+        C_p95: 40.8
+        C_p99: 41.7
+        detail: 5.36
+    fingerprint: c357a5eaae0deaeb
+manual_review:
+  excluded_takes: []
+  note: 'Both original and official locked initial takes are independently visually
+    eligible: exactly ten separated inventory units in a five-column/two-row grid,
+    round sage watering can, twine-tied sack with sunflower seeds, coil of cream twine,
+    single honey crate, two-crate stack, hand trowel, terracotta sprout pot, wooden
+    bucket, paired cream gloves, hand rake. Matte low camera and clean alpha, no ground,
+    text, shine or touching unrelated units. Both hard QA pass, lock_load0 and no
+    Harmony ranking check; deterministic tie selects take1. Runtime lossless-cap preflight
+    verifies exact RGBA WebP delivery can fit614400 without resizing; canonical promotion
+    alone creates the master. Light warnings remain advisory.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-56456d06-ead8-4234-8383-b68b95ce8998.png
+  original_generated_png_sha256: d19df71d095fc3ce0c5a713e0698335eb2a2a5f858d0515259549af317bb27d3
+  inbox_png_sha256: fd83ab97d438d3892e116c25fb3ffb8a817fb0103cd6627f8b9921e6e20383fa
+  rgba_sha256: 0148a15d748dab45b50f6d4434bf3ff9c4619f6d61190db291b76486beb7bfb9
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: c357a5eaae0deaeb
+- take: 2
+  source_file: /workspace/generated_images/exec-140058b1-db0c-475c-a49a-2d80cd2319cb.png
+  original_generated_png_sha256: 24f9bb59dcd3289a70c0076196570abc0abaa5fc8c32e957190479ca3c611720
+  inbox_png_sha256: 8c86060feaa35fbbc9977c2bbf04a490d82b230d0db0e7ac7635e07d202dfb21
+  rgba_sha256: d467e8a4c3b8979963488a9381d65d999b821c4e716c2c55055c09396cbf3e40
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: c357a5eaae0deaeb

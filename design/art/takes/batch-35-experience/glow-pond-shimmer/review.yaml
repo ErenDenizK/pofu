@@ -1,0 +1,157 @@
+batch: batch-35-experience
+contact_sheet: design/art/takes/batch-35-experience/glow-pond-shimmer/contact.jpg
+jobs:
+  glow-pond-shimmer:
+    pick: 1
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Both full-size initial takes
+      pass canonical additive background, falloff and banding QA; independent original
+      and locked review confirms a wide flat cool teal-mint ellipse with broken horizontal
+      ripples, brighter center, soft black falloff, no water surface, reflected object,
+      lily, lantern, ring or text. Additive style lock is intentionally skipped; no
+      lock_load or Harmony ranking metric is returned, so the deterministic equal-rank
+      tie selects take1. Official authored scale0.5 creates the512x256 delivered master
+      from its saved1024x512 full lock, with exact pixel/metadata proof. Real Harmony
+      measure/check runs and the authoritative catalog excludes this UI asset without
+      a fabricated shard. No source pixel cleanup.
+qa_reports:
+  1:
+    job: glow-pond-shimmer
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x512
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: glow chroma p95 41 on 41% lit pixels (additive profile)
+      value: 40.5865
+    - check: additive_background
+      status: pass
+      message: 'border luma p99 0.012 (near-black, at most 0.05): the glow dies before
+        the edge'
+      value: 0.0124
+    - check: additive_falloff
+      status: pass
+      message: 0.00% of the image has a hard edge (luma step over 0.08 per px at 256
+        px; soft falloff, at most 0.8%)
+      value: 0.0
+    - check: additive_banding
+      status: pass
+      message: 198 of 198 luma levels used across the falloff (100%; low means banding)
+      value: 1.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.9 (R1 5.3)
+      value: 0.88
+    info:
+      lock_skipped: 'additive glow: black stays black'
+      metrics_raw:
+        L_p5: 0.0
+        L_p50: 4.6
+        L_p95: 72.9
+        C_p50: 5.7
+        C_p95: 38.9
+        C_p99: 41.1
+        detail: 0.88
+      metrics_locked:
+        L_p5: 0.0
+        L_p50: 4.6
+        L_p95: 72.9
+        C_p50: 5.7
+        C_p95: 38.9
+        C_p99: 41.1
+        detail: 0.88
+    fingerprint: d4948225487f1148
+  2:
+    job: glow-pond-shimmer
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x512
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: glow chroma p95 39 on 41% lit pixels (additive profile)
+      value: 38.6447
+    - check: additive_background
+      status: pass
+      message: 'border luma p99 0.010 (near-black, at most 0.05): the glow dies before
+        the edge'
+      value: 0.0101
+    - check: additive_falloff
+      status: pass
+      message: 0.00% of the image has a hard edge (luma step over 0.08 per px at 256
+        px; soft falloff, at most 0.8%)
+      value: 0.0
+    - check: additive_banding
+      status: pass
+      message: 191 of 191 luma levels used across the falloff (100%; low means banding)
+      value: 1.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.8 (R1 5.3)
+      value: 0.8
+    info:
+      lock_skipped: 'additive glow: black stays black'
+      metrics_raw:
+        L_p5: 0.0
+        L_p50: 4.6
+        L_p95: 68.9
+        C_p50: 5.8
+        C_p95: 37.0
+        C_p99: 39.4
+        detail: 0.8
+      metrics_locked:
+        L_p5: 0.0
+        L_p50: 4.6
+        L_p95: 68.9
+        C_p50: 5.8
+        C_p95: 37.0
+        C_p99: 39.4
+        detail: 0.8
+    fingerprint: d4948225487f1148
+manual_review:
+  excluded_takes: []
+  note: Both full-size initial takes pass canonical additive background, falloff and
+    banding QA; independent original and locked review confirms a wide flat cool teal-mint
+    ellipse with broken horizontal ripples, brighter center, soft black falloff, no
+    water surface, reflected object, lily, lantern, ring or text. Additive style lock
+    is intentionally skipped; no lock_load or Harmony ranking metric is returned,
+    so the deterministic equal-rank tie selects take1. Official authored scale0.5
+    creates the512x256 delivered master from its saved1024x512 full lock, with exact
+    pixel/metadata proof. Real Harmony measure/check runs and the authoritative catalog
+    excludes this UI asset without a fabricated shard. No source pixel cleanup.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-d1e4fcea-74da-4ca9-ab59-62c396a23435.png
+  original_generated_png_sha256: f1e17b0cedf2e72576b05fb254ded8b8f2929acce371146f32b0288e9352c09b
+  inbox_png_sha256: 99cbb64fa79ae7dcaaf21b8e64534e8d637669e360c711c3b91d56a7d496636d
+  rgba_sha256: a2a6d909d1d7e51dfd16d4c2992c03cc03746bfc5650e541c48e99952c7647bf
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: d4948225487f1148
+- take: 2
+  source_file: /workspace/generated_images/exec-e7bebc73-32e2-4d4b-80b0-e4cb31fe8081.png
+  original_generated_png_sha256: e8bd0f6a6c75b12a3e5a234a9225769841d4cc0b0073bae0d22c0acd4cdf1397
+  inbox_png_sha256: 521a49c2621cfce3fa78b41ba5ebf81d6451b1447b3e5b14c0aa29d6d47f2917
+  rgba_sha256: 62f64d6b392bafe484d37d286eec6525707bfe648ce68ff4d79aa535f9eaf84e
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: d4948225487f1148
