@@ -48,30 +48,48 @@ struct SunShadowTests {
     }
 
     @Test func opacityBySpec() {
-        #expect(noon.opacity >= 0.22 && noon.opacity <= 0.28)
-        #expect(evening.opacity >= 0.20 && evening.opacity <= 0.26)
-        #expect(dawn.opacity >= 0.10 && dawn.opacity <= 0.16)
+        // Dark enough to read over green grass, still soft.
+        #expect(noon.opacity >= 0.45 && noon.opacity <= 0.55)
+        #expect(evening.opacity >= 0.45 && evening.opacity <= 0.56)
+        #expect(dawn.opacity >= 0.30 && dawn.opacity <= 0.38)
         #expect(noon.softness < evening.softness && evening.softness < dawn.softness)
     }
 
     @Test func nightIsAFaintBlueMoonShadow() {
         #expect(night.band == .night)
-        #expect(night.opacity >= 0.06 && night.opacity <= 0.10)
+        #expect(night.opacity >= 0.06 && night.opacity <= 0.12)
         #expect(abs(night.length - 1.2) < 1e-9)
         #expect(night.tint.b > night.tint.r)
         #expect(night.opacity < noon.opacity / 2)
     }
 
     @Test func padIsDarkerAtNight() {
-        #expect(abs(noon.padOpacity - 0.18) < 1e-9)
-        #expect(abs(night.padOpacity - 0.25) < 1e-9)
+        #expect(abs(noon.padOpacity - 0.38) < 1e-9)
+        #expect(abs(night.padOpacity - 0.42) < 1e-9)
     }
 
-    @Test func dayTintIsTheCellsShadow() {
+    private func luminance(_ c: GradeRGB) -> Double { 0.2126 * c.r + 0.7152 * c.g + 0.0722 * c.b }
+
+    @Test func dayTintIsTheCellsShadowHueDarkened() {
         let cell = WorldLight.at(hour: 12.75, wellbeing: 80, calm: 1).cell
         #expect(noon.band == .day)
-        #expect(abs(noon.tint.r - cell.shadow.r) < 1e-9 && abs(noon.tint.g - cell.shadow.g) < 1e-9)
         #expect(evening.band == .golden)
+        // Dark (a light colour at a quarter opacity was invisible on grass)...
+        #expect(abs(luminance(noon.tint) - ShadowTuning.tintLuminance) < 1e-6)
+        #expect(luminance(noon.tint) < luminance(cell.shadow))
+        // ...with the cell's hue: the channel ratios survive.
+        let k = noon.tint.r / max(cell.shadow.r, 1e-9)
+        #expect(abs(noon.tint.g - cell.shadow.g * k) < 1e-6 && abs(noon.tint.b - cell.shadow.b * k) < 1e-6)
+        #expect(luminance(evening.tint) < 0.2)
+        #expect(luminance(dawn.tint) < 0.2)
+    }
+
+    @Test func darkeningKeepsTheHueAndHandlesBlack() {
+        let violet = SunShadow.darkened(GradeRGB(0.7, 0.5, 0.8), to: 0.2)
+        #expect(abs(luminance(violet) - 0.2) < 1e-6)
+        #expect(violet.b > violet.r && violet.r > violet.g)
+        let black = SunShadow.darkened(.zero, to: 0.2)
+        #expect(abs(black.r - 0.2) < 1e-9)
     }
 
     @Test func castLandsAlongTheDirection() {
@@ -157,5 +175,92 @@ struct ShadowCastersTests {
                 #expect(!caster.pad.isEmpty || caster.cast != .none, "\(caster.id)")
             }
         }
+    }
+}
+
+@Suite("Night shadows from sources")
+struct SourceShadowTests {
+    private func sample(strength: Double, dx: Double, dy: Double, id: String? = "lamp") -> LightSample {
+        LightSample(sourceID: id, colour: GradeRGB(1, 0.8, 0.5), directionX: dx, directionY: dy, strength: strength,
+                    ambient: 0.1, moonRim: 0.5)
+    }
+
+    @Test func fallsAwayFromTheSourceAtMostThirtyPercentTimesStrength() throws {
+        let s = try #require(SourceShadow.make(sample: sample(strength: 0.5, dx: 1, dy: 0)))
+        // The source is to the right: the shadow points left (180°).
+        #expect(abs(abs(Double(s.angle) * ShadowTuning.angleStep) - 180) <= 1.5 + 1e-9)
+        #expect(Double(s.opacity) * ShadowTuning.opacityStep <= 0.30 * 0.5 + 0.011)
+        let strong = try #require(SourceShadow.make(sample: sample(strength: 1.4, dx: 1, dy: 0)))
+        #expect(Double(strong.opacity) * ShadowTuning.opacityStep <= 0.30 + 1e-9)
+    }
+
+    @Test func aStrongerSourceThrowsAShorterDarkerShadow() throws {
+        let weak = try #require(SourceShadow.make(sample: sample(strength: 0.2, dx: 0, dy: -1)))
+        let strong = try #require(SourceShadow.make(sample: sample(strength: 1, dx: 0, dy: -1)))
+        #expect(strong.length < weak.length)
+        #expect(strong.opacity > weak.opacity)
+        let length = Double(strong.length) * ShadowTuning.lengthStep
+        #expect(length >= 0.6 - 0.05 && Double(weak.length) * ShadowTuning.lengthStep <= 1.4 + 0.05)
+    }
+
+    @Test func noSourceInReachKeepsTheMoonShadow() {
+        #expect(SourceShadow.make(sample: sample(strength: 0, dx: 0, dy: 0, id: nil)) == nil)
+        #expect(SourceShadow.make(sample: sample(strength: 0.01, dx: 1, dy: 0)) == nil)
+    }
+
+    private func night(_ hour: Double) -> (WorldSnapshot, WorldLight) {
+        var w = IslandSamples.grownIsland()
+        w.islandLevel = 8
+        w.calm = 1.5
+        return (w, WorldLight.at(hour: hour, wellbeing: 78, calm: 1.5).withSun(x: 0.78, y: 0.14))
+    }
+
+    /// A lamp a few units from Pofu's feet.
+    private func lamp(nearPofu: Bool) -> LightField {
+        let feet = IslandLayout.pofu
+        let point = nearPofu ? WorldPoint(x: feet.x + 20, y: feet.y) : WorldPoint(x: feet.x + 900, y: feet.y)
+        let source = LightSource(id: "lamp", kind: .lamp, point: point, height: 0, colour: GradeRGB(1, 0.8, 0.5),
+                                 reach: 60, shape: .round, strength: 1)
+        return LightField(sources: [source], ambientFloor: 0.14, moonRim: 0.5, moonColour: GradeRGB(0.7, 0.7, 0.8))
+    }
+
+    @Test func charactersCastAwayFromTheSourceInReachOnly() throws {
+        let (w, _) = night(22.5)
+        let near = SourceShadow.characters(field: lamp(nearPofu: true), world: w)
+        let pofu = try #require(near["pofu"])
+        // The lamp is to Pofu's right: his shadow points left.
+        #expect(abs(abs(Double(pofu.angle) * ShadowTuning.angleStep) - 180) <= 1.5 + 1e-9)
+        #expect(SourceShadow.characters(field: lamp(nearPofu: false), world: w).isEmpty)
+    }
+
+    @Test func byDayNobodyGetsASourceShadow() {
+        let (w, _) = night(12.75)
+        let noonLight = WorldLight.at(hour: 12.75, wellbeing: 78, calm: 1.5).withSun(x: 0.5, y: 0.11)
+        #expect(SunShadow.make(light: noonLight, world: w).characters.isEmpty)
+        let (_, nightLight) = night(22.5)
+        #expect(SunShadow.make(light: nightLight).characters.isEmpty)
+        #expect(SunShadow.make(light: nightLight, world: w).band == .night)
+    }
+
+    @Test func theKeyFollowsTheCharactersShadows() throws {
+        let (w, _) = night(22.5)
+        var sun = SunShadow.make(light: night(22.5).1)
+        let base = sun.key
+        sun.characters = SourceShadow.characters(field: lamp(nearPofu: true), world: w)
+        #expect(!sun.characters.isEmpty)
+        #expect(sun.key != base)
+    }
+
+    @Test func appliedShadowTakesTheSourcesDirectionAndKeepsTheHue() throws {
+        let (w, light) = night(22.5)
+        var sun = SunShadow.make(light: light)
+        sun.characters = SourceShadow.characters(field: lamp(nearPofu: true), world: w)
+        let source = try #require(sun.characters["pofu"])
+        let own = sun.applying(source)
+        #expect(own.tint == sun.tint)
+        #expect(own.opacity <= 0.30 + 1e-9 && own.opacity > 0.1)
+        #expect(own.direction.x < 0)
+        #expect(own.characters.isEmpty)
+        #expect(own.softness == ShadowTuning.sourceSoftness)
     }
 }

@@ -161,10 +161,10 @@ struct HD2DLayer: View {
     }
 
     var body: some View {
-        // The field and its baked pools, outside the draw: both change a few
-        // times an evening.
+        // The field, outside the draw: it changes a few times an evening.
+        // Its ground pools are the scene's (`GroundPoolLayer`), under every
+        // object and character.
         let field = LightField.make(world: world, light: light, guestNight: guestNight)
-        let poolMap = relit ? nil : LightMapCache.image(for: field)
         return Canvas(rendersAsynchronously: false) { context, size in
             var glow = context
             glow.blendMode = .plusLighter
@@ -177,9 +177,8 @@ struct HD2DLayer: View {
             }
             drawSunBloom(in: &glow, size: size)
             if !relit {
-                drawGroundPools(poolMap, in: &glow)
                 drawPools(in: &glow)
-                drawRims(field: field, glow: &glow, paint: &paint)
+                drawRims(field: field, glow: &glow)
             }
             drawEmitters(in: &glow)
             drawFieldHalos(field, in: &glow)
@@ -297,18 +296,16 @@ struct HD2DLayer: View {
         }
     }
 
-    /// The lit edits' flames (tea-stall-1-lit), painted over the graded station
-    /// at night in their own colour.
+    /// The lit edits (tea-stall-1-lit, workshop-1-lit, ...), one per row of
+    /// the lit-source table, painted over the graded art at night in their
+    /// own colour.
     private func drawLitOverlays(in context: inout GraphicsContext) {
         guard litOverlays else { return }
         let k = IslandLayout.litOverlayStrength(in: light)
         guard k > 0.01 else { return }
-        for status in world.stations where status.island == .home && status.level > 0 {
-            guard let overlay = IslandLayout.litOverlay(status.id, level: status.level),
-                  let slot = IslandLayout.stationAnchors[status.id],
-                  let art = IslandLayout.stationArt(status.id, level: status.level)?.name else { continue }
-            let anchor = IslandFootprint.clamped(slot, footprint: IslandFootprint.footprint(of: art))
-            guard let image = sprite(overlay, at: anchor, depth: IslandLayout.depth(ofY: anchor.y)) else { continue }
+        for row in LitSources.rows {
+            guard let lit = row.overlayAnchor(world: world, guestNight: guestNight),
+                  let image = sprite(lit.art, at: lit.anchor, depth: IslandLayout.depth(ofY: lit.anchor.y)) else { continue }
             var layer = context
             layer.opacity = k
             layer.draw(image.0, in: image.1)
@@ -343,16 +340,6 @@ struct HD2DLayer: View {
         }
     }
 
-    /// The pools of light on the ground: one quad of the baked light map
-    /// under the camera transform, however many sources there are.
-    private func drawGroundPools(_ map: Image?, in context: inout GraphicsContext) {
-        guard let map else { return }
-        let bounds = LightField.mapBounds
-        let a = screen(WorldPoint(x: bounds.minX, y: bounds.minY))
-        let b = screen(WorldPoint(x: bounds.maxX, y: bounds.maxY))
-        context.draw(map, in: CGRect(x: a.x, y: a.y, width: b.x - a.x, height: b.y - a.y))
-    }
-
     /// A painted halo on each field source the emitters do not already
     /// draw (the lantern, path lamps, other windows, the pond), with the
     /// lantern's flicker in the Ambient state only.
@@ -383,10 +370,10 @@ struct HD2DLayer: View {
 
     /// The light on Pofu and the residents: a broad key from the dominant
     /// source's side (or the sun's rim by day), a bounce of the pool's
-    /// colour on the lower third, a thin cool moon rim with the readability
-    /// floor, and a contact shadow cast away from the source. Each is
-    /// masked by the sprite's alpha, inside this one Canvas.
-    private func drawRims(field: LightField, glow context: inout GraphicsContext, paint: inout GraphicsContext) {
+    /// colour on the lower third and a thin cool moon rim with the
+    /// readability floor. Each is masked by the sprite's alpha, inside this
+    /// one Canvas. The shadows are the shadow layer's (`ShadowBake`).
+    private func drawRims(field: LightField, glow context: inout GraphicsContext) {
         guard pose.scale > 0.3 else { return }
         var subjects: [(name: String, variant: DepthVariant, feet: WorldPoint)] = [("pofu", .soft, IslandLayout.pofu)]
         for resident in IslandLayout.residents {
@@ -394,7 +381,6 @@ struct HD2DLayer: View {
             subjects.append((resident.art, .sharp, IslandFootprint.clamped(resident.feet, footprint: IslandFootprint.footprint(of: resident.art))))
         }
         let calm = 1 - 0.5 * light.unwell
-        let s = pose.scale
         for subject in subjects {
             let depth = IslandLayout.depth(ofY: subject.feet.y)
             guard let mask = sprite(subject.name, variant: subject.variant, at: subject.feet, depth: depth) else { continue }
@@ -460,30 +446,6 @@ struct HD2DLayer: View {
                     startPoint: CGPoint(x: centre.x + ux * reach, y: centre.y + uy * reach),
                     endPoint: CGPoint(x: centre.x - ux * reach, y: centre.y - uy * reach)
                 ))
-            }
-
-            // The contact shadow: an ellipse at the feet cast away from the
-            // source, under the sprite (the sprite's own pixels are
-            // erased from it).
-            if sample.strength > 0.08 {
-                let cast = 7.0
-                let feet = screen(subject.feet, depth: depth)
-                let cx = feet.x - sample.directionX * cast * s
-                let cy = feet.y - sample.directionY * cast * s * 0.5
-                let rx = 15 * s, ry = 4.5 * s
-                let shadow = light.cell.shadow
-                let opacity = min(sample.strength * LookTuning.contactShadow, 0.3)
-                paint.drawLayer { layer in
-                    layer.fill(
-                        Path(ellipseIn: CGRect(x: cx - rx, y: cy - ry, width: 2 * rx, height: 2 * ry)),
-                        with: .radialGradient(
-                            Gradient(colors: [color(shadow, opacity), color(shadow, 0)]),
-                            center: CGPoint(x: cx, y: cy), startRadius: 0, endRadius: rx
-                        )
-                    )
-                    layer.blendMode = .destinationOut
-                    layer.draw(mask.0, in: mask.1)
-                }
             }
         }
     }
@@ -629,6 +591,33 @@ struct HD2DLayer: View {
 
 // MARK: - The light map, baked
 
+/// The ground pools of every lit source: the baked light map as one image
+/// in world space, on the lawn between the shadow layer and the objects, so
+/// a pool never washes over a character or a station (they take the light
+/// through their rims and bounce). The map's alpha is the pool's own
+/// strength, capped by `LookTuning.poolArtOpacity`, so the lawn under it
+/// never clips.
+struct GroundPoolLayer: View {
+    let field: LightField
+    /// Where a world point lands on the canvas (the plate's depth).
+    let place: (WorldPoint) -> CGPoint
+
+    var body: some View {
+        if let image = LightMapCache.image(for: field) {
+            let bounds = LightField.mapBounds
+            let width = bounds.maxX - bounds.minX, height = bounds.maxY - bounds.minY
+            let origin = place(WorldPoint(x: bounds.minX, y: bounds.minY))
+            image
+                .resizable()
+                .interpolation(.high)
+                .frame(width: width, height: height)
+                .position(x: origin.x + width / 2, y: origin.y + height / 2)
+                .allowsHitTesting(false)
+                .accessibilityHidden(true)
+        }
+    }
+}
+
 /// The pools of every lit source, painted into one low-resolution map
 /// (512 x 256 over `LightField.mapBounds`) and kept until the lit set or a
 /// strength bucket changes, a few times an evening. Each frame draws it as
@@ -655,8 +644,8 @@ private enum LightMapCache {
 }
 
 /// Every source's pool on black-transparent, in map pixels. The pools are
-/// painterly additive blobs; the Codex `glow-*` sprites replace these
-/// gradients when the art lands.
+/// the promoted `glow-ground-pool` art, tinted and added; window spills are
+/// still code until `glow-window-spill` lands.
 private struct PoolMapArt: View {
     let field: LightField
 
@@ -676,25 +665,16 @@ private struct PoolMapArt: View {
                 let strength = min(source.strength, 1.4)
                 switch source.shape {
                 case .round, .pondEllipse:
-                    // A pool on a lawn seen at about 17 degrees: wide and flat.
+                    // The promoted glow-ground-pool art (a wide flat ellipse
+                    // filling 80% of its width, white on alpha), tinted by
+                    // the source and added.
+                    let pond = source.shape == .pondEllipse
                     let c = map(WorldPoint(x: source.point.x, y: source.point.y + 2))
-                    let rx = source.reach * k * (source.shape == .pondEllipse ? 1.15 : 1.0)
-                    let ry = rx * (source.shape == .pondEllipse ? 0.38 : 0.45)
-                    layer.drawLayer { l in
-                        l.translateBy(x: c.x, y: c.y)
-                        l.scaleBy(x: 1, y: ry / rx)
-                        l.fill(
-                            Path(ellipseIn: CGRect(x: -rx, y: -rx, width: 2 * rx, height: 2 * rx)),
-                            with: .radialGradient(
-                                Gradient(stops: [
-                                    .init(color: tint(source.colour, 0.42 * strength), location: 0),
-                                    .init(color: tint(source.colour, 0.18 * strength), location: 0.5),
-                                    .init(color: tint(source.colour, 0), location: 1),
-                                ]),
-                                center: .zero, startRadius: 0, endRadius: rx
-                            )
-                        )
-                    }
+                    let width = source.reach * k * 2 * (pond ? 1.15 : 1.0)
+                    let height = width * (pond ? 0.4 : 0.5)
+                    var art = layer.resolve(Image("glow-ground-pool", bundle: .module))
+                    art.shading = .color(tint(source.colour, LookTuning.poolArtOpacity * strength))
+                    layer.draw(art, in: CGRect(x: c.x - width / 2, y: c.y - height / 2, width: width, height: height))
                 case .windowSpill:
                     // A trapezoid of light falling from the window onto the
                     // grass, soft at its far edge.

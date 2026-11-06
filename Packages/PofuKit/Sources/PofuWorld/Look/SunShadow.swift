@@ -1,4 +1,5 @@
 import Foundation
+import PofuCore
 
 /// The sun's (and at night the moon's) shadow on the ground at one moment
 /// (light and shadow v2, §2): which way it falls, how long it is, how dark,
@@ -28,6 +29,10 @@ public struct SunShadow: Hashable, Sendable {
     public var tint: GradeRGB
     /// The ambient pad's opacity at an object's base.
     public var padOpacity: Double
+    /// At night, the shadows of the characters that stand in the reach of a
+    /// light source, by caster id (`ShadowCasters`): they fall away from the
+    /// source instead of the moon's direction. Empty by day.
+    public var characters: [String: SourceShadow] = [:]
 
     /// What the baked shadow layer depends on; it rebuilds only when this
     /// changes: direction and length in 3° and 0.1 steps, the opacities
@@ -39,6 +44,7 @@ public struct SunShadow: Hashable, Sendable {
         public var padOpacity: Int
         public var tint: [Int]
         public var band: Band
+        public var characters: [String: SourceShadow]
     }
 
     public var key: Key {
@@ -51,14 +57,32 @@ public struct SunShadow: Hashable, Sendable {
             opacity: steps(opacity, ShadowTuning.opacityStep),
             padOpacity: steps(padOpacity, ShadowTuning.opacityStep),
             tint: [Int((tint.r * n).rounded()), Int((tint.g * n).rounded()), Int((tint.b * n).rounded())],
-            band: band
+            band: band,
+            characters: characters
         )
+    }
+
+    /// This shadow with the direction, length, opacity and softness of a
+    /// caster's own source shadow (the hue and the pad stay).
+    func applying(_ source: SourceShadow) -> SunShadow {
+        var copy = self
+        let radians = Double(source.angle) * ShadowTuning.angleStep * .pi / 180
+        copy.azimuth = WorldPoint(x: cos(radians), y: sin(radians))
+        copy.direction = WorldPoint(x: copy.azimuth.x, y: copy.azimuth.y * ShadowTuning.groundForeshortening)
+        copy.length = Double(source.length) * ShadowTuning.lengthStep
+        copy.opacity = Double(source.opacity) * ShadowTuning.opacityStep
+        copy.softness = ShadowTuning.sourceSoftness
+        copy.characters = [:]
+        return copy
     }
 
     /// The shadow for `light`. The sun's screen position places the shadow
     /// (the sun is behind the island, so the shadow always leans toward the
     /// viewer and away from the sun's side); its height sets the length.
-    public static func make(light: WorldLight) -> SunShadow {
+    ///
+    /// - Parameter world: With it, at night each character in the reach of
+    ///   a light source casts away from that source (`characters`).
+    public static func make(light: WorldLight, world: WorldSnapshot? = nil) -> SunShadow {
         let night = clamp(light.night)
         let gx = 0.5 - light.sunX
         let gy = ShadowTuning.towardCamera
@@ -77,11 +101,11 @@ public struct SunShadow: Hashable, Sendable {
         let opacity = mix(sunOpacity, ShadowTuning.moonOpacity, night)
         let length = mix(length(forSunY: light.sunY), ShadowTuning.moonLength, night)
         let softness = mix(sunSoftness, ShadowTuning.moonSoftness, night)
-        let shadow = light.cell.shadow
+        let shadow = darkened(light.cell.shadow, to: ShadowTuning.tintLuminance)
         let moon = ShadowTuning.moonTint
         let tint = GradeRGB(mix(shadow.r, moon.r, night), mix(shadow.g, moon.g, night), mix(shadow.b, moon.b, night))
         let band: Band = night > 0.5 ? .night : (light.golden > light.day ? .golden : .day)
-        return SunShadow(
+        var result = SunShadow(
             band: band,
             azimuth: azimuth,
             direction: direction,
@@ -91,6 +115,19 @@ public struct SunShadow: Hashable, Sendable {
             tint: tint,
             padOpacity: mix(ShadowTuning.padOpacityDay, ShadowTuning.padOpacityNight, night)
         )
+        if band == .night, let world {
+            result.characters = SourceShadow.characters(field: LightField.make(world: world, light: light), world: world)
+        }
+        return result
+    }
+
+    /// `colour` with its hue kept and its luminance set to `luminance`
+    /// (Rec. 709 weights), each channel at most 1.
+    static func darkened(_ colour: GradeRGB, to luminance: Double) -> GradeRGB {
+        let lum = 0.2126 * colour.r + 0.7152 * colour.g + 0.0722 * colour.b
+        guard lum > 1e-6 else { return GradeRGB(luminance, luminance, luminance) }
+        let k = luminance / lum
+        return GradeRGB(min(colour.r * k, 1), min(colour.g * k, 1), min(colour.b * k, 1))
     }
 
     /// The length for a sun height, interpolated over `ShadowTuning.lengthBySunY`.

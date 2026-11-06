@@ -1,9 +1,10 @@
 {
-  "_doc": "Master -> app imageset map for the vertical slice (tools/assets/integrate.py). `master` is an art folder under design/art (the lock-light re-lock wins, then .png, then .webp). target `games` writes a flat PNG into PofuGames/Resources at `scale` px per point, fitted into `points` and never upscaled; target `world` names an imageset baked into World.xcassets by design/prototypes/interactions/tools/preblur.py (integrate.py runs it, then checks the imageset exists). target `ui` is the same flat bake into PofuDesignSystem/Resources (the painted menu art, named paint-*; PofuPaint in the design system lists them).",
+  "_doc": "Master -> app imageset map for the vertical slice (tools/assets/integrate.py). `master` is an art folder under design/art (the lock-light re-lock wins, then .png, then .webp). target `games` writes a flat PNG into PofuGames/Resources at `scale` px per point, fitted into `points` and never upscaled; target `world` names an imageset baked into World.xcassets by design/prototypes/interactions/tools/preblur.py (integrate.py runs it, then checks the imageset exists). target `ui` is the same flat bake into PofuDesignSystem/Resources (the painted menu art, named paint-*; PofuPaint in the design system lists them). target `glow` bakes an additive glow on black (a Codex glow-* sprite) into World.xcassets as a white-on-alpha imageset named by `name` (alpha is the brightest channel), fitted into `points` at `scale`; the app tints it per source and adds it.",
   "targets": {
     "games": "Packages/PofuKit/Sources/PofuGames/Resources",
     "world": "Packages/PofuKit/Sources/PofuWorld/Resources/World.xcassets",
-    "ui": "Packages/PofuKit/Sources/PofuDesignSystem/Resources"
+    "ui": "Packages/PofuKit/Sources/PofuDesignSystem/Resources",
+    "glow": "Packages/PofuKit/Sources/PofuWorld/Resources/World.xcassets"
   },
   "entries": [
     {
@@ -495,6 +496,16 @@
       "target": "world",
       "name": "windmill-5-glow",
       "master": "design/art/stations/windmill-5-lit"
+    },
+    {
+      "target": "glow",
+      "name": "glow-ground-pool",
+      "master": "design/art/ui/ui-glow-ground-pool",
+      "points": [
+        256,
+        128
+      ],
+      "scale": 2
     },
     {
       "target": "world",

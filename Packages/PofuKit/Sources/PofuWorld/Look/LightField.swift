@@ -118,56 +118,10 @@ public struct LightField: Hashable, Sendable {
             if s.strength >= minimumStrength { sources.append(s) }
         }
 
-        // The colour script's emitters: the ember under the çaydanlık and
-        // the round window in Pofu's door.
-        for emitter in IslandLayout.emitters {
-            if let station = emitter.station,
-               (world.stations.first(where: { $0.id == station })?.level ?? 0) == 0 { continue }
-            let k = emitter.strength(in: light)
-            switch emitter.kind {
-            case .ember:
-                add(LightSource(id: "ember", kind: .ember, point: emitter.point, height: 14, colour: emitter.color,
-                                reach: emitter.reach, shape: .round, strength: k))
-            case .window:
-                add(LightSource(id: "window-pofu", kind: .window, point: emitter.point, height: 16, colour: emitter.color,
-                                reach: LookTuning.windowSpillReach, shape: .windowSpill, strength: k))
-            }
-        }
-
-        let window = cell.practicals.window * light.bloom
-        let ember = cell.practicals.ember * light.bloom
-        let warm = GradeRGB(1, 0.78, 0.44)
-        let level = world.islandLevel
-
-        // The residents' doors open with the island (home-layout §3.2).
-        let doors: [(id: String, minLevel: Int, point: WorldPoint)] = [
-            ("window-mochi", 2, WorldPoint(x: 40, y: 84)),
-            ("window-findik", 6, WorldPoint(x: 165, y: 80)),
-            ("window-goat", 3, WorldPoint(x: 405, y: 50)),
-        ]
-        for door in doors where level >= door.minLevel {
-            add(LightSource(id: door.id, kind: .window, point: door.point, height: 16, colour: warm,
-                            reach: LookTuning.windowSpillReach, shape: .windowSpill, strength: window))
-        }
-        if guestNight {
-            add(LightSource(id: "window-guest", kind: .guestRoom, point: WorldPoint(x: -15, y: 98), height: 16,
-                            colour: GradeRGB(0.95, 0.85, 0.6), reach: LookTuning.windowSpillReach, shape: .windowSpill,
-                            strength: window))
-        }
-
-        // Path lamps (L1-L3) from island level 6.
-        if level >= 6 {
-            for (i, p) in [WorldPoint(x: -120, y: 0), WorldPoint(x: 98, y: 2), WorldPoint(x: 230, y: 6)].enumerated() {
-                add(LightSource(id: "lamp-\(i + 1)", kind: .lamp, point: p, height: 30, colour: warm,
-                                reach: LookTuning.lampReach, shape: .round, strength: ember * 0.8))
-            }
-        }
-
-        // The pond's floating lanterns (pond level 5): a cool shimmer.
-        if (world.stations.first(where: { $0.id == .pond })?.level ?? 0) >= 5 {
-            add(LightSource(id: "pond", kind: .pond, point: WorldPoint(x: -65, y: 23), height: 2,
-                            colour: GradeRGB(0.55, 0.9, 0.85), reach: LookTuning.pondReach, shape: .pondEllipse,
-                            strength: ember * 0.6))
+        // Every lit thing of the table (ember, windows, lamps, the pond);
+        // a new lit edit registers by adding a row to `LitSources`.
+        for row in LitSources.rows where row.isActive(world: world, guestNight: guestNight) {
+            add(row.source(strength: row.strength(in: light)))
         }
 
         // Pofu's calm lantern is his key light at night: it burns whenever

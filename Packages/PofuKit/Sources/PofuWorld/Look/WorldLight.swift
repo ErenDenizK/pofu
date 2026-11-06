@@ -201,12 +201,15 @@ public enum LookTuning {
     public static let nightCharacterShrink = 0.22
     public static let nightReadabilityExposure = 0.08
     /// How much of a source's strength becomes the character's key, the
-    /// bounce on the lower third, the readability floor's lift and the
-    /// contact shadow's darkness.
+    /// bounce on the lower third and the readability floor's lift (the
+    /// characters' night shadows are `ShadowTuning`'s).
     public static let keyGain = 0.6
     public static let bounceGain = 0.5
     public static let floorGain = 0.5
-    public static let contactShadow = 0.3
+    /// How strongly a pool of the baked light map glows: the glow-ground-pool
+    /// art's opacity at full source strength; the pool is alpha over the
+    /// lawn, so it cannot add more than this much of its colour.
+    public static let poolArtOpacity = 0.45
 }
 
 extension Lens {

@@ -59,8 +59,7 @@ extension IslandLayout {
     /// the art queue made one (batch 07's lit edits): drawn after the grade,
     /// faded in with the ember, so the flame keeps its own colour at night.
     public static func litOverlay(_ station: StationID, level: Int) -> String? {
-        let name = "\(station.artStem)-\(level)-glow"
-        return WorldArt.sprite(name) == nil ? nil : name
+        LitSources.overlay(station, level: level)?.art
     }
 
     /// How much of a lit overlay shows under `light`: none by day, all of it

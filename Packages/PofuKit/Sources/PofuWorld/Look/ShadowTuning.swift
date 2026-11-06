@@ -26,9 +26,9 @@ public enum ShadowTuning {
 
     // MARK: Opacity and softness (0 crisp … 1 very soft)
 
-    public static let dayOpacity = 0.25
-    public static let goldenOpacity = 0.23
-    public static let dawnOpacity = 0.13
+    public static let dayOpacity = 0.50
+    public static let goldenOpacity = 0.52
+    public static let dawnOpacity = 0.34
     public static let daySoftness = 0.25
     public static let goldenSoftness = 0.55
     public static let dawnSoftness = 0.85
@@ -36,16 +36,41 @@ public enum ShadowTuning {
     // MARK: Moon
 
     /// The faint moon shadow that replaces the sun's at night.
-    public static let moonOpacity = 0.08
+    public static let moonOpacity = 0.10
     public static let moonLength = 1.2
     public static let moonSoftness = 0.9
     /// A blue the night's shadow leans to.
-    public static let moonTint = GradeRGB(0.30, 0.38, 0.62)
+    public static let moonTint = GradeRGB(0.10, 0.14, 0.30)
+
+    // MARK: Hue
+
+    /// The luminance a sun shadow's colour is darkened to. `cell.shadow` is
+    /// a light hue (it is what the grade lifts the shade to); over green
+    /// grass a light colour at a quarter opacity was invisible, so the
+    /// shadow keeps the cell's hue (violet at golden, cool at dawn) at this
+    /// low luminance.
+    public static let tintLuminance = 0.14
 
     // MARK: Ambient occlusion pad
 
-    public static let padOpacityDay = 0.18
-    public static let padOpacityNight = 0.25
+    public static let padOpacityDay = 0.38
+    public static let padOpacityNight = 0.42
+
+    // MARK: Shadows from night light sources
+
+    /// A character's shadow from the strongest source in reach: opacity is
+    /// this times the source's strength at the character (≤ 1), so it never
+    /// exceeds 0.30.
+    public static let sourceOpacity = 0.30
+    /// The length (× height) away from a weak and from a full-strength
+    /// source: a close, strong lamp throws the shorter shadow (design §2:
+    /// 0.6…1.4).
+    public static let sourceLengthWeak = 1.4
+    public static let sourceLengthStrong = 0.6
+    public static let sourceSoftness = 0.7
+    /// Below this contribution a source does not cast; the faint moon
+    /// shadow stays.
+    public static let sourceMinimumStrength = 0.05
 
     // MARK: Bucketing (the bake rebuilds only when the key changes)
 
