@@ -1,0 +1,127 @@
+{
+  "job": "caglayan-island-0",
+  "batch": "batch-43-caglayan-production",
+  "asset": "plate__caglayan-island-0",
+  "take": 3,
+  "takes_considered": 4,
+  "approved_at": "2026-11-06T15:23:51+00:00",
+  "image": "design/art/masters/caglayan-island-0/caglayan-island-0.png",
+  "raw": "design/art/masters/caglayan-island-0/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "ce10548ce61df11f",
+  "prompt": "REFERENCES (attached, in this order):\n1. The home island: copy ONLY its camera, its plate proportions (shallow top, rounded banded body) and its soft painting. Do not copy its lawn, its colors, its round door or its pebbles.\n2. The small island plate: Çağlayan is about this size in the frame. Copy the size and the earth body's proportions only.\n3. A finished station of the game: every prop on the island is at this scale and in this finish (do not draw this stall).\n4. The sea of clouds below every island: paint the clouds like this.\n\nA game plate for a cozy mobile game: Çağlayan, a small island whose\nwaterfall has stopped, in the game, on a still overcast-bright noon.\nSTAGE 0, STUCK. The island is a floating diorama plate with a\nshallow top about a fifth as deep as it is wide, over a soft rounded\nearth body with gentle bands, a small plate about 62 percent of the\nimage width, centered. At the back centre rises a low cliff of\nrounded stone in four broad steps, about as tall as a windmill,\nwhere a waterfall should pour: the steps are pale and dust-dry,\nsun-bleached sand-grey, with dry moss in the cracks. At its foot a\nround shallow pool lies still, its surface a dark still mirror with a\ndry pale rim where the water used to reach. On the right bank a\nsmall wooden mill with a round water wheel stands still, its\npaddles dry and mossy. A path of flat stones runs from the front\nlip to the pool. A few rounded boulders, two dry tufts of grass,\nand a small wooden bucket lying on its side.\nSTUCK STATE, HUSHED AND BEAUTIFUL, NOT PALE: the warm colours are\ndrained (the grass straw-dry, the wood grey, the flowers shut), but\nthe picture keeps a full range from deep shade to bright light and\nrich cool colour. The cliff's shaded faces are a deep soft\nblue-violet; the still pool is a dark teal mirror reflecting the sky;\na soft cool haze sits behind the cliff so it stands out in layers.\nONE focal light: a single slanting shaft of pale morning light falls\nthrough the haze onto the cliff, dust motes floating in it, and lands\non a single thin trickle of clear water running down one step on the\nleft, which glints brightly. A hushed, beautiful stillness that\ninvites you in, like a place waiting for you; never washed out,\nnever flat grey, never ruined, never eerie.\nGAME CAMERA: exactly the camera of the attached home island, a low\nfront three-quarter view about 20 degrees above the horizon, a pale\nsky with soft far clouds above and the sea of clouds below rising to\nthe island's underside. Every prop is at the scale of the attached\ntea stall. No characters.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: cracks like an earthquake, ruins, broken buildings, skulls, bones, dead trees, fog, gloom, darkness, a pointed or spiky underside, water falling off the island, a copy of the home island's lawn and round door, text, letters, a border, harsh shadows, outlines, photorealism, a 3D render look\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nKey light #FFF6EC from the upper left; fill #BFD6EE; rim #FFE9C9 along the edge facing away from the key. Shadows are tinted #A99BC4 (never grey or black) and fall toward the lower right; paint a contact shadow in that hue under every object that touches the ground or another form, firmest in the subject plane.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, opaque, full bleed, landscape 1536 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/island-main-l-v3/island-main-l-v3.webp",
+      "role": "The home island: copy ONLY its camera, its plate proportions (shallow top, rounded banded body) and its soft painting. Do not copy its lawn, its colors, its round door or its pebbles."
+    },
+    {
+      "path": "design/art/masters/island-main-s/island-main-s.png",
+      "role": "The small island plate: Çağlayan is about this size in the frame. Copy the size and the earth body's proportions only."
+    },
+    {
+      "path": "design/art/stations/tea-stall-5/tea-stall-5.png",
+      "role": "A finished station of the game: every prop on the island is at this scale and in this finish (do not draw this stall)."
+    },
+    {
+      "path": "design/art/masters/cloud-sea/cloud-sea.png",
+      "role": "The sea of clouds below every island: paint the clouds like this."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-06T06:51:11+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "fit": null,
+  "emit_region": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "opaque, as this kind must be"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1536x1024"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 32 (R1 51)",
+        "value": 32.3
+      },
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 50 (at most 22), p98 93 (at least 90), spread 43 (at least 60) (warn-only until the founder has seen the light pilot)",
+        "value": 43.3
+      },
+      {
+        "check": "light_median",
+        "status": "pass",
+        "message": "day/subject: median L 77 (band 55-90)",
+        "value": 76.8
+      },
+      {
+        "check": "light_haze",
+        "status": "warn",
+        "message": "day/subject: dark-channel haze 0.41 (at most 0.20; no true dark means a wash) (warn-only until the founder has seen the light pilot)",
+        "value": 0.408
+      },
+      {
+        "check": "light_contrast",
+        "status": "pass",
+        "message": "day/subject: p75 local contrast 3.7 (at least 3.5)",
+        "value": 3.71
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 1.9 (R1 5.3)",
+        "value": 1.86
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 0.8",
+        "value": 0.8097
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 2.0, p95 4.2, off-palette 0.0%",
+        "value": 1.9668
+      }
+    ]
+  },
+  "note": "lead-selected retained take3; founder review pending. Queue row0-r: lead-selected retained take3; founder review pending. All four original sources, original account/backend/times and unchanged official QA retained; no root generation. Canonical half-scale delivery; historical trickle exclusions preserved as history and superseded only by this named lead selection. Queue row 0-r: lead-selected retained root take3; canonical promote --force is explicit lead authority, not a new QA pass or regeneration. Original tool and ingestion timestamps and historical manual exclusions remain preserved. ",
+  "deliver": {
+    "scale": 0.5,
+    "original_size": [
+      1536,
+      1024
+    ],
+    "delivered_size": [
+      768,
+      512
+    ]
+  }
+}

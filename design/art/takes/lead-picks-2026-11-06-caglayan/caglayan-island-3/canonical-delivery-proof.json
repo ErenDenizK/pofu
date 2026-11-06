@@ -1,0 +1,28 @@
+{
+  "metadata": {
+    "scale": 0.5,
+    "original_size": [
+      1536,
+      1024
+    ],
+    "delivered_size": [
+      768,
+      512
+    ]
+  },
+  "master_rgba_sha256": "3a521a405ba891b312b3b258a6dc2e8534e9845b433ccbda2db0c6badd2455d1",
+  "locked_png_sha256": "0e7b18de98282a51fd064d8e0686d61bbfa24995df068bfb0cd9335ec139ab93",
+  "raw": {
+    "raw_sha256": "e1e65c97660eb3d677e896e106998536c6f6f3000dc2863b522a01844750d579",
+    "source_sha256": "587e16f0ca7ac37b304b803cce676c99239ff8f19e94f245a947d998da8ba3d0",
+    "encoding": "webp lossless",
+    "official_canonical_bytes_identical": true
+  },
+  "author_header_exception": null,
+  "canonical_context_sha256": "46a850eca354a4ca7c721ba1a763422bb28e26cc863867932ab127c5455a31aa",
+  "preview": {
+    "all_alpha_and_visible_rgb_identical": true,
+    "canonical_rgba_sha256": "3a521a405ba891b312b3b258a6dc2e8534e9845b433ccbda2db0c6badd2455d1",
+    "preview_rgba_sha256": "3a521a405ba891b312b3b258a6dc2e8534e9845b433ccbda2db0c6badd2455d1"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "metadata": {
+    "scale": 0.5,
+    "original_size": [
+      1536,
+      1024
+    ],
+    "delivered_size": [
+      768,
+      512
+    ]
+  },
+  "master_rgba_sha256": "5fcc300a009c47f6b19e759970307e608bbb8ff87c0f32506ae1d36f61fd92c9",
+  "locked_png_sha256": "1245b5b91be73a74255cc0a1ade4f10d269324c8fafe1c1e04b7e3cc1cbd7ca7",
+  "raw": {
+    "raw_sha256": "dfa4181c7cb93dd3383eaff04428d1d963821578122ff919627b4614209f6680",
+    "source_sha256": "01b4f87c8b30bc9daf5d3c4fc9969183cff5617ea538da544bfa82cf548ad2fa",
+    "encoding": "webp lossless",
+    "official_canonical_bytes_identical": true
+  },
+  "author_header_exception": null,
+  "canonical_context_sha256": "46a850eca354a4ca7c721ba1a763422bb28e26cc863867932ab127c5455a31aa",
+  "preview": {
+    "all_alpha_and_visible_rgb_identical": true,
+    "canonical_rgba_sha256": "5fcc300a009c47f6b19e759970307e608bbb8ff87c0f32506ae1d36f61fd92c9",
+    "preview_rgba_sha256": "5fcc300a009c47f6b19e759970307e608bbb8ff87c0f32506ae1d36f61fd92c9"
+  }
+}

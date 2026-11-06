@@ -2,7 +2,7 @@ id: asset-caglayan-island-2
 type: asset
 title_tr: caglayan-island-2
 title_en: caglayan-island-2 (plate)
-status: cut
+status: in-production
 horizon: now
 summary: 'Edit the attached island plate from stage 0 to stage 2: the first warm light.
   Two clear ribbons of water now fall down the cliff, one on the left and one in the
@@ -14,7 +14,8 @@ links:
   variant_of:
   - asset-caglayan-island-0
 art:
-  images: []
+  images:
+  - design/art/masters/caglayan-island-2/caglayan-island-2.png
   jobs:
   - batch-43-caglayan-production:caglayan-island-2
 sources:

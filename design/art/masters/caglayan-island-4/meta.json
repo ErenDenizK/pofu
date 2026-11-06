@@ -1,0 +1,133 @@
+{
+  "job": "caglayan-island-4",
+  "batch": "batch-43-caglayan-production",
+  "asset": "plate__caglayan-island-4",
+  "take": 2,
+  "takes_considered": 2,
+  "approved_at": "2026-11-06T16:48:48+00:00",
+  "image": "design/art/masters/caglayan-island-4/caglayan-island-4.png",
+  "raw": "design/art/masters/caglayan-island-4/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "8a030e7ddcb1677a",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nEdit the attached island plate from stage 0 to stage 4: healed. The\nwaterfall pours again: one full, soft, glassy curtain of water falls\ndown all four cliff steps into the pool, white where it breaks on\neach step. At its foot a soft cloud of fine mist rises, and in the\nmist a gentle pastel rainbow arcs, small and soft. The pool is full,\nclear blue-green, with gentle ripples and a few lily pads. The water\nwheel turns, its paddles bright with spray. The cliff is covered in\nliving moss and small ferns; the banks are in full bloom with white,\nbutter-yellow, blush pink and lilac flowers; the bucket now stands\nupright by the pool, full of water. Full warm afternoon light, soft\nand golden on the water and the cliff, cool clear shadows. Full\ncolour. Every shape, prop, stone, outline, the island's size, the\ncamera and the composition stay exactly where they are in the\nattached image.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: a harsh or neon rainbow, a huge mist cloud hiding the cliff, water falling off the island's edge, new buildings, characters, moving or resizing anything, sparkles, text\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nKey light #FFF6EC from the upper left; fill #BFD6EE; rim #FFE9C9 along the edge facing away from the key. Shadows are tinted #A99BC4 (never grey or black) and fall toward the lower right; paint a contact shadow in that hue under every object that touches the ground or another form, firmest in the subject plane.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, opaque, full bleed, landscape 1536 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/caglayan-island-0/caglayan-island-0.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-06T16:42:13+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "fit": null,
+  "emit_region": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "opaque, as this kind must be"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1536x1024"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "warn",
+        "message": "chroma p95 58 (R1 51)",
+        "value": 58.4
+      },
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 40 (at most 22), p98 95 (at least 90), spread 55 (at least 60) (warn-only until the founder has seen the light pilot)",
+        "value": 55.2
+      },
+      {
+        "check": "light_median",
+        "status": "pass",
+        "message": "day/subject: median L 75 (band 55-90)",
+        "value": 74.7
+      },
+      {
+        "check": "light_haze",
+        "status": "pass",
+        "message": "day/subject: dark-channel haze 0.15 (at most 0.20; no true dark means a wash)",
+        "value": 0.149
+      },
+      {
+        "check": "light_contrast",
+        "status": "pass",
+        "message": "day/subject: p75 local contrast 7.8 (at least 3.5)",
+        "value": 7.76
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 5.2 (R1 5.3)",
+        "value": 5.16
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 1.9",
+        "value": 1.8597
+      },
+      {
+        "check": "palette_drift",
+        "status": "warn",
+        "message": "mean dE 3.0, p95 10.8, off-palette 3.3% (top: #CCBB44 (0.4%), #BBAA33 (0.3%))",
+        "value": 3.0293
+      },
+      {
+        "check": "edit_silhouette",
+        "status": "pass",
+        "message": "100% of the parent's shape kept",
+        "value": 1.0
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "62% of the parent level unchanged",
+        "value": 0.6237
+      },
+      {
+        "check": "edit_chroma",
+        "status": "pass",
+        "message": "chroma x1.38 of the parent level (drift compounds along a chain)",
+        "value": 1.3801
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. auto-picked by QA; founder review pending. Both initial takes manually meet healed-stage core: full soft water curtain, small pastel foot rainbow and low mist, full clear pool/lily pads, wet bright wheel spray, lush multicolour bloom/ferns and upright full bucket; root framing/props retained. Take2 WARN/no hard failure and lowest lock_load1.8597 versus1.9129. Official canonical halfscale master/raw cap preflight passes; no force/retry or prompt/threshold/source changes.",
+  "deliver": {
+    "scale": 0.5,
+    "original_size": [
+      1536,
+      1024
+    ],
+    "delivered_size": [
+      768,
+      512
+    ]
+  }
+}

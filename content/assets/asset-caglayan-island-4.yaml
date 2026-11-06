@@ -2,7 +2,7 @@ id: asset-caglayan-island-4
 type: asset
 title_tr: caglayan-island-4
 title_en: caglayan-island-4 (plate)
-status: cut
+status: in-production
 horizon: now
 summary: 'Edit the attached island plate from stage 0 to stage 4: healed. The waterfall
   pours again: one full, soft, glassy curtain of water falls down all four cliff steps
@@ -14,7 +14,8 @@ links:
   variant_of:
   - asset-caglayan-island-0
 art:
-  images: []
+  images:
+  - design/art/masters/caglayan-island-4/caglayan-island-4.png
   jobs:
   - batch-43-caglayan-production:caglayan-island-4
 sources:

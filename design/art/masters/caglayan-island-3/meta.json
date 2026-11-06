@@ -1,0 +1,133 @@
+{
+  "job": "caglayan-island-3",
+  "batch": "batch-43-caglayan-production",
+  "asset": "plate__caglayan-island-3",
+  "take": 2,
+  "takes_considered": 2,
+  "approved_at": "2026-11-06T16:39:49+00:00",
+  "image": "design/art/masters/caglayan-island-3/caglayan-island-3.png",
+  "raw": "design/art/masters/caglayan-island-3/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "7cd45944648ba64f",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nEdit the attached island plate from stage 0 to stage 3: nearly\nthere. Three clear streams of water fall down the left, centre and\nright of the cliff steps, each still a separate ribbon with dry\nstone between them. The pool is full to its old rim with clear\nblue-green water and soft ripples. The water wheel on the right is\nturning: its paddles are wet and a little white spray lifts at the\nbottom where they meet the water. The cliff steps are mossy green\naround the water; the banks are lush green with clumps of white,\nbutter-yellow and soft lilac flowers, and two small ferns. A warm sun\nfrom the upper left lights the cliff top and the near bank with\nsoft warm shadows. The picture is nearly fully colourful (chroma\nabout 85 percent). Every shape, prop, stone, outline, the island's\nsize, the camera and the composition stay exactly where they are in\nthe attached image.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: a rainbow, a mist cloud, sparkles, a glow, one single wide waterfall, new props, characters, moving or resizing anything, text\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nKey light #FFF6EC from the upper left; fill #BFD6EE; rim #FFE9C9 along the edge facing away from the key. Shadows are tinted #A99BC4 (never grey or black) and fall toward the lower right; paint a contact shadow in that hue under every object that touches the ground or another form, firmest in the subject plane.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, opaque, full bleed, landscape 1536 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/caglayan-island-0/caglayan-island-0.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-06T16:37:33+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "fit": null,
+  "emit_region": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "opaque, as this kind must be"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1536x1024"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "warn",
+        "message": "chroma p95 58 (R1 51)",
+        "value": 58.2
+      },
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 39 (at most 22), p98 94 (at least 90), spread 55 (at least 60)",
+        "value": 54.8
+      },
+      {
+        "check": "light_median",
+        "status": "pass",
+        "message": "day/subject: median L 69 (band 55-90)",
+        "value": 69.1
+      },
+      {
+        "check": "light_haze",
+        "status": "pass",
+        "message": "day/subject: dark-channel haze 0.15 (at most 0.20; no true dark means a wash)",
+        "value": 0.153
+      },
+      {
+        "check": "light_contrast",
+        "status": "pass",
+        "message": "day/subject: p75 local contrast 7.5 (at least 3.5)",
+        "value": 7.46
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 4.6 (R1 5.3)",
+        "value": 4.6
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 2.0",
+        "value": 2.0321
+      },
+      {
+        "check": "palette_drift",
+        "status": "warn",
+        "message": "mean dE 3.7, p95 13.3, off-palette 6.5% (top: #BBBB44 (1.4%), #AAAA33 (0.7%))",
+        "value": 3.7159
+      },
+      {
+        "check": "edit_silhouette",
+        "status": "pass",
+        "message": "100% of the parent's shape kept",
+        "value": 1.0
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "53% of the parent level unchanged",
+        "value": 0.5342
+      },
+      {
+        "check": "edit_chroma",
+        "status": "pass",
+        "message": "chroma x1.66 of the parent level (drift compounds along a chain)",
+        "value": 1.6593
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. auto-picked by QA; founder review pending. Both initial sources manually meet stage3: three separate ribbons, full pool, wet turning wheel with spray, two ferns and white/yellow/lilac bloom, no signature; root frame/props retained. Take2 WARN/no hard failure and lower lock_load2.0321 than take1 2.7847. Take1 actualFAIL onlypalette_drift/chroma_ceiling remains recorded within authored stage3 exception but is not selected. No force or retry needed for selected2; no prompt/threshold changes.",
+  "deliver": {
+    "scale": 0.5,
+    "original_size": [
+      1536,
+      1024
+    ],
+    "delivered_size": [
+      768,
+      512
+    ]
+  }
+}

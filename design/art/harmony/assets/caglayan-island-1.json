@@ -1,0 +1,56 @@
+{
+ "after": {
+  "C_mean": 17.391,
+  "C_p50": 13.733,
+  "C_p95": 49.068,
+  "L_mean": 80.565,
+  "L_p2": 53.55,
+  "L_p98": 93.748,
+  "detail": 1.593,
+  "edge": 0.0,
+  "tint_a": 4.243,
+  "tint_b": -2.733,
+  "warmth_b": 5.309
+ },
+ "before": {
+  "C_mean": 20.245,
+  "C_p50": 15.987,
+  "C_p95": 57.122,
+  "L_mean": 76.568,
+  "L_p2": 41.36,
+  "L_p98": 93.748,
+  "detail": 1.984,
+  "edge": 0.0,
+  "tint_a": 5.06,
+  "tint_b": -2.768,
+  "warmth_b": 6.181
+ },
+ "chain": null,
+ "correction": {
+  "black": 12.19,
+  "ceiling": 0.0,
+  "chroma": 0.859,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "plate",
+ "matched_to": "world",
+ "outliers_after": [
+  "edge"
+ ],
+ "outliers_before": [
+  "C_p95",
+  "L_p2",
+  "edge"
+ ],
+ "ppu": 4.103,
+ "reference": false,
+ "score_after": 87.7,
+ "score_before": 74.2,
+ "shipped": false,
+ "source": "design/art/masters/caglayan-island-1/caglayan-island-1.png",
+ "source_sha": "f6b61680a88217fc"
+}
