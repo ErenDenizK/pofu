@@ -1,7 +1,7 @@
-id: asset-x-home-il7
+id: asset-x-growth-il7
 type: asset
-title_tr: x-home-il7
-title_en: x-home-il7 (plate)
+title_tr: x-growth-il7
+title_en: x-growth-il7 (plate)
 status: in-production
 horizon: now
 summary: >-
@@ -13,7 +13,7 @@ summary: >-
 art:
   images: []
   jobs:
-  - batch-57-home-growth-strip:x-home-il7
+  - batch-57-home-growth-strip:x-growth-il7
 sources:
 - doc: tools/imagegen/manifest/batch-57-home-growth-strip.yaml
 kind: plate

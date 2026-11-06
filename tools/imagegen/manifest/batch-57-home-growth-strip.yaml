@@ -20,9 +20,9 @@ jobs:
   - {id: tea-stall-5, kind: station, name: tea-stall-5, external: batch-01-slice}
   - {id: cloud-sea, kind: world, name: cloud-sea, external: batch-04-sky}
 
-  - id: x-home-il1
+  - id: x-growth-il1
     kind: plate
-    name: x-home-il1
+    name: x-growth-il1
     light: {cell: day, layer: subject}
     size: 1536x1024
     canvas: 1536x1024
@@ -47,9 +47,9 @@ jobs:
       - block: prop-style-v2
       - text: "AVOID: changing the island's outline or size, clutter, overlapping buildings, characters, text, letters, a border"
 
-  - id: x-home-il3
+  - id: x-growth-il3
     kind: plate
-    name: x-home-il3
+    name: x-growth-il3
     light: {cell: day, layer: subject}
     size: 1536x1024
     canvas: 1536x1024
@@ -74,9 +74,9 @@ jobs:
       - block: prop-style-v2
       - text: "AVOID: changing the island's outline or size, clutter, overlapping buildings, characters, text, letters, a border"
 
-  - id: x-home-il5
+  - id: x-growth-il5
     kind: plate
-    name: x-home-il5
+    name: x-growth-il5
     light: {cell: day, layer: subject}
     size: 1536x1024
     canvas: 1536x1024
@@ -101,9 +101,9 @@ jobs:
       - block: prop-style-v2
       - text: "AVOID: changing the island's outline or size, clutter, overlapping buildings, characters, text, letters, a border"
 
-  - id: x-home-il7
+  - id: x-growth-il7
     kind: plate
-    name: x-home-il7
+    name: x-growth-il7
     light: {cell: day, layer: subject}
     size: 1536x1024
     canvas: 1536x1024
@@ -128,9 +128,9 @@ jobs:
       - block: prop-style-v2
       - text: "AVOID: changing the island's outline or size, clutter, overlapping buildings, characters, text, letters, a border"
 
-  - id: x-home-il10
+  - id: x-growth-il10
     kind: plate
-    name: x-home-il10
+    name: x-growth-il10
     light: {cell: day, layer: subject}
     size: 1536x1024
     canvas: 1536x1024

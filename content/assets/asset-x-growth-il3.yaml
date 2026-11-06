@@ -1,7 +1,7 @@
-id: asset-x-home-il3
+id: asset-x-growth-il3
 type: asset
-title_tr: x-home-il3
-title_en: x-home-il3 (plate)
+title_tr: x-growth-il3
+title_en: x-growth-il3 (plate)
 status: in-production
 horizon: now
 summary: >-
@@ -13,7 +13,7 @@ summary: >-
 art:
   images: []
   jobs:
-  - batch-57-home-growth-strip:x-home-il3
+  - batch-57-home-growth-strip:x-growth-il3
 sources:
 - doc: tools/imagegen/manifest/batch-57-home-growth-strip.yaml
 kind: plate
