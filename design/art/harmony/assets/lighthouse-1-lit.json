@@ -1,0 +1,54 @@
+{
+ "after": {
+  "C_mean": 29.62,
+  "C_p50": 31.684,
+  "C_p95": 51.288,
+  "L_mean": 75.725,
+  "L_p2": 52.71,
+  "L_p98": 91.147,
+  "detail": 1.96,
+  "edge": 0.405,
+  "tint_a": 4.279,
+  "tint_b": 12.619,
+  "warmth_b": 26.018
+ },
+ "before": {
+  "C_mean": 29.62,
+  "C_p50": 31.684,
+  "C_p95": 51.288,
+  "L_mean": 75.725,
+  "L_p2": 52.71,
+  "L_p98": 91.147,
+  "detail": 1.96,
+  "edge": 0.405,
+  "tint_a": 4.279,
+  "tint_b": 12.619,
+  "warmth_b": 26.018
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "station",
+ "matched_to": "world",
+ "outliers_after": [
+  "edge"
+ ],
+ "outliers_before": [
+  "edge"
+ ],
+ "ppu": 8.533,
+ "reference": false,
+ "score_after": 88.5,
+ "score_before": 88.5,
+ "shipped": false,
+ "source": "design/art/stations/lighthouse-1-lit/lighthouse-1-lit.png",
+ "source_sha": "c7cccecbae0fe0b0"
+}

@@ -1,0 +1,805 @@
+batch: batch-36-lit-ladder-pilot
+contact_sheet: design/art/takes/lit-repost-2026-11-06/lighthouse-1-lit/contact.jpg
+jobs:
+  lighthouse-1-lit:
+    pick: 3
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. All four full locked images and
+      lamp-room crops retain the day geometry, cream posts, cap, railing, lower round
+      window, door and base. Warm candle-amber fills only the lamp-room glass, with
+      a soft rounded internal lamp impression; no beam, rays, exterior halo, night
+      grade or blown white light. The warm lamp is visible against both light and
+      dark at 28 px in full-canvas and fixed-parent-bounds diagnostics. Every outside-mask
+      RGBA pixel exactly equals the day parent. All four are manually eligible; use
+      unchanged official QA ranking.
+qa_reports:
+  3:
+    job: lighthouse-1-lit
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 52 (R1 51)
+      value: 51.7
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 53 (at most 22), p98 91 (at least 90), spread 39
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 38.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 77 (band 55-90)'
+      value: 76.7
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.25 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.251
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 3.4 (at least 3.5)'
+      value: 3.37
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.8 (R1 5.3)
+      value: 1.82
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.9
+      value: 2.8953
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.4, p95 7.5, off-palette 0.2% (top: #CC7733 (0.1%), #BB6633
+        (0.0%))'
+      value: 1.3726
+    - check: station_anchor
+      status: pass
+      message: on the parent's anchor
+      value: 900.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 88 against the world reference (outliers: edge)'
+      value: 88.5
+    - check: emit_leak
+      status: pass
+      message: 100% of the parent unchanged outside the emit region (masked out of
+        the master)
+      value: 0.9997
+    info:
+      registration:
+        dx: 0
+        dy: 0
+      emit_region:
+      - - 0.38
+        - 0.28
+        - 0.25
+        - 0.105
+      metrics_raw:
+        L_p5: 58.5
+        L_p50: 76.5
+        L_p95: 88.9
+        C_p50: 32.0
+        C_p95: 51.5
+        C_p99: 64.5
+        detail: 2.37
+      metrics_locked:
+        L_p5: 59.0
+        L_p50: 76.7
+        L_p95: 90.0
+        C_p50: 31.8
+        C_p95: 51.7
+        C_p99: 61.6
+        detail: 1.82
+    fingerprint: 5be4d915f2eaa8ef
+  4:
+    job: lighthouse-1-lit
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 49 (R1 51)
+      value: 49.3
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 51 (at most 22), p98 91 (at least 90), spread 40
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 39.7
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 77 (band 55-90)'
+      value: 76.7
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.25 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.247
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 3.5 (at least 3.5)'
+      value: 3.48
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.9 (R1 5.3)
+      value: 1.87
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 3.2
+      value: 3.1521
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.3, p95 5.8, off-palette 0.2% (top: #995522 (0.1%), #884411
+        (0.0%))'
+      value: 1.3102
+    - check: station_anchor
+      status: pass
+      message: on the parent's anchor
+      value: 900.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 89 against the world reference (outliers: edge)'
+      value: 88.7
+    - check: emit_leak
+      status: pass
+      message: 100% of the parent unchanged outside the emit region (masked out of
+        the master)
+      value: 0.998
+    info:
+      registration:
+        dx: 0
+        dy: 0
+      emit_region:
+      - - 0.38
+        - 0.28
+        - 0.25
+        - 0.105
+      metrics_raw:
+        L_p5: 58.5
+        L_p50: 77.5
+        L_p95: 90.0
+        C_p50: 32.5
+        C_p95: 49.2
+        C_p99: 64.1
+        detail: 2.51
+      metrics_locked:
+        L_p5: 58.2
+        L_p50: 76.7
+        L_p95: 89.9
+        C_p50: 31.9
+        C_p95: 49.3
+        C_p99: 61.3
+        detail: 1.87
+    fingerprint: 5be4d915f2eaa8ef
+  2:
+    job: lighthouse-1-lit
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 50 (R1 51)
+      value: 49.6
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 52 (at most 22), p98 91 (at least 90), spread 39
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 39.1
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 77 (band 55-90)'
+      value: 76.7
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.25 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.251
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 3.4 (at least 3.5)'
+      value: 3.38
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.9 (R1 5.3)
+      value: 1.85
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 4.1
+      value: 4.0665
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.3, p95 5.4, off-palette 0.7% (top: #CC7733 (0.1%), #CC8833
+        (0.1%))'
+      value: 1.3101
+    - check: station_anchor
+      status: pass
+      message: on the parent's anchor
+      value: 900.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 89 against the world reference (outliers: edge)'
+      value: 88.8
+    - check: emit_leak
+      status: pass
+      message: 100% of the parent unchanged outside the emit region (masked out of
+        the master)
+      value: 0.9966
+    info:
+      registration:
+        dx: 0
+        dy: 0
+      emit_region:
+      - - 0.38
+        - 0.28
+        - 0.25
+        - 0.105
+      metrics_raw:
+        L_p5: 58.6
+        L_p50: 78.0
+        L_p95: 90.1
+        C_p50: 32.6
+        C_p95: 50.6
+        C_p99: 66.0
+        detail: 2.51
+      metrics_locked:
+        L_p5: 58.6
+        L_p50: 76.8
+        L_p95: 89.9
+        C_p50: 32.0
+        C_p95: 49.6
+        C_p99: 62.1
+        detail: 1.85
+    fingerprint: 5be4d915f2eaa8ef
+  1:
+    job: lighthouse-1-lit
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 50 (R1 51)
+      value: 50.5
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 52 (at most 22), p98 91 (at least 90), spread 39
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 38.7
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 77 (band 55-90)'
+      value: 76.8
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.25 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.251
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 3.4 (at least 3.5)'
+      value: 3.37
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.8 (R1 5.3)
+      value: 1.8
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 3.0
+      value: 3.0319
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.4, p95 7.0, off-palette 0.4% (top: #CC7733 (0.1%), #AA6622
+        (0.1%))'
+      value: 1.3896
+    - check: station_anchor
+      status: pass
+      message: on the parent's anchor
+      value: 900.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 89 against the world reference (outliers: edge)'
+      value: 89.1
+    - check: emit_leak
+      status: pass
+      message: 100% of the parent unchanged outside the emit region (masked out of
+        the master)
+      value: 1.0
+    info:
+      registration:
+        dx: 0
+        dy: 0
+      emit_region:
+      - - 0.38
+        - 0.28
+        - 0.25
+        - 0.105
+      metrics_raw:
+        L_p5: 59.8
+        L_p50: 77.4
+        L_p95: 88.9
+        C_p50: 31.0
+        C_p95: 49.7
+        C_p99: 67.5
+        detail: 2.31
+      metrics_locked:
+        L_p5: 59.0
+        L_p50: 76.8
+        L_p95: 90.1
+        C_p50: 31.7
+        C_p95: 50.5
+        C_p99: 62.6
+        detail: 1.8
+    fingerprint: 5be4d915f2eaa8ef
+manual_review:
+  excluded_takes: []
+  note: All four full locked images and lamp-room crops retain the day geometry, cream
+    posts, cap, railing, lower round window, door and base. Warm candle-amber fills
+    only the lamp-room glass, with a soft rounded internal lamp impression; no beam,
+    rays, exterior halo, night grade or blown white light. The warm lamp is visible
+    against both light and dark at 28 px in full-canvas and fixed-parent-bounds diagnostics.
+    Every outside-mask RGBA pixel exactly equals the day parent. All four are manually
+    eligible; use unchanged official QA ranking.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-e8b50a9c-87c3-4903-a935-daeaa341b941.png
+  original_generated_png_sha256: 49a4449dfb2fdfbe1a3dafdbc0177a6d743a820d3b4cd0c1054e5f2df5956c79
+  inbox_png_sha256: db3b017bd4fc84e4b22990cc76a22c540a98e249a8fe8531561c66fcf41e2e7e
+  rgba_sha256: fb6106c5bfc66bad7a08b9b1e7cc9cd5ead19d831ed62f4b49f25f9b19215527
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 5be4d915f2eaa8ef
+- take: 2
+  source_file: /workspace/generated_images/exec-577c6f30-16fc-4709-b64b-23f1d12f7c22.png
+  original_generated_png_sha256: f739d2a15e3c4298f9fd4da2f2efb6d0a972c9ef1882e48258dbe2cc1657be9c
+  inbox_png_sha256: e1ff6bb630e3eb7227b8536959f9b18e7560cc183e129431efe96fcbc02b47e8
+  rgba_sha256: 9efe52b603d069bcd4721e03cf51080e6b5c8a5eda276b150a70688c6c6e83e5
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 5be4d915f2eaa8ef
+- take: 3
+  source_file: /workspace/generated_images/exec-cd1fb17e-7620-4cf2-9e8e-06fbbca4d756.png
+  original_generated_png_sha256: 51ecfcab48f4b9ddf0f1cb7aae6433427171ed191575dc2a0138b5dfd6d10a86
+  inbox_png_sha256: 5b1bc79c6b25f14a6bd806eb3a986907e100cd172c403187aadf0b61769e4c32
+  rgba_sha256: b5454441134af056959ceee547f463544b40d8d60f7a34ef9d0f6e530738dcee
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 5be4d915f2eaa8ef
+- take: 4
+  source_file: /workspace/generated_images/exec-a255d187-908b-41e7-aea7-9172593ce65c.png
+  original_generated_png_sha256: 628624a92353398261be3728bd592b2c6199f750841ba213fc31e499e92fa586
+  inbox_png_sha256: e7e87b27f577bc0af31aad87368123a783aba7ef41a1932da9ff9e2c21faa2c9
+  rgba_sha256: 6eac2edb267a2214d1e66e1a4f6c5bc93fd3535496900006d6c8987fa88077e7
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 5be4d915f2eaa8ef
+salvage:
+  batch: batch-36-lit-ladder-pilot
+  source_count: 4
+  sources:
+  - batch: batch-36-lit-ladder-pilot
+    job: lighthouse-1-lit
+    take: 1
+    round: 1
+    logical_run: 20261105-b36-lit-ladder
+    source_file: /workspace/generated_images/exec-e8b50a9c-87c3-4903-a935-daeaa341b941.png
+    returned_at: '2026-11-05T23:09:20.724Z'
+    prompt_sha256: e11dfb6f3dc87579b06c6a9a0f41615d13dc2ca8b1c6b754b76d39749479baad
+    fingerprint: 5be4d915f2eaa8ef
+    saved_at: '2026-11-05T23:09:21.046366+00:00'
+    original_generated_png_sha256: 49a4449dfb2fdfbe1a3dafdbc0177a6d743a820d3b4cd0c1054e5f2df5956c79
+    dimensions:
+    - 1254
+    - 1254
+    rgba_sha256: fb6106c5bfc66bad7a08b9b1e7cc9cd5ead19d831ed62f4b49f25f9b19215527
+    evaluation_take: 1
+    original_run: batch-36-lit-ladder-pilot
+    original_take: 1
+    original_callback: /workspace/art-operator-runtime/run-20261105-night/batch-36-lit-ladder-pilot/generated-lighthouse-1-lit-t1.json
+    original_callback_sha256: f5ff8f319f35dcdda3b8d52ff0219fe521b40ba97a949cc088f84bf87bbf8f3e
+    original_packet:
+      batch: batch-36-lit-ladder-pilot
+      job: lighthouse-1-lit
+      worktree: /workspace/art-20261105-lit-ladder
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. The image to edit (the approved previous level). Edit it; do not redraw
+        it.
+
+
+        Light the lighthouse from inside: the lamp room under the coral cap
+
+        (the row of dark glass panes between the cream posts) now glows warm
+
+        candle-amber, brightest in the middle of the room with a soft
+
+        rounded lamp shape suggested inside, painted as soft broad shapes.
+
+        Only the glass panes of the lamp room change: the posts between
+
+        them, the cap, the balcony and railing, the stripes, the round
+
+        window, the door and the base keep their exact day colors (the app
+
+        adds the glow around the lamp, the beam and the night grade).
+
+
+        KEEP: everything not named above stays exactly the same as in the
+
+        attached image: every existing part, its shape, color, position and size,
+
+        the canvas, the camera, the light and the painting style. Do not zoom out
+
+        or reframe: if a new part does not fit, make the new part smaller, never
+
+        the existing ones. Outside the new parts, the result must line up with
+
+        the attached image pixel for pixel.
+
+
+        AVOID: a beam, light rays, a glow outside the glass, a halo, light on other
+        parts, a night sky, darkening anything, blown yellow-white highlights, text.
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      refs:
+      - /workspace/art-20261105-lit-ladder/design/art/stations/lighthouse-1/lighthouse-1.png
+      reference_sha256:
+        /workspace/art-20261105-lit-ladder/design/art/stations/lighthouse-1/lighthouse-1.png: d10186ccbac80dcc55fc63b6857b4761cf811c5962985d32dfcc9fd06a1cf915
+      fingerprint: 5be4d915f2eaa8ef
+      prompt_sha256: e11dfb6f3dc87579b06c6a9a0f41615d13dc2ca8b1c6b754b76d39749479baad
+      transparent: true
+    evaluation_fingerprint: 5be4d915f2eaa8ef
+  - batch: batch-36-lit-ladder-pilot
+    job: lighthouse-1-lit
+    take: 2
+    round: 1
+    logical_run: 20261105-b36-lit-ladder
+    source_file: /workspace/generated_images/exec-577c6f30-16fc-4709-b64b-23f1d12f7c22.png
+    returned_at: '2026-11-05T23:10:07.450Z'
+    prompt_sha256: e11dfb6f3dc87579b06c6a9a0f41615d13dc2ca8b1c6b754b76d39749479baad
+    fingerprint: 5be4d915f2eaa8ef
+    saved_at: '2026-11-05T23:10:07.761276+00:00'
+    original_generated_png_sha256: f739d2a15e3c4298f9fd4da2f2efb6d0a972c9ef1882e48258dbe2cc1657be9c
+    dimensions:
+    - 1254
+    - 1254
+    rgba_sha256: 9efe52b603d069bcd4721e03cf51080e6b5c8a5eda276b150a70688c6c6e83e5
+    evaluation_take: 2
+    original_run: batch-36-lit-ladder-pilot
+    original_take: 2
+    original_callback: /workspace/art-operator-runtime/run-20261105-night/batch-36-lit-ladder-pilot/generated-lighthouse-1-lit-t2.json
+    original_callback_sha256: 0933f2f3e5e8583c4a0fe3e9f6d057385f5c2751c509291b5a3112bd499db510
+    original_packet:
+      batch: batch-36-lit-ladder-pilot
+      job: lighthouse-1-lit
+      worktree: /workspace/art-20261105-lit-ladder
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. The image to edit (the approved previous level). Edit it; do not redraw
+        it.
+
+
+        Light the lighthouse from inside: the lamp room under the coral cap
+
+        (the row of dark glass panes between the cream posts) now glows warm
+
+        candle-amber, brightest in the middle of the room with a soft
+
+        rounded lamp shape suggested inside, painted as soft broad shapes.
+
+        Only the glass panes of the lamp room change: the posts between
+
+        them, the cap, the balcony and railing, the stripes, the round
+
+        window, the door and the base keep their exact day colors (the app
+
+        adds the glow around the lamp, the beam and the night grade).
+
+
+        KEEP: everything not named above stays exactly the same as in the
+
+        attached image: every existing part, its shape, color, position and size,
+
+        the canvas, the camera, the light and the painting style. Do not zoom out
+
+        or reframe: if a new part does not fit, make the new part smaller, never
+
+        the existing ones. Outside the new parts, the result must line up with
+
+        the attached image pixel for pixel.
+
+
+        AVOID: a beam, light rays, a glow outside the glass, a halo, light on other
+        parts, a night sky, darkening anything, blown yellow-white highlights, text.
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      refs:
+      - /workspace/art-20261105-lit-ladder/design/art/stations/lighthouse-1/lighthouse-1.png
+      reference_sha256:
+        /workspace/art-20261105-lit-ladder/design/art/stations/lighthouse-1/lighthouse-1.png: d10186ccbac80dcc55fc63b6857b4761cf811c5962985d32dfcc9fd06a1cf915
+      fingerprint: 5be4d915f2eaa8ef
+      prompt_sha256: e11dfb6f3dc87579b06c6a9a0f41615d13dc2ca8b1c6b754b76d39749479baad
+      transparent: true
+    evaluation_fingerprint: 5be4d915f2eaa8ef
+  - batch: batch-36-lit-ladder-pilot
+    job: lighthouse-1-lit
+    take: 3
+    round: 2
+    logical_run: 20261105-b36-lit-ladder
+    source_file: /workspace/generated_images/exec-cd1fb17e-7620-4cf2-9e8e-06fbbca4d756.png
+    returned_at: '2026-11-05T23:16:26.824Z'
+    prompt_sha256: e11dfb6f3dc87579b06c6a9a0f41615d13dc2ca8b1c6b754b76d39749479baad
+    fingerprint: 5be4d915f2eaa8ef
+    saved_at: '2026-11-05T23:16:27.255711+00:00'
+    original_generated_png_sha256: 51ecfcab48f4b9ddf0f1cb7aae6433427171ed191575dc2a0138b5dfd6d10a86
+    dimensions:
+    - 1254
+    - 1254
+    rgba_sha256: b5454441134af056959ceee547f463544b40d8d60f7a34ef9d0f6e530738dcee
+    evaluation_take: 3
+    original_run: batch-36-lit-ladder-pilot
+    original_take: 3
+    original_callback: /workspace/art-operator-runtime/run-20261105-night/batch-36-lit-ladder-pilot/generated-lighthouse-1-lit-t3.json
+    original_callback_sha256: 4b78772bbf8990bfb85c39d4417f8f89cf5b3b2e3d455e63360f90a86d6f9b67
+    original_packet:
+      batch: batch-36-lit-ladder-pilot
+      job: lighthouse-1-lit
+      worktree: /workspace/art-20261105-lit-ladder
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. The image to edit (the approved previous level). Edit it; do not redraw
+        it.
+
+
+        Light the lighthouse from inside: the lamp room under the coral cap
+
+        (the row of dark glass panes between the cream posts) now glows warm
+
+        candle-amber, brightest in the middle of the room with a soft
+
+        rounded lamp shape suggested inside, painted as soft broad shapes.
+
+        Only the glass panes of the lamp room change: the posts between
+
+        them, the cap, the balcony and railing, the stripes, the round
+
+        window, the door and the base keep their exact day colors (the app
+
+        adds the glow around the lamp, the beam and the night grade).
+
+
+        KEEP: everything not named above stays exactly the same as in the
+
+        attached image: every existing part, its shape, color, position and size,
+
+        the canvas, the camera, the light and the painting style. Do not zoom out
+
+        or reframe: if a new part does not fit, make the new part smaller, never
+
+        the existing ones. Outside the new parts, the result must line up with
+
+        the attached image pixel for pixel.
+
+
+        AVOID: a beam, light rays, a glow outside the glass, a halo, light on other
+        parts, a night sky, darkening anything, blown yellow-white highlights, text.
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      refs:
+      - /workspace/art-20261105-lit-ladder/design/art/stations/lighthouse-1/lighthouse-1.png
+      reference_sha256:
+        /workspace/art-20261105-lit-ladder/design/art/stations/lighthouse-1/lighthouse-1.png: d10186ccbac80dcc55fc63b6857b4761cf811c5962985d32dfcc9fd06a1cf915
+      fingerprint: 5be4d915f2eaa8ef
+      prompt_sha256: e11dfb6f3dc87579b06c6a9a0f41615d13dc2ca8b1c6b754b76d39749479baad
+      transparent: true
+    evaluation_fingerprint: 5be4d915f2eaa8ef
+  - batch: batch-36-lit-ladder-pilot
+    job: lighthouse-1-lit
+    take: 4
+    round: 2
+    logical_run: 20261105-b36-lit-ladder
+    source_file: /workspace/generated_images/exec-a255d187-908b-41e7-aea7-9172593ce65c.png
+    returned_at: '2026-11-05T23:17:11.357Z'
+    prompt_sha256: e11dfb6f3dc87579b06c6a9a0f41615d13dc2ca8b1c6b754b76d39749479baad
+    fingerprint: 5be4d915f2eaa8ef
+    saved_at: '2026-11-05T23:17:11.655035+00:00'
+    original_generated_png_sha256: 628624a92353398261be3728bd592b2c6199f750841ba213fc31e499e92fa586
+    dimensions:
+    - 1254
+    - 1254
+    rgba_sha256: 6eac2edb267a2214d1e66e1a4f6c5bc93fd3535496900006d6c8987fa88077e7
+    evaluation_take: 4
+    original_run: batch-36-lit-ladder-pilot
+    original_take: 4
+    original_callback: /workspace/art-operator-runtime/run-20261105-night/batch-36-lit-ladder-pilot/generated-lighthouse-1-lit-t4.json
+    original_callback_sha256: 1dea2644b0da4fc8e7fc741fdc939f42355179f917f6ba3b541a86c67605d717
+    original_packet:
+      batch: batch-36-lit-ladder-pilot
+      job: lighthouse-1-lit
+      worktree: /workspace/art-20261105-lit-ladder
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. The image to edit (the approved previous level). Edit it; do not redraw
+        it.
+
+
+        Light the lighthouse from inside: the lamp room under the coral cap
+
+        (the row of dark glass panes between the cream posts) now glows warm
+
+        candle-amber, brightest in the middle of the room with a soft
+
+        rounded lamp shape suggested inside, painted as soft broad shapes.
+
+        Only the glass panes of the lamp room change: the posts between
+
+        them, the cap, the balcony and railing, the stripes, the round
+
+        window, the door and the base keep their exact day colors (the app
+
+        adds the glow around the lamp, the beam and the night grade).
+
+
+        KEEP: everything not named above stays exactly the same as in the
+
+        attached image: every existing part, its shape, color, position and size,
+
+        the canvas, the camera, the light and the painting style. Do not zoom out
+
+        or reframe: if a new part does not fit, make the new part smaller, never
+
+        the existing ones. Outside the new parts, the result must line up with
+
+        the attached image pixel for pixel.
+
+
+        AVOID: a beam, light rays, a glow outside the glass, a halo, light on other
+        parts, a night sky, darkening anything, blown yellow-white highlights, text.
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      refs:
+      - /workspace/art-20261105-lit-ladder/design/art/stations/lighthouse-1/lighthouse-1.png
+      reference_sha256:
+        /workspace/art-20261105-lit-ladder/design/art/stations/lighthouse-1/lighthouse-1.png: d10186ccbac80dcc55fc63b6857b4761cf811c5962985d32dfcc9fd06a1cf915
+      fingerprint: 5be4d915f2eaa8ef
+      prompt_sha256: e11dfb6f3dc87579b06c6a9a0f41615d13dc2ca8b1c6b754b76d39749479baad
+      transparent: true
+    evaluation_fingerprint: 5be4d915f2eaa8ef

@@ -1,0 +1,162 @@
+{
+  "batch": "batch-36-lit-ladder-pilot",
+  "source_count": 4,
+  "sources": [
+    {
+      "batch": "batch-36-lit-ladder-pilot",
+      "job": "lighthouse-1-lit",
+      "take": 1,
+      "round": 1,
+      "logical_run": "20261105-b36-lit-ladder",
+      "source_file": "/workspace/generated_images/exec-e8b50a9c-87c3-4903-a935-daeaa341b941.png",
+      "returned_at": "2026-11-05T23:09:20.724Z",
+      "prompt_sha256": "e11dfb6f3dc87579b06c6a9a0f41615d13dc2ca8b1c6b754b76d39749479baad",
+      "fingerprint": "5be4d915f2eaa8ef",
+      "saved_at": "2026-11-05T23:09:21.046366+00:00",
+      "original_generated_png_sha256": "49a4449dfb2fdfbe1a3dafdbc0177a6d743a820d3b4cd0c1054e5f2df5956c79",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "rgba_sha256": "fb6106c5bfc66bad7a08b9b1e7cc9cd5ead19d831ed62f4b49f25f9b19215527",
+      "evaluation_take": 1,
+      "original_run": "batch-36-lit-ladder-pilot",
+      "original_take": 1,
+      "original_callback": "/workspace/art-operator-runtime/run-20261105-night/batch-36-lit-ladder-pilot/generated-lighthouse-1-lit-t1.json",
+      "original_callback_sha256": "f5ff8f319f35dcdda3b8d52ff0219fe521b40ba97a949cc088f84bf87bbf8f3e",
+      "original_packet": {
+        "batch": "batch-36-lit-ladder-pilot",
+        "job": "lighthouse-1-lit",
+        "worktree": "/workspace/art-20261105-lit-ladder",
+        "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nLight the lighthouse from inside: the lamp room under the coral cap\n(the row of dark glass panes between the cream posts) now glows warm\ncandle-amber, brightest in the middle of the room with a soft\nrounded lamp shape suggested inside, painted as soft broad shapes.\nOnly the glass panes of the lamp room change: the posts between\nthem, the cap, the balcony and railing, the stripes, the round\nwindow, the door and the base keep their exact day colors (the app\nadds the glow around the lamp, the beam and the night grade).\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: a beam, light rays, a glow outside the glass, a halo, light on other parts, a night sky, darkening anything, blown yellow-white highlights, text.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+        "refs": [
+          "/workspace/art-20261105-lit-ladder/design/art/stations/lighthouse-1/lighthouse-1.png"
+        ],
+        "reference_sha256": {
+          "/workspace/art-20261105-lit-ladder/design/art/stations/lighthouse-1/lighthouse-1.png": "d10186ccbac80dcc55fc63b6857b4761cf811c5962985d32dfcc9fd06a1cf915"
+        },
+        "fingerprint": "5be4d915f2eaa8ef",
+        "prompt_sha256": "e11dfb6f3dc87579b06c6a9a0f41615d13dc2ca8b1c6b754b76d39749479baad",
+        "transparent": true
+      },
+      "evaluation_fingerprint": "5be4d915f2eaa8ef"
+    },
+    {
+      "batch": "batch-36-lit-ladder-pilot",
+      "job": "lighthouse-1-lit",
+      "take": 2,
+      "round": 1,
+      "logical_run": "20261105-b36-lit-ladder",
+      "source_file": "/workspace/generated_images/exec-577c6f30-16fc-4709-b64b-23f1d12f7c22.png",
+      "returned_at": "2026-11-05T23:10:07.450Z",
+      "prompt_sha256": "e11dfb6f3dc87579b06c6a9a0f41615d13dc2ca8b1c6b754b76d39749479baad",
+      "fingerprint": "5be4d915f2eaa8ef",
+      "saved_at": "2026-11-05T23:10:07.761276+00:00",
+      "original_generated_png_sha256": "f739d2a15e3c4298f9fd4da2f2efb6d0a972c9ef1882e48258dbe2cc1657be9c",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "rgba_sha256": "9efe52b603d069bcd4721e03cf51080e6b5c8a5eda276b150a70688c6c6e83e5",
+      "evaluation_take": 2,
+      "original_run": "batch-36-lit-ladder-pilot",
+      "original_take": 2,
+      "original_callback": "/workspace/art-operator-runtime/run-20261105-night/batch-36-lit-ladder-pilot/generated-lighthouse-1-lit-t2.json",
+      "original_callback_sha256": "0933f2f3e5e8583c4a0fe3e9f6d057385f5c2751c509291b5a3112bd499db510",
+      "original_packet": {
+        "batch": "batch-36-lit-ladder-pilot",
+        "job": "lighthouse-1-lit",
+        "worktree": "/workspace/art-20261105-lit-ladder",
+        "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nLight the lighthouse from inside: the lamp room under the coral cap\n(the row of dark glass panes between the cream posts) now glows warm\ncandle-amber, brightest in the middle of the room with a soft\nrounded lamp shape suggested inside, painted as soft broad shapes.\nOnly the glass panes of the lamp room change: the posts between\nthem, the cap, the balcony and railing, the stripes, the round\nwindow, the door and the base keep their exact day colors (the app\nadds the glow around the lamp, the beam and the night grade).\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: a beam, light rays, a glow outside the glass, a halo, light on other parts, a night sky, darkening anything, blown yellow-white highlights, text.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+        "refs": [
+          "/workspace/art-20261105-lit-ladder/design/art/stations/lighthouse-1/lighthouse-1.png"
+        ],
+        "reference_sha256": {
+          "/workspace/art-20261105-lit-ladder/design/art/stations/lighthouse-1/lighthouse-1.png": "d10186ccbac80dcc55fc63b6857b4761cf811c5962985d32dfcc9fd06a1cf915"
+        },
+        "fingerprint": "5be4d915f2eaa8ef",
+        "prompt_sha256": "e11dfb6f3dc87579b06c6a9a0f41615d13dc2ca8b1c6b754b76d39749479baad",
+        "transparent": true
+      },
+      "evaluation_fingerprint": "5be4d915f2eaa8ef"
+    },
+    {
+      "batch": "batch-36-lit-ladder-pilot",
+      "job": "lighthouse-1-lit",
+      "take": 3,
+      "round": 2,
+      "logical_run": "20261105-b36-lit-ladder",
+      "source_file": "/workspace/generated_images/exec-cd1fb17e-7620-4cf2-9e8e-06fbbca4d756.png",
+      "returned_at": "2026-11-05T23:16:26.824Z",
+      "prompt_sha256": "e11dfb6f3dc87579b06c6a9a0f41615d13dc2ca8b1c6b754b76d39749479baad",
+      "fingerprint": "5be4d915f2eaa8ef",
+      "saved_at": "2026-11-05T23:16:27.255711+00:00",
+      "original_generated_png_sha256": "51ecfcab48f4b9ddf0f1cb7aae6433427171ed191575dc2a0138b5dfd6d10a86",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "rgba_sha256": "b5454441134af056959ceee547f463544b40d8d60f7a34ef9d0f6e530738dcee",
+      "evaluation_take": 3,
+      "original_run": "batch-36-lit-ladder-pilot",
+      "original_take": 3,
+      "original_callback": "/workspace/art-operator-runtime/run-20261105-night/batch-36-lit-ladder-pilot/generated-lighthouse-1-lit-t3.json",
+      "original_callback_sha256": "4b78772bbf8990bfb85c39d4417f8f89cf5b3b2e3d455e63360f90a86d6f9b67",
+      "original_packet": {
+        "batch": "batch-36-lit-ladder-pilot",
+        "job": "lighthouse-1-lit",
+        "worktree": "/workspace/art-20261105-lit-ladder",
+        "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nLight the lighthouse from inside: the lamp room under the coral cap\n(the row of dark glass panes between the cream posts) now glows warm\ncandle-amber, brightest in the middle of the room with a soft\nrounded lamp shape suggested inside, painted as soft broad shapes.\nOnly the glass panes of the lamp room change: the posts between\nthem, the cap, the balcony and railing, the stripes, the round\nwindow, the door and the base keep their exact day colors (the app\nadds the glow around the lamp, the beam and the night grade).\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: a beam, light rays, a glow outside the glass, a halo, light on other parts, a night sky, darkening anything, blown yellow-white highlights, text.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+        "refs": [
+          "/workspace/art-20261105-lit-ladder/design/art/stations/lighthouse-1/lighthouse-1.png"
+        ],
+        "reference_sha256": {
+          "/workspace/art-20261105-lit-ladder/design/art/stations/lighthouse-1/lighthouse-1.png": "d10186ccbac80dcc55fc63b6857b4761cf811c5962985d32dfcc9fd06a1cf915"
+        },
+        "fingerprint": "5be4d915f2eaa8ef",
+        "prompt_sha256": "e11dfb6f3dc87579b06c6a9a0f41615d13dc2ca8b1c6b754b76d39749479baad",
+        "transparent": true
+      },
+      "evaluation_fingerprint": "5be4d915f2eaa8ef"
+    },
+    {
+      "batch": "batch-36-lit-ladder-pilot",
+      "job": "lighthouse-1-lit",
+      "take": 4,
+      "round": 2,
+      "logical_run": "20261105-b36-lit-ladder",
+      "source_file": "/workspace/generated_images/exec-a255d187-908b-41e7-aea7-9172593ce65c.png",
+      "returned_at": "2026-11-05T23:17:11.357Z",
+      "prompt_sha256": "e11dfb6f3dc87579b06c6a9a0f41615d13dc2ca8b1c6b754b76d39749479baad",
+      "fingerprint": "5be4d915f2eaa8ef",
+      "saved_at": "2026-11-05T23:17:11.655035+00:00",
+      "original_generated_png_sha256": "628624a92353398261be3728bd592b2c6199f750841ba213fc31e499e92fa586",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "rgba_sha256": "6eac2edb267a2214d1e66e1a4f6c5bc93fd3535496900006d6c8987fa88077e7",
+      "evaluation_take": 4,
+      "original_run": "batch-36-lit-ladder-pilot",
+      "original_take": 4,
+      "original_callback": "/workspace/art-operator-runtime/run-20261105-night/batch-36-lit-ladder-pilot/generated-lighthouse-1-lit-t4.json",
+      "original_callback_sha256": "1dea2644b0da4fc8e7fc741fdc939f42355179f917f6ba3b541a86c67605d717",
+      "original_packet": {
+        "batch": "batch-36-lit-ladder-pilot",
+        "job": "lighthouse-1-lit",
+        "worktree": "/workspace/art-20261105-lit-ladder",
+        "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nLight the lighthouse from inside: the lamp room under the coral cap\n(the row of dark glass panes between the cream posts) now glows warm\ncandle-amber, brightest in the middle of the room with a soft\nrounded lamp shape suggested inside, painted as soft broad shapes.\nOnly the glass panes of the lamp room change: the posts between\nthem, the cap, the balcony and railing, the stripes, the round\nwindow, the door and the base keep their exact day colors (the app\nadds the glow around the lamp, the beam and the night grade).\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: a beam, light rays, a glow outside the glass, a halo, light on other parts, a night sky, darkening anything, blown yellow-white highlights, text.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+        "refs": [
+          "/workspace/art-20261105-lit-ladder/design/art/stations/lighthouse-1/lighthouse-1.png"
+        ],
+        "reference_sha256": {
+          "/workspace/art-20261105-lit-ladder/design/art/stations/lighthouse-1/lighthouse-1.png": "d10186ccbac80dcc55fc63b6857b4761cf811c5962985d32dfcc9fd06a1cf915"
+        },
+        "fingerprint": "5be4d915f2eaa8ef",
+        "prompt_sha256": "e11dfb6f3dc87579b06c6a9a0f41615d13dc2ca8b1c6b754b76d39749479baad",
+        "transparent": true
+      },
+      "evaluation_fingerprint": "5be4d915f2eaa8ef"
+    }
+  ]
+}
