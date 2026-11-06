@@ -1,0 +1,208 @@
+batch: batch-23-stickers-v2
+manifest: tools/imagegen/manifest/batch-23-stickers-v2.yaml
+manifest_sha256: dcb068fb9723a863b0d1cbed34ed32dd799fcb31c4898c31a4fed74500ab0360
+contact_sheet: design/art/takes/batch-23-stickers-v2/x-sticker-mochi-1-v2/contact.jpg
+jobs:
+  x-sticker-mochi-1-v2:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Source and official locked review
+      confirm five complete separated long-eared bunnies in exact original 3+2 order,
+      no Pofu or head curl. Take2 preserves happy shut eyes/perked ears, sleepy shut
+      eyes/two drooped ears/head nod, surprised wide eyes/O/two straight-up ears,
+      proud raised chin/tall ears/satisfied smile and sulky puffed cheeks/side glance/exactly
+      ONE flopped ear with other upright. Take1 is excluded because its sulky bunny
+      has BOTH ears hanging, contrary to exactly one flopped ear. Both hard QA pass;
+      only eligible take2 selected at lock load .0117 (excluded take1=.0062). Proper
+      source and locked light/dark composites show clean background; hidden RGB is
+      not treated as an opaque halo. Exploration only; never promoted.
+qa_reports:
+  1:
+    job: x-sticker-mochi-1-v2
+    take: 1
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 32 (R1 51)
+      value: 32.2
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 62 (at most 22), p98 97 (at least 90), spread 35
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 35.1
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 90 (band 55-90)'
+      value: 89.8
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.08 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.082
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.6 (at least 3.5)'
+      value: 4.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 5.1 (R1 5.3)
+      value: 5.1
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0062
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 0.8, p95 1.9, off-palette 0.6% (top: #552211 (0.1%), #662211
+        (0.1%))'
+      value: 0.8072
+    info:
+      metrics_raw:
+        L_p5: 72.9
+        L_p50: 89.8
+        L_p95: 95.9
+        C_p50: 11.8
+        C_p95: 32.2
+        C_p99: 42.9
+        detail: 5.04
+      metrics_locked:
+        L_p5: 72.9
+        L_p50: 89.8
+        L_p95: 95.9
+        C_p50: 11.8
+        C_p95: 32.2
+        C_p99: 42.9
+        detail: 5.1
+    fingerprint: f6a7e4fbee342b4f
+  2:
+    job: x-sticker-mochi-1-v2
+    take: 2
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 33 (R1 51)
+      value: 33.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 60 (at most 22), p98 96 (at least 90), spread 37
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 37.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 90 (band 55-90)'
+      value: 90.0
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.004
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.0 (at least 3.5)'
+      value: 4.98
+    - check: detail_budget
+      status: pass
+      message: detail at display size 5.1 (R1 5.3)
+      value: 5.08
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0117
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 0.8, p95 2.1, off-palette 0.7% (top: #552211 (0.1%), #662211
+        (0.1%))'
+      value: 0.8482
+    info:
+      metrics_raw:
+        L_p5: 72.9
+        L_p50: 90.1
+        L_p95: 96.1
+        C_p50: 12.0
+        C_p95: 33.4
+        C_p99: 43.3
+        detail: 5.04
+      metrics_locked:
+        L_p5: 72.9
+        L_p50: 90.1
+        L_p95: 96.1
+        C_p50: 12.0
+        C_p95: 33.4
+        C_p99: 43.3
+        detail: 5.08
+    fingerprint: f6a7e4fbee342b4f
+manual_review:
+  observed_note: Source and official locked review confirm five complete separated
+    long-eared bunnies in exact original 3+2 order, no Pofu or head curl. Take2 preserves
+    happy shut eyes/perked ears, sleepy shut eyes/two drooped ears/head nod, surprised
+    wide eyes/O/two straight-up ears, proud raised chin/tall ears/satisfied smile
+    and sulky puffed cheeks/side glance/exactly ONE flopped ear with other upright.
+    Take1 is excluded because its sulky bunny has BOTH ears hanging, contrary to exactly
+    one flopped ear. Both hard QA pass; only eligible take2 selected at lock load
+    .0117 (excluded take1=.0062). Proper source and locked light/dark composites show
+    clean background; hidden RGB is not treated as an opaque halo. Exploration only;
+    never promoted.
+  excluded_takes:
+  - 1
+sources:
+- batch: batch-23-stickers-v2
+  job: x-sticker-mochi-1-v2
+  take: 1
+  round: 1
+  logical_run: 20261106-b23-v2
+  source_file: /workspace/generated_images/exec-daeeffa8-ad73-4354-8f73-a5c03db8e228.png
+  returned_at: '2026-11-06T04:11:06.266Z'
+  prompt_sha256: a547d82c0147afa848b7100ef1d117189788deb8031402b6ab7ba0d0d24ab16b
+  fingerprint: f6a7e4fbee342b4f
+  saved_at: '2026-11-06T04:11:06.777228+00:00'
+  original_generated_png_sha256: 426d7f66ad247f3d9068a871c0cd5ceb20a66c63936b328029d826717bfaa61c
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 763e9f66c2ddc8c38627b9d838afcf5cec10a2920dd9ef32b0fe8f978629be10
+  inbox_png_sha256: e2deb793e2443739c78db993f6681750c21084fe91e40017b4d4761abe427b98
+  qa_sha256: 6f3111a83ceb9f4864ae9daf2c09f824adaecb594348ad643a16bc56c5f2cd3b
+- batch: batch-23-stickers-v2
+  job: x-sticker-mochi-1-v2
+  take: 2
+  round: 1
+  logical_run: 20261106-b23-v2
+  source_file: /workspace/generated_images/exec-12f3859d-edbf-488e-aa05-282927604655.png
+  returned_at: '2026-11-06T04:11:52.509Z'
+  prompt_sha256: a547d82c0147afa848b7100ef1d117189788deb8031402b6ab7ba0d0d24ab16b
+  fingerprint: f6a7e4fbee342b4f
+  saved_at: '2026-11-06T04:11:52.927304+00:00'
+  original_generated_png_sha256: dabf5c1cd52a19ef8212ae442e8425a3aff7f43aee0b90567bbedd0731934bf2
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: ddf6c4fc075d1b32fa18b3bbbef553fa1c03b0d200ed640cd12a62dadc9af952
+  inbox_png_sha256: 3246c8e87bfbffdc4c4e5f81237af403deba412f5815a03df8f3b81af97ee0ca
+  qa_sha256: 04cc3e38e9977fef35d942fa601dec74d46208cfa2f101c2232ba373fd0a4baf
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+variation_proof_sha256: 9f2d38faf2760152a6667858ae96b6771454f67bdf3d7dbe519f82ce0772ce1b
