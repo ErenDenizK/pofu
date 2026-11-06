@@ -31,7 +31,9 @@ enum ShieldSky: String, CaseIterable {
 /// The shield's colors per palette (gate v2, section 5.2, and experience v1
 /// section 3.4). The copy's palette says bedtime or the breath; otherwise
 /// the sky of the hour decides. In the system's dark appearance dawn and
-/// day step back to the night palette.
+/// day step back to the night palette. The golden hour (dusk) is warm
+/// apricot; only night is indigo. Buttons are honey by day and amber at
+/// night, never the system purple.
 struct ShieldColors {
     let background: UIColor
     let title: UIColor
@@ -42,44 +44,48 @@ struct ShieldColors {
 
     init(palette: ShieldPalette, sky: ShieldSky = ShieldSky(date: Date())) {
         let cream = Self.hex(0xFFF6EC)
-        let night = Self.hex(0x15111C)
+        let night = Self.hex(0x1E1A3C)
+        let cocoa = Self.hex(0x4A3326)
+        let honey = Self.hex(0xF6C453)
+        let amber = Self.hex(0xE9A93B)
+        let amberInk = Self.hex(0x2A1A0A)
         let ink900 = Self.hex(0x2A1F2D)
         let ink600 = Self.hex(0x66555F)
         let mist300 = Self.hex(0xB8A8B1)
-        let violet600 = Self.hex(0x6C4FD8)
-        let violet300 = Self.hex(0xB9A2FF)
-        let violet500 = Self.hex(0x8F74F0)
+        let umber = Self.hex(0x8A4B12)
+        let amber300 = Self.hex(0xFFC766)
         switch palette {
         case .night:
-            self = Self.night(cream: cream, night: night, mist300: mist300, violet500: violet500)
+            self = Self.night(cream: cream, night: night, mist300: mist300, amber: amber, amberInk: amberInk)
         case .breath:
             background = Self.dynamic(light: Self.hex(0xF1ECFF), dark: Self.hex(0x1E1828))
             title = Self.dynamic(light: ink900, dark: cream)
             subtitle = Self.dynamic(light: ink600, dark: mist300)
-            primaryFill = Self.dynamic(light: violet600, dark: violet300)
-            primaryLabel = Self.dynamic(light: .white, dark: night)
-            secondaryLabel = Self.dynamic(light: violet600, dark: violet300)
+            primaryFill = Self.dynamic(light: honey, dark: amber)
+            primaryLabel = Self.dynamic(light: cocoa, dark: amberInk)
+            secondaryLabel = Self.dynamic(light: umber, dark: amber300)
         case .day:
             switch sky {
             case .night:
-                self = Self.night(cream: cream, night: night, mist300: mist300, violet500: violet500)
+                self = Self.night(cream: cream, night: night, mist300: mist300, amber: amber, amberInk: amberInk)
             case .dusk:
-                // The dusk zenith, deepened until cream text sits on it.
-                background = Self.hex(0x3A3560)
-                title = cream
-                subtitle = Self.hex(0xD9CCE0)
-                primaryFill = violet300
-                primaryLabel = night
-                secondaryLabel = Self.hex(0xD9CCE0)
+                // The golden hour: a warm apricot, ink text, honey button.
+                background = Self.dynamic(light: Self.hex(0xFFE0C0), dark: night)
+                title = Self.dynamic(light: ink900, dark: cream)
+                subtitle = Self.dynamic(light: Self.hex(0x5A4750), dark: mist300)
+                primaryFill = Self.dynamic(light: honey, dark: amber)
+                primaryLabel = Self.dynamic(light: cocoa, dark: amberInk)
+                secondaryLabel = Self.dynamic(light: Self.hex(0x9C3F1B), dark: amber300)
             case .dawn, .day:
-                let light = sky == .dawn ? Self.hex(0xFBE4D8) : cream
+                // Dawn peach, or the day's cream-sky.
+                let light = sky == .dawn ? Self.hex(0xFBE4D8) : Self.hex(0xFFF1DE)
                 let dark = sky == .dawn ? Self.hex(0x2B1F2C) : night
                 background = Self.dynamic(light: light, dark: dark)
                 title = Self.dynamic(light: ink900, dark: cream)
                 subtitle = Self.dynamic(light: ink600, dark: mist300)
-                primaryFill = Self.dynamic(light: violet600, dark: violet300)
-                primaryLabel = Self.dynamic(light: .white, dark: night)
-                secondaryLabel = Self.dynamic(light: violet600, dark: violet300)
+                primaryFill = Self.dynamic(light: honey, dark: amber)
+                primaryLabel = Self.dynamic(light: cocoa, dark: amberInk)
+                secondaryLabel = Self.dynamic(light: sky == .dawn ? Self.hex(0xA8431F) : umber, dark: amber300)
             }
         }
     }
@@ -93,20 +99,20 @@ struct ShieldColors {
         self.secondaryLabel = secondaryLabel
     }
 
-    private static func night(cream: UIColor, night: UIColor, mist300: UIColor, violet500: UIColor) -> ShieldColors {
+    private static func night(cream: UIColor, night: UIColor, mist300: UIColor, amber: UIColor, amberInk: UIColor) -> ShieldColors {
         ShieldColors(
             background: night,
             title: cream.withAlphaComponent(0.92),
             subtitle: mist300,
-            primaryFill: violet500,
-            primaryLabel: night,
+            primaryFill: amber,
+            primaryLabel: amberInk,
             secondaryLabel: mist300
         )
     }
 
     /// Whether this palette is dark whatever the system appearance is.
     static func isDark(palette: ShieldPalette, sky: ShieldSky) -> Bool {
-        palette == .night || (palette == .day && (sky == .night || sky == .dusk))
+        palette == .night || (palette == .day && sky == .night)
     }
 
     private static func hex(_ value: UInt32) -> UIColor {
