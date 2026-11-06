@@ -146,7 +146,7 @@ struct ShieldCopyLadderTests {
         #expect(copy.icon == .curious)
         #expect(copy.palette == .day)
         #expect(["Hop! Bir saniye.", "Instagram bekleyebilir."].contains(copy.title))
-        #expect(copy.subtitle == "Ben buradayım.")
+        #expect(copy.subtitle == "Ben buradayım. Bir şey kaçmıyor.")
         #expect(copy.primary == .init(label: "Boş ver", intent: .skip))
     }
 
@@ -157,12 +157,27 @@ struct ShieldCopyLadderTests {
         #expect(tr(context(hour: 3)).line == .day)
     }
 
-    @Test func calmShowsOnlyWhenItExists() {
-        #expect(tr(context(hour: 8) { $0.calm = 1.4 }).subtitle == "Güne akışla başlamayalım. Huzur ×1,4.")
-        #expect(en(context(hour: 8) { $0.calm = 1.4 }).subtitle == "Let's not start the day with the feed. Calm ×1.4.")
-        #expect(tr(context(hour: 19) { $0.calm = 1.8 }).subtitle == "Bu saatler en zoru. Huzur ×1,8, neredeyse dolu.")
-        #expect(tr(context(hour: 19) { $0.calm = 1.2 }).subtitle == "Bu saatler en zoru. Huzur ×1,2 · büyüyor.")
-        #expect(tr(context(hour: 19)).subtitle == "Bu saatler en zoru.")
+    @Test func calmNeverReachesTheShield() {
+        for calm in [nil, 1.4, 1.8] as [Double?] {
+            for hour in [8, 12, 19] {
+                let copy = tr(context(hour: hour) { $0.calm = calm })
+                #expect(!copy.subtitle.contains("Huzur"))
+                #expect(!copy.subtitle.contains("×"))
+            }
+        }
+        #expect(tr(context(hour: 8)).subtitle == "Çay demleniyor, akış bekleyebilir.")
+        #expect(en(context(hour: 8)).subtitle == "The tea is brewing; the feed can wait.")
+        #expect(tr(context(hour: 19)).subtitle == "Yorgun el en çok şimdi uzanır. Yanındayım.")
+    }
+
+    @Test func theSubtitleNeverRepeatsTheTitle() {
+        for context in everyContext {
+            for language in ShieldLanguage.allCases {
+                let copy = ShieldCopy.make(context: context, language: language)
+                let first = copy.subtitle.split(separator: "\n").first.map(String.init) ?? ""
+                #expect(!first.hasPrefix(copy.title), "\(copy.title) / \(first)")
+            }
+        }
     }
 
     @Test func theTallyCountsResistsOnlyAndStartsAtTheFirstOne() {
@@ -187,7 +202,7 @@ struct ShieldCopyLadderTests {
         #expect(jealous.line == .jealous)
         #expect(jealous.icon == .jealous)
         #expect(["Yine mi Instagram?", "Hı. Instagram. Anladım."].contains(jealous.title))
-        #expect(jealous.subtitle == "Bu saat 3. kez. Onda olup bende olmayan ne?")
+        #expect(jealous.subtitle == "Bu saat 3. kez. Onda ne var, bende yok?")
         #expect(en(context { $0.reachesThisHour = 3 }).subtitle == "3rd time this hour. What does it have that I don't?")
 
         // Never twice in a row, never more than three a day.
@@ -321,7 +336,7 @@ struct ShieldCopyStateTests {
         #expect(copy.primary == .init(label: "Bitti, kapat", intent: .closeAfterPass))
         #expect(copy.secondary == .init(label: "Biraz daha", intent: .openWithPofu))
         let afterOpen = tr(context { $0.endedPassMinutes = 15; $0.calm = 1.6 })
-        #expect(afterOpen.subtitle == "15 dakika bitti. Huzur ×1,6 seni bekliyor.")
+        #expect(afterOpen.subtitle == "15 dakika bitti. Kapıya döndüm.")
         #expect(afterOpen.secondary?.label == "Biraz daha")
         #expect(afterOpen.submenu.count == 2)
     }

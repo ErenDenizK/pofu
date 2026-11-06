@@ -1,0 +1,1 @@
+Changed: the breath is now a room: a drawn halo, a ring that fills with the in-breath and unwinds with the out-breath, Pofu who swells a little, and a soft haptic swell you feel while you breathe (Settings, Nefeste titreşim); buttons across Hop! are carved plaques that sink when pressed; the shield's lines no longer repeat their title or quote a multiplier.

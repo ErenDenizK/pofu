@@ -88,6 +88,8 @@ struct SettingsView: View {
 /// Pofu's tiny sounds: on by default; the Silent switch always wins.
 private struct SoundSettingsSection: View {
     @State private var isOn = !SoundEngine.shared.settings.isMuted
+    /// The Core Haptics swell during the breath (UI v3 section 4).
+    @AppStorage(BreathHapticsSetting.key) private var breathHaptics = true
 
     var body: some View {
         Section {
@@ -99,6 +101,10 @@ private struct SoundSettingsSection: View {
                 }
             )) {
                 PaintedLabel("Pofu's sounds", paint: .iconBreath)
+            }
+            .tint(PofuColor.accent)
+            Toggle(isOn: $breathHaptics) {
+                PaintedLabel("Breath haptics", paint: .iconBreath)
             }
             .tint(PofuColor.accent)
         } header: {
