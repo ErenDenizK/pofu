@@ -1,16 +1,16 @@
 {
  "after": {
-  "C_mean": 27.639,
-  "C_p50": 32.439,
-  "C_p95": 42.285,
-  "L_mean": 68.634,
-  "L_p2": 31.693,
+  "C_mean": 27.587,
+  "C_p50": 32.35,
+  "C_p95": 42.251,
+  "L_mean": 74.957,
+  "L_p2": 47.693,
   "L_p98": 92.864,
-  "detail": 9.337,
-  "edge": 0.128,
+  "detail": 5.665,
+  "edge": 0.221,
   "tint_a": 5.499,
-  "tint_b": 9.167,
-  "warmth_b": 21.428
+  "tint_b": 9.162,
+  "warmth_b": 21.406
  },
  "before": {
   "C_mean": 27.639,
@@ -19,15 +19,15 @@
   "L_mean": 68.634,
   "L_p2": 31.693,
   "L_p98": 92.864,
-  "detail": 9.337,
-  "edge": 0.128,
+  "detail": 7.447,
+  "edge": 0.221,
   "tint_a": 5.499,
   "tint_b": 9.167,
   "warmth_b": 21.428
  },
  "chain": null,
  "correction": {
-  "black": 0.0,
+  "black": 16.0,
   "ceiling": 0.0,
   "chroma": 1.0,
   "materials": {},
@@ -36,21 +36,22 @@
   "white": 0.0
  },
  "guarded": false,
- "kind": "char",
- "matched_to": "char",
+ "kind": "station",
+ "matched_to": "world",
  "outliers_after": [
-  "L_p2",
-  "detail"
+  "detail",
+  "edge"
  ],
  "outliers_before": [
   "L_p2",
-  "detail"
+  "detail",
+  "edge"
  ],
- "ppu": 29.0,
+ "ppu": 16.8684,
  "reference": false,
- "score_after": 78.8,
- "score_before": 78.8,
- "shipped": false,
+ "score_after": 72.0,
+ "score_before": 57.3,
+ "shipped": true,
  "source": "design/art/masters/damla-glass/damla-glass.webp",
  "source_sha": "1bb8bdecfa8f6402"
 }

@@ -1,16 +1,16 @@
 {
  "after": {
-  "C_mean": 27.948,
-  "C_p50": 33.517,
-  "C_p95": 39.979,
-  "L_mean": 66.078,
-  "L_p2": 20.006,
+  "C_mean": 34.016,
+  "C_p50": 40.831,
+  "C_p95": 48.941,
+  "L_mean": 72.092,
+  "L_p2": 36.006,
   "L_p98": 94.453,
-  "detail": 9.412,
-  "edge": 0.201,
-  "tint_a": 5.021,
-  "tint_b": 9.524,
-  "warmth_b": 21.698
+  "detail": 6.011,
+  "edge": 0.345,
+  "tint_a": 4.784,
+  "tint_b": 10.113,
+  "warmth_b": 26.496
  },
  "before": {
   "C_mean": 27.948,
@@ -19,36 +19,41 @@
   "L_mean": 66.078,
   "L_p2": 20.006,
   "L_p98": 94.453,
-  "detail": 9.412,
-  "edge": 0.201,
+  "detail": 7.403,
+  "edge": 0.345,
   "tint_a": 5.021,
   "tint_b": 9.524,
   "warmth_b": 21.698
  },
  "chain": null,
  "correction": {
-  "black": 0.0,
+  "black": 16.0,
   "ceiling": 0.0,
-  "chroma": 1.0,
+  "chroma": 1.227,
   "materials": {},
   "tint_a": 0.0,
   "tint_b": 0.0,
   "white": 0.0
  },
  "guarded": false,
- "kind": "char",
- "matched_to": "char",
+ "kind": "station",
+ "matched_to": "world",
  "outliers_after": [
-  "detail"
+  "L_p2",
+  "detail",
+  "edge"
  ],
  "outliers_before": [
-  "detail"
+  "C_p95",
+  "L_p2",
+  "detail",
+  "edge"
  ],
- "ppu": 29.0,
+ "ppu": 16.8684,
  "reference": false,
- "score_after": 87.4,
- "score_before": 87.4,
- "shipped": false,
+ "score_after": 66.9,
+ "score_before": 47.7,
+ "shipped": true,
  "source": "design/art/masters/damla/damla.webp",
  "source_sha": "b14260ea5d4ba652"
 }
