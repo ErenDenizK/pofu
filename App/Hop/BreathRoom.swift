@@ -38,7 +38,6 @@ struct BreathRoom: View {
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var phase: BreathPhase
-    @State private var ring: Double
     @State private var lift: Double
     @State private var started = 0
     @State private var finished = 0
@@ -49,7 +48,6 @@ struct BreathRoom: View {
         self.plan = plan
         self.frozen = frozen
         _phase = State(initialValue: frozen?.phase ?? .waiting)
-        _ring = State(initialValue: frozen?.ring ?? 0)
         _lift = State(initialValue: frozen?.lift ?? 0)
     }
 
@@ -69,11 +67,15 @@ struct BreathRoom: View {
                         .accessibilityAddTraits(.isHeader)
                     Spacer(minLength: 0)
                     BreathScene(
-                        ring: ring,
+                        inhale: plan.inhale,
+                        exhale: plan.exhale,
+                        start: started,
+                        frozenRing: frozen?.ring,
+                        onPhase: handle,
                         lift: lift,
                         isNight: isNight,
                         reduceMotion: reduceMotion,
-                        pofu: CompanionView(vitality: model.vitality, energy: min(1, model.cheekFill + 0.1 * lift))
+                        pofu: CompanionView(vitality: model.vitality, energy: PofuBreathing.cheekEnergy(base: model.cheekFill, lift: lift))
                             .accessibilityLabel(Text(verbatim: model.profile.companionName))
                     )
                     .frame(maxWidth: 320)
@@ -151,24 +153,26 @@ struct BreathRoom: View {
         started += 1
         BreathHaptics.shared.swell(inhale: plan.inhale, exhale: plan.exhale)
         BreathSound.play(.airOpens)
-        Task { @MainActor in
+    }
+
+    /// The ring's turns drive the room: the same inhale and exhale
+    /// seconds as `BreathPlan`, then the choices.
+    private func handle(_ ringPhase: BreathRingPhase) {
+        switch ringPhase {
+        case .inhale:
             announce("Breathe in…")
             withAnimation(.easeInOut(duration: plan.inhale)) {
                 phase = .breathingIn
-                ring = 1
                 lift = 1
             }
-            try? await Task.sleep(for: .seconds(plan.inhale))
-            guard phase == .breathingIn else { return }
+        case .exhale:
             announce("…and out.")
             BreathSound.play(.airCloses)
             withAnimation(.easeInOut(duration: plan.exhale)) {
                 phase = .breathingOut
-                ring = 0
                 lift = 0
             }
-            try? await Task.sleep(for: .seconds(plan.exhale))
-            guard phase == .breathingOut else { return }
+        case .finished:
             withAnimation(PofuMotion.settle) { phase = .done }
             BreathSound.play(.chime)
             finished += 1

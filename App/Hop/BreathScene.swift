@@ -92,8 +92,12 @@ private struct PetalCanvas: View {
 
 /// The ring, the halo, the isle and Pofu on it.
 struct BreathScene<Pofu: View>: View {
-    /// How much of the ring is drawn, `0...1`.
-    let ring: Double
+    let inhale: Double
+    let exhale: Double
+    let start: Int
+    /// Pins the ring (screenshots).
+    var frozenRing: Double?
+    let onPhase: (BreathRingPhase) -> Void
     /// 0 (out) ... 1 (in): drives the isle, the halo and the swell.
     let lift: Double
     let isNight: Bool
@@ -102,7 +106,6 @@ struct BreathScene<Pofu: View>: View {
 
     var body: some View {
         let honey = PofuKitPalette.day.honey
-        let cream = PofuKitPalette.day.cream
         ZStack {
             // The halo: a soft glow that opens with the breath. Reduce
             // Motion fades it in and out instead of moving anything.
@@ -119,17 +122,7 @@ struct BreathScene<Pofu: View>: View {
                 )
                 .scaleEffect(reduceMotion ? 1 : 0.9 + 0.12 * lift)
                 .opacity(0.45 + 0.55 * lift)
-            // The ring track and the ring.
-            Circle()
-                .stroke(cream.opacity(isNight ? 0.18 : 0.55), lineWidth: 3)
-                .padding(14)
-            Circle()
-                .trim(from: 0, to: ring)
-                .stroke(
-                    AngularGradient(colors: [honey, cream, honey], center: .center, startAngle: .degrees(0), endAngle: .degrees(360)),
-                    style: StrokeStyle(lineWidth: 3, lineCap: .round)
-                )
-                .rotationEffect(.degrees(-90))
+            BreathRing(inhale: inhale, exhale: exhale, start: start, frozen: frozenRing, onPhase: onPhase)
                 .padding(14)
             VStack(spacing: 0) {
                 Spacer(minLength: 0)
@@ -137,7 +130,7 @@ struct BreathScene<Pofu: View>: View {
                     isle
                     pofu
                         .frame(maxWidth: 132)
-                        .scaleEffect(reduceMotion ? 1 : 1 + 0.04 * lift, anchor: .bottom)
+                        .pofuBreathing(lift: lift)
                         .padding(.bottom, 26)
                 }
                 .offset(y: reduceMotion ? 0 : -6 * lift)
