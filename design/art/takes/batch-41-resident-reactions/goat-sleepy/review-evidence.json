@@ -1,0 +1,47 @@
+{
+  "reviewer": "experience_delivery_adapter",
+  "independent_evidence_file": "/workspace/art-operator-runtime/run-20261105-night/batch-41-resident-reactions/independent-reviews/review-findik-proud-goat-sleepy-goat-proud.json",
+  "independent_evidence_sha256": "bcba2e6e56746bfe544ca37762b7dd37fadc2dc07384e29b5ed09ef43bab8b6f",
+  "job": "goat-sleepy",
+  "review": {
+    "evidence": {
+      "parent": "45c27632bebc3eb33a625d11164f3f298aede1a32ef9f806396c942af03e1630",
+      "takes": {
+        "1": {
+          "original_sha256": "534f618cf38efc1b7786c15bc6784598b2c45f44ed31f72077753484fc22a853",
+          "locked_sha256": "6f7d4e0bbbaa6d4c2c8c01cac3444ea09340653f86e4e82723c3216089011015",
+          "qa_status": "warn",
+          "alignment": {
+            "scale": 1.0016,
+            "cx": 508.0,
+            "cy": 1372.0,
+            "dx": 2,
+            "dy": -1
+          }
+        },
+        "2": {
+          "original_sha256": "105e9ba17a232509afe89171ca63caa21139b0b31aeac660ca30d0edfb930437",
+          "locked_sha256": "c52ce9ebedde0956fff9708c2629bad29a826659a7c9ce70e0d7b4ec8b9e9c67",
+          "qa_status": "warn",
+          "alignment": null
+        }
+      },
+      "preview_sha256": "29644123ffbec88232497df9c08b788066dbadd5b72e7e1834b2920b7a377d4c"
+    },
+    "reason": "Both have gently closed dark eyelid lines with fur above, relaxed brows and tiny calm mouth, lower-drooping floppy ears, preserved horn buds, beard, tan patch, torso and paws. No tears, worried/open eyes, teeth, cast shadow, text or zzz. Both visually eligible; existing warnings are unchanged.",
+    "eligible_takes": [
+      1,
+      2
+    ]
+  },
+  "owner_decision": {
+    "eligible": [
+      1,
+      2
+    ],
+    "pick": 2,
+    "note": "Independent read-only comparison evidence: independent-reviews/review-findik-proud-goat-sleepy-goat-proud.json. Both initial takes are visually eligible: genuinely closed thin eyelid lines, relaxed small mouth/brows and drooped ears, with two horn buds, beard tuft, tan patch, body and paws kept. No zzz, tears, worried look, teeth, text or cast shadow. Both hard-pass; character-guard applies no grading, so take2 wins higher Harmony79.8 vs78.8. Exact full1024x1536 lossless467802 bytes fits. Body diagnostics supplement visual review without inventing a global stability threshold; all advisory light warnings retained."
+  },
+  "source_originals_unchanged": true,
+  "local_art_edits": false
+}
