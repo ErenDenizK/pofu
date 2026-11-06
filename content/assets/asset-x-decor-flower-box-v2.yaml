@@ -1,0 +1,31 @@
+id: asset-x-decor-flower-box-v2
+type: asset
+title_tr: x-decor-flower-box-v2
+title_en: x-decor-flower-box-v2 (prop)
+status: cut
+horizon: now
+summary: >-
+  A low wooden flower box of soft honey wood with rounded ends, planted with a cheerful cluster
+  of small sunflowers, cream daisies and soft green leaves in plump simple shapes. It stands
+  on the guide's ground ellipse, centered on the cross, never wider than the ellipse and never
+  taller than the height bar; it is small, a third of the image width at most.
+art:
+  images: []
+  jobs:
+  - batch-24-home-materials-v2:x-decor-flower-box-v2
+sources:
+- doc: tools/imagegen/manifest/batch-24-home-materials-v2.yaml
+kind: prop
+batch: batch-24-home-materials-v2
+size: 1024x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Skipped after the sole allowed retry; registration remains cut and art.images is empty.
+- >-
+  Exactly four originals across initial pair plus sole unchanged-prompt retry. Original contents
+  keep one low rounded honey-wood flower box, small sunflowers and cream daisies with green
+  leaves, no faces/extra pots/text. Official normalized widths361/633/360/642px all exceed
+  authored complete-group one-third341.33px. Skip after sole retry for size, with original
+  source/locked diagnostic evidence preserved; no invented flower count or new height gate,
+  no pixel or QA waiver, never promoted.

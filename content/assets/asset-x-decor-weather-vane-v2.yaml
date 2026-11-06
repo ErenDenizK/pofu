@@ -1,0 +1,34 @@
+id: asset-x-decor-weather-vane-v2
+type: asset
+title_tr: x-decor-weather-vane-v2
+title_en: x-decor-weather-vane-v2 (prop)
+status: cut
+horizon: now
+summary: >-
+  A weather vane on a short, thick wooden post: a plump rounded arrow of warm brass-cream
+  pointing left with a small sunflower in place of a flag, two chunky crossbars with rounded
+  balls at their ends. All parts thick and rounded. It stands on the guide's ground ellipse,
+  centered on the cross, never wider than the ellipse and never taller than the height bar;
+  it is small, a third of the image width at most.
+art:
+  images: []
+  jobs:
+  - batch-24-home-materials-v2:x-decor-weather-vane-v2
+sources:
+- doc: tools/imagegen/manifest/batch-24-home-materials-v2.yaml
+kind: prop
+batch: batch-24-home-materials-v2
+size: 1024x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Skipped after the sole allowed retry; registration remains cut and art.images is empty.
+- >-
+  Exactly four originals across initial pair plus sole unchanged-prompt retry. Independent
+  source and official locked review confirms short thick wooden post, LEFT-pointing matte
+  brass-cream arrow with sunflower and exactly TWO crossbars with rounded ball ends; no compass
+  letters or added flag/character. Numeric QA has no hard fails, but official normalized whole-group
+  widths 360/343/360/361px all exceed authored one-third341.33px cap. Skip after sole retry
+  for size; no raw-pixel, extra height/HANG or invented object-state gate; no pixel or QA
+  waiver and no further generation. PNG/RGBA/QA hashes and boards preserved; exploration never
+  promoted.
