@@ -1,0 +1,1 @@
+Added: weather on the island: clear, overcast, light rain, mist, golden haze and a rainbow after rain, chosen by a seeded bag so every kind shows up in the first two weeks; and a cool lilac screen haze that rolls in from the harbor side when Pofu is unwell.
