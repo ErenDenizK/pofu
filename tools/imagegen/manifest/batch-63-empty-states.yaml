@@ -1,0 +1,221 @@
+# Batch 63: empty states, loading, the launch yawn, the Settings header and the
+# night shield icons (exploration first; x- ids, never promoted;
+# docs/design/ui-v3.md sections 2, 3, 5 and 6).
+#
+# ui-v3 principle 8, "never a dead state": empty is a painted vignette with
+# one action, loading is Pofu doing something, never a spinner. The vignettes
+# are small painted scenes on a transparent background (the app puts a live
+# Baloo 2 line and one honey plaque under them; the vignette fades up 0.4 s).
+# Every one is blank (no text, no letters, no numbers). The lead picks the
+# winning take of each, then writes a production batch (real ids:
+# empty-today, empty-map, empty-friends, empty-letters, permission-key,
+# loading-seed-roll, pofu-yawn, settings-header, shield-icons-night).
+#
+# Pofu in the sheets matches R1 (the approved hamster). Frames of a loop
+# share one pose family so the app can play them at <= 1.2 s per loop.
+#
+# The shield night set (section 3: "a night set with lamplight"): the same six
+# moods as batch-48's `x-shield-icons` take 1 (curious, proud, jealous,
+# breathe, excited, sleeping), round, at night, lit by the lamp inside the
+# burrow. The production size is 180 px per medallion with a 6 px warm rim,
+# Pofu's face at >= 55 percent of the diameter; it must read at 60 pt.
+# Attachments accept a repository path, so the day take is attached directly.
+
+batch: batch-63-empty-states
+title: Empty states, loading, the launch yawn, the Settings header and the night shield icons (exploration)
+status: open
+
+refs:
+  tea-stall-5: design/art/stations/tea-stall-5/tea-stall-5.png
+  shield-icons-day: design/art/takes/batch-48-gate-scenes/x-shield-icons/ui__x-shield-icons--t1.webp
+  round-door: design/art/takes/batch-48-gate-scenes/x-gate-round-door/ui__x-gate-round-door--t1.webp
+
+defaults:
+  variants: 2
+
+_shared:
+  r1: &r1
+    ref: R1
+    role: "Pofu, the hamster: match his art style, fur and finish exactly."
+  stall: &stall
+    ref: approved:tea-stall-5
+    role: "A finished prop of the game: match its soft airbrushed finish, matte materials, warm light and colors (do not draw the stall)."
+  door: &door
+    ref: round-door
+    role: "The round door gate (take 1): the world's warmth, the paper-and-wood materials and the lamplight. Take the mood and the light only."
+  vignette: &vignette
+    text: |
+      VIGNETTE: one small painted scene on a transparent background, centered, filling about 70 percent of the canvas, with generous transparent margin on every side and a soft painted ground patch (a little grass, a rug or a cloud) that fades out at its edge. No frame, no card, no panel, no sky filling the canvas. Calm space is kept above and below it for a live line of words and a button.
+  avoid: &avoid
+    text: "AVOID: text, letters, numbers, symbols meant as words, a phone frame, UI chrome, glass panels, buttons, a sad or crying Pofu, a dark or scary mood, saturated or neon colors, outlines, hard edges, gloss, a full-canvas background, other characters unless asked"
+
+jobs:
+  - {id: tea-stall-5, kind: station, name: tea-stall-5, external: batch-01-slice}
+
+  - id: x-empty-today
+    kind: ui
+    name: x-empty-today
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Empty states"
+    acceptance: {exploration: true}
+    notes: "Empty Today (no day to show yet): Pofu sets a small table for the day ahead, an empty teacup and an open blank notebook, waiting with a patient smile. Review: an invitation, not a loss; one clear idea; reads at 220 pt; blank notebook pages."
+    attach:
+      - *r1
+      - *stall
+      - *door
+    prompt:
+      - text: |
+          Pofu, a round fluffy hamster, sits at a tiny wooden table with an empty teacup and an open blank paper notebook in front of him and a pencil beside it, looking up toward us with a patient, hopeful smile as if the day were about to begin. A sprout in a small pot on the table, soft morning light from the upper left.
+      - *vignette
+      - block: style-anchor-v1
+      - *avoid
+
+  - id: x-empty-map
+    kind: ui
+    name: x-empty-map
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Empty states"
+    acceptance: {exploration: true}
+    notes: "Empty map (no other islands explored yet): Pofu holds up a blank folded map and a brass spyglass, looking out at a few faint cloud-silhouette islands far away. Review: invites exploring; the far islands are faint soft silhouettes, not detailed; the map is blank."
+    attach:
+      - *r1
+      - *stall
+      - *door
+    prompt:
+      - text: |
+          Pofu, a round fluffy hamster, stands at the edge of a small grassy tuft holding a blank, partly unfolded paper map in one paw and a small brass spyglass in the other, looking out into the distance. Far behind him, three tiny faint island silhouettes float in pale lilac-peach mist, barely visible.
+      - *vignette
+      - block: style-anchor-v1
+      - *avoid
+
+  - id: x-empty-friends
+    kind: ui
+    name: x-empty-friends
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Empty states"
+    acceptance: {exploration: true}
+    notes: "Empty friends: Pofu waves from his round door with an empty second teacup and a second small stool beside him, a lantern lit. Review: warm and inviting, never lonely; the second place is clearly set and empty; no one else is drawn."
+    attach:
+      - *r1
+      - *stall
+      - *door
+    prompt:
+      - text: |
+          Pofu, a round fluffy hamster, sits beside his little round wooden door on a small stool, waving one paw toward us, with a second empty stool and a second empty teacup set beside him and a small lit paper lantern on a post. Warm evening light, a flower pot by the door.
+      - *vignette
+      - block: style-anchor-v1
+      - *avoid
+
+  - id: x-empty-letters
+    kind: ui
+    name: x-empty-letters
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Empty states"
+    acceptance: {exploration: true}
+    notes: "Empty letters (no visitor letters yet): Pofu beside his small wooden mailbox on a post, its little flag down, the door open and empty, a single feather on the ground. Review: patient and hopeful; the mailbox flag and empty slot read; no letters drawn."
+    attach:
+      - *r1
+      - *stall
+      - *door
+    prompt:
+      - text: |
+          Pofu, a round fluffy hamster, stands on tiptoe peering into his small round-topped wooden mailbox on a post, its little red flag down and its door open to show it is empty, with a hopeful look. One cream feather lies in the grass, a few clover leaves around.
+      - *vignette
+      - block: style-anchor-v1
+      - *avoid
+
+  - id: x-permission-key
+    kind: ui
+    name: x-permission-key
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Empty states"
+    acceptance: {exploration: true}
+    notes: "Permission vignette (the Screen Time permission ask): Pofu carries a big brass key nearly his own size, proud and a little unsure, in front of the round door whose lock is a plain keyhole. Review: friendly, never threatening or legal; the key reads at once; not a padlock, not a shield."
+    attach:
+      - *r1
+      - *stall
+      - *door
+    prompt:
+      - text: |
+          Pofu, a round fluffy hamster, hugs a large brass key almost as big as himself with both paws, standing on his toes in front of a small round wooden door with a plain brass keyhole, looking up at us with a hopeful, slightly shy smile. Warm lamplight leaks from the keyhole.
+      - *vignette
+      - block: style-anchor-v1
+      - *avoid
+
+  - id: x-loading-seed-roll
+    kind: ui
+    name: x-loading-seed-roll
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Loading"
+    acceptance: {exploration: true}
+    notes: "Loading (instead of a spinner): Pofu rolls a big striped seed along the ground with both paws, six frames of a 1.2 s loop on one sheet (3 columns by 2 rows, ~460 px each). The seed turns about 60 degrees per frame, Pofu's feet step in rhythm, his ears bounce a little. Frame 6 returns to frame 1. Review: the six read as one smooth loop of one pose family, same size and ground line in every cell, the seed's stripe shows the turn."
+    attach:
+      - *r1
+      - *stall
+    prompt:
+      - text: |
+          A sheet of six animation frames on a transparent background, in a 3 by 2 grid, reading left to right then top to bottom, each cell holding the same small scene at the same scale with its own ground line at the same height: Pofu, a round fluffy hamster seen from the side, pushes a big round striped seed along the ground with both paws, walking to the right. The seed is cream with honey stripes and turns a little more in each frame; Pofu's feet alternate and his ears bounce softly. The last frame leads back into the first. No shadows beyond a tiny soft contact patch.
+      - block: style-anchor-v1
+      - *avoid
+
+  - id: x-pofu-yawn
+    kind: ui
+    name: x-pofu-yawn
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Launch"
+    acceptance: {exploration: true}
+    notes: "The launch yawn (ui-v3 section 2, Launch): a sleepy Pofu peeking through the curtain of clouds, four frames in a 2 by 2 grid (~700 px each), same size and place in each cell: 1 eyes half-open, sleepy, head resting; 2 inhales, eyes squeezing shut; 3 the yawn, mouth a wide soft oval, paws up, eyes shut; 4 settled, a small content smile, eyes open. Review: tender and funny, the four cross-fade into one yawn, the face is at least 55 percent of each cell, mouth shape clean for a 3-frame cross-fade."
+    attach:
+      - *r1
+      - *stall
+    prompt:
+      - text: |
+          A sheet of four frames on a transparent background, in a 2 by 2 grid, reading left to right then top to bottom, each cell the same scene at the same scale: Pofu, a round fluffy hamster, from the chest up, front view, peeking over the top of a puffy cream cloud. Frame one: sleepy, eyes half open, cheek resting. Frame two: breathing in, brows lifting, eyes squeezing shut. Frame three: a big yawn, mouth a wide soft oval, one paw lifted, eyes shut tight. Frame four: settled and awake, a small content smile, eyes open. The cloud is identical in all four.
+      - block: style-anchor-v1
+      - *avoid
+
+  - id: x-settings-header
+    kind: ui
+    name: x-settings-header
+    size: 1536x1024
+    canvas: 1536x1024
+    transparent: false
+    chat: "Pofu · Settings"
+    acceptance: {exploration: true}
+    notes: "Settings header (a painted banner that sits under the Settings title and scrolls away): the inside of Pofu's burrow workshop seen from the front, a wide cozy shelf with a lamp, a potted sprout, a small radio and a tool roll, no Pofu, the lower third fades to calm warm cream so the first row of settings can start on it. Review: cozy and orderly, warm paper-and-wood palette, the bottom 30 percent plain cream; nothing legible."
+    attach:
+      - *stall
+      - *door
+    prompt:
+      - text: |
+          A wide painted banner for a cozy mobile game, no text: a close front view of a wooden shelf inside a warm earth burrow, with a small glowing lamp, a potted sprout, a tiny wooden radio, a rolled tool pouch, a teacup and a stack of two books, the wall behind in warm cream plaster with one round window showing a soft blue sky. The bottom third of the image melts smoothly into plain warm cream (#FBF1DE) with nothing on it. No character.
+      - block: style-anchor-v1
+      - *avoid
+
+  - id: x-shield-icons-night
+    kind: ui
+    name: x-shield-icons-night
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: true
+    chat: "Pofu · The gate"
+    acceptance: {exploration: true}
+    palettes: [world-night]
+    notes: "Night set of the shield medallions (ui-v3 section 3; the shield shows one at about 60 pt). The SAME six moods as take 1 of x-shield-icons, in the same order and the same drawing, but at night, lit by warm lamplight from inside the burrow against a deep indigo sky: (1) curious, (2) proud, (3) a little jealous, (4) calm and breathing, (5) excited, (6) sleepy with a nightcap. 3 by 2 grid, each a ROUND medallion with a 6 px warm amber rim and transparent corners (production size 180 px), Pofu's face at least 55 percent of the diameter. Review: each mood reads at 60 pt on the night shield color #1E1A3C, the rim separates it from that background, the six are one family with the day set, silhouettes strong, no stars bigger than a speck."
+    attach:
+      - ref: shield-icons-day
+        role: "The day set of six medallions (take 1): redraw the SAME six moods in the same order, the same poses, the same Pofu and the same composition inside each circle, but at night. Keep the mood of each exactly."
+      - *r1
+      - *door
+    prompt:
+      - text: |
+          A sheet of six small round medallions in a 3 by 2 grid on a transparent background, evenly spaced, each a tiny painted scene inside a circle with a thin warm amber rim: Pofu, a round fluffy hamster, in the doorway of his little round wooden door, drawn big and simple so it reads at a tiny size, the same six poses as the attached day sheet but at night. The sky inside each circle is deep indigo with at most one or two tiny stars, and the burrow behind Pofu glows with warm honey lamplight that wraps his fur and the door's edge. (1) curious, peeking out, head tilted; (2) proud, chest out, a tiny sparkle; (3) a little jealous, arms crossed, a small huff; (4) calm, eyes closed, breathing; (5) excited, a big smile, paws up; (6) sleepy with a nightcap, a candle in the doorway. Bold clear shapes, minimal background inside each circle.
+      - block: style-anchor-v1
+      - text: "AVOID: text, letters, numbers, tiny unreadable details, outlines of another style, a frame or grid lines, backgrounds outside the circles, a dark or scary mood, more than two stars per circle"

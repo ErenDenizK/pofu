@@ -1,0 +1,21 @@
+id: asset-x-pofu-yawn
+type: asset
+title_tr: x-pofu-yawn
+title_en: x-pofu-yawn (ui)
+status: in-production
+horizon: now
+summary: >-
+  A sheet of four frames on a transparent background, in a 2 by 2 grid, reading left to right
+  then top to bottom, each cell the same scene at the same scale: Pofu, a round fluffy hamster,
+  from the chest up, front view, peeking over the top of a puffy cream cloud. Frame one: sleepy,
+  eyes half open, cheek resting. Frame two: breathing in, brows lifting, eyes squeezing shut.
+  Frame three: a big yawn, mouth a wide soft oval…
+art:
+  images: []
+  jobs:
+  - batch-63-empty-states:x-pofu-yawn
+sources:
+- doc: tools/imagegen/manifest/batch-63-empty-states.yaml
+kind: ui
+batch: batch-63-empty-states
+size: 1536x1024

@@ -1,0 +1,21 @@
+id: asset-breath-petals
+type: asset
+title_tr: breath-petals
+title_en: breath-petals (ui)
+status: in-production
+horizon: now
+summary: >-
+  A sheet of six single flower petals on a transparent background, in a 3 by 2 grid with wide
+  empty space between them, each petal separate and a little curled, seen straight on, at
+  different angles: two soft sakura-pink, two cream, one honey-gold, one pale lilac. Soft,
+  plump, simple shapes with a slightly lighter edge on one side and a very soft shadow, nothing
+  attached.
+art:
+  images: []
+  jobs:
+  - batch-62-breath-room:breath-petals
+sources:
+- doc: tools/imagegen/manifest/batch-62-breath-room.yaml
+kind: ui
+batch: batch-62-breath-room
+size: 1536x1024

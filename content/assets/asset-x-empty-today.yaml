@@ -1,0 +1,20 @@
+id: asset-x-empty-today
+type: asset
+title_tr: x-empty-today
+title_en: x-empty-today (ui)
+status: in-production
+horizon: now
+summary: >-
+  Pofu, a round fluffy hamster, sits at a tiny wooden table with an empty teacup and an open
+  blank paper notebook in front of him and a pencil beside it, looking up toward us with a
+  patient, hopeful smile as if the day were about to begin. A sprout in a small pot on the
+  table, soft morning light from the upper left.
+art:
+  images: []
+  jobs:
+  - batch-63-empty-states:x-empty-today
+sources:
+- doc: tools/imagegen/manifest/batch-63-empty-states.yaml
+kind: ui
+batch: batch-63-empty-states
+size: 1024x1024

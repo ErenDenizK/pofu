@@ -1,0 +1,21 @@
+id: asset-ui-swash
+type: asset
+title_tr: ui-swash
+title_en: swash (ui)
+status: in-production
+horizon: now
+summary: >-
+  A sheet of three hand-drawn underline swashes on a transparent background, stacked in three
+  rows with wide empty space between them: a short one, a medium one and a long one. Each
+  is a single confident brush stroke in warm cocoa brown (#4A3326), slightly wavy, thicker
+  in the middle, tapering to a point at both ends, with a small soft flick up at the right
+  end. Painterly, like a soft ink brush, no outline, no texture.
+art:
+  images: []
+  jobs:
+  - batch-61-ui-kit-v3:ui-swash
+sources:
+- doc: tools/imagegen/manifest/batch-61-ui-kit-v3.yaml
+kind: ui
+batch: batch-61-ui-kit-v3
+size: 1536x1024

@@ -1,0 +1,21 @@
+id: asset-ui-tab-ribbon
+type: asset
+title_tr: ui-tab-ribbon
+title_en: tab-ribbon (ui)
+status: in-production
+horizon: now
+summary: >-
+  A sheet of five identical satin ribbon tabs on a transparent background, stacked in five
+  rows with wide empty space between them, each a wide strip about seven times as wide as
+  it is tall, with a small V notch cut into the left end and a softly rounded right end, a
+  thin lighter edge on top and a soft shadow beneath. The five differ only in color, top to
+  bottom: honey gold, rose pink, sage green, sky blue, soft lilac.…
+art:
+  images: []
+  jobs:
+  - batch-61-ui-kit-v3:ui-tab-ribbon
+sources:
+- doc: tools/imagegen/manifest/batch-61-ui-kit-v3.yaml
+kind: ui
+batch: batch-61-ui-kit-v3
+size: 1536x1024

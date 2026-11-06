@@ -1,0 +1,20 @@
+id: asset-ui-toast-strip
+type: asset
+title_tr: ui-toast-strip
+title_en: toast-strip (ui)
+status: in-production
+horizon: now
+summary: >-
+  One wide paper strip, blank, a capsule about six times as wide as it is tall, filling the
+  canvas width and centered: warm cream paper (#FFF7E8) with a row of small even warm-brown
+  stitches just inside the rim, softly rounded ends, a soft shadow under it so it floats.
+  The middle is flat and even.
+art:
+  images: []
+  jobs:
+  - batch-61-ui-kit-v3:ui-toast-strip
+sources:
+- doc: tools/imagegen/manifest/batch-61-ui-kit-v3.yaml
+kind: ui
+batch: batch-61-ui-kit-v3
+size: 1536x1024

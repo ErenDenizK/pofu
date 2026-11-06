@@ -1,0 +1,21 @@
+id: asset-x-settings-header
+type: asset
+title_tr: x-settings-header
+title_en: x-settings-header (ui)
+status: in-production
+horizon: now
+summary: >-
+  A wide painted banner for a cozy mobile game, no text: a close front view of a wooden shelf
+  inside a warm earth burrow, with a small glowing lamp, a potted sprout, a tiny wooden radio,
+  a rolled tool pouch, a teacup and a stack of two books, the wall behind in warm cream plaster
+  with one round window showing a soft blue sky. The bottom third of the image melts smoothly
+  into plain warm cream (#FBF1DE) with nothing on i…
+art:
+  images: []
+  jobs:
+  - batch-63-empty-states:x-settings-header
+sources:
+- doc: tools/imagegen/manifest/batch-63-empty-states.yaml
+kind: ui
+batch: batch-63-empty-states
+size: 1536x1024

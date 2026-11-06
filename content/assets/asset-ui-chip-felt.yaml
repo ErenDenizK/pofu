@@ -1,0 +1,20 @@
+id: asset-ui-chip-felt
+type: asset
+title_tr: ui-chip-felt
+title_en: chip-felt (ui)
+status: in-production
+horizon: now
+summary: >-
+  One wide felt chip, blank: a capsule about five times as wide as it is tall, filling the
+  canvas width and centered, soft warm sand felt (#F0E1C8) with a fine row of tiny cream stitches
+  just inside the rim, a slight felt thickness at the edge and a soft shadow beneath. The
+  middle is flat and even.
+art:
+  images: []
+  jobs:
+  - batch-61-ui-kit-v3:ui-chip-felt
+sources:
+- doc: tools/imagegen/manifest/batch-61-ui-kit-v3.yaml
+kind: ui
+batch: batch-61-ui-kit-v3
+size: 1536x1024

@@ -1,0 +1,22 @@
+id: asset-ui-chip-felt-selected
+type: asset
+title_tr: ui-chip-felt-selected
+title_en: chip-felt-selected (ui)
+status: in-production
+horizon: now
+summary: >-
+  The same chip, selected: the felt a shade darker and warmer (#E3C79A) and the stitches just
+  inside the rim now bold honey-gold thread (#E9A93B), slightly larger. The outline, size
+  and position stay.
+links:
+  variant_of:
+  - asset-ui-chip-felt
+art:
+  images: []
+  jobs:
+  - batch-61-ui-kit-v3:ui-chip-felt-selected
+sources:
+- doc: tools/imagegen/manifest/batch-61-ui-kit-v3.yaml
+kind: ui
+batch: batch-61-ui-kit-v3
+size: 1536x1024

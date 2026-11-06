@@ -1,0 +1,19 @@
+id: asset-x-permission-key
+type: asset
+title_tr: x-permission-key
+title_en: x-permission-key (ui)
+status: in-production
+horizon: now
+summary: >-
+  Pofu, a round fluffy hamster, hugs a large brass key almost as big as himself with both
+  paws, standing on his toes in front of a small round wooden door with a plain brass keyhole,
+  looking up at us with a hopeful, slightly shy smile. Warm lamplight leaks from the keyhole.
+art:
+  images: []
+  jobs:
+  - batch-63-empty-states:x-permission-key
+sources:
+- doc: tools/imagegen/manifest/batch-63-empty-states.yaml
+kind: ui
+batch: batch-63-empty-states
+size: 1024x1024

@@ -1,0 +1,21 @@
+id: asset-x-shield-icons-night
+type: asset
+title_tr: x-shield-icons-night
+title_en: x-shield-icons-night (ui)
+status: in-production
+horizon: now
+summary: >-
+  A sheet of six small round medallions in a 3 by 2 grid on a transparent background, evenly
+  spaced, each a tiny painted scene inside a circle with a thin warm amber rim: Pofu, a round
+  fluffy hamster, in the doorway of his little round wooden door, drawn big and simple so
+  it reads at a tiny size, the same six poses as the attached day sheet but at night. The
+  sky inside each circle is deep indigo with at most one or two…
+art:
+  images: []
+  jobs:
+  - batch-63-empty-states:x-shield-icons-night
+sources:
+- doc: tools/imagegen/manifest/batch-63-empty-states.yaml
+kind: ui
+batch: batch-63-empty-states
+size: 1024x1024

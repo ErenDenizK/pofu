@@ -1,0 +1,22 @@
+id: asset-breath-clouds-far-night
+type: asset
+title_tr: breath-clouds-far-night
+title_en: breath-clouds-far-night (ui)
+status: in-production
+horizon: now
+summary: >-
+  NIGHT VERSION of the attached day piece: the identical shape, size and position, every edge
+  in the same pixels; only the light and color change. It is now deep blue hour: indigo and
+  plum shadows, the tops lit faintly lavender, calm and cozy.
+links:
+  variant_of:
+  - asset-breath-clouds-far
+art:
+  images: []
+  jobs:
+  - batch-62-breath-room:breath-clouds-far-night
+sources:
+- doc: tools/imagegen/manifest/batch-62-breath-room.yaml
+kind: ui
+batch: batch-62-breath-room
+size: 1024x1536

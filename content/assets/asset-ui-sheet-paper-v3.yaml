@@ -1,0 +1,21 @@
+id: asset-ui-sheet-paper-v3
+type: asset
+title_tr: ui-sheet-paper-v3
+title_en: sheet-paper-v3 (ui)
+status: in-production
+horizon: now
+summary: >-
+  A tall sheet of thick handmade cream paper (#FBF1DE) seen straight on, filling the canvas
+  from the left edge to the right edge and from near the top down past the bottom edge: its
+  top corners softly rounded, the top edge gently deckled with a thin lifted lighter paper
+  lip, a faint darker paper edge outside a thin row of small even warm-brown stitches running
+  just inside the top and side edges. The middle is plain, fl…
+art:
+  images: []
+  jobs:
+  - batch-61-ui-kit-v3:ui-sheet-paper-v3
+sources:
+- doc: tools/imagegen/manifest/batch-61-ui-kit-v3.yaml
+kind: ui
+batch: batch-61-ui-kit-v3
+size: 1024x1024

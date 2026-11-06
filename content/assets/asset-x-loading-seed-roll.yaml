@@ -1,0 +1,21 @@
+id: asset-x-loading-seed-roll
+type: asset
+title_tr: x-loading-seed-roll
+title_en: x-loading-seed-roll (ui)
+status: in-production
+horizon: now
+summary: >-
+  A sheet of six animation frames on a transparent background, in a 3 by 2 grid, reading left
+  to right then top to bottom, each cell holding the same small scene at the same scale with
+  its own ground line at the same height: Pofu, a round fluffy hamster seen from the side,
+  pushes a big round striped seed along the ground with both paws, walking to the right. The
+  seed is cream with honey stripes and turns a little more …
+art:
+  images: []
+  jobs:
+  - batch-63-empty-states:x-loading-seed-roll
+sources:
+- doc: tools/imagegen/manifest/batch-63-empty-states.yaml
+kind: ui
+batch: batch-63-empty-states
+size: 1536x1024

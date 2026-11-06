@@ -1,0 +1,19 @@
+id: asset-x-empty-friends
+type: asset
+title_tr: x-empty-friends
+title_en: x-empty-friends (ui)
+status: in-production
+horizon: now
+summary: >-
+  Pofu, a round fluffy hamster, sits beside his little round wooden door on a small stool,
+  waving one paw toward us, with a second empty stool and a second empty teacup set beside
+  him and a small lit paper lantern on a post. Warm evening light, a flower pot by the door.
+art:
+  images: []
+  jobs:
+  - batch-63-empty-states:x-empty-friends
+sources:
+- doc: tools/imagegen/manifest/batch-63-empty-states.yaml
+kind: ui
+batch: batch-63-empty-states
+size: 1024x1024

@@ -1,0 +1,21 @@
+id: asset-ui-tag-v3
+type: asset
+title_tr: ui-tag-v3
+title_en: tag-v3 (ui)
+status: in-production
+horizon: now
+summary: >-
+  One blank paper luggage tag lying flat and seen straight on, a wide strip about five times
+  as wide as it is tall, filling the canvas width and centered: warm cream paper (#FBF1DE),
+  the left end rounded with a small punched hole, a reinforcing ring around it and a short
+  loop of brown string, the right end with two clipped corners, a thin darker paper edge and
+  a soft shadow beneath. The middle is flat and even.
+art:
+  images: []
+  jobs:
+  - batch-61-ui-kit-v3:ui-tag-v3
+sources:
+- doc: tools/imagegen/manifest/batch-61-ui-kit-v3.yaml
+kind: ui
+batch: batch-61-ui-kit-v3
+size: 1536x1024

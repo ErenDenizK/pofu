@@ -1,0 +1,20 @@
+id: asset-ui-plaque-quiet
+type: asset
+title_tr: ui-plaque-quiet
+title_en: plaque-quiet (ui)
+status: in-production
+horizon: now
+summary: >-
+  One wide quiet strip, blank, a rounded capsule four times as wide as it is tall, filling
+  the canvas width and centered: soft warm sand-colored felt (#F0E4CF) with a faint stitched
+  line just inside the edge, almost flat, a very small raised edge and a barely visible shadow
+  underneath. Nothing on it.
+art:
+  images: []
+  jobs:
+  - batch-61-ui-kit-v3:ui-plaque-quiet
+sources:
+- doc: tools/imagegen/manifest/batch-61-ui-kit-v3.yaml
+kind: ui
+batch: batch-61-ui-kit-v3
+size: 1536x1024

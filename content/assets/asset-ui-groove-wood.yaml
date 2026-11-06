@@ -1,0 +1,20 @@
+id: asset-ui-groove-wood
+type: asset
+title_tr: ui-groove-wood
+title_en: groove-wood (ui)
+status: in-production
+horizon: now
+summary: >-
+  One slim carved groove, blank, a long capsule about seven and a half times as wide as it
+  is tall, filling the canvas width and centered: a channel cut into honey-stained wood, the
+  inside a deeper warm brown (#C99A5A to #A87B44) with a soft inner shadow along the top edge,
+  a thin lighter wood lip along the bottom edge, rounded ends. The middle is flat and even.
+art:
+  images: []
+  jobs:
+  - batch-61-ui-kit-v3:ui-groove-wood
+sources:
+- doc: tools/imagegen/manifest/batch-61-ui-kit-v3.yaml
+kind: ui
+batch: batch-61-ui-kit-v3
+size: 1536x1024

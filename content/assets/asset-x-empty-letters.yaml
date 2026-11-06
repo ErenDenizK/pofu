@@ -1,0 +1,19 @@
+id: asset-x-empty-letters
+type: asset
+title_tr: x-empty-letters
+title_en: x-empty-letters (ui)
+status: in-production
+horizon: now
+summary: >-
+  Pofu, a round fluffy hamster, stands on tiptoe peering into his small round-topped wooden
+  mailbox on a post, its little red flag down and its door open to show it is empty, with
+  a hopeful look. One cream feather lies in the grass, a few clover leaves around.
+art:
+  images: []
+  jobs:
+  - batch-63-empty-states:x-empty-letters
+sources:
+- doc: tools/imagegen/manifest/batch-63-empty-states.yaml
+kind: ui
+batch: batch-63-empty-states
+size: 1024x1024

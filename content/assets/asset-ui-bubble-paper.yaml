@@ -1,0 +1,20 @@
+id: asset-ui-bubble-paper
+type: asset
+title_tr: ui-bubble-paper
+title_en: bubble-paper (ui)
+status: in-production
+horizon: now
+summary: >-
+  A rounded-rectangle speech bubble body of warm cream paper (#FFF7E8), seen straight on,
+  filling about 94 percent of the canvas and centered, with a generous corner radius, a thin
+  soft cocoa-brown (#8A6A52) edge painted like a pencil-soft rim, and a small soft shadow
+  beneath. No tail, no pointer. The middle is plain flat paper.
+art:
+  images: []
+  jobs:
+  - batch-61-ui-kit-v3:ui-bubble-paper
+sources:
+- doc: tools/imagegen/manifest/batch-61-ui-kit-v3.yaml
+kind: ui
+batch: batch-61-ui-kit-v3
+size: 1024x1024
