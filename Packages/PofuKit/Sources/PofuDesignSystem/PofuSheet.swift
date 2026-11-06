@@ -192,7 +192,7 @@ public struct PofuHeaderPlate: View {
             Spacer(minLength: 0)
             if let onClose {
                 Button(action: onClose) {
-                    Image(systemName: "xmark")
+                    PofuDuoIcon(.duoClose, size: 24, fallback: "xmark")
                         .font(.system(size: 15, weight: .semibold))
                         .foregroundStyle(Color(red: 0.24, green: 0.18, blue: 0.14))
                         .frame(width: PofuSize.minimumTouch, height: PofuSize.minimumTouch)

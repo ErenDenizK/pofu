@@ -2,10 +2,12 @@ import PofuDesignSystem
 import SwiftUI
 
 /// The hour the gate is painted in (gate v2 section 5.1): one postcard per
-/// sky of the colour script, and the rain one when there is rain. The sky
-/// colours the scrim behind the text and the ring of light behind Pofu.
+/// sky of the colour script, the rain one when there is rain and the mist
+/// one on a mist morning. The sky colours the scrim behind the text and the
+/// ring of light behind Pofu. The postcards are the gate masters of batch 50
+/// (`gate-postcard-*`).
 enum GateHour: String, CaseIterable {
-    case dawn, day, golden, night, rain
+    case dawn, day, golden, night, rain, mist
 
     /// The colour script's schedule: night until 05:30, dawn to 07:45, day
     /// to 17:30, golden hour to 20:30, then night. `isBedtime` is always
@@ -22,6 +24,14 @@ enum GateHour: String, CaseIterable {
         }
     }
 
+    /// The hour's postcard, or the mist one when the morning's weather is mist
+    /// (`WeatherForecast`, the same sky the island shows); the night, the
+    /// golden hour and the bedtime keep their own sky.
+    init(date: Date, isBedtime: Bool = false, mist: Bool, calendar: Calendar = .autoupdatingCurrent) {
+        let hour = GateHour(date: date, isBedtime: isBedtime, calendar: calendar)
+        self = mist && (hour == .dawn || hour == .day) ? .mist : hour
+    }
+
     var assetName: String { "gate-postcard-\(rawValue)" }
     var isDark: Bool { self == .night }
 
@@ -31,6 +41,7 @@ enum GateHour: String, CaseIterable {
         case .dawn: 0.6
         case .day: 0.62
         case .golden, .rain: 0.58
+        case .mist: 0.6
         case .night: 0.64
         }
     }
@@ -43,6 +54,7 @@ enum GateHour: String, CaseIterable {
         case .golden: Color(hex: 0xFFE0C0)
         case .night: Color(hex: 0x1E1A3C)
         case .rain: Color(hex: 0xE4EAF2)
+        case .mist: Color(hex: 0xF1E9F5)
         }
     }
 
@@ -54,6 +66,7 @@ enum GateHour: String, CaseIterable {
         case .golden: Color(hex: 0xFFC46B)
         case .night: Color(hex: 0xFFC766)
         case .rain: Color(hex: 0xFFFFFF)
+        case .mist: Color(hex: 0xFFF3E0)
         }
     }
 
@@ -65,6 +78,7 @@ enum GateHour: String, CaseIterable {
         case .golden: Color(hex: 0x9C3F1B)
         case .night: Color(hex: 0xFFC766)
         case .rain: Color(hex: 0x2F5F8A)
+        case .mist: Color(hex: 0x5B4A7A)
         }
     }
 

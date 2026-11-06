@@ -58,6 +58,9 @@ public struct KokeStageLook: Hashable, Sendable {
 
 #if os(iOS)
 import SwiftUI
+#if canImport(UIKit)
+import UIKit
+#endif
 
 extension EnvironmentValues {
     /// The sky's horizon colour through its grade: the depth fog's colour
@@ -104,7 +107,19 @@ struct KokeStageLight: View {
             .init(color: .white.opacity(0.08), location: 0.86),
             .init(color: .clear, location: 1),
         ]
+        let art = UIImage(named: "world-light-shaft", in: .module, compatibleWith: nil)
         return ZStack {
+            if let art {
+                // The painted shaft (batch 44, light on alpha): tinted warm, its far end on the sprout.
+                Image(uiImage: art)
+                    .renderingMode(.template)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 120, height: 150)
+                    .foregroundStyle(warm)
+                    .opacity(min(0.55, look.shaftAlpha * 3.2))
+                    .position(x: sprout.x - 48, y: sprout.y - 66)
+            } else {
             Rectangle()
                 .fill(
                     LinearGradient(
@@ -122,6 +137,7 @@ struct KokeStageLight: View {
                 .frame(width: CGFloat(KokeStageLook.shaftWidth), height: length)
                 .rotationEffect(.degrees(-KokeStageLook.shaftAngle), anchor: .bottom)
                 .position(x: sprout.x, y: sprout.y - length / 2)
+            }
             // The pool on the sprout: about three sprouts across.
             Circle()
                 .fill(

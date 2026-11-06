@@ -197,7 +197,7 @@ public struct WorldHome: View {
         } else {
             HStack(spacing: PofuSpacing.s) {
                 Spacer(minLength: 0)
-                PofuIconButton(systemName: "gearshape", label: WorldStrings.settings, action: actions.openSettings)
+                PofuIconButton(systemName: "gearshape", label: WorldStrings.settings, paint: .duoSettings, action: actions.openSettings)
             }
             .padding(.top, PofuSpacing.s)
         }
@@ -456,7 +456,7 @@ struct RepairBanner: View {
                     .padding(.horizontal, PofuSpacing.s)
             }
             .pofuActionStyle(.primary)
-            PofuIconButton(systemName: "gearshape", label: WorldStrings.settings, action: onSettings)
+            PofuIconButton(systemName: "gearshape", label: WorldStrings.settings, paint: .duoSettings, action: onSettings)
         }
         .padding(.leading, PofuSpacing.m)
         .padding(.vertical, 2)

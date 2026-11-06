@@ -27,6 +27,16 @@ public enum PofuPaint: String, CaseIterable, Sendable {
     case iconDecor = "paint-icon-decor"
     case iconPlus = "paint-icon-plus"
     case iconTea = "paint-icon-tea"
+    /// The two-tone icon set (batch 46, `icons-duo`): Pofu's face is home.
+    case duoHome = "paint-duo-home"
+    case duoIsland = "paint-duo-island"
+    case duoMap = "paint-duo-map"
+    case duoSettings = "paint-duo-settings"
+    case duoClose = "paint-duo-close"
+    case duoAdd = "paint-duo-add"
+    case duoLetter = "paint-duo-letter"
+    case duoShield = "paint-duo-shield"
+    case duoGift = "paint-duo-gift"
 
     /// The pixels-per-point the file was baked at.
     var scale: Double { 3 }
@@ -81,6 +91,29 @@ public struct PofuPaintedIcon: View {
                 .scaledToFit()
                 .frame(width: side, height: side)
                 .accessibilityHidden(true)
+        }
+    }
+}
+
+/// A two-tone icon where an SF Symbol stood for the same meaning: the painted
+/// icon when the bundle has it, else the symbol. The control or row that
+/// holds it carries the accessibility label, so it is hidden here.
+public struct PofuDuoIcon: View {
+    let paint: PofuPaint
+    let size: CGFloat
+    let fallback: String
+
+    public init(_ paint: PofuPaint, size: CGFloat = 22, fallback: String) {
+        self.paint = paint
+        self.size = size
+        self.fallback = fallback
+    }
+
+    public var body: some View {
+        if paint.isAvailable {
+            PofuPaintedIcon(paint, size: size, scales: false)
+        } else {
+            Image(systemName: fallback)
         }
     }
 }

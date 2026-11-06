@@ -146,7 +146,7 @@ public struct StationSheet: View {
             }
             Spacer(minLength: 0)
             Button(action: onClose) {
-                Image(systemName: "xmark")
+                PofuDuoIcon(.duoClose, size: 24, fallback: "xmark")
                     .font(.system(size: 15, weight: .semibold))
                     .foregroundStyle(PofuKitPalette.day.ink)
                     .frame(width: PofuSize.minimumTouch, height: PofuSize.minimumTouch)

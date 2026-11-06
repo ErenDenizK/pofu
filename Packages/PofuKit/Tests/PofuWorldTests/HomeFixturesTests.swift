@@ -20,10 +20,22 @@ struct HomeFixturesTests {
     @Test func theDoorsSitInTheEarthFaceBelowTheLawn() throws {
         let walkable = try #require(IslandFootprint.walkable)
         for door in HomeFixtures.doors {
-            let box = try #require(WorldArt.sprite(door.art)?.sharp)
-            // The whole frame (halo included) hangs below the lawn's front edge.
+            // The doors are painted into the plate (batch 60); the slot hangs below the lawn's front edge.
             #expect(!walkable.contains(door.centre), "\(door.id) is on the lawn")
-            #expect(door.centre.y + box.minY > IslandLayout.lawnRadiusY * 0.45, "\(door.id) reaches onto the lawn")
+            #expect(door.centre.y > IslandLayout.lawnRadiusY * 0.45, "\(door.id) reaches onto the lawn")
+        }
+    }
+
+    @Test func theEarthFacePlateFollowsTheIslandLevel() {
+        #expect(HomeFixtures.plateStem(islandLevel: 1) == "island-main")
+        #expect(HomeFixtures.plateStem(islandLevel: 2) == "island-main-face-il2")
+        #expect(HomeFixtures.plateStem(islandLevel: 5) == "island-main-face-il2")
+        #expect(HomeFixtures.plateStem(islandLevel: 6) == "island-main-face-il6")
+        #expect(IslandLayout.plateBands(islandLevel: 6).map(\.art) == (0..<4).map { "island-main-face-il6-band\($0)" })
+        for level in [1, 2, 6] {
+            for band in IslandLayout.plateBands(islandLevel: level) {
+                #expect(WorldArt.sprite(band.art) != nil, "\(band.art) is baked")
+            }
         }
     }
 
@@ -35,8 +47,8 @@ struct HomeFixturesTests {
         #expect(HomeFixtures.hiveLevel(islandLevel: 10, homeStationsAtTop: true) == 3)
         #expect(HomeFixtures.hiveArt(level: 0) == nil)
         #expect(HomeFixtures.hiveArt(level: 2) == "hive-2")
-        #expect(HomeFixtures.placed(islandLevel: 5, homeStationsAtTop: false).map(\.id) == ["door-mochi"])
-        #expect(HomeFixtures.placed(islandLevel: 8, homeStationsAtTop: false).map(\.id) == ["door-mochi", "door-findik", "lamp-1", "lamp-2", "lamp-3"])
+        #expect(HomeFixtures.placed(islandLevel: 5, homeStationsAtTop: false).isEmpty)
+        #expect(HomeFixtures.placed(islandLevel: 8, homeStationsAtTop: false).map(\.id) == ["lamp-1", "lamp-2", "lamp-3"])
         #expect(HomeFixtures.placed(islandLevel: 10, homeStationsAtTop: true).last?.art == "hive-3")
     }
 
