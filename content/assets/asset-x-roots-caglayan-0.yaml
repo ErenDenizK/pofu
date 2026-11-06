@@ -1,0 +1,21 @@
+id: asset-x-roots-caglayan-0
+type: asset
+title_tr: x-roots-caglayan-0
+title_en: x-roots-caglayan-0 (plate)
+status: in-production
+horizon: now
+summary: >-
+  A small floating island seen from a low front three-quarter camera, framed at its underside:
+  a rounded earth body of pale stone in soft bands over a sea of clouds. Under its front edge,
+  three smooth stone lips where waterfalls once poured off are dry, pale and bleached, with
+  a darker dry stain running down the body below them. The warm colours are drained but the
+  picture keeps a full value range: deep blue-violet sha…
+art:
+  images: []
+  jobs:
+  - batch-49-roots:x-roots-caglayan-0
+sources:
+- doc: tools/imagegen/manifest/batch-49-roots.yaml
+kind: plate
+batch: batch-49-roots
+size: 1536x1024

@@ -1,0 +1,21 @@
+id: asset-x-roots-caglayan-4
+type: asset
+title_tr: x-roots-caglayan-4
+title_en: x-roots-caglayan-4 (plate)
+status: in-production
+horizon: now
+summary: >-
+  The same small floating island framed at its underside, healed: from three stone lips under
+  its front edge, three soft glassy waterfalls pour off the island and fall a long way down
+  into the sea of clouds, white where they break; a cloud of fine mist rises where they meet
+  the clouds, and a soft pastel rainbow arcs in the mist. Ferns and small flowers grow along
+  the wet stone lips. Warm golden-hour light, cool clear s…
+art:
+  images: []
+  jobs:
+  - batch-49-roots:x-roots-caglayan-4
+sources:
+- doc: tools/imagegen/manifest/batch-49-roots.yaml
+kind: plate
+batch: batch-49-roots
+size: 1536x1024

@@ -1,0 +1,21 @@
+id: asset-x-growth-il1
+type: asset
+title_tr: x-growth-il1
+title_en: x-growth-il1 (plate)
+status: in-production
+horizon: now
+summary: >-
+  The attached home island, the same plate, outline, size and camera, at level 1: a small
+  round island with only Pofu's round door in the earth, one sunflower bed and a tiny vegetable
+  garden on the lawn, bare roots below; quiet and humble. Soft noon light, cozy, every piece
+  at the scale of the attached tea stall, clearly placed so the island reads at a glance.
+  No characters.
+art:
+  images: []
+  jobs:
+  - batch-57-home-growth-strip:x-growth-il1
+sources:
+- doc: tools/imagegen/manifest/batch-57-home-growth-strip.yaml
+kind: plate
+batch: batch-57-home-growth-strip
+size: 1536x1024

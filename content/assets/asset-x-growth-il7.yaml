@@ -1,0 +1,21 @@
+id: asset-x-growth-il7
+type: asset
+title_tr: x-growth-il7
+title_en: x-growth-il7 (plate)
+status: in-production
+horizon: now
+summary: >-
+  The attached home island, the same plate, outline, size and camera, at level 7: a raised
+  back terrace with a workshop and a white lighthouse, path lamps along the paths, flower
+  borders everywhere, flowering vines trailing over the island's rim and down its earth body.
+  Soft noon light, cozy, every piece at the scale of the attached tea stall, clearly placed
+  so the island reads at a glance. No characters.
+art:
+  images: []
+  jobs:
+  - batch-57-home-growth-strip:x-growth-il7
+sources:
+- doc: tools/imagegen/manifest/batch-57-home-growth-strip.yaml
+kind: plate
+batch: batch-57-home-growth-strip
+size: 1536x1024

@@ -479,3 +479,26 @@ His views (translated), not orders; the decisions are ours. Handled in
 2. No heavy preparation for after 2026-11-24; a day or two after the membership arrives is enough. What matters: the screens, the UI, how the game and the app are used, the gate (the wall) and the shield menu. Handled: the gate and the shield are the top design track.
 3. Codex produced many concepts and small images while idle: try ways to use them, or at least take ideas from them; did we make visuals for the wall? Handled: an inventory of every exploration take with a proposed use (`docs/design/concept-inventory.md`).
 4. The wall must not stay a plain wall with plain text; screens like the wall must be a wow, a design masterpiece; every point of the game should feel that way, with fun coming forward deeper in the game; he wants to fly a little further on design. Handled: "the gate v2" spec and three Codex concept directions (batch-48).
+
+## 2026-11-06 (morning, late): status, future systems, the undersides, results since last night
+
+1. A status report; does he need to do anything? Handled in chat (nothing blocking him; the device test whenever he has time).
+2. Think through the game design of all future systems: the island's step-by-step growth and the other islands. Handled: home growth stays as specified (home progression §3, home layout); the new piece is [the roots](../design/island-undersides.md): the underside grows by island level and keeps a keepsake from every healed island.
+3. Evaluate a design and story pass for the islands' undersides ("not every island needs it"). Handled: the same doc §5: Çağlayan, Emanet and Revontuli get an underside that carries the wound; Çanlar and Mehtap small; Koke, Arı and Gezgin none. Concepts queued (`batch-49-roots`, P10).
+4. Report back the results of every task since last night. Handled in chat.
+
+## 2026-11-06 (late morning): yes to keepsake memories; the membership deck; one combined report
+
+1. Yes to tapping a keepsake to replay a memory; he reminds Codex too. Handled: [the roots](../design/island-undersides.md) §7, decided.
+2. Send the presentation prepared for the membership; the work keeps flowing; he will ask for the personal device test once things settle. Handled: a PDF deck in chat (the results since last night, then monetization v2 as slides).
+3. Is the lead waiting on anything, or can it plan improvements and next steps? Handled in chat: only the monetization yes/no and the lore PR #135; everything else moves.
+4. Did we design, for every island and the things inside it, the positions and levels step by step until complete? Handled: home yes (home progression, home layout); story islands only at the arc level (stages per island) with Koke and Çağlayan in detail. Next: Book One island sheets for the rest (layout, stages, engine, residents, underside, keepsake, gift).
+5. Too many tasks since last night to follow; present them separately or as a whole. Handled: the deck's first part.
+
+## 2026-11-06 (midday): a shorter deck; nothing forgotten; the tracker; hygiene
+
+1. The deck should be shorter, tidy and focused (he has ADHD and does not like reading; the lead presents, he does not read on a stage). Handled: cut to nine visual pages, the islands page the richest.
+2. Plan for real, with concepts, how each island grows level by level (what stands where, how it grows and arrives). Handled: Book One island sheets (#271); a painted home growth strip IL1 to IL10 queued for Codex (`batch-57`, row 0-h).
+3. Residents should work and move more naturally (animation). Handled: a thread in the tracker; a behaviour and animation spec follows it.
+4. Gather everything talked about but not built, every possible improvement (logic, technical, system, visual, animation, design), keep the context: one clear picture of what happened, where we go, what became of each decision. Handled: `docs/tracker.md` (an Opus pass over every founder message, doc, PR and the code).
+5. File hygiene: archive old rules, tiring ADRs and whatever leads to context rot; improve the working environment, since we stay in it. Handled: a hygiene pass (archive, a leaner CLAUDE.md and AGENTS.md, one docs map).

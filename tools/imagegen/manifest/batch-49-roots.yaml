@@ -1,0 +1,164 @@
+# Batch 49: the roots, island undersides (exploration; x- ids, never promoted).
+#
+# docs/design/island-undersides.md: the lower earth body under home becomes
+# "the roots": it grows with the island level and keeps one keepsake from
+# every healed wonder island. Story islands get an underside only where it
+# carries the wound (Çağlayan's falls pour off the underside at stage 4).
+# Concepts first; the lead turns the winners into production sprites.
+
+batch: batch-49-roots
+title: The roots (home's underside at IL1, IL6, IL10; Çağlayan's underside at stages 0 and 4)
+status: open
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: island-main-l-v3, kind: world, name: island-main-l-v3, external: batch-05-fixes-pilot, master: design/art/masters/island-main-l-v3/island-main-l-v3.webp}
+  - {id: cloud-sea, kind: world, name: cloud-sea, external: batch-04-sky}
+
+  - id: x-roots-home-il1
+    kind: plate
+    name: x-roots-home-il1
+    light: {cell: day, layer: subject}
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 0.5}
+    palettes: [world-foliage, world-props]
+    chat: "Pofu · The roots"
+    acceptance: {exploration: true}
+    notes: "Home's underside at IL1: bare roots, one tiny sprout. Review: the camera shows the lower half of the island and the air below; it reads as the beginning of something."
+    attach:
+      - ref: approved:island-main-l-v3
+        role: "The home island: its earth body, round door, stones and roots exactly; this concept looks a little lower, at the underside."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below."
+    prompt:
+      - text: |
+          The attached home island seen from the same front three-quarter
+          camera but framed lower, so the earth body and the air under it
+          fill the picture and only the lawn's rim shows at the top. The
+          rounded banded earth body with its round door and smooth stones
+          tapers down into a few thin dangling roots over the sea of clouds.
+          From the lowest root grows one tiny fresh sprout with a single
+          leaf. Soft morning light, cozy and quiet, the beginning of
+          something.
+      - block: prop-style-v2
+      - text: "AVOID: caves, dark holes, scary roots, worms, bones, characters, text, letters, a border"
+
+  - id: x-roots-home-il6
+    kind: plate
+    name: x-roots-home-il6
+    light: {cell: dusk, layer: subject}
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 0.5}
+    palettes: [world-foliage, world-props]
+    chat: "Pofu · The roots"
+    acceptance: {exploration: true}
+    notes: "Home's underside at IL6 at dusk, with the Koke and Çağlayan keepsakes. Review: alive, warm, readable; the keepsakes read as gifts, not clutter."
+    attach:
+      - ref: approved:island-main-l-v3
+        role: "The home island: its earth body, round door, stones and roots exactly; framed lower, at the underside."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below."
+    prompt:
+      - text: |
+          The attached home island framed low, at its underside, at dusk.
+          The roots have grown: a rope ladder hangs from the earth face, a
+          small hollow between two roots glows with sleepy fireflies, a little
+          brass lantern hangs from the thickest root and glows honey-gold,
+          warming the earth around it. Two keepsakes: a soft green moss beard
+          hangs from the roots with one bright sprout, and a thin silver
+          stream pours off the island's edge and falls in a long ribbon into
+          the sea of clouds, with a puff of mist where it lands. Warm dusk
+          light, lilac sky, cozy and alive.
+      - block: prop-style-v2
+      - text: "AVOID: clutter, caves, scary roots, characters, text, letters, a border"
+
+  - id: x-roots-home-il10
+    kind: plate
+    name: x-roots-home-il10
+    light: {cell: night, layer: subject}
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 0.5}
+    palettes: [world-foliage, world-props]
+    chat: "Pofu · The roots"
+    acceptance: {exploration: true}
+    notes: "Home's underside at IL10 at night, all keepsakes: the journey read from below. Review: magical, a little secret world, every keepsake readable, nothing noisy."
+    attach:
+      - ref: approved:island-main-l-v3
+        role: "The home island: its earth body, round door, stones and roots exactly; framed lower, at the underside."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below, moonlit."
+    prompt:
+      - text: |
+          The attached home island framed low, at its underside, on a clear
+          luminous night. The roots are in bloom with small flowers and a
+          bird nest; warm amber stones glow faintly in the earth; a small
+          lantern and a tiny moon-shaped lamp hang from roots; a moss beard
+          sways; a thin silver stream pours off the edge into the moonlit
+          clouds; a small net holds a few lost things (a mitten, a key, a
+          teacup); one small bell hangs on a root; a cluster of ice crystals
+          holds a faint green and violet aurora light; a little wild
+          honeycomb is tucked between roots. Moonlit silver rims, deep
+          blue-violet shade, warm points of light: a secret, magical place.
+      - block: prop-style-v2
+      - text: "AVOID: clutter, caves, scary roots, characters, text, letters, a border, neon colours"
+
+  - id: x-roots-caglayan-0
+    kind: plate
+    name: x-roots-caglayan-0
+    light: {cell: day, layer: subject}
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 0.5}
+    palettes: [world-foliage, world-water]
+    chat: "Pofu · The roots"
+    acceptance: {exploration: true}
+    notes: "Çağlayan's underside at stage 0: where the falls used to pour off the island, dry stone lips and a dry stain. Beautiful wound rule: full value range, cool shade, one shaft of light."
+    attach:
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below."
+    prompt:
+      - text: |
+          A small floating island seen from a low front three-quarter
+          camera, framed at its underside: a rounded earth body of pale
+          stone in soft bands over a sea of clouds. Under its front edge,
+          three smooth stone lips where waterfalls once poured off are dry,
+          pale and bleached, with a darker dry stain running down the body
+          below them. The warm colours are drained but the picture keeps a
+          full value range: deep blue-violet shade under the body, a cool
+          haze below. One slanting shaft of pale light falls on a single
+          drop of water hanging from the middle lip, glinting. Hushed and
+          beautiful.
+      - block: prop-style-v2
+      - text: "AVOID: ruins, cracks, scary details, flat grey, characters, text, letters, a border"
+
+  - id: x-roots-caglayan-4
+    kind: plate
+    name: x-roots-caglayan-4
+    light: {cell: golden, layer: subject}
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 0.5}
+    palettes: [world-foliage, world-water]
+    chat: "Pofu · The roots"
+    acceptance: {exploration: true}
+    notes: "Çağlayan's underside at stage 4: the signature, falls pouring off the underside into the cloud sea with a rainbow in the mist. Review: breathtaking, the reward of the island."
+    attach:
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below."
+    prompt:
+      - text: |
+          The same small floating island framed at its underside, healed:
+          from three stone lips under its front edge, three soft glassy
+          waterfalls pour off the island and fall a long way down into the
+          sea of clouds, white where they break; a cloud of fine mist rises
+          where they meet the clouds, and a soft pastel rainbow arcs in the
+          mist. Ferns and small flowers grow along the wet stone lips. Warm
+          golden-hour light, cool clear shadows, full colour. A breathtaking
+          reward.
+      - block: prop-style-v2
+      - text: "AVOID: a neon rainbow, a storm, ruins, characters, text, letters, a border"

@@ -133,6 +133,7 @@ The lead keeps this list current: each track names its next step only.
 | **Koke** | Integrate row 0-k's takes; one Koke on screen; stage 0-2 plates repainted under the beautiful-wound rule (code grading of the pale, high-key plates stops short: #256's sheet), after the `x-koke-stage0-mist` concept | 0-k, batch-45 |
 | **Çağlayan and flow** | A game-design note for the flow game, then `PofuGames` flow, then Çağlayan with batch-43 | nothing (the art arrives in parallel) |
 | **Game flow** | The flow audit: a `PofuCore` test that plays days 1-21 for a typical player and for a heavy scroller; no dead day | nothing |
+| **The roots** (island undersides) | Concepts (batch-49), then `UndersideLayout` and the first pieces by island level; the keepsakes arrive with each healed island ([the roots](design/island-undersides.md)) | the concepts |
 | **Home growth** | A screenshot sheet of IL1 to IL10; every level adds something seen and something moving; IL1's decor | nothing |
 | **Residents** | Wave 3: ten resident-to-resident scenes (`pofu-story`), daily visits | nothing |
 | **App** | Onboarding (pick the apps, the first resisted reach, Pofu wakes); the widget and the week page sharing the sky; accessibility; haptics | the gate spec for the onboarding's look |
