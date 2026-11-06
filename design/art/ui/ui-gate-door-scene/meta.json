@@ -1,0 +1,97 @@
+{
+  "job": "gate-door-scene",
+  "batch": "batch-58-gate-round-door",
+  "asset": "ui__gate-door-scene",
+  "take": 2,
+  "takes_considered": 1,
+  "approved_at": "2026-11-06T16:09:23+00:00",
+  "image": "design/art/ui/ui-gate-door-scene/ui-gate-door-scene.png",
+  "raw": "design/art/ui/ui-gate-door-scene/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "445c351da4b04101",
+  "prompt": "REFERENCES (attached, in this order):\n1. The home island's round door, earth bank and soft painting.\n\nA full portrait phone screen for a cozy mobile game, painted, no\ntext: we stand right in front of a little round wooden door set in\na warm earth bank under a grassy lawn edge with small flowers. The\ndoor is swung wide open toward us on the right; the round doorway\nis empty and glows with warm honey lamplight from a cozy burrow\ninside (a tiny lamp, a teacup on a small table, a rug, a shelf with\na plant), a place where a small round hamster could stand. Above\nthe bank, a calm blue-hour sky with a few soft clouds and stars\nfills the top third. Below the doorway, three blank wooden plaques\nhang on a short rope swag from the door frame, one larger in the\nmiddle, two smaller at the sides. Grass and small flowers frame\nthe bottom edge.\n\nSTYLE: soft painterly 2D digital illustration with the polish of a premium\nstorybook and a top-tier mobile app mascot. Gentle airbrushed shading, no\noutlines, no hard edges. Fine, soft fur strands along the silhouette and a\nvelvety fur texture inside it. Warm diffused key light from the upper left,\na faint warm rim light along the right edge, soft ambient shadow only where\nforms touch. Pastel warm palette of cream, golden peach and blush pink with\ndark espresso-brown eyes. Clean, calm, uncluttered. No text, no letters,\nno numbers, no logos, no watermark, no border, no frame, no sticker outline.\n\nAVOID: any character or animal, text, letters, numbers, icons, a phone frame, UI chrome\n\nOutput: one image, opaque, full bleed, portrait 1024 x 1536.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/island-main-l-v3/island-main-l-v3.webp",
+      "role": "The home island's round door, earth bank and soft painting."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-06T09:56:15+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "fit": null,
+  "emit_region": null,
+  "qa": {
+    "status": "fail",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "opaque, as this kind must be"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1024x1536"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "warn",
+        "message": "chroma p95 61 (R1 51)",
+        "value": 61.2
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 48 (R1 59)",
+        "value": 47.7
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 2.6 (R1 5.3)",
+        "value": 2.58
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 1.6",
+        "value": 1.6146
+      },
+      {
+        "check": "palette_drift",
+        "status": "fail",
+        "message": "mean dE 8.7, p95 23.8, off-palette 28.3% (top: #4466BB (2.7%), #7788CC (2.4%))",
+        "value": 8.661
+      }
+    ]
+  },
+  "note": "retained take 2; author-authorized palette_drift-only force; full native QA remains fail. Lead-selected retained original take 2. Queue row 0-r authorizes palette_drift only; row 0-q authors deliver.scale=0.5 after PR308 native-cap exclusion. Full native QA remains fail solely palette_drift; original source, native locked pixels, account, timestamps and four exhausted historical root ordinals remain unchanged. No current root generation or retry. Official512x768 delivery viewed and content verified; founder review pending.",
+  "deliver": {
+    "scale": 0.5,
+    "original_size": [
+      1024,
+      1536
+    ],
+    "delivered_size": [
+      512,
+      768
+    ]
+  }
+}
