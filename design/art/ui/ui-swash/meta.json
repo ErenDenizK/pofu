@@ -1,0 +1,90 @@
+{
+  "job": "ui-swash",
+  "batch": "batch-61-ui-kit-v3",
+  "asset": "ui__swash",
+  "take": 2,
+  "takes_considered": 2,
+  "approved_at": "2026-11-06T18:01:32+00:00",
+  "image": "design/art/ui/ui-swash/ui-swash.png",
+  "raw": "design/art/ui/ui-swash/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "e3655cbfe237a6e2",
+  "prompt": "REFERENCES (attached, in this order):\n1. A finished prop of the game: match its soft airbrushed finish, matte materials, warm light and colors (do not draw the stall).\n2. The palette card for props: use only these colors (and mixes of them).\n\nA sheet of three hand-drawn underline swashes on a transparent background, stacked in three rows with wide empty space between them: a short one, a medium one and a long one. Each is a single confident brush stroke in warm cocoa brown (#4A3326), slightly wavy, thicker in the middle, tapering to a point at both ends, with a small soft flick up at the right end. Painterly, like a soft ink brush, no outline, no texture.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: text, letters, numbers, symbols, icons, glass, frosted or transparent parts, a drop shadow or cast shadow on the ground, an outline, a border around the canvas, a background, gloss or specular glints, texture that varies along the width, pure black, neon or saturated colors, a 3D render look\n\nOutput: one image, transparent background PNG, landscape 1536 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/stations/tea-stall-5/tea-stall-5.png",
+      "role": "A finished prop of the game: match its soft airbrushed finish, matte materials, warm light and colors (do not draw the stall)."
+    },
+    {
+      "path": "design/reference/palette-card-world-props.png",
+      "role": "The palette card for props: use only these colors (and mixes of them)."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-06T17:55:04+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "fit": null,
+  "emit_region": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1536x1024"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 23 (R1 51)",
+        "value": 22.9
+      },
+      {
+        "check": "value_floor",
+        "status": "warn",
+        "message": "lightness p5 35 (R1 59)",
+        "value": 34.7
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 1.4 (R1 5.3)",
+        "value": 1.41
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 1.1",
+        "value": 1.0616
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.0, p95 1.6, off-palette 0.0%",
+        "value": 1.0422
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Both initial takes pass all hard automated checks and manual native/officiallocked proper-alpha cream/dark review. Normal lowest style-lock load selects take2 (1.0616 vs1.3772); its value_floor34.7 is only WARN. Exactly3 separated short/medium/long warmcocoa painterly underline strokes with thickercenters, taperedends and upwardright flicks; no extramarks/text/icons/outline oractualpaintedbackdrop/halo. Subtle painterly shading retained under authored generic paintingstyle, not a claim of flatvector/exactRGB ink. Native glow around strokes is hiddenRGB underalpha0 and absent in correctcomposites. Selected native lossless PNG160182B. OriginalPNG/RGBA/orderedrefs/callbacks/INITIAL2QA+lockedseal retained. Authoredslice metadata unchanged; founderstyle/UIpreview pending. Actual172source canonical Harmony measure/check with byteexactforeignrestoration and reviewed134unusedraw numericalcacheomission, UIexcluded/no fabricatedshard. No retry, force or QA/profile/pixel edits. auto-picked by QA; founder review pending."
+}

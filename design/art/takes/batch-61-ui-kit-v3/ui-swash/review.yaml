@@ -1,0 +1,156 @@
+batch: batch-61-ui-kit-v3
+contact_sheet: design/art/takes/batch-61-ui-kit-v3/ui-swash/contact.jpg
+jobs:
+  ui-swash:
+    pick: 2
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Both initial takes pass all hard
+      automated checks and manual native/officiallocked proper-alpha cream/dark review.
+      Normal lowest style-lock load selects take2 (1.0616 vs1.3772); its value_floor34.7
+      is only WARN. Exactly3 separated short/medium/long warmcocoa painterly underline
+      strokes with thickercenters, taperedends and upwardright flicks; no extramarks/text/icons/outline
+      oractualpaintedbackdrop/halo. Subtle painterly shading retained under authored
+      generic paintingstyle, not a claim of flatvector/exactRGB ink. Native glow around
+      strokes is hiddenRGB underalpha0 and absent in correctcomposites. Selected native
+      lossless PNG160182B. OriginalPNG/RGBA/orderedrefs/callbacks/INITIAL2QA+lockedseal
+      retained. Authoredslice metadata unchanged; founderstyle/UIpreview pending.
+      Actual172source canonical Harmony measure/check with byteexactforeignrestoration
+      and reviewed134unusedraw numericalcacheomission, UIexcluded/no fabricatedshard.
+      No retry, force or QA/profile/pixel edits. auto-picked by QA; founder review
+      pending.
+qa_reports:
+  2:
+    job: ui-swash
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 23 (R1 51)
+      value: 22.9
+    - check: value_floor
+      status: warn
+      message: lightness p5 35 (R1 59)
+      value: 34.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.4 (R1 5.3)
+      value: 1.41
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.1
+      value: 1.0616
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.0, p95 1.6, off-palette 0.0%
+      value: 1.0422
+    info:
+      metrics_raw:
+        L_p5: 34.3
+        L_p50: 41.1
+        L_p95: 59.8
+        C_p50: 22.3
+        C_p95: 23.1
+        C_p99: 23.4
+        detail: 2.12
+      metrics_locked:
+        L_p5: 34.7
+        L_p50: 41.2
+        L_p95: 57.8
+        C_p50: 22.3
+        C_p95: 22.9
+        C_p99: 23.1
+        detail: 1.41
+    fingerprint: e3655cbfe237a6e2
+  1:
+    job: ui-swash
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 25 (R1 51)
+      value: 24.6
+    - check: value_floor
+      status: pass
+      message: lightness p5 36 (R1 59)
+      value: 36.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.3 (R1 5.3)
+      value: 1.34
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.4
+      value: 1.3772
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.0, p95 2.3, off-palette 0.0%
+      value: 1.0426
+    info:
+      metrics_raw:
+        L_p5: 36.1
+        L_p50: 41.4
+        L_p95: 59.9
+        C_p50: 23.5
+        C_p95: 24.7
+        C_p99: 25.1
+        detail: 2.06
+      metrics_locked:
+        L_p5: 36.4
+        L_p50: 41.4
+        L_p95: 58.2
+        C_p50: 23.5
+        C_p95: 24.6
+        C_p99: 24.9
+        detail: 1.34
+    fingerprint: e3655cbfe237a6e2
+manual_review:
+  excluded_takes: []
+  note: Both initial takes pass all hard automated checks and manual native/officiallocked
+    proper-alpha cream/dark review. Normal lowest style-lock load selects take2 (1.0616
+    vs1.3772); its value_floor34.7 is only WARN. Exactly3 separated short/medium/long
+    warmcocoa painterly underline strokes with thickercenters, taperedends and upwardright
+    flicks; no extramarks/text/icons/outline oractualpaintedbackdrop/halo. Subtle
+    painterly shading retained under authored generic paintingstyle, not a claim of
+    flatvector/exactRGB ink. Native glow around strokes is hiddenRGB underalpha0 and
+    absent in correctcomposites. Selected native lossless PNG160182B. OriginalPNG/RGBA/orderedrefs/callbacks/INITIAL2QA+lockedseal
+    retained. Authoredslice metadata unchanged; founderstyle/UIpreview pending. Actual172source
+    canonical Harmony measure/check with byteexactforeignrestoration and reviewed134unusedraw
+    numericalcacheomission, UIexcluded/no fabricatedshard. No retry, force or QA/profile/pixel
+    edits. auto-picked by QA; founder review pending.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-332092ed-6b74-45ab-a315-f72b60a0094d.png
+  original_generated_png_sha256: e6608a7c118e07d0ef33c72d06fe66ca2622fb5aeefba8c0bf160a2eb541f1cd
+  inbox_png_sha256: b4865c0f68cdf2301c563c788eaa260837096026778ee452c1c0cdaaa4f8e6ca
+  rgba_sha256: 42cf636d03277e58229aa07f8ae225dd9dfdd1e9398a6b4087081518d1518478
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: e3655cbfe237a6e2
+- take: 2
+  source_file: /workspace/generated_images/exec-4c181406-5a22-4050-aab2-4dee691009fa.png
+  original_generated_png_sha256: d7a59311ae76e6822043fca6f00b0d175394f96611670a6890805adca4a5ae85
+  inbox_png_sha256: 2aa16fdf48295a1d03cd0589344c756779e1f86f6c453e502930d287f4b6625f
+  rgba_sha256: ec3346c14c0f462790881f83a6ebba3d853c9ec0f19c4294ff59481ff17980e8
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: e3655cbfe237a6e2
