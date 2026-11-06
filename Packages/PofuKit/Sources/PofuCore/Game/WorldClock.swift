@@ -225,7 +225,8 @@ public struct WorldClock: Sendable {
             visitor: visitorSnapshot(of: state),
             invitationOpen: state.visitors.inviteOpenSince != nil,
             metResidents: state.visitors.met,
-            invited: state.visitors.invitation?.resident
+            invited: state.visitors.invitation?.resident,
+            koke: WonderIslands.status(game: state, day: day)
         )
     }
 
@@ -394,6 +395,7 @@ public struct WorldClock: Sendable {
             released: rules.releasedIslands,
             catalog: rules.catalog
         )
+        WonderIslands.roll(&state.wonders, to: day, tendedDays: state.tendedDays, harborOpen: state.stations.arrivalOrder.contains(.harbor))
         visitors.roll(&state.visitors, to: day, context: VisitorSchedule.context(of: state, catalog: rules.catalog, roster: visitors.roster))
     }
 
@@ -421,6 +423,7 @@ public struct WorldClock: Sendable {
             delta.skipSeeds += state.stations.giftSkip(on: frame.day, rules: rules.seeds)
             state.rounds.earnForResist(on: frame.day, rules: rules.rounds)
             delta.resisted += 1
+            state.today?.resistedReaches += 1
         case .opened(let pass):
             open(pass, at: at, in: &state, delta: &delta)
         case .passEndedEarly(let passID), .shieldRestored(let passID):
@@ -442,6 +445,9 @@ public struct WorldClock: Sendable {
             state.visitors.help()
         case .invited(let resident):
             state.visitors.invite(resident, on: frame.day)
+        case .tendedWonder(let wonder):
+            let resisted = (state.today?.day == frame.day ? state.today?.resistedReaches : nil) ?? 0
+            state.wonders.islands[wonder] = WonderIslands.advance(state: state.wonders[wonder], day: frame.day, resistedToday: resisted > 0)
         case .usageMeasured(let minutes):
             if let today = state.today, today.day == frame.day {
                 state.today?.measuredGuardedMinutes = max(today.measuredGuardedMinutes, minutes)

@@ -122,6 +122,10 @@ struct GameScenarioTests {
         var breathsByDay: [Int] = []
         var breathSeconds = 0
         var longestBreath = 0
+        /// Koke's timeline (days count from 0): the first day each held.
+        var kokeRumourDay: Int?
+        var kokeArrivalDay: Int?
+        var kokeHealedDay: Int?
         var delta = WorldDelta()
         var weekOne = WorldDelta()
         var calmByDay: [Double] = []
@@ -258,6 +262,10 @@ struct GameScenarioTests {
                         }
                     }
                     _ = world.collect(at: now)
+                    if minuteOfDay == 870 {
+                        // The evening visit also calls on Koke, once it is there.
+                        world.advance(to: now, GameEvent(at: now, kind: .tendedWonder(.koke)))
+                    }
                     var built = 0
                     while built < 2 {
                         let options = world.snapshot.stations.filter { $0.isOpen && $0.nextCost != nil && !$0.isCapped }
@@ -336,6 +344,10 @@ struct GameScenarioTests {
                 }
             }
             record(world.advance(to: at((day + 1) * 1440)), day: day)
+            let koke = world.state.wonders[.koke]
+            if koke.rumouredOn != nil { outcome.kokeRumourDay = outcome.kokeRumourDay ?? day }
+            if koke.arrivedOn != nil { outcome.kokeArrivalDay = outcome.kokeArrivalDay ?? day }
+            if koke.stage >= WonderIslands.healedStage { outcome.kokeHealedDay = outcome.kokeHealedDay ?? day }
             if world.state.care.wellbeing < 25 {
                 outcome.unwellDays += 1
             }
@@ -383,6 +395,27 @@ struct GameScenarioTests {
         let outcome = Self.outcome(archetype)
         let harbor = outcome.arrivalDay[.harbor]
         #expect(harbor != nil && (1...3).contains(harbor ?? 99), "\(archetype): Harbor on day \(String(describing: harbor))")
+    }
+
+    @Test func kokeFollowsTheTypicalUserFromRumourToHealed() {
+        // Rumour about day 5, arrival the next day, healed about day 10
+        // (days count from 0, and the roll happens at local midnight).
+        let outcome = Self.outcome(.typical)
+        let rumour = outcome.kokeRumourDay ?? 99
+        #expect((4...8).contains(rumour), "rumour on day \(rumour)")
+        #expect(outcome.kokeArrivalDay == rumour + 1)
+        let healed = outcome.kokeHealedDay ?? 99
+        #expect((rumour + 5...rumour + 8).contains(healed), "healed on day \(healed)")
+    }
+
+    @Test func kokeStaysGentleForTheLightUserToo() {
+        // Even the one who scrolls most only slows Koke down: a skipped
+        // day pauses, nothing expires.
+        let outcome = Self.outcome(.heavy)
+        #expect(outcome.kokeArrivalDay != nil)
+        #expect(outcome.kokeHealedDay != nil, "the heavy scroller still heals Koke within 90 days")
+        let monk = Self.outcome(.monk)
+        #expect((monk.kokeHealedDay ?? 99) <= (monk.kokeArrivalDay ?? 0) + 5)
     }
 
     @Test(arguments: Archetype.allCases)
