@@ -184,7 +184,7 @@ wooden chime at the end. **Done:** Pofu opens his eyes, one small hop,
 three petals fall. Reduce Motion: the ring still fills, nothing moves,
 the glow fades in and out. Night: the isle is lamplit, ink sky.
 
-**Art list (batch-61 `breath-room`, kind `ui`/`world`, 1024 × 1536 shared
+**Art list (batch-63 `breath-room`, kind `ui`/`world`, 1024 × 1536 shared
 canvas, layers register):** `breath-isle` (transparent, mossy isle, no
 Pofu), `breath-isle-night` (lamp, fireflies), `breath-halo` (soft glow
 sprite, transparent), `breath-clouds-far`, `breath-clouds-near`
@@ -231,13 +231,13 @@ page.
 
 | Batch | Contents | Blocks |
 |---|---|---|
-| 59 `ui-kit-v3` | plaques (honey, cream, bare, pressed), sheet paper v3 day/night + deckle + ribbon grip, cards (stitched, linen), bubble + tails + tab ribbons, felt chips, toast strip, wood groove, pot pips, clay disc night, swash | waves 1–3 |
+| 61 `ui-kit-v3` | plaques (honey, cream, bare, pressed), sheet paper v3 day/night + deckle + ribbon grip, cards (stitched, linen), bubble + tails + tab ribbons, felt chips, toast strip, wood groove, pot pips, clay disc night, swash | waves 1–3 |
 | 46 (finish) | pick the duo direction; extend to 18 glyphs (home, island, map, today, settings, close, back, plus, info, shield, letter, gift, bell, clock, friend, sound, haptic, lock) | wave 3 |
-| 61 `breath-room` | §4 list | wave 1 |
+| 63 `breath-room` | §4 list | wave 1 |
 | 48 → shield icons | produce the six medallions at 180 px + night set from `x-shield-icons` t1 | wave 1 |
 | 58 (running) | round door layers | wave 2 |
 | 60 `seals-and-stamps` | wax seals, ink stamps, build dust and plank pop sprites | wave 2 |
-| 62 `empty-and-waiting` | empty-state vignettes, loading loops, launch yawn, Settings header | wave 3 |
+| 63 `empty-and-waiting` | empty-state vignettes, loading loops, launch yawn, Settings header | wave 3 |
 | 50 (fix) | repaint gate postcards 1200 and 2230 without the hamster, or retire them for batch-58 | wave 2 |
 
 **Wave 1: the kit and the two showpieces** (three Sonnet PRs, disjoint):
@@ -305,3 +305,10 @@ the lead reviews every sheet before merging.
   is half blind.
 - The shield copy rewrite changes tested strings in `ShieldCopyTests`;
   the length limits stay.
+
+
+## Lead decisions (2026-11-06)
+
+- ADR-0020 (painted surfaces, native behaviour) amends ADR-0018; wave 1 may merge.
+- Breath haptics during the break: a Settings toggle, on by default; the founder feels it on device before release.
+- Batch numbers: `batch-61-ui-kit-v3`, `batch-62-breath-room`, `batch-63-empty-states` (59 and 60 are taken by the resident walks and the earth face).
