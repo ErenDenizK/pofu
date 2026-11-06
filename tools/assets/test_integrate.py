@@ -8,6 +8,7 @@ from PIL import Image, ImageChops
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import integrate  # noqa: E402
 
+REPO = integrate.REPO
 DATA = integrate.load_map()
 
 
@@ -17,7 +18,7 @@ def test_map_is_well_formed():
     assert len(names) == len(set(names))
     for e in DATA["entries"]:
         assert e["target"] in DATA["targets"]
-        if e["target"] in integrate.FLAT and e["target"] not in ("app", "postcard"):
+        if e["target"] in integrate.FLAT and e["target"] not in ("app", "postcard", "fx"):
             assert len(e["points"]) == 2 and e.get("scale", 3) in (1, 2, 3)
 
 
@@ -202,3 +203,59 @@ def test_shield_icons_are_round_180_and_under_30_kb():
         assert image.size == (180, 180)
         assert image.getpixel((0, 0))[3] == 0 and image.getpixel((90, 90))[3] >= 240  # round, on transparency
         assert out.stat().st_size <= 30_000
+
+
+def test_gate_postcards_are_the_batch_50_masters_with_mist():
+    entries = [e for e in DATA["entries"] if e["target"] == "postcard"]
+    assert [e["name"] for e in entries] == ["dawn", "day", "golden", "mist", "night", "rain"]
+    for e in entries:
+        assert e["master"] == f"design/art/masters/gate-postcard-{e['name']}"  # provenance: the master
+        out = integrate.output_path(e, DATA["targets"])
+        assert Image.open(out).size == (1024, 1536) and out.stat().st_size <= 400_000
+
+
+def test_weather_fx_are_baked_under_the_hook_names():
+    names = {e["name"] for e in DATA["entries"] if e["target"] == "fx"}
+    assert names == {"world-fog-card-1", "world-fog-card-2", "world-fog-card-3", "world-rain-tile",
+                     "world-rainbow-arc", "world-puddle-glint", "world-light-shaft"}
+    for e in DATA["entries"]:
+        if e["target"] != "fx":
+            continue
+        assert e["source"].startswith("design/art/takes/batch-44-weather-fx/")
+        image = Image.open(integrate.output_path(e, DATA["targets"]))
+        assert image.mode == "RGBA" and image.getchannel("A").getextrema()[1] > 100
+        if e["name"].startswith("world-fog-card"):
+            assert image.size == (768, 240)  # the ratio FogCardImage lays out
+
+
+def test_rain_tile_wraps_without_a_seam():
+    import numpy as np
+
+    entry = next(e for e in DATA["entries"] if e["name"] == "world-rain-tile")
+    alpha = np.asarray(Image.open(integrate.output_path(entry, DATA["targets"])).getchannel("A"), dtype=float)
+    assert np.abs(alpha[0] - alpha[-1]).mean() < 6 and np.abs(alpha[:, 0] - alpha[:, -1]).mean() < 6
+    assert alpha[0].mean() < 20  # and the tile's own edges stay faint (the seam is blended away)
+
+
+def test_two_tone_icons_are_nine_square_pngs_from_the_take():
+    entries = [e for e in DATA["entries"] if e["target"] == "icons-duo"]
+    assert [e["name"] for e in entries] == [f"paint-duo-{n}" for n in (
+        "home", "island", "map", "settings", "close", "add", "letter", "shield", "gift")]
+    for e in entries:
+        assert e["source"].startswith("design/art/takes/batch-46-flat-icons/x-icons-flat-duo/")
+        image = Image.open(integrate.output_path(e, DATA["targets"]))
+        assert image.size == (192, 192) and image.getpixel((0, 0))[3] == 0
+
+
+def test_the_earth_face_plates_share_the_main_plates_outline():
+    # Edits of island-main-l-v3: only the doors differ, the silhouette (alpha) is the same.
+    import numpy as np
+
+    def alpha(name):
+        base = REPO / "design/art/masters" / name
+        return np.asarray(Image.open(integrate.master_file(f"design/art/masters/{name}")).getchannel("A"), dtype=int)
+
+    ref = alpha("island-main-l-v3") > 128
+    for name in ("island-main-face-il2", "island-main-face-il6"):
+        mask = alpha(name) > 128
+        assert (mask & ref).sum() / (mask | ref).sum() > 0.98, name  # the same silhouette (0.5-1 % of edge pixels re-rendered)

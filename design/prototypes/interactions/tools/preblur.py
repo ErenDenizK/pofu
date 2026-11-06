@@ -242,8 +242,15 @@ PLATES = {
     # Batch 05: the same lawn over a deeper earth body (the founder found v2 too squashed).
     "island-main-l-v3": {"folder": "design/art/masters/island-main-l-v3", "lawn": (767.0, 415.0, 742.0, 135.0),
                          "units": 480.0, "window": (437, 563)},
+    # Batch 60: l-v3 edited, its outline identical (IslandFootprintTests), with the residents' round doors
+    # painted into the earth: Mochi's rose door from island level 2, Findik's sage door from level 6.
+    "island-main-face-il2": {"folder": "design/art/masters/island-main-face-il2", "lawn": (767.0, 415.0, 742.0, 135.0),
+                             "units": 480.0, "window": (437, 563)},
+    "island-main-face-il6": {"folder": "design/art/masters/island-main-face-il6", "lawn": (767.0, 415.0, 742.0, 135.0),
+                             "units": 480.0, "window": (437, 563)},
 }
 APP_PLATE_MASTER = "island-main-l-v3"
+FACE_PLATES = ("island-main-face-il2", "island-main-face-il6")
 
 
 def _plate(key):
@@ -390,6 +397,8 @@ APP_SOURCES = {
     # The app draws the lock-light bakes (WorldGrade grades them at runtime); "softlock" also bakes a
     # soft-lock master as <name>--softlock to compare (WorldLook.ArtSet), for tea-stall-1 only now.
     "island-main": _plate(APP_PLATE_MASTER),
+    # The earth-face plates (batch 60): the same lawn and bands, graded and harmonised like the main plate.
+    **{key: {**_plate(key), "harmony_as": "island-main", "face_plate": True} for key in FACE_PLATES},
     **{f"{st}-{lvl}": _station(f"{st}-{lvl}") for st, n in STATION_LEVELS.items() for lvl in range(1, n + 1)},
     **{f"{st}-{lvl}": {**_station(f"{st}-{lvl}", max_ppu=HARBOR_MAX_PPU), "ppu": 1024 / 120 / HARBOR_SIZE}
        for st, n in HARBOR_LEVELS.items() for lvl in range(1, n + 1)},
@@ -451,8 +460,8 @@ APP_SOURCES = {
     **{name: {**_station(name, max_ppu=HARBOR_MAX_PPU), "ppu": 1024 / 120 / HARBOR_SIZE}
        for name in ("bagel-cart-3-blue", "lighthouse-3-blue", "lighthouse-4-blue")},
     # The home island's fixtures: the doors in the earth face and the hive ladder.
-    "door-mochi": _fixed("design/art/masters/door-mochi", DOOR_PPU),
-    "door-findik": _fixed("design/art/masters/door-findik", DOOR_PPU),
+    # The pasted door sprites are retired from the home draw: the doors are painted into the earth-face plates.
+    "koke-stone": _blob("design/art/masters/koke-stone", 27, "feet"),
     **{f"hive-{lvl}": {**_station(f"hive-{lvl}"), "ppu": 1024 / 120 / HIVE_SIZE} for lvl in range(1, HIVE_LEVELS + 1)},
     # The meadow's lawn dressing, cut from its sheet.
     **{name: _cell(name, cell) for name, cell in MEADOW_CELLS.items()},
@@ -700,6 +709,11 @@ def _harmony():
     return harmony, harmony.load_manifest(), harmony.load_config()
 
 
+# The weather and light FX (tools/assets/integrate.py, target `fx`) live beside the baked sprites under
+# world- names the code asks for; this script does not write them and keeps them.
+FX_KEEP = ("world-fog-card-", "world-rain-tile", "world-rainbow-arc", "world-puddle-glint", "world-light-shaft")
+
+
 def app_main():
     import shutil
 
@@ -715,7 +729,7 @@ def app_main():
     # hand-placed ui-* imagesets in the same catalog stay.
     if os.path.isdir(APP_CATALOG):
         for entry in os.listdir(APP_CATALOG):
-            if entry.startswith("world-") and entry.endswith(".imageset") and "--normal" not in entry:
+            if entry.startswith("world-") and entry.endswith(".imageset") and "--normal" not in entry and not entry.startswith(FX_KEEP):
                 shutil.rmtree(os.path.join(APP_CATALOG, entry))
     os.makedirs(APP_CATALOG, exist_ok=True)
     with open(os.path.join(APP_CATALOG, "Contents.json"), "w") as f:
@@ -794,7 +808,7 @@ def app_main():
             # chroma scale for props and stations, after vivid so its boost does not undo it. Compare
             # bakes (--unharmonized, --v2) stay as they were.
             if alt in ("", "--round2"):
-                img = harmony.direct_image(name, img)
+                img = harmony.direct_image(harmony_key, img)
         variants = {"sharp": (img, _box((0, 0), img.size, ppu, anchor))}
         if spec.get("single"):
             # One image in world units, never blurred: a light overlay.
@@ -811,18 +825,19 @@ def app_main():
             print(f"{name}{alt}: sky, {img.width}x{img.height}, box {box}")
             continue
         if "walkable" in spec and not alt:
-            walkable[name] = _walkable(img, ppu, anchor, spec["walkable"])
             rx, ry = spec["lawn_radius"]
-            wx, wy = spec["window"]
-            plate = {"master": spec["plate"], "lawn": [round(rx, 2), round(ry, 2)],
-                     "bands": [round(c * ry, 2) for c in BAND_CENTRES],
-                     "window": [round((wx - spec["anchor"][0]) / spec["ppu"], 2), round((wy - spec["anchor"][1]) / spec["ppu"], 2)]}
             bands = _bands(ry)
+            if not spec.get("face_plate"):  # the face plates share the main plate's walkable polygon and table
+                walkable[name] = _walkable(img, ppu, anchor, spec["walkable"])
+                wx, wy = spec["window"]
+                plate = {"master": spec["plate"], "lawn": [round(rx, 2), round(ry, 2)],
+                         "bands": [round(c * ry, 2) for c in BAND_CENTRES],
+                         "window": [round((wx - spec["anchor"][0]) / spec["ppu"], 2), round((wy - spec["anchor"][1]) / spec["ppu"], 2)]}
         for suffix, (sigma_u, down) in APP_LEVELS.items():
             blurred, pad = blur_variant(img, sigma_u * ppu, down)
             # The blurred image covers the source padded by `pad` source pixels on every side.
             variants[suffix] = (blurred, _box((-pad, -pad), (img.width + 2 * pad, img.height + 2 * pad), ppu, anchor))
-        if name == APP_PLATE:
+        if name == APP_PLATE or spec.get("face_plate"):
             for k in range(len(bands)):
                 entry = {}
                 for suffix, (vimg, vbox) in variants.items():

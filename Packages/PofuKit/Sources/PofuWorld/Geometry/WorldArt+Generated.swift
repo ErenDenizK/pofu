@@ -387,52 +387,6 @@ extension WorldArt {
                 WorldPoint(x: -25.73, y: -0.76),
             ]
         ),
-        "door-findik": WorldSprite(
-            sharp: WorldBox(minX: -22.917, minY: -22.121, maxX: 22.917, maxY: 22.045),
-            soft: WorldBox(minX: -27.25, minY: -26.455, maxX: 27.25, maxY: 26.379),
-            deep: WorldBox(minX: -34.917, minY: -34.121, maxX: 34.917, maxY: 34.045),
-            footprint: [
-                WorldPoint(x: -21.25, y: 10.38),
-                WorldPoint(x: 20.92, y: 10.38),
-                WorldPoint(x: 20.75, y: 11.38),
-                WorldPoint(x: 19.25, y: 14.71),
-                WorldPoint(x: 18.42, y: 16.21),
-                WorldPoint(x: 16.08, y: 19.38),
-                WorldPoint(x: 14.75, y: 20.55),
-                WorldPoint(x: 13.75, y: 20.88),
-                WorldPoint(x: 6.58, y: 21.55),
-                WorldPoint(x: -2.08, y: 21.71),
-                WorldPoint(x: -9.08, y: 21.55),
-                WorldPoint(x: -14.58, y: 20.71),
-                WorldPoint(x: -16.42, y: 19.05),
-                WorldPoint(x: -17.58, y: 17.55),
-                WorldPoint(x: -19.25, y: 15.05),
-                WorldPoint(x: -20.42, y: 12.88),
-            ]
-        ),
-        "door-mochi": WorldSprite(
-            sharp: WorldBox(minX: -22.083, minY: -21.629, maxX: 22.083, maxY: 21.705),
-            soft: WorldBox(minX: -26.417, minY: -25.962, maxX: 26.417, maxY: 26.038),
-            deep: WorldBox(minX: -34.083, minY: -33.629, maxX: 34.083, maxY: 33.705),
-            footprint: [
-                WorldPoint(x: -18.42, y: 11.54),
-                WorldPoint(x: 18.08, y: 11.54),
-                WorldPoint(x: 17.92, y: 12.2),
-                WorldPoint(x: 16.92, y: 14.2),
-                WorldPoint(x: 13.92, y: 19.7),
-                WorldPoint(x: 13.58, y: 20.04),
-                WorldPoint(x: 12.42, y: 20.54),
-                WorldPoint(x: 9.25, y: 21.04),
-                WorldPoint(x: 6.92, y: 21.2),
-                WorldPoint(x: 1.75, y: 21.37),
-                WorldPoint(x: -2.92, y: 21.37),
-                WorldPoint(x: -7.92, y: 21.2),
-                WorldPoint(x: -11.25, y: 20.87),
-                WorldPoint(x: -12.75, y: 20.54),
-                WorldPoint(x: -14.08, y: 19.87),
-                WorldPoint(x: -17.92, y: 12.87),
-            ]
-        ),
         "door-mochi-glow": WorldSprite(
             sharp: WorldBox(minX: -6.023, minY: -3.523, maxX: 7.144, maxY: 9.644),
             soft: WorldBox(minX: -6.023, minY: -3.523, maxX: 7.144, maxY: 9.644),
@@ -1609,6 +1563,54 @@ extension WorldArt {
             deep: WorldBox(minX: -255.849, minY: 36.086, maxX: 256.496, maxY: 154.294),
             footprint: []
         ),
+        "island-main-face-il2-band0": WorldSprite(
+            sharp: WorldBox(minX: -244.528, minY: -47.547, maxX: 245.175, maxY: -5.822),
+            soft: WorldBox(minX: -248.733, minY: -49.811, maxX: 249.38, maxY: -5.822),
+            deep: WorldBox(minX: -256.819, minY: -55.957, maxX: 257.466, maxY: -5.498),
+            footprint: []
+        ),
+        "island-main-face-il2-band1": WorldSprite(
+            sharp: WorldBox(minX: -244.528, minY: -21.671, maxX: 245.175, maxY: 21.995),
+            soft: WorldBox(minX: -248.733, minY: -21.348, maxX: 249.38, maxY: 21.995),
+            deep: WorldBox(minX: -256.819, minY: -21.994, maxX: 257.466, maxY: 21.671),
+            footprint: []
+        ),
+        "island-main-face-il2-band2": WorldSprite(
+            sharp: WorldBox(minX: -244.528, minY: 6.469, maxX: 245.175, maxY: 51.752),
+            soft: WorldBox(minX: -248.733, minY: 6.469, maxX: 249.38, maxY: 51.752),
+            deep: WorldBox(minX: -256.819, minY: 6.146, maxX: 257.466, maxY: 51.752),
+            footprint: []
+        ),
+        "island-main-face-il2-band3": WorldSprite(
+            sharp: WorldBox(minX: -244.528, minY: 36.227, maxX: 245.175, maxY: 187.925),
+            soft: WorldBox(minX: -248.733, minY: 36.226, maxX: 249.38, maxY: 190.188),
+            deep: WorldBox(minX: -256.819, minY: 36.227, maxX: 257.466, maxY: 195.364),
+            footprint: []
+        ),
+        "island-main-face-il6-band0": WorldSprite(
+            sharp: WorldBox(minX: -244.528, minY: -48.195, maxX: 245.175, maxY: -5.822),
+            soft: WorldBox(minX: -248.733, minY: -50.779, maxX: 249.38, maxY: -6.084),
+            deep: WorldBox(minX: -256.819, minY: -56.928, maxX: 257.466, maxY: -5.499),
+            footprint: []
+        ),
+        "island-main-face-il6-band1": WorldSprite(
+            sharp: WorldBox(minX: -244.528, minY: -21.672, maxX: 245.175, maxY: 21.994),
+            soft: WorldBox(minX: -248.733, minY: -21.63, maxX: 249.38, maxY: 21.77),
+            deep: WorldBox(minX: -256.819, minY: -21.995, maxX: 257.466, maxY: 21.671),
+            footprint: []
+        ),
+        "island-main-face-il6-band2": WorldSprite(
+            sharp: WorldBox(minX: -244.528, minY: 6.469, maxX: 245.175, maxY: 51.752),
+            soft: WorldBox(minX: -248.733, minY: 6.224, maxX: 249.38, maxY: 51.566),
+            deep: WorldBox(minX: -256.819, minY: 6.145, maxX: 257.466, maxY: 51.752),
+            footprint: []
+        ),
+        "island-main-face-il6-band3": WorldSprite(
+            sharp: WorldBox(minX: -244.528, minY: 36.226, maxX: 245.175, maxY: 187.602),
+            soft: WorldBox(minX: -248.733, minY: 36.02, maxX: 249.38, maxY: 190.186),
+            deep: WorldBox(minX: -256.819, minY: 36.226, maxX: 257.466, maxY: 195.364),
+            footprint: []
+        ),
         "isle-hamam-standin": WorldSprite(
             sharp: WorldBox(minX: -109.333, minY: -80.318, maxX: 109.333, maxY: 113.016),
             soft: WorldBox(minX: -113.778, minY: -84.762, maxX: 113.778, maxY: 117.46),
@@ -1807,6 +1809,29 @@ extension WorldArt {
                 WorldPoint(x: -51.39, y: -5.5),
                 WorldPoint(x: -55.12, y: -9.77),
                 WorldPoint(x: -56.32, y: -13.5),
+            ]
+        ),
+        "koke-stone": WorldSprite(
+            sharp: WorldBox(minX: -13.585, minY: -31.288, maxX: 13.615, maxY: 0.046),
+            soft: WorldBox(minX: -17.852, minY: -35.554, maxX: 17.882, maxY: 4.312),
+            deep: WorldBox(minX: -25.585, minY: -43.288, maxX: 25.615, maxY: 12.046),
+            footprint: [
+                WorldPoint(x: -13.32, y: -3.15),
+                WorldPoint(x: -11.72, y: -8.22),
+                WorldPoint(x: 11.22, y: -8.22),
+                WorldPoint(x: 12.28, y: -8.09),
+                WorldPoint(x: 12.55, y: -7.95),
+                WorldPoint(x: 12.68, y: -7.69),
+                WorldPoint(x: 13.35, y: -3.82),
+                WorldPoint(x: 13.35, y: -3.29),
+                WorldPoint(x: 13.22, y: -3.15),
+                WorldPoint(x: 10.82, y: -1.15),
+                WorldPoint(x: 4.42, y: -0.35),
+                WorldPoint(x: 2.68, y: -0.22),
+                WorldPoint(x: -4.52, y: -0.22),
+                WorldPoint(x: -10.52, y: -0.62),
+                WorldPoint(x: -13.18, y: -2.49),
+                WorldPoint(x: -13.32, y: -2.62),
             ]
         ),
         "koke-stretch": WorldSprite(
