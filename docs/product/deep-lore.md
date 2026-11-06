@@ -339,10 +339,10 @@ re-read by later books, which is how a small filler grows big later.
 | **Gezgin** (Nazlı) | moves | The whale you travel on; humble, then grown | §4.3 | **Yosun** the tortoise postman descends from Ağır, the fifth keeper, who started the custom of thank-you letters to "Bekçi". The letters are never late: the address moves with the quiet, and he delivers when he finds it. His want (one letter for him) is Ihlamur's last letter, which waits in Book Two |
 
 > **Placement:** for island order, arrival and which islands are main or
-> filler (Mehtap is Book One's last main island and its finale night, not a
-> real-moon year finale; Arı is the Act III upgrade island, not a filler),
-> [book-one-islands](../design/book-one-islands.md) is canonical. The lore
-> below is unchanged.
+> filler, the [Book One story map](story-map/book-one.md) is canonical:
+> Mehtap is Book One's last main island and its finale is under the real
+> full moon ("GERÇEK DOLUNAY"); Arı is a home upgrade (the hive), not an
+> island. The lore below is unchanged.
 
 ### 6.2 Home residents
 
@@ -369,10 +369,10 @@ re-read by later books, which is how a small filler grows big later.
 | **Yakamoz** | The moon's reflection | Reflections show Below. Yakamoz shows the one window still lit beyond the Ring (§7, M-B) | Book Two's opener |
 | **Kitap** | Bottles with messages | The Readers' library, where every copy of every record washes up. Line 6 is on its doorstep | Book Three's opener |
 
-Placement note: Arı is listed here as a filler, but
-[book-one-islands](../design/book-one-islands.md) makes it a main island
-(the Act III upgrade); its placement there is canonical, the secret above
-stands.
+Placement note: Arı is listed here as a filler, but the
+[Book One story map](story-map/book-one.md) makes it a home upgrade (the
+hive comes home after Emanet); the map is canonical, and the secret above
+stands ("dans hep aynı yöne döner...").
 
 New fillers follow one rule: each may hide one secret tied to §3, but
 its surface must be complete without it.

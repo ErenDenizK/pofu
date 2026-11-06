@@ -27,8 +27,8 @@ as station islands) while the design moved to wonder islands.
    stations level 1 to 5, producing seeds while you are away. A visit is one
    to two minutes: collect, see Pofu, build, maybe one round.
 3. **Wonder islands are the story.** Hand-made, few, each a little better
-   than the last. Each one is a story island, a game island or an upgrade
-   island, never a seed sink.
+   than the last. Each one is a story island, a game island or a filler
+   (Arı is a home upgrade, not an island), never a seed sink.
 4. **Three games, not fifteen.** Place (the garden), connect (flow) and
    recall (bells). Later islands reuse an engine with one new twist.
 5. **Two voices.** Pofu and Mochi travel together and change: each has a
@@ -66,7 +66,7 @@ observed minute; days below are tended days, so a skipped day only pauses.
 | 3 | ~16 | bagel cart L1 (25, often day 4) | **the harbor's fog lifts**: Simit and the goat arrive | Simit's first request on the noticeboard | a friend's boat can dock at your pier |
 | 4 | ~16 | tea stall L2 | pond opens (stage 3); first calm-night bonus noticed | Pofu brags (his cocky start) | |
 | 5 | ~17 | garden L3 | | a snoring mossy hump on the horizon (Koke rumour) | |
-| 6 | ~17 | pier L1 (40) over two days | **Koke arrives** (story island) | the sleeper: visit it to wake it | |
+| 6 | ~17 | pier L1 (40) over two days | **Koke arrives** (the first filler; Sumi becomes the Monday visitor) | the sleeper: visit it to wake it | |
 | 7 | ~18 | | week page in the Seyir defteri; first stamps | | the weekly postcard to friends |
 | 8 | ~22 | bagel cart L2 | Koke wakes on the third visit and leaves moss decor at home | water noise stops somewhere (Çağlayan rumour) | |
 | 9 | ~23 | pond L2 | | Mochi worries about the silence | |
@@ -81,46 +81,51 @@ without.
 
 ## 4. Book One: the islands (rising curve)
 
-The canonical order, stages, residents and layouts are in
-[book-one-islands](../design/book-one-islands.md); this section is its
-summary. The rules come from the founder (2026-11-05): Gezgin (the whale
-Nazlı) comes early as the travel companion and carries the player, growing
-toward her godlike form; islands split into main-story and filler (Çanlar is
-a filler); arrival days are not fixed, the gates are order, the previous
-bloom and quiet days, so "around day N" is only the typical day. The story
-rules are in
+The canonical story, order and roles are in the
+[Book One story map](story-map/book-one.md) ("Bekçi kim?", lead
+2026-11-05, shown to the founder 2026-11-05 and 2026-11-06); layouts,
+stages and art are in [book-one-islands](../design/book-one-islands.md).
+This section is their summary. "Kapı, gün değil": the next main island
+comes only after the previous one blooms plus a few quiet days; tests set
+the durations, so "around day N" below is only the typical day. Fillers
+drift in on random quiet days, take one or two visits, carry no main
+story and never expire. The story rules are in
 [story-references](../research/story-references.md#synthesis-the-story-rules-these-give-pofu).
 
-Each wait is a little longer, and each island a little bigger than the one
-before (peak score 3 to 6; the founder's 10 is Gezgin's grown form, never
-day 8).
-
-| # | Around day | Island | Type | The one idea | Turn | Peak |
+| Order | Typical day | Node | Role | Game | Söz | The duo |
 |---|---|---|---|---|---|---|
-| 0 | 1-3 | Ayçiçeği + İskele | home | the garden puzzle; the harbor wakes | | |
-| 1 | 6 | Koke | main, story | a moss creature asleep; three visits wake it | | 3 |
-| 2 | 10 | Çağlayan | main, game: **flow** debut | a waterfall that stopped; reconnect its streams (only this; the windows-into-hours idea is cut) | Mochi is afraid of the drop | 4 |
-| 3 | 16 | Emanet | main, story | the lost-and-found; return things to residents | **Mochi lets go** of something kept | 4 |
-| f | 23 | Çanlar | **filler**, game: **recall** debut | the four-note call of the bells; one or two visits | **Pofu learns to wait** (a feeling, never lore) | 3 |
-| 4 | 30 | Revontuli | main, game: flow + light | a ruin under the aurora, night only; carry the sauna's warm light to the lantern | | 5 |
-| 5 | 37 | Arı | main, upgrade (place + bees) | the hive comes to home: bees over Ayçiçeği, flowers change | | 5 |
-| 6 | 41 | Mehtap | main, game: flow (moon line) | the dark stars; the last main island | the darkest night before the release | 6 |
-| - | 45 | Gezgin finale | finale, none (the four notes are heard) | Nazlı's grown form; the finale is the night of Mehtap's stage 4 | **both**: the duo's promise | 6 |
+| 0 | 1-3 | Ayçiçeği + İskele | home | place (garden); the harbor wakes | | "Burası kimindi?" |
+| G | first days | Gezgin (Nazlı) | the vehicle, the main road itself, form 1 | none | | Pofu wants the helm; Mochi has packed |
+| f | ~6 | Koke | **first filler, first visitor** (Monday) | none | | |
+| 1 | ~10 | Çağlayan | main 1, noon | **flow** debut | 1 | Mochi fears the drop; Pofu wants to thank the keeper |
+| f | random | Çanlar, Martı Kayası | fillers | Çanlar: **recall** debut | | they bicker |
+| 2 | later | Revontuli | main 2, night | flow + light | 4 | no talking in the sauna; silent side by side |
+| ½ | after Revontuli | Olta (Revontuli's ice hole) | the midpoint | none | | "Onu tanırdım."; the question turns to Mochi's fear |
+| f | random | Fanus, Pervane | fillers | | | |
+| 3 | later | Emanet | main 3, afternoon | story island (one return a day) | 7 | Mochi gives the tin away; Pofu asks nothing |
+| f, ev | random | Çömlek; Arı | filler; **home upgrade** (the hive, not an island) | | | |
+| 4 | ~45 | Mehtap and the finale | main 4, blue hour, the real full moon | flow (moon line) | 10 | "Bekçi sensin."; Nazlı's form 2 |
 
-Gezgin is not only a destination at the end: she carries the player from
-early on, one detail grows on her back with each main island, and her grown
-form arrives on Mehtap's finale night. Four islands play (Çağlayan, Çanlar,
-Revontuli, Mehtap), Koke and Emanet tell, Arı changes home, and the book
-ends around day 45, as the founder asked; few reach it, and nothing on it
-is required to keep the shield working.
+Gezgin is not a destination: every main island is reached on her back,
+and each leaves one piece there ("Sırtında biriken": a pool and fall, an
+aurora jar, a teal plank, a moon stone; at the finale a young sunflower
+from home's soil and Ihlamur's lantern, lit). Four islands play
+(Çağlayan, Çanlar, Revontuli, Mehtap), Emanet tells, Arı changes home, and
+the book ends around day 45 on "İyi geceler", as the founder asked; few
+reach it, and nothing on it is required to keep the shield working.
+
+**Open (lead):** Koke is built as a five-stage island but the map makes it
+the first filler; recommended: keep its arc as the first filler's longer
+visit, a gentle tutorial of the arc
+([story map §8](story-map/book-one.md#8-open-decisions-for-the-lead)).
 
 ## 5. The three games
 
 | Engine | Verb | Debut | Reused | Code |
 |---|---|---|---|---|
 | Garden | place | home, day 1 | home every day | built (`PofuGames`), in the home flow (the station sheet's Play opens it) |
-| Flow | connect | Çağlayan, day 10 | Revontuli (light), Mehtap (moon line) | new |
-| Recall | listen and repeat | Çanlar, day 23 | Book Two islands | new |
+| Flow | connect | Çağlayan, day 10 | Revontuli (light), Mehtap (moon line) | built (#297) |
+| Recall | listen and repeat | Çanlar, a filler after Çağlayan | Book Two islands | new |
 
 Rules for all three: 30 to 90 seconds, no failure, no timer pressure,
 rounds come from resisting (2 a day, plus one per resisted reach up to
@@ -129,10 +134,12 @@ on a wonder island it pays that island's progress instead.
 
 ## 6. After day 45 (Book Two and the long tail)
 
-- **Seasons.** Every six weeks one new wonder island (Fanus, Çömlek, then
-  Kitap, which opens year two), delivered as app updates. Mehtap, tied to
-  the real moon, is not here: it is Book One's last main island and its
-  stage 4 is the finale night (section 4). Each reuses an engine with one twist.
+- **Seasons.** Every six weeks one new wonder island (Book Two opens with
+  Yakamoz, which arrives as an object days after the finale; then Kitap),
+  delivered as app updates. Fanus and Çömlek are Book One fillers, and
+  Mehtap is Book One's last main island, its finale on the real full moon
+  ([story map](story-map/book-one.md)). Each reuses an engine with one
+  twist.
 - **Home keeps living.** Seasonal events on Ayçiçeği (storks in spring, the
   first snow), visitors, the decor collection, the last levels of the
   harbor (about 2,788 seeds in all means the typical user is still
@@ -186,14 +193,17 @@ in the art queue is rewritten to this list.
 1. **Three engines: place, connect, recall.** Alternative: flow only, with
    twists. Recommend three; one engine for a year would feel thin.
 2. **Gezgin early as the carrier, grown form at the finale (around day
-   45, Mehtap's night).** Decided by the founder (2026-11-05). Alternative:
+   45, Mehtap's full-moon night).** Decided by the founder (2026-11-05);
+   the story map draws it (Nazlı "ARAÇ · ANA YOLUN KENDİSİ", form 2 in the
+   finale's first beat). Alternative:
    her grown form at day 8 as the hook; a 10 at day 8 makes everything
    after it smaller, which the founder named.
 3. **Two voices (Pofu and Mochi).** story-delivery recommended Pofu alone;
    the founder asked for a duo twice. Recommend the duo.
 4. **Retire the station islands.** Recommend yes (section 2).
 5. **Where the free part ends.** Decided by data (founder). Candidates:
-   after Çağlayan (day 14) or after Emanet (day 20). Measure in the beta.
+   after Çağlayan (day 14) or after Revontuli and Olta (the book's
+   midpoint). Measure in the beta.
 
 ## 10. What changes in code and docs (in order)
 
@@ -201,10 +211,18 @@ in the art queue is rewritten to this list.
    Yıldız, Kaplıca, Kitap; a wonder-island model (arrival day, stages,
    engine, beats, gift); tests re-banded (İskele day 3, islands by day).
 2. Game round in the production home flow (done: the station sheet's Play opens it).
-3. Map view with rumours; Koke as the first story island (no new engine).
-4. Flow engine and Çağlayan.
+3. Map view with rumours; Koke as the first filler and first visitor (no
+   new engine).
+4. Flow engine (built, #297) and Çağlayan.
 5. Content: `content/stations/*.yaml` still carry pre-scale-A prices;
    regenerate them from code. Fix the `Archipelago.swift` rate comment
    (says 0.03, code is 0.02).
 6. Art queue: rewrite batch 11 to section 8's list; island batches follow
-   the order in section 4.
+   the order in section 4 (the story map): Çağlayan, Çanlar, Revontuli
+   (and Olta's lantern), Emanet, Mehtap, Nazlı's back pieces with each;
+   no Arı island batch (the hive is home art).
+7. `PofuCore` wonder-island model: add the map's islands (Revontuli,
+   Emanet, Mehtap main; Çanlar, Martı Kayası, Fanus, Pervane, Çömlek
+   fillers; Olta as a story event), a filler pacing flag, Mehtap's door
+   timed to the real moon; Arı is a home station (the hive), not an
+   island.
