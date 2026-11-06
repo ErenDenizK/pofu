@@ -1,0 +1,353 @@
+batch: batch-42-stickers
+contact_sheet: design/art/takes/batch-42-stickers/sticker-simit-happy/contact.jpg
+jobs:
+  sticker-simit-happy:
+    pick: none
+    publication: skipped after one allowed retry
+    note: 'All four originals preserved after the sole unchanged retry. Every take
+      hard-fails canonical ground_line; square sticker sources are center-padded into
+      the implicit 1024x1536 char QA canvas. No source, prompt, canvas, fit or threshold
+      workaround and no master selection. Any other actual hard failures are recorded
+      below. Recommend an author-owned square canvas and retained-first re-post, without
+      regeneration. Automated failures: t1 palette_drift: mean dE 4.6, p95 17.5, off-palette
+      13.2% (top: #CC7733 (2.5%), #DD8844 (2.3%)), ground_line: feet at 76.9% of the
+      height (contract 88%); t2 palette_drift: mean dE 4.3, p95 16.7, off-palette
+      12.0% (top: #DD8844 (2.3%), #CC7733 (2.2%)), ground_line: feet at 77.1% of the
+      height (contract 88%); t3 palette_drift: mean dE 4.7, p95 17.5, off-palette
+      12.9% (top: #CC7733 (2.8%), #DD8844 (2.0%)), ground_line: feet at 75.7% of the
+      height (contract 88%); t4 palette_drift: mean dE 4.7, p95 17.4, off-palette
+      13.2% (top: #CC7733 (2.9%), #DD8844 (2.6%)), ground_line: feet at 76.5% of the
+      height (contract 88%).'
+qa_reports:
+  2:
+    job: sticker-simit-happy
+    take: 2
+    status: fail
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: warn
+      message: 1254x1254 scaled x0.817 into 1024x1536 (aspect off by 50%, padded)
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 57 (R1 51)
+      value: 56.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 53 (at most 22), p98 96 (at least 90), spread 42
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 42.2
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 83 (band 55-90)'
+      value: 82.6
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.16 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.161
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.4 (at least 3.5)'
+      value: 5.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.8 (R1 5.3)
+      value: 4.83
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 4.3, p95 16.7, off-palette 12.0% (top: #DD8844 (2.3%), #CC7733
+        (2.2%))'
+      value: 4.2754
+    - check: ground_line
+      status: fail
+      message: feet at 77.1% of the height (contract 88%)
+      value: 0.7708
+    - check: harmony
+      status: warn
+      message: 'harmony score 68 against the char reference (outliers: C_p95, L_p2,
+        detail)'
+      value: 68.5
+    info:
+      metrics_raw:
+        L_p5: 58.5
+        L_p50: 82.6
+        L_p95: 94.6
+        C_p50: 27.9
+        C_p95: 60.0
+        C_p99: 63.7
+        detail: 4.85
+      metrics_locked:
+        L_p5: 58.5
+        L_p50: 82.6
+        L_p95: 94.6
+        C_p50: 27.9
+        C_p95: 56.8
+        C_p99: 57.9
+        detail: 4.83
+    fingerprint: ab6da0b84fe39fe8
+  3:
+    job: sticker-simit-happy
+    take: 3
+    status: fail
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: warn
+      message: 1254x1254 scaled x0.817 into 1024x1536 (aspect off by 50%, padded)
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 58 (R1 51)
+      value: 57.5
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 53 (at most 22), p98 95 (at least 90), spread 42
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 42.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 83 (band 55-90)'
+      value: 83.1
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.14 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.141
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.9 (at least 3.5)'
+      value: 5.87
+    - check: detail_budget
+      status: pass
+      message: detail at display size 5.1 (R1 5.3)
+      value: 5.1
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 4.7, p95 17.5, off-palette 12.9% (top: #CC7733 (2.8%), #DD8844
+        (2.0%))'
+      value: 4.6992
+    - check: ground_line
+      status: fail
+      message: feet at 75.7% of the height (contract 88%)
+      value: 0.7572
+    - check: harmony
+      status: warn
+      message: 'harmony score 64 against the char reference (outliers: C_p95, L_p2,
+        detail)'
+      value: 64.4
+    info:
+      metrics_raw:
+        L_p5: 58.5
+        L_p50: 83.1
+        L_p95: 94.0
+        C_p50: 30.3
+        C_p95: 62.3
+        C_p99: 65.7
+        detail: 5.14
+      metrics_locked:
+        L_p5: 58.5
+        L_p50: 83.1
+        L_p95: 94.0
+        C_p50: 30.3
+        C_p95: 57.5
+        C_p99: 58.4
+        detail: 5.1
+    fingerprint: ab6da0b84fe39fe8
+  1:
+    job: sticker-simit-happy
+    take: 1
+    status: fail
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: warn
+      message: 1254x1254 scaled x0.817 into 1024x1536 (aspect off by 50%, padded)
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 57 (R1 51)
+      value: 57.3
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 52 (at most 22), p98 95 (at least 90), spread 43
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 43.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 83 (band 55-90)'
+      value: 82.9
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.15 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.149
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.9 (at least 3.5)'
+      value: 5.91
+    - check: detail_budget
+      status: pass
+      message: detail at display size 5.1 (R1 5.3)
+      value: 5.11
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 4.6, p95 17.5, off-palette 13.2% (top: #CC7733 (2.5%), #DD8844
+        (2.3%))'
+      value: 4.5743
+    - check: ground_line
+      status: fail
+      message: feet at 76.9% of the height (contract 88%)
+      value: 0.7689
+    - check: harmony
+      status: warn
+      message: 'harmony score 66 against the char reference (outliers: C_p95, L_p2,
+        detail)'
+      value: 65.8
+    info:
+      metrics_raw:
+        L_p5: 57.8
+        L_p50: 82.9
+        L_p95: 94.2
+        C_p50: 27.9
+        C_p95: 61.5
+        C_p99: 64.4
+        detail: 5.14
+      metrics_locked:
+        L_p5: 57.8
+        L_p50: 82.9
+        L_p95: 94.2
+        C_p50: 27.9
+        C_p95: 57.3
+        C_p99: 58.1
+        detail: 5.11
+    fingerprint: ab6da0b84fe39fe8
+  4:
+    job: sticker-simit-happy
+    take: 4
+    status: fail
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: warn
+      message: 1254x1254 scaled x0.817 into 1024x1536 (aspect off by 50%, padded)
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 57 (R1 51)
+      value: 57.2
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 53 (at most 22), p98 95 (at least 90), spread 42
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 42.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 82 (band 55-90)'
+      value: 82.5
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.15 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.153
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.6 (at least 3.5)'
+      value: 5.59
+    - check: detail_budget
+      status: pass
+      message: detail at display size 5.2 (R1 5.3)
+      value: 5.21
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 4.7, p95 17.4, off-palette 13.2% (top: #CC7733 (2.9%), #DD8844
+        (2.6%))'
+      value: 4.7181
+    - check: ground_line
+      status: fail
+      message: feet at 76.5% of the height (contract 88%)
+      value: 0.765
+    - check: harmony
+      status: warn
+      message: 'harmony score 66 against the char reference (outliers: C_p95, L_p2,
+        detail)'
+      value: 66.4
+    info:
+      metrics_raw:
+        L_p5: 58.4
+        L_p50: 82.6
+        L_p95: 94.3
+        C_p50: 30.2
+        C_p95: 61.2
+        C_p99: 64.2
+        detail: 5.23
+      metrics_locked:
+        L_p5: 58.4
+        L_p50: 82.6
+        L_p95: 94.3
+        C_p50: 30.2
+        C_p95: 57.2
+        C_p99: 58.1
+        detail: 5.21
+    fingerprint: ab6da0b84fe39fe8
+manual_review:
+  excluded_takes: []
+  note: All four originals preserved after the sole unchanged retry. Every take hard-fails
+    canonical ground_line; square sticker sources are center-padded into the implicit
+    1024x1536 char QA canvas. No source, prompt, canvas, fit or threshold workaround
+    and no master selection. Any other actual hard failures are recorded below. Recommend
+    an author-owned square canvas and retained-first re-post, without regeneration.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-5d80dac8-5846-4d86-96cc-c8f8f35ffbd1.png
+  original_generated_png_sha256: 9f8516b5c65893a1f3ded86afdae28995e2f40280faa07db254f6491535a3ee8
+  inbox_png_sha256: ff20152d864ea7426927be2c88c47d3c8aeac019de4fa445e126d972bb2cf6ca
+  rgba_sha256: 625c0816cb5fa5c262ab35a72535e6cf674f9d4123a2a98d11bde8d33a961eb1
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: ab6da0b84fe39fe8
+- take: 2
+  source_file: /workspace/generated_images/exec-d1aa7b26-27c5-4ceb-879e-64e162f55712.png
+  original_generated_png_sha256: 0d1b9484c2992bebe6e1258dccaca7bdd9ad9cd5ba702f40f647dadae4d3f282
+  inbox_png_sha256: 3144e695bda1ec178fbbd060a31623e64d1f7518f3d636ecaeea7fdf578dc78c
+  rgba_sha256: 80c0890013d52c5f283ebb8dab53db6b030032c77df6fe5578427fc1eaf3bf33
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: ab6da0b84fe39fe8
+- take: 3
+  source_file: /workspace/generated_images/exec-d2b9aa9c-a2a0-45ea-b872-9082f8443ecf.png
+  original_generated_png_sha256: d85193327fe97ac5030e14615277c8b6f0c4eebcca4e093618ddd5633f2ef786
+  inbox_png_sha256: 117d10120e0f66b33833b4d6ae7d97e1ae7b33006a13330a49010ae81bb88edf
+  rgba_sha256: 771035bc0519710147b21fb95550e9b0f4691f3ac0903acf9f3dfe04d7050504
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: ab6da0b84fe39fe8
+- take: 4
+  source_file: /workspace/generated_images/exec-6e4f0e0e-26e6-40b8-a36b-027fe44d9f4a.png
+  original_generated_png_sha256: d3dc8798502e95e61a723d1ea9d14813f7338012df1605435ea95bc2f3923d32
+  inbox_png_sha256: cc7176b8bbbb8414b3d68e85beb531c38feed4a918aaa7989aee840025c9b18b
+  rgba_sha256: 1037016fd72f703831bc666101cf95a85ffa843785cff07c71e4a73a6ef95889
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: ab6da0b84fe39fe8

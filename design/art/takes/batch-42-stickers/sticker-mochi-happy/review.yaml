@@ -1,0 +1,351 @@
+batch: batch-42-stickers
+contact_sheet: design/art/takes/batch-42-stickers/sticker-mochi-happy/contact.jpg
+jobs:
+  sticker-mochi-happy:
+    pick: none
+    publication: skipped after one allowed retry
+    note: 'All four originals preserved after the sole unchanged retry. Every take
+      hard-fails canonical ground_line; square sticker sources are center-padded into
+      the implicit 1024x1536 char QA canvas. No source, prompt, canvas, fit or threshold
+      workaround and no master selection. Any other actual hard failures are recorded
+      below. Recommend an author-owned square canvas and retained-first re-post, without
+      regeneration. Automated failures: t1 ground_line: feet at 80.3% of the height
+      (contract 88%); t2 ground_line: feet at 80.1% of the height (contract 88%);
+      t3 ground_line: feet at 78.8% of the height (contract 88%); t4 ground_line:
+      feet at 79.8% of the height (contract 88%).'
+qa_reports:
+  4:
+    job: sticker-mochi-happy
+    take: 4
+    status: fail
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: warn
+      message: 1254x1254 scaled x0.817 into 1024x1536 (aspect off by 50%, padded)
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 29 (R1 51)
+      value: 29.3
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 67 (at most 22), p98 97 (at least 90), spread 30
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 29.9
+    - check: light_median
+      status: warn
+      message: 'day/subject: median L 91 (band 55-90)'
+      value: 90.8
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.44 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.439
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.1 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.11
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.3 (R1 5.3)
+      value: 3.33
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.3, p95 3.9, off-palette 0.8% (top: #441100 (0.1%), #552211
+        (0.1%))'
+      value: 1.3139
+    - check: ground_line
+      status: fail
+      message: feet at 79.8% of the height (contract 88%)
+      value: 0.7982
+    - check: harmony
+      status: warn
+      message: 'harmony score 67 against the char reference (outliers: C_p95, L_p2,
+        tint_b)'
+      value: 67.4
+    info:
+      metrics_raw:
+        L_p5: 76.4
+        L_p50: 90.8
+        L_p95: 96.3
+        C_p50: 8.3
+        C_p95: 29.3
+        C_p99: 42.3
+        detail: 3.33
+      metrics_locked:
+        L_p5: 76.4
+        L_p50: 90.8
+        L_p95: 96.3
+        C_p50: 8.3
+        C_p95: 29.3
+        C_p99: 42.3
+        detail: 3.33
+    fingerprint: cee3d2e1a419b391
+  1:
+    job: sticker-mochi-happy
+    take: 1
+    status: fail
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: warn
+      message: 1254x1254 scaled x0.817 into 1024x1536 (aspect off by 50%, padded)
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 34 (R1 51)
+      value: 33.7
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 66 (at most 22), p98 97 (at least 90), spread 31
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 31.4
+    - check: light_median
+      status: warn
+      message: 'day/subject: median L 90 (band 55-90)'
+      value: 90.5
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.40 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.396
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.4 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.35
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.6 (R1 5.3)
+      value: 3.62
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.4, p95 3.9, off-palette 0.8% (top: #441100 (0.1%), #EE7766
+        (0.1%))'
+      value: 1.3682
+    - check: ground_line
+      status: fail
+      message: feet at 80.3% of the height (contract 88%)
+      value: 0.8034
+    - check: harmony
+      status: pass
+      message: 'harmony score 73 against the char reference (outliers: C_p95, L_p2,
+        tint_b)'
+      value: 72.6
+    info:
+      metrics_raw:
+        L_p5: 73.4
+        L_p50: 90.5
+        L_p95: 96.2
+        C_p50: 8.3
+        C_p95: 33.7
+        C_p99: 47.6
+        detail: 3.63
+      metrics_locked:
+        L_p5: 73.4
+        L_p50: 90.5
+        L_p95: 96.2
+        C_p50: 8.3
+        C_p95: 33.7
+        C_p99: 47.6
+        detail: 3.62
+    fingerprint: cee3d2e1a419b391
+  3:
+    job: sticker-mochi-happy
+    take: 3
+    status: fail
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: warn
+      message: 1254x1254 scaled x0.817 into 1024x1536 (aspect off by 50%, padded)
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 32 (R1 51)
+      value: 31.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 67 (at most 22), p98 98 (at least 90), spread 31
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 30.6
+    - check: light_median
+      status: warn
+      message: 'day/subject: median L 91 (band 55-90)'
+      value: 90.6
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.36 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.361
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.3 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.27
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.3 (R1 5.3)
+      value: 3.31
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.1, p95 2.8, off-palette 0.9% (top: #441100 (0.1%), #DD6655
+        (0.1%))'
+      value: 1.1105
+    - check: ground_line
+      status: fail
+      message: feet at 78.8% of the height (contract 88%)
+      value: 0.7878
+    - check: harmony
+      status: pass
+      message: 'harmony score 71 against the char reference (outliers: C_p95, L_p2)'
+      value: 71.2
+    info:
+      metrics_raw:
+        L_p5: 75.6
+        L_p50: 90.6
+        L_p95: 96.6
+        C_p50: 9.3
+        C_p95: 31.8
+        C_p99: 42.9
+        detail: 3.31
+      metrics_locked:
+        L_p5: 75.6
+        L_p50: 90.6
+        L_p95: 96.6
+        C_p50: 9.3
+        C_p95: 31.8
+        C_p99: 42.9
+        detail: 3.31
+    fingerprint: cee3d2e1a419b391
+  2:
+    job: sticker-mochi-happy
+    take: 2
+    status: fail
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: warn
+      message: 1254x1254 scaled x0.817 into 1024x1536 (aspect off by 50%, padded)
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 31 (R1 51)
+      value: 31.0
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 67 (at most 22), p98 98 (at least 90), spread 31
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 31.2
+    - check: light_median
+      status: warn
+      message: 'day/subject: median L 91 (band 55-90)'
+      value: 90.8
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.42 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.416
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.2 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.23
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.5 (R1 5.3)
+      value: 3.47
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.3, p95 4.3, off-palette 0.9% (top: #441100 (0.1%), #662211
+        (0.1%))'
+      value: 1.3147
+    - check: ground_line
+      status: fail
+      message: feet at 80.1% of the height (contract 88%)
+      value: 0.8014
+    - check: harmony
+      status: warn
+      message: 'harmony score 69 against the char reference (outliers: C_p95, L_p2,
+        tint_b)'
+      value: 69.3
+    info:
+      metrics_raw:
+        L_p5: 75.1
+        L_p50: 90.8
+        L_p95: 96.8
+        C_p50: 8.1
+        C_p95: 31.0
+        C_p99: 45.5
+        detail: 3.47
+      metrics_locked:
+        L_p5: 75.1
+        L_p50: 90.8
+        L_p95: 96.8
+        C_p50: 8.1
+        C_p95: 31.0
+        C_p99: 45.5
+        detail: 3.47
+    fingerprint: cee3d2e1a419b391
+manual_review:
+  excluded_takes: []
+  note: All four originals preserved after the sole unchanged retry. Every take hard-fails
+    canonical ground_line; square sticker sources are center-padded into the implicit
+    1024x1536 char QA canvas. No source, prompt, canvas, fit or threshold workaround
+    and no master selection. Any other actual hard failures are recorded below. Recommend
+    an author-owned square canvas and retained-first re-post, without regeneration.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-e531221b-d063-47c7-be87-c457060a3d05.png
+  original_generated_png_sha256: 4dd2c892fbc7a3a5e0047ae48f6a2d3ee612a86faf6f72d6b4407a990092a779
+  inbox_png_sha256: 1a1187d3015eca34fd2ca4d52aefc90cce3331108728a5ad6fe267b42a45ebb3
+  rgba_sha256: 39a8b0aba9f883128bf43aab787e071fb5851dbcccff5b1163afc14bb8cdaafe
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: cee3d2e1a419b391
+- take: 2
+  source_file: /workspace/generated_images/exec-25381a1b-aae6-4ccd-86bf-c69a596caead.png
+  original_generated_png_sha256: 0ee1e2cacee0a4f165c120d0e814f1c0139352e9215b930d897bc24e5d88c1c3
+  inbox_png_sha256: 325d4913c78a6edc79f3a2c6af2a5ab200c80b4e8391ed53320615f748f136dc
+  rgba_sha256: 0c903d6733451f11c96d1fa849b898edb99c53dff258933a8235129a86776986
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: cee3d2e1a419b391
+- take: 3
+  source_file: /workspace/generated_images/exec-45cd8f27-0a75-4d97-9494-e38922733f82.png
+  original_generated_png_sha256: 068107a34ea0f6d3415af687aa8f5b8f21aa79ecc5740198ca5999dd509c478e
+  inbox_png_sha256: c126851c07b66ef77803cc6fa99638d7017ef626138cee885e62d232bb100cc1
+  rgba_sha256: 2b5108b84b826080abfa2c292730b8207b8c7b51812bb9a2822dcefa435fe721
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: cee3d2e1a419b391
+- take: 4
+  source_file: /workspace/generated_images/exec-1ce1509b-17d0-4430-89af-c67b9944b0f4.png
+  original_generated_png_sha256: 2ad153a514d4402d9cf1f650edc47fb382e92bded6fb5da8f08ac6bc5b0b676a
+  inbox_png_sha256: 25918d8e7615dafc1efda8b34c3155b0c8b91bb58c43b5362757bb2424ed3a8f
+  rgba_sha256: 638aa3be995ac2b6ceffaf91a90c86bdb58b1fed91ab56bdf09bf0aeb2e0a356
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: cee3d2e1a419b391
