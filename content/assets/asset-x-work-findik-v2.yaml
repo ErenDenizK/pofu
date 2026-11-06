@@ -1,0 +1,34 @@
+id: asset-x-work-findik-v2
+type: asset
+title_tr: x-work-findik-v2
+title_en: x-work-findik-v2 (plate)
+status: planned
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game, a working-pose frame at one station of the home
+  island, seen from the same low front three-quarter camera as the attached station, under
+  the declared daylight cell, the scene cropped close with a soft cream-and-sage ground under
+  the station and sky behind it. Fındık, the hedgehog of the attached image, sits at the workbench
+  of the finished workshop of the attached image, tig…
+art:
+  images: []
+  jobs:
+  - batch-29-residents-at-work-v2:x-work-findik-v2
+sources:
+- doc: tools/imagegen/manifest/batch-29-residents-at-work-v2.yaml
+kind: plate
+batch: batch-29-residents-at-work-v2
+size: 1024x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Selected take 2; auto-picked by QA; founder review pending. Registration remains planned
+  and art.images is empty.
+- >-
+  auto-picked by QA; founder review pending. Both initial source and locked takes preserve
+  the canonical hedgehog spines/face and approved workshop with pegboard, gear sign and vise.
+  A visible tiny tongue shows concentration; one paw steadies the simple-hand blank clock
+  and the other wooden screwdriver contacts its brass screw. No numbers, text, extra limb
+  or changed station. Root accepts independent full-size inspection; choose lowest load among
+  hard-QA passing candidates, then Harmony. All style/light warnings remain advisory. Exploration
+  only, never promote.

@@ -1,0 +1,204 @@
+batch: batch-29-residents-at-work-v2
+manifest: tools/imagegen/manifest/batch-29-residents-at-work-v2.yaml
+manifest_sha256: 6951c19bc086d726f1ca8c3cc234be9930dabe3dbd8b5a12632fb7eadf1e3c9d
+contact_sheet: design/art/takes/batch-29-residents-at-work-v2/x-heart-findik-goggles-v2/contact.jpg
+jobs:
+  x-heart-findik-goggles-v2:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both original and locked takes
+      preserve the canonical hedgehog and workshop. Two round sage-tinted goggles
+      sit above uncovered eyes between the spines, with the same leather-colored tool
+      apron, one paw at its edge and the other down. Tiny pocket tools are contents
+      of the requested tool apron, not an additional gift. Quiet hearts/motes only,
+      no text or UI. Independent full-size review verifies every source/locked counterpart
+      and hard QA passes; select lowest load then Harmony, retaining advisory style/light
+      warnings. Exploration only, never promote.
+qa_reports:
+  1:
+    job: x-heart-findik-goggles-v2
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 60 (R1 51)
+      value: 59.9
+    - check: light_values
+      status: warn
+      message: 'golden/subject: L p2 34 (at most 24), p98 91 (at least 86), spread
+        57 (at least 55)'
+      value: 57.3
+    - check: light_median
+      status: pass
+      message: 'golden/subject: median L 71 (band 48-86)'
+      value: 71.2
+    - check: light_haze
+      status: pass
+      message: 'golden/subject: dark-channel haze 0.16 (at most 0.22; no true dark
+        means a wash)'
+      value: 0.161
+    - check: light_contrast
+      status: pass
+      message: 'golden/subject: p75 local contrast 4.2 (at least 3.4)'
+      value: 4.21
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.0 (R1 5.3)
+      value: 3.02
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.5
+      value: 1.5304
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 4.2, p95 12.0, off-palette 5.1% (top: #EE9944 (0.9%), #BB6633
+        (0.7%))'
+      value: 4.185
+    info:
+      metrics_raw:
+        L_p5: 40.6
+        L_p50: 68.3
+        L_p95: 87.0
+        C_p50: 39.7
+        C_p95: 61.2
+        C_p99: 66.5
+        detail: 3.81
+      metrics_locked:
+        L_p5: 40.8
+        L_p50: 68.3
+        L_p95: 86.5
+        C_p50: 39.7
+        C_p95: 59.9
+        C_p99: 62.2
+        detail: 3.02
+    fingerprint: 346eea9888532a9f
+  2:
+    job: x-heart-findik-goggles-v2
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 57 (R1 51)
+      value: 57.4
+    - check: light_values
+      status: warn
+      message: 'golden/subject: L p2 38 (at most 24), p98 92 (at least 86), spread
+        55 (at least 55)'
+      value: 54.7
+    - check: light_median
+      status: pass
+      message: 'golden/subject: median L 73 (band 48-86)'
+      value: 72.8
+    - check: light_haze
+      status: pass
+      message: 'golden/subject: dark-channel haze 0.17 (at most 0.22; no true dark
+        means a wash)'
+      value: 0.169
+    - check: light_contrast
+      status: pass
+      message: 'golden/subject: p75 local contrast 4.4 (at least 3.4)'
+      value: 4.39
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.1 (R1 5.3)
+      value: 3.14
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.8
+      value: 1.8159
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 4.1, p95 11.5, off-palette 4.1% (top: #BB6633 (0.4%), #CC7744
+        (0.4%))'
+      value: 4.0757
+    info:
+      metrics_raw:
+        L_p5: 45.2
+        L_p50: 70.5
+        L_p95: 88.5
+        C_p50: 39.8
+        C_p95: 58.2
+        C_p99: 63.9
+        detail: 3.95
+      metrics_locked:
+        L_p5: 45.6
+        L_p50: 70.5
+        L_p95: 88.3
+        C_p50: 39.8
+        C_p95: 57.4
+        C_p99: 60.9
+        detail: 3.14
+    fingerprint: 346eea9888532a9f
+manual_review:
+  observed_note: Both original and locked takes preserve the canonical hedgehog and
+    workshop. Two round sage-tinted goggles sit above uncovered eyes between the spines,
+    with the same leather-colored tool apron, one paw at its edge and the other down.
+    Tiny pocket tools are contents of the requested tool apron, not an additional
+    gift. Quiet hearts/motes only, no text or UI. Independent full-size review verifies
+    every source/locked counterpart and hard QA passes; select lowest load then Harmony,
+    retaining advisory style/light warnings. Exploration only, never promote.
+  excluded_takes: []
+sources:
+- batch: batch-29-residents-at-work-v2
+  job: x-heart-findik-goggles-v2
+  take: 1
+  round: 1
+  logical_run: 20261105-b29-v2-hearts
+  source_file: /workspace/generated_images/exec-a761a80e-0e8a-48a1-9e0a-79cef7158fe8.png
+  returned_at: '2026-11-05T21:56:15.101Z'
+  prompt_sha256: 46fab937119e60c30ca0ad7b8e4dc1a1a5633644f1ec5e67bc90e386955724d3
+  fingerprint: 346eea9888532a9f
+  saved_at: '2026-11-05T21:56:15.579218+00:00'
+  original_generated_png_sha256: c7b011bc588310ccb8707e7006de8277ee83b9b8c38955ca589f83e301c69668
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: caf61b0e0f3e8726086ab22a6f10c06332f64e8859c130a65622b7305bdf5d1f
+  inbox_png_sha256: 77f68a4c37ee7addf35885b4a0a4c748b5fd50d9ff5f2ed64cad980805a835f8
+  qa_sha256: 7b605e364b58268d024a6e24037410ddcabdd73250df608c3c050a73ed56d85d
+- batch: batch-29-residents-at-work-v2
+  job: x-heart-findik-goggles-v2
+  take: 2
+  round: 1
+  logical_run: 20261105-b29-v2-hearts
+  source_file: /workspace/generated_images/exec-0495bff2-f1dd-4fec-a159-8bb5f4cea858.png
+  returned_at: '2026-11-05T21:56:51.409Z'
+  prompt_sha256: 46fab937119e60c30ca0ad7b8e4dc1a1a5633644f1ec5e67bc90e386955724d3
+  fingerprint: 346eea9888532a9f
+  saved_at: '2026-11-05T21:56:51.874812+00:00'
+  original_generated_png_sha256: 7e99b348d265207600ed9a771ff2a84cb7834285866e5b6e51d64803654447b2
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: fbec03f470e8b984a6af5745cd36434ceab20500e1f585481c4bb0bdad1bfabc
+  inbox_png_sha256: 9b4efecaea83eaaf344e7774b96edf7572bbb838e0352b9b368c801c5ad366d8
+  qa_sha256: 0c6e540108aee876d144e2565dd27131c18fbe1708a2e0af0d96598a02aa8da1
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+variation_proof_sha256: 4b99e1e7f1e6c31421854cd25b498043677e7b9d16b9b10e8e3b8a2ff8a18228

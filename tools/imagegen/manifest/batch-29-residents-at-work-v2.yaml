@@ -1,0 +1,798 @@
+# EXPLORATION ONLY: fresh authorized backlog variations, never promoted.
+# Original manifest, approved sources, external jobs, refs, acceptance and canvases stay unchanged.
+# Track all: residents and hearts; separate batch owners and concurrent image pairs.
+# Six day plates and five golden plates; LIGHT is the only lighting authority.
+batch: batch-29-residents-at-work-v2
+title: 'Residents at work and heart moments: spring-opening variations'
+status: open
+refs:
+  tea-stall-1: design/art/stations/tea-stall-1/tea-stall-1.png
+defaults:
+  variants: 2
+jobs:
+- id: mochi-v2
+  kind: char
+  name: mochi-v2
+  external: batch-03-home-island
+- id: simit-kitten
+  kind: char
+  name: simit-kitten
+  external: retry-2026-11-03
+- id: harbor-goat
+  kind: char
+  name: harbor-goat
+  external: retry-2026-11-03
+- id: findik
+  kind: char
+  name: findik-base
+  external: batch-03-home-island
+- id: tea-stall-5
+  kind: station
+  name: tea-stall-5
+  external: batch-01-slice
+- id: bagel-cart-5
+  kind: station
+  name: bagel-cart-5
+  external: batch-05-fixes
+- id: pond-5
+  kind: station
+  name: pond-5
+  external: batch-03-home-island
+- id: workshop-5
+  kind: station
+  name: workshop-5
+  external: batch-05-fixes
+- id: pier-1
+  kind: station
+  name: pier-1
+  external: batch-21-harbor-ladders
+- id: x-work-mochi-v2
+  kind: plate
+  name: x-work-mochi-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Residents
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. Mochi working at her favourite station, the tea stall. Review: she is clearly the
+    same Mochi, busy and content; the pour and the glasses read at 64 px. Fresh v2 composition: Stage
+    this fresh spring-opening scene with Mochi on the right half of the unchanged counter, her torso gently
+    turned toward the left-hand tea glass and her head unmistakably lowered to follow the pouring stream.
+    Both long ears lean back in a soft unequal V. Put the already-full second glass farther back on the
+    counter, separated from the receiving glass; keep the high pouring arc legible. Frame enough of the
+    approved station to identify it, with the action on an off-center diagonal rather than a centered
+    portrait. Exploration only; never promote.'
+  attach:
+  - ref: R1
+    role: 'Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly (do
+      not draw him unless asked).'
+  - ref: approved:mochi-v2
+    role: 'Mochi, the bunny: her exact look, fur, colors, eyes and size.'
+  - ref: approved:tea-stall-5
+    role: 'The finished tea stall (level 5): match its painting, finish, scale and colors.'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  prompt:
+  - text: 'A concept painting for a cozy mobile game, a working-pose frame at one
+
+      station of the home island, seen from the same low front three-quarter
+
+      camera as the attached station, under the declared daylight cell, the scene cropped close
+
+      with a soft cream-and-sage ground under the station and sky behind it.
+
+      Mochi, the bunny of the attached image, stands behind the tea stall
+
+      counter pouring amber tea from a small rose-clay teapot in a high gentle
+
+      arc into a tulip-shaped glass on a saucer, a second glass already full
+
+      beside it, her ears relaxed, a small content smile, eyes on the glass, a
+
+      wisp of soft steam. The finished tea stall of the attached image stays
+
+      exactly as it is.
+
+
+
+      FRESH VARIATION: Stage this fresh spring-opening scene with Mochi on the right half of the unchanged
+      counter, her torso gently turned toward the left-hand tea glass and her head unmistakably lowered
+      to follow the pouring stream. Both long ears lean back in a soft unequal V. Put the already-full
+      second glass farther back on the counter, separated from the receiving glass; keep the high pouring
+      arc legible. Frame enough of the approved station to identify it, with the action on an off-center
+      diagonal rather than a centered portrait.'
+  - block: style-anchor-v2
+  - text: 'MATERIAL AND CHARACTER SCOPE: R1 transfers soft 2D painting and controlled rounded values.
+      Draw only the resident explicitly named in this job. Mochi, Simit and the goat keep their own approved
+      soft fur; Findik keeps his own spines. Frogs have smooth matte skin and the sprout has smooth plant
+      surfaces, never fur. Built stations and props remain wood, clay, straw, cloth or the specified glazing;
+      no fur, eyes, faces or limbs on a station. Never copy Pofu or his head curl. Mochi has long soft
+      ears and no curl. Every approved character and station keeps its reference design and proportions.
+      The new variation changes staging and pose, not identity or station construction. Match the low
+      front three-quarter camera of the approved station, about 20 degrees, without changing its geometry.
+      No composition guide is attached or to be invented. Paint a complete opaque scene under the appended
+      LIGHT cell, with contact shadows in its stated hue; LIGHT alone sets lighting, values, haze and
+      shadow direction. No grey-white veil or lifted subject blacks. Keep local materials matte and the
+      main action readable at 64 pixels.'
+  - text: 'AVOID: a border, text, letters, harsh shadows, saturated colors, outlines, a curl on any head
+      except Pofu''s, extra limbs, a different station, a changed character design, photorealism, a 3D
+      render look'
+- id: x-work-simit-v2
+  kind: plate
+  name: x-work-simit-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Residents
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. Simit working at her favourite station, the bagel cart. Review: the same Simit,
+    proud and busy; the simit rings read as simit. Fresh v2 composition: For this new working moment,
+    stage Simit at the front-left of the unchanged cart, her body angled slightly toward the cart and
+    her face turned warmly toward the offered tray. Both front paws support opposite edges of the same
+    round tray, holding exactly three simit rings arranged as a broad triangle. Her raised tail curves
+    toward the left frame edge. Put the original cart bell above her opposite shoulder; retain all original
+    cart construction. Exploration only; never promote.'
+  attach:
+  - ref: R1
+    role: 'Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly (do
+      not draw him unless asked).'
+  - ref: approved:simit-kitten
+    role: 'Simit, the kitten: her exact look, fur, colors, eyes and size.'
+  - ref: approved:bagel-cart-5
+    role: 'The finished bagel cart (level 5): match its painting, finish, scale and colors.'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  prompt:
+  - text: 'A concept painting for a cozy mobile game, a working-pose frame at one
+
+      station of the home island, seen from the same low front three-quarter
+
+      camera as the attached station, under the declared daylight cell, the scene cropped close
+
+      with a soft cream-and-sage ground under the station and sky behind it.
+
+      Simit, the kitten of the attached image, stands upright beside the bagel
+
+      cart holding out a small round wooden tray of three plump sesame-crusted
+
+      simit rings toward the viewer, her tail up and curled at the tip, ears
+
+      forward, a bright small smile; a tiny brass bell hangs from the cart''s
+
+      umbrella pole. The finished cart of the attached image stays exactly as it
+
+      is.
+
+
+
+      FRESH VARIATION: For this new working moment, stage Simit at the front-left of the unchanged cart,
+      her body angled slightly toward the cart and her face turned warmly toward the offered tray. Both
+      front paws support opposite edges of the same round tray, holding exactly three simit rings arranged
+      as a broad triangle. Her raised tail curves toward the left frame edge. Put the original cart bell
+      above her opposite shoulder; retain all original cart construction.'
+  - block: style-anchor-v2
+  - text: 'MATERIAL AND CHARACTER SCOPE: R1 transfers soft 2D painting and controlled rounded values.
+      Draw only the resident explicitly named in this job. Mochi, Simit and the goat keep their own approved
+      soft fur; Findik keeps his own spines. Frogs have smooth matte skin and the sprout has smooth plant
+      surfaces, never fur. Built stations and props remain wood, clay, straw, cloth or the specified glazing;
+      no fur, eyes, faces or limbs on a station. Never copy Pofu or his head curl. Mochi has long soft
+      ears and no curl. Every approved character and station keeps its reference design and proportions.
+      The new variation changes staging and pose, not identity or station construction. Match the low
+      front three-quarter camera of the approved station, about 20 degrees, without changing its geometry.
+      No composition guide is attached or to be invented. Paint a complete opaque scene under the appended
+      LIGHT cell, with contact shadows in its stated hue; LIGHT alone sets lighting, values, haze and
+      shadow direction. No grey-white veil or lifted subject blacks. Keep local materials matte and the
+      main action readable at 64 pixels.'
+  - text: 'AVOID: a border, text, letters, harsh shadows, saturated colors, outlines, a curl on any head
+      except Pofu''s, extra limbs, a different station, a changed character design, photorealism, a 3D
+      render look'
+- id: x-work-goat-v2
+  kind: plate
+  name: x-work-goat-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Residents
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. The harbor goat working at the pier, its favourite station. Review: the same goat;
+    mooring the little ferry reads as a calm job. Fresh v2 composition: Make a new left-weighted work
+    composition: the goat stands side-on at the near-left pier post, her face visible in three-quarter
+    profile as mouth and one forehoof tighten the same coral mooring rope. The remaining hoof and both
+    hind feet support a natural stance. Place the tiny ferry farther back to the right, still tied to
+    the unchanged pier. Give the knot and calm proud expression their own clear silhouette. Exploration
+    only; never promote.'
+  attach:
+  - ref: R1
+    role: 'Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly (do
+      not draw him unless asked).'
+  - ref: approved:harbor-goat
+    role: 'The harbor goat: its exact look, fur, colors, eyes and size.'
+  - ref: approved:pier-1
+    role: 'The ferry pier: match its painting, finish, scale and colors.'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  prompt:
+  - text: 'A concept painting for a cozy mobile game, a working-pose frame at one
+
+      station of the home island, seen from the same low front three-quarter
+
+      camera as the attached station, under the declared daylight cell, the scene cropped close
+
+      with a soft cream-and-sage ground under the station and sky behind it. The
+
+      goat of the attached image stands at the end of the ferry pier tying a
+
+      soft coral rope around a post with its mouth and one hoof, a tiny wooden
+
+      ferry waiting at the pier''s end beside it, the goat''s expression calm and
+
+      a little proud. The pier of the attached image stays exactly as it is.
+
+
+
+      FRESH VARIATION: Make a new left-weighted work composition: the goat stands side-on at the near-left
+      pier post, her face visible in three-quarter profile as mouth and one forehoof tighten the same
+      coral mooring rope. The remaining hoof and both hind feet support a natural stance. Place the tiny
+      ferry farther back to the right, still tied to the unchanged pier. Give the knot and calm proud
+      expression their own clear silhouette.'
+  - block: style-anchor-v2
+  - text: 'MATERIAL AND CHARACTER SCOPE: R1 transfers soft 2D painting and controlled rounded values.
+      Draw only the resident explicitly named in this job. Mochi, Simit and the goat keep their own approved
+      soft fur; Findik keeps his own spines. Frogs have smooth matte skin and the sprout has smooth plant
+      surfaces, never fur. Built stations and props remain wood, clay, straw, cloth or the specified glazing;
+      no fur, eyes, faces or limbs on a station. Never copy Pofu or his head curl. Mochi has long soft
+      ears and no curl. Every approved character and station keeps its reference design and proportions.
+      The new variation changes staging and pose, not identity or station construction. Match the low
+      front three-quarter camera of the approved station, about 20 degrees, without changing its geometry.
+      No composition guide is attached or to be invented. Paint a complete opaque scene under the appended
+      LIGHT cell, with contact shadows in its stated hue; LIGHT alone sets lighting, values, haze and
+      shadow direction. No grey-white veil or lifted subject blacks. Keep local materials matte and the
+      main action readable at 64 pixels.'
+  - text: 'AVOID: a border, text, letters, harsh shadows, saturated colors, outlines, a curl on any head
+      except Pofu''s, extra limbs, a different station, a changed character design, photorealism, a 3D
+      render look'
+- id: x-work-frogs-v2
+  kind: plate
+  name: x-work-frogs-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Residents
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. Three frogs at the pond, their favourite station. Review: three distinct small
+    frogs, one hopping, one singing, one asleep on a lily pad; same finish as Pofu. Fresh v2 composition:
+    Use a new triangular staging on the unchanged pond: the hopping frog travels from a rear-left lily
+    pad toward a front-center pad; the round-mouth singer sits on the right; the sleeping frog rests behind
+    them with the original tiny leaf hat. Exactly three frogs, with no extra animals or ghosted motion
+    duplicates. Their skin is smooth and matte, their bodies round and soft; the word plush describes
+    rounded shape, never literal fur. Exploration only; never promote.'
+  attach:
+  - ref: R1
+    role: 'Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly (do
+      not draw him unless asked).'
+  - ref: approved:pond-5
+    role: 'The finished lily pond (level 5): match its painting, finish, scale and colors.'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  prompt:
+  - text: 'A concept painting for a cozy mobile game, a working-pose frame at one
+
+      station of the home island, seen from the same low front three-quarter
+
+      camera as the attached station, under the declared daylight cell, the scene cropped close
+
+      with a soft cream-and-sage ground under the station and sky behind it.
+
+      Three small round smooth-skinned frogs of soft sage, mint and pale lime with big
+
+      glossy dark eyes with a catchlight each and cream bellies sit on the lily
+
+      pads of the finished pond of the attached image: one mid-hop between two
+
+      pads, one with its mouth open in a soft round note, one asleep with its
+
+      eyes closed and a tiny leaf as a hat. The pond stays exactly as it is. No
+
+      curl on any head.
+
+
+
+      FRESH VARIATION: Use a new triangular staging on the unchanged pond: the hopping frog travels from
+      a rear-left lily pad toward a front-center pad; the round-mouth singer sits on the right; the sleeping
+      frog rests behind them with the original tiny leaf hat. Exactly three frogs, with no extra animals
+      or ghosted motion duplicates. Their skin is smooth and matte, their bodies round and soft; the word
+      plush describes rounded shape, never literal fur.'
+  - block: style-anchor-v2
+  - text: 'MATERIAL AND CHARACTER SCOPE: R1 transfers soft 2D painting and controlled rounded values.
+      Draw only the resident explicitly named in this job. Mochi, Simit and the goat keep their own approved
+      soft fur; Findik keeps his own spines. Frogs have smooth matte skin and the sprout has smooth plant
+      surfaces, never fur. Built stations and props remain wood, clay, straw, cloth or the specified glazing;
+      no fur, eyes, faces or limbs on a station. Never copy Pofu or his head curl. Mochi has long soft
+      ears and no curl. Every approved character and station keeps its reference design and proportions.
+      The new variation changes staging and pose, not identity or station construction. Match the low
+      front three-quarter camera of the approved station, about 20 degrees, without changing its geometry.
+      No composition guide is attached or to be invented. Paint a complete opaque scene under the appended
+      LIGHT cell, with contact shadows in its stated hue; LIGHT alone sets lighting, values, haze and
+      shadow direction. No grey-white veil or lifted subject blacks. Keep local materials matte and the
+      main action readable at 64 pixels.'
+  - text: 'AVOID: a border, text, letters, harsh shadows, saturated colors, outlines, a curl on any head
+      except Pofu''s, extra limbs, a different station, a changed character design, photorealism, a 3D
+      render look'
+- id: x-work-findik-v2
+  kind: plate
+  name: x-work-findik-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Residents
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. Findik working at the workshop, his favourite station. Review: the same hedgehog,
+    concentrated; the tool and the small clock read as a workshop. Fresh v2 composition: Stage this fresh
+    work frame with Findik at the right end of the original workshop bench, his body turned left toward
+    the small clock. His near paw steadies the same round clock while the other turns the chunky wooden
+    screwdriver into one tiny brass screw. Show his concentrated eyes and tiny tongue in a clear three-quarter
+    profile. Keep the clock face blank except its simple hands and hardware, with no numbers or lettering;
+    the original cream shavings stay low beside it. Exploration only; never promote.'
+  attach:
+  - ref: R1
+    role: 'Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly (do
+      not draw him unless asked).'
+  - ref: approved:findik
+    role: 'Fındık, the hedgehog: his exact look, spines, colors, eyes and size.'
+  - ref: approved:workshop-5
+    role: 'The finished workshop (level 5): match its painting, finish, scale and colors.'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  prompt:
+  - text: 'A concept painting for a cozy mobile game, a working-pose frame at one
+
+      station of the home island, seen from the same low front three-quarter
+
+      camera as the attached station, under the declared daylight cell, the scene cropped close
+
+      with a soft cream-and-sage ground under the station and sky behind it.
+
+      Fındık, the hedgehog of the attached image, sits at the workbench of the
+
+      finished workshop of the attached image, tightening a tiny brass screw
+
+      into the face of a small round restored clock with a chunky wooden
+
+      screwdriver, tongue just visible in concentration, a few soft cream wood
+
+      shavings on the bench. The workshop stays exactly as it is.
+
+
+
+      FRESH VARIATION: Stage this fresh work frame with Findik at the right end of the original workshop
+      bench, his body turned left toward the small clock. His near paw steadies the same round clock while
+      the other turns the chunky wooden screwdriver into one tiny brass screw. Show his concentrated eyes
+      and tiny tongue in a clear three-quarter profile. Keep the clock face blank except its simple hands
+      and hardware, with no numbers or lettering; the original cream shavings stay low beside it.'
+  - block: style-anchor-v2
+  - text: 'MATERIAL AND CHARACTER SCOPE: R1 transfers soft 2D painting and controlled rounded values.
+      Draw only the resident explicitly named in this job. Mochi, Simit and the goat keep their own approved
+      soft fur; Findik keeps his own spines. Frogs have smooth matte skin and the sprout has smooth plant
+      surfaces, never fur. Built stations and props remain wood, clay, straw, cloth or the specified glazing;
+      no fur, eyes, faces or limbs on a station. Never copy Pofu or his head curl. Mochi has long soft
+      ears and no curl. Every approved character and station keeps its reference design and proportions.
+      The new variation changes staging and pose, not identity or station construction. Match the low
+      front three-quarter camera of the approved station, about 20 degrees, without changing its geometry.
+      No composition guide is attached or to be invented. Paint a complete opaque scene under the appended
+      LIGHT cell, with contact shadows in its stated hue; LIGHT alone sets lighting, values, haze and
+      shadow direction. No grey-white veil or lifted subject blacks. Keep local materials matte and the
+      main action readable at 64 pixels.'
+  - text: 'AVOID: a border, text, letters, harsh shadows, saturated colors, outlines, a curl on any head
+      except Pofu''s, extra limbs, a different station, a changed character design, photorealism, a 3D
+      render look'
+- id: x-work-sprout-v2
+  kind: plate
+  name: x-work-sprout-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Residents
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. Koke''s sprout, the small resident from the first wonder island, at the pond. Review:
+    a new, tiny, clearly distinct silhouette from Pofu and Mochi; a sprout with a face, never a flower.
+    Fresh v2 composition: Compose this new spring-opening moment low on the left of the unchanged pond.
+    Koke''s little bean-shaped sprout leans toward a front-right lily pad, supporting the same tiny watering
+    can with both small hands while one distinct drop falls from its spout. The two curled leaves on its
+    head spread unequally like leaf ears, never a hair curl. Leave a calm patch of opaque sky in the opposite
+    upper corner. No additional flowers or residents. Exploration only; never promote.'
+  attach:
+  - ref: R1
+    role: 'Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly (do
+      not draw him unless asked).'
+  - ref: approved:pond-5
+    role: 'The finished lily pond (level 5): match its painting, finish, scale and colors.'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  prompt:
+  - text: 'A concept painting for a cozy mobile game, a working-pose frame at one
+
+      station of the home island, seen from the same low front three-quarter
+
+      camera as the attached station, under the declared daylight cell, the scene cropped close
+
+      with a soft cream-and-sage ground under the station and sky behind it. A
+
+      tiny new resident, Koke''s sprout, a little round bean-shaped creature of
+
+      soft mossy green with two small curled leaves on top of its head like
+
+      ears, big glossy dark eyes with a catchlight each and a small shy smile,
+
+      stands at the edge of the finished pond of the attached image holding a
+
+      tiny watering can and gently watering a lily pad, a small drop of water
+
+      falling. The pond stays exactly as it is. No curl on the head.
+
+
+
+      FRESH VARIATION: Compose this new spring-opening moment low on the left of the unchanged pond. Koke''s
+      little bean-shaped sprout leans toward a front-right lily pad, supporting the same tiny watering
+      can with both small hands while one distinct drop falls from its spout. The two curled leaves on
+      its head spread unequally like leaf ears, never a hair curl. Leave a calm patch of opaque sky in
+      the opposite upper corner. No additional flowers or residents.'
+  - block: style-anchor-v2
+  - text: 'MATERIAL AND CHARACTER SCOPE: R1 transfers soft 2D painting and controlled rounded values.
+      Draw only the resident explicitly named in this job. Mochi, Simit and the goat keep their own approved
+      soft fur; Findik keeps his own spines. Frogs have smooth matte skin and the sprout has smooth plant
+      surfaces, never fur. Built stations and props remain wood, clay, straw, cloth or the specified glazing;
+      no fur, eyes, faces or limbs on a station. Never copy Pofu or his head curl. Mochi has long soft
+      ears and no curl. Every approved character and station keeps its reference design and proportions.
+      The new variation changes staging and pose, not identity or station construction. Match the low
+      front three-quarter camera of the approved station, about 20 degrees, without changing its geometry.
+      No composition guide is attached or to be invented. Paint a complete opaque scene under the appended
+      LIGHT cell, with contact shadows in its stated hue; LIGHT alone sets lighting, values, haze and
+      shadow direction. No grey-white veil or lifted subject blacks. Keep local materials matte and the
+      main action readable at 64 pixels.'
+  - text: 'AVOID: a border, text, letters, harsh shadows, saturated colors, outlines, a curl on any head
+      except Pofu''s, extra limbs, a different station, a changed character design, photorealism, a 3D
+      render look'
+- id: x-heart-mochi-apron-v2
+  kind: plate
+  name: x-heart-mochi-apron-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Residents
+  light:
+    cell: golden
+    layer: subject
+  notes: 'Exploration. Mochi''s heart 3 moment: the Iznik apron. Review: the outfit is the news; the moment
+    is warm and quiet. Fresh v2 composition: For this new gift close-up, turn Mochi''s torso slightly
+    toward the left while tilting her entire head decisively downward toward her own new apron, chin tucked
+    and both pupils directed at the tulip-tile border below her paws. Both paws remain pressed to her
+    cheeks in surprised delight. The face must not look toward the viewer. Frame the apron fully, including
+    its cobalt-and-turquoise tulip border, with the unchanged tea stall farther behind and long ears gently
+    trailing back. Keep the same plum-pink scarf and only the originally requested quiet hearts and motes.
+    Exploration only; never promote.'
+  attach:
+  - ref: R1
+    role: 'Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly (do
+      not draw him unless asked).'
+  - ref: approved:mochi-v2
+    role: 'Mochi, the bunny: her exact look, fur, colors, eyes and size.'
+  - ref: approved:tea-stall-5
+    role: 'The finished tea stall (level 5): match its painting, finish, scale and colors.'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  prompt:
+  - text: 'A concept painting for a cozy mobile game: a heart level-up moment at a
+
+      station on the home island, the same low front three-quarter camera. Use the declared golden-hour
+      cell, the scene calm and close. Mochi, the bunny of the
+
+      attached image, at the tea stall counter, wearing a new cream apron with a
+
+      border of cobalt and turquoise Iznik-style tulip tiles, a soft plum-pink
+
+      scarf at her neck, looking down at the apron with surprised delight, both
+
+      paws pressed to her cheeks. A few small soft blush-pink painted hearts and
+
+      warm cream motes rise slowly around the resident; no bursts, no rays, no
+
+      sparkle stars, no text or numbers.
+
+
+
+      FRESH VARIATION: For this new gift close-up, turn Mochi''s torso slightly toward the left while
+      tilting her entire head decisively downward toward her own new apron, chin tucked and both pupils
+      directed at the tulip-tile border below her paws. Both paws remain pressed to her cheeks in surprised
+      delight. The face must not look toward the viewer. Frame the apron fully, including its cobalt-and-turquoise
+      tulip border, with the unchanged tea stall farther behind and long ears gently trailing back. Keep
+      the same plum-pink scarf and only the originally requested quiet hearts and motes.'
+  - block: style-anchor-v2
+  - text: 'MATERIAL AND CHARACTER SCOPE: R1 transfers soft 2D painting and controlled rounded values.
+      Draw only the resident explicitly named in this job. Mochi, Simit and the goat keep their own approved
+      soft fur; Findik keeps his own spines. Frogs have smooth matte skin and the sprout has smooth plant
+      surfaces, never fur. Built stations and props remain wood, clay, straw, cloth or the specified glazing;
+      no fur, eyes, faces or limbs on a station. Never copy Pofu or his head curl. Mochi has long soft
+      ears and no curl. Every approved character and station keeps its reference design and proportions.
+      The new variation changes staging and pose, not identity or station construction. Match the low
+      front three-quarter camera of the approved station, about 20 degrees, without changing its geometry.
+      No composition guide is attached or to be invented. Paint a complete opaque scene under the appended
+      LIGHT cell, with contact shadows in its stated hue; LIGHT alone sets lighting, values, haze and
+      shadow direction. No grey-white veil or lifted subject blacks. Keep local materials matte and the
+      main action readable at 64 pixels.'
+  - text: 'AVOID: a border, text, letters, harsh shadows, saturated colors, outlines, a curl on any head
+      except Pofu''s, extra limbs, a different station, a changed character design, photorealism, a 3D
+      render look'
+- id: x-heart-simit-bell-v2
+  kind: plate
+  name: x-heart-simit-bell-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Residents
+  light:
+    cell: golden
+    layer: subject
+  notes: 'Exploration. Simit''s heart moment: her little bell. Review: the bell collar is the news; her
+    joy is quiet and proud. Fresh v2 composition: Create a new intimate golden-hour gift composition with
+    Simit sitting upright at the right of the unchanged cart, shoulders turned a little left and head
+    tilted toward her new bell. One front paw lightly touches the coral ribbon beside the small round
+    brass-cream bell, the other rests against her chest; exactly two front paws. Her tail is high behind
+    the left shoulder and her expression is quietly delighted. Make the collar and swinging bell the clearest
+    foreground detail, with the original gentle hearts and motes spaced asymmetrically. Exploration only;
+    never promote.'
+  attach:
+  - ref: R1
+    role: 'Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly (do
+      not draw him unless asked).'
+  - ref: approved:simit-kitten
+    role: 'Simit, the kitten: her exact look, fur, colors, eyes and size.'
+  - ref: approved:bagel-cart-5
+    role: 'The finished bagel cart (level 5): match its painting, finish, scale and colors.'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  prompt:
+  - text: 'A concept painting for a cozy mobile game: a heart level-up moment at a
+
+      station on the home island, the same low front three-quarter camera. Use the declared golden-hour
+      cell, the scene calm and close. Simit, the kitten of the
+
+      attached image, beside the bagel cart wearing a new soft coral ribbon
+
+      collar with a small round brass-cream bell, tilting her head so the bell
+
+      swings, eyes bright, tail high, delighted. A few small soft blush-pink
+
+      painted hearts and warm cream motes rise slowly around the resident; no
+
+      bursts, no rays, no sparkle stars, no text or numbers.
+
+
+
+      FRESH VARIATION: Create a new intimate golden-hour gift composition with Simit sitting upright at
+      the right of the unchanged cart, shoulders turned a little left and head tilted toward her new bell.
+      One front paw lightly touches the coral ribbon beside the small round brass-cream bell, the other
+      rests against her chest; exactly two front paws. Her tail is high behind the left shoulder and her
+      expression is quietly delighted. Make the collar and swinging bell the clearest foreground detail,
+      with the original gentle hearts and motes spaced asymmetrically.'
+  - block: style-anchor-v2
+  - text: 'MATERIAL AND CHARACTER SCOPE: R1 transfers soft 2D painting and controlled rounded values.
+      Draw only the resident explicitly named in this job. Mochi, Simit and the goat keep their own approved
+      soft fur; Findik keeps his own spines. Frogs have smooth matte skin and the sprout has smooth plant
+      surfaces, never fur. Built stations and props remain wood, clay, straw, cloth or the specified glazing;
+      no fur, eyes, faces or limbs on a station. Never copy Pofu or his head curl. Mochi has long soft
+      ears and no curl. Every approved character and station keeps its reference design and proportions.
+      The new variation changes staging and pose, not identity or station construction. Match the low
+      front three-quarter camera of the approved station, about 20 degrees, without changing its geometry.
+      No composition guide is attached or to be invented. Paint a complete opaque scene under the appended
+      LIGHT cell, with contact shadows in its stated hue; LIGHT alone sets lighting, values, haze and
+      shadow direction. No grey-white veil or lifted subject blacks. Keep local materials matte and the
+      main action readable at 64 pixels.'
+  - text: 'AVOID: a border, text, letters, harsh shadows, saturated colors, outlines, a curl on any head
+      except Pofu''s, extra limbs, a different station, a changed character design, photorealism, a 3D
+      render look'
+- id: x-heart-findik-goggles-v2
+  kind: plate
+  name: x-heart-findik-goggles-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Residents
+  light:
+    cell: golden
+    layer: subject
+  notes: 'Exploration. Findik''s heart moment: the goggles. Review: the goggles read as a workshop hat
+    at 64 px and sit between his spines naturally. Fresh v2 composition: For this fresh heart moment,
+    place Findik on the left side of the unchanged workshop doorway in a tall, shy-proud three-quarter
+    stance. His head turns slightly right so both round sage-tinted goggles pushed above his eyes read
+    cleanly between his spines. One small paw touches the edge of his same leather-colored tool apron
+    while the other rests by his side. Keep the goggles above the eyes, never covering them; retain the
+    original quiet hearts and motes with no extra gift. Exploration only; never promote.'
+  attach:
+  - ref: R1
+    role: 'Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly (do
+      not draw him unless asked).'
+  - ref: approved:findik
+    role: 'Fındık, the hedgehog: his exact look, spines, colors, eyes and size.'
+  - ref: approved:workshop-5
+    role: 'The finished workshop (level 5): match its painting, finish, scale and colors.'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  prompt:
+  - text: 'A concept painting for a cozy mobile game: a heart level-up moment at a
+
+      station on the home island, the same low front three-quarter camera. Use the declared golden-hour
+      cell, the scene calm and close. Fındık, the hedgehog of the
+
+      attached image, at the workshop door wearing new round brass-cream goggles
+
+      with soft sage-tinted lenses pushed up on his forehead above his eyes, a
+
+      small leather-colored tool apron, standing tall with a shy proud smile. A
+
+      few small soft blush-pink painted hearts and warm cream motes rise slowly
+
+      around the resident; no bursts, no rays, no sparkle stars, no text or
+
+      numbers.
+
+
+
+      FRESH VARIATION: For this fresh heart moment, place Findik on the left side of the unchanged workshop
+      doorway in a tall, shy-proud three-quarter stance. His head turns slightly right so both round sage-tinted
+      goggles pushed above his eyes read cleanly between his spines. One small paw touches the edge of
+      his same leather-colored tool apron while the other rests by his side. Keep the goggles above the
+      eyes, never covering them; retain the original quiet hearts and motes with no extra gift.'
+  - block: style-anchor-v2
+  - text: 'MATERIAL AND CHARACTER SCOPE: R1 transfers soft 2D painting and controlled rounded values.
+      Draw only the resident explicitly named in this job. Mochi, Simit and the goat keep their own approved
+      soft fur; Findik keeps his own spines. Frogs have smooth matte skin and the sprout has smooth plant
+      surfaces, never fur. Built stations and props remain wood, clay, straw, cloth or the specified glazing;
+      no fur, eyes, faces or limbs on a station. Never copy Pofu or his head curl. Mochi has long soft
+      ears and no curl. Every approved character and station keeps its reference design and proportions.
+      The new variation changes staging and pose, not identity or station construction. Match the low
+      front three-quarter camera of the approved station, about 20 degrees, without changing its geometry.
+      No composition guide is attached or to be invented. Paint a complete opaque scene under the appended
+      LIGHT cell, with contact shadows in its stated hue; LIGHT alone sets lighting, values, haze and
+      shadow direction. No grey-white veil or lifted subject blacks. Keep local materials matte and the
+      main action readable at 64 pixels.'
+  - text: 'AVOID: a border, text, letters, harsh shadows, saturated colors, outlines, a curl on any head
+      except Pofu''s, extra limbs, a different station, a changed character design, photorealism, a 3D
+      render look'
+- id: x-heart-frogs-choir-v2
+  kind: plate
+  name: x-heart-frogs-choir-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Residents
+  light:
+    cell: golden
+    layer: subject
+  notes: 'Exploration. The frog choir at dusk, the frogs'' heart moment. Review: three frogs singing together
+    is the picture; calm, not noisy. Fresh v2 composition: Make a fresh compact triangular choir composition
+    on the unchanged pond dock: the slightly larger middle frog sits a little behind the other two, all
+    three with happy closed eyes and softly open round mouths, singing together. Exactly three smooth
+    matte-skinned frogs in the original sage, mint and pale-lime family, with cream bellies; no fur fibers
+    and no hair curls. Group the original quiet hearts and motes above one side so the three distinct
+    mouths remain the central read. Exploration only; never promote.'
+  attach:
+  - ref: R1
+    role: 'Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly (do
+      not draw him unless asked).'
+  - ref: approved:pond-5
+    role: 'The finished lily pond (level 5): match its painting, finish, scale and colors.'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  prompt:
+  - text: 'A concept painting for a cozy mobile game: a heart level-up moment at a
+
+      station on the home island, the same low front three-quarter camera. Use the declared golden-hour
+      cell, the scene calm and close. Three small round smooth-skinned frogs
+
+      of soft sage, mint and pale lime with big glossy dark eyes with a
+
+      catchlight each and cream bellies sit in a row on the wooden dock of the
+
+      finished pond of the attached image, all three singing together with soft
+
+      round open mouths and closed happy eyes, the middle one a little bigger, a
+
+      few lily pads glowing faintly in the golden light. No curl on any head. A
+
+      few small soft blush-pink painted hearts and warm cream motes rise slowly
+
+      around the resident; no bursts, no rays, no sparkle stars, no text or
+
+      numbers.
+
+
+
+      FRESH VARIATION: Make a fresh compact triangular choir composition on the unchanged pond dock: the
+      slightly larger middle frog sits a little behind the other two, all three with happy closed eyes
+      and softly open round mouths, singing together. Exactly three smooth matte-skinned frogs in the
+      original sage, mint and pale-lime family, with cream bellies; no fur fibers and no hair curls. Group
+      the original quiet hearts and motes above one side so the three distinct mouths remain the central
+      read.'
+  - block: style-anchor-v2
+  - text: 'MATERIAL AND CHARACTER SCOPE: R1 transfers soft 2D painting and controlled rounded values.
+      Draw only the resident explicitly named in this job. Mochi, Simit and the goat keep their own approved
+      soft fur; Findik keeps his own spines. Frogs have smooth matte skin and the sprout has smooth plant
+      surfaces, never fur. Built stations and props remain wood, clay, straw, cloth or the specified glazing;
+      no fur, eyes, faces or limbs on a station. Never copy Pofu or his head curl. Mochi has long soft
+      ears and no curl. Every approved character and station keeps its reference design and proportions.
+      The new variation changes staging and pose, not identity or station construction. Match the low
+      front three-quarter camera of the approved station, about 20 degrees, without changing its geometry.
+      No composition guide is attached or to be invented. Paint a complete opaque scene under the appended
+      LIGHT cell, with contact shadows in its stated hue; LIGHT alone sets lighting, values, haze and
+      shadow direction. No grey-white veil or lifted subject blacks. Keep local materials matte and the
+      main action readable at 64 pixels.'
+  - text: 'AVOID: a border, text, letters, harsh shadows, saturated colors, outlines, a curl on any head
+      except Pofu''s, extra limbs, a different station, a changed character design, photorealism, a 3D
+      render look'
+- id: x-heart-goat-hat-v2
+  kind: plate
+  name: x-heart-goat-hat-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Residents
+  light:
+    cell: golden
+    layer: subject
+  notes: 'Exploration. The goat''s heart moment: the sailor hat. Review: the hat sits between the horns
+    naturally and makes the goat funnier, not smaller. Fresh v2 composition: Stage this new golden-hour
+    heart moment with the goat at the near-right pier corner, chest angled left and head turned back toward
+    the viewer in a slightly smug three-quarter pose. The same soft white-and-blue sailor hat and small
+    coral pom sit naturally between both horns, fully visible without changing her head or horn design.
+    Her chin is raised and stance planted, with the unchanged pier receding toward the left; keep only
+    the original calm hearts and motes. Exploration only; never promote.'
+  attach:
+  - ref: R1
+    role: 'Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly (do
+      not draw him unless asked).'
+  - ref: approved:harbor-goat
+    role: 'The harbor goat: its exact look, fur, colors, eyes and size.'
+  - ref: approved:pier-1
+    role: 'The ferry pier: match its painting, finish, scale and colors.'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  prompt:
+  - text: 'A concept painting for a cozy mobile game: a heart level-up moment at a
+
+      station on the home island, the same low front three-quarter camera. Use the declared golden-hour
+      cell, the scene calm and close. The goat of the attached
+
+      image on the ferry pier wearing a new soft white-and-blue sailor hat with
+
+      a small coral pom between its horns, chin raised, a very pleased and
+
+      slightly smug expression. A few small soft blush-pink painted hearts and
+
+      warm cream motes rise slowly around the resident; no bursts, no rays, no
+
+      sparkle stars, no text or numbers.
+
+
+
+      FRESH VARIATION: Stage this new golden-hour heart moment with the goat at the near-right pier corner,
+      chest angled left and head turned back toward the viewer in a slightly smug three-quarter pose.
+      The same soft white-and-blue sailor hat and small coral pom sit naturally between both horns, fully
+      visible without changing her head or horn design. Her chin is raised and stance planted, with the
+      unchanged pier receding toward the left; keep only the original calm hearts and motes.'
+  - block: style-anchor-v2
+  - text: 'MATERIAL AND CHARACTER SCOPE: R1 transfers soft 2D painting and controlled rounded values.
+      Draw only the resident explicitly named in this job. Mochi, Simit and the goat keep their own approved
+      soft fur; Findik keeps his own spines. Frogs have smooth matte skin and the sprout has smooth plant
+      surfaces, never fur. Built stations and props remain wood, clay, straw, cloth or the specified glazing;
+      no fur, eyes, faces or limbs on a station. Never copy Pofu or his head curl. Mochi has long soft
+      ears and no curl. Every approved character and station keeps its reference design and proportions.
+      The new variation changes staging and pose, not identity or station construction. Match the low
+      front three-quarter camera of the approved station, about 20 degrees, without changing its geometry.
+      No composition guide is attached or to be invented. Paint a complete opaque scene under the appended
+      LIGHT cell, with contact shadows in its stated hue; LIGHT alone sets lighting, values, haze and
+      shadow direction. No grey-white veil or lifted subject blacks. Keep local materials matte and the
+      main action readable at 64 pixels.'
+  - text: 'AVOID: a border, text, letters, harsh shadows, saturated colors, outlines, a curl on any head
+      except Pofu''s, extra limbs, a different station, a changed character design, photorealism, a 3D
+      render look'

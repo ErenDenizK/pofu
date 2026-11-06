@@ -1,0 +1,204 @@
+batch: batch-29-residents-at-work-v2
+manifest: tools/imagegen/manifest/batch-29-residents-at-work-v2.yaml
+manifest_sha256: 6951c19bc086d726f1ca8c3cc234be9930dabe3dbd8b5a12632fb7eadf1e3c9d
+contact_sheet: design/art/takes/batch-29-residents-at-work-v2/x-heart-mochi-apron-v2/contact.jpg
+jobs:
+  x-heart-mochi-apron-v2:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both original and locked candidates
+      retain canonical long-ear Mochi without curl and the unchanged tea stall. Unlike
+      the failed working-pose job, both show a decisively tucked downward head and
+      downward pupils toward the new apron, both paws at cheeks, full cream apron
+      with cobalt/turquoise tulip-tile border and plum-pink scarf, quiet hearts and
+      cream motes. Independent full-size review confirms the specific gaze after post.
+      Hard QA passes; choose lowest load then Harmony, keeping advisory style/light
+      warnings. Exploration only, never promote.
+qa_reports:
+  1:
+    job: x-heart-mochi-apron-v2
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 46 (R1 51)
+      value: 46.2
+    - check: light_values
+      status: warn
+      message: 'golden/subject: L p2 39 (at most 24), p98 91 (at least 86), spread
+        53 (at least 55)'
+      value: 52.6
+    - check: light_median
+      status: pass
+      message: 'golden/subject: median L 78 (band 48-86)'
+      value: 77.5
+    - check: light_haze
+      status: warn
+      message: 'golden/subject: dark-channel haze 0.29 (at most 0.22; no true dark
+        means a wash)'
+      value: 0.286
+    - check: light_contrast
+      status: pass
+      message: 'golden/subject: p75 local contrast 4.2 (at least 3.4)'
+      value: 4.16
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.3 (R1 5.3)
+      value: 3.3
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.1
+      value: 2.0765
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.7, p95 9.9, off-palette 2.6% (top: #DD7777 (0.2%), #AA5555
+        (0.2%))'
+      value: 2.715
+    info:
+      metrics_raw:
+        L_p5: 43.3
+        L_p50: 70.5
+        L_p95: 90.3
+        C_p50: 28.1
+        C_p95: 47.0
+        C_p99: 56.1
+        detail: 4.13
+      metrics_locked:
+        L_p5: 43.6
+        L_p50: 70.5
+        L_p95: 90.2
+        C_p50: 28.1
+        C_p95: 46.2
+        C_p99: 55.0
+        detail: 3.3
+    fingerprint: 543056906af2cf6e
+  2:
+    job: x-heart-mochi-apron-v2
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 50 (R1 51)
+      value: 50.4
+    - check: light_values
+      status: warn
+      message: 'golden/subject: L p2 39 (at most 24), p98 92 (at least 86), spread
+        53 (at least 55)'
+      value: 53.2
+    - check: light_median
+      status: pass
+      message: 'golden/subject: median L 79 (band 48-86)'
+      value: 78.7
+    - check: light_haze
+      status: warn
+      message: 'golden/subject: dark-channel haze 0.23 (at most 0.22; no true dark
+        means a wash)'
+      value: 0.235
+    - check: light_contrast
+      status: pass
+      message: 'golden/subject: p75 local contrast 5.0 (at least 3.4)'
+      value: 5.03
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.9 (R1 5.3)
+      value: 3.92
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.0
+      value: 1.9583
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.8, p95 10.3, off-palette 3.3% (top: #AA7788 (0.5%), #BB7788
+        (0.2%))'
+      value: 2.8204
+    info:
+      metrics_raw:
+        L_p5: 42.1
+        L_p50: 72.9
+        L_p95: 91.0
+        C_p50: 32.0
+        C_p95: 51.6
+        C_p99: 62.6
+        detail: 4.9
+      metrics_locked:
+        L_p5: 42.4
+        L_p50: 72.8
+        L_p95: 90.8
+        C_p50: 31.9
+        C_p95: 50.4
+        C_p99: 60.1
+        detail: 3.92
+    fingerprint: 543056906af2cf6e
+manual_review:
+  observed_note: Both original and locked candidates retain canonical long-ear Mochi
+    without curl and the unchanged tea stall. Unlike the failed working-pose job,
+    both show a decisively tucked downward head and downward pupils toward the new
+    apron, both paws at cheeks, full cream apron with cobalt/turquoise tulip-tile
+    border and plum-pink scarf, quiet hearts and cream motes. Independent full-size
+    review confirms the specific gaze after post. Hard QA passes; choose lowest load
+    then Harmony, keeping advisory style/light warnings. Exploration only, never promote.
+  excluded_takes: []
+sources:
+- batch: batch-29-residents-at-work-v2
+  job: x-heart-mochi-apron-v2
+  take: 1
+  round: 1
+  logical_run: 20261105-b29-v2-hearts
+  source_file: /workspace/generated_images/exec-5b4c8c20-abd4-450c-bfe2-ac23ca2abaeb.png
+  returned_at: '2026-11-05T21:52:11.151Z'
+  prompt_sha256: fb3980decd802ff66ab896ac0d5aa23b41ee0500c72d1bac36793a62049b017e
+  fingerprint: 543056906af2cf6e
+  saved_at: '2026-11-05T21:52:11.703679+00:00'
+  original_generated_png_sha256: b76f6969963ebe3530f4ca7addaf413acda6f417fcf4b808413da47b8be35d56
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: c017f8f2399088ec9fcdefe44f5ad6c78278336ba47765a2205554ed86d1f198
+  inbox_png_sha256: c36dd6473a7c6b5cecc1aada9d840edd7337f909868f815af6e77e2698cef2b2
+  qa_sha256: 9052226230924b252cdf93a56ee9da1279490a90dcb1c5e78c04a7fdf20ccbf3
+- batch: batch-29-residents-at-work-v2
+  job: x-heart-mochi-apron-v2
+  take: 2
+  round: 1
+  logical_run: 20261105-b29-v2-hearts
+  source_file: /workspace/generated_images/exec-5a120240-28a6-44c1-a102-ffcff32acc76.png
+  returned_at: '2026-11-05T21:52:51.165Z'
+  prompt_sha256: fb3980decd802ff66ab896ac0d5aa23b41ee0500c72d1bac36793a62049b017e
+  fingerprint: 543056906af2cf6e
+  saved_at: '2026-11-05T21:52:51.562700+00:00'
+  original_generated_png_sha256: 6e9d55d260d45d3f556e61607ea9386c10d04b90ea4bd8d727fdc29796c4281f
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: b3b4d1f6217e7be1ac8d4df7e73f88a091818b7056a4fc1d5e5543bd4110f1d1
+  inbox_png_sha256: eaab0fb7a733715777877d655802e280e423d32cf81eff4222613dbe05a16ce0
+  qa_sha256: 5eff82d8f48713f8b2f10abf58c7c4053b0a04033aeb430de2ea17731e438a46
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+variation_proof_sha256: 4b99e1e7f1e6c31421854cd25b498043677e7b9d16b9b10e8e3b8a2ff8a18228

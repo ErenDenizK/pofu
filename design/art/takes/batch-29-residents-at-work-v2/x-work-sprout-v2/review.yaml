@@ -1,0 +1,381 @@
+batch: batch-29-residents-at-work-v2
+manifest: tools/imagegen/manifest/batch-29-residents-at-work-v2.yaml
+manifest_sha256: 6951c19bc086d726f1ca8c3cc234be9930dabe3dbd8b5a12632fb7eadf1e3c9d
+contact_sheet: design/art/takes/batch-29-residents-at-work-v2/x-work-sprout-v2/contact.jpg
+jobs:
+  x-work-sprout-v2:
+    pick: none
+    publication: skipped after one allowed retry
+    note: Skipped after the sole unchanged-prompt retry. Every original and locked
+      candidate has unmistakable literal green fur over the sprout body, hands and
+      silhouette, contrary to the explicitly smooth plant/no-fur material scope. Independent
+      full-size review confirms all four; root also inspected the initial source and
+      accepts the documented consistent finding. Leaf ears, watering can, one distinct
+      drop and pond inventory otherwise pass. Official numeric QA is warn-only, so
+      this is an observed material failure rather than a waived or invented numeric
+      threshold. Preserve all four sources; no rephrasing, third pair or promotion;
+      unrelated jobs continue.
+qa_reports:
+  1:
+    job: x-work-sprout-v2
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 46 (R1 51)
+      value: 45.5
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 61 (at most 22), p98 94 (at least 90), spread 34
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 33.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 86 (band 55-90)'
+      value: 85.6
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.46 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.455
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.2 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.19
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.4 (R1 5.3)
+      value: 1.39
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.7955
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.4, p95 7.5, off-palette 1.7% (top: #BBBB55 (0.3%), #99AA44
+        (0.2%))'
+      value: 3.4429
+    info:
+      metrics_raw:
+        L_p5: 70.7
+        L_p50: 85.3
+        L_p95: 91.4
+        C_p50: 20.4
+        C_p95: 46.3
+        C_p99: 54.7
+        detail: 1.85
+      metrics_locked:
+        L_p5: 71.1
+        L_p50: 85.2
+        L_p95: 91.2
+        C_p50: 20.3
+        C_p95: 45.5
+        C_p99: 52.2
+        detail: 1.39
+    fingerprint: a98d5846bf03a8ac
+  2:
+    job: x-work-sprout-v2
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 39 (R1 51)
+      value: 38.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 65 (at most 22), p98 94 (at least 90), spread 30
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 29.7
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 85 (band 55-90)'
+      value: 85.1
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.48 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.478
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.3 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.3
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.7 (R1 5.3)
+      value: 1.73
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.7664
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.3, p95 6.6, off-palette 0.2% (top: #999944 (0.1%), #AAAA44
+        (0.0%))'
+      value: 3.2857
+    info:
+      metrics_raw:
+        L_p5: 68.7
+        L_p50: 85.1
+        L_p95: 91.7
+        C_p50: 20.0
+        C_p95: 39.4
+        C_p99: 48.1
+        detail: 2.38
+      metrics_locked:
+        L_p5: 69.1
+        L_p50: 85.1
+        L_p95: 91.6
+        C_p50: 19.9
+        C_p95: 38.9
+        C_p99: 47.3
+        detail: 1.73
+    fingerprint: a98d5846bf03a8ac
+  3:
+    job: x-work-sprout-v2
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 37 (R1 51)
+      value: 37.2
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 61 (at most 22), p98 95 (at least 90), spread 34
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 33.8
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 85 (band 55-90)'
+      value: 84.9
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.46 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.455
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.1 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.15
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.5 (R1 5.3)
+      value: 1.5
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.7486
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.0, p95 8.1, off-palette 0.4% (top: #AAAA44 (0.1%), #BBBB55
+        (0.1%))'
+      value: 3.0213
+    info:
+      metrics_raw:
+        L_p5: 69.7
+        L_p50: 84.4
+        L_p95: 94.5
+        C_p50: 20.1
+        C_p95: 37.7
+        C_p99: 47.5
+        detail: 2.0
+      metrics_locked:
+        L_p5: 69.9
+        L_p50: 84.3
+        L_p95: 94.3
+        C_p50: 20.0
+        C_p95: 37.2
+        C_p99: 46.2
+        detail: 1.5
+    fingerprint: a98d5846bf03a8ac
+  4:
+    job: x-work-sprout-v2
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 43 (R1 51)
+      value: 43.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 61 (at most 22), p98 95 (at least 90), spread 34
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 33.7
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 86 (band 55-90)'
+      value: 86.5
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.47 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.475
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.3 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.32
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.4 (R1 5.3)
+      value: 1.37
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.7035
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.1, p95 6.7, off-palette 0.7% (top: #99AA44 (0.1%), #AAAA55
+        (0.1%))'
+      value: 3.0905
+    info:
+      metrics_raw:
+        L_p5: 69.9
+        L_p50: 86.3
+        L_p95: 92.6
+        C_p50: 18.6
+        C_p95: 43.7
+        C_p99: 50.6
+        detail: 1.83
+      metrics_locked:
+        L_p5: 70.1
+        L_p50: 86.3
+        L_p95: 92.4
+        C_p50: 18.5
+        C_p95: 43.1
+        C_p99: 48.8
+        detail: 1.37
+    fingerprint: a98d5846bf03a8ac
+manual_review:
+  observed_note: Skipped after the sole unchanged-prompt retry. Every original and
+    locked candidate has unmistakable literal green fur over the sprout body, hands
+    and silhouette, contrary to the explicitly smooth plant/no-fur material scope.
+    Independent full-size review confirms all four; root also inspected the initial
+    source and accepts the documented consistent finding. Leaf ears, watering can,
+    one distinct drop and pond inventory otherwise pass. Official numeric QA is warn-only,
+    so this is an observed material failure rather than a waived or invented numeric
+    threshold. Preserve all four sources; no rephrasing, third pair or promotion;
+    unrelated jobs continue.
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+sources:
+- batch: batch-29-residents-at-work-v2
+  job: x-work-sprout-v2
+  take: 1
+  round: 1
+  logical_run: 20261105-b29-v2-residents
+  source_file: /workspace/generated_images/exec-cdce6a8b-8596-402f-b721-f3e27e9e9fda.png
+  returned_at: '2026-11-05T21:51:03.263Z'
+  prompt_sha256: a54f370cd88a23eb6fe7e8658a62a64345811ccac95e9b804aeb48a94f369bc4
+  fingerprint: a98d5846bf03a8ac
+  saved_at: '2026-11-05T21:51:03.768638+00:00'
+  original_generated_png_sha256: 428be0bd948a1cd7d04ecb0f5a77fcfbb5fc3d5e3cffa32670106f2be6551177
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 48660d8ae8f0fec3bae2b1a946bc8b9ba622d03738a0c31086bc9ad1b45b88fd
+  inbox_png_sha256: 4e1a26b5be0a0421b583d01406f62fd3724e741636d072a136cb7756ce6c4950
+  qa_sha256: 671c985c918e2b974c8ccf0f173737ac89991c65827df616dd0c624e325ba387
+- batch: batch-29-residents-at-work-v2
+  job: x-work-sprout-v2
+  take: 2
+  round: 1
+  logical_run: 20261105-b29-v2-residents
+  source_file: /workspace/generated_images/exec-28387322-b0b4-4a32-bc14-c7f09bd567cf.png
+  returned_at: '2026-11-05T21:52:10.732Z'
+  prompt_sha256: a54f370cd88a23eb6fe7e8658a62a64345811ccac95e9b804aeb48a94f369bc4
+  fingerprint: a98d5846bf03a8ac
+  saved_at: '2026-11-05T21:52:11.058182+00:00'
+  original_generated_png_sha256: ebd35fce64c10f5db59314eb89d01266f399ba6946fecd5c8d1c18061eadc1a6
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: c50b0839e5f71196277877aad24ae176f797ce6b84f80ced3ac04eae0202c6f9
+  inbox_png_sha256: ef96e2b1c3cfa27a10398563fb4a895b1899dc2a333d9542bbfa00055a8ab724
+  qa_sha256: 40de98532a5da5629ac66bd097bd7dc3c9dbd96e9d212a8cd10db498533c387b
+- batch: batch-29-residents-at-work-v2
+  job: x-work-sprout-v2
+  take: 3
+  round: 2
+  logical_run: 20261105-b29-v2-residents
+  source_file: /workspace/generated_images/exec-e8ab3ad4-3e54-499a-b0ef-a1177b6ea935.png
+  returned_at: '2026-11-05T21:56:41.823Z'
+  prompt_sha256: a54f370cd88a23eb6fe7e8658a62a64345811ccac95e9b804aeb48a94f369bc4
+  fingerprint: a98d5846bf03a8ac
+  saved_at: '2026-11-05T21:56:42.152278+00:00'
+  original_generated_png_sha256: a66f22112302181a4b6b4dca2a0e6a690e74829b62378a29597f5caedab013aa
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 2e900c0bf1f9a9c3a311a44d6e9495cad295aef7bf942dad6e83b14e2ed1a147
+  inbox_png_sha256: 5c0a073cd32b79dfa10292fb1b1fa93d41fce412b8460b27957a3bf70558f3f9
+  qa_sha256: 821963d53a8ad89a6c169d1070735f69a7902079da5df80bd9c60e4db9eae037
+- batch: batch-29-residents-at-work-v2
+  job: x-work-sprout-v2
+  take: 4
+  round: 2
+  logical_run: 20261105-b29-v2-residents
+  source_file: /workspace/generated_images/exec-ad863b77-e911-47d6-a190-6f4cbbeb81ed.png
+  returned_at: '2026-11-05T21:55:58.025Z'
+  prompt_sha256: a54f370cd88a23eb6fe7e8658a62a64345811ccac95e9b804aeb48a94f369bc4
+  fingerprint: a98d5846bf03a8ac
+  saved_at: '2026-11-05T21:55:58.519057+00:00'
+  original_generated_png_sha256: 5f098a29205368e19cc13c10a68a5c914d49af3282aad09f913d43b996179a79
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 3cb8a45575abab86f17bfe69ab8382fde3b1c54a54efcc52cec288d3ce9f4a32
+  inbox_png_sha256: b49d6570d8fdfaa2baea6ba04951bf33e3910731271e1540cd8b9f95c183127f
+  qa_sha256: 8b84d5dd94009f705a3be8c6115c9800bf490f60237c2a5b6a994284e5e2d8d0
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+variation_proof_sha256: 4b99e1e7f1e6c31421854cd25b498043677e7b9d16b9b10e8e3b8a2ff8a18228
