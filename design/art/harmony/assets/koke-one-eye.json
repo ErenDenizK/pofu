@@ -6,8 +6,8 @@
   "L_mean": 76.956,
   "L_p2": 48.723,
   "L_p98": 94.104,
-  "detail": 10.297,
-  "edge": 0.142,
+  "detail": 5.632,
+  "edge": 0.525,
   "tint_a": 3.953,
   "tint_b": 10.162,
   "warmth_b": 33.29
@@ -19,8 +19,8 @@
   "L_mean": 76.956,
   "L_p2": 48.723,
   "L_p98": 94.104,
-  "detail": 10.297,
-  "edge": 0.142,
+  "detail": 5.632,
+  "edge": 0.525,
   "tint_a": 3.953,
   "tint_b": 10.162,
   "warmth_b": 33.29
@@ -35,24 +35,22 @@
   "tint_b": 0.0,
   "white": 0.0
  },
- "guarded": false,
+ "guarded": true,
  "kind": "char",
  "matched_to": "char",
  "outliers_after": [
   "C_p95",
-  "L_p2",
-  "detail"
+  "L_p2"
  ],
  "outliers_before": [
   "C_p95",
-  "L_p2",
-  "detail"
+  "L_p2"
  ],
- "ppu": 29.0,
+ "ppu": 7.8596,
  "reference": false,
- "score_after": 65.9,
- "score_before": 65.9,
- "shipped": false,
+ "score_after": 74.0,
+ "score_before": 74.0,
+ "shipped": true,
  "source": "design/art/masters/koke-one-eye/koke-one-eye.webp",
  "source_sha": "e10a8c15335684f8"
 }

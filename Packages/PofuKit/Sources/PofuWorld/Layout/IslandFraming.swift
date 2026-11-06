@@ -220,7 +220,7 @@ public enum IslandFraming {
         if island == .koke {
             let box = KokeLayout.islandBox
             return CameraRail.Stop(
-                scale: islandScale * width / CameraRail.referenceWidth,
+                scale: KokeLayout.closeScale * width / CameraRail.referenceWidth,
                 look: WorldPoint(x: box.midX, y: box.midY),
                 anchorY: bandMid(height: height)
             )
@@ -235,11 +235,11 @@ public enum IslandFraming {
         )
     }
 
-    /// The Map: the home plate and every other island of the X whole, with
-    /// a margin, centred in the band.
+    /// The Map: the home plate, every other island of the X and Koke's
+    /// island whole, with a margin, centred in the band.
     public static func mapStop(width: Double, height: Double) -> CameraRail.Stop {
         let isles = IslandLayout.isles.compactMap { isle in WorldArt.sprite(isle.art)?.sharp.map { placed($0, at: isle.center) } }
-        let all = union(isles + [plateBox]) ?? WorldBox(minX: -400, minY: -380, maxX: 400, maxY: 420)
+        let all = union(isles + [plateBox, KokeLayout.islandBox]) ?? WorldBox(minX: -400, minY: -380, maxX: 400, maxY: 420)
         let margin = 10.0
         let scale = min((width - 2 * margin) / all.width, (bandHeight(height: height) - 2 * margin) / all.height)
         return CameraRail.Stop(scale: scale, look: WorldPoint(x: all.midX, y: all.midY), anchorY: bandMid(height: height))

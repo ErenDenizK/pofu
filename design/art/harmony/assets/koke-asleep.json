@@ -6,8 +6,8 @@
   "L_mean": 76.994,
   "L_p2": 51.37,
   "L_p98": 94.384,
-  "detail": 8.857,
-  "edge": 0.136,
+  "detail": 5.747,
+  "edge": 0.503,
   "tint_a": 3.368,
   "tint_b": 10.599,
   "warmth_b": 34.313
@@ -19,8 +19,8 @@
   "L_mean": 76.994,
   "L_p2": 51.37,
   "L_p98": 94.384,
-  "detail": 8.857,
-  "edge": 0.136,
+  "detail": 5.747,
+  "edge": 0.503,
   "tint_a": 3.368,
   "tint_b": 10.599,
   "warmth_b": 34.313
@@ -35,24 +35,22 @@
   "tint_b": 0.0,
   "white": 0.0
  },
- "guarded": false,
+ "guarded": true,
  "kind": "char",
  "matched_to": "char",
  "outliers_after": [
   "C_p95",
-  "L_p2",
-  "detail"
+  "L_p2"
  ],
  "outliers_before": [
   "C_p95",
-  "L_p2",
-  "detail"
+  "L_p2"
  ],
- "ppu": 29.0,
+ "ppu": 7.8596,
  "reference": false,
- "score_after": 66.6,
- "score_before": 66.6,
- "shipped": false,
+ "score_after": 73.4,
+ "score_before": 73.4,
+ "shipped": true,
  "source": "design/art/masters/koke-asleep/koke-asleep.webp",
  "source_sha": "07afc4c3a9f8fd16"
 }

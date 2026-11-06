@@ -64,6 +64,16 @@ Vividness: the garden's and the harbor's dressing are `prop`s (the meadow's stay
 | mochi-happy/-sleepy/-proud, findik-happy/-sleepy/-proud/-surprised, goat-happy/-surprised/-sleepy/-proud, simit-proud | Poses that swap in place on the base's canvas and feet. `ResidentEvent` (level-up hop, visitor arrived, ceremony done, first tap of the day) to `ResidentPose` and `ResidentReactions` (each lapses by itself); bedtime is `.sleepy`; `SimitPose` and `GoatPose` take the same events. The older eye poses are the fallback of happy and sleepy. |
 | `bagel-cart-3-blue`, `lighthouse-3-blue`, `lighthouse-4-blue` | Baked under these names (the second L3 style option, home progression 4.2); no consumer yet. Follow-up: a saved per-station style (old saves default to the first option), a two-swatch picker in the station sheet at L3, and the remaining batch 40 options (tea stall, workshop, windmill, the L5s) once promoted; a picker that offers a style with no art at a level would show a hole. |
 
+## Koke (feat/koke-art-and-framing)
+
+| Art | Where it shows |
+|---|---|
+| `koke-island-0` to `-2` | `world-koke-island-N`: the plates were delivered at half scale (768 x 512 for 1536 x 1024; `deliver.original_size`) and are drawn 250 units wide on Koke's centre. They are opaque on their own sky, so `preblur.py` cuts them out (`matte`: not sky, not cloud, largest piece, holes filled, 1.5 px feather) and the world draws its own sky and cloud sea behind. The plates already carry Koke (sleeping, then waking), so the colour arc is painted: `KokeLayout.saturation` leaves stages 0 to 2 as painted. |
+| stages 3 and 4 | Stand-ins until their plates are painted: the stage 2 plate, lifted by the grade (1.1, 1.2), code-drawn blossoms at stage 4 (`KokeLayout.hasBlossoms`) and a pose drawn over the plate's Koke (`KokeLayout.overlay`): `koke-stretch` and `koke-standing` fall back to `koke-one-eye`, the standing one 1.1 larger with a gentle bounce (`KokeLayout.bounce`; still under Reduce Motion and in still frames). `koke-island-3` and `-4` replace the plate and stand-in as soon as an imageset exists (raise `KokeLayout.paintedStages`). |
+| `koke-asleep`, `koke-one-eye` | `world-koke-asleep`, `world-koke-one-eye`: 114 units wide, feet on the anchor, one scale. Today only `koke-one-eye` shows (the stage 3 and 4 overlay), because the plates carry Koke for stages 0 to 2. |
+
+Colour: `koke-*` is never regraded (`vivid.json` `never`) and is guarded in harmony (`config.json`), so the stage 0 grey stays grey.
+
 ## Shadow silhouettes
 
 `python3 -I tools/assets/shadows.py run` writes `<imageset>-shadow.imageset` for every casting sprite

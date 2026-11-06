@@ -947,6 +947,31 @@
       "target": "world",
       "name": "door-mochi-glow",
       "master": "design/art/masters/door-mochi-lit"
+    },
+    {
+      "target": "world",
+      "name": "koke-island-0",
+      "master": "design/art/masters/koke-island-0"
+    },
+    {
+      "target": "world",
+      "name": "koke-island-1",
+      "master": "design/art/masters/koke-island-1"
+    },
+    {
+      "target": "world",
+      "name": "koke-island-2",
+      "master": "design/art/masters/koke-island-2"
+    },
+    {
+      "target": "world",
+      "name": "koke-asleep",
+      "master": "design/art/masters/koke-asleep"
+    },
+    {
+      "target": "world",
+      "name": "koke-one-eye",
+      "master": "design/art/masters/koke-one-eye"
     }
   ]
 }

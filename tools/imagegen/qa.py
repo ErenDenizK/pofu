@@ -920,8 +920,11 @@ def run_checks(kind: str, raw: np.ndarray, locked: np.ndarray, palettes: list[st
     if kind == "char":
         g = pa.measure(locked)
         frac = g.baseline / locked.shape[0]
-        checks.append(Check("ground_line", "pass" if abs(frac - 0.88) <= 0.02 else "warn" if abs(frac - 0.88) <= 0.05 else "fail",
-                            f"feet at {frac:.1%} of the height (contract 88%)", frac))
+        # `acceptance: {ground_line: false}` for a character that does not stand on the
+        # contract's ground line (a sticker, centred on a square canvas).
+        if acceptance.get("ground_line", True) is not False:
+            checks.append(Check("ground_line", "pass" if abs(frac - 0.88) <= 0.02 else "warn" if abs(frac - 0.88) <= 0.05 else "fail",
+                                f"feet at {frac:.1%} of the height (contract 88%)", frac))
         if pa.baked_shadow_suspected(locked, g):
             checks.append(Check("no_ground_shadow", "warn", "a ground shadow seems painted in"))
     if kind == "icon":

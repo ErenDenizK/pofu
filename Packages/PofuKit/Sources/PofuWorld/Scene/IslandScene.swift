@@ -430,7 +430,9 @@ private struct SceneFrame<Bubble: View>: View {
         let motion = look.hd2d && look.depthMotion && !model.reduceMotion ? rig.motion.parallax(look.tuning.parallax) : CameraMotion.still
         let lookPoint = WorldPoint(x: pose.lookX, y: pose.lookY)
         // HD-2D's tilt-shift: the depth lens, stronger per framing.
-        let baseLens = DepthMotion.lens(look.hd2d ? rig.lens.tiltShifted(by: LookTuning.tiltShift(z: z, island: look.tuning.tiltShiftIsland, home: look.tuning.tiltShiftHome)) : rig.lens, motion: motion)
+        let rigLens = DepthMotion.lens(look.hd2d ? rig.lens.tiltShifted(by: LookTuning.tiltShift(z: z, island: look.tuning.tiltShiftIsland, home: look.tuning.tiltShiftHome)) : rig.lens, motion: motion)
+        // At Koke the focus plane is Koke's lawn, not the home lawn's.
+        let baseLens = model.island == .koke ? Lens(focus: KokeLayout.focusDepth, slab: rigLens.slab, gain: rigLens.gain) : rigLens
         // Graphics spike: with the depth map's depth of field on, whole-layer
         // blur is off (every layer stays sharp) and the shader blurs per pixel.
         let spike = look.spike
@@ -491,10 +493,10 @@ private struct SceneFrame<Bubble: View>: View {
             )
             : nil
         let depthMap: Image? = (spikeDOF && rack > 0.001) || spike.debug == .depth
-            ? SpikeDepthMap.image(world: world, pose: pose, offset: offset, size: size, art: look.art)
+            ? SpikeDepthMap.image(world: world, pose: pose, offset: offset, size: size, art: look.art, koke: model.island == .koke && world.koke.isArrived)
             : nil
         let field: DepthOfField = {
-            var f = spike.field(focus: SpikeDepthMap.focusDepth(model.focus), focused: model.focus != nil, z: z)
+            var f = spike.field(focus: SpikeDepthMap.focusDepth(model.focus, island: model.island), focused: model.focus != nil, z: z)
             f.maxRadius *= rack
             return f
         }()
@@ -1044,7 +1046,8 @@ private struct WorldCanvas: View {
                 stage: world.koke.stage,
                 swellAge: model.koke.swellStart.map { clock.timeIntervalSince($0) },
                 reduceMotion: model.reduceMotion,
-                point: canvasPoint(KokeLayout.center, depth: 0)
+                point: canvasPoint(KokeLayout.center, depth: here ? KokeLayout.focusDepth : 0),
+                bounceTime: here && life.isAmbient ? life.time : nil
             )
             .saturation(here ? 1 : KokeLayout.saturation(stage: world.koke.stage))
             .opacity(fade)
