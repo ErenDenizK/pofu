@@ -1,0 +1,237 @@
+batch: batch-40-home-ladder-gaps
+contact_sheet: design/art/takes/batch-40-home-ladder-gaps/workshop-5-green/contact.jpg
+jobs:
+  workshop-5-green:
+    pick: 2
+    publication: promoted; founder review pending
+    note: 'auto-picked by QA; founder review pending. Independent original and locked
+      review selects take2: four separate sage shutters in the two explicitly named
+      pairs, round cut-outs and cream edges; exact actual gear sign, chimney, four-blade
+      pinwheel, five tools, doorway, bench and vice remain. Historical left-edge clipping
+      is preserved from the frozen approved parent, not corrected or treated as a
+      new failure. The actual parent has no visible clock, so none is invented. Take1
+      adds unrequested solid wood across the protected open bench gap outside shutter
+      outlines and is excluded. Take2 has lower eligible lock0.7456 and Harmony81.9.
+      Three existing planned workshop nodes were linked once before this first success;
+      failed variants remain cut with no images. Founder review pending.'
+qa_reports:
+  2:
+    job: workshop-5-green
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 53 (R1 51)
+      value: 53.0
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 49 (at most 22), p98 90 (at least 90), spread 41
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 40.8
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 77 (band 55-90)'
+      value: 77.3
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.22 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.224
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.7 (at least 3.5)'
+      value: 4.74
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.8 (R1 5.3)
+      value: 2.82
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.7456
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.7, p95 7.7, off-palette 0.5% (top: #BB7722 (0.1%), #BB6622
+        (0.1%))'
+      value: 1.6797
+    - check: station_anchor
+      status: pass
+      message: on the parent's anchor
+      value: 910.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 82 against the world reference (outliers: edge)'
+      value: 81.9
+    - check: edit_silhouette
+      status: pass
+      message: 99% of the parent's shape kept
+      value: 0.9869
+    - check: edit_stability
+      status: pass
+      message: 91% of the parent level unchanged
+      value: 0.9079
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.01 of the parent level (drift compounds along a chain)
+      value: 1.0145
+    info:
+      registration:
+        dx: 0
+        dy: 0
+      metrics_raw:
+        L_p5: 53.5
+        L_p50: 77.4
+        L_p95: 88.6
+        C_p50: 26.4
+        C_p95: 53.3
+        C_p99: 59.4
+        detail: 3.44
+      metrics_locked:
+        L_p5: 53.8
+        L_p50: 77.3
+        L_p95: 88.2
+        C_p50: 26.4
+        C_p95: 53.0
+        C_p99: 57.9
+        detail: 2.82
+    fingerprint: e03ecc1bb7a90f41
+  1:
+    job: workshop-5-green
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 55 (R1 51)
+      value: 54.6
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 51 (at most 22), p98 90 (at least 90), spread 38
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 38.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 76 (band 55-90)'
+      value: 76.5
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.19 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.192
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.1 (at least 3.5)'
+      value: 5.09
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.1 (R1 5.3)
+      value: 3.14
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.7849
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 1.9, p95 9.1, off-palette 1.1% (top: #BB7722 (0.2%), #999966
+        (0.1%))'
+      value: 1.9477
+    - check: station_anchor
+      status: pass
+      message: on the parent's anchor
+      value: 910.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 80 against the world reference (outliers: detail, edge)'
+      value: 79.5
+    - check: edit_silhouette
+      status: pass
+      message: 98% of the parent's shape kept
+      value: 0.9759
+    - check: edit_stability
+      status: pass
+      message: 90% of the parent level unchanged
+      value: 0.8979
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.02 of the parent level (drift compounds along a chain)
+      value: 1.0212
+    info:
+      registration:
+        dx: 0
+        dy: 0
+      metrics_raw:
+        L_p5: 55.5
+        L_p50: 76.6
+        L_p95: 88.8
+        C_p50: 26.7
+        C_p95: 54.9
+        C_p99: 64.1
+        detail: 3.78
+      metrics_locked:
+        L_p5: 56.2
+        L_p50: 76.5
+        L_p95: 88.6
+        C_p50: 26.7
+        C_p95: 54.6
+        C_p99: 60.9
+        detail: 3.14
+    fingerprint: e03ecc1bb7a90f41
+manual_review:
+  excluded_takes:
+  - 1
+  note: 'Independent original and locked review selects take2: four separate sage
+    shutters in the two explicitly named pairs, round cut-outs and cream edges; exact
+    actual gear sign, chimney, four-blade pinwheel, five tools, doorway, bench and
+    vice remain. Historical left-edge clipping is preserved from the frozen approved
+    parent, not corrected or treated as a new failure. The actual parent has no visible
+    clock, so none is invented. Take1 adds unrequested solid wood across the protected
+    open bench gap outside shutter outlines and is excluded. Take2 has lower eligible
+    lock0.7456 and Harmony81.9. Three existing planned workshop nodes were linked
+    once before this first success; failed variants remain cut with no images. Founder
+    review pending.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-bf3d4f0a-6ffd-41b4-993b-30af2cc26c22.png
+  original_generated_png_sha256: ec56baf3e4741e5f4a90e77229307ecc63cf4bf531a69cf7427d27b60d8c62a7
+  inbox_png_sha256: 7dce91e2373a517c99013988066995a11e142f25bf36bbb231fb5f76ae86dc45
+  rgba_sha256: c2e5c704c8716b18200071391e524545586111259ed6dcf8d6b186c15e3807db
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: e03ecc1bb7a90f41
+- take: 2
+  source_file: /workspace/generated_images/exec-2d08f76b-395b-4fda-b7a6-f408a476c154.png
+  original_generated_png_sha256: e2229076ad6b3b92b1a816bc6f787315ae1422af3a8447b3c4802e2cefcd72ea
+  inbox_png_sha256: 2396aceb35fa133627c081347d98a89b58960c568c37991d187032ab3e2edb61
+  rgba_sha256: 37e21a065d78d8aa93f11999070d22cfb3bfbfebb0c61bb5a6e8227621749b20
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: e03ecc1bb7a90f41

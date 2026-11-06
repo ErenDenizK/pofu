@@ -1,0 +1,57 @@
+{
+ "after": {
+  "C_mean": 19.419,
+  "C_p50": 14.063,
+  "C_p95": 49.068,
+  "L_mean": 78.109,
+  "L_p2": 49.382,
+  "L_p98": 92.485,
+  "detail": 2.685,
+  "edge": 0.421,
+  "tint_a": 2.258,
+  "tint_b": 4.899,
+  "warmth_b": 11.393
+ },
+ "before": {
+  "C_mean": 23.035,
+  "C_p50": 16.682,
+  "C_p95": 58.206,
+  "L_mean": 78.109,
+  "L_p2": 49.382,
+  "L_p98": 92.485,
+  "detail": 2.726,
+  "edge": 0.421,
+  "tint_a": 4.24,
+  "tint_b": 8.147,
+  "warmth_b": 13.515
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 0.843,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "station",
+ "matched_to": "world",
+ "outliers_after": [
+  "detail",
+  "edge"
+ ],
+ "outliers_before": [
+  "C_p95",
+  "detail",
+  "edge"
+ ],
+ "ppu": 8.533,
+ "reference": false,
+ "score_after": 87.8,
+ "score_before": 79.8,
+ "shipped": false,
+ "source": "design/art/stations/lighthouse-4-blue/lighthouse-4-blue.png",
+ "source_sha": "03d62bdb6ffc9205"
+}

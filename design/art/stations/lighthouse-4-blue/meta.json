@@ -1,0 +1,143 @@
+{
+  "job": "lighthouse-4-blue",
+  "batch": "batch-40-home-ladder-gaps",
+  "asset": "station__lighthouse-4-blue",
+  "take": 2,
+  "takes_considered": 2,
+  "approved_at": "2026-11-06T01:05:49+00:00",
+  "image": "design/art/stations/lighthouse-4-blue/lighthouse-4-blue.png",
+  "raw": "design/art/stations/lighthouse-4-blue/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "615f9f8d05fd9445",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nRecolor the lighthouse to its blue option. The coral stripes of the tower and the coral cap become soft sea-blue; the cream stripes stay cream. The lit lamp room's glow, the honey balcony and its rail, the round window, the door and the base keep their exact colors.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: changing the shape, size or position of any part, new props, a different camera, a baked shadow, a glow, text.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/stations/lighthouse-4/lighthouse-4.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-06T00:33:09+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": {
+    "dx": 0,
+    "dy": 0
+  },
+  "alignment": null,
+  "fit": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "warn",
+        "message": "chroma p95 58 (R1 51)",
+        "value": 58.3
+      },
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 49 (at most 22), p98 92 (at least 90), spread 43 (at least 60) (warn-only until the founder has seen the light pilot)",
+        "value": 43.3
+      },
+      {
+        "check": "light_median",
+        "status": "pass",
+        "message": "day/subject: median L 80 (band 55-90)",
+        "value": 80.0
+      },
+      {
+        "check": "light_haze",
+        "status": "pass",
+        "message": "day/subject: dark-channel haze 0.14 (at most 0.20; no true dark means a wash)",
+        "value": 0.145
+      },
+      {
+        "check": "light_contrast",
+        "status": "pass",
+        "message": "day/subject: p75 local contrast 4.7 (at least 3.5)",
+        "value": 4.69
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 2.6 (R1 5.3)",
+        "value": 2.58
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 1.1",
+        "value": 1.0513
+      },
+      {
+        "check": "no_guide_magenta",
+        "status": "pass",
+        "message": "0 guide-magenta pixels (per 1024^2)",
+        "value": 0.0
+      },
+      {
+        "check": "palette_drift",
+        "status": "warn",
+        "message": "mean dE 4.3, p95 11.3, off-palette 3.4% (top: #BB7722 (0.3%), #558899 (0.3%))",
+        "value": 4.3216
+      },
+      {
+        "check": "station_anchor",
+        "status": "pass",
+        "message": "on the parent's anchor",
+        "value": 907.0
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 80 against the world reference (outliers: C_p95, detail, edge)",
+        "value": 79.9
+      },
+      {
+        "check": "edit_silhouette",
+        "status": "pass",
+        "message": "98% of the parent's shape kept",
+        "value": 0.9843
+      },
+      {
+        "check": "edit_structure",
+        "status": "pass",
+        "message": "light structure matches the parent (r 0.98)",
+        "value": 0.9817
+      },
+      {
+        "check": "edit_lightness",
+        "status": "pass",
+        "message": "mean lightness moved by 0.7 L (the same lightness was asked)",
+        "value": 0.687
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Both initial takes pass hard QA and independent original plus locked review. Only the coral cap/finial and two coral tower bands become soft sea-blue; cream bands, existing warm lamp glow, honey balcony and rail, round crossbar window, honey door, cream trim and base preserve actual approved same-level geometry and colors. No new glow, background or part drift. Auto-pick take2 by lower eligible lock1.0513 versus1.0937; Harmony79.9 versus78.9 also favors2. Declared recolor structure passes0.9817 and0.9788, without invented stricter gates. Lighthouse consumer remains byte-identical to its first-success receipt. Founder review pending."
+}

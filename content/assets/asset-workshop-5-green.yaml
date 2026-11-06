@@ -4,17 +4,17 @@ title_tr: workshop-5-green
 title_en: workshop-5-green (station)
 status: in-production
 horizon: now
-summary: >-
-  Add a pair of small rounded sage-green wooden shutters, open flat against the wall, one
-  on each side of the arched doorway, and a third pair on the lower wall at the right. Each
-  shutter is a chunky rounded panel with a small round cut-out, painted sage green with a
-  cream edge. The big gear sign, the chimney, the clock and everything else stay exactly as
-  they are.
+summary: Add a pair of small rounded sage-green wooden shutters, open flat against
+  the wall, one on each side of the arched doorway, and a third pair on the lower
+  wall at the right. Each shutter is a chunky rounded panel with a small round cut-out,
+  painted sage green with a cream edge. The big gear sign, the chimney, the clock
+  and everything else stay exactly as they are.
 links:
   variant_of:
   - asset-workshop-5
 art:
-  images: []
+  images:
+  - design/art/stations/workshop-5-green/workshop-5-green.png
   jobs:
   - batch-40-home-ladder-gaps:workshop-5-green
 sources:

@@ -1,0 +1,242 @@
+batch: batch-40-home-ladder-gaps
+contact_sheet: design/art/takes/batch-40-home-ladder-gaps/windmill-4-painted/contact.jpg
+jobs:
+  windmill-4-painted:
+    pick: 1
+    publication: promoted; founder review pending
+    note: 'auto-picked by QA; founder review pending. Independent source and locked
+      review verifies take1: all four sails each have two sage long-edge bands, one
+      honey central band and one round honey sun at the outer end; all four frames/hub,
+      six cap lanterns, tower/door and three seed sacks retain their same-level reference
+      geometry and colors. No broad haze, glow or background. Take2 remains excluded
+      by official hard edit_chroma1.4667, not a borrowed manual threshold. Take1 is
+      the only eligible initial candidate. Stable prelinked windmill consumer remains
+      byte-identical. Founder review pending.'
+qa_reports:
+  2:
+    job: windmill-4-painted
+    take: 2
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: edit_alignment
+      status: pass
+      message: the edit rescaled the object x0.998 and moved it; aligned back to the
+        parent
+      value: 1.002
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 38 (R1 51)
+      value: 38.3
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 66 (at most 22), p98 89 (at least 90), spread 24
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 23.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 80 (band 55-90)'
+      value: 80.5
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.45 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.447
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 3.6 (at least 3.5)'
+      value: 3.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.4 (R1 5.3)
+      value: 2.36
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 0.9594
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.3, p95 3.5, off-palette 0.0%
+      value: 1.2611
+    - check: station_anchor
+      status: pass
+      message: on the parent's anchor
+      value: 904.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 68 against the world reference (outliers: C_p95, edge)'
+      value: 68.4
+    - check: edit_silhouette
+      status: pass
+      message: 98% of the parent's shape kept
+      value: 0.9782
+    - check: edit_stability
+      status: pass
+      message: 83% of the parent level unchanged
+      value: 0.8311
+    - check: edit_chroma
+      status: fail
+      message: chroma x1.47 of the parent level (drift compounds along a chain)
+      value: 1.4667
+    info:
+      registration:
+        dx: 0
+        dy: 0
+      alignment:
+        scale: 1.002
+        cx: 518.5
+        cy: 902.0
+        dx: 0
+        dy: 2
+      metrics_raw:
+        L_p5: 68.0
+        L_p50: 80.4
+        L_p95: 88.2
+        C_p50: 11.5
+        C_p95: 39.9
+        C_p99: 43.0
+        detail: 3.25
+      metrics_locked:
+        L_p5: 68.6
+        L_p50: 80.6
+        L_p95: 88.2
+        C_p50: 12.0
+        C_p95: 38.3
+        C_p99: 41.8
+        detail: 2.36
+    fingerprint: 956ec14d9d672f5b
+  1:
+    job: windmill-4-painted
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 35 (R1 51)
+      value: 34.6
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 67 (at most 22), p98 90 (at least 90), spread 23
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 22.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 81 (band 55-90)'
+      value: 81.1
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.47 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.467
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 3.1 (at least 3.5)'
+      value: 3.09
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.1 (R1 5.3)
+      value: 2.07
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.7026
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.2, p95 4.0, off-palette 0.0% (top: #888866 (0.0%), #998866
+        (0.0%))'
+      value: 1.1771
+    - check: station_anchor
+      status: pass
+      message: on the parent's anchor
+      value: 902.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 64 against the world reference (outliers: C_p95, L_p2,
+        edge)'
+      value: 63.5
+    - check: edit_silhouette
+      status: pass
+      message: 98% of the parent's shape kept
+      value: 0.9848
+    - check: edit_stability
+      status: pass
+      message: 84% of the parent level unchanged
+      value: 0.8408
+    - check: edit_chroma
+      status: warn
+      message: chroma x1.37 of the parent level (drift compounds along a chain)
+      value: 1.3671
+    info:
+      registration:
+        dx: 0
+        dy: 0
+      metrics_raw:
+        L_p5: 69.2
+        L_p50: 81.1
+        L_p95: 88.9
+        C_p50: 10.9
+        C_p95: 37.1
+        C_p99: 40.5
+        detail: 2.88
+      metrics_locked:
+        L_p5: 69.7
+        L_p50: 81.1
+        L_p95: 88.7
+        C_p50: 11.1
+        C_p95: 34.6
+        C_p99: 39.8
+        detail: 2.07
+    fingerprint: 956ec14d9d672f5b
+manual_review:
+  excluded_takes: []
+  note: 'Independent source and locked review verifies take1: all four sails each
+    have two sage long-edge bands, one honey central band and one round honey sun
+    at the outer end; all four frames/hub, six cap lanterns, tower/door and three
+    seed sacks retain their same-level reference geometry and colors. No broad haze,
+    glow or background. Take2 remains excluded by official hard edit_chroma1.4667,
+    not a borrowed manual threshold. Take1 is the only eligible initial candidate.
+    Stable prelinked windmill consumer remains byte-identical. Founder review pending.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-80c07da2-403f-40af-bcd5-a298b1721d5c.png
+  original_generated_png_sha256: 6459194183f7a17ce63b92fba82a75ea993e29f4f042a6b1573a4d432daef6ec
+  inbox_png_sha256: b22ba7e8d8afe95feb1b2901f3b94764b8a084d4b24cb5536c9a0dd972ad832c
+  rgba_sha256: 7fbe131dd52059b11f78a57d4170a8dd8f718f8357bb672aa9a0884d78ddfaf0
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 956ec14d9d672f5b
+- take: 2
+  source_file: /workspace/generated_images/exec-3088fc09-81df-4561-85b7-c451e9934281.png
+  original_generated_png_sha256: 67e344ce84b1844e68b62479594abdb8a815fd446f5d65a4305811c8386590c4
+  inbox_png_sha256: 0c40e6a23b7809cbd3778f427c88f539fc1ce7f47f5a9b9419d82bf82ffdc439
+  rgba_sha256: e9396b0a60952184cf161f53cb9cecaea476616f05319a3a1596ef0d59bdc391
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 956ec14d9d672f5b

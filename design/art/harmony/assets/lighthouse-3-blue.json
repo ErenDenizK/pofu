@@ -1,0 +1,55 @@
+{
+ "after": {
+  "C_mean": 18.856,
+  "C_p50": 12.145,
+  "C_p95": 49.019,
+  "L_mean": 79.408,
+  "L_p2": 55.167,
+  "L_p98": 92.897,
+  "detail": 2.318,
+  "edge": 0.416,
+  "tint_a": -0.267,
+  "tint_b": 1.31,
+  "warmth_b": 12.045
+ },
+ "before": {
+  "C_mean": 22.69,
+  "C_p50": 14.614,
+  "C_p95": 58.988,
+  "L_mean": 79.408,
+  "L_p2": 55.167,
+  "L_p98": 92.897,
+  "detail": 2.355,
+  "edge": 0.416,
+  "tint_a": 2.419,
+  "tint_b": 6.408,
+  "warmth_b": 14.495
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 0.831,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "station",
+ "matched_to": "world",
+ "outliers_after": [
+  "edge"
+ ],
+ "outliers_before": [
+  "C_p95",
+  "edge"
+ ],
+ "ppu": 8.533,
+ "reference": false,
+ "score_after": 89.8,
+ "score_before": 80.7,
+ "shipped": false,
+ "source": "design/art/stations/lighthouse-3-blue/lighthouse-3-blue.png",
+ "source_sha": "b7eacfad2012f9b8"
+}

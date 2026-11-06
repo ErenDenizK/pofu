@@ -7,7 +7,8 @@ horizon: later
 summary: A striped lighthouse kept by Simit at dusk, whose slow warm beam turns at
   night.
 notes:
-- 'Opens: Island level 6 (tended day 10, 15 levels built). Level costs 1→5: 25 · 40 · 60 · 85 · 115 (total 325). Rate L1→L5: 0.02 → 0.1 seeds/hour before calm.'
+- 'Opens: Island level 6 (tended day 10, 15 levels built). Level costs 1→5: 25 · 40
+  · 60 · 85 · 115 (total 325). Rate L1→L5: 0.02 → 0.1 seeds/hour before calm.'
 links:
   part_of:
   - island-iskele
@@ -21,6 +22,9 @@ links:
   - asset-lighthouse-3
   - asset-lighthouse-4
   - asset-lighthouse-5
+  - asset-lighthouse-3-blue
+  - asset-lighthouse-4-blue
+  - asset-lighthouse-5-blue
 sources:
 - doc: docs/product/game-design.md
   anchor: '#idle-production-and-stations'
@@ -57,4 +61,5 @@ levels:
   rate: 0.1
 unlock:
   day: 9
-  rule_en: Island level 6 (tended day 10, 15 levels built) (days ≈ tended days for a daily user)
+  rule_en: Island level 6 (tended day 10, 15 levels built) (days ≈ tended days for
+    a daily user)

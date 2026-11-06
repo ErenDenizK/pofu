@@ -2,14 +2,13 @@ id: asset-tea-stall-3-iznik
 type: asset
 title_tr: tea-stall-3-iznik
 title_en: tea-stall-3-iznik (station)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  Recolor the tea stall to its Iznik blue option. Every rose, blush and coral part becomes
-  Iznik blue: the awning's rose stripes become soft cobalt-blue stripes alternating with cream,
-  and the striped cloth on the little table and the cloth over the counter's end become cobalt-blue
-  and cream as well. The kettle, the tulip glasses, the stools, the counter, the poles and
-  the wood keep their exact colors.
+summary: 'Recolor the tea stall to its Iznik blue option. Every rose, blush and coral
+  part becomes Iznik blue: the awning''s rose stripes become soft cobalt-blue stripes
+  alternating with cream, and the striped cloth on the little table and the cloth
+  over the counter''s end become cobalt-blue and cream as well. The kettle, the tulip
+  glasses, the stools, the counter, the poles and the wood keep their exact colors.'
 links:
   variant_of:
   - asset-tea-stall-3
@@ -21,3 +20,21 @@ sources:
 - doc: tools/imagegen/manifest/batch-40-home-ladder-gaps.yaml
 kind: station
 batch: batch-40-home-ladder-gaps
+notes:
+- 'batch-40-home-ladder-gaps skipped after four takes: One unchanged-prompt retry
+  exhausted. All four takes hard-fail palette_drift for the requested cobalt fabric
+  recolor: mean dE3.5864,4.4965,4.1131,4.0939; off-palette13.8,14.9,14.5,14.5percent.
+  Takes2/3/4 also hard-fail the declared recolor edit_structure check at r0.5977,0.5582,0.5734.
+  Take1 structure remains the official warning at r0.6102, not an invented failure.
+  Target fabric recolors and original inventory are present, but no hard QA check
+  was waived; source3 also paints broad exterior background haze. No extra edit_stability
+  greater than0.9 or pixel-zero gate was invented for the recolor profile. All source
+  bytes and exact prompt/reference/QA hashes preserved; no master promoted and no
+  station consumer prelink written for this failed job. Automated failures: t1 palette_drift:
+  mean dE 3.6, p95 24.0, off-palette 13.8% (top: #6688CC (4.6%), #5577BB (2.8%));
+  t2 palette_drift: mean dE 4.5, p95 27.4, off-palette 14.9% (top: #5577BB (5.8%),
+  #4466AA (4.7%)), edit_structure: light structure matches the parent (r 0.60); t3
+  palette_drift: mean dE 4.1, p95 26.0, off-palette 14.5% (top: #5577BB (6.4%), #4466AA
+  (3.7%)), edit_structure: light structure matches the parent (r 0.56); t4 palette_drift:
+  mean dE 4.1, p95 26.7, off-palette 14.5% (top: #4466AA (5.2%), #5577BB (4.7%)),
+  edit_structure: light structure matches the parent (r 0.57).'
