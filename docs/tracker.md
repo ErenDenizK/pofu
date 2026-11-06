@@ -302,3 +302,4 @@ Each has a recommendation. Silence means yes, except item 1, which needs the fou
 ## Added 2026-11-06 (afternoon)
 
 - **The gate flow consolidated** ([the Door](design/the-door.md)): six in-app screens become one scene with states; the shield stays Apple's. Next: build `DoorScene` when batch-58 lands; the wave-1 breath pieces become its Breath state.
+- **Weather and the screen haze built** (#275): seeded weather bag, rain, mist, golden haze, rainbow after rain, the screen haze. Open: wire `ScreenHazeClearing.part()` to the resisted-reach handler (with the Door build); tune golden haze and rain visibility on device.
