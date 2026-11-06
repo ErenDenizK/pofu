@@ -1,0 +1,330 @@
+batch: batch-46-flat-icons
+manifest: tools/imagegen/manifest/batch-46-flat-icons.yaml
+manifest_sha256: 9f0b3d779a7c55faccf1f0965b60a11dff7192ad7bcf9e84168ce7f49d97f61b
+contact_sheet: design/art/takes/batch-46-flat-icons/x-icons-flat-duo/contact.jpg
+jobs:
+  x-icons-flat-duo:
+    pick: none
+    publication: skipped after one allowed retry
+    note: Skipped after initial pair and sole unchanged retry pair. All four single-island
+      glyphs combine cocoa outline, cream fill, moss lawn and honey flag, four intentional
+      color families/two accents despite the explicit maximum three colors and one
+      small accent per icon. Maps1,2,4 also use four; map3 correctly stays cocoa/cream/moss
+      with no honey flag and is NOT failed on count. Every source also shows diffuse
+      cream/honey interior shading despite flat no-gradients/no-shading. Independent
+      initial/retry reviews independent-flat-duo-initial-review-20261106T081206Z.json
+      and independent-flat-duo-retry-review-20261106T081826Z.json confirm root full
+      original/official locked review and every22ptcell. All nine order/metaphor/layout/family
+      checks pass; pink hamster cheeks are explicitly permitted and added houses/flags
+      are not independently banned geometry. Original numeric QA warn-only results
+      and exact initial QA/locked seals remain unchanged; no invented exact-hex gate
+      or inherited solid root requirement. Eight batch sources preserved, no third
+      round/source cleanup/QA waiver/prompt rewrite/promotion/master/content/Harmony.
+qa_reports:
+  1:
+    job: x-icons-flat-duo
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 43 (R1 51)
+      value: 43.0
+    - check: value_floor
+      status: warn
+      message: lightness p5 31 (R1 59)
+      value: 31.4
+    - check: detail_budget
+      status: warn
+      message: detail at display size 9.1 (R1 5.3) (advisory in an exploration)
+      value: 9.12
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.6479
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.1, p95 6.3, off-palette 0.2% (top: #776644 (0.1%), #888855
+        (0.1%))'
+      value: 2.0846
+    info:
+      metrics_raw:
+        L_p5: 30.9
+        L_p50: 92.5
+        L_p95: 93.3
+        C_p50: 15.1
+        C_p95: 45.8
+        C_p99: 53.3
+        detail: 9.47
+      metrics_locked:
+        L_p5: 31.4
+        L_p50: 92.4
+        L_p95: 93.1
+        C_p50: 14.9
+        C_p95: 43.0
+        C_p99: 53.0
+        detail: 9.12
+    fingerprint: aaaff8f16f865180
+  2:
+    job: x-icons-flat-duo
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 55 (R1 51)
+      value: 54.9
+    - check: value_floor
+      status: warn
+      message: lightness p5 30 (R1 59)
+      value: 30.0
+    - check: detail_budget
+      status: warn
+      message: detail at display size 9.4 (R1 5.3) (advisory in an exploration)
+      value: 9.41
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.643
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.7, p95 5.0, off-palette 0.2% (top: #888855 (0.1%), #776644
+        (0.1%))'
+      value: 1.6898
+    info:
+      metrics_raw:
+        L_p5: 29.4
+        L_p50: 93.0
+        L_p95: 93.7
+        C_p50: 14.3
+        C_p95: 54.8
+        C_p99: 56.6
+        detail: 9.76
+      metrics_locked:
+        L_p5: 30.0
+        L_p50: 93.0
+        L_p95: 93.6
+        C_p50: 14.1
+        C_p95: 54.9
+        C_p99: 56.4
+        detail: 9.41
+    fingerprint: aaaff8f16f865180
+  3:
+    job: x-icons-flat-duo
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 55 (R1 51)
+      value: 54.7
+    - check: value_floor
+      status: warn
+      message: lightness p5 31 (R1 59)
+      value: 31.1
+    - check: detail_budget
+      status: warn
+      message: detail at display size 9.1 (R1 5.3) (advisory in an exploration)
+      value: 9.1
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.6366
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.9, p95 5.1, off-palette 0.3% (top: #888855 (0.1%), #887744
+        (0.0%))'
+      value: 1.8693
+    info:
+      metrics_raw:
+        L_p5: 30.5
+        L_p50: 92.4
+        L_p95: 93.3
+        C_p50: 15.4
+        C_p95: 54.7
+        C_p99: 56.3
+        detail: 9.43
+      metrics_locked:
+        L_p5: 31.1
+        L_p50: 92.4
+        L_p95: 93.2
+        C_p50: 15.2
+        C_p95: 54.7
+        C_p99: 55.9
+        detail: 9.1
+    fingerprint: aaaff8f16f865180
+  4:
+    job: x-icons-flat-duo
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 53 (R1 51)
+      value: 52.8
+    - check: value_floor
+      status: warn
+      message: lightness p5 29 (R1 59)
+      value: 28.7
+    - check: detail_budget
+      status: warn
+      message: detail at display size 9.2 (R1 5.3) (advisory in an exploration)
+      value: 9.25
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.569
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.2, p95 6.5, off-palette 0.3% (top: #777744 (0.1%), #888855
+        (0.1%))'
+      value: 2.2197
+    info:
+      metrics_raw:
+        L_p5: 28.1
+        L_p50: 92.3
+        L_p95: 93.0
+        C_p50: 17.0
+        C_p95: 52.7
+        C_p99: 54.7
+        detail: 9.61
+      metrics_locked:
+        L_p5: 28.7
+        L_p50: 92.3
+        L_p95: 92.8
+        C_p50: 17.0
+        C_p95: 52.8
+        C_p99: 54.4
+        detail: 9.25
+    fingerprint: aaaff8f16f865180
+manual_review:
+  observed_note: Skipped after initial pair and sole unchanged retry pair. All four
+    single-island glyphs combine cocoa outline, cream fill, moss lawn and honey flag,
+    four intentional color families/two accents despite the explicit maximum three
+    colors and one small accent per icon. Maps1,2,4 also use four; map3 correctly
+    stays cocoa/cream/moss with no honey flag and is NOT failed on count. Every source
+    also shows diffuse cream/honey interior shading despite flat no-gradients/no-shading.
+    Independent initial/retry reviews independent-flat-duo-initial-review-20261106T081206Z.json
+    and independent-flat-duo-retry-review-20261106T081826Z.json confirm root full
+    original/official locked review and every22ptcell. All nine order/metaphor/layout/family
+    checks pass; pink hamster cheeks are explicitly permitted and added houses/flags
+    are not independently banned geometry. Original numeric QA warn-only results and
+    exact initial QA/locked seals remain unchanged; no invented exact-hex gate or
+    inherited solid root requirement. Eight batch sources preserved, no third round/source
+    cleanup/QA waiver/prompt rewrite/promotion/master/content/Harmony.
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+sources:
+- batch: batch-46-flat-icons
+  job: x-icons-flat-duo
+  take: 1
+  round: 1
+  logical_run: 20261106-b46-flat-icons
+  source_file: /workspace/generated_images/exec-6e49cda7-294a-4e3d-96f9-729ae0dde5b0.png
+  returned_at: '2026-11-06T08:10:14.000Z'
+  prompt_sha256: e68b3c2d04d43589b74688b5d6a378070be4d0f58a4ca47ceac3775c5eef882a
+  fingerprint: aaaff8f16f865180
+  saved_at: '2026-11-06T08:10:14.357646+00:00'
+  original_generated_png_sha256: c740c3f7ef81ef1988b00f4fd8688148e47ef822a65fcef8b0fa0458b662738f
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 9435d3e791e2fc66c22e992867e09c63b32fd528449109477279b80878907e0d
+  inbox_png_sha256: fd455e141f7c28b15536e270929e4a64e48521857bb4ab643366e7586f5469b8
+  qa_sha256: 5aacbfcb14ec506aa7229e4f5e9120368e6536107d1a33ab8d2f796f3eee23f6
+- batch: batch-46-flat-icons
+  job: x-icons-flat-duo
+  take: 2
+  round: 1
+  logical_run: 20261106-b46-flat-icons
+  source_file: /workspace/generated_images/exec-644bcfae-9e26-4f29-ae21-d19daa31cdf0.png
+  returned_at: '2026-11-06T08:09:12.676Z'
+  prompt_sha256: e68b3c2d04d43589b74688b5d6a378070be4d0f58a4ca47ceac3775c5eef882a
+  fingerprint: aaaff8f16f865180
+  saved_at: '2026-11-06T08:09:13.129644+00:00'
+  original_generated_png_sha256: 7e73b209c2e965d33170e3c336ceb153053f0fca56d18ef683546def7ff26f2b
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 0420884cb715bdfc91796f0fbc74a2e4ecdebe05321ad8c5cef2200fe972b064
+  inbox_png_sha256: 092ccc7cf84147810a5352440afe8a2865b1aa89c5577bc6db73432f24201992
+  qa_sha256: 9c83abc17d1b4b10d996539d39246dabca217487af0144af46cb3af5a2d6d14e
+- batch: batch-46-flat-icons
+  job: x-icons-flat-duo
+  take: 3
+  round: 2
+  logical_run: 20261106-b46-flat-icons
+  source_file: /workspace/generated_images/exec-0766bfda-8512-4453-8227-162f057bdb81.png
+  returned_at: '2026-11-06T08:15:00.708Z'
+  prompt_sha256: e68b3c2d04d43589b74688b5d6a378070be4d0f58a4ca47ceac3775c5eef882a
+  fingerprint: aaaff8f16f865180
+  saved_at: '2026-11-06T08:15:01.080141+00:00'
+  original_generated_png_sha256: 77a2708ca19e7ec0a8144032a4d8b3544fedad91d32b9dc9ab8910e4d4049544
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 7380ef049a5deffdcd5ca2559adea03791df97ba8039438be3ce87cf61a46281
+  inbox_png_sha256: ac4fb4a7d2f52e2fa860969566a58d618b69c0f3a63338ce68872811a1c5d97a
+  qa_sha256: d2efc175ed5ad41bdea90a90b9da6dbadcea60d80e3e9079badaab3191d3c55d
+- batch: batch-46-flat-icons
+  job: x-icons-flat-duo
+  take: 4
+  round: 2
+  logical_run: 20261106-b46-flat-icons
+  source_file: /workspace/generated_images/exec-73b435fb-f46d-4261-8afe-a33a91f61d81.png
+  returned_at: '2026-11-06T08:15:39.584Z'
+  prompt_sha256: e68b3c2d04d43589b74688b5d6a378070be4d0f58a4ca47ceac3775c5eef882a
+  fingerprint: aaaff8f16f865180
+  saved_at: '2026-11-06T08:15:39.927702+00:00'
+  original_generated_png_sha256: 0979a0f9ba0ba0a2d275b0e0946f9b32120dd1f02237f162739d804ab19d0b71
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 86c5040ce9e995d545fae6dcd4f9df57fc3beee89ded8cb8bfe6a4e08834c250
+  inbox_png_sha256: b6e19e1f042c18fbb132dc9ec82b8199ec412f031baabcbb9fdd303ee0891f29
+  qa_sha256: 5a85c0f546c268cf90d55f050a2a0abc4f243cf1a3c60eb526290b7dec2c9956
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
