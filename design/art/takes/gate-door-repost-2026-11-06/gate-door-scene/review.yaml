@@ -1,0 +1,93 @@
+batch: batch-58-gate-round-door
+contact_sheet: design/art/takes/gate-door-repost-2026-11-06/gate-door-scene/contact.jpg
+jobs:
+  gate-door-scene:
+    pick: 2
+    publication: promoted; founder review pending
+    note: retained take 2; author-authorized palette_drift-only force; full native
+      QA remains fail. Lead-selected retained original take 2. Queue row 0-r authorizes
+      palette_drift only; row 0-q authors deliver.scale=0.5 after PR308 native-cap
+      exclusion. Full native QA remains fail solely palette_drift; original source,
+      native locked pixels, account, timestamps and four exhausted historical root
+      ordinals remain unchanged. No current root generation or retry. Official512x768
+      delivery viewed and content verified; founder review pending.
+qa_reports:
+  2:
+    job: gate-door-scene
+    take: 2
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 61 (R1 51)
+      value: 61.2
+    - check: value_floor
+      status: pass
+      message: lightness p5 48 (R1 59)
+      value: 47.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.6 (R1 5.3)
+      value: 2.58
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.6
+      value: 1.6146
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 8.7, p95 23.8, off-palette 28.3% (top: #4466BB (2.7%), #7788CC
+        (2.4%))'
+      value: 8.661
+    info:
+      metrics_raw:
+        L_p5: 47.5
+        L_p50: 67.4
+        L_p95: 84.9
+        C_p50: 46.0
+        C_p95: 64.1
+        C_p99: 71.1
+        detail: 3.61
+      metrics_locked:
+        L_p5: 47.7
+        L_p50: 67.4
+        L_p95: 84.4
+        C_p50: 45.9
+        C_p95: 61.2
+        C_p99: 64.1
+        detail: 2.58
+    fingerprint: 445c351da4b04101
+manual_review:
+  excluded_takes: []
+  note: Lead-selected retained original take 2. Queue row 0-r authorizes palette_drift
+    only; row 0-q authors deliver.scale=0.5 after PR308 native-cap exclusion. Full
+    native QA remains fail solely palette_drift; original source, native locked pixels,
+    account, timestamps and four exhausted historical root ordinals remain unchanged.
+    No current root generation or retry. Official512x768 delivery viewed and content
+    verified; founder review pending.
+sources:
+- take: 2
+  source_file: /workspace/generated_images/exec-f6290e92-6a92-4d84-8589-724cb2e58350.png
+  original_generated_png_sha256: 87522910cf2faecfc063963b8557a598ee917805a61bb599f53f85eb12f095d3
+  inbox_png_sha256: 2364f645d02c01608ce8c0594f1ac2b4a538d44ec66bbfd9e5cc408fb3b3b5c5
+  rgba_sha256: b080b7e39ecdddb38ca2cae46f219b8e3424ee5cdec09834230a0c744a68b6e5
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 445c351da4b04101
+operation: gate-door-repost-2026-11-06
+new_generated_takes: 0
+retained_legacy_take: 2
+historical_ordinals_preserved:
+- 1
+- 2
+- 3
+- 4
+retained_root_proof_sha256: fcd028f01b10b05ced9fd8114d5ef8352e34c1bd2f588b0568a1120acc6e986e
