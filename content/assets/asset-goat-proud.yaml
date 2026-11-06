@@ -4,17 +4,17 @@ title_tr: goat-proud
 title_en: goat-proud (char)
 status: in-production
 horizon: now
-summary: >-
-  Edit the attached baby goat into a proud reaction. Change only the face and ears: the chin
-  lifts high, both eyes become calm, content half-closed lids with the catchlights kept, the
-  brows relax, the flat mouth becomes a small, satisfied closed smile, and the floppy ears
-  perk up a little. The horn buds, beard tuft, tan patch, body, paws, colors and size stay
-  exactly as they are.
+summary: 'Edit the attached baby goat into a proud reaction. Change only the face
+  and ears: the chin lifts high, both eyes become calm, content half-closed lids with
+  the catchlights kept, the brows relax, the flat mouth becomes a small, satisfied
+  closed smile, and the floppy ears perk up a little. The horn buds, beard tuft, tan
+  patch, body, paws, colors and size stay exactly as they are.'
 links:
   variant_of:
   - asset-harbor-goat
 art:
-  images: []
+  images:
+  - design/art/masters/goat-proud/goat-proud.webp
   jobs:
   - batch-41-resident-reactions:goat-proud
 sources:

@@ -1,0 +1,47 @@
+{
+  "reviewer": "experience_delivery_adapter",
+  "independent_evidence_file": "/workspace/art-operator-runtime/run-20261105-night/batch-41-resident-reactions/independent-reviews/review-findik-proud-goat-sleepy-goat-proud.json",
+  "independent_evidence_sha256": "bcba2e6e56746bfe544ca37762b7dd37fadc2dc07384e29b5ed09ef43bab8b6f",
+  "job": "goat-proud",
+  "review": {
+    "evidence": {
+      "parent": "45c27632bebc3eb33a625d11164f3f298aede1a32ef9f806396c942af03e1630",
+      "takes": {
+        "1": {
+          "original_sha256": "6178936f43dabc7e956403c8ccbc50d3746250a287c343518d11c3c39b4db902",
+          "locked_sha256": "dc92cf16f325e12d45c4626a2640ada56c7c980e7acba680d58313822858da21",
+          "qa_status": "warn",
+          "alignment": null
+        },
+        "2": {
+          "original_sha256": "f5526653d8192c6e4c09bfb2f11ef78110d7a0bc8d8478595a7ffca0eb65f6f2",
+          "locked_sha256": "d1ed43422d7bf07b79332023a52fc64b7830798a8c7d68edd19f94493cf25872",
+          "qa_status": "warn",
+          "alignment": {
+            "scale": 0.9948,
+            "cx": 506.5,
+            "cy": 1372.0,
+            "dx": 0,
+            "dy": -1
+          }
+        }
+      },
+      "preview_sha256": "8fe9ee14f0341e37b92b02abf8f6049f68558a6cf92bcf4f805dddbc50fa0fba"
+    },
+    "reason": "Both show the specifically requested lifted-high chin, satisfied half-closed catchlit eyes, relaxed brows and small symmetric closed smile; floppy ears are perked while horn buds, beard, tan patch, torso/paws/colors stay recognizable and aligned. No teeth, tears, sneer or cast shadow. Both visually eligible; no invented edit-stability threshold or fully erect-ear requirement.",
+    "eligible_takes": [
+      1,
+      2
+    ]
+  },
+  "owner_decision": {
+    "eligible": [
+      1,
+      2
+    ],
+    "pick": 1,
+    "note": "Independent read-only comparison evidence: independent-reviews/review-findik-proud-goat-sleepy-goat-proud.json. Both initial takes are visually eligible: the exact detailed prompt asks a high lifted chin, content half-closed eyes WITH catchlights and a small symmetric satisfied closed smile, with ears perked. These details take precedence over the abbreviated header; no sneer, smirk, teeth, tears or motion. Two horn buds, beard, tan patch, lower body and paws remain visually registered. Global stability.6593/.6326 is advisory for the requested large face/chin edit; central body kept.9920/.9917 supports the identity review, without a new threshold. Both hard-pass; char-guard applies no grading, so take1 wins higher Harmony78.1 vs76.9. Exact full1024x1536 lossless473432 bytes fits. No retry or pixel alteration needed."
+  },
+  "source_originals_unchanged": true,
+  "local_art_edits": false
+}
