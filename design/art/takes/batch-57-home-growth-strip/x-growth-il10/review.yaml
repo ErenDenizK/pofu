@@ -1,0 +1,393 @@
+batch: batch-57-home-growth-strip
+manifest: tools/imagegen/manifest/batch-57-home-growth-strip.yaml
+manifest_sha256: fc7a87434d3aa50ca6d2dd4207e4fafd52a1547085e2f8bca0520f96642118e8
+contact_sheet: design/art/takes/batch-57-home-growth-strip/x-growth-il10/contact.jpg
+jobs:
+  x-growth-il10:
+    pick: none
+    publication: skipped after one allowed retry
+    note: 'Terminal manual skip after the sole unchanged retry pair: all four originals
+      fail the explicit IL10 every-station-grown requirement. Windmill, beehives,
+      hill path, sunflower gate, lanterns, abundant flowering roots and an egg nest
+      are visible, with no unrelated characters, but none supplies an identifiable
+      pond, lighthouse or harbor/pier; initial takes also lack the workshop. Retry
+      take3 craft-wheel/workbench presence is ambiguous, not an invented mandatory
+      shed architecture. Generic market/cooking/weaving stalls do not establish the
+      full eight-station registry. Initial take1 also paints a near-black RGB upper
+      field in this day context (actual RGB about1,1,1, fully opaque alpha255), not
+      an alpha/decode artifact. Retry skies improve but the real inventory omission
+      remains. Every original hard QA check passes; light-values/haze/palette warnings
+      stay advisory and are not relabelled failures. Loads t1=4.5228,t2=1.3456,t3=1.5457,t4=1.3349
+      do not rescue manual-ineligible content. Independent initial-v2 e914e1ad and
+      sole-retry final288c17c7 review full native/locked/reference/thumbnail/PNG+RGBA/68
+      canonical Git inputs and preserved initial15 processing files. No further generation,
+      hidden prompt/reference changes, QA force or production promotion. All five
+      stages are independently sourced, so no other job is a true dependent of this
+      skip. growth-strip.jpg includes the four actual earlier picks and clearly marks
+      IL10take4 as REJECTED/PARTIAL ONLY, never a selected full-bloom final stage.
+      Original sources and initial processing history are retained unchanged; exploration
+      only, founder review pending.'
+qa_reports:
+  1:
+    job: x-growth-il10
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 39.6
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 53 (at most 22), p98 93 (at least 90), spread 40
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 40.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 82 (band 55-90)'
+      value: 81.6
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.29 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.286
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.2 (at least 3.5)'
+      value: 6.24
+    - check: detail_budget
+      status: warn
+      message: detail at display size 6.3 (R1 5.3)
+      value: 6.35
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 4.5
+      value: 4.5228
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.5, p95 3.5, off-palette 0.0% (top: #EE8899 (0.0%), #995522
+        (0.0%))'
+      value: 1.4957
+    info:
+      metrics_raw:
+        L_p5: 0.0
+        L_p50: 80.9
+        L_p95: 93.2
+        C_p50: 18.4
+        C_p95: 40.9
+        C_p99: 57.0
+        detail: 7.52
+      metrics_locked:
+        L_p5: 19.6
+        L_p50: 80.7
+        L_p95: 92.9
+        C_p50: 18.6
+        C_p95: 39.6
+        C_p99: 54.7
+        detail: 6.35
+    fingerprint: 365dd029181da3d1
+  2:
+    job: x-growth-il10
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 38 (R1 51)
+      value: 38.2
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 58 (at most 22), p98 95 (at least 90), spread 37
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 36.7
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 82 (band 55-90)'
+      value: 81.7
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.31 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.314
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.3 (at least 3.5)'
+      value: 5.34
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.4 (R1 5.3)
+      value: 4.43
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.3
+      value: 1.3456
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.3, p95 3.5, off-palette 0.0% (top: #BB7733 (0.0%), #CC7733
+        (0.0%))'
+      value: 1.33
+    info:
+      metrics_raw:
+        L_p5: 63.3
+        L_p50: 85.7
+        L_p95: 94.0
+        C_p50: 18.9
+        C_p95: 39.7
+        C_p99: 58.0
+        detail: 5.36
+      metrics_locked:
+        L_p5: 64.1
+        L_p50: 85.7
+        L_p95: 93.6
+        C_p50: 19.0
+        C_p95: 38.2
+        C_p99: 55.5
+        detail: 4.43
+    fingerprint: 365dd029181da3d1
+  3:
+    job: x-growth-il10
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 36 (R1 51)
+      value: 35.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 59 (at most 22), p98 94 (at least 90), spread 35
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 35.4
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 83 (band 55-90)'
+      value: 82.8
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.34 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.341
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.7 (at least 3.5)'
+      value: 5.66
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.8 (R1 5.3)
+      value: 4.84
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.5
+      value: 1.5457
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.5, p95 4.4, off-palette 0.0% (top: #CC6633 (0.0%), #BB7733
+        (0.0%))'
+      value: 1.5166
+    info:
+      metrics_raw:
+        L_p5: 62.9
+        L_p50: 83.7
+        L_p95: 93.7
+        C_p50: 21.5
+        C_p95: 37.5
+        C_p99: 53.9
+        detail: 5.93
+      metrics_locked:
+        L_p5: 63.8
+        L_p50: 83.6
+        L_p95: 93.2
+        C_p50: 21.3
+        C_p95: 35.8
+        C_p99: 50.8
+        detail: 4.84
+    fingerprint: 365dd029181da3d1
+  4:
+    job: x-growth-il10
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 36 (R1 51)
+      value: 36.5
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 58 (at most 22), p98 94 (at least 90), spread 37
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 36.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 81 (band 55-90)'
+      value: 81.3
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.34 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.337
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.0 (at least 3.5)'
+      value: 6.05
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.5 (R1 5.3)
+      value: 4.48
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.3
+      value: 1.3349
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.3, p95 3.6, off-palette 0.0%
+      value: 1.332
+    info:
+      metrics_raw:
+        L_p5: 62.0
+        L_p50: 85.3
+        L_p95: 93.6
+        C_p50: 19.1
+        C_p95: 38.2
+        C_p99: 51.1
+        detail: 5.45
+      metrics_locked:
+        L_p5: 62.9
+        L_p50: 85.1
+        L_p95: 93.3
+        C_p50: 19.1
+        C_p95: 36.5
+        C_p99: 49.4
+        detail: 4.48
+    fingerprint: 365dd029181da3d1
+manual_review:
+  observed_note: 'Terminal manual skip after the sole unchanged retry pair: all four
+    originals fail the explicit IL10 every-station-grown requirement. Windmill, beehives,
+    hill path, sunflower gate, lanterns, abundant flowering roots and an egg nest
+    are visible, with no unrelated characters, but none supplies an identifiable pond,
+    lighthouse or harbor/pier; initial takes also lack the workshop. Retry take3 craft-wheel/workbench
+    presence is ambiguous, not an invented mandatory shed architecture. Generic market/cooking/weaving
+    stalls do not establish the full eight-station registry. Initial take1 also paints
+    a near-black RGB upper field in this day context (actual RGB about1,1,1, fully
+    opaque alpha255), not an alpha/decode artifact. Retry skies improve but the real
+    inventory omission remains. Every original hard QA check passes; light-values/haze/palette
+    warnings stay advisory and are not relabelled failures. Loads t1=4.5228,t2=1.3456,t3=1.5457,t4=1.3349
+    do not rescue manual-ineligible content. Independent initial-v2 e914e1ad and sole-retry
+    final288c17c7 review full native/locked/reference/thumbnail/PNG+RGBA/68 canonical
+    Git inputs and preserved initial15 processing files. No further generation, hidden
+    prompt/reference changes, QA force or production promotion. All five stages are
+    independently sourced, so no other job is a true dependent of this skip. growth-strip.jpg
+    includes the four actual earlier picks and clearly marks IL10take4 as REJECTED/PARTIAL
+    ONLY, never a selected full-bloom final stage. Original sources and initial processing
+    history are retained unchanged; exploration only, founder review pending.'
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+sources:
+- batch: batch-57-home-growth-strip
+  job: x-growth-il10
+  take: 1
+  round: 1
+  logical_run: 20261106-b57-home-growth-strip
+  source_file: /workspace/generated_images/exec-96cc25d8-6d05-47ee-ab29-e8f23667b914.png
+  returned_at: '2026-11-06T09:21:11.386Z'
+  prompt_sha256: 2c1c45a540b2805d68b45b72016b21d29c639eed187d35b0a346559ca12b6a3f
+  fingerprint: 365dd029181da3d1
+  saved_at: '2026-11-06T09:21:12.132480+00:00'
+  original_generated_png_sha256: b14661fa1c2542f2bf70babcd4eacb7b2faba55b4db561d5f84a34b007fd6783
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: d5e0c859c047ac2b573cdc7d367d7e5a61e02e9d81022007108156eaa0817cef
+  inbox_png_sha256: 84bc5c5019ebd6401262c6a7b4a3f154863b6776cf73defe0f17183c4e5eca3b
+  qa_sha256: 8ed76ff1c23c8a619c2489250ea644a1ad9214ccf09e30b6b682a9303091567b
+- batch: batch-57-home-growth-strip
+  job: x-growth-il10
+  take: 2
+  round: 1
+  logical_run: 20261106-b57-home-growth-strip
+  source_file: /workspace/generated_images/exec-833f21f9-be50-48bd-8bb4-48a2342d57de.png
+  returned_at: '2026-11-06T09:22:43.212Z'
+  prompt_sha256: 2c1c45a540b2805d68b45b72016b21d29c639eed187d35b0a346559ca12b6a3f
+  fingerprint: 365dd029181da3d1
+  saved_at: '2026-11-06T09:22:43.505201+00:00'
+  original_generated_png_sha256: ae22dfd60193cd176083645cf7fc52226600fc7e9a66e92ef837b6448863d797
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: da89e347872ab55b1e9e92b08f6c2204d3db5060770ab1c3e31ce3fcca42208a
+  inbox_png_sha256: 092b8f0d580f65b9e911ffcbc27c338b0d45f7a1e0854c9d42d8a41d54cbfa33
+  qa_sha256: 538f54ef0285ecee744b0b0b05d51bab2cbc1365045aa3b83c1144814a2589e1
+- batch: batch-57-home-growth-strip
+  job: x-growth-il10
+  take: 3
+  round: 2
+  logical_run: 20261106-b57-home-growth-strip
+  source_file: /workspace/generated_images/exec-55b6e765-3ef6-465f-81b8-9f17f1a738eb.png
+  returned_at: '2026-11-06T09:34:38.207Z'
+  prompt_sha256: 2c1c45a540b2805d68b45b72016b21d29c639eed187d35b0a346559ca12b6a3f
+  fingerprint: 365dd029181da3d1
+  saved_at: '2026-11-06T09:34:38.501949+00:00'
+  original_generated_png_sha256: 05b7611eb1d3a85670be033aa2407fe6abfe5198080105e25e93e3574c58adce
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: e26995d418812acca02bf92238e4e15b283806246182e04fac045ab6aaf138e9
+  inbox_png_sha256: 8efc32ada2ebedeb583060456ec66bdbe95bb44af4acbff3c0440dd2554864e1
+  qa_sha256: a8897b6ae01560bd770c92ebaa60b87ec898093a2d597e925c99c2050707277b
+- batch: batch-57-home-growth-strip
+  job: x-growth-il10
+  take: 4
+  round: 2
+  logical_run: 20261106-b57-home-growth-strip
+  source_file: /workspace/generated_images/exec-d1c30d6f-e7ad-4c64-ac97-ea1e5c552151.png
+  returned_at: '2026-11-06T09:33:49.259Z'
+  prompt_sha256: 2c1c45a540b2805d68b45b72016b21d29c639eed187d35b0a346559ca12b6a3f
+  fingerprint: 365dd029181da3d1
+  saved_at: '2026-11-06T09:33:49.644217+00:00'
+  original_generated_png_sha256: a949aff9889d5f5dd9714e214b760f320202bfb363f082da27acb9a959e4a9ed
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 919ff3d3548109372f69394c92986d863ee4fc78253bbc62e49fd8411a067452
+  inbox_png_sha256: 5703f14f317a7d913e5f3b11fa9f25f126ff5d788d271a3cd7f26df605ccf479
+  qa_sha256: 392de04729d86cc8498d937fa969475cf77f2a872cda7503bbf46c39fff8bb11
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
