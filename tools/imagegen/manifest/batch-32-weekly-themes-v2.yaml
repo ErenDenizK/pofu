@@ -1,0 +1,537 @@
+# Fresh second-cycle EXPLORATION of batch-32-weekly-themes. Never promote.
+# Eight independent jobs; two exact takes, at most one unchanged retry pair.
+# Source header/defaults/externals/fixed job fields and original reference roles
+# remain unchanged. Only fresh x-ID/name, staging, modern style/light guidance
+# and a final R1 reference for props are added. New guides are never invented.
+# All props have a literal full-width one-third-frame cap; no manual resizing.
+# Explicit decor:hang uses the existing hang band; ground clauses are scoped.
+batch: batch-32-weekly-themes-v2
+title: 'Weekly themes, second look: small complete object groups and a returning traveller'
+status: open
+refs:
+  tea-stall-1: design/art/stations/tea-stall-1/tea-stall-1.png
+defaults:
+  variants: 2
+jobs:
+- id: decor-bench
+  kind: prop
+  name: decor-bench
+  external: batch-08-decor-pilot
+- id: mochi-v2
+  kind: char
+  name: mochi-v2
+  external: batch-03-home-island
+- id: x-week-visitor-v2
+  kind: char
+  name: x-week-visitor-v2
+  size: 1024x1536
+  canvas: 1024x1536
+  transparent: true
+  chat: Pofu · Residents
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. Weekly theme: a visitor. Review: a small stranger who clearly visits, not lives
+    here; a distinct silhouette from Pofu, Mochi, Simit and Fındık. Fresh second-cycle variation; preserve
+    all original named inventory and literal guide/size constraints. Exploration only, never promote.'
+  attach:
+  - ref: R1
+    role: 'Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly (do
+      not draw him unless asked).'
+  - ref: approved:mochi-v2
+    role: 'Mochi, the bunny: her exact look, fur, colors, eyes and size.'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  prompt:
+  - text: 'A character on a plain transparent background, in exactly the same art
+
+      style, lighting and level of fluff as the attached hamster and bunny: a
+
+      full-body standing view, front three-quarter. CHARACTER: a small
+
+      travelling fox cub, a round plush body of warm apricot fur with a cream
+
+      chest and a white-tipped bushy tail, small pointed ears with dark tips,
+
+      big glossy dark eyes with a catchlight each, a shy curious smile, carrying
+
+      a small bundle on a stick over one shoulder and a tiny round lantern in
+
+      the other paw, a little dusty sage scarf. No curl on the head. No clothes
+
+      except what is named.
+
+      '
+  - text: 'FRESH VARIATION: a welcoming arrival pose, still a full-body front three-quarter view. The
+      fox makes one small cautious step toward the lower-left, looking up with a shy smile toward an implied
+      host outside the image; no second character is drawn. Its white-tipped bushy tail curves visibly
+      out on the opposite side, distinct from the bundle. The bundle''s stick rests diagonally over one
+      shoulder; the other paw carries the complete tiny round, pale UNLIT lantern at waist height. The
+      dusty sage scarf has two short soft ends. Keep exactly the named travelling equipment and fox anatomy;
+      no hat, shoes, coat, head curl or new accessories.'
+  - block: style-anchor-v2
+  - text: 'MATERIAL SCOPE AFTER STYLE: soft fur belongs only on this fox''s body, cheeks, ears and bushy
+      tail; keep the scarf/bundle matte woven cloth, the stick smooth wood and the round lantern pale
+      matte unlit paper. No furry cloth, wooden fuzz, extra eyes or anatomy on equipment. No head curl,
+      cast shadow, floor, landscape, background, lettering, symbols, UI, frame, flame, baked halo or light
+      spill. The travelling fox remains distinct from Pofu and Mochi; do not draw either attached reference
+      character.'
+- id: x-week-market-stall-v2
+  kind: prop
+  name: x-week-market-stall-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Decor
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. Weekly theme: a market stall. Review: reads as a pop-up market stall at 64 px;
+    striped awning, a few goods, no text on signs. Fresh second-cycle variation; preserve all original
+    named inventory and literal guide/size constraints. Exploration only, never promote.'
+  attach:
+  - ref: decor-guide
+    role: 'The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors, finish and scale exactly
+      (do not draw the bench unless asked).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Canonical Pofu R1 painting reference: match the soft premium family finish and LIGHT-defined
+      illumination; do not draw Pofu or put fur or character anatomy on objects.'
+  prompt:
+  - text: 'A small pop-up market stall: a square wooden counter of honey wood with a
+
+      scalloped awning in coral and cream stripes on two slim poles, a few round
+
+      baskets on the counter holding apples, plums and small cream pots, a blank
+
+      hanging cloth sign, a folding wooden crate beside it. Chunky and toy-like.
+
+      It stands on the guide''s ground ellipse, centered on the cross, never
+
+      wider than the ellipse and never taller than the height bar; it is small,
+
+      a third of the image width at most.
+
+      '
+  - text: 'FRESH VARIATION: arrange the market for a quiet opening morning. Keep the counter square, the
+      scalloped coral-and-cream striped awning held by exactly two slim poles, and separate the round
+      counter baskets so the apples, plums and small cream pots remain individually readable. Tuck the
+      complete folding wooden crate at the counter''s front-right corner; hang the single blank cloth
+      sign below the opposite front corner. Change the goods'' staging, not the approved low camera, material
+      family or required inventory.'
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'COMPACT SCALE AND COMPLETE INVENTORY: prefer a small full-group drawing around 280–310 pixels
+      wide on the 1024-pixel canvas, centred at x=512. Include every part of the explicitly named object
+      group within its full width. The source requirement is at most one third of the frame (341.33 pixels)
+      after the official guide normalization; the preferred drawing range is not an additional raw-source
+      eligibility gate. Do not draw any unrequested item from another weekly theme. Do not rely on later
+      manual shrinking or crop anything.'
+  - text: 'GROUND PLACEMENT: keep every contact part inside the attached decor footprint, front contact
+      at y=888 and the entire object below the ground-piece height bar at y=500. Use the attached guide
+      for registration and then remove every magenta mark. Preserve the same low front three-quarter camera,
+      with only a narrow top sliver; the new variation is staging, not a high view.'
+  - text: 'MATERIAL SCOPE AFTER STYLE: do not transfer generic fur or mascot eye/anatomy language onto
+      this prop collection. Paint wood as smooth matte wood, paper as matte paper, fabric as soft woven
+      cloth, wicker as simplified wicker, metal as quiet satin metal and water as the named flat puddle
+      only where requested. No fur, fuzz, hair, faces, ears, paws or mascot anatomy on objects, plants,
+      textiles, paper or metal. Physical cups and a bottle named by this brief are ordinary soft painted
+      vessels, not native UI glass panels. Use the named source palette and the LIGHT block; no cast ground
+      shadow, atmospheric veil, grain, outline, text, lettering, logos, border, UI or frame. Lamps are
+      unlit; glow and theme relighting are code.'
+- id: x-week-kites-v2
+  kind: prop
+  name: x-week-kites-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  decor: hang
+  chat: Pofu · Decor
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. Weekly theme: kites. Review: three kites in the air on strings read as a kite day
+    at 64 px; hung high. Fresh second-cycle variation; preserve all original named inventory and literal
+    guide/size constraints. Exploration only, never promote.'
+  attach:
+  - ref: decor-guide
+    role: 'The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors, finish and scale exactly
+      (do not draw the bench unless asked).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Canonical Pofu R1 painting reference: match the soft premium family finish and LIGHT-defined
+      illumination; do not draw Pofu or put fur or character anatomy on objects.'
+  prompt:
+  - text: 'Three diamond kites of different sizes flying together on gently curving
+
+      thin strings that meet at one small wooden spool: one of coral and cream,
+
+      one of sea-blue and mustard, one of rose and mint, each with a ribbon tail
+
+      of small bows; drawn completely including the strings and the spool at the
+
+      bottom; the kites hang high in the height bar. It stands on the guide''s
+
+      ground ellipse, centered on the cross, never wider than the ellipse and
+
+      never taller than the height bar; it is small, a third of the image width
+
+      at most.
+
+      '
+  - text: 'FRESH VARIATION: arrange exactly three complete diamond kites as a compact stepped fan: the
+      largest coral-and-cream kite high at centre, the sea-blue-and-mustard kite below-left, and the smallest
+      rose-and-mint kite to the right. Each has its own complete bow-ribbon tail and a gently curving
+      thin string; all three strings visibly meet the ONE small wooden spool at the bottom of the group.
+      Keep the strings separated enough to count without spreading the group across the canvas.'
+  - block: style-anchor-v2
+  - text: 'COMPACT SCALE AND COMPLETE INVENTORY: prefer a small full-group drawing around 280–310 pixels
+      wide on the 1024-pixel canvas, centred at x=512. Include every part of the explicitly named object
+      group within its full width. The source requirement is at most one third of the frame (341.33 pixels)
+      after the official guide normalization; the preferred drawing range is not an additional raw-source
+      eligibility gate. Do not draw any unrequested item from another weekly theme. Do not rely on later
+      manual shrinking or crop anything.'
+  - text: 'DECLARED HANGING PLACEMENT: this job explicitly has decor:hang. Use the guide''s upper hanging
+      band: top y=300, complete bottom no lower than y=620, centred at x=512.  The complete spool or pole/base
+      belongs at the bottom of its hanging group, not at the separate ground baseline y=888. This specific
+      hanging instruction governs the generic ground-placement sentence above. Keep the low front three-quarter
+      painting and narrow top surfaces, but do not apply a ground-standing VIEW block. Remove every guide
+      mark, cross, ellipse, bar and magenta pixel.'
+  - text: 'MATERIAL SCOPE AFTER STYLE: do not transfer generic fur or mascot eye/anatomy language onto
+      this prop collection. Paint wood as smooth matte wood, paper as matte paper, fabric as soft woven
+      cloth, wicker as simplified wicker, metal as quiet satin metal and water as the named flat puddle
+      only where requested. No fur, fuzz, hair, faces, ears, paws or mascot anatomy on objects, plants,
+      textiles, paper or metal. Physical cups and a bottle named by this brief are ordinary soft painted
+      vessels, not native UI glass panels. Use the named source palette and the LIGHT block; no cast ground
+      shadow, atmospheric veil, grain, outline, text, lettering, logos, border, UI or frame. Lamps are
+      unlit; glow and theme relighting are code.'
+- id: x-week-lantern-night-v2
+  kind: prop
+  name: x-week-lantern-night-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  decor: hang
+  chat: Pofu · Decor
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. Weekly theme: a lantern night. Review: a cluster of paper lanterns on a pole; the
+    unlit lamps are painted pale, the glow is code. Fresh second-cycle variation; preserve all original
+    named inventory and literal guide/size constraints. Exploration only, never promote.'
+  attach:
+  - ref: decor-guide
+    role: 'The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors, finish and scale exactly
+      (do not draw the bench unless asked).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Canonical Pofu R1 painting reference: match the soft premium family finish and LIGHT-defined
+      illumination; do not draw Pofu or put fur or character anatomy on objects.'
+  prompt:
+  - text: 'A tall slim honey-wood pole with a crossbar holding five paper lanterns in
+
+      different shapes (round, long, star-shaped, small, pear-shaped) in cream,
+
+      rose, mustard, sage and lilac, hung from short cords, all unlit, with a
+
+      round clay base with stones. It stands on the guide''s ground ellipse,
+
+      centered on the cross, never wider than the ellipse and never taller than
+
+      the height bar; it is small, a third of the image width at most.
+
+      '
+  - text: 'FRESH VARIATION: a compact festival bundle on the complete slim honey-wood pole and crossbar.
+      Stagger exactly five distinct unlit paper lanterns on short cords: cream round, rose long, mustard
+      star-shaped, sage small, and lilac pear-shaped. Keep the slim pole, complete round clay base and
+      its stones visible below them, all inside the same compact group. Each paper lamp is pale matte
+      paper, with no flame, illuminated core, halo, spill or baked glow; the theme''s night lighting is
+      code.'
+  - block: style-anchor-v2
+  - text: 'COMPACT SCALE AND COMPLETE INVENTORY: prefer a small full-group drawing around 280–310 pixels
+      wide on the 1024-pixel canvas, centred at x=512. Include every part of the explicitly named object
+      group within its full width. The source requirement is at most one third of the frame (341.33 pixels)
+      after the official guide normalization; the preferred drawing range is not an additional raw-source
+      eligibility gate. Do not draw any unrequested item from another weekly theme. Do not rely on later
+      manual shrinking or crop anything.'
+  - text: 'DECLARED HANGING PLACEMENT: this job explicitly has decor:hang. Use the guide''s upper hanging
+      band: top y=300, complete bottom no lower than y=620, centred at x=512.  The complete spool or pole/base
+      belongs at the bottom of its hanging group, not at the separate ground baseline y=888. This specific
+      hanging instruction governs the generic ground-placement sentence above. Keep the low front three-quarter
+      painting and narrow top surfaces, but do not apply a ground-standing VIEW block. Remove every guide
+      mark, cross, ellipse, bar and magenta pixel.'
+  - text: 'MATERIAL SCOPE AFTER STYLE: do not transfer generic fur or mascot eye/anatomy language onto
+      this prop collection. Paint wood as smooth matte wood, paper as matte paper, fabric as soft woven
+      cloth, wicker as simplified wicker, metal as quiet satin metal and water as the named flat puddle
+      only where requested. No fur, fuzz, hair, faces, ears, paws or mascot anatomy on objects, plants,
+      textiles, paper or metal. Physical cups and a bottle named by this brief are ordinary soft painted
+      vessels, not native UI glass panels. Use the named source palette and the LIGHT block; no cast ground
+      shadow, atmospheric veil, grain, outline, text, lettering, logos, border, UI or frame. Lamps are
+      unlit; glow and theme relighting are code.'
+- id: x-week-fishing-day-v2
+  kind: prop
+  name: x-week-fishing-day-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Decor
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. Weekly theme: a fishing day. Review: a stool, a rod, a bucket and a small catch;
+    reads as a lazy fishing morning. Fresh second-cycle variation; preserve all original named inventory
+    and literal guide/size constraints. Exploration only, never promote.'
+  attach:
+  - ref: decor-guide
+    role: 'The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors, finish and scale exactly
+      (do not draw the bench unless asked).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Canonical Pofu R1 painting reference: match the soft premium family finish and LIGHT-defined
+      illumination; do not draw Pofu or put fur or character anatomy on objects.'
+  prompt:
+  - text: 'A folding wooden stool with a coral cushion, a slim honey-wood fishing rod
+
+      resting on a forked stick with a red-and-cream float on its curled line, a
+
+      tin bucket with two small cream fish, and a tiny wide-brimmed straw hat
+
+      hung on the stool. It stands on the guide''s ground ellipse, centered on
+
+      the cross, never wider than the ellipse and never taller than the height
+
+      bar; it is small, a third of the image width at most.
+
+      '
+  - text: 'FRESH VARIATION: arrange a compact empty fishing spot. Turn the folding wooden stool slightly
+      to the right at the same low front three-quarter camera, with its coral cushion clearly on the seat
+      and the complete tiny straw hat hanging from its side: show both the crown and the wide brim, not
+      a loose ring. Put the tin bucket with EXACTLY TWO small cream fish at front-left. The slim honey-wood
+      rod rests on the forked stick and angles gently across the back of the group; its complete curled
+      line and red-and-cream float remain visible, without extending the rod beyond the small group''s
+      full width. Do not add an angler, water scene or third fish.'
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'COMPACT SCALE AND COMPLETE INVENTORY: prefer a small full-group drawing around 280–310 pixels
+      wide on the 1024-pixel canvas, centred at x=512. Include every part of the explicitly named object
+      group within its full width. The source requirement is at most one third of the frame (341.33 pixels)
+      after the official guide normalization; the preferred drawing range is not an additional raw-source
+      eligibility gate. Do not draw any unrequested item from another weekly theme. Do not rely on later
+      manual shrinking or crop anything.'
+  - text: 'GROUND PLACEMENT: keep every contact part inside the attached decor footprint, front contact
+      at y=888 and the entire object below the ground-piece height bar at y=500. Use the attached guide
+      for registration and then remove every magenta mark. Preserve the same low front three-quarter camera,
+      with only a narrow top sliver; the new variation is staging, not a high view.'
+  - text: 'MATERIAL SCOPE AFTER STYLE: do not transfer generic fur or mascot eye/anatomy language onto
+      this prop collection. Paint wood as smooth matte wood, paper as matte paper, fabric as soft woven
+      cloth, wicker as simplified wicker, metal as quiet satin metal and water as the named flat puddle
+      only where requested. No fur, fuzz, hair, faces, ears, paws or mascot anatomy on objects, plants,
+      textiles, paper or metal. Physical cups and a bottle named by this brief are ordinary soft painted
+      vessels, not native UI glass panels. Use the named source palette and the LIGHT block; no cast ground
+      shadow, atmospheric veil, grain, outline, text, lettering, logos, border, UI or frame. Lamps are
+      unlit; glow and theme relighting are code. The exactly two little cream fish in this fishing kit
+      have smooth or subtly scaly UNFURRED surfaces, never mammal fur, ears or paws.'
+- id: x-week-rain-boots-v2
+  kind: prop
+  name: x-week-rain-boots-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Decor
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. Weekly theme: rain boots. Review: a pair of boots and a puddle; reads as rainy-day
+    fun at 64 px. Fresh second-cycle variation; preserve all original named inventory and literal guide/size
+    constraints. Exploration only, never promote.'
+  attach:
+  - ref: decor-guide
+    role: 'The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors, finish and scale exactly
+      (do not draw the bench unless asked).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Canonical Pofu R1 painting reference: match the soft premium family finish and LIGHT-defined
+      illumination; do not draw Pofu or put fur or character anatomy on objects.'
+  prompt:
+  - text: 'A pair of small chunky rain boots in sunshine mustard with rolled-over
+
+      cuffs, standing side by side beside a small round puddle shown as a soft
+
+      flat shape of pale blue-grey on the ground, and a closed small umbrella in
+
+      coral leaning against them with a drop on its tip. It stands on the
+
+      guide''s ground ellipse, centered on the cross, never wider than the
+
+      ellipse and never taller than the height bar; it is small, a third of the
+
+      image width at most.
+
+      '
+  - text: 'FRESH VARIATION: two complete sunshine-mustard boots stand side by side, the left toe turned
+      a little outward and the right toe nearly forward, with both rolled-over cuffs visible. The one
+      closed coral umbrella leans against their right side with the single drop still on its tip. Keep
+      the small round pale-blue-grey puddle snug at the front-left of the boots rather than as a broad
+      ground disk. The explicitly requested puddle is a flat painted prop shape, not an extra floor or
+      a cast shadow.'
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'COMPACT SCALE AND COMPLETE INVENTORY: prefer a small full-group drawing around 280–310 pixels
+      wide on the 1024-pixel canvas, centred at x=512. Include every part of the explicitly named object
+      group within its full width. The source requirement is at most one third of the frame (341.33 pixels)
+      after the official guide normalization; the preferred drawing range is not an additional raw-source
+      eligibility gate. Do not draw any unrequested item from another weekly theme. Do not rely on later
+      manual shrinking or crop anything.'
+  - text: 'GROUND PLACEMENT: keep every contact part inside the attached decor footprint, front contact
+      at y=888 and the entire object below the ground-piece height bar at y=500. Use the attached guide
+      for registration and then remove every magenta mark. Preserve the same low front three-quarter camera,
+      with only a narrow top sliver; the new variation is staging, not a high view.'
+  - text: 'MATERIAL SCOPE AFTER STYLE: do not transfer generic fur or mascot eye/anatomy language onto
+      this prop collection. Paint wood as smooth matte wood, paper as matte paper, fabric as soft woven
+      cloth, wicker as simplified wicker, metal as quiet satin metal and water as the named flat puddle
+      only where requested. No fur, fuzz, hair, faces, ears, paws or mascot anatomy on objects, plants,
+      textiles, paper or metal. Physical cups and a bottle named by this brief are ordinary soft painted
+      vessels, not native UI glass panels. Use the named source palette and the LIGHT block; no cast ground
+      shadow, atmospheric veil, grain, outline, text, lettering, logos, border, UI or frame. Lamps are
+      unlit; glow and theme relighting are code.'
+- id: x-week-picnic-v2
+  kind: prop
+  name: x-week-picnic-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Decor
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. Weekly theme: a picnic. Review: a blanket with basket and snacks; cozy, readable,
+    nothing floats. Fresh second-cycle variation; preserve all original named inventory and literal guide/size
+    constraints. Exploration only, never promote.'
+  attach:
+  - ref: decor-guide
+    role: 'The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors, finish and scale exactly
+      (do not draw the bench unless asked).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Canonical Pofu R1 painting reference: match the soft premium family finish and LIGHT-defined
+      illumination; do not draw Pofu or put fur or character anatomy on objects.'
+  prompt:
+  - text: 'A square picnic blanket in coral and cream checks, a wicker basket with an
+
+      open lid showing a loaf and a bottle, a plate of sesame simit rings, two
+
+      tulip tea glasses on saucers, and two round cushions in sage and rose,
+
+      laid out softly on the ground; the blanket fills the footprint ellipse. It
+
+      stands on the guide''s ground ellipse, centered on the cross, never wider
+
+      than the ellipse and never taller than the height bar; it is small, a
+
+      third of the image width at most.
+
+      '
+  - text: 'FRESH VARIATION: make a very compact grounded picnic, the square coral-and-cream checked blanket
+      seen as a shallow low-camera quadrilateral. Put the open wicker basket at back-left with the loaf
+      and bottle visible inside, the plate of sesame simit rings near the front, the EXACTLY TWO tulip
+      tea glasses each on its saucer on the right, and the sage and rose round cushions at the back. The
+      blanket fills the picnic group''s own contact footprint; all other parts remain on or immediately
+      beside it within the same small outer silhouette. The guide ellipse is the maximum available placement
+      envelope, not permission to exceed the explicit one-third-frame width. No picnic object floats or
+      is omitted for size.'
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'COMPACT SCALE AND COMPLETE INVENTORY: prefer a small full-group drawing around 280–310 pixels
+      wide on the 1024-pixel canvas, centred at x=512. Include every part of the explicitly named object
+      group within its full width. The source requirement is at most one third of the frame (341.33 pixels)
+      after the official guide normalization; the preferred drawing range is not an additional raw-source
+      eligibility gate. Do not draw any unrequested item from another weekly theme. Do not rely on later
+      manual shrinking or crop anything.'
+  - text: 'GROUND PLACEMENT: keep every contact part inside the attached decor footprint, front contact
+      at y=888 and the entire object below the ground-piece height bar at y=500. Use the attached guide
+      for registration and then remove every magenta mark. Preserve the same low front three-quarter camera,
+      with only a narrow top sliver; the new variation is staging, not a high view.'
+  - text: 'MATERIAL SCOPE AFTER STYLE: do not transfer generic fur or mascot eye/anatomy language onto
+      this prop collection. Paint wood as smooth matte wood, paper as matte paper, fabric as soft woven
+      cloth, wicker as simplified wicker, metal as quiet satin metal and water as the named flat puddle
+      only where requested. No fur, fuzz, hair, faces, ears, paws or mascot anatomy on objects, plants,
+      textiles, paper or metal. Physical cups and a bottle named by this brief are ordinary soft painted
+      vessels, not native UI glass panels. Use the named source palette and the LIGHT block; no cast ground
+      shadow, atmospheric veil, grain, outline, text, lettering, logos, border, UI or frame. Lamps are
+      unlit; glow and theme relighting are code.'
+- id: x-week-stargazing-night-v2
+  kind: prop
+  name: x-week-stargazing-night-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Decor
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. Weekly theme: a stargazing night. Review: a rug, a telescope and a lantern; a quiet
+    night; the glow is code. Fresh second-cycle variation; preserve all original named inventory and literal
+    guide/size constraints. Exploration only, never promote.'
+  attach:
+  - ref: decor-guide
+    role: 'The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors, finish and scale exactly
+      (do not draw the bench unless asked).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Canonical Pofu R1 painting reference: match the soft premium family finish and LIGHT-defined
+      illumination; do not draw Pofu or put fur or character anatomy on objects.'
+  prompt:
+  - text: 'A round rug in deep indigo with small cream star shapes, a small chunky
+
+      cream-and-brass telescope on a short tripod beside it, two cushions in
+
+      lilac and plum, a folded blanket and an unlit round paper lantern in cream
+
+      standing on the rug. It stands on the guide''s ground ellipse, centered on
+
+      the cross, never wider than the ellipse and never taller than the height
+
+      bar; it is small, a third of the image width at most.
+
+      '
+  - text: 'FRESH VARIATION: arrange an intimate observation kit under the required day-cell light. Put
+      the complete short-tripod cream-and-brass telescope at front-left BESIDE the round deep-indigo star-patterned
+      rug, its tube tilted gently upward. Arrange the lilac and plum cushions side by side at the back
+      of the rug, with the folded blanket behind them and the pale UNLIT cream round paper lantern resting
+      on the rug near the front. Keep the lens a dark physical recess with no beam. Change the layout,
+      not the fixed low camera or literal kit. No painted night sky, stars outside the rug pattern, moon,
+      extra ground or glow.'
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'COMPACT SCALE AND COMPLETE INVENTORY: prefer a small full-group drawing around 280–310 pixels
+      wide on the 1024-pixel canvas, centred at x=512. Include every part of the explicitly named object
+      group within its full width. The source requirement is at most one third of the frame (341.33 pixels)
+      after the official guide normalization; the preferred drawing range is not an additional raw-source
+      eligibility gate. Do not draw any unrequested item from another weekly theme. Do not rely on later
+      manual shrinking or crop anything.'
+  - text: 'GROUND PLACEMENT: keep every contact part inside the attached decor footprint, front contact
+      at y=888 and the entire object below the ground-piece height bar at y=500. Use the attached guide
+      for registration and then remove every magenta mark. Preserve the same low front three-quarter camera,
+      with only a narrow top sliver; the new variation is staging, not a high view.'
+  - text: 'MATERIAL SCOPE AFTER STYLE: do not transfer generic fur or mascot eye/anatomy language onto
+      this prop collection. Paint wood as smooth matte wood, paper as matte paper, fabric as soft woven
+      cloth, wicker as simplified wicker, metal as quiet satin metal and water as the named flat puddle
+      only where requested. No fur, fuzz, hair, faces, ears, paws or mascot anatomy on objects, plants,
+      textiles, paper or metal. Physical cups and a bottle named by this brief are ordinary soft painted
+      vessels, not native UI glass panels. Use the named source palette and the LIGHT block; no cast ground
+      shadow, atmospheric veil, grain, outline, text, lettering, logos, border, UI or frame. Lamps are
+      unlit; glow and theme relighting are code.'
