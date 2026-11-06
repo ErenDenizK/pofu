@@ -1,0 +1,33 @@
+id: asset-x-decor-kis-sled-v2
+type: asset
+title_tr: x-decor-kis-sled-v2
+title_en: x-decor-kis-sled-v2 (prop)
+status: cut
+horizon: now
+summary: >-
+  A fresh compact winter sled arrangement: a small honey-wood sled leans diagonally from the
+  front left toward the back right against a low soft mound of snow. Show its complete curled-up
+  runners and keep its coral rope handle loop close to the front of the sled. On the seat
+  lies a folded striped cushion, visibly compressed into overlapping cloth layers with a clear
+  fold, rather than open, inflated or puffed into a ful…
+art:
+  images: []
+  jobs:
+  - batch-30c-decor-seasons-2-v2:x-decor-kis-sled-v2
+sources:
+- doc: tools/imagegen/manifest/batch-30c-decor-seasons-2-v2.yaml
+kind: prop
+batch: batch-30c-decor-seasons-2-v2
+size: 1024x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Skipped after the sole allowed retry; registration remains cut and art.images is empty.
+- >-
+  Skipped after exactly one unchanged-prompt retry: complete posted silhouettes are 653, 627,
+  360 and 618 px wide, all above the literal at-most-one-third cap 341.33 px. Original and
+  official locked alpha-composites preserve the honey wooden sled, full curled runners, close
+  coral rope, snow mound and visibly folded striped cushion, but guide width is ineligible
+  even for take 3. Take 1 additionally reaches the right canvas edge. No source shrink, crop,
+  prompt edit or threshold waiver. All four immutable originals retained; independent winter
+  corner remains eligible and is not a dependent.

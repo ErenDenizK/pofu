@@ -1,0 +1,33 @@
+id: asset-x-decor-guz-leaf-pile-v2
+type: asset
+title_tr: x-decor-guz-leaf-pile-v2
+title_en: x-decor-guz-leaf-pile-v2 (prop)
+status: cut
+horizon: now
+summary: >-
+  A fresh compact autumn leaf heap, a little taller through its middle rather than spread
+  broadly sideways. Build the round heap from distinct broad fallen leaves in rust, mustard,
+  rose and cream. Keep a few scattered leaves very close to the front foot of the heap. Lean
+  one small wooden rake almost upright against its left side, with its full handle and head
+  visible and contained within the total silhouette. The heap …
+art:
+  images: []
+  jobs:
+  - batch-30c-decor-seasons-2-v2:x-decor-guz-leaf-pile-v2
+sources:
+- doc: tools/imagegen/manifest/batch-30c-decor-seasons-2-v2.yaml
+kind: prop
+batch: batch-30c-decor-seasons-2-v2
+size: 1024x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Skipped after the sole allowed retry; registration remains cut and art.images is empty.
+- >-
+  Skipped after exactly one unchanged-prompt retry: complete posted silhouettes are 360, 360,
+  361 and 617 px wide, each above the literal at-most-one-third cap 341.33 px. All original
+  and locked alpha-composites show layered rust, mustard, rose and cream leaf heaps, nearby
+  loose leaves and a complete almost-upright wooden rake on the left, not fur or a living
+  mascot; nevertheless the complete guide width is ineligible. No threshold waiver, source
+  shrink, crop or prompt edit. All four immutable originals retained; independent autumn corner
+  is not a dependent.

@@ -1,0 +1,34 @@
+id: asset-x-decor-guz-scarf-v2
+type: asset
+title_tr: x-decor-guz-scarf-v2
+title_en: x-decor-guz-scarf-v2 (prop)
+status: planned
+horizon: now
+summary: >-
+  A fresh narrow autumn scarf arrangement: a slim short honey-wood T-shaped stand turned slightly
+  toward the right supports one long soft scarf patterned in plum and mustard stripes, with
+  small tassels. The long end drapes freely down the front-left side in a narrow gentle curve
+  until it reaches the ground at the stand's foot. The shorter tasselled end falls close beside
+  the upright. Leave a little transparent separati…
+art:
+  images: []
+  jobs:
+  - batch-30c-decor-seasons-2-v2:x-decor-guz-scarf-v2
+sources:
+- doc: tools/imagegen/manifest/batch-30c-decor-seasons-2-v2.yaml
+kind: prop
+batch: batch-30c-decor-seasons-2-v2
+size: 1024x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Selected take 1; auto-picked by QA; founder review pending. Registration remains planned
+  and art.images is empty.
+- >-
+  auto-picked by QA; founder review pending. Both original and official locked alpha-composites
+  show the slim honey-wood T stand, one freely draped plum/mustard striped scarf, complete
+  tassels, long end curving to its foot and shorter end near the upright with visible transparent
+  separation. Matte cloth stays cloth, not a living mascot or fur; no text, scenery or ground
+  cast shadow. Whole posted widths are 260 and 238 px, within the one-third cap; 280-310 is
+  a target and not a minimum. Both are eligible for unchanged QA ranking. Ground-standing,
+  not hanging; exploration only and never promoted.

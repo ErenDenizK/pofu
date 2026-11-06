@@ -1,0 +1,33 @@
+id: asset-x-decor-guz-pumpkin-lanterns-v2
+type: asset
+title_tr: x-decor-guz-pumpkin-lanterns-v2
+title_en: x-decor-guz-pumpkin-lanterns-v2 (prop)
+status: cut
+horizon: now
+summary: >-
+  A fresh compact autumn grouping of exactly three plump pumpkins of different sizes: the
+  small cream pumpkin at front left, the medium mustard pumpkin slightly behind it, and the
+  larger rust-orange pumpkin on the right, forming a close triangle. Turn every carved front
+  toward the viewer so each pumpkin has exactly two small round carved eye holes and one gentle
+  round carved smile, all clearly visible. The cut-outs are…
+art:
+  images: []
+  jobs:
+  - batch-30c-decor-seasons-2-v2:x-decor-guz-pumpkin-lanterns-v2
+sources:
+- doc: tools/imagegen/manifest/batch-30c-decor-seasons-2-v2.yaml
+kind: prop
+batch: batch-30c-decor-seasons-2-v2
+size: 1024x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Skipped after the sole allowed retry; registration remains cut and art.images is empty.
+- >-
+  Skipped after exactly one unchanged-prompt retry: all four original and official locked
+  alpha-composites have exactly three differently sized carved pumpkins with unlit pale cut
+  faces and no extra prop, but their complete posted silhouette widths are 665, 670, 632 and
+  672 px, each above the literal at-most-one-third 341.33 px cap on 1024. Hard QA is warn
+  rather than fail; these are manual guide exclusions, not a style threshold. No source shrink,
+  prompt revision or threshold workaround. Four immutable originals retained; no true dependent
+  exists in this variation, so independent jobs continue.

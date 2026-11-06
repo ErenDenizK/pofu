@@ -1,0 +1,33 @@
+id: asset-x-decor-kis-salep-pot-v2
+type: asset
+title_tr: x-decor-kis-salep-pot-v2
+title_en: x-decor-kis-salep-pot-v2 (prop)
+status: cut
+horizon: now
+summary: >-
+  A fresh compact winter salep arrangement: a plump matte copper-cream pot stands just behind
+  a small tray, with its short spout turned toward the left. The pot has a domed lid with
+  a small knob and rests on a small round stand. Retain the required tiny warm-cream light
+  directly beneath the pot within the stand, with no light spreading onto an external floor.
+  Place exactly two small cups of pale creamy salep separately…
+art:
+  images: []
+  jobs:
+  - batch-30c-decor-seasons-2-v2:x-decor-kis-salep-pot-v2
+sources:
+- doc: tools/imagegen/manifest/batch-30c-decor-seasons-2-v2.yaml
+kind: prop
+batch: batch-30c-decor-seasons-2-v2
+size: 1024x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Skipped after the sole allowed retry; registration remains cut and art.images is empty.
+- >-
+  Skipped after exactly one unchanged-prompt retry: complete posted silhouettes are 641, 624,
+  603 and 630 px wide, all above the literal at-most-one-third cap 341.33 px. Original and
+  official locked alpha-composites preserve the copper-cream pot, left spout, knobbed lid,
+  round stand with the required tiny contained warm light, tray and exactly two cups with
+  cinnamon; no steam, smoke or extra spoon. Width remains ineligible; no source shrink, crop,
+  prompt edit or threshold waiver. All four immutable originals retained; independent winter
+  corner is not a dependent.

@@ -1,0 +1,36 @@
+id: asset-x-corner-kis-v2
+type: asset
+title_tr: x-corner-kis-v2
+title_en: x-corner-kis-v2 (plate)
+status: planned
+horizon: now
+summary: >-
+  A genuinely fresh open winter composition of one quiet cropped corner of the same home island
+  Ayçiçeği. Place a soft star-light string between two poles at the back left, and a plump
+  snowman with two round hamster-shaped snow ears and a plum scarf at the back right. A small
+  wooden sled leans against a snowy mound at the front left. Bring a copper-cream salep pot
+  on a small stand and exactly two cups into the warm for…
+art:
+  images: []
+  jobs:
+  - batch-30c-decor-seasons-2-v2:x-corner-kis-v2
+sources:
+- doc: tools/imagegen/manifest/batch-30c-decor-seasons-2-v2.yaml
+kind: plate
+batch: batch-30c-decor-seasons-2-v2
+size: 1536x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Selected take 1; auto-picked by QA; founder review pending. Registration remains planned
+  and art.images is empty.
+- >-
+  auto-picked by QA; founder review pending. Both original and official locked opaque paintings
+  preserve the independent open winter corner: two complete star-string poles at back-left,
+  plump inanimate snow figure with two round snow ears and plum scarf at back-right, sled
+  leaning against snow mound front-left, copper-cream salep pot on a stand and exactly two
+  separate cups near foreground center, thin snow/path stones and familiar cropped lawn edge
+  over clouds. Warm pot glow is explicitly requested here; individual prop-only eight-star,
+  seed, three-ball, lid/spout and no-steam requirements were not imported. No living resident,
+  copied whole island, roots, door or reference bench. Both eligible for unchanged QA ranking;
+  day local winter colors; exploration never promoted.
