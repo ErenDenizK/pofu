@@ -1,0 +1,21 @@
+id: asset-x-gate-breath
+type: asset
+title_tr: x-gate-breath
+title_en: x-gate-breath (ui)
+status: in-production
+horizon: now
+summary: >-
+  A full portrait phone screen for a cozy mobile game, painted, no text anywhere, with a bold,
+  simple, poster-like composition. In the centre a huge soft ring of warm light, like a sunrise
+  halo, floats over a deep twilight gradient from indigo at the top to warm rose at the bottom;
+  a few soft clouds cross it. Inside the ring, small and centered, Pofu, a round fluffy hamster,
+  sits with his eyes closed and paws on his tu…
+art:
+  images: []
+  jobs:
+  - batch-48-gate-scenes:x-gate-breath
+sources:
+- doc: tools/imagegen/manifest/batch-48-gate-scenes.yaml
+kind: ui
+batch: batch-48-gate-scenes
+size: 1024x1536

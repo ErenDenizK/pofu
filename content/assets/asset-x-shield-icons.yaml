@@ -1,0 +1,21 @@
+id: asset-x-shield-icons
+type: asset
+title_tr: x-shield-icons
+title_en: x-shield-icons (ui)
+status: in-production
+horizon: now
+summary: >-
+  A sheet of six small round icons in a 3 by 2 grid on a transparent background, evenly spaced,
+  each a tiny painted scene inside a soft circle: Pofu, a round fluffy hamster, in the doorway
+  of his little round wooden door, drawn big and simple so it reads at a tiny size. (1) curious,
+  peeking out, head tilted, morning light; (2) proud, chest out, a tiny sparkle, sunny; (3)
+  a little jealous, arms crossed, a small huff, af…
+art:
+  images: []
+  jobs:
+  - batch-48-gate-scenes:x-shield-icons
+sources:
+- doc: tools/imagegen/manifest/batch-48-gate-scenes.yaml
+kind: ui
+batch: batch-48-gate-scenes
+size: 1024x1024

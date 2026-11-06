@@ -1,0 +1,21 @@
+id: asset-x-gate-round-door
+type: asset
+title_tr: x-gate-round-door
+title_en: x-gate-round-door (ui)
+status: in-production
+horizon: now
+summary: >-
+  A full portrait phone screen for a cozy mobile game, painted, no text anywhere. We stand
+  right in front of Pofu's little round wooden door set in a warm earth bank under a lawn,
+  seen up close from the front. The door is swinging open toward us and Pofu, a round fluffy
+  hamster, stands in the doorway on his toes, holding the door with one paw and looking up
+  at us with big curious eyes, as if to say "where are you going…
+art:
+  images: []
+  jobs:
+  - batch-48-gate-scenes:x-gate-round-door
+sources:
+- doc: tools/imagegen/manifest/batch-48-gate-scenes.yaml
+kind: ui
+batch: batch-48-gate-scenes
+size: 1024x1536
