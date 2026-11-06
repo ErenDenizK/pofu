@@ -2,14 +2,14 @@ id: asset-tea-stall-5-iznik
 type: asset
 title_tr: tea-stall-5-iznik
 title_en: tea-stall-5-iznik (station)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  Recolor the tea stall to its Iznik blue option. The terracotta-rose roof tiles become glazed
-  Iznik cobalt-blue and turquoise tiles with a few cream ones, the little flag becomes cobalt
-  blue, and the cloth on the little table and the cloth over the counter's end become cobalt-blue
-  and cream. The red geranium and its pot, the string of cream bulbs, the kettle, the tulip
-  glasses, the stools, the counter, the poles and t…
+summary: Recolor the tea stall to its Iznik blue option. The terracotta-rose roof
+  tiles become glazed Iznik cobalt-blue and turquoise tiles with a few cream ones,
+  the little flag becomes cobalt blue, and the cloth on the little table and the cloth
+  over the counter's end become cobalt-blue and cream. The red geranium and its pot,
+  the string of cream bulbs, the kettle, the tulip glasses, the stools, the counter,
+  the poles and t…
 links:
   variant_of:
   - asset-tea-stall-5
@@ -21,3 +21,18 @@ sources:
 - doc: tools/imagegen/manifest/batch-40-home-ladder-gaps.yaml
 kind: station
 batch: batch-40-home-ladder-gaps
+notes:
+- 'batch-40-home-ladder-gaps skipped after four takes: One unchanged-prompt retry
+  exhausted. Every take hard-fails official palette_drift (mean dE7.0484,6.1100,8.8711,6.5837);
+  additional declared chroma/structure failures apply as recorded in QA. Correct fabrics
+  and inventory cannot waive these hard checks. No master or Harmony promoted; all
+  original sources and official reports preserved. No borrowed stability gate or source
+  editing. Automated failures: t1 chroma_ceiling: chroma p95 62 (R1 51), palette_drift:
+  mean dE 7.0, p95 47.4, off-palette 17.9% (top: #223399 (2.9%), #223388 (2.3%)),
+  edit_structure: light structure matches the parent (r 0.59); t2 palette_drift: mean
+  dE 6.1, p95 40.4, off-palette 16.7% (top: #224499 (1.3%), #2244AA (1.1%)), edit_structure:
+  light structure matches the parent (r 0.58); t3 chroma_ceiling: chroma p95 62 (R1
+  51), palette_drift: mean dE 8.9, p95 45.9, off-palette 23.0% (top: #223399 (4.7%),
+  #3355BB (2.0%)), edit_structure: light structure matches the parent (r 0.30); t4
+  palette_drift: mean dE 6.6, p95 40.8, off-palette 18.2% (top: #224499 (1.1%), #2244AA
+  (1.0%)).'
