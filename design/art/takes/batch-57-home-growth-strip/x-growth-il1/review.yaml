@@ -1,0 +1,213 @@
+batch: batch-57-home-growth-strip
+manifest: tools/imagegen/manifest/batch-57-home-growth-strip.yaml
+manifest_sha256: fc7a87434d3aa50ca6d2dd4207e4fafd52a1547085e2f8bca0520f96642118e8
+contact_sheet: design/art/takes/batch-57-home-growth-strip/x-growth-il1/contact.jpg
+jobs:
+  x-growth-il1:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Root and independent exact source-bound
+      native/official locked/reference review independent-growth-il1-review-20261106T090701Z.json
+      find BOTH initial takes eligible: the same home lawn/body/round door with cross-window/stone
+      groups and four original bare roots remains visually recognizable; exactly one
+      sunflower bed and one tiny vegetable garden, no characters, extra stations,
+      text or overlap. Fully opaque source and384px whole-frame readability checked.
+      Take2 wins normal QA by lowest lock load0.5713 versus0.597; no hard failures
+      or force. Original light_values warning p2=55/spread40.4 and light_haze0.349
+      remain explicit advisory; source1 also retains its sky palette warning. Legacy
+      attached-hamster/milky high-key style text conflicts with explicit no-character/day-LIGHT
+      brief, preserved unchanged and disclosed without added R1, prompt edits, invented
+      thresholds or global QA waiver. Visual registration is not a claim of pixel-identical
+      generated geometry. Initial source/QA/locked seals and all references preserved.
+      Exploration only, auto-picked by QA; founder review pending; never promoted.'
+qa_reports:
+  1:
+    job: x-growth-il1
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 30 (R1 51)
+      value: 29.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 57 (at most 22), p98 96 (at least 90), spread 39
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 38.9
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 84 (band 55-90)'
+      value: 84.3
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.38 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.376
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 3.8 (at least 3.5)'
+      value: 3.77
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.63
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.597
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.0, p95 10.6, off-palette 1.0% (top: #88BBEE (0.6%), #99CCEE
+        (0.3%))'
+      value: 3.0393
+    info:
+      metrics_raw:
+        L_p5: 67.9
+        L_p50: 84.7
+        L_p95: 94.8
+        C_p50: 20.8
+        C_p95: 30.4
+        C_p99: 46.7
+        detail: 2.04
+      metrics_locked:
+        L_p5: 68.2
+        L_p50: 84.6
+        L_p95: 94.6
+        C_p50: 20.8
+        C_p95: 29.9
+        C_p99: 45.8
+        detail: 1.63
+    fingerprint: 5d86e522f1748093
+  2:
+    job: x-growth-il1
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 32 (R1 51)
+      value: 31.6
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 55 (at most 22), p98 96 (at least 90), spread 40
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 40.4
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 84 (band 55-90)'
+      value: 84.5
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.35 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.349
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 3.5 (at least 3.5)'
+      value: 3.51
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.5 (R1 5.3)
+      value: 1.53
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.5713
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 0.9, p95 2.8, off-palette 0.0% (top: #DD8844 (0.0%))'
+      value: 0.908
+    info:
+      metrics_raw:
+        L_p5: 67.1
+        L_p50: 89.8
+        L_p95: 96.2
+        C_p50: 9.7
+        C_p95: 32.1
+        C_p99: 57.5
+        detail: 1.95
+      metrics_locked:
+        L_p5: 67.3
+        L_p50: 89.8
+        L_p95: 96.1
+        C_p50: 10.0
+        C_p95: 31.6
+        C_p99: 56.7
+        detail: 1.53
+    fingerprint: 5d86e522f1748093
+manual_review:
+  observed_note: 'Root and independent exact source-bound native/official locked/reference
+    review independent-growth-il1-review-20261106T090701Z.json find BOTH initial takes
+    eligible: the same home lawn/body/round door with cross-window/stone groups and
+    four original bare roots remains visually recognizable; exactly one sunflower
+    bed and one tiny vegetable garden, no characters, extra stations, text or overlap.
+    Fully opaque source and384px whole-frame readability checked. Take2 wins normal
+    QA by lowest lock load0.5713 versus0.597; no hard failures or force. Original
+    light_values warning p2=55/spread40.4 and light_haze0.349 remain explicit advisory;
+    source1 also retains its sky palette warning. Legacy attached-hamster/milky high-key
+    style text conflicts with explicit no-character/day-LIGHT brief, preserved unchanged
+    and disclosed without added R1, prompt edits, invented thresholds or global QA
+    waiver. Visual registration is not a claim of pixel-identical generated geometry.
+    Initial source/QA/locked seals and all references preserved. Exploration only,
+    auto-picked by QA; founder review pending; never promoted.'
+  excluded_takes: []
+sources:
+- batch: batch-57-home-growth-strip
+  job: x-growth-il1
+  take: 1
+  round: 1
+  logical_run: 20261106-b57-home-growth-strip
+  source_file: /workspace/generated_images/exec-43cd95b9-81bd-4db8-808c-8cce55bd9d85.png
+  returned_at: '2026-11-06T09:00:35.028Z'
+  prompt_sha256: 31501ecab5c0802815f2b1291681ce6e08a8c232a755190a5684be35e1b5e09b
+  fingerprint: 5d86e522f1748093
+  saved_at: '2026-11-06T09:00:35.457879+00:00'
+  original_generated_png_sha256: 1974c8df4bb6612bdaf173294fd8b8ad318202f35a8c247a03754adf8a4ff390
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: eea87efcb92ba9b3dc6e45dc924bf29eb564f34dfc908663cf3ccd1ab73fdfbd
+  inbox_png_sha256: 1970ba1dbb1ebb0c13000466fcadac3e0b8390053e6074141925abdf22cc18c0
+  qa_sha256: a0155ca6ccf0a9eaca742335a4e29fd1e7f4d91bebe73587429eef8de71a731e
+- batch: batch-57-home-growth-strip
+  job: x-growth-il1
+  take: 2
+  round: 1
+  logical_run: 20261106-b57-home-growth-strip
+  source_file: /workspace/generated_images/exec-bae8cdaa-cad2-422b-a6b1-b0c305adf763.png
+  returned_at: '2026-11-06T09:00:05.084Z'
+  prompt_sha256: 31501ecab5c0802815f2b1291681ce6e08a8c232a755190a5684be35e1b5e09b
+  fingerprint: 5d86e522f1748093
+  saved_at: '2026-11-06T09:00:05.557130+00:00'
+  original_generated_png_sha256: bd44535b87daddf1ed8e027880258ec6d4f9aca818612c8ea3cb70f454ff108b
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 7dd86aa612e5030e7899574465b0c4befd1d221cab2f2dc38167369597894a75
+  inbox_png_sha256: 97b60cba1596a0de70eaa4d1460632cdc1ca82f95d114e57290099067ffa2485
+  qa_sha256: 0aa3764099e85769e39646c7ca8b72b46652d02465246a7ffc6ef65e83e2ac14
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
