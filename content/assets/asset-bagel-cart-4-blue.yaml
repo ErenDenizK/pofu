@@ -2,13 +2,12 @@ id: asset-bagel-cart-4-blue
 type: asset
 title_tr: bagel-cart-4-blue
 title_en: bagel-cart-4-blue (station)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  Recolor the bagel cart to its blue option. The coral-and-cream striped umbrella becomes
-  sea-blue and cream stripes, and any coral accent on the cart's trim becomes soft sea-blue.
-  The bagels, the pole of rings, the cloth, the little bench, the wood and the cart's body
-  keep their exact colors.
+summary: Recolor the bagel cart to its blue option. The coral-and-cream striped umbrella
+  becomes sea-blue and cream stripes, and any coral accent on the cart's trim becomes
+  soft sea-blue. The bagels, the pole of rings, the cloth, the little bench, the wood
+  and the cart's body keep their exact colors.
 links:
   variant_of:
   - asset-bagel-cart-4
@@ -20,3 +19,13 @@ sources:
 - doc: tools/imagegen/manifest/batch-40-home-ladder-gaps.yaml
 kind: station
 batch: batch-40-home-ladder-gaps
+notes:
+- 'batch-40-home-ladder-gaps skipped after four takes: One unchanged-prompt retry
+  exhausted. All four candidates recolor the protected cloth stripe from coral to
+  blue in both original and official locked image. The exact source explicitly keeps
+  the cloth and other named protected parts at their original colors; authorized blue
+  canopy and trim do not authorize this cloth change. Take2 additionally recolors
+  the honey umbrella finial. Official WARN results remain WARN; exclusion is the literal
+  protected-color failure, not an invented numeric or historical-clipping gate. Actual
+  right-edge parent clipping and inventory are accepted unchanged. Exact source/locked/QA/reference
+  hashes are retained. No third round or master promotion.'
