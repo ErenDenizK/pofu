@@ -2,15 +2,15 @@ id: asset-cloud-curtain-3
 type: asset
 title_tr: cloud-curtain-3
 title_en: cloud-curtain-3 (world)
-status: planned
+status: in-production
 horizon: later
-summary: >-
-  The back layer of a loading curtain, on a transparent background: a few long, thin, slightly
-  curved cloud wisps in soft cream and pale peach, stretched horizontally across the upper
-  and middle of the image, faint and airy, with plenty of transparent space between them.
-  They run off the canvas at both sides.
+summary: 'The back layer of a loading curtain, on a transparent background: a few
+  long, thin, slightly curved cloud wisps in soft cream and pale peach, stretched
+  horizontally across the upper and middle of the image, faint and airy, with plenty
+  of transparent space between them. They run off the canvas at both sides.'
 art:
-  images: []
+  images:
+  - design/art/masters/cloud-curtain-3/cloud-curtain-3.png
   jobs:
   - batch-35-experience:cloud-curtain-3
 sources:
