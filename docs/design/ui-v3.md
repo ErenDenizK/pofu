@@ -148,7 +148,7 @@ is.** It can be the most *crafted* shield on the App Store.
   Reduce Motion = a 0.2 s fade of the already stamped plaque, one haptic,
   no hop. The pots still bloom and the screen haze parts
   (`ScreenHazeClearing.part()`, also on a resist inside Hop!). The plaque
-  is code-drawn (floating, not yet anchored to the island's door) and the
+  is code-drawn (anchored by screen fraction over the round door, not yet by world projection) and the
   seal uses `seal-resist` when batch-61 lands.
 - **(c) The notification** (`Extensions/Shared/GateNotificationContent.swift`).
   Allowed: a local notification can carry an image attachment

@@ -110,7 +110,7 @@ public struct DoorStampRun: Equatable, Sendable {
     }
 }
 
-/// The plaque of the round door with the day's seals. Never takes touches;
+/// The plaque of the round door (below the lawn, on the earth bank) with the day's seals. Never takes touches;
 /// the root skips it with a simultaneous tap. `frozenAt` pins the clock for
 /// screenshots.
 public struct DoorStampOverlay: View {
@@ -129,14 +129,14 @@ public struct DoorStampOverlay: View {
     public var body: some View {
         TimelineView(.animation(paused: frozenAt != nil)) { context in
             let time = frozenAt ?? min(run.time(at: context.date), DoorStamp.duration)
-            plaque(at: time)
+            GeometryReader { proxy in plaque(at: time, size: proxy.size) }
         }
         .allowsHitTesting(false)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(Text("Skipped \(run.stamp.resists) times today"))
     }
 
-    private func plaque(at time: TimeInterval) -> some View {
+    private func plaque(at time: TimeInterval, size: CGSize) -> some View {
         let stamp = run.stamp
         let palette = PofuKitStyleResolver(night: night, scheme: scheme, contrast: .standard).palette
         let opacity = reduceMotion ? stamp.reducedOpacity(at: time) : stamp.plaqueOpacity(at: time)
@@ -146,11 +146,11 @@ public struct DoorStampOverlay: View {
                 .fill(LinearGradient(colors: [palette.woodTop, palette.woodBottom], startPoint: .top, endPoint: .bottom))
             Circle().strokeBorder(palette.edge.opacity(0.55), lineWidth: 3)
             Circle().strokeBorder(palette.stitch, style: StrokeStyle(lineWidth: 1.4, dash: [4, 4])).padding(11)
-            HStack(spacing: 6) {
+            HStack(spacing: 4) {
                 ForEach(0..<stamp.sealCount, id: \.self) { index in
                     let progress = reduceMotion ? 1 : stamp.sealProgress(of: index, at: time)
                     DoorWaxSeal(palette: palette)
-                        .frame(width: 34, height: 34)
+                        .frame(width: 28, height: 28)
                         .scaleEffect(1 + 0.6 * (1 - Self.press(progress)))
                         .opacity(progress > 0 ? min(progress * 4, 1) : 0)
                         .overlay {
@@ -163,18 +163,17 @@ public struct DoorStampOverlay: View {
                 }
                 if stamp.overflow > 0 {
                     Text(verbatim: "+\(stamp.overflow)")
-                        .font(.system(.title3, design: .rounded, weight: .heavy))
+                        .font(.system(.callout, design: .rounded, weight: .heavy))
                         .foregroundStyle(palette.onPaper)
                         .opacity(reduceMotion || time >= stamp.stampedAt ? 1 : 0)
                 }
             }
         }
-        .frame(width: 252, height: 252)
-        .shadow(color: palette.edge.opacity(0.35), radius: 14, y: 6)
+        .frame(width: 176, height: 176)
+        .shadow(color: palette.edge.opacity(0.35), radius: 10, y: 4)
         .opacity(opacity)
         .offset(y: lift)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .offset(y: -60)
+        .position(x: size.width * 0.52, y: size.height * 0.65)
     }
 
     /// A press: overshoots a little before it rests.
