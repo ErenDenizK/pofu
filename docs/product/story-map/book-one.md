@@ -357,3 +357,11 @@ the act lists need the new order); `content/islands/*.yaml` predate both.
    still calls Fanus's greenhouse and Çömlek's kiln "Book Two hilltop
    add-ons"; on the map they are Book One fillers, so that row's wording
    needs a pass.
+
+## 9. Lead decisions on §8 (2026-11-06, evening)
+
+1. **Koke** stays as built and becomes what the map says: the first filler and the Monday visitor; its five-stage arc is the gentle tutorial of the healing arc. No new Koke art.
+2. **Mehtap's full moon** stays (the map's "GERÇEK DOLUNAY"): Mehtap's door is timed so stage 3 lands a few days before a real full moon; the "blessing" fallback (the trail glows without the moon) applies only if tests show a wait longer than seven days.
+3. **The seventh filler** is Leylek (the seasonal one): Koke, Çanlar, Martı Kayası, Fanus, Pervane, Çömlek and Leylek.
+4. **Arı** is the home hive upgrade; its art is the home hive (`hive-4`, `hive-5`), unblocked in the next art round.
+5. **Stale docs** (home progression §7, monetization v2 §2.1, art queue row B-A, `content/islands/*.yaml`) are aligned in a follow-up PR the same day.
