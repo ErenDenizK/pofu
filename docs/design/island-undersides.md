@@ -11,6 +11,14 @@ ground; the earth face holds the residents' round doors), the
 [healing arc](island-healing-arc.md) and
 [sky and weather v1](sky-and-weather-v1.md).
 
+**Reconciled 2026-11-06 with the canonical
+[Book One story map](../product/story-map/book-one.md):** the journey's
+keepsakes live on **Nazlı's back** ("Sırtında biriken") and each main
+island leaves its **EVE HEDİYE** at home (the map). The roots are
+secondary: they grow with the island level only (§3), and the story
+islands' own undersides (§5) stay as plate art. The keepsake list that was
+§4 is replaced by the map's lists.
+
 ## 1. Why the underside
 
 In the game camera the island's earth body and the air below it fill about
@@ -21,26 +29,25 @@ visible, and lit badly at night (founder, 2026-11-06). It is the cheapest
 place left to make every level a visible change, and it has a story waiting
 in it.
 
-## 2. The idea: the roots remember
+## 2. The idea: the roots grow
 
 Home layout already gives the **earth face** (y 45-150) to the residents'
 round doors. Below it, the body tapers into dangling roots and open air.
 That lower zone becomes **the roots** (Kökler):
 
-- **The island remembers where it has been.** Every healed wonder island
-  leaves a keepsake that hangs from, grows into or pours out of home's
-  roots. Over Book One the underside becomes a quiet map of the journey,
-  readable at a glance, and nobody says so in words.
+- **The journey is remembered elsewhere.** The story map puts each main
+  island's keepsake on Nazlı's back and its lasting gift at home (§4), so
+  the roots carry no journey map.
 - **The roots grow with the island level.** A few island levels add a
   small, living change below, so a level-up is seen from two sides.
 - **It is calm, not a second base.** No slots to manage, no menus; pieces
-  appear on their own on a level or a gift, and a tap only plays a small
+  appear on their own on a level, and a tap only plays a small
   reaction (a bell rings, a jar glows, water splashes).
 
 Lore fit: Pofu's den is behind the round door in the earth (deep lore M2,
-the wheel behind the round door). The roots are under his home, so the
-keepsakes are his, kept close: the thesis that nothing needed him to be
-fixed stays intact, because the keepsakes are gifts given, not trophies.
+the wheel behind the round door). The roots are under his home and grow
+as the home grows; the journey's gifts are given, not trophies, and live
+where the map puts them (§4).
 
 ## 3. Home: the roots by island level
 
@@ -57,21 +64,22 @@ changes at every level, home progression §3).
 | 9 | Warm amber stones in the earth that glow faintly at night (the hill gate's glow, from below) | a slow pulse |
 | 10 | Tam Çiçek: roots in bloom, a small bird nest with two birds | birds come and go |
 
-## 4. Home: keepsakes from the wonder islands
+## 4. Where the journey's keepsakes live (the story map)
 
-| Island | Keepsake under home | Signature motion |
+The roots hold no island keepsakes. The map gives each main island two
+lasting marks:
+
+| Island | On Nazlı's back ("Sırtında biriken") | At home (EVE HEDİYE) |
 |---|---|---|
-| Koke | a soft moss beard on the roots, with one sprout like Koke's crown | sways; tiny spores drift up on calm mornings |
-| Çağlayan | a thin stream that pours off home's edge into the cloud sea (the game plan's "a waterfall pours off home's edge", day 14) | falls, with a mist puff where it meets the clouds |
-| Emanet | a small net of lost-and-found things hanging from a root, each labelled | swings when Pofu passes |
-| Çanlar | one small bell on a root that rings the four notes when tapped | rings |
-| Revontuli | a cluster of ice crystals that holds a faint aurora at night | colours shift slowly |
-| Arı | a small wild comb tucked between roots, bees in and out by day | bees |
-| Mehtap | a tiny moon lamp, the last light to come on at night | glows |
-| Gezgin | the hook where Nazlı's lantern hangs when she docks | the lantern sways |
+| Çağlayan | "havuz ve şelale" | "Evdeki havuzun çeşmesi akar (Salı: Damla gelir)." |
+| Revontuli | "aurora kavanozu" | "Köprüde bir fener daha (Cuma: Tuli gelir)." |
+| Emanet | "teal tahta" | "Çarşamba kapıda bir paket; atölyeye cilalı buluntular." |
+| Mehtap | "ay taşı" | "Tepe'de teleskop (Pazar: Nane gelir)." |
+| finale | "Ayçiçeği toprağından genç bir ayçiçeği"; "Ihlamur'un feneri, yanık" | the trail in home's night sky |
 
-By the end of Book One the roots hold seven or eight keepsakes. Read top to
-bottom, they are the order of the journey.
+Fillers leave no keepsake (the map: no counter, a joke or a feeling). Arı
+is a home upgrade (the hive), not a keepsake. Read left to right, Nazlı's
+back is the order of the journey; "Bağ büyüdükçe büyür, harcamayla değil."
 
 ## 5. Story islands: undersides only where they carry the wound
 
@@ -80,12 +88,11 @@ the cure is told better from below.
 
 | Island | Underside? | What it carries |
 |---|---|---|
-| Koke | no | Koke is the island; its belly is the earth, and the story is on top |
+| Koke (filler) | no | Koke is the island; its belly is the earth, and the story is on top |
 | **Çağlayan** | **yes** | Stage 0: dry stone lips under the plate where water once fell, a dry stain on the body. Each stage, one stream finds the edge. Stage 4: the falls pour off the island's underside into the cloud sea, the real signature, seen as a long fall below the plate |
 | **Emanet** | **yes** | The fog pools under the island like a cloud skirt and lost things dangle in nets from the roots; the cure gathers them up, and the skirt thins to a soft mist |
-| Çanlar | small | the mute bells' ropes hang down tangled through the body, untangled per stage |
-| **Revontuli** | **yes** | The ruin: broken lantern chains hang below. Healed: icicles become crystal lanterns that carry the aurora's colour under the island |
-| Arı | no | the story is the flowers and the swarm above |
+| Çanlar (filler) | small | the mute bells' ropes hang down tangled through the body, untangled per stage |
+| **Revontuli** | **yes** | The dark island: unlit lantern chains hang below. Healed: icicles become crystal lanterns that carry the aurora's colour under the island |
 | Mehtap | small | a dark underside that fills with tiny stars as constellations join |
 | Gezgin | no | a whale, no underside |
 
@@ -99,18 +106,20 @@ the cure is told better from below.
   sources). Test: the lower zone never covers a resident door or the
   harbor bridge.
 - **Art (Codex):** concepts first (`batch-49-roots`, exploration): home's
-  underside at IL1, IL6 and IL10 with two keepsakes; Çağlayan's underside
+  underside at IL1, IL6 and IL10; Çağlayan's underside
   at stages 0 and 4. Then production sprites per piece, painted against the
   plate's earth body like the stations.
 - **Night:** the underside is where the derived normals fail most; the
   light-direction pilot (`batch-47`) solves the plate's real normals, so
   the roots' lantern and amber stones light the body as a volume.
-- **Order:** after Koke is finished and alongside Çağlayan (its waterfall
-  keepsake and its underside are the first real use).
+- **Order:** after Koke is finished and alongside Çağlayan (its plate
+  underside is the first real use).
 
 ## 7. Decided
 
 1. **Tapping a keepsake replays a memory** (founder, 2026-11-06: yes): a
    one-line memory of that island in a resident's voice, once a day per
-   piece, so the roots become a place players revisit. Lines are written
-   with the `pofu-story` skill when each island ships.
+   piece. Re-pointed 2026-11-06 to the story map: the keepsakes are the
+   pieces on **Nazlı's back**, so her back becomes the place players
+   revisit. Lines are written with the `pofu-story` skill when each island
+   ships.
