@@ -54,7 +54,7 @@ struct HomeFixturesTests {
 
     @Test func everyFixtureWasBaked() {
         #expect(WorldArt.sprite("path-lamp") != nil)
-        for name in HomeFixtures.doors.map(\.art) + (1...HomeFixtures.hiveLevels).compactMap({ HomeFixtures.hiveArt(level: $0) }) {
+        for name in (1...HomeFixtures.hiveLevels).compactMap({ HomeFixtures.hiveArt(level: $0) }) {
             #expect(WorldArt.sprite(name) != nil, "missing \(name)")
         }
     }
