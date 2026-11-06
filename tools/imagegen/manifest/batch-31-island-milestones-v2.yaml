@@ -1,0 +1,561 @@
+batch: batch-31-island-milestones-v2
+title: 'Current home milestones: fresh independent exploration concepts'
+status: open
+refs:
+  tea-stall-1: design/art/stations/tea-stall-1/tea-stall-1.png
+defaults:
+  variants: 2
+jobs:
+- id: island-main-s
+  kind: world
+  name: island-main-s
+  external: batch-01-slice
+- id: cloud-sea
+  kind: world
+  name: cloud-sea
+  external: batch-04-sky
+- id: pofu
+  kind: char
+  name: pofu-r1
+  external: r1
+  master: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+- id: x-island-il1-v2
+  kind: plate
+  name: x-island-il1-v2
+  size: 1536x1024
+  canvas: 1536x1024
+  chat: Pofu · Exploration
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. CURRENT home-layout IL1: sparse hopeful home with exactly three young sunflowers,
+    round door, small mound, twig nest and a few bees; fixed complete lawn outline and future slots
+    empty. Never promoted. Current-layout interpretation and legacy differences are documented in
+    the PR. Original source file and fixed YAML/ref/light contracts stay unchanged.'
+  attach:
+  - ref: approved:island-main-s
+    role: 'The home island: the same painting, the same low camera (about 20 degrees), the same
+      softness and scale of a floating island. Do not draw a different island.'
+  - ref: approved:cloud-sea
+    role: 'The sea of clouds below every island: paint the clouds like this.'
+  - ref: R1
+    role: 'Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly
+      (do not draw him unless asked).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  prompt:
+  - text: 'A fresh independent concept plate of Ayçiçeği using the CURRENT home-layout interpretation.
+      Keep the familiar approved home-island identity and painterly family, with a fixed low front
+      three-quarter game camera (about 17 degrees above the horizon). The lawn outline is fixed
+      across levels: growth adds the named details within existing slots, or separate harbor/Tepe
+      pieces beside the home, never widens the lawn or extrudes a new rear shelf. The following
+      map describes positions only, not permission to draw unopened features. Draw each place ONLY
+      when the stage below explicitly includes it: garden at the left tip; tea corner at the right
+      tip; pond front-left; workshop back centre-left; windmill back-left. The RIGHT bridge/harbor
+      and its bagel cart open at IL3; the harbor pier front-right only from IL5, lighthouse back-right
+      only from IL6; hill path up-left only from IL9 and the separate Tepe only from IL10. Earlier
+      stages leave those unopened features absent, with unmarked grass and no empty plots or padlocks.
+      The round home door is inset into the earth face beneath grass, never a detached lawn house.
+      Retain these positions and only the stage''s explicitly named inventory and state. The four
+      listed source references stay unchanged; they establish the painting/family, not a pixel-registered
+      current large-plate production layout.
+
+
+      ISLAND LEVEL 1: a sparse, hopeful home with one bed of exactly three young sunflowers, Pofu''s
+      round door inset into the earth face beneath a small grass mound, a little twig nest beside
+      it, a few bees and wind in the grass. Keep a thin stone-less lawn and bare rock edges; no
+      other buildings. Leave the future slots empty within the fixed footprint, rather than shrinking
+      the island. FRESH STAGING: the three flower heads and leaves lean softly together in one breeze
+      while the bees trace a small loose arc toward the nest; keep generous quiet cloud space. The
+      light cell remains day, with warm local morning qualities only.'
+  - block: style-anchor-v2
+  - text: 'MATERIAL AND LIGHT SCOPE: The generic style transfers painterly handling only. Fur belongs
+      only to explicitly requested mammals; frogs have smooth skin, while moss, plants, flowers,
+      wood, stone, clay, water, clouds and the whale keep smooth material-appropriate surfaces.
+      No animal anatomy is transferred to props or plants. Pofu alone may have his head curl, and
+      he is drawn only in the named ceremony. Preserve every stage-specific count and gate state.
+      No guide is attached: do not invent guide marks or introduce a ground ellipse into these opaque
+      scene plates. The appended LIGHT block alone sets hour, key/fill/rim and shadow hue; keep
+      its original cell and full subject-plane value range without a global milky veil. No text,
+      numbers, logos, UI, painted glass, grain, outlines or 3D-render finish. These independent
+      explorations do not prove pixel-registered inter-level continuity or exact large-plate socket
+      geometry with only the listed family references.'
+  - text: 'AVOID: a border, text, letters, numbers, harsh shadows, saturated or neon colors, dark
+      moods, outlines, photorealism, a 3D render look, a different overall island character, a curl
+      on any head except Pofu''s'
+- id: x-island-il4-v2
+  kind: plate
+  name: x-island-il4-v2
+  size: 1536x1024
+  canvas: 1536x1024
+  chat: Pofu · Exploration
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. CURRENT home-layout IL4: pond front-left, tea right, bridge and harbor right;
+    the bridge and bagel cart exist, but the pier/ferry are absent until their current unlocks.
+    This new-v2 state intentionally supersedes the legacy source inventory. No lawn widening. Garden
+    picket fence, no arch yet. Never promoted. Current-layout interpretation and legacy differences
+    are documented in the PR. Original source file and fixed YAML/ref/light contracts stay unchanged.'
+  attach:
+  - ref: approved:island-main-s
+    role: 'The home island: the same painting, the same low camera (about 20 degrees), the same
+      softness and scale of a floating island. Do not draw a different island.'
+  - ref: approved:cloud-sea
+    role: 'The sea of clouds below every island: paint the clouds like this.'
+  - ref: R1
+    role: 'Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly
+      (do not draw him unless asked).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  prompt:
+  - text: 'A fresh independent concept plate of Ayçiçeği using the CURRENT home-layout interpretation.
+      Keep the familiar approved home-island identity and painterly family, with a fixed low front
+      three-quarter game camera (about 17 degrees above the horizon). The lawn outline is fixed
+      across levels: growth adds the named details within existing slots, or separate harbor/Tepe
+      pieces beside the home, never widens the lawn or extrudes a new rear shelf. The following
+      map describes positions only, not permission to draw unopened features. Draw each place ONLY
+      when the stage below explicitly includes it: garden at the left tip; tea corner at the right
+      tip; pond front-left; workshop back centre-left; windmill back-left. The RIGHT bridge/harbor
+      and its bagel cart open at IL3; the harbor pier front-right only from IL5, lighthouse back-right
+      only from IL6; hill path up-left only from IL9 and the separate Tepe only from IL10. Earlier
+      stages leave those unopened features absent, with unmarked grass and no empty plots or padlocks.
+      The round home door is inset into the earth face beneath grass, never a detached lawn house.
+      Retain these positions and only the stage''s explicitly named inventory and state. The four
+      listed source references stay unchanged; they establish the painting/family, not a pixel-registered
+      current large-plate production layout.
+
+
+      ISLAND LEVEL 4: the pond appears in the existing FRONT-LEFT lawn slot with lily pads and one
+      frog; the lawn outline does not widen. Retain the picket-fenced garden with no arch yet, the
+      round door/mound/nest, and the stone path from the garden to the striped-awning tea stall
+      at the RIGHT tip. The rope bridge runs RIGHT to a separate small harbor islet with the bagel
+      cart only. There is no pier or ferry yet: the pier slot opens at island level 5 and the ferry
+      later at pier level 3; leave their future locations as unmarked continuous grass, not empty
+      soil plots or padlocks. Keep plenty of empty green lawn. FRESH STAGING: turn the frog toward
+      the tea corner and open a soft gap in the cloud bank beneath the bridge; let the existing
+      garden-to-tea path read as a gentle curve without relocating the stations. Use the unchanged
+      day cell; golden adjectives describe local warmth, not a golden-hour relight.'
+  - block: style-anchor-v2
+  - text: 'MATERIAL AND LIGHT SCOPE: The generic style transfers painterly handling only. Fur belongs
+      only to explicitly requested mammals; frogs have smooth skin, while moss, plants, flowers,
+      wood, stone, clay, water, clouds and the whale keep smooth material-appropriate surfaces.
+      No animal anatomy is transferred to props or plants. Pofu alone may have his head curl, and
+      he is drawn only in the named ceremony. Preserve every stage-specific count and gate state.
+      No guide is attached: do not invent guide marks or introduce a ground ellipse into these opaque
+      scene plates. The appended LIGHT block alone sets hour, key/fill/rim and shadow hue; keep
+      its original cell and full subject-plane value range without a global milky veil. No text,
+      numbers, logos, UI, painted glass, grain, outlines or 3D-render finish. These independent
+      explorations do not prove pixel-registered inter-level continuity or exact large-plate socket
+      geometry with only the listed family references.'
+  - text: 'AVOID: a border, text, letters, numbers, harsh shadows, saturated or neon colors, dark
+      moods, outlines, photorealism, a 3D render look, a different overall island character, a curl
+      on any head except Pofu''s'
+- id: x-island-il7-v2
+  kind: plate
+  name: x-island-il7-v2
+  size: 1536x1024
+  canvas: 1536x1024
+  chat: Pofu · Exploration
+  light:
+    cell: golden
+    layer: subject
+  notes: 'Exploration. CURRENT home-layout IL7: retain garden, round door, tea, pond and harbor
+    cart/pier/ferry; workshop knoll within existing lawn, harbor lighthouse, borders/lamps/decor
+    added. No new rear shelf or windmill. Never promoted. Current-layout interpretation and legacy
+    differences are documented in the PR. Original source file and fixed YAML/ref/light contracts
+    stay unchanged.'
+  attach:
+  - ref: approved:island-main-s
+    role: 'The home island: the same painting, the same low camera (about 20 degrees), the same
+      softness and scale of a floating island. Do not draw a different island.'
+  - ref: approved:cloud-sea
+    role: 'The sea of clouds below every island: paint the clouds like this.'
+  - ref: R1
+    role: 'Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly
+      (do not draw him unless asked).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  prompt:
+  - text: 'A fresh independent concept plate of Ayçiçeği using the CURRENT home-layout interpretation.
+      Keep the familiar approved home-island identity and painterly family, with a fixed low front
+      three-quarter game camera (about 17 degrees above the horizon). The lawn outline is fixed
+      across levels: growth adds the named details within existing slots, or separate harbor/Tepe
+      pieces beside the home, never widens the lawn or extrudes a new rear shelf. The following
+      map describes positions only, not permission to draw unopened features. Draw each place ONLY
+      when the stage below explicitly includes it: garden at the left tip; tea corner at the right
+      tip; pond front-left; workshop back centre-left; windmill back-left. The RIGHT bridge/harbor
+      and its bagel cart open at IL3; the harbor pier front-right only from IL5, lighthouse back-right
+      only from IL6; hill path up-left only from IL9 and the separate Tepe only from IL10. Earlier
+      stages leave those unopened features absent, with unmarked grass and no empty plots or padlocks.
+      The round home door is inset into the earth face beneath grass, never a detached lawn house.
+      Retain these positions and only the stage''s explicitly named inventory and state. The four
+      listed source references stay unchanged; they establish the painting/family, not a pixel-registered
+      current large-plate production layout.
+
+
+      ISLAND LEVEL 7: keep the earlier garden, tea stall, FRONT-LEFT pond, round door and RIGHT
+      bridge/harbor with bagel cart, pier and tiny ferry. A LOW GRASSY KNOLL within the existing
+      back centre-left workshop slot carries the shed, wall of tools, chimney and large gear sign;
+      do not add new rear land. The harbor lighthouse stands back-right on its islet with its warm
+      slow lamp. Rose, lilac and mustard flower borders line the paths, with warm round path lamps,
+      a bench, paper-lantern string, toy sailboat at the pond edge and mailbox by the round door.
+      No windmill is built yet. FRESH STAGING: a shallow relaxed lantern-string arc, a diagonal
+      sailboat gesture and clearly separated border bands change the decor poses while the station
+      positions remain fixed. Keep the original golden/subject LIGHT cell.'
+  - block: style-anchor-v2
+  - text: 'MATERIAL AND LIGHT SCOPE: The generic style transfers painterly handling only. Fur belongs
+      only to explicitly requested mammals; frogs have smooth skin, while moss, plants, flowers,
+      wood, stone, clay, water, clouds and the whale keep smooth material-appropriate surfaces.
+      No animal anatomy is transferred to props or plants. Pofu alone may have his head curl, and
+      he is drawn only in the named ceremony. Preserve every stage-specific count and gate state.
+      No guide is attached: do not invent guide marks or introduce a ground ellipse into these opaque
+      scene plates. The appended LIGHT block alone sets hour, key/fill/rim and shadow hue; keep
+      its original cell and full subject-plane value range without a global milky veil. No text,
+      numbers, logos, UI, painted glass, grain, outlines or 3D-render finish. These independent
+      explorations do not prove pixel-registered inter-level continuity or exact large-plate socket
+      geometry with only the listed family references.'
+  - text: 'AVOID: a border, text, letters, numbers, harsh shadows, saturated or neon colors, dark
+      moods, outlines, photorealism, a 3D render look, a different overall island character, a curl
+      on any head except Pofu''s'
+- id: x-island-il10-v2
+  kind: plate
+  name: x-island-il10-v2
+  size: 1536x1024
+  canvas: 1536x1024
+  chat: Pofu · Exploration
+  light:
+    cell: dusk
+    layer: subject
+  notes: 'Exploration. CURRENT home-layout IL10: all eight source station identities remain legible,
+    hill path up-left through an OPEN gate to bench/telescope. Fixed lawn outline; garden/tea/pond/workshop/windmill/home-harbor
+    geography follows home-layout. Never promoted. Current-layout interpretation and legacy differences
+    are documented in the PR. Original source file and fixed YAML/ref/light contracts stay unchanged.'
+  attach:
+  - ref: approved:island-main-s
+    role: 'The home island: the same painting, the same low camera (about 20 degrees), the same
+      softness and scale of a floating island. Do not draw a different island.'
+  - ref: approved:cloud-sea
+    role: 'The sea of clouds below every island: paint the clouds like this.'
+  - ref: R1
+    role: 'Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly
+      (do not draw him unless asked).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  prompt:
+  - text: 'A fresh independent concept plate of Ayçiçeği using the CURRENT home-layout interpretation.
+      Keep the familiar approved home-island identity and painterly family, with a fixed low front
+      three-quarter game camera (about 17 degrees above the horizon). The lawn outline is fixed
+      across levels: growth adds the named details within existing slots, or separate harbor/Tepe
+      pieces beside the home, never widens the lawn or extrudes a new rear shelf. The following
+      map describes positions only, not permission to draw unopened features. Draw each place ONLY
+      when the stage below explicitly includes it: garden at the left tip; tea corner at the right
+      tip; pond front-left; workshop back centre-left; windmill back-left. The RIGHT bridge/harbor
+      and its bagel cart open at IL3; the harbor pier front-right only from IL5, lighthouse back-right
+      only from IL6; hill path up-left only from IL9 and the separate Tepe only from IL10. Earlier
+      stages leave those unopened features absent, with unmarked grass and no empty plots or padlocks.
+      The round home door is inset into the earth face beneath grass, never a detached lawn house.
+      Retain these positions and only the stage''s explicitly named inventory and state. The four
+      listed source references stay unchanged; they establish the painting/family, not a pixel-registered
+      current large-plate production layout.
+
+
+      ISLAND LEVEL 10, FULL BLOOM: retain all eight recognizable completed stations in the current
+      layout: the left garden with a giant sunflower and second golden head; RIGHT tea stall with
+      tiled roof and flag; FRONT-LEFT pond with floating lanterns; back centre-left workshop with
+      tools/chimney/big gear sign; back-left windmill with flag and window boxes; and on the RIGHT
+      harbor the bagel cart, finished pier with bunting, and striped lighthouse with its foot garden.
+      The hill path behind the windmill reaches an unmistakably OPEN gate and climbs UP-LEFT to
+      the Tepe with bench and tripod telescope. Warm lanterns trace the existing paths; first dusk
+      stars appear. Keep the fixed lawn outline; abundance is the full named inventory, not new
+      generic buildings. FRESH STAGING: angle the two sunflower heads gently apart and let a relaxed
+      rhythm of path lights lead the eye through the open gate. Keep dusk/subject lighting.'
+  - block: style-anchor-v2
+  - text: 'MATERIAL AND LIGHT SCOPE: The generic style transfers painterly handling only. Fur belongs
+      only to explicitly requested mammals; frogs have smooth skin, while moss, plants, flowers,
+      wood, stone, clay, water, clouds and the whale keep smooth material-appropriate surfaces.
+      No animal anatomy is transferred to props or plants. Pofu alone may have his head curl, and
+      he is drawn only in the named ceremony. Preserve every stage-specific count and gate state.
+      No guide is attached: do not invent guide marks or introduce a ground ellipse into these opaque
+      scene plates. The appended LIGHT block alone sets hour, key/fill/rim and shadow hue; keep
+      its original cell and full subject-plane value range without a global milky veil. No text,
+      numbers, logos, UI, painted glass, grain, outlines or 3D-render finish. These independent
+      explorations do not prove pixel-registered inter-level continuity or exact large-plate socket
+      geometry with only the listed family references.'
+  - text: 'AVOID: a border, text, letters, numbers, harsh shadows, saturated or neon colors, dark
+      moods, outlines, photorealism, a 3D render look, a different overall island character, a curl
+      on any head except Pofu''s'
+- id: x-hill-gate-v2
+  kind: plate
+  name: x-hill-gate-v2
+  size: 1024x1536
+  canvas: 1024x1536
+  chat: Pofu · Exploration
+  light:
+    cell: golden
+    layer: subject
+  notes: 'Exploration. CURRENT home-layout hill-gate portrait: closed carved wooden gate with warm
+    light between planks; up-left hill path above windmill. Do not confuse this closed pre-unlock
+    portrait with IL10 open-gate overview. Never promoted. Current-layout interpretation and legacy
+    differences are documented in the PR. Original source file and fixed YAML/ref/light contracts
+    stay unchanged.'
+  attach:
+  - ref: approved:island-main-s
+    role: 'The home island: the same painting, the same low camera (about 20 degrees), the same
+      softness and scale of a floating island. Do not draw a different island.'
+  - ref: approved:cloud-sea
+    role: 'The sea of clouds below every island: paint the clouds like this.'
+  - ref: R1
+    role: 'Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly
+      (do not draw him unless asked).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  prompt:
+  - text: 'A fresh independent concept plate of Ayçiçeği using the CURRENT home-layout interpretation.
+      Keep the familiar approved home-island identity and painterly family, with a fixed low front
+      three-quarter game camera (about 17 degrees above the horizon). The lawn outline is fixed
+      across levels: growth adds the named details within existing slots, or separate harbor/Tepe
+      pieces beside the home, never widens the lawn or extrudes a new rear shelf. The following
+      map describes positions only, not permission to draw unopened features. Draw each place ONLY
+      when the stage below explicitly includes it: garden at the left tip; tea corner at the right
+      tip; pond front-left; workshop back centre-left; windmill back-left. The RIGHT bridge/harbor
+      and its bagel cart open at IL3; the harbor pier front-right only from IL5, lighthouse back-right
+      only from IL6; hill path up-left only from IL9 and the separate Tepe only from IL10. Earlier
+      stages leave those unopened features absent, with unmarked grass and no empty plots or padlocks.
+      The round home door is inset into the earth face beneath grass, never a detached lawn house.
+      Retain these positions and only the stage''s explicitly named inventory and state. The four
+      listed source references stay unchanged; they establish the painting/family, not a pixel-registered
+      current large-plate production layout.
+
+
+      ISLAND LEVEL 9, PORTRAIT CLOSE VIEW: the hill path behind the windmill approaches a CLOSED
+      round wooden gate in a low stone wall, with a sunflower carved in relief, soft warm glow leaking
+      behind and between the closed planks, tall grass and wildflowers, and the windmill sails visible
+      below. Keep the gate at the current up-left hill-path entrance; nothing is opened yet. FRESH
+      STAGING: a gentle breeze bends the grass away from the carved relief, exposing its rounded
+      carving and narrow plank light. The path approaches in a shallow quiet curve inside the portrait
+      crop. Preserve the golden/subject LIGHT cell and quiet anticipation.'
+  - block: style-anchor-v2
+  - text: 'MATERIAL AND LIGHT SCOPE: The generic style transfers painterly handling only. Fur belongs
+      only to explicitly requested mammals; frogs have smooth skin, while moss, plants, flowers,
+      wood, stone, clay, water, clouds and the whale keep smooth material-appropriate surfaces.
+      No animal anatomy is transferred to props or plants. Pofu alone may have his head curl, and
+      he is drawn only in the named ceremony. Preserve every stage-specific count and gate state.
+      No guide is attached: do not invent guide marks or introduce a ground ellipse into these opaque
+      scene plates. The appended LIGHT block alone sets hour, key/fill/rim and shadow hue; keep
+      its original cell and full subject-plane value range without a global milky veil. No text,
+      numbers, logos, UI, painted glass, grain, outlines or 3D-render finish. These independent
+      explorations do not prove pixel-registered inter-level continuity or exact large-plate socket
+      geometry with only the listed family references.'
+  - text: 'AVOID: a border, text, letters, numbers, harsh shadows, saturated or neon colors, dark
+      moods, outlines, photorealism, a 3D render look, a different overall island character, a curl
+      on any head except Pofu''s'
+- id: x-tam-cicek-night-v2
+  kind: plate
+  name: x-tam-cicek-night-v2
+  size: 1536x1024
+  canvas: 1536x1024
+  chat: Pofu · Exploration
+  light:
+    cell: night
+    layer: subject
+  notes: 'Exploration. CURRENT home-layout ceremony, original night/subject cell: nine specified
+    figures, whale above, giant two-head sunflower, full home/right harbor, warm lantern chain and
+    OPEN hill gate. Pofu curl only on Pofu. Never promoted. Current-layout interpretation and legacy
+    differences are documented in the PR. Original source file and fixed YAML/ref/light contracts
+    stay unchanged.'
+  attach:
+  - ref: approved:island-main-s
+    role: 'The home island: the same painting, the same low camera (about 20 degrees), the same
+      softness and scale of a floating island. Do not draw a different island.'
+  - ref: approved:cloud-sea
+    role: 'The sea of clouds below every island: paint the clouds like this.'
+  - ref: R1
+    role: 'Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly
+      (do not draw him unless asked).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  prompt:
+  - text: 'A fresh independent concept plate of Ayçiçeği using the CURRENT home-layout interpretation.
+      Keep the familiar approved home-island identity and painterly family, with a fixed low front
+      three-quarter game camera (about 17 degrees above the horizon). The lawn outline is fixed
+      across levels: growth adds the named details within existing slots, or separate harbor/Tepe
+      pieces beside the home, never widens the lawn or extrudes a new rear shelf. The following
+      map describes positions only, not permission to draw unopened features. Draw each place ONLY
+      when the stage below explicitly includes it: garden at the left tip; tea corner at the right
+      tip; pond front-left; workshop back centre-left; windmill back-left. The RIGHT bridge/harbor
+      and its bagel cart open at IL3; the harbor pier front-right only from IL5, lighthouse back-right
+      only from IL6; hill path up-left only from IL9 and the separate Tepe only from IL10. Earlier
+      stages leave those unopened features absent, with unmarked grass and no empty plots or padlocks.
+      The round home door is inset into the earth face beneath grass, never a detached lawn house.
+      Retain these positions and only the stage''s explicitly named inventory and state. The four
+      listed source references stay unchanged; they establish the painting/family, not a pixel-registered
+      current large-plate production layout.
+
+
+      THE TAM ÇİÇEK CEREMONY NIGHT: a deep indigo-plum night with soft stars and readable subject-plane
+      values. Retain the completed eight-station home and RIGHT harbor layout, the giant sunflower
+      with two heads, a warm lit lantern chain from garden to lighthouse, and the OPEN up-left hill
+      gate with its warm path. On the lawn gather the same nine named figures: central Pofu, Mochi
+      the bunny, Simit the kitten, goggled Fındık, one goat, exactly three little frogs and one
+      small mossy sprout. High overhead the huge gentle cloud-whale Gezgin passes with mossy back
+      and glowing lantern hooks. FRESH STAGING: a loose shallow crescent of small distinct poses
+      and upturned gazes around Pofu, with the passing whale in a gentle curved gesture. Pofu retains
+      his exact R1 look; only he has the head curl. Peaceful, joyful and quiet, without fireworks
+      or drama. Keep night/subject LIGHT; these named visitors are a ceremony gathering, not a claim
+      that healed-island residents permanently moved home.'
+  - block: style-anchor-v2
+  - text: 'MATERIAL AND LIGHT SCOPE: The generic style transfers painterly handling only. Fur belongs
+      only to explicitly requested mammals; frogs have smooth skin, while moss, plants, flowers,
+      wood, stone, clay, water, clouds and the whale keep smooth material-appropriate surfaces.
+      No animal anatomy is transferred to props or plants. Pofu alone may have his head curl, and
+      he is drawn only in the named ceremony. Preserve every stage-specific count and gate state.
+      No guide is attached: do not invent guide marks or introduce a ground ellipse into these opaque
+      scene plates. The appended LIGHT block alone sets hour, key/fill/rim and shadow hue; keep
+      its original cell and full subject-plane value range without a global milky veil. No text,
+      numbers, logos, UI, painted glass, grain, outlines or 3D-render finish. These independent
+      explorations do not prove pixel-registered inter-level continuity or exact large-plate socket
+      geometry with only the listed family references.'
+  - text: 'AVOID: a border, text, letters, numbers, harsh shadows, saturated or neon colors, dark
+      moods, outlines, photorealism, a 3D render look, a different overall island character, a curl
+      on any head except Pofu''s'
+- id: x-tepe-v2
+  kind: plate
+  name: x-tepe-v2
+  size: 1536x1024
+  canvas: 1536x1024
+  chat: Pofu · Exploration
+  light:
+    cell: dusk
+    layer: subject
+  notes: 'Exploration, never promoted. Current-layout Tepe: up-left above windmill, bench/telescope,
+    unlocked empty grass season dais edged pale stones, leafy tree. The TWO edition add-on locations
+    remain continuous unmarked grass while unopened, not the legacy three bare soil plots. This
+    deliberate new-v2 departure follows current no-empty-plot reveal rules; documented in the PR.
+    Original source file, fixed YAML/ref/light fields unchanged.'
+  attach:
+  - ref: approved:island-main-s
+    role: 'The home island: the same painting, the same low camera (about 20 degrees), the same
+      softness and scale of a floating island. Do not draw a different island.'
+  - ref: approved:cloud-sea
+    role: 'The sea of clouds below every island: paint the clouds like this.'
+  - ref: R1
+    role: 'Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly
+      (do not draw him unless asked).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  prompt:
+  - text: 'A fresh independent concept plate of Ayçiçeği using the CURRENT home-layout interpretation.
+      Keep the familiar approved home-island identity and painterly family, with a fixed low front
+      three-quarter game camera (about 17 degrees above the horizon). The lawn outline is fixed
+      across levels: growth adds the named details within existing slots, or separate harbor/Tepe
+      pieces beside the home, never widens the lawn or extrudes a new rear shelf. The following
+      map describes positions only, not permission to draw unopened features. Draw each place ONLY
+      when the stage below explicitly includes it: garden at the left tip; tea corner at the right
+      tip; pond front-left; workshop back centre-left; windmill back-left. The RIGHT bridge/harbor
+      and its bagel cart open at IL3; the harbor pier front-right only from IL5, lighthouse back-right
+      only from IL6; hill path up-left only from IL9 and the separate Tepe only from IL10. Earlier
+      stages leave those unopened features absent, with unmarked grass and no empty plots or padlocks.
+      The round home door is inset into the earth face beneath grass, never a detached lawn house.
+      Retain these positions and only the stage''s explicitly named inventory and state. The four
+      listed source references stay unchanged; they establish the painting/family, not a pixel-registered
+      current large-plate production layout.
+
+
+      THE TEPE, DUSK CLOSE VIEW: a separate grassy hilltop terrace UP-LEFT above the windmill, reached
+      by the existing stone steps. Keep Pofu''s lookout as a honey-wood bench and chunky cream-and-brass
+      tripod telescope, an EMPTY low round grass season stage edged in pale stones beside the leafy
+      tree, and generous continuous grass where the two future add-on A and B locations will be.
+      Neither add-on has opened: no bare soil plot, marker stones, sign, padlock, greenhouse, kiln
+      or resident appears there. The already unlocked EMPTY season stage remains clearly visible
+      as grass edged in pale stones, separate from these unmarked future locations. Show the windmill
+      roof below and enough of the familiar completed home and RIGHT harbor massing glowing beneath
+      the hill, with clouds beyond. FRESH STAGING: turn the telescope toward the first stars and
+      leave quiet unmarked grass beside the empty season stage and keep the bench, tree and telescope
+      distinct. Preserve dusk/subject lighting.'
+  - block: style-anchor-v2
+  - text: 'MATERIAL AND LIGHT SCOPE: The generic style transfers painterly handling only. Fur belongs
+      only to explicitly requested mammals; frogs have smooth skin, while moss, plants, flowers,
+      wood, stone, clay, water, clouds and the whale keep smooth material-appropriate surfaces.
+      No animal anatomy is transferred to props or plants. Pofu alone may have his head curl, and
+      he is drawn only in the named ceremony. Preserve every stage-specific count and gate state.
+      No guide is attached: do not invent guide marks or introduce a ground ellipse into these opaque
+      scene plates. The appended LIGHT block alone sets hour, key/fill/rim and shadow hue; keep
+      its original cell and full subject-plane value range without a global milky veil. No text,
+      numbers, logos, UI, painted glass, grain, outlines or 3D-render finish. These independent
+      explorations do not prove pixel-registered inter-level continuity or exact large-plate socket
+      geometry with only the listed family references.'
+  - text: 'AVOID: a border, text, letters, numbers, harsh shadows, saturated or neon colors, dark
+      moods, outlines, photorealism, a 3D render look, a different overall island character, a curl
+      on any head except Pofu''s'
+- id: x-altin-ada-v2
+  kind: plate
+  name: x-altin-ada-v2
+  size: 1536x1024
+  canvas: 1536x1024
+  chat: Pofu · Exploration
+  light:
+    cell: dusk
+    layer: subject
+  notes: 'Exploration. CURRENT home-layout Altin Ada: explicitly retain all eight IL10 station identities,
+    OPEN hill gate and Tepe; thin soft gold rim and small matte gold station details. Do not replace
+    the workshop, lantern pond or lighthouse with generic buildings. Never promoted. Current-layout
+    interpretation and legacy differences are documented in the PR. Original source file and fixed
+    YAML/ref/light contracts stay unchanged.'
+  attach:
+  - ref: approved:island-main-s
+    role: 'The home island: the same painting, the same low camera (about 20 degrees), the same
+      softness and scale of a floating island. Do not draw a different island.'
+  - ref: approved:cloud-sea
+    role: 'The sea of clouds below every island: paint the clouds like this.'
+  - ref: R1
+    role: 'Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly
+      (do not draw him unless asked).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  prompt:
+  - text: 'A fresh independent concept plate of Ayçiçeği using the CURRENT home-layout interpretation.
+      Keep the familiar approved home-island identity and painterly family, with a fixed low front
+      three-quarter game camera (about 17 degrees above the horizon). The lawn outline is fixed
+      across levels: growth adds the named details within existing slots, or separate harbor/Tepe
+      pieces beside the home, never widens the lawn or extrudes a new rear shelf. The following
+      map describes positions only, not permission to draw unopened features. Draw each place ONLY
+      when the stage below explicitly includes it: garden at the left tip; tea corner at the right
+      tip; pond front-left; workshop back centre-left; windmill back-left. The RIGHT bridge/harbor
+      and its bagel cart open at IL3; the harbor pier front-right only from IL5, lighthouse back-right
+      only from IL6; hill path up-left only from IL9 and the separate Tepe only from IL10. Earlier
+      stages leave those unopened features absent, with unmarked grass and no empty plots or padlocks.
+      The round home door is inset into the earth face beneath grass, never a detached lawn house.
+      Retain these positions and only the stage''s explicitly named inventory and state. The four
+      listed source references stay unchanged; they establish the painting/family, not a pixel-registered
+      current large-plate production layout.
+
+
+      ALTIN ADA, MASTERY DUSK: the SAME complete eight-station IL10 home in the current layout:
+      garden with giant two-head sunflower, tiled-and-flagged tea stall RIGHT, lantern pond FRONT-LEFT,
+      tool/chimney/gear workshop back centre-left, flagged windmill with window boxes back-left,
+      and on the RIGHT harbor the bagel cart, bunting-trimmed finished pier and lighthouse with
+      its foot garden. The up-left hill gate stays OPEN to the Tepe bench and telescope. A thin
+      soft golden line follows the existing fixed island rim; each station has its small matte golden
+      detail, including sunflower head, vane, sail tips and lamp room. Golden seeds drift upward
+      and the hilltop telescope points to one small last star coming on. Do not replace stations
+      with cottages, greenhouses or an observatory. FRESH STAGING: the drifting seeds form a loose
+      rising S gesture toward that one star, with a restrained rich golden rim and clear separate
+      station silhouettes. Gold stays soft and matte, without metallic shine. Keep dusk/subject
+      lighting.'
+  - block: style-anchor-v2
+  - text: 'MATERIAL AND LIGHT SCOPE: The generic style transfers painterly handling only. Fur belongs
+      only to explicitly requested mammals; frogs have smooth skin, while moss, plants, flowers,
+      wood, stone, clay, water, clouds and the whale keep smooth material-appropriate surfaces.
+      No animal anatomy is transferred to props or plants. Pofu alone may have his head curl, and
+      he is drawn only in the named ceremony. Preserve every stage-specific count and gate state.
+      No guide is attached: do not invent guide marks or introduce a ground ellipse into these opaque
+      scene plates. The appended LIGHT block alone sets hour, key/fill/rim and shadow hue; keep
+      its original cell and full subject-plane value range without a global milky veil. No text,
+      numbers, logos, UI, painted glass, grain, outlines or 3D-render finish. These independent
+      explorations do not prove pixel-registered inter-level continuity or exact large-plate socket
+      geometry with only the listed family references.'
+  - text: 'AVOID: a border, text, letters, numbers, harsh shadows, saturated or neon colors, dark
+      moods, outlines, photorealism, a 3D render look, a different overall island character, a curl
+      on any head except Pofu''s'
+light_standard: true
