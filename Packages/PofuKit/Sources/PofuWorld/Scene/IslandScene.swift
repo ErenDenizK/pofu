@@ -431,6 +431,8 @@ private struct SceneFrame<Bubble: View>: View {
     /// Power Mode hold the rest pose. A screenshot may pin the time
     /// (`worldResidentPin`).
     private func residentSteps(directive: FrameDirective) -> [String: ResidentLife.Step] {
+        // At night they are drowsy and still.
+        guard !world.isBedtime else { return [:] }
         let elapsed: Double
         var day = ResidentLife.day(of: clock)
         if let pinned = residentPin {

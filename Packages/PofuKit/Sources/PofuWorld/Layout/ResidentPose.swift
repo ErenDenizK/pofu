@@ -156,13 +156,10 @@ extension BuildMoment {
 }
 
 extension ResidentPose {
-    /// The loop's pose wins over the idle pose only for a work beat (a walk,
-    /// a greeting or a glance keep what the resident already wears).
+    /// The loop's greeting (a resident glad to see Pofu) shows over the
+    /// plain pose; every other pose is left as it is (a work beat reaches the
+    /// resident through `idlePose`).
     func lifePose(_ loop: ResidentPose) -> ResidentPose {
-        switch (self, loop) {
-        case (.rest, .work), (.work, .rest): loop == .work ? .work : self
-        case (.rest, .happy): .happy
-        default: self
-        }
+        self == .rest && loop == .happy ? .happy : self
     }
 }
