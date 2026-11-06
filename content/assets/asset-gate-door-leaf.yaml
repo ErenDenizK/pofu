@@ -1,0 +1,22 @@
+id: asset-gate-door-leaf
+type: asset
+title_tr: gate-door-leaf
+title_en: gate-door-leaf (ui)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached image into one layer of it, on a transparent background, same canvas,
+  every kept pixel exactly in place. Keep ONLY the open wooden door leaf on the right with
+  its hinges, window and knob. Make everything else fully transparent.
+links:
+  variant_of:
+  - asset-gate-door-scene
+art:
+  images: []
+  jobs:
+  - batch-58-gate-round-door:gate-door-leaf
+sources:
+- doc: tools/imagegen/manifest/batch-58-gate-round-door.yaml
+kind: ui
+batch: batch-58-gate-round-door
+size: 1024x1536

@@ -1,0 +1,140 @@
+# Batch 58: the gate's round door, layered (production pilot; real ids).
+#
+# Batch 48's direction A, the round door (`x-gate-round-door`, take 1), is
+# the lead's pick for the gate (founder 2026-11-06: the gate must be a
+# design masterpiece; build its background on purpose, layered, because
+# Pofu animates in it). The app composes: sky (code, the hour's colours) ·
+# `gate-door-bank` (the earth bank, lawn edge and the round door frame,
+# transparent doorway) · `gate-door-interior` (the warm burrow behind the
+# doorway) · Pofu (code, animated, in the doorway) · `gate-door-leaf` (the
+# open door leaf, its own layer so it can swing) · `gate-door-plaques` (three
+# blank plaques on a rope; the app writes the choices) · `gate-door-grass`
+# (foreground grass and flowers framing the bottom).
+#
+# All layers share one 1024 x 1536 canvas and register pixel for pixel: the
+# root is the full composite WITHOUT Pofu; every layer is an EDIT of it that
+# keeps only its part. Pilot: if registration fails, the lead falls back to
+# the composite as one image with Pofu in the empty doorway.
+
+batch: batch-58-gate-round-door
+title: The gate's round door, layered (composite root and five layers)
+status: open
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: island-main-l-v3, kind: world, name: island-main-l-v3, external: batch-05-fixes-pilot, master: design/art/masters/island-main-l-v3/island-main-l-v3.webp}
+
+  - id: gate-door-scene
+    kind: ui
+    name: gate-door-scene
+    size: 1024x1536
+    canvas: 1024x1536
+    transparent: false
+    chat: "Pofu · Gate round door"
+    notes: "ROOT: the full composite without Pofu, after x-gate-round-door take 1. Review: the same warmth and composition; the doorway is empty and lit, sized for a 170 pt hamster standing in it; the plaques blank; the sky band at the top calm for one line of words."
+    attach:
+      - ref: approved:island-main-l-v3
+        role: "The home island's round door, earth bank and soft painting."
+    prompt:
+      - text: |
+          A full portrait phone screen for a cozy mobile game, painted, no
+          text: we stand right in front of a little round wooden door set in
+          a warm earth bank under a grassy lawn edge with small flowers. The
+          door is swung wide open toward us on the right; the round doorway
+          is empty and glows with warm honey lamplight from a cozy burrow
+          inside (a tiny lamp, a teacup on a small table, a rug, a shelf with
+          a plant), a place where a small round hamster could stand. Above
+          the bank, a calm blue-hour sky with a few soft clouds and stars
+          fills the top third. Below the doorway, three blank wooden plaques
+          hang on a short rope swag from the door frame, one larger in the
+          middle, two smaller at the sides. Grass and small flowers frame
+          the bottom edge.
+      - block: style-anchor-v1
+      - text: "AVOID: any character or animal, text, letters, numbers, icons, a phone frame, UI chrome"
+
+  - id: gate-door-bank
+    kind: ui
+    name: gate-door-bank
+    size: 1024x1536
+    canvas: 1024x1536
+    transparent: true
+    edit_of: gate-door-scene
+    chat: "Pofu · Gate round door"
+    notes: "Layer 'bank' of the gate scene: registered pixel for pixel with the root; only this part kept, everything else transparent."
+    acceptance: {edit_mode: keep}
+    prompt:
+      - text: |
+          Edit the attached image into one layer of it, on a transparent
+          background, same canvas, every kept pixel exactly in place. Keep ONLY the earth bank, the lawn edge with its flowers and the round door FRAME (the stone and wood ring around the doorway). Make the doorway itself, the door leaf, the burrow inside, the sky, the plaques and the foreground grass fully transparent.
+      - block: edit-keep-v1
+      - text: "AVOID: moving or redrawing anything, new details, a background colour, text"
+
+  - id: gate-door-interior
+    kind: ui
+    name: gate-door-interior
+    size: 1024x1536
+    canvas: 1024x1536
+    transparent: true
+    edit_of: gate-door-scene
+    chat: "Pofu · Gate round door"
+    notes: "Layer 'interior' of the gate scene: registered pixel for pixel with the root; only this part kept, everything else transparent."
+    acceptance: {edit_mode: keep}
+    prompt:
+      - text: |
+          Edit the attached image into one layer of it, on a transparent
+          background, same canvas, every kept pixel exactly in place. Keep ONLY the warm burrow seen through the doorway (its back wall, lamp, table, teacup, rug, shelf and the warm light), extended a little beyond the doorway's edge on every side so it can sit behind the frame. Make everything else fully transparent.
+      - block: edit-keep-v1
+      - text: "AVOID: moving or redrawing anything, new details, a background colour, text"
+
+  - id: gate-door-leaf
+    kind: ui
+    name: gate-door-leaf
+    size: 1024x1536
+    canvas: 1024x1536
+    transparent: true
+    edit_of: gate-door-scene
+    chat: "Pofu · Gate round door"
+    notes: "Layer 'leaf' of the gate scene: registered pixel for pixel with the root; only this part kept, everything else transparent."
+    acceptance: {edit_mode: keep}
+    prompt:
+      - text: |
+          Edit the attached image into one layer of it, on a transparent
+          background, same canvas, every kept pixel exactly in place. Keep ONLY the open wooden door leaf on the right with its hinges, window and knob. Make everything else fully transparent.
+      - block: edit-keep-v1
+      - text: "AVOID: moving or redrawing anything, new details, a background colour, text"
+
+  - id: gate-door-plaques
+    kind: ui
+    name: gate-door-plaques
+    size: 1024x1536
+    canvas: 1024x1536
+    transparent: true
+    edit_of: gate-door-scene
+    chat: "Pofu · Gate round door"
+    notes: "Layer 'plaques' of the gate scene: registered pixel for pixel with the root; only this part kept, everything else transparent."
+    acceptance: {edit_mode: keep}
+    prompt:
+      - text: |
+          Edit the attached image into one layer of it, on a transparent
+          background, same canvas, every kept pixel exactly in place. Keep ONLY the three blank wooden plaques and their rope swag. Make everything else fully transparent.
+      - block: edit-keep-v1
+      - text: "AVOID: moving or redrawing anything, new details, a background colour, text"
+
+  - id: gate-door-grass
+    kind: ui
+    name: gate-door-grass
+    size: 1024x1536
+    canvas: 1024x1536
+    transparent: true
+    edit_of: gate-door-scene
+    chat: "Pofu · Gate round door"
+    notes: "Layer 'grass' of the gate scene: registered pixel for pixel with the root; only this part kept, everything else transparent."
+    acceptance: {edit_mode: keep}
+    prompt:
+      - text: |
+          Edit the attached image into one layer of it, on a transparent
+          background, same canvas, every kept pixel exactly in place. Keep ONLY the foreground grass and flowers along the bottom edge. Make everything else fully transparent.
+      - block: edit-keep-v1
+      - text: "AVOID: moving or redrawing anything, new details, a background colour, text"

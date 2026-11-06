@@ -1,0 +1,24 @@
+id: asset-gate-door-interior
+type: asset
+title_tr: gate-door-interior
+title_en: gate-door-interior (ui)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached image into one layer of it, on a transparent background, same canvas,
+  every kept pixel exactly in place. Keep ONLY the warm burrow seen through the doorway (its
+  back wall, lamp, table, teacup, rug, shelf and the warm light), extended a little beyond
+  the doorway's edge on every side so it can sit behind the frame. Make everything else fully
+  transparent.
+links:
+  variant_of:
+  - asset-gate-door-scene
+art:
+  images: []
+  jobs:
+  - batch-58-gate-round-door:gate-door-interior
+sources:
+- doc: tools/imagegen/manifest/batch-58-gate-round-door.yaml
+kind: ui
+batch: batch-58-gate-round-door
+size: 1024x1536

@@ -1,0 +1,24 @@
+id: asset-gate-door-bank
+type: asset
+title_tr: gate-door-bank
+title_en: gate-door-bank (ui)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached image into one layer of it, on a transparent background, same canvas,
+  every kept pixel exactly in place. Keep ONLY the earth bank, the lawn edge with its flowers
+  and the round door FRAME (the stone and wood ring around the doorway). Make the doorway
+  itself, the door leaf, the burrow inside, the sky, the plaques and the foreground grass
+  fully transparent.
+links:
+  variant_of:
+  - asset-gate-door-scene
+art:
+  images: []
+  jobs:
+  - batch-58-gate-round-door:gate-door-bank
+sources:
+- doc: tools/imagegen/manifest/batch-58-gate-round-door.yaml
+kind: ui
+batch: batch-58-gate-round-door
+size: 1024x1536
