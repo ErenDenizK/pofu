@@ -1,0 +1,105 @@
+{
+  "job": "sticker-mochi-happy",
+  "batch": "batch-42-stickers",
+  "asset": "char__sticker-mochi-happy",
+  "take": 1,
+  "takes_considered": 4,
+  "approved_at": "2026-11-06T06:12:37+00:00",
+  "image": "design/art/masters/sticker-mochi-happy/sticker-mochi-happy.png",
+  "raw": "design/art/masters/sticker-mochi-happy/raw.webp",
+  "raw_encoding": "webp q95",
+  "fingerprint": "cee3d2e1a419b391",
+  "prompt": "REFERENCES (attached, in this order):\n1. Mochi, the bunny: her exact look, fur, colors and eyes.\n\nA single full-body sticker of Mochi the bunny in the exact attached look, eyes as happy closed arcs, a wider smile, a blush, ears up. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.\n\nAVOID: text, a white outline, a background, teeth, tears, motion lines, a different design.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/mochi-v2/mochi-v2.webp",
+      "role": "Mochi, the bunny: her exact look, fur, colors and eyes."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud-retained-salvage",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-06T02:13:04.065Z",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "char-guard",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "fit": null,
+  "emit_region": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 34 (R1 51)",
+        "value": 33.7
+      },
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 66 (at most 22), p98 97 (at least 90), spread 32 (at least 60) (warn-only until the founder has seen the light pilot)",
+        "value": 31.6
+      },
+      {
+        "check": "light_median",
+        "status": "warn",
+        "message": "day/subject: median L 90 (band 55-90)",
+        "value": 90.5
+      },
+      {
+        "check": "light_haze",
+        "status": "warn",
+        "message": "day/subject: dark-channel haze 0.50 (at most 0.20; no true dark means a wash) (warn-only until the founder has seen the light pilot)",
+        "value": 0.498
+      },
+      {
+        "check": "light_contrast",
+        "status": "warn",
+        "message": "day/subject: p75 local contrast 1.8 (at least 3.5) (warn-only until the founder has seen the light pilot)",
+        "value": 1.78
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 3.6 (R1 5.3)",
+        "value": 3.62
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.4, p95 3.9, off-palette 0.8% (top: #441100 (0.1%), #EE7766 (0.1%))",
+        "value": 1.3682
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 73 against the char reference (outliers: C_p95, L_p2, tint_b)",
+        "value": 72.6
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Retained-only re-post of four historical originals on the author-fixed native 1024 square canvas with ground_line:false; original ordinals/account/generation timestamps preserved; no new generation. Manual full-body/expression/identity and proper light/dark 28 px checks passed. Official advisory light/palette/Harmony warnings remain advisory; hard QA failures are excluded."
+}
