@@ -1,0 +1,215 @@
+batch: batch-57-home-growth-strip
+manifest: tools/imagegen/manifest/batch-57-home-growth-strip.yaml
+manifest_sha256: fc7a87434d3aa50ca6d2dd4207e4fafd52a1547085e2f8bca0520f96642118e8
+contact_sheet: design/art/takes/batch-57-home-growth-strip/x-growth-il5/contact.jpg
+jobs:
+  x-growth-il5:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both initial originals are manually
+      eligible after root and independent full native/official locked/reference review.
+      Right pond with lily pads, steppingstones, flowerbeds, smallpondpier, three
+      roundearthdoors including recognizable original cross-window door, and sleeping
+      fireflies in the root hollow are present; no hamsters, extra mascots or text.
+      Take2 wins normal lowest lock load0.9615 versus0.9801, every hardQA check passes;
+      original LIGHT value/haze warnings remain advisory unchanged. Tiny closed-eye
+      winged/antennaed fireflies resting in the hollow are the specifically authored
+      sleeping ambient insects, not an invented universal insect-body ban or permission
+      for unrelated characters. Main oval/body/stonegroups/camera remains recognizable;
+      underbody hollow and added doors are requested changes. No claim that unlisted
+      earlier bagel/bridge or every future station is retained. The new manifest rightpond
+      location governs over old front-leftsocket doc; no source/refs/QA/pixel changes,
+      force or extra retry. Actual opaque alpha and thumbnail readability checked;
+      original PNG/RGBA and initial QA/locked receipts preserved. Exploration only;
+      auto-picked by QA; founder review pending; never promoted.
+qa_reports:
+  1:
+    job: x-growth-il5
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 36 (R1 51)
+      value: 35.6
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 61 (at most 22), p98 94 (at least 90), spread 33
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 33.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 82 (band 55-90)'
+      value: 81.8
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.39 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.392
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.0 (at least 3.5)'
+      value: 3.97
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.6 (R1 5.3)
+      value: 2.64
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 0.9801
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.0, p95 2.7, off-palette 0.0%
+      value: 1.047
+    info:
+      metrics_raw:
+        L_p5: 66.2
+        L_p50: 86.5
+        L_p95: 96.4
+        C_p50: 17.2
+        C_p95: 36.2
+        C_p99: 40.6
+        detail: 3.36
+      metrics_locked:
+        L_p5: 66.8
+        L_p50: 86.4
+        L_p95: 96.3
+        C_p50: 17.4
+        C_p95: 35.6
+        C_p99: 39.2
+        detail: 2.64
+    fingerprint: 7f981784e757c0e4
+  2:
+    job: x-growth-il5
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 35 (R1 51)
+      value: 34.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 61 (at most 22), p98 95 (at least 90), spread 35
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 34.7
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 82 (band 55-90)'
+      value: 81.5
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.40 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.4
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.5 (at least 3.5)'
+      value: 4.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.8 (R1 5.3)
+      value: 2.84
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 0.9615
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.1, p95 2.9, off-palette 0.0%
+      value: 1.0523
+    info:
+      metrics_raw:
+        L_p5: 66.5
+        L_p50: 87.6
+        L_p95: 96.4
+        C_p50: 15.2
+        C_p95: 35.7
+        C_p99: 41.9
+        detail: 3.59
+      metrics_locked:
+        L_p5: 67.1
+        L_p50: 87.4
+        L_p95: 96.2
+        C_p50: 15.1
+        C_p95: 34.9
+        C_p99: 40.4
+        detail: 2.84
+    fingerprint: 7f981784e757c0e4
+manual_review:
+  observed_note: Both initial originals are manually eligible after root and independent
+    full native/official locked/reference review. Right pond with lily pads, steppingstones,
+    flowerbeds, smallpondpier, three roundearthdoors including recognizable original
+    cross-window door, and sleeping fireflies in the root hollow are present; no hamsters,
+    extra mascots or text. Take2 wins normal lowest lock load0.9615 versus0.9801,
+    every hardQA check passes; original LIGHT value/haze warnings remain advisory
+    unchanged. Tiny closed-eye winged/antennaed fireflies resting in the hollow are
+    the specifically authored sleeping ambient insects, not an invented universal
+    insect-body ban or permission for unrelated characters. Main oval/body/stonegroups/camera
+    remains recognizable; underbody hollow and added doors are requested changes.
+    No claim that unlisted earlier bagel/bridge or every future station is retained.
+    The new manifest rightpond location governs over old front-leftsocket doc; no
+    source/refs/QA/pixel changes, force or extra retry. Actual opaque alpha and thumbnail
+    readability checked; original PNG/RGBA and initial QA/locked receipts preserved.
+    Exploration only; auto-picked by QA; founder review pending; never promoted.
+  excluded_takes: []
+sources:
+- batch: batch-57-home-growth-strip
+  job: x-growth-il5
+  take: 1
+  round: 1
+  logical_run: 20261106-b57-home-growth-strip
+  source_file: /workspace/generated_images/exec-d9ae2585-426f-4755-bcaa-7fa0e1b603d1.png
+  returned_at: '2026-11-06T09:11:18.647Z'
+  prompt_sha256: fdc68a346200f20ec33ccee8349c141bfe614b2ac48dd06e648cc20d7ad39a46
+  fingerprint: 7f981784e757c0e4
+  saved_at: '2026-11-06T09:11:19.114996+00:00'
+  original_generated_png_sha256: 2581a1e2e11edbfd93a23c923b2daa7219debc7b08dcc124ad7efbfadda12eaf
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: b5272db75eacf0e3f5b6a164f3e500ee3e36de86b1113cfe3751b81b018611ce
+  inbox_png_sha256: 0937e60ceea34f2e03cda548c143b5a2cb8061db0998cdb4ff047836817c9472
+  qa_sha256: a41832c5420d4ba75294b94d0aa95f2d465c4cc858e176d79c762b5140daac28
+- batch: batch-57-home-growth-strip
+  job: x-growth-il5
+  take: 2
+  round: 1
+  logical_run: 20261106-b57-home-growth-strip
+  source_file: /workspace/generated_images/exec-13679b02-95dd-421b-be16-0c56ba6b94f2.png
+  returned_at: '2026-11-06T09:12:06.682Z'
+  prompt_sha256: fdc68a346200f20ec33ccee8349c141bfe614b2ac48dd06e648cc20d7ad39a46
+  fingerprint: 7f981784e757c0e4
+  saved_at: '2026-11-06T09:12:07.016571+00:00'
+  original_generated_png_sha256: 4981087d572034a6c41410a960fb1ed42fa44c084ef61271963bc5065e0bf03c
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: f4aca7d51b9343584666b3a44158783f4010b20c3128b56884008829f5cec8e9
+  inbox_png_sha256: 29e7e4a8c299b2f564f55f71a9b355c53553f6d3a5f418455142c7566effd493
+  qa_sha256: 4f14887b505fb61634920cf76b0f264c3a19dbb3830f81289f4872552618019f
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
