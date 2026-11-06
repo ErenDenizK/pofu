@@ -189,3 +189,16 @@ def test_shield_plates_are_square_and_small():
         image = Image.open(out)
         assert image.size == (360, 360) and image.mode == "RGBA"
         assert out.stat().st_size < 400_000
+
+
+def test_shield_icons_are_round_180_and_under_30_kb():
+    names = ("curious", "proud", "jealous", "calm", "relieved", "sleepy")
+    entries = [e for e in DATA["entries"] if e["target"] == "shield-icons"]
+    assert [e["name"] for e in entries] == [f"shield-pofu-{n}" for n in names]
+    for e in entries:
+        assert e["source"].startswith("design/art/takes/")  # provenance: the exploration take
+        out = integrate.output_path(e, DATA["targets"])
+        image = Image.open(out).convert("RGBA")
+        assert image.size == (180, 180)
+        assert image.getpixel((0, 0))[3] == 0 and image.getpixel((90, 90))[3] >= 240  # round, on transparency
+        assert out.stat().st_size <= 30_000

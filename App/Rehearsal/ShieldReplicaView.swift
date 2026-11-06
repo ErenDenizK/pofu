@@ -59,7 +59,7 @@ struct ShieldReplicaView: View {
     }
 
     @ViewBuilder private var icon: some View {
-        if let image = ShieldIconImage.image(for: copy.icon, locate: Self.locate) {
+        if let image = ShieldIconImage.image(for: copy.icon, palette: copy.palette, locate: Self.locate) {
             Image(uiImage: image)
                 .resizable()
                 .scaledToFit()

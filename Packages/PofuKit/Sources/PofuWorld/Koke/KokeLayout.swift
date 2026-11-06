@@ -49,8 +49,9 @@ public struct KokeLine: Hashable, Sendable, Identifiable {
 }
 
 /// Where Koke is and how it looks, per stage (Koke prototype spec §2).
-/// Pure, so the numbers are tested. The art swaps in by name; until an
-/// imageset exists the view draws its code placeholder.
+/// Pure, so the numbers are tested. The five plates are painted
+/// (`world-koke-island-N`); the view keeps a code placeholder only for a
+/// bundle that lacks one.
 public enum KokeLayout {
     /// The island's centre on the world canvas: left of the harbor, below
     /// the home plate and far enough below it that the home island is out of
@@ -112,15 +113,11 @@ public enum KokeLayout {
     }
 
     /// The world grade's saturation at Koke, by stage. The colour coming
-    /// back is painted into the plates (stages 0 to 2), so the grade leaves
-    /// them as painted; stages 3 and 4 borrow stage 2's plate until theirs
-    /// are painted, and the grade lifts it a little each stage.
+    /// back is painted into the five plates, so the grade leaves them as
+    /// painted at every stage.
     public static func saturation(stage: Int) -> Double {
-        [1.0, 1.0, 1.0, 1.1, 1.2][clamped(stage)]
+        [1.0, 1.0, 1.0, 1.0, 1.0][clamped(stage)]
     }
-
-    /// The last plate painted: later stages draw it until their own arrive.
-    public static let paintedStages = 2
 
     /// The first warm practical, from stage 2.
     public static func hasWarmLight(stage: Int) -> Bool {
@@ -137,35 +134,29 @@ public enum KokeLayout {
         Double(clamped(stage)) / Double(stages - 1)
     }
 
+    /// The painted plate at `stage`: Koke lies (or stands, at stage 4) on
+    /// his island in the painting itself, so nothing is drawn over it.
     public static func islandArt(stage: Int) -> String {
         "world-koke-island-\(clamped(stage))"
     }
 
-    /// The plate drawn at `stage`: its own, or the last painted one.
+    /// The plate drawn at `stage`: always its own.
     public static func plateArt(stage: Int) -> String {
-        "world-koke-island-\(min(clamped(stage), paintedStages))"
+        islandArt(stage: stage)
     }
 
-    /// Whether the plate at `stage` is a stand-in for art not painted yet.
-    public static func plateIsStandIn(stage: Int) -> Bool {
-        clamped(stage) > paintedStages
-    }
-
-    /// Code-drawn blossoms on the lawn: the stage 4 signature until its
-    /// plate is painted.
-    public static func hasBlossoms(stage: Int) -> Bool {
-        clamped(stage) >= stages - 1
-    }
-
+    /// Koke as a single sprite, for a close-up moment (none draws one yet).
+    /// The plates already show him on the island, so a pose is never drawn
+    /// over a plate: that would put two Kokes on screen. `standing` was
+    /// skipped for size and still falls back to the one-eyed Koke.
     public enum Pose: String, Hashable, Sendable, CaseIterable {
         case asleep, oneEye, stretch, standing
 
-        /// The pose drawn when this one has no art yet: the stretch and the
-        /// standing pose use the one-eyed Koke.
+        /// The pose drawn when this one has no art yet.
         public var fallback: Pose? {
             switch self {
-            case .stretch, .standing: .oneEye
-            case .asleep, .oneEye: nil
+            case .standing: .oneEye
+            case .asleep, .oneEye, .stretch: nil
             }
         }
 
@@ -181,19 +172,6 @@ public enum KokeLayout {
 
     public static func pose(stage: Int) -> Pose {
         [Pose.asleep, .asleep, .oneEye, .stretch, .standing][clamped(stage)]
-    }
-
-    /// The pose drawn over the plate: the plates carry Koke as painted for
-    /// stages 0 to 2, so a pose is drawn only once the plate is a stand-in
-    /// (stage 3 and 4), covering the plate's Koke. `scale` is its size
-    /// against the painted Koke; the stand-in is a little larger than the
-    /// plate's Koke so that it hides it, and stage 4 stands taller still.
-    public static func overlay(stage: Int) -> (pose: Pose, scale: Double)? {
-        switch clamped(stage) {
-        case 3: (.stretch, 1.12)
-        case 4: (.standing, 1.12 * 1.1)
-        default: nil
-        }
     }
 
     /// Koke's gentle bounce at stage 4, in world units up (0 to `bounceHeight`

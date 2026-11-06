@@ -5,32 +5,23 @@ import Testing
 
 @Suite("Koke")
 struct KokeLayoutTests {
-    @Test func theColourIsPaintedAndTheGradeLiftsTheStandIns() {
-        let values = (0..<5).map { KokeLayout.saturation(stage: $0) }
-        #expect(values == [1.0, 1.0, 1.0, 1.1, 1.2])
-        #expect(KokeLayout.saturation(stage: 9) == 1.2)
+    @Test func theColourIsPaintedIntoEveryPlateSoTheGradeLeavesIt() {
+        #expect((0..<5).map { KokeLayout.saturation(stage: $0) } == [1.0, 1.0, 1.0, 1.0, 1.0])
+        #expect(KokeLayout.saturation(stage: 9) == 1.0)
         #expect(KokeLayout.saturation(stage: -3) == 1.0)
         var grade = WorldGrade.neutral
         grade.saturation = 1
-        #expect(KokeLayout.graded(grade, stage: 4).saturation == 1.2)
+        #expect(KokeLayout.graded(grade, stage: 4).saturation == 1.0)
     }
 
-    @Test func laterStagesDrawTheLastPaintedPlateWithBlossoms() {
-        #expect((0...2).map { KokeLayout.plateArt(stage: $0) } == (0...2).map { "world-koke-island-\($0)" })
-        #expect(KokeLayout.plateArt(stage: 3) == "world-koke-island-2")
-        #expect(KokeLayout.plateArt(stage: 4) == "world-koke-island-2")
-        #expect((0...4).map { KokeLayout.plateIsStandIn(stage: $0) } == [false, false, false, true, true])
-        #expect((0...4).map { KokeLayout.hasBlossoms(stage: $0) } == [false, false, false, false, true])
+    @Test func everyStageDrawsItsOwnPaintedPlate() {
+        #expect((0...4).map { KokeLayout.plateArt(stage: $0) } == (0...4).map { "world-koke-island-\($0)" })
+        #expect(KokeLayout.plateArt(stage: 9) == "world-koke-island-4")
     }
 
-    @Test func poseOverlaysCoverThePlatesKokeOnlyWhereThePlateIsAStandIn() throws {
-        #expect((0...2).allSatisfy { KokeLayout.overlay(stage: $0) == nil })
-        let stretch = try #require(KokeLayout.overlay(stage: 3))
-        let standing = try #require(KokeLayout.overlay(stage: 4))
-        #expect(stretch.pose == .stretch && stretch.pose.fallback == .oneEye)
-        #expect(standing.pose == .standing && standing.pose.fallback == .oneEye)
-        #expect(abs(standing.scale / stretch.scale - 1.1) < 1e-9)
-        #expect(KokeLayout.Pose.asleep.fallback == nil && KokeLayout.Pose.oneEye.fallback == nil)
+    @Test func onlyStandingStillFallsBackToTheOneEyedPose() {
+        #expect(KokeLayout.Pose.standing.fallback == .oneEye)
+        #expect([KokeLayout.Pose.asleep, .oneEye, .stretch].allSatisfy { $0.fallback == nil })
     }
 
     @Test func theBounceIsGentleStageFourOnlyAndStillWithoutATime() {

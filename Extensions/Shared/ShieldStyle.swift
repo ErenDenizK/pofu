@@ -131,8 +131,33 @@ struct ShieldColors {
     }
 }
 
-/// Pofu at his door, for the shield (experience v1 section 3.4): 180 px,
-/// one of three moods, his cheeks never puffed and never a guilty look.
+/// Pofu in his round doorway, for the shield (gate v2 section 5.3): six
+/// painted 180 px icons, one per mood, cheeks never puffed and never a guilty
+/// look. The table maps the copy's icon to the art: the default is curious;
+/// the breathing state is calm; bedtime and a tired Pofu are sleepy; the
+/// notification wait looks up, which curious covers.
+enum ShieldMoodIcon: String, CaseIterable {
+    case curious, proud, jealous, calm, relieved, sleepy
+
+    /// - Parameter palette: The copy's palette: bedtime (`.night`) reads as
+    ///   sleepy even though the copy's icon is `breathe`.
+    init(icon: ShieldIcon, palette: ShieldPalette = .day) {
+        switch icon {
+        case .curious, .excited: self = .curious
+        case .proud: self = .proud
+        case .jealous: self = .jealous
+        case .relieved: self = .relieved
+        case .breathe: self = palette == .night ? .sleepy : .calm
+        case .unwell: self = .sleepy
+        }
+    }
+
+    /// The PNG's name in the bundle: `shield-pofu-curious.png` and its
+    /// siblings (`tools/assets/integrate.py`, target `shield-icons`).
+    var assetName: String { "shield-pofu-\(rawValue)" }
+}
+
+/// Pofu at his door, the older three-mood plates and their drawn stand-in.
 enum ShieldDoorMood: String {
     case calm, proud, sleepy
 
@@ -152,8 +177,9 @@ enum ShieldDoorMood: String {
 /// Pofu's face for the shield, small: the shield draws its icon at about
 /// 60 points, and the extension has only a few megabytes to work with.
 ///
-/// The icon is `shield-pofu-door-<mood>.png`, the painted plate cut from the
-/// Codex sheet (`tools/assets/integrate.py`). Should a bundle lack it, a
+/// The icon is `shield-pofu-<mood>.png` (`ShieldMoodIcon`), a round painted
+/// scene under 30 KB. Should a bundle lack it, the older
+/// `shield-pofu-door-<mood>.png` plate stands in, and failing that a
 /// code-drawn door with the portrait in front of it stands in. Older mood images
 /// (`pofu-proud.png`, ...) and the base portrait remain the fallbacks, and
 /// "unwell" is the base desaturated (never a guilt picture).
@@ -163,7 +189,10 @@ enum ShieldIconImage {
     /// - Parameter locate: Finds a PNG by resource name: the main bundle in
     ///   the extension; the app adds PofuCompanion's bundle, where the
     ///   portrait lives.
-    static func image(for icon: ShieldIcon, locate: (String) -> URL? = mainBundlePNG) -> UIImage? {
+    static func image(for icon: ShieldIcon, palette: ShieldPalette = .day, locate: (String) -> URL? = mainBundlePNG) -> UIImage? {
+        if let round = load(ShieldMoodIcon(icon: icon, palette: palette).assetName, locate: locate) {
+            return round
+        }
         let mood = ShieldDoorMood(icon: icon)
         if let plate = load(mood.assetName, locate: locate) {
             return plate

@@ -1,16 +1,16 @@
 {
  "after": {
-  "C_mean": 10.935,
-  "C_p50": 10.965,
-  "C_p95": 18.111,
-  "L_mean": 83.451,
-  "L_p2": 70.699,
-  "L_p98": 95.649,
-  "detail": 2.836,
-  "edge": 0.075,
-  "tint_a": 2.787,
-  "tint_b": 0.367,
-  "warmth_b": 4.639
+  "C_mean": 14.845,
+  "C_p50": 14.956,
+  "C_p95": 23.341,
+  "L_mean": 75.765,
+  "L_p2": 54.699,
+  "L_p98": 95.611,
+  "detail": 1.844,
+  "edge": 0.259,
+  "tint_a": 5.153,
+  "tint_b": 0.534,
+  "warmth_b": 0.16
  },
  "before": {
   "C_mean": 10.314,
@@ -19,42 +19,39 @@
   "L_mean": 83.466,
   "L_p2": 70.699,
   "L_p98": 95.792,
-  "detail": 2.884,
-  "edge": 0.075,
+  "detail": 1.381,
+  "edge": 0.259,
   "tint_a": 3.776,
   "tint_b": 0.754,
   "warmth_b": 0.207
  },
  "chain": null,
  "correction": {
-  "black": 0.0,
+  "black": -16.0,
   "ceiling": 0.0,
-  "chroma": 1.0,
+  "chroma": 1.45,
   "materials": {},
   "tint_a": 0.0,
-  "tint_b": 6.0,
+  "tint_b": 0.0,
   "white": 0.0
  },
  "guarded": false,
- "kind": "char",
- "matched_to": "char",
+ "kind": "station",
+ "matched_to": "world",
  "outliers_after": [
   "C_p95",
-  "L_p2",
-  "detail",
-  "tint_b"
+  "edge"
  ],
  "outliers_before": [
   "C_p95",
   "L_p2",
-  "detail",
-  "tint_b"
+  "edge"
  ],
- "ppu": 29.0,
+ "ppu": 8.4267,
  "reference": false,
- "score_after": 48.4,
- "score_before": 48.3,
- "shipped": false,
+ "score_after": 62.7,
+ "score_before": 50.9,
+ "shipped": true,
  "source": "design/art/masters/nazli-tail/nazli-tail.webp",
  "source_sha": "071b4ed9cefd3e83"
 }

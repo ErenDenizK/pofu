@@ -89,7 +89,7 @@ enum ShieldPresenter {
         let subtitle = ShieldConfiguration.Label(text: copy.subtitle, color: colors.subtitle)
         let primary = ShieldConfiguration.Label(text: copy.primary.label, color: colors.primaryLabel)
         let secondary = copy.secondary.map { ShieldConfiguration.Label(text: $0.label, color: colors.secondaryLabel) }
-        let icon = ShieldIconImage.image(for: copy.icon)
+        let icon = ShieldIconImage.image(for: copy.icon, palette: copy.palette)
         if #available(iOS 26.4, *), !copy.submenu.isEmpty {
             return ShieldConfiguration(
                 backgroundBlurStyle: nil,

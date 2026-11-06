@@ -26,7 +26,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import vivid  # noqa: E402
 
 REPO = Path(__file__).resolve().parents[2]
-FLAT = ("games", "ui", "glow", "sprite", "shield", "app", "postcard")  # flat PNGs baked here, not through preblur
+FLAT = ("games", "ui", "glow", "sprite", "shield", "shield-icons", "app", "postcard")  # flat PNGs baked here, not through preblur
 MAP = Path(__file__).resolve().parent / "integration_map.json"
 PREBLUR = REPO / "design/prototypes/interactions/tools/preblur.py"
 
@@ -48,7 +48,7 @@ def master_file(folder: str) -> Path | None:
 def source_file(entry: dict) -> Path | None:
     """The entry's source image: a `postcard` names the exploration take it was cut from (`source`,
     the provenance); every other target has a master folder."""
-    if entry["target"] == "postcard":
+    if entry["target"] in ("postcard", "shield-icons"):
         path = REPO / entry["source"]
         return path if path.is_file() else None
     return master_file(entry["master"])
@@ -60,7 +60,7 @@ def output_path(entry: dict, targets: dict) -> Path:
         return root / f"gate-postcard-{entry['name']}.imageset" / f"gate-postcard-{entry['name']}.jpg"
     if entry["target"] in ("glow", "sprite"):
         return root / f"{entry['name']}.imageset" / f"{entry['name']}.png"
-    if entry["target"] == "shield":
+    if entry["target"] in ("shield", "shield-icons"):
         return root / f"{entry['name']}.png"
     if entry["target"] == "app":
         return root / f"{entry['name']}.imageset" / f"{entry['name']}@3x.png"
@@ -153,6 +153,26 @@ def bake_shield(entry: dict, out: Path) -> None:
     canvas.save(out, "PNG", optimize=True)
 
 
+def bake_shield_icon(entry: dict, out: Path) -> None:
+    """One round mood icon for the shield, cut from an exploration take's `grid` ([columns, rows], reading
+    order) at `index`: the cell trimmed, fitted into a square canvas of `points` x `scale` px and stored as a
+    palette PNG (the extension has a few MB; each icon stays under 30 KB). An exploration take, never
+    promoted: the `source` path in the map is its provenance."""
+    image = Image.open(source_file(entry)).convert("RGBA")
+    cols, rows = entry["grid"]
+    row, col = divmod(entry["index"], cols)
+    w, h = image.width // cols, image.height // rows
+    image = trim(image.crop((col * w, row * h, (col + 1) * w, (row + 1) * h)))
+    side = entry["points"][0] * entry.get("scale", 1)
+    f = min(side / image.width, side / image.height)
+    image = image.resize((max(1, round(image.width * f)), max(1, round(image.height * f))), Image.LANCZOS)
+    canvas = Image.new("RGBA", (side, side), (0, 0, 0, 0))
+    canvas.alpha_composite(image, ((side - image.width) // 2, (side - image.height) // 2))
+    out.parent.mkdir(parents=True, exist_ok=True)
+    canvas.quantize(colors=entry.get("colors", 192), method=Image.FASTOCTREE, dither=Image.Dither.NONE).save(out, "PNG", optimize=True)
+    assert out.stat().st_size <= 30_000, f"{entry['name']}: {out.stat().st_size} bytes is over the 30 KB shield icon budget"
+
+
 def bake_sprite(entry: dict, out: Path) -> None:
     """A coloured, alpha sprite for the world catalog that the scene draws in screen space (a firefly
     frame): cut, trimmed, fitted into `points` at `scale`, never upscaled."""
@@ -183,6 +203,8 @@ def bake_games(entry: dict, out: Path) -> None:
         return bake_app(entry, out)
     if entry["target"] == "shield":
         return bake_shield(entry, out)
+    if entry["target"] == "shield-icons":
+        return bake_shield_icon(entry, out)
     if entry["target"] == "sprite":
         return bake_sprite(entry, out)
     src = master_file(entry["master"])

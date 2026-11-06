@@ -6,8 +6,8 @@
   "L_mean": 73.611,
   "L_p2": 40.321,
   "L_p98": 93.96,
-  "detail": 9.638,
-  "edge": 0.201,
+  "detail": 5.731,
+  "edge": 0.741,
   "tint_a": 3.675,
   "tint_b": 10.331,
   "warmth_b": 32.42
@@ -19,8 +19,8 @@
   "L_mean": 73.611,
   "L_p2": 40.321,
   "L_p98": 93.96,
-  "detail": 9.638,
-  "edge": 0.201,
+  "detail": 5.731,
+  "edge": 0.741,
   "tint_a": 3.675,
   "tint_b": 10.331,
   "warmth_b": 32.42
@@ -36,23 +36,21 @@
   "white": 0.0
  },
  "guarded": true,
- "kind": "char",
- "matched_to": "char",
+ "kind": "station",
+ "matched_to": "world",
  "outliers_after": [
-  "C_p95",
   "L_p2",
   "detail"
  ],
  "outliers_before": [
-  "C_p95",
   "L_p2",
   "detail"
  ],
- "ppu": 29.0,
+ "ppu": 7.8596,
  "reference": false,
- "score_after": 73.7,
- "score_before": 73.7,
- "shipped": false,
+ "score_after": 76.8,
+ "score_before": 76.8,
+ "shipped": true,
  "source": "design/art/masters/koke-stretch/koke-stretch.webp",
  "source_sha": "9d9d505c7c36c85b"
 }

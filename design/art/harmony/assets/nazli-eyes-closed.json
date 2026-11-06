@@ -1,16 +1,16 @@
 {
  "after": {
-  "C_mean": 10.578,
-  "C_p50": 9.792,
-  "C_p95": 19.356,
-  "L_mean": 82.934,
-  "L_p2": 71.222,
-  "L_p98": 93.897,
-  "detail": 2.27,
-  "edge": 0.064,
-  "tint_a": 2.723,
-  "tint_b": 0.446,
-  "warmth_b": 5.391
+  "C_mean": 14.596,
+  "C_p50": 14.692,
+  "C_p95": 23.336,
+  "L_mean": 75.162,
+  "L_p2": 55.221,
+  "L_p98": 93.63,
+  "detail": 1.708,
+  "edge": 0.222,
+  "tint_a": 4.838,
+  "tint_b": -1.23,
+  "warmth_b": 1.267
  },
  "before": {
   "C_mean": 10.133,
@@ -19,42 +19,39 @@
   "L_mean": 82.944,
   "L_p2": 71.222,
   "L_p98": 93.994,
-  "detail": 2.301,
-  "edge": 0.064,
+  "detail": 1.192,
+  "edge": 0.222,
   "tint_a": 3.365,
   "tint_b": -1.107,
   "warmth_b": 0.926
  },
  "chain": null,
  "correction": {
-  "black": 0.0,
+  "black": -16.0,
   "ceiling": 0.0,
-  "chroma": 1.0,
+  "chroma": 1.45,
   "materials": {},
   "tint_a": 0.0,
-  "tint_b": 6.0,
+  "tint_b": 0.0,
   "white": 0.0
  },
  "guarded": false,
- "kind": "char",
- "matched_to": "char",
+ "kind": "station",
+ "matched_to": "world",
  "outliers_after": [
   "C_p95",
-  "L_p2",
-  "detail",
-  "tint_b"
+  "edge"
  ],
  "outliers_before": [
   "C_p95",
   "L_p2",
-  "detail",
-  "tint_b"
+  "edge"
  ],
- "ppu": 29.0,
+ "ppu": 8.4267,
  "reference": false,
- "score_after": 45.4,
- "score_before": 43.5,
- "shipped": false,
+ "score_after": 65.1,
+ "score_before": 52.9,
+ "shipped": true,
  "source": "design/art/masters/nazli-eyes-closed/nazli-eyes-closed.webp",
  "source_sha": "2e067e183e379f16"
 }
