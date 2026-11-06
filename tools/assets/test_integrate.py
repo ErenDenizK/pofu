@@ -59,3 +59,45 @@ def test_every_garden_art_case_has_a_png():
     assert len(names) >= 18
     missing = [n for n in names if not (root / f"{n}.png").is_file()]
     assert not missing, missing
+
+
+def _preblur():
+    import importlib.util
+
+    spec = importlib.util.spec_from_file_location("preblur", integrate.PREBLUR)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def test_meadow_sheet_cells_cut_every_piece_cleanly():
+    # Each cell holds one whole piece and nothing of its neighbours: the cells are disjoint, and together
+    # they hold every visible pixel of the sheet (a cut that clipped a piece, or took a bit of the next
+    # one, changes the count).
+    import numpy as np
+
+    preblur = _preblur()
+    sheet = Image.open(integrate.master_file(preblur.MEADOW_SHEET)).convert("RGBA")
+    alpha = np.asarray(sheet.getchannel("A")) > 8
+    cells = preblur.MEADOW_CELLS
+    assert len(cells) == 12
+    claimed = np.zeros_like(alpha)
+    for name, (x0, y0, x1, y1) in cells.items():
+        assert 0 <= x0 < x1 <= sheet.width and 0 <= y0 < y1 <= sheet.height, name
+        assert not claimed[y0:y1, x0:x1].any(), f"{name} overlaps another cell"
+        claimed[y0:y1, x0:x1] = True
+        piece = alpha[y0:y1, x0:x1]
+        ys, xs = np.where(piece)
+        assert len(xs), f"{name} is empty"
+        # The cell is the piece's box padded by 6 px: nothing is cut at an edge.
+        assert xs.min() >= 5 and ys.min() >= 5 and xs.max() <= (x1 - x0) - 6 and ys.max() <= (y1 - y0) - 6, name
+    assert alpha[~claimed].sum() == 0, "visible pixels outside every cell"
+
+
+def test_meadow_cells_are_registered_in_the_map():
+    preblur = _preblur()
+    mapped = {e["name"] for e in DATA["entries"] if e["target"] == "world"}
+    assert set(preblur.MEADOW_CELLS) <= mapped
+    for name in preblur.MEADOW_CELLS:
+        spec = preblur.APP_SOURCES[name]
+        assert spec["cell"] == preblur.MEADOW_CELLS[name] and spec["harmony_as"] == "dressing-meadow"

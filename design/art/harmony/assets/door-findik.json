@@ -6,8 +6,8 @@
   "L_mean": 76.099,
   "L_p2": 55.435,
   "L_p98": 89.541,
-  "detail": 2.018,
-  "edge": 1.884,
+  "detail": 3.022,
+  "edge": 1.218,
   "warmth_b": 28.673
  },
  "before": {
@@ -17,8 +17,8 @@
   "L_mean": 76.099,
   "L_p2": 55.435,
   "L_p98": 89.541,
-  "detail": 2.018,
-  "edge": 1.884,
+  "detail": 3.022,
+  "edge": 1.218,
   "warmth_b": 28.673
  },
  "chain": null,
@@ -32,19 +32,19 @@
   "white": 0.0
  },
  "guarded": false,
- "kind": "prop",
+ "kind": "station",
  "matched_to": "world",
  "outliers_after": [
-  "edge"
+  "detail"
  ],
  "outliers_before": [
-  "edge"
+  "detail"
  ],
- "ppu": 8.533,
+ "ppu": 13.2,
  "reference": false,
- "score_after": 78.8,
- "score_before": 78.8,
- "shipped": false,
+ "score_after": 84.9,
+ "score_before": 84.9,
+ "shipped": true,
  "source": "design/art/masters/door-findik/door-findik.png",
  "source_sha": "2ab8fe3f9a938fc0"
 }

@@ -52,6 +52,11 @@ public enum IslandFootprint {
             result.append(Placement(id: "\(resident.id) \(resident.art)", anchor: resident.feet, footprint: footprint(of: resident.art)))
         }
         result.append(Placement(id: "pofu", anchor: IslandLayout.pofu, footprint: footprint(of: "pofu")))
+        // The hive's three levels on its slot.
+        for level in 1...HomeFixtures.hiveLevels {
+            guard let art = HomeFixtures.hiveArt(level: level) else { continue }
+            result.append(Placement(id: "hive \(art)", anchor: HomeFixtures.hiveSlot, footprint: footprint(of: art)))
+        }
         return result
     }
 
@@ -82,7 +87,7 @@ public enum IslandFootprint {
     /// large plate every station at every level, Pofu and the residents
     /// have ground of their own), as "a / b" pairs.
     public static var overlaps: [String] {
-        let owners = IslandLayout.stationAnchors.keys.sorted().map { "\($0)" } + IslandLayout.residents.map { "\($0.id)" } + ["pofu"]
+        let owners = IslandLayout.stationAnchors.keys.sorted().map { "\($0)" } + IslandLayout.residents.map { "\($0.id)" } + ["pofu", "hive"]
         let grounds = owners.compactMap { owner in ground(of: owner).map { (owner, $0) } }
         var out: [String] = []
         for i in grounds.indices {
