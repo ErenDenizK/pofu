@@ -1,0 +1,51 @@
+{
+  "reviewer": "experience_delivery_adapter",
+  "independent_evidence_file": "/workspace/art-operator-runtime/run-20261105-night/batch-41-resident-reactions/independent-reviews/review-findik-proud-goat-sleepy-goat-proud.json",
+  "independent_evidence_sha256": "bcba2e6e56746bfe544ca37762b7dd37fadc2dc07384e29b5ed09ef43bab8b6f",
+  "job": "findik-proud",
+  "review": {
+    "evidence": {
+      "parent": "e9bd389e4f6efd7ae9873a6aebc09e6056b83be4529af8d99241ea5481bd6055",
+      "takes": {
+        "1": {
+          "original_sha256": "4ceeb0170ac63b1bf9fb9d062d807a98f12b7b1cbe386585d860cfb8486fdcdd",
+          "locked_sha256": "fcbf2bd9392487f41c7f332390619ac51f9988f5783a8a7bfc76d6aa1a87568a",
+          "qa_status": "fail",
+          "alignment": {
+            "scale": 0.9987,
+            "cx": 435.0,
+            "cy": 1169.0,
+            "dx": 1,
+            "dy": 5
+          }
+        },
+        "2": {
+          "original_sha256": "3423709ee5d0872bea78fcf4a8be0f57ee0ecffe2b6829372c0cbe264f6ac04a",
+          "locked_sha256": "16b9be892f810aab8598c4ac2c8ddb9bae5c593938a9448b5114625d60dc8090",
+          "qa_status": "warn",
+          "alignment": {
+            "scale": 1.008,
+            "cx": 432.5,
+            "cy": 1173.0,
+            "dx": 4,
+            "dy": 1
+          }
+        }
+      },
+      "preview_sha256": "b4c9b171b89fefcec5166ae18729f413bb00f8ad41130a1465f6f41a02a113d2"
+    },
+    "reason": "Both visually have calm content half-closed catchlit eyes, a small symmetric closed smile, slightly lifted chin and deeper blush; spines, ears, torso and paws preserve the base. Take 1 remains ineligible for its actual palette_drift hard failure (mean dE 2.9722, p95 14.1, off-palette 8.3%); take 2 is visually eligible and has no hard QA fail. No thresholds waived.",
+    "eligible_takes": [
+      2
+    ]
+  },
+  "owner_decision": {
+    "eligible": [
+      2
+    ],
+    "pick": 2,
+    "note": "Independent read-only comparison evidence: independent-reviews/review-findik-proud-goat-sleepy-goat-proud.json. Take2 alone hard-passes; take1 is excluded by actual palette_drift (mean dE2.9722, p9514.1, off-palette8.3%), despite acceptable expression/body. Take2 has calm half-closed catchlit eyes, small closed warm confident smile and lifted chin, with compact body, paws, ears and spine silhouette preserved. Global kept.7305 reflects requested face changes, not a new threshold. Exact full870x1306 lossless581618 bytes fits. No smirk, teeth, text, motion or backdrop; advisory warnings retained."
+  },
+  "source_originals_unchanged": true,
+  "local_art_edits": false
+}

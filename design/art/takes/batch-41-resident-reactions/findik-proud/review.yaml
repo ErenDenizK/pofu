@@ -1,0 +1,223 @@
+batch: batch-41-resident-reactions
+contact_sheet: design/art/takes/batch-41-resident-reactions/findik-proud/contact.jpg
+jobs:
+  findik-proud:
+    pick: 2
+    publication: promoted; founder review pending
+    note: 'auto-picked by QA; founder review pending. Independent read-only comparison
+      evidence: independent-reviews/review-findik-proud-goat-sleepy-goat-proud.json.
+      Take2 alone hard-passes; take1 is excluded by actual palette_drift (mean dE2.9722,
+      p9514.1, off-palette8.3%), despite acceptable expression/body. Take2 has calm
+      half-closed catchlit eyes, small closed warm confident smile and lifted chin,
+      with compact body, paws, ears and spine silhouette preserved. Global kept.7305
+      reflects requested face changes, not a new threshold. Exact full870x1306 lossless581618
+      bytes fits. No smirk, teeth, text, motion or backdrop; advisory warnings retained.'
+qa_reports:
+  1:
+    job: findik-proud
+    take: 1
+    status: fail
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536 scaled x0.850 into 870x1306
+      value: 0.8496
+    - check: edit_alignment
+      status: pass
+      message: the edit rescaled the object x1.001 and moved it; aligned back to the
+        parent
+      value: 0.9987
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 50 (R1 51)
+      value: 50.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 41 (at most 22), p98 95 (at least 90), spread 54
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 54.2
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 85 (band 55-90)'
+      value: 85.3
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.12 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.118
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 9.5 (at least 3.5)'
+      value: 9.54
+    - check: detail_budget
+      status: pass
+      message: detail at display size 6.7 (R1 5.3)
+      value: 6.71
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 3.0, p95 14.1, off-palette 8.3% (top: #AA5533 (1.7%), #BB6633
+        (1.2%))'
+      value: 2.9722
+    - check: ground_line
+      status: pass
+      message: feet at 89.9% of the height (contract 88%)
+      value: 0.8989
+    - check: harmony
+      status: pass
+      message: 'harmony score 73 against the char reference (outliers: L_p2, detail)'
+      value: 73.2
+    - check: edit_stability
+      status: pass
+      message: 77% of the parent level unchanged
+      value: 0.7663
+    - check: edit_chroma
+      status: pass
+      message: chroma x0.92 of the parent level (drift compounds along a chain)
+      value: 0.9203
+    info:
+      alignment:
+        scale: 0.9987
+        cx: 435.0
+        cy: 1169.0
+        dx: 1
+        dy: 5
+      metrics_raw:
+        L_p5: 45.9
+        L_p50: 85.0
+        L_p95: 93.6
+        C_p50: 18.2
+        C_p95: 50.2
+        C_p99: 54.6
+        detail: 6.69
+      metrics_locked:
+        L_p5: 46.1
+        L_p50: 85.3
+        L_p95: 94.0
+        C_p50: 18.4
+        C_p95: 50.1
+        C_p99: 54.2
+        detail: 6.71
+    fingerprint: 4d2b4671e501ae59
+  2:
+    job: findik-proud
+    take: 2
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536 scaled x0.850 into 870x1306
+      value: 0.8496
+    - check: edit_alignment
+      status: pass
+      message: the edit rescaled the object x0.992 and moved it; aligned back to the
+        parent
+      value: 1.008
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 50 (R1 51)
+      value: 49.7
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 39 (at most 22), p98 96 (at least 90), spread 57
+        (at least 60)'
+      value: 57.1
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 85 (band 55-90)'
+      value: 85.1
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.12 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.122
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 9.5 (at least 3.5)'
+      value: 9.52
+    - check: detail_budget
+      status: pass
+      message: detail at display size 6.7 (R1 5.3)
+      value: 6.67
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.1, p95 13.9, off-palette 8.2% (top: #AA5533 (2.1%), #994422
+        (1.3%))'
+      value: 3.1228
+    - check: ground_line
+      status: pass
+      message: feet at 89.8% of the height (contract 88%)
+      value: 0.8982
+    - check: harmony
+      status: pass
+      message: 'harmony score 76 against the char reference (outliers: L_p2, detail)'
+      value: 76.5
+    - check: edit_stability
+      status: warn
+      message: 73% of the parent level unchanged
+      value: 0.7305
+    - check: edit_chroma
+      status: pass
+      message: chroma x0.95 of the parent level (drift compounds along a chain)
+      value: 0.9484
+    info:
+      alignment:
+        scale: 1.008
+        cx: 432.5
+        cy: 1173.0
+        dx: 4
+        dy: 1
+      metrics_raw:
+        L_p5: 44.5
+        L_p50: 84.8
+        L_p95: 94.4
+        C_p50: 18.8
+        C_p95: 49.8
+        C_p99: 53.7
+        detail: 6.65
+      metrics_locked:
+        L_p5: 44.7
+        L_p50: 85.1
+        L_p95: 94.8
+        C_p50: 19.0
+        C_p95: 49.7
+        C_p99: 53.6
+        detail: 6.67
+    fingerprint: 4d2b4671e501ae59
+manual_review:
+  excluded_takes: []
+  note: 'Independent read-only comparison evidence: independent-reviews/review-findik-proud-goat-sleepy-goat-proud.json.
+    Take2 alone hard-passes; take1 is excluded by actual palette_drift (mean dE2.9722,
+    p9514.1, off-palette8.3%), despite acceptable expression/body. Take2 has calm
+    half-closed catchlit eyes, small closed warm confident smile and lifted chin,
+    with compact body, paws, ears and spine silhouette preserved. Global kept.7305
+    reflects requested face changes, not a new threshold. Exact full870x1306 lossless581618
+    bytes fits. No smirk, teeth, text, motion or backdrop; advisory warnings retained.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-816d8a85-d105-4489-8788-71507a05f84b.png
+  original_generated_png_sha256: 4ceeb0170ac63b1bf9fb9d062d807a98f12b7b1cbe386585d860cfb8486fdcdd
+  inbox_png_sha256: 496c18c9b8d4ac88e2f6984fd8d78c4e90f9c8848f2d87269e4f903e51386d43
+  rgba_sha256: 4809beaa08ba7905afc9c114dd280fbb0e330ee898dfdb2bcc8fb0fc0dd28e3a
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 4d2b4671e501ae59
+- take: 2
+  source_file: /workspace/generated_images/exec-cc187bf1-70d3-4839-8505-fea0c6560629.png
+  original_generated_png_sha256: 3423709ee5d0872bea78fcf4a8be0f57ee0ecffe2b6829372c0cbe264f6ac04a
+  inbox_png_sha256: 0d0c6ad86cc5c69cf543d3aea2fd72d15a1630c33b1ffcbb5068c97a9f63e896
+  rgba_sha256: 6b83eb889b80ec7bcf175c7694e15daaaab91952cac228ccd94a5db10964b958
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 4d2b4671e501ae59
