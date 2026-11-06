@@ -1,0 +1,1 @@
+Added: the lighthouse's lamp room, the path lamps' paper glass and Mochi's door window now glow at night; residents show how they feel (happy for a level-up or a visitor, proud after the ceremony, sleepy at bedtime, wide-eyed on the first tap of the day); the path lamps stand on the lawn from island level 6.
