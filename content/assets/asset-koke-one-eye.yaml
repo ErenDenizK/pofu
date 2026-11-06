@@ -4,17 +4,17 @@ title_tr: koke-one-eye
 title_en: koke-one-eye (char)
 status: in-production
 horizon: now
-summary: >-
-  Edit the attached moss creature, Koke. Change only the face: the nearer eye opens a sliver,
-  a soft sleepy half-moon of warm brown iris with a small catchlight under a heavy lid; the
-  farther eye stays gently closed; the mouth relaxes into a small soft "o" of a sleepy breath.
-  The body, the moss, the sprout, the ears, the paws, the colours and the size stay exactly
-  as they are.
+summary: 'Edit the attached moss creature, Koke. Change only the face: the nearer
+  eye opens a sliver, a soft sleepy half-moon of warm brown iris with a small catchlight
+  under a heavy lid; the farther eye stays gently closed; the mouth relaxes into a
+  small soft "o" of a sleepy breath. The body, the moss, the sprout, the ears, the
+  paws, the colours and the size stay exactly as they are.'
 links:
   variant_of:
   - asset-koke-asleep
 art:
-  images: []
+  images:
+  - design/art/masters/koke-one-eye/koke-one-eye.webp
   jobs:
   - batch-39-koke-production:koke-one-eye
 sources:

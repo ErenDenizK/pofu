@@ -1,0 +1,215 @@
+batch: batch-39-koke-production
+contact_sheet: design/art/takes/koke-repost-2026-11-06/koke-one-eye/contact.jpg
+jobs:
+  koke-one-eye:
+    pick: 1
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Both initial takes clear every
+      hard check and retain the approved1024x1024 moss body, tucked paws, crown leaves/clover,
+      ears, palette and baseline. Exactly one eye opens as a small sleepy warm-brown
+      half-moon with a catchlight while the other stays closed, and the mouth becomes
+      a small soft breath-o. The near-front camera does not identify a literal viewer
+      side; selected take1 uses the viewer-right eye and does not invent a side requirement
+      for take2. No teeth, extra eye, ground, shadow, head curl, flower or text. Character-guard
+      lock loads are equal0; take1 wins higher Harmony66.0 versus64.4. Full locked
+      review supports face-only registration, with ordinary resampled fur retained
+      rather than claiming byte-identical texture. Source binds to actual re-promoted/upload-verified
+      asleep parent.
+qa_reports:
+  2:
+    job: koke-one-eye
+    take: 2
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 56 (R1 51)
+      value: 55.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 51 (at most 22), p98 94 (at least 90), spread 43
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 42.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 79 (band 55-90)'
+      value: 78.9
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.13 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.133
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.4 (at least 3.5)'
+      value: 4.41
+    - check: detail_budget
+      status: pass
+      message: detail at display size 5.3 (R1 5.3)
+      value: 5.33
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.6, p95 12.3, off-palette 5.8% (top: #999933 (0.5%), #888822
+        (0.5%))'
+      value: 3.5643
+    - check: ground_line
+      status: pass
+      message: feet at 88.2% of the height (contract 88%)
+      value: 0.8818
+    - check: no_ground_shadow
+      status: warn
+      message: a ground shadow seems painted in
+    - check: harmony
+      status: warn
+      message: 'harmony score 64 against the char reference (outliers: C_p95, L_p2,
+        detail)'
+      value: 64.4
+    - check: edit_stability
+      status: pass
+      message: 98% of the parent level unchanged
+      value: 0.9844
+    - check: edit_chroma
+      status: pass
+      message: chroma x0.95 of the parent level (drift compounds along a chain)
+      value: 0.9485
+    info:
+      metrics_raw:
+        L_p5: 58.1
+        L_p50: 78.9
+        L_p95: 92.2
+        C_p50: 36.6
+        C_p95: 57.7
+        C_p99: 61.3
+        detail: 5.29
+      metrics_locked:
+        L_p5: 58.1
+        L_p50: 78.9
+        L_p95: 92.2
+        C_p50: 36.6
+        C_p95: 55.9
+        C_p99: 57.2
+        detail: 5.33
+    fingerprint: f7eff8365388b226
+  1:
+    job: koke-one-eye
+    take: 1
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 56 (R1 51)
+      value: 55.5
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 49 (at most 22), p98 94 (at least 90), spread 45
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 44.7
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 79 (band 55-90)'
+      value: 78.6
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.13 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.129
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.8 (at least 3.5)'
+      value: 4.77
+    - check: detail_budget
+      status: pass
+      message: detail at display size 5.9 (R1 5.3)
+      value: 5.9
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.5, p95 12.3, off-palette 5.7% (top: #BBBB55 (0.5%), #AABB44
+        (0.5%))'
+      value: 3.5479
+    - check: ground_line
+      status: pass
+      message: feet at 88.1% of the height (contract 88%)
+      value: 0.8809
+    - check: no_ground_shadow
+      status: warn
+      message: a ground shadow seems painted in
+    - check: harmony
+      status: warn
+      message: 'harmony score 66 against the char reference (outliers: C_p95, L_p2,
+        detail)'
+      value: 66.0
+    - check: edit_stability
+      status: pass
+      message: 99% of the parent level unchanged
+      value: 0.9869
+    - check: edit_chroma
+      status: pass
+      message: chroma x0.96 of the parent level (drift compounds along a chain)
+      value: 0.9554
+    info:
+      metrics_raw:
+        L_p5: 56.8
+        L_p50: 78.6
+        L_p95: 92.6
+        C_p50: 36.9
+        C_p95: 56.9
+        C_p99: 61.3
+        detail: 5.86
+      metrics_locked:
+        L_p5: 56.8
+        L_p50: 78.6
+        L_p95: 92.6
+        C_p50: 36.9
+        C_p95: 55.5
+        C_p99: 57.3
+        detail: 5.9
+    fingerprint: f7eff8365388b226
+manual_review:
+  excluded_takes: []
+  note: Both initial takes clear every hard check and retain the approved1024x1024
+    moss body, tucked paws, crown leaves/clover, ears, palette and baseline. Exactly
+    one eye opens as a small sleepy warm-brown half-moon with a catchlight while the
+    other stays closed, and the mouth becomes a small soft breath-o. The near-front
+    camera does not identify a literal viewer side; selected take1 uses the viewer-right
+    eye and does not invent a side requirement for take2. No teeth, extra eye, ground,
+    shadow, head curl, flower or text. Character-guard lock loads are equal0; take1
+    wins higher Harmony66.0 versus64.4. Full locked review supports face-only registration,
+    with ordinary resampled fur retained rather than claiming byte-identical texture.
+    Source binds to actual re-promoted/upload-verified asleep parent.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-1c8e00ed-e388-46dc-8293-48a024fe7f91.png
+  original_generated_png_sha256: d4d8ad81a25246622326f8918ff5c4788a89803ae6b07650014987bdb0ab0a85
+  inbox_png_sha256: 59d82a44bf25eb51ecd482127822074dcb321915bd796e47e7a0586379eb6044
+  rgba_sha256: 2b5cf6947990aa9c9bdfd84033fac45cf977e954700b786be245e4d6309495bd
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: f7eff8365388b226
+- take: 2
+  source_file: /workspace/generated_images/exec-79c71470-9132-41e5-ac38-d18df221e99e.png
+  original_generated_png_sha256: e2ab26b380a35cf220cd027daefce5eeba3e9ea63f66620f495a6188bfc3d87d
+  inbox_png_sha256: 9fc680a5ae8917474aa4dc5b5c5adb3a627e7bae42e67e35e519afeb09776ec0
+  rgba_sha256: 4acc588fe447b2a15047ad188905fc125d32ae5dc7f1658a03ce0574c7d711c9
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: f7eff8365388b226
