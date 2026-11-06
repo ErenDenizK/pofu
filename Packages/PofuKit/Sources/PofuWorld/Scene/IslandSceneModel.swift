@@ -274,6 +274,7 @@ public final class IslandSceneModel {
     func noteIslandLevel(_ level: Int, at now: Date) {
         defer { lastIslandLevel = level }
         guard let last = lastIslandLevel, level > last, !reduceMotion else { return }
+        pullBackForLevelUp()
         let gone = IslandDressing.leaving(fromLevel: last, toLevel: level)
         guard !gone.isEmpty else { return }
         leavingDressing = gone.map { (piece: $0, start: now) }
@@ -988,6 +989,22 @@ public final class IslandSceneModel {
     }
 
     private var establishTask: Task<Void, Never>?
+
+    /// The island-level ceremony (LS-3): the camera pulls back to the whole
+    /// island so every new thing is in frame, holds a beat, then settles
+    /// back where it was. Only from the resting framings with nothing open.
+    func pullBackForLevelUp(hold seconds: Double = 2.4) {
+        guard !reduceMotion, island == .home, framing != .map, focus == nil, sheet == nil, engine.rig.pinchStart == nil else { return }
+        engine.rig.focus(pose: engine.rig.rail.wholeIslandPose, lens: .island)
+        kick()
+        establishTask?.cancel()
+        establishTask = Task { @MainActor [weak self] in
+            try? await Task.sleep(for: .seconds(seconds))
+            guard let self, !Task.isCancelled, self.focus == nil else { return }
+            self.engine.rig.releaseFocus()
+            self.kick()
+        }
+    }
 
     // MARK: - The timeline
 

@@ -872,6 +872,8 @@ private struct WorldCanvas: View {
             case fixture(HomeFixtures.Placed)
             /// The moss Koke gave, once it is healed.
             case gift
+            /// The island's growth at this level (`IslandGrowth`).
+            case growth(GrowthPiece)
         }
 
         var id: String
@@ -914,6 +916,9 @@ private struct WorldCanvas: View {
                 let atTop = !home.isEmpty && home.allSatisfy { $0.level >= $0.maxLevel }
                 for fixture in HomeFixtures.placed(islandLevel: life.islandLevel, homeStationsAtTop: atTop) {
                     objects.append(Object(id: "fixture-\(fixture.id)", kind: .fixture(fixture), anchor: fixture.point, depth: IslandLayout.depth(ofY: fixture.point.y)))
+                }
+                for piece in IslandGrowth.pieces(atLevel: life.islandLevel) {
+                    objects.append(Object(id: "growth-\(piece.id)", kind: .growth(piece), anchor: piece.point, depth: piece.depth))
                 }
                 if world.koke.giftUnlocked {
                     let spot = KokeLayout.homeGift
@@ -1008,6 +1013,8 @@ private struct WorldCanvas: View {
             )
         case .fixture(let fixture):
             FixtureView(art: fixture.art, point: point, level: level)
+        case .growth(let piece):
+            GrowthView(piece: piece, point: point, level: level, time: life.isAmbient ? life.time : 0)
         case .gift:
             MossGiftView(point: point)
         case .critter(let critter):

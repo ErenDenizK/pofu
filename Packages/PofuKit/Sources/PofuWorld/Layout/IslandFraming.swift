@@ -33,13 +33,22 @@ public enum IslandFraming {
     public static let characterMargin = 8.0
     /// How much of the width the plate fills at the Island framing.
     public static let islandFill = 0.88
-    /// Pofu's scale at Home: 64 units at 141 pt, 35 % of the width.
-    public static let homeScale = 2.20
+    /// Pofu's scale at Home (growth round, 2026-11-06): 64 units at 90 pt,
+    /// so the lawn reaches both screen edges, its stations and every level's
+    /// growth are on screen, and the earth body is about a sixth of the
+    /// height. The old close-up (×2.2, 141 pt) hid the growth off-screen and
+    /// let the unchanging earth fill 45 % of the frame; it is a pinch away
+    /// (the rail's band) and a station focus away.
+    public static let homeScale = 1.40
     /// Pofu's feet at Home, in reference points from the top: the lawn's
     /// back edge lands near 285 pt, so the sky is about a third of the
     /// screen, the lawn reads larger than the earth below it, and the
     /// speech bubble still clears the top chrome.
-    public static let homeFeetY = 440.0
+    public static let homeFeetY = 470.0
+
+    /// The look x at Home: a little right of Pofu, so the tea corner, the
+    /// path and the harbor side are in frame with the pond.
+    public static let homeLookX = 36.0
 
     // MARK: - Content
 
@@ -158,7 +167,7 @@ public enum IslandFraming {
     /// Points per world unit at the Island framing, at the reference width:
     /// Pofu's 64 units at 96 pt (visual round 2: closer, so the island
     /// fills more of the screen).
-    public static let islandScale = 1.5
+    public static let islandScale = 1.0
 
     /// The Island stop's look x range at the reference width: the plate's
     /// tips reach the screen's edges at either end, never past them.
@@ -209,7 +218,7 @@ public enum IslandFraming {
     /// Home: Pofu at ×2.4 with his feet at `homeFeetY`, nudged sideways at
     /// most a quarter of the width so no resident is cut by an edge.
     public static func homeStop(width: Double = CameraRail.referenceWidth) -> CameraRail.Stop {
-        let pose = CameraPose(scale: homeScale, look: IslandLayout.pofu, anchorY: homeFeetY)
+        let pose = CameraPose(scale: homeScale, look: WorldPoint(x: homeLookX, y: IslandLayout.pofu.y), anchorY: homeFeetY)
         let kept = keepingCharactersWhole(pose, focus: pofuBox, subjects: residentBoxes, width: width, maxDrift: width * 0.25)
         return CameraRail.Stop(scale: homeScale, look: WorldPoint(x: kept.lookX, y: IslandLayout.pofu.y), anchorY: homeFeetY)
     }
