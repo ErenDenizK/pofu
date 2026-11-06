@@ -1,0 +1,24 @@
+id: asset-caglayan-island-2
+type: asset
+title_tr: caglayan-island-2
+title_en: caglayan-island-2 (plate)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached island plate from stage 0 to stage 2: the first warm light. Two clear
+  ribbons of water now fall down the cliff, one on the left and one in the centre, into the
+  pool. The pool is half full of clear blue-green water with soft ripples, its old dry rim
+  still showing above the water line. The stones beside the streams are wet and mossy green;
+  the grass along the banks is green again and two small clumps …
+links:
+  variant_of:
+  - asset-caglayan-island-0
+art:
+  images: []
+  jobs:
+  - batch-43-caglayan-production:caglayan-island-2
+sources:
+- doc: tools/imagegen/manifest/batch-43-caglayan-production.yaml
+kind: plate
+batch: batch-43-caglayan-production
+size: 1536x1024

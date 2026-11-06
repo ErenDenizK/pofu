@@ -1,0 +1,24 @@
+id: asset-damla-glass
+type: asset
+title_tr: damla-glass
+title_en: damla-glass (char)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached otter: the same character, the same size, on the same ground line, in
+  the same place on the canvas. She now lifts the little tea glass up with both paws above
+  her head, proud and happy; the glass is half full of clear water with a tiny glint. Her
+  eyes are closed in two happy upward curves and she has a big open smile. Her tail curls
+  up a little with joy. Everything else (fur colours, proportions, st…
+links:
+  variant_of:
+  - asset-damla
+art:
+  images: []
+  jobs:
+  - batch-43-caglayan-production:damla-glass
+sources:
+- doc: tools/imagegen/manifest/batch-43-caglayan-production.yaml
+kind: char
+batch: batch-43-caglayan-production
+size: 1024x1024

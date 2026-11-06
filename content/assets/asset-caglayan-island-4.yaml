@@ -1,0 +1,24 @@
+id: asset-caglayan-island-4
+type: asset
+title_tr: caglayan-island-4
+title_en: caglayan-island-4 (plate)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached island plate from stage 0 to stage 4: healed. The waterfall pours again:
+  one full, soft, glassy curtain of water falls down all four cliff steps into the pool, white
+  where it breaks on each step. At its foot a soft cloud of fine mist rises, and in the mist
+  a gentle pastel rainbow arcs, small and soft. The pool is full, clear blue-green, with gentle
+  ripples and a few lily pads. The water wheel turns,…
+links:
+  variant_of:
+  - asset-caglayan-island-0
+art:
+  images: []
+  jobs:
+  - batch-43-caglayan-production:caglayan-island-4
+sources:
+- doc: tools/imagegen/manifest/batch-43-caglayan-production.yaml
+kind: plate
+batch: batch-43-caglayan-production
+size: 1536x1024
