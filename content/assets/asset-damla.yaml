@@ -1,0 +1,21 @@
+id: asset-damla
+type: asset
+title_tr: damla
+title_en: damla (char)
+status: in-production
+horizon: now
+summary: >-
+  Draw Damla, a small, round, plush river otter, as a game sprite on a transparent background,
+  in exactly the same art style, lighting and level of softness as the attached hamster and
+  bunny. She stands on her hind legs facing the viewer, three quarters to the left, her long
+  soft tail curled on the ground beside her. Warm cocoa-brown fur with a cream face, chin
+  and belly, a round head with tiny round ears, big warm dar…
+art:
+  images: []
+  jobs:
+  - batch-43-caglayan-production:damla
+sources:
+- doc: tools/imagegen/manifest/batch-43-caglayan-production.yaml
+kind: char
+batch: batch-43-caglayan-production
+size: 1024x1024

@@ -1,0 +1,24 @@
+id: asset-caglayan-island-3
+type: asset
+title_tr: caglayan-island-3
+title_en: caglayan-island-3 (plate)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached island plate from stage 0 to stage 3: nearly there. Three clear streams
+  of water fall down the left, centre and right of the cliff steps, each still a separate
+  ribbon with dry stone between them. The pool is full to its old rim with clear blue-green
+  water and soft ripples. The water wheel on the right is turning: its paddles are wet and
+  a little white spray lifts at the bottom where they meet the wa…
+links:
+  variant_of:
+  - asset-caglayan-island-0
+art:
+  images: []
+  jobs:
+  - batch-43-caglayan-production:caglayan-island-3
+sources:
+- doc: tools/imagegen/manifest/batch-43-caglayan-production.yaml
+kind: plate
+batch: batch-43-caglayan-production
+size: 1536x1024

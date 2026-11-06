@@ -1,0 +1,9 @@
+{
+  "title": "Concept il4 + cast",
+  "canvas": [1200, 800],
+  "background": {"image": "design/art/takes/batch-31-island-milestones-v2/x-island-il4-v2/plate__x-island-il4-v2--t1.webp", "kind": "concept"},
+  "layers": [
+    {"image": "design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png", "name": "pofu", "role": "character", "x": 0.34, "y": 0.42, "height": 0.12, "casts": true},
+    {"image": "design/art/masters/mochi-base/mochi-base.png", "name": "mochi", "role": "character", "x": 0.52, "y": 0.46, "height": 0.11, "casts": true}
+  ]
+}

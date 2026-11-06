@@ -1,0 +1,21 @@
+id: asset-caglayan-island-0
+type: asset
+title_tr: caglayan-island-0
+title_en: caglayan-island-0 (plate)
+status: in-production
+horizon: now
+summary: >-
+  A game plate for a cozy mobile game: Çağlayan, a small island whose waterfall has stopped,
+  in the game, on a still overcast-bright noon. STAGE 0, STUCK. The island is a floating diorama
+  plate with a shallow top about a fifth as deep as it is wide, over a soft rounded earth
+  body with gentle bands, a small plate about 62 percent of the image width, centered. At
+  the back centre rises a low cliff of rounded stone in four…
+art:
+  images: []
+  jobs:
+  - batch-43-caglayan-production:caglayan-island-0
+sources:
+- doc: tools/imagegen/manifest/batch-43-caglayan-production.yaml
+kind: plate
+batch: batch-43-caglayan-production
+size: 1536x1024

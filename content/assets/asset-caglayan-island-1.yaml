@@ -1,0 +1,24 @@
+id: asset-caglayan-island-1
+type: asset
+title_tr: caglayan-island-1
+title_en: caglayan-island-1 (plate)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached island plate from stage 0 to stage 1: one stream is back. The trickle
+  on the left grows into one thin, clear ribbon of water falling step by step down the left
+  side of the cliff into the pool. The stones it runs over are darker and wet, with a little
+  fresh green moss. The pool's near edge is wet and a little darker, with a few soft ripples
+  where the ribbon lands; the rest of the pool stays dull. A f…
+links:
+  variant_of:
+  - asset-caglayan-island-0
+art:
+  images: []
+  jobs:
+  - batch-43-caglayan-production:caglayan-island-1
+sources:
+- doc: tools/imagegen/manifest/batch-43-caglayan-production.yaml
+kind: plate
+batch: batch-43-caglayan-production
+size: 1536x1024
