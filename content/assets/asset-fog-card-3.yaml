@@ -4,12 +4,12 @@ title_tr: fog-card-3
 title_en: fog-card-3 (ui)
 status: in-production
 horizon: now
-summary: >-
-  A single small, soft drift of mist, wider than tall, centered, filling about 70 percent
-  of the width: a soft pale white-grey veil with a slightly denser heart and wispy ragged
-  edges that fade into pure black well before the border.
+summary: 'A single small, soft drift of mist, wider than tall, centered, filling about
+  70 percent of the width: a soft pale white-grey veil with a slightly denser heart
+  and wispy ragged edges that fade into pure black well before the border.'
 art:
-  images: []
+  images:
+  - design/art/ui/ui-fog-card-3/ui-fog-card-3.png
   jobs:
   - batch-44-weather-fx:fog-card-3
 sources:
@@ -17,3 +17,8 @@ sources:
 kind: ui
 batch: batch-44-weather-fx
 size: 1024x1024
+notes:
+- 'batch-44-weather-fx: promoted take 1. auto-picked by QA; founder review pending.
+  Both have one small wider-than-tall pale-grey mist drift, denser heart, wispy irregular
+  falloff, black borders; no face/ghost/object/outline. Canonical1024x512 whole delivery
+  reviewed. Hard QA passes; normalzero fallback then ordinal1.'

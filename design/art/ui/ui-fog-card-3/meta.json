@@ -1,0 +1,87 @@
+{
+  "job": "fog-card-3",
+  "batch": "batch-44-weather-fx",
+  "asset": "ui__fog-card-3",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-06T08:25:27+00:00",
+  "image": "design/art/ui/ui-fog-card-3/ui-fog-card-3.png",
+  "raw": "design/art/ui/ui-fog-card-3/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "e4e55c29ddb98642",
+  "prompt": "REFERENCES (attached, in this order):\n1. An approved glow sprite of the game: match its soft airbrushed grain and smooth falloff on pure black (do not draw a pool).\n\nA single small, soft drift of mist, wider than tall, centered,\nfilling about 70 percent of the width: a soft pale white-grey veil\nwith a slightly denser heart and wispy ragged edges that fade into\npure black well before the border.\n\nUI OBJECT: a painted object that the app places under or inside native\niOS glass controls. Never paint glass, frosted panels, buttons, frames,\nprogress bars or any interface chrome: the app draws all glass and all\ncontrols natively. The object is centered with a generous transparent\nmargin of about 10% on every side.\n\nMASK SPRITE: painted light-on-black for a game; the app uses its\nbrightness as a soft mask, so pure black (#000000) means no mist.\nOnly white and soft greys, the same soft airbrushed grain as the\nattached sprite, never a digital gradient.\n\nAVOID: a cloud with a hard outline, a ghost or face shape, any object, colour, text, letters, a border, banding, grey or coloured backgrounds\n\nOutput: one image, opaque, full bleed, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/ui/ui-glow-ground-pool/ui-glow-ground-pool.png",
+      "role": "An approved glow sprite of the game: match its soft airbrushed grain and smooth falloff on pure black (do not draw a pool)."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-06T07:23:31+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "fit": null,
+  "emit_region": null,
+  "qa": {
+    "status": "pass",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "opaque, as this kind must be"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 and center-cropped to 1024x512",
+        "value": 0.8166
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "glow chroma p95 2 on 32% lit pixels (additive profile)",
+        "value": 1.707
+      },
+      {
+        "check": "additive_background",
+        "status": "pass",
+        "message": "border luma p99 0.004 (near-black, at most 0.05): the glow dies before the edge",
+        "value": 0.0039
+      },
+      {
+        "check": "additive_falloff",
+        "status": "pass",
+        "message": "0.00% of the image has a hard edge (luma step over 0.08 per px at 256 px; soft falloff, at most 0.8%)",
+        "value": 0.0
+      },
+      {
+        "check": "additive_banding",
+        "status": "pass",
+        "message": "167 of 167 luma levels used across the falloff (100%; low means banding)",
+        "value": 1.0
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 0.7 (R1 5.3)",
+        "value": 0.68
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. auto-picked by QA; founder review pending. Both have one small wider-than-tall pale-grey mist drift, denser heart, wispy irregular falloff, black borders; no face/ghost/object/outline. Canonical1024x512 whole delivery reviewed. Hard QA passes; normalzero fallback then ordinal1."
+}
