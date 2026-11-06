@@ -1,0 +1,210 @@
+batch: batch-23-stickers-v2
+manifest: tools/imagegen/manifest/batch-23-stickers-v2.yaml
+manifest_sha256: dcb068fb9723a863b0d1cbed34ed32dd799fcb31c4898c31a4fed74500ab0360
+contact_sheet: design/art/takes/batch-23-stickers-v2/x-sticker-duo-1-v2/contact.jpg
+jobs:
+  x-sticker-duo-1-v2:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Original and locked proper composites
+      confirm exactly three separated pair groups/six complete characters, each one
+      Pofu with curl and one long-eared Mochi without curl, with correct similar relative
+      size. Tea pair holds exactly two tulip glasses actually clinking, no saucer/table;
+      central pair embraces with eyes closed and blush; goodbye pair both wave one
+      paw and smile. Within-pair contact is intentional and separate groups remain
+      apart. Both initial takes pass literal brief and hard QA. Take1 original is2172x724;
+      unmodified canonical normalization preserves all silhouettes on declared1536x1024,
+      so no invented raw-size failure, clipping or white-border claim. Lowest lock
+      load selects take1=.1395 versus take2=.2375. Advisory warnings retained; exploration
+      only, never promoted.
+qa_reports:
+  1:
+    job: x-sticker-duo-1-v2
+    take: 1
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: warn
+      message: 2172x724 scaled x0.707 into 1536x1024 (aspect off by 100%, padded);
+        source smaller than the canvas (upscaled)
+      value: 0.7072
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 46 (R1 51)
+      value: 45.6
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 35 (at most 22), p98 96 (at least 90), spread 61
+        (at least 60)'
+      value: 60.7
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 88 (band 55-90)'
+      value: 87.5
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.01 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.008
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.7 (at least 3.5)'
+      value: 6.7
+    - check: detail_budget
+      status: warn
+      message: detail at display size 8.1 (R1 5.3) (advisory in an exploration)
+      value: 8.1
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.1
+      value: 0.1395
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.9, p95 6.4, off-palette 2.4% (top: #DD8844 (0.1%), #441100
+        (0.1%))'
+      value: 1.9274
+    info:
+      metrics_raw:
+        L_p5: 63.2
+        L_p50: 87.5
+        L_p95: 94.9
+        C_p50: 12.8
+        C_p95: 45.6
+        C_p99: 59.0
+        detail: 8.05
+      metrics_locked:
+        L_p5: 63.2
+        L_p50: 87.5
+        L_p95: 94.9
+        C_p50: 12.8
+        C_p95: 45.6
+        C_p99: 56.4
+        detail: 8.1
+    fingerprint: c1ad4d08d21b92a7
+  2:
+    job: x-sticker-duo-1-v2
+    take: 2
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 48 (R1 51)
+      value: 48.5
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 35 (at most 22), p98 97 (at least 90), spread 62
+        (at least 60)'
+      value: 61.8
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 89 (band 55-90)'
+      value: 88.8
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 7.7 (at least 3.5)'
+      value: 7.66
+    - check: detail_budget
+      status: warn
+      message: detail at display size 8.5 (R1 5.3) (advisory in an exploration)
+      value: 8.5
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.2
+      value: 0.2375
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.0, p95 8.5, off-palette 3.4% (top: #EE7766 (0.3%), #EE9955
+        (0.2%))'
+      value: 1.9767
+    info:
+      metrics_raw:
+        L_p5: 60.2
+        L_p50: 89.0
+        L_p95: 96.2
+        C_p50: 13.2
+        C_p95: 48.5
+        C_p99: 66.9
+        detail: 8.48
+      metrics_locked:
+        L_p5: 60.2
+        L_p50: 89.0
+        L_p95: 96.2
+        C_p50: 13.2
+        C_p95: 48.5
+        C_p99: 58.6
+        detail: 8.5
+    fingerprint: c1ad4d08d21b92a7
+manual_review:
+  observed_note: Original and locked proper composites confirm exactly three separated
+    pair groups/six complete characters, each one Pofu with curl and one long-eared
+    Mochi without curl, with correct similar relative size. Tea pair holds exactly
+    two tulip glasses actually clinking, no saucer/table; central pair embraces with
+    eyes closed and blush; goodbye pair both wave one paw and smile. Within-pair contact
+    is intentional and separate groups remain apart. Both initial takes pass literal
+    brief and hard QA. Take1 original is2172x724; unmodified canonical normalization
+    preserves all silhouettes on declared1536x1024, so no invented raw-size failure,
+    clipping or white-border claim. Lowest lock load selects take1=.1395 versus take2=.2375.
+    Advisory warnings retained; exploration only, never promoted.
+  excluded_takes: []
+sources:
+- batch: batch-23-stickers-v2
+  job: x-sticker-duo-1-v2
+  take: 1
+  round: 1
+  logical_run: 20261106-b23-v2
+  source_file: /workspace/generated_images/exec-a26d91e5-f6b2-48e2-8bf1-5f096e104744.png
+  returned_at: '2026-11-06T04:13:37.582Z'
+  prompt_sha256: 519b37876e559b2559341578b4fd47b17cf23a49fc71711cdfc16526b695ef4a
+  fingerprint: c1ad4d08d21b92a7
+  saved_at: '2026-11-06T04:13:38.021303+00:00'
+  original_generated_png_sha256: 8262287093f5e6be92f25c545fc8f897120e32065bfa14c2ead99ef5222f9ce0
+  dimensions:
+  - 2172
+  - 724
+  rgba_sha256: 6875120f93f9805e2248422d2ecd9fe94a46f6b5498cb99e4226ad2d07bc59cd
+  inbox_png_sha256: 2b901db703fc0270db8ca34bc40c29344d14522567c4dde77b56752dfd75bb1f
+  qa_sha256: 1f9cb19714a1b58f2095b6cc79fff696fecf75b5f60cde93278e64691386e848
+- batch: batch-23-stickers-v2
+  job: x-sticker-duo-1-v2
+  take: 2
+  round: 1
+  logical_run: 20261106-b23-v2
+  source_file: /workspace/generated_images/exec-e2d9b18d-b71d-4233-a2a7-0f4dd085abc3.png
+  returned_at: '2026-11-06T04:14:18.138Z'
+  prompt_sha256: 519b37876e559b2559341578b4fd47b17cf23a49fc71711cdfc16526b695ef4a
+  fingerprint: c1ad4d08d21b92a7
+  saved_at: '2026-11-06T04:14:18.428126+00:00'
+  original_generated_png_sha256: 4d3558c2a5afe220fdd9162bb4deaddeb1a6950ddece450389fe1cc2c920a585
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: d792d8b3019e61286f5c60914983db42882fc9069cfaf97019a2dfc13392d7e8
+  inbox_png_sha256: 28e867d993e5ac3271329d5010c88f9af8d4cec6433d4a996cc015396a197b5e
+  qa_sha256: 142d67385352c1d260f6a46b5220b52776481ac3eba8bca54b0c4f4b9729a331
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+variation_proof_sha256: 9f2d38faf2760152a6667858ae96b6771454f67bdf3d7dbe519f82ce0772ce1b
