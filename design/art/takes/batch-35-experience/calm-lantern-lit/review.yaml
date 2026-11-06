@@ -1,0 +1,315 @@
+batch: batch-35-experience
+contact_sheet: design/art/takes/batch-35-experience/calm-lantern-lit/contact.jpg
+jobs:
+  calm-lantern-lit:
+    pick: none
+    publication: skipped after one allowed retry
+    note: 'All four initial and sole-retry takes fail the unchanged canonical chroma_ceiling:
+      64.6,65.8,65.2,65.9. They show the requested interior flame and no exterior
+      halo, but hard failures cannot be waived. The close parent registration is recorded
+      without claiming literal pixel identity. No recolour, QA threshold edit, extra
+      round or change to the parent. Skip only this independent job and preserve all
+      four originals. Automated failures: t1 chroma_ceiling: chroma p95 65 (R1 51);
+      t2 chroma_ceiling: chroma p95 66 (R1 51); t3 chroma_ceiling: chroma p95 65 (R1
+      51); t4 chroma_ceiling: chroma p95 66 (R1 51).'
+qa_reports:
+  2:
+    job: calm-lantern-lit
+    take: 2
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: edit_alignment
+      status: pass
+      message: the edit rescaled the object x0.995 and moved it; aligned back to the
+        parent
+      value: 1.0049
+    - check: chroma_ceiling
+      status: fail
+      message: chroma p95 66 (R1 51)
+      value: 65.8
+    - check: value_floor
+      status: pass
+      message: lightness p5 60 (R1 59)
+      value: 59.9
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.0 (R1 5.3)
+      value: 0.96
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 3.5
+      value: 3.5491
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 4.1, p95 11.5, off-palette 3.5% (top: #FFDD55 (1.7%), #FFEE66
+        (0.5%))'
+      value: 4.0817
+    - check: edit_stability
+      status: pass
+      message: 79% of the parent level unchanged
+      value: 0.7932
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.01 of the parent level (drift compounds along a chain)
+      value: 1.0063
+    info:
+      alignment:
+        scale: 1.0049
+        cx: 598.5
+        cy: 926.0
+        dx: 0
+        dy: 2
+      metrics_raw:
+        L_p5: 59.4
+        L_p50: 71.9
+        L_p95: 87.2
+        C_p50: 42.8
+        C_p95: 77.3
+        C_p99: 78.4
+        detail: 1.52
+      metrics_locked:
+        L_p5: 59.9
+        L_p50: 72.2
+        L_p95: 87.5
+        C_p50: 42.6
+        C_p95: 65.8
+        C_p99: 66.1
+        detail: 0.96
+    fingerprint: de1887f39d49cf1a
+  3:
+    job: calm-lantern-lit
+    take: 3
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: fail
+      message: chroma p95 65 (R1 51)
+      value: 65.2
+    - check: value_floor
+      status: pass
+      message: lightness p5 60 (R1 59)
+      value: 59.8
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.9 (R1 5.3)
+      value: 0.86
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.8
+      value: 2.8
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 4.2, p95 12.2, off-palette 5.2% (top: #FFEE66 (2.2%), #FFDD66
+        (1.2%))'
+      value: 4.1874
+    - check: edit_stability
+      status: pass
+      message: 81% of the parent level unchanged
+      value: 0.8059
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.00 of the parent level (drift compounds along a chain)
+      value: 0.9999
+    info:
+      metrics_raw:
+        L_p5: 59.3
+        L_p50: 71.3
+        L_p95: 89.4
+        C_p50: 42.3
+        C_p95: 75.7
+        C_p99: 77.9
+        detail: 1.28
+      metrics_locked:
+        L_p5: 59.8
+        L_p50: 71.5
+        L_p95: 89.4
+        C_p50: 42.3
+        C_p95: 65.2
+        C_p99: 65.7
+        detail: 0.86
+    fingerprint: de1887f39d49cf1a
+  4:
+    job: calm-lantern-lit
+    take: 4
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: fail
+      message: chroma p95 66 (R1 51)
+      value: 65.9
+    - check: value_floor
+      status: pass
+      message: lightness p5 61 (R1 59)
+      value: 61.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.9 (R1 5.3)
+      value: 0.92
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 3.6
+      value: 3.5809
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 4.1, p95 12.5, off-palette 6.1% (top: #FFDD55 (2.6%), #FFEE66
+        (1.6%))'
+      value: 4.1334
+    - check: edit_stability
+      status: warn
+      message: 74% of the parent level unchanged
+      value: 0.7447
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.02 of the parent level (drift compounds along a chain)
+      value: 1.0227
+    info:
+      metrics_raw:
+        L_p5: 60.6
+        L_p50: 73.1
+        L_p95: 88.7
+        C_p50: 43.3
+        C_p95: 78.5
+        C_p99: 82.0
+        detail: 1.33
+      metrics_locked:
+        L_p5: 61.2
+        L_p50: 73.3
+        L_p95: 88.6
+        C_p50: 43.3
+        C_p95: 65.9
+        C_p99: 66.6
+        detail: 0.92
+    fingerprint: de1887f39d49cf1a
+  1:
+    job: calm-lantern-lit
+    take: 1
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: fail
+      message: chroma p95 65 (R1 51)
+      value: 64.6
+    - check: value_floor
+      status: pass
+      message: lightness p5 61 (R1 59)
+      value: 60.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.9 (R1 5.3)
+      value: 0.88
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.5
+      value: 2.4774
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.8, p95 12.0, off-palette 5.0% (top: #FFEE66 (2.1%), #FFDD66
+        (2.0%))'
+      value: 3.7779
+    - check: edit_stability
+      status: pass
+      message: 86% of the parent level unchanged
+      value: 0.8615
+    - check: edit_chroma
+      status: pass
+      message: chroma x0.97 of the parent level (drift compounds along a chain)
+      value: 0.9726
+    info:
+      metrics_raw:
+        L_p5: 60.0
+        L_p50: 72.3
+        L_p95: 89.7
+        C_p50: 41.2
+        C_p95: 73.1
+        C_p99: 76.3
+        detail: 1.28
+      metrics_locked:
+        L_p5: 60.6
+        L_p50: 72.5
+        L_p95: 89.7
+        C_p50: 41.2
+        C_p95: 64.6
+        C_p99: 65.4
+        detail: 0.88
+    fingerprint: de1887f39d49cf1a
+manual_review:
+  excluded_takes: []
+  note: 'All four initial and sole-retry takes fail the unchanged canonical chroma_ceiling:
+    64.6,65.8,65.2,65.9. They show the requested interior flame and no exterior halo,
+    but hard failures cannot be waived. The close parent registration is recorded
+    without claiming literal pixel identity. No recolour, QA threshold edit, extra
+    round or change to the parent. Skip only this independent job and preserve all
+    four originals.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-121bded9-6aa3-4219-ada3-b6f83b101c20.png
+  original_generated_png_sha256: 425b0f0e1d3b53ef4558c98ea7f43f0f7e538dd754a10703554a104a0ec5c14a
+  inbox_png_sha256: 4ec05cfde784b891c001ef76fa305a7581f868b60bd6248158add48589f41bf5
+  rgba_sha256: dd72b6b160e8be10c5a65ac9bfa02f20b1715dd51b838bfa3e31387656990d1c
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: de1887f39d49cf1a
+- take: 2
+  source_file: /workspace/generated_images/exec-1bd1181b-e289-4c80-a96f-7aa9e7ff442b.png
+  original_generated_png_sha256: 81ce183e3841ff28e9e7147ed17aa1d76ec49aa9a138068a95c2103843eef88b
+  inbox_png_sha256: d8950c01fa09acc314cfba945d8ac7512d93a2a4471856d262b686aa89ba8e8b
+  rgba_sha256: 139d0685a9867215c7fdb2b9ee12e801e8665b2abe07e01f6f3891b4f42c599e
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: de1887f39d49cf1a
+- take: 3
+  source_file: /workspace/generated_images/exec-164aec74-7065-44c7-911f-98b4638f8f0c.png
+  original_generated_png_sha256: 728bdcd68b9eff4a9d1d72a9a56abc5ba3676fe7b1a37f82d90cf2b58138ca3c
+  inbox_png_sha256: 9590d9eb8135bf8cbdeab2b018dab58085e697171c9910aa28400acf94cbb69d
+  rgba_sha256: 8441a5d6854227e31cb210558458ae0cd28f1f998d186310ecd6ea59200c6c8f
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: de1887f39d49cf1a
+- take: 4
+  source_file: /workspace/generated_images/exec-2b2746ce-d3da-4a9f-8953-603c6dd643b7.png
+  original_generated_png_sha256: 208847eb148b90e22846003594ae69c92bd68efba73ddd0f854cd5f24b195e1c
+  inbox_png_sha256: 4695e29ec11abfd36f4d02757a9286c34ba7a9b26e04dc3a794df744cffb4113
+  rgba_sha256: 4ef8eda71723c75d0a5f3c53deb811163ec0e05a18cb9a4e6833f35f7c05ecd7
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: de1887f39d49cf1a

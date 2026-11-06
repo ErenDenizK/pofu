@@ -2,15 +2,16 @@ id: asset-glow-warm-halo
 type: asset
 title_tr: glow-warm-halo
 title_en: glow-warm-halo (ui)
-status: planned
+status: in-production
 horizon: later
-summary: >-
-  A soft round halo of warm lantern light, centered in the image, filling about 85 percent
-  of its width: a gentle bright center that falls off smoothly and evenly in every direction,
-  dying into black before the border. The center is bright but not white-hot, as light that
-  has been softened by paper. Warm honey-gold only, a slightly irregular painterly edge.
+summary: 'A soft round halo of warm lantern light, centered in the image, filling
+  about 85 percent of its width: a gentle bright center that falls off smoothly and
+  evenly in every direction, dying into black before the border. The center is bright
+  but not white-hot, as light that has been softened by paper. Warm honey-gold only,
+  a slightly irregular painterly edge.'
 art:
-  images: []
+  images:
+  - design/art/ui/ui-glow-warm-halo/ui-glow-warm-halo.png
   jobs:
   - batch-35-experience:glow-warm-halo
 sources:

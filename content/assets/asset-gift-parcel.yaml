@@ -2,16 +2,17 @@ id: asset-gift-parcel
 type: asset
 title_tr: gift-parcel
 title_en: gift-parcel (sheet)
-status: planned
+status: in-production
 horizon: later
-summary: >-
-  A sheet of one small gift parcel drawn twice in a single row, evenly spaced with wide empty
-  space between them: (1) closed: a plump square parcel wrapped in warm kraft-cream paper
-  tied with cream twine in a simple bow, a small dried sprig tucked under the knot; (2) open:
-  the same parcel with the paper folded back and the twine untied and lying loose, the inside
-  a soft empty nest of cream paper shreds with a small rou…
+summary: 'A sheet of one small gift parcel drawn twice in a single row, evenly spaced
+  with wide empty space between them: (1) closed: a plump square parcel wrapped in
+  warm kraft-cream paper tied with cream twine in a simple bow, a small dried sprig
+  tucked under the knot; (2) open: the same parcel with the paper folded back and
+  the twine untied and lying loose, the inside a soft empty nest of cream paper shreds
+  with a small rou…'
 art:
-  images: []
+  images:
+  - design/art/masters/gift-parcel/gift-parcel.webp
   jobs:
   - batch-35-experience:gift-parcel
 sources:

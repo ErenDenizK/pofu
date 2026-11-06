@@ -2,14 +2,14 @@ id: asset-reward-seed-burst
 type: asset
 title_tr: reward-seed-burst
 title_en: reward-seed-burst (ui)
-status: planned
+status: cut
 horizon: later
-summary: >-
-  A sprite sheet of six frames of one small burst of sunflower seeds and soft sparkles, in
-  a grid of three columns by two rows, read left to right, top to bottom, each frame centered
-  in its own equal cell with wide empty space around it, the burst's center at the center
-  of each cell: (1) a tiny cluster of two seeds and a small spark; (2) the burst opening,
-  five seeds and three sparks flying out; (3) the burst at its wi…
+summary: 'A sprite sheet of six frames of one small burst of sunflower seeds and soft
+  sparkles, in a grid of three columns by two rows, read left to right, top to bottom,
+  each frame centered in its own equal cell with wide empty space around it, the burst''s
+  center at the center of each cell: (1) a tiny cluster of two seeds and a small spark;
+  (2) the burst opening, five seeds and three sparks flying out; (3) the burst at
+  its wi…'
 art:
   images: []
   jobs:
@@ -19,3 +19,15 @@ sources:
 kind: ui
 batch: batch-35-experience
 size: 1536x1024
+notes:
+- 'batch-35-experience skipped after four takes: The initial pair and sole unchanged-prompt
+  retry all fail the unchanged canonical detail_budget: 7.80, 8.86, 9.49 and 8.94
+  against the R1 reference 5.3. Independent native-resolution count review confirms
+  initial take1 has the authored counts, while take2 has seven seeds rather than eight
+  in frame3; no new fixed count is invented for the unspecified drifting frame4. Hard
+  failures exclude all four regardless of content. No filtering, palette or threshold
+  waiver, new prompt, manual cleanup or third round. Skip only this independent job
+  and preserve all four originals. Automated failures: t1 detail_budget: detail at
+  display size 7.8 (R1 5.3); t2 detail_budget: detail at display size 8.9 (R1 5.3);
+  t3 detail_budget: detail at display size 9.5 (R1 5.3); t4 detail_budget: detail
+  at display size 8.9 (R1 5.3).'

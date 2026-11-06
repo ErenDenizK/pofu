@@ -1,0 +1,197 @@
+batch: batch-35-experience
+contact_sheet: design/art/takes/batch-35-experience/cloud-curtain-1/contact.jpg
+jobs:
+  cloud-curtain-1:
+    pick: 1
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Both initial takes pass hard
+      QA and are visually eligible in original, full locked and official half-delivered
+      alpha composites. The front bank occupies the lower half, with rounded towers
+      toward the middle, an otherwise transparent upper half and runoff at both side
+      edges. Take1 has the lowest eligible lock load0.3608. Its tiny rounded tower
+      reaches8px above the exact midpoint (0.0757percent upper-half alpha coverage),
+      compatible with towers toward the middle; no invented hard midpoint cutoff is
+      applied. No sky, island, lettering, frame or unrelated object. Official authored
+      scale0.5 alone produces768x512 from the saved1536x1024 full lock, with exact
+      master RGBA and delivery metadata proof. No manual source or master edits. Light
+      warnings retained; own canonical Harmony shard required.
+qa_reports:
+  1:
+    job: cloud-curtain-1
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 10 (R1 51)
+      value: 10.0
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 84 (at most 22), p98 95 (at least 90), spread 11
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 10.6
+    - check: light_median
+      status: warn
+      message: 'day/subject: median L 90 (band 55-90)'
+      value: 90.4
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.80 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.804
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 0.5 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 0.46
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.6 (R1 5.3)
+      value: 0.64
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.4
+      value: 0.3608
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.0, p95 4.1, off-palette 0.0%
+      value: 1.9623
+    - check: harmony
+      status: warn
+      message: 'harmony score 52 against the world reference (outliers: C_p95, L_p2)'
+      value: 52.0
+    info:
+      metrics_raw:
+        L_p5: 84.8
+        L_p50: 90.4
+        L_p95: 94.6
+        C_p50: 6.4
+        C_p95: 10.2
+        C_p99: 11.8
+        detail: 0.75
+      metrics_locked:
+        L_p5: 84.8
+        L_p50: 90.4
+        L_p95: 94.5
+        C_p50: 6.3
+        C_p95: 10.0
+        C_p99: 11.6
+        detail: 0.64
+    fingerprint: a3272d937b736c9d
+  2:
+    job: cloud-curtain-1
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 11 (R1 51)
+      value: 10.6
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 83 (at most 22), p98 95 (at least 90), spread 12
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 12.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 90 (band 55-90)'
+      value: 89.7
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.80 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.8
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 0.5 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 0.52
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.6 (R1 5.3)
+      value: 0.62
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.4
+      value: 0.382
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.3, p95 4.4, off-palette 0.0%
+      value: 2.2969
+    - check: harmony
+      status: warn
+      message: 'harmony score 51 against the world reference (outliers: C_p95, L_p2)'
+      value: 50.7
+    info:
+      metrics_raw:
+        L_p5: 83.4
+        L_p50: 89.7
+        L_p95: 94.9
+        C_p50: 6.9
+        C_p95: 10.7
+        C_p99: 11.7
+        detail: 0.75
+      metrics_locked:
+        L_p5: 83.4
+        L_p50: 89.7
+        L_p95: 94.8
+        C_p50: 6.9
+        C_p95: 10.6
+        C_p99: 11.6
+        detail: 0.62
+    fingerprint: a3272d937b736c9d
+manual_review:
+  excluded_takes: []
+  note: Both initial takes pass hard QA and are visually eligible in original, full
+    locked and official half-delivered alpha composites. The front bank occupies the
+    lower half, with rounded towers toward the middle, an otherwise transparent upper
+    half and runoff at both side edges. Take1 has the lowest eligible lock load0.3608.
+    Its tiny rounded tower reaches8px above the exact midpoint (0.0757percent upper-half
+    alpha coverage), compatible with towers toward the middle; no invented hard midpoint
+    cutoff is applied. No sky, island, lettering, frame or unrelated object. Official
+    authored scale0.5 alone produces768x512 from the saved1536x1024 full lock, with
+    exact master RGBA and delivery metadata proof. No manual source or master edits.
+    Light warnings retained; own canonical Harmony shard required.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-6ea3a239-e4b0-48df-ac39-6d68177a073d.png
+  original_generated_png_sha256: 23f1af9c439b06dab8ae6f46a143e61ceebc835372f8d9be5af36ca445cb2b99
+  inbox_png_sha256: 5565416f20a417bc507766335c8e53246cc0e55344cc7331a41addc12e8f2617
+  rgba_sha256: fd4ec920a6e7905a5486a1467c086c3bd53bb6663915c31854282d05acfd3025
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: a3272d937b736c9d
+- take: 2
+  source_file: /workspace/generated_images/exec-9856a9dc-e500-4b46-aedd-029f04939432.png
+  original_generated_png_sha256: 1b82128fbd8d962e6b0677e5b805e3e3003490670a3ea92c13dea526eeb2129a
+  inbox_png_sha256: b998026248c58bd97d80116fbcc629ea8a03a5878e7f732d838e4597d93368ff
+  rgba_sha256: 67b55e319142ec4b929e1c6a73e450ccd9334027ff14ef39fe68f504065ed12d
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: a3272d937b736c9d
