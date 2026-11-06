@@ -1,0 +1,206 @@
+batch: batch-23-stickers-v2
+manifest: tools/imagegen/manifest/batch-23-stickers-v2.yaml
+manifest_sha256: dcb068fb9723a863b0d1cbed34ed32dd799fcb31c4898c31a4fed74500ab0360
+contact_sheet: design/art/takes/batch-23-stickers-v2/x-sticker-findik-v2/contact.jpg
+jobs:
+  x-sticker-findik-v2:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Original and official locked
+      review confirm exactly three complete separated reference-matching hedgehogs
+      in one row: happy wide smile with clasped paws; surprised round wide eyes/small
+      O with softly lifted spines; proud tall posture holding UP exactly one tiny
+      smooth wooden mallet with satisfied smile. Mallet belongs only to proud and
+      has no fur/anatomy. Soft blunt hedgehog spines, distinct species silhouette,
+      no curl, hamster redesign, extra tool, text or actual background on proper composites.
+      Both initial takes are hard-QA and manually eligible; lowest lock load selects
+      take1=.0040 versus take2=.0076. Advisory style/light warnings remain; exploration
+      only, never promoted.'
+qa_reports:
+  1:
+    job: x-sticker-findik-v2
+    take: 1
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 45 (R1 51)
+      value: 45.0
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 37 (at most 22), p98 95 (at least 90), spread 58
+        (at least 60)'
+      value: 58.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 84 (band 55-90)'
+      value: 84.4
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.14 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.137
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 10.7 (at least 3.5)'
+      value: 10.67
+    - check: detail_budget
+      status: warn
+      message: detail at display size 9.9 (R1 5.3) (advisory in an exploration)
+      value: 9.94
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.004
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.0, p95 8.8, off-palette 2.0% (top: #EE7766 (0.1%), #441100
+        (0.1%))'
+      value: 1.956
+    info:
+      metrics_raw:
+        L_p5: 47.9
+        L_p50: 84.5
+        L_p95: 94.3
+        C_p50: 19.8
+        C_p95: 45.0
+        C_p99: 51.1
+        detail: 9.91
+      metrics_locked:
+        L_p5: 47.9
+        L_p50: 84.5
+        L_p95: 94.3
+        C_p50: 19.8
+        C_p95: 45.0
+        C_p99: 51.1
+        detail: 9.94
+    fingerprint: 37b3eb99f0783395
+  2:
+    job: x-sticker-findik-v2
+    take: 2
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 46 (R1 51)
+      value: 46.3
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 37 (at most 22), p98 96 (at least 90), spread 58
+        (at least 60)'
+      value: 58.1
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 84 (band 55-90)'
+      value: 84.2
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.12 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.122
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 10.8 (at least 3.5)'
+      value: 10.81
+    - check: detail_budget
+      status: warn
+      message: detail at display size 10.5 (R1 5.3) (advisory in an exploration)
+      value: 10.46
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0076
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.3, p95 10.5, off-palette 3.2% (top: #AA5533 (0.5%), #994422
+        (0.3%))'
+      value: 2.3363
+    info:
+      metrics_raw:
+        L_p5: 46.6
+        L_p50: 84.3
+        L_p95: 94.6
+        C_p50: 18.7
+        C_p95: 46.3
+        C_p99: 52.9
+        detail: 10.42
+      metrics_locked:
+        L_p5: 46.6
+        L_p50: 84.3
+        L_p95: 94.6
+        C_p50: 18.7
+        C_p95: 46.3
+        C_p99: 52.8
+        detail: 10.46
+    fingerprint: 37b3eb99f0783395
+manual_review:
+  observed_note: 'Original and official locked review confirm exactly three complete
+    separated reference-matching hedgehogs in one row: happy wide smile with clasped
+    paws; surprised round wide eyes/small O with softly lifted spines; proud tall
+    posture holding UP exactly one tiny smooth wooden mallet with satisfied smile.
+    Mallet belongs only to proud and has no fur/anatomy. Soft blunt hedgehog spines,
+    distinct species silhouette, no curl, hamster redesign, extra tool, text or actual
+    background on proper composites. Both initial takes are hard-QA and manually eligible;
+    lowest lock load selects take1=.0040 versus take2=.0076. Advisory style/light
+    warnings remain; exploration only, never promoted.'
+  excluded_takes: []
+sources:
+- batch: batch-23-stickers-v2
+  job: x-sticker-findik-v2
+  take: 1
+  round: 1
+  logical_run: 20261106-b23-v2
+  source_file: /workspace/generated_images/exec-652a0cbf-f844-4b74-bfdc-a75fd721f504.png
+  returned_at: '2026-11-06T04:13:05.423Z'
+  prompt_sha256: 03b885a6ad995f0838d4672a187415fa79f1df1a0cca26df514dc4c8bb671c5e
+  fingerprint: 37b3eb99f0783395
+  saved_at: '2026-11-06T04:13:05.952997+00:00'
+  original_generated_png_sha256: cc5c805303602f7d94eb531ac446f695bd2562bba163f2d4e74561469414abcd
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 1fa1e851ce51e308659333b9cc74e878b53a950c682a558f85fa8ceb0f6ee176
+  inbox_png_sha256: 63fd9bec2694f5354a221ed57fe381e2ebbe4f96f4b83e5f2eb62f0530c00cbd
+  qa_sha256: 62da8c0bed33f79b5e7ba5427a86ca781463ac1877f0447541880e5bbe8e95f2
+- batch: batch-23-stickers-v2
+  job: x-sticker-findik-v2
+  take: 2
+  round: 1
+  logical_run: 20261106-b23-v2
+  source_file: /workspace/generated_images/exec-00b357ab-386b-4325-acb1-ee019d237dde.png
+  returned_at: '2026-11-06T04:13:43.598Z'
+  prompt_sha256: 03b885a6ad995f0838d4672a187415fa79f1df1a0cca26df514dc4c8bb671c5e
+  fingerprint: 37b3eb99f0783395
+  saved_at: '2026-11-06T04:13:43.955153+00:00'
+  original_generated_png_sha256: d074b0e7710123623afab36177b6249a692db8751a8e5fdea329320d74c4cc42
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 92af8252ef3d89495136f0b76be2dd8d5c1f22a3120a28f81f6b434e6e7aca72
+  inbox_png_sha256: 2caef67da72ad72281f33d8da9795f4d01887282237f16e58ec7907ba4eb131f
+  qa_sha256: e00eff3bb6adaacc86f30505db308b8ec6a50a1c1b2acc23c68262ffc56363b8
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+variation_proof_sha256: 9f2d38faf2760152a6667858ae96b6771454f67bdf3d7dbe519f82ce0772ce1b
