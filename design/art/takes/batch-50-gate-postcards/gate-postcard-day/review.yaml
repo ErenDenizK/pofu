@@ -1,0 +1,174 @@
+batch: batch-50-gate-postcards
+contact_sheet: design/art/takes/batch-50-gate-postcards/gate-postcard-day/contact.jpg
+jobs:
+  gate-postcard-day:
+    pick: 1
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Both originals and official locked
+      images show fresh blue noon sky/white clouds/green lawn and the same left-fence/right-pond/stepping-stone
+      ground composition, with a clear empty standing patch around the authored lower-middle
+      area, calm sky and quiet foreground. No creatures, characters or text. Peer825c9d41
+      confirms actual content/framing; lifted light critique stays advisory under
+      current warn-only policy. No invented numeric pixel/registration gate, QA waiver
+      or force.
+qa_reports:
+  2:
+    job: gate-postcard-day
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 39 (R1 51)
+      value: 39.3
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 76 (at most 22), p98 96 (at least 90), spread 20
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 20.1
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 86 (band 55-90)'
+      value: 85.5
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.50 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.502
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 0.8 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 0.79
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.0 (R1 5.3)
+      value: 1.02
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.6705
+    - check: palette_drift
+      status: warn
+      message: mean dE 3.0, p95 9.2, off-palette 0.0%
+      value: 2.9916
+    info:
+      metrics_raw:
+        L_p5: 69.3
+        L_p50: 82.9
+        L_p95: 94.8
+        C_p50: 27.2
+        C_p95: 40.0
+        C_p99: 41.1
+        detail: 1.38
+      metrics_locked:
+        L_p5: 69.5
+        L_p50: 82.9
+        L_p95: 94.7
+        C_p50: 27.2
+        C_p95: 39.3
+        C_p99: 40.1
+        detail: 1.02
+    fingerprint: b4302c7721dd02cc
+  1:
+    job: gate-postcard-day
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 34 (R1 51)
+      value: 34.2
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 73 (at most 22), p98 96 (at least 90), spread 23
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 23.4
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 87 (band 55-90)'
+      value: 86.9
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.53 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.529
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 0.8 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 0.75
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.11
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.5
+      value: 0.5311
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.4, p95 11.1, off-palette 2.4% (top: #88BBFF (1.1%), #99BBFF
+        (1.0%))'
+      value: 3.3545
+    info:
+      metrics_raw:
+        L_p5: 69.4
+        L_p50: 81.8
+        L_p95: 95.1
+        C_p50: 27.5
+        C_p95: 34.3
+        C_p99: 35.3
+        detail: 1.44
+      metrics_locked:
+        L_p5: 69.6
+        L_p50: 81.8
+        L_p95: 95.0
+        C_p50: 27.4
+        C_p95: 34.2
+        C_p99: 34.9
+        detail: 1.11
+    fingerprint: b4302c7721dd02cc
+manual_review:
+  excluded_takes: []
+  note: Both originals and official locked images show fresh blue noon sky/white clouds/green
+    lawn and the same left-fence/right-pond/stepping-stone ground composition, with
+    a clear empty standing patch around the authored lower-middle area, calm sky and
+    quiet foreground. No creatures, characters or text. Peer825c9d41 confirms actual
+    content/framing; lifted light critique stays advisory under current warn-only
+    policy. No invented numeric pixel/registration gate, QA waiver or force.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-864aedab-ba0d-4181-99ef-2ca12ea97d13.png
+  original_generated_png_sha256: d59b45bba822da3f33e8bcc9acaa53324d7db572c51c4148e4c55818a6103590
+  inbox_png_sha256: 9c3172ea9b9a32514af3942dfed7ba971da2829106d4f4c6bafe9c00fe0da475
+  rgba_sha256: a505b555ad4aaea5948c3b830d87bac0cc9512fb975ac817a4c75c6783800656
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: b4302c7721dd02cc
+- take: 2
+  source_file: /workspace/generated_images/exec-c27e7867-5f0e-433a-b100-c9474e1425c5.png
+  original_generated_png_sha256: 9ead9e041fc3bd6ad0a6c6f3e6195134bdef689bc0b54aaee49f58fb96fc6df7
+  inbox_png_sha256: afb72f5226239246c5d22c8567ba88722ad140939dd32ee75199b0b717770fbb
+  rgba_sha256: 8eedebe7525299e384dc057fb887ae26920da70f553ae8be01fedc1ad31fea61
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: b4302c7721dd02cc

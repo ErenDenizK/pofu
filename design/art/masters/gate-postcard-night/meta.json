@@ -1,0 +1,123 @@
+{
+  "job": "gate-postcard-night",
+  "batch": "batch-50-gate-postcards",
+  "asset": "plate__gate-postcard-night",
+  "take": 2,
+  "takes_considered": 2,
+  "approved_at": "2026-11-06T10:06:08+00:00",
+  "image": "design/art/masters/gate-postcard-night/gate-postcard-night.png",
+  "raw": "design/art/masters/gate-postcard-night/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "10fb6c509b26ef94",
+  "prompt": "REFERENCES (attached, in this order):\n1. The home island: its lawn, flowers, stones, round door and soft painting; this is a view standing on it.\n2. A finished prop of the game: props in the scene are this scale and finish.\n3. The sea of clouds beyond the edge of the lawn.\n\nA portrait painting for a cozy mobile game: standing on a small\nfloating island's lawn, looking across it toward its edge and the\nsea of clouds beyond, in a clear luminous night, a big soft moon high on the right, silver rims on the lawn, deep blue-violet shade, a few fireflies, a warm lantern on a post at the side. In the lower middle, at about two\nthirds of the height, an empty soft patch of lawn with a few\nstepping stones leading to it, clearly a place where a small\ncharacter could stand, with nothing on it. Around it, at the sides,\na few flowers, a round stone, a small pond edge at the right, a\nwooden fence post at the left. The upper third is open sky, calm,\nfor words. The bottom fifth is quiet grass and stones in soft focus.\nNo characters, no animals, no creatures anywhere.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: any character, animal, hamster, bunny, bird, frog or creature, text, letters, a border, a phone frame, busy details in the centre\n\nLIGHT (hour: night, layer: subject). Safe, cozy.\nKey light #B8A8B1 from the upper right; fill #2A2350; rim #FFB060 along the edge facing away from the key. Shadows are tinted #1E1828 (never grey or black) and fall toward the lower left; paint a contact shadow in that hue under every object that touches the ground or another form, firmest in the subject plane.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, opaque, full bleed, portrait 1024 x 1536.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/island-main-l-v3/island-main-l-v3.webp",
+      "role": "The home island: its lawn, flowers, stones, round door and soft painting; this is a view standing on it."
+    },
+    {
+      "path": "design/art/stations/tea-stall-5/tea-stall-5.png",
+      "role": "A finished prop of the game: props in the scene are this scale and finish."
+    },
+    {
+      "path": "design/art/masters/cloud-sea/cloud-sea.png",
+      "role": "The sea of clouds beyond the edge of the lawn."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-06T09:15:43+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "fit": null,
+  "emit_region": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "opaque, as this kind must be"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1024x1536"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 42 (R1 51)",
+        "value": 42.0
+      },
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "night/subject: L p2 50 (at most 8), p98 86 (at least 58), spread 37 (at least 42) (warn-only until the founder has seen the light pilot)",
+        "value": 37.0
+      },
+      {
+        "check": "light_median",
+        "status": "warn",
+        "message": "night/subject: median L 75 (band 18-50) (warn-only until the founder has seen the light pilot)",
+        "value": 74.6
+      },
+      {
+        "check": "light_haze",
+        "status": "warn",
+        "message": "night/subject: dark-channel haze 0.47 (at most 0.10; no true dark means a wash) (warn-only until the founder has seen the light pilot)",
+        "value": 0.471
+      },
+      {
+        "check": "light_contrast",
+        "status": "warn",
+        "message": "night/subject: p75 local contrast 1.3 (at least 2.8) (warn-only until the founder has seen the light pilot)",
+        "value": 1.32
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 1.4 (R1 5.3)",
+        "value": 1.45
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 0.6",
+        "value": 0.6319
+      },
+      {
+        "check": "palette_drift",
+        "status": "warn",
+        "message": "mean dE 2.9, p95 9.8, off-palette 0.6% (top: #555599 (0.5%), #5555AA (0.1%))",
+        "value": 2.9254
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Both original and official locked candidates read as luminous night: large moon high right, deep blue-violet sky, silver/warm lawn edges and one warm lantern on a side post, clear empty standing ground, left fence/right pond and leading stepping stones. Firefly marks are only nonfigurative luminous dots, with no insect/animal body or extra character. No text, no murky loss of ground readability. Night-profile light/median/palette warnings remain advisory and are retained; no force or numerical gate invented.",
+  "deliver": {
+    "scale": 0.5,
+    "original_size": [
+      1024,
+      1536
+    ],
+    "delivered_size": [
+      512,
+      768
+    ]
+  }
+}

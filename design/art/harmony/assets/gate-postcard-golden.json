@@ -1,0 +1,55 @@
+{
+ "after": {
+  "C_mean": 30.865,
+  "C_p50": 29.339,
+  "C_p95": 48.991,
+  "L_mean": 77.309,
+  "L_p2": 56.856,
+  "L_p98": 89.626,
+  "detail": 0.725,
+  "edge": 0.0,
+  "tint_a": 3.724,
+  "tint_b": -0.253,
+  "warmth_b": 24.395
+ },
+ "before": {
+  "C_mean": 25.322,
+  "C_p50": 24.267,
+  "C_p95": 39.96,
+  "L_mean": 77.378,
+  "L_p2": 56.856,
+  "L_p98": 89.946,
+  "detail": 0.724,
+  "edge": 0.0,
+  "tint_a": 4.75,
+  "tint_b": 1.333,
+  "warmth_b": 19.967
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.227,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "plate",
+ "matched_to": "world",
+ "outliers_after": [
+  "edge"
+ ],
+ "outliers_before": [
+  "C_p95",
+  "edge"
+ ],
+ "ppu": 4.103,
+ "reference": false,
+ "score_after": 82.8,
+ "score_before": 75.8,
+ "shipped": false,
+ "source": "design/art/masters/gate-postcard-golden/gate-postcard-golden.png",
+ "source_sha": "e30e57d104c32e97"
+}

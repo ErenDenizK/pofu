@@ -1,0 +1,55 @@
+{
+ "after": {
+  "C_mean": 30.544,
+  "C_p50": 33.416,
+  "C_p95": 48.936,
+  "L_mean": 82.261,
+  "L_p2": 64.38,
+  "L_p98": 96.017,
+  "detail": 0.833,
+  "edge": 0.0,
+  "tint_a": 2.659,
+  "tint_b": 0.94,
+  "warmth_b": 9.342
+ },
+ "before": {
+  "C_mean": 22.696,
+  "C_p50": 27.395,
+  "C_p95": 34.193,
+  "L_mean": 82.458,
+  "L_p2": 64.38,
+  "L_p98": 96.211,
+  "detail": 0.819,
+  "edge": 0.0,
+  "tint_a": 2.075,
+  "tint_b": 1.815,
+  "warmth_b": 4.96
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.434,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "plate",
+ "matched_to": "world",
+ "outliers_after": [
+  "edge"
+ ],
+ "outliers_before": [
+  "C_p95",
+  "edge"
+ ],
+ "ppu": 4.103,
+ "reference": false,
+ "score_after": 79.4,
+ "score_before": 63.2,
+ "shipped": false,
+ "source": "design/art/masters/gate-postcard-day/gate-postcard-day.png",
+ "source_sha": "90f4ea925844fd59"
+}

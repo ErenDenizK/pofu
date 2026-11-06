@@ -4,14 +4,15 @@ title_tr: gate-postcard-day
 title_en: gate-postcard-day (plate)
 status: in-production
 horizon: now
-summary: >-
-  A portrait painting for a cozy mobile game: standing on a small floating island's lawn,
-  looking across it toward its edge and the sea of clouds beyond, in a fresh clear noon, soft
-  white clouds, the lawn bright green, gentle cool shadows. In the lower middle, at about
-  two thirds of the height, an empty soft patch of lawn with a few stepping stones leading
-  to it, clearly a place where a small character could stand, wit…
+summary: 'A portrait painting for a cozy mobile game: standing on a small floating
+  island''s lawn, looking across it toward its edge and the sea of clouds beyond,
+  in a fresh clear noon, soft white clouds, the lawn bright green, gentle cool shadows.
+  In the lower middle, at about two thirds of the height, an empty soft patch of lawn
+  with a few stepping stones leading to it, clearly a place where a small character
+  could stand, wit…'
 art:
-  images: []
+  images:
+  - design/art/masters/gate-postcard-day/gate-postcard-day.png
   jobs:
   - batch-50-gate-postcards:gate-postcard-day
 sources:

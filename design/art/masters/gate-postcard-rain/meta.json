@@ -1,0 +1,123 @@
+{
+  "job": "gate-postcard-rain",
+  "batch": "batch-50-gate-postcards",
+  "asset": "plate__gate-postcard-rain",
+  "take": 2,
+  "takes_considered": 2,
+  "approved_at": "2026-11-06T10:10:40+00:00",
+  "image": "design/art/masters/gate-postcard-rain/gate-postcard-rain.png",
+  "raw": "design/art/masters/gate-postcard-rain/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "fcf3ddbc2cbb2544",
+  "prompt": "REFERENCES (attached, in this order):\n1. The home island: its lawn, flowers, stones, round door and soft painting; this is a view standing on it.\n2. A finished prop of the game: props in the scene are this scale and finish.\n3. The sea of clouds beyond the edge of the lawn.\n\nA portrait painting for a cozy mobile game: standing on a small\nfloating island's lawn, looking across it toward its edge and the\nsea of clouds beyond, in a gentle light rain, a soft lilac-grey sky with brighter breaks, the lawn wet and deep green with silver glints on the stones. In the lower middle, at about two\nthirds of the height, an empty soft patch of lawn with a few\nstepping stones leading to it, clearly a place where a small\ncharacter could stand, with nothing on it. Around it, at the sides,\na few flowers, a round stone, a small pond edge at the right, a\nwooden fence post at the left. The upper third is open sky, calm,\nfor words. The bottom fifth is quiet grass and stones in soft focus.\nNo characters, no animals, no creatures anywhere.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: any character, animal, hamster, bunny, bird, frog or creature, text, letters, a border, a phone frame, busy details in the centre\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nKey light #FFF6EC from the upper left; fill #BFD6EE; rim #FFE9C9 along the edge facing away from the key. Shadows are tinted #A99BC4 (never grey or black) and fall toward the lower right; paint a contact shadow in that hue under every object that touches the ground or another form, firmest in the subject plane.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, opaque, full bleed, portrait 1024 x 1536.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/island-main-l-v3/island-main-l-v3.webp",
+      "role": "The home island: its lawn, flowers, stones, round door and soft painting; this is a view standing on it."
+    },
+    {
+      "path": "design/art/stations/tea-stall-5/tea-stall-5.png",
+      "role": "A finished prop of the game: props in the scene are this scale and finish."
+    },
+    {
+      "path": "design/art/masters/cloud-sea/cloud-sea.png",
+      "role": "The sea of clouds beyond the edge of the lawn."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-06T09:19:02+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "fit": null,
+  "emit_region": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "opaque, as this kind must be"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1024x1536"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 32 (R1 51)",
+        "value": 31.8
+      },
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 62 (at most 22), p98 94 (at least 90), spread 32 (at least 60) (warn-only until the founder has seen the light pilot)",
+        "value": 31.7
+      },
+      {
+        "check": "light_median",
+        "status": "pass",
+        "message": "day/subject: median L 79 (band 55-90)",
+        "value": 78.7
+      },
+      {
+        "check": "light_haze",
+        "status": "warn",
+        "message": "day/subject: dark-channel haze 0.42 (at most 0.20; no true dark means a wash) (warn-only until the founder has seen the light pilot)",
+        "value": 0.416
+      },
+      {
+        "check": "light_contrast",
+        "status": "warn",
+        "message": "day/subject: p75 local contrast 1.1 (at least 3.5) (warn-only until the founder has seen the light pilot)",
+        "value": 1.06
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 1.1 (R1 5.3)",
+        "value": 1.1
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 0.5",
+        "value": 0.5279
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.2, p95 3.1, off-palette 0.0%",
+        "value": 1.2468
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Both original and official locked candidates show gentle visible rain, lilac-grey sky with brighter breaks, wet green lawn and silver/ripple glints on side stones/pond, with clear empty central standing ground, leading stepping stones, fence left/pond right, calm copy sky and quiet bottom area. No creature/character/text. Same-landmark family is retained without claiming pixel-identical registration; style/light warnings remain advisory.",
+  "deliver": {
+    "scale": 0.5,
+    "original_size": [
+      1024,
+      1536
+    ],
+    "delivered_size": [
+      512,
+      768
+    ]
+  }
+}

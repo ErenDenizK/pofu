@@ -1,0 +1,172 @@
+batch: batch-50-gate-postcards
+contact_sheet: design/art/takes/batch-50-gate-postcards/gate-postcard-rain/contact.jpg
+jobs:
+  gate-postcard-rain:
+    pick: 2
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Both original and official locked
+      candidates show gentle visible rain, lilac-grey sky with brighter breaks, wet
+      green lawn and silver/ripple glints on side stones/pond, with clear empty central
+      standing ground, leading stepping stones, fence left/pond right, calm copy sky
+      and quiet bottom area. No creature/character/text. Same-landmark family is retained
+      without claiming pixel-identical registration; style/light warnings remain advisory.
+qa_reports:
+  1:
+    job: gate-postcard-rain
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 35 (R1 51)
+      value: 34.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 59 (at most 22), p98 95 (at least 90), spread 36
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 36.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 78 (band 55-90)'
+      value: 78.4
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.38 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.38
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 1.2 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 1.19
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.2 (R1 5.3)
+      value: 1.2
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.5
+      value: 0.54
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.4, p95 3.4, off-palette 0.0%
+      value: 1.3935
+    info:
+      metrics_raw:
+        L_p5: 58.9
+        L_p50: 76.1
+        L_p95: 92.2
+        C_p50: 17.9
+        C_p95: 34.9
+        C_p99: 36.5
+        detail: 1.6
+      metrics_locked:
+        L_p5: 59.0
+        L_p50: 76.1
+        L_p95: 92.1
+        C_p50: 17.9
+        C_p95: 34.8
+        C_p99: 36.1
+        detail: 1.2
+    fingerprint: fcf3ddbc2cbb2544
+  2:
+    job: gate-postcard-rain
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 32 (R1 51)
+      value: 31.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 62 (at most 22), p98 94 (at least 90), spread 32
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 31.7
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 79 (band 55-90)'
+      value: 78.7
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.42 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.416
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 1.1 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 1.06
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.1
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.5
+      value: 0.5279
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.2, p95 3.1, off-palette 0.0%
+      value: 1.2468
+    info:
+      metrics_raw:
+        L_p5: 61.5
+        L_p50: 78.0
+        L_p95: 92.2
+        C_p50: 15.5
+        C_p95: 31.9
+        C_p99: 33.4
+        detail: 1.46
+      metrics_locked:
+        L_p5: 61.7
+        L_p50: 78.0
+        L_p95: 92.1
+        C_p50: 15.4
+        C_p95: 31.8
+        C_p99: 33.2
+        detail: 1.1
+    fingerprint: fcf3ddbc2cbb2544
+manual_review:
+  excluded_takes: []
+  note: Both original and official locked candidates show gentle visible rain, lilac-grey
+    sky with brighter breaks, wet green lawn and silver/ripple glints on side stones/pond,
+    with clear empty central standing ground, leading stepping stones, fence left/pond
+    right, calm copy sky and quiet bottom area. No creature/character/text. Same-landmark
+    family is retained without claiming pixel-identical registration; style/light
+    warnings remain advisory.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-f97c30b3-078f-46ec-862e-64476250f3d4.png
+  original_generated_png_sha256: 6f577392cf44985cc9d5cc47e3c3da908f1352172fa45866300a929052b95b57
+  inbox_png_sha256: a051651ed7f6303d6403cbaa9593d9d189c1a793dcf3cc228ca482f8aed9abb8
+  rgba_sha256: 2b3293926044b5bd4a1ae75acce91b9cb1d632c70f47d248ed36393f505e10b5
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: fcf3ddbc2cbb2544
+- take: 2
+  source_file: /workspace/generated_images/exec-fbe1a969-2962-46cb-917b-41804174be00.png
+  original_generated_png_sha256: 68994915d6e181c57225567039215dd159178825ad3ebb740c626cb7c1456d0d
+  inbox_png_sha256: 332375764ba9f4011d93ea4e6216d2c97592fdbfb89850564409dc5dc6086b48
+  rgba_sha256: 3a8dfa9f20f37cb2768d408f65a744ff3458922e15cee39b013068e07253d4cd
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: fcf3ddbc2cbb2544
