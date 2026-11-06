@@ -1,232 +1,171 @@
 # AGENTS.md: Brief for OpenAI Codex (and any other coding agent)
 
-This file is read by OpenAI Codex at the start of every session in this
-repository, the way Claude Code reads [`CLAUDE.md`](CLAUDE.md). It is
-consistent with `CLAUDE.md` and [`CONTRIBUTING.md`](CONTRIBUTING.md); if
-they ever disagree, `CLAUDE.md` wins and you say so in your PR.
+Codex reads this file at the start of every session, as Claude Code reads
+[`CLAUDE.md`](CLAUDE.md). It agrees with `CLAUDE.md` and
+[`CONTRIBUTING.md`](CONTRIBUTING.md); if they ever disagree, `CLAUDE.md`
+wins and you say so in your PR.
 
 ## Who and what
 
 - **Product:** Pofu, an iOS app with an illustrated fluffy hamster
   companion (repository `ErenDenizK/pofu`). **Founder:** Eren Deniz
-  Kuyucaklıoğlu (`ErenDenizK`); he approves art and speaks Turkish.
-  **Lead:** a Claude session in the cloud writes manifests and prompts,
-  reviews and merges PRs.
-- **Your job (Codex in the cloud):** operate the image pipeline
-  in [`tools/imagegen/`](tools/imagegen/README.md): generate takes,
-  run post-processing and QA, let QA auto-pick (the founder reviews
-  afterwards and can veto), promote approved takes, and open a PR. You do not change
-  app code, Swift, ADRs, or `CLAUDE.md`.
+  Kuyucaklıoğlu (`ErenDenizK`); he speaks Turkish and can veto any art.
+  **Lead:** a cloud Claude session writes manifests and prompts, reviews
+  and merges PRs.
+- **Your job (Codex in the cloud):** run the image pipeline in
+  [`tools/imagegen/`](tools/imagegen/README.md): generate takes, post-process
+  and QA them, let QA auto-pick, promote the picks, open a PR. You do not
+  change app code, Swift, ADRs, `CLAUDE.md`, prompt blocks, manifests,
+  `style_lock.json` or QA thresholds (propose changes in the PR; the lead
+  makes them). Two exceptions: the `-v2` manifest copies of the standing
+  rule, and the marked adapter block in `tools/imagegen/backends.py` if
+  Codex stores images or names events differently (run
+  `.venv/bin/python -I -m pytest tools/imagegen/tests`, explain in the PR).
 
 ## Non-negotiables
 
-- **Language:** everything in the repository (code, comments, commits,
-  PRs, docs, review notes) is in English. Talk to the founder in
-  **Turkish**. Write his decisions into review notes in English, quoting
-  him if useful.
-- **Commit identity:** set it at the start of every session:
+- **Language:** everything in the repository is in English; talk to the
+  founder in **Turkish**.
+- **Commit identity**, set at the start of every session:
 
   ```sh
   git config user.name "Eren Deniz Kuyucaklıoğlu"
   git config user.email "109629701+ErenDenizK@users.noreply.github.com"
   ```
 
-  Do not add a `Co-Authored-By` trailer for Codex. End every commit
-  message with exactly this trailer line:
-
-  ```text
-  Generated-With: OpenAI Codex
-  ```
-
+  No `Co-Authored-By` trailer for Codex. End every commit message with
+  exactly `Generated-With: OpenAI Codex`.
 - **Commits:** [Conventional Commits](https://www.conventionalcommits.org/),
   imperative, one logical change per commit, for example
   `design(art): add batch-01 round 1 masters (island, Mochi)`.
-- **Branches and PRs:** branch `art/<batch>` (for example
-  `art/batch-01-slice`), one PR per round, into `main`. **Never push to
-  `main`. Never merge.** The lead (the cloud Claude session, authorized
-  in `CLAUDE.md`) reviews and merges; that is not a conflict with this
-  rule.
-- **Secrets:** never commit or print an API key, `~/.codex/auth.json`,
-  anything from `~/.codex`, `.env` files, or tokens.
+- **Branches and PRs:** `art/<batch>/<track>` (or `art/<batch>`), one PR per
+  batch into `main`. **Never push to `main`. Never merge**; the lead merges.
+- **Secrets:** never commit or print an API key, anything from `~/.codex`,
+  `.env` files or tokens.
 
 ## The account rule (read twice)
 
-_Founder's decision (2026-11-02): art is generated on his uncle's ChatGPT plan with permission, and provenance says so truthfully. Before launch: a written assignment or shipped masters regenerated on his own plan (roadmap Phase 6)._
+Founder's decision (2026-11-02): art is generated on his uncle's ChatGPT
+plan with permission, and provenance says so truthfully. Before launch, a
+written assignment or masters regenerated on his own plan.
 
-Every master must name its generating account truthfully: use exactly
-what `account.owner` in `tools/imagegen/config.yaml` says.
+- Every master names its generating account exactly as `account.owner` in
+  `tools/imagegen/config.yaml` says. If `account.owner` or `account.kind`
+  is empty, or you are unsure the signed-in account is the right one,
+  **stop and ask the founder** (in Turkish).
+- **Codex path (`chatgpt-plan`):** "Sign in with ChatGPT". **Never set
+  `OPENAI_API_KEY`** (it switches to API billing; the pipeline refuses).
+- **API path (`api`):** the key lives only in the macOS Keychain (service
+  `pofu-openai-api`) or `POFU_OPENAI_API_KEY` in the founder's shell; never
+  in a file, log, commit or message. `run` prints a cost estimate; `--yes`
+  only after the founder agrees to that amount.
+- **Never automate chatgpt.com in a browser.** If neither path works, stop
+  and report.
 
-- `tools/imagegen/config.yaml` → `account.owner` and `account.kind` must
-  be filled in before anything is generated. If they are empty, or you
-  are not sure the signed-in account is the founder's own, **stop and
-  ask him** (in Turkish).
-- **Codex path (`account.kind: chatgpt-plan`):** `codex login` with
-  "Sign in with ChatGPT" as the founder. **Never set `OPENAI_API_KEY`**
-  (it would switch Codex to API billing); the pipeline refuses to run if
-  it is set.
-- **API path (`account.kind: api`):** the key lives in the macOS Keychain
-  (service `pofu-openai-api`) or in `POFU_OPENAI_API_KEY` in the founder's
-  local shell only. Never write it to a file, a log, a commit, or a
-  message. `run` prints a cost estimate; run with `--yes` only after the
-  founder has agreed to that amount.
-- **Never automate chatgpt.com in a browser.** If neither path works,
-  stop and report.
-- Work in **a separate clone** for art (for example
-  `~/projects/pofu-art`), not in the folder the local Claude session
-  uses (`/Users/edk/projects/pofu`).
+## The queue: the line never ends
 
-## The production queue
-
-The work comes from one ordered queue:
-[`docs/design/art-production-plan.md`](docs/design/art-production-plan.md).
-The founder wants the line never to idle and art picked automatically by
-QA; he reviews afterwards and can veto any pick. Batch 02 stays
-`status: blocked` until the friends beta.
-
-**The standing rule: the line never ends** (founder, 2026-11-05: "Codex
-sits idle; it must never stop"). There is always a next job. Work in this
-order, forever:
+The work comes from one ordered queue,
+[`docs/design/art-production-plan.md`](docs/design/art-production-plan.md#the-queue).
+Its table, not this file, says what is `READY`. Fetch `origin/main` and
+re-read it at the start of every task and before every batch. Work in this
+order, forever (founder, 2026-11-05: "it must never stop"):
 
 1. The `READY` rows of the queue, in order.
-2. When none is left, the **production backlog** rows
-   ([production backlog](docs/design/art-production-plan.md#the-production-backlog))
-   whose manifest is on main, in order: real ids, promoted on pass.
-3. Then the `BACKLOG` rows
-   ([the backlog](docs/design/art-production-plan.md#the-backlog)), in
-   order. Backlog manifests are explorations (`x-` ids): never promoted.
-4. When the backlog is exhausted, start again from the first backlog row
-   with **fresh variations**: copy each job under a new exploration id
-   (`-v2`, then `-v3`, ...) and give it a new angle (another pose, camera,
-   time of day, season, palette, composition). Never run the same prompt
-   twice. Copy the manifest to `batch-NN-<name>-v2.yaml` (new `batch:`
-   name, same header rules) and commit it in that batch's PR; this is the
-   one manifest edit you may make, and only for `x-` explorations.
-4. Before each batch, fetch `origin/main` and re-read the queue: new
-   `READY` rows go first.
+2. Then the [production backlog](docs/design/art-production-plan.md#the-production-backlog)
+   rows whose manifest is on `main`, in order: real ids, promoted on pass.
+3. Then the [`BACKLOG`](docs/design/art-production-plan.md#the-backlog)
+   rows, in order: explorations (`x-` ids), never promoted.
+4. When the backlog is exhausted, start again from its first row with
+   **fresh variations**: copy the manifest to `batch-NN-<name>-v2.yaml`
+   (then `-v3`, ...; new `batch:` name, same header rules, new exploration
+   ids) and give each job a new angle (pose, camera, time of day, season,
+   palette, composition). Never run the same prompt twice. This is the one
+   manifest edit you may make, only for `x-` explorations, committed in that
+   batch's PR.
 
-When you open a batch's PR, immediately start the next batch on a new
-branch; never wait for a review or a merge. Never start a `BLOCKED` batch
-(`status: blocked`). A job that fails or is refused is recorded as skipped
-and the run goes on with the next job (see Stop conditions). One PR per
-batch, as always. Nothing in this file tells you to stop after a batch or to
-wait for the lead; only the global stop conditions below end a session.
+New `READY` rows always go first. There is no "queue empty" state. When you
+open a batch's PR, start the next batch on a new branch at once; never wait
+for a review or merge. Never start a `BLOCKED` batch (`status: blocked`).
 
-**Pilot gate (production chains only):** a production batch has a small
-pilot manifest (`batch-NN-<name>-pilot`, 2 to 5 jobs) that the lead reviews
-before the rest of the batch opens. Run pilots exactly as written. The jobs
-gated behind a pilot (`status: blocked`, or named as gated in the queue) are
-skipped and you continue with other rows; the gate never stops the line.
-Backlog explorations have no pilot gate.
+- **Pilot gate (production only):** a production batch may have a pilot
+  manifest (`batch-NN-<name>-pilot`, 2 to 5 jobs), run exactly as written.
+  Jobs gated behind it are skipped and the line goes on. A failed pilot
+  skips only its dependents (`edit_of`, `approved:`, as `plan` shows), the
+  whole batch only if the header names it the style anchor of every job.
+- **Explorations** (`EXPLORATION` in the queue and manifest header):
+  generate, ingest, post, auto-pick, **never `promote`**. Commit only the
+  takes, contact sheet and `review.yaml` under `design/art/takes/<batch>/<id>/`.
+- **Salvage first:** a job whose `notes` say SALVAGE FIRST ingests the named
+  takes already on `main` (`run.py ingest --source salvage-<batch> <files>`)
+  and generates only if none passes.
+- **`promote --force`** is allowed only when a queue row or the manifest
+  header's lead rule names the job (and the failing checks); cite that row
+  or rule in the review note. Otherwise a failed take is never promoted.
 
-**Explorations** (`EXPLORATION` in the queue and in the manifest header):
-generate, ingest, post and auto-pick as usual, but **never run
-`promote`**. Commit the takes (WebP q90), the contact sheet and
-`review.yaml` under `design/art/takes/<batch>/<id>/`, and nothing else.
+## Running a batch
 
-**Salvage before you generate:** a job whose `notes` say SALVAGE FIRST
-ingests the named takes already on `main`
-(`run.py ingest --source salvage-<batch> <files>`), posts and picks them;
-it generates only if none passes.
+The founder starts a task with: "AGENTS.md parallel auto mode, `<batch>`,
+track `<name>`". The manifest is `tools/imagegen/manifest/<batch>.yaml`; its
+header names the tracks. A track runs one object's whole chain (each level
+an edit of the approved previous one, so levels stay sequential); "track
+`all`" runs every track in one task on `art/<batch>/all` with one PR
+(preferred). Parallelise tracks inside the task if you can (sub-agents or
+concurrent generations; say which in the PR), otherwise run them in header
+order. PR title: `art(batch-NN): <track>`. Every command runs from the repo
+root as `python3 -I tools/imagegen/run.py <command> --manifest <manifest>`.
 
-**Tracks:** a task runs one object's whole chain (each level an edit of
-the previous, auto-picked); every job makes **2 takes** (a third is
-usually a weaker copy of the second). Each manifest's header names its
-tracks. "Track `all`" runs every track of the batch in one task, on
-`art/<batch>/all`, with one PR (preferred by the founder).
+1. `pip install -r tools/imagegen/requirements.txt`. If that fails, stop and
+   ask the founder to add it to the Codex environment's setup script.
+2. **Dependencies:** get approved parent masters from `main`, or from the
+   other track's branch (`git fetch origin art/<batch>/<track>`, then
+   `git checkout origin/art/<batch>/<track> -- design/art/<master folder>`,
+   the whole folder). Jobs marked `external:` are never generated; fetch
+   them the same way. A master stored only as `<name>.webp` is decoded
+   first: `python3 -I -c "from PIL import Image; Image.open('<dir>/<name>.webp').save('<dir>/<name>.png')"`.
+3. `plan` shows which jobs are ready. Print a job's prompt and attachments
+   with `prompt --job <id>` and generate **2 takes** with your built-in image
+   tool, attaching the listed references. No image tool: stop and say so.
+   Pacing: at most 2 takes per job and 40 images per run; independent jobs
+   may generate concurrently. A refusal skips that job (never retried or
+   rephrased).
+4. `ingest --job <id> --source codex-cloud <files>`, then `post --only <id>`.
+5. **Auto-pick:** the take that passes QA with the lowest style-lock load;
+   between equals, the higher `harmony` score (match to the approved island,
+   or to Pofu for characters; below 70 warns). If none passes, one more
+   round of takes; if that fails too, skip the job (Stop conditions). Read
+   the job's `notes` for review checks or skip cases. Run
+   `promote --only <id>` and write "auto-picked by QA; founder review
+   pending" in the provenance note.
+6. **Commit only this job's files**, each under 600 KB: the folder `promote`
+   wrote (with `raw.webp`), the takes as WebP q90 plus `contact.jpg` and
+   `review.yaml` in `design/art/takes/<batch>/<id>/`, the harmony file and
+   the content node (below). Never edit the shared
+   `design/art/review/<batch>.yaml`; the lead merges the fragments. Push
+   after **every** promoted job (dependent tracks start early), run the
+   upload check, open the PR after the first push. After the last job, say
+   so in the PR and go straight on to the next batch.
 
-- **Parallelise inside the task if you can** (sub-agents or concurrent
-  generations), and say in the PR which mechanism you used. Otherwise run
-  the tracks in the header's order.
-- **Either way,** a chain's levels stay sequential: each level is an edit of
-  the approved previous level.
-
-The founder starts a task with: "AGENTS.md parallel auto mode,
-`<batch>`, track `<name>`" (for example "AGENTS.md parallel auto mode,
-batch-03-home-island, track pond"). Branch: `art/<batch>/<track>`. PR
-title: `art(batch-NN): <track>`. Within the task, run steps 2 to 6 for each
-job of the track in order. The manifest is
-`tools/imagegen/manifest/<batch>.yaml`. The order of batches is the
-[queue](docs/design/art-production-plan.md#the-queue).
-
-1. Install the tools: `pip install -r tools/imagegen/requirements.txt`. If
-   that fails, stop and ask the founder to add it to the Codex
-   environment's setup script (setup runs with internet access).
-2. If the job depends on others, get their approved masters from `main`,
-   or, if they are not merged yet, from the other track's branch:
-   `git fetch origin art/<batch>/<track>` and
-   `git checkout origin/art/<batch>/<track> -- design/art/<master folder>`
-   (the whole folder: later edits read its `meta.json`). Jobs marked
-   `external: batch-01-slice` in a manifest are batch 01's masters: `plan`
-   shows them as "external"; never generate them, fetch them the same way
-   from `main` or `art/batch-01-slice/all`. If a master folder holds
-   `<name>.webp` but no `<name>.png` (see [Uploads](#uploads-every-file-under-600-kb)),
-   decode it:
-   `python3 -I -c "from PIL import Image; Image.open('<dir>/<name>.webp').save('<dir>/<name>.png')"`.
-   Do not wait for the lead to merge. Track tasks push after **each**
-   promoted job, not only at the end, so dependent tasks can start early.
-3. Print the exact prompt and attachments with
-   `python3 -I tools/imagegen/run.py prompt --manifest <manifest> --job <id>`,
-   and generate the job's 2 takes with **your built-in image generation
-   tool**, attaching the listed references. If you have no image tool here,
-   stop and say so.
-4. Ingest the takes with
-   `run.py ingest --manifest <manifest> --job <id> --source codex-cloud <files>`,
-   then run `run.py post --manifest <manifest> --only <id>`.
-5. **Auto-pick:** choose the take that passes QA with the lowest style-lock
-   load (the post report lists both); between takes that are otherwise
-   equal, prefer the higher **harmony** score (the QA line `harmony`:
-   how closely the take matches the approved island, or Pofu for
-   characters, measured by `tools/assets/harmony.py`; below 70 it warns).
-   If no take passes, generate at most
-   one more round of the job's variants. If that also fails, skip the job and its
-   dependents and go on (see Stop conditions); do not loop. Set that take as the pick for this job
-   only, and run `promote --only <id>`. In the provenance note, write
-   "auto-picked by QA; founder review pending". Read the job's `notes` in
-   the manifest: some name a review check or a case where you skip the job and go on.
-6. **Commit only this job's files**, so parallel tasks never conflict, and
-   every file under 600 KB ([Uploads](#uploads-every-file-under-600-kb)):
-   - the master or station folder that `promote` wrote;
-   - every take as **lossy WebP, quality 90**, in `design/art/takes/<batch>/<id>/`;
-   - the job's contact sheet as `design/art/takes/<batch>/<id>/contact.jpg`;
-   - the job's QA summary as `.../<id>/review.yaml`.
-
-   Do **not** edit the shared `design/art/review/<batch>.yaml`; the lead
-   merges the fragments. Push branch `art/<batch>/<track>` after every
-   promoted job, run the upload check, and after the first push open the
-   PR. After the last job, say so in the PR and go straight on to the
-   next batch.
-
-The founder vetoes in Turkish ("tea-stall-1: take 2", or "redo"). The lead or
-a new task applies the veto.
-
-On the Mac, the `codex` backend (`run.py run --backend codex`) does steps
-3 and 4 by itself.
+File names come from the pipeline (`<kind>__<name>--t<n>.png`); never rename
+them. The founder vetoes in Turkish ("tea-stall-1: take 2", or "redo"); the
+lead or a new task applies it.
 
 ## Uploads: every file under 600 KB
 
-The GitHub connector a Codex cloud task pushes through **cuts every file
-off at 768 KB, silently**. Batch 01's takes and `raw.png` files on
-`art/batch-01-slice/all` arrived as 786,443-byte stubs that do not open.
-So, for every task and every push:
+The connector a Codex cloud task pushes through **cuts files at 768 KB,
+silently** (batch 01 arrived as broken stubs). So:
 
 - **Every uploaded file is under 600 KB** (614,400 bytes).
-- **Takes are lossy WebP at quality 90:**
+- **Takes are lossy WebP q90:**
   `python3 -I -c "from PIL import Image; Image.open('<take>.png').save('<take>.webp', 'WEBP', quality=90, method=6)"`.
-  A 1536 × 1024 take is about 70 to 90 KB.
-- **The raw is never dropped.** `promote` keeps the unlocked take as
-  `raw.webp` in the master folder: lossless WebP when that is under
-  600 KB, otherwise lossy WebP q95 (q92 or q90 only if q95 does not fit).
-  Always commit it. The style lock is a choice that can be redone only
-  from the raw (`tools/imagegen/relock.py`); a master folder without a
-  raw fails `check_upload.py`.
-- **The master stays lossless.** If `<name>.png` is under 600 KB, upload
-  it. If not, upload a lossless WebP twin `<name>.webp` in the same folder
-  instead of the PNG
-  (`Image.open(p).save(q, 'WEBP', lossless=True, method=6)`; masters land
-  at 430 to 500 KB). It decodes back to identical pixels; dependent tasks
-  decode it (step 2) and the lead restores the PNG on merge.
-- **Check every upload:** after each push, re-download every file you
-  pushed and decode it:
+- **The raw is never dropped:** `promote` keeps the unlocked take as
+  `raw.webp` (lossless if under 600 KB, else lossy q95, q92 or q90). Always
+  commit it; the style lock can be redone only from it
+  (`tools/imagegen/relock.py`).
+- **The master stays lossless:** upload `<name>.png` if under 600 KB, else a
+  lossless WebP twin `<name>.webp` instead
+  (`Image.open(p).save(q, 'WEBP', lossless=True, method=6)`); the lead
+  restores the PNG on merge.
+- **Check every push:**
 
   ```sh
   git fetch origin art/<batch>/<track>
@@ -234,173 +173,68 @@ So, for every task and every push:
       design/art/takes/<batch>/<id> design/art/<stations|masters>/<name>
   ```
 
-  It fails a file that is 600 KB or more, differs from your local copy, or
-  does not decode, and a master folder (one with a `meta.json`) that keeps
-  no `raw.webp`. Fix and re-push before you start the next job. (Batch
-  01 masters already on `main` decode and may stay as they are.)
+  It fails a file of 600 KB or more, one that differs from your copy or
+  does not decode, and a master folder without `raw.webp`. Fix and re-push
+  before the next job.
 
-## Harmony manifest: commit your master's own file
+## Harmony and content: per master, in the same PR
 
-CI runs `python3 -I tools/assets/harmony.py check`, and a new master needs
-its harmony entry, so an art PR without it fails CI (batches 05 to 07 did).
-The manifest is one small file per asset, `design/art/harmony/assets/<id>.json`,
-so parallel art PRs never touch the same file. The push checklist for every
-promoted master:
+CI runs `python3 -I tools/assets/harmony.py check`; a new master without its
+harmony entry fails CI. For every promoted master:
 
-1. `python3 -I tools/assets/harmony.py measure`
-2. Commit only the new or changed `design/art/harmony/assets/<id>.json` of
-   your masters in the same PR as the master (and its `raw.webp`, content
-   node and provenance). If other assets' files changed too, a shared input
-   moved (config, reference); do not commit those, tell the lead.
-3. `python3 -I tools/assets/harmony.py check` must pass before you push.
+1. `python3 -I tools/assets/harmony.py measure`, then commit only your
+   masters' `design/art/harmony/assets/<id>.json`. If other assets' files
+   changed, a shared input moved: do not commit them, tell the lead.
+2. `python3 -I tools/content/sync_assets.py` writes or updates the
+   `content/assets/asset-<job id>.yaml` node
+   ([`content/README.md`](content/README.md)). If the station, character
+   or theme that uses the image does not link it yet, add
+   `uses_asset: [asset-<job id>]` there. A rejected take you keep stays as
+   a node with `status: cut` and why; never delete a node.
+3. `harmony.py check` and `python3 -I tools/content/validate.py` pass
+   before you push.
 
-## Next batches: the queue
+## Art decisions you must respect
 
-The ordered list of batches, their state (`READY`, `BLOCKED`, `NEXT PR`)
-and why each exists is in
-[`docs/design/art-production-plan.md`](docs/design/art-production-plan.md#the-queue).
-The lead keeps it current; read it at the start of every task and before
-every batch. The table, not this file, says what is `READY` now; batches
-that were `READY` here on earlier dates are long finished.
-
-A failed pilot skips only the jobs that depend on it (`edit_of`,
-`approved:`), exactly as `plan` shows; never skip a whole batch for a
-pilot, unless the batch's header names that pilot as the style anchor every
-other job attaches. Edits that repaint the object declare it
-(`acceptance: {edit_mode: recolor | region}`), and a brief that names
-colors outside the kind's palettes adds `palettes: [...]`
-(`tools/imagegen/README.md`). Pofu is never locked.
-
-Masters on `main` stored only as `<name>.webp` (for example `mochi-v2`,
-`island-main-l-v2`, `workshop-1`) are decoded to `<name>.png` first, as in
-step 2.
-
-## Content graph: one asset node per promoted master
-
-Content planning lives in `content/` ([`content/README.md`](content/README.md)). For **each master you
-promote**, add an `asset` node or update its `art:`:
-
-1. After `run.py promote`, run `python3 -I tools/content/sync_assets.py`.
-   It writes a stub `content/assets/asset-<job id>.yaml` for a new job and
-   adds the promoted image to `art.images` of an existing node.
-2. If the station, character or theme that uses the image does not link to
-   it yet, add `uses_asset: [asset-<job id>]` there (station levels already
-   name their asset).
-3. A take you reject but keep stays as a node with `status: cut` and a note
-   saying why; never delete a node.
-4. Run `python3 -I tools/content/validate.py` and commit the content change
-   in the same PR as the art.
-
-## Decisions you must respect
-
-From the founder (2026-11-01) and the lead:
-
-- **Style target:** the founder's island take 1 (the softer, less
-  contrasty one, `design/art/tests/2026-11-01/world__island-main-s_take1.png`)
-  and R1 (`design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png`).
-  Props are pulled toward R1, never the other way. Art test 01's images
-  are references only, never masters.
-- **Art direction:** [art-direction study](docs/design/art-direction-study.md).
-  Matte, chunky, high-key props; one light from the upper left; the
-  island's low camera (about 20°, ground ellipses 0.3 tall : wide); no
-  grain, no outlines; the `lock-light` style lock (since 2026-11-02: saturation
-  and contrast are graded at runtime by the app, so the files stay near
-  neutral; `soft-lock` remains for comparison); Pofu is never locked.
-- **Light standard (new manifests):** every job declares `light: {cell, layer}`; paint sprites under the day cell with no cast shadow, never lift the blacks of the subject plane, and use `style-anchor-v2`; see [light standard](docs/design/light-standard.md).
-- **Proportion B:** a balanced diorama, Pofu about 20 % of the screen
-  width, the world about 70 % of the height.
-- **Glass++ (ADR-0018):** native iOS glass plus illustrated UI art.
-  No painted glass, ever: glass is native, painted art sits under or
-  inside it. System actions (close, settings, share, back) stay SF
-  Symbols; only domain concepts get painted icons. The seed jar and the
-  calm lantern are indicators, never controls; the lantern is two layers
-  (off, on) so code drives the glow. The map shows a 30 pt vector Pofu
-  pin (code, not art). The camera is continuous; the cloud pass happens
-  only when a new island arrives (code).
-- **UI batch:** `batch-02-ui` (12 UI images) stays blocked until the
-  friends beta. The UI direction is a hybrid of native Liquid Glass and
-  custom painted elements, specified separately; UI boards stay
-  explorations.
-
-## The workflow, step by step
-
-All commands from the repository root, with the venv:
-`.venv/bin/python -I tools/imagegen/run.py <command> --manifest tools/imagegen/manifest/<batch>.yaml`.
-
-1. `git pull` on `main`, then `git switch -c art/<batch>` (or continue
-   the open branch for the next round).
-2. `plan`: lists jobs and which are ready (parents approved, references
-   present). Only ready jobs are generated.
-3. `run --dry-run`, then `run` (Codex) or `run --backend openai-api`
-   (prints the estimate; `--yes` after the founder agrees). Pacing (founder,
-   2026-11-02): no pause, at most 2 takes per job and 40 images per run,
-   and **concurrent generation is allowed**: independent jobs may run at the
-   same time in separate agents or sub-agents. Stop the session on the first
-   usage, rate-limit or sign-in message; a refusal skips that job (never
-   retried or rephrased); never retry in a loop.
-4. `post`: style lock and QA for every take; writes the contact sheet
-   (`build/review/<batch>.png`), a small copy
-   (`design/art/review/<batch>-contact.jpg`) and the review file
-   (`design/art/review/<batch>.yaml`).
-5. Show the founder the contact sheet (open the PNG). Ask in Turkish
-   which take he wants for each job, or none. Write `pick: <n>` (or
-   `none`) and his reason in `note`. Never pick for him. Never approve a
-   take that failed QA unless he insists; then write why.
-6. `promote`: copies picks to `design/art/{stations,masters,ui}/…` with
-   provenance. `plan` then shows what the next round can generate.
-7. Commit the review file, the small contact sheet and the new master
-   folders (nothing from `design/art/inbox/` or `build/`). Push
-   `art/<batch>` and open a PR into `main` titled
-   `design(art): <batch> round <n>` with: what was generated (counts,
-   time), the contact sheet, the picks, QA warnings accepted and why, and
-   anything that surprised you. Then start the next batch (do not wait for
-   the lead).
-
-File names are made by the pipeline: raw takes are
-`<kind>__<name>--t<n>.png`; do not rename them. Kinds: `char`, `station`,
-`world`, `prop`, `plate`, `sheet`, `icon`, `ui`, `widget`, `appicon`.
+- **Style target:** the founder's island take 1
+  (`design/art/tests/2026-11-01/world__island-main-s_take1.png`) and R1
+  (`design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png`). Props
+  are pulled toward R1. Art test 01 images are references, never masters.
+- **Look:** [art-direction study](docs/design/art-direction-study.md):
+  matte, chunky, high-key props; one light from the upper left; the low
+  island camera (about 20°, ground ellipses 0.3 tall : wide); no grain, no
+  outlines; the `lock-light` style lock (the app grades saturation and
+  contrast at runtime); **Pofu is never locked**.
+- **Light standard:** every new job declares `light: {cell, layer}`; paint
+  sprites under the day cell with no cast shadow, never lift the subject's
+  blacks, use `style-anchor-v2`
+  ([light standard](docs/design/light-standard.md)). Edits that repaint
+  declare `acceptance: {edit_mode: recolor | region}`; colours outside the
+  kind's palettes add `palettes: [...]` (`tools/imagegen/README.md`).
+- **Glass++ (ADR-0018):** glass is native, never painted; painted art sits
+  under or inside it. System actions stay SF Symbols; only domain concepts
+  get painted icons. The seed jar and calm lantern are indicators (the
+  lantern is two layers, off and on). The map pin and the cloud pass are
+  code. `batch-02-ui` stays blocked until the friends beta.
 
 ## Stop conditions
 
-**A failed job does not stop the line** (lead, 2026-11-02: one failed decor
-bench froze 14 finished rig picks and every later batch). Two levels:
-
-**Skip and continue.** A job that fails (QA failure on the same check twice,
-a timeout, a Codex answer without an image, a manual check such as the decor
-guide fit) gets its one allowed retry round (a fresh pair of takes). If that
-also fails, record the job as `skipped` with its reason in its `review.yaml`
-and its content node (`status: cut`, never delete), skip every job that depends
-on it (`edit_of`, `approved:`), say so in the PR, and **go on with the next
-job and the next batch**. Only true dependents are skipped; unrelated jobs and batches go on, however many jobs have failed in a row (there is no consecutive-failure stop). Never loop, never waive a check to force a pass.
-Finished picks are always published; a skipped job never holds them back.
+**A failed job never stops the line.** A job that fails (the same QA check
+twice, a timeout, an answer without an image, a manual check) gets one retry
+round. If that fails too, record it as `skipped` with the reason in its
+`review.yaml` and content node (`status: cut`), skip only its true dependents
+(`edit_of`, `approved:`), say so in the PR, and go on with the next job and
+batch. There is no consecutive-failure stop. Never loop; never waive a check
+to force a pass (only the `promote --force` rule above). Finished picks are
+always published.
 
 **Global stop** (stop, report, do not retry) only for:
 
 - The batch is `blocked`, or `account.owner` / `account.kind` is empty.
 - Any account, sign-in, key, quota, usage-limit or rate-limit message.
-- Codex refuses, or answers without an image three times in a row. A single
-  refusal or image-less answer is not a global stop: record the job as
-  skipped, **never retry or rephrase a refused prompt**, and continue with
-  the next job. Only three in a row end the session.
-- Identity or upload corruption (a pushed file fails `check_upload.py`
-  after one re-push, or the commit identity is wrong).
-- The key guard fires, or the API estimate is above what the founder agreed.
+- Three refusals or image-less answers in a row (one is a skip, not a stop).
+- Upload or identity corruption: a pushed file still fails `check_upload.py`
+  after one re-push, or the commit identity is wrong.
+- The key guard fires, or the API estimate exceeds what the founder agreed.
 - Anything needs `sudo`, a system install, or a change outside
-  `tools/imagegen/`, `design/art/` and the PR: ask the founder first.
-
-**Before every batch:** fetch `origin/main` and re-read
-[the queue](docs/design/art-production-plan.md#the-queue); new `READY` rows
-may have appeared. **There is no "queue empty" state:** when no `READY` row
-is left you take the backlog, and when that is exhausted you start over with
-fresh variations (the standing rule above).
-
-## Changing things
-
-- Do not edit prompt blocks, manifests, `style_lock.json` or QA
-  thresholds on your own. Propose the change in the PR description; the
-  lead makes it.
-- One exception: if the first-run checklist shows that Codex stores
-  images somewhere else or names its events differently, adjust only the
-  clearly marked adapter block in `tools/imagegen/backends.py`, run the
-  tests (`.venv/bin/python -I -m pytest tools/imagegen/tests`), and
-  explain it in the PR.
+  `tools/imagegen/`, `design/art/`, `content/` and the PR: ask the founder.
