@@ -1,0 +1,304 @@
+# Batch 43: Çağlayan, the second story island (production; real ids, promoted on pass).
+#
+# Çağlayan arrives on day 10 with the flow game; one stream reconnects per
+# stage, at most one stage a day (docs/product/game-plan.md, day 10-14;
+# docs/design/island-healing-arc.md, Çağlayan's rows). Same structure as
+# batch-39 (Koke), which is the model: read its header first.
+#
+#   island   `caglayan-island-0` is the root plate in the game camera (1536 x
+#            1024, the home island's camera and proportions). `-1` to `-4` are
+#            EDITS OF caglayan-island-0 (never of each other) so the stages
+#            register pixel for pixel and the game crossfades between them.
+#   damla    `damla` is the resident (an otter; lore-bible: she tries to catch
+#            the waterfall in a tea glass), root character; `damla-glass` is an
+#            edit on the same canvas and ground line (the rig method).
+#
+# The wound is "the falls stopped". The register is dry and abandoned, a
+# little lonely (the healing arc's variety table: silence where water should
+# be), never scary. Bad to good, not medium to very good (founder,
+# 2026-11-05): stage 0 is clearly dry and dull, not ruined.
+#
+#   0 stuck     IMPRESSIVE, NOT PALE (founder, 2026-11-06: "even the bad
+#               state should be impressive"): a dry stepped cliff where the
+#               waterfall should be, the pool a dark still mirror, the wheel
+#               stopped. Warm hues drained to about 40 percent chroma, but a
+#               FULL value range and rich cool colour (blue-violet shade, teal
+#               mirror, layered haze) and ONE focal light: a shaft of pale
+#               light with dust motes on a single glinting trickle.
+#   1           one stream reconnects: a thin ribbon of water down the left
+#               steps; the pool's near edge darkens wet; chroma about 55 percent.
+#   2           two streams; the pool half full and clear blue-green; the wheel
+#               wet; the FIRST WARM LIGHT on the cliff top; chroma about 70.
+#   3           three streams, the pool full, the wheel turning (a little spray
+#               at its paddles); chroma about 85; still NO signature (no
+#               rainbow, no mist cloud).
+#   4 healed    the waterfall pours in full down every step, a soft rainbow
+#               in the mist at its foot, ferns and flowers along the banks,
+#               full colour, warm light. Code adds the motion.
+#
+# PALETTES: the healed stages add water blues and flower colours on purpose.
+# batch-39's healed stages failed palette_drift for that reason only; this
+# batch adds `world-water`. LEAD RULE for this batch: a healed stage (2-4) or
+# a pose edit whose only hard failures are palette_drift or chroma_ceiling
+# (colour the arc adds by design; harmony fixes chroma at bake) or
+# edit_silhouette on a pose edit is promoted with `promote --force` and a
+# note in its review file naming this rule. Any other failure is a normal skip.
+#
+# Tracks: `island` (root first, then the four edits in any order), `damla`
+# (root first, then the edit). The tracks are independent.
+
+batch: batch-43-caglayan-production
+title: Çağlayan, the second story island (island plate at arc stages 0 to 4, Damla the otter in two poses)
+status: open
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: island-main-l-v3, kind: world, name: island-main-l-v3, external: batch-05-fixes-pilot, master: design/art/masters/island-main-l-v3/island-main-l-v3.webp}
+  - {id: island-main-s, kind: world, name: island-main-s, external: batch-01-slice}
+  - {id: tea-stall-5, kind: station, name: tea-stall-5, external: batch-01-slice}
+  - {id: cloud-sea, kind: world, name: cloud-sea, external: batch-04-sky}
+  - {id: mochi-v2, kind: char, name: mochi-v2, external: batch-03-home-island, master: design/art/masters/mochi-v2/mochi-v2.webp}
+
+  # ------------------------------------------------------- island plates
+
+  - id: caglayan-island-0
+    kind: plate
+    name: caglayan-island-0
+    deliver: {scale: 0.5}
+    size: 1536x1024
+    canvas: 1536x1024
+    palettes: [world-foliage, world-water]
+    chat: "Pofu · Çağlayan island"
+    light: {cell: day, layer: subject}
+    notes: "ROOT of the island chain; stage 0, stuck. Review: one word, 'dry', and still IMPRESSIVE (founder, 2026-11-06: even the bad state should be impressive, a new place keeps its magic): drained warm hues but a full value range, deep cool shade, a mirror pool, layered haze, one shaft of light on the glinting trickle; never washed out or flat, never ruined or scary; same camera, plate proportions and finish as home. The layout (cliff steps, pool, mill and wheel, banks, a stone path) is what every later stage keeps: keep it simple and clearly composed, with the falls' steps centred at the back so stage 4's waterfall reads at 28 pt. Record the harmony chroma for the arc check."
+    attach:
+      - ref: approved:island-main-l-v3
+        role: "The home island: copy ONLY its camera, its plate proportions (shallow top, rounded banded body) and its soft painting. Do not copy its lawn, its colors, its round door or its pebbles."
+      - ref: approved:island-main-s
+        role: "The small island plate: Çağlayan is about this size in the frame. Copy the size and the earth body's proportions only."
+      - ref: approved:tea-stall-5
+        role: "A finished station of the game: every prop on the island is at this scale and in this finish (do not draw this stall)."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+    prompt:
+      - text: |
+          A game plate for a cozy mobile game: Çağlayan, a small island whose
+          waterfall has stopped, in the game, on a still overcast-bright noon.
+          STAGE 0, STUCK. The island is a floating diorama plate with a
+          shallow top about a fifth as deep as it is wide, over a soft rounded
+          earth body with gentle bands, a small plate about 62 percent of the
+          image width, centered. At the back centre rises a low cliff of
+          rounded stone in four broad steps, about as tall as a windmill,
+          where a waterfall should pour: the steps are pale and dust-dry,
+          sun-bleached sand-grey, with dry moss in the cracks. At its foot a
+          round shallow pool lies still, its surface a dark still mirror with a
+          dry pale rim where the water used to reach. On the right bank a
+          small wooden mill with a round water wheel stands still, its
+          paddles dry and mossy. A path of flat stones runs from the front
+          lip to the pool. A few rounded boulders, two dry tufts of grass,
+          and a small wooden bucket lying on its side.
+          STUCK STATE, HUSHED AND BEAUTIFUL, NOT PALE: the warm colours are
+          drained (the grass straw-dry, the wood grey, the flowers shut), but
+          the picture keeps a full range from deep shade to bright light and
+          rich cool colour. The cliff's shaded faces are a deep soft
+          blue-violet; the still pool is a dark teal mirror reflecting the sky;
+          a soft cool haze sits behind the cliff so it stands out in layers.
+          ONE focal light: a single slanting shaft of pale morning light falls
+          through the haze onto the cliff, dust motes floating in it, and lands
+          on a single thin trickle of clear water running down one step on the
+          left, which glints brightly. A hushed, beautiful stillness that
+          invites you in, like a place waiting for you; never washed out,
+          never flat grey, never ruined, never eerie.
+          GAME CAMERA: exactly the camera of the attached home island, a low
+          front three-quarter view about 20 degrees above the horizon, a pale
+          sky with soft far clouds above and the sea of clouds below rising to
+          the island's underside. Every prop is at the scale of the attached
+          tea stall. No characters.
+      - block: prop-style-v2
+      - text: "AVOID: cracks like an earthquake, ruins, broken buildings, skulls, bones, dead trees, fog, gloom, darkness, a pointed or spiky underside, water falling off the island, a copy of the home island's lawn and round door, text, letters, a border, harsh shadows, outlines, photorealism, a 3D render look"
+
+  - id: caglayan-island-1
+    kind: plate
+    name: caglayan-island-1
+    deliver: {scale: 0.5}
+    size: 1536x1024
+    canvas: 1536x1024
+    edit_of: caglayan-island-0
+    palettes: [world-foliage, world-water]
+    chat: "Pofu · Çağlayan island"
+    light: {cell: day, layer: subject}
+    notes: "Stage 1, the first stream. An edit of stage 0: every outline, prop and the camera stay in place. Review: one thin ribbon of water down the left steps into the pool, the pool's near edge wet and darker, the stone it touches darker and a little greener; chroma about 55 percent; the cool haze and the one shaft as in stage 0, no warm light; the wheel still dry."
+    acceptance: {edit_mode: region, edit_chroma: {warn: 0.30, fail: 0.15}}
+    prompt:
+      - text: |
+          Edit the attached island plate from stage 0 to stage 1: one stream
+          is back. The trickle on the left grows into one thin, clear ribbon
+          of water falling step by step down the left side of the cliff into
+          the pool. The stones it runs over are darker and wet, with a little
+          fresh green moss. The pool's near edge is wet and a little darker,
+          with a few soft ripples where the ribbon lands; the rest of the pool
+          stays dull. A few tufts of grass near the water turn green. The
+          picture is a little more colourful (chroma about 55 percent of a
+          healthy meadow); the light, the cool haze and the single shaft stay as in stage 0. The wheel and the
+          rest of the cliff stay dry. Every shape, prop, stone, outline, the
+          island's size, the camera and the composition stay exactly where
+          they are in the attached image.
+      - block: edit-keep-v1
+      - text: "AVOID: warm sunlight, a full waterfall, a rainbow, mist, a turning wheel, new props, characters, moving or resizing anything, text"
+
+  - id: caglayan-island-2
+    kind: plate
+    name: caglayan-island-2
+    deliver: {scale: 0.5}
+    size: 1536x1024
+    canvas: 1536x1024
+    edit_of: caglayan-island-0
+    palettes: [world-foliage, world-water, world-props]
+    chat: "Pofu · Çağlayan island"
+    light: {cell: day, layer: subject}
+    notes: "Stage 2, the first warm light. An edit of stage 0 (not of 1). Review: two ribbons (left and centre), the pool half full and clear blue-green, the wheel wet but still, green returning on the banks, a first soft warm light on the cliff top; chroma about 70 percent; no rainbow, no mist."
+    acceptance: {edit_mode: region, edit_chroma: {warn: 0.30, fail: 0.15}}
+    prompt:
+      - text: |
+          Edit the attached island plate from stage 0 to stage 2: the first
+          warm light. Two clear ribbons of water now fall down the cliff, one
+          on the left and one in the centre, into the pool. The pool is half
+          full of clear blue-green water with soft ripples, its old dry rim
+          still showing above the water line. The stones beside the streams
+          are wet and mossy green; the grass along the banks is green again
+          and two small clumps of white and butter-yellow flowers open near
+          the water. The water wheel is wet and dark but still. The first
+          warm light of the picture appears: a soft low warm sun from the
+          upper left lands on the top of the cliff and the falling water,
+          warming them to honey, while the rest stays in cooler light. The
+          picture is more colourful (chroma about 70 percent). Every shape,
+          prop, stone, outline, the island's size, the camera and the
+          composition stay exactly where they are in the attached image.
+      - block: edit-keep-v1
+      - text: "AVOID: a rainbow, a mist cloud, light rays, a glow, a full waterfall, new props, characters, moving or resizing anything, text"
+
+  - id: caglayan-island-3
+    kind: plate
+    name: caglayan-island-3
+    deliver: {scale: 0.5}
+    size: 1536x1024
+    canvas: 1536x1024
+    edit_of: caglayan-island-0
+    palettes: [world-foliage, world-water, world-props]
+    chat: "Pofu · Çağlayan island"
+    light: {cell: day, layer: subject}
+    notes: "Stage 3, almost there: three streams, the pool full, the wheel turning with a little spray at its paddles, banks green with most flowers open, warm light on the cliff and near side; chroma about 85. NO signature: no rainbow, no mist cloud, no sparkle. Nearly finished but still, as if waiting."
+    acceptance: {edit_mode: region, edit_chroma: {warn: 0.30, fail: 0.15}}
+    prompt:
+      - text: |
+          Edit the attached island plate from stage 0 to stage 3: nearly
+          there. Three clear streams of water fall down the left, centre and
+          right of the cliff steps, each still a separate ribbon with dry
+          stone between them. The pool is full to its old rim with clear
+          blue-green water and soft ripples. The water wheel on the right is
+          turning: its paddles are wet and a little white spray lifts at the
+          bottom where they meet the water. The cliff steps are mossy green
+          around the water; the banks are lush green with clumps of white,
+          butter-yellow and soft lilac flowers, and two small ferns. A warm sun
+          from the upper left lights the cliff top and the near bank with
+          soft warm shadows. The picture is nearly fully colourful (chroma
+          about 85 percent). Every shape, prop, stone, outline, the island's
+          size, the camera and the composition stay exactly where they are in
+          the attached image.
+      - block: edit-keep-v1
+      - text: "AVOID: a rainbow, a mist cloud, sparkles, a glow, one single wide waterfall, new props, characters, moving or resizing anything, text"
+
+  - id: caglayan-island-4
+    kind: plate
+    name: caglayan-island-4
+    deliver: {scale: 0.5}
+    size: 1536x1024
+    canvas: 1536x1024
+    edit_of: caglayan-island-0
+    palettes: [world-foliage, world-water, world-props]
+    chat: "Pofu · Çağlayan island"
+    light: {cell: day, layer: subject}
+    notes: "Stage 4, healed: the signature. The streams have joined into one full, soft waterfall pouring down every step into the full pool, a soft rainbow in the mist at its foot, the wheel turning, banks in bloom, full colour and warm light. A reward, better than the player imagined, but the same island: the layout is identical. Record the arc chroma check (at least twice stage 0)."
+    acceptance: {edit_mode: region, edit_chroma: {warn: 0.30, fail: 0.15}}
+    prompt:
+      - text: |
+          Edit the attached island plate from stage 0 to stage 4: healed. The
+          waterfall pours again: one full, soft, glassy curtain of water falls
+          down all four cliff steps into the pool, white where it breaks on
+          each step. At its foot a soft cloud of fine mist rises, and in the
+          mist a gentle pastel rainbow arcs, small and soft. The pool is full,
+          clear blue-green, with gentle ripples and a few lily pads. The water
+          wheel turns, its paddles bright with spray. The cliff is covered in
+          living moss and small ferns; the banks are in full bloom with white,
+          butter-yellow, blush pink and lilac flowers; the bucket now stands
+          upright by the pool, full of water. Full warm afternoon light, soft
+          and golden on the water and the cliff, cool clear shadows. Full
+          colour. Every shape, prop, stone, outline, the island's size, the
+          camera and the composition stay exactly where they are in the
+          attached image.
+      - block: edit-keep-v1
+      - text: "AVOID: a harsh or neon rainbow, a huge mist cloud hiding the cliff, water falling off the island's edge, new buildings, characters, moving or resizing anything, sparkles, text"
+
+  # ------------------------------------------------------- Damla the otter
+
+  - id: damla
+    kind: char
+    name: damla
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: true
+    fit: {ground: true}
+    palettes: [character, world-water]
+    chat: "Pofu · Damla"
+    light: {cell: day, layer: subject}
+    notes: "ROOT of the pose chain. Review: a small round river otter of Pofu's family (soft plush, round head, big warm eyes), standing on her hind legs, slightly hopeful and determined; a little empty tea glass held in both front paws at her chest (a small tulip-shaped Turkish tea glass); about Pofu's height; ground line at 88 percent. Never scary, not realistic: no teeth showing, no claws."
+    attach:
+      - ref: R1
+        role: "Pofu, the hamster: match his art style, lighting, level of fluff and finish exactly (do not draw him)."
+      - ref: approved:mochi-v2
+        role: "Mochi, the bunny: the same family of soft plush characters, the same size on the canvas (do not draw her)."
+      - ref: palette:character
+        role: "The character palette card."
+    prompt:
+      - text: |
+          Draw Damla, a small, round, plush river otter, as a game sprite on a
+          transparent background, in exactly the same art style, lighting and
+          level of softness as the attached hamster and bunny. She stands on
+          her hind legs facing the viewer, three quarters to the left, her
+          long soft tail curled on the ground beside her. Warm cocoa-brown fur
+          with a cream face, chin and belly, a round head with tiny round
+          ears, big warm dark eyes with soft catchlights, a small dark nose,
+          short whiskers, a hopeful little smile, a blush on each cheek. In
+          both front paws, held at her chest, a small empty tulip-shaped tea
+          glass. She is about as tall as the attached bunny on the canvas,
+          centered, standing on an invisible ground line at 88 percent of the
+          height. No ground, no shadow, no water.
+      - block: style-anchor-v1
+      - block: negative-v1
+      - text: "AVOID: teeth, claws, a realistic otter, a fish, a frown, wet spiky fur, water splashes, a ground, a shadow, text, letters, outlines"
+
+  - id: damla-glass
+    kind: char
+    name: damla-glass
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: true
+    edit_of: damla
+    palettes: [character, world-water]
+    chat: "Pofu · Damla"
+    light: {cell: day, layer: subject}
+    notes: "Pose edit for the healed island: the glass is half full of clear water, she lifts it up proudly, eyes happy-closed, a big grin. Same canvas, size and ground line as the root (the rig method). edit_silhouette may fail by design: see the lead rule in the header."
+    acceptance: {edit_mode: region}
+    prompt:
+      - text: |
+          Edit the attached otter: the same character, the same size, on the
+          same ground line, in the same place on the canvas. She now lifts the
+          little tea glass up with both paws above her head, proud and happy;
+          the glass is half full of clear water with a tiny glint. Her eyes are
+          closed in two happy upward curves and she has a big open smile. Her
+          tail curls up a little with joy. Everything else (fur colours,
+          proportions, style, lighting) stays exactly the same.
+      - block: edit-keep-v1
+      - text: "AVOID: a full glass, spilled water, splashes, teeth, a different size, moving her on the canvas, a ground, a shadow, text"
