@@ -1,0 +1,846 @@
+batch: batch-42-stickers
+contact_sheet: design/art/takes/sticker-repost-2026-11-06/sticker-mochi-sulky/contact.jpg
+jobs:
+  sticker-mochi-sulky:
+    pick: 3
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Retained-only re-post of four
+      historical originals on the author-fixed native 1024 square canvas with ground_line:false;
+      original ordinals/account/generation timestamps preserved; no new generation.
+      Manual full-body/expression/identity and proper light/dark 28 px checks passed.
+      Official advisory light/palette/Harmony warnings remain advisory; hard QA failures
+      are excluded.
+qa_reports:
+  2:
+    job: sticker-mochi-sulky
+    take: 2
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 29 (R1 51)
+      value: 29.2
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 50 (at most 22), p98 97 (at least 90), spread 47
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 46.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 90 (band 55-90)'
+      value: 89.5
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.42 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.424
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.2 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.21
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.6 (R1 5.3)
+      value: 3.58
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.2, p95 3.1, off-palette 0.7% (top: #441100 (0.1%), #330000
+        (0.1%))'
+      value: 1.1942
+    - check: harmony
+      status: pass
+      message: 'harmony score 70 against the char reference (outliers: C_p95, L_p2)'
+      value: 70.5
+    info:
+      metrics_raw:
+        L_p5: 69.8
+        L_p50: 89.5
+        L_p95: 96.0
+        C_p50: 9.3
+        C_p95: 29.2
+        C_p99: 39.9
+        detail: 3.57
+      metrics_locked:
+        L_p5: 69.8
+        L_p50: 89.5
+        L_p95: 96.0
+        C_p50: 9.3
+        C_p95: 29.2
+        C_p99: 39.9
+        detail: 3.58
+    fingerprint: 2872bd3c42ea9537
+  1:
+    job: sticker-mochi-sulky
+    take: 1
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 30 (R1 51)
+      value: 30.0
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 40 (at most 22), p98 97 (at least 90), spread 56
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 56.4
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 90 (band 55-90)'
+      value: 89.7
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.40 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.396
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.6 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.56
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.6 (R1 5.3)
+      value: 3.63
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.5, p95 3.7, off-palette 0.8% (top: #441100 (0.1%), #551100
+        (0.1%))'
+      value: 1.4816
+    - check: harmony
+      status: pass
+      message: 'harmony score 72 against the char reference (outliers: C_p95, L_p2,
+        tint_b)'
+      value: 72.5
+    info:
+      metrics_raw:
+        L_p5: 69.3
+        L_p50: 89.7
+        L_p95: 96.0
+        C_p50: 9.3
+        C_p95: 30.0
+        C_p99: 42.2
+        detail: 3.62
+      metrics_locked:
+        L_p5: 69.3
+        L_p50: 89.7
+        L_p95: 96.0
+        C_p50: 9.3
+        C_p95: 30.0
+        C_p99: 42.2
+        detail: 3.63
+    fingerprint: 2872bd3c42ea9537
+  3:
+    job: sticker-mochi-sulky
+    take: 3
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 30 (R1 51)
+      value: 29.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 36 (at most 22), p98 96 (at least 90), spread 60
+        (at least 60)'
+      value: 60.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 90 (band 55-90)'
+      value: 89.6
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.37 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.373
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.2 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.25
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.5 (R1 5.3)
+      value: 3.47
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.3, p95 3.1, off-palette 0.8% (top: #441100 (0.1%), #551100
+        (0.1%))'
+      value: 1.2579
+    - check: harmony
+      status: pass
+      message: 'harmony score 74 against the char reference (outliers: C_p95, L_p2,
+        tint_b)'
+      value: 74.4
+    info:
+      metrics_raw:
+        L_p5: 70.0
+        L_p50: 89.6
+        L_p95: 95.8
+        C_p50: 9.4
+        C_p95: 29.9
+        C_p99: 43.5
+        detail: 3.47
+      metrics_locked:
+        L_p5: 70.0
+        L_p50: 89.6
+        L_p95: 95.8
+        C_p50: 9.4
+        C_p95: 29.9
+        C_p99: 43.5
+        detail: 3.47
+    fingerprint: 2872bd3c42ea9537
+  4:
+    job: sticker-mochi-sulky
+    take: 4
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 29 (R1 51)
+      value: 29.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 43 (at most 22), p98 97 (at least 90), spread 53
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 53.4
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 89 (band 55-90)'
+      value: 89.1
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.38 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.38
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.6 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.56
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.5 (R1 5.3)
+      value: 3.45
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.3, p95 3.3, off-palette 0.5% (top: #662211 (0.1%), #441100
+        (0.0%))'
+      value: 1.2621
+    - check: harmony
+      status: pass
+      message: 'harmony score 70 against the char reference (outliers: C_p95, L_p2,
+        tint_b)'
+      value: 70.0
+    info:
+      metrics_raw:
+        L_p5: 69.4
+        L_p50: 89.1
+        L_p95: 95.8
+        C_p50: 8.8
+        C_p95: 29.1
+        C_p99: 40.9
+        detail: 3.45
+      metrics_locked:
+        L_p5: 69.4
+        L_p50: 89.1
+        L_p95: 95.8
+        C_p50: 8.8
+        C_p95: 29.1
+        C_p99: 40.9
+        detail: 3.45
+    fingerprint: 2872bd3c42ea9537
+manual_review:
+  excluded_takes: []
+  note: Retained-only re-post of four historical originals on the author-fixed native
+    1024 square canvas with ground_line:false; original ordinals/account/generation
+    timestamps preserved; no new generation. Manual full-body/expression/identity
+    and proper light/dark 28 px checks passed. Official advisory light/palette/Harmony
+    warnings remain advisory; hard QA failures are excluded.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-f74ca9b7-cd28-424b-b770-28b3d3913f80.png
+  original_generated_png_sha256: 28c74e07ccb9edf232b413b268157a7e3524aeab852fbb53635dfe6bb1ed1026
+  inbox_png_sha256: 077d912c1c840a6570b0d802c6be2c445693d70dfeb164df0d7b8c3336c91e61
+  rgba_sha256: c6a5b8959d04ec46f9a45c2ead461dacd0905a30f5182cc674491d1f58f8f8e6
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 2872bd3c42ea9537
+- take: 2
+  source_file: /workspace/generated_images/exec-f60773e6-ed94-4a5d-8d4c-deba2861b02d.png
+  original_generated_png_sha256: 32189a1da067df0edec31ca6a84bfc6b6c86f4ec418ed21d2d735f2b215f7e3a
+  inbox_png_sha256: 899965a44df08a5afab8ffe14f9847a5600255786a749828a8aad42c35e10616
+  rgba_sha256: 8f00c019c3e63c2f6f39ecf0155a3a60edc9fd6006937ce4ba87da2ec94a21fe
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 2872bd3c42ea9537
+- take: 3
+  source_file: /workspace/generated_images/exec-907e0fd1-07c7-4ff6-868c-14a25bea8969.png
+  original_generated_png_sha256: f3b9403bcd06c51d955f0aed0095578c1bb49c3404515e7f45d195066415d6df
+  inbox_png_sha256: b421473965ad06ffd97c0f0a602594c4ba4f05efe933c18136e380552f9003db
+  rgba_sha256: 9306a61fd832b8123cb4a590cc217392740605f1734182455a3194fba3a1ea5a
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 2872bd3c42ea9537
+- take: 4
+  source_file: /workspace/generated_images/exec-a696c1cd-d04b-420e-b789-40613b27bda8.png
+  original_generated_png_sha256: 3c0198a166a771ff6650c8d1b9f4e1158f68dd11eb85d0b881a07666b6d07aad
+  inbox_png_sha256: c7e1bc1060d324f4056802b12e0ca218dd4fb4a7d415c9f0a91600bc7a846458
+  rgba_sha256: 086a37f082a6a1a2f4ee62dcb3823f8b2054e90b209843a85ca114973492e719
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 2872bd3c42ea9537
+salvage:
+  batch: batch-42-stickers
+  source_count: 4
+  original_branch: art/batch-42-stickers/all
+  original_commit: b77792fc184547204c0710b19223c68b5a64fde1
+  sources:
+  - batch: batch-42-stickers
+    job: sticker-mochi-sulky
+    take: 1
+    round: 1
+    logical_run: b42-residents-a
+    source_file: /workspace/generated_images/exec-f74ca9b7-cd28-424b-b770-28b3d3913f80.png
+    returned_at: '2026-11-06T02:16:31.400Z'
+    prompt_sha256: c61234f23f3bef90135c0a7d5f4d37bde70afc59e01c82b5ab4a7376729016b6
+    fingerprint: 2872bd3c42ea9537
+    saved_at: '2026-11-06T02:16:31.716538+00:00'
+    original_generated_png_sha256: 28c74e07ccb9edf232b413b268157a7e3524aeab852fbb53635dfe6bb1ed1026
+    dimensions:
+    - 1254
+    - 1254
+    rgba_sha256: c6a5b8959d04ec46f9a45c2ead461dacd0905a30f5182cc674491d1f58f8f8e6
+    evaluation_take: 1
+    original_take: 1
+    original_run: batch-42-stickers
+    original_callback: /workspace/art-operator-runtime/run-20261106/batch-42-stickers/generated-sticker-mochi-sulky-t1.json
+    original_callback_sha256: 935c6be3654d6253e4c62210788cf5f862786c849451f191efcea301a190224d
+    original_tool_callback: /workspace/art-operator-runtime/run-20261106/batch-42-stickers/callback-sticker-mochi-sulky-t1.json
+    original_tool_callback_sha256: 715b9d2a0dc737594410ac1e56748797c47ffe0931745637c33f864ec46d03fa
+    original_sidecar:
+      job: sticker-mochi-sulky
+      take: 1
+      batch: batch-42-stickers
+      fingerprint: 2872bd3c42ea9537
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. Mochi, the bunny: her exact look, fur, colors and eyes.
+
+
+        A single full-body sticker of Mochi the bunny in the exact attached look,
+        cheeks puffed, a small pout, eyes looking sideways, ears drooping a little.
+        Centred on a plain transparent background with wide empty space around it,
+        drawn complete with the whole body. No text, no speech bubbles, no floating
+        hearts, no sticker border, no ground shadow.
+
+
+        AVOID: text, a white outline, a background, teeth, tears, motion lines, a
+        different design.
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      attachments:
+      - path: design/art/masters/mochi-v2/mochi-v2.webp
+        role: 'Mochi, the bunny: her exact look, fur, colors and eyes.'
+      background: transparent
+      generated_at: '2026-11-06T02:16:33+00:00'
+      backend: codex-cloud
+      source_file: /workspace/generated_images/exec-f74ca9b7-cd28-424b-b770-28b3d3913f80.png
+      account:
+        owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+        kind: chatgpt-plan
+    original_sidecar_path: /workspace/art-20261106-stickers/design/art/inbox/batch-42-stickers/char__sticker-mochi-sulky--t1.json
+    original_sidecar_sha256: 88b87df3ac0b17f248f348d1c4e2071600e910b289b8bb331910e32fd6fac4db
+    original_sidecar_archive: /workspace/art-operator-runtime/run-20261106/completed-art-checkout-backups/run-20261106--batch-42-stickers.tar.gz
+    original_sidecar_archive_member: design/art/inbox/batch-42-stickers/char__sticker-mochi-sulky--t1.json
+    original_packet:
+      batch: batch-42-stickers
+      job: sticker-mochi-sulky
+      worktree: /workspace/art-20261106-stickers
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. Mochi, the bunny: her exact look, fur, colors and eyes.
+
+
+        A single full-body sticker of Mochi the bunny in the exact attached look,
+        cheeks puffed, a small pout, eyes looking sideways, ears drooping a little.
+        Centred on a plain transparent background with wide empty space around it,
+        drawn complete with the whole body. No text, no speech bubbles, no floating
+        hearts, no sticker border, no ground shadow.
+
+
+        AVOID: text, a white outline, a background, teeth, tears, motion lines, a
+        different design.
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      refs:
+      - /workspace/art-20261106-stickers/design/art/masters/mochi-v2/mochi-v2.webp
+      reference_sha256:
+        /workspace/art-20261106-stickers/design/art/masters/mochi-v2/mochi-v2.webp: d107327f7c35e283895babdadc487326cff93e13178ca594bc70285770f62ee5
+      fingerprint: 2872bd3c42ea9537
+      prompt_sha256: c61234f23f3bef90135c0a7d5f4d37bde70afc59e01c82b5ab4a7376729016b6
+      transparent: true
+    original_packet_sha256: 20e0e438c5a462e8bff20ab3edff1c4eeeeb6c5ded7b279e4bafd41b1acf0135
+  - batch: batch-42-stickers
+    job: sticker-mochi-sulky
+    take: 2
+    round: 1
+    logical_run: b42-residents-a
+    source_file: /workspace/generated_images/exec-f60773e6-ed94-4a5d-8d4c-deba2861b02d.png
+    returned_at: '2026-11-06T02:15:05.232Z'
+    prompt_sha256: c61234f23f3bef90135c0a7d5f4d37bde70afc59e01c82b5ab4a7376729016b6
+    fingerprint: 2872bd3c42ea9537
+    saved_at: '2026-11-06T02:15:05.676853+00:00'
+    original_generated_png_sha256: 32189a1da067df0edec31ca6a84bfc6b6c86f4ec418ed21d2d735f2b215f7e3a
+    dimensions:
+    - 1254
+    - 1254
+    rgba_sha256: 8f00c019c3e63c2f6f39ecf0155a3a60edc9fd6006937ce4ba87da2ec94a21fe
+    evaluation_take: 2
+    original_take: 2
+    original_run: batch-42-stickers
+    original_callback: /workspace/art-operator-runtime/run-20261106/batch-42-stickers/generated-sticker-mochi-sulky-t2.json
+    original_callback_sha256: 19a2743b03e40f63d9442d7a285f152900235e0230a6d389bae0ec6b774ed9a2
+    original_tool_callback: /workspace/art-operator-runtime/run-20261106/batch-42-stickers/callback-sticker-mochi-sulky-t2.json
+    original_tool_callback_sha256: add321707bedb8ee0c1a9eedd17efd36f4a20ad67f386380262a97f8e20672c6
+    original_sidecar:
+      job: sticker-mochi-sulky
+      take: 2
+      batch: batch-42-stickers
+      fingerprint: 2872bd3c42ea9537
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. Mochi, the bunny: her exact look, fur, colors and eyes.
+
+
+        A single full-body sticker of Mochi the bunny in the exact attached look,
+        cheeks puffed, a small pout, eyes looking sideways, ears drooping a little.
+        Centred on a plain transparent background with wide empty space around it,
+        drawn complete with the whole body. No text, no speech bubbles, no floating
+        hearts, no sticker border, no ground shadow.
+
+
+        AVOID: text, a white outline, a background, teeth, tears, motion lines, a
+        different design.
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      attachments:
+      - path: design/art/masters/mochi-v2/mochi-v2.webp
+        role: 'Mochi, the bunny: her exact look, fur, colors and eyes.'
+      background: transparent
+      generated_at: '2026-11-06T02:16:33+00:00'
+      backend: codex-cloud
+      source_file: /workspace/generated_images/exec-f60773e6-ed94-4a5d-8d4c-deba2861b02d.png
+      account:
+        owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+        kind: chatgpt-plan
+    original_sidecar_path: /workspace/art-20261106-stickers/design/art/inbox/batch-42-stickers/char__sticker-mochi-sulky--t2.json
+    original_sidecar_sha256: 510842c67298ad6b70cf160f5561275904204eb083ae3ffc56013b1727c93270
+    original_sidecar_archive: /workspace/art-operator-runtime/run-20261106/completed-art-checkout-backups/run-20261106--batch-42-stickers.tar.gz
+    original_sidecar_archive_member: design/art/inbox/batch-42-stickers/char__sticker-mochi-sulky--t2.json
+    original_packet:
+      batch: batch-42-stickers
+      job: sticker-mochi-sulky
+      worktree: /workspace/art-20261106-stickers
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. Mochi, the bunny: her exact look, fur, colors and eyes.
+
+
+        A single full-body sticker of Mochi the bunny in the exact attached look,
+        cheeks puffed, a small pout, eyes looking sideways, ears drooping a little.
+        Centred on a plain transparent background with wide empty space around it,
+        drawn complete with the whole body. No text, no speech bubbles, no floating
+        hearts, no sticker border, no ground shadow.
+
+
+        AVOID: text, a white outline, a background, teeth, tears, motion lines, a
+        different design.
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      refs:
+      - /workspace/art-20261106-stickers/design/art/masters/mochi-v2/mochi-v2.webp
+      reference_sha256:
+        /workspace/art-20261106-stickers/design/art/masters/mochi-v2/mochi-v2.webp: d107327f7c35e283895babdadc487326cff93e13178ca594bc70285770f62ee5
+      fingerprint: 2872bd3c42ea9537
+      prompt_sha256: c61234f23f3bef90135c0a7d5f4d37bde70afc59e01c82b5ab4a7376729016b6
+      transparent: true
+    original_packet_sha256: 20e0e438c5a462e8bff20ab3edff1c4eeeeb6c5ded7b279e4bafd41b1acf0135
+  - batch: batch-42-stickers
+    job: sticker-mochi-sulky
+    take: 3
+    round: 2
+    logical_run: b42-residents-retries
+    source_file: /workspace/generated_images/exec-907e0fd1-07c7-4ff6-868c-14a25bea8969.png
+    returned_at: '2026-11-06T02:20:03.828Z'
+    prompt_sha256: c61234f23f3bef90135c0a7d5f4d37bde70afc59e01c82b5ab4a7376729016b6
+    fingerprint: 2872bd3c42ea9537
+    saved_at: '2026-11-06T02:20:04.461184+00:00'
+    original_generated_png_sha256: f3b9403bcd06c51d955f0aed0095578c1bb49c3404515e7f45d195066415d6df
+    dimensions:
+    - 1254
+    - 1254
+    rgba_sha256: 9306a61fd832b8123cb4a590cc217392740605f1734182455a3194fba3a1ea5a
+    evaluation_take: 3
+    original_take: 3
+    original_run: batch-42-stickers
+    original_callback: /workspace/art-operator-runtime/run-20261106/batch-42-stickers/generated-sticker-mochi-sulky-t3.json
+    original_callback_sha256: 51ac8c08b14932579db4be5f0894752851c40d21558ea800116b158afef91964
+    original_tool_callback: /workspace/art-operator-runtime/run-20261106/batch-42-stickers/callback-sticker-mochi-sulky-t3.json
+    original_tool_callback_sha256: 2e76247110ef07e1280a3e5e7c2c26465b533ae772dd3f40e3d84997989b2d7d
+    original_sidecar:
+      job: sticker-mochi-sulky
+      take: 3
+      batch: batch-42-stickers
+      fingerprint: 2872bd3c42ea9537
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. Mochi, the bunny: her exact look, fur, colors and eyes.
+
+
+        A single full-body sticker of Mochi the bunny in the exact attached look,
+        cheeks puffed, a small pout, eyes looking sideways, ears drooping a little.
+        Centred on a plain transparent background with wide empty space around it,
+        drawn complete with the whole body. No text, no speech bubbles, no floating
+        hearts, no sticker border, no ground shadow.
+
+
+        AVOID: text, a white outline, a background, teeth, tears, motion lines, a
+        different design.
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      attachments:
+      - path: design/art/masters/mochi-v2/mochi-v2.webp
+        role: 'Mochi, the bunny: her exact look, fur, colors and eyes.'
+      background: transparent
+      generated_at: '2026-11-06T02:20:52+00:00'
+      backend: codex-cloud
+      source_file: /workspace/generated_images/exec-907e0fd1-07c7-4ff6-868c-14a25bea8969.png
+      account:
+        owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+        kind: chatgpt-plan
+    original_sidecar_path: /workspace/art-20261106-stickers/design/art/inbox/batch-42-stickers/char__sticker-mochi-sulky--t3.json
+    original_sidecar_sha256: f8f1432c1506a64147659f826a7a3f7421fe733f66c80f177dfd1b60a46f1daa
+    original_sidecar_archive: /workspace/art-operator-runtime/run-20261106/completed-art-checkout-backups/run-20261106--batch-42-stickers.tar.gz
+    original_sidecar_archive_member: design/art/inbox/batch-42-stickers/char__sticker-mochi-sulky--t3.json
+    original_packet:
+      batch: batch-42-stickers
+      job: sticker-mochi-sulky
+      worktree: /workspace/art-20261106-stickers
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. Mochi, the bunny: her exact look, fur, colors and eyes.
+
+
+        A single full-body sticker of Mochi the bunny in the exact attached look,
+        cheeks puffed, a small pout, eyes looking sideways, ears drooping a little.
+        Centred on a plain transparent background with wide empty space around it,
+        drawn complete with the whole body. No text, no speech bubbles, no floating
+        hearts, no sticker border, no ground shadow.
+
+
+        AVOID: text, a white outline, a background, teeth, tears, motion lines, a
+        different design.
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      refs:
+      - /workspace/art-20261106-stickers/design/art/masters/mochi-v2/mochi-v2.webp
+      reference_sha256:
+        /workspace/art-20261106-stickers/design/art/masters/mochi-v2/mochi-v2.webp: d107327f7c35e283895babdadc487326cff93e13178ca594bc70285770f62ee5
+      fingerprint: 2872bd3c42ea9537
+      prompt_sha256: c61234f23f3bef90135c0a7d5f4d37bde70afc59e01c82b5ab4a7376729016b6
+      transparent: true
+    original_packet_sha256: 20e0e438c5a462e8bff20ab3edff1c4eeeeb6c5ded7b279e4bafd41b1acf0135
+  - batch: batch-42-stickers
+    job: sticker-mochi-sulky
+    take: 4
+    round: 2
+    logical_run: b42-residents-retries
+    source_file: /workspace/generated_images/exec-a696c1cd-d04b-420e-b789-40613b27bda8.png
+    returned_at: '2026-11-06T02:20:51.359Z'
+    prompt_sha256: c61234f23f3bef90135c0a7d5f4d37bde70afc59e01c82b5ab4a7376729016b6
+    fingerprint: 2872bd3c42ea9537
+    saved_at: '2026-11-06T02:20:51.649796+00:00'
+    original_generated_png_sha256: 3c0198a166a771ff6650c8d1b9f4e1158f68dd11eb85d0b881a07666b6d07aad
+    dimensions:
+    - 1254
+    - 1254
+    rgba_sha256: 086a37f082a6a1a2f4ee62dcb3823f8b2054e90b209843a85ca114973492e719
+    evaluation_take: 4
+    original_take: 4
+    original_run: batch-42-stickers
+    original_callback: /workspace/art-operator-runtime/run-20261106/batch-42-stickers/generated-sticker-mochi-sulky-t4.json
+    original_callback_sha256: 22af8f441e8caa2b498240d04fd45ed77917483707f5be681e45ce5acea7278b
+    original_tool_callback: /workspace/art-operator-runtime/run-20261106/batch-42-stickers/callback-sticker-mochi-sulky-t4.json
+    original_tool_callback_sha256: 3471c8e5a5c1cb4281773338e26d14d92f506e194a0a1896ccbd4a3a8f3b4bb0
+    original_sidecar:
+      job: sticker-mochi-sulky
+      take: 4
+      batch: batch-42-stickers
+      fingerprint: 2872bd3c42ea9537
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. Mochi, the bunny: her exact look, fur, colors and eyes.
+
+
+        A single full-body sticker of Mochi the bunny in the exact attached look,
+        cheeks puffed, a small pout, eyes looking sideways, ears drooping a little.
+        Centred on a plain transparent background with wide empty space around it,
+        drawn complete with the whole body. No text, no speech bubbles, no floating
+        hearts, no sticker border, no ground shadow.
+
+
+        AVOID: text, a white outline, a background, teeth, tears, motion lines, a
+        different design.
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      attachments:
+      - path: design/art/masters/mochi-v2/mochi-v2.webp
+        role: 'Mochi, the bunny: her exact look, fur, colors and eyes.'
+      background: transparent
+      generated_at: '2026-11-06T02:20:52+00:00'
+      backend: codex-cloud
+      source_file: /workspace/generated_images/exec-a696c1cd-d04b-420e-b789-40613b27bda8.png
+      account:
+        owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+        kind: chatgpt-plan
+    original_sidecar_path: /workspace/art-20261106-stickers/design/art/inbox/batch-42-stickers/char__sticker-mochi-sulky--t4.json
+    original_sidecar_sha256: c275a6dfe0026303800ba7835c9eb9f7068b298e6aa27971bedfdcd0ca93e7d1
+    original_sidecar_archive: /workspace/art-operator-runtime/run-20261106/completed-art-checkout-backups/run-20261106--batch-42-stickers.tar.gz
+    original_sidecar_archive_member: design/art/inbox/batch-42-stickers/char__sticker-mochi-sulky--t4.json
+    original_packet:
+      batch: batch-42-stickers
+      job: sticker-mochi-sulky
+      worktree: /workspace/art-20261106-stickers
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. Mochi, the bunny: her exact look, fur, colors and eyes.
+
+
+        A single full-body sticker of Mochi the bunny in the exact attached look,
+        cheeks puffed, a small pout, eyes looking sideways, ears drooping a little.
+        Centred on a plain transparent background with wide empty space around it,
+        drawn complete with the whole body. No text, no speech bubbles, no floating
+        hearts, no sticker border, no ground shadow.
+
+
+        AVOID: text, a white outline, a background, teeth, tears, motion lines, a
+        different design.
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      refs:
+      - /workspace/art-20261106-stickers/design/art/masters/mochi-v2/mochi-v2.webp
+      reference_sha256:
+        /workspace/art-20261106-stickers/design/art/masters/mochi-v2/mochi-v2.webp: d107327f7c35e283895babdadc487326cff93e13178ca594bc70285770f62ee5
+      fingerprint: 2872bd3c42ea9537
+      prompt_sha256: c61234f23f3bef90135c0a7d5f4d37bde70afc59e01c82b5ab4a7376729016b6
+      transparent: true
+    original_packet_sha256: 20e0e438c5a462e8bff20ab3edff1c4eeeeb6c5ded7b279e4bafd41b1acf0135

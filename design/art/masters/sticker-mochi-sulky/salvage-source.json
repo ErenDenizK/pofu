@@ -1,0 +1,66 @@
+{
+  "batch": "batch-42-stickers",
+  "job": "sticker-mochi-sulky",
+  "take": 3,
+  "round": 2,
+  "logical_run": "b42-residents-retries",
+  "source_file": "/workspace/generated_images/exec-907e0fd1-07c7-4ff6-868c-14a25bea8969.png",
+  "returned_at": "2026-11-06T02:20:03.828Z",
+  "prompt_sha256": "c61234f23f3bef90135c0a7d5f4d37bde70afc59e01c82b5ab4a7376729016b6",
+  "fingerprint": "2872bd3c42ea9537",
+  "saved_at": "2026-11-06T02:20:04.461184+00:00",
+  "original_generated_png_sha256": "f3b9403bcd06c51d955f0aed0095578c1bb49c3404515e7f45d195066415d6df",
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "rgba_sha256": "9306a61fd832b8123cb4a590cc217392740605f1734182455a3194fba3a1ea5a",
+  "evaluation_take": 3,
+  "original_take": 3,
+  "original_run": "batch-42-stickers",
+  "original_callback": "/workspace/art-operator-runtime/run-20261106/batch-42-stickers/generated-sticker-mochi-sulky-t3.json",
+  "original_callback_sha256": "51ac8c08b14932579db4be5f0894752851c40d21558ea800116b158afef91964",
+  "original_tool_callback": "/workspace/art-operator-runtime/run-20261106/batch-42-stickers/callback-sticker-mochi-sulky-t3.json",
+  "original_tool_callback_sha256": "2e76247110ef07e1280a3e5e7c2c26465b533ae772dd3f40e3d84997989b2d7d",
+  "original_sidecar": {
+    "job": "sticker-mochi-sulky",
+    "take": 3,
+    "batch": "batch-42-stickers",
+    "fingerprint": "2872bd3c42ea9537",
+    "prompt": "REFERENCES (attached, in this order):\n1. Mochi, the bunny: her exact look, fur, colors and eyes.\n\nA single full-body sticker of Mochi the bunny in the exact attached look, cheeks puffed, a small pout, eyes looking sideways, ears drooping a little. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.\n\nAVOID: text, a white outline, a background, teeth, tears, motion lines, a different design.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+    "attachments": [
+      {
+        "path": "design/art/masters/mochi-v2/mochi-v2.webp",
+        "role": "Mochi, the bunny: her exact look, fur, colors and eyes."
+      }
+    ],
+    "background": "transparent",
+    "generated_at": "2026-11-06T02:20:52+00:00",
+    "backend": "codex-cloud",
+    "source_file": "/workspace/generated_images/exec-907e0fd1-07c7-4ff6-868c-14a25bea8969.png",
+    "account": {
+      "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+      "kind": "chatgpt-plan"
+    }
+  },
+  "original_sidecar_path": "/workspace/art-20261106-stickers/design/art/inbox/batch-42-stickers/char__sticker-mochi-sulky--t3.json",
+  "original_sidecar_sha256": "f8f1432c1506a64147659f826a7a3f7421fe733f66c80f177dfd1b60a46f1daa",
+  "original_sidecar_archive": "/workspace/art-operator-runtime/run-20261106/completed-art-checkout-backups/run-20261106--batch-42-stickers.tar.gz",
+  "original_sidecar_archive_member": "design/art/inbox/batch-42-stickers/char__sticker-mochi-sulky--t3.json",
+  "original_packet": {
+    "batch": "batch-42-stickers",
+    "job": "sticker-mochi-sulky",
+    "worktree": "/workspace/art-20261106-stickers",
+    "prompt": "REFERENCES (attached, in this order):\n1. Mochi, the bunny: her exact look, fur, colors and eyes.\n\nA single full-body sticker of Mochi the bunny in the exact attached look, cheeks puffed, a small pout, eyes looking sideways, ears drooping a little. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.\n\nAVOID: text, a white outline, a background, teeth, tears, motion lines, a different design.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+    "refs": [
+      "/workspace/art-20261106-stickers/design/art/masters/mochi-v2/mochi-v2.webp"
+    ],
+    "reference_sha256": {
+      "/workspace/art-20261106-stickers/design/art/masters/mochi-v2/mochi-v2.webp": "d107327f7c35e283895babdadc487326cff93e13178ca594bc70285770f62ee5"
+    },
+    "fingerprint": "2872bd3c42ea9537",
+    "prompt_sha256": "c61234f23f3bef90135c0a7d5f4d37bde70afc59e01c82b5ab4a7376729016b6",
+    "transparent": true
+  },
+  "original_packet_sha256": "20e0e438c5a462e8bff20ab3edff1c4eeeeb6c5ded7b279e4bafd41b1acf0135"
+}
