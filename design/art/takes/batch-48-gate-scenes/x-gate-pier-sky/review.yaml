@@ -1,0 +1,180 @@
+batch: batch-48-gate-scenes
+manifest: tools/imagegen/manifest/batch-48-gate-scenes.yaml
+manifest_sha256: a28c1ba0fc771d58668781ea8b019ce50c0a8086c7aea588c5e00e15093ad0d5
+contact_sheet: design/art/takes/batch-48-gate-scenes/x-gate-pier-sky/contact.jpg
+jobs:
+  x-gate-pier-sky:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Source and official locked take1
+      preserve the immense golden-hour cloud sea/far islands, Pofu curl and soft hopeful
+      head turned back over a side/back body, one steaming tulip tea glass, exactly
+      three blank lantern choices with one larger warm lit lantern and two smaller
+      unlit, open upper-half sky, no painted text/native UI chrome or other characters.
+      Independent source-bound peer confirms take1 feet visibly hang over the near
+      turf edge; the rear/side camera reads softly and remains a disclosed advisory
+      rather than an invented angle threshold. Take2 is manually excluded because
+      both feet rest on continuous lawn before the cliff instead of dangling at the
+      edge. Eligible take1 hard QA passes/warns with lowest eligible lock load1.7277.
+      Palette drift remains advisory; never promoted.
+qa_reports:
+  1:
+    job: x-gate-pier-sky
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 46 (R1 51)
+      value: 46.1
+    - check: value_floor
+      status: pass
+      message: lightness p5 66 (R1 59)
+      value: 65.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.4 (R1 5.3)
+      value: 1.43
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.7
+      value: 1.7277
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.3, p95 8.6, off-palette 0.9% (top: #998866 (0.3%), #888866
+        (0.1%))'
+      value: 3.3495
+    info:
+      metrics_raw:
+        L_p5: 65.4
+        L_p50: 77.0
+        L_p95: 87.6
+        C_p50: 27.9
+        C_p95: 46.3
+        C_p99: 57.3
+        detail: 1.96
+      metrics_locked:
+        L_p5: 65.7
+        L_p50: 77.0
+        L_p95: 87.3
+        C_p50: 27.9
+        C_p95: 46.1
+        C_p99: 55.1
+        detail: 1.43
+    fingerprint: 229dd931f2568c94
+  2:
+    job: x-gate-pier-sky
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 47 (R1 51)
+      value: 46.7
+    - check: value_floor
+      status: pass
+      message: lightness p5 64 (R1 59)
+      value: 63.8
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.4 (R1 5.3)
+      value: 1.38
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.8
+      value: 1.7863
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 4.2, p95 9.6, off-palette 0.5% (top: #DD7733 (0.1%), #DD8833
+        (0.0%))'
+      value: 4.1877
+    info:
+      metrics_raw:
+        L_p5: 63.6
+        L_p50: 76.3
+        L_p95: 87.6
+        C_p50: 28.2
+        C_p95: 47.0
+        C_p99: 57.5
+        detail: 1.9
+      metrics_locked:
+        L_p5: 63.8
+        L_p50: 76.4
+        L_p95: 87.1
+        C_p50: 28.2
+        C_p95: 46.7
+        C_p99: 55.7
+        detail: 1.38
+    fingerprint: 229dd931f2568c94
+manual_review:
+  observed_note: Source and official locked take1 preserve the immense golden-hour
+    cloud sea/far islands, Pofu curl and soft hopeful head turned back over a side/back
+    body, one steaming tulip tea glass, exactly three blank lantern choices with one
+    larger warm lit lantern and two smaller unlit, open upper-half sky, no painted
+    text/native UI chrome or other characters. Independent source-bound peer confirms
+    take1 feet visibly hang over the near turf edge; the rear/side camera reads softly
+    and remains a disclosed advisory rather than an invented angle threshold. Take2
+    is manually excluded because both feet rest on continuous lawn before the cliff
+    instead of dangling at the edge. Eligible take1 hard QA passes/warns with lowest
+    eligible lock load1.7277. Palette drift remains advisory; never promoted.
+  excluded_takes:
+  - 2
+sources:
+- batch: batch-48-gate-scenes
+  job: x-gate-pier-sky
+  take: 1
+  round: 1
+  logical_run: 20261106-b48-gate-scenes
+  source_file: /workspace/generated_images/exec-b0d93728-2535-431e-9ca8-fbd2aa8d02d6.png
+  returned_at: '2026-11-06T08:10:12.855Z'
+  prompt_sha256: 17e871814808d535c4439a325a3ac1134f2121731cc351335a659a2cf9ea1b84
+  fingerprint: 229dd931f2568c94
+  saved_at: '2026-11-06T08:10:13.183032+00:00'
+  original_generated_png_sha256: 142a70967c6396782dd39b742cafa68522febc2b824d0e2d841997f249d51a4d
+  dimensions:
+  - 1024
+  - 1536
+  rgba_sha256: bb37b1fb2a0fe37abe3234e0a98ebcacb974edee603c6c6e305151a77b1aaa31
+  inbox_png_sha256: 17c86c20d8ec4690adb7f60b82c10d2dd4d08ef789614ef2de6dd9097e27464b
+  qa_sha256: 9b27c0f0911fbadd51e878e430c39b97d8a24a6ecaa63a0ba701b6b1e2f5f821
+- batch: batch-48-gate-scenes
+  job: x-gate-pier-sky
+  take: 2
+  round: 1
+  logical_run: 20261106-b48-gate-scenes
+  source_file: /workspace/generated_images/exec-09b3184d-8ceb-4b53-a594-46e296f3bdc0.png
+  returned_at: '2026-11-06T08:09:38.927Z'
+  prompt_sha256: 17e871814808d535c4439a325a3ac1134f2121731cc351335a659a2cf9ea1b84
+  fingerprint: 229dd931f2568c94
+  saved_at: '2026-11-06T08:09:39.420733+00:00'
+  original_generated_png_sha256: aa5e9751b97ae35e359ddd94355617fefdf960a61bf8f4dd4501969e1ba168fc
+  dimensions:
+  - 1024
+  - 1536
+  rgba_sha256: 947975b3ac49292a0a54cf8a727569a8e31862e141605d302dd000a38d99ccc9
+  inbox_png_sha256: c136cbf0890e3d8745efeb8c33b996e688215f6f825a5d2955c604f26715ba23
+  qa_sha256: 8bbacdf3a9fe392f4555fb2fc81013f0b7c9f13ee53b8c64e6c5eb2487553785
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
