@@ -21,6 +21,8 @@ enum BreathSound {
     enum Cue { case airOpens, airCloses, chime }
 
     static var handler: ((Cue) -> Void)?
+    /// The running breath's seconds, so the pad can follow the ring.
+    static var plan: (inhale: Double, exhale: Double) = (4, 6)
 
     static func play(_ cue: Cue) {
         handler?(cue)

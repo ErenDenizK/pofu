@@ -152,6 +152,7 @@ struct BreathRoom: View {
     private func breathe() {
         started += 1
         BreathHaptics.shared.swell(inhale: plan.inhale, exhale: plan.exhale)
+        BreathSound.plan = (plan.inhale, plan.exhale)
         BreathSound.play(.airOpens)
     }
 

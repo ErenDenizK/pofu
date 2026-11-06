@@ -362,7 +362,9 @@ private struct SoundMuteRow: View {
             get: { isOn },
             set: { value in
                 isOn = value
-                SoundEngine.shared.settings = SoundSettings(isMuted: !value)
+                var settings = SoundEngine.shared.settings
+                settings.isMuted = !value
+                SoundEngine.shared.settings = settings
             }
         )) {
             Text(verbatim: "Pofu'nun sesleri açık")

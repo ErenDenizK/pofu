@@ -24,6 +24,18 @@ public enum SoundCue: Hashable, Sendable {
     case skipChime
     case pofuHop
     case gulp
+    /// The Pofu motif, four kalimba notes: an island level rises.
+    case levelUp
+    /// A resident arrives: two soft knocks.
+    case doorKnock
+    /// The tea stall's kettle comes to the whistle (morning).
+    case kettle
+    /// The flow game's wheel catches.
+    case waterWheel
+    /// Flow: water reaches a mouth.
+    case waterSplash
+    /// Flow: the last connection, the full pour.
+    case waterPour
 
     /// Which tuned volume the cue follows (`TuningValues.Sound`).
     public enum Group: Sendable { case seeds, pieces, pofu }
@@ -32,7 +44,8 @@ public enum SoundCue: Hashable, Sendable {
         switch self {
         case .seedPop, .bloom, .comboRise: .seeds
         case .piecePickup, .pieceSnap, .pieceDrop, .piecePutBack, .deal: .pieces
-        case .cheek, .roundEnd, .collect, .skipChime, .pofuHop, .gulp: .pofu
+        case .cheek, .roundEnd, .collect, .skipChime, .pofuHop, .gulp,
+             .levelUp, .doorKnock, .kettle, .waterWheel, .waterSplash, .waterPour: .pofu
         }
     }
 
@@ -53,6 +66,12 @@ public enum SoundCue: Hashable, Sendable {
         case .skipChime: "skip-chime"
         case .pofuHop: "pofu-hop"
         case .gulp: "gulp"
+        case .levelUp: "level-up"
+        case .doorKnock: "door-knock"
+        case .kettle: "kettle"
+        case .waterWheel: "water-wheel"
+        case .waterSplash: "water-splash"
+        case .waterPour: "water-pour"
         }
     }
 
@@ -62,7 +81,9 @@ public enum SoundCue: Hashable, Sendable {
         names += (0...SoundPitch.maxBloomStep).map { SoundCue.bloom(step: $0).assetName }
         names += (0..<SoundPitch.comboCount).map { SoundCue.comboRise(level: $0 + 2).assetName }
         let rest: [SoundCue] = [.piecePickup, .pieceSnap, .pieceDrop, .piecePutBack, .deal, .cheek,
-                                .roundEnd, .collect, .skipChime, .pofuHop, .gulp]
+                                
+                                .roundEnd, .collect, .skipChime, .pofuHop, .gulp, .levelUp, .doorKnock,
+                                .kettle, .waterWheel, .waterSplash, .waterPour]
         return names + rest.map(\.assetName)
     }()
 }
