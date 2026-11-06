@@ -1,0 +1,458 @@
+batch: batch-24-home-materials-v2
+manifest: tools/imagegen/manifest/batch-24-home-materials-v2.yaml
+manifest_sha256: b61416abeacb9caa3197174c50d198baea91b686b02ce420255d4693b93dc3cc
+contact_sheet: design/art/takes/batch-24-home-materials-v2/x-decor-mailbox-2-v2/contact.jpg
+jobs:
+  x-decor-mailbox-2-v2:
+    pick: 3
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Exactly four originals across
+      initial pair plus sole unchanged-prompt retry. Source and official locked inspected:
+      take3 has one rounded soft-sage box on short wood post with cream roof, little
+      ROSE flag RAISED and exactly TWO BLANK envelopes, no text/stamps/animal/fur/extra
+      prop. Take3 normalized width329px satisfies authored one-third341.33 and canonical
+      ground guide. Widths343/359/342 for takes1/2/4 exceed the same literal cap;
+      exclude those. Take3 is sole eligible candidate; official QA ranks it, style/light
+      warnings advisory. No pixels/thresholds changed; original hashes preserved;
+      never promoted.'
+qa_reports:
+  1:
+    job: x-decor-mailbox-2-v2
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 43 (R1 51)
+      value: 42.7
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 28 (at most 22), p98 94 (at least 90), spread 66
+        (at least 60)'
+      value: 65.8
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 75 (band 55-90)'
+      value: 75.4
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.08 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.078
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.0 (at least 3.5)'
+      value: 5.01
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.7 (R1 5.3)
+      value: 1.67
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 1.0148
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.8, p95 12.5, off-palette 5.9% (top: #999966 (1.2%), #888855
+        (0.9%))'
+      value: 3.8006
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 64 against the world reference (outliers: L_p2, detail,
+        edge)'
+      value: 64.5
+    info:
+      fit:
+        scale: 0.7132
+        anchor:
+        - 490.1
+        - 841
+      registration:
+        dx: 22
+        dy: 48
+      metrics_raw:
+        L_p5: 50.3
+        L_p50: 75.6
+        L_p95: 93.0
+        C_p50: 23.4
+        C_p95: 42.9
+        C_p99: 46.1
+        detail: 2.22
+      metrics_locked:
+        L_p5: 51.1
+        L_p50: 75.5
+        L_p95: 92.8
+        C_p50: 23.3
+        C_p95: 42.7
+        C_p99: 45.4
+        detail: 1.67
+    fingerprint: 4f000fc10398bd07
+  2:
+    job: x-decor-mailbox-2-v2
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 44 (R1 51)
+      value: 44.3
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 43 (at most 22), p98 94 (at least 90), spread 51
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 51.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 76 (band 55-90)'
+      value: 76.1
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.13 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.133
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.0 (at least 3.5)'
+      value: 4.96
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.8 (R1 5.3)
+      value: 1.77
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 0.9991
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.7, p95 13.5, off-palette 7.3% (top: #999966 (1.2%), #998866
+        (0.9%))'
+      value: 3.7113
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 81 against the world reference (outliers: detail, edge)'
+      value: 80.6
+    info:
+      fit:
+        scale: 0.7266
+        anchor:
+        - 496.3
+        - 836
+      registration:
+        dx: 16
+        dy: 52
+      metrics_raw:
+        L_p5: 52.9
+        L_p50: 76.2
+        L_p95: 92.8
+        C_p50: 22.5
+        C_p95: 44.8
+        C_p99: 46.8
+        detail: 2.42
+      metrics_locked:
+        L_p5: 53.5
+        L_p50: 76.1
+        L_p95: 92.5
+        C_p50: 22.5
+        C_p95: 44.3
+        C_p99: 46.2
+        detail: 1.77
+    fingerprint: 4f000fc10398bd07
+  3:
+    job: x-decor-mailbox-2-v2
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 45 (R1 51)
+      value: 45.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 41 (at most 22), p98 93 (at least 90), spread 52
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 51.7
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 74 (band 55-90)'
+      value: 73.7
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.12 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.118
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.3 (at least 3.5)'
+      value: 6.28
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.7 (R1 5.3)
+      value: 1.73
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.4
+      value: 1.4348
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 4.7, p95 14.4, off-palette 8.2% (top: #998855 (1.1%), #888855
+        (1.0%)) (advisory in an exploration)'
+      value: 4.7225
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 80 against the world reference (outliers: L_p2, detail,
+        edge)'
+      value: 79.5
+    info:
+      fit:
+        scale: 0.7029
+        anchor:
+        - 497.1
+        - 835
+      registration:
+        dx: 15
+        dy: 53
+      metrics_raw:
+        L_p5: 50.1
+        L_p50: 73.9
+        L_p95: 92.1
+        C_p50: 26.7
+        C_p95: 45.7
+        C_p99: 48.4
+        detail: 2.35
+      metrics_locked:
+        L_p5: 50.7
+        L_p50: 73.7
+        L_p95: 91.8
+        C_p50: 26.4
+        C_p95: 45.4
+        C_p99: 47.0
+        detail: 1.73
+    fingerprint: 4f000fc10398bd07
+  4:
+    job: x-decor-mailbox-2-v2
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 44 (R1 51)
+      value: 44.2
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 32 (at most 22), p98 93 (at least 90), spread 61
+        (at least 60)'
+      value: 61.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 72 (band 55-90)'
+      value: 72.3
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.10 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.098
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.4 (at least 3.5)'
+      value: 5.37
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.7 (R1 5.3)
+      value: 1.69
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.1
+      value: 1.113
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 5.0, p95 13.8, off-palette 8.6% (top: #998855 (2.0%), #999966
+        (1.5%)) (advisory in an exploration)'
+      value: 4.976
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 70 against the world reference (outliers: L_p2, detail,
+        edge)'
+      value: 69.8
+    info:
+      fit:
+        scale: 0.7029
+        anchor:
+        - 494.3
+        - 879
+      registration:
+        dx: 18
+        dy: 9
+      metrics_raw:
+        L_p5: 51.2
+        L_p50: 72.5
+        L_p95: 92.0
+        C_p50: 25.7
+        C_p95: 44.4
+        C_p99: 47.3
+        detail: 2.26
+      metrics_locked:
+        L_p5: 52.1
+        L_p50: 72.3
+        L_p95: 91.8
+        C_p50: 25.4
+        C_p95: 44.2
+        C_p99: 46.3
+        detail: 1.69
+    fingerprint: 4f000fc10398bd07
+manual_review:
+  observed_note: 'Exactly four originals across initial pair plus sole unchanged-prompt
+    retry. Source and official locked inspected: take3 has one rounded soft-sage box
+    on short wood post with cream roof, little ROSE flag RAISED and exactly TWO BLANK
+    envelopes, no text/stamps/animal/fur/extra prop. Take3 normalized width329px satisfies
+    authored one-third341.33 and canonical ground guide. Widths343/359/342 for takes1/2/4
+    exceed the same literal cap; exclude those. Take3 is sole eligible candidate;
+    official QA ranks it, style/light warnings advisory. No pixels/thresholds changed;
+    original hashes preserved; never promoted.'
+  excluded_takes:
+  - 1
+  - 2
+  - 4
+sources:
+- batch: batch-24-home-materials-v2
+  job: x-decor-mailbox-2-v2
+  take: 1
+  round: 1
+  logical_run: 20261106-b24-v2-mailbox-initial
+  source_file: /workspace/generated_images/exec-5ec32c8c-d8dd-45df-b337-6f822af044e3.png
+  returned_at: '2026-11-06T06:13:12.975Z'
+  prompt_sha256: db347141fce014efdac0a6bb16028ae86dc46390a38c44f995741f67fbb8b86d
+  fingerprint: 4f000fc10398bd07
+  saved_at: '2026-11-06T06:13:13.582355+00:00'
+  original_generated_png_sha256: 0694a5d747e80cd5419da78321aebfeab6839043c2fa6a538051446a3799c3c7
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 5284dbc4ea9cb2d19efc2698a866e065c62f8958487062f985f0e4361d090902
+  inbox_png_sha256: acf44cfa236a2d8e182781eb638e0ed392d54fe4afb2249efb969f1825da55c2
+  qa_sha256: e432d57be72c5b4f86df7ded6e235a8b944d94b1861d22f0615a89b44dc30207
+- batch: batch-24-home-materials-v2
+  job: x-decor-mailbox-2-v2
+  take: 2
+  round: 1
+  logical_run: 20261106-b24-v2-mailbox-initial
+  source_file: /workspace/generated_images/exec-75c6373b-853b-443c-9db3-56502fa6bce0.png
+  returned_at: '2026-11-06T06:13:47.909Z'
+  prompt_sha256: db347141fce014efdac0a6bb16028ae86dc46390a38c44f995741f67fbb8b86d
+  fingerprint: 4f000fc10398bd07
+  saved_at: '2026-11-06T06:13:48.215590+00:00'
+  original_generated_png_sha256: 29c9cc025d28a76804ffc81cd7797659a60ebec915927937254cf8e8b0aadb8c
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 357dc0176d5c56220ac7446e95e04bc6c924c2e597209255075a2f7b62f18c28
+  inbox_png_sha256: 188d2a043cd6ffb486ce07afff9588f70c5decf950c27c0cf556b199da3a8955
+  qa_sha256: d1c8c3f1e19bdffb3febdf9313a9c1b10311a3b388aff91abc5b080e47a2324c
+- batch: batch-24-home-materials-v2
+  job: x-decor-mailbox-2-v2
+  take: 3
+  round: 2
+  logical_run: 20261106-b24-v2-mailbox-sole-retry
+  source_file: /workspace/generated_images/exec-7f385c57-683a-449b-a88a-ea156c842be6.png
+  returned_at: '2026-11-06T06:19:21.884Z'
+  prompt_sha256: db347141fce014efdac0a6bb16028ae86dc46390a38c44f995741f67fbb8b86d
+  fingerprint: 4f000fc10398bd07
+  saved_at: '2026-11-06T06:19:22.247227+00:00'
+  original_generated_png_sha256: e925be4d1e498b7def7880e3484f238c60310f83a3ca12215e59f124dfc94c25
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: b9874f8526e29962bc1be9442959f284206c3d96267fee79e54a58cfb1e17c48
+  inbox_png_sha256: 1509a98d1abf6ca776431c209b7f27fe474612970fc0e2bcd334b37d550b79ee
+  qa_sha256: 5320f086ed75544472a69ce9a5426011c35ed2de1db8a936ac5155d3a4ba4252
+- batch: batch-24-home-materials-v2
+  job: x-decor-mailbox-2-v2
+  take: 4
+  round: 2
+  logical_run: 20261106-b24-v2-mailbox-sole-retry
+  source_file: /workspace/generated_images/exec-d0d24281-8556-46ec-9b36-cdad191e990e.png
+  returned_at: '2026-11-06T06:20:12.828Z'
+  prompt_sha256: db347141fce014efdac0a6bb16028ae86dc46390a38c44f995741f67fbb8b86d
+  fingerprint: 4f000fc10398bd07
+  saved_at: '2026-11-06T06:20:13.144127+00:00'
+  original_generated_png_sha256: 0dd615936deb25cb28980191b7b48fa6f5b8f60291eb27cbbfe2a743460455e2
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 3052edf74ac13b4a2ed0dad8922fb80c9412ca17a531cf1705420ad16f3a2bec
+  inbox_png_sha256: fb8249a623e6bbe052fc19b6f04b1fcc36d331bf7b516d17d3a70af244ee33d2
+  qa_sha256: 28b170baf5078e3a777fb5df3c1ea841feab4f4f2e0c7f1a8fc953d482223f7c
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+variation_proof_sha256: 51327809ac2f2a984a9e3f40493821e9d1ab9cb0cc49da5fcdb87795b791dddc
