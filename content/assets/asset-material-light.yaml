@@ -2,7 +2,7 @@ id: asset-material-light
 type: asset
 title_tr: material-light
 title_en: material-light (prop)
-status: cut
+status: in-production
 horizon: later
 summary: 'A single small painted object for a cozy game, a crafting material: a small
   round glass jar with a cream cloth lid tied with string, holding a soft pale-gold
@@ -10,7 +10,8 @@ summary: 'A single small painted object for a cozy game, a crafting material: a 
   glows outside the jar). Same camera, size and finish as the attached moss. Centered
   on an empty transparent background.'
 art:
-  images: []
+  images:
+  - design/art/masters/material-light/material-light.png
   jobs:
   - batch-33-home-showcase:material-light
 sources:

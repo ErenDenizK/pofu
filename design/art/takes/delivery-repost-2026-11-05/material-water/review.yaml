@@ -1,0 +1,193 @@
+batch: batch-33-home-showcase
+contact_sheet: design/art/takes/delivery-repost-2026-11-05/material-water/contact.jpg
+jobs:
+  material-water:
+    pick: 2
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Both initial sources and locked
+      canvases show the exact round-bellied flask, short neck, cream cork and single
+      pale-aqua drop on the cork, with matte tinted water and no ground, text or extraneous
+      objects. Widths287/360px compare to family moss340px; take2 width+5.9percent
+      reasonably matches family scale for this taller flask silhouette. Both hard-pass;
+      take2 lower lock load.4108 vs.4668. Advisory light/Harmony warnings retained;
+      no local fit or resize.
+qa_reports:
+  2:
+    job: material-water
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 23 (R1 51)
+      value: 22.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 74 (at most 22), p98 94 (at least 90), spread 21
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 20.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 83 (band 55-90)'
+      value: 82.9
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.56 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.557
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 1.2 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 1.16
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.8 (R1 5.3)
+      value: 0.8
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.4
+      value: 0.4108
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.3, p95 4.8, off-palette 0.0%
+      value: 2.2726
+    - check: harmony
+      status: warn
+      message: 'harmony score 54 against the world reference (outliers: C_p95, L_p2,
+        edge)'
+      value: 53.8
+    info:
+      metrics_raw:
+        L_p5: 75.1
+        L_p50: 83.0
+        L_p95: 91.9
+        C_p50: 12.0
+        C_p95: 22.9
+        C_p99: 26.4
+        detail: 1.2
+      metrics_locked:
+        L_p5: 75.2
+        L_p50: 82.9
+        L_p95: 91.9
+        C_p50: 12.0
+        C_p95: 22.8
+        C_p99: 26.3
+        detail: 0.8
+    fingerprint: 613cc328a88d1ea0
+  1:
+    job: material-water
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 26 (R1 51)
+      value: 26.0
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 71 (at most 22), p98 94 (at least 90), spread 22
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 22.4
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 82 (band 55-90)'
+      value: 81.9
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.47 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.475
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 1.8 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 1.79
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.7 (R1 5.3)
+      value: 0.74
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.5
+      value: 0.4668
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: mean dE 2.7, p95 5.5, off-palette 0.0%
+      value: 2.734
+    - check: harmony
+      status: warn
+      message: 'harmony score 58 against the world reference (outliers: C_p95, L_p2,
+        edge)'
+      value: 57.5
+    info:
+      metrics_raw:
+        L_p5: 73.4
+        L_p50: 82.0
+        L_p95: 91.9
+        C_p50: 13.6
+        C_p95: 26.2
+        C_p99: 29.8
+        detail: 1.13
+      metrics_locked:
+        L_p5: 73.5
+        L_p50: 81.9
+        L_p95: 91.4
+        C_p50: 13.5
+        C_p95: 26.0
+        C_p99: 29.4
+        detail: 0.74
+    fingerprint: 613cc328a88d1ea0
+manual_review:
+  excluded_takes: []
+  note: Both initial sources and locked canvases show the exact round-bellied flask,
+    short neck, cream cork and single pale-aqua drop on the cork, with matte tinted
+    water and no ground, text or extraneous objects. Widths287/360px compare to family
+    moss340px; take2 width+5.9percent reasonably matches family scale for this taller
+    flask silhouette. Both hard-pass; take2 lower lock load.4108 vs.4668. Advisory
+    light/Harmony warnings retained; no local fit or resize.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-3e1eaf63-f31d-4159-be0c-2e8bfdffc910.png
+  original_generated_png_sha256: 86ec066f20d46082894518bd5cff8a8b7ee1574fa9d46b995981e771ad7d4cf1
+  inbox_png_sha256: d6a8d563411427f9f9b263896397aaa373e4fd7f964b76501145e593d79d2d03
+  rgba_sha256: bb263185c10e7557ed55610773c08042c146e16809e06dc9c00d5330eaf786b7
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 613cc328a88d1ea0
+- take: 2
+  source_file: /workspace/generated_images/exec-d6ffa99e-21ce-4f82-b468-78d1344d95d0.png
+  original_generated_png_sha256: b7102a4b2e0c8f7cfa99315b881eeff7cd982d2c7bbf79a505bd4a63b0597e80
+  inbox_png_sha256: 0b19272ff879b08ddbbec3138e54330e569ae1f257ea927b32038b72fc95b6ef
+  rgba_sha256: f561064291de20e7bb51f971dc2f5b2abf566bf0016bad680c72f8138a00d5f8
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 613cc328a88d1ea0

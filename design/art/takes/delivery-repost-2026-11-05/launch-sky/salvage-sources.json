@@ -1,0 +1,170 @@
+{
+  "batch": "batch-35-experience-pilot",
+  "source_count": 4,
+  "sources": [
+    {
+      "batch": "batch-35-experience-pilot",
+      "job": "launch-sky",
+      "take": 1,
+      "round": 1,
+      "logical_run": "20261105-night35-meadow-launch",
+      "source_file": "/workspace/generated_images/exec-6eef9a69-03a0-488e-96de-c0f7eb9cc91b.png",
+      "returned_at": "2026-11-05T19:29:29.315Z",
+      "prompt_sha256": "fc11b28af4df8b04f45321165af62db6251e71017887f007bb21703ffcb0a4bf",
+      "fingerprint": "75176df43501613b",
+      "saved_at": "2026-11-05T19:29:29.621321+00:00",
+      "original_generated_png_sha256": "aae229099bc6aac7d52efbae4acb4f63b840e27b1c6e9254603ee1f3e3537b35",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "rgba_sha256": "67f7e75a26b687ef6dffea3d7de30b26c8cd47cbab5257766154a7caeb761a77",
+      "evaluation_take": 1,
+      "original_run": "batch-35-experience-pilot",
+      "original_take": 1,
+      "original_callback": "/workspace/art-operator-runtime/run-20261105-night/batch-35-experience-pilot/generated-launch-sky-t1.json",
+      "original_callback_sha256": "d92b5fc93791164e9a050ecdc46b495732581922ecaeba66fd7848143fc63a19",
+      "original_packet": {
+        "batch": "batch-35-experience-pilot",
+        "job": "launch-sky",
+        "worktree": "/workspace/art-20261105-experience-pilot",
+        "prompt": "REFERENCES (attached, in this order):\n1. The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall).\n2. The sea of clouds below every island: paint the clouds like this (do not draw the sea).\n\nA tall full-bleed dawn sky for a cozy mobile game's launch screen, a portrait image. Top to bottom: a soft\nlilac-blue sky at the top, melting through pale peach and warm cream to a glowing honey horizon about two\nthirds down; a few long, soft, slightly flat clouds in thin calm bands across the sky, lit warm from below;\na gentle bank of puffy cream clouds along the bottom third, lit pink-gold on their tops. The light is\ncalm and hopeful, a quiet new morning. Keep the middle of the image open and uncluttered so a small\nisland can sit there; keep anything important within the central two thirds of the width and nothing\nwithin the top 12 percent. No island, no sun disc, no birds, no stars, no characters.\n\nPainted in the same soft airbrushed picture-book finish as the attached art, milky pastel colors lifted toward cream, no outlines, no hard edges.\n\nAVOID: a border, text, harsh shadows, saturated or neon colors, dark moods, outlines, photorealism, a 3D render look, an island, a sun disc, birds, stars, characters, banding\n\nLIGHT (hour: dawn, layer: subject). Hush, promise.\nKey light #F4C7A4 from the left, a little above; fill #C9B8F0; rim #FFD9BC along the edge facing away from the key. Shadows are tinted #B9A2FF (never grey or black) and fall toward the right, a little below; paint a contact shadow in that hue under every object that touches the ground or another form, firmest in the subject plane.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, opaque, full bleed, portrait 1024 x 1536.\n",
+        "refs": [
+          "/workspace/art-20261105-experience-pilot/design/art/stations/tea-stall-1/tea-stall-1.png",
+          "/workspace/art-20261105-experience-pilot/design/art/masters/cloud-sea/cloud-sea.png"
+        ],
+        "reference_sha256": {
+          "/workspace/art-20261105-experience-pilot/design/art/stations/tea-stall-1/tea-stall-1.png": "7e15f7484bddfddde90bb711e49273ee892e1d43422d26d7f1efe1f645430422",
+          "/workspace/art-20261105-experience-pilot/design/art/masters/cloud-sea/cloud-sea.png": "bb693d333d53fd5fc3e385335fc912574ccda580ac018bc12c2143c12031579a"
+        },
+        "fingerprint": "75176df43501613b",
+        "prompt_sha256": "fc11b28af4df8b04f45321165af62db6251e71017887f007bb21703ffcb0a4bf",
+        "transparent": false
+      },
+      "evaluation_fingerprint": "75176df43501613b"
+    },
+    {
+      "batch": "batch-35-experience-pilot",
+      "job": "launch-sky",
+      "take": 2,
+      "round": 1,
+      "logical_run": "20261105-night35-meadow-launch",
+      "source_file": "/workspace/generated_images/exec-6296f429-3866-448e-8efb-c83454b5f01c.png",
+      "returned_at": "2026-11-05T19:28:13.735Z",
+      "prompt_sha256": "fc11b28af4df8b04f45321165af62db6251e71017887f007bb21703ffcb0a4bf",
+      "fingerprint": "75176df43501613b",
+      "saved_at": "2026-11-05T19:28:14.188790+00:00",
+      "original_generated_png_sha256": "26a59b885a993b745f1a4649a544e3177cf55d91d54c1e906613bd521d7f4fd7",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "rgba_sha256": "fb7a988cc2e5753762f3f46b1851aefeb8d9d7f821e8a5f12c5256ed7e39a036",
+      "evaluation_take": 2,
+      "original_run": "batch-35-experience-pilot",
+      "original_take": 2,
+      "original_callback": "/workspace/art-operator-runtime/run-20261105-night/batch-35-experience-pilot/generated-launch-sky-t2.json",
+      "original_callback_sha256": "7c480433f8e1973a76b8b81f4e55ea9a7433ca54cb86a482ab5c120a46829549",
+      "original_packet": {
+        "batch": "batch-35-experience-pilot",
+        "job": "launch-sky",
+        "worktree": "/workspace/art-20261105-experience-pilot",
+        "prompt": "REFERENCES (attached, in this order):\n1. The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall).\n2. The sea of clouds below every island: paint the clouds like this (do not draw the sea).\n\nA tall full-bleed dawn sky for a cozy mobile game's launch screen, a portrait image. Top to bottom: a soft\nlilac-blue sky at the top, melting through pale peach and warm cream to a glowing honey horizon about two\nthirds down; a few long, soft, slightly flat clouds in thin calm bands across the sky, lit warm from below;\na gentle bank of puffy cream clouds along the bottom third, lit pink-gold on their tops. The light is\ncalm and hopeful, a quiet new morning. Keep the middle of the image open and uncluttered so a small\nisland can sit there; keep anything important within the central two thirds of the width and nothing\nwithin the top 12 percent. No island, no sun disc, no birds, no stars, no characters.\n\nPainted in the same soft airbrushed picture-book finish as the attached art, milky pastel colors lifted toward cream, no outlines, no hard edges.\n\nAVOID: a border, text, harsh shadows, saturated or neon colors, dark moods, outlines, photorealism, a 3D render look, an island, a sun disc, birds, stars, characters, banding\n\nLIGHT (hour: dawn, layer: subject). Hush, promise.\nKey light #F4C7A4 from the left, a little above; fill #C9B8F0; rim #FFD9BC along the edge facing away from the key. Shadows are tinted #B9A2FF (never grey or black) and fall toward the right, a little below; paint a contact shadow in that hue under every object that touches the ground or another form, firmest in the subject plane.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, opaque, full bleed, portrait 1024 x 1536.\n",
+        "refs": [
+          "/workspace/art-20261105-experience-pilot/design/art/stations/tea-stall-1/tea-stall-1.png",
+          "/workspace/art-20261105-experience-pilot/design/art/masters/cloud-sea/cloud-sea.png"
+        ],
+        "reference_sha256": {
+          "/workspace/art-20261105-experience-pilot/design/art/stations/tea-stall-1/tea-stall-1.png": "7e15f7484bddfddde90bb711e49273ee892e1d43422d26d7f1efe1f645430422",
+          "/workspace/art-20261105-experience-pilot/design/art/masters/cloud-sea/cloud-sea.png": "bb693d333d53fd5fc3e385335fc912574ccda580ac018bc12c2143c12031579a"
+        },
+        "fingerprint": "75176df43501613b",
+        "prompt_sha256": "fc11b28af4df8b04f45321165af62db6251e71017887f007bb21703ffcb0a4bf",
+        "transparent": false
+      },
+      "evaluation_fingerprint": "75176df43501613b"
+    },
+    {
+      "batch": "batch-35-experience-pilot",
+      "job": "launch-sky",
+      "take": 3,
+      "round": 2,
+      "logical_run": "20261105-night35-launch-lossless-cap-single-retry",
+      "source_file": "/workspace/generated_images/exec-c4993159-48e6-4858-8876-85d5cf99aafd.png",
+      "returned_at": "2026-11-05T19:41:17.512Z",
+      "prompt_sha256": "fc11b28af4df8b04f45321165af62db6251e71017887f007bb21703ffcb0a4bf",
+      "fingerprint": "75176df43501613b",
+      "saved_at": "2026-11-05T19:41:17.818735+00:00",
+      "original_generated_png_sha256": "53918f34e866de77abb2f6e335f7936891869558a6fe2d0af99bb43aa7e1da8d",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "rgba_sha256": "f4fb81e99ba0b3f5d3050e28d1e8eb29c37916c3cc9447503fb157f902266db7",
+      "evaluation_take": 3,
+      "original_run": "batch-35-experience-pilot",
+      "original_take": 3,
+      "original_callback": "/workspace/art-operator-runtime/run-20261105-night/batch-35-experience-pilot/generated-launch-sky-t3.json",
+      "original_callback_sha256": "4a6074a77a433c8e99c55197600d71acb0ded3973043e579dbd35ead3b046343",
+      "original_packet": {
+        "batch": "batch-35-experience-pilot",
+        "job": "launch-sky",
+        "worktree": "/workspace/art-20261105-experience-pilot",
+        "prompt": "REFERENCES (attached, in this order):\n1. The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall).\n2. The sea of clouds below every island: paint the clouds like this (do not draw the sea).\n\nA tall full-bleed dawn sky for a cozy mobile game's launch screen, a portrait image. Top to bottom: a soft\nlilac-blue sky at the top, melting through pale peach and warm cream to a glowing honey horizon about two\nthirds down; a few long, soft, slightly flat clouds in thin calm bands across the sky, lit warm from below;\na gentle bank of puffy cream clouds along the bottom third, lit pink-gold on their tops. The light is\ncalm and hopeful, a quiet new morning. Keep the middle of the image open and uncluttered so a small\nisland can sit there; keep anything important within the central two thirds of the width and nothing\nwithin the top 12 percent. No island, no sun disc, no birds, no stars, no characters.\n\nPainted in the same soft airbrushed picture-book finish as the attached art, milky pastel colors lifted toward cream, no outlines, no hard edges.\n\nAVOID: a border, text, harsh shadows, saturated or neon colors, dark moods, outlines, photorealism, a 3D render look, an island, a sun disc, birds, stars, characters, banding\n\nLIGHT (hour: dawn, layer: subject). Hush, promise.\nKey light #F4C7A4 from the left, a little above; fill #C9B8F0; rim #FFD9BC along the edge facing away from the key. Shadows are tinted #B9A2FF (never grey or black) and fall toward the right, a little below; paint a contact shadow in that hue under every object that touches the ground or another form, firmest in the subject plane.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, opaque, full bleed, portrait 1024 x 1536.\n",
+        "refs": [
+          "/workspace/art-20261105-experience-pilot/design/art/stations/tea-stall-1/tea-stall-1.png",
+          "/workspace/art-20261105-experience-pilot/design/art/masters/cloud-sea/cloud-sea.png"
+        ],
+        "reference_sha256": {
+          "/workspace/art-20261105-experience-pilot/design/art/stations/tea-stall-1/tea-stall-1.png": "7e15f7484bddfddde90bb711e49273ee892e1d43422d26d7f1efe1f645430422",
+          "/workspace/art-20261105-experience-pilot/design/art/masters/cloud-sea/cloud-sea.png": "bb693d333d53fd5fc3e385335fc912574ccda580ac018bc12c2143c12031579a"
+        },
+        "fingerprint": "75176df43501613b",
+        "prompt_sha256": "fc11b28af4df8b04f45321165af62db6251e71017887f007bb21703ffcb0a4bf",
+        "transparent": false
+      },
+      "evaluation_fingerprint": "75176df43501613b"
+    },
+    {
+      "batch": "batch-35-experience-pilot",
+      "job": "launch-sky",
+      "take": 4,
+      "round": 2,
+      "logical_run": "20261105-night35-launch-lossless-cap-single-retry",
+      "source_file": "/workspace/generated_images/exec-7bcedf3e-8c20-4b37-9eba-6e84e6de0acb.png",
+      "returned_at": "2026-11-05T19:40:51.962Z",
+      "prompt_sha256": "fc11b28af4df8b04f45321165af62db6251e71017887f007bb21703ffcb0a4bf",
+      "fingerprint": "75176df43501613b",
+      "saved_at": "2026-11-05T19:40:52.360827+00:00",
+      "original_generated_png_sha256": "d1908ab13255b5e0bde06dccc4183c54f2d49a4492d0ab3e619a0d42534491c6",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "rgba_sha256": "514c8a32575cc3186bf5cf685898e7c09d5bc7577145cc97d27b49bcc9b0317e",
+      "evaluation_take": 4,
+      "original_run": "batch-35-experience-pilot",
+      "original_take": 4,
+      "original_callback": "/workspace/art-operator-runtime/run-20261105-night/batch-35-experience-pilot/generated-launch-sky-t4.json",
+      "original_callback_sha256": "96da00aa4e1220825c11969ec19c509b5bffe7e7f40a9bb1e62fb43680b44eab",
+      "original_packet": {
+        "batch": "batch-35-experience-pilot",
+        "job": "launch-sky",
+        "worktree": "/workspace/art-20261105-experience-pilot",
+        "prompt": "REFERENCES (attached, in this order):\n1. The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall).\n2. The sea of clouds below every island: paint the clouds like this (do not draw the sea).\n\nA tall full-bleed dawn sky for a cozy mobile game's launch screen, a portrait image. Top to bottom: a soft\nlilac-blue sky at the top, melting through pale peach and warm cream to a glowing honey horizon about two\nthirds down; a few long, soft, slightly flat clouds in thin calm bands across the sky, lit warm from below;\na gentle bank of puffy cream clouds along the bottom third, lit pink-gold on their tops. The light is\ncalm and hopeful, a quiet new morning. Keep the middle of the image open and uncluttered so a small\nisland can sit there; keep anything important within the central two thirds of the width and nothing\nwithin the top 12 percent. No island, no sun disc, no birds, no stars, no characters.\n\nPainted in the same soft airbrushed picture-book finish as the attached art, milky pastel colors lifted toward cream, no outlines, no hard edges.\n\nAVOID: a border, text, harsh shadows, saturated or neon colors, dark moods, outlines, photorealism, a 3D render look, an island, a sun disc, birds, stars, characters, banding\n\nLIGHT (hour: dawn, layer: subject). Hush, promise.\nKey light #F4C7A4 from the left, a little above; fill #C9B8F0; rim #FFD9BC along the edge facing away from the key. Shadows are tinted #B9A2FF (never grey or black) and fall toward the right, a little below; paint a contact shadow in that hue under every object that touches the ground or another form, firmest in the subject plane.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, opaque, full bleed, portrait 1024 x 1536.\n",
+        "refs": [
+          "/workspace/art-20261105-experience-pilot/design/art/stations/tea-stall-1/tea-stall-1.png",
+          "/workspace/art-20261105-experience-pilot/design/art/masters/cloud-sea/cloud-sea.png"
+        ],
+        "reference_sha256": {
+          "/workspace/art-20261105-experience-pilot/design/art/stations/tea-stall-1/tea-stall-1.png": "7e15f7484bddfddde90bb711e49273ee892e1d43422d26d7f1efe1f645430422",
+          "/workspace/art-20261105-experience-pilot/design/art/masters/cloud-sea/cloud-sea.png": "bb693d333d53fd5fc3e385335fc912574ccda580ac018bc12c2143c12031579a"
+        },
+        "fingerprint": "75176df43501613b",
+        "prompt_sha256": "fc11b28af4df8b04f45321165af62db6251e71017887f007bb21703ffcb0a4bf",
+        "transparent": false
+      },
+      "evaluation_fingerprint": "75176df43501613b"
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+ "after": {
+  "C_mean": 29.598,
+  "C_p50": 25.834,
+  "C_p95": 49.032,
+  "L_mean": 76.637,
+  "L_p2": 57.182,
+  "L_p98": 91.436,
+  "detail": 0.76,
+  "edge": 0.0,
+  "tint_a": 12.934,
+  "tint_b": -0.419,
+  "warmth_b": 1.693
+ },
+ "before": {
+  "C_mean": 20.981,
+  "C_p50": 18.403,
+  "C_p95": 34.676,
+  "L_mean": 83.699,
+  "L_p2": 73.182,
+  "L_p98": 91.949,
+  "detail": 0.538,
+  "edge": 0.0,
+  "tint_a": 10.376,
+  "tint_b": 0.781,
+  "warmth_b": 1.228
+ },
+ "chain": null,
+ "correction": {
+  "black": -16.0,
+  "ceiling": 0.0,
+  "chroma": 1.414,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "plate",
+ "matched_to": "world",
+ "outliers_after": [
+  "edge"
+ ],
+ "outliers_before": [
+  "C_p95",
+  "L_p2",
+  "edge"
+ ],
+ "ppu": 4.103,
+ "reference": false,
+ "score_after": 86.3,
+ "score_before": 58.8,
+ "shipped": false,
+ "source": "design/art/masters/launch-sky/launch-sky.webp",
+ "source_sha": "7886cf149cad6b7d"
+}

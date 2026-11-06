@@ -29,3 +29,7 @@ notes:
   Numerical QA warns only, so this is a real manual guide-fit exclusion. No manual
   fit, threshold waiver or further generation. Preserve all4; only true child hill-gate-open
   skips.'
+- 'Skipped without generation: true dependency hill-gate has no eligible retained
+  original under the named delivery/fit re-post. All four retained originals violate
+  the named360px width and are fit_skipped:636/662/659/683px; required scales.57/.54/.55/.53
+  below unchanged.6 minimum. No regeneration or local pixel edit; skip only hill-gate-open.'

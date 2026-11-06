@@ -2,7 +2,7 @@ id: asset-launch-sky
 type: asset
 title_tr: launch-sky
 title_en: launch-sky (plate)
-status: cut
+status: in-production
 horizon: now
 summary: 'A tall full-bleed dawn sky for a cozy mobile game''s launch screen, a portrait
   image. Top to bottom: a soft lilac-blue sky at the top, melting through pale peach
@@ -11,7 +11,8 @@ summary: 'A tall full-bleed dawn sky for a cozy mobile game''s launch screen, a 
   bank of puffy cream clouds along the bottom third, lit pink-gold on their tops.
   The light …'
 art:
-  images: []
+  images:
+  - design/art/masters/launch-sky/launch-sky.webp
   jobs:
   - batch-35-experience-pilot:launch-sky
 sources:

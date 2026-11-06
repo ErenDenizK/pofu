@@ -1,0 +1,51 @@
+{
+ "after": {
+  "C_mean": 39.801,
+  "C_p50": 45.277,
+  "C_p95": 49.031,
+  "L_mean": 73.997,
+  "L_p2": 53.51,
+  "L_p98": 91.698,
+  "detail": 2.658,
+  "edge": 0.419,
+  "warmth_b": 36.549
+ },
+ "before": {
+  "C_mean": 31.322,
+  "C_p50": 35.627,
+  "C_p95": 38.577,
+  "L_mean": 74.0,
+  "L_p2": 53.51,
+  "L_p98": 91.698,
+  "detail": 2.628,
+  "edge": 0.419,
+  "warmth_b": 28.76
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.271,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "prop",
+ "matched_to": "world",
+ "outliers_after": [
+  "edge"
+ ],
+ "outliers_before": [
+  "C_p95",
+  "edge"
+ ],
+ "ppu": 8.533,
+ "reference": false,
+ "score_after": 88.0,
+ "score_before": 78.4,
+ "shipped": false,
+ "source": "design/art/masters/material-keepsake/material-keepsake.png",
+ "source_sha": "79782f832283d2c4"
+}

@@ -1,0 +1,80 @@
+[
+  {
+    "take": 1,
+    "status": "warn",
+    "bbox_alpha24": [
+      340,
+      403,
+      678,
+      709
+    ],
+    "width": 338,
+    "height": 306,
+    "fit": null,
+    "checks": [
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 54 (at most 22), p98 92 (at least 90), spread 38 (at least 60) (warn-only until the founder has seen the light pilot)",
+        "value": 38.2
+      },
+      {
+        "check": "light_haze",
+        "status": "warn",
+        "message": "day/subject: dark-channel haze 0.28 (at most 0.20; no true dark means a wash)",
+        "value": 0.275
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 0.6",
+        "value": 0.6445
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 78 against the world reference (outliers: C_p95, edge)",
+        "value": 78.4
+      }
+    ]
+  },
+  {
+    "take": 2,
+    "status": "warn",
+    "bbox_alpha24": [
+      330,
+      373,
+      674,
+      691
+    ],
+    "width": 344,
+    "height": 318,
+    "fit": null,
+    "checks": [
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 53 (at most 22), p98 93 (at least 90), spread 40 (at least 60) (warn-only until the founder has seen the light pilot)",
+        "value": 39.6
+      },
+      {
+        "check": "light_haze",
+        "status": "warn",
+        "message": "day/subject: dark-channel haze 0.27 (at most 0.20; no true dark means a wash)",
+        "value": 0.271
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 0.7",
+        "value": 0.6783
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 78 against the world reference (outliers: C_p95, detail, edge)",
+        "value": 78.1
+      }
+    ]
+  }
+]

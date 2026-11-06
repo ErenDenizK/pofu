@@ -1,0 +1,98 @@
+[
+  {
+    "take": 1,
+    "status": "warn",
+    "bbox_alpha24": [
+      333,
+      347,
+      688,
+      708
+    ],
+    "width": 355,
+    "height": 361,
+    "fit": null,
+    "checks": [
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 61 (at most 22), p98 94 (at least 90), spread 33 (at least 60) (warn-only until the founder has seen the light pilot)",
+        "value": 33.0
+      },
+      {
+        "check": "light_haze",
+        "status": "warn",
+        "message": "day/subject: dark-channel haze 0.30 (at most 0.20; no true dark means a wash)",
+        "value": 0.302
+      },
+      {
+        "check": "light_contrast",
+        "status": "warn",
+        "message": "day/subject: p75 local contrast 2.1 (at least 3.5) (warn-only until the founder has seen the light pilot)",
+        "value": 2.07
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 0.6",
+        "value": 0.5559
+      },
+      {
+        "check": "palette_drift",
+        "status": "warn",
+        "message": "mean dE 2.6, p95 7.2, off-palette 0.0%",
+        "value": 2.5894
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 84 against the world reference (outliers: edge)",
+        "value": 84.5
+      }
+    ]
+  },
+  {
+    "take": 2,
+    "status": "warn",
+    "bbox_alpha24": [
+      328,
+      356,
+      693,
+      743
+    ],
+    "width": 365,
+    "height": 387,
+    "fit": null,
+    "checks": [
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 63 (at most 22), p98 92 (at least 90), spread 29 (at least 60) (warn-only until the founder has seen the light pilot)",
+        "value": 29.4
+      },
+      {
+        "check": "light_haze",
+        "status": "warn",
+        "message": "day/subject: dark-channel haze 0.35 (at most 0.20; no true dark means a wash) (warn-only until the founder has seen the light pilot)",
+        "value": 0.349
+      },
+      {
+        "check": "light_contrast",
+        "status": "warn",
+        "message": "day/subject: p75 local contrast 1.9 (at least 3.5) (warn-only until the founder has seen the light pilot)",
+        "value": 1.94
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 0.5",
+        "value": 0.5289
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 83 against the world reference (outliers: edge)",
+        "value": 83.4
+      }
+    ]
+  }
+]

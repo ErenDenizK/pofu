@@ -1,0 +1,69 @@
+{
+  "operation": "delivery-repost-2026-11-05",
+  "authorized_by_root": true,
+  "original_art_base": "472d90e157efe774bdd62ac4eb894aedfdd89576",
+  "upstream_fix_sha": "ba4dfa498597e2a27817fc2efc68906113d34e36",
+  "applied_fix_sha": "a6c69c2625b841f1a8a14a584c039bcca228cf01",
+  "art_branch_dependency_files": [
+    "tools/imagegen/pipeline.py",
+    "tools/imagegen/qa.py",
+    "tools/imagegen/run.py",
+    "tools/imagegen/tests/test_explicit_prop_fit.py",
+    "tools/imagegen/tests/test_post_delivery.py"
+  ],
+  "exact_tool_blobs": {
+    "tools/imagegen/pipeline.py": {
+      "sha256": "aae932cb0d4cde19910902dd48f42a02ee4a389a3917331d515a6eb10f219f74",
+      "upstream_blob": "95259b2bd3b8f150f8cb249926bc92b209393f3e",
+      "applied_blob": "95259b2bd3b8f150f8cb249926bc92b209393f3e"
+    },
+    "tools/imagegen/qa.py": {
+      "sha256": "96d90d5f71c33c5bba9f61e7a4169a8959d7823982740c604a69dadebb582777",
+      "upstream_blob": "97aa46322d17ff3e28f2894bd430dc970065afa7",
+      "applied_blob": "97aa46322d17ff3e28f2894bd430dc970065afa7"
+    },
+    "tools/imagegen/run.py": {
+      "sha256": "bb7a4b337806c3a33d3baedcfd46e274a7a2987cc3ca6670b89e406ac7d6757a",
+      "upstream_blob": "7f419493864f58e8ede8de5838416382c350d4af",
+      "applied_blob": "7f419493864f58e8ede8de5838416382c350d4af"
+    },
+    "tools/imagegen/tests/test_explicit_prop_fit.py": {
+      "sha256": "920cc8edbcb263199e8a37e3ecd23f07713f9f9f153ae447d70cdfd50c86315d",
+      "upstream_blob": "a92c9fd3fb2edf3a048836737349b990ae3d257f",
+      "applied_blob": "a92c9fd3fb2edf3a048836737349b990ae3d257f"
+    },
+    "tools/imagegen/tests/test_post_delivery.py": {
+      "sha256": "2f35c35b551647c80cdfb37b3e9223bb69194515b3f51e275bacbd9d417033c7",
+      "upstream_blob": "6f9570635c269c7b9909f711b19ae0796b18c7d5",
+      "applied_blob": "6f9570635c269c7b9909f711b19ae0796b18c7d5"
+    }
+  },
+  "pre_fix_snapshot_sha256": "fe971d5b1644048895e0a5c7b225e4f3996deed06d67c691a642f60ffd3c2b75",
+  "policy": "Exact reviewed published canonical tooling dependency, cherry-picked without merge. No QA thresholds, manifest, source PNG or pixel workarounds changed.",
+  "upstream_publication": {
+    "receipt_path": "/workspace/art-operator-runtime/run-20261105-night/delivery-repost-2026-11-05/upstream-tool-fix-publication.json",
+    "receipt_sha256": "03915cebc9de7e42bdbd5038560c6600a690e6a2611a4e7832a6a09e9bed691c",
+    "pr": 227,
+    "pr_url": "https://github.com/ErenDenizK/pofu/pull/227",
+    "tests": {
+      "full_suite": {
+        "passed": 151,
+        "subtests_passed": 124,
+        "seconds": 92.05
+      },
+      "final_targeted": {
+        "passed": 13,
+        "subtests_passed": 2,
+        "seconds": 1.71
+      },
+      "full_suite_note": "Ran once before addition of the extra minimum-scale control; final targeted run includes that control."
+    },
+    "upload": {
+      "files_checked": 5,
+      "problems": 0,
+      "all_remote_bytes_equal_local": true,
+      "image_decode": "not applicable: code/tests only",
+      "fetch_note": "Explicit remote-tracking refspec used after ordinary fetch populated FETCH_HEAD only; no upload corruption."
+    }
+  }
+}

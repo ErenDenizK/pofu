@@ -39,3 +39,15 @@ notes:
   (3.2%)); t3 palette_drift: mean dE 8.5, p95 16.2, off-palette 33.9% (top: #999944
   (6.3%), #998844 (5.5%)); t4 palette_drift: mean dE 5.8, p95 14.4, off-palette 14.1%
   (top: #888844 (2.2%), #998844 (1.9%)).'
+- 'batch-33-home-showcase skipped after four takes: Skipped after exactly one allowed
+  unchanged-prompt retry: all four takes fail the authoritative chroma ceiling (t1
+  62.7, t2 61.8, t3 62.6, t4 62.4). Takes1/3/4 also fail palette drift (means 5.1272/4.6082/4.6972).
+  The requested block, broad few-cell honeycomb and single corner drop are preserved,
+  but no hard QA failure is waived. Preserve all four sources; a lead-named palette/profile
+  review is needed before any future re-post. No further generation or local recolor.
+  Automated failures: t1 chroma_ceiling: chroma p95 63 (R1 51), palette_drift: mean
+  dE 5.1, p95 10.3, off-palette 1.5% (top: #DD9933 (0.8%), #CC7722 (0.2%)); t2 chroma_ceiling:
+  chroma p95 62 (R1 51); t3 chroma_ceiling: chroma p95 63 (R1 51), palette_drift:
+  mean dE 4.6, p95 10.7, off-palette 1.0% (top: #DD9933 (0.6%), #EE9933 (0.2%)); t4
+  chroma_ceiling: chroma p95 62 (R1 51), palette_drift: mean dE 4.7, p95 9.2, off-palette
+  0.2% (top: #CC8833 (0.1%), #CC8822 (0.1%)).'

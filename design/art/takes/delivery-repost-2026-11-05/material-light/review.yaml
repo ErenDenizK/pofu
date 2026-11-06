@@ -1,0 +1,191 @@
+batch: batch-33-home-showcase
+contact_sheet: design/art/takes/delivery-repost-2026-11-05/material-light/contact.jpg
+jobs:
+  material-light:
+    pick: 2
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Both initial sources and official
+      locked takes preserve one small round jar, cream cloth lid tied with string,
+      a soft pale-gold interior core with faint mint-green edge, and no glow outside
+      the jar. Clean transparent margins, no text or ground. Widths 355/365 px reasonably
+      match the approved 340 px material family; take2 has the lowest complete eligible
+      lock load .5289 vs .5559. Hard QA passes; advisory light warnings remain visible.
+      No additional generation, local fit or pixel changes.
+qa_reports:
+  2:
+    job: material-light
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 42 (R1 51)
+      value: 42.5
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 63 (at most 22), p98 92 (at least 90), spread 29
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 29.4
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 83 (band 55-90)'
+      value: 82.9
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.35 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.349
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 1.9 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 1.94
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.9 (R1 5.3)
+      value: 0.89
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.5
+      value: 0.5289
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.5, p95 6.4, off-palette 0.0% (top: #AA9966 (0.0%))'
+      value: 2.4787
+    - check: harmony
+      status: pass
+      message: 'harmony score 83 against the world reference (outliers: edge)'
+      value: 83.4
+    info:
+      metrics_raw:
+        L_p5: 68.3
+        L_p50: 83.0
+        L_p95: 92.1
+        C_p50: 25.5
+        C_p95: 42.8
+        C_p99: 44.8
+        detail: 1.36
+      metrics_locked:
+        L_p5: 68.7
+        L_p50: 82.9
+        L_p95: 92.0
+        C_p50: 25.6
+        C_p95: 42.5
+        C_p99: 44.7
+        detail: 0.89
+    fingerprint: 3e2672ff519b44b5
+  1:
+    job: material-light
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 42 (R1 51)
+      value: 42.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 61 (at most 22), p98 94 (at least 90), spread 33
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 33.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 82 (band 55-90)'
+      value: 82.5
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.30 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.302
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.1 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.07
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.8 (R1 5.3)
+      value: 0.79
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.5559
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: mean dE 2.6, p95 7.2, off-palette 0.0%
+      value: 2.5894
+    - check: harmony
+      status: pass
+      message: 'harmony score 84 against the world reference (outliers: edge)'
+      value: 84.5
+    info:
+      metrics_raw:
+        L_p5: 66.6
+        L_p50: 82.7
+        L_p95: 93.1
+        C_p50: 24.8
+        C_p95: 42.7
+        C_p99: 44.5
+        detail: 1.18
+      metrics_locked:
+        L_p5: 67.0
+        L_p50: 82.5
+        L_p95: 93.0
+        C_p50: 25.0
+        C_p95: 42.4
+        C_p99: 43.8
+        detail: 0.79
+    fingerprint: 3e2672ff519b44b5
+manual_review:
+  excluded_takes: []
+  note: Both initial sources and official locked takes preserve one small round jar,
+    cream cloth lid tied with string, a soft pale-gold interior core with faint mint-green
+    edge, and no glow outside the jar. Clean transparent margins, no text or ground.
+    Widths 355/365 px reasonably match the approved 340 px material family; take2
+    has the lowest complete eligible lock load .5289 vs .5559. Hard QA passes; advisory
+    light warnings remain visible. No additional generation, local fit or pixel changes.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-8927ac1c-887e-46de-ba19-8dba55bb0ff4.png
+  original_generated_png_sha256: 35990d93d5283d28fb439cab527f5a2ff88497c275fae7dfb96ec7df588463c6
+  inbox_png_sha256: ccd9a6e4070f5c728f3594bfb187dc82bfebe91f8ae17ebd79b7eb9437f91c89
+  rgba_sha256: c5133144e67143a44e5520029b8c1acc59982025d975cb316911c2b63f3cecc4
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 3e2672ff519b44b5
+- take: 2
+  source_file: /workspace/generated_images/exec-f3ee3246-e6b5-4255-8c54-cbcf02f03c0b.png
+  original_generated_png_sha256: b40fecf112b1d4e0614a2b6c7ffd76daaea3f5cb85f39e5e082cee58884f79ce
+  inbox_png_sha256: 36bc8f53fa26765f7c6938e7d72d0f752c418f2654be0f7c716aaa9f5c435802
+  rgba_sha256: fc30e9f953aa66d65d9a8efb5b8c7189e302190429ec3d521e6814cce56301de
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 3e2672ff519b44b5

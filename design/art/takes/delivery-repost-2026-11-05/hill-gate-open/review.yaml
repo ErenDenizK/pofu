@@ -1,0 +1,11 @@
+batch: batch-33-home-showcase
+jobs:
+  hill-gate-open:
+    pick: none
+    publication: dependent-skip
+    note: 'Skipped without generation: true dependency hill-gate has no eligible retained
+      original under the named delivery/fit re-post. All four retained originals violate
+      the named360px width and are fit_skipped:636/662/659/683px; required scales.57/.54/.55/.53
+      below unchanged.6 minimum. No regeneration or local pixel edit; skip only hill-gate-open.'
+generated_takes: 0
+failed_dependency: hill-gate

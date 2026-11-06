@@ -2,7 +2,7 @@ id: asset-material-moss
 type: asset
 title_tr: material-moss
 title_en: material-moss (prop)
-status: cut
+status: in-production
 horizon: now
 summary: 'A single small painted object for a cozy game, a crafting material: a soft
   round cushion of velvety sage-green moss, like a little pillow, with three tiny
@@ -11,7 +11,8 @@ summary: 'A single small painted object for a cozy game, a crafting material: a 
   transparent background, about a third of the canvas wide, with wide empty space
   around it.'
 art:
-  images: []
+  images:
+  - design/art/masters/material-moss/material-moss.png
   jobs:
   - batch-33-home-showcase-pilot:material-moss
 sources:

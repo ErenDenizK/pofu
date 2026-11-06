@@ -1,0 +1,66 @@
+[
+  {
+    "take": 1,
+    "status": "warn",
+    "bbox_alpha24": [
+      191,
+      349,
+      827,
+      907
+    ],
+    "width": 636,
+    "height": 558,
+    "fit": null,
+    "fit_skipped": "needs x0.57, below x0.6 (a real art failure)",
+    "load": 0.6739,
+    "hard_failures": []
+  },
+  {
+    "take": 2,
+    "status": "warn",
+    "bbox_alpha24": [
+      179,
+      341,
+      841,
+      907
+    ],
+    "width": 662,
+    "height": 566,
+    "fit": null,
+    "fit_skipped": "needs x0.54, below x0.6 (a real art failure)",
+    "load": 0.6147,
+    "hard_failures": []
+  },
+  {
+    "take": 3,
+    "status": "warn",
+    "bbox_alpha24": [
+      184,
+      350,
+      843,
+      901
+    ],
+    "width": 659,
+    "height": 551,
+    "fit": null,
+    "fit_skipped": "needs x0.55, below x0.6 (a real art failure)",
+    "load": 0.6371,
+    "hard_failures": []
+  },
+  {
+    "take": 4,
+    "status": "warn",
+    "bbox_alpha24": [
+      169,
+      328,
+      852,
+      896
+    ],
+    "width": 683,
+    "height": 568,
+    "fit": null,
+    "fit_skipped": "needs x0.53, below x0.6 (a real art failure)",
+    "load": 0.6174,
+    "hard_failures": []
+  }
+]

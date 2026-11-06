@@ -1,0 +1,15 @@
+{
+  "metadata": {
+    "scale": 0.5,
+    "original_size": [
+      1290,
+      2796
+    ],
+    "delivered_size": [
+      645,
+      1398
+    ]
+  },
+  "rgba_sha256": "1c9b2b056ea6cb1dbd7dd793c0c9302232ff5b27b8ab0cd84b07051dd1904514",
+  "recipe": "Unchanged official check_upload.downscale on selected full locked take, then official promote export; no local pixel edits."
+}

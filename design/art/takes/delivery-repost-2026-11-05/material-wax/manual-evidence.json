@@ -1,0 +1,230 @@
+[
+  {
+    "take": 1,
+    "status": "fail",
+    "bbox_alpha24": [
+      341,
+      450,
+      671,
+      713
+    ],
+    "width": 330,
+    "height": 263,
+    "fit": null,
+    "checks": [
+      {
+        "check": "chroma_ceiling",
+        "status": "fail",
+        "message": "chroma p95 63 (R1 51)",
+        "value": 62.7
+      },
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 61 (at most 22), p98 89 (at least 90), spread 28 (at least 60) (warn-only until the founder has seen the light pilot)",
+        "value": 27.6
+      },
+      {
+        "check": "light_haze",
+        "status": "warn",
+        "message": "day/subject: dark-channel haze 0.20 (at most 0.20; no true dark means a wash)",
+        "value": 0.204
+      },
+      {
+        "check": "light_contrast",
+        "status": "warn",
+        "message": "day/subject: p75 local contrast 2.5 (at least 3.5) (warn-only until the founder has seen the light pilot)",
+        "value": 2.45
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 1.3",
+        "value": 1.3124
+      },
+      {
+        "check": "palette_drift",
+        "status": "fail",
+        "message": "mean dE 5.1, p95 10.3, off-palette 1.5% (top: #DD9933 (0.8%), #CC7722 (0.2%))",
+        "value": 5.1272
+      },
+      {
+        "check": "harmony",
+        "status": "warn",
+        "message": "harmony score 69 against the world reference (outliers: C_p95, L_p98, edge)",
+        "value": 68.9
+      }
+    ]
+  },
+  {
+    "take": 2,
+    "status": "fail",
+    "bbox_alpha24": [
+      342,
+      436,
+      677,
+      689
+    ],
+    "width": 335,
+    "height": 253,
+    "fit": null,
+    "checks": [
+      {
+        "check": "chroma_ceiling",
+        "status": "fail",
+        "message": "chroma p95 62 (R1 51)",
+        "value": 61.8
+      },
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 66 (at most 22), p98 88 (at least 90), spread 22 (at least 60) (warn-only until the founder has seen the light pilot)",
+        "value": 22.3
+      },
+      {
+        "check": "light_haze",
+        "status": "warn",
+        "message": "day/subject: dark-channel haze 0.24 (at most 0.20; no true dark means a wash)",
+        "value": 0.239
+      },
+      {
+        "check": "light_contrast",
+        "status": "warn",
+        "message": "day/subject: p75 local contrast 1.9 (at least 3.5) (warn-only until the founder has seen the light pilot)",
+        "value": 1.9
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 1.1",
+        "value": 1.0858
+      },
+      {
+        "check": "palette_drift",
+        "status": "warn",
+        "message": "mean dE 3.1, p95 7.8, off-palette 0.2% (top: #DD8833 (0.2%), #CC8833 (0.0%))",
+        "value": 3.145
+      },
+      {
+        "check": "harmony",
+        "status": "warn",
+        "message": "harmony score 65 against the world reference (outliers: C_p95, L_p2, L_p98, edge)",
+        "value": 64.7
+      }
+    ]
+  },
+  {
+    "take": 3,
+    "status": "fail",
+    "bbox_alpha24": [
+      358,
+      479,
+      666,
+      727
+    ],
+    "width": 308,
+    "height": 248,
+    "fit": null,
+    "checks": [
+      {
+        "check": "chroma_ceiling",
+        "status": "fail",
+        "message": "chroma p95 63 (R1 51)",
+        "value": 62.6
+      },
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 65 (at most 22), p98 90 (at least 90), spread 24 (at least 60) (warn-only until the founder has seen the light pilot)",
+        "value": 24.5
+      },
+      {
+        "check": "light_haze",
+        "status": "warn",
+        "message": "day/subject: dark-channel haze 0.21 (at most 0.20; no true dark means a wash)",
+        "value": 0.208
+      },
+      {
+        "check": "light_contrast",
+        "status": "warn",
+        "message": "day/subject: p75 local contrast 2.0 (at least 3.5) (warn-only until the founder has seen the light pilot)",
+        "value": 2.04
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 1.6",
+        "value": 1.6025
+      },
+      {
+        "check": "palette_drift",
+        "status": "fail",
+        "message": "mean dE 4.6, p95 10.7, off-palette 1.0% (top: #DD9933 (0.6%), #EE9933 (0.2%))",
+        "value": 4.6082
+      },
+      {
+        "check": "harmony",
+        "status": "warn",
+        "message": "harmony score 67 against the world reference (outliers: C_p95, edge)",
+        "value": 67.4
+      }
+    ]
+  },
+  {
+    "take": 4,
+    "status": "fail",
+    "bbox_alpha24": [
+      323,
+      367,
+      693,
+      672
+    ],
+    "width": 370,
+    "height": 305,
+    "fit": null,
+    "checks": [
+      {
+        "check": "chroma_ceiling",
+        "status": "fail",
+        "message": "chroma p95 62 (R1 51)",
+        "value": 62.4
+      },
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 63 (at most 22), p98 89 (at least 90), spread 26 (at least 60) (warn-only until the founder has seen the light pilot)",
+        "value": 25.6
+      },
+      {
+        "check": "light_haze",
+        "status": "warn",
+        "message": "day/subject: dark-channel haze 0.22 (at most 0.20; no true dark means a wash)",
+        "value": 0.224
+      },
+      {
+        "check": "light_contrast",
+        "status": "warn",
+        "message": "day/subject: p75 local contrast 1.8 (at least 3.5) (warn-only until the founder has seen the light pilot)",
+        "value": 1.79
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 1.5",
+        "value": 1.4626
+      },
+      {
+        "check": "palette_drift",
+        "status": "fail",
+        "message": "mean dE 4.7, p95 9.2, off-palette 0.2% (top: #CC8833 (0.1%), #CC8822 (0.1%))",
+        "value": 4.6972
+      },
+      {
+        "check": "harmony",
+        "status": "warn",
+        "message": "harmony score 68 against the world reference (outliers: C_p95, L_p98, edge)",
+        "value": 67.6
+      }
+    ]
+  }
+]

@@ -1,0 +1,186 @@
+{
+  "batch": "batch-33-home-showcase",
+  "source_count": 4,
+  "sources": [
+    {
+      "batch": "batch-33-home-showcase",
+      "job": "hill-gate",
+      "take": 1,
+      "round": 1,
+      "logical_run": "20261105-night33-hill-gate-guest-stall",
+      "source_file": "/workspace/generated_images/exec-7b84b32f-b80d-49d6-a695-0565af9141cd.png",
+      "returned_at": "2026-11-05T19:47:24.660Z",
+      "prompt_sha256": "cf0eff1543d011d73eafc76a595708baaf657c5866e0c539f9a9a6b923291074",
+      "fingerprint": "dc9426bf035ce2e2",
+      "saved_at": "2026-11-05T19:47:25.028691+00:00",
+      "original_generated_png_sha256": "495e7c6c50201deed677b7aacd469f8468d508d2be535020114cf47f992db590",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "rgba_sha256": "fa139ce5bdf52dd80508f2ac49933bd6ba33fcda61783e22a07172d4b5e02635",
+      "evaluation_take": 1,
+      "original_run": "batch-33-home-showcase",
+      "original_take": 1,
+      "original_callback": "/workspace/art-operator-runtime/run-20261105-night/batch-33-home-showcase/generated-hill-gate-t1.json",
+      "original_callback_sha256": "8096da98363a533e2a7790f373f9a30ec031c34bd3708c3a38fcc6d1f434ec12",
+      "original_packet": {
+        "batch": "batch-33-home-showcase",
+        "job": "hill-gate",
+        "worktree": "/workspace/art-20261105-showcase-full",
+        "prompt": "REFERENCES (attached, in this order):\n1. The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it.\n2. The path lamp of this island: same honey wood, finish and scale family (do not draw the lamp).\n3. The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall).\n4. The palette card for props: use only these colors (and mixes of them).\n\nA small garden gate at the foot of a hill path, for the island\ndiorama: two short, round pale-stone posts each topped with a\nlittle moss cap, and between them a closed double gate of soft\nhoney wood with a round top, a large simple sunflower carved into\nits round top panel (broad petals, a round centre), and two low\nstone steps in front of it going up. Behind the gate nothing but\nempty space. Narrow: it fills about half the footprint's width and\ntwo thirds of the height bar, standing on the footprint.\n\nVIEW: the same fixed front three-quarter view as the attached island: a\nlow camera about 20 degrees above the horizon, so you see the front of\nthe object fully and only a narrow sliver of its top (a round tabletop\nreads as a flat oval about a third as tall as it is wide). Follow the\nattached guide exactly: the object stands on the magenta ground ellipse,\ncentered on the magenta cross, its front edge on the front of the\nellipse, no taller than the magenta height bar. Then remove the guide\ncompletely: no ellipse, no cross, no bar, no magenta, no grid may remain\nin the output.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: glossy or metallic shine, specular glints, reflections, hammered\nor dimpled metal, wood grain, fine surface texture, photorealism, a 3D\nrender look, plastic or vinyl, high contrast, black or near-black\nshadows, saturated or neon colors, outlines, cel shading, text, letters,\nnumbers, logos, watermarks, characters or animals, a floor, a background,\na ground shadow.\n\nAVOID: a fence line, a wall, a padlock, a chain, a sign, a hill behind the gate.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+        "refs": [
+          "/workspace/art-20261105-showcase-full/design/art/templates/station-guide.png",
+          "/workspace/art-20261105-showcase-full/design/art/masters/path-lamp/path-lamp.png",
+          "/workspace/art-20261105-showcase-full/design/art/stations/tea-stall-1/tea-stall-1.png",
+          "/workspace/art-20261105-showcase-full/design/reference/palette-card-world-props.png"
+        ],
+        "reference_sha256": {
+          "/workspace/art-20261105-showcase-full/design/art/templates/station-guide.png": "9c8c885175f25be7a83981c2435ab2af453fe7a506afc7541eb5033115082202",
+          "/workspace/art-20261105-showcase-full/design/art/masters/path-lamp/path-lamp.png": "2a2b4d371cca0f3f134d51f089533e05a9683ea8b501dec03bfd38ef1a8a879a",
+          "/workspace/art-20261105-showcase-full/design/art/stations/tea-stall-1/tea-stall-1.png": "7e15f7484bddfddde90bb711e49273ee892e1d43422d26d7f1efe1f645430422",
+          "/workspace/art-20261105-showcase-full/design/reference/palette-card-world-props.png": "d31df285d7f915ff04d14ef9386940e1745a48ffb951bd041df405392a0939f2"
+        },
+        "fingerprint": "dc9426bf035ce2e2",
+        "prompt_sha256": "cf0eff1543d011d73eafc76a595708baaf657c5866e0c539f9a9a6b923291074",
+        "transparent": true
+      },
+      "evaluation_fingerprint": "dc9426bf035ce2e2"
+    },
+    {
+      "batch": "batch-33-home-showcase",
+      "job": "hill-gate",
+      "take": 2,
+      "round": 1,
+      "logical_run": "20261105-night33-hill-gate-guest-stall",
+      "source_file": "/workspace/generated_images/exec-27d6ad1f-348d-46f4-821d-11b146b8175c.png",
+      "returned_at": "2026-11-05T19:48:22.072Z",
+      "prompt_sha256": "cf0eff1543d011d73eafc76a595708baaf657c5866e0c539f9a9a6b923291074",
+      "fingerprint": "dc9426bf035ce2e2",
+      "saved_at": "2026-11-05T19:48:22.418086+00:00",
+      "original_generated_png_sha256": "399b88e8f238d9f3e1c340891e05e3f3f738004d4bb2082fc93c6f46216a710b",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "rgba_sha256": "fc68e1864517be13bbabc09950e4dc8573e66472b4c952b0a1f4e40c5d18cb2a",
+      "evaluation_take": 2,
+      "original_run": "batch-33-home-showcase",
+      "original_take": 2,
+      "original_callback": "/workspace/art-operator-runtime/run-20261105-night/batch-33-home-showcase/generated-hill-gate-t2.json",
+      "original_callback_sha256": "e3c8c8bda5098446aac9a4aa9c6e473efe14aa5b5c41b3df34cd8ccc41f80352",
+      "original_packet": {
+        "batch": "batch-33-home-showcase",
+        "job": "hill-gate",
+        "worktree": "/workspace/art-20261105-showcase-full",
+        "prompt": "REFERENCES (attached, in this order):\n1. The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it.\n2. The path lamp of this island: same honey wood, finish and scale family (do not draw the lamp).\n3. The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall).\n4. The palette card for props: use only these colors (and mixes of them).\n\nA small garden gate at the foot of a hill path, for the island\ndiorama: two short, round pale-stone posts each topped with a\nlittle moss cap, and between them a closed double gate of soft\nhoney wood with a round top, a large simple sunflower carved into\nits round top panel (broad petals, a round centre), and two low\nstone steps in front of it going up. Behind the gate nothing but\nempty space. Narrow: it fills about half the footprint's width and\ntwo thirds of the height bar, standing on the footprint.\n\nVIEW: the same fixed front three-quarter view as the attached island: a\nlow camera about 20 degrees above the horizon, so you see the front of\nthe object fully and only a narrow sliver of its top (a round tabletop\nreads as a flat oval about a third as tall as it is wide). Follow the\nattached guide exactly: the object stands on the magenta ground ellipse,\ncentered on the magenta cross, its front edge on the front of the\nellipse, no taller than the magenta height bar. Then remove the guide\ncompletely: no ellipse, no cross, no bar, no magenta, no grid may remain\nin the output.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: glossy or metallic shine, specular glints, reflections, hammered\nor dimpled metal, wood grain, fine surface texture, photorealism, a 3D\nrender look, plastic or vinyl, high contrast, black or near-black\nshadows, saturated or neon colors, outlines, cel shading, text, letters,\nnumbers, logos, watermarks, characters or animals, a floor, a background,\na ground shadow.\n\nAVOID: a fence line, a wall, a padlock, a chain, a sign, a hill behind the gate.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+        "refs": [
+          "/workspace/art-20261105-showcase-full/design/art/templates/station-guide.png",
+          "/workspace/art-20261105-showcase-full/design/art/masters/path-lamp/path-lamp.png",
+          "/workspace/art-20261105-showcase-full/design/art/stations/tea-stall-1/tea-stall-1.png",
+          "/workspace/art-20261105-showcase-full/design/reference/palette-card-world-props.png"
+        ],
+        "reference_sha256": {
+          "/workspace/art-20261105-showcase-full/design/art/templates/station-guide.png": "9c8c885175f25be7a83981c2435ab2af453fe7a506afc7541eb5033115082202",
+          "/workspace/art-20261105-showcase-full/design/art/masters/path-lamp/path-lamp.png": "2a2b4d371cca0f3f134d51f089533e05a9683ea8b501dec03bfd38ef1a8a879a",
+          "/workspace/art-20261105-showcase-full/design/art/stations/tea-stall-1/tea-stall-1.png": "7e15f7484bddfddde90bb711e49273ee892e1d43422d26d7f1efe1f645430422",
+          "/workspace/art-20261105-showcase-full/design/reference/palette-card-world-props.png": "d31df285d7f915ff04d14ef9386940e1745a48ffb951bd041df405392a0939f2"
+        },
+        "fingerprint": "dc9426bf035ce2e2",
+        "prompt_sha256": "cf0eff1543d011d73eafc76a595708baaf657c5866e0c539f9a9a6b923291074",
+        "transparent": true
+      },
+      "evaluation_fingerprint": "dc9426bf035ce2e2"
+    },
+    {
+      "batch": "batch-33-home-showcase",
+      "job": "hill-gate",
+      "take": 3,
+      "round": 2,
+      "logical_run": "20261105-night33-gate-stall-single-retry",
+      "source_file": "/workspace/generated_images/exec-94828c03-4280-4ab6-a71f-14301c8963dd.png",
+      "returned_at": "2026-11-05T19:58:17.381Z",
+      "prompt_sha256": "cf0eff1543d011d73eafc76a595708baaf657c5866e0c539f9a9a6b923291074",
+      "fingerprint": "dc9426bf035ce2e2",
+      "saved_at": "2026-11-05T19:58:17.750601+00:00",
+      "original_generated_png_sha256": "4cd98cd16b161db615230519e14e7c9f3c3dbb9eca410fc6fb274da99e3e45f5",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "rgba_sha256": "5f75812f892688948edbde4e1e97c8dce72c744875fe8ce0f54a011825d1b39f",
+      "evaluation_take": 3,
+      "original_run": "batch-33-home-showcase",
+      "original_take": 3,
+      "original_callback": "/workspace/art-operator-runtime/run-20261105-night/batch-33-home-showcase/generated-hill-gate-t3.json",
+      "original_callback_sha256": "5228f7e03e96e71b590b0c47e067f1014d078e9eafba95ef967fd03f34079b22",
+      "original_packet": {
+        "batch": "batch-33-home-showcase",
+        "job": "hill-gate",
+        "worktree": "/workspace/art-20261105-showcase-full",
+        "prompt": "REFERENCES (attached, in this order):\n1. The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it.\n2. The path lamp of this island: same honey wood, finish and scale family (do not draw the lamp).\n3. The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall).\n4. The palette card for props: use only these colors (and mixes of them).\n\nA small garden gate at the foot of a hill path, for the island\ndiorama: two short, round pale-stone posts each topped with a\nlittle moss cap, and between them a closed double gate of soft\nhoney wood with a round top, a large simple sunflower carved into\nits round top panel (broad petals, a round centre), and two low\nstone steps in front of it going up. Behind the gate nothing but\nempty space. Narrow: it fills about half the footprint's width and\ntwo thirds of the height bar, standing on the footprint.\n\nVIEW: the same fixed front three-quarter view as the attached island: a\nlow camera about 20 degrees above the horizon, so you see the front of\nthe object fully and only a narrow sliver of its top (a round tabletop\nreads as a flat oval about a third as tall as it is wide). Follow the\nattached guide exactly: the object stands on the magenta ground ellipse,\ncentered on the magenta cross, its front edge on the front of the\nellipse, no taller than the magenta height bar. Then remove the guide\ncompletely: no ellipse, no cross, no bar, no magenta, no grid may remain\nin the output.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: glossy or metallic shine, specular glints, reflections, hammered\nor dimpled metal, wood grain, fine surface texture, photorealism, a 3D\nrender look, plastic or vinyl, high contrast, black or near-black\nshadows, saturated or neon colors, outlines, cel shading, text, letters,\nnumbers, logos, watermarks, characters or animals, a floor, a background,\na ground shadow.\n\nAVOID: a fence line, a wall, a padlock, a chain, a sign, a hill behind the gate.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+        "refs": [
+          "/workspace/art-20261105-showcase-full/design/art/templates/station-guide.png",
+          "/workspace/art-20261105-showcase-full/design/art/masters/path-lamp/path-lamp.png",
+          "/workspace/art-20261105-showcase-full/design/art/stations/tea-stall-1/tea-stall-1.png",
+          "/workspace/art-20261105-showcase-full/design/reference/palette-card-world-props.png"
+        ],
+        "reference_sha256": {
+          "/workspace/art-20261105-showcase-full/design/art/templates/station-guide.png": "9c8c885175f25be7a83981c2435ab2af453fe7a506afc7541eb5033115082202",
+          "/workspace/art-20261105-showcase-full/design/art/masters/path-lamp/path-lamp.png": "2a2b4d371cca0f3f134d51f089533e05a9683ea8b501dec03bfd38ef1a8a879a",
+          "/workspace/art-20261105-showcase-full/design/art/stations/tea-stall-1/tea-stall-1.png": "7e15f7484bddfddde90bb711e49273ee892e1d43422d26d7f1efe1f645430422",
+          "/workspace/art-20261105-showcase-full/design/reference/palette-card-world-props.png": "d31df285d7f915ff04d14ef9386940e1745a48ffb951bd041df405392a0939f2"
+        },
+        "fingerprint": "dc9426bf035ce2e2",
+        "prompt_sha256": "cf0eff1543d011d73eafc76a595708baaf657c5866e0c539f9a9a6b923291074",
+        "transparent": true
+      },
+      "evaluation_fingerprint": "dc9426bf035ce2e2"
+    },
+    {
+      "batch": "batch-33-home-showcase",
+      "job": "hill-gate",
+      "take": 4,
+      "round": 2,
+      "logical_run": "20261105-night33-gate-stall-single-retry",
+      "source_file": "/workspace/generated_images/exec-8c730f3c-d8f9-408c-8e20-80c5c7ed35ee.png",
+      "returned_at": "2026-11-05T19:59:10.192Z",
+      "prompt_sha256": "cf0eff1543d011d73eafc76a595708baaf657c5866e0c539f9a9a6b923291074",
+      "fingerprint": "dc9426bf035ce2e2",
+      "saved_at": "2026-11-05T19:59:10.634254+00:00",
+      "original_generated_png_sha256": "cddb771df1c8900e49d788295f68aeec0577e991542d5b3095bc4bfe22988692",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "rgba_sha256": "83188def7bfe077142f36410e4122982b6b6de343fb6f17f03bcaad8453964b8",
+      "evaluation_take": 4,
+      "original_run": "batch-33-home-showcase",
+      "original_take": 4,
+      "original_callback": "/workspace/art-operator-runtime/run-20261105-night/batch-33-home-showcase/generated-hill-gate-t4.json",
+      "original_callback_sha256": "825a9b0490760cd4f5859bc3637673ef2f31e93de98f5dff89f1d3723fa2c7bd",
+      "original_packet": {
+        "batch": "batch-33-home-showcase",
+        "job": "hill-gate",
+        "worktree": "/workspace/art-20261105-showcase-full",
+        "prompt": "REFERENCES (attached, in this order):\n1. The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it.\n2. The path lamp of this island: same honey wood, finish and scale family (do not draw the lamp).\n3. The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall).\n4. The palette card for props: use only these colors (and mixes of them).\n\nA small garden gate at the foot of a hill path, for the island\ndiorama: two short, round pale-stone posts each topped with a\nlittle moss cap, and between them a closed double gate of soft\nhoney wood with a round top, a large simple sunflower carved into\nits round top panel (broad petals, a round centre), and two low\nstone steps in front of it going up. Behind the gate nothing but\nempty space. Narrow: it fills about half the footprint's width and\ntwo thirds of the height bar, standing on the footprint.\n\nVIEW: the same fixed front three-quarter view as the attached island: a\nlow camera about 20 degrees above the horizon, so you see the front of\nthe object fully and only a narrow sliver of its top (a round tabletop\nreads as a flat oval about a third as tall as it is wide). Follow the\nattached guide exactly: the object stands on the magenta ground ellipse,\ncentered on the magenta cross, its front edge on the front of the\nellipse, no taller than the magenta height bar. Then remove the guide\ncompletely: no ellipse, no cross, no bar, no magenta, no grid may remain\nin the output.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: glossy or metallic shine, specular glints, reflections, hammered\nor dimpled metal, wood grain, fine surface texture, photorealism, a 3D\nrender look, plastic or vinyl, high contrast, black or near-black\nshadows, saturated or neon colors, outlines, cel shading, text, letters,\nnumbers, logos, watermarks, characters or animals, a floor, a background,\na ground shadow.\n\nAVOID: a fence line, a wall, a padlock, a chain, a sign, a hill behind the gate.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+        "refs": [
+          "/workspace/art-20261105-showcase-full/design/art/templates/station-guide.png",
+          "/workspace/art-20261105-showcase-full/design/art/masters/path-lamp/path-lamp.png",
+          "/workspace/art-20261105-showcase-full/design/art/stations/tea-stall-1/tea-stall-1.png",
+          "/workspace/art-20261105-showcase-full/design/reference/palette-card-world-props.png"
+        ],
+        "reference_sha256": {
+          "/workspace/art-20261105-showcase-full/design/art/templates/station-guide.png": "9c8c885175f25be7a83981c2435ab2af453fe7a506afc7541eb5033115082202",
+          "/workspace/art-20261105-showcase-full/design/art/masters/path-lamp/path-lamp.png": "2a2b4d371cca0f3f134d51f089533e05a9683ea8b501dec03bfd38ef1a8a879a",
+          "/workspace/art-20261105-showcase-full/design/art/stations/tea-stall-1/tea-stall-1.png": "7e15f7484bddfddde90bb711e49273ee892e1d43422d26d7f1efe1f645430422",
+          "/workspace/art-20261105-showcase-full/design/reference/palette-card-world-props.png": "d31df285d7f915ff04d14ef9386940e1745a48ffb951bd041df405392a0939f2"
+        },
+        "fingerprint": "dc9426bf035ce2e2",
+        "prompt_sha256": "cf0eff1543d011d73eafc76a595708baaf657c5866e0c539f9a9a6b923291074",
+        "transparent": true
+      },
+      "evaluation_fingerprint": "dc9426bf035ce2e2"
+    }
+  ]
+}
