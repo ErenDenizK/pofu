@@ -107,7 +107,7 @@ private struct HopDecision: View {
                 }
                 .padding(.horizontal, PofuSpacing.screen)
                 .padding(.bottom, PofuSpacing.l)
-                .frame(minHeight: max(proxy.size.height - 190, 0))
+                .frame(maxWidth: .infinity, minHeight: max(proxy.size.height - 190, 0))
             }
             .scrollBounceBehavior(.basedOnSize)
         }
