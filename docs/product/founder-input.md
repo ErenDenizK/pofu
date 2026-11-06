@@ -448,3 +448,9 @@ His views (translated), not orders; the decisions are ours. Handled in
 1. "Codex ne durumda?" Handled: it had finished every production row (P1-P4) and was making -v2 explorations; the lead merged the four (#246, #248, #251, #252), queued row 0-k (the four Koke takes that failed only by-design checks, promoted with a note) and P5 `batch-43-caglayan-production` (#254).
 2. Test light and colour harmony with near-game concepts as background, decor and character. Handled: `tools/assets/lookdev.py` (#254) composites layers under the real grade at dawn, day, golden and night and flags layers that do not sit in the light. First read: the IL1 plate's pale lawn is the outlier (props 1.6-1.9x its chroma; it stays bright at night), while the IL4 concept and the same cast sit well.
 3. Evaluate the workflow and give a past/future status report. Handled in chat; work continued.
+
+## 2026-11-06 (morning, later): sky, weather and fog; the beautiful bad state
+
+1. Study the background: the day-light cycle, islands, colours, clouds, weather, the sky cycle. Handled: research (`docs/research/sky-weather-and-harmony.md`) then a lead spec (sky and weather v1) and concept explorations for Codex.
+2. Fog can be real fog; a new place must keep its magic, even the bad state should be impressive, not just pale. Handled: Çağlayan's stage 0 (#254) rewritten before generation (drained warm hues, but a full value range, rich cool shade, layered haze, one focal light); the healing-arc rule and Emanet's fog follow in the spec.
+3. Start the colour and light harmony research together with the earlier message. Handled: the same research covers harmony; the lookdev sheet measures it.

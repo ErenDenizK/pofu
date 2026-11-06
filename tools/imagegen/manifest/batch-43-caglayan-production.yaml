@@ -18,12 +18,13 @@
 # be), never scary. Bad to good, not medium to very good (founder,
 # 2026-11-05): stage 0 is clearly dry and dull, not ruined.
 #
-#   0 stuck     a dry stepped rock cliff at the back where a waterfall should
-#               be, pale dust-dry stone, a still shallow pool at the foot with
-#               a dull grey surface, a small wooden water wheel on a mill,
-#               mossy and stopped; chroma about 40 percent of healed; flat cool
-#               light; ONE sign of life: a single thin trickle of water down
-#               one step, catching a glint.
+#   0 stuck     IMPRESSIVE, NOT PALE (founder, 2026-11-06: "even the bad
+#               state should be impressive"): a dry stepped cliff where the
+#               waterfall should be, the pool a dark still mirror, the wheel
+#               stopped. Warm hues drained to about 40 percent chroma, but a
+#               FULL value range and rich cool colour (blue-violet shade, teal
+#               mirror, layered haze) and ONE focal light: a shaft of pale
+#               light with dust motes on a single glinting trickle.
 #   1           one stream reconnects: a thin ribbon of water down the left
 #               steps; the pool's near edge darkens wet; chroma about 55 percent.
 #   2           two streams; the pool half full and clear blue-green; the wheel
@@ -71,7 +72,7 @@ jobs:
     palettes: [world-foliage, world-water]
     chat: "Pofu · Çağlayan island"
     light: {cell: day, layer: subject}
-    notes: "ROOT of the island chain; stage 0, stuck. Review: one word, 'dry'; a cozy place in the same game as home, quiet and a bit lonely, never ruined or scary; the single trickle is the only lively detail; flat cool light; same camera, plate proportions and finish as home. The layout (cliff steps, pool, mill and wheel, banks, a stone path) is what every later stage keeps: keep it simple and clearly composed, with the falls' steps centred at the back so stage 4's waterfall reads at 28 pt. Record the harmony chroma for the arc check."
+    notes: "ROOT of the island chain; stage 0, stuck. Review: one word, 'dry', and still IMPRESSIVE (founder, 2026-11-06: even the bad state should be impressive, a new place keeps its magic): drained warm hues but a full value range, deep cool shade, a mirror pool, layered haze, one shaft of light on the glinting trickle; never washed out or flat, never ruined or scary; same camera, plate proportions and finish as home. The layout (cliff steps, pool, mill and wheel, banks, a stone path) is what every later stage keeps: keep it simple and clearly composed, with the falls' steps centred at the back so stage 4's waterfall reads at 28 pt. Record the harmony chroma for the arc check."
     attach:
       - ref: approved:island-main-l-v3
         role: "The home island: copy ONLY its camera, its plate proportions (shallow top, rounded banded body) and its soft painting. Do not copy its lawn, its colors, its round door or its pebbles."
@@ -92,18 +93,24 @@ jobs:
           rounded stone in four broad steps, about as tall as a windmill,
           where a waterfall should pour: the steps are pale and dust-dry,
           sun-bleached sand-grey, with dry moss in the cracks. At its foot a
-          round shallow pool lies still, its surface a dull flat grey with a
+          round shallow pool lies still, its surface a dark still mirror with a
           dry pale rim where the water used to reach. On the right bank a
           small wooden mill with a round water wheel stands still, its
           paddles dry and mossy. A path of flat stones runs from the front
           lip to the pool. A few rounded boulders, two dry tufts of grass,
-          and a small wooden bucket lying on its side. STUCK STATE: the whole
-          island is faded and dry, chroma about 40 percent of a healthy
-          meadow, under a flat cool light with soft cool shadows, no warm
-          light anywhere. ONE SIGN OF LIFE only: a single thin trickle of
-          clear water runs down one step on the left and catches a small
-          bright glint, the only vivid detail. Quiet and a little lonely,
-          never ruined, never eerie.
+          and a small wooden bucket lying on its side.
+          STUCK STATE, HUSHED AND BEAUTIFUL, NOT PALE: the warm colours are
+          drained (the grass straw-dry, the wood grey, the flowers shut), but
+          the picture keeps a full range from deep shade to bright light and
+          rich cool colour. The cliff's shaded faces are a deep soft
+          blue-violet; the still pool is a dark teal mirror reflecting the sky;
+          a soft cool haze sits behind the cliff so it stands out in layers.
+          ONE focal light: a single slanting shaft of pale morning light falls
+          through the haze onto the cliff, dust motes floating in it, and lands
+          on a single thin trickle of clear water running down one step on the
+          left, which glints brightly. A hushed, beautiful stillness that
+          invites you in, like a place waiting for you; never washed out,
+          never flat grey, never ruined, never eerie.
           GAME CAMERA: exactly the camera of the attached home island, a low
           front three-quarter view about 20 degrees above the horizon, a pale
           sky with soft far clouds above and the sea of clouds below rising to
@@ -122,7 +129,7 @@ jobs:
     palettes: [world-foliage, world-water]
     chat: "Pofu · Çağlayan island"
     light: {cell: day, layer: subject}
-    notes: "Stage 1, the first stream. An edit of stage 0: every outline, prop and the camera stay in place. Review: one thin ribbon of water down the left steps into the pool, the pool's near edge wet and darker, the stone it touches darker and a little greener; chroma about 55 percent; light still cool and flat; the wheel still dry."
+    notes: "Stage 1, the first stream. An edit of stage 0: every outline, prop and the camera stay in place. Review: one thin ribbon of water down the left steps into the pool, the pool's near edge wet and darker, the stone it touches darker and a little greener; chroma about 55 percent; the cool haze and the one shaft as in stage 0, no warm light; the wheel still dry."
     acceptance: {edit_mode: region, edit_chroma: {warn: 0.30, fail: 0.15}}
     prompt:
       - text: |
@@ -134,7 +141,7 @@ jobs:
           with a few soft ripples where the ribbon lands; the rest of the pool
           stays dull. A few tufts of grass near the water turn green. The
           picture is a little more colourful (chroma about 55 percent of a
-          healthy meadow); the light stays flat and cool. The wheel and the
+          healthy meadow); the light, the cool haze and the single shaft stay as in stage 0. The wheel and the
           rest of the cliff stay dry. Every shape, prop, stone, outline, the
           island's size, the camera and the composition stay exactly where
           they are in the attached image.
