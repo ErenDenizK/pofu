@@ -1,0 +1,156 @@
+batch: batch-61-ui-kit-v3
+contact_sheet: design/art/takes/batch-61-ui-kit-v3/ui-face-disc-v2/contact.jpg
+jobs:
+  ui-face-disc-v2:
+    pick: 2
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Both retained initial takes pass
+      hard QA and full native, official locked and proper-alpha literal review recorded
+      in root-disc-pip-initial-manual-review.json (SHA01cb7139caa552497027a3b9715b3a919c9cf4029b8ee958002be3d435a47fda).
+      Select take2 by ordinary lowest style-lock load0.2452 versus0.2502. Soft blank
+      cream clay disc with lower light rim and quiet empty center; no text, count
+      or material violation. Exact native PNG592978B is below614400B; raw retained.
+      Use unchanged authored slice metadata and same actual consumer; no claim of
+      lead cap approval or completed app integration. Preserve all original PNG/RGBA,
+      packet, reference, initial QA and locked hashes. Required real complete canonical
+      Harmony measure/check with byte-exact foreign restoration; UI is canonically
+      excluded so no fabricated own shard. No regeneration, force, extra retry, profile
+      or threshold change. auto-picked by QA; founder review pending.
+qa_reports:
+  1:
+    job: ui-face-disc-v2
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 28 (R1 51)
+      value: 28.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 85 (R1 59)
+      value: 84.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.5 (R1 5.3)
+      value: 0.54
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.3
+      value: 0.2502
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.7, p95 1.0, off-palette 0.0%
+      value: 0.7152
+    info:
+      metrics_raw:
+        L_p5: 84.4
+        L_p50: 90.0
+        L_p95: 90.8
+        C_p50: 15.4
+        C_p95: 28.7
+        C_p99: 41.6
+        detail: 0.68
+      metrics_locked:
+        L_p5: 84.7
+        L_p50: 90.0
+        L_p95: 90.6
+        C_p50: 15.3
+        C_p95: 28.3
+        C_p99: 40.7
+        detail: 0.54
+    fingerprint: 7e43b1103cade998
+  2:
+    job: ui-face-disc-v2
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 28 (R1 51)
+      value: 28.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 84 (R1 59)
+      value: 84.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.6 (R1 5.3)
+      value: 0.55
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.2
+      value: 0.2452
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.5, p95 0.9, off-palette 0.0%
+      value: 0.4862
+    info:
+      metrics_raw:
+        L_p5: 83.7
+        L_p50: 89.3
+        L_p95: 90.2
+        C_p50: 15.2
+        C_p95: 28.9
+        C_p99: 36.9
+        detail: 0.69
+      metrics_locked:
+        L_p5: 84.0
+        L_p50: 89.3
+        L_p95: 90.2
+        C_p50: 15.2
+        C_p95: 28.5
+        C_p99: 36.6
+        detail: 0.55
+    fingerprint: 7e43b1103cade998
+manual_review:
+  excluded_takes: []
+  note: Both retained initial takes pass hard QA and full native, official locked
+    and proper-alpha literal review recorded in root-disc-pip-initial-manual-review.json
+    (SHA01cb7139caa552497027a3b9715b3a919c9cf4029b8ee958002be3d435a47fda). Select
+    take2 by ordinary lowest style-lock load0.2452 versus0.2502. Soft blank cream
+    clay disc with lower light rim and quiet empty center; no text, count or material
+    violation. Exact native PNG592978B is below614400B; raw retained. Use unchanged
+    authored slice metadata and same actual consumer; no claim of lead cap approval
+    or completed app integration. Preserve all original PNG/RGBA, packet, reference,
+    initial QA and locked hashes. Required real complete canonical Harmony measure/check
+    with byte-exact foreign restoration; UI is canonically excluded so no fabricated
+    own shard. No regeneration, force, extra retry, profile or threshold change. auto-picked
+    by QA; founder review pending.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-0b9dd51e-b4a1-484a-a604-5a7dd2858513.png
+  original_generated_png_sha256: 310534a8b74ece7c2a71efb070935201ec0f492f49350d81101bac2eddb14c73
+  inbox_png_sha256: bdb53a2c1e4f43240723ab8515f99e6df5c5c3790c6ece28d0720a798dec6539
+  rgba_sha256: 5fdfd6210512b0572eaf507b54364b14ee3c2779111550ad0ad8372d17a5e04a
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 7e43b1103cade998
+- take: 2
+  source_file: /workspace/generated_images/exec-e71e01f5-4aa8-4cff-99d6-94318bd514c4.png
+  original_generated_png_sha256: 5ee71c455826b8069f676ad74bbfebe26a5d5574d43b2c9d860c56e8d15dd804
+  inbox_png_sha256: 7a99d294f86085450b498b28a87642ca0e57016219fe6fbe4f9b30df1075311b
+  rgba_sha256: 59149d9bbf7bc527b22e1d2b14ee7a1859920ca061e763797459be3a0666da43
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 7e43b1103cade998
