@@ -4,16 +4,16 @@ title_tr: findik-sleepy
 title_en: findik-sleepy (char)
 status: in-production
 horizon: now
-summary: >-
-  Edit the attached hedgehog, Fındık, into a sleepy nap face. Change only the eyes and mouth:
-  both eyes become gently closed, a thin soft slightly downward-curved dark line where the
-  lower edge of each eye was, and the mouth relaxes into a calm small line. His spines, ears,
-  body, paws, colors and size stay exactly as they are.
+summary: 'Edit the attached hedgehog, Fındık, into a sleepy nap face. Change only
+  the eyes and mouth: both eyes become gently closed, a thin soft slightly downward-curved
+  dark line where the lower edge of each eye was, and the mouth relaxes into a calm
+  small line. His spines, ears, body, paws, colors and size stay exactly as they are.'
 links:
   variant_of:
   - asset-findik
 art:
-  images: []
+  images:
+  - design/art/masters/findik-sleepy/findik-sleepy.webp
   jobs:
   - batch-41-resident-reactions:findik-sleepy
 sources:

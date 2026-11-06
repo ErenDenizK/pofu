@@ -1,0 +1,15 @@
+[
+  {
+    "take": 4,
+    "canvas": [
+      870,
+      1306
+    ],
+    "locked_png_bytes": 837813,
+    "lossless_default_bytes": 567318,
+    "best_lossless_webp": "/workspace/art-operator-runtime/run-20261105-night/batch-41-resident-reactions/encoding-probes/findik-sleepy/t4-lossless.webp",
+    "best_lossless_webp_bytes": 567318,
+    "rgba_sha256": "569ae98ffbeb6b4029a83e90958319cb28bca7681a53852d5da4f9e6d45dea7f",
+    "eligible_delivery": true
+  }
+]
