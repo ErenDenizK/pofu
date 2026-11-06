@@ -1,0 +1,272 @@
+{
+  "batch": "batch-42-stickers",
+  "source_count": 4,
+  "original_branch": "art/batch-42-stickers/all",
+  "original_commit": "b77792fc184547204c0710b19223c68b5a64fde1",
+  "sources": [
+    {
+      "batch": "batch-42-stickers",
+      "job": "sticker-pofu-proud",
+      "take": 1,
+      "round": 1,
+      "logical_run": "20261106-b42-proud",
+      "source_file": "/workspace/generated_images/exec-b0c145e0-855a-4165-9059-3af3c2a9fe9c.png",
+      "returned_at": "2026-11-06T02:05:10.790Z",
+      "prompt_sha256": "ecd3f79e51ba7cf18e4979ebb55f7d0c27e8c2d3105c6e7741d7581db1866615",
+      "fingerprint": "96a22280b9d41eec",
+      "saved_at": "2026-11-06T02:05:11.230999+00:00",
+      "original_generated_png_sha256": "0fbbccbda5481413d1d08d52801f3d79ffef4c519fa3638e7d62ecc2f199ab8e",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "rgba_sha256": "8ea1998f402ac559493dd78c0624bcf44b47bb6e2a1e035cbeeb49a694d73ccf",
+      "evaluation_take": 1,
+      "original_take": 1,
+      "original_run": "batch-42-stickers",
+      "original_callback": "/workspace/art-operator-runtime/run-20261106/batch-42-stickers/generated-sticker-pofu-proud-t1.json",
+      "original_callback_sha256": "61a88e9e01f36d184faef1d12050714b4e7dbb8793926979504b2aab3b29ff4f",
+      "original_tool_callback": "/workspace/art-operator-runtime/run-20261106/batch-42-stickers/callback-sticker-pofu-proud-t1.json",
+      "original_tool_callback_sha256": "5a5d8410692c8b94cf87710c6175c0bd7f0de9b54b0009696b991d9322f817e5",
+      "original_sidecar": {
+        "job": "sticker-pofu-proud",
+        "take": 1,
+        "batch": "batch-42-stickers",
+        "fingerprint": "96a22280b9d41eec",
+        "prompt": "REFERENCES (attached, in this order):\n1. Pofu, the hamster: his exact look, fur, colors, eyes and signature curl.\n\nA single full-body sticker of Pofu the hamster in the exact attached look, chest out, chin up, eyes bright, a small content smile. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.\n\nAVOID: text, a white outline, a background, teeth, tears, motion lines, a different design.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+        "attachments": [
+          {
+            "path": "design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png",
+            "role": "Pofu, the hamster: his exact look, fur, colors, eyes and signature curl."
+          }
+        ],
+        "background": "transparent",
+        "generated_at": "2026-11-06T02:06:10+00:00",
+        "backend": "codex-cloud",
+        "source_file": "/workspace/generated_images/exec-b0c145e0-855a-4165-9059-3af3c2a9fe9c.png",
+        "account": {
+          "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+          "kind": "chatgpt-plan"
+        }
+      },
+      "original_sidecar_path": "/workspace/art-20261106-stickers/design/art/inbox/batch-42-stickers/char__sticker-pofu-proud--t1.json",
+      "original_sidecar_sha256": "9f08efb022d8da25c0afbebf229eed79195586744b063b55604ba538aeb6ff5a",
+      "original_sidecar_archive": "/workspace/art-operator-runtime/run-20261106/completed-art-checkout-backups/run-20261106--batch-42-stickers.tar.gz",
+      "original_sidecar_archive_member": "design/art/inbox/batch-42-stickers/char__sticker-pofu-proud--t1.json",
+      "original_packet": {
+        "batch": "batch-42-stickers",
+        "job": "sticker-pofu-proud",
+        "worktree": "/workspace/art-20261106-stickers",
+        "prompt": "REFERENCES (attached, in this order):\n1. Pofu, the hamster: his exact look, fur, colors, eyes and signature curl.\n\nA single full-body sticker of Pofu the hamster in the exact attached look, chest out, chin up, eyes bright, a small content smile. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.\n\nAVOID: text, a white outline, a background, teeth, tears, motion lines, a different design.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+        "refs": [
+          "/workspace/art-20261106-stickers/design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png"
+        ],
+        "reference_sha256": {
+          "/workspace/art-20261106-stickers/design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png": "d4f0ce88dc0541053dd515845c1f2bbb2a4ebe101c5ce4a6080d340a5c872454"
+        },
+        "fingerprint": "96a22280b9d41eec",
+        "prompt_sha256": "ecd3f79e51ba7cf18e4979ebb55f7d0c27e8c2d3105c6e7741d7581db1866615",
+        "transparent": true
+      },
+      "original_packet_sha256": "292ac84917b91132c640377c85bfa6780b75cfa0870d461cd632f019f62beb47"
+    },
+    {
+      "batch": "batch-42-stickers",
+      "job": "sticker-pofu-proud",
+      "take": 2,
+      "round": 1,
+      "logical_run": "20261106-b42-proud",
+      "source_file": "/workspace/generated_images/exec-7358a024-bdf1-42ff-bb6d-3f2c35aa59f8.png",
+      "returned_at": "2026-11-06T02:06:04.210Z",
+      "prompt_sha256": "ecd3f79e51ba7cf18e4979ebb55f7d0c27e8c2d3105c6e7741d7581db1866615",
+      "fingerprint": "96a22280b9d41eec",
+      "saved_at": "2026-11-06T02:06:04.503253+00:00",
+      "original_generated_png_sha256": "6f948e57112263a984dd6e6619cbad0e762bc056f18e62d75e69d676b74879b8",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "rgba_sha256": "15baa8b953daa8541d6c2e8284f977bc024465372411ff5a1c6806c490875c62",
+      "evaluation_take": 2,
+      "original_take": 2,
+      "original_run": "batch-42-stickers",
+      "original_callback": "/workspace/art-operator-runtime/run-20261106/batch-42-stickers/generated-sticker-pofu-proud-t2.json",
+      "original_callback_sha256": "ec01926d2f46b7b8d75f6880f045308b1c372e894d0f220bf26b95985557bc2d",
+      "original_tool_callback": "/workspace/art-operator-runtime/run-20261106/batch-42-stickers/callback-sticker-pofu-proud-t2.json",
+      "original_tool_callback_sha256": "6c5da78b38cf8a23281dbf97b0b83ce7d2a074a8ed027150cd38577c7cb7479f",
+      "original_sidecar": {
+        "job": "sticker-pofu-proud",
+        "take": 2,
+        "batch": "batch-42-stickers",
+        "fingerprint": "96a22280b9d41eec",
+        "prompt": "REFERENCES (attached, in this order):\n1. Pofu, the hamster: his exact look, fur, colors, eyes and signature curl.\n\nA single full-body sticker of Pofu the hamster in the exact attached look, chest out, chin up, eyes bright, a small content smile. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.\n\nAVOID: text, a white outline, a background, teeth, tears, motion lines, a different design.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+        "attachments": [
+          {
+            "path": "design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png",
+            "role": "Pofu, the hamster: his exact look, fur, colors, eyes and signature curl."
+          }
+        ],
+        "background": "transparent",
+        "generated_at": "2026-11-06T02:06:11+00:00",
+        "backend": "codex-cloud",
+        "source_file": "/workspace/generated_images/exec-7358a024-bdf1-42ff-bb6d-3f2c35aa59f8.png",
+        "account": {
+          "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+          "kind": "chatgpt-plan"
+        }
+      },
+      "original_sidecar_path": "/workspace/art-20261106-stickers/design/art/inbox/batch-42-stickers/char__sticker-pofu-proud--t2.json",
+      "original_sidecar_sha256": "3f1d9c02c6572421832599e6b275f14f8de4a71cb63bc23e6d542adac000ee74",
+      "original_sidecar_archive": "/workspace/art-operator-runtime/run-20261106/completed-art-checkout-backups/run-20261106--batch-42-stickers.tar.gz",
+      "original_sidecar_archive_member": "design/art/inbox/batch-42-stickers/char__sticker-pofu-proud--t2.json",
+      "original_packet": {
+        "batch": "batch-42-stickers",
+        "job": "sticker-pofu-proud",
+        "worktree": "/workspace/art-20261106-stickers",
+        "prompt": "REFERENCES (attached, in this order):\n1. Pofu, the hamster: his exact look, fur, colors, eyes and signature curl.\n\nA single full-body sticker of Pofu the hamster in the exact attached look, chest out, chin up, eyes bright, a small content smile. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.\n\nAVOID: text, a white outline, a background, teeth, tears, motion lines, a different design.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+        "refs": [
+          "/workspace/art-20261106-stickers/design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png"
+        ],
+        "reference_sha256": {
+          "/workspace/art-20261106-stickers/design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png": "d4f0ce88dc0541053dd515845c1f2bbb2a4ebe101c5ce4a6080d340a5c872454"
+        },
+        "fingerprint": "96a22280b9d41eec",
+        "prompt_sha256": "ecd3f79e51ba7cf18e4979ebb55f7d0c27e8c2d3105c6e7741d7581db1866615",
+        "transparent": true
+      },
+      "original_packet_sha256": "292ac84917b91132c640377c85bfa6780b75cfa0870d461cd632f019f62beb47"
+    },
+    {
+      "batch": "batch-42-stickers",
+      "job": "sticker-pofu-proud",
+      "take": 3,
+      "round": 2,
+      "logical_run": "b42-pofu-retries",
+      "source_file": "/workspace/generated_images/exec-ef7aec4b-fc37-4bb6-956b-8e8dfac92f19.png",
+      "returned_at": "2026-11-06T02:17:29.607Z",
+      "prompt_sha256": "ecd3f79e51ba7cf18e4979ebb55f7d0c27e8c2d3105c6e7741d7581db1866615",
+      "fingerprint": "96a22280b9d41eec",
+      "saved_at": "2026-11-06T02:17:30.094303+00:00",
+      "original_generated_png_sha256": "d4848d31845fb17cf6ac037c6c62a2acd6c69c436da9442980afafc14c1be11c",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "rgba_sha256": "9c3c04280e2b639fd4da60786601fda60957b8fc72b5c09b8d8b7c31d38e04be",
+      "evaluation_take": 3,
+      "original_take": 3,
+      "original_run": "batch-42-stickers",
+      "original_callback": "/workspace/art-operator-runtime/run-20261106/batch-42-stickers/generated-sticker-pofu-proud-t3.json",
+      "original_callback_sha256": "b7040b2b546cd4cb8f6231d0f0c7d546f2328725067b874cea60fbb903dc47a4",
+      "original_tool_callback": "/workspace/art-operator-runtime/run-20261106/batch-42-stickers/callback-sticker-pofu-proud-t3.json",
+      "original_tool_callback_sha256": "c7fe885fb70748c994efe278c50645369ad1757eef2f8bdad94a579c7a671a62",
+      "original_sidecar": {
+        "job": "sticker-pofu-proud",
+        "take": 3,
+        "batch": "batch-42-stickers",
+        "fingerprint": "96a22280b9d41eec",
+        "prompt": "REFERENCES (attached, in this order):\n1. Pofu, the hamster: his exact look, fur, colors, eyes and signature curl.\n\nA single full-body sticker of Pofu the hamster in the exact attached look, chest out, chin up, eyes bright, a small content smile. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.\n\nAVOID: text, a white outline, a background, teeth, tears, motion lines, a different design.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+        "attachments": [
+          {
+            "path": "design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png",
+            "role": "Pofu, the hamster: his exact look, fur, colors, eyes and signature curl."
+          }
+        ],
+        "background": "transparent",
+        "generated_at": "2026-11-06T02:18:26+00:00",
+        "backend": "codex-cloud",
+        "source_file": "/workspace/generated_images/exec-ef7aec4b-fc37-4bb6-956b-8e8dfac92f19.png",
+        "account": {
+          "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+          "kind": "chatgpt-plan"
+        }
+      },
+      "original_sidecar_path": "/workspace/art-20261106-stickers/design/art/inbox/batch-42-stickers/char__sticker-pofu-proud--t3.json",
+      "original_sidecar_sha256": "dcfe5060d12c63e42f5799de5e1403c0ba4898a35f44e2df95e57190f0896d93",
+      "original_sidecar_archive": "/workspace/art-operator-runtime/run-20261106/completed-art-checkout-backups/run-20261106--batch-42-stickers.tar.gz",
+      "original_sidecar_archive_member": "design/art/inbox/batch-42-stickers/char__sticker-pofu-proud--t3.json",
+      "original_packet": {
+        "batch": "batch-42-stickers",
+        "job": "sticker-pofu-proud",
+        "worktree": "/workspace/art-20261106-stickers",
+        "prompt": "REFERENCES (attached, in this order):\n1. Pofu, the hamster: his exact look, fur, colors, eyes and signature curl.\n\nA single full-body sticker of Pofu the hamster in the exact attached look, chest out, chin up, eyes bright, a small content smile. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.\n\nAVOID: text, a white outline, a background, teeth, tears, motion lines, a different design.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+        "refs": [
+          "/workspace/art-20261106-stickers/design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png"
+        ],
+        "reference_sha256": {
+          "/workspace/art-20261106-stickers/design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png": "d4f0ce88dc0541053dd515845c1f2bbb2a4ebe101c5ce4a6080d340a5c872454"
+        },
+        "fingerprint": "96a22280b9d41eec",
+        "prompt_sha256": "ecd3f79e51ba7cf18e4979ebb55f7d0c27e8c2d3105c6e7741d7581db1866615",
+        "transparent": true
+      },
+      "original_packet_sha256": "292ac84917b91132c640377c85bfa6780b75cfa0870d461cd632f019f62beb47"
+    },
+    {
+      "batch": "batch-42-stickers",
+      "job": "sticker-pofu-proud",
+      "take": 4,
+      "round": 2,
+      "logical_run": "b42-pofu-retries",
+      "source_file": "/workspace/generated_images/exec-aad3a599-50ba-4895-b0cc-670464217a84.png",
+      "returned_at": "2026-11-06T02:18:03.876Z",
+      "prompt_sha256": "ecd3f79e51ba7cf18e4979ebb55f7d0c27e8c2d3105c6e7741d7581db1866615",
+      "fingerprint": "96a22280b9d41eec",
+      "saved_at": "2026-11-06T02:18:04.204443+00:00",
+      "original_generated_png_sha256": "fc9ab8083b20a9f62148add909f4d496374a46eb9abc5cd9f77b7543afa5fcac",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "rgba_sha256": "a0ed506c1ee87dd7a39e2cb1582db0a65385027b0847201282b3cc1b0c5d59c3",
+      "evaluation_take": 4,
+      "original_take": 4,
+      "original_run": "batch-42-stickers",
+      "original_callback": "/workspace/art-operator-runtime/run-20261106/batch-42-stickers/generated-sticker-pofu-proud-t4.json",
+      "original_callback_sha256": "0188851281b9741938e765a7e3b753a3b028e64c9b38e28a47db5da333857edf",
+      "original_tool_callback": "/workspace/art-operator-runtime/run-20261106/batch-42-stickers/callback-sticker-pofu-proud-t4.json",
+      "original_tool_callback_sha256": "b9f871c32469b81c24f04665299c7ded62b1e5c1ae12fa1356fb4151d343aa76",
+      "original_sidecar": {
+        "job": "sticker-pofu-proud",
+        "take": 4,
+        "batch": "batch-42-stickers",
+        "fingerprint": "96a22280b9d41eec",
+        "prompt": "REFERENCES (attached, in this order):\n1. Pofu, the hamster: his exact look, fur, colors, eyes and signature curl.\n\nA single full-body sticker of Pofu the hamster in the exact attached look, chest out, chin up, eyes bright, a small content smile. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.\n\nAVOID: text, a white outline, a background, teeth, tears, motion lines, a different design.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+        "attachments": [
+          {
+            "path": "design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png",
+            "role": "Pofu, the hamster: his exact look, fur, colors, eyes and signature curl."
+          }
+        ],
+        "background": "transparent",
+        "generated_at": "2026-11-06T02:18:27+00:00",
+        "backend": "codex-cloud",
+        "source_file": "/workspace/generated_images/exec-aad3a599-50ba-4895-b0cc-670464217a84.png",
+        "account": {
+          "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+          "kind": "chatgpt-plan"
+        }
+      },
+      "original_sidecar_path": "/workspace/art-20261106-stickers/design/art/inbox/batch-42-stickers/char__sticker-pofu-proud--t4.json",
+      "original_sidecar_sha256": "938583ba4d389cd8bb28af740003f084b5d96fce362aee670385dbd8f397dd3d",
+      "original_sidecar_archive": "/workspace/art-operator-runtime/run-20261106/completed-art-checkout-backups/run-20261106--batch-42-stickers.tar.gz",
+      "original_sidecar_archive_member": "design/art/inbox/batch-42-stickers/char__sticker-pofu-proud--t4.json",
+      "original_packet": {
+        "batch": "batch-42-stickers",
+        "job": "sticker-pofu-proud",
+        "worktree": "/workspace/art-20261106-stickers",
+        "prompt": "REFERENCES (attached, in this order):\n1. Pofu, the hamster: his exact look, fur, colors, eyes and signature curl.\n\nA single full-body sticker of Pofu the hamster in the exact attached look, chest out, chin up, eyes bright, a small content smile. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.\n\nAVOID: text, a white outline, a background, teeth, tears, motion lines, a different design.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+        "refs": [
+          "/workspace/art-20261106-stickers/design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png"
+        ],
+        "reference_sha256": {
+          "/workspace/art-20261106-stickers/design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png": "d4f0ce88dc0541053dd515845c1f2bbb2a4ebe101c5ce4a6080d340a5c872454"
+        },
+        "fingerprint": "96a22280b9d41eec",
+        "prompt_sha256": "ecd3f79e51ba7cf18e4979ebb55f7d0c27e8c2d3105c6e7741d7581db1866615",
+        "transparent": true
+      },
+      "original_packet_sha256": "292ac84917b91132c640377c85bfa6780b75cfa0870d461cd632f019f62beb47"
+    }
+  ]
+}

@@ -1,0 +1,843 @@
+batch: batch-42-stickers
+contact_sheet: design/art/takes/sticker-repost-2026-11-06/sticker-goat-indignant/contact.jpg
+jobs:
+  sticker-goat-indignant:
+    pick: 4
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Retained-only re-post of four
+      historical originals on the author-fixed native 1024 square canvas with ground_line:false;
+      original ordinals/account/generation timestamps preserved; no new generation.
+      Manual full-body/expression/identity and proper light/dark 28 px checks passed.
+      Official advisory light/palette/Harmony warnings remain advisory; hard QA failures
+      are excluded.
+qa_reports:
+  4:
+    job: sticker-goat-indignant
+    take: 4
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 41 (R1 51)
+      value: 40.6
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 62 (at most 22), p98 97 (at least 90), spread 34
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 34.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 88 (band 55-90)'
+      value: 88.5
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.40 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.396
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.1 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.12
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.3 (R1 5.3)
+      value: 3.29
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.1, p95 2.8, off-palette 0.4% (top: #552211 (0.1%), #441100
+        (0.0%))'
+      value: 1.0738
+    - check: harmony
+      status: pass
+      message: 'harmony score 80 against the char reference (outliers: L_p2)'
+      value: 80.2
+    info:
+      metrics_raw:
+        L_p5: 70.5
+        L_p50: 88.5
+        L_p95: 95.3
+        C_p50: 12.6
+        C_p95: 40.6
+        C_p99: 47.1
+        detail: 3.27
+      metrics_locked:
+        L_p5: 70.5
+        L_p50: 88.5
+        L_p95: 95.3
+        C_p50: 12.6
+        C_p95: 40.6
+        C_p99: 47.1
+        detail: 3.29
+    fingerprint: 649f35a2e6771bb5
+  2:
+    job: sticker-goat-indignant
+    take: 2
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 36 (R1 51)
+      value: 36.5
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 62 (at most 22), p98 97 (at least 90), spread 34
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 34.2
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 88 (band 55-90)'
+      value: 87.7
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.43 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.427
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.2 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.21
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.2 (R1 5.3)
+      value: 3.17
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.1, p95 2.5, off-palette 0.3% (top: #CC7744 (0.0%), #EE7766
+        (0.0%))'
+      value: 1.0795
+    - check: harmony
+      status: pass
+      message: 'harmony score 76 against the char reference (outliers: L_p2)'
+      value: 76.4
+    info:
+      metrics_raw:
+        L_p5: 70.2
+        L_p50: 87.7
+        L_p95: 95.5
+        C_p50: 10.6
+        C_p95: 36.5
+        C_p99: 43.5
+        detail: 3.15
+      metrics_locked:
+        L_p5: 70.2
+        L_p50: 87.7
+        L_p95: 95.5
+        C_p50: 10.6
+        C_p95: 36.5
+        C_p99: 43.5
+        detail: 3.17
+    fingerprint: 649f35a2e6771bb5
+  1:
+    job: sticker-goat-indignant
+    take: 1
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 39.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 62 (at most 22), p98 97 (at least 90), spread 36
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 35.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 88 (band 55-90)'
+      value: 88.4
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.40 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.396
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.3 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.33
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.1 (R1 5.3)
+      value: 3.14
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.1, p95 2.8, off-palette 0.8% (top: #441100 (0.1%), #552211
+        (0.1%))'
+      value: 1.077
+    - check: harmony
+      status: pass
+      message: 'harmony score 79 against the char reference (outliers: L_p2)'
+      value: 79.3
+    info:
+      metrics_raw:
+        L_p5: 69.7
+        L_p50: 88.4
+        L_p95: 95.7
+        C_p50: 12.6
+        C_p95: 39.8
+        C_p99: 47.1
+        detail: 3.12
+      metrics_locked:
+        L_p5: 69.7
+        L_p50: 88.4
+        L_p95: 95.7
+        C_p50: 12.6
+        C_p95: 39.8
+        C_p99: 47.1
+        detail: 3.14
+    fingerprint: 649f35a2e6771bb5
+  3:
+    job: sticker-goat-indignant
+    take: 3
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 40.0
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 60 (at most 22), p98 97 (at least 90), spread 37
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 36.7
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 88 (band 55-90)'
+      value: 87.6
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.39 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.388
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.3 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.27
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.3 (R1 5.3)
+      value: 3.32
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.3, p95 3.3, off-palette 0.6% (top: #BB6633 (0.1%), #AA5522
+        (0.1%))'
+      value: 1.2724
+    - check: harmony
+      status: pass
+      message: 'harmony score 79 against the char reference (outliers: L_p2)'
+      value: 79.1
+    info:
+      metrics_raw:
+        L_p5: 68.8
+        L_p50: 87.6
+        L_p95: 95.7
+        C_p50: 11.3
+        C_p95: 40.0
+        C_p99: 46.6
+        detail: 3.31
+      metrics_locked:
+        L_p5: 68.8
+        L_p50: 87.6
+        L_p95: 95.7
+        C_p50: 11.3
+        C_p95: 40.0
+        C_p99: 46.6
+        detail: 3.32
+    fingerprint: 649f35a2e6771bb5
+manual_review:
+  excluded_takes: []
+  note: Retained-only re-post of four historical originals on the author-fixed native
+    1024 square canvas with ground_line:false; original ordinals/account/generation
+    timestamps preserved; no new generation. Manual full-body/expression/identity
+    and proper light/dark 28 px checks passed. Official advisory light/palette/Harmony
+    warnings remain advisory; hard QA failures are excluded.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-50a7a759-8866-4adb-83b6-5e430b7d7b32.png
+  original_generated_png_sha256: 07ab4b18d78969f8b6c691a9dd2473bcd1ba7630b5a57db89d4c5280384e3b47
+  inbox_png_sha256: fb54d930b9afc5bf43e321ca2075f67ebfe34c200640a75f9027cf43c2397b65
+  rgba_sha256: 8c1bcc2da7d3c1e4de86cfbe4f1163c4f630eb8e99ffc38b5e4d0bfa61c452b7
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 649f35a2e6771bb5
+- take: 2
+  source_file: /workspace/generated_images/exec-a2fff92e-0ee2-423d-84e8-3a9e4c63f529.png
+  original_generated_png_sha256: d746ec04d1a2b5463534490212052485481681a862f0d67a167f467dbcbd360d
+  inbox_png_sha256: 14cfcab8fe3dca10e0f0101dc3809bdff50eec45fb5b780bf31b3ad9ada791eb
+  rgba_sha256: 95a60de1cc3f892a005cab8c947b6f70c9047684a56d144d2b7bef9a16b9079b
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 649f35a2e6771bb5
+- take: 3
+  source_file: /workspace/generated_images/exec-1aca07ab-3c35-4679-8621-3ae08d8e6ccf.png
+  original_generated_png_sha256: 581b435695f660bf6a56ef772e28551204853393e63ff1079b6ac918a459f5c7
+  inbox_png_sha256: 8509c0f006f5fe32b8e45120118ca3ff6256d9bd8537f3e4ab8d3e0ad5e526cd
+  rgba_sha256: cf77faf7b1aa94c27a0271b5312f0bffd6205189a6bfd250d0124b5e927f2d75
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 649f35a2e6771bb5
+- take: 4
+  source_file: /workspace/generated_images/exec-2323ced6-897a-40ad-90b2-54c707df720f.png
+  original_generated_png_sha256: 105a94ad893977d5177b9d628fe4887096a1f61a90156e0a716fcf5394361fd0
+  inbox_png_sha256: 3532e56cd76de1cb1c037b12d69f9645a5b09336857cd23acb0b2ca273c5b1ce
+  rgba_sha256: 4430d0dc8e78441efa2dcae89a670ad6b942487ea0d3234aa10ef6086c7b7286
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 649f35a2e6771bb5
+salvage:
+  batch: batch-42-stickers
+  source_count: 4
+  original_branch: art/batch-42-stickers/all
+  original_commit: b77792fc184547204c0710b19223c68b5a64fde1
+  sources:
+  - batch: batch-42-stickers
+    job: sticker-goat-indignant
+    take: 1
+    round: 1
+    logical_run: b42-residents-a
+    source_file: /workspace/generated_images/exec-50a7a759-8866-4adb-83b6-5e430b7d7b32.png
+    returned_at: '2026-11-06T02:17:09.912Z'
+    prompt_sha256: c2a269c92b1d5d67b47fe41ddfca6595ea5c4cf78cb4230693fde08b1192be0d
+    fingerprint: 649f35a2e6771bb5
+    saved_at: '2026-11-06T02:17:14.200080+00:00'
+    original_generated_png_sha256: 07ab4b18d78969f8b6c691a9dd2473bcd1ba7630b5a57db89d4c5280384e3b47
+    dimensions:
+    - 1254
+    - 1254
+    rgba_sha256: 8c1bcc2da7d3c1e4de86cfbe4f1163c4f630eb8e99ffc38b5e4d0bfa61c452b7
+    evaluation_take: 1
+    original_take: 1
+    original_run: batch-42-stickers
+    original_callback: /workspace/art-operator-runtime/run-20261106/batch-42-stickers/generated-sticker-goat-indignant-t1.json
+    original_callback_sha256: 74f1627bd2f2ece2ad09ca7c3b3378ab21895359b1955d1c2c350ee207fd0595
+    original_tool_callback: /workspace/art-operator-runtime/run-20261106/batch-42-stickers/callback-sticker-goat-indignant-t1.json
+    original_tool_callback_sha256: 863c4ef697ab49bbf39f5ce4092601f4e330d068b0e39d076fdfff026e5c3211
+    original_sidecar:
+      job: sticker-goat-indignant
+      take: 1
+      batch: batch-42-stickers
+      fingerprint: 649f35a2e6771bb5
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. The harbor goat: its exact look, fur, colors and eyes.
+
+
+        A single full-body sticker of the harbor goat in the exact attached look,
+        chin lifted, a closed-eyed huff, indignant and a little proud, a reluctant
+        half-smile. Centred on a plain transparent background with wide empty space
+        around it, drawn complete with the whole body. No text, no speech bubbles,
+        no floating hearts, no sticker border, no ground shadow.
+
+
+        AVOID: text, a white outline, a background, teeth, tears, motion lines, a
+        different design.
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      attachments:
+      - path: design/art/masters/harbor-goat/harbor-goat.webp
+        role: 'The harbor goat: its exact look, fur, colors and eyes.'
+      background: transparent
+      generated_at: '2026-11-06T02:17:22+00:00'
+      backend: codex-cloud
+      source_file: /workspace/generated_images/exec-50a7a759-8866-4adb-83b6-5e430b7d7b32.png
+      account:
+        owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+        kind: chatgpt-plan
+    original_sidecar_path: /workspace/art-20261106-stickers/design/art/inbox/batch-42-stickers/char__sticker-goat-indignant--t1.json
+    original_sidecar_sha256: 1343eef644bc6f332d2ab60f50109029cd61180a2f5edd779487aa113339b7d0
+    original_sidecar_archive: /workspace/art-operator-runtime/run-20261106/completed-art-checkout-backups/run-20261106--batch-42-stickers.tar.gz
+    original_sidecar_archive_member: design/art/inbox/batch-42-stickers/char__sticker-goat-indignant--t1.json
+    original_packet:
+      batch: batch-42-stickers
+      job: sticker-goat-indignant
+      worktree: /workspace/art-20261106-stickers
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. The harbor goat: its exact look, fur, colors and eyes.
+
+
+        A single full-body sticker of the harbor goat in the exact attached look,
+        chin lifted, a closed-eyed huff, indignant and a little proud, a reluctant
+        half-smile. Centred on a plain transparent background with wide empty space
+        around it, drawn complete with the whole body. No text, no speech bubbles,
+        no floating hearts, no sticker border, no ground shadow.
+
+
+        AVOID: text, a white outline, a background, teeth, tears, motion lines, a
+        different design.
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      refs:
+      - /workspace/art-20261106-stickers/design/art/masters/harbor-goat/harbor-goat.webp
+      reference_sha256:
+        /workspace/art-20261106-stickers/design/art/masters/harbor-goat/harbor-goat.webp: 45c27632bebc3eb33a625d11164f3f298aede1a32ef9f806396c942af03e1630
+      fingerprint: 649f35a2e6771bb5
+      prompt_sha256: c2a269c92b1d5d67b47fe41ddfca6595ea5c4cf78cb4230693fde08b1192be0d
+      transparent: true
+    original_packet_sha256: 353db3a19a4e3cf871b909272df08262dedad9a403671a4a19c9a09c7dd379be
+  - batch: batch-42-stickers
+    job: sticker-goat-indignant
+    take: 2
+    round: 1
+    logical_run: b42-residents-a
+    source_file: /workspace/generated_images/exec-a2fff92e-0ee2-423d-84e8-3a9e4c63f529.png
+    returned_at: '2026-11-06T02:16:15.723Z'
+    prompt_sha256: c2a269c92b1d5d67b47fe41ddfca6595ea5c4cf78cb4230693fde08b1192be0d
+    fingerprint: 649f35a2e6771bb5
+    saved_at: '2026-11-06T02:16:16.146245+00:00'
+    original_generated_png_sha256: d746ec04d1a2b5463534490212052485481681a862f0d67a167f467dbcbd360d
+    dimensions:
+    - 1254
+    - 1254
+    rgba_sha256: 95a60de1cc3f892a005cab8c947b6f70c9047684a56d144d2b7bef9a16b9079b
+    evaluation_take: 2
+    original_take: 2
+    original_run: batch-42-stickers
+    original_callback: /workspace/art-operator-runtime/run-20261106/batch-42-stickers/generated-sticker-goat-indignant-t2.json
+    original_callback_sha256: fdcd62b4179853be0e2dbafa8f69cec0beb4b36c4749fc9b4c14fe4fce8b9bcd
+    original_tool_callback: /workspace/art-operator-runtime/run-20261106/batch-42-stickers/callback-sticker-goat-indignant-t2.json
+    original_tool_callback_sha256: 9b0464cd450fde5f8327b84bcebfc761f700cb3040eb40ade7d149d4ec5615d7
+    original_sidecar:
+      job: sticker-goat-indignant
+      take: 2
+      batch: batch-42-stickers
+      fingerprint: 649f35a2e6771bb5
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. The harbor goat: its exact look, fur, colors and eyes.
+
+
+        A single full-body sticker of the harbor goat in the exact attached look,
+        chin lifted, a closed-eyed huff, indignant and a little proud, a reluctant
+        half-smile. Centred on a plain transparent background with wide empty space
+        around it, drawn complete with the whole body. No text, no speech bubbles,
+        no floating hearts, no sticker border, no ground shadow.
+
+
+        AVOID: text, a white outline, a background, teeth, tears, motion lines, a
+        different design.
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      attachments:
+      - path: design/art/masters/harbor-goat/harbor-goat.webp
+        role: 'The harbor goat: its exact look, fur, colors and eyes.'
+      background: transparent
+      generated_at: '2026-11-06T02:17:22+00:00'
+      backend: codex-cloud
+      source_file: /workspace/generated_images/exec-a2fff92e-0ee2-423d-84e8-3a9e4c63f529.png
+      account:
+        owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+        kind: chatgpt-plan
+    original_sidecar_path: /workspace/art-20261106-stickers/design/art/inbox/batch-42-stickers/char__sticker-goat-indignant--t2.json
+    original_sidecar_sha256: c5f9b1cac4e81ca3a1677f244d0c35c7f91a98767a40358e934ed73fc7c7308e
+    original_sidecar_archive: /workspace/art-operator-runtime/run-20261106/completed-art-checkout-backups/run-20261106--batch-42-stickers.tar.gz
+    original_sidecar_archive_member: design/art/inbox/batch-42-stickers/char__sticker-goat-indignant--t2.json
+    original_packet:
+      batch: batch-42-stickers
+      job: sticker-goat-indignant
+      worktree: /workspace/art-20261106-stickers
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. The harbor goat: its exact look, fur, colors and eyes.
+
+
+        A single full-body sticker of the harbor goat in the exact attached look,
+        chin lifted, a closed-eyed huff, indignant and a little proud, a reluctant
+        half-smile. Centred on a plain transparent background with wide empty space
+        around it, drawn complete with the whole body. No text, no speech bubbles,
+        no floating hearts, no sticker border, no ground shadow.
+
+
+        AVOID: text, a white outline, a background, teeth, tears, motion lines, a
+        different design.
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      refs:
+      - /workspace/art-20261106-stickers/design/art/masters/harbor-goat/harbor-goat.webp
+      reference_sha256:
+        /workspace/art-20261106-stickers/design/art/masters/harbor-goat/harbor-goat.webp: 45c27632bebc3eb33a625d11164f3f298aede1a32ef9f806396c942af03e1630
+      fingerprint: 649f35a2e6771bb5
+      prompt_sha256: c2a269c92b1d5d67b47fe41ddfca6595ea5c4cf78cb4230693fde08b1192be0d
+      transparent: true
+    original_packet_sha256: 353db3a19a4e3cf871b909272df08262dedad9a403671a4a19c9a09c7dd379be
+  - batch: batch-42-stickers
+    job: sticker-goat-indignant
+    take: 3
+    round: 2
+    logical_run: b42-residents-retries
+    source_file: /workspace/generated_images/exec-1aca07ab-3c35-4679-8621-3ae08d8e6ccf.png
+    returned_at: '2026-11-06T02:23:10.302Z'
+    prompt_sha256: c2a269c92b1d5d67b47fe41ddfca6595ea5c4cf78cb4230693fde08b1192be0d
+    fingerprint: 649f35a2e6771bb5
+    saved_at: '2026-11-06T02:23:10.609281+00:00'
+    original_generated_png_sha256: 581b435695f660bf6a56ef772e28551204853393e63ff1079b6ac918a459f5c7
+    dimensions:
+    - 1254
+    - 1254
+    rgba_sha256: cf77faf7b1aa94c27a0271b5312f0bffd6205189a6bfd250d0124b5e927f2d75
+    evaluation_take: 3
+    original_take: 3
+    original_run: batch-42-stickers
+    original_callback: /workspace/art-operator-runtime/run-20261106/batch-42-stickers/generated-sticker-goat-indignant-t3.json
+    original_callback_sha256: fe20fca851e0c220d937363311e4d98d82c7f68347de67c94baf7bed7835bdde
+    original_tool_callback: /workspace/art-operator-runtime/run-20261106/batch-42-stickers/callback-sticker-goat-indignant-t3.json
+    original_tool_callback_sha256: 73a3c24ba8fe3fa8eaccd346bea57baf54e3e4aaa0a33bd90ddc3e500f52e23f
+    original_sidecar:
+      job: sticker-goat-indignant
+      take: 3
+      batch: batch-42-stickers
+      fingerprint: 649f35a2e6771bb5
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. The harbor goat: its exact look, fur, colors and eyes.
+
+
+        A single full-body sticker of the harbor goat in the exact attached look,
+        chin lifted, a closed-eyed huff, indignant and a little proud, a reluctant
+        half-smile. Centred on a plain transparent background with wide empty space
+        around it, drawn complete with the whole body. No text, no speech bubbles,
+        no floating hearts, no sticker border, no ground shadow.
+
+
+        AVOID: text, a white outline, a background, teeth, tears, motion lines, a
+        different design.
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      attachments:
+      - path: design/art/masters/harbor-goat/harbor-goat.webp
+        role: 'The harbor goat: its exact look, fur, colors and eyes.'
+      background: transparent
+      generated_at: '2026-11-06T02:23:25+00:00'
+      backend: codex-cloud
+      source_file: /workspace/generated_images/exec-1aca07ab-3c35-4679-8621-3ae08d8e6ccf.png
+      account:
+        owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+        kind: chatgpt-plan
+    original_sidecar_path: /workspace/art-20261106-stickers/design/art/inbox/batch-42-stickers/char__sticker-goat-indignant--t3.json
+    original_sidecar_sha256: f6a7f17236c348df620c38d8fdf53cb6c4122cdbdedace5599b9e483d18cd8c0
+    original_sidecar_archive: /workspace/art-operator-runtime/run-20261106/completed-art-checkout-backups/run-20261106--batch-42-stickers.tar.gz
+    original_sidecar_archive_member: design/art/inbox/batch-42-stickers/char__sticker-goat-indignant--t3.json
+    original_packet:
+      batch: batch-42-stickers
+      job: sticker-goat-indignant
+      worktree: /workspace/art-20261106-stickers
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. The harbor goat: its exact look, fur, colors and eyes.
+
+
+        A single full-body sticker of the harbor goat in the exact attached look,
+        chin lifted, a closed-eyed huff, indignant and a little proud, a reluctant
+        half-smile. Centred on a plain transparent background with wide empty space
+        around it, drawn complete with the whole body. No text, no speech bubbles,
+        no floating hearts, no sticker border, no ground shadow.
+
+
+        AVOID: text, a white outline, a background, teeth, tears, motion lines, a
+        different design.
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      refs:
+      - /workspace/art-20261106-stickers/design/art/masters/harbor-goat/harbor-goat.webp
+      reference_sha256:
+        /workspace/art-20261106-stickers/design/art/masters/harbor-goat/harbor-goat.webp: 45c27632bebc3eb33a625d11164f3f298aede1a32ef9f806396c942af03e1630
+      fingerprint: 649f35a2e6771bb5
+      prompt_sha256: c2a269c92b1d5d67b47fe41ddfca6595ea5c4cf78cb4230693fde08b1192be0d
+      transparent: true
+    original_packet_sha256: 353db3a19a4e3cf871b909272df08262dedad9a403671a4a19c9a09c7dd379be
+  - batch: batch-42-stickers
+    job: sticker-goat-indignant
+    take: 4
+    round: 2
+    logical_run: b42-residents-retries
+    source_file: /workspace/generated_images/exec-2323ced6-897a-40ad-90b2-54c707df720f.png
+    returned_at: '2026-11-06T02:22:20.778Z'
+    prompt_sha256: c2a269c92b1d5d67b47fe41ddfca6595ea5c4cf78cb4230693fde08b1192be0d
+    fingerprint: 649f35a2e6771bb5
+    saved_at: '2026-11-06T02:22:21.190077+00:00'
+    original_generated_png_sha256: 105a94ad893977d5177b9d628fe4887096a1f61a90156e0a716fcf5394361fd0
+    dimensions:
+    - 1254
+    - 1254
+    rgba_sha256: 4430d0dc8e78441efa2dcae89a670ad6b942487ea0d3234aa10ef6086c7b7286
+    evaluation_take: 4
+    original_take: 4
+    original_run: batch-42-stickers
+    original_callback: /workspace/art-operator-runtime/run-20261106/batch-42-stickers/generated-sticker-goat-indignant-t4.json
+    original_callback_sha256: 656b3c41115f728fce5ddc3761aefbed2c06852c64f259e6b984a92672e58cd1
+    original_tool_callback: /workspace/art-operator-runtime/run-20261106/batch-42-stickers/callback-sticker-goat-indignant-t4.json
+    original_tool_callback_sha256: 4ae5668c97febe74023cd3060fd116ba8ed0e39ab5fd2dd2e50e8b41a7b9d731
+    original_sidecar:
+      job: sticker-goat-indignant
+      take: 4
+      batch: batch-42-stickers
+      fingerprint: 649f35a2e6771bb5
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. The harbor goat: its exact look, fur, colors and eyes.
+
+
+        A single full-body sticker of the harbor goat in the exact attached look,
+        chin lifted, a closed-eyed huff, indignant and a little proud, a reluctant
+        half-smile. Centred on a plain transparent background with wide empty space
+        around it, drawn complete with the whole body. No text, no speech bubbles,
+        no floating hearts, no sticker border, no ground shadow.
+
+
+        AVOID: text, a white outline, a background, teeth, tears, motion lines, a
+        different design.
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      attachments:
+      - path: design/art/masters/harbor-goat/harbor-goat.webp
+        role: 'The harbor goat: its exact look, fur, colors and eyes.'
+      background: transparent
+      generated_at: '2026-11-06T02:23:26+00:00'
+      backend: codex-cloud
+      source_file: /workspace/generated_images/exec-2323ced6-897a-40ad-90b2-54c707df720f.png
+      account:
+        owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+        kind: chatgpt-plan
+    original_sidecar_path: /workspace/art-20261106-stickers/design/art/inbox/batch-42-stickers/char__sticker-goat-indignant--t4.json
+    original_sidecar_sha256: 32c67e84558fc634ba1c20ffb670bb838078adcd757e2655ffe7f6e7e64f6904
+    original_sidecar_archive: /workspace/art-operator-runtime/run-20261106/completed-art-checkout-backups/run-20261106--batch-42-stickers.tar.gz
+    original_sidecar_archive_member: design/art/inbox/batch-42-stickers/char__sticker-goat-indignant--t4.json
+    original_packet:
+      batch: batch-42-stickers
+      job: sticker-goat-indignant
+      worktree: /workspace/art-20261106-stickers
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. The harbor goat: its exact look, fur, colors and eyes.
+
+
+        A single full-body sticker of the harbor goat in the exact attached look,
+        chin lifted, a closed-eyed huff, indignant and a little proud, a reluctant
+        half-smile. Centred on a plain transparent background with wide empty space
+        around it, drawn complete with the whole body. No text, no speech bubbles,
+        no floating hearts, no sticker border, no ground shadow.
+
+
+        AVOID: text, a white outline, a background, teeth, tears, motion lines, a
+        different design.
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      refs:
+      - /workspace/art-20261106-stickers/design/art/masters/harbor-goat/harbor-goat.webp
+      reference_sha256:
+        /workspace/art-20261106-stickers/design/art/masters/harbor-goat/harbor-goat.webp: 45c27632bebc3eb33a625d11164f3f298aede1a32ef9f806396c942af03e1630
+      fingerprint: 649f35a2e6771bb5
+      prompt_sha256: c2a269c92b1d5d67b47fe41ddfca6595ea5c4cf78cb4230693fde08b1192be0d
+      transparent: true
+    original_packet_sha256: 353db3a19a4e3cf871b909272df08262dedad9a403671a4a19c9a09c7dd379be

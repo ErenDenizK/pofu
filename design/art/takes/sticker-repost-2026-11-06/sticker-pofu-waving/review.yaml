@@ -1,0 +1,844 @@
+batch: batch-42-stickers
+contact_sheet: design/art/takes/sticker-repost-2026-11-06/sticker-pofu-waving/contact.jpg
+jobs:
+  sticker-pofu-waving:
+    pick: 4
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Retained-only re-post of four
+      historical originals on the author-fixed native 1024 square canvas with ground_line:false;
+      original ordinals/account/generation timestamps preserved; no new generation.
+      Manual full-body/expression/identity and proper light/dark 28 px checks passed.
+      Official advisory light/palette/Harmony warnings remain advisory; hard QA failures
+      are excluded.
+qa_reports:
+  1:
+    job: sticker-pofu-waving
+    take: 1
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 53 (R1 51)
+      value: 52.9
+    - check: light_values
+      status: pass
+      message: 'day/subject: L p2 17 (at most 22), p98 96 (at least 90), spread 79
+        (at least 60)'
+      value: 78.8
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 88 (band 55-90)'
+      value: 87.9
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.22 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.224
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 3.7 (at least 3.5)'
+      value: 3.66
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.8 (R1 5.3)
+      value: 4.85
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.8, p95 11.1, off-palette 4.1% (top: #EE9955 (0.5%), #EE7766
+        (0.4%))'
+      value: 2.8185
+    - check: harmony
+      status: pass
+      message: 'harmony score 84 against the char reference (outliers: C_p95, detail)'
+      value: 84.4
+    info:
+      metrics_raw:
+        L_p5: 60.4
+        L_p50: 87.9
+        L_p95: 95.5
+        C_p50: 12.2
+        C_p95: 53.0
+        C_p99: 63.7
+        detail: 4.89
+      metrics_locked:
+        L_p5: 60.4
+        L_p50: 87.9
+        L_p95: 95.5
+        C_p50: 12.2
+        C_p95: 52.9
+        C_p99: 57.9
+        detail: 4.85
+    fingerprint: 49206bd4043f38db
+  2:
+    job: sticker-pofu-waving
+    take: 2
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 54 (R1 51)
+      value: 54.0
+    - check: light_values
+      status: pass
+      message: 'day/subject: L p2 19 (at most 22), p98 96 (at least 90), spread 77
+        (at least 60)'
+      value: 77.1
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 87 (band 55-90)'
+      value: 87.4
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.21 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.212
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 3.8 (at least 3.5)'
+      value: 3.81
+    - check: detail_budget
+      status: pass
+      message: detail at display size 5.0 (R1 5.3)
+      value: 5.04
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.6, p95 12.0, off-palette 5.0% (top: #EE9955 (1.0%), #EE7766
+        (0.4%))'
+      value: 2.5762
+    - check: harmony
+      status: pass
+      message: 'harmony score 83 against the char reference (outliers: C_p95, detail)'
+      value: 82.6
+    info:
+      metrics_raw:
+        L_p5: 62.3
+        L_p50: 87.4
+        L_p95: 95.4
+        C_p50: 11.9
+        C_p95: 54.5
+        C_p99: 65.5
+        detail: 5.08
+      metrics_locked:
+        L_p5: 62.3
+        L_p50: 87.4
+        L_p95: 95.4
+        C_p50: 11.9
+        C_p95: 54.0
+        C_p99: 58.4
+        detail: 5.04
+    fingerprint: 49206bd4043f38db
+  3:
+    job: sticker-pofu-waving
+    take: 3
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 53 (R1 51)
+      value: 52.6
+    - check: light_values
+      status: pass
+      message: 'day/subject: L p2 19 (at most 22), p98 97 (at least 90), spread 78
+        (at least 60)'
+      value: 77.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 88 (band 55-90)'
+      value: 87.5
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.20 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.2
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.2 (at least 3.5)'
+      value: 4.21
+    - check: detail_budget
+      status: pass
+      message: detail at display size 5.4 (R1 5.3)
+      value: 5.41
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.6, p95 10.8, off-palette 4.2% (top: #EE9955 (0.6%), #EE7766
+        (0.3%))'
+      value: 2.5951
+    - check: harmony
+      status: pass
+      message: 'harmony score 83 against the char reference (outliers: C_p95, detail,
+        tint_b)'
+      value: 83.0
+    info:
+      metrics_raw:
+        L_p5: 61.8
+        L_p50: 87.5
+        L_p95: 95.8
+        C_p50: 11.1
+        C_p95: 52.7
+        C_p99: 65.4
+        detail: 5.47
+      metrics_locked:
+        L_p5: 61.8
+        L_p50: 87.5
+        L_p95: 95.8
+        C_p50: 11.1
+        C_p95: 52.6
+        C_p99: 58.3
+        detail: 5.41
+    fingerprint: 49206bd4043f38db
+  4:
+    job: sticker-pofu-waving
+    take: 4
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 48 (R1 51)
+      value: 48.1
+    - check: light_values
+      status: pass
+      message: 'day/subject: L p2 18 (at most 22), p98 97 (at least 90), spread 79
+        (at least 60)'
+      value: 78.8
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 88 (band 55-90)'
+      value: 88.0
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.24 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.239
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 3.6 (at least 3.5)'
+      value: 3.59
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.8 (R1 5.3)
+      value: 4.75
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.0, p95 7.2, off-palette 2.8% (top: #DD8844 (0.3%), #EE7766
+        (0.2%))'
+      value: 1.9751
+    - check: harmony
+      status: pass
+      message: 'harmony score 86 against the char reference (outliers: detail, tint_b)'
+      value: 86.4
+    info:
+      metrics_raw:
+        L_p5: 61.3
+        L_p50: 88.0
+        L_p95: 95.9
+        C_p50: 11.5
+        C_p95: 48.1
+        C_p99: 58.7
+        detail: 4.77
+      metrics_locked:
+        L_p5: 61.3
+        L_p50: 88.0
+        L_p95: 95.9
+        C_p50: 11.5
+        C_p95: 48.1
+        C_p99: 56.3
+        detail: 4.75
+    fingerprint: 49206bd4043f38db
+manual_review:
+  excluded_takes: []
+  note: Retained-only re-post of four historical originals on the author-fixed native
+    1024 square canvas with ground_line:false; original ordinals/account/generation
+    timestamps preserved; no new generation. Manual full-body/expression/identity
+    and proper light/dark 28 px checks passed. Official advisory light/palette/Harmony
+    warnings remain advisory; hard QA failures are excluded.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-d5796688-88f6-41b5-8119-fb16eeffeb3b.png
+  original_generated_png_sha256: 445d0f249221e8e8142e53e57fcd3201bfc16816f244f6751d87ad1e5770ff89
+  inbox_png_sha256: 86e0cc5f2e41b9adb84f12253d57dd097fac6733259aaba9fab8b45e0137f58a
+  rgba_sha256: 41882ee2af8b10882601c64782e04b019f9e63785f1777d51f71640ea9c43493
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 49206bd4043f38db
+- take: 2
+  source_file: /workspace/generated_images/exec-bf6dcb4e-215a-4277-95ad-997b73dd9886.png
+  original_generated_png_sha256: 0ac497d2813b0be42ab3f97fd20c3b3f15823e9cfb6bee70264101eacefa6a03
+  inbox_png_sha256: d6e476e79338cccf9daac21f426ffe6fd56b9ed9464842056c31bab68f7f1dec
+  rgba_sha256: b374dc5d91fa087ca64c96cf61ed608d4619c7c18a88484d0ddc331a8abae393
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 49206bd4043f38db
+- take: 3
+  source_file: /workspace/generated_images/exec-ad3d52ac-4591-46b5-939b-2d63a58b345f.png
+  original_generated_png_sha256: 18de56cf79dbb5ef366f9c50e448fd05e5ec00fd41ac0f9dd189a64cab914795
+  inbox_png_sha256: d51a407ba8ab11871d85712734eac67b0a8f04fe3d2aeada52c1e92fe9f2e4d8
+  rgba_sha256: 7c4dfbb103b7c75f7238594f971ad9344616d63176c45048102c226e59244013
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 49206bd4043f38db
+- take: 4
+  source_file: /workspace/generated_images/exec-d65f9e7c-0cc8-4a20-9d5f-233c9c6367b2.png
+  original_generated_png_sha256: b496d51a8d1b39188919403a1aaac8fb9750c7c609925f2e9a2922034a021bf7
+  inbox_png_sha256: 8554d57b5e3943d3845a9bda8f77b4e1de9a321ef198dce87ef999d28e6de48a
+  rgba_sha256: 91b63e1821b379c6ac3db3256b567c7a16c8c32b87bf994c74e0040fb78211f1
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 49206bd4043f38db
+salvage:
+  batch: batch-42-stickers
+  source_count: 4
+  original_branch: art/batch-42-stickers/all
+  original_commit: b77792fc184547204c0710b19223c68b5a64fde1
+  sources:
+  - batch: batch-42-stickers
+    job: sticker-pofu-waving
+    take: 1
+    round: 1
+    logical_run: 20261106-b42-waving
+    source_file: /workspace/generated_images/exec-d5796688-88f6-41b5-8119-fb16eeffeb3b.png
+    returned_at: '2026-11-06T02:05:00.592Z'
+    prompt_sha256: f621231317b5117483e2e860af98c3365fca64b404ce2c6688b96699c7b85188
+    fingerprint: 49206bd4043f38db
+    saved_at: '2026-11-06T02:05:01.044102+00:00'
+    original_generated_png_sha256: 445d0f249221e8e8142e53e57fcd3201bfc16816f244f6751d87ad1e5770ff89
+    dimensions:
+    - 1254
+    - 1254
+    rgba_sha256: 41882ee2af8b10882601c64782e04b019f9e63785f1777d51f71640ea9c43493
+    evaluation_take: 1
+    original_take: 1
+    original_run: batch-42-stickers
+    original_callback: /workspace/art-operator-runtime/run-20261106/batch-42-stickers/generated-sticker-pofu-waving-t1.json
+    original_callback_sha256: 818748fd62ca8f2981c261f7436e0de2553808c086c9564412762beb09e2a5cd
+    original_tool_callback: /workspace/art-operator-runtime/run-20261106/batch-42-stickers/callback-sticker-pofu-waving-t1.json
+    original_tool_callback_sha256: d6446e165264e576568489c89718b276204976541c125f0914d490701a3c4338
+    original_sidecar:
+      job: sticker-pofu-waving
+      take: 1
+      batch: batch-42-stickers
+      fingerprint: 49206bd4043f38db
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. Pofu, the hamster: his exact look, fur, colors, eyes and signature curl.
+
+
+        A single full-body sticker of Pofu the hamster in the exact attached look,
+        one paw raised in a friendly wave, a warm smile, eyes open. Centred on a plain
+        transparent background with wide empty space around it, drawn complete with
+        the whole body. No text, no speech bubbles, no floating hearts, no sticker
+        border, no ground shadow.
+
+
+        AVOID: text, a white outline, a background, teeth, tears, motion lines, a
+        different design.
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      attachments:
+      - path: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+        role: 'Pofu, the hamster: his exact look, fur, colors, eyes and signature
+          curl.'
+      background: transparent
+      generated_at: '2026-11-06T02:06:20+00:00'
+      backend: codex-cloud
+      source_file: /workspace/generated_images/exec-d5796688-88f6-41b5-8119-fb16eeffeb3b.png
+      account:
+        owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+        kind: chatgpt-plan
+    original_sidecar_path: /workspace/art-20261106-stickers/design/art/inbox/batch-42-stickers/char__sticker-pofu-waving--t1.json
+    original_sidecar_sha256: 47eec480528f9f345786a0107463e1d496d7832be540d4e492067f03ab11beb7
+    original_sidecar_archive: /workspace/art-operator-runtime/run-20261106/completed-art-checkout-backups/run-20261106--batch-42-stickers.tar.gz
+    original_sidecar_archive_member: design/art/inbox/batch-42-stickers/char__sticker-pofu-waving--t1.json
+    original_packet:
+      batch: batch-42-stickers
+      job: sticker-pofu-waving
+      worktree: /workspace/art-20261106-stickers
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. Pofu, the hamster: his exact look, fur, colors, eyes and signature curl.
+
+
+        A single full-body sticker of Pofu the hamster in the exact attached look,
+        one paw raised in a friendly wave, a warm smile, eyes open. Centred on a plain
+        transparent background with wide empty space around it, drawn complete with
+        the whole body. No text, no speech bubbles, no floating hearts, no sticker
+        border, no ground shadow.
+
+
+        AVOID: text, a white outline, a background, teeth, tears, motion lines, a
+        different design.
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      refs:
+      - /workspace/art-20261106-stickers/design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+      reference_sha256:
+        /workspace/art-20261106-stickers/design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png: d4f0ce88dc0541053dd515845c1f2bbb2a4ebe101c5ce4a6080d340a5c872454
+      fingerprint: 49206bd4043f38db
+      prompt_sha256: f621231317b5117483e2e860af98c3365fca64b404ce2c6688b96699c7b85188
+      transparent: true
+    original_packet_sha256: 69715a985799a048e67b6ee491030f06c710b233cd7fda7f91413fa6e3f78984
+  - batch: batch-42-stickers
+    job: sticker-pofu-waving
+    take: 2
+    round: 1
+    logical_run: 20261106-b42-waving
+    source_file: /workspace/generated_images/exec-bf6dcb4e-215a-4277-95ad-997b73dd9886.png
+    returned_at: '2026-11-06T02:05:46.426Z'
+    prompt_sha256: f621231317b5117483e2e860af98c3365fca64b404ce2c6688b96699c7b85188
+    fingerprint: 49206bd4043f38db
+    saved_at: '2026-11-06T02:05:46.722894+00:00'
+    original_generated_png_sha256: 0ac497d2813b0be42ab3f97fd20c3b3f15823e9cfb6bee70264101eacefa6a03
+    dimensions:
+    - 1254
+    - 1254
+    rgba_sha256: b374dc5d91fa087ca64c96cf61ed608d4619c7c18a88484d0ddc331a8abae393
+    evaluation_take: 2
+    original_take: 2
+    original_run: batch-42-stickers
+    original_callback: /workspace/art-operator-runtime/run-20261106/batch-42-stickers/generated-sticker-pofu-waving-t2.json
+    original_callback_sha256: 6dc4897daebced4d58a14dcb3da4d489a45f9cfbdf70ac689b4add046b1a4c09
+    original_tool_callback: /workspace/art-operator-runtime/run-20261106/batch-42-stickers/callback-sticker-pofu-waving-t2.json
+    original_tool_callback_sha256: 52ed9f009deff8b2666fea7f342d2e6389b37b951a6c9a92378b3c7686426bd8
+    original_sidecar:
+      job: sticker-pofu-waving
+      take: 2
+      batch: batch-42-stickers
+      fingerprint: 49206bd4043f38db
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. Pofu, the hamster: his exact look, fur, colors, eyes and signature curl.
+
+
+        A single full-body sticker of Pofu the hamster in the exact attached look,
+        one paw raised in a friendly wave, a warm smile, eyes open. Centred on a plain
+        transparent background with wide empty space around it, drawn complete with
+        the whole body. No text, no speech bubbles, no floating hearts, no sticker
+        border, no ground shadow.
+
+
+        AVOID: text, a white outline, a background, teeth, tears, motion lines, a
+        different design.
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      attachments:
+      - path: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+        role: 'Pofu, the hamster: his exact look, fur, colors, eyes and signature
+          curl.'
+      background: transparent
+      generated_at: '2026-11-06T02:06:20+00:00'
+      backend: codex-cloud
+      source_file: /workspace/generated_images/exec-bf6dcb4e-215a-4277-95ad-997b73dd9886.png
+      account:
+        owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+        kind: chatgpt-plan
+    original_sidecar_path: /workspace/art-20261106-stickers/design/art/inbox/batch-42-stickers/char__sticker-pofu-waving--t2.json
+    original_sidecar_sha256: efeebcd9d5f6f669e0ea8e4a324e1f80f4d04f6705c5d9fa792afcf3687ea657
+    original_sidecar_archive: /workspace/art-operator-runtime/run-20261106/completed-art-checkout-backups/run-20261106--batch-42-stickers.tar.gz
+    original_sidecar_archive_member: design/art/inbox/batch-42-stickers/char__sticker-pofu-waving--t2.json
+    original_packet:
+      batch: batch-42-stickers
+      job: sticker-pofu-waving
+      worktree: /workspace/art-20261106-stickers
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. Pofu, the hamster: his exact look, fur, colors, eyes and signature curl.
+
+
+        A single full-body sticker of Pofu the hamster in the exact attached look,
+        one paw raised in a friendly wave, a warm smile, eyes open. Centred on a plain
+        transparent background with wide empty space around it, drawn complete with
+        the whole body. No text, no speech bubbles, no floating hearts, no sticker
+        border, no ground shadow.
+
+
+        AVOID: text, a white outline, a background, teeth, tears, motion lines, a
+        different design.
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      refs:
+      - /workspace/art-20261106-stickers/design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+      reference_sha256:
+        /workspace/art-20261106-stickers/design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png: d4f0ce88dc0541053dd515845c1f2bbb2a4ebe101c5ce4a6080d340a5c872454
+      fingerprint: 49206bd4043f38db
+      prompt_sha256: f621231317b5117483e2e860af98c3365fca64b404ce2c6688b96699c7b85188
+      transparent: true
+    original_packet_sha256: 69715a985799a048e67b6ee491030f06c710b233cd7fda7f91413fa6e3f78984
+  - batch: batch-42-stickers
+    job: sticker-pofu-waving
+    take: 3
+    round: 2
+    logical_run: b42-pofu-retries
+    source_file: /workspace/generated_images/exec-ad3d52ac-4591-46b5-939b-2d63a58b345f.png
+    returned_at: '2026-11-06T02:18:14.825Z'
+    prompt_sha256: f621231317b5117483e2e860af98c3365fca64b404ce2c6688b96699c7b85188
+    fingerprint: 49206bd4043f38db
+    saved_at: '2026-11-06T02:18:15.276204+00:00'
+    original_generated_png_sha256: 18de56cf79dbb5ef366f9c50e448fd05e5ec00fd41ac0f9dd189a64cab914795
+    dimensions:
+    - 1254
+    - 1254
+    rgba_sha256: 7c4dfbb103b7c75f7238594f971ad9344616d63176c45048102c226e59244013
+    evaluation_take: 3
+    original_take: 3
+    original_run: batch-42-stickers
+    original_callback: /workspace/art-operator-runtime/run-20261106/batch-42-stickers/generated-sticker-pofu-waving-t3.json
+    original_callback_sha256: e2fff837f24031449501f0bfc1ae92f91b354c1f35b4b4160a0598d870351371
+    original_tool_callback: /workspace/art-operator-runtime/run-20261106/batch-42-stickers/callback-sticker-pofu-waving-t3.json
+    original_tool_callback_sha256: fd99b13e83ffb360c114ee02cd5085654e62d78b89da3cfe7a507d3008f6482f
+    original_sidecar:
+      job: sticker-pofu-waving
+      take: 3
+      batch: batch-42-stickers
+      fingerprint: 49206bd4043f38db
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. Pofu, the hamster: his exact look, fur, colors, eyes and signature curl.
+
+
+        A single full-body sticker of Pofu the hamster in the exact attached look,
+        one paw raised in a friendly wave, a warm smile, eyes open. Centred on a plain
+        transparent background with wide empty space around it, drawn complete with
+        the whole body. No text, no speech bubbles, no floating hearts, no sticker
+        border, no ground shadow.
+
+
+        AVOID: text, a white outline, a background, teeth, tears, motion lines, a
+        different design.
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      attachments:
+      - path: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+        role: 'Pofu, the hamster: his exact look, fur, colors, eyes and signature
+          curl.'
+      background: transparent
+      generated_at: '2026-11-06T02:19:54+00:00'
+      backend: codex-cloud
+      source_file: /workspace/generated_images/exec-ad3d52ac-4591-46b5-939b-2d63a58b345f.png
+      account:
+        owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+        kind: chatgpt-plan
+    original_sidecar_path: /workspace/art-20261106-stickers/design/art/inbox/batch-42-stickers/char__sticker-pofu-waving--t3.json
+    original_sidecar_sha256: 776a21ef4d0d7d3fbd5343b6e0ae4a101a4c762e49e6045c2b8be2c2dcdc1141
+    original_sidecar_archive: /workspace/art-operator-runtime/run-20261106/completed-art-checkout-backups/run-20261106--batch-42-stickers.tar.gz
+    original_sidecar_archive_member: design/art/inbox/batch-42-stickers/char__sticker-pofu-waving--t3.json
+    original_packet:
+      batch: batch-42-stickers
+      job: sticker-pofu-waving
+      worktree: /workspace/art-20261106-stickers
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. Pofu, the hamster: his exact look, fur, colors, eyes and signature curl.
+
+
+        A single full-body sticker of Pofu the hamster in the exact attached look,
+        one paw raised in a friendly wave, a warm smile, eyes open. Centred on a plain
+        transparent background with wide empty space around it, drawn complete with
+        the whole body. No text, no speech bubbles, no floating hearts, no sticker
+        border, no ground shadow.
+
+
+        AVOID: text, a white outline, a background, teeth, tears, motion lines, a
+        different design.
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      refs:
+      - /workspace/art-20261106-stickers/design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+      reference_sha256:
+        /workspace/art-20261106-stickers/design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png: d4f0ce88dc0541053dd515845c1f2bbb2a4ebe101c5ce4a6080d340a5c872454
+      fingerprint: 49206bd4043f38db
+      prompt_sha256: f621231317b5117483e2e860af98c3365fca64b404ce2c6688b96699c7b85188
+      transparent: true
+    original_packet_sha256: 69715a985799a048e67b6ee491030f06c710b233cd7fda7f91413fa6e3f78984
+  - batch: batch-42-stickers
+    job: sticker-pofu-waving
+    take: 4
+    round: 2
+    logical_run: b42-pofu-retries
+    source_file: /workspace/generated_images/exec-d65f9e7c-0cc8-4a20-9d5f-233c9c6367b2.png
+    returned_at: '2026-11-06T02:18:46.994Z'
+    prompt_sha256: f621231317b5117483e2e860af98c3365fca64b404ce2c6688b96699c7b85188
+    fingerprint: 49206bd4043f38db
+    saved_at: '2026-11-06T02:18:47.416058+00:00'
+    original_generated_png_sha256: b496d51a8d1b39188919403a1aaac8fb9750c7c609925f2e9a2922034a021bf7
+    dimensions:
+    - 1254
+    - 1254
+    rgba_sha256: 91b63e1821b379c6ac3db3256b567c7a16c8c32b87bf994c74e0040fb78211f1
+    evaluation_take: 4
+    original_take: 4
+    original_run: batch-42-stickers
+    original_callback: /workspace/art-operator-runtime/run-20261106/batch-42-stickers/generated-sticker-pofu-waving-t4.json
+    original_callback_sha256: 13bf7d4142dfa4f984c62062dfd853fbd8ca8b55e595f262cc53b6cb675129ea
+    original_tool_callback: /workspace/art-operator-runtime/run-20261106/batch-42-stickers/callback-sticker-pofu-waving-t4.json
+    original_tool_callback_sha256: 72117c4eefd7df4f37ce8c8f152ffaf058d100c7ea228a3f7b0870f66501b232
+    original_sidecar:
+      job: sticker-pofu-waving
+      take: 4
+      batch: batch-42-stickers
+      fingerprint: 49206bd4043f38db
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. Pofu, the hamster: his exact look, fur, colors, eyes and signature curl.
+
+
+        A single full-body sticker of Pofu the hamster in the exact attached look,
+        one paw raised in a friendly wave, a warm smile, eyes open. Centred on a plain
+        transparent background with wide empty space around it, drawn complete with
+        the whole body. No text, no speech bubbles, no floating hearts, no sticker
+        border, no ground shadow.
+
+
+        AVOID: text, a white outline, a background, teeth, tears, motion lines, a
+        different design.
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      attachments:
+      - path: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+        role: 'Pofu, the hamster: his exact look, fur, colors, eyes and signature
+          curl.'
+      background: transparent
+      generated_at: '2026-11-06T02:19:55+00:00'
+      backend: codex-cloud
+      source_file: /workspace/generated_images/exec-d65f9e7c-0cc8-4a20-9d5f-233c9c6367b2.png
+      account:
+        owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+        kind: chatgpt-plan
+    original_sidecar_path: /workspace/art-20261106-stickers/design/art/inbox/batch-42-stickers/char__sticker-pofu-waving--t4.json
+    original_sidecar_sha256: 272b6e260d92af1e5d6857690152f516bb5f5eb5291e66d3b3c8f3358ad78583
+    original_sidecar_archive: /workspace/art-operator-runtime/run-20261106/completed-art-checkout-backups/run-20261106--batch-42-stickers.tar.gz
+    original_sidecar_archive_member: design/art/inbox/batch-42-stickers/char__sticker-pofu-waving--t4.json
+    original_packet:
+      batch: batch-42-stickers
+      job: sticker-pofu-waving
+      worktree: /workspace/art-20261106-stickers
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. Pofu, the hamster: his exact look, fur, colors, eyes and signature curl.
+
+
+        A single full-body sticker of Pofu the hamster in the exact attached look,
+        one paw raised in a friendly wave, a warm smile, eyes open. Centred on a plain
+        transparent background with wide empty space around it, drawn complete with
+        the whole body. No text, no speech bubbles, no floating hearts, no sticker
+        border, no ground shadow.
+
+
+        AVOID: text, a white outline, a background, teeth, tears, motion lines, a
+        different design.
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      refs:
+      - /workspace/art-20261106-stickers/design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+      reference_sha256:
+        /workspace/art-20261106-stickers/design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png: d4f0ce88dc0541053dd515845c1f2bbb2a4ebe101c5ce4a6080d340a5c872454
+      fingerprint: 49206bd4043f38db
+      prompt_sha256: f621231317b5117483e2e860af98c3365fca64b404ce2c6688b96699c7b85188
+      transparent: true
+    original_packet_sha256: 69715a985799a048e67b6ee491030f06c710b233cd7fda7f91413fa6e3f78984

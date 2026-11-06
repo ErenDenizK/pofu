@@ -1,0 +1,272 @@
+{
+  "batch": "batch-42-stickers",
+  "source_count": 4,
+  "original_branch": "art/batch-42-stickers/all",
+  "original_commit": "b77792fc184547204c0710b19223c68b5a64fde1",
+  "sources": [
+    {
+      "batch": "batch-42-stickers",
+      "job": "sticker-simit-happy",
+      "take": 1,
+      "round": 1,
+      "logical_run": "b42-residents-a",
+      "source_file": "/workspace/generated_images/exec-5d80dac8-5846-4d86-96cc-c8f8f35ffbd1.png",
+      "returned_at": "2026-11-06T02:15:34.271Z",
+      "prompt_sha256": "3c8e5462c5c4f825e8cf7bd09608511de850e39b14b6960f9de74da075ccd3a6",
+      "fingerprint": "ab6da0b84fe39fe8",
+      "saved_at": "2026-11-06T02:15:34.686295+00:00",
+      "original_generated_png_sha256": "9f8516b5c65893a1f3ded86afdae28995e2f40280faa07db254f6491535a3ee8",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "rgba_sha256": "625c0816cb5fa5c262ab35a72535e6cf674f9d4123a2a98d11bde8d33a961eb1",
+      "evaluation_take": 1,
+      "original_take": 1,
+      "original_run": "batch-42-stickers",
+      "original_callback": "/workspace/art-operator-runtime/run-20261106/batch-42-stickers/generated-sticker-simit-happy-t1.json",
+      "original_callback_sha256": "78c37a69322207758c847099e0eae97f2cfaf70e274f7cc4b776b56d30166897",
+      "original_tool_callback": "/workspace/art-operator-runtime/run-20261106/batch-42-stickers/callback-sticker-simit-happy-t1.json",
+      "original_tool_callback_sha256": "2c221ff473907a43f79d187d5964f47fd32d9f700289c542048dab2ab0f113c7",
+      "original_sidecar": {
+        "job": "sticker-simit-happy",
+        "take": 1,
+        "batch": "batch-42-stickers",
+        "fingerprint": "ab6da0b84fe39fe8",
+        "prompt": "REFERENCES (attached, in this order):\n1. Simit, the kitten: her exact look, fur, colors and eyes.\n\nA single full-body sticker of Simit the kitten in the exact attached look, eyes as happy closed arcs, a small smile, tail up. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.\n\nAVOID: text, a white outline, a background, teeth, tears, motion lines, a different design.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+        "attachments": [
+          {
+            "path": "design/art/masters/simit-kitten/simit-kitten.webp",
+            "role": "Simit, the kitten: her exact look, fur, colors and eyes."
+          }
+        ],
+        "background": "transparent",
+        "generated_at": "2026-11-06T02:15:40+00:00",
+        "backend": "codex-cloud",
+        "source_file": "/workspace/generated_images/exec-5d80dac8-5846-4d86-96cc-c8f8f35ffbd1.png",
+        "account": {
+          "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+          "kind": "chatgpt-plan"
+        }
+      },
+      "original_sidecar_path": "/workspace/art-20261106-stickers/design/art/inbox/batch-42-stickers/char__sticker-simit-happy--t1.json",
+      "original_sidecar_sha256": "447ae4c9533bda5bbba2a3679b01435b458b93ecea588f0ad272f823a86f98e2",
+      "original_sidecar_archive": "/workspace/art-operator-runtime/run-20261106/completed-art-checkout-backups/run-20261106--batch-42-stickers.tar.gz",
+      "original_sidecar_archive_member": "design/art/inbox/batch-42-stickers/char__sticker-simit-happy--t1.json",
+      "original_packet": {
+        "batch": "batch-42-stickers",
+        "job": "sticker-simit-happy",
+        "worktree": "/workspace/art-20261106-stickers",
+        "prompt": "REFERENCES (attached, in this order):\n1. Simit, the kitten: her exact look, fur, colors and eyes.\n\nA single full-body sticker of Simit the kitten in the exact attached look, eyes as happy closed arcs, a small smile, tail up. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.\n\nAVOID: text, a white outline, a background, teeth, tears, motion lines, a different design.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+        "refs": [
+          "/workspace/art-20261106-stickers/design/art/masters/simit-kitten/simit-kitten.webp"
+        ],
+        "reference_sha256": {
+          "/workspace/art-20261106-stickers/design/art/masters/simit-kitten/simit-kitten.webp": "e824d167b30bcb524e1c7b7ef74b1ed42ffe5979ba9c6b06df58143e6aff9e81"
+        },
+        "fingerprint": "ab6da0b84fe39fe8",
+        "prompt_sha256": "3c8e5462c5c4f825e8cf7bd09608511de850e39b14b6960f9de74da075ccd3a6",
+        "transparent": true
+      },
+      "original_packet_sha256": "deb456b1a0a547729b9458a69e14e126c9078ec444503e17c94d5c5e755a99dd"
+    },
+    {
+      "batch": "batch-42-stickers",
+      "job": "sticker-simit-happy",
+      "take": 2,
+      "round": 1,
+      "logical_run": "b42-residents-a",
+      "source_file": "/workspace/generated_images/exec-d1aa7b26-27c5-4ceb-879e-64e162f55712.png",
+      "returned_at": "2026-11-06T02:14:45.784Z",
+      "prompt_sha256": "3c8e5462c5c4f825e8cf7bd09608511de850e39b14b6960f9de74da075ccd3a6",
+      "fingerprint": "ab6da0b84fe39fe8",
+      "saved_at": "2026-11-06T02:14:50.914414+00:00",
+      "original_generated_png_sha256": "0d1b9484c2992bebe6e1258dccaca7bdd9ad9cd5ba702f40f647dadae4d3f282",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "rgba_sha256": "80c0890013d52c5f283ebb8dab53db6b030032c77df6fe5578427fc1eaf3bf33",
+      "evaluation_take": 2,
+      "original_take": 2,
+      "original_run": "batch-42-stickers",
+      "original_callback": "/workspace/art-operator-runtime/run-20261106/batch-42-stickers/generated-sticker-simit-happy-t2.json",
+      "original_callback_sha256": "2859f1d2fe8b610f31afd9f43595c77493abadc6acde2436ecbf39e3db273980",
+      "original_tool_callback": "/workspace/art-operator-runtime/run-20261106/batch-42-stickers/callback-sticker-simit-happy-t2.json",
+      "original_tool_callback_sha256": "97c0d3fcbfef3944af8c1cc14ac39185d3bfb7dae2d092d679557b164f01de25",
+      "original_sidecar": {
+        "job": "sticker-simit-happy",
+        "take": 2,
+        "batch": "batch-42-stickers",
+        "fingerprint": "ab6da0b84fe39fe8",
+        "prompt": "REFERENCES (attached, in this order):\n1. Simit, the kitten: her exact look, fur, colors and eyes.\n\nA single full-body sticker of Simit the kitten in the exact attached look, eyes as happy closed arcs, a small smile, tail up. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.\n\nAVOID: text, a white outline, a background, teeth, tears, motion lines, a different design.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+        "attachments": [
+          {
+            "path": "design/art/masters/simit-kitten/simit-kitten.webp",
+            "role": "Simit, the kitten: her exact look, fur, colors and eyes."
+          }
+        ],
+        "background": "transparent",
+        "generated_at": "2026-11-06T02:15:40+00:00",
+        "backend": "codex-cloud",
+        "source_file": "/workspace/generated_images/exec-d1aa7b26-27c5-4ceb-879e-64e162f55712.png",
+        "account": {
+          "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+          "kind": "chatgpt-plan"
+        }
+      },
+      "original_sidecar_path": "/workspace/art-20261106-stickers/design/art/inbox/batch-42-stickers/char__sticker-simit-happy--t2.json",
+      "original_sidecar_sha256": "20baa4b7807f9342ce4bc08fd1abd4c51609291913bd101eb92d673b544e080f",
+      "original_sidecar_archive": "/workspace/art-operator-runtime/run-20261106/completed-art-checkout-backups/run-20261106--batch-42-stickers.tar.gz",
+      "original_sidecar_archive_member": "design/art/inbox/batch-42-stickers/char__sticker-simit-happy--t2.json",
+      "original_packet": {
+        "batch": "batch-42-stickers",
+        "job": "sticker-simit-happy",
+        "worktree": "/workspace/art-20261106-stickers",
+        "prompt": "REFERENCES (attached, in this order):\n1. Simit, the kitten: her exact look, fur, colors and eyes.\n\nA single full-body sticker of Simit the kitten in the exact attached look, eyes as happy closed arcs, a small smile, tail up. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.\n\nAVOID: text, a white outline, a background, teeth, tears, motion lines, a different design.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+        "refs": [
+          "/workspace/art-20261106-stickers/design/art/masters/simit-kitten/simit-kitten.webp"
+        ],
+        "reference_sha256": {
+          "/workspace/art-20261106-stickers/design/art/masters/simit-kitten/simit-kitten.webp": "e824d167b30bcb524e1c7b7ef74b1ed42ffe5979ba9c6b06df58143e6aff9e81"
+        },
+        "fingerprint": "ab6da0b84fe39fe8",
+        "prompt_sha256": "3c8e5462c5c4f825e8cf7bd09608511de850e39b14b6960f9de74da075ccd3a6",
+        "transparent": true
+      },
+      "original_packet_sha256": "deb456b1a0a547729b9458a69e14e126c9078ec444503e17c94d5c5e755a99dd"
+    },
+    {
+      "batch": "batch-42-stickers",
+      "job": "sticker-simit-happy",
+      "take": 3,
+      "round": 2,
+      "logical_run": "b42-residents-retries",
+      "source_file": "/workspace/generated_images/exec-d2b9aa9c-a2a0-45ea-b872-9082f8443ecf.png",
+      "returned_at": "2026-11-06T02:20:32.354Z",
+      "prompt_sha256": "3c8e5462c5c4f825e8cf7bd09608511de850e39b14b6960f9de74da075ccd3a6",
+      "fingerprint": "ab6da0b84fe39fe8",
+      "saved_at": "2026-11-06T02:20:32.788232+00:00",
+      "original_generated_png_sha256": "d85193327fe97ac5030e14615277c8b6f0c4eebcca4e093618ddd5633f2ef786",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "rgba_sha256": "771035bc0519710147b21fb95550e9b0f4691f3ac0903acf9f3dfe04d7050504",
+      "evaluation_take": 3,
+      "original_take": 3,
+      "original_run": "batch-42-stickers",
+      "original_callback": "/workspace/art-operator-runtime/run-20261106/batch-42-stickers/generated-sticker-simit-happy-t3.json",
+      "original_callback_sha256": "a2663a541a324482e22f13b0e1fe512addcb83db62b3b43202d62113c3d803cc",
+      "original_tool_callback": "/workspace/art-operator-runtime/run-20261106/batch-42-stickers/callback-sticker-simit-happy-t3.json",
+      "original_tool_callback_sha256": "106d2084d44efa38e1da5a8e38bdf141f3f9a4e0732a0b597bd4ac66e0a925df",
+      "original_sidecar": {
+        "job": "sticker-simit-happy",
+        "take": 3,
+        "batch": "batch-42-stickers",
+        "fingerprint": "ab6da0b84fe39fe8",
+        "prompt": "REFERENCES (attached, in this order):\n1. Simit, the kitten: her exact look, fur, colors and eyes.\n\nA single full-body sticker of Simit the kitten in the exact attached look, eyes as happy closed arcs, a small smile, tail up. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.\n\nAVOID: text, a white outline, a background, teeth, tears, motion lines, a different design.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+        "attachments": [
+          {
+            "path": "design/art/masters/simit-kitten/simit-kitten.webp",
+            "role": "Simit, the kitten: her exact look, fur, colors and eyes."
+          }
+        ],
+        "background": "transparent",
+        "generated_at": "2026-11-06T02:21:52+00:00",
+        "backend": "codex-cloud",
+        "source_file": "/workspace/generated_images/exec-d2b9aa9c-a2a0-45ea-b872-9082f8443ecf.png",
+        "account": {
+          "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+          "kind": "chatgpt-plan"
+        }
+      },
+      "original_sidecar_path": "/workspace/art-20261106-stickers/design/art/inbox/batch-42-stickers/char__sticker-simit-happy--t3.json",
+      "original_sidecar_sha256": "a56b4a296de5045a5d97afe3d3e0d11537dc64ae0f13e7ff9bdf040130fa20c0",
+      "original_sidecar_archive": "/workspace/art-operator-runtime/run-20261106/completed-art-checkout-backups/run-20261106--batch-42-stickers.tar.gz",
+      "original_sidecar_archive_member": "design/art/inbox/batch-42-stickers/char__sticker-simit-happy--t3.json",
+      "original_packet": {
+        "batch": "batch-42-stickers",
+        "job": "sticker-simit-happy",
+        "worktree": "/workspace/art-20261106-stickers",
+        "prompt": "REFERENCES (attached, in this order):\n1. Simit, the kitten: her exact look, fur, colors and eyes.\n\nA single full-body sticker of Simit the kitten in the exact attached look, eyes as happy closed arcs, a small smile, tail up. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.\n\nAVOID: text, a white outline, a background, teeth, tears, motion lines, a different design.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+        "refs": [
+          "/workspace/art-20261106-stickers/design/art/masters/simit-kitten/simit-kitten.webp"
+        ],
+        "reference_sha256": {
+          "/workspace/art-20261106-stickers/design/art/masters/simit-kitten/simit-kitten.webp": "e824d167b30bcb524e1c7b7ef74b1ed42ffe5979ba9c6b06df58143e6aff9e81"
+        },
+        "fingerprint": "ab6da0b84fe39fe8",
+        "prompt_sha256": "3c8e5462c5c4f825e8cf7bd09608511de850e39b14b6960f9de74da075ccd3a6",
+        "transparent": true
+      },
+      "original_packet_sha256": "deb456b1a0a547729b9458a69e14e126c9078ec444503e17c94d5c5e755a99dd"
+    },
+    {
+      "batch": "batch-42-stickers",
+      "job": "sticker-simit-happy",
+      "take": 4,
+      "round": 2,
+      "logical_run": "b42-residents-retries",
+      "source_file": "/workspace/generated_images/exec-6e4f0e0e-26e6-40b8-a36b-027fe44d9f4a.png",
+      "returned_at": "2026-11-06T02:21:21.761Z",
+      "prompt_sha256": "3c8e5462c5c4f825e8cf7bd09608511de850e39b14b6960f9de74da075ccd3a6",
+      "fingerprint": "ab6da0b84fe39fe8",
+      "saved_at": "2026-11-06T02:21:22.117941+00:00",
+      "original_generated_png_sha256": "d3dc8798502e95e61a723d1ea9d14813f7338012df1605435ea95bc2f3923d32",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "rgba_sha256": "1037016fd72f703831bc666101cf95a85ffa843785cff07c71e4a73a6ef95889",
+      "evaluation_take": 4,
+      "original_take": 4,
+      "original_run": "batch-42-stickers",
+      "original_callback": "/workspace/art-operator-runtime/run-20261106/batch-42-stickers/generated-sticker-simit-happy-t4.json",
+      "original_callback_sha256": "13e430cb687196b9b94883a95b62866267aad89345d73f48e8cfaa15638a93b6",
+      "original_tool_callback": "/workspace/art-operator-runtime/run-20261106/batch-42-stickers/callback-sticker-simit-happy-t4.json",
+      "original_tool_callback_sha256": "00fe8f844c82ec42cc070e2c6c8a27e185d4093a8cec294c8001d45f6263ffcd",
+      "original_sidecar": {
+        "job": "sticker-simit-happy",
+        "take": 4,
+        "batch": "batch-42-stickers",
+        "fingerprint": "ab6da0b84fe39fe8",
+        "prompt": "REFERENCES (attached, in this order):\n1. Simit, the kitten: her exact look, fur, colors and eyes.\n\nA single full-body sticker of Simit the kitten in the exact attached look, eyes as happy closed arcs, a small smile, tail up. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.\n\nAVOID: text, a white outline, a background, teeth, tears, motion lines, a different design.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+        "attachments": [
+          {
+            "path": "design/art/masters/simit-kitten/simit-kitten.webp",
+            "role": "Simit, the kitten: her exact look, fur, colors and eyes."
+          }
+        ],
+        "background": "transparent",
+        "generated_at": "2026-11-06T02:21:53+00:00",
+        "backend": "codex-cloud",
+        "source_file": "/workspace/generated_images/exec-6e4f0e0e-26e6-40b8-a36b-027fe44d9f4a.png",
+        "account": {
+          "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+          "kind": "chatgpt-plan"
+        }
+      },
+      "original_sidecar_path": "/workspace/art-20261106-stickers/design/art/inbox/batch-42-stickers/char__sticker-simit-happy--t4.json",
+      "original_sidecar_sha256": "bde8932b76441377f100955ccfb2ae14492e0e5e7adcfbf81ff201bc67f9bbb8",
+      "original_sidecar_archive": "/workspace/art-operator-runtime/run-20261106/completed-art-checkout-backups/run-20261106--batch-42-stickers.tar.gz",
+      "original_sidecar_archive_member": "design/art/inbox/batch-42-stickers/char__sticker-simit-happy--t4.json",
+      "original_packet": {
+        "batch": "batch-42-stickers",
+        "job": "sticker-simit-happy",
+        "worktree": "/workspace/art-20261106-stickers",
+        "prompt": "REFERENCES (attached, in this order):\n1. Simit, the kitten: her exact look, fur, colors and eyes.\n\nA single full-body sticker of Simit the kitten in the exact attached look, eyes as happy closed arcs, a small smile, tail up. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.\n\nAVOID: text, a white outline, a background, teeth, tears, motion lines, a different design.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+        "refs": [
+          "/workspace/art-20261106-stickers/design/art/masters/simit-kitten/simit-kitten.webp"
+        ],
+        "reference_sha256": {
+          "/workspace/art-20261106-stickers/design/art/masters/simit-kitten/simit-kitten.webp": "e824d167b30bcb524e1c7b7ef74b1ed42ffe5979ba9c6b06df58143e6aff9e81"
+        },
+        "fingerprint": "ab6da0b84fe39fe8",
+        "prompt_sha256": "3c8e5462c5c4f825e8cf7bd09608511de850e39b14b6960f9de74da075ccd3a6",
+        "transparent": true
+      },
+      "original_packet_sha256": "deb456b1a0a547729b9458a69e14e126c9078ec444503e17c94d5c5e755a99dd"
+    }
+  ]
+}

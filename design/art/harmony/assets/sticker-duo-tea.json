@@ -1,0 +1,56 @@
+{
+ "after": {
+  "C_mean": 18.467,
+  "C_p50": 11.911,
+  "C_p95": 51.793,
+  "L_mean": 83.706,
+  "L_p2": 23.755,
+  "L_p98": 96.891,
+  "detail": 8.794,
+  "edge": 0.158,
+  "tint_a": 4.312,
+  "tint_b": 6.967,
+  "warmth_b": 14.809
+ },
+ "before": {
+  "C_mean": 18.467,
+  "C_p50": 11.911,
+  "C_p95": 51.793,
+  "L_mean": 83.706,
+  "L_p2": 23.755,
+  "L_p98": 96.891,
+  "detail": 8.794,
+  "edge": 0.158,
+  "tint_a": 4.312,
+  "tint_b": 6.967,
+  "warmth_b": 14.809
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "char",
+ "matched_to": "char",
+ "outliers_after": [
+  "C_p95",
+  "detail"
+ ],
+ "outliers_before": [
+  "C_p95",
+  "detail"
+ ],
+ "ppu": 29.0,
+ "reference": false,
+ "score_after": 82.7,
+ "score_before": 82.7,
+ "shipped": false,
+ "source": "design/art/masters/sticker-duo-tea/sticker-duo-tea.webp",
+ "source_sha": "63b60cf2de4be8f2"
+}

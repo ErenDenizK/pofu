@@ -1,0 +1,57 @@
+{
+ "after": {
+  "C_mean": 14.386,
+  "C_p50": 11.163,
+  "C_p95": 34.243,
+  "L_mean": 88.164,
+  "L_p2": 65.28,
+  "L_p98": 97.407,
+  "detail": 5.127,
+  "edge": 0.18,
+  "tint_a": 3.74,
+  "tint_b": 9.281,
+  "warmth_b": 11.576
+ },
+ "before": {
+  "C_mean": 11.919,
+  "C_p50": 8.394,
+  "C_p95": 33.635,
+  "L_mean": 88.165,
+  "L_p2": 65.28,
+  "L_p98": 97.41,
+  "detail": 5.126,
+  "edge": 0.18,
+  "tint_a": 3.971,
+  "tint_b": 6.314,
+  "warmth_b": 8.708
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 4.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "char",
+ "matched_to": "char",
+ "outliers_after": [
+  "C_p95",
+  "L_p2"
+ ],
+ "outliers_before": [
+  "C_p95",
+  "L_p2",
+  "tint_b"
+ ],
+ "ppu": 29.0,
+ "reference": false,
+ "score_after": 77.3,
+ "score_before": 72.6,
+ "shipped": false,
+ "source": "design/art/masters/sticker-mochi-happy/sticker-mochi-happy.webp",
+ "source_sha": "a6995fdb7e71f6e8"
+}

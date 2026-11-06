@@ -1,0 +1,59 @@
+{
+ "after": {
+  "C_mean": 21.221,
+  "C_p50": 12.883,
+  "C_p95": 54.924,
+  "L_mean": 83.796,
+  "L_p2": 31.227,
+  "L_p98": 97.162,
+  "detail": 7.997,
+  "edge": 0.155,
+  "tint_a": 3.616,
+  "tint_b": 9.124,
+  "warmth_b": 18.41
+ },
+ "before": {
+  "C_mean": 18.692,
+  "C_p50": 9.749,
+  "C_p95": 53.94,
+  "L_mean": 83.798,
+  "L_p2": 31.227,
+  "L_p98": 97.187,
+  "detail": 7.993,
+  "edge": 0.155,
+  "tint_a": 3.868,
+  "tint_b": 5.541,
+  "warmth_b": 15.446
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 4.78,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "char",
+ "matched_to": "char",
+ "outliers_after": [
+  "C_p95",
+  "L_p2",
+  "detail"
+ ],
+ "outliers_before": [
+  "C_p95",
+  "L_p2",
+  "detail",
+  "tint_b"
+ ],
+ "ppu": 29.0,
+ "reference": false,
+ "score_after": 80.6,
+ "score_before": 76.2,
+ "shipped": false,
+ "source": "design/art/masters/sticker-pofu-proud/sticker-pofu-proud.webp",
+ "source_sha": "39b65b2784ac1912"
+}

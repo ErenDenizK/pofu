@@ -1,0 +1,59 @@
+{
+ "after": {
+  "C_mean": 23.155,
+  "C_p50": 16.154,
+  "C_p95": 55.663,
+  "L_mean": 84.741,
+  "L_p2": 38.84,
+  "L_p98": 96.617,
+  "detail": 8.028,
+  "edge": 0.155,
+  "tint_a": 3.724,
+  "tint_b": 9.084,
+  "warmth_b": 19.927
+ },
+ "before": {
+  "C_mean": 20.967,
+  "C_p50": 13.771,
+  "C_p95": 54.738,
+  "L_mean": 84.742,
+  "L_p2": 38.84,
+  "L_p98": 96.617,
+  "detail": 8.036,
+  "edge": 0.155,
+  "tint_a": 4.033,
+  "tint_b": 5.941,
+  "warmth_b": 17.409
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 4.38,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "char",
+ "matched_to": "char",
+ "outliers_after": [
+  "C_p95",
+  "L_p2",
+  "detail"
+ ],
+ "outliers_before": [
+  "C_p95",
+  "L_p2",
+  "detail",
+  "tint_b"
+ ],
+ "ppu": 29.0,
+ "reference": false,
+ "score_after": 75.0,
+ "score_before": 71.1,
+ "shipped": false,
+ "source": "design/art/masters/sticker-pofu-tea/sticker-pofu-tea.webp",
+ "source_sha": "472bcb11c4b2a29c"
+}

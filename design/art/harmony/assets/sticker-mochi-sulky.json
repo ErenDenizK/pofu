@@ -1,0 +1,57 @@
+{
+ "after": {
+  "C_mean": 14.588,
+  "C_p50": 11.966,
+  "C_p95": 30.736,
+  "L_mean": 86.802,
+  "L_p2": 37.577,
+  "L_p98": 96.52,
+  "detail": 6.021,
+  "edge": 0.181,
+  "tint_a": 4.619,
+  "tint_b": 9.073,
+  "warmth_b": 11.862
+ },
+ "before": {
+  "C_mean": 12.276,
+  "C_p50": 9.482,
+  "C_p95": 30.027,
+  "L_mean": 86.803,
+  "L_p2": 37.577,
+  "L_p98": 96.52,
+  "detail": 6.023,
+  "edge": 0.181,
+  "tint_a": 5.042,
+  "tint_b": 6.298,
+  "warmth_b": 9.038
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 4.02,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "char",
+ "matched_to": "char",
+ "outliers_after": [
+  "C_p95",
+  "L_p2"
+ ],
+ "outliers_before": [
+  "C_p95",
+  "L_p2",
+  "tint_b"
+ ],
+ "ppu": 29.0,
+ "reference": false,
+ "score_after": 79.6,
+ "score_before": 74.4,
+ "shipped": false,
+ "source": "design/art/masters/sticker-mochi-sulky/sticker-mochi-sulky.webp",
+ "source_sha": "c0f93d87aa1b4f38"
+}
