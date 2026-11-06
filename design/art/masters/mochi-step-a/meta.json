@@ -1,0 +1,140 @@
+{
+  "job": "mochi-step-a",
+  "batch": "batch-59-resident-walks",
+  "asset": "char__mochi-step-a",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-06T10:18:31+00:00",
+  "image": "design/art/masters/mochi-step-a/mochi-step-a.png",
+  "raw": "design/art/masters/mochi-step-a/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "1bcc1c99d4b4e527",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nEdit the attached character, the bunny Mochi, into one animation frame: the left foot (the viewer's right) lifted and stepping forward, the right foot planted, the body leaning a tiny bit forward, her long ears swaying slightly back. Keep the face, the colours, the fur, the size and the exact position on the canvas the same; change only the legs and paws and a slight sway, as a cute cartoon step, never a realistic gait.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: motion lines, dust clouds, a ground, a shadow, a different size, moving the character on the canvas, text\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, portrait 1024 x 1536.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/mochi-v2/mochi-v2.webp",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-06T10:10:02+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "char-guard",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": {
+    "scale": 0.9911,
+    "cx": 510.0,
+    "cy": 1353.0,
+    "dx": 2,
+    "dy": 0
+  },
+  "fit": null,
+  "emit_region": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1024x1536"
+      },
+      {
+        "check": "edit_alignment",
+        "status": "pass",
+        "message": "the edit rescaled the object x1.009 and moved it; aligned back to the parent",
+        "value": 0.9911
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 32 (R1 51)",
+        "value": 31.9
+      },
+      {
+        "check": "light_values",
+        "status": "pass",
+        "message": "day/subject: L p2 19 (at most 22), p98 98 (at least 90), spread 78 (at least 60)",
+        "value": 78.5
+      },
+      {
+        "check": "light_median",
+        "status": "warn",
+        "message": "day/subject: median L 92 (band 55-90)",
+        "value": 92.2
+      },
+      {
+        "check": "light_haze",
+        "status": "warn",
+        "message": "day/subject: dark-channel haze 0.23 (at most 0.20; no true dark means a wash)",
+        "value": 0.227
+      },
+      {
+        "check": "light_contrast",
+        "status": "pass",
+        "message": "day/subject: p75 local contrast 3.8 (at least 3.5)",
+        "value": 3.77
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 3.7 (R1 5.3)",
+        "value": 3.7
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 0.9, p95 2.2, off-palette 1.0% (top: #441100 (0.1%), #551100 (0.1%))",
+        "value": 0.8988
+      },
+      {
+        "check": "ground_line",
+        "status": "pass",
+        "message": "feet at 88.0% of the height (contract 88%)",
+        "value": 0.8802
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 88 against the char reference (outliers: C_p95)",
+        "value": 87.8
+      },
+      {
+        "check": "edit_silhouette",
+        "status": "warn",
+        "message": "93% of the parent's shape kept",
+        "value": 0.9293
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "80% of the parent level unchanged",
+        "value": 0.7968
+      },
+      {
+        "check": "edit_chroma",
+        "status": "pass",
+        "message": "chroma x1.14 of the parent level (drift compounds along a chain)",
+        "value": 1.142
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Both original and official locked takes preserve Mochi identity, face, cream fur, long curl-free ears, native framing and scale. Viewer-right foot is raised forward and opposite foot planted, with only the authored slight sway. Full originals/locked and 28px alpha composites reviewed independently; apparent raw-view warm glow is hidden RGB under alpha0, not a painted halo. No new ground, shadow, text or motion marks. Both QA reports warn without hard failures; no lock_load check is emitted for these registered edits, so normal equal-load ranking selects take1 by Harmony87.8 versus85.6. Canonical light warnings remain disclosed; no force, QA edits or new style gate."
+}
