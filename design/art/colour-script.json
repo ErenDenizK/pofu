@@ -140,9 +140,9 @@
       },
       "goldenHaze": {
         "key": 1.0, "fill": 1.0, "fogExtra": 0.04,
-        "grade": {"gain": [1.05, 1.0, 0.92], "saturation": 1.08, "contrast": 1.0},
+        "grade": {"gain": [1.03, 1.0, 0.95], "saturation": 1.08, "contrast": 1.0},
         "character": {"gain": [1.02, 1.0, 0.97]},
-        "sky": {"value": 1.0, "chroma": 1.1, "toward": "#FFD9A0", "amount": 0.22},
+        "sky": {"value": 1.0, "chroma": 1.1, "toward": "#FFD9A0", "amount": 0.12},
         "practicals": {"window": 0.0}
       },
       "screenHaze": {

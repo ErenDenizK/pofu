@@ -306,7 +306,7 @@ extension ColourScript {
         ),
         "goldenHaze": ColourState(
             grade: WorldGrade(
-                gain: GradeRGB(1.05, 1.0, 0.92),
+                gain: GradeRGB(1.03, 1.0, 0.95),
                 contrast: 1.0,
                 saturation: 1.08
             ),
@@ -316,7 +316,7 @@ extension ColourScript {
             skyValue: 1.0,
             skyChroma: 1.1,
             skyToward: PofuRGB(hex: 0xFFD9A0),
-            skyAmount: 0.22,
+            skyAmount: 0.12,
             keyIntensity: 1.0,
             fillIntensity: 1.0,
             fogExtra: 0.04,

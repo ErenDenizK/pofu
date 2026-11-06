@@ -165,8 +165,8 @@ struct WeatherRain: View {
     }
 
     private static let layers = [
-        StreakLayer(angle: 9, speed: 560, scale: 1.0, opacity: 0.55),
-        StreakLayer(angle: 17, speed: 330, scale: 0.7, opacity: 0.35),
+        StreakLayer(angle: 9, speed: 560, scale: 1.0, opacity: 0.85),
+        StreakLayer(angle: 17, speed: 330, scale: 0.7, opacity: 0.6),
     ]
 
     /// The puddles' places on the lawn (world units around its centre), clear
@@ -296,9 +296,9 @@ struct WeatherRainbow: View {
                     .position(x: size.width * 0.58, y: CGFloat(seaLine) - size.width * 0.26)
             } else {
                 Canvas { gc, canvas in
-                    let centre = CGPoint(x: canvas.width * 0.58, y: CGFloat(seaLine) + 18)
-                    let outer = canvas.width * 0.66
-                    let width = canvas.width * 0.028
+                    let centre = CGPoint(x: canvas.width * 0.58, y: CGFloat(seaLine) + 40)
+                    let outer = canvas.width * 1.12
+                    let width = canvas.width * 0.036
                     for (i, band) in Self.bands.enumerated() {
                         let radius = outer - CGFloat(i) * width
                         var path = Path()
