@@ -1,0 +1,211 @@
+batch: batch-43-caglayan-production
+contact_sheet: design/art/takes/batch-43-caglayan-production/damla/contact.jpg
+jobs:
+  damla:
+    pick: 1
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Both source and canonical locked
+      initial candidates show the intended soft cocoa and cream otter, one empty tulip
+      glass held by both front paws at chest, curled ground tail, no forehead curl,
+      teeth, claws, floor, cast shadow, water or text. Full alpha-composited and 28px
+      review is eligible. Canonical fit.ground scale1.0 dy-56/-48 places feet at88percent.
+      No lock_load is emitted by char-guard, so higher Harmony87.4 versus87.3 selects
+      take1. Exact native lossless WebP473570bytes preserves canonical RGBA under614400
+      without resizing or pixel cleanup. Hard QA passes; advisory light warnings remain
+      for founder review. No header force exception used. The first successful Damla
+      commit links both existing planned family assets; all unrelated character fields
+      remain unchanged.
+qa_reports:
+  1:
+    job: damla
+    take: 1
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 40.0
+    - check: light_values
+      status: pass
+      message: 'day/subject: L p2 20 (at most 22), p98 94 (at least 90), spread 75
+        (at least 60)'
+      value: 74.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 64 (band 55-90)'
+      value: 64.0
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.14 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.137
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.0 (at least 3.5)'
+      value: 5.02
+    - check: detail_budget
+      status: pass
+      message: detail at display size 6.1 (R1 5.3)
+      value: 6.14
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.0, p95 8.8, off-palette 1.5% (top: #773322 (0.2%), #662211
+        (0.1%))'
+      value: 3.0373
+    - check: ground_line
+      status: pass
+      message: feet at 88.0% of the height (contract 88%)
+      value: 0.8799
+    - check: no_ground_shadow
+      status: warn
+      message: a ground shadow seems painted in
+    - check: harmony
+      status: pass
+      message: 'harmony score 87 against the char reference (outliers: detail)'
+      value: 87.4
+    info:
+      fit:
+        scale: 1.0
+        anchor:
+        - 565.6
+        - 957
+        dy: -56
+        ground: true
+      metrics_raw:
+        L_p5: 36.7
+        L_p50: 64.0
+        L_p95: 93.1
+        C_p50: 33.6
+        C_p95: 40.0
+        C_p99: 43.2
+        detail: 6.15
+      metrics_locked:
+        L_p5: 36.7
+        L_p50: 64.0
+        L_p95: 93.1
+        C_p50: 33.6
+        C_p95: 40.0
+        C_p99: 43.2
+        detail: 6.14
+    fingerprint: 02883be7453bf938
+  2:
+    job: damla
+    take: 2
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 42 (R1 51)
+      value: 41.7
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 24 (at most 22), p98 94 (at least 90), spread 71
+        (at least 60)'
+      value: 70.9
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 69 (band 55-90)'
+      value: 69.0
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.13 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.133
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.1 (at least 3.5)'
+      value: 5.08
+    - check: detail_budget
+      status: pass
+      message: detail at display size 6.1 (R1 5.3)
+      value: 6.14
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.6, p95 8.8, off-palette 1.6% (top: #773322 (0.2%), #994422
+        (0.2%))'
+      value: 2.6446
+    - check: ground_line
+      status: pass
+      message: feet at 88.0% of the height (contract 88%)
+      value: 0.8799
+    - check: no_ground_shadow
+      status: warn
+      message: a ground shadow seems painted in
+    - check: harmony
+      status: pass
+      message: 'harmony score 87 against the char reference (outliers: detail)'
+      value: 87.3
+    info:
+      fit:
+        scale: 1.0
+        anchor:
+        - 554.6
+        - 949
+        dy: -48
+        ground: true
+      metrics_raw:
+        L_p5: 37.9
+        L_p50: 69.0
+        L_p95: 92.9
+        C_p50: 32.3
+        C_p95: 41.7
+        C_p99: 47.2
+        detail: 6.15
+      metrics_locked:
+        L_p5: 37.9
+        L_p50: 69.0
+        L_p95: 92.9
+        C_p50: 32.3
+        C_p95: 41.7
+        C_p99: 47.2
+        detail: 6.14
+    fingerprint: 02883be7453bf938
+manual_review:
+  excluded_takes: []
+  note: Both source and canonical locked initial candidates show the intended soft
+    cocoa and cream otter, one empty tulip glass held by both front paws at chest,
+    curled ground tail, no forehead curl, teeth, claws, floor, cast shadow, water
+    or text. Full alpha-composited and 28px review is eligible. Canonical fit.ground
+    scale1.0 dy-56/-48 places feet at88percent. No lock_load is emitted by char-guard,
+    so higher Harmony87.4 versus87.3 selects take1. Exact native lossless WebP473570bytes
+    preserves canonical RGBA under614400 without resizing or pixel cleanup. Hard QA
+    passes; advisory light warnings remain for founder review. No header force exception
+    used. The first successful Damla commit links both existing planned family assets;
+    all unrelated character fields remain unchanged.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-4cb8bf1b-6294-4185-a09f-1bff67d21176.png
+  original_generated_png_sha256: 1931fff90f49fb6329e5bc2857c6fcd7e792c9a9dea21c1944f081926cb08a5e
+  inbox_png_sha256: c6dcc2a5fa107c997bf2582e326a0de874b8a220d6fde42ddfa2f3569f4410ad
+  rgba_sha256: c152b221de374950247d204971d70dc77689991599319a55efb8bc5eaa6ca7a1
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 02883be7453bf938
+- take: 2
+  source_file: /workspace/generated_images/exec-35f3b5fd-eaf1-4bbc-8aa2-1ceadf906ecb.png
+  original_generated_png_sha256: e08183b417840dc5baf89f4c56d6b24ecdc15e4368c7cb76f8b952ab8238eab1
+  inbox_png_sha256: 1f0e68201ba57a7ab10216012eb728ce9b9b67603d4ea3973feb8e384d3b6292
+  rgba_sha256: 4aff52bf99cbc5ec2b842d0bf49c2eb79686329ae48a843c7d9a6f8f9979b0f6
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 02883be7453bf938

@@ -1,0 +1,132 @@
+{
+  "job": "damla",
+  "batch": "batch-43-caglayan-production",
+  "asset": "char__damla",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-06T07:10:11+00:00",
+  "image": "design/art/masters/damla/damla.png",
+  "raw": "design/art/masters/damla/raw.webp",
+  "raw_encoding": "webp q95",
+  "fingerprint": "02883be7453bf938",
+  "prompt": "REFERENCES (attached, in this order):\n1. Pofu, the hamster: match his art style, lighting, level of fluff and finish exactly (do not draw him).\n2. Mochi, the bunny: the same family of soft plush characters, the same size on the canvas (do not draw her).\n3. The character palette card.\n\nDraw Damla, a small, round, plush river otter, as a game sprite on a\ntransparent background, in exactly the same art style, lighting and\nlevel of softness as the attached hamster and bunny. She stands on\nher hind legs facing the viewer, three quarters to the left, her\nlong soft tail curled on the ground beside her. Warm cocoa-brown fur\nwith a cream face, chin and belly, a round head with tiny round\nears, big warm dark eyes with soft catchlights, a small dark nose,\nshort whiskers, a hopeful little smile, a blush on each cheek. In\nboth front paws, held at her chest, a small empty tulip-shaped tea\nglass. She is about as tall as the attached bunny on the canvas,\ncentered, standing on an invisible ground line at 88 percent of the\nheight. No ground, no shadow, no water.\n\nSTYLE: soft painterly 2D digital illustration with the polish of a premium\nstorybook and a top-tier mobile app mascot. Gentle airbrushed shading, no\noutlines, no hard edges. Fine, soft fur strands along the silhouette and a\nvelvety fur texture inside it. Warm diffused key light from the upper left,\na faint warm rim light along the right edge, soft ambient shadow only where\nforms touch. Pastel warm palette of cream, golden peach and blush pink with\ndark espresso-brown eyes. Clean, calm, uncluttered. No text, no letters,\nno numbers, no logos, no watermark, no border, no frame, no sticker outline.\n\nAVOID: outlines, cel shading, 3D plastic or vinyl render, anime sparkle\neyes with many highlights, extra limbs, extra toes or fingers, claws,\nteeth, eyebrows, a long tail, lilac or gray fur, a ground shadow, a floor,\na cast shadow, a white sticker border, text, watermarks, signatures,\nmotion blur, film grain, paper texture, vignette.\n\nAVOID: teeth, claws, a realistic otter, a fish, a frown, wet spiky fur, water splashes, a ground, a shadow, text, letters, outlines\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png",
+      "role": "Pofu, the hamster: match his art style, lighting, level of fluff and finish exactly (do not draw him)."
+    },
+    {
+      "path": "design/art/masters/mochi-v2/mochi-v2.webp",
+      "role": "Mochi, the bunny: the same family of soft plush characters, the same size on the canvas (do not draw her)."
+    },
+    {
+      "path": "design/reference/palette-card-character.png",
+      "role": "The character palette card."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-06T06:47:09+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "char-guard",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "fit": {
+    "scale": 1.0,
+    "anchor": [
+      565.6,
+      957
+    ],
+    "dy": -56,
+    "ground": true
+  },
+  "emit_region": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 40 (R1 51)",
+        "value": 40.0
+      },
+      {
+        "check": "light_values",
+        "status": "pass",
+        "message": "day/subject: L p2 20 (at most 22), p98 94 (at least 90), spread 75 (at least 60)",
+        "value": 74.6
+      },
+      {
+        "check": "light_median",
+        "status": "pass",
+        "message": "day/subject: median L 64 (band 55-90)",
+        "value": 64.0
+      },
+      {
+        "check": "light_haze",
+        "status": "pass",
+        "message": "day/subject: dark-channel haze 0.14 (at most 0.20; no true dark means a wash)",
+        "value": 0.137
+      },
+      {
+        "check": "light_contrast",
+        "status": "pass",
+        "message": "day/subject: p75 local contrast 5.0 (at least 3.5)",
+        "value": 5.02
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 6.1 (R1 5.3)",
+        "value": 6.14
+      },
+      {
+        "check": "palette_drift",
+        "status": "warn",
+        "message": "mean dE 3.0, p95 8.8, off-palette 1.5% (top: #773322 (0.2%), #662211 (0.1%))",
+        "value": 3.0373
+      },
+      {
+        "check": "ground_line",
+        "status": "pass",
+        "message": "feet at 88.0% of the height (contract 88%)",
+        "value": 0.8799
+      },
+      {
+        "check": "no_ground_shadow",
+        "status": "warn",
+        "message": "a ground shadow seems painted in"
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 87 against the char reference (outliers: detail)",
+        "value": 87.4
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Both source and canonical locked initial candidates show the intended soft cocoa and cream otter, one empty tulip glass held by both front paws at chest, curled ground tail, no forehead curl, teeth, claws, floor, cast shadow, water or text. Full alpha-composited and 28px review is eligible. Canonical fit.ground scale1.0 dy-56/-48 places feet at88percent. No lock_load is emitted by char-guard, so higher Harmony87.4 versus87.3 selects take1. Exact native lossless WebP473570bytes preserves canonical RGBA under614400 without resizing or pixel cleanup. Hard QA passes; advisory light warnings remain for founder review. No header force exception used. The first successful Damla commit links both existing planned family assets; all unrelated character fields remain unchanged."
+}

@@ -1,0 +1,146 @@
+{
+  "job": "damla-glass",
+  "batch": "batch-43-caglayan-production",
+  "asset": "char__damla-glass",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-06T07:46:17+00:00",
+  "image": "design/art/masters/damla-glass/damla-glass.png",
+  "raw": "design/art/masters/damla-glass/raw.webp",
+  "raw_encoding": "webp q95",
+  "fingerprint": "703e6e2f3f6e8c03",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nEdit the attached otter: the same character, the same size, on the\nsame ground line, in the same place on the canvas. She now lifts the\nlittle tea glass up with both paws above her head, proud and happy;\nthe glass is half full of clear water with a tiny glint. Her eyes are\nclosed in two happy upward curves and she has a big open smile. Her\ntail curls up a little with joy. Everything else (fur colours,\nproportions, style, lighting) stays exactly the same.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: a full glass, spilled water, splashes, teeth, a different size, moving her on the canvas, a ground, a shadow, text\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/damla/damla.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-06T07:28:27+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "char-guard",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": {
+    "scale": 1.0403,
+    "cx": 530.5,
+    "cy": 893.0,
+    "dx": 8,
+    "dy": 8
+  },
+  "fit": null,
+  "emit_region": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "edit_alignment",
+        "status": "warn",
+        "message": "the edit rescaled the object x0.961 and moved it; aligned back to the parent",
+        "value": 1.0403
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 42 (R1 51)",
+        "value": 42.3
+      },
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 32 (at most 22), p98 93 (at least 90), spread 61 (at least 60)",
+        "value": 61.0
+      },
+      {
+        "check": "light_median",
+        "status": "pass",
+        "message": "day/subject: median L 70 (band 55-90)",
+        "value": 70.3
+      },
+      {
+        "check": "light_haze",
+        "status": "pass",
+        "message": "day/subject: dark-channel haze 0.12 (at most 0.20; no true dark means a wash)",
+        "value": 0.125
+      },
+      {
+        "check": "light_contrast",
+        "status": "pass",
+        "message": "day/subject: p75 local contrast 5.2 (at least 3.5)",
+        "value": 5.19
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 6.2 (R1 5.3)",
+        "value": 6.17
+      },
+      {
+        "check": "palette_drift",
+        "status": "warn",
+        "message": "mean dE 3.2, p95 9.9, off-palette 2.9% (top: #441100 (0.2%), #993322 (0.2%))",
+        "value": 3.2228
+      },
+      {
+        "check": "ground_line",
+        "status": "pass",
+        "message": "feet at 88.0% of the height (contract 88%)",
+        "value": 0.8799
+      },
+      {
+        "check": "no_ground_shadow",
+        "status": "warn",
+        "message": "a ground shadow seems painted in"
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 79 against the char reference (outliers: L_p2, detail)",
+        "value": 78.8
+      },
+      {
+        "check": "edit_silhouette",
+        "status": "warn",
+        "message": "86% of the parent's shape kept",
+        "value": 0.8557
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "62% of the parent level unchanged",
+        "value": 0.6161
+      },
+      {
+        "check": "edit_chroma",
+        "status": "pass",
+        "message": "chroma x0.97 of the parent level (drift compounds along a chain)",
+        "value": 0.9694
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Both native originals and the official aligned locked poses show the same soft cocoa and cream otter raising ONE tulip glass above the head in both paws, glass half full of clear water with one tiny glint, closed happy curved eyes, open toothless smile and lifted curled tail. Source, full locked alpha and original parent were reviewed; no floor, cast shadow, spill, text, new curl or identity drift. Take1 passes every hard QA check and has higher Harmony78.8 versus77.2. Take2 preserves its actual edit_silhouette FAIL and the authored pose exception is not used because the normally passing take1 wins. Exact native lossless492724byte master matches canonical RGBA under614400 without manual resize or cleanup. Existing planned two-asset character links remain unchanged. No extra retry or header force was needed."
+}

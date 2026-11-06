@@ -1,0 +1,21 @@
+batch: batch-43-caglayan-production
+jobs:
+  caglayan-island-1:
+    pick: none
+    publication: dependent-skip
+    note: 'Skipped without generation: true dependency caglayan-island-0 failed after
+      its one allowed retry. All four original and official locked candidates show
+      a left ribbon cascading over multiple cliff risers into the pool rather than
+      the authored single glinting trickle running down ONE left step. Independent
+      native source and locked reviews confirm the same literal premature-stage1 content
+      error after the initial pair and sole unchanged retry. Automated QA remains
+      warn-only and is not relabelled as a hard failure; light warnings remain advisory.
+      Approximate framing concerns are disclosed without a new numeric cutoff. Rounded
+      banded earth and roots are not falsely banned. No prompt edits, third round,
+      pixel cleanup or QA waiver. Skip only this root and its four true island-stage
+      dependents; the independent Damla track continues. Source and independent-review
+      hashes are retained in manual-decisions.json.'
+generated_takes: 0
+parent_reference_only: true
+contact_sheet: design/art/takes/batch-43-caglayan-production/caglayan-island-1/contact.jpg
+failed_dependency: caglayan-island-0

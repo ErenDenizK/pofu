@@ -1,0 +1,9 @@
+{
+  "parent": "caglayan-island-0",
+  "parent_publication_commit": "32b8238ac6de5f23b222162f1aeeb30bc6896416",
+  "parent_contact": "design/art/takes/batch-43-caglayan-production/caglayan-island-0/contact.jpg",
+  "parent_contact_sha256": "0effe90754d41f4cb025d3bb828764ec0d76dc68fb51ea12eb2473c0b9a66474",
+  "generated_child_takes": 0,
+  "reference_only": true,
+  "derived_contact_sha256": "983ea0a154d7674a989fc49962787862ed1f2ba10cfca45ead3615474d324cbd"
+}

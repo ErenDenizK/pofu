@@ -2,14 +2,14 @@ id: asset-caglayan-island-2
 type: asset
 title_tr: caglayan-island-2
 title_en: caglayan-island-2 (plate)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  Edit the attached island plate from stage 0 to stage 2: the first warm light. Two clear
-  ribbons of water now fall down the cliff, one on the left and one in the centre, into the
-  pool. The pool is half full of clear blue-green water with soft ripples, its old dry rim
-  still showing above the water line. The stones beside the streams are wet and mossy green;
-  the grass along the banks is green again and two small clumps …
+summary: 'Edit the attached island plate from stage 0 to stage 2: the first warm light.
+  Two clear ribbons of water now fall down the cliff, one on the left and one in the
+  centre, into the pool. The pool is half full of clear blue-green water with soft
+  ripples, its old dry rim still showing above the water line. The stones beside the
+  streams are wet and mossy green; the grass along the banks is green again and two
+  small clumps …'
 links:
   variant_of:
   - asset-caglayan-island-0
@@ -22,3 +22,15 @@ sources:
 kind: plate
 batch: batch-43-caglayan-production
 size: 1536x1024
+notes:
+- 'Skipped without generation: true dependency caglayan-island-0 failed after its
+  one allowed retry. All four original and official locked candidates show a left
+  ribbon cascading over multiple cliff risers into the pool rather than the authored
+  single glinting trickle running down ONE left step. Independent native source and
+  locked reviews confirm the same literal premature-stage1 content error after the
+  initial pair and sole unchanged retry. Automated QA remains warn-only and is not
+  relabelled as a hard failure; light warnings remain advisory. Approximate framing
+  concerns are disclosed without a new numeric cutoff. Rounded banded earth and roots
+  are not falsely banned. No prompt edits, third round, pixel cleanup or QA waiver.
+  Skip only this root and its four true island-stage dependents; the independent Damla
+  track continues. Source and independent-review hashes are retained in manual-decisions.json.'

@@ -4,8 +4,8 @@ title_tr: Damla
 title_en: Damla, the otter
 status: idea
 horizon: maybe
-summary: >-
-  An otter on Çağlayan who tries to catch the waterfall in a cup and never manages; built the leaf-boat chute.
+summary: An otter on Çağlayan who tries to catch the waterfall in a cup and never
+  manages; built the leaf-boat chute.
 sources:
 - doc: docs/archive/archipelago-system.md
   anchor: '#11-island-concepts'
@@ -14,5 +14,9 @@ kind: resident
 unlock:
   day: 36
   rule_en: Arrives with its island
-species_en: 'River otter'
+species_en: River otter
 home: island-caglayan
+links:
+  uses_asset:
+  - asset-damla
+  - asset-damla-glass
