@@ -1,0 +1,34 @@
+id: asset-x-island-il1-v2
+type: asset
+title_tr: x-island-il1-v2
+title_en: x-island-il1-v2 (plate)
+status: planned
+horizon: now
+summary: >-
+  A fresh independent concept plate of Ayçiçeği using the CURRENT home-layout interpretation.
+  Keep the familiar approved home-island identity and painterly family, with a fixed low front
+  three-quarter game camera (about 17 degrees above the horizon). The lawn outline is fixed
+  across levels: growth adds the named details within existing slots, or separate harbor/Tepe
+  pieces beside the home, never widens the lawn or extr…
+art:
+  images: []
+  jobs:
+  - batch-31-island-milestones-v2:x-island-il1-v2
+sources:
+- doc: tools/imagegen/manifest/batch-31-island-milestones-v2.yaml
+kind: plate
+batch: batch-31-island-milestones-v2
+size: 1536x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Selected take 1; auto-picked by QA; founder review pending. Registration remains planned
+  and art.images is empty.
+- >-
+  auto-picked by QA; founder review pending. Both original takes retain exactly three young
+  sunflower heads, a woven twig nest, a few bees, an inset earth-face round door and sparse
+  empty future lawn, with no unopened stations or Pofu. Complete home silhouette and quiet
+  cloud space read clearly. QA light/value/haze/contrast warnings are advisory exploration
+  evidence and are retained, not waived or graded locally. Auto-pick the eligible take with
+  lowest official lock load. Family references do not establish registered large-plate socket
+  continuity. Exploration only, never promoted.

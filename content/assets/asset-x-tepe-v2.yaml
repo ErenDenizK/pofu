@@ -1,0 +1,37 @@
+id: asset-x-tepe-v2
+type: asset
+title_tr: x-tepe-v2
+title_en: x-tepe-v2 (plate)
+status: cut
+horizon: now
+summary: >-
+  A fresh independent concept plate of Ayçiçeği using the CURRENT home-layout interpretation.
+  Keep the familiar approved home-island identity and painterly family, with a fixed low front
+  three-quarter game camera (about 17 degrees above the horizon). The lawn outline is fixed
+  across levels: growth adds the named details within existing slots, or separate harbor/Tepe
+  pieces beside the home, never widens the lawn or extr…
+art:
+  images: []
+  jobs:
+  - batch-31-island-milestones-v2:x-tepe-v2
+sources:
+- doc: tools/imagegen/manifest/batch-31-island-milestones-v2.yaml
+kind: plate
+batch: batch-31-island-milestones-v2
+size: 1536x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Skipped after the sole allowed retry; registration remains cut and art.images is empty.
+- >-
+  All four originals are preserved after the sole unchanged retry. Takes1/2/3 are nearly whole-home
+  overviews rather than the authored hilltop close view. Retry4 genuinely improves/passes
+  close-view framing: foreground leafy tree, bench, tripod telescope, empty grass dais edged
+  with stones and unmarked unopened add-on grass are clear. It is NOT excluded for framing.
+  Its large unobscured background nevertheless puts cart/pier/lighthouse on one continuous
+  main lawn/earth bowl with an internal arched canal bridge, not the explicitly separate right
+  islet and connecting bridge. Initial framing owner-reviewed; retry4 literal topology independently
+  confirmed on source and official locked. Exclude1/2/3 for framing and4 for topology, without
+  an all-eight-stations requirement, minimum size or pixel-continuity gate. Foreground versus
+  up-left staging is a qualitative concern only. Skip this independent job, no further generation
+  or local pixel edits, never promoted.

@@ -1,0 +1,34 @@
+id: asset-x-island-il4-v2
+type: asset
+title_tr: x-island-il4-v2
+title_en: x-island-il4-v2 (plate)
+status: cut
+horizon: now
+summary: >-
+  A fresh independent concept plate of Ayçiçeği using the CURRENT home-layout interpretation.
+  Keep the familiar approved home-island identity and painterly family, with a fixed low front
+  three-quarter game camera (about 17 degrees above the horizon). The lawn outline is fixed
+  across levels: growth adds the named details within existing slots, or separate harbor/Tepe
+  pieces beside the home, never widens the lawn or extr…
+art:
+  images: []
+  jobs:
+  - batch-31-island-milestones-v2:x-island-il4-v2
+sources:
+- doc: tools/imagegen/manifest/batch-31-island-milestones-v2.yaml
+kind: plate
+batch: batch-31-island-milestones-v2
+size: 1536x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Skipped after the sole allowed retry; registration remains cut and art.images is empty.
+- >-
+  All four original takes remain preserved after the sole unchanged retry. Each has the requested
+  front-left lily pond/one frog, right striped tea stall, fenced sunflower garden without
+  an arch, separate right harbor/cart/rope bridge, inset round door and no premature pier/ferry.
+  The explicitly retained twig nest is absent in all four whole sources; neither the wooden
+  doorstep nor the remote bakery basket is that nest. Initial pair was independently confirmed
+  by a peer; owner inspected both retry originals. Exclude all four for that literal omission
+  and skip only this independent job. QA style warnings remain advisory; no pixel continuity
+  or extra-prop gate, no repaint or prompt change, never promoted.

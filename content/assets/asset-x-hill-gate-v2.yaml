@@ -1,0 +1,34 @@
+id: asset-x-hill-gate-v2
+type: asset
+title_tr: x-hill-gate-v2
+title_en: x-hill-gate-v2 (plate)
+status: cut
+horizon: now
+summary: >-
+  A fresh independent concept plate of Ayçiçeği using the CURRENT home-layout interpretation.
+  Keep the familiar approved home-island identity and painterly family, with a fixed low front
+  three-quarter game camera (about 17 degrees above the horizon). The lawn outline is fixed
+  across levels: growth adds the named details within existing slots, or separate harbor/Tepe
+  pieces beside the home, never widens the lawn or extr…
+art:
+  images: []
+  jobs:
+  - batch-31-island-milestones-v2:x-hill-gate-v2
+sources:
+- doc: tools/imagegen/manifest/batch-31-island-milestones-v2.yaml
+kind: plate
+batch: batch-31-island-milestones-v2
+size: 1024x1536
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Skipped after the sole allowed retry; registration remains cut and art.images is empty.
+- >-
+  All four originals are preserved after the sole unchanged retry. The CLOSED round wooden
+  gate, carved sunflower, warm light between planks, path, grass and wildflowers are correct.
+  Every take nonetheless presents a nearly whole-home overview with the full lawn/earth bowl/roots,
+  round home door, full windmill and multiple stations; the authored portrait CLOSE VIEW of
+  the hill gate is not delivered. Both initial sources independently reviewed and both retries
+  owner-viewed. Exclude all four for actual framing, without a fabricated size threshold or
+  zero-extra-prop rule, and skip only this independent job. No further generation or pixel
+  edits; exploration never promoted.
