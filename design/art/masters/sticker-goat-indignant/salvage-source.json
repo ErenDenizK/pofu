@@ -1,0 +1,66 @@
+{
+  "batch": "batch-42-stickers",
+  "job": "sticker-goat-indignant",
+  "take": 4,
+  "round": 2,
+  "logical_run": "b42-residents-retries",
+  "source_file": "/workspace/generated_images/exec-2323ced6-897a-40ad-90b2-54c707df720f.png",
+  "returned_at": "2026-11-06T02:22:20.778Z",
+  "prompt_sha256": "c2a269c92b1d5d67b47fe41ddfca6595ea5c4cf78cb4230693fde08b1192be0d",
+  "fingerprint": "649f35a2e6771bb5",
+  "saved_at": "2026-11-06T02:22:21.190077+00:00",
+  "original_generated_png_sha256": "105a94ad893977d5177b9d628fe4887096a1f61a90156e0a716fcf5394361fd0",
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "rgba_sha256": "4430d0dc8e78441efa2dcae89a670ad6b942487ea0d3234aa10ef6086c7b7286",
+  "evaluation_take": 4,
+  "original_take": 4,
+  "original_run": "batch-42-stickers",
+  "original_callback": "/workspace/art-operator-runtime/run-20261106/batch-42-stickers/generated-sticker-goat-indignant-t4.json",
+  "original_callback_sha256": "656b3c41115f728fce5ddc3761aefbed2c06852c64f259e6b984a92672e58cd1",
+  "original_tool_callback": "/workspace/art-operator-runtime/run-20261106/batch-42-stickers/callback-sticker-goat-indignant-t4.json",
+  "original_tool_callback_sha256": "4ae5668c97febe74023cd3060fd116ba8ed0e39ab5fd2dd2e50e8b41a7b9d731",
+  "original_sidecar": {
+    "job": "sticker-goat-indignant",
+    "take": 4,
+    "batch": "batch-42-stickers",
+    "fingerprint": "649f35a2e6771bb5",
+    "prompt": "REFERENCES (attached, in this order):\n1. The harbor goat: its exact look, fur, colors and eyes.\n\nA single full-body sticker of the harbor goat in the exact attached look, chin lifted, a closed-eyed huff, indignant and a little proud, a reluctant half-smile. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.\n\nAVOID: text, a white outline, a background, teeth, tears, motion lines, a different design.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+    "attachments": [
+      {
+        "path": "design/art/masters/harbor-goat/harbor-goat.webp",
+        "role": "The harbor goat: its exact look, fur, colors and eyes."
+      }
+    ],
+    "background": "transparent",
+    "generated_at": "2026-11-06T02:23:26+00:00",
+    "backend": "codex-cloud",
+    "source_file": "/workspace/generated_images/exec-2323ced6-897a-40ad-90b2-54c707df720f.png",
+    "account": {
+      "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+      "kind": "chatgpt-plan"
+    }
+  },
+  "original_sidecar_path": "/workspace/art-20261106-stickers/design/art/inbox/batch-42-stickers/char__sticker-goat-indignant--t4.json",
+  "original_sidecar_sha256": "32c67e84558fc634ba1c20ffb670bb838078adcd757e2655ffe7f6e7e64f6904",
+  "original_sidecar_archive": "/workspace/art-operator-runtime/run-20261106/completed-art-checkout-backups/run-20261106--batch-42-stickers.tar.gz",
+  "original_sidecar_archive_member": "design/art/inbox/batch-42-stickers/char__sticker-goat-indignant--t4.json",
+  "original_packet": {
+    "batch": "batch-42-stickers",
+    "job": "sticker-goat-indignant",
+    "worktree": "/workspace/art-20261106-stickers",
+    "prompt": "REFERENCES (attached, in this order):\n1. The harbor goat: its exact look, fur, colors and eyes.\n\nA single full-body sticker of the harbor goat in the exact attached look, chin lifted, a closed-eyed huff, indignant and a little proud, a reluctant half-smile. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.\n\nAVOID: text, a white outline, a background, teeth, tears, motion lines, a different design.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+    "refs": [
+      "/workspace/art-20261106-stickers/design/art/masters/harbor-goat/harbor-goat.webp"
+    ],
+    "reference_sha256": {
+      "/workspace/art-20261106-stickers/design/art/masters/harbor-goat/harbor-goat.webp": "45c27632bebc3eb33a625d11164f3f298aede1a32ef9f806396c942af03e1630"
+    },
+    "fingerprint": "649f35a2e6771bb5",
+    "prompt_sha256": "c2a269c92b1d5d67b47fe41ddfca6595ea5c4cf78cb4230693fde08b1192be0d",
+    "transparent": true
+  },
+  "original_packet_sha256": "353db3a19a4e3cf871b909272df08262dedad9a403671a4a19c9a09c7dd379be"
+}

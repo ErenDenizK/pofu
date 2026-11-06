@@ -1,0 +1,54 @@
+{
+ "after": {
+  "C_mean": 16.472,
+  "C_p50": 12.614,
+  "C_p95": 40.551,
+  "L_mean": 86.287,
+  "L_p2": 62.027,
+  "L_p98": 96.712,
+  "detail": 5.341,
+  "edge": 0.202,
+  "tint_a": 4.888,
+  "tint_b": 8.923,
+  "warmth_b": 13.933
+ },
+ "before": {
+  "C_mean": 16.472,
+  "C_p50": 12.614,
+  "C_p95": 40.551,
+  "L_mean": 86.287,
+  "L_p2": 62.027,
+  "L_p98": 96.712,
+  "detail": 5.341,
+  "edge": 0.202,
+  "tint_a": 4.888,
+  "tint_b": 8.923,
+  "warmth_b": 13.933
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "char",
+ "matched_to": "char",
+ "outliers_after": [
+  "L_p2"
+ ],
+ "outliers_before": [
+  "L_p2"
+ ],
+ "ppu": 29.0,
+ "reference": false,
+ "score_after": 80.2,
+ "score_before": 80.2,
+ "shipped": false,
+ "source": "design/art/masters/sticker-goat-indignant/sticker-goat-indignant.webp",
+ "source_sha": "f8b79e05e961c1cf"
+}
