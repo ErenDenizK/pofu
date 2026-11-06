@@ -37,3 +37,19 @@ notes:
   (top: #4466BB (2.7%), #7788CC (2.4%)); t3 palette_drift: mean dE 7.0, p95 20.9,
   off-palette 19.5% (top: #5577BB (3.5%), #6688CC (1.7%)); t4 palette_drift: mean
   dE 6.9, p95 20.7, off-palette 20.9% (top: #5577CC (1.9%), #5577BB (1.7%)).'
+- 'batch-58-gate-round-door skipped after four takes: Skipped after exactly two initial
+  takes and the sole unchanged two-take retry. All four actual canonical reports fail
+  palette_drift and edit_stability; takes1,2,4 also fail chroma_ceiling. No layer
+  force authorization and no third round. Initial source/locked review also observes
+  widened/right-shifted rug and repainted kept props; actual hard QA alone excludes
+  every candidate. Original sources, ordinals, reports and seals retained; no master/Harmony
+  claimed. Independent sibling layers continue. Automated failures: t1 chroma_ceiling:
+  chroma p95 65 (R1 51), palette_drift: mean dE 13.2, p95 19.6, off-palette 70.4%
+  (top: #DD8833 (11.2%), #CC7722 (11.0%)), edit_stability: 12% of the parent level
+  unchanged; t2 chroma_ceiling: chroma p95 64 (R1 51), palette_drift: mean dE 12.1,
+  p95 19.7, off-palette 60.5% (top: #DD8833 (11.6%), #CC7722 (10.5%)), edit_stability:
+  13% of the parent level unchanged; t3 palette_drift: mean dE 11.6, p95 19.0, off-palette
+  59.7% (top: #DD8833 (15.8%), #CC7722 (10.1%)), edit_stability: 13% of the parent
+  level unchanged; t4 chroma_ceiling: chroma p95 64 (R1 51), palette_drift: mean dE
+  12.0, p95 18.8, off-palette 65.2% (top: #DD8833 (13.8%), #CC7722 (8.6%)), edit_stability:
+  13% of the parent level unchanged.'
