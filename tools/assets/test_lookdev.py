@@ -57,3 +57,35 @@ def test_flag_fires_on_mismatched_layer():
     assert not ok["flagged"]
     bad = ld.flag_layer({"L": 40.0, "C95": 80.0, "tint": (15.0, 5.0)}, ground, (0.0, 0.0))
     assert bad["flagged"] and len(bad["flags"]) == 3
+
+
+def _layer(role, L, C95, gL, gC):
+    return {"role": role, "L": L, "C95": C95, "ground_L": gL, "ground_C95": gC}
+
+
+def test_lint_flags_each_rule():
+    layers = {
+        "tea": _layer("decor", 50.0, 50.0, 62.0, 20.0),     # ground C 20 < 0.5 * 50
+        "lamp": _layer("decor", 66.0, 30.0, 62.0, 30.0),    # L gap 4
+        "pofu": _layer("character", 80.0, 40.0, 62.0, 30.0),  # focal gap 18
+    }
+    flags = ld.lint_hierarchy(layers, {"L": 90.0, "C95": 45.0})
+    assert any("ground C" in f for f in flags["tea"])
+    assert any("adjacent L" in f for f in flags["lamp"])
+    assert any("focal-ground" in f for f in flags["pofu"])
+    assert any("bg C" in f for f in flags["background"])
+
+
+def test_lint_quiet_when_the_hierarchy_holds():
+    layers = {
+        "tea": _layer("decor", 45.0, 40.0, 62.0, 28.0),
+        "pofu": _layer("character", 92.0, 45.0, 62.0, 28.0),
+    }
+    flags = ld.lint_hierarchy(layers, {"L": 85.0, "C95": 12.0})
+    assert not any(flags.values())
+
+
+def test_lint_adjacent_background_ground():
+    layers = {"tea": _layer("decor", 45.0, 40.0, 62.0, 28.0)}
+    flags = ld.lint_hierarchy(layers, {"L": 66.0, "C95": 10.0})
+    assert any("adjacent L" in f for f in flags["background"])
