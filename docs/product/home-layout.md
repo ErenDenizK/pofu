@@ -82,7 +82,7 @@ home progression §4.2; here only what the slot itself adds.
 | S3 | pond | (−65, 23) | IL4 | front left, flat, never hides anything; frogs on the lily pads |
 | S4 | workshop | (6, −15) | IL6 | back centre-left; its lit doorway stands left of Pofu's head, clear of it (experience v1, wave 2); IL6 paints a low knoll under it (the "back terrace") |
 | S5 | windmill | (−90, −25) | IL8 | back left, tallest, beside the garden (a sliver shows at Home); IL8 paints a knoll; storks perch on the cap in spring |
-| S6 | hive | (−32, −6) | IL9 + Arı done | small (±18 wide), in the middle band in front of the windmill's right foot; bees fly the garden-pond-tea loop (code) |
+| S6 | hive | (74, −6) | IL9 + Arı done | small (±18 wide), on the back lawn between the workshop and the tea stall (the workshop's painted ground fills the middle band; moved from (−32, −6) when the hive was baked); bees fly the garden-pond-tea loop (code) |
 | S7 | bagel cart | (338, 6) | IL3 | harbor, left end, first thing over the bridge |
 | S8 | pier | (470, 30) | IL5 | harbor front right, runs off the lip toward the viewer; the ferry moors at L3 |
 | S9 | lighthouse | (456, −8) | IL6 | harbor back right, the frame's right bookend; beam at L4 |

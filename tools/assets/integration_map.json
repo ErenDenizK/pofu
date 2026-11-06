@@ -495,6 +495,101 @@
       "target": "world",
       "name": "windmill-5-glow",
       "master": "design/art/stations/windmill-5-lit"
+    },
+    {
+      "target": "world",
+      "name": "goat-work",
+      "master": "design/art/masters/goat-work"
+    },
+    {
+      "target": "world",
+      "name": "door-mochi",
+      "master": "design/art/masters/door-mochi"
+    },
+    {
+      "target": "world",
+      "name": "door-findik",
+      "master": "design/art/masters/door-findik"
+    },
+    {
+      "target": "world",
+      "name": "harbor-bell",
+      "master": "design/art/masters/harbor-bell"
+    },
+    {
+      "target": "world",
+      "name": "hive-1",
+      "master": "design/art/stations/hive-1"
+    },
+    {
+      "target": "world",
+      "name": "hive-2",
+      "master": "design/art/stations/hive-2"
+    },
+    {
+      "target": "world",
+      "name": "hive-3",
+      "master": "design/art/stations/hive-3"
+    },
+    {
+      "target": "world",
+      "name": "dressing-grass-tuft",
+      "master": "design/art/masters/dressing-meadow"
+    },
+    {
+      "target": "world",
+      "name": "dressing-grass-tuft-2",
+      "master": "design/art/masters/dressing-meadow"
+    },
+    {
+      "target": "world",
+      "name": "dressing-grass-tuft-3",
+      "master": "design/art/masters/dressing-meadow"
+    },
+    {
+      "target": "world",
+      "name": "dressing-grass-tuft-4",
+      "master": "design/art/masters/dressing-meadow"
+    },
+    {
+      "target": "world",
+      "name": "dressing-wildflowers",
+      "master": "design/art/masters/dressing-meadow"
+    },
+    {
+      "target": "world",
+      "name": "dressing-wildflowers-2",
+      "master": "design/art/masters/dressing-meadow"
+    },
+    {
+      "target": "world",
+      "name": "dressing-wildflowers-3",
+      "master": "design/art/masters/dressing-meadow"
+    },
+    {
+      "target": "world",
+      "name": "dressing-wildflowers-4",
+      "master": "design/art/masters/dressing-meadow"
+    },
+    {
+      "target": "world",
+      "name": "dressing-pebbles",
+      "master": "design/art/masters/dressing-meadow"
+    },
+    {
+      "target": "world",
+      "name": "dressing-pebbles-2",
+      "master": "design/art/masters/dressing-meadow"
+    },
+    {
+      "target": "world",
+      "name": "dressing-pebbles-3",
+      "master": "design/art/masters/dressing-meadow"
+    },
+    {
+      "target": "world",
+      "name": "dressing-mushroom-ring",
+      "master": "design/art/masters/dressing-meadow"
     }
   ]
 }

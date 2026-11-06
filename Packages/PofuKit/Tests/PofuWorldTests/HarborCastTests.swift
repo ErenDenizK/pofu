@@ -25,11 +25,27 @@ struct HarborCastTests {
         }
     }
 
+    @Test func theGoatCoilsRopeOnceThePierGoesUp() {
+        #expect(GoatPose.pose(pierLevel: 0) == .rest)
+        #expect(GoatPose.pose(pierLevel: 1) == .work)
+        #expect(GoatPose.rest.art == IslandLayout.cast(on: .harbor).first { $0.id == "goat" }?.art)
+        for pose in GoatPose.allCases {
+            #expect(WorldArt.sprite(pose.art) != nil, "\(pose)")
+        }
+    }
+
+    @Test func theBellStandsOnTheLawnByTheCart() throws {
+        let bell = try #require(IslandLayout.harborProps.first { $0.piece.id == "bell" })
+        #expect(bell.station == .bagelCart)
+        let plate = try #require(WorldArt.sprite("harbor-island-s")?.sharp)
+        #expect(plate.minX < bell.piece.offset.x && bell.piece.offset.y < plate.midY)
+    }
+
     @Test func theHarborShowsOnlyWhatIsBuilt() {
         #expect(IslandLayout.scenery(on: .harbor, levels: [:]).isEmpty)
         #expect(IslandLayout.scenery(on: .home, levels: [.bagelCart: 3]).isEmpty)
         let cart = IslandLayout.scenery(on: .harbor, levels: [.bagelCart: 3])
-        #expect(cart.map(\.id) == ["crates", "station-bagelCart"] || cart.map(\.id) == ["station-bagelCart", "crates"])
+        #expect(Set(cart.map(\.id)) == ["crates", "bell", "station-bagelCart"])
         #expect(cart.first { $0.id == "station-bagelCart" }?.art == "bagel-cart-3")
         // Past the last level with art the highest one stands in (the pier and the lighthouse have one).
         let all = IslandLayout.scenery(on: .harbor, levels: [.bagelCart: 5, .pier: 4, .lighthouse: 2])

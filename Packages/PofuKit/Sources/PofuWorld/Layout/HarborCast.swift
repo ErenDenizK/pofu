@@ -42,6 +42,21 @@ public enum SimitPose: String, CaseIterable, Sendable {
     }
 }
 
+/// The goat's poses (art on one canvas, so they swap in place).
+public enum GoatPose: String, CaseIterable, Sendable {
+    /// Standing on the dock.
+    case rest = "harbor-goat"
+    /// Holding a coil of coral rope: the pier is going up.
+    case work = "goat-work"
+
+    public var art: String { rawValue }
+
+    /// The goat coils rope from the first pier level on.
+    public static func pose(pierLevel: Int) -> GoatPose {
+        pierLevel >= 1 ? .work : .rest
+    }
+}
+
 extension IslandLayout {
     /// Standing on the harbor's lawn: the goat toward the left, Simit in front of the cart's slot.
     public static let islandCast: [IslandCastMember] = [
@@ -72,11 +87,13 @@ extension IslandLayout {
     ]
 
     /// Dressing that comes with a harbor station once it is built (each baked at a fraction of a
-    /// station's size, `HARBOR_PROPS` in `preblur.py`): the crates by the cart, the bench by the
+    /// station's size, `HARBOR_PROPS` in `preblur.py`): the crates and the bell on a post (home layout L4,
+    /// at the bridge's harbor end) by the cart, the bench by the
     /// lighthouse, the lamp and the horn on the plate's pier, the little ferry alongside the new planks
     /// (it is the pier's level 3 sprite that will show it moored).
     public static let harborProps: [(station: StationID, piece: IslandPiece)] = [
         (.bagelCart, IslandPiece(id: "crates", art: "harbor-crates-1", offset: WorldPoint(x: -22, y: -32))),
+        (.bagelCart, IslandPiece(id: "bell", art: "harbor-bell", offset: WorldPoint(x: -82, y: -5))),
         (.lighthouse, IslandPiece(id: "bench", art: "decor-bench", offset: WorldPoint(x: -66, y: -30))),
         (.pier, IslandPiece(id: "horn", art: "harbor-horn-1", offset: WorldPoint(x: 62, y: -4))),
         (.pier, IslandPiece(id: "lamp", art: "harbor-lamp-1", offset: WorldPoint(x: 98, y: -12))),

@@ -6,8 +6,8 @@
   "L_mean": 74.622,
   "L_p2": 54.617,
   "L_p98": 89.477,
-  "detail": 2.333,
-  "edge": 3.903,
+  "detail": 3.463,
+  "edge": 2.523,
   "warmth_b": 35.831
  },
  "before": {
@@ -17,8 +17,8 @@
   "L_mean": 74.625,
   "L_p2": 54.617,
   "L_p98": 89.497,
-  "detail": 2.312,
-  "edge": 3.903,
+  "detail": 3.439,
+  "edge": 2.523,
   "warmth_b": 29.039
  },
  "chain": null,
@@ -32,20 +32,22 @@
   "white": 0.0
  },
  "guarded": false,
- "kind": "prop",
+ "kind": "station",
  "matched_to": "world",
  "outliers_after": [
+  "detail",
   "edge"
  ],
  "outliers_before": [
   "C_p95",
+  "detail",
   "edge"
  ],
- "ppu": 8.533,
+ "ppu": 13.2,
  "reference": false,
- "score_after": 80.3,
- "score_before": 72.3,
- "shipped": false,
+ "score_after": 76.5,
+ "score_before": 68.6,
+ "shipped": true,
  "source": "design/art/masters/door-mochi/door-mochi.png",
  "source_sha": "c6831d029c5f5580"
 }

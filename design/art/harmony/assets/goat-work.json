@@ -1,16 +1,16 @@
 {
  "after": {
-  "C_mean": 19.374,
-  "C_p50": 14.964,
-  "C_p95": 43.15,
-  "L_mean": 83.697,
-  "L_p2": 21.589,
+  "C_mean": 19.111,
+  "C_p50": 14.928,
+  "C_p95": 42.522,
+  "L_mean": 86.388,
+  "L_p2": 37.589,
   "L_p98": 96.673,
-  "detail": 7.044,
-  "edge": 0.299,
-  "tint_a": 4.316,
-  "tint_b": 8.725,
-  "warmth_b": 15.982
+  "detail": 5.656,
+  "edge": 0.3,
+  "tint_a": 4.325,
+  "tint_b": 8.727,
+  "warmth_b": 15.868
  },
  "before": {
   "C_mean": 19.374,
@@ -19,15 +19,15 @@
   "L_mean": 83.697,
   "L_p2": 21.589,
   "L_p98": 96.673,
-  "detail": 7.044,
-  "edge": 0.299,
+  "detail": 7.08,
+  "edge": 0.3,
   "tint_a": 4.316,
   "tint_b": 8.725,
   "warmth_b": 15.982
  },
  "chain": null,
  "correction": {
-  "black": 0.0,
+  "black": 16.0,
   "ceiling": 0.0,
   "chroma": 1.0,
   "materials": {},
@@ -36,19 +36,23 @@
   "white": 0.0
  },
  "guarded": false,
- "kind": "char",
- "matched_to": "char",
+ "kind": "station",
+ "matched_to": "world",
  "outliers_after": [
-  "detail"
+  "L_p2",
+  "detail",
+  "edge"
  ],
  "outliers_before": [
-  "detail"
+  "L_p2",
+  "detail",
+  "edge"
  ],
- "ppu": 29.0,
+ "ppu": 28.9412,
  "reference": false,
- "score_after": 94.8,
- "score_before": 94.8,
- "shipped": false,
+ "score_after": 59.6,
+ "score_before": 47.6,
+ "shipped": true,
  "source": "design/art/masters/goat-work/goat-work.webp",
  "source_sha": "afc219c54c1a1bbf"
 }

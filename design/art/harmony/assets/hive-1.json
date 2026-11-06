@@ -6,8 +6,8 @@
   "L_mean": 75.978,
   "L_p2": 46.129,
   "L_p98": 92.039,
-  "detail": 2.724,
-  "edge": 0.412,
+  "detail": 3.175,
+  "edge": 0.35,
   "warmth_b": 33.846
  },
  "before": {
@@ -17,8 +17,8 @@
   "L_mean": 72.714,
   "L_p2": 46.129,
   "L_p98": 87.703,
-  "detail": 2.455,
-  "edge": 0.412,
+  "detail": 2.853,
+  "edge": 0.35,
   "warmth_b": 34.09
  },
  "chain": null,
@@ -40,13 +40,14 @@
  ],
  "outliers_before": [
   "L_p98",
+  "detail",
   "edge"
  ],
- "ppu": 8.533,
+ "ppu": 10.0392,
  "reference": false,
- "score_after": 84.6,
- "score_before": 75.8,
- "shipped": false,
+ "score_after": 82.2,
+ "score_before": 73.7,
+ "shipped": true,
  "source": "design/art/stations/hive-1/hive-1.png",
  "source_sha": "6df3e28ecd0f978b"
 }

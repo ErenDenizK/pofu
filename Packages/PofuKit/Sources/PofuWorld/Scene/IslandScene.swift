@@ -737,6 +737,8 @@ private struct WorldCanvas: View {
             case dressing(DressingPiece, elapsed: Double?)
             case critter(Critter)
             case visitor(VisitorStage.Placed)
+            /// A door in the earth face or the hive (`HomeFixtures`).
+            case fixture(HomeFixtures.Placed)
         }
 
         var id: String
@@ -770,6 +772,11 @@ private struct WorldCanvas: View {
                 let shown = IslandDressing.pieces(atLevel: life.islandLevel)
                 for piece in shown {
                     objects.append(Object(id: "dressing-\(piece.id)", kind: .dressing(piece, elapsed: nil), anchor: piece.point, depth: IslandLayout.depth(ofY: piece.point.y)))
+                }
+                let home = world.stations.filter { $0.island == .home }
+                let atTop = !home.isEmpty && home.allSatisfy { $0.level >= $0.maxLevel }
+                for fixture in HomeFixtures.placed(islandLevel: life.islandLevel, homeStationsAtTop: atTop) {
+                    objects.append(Object(id: "fixture-\(fixture.id)", kind: .fixture(fixture), anchor: fixture.point, depth: IslandLayout.depth(ofY: fixture.point.y)))
                 }
                 for entry in life.leaving where !shown.contains(where: { $0.id == entry.piece.id }) {
                     objects.append(Object(id: "dressing-\(entry.piece.id)", kind: .dressing(entry.piece, elapsed: entry.elapsed), anchor: entry.piece.point, depth: IslandLayout.depth(ofY: entry.piece.point.y)))
@@ -851,6 +858,8 @@ private struct WorldCanvas: View {
                 sway: model.sway(of: IslandLife.dressingID(piece), at: clock),
                 leave: elapsed.flatMap { DressingReveal.frame(elapsed: $0) }
             )
+        case .fixture(let fixture):
+            FixtureView(art: fixture.art, point: point, level: level)
         case .critter(let critter):
             CritterView(
                 critter: critter,
@@ -966,8 +975,13 @@ private struct WorldCanvas: View {
         return (IslandLayout.scenery(on: island, levels: levels) + cast).sorted { $0.offset.y < $1.offset.y }
     }
 
-    /// A cast member's sprite: Simit's pose follows the cart, the hour and Pofu's calm ring (`SimitPose`).
+    /// A cast member's sprite: Simit's pose follows the cart, the hour and Pofu's calm ring (`SimitPose`);
+    /// the goat coils rope once the pier is going up (`GoatPose`).
     private func castArt(_ member: IslandCastMember) -> String {
+        if member.id == "goat" {
+            let pier = world.stations.first { $0.id == .pier }?.level ?? 0
+            return GoatPose.pose(pierLevel: pier).art
+        }
         guard member.id == "simit" else { return member.art }
         let level = world.stations.first { $0.id == .bagelCart }?.level ?? 0
         let isStartled = build?.moment.station == .bagelCart && (build?.moment.residentPose(at: build?.time ?? 0) == .surprised)
