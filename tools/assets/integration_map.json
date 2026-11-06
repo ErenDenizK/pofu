@@ -852,6 +852,101 @@
       "target": "world",
       "name": "critter-bird-4",
       "master": "design/art/masters/critter-bird"
+    },
+    {
+      "target": "world",
+      "name": "mochi-happy",
+      "master": "design/art/masters/mochi-happy"
+    },
+    {
+      "target": "world",
+      "name": "mochi-sleepy",
+      "master": "design/art/masters/mochi-sleepy"
+    },
+    {
+      "target": "world",
+      "name": "mochi-proud",
+      "master": "design/art/masters/mochi-proud"
+    },
+    {
+      "target": "world",
+      "name": "findik-happy",
+      "master": "design/art/masters/findik-happy"
+    },
+    {
+      "target": "world",
+      "name": "findik-sleepy",
+      "master": "design/art/masters/findik-sleepy"
+    },
+    {
+      "target": "world",
+      "name": "findik-proud",
+      "master": "design/art/masters/findik-proud"
+    },
+    {
+      "target": "world",
+      "name": "findik-surprised",
+      "master": "design/art/masters/findik-surprised"
+    },
+    {
+      "target": "world",
+      "name": "goat-happy",
+      "master": "design/art/masters/goat-happy"
+    },
+    {
+      "target": "world",
+      "name": "goat-surprised",
+      "master": "design/art/masters/goat-surprised"
+    },
+    {
+      "target": "world",
+      "name": "goat-sleepy",
+      "master": "design/art/masters/goat-sleepy"
+    },
+    {
+      "target": "world",
+      "name": "goat-proud",
+      "master": "design/art/masters/goat-proud"
+    },
+    {
+      "target": "world",
+      "name": "simit-proud",
+      "master": "design/art/masters/simit-proud"
+    },
+    {
+      "target": "world",
+      "name": "bagel-cart-3-blue",
+      "master": "design/art/stations/bagel-cart-3-blue"
+    },
+    {
+      "target": "world",
+      "name": "lighthouse-3-blue",
+      "master": "design/art/stations/lighthouse-3-blue"
+    },
+    {
+      "target": "world",
+      "name": "lighthouse-4-blue",
+      "master": "design/art/stations/lighthouse-4-blue"
+    },
+    {
+      "target": "world",
+      "name": "path-lamp",
+      "master": "design/art/masters/path-lamp"
+    },
+    {
+      "target": "world",
+      "name": "lighthouse-1-glow",
+      "master": "design/art/stations/lighthouse-1-lit"
+    },
+    {
+      "target": "world",
+      "name": "path-lamp-glow",
+      "master": "design/art/masters/path-lamp-lit"
+    },
+    {
+      "target": "world",
+      "name": "door-mochi-glow",
+      "master": "design/art/masters/door-mochi-lit"
     }
   ]
 }

@@ -6,8 +6,8 @@
   "L_mean": 81.716,
   "L_p2": 53.601,
   "L_p98": 96.002,
-  "detail": 7.843,
-  "edge": 0.205,
+  "detail": 8.135,
+  "edge": 0.193,
   "tint_a": 3.955,
   "tint_b": 8.49,
   "warmth_b": 23.746
@@ -19,8 +19,8 @@
   "L_mean": 81.716,
   "L_p2": 53.601,
   "L_p98": 96.002,
-  "detail": 7.843,
-  "edge": 0.205,
+  "detail": 8.135,
+  "edge": 0.193,
   "tint_a": 3.955,
   "tint_b": 8.49,
   "warmth_b": 23.746
@@ -36,23 +36,21 @@
   "white": 0.0
  },
  "guarded": false,
- "kind": "char",
- "matched_to": "char",
+ "kind": "station",
+ "matched_to": "world",
  "outliers_after": [
-  "C_p95",
-  "L_p2",
-  "detail"
+  "detail",
+  "edge"
  ],
  "outliers_before": [
-  "C_p95",
-  "L_p2",
-  "detail"
+  "detail",
+  "edge"
  ],
- "ppu": 29.0,
+ "ppu": 30.8077,
  "reference": false,
- "score_after": 71.2,
- "score_before": 71.2,
- "shipped": false,
+ "score_after": 71.3,
+ "score_before": 71.3,
+ "shipped": true,
  "source": "design/art/masters/simit-proud/simit-proud.webp",
  "source_sha": "50a6a0515a61fc45"
 }

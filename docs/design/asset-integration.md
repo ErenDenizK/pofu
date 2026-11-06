@@ -55,6 +55,15 @@ Batch 35 (`docs/design/experience-v1.md` sections 2, 3 and 6): each piece replac
 
 Vividness: the garden's and the harbor's dressing are `prop`s (the meadow's stay `plant`s); the critters are left as painted, with harmony's correction only.
 
+## Lit masters, reactions and style options (feat/integrate-lit-and-reactions)
+
+| Art | Where it shows |
+|---|---|
+| `lighthouse-1-lit`, `path-lamp-lit`, `door-mochi-lit` | Masked lit edits (everything outside the edit's `emit_region` is the day master, pixel for pixel), so the night glows `lighthouse-1-glow`, `path-lamp-glow`, `door-mochi-glow` are the difference against the day master inside the padded region (`_emissive_diff` in `preblur.py`, no colour key). One `LitSources` row each: `lamp-lighthouse` (island `.harbor`: its overlay is drawn on the harbor's slot with the harbor's fade, `HD2DLayer.harborFade`; it throws no light on the home lawn), `lamp-1` to `lamp-3` and `window-mochi` (overlay on the door's centre). |
+| `path-lamp` | The day master of the lamp, which had no consumer: `HomeFixtures.lampFeet`, three lamps from island level 6 (home layout L1 to L3), 0.8 of the decor guide (`LAMP_SIZE`). |
+| mochi-happy/-sleepy/-proud, findik-happy/-sleepy/-proud/-surprised, goat-happy/-surprised/-sleepy/-proud, simit-proud | Poses that swap in place on the base's canvas and feet. `ResidentEvent` (level-up hop, visitor arrived, ceremony done, first tap of the day) to `ResidentPose` and `ResidentReactions` (each lapses by itself); bedtime is `.sleepy`; `SimitPose` and `GoatPose` take the same events. The older eye poses are the fallback of happy and sleepy. |
+| `bagel-cart-3-blue`, `lighthouse-3-blue`, `lighthouse-4-blue` | Baked under these names (the second L3 style option, home progression 4.2); no consumer yet. Follow-up: a saved per-station style (old saves default to the first option), a two-swatch picker in the station sheet at L3, and the remaining batch 40 options (tea stall, workshop, windmill, the L5s) once promoted; a picker that offers a style with no art at a level would show a hole. |
+
 ## Shadow silhouettes
 
 `python3 -I tools/assets/shadows.py run` writes `<imageset>-shadow.imageset` for every casting sprite

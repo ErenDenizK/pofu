@@ -6,8 +6,8 @@
   "L_mean": 78.387,
   "L_p2": 41.999,
   "L_p98": 95.761,
-  "detail": 14.511,
-  "edge": 0.152,
+  "detail": 14.198,
+  "edge": 0.16,
   "tint_a": 4.078,
   "tint_b": 8.628,
   "warmth_b": 20.911
@@ -19,8 +19,8 @@
   "L_mean": 78.387,
   "L_p2": 41.999,
   "L_p98": 95.761,
-  "detail": 14.511,
-  "edge": 0.152,
+  "detail": 14.198,
+  "edge": 0.16,
   "tint_a": 4.078,
   "tint_b": 8.628,
   "warmth_b": 20.911
@@ -36,21 +36,21 @@
   "white": 0.0
  },
  "guarded": false,
- "kind": "char",
- "matched_to": "char",
+ "kind": "station",
+ "matched_to": "world",
  "outliers_after": [
-  "L_p2",
-  "detail"
+  "detail",
+  "edge"
  ],
  "outliers_before": [
-  "L_p2",
-  "detail"
+  "detail",
+  "edge"
  ],
- "ppu": 29.0,
+ "ppu": 27.4643,
  "reference": false,
- "score_after": 74.6,
- "score_before": 74.6,
- "shipped": false,
+ "score_after": 67.7,
+ "score_before": 67.7,
+ "shipped": true,
  "source": "design/art/masters/findik-happy/findik-happy.webp",
  "source_sha": "c9ba3eab8189c85b"
 }

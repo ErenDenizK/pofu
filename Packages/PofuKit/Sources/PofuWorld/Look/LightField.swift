@@ -120,7 +120,7 @@ public struct LightField: Hashable, Sendable {
 
         // Every lit thing of the table (ember, windows, lamps, the pond);
         // a new lit edit registers by adding a row to `LitSources`.
-        for row in LitSources.rows where row.isActive(world: world, guestNight: guestNight) {
+        for row in LitSources.rows where row.island == .home && row.isActive(world: world, guestNight: guestNight) {
             add(row.source(strength: row.strength(in: light)))
         }
 

@@ -1,16 +1,16 @@
 {
  "after": {
-  "C_mean": 16.723,
-  "C_p50": 12.616,
-  "C_p95": 38.792,
-  "L_mean": 87.11,
-  "L_p2": 64.843,
-  "L_p98": 96.386,
-  "detail": 5.424,
-  "edge": 0.255,
-  "tint_a": 4.4,
-  "tint_b": 8.543,
-  "warmth_b": 14.225
+  "C_mean": 20.959,
+  "C_p50": 15.92,
+  "C_p95": 48.91,
+  "L_mean": 87.06,
+  "L_p2": 64.836,
+  "L_p98": 96.374,
+  "detail": 5.479,
+  "edge": 0.256,
+  "tint_a": 4.736,
+  "tint_b": 9.593,
+  "warmth_b": 17.897
  },
  "before": {
   "C_mean": 16.723,
@@ -20,7 +20,7 @@
   "L_p2": 64.843,
   "L_p98": 96.386,
   "detail": 5.424,
-  "edge": 0.255,
+  "edge": 0.256,
   "tint_a": 4.4,
   "tint_b": 8.543,
   "warmth_b": 14.225
@@ -29,26 +29,29 @@
  "correction": {
   "black": 0.0,
   "ceiling": 0.0,
-  "chroma": 1.0,
+  "chroma": 1.264,
   "materials": {},
   "tint_a": 0.0,
   "tint_b": 0.0,
   "white": 0.0
  },
  "guarded": false,
- "kind": "char",
- "matched_to": "char",
+ "kind": "station",
+ "matched_to": "world",
  "outliers_after": [
-  "L_p2"
+  "detail",
+  "edge"
  ],
  "outliers_before": [
-  "L_p2"
+  "C_p95",
+  "detail",
+  "edge"
  ],
- "ppu": 29.0,
+ "ppu": 28.9412,
  "reference": false,
- "score_after": 79.8,
- "score_before": 79.8,
- "shipped": false,
+ "score_after": 68.8,
+ "score_before": 59.5,
+ "shipped": true,
  "source": "design/art/masters/goat-sleepy/goat-sleepy.webp",
  "source_sha": "5dfb4be9b0d093b5"
 }

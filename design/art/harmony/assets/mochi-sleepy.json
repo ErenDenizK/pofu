@@ -1,16 +1,16 @@
 {
  "after": {
-  "C_mean": 11.994,
-  "C_p50": 8.969,
-  "C_p95": 30.844,
-  "L_mean": 89.893,
-  "L_p2": 65.247,
-  "L_p98": 97.804,
-  "detail": 5.586,
-  "edge": 0.199,
-  "tint_a": 3.846,
-  "tint_b": 6.785,
-  "warmth_b": 9.593
+  "C_mean": 17.147,
+  "C_p50": 13.006,
+  "C_p95": 43.308,
+  "L_mean": 86.234,
+  "L_p2": 65.111,
+  "L_p98": 93.064,
+  "detail": 5.062,
+  "edge": 0.192,
+  "tint_a": 4.385,
+  "tint_b": 8.411,
+  "warmth_b": 13.802
  },
  "before": {
   "C_mean": 11.994,
@@ -19,8 +19,8 @@
   "L_mean": 89.893,
   "L_p2": 65.247,
   "L_p98": 97.804,
-  "detail": 5.586,
-  "edge": 0.199,
+  "detail": 5.672,
+  "edge": 0.192,
   "tint_a": 3.846,
   "tint_b": 6.785,
   "warmth_b": 9.593
@@ -29,28 +29,30 @@
  "correction": {
   "black": 0.0,
   "ceiling": 0.0,
-  "chroma": 1.0,
+  "chroma": 1.45,
   "materials": {},
   "tint_a": 0.0,
   "tint_b": 0.0,
-  "white": 0.0
+  "white": -4.74
  },
  "guarded": false,
- "kind": "char",
- "matched_to": "char",
+ "kind": "station",
+ "matched_to": "world",
  "outliers_after": [
-  "C_p95",
-  "L_p2"
+  "detail",
+  "edge"
  ],
  "outliers_before": [
   "C_p95",
-  "L_p2"
+  "L_p98",
+  "detail",
+  "edge"
  ],
- "ppu": 29.0,
+ "ppu": 30.0333,
  "reference": false,
- "score_after": 70.6,
- "score_before": 70.6,
- "shipped": false,
+ "score_after": 69.7,
+ "score_before": 44.5,
+ "shipped": true,
  "source": "design/art/masters/mochi-sleepy/mochi-sleepy.webp",
  "source_sha": "5e80904b2a0bcd7e"
 }

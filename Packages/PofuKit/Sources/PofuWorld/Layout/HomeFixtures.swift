@@ -30,6 +30,12 @@ public enum HomeFixtures {
         doors.filter { level >= $0.opensAtLevel }
     }
 
+    /// The path lamps (home layout L1 to L3): the one painted `path-lamp` stands on each of these feet from
+    /// the island level the lamps open at. `LitSources` lights their paper glass at night.
+    public static let lampFeet: [WorldPoint] = [WorldPoint(x: -120, y: 0), WorldPoint(x: 98, y: 2), WorldPoint(x: 230, y: 6)]
+    /// The island level the lamps open at.
+    public static let lampsOpenAtLevel = 6
+
     /// The hive's slot (S6): the footprint centre, on the back lawn between
     /// the workshop and the tea stall. The layout planned it in front of
     /// the windmill's right foot, (-32, -6), but the workshop's painted
@@ -66,9 +72,14 @@ public enum HomeFixtures {
         public var point: WorldPoint
     }
 
-    /// Every fixture shown at an island level, doors first.
+    /// Every fixture shown at an island level, doors first, then the path lamps.
     public static func placed(islandLevel: Int, homeStationsAtTop: Bool) -> [Placed] {
         var result = doors(atLevel: islandLevel).map { Placed(id: $0.id, art: $0.art, point: $0.centre) }
+        if islandLevel >= lampsOpenAtLevel {
+            for (i, feet) in lampFeet.enumerated() {
+                result.append(Placed(id: "lamp-\(i + 1)", art: "path-lamp", point: feet))
+            }
+        }
         if let art = hiveArt(level: hiveLevel(islandLevel: islandLevel, homeStationsAtTop: homeStationsAtTop)) {
             result.append(Placed(id: "hive", art: art, point: hiveSlot))
         }

@@ -163,11 +163,16 @@ struct LightFieldTests {
     }
 
     @Test func theFourLitEditsAreRows() {
-        let overlays = Dictionary(uniqueKeysWithValues: LitSources.rows.compactMap { row in row.overlay.map { ($0.art, row.id) } })
+        let overlays = Dictionary(LitSources.rows.compactMap { row in row.overlay.map { ($0.art, row.id) } }, uniquingKeysWith: { first, _ in first })
         #expect(overlays["tea-stall-1-glow"] == "ember")
         #expect(overlays["workshop-1-glow"] == "window-workshop")
         #expect(overlays["pond-5-glow"] == "pond")
         #expect(overlays["windmill-5-glow"] == "window-windmill")
+        // The masked lit edits of batch 36.
+        #expect(overlays["lighthouse-1-glow"] == "lamp-lighthouse")
+        #expect(overlays["door-mochi-glow"] == "window-mochi")
+        #expect(overlays["path-lamp-glow"] != nil)
+        #expect(LitSources.rows.filter { $0.overlay?.art == "path-lamp-glow" }.count == HomeFixtures.lampFeet.count)
         // Every overlay a row names exists in the catalog.
         for row in LitSources.rows { if let overlay = row.overlay { #expect(WorldArt.sprite(overlay.art) != nil) } }
     }
@@ -192,6 +197,23 @@ struct LightFieldTests {
         #expect(anchors.allSatisfy { WorldArt.sprite($0.art) != nil })
         #expect(LitSources.overlay(.teaStall, level: 1)?.art == "tea-stall-1-glow")
         #expect(LitSources.overlay(.teaStall, level: 3) == nil)
+    }
+
+    @Test func theLitEditsStandWhereTheirDayArtDoes() {
+        // Mochi's door glow is centred on the door; each lamp's on its foot.
+        let w = world(level: 8)
+        let door = LitSources.rows.first { $0.id == "window-mochi" }!
+        #expect(door.overlayAnchor(world: w, guestNight: false)?.anchor == HomeFixtures.doors.first { $0.id == "door-mochi" }?.centre)
+        let lamps = LitSources.rows.filter { $0.id.hasPrefix("lamp-") && $0.island == .home }
+        #expect(lamps.map { $0.overlayAnchor(world: w, guestNight: false)?.anchor } == HomeFixtures.lampFeet.map { Optional($0) })
+        // The lighthouse stands on the harbor: its overlay sits on the harbor's slot, and it lights nothing at home.
+        var harbor = w
+        harbor.stations = harbor.stations.map { var s = $0; if s.id == .lighthouse { s.level = 1 }; return s }
+        let lighthouse = LitSources.rows.first { $0.id == "lamp-lighthouse" }!
+        let isle = IslandLayout.isles.first { $0.id == .harbor }!.center
+        let slot = IslandLayout.harborStationSlots[.lighthouse]!
+        #expect(lighthouse.overlayAnchor(world: harbor, guestNight: false)?.anchor == WorldPoint(x: isle.x + slot.x, y: isle.y + slot.y))
+        #expect(!LightField.make(world: harbor, light: WorldLight.at(hour: 22, wellbeing: 78, calm: 1.5)).sources.contains { $0.id == "lamp-lighthouse" })
     }
 
     @Test func theGroundPoolArtIsInTheCatalog() {

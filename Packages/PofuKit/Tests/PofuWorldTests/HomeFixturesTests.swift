@@ -35,11 +35,13 @@ struct HomeFixturesTests {
         #expect(HomeFixtures.hiveLevel(islandLevel: 10, homeStationsAtTop: true) == 3)
         #expect(HomeFixtures.hiveArt(level: 0) == nil)
         #expect(HomeFixtures.hiveArt(level: 2) == "hive-2")
-        #expect(HomeFixtures.placed(islandLevel: 8, homeStationsAtTop: false).map(\.id) == ["door-mochi", "door-findik"])
+        #expect(HomeFixtures.placed(islandLevel: 5, homeStationsAtTop: false).map(\.id) == ["door-mochi"])
+        #expect(HomeFixtures.placed(islandLevel: 8, homeStationsAtTop: false).map(\.id) == ["door-mochi", "door-findik", "lamp-1", "lamp-2", "lamp-3"])
         #expect(HomeFixtures.placed(islandLevel: 10, homeStationsAtTop: true).last?.art == "hive-3")
     }
 
     @Test func everyFixtureWasBaked() {
+        #expect(WorldArt.sprite("path-lamp") != nil)
         for name in HomeFixtures.doors.map(\.art) + (1...HomeFixtures.hiveLevels).compactMap({ HomeFixtures.hiveArt(level: $0) }) {
             #expect(WorldArt.sprite(name) != nil, "missing \(name)")
         }

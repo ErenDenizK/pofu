@@ -17,6 +17,8 @@ final class IntegrationScreenshotTests: XCTestCase {
         var hour: Double
         var bedtime = false
         var focus: StationID?
+        /// A reaction showing on the cast while the shot is taken (`ResidentEvent`).
+        var reaction: (event: ResidentEvent, ids: [String])?
     }
 
     private let shots: [Shot] = [
@@ -27,6 +29,15 @@ final class IntegrationScreenshotTests: XCTestCase {
         Shot(id: "integration-map-night", framing: .map, hour: 22, bedtime: true),
         Shot(id: "integration-windmill-5", framing: .island, hour: 12, focus: .windmill),
         Shot(id: "integration-pond-5-night", framing: .island, hour: 22, bedtime: true, focus: .pond),
+        // Lit edits (batch 36): Mochi's door window and the path lamps on the home island, the harbor's
+        // lighthouse lamp room on the map, awake at dusk.
+        Shot(id: "integration-lit-home-dusk", framing: .home, hour: 21),
+        Shot(id: "integration-lit-harbor-dusk", framing: .map, hour: 21),
+        // Reactions (batch 41): proud after the ceremony, beaming for a visitor.
+        Shot(id: "integration-reaction-proud-tea-stall", framing: .island, hour: 12, focus: .teaStall,
+             reaction: (.ceremonyDone, ["mochi"])),
+        Shot(id: "integration-reaction-happy-workshop", framing: .island, hour: 12, focus: .workshop,
+             reaction: (.visitorArrived, ["findik"])),
     ]
 
     @MainActor
@@ -42,6 +53,9 @@ final class IntegrationScreenshotTests: XCTestCase {
             let model = IslandSceneModel(framing: shot.framing)
             if let station = shot.focus {
                 model.focusStation(station, animated: false)
+            }
+            if let reaction = shot.reaction {
+                model.react(reaction.event, for: reaction.ids)
             }
             let view = IslandScene(world: IslandSamples.fullArt(isBedtime: shot.bedtime), model: model) {
                 EmptyView()

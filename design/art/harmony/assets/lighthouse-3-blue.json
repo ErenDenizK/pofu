@@ -6,8 +6,8 @@
   "L_mean": 79.408,
   "L_p2": 55.167,
   "L_p98": 92.897,
-  "detail": 2.318,
-  "edge": 0.416,
+  "detail": 3.168,
+  "edge": 0.291,
   "tint_a": -0.267,
   "tint_b": 1.31,
   "warmth_b": 12.045
@@ -19,8 +19,8 @@
   "L_mean": 79.408,
   "L_p2": 55.167,
   "L_p98": 92.897,
-  "detail": 2.355,
-  "edge": 0.416,
+  "detail": 3.223,
+  "edge": 0.291,
   "tint_a": 2.419,
   "tint_b": 6.408,
   "warmth_b": 14.495
@@ -39,17 +39,19 @@
  "kind": "station",
  "matched_to": "world",
  "outliers_after": [
+  "detail",
   "edge"
  ],
  "outliers_before": [
   "C_p95",
+  "detail",
   "edge"
  ],
- "ppu": 8.533,
+ "ppu": 12.1905,
  "reference": false,
- "score_after": 89.8,
- "score_before": 80.7,
- "shipped": false,
+ "score_after": 85.4,
+ "score_before": 76.2,
+ "shipped": true,
  "source": "design/art/stations/lighthouse-3-blue/lighthouse-3-blue.png",
  "source_sha": "b7eacfad2012f9b8"
 }

@@ -6,8 +6,8 @@
   "L_mean": 73.216,
   "L_p2": 43.368,
   "L_p98": 92.345,
-  "detail": 2.602,
-  "edge": 0.43,
+  "detail": 3.65,
+  "edge": 0.301,
   "tint_a": -2.455,
   "tint_b": -0.648,
   "warmth_b": 22.803
@@ -19,8 +19,8 @@
   "L_mean": 73.216,
   "L_p2": 43.368,
   "L_p98": 92.345,
-  "detail": 2.602,
-  "edge": 0.43,
+  "detail": 3.65,
+  "edge": 0.301,
   "tint_a": -2.455,
   "tint_b": -0.648,
   "warmth_b": 22.803
@@ -39,16 +39,18 @@
  "kind": "station",
  "matched_to": "world",
  "outliers_after": [
+  "detail",
   "edge"
  ],
  "outliers_before": [
+  "detail",
   "edge"
  ],
- "ppu": 8.533,
+ "ppu": 12.1905,
  "reference": false,
- "score_after": 84.3,
- "score_before": 84.3,
- "shipped": false,
+ "score_after": 79.0,
+ "score_before": 79.0,
+ "shipped": true,
  "source": "design/art/stations/bagel-cart-3-blue/bagel-cart-3-blue.png",
  "source_sha": "f412117bc30d363c"
 }

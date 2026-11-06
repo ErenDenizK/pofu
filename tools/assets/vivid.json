@@ -14,7 +14,7 @@
   },
   "world": {
     "plant": ["garden-*", "dressing-grass-*", "dressing-wildflowers*", "dressing-pebbles*", "dressing-mushroom-*"],
-    "prop": ["decor-*", "dressing-*", "harbor-ferry-*", "harbor-horn-*", "harbor-lamp-*", "harbor-crates-*", "harbor-bell", "door-*"],
+    "prop": ["decor-*", "dressing-*", "harbor-ferry-*", "harbor-horn-*", "harbor-lamp-*", "harbor-crates-*", "harbor-bell", "door-*", "path-lamp"],
     "station": ["tea-stall-*", "pond-*", "windmill-*", "workshop-*", "bagel-cart-*", "pier-*", "lighthouse-*", "hive-*"]
   },
   "never": ["island-*", "isle-*", "harbor-island-*", "mochi*", "findik*", "simit*", "pofu*", "cloud-*", "far-isle-*", "*-glow"],

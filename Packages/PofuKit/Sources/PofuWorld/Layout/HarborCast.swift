@@ -25,6 +25,8 @@ public enum SimitPose: String, CaseIterable, Sendable {
     case sleepy = "simit-sleepy"
     /// Wide-eyed: the cart has just grown.
     case surprised = "simit-surprised"
+    /// Chest out: the cart's ceremony is over (batch 41).
+    case proud = "simit-proud"
 
     public var art: String { rawValue }
 
@@ -33,8 +35,15 @@ public enum SimitPose: String, CaseIterable, Sendable {
 
     /// A placeholder rule until the harbor has its own beats: a start (the cart growing) first, then joy,
     /// then sleep, then the cart's state.
-    public static func pose(bagelCartLevel: Int, calmIsFull: Bool, isBedtime: Bool = false, isStartled: Bool = false) -> SimitPose {
+    public static func pose(bagelCartLevel: Int, calmIsFull: Bool, isBedtime: Bool = false, isStartled: Bool = false,
+                            event: ResidentEvent? = nil) -> SimitPose {
         if isStartled { return .surprised }
+        switch event {
+        case .ceremonyDone: return .proud
+        case .stationLevelledUp, .visitorArrived: return .happy
+        case .firstTapOfDay: return .surprised
+        case nil: break
+        }
         if calmIsFull { return .ears }
         if isBedtime { return .sleepy }
         if bagelCartLevel >= happyCartLevel { return .happy }
@@ -48,12 +57,27 @@ public enum GoatPose: String, CaseIterable, Sendable {
     case rest = "harbor-goat"
     /// Holding a coil of coral rope: the pier is going up.
     case work = "goat-work"
+    /// Beaming: a visitor, a level-up.
+    case happy = "goat-happy"
+    /// Wide-eyed: the first tap of the day.
+    case surprised = "goat-surprised"
+    /// Drowsy: bedtime.
+    case sleepy = "goat-sleepy"
+    /// Chest out: the pier's ceremony is over.
+    case proud = "goat-proud"
 
     public var art: String { rawValue }
 
-    /// The goat coils rope from the first pier level on.
-    public static func pose(pierLevel: Int) -> GoatPose {
-        pierLevel >= 1 ? .work : .rest
+    /// The goat coils rope from the first pier level on; what just happened to it, then bedtime, come first.
+    public static func pose(pierLevel: Int, isBedtime: Bool = false, event: ResidentEvent? = nil) -> GoatPose {
+        switch event {
+        case .ceremonyDone: return .proud
+        case .stationLevelledUp, .visitorArrived: return .happy
+        case .firstTapOfDay: return .surprised
+        case nil: break
+        }
+        if isBedtime { return .sleepy }
+        return pierLevel >= 1 ? .work : .rest
     }
 }
 
