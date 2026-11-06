@@ -1,0 +1,21 @@
+id: asset-x-roots-home-il6
+type: asset
+title_tr: x-roots-home-il6
+title_en: x-roots-home-il6 (plate)
+status: in-production
+horizon: now
+summary: >-
+  The attached home island framed low, at its underside, at dusk. The roots have grown: a
+  rope ladder hangs from the earth face, a small hollow between two roots glows with sleepy
+  fireflies, a little brass lantern hangs from the thickest root and glows honey-gold, warming
+  the earth around it. Two keepsakes: a soft green moss beard hangs from the roots with one
+  bright sprout, and a thin silver stream pours off the islan…
+art:
+  images: []
+  jobs:
+  - batch-49-roots:x-roots-home-il6
+sources:
+- doc: tools/imagegen/manifest/batch-49-roots.yaml
+kind: plate
+batch: batch-49-roots
+size: 1536x1024

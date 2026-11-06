@@ -101,6 +101,7 @@ rows here whenever an idea comes, without waiting for the founder.
 | P7 | `batch-47-light-direction-pilot` (exploration) | The home plate relit from four sides, one light each, so nightlab solves real normals by photometric stereo (founder 2026-11-06: the island's underside and Pofu's normals relight badly). Feeds the night lighting ADR | 4 | **READY** |
 | P8 | `batch-46-flat-icons` (exploration) | Flat menu icons in two style sheets (solid cocoa pictograms; cream and cocoa two-tone): home, island, map, settings, close, add, letter, shield, gift. The founder: the place control's glyph looks bad; icons need not be glass; vectorise the winner later | 2 | **READY** |
 | P9 | `batch-44-weather-fx` | Weather and fog sprites, light-on-black: three fog cards, a rain tile, a light shaft, a rainbow arc, a puddle glint (spec §2.2-§2.3) | 7 | **READY** |
+| P10 | `batch-49-roots` (exploration) | [The roots](island-undersides.md): home's underside at IL1, IL6 and IL10 with the wonder-island keepsakes, and Çağlayan's underside at stages 0 and 4 (the falls pour off the underside) | 5 | **READY** |
 
 ## The backlog
 

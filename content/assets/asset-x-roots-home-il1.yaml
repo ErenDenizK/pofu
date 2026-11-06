@@ -1,0 +1,21 @@
+id: asset-x-roots-home-il1
+type: asset
+title_tr: x-roots-home-il1
+title_en: x-roots-home-il1 (plate)
+status: in-production
+horizon: now
+summary: >-
+  The attached home island seen from the same front three-quarter camera but framed lower,
+  so the earth body and the air under it fill the picture and only the lawn's rim shows at
+  the top. The rounded banded earth body with its round door and smooth stones tapers down
+  into a few thin dangling roots over the sea of clouds. From the lowest root grows one tiny
+  fresh sprout with a single leaf. Soft morning light, cozy and …
+art:
+  images: []
+  jobs:
+  - batch-49-roots:x-roots-home-il1
+sources:
+- doc: tools/imagegen/manifest/batch-49-roots.yaml
+kind: plate
+batch: batch-49-roots
+size: 1536x1024

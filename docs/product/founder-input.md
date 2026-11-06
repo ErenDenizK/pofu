@@ -479,3 +479,10 @@ His views (translated), not orders; the decisions are ours. Handled in
 2. No heavy preparation for after 2026-11-24; a day or two after the membership arrives is enough. What matters: the screens, the UI, how the game and the app are used, the gate (the wall) and the shield menu. Handled: the gate and the shield are the top design track.
 3. Codex produced many concepts and small images while idle: try ways to use them, or at least take ideas from them; did we make visuals for the wall? Handled: an inventory of every exploration take with a proposed use (`docs/design/concept-inventory.md`).
 4. The wall must not stay a plain wall with plain text; screens like the wall must be a wow, a design masterpiece; every point of the game should feel that way, with fun coming forward deeper in the game; he wants to fly a little further on design. Handled: "the gate v2" spec and three Codex concept directions (batch-48).
+
+## 2026-11-06 (morning, late): status, future systems, the undersides, results since last night
+
+1. A status report; does he need to do anything? Handled in chat (nothing blocking him; the device test whenever he has time).
+2. Think through the game design of all future systems: the island's step-by-step growth and the other islands. Handled: home growth stays as specified (home progression §3, home layout); the new piece is [the roots](../design/island-undersides.md): the underside grows by island level and keeps a keepsake from every healed island.
+3. Evaluate a design and story pass for the islands' undersides ("not every island needs it"). Handled: the same doc §5: Çağlayan, Emanet and Revontuli get an underside that carries the wound; Çanlar and Mehtap small; Koke, Arı and Gezgin none. Concepts queued (`batch-49-roots`, P10).
+4. Report back the results of every task since last night. Handled in chat.

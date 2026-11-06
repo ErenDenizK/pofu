@@ -1,0 +1,21 @@
+id: asset-x-roots-home-il10
+type: asset
+title_tr: x-roots-home-il10
+title_en: x-roots-home-il10 (plate)
+status: in-production
+horizon: now
+summary: >-
+  The attached home island framed low, at its underside, on a clear luminous night. The roots
+  are in bloom with small flowers and a bird nest; warm amber stones glow faintly in the earth;
+  a small lantern and a tiny moon-shaped lamp hang from roots; a moss beard sways; a thin
+  silver stream pours off the edge into the moonlit clouds; a small net holds a few lost things
+  (a mitten, a key, a teacup); one small bell hangs on…
+art:
+  images: []
+  jobs:
+  - batch-49-roots:x-roots-home-il10
+sources:
+- doc: tools/imagegen/manifest/batch-49-roots.yaml
+kind: plate
+batch: batch-49-roots
+size: 1536x1024
