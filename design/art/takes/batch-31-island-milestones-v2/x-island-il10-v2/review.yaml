@@ -1,0 +1,378 @@
+batch: batch-31-island-milestones-v2
+manifest: tools/imagegen/manifest/batch-31-island-milestones-v2.yaml
+manifest_sha256: 85bede599fbf3a3dc59c4dd8f262ee41b8b0f653fa445bcf26f07a645b47269f
+contact_sheet: design/art/takes/batch-31-island-milestones-v2/x-island-il10-v2/contact.jpg
+jobs:
+  x-island-il10-v2:
+    pick: none
+    publication: skipped after one allowed retry
+    note: All four originals and the sole unchanged retry preserve all eight station
+      identities, the two-head sunflower, floating pond lanterns, workshop gear/tools/chimney,
+      flagged window-box windmill, tiled flagged tea, bagel cart, bunting pier, striped
+      lighthouse/foot garden and an OPEN gate leading to bench/tripod telescope. Every
+      take nevertheless puts the harbor on the same continuous home soil bowl instead
+      of the explicitly separate right islet and connecting bridge. Both retry originals
+      were owner-viewed; initial pair independently reviewed. Exclude all four for
+      literal topology and skip only this independent job, with no additional ferry/nest/hive
+      or pixel-registration requirement. Preserve all sources, no further generation,
+      never promoted.
+qa_reports:
+  1:
+    job: x-island-il10-v2
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 54 (R1 51)
+      value: 53.6
+    - check: light_values
+      status: warn
+      message: 'dusk/subject: L p2 36 (at most 12), p98 86 (at least 68), spread 50
+        (at least 48) (warn-only until the founder has seen the light pilot)'
+      value: 50.1
+    - check: light_median
+      status: warn
+      message: 'dusk/subject: median L 64 (band 28-60)'
+      value: 64.0
+    - check: light_haze
+      status: warn
+      message: 'dusk/subject: dark-channel haze 0.16 (at most 0.14; no true dark means
+        a wash)'
+      value: 0.157
+    - check: light_contrast
+      status: pass
+      message: 'dusk/subject: p75 local contrast 6.3 (at least 3.0)'
+      value: 6.35
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.6 (R1 5.3)
+      value: 4.6
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.2
+      value: 2.228
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 4.7, p95 12.3, off-palette 5.4% (top: #BB6633 (0.4%), #CC7733
+        (0.2%)) (advisory in an exploration)'
+      value: 4.7045
+    info:
+      metrics_raw:
+        L_p5: 39.4
+        L_p50: 63.3
+        L_p95: 84.2
+        C_p50: 34.1
+        C_p95: 56.5
+        C_p99: 71.0
+        detail: 5.61
+      metrics_locked:
+        L_p5: 39.7
+        L_p50: 63.3
+        L_p95: 83.8
+        C_p50: 33.9
+        C_p95: 53.6
+        C_p99: 63.2
+        detail: 4.6
+    fingerprint: 95f494b51b299442
+  2:
+    job: x-island-il10-v2
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 49 (R1 51)
+      value: 48.7
+    - check: light_values
+      status: warn
+      message: 'dusk/subject: L p2 42 (at most 12), p98 89 (at least 68), spread 47
+        (at least 48) (warn-only until the founder has seen the light pilot)'
+      value: 46.9
+    - check: light_median
+      status: warn
+      message: 'dusk/subject: median L 69 (band 28-60) (warn-only until the founder
+        has seen the light pilot)'
+      value: 69.2
+    - check: light_haze
+      status: warn
+      message: 'dusk/subject: dark-channel haze 0.20 (at most 0.14; no true dark means
+        a wash)'
+      value: 0.204
+    - check: light_contrast
+      status: pass
+      message: 'dusk/subject: p75 local contrast 6.3 (at least 3.0)'
+      value: 6.31
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.8 (R1 5.3)
+      value: 4.8
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.0
+      value: 1.9909
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.3, p95 7.9, off-palette 1.2% (top: #DD8844 (0.2%), #CC7733
+        (0.1%))'
+      value: 3.2769
+    info:
+      metrics_raw:
+        L_p5: 45.9
+        L_p50: 68.3
+        L_p95: 87.7
+        C_p50: 31.6
+        C_p95: 50.4
+        C_p99: 66.6
+        detail: 5.81
+      metrics_locked:
+        L_p5: 46.3
+        L_p50: 68.2
+        L_p95: 87.3
+        C_p50: 31.2
+        C_p95: 48.7
+        C_p99: 61.8
+        detail: 4.8
+    fingerprint: 95f494b51b299442
+  3:
+    job: x-island-il10-v2
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 49 (R1 51)
+      value: 49.2
+    - check: light_values
+      status: warn
+      message: 'dusk/subject: L p2 40 (at most 12), p98 90 (at least 68), spread 50
+        (at least 48) (warn-only until the founder has seen the light pilot)'
+      value: 50.1
+    - check: light_median
+      status: warn
+      message: 'dusk/subject: median L 74 (band 28-60) (warn-only until the founder
+        has seen the light pilot)'
+      value: 74.1
+    - check: light_haze
+      status: warn
+      message: 'dusk/subject: dark-channel haze 0.18 (at most 0.14; no true dark means
+        a wash)'
+      value: 0.18
+    - check: light_contrast
+      status: pass
+      message: 'dusk/subject: p75 local contrast 6.5 (at least 3.0)'
+      value: 6.53
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.8 (R1 5.3)
+      value: 4.75
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.0
+      value: 1.9729
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.8, p95 10.4, off-palette 2.3% (top: #BB6633 (0.2%), #DD8844
+        (0.2%))'
+      value: 3.7509
+    info:
+      metrics_raw:
+        L_p5: 42.1
+        L_p50: 72.4
+        L_p95: 89.1
+        C_p50: 31.2
+        C_p95: 51.4
+        C_p99: 66.1
+        detail: 5.76
+      metrics_locked:
+        L_p5: 42.4
+        L_p50: 72.3
+        L_p95: 88.8
+        C_p50: 30.9
+        C_p95: 49.2
+        C_p99: 61.1
+        detail: 4.75
+    fingerprint: 95f494b51b299442
+  4:
+    job: x-island-il10-v2
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 50 (R1 51)
+      value: 49.5
+    - check: light_values
+      status: warn
+      message: 'dusk/subject: L p2 38 (at most 12), p98 88 (at least 68), spread 50
+        (at least 48) (warn-only until the founder has seen the light pilot)'
+      value: 49.8
+    - check: light_median
+      status: warn
+      message: 'dusk/subject: median L 70 (band 28-60) (warn-only until the founder
+        has seen the light pilot)'
+      value: 69.7
+    - check: light_haze
+      status: warn
+      message: 'dusk/subject: dark-channel haze 0.18 (at most 0.14; no true dark means
+        a wash)'
+      value: 0.184
+    - check: light_contrast
+      status: pass
+      message: 'dusk/subject: p75 local contrast 6.5 (at least 3.0)'
+      value: 6.52
+    - check: detail_budget
+      status: pass
+      message: detail at display size 5.0 (R1 5.3)
+      value: 5.02
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.0
+      value: 1.9541
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.8, p95 10.0, off-palette 2.5% (top: #DD8844 (0.2%), #BB6633
+        (0.2%))'
+      value: 3.832
+    info:
+      metrics_raw:
+        L_p5: 43.6
+        L_p50: 68.1
+        L_p95: 86.1
+        C_p50: 31.8
+        C_p95: 52.0
+        C_p99: 64.4
+        detail: 6.04
+      metrics_locked:
+        L_p5: 43.9
+        L_p50: 68.1
+        L_p95: 85.7
+        C_p50: 31.6
+        C_p95: 49.5
+        C_p99: 59.9
+        detail: 5.02
+    fingerprint: 95f494b51b299442
+manual_review:
+  observed_note: All four originals and the sole unchanged retry preserve all eight
+    station identities, the two-head sunflower, floating pond lanterns, workshop gear/tools/chimney,
+    flagged window-box windmill, tiled flagged tea, bagel cart, bunting pier, striped
+    lighthouse/foot garden and an OPEN gate leading to bench/tripod telescope. Every
+    take nevertheless puts the harbor on the same continuous home soil bowl instead
+    of the explicitly separate right islet and connecting bridge. Both retry originals
+    were owner-viewed; initial pair independently reviewed. Exclude all four for literal
+    topology and skip only this independent job, with no additional ferry/nest/hive
+    or pixel-registration requirement. Preserve all sources, no further generation,
+    never promoted.
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+sources:
+- batch: batch-31-island-milestones-v2
+  job: x-island-il10-v2
+  take: 1
+  round: 1
+  logical_run: b31-milestones-v2-initial
+  source_file: /workspace/generated_images/exec-6841cd41-880f-4434-82e9-cb97940e3aca.png
+  returned_at: '2026-11-06T02:43:38.527Z'
+  prompt_sha256: 9d0ce16420849c87733d0dae6292990ccffed47350667d06f7990503923e9f26
+  fingerprint: 95f494b51b299442
+  saved_at: '2026-11-06T02:43:38.819575+00:00'
+  original_generated_png_sha256: f07c03b5d6e6c59c5a5024f605da39be11428b3f5519d2baed1498b1b6b821c6
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 512b88b7c3ec0184d8e33445f38d8a3cac25106715d6356e53f7da8a8d65704b
+  inbox_png_sha256: b0a0e3f1511c4277ab140982164ff1e56b3a20dcab5c20deccfa05c0716ea231
+  qa_sha256: b20d863b9f1254db799519c1eb02947f5240708aa2aaa659df0c4f59104ca94a
+- batch: batch-31-island-milestones-v2
+  job: x-island-il10-v2
+  take: 2
+  round: 1
+  logical_run: b31-milestones-v2-initial
+  source_file: /workspace/generated_images/exec-9da63bc7-0547-4649-a4ab-21ac5996fbb8.png
+  returned_at: '2026-11-06T02:42:59.497Z'
+  prompt_sha256: 9d0ce16420849c87733d0dae6292990ccffed47350667d06f7990503923e9f26
+  fingerprint: 95f494b51b299442
+  saved_at: '2026-11-06T02:42:59.929163+00:00'
+  original_generated_png_sha256: 47c077387a6d5b76539dc3f451d50f4231f90747afaf069743d65d8d2e2bd8ee
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 2a06cb8c73057b0a3c1981b90066177a8b0c6d22033a51afa0a0938dc51d3879
+  inbox_png_sha256: 772fb558a9c25cc352818c7e3b811b07e87ff5025a6465036350400627742e4a
+  qa_sha256: 04323c6b62fd6097ef2b64eef30ca3a20afedd2c28b66ee79ed56b8f59b19386
+- batch: batch-31-island-milestones-v2
+  job: x-island-il10-v2
+  take: 3
+  round: 2
+  logical_run: b31-milestones-v2-retries
+  source_file: /workspace/generated_images/exec-10aff174-215a-4aae-a4a8-ed5bb500678e.png
+  returned_at: '2026-11-06T02:54:24.789Z'
+  prompt_sha256: 9d0ce16420849c87733d0dae6292990ccffed47350667d06f7990503923e9f26
+  fingerprint: 95f494b51b299442
+  saved_at: '2026-11-06T02:54:25.071727+00:00'
+  original_generated_png_sha256: 673ccf540cf867fda78d0d92e17b690fe490aa53270cde2cae1b91d527b991dd
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 3b32b25d34edd39d8c78c01f7bec4692067f584e668117519b88e03e8aac4d95
+  inbox_png_sha256: 828c835421fc442f0943c80682e71424e3309946aa093a80b22af26241ab1c0e
+  qa_sha256: 2121bd2e7d0ed446473b02f9048a61c0148f20d68a5dfc1f16b103e43f7ee0cd
+- batch: batch-31-island-milestones-v2
+  job: x-island-il10-v2
+  take: 4
+  round: 2
+  logical_run: b31-milestones-v2-retries
+  source_file: /workspace/generated_images/exec-90892ffc-b961-4955-81e4-972fa9ab1f75.png
+  returned_at: '2026-11-06T02:52:58.907Z'
+  prompt_sha256: 9d0ce16420849c87733d0dae6292990ccffed47350667d06f7990503923e9f26
+  fingerprint: 95f494b51b299442
+  saved_at: '2026-11-06T02:52:59.221213+00:00'
+  original_generated_png_sha256: 26c9c2fdcd92da8a449751238cd64902ff26e50714225616bd0c3d3b7703d277
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 0d0362832f15f6d49cab476d1fac7bb7d769e27f0733abcbae8189ac8a9ee9e8
+  inbox_png_sha256: b2c7f422ff4e4c94174195df10209863be99feb09754440c3ff069f36b4d3202
+  qa_sha256: 01e354758d4c20fffa7c25972d3f4394b613c70deb0b74e13f03659b0c598a68
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+variation_proof_sha256: 3c60578f1d589d625fd8c95bbc87020ea1257cd3bab482159f31dee243a23c2c
