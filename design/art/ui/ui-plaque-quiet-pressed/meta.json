@@ -1,0 +1,125 @@
+{
+  "job": "ui-plaque-quiet-pressed",
+  "batch": "batch-61-ui-kit-v3",
+  "asset": "ui__plaque-quiet-pressed",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-06T16:13:05+00:00",
+  "image": "design/art/ui/ui-plaque-quiet-pressed/ui-plaque-quiet-pressed.png",
+  "raw": "design/art/ui/ui-plaque-quiet-pressed/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "97fb12fefa32b9e7",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nShow the strip pressed: the felt a touch darker and flatter, the raised edge gone, the shadow underneath almost gone. The outline, size and position stay.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nOutput: one image, transparent background PNG, landscape 1536 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/ui/ui-plaque-quiet/ui-plaque-quiet.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-06T15:13:00+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": {
+    "scale": 1.0464,
+    "cx": 764.5,
+    "cy": 773.0,
+    "dx": -3,
+    "dy": 6
+  },
+  "fit": null,
+  "emit_region": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1536x1024"
+      },
+      {
+        "check": "edit_alignment",
+        "status": "warn",
+        "message": "the edit rescaled the object x0.956 and moved it; aligned back to the parent",
+        "value": 1.0464
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 14 (R1 51)",
+        "value": 14.1
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 85 (R1 59)",
+        "value": 84.6
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 1.0 (R1 5.3)",
+        "value": 1.02
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 0.6",
+        "value": 0.6186
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.2, p95 1.7, off-palette 0.0%",
+        "value": 1.1618
+      },
+      {
+        "check": "edit_silhouette",
+        "status": "pass",
+        "message": "97% of the parent's shape kept",
+        "value": 0.9654
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "98% of the parent level unchanged",
+        "value": 0.9757
+      },
+      {
+        "check": "edit_chroma",
+        "status": "pass",
+        "message": "chroma x0.96 of the parent level (drift compounds along a chain)",
+        "value": 0.9563
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Both initial takes pass every hard check under the authored region acceptance and are manually eligible as sealed in root-pressed-final-manual-review.json; normal lowest style-lock load selects take1 (0.6186 vs0.6632). Flat slightly darker sand felt, raised rim removed and almost no underneath shadow, inset stitches and blank even face, no text/icons/holes/glass/painted backdrop. Native and official locked selecteds personally compared against parent on proper cream/dark alpha composites. Canonical edit_alignment advisories1.0464/1.0337 are retained: pipeline aligned rescaled sources back, visible soft-bound differences require founder UI preview; no claimed pixelperfect registration, lead nine-slice cap approval or completed app integration, and no invented manual numeric threshold or QA waiver. Selected native lossless PNG585665B fits cap; original PNG/RGBA, raw, source ordinals/orderedreference, QA and INITIAL2seal preserved. Required real canonical complete172source Harmony measure/check restores all foreign bytes exactly; UI is canonically excluded, no fabricated own shard. No retry, force, manifest or profile edit. auto-picked by QA; founder review pending.",
+  "slice": {
+    "caps": [
+      0.0,
+      28.0,
+      0.0,
+      28.0
+    ],
+    "ship_height": 56.0
+  }
+}
