@@ -4,17 +4,17 @@ title_tr: mochi-happy
 title_en: mochi-happy (char)
 status: in-production
 horizon: now
-summary: >-
-  Edit the attached bunny, Mochi, into her happy face. Change only the eyes and mouth: both
-  eyes become happy closed arcs, the classic smiling ^ shape, each a thick soft dark upward-curved
-  arc at the height of the top of the original eye, with fur below it; the small mouth widens
-  into a slightly bigger smile and the blush deepens a little. Everything else stays exactly
-  as it is.
+summary: 'Edit the attached bunny, Mochi, into her happy face. Change only the eyes
+  and mouth: both eyes become happy closed arcs, the classic smiling ^ shape, each
+  a thick soft dark upward-curved arc at the height of the top of the original eye,
+  with fur below it; the small mouth widens into a slightly bigger smile and the blush
+  deepens a little. Everything else stays exactly as it is.'
 links:
   variant_of:
   - asset-mochi-v2
 art:
-  images: []
+  images:
+  - design/art/masters/mochi-happy/mochi-happy.webp
   jobs:
   - batch-41-resident-reactions:mochi-happy
 sources:
