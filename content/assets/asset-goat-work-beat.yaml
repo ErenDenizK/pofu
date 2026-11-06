@@ -4,16 +4,17 @@ title_tr: goat-work-beat
 title_en: goat-work-beat (char)
 status: in-production
 horizon: now
-summary: >-
-  Edit the attached character, the harbor goat, into one animation frame: with a small coil
-  of rope hanging from its mouth, as if tidying the pier. Keep the face, the colours, the
-  fur, the size and the exact position on the canvas the same; change only the legs and paws
-  and a slight sway, as a cute cartoon step, never a realistic gait.
+summary: 'Edit the attached character, the harbor goat, into one animation frame:
+  with a small coil of rope hanging from its mouth, as if tidying the pier. Keep the
+  face, the colours, the fur, the size and the exact position on the canvas the same;
+  change only the legs and paws and a slight sway, as a cute cartoon step, never a
+  realistic gait.'
 links:
   variant_of:
   - asset-harbor-goat
 art:
-  images: []
+  images:
+  - design/art/masters/goat-work-beat/goat-work-beat.webp
   jobs:
   - batch-59-resident-walks:goat-work-beat
 sources:
