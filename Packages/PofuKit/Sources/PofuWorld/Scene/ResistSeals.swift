@@ -75,13 +75,14 @@ public enum ResistSealLayout {
     /// Pofu's round door (`home-layout` H1).
     public static let anchor = WorldPoint(x: -107, y: 80)
 
-    /// Slot `index` (0 is the nearest the door), a staggered arc to the
-    /// door's right.
+    /// Slot `index`: a necklace under the round door, a lower half-ellipse
+    /// from its left shoulder to its right (lead, 2026-11-06: an arc beside
+    /// the door spilled onto Mochi's door). Slot 0 is the left end.
     public static func offset(of index: Int) -> (dx: Double, dy: Double) {
         let slot = min(max(index, 0), DoorStamp.maxSeals - 1)
-        let dx = 66 + 16 * Double(slot)
-        let dy = slot.isMultiple(of: 2) ? 16.0 : -6.0
-        return (dx, dy)
+        let degrees = 200.0 + 20.0 * Double(slot)
+        let radians = degrees * .pi / 180
+        return (dx: 70 * cos(radians), dy: -40 * sin(radians))
     }
 
     public static func point(of index: Int) -> WorldPoint {
