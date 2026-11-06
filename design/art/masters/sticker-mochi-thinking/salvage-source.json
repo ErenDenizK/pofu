@@ -1,0 +1,66 @@
+{
+  "batch": "batch-42-stickers",
+  "job": "sticker-mochi-thinking",
+  "take": 1,
+  "round": 1,
+  "logical_run": "b42-residents-a",
+  "source_file": "/workspace/generated_images/exec-9364782c-67e0-4dea-8f42-c0fb0018bf71.png",
+  "returned_at": "2026-11-06T02:14:35.917Z",
+  "prompt_sha256": "915d2ee0e52cad194dd2e0a9839db278d13ce3cf1ff216f17e5ced58a1fc5389",
+  "fingerprint": "0ffa503dd319ef71",
+  "saved_at": "2026-11-06T02:14:36.330751+00:00",
+  "original_generated_png_sha256": "98b222babcbcdf9f45bbd670348b20ec067a66ee2af1f4e0e9ad10be62ef541e",
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "rgba_sha256": "863bd7d22eabd0a183b25ff9fd5aaabaf7c9bd521587d1c90fea69a081efb560",
+  "evaluation_take": 1,
+  "original_take": 1,
+  "original_run": "batch-42-stickers",
+  "original_callback": "/workspace/art-operator-runtime/run-20261106/batch-42-stickers/generated-sticker-mochi-thinking-t1.json",
+  "original_callback_sha256": "ef9be49a0af6087f199182db9565bdf963b5361fe60010146a71ea5452fc212e",
+  "original_tool_callback": "/workspace/art-operator-runtime/run-20261106/batch-42-stickers/callback-sticker-mochi-thinking-t1.json",
+  "original_tool_callback_sha256": "7e989cdc4878548b0c93ac248b7e33da42345cb706ab2db0a5b0a12ccbe8eedf",
+  "original_sidecar": {
+    "job": "sticker-mochi-thinking",
+    "take": 1,
+    "batch": "batch-42-stickers",
+    "fingerprint": "0ffa503dd319ef71",
+    "prompt": "REFERENCES (attached, in this order):\n1. Mochi, the bunny: her exact look, fur, colors and eyes.\n\nA single full-body sticker of Mochi the bunny in the exact attached look, one paw at her chin, eyes looking up and aside, one ear tilted, a small thoughtful mouth. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.\n\nAVOID: text, a white outline, a background, teeth, tears, motion lines, a different design.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+    "attachments": [
+      {
+        "path": "design/art/masters/mochi-v2/mochi-v2.webp",
+        "role": "Mochi, the bunny: her exact look, fur, colors and eyes."
+      }
+    ],
+    "background": "transparent",
+    "generated_at": "2026-11-06T02:16:02+00:00",
+    "backend": "codex-cloud",
+    "source_file": "/workspace/generated_images/exec-9364782c-67e0-4dea-8f42-c0fb0018bf71.png",
+    "account": {
+      "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+      "kind": "chatgpt-plan"
+    }
+  },
+  "original_sidecar_path": "/workspace/art-20261106-stickers/design/art/inbox/batch-42-stickers/char__sticker-mochi-thinking--t1.json",
+  "original_sidecar_sha256": "f2e9c90e843e7c4dcc2cf9d775a8507dbd43d1ebf7681d3f01f2ffaf060f8ef0",
+  "original_sidecar_archive": "/workspace/art-operator-runtime/run-20261106/completed-art-checkout-backups/run-20261106--batch-42-stickers.tar.gz",
+  "original_sidecar_archive_member": "design/art/inbox/batch-42-stickers/char__sticker-mochi-thinking--t1.json",
+  "original_packet": {
+    "batch": "batch-42-stickers",
+    "job": "sticker-mochi-thinking",
+    "worktree": "/workspace/art-20261106-stickers",
+    "prompt": "REFERENCES (attached, in this order):\n1. Mochi, the bunny: her exact look, fur, colors and eyes.\n\nA single full-body sticker of Mochi the bunny in the exact attached look, one paw at her chin, eyes looking up and aside, one ear tilted, a small thoughtful mouth. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.\n\nAVOID: text, a white outline, a background, teeth, tears, motion lines, a different design.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+    "refs": [
+      "/workspace/art-20261106-stickers/design/art/masters/mochi-v2/mochi-v2.webp"
+    ],
+    "reference_sha256": {
+      "/workspace/art-20261106-stickers/design/art/masters/mochi-v2/mochi-v2.webp": "d107327f7c35e283895babdadc487326cff93e13178ca594bc70285770f62ee5"
+    },
+    "fingerprint": "0ffa503dd319ef71",
+    "prompt_sha256": "915d2ee0e52cad194dd2e0a9839db278d13ce3cf1ff216f17e5ced58a1fc5389",
+    "transparent": true
+  },
+  "original_packet_sha256": "83ce4d38cd7ef74555342c7ff86c316c503e4dc0e07a75ececbac0b5f9d48a7b"
+}

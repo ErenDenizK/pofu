@@ -1,0 +1,272 @@
+{
+  "batch": "batch-42-stickers",
+  "source_count": 4,
+  "original_branch": "art/batch-42-stickers/all",
+  "original_commit": "b77792fc184547204c0710b19223c68b5a64fde1",
+  "sources": [
+    {
+      "batch": "batch-42-stickers",
+      "job": "sticker-mochi-thinking",
+      "take": 1,
+      "round": 1,
+      "logical_run": "b42-residents-a",
+      "source_file": "/workspace/generated_images/exec-9364782c-67e0-4dea-8f42-c0fb0018bf71.png",
+      "returned_at": "2026-11-06T02:14:35.917Z",
+      "prompt_sha256": "915d2ee0e52cad194dd2e0a9839db278d13ce3cf1ff216f17e5ced58a1fc5389",
+      "fingerprint": "0ffa503dd319ef71",
+      "saved_at": "2026-11-06T02:14:36.330751+00:00",
+      "original_generated_png_sha256": "98b222babcbcdf9f45bbd670348b20ec067a66ee2af1f4e0e9ad10be62ef541e",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "rgba_sha256": "863bd7d22eabd0a183b25ff9fd5aaabaf7c9bd521587d1c90fea69a081efb560",
+      "evaluation_take": 1,
+      "original_take": 1,
+      "original_run": "batch-42-stickers",
+      "original_callback": "/workspace/art-operator-runtime/run-20261106/batch-42-stickers/generated-sticker-mochi-thinking-t1.json",
+      "original_callback_sha256": "ef9be49a0af6087f199182db9565bdf963b5361fe60010146a71ea5452fc212e",
+      "original_tool_callback": "/workspace/art-operator-runtime/run-20261106/batch-42-stickers/callback-sticker-mochi-thinking-t1.json",
+      "original_tool_callback_sha256": "7e989cdc4878548b0c93ac248b7e33da42345cb706ab2db0a5b0a12ccbe8eedf",
+      "original_sidecar": {
+        "job": "sticker-mochi-thinking",
+        "take": 1,
+        "batch": "batch-42-stickers",
+        "fingerprint": "0ffa503dd319ef71",
+        "prompt": "REFERENCES (attached, in this order):\n1. Mochi, the bunny: her exact look, fur, colors and eyes.\n\nA single full-body sticker of Mochi the bunny in the exact attached look, one paw at her chin, eyes looking up and aside, one ear tilted, a small thoughtful mouth. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.\n\nAVOID: text, a white outline, a background, teeth, tears, motion lines, a different design.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+        "attachments": [
+          {
+            "path": "design/art/masters/mochi-v2/mochi-v2.webp",
+            "role": "Mochi, the bunny: her exact look, fur, colors and eyes."
+          }
+        ],
+        "background": "transparent",
+        "generated_at": "2026-11-06T02:16:02+00:00",
+        "backend": "codex-cloud",
+        "source_file": "/workspace/generated_images/exec-9364782c-67e0-4dea-8f42-c0fb0018bf71.png",
+        "account": {
+          "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+          "kind": "chatgpt-plan"
+        }
+      },
+      "original_sidecar_path": "/workspace/art-20261106-stickers/design/art/inbox/batch-42-stickers/char__sticker-mochi-thinking--t1.json",
+      "original_sidecar_sha256": "f2e9c90e843e7c4dcc2cf9d775a8507dbd43d1ebf7681d3f01f2ffaf060f8ef0",
+      "original_sidecar_archive": "/workspace/art-operator-runtime/run-20261106/completed-art-checkout-backups/run-20261106--batch-42-stickers.tar.gz",
+      "original_sidecar_archive_member": "design/art/inbox/batch-42-stickers/char__sticker-mochi-thinking--t1.json",
+      "original_packet": {
+        "batch": "batch-42-stickers",
+        "job": "sticker-mochi-thinking",
+        "worktree": "/workspace/art-20261106-stickers",
+        "prompt": "REFERENCES (attached, in this order):\n1. Mochi, the bunny: her exact look, fur, colors and eyes.\n\nA single full-body sticker of Mochi the bunny in the exact attached look, one paw at her chin, eyes looking up and aside, one ear tilted, a small thoughtful mouth. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.\n\nAVOID: text, a white outline, a background, teeth, tears, motion lines, a different design.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+        "refs": [
+          "/workspace/art-20261106-stickers/design/art/masters/mochi-v2/mochi-v2.webp"
+        ],
+        "reference_sha256": {
+          "/workspace/art-20261106-stickers/design/art/masters/mochi-v2/mochi-v2.webp": "d107327f7c35e283895babdadc487326cff93e13178ca594bc70285770f62ee5"
+        },
+        "fingerprint": "0ffa503dd319ef71",
+        "prompt_sha256": "915d2ee0e52cad194dd2e0a9839db278d13ce3cf1ff216f17e5ced58a1fc5389",
+        "transparent": true
+      },
+      "original_packet_sha256": "83ce4d38cd7ef74555342c7ff86c316c503e4dc0e07a75ececbac0b5f9d48a7b"
+    },
+    {
+      "batch": "batch-42-stickers",
+      "job": "sticker-mochi-thinking",
+      "take": 2,
+      "round": 1,
+      "logical_run": "b42-residents-a",
+      "source_file": "/workspace/generated_images/exec-a94e6a7f-b31d-4aa6-9711-f80bb5251157.png",
+      "returned_at": "2026-11-06T02:15:58.834Z",
+      "prompt_sha256": "915d2ee0e52cad194dd2e0a9839db278d13ce3cf1ff216f17e5ced58a1fc5389",
+      "fingerprint": "0ffa503dd319ef71",
+      "saved_at": "2026-11-06T02:16:00.960281+00:00",
+      "original_generated_png_sha256": "ab466fa3f3054458a6e2089d0a1fe0c70ddebca7ebd94eb123fb2d2027645369",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "rgba_sha256": "1ca3719308a85a1596686bdf5ed00a3334b4e3ff9f699505e14fd1c7f2be0388",
+      "evaluation_take": 2,
+      "original_take": 2,
+      "original_run": "batch-42-stickers",
+      "original_callback": "/workspace/art-operator-runtime/run-20261106/batch-42-stickers/generated-sticker-mochi-thinking-t2.json",
+      "original_callback_sha256": "ae5ff725c38e1d6ac72eef078ed2363088ecd8c0a9569627561cf567abeec837",
+      "original_tool_callback": "/workspace/art-operator-runtime/run-20261106/batch-42-stickers/callback-sticker-mochi-thinking-t2.json",
+      "original_tool_callback_sha256": "f1988363fbfd50846b10f57bf294081b2651726e3dbb1e0744b1844565e58e60",
+      "original_sidecar": {
+        "job": "sticker-mochi-thinking",
+        "take": 2,
+        "batch": "batch-42-stickers",
+        "fingerprint": "0ffa503dd319ef71",
+        "prompt": "REFERENCES (attached, in this order):\n1. Mochi, the bunny: her exact look, fur, colors and eyes.\n\nA single full-body sticker of Mochi the bunny in the exact attached look, one paw at her chin, eyes looking up and aside, one ear tilted, a small thoughtful mouth. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.\n\nAVOID: text, a white outline, a background, teeth, tears, motion lines, a different design.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+        "attachments": [
+          {
+            "path": "design/art/masters/mochi-v2/mochi-v2.webp",
+            "role": "Mochi, the bunny: her exact look, fur, colors and eyes."
+          }
+        ],
+        "background": "transparent",
+        "generated_at": "2026-11-06T02:16:02+00:00",
+        "backend": "codex-cloud",
+        "source_file": "/workspace/generated_images/exec-a94e6a7f-b31d-4aa6-9711-f80bb5251157.png",
+        "account": {
+          "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+          "kind": "chatgpt-plan"
+        }
+      },
+      "original_sidecar_path": "/workspace/art-20261106-stickers/design/art/inbox/batch-42-stickers/char__sticker-mochi-thinking--t2.json",
+      "original_sidecar_sha256": "76eaa92b2c271ad8a78dee7d28e4fa084342908b5643d7dd9c1dcb3582ac203e",
+      "original_sidecar_archive": "/workspace/art-operator-runtime/run-20261106/completed-art-checkout-backups/run-20261106--batch-42-stickers.tar.gz",
+      "original_sidecar_archive_member": "design/art/inbox/batch-42-stickers/char__sticker-mochi-thinking--t2.json",
+      "original_packet": {
+        "batch": "batch-42-stickers",
+        "job": "sticker-mochi-thinking",
+        "worktree": "/workspace/art-20261106-stickers",
+        "prompt": "REFERENCES (attached, in this order):\n1. Mochi, the bunny: her exact look, fur, colors and eyes.\n\nA single full-body sticker of Mochi the bunny in the exact attached look, one paw at her chin, eyes looking up and aside, one ear tilted, a small thoughtful mouth. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.\n\nAVOID: text, a white outline, a background, teeth, tears, motion lines, a different design.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+        "refs": [
+          "/workspace/art-20261106-stickers/design/art/masters/mochi-v2/mochi-v2.webp"
+        ],
+        "reference_sha256": {
+          "/workspace/art-20261106-stickers/design/art/masters/mochi-v2/mochi-v2.webp": "d107327f7c35e283895babdadc487326cff93e13178ca594bc70285770f62ee5"
+        },
+        "fingerprint": "0ffa503dd319ef71",
+        "prompt_sha256": "915d2ee0e52cad194dd2e0a9839db278d13ce3cf1ff216f17e5ced58a1fc5389",
+        "transparent": true
+      },
+      "original_packet_sha256": "83ce4d38cd7ef74555342c7ff86c316c503e4dc0e07a75ececbac0b5f9d48a7b"
+    },
+    {
+      "batch": "batch-42-stickers",
+      "job": "sticker-mochi-thinking",
+      "take": 3,
+      "round": 2,
+      "logical_run": "b42-residents-retries",
+      "source_file": "/workspace/generated_images/exec-d90796e2-e463-46c2-a7a3-a4455067e64c.png",
+      "returned_at": "2026-11-06T02:21:42.407Z",
+      "prompt_sha256": "915d2ee0e52cad194dd2e0a9839db278d13ce3cf1ff216f17e5ced58a1fc5389",
+      "fingerprint": "0ffa503dd319ef71",
+      "saved_at": "2026-11-06T02:21:42.706404+00:00",
+      "original_generated_png_sha256": "7e7eb07ec6ae0c4eb228fba669769ede05b28ae55d9eacd2516f514c97ace75f",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "rgba_sha256": "50267f427b3d60e99ebbb73f4187e079b6028e4567b17fc6f511310976b5b1f8",
+      "evaluation_take": 3,
+      "original_take": 3,
+      "original_run": "batch-42-stickers",
+      "original_callback": "/workspace/art-operator-runtime/run-20261106/batch-42-stickers/generated-sticker-mochi-thinking-t3.json",
+      "original_callback_sha256": "31e203272e4e6ee22b3752921c67b4ffe2b19c57d580b2c067252f617ff0708c",
+      "original_tool_callback": "/workspace/art-operator-runtime/run-20261106/batch-42-stickers/callback-sticker-mochi-thinking-t3.json",
+      "original_tool_callback_sha256": "746418855b5f12bee53d030eccf4cfdadb16852f3283b0ed6cba9f98cae0de36",
+      "original_sidecar": {
+        "job": "sticker-mochi-thinking",
+        "take": 3,
+        "batch": "batch-42-stickers",
+        "fingerprint": "0ffa503dd319ef71",
+        "prompt": "REFERENCES (attached, in this order):\n1. Mochi, the bunny: her exact look, fur, colors and eyes.\n\nA single full-body sticker of Mochi the bunny in the exact attached look, one paw at her chin, eyes looking up and aside, one ear tilted, a small thoughtful mouth. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.\n\nAVOID: text, a white outline, a background, teeth, tears, motion lines, a different design.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+        "attachments": [
+          {
+            "path": "design/art/masters/mochi-v2/mochi-v2.webp",
+            "role": "Mochi, the bunny: her exact look, fur, colors and eyes."
+          }
+        ],
+        "background": "transparent",
+        "generated_at": "2026-11-06T02:21:44+00:00",
+        "backend": "codex-cloud",
+        "source_file": "/workspace/generated_images/exec-d90796e2-e463-46c2-a7a3-a4455067e64c.png",
+        "account": {
+          "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+          "kind": "chatgpt-plan"
+        }
+      },
+      "original_sidecar_path": "/workspace/art-20261106-stickers/design/art/inbox/batch-42-stickers/char__sticker-mochi-thinking--t3.json",
+      "original_sidecar_sha256": "1fc2df26fe43cef5a1710606fa4a7a775f3ba8cdb105d3044a63d550c41c0a1a",
+      "original_sidecar_archive": "/workspace/art-operator-runtime/run-20261106/completed-art-checkout-backups/run-20261106--batch-42-stickers.tar.gz",
+      "original_sidecar_archive_member": "design/art/inbox/batch-42-stickers/char__sticker-mochi-thinking--t3.json",
+      "original_packet": {
+        "batch": "batch-42-stickers",
+        "job": "sticker-mochi-thinking",
+        "worktree": "/workspace/art-20261106-stickers",
+        "prompt": "REFERENCES (attached, in this order):\n1. Mochi, the bunny: her exact look, fur, colors and eyes.\n\nA single full-body sticker of Mochi the bunny in the exact attached look, one paw at her chin, eyes looking up and aside, one ear tilted, a small thoughtful mouth. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.\n\nAVOID: text, a white outline, a background, teeth, tears, motion lines, a different design.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+        "refs": [
+          "/workspace/art-20261106-stickers/design/art/masters/mochi-v2/mochi-v2.webp"
+        ],
+        "reference_sha256": {
+          "/workspace/art-20261106-stickers/design/art/masters/mochi-v2/mochi-v2.webp": "d107327f7c35e283895babdadc487326cff93e13178ca594bc70285770f62ee5"
+        },
+        "fingerprint": "0ffa503dd319ef71",
+        "prompt_sha256": "915d2ee0e52cad194dd2e0a9839db278d13ce3cf1ff216f17e5ced58a1fc5389",
+        "transparent": true
+      },
+      "original_packet_sha256": "83ce4d38cd7ef74555342c7ff86c316c503e4dc0e07a75ececbac0b5f9d48a7b"
+    },
+    {
+      "batch": "batch-42-stickers",
+      "job": "sticker-mochi-thinking",
+      "take": 4,
+      "round": 2,
+      "logical_run": "b42-residents-retries",
+      "source_file": "/workspace/generated_images/exec-268d6384-5802-41e1-9344-0ddb96c1f3ee.png",
+      "returned_at": "2026-11-06T02:20:04.103Z",
+      "prompt_sha256": "915d2ee0e52cad194dd2e0a9839db278d13ce3cf1ff216f17e5ced58a1fc5389",
+      "fingerprint": "0ffa503dd319ef71",
+      "saved_at": "2026-11-06T02:20:04.466858+00:00",
+      "original_generated_png_sha256": "050d845e6bbf3966398f5269e5ffbb5d7d003b75bd71df9d0f771af1abc3d8d7",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "rgba_sha256": "15c27b482548c3179dc55ef7acd3c530308860d4ac25db53299c6c8452e83466",
+      "evaluation_take": 4,
+      "original_take": 4,
+      "original_run": "batch-42-stickers",
+      "original_callback": "/workspace/art-operator-runtime/run-20261106/batch-42-stickers/generated-sticker-mochi-thinking-t4.json",
+      "original_callback_sha256": "cdd1eda220f06238b99ecffec8a82f811567fdafd12159c1af7df283be605985",
+      "original_tool_callback": "/workspace/art-operator-runtime/run-20261106/batch-42-stickers/callback-sticker-mochi-thinking-t4.json",
+      "original_tool_callback_sha256": "78b1d1eef6e803dbbdaa1d62cc01b43d77e4e784dc809bfc92a6635a0b96583d",
+      "original_sidecar": {
+        "job": "sticker-mochi-thinking",
+        "take": 4,
+        "batch": "batch-42-stickers",
+        "fingerprint": "0ffa503dd319ef71",
+        "prompt": "REFERENCES (attached, in this order):\n1. Mochi, the bunny: her exact look, fur, colors and eyes.\n\nA single full-body sticker of Mochi the bunny in the exact attached look, one paw at her chin, eyes looking up and aside, one ear tilted, a small thoughtful mouth. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.\n\nAVOID: text, a white outline, a background, teeth, tears, motion lines, a different design.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+        "attachments": [
+          {
+            "path": "design/art/masters/mochi-v2/mochi-v2.webp",
+            "role": "Mochi, the bunny: her exact look, fur, colors and eyes."
+          }
+        ],
+        "background": "transparent",
+        "generated_at": "2026-11-06T02:21:44+00:00",
+        "backend": "codex-cloud",
+        "source_file": "/workspace/generated_images/exec-268d6384-5802-41e1-9344-0ddb96c1f3ee.png",
+        "account": {
+          "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+          "kind": "chatgpt-plan"
+        }
+      },
+      "original_sidecar_path": "/workspace/art-20261106-stickers/design/art/inbox/batch-42-stickers/char__sticker-mochi-thinking--t4.json",
+      "original_sidecar_sha256": "8ee250ddf4268eacc1e0b8c9682cfda67c7d19bd3e2fd807e630d65290946a45",
+      "original_sidecar_archive": "/workspace/art-operator-runtime/run-20261106/completed-art-checkout-backups/run-20261106--batch-42-stickers.tar.gz",
+      "original_sidecar_archive_member": "design/art/inbox/batch-42-stickers/char__sticker-mochi-thinking--t4.json",
+      "original_packet": {
+        "batch": "batch-42-stickers",
+        "job": "sticker-mochi-thinking",
+        "worktree": "/workspace/art-20261106-stickers",
+        "prompt": "REFERENCES (attached, in this order):\n1. Mochi, the bunny: her exact look, fur, colors and eyes.\n\nA single full-body sticker of Mochi the bunny in the exact attached look, one paw at her chin, eyes looking up and aside, one ear tilted, a small thoughtful mouth. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.\n\nAVOID: text, a white outline, a background, teeth, tears, motion lines, a different design.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+        "refs": [
+          "/workspace/art-20261106-stickers/design/art/masters/mochi-v2/mochi-v2.webp"
+        ],
+        "reference_sha256": {
+          "/workspace/art-20261106-stickers/design/art/masters/mochi-v2/mochi-v2.webp": "d107327f7c35e283895babdadc487326cff93e13178ca594bc70285770f62ee5"
+        },
+        "fingerprint": "0ffa503dd319ef71",
+        "prompt_sha256": "915d2ee0e52cad194dd2e0a9839db278d13ce3cf1ff216f17e5ced58a1fc5389",
+        "transparent": true
+      },
+      "original_packet_sha256": "83ce4d38cd7ef74555342c7ff86c316c503e4dc0e07a75ececbac0b5f9d48a7b"
+    }
+  ]
+}
