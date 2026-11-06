@@ -1,0 +1,213 @@
+batch: batch-43-caglayan-production
+contact_sheet: design/art/takes/lead-picks-2026-11-06-caglayan/caglayan-island-2/contact.jpg
+jobs:
+  caglayan-island-2:
+    pick: 2
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. auto-picked by QA; founder review
+      pending. Initial take2 is manually eligible and QA WARN/no hard failure. Take1
+      actual edit_stability hard failure is excluded automatically and never waived;
+      no palette/chroma force is needed for take2. Two left/centre ribbons, half-full
+      blue-green pool with dry rim showing, wet still wheel, two white/yellow flower
+      clumps and first warm cliff light. Root props/framing retained; current source/locked
+      seals and manual receipt b68e6e85 preserved. No retry or prompt/threshold change.
+qa_reports:
+  1:
+    job: caglayan-island-2
+    take: 1
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 56 (R1 51)
+      value: 55.5
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 25 (at most 22), p98 92 (at least 90), spread 67
+        (at least 60)'
+      value: 67.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 64 (band 55-90)'
+      value: 64.3
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.14 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.141
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 7.5 (at least 3.5)'
+      value: 7.45
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.0 (R1 5.3)
+      value: 3.96
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.8
+      value: 1.8108
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 4.1, p95 12.3, off-palette 5.8% (top: #88BBEE (1.3%), #AAAA44
+        (0.8%))'
+      value: 4.1253
+    - check: edit_silhouette
+      status: pass
+      message: 100% of the parent's shape kept
+      value: 1.0
+    - check: edit_stability
+      status: fail
+      message: 24% of the parent level unchanged
+      value: 0.2381
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.68 of the parent level (drift compounds along a chain)
+      value: 1.6755
+    info:
+      parent_canvas:
+        source:
+        - 768
+        - 512
+        target:
+        - 1536
+        - 1024
+      metrics_raw:
+        L_p5: 37.0
+        L_p50: 76.3
+        L_p95: 91.7
+        C_p50: 22.2
+        C_p95: 61.1
+        C_p99: 68.9
+        detail: 4.81
+      metrics_locked:
+        L_p5: 37.6
+        L_p50: 76.2
+        L_p95: 91.5
+        C_p50: 22.1
+        C_p95: 55.5
+        C_p99: 61.2
+        detail: 3.96
+    fingerprint: 1840b2fd8598c57a
+  2:
+    job: caglayan-island-2
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 56 (R1 51)
+      value: 55.6
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 27 (at most 22), p98 92 (at least 90), spread 65
+        (at least 60)'
+      value: 65.4
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 66 (band 55-90)'
+      value: 65.6
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.15 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.149
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.6 (at least 3.5)'
+      value: 6.58
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.5 (R1 5.3)
+      value: 3.5
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.8
+      value: 1.8495
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.4, p95 11.4, off-palette 4.0% (top: #AAAA44 (0.8%), #AABB44
+        (0.5%))'
+      value: 3.4462
+    - check: edit_silhouette
+      status: pass
+      message: 100% of the parent's shape kept
+      value: 1.0
+    - check: edit_stability
+      status: warn
+      message: 49% of the parent level unchanged
+      value: 0.4881
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.50 of the parent level (drift compounds along a chain)
+      value: 1.5022
+    info:
+      parent_canvas:
+        source:
+        - 768
+        - 512
+        target:
+        - 1536
+        - 1024
+      metrics_raw:
+        L_p5: 38.2
+        L_p50: 79.5
+        L_p95: 91.4
+        C_p50: 20.1
+        C_p95: 61.9
+        C_p99: 69.8
+        detail: 4.32
+      metrics_locked:
+        L_p5: 38.6
+        L_p50: 79.5
+        L_p95: 91.2
+        C_p50: 19.8
+        C_p95: 55.6
+        C_p99: 61.9
+        detail: 3.5
+    fingerprint: 1840b2fd8598c57a
+manual_review:
+  excluded_takes: []
+  note: auto-picked by QA; founder review pending. Initial take2 is manually eligible
+    and QA WARN/no hard failure. Take1 actual edit_stability hard failure is excluded
+    automatically and never waived; no palette/chroma force is needed for take2. Two
+    left/centre ribbons, half-full blue-green pool with dry rim showing, wet still
+    wheel, two white/yellow flower clumps and first warm cliff light. Root props/framing
+    retained; current source/locked seals and manual receipt b68e6e85 preserved. No
+    retry or prompt/threshold change.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-d22e9d90-8305-4527-b038-e85172ccbc45.png
+  original_generated_png_sha256: 26810059af46a494de604e7bcd0b44ffed7297ead1c935658d6d6d56a33af503
+  inbox_png_sha256: 5627593e2be847bf801019b68a2ad69d5cf8e122bdb6e2b257a1059b4df253d9
+  rgba_sha256: 5aef49d1b47a8e9f5721a874963ab1d22efeb68a10f8ffe8c94b42d1ed13b95c
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 1840b2fd8598c57a
+- take: 2
+  source_file: /workspace/generated_images/exec-adf7ec7d-7eb6-41f5-a685-e36c4137bb28.png
+  original_generated_png_sha256: 2f37e729fefa14daaefe5609504cfcbeaab8b67673e174d38283e9fb4a13cc50
+  inbox_png_sha256: a3b200a5adb118d1708b85aff5a7cc331ed3f9681d5ce9cebc91ee64107db95a
+  rgba_sha256: 2a5a4f6ab2c978def98ebbfc6d689b0e931bc2ceb8c872c754c3e209e62ed8f6
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 1840b2fd8598c57a
+operation: lead-picks-2026-11-06-caglayan
