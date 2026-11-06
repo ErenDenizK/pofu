@@ -1,0 +1,117 @@
+{
+  "job": "koke-stone",
+  "batch": "batch-60-earth-face",
+  "asset": "prop__koke-stone",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-06T10:32:13+00:00",
+  "image": "design/art/masters/koke-stone/koke-stone.png",
+  "raw": "design/art/masters/koke-stone/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "474551559e805047",
+  "prompt": "REFERENCES (attached, in this order):\n1. Koke's island plate: match its painting, light, boulders and moss exactly; the stone stands on this lawn.\n\nA small upright standing stone for a cozy mobile game, as a game\nsprite on a transparent background: a soft rounded grey-sage stone\na little taller than wide, with a cap of fresh moss on its top and a\nfew moss patches on its sides, three faint carved horizontal lines\non its face like an old message worn smooth, softly lit from the\nupper left with a cool shade on the right, standing on a tiny tuft\nof grass, in exactly the painting style of the attached island.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: letters, runes, text, a face, a gravestone look, a sign post, a shadow on the ground, a background\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/koke-island-0/koke-island-0.png",
+      "role": "Koke's island plate: match its painting, light, boulders and moss exactly; the stone stands on this lawn."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-06T10:17:20+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "fit": null,
+  "emit_region": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 27 (R1 51)",
+        "value": 27.0
+      },
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 54 (at most 22), p98 91 (at least 90), spread 37 (at least 60) (warn-only until the founder has seen the light pilot)",
+        "value": 36.8
+      },
+      {
+        "check": "light_median",
+        "status": "pass",
+        "message": "day/subject: median L 71 (band 55-90)",
+        "value": 70.8
+      },
+      {
+        "check": "light_haze",
+        "status": "warn",
+        "message": "day/subject: dark-channel haze 0.42 (at most 0.20; no true dark means a wash) (warn-only until the founder has seen the light pilot)",
+        "value": 0.424
+      },
+      {
+        "check": "light_contrast",
+        "status": "warn",
+        "message": "day/subject: p75 local contrast 1.9 (at least 3.5) (warn-only until the founder has seen the light pilot)",
+        "value": 1.88
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 1.3 (R1 5.3)",
+        "value": 1.28
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 0.5",
+        "value": 0.5303
+      },
+      {
+        "check": "no_guide_magenta",
+        "status": "pass",
+        "message": "0 guide-magenta pixels (per 1024^2)",
+        "value": 0.0
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.2, p95 2.8, off-palette 0.0%",
+        "value": 1.1853
+      },
+      {
+        "check": "harmony",
+        "status": "warn",
+        "message": "harmony score 70 against the world reference (outliers: C_p95, edge)",
+        "value": 69.5
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Both initial takes pass all hard QA and literal manual review; take1 has the lowest style-lock load0.5303 versus0.5405. One upright rounded grey-sage stone with moss cap and side patches, exactly three faint horizontal carved grooves and small grass base; no letters,runes,face or signpost. Matte soft moss and stone match the listed Koke plate. Tiny extra bells and fern are disclosed, with no exclusive only-parts clause; no imported decor or raw pixel-footprint gate. Proper cream/dark alpha composites show no visible fringe despite near-transparent native-view edge colors. Day values/haze/contrast and Harmony69.5 warn only, never waived hard failures. Official locked1024square PNG443566bytes fits the614400cap unchanged; no scaling or lossy master. All immutable originals/callbacks/QA/locked/source hashes preserved. Queue stale count2 versus authored3 realjobs resolved as trackall includes this independent stone. No source/manifest/palette/threshold changes."
+}
