@@ -1,0 +1,244 @@
+batch: batch-30c-decor-seasons-2-v2
+manifest: tools/imagegen/manifest/batch-30c-decor-seasons-2-v2.yaml
+manifest_sha256: ea5cacbf97d06a6c7df0fdc0cfe18e40fe973d63e48e965cce6438809fb462ce
+contact_sheet: design/art/takes/batch-30c-decor-seasons-2-v2/x-decor-kis-snowman-pofu-v2/contact.jpg
+jobs:
+  x-decor-kis-snowman-pofu-v2:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Take 1 preserves three stacked
+      smooth snowballs, two round snow ears, two glossy sculpted dark eyes, tiny pink
+      nose/cheeks, plum knitted scarf, exactly two complete twig arms and one inward-held
+      sunflower seed; no fur, curl or living hamster body. It turns slightly left
+      and its complete posted silhouette is 263 px wide, within the one-third cap.
+      Take 2 is excluded for complete posted width 467 px above 341.33, not its explicitly
+      allowed sculpted eyes or snow ears. Take 1 eligible; no unnecessary retry; exploration
+      only and never promoted.
+qa_reports:
+  1:
+    job: x-decor-kis-snowman-pofu-v2
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 39 (R1 51)
+      value: 39.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 33 (at most 22), p98 96 (at least 90), spread 64
+        (at least 60)'
+      value: 63.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 85 (band 55-90)'
+      value: 85.3
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.14 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.137
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.9 (at least 3.5)'
+      value: 6.93
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.7 (R1 5.3)
+      value: 2.7
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.1
+      value: 1.0656
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 5.8, p95 23.1, off-palette 18.2% (top: #AA5577 (2.0%), #BB6677
+        (1.7%)) (advisory in an exploration)'
+      value: 5.7556
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 54 against the world reference (outliers: C_p95, L_p2,
+        detail, edge)'
+      value: 54.4
+    info:
+      fit:
+        scale: 0.6892
+        anchor:
+        - 505.6
+        - 942
+      registration:
+        dx: 7
+        dy: -54
+      metrics_raw:
+        L_p5: 39.6
+        L_p50: 85.4
+        L_p95: 95.8
+        C_p50: 6.9
+        C_p95: 39.6
+        C_p99: 41.7
+        detail: 3.39
+      metrics_locked:
+        L_p5: 40.5
+        L_p50: 85.3
+        L_p95: 95.5
+        C_p50: 6.9
+        C_p95: 39.1
+        C_p99: 40.8
+        detail: 2.7
+    fingerprint: 39f4d2b84d1bc8b4
+  2:
+    job: x-decor-kis-snowman-pofu-v2
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 35 (R1 51)
+      value: 34.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 31 (at most 22), p98 96 (at least 90), spread 65
+        (at least 60)'
+      value: 65.2
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 85 (band 55-90)'
+      value: 85.0
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.18 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.184
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.3 (at least 3.5)'
+      value: 4.35
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.8 (R1 5.3)
+      value: 2.79
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.8462
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 5.1, p95 18.9, off-palette 19.9% (top: #995566 (2.9%), #BB6677
+        (2.4%)) (advisory in an exploration)'
+      value: 5.1427
+    - check: decor_anchor
+      status: warn
+      message: top y 150 above the height bar (500); width 467 px wider than the footprint
+        (360) (advisory in an exploration)
+      value: 888.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 53 against the world reference (outliers: C_p95, L_p2,
+        detail, edge)'
+      value: 52.8
+    info:
+      fit_skipped: needs x0.53, below x0.6 (a real art failure)
+      registration:
+        dx: 7
+        dy: -40
+      metrics_raw:
+        L_p5: 36.3
+        L_p50: 85.1
+        L_p95: 96.2
+        C_p50: 7.2
+        C_p95: 35.2
+        C_p99: 37.2
+        detail: 3.62
+      metrics_locked:
+        L_p5: 37.2
+        L_p50: 85.0
+        L_p95: 96.1
+        C_p50: 7.2
+        C_p95: 34.9
+        C_p99: 36.4
+        detail: 2.79
+    fingerprint: 39f4d2b84d1bc8b4
+manual_review:
+  observed_note: Take 1 preserves three stacked smooth snowballs, two round snow ears,
+    two glossy sculpted dark eyes, tiny pink nose/cheeks, plum knitted scarf, exactly
+    two complete twig arms and one inward-held sunflower seed; no fur, curl or living
+    hamster body. It turns slightly left and its complete posted silhouette is 263
+    px wide, within the one-third cap. Take 2 is excluded for complete posted width
+    467 px above 341.33, not its explicitly allowed sculpted eyes or snow ears. Take
+    1 eligible; no unnecessary retry; exploration only and never promoted.
+  excluded_takes:
+  - 2
+sources:
+- batch: batch-30c-decor-seasons-2-v2
+  job: x-decor-kis-snowman-pofu-v2
+  take: 1
+  round: 1
+  logical_run: 20261106-b30c-v2-snow-sculpture
+  source_file: /workspace/generated_images/exec-5deb5474-b0da-4adf-86af-ff7f64532d47.png
+  returned_at: '2026-11-06T00:50:51.944Z'
+  prompt_sha256: bac757961a6e6eabb0539c96fe773cf50bbbe96759c2f7f2aba98cfcdc26b2b8
+  fingerprint: 39f4d2b84d1bc8b4
+  saved_at: '2026-11-06T00:50:52.293313+00:00'
+  original_generated_png_sha256: 5d10e65c701849275f737909df7b64407275bb0e626f88f5629ec337e2c84f5d
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 52f9e21a9f1d5ce72892ac506ad1d18713a26c60abff099ef026f470eac5134e
+  inbox_png_sha256: 1eb7b245802ccc2bb437b2b6dffe4b12acd724875f765b4af9fbff5938d1cd46
+  qa_sha256: d6bcfbc12b1188e39d62b10993c62f60a3be3e256df168bcbb9548a99ba1b2fa
+- batch: batch-30c-decor-seasons-2-v2
+  job: x-decor-kis-snowman-pofu-v2
+  take: 2
+  round: 1
+  logical_run: 20261106-b30c-v2-snow-sculpture
+  source_file: /workspace/generated_images/exec-508e26f6-dcd7-4a1b-a5af-8af245c19984.png
+  returned_at: '2026-11-06T00:51:41.772Z'
+  prompt_sha256: bac757961a6e6eabb0539c96fe773cf50bbbe96759c2f7f2aba98cfcdc26b2b8
+  fingerprint: 39f4d2b84d1bc8b4
+  saved_at: '2026-11-06T00:51:42.163039+00:00'
+  original_generated_png_sha256: 02faf0c29338bf3629efd93c54315dff71ee8ce3c5e81095ab10bbf8b16516a4
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 453b6fc7b6d0fa77e8a3d7c73e3cab17d78ec9c2a535dbb0e9aabd4b8a39bedf
+  inbox_png_sha256: ebb03a66ecdc99320d96ba6866f18b7d7cdd9ee66c08f2eb311e585c0785edbf
+  qa_sha256: f4e7090bba519c5980fc998e9e3b7c81005aad87e9be58883511f081c2803414
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+variation_proof_sha256: a6b42f3fbfdb3ab513b04eb9c4e1ea02889b0542875eb6cff926b45df031def0
