@@ -1,0 +1,21 @@
+id: asset-flow-frame-caglayan
+type: asset
+title_tr: flow-frame-caglayan
+title_en: flow-frame-caglayan (ui)
+status: in-production
+horizon: now
+summary: >-
+  A square picture-frame ring seen straight from above, as a game surround on a transparent
+  background, filling about 96 percent of the canvas, with a completely EMPTY transparent
+  middle (no fill, no shadow inside). The ring is about 96 px thick all round: a rounded border
+  of pale warm-grey cliff stone, the same stone as a river-side cliff, with soft rounded corners.
+  Along the top a fringe of short green grass and a fe…
+art:
+  images: []
+  jobs:
+  - batch-64-flow-pieces:flow-frame-caglayan
+sources:
+- doc: tools/imagegen/manifest/batch-64-flow-pieces.yaml
+kind: ui
+batch: batch-64-flow-pieces
+size: 1024x1024

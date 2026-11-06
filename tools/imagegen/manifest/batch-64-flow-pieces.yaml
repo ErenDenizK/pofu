@@ -1,0 +1,557 @@
+# Batch 64: the flow game's painted pieces (production; docs/design/flow-game.md
+# section 7). Çağlayan's connect game: square carved river-stone tiles, a mill
+# wheel, the spring and pool, the board's surround and small water sprites.
+#
+# The game is built (Packages/PofuKit/Sources/PofuGames/Flow/Scene/FlowArt.swift):
+# FlowTextures.artName maps tile kinds to these ids and draws a fallback, so
+# every id below is used EXACTLY as the code names it:
+#   flow-tile-straight, flow-tile-bend, flow-tile-split, flow-tile-gate,
+#   flow-tile-source, flow-tile-mouth, flow-rock, flow-grass.
+# The wheel has no hook yet (artName returns nil): flow-wheel (the rotating
+# paddle sprite) and flow-tile-wheel (the housing it sits on) are the ids the
+# code will load. The rest (pool, frame, splash, dribble, damla-point) are new
+# hooks listed in section 7.
+#
+# LOOK (lead feedback on the code-drawn screenshots, 2026-11-06): the dry
+# grooves were a heavy dark brown that read like bars. Here a tile is CARVED,
+# MOSSY RIVER STONE in Çağlayan's palettes (world-water, world-foliage): a
+# pale warm-grey stone, rounded at the edges, soft moss on the shoulders, and
+# a groove that is a SHALLOW, SOFT, LIGHT channel (a gentle dip in the same
+# stone, a little darker and cooler than the face, lit from above), never a
+# dark slot. Water is drawn by code (a soft painted ribbon like the game's
+# water), so the groove stays empty and calm. The frame is the cliff's stone
+# lip with grass, as on the island plate.
+#
+# GEOMETRY CONTRACT (code rotates and aligns tiles; the art must be exact):
+#   - Every tile is a square, FULL BLEED (stone to all four edges, no margin,
+#     no outline), 1024 x 1024, shipped at 256 x 256. Tiles abut edge to edge
+#     and must read as one board of stones.
+#   - The channel is centred on the tile and its width is about 30 percent
+#     of the tile (a 307 px groove). At the middle of each open side the
+#     groove meets the tile edge exactly at the centre (x or y = 512), at full
+#     width, so neighbouring tiles join without a step.
+#   - Closed sides carry NO groove and an even stone shoulder. A bend curves
+#     through the middle like a quarter circle (a rounded corner, not a sharp
+#     mitre).
+#   - Orientation as drawn (code rotates): straight = north-south; bend =
+#     north to east; split = north, east and west open (a T), south closed;
+#     source = one opening to the south, the spring at the top; mouth = one
+#     opening to the north, the pool to the south; wheel housing = east-west;
+#     gate = east-west with the sluice board across the middle.
+#   - Seen from straight above with only a slight tilt (the plate's light),
+#     lit from the upper left; the same light on every tile so they match.
+#   - No text, letters, numbers, arrows or symbols anywhere.
+#
+# Tracks (independent): tiles (straight first, it is the pilot and the look
+# reference for the rest), props (wheel, rock, grass, pool), frame, water fx
+# (splash, dribble), damla. PILOT: flow-tile-straight; if it fails after its
+# one retry, skip the tile track and report. The Çağlayan island plate
+# (batch-43, caglayan-island-0) is not approved yet, so the attached look
+# reference is the island concept take by path (as batch-61 attaches the door
+# scene); once the plate is approved, a re-run may swap in approved:caglayan-island-0.
+
+batch: batch-64-flow-pieces
+title: The flow game's pieces (stone tiles, wheel, spring and pool, board frame, water sprites, Damla pointing)
+status: open
+
+refs:
+  tea-stall-5: design/art/stations/tea-stall-5/tea-stall-5.png
+
+defaults:
+  variants: 2
+
+_shared:
+  island: &island
+    ref: design/art/takes/batch-17-islands-v2/x2-caglayan-b/plate__x2-caglayan-b--t1.webp
+    role: "Çağlayan's concept plate: take ONLY the look of its pale rounded cliff stone, its soft moss and grass, its soft painted water and its light. Do not draw the island, the cliff, the mill or the pool as a scene."
+  stall: &stall
+    ref: approved:tea-stall-5
+    role: "A finished prop of the game: match its soft airbrushed finish, matte materials and warm light (do not draw the stall)."
+  avoid: &avoid
+    text: "AVOID: text, letters, numbers, symbols, arrows, icons, an outline, a border or margin around the tile, a drop shadow outside the tile, dark brown or black grooves, bars or slots, deep holes, harsh contrast, gloss or specular glints, glass, pure black, neon or saturated colors, a 3D render look, photorealism"
+  avoid_fx: &avoid_fx
+    text: "AVOID: text, letters, numbers, symbols, an outline, a background, a ground shadow, foam clumps with hard edges, gloss, glints, pure black, neon blue, a 3D render look"
+  tilebase: &tilebase
+    text: "A game tile for a cozy mobile puzzle, seen straight from above with a very slight tilt, lit softly from the upper left. A SQUARE of carved, mossy river stone that fills the whole canvas edge to edge (full bleed, no margin, no outline, no shadow around it): pale warm-grey stone with a faint cream and sage tint, rounded and softly worn, a little soft green moss gathered on the shoulders and corners, never on the groove. The channel is a SHALLOW, SOFT, LIGHT groove carved into the same stone: a gentle dip about 30 percent of the tile wide, centred, its floor only a little cooler and darker than the stone face (a pale grey-green, never brown, never near black), its walls softly rounded and lit, so it reads as a calm empty water-bed waiting for water, not as a slot or a bar. Matte, painted, soft, with broad smooth value changes."
+
+jobs:
+  - {id: tea-stall-5, kind: station, name: tea-stall-5, external: batch-01-slice}
+  - {id: damla, kind: char, name: damla, external: batch-43-caglayan-production}
+
+  # ----------------------------------------------------------- TILES
+
+  - id: flow-tile-straight
+    kind: ui
+    name: flow-tile-straight
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: false
+    deliver: {scale: 0.25}
+    palettes: [world-water, world-foliage]
+    chat: "Pofu · Flow game"
+    notes: "PILOT, tile track root and the look reference for every other tile. A straight channel, north-south as drawn (code rotates). Review: reads at 70 pt cells (the groove is clearly a channel, the stone clearly stone, at 70 x 70 pt); the groove meets the edge exactly at the centre of each open side at full width (x or y = 512 of 1024) and is absent on closed sides; the groove is a soft light dip, not a dark bar; mossy carved river stone in Çağlayan's palette; full bleed, no outline; no text or symbols."
+    attach:
+      - *island
+      - *stall
+    prompt:
+      - *tilebase
+      - text: |
+          The straight tile: one groove runs straight from the exact middle of the top edge to the exact middle of the bottom edge, 30 percent of the tile wide, perfectly vertical and centred. The left and right sides are closed: an even stone shoulder with a little moss near the outer corners.
+      - block: prop-style-v2
+      - *avoid
+
+  - id: flow-tile-bend
+    kind: ui
+    name: flow-tile-bend
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: false
+    deliver: {scale: 0.25}
+    palettes: [world-water, world-foliage]
+    chat: "Pofu · Flow game"
+    notes: "A bend, north to east as drawn. Review: reads at 70 pt cells (the groove is clearly a channel, the stone clearly stone, at 70 x 70 pt); the groove meets the edge exactly at the centre of each open side at full width (x or y = 512 of 1024) and is absent on closed sides; the groove is a soft light dip, not a dark bar; mossy carved river stone in Çağlayan's palette; full bleed, no outline; no text or symbols. The curve is a smooth rounded quarter turn."
+    attach:
+      - *island
+      - *stall
+      - ref: approved:flow-tile-straight
+        role: "The straight tile: the same stone, moss, groove softness, light and width exactly (do not copy its channel direction)."
+    prompt:
+      - *tilebase
+      - text: |
+          The bend tile: the groove enters at the exact middle of the top edge, curves through the middle in a smooth rounded quarter turn and leaves at the exact middle of the right edge, 30 percent wide all along. The bottom and left sides are closed stone with a little moss near the outer corners.
+      - block: prop-style-v2
+      - *avoid
+
+  - id: flow-tile-split
+    kind: ui
+    name: flow-tile-split
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: false
+    deliver: {scale: 0.25}
+    palettes: [world-water, world-foliage]
+    chat: "Pofu · Flow game"
+    notes: "A T split: north, east and west open, south closed. Review: reads at 70 pt cells (the groove is clearly a channel, the stone clearly stone, at 70 x 70 pt); the groove meets the edge exactly at the centre of each open side at full width (x or y = 512 of 1024) and is absent on closed sides; the groove is a soft light dip, not a dark bar; mossy carved river stone in Çağlayan's palette; full bleed, no outline; no text or symbols."
+    attach:
+      - *island
+      - *stall
+      - ref: approved:flow-tile-straight
+        role: "The straight tile: the same stone, moss, groove softness, light and width exactly (do not copy its channel direction)."
+    prompt:
+      - *tilebase
+      - text: |
+          The split tile (a T): the groove enters at the exact middle of the top edge and divides in the middle into two branches that leave at the exact middle of the left edge and the exact middle of the right edge, 30 percent wide, softly rounded where they meet. The bottom side is closed stone with a little moss.
+      - block: prop-style-v2
+      - *avoid
+
+  - id: flow-tile-gate
+    kind: ui
+    name: flow-tile-gate
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: false
+    deliver: {scale: 0.25}
+    palettes: [world-water, world-foliage]
+    chat: "Pofu · Flow game"
+    notes: "Damla's sluice: a fixed east-west channel with a wooden sluice board across it and a carved rim (the player cannot turn it). Review: reads at 70 pt cells (the groove is clearly a channel, the stone clearly stone, at 70 x 70 pt); the groove meets the edge exactly at the centre of each open side at full width (x or y = 512 of 1024) and is absent on closed sides; the groove is a soft light dip, not a dark bar; mossy carved river stone in Çağlayan's palette; full bleed, no outline; no text or symbols. The wooden board is a low plank across the channel's middle, lower than the groove's walls so water can read as passing; the carved rim tells the eye it is fixed."
+    attach:
+      - *island
+      - *stall
+      - ref: approved:flow-tile-straight
+        role: "The straight tile: the same stone, moss, groove softness, light and width exactly (do not copy its channel direction)."
+    prompt:
+      - *tilebase
+      - text: |
+          The gate tile: a straight east-west groove from the exact middle of the left edge to the exact middle of the right edge, 30 percent wide. Across its middle, a short honey-wood sluice board (a rounded plank with two small wooden pegs) sits upright across the groove, painted matte, no grain. A thin carved rim runs just inside the tile edge on all four sides to show it is fixed. The top and bottom sides are closed stone.
+      - block: prop-style-v2
+      - *avoid
+
+  - id: flow-tile-wheel
+    kind: ui
+    name: flow-tile-wheel
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: false
+    deliver: {scale: 0.25}
+    palettes: [world-water, world-foliage]
+    chat: "Pofu · Flow game"
+    notes: "The wheel's housing: an east-west channel with a round stone seat in the middle where flow-wheel (the paddle wheel, a separate sprite) sits. Review: reads at 70 pt cells (the groove is clearly a channel, the stone clearly stone, at 70 x 70 pt); the groove meets the edge exactly at the centre of each open side at full width (x or y = 512 of 1024) and is absent on closed sides; the groove is a soft light dip, not a dark bar; mossy carved river stone in Çağlayan's palette; full bleed, no outline; no text or symbols. The seat is an empty round recess, no wheel drawn."
+    attach:
+      - *island
+      - *stall
+      - ref: approved:flow-tile-straight
+        role: "The straight tile: the same stone, moss, groove softness, light and width exactly (do not copy its channel direction)."
+    prompt:
+      - *tilebase
+      - text: |
+          The wheel housing tile: a straight east-west groove from the exact middle of the left edge to the exact middle of the right edge, 30 percent wide, and in its middle a round shallow stone seat about 70 percent of the tile wide, a softly raised stone ring with an empty, calm pool-like floor inside it, where a wheel will be placed. NO wheel, no paddles, no axle drawn. The top and bottom sides are closed stone with a little moss.
+      - block: prop-style-v2
+      - *avoid
+
+  - id: flow-tile-source
+    kind: ui
+    name: flow-tile-source
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: false
+    deliver: {scale: 0.25}
+    palettes: [world-water, world-foliage]
+    chat: "Pofu · Flow game"
+    notes: "The spring: the stream's start, one opening to the south as drawn. Review: reads at 70 pt cells (the groove is clearly a channel, the stone clearly stone, at 70 x 70 pt); the groove meets the edge exactly at the centre of each open side at full width (x or y = 512 of 1024) and is absent on closed sides; the groove is a soft light dip, not a dark bar; mossy carved river stone in Çağlayan's palette; full bleed, no outline; no text or symbols. The spring mouth is a small round stone basin in mossy rock in the upper half with clear water welling softly; the groove leaves it through the bottom."
+    attach:
+      - *island
+      - *stall
+      - ref: approved:flow-tile-straight
+        role: "The straight tile: the same stone, moss, groove softness, light and width exactly (do not copy its channel direction)."
+    prompt:
+      - *tilebase
+      - text: |
+          The source tile: in the upper half a small round spring, a mossy rock mouth with a rounded stone lip and a little clear soft blue-green water welling in a round basin (painted flat and soft, a faint paler ripple, no spray). From the basin the groove runs down to the exact middle of the bottom edge, 30 percent wide, continuing the same soft pale groove as the other tiles. The top, left and right sides are closed mossy stone.
+      - block: prop-style-v2
+      - *avoid
+
+  - id: flow-tile-mouth
+    kind: ui
+    name: flow-tile-mouth
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: false
+    deliver: {scale: 0.25}
+    palettes: [world-water, world-foliage]
+    chat: "Pofu · Flow game"
+    notes: "The channel's end where it meets the pool, one opening to the north as drawn. Review: reads at 70 pt cells (the groove is clearly a channel, the stone clearly stone, at 70 x 70 pt); the groove meets the edge exactly at the centre of each open side at full width (x or y = 512 of 1024) and is absent on closed sides; the groove is a soft light dip, not a dark bar; mossy carved river stone in Çağlayan's palette; full bleed, no outline; no text or symbols. The bottom third opens into the pool's rim; the pool shows the soft painted water of the island, calm and clear."
+    attach:
+      - *island
+      - *stall
+      - ref: approved:flow-tile-straight
+        role: "The straight tile: the same stone, moss, groove softness, light and width exactly (do not copy its channel direction)."
+    prompt:
+      - *tilebase
+      - text: |
+          The mouth tile: the groove enters at the exact middle of the top edge, 30 percent wide, and runs down, widening softly into a rounded stone lip that opens into the edge of a pool across the bottom third of the tile: a calm, clear blue-green pool surface (soft painted water, a faint paler ripple, no glints), bordered by a rounded pale stone rim that is the same rim on every tile. The left and right sides of the upper part are closed mossy stone.
+      - block: prop-style-v2
+      - *avoid
+
+  # ----------------------------------------------------------- BANKS (rock, grass)
+
+  - id: flow-rock
+    kind: ui
+    name: flow-rock
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: false
+    deliver: {scale: 0.25}
+    palettes: [world-water, world-foliage]
+    chat: "Pofu · Flow game"
+    notes: "A dry boulder cell (variant 1). Review: reads at 70 pt cells as a blocked cell, not a channel; no groove at all; full bleed; sits beside the stone tiles as the same family; no text."
+    attach:
+      - *island
+      - *stall
+      - ref: approved:flow-tile-straight
+        role: "The straight tile: the same bank stone, light and soft finish (do not copy its groove)."
+    prompt:
+      - text: |
+          A game tile for a cozy mobile puzzle, seen straight from above with a very slight tilt, lit softly from the upper left, filling the canvas edge to edge (full bleed): short soft green bank grass all over, and in the middle one large rounded mossy boulder of pale warm-grey stone with a faint cream and sage tint, about 70 percent of the tile wide, with a little moss on top and soft ambient shade where it meets the grass. No groove, no water.
+      - block: prop-style-v2
+      - *avoid
+
+  - id: flow-rock-2
+    kind: ui
+    name: flow-rock-2
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: false
+    deliver: {scale: 0.25}
+    palettes: [world-water, world-foliage]
+    chat: "Pofu · Flow game"
+    notes: "A dry boulder cell (variant 2): a different shape, same family. Review: reads at 70 pt cells as a blocked cell, not a channel; no groove at all; full bleed; sits beside the stone tiles as the same family; no text."
+    attach:
+      - *island
+      - *stall
+      - ref: approved:flow-tile-straight
+        role: "The straight tile: the same bank stone, light and soft finish (do not copy its groove)."
+    prompt:
+      - text: |
+          A game tile for a cozy mobile puzzle, seen straight from above with a very slight tilt, lit softly from the upper left, filling the canvas edge to edge (full bleed): short soft green bank grass all over, and one rounded boulder of pale warm-grey stone slightly off the middle, with a smaller stone beside it, moss on top, soft ambient shade where they meet the grass. A different outline from the first boulder. No groove, no water.
+      - block: prop-style-v2
+      - *avoid
+
+  - id: flow-grass
+    kind: ui
+    name: flow-grass
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: false
+    deliver: {scale: 0.25}
+    palettes: [world-water, world-foliage]
+    chat: "Pofu · Flow game"
+    notes: "An empty grass bank cell (variant 1). Review: reads at 70 pt cells as a blocked cell, not a channel; no groove at all; full bleed; sits beside the stone tiles as the same family; no text."
+    attach:
+      - *island
+      - *stall
+      - ref: approved:flow-tile-straight
+        role: "The straight tile: the same bank stone, light and soft finish (do not copy its groove)."
+    prompt:
+      - text: |
+          A game tile for a cozy mobile puzzle, seen straight from above with a very slight tilt, lit softly from the upper left, filling the canvas edge to edge (full bleed): a quiet bank of short soft green grass in two close greens, a few tiny pale clover leaves, nothing else. Even enough at the edges to sit beside other tiles. No groove, no water, no stones.
+      - block: prop-style-v2
+      - *avoid
+
+  - id: flow-grass-2
+    kind: ui
+    name: flow-grass-2
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: false
+    deliver: {scale: 0.25}
+    palettes: [world-water, world-foliage]
+    chat: "Pofu · Flow game"
+    notes: "An empty grass bank cell (variant 2): a few tiny wildflowers. Review: reads at 70 pt cells as a blocked cell, not a channel; no groove at all; full bleed; sits beside the stone tiles as the same family; no text."
+    attach:
+      - *island
+      - *stall
+      - ref: approved:flow-tile-straight
+        role: "The straight tile: the same bank stone, light and soft finish (do not copy its groove)."
+    prompt:
+      - text: |
+          A game tile for a cozy mobile puzzle, seen straight from above with a very slight tilt, lit softly from the upper left, filling the canvas edge to edge (full bleed): a quiet bank of short soft green grass in two close greens with two or three tiny cream and pale-yellow wildflowers and one small pebble. Even enough at the edges to sit beside other tiles. No groove, no water.
+      - block: prop-style-v2
+      - *avoid
+
+  # ----------------------------------------------------------- WHEEL, POOL
+  - id: flow-wheel
+    kind: prop
+    name: flow-wheel
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: true
+    deliver: {scale: 0.25}
+    palettes: [world-water, world-foliage, world-props]
+    chat: "Pofu · Flow game"
+    light: {cell: day, layer: subject}
+    notes: "The mill wheel, top-down, one sprite the code rotates and blurs while wet. Review: reads at 70 pt cells (eight clear paddles around a hub); perfectly round and centred on the canvas so a rotation about the centre does not wobble (the disc is about 84 percent of the canvas); eight identical paddles at equal angles so every 45 degree turn looks the same; honey wood with a soft cocoa hub; a little moss on the rim; no shadow outside the disc; no text."
+    attach:
+      - *stall
+      - ref: palette:world-props
+        role: "The props palette card (wood colours)."
+    prompt:
+      - text: |
+          A mill water wheel seen straight from above, as a game sprite on a transparent background: a round wooden wheel, perfectly circular and centred, about 84 percent of the canvas wide, with a small round hub and a short axle, eight identical flat paddles at equal angles (every 45 degrees), a plain wooden rim joining their tips, honey-stained matte wood (no grain) with a slightly darker cocoa hub and a tiny touch of green moss on the rim. Soft, rounded, chunky shapes.
+      - block: prop-style-v2
+      - text: "AVOID: text, letters, symbols, an outline, a ground shadow, a background, glints, water, spokes that differ from each other, an off-centre hub, a perspective or three-quarter view, a 3D render look"
+
+  - id: flow-pool
+    kind: ui
+    name: flow-pool
+    size: 1536x1024
+    canvas: 1536x1024
+    transparent: true
+    deliver: {scale: 0.5}
+    palettes: [world-water, world-foliage]
+    chat: "Pofu · Flow game"
+    notes: "The pool the stream ends in, a wide soft shape shown under the board's bottom edge. Review: a calm pale blue-green pool of the island's soft painted water in a rounded pale stone rim with a little moss and two or three lily-free ripples; about 80 percent of the canvas width, centred; flat and even enough that code can lay splash sprites on it; no shadow outside the rim; no text."
+    attach:
+      - *island
+      - *stall
+    prompt:
+      - text: |
+          A wide shallow pool seen from above with a slight tilt, as a game sprite on a transparent background: a soft oval of calm, clear blue-green water (soft painted, the same water as the island plate, a faint paler ripple, no glints), set in a rounded rim of pale warm-grey river stone with a little soft green moss and two tiny tufts of grass. About 80 percent of the canvas wide, centred. Even and calm in the middle.
+      - block: prop-style-v2
+      - *avoid_fx
+
+  # ----------------------------------------------------------- FRAME
+  - id: flow-frame-caglayan
+    kind: ui
+    name: flow-frame-caglayan
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: true
+    slice: {caps: [96, 96, 96, 96], ship_height: 256}
+    deliver: {scale: 0.5}
+    palettes: [world-water, world-foliage]
+    chat: "Pofu · Flow game"
+    notes: "The board's surround, a 9-slice ring with an EMPTY, transparent middle (the board sits inside). Insets 96 px of a ~1000 px square (24 pt at ship_height 256); the top edge is the cliff's stone lip with a fringe of grass and moss, the sides and bottom a plain rounded pale stone rim; all painted detail stays inside the 96 px caps and the straight runs between the corners are even so they stretch. Review: matches the island plate's cliff stone and grass; the middle is fully transparent (no fill, no shade); corners are clean; nothing printed; the stone is light enough that 70 pt tiles inside still read."
+    attach:
+      - *island
+      - *stall
+    prompt:
+      - text: |
+          A square picture-frame ring seen straight from above, as a game surround on a transparent background, filling about 96 percent of the canvas, with a completely EMPTY transparent middle (no fill, no shadow inside). The ring is about 96 px thick all round: a rounded border of pale warm-grey cliff stone, the same stone as a river-side cliff, with soft rounded corners. Along the top a fringe of short green grass and a few leaves hangs over the stone lip; on the sides and bottom the stone is plain with a tiny touch of moss near the corners. The straight runs are even and unpatterned so they can be stretched. Soft, matte, lit from the upper left.
+      - block: prop-style-v2
+      - text: "AVOID: text, letters, symbols, a fill or tint in the middle, a pattern that varies along the length, an outline, a drop shadow outside the ring, gloss, pure black, a 3D render look"
+
+  # ----------------------------------------------------------- WATER FX
+
+  - id: flow-splash-1
+    kind: prop
+    name: flow-splash-1
+    size: 512x512
+    canvas: 512x512
+    transparent: true
+    palettes: [world-water]
+    chat: "Pofu · Flow game"
+    light: {cell: day, layer: subject}
+    notes: "Frame 1 of 4 of the splash sprite (root of the four frames). Review: reads at 70 pt (soft clear water shapes, pale blue-green, one soft highlight at most); centred; the four frames read as one motion in order; no text."
+    attach:
+      - *island
+    prompt:
+      - text: |
+          Draw a small splash where the stream meets the pool: the droplets rise, crown, then fall and settle into a ripple. FRAME 1 OF 4: a flat ripple ring and two tiny droplets just leaving the water. As a small game sprite on a transparent background, centred, about 60 percent of the canvas wide, soft painted water in pale blue-green and white, rounded shapes, no outline.
+      - block: prop-style-v2
+      - *avoid_fx
+
+  - id: flow-splash-2
+    kind: prop
+    name: flow-splash-2
+    size: 512x512
+    canvas: 512x512
+    transparent: true
+    palettes: [world-water]
+    chat: "Pofu · Flow game"
+    light: {cell: day, layer: subject}
+    notes: "Frame 2 of 4 of the splash sprite (edit of frame 1, same canvas, centre and size so the frames play without a jump). Review: reads at 70 pt (soft clear water shapes, pale blue-green, one soft highlight at most); centred; the four frames read as one motion in order; no text."
+    edit_of: flow-splash-1
+    acceptance: {edit_mode: region}
+    attach:
+      - *island
+    prompt:
+      - text: |
+          Edit the attached frame into FRAME 2 OF 4 of the same motion (a small splash where the stream meets the pool: the droplets rise, crown, then fall and settle into a ripple): a small crown of six droplets and a soft spray, at its highest. Keep the canvas, centre, scale, colours and painting style.
+      - block: edit-keep-v1
+      - *avoid_fx
+
+  - id: flow-splash-3
+    kind: prop
+    name: flow-splash-3
+    size: 512x512
+    canvas: 512x512
+    transparent: true
+    palettes: [world-water]
+    chat: "Pofu · Flow game"
+    light: {cell: day, layer: subject}
+    notes: "Frame 3 of 4 of the splash sprite (edit of frame 1, same canvas, centre and size so the frames play without a jump). Review: reads at 70 pt (soft clear water shapes, pale blue-green, one soft highlight at most); centred; the four frames read as one motion in order; no text."
+    edit_of: flow-splash-1
+    acceptance: {edit_mode: region}
+    attach:
+      - *island
+    prompt:
+      - text: |
+          Edit the attached frame into FRAME 3 OF 4 of the same motion (a small splash where the stream meets the pool: the droplets rise, crown, then fall and settle into a ripple): the droplets falling, the crown lower and wider. Keep the canvas, centre, scale, colours and painting style.
+      - block: edit-keep-v1
+      - *avoid_fx
+
+  - id: flow-splash-4
+    kind: prop
+    name: flow-splash-4
+    size: 512x512
+    canvas: 512x512
+    transparent: true
+    palettes: [world-water]
+    chat: "Pofu · Flow game"
+    light: {cell: day, layer: subject}
+    notes: "Frame 4 of 4 of the splash sprite (edit of frame 1, same canvas, centre and size so the frames play without a jump). Review: reads at 70 pt (soft clear water shapes, pale blue-green, one soft highlight at most); centred; the four frames read as one motion in order; no text."
+    edit_of: flow-splash-1
+    acceptance: {edit_mode: region}
+    attach:
+      - *island
+    prompt:
+      - text: |
+          Edit the attached frame into FRAME 4 OF 4 of the same motion (a small splash where the stream meets the pool: the droplets rise, crown, then fall and settle into a ripple): only a faint widening ripple ring and one last droplet. Keep the canvas, centre, scale, colours and painting style.
+      - block: edit-keep-v1
+      - *avoid_fx
+
+  - id: flow-dribble-1
+    kind: prop
+    name: flow-dribble-1
+    size: 512x512
+    canvas: 512x512
+    transparent: true
+    palettes: [world-water]
+    chat: "Pofu · Flow game"
+    light: {cell: day, layer: subject}
+    notes: "Frame 1 of 4 of the dribble sprite (root of the four frames). Review: reads at 70 pt (soft clear water shapes, pale blue-green, one soft highlight at most); centred; the four frames read as one motion in order; no text."
+    attach:
+      - *island
+    prompt:
+      - text: |
+          Draw a small harmless dribble where a channel faces nothing: a thin trickle spilling over the stone lip onto the bank and soaking in. FRAME 1 OF 4: a thin bead of water at the lip, the start of a trickle. As a small game sprite on a transparent background, centred, about 60 percent of the canvas wide, soft painted water in pale blue-green and white, rounded shapes, no outline.
+      - block: prop-style-v2
+      - *avoid_fx
+
+  - id: flow-dribble-2
+    kind: prop
+    name: flow-dribble-2
+    size: 512x512
+    canvas: 512x512
+    transparent: true
+    palettes: [world-water]
+    chat: "Pofu · Flow game"
+    light: {cell: day, layer: subject}
+    notes: "Frame 2 of 4 of the dribble sprite (edit of frame 1, same canvas, centre and size so the frames play without a jump). Review: reads at 70 pt (soft clear water shapes, pale blue-green, one soft highlight at most); centred; the four frames read as one motion in order; no text."
+    edit_of: flow-dribble-1
+    acceptance: {edit_mode: region}
+    attach:
+      - *island
+    prompt:
+      - text: |
+          Edit the attached frame into FRAME 2 OF 4 of the same motion (a small harmless dribble where a channel faces nothing: a thin trickle spilling over the stone lip onto the bank and soaking in): the trickle running a short way down, a tiny puddle forming. Keep the canvas, centre, scale, colours and painting style.
+      - block: edit-keep-v1
+      - *avoid_fx
+
+  - id: flow-dribble-3
+    kind: prop
+    name: flow-dribble-3
+    size: 512x512
+    canvas: 512x512
+    transparent: true
+    palettes: [world-water]
+    chat: "Pofu · Flow game"
+    light: {cell: day, layer: subject}
+    notes: "Frame 3 of 4 of the dribble sprite (edit of frame 1, same canvas, centre and size so the frames play without a jump). Review: reads at 70 pt (soft clear water shapes, pale blue-green, one soft highlight at most); centred; the four frames read as one motion in order; no text."
+    edit_of: flow-dribble-1
+    acceptance: {edit_mode: region}
+    attach:
+      - *island
+    prompt:
+      - text: |
+          Edit the attached frame into FRAME 3 OF 4 of the same motion (a small harmless dribble where a channel faces nothing: a thin trickle spilling over the stone lip onto the bank and soaking in): the trickle at full length, the puddle wider. Keep the canvas, centre, scale, colours and painting style.
+      - block: edit-keep-v1
+      - *avoid_fx
+
+  - id: flow-dribble-4
+    kind: prop
+    name: flow-dribble-4
+    size: 512x512
+    canvas: 512x512
+    transparent: true
+    palettes: [world-water]
+    chat: "Pofu · Flow game"
+    light: {cell: day, layer: subject}
+    notes: "Frame 4 of 4 of the dribble sprite (edit of frame 1, same canvas, centre and size so the frames play without a jump). Review: reads at 70 pt (soft clear water shapes, pale blue-green, one soft highlight at most); centred; the four frames read as one motion in order; no text."
+    edit_of: flow-dribble-1
+    acceptance: {edit_mode: region}
+    attach:
+      - *island
+    prompt:
+      - text: |
+          Edit the attached frame into FRAME 4 OF 4 of the same motion (a small harmless dribble where a channel faces nothing: a thin trickle spilling over the stone lip onto the bank and soaking in): the trickle thinning, the puddle softening into the grass. Keep the canvas, centre, scale, colours and painting style.
+      - block: edit-keep-v1
+      - *avoid_fx
+
+  # ----------------------------------------------------------- DAMLA
+  - id: damla-point
+    kind: char
+    name: damla-point
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: true
+    edit_of: damla
+    palettes: [character, world-water]
+    chat: "Pofu · Damla"
+    light: {cell: day, layer: subject}
+    notes: "Pose edit of damla (batch-43 canvas and ground line, the rig method): she points one front paw ahead and a little down at the board, the other paw holds the tea glass, an encouraging look. Review: same canvas, size, ground line and character as damla; one paw clearly pointing; never scary, no claws. edit_silhouette may fail by design (batch-43 lead rule)."
+    acceptance: {edit_mode: region}
+    prompt:
+      - text: |
+          Edit the attached Damla into a new pose: one front paw is stretched out ahead and a little down, a single soft finger-paw pointing at something in front of her (the player's board), while the other paw still holds the small tea glass at her chest. Her eyes look where she points, with an encouraging little smile. Everything else, the fur, face, tail, size and ground line, stays exactly.
+      - block: edit-keep-v1

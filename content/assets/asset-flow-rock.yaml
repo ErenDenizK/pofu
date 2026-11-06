@@ -1,0 +1,21 @@
+id: asset-flow-rock
+type: asset
+title_tr: flow-rock
+title_en: flow-rock (ui)
+status: in-production
+horizon: now
+summary: >-
+  A game tile for a cozy mobile puzzle, seen straight from above with a very slight tilt,
+  lit softly from the upper left, filling the canvas edge to edge (full bleed): short soft
+  green bank grass all over, and in the middle one large rounded mossy boulder of pale warm-grey
+  stone with a faint cream and sage tint, about 70 percent of the tile wide, with a little
+  moss on top and soft ambient shade where it meets the grass…
+art:
+  images: []
+  jobs:
+  - batch-64-flow-pieces:flow-rock
+sources:
+- doc: tools/imagegen/manifest/batch-64-flow-pieces.yaml
+kind: ui
+batch: batch-64-flow-pieces
+size: 1024x1024

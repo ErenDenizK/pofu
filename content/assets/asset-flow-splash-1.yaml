@@ -1,0 +1,21 @@
+id: asset-flow-splash-1
+type: asset
+title_tr: flow-splash-1
+title_en: flow-splash-1 (prop)
+status: in-production
+horizon: now
+summary: >-
+  Draw a small splash where the stream meets the pool: the droplets rise, crown, then fall
+  and settle into a ripple. FRAME 1 OF 4: a flat ripple ring and two tiny droplets just leaving
+  the water. As a small game sprite on a transparent background, centred, about 60 percent
+  of the canvas wide, soft painted water in pale blue-green and white, rounded shapes, no
+  outline.
+art:
+  images: []
+  jobs:
+  - batch-64-flow-pieces:flow-splash-1
+sources:
+- doc: tools/imagegen/manifest/batch-64-flow-pieces.yaml
+kind: prop
+batch: batch-64-flow-pieces
+size: 512x512
