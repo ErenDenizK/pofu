@@ -1,0 +1,37 @@
+{
+  "operation": "koke-lead-picks-2026-11-06",
+  "job": "koke-standing",
+  "lead_selected_take": 2,
+  "status": "selected retained original technically undeliverable under upload cap",
+  "cap_bytes": 614400,
+  "locked_sha256": "d51015b79370a3f94c4548d306a47cd1db272169a68daee1f179cc4641a0046a",
+  "locked_png_bytes": 1127089,
+  "locked_rgba_sha256": "c16d2bece1dc7a284b1263164e12a053a7bc1fae02b2497d3b8fc2b4244c6087",
+  "encodings": {
+    "canonical-default": {
+      "path": "/workspace/art-operator-runtime/run-20261106/koke-lead-picks-2026-11-06/koke-standing-selected2-lossless-default.webp",
+      "sha256": "7b4400681f83a06e26894f829a0f194f5a84d14ab70600b0f6c3961803d8dbc1",
+      "bytes": 738916,
+      "recipe": {
+        "lossless": true,
+        "method": 6,
+        "exact": true
+      }
+    },
+    "max-effort100": {
+      "path": "/workspace/art-operator-runtime/run-20261106/koke-lead-picks-2026-11-06/koke-standing-selected2-lossless-max100.webp",
+      "sha256": "2ca40618e134788a66fc19f1911a7f7c4442213aa11b0f656cfa707404f0faa5",
+      "bytes": 735366,
+      "recipe": {
+        "lossless": true,
+        "method": 6,
+        "exact": true,
+        "quality": 100
+      }
+    }
+  },
+  "no_source_pixel_changes": true,
+  "no_generation": true,
+  "no_alternative_take": true,
+  "no_master_or_Harmony_or_consumer": true
+}

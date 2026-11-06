@@ -78,3 +78,34 @@ notes:
   level unchanged; t4 palette_drift: mean dE 4.2, p95 13.7, off-palette 10.3% (top:
   #AABB44 (0.8%), #BBBB55 (0.7%)), edit_silhouette: 67% of the parent''s shape kept,
   edit_stability: 19% of the parent level unchanged.'
+- 'koke-lead-picks-2026-11-06: lead-selected per queue row 0-k; take 2. lead-selected
+  per queue row 0-k of docs/design/art-production-plan.md at main76d7d09a509202b464e48224f1d9e84f5da21bc4.
+  The lead explicitly selected this retained original and requested official promote
+  --force. No generation, source-pixel modification, prompt/palette/profile edit or
+  QA threshold change. Original generating account, timestamps, callbacks, prompt/reference
+  fingerprints and all four original takes are preserved; all historical CUT notes
+  stay labelled and retained. This is a lead selection, not a QA auto-pick. Publish
+  original take2 exactly. Historical hard failures include palette_drift mean dE4.9762/off-palette15.2%,
+  edit_silhouette alpha overlap0.6054, AND edit_stability parent-kept fraction0.2050.
+  All three remain disclosed even though the queue summary does not name stability.
+  The standing flowering pose is the literal selected old source. Native1024square
+  delivery and canonical reports remain unchanged. Current selected-take canonical
+  QA status: fail. Actual hard failures (recorded unchanged): palette_drift: mean
+  dE 5.0, p95 15.4, off-palette 15.2% (top: #BBCC55 (0.8%), #CCCC55 (0.8%)); edit_silhouette:
+  61% of the parent''s shape kept; edit_stability: 20% of the parent level unchanged.
+  The lead-selected original remains retained; official promote is not run because
+  the upload cap prevents delivery. No QA auto-pass is claimed. Technical delivery
+  skip: the exact lead-selected standing take2 cannot fit the mandatory upload cap;
+  native PNG and both canonical exact lossless WebP encodings exceed614400bytes. No
+  source scaling, lossy master, alternate take, generation or promotion is authorized.
+  Full cap evidence is archived. Automated failures: t1 palette_drift: mean dE 4.7,
+  p95 15.2, off-palette 15.7% (top: #888822 (0.9%), #99AA33 (0.8%)), edit_silhouette:
+  62% of the parent''s shape kept, edit_stability: 20% of the parent level unchanged;
+  t2 palette_drift: mean dE 5.0, p95 15.4, off-palette 15.2% (top: #BBCC55 (0.8%),
+  #CCCC55 (0.8%)), edit_silhouette: 61% of the parent''s shape kept, edit_stability:
+  20% of the parent level unchanged; t3 palette_drift: mean dE 4.8, p95 14.7, off-palette
+  14.0% (top: #AABB44 (0.9%), #CCCC55 (0.8%)), edit_silhouette: 67% of the parent''s
+  shape kept, edit_stability: 21% of the parent level unchanged; t4 palette_drift:
+  mean dE 4.2, p95 13.7, off-palette 10.3% (top: #AABB44 (0.8%), #BBBB55 (0.7%)),
+  edit_silhouette: 67% of the parent''s shape kept, edit_stability: 19% of the parent
+  level unchanged.'
