@@ -2,14 +2,14 @@ id: asset-windmill-1-lit
 type: asset
 title_tr: windmill-1-lit
 title_en: windmill-1-lit (station)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  Light the windmill from inside: the small arched wooden door now lets a warm candle-amber
-  light through, a soft amber glow along the thin seam around the door and in its upper arch,
-  as if a lamp burned inside, a little brighter toward the top of the arch. The door keeps
-  its exact shape, panels and knob. Only the door's seam and upper arch change: the stone,
-  the cap, the sails and the step keep their exact day colors …
+summary: 'Light the windmill from inside: the small arched wooden door now lets a
+  warm candle-amber light through, a soft amber glow along the thin seam around the
+  door and in its upper arch, as if a lamp burned inside, a little brighter toward
+  the top of the arch. The door keeps its exact shape, panels and knob. Only the door''s
+  seam and upper arch change: the stone, the cap, the sails and the step keep their
+  exact day colors …'
 links:
   variant_of:
   - asset-windmill-1
@@ -21,3 +21,14 @@ sources:
 - doc: tools/imagegen/manifest/batch-36-lit-ladder-pilot.yaml
 kind: station
 batch: batch-36-lit-ladder-pilot
+notes:
+- 'batch-36-lit-ladder-pilot skipped after four takes: All four retained masked takes
+  remain closed wooden doors with the same panels and knob, but native same-coordinate
+  parent comparisons and an independent peer review show a visible amber rim/soft
+  wash on the protected inner stone arch inside the rectangular mask, strongest in
+  take 1. The exact brief allows the seam/upper wooden arch to emit and says stone/step
+  keep exact day colors, explicitly forbidding light on stones or outside the door
+  frame. All four manually excluded for that actual visible contract violation; outside-mask
+  equality alone is insufficient. No numeric failure threshold added. All four original
+  retained takes stay preserved; no new generation is allowed; unrelated glass jobs
+  continue.'

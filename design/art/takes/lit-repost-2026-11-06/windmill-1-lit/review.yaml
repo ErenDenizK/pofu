@@ -1,0 +1,804 @@
+batch: batch-36-lit-ladder-pilot
+contact_sheet: design/art/takes/lit-repost-2026-11-06/windmill-1-lit/contact.jpg
+jobs:
+  windmill-1-lit:
+    pick: none
+    publication: skipped after retained-source QA re-post; no generation
+    note: All four retained masked takes remain closed wooden doors with the same
+      panels and knob, but native same-coordinate parent comparisons and an independent
+      peer review show a visible amber rim/soft wash on the protected inner stone
+      arch inside the rectangular mask, strongest in take 1. The exact brief allows
+      the seam/upper wooden arch to emit and says stone/step keep exact day colors,
+      explicitly forbidding light on stones or outside the door frame. All four manually
+      excluded for that actual visible contract violation; outside-mask equality alone
+      is insufficient. No numeric failure threshold added. All four original retained
+      takes stay preserved; no new generation is allowed; unrelated glass jobs continue.
+qa_reports:
+  1:
+    job: windmill-1-lit
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 40.5
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 57 (at most 22), p98 91 (at least 90), spread 35
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 34.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 78 (band 55-90)'
+      value: 77.5
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.30 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.302
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 3.1 (at least 3.5)'
+      value: 3.13
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.2 (R1 5.3)
+      value: 2.17
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.5
+      value: 2.4534
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.0, p95 2.0, off-palette 0.3% (top: #EE9933 (0.1%), #EE9944
+        (0.0%))'
+      value: 0.9997
+    - check: station_anchor
+      status: pass
+      message: on the parent's anchor
+      value: 900.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 82 against the world reference (outliers: C_p95, edge)'
+      value: 81.8
+    - check: emit_leak
+      status: pass
+      message: 100% of the parent unchanged outside the emit region (masked out of
+        the master)
+      value: 0.9998
+    info:
+      registration:
+        dx: 0
+        dy: 0
+      emit_region:
+      - - 0.39
+        - 0.65
+        - 0.18
+        - 0.17
+      metrics_raw:
+        L_p5: 58.5
+        L_p50: 77.1
+        L_p95: 88.5
+        C_p50: 28.6
+        C_p95: 40.3
+        C_p99: 64.9
+        detail: 2.66
+      metrics_locked:
+        L_p5: 60.0
+        L_p50: 77.5
+        L_p95: 89.6
+        C_p50: 28.2
+        C_p95: 40.5
+        C_p99: 61.9
+        detail: 2.17
+    fingerprint: 5f6a51db87398ae2
+  4:
+    job: windmill-1-lit
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 36 (R1 51)
+      value: 36.3
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 57 (at most 22), p98 91 (at least 90), spread 35
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 34.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 78 (band 55-90)'
+      value: 77.6
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.33 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.325
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 3.1 (at least 3.5)'
+      value: 3.13
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.2 (R1 5.3)
+      value: 2.17
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.1
+      value: 2.149
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.0, p95 1.9, off-palette 0.2% (top: #EEAA44 (0.1%), #EE9933
+        (0.1%))'
+      value: 0.9597
+    - check: station_anchor
+      status: pass
+      message: on the parent's anchor
+      value: 900.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 76 against the world reference (outliers: C_p95, edge)'
+      value: 75.8
+    - check: emit_leak
+      status: pass
+      message: 100% of the parent unchanged outside the emit region (masked out of
+        the master)
+      value: 0.9998
+    info:
+      registration:
+        dx: 0
+        dy: 0
+      emit_region:
+      - - 0.39
+        - 0.65
+        - 0.18
+        - 0.17
+      metrics_raw:
+        L_p5: 60.2
+        L_p50: 77.0
+        L_p95: 88.6
+        C_p50: 28.1
+        C_p95: 36.1
+        C_p99: 64.4
+        detail: 2.7
+      metrics_locked:
+        L_p5: 60.1
+        L_p50: 77.6
+        L_p95: 89.7
+        C_p50: 28.1
+        C_p95: 36.3
+        C_p99: 61.0
+        detail: 2.17
+    fingerprint: 5f6a51db87398ae2
+  2:
+    job: windmill-1-lit
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 38 (R1 51)
+      value: 37.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 57 (at most 22), p98 91 (at least 90), spread 35
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 34.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 78 (band 55-90)'
+      value: 77.6
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.31 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.31
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 3.1 (at least 3.5)'
+      value: 3.15
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.2 (R1 5.3)
+      value: 2.21
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.5
+      value: 2.4656
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 0.9, p95 1.9, off-palette 0.1% (top: #EE9944 (0.0%), #EE9933
+        (0.0%))'
+      value: 0.9222
+    - check: station_anchor
+      status: pass
+      message: on the parent's anchor
+      value: 900.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 78 against the world reference (outliers: C_p95, edge)'
+      value: 78.1
+    - check: emit_leak
+      status: pass
+      message: 100% of the parent unchanged outside the emit region (masked out of
+        the master)
+      value: 0.9998
+    info:
+      registration:
+        dx: 0
+        dy: 0
+      emit_region:
+      - - 0.39
+        - 0.65
+        - 0.18
+        - 0.17
+      metrics_raw:
+        L_p5: 57.6
+        L_p50: 76.7
+        L_p95: 88.2
+        C_p50: 28.4
+        C_p95: 37.7
+        C_p99: 56.9
+        detail: 3.01
+      metrics_locked:
+        L_p5: 60.0
+        L_p50: 77.6
+        L_p95: 89.7
+        C_p50: 28.0
+        C_p95: 37.9
+        C_p99: 55.4
+        detail: 2.21
+    fingerprint: 5f6a51db87398ae2
+  3:
+    job: windmill-1-lit
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 38 (R1 51)
+      value: 38.2
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 57 (at most 22), p98 91 (at least 90), spread 35
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 34.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 78 (band 55-90)'
+      value: 77.5
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.32 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.318
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 3.1 (at least 3.5)'
+      value: 3.14
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.2 (R1 5.3)
+      value: 2.17
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.2
+      value: 2.1816
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 0.9, p95 1.9, off-palette 0.1% (top: #EE9944 (0.0%), #DD8833
+        (0.0%))'
+      value: 0.9314
+    - check: station_anchor
+      status: pass
+      message: on the parent's anchor
+      value: 900.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 78 against the world reference (outliers: C_p95, edge)'
+      value: 78.3
+    - check: emit_leak
+      status: pass
+      message: 100% of the parent unchanged outside the emit region (masked out of
+        the master)
+      value: 1.0
+    info:
+      registration:
+        dx: 0
+        dy: 0
+      emit_region:
+      - - 0.39
+        - 0.65
+        - 0.18
+        - 0.17
+      metrics_raw:
+        L_p5: 59.8
+        L_p50: 77.0
+        L_p95: 88.3
+        C_p50: 28.7
+        C_p95: 38.0
+        C_p99: 56.4
+        detail: 2.6
+      metrics_locked:
+        L_p5: 60.1
+        L_p50: 77.5
+        L_p95: 89.6
+        C_p50: 28.1
+        C_p95: 38.2
+        C_p99: 55.0
+        detail: 2.17
+    fingerprint: 5f6a51db87398ae2
+manual_review:
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+  note: All four retained masked takes remain closed wooden doors with the same panels
+    and knob, but native same-coordinate parent comparisons and an independent peer
+    review show a visible amber rim/soft wash on the protected inner stone arch inside
+    the rectangular mask, strongest in take 1. The exact brief allows the seam/upper
+    wooden arch to emit and says stone/step keep exact day colors, explicitly forbidding
+    light on stones or outside the door frame. All four manually excluded for that
+    actual visible contract violation; outside-mask equality alone is insufficient.
+    No numeric failure threshold added. All four original retained takes stay preserved;
+    no new generation is allowed; unrelated glass jobs continue.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-fa1db66e-42e7-4e78-8d23-7ad4332d98a9.png
+  original_generated_png_sha256: b22c3d94d9cf7e35dd5da60d7e1ebe41c647889db9210f41df1ea11153499b5b
+  inbox_png_sha256: 19d740c49492a8eae3fd2c27e74d7371001efb5dd119b51b78bc03c47fa28b58
+  rgba_sha256: 5c31d73c8d1cd17caf2b48cd4916df22685bc9001b943cb4ea76490391c360cd
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 5f6a51db87398ae2
+- take: 2
+  source_file: /workspace/generated_images/exec-12bf93ab-c28f-4524-8309-b641efcfbe87.png
+  original_generated_png_sha256: c9df29d3b69500f67a4f5eb43260dcfb884be8deacbd2fd22562bc4fbb5d2bed
+  inbox_png_sha256: b5e791337959c5f272d798630ce443fab1f34a8ad4dce1f1df3cd016ec88ba40
+  rgba_sha256: c03d85a8e9c3e68830ec206ec320c226cc492bd279d098860d97823f709e6546
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 5f6a51db87398ae2
+- take: 3
+  source_file: /workspace/generated_images/exec-d637fa11-5a77-4d74-94d0-019624903025.png
+  original_generated_png_sha256: ba419e85604df27778db8c6b0a4ae84ad09f9fea6d2145667687c181272fa9d5
+  inbox_png_sha256: 74b803b496861516a6e1ff3d7887d25763725750895b20524d6887f7da735a5f
+  rgba_sha256: 2b36235912e9d58f8e1c7d2dfa57c205809981567fb10986719de3519b05948c
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 5f6a51db87398ae2
+- take: 4
+  source_file: /workspace/generated_images/exec-36f62f31-d804-4de7-b448-8ac8a938cc16.png
+  original_generated_png_sha256: 9a28f34a183aa8dfc07f5880971812e9f2a151655cf0e4fa9963b5aeddde2db2
+  inbox_png_sha256: a061d60546d84044826ed4c9b4efdf82207bdf0913e33a6063e043b96e687b60
+  rgba_sha256: 10f338b746f1d40c8972f0d952b2f713d88f73495a19527aa94322ac7cdc71ca
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 5f6a51db87398ae2
+salvage:
+  batch: batch-36-lit-ladder-pilot
+  source_count: 4
+  sources:
+  - batch: batch-36-lit-ladder-pilot
+    job: windmill-1-lit
+    take: 1
+    round: 1
+    logical_run: 20261105-b36-lit-ladder
+    source_file: /workspace/generated_images/exec-fa1db66e-42e7-4e78-8d23-7ad4332d98a9.png
+    returned_at: '2026-11-05T23:13:50.471Z'
+    prompt_sha256: 001750a2332b5fa43aa885ba981faa8db26560d24268606cf4c3591733bdf185
+    fingerprint: 5f6a51db87398ae2
+    saved_at: '2026-11-05T23:13:50.794677+00:00'
+    original_generated_png_sha256: b22c3d94d9cf7e35dd5da60d7e1ebe41c647889db9210f41df1ea11153499b5b
+    dimensions:
+    - 1254
+    - 1254
+    rgba_sha256: 5c31d73c8d1cd17caf2b48cd4916df22685bc9001b943cb4ea76490391c360cd
+    evaluation_take: 1
+    original_run: batch-36-lit-ladder-pilot
+    original_take: 1
+    original_callback: /workspace/art-operator-runtime/run-20261105-night/batch-36-lit-ladder-pilot/generated-windmill-1-lit-t1.json
+    original_callback_sha256: 76a74a40f854b787ebf6ed23c01f7e4d4f5bd3d84857743073635177c36f27dd
+    original_packet:
+      batch: batch-36-lit-ladder-pilot
+      job: windmill-1-lit
+      worktree: /workspace/art-20261105-lit-ladder
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. The image to edit (the approved previous level). Edit it; do not redraw
+        it.
+
+
+        Light the windmill from inside: the small arched wooden door now
+
+        lets a warm candle-amber light through, a soft amber glow along the
+
+        thin seam around the door and in its upper arch, as if a lamp
+
+        burned inside, a little brighter toward the top of the arch. The
+
+        door keeps its exact shape, panels and knob. Only the door''s seam and
+
+        upper arch change: the stone, the cap, the sails and the step keep
+
+        their exact day colors (the app adds the glow around the door).
+
+
+        KEEP: everything not named above stays exactly the same as in the
+
+        attached image: every existing part, its shape, color, position and size,
+
+        the canvas, the camera, the light and the painting style. Do not zoom out
+
+        or reframe: if a new part does not fit, make the new part smaller, never
+
+        the existing ones. Outside the new parts, the result must line up with
+
+        the attached image pixel for pixel.
+
+
+        AVOID: opening the door, a new window, light rays, a glow outside the door''s
+        frame, light on the stones or the step, blown yellow-white highlights, text.
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      refs:
+      - /workspace/art-20261105-lit-ladder/design/art/stations/windmill-1/windmill-1.png
+      reference_sha256:
+        /workspace/art-20261105-lit-ladder/design/art/stations/windmill-1/windmill-1.png: 311a52a3d6c5b3e85539509f488d46ae5af067941080ff007b709fbd1962df34
+      fingerprint: 5f6a51db87398ae2
+      prompt_sha256: 001750a2332b5fa43aa885ba981faa8db26560d24268606cf4c3591733bdf185
+      transparent: true
+    evaluation_fingerprint: 5f6a51db87398ae2
+  - batch: batch-36-lit-ladder-pilot
+    job: windmill-1-lit
+    take: 2
+    round: 1
+    logical_run: 20261105-b36-lit-ladder
+    source_file: /workspace/generated_images/exec-12bf93ab-c28f-4524-8309-b641efcfbe87.png
+    returned_at: '2026-11-05T23:13:05.059Z'
+    prompt_sha256: 001750a2332b5fa43aa885ba981faa8db26560d24268606cf4c3591733bdf185
+    fingerprint: 5f6a51db87398ae2
+    saved_at: '2026-11-05T23:13:05.510787+00:00'
+    original_generated_png_sha256: c9df29d3b69500f67a4f5eb43260dcfb884be8deacbd2fd22562bc4fbb5d2bed
+    dimensions:
+    - 1254
+    - 1254
+    rgba_sha256: c03d85a8e9c3e68830ec206ec320c226cc492bd279d098860d97823f709e6546
+    evaluation_take: 2
+    original_run: batch-36-lit-ladder-pilot
+    original_take: 2
+    original_callback: /workspace/art-operator-runtime/run-20261105-night/batch-36-lit-ladder-pilot/generated-windmill-1-lit-t2.json
+    original_callback_sha256: 7b354a08f5bebe040d79076a3058a7b595260e36fc63093fb6f17735551f1f27
+    original_packet:
+      batch: batch-36-lit-ladder-pilot
+      job: windmill-1-lit
+      worktree: /workspace/art-20261105-lit-ladder
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. The image to edit (the approved previous level). Edit it; do not redraw
+        it.
+
+
+        Light the windmill from inside: the small arched wooden door now
+
+        lets a warm candle-amber light through, a soft amber glow along the
+
+        thin seam around the door and in its upper arch, as if a lamp
+
+        burned inside, a little brighter toward the top of the arch. The
+
+        door keeps its exact shape, panels and knob. Only the door''s seam and
+
+        upper arch change: the stone, the cap, the sails and the step keep
+
+        their exact day colors (the app adds the glow around the door).
+
+
+        KEEP: everything not named above stays exactly the same as in the
+
+        attached image: every existing part, its shape, color, position and size,
+
+        the canvas, the camera, the light and the painting style. Do not zoom out
+
+        or reframe: if a new part does not fit, make the new part smaller, never
+
+        the existing ones. Outside the new parts, the result must line up with
+
+        the attached image pixel for pixel.
+
+
+        AVOID: opening the door, a new window, light rays, a glow outside the door''s
+        frame, light on the stones or the step, blown yellow-white highlights, text.
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      refs:
+      - /workspace/art-20261105-lit-ladder/design/art/stations/windmill-1/windmill-1.png
+      reference_sha256:
+        /workspace/art-20261105-lit-ladder/design/art/stations/windmill-1/windmill-1.png: 311a52a3d6c5b3e85539509f488d46ae5af067941080ff007b709fbd1962df34
+      fingerprint: 5f6a51db87398ae2
+      prompt_sha256: 001750a2332b5fa43aa885ba981faa8db26560d24268606cf4c3591733bdf185
+      transparent: true
+    evaluation_fingerprint: 5f6a51db87398ae2
+  - batch: batch-36-lit-ladder-pilot
+    job: windmill-1-lit
+    take: 3
+    round: 2
+    logical_run: 20261105-b36-lit-ladder
+    source_file: /workspace/generated_images/exec-d637fa11-5a77-4d74-94d0-019624903025.png
+    returned_at: '2026-11-05T23:19:52.581Z'
+    prompt_sha256: 001750a2332b5fa43aa885ba981faa8db26560d24268606cf4c3591733bdf185
+    fingerprint: 5f6a51db87398ae2
+    saved_at: '2026-11-05T23:19:56.782789+00:00'
+    original_generated_png_sha256: ba419e85604df27778db8c6b0a4ae84ad09f9fea6d2145667687c181272fa9d5
+    dimensions:
+    - 1254
+    - 1254
+    rgba_sha256: 2b36235912e9d58f8e1c7d2dfa57c205809981567fb10986719de3519b05948c
+    evaluation_take: 3
+    original_run: batch-36-lit-ladder-pilot
+    original_take: 3
+    original_callback: /workspace/art-operator-runtime/run-20261105-night/batch-36-lit-ladder-pilot/generated-windmill-1-lit-t3.json
+    original_callback_sha256: e5247646cb476c56ad411c80c8da436897bdbdfa5b1f6f8bc18775b57d7a8645
+    original_packet:
+      batch: batch-36-lit-ladder-pilot
+      job: windmill-1-lit
+      worktree: /workspace/art-20261105-lit-ladder
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. The image to edit (the approved previous level). Edit it; do not redraw
+        it.
+
+
+        Light the windmill from inside: the small arched wooden door now
+
+        lets a warm candle-amber light through, a soft amber glow along the
+
+        thin seam around the door and in its upper arch, as if a lamp
+
+        burned inside, a little brighter toward the top of the arch. The
+
+        door keeps its exact shape, panels and knob. Only the door''s seam and
+
+        upper arch change: the stone, the cap, the sails and the step keep
+
+        their exact day colors (the app adds the glow around the door).
+
+
+        KEEP: everything not named above stays exactly the same as in the
+
+        attached image: every existing part, its shape, color, position and size,
+
+        the canvas, the camera, the light and the painting style. Do not zoom out
+
+        or reframe: if a new part does not fit, make the new part smaller, never
+
+        the existing ones. Outside the new parts, the result must line up with
+
+        the attached image pixel for pixel.
+
+
+        AVOID: opening the door, a new window, light rays, a glow outside the door''s
+        frame, light on the stones or the step, blown yellow-white highlights, text.
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      refs:
+      - /workspace/art-20261105-lit-ladder/design/art/stations/windmill-1/windmill-1.png
+      reference_sha256:
+        /workspace/art-20261105-lit-ladder/design/art/stations/windmill-1/windmill-1.png: 311a52a3d6c5b3e85539509f488d46ae5af067941080ff007b709fbd1962df34
+      fingerprint: 5f6a51db87398ae2
+      prompt_sha256: 001750a2332b5fa43aa885ba981faa8db26560d24268606cf4c3591733bdf185
+      transparent: true
+    evaluation_fingerprint: 5f6a51db87398ae2
+  - batch: batch-36-lit-ladder-pilot
+    job: windmill-1-lit
+    take: 4
+    round: 2
+    logical_run: 20261105-b36-lit-ladder
+    source_file: /workspace/generated_images/exec-36f62f31-d804-4de7-b448-8ac8a938cc16.png
+    returned_at: '2026-11-05T23:20:37.983Z'
+    prompt_sha256: 001750a2332b5fa43aa885ba981faa8db26560d24268606cf4c3591733bdf185
+    fingerprint: 5f6a51db87398ae2
+    saved_at: '2026-11-05T23:20:38.290045+00:00'
+    original_generated_png_sha256: 9a28f34a183aa8dfc07f5880971812e9f2a151655cf0e4fa9963b5aeddde2db2
+    dimensions:
+    - 1254
+    - 1254
+    rgba_sha256: 10f338b746f1d40c8972f0d952b2f713d88f73495a19527aa94322ac7cdc71ca
+    evaluation_take: 4
+    original_run: batch-36-lit-ladder-pilot
+    original_take: 4
+    original_callback: /workspace/art-operator-runtime/run-20261105-night/batch-36-lit-ladder-pilot/generated-windmill-1-lit-t4.json
+    original_callback_sha256: aff2251e75c3eece32b6d1db89cf900f53cdbabfe05f952b99d1f3920965b59d
+    original_packet:
+      batch: batch-36-lit-ladder-pilot
+      job: windmill-1-lit
+      worktree: /workspace/art-20261105-lit-ladder
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. The image to edit (the approved previous level). Edit it; do not redraw
+        it.
+
+
+        Light the windmill from inside: the small arched wooden door now
+
+        lets a warm candle-amber light through, a soft amber glow along the
+
+        thin seam around the door and in its upper arch, as if a lamp
+
+        burned inside, a little brighter toward the top of the arch. The
+
+        door keeps its exact shape, panels and knob. Only the door''s seam and
+
+        upper arch change: the stone, the cap, the sails and the step keep
+
+        their exact day colors (the app adds the glow around the door).
+
+
+        KEEP: everything not named above stays exactly the same as in the
+
+        attached image: every existing part, its shape, color, position and size,
+
+        the canvas, the camera, the light and the painting style. Do not zoom out
+
+        or reframe: if a new part does not fit, make the new part smaller, never
+
+        the existing ones. Outside the new parts, the result must line up with
+
+        the attached image pixel for pixel.
+
+
+        AVOID: opening the door, a new window, light rays, a glow outside the door''s
+        frame, light on the stones or the step, blown yellow-white highlights, text.
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      refs:
+      - /workspace/art-20261105-lit-ladder/design/art/stations/windmill-1/windmill-1.png
+      reference_sha256:
+        /workspace/art-20261105-lit-ladder/design/art/stations/windmill-1/windmill-1.png: 311a52a3d6c5b3e85539509f488d46ae5af067941080ff007b709fbd1962df34
+      fingerprint: 5f6a51db87398ae2
+      prompt_sha256: 001750a2332b5fa43aa885ba981faa8db26560d24268606cf4c3591733bdf185
+      transparent: true
+    evaluation_fingerprint: 5f6a51db87398ae2
