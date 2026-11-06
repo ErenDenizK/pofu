@@ -1,0 +1,96 @@
+{
+  "job": "windmill-1-lit",
+  "manual_eligible_takes": [],
+  "manual_excluded_takes": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "note": "All four retained masked takes remain closed wooden doors with the same panels and knob, but native same-coordinate parent comparisons and an independent peer review show a visible amber rim/soft wash on the protected inner stone arch inside the rectangular mask, strongest in take 1. The exact brief allows the seam/upper wooden arch to emit and says stone/step keep exact day colors, explicitly forbidding light on stones or outside the door frame. All four manually excluded for that actual visible contract violation; outside-mask equality alone is insufficient. No numeric failure threshold added. All four original retained takes stay preserved; no new generation is allowed; unrelated glass jobs continue.",
+  "masked_visual_evidence": {
+    "parent_sha256": "311a52a3d6c5b3e85539509f488d46ae5af067941080ff007b709fbd1962df34",
+    "packet_sha256": "a8015b28dea03c79412e06a1f850d0bc385185905a7df28928e97ac0a8adf0c7",
+    "diagnostic": "/workspace/art-operator-runtime/run-20261106/lit-repost-2026-11-06/visual/windmill-1-lit-masked-region-and-28px.jpg",
+    "diagnostic_sha256": "6914bb37bada5073c2251dddd9089616670901ea25fda0e20b9b3553d0437514",
+    "source_and_locked_unchanged": true,
+    "same_parent_crop_bounds": [
+      165,
+      59,
+      827,
+      900
+    ],
+    "takes": {
+      "1": {
+        "original_sha256": "b22c3d94d9cf7e35dd5da60d7e1ebe41c647889db9210f41df1ea11153499b5b",
+        "locked_sha256": "3eca6d314163dbf1abee4985742bebfb510af821a45c76f3953c88f6430f4885",
+        "qa_sha256": "ea609d5eaafa18d65968c2ec84f469dd752a7b558ff0661703635799e219beee",
+        "outside_mask_nonidentical_rgba_pixels": 0,
+        "outside_mask_total_pixels": 1015300,
+        "mask_box_fraction": [
+          [
+            0.39,
+            0.65,
+            0.18,
+            0.17
+          ]
+        ],
+        "qa_status": "warn",
+        "hard_fails": []
+      },
+      "2": {
+        "original_sha256": "c9df29d3b69500f67a4f5eb43260dcfb884be8deacbd2fd22562bc4fbb5d2bed",
+        "locked_sha256": "ed0a7dabf35c70ac396a6b2b034d743e8a924c5cee631f4077e0e6536da83ba7",
+        "qa_sha256": "028719db0ec2dbda373a4e84bb432462c8228bb7d21abd454b725a956c0d41aa",
+        "outside_mask_nonidentical_rgba_pixels": 0,
+        "outside_mask_total_pixels": 1015300,
+        "mask_box_fraction": [
+          [
+            0.39,
+            0.65,
+            0.18,
+            0.17
+          ]
+        ],
+        "qa_status": "warn",
+        "hard_fails": []
+      },
+      "3": {
+        "original_sha256": "ba419e85604df27778db8c6b0a4ae84ad09f9fea6d2145667687c181272fa9d5",
+        "locked_sha256": "48dacd3da6e7139f2e4d713286e735d8e95dba9eb50198c20cd3dfde133fc339",
+        "qa_sha256": "f4b7a15ce98ad76c5c31a4fb0c0175776dd601b53ea1fb62718bf49cb91a24dd",
+        "outside_mask_nonidentical_rgba_pixels": 0,
+        "outside_mask_total_pixels": 1015300,
+        "mask_box_fraction": [
+          [
+            0.39,
+            0.65,
+            0.18,
+            0.17
+          ]
+        ],
+        "qa_status": "warn",
+        "hard_fails": []
+      },
+      "4": {
+        "original_sha256": "9a28f34a183aa8dfc07f5880971812e9f2a151655cf0e4fa9963b5aeddde2db2",
+        "locked_sha256": "bc6c9dcec4565c686e476f9033e4254607d299dd6df47b30236a78520b656b4e",
+        "qa_sha256": "e5619ca8e5f3b2cc5be9e0fb475bd31bfc400cd619f6119ee9c75ce416a351cd",
+        "outside_mask_nonidentical_rgba_pixels": 0,
+        "outside_mask_total_pixels": 1015300,
+        "mask_box_fraction": [
+          [
+            0.39,
+            0.65,
+            0.18,
+            0.17
+          ]
+        ],
+        "qa_status": "warn",
+        "hard_fails": []
+      }
+    }
+  },
+  "source_or_locked_pixels_changed": false,
+  "review_28px": "Actual 28px images on light and dark, then4x nearest upscaling for inspection; identical fixed parent crop bounds across takes"
+}

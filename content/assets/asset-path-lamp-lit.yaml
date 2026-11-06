@@ -14,7 +14,8 @@ links:
   variant_of:
   - asset-path-lamp
 art:
-  images: []
+  images:
+  - design/art/masters/path-lamp-lit/path-lamp-lit.png
   jobs:
   - batch-36-lit-ladder-pilot:path-lamp-lit
 sources:

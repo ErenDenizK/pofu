@@ -14,7 +14,8 @@ links:
   variant_of:
   - asset-lighthouse-1
 art:
-  images: []
+  images:
+  - design/art/stations/lighthouse-1-lit/lighthouse-1-lit.png
   jobs:
   - batch-36-lit-ladder-pilot:lighthouse-1-lit
 sources:

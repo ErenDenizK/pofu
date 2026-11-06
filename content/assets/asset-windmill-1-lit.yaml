@@ -22,11 +22,13 @@ sources:
 kind: station
 batch: batch-36-lit-ladder-pilot
 notes:
-- 'batch-36-lit-ladder-pilot skipped after four takes: All four takes pass hard QA
-  and manual edit_stability above0.9 (0.9353,0.9488,0.9499,0.9529), but source and
-  locked reviews reject broad amber recoloring across the lower closed-door panels
-  beyond the permitted thin seam and upper arch. Takes2/3 additionally add large exterior
-  cloud or halo around and behind the sails; these extra pixels survive the canonical
-  lock. Door shape and knob remain, but the light-only requirement is not met. One
-  unchanged-prompt retry exhausted; no master promoted and no checks waived; exact
-  source hashes and literal reviews retained.'
+- 'batch-36-lit-ladder-pilot skipped after four takes: All four retained masked takes
+  remain closed wooden doors with the same panels and knob, but native same-coordinate
+  parent comparisons and an independent peer review show a visible amber rim/soft
+  wash on the protected inner stone arch inside the rectangular mask, strongest in
+  take 1. The exact brief allows the seam/upper wooden arch to emit and says stone/step
+  keep exact day colors, explicitly forbidding light on stones or outside the door
+  frame. All four manually excluded for that actual visible contract violation; outside-mask
+  equality alone is insufficient. No numeric failure threshold added. All four original
+  retained takes stay preserved; no new generation is allowed; unrelated glass jobs
+  continue.'

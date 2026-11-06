@@ -1,0 +1,162 @@
+{
+  "batch": "batch-36-lit-ladder-pilot",
+  "source_count": 4,
+  "sources": [
+    {
+      "batch": "batch-36-lit-ladder-pilot",
+      "job": "windmill-1-lit",
+      "take": 1,
+      "round": 1,
+      "logical_run": "20261105-b36-lit-ladder",
+      "source_file": "/workspace/generated_images/exec-fa1db66e-42e7-4e78-8d23-7ad4332d98a9.png",
+      "returned_at": "2026-11-05T23:13:50.471Z",
+      "prompt_sha256": "001750a2332b5fa43aa885ba981faa8db26560d24268606cf4c3591733bdf185",
+      "fingerprint": "5f6a51db87398ae2",
+      "saved_at": "2026-11-05T23:13:50.794677+00:00",
+      "original_generated_png_sha256": "b22c3d94d9cf7e35dd5da60d7e1ebe41c647889db9210f41df1ea11153499b5b",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "rgba_sha256": "5c31d73c8d1cd17caf2b48cd4916df22685bc9001b943cb4ea76490391c360cd",
+      "evaluation_take": 1,
+      "original_run": "batch-36-lit-ladder-pilot",
+      "original_take": 1,
+      "original_callback": "/workspace/art-operator-runtime/run-20261105-night/batch-36-lit-ladder-pilot/generated-windmill-1-lit-t1.json",
+      "original_callback_sha256": "76a74a40f854b787ebf6ed23c01f7e4d4f5bd3d84857743073635177c36f27dd",
+      "original_packet": {
+        "batch": "batch-36-lit-ladder-pilot",
+        "job": "windmill-1-lit",
+        "worktree": "/workspace/art-20261105-lit-ladder",
+        "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nLight the windmill from inside: the small arched wooden door now\nlets a warm candle-amber light through, a soft amber glow along the\nthin seam around the door and in its upper arch, as if a lamp\nburned inside, a little brighter toward the top of the arch. The\ndoor keeps its exact shape, panels and knob. Only the door's seam and\nupper arch change: the stone, the cap, the sails and the step keep\ntheir exact day colors (the app adds the glow around the door).\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: opening the door, a new window, light rays, a glow outside the door's frame, light on the stones or the step, blown yellow-white highlights, text.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+        "refs": [
+          "/workspace/art-20261105-lit-ladder/design/art/stations/windmill-1/windmill-1.png"
+        ],
+        "reference_sha256": {
+          "/workspace/art-20261105-lit-ladder/design/art/stations/windmill-1/windmill-1.png": "311a52a3d6c5b3e85539509f488d46ae5af067941080ff007b709fbd1962df34"
+        },
+        "fingerprint": "5f6a51db87398ae2",
+        "prompt_sha256": "001750a2332b5fa43aa885ba981faa8db26560d24268606cf4c3591733bdf185",
+        "transparent": true
+      },
+      "evaluation_fingerprint": "5f6a51db87398ae2"
+    },
+    {
+      "batch": "batch-36-lit-ladder-pilot",
+      "job": "windmill-1-lit",
+      "take": 2,
+      "round": 1,
+      "logical_run": "20261105-b36-lit-ladder",
+      "source_file": "/workspace/generated_images/exec-12bf93ab-c28f-4524-8309-b641efcfbe87.png",
+      "returned_at": "2026-11-05T23:13:05.059Z",
+      "prompt_sha256": "001750a2332b5fa43aa885ba981faa8db26560d24268606cf4c3591733bdf185",
+      "fingerprint": "5f6a51db87398ae2",
+      "saved_at": "2026-11-05T23:13:05.510787+00:00",
+      "original_generated_png_sha256": "c9df29d3b69500f67a4f5eb43260dcfb884be8deacbd2fd22562bc4fbb5d2bed",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "rgba_sha256": "c03d85a8e9c3e68830ec206ec320c226cc492bd279d098860d97823f709e6546",
+      "evaluation_take": 2,
+      "original_run": "batch-36-lit-ladder-pilot",
+      "original_take": 2,
+      "original_callback": "/workspace/art-operator-runtime/run-20261105-night/batch-36-lit-ladder-pilot/generated-windmill-1-lit-t2.json",
+      "original_callback_sha256": "7b354a08f5bebe040d79076a3058a7b595260e36fc63093fb6f17735551f1f27",
+      "original_packet": {
+        "batch": "batch-36-lit-ladder-pilot",
+        "job": "windmill-1-lit",
+        "worktree": "/workspace/art-20261105-lit-ladder",
+        "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nLight the windmill from inside: the small arched wooden door now\nlets a warm candle-amber light through, a soft amber glow along the\nthin seam around the door and in its upper arch, as if a lamp\nburned inside, a little brighter toward the top of the arch. The\ndoor keeps its exact shape, panels and knob. Only the door's seam and\nupper arch change: the stone, the cap, the sails and the step keep\ntheir exact day colors (the app adds the glow around the door).\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: opening the door, a new window, light rays, a glow outside the door's frame, light on the stones or the step, blown yellow-white highlights, text.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+        "refs": [
+          "/workspace/art-20261105-lit-ladder/design/art/stations/windmill-1/windmill-1.png"
+        ],
+        "reference_sha256": {
+          "/workspace/art-20261105-lit-ladder/design/art/stations/windmill-1/windmill-1.png": "311a52a3d6c5b3e85539509f488d46ae5af067941080ff007b709fbd1962df34"
+        },
+        "fingerprint": "5f6a51db87398ae2",
+        "prompt_sha256": "001750a2332b5fa43aa885ba981faa8db26560d24268606cf4c3591733bdf185",
+        "transparent": true
+      },
+      "evaluation_fingerprint": "5f6a51db87398ae2"
+    },
+    {
+      "batch": "batch-36-lit-ladder-pilot",
+      "job": "windmill-1-lit",
+      "take": 3,
+      "round": 2,
+      "logical_run": "20261105-b36-lit-ladder",
+      "source_file": "/workspace/generated_images/exec-d637fa11-5a77-4d74-94d0-019624903025.png",
+      "returned_at": "2026-11-05T23:19:52.581Z",
+      "prompt_sha256": "001750a2332b5fa43aa885ba981faa8db26560d24268606cf4c3591733bdf185",
+      "fingerprint": "5f6a51db87398ae2",
+      "saved_at": "2026-11-05T23:19:56.782789+00:00",
+      "original_generated_png_sha256": "ba419e85604df27778db8c6b0a4ae84ad09f9fea6d2145667687c181272fa9d5",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "rgba_sha256": "2b36235912e9d58f8e1c7d2dfa57c205809981567fb10986719de3519b05948c",
+      "evaluation_take": 3,
+      "original_run": "batch-36-lit-ladder-pilot",
+      "original_take": 3,
+      "original_callback": "/workspace/art-operator-runtime/run-20261105-night/batch-36-lit-ladder-pilot/generated-windmill-1-lit-t3.json",
+      "original_callback_sha256": "e5247646cb476c56ad411c80c8da436897bdbdfa5b1f6f8bc18775b57d7a8645",
+      "original_packet": {
+        "batch": "batch-36-lit-ladder-pilot",
+        "job": "windmill-1-lit",
+        "worktree": "/workspace/art-20261105-lit-ladder",
+        "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nLight the windmill from inside: the small arched wooden door now\nlets a warm candle-amber light through, a soft amber glow along the\nthin seam around the door and in its upper arch, as if a lamp\nburned inside, a little brighter toward the top of the arch. The\ndoor keeps its exact shape, panels and knob. Only the door's seam and\nupper arch change: the stone, the cap, the sails and the step keep\ntheir exact day colors (the app adds the glow around the door).\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: opening the door, a new window, light rays, a glow outside the door's frame, light on the stones or the step, blown yellow-white highlights, text.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+        "refs": [
+          "/workspace/art-20261105-lit-ladder/design/art/stations/windmill-1/windmill-1.png"
+        ],
+        "reference_sha256": {
+          "/workspace/art-20261105-lit-ladder/design/art/stations/windmill-1/windmill-1.png": "311a52a3d6c5b3e85539509f488d46ae5af067941080ff007b709fbd1962df34"
+        },
+        "fingerprint": "5f6a51db87398ae2",
+        "prompt_sha256": "001750a2332b5fa43aa885ba981faa8db26560d24268606cf4c3591733bdf185",
+        "transparent": true
+      },
+      "evaluation_fingerprint": "5f6a51db87398ae2"
+    },
+    {
+      "batch": "batch-36-lit-ladder-pilot",
+      "job": "windmill-1-lit",
+      "take": 4,
+      "round": 2,
+      "logical_run": "20261105-b36-lit-ladder",
+      "source_file": "/workspace/generated_images/exec-36f62f31-d804-4de7-b448-8ac8a938cc16.png",
+      "returned_at": "2026-11-05T23:20:37.983Z",
+      "prompt_sha256": "001750a2332b5fa43aa885ba981faa8db26560d24268606cf4c3591733bdf185",
+      "fingerprint": "5f6a51db87398ae2",
+      "saved_at": "2026-11-05T23:20:38.290045+00:00",
+      "original_generated_png_sha256": "9a28f34a183aa8dfc07f5880971812e9f2a151655cf0e4fa9963b5aeddde2db2",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "rgba_sha256": "10f338b746f1d40c8972f0d952b2f713d88f73495a19527aa94322ac7cdc71ca",
+      "evaluation_take": 4,
+      "original_run": "batch-36-lit-ladder-pilot",
+      "original_take": 4,
+      "original_callback": "/workspace/art-operator-runtime/run-20261105-night/batch-36-lit-ladder-pilot/generated-windmill-1-lit-t4.json",
+      "original_callback_sha256": "aff2251e75c3eece32b6d1db89cf900f53cdbabfe05f952b99d1f3920965b59d",
+      "original_packet": {
+        "batch": "batch-36-lit-ladder-pilot",
+        "job": "windmill-1-lit",
+        "worktree": "/workspace/art-20261105-lit-ladder",
+        "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nLight the windmill from inside: the small arched wooden door now\nlets a warm candle-amber light through, a soft amber glow along the\nthin seam around the door and in its upper arch, as if a lamp\nburned inside, a little brighter toward the top of the arch. The\ndoor keeps its exact shape, panels and knob. Only the door's seam and\nupper arch change: the stone, the cap, the sails and the step keep\ntheir exact day colors (the app adds the glow around the door).\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: opening the door, a new window, light rays, a glow outside the door's frame, light on the stones or the step, blown yellow-white highlights, text.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+        "refs": [
+          "/workspace/art-20261105-lit-ladder/design/art/stations/windmill-1/windmill-1.png"
+        ],
+        "reference_sha256": {
+          "/workspace/art-20261105-lit-ladder/design/art/stations/windmill-1/windmill-1.png": "311a52a3d6c5b3e85539509f488d46ae5af067941080ff007b709fbd1962df34"
+        },
+        "fingerprint": "5f6a51db87398ae2",
+        "prompt_sha256": "001750a2332b5fa43aa885ba981faa8db26560d24268606cf4c3591733bdf185",
+        "transparent": true
+      },
+      "evaluation_fingerprint": "5f6a51db87398ae2"
+    }
+  ]
+}

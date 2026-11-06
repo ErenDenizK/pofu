@@ -1,0 +1,139 @@
+{
+  "job": "lighthouse-1-lit",
+  "batch": "batch-36-lit-ladder-pilot",
+  "asset": "station__lighthouse-1-lit",
+  "take": 3,
+  "takes_considered": 4,
+  "approved_at": "2026-11-06T01:24:45+00:00",
+  "image": "design/art/stations/lighthouse-1-lit/lighthouse-1-lit.png",
+  "raw": "design/art/stations/lighthouse-1-lit/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "5be4d915f2eaa8ef",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nLight the lighthouse from inside: the lamp room under the coral cap\n(the row of dark glass panes between the cream posts) now glows warm\ncandle-amber, brightest in the middle of the room with a soft\nrounded lamp shape suggested inside, painted as soft broad shapes.\nOnly the glass panes of the lamp room change: the posts between\nthem, the cap, the balcony and railing, the stripes, the round\nwindow, the door and the base keep their exact day colors (the app\nadds the glow around the lamp, the beam and the night grade).\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: a beam, light rays, a glow outside the glass, a halo, light on other parts, a night sky, darkening anything, blown yellow-white highlights, text.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/stations/lighthouse-1/lighthouse-1.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud-retained-salvage",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-05T23:16:26.824Z",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": {
+    "dx": 0,
+    "dy": 0
+  },
+  "alignment": null,
+  "fit": null,
+  "emit_region": [
+    [
+      0.38,
+      0.28,
+      0.25,
+      0.105
+    ]
+  ],
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 52 (R1 51)",
+        "value": 51.7
+      },
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 53 (at most 22), p98 91 (at least 90), spread 39 (at least 60) (warn-only until the founder has seen the light pilot)",
+        "value": 38.6
+      },
+      {
+        "check": "light_median",
+        "status": "pass",
+        "message": "day/subject: median L 77 (band 55-90)",
+        "value": 76.7
+      },
+      {
+        "check": "light_haze",
+        "status": "warn",
+        "message": "day/subject: dark-channel haze 0.25 (at most 0.20; no true dark means a wash)",
+        "value": 0.251
+      },
+      {
+        "check": "light_contrast",
+        "status": "warn",
+        "message": "day/subject: p75 local contrast 3.4 (at least 3.5)",
+        "value": 3.37
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 1.8 (R1 5.3)",
+        "value": 1.82
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 2.9",
+        "value": 2.8953
+      },
+      {
+        "check": "no_guide_magenta",
+        "status": "pass",
+        "message": "0 guide-magenta pixels (per 1024^2)",
+        "value": 0.0
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.4, p95 7.5, off-palette 0.2% (top: #CC7733 (0.1%), #BB6633 (0.0%))",
+        "value": 1.3726
+      },
+      {
+        "check": "station_anchor",
+        "status": "pass",
+        "message": "on the parent's anchor",
+        "value": 900.0
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 88 against the world reference (outliers: edge)",
+        "value": 88.5
+      },
+      {
+        "check": "emit_leak",
+        "status": "pass",
+        "message": "100% of the parent unchanged outside the emit region (masked out of the master)",
+        "value": 0.9997
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. All four full locked images and lamp-room crops retain the day geometry, cream posts, cap, railing, lower round window, door and base. Warm candle-amber fills only the lamp-room glass, with a soft rounded internal lamp impression; no beam, rays, exterior halo, night grade or blown white light. The warm lamp is visible against both light and dark at 28 px in full-canvas and fixed-parent-bounds diagnostics. Every outside-mask RGBA pixel exactly equals the day parent. All four are manually eligible; use unchanged official QA ranking."
+}

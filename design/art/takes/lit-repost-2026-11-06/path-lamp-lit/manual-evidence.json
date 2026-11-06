@@ -1,0 +1,96 @@
+{
+  "job": "path-lamp-lit",
+  "manual_eligible_takes": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "manual_excluded_takes": [],
+  "note": "All four full locked images and region crops retain the plump paper-glass lantern, coral cap, hook, wood post and stone foot. Soft warm candle-amber fills the glass with a small broad central flame impression, no sharp flame, rays, ground pool or exterior halo. The warm light remains visible in light/dark 28 px diagnostics; full-canvas rendering is small, and the same fixed-parent-bounds 28 px rendering also stays distinct from unlit parent. Every outside-mask RGBA pixel exactly equals the day parent. All four manually eligible; use unchanged official QA ranking.",
+  "masked_visual_evidence": {
+    "parent_sha256": "2a2b4d371cca0f3f134d51f089533e05a9683ea8b501dec03bfd38ef1a8a879a",
+    "packet_sha256": "6dfa48a9db34897ab54036a9f22e54319054836e011f9678e39ee85265d39049",
+    "diagnostic": "/workspace/art-operator-runtime/run-20261106/lit-repost-2026-11-06/visual/path-lamp-lit-masked-region-and-28px.jpg",
+    "diagnostic_sha256": "0755dc84dec0c9f22ac2cf096316861a0a1b4299bd071ca5972dbeafc5dfa732",
+    "source_and_locked_unchanged": true,
+    "same_parent_crop_bounds": [
+      444,
+      500,
+      599,
+      889
+    ],
+    "takes": {
+      "1": {
+        "original_sha256": "5ffa7dce8ac252b7d29f3c1c0d43643030688409d7cf0a7d4af440d7c5b44ef0",
+        "locked_sha256": "57e313605bf3f70a54f18b684c0f46999ed5ea801cf89c696c3ff7c055deee93",
+        "qa_sha256": "9061f3717b0678181ac217eeaf6ab84323d543cf3b931f02684ddd90ea29c1c3",
+        "outside_mask_nonidentical_rgba_pixels": 0,
+        "outside_mask_total_pixels": 1032936,
+        "mask_box_fraction": [
+          [
+            0.465,
+            0.575,
+            0.13,
+            0.11
+          ]
+        ],
+        "qa_status": "warn",
+        "hard_fails": []
+      },
+      "2": {
+        "original_sha256": "1529983bad2fe1fa0724f2d47775ad78fee52c0dad369ab07bc58bb5ca0844e1",
+        "locked_sha256": "605943c4493f9dc2007e9dd5594db7ca1d84dac8383816d9c655ce8fc7e17a82",
+        "qa_sha256": "74094026acde1a00d4aa92ae0e9a62633b59ff1f138526aac09dd58dc357a148",
+        "outside_mask_nonidentical_rgba_pixels": 0,
+        "outside_mask_total_pixels": 1032936,
+        "mask_box_fraction": [
+          [
+            0.465,
+            0.575,
+            0.13,
+            0.11
+          ]
+        ],
+        "qa_status": "warn",
+        "hard_fails": []
+      },
+      "3": {
+        "original_sha256": "24238f1c5bea33394c6c5b1001b0e421a62b8387de3c5282d27f12eac037b61f",
+        "locked_sha256": "c87e730311a8a4a62074d0f21474688d894b5d538db3b38bf41aa185f3391e81",
+        "qa_sha256": "fc935ba1850ee5407e6c8de763ecf6d78a196e9528fb68e8602659a5f8cfa696",
+        "outside_mask_nonidentical_rgba_pixels": 0,
+        "outside_mask_total_pixels": 1032936,
+        "mask_box_fraction": [
+          [
+            0.465,
+            0.575,
+            0.13,
+            0.11
+          ]
+        ],
+        "qa_status": "warn",
+        "hard_fails": []
+      },
+      "4": {
+        "original_sha256": "fb7700491e4659ca7eaaf3445130b46dc37f1929de2cd70d96701267feafb6e3",
+        "locked_sha256": "64d3d5ea2c78788c34ae3d0a24488add7f05ab2e957fbadbaf7740868139c00a",
+        "qa_sha256": "c30001fd8a07c82c85a30d19c379324c4b93906fa7681f7c7ad78eb002e7447b",
+        "outside_mask_nonidentical_rgba_pixels": 0,
+        "outside_mask_total_pixels": 1032936,
+        "mask_box_fraction": [
+          [
+            0.465,
+            0.575,
+            0.13,
+            0.11
+          ]
+        ],
+        "qa_status": "warn",
+        "hard_fails": []
+      }
+    }
+  },
+  "source_or_locked_pixels_changed": false,
+  "review_28px": "Actual 28px images on light and dark, then4x nearest upscaling for inspection; identical fixed parent crop bounds across takes"
+}

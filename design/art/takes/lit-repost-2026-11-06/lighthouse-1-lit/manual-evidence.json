@@ -1,0 +1,96 @@
+{
+  "job": "lighthouse-1-lit",
+  "manual_eligible_takes": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "manual_excluded_takes": [],
+  "note": "All four full locked images and lamp-room crops retain the day geometry, cream posts, cap, railing, lower round window, door and base. Warm candle-amber fills only the lamp-room glass, with a soft rounded internal lamp impression; no beam, rays, exterior halo, night grade or blown white light. The warm lamp is visible against both light and dark at 28 px in full-canvas and fixed-parent-bounds diagnostics. Every outside-mask RGBA pixel exactly equals the day parent. All four are manually eligible; use unchanged official QA ranking.",
+  "masked_visual_evidence": {
+    "parent_sha256": "d10186ccbac80dcc55fc63b6857b4761cf811c5962985d32dfcc9fd06a1cf915",
+    "packet_sha256": "c630e8238ea777fa0d3f5856157f87a23d99a6a9e64a1b94fb21e2a3dc2b1c34",
+    "diagnostic": "/workspace/art-operator-runtime/run-20261106/lit-repost-2026-11-06/visual/lighthouse-1-lit-masked-region-and-28px.jpg",
+    "diagnostic_sha256": "feb8a36c33ba329de575cc95abd713abb6631b12966df69cb41dca97287bcb6d",
+    "source_and_locked_unchanged": true,
+    "same_parent_crop_bounds": [
+      288,
+      150,
+      738,
+      900
+    ],
+    "takes": {
+      "1": {
+        "original_sha256": "49a4449dfb2fdfbe1a3dafdbc0177a6d743a820d3b4cd0c1054e5f2df5956c79",
+        "locked_sha256": "912958ea6bae063154f2332396b64c9d8617b08052161af806dbf4e6d83bb859",
+        "qa_sha256": "8a297cd74ea50d91009e919e0442c38bedad770423050106baae83511f05a15b",
+        "outside_mask_nonidentical_rgba_pixels": 0,
+        "outside_mask_total_pixels": 1020127,
+        "mask_box_fraction": [
+          [
+            0.38,
+            0.28,
+            0.25,
+            0.105
+          ]
+        ],
+        "qa_status": "warn",
+        "hard_fails": []
+      },
+      "2": {
+        "original_sha256": "f739d2a15e3c4298f9fd4da2f2efb6d0a972c9ef1882e48258dbe2cc1657be9c",
+        "locked_sha256": "0e6f84128d6db4deb6e5bb3c2f42c93de80d60b90a200799ce62da8244da498c",
+        "qa_sha256": "3f2540fdacf234bb6d95bfcb57074415eca6d3f2694f06d869d4a820fdc8950d",
+        "outside_mask_nonidentical_rgba_pixels": 0,
+        "outside_mask_total_pixels": 1020127,
+        "mask_box_fraction": [
+          [
+            0.38,
+            0.28,
+            0.25,
+            0.105
+          ]
+        ],
+        "qa_status": "warn",
+        "hard_fails": []
+      },
+      "3": {
+        "original_sha256": "51ecfcab48f4b9ddf0f1cb7aae6433427171ed191575dc2a0138b5dfd6d10a86",
+        "locked_sha256": "c7cccecbae0fe0b0ad41366a5f2bc62773be9b8f3a2f3d2b142446690934d92e",
+        "qa_sha256": "59256d27fe4b1534c0338aee83a5aa6f154c2f0e8d38a7dbf48b1f7047472117",
+        "outside_mask_nonidentical_rgba_pixels": 0,
+        "outside_mask_total_pixels": 1020127,
+        "mask_box_fraction": [
+          [
+            0.38,
+            0.28,
+            0.25,
+            0.105
+          ]
+        ],
+        "qa_status": "warn",
+        "hard_fails": []
+      },
+      "4": {
+        "original_sha256": "628624a92353398261be3728bd592b2c6199f750841ba213fc31e499e92fa586",
+        "locked_sha256": "375e280bbf0d760f1fc6d1e7c12df49d0d1b3683646d6020d8b4e896ba649153",
+        "qa_sha256": "547c4cf72f063159d7be6968107027b3f9686faff969c9279675e427c43cc74e",
+        "outside_mask_nonidentical_rgba_pixels": 0,
+        "outside_mask_total_pixels": 1020127,
+        "mask_box_fraction": [
+          [
+            0.38,
+            0.28,
+            0.25,
+            0.105
+          ]
+        ],
+        "qa_status": "warn",
+        "hard_fails": []
+      }
+    }
+  },
+  "source_or_locked_pixels_changed": false,
+  "review_28px": "Actual 28px images on light and dark, then4x nearest upscaling for inspection; identical fixed parent crop bounds across takes"
+}

@@ -14,7 +14,8 @@ links:
   variant_of:
   - asset-door-mochi
 art:
-  images: []
+  images:
+  - design/art/masters/door-mochi-lit/door-mochi-lit.png
   jobs:
   - batch-36-lit-ladder-pilot:door-mochi-lit
 sources:

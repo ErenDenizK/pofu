@@ -1,0 +1,130 @@
+{
+  "job": "door-mochi-lit",
+  "batch": "batch-36-lit-ladder-pilot",
+  "asset": "prop__door-mochi-lit",
+  "take": 3,
+  "takes_considered": 4,
+  "approved_at": "2026-11-06T01:36:40+00:00",
+  "image": "design/art/masters/door-mochi-lit/door-mochi-lit.png",
+  "raw": "design/art/masters/door-mochi-lit/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "1d672a6f9de0aaa6",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nLight Mochi's door from inside: the small round window with its cream\ncross bar now glows warm candle-amber, the four panes of glass soft\nand a little brighter toward the middle, painted as soft broad\nshapes. Only the window glass changes: the cross bar keeps its cream\ncolor, and the rose door, the honey frame, the knob, the doorstep,\nthe hanging tea-glass sign and the earth ring keep their exact day\ncolors (the app adds the glow around the door).\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: light rays, a glow outside the window, a halo, light on the door or the sign, a changed cross bar, blown yellow-white highlights, text.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/door-mochi/door-mochi.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud-retained-salvage",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-05T23:22:12.633Z",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "fit": null,
+  "emit_region": [
+    [
+      0.4,
+      0.43,
+      0.185,
+      0.19
+    ]
+  ],
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 45 (R1 51)",
+        "value": 45.1
+      },
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 54 (at most 22), p98 89 (at least 90), spread 34 (at least 60) (warn-only until the founder has seen the light pilot)",
+        "value": 34.5
+      },
+      {
+        "check": "light_median",
+        "status": "pass",
+        "message": "day/subject: median L 73 (band 55-90)",
+        "value": 73.3
+      },
+      {
+        "check": "light_haze",
+        "status": "warn",
+        "message": "day/subject: dark-channel haze 0.30 (at most 0.20; no true dark means a wash)",
+        "value": 0.302
+      },
+      {
+        "check": "light_contrast",
+        "status": "warn",
+        "message": "day/subject: p75 local contrast 3.4 (at least 3.5)",
+        "value": 3.4
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 1.8 (R1 5.3)",
+        "value": 1.76
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 1.8",
+        "value": 1.7689
+      },
+      {
+        "check": "no_guide_magenta",
+        "status": "pass",
+        "message": "0 guide-magenta pixels (per 1024^2)",
+        "value": 0.0
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.0, p95 2.2, off-palette 0.0%",
+        "value": 1.0294
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 76 against the world reference (outliers: L_p98, edge)",
+        "value": 76.3
+      },
+      {
+        "check": "emit_leak",
+        "status": "pass",
+        "message": "100% of the parent unchanged outside the emit region (masked out of the master)",
+        "value": 1.0
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. All four full locked images and region crops retain the four glass panes, cream crossbar, rose door, honey frame, knob, step, tea-glass sign and existing peach earth-ring halo. The four panes glow soft candle-amber, while the crossbar remains visibly cream and no new shape or spill reaches sign/door. Warm light remains distinct against light/dark at 28 px. Every outside-mask RGBA pixel exactly equals the day parent. Independent peer review agrees all four eligible; use unchanged official QA ranking."
+}
