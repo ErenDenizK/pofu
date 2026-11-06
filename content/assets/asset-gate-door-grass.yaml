@@ -2,12 +2,11 @@ id: asset-gate-door-grass
 type: asset
 title_tr: gate-door-grass
 title_en: gate-door-grass (ui)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  Edit the attached image into one layer of it, on a transparent background, same canvas,
-  every kept pixel exactly in place. Keep ONLY the foreground grass and flowers along the
-  bottom edge. Make everything else fully transparent.
+summary: Edit the attached image into one layer of it, on a transparent background,
+  same canvas, every kept pixel exactly in place. Keep ONLY the foreground grass and
+  flowers along the bottom edge. Make everything else fully transparent.
 links:
   variant_of:
   - asset-gate-door-scene
@@ -20,3 +19,19 @@ sources:
 kind: ui
 batch: batch-58-gate-round-door
 size: 1024x1536
+notes:
+- 'Skipped without generation: true dependency gate-door-scene failed after its one
+  allowed retry. Skipped after exactly one unchanged-prompt retry: all four official
+  QA reports hard-fail palette_drift (t1 mean dE7.1,p9522.1,21.0percent off; t2 8.7,23.8,28.3percent;
+  t3 7.0,20.9,19.5percent; t4 6.9,20.7,20.9percent), with blue-hour sky outside the
+  authored UI palette. Empty warm burrow, open right door/window/hinges/knob, lamp/table/teacup/rug/shelf/plant,
+  three blank plaques larger center, calm star/cloud sky and lower grass/flowers are
+  present. Specific scene architecture governs inherited mascot-fur/eye prose; no
+  character, text or UI chrome. No force, palette/threshold/prompt/source edits, master
+  promotion, Harmony claim or fifth take. All originals and initial/retry QA/locked
+  outputs retained; only five actual edit_of children will be zero-take skipped. Automated
+  failures: t1 palette_drift: mean dE 7.1, p95 22.1, off-palette 21.0% (top: #5577CC
+  (2.8%), #4477CC (1.8%)); t2 palette_drift: mean dE 8.7, p95 23.8, off-palette 28.3%
+  (top: #4466BB (2.7%), #7788CC (2.4%)); t3 palette_drift: mean dE 7.0, p95 20.9,
+  off-palette 19.5% (top: #5577BB (3.5%), #6688CC (1.7%)); t4 palette_drift: mean
+  dE 6.9, p95 20.7, off-palette 20.9% (top: #5577CC (1.9%), #5577BB (1.7%)).'
