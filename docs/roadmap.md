@@ -4,7 +4,7 @@ _Living document. Last updated: 2026-11-05 (rebuilt in the housekeeping
 pass; the stage G/W plan of 2026-11-02 is in the
 [archive](archive/iteration-plan.md))._
 
-## Status (2026-11-05)
+## Status (2026-11-06)
 
 - **Built and merged:** the Screen Time gate v2 as the `PofuLive` target
   with its extensions (#34, #41; it waits for the membership); the game
@@ -114,15 +114,30 @@ grow, and each week ends with a screenshot sheet or a short video for him.
   provenance (a written assignment or masters regenerated on the founder's
   plan). Release in Türkiye, then global.
 
-## Next, in order
+## Next: every track, in parallel (plan of 2026-11-06)
 
-1. Merge wave 2 (#212); a screenshot sheet and an install note to the
-   founder.
-2. Integrate the batch-35 art (glows, launch sky, dressing).
-3. The wonder-island model in `PofuCore`, the map with rumours, Koke.
-4. Wave 3: resident-to-resident scenes.
-5. Small wins from the [Apple Design Awards study](research/apple-design-awards.md):
-   haptics and the accessibility pass.
+The founder (2026-11-06): no dated phases and no betting on one thing for
+long; every track takes a step every round unless it truly waits on
+another. Membership day needs no big preparation (a day or two after it
+arrives); what matters is the screens, the UI, how the game and the app
+are used, and the gate and shield, which must be a design masterpiece.
+The lead keeps this list current: each track names its next step only.
+
+| Track | Next step | Waits on |
+|---|---|---|
+| **The gate and the shield** (the top design priority) | Spec "the gate v2": the system shield at its best (painted icon, the hour's colours, the voice) and the in-app gate as a living painted scene; three concept directions from Codex (batch-48); then build | nothing |
+| **Codex's concepts in use** | An inventory of every exploration take with a use for each (screen, moment, sticker, background, inspiration); wire the best into the game and app | nothing |
+| **Light and colour** | Merge SW-1 (#258) and SW-3 (#256, Koke stage 0 tuned); SW-2 weather and the screen haze | SW-3 for SW-2 |
+| **Night lighting** | Tune nightlab to the night key (batch-45) and real normals (batch-47); the ADR; the Metal port. No hard-edged light; Pofu's form round; the island's underside lit as a volume; characters and effects seated | the batch-45 and 47 takes |
+| **Icons** | The flat icon sheets (batch-46); the winner replaces the place control's glyph and the menu symbols | the takes |
+| **Koke** | Integrate row 0-k's takes; one Koke on screen; stage 0-2 plates repainted under the beautiful-wound rule (code grading of the pale, high-key plates stops short: #256's sheet), after the `x-koke-stage0-mist` concept | 0-k, batch-45 |
+| **Çağlayan and flow** | A game-design note for the flow game, then `PofuGames` flow, then Çağlayan with batch-43 | nothing (the art arrives in parallel) |
+| **Game flow** | The flow audit: a `PofuCore` test that plays days 1-21 for a typical player and for a heavy scroller; no dead day | nothing |
+| **Home growth** | A screenshot sheet of IL1 to IL10; every level adds something seen and something moving; IL1's decor | nothing |
+| **Residents** | Wave 3: ten resident-to-resident scenes (`pofu-story`), daily visits | nothing |
+| **App** | Onboarding (pick the apps, the first resisted reach, Pofu wakes); the widget and the week page sharing the sky; accessibility; haptics | the gate spec for the onboarding's look |
+| **Health** | The frame meter after weather and night; the snail drift in `integrate.py`; prune worktrees | nothing |
+| **Later** | Emanet, Çanlar (recall), Revontuli, the Gezgin rig, sound, App Store assets; membership day 1 when the account arrives | the membership |
 
 ## Day 1 of the paid membership
 

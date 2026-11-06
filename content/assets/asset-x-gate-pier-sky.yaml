@@ -1,0 +1,21 @@
+id: asset-x-gate-pier-sky
+type: asset
+title_tr: x-gate-pier-sky
+title_en: x-gate-pier-sky (ui)
+status: in-production
+horizon: now
+summary: >-
+  A full portrait phone screen for a cozy mobile game, painted, no text anywhere. The edge
+  of a floating island's lawn at the bottom, and Pofu, a round fluffy hamster, sitting on
+  the very edge with his little legs dangling, seen from behind and a little to the side,
+  turning his head back toward us with a soft hopeful look, a small tea glass steaming beside
+  him. Before him an immense golden-hour sky fills the screen: a …
+art:
+  images: []
+  jobs:
+  - batch-48-gate-scenes:x-gate-pier-sky
+sources:
+- doc: tools/imagegen/manifest/batch-48-gate-scenes.yaml
+kind: ui
+batch: batch-48-gate-scenes
+size: 1024x1536

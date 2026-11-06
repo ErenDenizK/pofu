@@ -1,0 +1,107 @@
+# Batch 47: light-direction pilot for the night relight (exploration; x- ids).
+#
+# The founder (2026-11-06): at night the island's 3D surfaces (above all its
+# earth underside) do not take the light well; Pofu's derived normals are a
+# little angular. Normals guessed from a painting are weak (Ori's team gave
+# up on them and hand-painted light-direction maps). Pilot: the approved home
+# plate repainted four times, each lit by ONE white light from one side with
+# everything else dark; tools/assets/nightlab.py then solves a real normal
+# map from the four by photometric stereo. If it beats the derived normals on
+# the night sheet, the hero sprites (Pofu, the plates) get the same treatment.
+#
+# Review: the geometry, outline and every detail stay pixel-registered with
+# the plate; only the lighting changes; no colour other than grey-white light.
+
+batch: batch-47-light-direction-pilot
+title: Light-direction pilot (the home plate lit from four sides, for real normals)
+status: open
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: island-main-l-v3, kind: world, name: island-main-l-v3, external: batch-05-fixes-pilot, master: design/art/masters/island-main-l-v3/island-main-l-v3.webp}
+
+  - id: x-plate-light-left
+    kind: world
+    name: x-plate-light-left
+    edit_of: island-main-l-v3
+    light: {cell: day, layer: subject}
+    chat: "Pofu · Light directions"
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "One of four light-direction passes (left). Review: registered with the plate, lit only from the far left side, at the height of the island top, shadows soft and true to the forms (the lawn's rim, the earth body's rounded bands and stones, the roots)."
+    prompt:
+      - text: |
+          Relight the attached floating island as a pure lighting study: the
+          same island, every shape, outline and detail exactly in place. The
+          only light is one soft white light shining from the far left side, at the height of the island top; everything
+          facing away from it falls into deep dark grey, so the rounded forms
+          (the lawn's edge, the earth body's bands, the round stones, the
+          door's frame, the roots) show clearly by their light and shade.
+          Desaturate the whole island to neutral greys so only light and
+          shade remain. The background stays transparent.
+      - block: edit-keep-v1
+      - text: "AVOID: colour, coloured light, several lights, ambient fill, moving or changing any shape, new details, glow, text, a background"
+
+  - id: x-plate-light-right
+    kind: world
+    name: x-plate-light-right
+    edit_of: island-main-l-v3
+    light: {cell: day, layer: subject}
+    chat: "Pofu · Light directions"
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "One of four light-direction passes (right). Review: registered with the plate, lit only from the far right side, at the height of the island top, shadows soft and true to the forms (the lawn's rim, the earth body's rounded bands and stones, the roots)."
+    prompt:
+      - text: |
+          Relight the attached floating island as a pure lighting study: the
+          same island, every shape, outline and detail exactly in place. The
+          only light is one soft white light shining from the far right side, at the height of the island top; everything
+          facing away from it falls into deep dark grey, so the rounded forms
+          (the lawn's edge, the earth body's bands, the round stones, the
+          door's frame, the roots) show clearly by their light and shade.
+          Desaturate the whole island to neutral greys so only light and
+          shade remain. The background stays transparent.
+      - block: edit-keep-v1
+      - text: "AVOID: colour, coloured light, several lights, ambient fill, moving or changing any shape, new details, glow, text, a background"
+
+  - id: x-plate-light-top
+    kind: world
+    name: x-plate-light-top
+    edit_of: island-main-l-v3
+    light: {cell: day, layer: subject}
+    chat: "Pofu · Light directions"
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "One of four light-direction passes (top). Review: registered with the plate, lit only from directly above, shadows soft and true to the forms (the lawn's rim, the earth body's rounded bands and stones, the roots)."
+    prompt:
+      - text: |
+          Relight the attached floating island as a pure lighting study: the
+          same island, every shape, outline and detail exactly in place. The
+          only light is one soft white light shining from directly above; everything
+          facing away from it falls into deep dark grey, so the rounded forms
+          (the lawn's edge, the earth body's bands, the round stones, the
+          door's frame, the roots) show clearly by their light and shade.
+          Desaturate the whole island to neutral greys so only light and
+          shade remain. The background stays transparent.
+      - block: edit-keep-v1
+      - text: "AVOID: colour, coloured light, several lights, ambient fill, moving or changing any shape, new details, glow, text, a background"
+
+  - id: x-plate-light-bottom
+    kind: world
+    name: x-plate-light-bottom
+    edit_of: island-main-l-v3
+    light: {cell: day, layer: subject}
+    chat: "Pofu · Light directions"
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "One of four light-direction passes (bottom). Review: registered with the plate, lit only from below, under the island, shadows soft and true to the forms (the lawn's rim, the earth body's rounded bands and stones, the roots)."
+    prompt:
+      - text: |
+          Relight the attached floating island as a pure lighting study: the
+          same island, every shape, outline and detail exactly in place. The
+          only light is one soft white light shining from below, under the island; everything
+          facing away from it falls into deep dark grey, so the rounded forms
+          (the lawn's edge, the earth body's bands, the round stones, the
+          door's frame, the roots) show clearly by their light and shade.
+          Desaturate the whole island to neutral greys so only light and
+          shade remain. The background stays transparent.
+      - block: edit-keep-v1
+      - text: "AVOID: colour, coloured light, several lights, ambient fill, moving or changing any shape, new details, glow, text, a background"

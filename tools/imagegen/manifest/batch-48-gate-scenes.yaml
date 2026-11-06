@@ -1,0 +1,145 @@
+# Batch 48: the gate as a painted scene (exploration; x- ids, never promoted).
+#
+# The founder (2026-11-06): the wall must not stay a plain wall with plain
+# text; the gate and the shield must be a wow, a design masterpiece. Apple's
+# shield is a fixed template (docs/product/ux/gate-v2.md §1.1: a colour, one
+# ~60 pt icon, two labels, two buttons), so the wow lives in the app: the
+# landing the shield's notification opens (gate-v2 §6.1, "Hop!"), today a
+# blurred world with button rows. These are three radically different
+# directions for that landing as a full phone screen, painted, alive, at the
+# current hour. UI controls are painted as objects WITHOUT any text (the app
+# sets the words); leave calm space where the words go.
+#
+# Plus one sheet of shield icons: Pofu's moods at his door as tiny painted
+# scenes that read at 60 pt (gate-v2 §5.3).
+
+batch: batch-48-gate-scenes
+title: The gate as a painted scene (three landing directions, a shield icon sheet)
+status: open
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: island-main-l-v3, kind: world, name: island-main-l-v3, external: batch-05-fixes-pilot, master: design/art/masters/island-main-l-v3/island-main-l-v3.webp}
+  - {id: tea-stall-5, kind: station, name: tea-stall-5, external: batch-01-slice}
+  - {id: mochi-v2, kind: char, name: mochi-v2, external: batch-03-home-island, master: design/art/masters/mochi-v2/mochi-v2.webp}
+
+  - id: x-gate-round-door
+    kind: ui
+    name: x-gate-round-door
+    size: 1024x1536
+    canvas: 1024x1536
+    transparent: false
+    chat: "Pofu · The gate"
+    acceptance: {exploration: true}
+    notes: "Direction A, the round door: you are standing at Pofu's door; he opens it from inside. Review: a wow at first sight, intimate, warm; the space for one line of words and three choices is calm; reads as a game screen, not a poster."
+    attach:
+      - ref: R1
+        role: "Pofu, the hamster: match his art style, fur and finish exactly."
+      - ref: approved:island-main-l-v3
+        role: "The home island's round door and the world's painting and finish (the door in its earth body)."
+    prompt:
+      - text: |
+          A full portrait phone screen for a cozy mobile game, painted, no
+          text anywhere. We stand right in front of Pofu's little round
+          wooden door set in a warm earth bank under a lawn, seen up close
+          from the front. The door is swinging open toward us and Pofu, a
+          round fluffy hamster, stands in the doorway on his toes, holding
+          the door with one paw and looking up at us with big curious eyes,
+          as if to say "where are you going?". Warm honey lamplight spills
+          from inside his cozy burrow (a glimpse of a tiny teacup, a rug, a
+          shelf) and wraps his fur and the door's edge; outside it is the
+          blue hour with a soft lilac sky and a few stars, cool light on the
+          grass. The upper third is calm sky for one line of words. The
+          lower third has three soft painted wooden plaques hanging on a
+          short rope from the door frame, one larger and warmer in front,
+          two smaller and quieter, all BLANK, for the app's choices.
+      - block: style-anchor-v1
+      - text: "AVOID: text, letters, numbers, icons, a phone frame, a status bar, UI chrome, glass panels, dark horror, a sad Pofu, other characters"
+
+  - id: x-gate-pier-sky
+    kind: ui
+    name: x-gate-pier-sky
+    size: 1024x1536
+    canvas: 1024x1536
+    transparent: false
+    chat: "Pofu · The gate"
+    acceptance: {exploration: true}
+    notes: "Direction B, the wide world: Pofu sits at the edge of the island with you, the sky and the sea of clouds are the screen. Review: breathtaking and calm; the sky reads as the time of day; the choices sit naturally in the scene."
+    attach:
+      - ref: R1
+        role: "Pofu, the hamster: match his art style, fur and finish exactly."
+      - ref: approved:island-main-l-v3
+        role: "The home island's lawn edge and the world's painting and finish."
+    prompt:
+      - text: |
+          A full portrait phone screen for a cozy mobile game, painted, no
+          text anywhere. The edge of a floating island's lawn at the bottom,
+          and Pofu, a round fluffy hamster, sitting on the very edge with his
+          little legs dangling, seen from behind and a little to the side,
+          turning his head back toward us with a soft hopeful look, a small
+          tea glass steaming beside him. Before him an immense golden-hour
+          sky fills the screen: a sea of soft clouds below glowing peach and
+          rose, far islands floating in the haze, the sun low and warm, a
+          few birds. Soft light rims his fur. The upper half is open sky for
+          one line of words. Near the bottom, three small paper lanterns sit
+          on the lawn beside him, one bigger and glowing warm, two smaller
+          and unlit, all blank, for the app's choices.
+      - block: style-anchor-v1
+      - text: "AVOID: text, letters, numbers, icons, a phone frame, a status bar, UI chrome, glass panels, dark mood, other characters"
+
+  - id: x-gate-breath
+    kind: ui
+    name: x-gate-breath
+    size: 1024x1536
+    canvas: 1024x1536
+    transparent: false
+    chat: "Pofu · The gate"
+    acceptance: {exploration: true}
+    notes: "Direction C, the breath: a poster-like, graphic composition around one great ring of light that will breathe in the app. Review: bold and iconic, a design piece; the ring and Pofu read at a glance; still the same painted world."
+    attach:
+      - ref: R1
+        role: "Pofu, the hamster: match his art style, fur and finish exactly."
+    prompt:
+      - text: |
+          A full portrait phone screen for a cozy mobile game, painted, no
+          text anywhere, with a bold, simple, poster-like composition. In
+          the centre a huge soft ring of warm light, like a sunrise halo,
+          floats over a deep twilight gradient from indigo at the top to
+          warm rose at the bottom; a few soft clouds cross it. Inside the
+          ring, small and centered, Pofu, a round fluffy hamster, sits with
+          his eyes closed and paws on his tummy, breathing calmly, lit softly
+          by the ring. Below, the curve of a tiny floating island lawn
+          catches the ring's light. Large calm areas of gradient above and
+          below for words and choices; at the very bottom one wide soft
+          glowing pill shape, blank, for the main choice.
+      - block: style-anchor-v1
+      - text: "AVOID: text, letters, numbers, icons, a phone frame, a status bar, busy details, glass panels, a dark or scary mood, other characters"
+
+  - id: x-shield-icons
+    kind: ui
+    name: x-shield-icons
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: true
+    chat: "Pofu · The gate"
+    acceptance: {exploration: true}
+    notes: "Shield icons (gate-v2 §5.3): six tiny painted scenes of Pofu at his round door, readable at 60 pt. Review: each mood reads at a tiny size; the six are one family; silhouettes strong."
+    attach:
+      - ref: R1
+        role: "Pofu, the hamster: match his art style, fur and finish exactly."
+    prompt:
+      - text: |
+          A sheet of six small round icons in a 3 by 2 grid on a transparent
+          background, evenly spaced, each a tiny painted scene inside a soft
+          circle: Pofu, a round fluffy hamster, in the doorway of his little
+          round wooden door, drawn big and simple so it reads at a tiny size.
+          (1) curious, peeking out, head tilted, morning light; (2) proud,
+          chest out, a tiny sparkle, sunny; (3) a little jealous, arms crossed,
+          a small huff, afternoon; (4) calm, eyes closed, breathing, a soft
+          dusk; (5) relieved, a big smile, paws up, a warm glow; (6) sleepy
+          with a nightcap, a candle in the doorway, night with a star. Bold
+          clear shapes, warm light, minimal background inside each circle.
+      - block: style-anchor-v1
+      - text: "AVOID: text, letters, numbers, tiny unreadable details, outlines of another style, a frame or grid lines, backgrounds outside the circles"

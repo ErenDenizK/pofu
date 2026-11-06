@@ -1,0 +1,21 @@
+id: asset-x-icons-flat-solid
+type: asset
+title_tr: x-icons-flat-solid
+title_en: x-icons-flat-solid (ui)
+status: in-production
+horizon: now
+summary: >-
+  A sheet of nine app menu icons in a 3 by 3 grid on a transparent background, evenly spaced,
+  each icon centered in its cell with generous padding. Flat solid pictograms in one single
+  warm cocoa brown (#5B4636), no gradients, no shading, no outlines of another colour: rounded,
+  friendly, chunky shapes with soft corners and one consistent visual weight, like a cozy
+  hand-made version of a system icon set. In order, left t…
+art:
+  images: []
+  jobs:
+  - batch-46-flat-icons:x-icons-flat-solid
+sources:
+- doc: tools/imagegen/manifest/batch-46-flat-icons.yaml
+kind: ui
+batch: batch-46-flat-icons
+size: 1024x1024
