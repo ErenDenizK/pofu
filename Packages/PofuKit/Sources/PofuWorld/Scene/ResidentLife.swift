@@ -21,6 +21,8 @@ public enum ResidentLife {
     public static let walkSeconds = 2.6
     /// At most this many residents walk at the same moment.
     public static let maxMovers = 2
+    /// Walk frames per second: step-a, base, step-b, base.
+    public static let walkFPS = 6.0
     /// A reaction (tap, greeting) lasts this long, with a tiny hop.
     public static let reactionSeconds = 1.2
 
@@ -237,7 +239,8 @@ public enum ResidentLife {
             if w >= 0, w < seconds {
                 // Two frames, work and rest, every 0.5 s, with a small bob
                 // that fades in and out so the beat starts and ends at rest.
-                step.pose = Int(w / 0.5) % 2 == 0 ? .work : .rest
+                // The base and the work-beat frame (`workBeat` falls back to `work`).
+                step.pose = Int(w / 0.5) % 2 == 0 ? .workBeat : .rest
                 let fade = min(w / 0.3, (seconds - w) / 0.3, 1)
                 step.hop = 0.9 * fade * abs(sin(.pi * w / 0.5))
                 step.lean = 1.2 * fade * sin(2 * .pi * w / 1.0)
@@ -269,6 +272,12 @@ public enum ResidentLife {
             step.dy = dy * u
             if let w = walkingTime {
                 step.isWalking = true
+                // Gait frames, step-a, base, step-b, base; a resident without them hop-slides.
+                switch Int(w * walkFPS) % 4 {
+                case 0: step.pose = .stepA
+                case 2: step.pose = .stepB
+                default: break
+                }
                 // Steps: a soft hop every 0.45 s, none at the ends.
                 let fade = min(w / 0.4, (seconds - w) / 0.4, 1)
                 step.hop = 1.6 * fade * abs(sin(.pi * w / 0.45))

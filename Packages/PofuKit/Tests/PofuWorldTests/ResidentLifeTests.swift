@@ -90,6 +90,43 @@ struct ResidentLifeTests {
         #expect(abs(ResidentLife.step(of: plan, at: 3.6).dx - 40) < 0.001)
     }
 
+    @Test("a walk plays step-a, base, step-b, base at 6 fps, and a still island plays none")
+    func walkFrames() {
+        let plan = ResidentLife.Plan(
+            spec: ResidentLife.Spec(id: "x", home: WorldPoint(x: 0, y: 0)),
+            activity: .walk(target: WorldPoint(x: 40, y: 0), start: 1, seconds: 2.6, linger: 0.5),
+            glanceAt: 7,
+            greetsPofu: false
+        )
+        let frames = (0..<8).map { ResidentLife.step(of: plan, at: 1 + (Double($0) + 0.5) / ResidentLife.walkFPS).pose }
+        #expect(frames == [.stepA, .rest, .stepB, .rest, .stepA, .rest, .stepB, .rest])
+        // At the far end and at rest, no walk frame.
+        #expect(ResidentLife.step(of: plan, at: 4.0).pose == .rest)
+        #expect(ResidentLife.step(of: plan, at: 2, isAmbient: false).pose == .rest)
+    }
+
+    @Test("the work beat alternates the work-beat frame with the base")
+    func workBeatFrames() {
+        let plan = ResidentLife.Plan(
+            spec: ResidentLife.Spec(id: "x", home: WorldPoint(x: 0, y: 0)),
+            activity: .work(start: 1, seconds: 3),
+            glanceAt: 7,
+            greetsPofu: false
+        )
+        #expect(ResidentLife.step(of: plan, at: 1.25).pose == .workBeat)
+        #expect(ResidentLife.step(of: plan, at: 1.75).pose == .rest)
+    }
+
+    @Test("a frame the resident has no art for falls back: work-beat to work, walk to the base")
+    func frameFallbacks() throws {
+        #expect(ResidentPose.workBeat.fallbacks == [.workBeat, .work])
+        let findik = try #require(IslandLayout.resident(.findik))
+        if WorldArt.sprite("findik-step-a") == nil { #expect(findik.art(for: .stepA) == findik.art) }
+        #expect(ResidentPose.rest.lifePose(.stepA) == .stepA)
+        #expect(ResidentPose.sleepy.lifePose(.stepA) == .sleepy)
+        #expect(ResidentPose.work.lifePose(.workBeat) == .workBeat)
+    }
+
     @Test("a reaction lasts 1.2 s with a tiny hop")
     func reaction() {
         #expect(ResidentLife.reaction(age: 0.15)?.hop ?? 0 > 0)

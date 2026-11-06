@@ -57,4 +57,15 @@ struct IslandGrowthTests {
         let earth = (plate.maxY - IslandLayout.lawnRadiusY) * stop.scale
         #expect(earth <= CameraRail.referenceHeight * 0.25)
     }
+
+    @Test func homeFramingKeepsPofusOwnDoorOnScreenAndTheTeaStallMostlyVisible() throws {
+        let stop = IslandFraming.homeStop()
+        // The door (about 36 units wide) is whole, a few points inside the left edge.
+        let doorLeft = 201 + (IslandFraming.pofuDoorX - 18 - stop.look.x) * stop.scale
+        #expect(doorLeft >= 6, "door left edge at \(doorLeft) pt")
+        // The tea stall is at least half in frame on the right.
+        let stall = try #require(IslandFraming.stationBox(.teaStall))
+        let visible = min(201 + (stall.maxX - stop.look.x) * stop.scale, CameraRail.referenceWidth) - (201 + (stall.minX - stop.look.x) * stop.scale)
+        #expect(visible / ((stall.maxX - stall.minX) * stop.scale) >= 0.5)
+    }
 }

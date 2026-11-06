@@ -20,10 +20,17 @@ public enum ResidentPose: String, CaseIterable, Sendable {
     case sleepy
     /// Chest out: the ceremony for their station is done.
     case proud
+    /// A walk frame (batch 59): the left foot lifted and stepping forward.
+    case stepA = "step-a"
+    /// A walk frame (batch 59): the other foot stepping.
+    case stepB = "step-b"
+    /// The work beat's second frame (batch 59), alternating with the base; falls back to `work`.
+    case workBeat = "work-beat"
 
     /// The poses to try, best first: the reactions fall back to the older eye poses, then the base.
     var fallbacks: [ResidentPose] {
         switch self {
+        case .workBeat: [.workBeat, .work]
         case .happy: [.happy, .eyesHappy]
         case .sleepy: [.sleepy, .eyesClosed]
         default: [self]
@@ -156,10 +163,16 @@ extension BuildMoment {
 }
 
 extension ResidentPose {
-    /// The loop's greeting (a resident glad to see Pofu) shows over the
-    /// plain pose; every other pose is left as it is (a work beat reaches the
-    /// resident through `idlePose`).
+    /// The loop's frames show over the plain pose: the greeting (a resident
+    /// glad to see Pofu), a walk frame, a work-beat frame (also over the
+    /// held `work` pose of a focused resident). Every other pose is left as
+    /// it is.
     func lifePose(_ loop: ResidentPose) -> ResidentPose {
-        self == .rest && loop == .happy ? .happy : self
+        switch loop {
+        case .happy: self == .rest ? .happy : self
+        case .stepA, .stepB: self == .rest || self == .work ? loop : self
+        case .workBeat: self == .rest || self == .work ? .workBeat : self
+        default: self
+        }
     }
 }
