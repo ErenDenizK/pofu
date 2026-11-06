@@ -234,7 +234,7 @@ public struct WorldHome: View {
                 } label: {
                     Text(verbatim: WorldStrings.beatAction(beat))
                         .font(PofuFont.headline)
-                        .frame(maxWidth: .infinity, minHeight: PofuSize.buttonHeight - 8)
+                        .frame(maxWidth: .infinity, minHeight: PofuSize.minimumTouch)
                 }
                 .pofuActionStyle(.primary)
                 .transition(.opacity)
@@ -451,8 +451,7 @@ struct RepairBanner: View {
                     .font(PofuFont.headline)
                     .padding(.horizontal, PofuSpacing.s)
             }
-            .buttonStyle(.glassProminent)
-            .tint(PofuColor.accent)
+            .pofuActionStyle(.primary)
             PofuIconButton(systemName: "gearshape", label: WorldStrings.settings, action: onSettings)
         }
         .padding(.leading, PofuSpacing.m)

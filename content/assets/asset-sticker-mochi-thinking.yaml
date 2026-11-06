@@ -1,0 +1,20 @@
+id: asset-sticker-mochi-thinking
+type: asset
+title_tr: sticker-mochi-thinking
+title_en: sticker-mochi-thinking (char)
+status: in-production
+horizon: now
+summary: >-
+  A single full-body sticker of Mochi the bunny in the exact attached look, one paw at her
+  chin, eyes looking up and aside, one ear tilted, a small thoughtful mouth. Centred on a
+  plain transparent background with wide empty space around it, drawn complete with the whole
+  body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.
+art:
+  images: []
+  jobs:
+  - batch-42-stickers:sticker-mochi-thinking
+sources:
+- doc: tools/imagegen/manifest/batch-42-stickers.yaml
+kind: char
+batch: batch-42-stickers
+size: 1024x1024

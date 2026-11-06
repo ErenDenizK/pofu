@@ -129,9 +129,7 @@ struct SetupGuideView: View {
                 primaryAction
                 if let onboarding {
                     Button("I'll do it later") { onboarding.later() }
-                        .font(PofuFont.headline)
-                        .foregroundStyle(PofuColor.accent)
-                        .frame(minHeight: PofuSize.minimumTouch)
+                        .buttonStyle(PofuTextButtonStyle())
                 }
             }
         }

@@ -163,11 +163,8 @@ struct StationSheet: View {
                     onPlay()
                 } label: {
                     Text("Play · \(playableRounds) left", bundle: .module)
-                        .font(PofuFont.headline)
-                        .frame(maxWidth: .infinity, minHeight: PofuSize.minimumTouch)
                 }
-                .buttonStyle(.plain)
-                .foregroundStyle(PofuColor.accent)
+                .buttonStyle(PofuTextButtonStyle())
             } else {
                 Text("No rounds left today.", bundle: .module)
                     .font(PofuFont.footnote)
@@ -211,10 +208,9 @@ struct StationSheet: View {
                     }
                 }
                 .font(PofuFont.headline)
-                .frame(maxWidth: .infinity, minHeight: PofuSize.buttonHeight - 16)
+                .frame(maxWidth: .infinity, minHeight: PofuSize.minimumTouch)
             }
-            .buttonStyle(.glassProminent)
-            .tint(PofuColor.accent)
+            .pofuActionStyle(.primary)
             .opacity(missing > 0 ? 0.55 : 1)
             .disabled(onBuild == nil)
             if onBuild == nil {
@@ -255,12 +251,21 @@ struct ResidentCard: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: PofuSpacing.s) {
-            Text(verbatim: WorldStrings.residentName(resident.id))
-                .font(PofuFont.headline)
-                .foregroundStyle(PofuColor.textPrimary)
-            Text(verbatim: WorldStrings.stationAndLevel(WorldStrings.stationName(resident.station), level: status?.level ?? 0))
-                .font(PofuFont.footnote)
-                .foregroundStyle(PofuColor.textSecondary)
+            HStack(alignment: .center, spacing: PofuSpacing.s) {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(verbatim: WorldStrings.residentName(resident.id))
+                        .font(PofuFont.headline)
+                        .foregroundStyle(PofuColor.textPrimary)
+                    Text(verbatim: WorldStrings.stationAndLevel(WorldStrings.stationName(resident.station), level: status?.level ?? 0))
+                        .font(PofuFont.footnote)
+                        .foregroundStyle(PofuColor.textSecondary)
+                }
+                Spacer(minLength: 0)
+                // The resident's reaction sticker, when they have one.
+                if let sticker = Sticker.reaction(forResident: resident.id.rawValue) {
+                    StickerView(sticker, size: 44)
+                }
+            }
             if let line {
                 Text(verbatim: line)
                     .font(PofuFont.callout)
@@ -272,8 +277,7 @@ struct ResidentCard: View {
                     .font(PofuFont.headline)
                     .frame(maxWidth: .infinity, minHeight: PofuSize.minimumTouch)
             }
-            .buttonStyle(.glass)
-            .tint(PofuColor.accent)
+            .pofuActionStyle(.secondary)
         }
         .padding(PofuSpacing.l)
         .background(PofuColor.card.opacity(0.95), in: RoundedRectangle(cornerRadius: 22, style: .continuous))

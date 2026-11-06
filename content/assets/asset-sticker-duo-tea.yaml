@@ -1,0 +1,21 @@
+id: asset-sticker-duo-tea
+type: asset
+title_tr: sticker-duo-tea
+title_en: sticker-duo-tea (char)
+status: in-production
+horizon: now
+summary: >-
+  A single full-body sticker of Pofu the hamster and Mochi the bunny together, both in their
+  exact attached looks and correct relative size, side by side, each holding a small tulip-shaped
+  tea glass and clinking gently, smiling, in the exact attached look, Centred on a plain transparent
+  background with wide empty space around it, drawn complete with the whole body. No text,
+  no speech bubbles, no floating hearts, no sti…
+art:
+  images: []
+  jobs:
+  - batch-42-stickers:sticker-duo-tea
+sources:
+- doc: tools/imagegen/manifest/batch-42-stickers.yaml
+kind: char
+batch: batch-42-stickers
+size: 1024x1024

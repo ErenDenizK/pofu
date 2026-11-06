@@ -128,9 +128,7 @@ struct FriendRung: View {
                     SeedIcon(size: 16)
                 }
             }
-            .font(PofuFont.headline)
-            .foregroundStyle(PofuColor.accent)
-            .frame(minHeight: PofuSize.minimumTouch)
+            .buttonStyle(PofuTextButtonStyle())
 
             if let minutes = minutesUntilFree, minutes > 0 {
                 Text("Free again in \(minutes) min.")
@@ -165,9 +163,7 @@ struct EmergencyPassButton: View {
                     .buttonStyle(PofuQuietButtonStyle())
             } else {
                 button(minutes: minutes)
-                    .font(PofuFont.subheadline)
-                    .foregroundStyle(PofuColor.accent)
-                    .frame(minHeight: PofuSize.minimumTouch)
+                    .buttonStyle(PofuTextButtonStyle())
             }
         } else if minutes > 0 {
             Text("Today's emergency pass is used. It's back tomorrow.")

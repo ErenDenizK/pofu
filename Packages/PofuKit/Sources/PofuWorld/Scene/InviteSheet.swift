@@ -16,13 +16,18 @@ struct InviteSheet: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: PofuSpacing.m) {
-            VStack(alignment: .leading, spacing: PofuSpacing.xs) {
-                Text(verbatim: WorldStrings.inviteTitle)
-                    .font(PofuFont.title3)
-                    .foregroundStyle(PofuColor.textPrimary)
-                Text(verbatim: choices.isEmpty ? WorldStrings.inviteEmpty : WorldStrings.inviteSubtitle)
-                    .font(PofuFont.callout)
-                    .foregroundStyle(PofuColor.textSecondary)
+            HStack(alignment: .center, spacing: PofuSpacing.m) {
+                VStack(alignment: .leading, spacing: PofuSpacing.xs) {
+                    Text(verbatim: WorldStrings.inviteTitle)
+                        .font(PofuFont.title3)
+                        .foregroundStyle(PofuColor.textPrimary)
+                    Text(verbatim: choices.isEmpty ? WorldStrings.inviteEmpty : WorldStrings.inviteSubtitle)
+                        .font(PofuFont.callout)
+                        .foregroundStyle(PofuColor.textSecondary)
+                }
+                Spacer(minLength: 0)
+                // The letter's sticker: Pofu and Mochi over tea.
+                StickerView(.duoTea, size: 64)
             }
             ForEach(choices, id: \.self) { resident in
                 Button {
@@ -56,11 +61,8 @@ struct InviteSheet: View {
                 onClose()
             } label: {
                 Text(verbatim: WorldStrings.inviteClose)
-                    .font(PofuFont.headline)
-                    .frame(maxWidth: .infinity, minHeight: PofuSize.minimumTouch)
             }
-            .buttonStyle(.plain)
-            .foregroundStyle(PofuColor.accent)
+            .buttonStyle(PofuTextButtonStyle())
         }
         .padding(.horizontal, PofuSpacing.screen)
         .padding(.top, PofuSpacing.xl)

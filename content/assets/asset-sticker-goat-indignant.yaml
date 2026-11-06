@@ -1,0 +1,20 @@
+id: asset-sticker-goat-indignant
+type: asset
+title_tr: sticker-goat-indignant
+title_en: sticker-goat-indignant (char)
+status: in-production
+horizon: now
+summary: >-
+  A single full-body sticker of the harbor goat in the exact attached look, chin lifted, a
+  closed-eyed huff, indignant and a little proud, a reluctant half-smile. Centred on a plain
+  transparent background with wide empty space around it, drawn complete with the whole body.
+  No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.
+art:
+  images: []
+  jobs:
+  - batch-42-stickers:sticker-goat-indignant
+sources:
+- doc: tools/imagegen/manifest/batch-42-stickers.yaml
+kind: char
+batch: batch-42-stickers
+size: 1024x1024
