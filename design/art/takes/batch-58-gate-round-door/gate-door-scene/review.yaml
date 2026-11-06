@@ -1,0 +1,279 @@
+batch: batch-58-gate-round-door
+contact_sheet: design/art/takes/batch-58-gate-round-door/gate-door-scene/contact.jpg
+jobs:
+  gate-door-scene:
+    pick: none
+    publication: skipped after one allowed retry
+    note: 'Skipped after exactly one unchanged-prompt retry: all four official QA
+      reports hard-fail palette_drift (t1 mean dE7.1,p9522.1,21.0percent off; t2 8.7,23.8,28.3percent;
+      t3 7.0,20.9,19.5percent; t4 6.9,20.7,20.9percent), with blue-hour sky outside
+      the authored UI palette. Empty warm burrow, open right door/window/hinges/knob,
+      lamp/table/teacup/rug/shelf/plant, three blank plaques larger center, calm star/cloud
+      sky and lower grass/flowers are present. Specific scene architecture governs
+      inherited mascot-fur/eye prose; no character, text or UI chrome. No force, palette/threshold/prompt/source
+      edits, master promotion, Harmony claim or fifth take. All originals and initial/retry
+      QA/locked outputs retained; only five actual edit_of children will be zero-take
+      skipped. Automated failures: t1 palette_drift: mean dE 7.1, p95 22.1, off-palette
+      21.0% (top: #5577CC (2.8%), #4477CC (1.8%)); t2 palette_drift: mean dE 8.7,
+      p95 23.8, off-palette 28.3% (top: #4466BB (2.7%), #7788CC (2.4%)); t3 palette_drift:
+      mean dE 7.0, p95 20.9, off-palette 19.5% (top: #5577BB (3.5%), #6688CC (1.7%));
+      t4 palette_drift: mean dE 6.9, p95 20.7, off-palette 20.9% (top: #5577CC (1.9%),
+      #5577BB (1.7%)).'
+qa_reports:
+  4:
+    job: gate-door-scene
+    take: 4
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 59 (R1 51)
+      value: 59.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 51 (R1 59)
+      value: 50.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.5 (R1 5.3)
+      value: 2.5
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.2
+      value: 1.1905
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 6.9, p95 20.7, off-palette 20.9% (top: #5577CC (1.9%), #5577BB
+        (1.7%))'
+      value: 6.8782
+    info:
+      metrics_raw:
+        L_p5: 50.3
+        L_p50: 68.7
+        L_p95: 86.1
+        C_p50: 42.7
+        C_p95: 60.6
+        C_p99: 66.9
+        detail: 3.46
+      metrics_locked:
+        L_p5: 50.6
+        L_p50: 68.7
+        L_p95: 85.7
+        C_p50: 42.7
+        C_p95: 59.3
+        C_p99: 62.5
+        detail: 2.5
+    fingerprint: 445c351da4b04101
+  1:
+    job: gate-door-scene
+    take: 1
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 60 (R1 51)
+      value: 59.7
+    - check: value_floor
+      status: pass
+      message: lightness p5 51 (R1 59)
+      value: 50.8
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.0 (R1 5.3)
+      value: 3.0
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.4
+      value: 1.3725
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 7.1, p95 22.1, off-palette 21.0% (top: #5577CC (2.8%), #4477CC
+        (1.8%))'
+      value: 7.1211
+    info:
+      metrics_raw:
+        L_p5: 50.5
+        L_p50: 69.8
+        L_p95: 86.4
+        C_p50: 42.2
+        C_p95: 61.1
+        C_p99: 66.7
+        detail: 4.11
+      metrics_locked:
+        L_p5: 50.8
+        L_p50: 69.9
+        L_p95: 86.0
+        C_p50: 41.8
+        C_p95: 59.7
+        C_p99: 62.6
+        detail: 3.0
+    fingerprint: 445c351da4b04101
+  2:
+    job: gate-door-scene
+    take: 2
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 61 (R1 51)
+      value: 61.2
+    - check: value_floor
+      status: pass
+      message: lightness p5 48 (R1 59)
+      value: 47.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.6 (R1 5.3)
+      value: 2.58
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.6
+      value: 1.6146
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 8.7, p95 23.8, off-palette 28.3% (top: #4466BB (2.7%), #7788CC
+        (2.4%))'
+      value: 8.661
+    info:
+      metrics_raw:
+        L_p5: 47.5
+        L_p50: 67.4
+        L_p95: 84.9
+        C_p50: 46.0
+        C_p95: 64.1
+        C_p99: 71.1
+        detail: 3.61
+      metrics_locked:
+        L_p5: 47.7
+        L_p50: 67.4
+        L_p95: 84.4
+        C_p50: 45.9
+        C_p95: 61.2
+        C_p99: 64.1
+        detail: 2.58
+    fingerprint: 445c351da4b04101
+  3:
+    job: gate-door-scene
+    take: 3
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 60 (R1 51)
+      value: 59.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 50 (R1 59)
+      value: 50.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.4 (R1 5.3)
+      value: 2.42
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.2
+      value: 1.2271
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 7.0, p95 20.9, off-palette 19.5% (top: #5577BB (3.5%), #6688CC
+        (1.7%))'
+      value: 6.9855
+    info:
+      metrics_raw:
+        L_p5: 49.8
+        L_p50: 68.0
+        L_p95: 84.5
+        C_p50: 41.4
+        C_p95: 60.8
+        C_p99: 66.1
+        detail: 3.43
+      metrics_locked:
+        L_p5: 50.1
+        L_p50: 68.0
+        L_p95: 84.0
+        C_p50: 41.3
+        C_p95: 59.5
+        C_p99: 62.3
+        detail: 2.42
+    fingerprint: 445c351da4b04101
+manual_review:
+  excluded_takes: []
+  note: 'Skipped after exactly one unchanged-prompt retry: all four official QA reports
+    hard-fail palette_drift (t1 mean dE7.1,p9522.1,21.0percent off; t2 8.7,23.8,28.3percent;
+    t3 7.0,20.9,19.5percent; t4 6.9,20.7,20.9percent), with blue-hour sky outside
+    the authored UI palette. Empty warm burrow, open right door/window/hinges/knob,
+    lamp/table/teacup/rug/shelf/plant, three blank plaques larger center, calm star/cloud
+    sky and lower grass/flowers are present. Specific scene architecture governs inherited
+    mascot-fur/eye prose; no character, text or UI chrome. No force, palette/threshold/prompt/source
+    edits, master promotion, Harmony claim or fifth take. All originals and initial/retry
+    QA/locked outputs retained; only five actual edit_of children will be zero-take
+    skipped.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-892dd616-360a-4b78-87ba-58859ca90f64.png
+  original_generated_png_sha256: b50406dcb42a2c91cf409390658b7eb1022822ccfceb35f76f4faeedd52f5d70
+  inbox_png_sha256: afd80eff1737774ece478c28a10d2bad413390a06819e659b6cbab0a01d54fb3
+  rgba_sha256: 62635780fa940b51003ccbc714022063a380add8cb656200adf97891edc5286b
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 445c351da4b04101
+- take: 2
+  source_file: /workspace/generated_images/exec-f6290e92-6a92-4d84-8589-724cb2e58350.png
+  original_generated_png_sha256: 87522910cf2faecfc063963b8557a598ee917805a61bb599f53f85eb12f095d3
+  inbox_png_sha256: 2364f645d02c01608ce8c0594f1ac2b4a538d44ec66bbfd9e5cc408fb3b3b5c5
+  rgba_sha256: b080b7e39ecdddb38ca2cae46f219b8e3424ee5cdec09834230a0c744a68b6e5
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 445c351da4b04101
+- take: 3
+  source_file: /workspace/generated_images/exec-73d17d21-af8f-48f8-8d86-b85d49381811.png
+  original_generated_png_sha256: c3b6ea7ee4d8a3469dfb18ac5257cd38ac834a113c92714cff457bbc8a4e99ac
+  inbox_png_sha256: 6f2a9c559636d7faa28afce43d2993e8aa7635f6e28146e216d368527d40af64
+  rgba_sha256: 0dc30260ad0b30939383603ed19b664bc347d0085b96d42b718589d2ac907dda
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 445c351da4b04101
+- take: 4
+  source_file: /workspace/generated_images/exec-467e68f5-f812-434a-bda5-6dc6726e581d.png
+  original_generated_png_sha256: b2481d1cff00d696c559d2b6c7e872a6b2f62f19130a1f685e167b6753843c1d
+  inbox_png_sha256: 3bd716f993cd8f97c8575437b4f81c7161b3934a2393587ca95c36e29d30d5ad
+  rgba_sha256: 2512b9ac8597279e72ed7e27038b7fc55b9d715614944b19fc3c83a02a3a596f
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 445c351da4b04101
