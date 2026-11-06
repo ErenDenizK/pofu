@@ -4,13 +4,13 @@ title_tr: fog-card-2
 title_en: fog-card-2 (ui)
 status: in-production
 horizon: now
-summary: >-
-  A thin, broken band of drifting mist across the middle of the image, lighter and more transparent
-  than a fog bank: separate soft wisps with gaps of black between them, two or three slow
-  curls of mist rising from it like steam. Pale white-grey on pure black, fading to black
-  well before every edge.
+summary: 'A thin, broken band of drifting mist across the middle of the image, lighter
+  and more transparent than a fog bank: separate soft wisps with gaps of black between
+  them, two or three slow curls of mist rising from it like steam. Pale white-grey
+  on pure black, fading to black well before every edge.'
 art:
-  images: []
+  images:
+  - design/art/ui/ui-fog-card-2/ui-fog-card-2.png
   jobs:
   - batch-44-weather-fx:fog-card-2
 sources:
@@ -18,3 +18,8 @@ sources:
 kind: ui
 batch: batch-44-weather-fx
 size: 1536x1024
+notes:
+- 'batch-44-weather-fx: promoted take 1. auto-picked by QA; founder review pending.
+  Thin broken volumetric pale-grey mist, black gaps, two/three rising curls, soft
+  falloff. Take2 curl reaches delivered top edge and is excluded under literal all-edge
+  fade. Hard QA passes; absent lock_load/Harmony use0 fallback then ordinal1.'

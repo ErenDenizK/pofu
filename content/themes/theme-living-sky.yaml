@@ -4,9 +4,8 @@ title_tr: Yaşayan gökyüzü
 title_en: The living sky
 status: in-production
 horizon: now
-summary: >-
-  Batch 04: five soft clouds, a sun glow, three distant hazy islands and a tiling sea of clouds,
-  so the island floats in a sky that moves.
+summary: 'Batch 04: five soft clouds, a sun glow, three distant hazy islands and a
+  tiling sea of clouds, so the island floats in a sky that moves.'
 links:
   uses_asset:
   - asset-cloud-1
@@ -19,6 +18,13 @@ links:
   - asset-far-isle-1
   - asset-far-isle-2
   - asset-far-isle-3
+  - asset-fog-card-1
+  - asset-fog-card-2
+  - asset-fog-card-3
+  - asset-rain-tile
+  - asset-light-shaft
+  - asset-rainbow-arc
+  - asset-puddle-glint
 sources:
 - doc: tools/imagegen/manifest/batch-04-sky.yaml
 kind: world
