@@ -1,0 +1,438 @@
+batch: batch-24-home-materials-v2
+manifest: tools/imagegen/manifest/batch-24-home-materials-v2.yaml
+manifest_sha256: b61416abeacb9caa3197174c50d198baea91b686b02ce420255d4693b93dc3cc
+contact_sheet: design/art/takes/batch-24-home-materials-v2/x-decor-tea-set-v2/contact.jpg
+jobs:
+  x-decor-tea-set-v2:
+    pick: none
+    publication: skipped after one allowed retry
+    note: Exactly four original takes across initial pair plus sole unchanged-prompt
+      retry. Source and official locked inspected. All keep the requested tray, three
+      tulip tea glasses on three saucers, two cups and one sugar bowl, without characters
+      or text. All four normalized visible widths621/601/683/651px exceed the authored
+      complete-group one-third cap341.33px. Skip after one allowed retry for scale;
+      style warnings advisory, no threshold or pixel workaround, no further generation.
+      Original PNG/RGBA hashes preserved; exploration never promoted.
+qa_reports:
+  1:
+    job: x-decor-tea-set-v2
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 54 (R1 51)
+      value: 54.2
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 55 (at most 22), p98 92 (at least 90), spread 37
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 37.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 76 (band 55-90)'
+      value: 76.0
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.22 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.224
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.0 (at least 3.5)'
+      value: 5.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.1 (R1 5.3)
+      value: 2.08
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 1.0188
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.1, p95 12.1, off-palette 5.3% (top: #CC7744 (2.2%), #CC7733
+        (1.2%))'
+      value: 3.0555
+    - check: decor_anchor
+      status: warn
+      message: width 621 px wider than the footprint (360) (advisory in an exploration)
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 86 against the world reference (outliers: edge)'
+      value: 85.5
+    info:
+      fit_skipped: needs x0.58, below x0.6 (a real art failure)
+      registration:
+        dx: 6
+        dy: 42
+      metrics_raw:
+        L_p5: 56.4
+        L_p50: 76.1
+        L_p95: 90.5
+        C_p50: 31.5
+        C_p95: 55.3
+        C_p99: 57.3
+        detail: 2.74
+      metrics_locked:
+        L_p5: 56.7
+        L_p50: 76.0
+        L_p95: 89.8
+        C_p50: 31.3
+        C_p95: 54.2
+        C_p99: 56.3
+        detail: 2.08
+    fingerprint: fa7ea46250b49539
+  2:
+    job: x-decor-tea-set-v2
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 60 (R1 51)
+      value: 59.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 53 (at most 22), p98 90 (at least 90), spread 36
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 36.4
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 74 (band 55-90)'
+      value: 74.3
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.18 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.184
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.0 (at least 3.5)'
+      value: 4.95
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.0 (R1 5.3)
+      value: 2.03
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.4
+      value: 1.412
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 4.2, p95 16.9, off-palette 12.4% (top: #CC6633 (4.0%), #DD7733
+        (2.4%)) (advisory in an exploration)'
+      value: 4.2135
+    - check: decor_anchor
+      status: warn
+      message: width 601 px wider than the footprint (360) (advisory in an exploration)
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 74 against the world reference (outliers: C_p95, edge)'
+      value: 74.5
+    info:
+      fit_skipped: needs x0.60, below x0.6 (a real art failure)
+      registration:
+        dx: 6
+        dy: -53
+      metrics_raw:
+        L_p5: 55.0
+        L_p50: 74.4
+        L_p95: 89.0
+        C_p50: 34.7
+        C_p95: 64.0
+        C_p99: 66.5
+        detail: 2.64
+      metrics_locked:
+        L_p5: 55.3
+        L_p50: 74.3
+        L_p95: 88.2
+        C_p50: 34.5
+        C_p95: 59.8
+        C_p99: 61.4
+        detail: 2.03
+    fingerprint: fa7ea46250b49539
+  3:
+    job: x-decor-tea-set-v2
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 56 (R1 51)
+      value: 56.5
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 55 (at most 22), p98 92 (at least 90), spread 37
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 37.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 75 (band 55-90)'
+      value: 74.8
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.22 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.22
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.8 (at least 3.5)'
+      value: 4.76
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.1 (R1 5.3)
+      value: 2.15
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 1.0113
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 4.0, p95 13.6, off-palette 10.3% (top: #CC7733 (2.6%), #CC6633
+        (2.2%)) (advisory in an exploration)'
+      value: 3.9738
+    - check: decor_anchor
+      status: warn
+      message: top y 460 above the height bar (500); width 683 px wider than the footprint
+        (360) (advisory in an exploration)
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 91 against the world reference (outliers: none)'
+      value: 91.0
+    info:
+      fit_skipped: needs x0.53, below x0.6 (a real art failure)
+      registration:
+        dx: 11
+        dy: 42
+      metrics_raw:
+        L_p5: 56.1
+        L_p50: 74.8
+        L_p95: 90.7
+        C_p50: 35.7
+        C_p95: 57.8
+        C_p99: 58.9
+        detail: 2.78
+      metrics_locked:
+        L_p5: 56.3
+        L_p50: 74.8
+        L_p95: 89.8
+        C_p50: 35.3
+        C_p95: 56.5
+        C_p99: 57.8
+        detail: 2.15
+    fingerprint: fa7ea46250b49539
+  4:
+    job: x-decor-tea-set-v2
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 58 (R1 51)
+      value: 58.0
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 55 (at most 22), p98 92 (at least 90), spread 37
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 37.2
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 76 (band 55-90)'
+      value: 76.0
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.21 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.208
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.8 (at least 3.5)'
+      value: 4.78
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.2 (R1 5.3)
+      value: 2.22
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.3
+      value: 1.2741
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 4.4, p95 14.9, off-palette 14.0% (top: #CC6633 (3.6%), #DD7744
+        (2.1%)) (advisory in an exploration)'
+      value: 4.3621
+    - check: decor_anchor
+      status: warn
+      message: width 651 px wider than the footprint (360) (advisory in an exploration)
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 81 against the world reference (outliers: C_p95, edge)'
+      value: 80.9
+    info:
+      fit_skipped: needs x0.55, below x0.6 (a real art failure)
+      registration:
+        dx: 7
+        dy: 6
+      metrics_raw:
+        L_p5: 56.4
+        L_p50: 76.1
+        L_p95: 91.0
+        C_p50: 32.9
+        C_p95: 60.6
+        C_p99: 62.2
+        detail: 2.92
+      metrics_locked:
+        L_p5: 56.7
+        L_p50: 76.0
+        L_p95: 90.3
+        C_p50: 32.7
+        C_p95: 58.0
+        C_p99: 60.0
+        detail: 2.22
+    fingerprint: fa7ea46250b49539
+manual_review:
+  observed_note: Exactly four original takes across initial pair plus sole unchanged-prompt
+    retry. Source and official locked inspected. All keep the requested tray, three
+    tulip tea glasses on three saucers, two cups and one sugar bowl, without characters
+    or text. All four normalized visible widths621/601/683/651px exceed the authored
+    complete-group one-third cap341.33px. Skip after one allowed retry for scale;
+    style warnings advisory, no threshold or pixel workaround, no further generation.
+    Original PNG/RGBA hashes preserved; exploration never promoted.
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+sources:
+- batch: batch-24-home-materials-v2
+  job: x-decor-tea-set-v2
+  take: 1
+  round: 1
+  logical_run: 20261106-b24-v2-stall-pair-a
+  source_file: /workspace/generated_images/exec-e8f05cba-bc8c-411f-a446-bdaed4bf22c0.png
+  returned_at: '2026-11-06T06:09:20.619Z'
+  prompt_sha256: 9459c88224436c383162f50599a713ccbc9634dd187a8ab9bf1d28ccc6393e22
+  fingerprint: fa7ea46250b49539
+  saved_at: '2026-11-06T06:09:20.995900+00:00'
+  original_generated_png_sha256: a5b1e26d0ddbf043c6cb49a2181388bbb24536b7d028cfd3b5a0127adb51c1eb
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 2d041009faad94b0b3ee7d32c2b1d023ac7d9bb8cf6889bed13447a2463ee911
+  inbox_png_sha256: 5d54071a9269d880074b34c8bed3e92689a72ab55a3d9bb0eca5acbed44f09a9
+  qa_sha256: 8ef2a5c8f6c009a154f7474ce3a048822581ee667c9baa3a42d27f227a42889b
+- batch: batch-24-home-materials-v2
+  job: x-decor-tea-set-v2
+  take: 2
+  round: 1
+  logical_run: 20261106-b24-v2-stall-pair-a
+  source_file: /workspace/generated_images/exec-e8bc7ade-677a-4041-a79c-0dd8c7079c7c.png
+  returned_at: '2026-11-06T06:08:36.050Z'
+  prompt_sha256: 9459c88224436c383162f50599a713ccbc9634dd187a8ab9bf1d28ccc6393e22
+  fingerprint: fa7ea46250b49539
+  saved_at: '2026-11-06T06:08:36.412696+00:00'
+  original_generated_png_sha256: 3c74f0a7194898d96f946308d176fbe29c95b977f931460482e2ab1f5e729a16
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: f39dcf663ecafca97719b221b2fea06c6aeba1afb95941caee49d7ced35e3d5a
+  inbox_png_sha256: 460ec991614316280b0ce6d579e3545ea124069eb69715a56c40ab333c8cbcf3
+  qa_sha256: 93ae531263ff10ef51a8370a1c51152c048824ee6f51aef7a8c97345ecd5d325
+- batch: batch-24-home-materials-v2
+  job: x-decor-tea-set-v2
+  take: 3
+  round: 2
+  logical_run: 20261106-b24-v2-sole-retry-tea-cushions
+  source_file: /workspace/generated_images/exec-016716fe-7cf8-472d-a067-063440ca0a60.png
+  returned_at: '2026-11-06T06:12:25.941Z'
+  prompt_sha256: 9459c88224436c383162f50599a713ccbc9634dd187a8ab9bf1d28ccc6393e22
+  fingerprint: fa7ea46250b49539
+  saved_at: '2026-11-06T06:12:26.273519+00:00'
+  original_generated_png_sha256: 5b5bc1d0595f81d43e9d7661d1a488ed56f4528c606f753cd31a43b59f8d7fd9
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 3e01cba964ef4415e2460ce44ce68546ac8d04e5f260690459796685359e4513
+  inbox_png_sha256: aa7ac21c0b357f653116701c3b8366429c24c61cb7a44d72ec72b74b592f71e1
+  qa_sha256: 09fe679c25ef363684fe6054cd97458aebdb45ba3b8a368a470b3f6fa666b2a7
+- batch: batch-24-home-materials-v2
+  job: x-decor-tea-set-v2
+  take: 4
+  round: 2
+  logical_run: 20261106-b24-v2-sole-retry-tea-cushions
+  source_file: /workspace/generated_images/exec-196b65e6-f414-46d8-852a-571ea4291003.png
+  returned_at: '2026-11-06T06:14:49.215Z'
+  prompt_sha256: 9459c88224436c383162f50599a713ccbc9634dd187a8ab9bf1d28ccc6393e22
+  fingerprint: fa7ea46250b49539
+  saved_at: '2026-11-06T06:14:51.760811+00:00'
+  original_generated_png_sha256: e8965f5917c0df71aa166abef80ff658347491d4654856ec7659d994d6588c10
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: e5cb3aa8b80124ccd30601eca34a89235d53c51b476051e27f99e9fe5397b729
+  inbox_png_sha256: 63c7d94af3210b2ecfd1c521890f38a8e9cf08aeea91d873a52b11274789152e
+  qa_sha256: af2fa37470316c888097bd556b6428b6ace2322e986a010ab4c3bca25f22a404
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+variation_proof_sha256: 51327809ac2f2a984a9e3f40493821e9d1ab9cb0cc49da5fcdb87795b791dddc
