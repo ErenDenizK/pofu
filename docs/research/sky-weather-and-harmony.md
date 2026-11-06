@@ -1,7 +1,6 @@
 # Sky, weather, fog and colour harmony
 
-Research for the founder feedback of 2026-11-06 (background study; real fog and a
-beautiful bad state; colour and light harmony). Written 2026-11-06.
+Research for founder feedback of 2026-11-06 (background study, real fog, colour harmony).
 
 **Evidence tags.** `[S]` = backed by a source fetched/searched this session (URL
 inline). `[K]` = established craft knowledge (art fundamentals, public talks I
@@ -108,7 +107,6 @@ all durations/numbers below are `[D]` unless tagged.
   rainbow (post-rain), aurora (winter clear night), thunder (heavy rain); weather
   is deterministic from a per-island seed `[S]`. Rainbow and double rainbow are
   deliberately scarce; auroras and meteors have preconditions `[S]`.
-- Happy Home Paradise lets designers set weather/time: sunny or rainy to start `[S]`.
 - Pattern across the genre `[K]`: 55 to 65% clear, 20 to 25% cloudy/overcast,
   10 to 15% precipitation, <5% special. Gloomy weather is short (30 to 90 min),
   followed by a bright payoff.
@@ -211,8 +209,7 @@ Sourced facts are few; the rest is `[K]`.
 - **Spirited Away / Ghibli** `[K]`: mist is lit and tinted (blue-violet to warm
   amber from lanterns), lanterns on the far bank glow through it; the "bad" evening
   town is the most gorgeous image in the film.
-- **Journey dark section, Spiritfarer, Alba**: nothing sourced; `[K]` Journey's
-  buried-ruins/snow scenes keep a warm-white light source and cool teal air.
+- **Journey dark section, Spiritfarer, Alba**: nothing sourced.
 
 ### C3. Rules for lowering chroma/brightness without losing "come in"
 
@@ -274,8 +271,7 @@ script) or `[D]`. Treat numbers as starting tolerances.
 
 ## E. Recommendations for Pofu
 
-(Numbers are starting values to tune on the iPhone; each ties to a source.)
-
+(Starting values, tuned on the iPhone; each ties to a source.)
 1. **Keyed sky, six keys, perceptual lerp.** Dawn, morning, noon, golden hour,
    dusk, night; each key = zenith/mid/horizon gradient + sun/moon disc + sun halo
    + horizon halo (6 parameters), interpolated in OKLCH with a cosine ease; real
@@ -348,12 +344,9 @@ script) or `[D]`. Treat numbers as starting tolerances.
     and flag: ground C < 0.5 x prop C, background C > ground C, adjacent-layer
     L gap < 8, focal vs ground L gap < 25. Treat as a lint on art, not a
     taste debate. (Colour-script/LUT unification principle.)
-
 ## Open items
 
 - Verify hex/duration numbers against Jane Ng's GDC 2016 talk "The Art of
   Firewatch" and the GRIS artbook; neither reachable this session.
-- Allow blog.camposanto.com and blog.runevision.com in the cloud network if the
-  fog sections should be re-checked against the primary posts.
-- Nothing found on Alba, Tunic, Journey, Children of the Light skies; do not
-  quote them as evidence.
+- Allow blog.camposanto.com and blog.runevision.com to re-check fog claims.
+- Nothing found on Alba, Tunic, Journey, Children of the Light skies.
