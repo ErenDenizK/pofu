@@ -420,6 +420,9 @@ public struct WorldSnapshot: Hashable, Sendable {
     public var invited: ResidentID?
     /// Koke, the first wonder island: the rumour, the arrival, the stage.
     public var koke: WonderStatus
+    /// Çağlayan, the second wonder island: each stage is earned by finishing
+    /// that stage's flow round.
+    public var caglayan: WonderStatus
 
     /// Every field, for previews, screenshots and tests; the app reads
     /// snapshots from `WorldClock.snapshot(of:)`.
@@ -452,6 +455,7 @@ public struct WorldSnapshot: Hashable, Sendable {
         metResidents: [ResidentID] = [],
         invited: ResidentID? = nil,
         koke: WonderStatus = WonderStatus(),
+        caglayan: WonderStatus = WonderStatus(),
         firstDay: LocalDay? = nil
     ) {
         self.clock = clock
@@ -482,6 +486,7 @@ public struct WorldSnapshot: Hashable, Sendable {
         self.metResidents = metResidents
         self.invited = invited
         self.koke = koke
+        self.caglayan = caglayan
         self.firstDay = firstDay
     }
 }

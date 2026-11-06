@@ -132,7 +132,12 @@ public struct VisitorSchedule: Sendable {
     /// The island as the draw reads it.
     public static func context(of state: GameState, catalog: ArchipelagoCatalog, roster: [VisitorProfile] = standardRoster) -> Context {
         let rosterIslands = Set(roster.map(\.island))
-        let healed = Set(state.stations.arrivalOrder).intersection(rosterIslands)
+        var healed = Set(state.stations.arrivalOrder).intersection(rosterIslands)
+        // A healed wonder island sends its resident: Damla comes on Tuesdays once Çağlayan flows.
+        for (wonder, island) in state.wonders.islands where island.stage >= WonderIslands.healedStage {
+            let id = IslandID(rawValue: wonder.rawValue)
+            if rosterIslands.contains(id) { healed.insert(id) }
+        }
         let built = Set(state.stations.levels.filter { $0.value > 0 }.keys)
         return Context(
             healed: healed,

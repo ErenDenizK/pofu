@@ -392,6 +392,14 @@ HIVE_LEVELS = 3
 KOKE_PLATES = (0, 1, 2, 3, 4)
 KOKE_PLATE_UNITS = 250.0
 KOKE_WIDTH = 114.0
+# Çağlayan (batch 43): the plates are 768 x 512 like Koke's, but the island fills only 720 of their 768 px, so
+# the image is drawn wider (226 units) to put the island itself 212 units across, as Koke's is. The island
+# is cut with a shared hand-traced matte (tools/assets/caglayan_matte.py), not the colour rule: its lilac cliff
+# and pale underside sit too close to the sky. Damla is 38 units wide, feet on the anchor.
+CAGLAYAN_PLATES = (0, 1, 2, 3, 4)
+CAGLAYAN_PLATE_UNITS = 768 * 212 / 720
+CAGLAYAN_MATTE = "design/art/masters/caglayan-island-0/caglayan-matte.png"
+CAGLAYAN_DAMLA_WIDTH = 38.0
 
 APP_SOURCES = {
     # The app draws the lock-light bakes (WorldGrade grades them at runtime); "softlock" also bakes a
@@ -438,6 +446,10 @@ APP_SOURCES = {
                             "anchor": (384, 256), "matte": True} for n in KOKE_PLATES},
     **{f"koke-{pose}": _blob(f"design/art/masters/koke-{pose}", KOKE_WIDTH, "feet", like="design/art/masters/koke-asleep")
        for pose in ("asleep", "one-eye", "stretch")},
+    **{f"caglayan-island-{n}": {"src": _master(f"design/art/masters/caglayan-island-{n}"), "ppu": 768 / CAGLAYAN_PLATE_UNITS,
+                                "anchor": (384, 256), "matte_file": CAGLAYAN_MATTE} for n in CAGLAYAN_PLATES},
+    "damla": _blob("design/art/masters/damla", CAGLAYAN_DAMLA_WIDTH, "feet"),
+    "damla-glass": _blob("design/art/masters/damla-glass", CAGLAYAN_DAMLA_WIDTH, "feet", like="design/art/masters/damla"),
     # Nazli's rig (batch 37): body, eyes-closed, fins, tail and island patch share one 1536 x 1024 canvas, so
     # every part takes the body's scale and anchor (the box centre) and the layers stay registered. 150 units
     # is a provisional width (no scene draws her yet); the pieces are baked, not placed.
@@ -770,6 +782,8 @@ def app_main():
         src = Image.open(path).convert("RGBA")
         if spec.get("matte"):
             src = _island_cutout(src)
+        elif spec.get("matte_file"):
+            src.putalpha(Image.open(os.path.join(REPO, spec["matte_file"])).convert("L").filter(ImageFilter.GaussianBlur(1.0)))
         harmony_key = spec.get("harmony_as", name)
         if alt in ("", "--round2") and corrected(harmony_key):
             src = harmony.correct_image(harmony_key, src, manifest, harmony_cfg)

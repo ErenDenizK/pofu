@@ -20,7 +20,7 @@ import Testing
 ///    piece, an island stage (Koke's rumour, arrival or healing stage) or
 ///    the harbor opening;
 /// 4. nothing decays: no counter that the player sees ever falls;
-/// 5. Cağlayan's arrival around day 10 (not modelled yet: disabled below).
+/// 5. Çağlayan's rumour comes once Koke is healed, from the eighth tended day.
 ///
 /// Days here count from 0 in the log lines and from 1 in the messages.
 /// Each run prints one line per day so the pacing can be reviewed.
@@ -65,6 +65,10 @@ struct FlowAuditTests {
             found.append(now.kokePhase == .rumoured ? "Koke rumour" : "Koke arrives")
         }
         if now.kokeStage > (before?.kokeStage ?? 0) { found.append("Koke stage \(now.kokeStage)") }
+        if now.caglayanPhase.rawValue > (before?.caglayanPhase ?? .hidden).rawValue {
+            found.append(now.caglayanPhase == .rumoured ? "Çağlayan rumour" : "Çağlayan arrives")
+        }
+        if now.caglayanStage > (before?.caglayanStage ?? 0) { found.append("Çağlayan stage \(now.caglayanStage)") }
         if now.hearts > (before?.hearts ?? 0) { found.append("heart \(now.hearts)") }
         if now.decor > (before?.decor ?? 0) { found.append("decor \(now.decor)") }
         return found
@@ -146,8 +150,14 @@ struct FlowAuditTests {
         }
     }
 
-    @Test(.disabled("Cağlayan (typical arrival day 10, stages 11 and 12) is not modelled in PofuCore yet: WonderIslands has only Koke. Enable when the second wonder island lands."))
-    func caglayanArrivesAroundDayTen() {}
+    @Test(arguments: Player.allCases)
+    func caglayanComesAfterKokeIsHealed(player: Player) throws {
+        let log = Self.log(player)
+        let rumour = try #require(log.firstIndex { $0.caglayanPhase != .hidden }, "\(player): no Çağlayan rumour in 21 days")
+        let healed = try #require(log.firstIndex { $0.kokeStage >= WonderIslands.healedStage })
+        #expect(rumour >= healed, "\(player): Çağlayan rumour on day \(rumour + 1), Koke healed on day \(healed + 1)")
+        #expect(log[rumour].tendedDays >= WonderIslands.caglayanRumourTendedDays)
+    }
 
     @Test(arguments: Player.allCases)
     func nothingEverDecaysAndTheIslandLevelNeverFalls(player: Player) {

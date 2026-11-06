@@ -1,7 +1,7 @@
 import Foundation
 
-/// A wonder island of the story (the healing arc): Koke now, the others
-/// later. Not a station island, so it never joins `arrivalOrder`.
+/// A wonder island of the story (the healing arc): Koke and Çağlayan now,
+/// the others later. Not a station island, so it never joins `arrivalOrder`.
 public struct WonderIslandID: RawRepresentable, Hashable, Comparable, Sendable, Codable,
     ExpressibleByStringLiteral, CustomStringConvertible
 {
@@ -34,6 +34,8 @@ public struct WonderIslandID: RawRepresentable, Hashable, Comparable, Sendable, 
 
     /// Koke, the sleeping moss hump (the first wonder island).
     public static let koke: WonderIslandID = "koke"
+    /// Çağlayan, the waterfall that stopped (the second wonder island).
+    public static let caglayan: WonderIslandID = "caglayan"
 }
 
 /// Where one wonder island stands: its rumour, its arrival and how healed
@@ -118,7 +120,8 @@ public struct WonderStatus: Hashable, Sendable {
         isArrived && stage >= WonderIslands.healedStage
     }
 
-    /// The moss decor at home and the faint light on the harbor horizon.
+    /// Koke's moss decor at home and the faint light on the harbor horizon;
+    /// Çağlayan's thin stream off home's edge.
     public var giftUnlocked: Bool {
         isHealed
     }
@@ -131,19 +134,38 @@ public enum WonderIslands {
     /// Tended days before the first rumour.
     public static let rumourTendedDays = 5
 
-    /// Starts `day`: the rumour on the first tended day from the fifth with
-    /// the harbor open, the arrival on the next day.
+    /// Tended days before Çağlayan's rumour (the water noise stops somewhere,
+    /// game plan day 8), and only once Koke is healed.
+    public static let caglayanRumourTendedDays = 8
+    /// Days from Çağlayan's rumour to its arrival (a rumour two days before
+    /// each island, game plan §3).
+    public static let caglayanArrivalDays = 2
+
+    /// Starts `day`: Koke's rumour on the first tended day from the fifth
+    /// with the harbor open and its arrival on the next day; Çağlayan's
+    /// rumour once Koke is healed from the eighth tended day, its arrival
+    /// two days later. Each island moves at most one step a day.
     static func roll(_ ledger: inout WonderLedger, to day: LocalDay, tendedDays: Int, harborOpen: Bool) {
         var koke = ledger[.koke]
         if koke.rumouredOn == nil {
-            guard tendedDays >= rumourTendedDays, harborOpen else { return }
-            koke.rumouredOn = day
+            if tendedDays >= rumourTendedDays, harborOpen {
+                koke.rumouredOn = day
+                ledger.islands[.koke] = koke
+            }
         } else if koke.arrivedOn == nil, let rumoured = koke.rumouredOn, rumoured < day {
             koke.arrivedOn = day
-        } else {
-            return
+            ledger.islands[.koke] = koke
         }
-        ledger.islands[.koke] = koke
+        var caglayan = ledger[.caglayan]
+        if caglayan.rumouredOn == nil {
+            if tendedDays >= caglayanRumourTendedDays, harborOpen, koke.arrivedOn != nil, koke.stage >= healedStage {
+                caglayan.rumouredOn = day
+                ledger.islands[.caglayan] = caglayan
+            }
+        } else if caglayan.arrivedOn == nil, let rumoured = caglayan.rumouredOn, rumoured.adding(days: caglayanArrivalDays) <= day {
+            caglayan.arrivedOn = day
+            ledger.islands[.caglayan] = caglayan
+        }
     }
 
     /// Whether a visit on `day` would advance `state`.
@@ -163,13 +185,18 @@ public enum WonderIslands {
 
     /// Koke's status on `day` (`nil` before the clock has started).
     public static func status(game: GameState, day: LocalDay?) -> WonderStatus {
-        let koke = game.wonders[.koke]
-        let phase: WonderStatus.Phase = koke.arrivedOn != nil ? .arrived : koke.rumouredOn != nil ? .rumoured : .hidden
+        status(of: .koke, game: game, day: day)
+    }
+
+    /// A wonder island's status on `day` (`nil` before the clock has started).
+    public static func status(of island: WonderIslandID, game: GameState, day: LocalDay?) -> WonderStatus {
+        let state = game.wonders[island]
+        let phase: WonderStatus.Phase = state.arrivedOn != nil ? .arrived : state.rumouredOn != nil ? .rumoured : .hidden
         var resisted = false
         if let day, let today = game.today, today.day == day {
             resisted = today.resistedReaches > 0
         }
-        let can = day.map { canAdvance(koke, day: $0, resistedToday: resisted) } ?? false
-        return WonderStatus(phase: phase, stage: koke.stage, canAdvance: can)
+        let can = day.map { canAdvance(state, day: $0, resistedToday: resisted) } ?? false
+        return WonderStatus(phase: phase, stage: state.stage, canAdvance: can)
     }
 }

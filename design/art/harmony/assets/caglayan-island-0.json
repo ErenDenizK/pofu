@@ -6,7 +6,7 @@
   "L_mean": 79.501,
   "L_p2": 52.813,
   "L_p98": 94.192,
-  "detail": 1.254,
+  "detail": 1.01,
   "edge": 0.0,
   "tint_a": 5.422,
   "tint_b": -1.689,
@@ -19,7 +19,7 @@
   "L_mean": 79.536,
   "L_p2": 52.813,
   "L_p98": 94.216,
-  "detail": 1.253,
+  "detail": 1.001,
   "edge": 0.0,
   "tint_a": 4.268,
   "tint_b": -0.945,
@@ -36,7 +36,7 @@
   "white": 0.0
  },
  "guarded": false,
- "kind": "plate",
+ "kind": "station",
  "matched_to": "world",
  "outliers_after": [
   "edge"
@@ -45,11 +45,11 @@
   "C_p95",
   "edge"
  ],
- "ppu": 4.103,
+ "ppu": 3.3962,
  "reference": false,
  "score_after": 87.1,
  "score_before": 69.8,
- "shipped": false,
+ "shipped": true,
  "source": "design/art/masters/caglayan-island-0/caglayan-island-0.png",
  "source_sha": "df321922814fb7e1"
 }

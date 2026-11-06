@@ -41,6 +41,7 @@ enum WorldStrings {
         case .home: "Ayçiçeği"
         case .harbor: "İskele"
         case .koke: localized("koke.name")
+        case .caglayan: localized("caglayan.name")
         default: id.rawValue.capitalized
         }
     }
@@ -63,6 +64,30 @@ enum WorldStrings {
         case .mochi: localized("koke.speaker.mochi")
         case .koke: localized("koke.name")
         }
+    }
+
+    // MARK: Çağlayan (the second wonder island)
+
+    static func caglayanLine(_ kind: CaglayanLineKind) -> String {
+        localized(CaglayanLayout.lineKey(kind))
+    }
+
+    static func caglayanSpeaker(_ speaker: CaglayanSpeaker) -> String {
+        switch speaker {
+        case .pofu: localized("koke.speaker.pofu")
+        case .mochi: localized("koke.speaker.mochi")
+        case .damla: localized("caglayan.speaker.damla")
+        }
+    }
+
+    /// The plaque that opens the stage's flow round.
+    static var caglayanPlaque: String {
+        localized("caglayan.plaque")
+    }
+
+    /// VoiceOver for the pool fountain Çağlayan gave.
+    static var caglayanGift: String {
+        localized("caglayan.gift")
     }
 
     /// VoiceOver for the moss Koke gave.

@@ -2,6 +2,7 @@ import Foundation
 import Observation
 import os
 import PofuCore
+import PofuGames
 import PofuPersistence
 import PofuScreenTime
 import PofuWorld
@@ -60,6 +61,11 @@ final class AppModel {
     /// The garden game is open over Home (a full-screen cover), with the
     /// earned rounds that were on offer when it opened.
     var isPlayingGarden = false
+    /// Çağlayan's flow round over Home: the stage it earns (1 to 4), and the
+    /// half-played round when the player left mid-way (kept for this launch).
+    var isPlayingFlow = false
+    private(set) var flowStage = 1
+    var savedFlowRound: (stage: Int, round: FlowRound)?
     private(set) var gardenRounds = 0
     /// The island's camera, focus and station sheet
     /// (`FeatureFlags.islandHome`). Here rather than in the view, so Hop!
@@ -369,6 +375,31 @@ final class AppModel {
         now = clock.now
         advanceGame(to: now, applying: [GameEvent(at: now, kind: kind)])
         save()
+    }
+
+    /// Opens Çağlayan's flow round for `stage` over Home. It only opens on a
+    /// day the island can advance (the scene checks; this guards it).
+    func playCaglayanFlow(stage: Int) {
+        guard !isPlayingFlow, !isPlayingGarden, world.caglayan.canAdvance else { return }
+        flowStage = stage
+        isPlayingFlow = true
+    }
+
+    /// The round was finished: the island advances one stage (earned by the
+    /// round, and only on a day with a resisted reach), then the scene
+    /// crossfades the next plate in and plays the beat line.
+    func finishCaglayanFlow() {
+        isPlayingFlow = false
+        savedFlowRound = nil
+        let before = world.caglayan.stage
+        applyVisitorEvent(.tendedWonder(.caglayan))
+        let after = world.caglayan.stage
+        guard after > before else { return }
+        // The cover is still leaving; the crossfade starts as it clears.
+        Task { @MainActor in
+            try? await Task.sleep(for: .milliseconds(450))
+            island.caglayan.roundFinished(newStage: after, in: island)
+        }
     }
 
     /// Island-game rounds playable now: earned, within today's cap, none

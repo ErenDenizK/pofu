@@ -65,4 +65,101 @@ struct WonderIslandsTests {
         let counters = try JSONDecoder().decode(GameDay.self, from: Data(oldDay.utf8))
         #expect(counters.resistedReaches == 0)
     }
+
+    // MARK: Çağlayan
+
+    private func healedKoke(_ ledger: inout WonderLedger, on day: LocalDay) {
+        ledger.islands[.koke] = WonderIslandState(rumouredOn: day.adding(days: -9), arrivedOn: day.adding(days: -8), stage: WonderIslands.healedStage, lastAdvanceDay: day.adding(days: -1))
+    }
+
+    @Test func caglayanWaitsForKokeToBeHealedAndTheEighthTendedDay() {
+        var ledger = WonderLedger()
+        // Koke asleep: no rumour, however many days.
+        ledger.islands[.koke] = WonderIslandState(rumouredOn: day.adding(days: -9), arrivedOn: day.adding(days: -8), stage: 3)
+        WonderIslands.roll(&ledger, to: day, tendedDays: 12, harborOpen: true)
+        #expect(ledger[.caglayan].rumouredOn == nil)
+        healedKoke(&ledger, on: day)
+        WonderIslands.roll(&ledger, to: day, tendedDays: 7, harborOpen: true)
+        #expect(ledger[.caglayan].rumouredOn == nil)
+        WonderIslands.roll(&ledger, to: day, tendedDays: 8, harborOpen: true)
+        #expect(ledger[.caglayan].rumouredOn == day)
+    }
+
+    @Test func caglayanArrivesTwoDaysAfterItsRumour() {
+        var ledger = WonderLedger()
+        healedKoke(&ledger, on: day)
+        WonderIslands.roll(&ledger, to: day, tendedDays: 8, harborOpen: true)
+        WonderIslands.roll(&ledger, to: day.adding(days: 1), tendedDays: 9, harborOpen: true)
+        #expect(ledger[.caglayan].arrivedOn == nil)
+        WonderIslands.roll(&ledger, to: day.adding(days: 2), tendedDays: 10, harborOpen: true)
+        #expect(ledger[.caglayan].arrivedOn == day.adding(days: 2))
+        // A rolled arrival never moves.
+        WonderIslands.roll(&ledger, to: day.adding(days: 5), tendedDays: 13, harborOpen: true)
+        #expect(ledger[.caglayan].arrivedOn == day.adding(days: 2))
+    }
+
+    @Test func kokeStillRollsOnItsOwnWhileCaglayanIsHidden() {
+        var ledger = WonderLedger()
+        WonderIslands.roll(&ledger, to: day, tendedDays: 5, harborOpen: true)
+        #expect(ledger[.koke].rumouredOn == day)
+        #expect(ledger[.caglayan] == WonderIslandState())
+    }
+
+    @Test func caglayanStagesAdvanceOneAtATimeOnlyWithAResistedReach() {
+        let arrived = WonderIslandState(rumouredOn: day.adding(days: -2), arrivedOn: day)
+        var state = arrived
+        // A quiet day: the flow round can be played but pays no stage.
+        #expect(WonderIslands.advance(state: state, day: day, resistedToday: false).stage == 0)
+        for stage in 1...WonderIslands.healedStage {
+            let today = day.adding(days: stage)
+            state = WonderIslands.advance(state: state, day: today, resistedToday: true)
+            #expect(state.stage == stage)
+            // A second finished round the same day does not move it again.
+            #expect(WonderIslands.advance(state: state, day: today, resistedToday: true).stage == stage)
+        }
+        #expect(WonderIslands.advance(state: state, day: day.adding(days: 9), resistedToday: true).stage == WonderIslands.healedStage)
+    }
+
+    @Test func finishingAFlowRoundThroughTheClockAdvancesCaglayanOneStage() {
+        var world = World()
+        let start = Date(timeIntervalSinceReferenceDate: 800_000_000)
+        world.advance(to: start, .signOfLife(at: start))
+        let today = LocalDay(containing: start, in: .istanbul)
+        world.state.wonders.islands[.caglayan] = WonderIslandState(rumouredOn: today.adding(days: -2), arrivedOn: today.adding(days: -1))
+        // A finished round on a quiet day pays nothing.
+        let noon = start.addingTimeInterval(60)
+        world.advance(to: noon, GameEvent(at: noon, kind: .tendedWonder(.caglayan)))
+        #expect(world.state.wonders[.caglayan].stage == 0)
+        // A resisted reach makes the day count; the next finished round pays one stage.
+        let later = noon.addingTimeInterval(60)
+        world.advance(to: later, .resisted(at: later))
+        #expect(world.snapshot.caglayan.canAdvance)
+        let done = later.addingTimeInterval(60)
+        world.advance(to: done, GameEvent(at: done, kind: .tendedWonder(.caglayan)))
+        #expect(world.state.wonders[.caglayan].stage == 1)
+        #expect(!world.snapshot.caglayan.canAdvance)
+        let again = done.addingTimeInterval(60)
+        world.advance(to: again, GameEvent(at: again, kind: .tendedWonder(.caglayan)))
+        #expect(world.state.wonders[.caglayan].stage == 1)
+        #expect(world.state.wonders[.koke].stage == 0)
+    }
+
+    @Test func caglayanHandsOverItsKeepsakeAtTheFourthStage() {
+        var game = GameState()
+        game.wonders.islands[.caglayan] = WonderIslandState(rumouredOn: day, arrivedOn: day, stage: 3)
+        #expect(!WonderIslands.status(of: .caglayan, game: game, day: day).giftUnlocked)
+        game.wonders.islands[.caglayan]?.stage = WonderIslands.healedStage
+        let healed = WonderIslands.status(of: .caglayan, game: game, day: day)
+        #expect(healed.isHealed)
+        #expect(healed.giftUnlocked)
+        #expect(!WonderIslands.status(game: game, day: day).giftUnlocked)
+    }
+
+    @Test func aSaveWithKokeOnlyDecodesAndCaglayanIsHidden() throws {
+        var state = GameState()
+        state.wonders.islands[.koke] = WonderIslandState(rumouredOn: day, arrivedOn: day, stage: 1)
+        let decoded = try JSONDecoder().decode(GameState.self, from: JSONEncoder().encode(state))
+        #expect(decoded.wonders[.caglayan] == WonderIslandState())
+        #expect(WonderIslands.status(of: .caglayan, game: decoded, day: day).phase == .hidden)
+    }
 }

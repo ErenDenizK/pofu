@@ -14,6 +14,8 @@ public struct HitTarget: Hashable, Sendable {
         case visitor(VisitorPart)
         /// Koke itself, on its own island.
         case koke
+        /// Çağlayan, on its own island: opens the stage's flow round.
+        case caglayan
     }
 
     public var kind: Kind
@@ -95,10 +97,13 @@ public enum WorldHitTest {
 
     /// The islands as targets on the Archipelago: the home plate and every
     /// other island's art.
-    public static func islandTargets(koke: Bool = false) -> [HitTarget] {
+    public static func islandTargets(koke: Bool = false, caglayan: Bool = false) -> [HitTarget] {
         var targets = [HitTarget(kind: .island(.home), worldBox: IslandFraming.plateBox, depth: 0)]
         if koke {
             targets.append(HitTarget(kind: .island(.koke), worldBox: KokeLayout.islandBox, depth: 0))
+        }
+        if caglayan {
+            targets.append(HitTarget(kind: .island(.caglayan), worldBox: CaglayanLayout.islandBox, depth: 0))
         }
         for isle in IslandLayout.isles {
             if let box = WorldArt.sprite(isle.art)?.sharp {
@@ -117,9 +122,10 @@ public enum WorldHitTest {
         visitor: VisitorSnapshot? = nil,
         invitationOpen: Bool = false,
         isBedtime: Bool = false,
-        koke: KokeReach = .none
+        koke: KokeReach = .none,
+        caglayan: KokeReach = .none
     ) -> [HitTarget] {
-        guard z >= archipelagoZ else { return islandTargets(koke: koke != .none) }
+        guard z >= archipelagoZ else { return islandTargets(koke: koke != .none, caglayan: caglayan != .none) }
         var targets: [HitTarget] = []
         if koke == .onIsland {
             targets.append(HitTarget(kind: .koke, worldBox: KokeLayout.kokeBox, depth: IslandLayout.depth(ofY: KokeLayout.center.y)))

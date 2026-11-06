@@ -81,6 +81,7 @@ public struct IslandScene<Bubble: View>: View {
         // a stale closure.
         let _ = model.onVisitorEvent = onVisitor
         let _ = model.koke.status = world.koke
+        let _ = model.caglayan.status = world.caglayan
         GeometryReader { proxy in
             let size = proxy.size
             // The interval and the pause come from the frame policy (§4.1):
@@ -154,11 +155,12 @@ public struct IslandScene<Bubble: View>: View {
                         x: Double(value.location.x),
                         y: Double(value.location.y),
                         stations: world.stations,
-                        arrived: Set(world.islands + (world.koke.isArrived ? [IslandID.koke] : [])),
+                        arrived: Set(world.islands + (world.koke.isArrived ? [IslandID.koke] : []) + (world.caglayan.isArrived ? [IslandID.caglayan] : [])),
                         visitor: world.visitor,
                         invitationOpen: world.invitationOpen,
                         isBedtime: world.isBedtime,
-                        koke: world.koke
+                        koke: world.koke,
+                        caglayan: world.caglayan
                     )
                 }
             )
@@ -254,6 +256,8 @@ public struct IslandScene<Bubble: View>: View {
             model.power.startObservingSystem()
         }
         .overlay { KokeBubbleOverlay(state: model.koke) }
+        .overlay { CaglayanBubbleOverlay(state: model.caglayan) }
+        .overlay { CaglayanPlaque(model: model, state: model.caglayan) }
         .overlay(alignment: .bottomTrailing) {
             // The one control: the same spot in every framing, thumb zone.
             PlaceControl(model: model, islands: arrivedIslands)
@@ -311,6 +315,9 @@ public struct IslandScene<Bubble: View>: View {
         }
         if world.koke.isArrived {
             ids.append(.koke)
+        }
+        if world.caglayan.isArrived {
+            ids.append(.caglayan)
         }
         return ids
     }
@@ -466,7 +473,9 @@ private struct SceneFrame<Bubble: View>: View {
         // HD-2D's tilt-shift: the depth lens, stronger per framing.
         let rigLens = DepthMotion.lens(look.hd2d ? rig.lens.tiltShifted(by: LookTuning.tiltShift(z: z, island: look.tuning.tiltShiftIsland, home: look.tuning.tiltShiftHome)) : rig.lens, motion: motion)
         // At Koke the focus plane is Koke's lawn, not the home lawn's.
-        let baseLens = model.island == .koke ? Lens(focus: KokeLayout.focusDepth, slab: rigLens.slab, gain: rigLens.gain) : rigLens
+        let baseLens = model.island == .koke
+            ? Lens(focus: KokeLayout.focusDepth, slab: rigLens.slab, gain: rigLens.gain)
+            : model.island == .caglayan ? Lens(focus: CaglayanLayout.focusDepth, slab: rigLens.slab, gain: rigLens.gain) : rigLens
         // Graphics spike: with the depth map's depth of field on, whole-layer
         // blur is off (every layer stays sharp) and the shader blurs per pixel.
         let spike = look.spike
@@ -543,7 +552,7 @@ private struct SceneFrame<Bubble: View>: View {
             )
             : nil
         let depthMap: Image? = (spikeDOF && rack > 0.001) || spike.debug == .depth
-            ? SpikeDepthMap.image(world: world, pose: pose, offset: offset, size: size, art: look.art, koke: model.island == .koke && world.koke.isArrived)
+            ? SpikeDepthMap.image(world: world, pose: pose, offset: offset, size: size, art: look.art, koke: model.island == .koke && world.koke.isArrived, caglayan: model.island == .caglayan && world.caglayan.isArrived)
             : nil
         let field: DepthOfField = {
             var f = spike.field(focus: SpikeDepthMap.focusDepth(model.focus, island: model.island), focused: model.focus != nil, z: z)
@@ -717,6 +726,7 @@ private struct SceneFrame<Bubble: View>: View {
             .frame(width: size.width, height: size.height, alignment: .topLeading)
             .environment(\.worldRelight, relight)
             .environment(\.worldHorizon, sky.horizon)
+            .environment(\.worldNight, light.night)
             .modifier(SpikeDepthOfFieldEffect(depth: depthMap, field: field, size: size, showsDepth: spike.debug == .depth))
 
             PofuLayer(
@@ -814,6 +824,7 @@ private struct WorldCanvas: View {
             if layer == .environment {
                 otherIsles
                 kokeIsle
+                caglayanIsle
                 ForEach(IslandLayout.plateBands(islandLevel: life.islandLevel), id: \.art) { band in
                     if let sprite = WorldArt.sprite(band.art) {
                         DepthImage(
@@ -879,6 +890,8 @@ private struct WorldCanvas: View {
             case fixture(HomeFixtures.Placed)
             /// The moss Koke gave, once it is healed.
             case gift
+            /// The pool's fountain, once Çağlayan flows.
+            case fountain
             /// The island's growth at this level (`IslandGrowth`).
             case growth(GrowthPiece)
         }
@@ -930,6 +943,10 @@ private struct WorldCanvas: View {
                 if world.koke.giftUnlocked {
                     let spot = KokeLayout.homeGift
                     objects.append(Object(id: "gift-moss", kind: .gift, anchor: spot, depth: IslandLayout.depth(ofY: spot.y)))
+                }
+                if world.caglayan.giftUnlocked, let pond = IslandLayout.stationAnchors[.pond], (world.stations.first { $0.id == .pond }?.level ?? 0) > 0 {
+                    let spot = WorldPoint(x: pond.x + CaglayanLayout.homeFountainOffset.x, y: pond.y + CaglayanLayout.homeFountainOffset.y)
+                    objects.append(Object(id: "gift-fountain", kind: .fountain, anchor: spot, depth: IslandLayout.depth(ofY: spot.y) + 0.001))
                 }
                 for entry in life.leaving where !shown.contains(where: { $0.id == entry.piece.id }) {
                     objects.append(Object(id: "dressing-\(entry.piece.id)", kind: .dressing(entry.piece, elapsed: entry.elapsed), anchor: entry.piece.point, depth: IslandLayout.depth(ofY: entry.piece.point.y)))
@@ -1024,6 +1041,8 @@ private struct WorldCanvas: View {
             GrowthView(piece: piece, point: point, level: level, time: life.isAmbient ? life.time : 0)
         case .gift:
             MossGiftView(point: point)
+        case .fountain:
+            HomeFountainView(point: point, time: life.isAmbient ? life.time : nil)
         case .critter(let critter):
             CritterView(
                 critter: critter,
@@ -1146,6 +1165,24 @@ private struct WorldCanvas: View {
                 bounceTime: here && life.isAmbient ? life.time : nil
             )
             .saturation(here ? 1 : KokeLayout.saturation(stage: world.koke.stage))
+            .opacity(fade)
+        }
+    }
+
+    /// Çağlayan's island, once it can be visited: like Koke's, faded out on the
+    /// Map by nothing (it keeps its colour) and out of frame at Home.
+    @ViewBuilder
+    private var caglayanIsle: some View {
+        if world.caglayan.isArrived, z < 1.7 || model.island != .home {
+            let here = model.island == .caglayan
+            let fade = here ? 1 : max(0, 1 - max(z, 0) / 0.8) * (model.focus == nil ? 1 : 0)
+            CaglayanIsleView(
+                stage: world.caglayan.stage,
+                swellAge: model.caglayan.swellStart.map { clock.timeIntervalSince($0) },
+                reduceMotion: model.reduceMotion,
+                point: canvasPoint(CaglayanLayout.center, depth: here ? CaglayanLayout.focusDepth : 0),
+                time: here && life.isAmbient ? life.time : nil
+            )
             .opacity(fade)
         }
     }
