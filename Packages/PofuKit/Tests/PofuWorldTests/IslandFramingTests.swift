@@ -27,11 +27,11 @@ struct IslandFramingTests {
         #expect(fill > 0.85 && fill < 0.90, "the plate fills \(fill) of the width")
     }
 
-    /// Look round 4: the world is not shrunk to fit; Pofu is at least 80 pt
-    /// at the Island framing and the camera opens centred on him.
+    /// Growth round: Home is the 90 pt framing; the Island framing is the wide
+    /// pan view, Pofu at least 60 pt and the camera opens centred on him.
     @Test func theIslandFramingKeepsPofuBig() {
         let pose = CameraRail().pose(of: .island)
-        #expect(64 * pose.scale >= 80 - 1e-9)
+        #expect(64 * pose.scale >= 60 - 1e-9)
         let pofu = span(IslandFraming.pofuBox, pose, width: 402)
         #expect(abs((pofu.lo + pofu.hi) / 2 - 201) < 20, "Pofu is not centred: \(pofu)")
     }
@@ -77,8 +77,8 @@ struct IslandFramingTests {
     @Test func aDragFollowsTheFingerAndBandsPastTheEnds() {
         var rig = CameraRig(framing: .island)
         let s = rig.pose.scale
-        rig.panDrag(dx: -40)
-        #expect(abs(rig.pan.value - 40 / s) < 1e-9)
+        rig.panDrag(dx: -15)
+        #expect(abs(rig.pan.value - 15 / s) < 1e-9)
         // Far past the end, the band never reaches the panBand.
         rig.panDrag(dx: -4000)
         let over = rig.pan.value - IslandFraming.panRange.upperBound

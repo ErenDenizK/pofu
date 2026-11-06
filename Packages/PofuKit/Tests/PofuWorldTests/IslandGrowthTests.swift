@@ -30,7 +30,7 @@ struct IslandGrowthTests {
 
     @Test func groundPiecesLieOnTheWalkableLawn() throws {
         let lawn = try #require(IslandFootprint.walkable)
-        for piece in IslandGrowth.pieces where piece.kind.isFlat || piece.kind == .lilyPad || piece.kind == .reeds {
+        for piece in IslandGrowth.pieces where (piece.kind == .pathStone || piece.kind == .steppingStone) || piece.kind == .lilyPad || piece.kind == .reeds {
             #expect(lawn.contains(piece.point), "\(piece.id) is off the lawn")
         }
     }

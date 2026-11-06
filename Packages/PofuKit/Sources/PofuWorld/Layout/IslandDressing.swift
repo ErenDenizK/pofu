@@ -147,10 +147,9 @@ public enum IslandDressing {
         piece("border-2", .wildflowers, 68, 31, 7...10, variant: 2, touchable: true),
         piece("border-3", .wildflowers, 90, 32, 7...10, variant: 0, touchable: true),
         piece("border-4", .wildflowers, 130, 24, 7...10, variant: 3, touchable: true),
-        piece("border-5", .wildflowers, 146, 16, 7...10, variant: 1, touchable: true),
-        piece("border-6", .wildflowers, -12, 33, 7...10, variant: 2, touchable: true),
-        piece("border-7", .wildflowers, -32, 34, 7...10, variant: 0, touchable: true),
-        piece("border-8", .wildflowers, -52, 32, 7...10, variant: 3, touchable: true),
+        piece("border-5", .wildflowers, 150, 25, 7...10, variant: 1, touchable: true),
+        piece("border-6", .wildflowers, -12, 36, 7...10, variant: 2, touchable: true),
+        piece("border-7", .wildflowers, -32, 36, 7...10, variant: 0, touchable: true),
         // A flat stone and a few pebbles in the middle lawn, between the pond's slot and Pofu.
         piece("meadow-stone", .pebbles, -8, 12, 1...10, variant: 1),
         piece("meadow-pebbles", .pebbles, 46, 8, 1...10),

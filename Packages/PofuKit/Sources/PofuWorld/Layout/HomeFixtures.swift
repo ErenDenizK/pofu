@@ -32,7 +32,7 @@ public enum HomeFixtures {
 
     /// The path lamps (home layout L1 to L3): the one painted `path-lamp` stands on each of these feet from
     /// the island level the lamps open at. `LitSources` lights their paper glass at night.
-    public static let lampFeet: [WorldPoint] = [WorldPoint(x: -120, y: 0), WorldPoint(x: 98, y: 2), WorldPoint(x: 230, y: 6)]
+    public static let lampFeet: [WorldPoint] = [WorldPoint(x: -120, y: 0), WorldPoint(x: 124, y: -4), WorldPoint(x: 230, y: 6)]
     /// The island level the lamps open at.
     public static let lampsOpenAtLevel = 6
 

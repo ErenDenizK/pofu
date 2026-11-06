@@ -117,10 +117,10 @@ public enum IslandGrowth {
 
     /// The stones of the path from Pofu's spot to the tea corner.
     static let pathStones: [(Double, Double)] = [
-        (48, 35), (68, 38), (90, 39), (111, 37), (130, 31), (144, 23), (152, 15),
+        (48, 34), (68, 34), (90, 32), (111, 31), (130, 28), (144, 23), (152, 15),
     ]
     /// The stepping stones from Pofu toward the pond.
-    static let steppingStones: [(Double, Double)] = [(6, 37), (-12, 40), (-32, 41), (-52, 39)]
+    static let steppingStones: [(Double, Double)] = [(6, 34), (-12, 35), (-32, 35), (-50, 35)]
     /// The hill path from the back lawn up to the gate.
     static let hillStones: [(Double, Double)] = [(104, -24), (108, -31), (110, -38), (112, -45)]
 
