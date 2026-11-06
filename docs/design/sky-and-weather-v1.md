@@ -68,6 +68,36 @@ Motion (the light change stays, the particles go).
 Sound follows weather once audio lands (rain on leaves, a hush in mist);
 this spec reserves the hook only.
 
+### 2.2b Weather for everyone, the sky for the player (founder, 2026-11-06)
+
+The founder: weather and fog could follow the player, but a good player
+must still experience everything, and a heavy doomscroller must see the
+effect. Two layers that never mix:
+
+- **Weather is the world's, and everyone gets all of it.** It never
+  follows behaviour. The roll is a shuffled bag, not independent dice:
+  every weather (and one rainbow) appears within the first 14 days, then
+  the bag refills with the shares of §2.2. Weather-only life rewards it:
+  snails and frogs in rain, a rainbow, the mist morning's light shafts.
+- **The sky's health is the player's.** The unwell state (wellbeing 55 to
+  30) becomes the **screen haze**: a cool grey-violet haze that rolls in
+  from the harbor's side, thickens the depth fog, dims the practicals and
+  drains the warm hues, under the §2.4 rule (value kept, beautiful, never
+  punishing, never taking progress). It has its own visual language so it
+  is never mistaken for weather: weather mist is pale peach and lies on
+  the sea at dawn; screen haze is cool lilac-grey, comes from one side and
+  sits over home at any hour. A resisted reach parts it a little, with a
+  shaft of light (the clearing is the reward a doomscroller sees). A good
+  player meets the same language on every wounded story island, so nobody
+  misses the healing.
+- **Night for everyone.** A player who only opens by day still sees the
+  night: the bedtime wind-down shows home at night, and the shield's sky
+  follows the real hour.
+- **App surfaces share the sky:** the widget, the shield and the week page
+  show the same weather and the same haze, so the effect follows the
+  player outside the game; the week page names the clear days the player
+  made.
+
 ### 2.3 Real fog (E8, E9)
 
 Fog has two parts, both cheap.
