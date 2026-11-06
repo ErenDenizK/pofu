@@ -1,0 +1,219 @@
+batch: batch-57-home-growth-strip
+manifest: tools/imagegen/manifest/batch-57-home-growth-strip.yaml
+manifest_sha256: fc7a87434d3aa50ca6d2dd4207e4fafd52a1547085e2f8bca0520f96642118e8
+contact_sheet: design/art/takes/batch-57-home-growth-strip/x-growth-il3/contact.jpg
+jobs:
+  x-growth-il3:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Auto-picked normally from initial
+      pair: root and independent source-bound review new-queue-review-il3-initial-native-locked.json
+      (d27778c4) accept take2, which also has lower lock load0.7943 versus0.798. Both
+      original QA reports remain warn-only; light_values p2=61/spread35 and light_haze0.42
+      on selected take2 are advisory, not waived/relabelled. Literal tea corner with
+      kettle, stone tea path, bagel cart, right rope bridge to harbor islet/pier,
+      rope ladder under home and no characters are present; native/locked/all3references/320px
+      thumbnail and original opaque alpha reviewed. Familiar home lawn/body/round
+      door/stone groups/four original roots remain visually recognizable; no pixel-identical
+      or parent-edit-chain claim. Take1 is manually excluded for an unmistakable cylindrical
+      lighthouse with lantern room: same-harbor S9 opensIL6 and unopened slots show
+      nothing until their level, so it pre-empts the later landmark. Take2 generic
+      hut/post-lantern is not relabelled a lighthouse. Its front path branch toward
+      the ladder remains physically readable and is a layout advisory; earlier IL1beds
+      not visible are disclosed for strip comparison, without inventing a hard cumulative
+      object list or lawn-only path gate. No retry needed; exact authored prompts/refs/QA
+      unchanged, all source/QA/locked hashes retained; exploration only, never promoted.'
+qa_reports:
+  1:
+    job: x-growth-il3
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 32 (R1 51)
+      value: 32.5
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 61 (at most 22), p98 94 (at least 90), spread 33
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 32.9
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 83 (band 55-90)'
+      value: 83.1
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.43 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.427
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.1 (at least 3.5)'
+      value: 4.14
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.5 (R1 5.3)
+      value: 2.48
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.798
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.8, p95 2.0, off-palette 0.0%
+      value: 0.7788
+    info:
+      metrics_raw:
+        L_p5: 66.0
+        L_p50: 87.7
+        L_p95: 96.6
+        C_p50: 14.9
+        C_p95: 33.5
+        C_p99: 40.8
+        detail: 3.17
+      metrics_locked:
+        L_p5: 66.6
+        L_p50: 87.7
+        L_p95: 96.5
+        C_p50: 15.0
+        C_p95: 32.5
+        C_p99: 39.8
+        detail: 2.48
+    fingerprint: c44e12b8362ac328
+  2:
+    job: x-growth-il3
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 32 (R1 51)
+      value: 31.5
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 61 (at most 22), p98 96 (at least 90), spread 35
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 35.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 82 (band 55-90)'
+      value: 82.4
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.42 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.42
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.4 (at least 3.5)'
+      value: 4.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.7 (R1 5.3)
+      value: 2.69
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.7943
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.8, p95 2.4, off-palette 0.0%
+      value: 0.7888
+    info:
+      metrics_raw:
+        L_p5: 65.5
+        L_p50: 88.3
+        L_p95: 96.5
+        C_p50: 16.1
+        C_p95: 32.3
+        C_p99: 37.8
+        detail: 3.38
+      metrics_locked:
+        L_p5: 66.1
+        L_p50: 88.2
+        L_p95: 96.3
+        C_p50: 16.2
+        C_p95: 31.5
+        C_p99: 36.8
+        detail: 2.69
+    fingerprint: c44e12b8362ac328
+manual_review:
+  observed_note: 'Auto-picked normally from initial pair: root and independent source-bound
+    review new-queue-review-il3-initial-native-locked.json (d27778c4) accept take2,
+    which also has lower lock load0.7943 versus0.798. Both original QA reports remain
+    warn-only; light_values p2=61/spread35 and light_haze0.42 on selected take2 are
+    advisory, not waived/relabelled. Literal tea corner with kettle, stone tea path,
+    bagel cart, right rope bridge to harbor islet/pier, rope ladder under home and
+    no characters are present; native/locked/all3references/320px thumbnail and original
+    opaque alpha reviewed. Familiar home lawn/body/round door/stone groups/four original
+    roots remain visually recognizable; no pixel-identical or parent-edit-chain claim.
+    Take1 is manually excluded for an unmistakable cylindrical lighthouse with lantern
+    room: same-harbor S9 opensIL6 and unopened slots show nothing until their level,
+    so it pre-empts the later landmark. Take2 generic hut/post-lantern is not relabelled
+    a lighthouse. Its front path branch toward the ladder remains physically readable
+    and is a layout advisory; earlier IL1beds not visible are disclosed for strip
+    comparison, without inventing a hard cumulative object list or lawn-only path
+    gate. No retry needed; exact authored prompts/refs/QA unchanged, all source/QA/locked
+    hashes retained; exploration only, never promoted.'
+  excluded_takes:
+  - 1
+sources:
+- batch: batch-57-home-growth-strip
+  job: x-growth-il3
+  take: 1
+  round: 1
+  logical_run: 20261106-b57-home-growth-strip
+  source_file: /workspace/generated_images/exec-18874fb0-37ba-4703-a137-7debc030f215.png
+  returned_at: '2026-11-06T09:04:21.227Z'
+  prompt_sha256: d894e054b55c52c02b946087e031b17a3a4442e53d63471aa3a47848487a0330
+  fingerprint: c44e12b8362ac328
+  saved_at: '2026-11-06T09:04:21.683417+00:00'
+  original_generated_png_sha256: f257e9cf9ff7fbb24e3497ee9b48123ea426ac43f76f6d64eb3fdc6fa06060e4
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 1ee59cd3efb1b78d7bb5077f0e46be532687612ee98485e1c9820a8863f32ba2
+  inbox_png_sha256: a6c77c7444aa95c0e956f889d15f2f314184df3c7522c0e53aa337976d3894f9
+  qa_sha256: 130e27b80fb138d4f209f6044c8a7b0682a9ecfec71421d10b96047f2c9d74e7
+- batch: batch-57-home-growth-strip
+  job: x-growth-il3
+  take: 2
+  round: 1
+  logical_run: 20261106-b57-home-growth-strip
+  source_file: /workspace/generated_images/exec-20ba79d7-f12f-4071-97a5-ed16a1e65547.png
+  returned_at: '2026-11-06T09:05:03.519Z'
+  prompt_sha256: d894e054b55c52c02b946087e031b17a3a4442e53d63471aa3a47848487a0330
+  fingerprint: c44e12b8362ac328
+  saved_at: '2026-11-06T09:05:03.845979+00:00'
+  original_generated_png_sha256: 51250dfd7a7f240c29667ad72d71f8eeb444837a3ed0a48f44f6f8080b46a381
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 9302cd95aa4eeaace0b7db0a0ea8697ae792006daba08049c54d4a6f0626b334
+  inbox_png_sha256: 2257125d00ef63ef6e3d9b5b38b277d8e394e3704e75543631c5385310651442
+  qa_sha256: 460007dd40a257208dd2ccbd94d4170e8a7544c3afafe724b8dc9f0b11d99f08
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
