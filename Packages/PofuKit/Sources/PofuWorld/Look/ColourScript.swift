@@ -36,6 +36,12 @@ public enum ColourScript {
         generatedUnwell
     }
 
+    /// A weather row or the screen haze by name (`design/art/colour-script.json`,
+    /// states.weather); the identity-ish overcast row if the name is unknown.
+    static func weather(named name: String) -> ColourState {
+        generatedWeather[name] ?? generatedUnwell
+    }
+
     /// How much of each cell lights a minute of the local day; the weights
     /// sum to 1.
     public static func weights(minuteOfDay minute: Double) -> [ColourCell.Name: Double] {
@@ -252,6 +258,10 @@ public struct ColourState: Hashable, Sendable {
     public var skyAmount: Double
     /// The key's intensity scale (overcast).
     public var keyIntensity: Double
+    /// The fill's intensity scale (weather rows; 1 for the unwell state).
+    public var fillIntensity: Double = 1
+    /// Extra depth fog at every tier behind the front one (weather rows).
+    public var fogExtra: Double = 0
     /// The door's window stays at least this lit (care is still here).
     public var windowFloor: Double
 }
