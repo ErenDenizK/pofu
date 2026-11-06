@@ -2,14 +2,14 @@ id: asset-caglayan-island-0
 type: asset
 title_tr: caglayan-island-0
 title_en: caglayan-island-0 (plate)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  A game plate for a cozy mobile game: Çağlayan, a small island whose waterfall has stopped,
-  in the game, on a still overcast-bright noon. STAGE 0, STUCK. The island is a floating diorama
-  plate with a shallow top about a fifth as deep as it is wide, over a soft rounded earth
-  body with gentle bands, a small plate about 62 percent of the image width, centered. At
-  the back centre rises a low cliff of rounded stone in four…
+summary: 'A game plate for a cozy mobile game: Çağlayan, a small island whose waterfall
+  has stopped, in the game, on a still overcast-bright noon. STAGE 0, STUCK. The island
+  is a floating diorama plate with a shallow top about a fifth as deep as it is wide,
+  over a soft rounded earth body with gentle bands, a small plate about 62 percent
+  of the image width, centered. At the back centre rises a low cliff of rounded stone
+  in four…'
 art:
   images: []
   jobs:
@@ -19,3 +19,15 @@ sources:
 kind: plate
 batch: batch-43-caglayan-production
 size: 1536x1024
+notes:
+- 'batch-43-caglayan-production skipped after four takes: All four original and official
+  locked candidates show a left ribbon cascading over multiple cliff risers into the
+  pool rather than the authored single glinting trickle running down ONE left step.
+  Independent native source and locked reviews confirm the same literal premature-stage1
+  content error after the initial pair and sole unchanged retry. Automated QA remains
+  warn-only and is not relabelled as a hard failure; light warnings remain advisory.
+  Approximate framing concerns are disclosed without a new numeric cutoff. Rounded
+  banded earth and roots are not falsely banned. No prompt edits, third round, pixel
+  cleanup or QA waiver. Skip only this root and its four true island-stage dependents;
+  the independent Damla track continues. Source and independent-review hashes are
+  retained in manual-decisions.json.'

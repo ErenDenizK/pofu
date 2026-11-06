@@ -1,0 +1,331 @@
+batch: batch-43-caglayan-production
+contact_sheet: design/art/takes/batch-43-caglayan-production/caglayan-island-0/contact.jpg
+jobs:
+  caglayan-island-0:
+    pick: none
+    publication: skipped after one allowed retry
+    note: All four original and official locked candidates show a left ribbon cascading
+      over multiple cliff risers into the pool rather than the authored single glinting
+      trickle running down ONE left step. Independent native source and locked reviews
+      confirm the same literal premature-stage1 content error after the initial pair
+      and sole unchanged retry. Automated QA remains warn-only and is not relabelled
+      as a hard failure; light warnings remain advisory. Approximate framing concerns
+      are disclosed without a new numeric cutoff. Rounded banded earth and roots are
+      not falsely banned. No prompt edits, third round, pixel cleanup or QA waiver.
+      Skip only this root and its four true island-stage dependents; the independent
+      Damla track continues. Source and independent-review hashes are retained in
+      manual-decisions.json.
+qa_reports:
+  3:
+    job: caglayan-island-0
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 32 (R1 51)
+      value: 32.3
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 50 (at most 22), p98 93 (at least 90), spread 43
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 43.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 77 (band 55-90)'
+      value: 76.8
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.41 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.408
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 3.7 (at least 3.5)'
+      value: 3.71
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.9 (R1 5.3)
+      value: 1.86
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.8097
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.0, p95 4.2, off-palette 0.0%
+      value: 1.9668
+    info:
+      metrics_raw:
+        L_p5: 57.3
+        L_p50: 82.8
+        L_p95: 93.0
+        C_p50: 13.3
+        C_p95: 32.5
+        C_p99: 35.0
+        detail: 2.5
+      metrics_locked:
+        L_p5: 57.6
+        L_p50: 82.8
+        L_p95: 92.9
+        C_p50: 13.1
+        C_p95: 32.3
+        C_p99: 34.4
+        detail: 1.86
+    fingerprint: ce10548ce61df11f
+  2:
+    job: caglayan-island-0
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 35 (R1 51)
+      value: 34.7
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 43 (at most 22), p98 93 (at least 90), spread 50
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 50.1
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 76 (band 55-90)'
+      value: 76.1
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.35 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.353
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 3.6 (at least 3.5)'
+      value: 3.59
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.0 (R1 5.3)
+      value: 1.97
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.776
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.1, p95 4.6, off-palette 0.0%
+      value: 2.0873
+    info:
+      metrics_raw:
+        L_p5: 53.8
+        L_p50: 84.7
+        L_p95: 93.0
+        C_p50: 12.8
+        C_p95: 35.1
+        C_p99: 39.1
+        detail: 2.61
+      metrics_locked:
+        L_p5: 54.1
+        L_p50: 84.6
+        L_p95: 92.9
+        C_p50: 12.7
+        C_p95: 34.7
+        C_p99: 38.7
+        detail: 1.97
+    fingerprint: ce10548ce61df11f
+  4:
+    job: caglayan-island-0
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 34 (R1 51)
+      value: 33.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 44 (at most 22), p98 94 (at least 90), spread 50
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 50.1
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 76 (band 55-90)'
+      value: 75.7
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.38 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.38
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 3.8 (at least 3.5)'
+      value: 3.75
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.9 (R1 5.3)
+      value: 1.92
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.7626
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.9, p95 4.1, off-palette 0.0%
+      value: 1.874
+    info:
+      metrics_raw:
+        L_p5: 53.0
+        L_p50: 85.2
+        L_p95: 94.0
+        C_p50: 10.5
+        C_p95: 34.0
+        C_p99: 37.7
+        detail: 2.56
+      metrics_locked:
+        L_p5: 53.3
+        L_p50: 85.1
+        L_p95: 93.9
+        C_p50: 10.5
+        C_p95: 33.8
+        C_p99: 37.3
+        detail: 1.92
+    fingerprint: ce10548ce61df11f
+  1:
+    job: caglayan-island-0
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 34 (R1 51)
+      value: 33.5
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 45 (at most 22), p98 94 (at least 90), spread 49
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 49.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 77 (band 55-90)'
+      value: 76.8
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.41 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.412
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 3.7 (at least 3.5)'
+      value: 3.74
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.0 (R1 5.3)
+      value: 2.0
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.8538
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.0, p95 4.2, off-palette 0.0%
+      value: 1.9892
+    info:
+      metrics_raw:
+        L_p5: 53.1
+        L_p50: 82.4
+        L_p95: 93.6
+        C_p50: 14.7
+        C_p95: 33.7
+        C_p99: 36.5
+        detail: 2.67
+      metrics_locked:
+        L_p5: 53.4
+        L_p50: 82.4
+        L_p95: 93.4
+        C_p50: 14.4
+        C_p95: 33.5
+        C_p99: 36.1
+        detail: 2.0
+    fingerprint: ce10548ce61df11f
+manual_review:
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+  note: All four original and official locked candidates show a left ribbon cascading
+    over multiple cliff risers into the pool rather than the authored single glinting
+    trickle running down ONE left step. Independent native source and locked reviews
+    confirm the same literal premature-stage1 content error after the initial pair
+    and sole unchanged retry. Automated QA remains warn-only and is not relabelled
+    as a hard failure; light warnings remain advisory. Approximate framing concerns
+    are disclosed without a new numeric cutoff. Rounded banded earth and roots are
+    not falsely banned. No prompt edits, third round, pixel cleanup or QA waiver.
+    Skip only this root and its four true island-stage dependents; the independent
+    Damla track continues. Source and independent-review hashes are retained in manual-decisions.json.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-fc41c108-c727-4ec7-94f4-1568184f9152.png
+  original_generated_png_sha256: d976dc018bf05be7aa5fb5554c2b44629f8689c3308b5c735f4b70053e921668
+  inbox_png_sha256: 73cf0027f0786ddd2e53c8d9050e3b104c7374e1f00a54eb8881679a34962d3d
+  rgba_sha256: 67231b282d439a9db5cddf23256f0cc8ad83eaaec052d90bf1537369ca0a028a
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: ce10548ce61df11f
+- take: 2
+  source_file: /workspace/generated_images/exec-5f3367fd-e30a-44f7-8296-c99761da4a0c.png
+  original_generated_png_sha256: e97d43a991c1f71d789dd8b18d9b3184996e3235f962932857850ef210f3847f
+  inbox_png_sha256: 4c921f1b27b6b4beb03c3ca8c84730ef84560cade2881e7f0e52f186f25a1093
+  rgba_sha256: 7e05cd252e0378548c4967ff6ee505d6565025498d9754ae5388477893f9f882
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: ce10548ce61df11f
+- take: 3
+  source_file: /workspace/generated_images/exec-60034d37-61b6-4c3a-a284-e5a06e4104d2.png
+  original_generated_png_sha256: d513d60849889833b1e81f1bcd63e200823171c5e4a3041829b48666ef1d7a85
+  inbox_png_sha256: 19e6ff0b86128bae21df0979b7d4215d90ee957b3db88ca7109b53722f815640
+  rgba_sha256: 8b39d16df4b09f454faaee429747308f74e3e6c26b3fbd767d8f12a40893752d
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: ce10548ce61df11f
+- take: 4
+  source_file: /workspace/generated_images/exec-47473362-0b58-4e22-be4d-8e3c964e2ef1.png
+  original_generated_png_sha256: 609ae490540425edd0e5e37b3b9a3885c7610cb821753a44b5afae4cc1ade061
+  inbox_png_sha256: 4661670ece0cb804feeb280555de8ea9755bf9df2a9e8092797fd857152a2133
+  rgba_sha256: c6d70510a72746a7f843c4b42b4731e45d1647d47380d122dc53e7660265a7d1
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: ce10548ce61df11f
