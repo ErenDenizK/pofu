@@ -1,16 +1,16 @@
 {
  "after": {
-  "C_mean": 12.625,
-  "C_p50": 9.588,
-  "C_p95": 33.23,
-  "L_mean": 89.122,
-  "L_p2": 60.892,
-  "L_p98": 97.582,
-  "detail": 6.37,
-  "edge": 0.121,
-  "tint_a": 4.196,
-  "tint_b": 6.794,
-  "warmth_b": 9.832
+  "C_mean": 17.979,
+  "C_p50": 13.902,
+  "C_p95": 46.506,
+  "L_mean": 85.55,
+  "L_p2": 60.778,
+  "L_p98": 93.062,
+  "detail": 6.045,
+  "edge": 0.117,
+  "tint_a": 4.747,
+  "tint_b": 8.226,
+  "warmth_b": 14.107
  },
  "before": {
   "C_mean": 12.625,
@@ -19,8 +19,8 @@
   "L_mean": 89.122,
   "L_p2": 60.892,
   "L_p98": 97.582,
-  "detail": 6.37,
-  "edge": 0.121,
+  "detail": 6.479,
+  "edge": 0.117,
   "tint_a": 4.196,
   "tint_b": 6.794,
   "warmth_b": 9.832
@@ -29,28 +29,30 @@
  "correction": {
   "black": 0.0,
   "ceiling": 0.0,
-  "chroma": 1.0,
+  "chroma": 1.45,
   "materials": {},
   "tint_a": 0.0,
   "tint_b": 0.0,
-  "white": 0.0
+  "white": -4.52
  },
  "guarded": false,
- "kind": "char",
- "matched_to": "char",
+ "kind": "station",
+ "matched_to": "world",
  "outliers_after": [
-  "C_p95",
-  "L_p2"
+  "detail",
+  "edge"
  ],
  "outliers_before": [
   "C_p95",
-  "L_p2"
+  "L_p98",
+  "detail",
+  "edge"
  ],
- "ppu": 29.0,
+ "ppu": 30.0333,
  "reference": false,
- "score_after": 71.1,
- "score_before": 71.1,
- "shipped": false,
+ "score_after": 74.0,
+ "score_before": 49.8,
+ "shipped": true,
  "source": "design/art/masters/mochi-happy/mochi-happy.webp",
  "source_sha": "f1c3af8d19e7e799"
 }

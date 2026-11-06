@@ -6,8 +6,8 @@
   "L_mean": 79.587,
   "L_p2": 44.183,
   "L_p98": 96.055,
-  "detail": 14.062,
-  "edge": 0.126,
+  "detail": 13.682,
+  "edge": 0.133,
   "tint_a": 4.017,
   "tint_b": 8.541,
   "warmth_b": 20.981
@@ -19,8 +19,8 @@
   "L_mean": 79.587,
   "L_p2": 44.183,
   "L_p98": 96.055,
-  "detail": 14.062,
-  "edge": 0.126,
+  "detail": 13.682,
+  "edge": 0.133,
   "tint_a": 4.017,
   "tint_b": 8.541,
   "warmth_b": 20.981
@@ -36,21 +36,21 @@
   "white": 0.0
  },
  "guarded": false,
- "kind": "char",
- "matched_to": "char",
+ "kind": "station",
+ "matched_to": "world",
  "outliers_after": [
-  "L_p2",
-  "detail"
+  "detail",
+  "edge"
  ],
  "outliers_before": [
-  "L_p2",
-  "detail"
+  "detail",
+  "edge"
  ],
- "ppu": 29.0,
+ "ppu": 27.4643,
  "reference": false,
- "score_after": 72.8,
- "score_before": 72.8,
- "shipped": false,
+ "score_after": 68.5,
+ "score_before": 68.5,
+ "shipped": true,
  "source": "design/art/masters/findik-sleepy/findik-sleepy.webp",
  "source_sha": "07b9995c82fad4a4"
 }

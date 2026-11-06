@@ -6,8 +6,8 @@
   "L_mean": 78.109,
   "L_p2": 49.382,
   "L_p98": 92.485,
-  "detail": 2.685,
-  "edge": 0.421,
+  "detail": 3.644,
+  "edge": 0.295,
   "tint_a": 2.258,
   "tint_b": 4.899,
   "warmth_b": 11.393
@@ -19,8 +19,8 @@
   "L_mean": 78.109,
   "L_p2": 49.382,
   "L_p98": 92.485,
-  "detail": 2.726,
-  "edge": 0.421,
+  "detail": 3.702,
+  "edge": 0.295,
   "tint_a": 4.24,
   "tint_b": 8.147,
   "warmth_b": 13.515
@@ -47,11 +47,11 @@
   "detail",
   "edge"
  ],
- "ppu": 8.533,
+ "ppu": 12.1905,
  "reference": false,
- "score_after": 87.8,
- "score_before": 79.8,
- "shipped": false,
+ "score_after": 82.9,
+ "score_before": 74.8,
+ "shipped": true,
  "source": "design/art/stations/lighthouse-4-blue/lighthouse-4-blue.png",
  "source_sha": "03d62bdb6ffc9205"
 }

@@ -1,16 +1,16 @@
 {
  "after": {
-  "C_mean": 17.354,
-  "C_p50": 13.239,
-  "C_p95": 39.725,
-  "L_mean": 84.179,
-  "L_p2": 19.951,
-  "L_p98": 96.363,
-  "detail": 7.24,
-  "edge": 0.212,
-  "tint_a": 4.704,
-  "tint_b": 8.737,
-  "warmth_b": 14.348
+  "C_mean": 20.58,
+  "C_p50": 15.998,
+  "C_p95": 47.316,
+  "L_mean": 86.483,
+  "L_p2": 35.951,
+  "L_p98": 96.357,
+  "detail": 5.939,
+  "edge": 0.213,
+  "tint_a": 4.787,
+  "tint_b": 9.576,
+  "warmth_b": 17.327
  },
  "before": {
   "C_mean": 17.354,
@@ -19,36 +19,41 @@
   "L_mean": 84.179,
   "L_p2": 19.951,
   "L_p98": 96.363,
-  "detail": 7.24,
-  "edge": 0.212,
+  "detail": 7.254,
+  "edge": 0.213,
   "tint_a": 4.704,
   "tint_b": 8.737,
   "warmth_b": 14.348
  },
  "chain": null,
  "correction": {
-  "black": 0.0,
+  "black": 16.0,
   "ceiling": 0.0,
-  "chroma": 1.0,
+  "chroma": 1.234,
   "materials": {},
   "tint_a": 0.0,
   "tint_b": 0.0,
   "white": 0.0
  },
  "guarded": false,
- "kind": "char",
- "matched_to": "char",
+ "kind": "station",
+ "matched_to": "world",
  "outliers_after": [
-  "detail"
+  "L_p2",
+  "detail",
+  "edge"
  ],
  "outliers_before": [
-  "detail"
+  "C_p95",
+  "L_p2",
+  "detail",
+  "edge"
  ],
- "ppu": 29.0,
+ "ppu": 28.9412,
  "reference": false,
- "score_after": 92.8,
- "score_before": 92.8,
- "shipped": false,
+ "score_after": 61.7,
+ "score_before": 42.4,
+ "shipped": true,
  "source": "design/art/masters/goat-surprised/goat-surprised.webp",
  "source_sha": "c46792a1afa0cd9c"
 }

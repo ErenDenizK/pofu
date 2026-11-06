@@ -1,16 +1,16 @@
 {
  "after": {
-  "C_mean": 24.192,
-  "C_p50": 19.67,
-  "C_p95": 48.676,
-  "L_mean": 76.245,
-  "L_p2": 14.968,
+  "C_mean": 24.113,
+  "C_p50": 19.475,
+  "C_p95": 48.622,
+  "L_mean": 80.125,
+  "L_p2": 30.968,
   "L_p98": 96.002,
-  "detail": 15.603,
-  "edge": 0.192,
-  "tint_a": 3.875,
-  "tint_b": 8.45,
-  "warmth_b": 20.245
+  "detail": 12.44,
+  "edge": 0.203,
+  "tint_a": 3.879,
+  "tint_b": 8.449,
+  "warmth_b": 20.213
  },
  "before": {
   "C_mean": 24.192,
@@ -19,15 +19,15 @@
   "L_mean": 76.245,
   "L_p2": 14.968,
   "L_p98": 96.002,
-  "detail": 15.603,
-  "edge": 0.192,
+  "detail": 15.264,
+  "edge": 0.203,
   "tint_a": 3.875,
   "tint_b": 8.45,
   "warmth_b": 20.245
  },
  "chain": null,
  "correction": {
-  "black": 0.0,
+  "black": 16.0,
   "ceiling": 0.0,
   "chroma": 1.0,
   "materials": {},
@@ -36,19 +36,23 @@
   "white": 0.0
  },
  "guarded": false,
- "kind": "char",
- "matched_to": "char",
+ "kind": "station",
+ "matched_to": "world",
  "outliers_after": [
-  "detail"
+  "L_p2",
+  "detail",
+  "edge"
  ],
  "outliers_before": [
-  "detail"
+  "L_p2",
+  "detail",
+  "edge"
  ],
- "ppu": 29.0,
+ "ppu": 27.4643,
  "reference": false,
- "score_after": 86.8,
- "score_before": 86.8,
- "shipped": false,
+ "score_after": 57.4,
+ "score_before": 49.7,
+ "shipped": true,
  "source": "design/art/masters/findik-surprised/findik-surprised.webp",
  "source_sha": "9cc1eddafab3231b"
 }

@@ -6,8 +6,8 @@
   "L_mean": 74.883,
   "L_p2": 56.005,
   "L_p98": 92.543,
-  "detail": 1.795,
-  "edge": 0.407,
+  "detail": 2.289,
+  "edge": 0.326,
   "warmth_b": 28.642
  },
  "before": {
@@ -17,8 +17,8 @@
   "L_mean": 74.883,
   "L_p2": 56.005,
   "L_p98": 92.543,
-  "detail": 1.795,
-  "edge": 0.407,
+  "detail": 2.289,
+  "edge": 0.326,
   "warmth_b": 28.642
  },
  "chain": null,
@@ -32,7 +32,7 @@
   "white": 0.0
  },
  "guarded": false,
- "kind": "prop",
+ "kind": "station",
  "matched_to": "world",
  "outliers_after": [
   "edge"
@@ -40,11 +40,11 @@
  "outliers_before": [
   "edge"
  ],
- "ppu": 8.533,
+ "ppu": 10.6667,
  "reference": false,
- "score_after": 89.5,
- "score_before": 89.5,
- "shipped": false,
+ "score_after": 87.3,
+ "score_before": 87.3,
+ "shipped": true,
  "source": "design/art/masters/path-lamp/path-lamp.png",
  "source_sha": "2a2b4d371cca0f3f"
 }

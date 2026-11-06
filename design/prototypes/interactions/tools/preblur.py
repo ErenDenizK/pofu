@@ -378,6 +378,8 @@ DOOR_PPU = 13.2
 # The hive ladder (home layout S6): drawn on the station guide at 0.85 of its size, so hive-1's two
 # skeps and lavender are 36 units wide (the layout's "+-18").
 HIVE_SIZE = 0.85
+# The path lamp (home layout L1-L3, batch 33): drawn on the decor guide at 0.8 of its size, a lamp 37 units tall.
+LAMP_SIZE = 0.8
 HIVE_LEVELS = 3
 
 APP_SOURCES = {
@@ -398,6 +400,12 @@ APP_SOURCES = {
     "findik-work": {"src": "design/art/masters/findik-work/findik-work.webp", "ppu": 769 / 28, "anchor": (434.5, 1170)},
     "findik-eyes-closed": _blob("design/art/masters/findik-eyes-closed", 28.33, "feet"),
     "findik-eyes-happy": _blob("design/art/masters/findik-eyes-happy", 28.33, "feet"),
+    # The reactions (batches 29 and 41): the same canvases as the bases, so they swap in place. Mochi's and
+    # Findik's on their bases' scale and feet; the goat's and Simit's by their base's box.
+    **{f"mochi-{pose}": {"src": f"design/art/masters/mochi-{pose}/mochi-{pose}.webp", "ppu": 901 / 30, "anchor": (515.5, 1349)}
+       for pose in ("happy", "sleepy", "proud")},
+    **{f"findik-{pose}": {"src": f"design/art/masters/findik-{pose}/findik-{pose}.webp", "ppu": 769 / 28, "anchor": (434.5, 1170)}
+       for pose in ("happy", "sleepy", "proud", "surprised")},
     # Pofu's own art: only the blurred variants (the live CompanionView is the sharp one). 64 units
     # wide with the feet at the rig's ground point, so the variants register with the live view.
     "pofu": {"src": "Packages/PofuKit/Sources/PofuCompanion/Resources/pofu-hamster.png", "ppu": 522 / 64, "anchor": (266, 481), "no_sharp": True},
@@ -419,6 +427,13 @@ APP_SOURCES = {
     "simit-surprised": _blob("design/art/masters/simit-surprised", 26, "feet", like="design/art/masters/simit-kitten"),
     # The goat at work, holding a coil of coral rope: an edit of the goat on its canvas.
     "goat-work": _blob("design/art/masters/goat-work", 34, "feet", like="design/art/masters/harbor-goat"),
+    **{f"goat-{pose}": _blob(f"design/art/masters/goat-{pose}", 34, "feet", like="design/art/masters/harbor-goat")
+       for pose in ("happy", "surprised", "sleepy", "proud")},
+    "simit-proud": _blob("design/art/masters/simit-proud", 26, "feet", like="design/art/masters/simit-kitten"),
+    # The second L3 style option of the stations that have one so far (batch 40, home progression 4.2):
+    # on the harbor guide at the harbor's size, like their first options.
+    **{name: {**_station(name, max_ppu=HARBOR_MAX_PPU), "ppu": 1024 / 120 / HARBOR_SIZE}
+       for name in ("bagel-cart-3-blue", "lighthouse-3-blue", "lighthouse-4-blue")},
     # The home island's fixtures: the doors in the earth face and the hive ladder.
     "door-mochi": _fixed("design/art/masters/door-mochi", DOOR_PPU),
     "door-findik": _fixed("design/art/masters/door-findik", DOOR_PPU),
@@ -449,6 +464,19 @@ for _glow, _lit, _region in (("workshop-1-glow", "workshop-1-lit", (150, 575, 32
                              ("pond-5-glow", "pond-5-lit", (365, 620, 620, 800)),
                              ("windmill-5-glow", "windmill-5-lit", (355, 570, 600, 628))):
     APP_SOURCES[_glow] = {**_station(_lit), "emissive_of": _region, "single": True, "harmony": False}
+# The masked lit edits (batch 36): each is its day master with only the glass changed, so the glow is
+# the difference against that master inside the edit's `emit_region` (padded a little), not a colour key.
+# Their scale and anchor are the day master's: the harbor's lighthouse at the harbor's 0.7, the path lamp
+# at LAMP_SIZE, Mochi's door at the doors' scale.
+APP_SOURCES["path-lamp"] = {**_station("path-lamp", "masters"), "ppu": 1024 / 120 / LAMP_SIZE}
+for _glow, _spec, _parent, _region in (
+        ("lighthouse-1-glow", {**_station("lighthouse-1-lit", max_ppu=HARBOR_MAX_PPU), "ppu": 1024 / 120 / HARBOR_SIZE},
+         "design/art/stations/lighthouse-1", (380, 278, 655, 404)),
+        ("path-lamp-glow", {**_station("path-lamp-lit", "masters"), "ppu": 1024 / 120 / LAMP_SIZE},
+         "design/art/masters/path-lamp", (468, 580, 617, 712)),
+        ("door-mochi-glow", _fixed("design/art/masters/door-mochi-lit", DOOR_PPU),
+         "design/art/masters/door-mochi", (402, 432, 608, 643))):
+    APP_SOURCES[_glow] = {**_spec, "emissive_of": _region, "emissive_parent": _parent, "single": True, "harmony": False}
 # The plates to compare (look round 4: the founder chooses between v2 and v3), baked as
 # island-main-band<k>--v2 with v2's own harmony correction.
 PLATE_COMPARE = {"--v2": "island-main-l-v2"}
@@ -697,7 +725,10 @@ def app_main():
         if alt in PLATE_COMPARE:
             src = harmony.correct_image(PLATE_COMPARE[alt], src, manifest, harmony_cfg)
         if spec.get("emissive_of"):
-            src = _emissive(src, spec["emissive_of"])
+            if spec.get("emissive_parent"):
+                src = _emissive_diff(src, Image.open(os.path.join(REPO, _master(spec["emissive_parent"]))).convert("RGBA"), spec["emissive_of"])
+            else:
+                src = _emissive(src, spec["emissive_of"])
         if "anchor_box" in spec:
             bx = spec["anchor_box"]
             ppu = src.width / spec["units"]
@@ -782,6 +813,27 @@ def _emissive(lit, region):
     warm = np.clip((a[..., 0] - a[..., 2] - 0.12) * 4, 0, 1)
     bright = np.clip((a[..., :3] @ np.array([0.2126, 0.7152, 0.0722], dtype=np.float32) - 0.5) * 4, 0, 1)
     alpha = box * warm * bright * a[..., 3]
+    out = Image.fromarray(np.uint8(np.clip(a * 255, 0, 255)), "RGBA")
+    out.putalpha(Image.fromarray(np.uint8(alpha * 255), "L").filter(ImageFilter.GaussianBlur(1.5)))
+    return out
+
+
+def _emissive_diff(lit, parent, region):
+    """The light a masked lit edit adds: its pixels that differ from the day master it was cut from,
+    inside `region` (x0, y0, x1, y1 in source pixels, a little wider than the edit's emit box), feathered.
+    The edit is exactly the parent outside its mask, so a difference of a few levels is the light."""
+    from PIL import ImageFilter
+
+    a = np.asarray(lit, dtype=np.float32) / 255.0
+    b = np.asarray(parent.resize(lit.size) if parent.size != lit.size else parent, dtype=np.float32) / 255.0
+    h, w = a.shape[:2]
+    x0, y0, x1, y1 = region
+    box = np.zeros((h, w), dtype=np.float32)
+    box[y0:y1, x0:x1] = 1
+    box = np.asarray(Image.fromarray(np.uint8(box * 255), "L").filter(ImageFilter.GaussianBlur(4)), dtype=np.float32) / 255.0
+    diff = np.abs(a[..., :3] - b[..., :3]).max(axis=2)
+    changed = np.clip((diff - 0.05) * 5, 0, 1)
+    alpha = box * changed * a[..., 3]
     out = Image.fromarray(np.uint8(np.clip(a * 255, 0, 255)), "RGBA")
     out.putalpha(Image.fromarray(np.uint8(alpha * 255), "L").filter(ImageFilter.GaussianBlur(1.5)))
     return out
