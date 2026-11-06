@@ -37,3 +37,5 @@ Tunable values (breath seconds, thresholds, seed amounts, names) live in
 **Read an ADR's status line and this table first; do not load ADR bodies
 you do not need.** A status here that says "amended" or "superseded" means
 the later ADR wins on that point; the older body stays unchanged as history.
+
+- **0018** is amended by [0020](0020-painted-surfaces-native-behaviour.md): surfaces may be painted; behaviour stays native.
