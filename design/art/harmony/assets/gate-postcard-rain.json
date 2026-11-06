@@ -1,0 +1,55 @@
+{
+ "after": {
+  "C_mean": 26.461,
+  "C_p50": 22.427,
+  "C_p95": 46.161,
+  "L_mean": 76.588,
+  "L_p2": 58.611,
+  "L_p98": 93.641,
+  "detail": 0.832,
+  "edge": 0.0,
+  "tint_a": 7.617,
+  "tint_b": 0.806,
+  "warmth_b": 11.125
+ },
+ "before": {
+  "C_mean": 18.291,
+  "C_p50": 15.474,
+  "C_p95": 31.836,
+  "L_mean": 76.607,
+  "L_p2": 58.611,
+  "L_p98": 93.955,
+  "detail": 0.81,
+  "edge": 0.0,
+  "tint_a": 6.421,
+  "tint_b": -1.417,
+  "warmth_b": 7.693
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.45,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "plate",
+ "matched_to": "world",
+ "outliers_after": [
+  "edge"
+ ],
+ "outliers_before": [
+  "C_p95",
+  "edge"
+ ],
+ "ppu": 4.103,
+ "reference": false,
+ "score_after": 85.9,
+ "score_before": 68.2,
+ "shipped": false,
+ "source": "design/art/masters/gate-postcard-rain/gate-postcard-rain.png",
+ "source_sha": "6ad6bca4ff34b7c7"
+}
