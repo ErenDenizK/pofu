@@ -382,7 +382,7 @@ HIVE_SIZE = 0.85
 LAMP_SIZE = 0.8
 HIVE_LEVELS = 3
 
-KOKE_PLATES = (0, 1, 2)
+KOKE_PLATES = (0, 1, 2, 3, 4)
 KOKE_PLATE_UNITS = 250.0
 KOKE_WIDTH = 114.0
 
@@ -428,7 +428,12 @@ APP_SOURCES = {
     **{f"koke-island-{n}": {"src": _master(f"design/art/masters/koke-island-{n}"), "ppu": 768 / KOKE_PLATE_UNITS,
                             "anchor": (384, 256), "matte": True} for n in KOKE_PLATES},
     **{f"koke-{pose}": _blob(f"design/art/masters/koke-{pose}", KOKE_WIDTH, "feet", like="design/art/masters/koke-asleep")
-       for pose in ("asleep", "one-eye")},
+       for pose in ("asleep", "one-eye", "stretch")},
+    # Nazli's rig (batch 37): body, eyes-closed, fins, tail and island patch share one 1536 x 1024 canvas, so
+    # every part takes the body's scale and anchor (the box centre) and the layers stay registered. 150 units
+    # is a provisional width (no scene draws her yet); the pieces are baked, not placed.
+    **{f"nazli-{part}": _blob(f"design/art/masters/nazli-{part}", 150.0, "centre", like="design/art/masters/nazli-body")
+       for part in ("body", "eyes-closed", "fins", "tail", "island-patch")},
     "harbor-goat": _blob("design/art/masters/harbor-goat", 34, "feet"),
     "simit-kitten": _blob("design/art/masters/simit-kitten", 26, "feet"),
     "simit-kitten-work": _blob("design/art/masters/simit-kitten-work", 26, "feet", like="design/art/masters/simit-kitten"),

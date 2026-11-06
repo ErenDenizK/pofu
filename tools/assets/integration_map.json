@@ -8,7 +8,8 @@
     "sprite": "Packages/PofuKit/Sources/PofuWorld/Resources/World.xcassets",
     "shield": "Packages/PofuKit/Sources/PofuCompanion/Resources",
     "app": "App/Resources/Assets.xcassets",
-    "postcard": "App/Resources/Assets.xcassets"
+    "postcard": "App/Resources/Assets.xcassets",
+    "shield-icons": "Packages/PofuKit/Sources/PofuCompanion/Resources"
   },
   "entries": [
     {
@@ -760,6 +761,96 @@
       "scale": 2
     },
     {
+      "target": "shield-icons",
+      "name": "shield-pofu-curious",
+      "source": "design/art/takes/batch-48-gate-scenes/x-shield-icons/ui__x-shield-icons--t1.webp",
+      "grid": [
+        3,
+        2
+      ],
+      "index": 0,
+      "points": [
+        180,
+        180
+      ],
+      "scale": 1
+    },
+    {
+      "target": "shield-icons",
+      "name": "shield-pofu-proud",
+      "source": "design/art/takes/batch-48-gate-scenes/x-shield-icons/ui__x-shield-icons--t1.webp",
+      "grid": [
+        3,
+        2
+      ],
+      "index": 1,
+      "points": [
+        180,
+        180
+      ],
+      "scale": 1
+    },
+    {
+      "target": "shield-icons",
+      "name": "shield-pofu-jealous",
+      "source": "design/art/takes/batch-48-gate-scenes/x-shield-icons/ui__x-shield-icons--t1.webp",
+      "grid": [
+        3,
+        2
+      ],
+      "index": 2,
+      "points": [
+        180,
+        180
+      ],
+      "scale": 1
+    },
+    {
+      "target": "shield-icons",
+      "name": "shield-pofu-calm",
+      "source": "design/art/takes/batch-48-gate-scenes/x-shield-icons/ui__x-shield-icons--t1.webp",
+      "grid": [
+        3,
+        2
+      ],
+      "index": 3,
+      "points": [
+        180,
+        180
+      ],
+      "scale": 1
+    },
+    {
+      "target": "shield-icons",
+      "name": "shield-pofu-relieved",
+      "source": "design/art/takes/batch-48-gate-scenes/x-shield-icons/ui__x-shield-icons--t1.webp",
+      "grid": [
+        3,
+        2
+      ],
+      "index": 4,
+      "points": [
+        180,
+        180
+      ],
+      "scale": 1
+    },
+    {
+      "target": "shield-icons",
+      "name": "shield-pofu-sleepy",
+      "source": "design/art/takes/batch-48-gate-scenes/x-shield-icons/ui__x-shield-icons--t1.webp",
+      "grid": [
+        3,
+        2
+      ],
+      "index": 5,
+      "points": [
+        180,
+        180
+      ],
+      "scale": 1
+    },
+    {
       "target": "world",
       "name": "dressing-watering-can",
       "master": "design/art/masters/dressing-garden"
@@ -966,6 +1057,21 @@
     },
     {
       "target": "world",
+      "name": "koke-island-3",
+      "master": "design/art/masters/koke-island-3"
+    },
+    {
+      "target": "world",
+      "name": "koke-island-4",
+      "master": "design/art/masters/koke-island-4"
+    },
+    {
+      "target": "world",
+      "name": "koke-stretch",
+      "master": "design/art/masters/koke-stretch"
+    },
+    {
+      "target": "world",
       "name": "koke-asleep",
       "master": "design/art/masters/koke-asleep"
     },
@@ -973,6 +1079,31 @@
       "target": "world",
       "name": "koke-one-eye",
       "master": "design/art/masters/koke-one-eye"
+    },
+    {
+      "target": "world",
+      "name": "nazli-tail",
+      "master": "design/art/masters/nazli-tail"
+    },
+    {
+      "target": "world",
+      "name": "nazli-island-patch",
+      "master": "design/art/masters/nazli-island-patch"
+    },
+    {
+      "target": "world",
+      "name": "nazli-fins",
+      "master": "design/art/masters/nazli-fins"
+    },
+    {
+      "target": "world",
+      "name": "nazli-eyes-closed",
+      "master": "design/art/masters/nazli-eyes-closed"
+    },
+    {
+      "target": "world",
+      "name": "nazli-body",
+      "master": "design/art/masters/nazli-body"
     },
     {
       "target": "postcard",

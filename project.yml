@@ -190,6 +190,19 @@ targets:
         buildPhase: resources
       - path: Packages/PofuKit/Sources/PofuCompanion/Resources/shield-pofu-door-sleepy.png
         buildPhase: resources
+      # The round mood icons (gate v2 5.3; tools/assets/integrate.py, target shield-icons).
+      - path: Packages/PofuKit/Sources/PofuCompanion/Resources/shield-pofu-curious.png
+        buildPhase: resources
+      - path: Packages/PofuKit/Sources/PofuCompanion/Resources/shield-pofu-proud.png
+        buildPhase: resources
+      - path: Packages/PofuKit/Sources/PofuCompanion/Resources/shield-pofu-jealous.png
+        buildPhase: resources
+      - path: Packages/PofuKit/Sources/PofuCompanion/Resources/shield-pofu-calm.png
+        buildPhase: resources
+      - path: Packages/PofuKit/Sources/PofuCompanion/Resources/shield-pofu-relieved.png
+        buildPhase: resources
+      - path: Packages/PofuKit/Sources/PofuCompanion/Resources/shield-pofu-sleepy.png
+        buildPhase: resources
     configFiles:
       Debug: Config/Pofu.xcconfig
       Release: Config/Pofu.xcconfig

@@ -136,8 +136,9 @@ struct KokeIsleView: View {
     let reduceMotion: Bool
     /// Where the island's centre lands on the canvas.
     let point: CGPoint
-    /// Seconds for the stage 4 bounce, or `nil` for the rest pose (still
-    /// frames, Reduce Motion, the Map).
+    /// Seconds for a bounce, or `nil` for the rest pose (still frames,
+    /// Reduce Motion, the Map). Unused while the plates carry Koke; kept for
+    /// a close-up sprite moment.
     var bounceTime: Double?
     /// The sky's horizon colour: the depth fog's (sky and weather v1 §2.4).
     @Environment(\.worldHorizon) private var horizon
@@ -163,21 +164,10 @@ struct KokeIsleView: View {
                             .mask { plate(stage: s, green: g) }
                     }
                 }
-            if KokeLayout.hasBlossoms(stage: s) {
-                Canvas { context, _ in Self.drawBlossoms(&context) }
-            }
             Canvas { context, _ in Self.drawStone(&context, stage: s) }
-            if let overlay = KokeLayout.overlay(stage: s) {
-                // The plate's Koke is a stand-in here: draw the pose over it.
-                let own = KokeArt.has(overlay.pose.art)
-                let pose = own ? overlay.pose : (overlay.pose.fallback ?? overlay.pose)
-                let lift = KokeLayout.bounce(stage: s, time: bounceTime)
-                Self.art(
-                    pose.art, key: String(pose.art.dropFirst("world-".count)), scale: own ? 1 : overlay.scale,
-                    feet: CGPoint(x: Self.origin.x + KokeLayout.kokeFeet.x, y: Self.origin.y + KokeLayout.kokeFeet.y - lift),
-                    fallbackWidth: 114
-                )
-            } else if !KokeArt.has(KokeLayout.plateArt(stage: s)) {
+            // The painted plate already shows Koke on his island (asleep,
+            // stretching, standing): no pose sprite is ever drawn over it.
+            if !KokeArt.has(KokeLayout.plateArt(stage: s)) {
                 Canvas { context, _ in Self.drawKoke(&context, stage: s, green: g) }
             }
             if look.isActive {
@@ -285,31 +275,6 @@ struct KokeIsleView: View {
                 context.stroke(stalk, with: .color(Color(red: 0.42, green: 0.52, blue: 0.40)), lineWidth: 1.2)
                 context.fill(Path(ellipseIn: CGRect(x: p.x - 2, y: p.y - 10, width: 4, height: 6)), with: .color(Color(red: 0.55, green: 0.60, blue: 0.54)))
             }
-        }
-    }
-
-    /// The stage 4 signature, until its plate is painted: open blossoms
-    /// scattered on the lawn's front half, clear of Koke and the stone.
-    private static func drawBlossoms(_ context: inout GraphicsContext) {
-        let spots: [(Double, Double, Int)] = [
-            (-96, 12, 0), (-74, 30, 1), (-52, 44, 2), (-22, 48, 0), (8, 44, 1), (30, 34, 2),
-            (74, 38, 0), (92, 22, 1), (-104, -2, 2), (104, 4, 0), (-84, 40, 1), (60, 18, 2),
-        ]
-        let petals: [Color] = [
-            Color(red: 0.98, green: 0.72, blue: 0.78), Color(red: 0.99, green: 0.86, blue: 0.45), Color(red: 0.98, green: 0.80, blue: 0.62),
-        ]
-        for (x, y, tone) in spots {
-            let p = at(x, y)
-            var stalk = Path()
-            stalk.move(to: CGPoint(x: p.x, y: p.y + 4))
-            stalk.addLine(to: p)
-            context.stroke(stalk, with: .color(Color(red: 0.36, green: 0.58, blue: 0.30)), lineWidth: 1.2)
-            for k in 0..<5 {
-                let a = Double(k) * .pi * 2 / 5
-                let c = CGPoint(x: p.x + cos(a) * 3.2, y: p.y - 1 + sin(a) * 2.3)
-                context.fill(Path(ellipseIn: CGRect(x: c.x - 2.5, y: c.y - 2.5, width: 5, height: 5)), with: .color(petals[tone]))
-            }
-            context.fill(Path(ellipseIn: CGRect(x: p.x - 1.5, y: p.y - 2.5, width: 3, height: 3)), with: .color(Color(red: 0.95, green: 0.62, blue: 0.2)))
         }
     }
 
