@@ -130,7 +130,7 @@ The lead keeps this list current: each track names its next step only.
 | **Light and colour** | Merge SW-1 (#258) and SW-3 (#256, Koke stage 0 tuned); SW-2 weather and the screen haze | SW-3 for SW-2 |
 | **Night lighting** | Tune nightlab to the night key (batch-45) and real normals (batch-47); the ADR; the Metal port. No hard-edged light; Pofu's form round; the island's underside lit as a volume; characters and effects seated | the batch-45 and 47 takes |
 | **Icons** | The flat icon sheets (batch-46); the winner replaces the place control's glyph and the menu symbols | the takes |
-| **Koke** | Integrate row 0-k's takes; one Koke on screen | 0-k |
+| **Koke** | Integrate row 0-k's takes; one Koke on screen; stage 0-2 plates repainted under the beautiful-wound rule (code grading of the pale, high-key plates stops short: #256's sheet), after the `x-koke-stage0-mist` concept | 0-k, batch-45 |
 | **Çağlayan and flow** | A game-design note for the flow game, then `PofuGames` flow, then Çağlayan with batch-43 | nothing (the art arrives in parallel) |
 | **Game flow** | The flow audit: a `PofuCore` test that plays days 1-21 for a typical player and for a heavy scroller; no dead day | nothing |
 | **Home growth** | A screenshot sheet of IL1 to IL10; every level adds something seen and something moving; IL1's decor | nothing |
