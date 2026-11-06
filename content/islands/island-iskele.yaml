@@ -44,6 +44,9 @@ links:
   - asset-goat-surprised
   - asset-goat-sleepy
   - asset-goat-proud
+  - asset-goat-step-a
+  - asset-goat-step-b
+  - asset-goat-work-beat
 sources:
 - doc: docs/archive/archipelago-system.md
   anchor: '#11-island-concepts'
