@@ -1,0 +1,238 @@
+batch: batch-24-home-materials-v2
+manifest: tools/imagegen/manifest/batch-24-home-materials-v2.yaml
+manifest_sha256: b61416abeacb9caa3197174c50d198baea91b686b02ce420255d4693b93dc3cc
+contact_sheet: design/art/takes/batch-24-home-materials-v2/x-decor-samovar-v2/contact.jpg
+jobs:
+  x-decor-samovar-v2:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Take1 source and official locked
+      inspected: one matte brass-cream samovar with domed lid, exactly two round handles
+      and short tap, one rose-clay teapot on top; no fur/character/text/steam/flame
+      or extra prop. Official width298 fits authored whole-group one-third341.33 and
+      guide. Take2 width584 exceeds authored cap; exclude2. Style/light/palette warnings
+      advisory; choose lowest official lock load among eligible.'
+qa_reports:
+  1:
+    job: x-decor-samovar-v2
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 40.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 54 (at most 22), p98 91 (at least 90), spread 37
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 37.2
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 72 (band 55-90)'
+      value: 71.7
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.23 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.235
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.7 (at least 3.5)'
+      value: 4.65
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.2 (R1 5.3)
+      value: 1.22
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.4
+      value: 1.388
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.0, p95 2.0, off-palette 0.0%
+      value: 1.0151
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 82 against the world reference (outliers: C_p95, edge)'
+      value: 81.6
+    info:
+      fit:
+        scale: 0.6208
+        anchor:
+        - 505.9
+        - 901
+      registration:
+        dx: 6
+        dy: -13
+      metrics_raw:
+        L_p5: 57.1
+        L_p50: 71.8
+        L_p95: 88.9
+        C_p50: 34.4
+        C_p95: 40.8
+        C_p99: 41.9
+        detail: 1.84
+      metrics_locked:
+        L_p5: 58.1
+        L_p50: 71.7
+        L_p95: 88.6
+        C_p50: 34.4
+        C_p95: 40.4
+        C_p99: 41.4
+        detail: 1.22
+    fingerprint: 8d2286da902281bf
+  2:
+    job: x-decor-samovar-v2
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 45 (R1 51)
+      value: 45.2
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 56 (at most 22), p98 91 (at least 90), spread 35
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 34.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 75 (band 55-90)'
+      value: 75.3
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.24 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.243
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.9 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.89
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.3 (R1 5.3)
+      value: 1.27
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.5
+      value: 1.4581
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.4, p95 2.9, off-palette 0.0% (top: #AA5533 (0.0%))'
+      value: 1.3839
+    - check: decor_anchor
+      status: warn
+      message: top y 213 above the height bar (500); width 584 px wider than the footprint
+        (360) (advisory in an exploration)
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 87 against the world reference (outliers: edge)'
+      value: 87.4
+    info:
+      fit_skipped: needs x0.57, below x0.6 (a real art failure)
+      registration:
+        dx: 12
+        dy: -29
+      metrics_raw:
+        L_p5: 59.3
+        L_p50: 75.3
+        L_p95: 88.9
+        C_p50: 38.6
+        C_p95: 45.6
+        C_p99: 47.5
+        detail: 1.84
+      metrics_locked:
+        L_p5: 59.8
+        L_p50: 75.3
+        L_p95: 88.7
+        C_p50: 38.6
+        C_p95: 45.2
+        C_p99: 47.0
+        detail: 1.27
+    fingerprint: 8d2286da902281bf
+manual_review:
+  observed_note: 'Take1 source and official locked inspected: one matte brass-cream
+    samovar with domed lid, exactly two round handles and short tap, one rose-clay
+    teapot on top; no fur/character/text/steam/flame or extra prop. Official width298
+    fits authored whole-group one-third341.33 and guide. Take2 width584 exceeds authored
+    cap; exclude2. Style/light/palette warnings advisory; choose lowest official lock
+    load among eligible.'
+  excluded_takes:
+  - 2
+sources:
+- batch: batch-24-home-materials-v2
+  job: x-decor-samovar-v2
+  take: 1
+  round: 1
+  logical_run: 20261106-b24-v2-stall-pair-a
+  source_file: /workspace/generated_images/exec-ca81d212-7373-4fee-af26-a3fc1fceca32.png
+  returned_at: '2026-11-06T06:07:47.201Z'
+  prompt_sha256: 317397c1a8c55d535bc1b293db6b2ad763a37e27465197b9dde0bf67f7e14050
+  fingerprint: 8d2286da902281bf
+  saved_at: '2026-11-06T06:07:47.575001+00:00'
+  original_generated_png_sha256: 392ae35dd9061b1e33812df7a575bc5922e1134693b01641e3ab1ea56f40db00
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 3ec17d07e31fc2a24e882af95512408b8ef334d3d4c79505a03cc285f7cfea61
+  inbox_png_sha256: f529c9142b627b1a8f8b55538b5a3d76994a09a6e6aa8295245670d1fefb57a0
+  qa_sha256: e6c7ad8d5fe41f74b3ba81ee20b7cf7e7f6ec95990540a0aa372ce8c6b044cf3
+- batch: batch-24-home-materials-v2
+  job: x-decor-samovar-v2
+  take: 2
+  round: 1
+  logical_run: 20261106-b24-v2-stall-pair-a
+  source_file: /workspace/generated_images/exec-325a9833-5c8b-437f-b0de-2964ebde6d35.png
+  returned_at: '2026-11-06T06:10:11.577Z'
+  prompt_sha256: 317397c1a8c55d535bc1b293db6b2ad763a37e27465197b9dde0bf67f7e14050
+  fingerprint: 8d2286da902281bf
+  saved_at: '2026-11-06T06:10:11.900042+00:00'
+  original_generated_png_sha256: fabca3f997e4ebd688868dc4f55a88ab1a9738637fda734a57363fea2e7862ea
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: e6113864cdf8e1f3e57f61ce9467f11df097194df6a261fe8077f5b8edf0de2a
+  inbox_png_sha256: 392d14bd209d7de8152d514368c9ef919540a241c229dac4cad7b2e6a3548eb2
+  qa_sha256: 9d95ba4885864a99f2f62f3876e213fd23a63c9c084eaa72bce2f2f1edeec965
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+variation_proof_sha256: 51327809ac2f2a984a9e3f40493821e9d1ab9cb0cc49da5fcdb87795b791dddc
