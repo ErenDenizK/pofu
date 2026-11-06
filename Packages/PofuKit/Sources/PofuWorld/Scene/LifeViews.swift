@@ -98,8 +98,10 @@ struct CritterView: View {
                     .position(x: point.x + CGFloat(pose.dx) * 0.4, y: point.y)
             }
             Group {
-                if let sprite = WorldArt.sprite(kind.art) {
-                    DepthImage(name: kind.art, sprite: sprite, level: level, anchor: at, grade: grade)
+                if let sprite = WorldArt.sprite(kind.art(frame: frame)) {
+                    // The sheets are drawn facing right; a pose that faces left mirrors the sprite about its feet.
+                    DepthImage(name: kind.art(frame: frame), sprite: sprite, level: level, anchor: at, grade: grade)
+                        .scaleEffect(x: pose.facesLeft ? -1 : 1, y: 1, anchor: anchor)
                 } else {
                     let size = LifeArt.size(of: kind)
                     Canvas { context, canvasSize in

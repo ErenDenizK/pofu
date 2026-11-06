@@ -12,7 +12,7 @@ public enum CritterMotion {
     public struct Pose: Hashable, Sendable {
         public var dx = 0.0
         public var dy = 0.0
-        /// The frame of the four-frame loop; 0 is the rest pose.
+        /// The frame of the kind's loop (`CritterKind.spriteFrames`); 0 is the rest pose.
         public var frame = 0
         /// Facing left (a critter that walks back and forth).
         public var facesLeft = false
@@ -53,10 +53,11 @@ public enum CritterMotion {
             let dx = 5 * sin(t * 0.18)
             return Pose(dx: dx, dy: 0, frame: Int(time * 1.5) & 3, facesLeft: cos(t * 0.18) < 0)
         case .bird:
-            // A hop and a peck now and then.
+            // A hop on its wings (up, then down) and a song now and then.
             let u = (t / 2.8).truncatingRemainder(dividingBy: 1)
             let hop = u < 0.12 ? -3.5 * sin(u / 0.12 * .pi) : 0
-            return Pose(dx: 0, dy: hop, frame: u < 0.12 ? 1 : 0, facesLeft: Int((t / 2.8).rounded(.down)) % 2 == 0)
+            let frame = u < 0.06 ? 1 : u < 0.12 ? 3 : (u > 0.5 && u < 0.64 ? 2 : 0)
+            return Pose(dx: 0, dy: hop, frame: frame, facesLeft: Int((t / 2.8).rounded(.down)) % 2 == 0)
         case .frog:
             // A small hop on a long breath.
             let u = (t / 3.6).truncatingRemainder(dividingBy: 1)

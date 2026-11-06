@@ -23,6 +23,10 @@ def sprite(seed: int = 3, size: int = 96) -> np.ndarray:
 
 def test_kinds_and_exclusions():
     assert vivid.kind_of("garden-3") == "plant"
+    # The meadow's plants stay plants; the garden's and the harbor's dressing are props; critters are left as painted.
+    assert vivid.kind_of("dressing-wildflowers-2") == "plant" and vivid.kind_of("dressing-mushroom-ring") == "plant"
+    assert vivid.kind_of("dressing-watering-can") == "prop" and vivid.kind_of("dressing-barrel") == "prop"
+    assert vivid.kind_of("critter-bird-3") is None
     assert vivid.kind_of("tea-stall-2") == "station"
     assert vivid.kind_of("decor-bench") == "prop"
     assert vivid.kind_of("paint-pot-bloom", "ui") == "home"

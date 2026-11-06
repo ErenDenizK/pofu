@@ -104,4 +104,18 @@ struct HomeFixturesTests {
         // Every painted variant shows somewhere (the sheet is for the lawn).
         #expect(worn.count == 12, "the lawn shows \(worn.count) of 12 meadow pieces")
     }
+
+    // MARK: Garden and harbor dressing
+
+    @Test func theGardenAndHarborSheetsAreBakedAndWorn() {
+        let worn = IslandDressing.pieces.filter { $0.kind.family != .meadow }
+        #expect(!worn.isEmpty)
+        for piece in worn {
+            #expect(WorldArt.sprite(piece.art) != nil, "\(piece.id) wears \(piece.art), which is not baked")
+        }
+        // The crate has both of the garden sheet's poses.
+        #expect(DressingKind.crate.variantCount == 2)
+        #expect(DressingKind.crate.art(variant: 1) == "dressing-crate-2")
+        #expect(Set(worn.map(\.art)).count == 8, "the lawn wears every baked garden and harbor piece")
+    }
 }

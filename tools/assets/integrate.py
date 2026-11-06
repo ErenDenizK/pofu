@@ -26,7 +26,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import vivid  # noqa: E402
 
 REPO = Path(__file__).resolve().parents[2]
-FLAT = ("games", "ui", "glow")  # flat PNGs baked here, not through preblur
+FLAT = ("games", "ui", "glow", "sprite", "shield", "app")  # flat PNGs baked here, not through preblur
 MAP = Path(__file__).resolve().parent / "integration_map.json"
 PREBLUR = REPO / "design/prototypes/interactions/tools/preblur.py"
 
@@ -47,8 +47,12 @@ def master_file(folder: str) -> Path | None:
 
 def output_path(entry: dict, targets: dict) -> Path:
     root = REPO / targets[entry["target"]]
-    if entry["target"] == "glow":
+    if entry["target"] in ("glow", "sprite"):
         return root / f"{entry['name']}.imageset" / f"{entry['name']}.png"
+    if entry["target"] == "shield":
+        return root / f"{entry['name']}.png"
+    if entry["target"] == "app":
+        return root / f"{entry['name']}.imageset" / f"{entry['name']}@3x.png"
     if entry["target"] in FLAT:
         return root / f"{entry['name']}.png"
     return root / f"world-{entry['name']}.imageset" / f"world-{entry['name']}.png"
@@ -76,7 +80,84 @@ def max_channel(rgb: Image.Image) -> Image.Image:
     return ImageChops.lighter(ImageChops.lighter(r, g), b)
 
 
+def _imageset_contents(out: Path, scale: str | None = None) -> None:
+    image = {"filename": out.name, "idiom": "universal"}
+    if scale:
+        image["scale"] = scale
+    (out.parent / "Contents.json").write_text(json.dumps({
+        "images": [image],
+        "info": {"author": "xcode", "version": 1},
+    }, indent=2) + "\n", encoding="utf-8")
+
+
+def _cut(image: Image.Image, entry: dict) -> Image.Image:
+    """The entry's cell of a sheet (source pixels x0, y0, x1, y1), with the faint halation below
+    `alpha_floor` cleared so a neighbour's glow never comes along."""
+    if "cell" not in entry:
+        return image
+    image = image.crop(tuple(entry["cell"]))
+    floor = entry.get("alpha_floor", 0)
+    if floor:
+        r, g, b, a = image.split()
+        a = a.point(lambda v: 0 if v <= floor else round((v - floor) * 255 / (255 - floor)))
+        image = Image.merge("RGBA", (r, g, b, a))
+    return image
+
+
+def _fit(image: Image.Image, entry: dict) -> Image.Image:
+    max_w, max_h = (v * entry.get("scale", 3) for v in entry["points"])
+    f = min(1.0, max_w / image.width, max_h / image.height)  # never upscale
+    if f < 1.0:
+        image = image.resize((max(1, round(image.width * f)), max(1, round(image.height * f))), Image.LANCZOS)
+    return image
+
+
+def bake_app(entry: dict, out: Path) -> None:
+    """A full-bleed or layer plate for the app's own asset catalog (the launch sky, the cloud curtain).
+    Harmony's correction, when the manifest has one, is applied first; `size` restores a plate the
+    pipeline delivered at half scale (`deliver.original_size`) to its declared size, the one place art is
+    scaled up, because the launch screen is a soft sky."""
+    sys.path.insert(0, str(REPO / "tools" / "assets"))
+    import harmony
+
+    image = Image.open(master_file(entry["master"])).convert("RGBA")
+    image = harmony.correct_image(entry["name"], image)
+    if "size" in entry:
+        image = image.convert("RGB").resize(tuple(entry["size"]), Image.LANCZOS)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    image.save(out, "PNG", optimize=True)
+    _imageset_contents(out, "3x")
+
+
+def bake_shield(entry: dict, out: Path) -> None:
+    """One mood of Pofu at his door for the shield: the cell cut from the sheet, trimmed and set on a
+    square, transparent canvas of `points` x `scale` px (the shield draws its icon square)."""
+    image = trim(_cut(Image.open(master_file(entry["master"])).convert("RGBA"), entry))
+    side = entry["points"][0] * entry.get("scale", 2)
+    f = min(side / image.width, side / image.height, 1.0)
+    image = image.resize((max(1, round(image.width * f)), max(1, round(image.height * f))), Image.LANCZOS)
+    canvas = Image.new("RGBA", (side, side), (0, 0, 0, 0))
+    canvas.alpha_composite(image, ((side - image.width) // 2, side - image.height))
+    out.parent.mkdir(parents=True, exist_ok=True)
+    canvas.save(out, "PNG", optimize=True)
+
+
+def bake_sprite(entry: dict, out: Path) -> None:
+    """A coloured, alpha sprite for the world catalog that the scene draws in screen space (a firefly
+    frame): cut, trimmed, fitted into `points` at `scale`, never upscaled."""
+    image = trim(_cut(Image.open(master_file(entry["master"])).convert("RGBA"), entry))
+    out.parent.mkdir(parents=True, exist_ok=True)
+    _fit(image, entry).save(out, "PNG", optimize=True)
+    _imageset_contents(out)
+
+
 def bake_games(entry: dict, out: Path) -> None:
+    if entry["target"] == "app":
+        return bake_app(entry, out)
+    if entry["target"] == "shield":
+        return bake_shield(entry, out)
+    if entry["target"] == "sprite":
+        return bake_sprite(entry, out)
     src = master_file(entry["master"])
     if entry["target"] == "glow":
         image = Image.open(src).convert("RGBA")

@@ -183,6 +183,13 @@ targets:
       # Pofu's face on the shield, shared with PofuCompanion (not a copy).
       - path: Packages/PofuKit/Sources/PofuCompanion/Resources/pofu-hamster.png
         buildPhase: resources
+      # Pofu at his door, one plate per mood (tools/assets/integrate.py).
+      - path: Packages/PofuKit/Sources/PofuCompanion/Resources/shield-pofu-door-calm.png
+        buildPhase: resources
+      - path: Packages/PofuKit/Sources/PofuCompanion/Resources/shield-pofu-door-proud.png
+        buildPhase: resources
+      - path: Packages/PofuKit/Sources/PofuCompanion/Resources/shield-pofu-door-sleepy.png
+        buildPhase: resources
     configFiles:
       Debug: Config/Pofu.xcconfig
       Release: Config/Pofu.xcconfig
