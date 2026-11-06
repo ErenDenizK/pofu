@@ -1,0 +1,21 @@
+id: asset-growth-path-stone
+type: asset
+title_tr: growth-path-stone
+title_en: growth-path-stone (prop)
+status: in-production
+horizon: now
+summary: >-
+  A single small lawn piece for a cozy mobile game, as a game sprite on a transparent background,
+  in exactly the painting style, light and finish of the attached home island and tea stall.
+  One small flat path stone: a rounded warm-cream sandstone pebble about twice as wide as
+  tall, lying flat on the lawn, a soft lighter top and a slightly darker lower rim, a tiny
+  tuft of grass at one edge. Seen from the home camera, ab…
+art:
+  images: []
+  jobs:
+  - batch-65-growth-pieces:growth-path-stone
+sources:
+- doc: tools/imagegen/manifest/batch-65-growth-pieces.yaml
+kind: prop
+batch: batch-65-growth-pieces
+size: 1024x1024

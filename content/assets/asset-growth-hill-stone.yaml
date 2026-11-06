@@ -1,0 +1,21 @@
+id: asset-growth-hill-stone
+type: asset
+title_tr: growth-hill-stone
+title_en: growth-hill-stone (prop)
+status: in-production
+horizon: now
+summary: >-
+  A single small lawn piece for a cozy mobile game, as a game sprite on a transparent background,
+  in exactly the painting style, light and finish of the attached home island and tea stall.
+  One flat hill-path stone: a rounded warm-sand stone, slightly smaller and paler than a path
+  stone, with a little moss on its shaded side, lying flat as seen from about 17 degrees above.
+  Centered, its feet or base on the bottom edge o…
+art:
+  images: []
+  jobs:
+  - batch-65-growth-pieces:growth-hill-stone
+sources:
+- doc: tools/imagegen/manifest/batch-65-growth-pieces.yaml
+kind: prop
+batch: batch-65-growth-pieces
+size: 1024x1024

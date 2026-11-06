@@ -1,0 +1,21 @@
+id: asset-growth-lantern-string
+type: asset
+title_tr: growth-lantern-string
+title_en: growth-lantern-string (prop)
+status: in-production
+horizon: now
+summary: >-
+  A single small lawn piece for a cozy mobile game, as a game sprite on a transparent background,
+  in exactly the painting style, light and finish of the attached home island and tea stall.
+  A string of small warm paper lanterns hung along a terrace: a thin cord drooping in two
+  gentle curves between two short honey-wood posts, with seven small round paper lanterns
+  hanging from it in soft coral, cream and honey colours, e…
+art:
+  images: []
+  jobs:
+  - batch-65-growth-pieces:growth-lantern-string
+sources:
+- doc: tools/imagegen/manifest/batch-65-growth-pieces.yaml
+kind: prop
+batch: batch-65-growth-pieces
+size: 1024x1024

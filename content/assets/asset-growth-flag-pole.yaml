@@ -1,0 +1,21 @@
+id: asset-growth-flag-pole
+type: asset
+title_tr: growth-flag-pole
+title_en: growth-flag-pole (prop)
+status: in-production
+horizon: now
+summary: >-
+  A single small lawn piece for a cozy mobile game, as a game sprite on a transparent background,
+  in exactly the painting style, light and finish of the attached home island and tea stall.
+  A harbor flag on a slim wooden pole standing on a tiny mound of grass: a straight pale honey-wood
+  pole with a small round finial, and a soft cream triangular pennant with a gently wavy edge
+  flying to the right from near the top, with…
+art:
+  images: []
+  jobs:
+  - batch-65-growth-pieces:growth-flag-pole
+sources:
+- doc: tools/imagegen/manifest/batch-65-growth-pieces.yaml
+kind: prop
+batch: batch-65-growth-pieces
+size: 1024x1024

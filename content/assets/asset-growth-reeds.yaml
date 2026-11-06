@@ -1,0 +1,21 @@
+id: asset-growth-reeds
+type: asset
+title_tr: growth-reeds
+title_en: growth-reeds (prop)
+status: in-production
+horizon: now
+summary: >-
+  A single small lawn piece for a cozy mobile game, as a game sprite on a transparent background,
+  in exactly the painting style, light and finish of the attached home island and tea stall.
+  A small clump of pond reeds: four slender soft sage-green stalks of different heights leaning
+  gently apart, two of them topped with small plump cocoa-brown cattail heads, grass-green
+  blade leaves at the base, standing on a tiny mound…
+art:
+  images: []
+  jobs:
+  - batch-65-growth-pieces:growth-reeds
+sources:
+- doc: tools/imagegen/manifest/batch-65-growth-pieces.yaml
+kind: prop
+batch: batch-65-growth-pieces
+size: 1024x1024

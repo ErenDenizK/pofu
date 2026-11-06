@@ -1,0 +1,21 @@
+id: asset-growth-steam
+type: asset
+title_tr: growth-steam
+title_en: growth-steam (prop)
+status: in-production
+horizon: now
+summary: >-
+  A single small lawn piece for a cozy mobile game, as a game sprite on a transparent background,
+  in exactly the painting style, light and finish of the attached home island and tea stall.
+  One soft curl of steam rising from a chimney or a teapot: a pale warm-white wispy S-shaped
+  plume of three or four overlapping round puffs, thickest at the bottom, thinning and fading
+  toward the top, gentle translucent edges. One spri…
+art:
+  images: []
+  jobs:
+  - batch-65-growth-pieces:growth-steam
+sources:
+- doc: tools/imagegen/manifest/batch-65-growth-pieces.yaml
+kind: prop
+batch: batch-65-growth-pieces
+size: 1024x1024
