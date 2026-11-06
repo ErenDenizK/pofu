@@ -29,6 +29,7 @@ jobs:
   - id: gate-door-scene
     kind: ui
     name: gate-door-scene
+    deliver: {scale: 0.5}   # soft delivery under the upload cap (PR #308)
     size: 1024x1536
     canvas: 1024x1536
     transparent: false
@@ -57,6 +58,7 @@ jobs:
   - id: gate-door-bank
     kind: ui
     name: gate-door-bank
+    deliver: {scale: 0.5}   # soft delivery under the upload cap (PR #308)
     size: 1024x1536
     canvas: 1024x1536
     transparent: true
@@ -74,6 +76,7 @@ jobs:
   - id: gate-door-interior
     kind: ui
     name: gate-door-interior
+    deliver: {scale: 0.5}   # soft delivery under the upload cap (PR #308)
     size: 1024x1536
     canvas: 1024x1536
     transparent: true
@@ -91,6 +94,7 @@ jobs:
   - id: gate-door-leaf
     kind: ui
     name: gate-door-leaf
+    deliver: {scale: 0.5}   # soft delivery under the upload cap (PR #308)
     size: 1024x1536
     canvas: 1024x1536
     transparent: true
@@ -108,6 +112,7 @@ jobs:
   - id: gate-door-plaques
     kind: ui
     name: gate-door-plaques
+    deliver: {scale: 0.5}   # soft delivery under the upload cap (PR #308)
     size: 1024x1536
     canvas: 1024x1536
     transparent: true
@@ -125,6 +130,7 @@ jobs:
   - id: gate-door-grass
     kind: ui
     name: gate-door-grass
+    deliver: {scale: 0.5}   # soft delivery under the upload cap (PR #308)
     size: 1024x1536
     canvas: 1024x1536
     transparent: true
