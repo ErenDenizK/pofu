@@ -1,0 +1,176 @@
+batch: batch-48-gate-scenes
+manifest: tools/imagegen/manifest/batch-48-gate-scenes.yaml
+manifest_sha256: a28c1ba0fc771d58668781ea8b019ce50c0a8086c7aea588c5e00e15093ad0d5
+contact_sheet: design/art/takes/batch-48-gate-scenes/x-gate-round-door/contact.jpg
+jobs:
+  x-gate-round-door:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Both original and official locked
+      candidates preserve Pofu identity and curl, the close frontal open round door
+      with one paw holding it, the warm interior teacup/rug/shelf, cool lilac blue-hour
+      sky and exactly three BLANK wooden choice plaques: one larger warm front plaque
+      and two smaller quieter plaques. No letters, numbers, phone frame, painted native
+      UI chrome, glass panel or other character. Upper sky is calm and composition
+      reads as the intended intimate game landing. Both hard QA pass/warn-only; lower
+      style-lock load1.4229 versus1.4338 selects take1. Chroma/palette warnings remain
+      advisory for this authored exploration. Never promoted.'
+qa_reports:
+  1:
+    job: x-gate-round-door
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 59 (R1 51)
+      value: 58.8
+    - check: value_floor
+      status: pass
+      message: lightness p5 48 (R1 59)
+      value: 48.3
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.2 (R1 5.3)
+      value: 3.23
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.4
+      value: 1.4229
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 5.9, p95 14.9, off-palette 14.0% (top: #7777DD (2.7%), #8888DD
+        (2.6%)) (advisory in an exploration)'
+      value: 5.8565
+    info:
+      metrics_raw:
+        L_p5: 47.8
+        L_p50: 68.0
+        L_p95: 87.5
+        C_p50: 37.5
+        C_p95: 59.9
+        C_p99: 68.0
+        detail: 4.34
+      metrics_locked:
+        L_p5: 48.3
+        L_p50: 68.0
+        L_p95: 87.0
+        C_p50: 37.4
+        C_p95: 58.8
+        C_p99: 62.5
+        detail: 3.23
+    fingerprint: a452a335ac32f892
+  2:
+    job: x-gate-round-door
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 56 (R1 51)
+      value: 55.6
+    - check: value_floor
+      status: pass
+      message: lightness p5 51 (R1 59)
+      value: 51.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.1 (R1 5.3)
+      value: 3.1
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.4
+      value: 1.4338
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 5.3, p95 17.1, off-palette 14.6% (top: #7788DD (3.3%), #6677CC
+        (1.7%)) (advisory in an exploration)'
+      value: 5.2702
+    info:
+      metrics_raw:
+        L_p5: 50.9
+        L_p50: 69.2
+        L_p95: 87.7
+        C_p50: 38.4
+        C_p95: 56.6
+        C_p99: 66.8
+        detail: 4.17
+      metrics_locked:
+        L_p5: 51.4
+        L_p50: 69.2
+        L_p95: 87.1
+        C_p50: 38.4
+        C_p95: 55.6
+        C_p99: 62.2
+        detail: 3.1
+    fingerprint: a452a335ac32f892
+manual_review:
+  observed_note: 'Both original and official locked candidates preserve Pofu identity
+    and curl, the close frontal open round door with one paw holding it, the warm
+    interior teacup/rug/shelf, cool lilac blue-hour sky and exactly three BLANK wooden
+    choice plaques: one larger warm front plaque and two smaller quieter plaques.
+    No letters, numbers, phone frame, painted native UI chrome, glass panel or other
+    character. Upper sky is calm and composition reads as the intended intimate game
+    landing. Both hard QA pass/warn-only; lower style-lock load1.4229 versus1.4338
+    selects take1. Chroma/palette warnings remain advisory for this authored exploration.
+    Never promoted.'
+  excluded_takes: []
+sources:
+- batch: batch-48-gate-scenes
+  job: x-gate-round-door
+  take: 1
+  round: 1
+  logical_run: 20261106-b48-gate-scenes
+  source_file: /workspace/generated_images/exec-66b44040-c5c5-4b86-8089-d29524f5d022.png
+  returned_at: '2026-11-06T08:09:02.426Z'
+  prompt_sha256: 2c41834e740eadd5e35c41476d20b010253589442c8b93a20ed831e0fbf98c25
+  fingerprint: a452a335ac32f892
+  saved_at: '2026-11-06T08:09:02.900135+00:00'
+  original_generated_png_sha256: b8c04b96366679bb801cb5a6952762b1c9c4789b3fe6caac15b9ce2b93f2c291
+  dimensions:
+  - 1024
+  - 1536
+  rgba_sha256: c2f8602af154f7fd8c0090a3e30b28f144310b0ddc3a8c02f7f77aa93b1bbc70
+  inbox_png_sha256: 1fe10259cd6ce5cf3f221fd9a9a35fb3f163529420ba2b3ec14d7f522de9f0d6
+  qa_sha256: 0c78d3a6f4e78a54cb7a08702d0e44bdc9df1990e9caec055ad7517ac4cb3853
+- batch: batch-48-gate-scenes
+  job: x-gate-round-door
+  take: 2
+  round: 1
+  logical_run: 20261106-b48-gate-scenes
+  source_file: /workspace/generated_images/exec-9915ef8b-9fed-4d10-a3c8-a5accb5373df.png
+  returned_at: '2026-11-06T08:08:28.527Z'
+  prompt_sha256: 2c41834e740eadd5e35c41476d20b010253589442c8b93a20ed831e0fbf98c25
+  fingerprint: a452a335ac32f892
+  saved_at: '2026-11-06T08:08:29.003699+00:00'
+  original_generated_png_sha256: ae1dd061a6d743f4de2883bc7ebfb72fea3654a59fc659f52efc15c7e1b1c736
+  dimensions:
+  - 1024
+  - 1536
+  rgba_sha256: 23db083c4382b7d40e4e3044d9f1c3a29e42cf60a30dde676427350969612568
+  inbox_png_sha256: c1e4ea2d9a9ecfb4004d9006c401e7159e68908aac47c8d179ac6b20831812a9
+  qa_sha256: aff0af5af1d80dd025bceeed443385df53b47cd6014f1da2d8c2dca9d4733e7d
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
