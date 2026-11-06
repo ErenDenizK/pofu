@@ -209,7 +209,6 @@ Sourced facts are few; the rest is `[K]`.
 - **Spirited Away / Ghibli** `[K]`: mist is lit and tinted (blue-violet to warm
   amber from lanterns), lanterns on the far bank glow through it; the "bad" evening
   town is the most gorgeous image in the film.
-- **Journey dark section, Spiritfarer, Alba**: nothing sourced.
 
 ### C3. Rules for lowering chroma/brightness without losing "come in"
 
@@ -345,7 +344,6 @@ script) or `[D]`. Treat numbers as starting tolerances.
     L gap < 8, focal vs ground L gap < 25. Treat as a lint on art, not a
     taste debate. (Colour-script/LUT unification principle.)
 ## Open items
-
 - Verify hex/duration numbers against Jane Ng's GDC 2016 talk "The Art of
   Firewatch" and the GRIS artbook; neither reachable this session.
 - Allow blog.camposanto.com and blog.runevision.com to re-check fog claims.
