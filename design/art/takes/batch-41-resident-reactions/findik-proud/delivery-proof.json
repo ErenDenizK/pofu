@@ -1,0 +1,15 @@
+[
+  {
+    "take": 2,
+    "canvas": [
+      870,
+      1306
+    ],
+    "locked_png_bytes": 857842,
+    "lossless_default_bytes": 581618,
+    "best_lossless_webp": "/workspace/art-operator-runtime/run-20261105-night/batch-41-resident-reactions/encoding-probes/findik-proud/t2-lossless.webp",
+    "best_lossless_webp_bytes": 581618,
+    "rgba_sha256": "81964f74aefaa8e3f4e61a277207e61fdc2e58fb58844a15e1b5e163eb38ea36",
+    "eligible_delivery": true
+  }
+]

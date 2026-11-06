@@ -1,0 +1,67 @@
+{
+  "diagnostic_only": "Canonical comparison on a fixed central lower-body/paws ROI, not a new QA threshold. Global QA and visual body/ear/tail review remain authoritative.",
+  "takes": [
+    {
+      "take": 1,
+      "status": "warn",
+      "central_belly_paws_roi": [
+        307,
+        1121,
+        717,
+        1413
+      ],
+      "roi_edit_kept_at_canonical_tol10_px128": 0.8678271518544437,
+      "roi_alpha_iou": 0.991536879224214,
+      "global_checks": {
+        "canvas": {
+          "status": "pass",
+          "value": null
+        },
+        "harmony": {
+          "status": "warn",
+          "value": 68.3
+        },
+        "edit_stability": {
+          "status": "warn",
+          "value": 0.6706
+        },
+        "edit_chroma": {
+          "status": "pass",
+          "value": 0.8974
+        }
+      },
+      "hard_failures": []
+    },
+    {
+      "take": 2,
+      "status": "warn",
+      "central_belly_paws_roi": [
+        307,
+        1121,
+        717,
+        1413
+      ],
+      "roi_edit_kept_at_canonical_tol10_px128": 0.9287088873337999,
+      "roi_alpha_iou": 0.9978199885084665,
+      "global_checks": {
+        "canvas": {
+          "status": "pass",
+          "value": null
+        },
+        "harmony": {
+          "status": "pass",
+          "value": 71.2
+        },
+        "edit_stability": {
+          "status": "warn",
+          "value": 0.7031
+        },
+        "edit_chroma": {
+          "status": "pass",
+          "value": 0.8793
+        }
+      },
+      "hard_failures": []
+    }
+  ]
+}

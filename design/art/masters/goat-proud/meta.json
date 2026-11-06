@@ -1,0 +1,121 @@
+{
+  "job": "goat-proud",
+  "batch": "batch-41-resident-reactions",
+  "asset": "char__goat-proud",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-06T01:17:00+00:00",
+  "image": "design/art/masters/goat-proud/goat-proud.png",
+  "raw": "design/art/masters/goat-proud/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "138d6a093f3ea207",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nEdit the attached baby goat into a proud reaction. Change only the face and ears: the chin lifts high, both eyes become calm, content half-closed lids with the catchlights kept, the brows relax, the flat mouth becomes a small, satisfied closed smile, and the floppy ears perk up a little. The horn buds, beard tuft, tan patch, body, paws, colors and size stay exactly as they are.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: a smirk, a sneer, tears, a worried look, teeth, a ground shadow, text, motion lines.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, portrait 1024 x 1536.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/harbor-goat/harbor-goat.webp",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-06T00:36:52+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "char-guard",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "fit": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1024x1536"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 38 (R1 51)",
+        "value": 38.4
+      },
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 61 (at most 22), p98 96 (at least 90), spread 35 (at least 60) (warn-only until the founder has seen the light pilot)",
+        "value": 35.2
+      },
+      {
+        "check": "light_median",
+        "status": "pass",
+        "message": "day/subject: median L 89 (band 55-90)",
+        "value": 89.1
+      },
+      {
+        "check": "light_haze",
+        "status": "warn",
+        "message": "day/subject: dark-channel haze 0.36 (at most 0.20; no true dark means a wash) (warn-only until the founder has seen the light pilot)",
+        "value": 0.357
+      },
+      {
+        "check": "light_contrast",
+        "status": "warn",
+        "message": "day/subject: p75 local contrast 2.9 (at least 3.5)",
+        "value": 2.92
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 3.0 (R1 5.3)",
+        "value": 2.97
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.0, p95 2.9, off-palette 0.8% (top: #EE7766 (0.1%), #441100 (0.1%))",
+        "value": 1.0165
+      },
+      {
+        "check": "ground_line",
+        "status": "pass",
+        "message": "feet at 89.4% of the height (contract 88%)",
+        "value": 0.8939
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 78 against the char reference (outliers: L_p2)",
+        "value": 78.1
+      },
+      {
+        "check": "edit_stability",
+        "status": "warn",
+        "message": "66% of the parent level unchanged",
+        "value": 0.6593
+      },
+      {
+        "check": "edit_chroma",
+        "status": "pass",
+        "message": "chroma x1.00 of the parent level (drift compounds along a chain)",
+        "value": 0.9957
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Independent read-only comparison evidence: independent-reviews/review-findik-proud-goat-sleepy-goat-proud.json. Both initial takes are visually eligible: the exact detailed prompt asks a high lifted chin, content half-closed eyes WITH catchlights and a small symmetric satisfied closed smile, with ears perked. These details take precedence over the abbreviated header; no sneer, smirk, teeth, tears or motion. Two horn buds, beard, tan patch, lower body and paws remain visually registered. Global stability.6593/.6326 is advisory for the requested large face/chin edit; central body kept.9920/.9917 supports the identity review, without a new threshold. Both hard-pass; char-guard applies no grading, so take1 wins higher Harmony78.1 vs76.9. Exact full1024x1536 lossless473432 bytes fits. No retry or pixel alteration needed."
+}

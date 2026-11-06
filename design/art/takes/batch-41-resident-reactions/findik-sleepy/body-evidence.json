@@ -1,0 +1,150 @@
+{
+  "diagnostic_only": "Canonical comparison on a fixed central lower-body/paws ROI, not a new QA threshold. Global QA and visual body/ear/tail review remain authoritative.",
+  "takes": [
+    {
+      "take": 1,
+      "status": "fail",
+      "central_belly_paws_roi": [
+        261,
+        953,
+        609,
+        1202
+      ],
+      "roi_edit_kept_at_canonical_tol10_px128": 0.9887248872488725,
+      "roi_alpha_iou": 0.9961233358625923,
+      "global_checks": {
+        "canvas": {
+          "status": "pass",
+          "value": 0.8496
+        },
+        "harmony": {
+          "status": "pass",
+          "value": 71.6
+        },
+        "edit_stability": {
+          "status": "pass",
+          "value": 0.9363
+        },
+        "edit_chroma": {
+          "status": "pass",
+          "value": 0.9694
+        }
+      },
+      "hard_failures": [
+        {
+          "check": "palette_drift",
+          "status": "fail",
+          "message": "mean dE 3.1, p95 14.8, off-palette 9.6% (top: #AA5533 (2.4%), #BB6633 (2.1%))",
+          "value": 3.0675
+        }
+      ]
+    },
+    {
+      "take": 2,
+      "status": "fail",
+      "central_belly_paws_roi": [
+        261,
+        953,
+        609,
+        1202
+      ],
+      "roi_edit_kept_at_canonical_tol10_px128": 0.9756047560475605,
+      "roi_alpha_iou": 0.9960274766200446,
+      "global_checks": {
+        "canvas": {
+          "status": "pass",
+          "value": 0.8496
+        },
+        "harmony": {
+          "status": "pass",
+          "value": 72.7
+        },
+        "edit_stability": {
+          "status": "pass",
+          "value": 0.9368
+        },
+        "edit_chroma": {
+          "status": "pass",
+          "value": 0.9309
+        }
+      },
+      "hard_failures": [
+        {
+          "check": "palette_drift",
+          "status": "fail",
+          "message": "mean dE 3.0, p95 14.5, off-palette 9.1% (top: #AA5533 (2.0%), #BB6633 (1.5%))",
+          "value": 3.0495
+        }
+      ]
+    },
+    {
+      "take": 3,
+      "status": "fail",
+      "central_belly_paws_roi": [
+        261,
+        953,
+        609,
+        1202
+      ],
+      "roi_edit_kept_at_canonical_tol10_px128": 0.9263017630176302,
+      "roi_alpha_iou": 0.9950637427062304,
+      "global_checks": {
+        "canvas": {
+          "status": "pass",
+          "value": 0.8496
+        },
+        "harmony": {
+          "status": "pass",
+          "value": 71.5
+        },
+        "edit_stability": {
+          "status": "pass",
+          "value": 0.9043
+        },
+        "edit_chroma": {
+          "status": "pass",
+          "value": 1.0142
+        }
+      },
+      "hard_failures": [
+        {
+          "check": "palette_drift",
+          "status": "fail",
+          "message": "mean dE 3.4, p95 15.2, off-palette 11.0% (top: #BB6633 (2.2%), #AA5533 (1.8%))",
+          "value": 3.3715
+        }
+      ]
+    },
+    {
+      "take": 4,
+      "status": "warn",
+      "central_belly_paws_roi": [
+        261,
+        953,
+        609,
+        1202
+      ],
+      "roi_edit_kept_at_canonical_tol10_px128": 0.9822673226732267,
+      "roi_alpha_iou": 0.99661957061648,
+      "global_checks": {
+        "canvas": {
+          "status": "pass",
+          "value": 0.8496
+        },
+        "harmony": {
+          "status": "pass",
+          "value": 73.0
+        },
+        "edit_stability": {
+          "status": "pass",
+          "value": 0.9577
+        },
+        "edit_chroma": {
+          "status": "pass",
+          "value": 0.9741
+        }
+      },
+      "hard_failures": []
+    }
+  ]
+}

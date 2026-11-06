@@ -1,0 +1,28 @@
+[
+  {
+    "take": 1,
+    "canvas": [
+      1024,
+      1536
+    ],
+    "locked_png_bytes": 818637,
+    "lossless_default_bytes": 549518,
+    "best_lossless_webp": "/workspace/art-operator-runtime/run-20261105-night/batch-41-resident-reactions/encoding-probes/goat-sleepy/t1-lossless.webp",
+    "best_lossless_webp_bytes": 549518,
+    "rgba_sha256": "e91800052fffb50ebbdcb0093ac60979be4fa6208d07e56c74e7975c51ceea98",
+    "eligible_delivery": true
+  },
+  {
+    "take": 2,
+    "canvas": [
+      1024,
+      1536
+    ],
+    "locked_png_bytes": 704366,
+    "lossless_default_bytes": 467802,
+    "best_lossless_webp": "/workspace/art-operator-runtime/run-20261105-night/batch-41-resident-reactions/encoding-probes/goat-sleepy/t2-lossless.webp",
+    "best_lossless_webp_bytes": 467802,
+    "rgba_sha256": "453581e3cbb57fb75e2dcffac14dedd3bb998dd956328b05ea6a76febf7e8d2a",
+    "eligible_delivery": true
+  }
+]

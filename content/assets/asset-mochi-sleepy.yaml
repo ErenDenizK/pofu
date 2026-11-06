@@ -4,16 +4,17 @@ title_tr: mochi-sleepy
 title_en: mochi-sleepy (char)
 status: in-production
 horizon: now
-summary: >-
-  Edit the attached bunny, Mochi, into a sleepy nap face. Change only the eyes and ears: both
-  eyes become gently closed, a thin soft slightly downward-curved dark line where the lower
-  edge of each eye was, with fur above it; both long ears fold a little down and outward.
-  The mouth relaxes into a calm small line. Everything else stays exactly as it is.
+summary: 'Edit the attached bunny, Mochi, into a sleepy nap face. Change only the
+  eyes and ears: both eyes become gently closed, a thin soft slightly downward-curved
+  dark line where the lower edge of each eye was, with fur above it; both long ears
+  fold a little down and outward. The mouth relaxes into a calm small line. Everything
+  else stays exactly as it is.'
 links:
   variant_of:
   - asset-mochi-v2
 art:
-  images: []
+  images:
+  - design/art/masters/mochi-sleepy/mochi-sleepy.webp
   jobs:
   - batch-41-resident-reactions:mochi-sleepy
 sources:

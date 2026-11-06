@@ -1,0 +1,28 @@
+[
+  {
+    "take": 1,
+    "canvas": [
+      1024,
+      1536
+    ],
+    "locked_png_bytes": 688249,
+    "lossless_default_bytes": 455890,
+    "best_lossless_webp": "/workspace/art-operator-runtime/run-20261105-night/batch-41-resident-reactions/encoding-probes/goat-happy/t1-lossless.webp",
+    "best_lossless_webp_bytes": 455890,
+    "rgba_sha256": "3c840d57e5bfe6c82b8bb9625c649d17769db5814f00595af6b3f9b8a2789121",
+    "eligible_delivery": true
+  },
+  {
+    "take": 2,
+    "canvas": [
+      1024,
+      1536
+    ],
+    "locked_png_bytes": 704256,
+    "lossless_default_bytes": 467678,
+    "best_lossless_webp": "/workspace/art-operator-runtime/run-20261105-night/batch-41-resident-reactions/encoding-probes/goat-happy/t2-lossless.webp",
+    "best_lossless_webp_bytes": 467678,
+    "rgba_sha256": "8c4081a900295c93c994cc735132741fe292e01877d4647c9ab6643600b35f80",
+    "eligible_delivery": true
+  }
+]

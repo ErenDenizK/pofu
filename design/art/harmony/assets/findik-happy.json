@@ -1,0 +1,56 @@
+{
+ "after": {
+  "C_mean": 24.944,
+  "C_p50": 20.594,
+  "C_p95": 49.711,
+  "L_mean": 78.387,
+  "L_p2": 41.999,
+  "L_p98": 95.761,
+  "detail": 14.511,
+  "edge": 0.152,
+  "tint_a": 4.078,
+  "tint_b": 8.628,
+  "warmth_b": 20.911
+ },
+ "before": {
+  "C_mean": 24.944,
+  "C_p50": 20.594,
+  "C_p95": 49.711,
+  "L_mean": 78.387,
+  "L_p2": 41.999,
+  "L_p98": 95.761,
+  "detail": 14.511,
+  "edge": 0.152,
+  "tint_a": 4.078,
+  "tint_b": 8.628,
+  "warmth_b": 20.911
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "char",
+ "matched_to": "char",
+ "outliers_after": [
+  "L_p2",
+  "detail"
+ ],
+ "outliers_before": [
+  "L_p2",
+  "detail"
+ ],
+ "ppu": 29.0,
+ "reference": false,
+ "score_after": 74.6,
+ "score_before": 74.6,
+ "shipped": false,
+ "source": "design/art/masters/findik-happy/findik-happy.webp",
+ "source_sha": "c9ba3eab8189c85b"
+}

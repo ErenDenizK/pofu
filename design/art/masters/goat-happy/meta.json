@@ -1,0 +1,121 @@
+{
+  "job": "goat-happy",
+  "batch": "batch-41-resident-reactions",
+  "asset": "char__goat-happy",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-06T00:37:17+00:00",
+  "image": "design/art/masters/goat-happy/goat-happy.png",
+  "raw": "design/art/masters/goat-happy/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "95a237d2bcb5c7f5",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nEdit the attached baby goat into a happy reaction. Change only the eyes, brows and mouth: both eyes become happy closed arcs, the classic smiling ^ shape, each a thick soft dark upward-curved arc at the height of the top of the original eye; the low indignant brows relax; the flat, pressed mouth turns into a small, slightly reluctant smile. The horn buds, floppy ears, beard tuft, tan patch, body, paws, colors and size stay exactly as they are.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: teeth, a wide grin, tears, a worried look, a ground shadow, text, motion lines.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, portrait 1024 x 1536.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/harbor-goat/harbor-goat.webp",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-06T00:20:00+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "char-guard",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "fit": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1024x1536"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 40 (R1 51)",
+        "value": 39.9
+      },
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 60 (at most 22), p98 96 (at least 90), spread 36 (at least 60) (warn-only until the founder has seen the light pilot)",
+        "value": 36.5
+      },
+      {
+        "check": "light_median",
+        "status": "pass",
+        "message": "day/subject: median L 89 (band 55-90)",
+        "value": 89.4
+      },
+      {
+        "check": "light_haze",
+        "status": "warn",
+        "message": "day/subject: dark-channel haze 0.34 (at most 0.20; no true dark means a wash) (warn-only until the founder has seen the light pilot)",
+        "value": 0.345
+      },
+      {
+        "check": "light_contrast",
+        "status": "warn",
+        "message": "day/subject: p75 local contrast 3.1 (at least 3.5)",
+        "value": 3.12
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 3.0 (R1 5.3)",
+        "value": 2.98
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.0, p95 2.7, off-palette 0.7% (top: #552211 (0.1%), #662211 (0.1%))",
+        "value": 0.9635
+      },
+      {
+        "check": "ground_line",
+        "status": "pass",
+        "message": "feet at 89.3% of the height (contract 88%)",
+        "value": 0.8932
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 80 against the char reference (outliers: L_p2)",
+        "value": 79.7
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "95% of the parent level unchanged",
+        "value": 0.9546
+      },
+      {
+        "check": "edit_chroma",
+        "status": "pass",
+        "message": "chroma x1.02 of the parent level (drift compounds along a chain)",
+        "value": 1.0204
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Both initial takes hard-pass and show closed happy arcs, relaxed brows and a small reluctant closed smile, without a wide grin or teeth. Horn buds, floppy ears, beard tuft, tan patch, body and paws preserve the approved goat. Both global edit stability .9546 and central belly/paws kept .9999 support the visual identity review. Character-guard applies no grading; take1 wins Harmony79.7 vs79.4. Exact full-canvas lossless WebP455890 bytes fits the cap. Light warnings remain visible; no local pixel edits or further generation. The existing harbor consumer receives only its four planned reaction links with this first family success, with no invented goat character node."
+}

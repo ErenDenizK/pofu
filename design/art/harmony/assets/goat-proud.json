@@ -1,0 +1,54 @@
+{
+ "after": {
+  "C_mean": 17.27,
+  "C_p50": 13.572,
+  "C_p95": 38.335,
+  "L_mean": 86.368,
+  "L_p2": 60.522,
+  "L_p98": 96.079,
+  "detail": 5.743,
+  "edge": 0.155,
+  "tint_a": 5.137,
+  "tint_b": 9.232,
+  "warmth_b": 14.269
+ },
+ "before": {
+  "C_mean": 17.27,
+  "C_p50": 13.572,
+  "C_p95": 38.335,
+  "L_mean": 86.368,
+  "L_p2": 60.522,
+  "L_p98": 96.079,
+  "detail": 5.743,
+  "edge": 0.155,
+  "tint_a": 5.137,
+  "tint_b": 9.232,
+  "warmth_b": 14.269
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "char",
+ "matched_to": "char",
+ "outliers_after": [
+  "L_p2"
+ ],
+ "outliers_before": [
+  "L_p2"
+ ],
+ "ppu": 29.0,
+ "reference": false,
+ "score_after": 78.1,
+ "score_before": 78.1,
+ "shipped": false,
+ "source": "design/art/masters/goat-proud/goat-proud.webp",
+ "source_sha": "375996eaf638be5e"
+}

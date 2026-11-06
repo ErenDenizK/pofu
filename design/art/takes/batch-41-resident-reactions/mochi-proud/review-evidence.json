@@ -1,0 +1,46 @@
+{
+  "reviewer": "experience_delivery_adapter",
+  "independent_evidence_file": "/workspace/art-operator-runtime/run-20261105-night/batch-41-resident-reactions/independent-reviews/review-mochi-proud-goat-surprised.json",
+  "independent_evidence_sha256": "bd61abfdf815f643fa2bf042c77d33edbaa6c5704a197e05919f2ae0d93a077b",
+  "job": "mochi-proud",
+  "review": {
+    "evidence": {
+      "parent": "d107327f7c35e283895babdadc487326cff93e13178ca594bc70285770f62ee5",
+      "takes": {
+        "1": {
+          "source": "/workspace/generated_images/exec-36657928-c479-4525-8477-3a5be5ac6cd6.png",
+          "original_sha256": "81032916572324198a5a3848ca329cc4ba0d445616dfc7e1828c8bc509d4f8c5",
+          "locked_sha256": "140db4f7927cb6364ad37522dd14fc0049d797503b2d87f88cee47bd639e6860"
+        },
+        "2": {
+          "source": "/workspace/generated_images/exec-100599a1-23c7-434d-a8f5-11aa4bf70871.png",
+          "original_sha256": "ded51707d8652e13c55b95e46027764309785400bd9c89ab809aca87c0d08060",
+          "locked_sha256": "d0b70e93a59852db1e386541702d097c0b2165b061c07436d5eb82610af4427e"
+        }
+      }
+    },
+    "take1": {
+      "eligible": true,
+      "reason": "Explicitly requested tall upright long ears, warm content half-closed eyes with catchlights, small closed confident smile/chin lifted. Body, paws and feet visually preserve parent in aligned lower-body comparison. No curl, smirk, teeth, cast shadow, text or opaque backdrop."
+    },
+    "take2": {
+      "eligible": false,
+      "reason": "Posted info.alignment.scale=1.1769 enlarges the torso and moves front paws against the same-canvas parent; the body/size contract is visibly broken. Face/ears themselves satisfy the proud brief. No global edit-stability threshold or lop-ear restriction was invented.",
+      "alignment_scale": 1.1769
+    },
+    "preview": "/workspace/art-operator-runtime/run-20261105-night/batch-41-resident-reactions/independent-reviews/mochi-proud-independent-preview.jpg",
+    "body_comparison": "/workspace/art-operator-runtime/run-20261105-night/batch-41-resident-reactions/independent-reviews/mochi-proud-body-comparison.jpg"
+  },
+  "owner_decision": {
+    "eligible": [
+      1
+    ],
+    "excluded": [
+      2
+    ],
+    "pick": 1,
+    "note": "Independent read-only review accepts take1: tall upright ears are expressly requested, warm half-closed catchlit eyes, small closed confident smile and lifted chin; no curl, smirk or teeth. Parent lower-body/paws/feet remain visually registered. Exclude take2 because official alignment scale1.1769 visibly enlarges the torso and shifts front paws, violating unchanged body/size; this is not an invented stability threshold or an objection to upright ears. Independently, its best exact lossless WebP767690 bytes exceeds614400; all failed encodings are preserved. Take1 exact full-canvas lossless593344 bytes fits. Both numerical QA reports and advisory warnings remain available. No further pair is justified because take1 is fully eligible. Independent evidence: independent-reviews/review-mochi-proud-goat-surprised.json."
+  },
+  "source_originals_unchanged": true,
+  "local_art_edits": false
+}

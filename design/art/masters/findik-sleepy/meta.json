@@ -1,0 +1,134 @@
+{
+  "job": "findik-sleepy",
+  "batch": "batch-41-resident-reactions",
+  "asset": "char__findik-sleepy",
+  "take": 4,
+  "takes_considered": 4,
+  "approved_at": "2026-11-06T00:56:56+00:00",
+  "image": "design/art/masters/findik-sleepy/findik-sleepy.png",
+  "raw": "design/art/masters/findik-sleepy/raw.webp",
+  "raw_encoding": "webp q95",
+  "fingerprint": "4b04a076442f0088",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nEdit the attached hedgehog, Fındık, into a sleepy nap face. Change only the eyes and mouth: both eyes become gently closed, a thin soft slightly downward-curved dark line where the lower edge of each eye was, and the mouth relaxes into a calm small line. His spines, ears, body, paws, colors and size stay exactly as they are.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: tears, a worried look, open eyes, teeth, a ground shadow, text, motion lines, zzz.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, portrait 1024 x 1536.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/findik-base/findik-base.webp",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-06T00:37:26+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "char-guard",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": {
+    "scale": 1.0013,
+    "cx": 435.0,
+    "cy": 1169.0,
+    "dx": 1,
+    "dy": 1
+  },
+  "fit": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1024x1536 scaled x0.850 into 870x1306",
+        "value": 0.8496
+      },
+      {
+        "check": "edit_alignment",
+        "status": "pass",
+        "message": "the edit rescaled the object x0.999 and moved it; aligned back to the parent",
+        "value": 1.0013
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 50 (R1 51)",
+        "value": 50.5
+      },
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 44 (at most 22), p98 96 (at least 90), spread 52 (at least 60) (warn-only until the founder has seen the light pilot)",
+        "value": 51.8
+      },
+      {
+        "check": "light_median",
+        "status": "pass",
+        "message": "day/subject: median L 86 (band 55-90)",
+        "value": 85.7
+      },
+      {
+        "check": "light_haze",
+        "status": "pass",
+        "message": "day/subject: dark-channel haze 0.13 (at most 0.20; no true dark means a wash)",
+        "value": 0.133
+      },
+      {
+        "check": "light_contrast",
+        "status": "pass",
+        "message": "day/subject: p75 local contrast 8.9 (at least 3.5)",
+        "value": 8.95
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 6.1 (R1 5.3)",
+        "value": 6.1
+      },
+      {
+        "check": "palette_drift",
+        "status": "warn",
+        "message": "mean dE 3.1, p95 14.0, off-palette 8.5% (top: #AA5533 (2.3%), #BB6633 (1.5%))",
+        "value": 3.0671
+      },
+      {
+        "check": "ground_line",
+        "status": "pass",
+        "message": "feet at 89.6% of the height (contract 88%)",
+        "value": 0.8959
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 73 against the char reference (outliers: L_p2, detail)",
+        "value": 73.0
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "96% of the parent level unchanged",
+        "value": 0.9577
+      },
+      {
+        "check": "edit_chroma",
+        "status": "pass",
+        "message": "chroma x0.97 of the parent level (drift compounds along a chain)",
+        "value": 0.9741
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Initial takes1/2 and sole retry take3 fail the authoritative palette_drift check (exact reports retained; mean dE3.1/3.0/3.4, p9514.8/14.5/15.2). Retry4 alone hard-passes, with genuine thin closed lower eyelids, fur above, calm small mouth line, and no zzz, tears, worried brow or teeth. Parent/locked comparison confirms spine silhouette, ears, compact body and all paws remain close to base; central body kept.9823 and alphaIoU.9966, global kept.9577 are diagnostic support rather than added thresholds. Same870x1306 canonical parent canvas. Exact lossless567318 bytes fits; higher off-palette failures never waived. Pick4 is the only eligible candidate. All24 batch originals and every initial/retry callback remain immutable; no further generation for this job."
+}

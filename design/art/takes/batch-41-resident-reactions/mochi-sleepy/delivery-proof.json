@@ -1,0 +1,28 @@
+[
+  {
+    "take": 1,
+    "canvas": [
+      1024,
+      1536
+    ],
+    "locked_png_bytes": 671500,
+    "lossless_default_bytes": 440158,
+    "best_lossless_webp": "/workspace/art-operator-runtime/run-20261105-night/batch-41-resident-reactions/encoding-probes/mochi-sleepy/t1-lossless.webp",
+    "best_lossless_webp_bytes": 440158,
+    "rgba_sha256": "9616f33749d980a791c484cff77fb2ac5ea3f1967387443010c85824f0c0dbc6",
+    "eligible_delivery": true
+  },
+  {
+    "take": 2,
+    "canvas": [
+      1024,
+      1536
+    ],
+    "locked_png_bytes": 667737,
+    "lossless_default_bytes": 431392,
+    "best_lossless_webp": "/workspace/art-operator-runtime/run-20261105-night/batch-41-resident-reactions/encoding-probes/mochi-sleepy/t2-lossless.webp",
+    "best_lossless_webp_bytes": 431392,
+    "rgba_sha256": "422d6b7220b4bc750d8b2140771902f5aa7fe781668a6a6d545370abb4a6ba83",
+    "eligible_delivery": true
+  }
+]
