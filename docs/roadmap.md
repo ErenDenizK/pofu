@@ -4,6 +4,8 @@ _Living document. Last updated: 2026-11-05 (rebuilt in the housekeeping
 pass; the stage G/W plan of 2026-11-02 is in the
 [archive](archive/iteration-plan.md))._
 
+Every thread, decision and half-finished item, with its status: [the tracker](tracker.md).
+
 ## Status (2026-11-06)
 
 - **Built and merged:** the Screen Time gate v2 as the `PofuLive` target
@@ -137,6 +139,11 @@ The lead keeps this list current: each track names its next step only.
 | **Residents** | Wave 3: ten resident-to-resident scenes (`pofu-story`), daily visits | nothing |
 | **App** | Onboarding (pick the apps, the first resisted reach, Pofu wakes); the widget and the week page sharing the sky; accessibility; haptics | the gate spec for the onboarding's look |
 | **Health** | The frame meter after weather and night; the snail drift in `integrate.py`; prune worktrees | nothing |
+| **Pofu** | Wire the rig parts (mouths, ears, paws on main) into `PofuCompanion` by mood; Pofu's normal tuning | nothing |
+| **Story and lore** | Close #135 and carry its live ideas into the lore bible; the Book One island sheets (#271) replace the story map poster | nothing |
+| **Sound** | Five world cues (level-up, visitor, gift, Koke wakes, evening bell) through `SoundEngine`; then an ambience bed | nothing |
+| **Business** | Monetization v2 answer, then its ADR; the Asian-market question studied or dropped | the founder |
+| **Process** | The English rename window planned or dropped; close #108; a weekly device install with a checklist | nothing |
 | **Later** | Emanet, Çanlar (recall), Revontuli, the Gezgin rig, sound, App Store assets; membership day 1 when the account arrives | the membership |
 
 ## Day 1 of the paid membership
