@@ -192,9 +192,7 @@ struct FocusSessionView: View {
                 Button("End early") {
                     confirmsEnd = true
                 }
-                .font(PofuFont.headline)
-                .foregroundStyle(PofuColor.accent)
-                .frame(minHeight: PofuSize.minimumTouch)
+                .buttonStyle(PofuTextButtonStyle())
                 .confirmationDialog(
                     Text("End now? You keep \(soFar) seeds."),
                     isPresented: $confirmsEnd,

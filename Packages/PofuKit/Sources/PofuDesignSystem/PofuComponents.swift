@@ -106,6 +106,26 @@ public struct PofuSecondaryButtonStyle: ButtonStyle {
     }
 }
 
+/// The quietest action: an accent label with no fill, at least 44 pt tall.
+/// One shared look for every "text button" (a skip, a later, a close), so
+/// no screen hand-rolls its own.
+public struct PofuTextButtonStyle: ButtonStyle {
+    @Environment(\.isEnabled) private var isEnabled
+
+    public init() {}
+
+    public func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .font(PofuFont.headline)
+            .multilineTextAlignment(.center)
+            .foregroundStyle(isEnabled ? PofuColor.accent : PofuColor.textTertiary)
+            .padding(.horizontal, PofuSpacing.l)
+            .frame(maxWidth: .infinity, minHeight: PofuSize.minimumTouch)
+            .opacity(configuration.isPressed ? 0.6 : 1)
+            .contentShape(Rectangle())
+    }
+}
+
 /// A selectable chip or card. Selected: accent tint, accent label, and a
 /// heavier accent border, so selection never relies on color alone (the
 /// caller adds a checkmark where the content allows it).
