@@ -486,3 +486,11 @@ His views (translated), not orders; the decisions are ours. Handled in
 2. Think through the game design of all future systems: the island's step-by-step growth and the other islands. Handled: home growth stays as specified (home progression §3, home layout); the new piece is [the roots](../design/island-undersides.md): the underside grows by island level and keeps a keepsake from every healed island.
 3. Evaluate a design and story pass for the islands' undersides ("not every island needs it"). Handled: the same doc §5: Çağlayan, Emanet and Revontuli get an underside that carries the wound; Çanlar and Mehtap small; Koke, Arı and Gezgin none. Concepts queued (`batch-49-roots`, P10).
 4. Report back the results of every task since last night. Handled in chat.
+
+## 2026-11-06 (late morning): yes to keepsake memories; the membership deck; one combined report
+
+1. Yes to tapping a keepsake to replay a memory; he reminds Codex too. Handled: [the roots](../design/island-undersides.md) §7, decided.
+2. Send the presentation prepared for the membership; the work keeps flowing; he will ask for the personal device test once things settle. Handled: a PDF deck in chat (the results since last night, then monetization v2 as slides).
+3. Is the lead waiting on anything, or can it plan improvements and next steps? Handled in chat: only the monetization yes/no and the lore PR #135; everything else moves.
+4. Did we design, for every island and the things inside it, the positions and levels step by step until complete? Handled: home yes (home progression, home layout); story islands only at the arc level (stages per island) with Koke and Çağlayan in detail. Next: Book One island sheets for the rest (layout, stages, engine, residents, underside, keepsake, gift).
+5. Too many tasks since last night to follow; present them separately or as a whole. Handled: the deck's first part.

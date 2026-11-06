@@ -108,8 +108,9 @@ the cure is told better from below.
 - **Order:** after Koke is finished and alongside Çağlayan (its waterfall
   keepsake and its underside are the first real use).
 
-## 7. Open question (recommendation first)
+## 7. Decided
 
-1. **Tapping a keepsake replays a memory** (a one-line memory of that
-   island, in the residents' voice)? Recommend yes, once a day per piece, so
-   the roots become a place players revisit. Alternative: motion only.
+1. **Tapping a keepsake replays a memory** (founder, 2026-11-06: yes): a
+   one-line memory of that island in a resident's voice, once a day per
+   piece, so the roots become a place players revisit. Lines are written
+   with the `pofu-story` skill when each island ships.
