@@ -76,12 +76,13 @@ grow, and each week ends with a screenshot sheet or a short video for him.
 - **Visitors and residents:** **residents visit daily** (founder); then
   Animal Crossing–style relationships: residents talk to each other, visit
   each other, have small scenes (wave 3).
-- **Book One islands in the order of
-  [book-one-islands](design/book-one-islands.md):** a wonder-island model in
+- **Book One islands in the order of the canonical
+  [Book One story map](product/story-map/book-one.md)** (layouts and
+  stages in [book-one-islands](design/book-one-islands.md)): a wonder-island model in
   `PofuCore` (arrival by order and gates, stages, engine, beats, gift;
   [game plan §10](product/game-plan.md#10-what-changes-in-code-and-docs-in-order)),
   the map with rumours, then the main islands one by one with fillers
-  drifting in between. That sheet fixes the order (the story map poster was never made); the
+  drifting in between. The story map fixes the order; the
   acts in [monetization v2 §2.1](product/monetization-v2.md#21-units)
   follow it.
 - **Gezgin (the whale Nazlı) as a layered rig:** body, tail, fins and the
@@ -142,7 +143,7 @@ The lead keeps this list current: each track names its next step only.
 | **App** | Onboarding (pick the apps, the first resisted reach, Pofu wakes); the widget and the week page sharing the sky; accessibility; haptics | the gate spec for the onboarding's look |
 | **Health** | The frame meter after weather and night; the snail drift in `integrate.py`; prune worktrees | nothing |
 | **Pofu** | Wire the rig parts (mouths, ears, paws on main) into `PofuCompanion` by mood; Pofu's normal tuning | nothing |
-| **Story and lore** | Close #135 and carry its live ideas into the lore bible; the Book One island sheets (#271) replace the story map poster | nothing |
+| **Story and lore** | Close #135 and carry its live ideas into the lore bible; Book One follows the [story map](product/story-map/book-one.md) (canonical; its §8 open decisions) | nothing |
 | **Sound** | Five world cues (level-up, visitor, gift, Koke wakes, evening bell) through `SoundEngine`; then an ambience bed | nothing |
 | **Business** | Monetization v2 answer, then its ADR; the Asian-market question studied or dropped | the founder |
 | **Process** | The English rename window planned or dropped; close #108; a weekly device install with a checklist | nothing |

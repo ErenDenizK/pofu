@@ -4,15 +4,20 @@ title_tr: Leylek
 title_en: The flying nest
 status: idea
 horizon: maybe
-summary: >-
-  A giant woven nest big enough for a cottage, carried across a warm windy dusk by a V of storks holding ribbons; it never touches the clouds. Arrives with each real migration and flies on after about six weeks. Resident: Lale. Game: glide on thermals city by city along the Europe–Africa flyway (Tiny Wings' verb).
+summary: 'Story map (canonical): the seasonal filler (the seventh of Book One''s fillers,
+  lead 2026-11-06). Lale, an old stork who comes in the real spring and clacks her beak instead
+  of laughing; she can appear anywhere in the book. Secret in Book Two.'
 notes:
-- >-
-  Design loop 2 (docs/product/design-loop/loop-2.md): the nest direction (a woven nest carried by storks, backlit hot windy dusk) is kept as a seasonal visitor, not a Book One step: it passes over during the real stork migration windows and carries Lale; the old Bekçi rode south in it. Profiled for the schedule in loop 3.
-- >-
-  Revision 2026-11-03 (archipelago-system.md 1A, 11): redesigned from 2/10 (pretty storks on a green island): the island is the nest. Gift to home: a stork pair nests on the windmill each migration.
-- >-
-  Developed from idea-island-leylek.
+- Reconciled 2026-11-06 with the canonical Book One story map (docs/product/story-map/book-one.md);
+  older notes below are history where they disagree.
+- 'Design loop 2 (docs/product/design-loop/loop-2.md): the nest direction (a woven nest carried
+  by storks, backlit hot windy dusk) is kept as a seasonal visitor, not a Book One step: it
+  passes over during the real stork migration windows and carries Lale; the old Bekçi rode
+  south in it. Profiled for the schedule in loop 3.'
+- 'Revision 2026-11-03 (archipelago-system.md 1A, 11): redesigned from 2/10 (pretty storks
+  on a green island): the island is the nest. Gift to home: a stork pair nests on the windmill
+  each migration.'
+- Developed from idea-island-leylek.
 links:
   requires:
   - island-aycicegi
@@ -25,15 +30,16 @@ links:
   supersedes:
   - idea-island-leylek
 sources:
+- doc: docs/product/story-map/book-one.md
 - doc: docs/archive/archipelago-system.md
   anchor: '#11-island-concepts'
 - doc: docs/archive/archipelago-system.md
   anchor: '#3-the-island-schema'
 source: lead-brainstorm
-theme_en: 'A giant nest carried by a flock of storks'
-ritual_en: 'Thermals (glide)'
+theme_en: A giant nest carried by a flock of storks
+ritual_en: Thermals (glide)
 residents:
 - char-lale
 unlock:
   day: 26
-  rule_en: 'Seasonal: the first real spring or autumn migration after 26 tended days'
+  rule_en: 'Seasonal filler: the real spring, anywhere in Book One (story map)'

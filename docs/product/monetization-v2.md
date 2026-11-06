@@ -40,7 +40,7 @@ game-design pillar 7 and A6/A7 amended, then `PofuCore` tests before UI.
 | The companion | Pofu and Mochi, every emotion, wellbeing, the morning number, "sleeps it off", daily resident visits | [ADR-0017](../adr/0017-pofu-never-dies.md); Pofu's affection is never for sale |
 | Earning | Seeds, calm, rounds: identical for free and paid | v1 §1 rule 4 |
 | The home | Ayçiçeği and İskele, all eight stations to L5, island levels 1 to 10, **Tam Çiçek**, decor sets 1 Bahçe and 4 Liman, the garden game | A complete, finishable game; a station's next level is a continuation and never locks |
-| Story | The Prologue and **Act I** (Koke, Çağlayan; the waterfall restored), the flow game | A real first chapter with a real ending |
+| Story | The Prologue (Açılış and Gezgin's arrival) and **Act I** (Çağlayan and Revontuli, up to Olta, the book's midpoint), with the fillers that drift in during them (Koke, Çanlar, Martı Kayası), the flow and recall games | A real first chapter with a real ending: the aurora rises and Mochi says "Onu tanırdım." |
 | Seasons | Every season's look and its visitor, every year | Code-first, no FOMO |
 | Friends | Postcards, a friend's boat at your pier, shared streaks | Social grows the product; paywalling it shrinks it |
 | Memory | The Seyir defteri: re-read every scene you have seen, forever | Memories never lock |
@@ -54,9 +54,9 @@ materials earlier by visiting places, never by earning faster.
 
 ### Paid: Pofu Üyelik
 
-1. **Book One from Act II** (Emanet to the Gezgin finale) and **every
+1. **Book One from Act II** (Emanet, then Mehtap and the finale) and **every
    later Book**, with their islands, residents and hilltop add-ons.
-2. **Fillers**, **mastery L6 to L10** and **Altın Ada**, **season decor
+2. **Fillers after Act I** (Fanus, Pervane, Çömlek), **mastery L6 to L10** and **Altın Ada**, **season decor
    sets** and the hive.
 
 Never paid, in any model: speed, seeds, calm, materials as a purchase,
@@ -68,10 +68,14 @@ waiting, a stronger or weaker gate, or anything Pofu feels.
 
 - **Book**: one layer of the [deep-lore iceberg](deep-lore.md#1-the-iceberg),
   six to eight weeks of tended days; later Books ship as app updates.
-- **Act**: two or three main islands with a real ending. Provisionally
-  (mains under rewrite): **Prologue** (home, days 1 to 3), **Act I**
-  (Koke, Çağlayan; ~day 14, the waterfall), **Act II** (Emanet,
-  Revontuli; ~day 33), **Act III** (Arı, Gezgin; ~day 45).
+- **Act**: one or two main islands with a real ending, in the order of
+  the canonical [Book One story map](story-map/book-one.md):
+  **Prologue** (Açılış · Ayçiçeği and Gezgin's arrival; Koke, the first
+  filler, on the first journey; days 1 to ~8), **Act I** (Çağlayan and
+  Revontuli, up to Olta, the midpoint: "Onu tanırdım."; ~day 22),
+  **Act II** (Emanet; Arı comes home after it; ~day 40), **Act III**
+  (Mehtap and the finale under the real full moon; ~day 45). **The free
+  cut is after Act I.**
 - **Filler**: a small island on a random day; never moves the story, never
   gates home ([founder 2026-11-05](founder-input.md#2026-11-05-game-plan-v1-and-the-story-flow)).
 - **Season**: the real calendar's look, visitor and decor set.
@@ -220,9 +224,10 @@ trust that no single rule could buy.
 
 ### 5.1 Launch default and the test
 
-**Default: the end of Act I** (the waterfall restored, ~day 14): a peak
-(the signature animation, a material, a gift to home, an ending), and more
-people are still active at day 14 than at day 33. The free player still
+**Default: the end of Act I** (Revontuli healed and Olta, the book's
+midpoint, ~day 22): a peak (the aurora, a material, a gift to home, the
+lantern from the ice and Mochi's "Onu tanırdım."), and more people are
+still active at day 22 than at day 40. The free player still
 has weeks of home building after it, so the offer never meets an empty
 island.
 
@@ -249,8 +254,8 @@ to the gate and Pofu.
 
 ### 5.3 The moment
 
-1. Act I's ending plays **whole**: the waterfall, the gift to home, the
-   week page. Nothing interrupts it.
+1. Act I's ending plays **whole**: the aurora, the gift to home, Olta's
+   lantern, the week page. Nothing interrupts it.
 2. **The next morning**, the Seyir defteri shows a new page: Act II's
    title, a painted vignette, two lines of what is next. For a member it
    is just the next page. For a free player the page ends with the offer.
@@ -314,7 +319,7 @@ to the gate and Pofu.
 | Monetizing Screen Time itself | 4.10 (built-in capabilities, Screen Time APIs named) | The gate is free and works with no purchase; say so in review notes |
 | Subscription without ongoing value | 3.1.2(a) | Episodic Books and seasons; a dated content plan in the review notes for the first submission |
 | Unclear terms | 3.1.2(c), 3.1.1 | The sheet shows price, period, renewal, and links to terms and privacy; restore visible |
-| Reviewer cannot reach the paywall | 2.1 | A reviewer cannot wait 14 days: the notes explain how to jump to Act I's end in Rehearsal mode, and where Settings → Üyelik is |
+| Reviewer cannot reach the paywall | 2.1 | A reviewer cannot wait three weeks: the notes explain how to jump to Act I's end in Rehearsal mode, and where Settings → Üyelik is |
 | Family Controls entitlement | Distribution entitlement | Already required for the gate; request early; unaffected by the model |
 | Changing the deal later | 3.1.2 "do not take away" | Fix the free line before public launch (§5.1) |
 

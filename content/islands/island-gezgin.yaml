@@ -1,18 +1,24 @@
 id: island-gezgin
 type: island
 title_tr: Gezgin
-title_en: The island on a whale
+title_en: Nazlı, the cloud whale (the vehicle, the main road itself)
 status: idea
 horizon: maybe
-summary: >-
-  A wanderer: a grassy island with one cottage on the back of Nazlı, a sleeping cloud-whale. The 100-tended-day milestone; afterwards she circles the archipelago on a fixed nightly tour, never highlighted, never needed to find. Game (Echo): answer her song to steer her to the next mooring. Lore: she carries lost islands home.
+summary: 'Story map (canonical): not an island to visit but the vehicle. A tired, wilful cloud
+  whale with a handful of islands on her back docks at the pier in the first days; every main
+  island is reached on her back and leaves one piece there (a pool and fall, an aurora jar,
+  a teal plank, a moon stone; at the finale a young sunflower from home''s soil and Ihlamur''s
+  lantern, lit). Resident Yosun, the tortoise postman. Form 2 on Mehtap''s full-moon night:
+  she sings four notes for the first time.'
 notes:
-- >-
-  Revision 2026-11-03 (archipelago-system.md 1A, 11): moves from the day-100 milestone to wonder 2 on day 8 (the founder rated it 10/10); game: slide puzzle clearing cloud banks. Gift to home: Yosun at the harbor, then the whale moors on full moons. First Plus island in cut C2.
-- >-
-  Checking risk: moves only at night; cut if reflex opens rise after she arrives.
-- >-
-  Art: about 11 images plus 2 whale pose edits.
+- Reconciled 2026-11-06 with the canonical Book One story map (docs/product/story-map/book-one.md);
+  older notes below are history where they disagree.
+- 'Revision 2026-11-03 (archipelago-system.md 1A, 11): moves from the day-100 milestone to
+  wonder 2 on day 8 (the founder rated it 10/10); game: slide puzzle clearing cloud banks.
+  Gift to home: Yosun at the harbor, then the whale moors on full moons. First Plus island
+  in cut C2.'
+- 'Checking risk: moves only at night; cut if reflex opens rise after she arrives.'
+- 'Art: about 11 images plus 2 whale pose edits.'
 links:
   requires:
   - island-aycicegi
@@ -22,16 +28,17 @@ links:
   - sys-island-toys
   - sys-island-materials
 sources:
+- doc: docs/product/story-map/book-one.md
 - doc: docs/archive/archipelago-system.md
   anchor: '#11-island-concepts'
 - doc: docs/archive/archipelago-system.md
   anchor: '#3-the-island-schema'
 source: lead-brainstorm
-theme_en: 'An island on the back of a sleeping cloud-whale'
-ritual_en: 'The way home (slide puzzle)'
+theme_en: An island on the back of a sleeping cloud-whale
+ritual_en: 'None: she carries the player; the four notes are heard at the finale'
 residents:
 - char-nazli
 - char-yosun
 unlock:
-  day: 8
-  rule_en: 'Wonder island 2: 8 tended days (the end of the first week)'
+  day: 3
+  rule_en: Arrives in the first days at the pier (story map)

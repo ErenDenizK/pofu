@@ -19,7 +19,7 @@ no code) · **talked only** (in the log, no spec) · **dropped**.
 - The founder has not tested on the phone since 2026-11-05. Everything since then (shadows, night light, ceremony, Koke, sky, gate) is unchecked on the device.
 - Biggest gaps: Pofu's own emotions (the rig art exists, the code shows one face), residents never move, the world is almost silent, and Çağlayan and the flow game are not started.
 - Plans are strong for home growth, but phases C-G of [home progression](product/home-progression.md#123-build-order) (residents, decor, pairs, bloom, seasons) have no code.
-- The story map poster that should fix the Book One order was commissioned on 2026-11-05 and never delivered.
+- The Book One story map ("Bekçi kim?", two pages) was made and shown to the founder on 2026-11-05, but not committed; this tracker then wrongly called it never made. Committed and made canonical on 2026-11-06: [story map](product/story-map/book-one.md).
 
 ## 2. Threads
 
@@ -103,9 +103,9 @@ no code) · **talked only** (in the log, no spec) · **dropped**.
 | Koke, first wonder island | playable prototype | built (#244, #250); stages 3-4 and stretch art promoted (#263) but **not in the app** | integrate them; repaint 0-2 | [Koke prototype](design/koke-prototype.md) |
 | Çağlayan and the flow game | day 10, flow debut | art in PR #264; **no game-design note, no engine** | the flow note | game plan §4-§5 |
 | Healing arc per island, never one rule for all | variety table | designed (#223) | used by #271 | [healing arc](design/island-healing-arc.md) |
-| Book One island sheets (Emanet, Çanlar, Revontuli, Arı, Mehtap, Gezgin) | proposed | in PR #271 | review and merge | 2026-11-06 |
-| Main islands vs fillers; Çanlar is a filler | yes | decided; game plan §4 table not rewritten (§5) | rewrite the table | 2026-11-05 |
-| Story map poster (main islands, fillers as branches) | commissioned | **never delivered** | one Opus pass, or fold into #271 | 2026-11-05 late night |
+| Book One island sheets | under the story map | merged (#271), **rewritten to the story map** 2026-11-06 (Arı a home upgrade, Olta the midpoint, six fillers) | one template page per filler when scheduled | [book-one-islands](design/book-one-islands.md) |
+| Main islands vs fillers; Çanlar is a filler | yes | done: game plan §4 follows the story map | none | 2026-11-05 |
+| Book One story map (main islands, fillers as branches) | **canonical** | made and shown 2026-11-05; committed and reconciled 2026-11-06 | the open decisions in its §8 | [story map](product/story-map/book-one.md) |
 | Constellations, a design language per cluster | working draft | designed only | in the island sheets | 2026-11-03 night |
 | About 50 hand-made islands over time, no procedural islets | yes | standing | none | 2026-11-02 |
 | Wonder-island model in `PofuCore` | game plan §10 | built (`WonderIslands.swift`) | Çağlayan as the second entry | game plan §10 |
@@ -233,14 +233,14 @@ step is not on any track. Ordered by what he would notice first.
 | 12 | **The style-option picker** | Three options baked; no picker (#247). | Only 3 of the batch-40 options are on main. | Decide: offer styles only at levels with art, or drop the picker until Book Two. |
 | 13 | **The Gezgin rig** | Body, tail, fins, patch and eyes-closed masters merged (#232). No code. | Gezgin's place in the story moved (early vs finale), and nobody owns her. | A `NazliRig` view: parts with code motion (tail and fin sine, body bob). Show her at the harbor on postcard days. |
 | 14 | **The week page** | The weekly recap opens Today. No week page exists. The sky-sharing widget waits for it. | No spec. | A half-page note: what a week shows (resisted reaches, visitors, stickers, the week's sky strip). |
-| 15 | **The map** | The archipelago frame shows home and Koke. No rumours appear for the islands to come. | Waits for the island order (the story map). | Show one rumour marker for the next island from `WonderIslands`. |
+| 15 | **The map** | The archipelago frame shows home and Koke. No rumours appear for the islands to come. | The island order is now fixed by the [story map](product/story-map/book-one.md). | Show one rumour marker for the next island from `WonderIslands`. |
 | 16 | **Letters** | The quiet-day letter is built. Emanet's letters and Gezgin's postcard as a readable letter are not. | Waits for Emanet. | Give the postcard a letter card (the invite sheet's layout with a sticker). |
 | 17 | **Seasons** | Concepts merged (B-D, B4, v2s). No code. Real calendar recommended, not confirmed. | Phase G, after the dogfood. | Confirm the real calendar (§6). Then a `Season` value in `WorldClock` that tints the grade, before any art. |
 | 18 | **Haptics** | Partly applied. | Not reviewed since experience v1. | A table of every moment against `PofuHaptics`, then fill the gaps. |
 | 19 | **Accessibility** | Reduce Motion is honoured widely; VoiceOver and Dynamic Type are partial. Never audited. | Always "later". | A Haiku audit of the screenshots plus a VoiceOver label sweep. Required before the beta. |
 | 20 | **Lore PR #135** | Open since 2026-11-03, "needs the founder's agreement". The game plan and deep lore have moved past it. | It was never put to him, and it is now stale. | Close it with a note. Carry its two live ideas (the duo's delivery rules, the Bekçi spine) into the lore bible in one fresh PR. |
 | 21 | **Imagegen PR #108** | Operator recovery tool, open since 2026-11-03. The pipeline has run without it for 3 days. | Not needed in practice. | Close it unmerged. Reopen only if a Codex run loses work. |
-| 22 | **The story map poster** | Commissioned 2026-11-05. Never made. The roadmap still says it "fixes the order". | Overtaken by the island sheets. | Fold it into #271's Book One arc section and render that as one image for him. |
+| 22 | **The story map** | Made and shown 2026-11-05 (two pages), never committed; wrongly listed here as never made. | Not committed the day it was shown. | Done 2026-11-06: committed as the canonical Book One doc; island sheets, roots, game plan and deep lore reconciled to it. |
 | 23 | **Koke stages 3-4 and stretch** | Promoted (#263), not in the app (code fallbacks show). | Landed after #250. | Add them to `integrate.py` targets; delete the fallbacks. |
 | 24 | **Çağlayan and the flow game** | Art in PR #264. No design note, no engine. | Waiting on the note. | The flow note (one Opus pass), then `PofuGames` flow. |
 | 25 | **English identifier rename** | The map branch has existed since 2026-11-03; there is no PR. | Codex never drains, so no quiet window comes. | Plan the window: one Codex pause after a batch, three PRs (assets, Swift, docs). Or drop it and keep Turkish ids as proper names. |
@@ -278,13 +278,13 @@ step is not on any track. Ordered by what he would notice first.
 | [Game plan](product/game-plan.md) §4 and §9.2 vs the log (2026-11-05) | The table still has Gezgin as the day-45 finale, Çanlar as main island 4 and fixed days. The note on top says they are superseded. | Rewrite §4 from #271's arc; drop the days column. |
 | Game plan §5 and §8 vs the code | They say the garden is "only reachable from Rehearsal". The station sheet's "Play" opens it in the production flow. | Change the row to "built, in the home flow". |
 | Log 2026-11-06 midday later vs the docs | The log says "handled: the gate v2 spec". No such doc exists. [gate v2](product/ux/gate-v2.md) is from 2026-11-01, and #265 cites "section 5" of a spec that is not on main. | Write a short "gate v2.1: the painted gate" section in gate-v2.md, or correct the log. |
-| Roadmap Book One track | It says the story map poster "fixes the order". The poster was never made, and #271 now does that job. | Point the roadmap at #271 once it merges. |
+| Roadmap Book One track | It said the story map was never made and #271 fixed the order. | Done 2026-11-06: the roadmap points at the [story map](product/story-map/book-one.md). |
 | CLAUDE.md "Pofu Hub ... status/now and roadmap/main" | The Hub was last changed 2026-11-03. | Done: the Hub is frozen and chat is the channel (docs/README.md; CLAUDE.md no longer mentions it). |
 | [Light standard](design/light-standard.md) | Still warn-only "until the founder has seen the light pilot"; the lit-ladder pilot shipped (#231). | Enforce for production, or restate the gate. |
 | Art queue rows 4 and 5 | BLOCKED with no manifest since 2026-11-02. Decor now runs through backlog rows B-C and B-D. | Drop row 5. Rewrite row 4 against the UI audit. |
 | Experience v1, home progression, game plan status lines | They still say "proposal" while most of it is built. | Mark them "accepted; built in part". |
 | Monetization v2 vs ADR-0016 | v2 replaces the "Plus" clause, but there is no ADR yet. | Leave it until he answers (§6), then write the ADR. |
-| #271 vs game plan §6 and deep lore | Mehtap is placed as Book One's finale night, not the year finale; Arı follows the game plan, not deep lore. | Accept #271's placement and update §6 and deep lore in the same PR. |
+| #271, #267, #281 vs the story map | Arı as an island, Emanet before Revontuli, invented names and back details, keepsakes under the roots, Mehtap's moon softened. | Done 2026-11-06: all reconciled to the [story map](product/story-map/book-one.md) (its §7 lists each change). |
 | Founder input log vs #267 and #271 | The 2026-11-06 questions on undersides and island sheets are logged only inside #267. | Merge #267 before #271 so the log stays whole. |
 
 ## 6. Decisions waiting on the founder
@@ -308,3 +308,8 @@ Each has a recommendation. Silence means yes, except item 1, which needs the fou
 - **Home growth not readable** (growth sheet, #295): camera too close, most IL steps invisible. Fix in flight (`feat/growth-readable`).
 - **Codex art reviewed and merged (afternoon):** weather FX (#266), flat icons (#269: pick the two-tone take 2 as the app's icon style), light-direction studies (#270, feed nightlab's photometric normals), the roots (#276: IL10 take 1, IL6 take 1, Çağlayan 4 take 2 are the targets), the home growth strip (#279: the target for every island level), the gate postcards without characters (#285), the earth face plates and the Koke stone (#292), the stickers (#253), Damla (#264). Next integrations: earth-face plates by island level and the koke-stone sprite; the six postcards replace the exploration ones; weather FX hooks; the two-tone icons sliced into the place control and menus; nightlab normals from the four light studies.
 - **Payoff merged** (#303): the day's resist seals stamp as a gentle row on the earth under Pofu, below the doors, and stay all day; the screen haze parts. Open: Pofu's own door (H1, x −107) is off-screen at the readable home framing (look x 36); try look x ≈ 10 so his door shows without cutting the tea stall; the seal art (batch-61 `seal-resist`).
+
+## Added 2026-11-06 (evening): the story map restored
+
+- **Done:** the Book One story map ("Bekçi kim?", shown 2026-11-05) is committed as the canonical Book One doc ([story map](product/story-map/book-one.md), with both pages as images); the island sheets, the roots, game plan §4/§6/§9/§10, deep lore's placement notes, the roadmap and the docs map now agree with it. Rule added to `CLAUDE.md`: anything shown to the founder is committed the same day.
+- **Open decisions (lead):** (1) Koke's scope: the map makes it the first filler and Monday visitor, but it is built as a five-stage island; recommended: keep the arc as the first filler's longer visit. (2) Mehtap's real full moon vs the 11-06 "blessing" fallback; recommended: time Mehtap's door to the moon. (3) The seventh filler in "+ 7 filler". (4) Arı island art: none is queued (the old sheet's `batch-54-ari` was only a proposal and is dropped); the home hive (`hive-4`, `-5`) is what Arı needs. Decided by the lead (story map §9). Follow-ups done the same day: home progression §7, monetization v2 §2.1 (free cut after Act I, at Olta), art queue row B-A, `content/islands/*.yaml`.

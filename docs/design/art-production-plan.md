@@ -127,7 +127,7 @@ real production batch when one earns it.
 
 | # | Batch | Purpose | Jobs | State |
 |---|---|---|---|---|
-| B-A | `batch-28-home-shops-concepts` | Home progression concepts (founder 2026-11-05): the hive (levels 1, 3, 5) and the three Book Two hilltop add-ons, Fanus's greenhouse, Çömlek's kiln and Mehtap's moon telescope (levels 1 to 3), on the station guide | 12 | BACKLOG |
+| B-A | `batch-28-home-shops-concepts` | Home progression concepts (founder 2026-11-05): the hive (levels 1, 3, 5; Arı is the home hive upgrade, [story map](../product/story-map/book-one.md)), Mehtap's telescope on the Tepe (Book One's finale gift) and the later-book hilltop add-ons of two Book One fillers, Fanus's greenhouse and Çömlek's kiln (levels 1 to 3), on the station guide | 12 | BACKLOG |
 | B-B | `batch-29-residents-at-work` | Each home resident at their fixed favourite station in a working pose (Mochi, Simit, the goat, the frogs, Fındık, Koke's sprout), plus five heart level-up moments | 11 | BACKLOG |
 | B-C | `batch-30-decor-sets` | Decor sets on the decor guide: island gifts (4) and Liman (4), plus a composed corner for Bahçe, Ada hediyeleri, Liman and Sakinler | 12 | BACKLOG |
 | B-D | `batch-30b-decor-seasons-1`, `batch-30c-decor-seasons-2` | The four season sets (Bahar, Yaz, Güz, Kış), four pieces each on the decor guide, plus a corner per set; two manifests so each stays at 10 jobs | 10 + 10 | BACKLOG |

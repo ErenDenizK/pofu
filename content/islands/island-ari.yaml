@@ -1,23 +1,30 @@
 id: island-ari
 type: island
 title_tr: Arı
-title_en: The hanging hive (Çömlek's satellite)
+title_en: The hive comes home (home upgrade, not an island)
 status: idea
 horizon: maybe
-summary: >-
-  A great honeycomb hanging from the bough of a floating pine, its cells little doors and windows; Muğla pine honey; a hot humming afternoon. Game: hexa sort on a honeycomb grid. Its bees fly to home's sunflowers. Satellite of Çömlek in the craft constellation.
+summary: 'Story map (canonical): Arı is a home upgrade, not an island. After Emanet the hive
+  comes home: the bees dance over Ayçiçeği, the flowers change colour; honey on Saturdays.
+  Secret kept for later: the dance always turns the same way.'
 notes:
-- >-
-  Promoted from the idea pool in island-curation.md 3.10; design loop 1 makes it Çömlek's satellite. Rung 9 of the spine: at night the bees' dance and the sunflower point the same way, toward the viewer.
-- >-
-  Honey stays a ritual, never a second currency (ADR-0015).
+- Reconciled 2026-11-06 with the canonical Book One story map (docs/product/story-map/book-one.md);
+  older notes below are history where they disagree.
+- 'Promoted from the idea pool in island-curation.md 3.10; design loop 1 makes it Çömlek''s
+  satellite. Rung 9 of the spine: at night the bees'' dance and the sunflower point the same
+  way, toward the viewer.'
+- Honey stays a ritual, never a second currency (ADR-0015).
 links:
   related:
   - island-comlek
   - island-aycicegi
 sources:
+- doc: docs/product/story-map/book-one.md
 - doc: docs/archive/island-curation.md
   anchor: '#310-arı-the-hanging-hive-from-the-idea-pool-promote'
 - doc: docs/product/design-loop/loop-1.md
   anchor: '#3-islands-and-clusters'
 source: lead-brainstorm
+unlock:
+  day: 38
+  rule_en: Home upgrade after Emanet (story map; Kapı, gün değil)

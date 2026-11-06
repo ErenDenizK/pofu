@@ -33,6 +33,9 @@ Loaded every turn: keep it short. Map of the docs: `docs/README.md`.
 - **Lasting product rules:** targets Instagram, YouTube, TikTok; seeds
   never buy screen time and Pofu never dies (ADR-0015, 0017); no new
   features for the free `Pofu` build or the Shortcuts path.
+- **Story:** Book One's canonical story is
+  `docs/product/story-map/book-one.md`; anything shown to the founder is
+  committed the same day.
 
 ## Review, CI and merge
 
