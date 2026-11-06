@@ -1,0 +1,213 @@
+batch: batch-49-roots
+manifest: tools/imagegen/manifest/batch-49-roots.yaml
+manifest_sha256: b481607339c94c6b3f24f37ce3c18d8e780744089490ac671c2bb18ba00b9d77
+contact_sheet: design/art/takes/batch-49-roots/x-roots-caglayan-4/contact.jpg
+jobs:
+  x-roots-caglayan-4:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both actual originals and official
+      locked concepts show exactly three smooth stone lips with three long glassy
+      waterfalls, white break/landing mist in the cloud sea, a soft pastel rainbow,
+      ferns and small flowers at the wet lips, and warm golden-hour colour. No character,
+      ruin, storm, text or neon rainbow. Both add an unrequested cottage and leafy
+      tree above; disclosed as concept extras because this inventory is not exclusive
+      and the three long falls/underside remain dominant, never an invented zero-extra-prop
+      gate. The shape/upper details differ from the excluded independently generated
+      stage0 scenes; no stage0 edit reference was attached or declared, so this is
+      not a registered upgrade chain. Chroma/brightness diagnostics are recorded separately
+      against excluded stage0 only and do not certify the 2x healing chroma target.
+      Automatic hard QA passes; all style/light warnings retained. Lowest eligible
+      lock load selects take2, no promotion or source/QA edits.
+qa_reports:
+  1:
+    job: x-roots-caglayan-4
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 49 (R1 51)
+      value: 49.0
+    - check: light_values
+      status: warn
+      message: 'golden/subject: L p2 51 (at most 24), p98 97 (at least 86), spread
+        46 (at least 55) (warn-only until the founder has seen the light pilot)'
+      value: 45.9
+    - check: light_median
+      status: warn
+      message: 'golden/subject: median L 88 (band 48-86)'
+      value: 87.8
+    - check: light_haze
+      status: warn
+      message: 'golden/subject: dark-channel haze 0.37 (at most 0.22; no true dark
+        means a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.369
+    - check: light_contrast
+      status: warn
+      message: 'golden/subject: p75 local contrast 1.8 (at least 3.4) (warn-only until
+        the founder has seen the light pilot)'
+      value: 1.83
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.7 (R1 5.3)
+      value: 1.73
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.1
+      value: 1.0693
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.8, p95 5.8, off-palette 0.0% (top: #FFDD66 (0.0%), #FFEE66
+        (0.0%))'
+      value: 1.8352
+    info:
+      metrics_raw:
+        L_p5: 60.9
+        L_p50: 86.6
+        L_p95: 95.2
+        C_p50: 10.8
+        C_p95: 50.4
+        C_p99: 62.0
+        detail: 2.21
+      metrics_locked:
+        L_p5: 61.1
+        L_p50: 86.6
+        L_p95: 95.0
+        C_p50: 10.8
+        C_p95: 49.0
+        C_p99: 60.1
+        detail: 1.73
+    fingerprint: 65829e1fef5fc4f5
+  2:
+    job: x-roots-caglayan-4
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 46 (R1 51)
+      value: 46.3
+    - check: light_values
+      status: warn
+      message: 'golden/subject: L p2 51 (at most 24), p98 97 (at least 86), spread
+        46 (at least 55) (warn-only until the founder has seen the light pilot)'
+      value: 46.2
+    - check: light_median
+      status: warn
+      message: 'golden/subject: median L 88 (band 48-86)'
+      value: 87.8
+    - check: light_haze
+      status: warn
+      message: 'golden/subject: dark-channel haze 0.38 (at most 0.22; no true dark
+        means a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.38
+    - check: light_contrast
+      status: warn
+      message: 'golden/subject: p75 local contrast 1.9 (at least 3.4) (warn-only until
+        the founder has seen the light pilot)'
+      value: 1.89
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.56
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.9408
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.9, p95 5.8, off-palette 0.6% (top: #CCBB44 (0.1%), #EEDD55
+        (0.1%))'
+      value: 1.9339
+    info:
+      metrics_raw:
+        L_p5: 59.8
+        L_p50: 86.2
+        L_p95: 95.4
+        C_p50: 9.3
+        C_p95: 47.4
+        C_p99: 64.1
+        detail: 1.98
+      metrics_locked:
+        L_p5: 60.0
+        L_p50: 86.1
+        L_p95: 95.2
+        C_p50: 9.3
+        C_p95: 46.3
+        C_p99: 60.8
+        detail: 1.56
+    fingerprint: 65829e1fef5fc4f5
+manual_review:
+  observed_note: Both actual originals and official locked concepts show exactly three
+    smooth stone lips with three long glassy waterfalls, white break/landing mist
+    in the cloud sea, a soft pastel rainbow, ferns and small flowers at the wet lips,
+    and warm golden-hour colour. No character, ruin, storm, text or neon rainbow.
+    Both add an unrequested cottage and leafy tree above; disclosed as concept extras
+    because this inventory is not exclusive and the three long falls/underside remain
+    dominant, never an invented zero-extra-prop gate. The shape/upper details differ
+    from the excluded independently generated stage0 scenes; no stage0 edit reference
+    was attached or declared, so this is not a registered upgrade chain. Chroma/brightness
+    diagnostics are recorded separately against excluded stage0 only and do not certify
+    the 2x healing chroma target. Automatic hard QA passes; all style/light warnings
+    retained. Lowest eligible lock load selects take2, no promotion or source/QA edits.
+  excluded_takes: []
+sources:
+- batch: batch-49-roots
+  job: x-roots-caglayan-4
+  take: 1
+  round: 1
+  logical_run: batch49-20261106
+  source_file: /workspace/generated_images/exec-f17bbff1-f8b5-456b-85f4-da5c0d563219.png
+  returned_at: '2026-11-06T09:11:10.161Z'
+  prompt_sha256: 0bf9113bfe2b5951d817d356e730b0aab63af3f87adc2472bff9a337ddf9b45b
+  fingerprint: 65829e1fef5fc4f5
+  saved_at: '2026-11-06T09:11:10.614116+00:00'
+  original_generated_png_sha256: c7163d1693482213b7ac570279cf583e0c78d560ed688d5692a46d5ba38c83f1
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: e18817b72a5a319aef08ff2436aa5090865e75e4c2131eade4c47444c4e597ec
+  inbox_png_sha256: adfbc497ab0326294af0048affdecd2e89bbd87ad79274e53fa604bc4fe191ec
+  qa_sha256: 289d8afce3a9ef3de206862bc7ee3ef0ad6ad62d1d27092405335bfd2abf7061
+- batch: batch-49-roots
+  job: x-roots-caglayan-4
+  take: 2
+  round: 1
+  logical_run: batch49-20261106
+  source_file: /workspace/generated_images/exec-dc5c51c2-94a4-4ba2-828b-18fe430ce333.png
+  returned_at: '2026-11-06T09:11:47.460Z'
+  prompt_sha256: 0bf9113bfe2b5951d817d356e730b0aab63af3f87adc2472bff9a337ddf9b45b
+  fingerprint: 65829e1fef5fc4f5
+  saved_at: '2026-11-06T09:11:47.789807+00:00'
+  original_generated_png_sha256: 7e35d94aa47a0959b20192075ebd44e4c7349fd32c08f634cd9aa873c8972e3b
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 162294301d878ddf20cbb2bcfdc3e481afe7dc2593c3dabb0bcc2c22c592e201
+  inbox_png_sha256: d5d1db7053837574903047a2a22c96f6e95eb193ed999ce9ccb9ead863ab404a
+  qa_sha256: d723db1ab2c54f1ad16d7c806dd8c0fbb52a2993446cfedcef890ce59798b603
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
