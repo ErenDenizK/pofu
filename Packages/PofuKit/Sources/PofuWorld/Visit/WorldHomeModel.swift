@@ -260,7 +260,8 @@ public final class WorldHomeModel {
             fromLevel: receipt.level - 1,
             toLevel: receipt.level,
             maxLevel: maxLevel,
-            reduceMotion: reduceMotion
+            reduceMotion: reduceMotion,
+            lowPower: Self.isLowPowerMode
         )
         // Celebrations never stack: a new build replaces the last one's
         // tag and adds no second burst.
@@ -276,6 +277,15 @@ public final class WorldHomeModel {
         // The push-in starts on the tap.
         advance(to: active.start)
         return true
+    }
+
+    /// Low Power Mode shortens the build's ceremony of light.
+    private static var isLowPowerMode: Bool {
+        #if os(iOS)
+        ProcessInfo.processInfo.isLowPowerModeEnabled
+        #else
+        false
+        #endif
     }
 
     /// The build moment's time at `date`.
