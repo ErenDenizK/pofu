@@ -6,11 +6,33 @@ import PofuCore
 public enum CritterKind: String, CaseIterable, Hashable, Sendable {
     case butterfly, snail, bird, frog, ladybug
 
-    /// The baked sprite's name (a four-frame loop plus a rest pose); the
-    /// Codex jobs are `critter-butterfly`, `critter-snail`, `critter-bird`,
-    /// `critter-ladybug` (and the frog's).
+    /// The baked rest sprite's name; the Codex jobs are `critter-butterfly`,
+    /// `critter-snail`, `critter-bird`, `critter-ladybug` (and the frog's).
     public var art: String {
         "critter-\(rawValue)"
+    }
+
+    /// The sprites of the kind's pose sheet, by the sheet's numbering: the
+    /// rest pose is 0 (the bare name), the others carry their number from 2
+    /// (`critter-bird-3`). A pose's `frame` (`CritterMotion.Pose`) indexes
+    /// this list, so a loop can repeat a sprite. The butterfly beats four
+    /// wing poses, the snail stretches and crouches, the bird hops on its
+    /// wings (up, then down) and sings; the ladybug and the frog have no
+    /// sheet yet and draw their stand-ins.
+    public var spriteFrames: [Int] {
+        switch self {
+        case .butterfly: [0, 1, 2, 3]
+        case .snail: [0, 1, 0, 2]
+        case .bird: [0, 2, 1, 3]
+        case .frog, .ladybug: [0]
+        }
+    }
+
+    /// The baked sprite's name for a pose's frame; the frame wraps round.
+    public func art(frame: Int) -> String {
+        let frames = spriteFrames
+        let sprite = frames[((frame % frames.count) + frames.count) % frames.count]
+        return sprite == 0 ? art : "\(art)-\(sprite + 1)"
     }
 }
 

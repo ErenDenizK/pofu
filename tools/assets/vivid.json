@@ -13,8 +13,8 @@
     "prop": {"depth": 2.5, "vibrance": 0.40, "contrast": 0.45, "contrast_limit": 7.0, "warm_a": 0.4, "warm_b": 2.0}
   },
   "world": {
-    "plant": ["garden-*", "dressing-*"],
-    "prop": ["decor-*", "harbor-ferry-*", "harbor-horn-*", "harbor-lamp-*", "harbor-crates-*", "harbor-bell", "door-*"],
+    "plant": ["garden-*", "dressing-grass-*", "dressing-wildflowers*", "dressing-pebbles*", "dressing-mushroom-*"],
+    "prop": ["decor-*", "dressing-*", "harbor-ferry-*", "harbor-horn-*", "harbor-lamp-*", "harbor-crates-*", "harbor-bell", "door-*"],
     "station": ["tea-stall-*", "pond-*", "windmill-*", "workshop-*", "bagel-cart-*", "pier-*", "lighthouse-*", "hive-*"]
   },
   "never": ["island-*", "isle-*", "harbor-island-*", "mochi*", "findik*", "simit*", "pofu*", "cloud-*", "far-isle-*", "*-glow"],

@@ -17,7 +17,7 @@ def test_map_is_well_formed():
     assert len(names) == len(set(names))
     for e in DATA["entries"]:
         assert e["target"] in DATA["targets"]
-        if e["target"] in integrate.FLAT:
+        if e["target"] in integrate.FLAT and e["target"] != "app":
             assert len(e["points"]) == 2 and e.get("scale", 3) in (1, 2, 3)
 
 
@@ -101,3 +101,91 @@ def test_meadow_cells_are_registered_in_the_map():
     for name in preblur.MEADOW_CELLS:
         spec = preblur.APP_SOURCES[name]
         assert spec["cell"] == preblur.MEADOW_CELLS[name] and spec["harmony_as"] == "dressing-meadow"
+
+
+def _sheet_tables():
+    """Every cell table of the experience art: (sheet folder, cells by name, the alpha level a piece
+    is judged at)."""
+    preblur = _preblur()
+    tables = [
+        (preblur.GARDEN_SHEET, preblur.GARDEN_CELLS, 8),
+        (preblur.HARBOR_SHEET, preblur.HARBOR_CELLS, 8),
+    ]
+    for sheet in (preblur.CRITTER_BUTTERFLY_SHEET, preblur.CRITTER_SNAIL_SHEET, preblur.CRITTER_BIRD_SHEET):
+        cells = {n: c for n, (s, _k, c, _f) in preblur.CRITTER_CELLS.items() if s == sheet}
+        tables.append((sheet, cells, preblur.CRITTER_ALPHA_FLOOR))
+    return preblur, tables
+
+
+def test_experience_sheet_cells_cut_every_piece_cleanly():
+    # Each cell holds one whole piece and nothing of a neighbour: disjoint, inside the sheet, and the
+    # piece (above the halation floor) clear of the cell's edges by at least 5 px.
+    import numpy as np
+
+    preblur, tables = _sheet_tables()
+    for sheet_dir, cells, level in tables:
+        sheet = Image.open(integrate.master_file(sheet_dir)).convert("RGBA")
+        alpha = np.asarray(sheet.getchannel("A")) > level
+        claimed = np.zeros_like(alpha)
+        assert cells, sheet_dir
+        for name, (x0, y0, x1, y1) in cells.items():
+            assert 0 <= x0 < x1 <= sheet.width and 0 <= y0 < y1 <= sheet.height, name
+            assert not claimed[y0:y1, x0:x1].any(), f"{name} overlaps another cell"
+            claimed[y0:y1, x0:x1] = True
+            ys, xs = np.where(alpha[y0:y1, x0:x1])
+            assert len(xs), f"{name} is empty"
+            assert xs.min() >= 5 and ys.min() >= 5 and xs.max() <= (x1 - x0) - 6 and ys.max() <= (y1 - y0) - 6, name
+
+
+def test_experience_cells_are_registered_in_the_map_and_harmony():
+    preblur, tables = _sheet_tables()
+    mapped = {e["name"] for e in DATA["entries"] if e["target"] == "world"}
+    for sheet_dir, cells, _level in tables:
+        folder = sheet_dir.rsplit("/", 1)[-1]
+        assert set(cells) <= mapped, folder
+        for name, cell in cells.items():
+            spec = preblur.APP_SOURCES[name]
+            assert spec["cell"] == cell and spec["harmony_as"] == folder and spec["harmony"] is False, name
+
+
+def test_critter_frames_share_a_baseline_and_face_right():
+    # Every cell of a sheet ends on one line (6 px under the feet), so the frames swap in place; the
+    # sprites all face right (the sheets' left-facing frames are mirrored).
+    preblur, tables = _sheet_tables()
+    for sheet_dir, cells, _level in tables:
+        if "critter-" not in sheet_dir:
+            continue
+        assert len({c[3] for c in cells.values()}) == 1, sheet_dir
+    flips = {n: spec.get("flip", False) for n, spec in preblur.APP_SOURCES.items() if n.startswith("critter-")}
+    assert all(flips[n] for n in flips if n.startswith("critter-butterfly"))
+    assert not any(flips[n] for n in flips if n.startswith("critter-snail"))
+    assert [flips[n] for n in ("critter-bird", "critter-bird-2", "critter-bird-3", "critter-bird-4")] == [True, True, False, False]
+
+
+def test_experience_flat_entries_have_their_outputs():
+    targets = DATA["targets"]
+    by_target = {}
+    for e in DATA["entries"]:
+        by_target.setdefault(e["target"], []).append(e["name"])
+    assert {"glow-window-spill", "glow-warm-halo", "glow-pond-shimmer"} <= set(by_target["glow"])
+    assert [n for n in by_target["sprite"]] == ["firefly-1", "firefly-2", "firefly-3"]
+    assert set(by_target["shield"]) == {f"shield-pofu-door-{m}" for m in ("calm", "proud", "sleepy")}
+    assert set(by_target["app"]) == {"launch-sky", "cloud-curtain-1", "cloud-curtain-2", "cloud-curtain-3"}
+    for e in DATA["entries"]:
+        if e["target"] in ("sprite", "shield", "app", "glow"):
+            assert integrate.output_path(e, targets).is_file(), e["name"]
+
+
+def test_launch_sky_is_restored_to_its_declared_size():
+    entry = next(e for e in DATA["entries"] if e["name"] == "launch-sky")
+    out = integrate.output_path(entry, DATA["targets"])
+    assert Image.open(out).size == (1290, 2796)
+
+
+def test_shield_plates_are_square_and_small():
+    for mood in ("calm", "proud", "sleepy"):
+        entry = next(e for e in DATA["entries"] if e["name"] == f"shield-pofu-door-{mood}")
+        out = integrate.output_path(entry, DATA["targets"])
+        image = Image.open(out)
+        assert image.size == (360, 360) and image.mode == "RGBA"
+        assert out.stat().st_size < 400_000

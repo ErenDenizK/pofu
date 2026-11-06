@@ -183,7 +183,7 @@ struct HD2DLayer: View {
             drawEmitters(in: &glow)
             drawFieldHalos(field, in: &glow)
             if directive?.particles ?? true {
-                drawParticles(in: &glow)
+                drawParticles(glow: &glow, paint: paint)
             }
         }
         .frame(width: size.width, height: size.height)
@@ -249,17 +249,16 @@ struct HD2DLayer: View {
                 motion: motion
             )
             let p = screen(WorldPoint(x: emitter.point.x + m.x, y: emitter.point.y + m.y))
-            // A wide halo and a tight core: bloom, not a lamp shade.
-            for (radius, opacity) in [(emitter.radius * 3.2, 0.30), (emitter.radius, 0.75)] {
-                let r = max(radius * s, 2)
-                context.fill(
-                    Path(ellipseIn: CGRect(x: p.x - r, y: p.y - r, width: 2 * r, height: 2 * r)),
-                    with: .radialGradient(
-                        Gradient(colors: [color(emitter.color, opacity * min(k, 1.4)), color(emitter.color, 0)]),
-                        center: p, startRadius: 0, endRadius: r
-                    )
+            // A wide painted halo and a tight core: bloom, not a lamp shade.
+            drawHalo(&context, at: p, radius: max(emitter.radius * 3.2 * s, 2), color: color(emitter.color, 0.30 * min(k, 1.4)))
+            let r = max(emitter.radius * s, 2)
+            context.fill(
+                Path(ellipseIn: CGRect(x: p.x - r, y: p.y - r, width: 2 * r, height: 2 * r)),
+                with: .radialGradient(
+                    Gradient(colors: [color(emitter.color, 0.75 * min(k, 1.4)), color(emitter.color, 0)]),
+                    center: p, startRadius: 0, endRadius: r
                 )
-            }
+            )
         }
     }
 
@@ -340,6 +339,15 @@ struct HD2DLayer: View {
         }
     }
 
+    /// The promoted `glow-warm-halo` (a soft round bloom, white on alpha),
+    /// tinted and added: `radius` is where the bloom has faded to nothing.
+    private func drawHalo(_ context: inout GraphicsContext, at p: CGPoint, radius: Double, color: Color) {
+        var art = context.resolve(Image("glow-warm-halo", bundle: .module))
+        art.shading = .color(color)
+        let half = radius * LookTuning.warmHaloArtScale
+        context.draw(art, in: CGRect(x: p.x - half, y: p.y - half, width: 2 * half, height: 2 * half))
+    }
+
     /// A painted halo on each field source the emitters do not already
     /// draw (the lantern, path lamps, other windows, the pond), with the
     /// lantern's flicker in the Ambient state only.
@@ -355,16 +363,16 @@ struct HD2DLayer: View {
                 k *= 0.97 + 0.03 * sin(ambient * 9.1)
             }
             let radius = source.kind == .window || source.kind == .guestRoom ? 5.0 : 8.0
-            for (mult, opacity) in [(3.0, 0.22), (1.0, 0.6)] {
-                let r = max(radius * mult * s, 2)
-                context.fill(
-                    Path(ellipseIn: CGRect(x: p.x - r, y: p.y - r, width: 2 * r, height: 2 * r)),
-                    with: .radialGradient(
-                        Gradient(colors: [color(source.colour, opacity * k), color(source.colour, 0)]),
-                        center: p, startRadius: 0, endRadius: r
-                    )
+            // The painted halo round the lamp, then its tight core.
+            drawHalo(&context, at: p, radius: max(radius * 3 * s, 2), color: color(source.colour, 0.22 * k))
+            let r = max(radius * s, 2)
+            context.fill(
+                Path(ellipseIn: CGRect(x: p.x - r, y: p.y - r, width: 2 * r, height: 2 * r)),
+                with: .radialGradient(
+                    Gradient(colors: [color(source.colour, 0.6 * k), color(source.colour, 0)]),
+                    center: p, startRadius: 0, endRadius: r
                 )
-            }
+            )
         }
     }
 
@@ -541,7 +549,7 @@ struct HD2DLayer: View {
         }
     }
 
-    private func drawParticles(in context: inout GraphicsContext) {
+    private func drawParticles(glow context: inout GraphicsContext, paint: GraphicsContext) {
         let s = pose.scale
         if light.pollen > 0.02 {
             let tint = GradeRGB(1, 0.97, 0.84)
@@ -557,16 +565,29 @@ struct HD2DLayer: View {
             }
         }
         if light.fireflies > 0.02 {
+            // The promoted firefly sheet: four frames of one bug, the belly
+            // dim, warming, bright, dim. The count and the blink are the
+            // old dots' (battery gating is the caller's: `directive.particles`).
             let tint = GradeRGB(0.92, 1, 0.55)
-            for i in 0..<18 {
+            for i in 0..<LookTuning.fireflyCount {
                 let (x0, y0, ph) = seed(i, salt: 7)
                 let x = -190 + 380 * x0 + sin(ambient * 0.5 + ph * 5) * 10
                 let y = -120 + 170 * y0 + cos(ambient * 0.43 + ph * 3) * 7
                 let blink = max(0, sin(ambient * 1.6 + ph * 9)) * 0.75 + 0.25
                 let p = screen(WorldPoint(x: x, y: y))
-                let r = max(1.6 * s, 1.4)
-                dot(&context, p, r: r * 5, color: color(tint, 0.35 * light.fireflies * blink))
-                dot(&context, p, r: r * 1.3, color: color(tint, 0.95 * light.fireflies * blink))
+                let faces: CGFloat = cos(ambient * 0.5 + ph * 5) < 0 ? -1 : 1
+                // The halo is the bug's glow, brightest with the belly.
+                drawHalo(&context, at: p, radius: max(LookTuning.fireflyHaloRadius * s, 4), color: color(tint, 0.5 * light.fireflies * blink))
+                let frame = LookTuning.fireflyFrame(blink: blink)
+                let width = max(LookTuning.fireflyWidth * s, 5)
+                let height = width * 0.92
+                let rect = CGRect(x: p.x - width / 2, y: p.y - height / 2, width: width, height: height)
+                var bug = paint
+                bug.opacity = min(light.fireflies, 1) * (0.55 + 0.45 * blink)
+                bug.translateBy(x: p.x, y: p.y)
+                bug.scaleBy(x: faces, y: 1)
+                bug.translateBy(x: -p.x, y: -p.y)
+                bug.draw(Image("firefly-\(frame + 1)", bundle: .module), in: rect)
             }
         }
     }
@@ -644,8 +665,8 @@ private enum LightMapCache {
 }
 
 /// Every source's pool on black-transparent, in map pixels. The pools are
-/// the promoted `glow-ground-pool` art, tinted and added; window spills are
-/// still code until `glow-window-spill` lands.
+/// the promoted `glow-ground-pool`, `glow-pond-shimmer` and
+/// `glow-window-spill` art, tinted and added.
 private struct PoolMapArt: View {
     let field: LightField
 
@@ -664,40 +685,35 @@ private struct PoolMapArt: View {
             for source in field.sources {
                 let strength = min(source.strength, 1.4)
                 switch source.shape {
-                case .round, .pondEllipse:
+                case .round:
                     // The promoted glow-ground-pool art (a wide flat ellipse
                     // filling 80% of its width, white on alpha), tinted by
                     // the source and added.
-                    let pond = source.shape == .pondEllipse
                     let c = map(WorldPoint(x: source.point.x, y: source.point.y + 2))
-                    let width = source.reach * k * 2 * (pond ? 1.15 : 1.0)
-                    let height = width * (pond ? 0.4 : 0.5)
+                    let width = source.reach * k * 2
+                    let height = width * 0.5
                     var art = layer.resolve(Image("glow-ground-pool", bundle: .module))
                     art.shading = .color(tint(source.colour, LookTuning.poolArtOpacity * strength))
                     layer.draw(art, in: CGRect(x: c.x - width / 2, y: c.y - height / 2, width: width, height: height))
+                case .pondEllipse:
+                    // The promoted glow-pond-shimmer art: soft bands of
+                    // light lying on the water, tinted cool and added.
+                    let c = map(WorldPoint(x: source.point.x, y: source.point.y + 2))
+                    let width = source.reach * k * 2 * 1.15
+                    let height = width * 0.5
+                    var art = layer.resolve(Image("glow-pond-shimmer", bundle: .module))
+                    art.shading = .color(tint(source.colour, LookTuning.pondShimmerOpacity * strength))
+                    layer.draw(art, in: CGRect(x: c.x - width / 2, y: c.y - height / 2, width: width, height: height))
                 case .windowSpill:
-                    // A trapezoid of light falling from the window onto the
-                    // grass, soft at its far edge.
+                    // The promoted glow-window-spill art: a soft trapezoid
+                    // of light falling from the window onto the grass, its
+                    // narrow top edge on the window's sill (the art is
+                    // square; its light starts 7% down).
                     let top = map(WorldPoint(x: source.point.x, y: source.point.y + 4))
-                    let length = source.reach * k * 0.9
-                    let w0 = 6 * k, w1 = source.reach * k * 0.55
-                    var path = Path()
-                    path.move(to: CGPoint(x: top.x - w0, y: top.y))
-                    path.addLine(to: CGPoint(x: top.x + w0, y: top.y))
-                    path.addLine(to: CGPoint(x: top.x + w1, y: top.y + length))
-                    path.addLine(to: CGPoint(x: top.x - w1, y: top.y + length))
-                    path.closeSubpath()
-                    layer.drawLayer { l in
-                        l.addFilter(.blur(radius: 3))
-                        l.fill(path, with: .linearGradient(
-                            Gradient(stops: [
-                                .init(color: tint(source.colour, 0.5 * strength), location: 0),
-                                .init(color: tint(source.colour, 0.2 * strength), location: 0.55),
-                                .init(color: tint(source.colour, 0), location: 1),
-                            ]),
-                            startPoint: top, endPoint: CGPoint(x: top.x, y: top.y + length)
-                        ))
-                    }
+                    let size = source.reach * k * LookTuning.windowSpillArtScale
+                    var art = layer.resolve(Image("glow-window-spill", bundle: .module))
+                    art.shading = .color(tint(source.colour, LookTuning.windowSpillOpacity * strength))
+                    layer.draw(art, in: CGRect(x: top.x - size / 2, y: top.y - size * 0.07, width: size, height: size))
                 }
             }
         }
