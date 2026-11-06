@@ -2,7 +2,7 @@ id: asset-koke-island-3
 type: asset
 title_tr: koke-island-3
 title_en: koke-island-3 (plate)
-status: cut
+status: in-production
 horizon: now
 summary: 'Edit the attached island plate from stage 0 to stage 3: nearly there. The
   moss on Koke''s hump and the lawn is now almost entirely a rich living green, with
@@ -14,7 +14,8 @@ links:
   variant_of:
   - asset-koke-island-0
 art:
-  images: []
+  images:
+  - design/art/masters/koke-island-3/koke-island-3.png
   jobs:
   - batch-39-koke-production:koke-island-3
 sources:
@@ -72,3 +73,20 @@ notes:
   mean dE 4.5, p95 14.3, off-palette 10.8% (top: #AAAA33 (1.3%), #BBBB44 (1.3%));
   t4 palette_drift: mean dE 4.6, p95 14.2, off-palette 9.8% (top: #99AA33 (1.2%),
   #BBBB44 (1.2%)).'
+- 'koke-lead-picks-2026-11-06: lead-selected per queue row 0-k; take 1. lead-selected
+  per queue row 0-k of docs/design/art-production-plan.md at main76d7d09a509202b464e48224f1d9e84f5da21bc4.
+  The lead explicitly selected this retained original and requested official promote
+  --force. No generation, source-pixel modification, prompt/palette/profile edit or
+  QA threshold change. Original generating account, timestamps, callbacks, prompt/reference
+  fingerprints and all four original takes are preserved; all historical CUT notes
+  stay labelled and retained. This is a lead selection, not a QA auto-pick. Publish
+  original take1 exactly. Historical canonical hard QA clears (warn-only), but its
+  original and locked art leave the upper/back-right blue cluster shut while the outermost
+  far-right yellow cluster is open: the explicit far-right remaining-bud position
+  is not followed. This known manual content deviation remains accepted only by the
+  exact unconditional row0-k selection; it is not erased or asserted to match the
+  brief. Canonical half-size plate delivery768x512 is unchanged. Raking motion is
+  explicitly requested and was not an invented registration failure. Current selected-take
+  canonical QA status: warn. Actual hard failures (recorded unchanged): none. The
+  exact retained lead selection uses official promote --force; this is not an automatic
+  QA pass.'

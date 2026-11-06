@@ -1,0 +1,141 @@
+{
+  "job": "koke-stretch",
+  "batch": "batch-39-koke-production",
+  "asset": "char__koke-stretch",
+  "take": 2,
+  "takes_considered": 4,
+  "approved_at": "2026-11-06T07:31:06+00:00",
+  "image": "design/art/masters/koke-stretch/koke-stretch.png",
+  "raw": "design/art/masters/koke-stretch/raw.webp",
+  "raw_encoding": "webp q95",
+  "fingerprint": "1f7d6f437e69f6b7",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nEdit the attached moss creature, Koke, into a big waking-up\nstretch. The front legs stretch far forward along the ground with\nthe paws spread, the haunches rise and the back arches up in a\nrounded hump, the head lifts and tilts back a little in a huge soft\nyawn: a wide round open mouth with a small pink tongue and no teeth,\nthe eyes squeezed shut in happy creases, the ears folded back. The\nmoss, the sprout on the crown, the colours, the style and the\nlighting stay exactly as in the attached image; the creature keeps\nthe same ground line at 88 percent of the height and stays fully\ninside the canvas.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: teeth, fangs, claws, a roar, an angry or scared look, open eyes, a changed art style, a ground, a shadow, text\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/koke-asleep/koke-asleep.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud-retained-salvage",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-06T01:53:51.304Z",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "char-guard",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": {
+    "scale": 0.9283,
+    "cx": 506.0,
+    "cy": 910.0,
+    "dx": 0,
+    "dy": -5
+  },
+  "fit": null,
+  "emit_region": null,
+  "qa": {
+    "status": "fail",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "edit_alignment",
+        "status": "warn",
+        "message": "the edit rescaled the object x1.077 and moved it; aligned back to the parent",
+        "value": 0.9283
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 52 (R1 51)",
+        "value": 52.1
+      },
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 40 (at most 22), p98 94 (at least 90), spread 54 (at least 60) (warn-only until the founder has seen the light pilot)",
+        "value": 53.6
+      },
+      {
+        "check": "light_median",
+        "status": "pass",
+        "message": "day/subject: median L 74 (band 55-90)",
+        "value": 74.5
+      },
+      {
+        "check": "light_haze",
+        "status": "pass",
+        "message": "day/subject: dark-channel haze 0.16 (at most 0.20; no true dark means a wash)",
+        "value": 0.157
+      },
+      {
+        "check": "light_contrast",
+        "status": "pass",
+        "message": "day/subject: p75 local contrast 4.2 (at least 3.5)",
+        "value": 4.21
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 5.8 (R1 5.3)",
+        "value": 5.84
+      },
+      {
+        "check": "palette_drift",
+        "status": "warn",
+        "message": "mean dE 3.1, p95 10.7, off-palette 3.4% (top: #AA4433 (0.5%), #993322 (0.4%))",
+        "value": 3.0691
+      },
+      {
+        "check": "ground_line",
+        "status": "pass",
+        "message": "feet at 88.4% of the height (contract 88%)",
+        "value": 0.8838
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 74 against the char reference (outliers: C_p95, L_p2, detail)",
+        "value": 73.7
+      },
+      {
+        "check": "edit_silhouette",
+        "status": "fail",
+        "message": "67% of the parent's shape kept",
+        "value": 0.6712
+      },
+      {
+        "check": "edit_stability",
+        "status": "fail",
+        "message": "19% of the parent level unchanged",
+        "value": 0.1868
+      },
+      {
+        "check": "edit_chroma",
+        "status": "pass",
+        "message": "chroma x0.91 of the parent level (drift compounds along a chain)",
+        "value": 0.9116
+      }
+    ]
+  },
+  "note": "lead-selected per queue row 0-k; founder review pending. lead-selected per queue row 0-k of docs/design/art-production-plan.md at main76d7d09a509202b464e48224f1d9e84f5da21bc4. The lead explicitly selected this retained original and requested official promote --force. No generation, source-pixel modification, prompt/palette/profile edit or QA threshold change. Original generating account, timestamps, callbacks, prompt/reference fingerprints and all four original takes are preserved; all historical CUT notes stay labelled and retained. This is a lead selection, not a QA auto-pick. Publish original take2 exactly. Historical hard failures include BOTH edit_silhouette alpha overlap0.6712 AND edit_stability parent-kept fraction0.1868; the latter failure is explicitly disclosed even though the queue summary names silhouette. The large stretch/yawn pose changes most of the asleep parent. Native1024square delivery, canonical QA and actual report values remain unchanged. Current selected-take canonical QA status: fail. Actual hard failures (recorded unchanged): edit_silhouette: 67% of the parent's shape kept; edit_stability: 19% of the parent level unchanged. The exact retained lead selection uses official promote --force; this is not an automatic QA pass."
+}

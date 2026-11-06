@@ -1,0 +1,133 @@
+{
+  "job": "koke-island-3",
+  "batch": "batch-39-koke-production",
+  "asset": "plate__koke-island-3",
+  "take": 1,
+  "takes_considered": 4,
+  "approved_at": "2026-11-06T07:10:00+00:00",
+  "image": "design/art/masters/koke-island-3/koke-island-3.png",
+  "raw": "design/art/masters/koke-island-3/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "a490e481b0ac5fda",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nEdit the attached island plate from stage 0 to stage 3: nearly\nthere. The moss on Koke's hump and the lawn is now almost entirely a\nrich living green, with only a few pale grey spots left in the\ndeepest folds. Four of the five flower clusters are in open bloom:\nbutter yellow, blush pink, soft lilac and white blossoms with fresh\ngreen leaves; the fifth, at the far right, still has buds. A warm\nsun from the upper left lights the crown and the near side, with\nsoft warm shadows. Koke's near eye is open a sliver, a soft\nsleepy half-moon of warm brown with a catchlight, looking at nothing\nyet; the other eye is closed, and Koke is still lying down. The\nsmall dormouse is out on the lawn with the little wooden rake,\nraking the stepping-stone path, busy, at the size of a bagel. The\nsprout on the crown is a small leafy shoot. The picture is almost\nfull colour (chroma about 85 percent of a healthy meadow) but\nstill, as if the island is holding its breath: no petals in the air,\nno sparkles, no glow, no flowers growing on Koke's back. Every\nshape, prop, stone, outline, the island's size, the camera and the\ncomposition stay exactly where they are in the attached image.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: drifting petals, sparkles, a glow or halo, light rays, Koke standing, flowers on Koke's back, new props, moving or resizing anything, scary details, text\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nKey light #FFF6EC from the upper left; fill #BFD6EE; rim #FFE9C9 along the edge facing away from the key. Shadows are tinted #A99BC4 (never grey or black) and fall toward the lower right; paint a contact shadow in that hue under every object that touches the ground or another form, firmest in the subject plane.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, opaque, full bleed, landscape 1536 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/koke-island-0/koke-island-0.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud-retained-salvage",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-06T01:43:03.920Z",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "fit": null,
+  "emit_region": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "opaque, as this kind must be"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1536x1024"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "warn",
+        "message": "chroma p95 58 (R1 51)",
+        "value": 58.0
+      },
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 38 (at most 22), p98 96 (at least 90), spread 58 (at least 60)",
+        "value": 57.9
+      },
+      {
+        "check": "light_median",
+        "status": "pass",
+        "message": "day/subject: median L 72 (band 55-90)",
+        "value": 71.5
+      },
+      {
+        "check": "light_haze",
+        "status": "pass",
+        "message": "day/subject: dark-channel haze 0.12 (at most 0.20; no true dark means a wash)",
+        "value": 0.118
+      },
+      {
+        "check": "light_contrast",
+        "status": "pass",
+        "message": "day/subject: p75 local contrast 5.7 (at least 3.5)",
+        "value": 5.69
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 3.0 (R1 5.3)",
+        "value": 2.99
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 2.0",
+        "value": 2.0079
+      },
+      {
+        "check": "palette_drift",
+        "status": "warn",
+        "message": "mean dE 4.2, p95 13.6, off-palette 9.2% (top: #BBBB44 (1.5%), #AABB44 (1.4%))",
+        "value": 4.1917
+      },
+      {
+        "check": "edit_silhouette",
+        "status": "pass",
+        "message": "100% of the parent's shape kept",
+        "value": 1.0
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "63% of the parent level unchanged",
+        "value": 0.6312
+      },
+      {
+        "check": "edit_chroma",
+        "status": "pass",
+        "message": "chroma x1.78 of the parent level (drift compounds along a chain)",
+        "value": 1.7814
+      }
+    ]
+  },
+  "note": "lead-selected per queue row 0-k; founder review pending. lead-selected per queue row 0-k of docs/design/art-production-plan.md at main76d7d09a509202b464e48224f1d9e84f5da21bc4. The lead explicitly selected this retained original and requested official promote --force. No generation, source-pixel modification, prompt/palette/profile edit or QA threshold change. Original generating account, timestamps, callbacks, prompt/reference fingerprints and all four original takes are preserved; all historical CUT notes stay labelled and retained. This is a lead selection, not a QA auto-pick. Publish original take1 exactly. Historical canonical hard QA clears (warn-only), but its original and locked art leave the upper/back-right blue cluster shut while the outermost far-right yellow cluster is open: the explicit far-right remaining-bud position is not followed. This known manual content deviation remains accepted only by the exact unconditional row0-k selection; it is not erased or asserted to match the brief. Canonical half-size plate delivery768x512 is unchanged. Raking motion is explicitly requested and was not an invented registration failure. Current selected-take canonical QA status: warn. Actual hard failures (recorded unchanged): none. The exact retained lead selection uses official promote --force; this is not an automatic QA pass.",
+  "deliver": {
+    "scale": 0.5,
+    "original_size": [
+      1536,
+      1024
+    ],
+    "delivered_size": [
+      768,
+      512
+    ]
+  }
+}

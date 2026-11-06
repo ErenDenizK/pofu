@@ -2,7 +2,7 @@ id: asset-koke-stretch
 type: asset
 title_tr: koke-stretch
 title_en: koke-stretch (char)
-status: cut
+status: in-production
 horizon: now
 summary: 'Edit the attached moss creature, Koke, into a big waking-up stretch. The
   front legs stretch far forward along the ground with the paws spread, the haunches
@@ -14,7 +14,8 @@ links:
   variant_of:
   - asset-koke-asleep
 art:
-  images: []
+  images:
+  - design/art/masters/koke-stretch/koke-stretch.webp
   jobs:
   - batch-39-koke-production:koke-stretch
 sources:
@@ -68,3 +69,19 @@ notes:
   of the parent''s shape kept, edit_stability: 21% of the parent level unchanged;
   t4 edit_silhouette: 67% of the parent''s shape kept, edit_stability: 22% of the
   parent level unchanged.'
+- 'koke-lead-picks-2026-11-06: lead-selected per queue row 0-k; take 2. lead-selected
+  per queue row 0-k of docs/design/art-production-plan.md at main76d7d09a509202b464e48224f1d9e84f5da21bc4.
+  The lead explicitly selected this retained original and requested official promote
+  --force. No generation, source-pixel modification, prompt/palette/profile edit or
+  QA threshold change. Original generating account, timestamps, callbacks, prompt/reference
+  fingerprints and all four original takes are preserved; all historical CUT notes
+  stay labelled and retained. This is a lead selection, not a QA auto-pick. Publish
+  original take2 exactly. Historical hard failures include BOTH edit_silhouette alpha
+  overlap0.6712 AND edit_stability parent-kept fraction0.1868; the latter failure
+  is explicitly disclosed even though the queue summary names silhouette. The large
+  stretch/yawn pose changes most of the asleep parent. Native1024square delivery,
+  canonical QA and actual report values remain unchanged. Current selected-take canonical
+  QA status: fail. Actual hard failures (recorded unchanged): edit_silhouette: 67%
+  of the parent''s shape kept; edit_stability: 19% of the parent level unchanged.
+  The exact retained lead selection uses official promote --force; this is not an
+  automatic QA pass.'

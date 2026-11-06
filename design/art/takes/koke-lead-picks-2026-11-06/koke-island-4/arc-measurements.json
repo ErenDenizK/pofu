@@ -1,0 +1,86 @@
+{
+  "operation": "koke-lead-picks-2026-11-06",
+  "method": "Retain immutable canonical full-locked Harmony/light observations from the original Koke operation. Both current selected stage3/4 full-locked files are byte-identical to those measured originals; main root0/1/2 selected takes are read from their actual current approved metadata. No new numerical catalog run, source edit or QA threshold change. Delivered half-size master own Harmony shards are measured separately by the canonical measure/check cycle.",
+  "selected_stages": {
+    "koke-island-0": {
+      "selected_take": 2,
+      "original_canonical_observation_sha256": "21a4b2c148ddacf5dc2fa010b9bc8a8e8e71d47a756043755b6f35ffeb872986",
+      "original_locked_sha256": "4ec9eb0480763694c916f604e510b51ca3cf6b5e529ee49b2527f45588790ca0",
+      "full_locked_harmony_C_mean": 8.619,
+      "warm_bright_observational_fraction": 0.469174,
+      "canonical_light": {
+        "L_p2": 56.9,
+        "L_p50": 78.6,
+        "L_p98": 94.6,
+        "spread": 37.7,
+        "haze": 0.486,
+        "lc_p75": 2.93
+      }
+    },
+    "koke-island-1": {
+      "selected_take": 2,
+      "original_canonical_observation_sha256": "fb00a17ba47600006435ecc3a3d8cea80dacb3f030269598e5e8ddc1ad600b93",
+      "original_locked_sha256": "3b9d30f6d1a5e528415c7ff362f60f0c98c4a5bb296c8808d3c52dd48f1c31e8",
+      "full_locked_harmony_C_mean": 13.337,
+      "warm_bright_observational_fraction": 0.286625,
+      "canonical_light": {
+        "L_p2": 45.9,
+        "L_p50": 75.0,
+        "L_p98": 94.4,
+        "spread": 48.4,
+        "haze": 0.337,
+        "lc_p75": 4.47
+      }
+    },
+    "koke-island-2": {
+      "selected_take": 2,
+      "original_canonical_observation_sha256": "c1d8b4262831ecd3ad07c160d4eab61ec004d18419e359f1afa0aeec233add09",
+      "original_locked_sha256": "5aa2200049b8709a071ce76aed20657eab59f46ff1771104a052d6e56d126bc6",
+      "full_locked_harmony_C_mean": 22.462,
+      "warm_bright_observational_fraction": 0.280735,
+      "canonical_light": {
+        "L_p2": 38.6,
+        "L_p50": 71.3,
+        "L_p98": 93.1,
+        "spread": 54.6,
+        "haze": 0.192,
+        "lc_p75": 5.29
+      }
+    },
+    "koke-island-3": {
+      "selected_take": 1,
+      "original_canonical_observation_sha256": "09dee7ab703c1358bdddfa39c262abfc8f1a7b1df80d9911eb98d3419782be1a",
+      "original_locked_sha256": "298c6138a44eb97b60f46a4add793ab0adab727334046fbf17aecab58a0841da",
+      "full_locked_harmony_C_mean": 21.582,
+      "warm_bright_observational_fraction": 0.291329,
+      "canonical_light": {
+        "L_p2": 37.6,
+        "L_p50": 71.5,
+        "L_p98": 95.5,
+        "spread": 57.9,
+        "haze": 0.118,
+        "lc_p75": 5.69
+      }
+    },
+    "koke-island-4": {
+      "selected_take": 2,
+      "original_canonical_observation_sha256": "1240113cafc5e5e89c5cffdd1d29f542054a2cd56016e276f21910ec3002f32b",
+      "original_locked_sha256": "193eea6c51d571ade48de3794557591a890e36e16081a1a96b7a85a36a75c544",
+      "full_locked_harmony_C_mean": 24.73,
+      "warm_bright_observational_fraction": 0.286281,
+      "canonical_light": {
+        "L_p2": 35.1,
+        "L_p50": 71.6,
+        "L_p98": 94.9,
+        "spread": 59.7,
+        "haze": 0.09,
+        "lc_p75": 7.92
+      }
+    }
+  },
+  "stage4_to_stage0_full_locked_chroma_ratio": 2.869242371504815,
+  "authored_at_least2x_chroma_observed": true,
+  "light_proxy_definition": "Original shared observation: canonical subject-mask fraction CIELAB L>=75 AND b*>=8, same definition all stages. It is not an emissive mask or a canonical QA threshold.",
+  "light_proxy_limitation": "The recorded warm-bright proxy is not monotone and does not prove the authored first-warm-light step at stage2. This is disclosed without painting new light or falsely converting it into a pass.",
+  "all_original_measurement_receipts_preserved": true
+}

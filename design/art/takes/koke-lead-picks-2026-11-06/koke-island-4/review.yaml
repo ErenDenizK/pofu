@@ -1,0 +1,1663 @@
+batch: batch-39-koke-production
+contact_sheet: design/art/takes/koke-lead-picks-2026-11-06/koke-island-4/contact.jpg
+jobs:
+  koke-island-4:
+    pick: 2
+    lead_selected_take: 2
+    publication: promoted; founder review pending
+    note: 'lead-selected per queue row 0-k; founder review pending. lead-selected
+      per queue row 0-k of docs/design/art-production-plan.md at main76d7d09a509202b464e48224f1d9e84f5da21bc4.
+      The lead explicitly selected this retained original and requested official promote
+      --force. No generation, source-pixel modification, prompt/palette/profile edit
+      or QA threshold change. Original generating account, timestamps, callbacks,
+      prompt/reference fingerprints and all four original takes are preserved; all
+      historical CUT notes stay labelled and retained. This is a lead selection, not
+      a QA auto-pick. Publish original take2 exactly. Historical hard failures remain
+      chroma_ceiling p95=61.9 and palette_drift mean dE4.5290/off-palette13.3%. The
+      selected original otherwise depicts the requested standing flowering creature,
+      five open lawn groups, resident and petal/spore signature. Official half-size
+      plate delivery768x512 is unchanged. Actual healed-vs-stuck chroma/light observations
+      are recorded separately rather than claimed to meet a measured2x reward. Arc
+      observations are archived in arc-measurements.json: immutable full-locked chroma
+      ratio stage4/stage0 is2.8692; warm-bright observational proxy is not monotone
+      and is not claimed to meet the authored light step. Current selected full-locked
+      pixels equal those original measured files. Current selected-take canonical
+      QA status: fail. Actual hard failures (recorded unchanged): chroma_ceiling:
+      chroma p95 62 (R1 51); palette_drift: mean dE 4.5, p95 15.7, off-palette 13.3%
+      (top: #AAAA33 (1.2%), #BBBB44 (0.9%)). The exact retained lead selection uses
+      official promote --force; this is not an automatic QA pass.'
+qa_reports:
+  2:
+    job: koke-island-4
+    take: 2
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: fail
+      message: chroma p95 62 (R1 51)
+      value: 61.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 35 (at most 22), p98 95 (at least 90), spread 60
+        (at least 60)'
+      value: 59.7
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 72 (band 55-90)'
+      value: 71.6
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.09 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.09
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 7.9 (at least 3.5)'
+      value: 7.92
+    - check: detail_budget
+      status: pass
+      message: detail at display size 5.2 (R1 5.3)
+      value: 5.25
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.6
+      value: 2.6449
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 4.5, p95 15.7, off-palette 13.3% (top: #AAAA33 (1.2%), #BBBB44
+        (0.9%))'
+      value: 4.529
+    - check: edit_silhouette
+      status: pass
+      message: 100% of the parent's shape kept
+      value: 1.0
+    - check: edit_stability
+      status: warn
+      message: 45% of the parent level unchanged
+      value: 0.4548
+    - check: edit_chroma
+      status: pass
+      message: chroma x2.41 of the parent level (drift compounds along a chain)
+      value: 2.4128
+    info:
+      parent_canvas:
+        source:
+        - 768
+        - 512
+        target:
+        - 1536
+        - 1024
+      metrics_raw:
+        L_p5: 43.2
+        L_p50: 87.8
+        L_p95: 95.0
+        C_p50: 15.2
+        C_p95: 71.1
+        C_p99: 78.9
+        detail: 6.12
+      metrics_locked:
+        L_p5: 43.9
+        L_p50: 87.7
+        L_p95: 94.8
+        C_p50: 15.2
+        C_p95: 61.9
+        C_p99: 64.6
+        detail: 5.25
+    fingerprint: 45e36368520dd129
+  4:
+    job: koke-island-4
+    take: 4
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: fail
+      message: chroma p95 62 (R1 51)
+      value: 62.5
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 28 (at most 22), p98 95 (at least 90), spread 67
+        (at least 60)'
+      value: 66.7
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 73 (band 55-90)'
+      value: 73.0
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.02 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.016
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 7.4 (at least 3.5)'
+      value: 7.44
+    - check: detail_budget
+      status: pass
+      message: detail at display size 5.1 (R1 5.3)
+      value: 5.12
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.9
+      value: 2.8646
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 5.2, p95 16.6, off-palette 19.1% (top: #AAAA33 (1.1%), #556611
+        (0.9%))'
+      value: 5.2478
+    - check: edit_silhouette
+      status: pass
+      message: 100% of the parent's shape kept
+      value: 1.0
+    - check: edit_stability
+      status: fail
+      message: 28% of the parent level unchanged
+      value: 0.2767
+    - check: edit_chroma
+      status: warn
+      message: chroma x3.78 of the parent level (drift compounds along a chain)
+      value: 3.7786
+    info:
+      parent_canvas:
+        source:
+        - 768
+        - 512
+        target:
+        - 1536
+        - 1024
+      metrics_raw:
+        L_p5: 39.8
+        L_p50: 83.4
+        L_p95: 94.8
+        C_p50: 24.1
+        C_p95: 72.8
+        C_p99: 79.6
+        detail: 6.05
+      metrics_locked:
+        L_p5: 40.5
+        L_p50: 83.3
+        L_p95: 94.6
+        C_p50: 23.8
+        C_p95: 62.5
+        C_p99: 64.8
+        detail: 5.12
+    fingerprint: 45e36368520dd129
+  1:
+    job: koke-island-4
+    take: 1
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: fail
+      message: chroma p95 61 (R1 51)
+      value: 60.6
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 36 (at most 22), p98 95 (at least 90), spread 60
+        (at least 60)'
+      value: 59.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 72 (band 55-90)'
+      value: 72.5
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.12 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.118
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.6 (at least 3.5)'
+      value: 6.57
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.4 (R1 5.3)
+      value: 4.4
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.3
+      value: 2.2936
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 4.1, p95 14.6, off-palette 9.7% (top: #AAAA33 (1.2%), #BBBB44
+        (1.0%))'
+      value: 4.0822
+    - check: edit_silhouette
+      status: pass
+      message: 100% of the parent's shape kept
+      value: 1.0
+    - check: edit_stability
+      status: warn
+      message: 41% of the parent level unchanged
+      value: 0.4086
+    - check: edit_chroma
+      status: pass
+      message: chroma x3.05 of the parent level (drift compounds along a chain)
+      value: 3.0469
+    info:
+      parent_canvas:
+        source:
+        - 768
+        - 512
+        target:
+        - 1536
+        - 1024
+      metrics_raw:
+        L_p5: 44.7
+        L_p50: 86.0
+        L_p95: 94.9
+        C_p50: 19.6
+        C_p95: 67.4
+        C_p99: 75.7
+        detail: 5.28
+      metrics_locked:
+        L_p5: 45.4
+        L_p50: 85.9
+        L_p95: 94.7
+        C_p50: 19.2
+        C_p95: 60.6
+        C_p99: 64.2
+        detail: 4.4
+    fingerprint: 45e36368520dd129
+  3:
+    job: koke-island-4
+    take: 3
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: fail
+      message: chroma p95 62 (R1 51)
+      value: 62.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 37 (at most 22), p98 95 (at least 90), spread 58
+        (at least 60)'
+      value: 58.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 75 (band 55-90)'
+      value: 74.9
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.10 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.102
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 7.4 (at least 3.5)'
+      value: 7.36
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.6 (R1 5.3)
+      value: 4.61
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.7
+      value: 2.6753
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 4.2, p95 15.5, off-palette 12.3% (top: #BBBB44 (0.9%), #DDCC44
+        (0.8%))'
+      value: 4.2094
+    - check: edit_silhouette
+      status: pass
+      message: 100% of the parent's shape kept
+      value: 1.0
+    - check: edit_stability
+      status: warn
+      message: 44% of the parent level unchanged
+      value: 0.4394
+    - check: edit_chroma
+      status: pass
+      message: chroma x3.06 of the parent level (drift compounds along a chain)
+      value: 3.0588
+    info:
+      parent_canvas:
+        source:
+        - 768
+        - 512
+        target:
+        - 1536
+        - 1024
+      metrics_raw:
+        L_p5: 44.8
+        L_p50: 87.2
+        L_p95: 95.3
+        C_p50: 19.4
+        C_p95: 72.3
+        C_p99: 80.9
+        detail: 5.46
+      metrics_locked:
+        L_p5: 45.4
+        L_p50: 87.1
+        L_p95: 95.1
+        C_p50: 19.3
+        C_p95: 62.4
+        C_p99: 65.3
+        detail: 4.61
+    fingerprint: 45e36368520dd129
+manual_review:
+  excluded_takes: []
+  note: 'lead-selected per queue row 0-k of docs/design/art-production-plan.md at
+    main76d7d09a509202b464e48224f1d9e84f5da21bc4. The lead explicitly selected this
+    retained original and requested official promote --force. No generation, source-pixel
+    modification, prompt/palette/profile edit or QA threshold change. Original generating
+    account, timestamps, callbacks, prompt/reference fingerprints and all four original
+    takes are preserved; all historical CUT notes stay labelled and retained. This
+    is a lead selection, not a QA auto-pick. Publish original take2 exactly. Historical
+    hard failures remain chroma_ceiling p95=61.9 and palette_drift mean dE4.5290/off-palette13.3%.
+    The selected original otherwise depicts the requested standing flowering creature,
+    five open lawn groups, resident and petal/spore signature. Official half-size
+    plate delivery768x512 is unchanged. Actual healed-vs-stuck chroma/light observations
+    are recorded separately rather than claimed to meet a measured2x reward. Arc observations
+    are archived in arc-measurements.json: immutable full-locked chroma ratio stage4/stage0
+    is2.8692; warm-bright observational proxy is not monotone and is not claimed to
+    meet the authored light step. Current selected full-locked pixels equal those
+    original measured files.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-2f4a4e8c-fccc-4616-8c4b-03bb8a50b116.png
+  original_generated_png_sha256: c21ec57328e9c0f3e2e8afb3bb695af50b25ee55d52aac8473912fc791a70d16
+  inbox_png_sha256: 812372cbab793948265933bcfb30f2551408dacb68f1b63792dc855befd35dc6
+  rgba_sha256: ffabbcbc50a4274f0f29f136994b0bb39d5d31c205129c53c6060b83df135137
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 45e36368520dd129
+- take: 2
+  source_file: /workspace/generated_images/exec-89f18d0c-cdf8-4f3b-b03a-5dd7920c8a7e.png
+  original_generated_png_sha256: 21caf2f3132a6de617b9e1f93d118ed416b22d3966f8e91fd5f02aae95181592
+  inbox_png_sha256: 85d01cd0626deb97f4f07fa412b4fbd65a61d8bcb901c4dcaf8b2dc5f37310a7
+  rgba_sha256: 35f0bc801be0d8f0a103a5d2aaf3e81b9e0b6b1c2e01ff66ce638fff4df24c8a
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 45e36368520dd129
+- take: 3
+  source_file: /workspace/generated_images/exec-20ff8ea5-c05e-4f95-b02b-705ea400f373.png
+  original_generated_png_sha256: 693c318ef2554b51f078f351855425ac0a2ec01386fbb11b7e9960ed253e776a
+  inbox_png_sha256: a4abb75a84ef2c2feca4b4e7200380bb7f19372f1be4476b853299b807cd0382
+  rgba_sha256: fb554693be6e05cd5f6817fa41f44da53c6d5ba8f33544830a6bc94cc43dcc64
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 45e36368520dd129
+- take: 4
+  source_file: /workspace/generated_images/exec-1045607c-6c1c-4082-9e30-91a4db464267.png
+  original_generated_png_sha256: 318615b00681420c2f5b224fad7584da53f17d3b230f3178fb1514cd9ce6d986
+  inbox_png_sha256: ae5a9e5572b802edcbf92fb93a6473bda60e7b5af1b4a9a12227ddb058c7ebb7
+  rgba_sha256: 18095fea96adfac7ce65453349b6ebd6e307e4ab1a8935ed9bc2d57723206f46
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 45e36368520dd129
+salvage:
+  batch: batch-39-koke-production
+  source_count: 4
+  original_branch: art/koke-repost-2026-11-06/all
+  original_commit: 58c40e458da2f23ca7be57e55a3759c086c9c636
+  selected_take: 2
+  sources:
+  - batch: batch-39-koke-production
+    job: koke-island-4
+    take: 1
+    round: 1
+    logical_run: 20261106-koke-repost-islands34
+    source_file: /workspace/generated_images/exec-2f4a4e8c-fccc-4616-8c4b-03bb8a50b116.png
+    returned_at: '2026-11-06T01:43:41.259Z'
+    prompt_sha256: 86dbdef77465b53a88265575cad178c2ec6a6312e63d8d7886743cb66d1488f8
+    fingerprint: 45e36368520dd129
+    saved_at: '2026-11-06T01:43:41.668191+00:00'
+    original_generated_png_sha256: c21ec57328e9c0f3e2e8afb3bb695af50b25ee55d52aac8473912fc791a70d16
+    dimensions:
+    - 1536
+    - 1024
+    rgba_sha256: ffabbcbc50a4274f0f29f136994b0bb39d5d31c205129c53c6060b83df135137
+    evaluation_take: 1
+    original_take: 1
+    original_run: batch-39-koke-production
+    original_operation: koke-repost-2026-11-06
+    original_callback: /workspace/art-operator-runtime/run-20261106/koke-repost-2026-11-06/generated-koke-island-4-t1.json
+    original_callback_sha256: 5efdce47468440511e585ff2c767daafb69f14d687317e6732c174dc98f280b3
+    original_tool_callback: /workspace/art-operator-runtime/run-20261106/koke-repost-2026-11-06/callback-koke-island-4-t1.json
+    original_tool_callback_sha256: 2444cf65f4b39c65e8b411812a76c3c0c185f02b534ab5dcf0d07b7e01c6defc
+    original_packet:
+      batch: batch-39-koke-production
+      job: koke-island-4
+      worktree: /workspace/art-20261106-koke-repost
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. The image to edit (the approved previous level). Edit it; do not redraw
+        it.
+
+
+        Edit the attached island plate from stage 0 to stage 4, healed: the
+
+        signature moment. Koke stands up: the hump has risen onto four
+
+        sturdy stubby legs, standing on the lawn where it slept, its head
+
+        lifted and turned to the viewer, both eyes open, big round and
+
+        warm brown with catchlights, a soft happy smile, its small ears
+
+        perked. It is covered in rich living moss, thick like fur, and its
+
+        whole back is in flower: blossoms in butter yellow, blush pink, lilac
+
+        and white, with a tuft of leaves on its crown. It stands within the
+
+        hump''s footprint and is about a third taller than the hump was, so it
+
+        fits well inside the picture. The island is in full bloom: all five
+
+        flower clusters open and lush, the moss deep and green on every
+
+        boulder, the ferns unfurled, the path of stepping stones bright. A warm
+
+        golden sun from the upper left lights everything, and the whole
+
+        island glows with warm light. The signature image: soft flower petals
+
+        and golden spores drift up in the air from all over the island,
+
+        catching the light. The small dormouse sits on a boulder beside the
+
+        rake, delighted, at the size of a bagel. Full colour (chroma about
+
+        100 percent of a healthy meadow). The island''s size, outline, the
+
+        camera, the boulders, the path and the rake stay exactly where they
+
+        are in the attached image.
+
+
+        KEEP: everything not named above stays exactly the same as in the
+
+        attached image: every existing part, its shape, color, position and size,
+
+        the canvas, the camera, the light and the painting style. Do not zoom out
+
+        or reframe: if a new part does not fit, make the new part smaller, never
+
+        the existing ones. Outside the new parts, the result must line up with
+
+        the attached image pixel for pixel.
+
+
+        AVOID: teeth, claws, a roar, a whale shape, glowing eyes, a dark sky, light
+        rays, a halo, Koke crossing the island''s edge, new props, moving or resizing
+        the island, scary details, text
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Key light #FFF6EC from the upper left; fill #BFD6EE; rim #FFE9C9 along the
+        edge facing away from the key. Shadows are tinted #A99BC4 (never grey or black)
+        and fall toward the lower right; paint a contact shadow in that hue under
+        every object that touches the ground or another form, firmest in the subject
+        plane.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, opaque, full bleed, landscape 1536 x 1024.
+
+        '
+      refs:
+      - /workspace/art-20261106-koke-repost/design/art/masters/koke-island-0/koke-island-0.png
+      reference_sha256:
+        /workspace/art-20261106-koke-repost/design/art/masters/koke-island-0/koke-island-0.png: f8f65e0ecc7c03f119c54307349d1c74bc9a143784c52228c1076fa984991231
+      fingerprint: 45e36368520dd129
+      prompt_sha256: 86dbdef77465b53a88265575cad178c2ec6a6312e63d8d7886743cb66d1488f8
+      transparent: false
+    original_sidecar:
+      job: koke-island-4
+      take: 1
+      batch: batch-39-koke-production
+      fingerprint: 45e36368520dd129
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. The image to edit (the approved previous level). Edit it; do not redraw
+        it.
+
+
+        Edit the attached island plate from stage 0 to stage 4, healed: the
+
+        signature moment. Koke stands up: the hump has risen onto four
+
+        sturdy stubby legs, standing on the lawn where it slept, its head
+
+        lifted and turned to the viewer, both eyes open, big round and
+
+        warm brown with catchlights, a soft happy smile, its small ears
+
+        perked. It is covered in rich living moss, thick like fur, and its
+
+        whole back is in flower: blossoms in butter yellow, blush pink, lilac
+
+        and white, with a tuft of leaves on its crown. It stands within the
+
+        hump''s footprint and is about a third taller than the hump was, so it
+
+        fits well inside the picture. The island is in full bloom: all five
+
+        flower clusters open and lush, the moss deep and green on every
+
+        boulder, the ferns unfurled, the path of stepping stones bright. A warm
+
+        golden sun from the upper left lights everything, and the whole
+
+        island glows with warm light. The signature image: soft flower petals
+
+        and golden spores drift up in the air from all over the island,
+
+        catching the light. The small dormouse sits on a boulder beside the
+
+        rake, delighted, at the size of a bagel. Full colour (chroma about
+
+        100 percent of a healthy meadow). The island''s size, outline, the
+
+        camera, the boulders, the path and the rake stay exactly where they
+
+        are in the attached image.
+
+
+        KEEP: everything not named above stays exactly the same as in the
+
+        attached image: every existing part, its shape, color, position and size,
+
+        the canvas, the camera, the light and the painting style. Do not zoom out
+
+        or reframe: if a new part does not fit, make the new part smaller, never
+
+        the existing ones. Outside the new parts, the result must line up with
+
+        the attached image pixel for pixel.
+
+
+        AVOID: teeth, claws, a roar, a whale shape, glowing eyes, a dark sky, light
+        rays, a halo, Koke crossing the island''s edge, new props, moving or resizing
+        the island, scary details, text
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Key light #FFF6EC from the upper left; fill #BFD6EE; rim #FFE9C9 along the
+        edge facing away from the key. Shadows are tinted #A99BC4 (never grey or black)
+        and fall toward the lower right; paint a contact shadow in that hue under
+        every object that touches the ground or another form, firmest in the subject
+        plane.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, opaque, full bleed, landscape 1536 x 1024.
+
+        '
+      attachments:
+      - path: design/art/masters/koke-island-0/koke-island-0.png
+        role: The image to edit (the approved previous level). Edit it; do not redraw
+          it.
+      background: transparent
+      generated_at: '2026-11-06T01:45:33+00:00'
+      backend: codex-cloud
+      source_file: /workspace/generated_images/exec-2f4a4e8c-fccc-4616-8c4b-03bb8a50b116.png
+      account:
+        owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+        kind: chatgpt-plan
+    original_sidecar_sha256: 3b17592bb165e3c6f74b1d9c163a613a482e8aef56c5af1d3ff262839b3997b6
+    original_qa:
+      job: koke-island-4
+      take: 1
+      status: fail
+      preset: lock-light
+      checks:
+      - check: transparency
+        status: pass
+        message: opaque, as this kind must be
+      - check: canvas
+        status: pass
+        message: 1536x1024
+      - check: chroma_ceiling
+        status: fail
+        message: chroma p95 61 (R1 51)
+        value: 60.6
+      - check: light_values
+        status: warn
+        message: 'day/subject: L p2 36 (at most 22), p98 95 (at least 90), spread
+          60 (at least 60)'
+        value: 59.5
+      - check: light_median
+        status: pass
+        message: 'day/subject: median L 72 (band 55-90)'
+        value: 72.5
+      - check: light_haze
+        status: pass
+        message: 'day/subject: dark-channel haze 0.12 (at most 0.20; no true dark
+          means a wash)'
+        value: 0.118
+      - check: light_contrast
+        status: pass
+        message: 'day/subject: p75 local contrast 6.6 (at least 3.5)'
+        value: 6.57
+      - check: detail_budget
+        status: pass
+        message: detail at display size 4.4 (R1 5.3)
+        value: 4.4
+      - check: lock_load
+        status: pass
+        message: the lock moved colors by mean dE 2.3
+        value: 2.2936
+      - check: palette_drift
+        status: fail
+        message: 'mean dE 4.1, p95 14.6, off-palette 9.7% (top: #AAAA33 (1.2%), #BBBB44
+          (1.0%))'
+        value: 4.0822
+      - check: edit_silhouette
+        status: pass
+        message: 100% of the parent's shape kept
+        value: 1.0
+      - check: edit_stability
+        status: warn
+        message: 41% of the parent level unchanged
+        value: 0.4086
+      - check: edit_chroma
+        status: pass
+        message: chroma x3.05 of the parent level (drift compounds along a chain)
+        value: 3.0469
+      info:
+        parent_canvas:
+          source:
+          - 768
+          - 512
+          target:
+          - 1536
+          - 1024
+        metrics_raw:
+          L_p5: 44.7
+          L_p50: 86.0
+          L_p95: 94.9
+          C_p50: 19.6
+          C_p95: 67.4
+          C_p99: 75.7
+          detail: 5.28
+        metrics_locked:
+          L_p5: 45.4
+          L_p50: 85.9
+          L_p95: 94.7
+          C_p50: 19.2
+          C_p95: 60.6
+          C_p99: 64.2
+          detail: 4.4
+      fingerprint: 45e36368520dd129
+    original_qa_sha256: 83d521dd1c18d64c61fd55e44adc5fbe9982e1545c714f6934e9a75c9a430735
+  - batch: batch-39-koke-production
+    job: koke-island-4
+    take: 2
+    round: 1
+    logical_run: 20261106-koke-repost-islands34
+    source_file: /workspace/generated_images/exec-89f18d0c-cdf8-4f3b-b03a-5dd7920c8a7e.png
+    returned_at: '2026-11-06T01:45:06.095Z'
+    prompt_sha256: 86dbdef77465b53a88265575cad178c2ec6a6312e63d8d7886743cb66d1488f8
+    fingerprint: 45e36368520dd129
+    saved_at: '2026-11-06T01:45:06.412183+00:00'
+    original_generated_png_sha256: 21caf2f3132a6de617b9e1f93d118ed416b22d3966f8e91fd5f02aae95181592
+    dimensions:
+    - 1536
+    - 1024
+    rgba_sha256: 35f0bc801be0d8f0a103a5d2aaf3e81b9e0b6b1c2e01ff66ce638fff4df24c8a
+    evaluation_take: 2
+    original_take: 2
+    original_run: batch-39-koke-production
+    original_operation: koke-repost-2026-11-06
+    original_callback: /workspace/art-operator-runtime/run-20261106/koke-repost-2026-11-06/generated-koke-island-4-t2.json
+    original_callback_sha256: f7c014e239ba491f15004869ec5126a58cc39ff521184a61a89ea57671177e3a
+    original_tool_callback: /workspace/art-operator-runtime/run-20261106/koke-repost-2026-11-06/callback-koke-island-4-t2.json
+    original_tool_callback_sha256: b2272aa68908753a3631076158f78948433a7117d2de660690964c705d59bd0b
+    original_packet:
+      batch: batch-39-koke-production
+      job: koke-island-4
+      worktree: /workspace/art-20261106-koke-repost
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. The image to edit (the approved previous level). Edit it; do not redraw
+        it.
+
+
+        Edit the attached island plate from stage 0 to stage 4, healed: the
+
+        signature moment. Koke stands up: the hump has risen onto four
+
+        sturdy stubby legs, standing on the lawn where it slept, its head
+
+        lifted and turned to the viewer, both eyes open, big round and
+
+        warm brown with catchlights, a soft happy smile, its small ears
+
+        perked. It is covered in rich living moss, thick like fur, and its
+
+        whole back is in flower: blossoms in butter yellow, blush pink, lilac
+
+        and white, with a tuft of leaves on its crown. It stands within the
+
+        hump''s footprint and is about a third taller than the hump was, so it
+
+        fits well inside the picture. The island is in full bloom: all five
+
+        flower clusters open and lush, the moss deep and green on every
+
+        boulder, the ferns unfurled, the path of stepping stones bright. A warm
+
+        golden sun from the upper left lights everything, and the whole
+
+        island glows with warm light. The signature image: soft flower petals
+
+        and golden spores drift up in the air from all over the island,
+
+        catching the light. The small dormouse sits on a boulder beside the
+
+        rake, delighted, at the size of a bagel. Full colour (chroma about
+
+        100 percent of a healthy meadow). The island''s size, outline, the
+
+        camera, the boulders, the path and the rake stay exactly where they
+
+        are in the attached image.
+
+
+        KEEP: everything not named above stays exactly the same as in the
+
+        attached image: every existing part, its shape, color, position and size,
+
+        the canvas, the camera, the light and the painting style. Do not zoom out
+
+        or reframe: if a new part does not fit, make the new part smaller, never
+
+        the existing ones. Outside the new parts, the result must line up with
+
+        the attached image pixel for pixel.
+
+
+        AVOID: teeth, claws, a roar, a whale shape, glowing eyes, a dark sky, light
+        rays, a halo, Koke crossing the island''s edge, new props, moving or resizing
+        the island, scary details, text
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Key light #FFF6EC from the upper left; fill #BFD6EE; rim #FFE9C9 along the
+        edge facing away from the key. Shadows are tinted #A99BC4 (never grey or black)
+        and fall toward the lower right; paint a contact shadow in that hue under
+        every object that touches the ground or another form, firmest in the subject
+        plane.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, opaque, full bleed, landscape 1536 x 1024.
+
+        '
+      refs:
+      - /workspace/art-20261106-koke-repost/design/art/masters/koke-island-0/koke-island-0.png
+      reference_sha256:
+        /workspace/art-20261106-koke-repost/design/art/masters/koke-island-0/koke-island-0.png: f8f65e0ecc7c03f119c54307349d1c74bc9a143784c52228c1076fa984991231
+      fingerprint: 45e36368520dd129
+      prompt_sha256: 86dbdef77465b53a88265575cad178c2ec6a6312e63d8d7886743cb66d1488f8
+      transparent: false
+    original_sidecar:
+      job: koke-island-4
+      take: 2
+      batch: batch-39-koke-production
+      fingerprint: 45e36368520dd129
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. The image to edit (the approved previous level). Edit it; do not redraw
+        it.
+
+
+        Edit the attached island plate from stage 0 to stage 4, healed: the
+
+        signature moment. Koke stands up: the hump has risen onto four
+
+        sturdy stubby legs, standing on the lawn where it slept, its head
+
+        lifted and turned to the viewer, both eyes open, big round and
+
+        warm brown with catchlights, a soft happy smile, its small ears
+
+        perked. It is covered in rich living moss, thick like fur, and its
+
+        whole back is in flower: blossoms in butter yellow, blush pink, lilac
+
+        and white, with a tuft of leaves on its crown. It stands within the
+
+        hump''s footprint and is about a third taller than the hump was, so it
+
+        fits well inside the picture. The island is in full bloom: all five
+
+        flower clusters open and lush, the moss deep and green on every
+
+        boulder, the ferns unfurled, the path of stepping stones bright. A warm
+
+        golden sun from the upper left lights everything, and the whole
+
+        island glows with warm light. The signature image: soft flower petals
+
+        and golden spores drift up in the air from all over the island,
+
+        catching the light. The small dormouse sits on a boulder beside the
+
+        rake, delighted, at the size of a bagel. Full colour (chroma about
+
+        100 percent of a healthy meadow). The island''s size, outline, the
+
+        camera, the boulders, the path and the rake stay exactly where they
+
+        are in the attached image.
+
+
+        KEEP: everything not named above stays exactly the same as in the
+
+        attached image: every existing part, its shape, color, position and size,
+
+        the canvas, the camera, the light and the painting style. Do not zoom out
+
+        or reframe: if a new part does not fit, make the new part smaller, never
+
+        the existing ones. Outside the new parts, the result must line up with
+
+        the attached image pixel for pixel.
+
+
+        AVOID: teeth, claws, a roar, a whale shape, glowing eyes, a dark sky, light
+        rays, a halo, Koke crossing the island''s edge, new props, moving or resizing
+        the island, scary details, text
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Key light #FFF6EC from the upper left; fill #BFD6EE; rim #FFE9C9 along the
+        edge facing away from the key. Shadows are tinted #A99BC4 (never grey or black)
+        and fall toward the lower right; paint a contact shadow in that hue under
+        every object that touches the ground or another form, firmest in the subject
+        plane.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, opaque, full bleed, landscape 1536 x 1024.
+
+        '
+      attachments:
+      - path: design/art/masters/koke-island-0/koke-island-0.png
+        role: The image to edit (the approved previous level). Edit it; do not redraw
+          it.
+      background: transparent
+      generated_at: '2026-11-06T01:45:34+00:00'
+      backend: codex-cloud
+      source_file: /workspace/generated_images/exec-89f18d0c-cdf8-4f3b-b03a-5dd7920c8a7e.png
+      account:
+        owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+        kind: chatgpt-plan
+    original_sidecar_sha256: 6549b344ff5508b49631199e801dc174f0914194a0756038d2a0a12d5e97ef87
+    original_qa:
+      job: koke-island-4
+      take: 2
+      status: fail
+      preset: lock-light
+      checks:
+      - check: transparency
+        status: pass
+        message: opaque, as this kind must be
+      - check: canvas
+        status: pass
+        message: 1536x1024
+      - check: chroma_ceiling
+        status: fail
+        message: chroma p95 62 (R1 51)
+        value: 61.9
+      - check: light_values
+        status: warn
+        message: 'day/subject: L p2 35 (at most 22), p98 95 (at least 90), spread
+          60 (at least 60)'
+        value: 59.7
+      - check: light_median
+        status: pass
+        message: 'day/subject: median L 72 (band 55-90)'
+        value: 71.6
+      - check: light_haze
+        status: pass
+        message: 'day/subject: dark-channel haze 0.09 (at most 0.20; no true dark
+          means a wash)'
+        value: 0.09
+      - check: light_contrast
+        status: pass
+        message: 'day/subject: p75 local contrast 7.9 (at least 3.5)'
+        value: 7.92
+      - check: detail_budget
+        status: pass
+        message: detail at display size 5.2 (R1 5.3)
+        value: 5.25
+      - check: lock_load
+        status: pass
+        message: the lock moved colors by mean dE 2.6
+        value: 2.6449
+      - check: palette_drift
+        status: fail
+        message: 'mean dE 4.5, p95 15.7, off-palette 13.3% (top: #AAAA33 (1.2%), #BBBB44
+          (0.9%))'
+        value: 4.529
+      - check: edit_silhouette
+        status: pass
+        message: 100% of the parent's shape kept
+        value: 1.0
+      - check: edit_stability
+        status: warn
+        message: 45% of the parent level unchanged
+        value: 0.4548
+      - check: edit_chroma
+        status: pass
+        message: chroma x2.41 of the parent level (drift compounds along a chain)
+        value: 2.4128
+      info:
+        parent_canvas:
+          source:
+          - 768
+          - 512
+          target:
+          - 1536
+          - 1024
+        metrics_raw:
+          L_p5: 43.2
+          L_p50: 87.8
+          L_p95: 95.0
+          C_p50: 15.2
+          C_p95: 71.1
+          C_p99: 78.9
+          detail: 6.12
+        metrics_locked:
+          L_p5: 43.9
+          L_p50: 87.7
+          L_p95: 94.8
+          C_p50: 15.2
+          C_p95: 61.9
+          C_p99: 64.6
+          detail: 5.25
+      fingerprint: 45e36368520dd129
+    original_qa_sha256: f4704ca141e91bf2823e6f8ec58ef18d17f93cd7d19b07164977141452affd38
+  - batch: batch-39-koke-production
+    job: koke-island-4
+    take: 3
+    round: 2
+    logical_run: 20261106-koke-repost-islands34-r2
+    source_file: /workspace/generated_images/exec-20ff8ea5-c05e-4f95-b02b-705ea400f373.png
+    returned_at: '2026-11-06T01:54:49.116Z'
+    prompt_sha256: 86dbdef77465b53a88265575cad178c2ec6a6312e63d8d7886743cb66d1488f8
+    fingerprint: 45e36368520dd129
+    saved_at: '2026-11-06T01:54:49.410137+00:00'
+    original_generated_png_sha256: 693c318ef2554b51f078f351855425ac0a2ec01386fbb11b7e9960ed253e776a
+    dimensions:
+    - 1536
+    - 1024
+    rgba_sha256: fb554693be6e05cd5f6817fa41f44da53c6d5ba8f33544830a6bc94cc43dcc64
+    evaluation_take: 3
+    original_take: 3
+    original_run: batch-39-koke-production
+    original_operation: koke-repost-2026-11-06
+    original_callback: /workspace/art-operator-runtime/run-20261106/koke-repost-2026-11-06/generated-koke-island-4-t3.json
+    original_callback_sha256: d91f941dec09d0fc6b47eda8992b9a3272207b9e968f1be2cf8e3c0ecd0d1761
+    original_tool_callback: /workspace/art-operator-runtime/run-20261106/koke-repost-2026-11-06/callback-koke-island-4-t3.json
+    original_tool_callback_sha256: 8f267cb0a854387c448d27c40f156ab74761cd1ad6523f630a7f3ccd7edc15a0
+    original_packet:
+      batch: batch-39-koke-production
+      job: koke-island-4
+      worktree: /workspace/art-20261106-koke-repost
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. The image to edit (the approved previous level). Edit it; do not redraw
+        it.
+
+
+        Edit the attached island plate from stage 0 to stage 4, healed: the
+
+        signature moment. Koke stands up: the hump has risen onto four
+
+        sturdy stubby legs, standing on the lawn where it slept, its head
+
+        lifted and turned to the viewer, both eyes open, big round and
+
+        warm brown with catchlights, a soft happy smile, its small ears
+
+        perked. It is covered in rich living moss, thick like fur, and its
+
+        whole back is in flower: blossoms in butter yellow, blush pink, lilac
+
+        and white, with a tuft of leaves on its crown. It stands within the
+
+        hump''s footprint and is about a third taller than the hump was, so it
+
+        fits well inside the picture. The island is in full bloom: all five
+
+        flower clusters open and lush, the moss deep and green on every
+
+        boulder, the ferns unfurled, the path of stepping stones bright. A warm
+
+        golden sun from the upper left lights everything, and the whole
+
+        island glows with warm light. The signature image: soft flower petals
+
+        and golden spores drift up in the air from all over the island,
+
+        catching the light. The small dormouse sits on a boulder beside the
+
+        rake, delighted, at the size of a bagel. Full colour (chroma about
+
+        100 percent of a healthy meadow). The island''s size, outline, the
+
+        camera, the boulders, the path and the rake stay exactly where they
+
+        are in the attached image.
+
+
+        KEEP: everything not named above stays exactly the same as in the
+
+        attached image: every existing part, its shape, color, position and size,
+
+        the canvas, the camera, the light and the painting style. Do not zoom out
+
+        or reframe: if a new part does not fit, make the new part smaller, never
+
+        the existing ones. Outside the new parts, the result must line up with
+
+        the attached image pixel for pixel.
+
+
+        AVOID: teeth, claws, a roar, a whale shape, glowing eyes, a dark sky, light
+        rays, a halo, Koke crossing the island''s edge, new props, moving or resizing
+        the island, scary details, text
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Key light #FFF6EC from the upper left; fill #BFD6EE; rim #FFE9C9 along the
+        edge facing away from the key. Shadows are tinted #A99BC4 (never grey or black)
+        and fall toward the lower right; paint a contact shadow in that hue under
+        every object that touches the ground or another form, firmest in the subject
+        plane.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, opaque, full bleed, landscape 1536 x 1024.
+
+        '
+      refs:
+      - /workspace/art-20261106-koke-repost/design/art/masters/koke-island-0/koke-island-0.png
+      reference_sha256:
+        /workspace/art-20261106-koke-repost/design/art/masters/koke-island-0/koke-island-0.png: f8f65e0ecc7c03f119c54307349d1c74bc9a143784c52228c1076fa984991231
+      fingerprint: 45e36368520dd129
+      prompt_sha256: 86dbdef77465b53a88265575cad178c2ec6a6312e63d8d7886743cb66d1488f8
+      transparent: false
+    original_sidecar:
+      job: koke-island-4
+      take: 3
+      batch: batch-39-koke-production
+      fingerprint: 45e36368520dd129
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. The image to edit (the approved previous level). Edit it; do not redraw
+        it.
+
+
+        Edit the attached island plate from stage 0 to stage 4, healed: the
+
+        signature moment. Koke stands up: the hump has risen onto four
+
+        sturdy stubby legs, standing on the lawn where it slept, its head
+
+        lifted and turned to the viewer, both eyes open, big round and
+
+        warm brown with catchlights, a soft happy smile, its small ears
+
+        perked. It is covered in rich living moss, thick like fur, and its
+
+        whole back is in flower: blossoms in butter yellow, blush pink, lilac
+
+        and white, with a tuft of leaves on its crown. It stands within the
+
+        hump''s footprint and is about a third taller than the hump was, so it
+
+        fits well inside the picture. The island is in full bloom: all five
+
+        flower clusters open and lush, the moss deep and green on every
+
+        boulder, the ferns unfurled, the path of stepping stones bright. A warm
+
+        golden sun from the upper left lights everything, and the whole
+
+        island glows with warm light. The signature image: soft flower petals
+
+        and golden spores drift up in the air from all over the island,
+
+        catching the light. The small dormouse sits on a boulder beside the
+
+        rake, delighted, at the size of a bagel. Full colour (chroma about
+
+        100 percent of a healthy meadow). The island''s size, outline, the
+
+        camera, the boulders, the path and the rake stay exactly where they
+
+        are in the attached image.
+
+
+        KEEP: everything not named above stays exactly the same as in the
+
+        attached image: every existing part, its shape, color, position and size,
+
+        the canvas, the camera, the light and the painting style. Do not zoom out
+
+        or reframe: if a new part does not fit, make the new part smaller, never
+
+        the existing ones. Outside the new parts, the result must line up with
+
+        the attached image pixel for pixel.
+
+
+        AVOID: teeth, claws, a roar, a whale shape, glowing eyes, a dark sky, light
+        rays, a halo, Koke crossing the island''s edge, new props, moving or resizing
+        the island, scary details, text
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Key light #FFF6EC from the upper left; fill #BFD6EE; rim #FFE9C9 along the
+        edge facing away from the key. Shadows are tinted #A99BC4 (never grey or black)
+        and fall toward the lower right; paint a contact shadow in that hue under
+        every object that touches the ground or another form, firmest in the subject
+        plane.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, opaque, full bleed, landscape 1536 x 1024.
+
+        '
+      attachments:
+      - path: design/art/masters/koke-island-0/koke-island-0.png
+        role: The image to edit (the approved previous level). Edit it; do not redraw
+          it.
+      background: transparent
+      generated_at: '2026-11-06T01:54:52+00:00'
+      backend: codex-cloud
+      source_file: /workspace/generated_images/exec-20ff8ea5-c05e-4f95-b02b-705ea400f373.png
+      account:
+        owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+        kind: chatgpt-plan
+    original_sidecar_sha256: b8b628443325a6922d39f856406e67d89652440132fd6e83766323011bde42dc
+    original_qa:
+      job: koke-island-4
+      take: 3
+      status: fail
+      preset: lock-light
+      checks:
+      - check: transparency
+        status: pass
+        message: opaque, as this kind must be
+      - check: canvas
+        status: pass
+        message: 1536x1024
+      - check: chroma_ceiling
+        status: fail
+        message: chroma p95 62 (R1 51)
+        value: 62.4
+      - check: light_values
+        status: warn
+        message: 'day/subject: L p2 37 (at most 22), p98 95 (at least 90), spread
+          58 (at least 60)'
+        value: 58.0
+      - check: light_median
+        status: pass
+        message: 'day/subject: median L 75 (band 55-90)'
+        value: 74.9
+      - check: light_haze
+        status: pass
+        message: 'day/subject: dark-channel haze 0.10 (at most 0.20; no true dark
+          means a wash)'
+        value: 0.102
+      - check: light_contrast
+        status: pass
+        message: 'day/subject: p75 local contrast 7.4 (at least 3.5)'
+        value: 7.36
+      - check: detail_budget
+        status: pass
+        message: detail at display size 4.6 (R1 5.3)
+        value: 4.61
+      - check: lock_load
+        status: pass
+        message: the lock moved colors by mean dE 2.7
+        value: 2.6753
+      - check: palette_drift
+        status: fail
+        message: 'mean dE 4.2, p95 15.5, off-palette 12.3% (top: #BBBB44 (0.9%), #DDCC44
+          (0.8%))'
+        value: 4.2094
+      - check: edit_silhouette
+        status: pass
+        message: 100% of the parent's shape kept
+        value: 1.0
+      - check: edit_stability
+        status: warn
+        message: 44% of the parent level unchanged
+        value: 0.4394
+      - check: edit_chroma
+        status: pass
+        message: chroma x3.06 of the parent level (drift compounds along a chain)
+        value: 3.0588
+      info:
+        parent_canvas:
+          source:
+          - 768
+          - 512
+          target:
+          - 1536
+          - 1024
+        metrics_raw:
+          L_p5: 44.8
+          L_p50: 87.2
+          L_p95: 95.3
+          C_p50: 19.4
+          C_p95: 72.3
+          C_p99: 80.9
+          detail: 5.46
+        metrics_locked:
+          L_p5: 45.4
+          L_p50: 87.1
+          L_p95: 95.1
+          C_p50: 19.3
+          C_p95: 62.4
+          C_p99: 65.3
+          detail: 4.61
+      fingerprint: 45e36368520dd129
+    original_qa_sha256: d39f9e32028f82a3a081a65b5b3d0aa387e7c63339c092e62430bddd20638935
+  - batch: batch-39-koke-production
+    job: koke-island-4
+    take: 4
+    round: 2
+    logical_run: 20261106-koke-repost-islands34-r2
+    source_file: /workspace/generated_images/exec-1045607c-6c1c-4082-9e30-91a4db464267.png
+    returned_at: '2026-11-06T01:54:11.007Z'
+    prompt_sha256: 86dbdef77465b53a88265575cad178c2ec6a6312e63d8d7886743cb66d1488f8
+    fingerprint: 45e36368520dd129
+    saved_at: '2026-11-06T01:54:11.406124+00:00'
+    original_generated_png_sha256: 318615b00681420c2f5b224fad7584da53f17d3b230f3178fb1514cd9ce6d986
+    dimensions:
+    - 1536
+    - 1024
+    rgba_sha256: 18095fea96adfac7ce65453349b6ebd6e307e4ab1a8935ed9bc2d57723206f46
+    evaluation_take: 4
+    original_take: 4
+    original_run: batch-39-koke-production
+    original_operation: koke-repost-2026-11-06
+    original_callback: /workspace/art-operator-runtime/run-20261106/koke-repost-2026-11-06/generated-koke-island-4-t4.json
+    original_callback_sha256: be71bf8f75157e7fd658e6a3c547b90faa03c14ab178ba5c01d907b8cba6b015
+    original_tool_callback: /workspace/art-operator-runtime/run-20261106/koke-repost-2026-11-06/callback-koke-island-4-t4.json
+    original_tool_callback_sha256: e424714e1794a643755046728c9605b85629977664fd003a4fd4cab3ecca0158
+    original_packet:
+      batch: batch-39-koke-production
+      job: koke-island-4
+      worktree: /workspace/art-20261106-koke-repost
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. The image to edit (the approved previous level). Edit it; do not redraw
+        it.
+
+
+        Edit the attached island plate from stage 0 to stage 4, healed: the
+
+        signature moment. Koke stands up: the hump has risen onto four
+
+        sturdy stubby legs, standing on the lawn where it slept, its head
+
+        lifted and turned to the viewer, both eyes open, big round and
+
+        warm brown with catchlights, a soft happy smile, its small ears
+
+        perked. It is covered in rich living moss, thick like fur, and its
+
+        whole back is in flower: blossoms in butter yellow, blush pink, lilac
+
+        and white, with a tuft of leaves on its crown. It stands within the
+
+        hump''s footprint and is about a third taller than the hump was, so it
+
+        fits well inside the picture. The island is in full bloom: all five
+
+        flower clusters open and lush, the moss deep and green on every
+
+        boulder, the ferns unfurled, the path of stepping stones bright. A warm
+
+        golden sun from the upper left lights everything, and the whole
+
+        island glows with warm light. The signature image: soft flower petals
+
+        and golden spores drift up in the air from all over the island,
+
+        catching the light. The small dormouse sits on a boulder beside the
+
+        rake, delighted, at the size of a bagel. Full colour (chroma about
+
+        100 percent of a healthy meadow). The island''s size, outline, the
+
+        camera, the boulders, the path and the rake stay exactly where they
+
+        are in the attached image.
+
+
+        KEEP: everything not named above stays exactly the same as in the
+
+        attached image: every existing part, its shape, color, position and size,
+
+        the canvas, the camera, the light and the painting style. Do not zoom out
+
+        or reframe: if a new part does not fit, make the new part smaller, never
+
+        the existing ones. Outside the new parts, the result must line up with
+
+        the attached image pixel for pixel.
+
+
+        AVOID: teeth, claws, a roar, a whale shape, glowing eyes, a dark sky, light
+        rays, a halo, Koke crossing the island''s edge, new props, moving or resizing
+        the island, scary details, text
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Key light #FFF6EC from the upper left; fill #BFD6EE; rim #FFE9C9 along the
+        edge facing away from the key. Shadows are tinted #A99BC4 (never grey or black)
+        and fall toward the lower right; paint a contact shadow in that hue under
+        every object that touches the ground or another form, firmest in the subject
+        plane.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, opaque, full bleed, landscape 1536 x 1024.
+
+        '
+      refs:
+      - /workspace/art-20261106-koke-repost/design/art/masters/koke-island-0/koke-island-0.png
+      reference_sha256:
+        /workspace/art-20261106-koke-repost/design/art/masters/koke-island-0/koke-island-0.png: f8f65e0ecc7c03f119c54307349d1c74bc9a143784c52228c1076fa984991231
+      fingerprint: 45e36368520dd129
+      prompt_sha256: 86dbdef77465b53a88265575cad178c2ec6a6312e63d8d7886743cb66d1488f8
+      transparent: false
+    original_sidecar:
+      job: koke-island-4
+      take: 4
+      batch: batch-39-koke-production
+      fingerprint: 45e36368520dd129
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. The image to edit (the approved previous level). Edit it; do not redraw
+        it.
+
+
+        Edit the attached island plate from stage 0 to stage 4, healed: the
+
+        signature moment. Koke stands up: the hump has risen onto four
+
+        sturdy stubby legs, standing on the lawn where it slept, its head
+
+        lifted and turned to the viewer, both eyes open, big round and
+
+        warm brown with catchlights, a soft happy smile, its small ears
+
+        perked. It is covered in rich living moss, thick like fur, and its
+
+        whole back is in flower: blossoms in butter yellow, blush pink, lilac
+
+        and white, with a tuft of leaves on its crown. It stands within the
+
+        hump''s footprint and is about a third taller than the hump was, so it
+
+        fits well inside the picture. The island is in full bloom: all five
+
+        flower clusters open and lush, the moss deep and green on every
+
+        boulder, the ferns unfurled, the path of stepping stones bright. A warm
+
+        golden sun from the upper left lights everything, and the whole
+
+        island glows with warm light. The signature image: soft flower petals
+
+        and golden spores drift up in the air from all over the island,
+
+        catching the light. The small dormouse sits on a boulder beside the
+
+        rake, delighted, at the size of a bagel. Full colour (chroma about
+
+        100 percent of a healthy meadow). The island''s size, outline, the
+
+        camera, the boulders, the path and the rake stay exactly where they
+
+        are in the attached image.
+
+
+        KEEP: everything not named above stays exactly the same as in the
+
+        attached image: every existing part, its shape, color, position and size,
+
+        the canvas, the camera, the light and the painting style. Do not zoom out
+
+        or reframe: if a new part does not fit, make the new part smaller, never
+
+        the existing ones. Outside the new parts, the result must line up with
+
+        the attached image pixel for pixel.
+
+
+        AVOID: teeth, claws, a roar, a whale shape, glowing eyes, a dark sky, light
+        rays, a halo, Koke crossing the island''s edge, new props, moving or resizing
+        the island, scary details, text
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Key light #FFF6EC from the upper left; fill #BFD6EE; rim #FFE9C9 along the
+        edge facing away from the key. Shadows are tinted #A99BC4 (never grey or black)
+        and fall toward the lower right; paint a contact shadow in that hue under
+        every object that touches the ground or another form, firmest in the subject
+        plane.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, opaque, full bleed, landscape 1536 x 1024.
+
+        '
+      attachments:
+      - path: design/art/masters/koke-island-0/koke-island-0.png
+        role: The image to edit (the approved previous level). Edit it; do not redraw
+          it.
+      background: transparent
+      generated_at: '2026-11-06T01:54:52+00:00'
+      backend: codex-cloud
+      source_file: /workspace/generated_images/exec-1045607c-6c1c-4082-9e30-91a4db464267.png
+      account:
+        owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+        kind: chatgpt-plan
+    original_sidecar_sha256: f0276bc2402be4421e2987dde43b640998a1300ab069dc1378f6f008fa018aa3
+    original_qa:
+      job: koke-island-4
+      take: 4
+      status: fail
+      preset: lock-light
+      checks:
+      - check: transparency
+        status: pass
+        message: opaque, as this kind must be
+      - check: canvas
+        status: pass
+        message: 1536x1024
+      - check: chroma_ceiling
+        status: fail
+        message: chroma p95 62 (R1 51)
+        value: 62.5
+      - check: light_values
+        status: warn
+        message: 'day/subject: L p2 28 (at most 22), p98 95 (at least 90), spread
+          67 (at least 60)'
+        value: 66.7
+      - check: light_median
+        status: pass
+        message: 'day/subject: median L 73 (band 55-90)'
+        value: 73.0
+      - check: light_haze
+        status: pass
+        message: 'day/subject: dark-channel haze 0.02 (at most 0.20; no true dark
+          means a wash)'
+        value: 0.016
+      - check: light_contrast
+        status: pass
+        message: 'day/subject: p75 local contrast 7.4 (at least 3.5)'
+        value: 7.44
+      - check: detail_budget
+        status: pass
+        message: detail at display size 5.1 (R1 5.3)
+        value: 5.12
+      - check: lock_load
+        status: pass
+        message: the lock moved colors by mean dE 2.9
+        value: 2.8646
+      - check: palette_drift
+        status: fail
+        message: 'mean dE 5.2, p95 16.6, off-palette 19.1% (top: #AAAA33 (1.1%), #556611
+          (0.9%))'
+        value: 5.2478
+      - check: edit_silhouette
+        status: pass
+        message: 100% of the parent's shape kept
+        value: 1.0
+      - check: edit_stability
+        status: fail
+        message: 28% of the parent level unchanged
+        value: 0.2767
+      - check: edit_chroma
+        status: warn
+        message: chroma x3.78 of the parent level (drift compounds along a chain)
+        value: 3.7786
+      info:
+        parent_canvas:
+          source:
+          - 768
+          - 512
+          target:
+          - 1536
+          - 1024
+        metrics_raw:
+          L_p5: 39.8
+          L_p50: 83.4
+          L_p95: 94.8
+          C_p50: 24.1
+          C_p95: 72.8
+          C_p99: 79.6
+          detail: 6.05
+        metrics_locked:
+          L_p5: 40.5
+          L_p50: 83.3
+          L_p95: 94.6
+          C_p50: 23.8
+          C_p95: 62.5
+          C_p99: 64.8
+          detail: 5.12
+      fingerprint: 45e36368520dd129
+    original_qa_sha256: 09a2b9c48c77f86dc942305f75cd33158ddc4c1ca48f02044f74ac7426ef2ed3

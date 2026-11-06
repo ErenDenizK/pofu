@@ -1,0 +1,1596 @@
+batch: batch-39-koke-production
+contact_sheet: design/art/takes/koke-lead-picks-2026-11-06/koke-standing/contact.jpg
+jobs:
+  koke-standing:
+    pick: none
+    lead_selected_take: 2
+    publication: lead-selected; technical upload cap skip
+    note: 'lead-selected per queue row 0-k of docs/design/art-production-plan.md at
+      main76d7d09a509202b464e48224f1d9e84f5da21bc4. The lead explicitly selected this
+      retained original and requested official promote --force. No generation, source-pixel
+      modification, prompt/palette/profile edit or QA threshold change. Original generating
+      account, timestamps, callbacks, prompt/reference fingerprints and all four original
+      takes are preserved; all historical CUT notes stay labelled and retained. This
+      is a lead selection, not a QA auto-pick. Publish original take2 exactly. Historical
+      hard failures include palette_drift mean dE4.9762/off-palette15.2%, edit_silhouette
+      alpha overlap0.6054, AND edit_stability parent-kept fraction0.2050. All three
+      remain disclosed even though the queue summary does not name stability. The
+      standing flowering pose is the literal selected old source. Native1024square
+      delivery and canonical reports remain unchanged. Current selected-take canonical
+      QA status: fail. Actual hard failures (recorded unchanged): palette_drift: mean
+      dE 5.0, p95 15.4, off-palette 15.2% (top: #BBCC55 (0.8%), #CCCC55 (0.8%)); edit_silhouette:
+      61% of the parent''s shape kept; edit_stability: 20% of the parent level unchanged.
+      The lead-selected original remains retained; official promote is not run because
+      the upload cap prevents delivery. No QA auto-pass is claimed. Technical delivery
+      skip: the exact lead-selected standing take2 cannot fit the mandatory upload
+      cap; native PNG and both canonical exact lossless WebP encodings exceed614400bytes.
+      No source scaling, lossy master, alternate take, generation or promotion is
+      authorized. Full cap evidence is archived. Automated failures: t1 palette_drift:
+      mean dE 4.7, p95 15.2, off-palette 15.7% (top: #888822 (0.9%), #99AA33 (0.8%)),
+      edit_silhouette: 62% of the parent''s shape kept, edit_stability: 20% of the
+      parent level unchanged; t2 palette_drift: mean dE 5.0, p95 15.4, off-palette
+      15.2% (top: #BBCC55 (0.8%), #CCCC55 (0.8%)), edit_silhouette: 61% of the parent''s
+      shape kept, edit_stability: 20% of the parent level unchanged; t3 palette_drift:
+      mean dE 4.8, p95 14.7, off-palette 14.0% (top: #AABB44 (0.9%), #CCCC55 (0.8%)),
+      edit_silhouette: 67% of the parent''s shape kept, edit_stability: 21% of the
+      parent level unchanged; t4 palette_drift: mean dE 4.2, p95 13.7, off-palette
+      10.3% (top: #AABB44 (0.8%), #BBBB55 (0.7%)), edit_silhouette: 67% of the parent''s
+      shape kept, edit_stability: 19% of the parent level unchanged.'
+qa_reports:
+  3:
+    job: koke-standing
+    take: 3
+    status: fail
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: edit_alignment
+      status: pass
+      message: the edit rescaled the object x0.979 and moved it; aligned back to the
+        parent
+      value: 1.0217
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 57 (R1 51)
+      value: 57.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 38 (at most 22), p98 94 (at least 90), spread 56
+        (at least 60)'
+      value: 56.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 78 (band 55-90)'
+      value: 78.0
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.02 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.02
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.1 (at least 3.5)'
+      value: 6.06
+    - check: detail_budget
+      status: pass
+      message: detail at display size 7.0 (R1 5.3)
+      value: 6.99
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 4.8, p95 14.7, off-palette 14.0% (top: #AABB44 (0.9%), #CCCC55
+        (0.8%))'
+      value: 4.7602
+    - check: ground_line
+      status: pass
+      message: feet at 88.3% of the height (contract 88%)
+      value: 0.8828
+    - check: harmony
+      status: warn
+      message: 'harmony score 68 against the char reference (outliers: C_p95, L_p2,
+        detail)'
+      value: 68.0
+    - check: edit_silhouette
+      status: fail
+      message: 67% of the parent's shape kept
+      value: 0.6666
+    - check: edit_stability
+      status: fail
+      message: 21% of the parent level unchanged
+      value: 0.2112
+    - check: edit_chroma
+      status: warn
+      message: chroma x0.81 of the parent level (drift compounds along a chain)
+      value: 0.806
+    info:
+      alignment:
+        scale: 1.0217
+        cx: 512.5
+        cy: 900.0
+        dx: -7
+        dy: 5
+      metrics_raw:
+        L_p5: 49.3
+        L_p50: 78.0
+        L_p95: 92.1
+        C_p50: 37.1
+        C_p95: 62.0
+        C_p99: 67.6
+        detail: 7.0
+      metrics_locked:
+        L_p5: 49.5
+        L_p50: 78.0
+        L_p95: 92.4
+        C_p50: 37.0
+        C_p95: 57.4
+        C_p99: 58.9
+        detail: 6.99
+    fingerprint: 42a190b6943ea808
+  4:
+    job: koke-standing
+    take: 4
+    status: fail
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: edit_alignment
+      status: pass
+      message: the edit rescaled the object x0.972 and moved it; aligned back to the
+        parent
+      value: 1.029
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 57 (R1 51)
+      value: 56.7
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 39 (at most 22), p98 94 (at least 90), spread 55
+        (at least 60)'
+      value: 55.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 77 (band 55-90)'
+      value: 76.8
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.04 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.043
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.6 (at least 3.5)'
+      value: 5.59
+    - check: detail_budget
+      status: warn
+      message: detail at display size 7.3 (R1 5.3)
+      value: 7.35
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 4.2, p95 13.7, off-palette 10.3% (top: #AABB44 (0.8%), #BBBB55
+        (0.7%))'
+      value: 4.1974
+    - check: ground_line
+      status: pass
+      message: feet at 88.4% of the height (contract 88%)
+      value: 0.8838
+    - check: harmony
+      status: warn
+      message: 'harmony score 68 against the char reference (outliers: C_p95, L_p2,
+        detail)'
+      value: 68.3
+    - check: edit_silhouette
+      status: fail
+      message: 67% of the parent's shape kept
+      value: 0.6741
+    - check: edit_stability
+      status: fail
+      message: 19% of the parent level unchanged
+      value: 0.1893
+    - check: edit_chroma
+      status: warn
+      message: chroma x0.83 of the parent level (drift compounds along a chain)
+      value: 0.8263
+    info:
+      alignment:
+        scale: 1.029
+        cx: 514.5
+        cy: 908.0
+        dx: -4
+        dy: -3
+      metrics_raw:
+        L_p5: 47.0
+        L_p50: 76.7
+        L_p95: 91.3
+        C_p50: 35.1
+        C_p95: 59.6
+        C_p99: 63.8
+        detail: 7.33
+      metrics_locked:
+        L_p5: 47.3
+        L_p50: 76.8
+        L_p95: 91.6
+        C_p50: 35.1
+        C_p95: 56.7
+        C_p99: 57.9
+        detail: 7.35
+    fingerprint: 42a190b6943ea808
+  2:
+    job: koke-standing
+    take: 2
+    status: fail
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: edit_alignment
+      status: warn
+      message: the edit rescaled the object x0.904 and moved it; aligned back to the
+        parent
+      value: 1.1058
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 58 (R1 51)
+      value: 57.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 37 (at most 22), p98 95 (at least 90), spread 58
+        (at least 60)'
+      value: 57.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 79 (band 55-90)'
+      value: 79.0
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.01 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.008
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.8 (at least 3.5)'
+      value: 5.85
+    - check: detail_budget
+      status: warn
+      message: detail at display size 7.5 (R1 5.3)
+      value: 7.45
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 5.0, p95 15.4, off-palette 15.2% (top: #BBCC55 (0.8%), #CCCC55
+        (0.8%))'
+      value: 4.9762
+    - check: ground_line
+      status: pass
+      message: feet at 88.3% of the height (contract 88%)
+      value: 0.8828
+    - check: harmony
+      status: warn
+      message: 'harmony score 70 against the char reference (outliers: C_p95, L_p2,
+        detail)'
+      value: 69.7
+    - check: edit_silhouette
+      status: fail
+      message: 61% of the parent's shape kept
+      value: 0.6054
+    - check: edit_stability
+      status: fail
+      message: 20% of the parent level unchanged
+      value: 0.205
+    - check: edit_chroma
+      status: warn
+      message: chroma x0.71 of the parent level (drift compounds along a chain)
+      value: 0.7142
+    info:
+      alignment:
+        scale: 1.1058
+        cx: 511.5
+        cy: 909.0
+        dx: 2
+        dy: -5
+      metrics_raw:
+        L_p5: 48.6
+        L_p50: 78.9
+        L_p95: 92.7
+        C_p50: 36.1
+        C_p95: 63.3
+        C_p99: 69.0
+        detail: 7.43
+      metrics_locked:
+        L_p5: 48.9
+        L_p50: 79.0
+        L_p95: 93.0
+        C_p50: 36.1
+        C_p95: 57.8
+        C_p99: 59.2
+        detail: 7.45
+    fingerprint: 42a190b6943ea808
+  1:
+    job: koke-standing
+    take: 1
+    status: fail
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: edit_alignment
+      status: warn
+      message: the edit rescaled the object x0.913 and moved it; aligned back to the
+        parent
+      value: 1.0952
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 58 (R1 51)
+      value: 57.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 36 (at most 22), p98 94 (at least 90), spread 59
+        (at least 60)'
+      value: 58.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 78 (band 55-90)'
+      value: 77.6
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.01 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.012
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.9 (at least 3.5)'
+      value: 5.94
+    - check: detail_budget
+      status: warn
+      message: detail at display size 7.9 (R1 5.3)
+      value: 7.86
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 4.7, p95 15.2, off-palette 15.7% (top: #888822 (0.9%), #99AA33
+        (0.8%))'
+      value: 4.6591
+    - check: ground_line
+      status: pass
+      message: feet at 88.3% of the height (contract 88%)
+      value: 0.8828
+    - check: harmony
+      status: pass
+      message: 'harmony score 70 against the char reference (outliers: C_p95, L_p2,
+        detail)'
+      value: 70.1
+    - check: edit_silhouette
+      status: fail
+      message: 62% of the parent's shape kept
+      value: 0.6218
+    - check: edit_stability
+      status: fail
+      message: 20% of the parent level unchanged
+      value: 0.2015
+    - check: edit_chroma
+      status: warn
+      message: chroma x0.79 of the parent level (drift compounds along a chain)
+      value: 0.7915
+    info:
+      alignment:
+        scale: 1.0952
+        cx: 512.5
+        cy: 904.0
+        dx: 2
+        dy: 1
+      metrics_raw:
+        L_p5: 47.3
+        L_p50: 77.6
+        L_p95: 92.2
+        C_p50: 36.4
+        C_p95: 63.4
+        C_p99: 68.5
+        detail: 7.84
+      metrics_locked:
+        L_p5: 47.6
+        L_p50: 77.7
+        L_p95: 92.4
+        C_p50: 36.3
+        C_p95: 57.8
+        C_p99: 59.2
+        detail: 7.86
+    fingerprint: 42a190b6943ea808
+manual_review:
+  excluded_takes: []
+  note: lead-selected per queue row 0-k of docs/design/art-production-plan.md at main76d7d09a509202b464e48224f1d9e84f5da21bc4.
+    The lead explicitly selected this retained original and requested official promote
+    --force. No generation, source-pixel modification, prompt/palette/profile edit
+    or QA threshold change. Original generating account, timestamps, callbacks, prompt/reference
+    fingerprints and all four original takes are preserved; all historical CUT notes
+    stay labelled and retained. This is a lead selection, not a QA auto-pick. Publish
+    original take2 exactly. Historical hard failures include palette_drift mean dE4.9762/off-palette15.2%,
+    edit_silhouette alpha overlap0.6054, AND edit_stability parent-kept fraction0.2050.
+    All three remain disclosed even though the queue summary does not name stability.
+    The standing flowering pose is the literal selected old source. Native1024square
+    delivery and canonical reports remain unchanged.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-cee7f69c-ff54-47cc-844c-11a1b6c22d2f.png
+  original_generated_png_sha256: 660965dc8d23098bbd90f07e4c61475378e3aad0b21920531c59a12c7e168b9f
+  inbox_png_sha256: 1796dd3926bb57dfa2f53d1741a094fc5ae977892dc915e9db81c8d453d5037d
+  rgba_sha256: ec27091a35ffbeff13db306f2aba2bae02b264d572187a5975c327676723c662
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 42a190b6943ea808
+- take: 2
+  source_file: /workspace/generated_images/exec-bb6642ed-806f-4ff6-812c-870b529c08f8.png
+  original_generated_png_sha256: 84073e5e23adf40d7f9e14eb700e811604af4cd73f23c473c9194552f3f128c3
+  inbox_png_sha256: 3e4cc376c7b71e9d66fd7dfa75e2c9e79a9b3bbd2b542d42053b0eee2201d823
+  rgba_sha256: a4d70a8b988c69816ec50ed1d73adb0c136050b4631ee9640a4e453d5eb04433
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 42a190b6943ea808
+- take: 3
+  source_file: /workspace/generated_images/exec-17731f39-b60c-46de-bf43-7884317a9279.png
+  original_generated_png_sha256: 53e844c9575b4019844e89c64c7dc63992f98dceeffbd42e8673573b9f146bc9
+  inbox_png_sha256: 3221698671409101b3f005143fce020e73d2f48e52918b8d208eac82d0742b79
+  rgba_sha256: 962d1e7dea7413707a3988c78972bfddfdcbac9dbe642733475a5bed334747b5
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 42a190b6943ea808
+- take: 4
+  source_file: /workspace/generated_images/exec-62751235-4350-4c0b-ba58-ec45239fdcb8.png
+  original_generated_png_sha256: fde62a7126cefd58e09d79630add0ea2611672a5d4dab3ed7f4273f11a0b4685
+  inbox_png_sha256: 55b14b92b971fb65bc65db51d2f402f84c0480f78b55856904cce32f38bebb3c
+  rgba_sha256: de057c8deadc03fdde4b8e717550b5ea43fc77f248995076b3ce3ea668ada4da
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 42a190b6943ea808
+salvage:
+  batch: batch-39-koke-production
+  source_count: 4
+  original_branch: art/koke-repost-2026-11-06/all
+  original_commit: 58c40e458da2f23ca7be57e55a3759c086c9c636
+  selected_take: 2
+  sources:
+  - batch: batch-39-koke-production
+    job: koke-standing
+    take: 1
+    round: 1
+    logical_run: 20261106-koke-repost-standing
+    source_file: /workspace/generated_images/exec-cee7f69c-ff54-47cc-844c-11a1b6c22d2f.png
+    returned_at: '2026-11-06T01:54:51.743Z'
+    prompt_sha256: cad009f804b9581442c8a313628b8427597782cbf8c230d5235932b8059c117c
+    fingerprint: 42a190b6943ea808
+    saved_at: '2026-11-06T01:54:52.193589+00:00'
+    original_generated_png_sha256: 660965dc8d23098bbd90f07e4c61475378e3aad0b21920531c59a12c7e168b9f
+    dimensions:
+    - 1254
+    - 1254
+    rgba_sha256: ec27091a35ffbeff13db306f2aba2bae02b264d572187a5975c327676723c662
+    evaluation_take: 1
+    original_take: 1
+    original_run: batch-39-koke-production
+    original_operation: koke-repost-2026-11-06
+    original_callback: /workspace/art-operator-runtime/run-20261106/koke-repost-2026-11-06/generated-koke-standing-t1.json
+    original_callback_sha256: 568f28335253bdfe82914c35229753ada5f96c9a3412764bc02d00a2ffda5cb9
+    original_tool_callback: /workspace/art-operator-runtime/run-20261106/koke-repost-2026-11-06/callback-koke-standing-t1.json
+    original_tool_callback_sha256: 5eb486fc731b905ba0cc269be497d7e1269f72ac0c3cbfde6d0f32ee0778283d
+    original_packet:
+      batch: batch-39-koke-production
+      job: koke-standing
+      worktree: /workspace/art-20261106-koke-repost
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. The image to edit (the approved previous level). Edit it; do not redraw
+        it.
+
+
+        Edit the attached moss creature, Koke, so she stands up, wide awake
+
+        and happy: the heap rises onto four sturdy stubby legs, the body
+
+        held up round and plump, the head lifted and turned to the viewer,
+
+        both eyes open, big, round and warm brown with catchlights, a soft
+
+        happy smile with a blush on each cheek, the small ears perked. Her
+
+        whole back is in flower: soft blossoms in butter yellow, blush pink,
+
+        lilac and white among fresh leaves, and the crown sprout is a leafy
+
+        tuft. The moss, its colours, the style and the lighting stay exactly
+
+        as in the attached image. Her feet stand on the same ground line at
+
+        88 percent of the height; she is about 70 percent of the canvas
+
+        height and fits fully inside the canvas.
+
+
+        KEEP: everything not named above stays exactly the same as in the
+
+        attached image: every existing part, its shape, color, position and size,
+
+        the canvas, the camera, the light and the painting style. Do not zoom out
+
+        or reframe: if a new part does not fit, make the new part smaller, never
+
+        the existing ones. Outside the new parts, the result must line up with
+
+        the attached image pixel for pixel.
+
+
+        AVOID: teeth, claws, a roar, a whale or bear shape, glowing eyes, a ground,
+        a shadow, a changed art style, text
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      refs:
+      - /workspace/art-20261106-koke-repost/design/art/masters/koke-asleep/koke-asleep.png
+      reference_sha256:
+        /workspace/art-20261106-koke-repost/design/art/masters/koke-asleep/koke-asleep.png: 98e6a044f73e75d71c4cfcf38dc7d5d61d96dcbdc7a1d90b4b33b958151a7592
+      fingerprint: 42a190b6943ea808
+      prompt_sha256: cad009f804b9581442c8a313628b8427597782cbf8c230d5235932b8059c117c
+      transparent: true
+    original_sidecar:
+      job: koke-standing
+      take: 1
+      batch: batch-39-koke-production
+      fingerprint: 42a190b6943ea808
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. The image to edit (the approved previous level). Edit it; do not redraw
+        it.
+
+
+        Edit the attached moss creature, Koke, so she stands up, wide awake
+
+        and happy: the heap rises onto four sturdy stubby legs, the body
+
+        held up round and plump, the head lifted and turned to the viewer,
+
+        both eyes open, big, round and warm brown with catchlights, a soft
+
+        happy smile with a blush on each cheek, the small ears perked. Her
+
+        whole back is in flower: soft blossoms in butter yellow, blush pink,
+
+        lilac and white among fresh leaves, and the crown sprout is a leafy
+
+        tuft. The moss, its colours, the style and the lighting stay exactly
+
+        as in the attached image. Her feet stand on the same ground line at
+
+        88 percent of the height; she is about 70 percent of the canvas
+
+        height and fits fully inside the canvas.
+
+
+        KEEP: everything not named above stays exactly the same as in the
+
+        attached image: every existing part, its shape, color, position and size,
+
+        the canvas, the camera, the light and the painting style. Do not zoom out
+
+        or reframe: if a new part does not fit, make the new part smaller, never
+
+        the existing ones. Outside the new parts, the result must line up with
+
+        the attached image pixel for pixel.
+
+
+        AVOID: teeth, claws, a roar, a whale or bear shape, glowing eyes, a ground,
+        a shadow, a changed art style, text
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      attachments:
+      - path: design/art/masters/koke-asleep/koke-asleep.png
+        role: The image to edit (the approved previous level). Edit it; do not redraw
+          it.
+      background: transparent
+      generated_at: '2026-11-06T01:57:16+00:00'
+      backend: codex-cloud
+      source_file: /workspace/generated_images/exec-cee7f69c-ff54-47cc-844c-11a1b6c22d2f.png
+      account:
+        owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+        kind: chatgpt-plan
+    original_sidecar_sha256: 2e2d3de73c7cebf87bb37414a33ec76d58158ae0d55c8bfd7d5eba1a262c1991
+    original_qa:
+      job: koke-standing
+      take: 1
+      status: fail
+      preset: char-guard
+      checks:
+      - check: transparency
+        status: pass
+        message: source has an alpha channel
+      - check: canvas
+        status: pass
+        message: 1254x1254 scaled x0.817 into 1024x1024
+        value: 0.8166
+      - check: edit_alignment
+        status: warn
+        message: the edit rescaled the object x0.913 and moved it; aligned back to
+          the parent
+        value: 1.0952
+      - check: chroma_ceiling
+        status: warn
+        message: chroma p95 58 (R1 51)
+        value: 57.8
+      - check: light_values
+        status: warn
+        message: 'day/subject: L p2 36 (at most 22), p98 94 (at least 90), spread
+          59 (at least 60)'
+        value: 58.6
+      - check: light_median
+        status: pass
+        message: 'day/subject: median L 78 (band 55-90)'
+        value: 77.6
+      - check: light_haze
+        status: pass
+        message: 'day/subject: dark-channel haze 0.01 (at most 0.20; no true dark
+          means a wash)'
+        value: 0.012
+      - check: light_contrast
+        status: pass
+        message: 'day/subject: p75 local contrast 5.9 (at least 3.5)'
+        value: 5.94
+      - check: detail_budget
+        status: warn
+        message: detail at display size 7.9 (R1 5.3)
+        value: 7.86
+      - check: palette_drift
+        status: fail
+        message: 'mean dE 4.7, p95 15.2, off-palette 15.7% (top: #888822 (0.9%), #99AA33
+          (0.8%))'
+        value: 4.6591
+      - check: ground_line
+        status: pass
+        message: feet at 88.3% of the height (contract 88%)
+        value: 0.8828
+      - check: harmony
+        status: pass
+        message: 'harmony score 70 against the char reference (outliers: C_p95, L_p2,
+          detail)'
+        value: 70.1
+      - check: edit_silhouette
+        status: fail
+        message: 62% of the parent's shape kept
+        value: 0.6218
+      - check: edit_stability
+        status: fail
+        message: 20% of the parent level unchanged
+        value: 0.2015
+      - check: edit_chroma
+        status: warn
+        message: chroma x0.79 of the parent level (drift compounds along a chain)
+        value: 0.7915
+      info:
+        alignment:
+          scale: 1.0952
+          cx: 512.5
+          cy: 904.0
+          dx: 2
+          dy: 1
+        metrics_raw:
+          L_p5: 47.3
+          L_p50: 77.6
+          L_p95: 92.2
+          C_p50: 36.4
+          C_p95: 63.4
+          C_p99: 68.5
+          detail: 7.84
+        metrics_locked:
+          L_p5: 47.6
+          L_p50: 77.7
+          L_p95: 92.4
+          C_p50: 36.3
+          C_p95: 57.8
+          C_p99: 59.2
+          detail: 7.86
+      fingerprint: 42a190b6943ea808
+    original_qa_sha256: 91a0b5f7fdfd5ad9b6111e314b3a68e73dcb02b806e7f6c4d2f7b80e4e577c54
+  - batch: batch-39-koke-production
+    job: koke-standing
+    take: 2
+    round: 1
+    logical_run: 20261106-koke-repost-standing
+    source_file: /workspace/generated_images/exec-bb6642ed-806f-4ff6-812c-870b529c08f8.png
+    returned_at: '2026-11-06T01:55:52.074Z'
+    prompt_sha256: cad009f804b9581442c8a313628b8427597782cbf8c230d5235932b8059c117c
+    fingerprint: 42a190b6943ea808
+    saved_at: '2026-11-06T01:55:52.375674+00:00'
+    original_generated_png_sha256: 84073e5e23adf40d7f9e14eb700e811604af4cd73f23c473c9194552f3f128c3
+    dimensions:
+    - 1254
+    - 1254
+    rgba_sha256: a4d70a8b988c69816ec50ed1d73adb0c136050b4631ee9640a4e453d5eb04433
+    evaluation_take: 2
+    original_take: 2
+    original_run: batch-39-koke-production
+    original_operation: koke-repost-2026-11-06
+    original_callback: /workspace/art-operator-runtime/run-20261106/koke-repost-2026-11-06/generated-koke-standing-t2.json
+    original_callback_sha256: a8e9ba588526ea8caa9b38372b764e2e456ae39464fb21986c40171d0f29b921
+    original_tool_callback: /workspace/art-operator-runtime/run-20261106/koke-repost-2026-11-06/callback-koke-standing-t2.json
+    original_tool_callback_sha256: 2b27686cd6c0135b62b1124e76ea60278750e50b75ea95f6ed7d9671e684478e
+    original_packet:
+      batch: batch-39-koke-production
+      job: koke-standing
+      worktree: /workspace/art-20261106-koke-repost
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. The image to edit (the approved previous level). Edit it; do not redraw
+        it.
+
+
+        Edit the attached moss creature, Koke, so she stands up, wide awake
+
+        and happy: the heap rises onto four sturdy stubby legs, the body
+
+        held up round and plump, the head lifted and turned to the viewer,
+
+        both eyes open, big, round and warm brown with catchlights, a soft
+
+        happy smile with a blush on each cheek, the small ears perked. Her
+
+        whole back is in flower: soft blossoms in butter yellow, blush pink,
+
+        lilac and white among fresh leaves, and the crown sprout is a leafy
+
+        tuft. The moss, its colours, the style and the lighting stay exactly
+
+        as in the attached image. Her feet stand on the same ground line at
+
+        88 percent of the height; she is about 70 percent of the canvas
+
+        height and fits fully inside the canvas.
+
+
+        KEEP: everything not named above stays exactly the same as in the
+
+        attached image: every existing part, its shape, color, position and size,
+
+        the canvas, the camera, the light and the painting style. Do not zoom out
+
+        or reframe: if a new part does not fit, make the new part smaller, never
+
+        the existing ones. Outside the new parts, the result must line up with
+
+        the attached image pixel for pixel.
+
+
+        AVOID: teeth, claws, a roar, a whale or bear shape, glowing eyes, a ground,
+        a shadow, a changed art style, text
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      refs:
+      - /workspace/art-20261106-koke-repost/design/art/masters/koke-asleep/koke-asleep.png
+      reference_sha256:
+        /workspace/art-20261106-koke-repost/design/art/masters/koke-asleep/koke-asleep.png: 98e6a044f73e75d71c4cfcf38dc7d5d61d96dcbdc7a1d90b4b33b958151a7592
+      fingerprint: 42a190b6943ea808
+      prompt_sha256: cad009f804b9581442c8a313628b8427597782cbf8c230d5235932b8059c117c
+      transparent: true
+    original_sidecar:
+      job: koke-standing
+      take: 2
+      batch: batch-39-koke-production
+      fingerprint: 42a190b6943ea808
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. The image to edit (the approved previous level). Edit it; do not redraw
+        it.
+
+
+        Edit the attached moss creature, Koke, so she stands up, wide awake
+
+        and happy: the heap rises onto four sturdy stubby legs, the body
+
+        held up round and plump, the head lifted and turned to the viewer,
+
+        both eyes open, big, round and warm brown with catchlights, a soft
+
+        happy smile with a blush on each cheek, the small ears perked. Her
+
+        whole back is in flower: soft blossoms in butter yellow, blush pink,
+
+        lilac and white among fresh leaves, and the crown sprout is a leafy
+
+        tuft. The moss, its colours, the style and the lighting stay exactly
+
+        as in the attached image. Her feet stand on the same ground line at
+
+        88 percent of the height; she is about 70 percent of the canvas
+
+        height and fits fully inside the canvas.
+
+
+        KEEP: everything not named above stays exactly the same as in the
+
+        attached image: every existing part, its shape, color, position and size,
+
+        the canvas, the camera, the light and the painting style. Do not zoom out
+
+        or reframe: if a new part does not fit, make the new part smaller, never
+
+        the existing ones. Outside the new parts, the result must line up with
+
+        the attached image pixel for pixel.
+
+
+        AVOID: teeth, claws, a roar, a whale or bear shape, glowing eyes, a ground,
+        a shadow, a changed art style, text
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      attachments:
+      - path: design/art/masters/koke-asleep/koke-asleep.png
+        role: The image to edit (the approved previous level). Edit it; do not redraw
+          it.
+      background: transparent
+      generated_at: '2026-11-06T01:57:16+00:00'
+      backend: codex-cloud
+      source_file: /workspace/generated_images/exec-bb6642ed-806f-4ff6-812c-870b529c08f8.png
+      account:
+        owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+        kind: chatgpt-plan
+    original_sidecar_sha256: e65297704885c97a251c911a7467a07cf82136ca6075e100a969829787c7bfbc
+    original_qa:
+      job: koke-standing
+      take: 2
+      status: fail
+      preset: char-guard
+      checks:
+      - check: transparency
+        status: pass
+        message: source has an alpha channel
+      - check: canvas
+        status: pass
+        message: 1254x1254 scaled x0.817 into 1024x1024
+        value: 0.8166
+      - check: edit_alignment
+        status: warn
+        message: the edit rescaled the object x0.904 and moved it; aligned back to
+          the parent
+        value: 1.1058
+      - check: chroma_ceiling
+        status: warn
+        message: chroma p95 58 (R1 51)
+        value: 57.8
+      - check: light_values
+        status: warn
+        message: 'day/subject: L p2 37 (at most 22), p98 95 (at least 90), spread
+          58 (at least 60)'
+        value: 57.5
+      - check: light_median
+        status: pass
+        message: 'day/subject: median L 79 (band 55-90)'
+        value: 79.0
+      - check: light_haze
+        status: pass
+        message: 'day/subject: dark-channel haze 0.01 (at most 0.20; no true dark
+          means a wash)'
+        value: 0.008
+      - check: light_contrast
+        status: pass
+        message: 'day/subject: p75 local contrast 5.8 (at least 3.5)'
+        value: 5.85
+      - check: detail_budget
+        status: warn
+        message: detail at display size 7.5 (R1 5.3)
+        value: 7.45
+      - check: palette_drift
+        status: fail
+        message: 'mean dE 5.0, p95 15.4, off-palette 15.2% (top: #BBCC55 (0.8%), #CCCC55
+          (0.8%))'
+        value: 4.9762
+      - check: ground_line
+        status: pass
+        message: feet at 88.3% of the height (contract 88%)
+        value: 0.8828
+      - check: harmony
+        status: warn
+        message: 'harmony score 70 against the char reference (outliers: C_p95, L_p2,
+          detail)'
+        value: 69.7
+      - check: edit_silhouette
+        status: fail
+        message: 61% of the parent's shape kept
+        value: 0.6054
+      - check: edit_stability
+        status: fail
+        message: 20% of the parent level unchanged
+        value: 0.205
+      - check: edit_chroma
+        status: warn
+        message: chroma x0.71 of the parent level (drift compounds along a chain)
+        value: 0.7142
+      info:
+        alignment:
+          scale: 1.1058
+          cx: 511.5
+          cy: 909.0
+          dx: 2
+          dy: -5
+        metrics_raw:
+          L_p5: 48.6
+          L_p50: 78.9
+          L_p95: 92.7
+          C_p50: 36.1
+          C_p95: 63.3
+          C_p99: 69.0
+          detail: 7.43
+        metrics_locked:
+          L_p5: 48.9
+          L_p50: 79.0
+          L_p95: 93.0
+          C_p50: 36.1
+          C_p95: 57.8
+          C_p99: 59.2
+          detail: 7.45
+      fingerprint: 42a190b6943ea808
+    original_qa_sha256: 13a7eeb3ddcf7488f480bd487f8929446d2eab1e530758b6041c912e823a113f
+  - batch: batch-39-koke-production
+    job: koke-standing
+    take: 3
+    round: 2
+    logical_run: 20261106-koke-repost-stretch-standing-r2
+    source_file: /workspace/generated_images/exec-17731f39-b60c-46de-bf43-7884317a9279.png
+    returned_at: '2026-11-06T02:04:19.357Z'
+    prompt_sha256: cad009f804b9581442c8a313628b8427597782cbf8c230d5235932b8059c117c
+    fingerprint: 42a190b6943ea808
+    saved_at: '2026-11-06T02:04:19.664259+00:00'
+    original_generated_png_sha256: 53e844c9575b4019844e89c64c7dc63992f98dceeffbd42e8673573b9f146bc9
+    dimensions:
+    - 1254
+    - 1254
+    rgba_sha256: 962d1e7dea7413707a3988c78972bfddfdcbac9dbe642733475a5bed334747b5
+    evaluation_take: 3
+    original_take: 3
+    original_run: batch-39-koke-production
+    original_operation: koke-repost-2026-11-06
+    original_callback: /workspace/art-operator-runtime/run-20261106/koke-repost-2026-11-06/generated-koke-standing-t3.json
+    original_callback_sha256: c2d42d7a08568e867ce46beb8c5c1f244fbcf59913c4b75afe3d24645025acc0
+    original_tool_callback: /workspace/art-operator-runtime/run-20261106/koke-repost-2026-11-06/callback-koke-standing-t3.json
+    original_tool_callback_sha256: 2933f673b43479f523470505ca491b1bc2cef3185776d3bba27888b90142e5d6
+    original_packet:
+      batch: batch-39-koke-production
+      job: koke-standing
+      worktree: /workspace/art-20261106-koke-repost
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. The image to edit (the approved previous level). Edit it; do not redraw
+        it.
+
+
+        Edit the attached moss creature, Koke, so she stands up, wide awake
+
+        and happy: the heap rises onto four sturdy stubby legs, the body
+
+        held up round and plump, the head lifted and turned to the viewer,
+
+        both eyes open, big, round and warm brown with catchlights, a soft
+
+        happy smile with a blush on each cheek, the small ears perked. Her
+
+        whole back is in flower: soft blossoms in butter yellow, blush pink,
+
+        lilac and white among fresh leaves, and the crown sprout is a leafy
+
+        tuft. The moss, its colours, the style and the lighting stay exactly
+
+        as in the attached image. Her feet stand on the same ground line at
+
+        88 percent of the height; she is about 70 percent of the canvas
+
+        height and fits fully inside the canvas.
+
+
+        KEEP: everything not named above stays exactly the same as in the
+
+        attached image: every existing part, its shape, color, position and size,
+
+        the canvas, the camera, the light and the painting style. Do not zoom out
+
+        or reframe: if a new part does not fit, make the new part smaller, never
+
+        the existing ones. Outside the new parts, the result must line up with
+
+        the attached image pixel for pixel.
+
+
+        AVOID: teeth, claws, a roar, a whale or bear shape, glowing eyes, a ground,
+        a shadow, a changed art style, text
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      refs:
+      - /workspace/art-20261106-koke-repost/design/art/masters/koke-asleep/koke-asleep.png
+      reference_sha256:
+        /workspace/art-20261106-koke-repost/design/art/masters/koke-asleep/koke-asleep.png: 98e6a044f73e75d71c4cfcf38dc7d5d61d96dcbdc7a1d90b4b33b958151a7592
+      fingerprint: 42a190b6943ea808
+      prompt_sha256: cad009f804b9581442c8a313628b8427597782cbf8c230d5235932b8059c117c
+      transparent: true
+    original_sidecar:
+      job: koke-standing
+      take: 3
+      batch: batch-39-koke-production
+      fingerprint: 42a190b6943ea808
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. The image to edit (the approved previous level). Edit it; do not redraw
+        it.
+
+
+        Edit the attached moss creature, Koke, so she stands up, wide awake
+
+        and happy: the heap rises onto four sturdy stubby legs, the body
+
+        held up round and plump, the head lifted and turned to the viewer,
+
+        both eyes open, big, round and warm brown with catchlights, a soft
+
+        happy smile with a blush on each cheek, the small ears perked. Her
+
+        whole back is in flower: soft blossoms in butter yellow, blush pink,
+
+        lilac and white among fresh leaves, and the crown sprout is a leafy
+
+        tuft. The moss, its colours, the style and the lighting stay exactly
+
+        as in the attached image. Her feet stand on the same ground line at
+
+        88 percent of the height; she is about 70 percent of the canvas
+
+        height and fits fully inside the canvas.
+
+
+        KEEP: everything not named above stays exactly the same as in the
+
+        attached image: every existing part, its shape, color, position and size,
+
+        the canvas, the camera, the light and the painting style. Do not zoom out
+
+        or reframe: if a new part does not fit, make the new part smaller, never
+
+        the existing ones. Outside the new parts, the result must line up with
+
+        the attached image pixel for pixel.
+
+
+        AVOID: teeth, claws, a roar, a whale or bear shape, glowing eyes, a ground,
+        a shadow, a changed art style, text
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      attachments:
+      - path: design/art/masters/koke-asleep/koke-asleep.png
+        role: The image to edit (the approved previous level). Edit it; do not redraw
+          it.
+      background: transparent
+      generated_at: '2026-11-06T02:04:21+00:00'
+      backend: codex-cloud
+      source_file: /workspace/generated_images/exec-17731f39-b60c-46de-bf43-7884317a9279.png
+      account:
+        owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+        kind: chatgpt-plan
+    original_sidecar_sha256: 45889cbadc442ce5c646a04c389396d84696614d5adcc7a155448c78e1d6746c
+    original_qa:
+      job: koke-standing
+      take: 3
+      status: fail
+      preset: char-guard
+      checks:
+      - check: transparency
+        status: pass
+        message: source has an alpha channel
+      - check: canvas
+        status: pass
+        message: 1254x1254 scaled x0.817 into 1024x1024
+        value: 0.8166
+      - check: edit_alignment
+        status: pass
+        message: the edit rescaled the object x0.979 and moved it; aligned back to
+          the parent
+        value: 1.0217
+      - check: chroma_ceiling
+        status: warn
+        message: chroma p95 57 (R1 51)
+        value: 57.4
+      - check: light_values
+        status: warn
+        message: 'day/subject: L p2 38 (at most 22), p98 94 (at least 90), spread
+          56 (at least 60)'
+        value: 56.0
+      - check: light_median
+        status: pass
+        message: 'day/subject: median L 78 (band 55-90)'
+        value: 78.0
+      - check: light_haze
+        status: pass
+        message: 'day/subject: dark-channel haze 0.02 (at most 0.20; no true dark
+          means a wash)'
+        value: 0.02
+      - check: light_contrast
+        status: pass
+        message: 'day/subject: p75 local contrast 6.1 (at least 3.5)'
+        value: 6.06
+      - check: detail_budget
+        status: pass
+        message: detail at display size 7.0 (R1 5.3)
+        value: 6.99
+      - check: palette_drift
+        status: fail
+        message: 'mean dE 4.8, p95 14.7, off-palette 14.0% (top: #AABB44 (0.9%), #CCCC55
+          (0.8%))'
+        value: 4.7602
+      - check: ground_line
+        status: pass
+        message: feet at 88.3% of the height (contract 88%)
+        value: 0.8828
+      - check: harmony
+        status: warn
+        message: 'harmony score 68 against the char reference (outliers: C_p95, L_p2,
+          detail)'
+        value: 68.0
+      - check: edit_silhouette
+        status: fail
+        message: 67% of the parent's shape kept
+        value: 0.6666
+      - check: edit_stability
+        status: fail
+        message: 21% of the parent level unchanged
+        value: 0.2112
+      - check: edit_chroma
+        status: warn
+        message: chroma x0.81 of the parent level (drift compounds along a chain)
+        value: 0.806
+      info:
+        alignment:
+          scale: 1.0217
+          cx: 512.5
+          cy: 900.0
+          dx: -7
+          dy: 5
+        metrics_raw:
+          L_p5: 49.3
+          L_p50: 78.0
+          L_p95: 92.1
+          C_p50: 37.1
+          C_p95: 62.0
+          C_p99: 67.6
+          detail: 7.0
+        metrics_locked:
+          L_p5: 49.5
+          L_p50: 78.0
+          L_p95: 92.4
+          C_p50: 37.0
+          C_p95: 57.4
+          C_p99: 58.9
+          detail: 6.99
+      fingerprint: 42a190b6943ea808
+    original_qa_sha256: c9287cb2bda7f67e117a5bc325139b61da66589c163459108c3063c872409650
+  - batch: batch-39-koke-production
+    job: koke-standing
+    take: 4
+    round: 2
+    logical_run: 20261106-koke-repost-stretch-standing-r2
+    source_file: /workspace/generated_images/exec-62751235-4350-4c0b-ba58-ec45239fdcb8.png
+    returned_at: '2026-11-06T02:02:28.142Z'
+    prompt_sha256: cad009f804b9581442c8a313628b8427597782cbf8c230d5235932b8059c117c
+    fingerprint: 42a190b6943ea808
+    saved_at: '2026-11-06T02:02:28.623908+00:00'
+    original_generated_png_sha256: fde62a7126cefd58e09d79630add0ea2611672a5d4dab3ed7f4273f11a0b4685
+    dimensions:
+    - 1254
+    - 1254
+    rgba_sha256: de057c8deadc03fdde4b8e717550b5ea43fc77f248995076b3ce3ea668ada4da
+    evaluation_take: 4
+    original_take: 4
+    original_run: batch-39-koke-production
+    original_operation: koke-repost-2026-11-06
+    original_callback: /workspace/art-operator-runtime/run-20261106/koke-repost-2026-11-06/generated-koke-standing-t4.json
+    original_callback_sha256: 6368e2e72c9af980deb36383855ba610e9752cd623a73515db23d312ceecd4ef
+    original_tool_callback: /workspace/art-operator-runtime/run-20261106/koke-repost-2026-11-06/callback-koke-standing-t4.json
+    original_tool_callback_sha256: dbc65d524af333ae63aed12296f6acd8c096fc47b78731eb0ccd627ea4fe26b8
+    original_packet:
+      batch: batch-39-koke-production
+      job: koke-standing
+      worktree: /workspace/art-20261106-koke-repost
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. The image to edit (the approved previous level). Edit it; do not redraw
+        it.
+
+
+        Edit the attached moss creature, Koke, so she stands up, wide awake
+
+        and happy: the heap rises onto four sturdy stubby legs, the body
+
+        held up round and plump, the head lifted and turned to the viewer,
+
+        both eyes open, big, round and warm brown with catchlights, a soft
+
+        happy smile with a blush on each cheek, the small ears perked. Her
+
+        whole back is in flower: soft blossoms in butter yellow, blush pink,
+
+        lilac and white among fresh leaves, and the crown sprout is a leafy
+
+        tuft. The moss, its colours, the style and the lighting stay exactly
+
+        as in the attached image. Her feet stand on the same ground line at
+
+        88 percent of the height; she is about 70 percent of the canvas
+
+        height and fits fully inside the canvas.
+
+
+        KEEP: everything not named above stays exactly the same as in the
+
+        attached image: every existing part, its shape, color, position and size,
+
+        the canvas, the camera, the light and the painting style. Do not zoom out
+
+        or reframe: if a new part does not fit, make the new part smaller, never
+
+        the existing ones. Outside the new parts, the result must line up with
+
+        the attached image pixel for pixel.
+
+
+        AVOID: teeth, claws, a roar, a whale or bear shape, glowing eyes, a ground,
+        a shadow, a changed art style, text
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      refs:
+      - /workspace/art-20261106-koke-repost/design/art/masters/koke-asleep/koke-asleep.png
+      reference_sha256:
+        /workspace/art-20261106-koke-repost/design/art/masters/koke-asleep/koke-asleep.png: 98e6a044f73e75d71c4cfcf38dc7d5d61d96dcbdc7a1d90b4b33b958151a7592
+      fingerprint: 42a190b6943ea808
+      prompt_sha256: cad009f804b9581442c8a313628b8427597782cbf8c230d5235932b8059c117c
+      transparent: true
+    original_sidecar:
+      job: koke-standing
+      take: 4
+      batch: batch-39-koke-production
+      fingerprint: 42a190b6943ea808
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. The image to edit (the approved previous level). Edit it; do not redraw
+        it.
+
+
+        Edit the attached moss creature, Koke, so she stands up, wide awake
+
+        and happy: the heap rises onto four sturdy stubby legs, the body
+
+        held up round and plump, the head lifted and turned to the viewer,
+
+        both eyes open, big, round and warm brown with catchlights, a soft
+
+        happy smile with a blush on each cheek, the small ears perked. Her
+
+        whole back is in flower: soft blossoms in butter yellow, blush pink,
+
+        lilac and white among fresh leaves, and the crown sprout is a leafy
+
+        tuft. The moss, its colours, the style and the lighting stay exactly
+
+        as in the attached image. Her feet stand on the same ground line at
+
+        88 percent of the height; she is about 70 percent of the canvas
+
+        height and fits fully inside the canvas.
+
+
+        KEEP: everything not named above stays exactly the same as in the
+
+        attached image: every existing part, its shape, color, position and size,
+
+        the canvas, the camera, the light and the painting style. Do not zoom out
+
+        or reframe: if a new part does not fit, make the new part smaller, never
+
+        the existing ones. Outside the new parts, the result must line up with
+
+        the attached image pixel for pixel.
+
+
+        AVOID: teeth, claws, a roar, a whale or bear shape, glowing eyes, a ground,
+        a shadow, a changed art style, text
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      attachments:
+      - path: design/art/masters/koke-asleep/koke-asleep.png
+        role: The image to edit (the approved previous level). Edit it; do not redraw
+          it.
+      background: transparent
+      generated_at: '2026-11-06T02:04:21+00:00'
+      backend: codex-cloud
+      source_file: /workspace/generated_images/exec-62751235-4350-4c0b-ba58-ec45239fdcb8.png
+      account:
+        owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+        kind: chatgpt-plan
+    original_sidecar_sha256: d0c64b1eb6152a25c6a07f9feefdeaff898289156a667ffe4fec97e2c38507b7
+    original_qa:
+      job: koke-standing
+      take: 4
+      status: fail
+      preset: char-guard
+      checks:
+      - check: transparency
+        status: pass
+        message: source has an alpha channel
+      - check: canvas
+        status: pass
+        message: 1254x1254 scaled x0.817 into 1024x1024
+        value: 0.8166
+      - check: edit_alignment
+        status: pass
+        message: the edit rescaled the object x0.972 and moved it; aligned back to
+          the parent
+        value: 1.029
+      - check: chroma_ceiling
+        status: warn
+        message: chroma p95 57 (R1 51)
+        value: 56.7
+      - check: light_values
+        status: warn
+        message: 'day/subject: L p2 39 (at most 22), p98 94 (at least 90), spread
+          55 (at least 60)'
+        value: 55.0
+      - check: light_median
+        status: pass
+        message: 'day/subject: median L 77 (band 55-90)'
+        value: 76.8
+      - check: light_haze
+        status: pass
+        message: 'day/subject: dark-channel haze 0.04 (at most 0.20; no true dark
+          means a wash)'
+        value: 0.043
+      - check: light_contrast
+        status: pass
+        message: 'day/subject: p75 local contrast 5.6 (at least 3.5)'
+        value: 5.59
+      - check: detail_budget
+        status: warn
+        message: detail at display size 7.3 (R1 5.3)
+        value: 7.35
+      - check: palette_drift
+        status: fail
+        message: 'mean dE 4.2, p95 13.7, off-palette 10.3% (top: #AABB44 (0.8%), #BBBB55
+          (0.7%))'
+        value: 4.1974
+      - check: ground_line
+        status: pass
+        message: feet at 88.4% of the height (contract 88%)
+        value: 0.8838
+      - check: harmony
+        status: warn
+        message: 'harmony score 68 against the char reference (outliers: C_p95, L_p2,
+          detail)'
+        value: 68.3
+      - check: edit_silhouette
+        status: fail
+        message: 67% of the parent's shape kept
+        value: 0.6741
+      - check: edit_stability
+        status: fail
+        message: 19% of the parent level unchanged
+        value: 0.1893
+      - check: edit_chroma
+        status: warn
+        message: chroma x0.83 of the parent level (drift compounds along a chain)
+        value: 0.8263
+      info:
+        alignment:
+          scale: 1.029
+          cx: 514.5
+          cy: 908.0
+          dx: -4
+          dy: -3
+        metrics_raw:
+          L_p5: 47.0
+          L_p50: 76.7
+          L_p95: 91.3
+          C_p50: 35.1
+          C_p95: 59.6
+          C_p99: 63.8
+          detail: 7.33
+        metrics_locked:
+          L_p5: 47.3
+          L_p50: 76.8
+          L_p95: 91.6
+          C_p50: 35.1
+          C_p95: 56.7
+          C_p99: 57.9
+          detail: 7.35
+      fingerprint: 42a190b6943ea808
+    original_qa_sha256: 20dec3f61a846a0aecc1ef6ca823be73a9e949da344c3aedd518f2258bf7b7dd
