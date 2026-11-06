@@ -1,0 +1,77 @@
+{
+  "batch": "batch-39-koke-production",
+  "job": "koke-asleep",
+  "take": 3,
+  "round": 2,
+  "logical_run": "20261105-b39-character-root",
+  "source_file": "/workspace/generated_images/exec-0888982b-df5f-4a89-a83e-d58857a1e432.png",
+  "returned_at": "2026-11-05T23:50:02.342Z",
+  "prompt_sha256": "41463eb26bc3094f562008185239579a013faa97e590b1c5d9f0fc412854b0bf",
+  "fingerprint": "dfd55ae43a25fb26",
+  "saved_at": "2026-11-05T23:50:02.651708+00:00",
+  "original_generated_png_sha256": "654d06ed4f12cb5b7a6932f1c640674c3c1c9f6ccb1aa720eb7f4ab4d9df432d",
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "rgba_sha256": "6f530dcb9547b34bb1cbd73c42d3c564b71501f52ea7558714dfa6b9f6258425",
+  "evaluation_take": 3,
+  "original_take": 3,
+  "original_run": "batch-39-koke-production",
+  "original_callback": "/workspace/art-operator-runtime/run-20261105-night/batch-39-koke-production/generated-koke-asleep-t3.json",
+  "original_callback_sha256": "e1372110cb83ad5b5a2fd02cc505683feefbe5248dd7cc3eba31162f583624be",
+  "original_tool_callback": "/workspace/art-operator-runtime/run-20261105-night/batch-39-koke-production/callback-koke-asleep-t3.json",
+  "original_tool_callback_sha256": "ec31a7791ad3ed8277ead7c55a205f2092456956c8060718b0f20c7560aae925",
+  "original_sidecar": {
+    "job": "koke-asleep",
+    "take": 3,
+    "batch": "batch-39-koke-production",
+    "fingerprint": "dfd55ae43a25fb26",
+    "prompt": "REFERENCES (attached, in this order):\n1. Pofu, the hamster: match his art style, lighting, level of fluff and finish exactly (do not draw him).\n2. Mochi, the bunny: the same family of soft plush characters (do not draw her).\n3. The character palette card.\n\nDraw Koke, a huge, gentle, round moss creature fast asleep, as a game\nsprite on a transparent background, in exactly the same art style,\nlighting and level of softness as the attached hamster and bunny.\nIt lies curled up in a plump rounded heap like a small green hill\nwith a face, seen from the front, slightly from above. Its fur is\nthick living moss in sage and fresh green with a few lighter\npatches, soft and fluffy, with a small leafy sprout of two or three\nleaves on its crown and a few tiny clover leaves in its fur. A round\nsleepy face low at the front: a small blunt snout, a tiny dark nose,\ntwo eyes gently closed as soft curved lids with a few soft lashes, a\ncalm small smile, a blush on each cheek, two tiny round ears. Four\nstubby legs tucked under its belly, with one rounded front paw\ncurled out in front of its chin. It fills about 80 percent of the\ncanvas width, lies low (its top about 55 percent of the canvas\nheight), and rests on an invisible ground line at 88 percent of the\nheight, centered, with empty space above it. No flowers, no ground,\nno shadow, no island.\n\nSTYLE: soft painterly 2D digital illustration with the polish of a premium\nstorybook and a top-tier mobile app mascot. Gentle airbrushed shading, no\noutlines, no hard edges. Fine, soft fur strands along the silhouette and a\nvelvety fur texture inside it. Warm diffused key light from the upper left,\na faint warm rim light along the right edge, soft ambient shadow only where\nforms touch. Pastel warm palette of cream, golden peach and blush pink with\ndark espresso-brown eyes. Clean, calm, uncluttered. No text, no letters,\nno numbers, no logos, no watermark, no border, no frame, no sticker outline.\n\nAVOID: outlines, cel shading, 3D plastic or vinyl render, anime sparkle\neyes with many highlights, extra limbs, extra toes or fingers, claws,\nteeth, eyebrows, a long tail, lilac or gray fur, a ground shadow, a floor,\na cast shadow, a white sticker border, text, watermarks, signatures,\nmotion blur, film grain, paper texture, vignette.\n\nAVOID: teeth, claws, open eyes, a frown, a whale or bear shape, glowing parts, flowers, a ground, a shadow, text, letters, zzz, outlines\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+    "attachments": [
+      {
+        "path": "design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png",
+        "role": "Pofu, the hamster: match his art style, lighting, level of fluff and finish exactly (do not draw him)."
+      },
+      {
+        "path": "design/art/masters/mochi-v2/mochi-v2.webp",
+        "role": "Mochi, the bunny: the same family of soft plush characters (do not draw her)."
+      },
+      {
+        "path": "design/reference/palette-card-character.png",
+        "role": "The character palette card."
+      }
+    ],
+    "background": "transparent",
+    "generated_at": "2026-11-05T23:52:08+00:00",
+    "backend": "codex-cloud",
+    "source_file": "/workspace/generated_images/exec-0888982b-df5f-4a89-a83e-d58857a1e432.png",
+    "account": {
+      "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+      "kind": "chatgpt-plan"
+    }
+  },
+  "original_sidecar_path": "/workspace/art-20261105-koke-production/design/art/inbox/batch-39-koke-production/char__koke-asleep--t3.json",
+  "original_sidecar_sha256": "46411c8ea2e5b7998090ea26995685cde31c46942a9ef17fc9ecf4da4d34315e",
+  "original_packet": {
+    "batch": "batch-39-koke-production",
+    "job": "koke-asleep",
+    "worktree": "/workspace/art-20261105-koke-production",
+    "prompt": "REFERENCES (attached, in this order):\n1. Pofu, the hamster: match his art style, lighting, level of fluff and finish exactly (do not draw him).\n2. Mochi, the bunny: the same family of soft plush characters (do not draw her).\n3. The character palette card.\n\nDraw Koke, a huge, gentle, round moss creature fast asleep, as a game\nsprite on a transparent background, in exactly the same art style,\nlighting and level of softness as the attached hamster and bunny.\nIt lies curled up in a plump rounded heap like a small green hill\nwith a face, seen from the front, slightly from above. Its fur is\nthick living moss in sage and fresh green with a few lighter\npatches, soft and fluffy, with a small leafy sprout of two or three\nleaves on its crown and a few tiny clover leaves in its fur. A round\nsleepy face low at the front: a small blunt snout, a tiny dark nose,\ntwo eyes gently closed as soft curved lids with a few soft lashes, a\ncalm small smile, a blush on each cheek, two tiny round ears. Four\nstubby legs tucked under its belly, with one rounded front paw\ncurled out in front of its chin. It fills about 80 percent of the\ncanvas width, lies low (its top about 55 percent of the canvas\nheight), and rests on an invisible ground line at 88 percent of the\nheight, centered, with empty space above it. No flowers, no ground,\nno shadow, no island.\n\nSTYLE: soft painterly 2D digital illustration with the polish of a premium\nstorybook and a top-tier mobile app mascot. Gentle airbrushed shading, no\noutlines, no hard edges. Fine, soft fur strands along the silhouette and a\nvelvety fur texture inside it. Warm diffused key light from the upper left,\na faint warm rim light along the right edge, soft ambient shadow only where\nforms touch. Pastel warm palette of cream, golden peach and blush pink with\ndark espresso-brown eyes. Clean, calm, uncluttered. No text, no letters,\nno numbers, no logos, no watermark, no border, no frame, no sticker outline.\n\nAVOID: outlines, cel shading, 3D plastic or vinyl render, anime sparkle\neyes with many highlights, extra limbs, extra toes or fingers, claws,\nteeth, eyebrows, a long tail, lilac or gray fur, a ground shadow, a floor,\na cast shadow, a white sticker border, text, watermarks, signatures,\nmotion blur, film grain, paper texture, vignette.\n\nAVOID: teeth, claws, open eyes, a frown, a whale or bear shape, glowing parts, flowers, a ground, a shadow, text, letters, zzz, outlines\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+    "refs": [
+      "/workspace/art-20261105-koke-production/design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png",
+      "/workspace/art-20261105-koke-production/design/art/masters/mochi-v2/mochi-v2.webp",
+      "/workspace/art-20261105-koke-production/design/reference/palette-card-character.png"
+    ],
+    "reference_sha256": {
+      "/workspace/art-20261105-koke-production/design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png": "d4f0ce88dc0541053dd515845c1f2bbb2a4ebe101c5ce4a6080d340a5c872454",
+      "/workspace/art-20261105-koke-production/design/art/masters/mochi-v2/mochi-v2.webp": "d107327f7c35e283895babdadc487326cff93e13178ca594bc70285770f62ee5",
+      "/workspace/art-20261105-koke-production/design/reference/palette-card-character.png": "7c6419860036eed684f41c9cdaf2e0c274d5171066259f3bc0605ca82af52e18"
+    },
+    "fingerprint": "dfd55ae43a25fb26",
+    "prompt_sha256": "41463eb26bc3094f562008185239579a013faa97e590b1c5d9f0fc412854b0bf",
+    "transparent": true
+  },
+  "original_packet_file": "/workspace/art-operator-runtime/run-20261105-night/batch-39-koke-production/packet-koke-asleep.json",
+  "original_packet_sha256": "9afec6ae268e2bfeae6afab454013ac285ab09398fed758cb49421226dce1cf6"
+}
