@@ -119,6 +119,8 @@ struct GameScenarioTests {
         var harborOpen: Bool
         var kokePhase: WonderStatus.Phase
         var kokeStage: Int
+        var caglayanPhase: WonderStatus.Phase
+        var caglayanStage: Int
         var hearts: Int
         var decor: Int
         var built: Int
@@ -145,6 +147,10 @@ struct GameScenarioTests {
         var kokeRumourDay: Int?
         var kokeArrivalDay: Int?
         var kokeHealedDay: Int?
+        /// Çağlayan's timeline, the same way.
+        var caglayanRumourDay: Int?
+        var caglayanArrivalDay: Int?
+        var caglayanHealedDay: Int?
         var delta = WorldDelta()
         var weekOne = WorldDelta()
         var calmByDay: [Double] = []
@@ -285,6 +291,8 @@ struct GameScenarioTests {
                     if minuteOfDay == 870 {
                         // The evening visit also calls on Koke, once it is there.
                         world.advance(to: now, GameEvent(at: now, kind: .tendedWonder(.koke)))
+                        // ... and finishes Çağlayan's flow round, once that is there.
+                        world.advance(to: now, GameEvent(at: now, kind: .tendedWonder(.caglayan)))
                         if greetsVisitors {
                             // The evening visit also greets today's visitor,
                             // opens the parcel and helps if asked.
@@ -375,6 +383,10 @@ struct GameScenarioTests {
             if koke.rumouredOn != nil { outcome.kokeRumourDay = outcome.kokeRumourDay ?? day }
             if koke.arrivedOn != nil { outcome.kokeArrivalDay = outcome.kokeArrivalDay ?? day }
             if koke.stage >= WonderIslands.healedStage { outcome.kokeHealedDay = outcome.kokeHealedDay ?? day }
+            let caglayan = world.state.wonders[.caglayan]
+            if caglayan.rumouredOn != nil { outcome.caglayanRumourDay = outcome.caglayanRumourDay ?? day }
+            if caglayan.arrivedOn != nil { outcome.caglayanArrivalDay = outcome.caglayanArrivalDay ?? day }
+            if caglayan.stage >= WonderIslands.healedStage { outcome.caglayanHealedDay = outcome.caglayanHealedDay ?? day }
             if world.state.care.wellbeing < 25 {
                 outcome.unwellDays += 1
             }
@@ -387,6 +399,8 @@ struct GameScenarioTests {
                 harborOpen: world.state.stations.arrivalOrder.contains(.harbor),
                 kokePhase: kokeState.arrivedOn != nil ? .arrived : kokeState.rumouredOn != nil ? .rumoured : .hidden,
                 kokeStage: kokeState.stage,
+                caglayanPhase: caglayan.arrivedOn != nil ? .arrived : caglayan.rumouredOn != nil ? .rumoured : .hidden,
+                caglayanStage: caglayan.stage,
                 hearts: world.state.visitors.hearts.values.reduce(0, +),
                 decor: world.state.visitors.decor.count,
                 built: outcome.buildDays.contains(day) ? 1 : 0,
@@ -449,6 +463,20 @@ struct GameScenarioTests {
         #expect(outcome.kokeArrivalDay == rumour + 1)
         let healed = outcome.kokeHealedDay ?? 99
         #expect((rumour + 5...rumour + 8).contains(healed), "healed on day \(healed)")
+    }
+
+    @Test func caglayanFollowsKokeForTheTypicalUser() {
+        // The rumour only after Koke is healed, the arrival two days later,
+        // then one stage a day at most: four stages, so healed at least
+        // four days after it arrived.
+        let outcome = Self.outcome(.typical)
+        let koke = outcome.kokeHealedDay ?? 99
+        let rumour = outcome.caglayanRumourDay ?? 99
+        #expect(rumour >= koke, "Çağlayan's rumour on day \(rumour), Koke healed on day \(koke)")
+        #expect(outcome.caglayanArrivalDay == rumour + WonderIslands.caglayanArrivalDays)
+        let healed = outcome.caglayanHealedDay ?? 99
+        #expect(healed >= (outcome.caglayanArrivalDay ?? 99) + WonderIslands.healedStage, "healed on day \(healed)")
+        #expect(healed <= (outcome.caglayanArrivalDay ?? 99) + 10)
     }
 
     @Test func kokeStaysGentleForTheLightUserToo() {

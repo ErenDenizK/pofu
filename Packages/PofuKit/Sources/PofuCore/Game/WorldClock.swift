@@ -227,6 +227,7 @@ public struct WorldClock: Sendable {
             metResidents: state.visitors.met,
             invited: state.visitors.invitation?.resident,
             koke: WonderIslands.status(game: state, day: day),
+            caglayan: WonderIslands.status(of: .caglayan, game: state, day: day),
             firstDay: state.firstDay
         )
     }
