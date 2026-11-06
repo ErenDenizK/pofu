@@ -1,0 +1,20 @@
+id: asset-ui-face-disc-v2
+type: asset
+title_tr: ui-face-disc-v2
+title_en: face-disc-v2 (ui)
+status: in-production
+horizon: now
+summary: >-
+  One round clay disc, blank, seen straight on and centered, filling about 88 percent of the
+  canvas: warm cream-honey glazed clay (#FBE9C6) with a soft rounded bevel around the edge,
+  a slightly darker lip at the bottom and a small soft shadow tucked under it. The face is
+  perfectly flat and even. Lit from straight above.
+art:
+  images: []
+  jobs:
+  - batch-61-ui-kit-v3:ui-face-disc-v2
+sources:
+- doc: tools/imagegen/manifest/batch-61-ui-kit-v3.yaml
+kind: ui
+batch: batch-61-ui-kit-v3
+size: 1024x1024

@@ -1,0 +1,24 @@
+id: asset-ui-face-disc-v2-night
+type: asset
+title_tr: ui-face-disc-v2-night
+title_en: face-disc-v2-night (ui)
+status: in-production
+horizon: now
+summary: >-
+  NIGHT VERSION of the attached day piece: the identical shape, size and position, every edge
+  in the same pixels; only the light and color change. It is now lit by a warm lantern from
+  the upper left at night: the material turns a deep warm plum-brown and ink-blue shade, the
+  highlight along the top edge becomes a soft amber, shadows are deeper warm indigo-brown
+  (never black), the whole piece stays readable as the same o…
+links:
+  variant_of:
+  - asset-ui-face-disc-v2
+art:
+  images: []
+  jobs:
+  - batch-61-ui-kit-v3:ui-face-disc-v2-night
+sources:
+- doc: tools/imagegen/manifest/batch-61-ui-kit-v3.yaml
+kind: ui
+batch: batch-61-ui-kit-v3
+size: 1024x1024

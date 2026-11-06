@@ -1,0 +1,21 @@
+id: asset-breath-scene
+type: asset
+title_tr: breath-scene
+title_en: breath-scene (ui)
+status: in-production
+horizon: now
+summary: >-
+  A full portrait phone screen for a cozy mobile game, painted, no text. A calm dusk: a soft
+  lilac-to-rose sky with a few long, flat, soft cloud bands. In the middle of the screen,
+  low on the vertical centre line, a small floating isle seen from the front: a mossy green
+  lawn top about 560 px wide and flat enough for a small round hamster to sit on it (empty,
+  no character), a few tiny pebbles and clover at its edge, and…
+art:
+  images: []
+  jobs:
+  - batch-62-breath-room:breath-scene
+sources:
+- doc: tools/imagegen/manifest/batch-62-breath-room.yaml
+kind: ui
+batch: batch-62-breath-room
+size: 1024x1536

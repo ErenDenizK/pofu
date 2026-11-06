@@ -1,0 +1,22 @@
+id: asset-ui-plaque-cream
+type: asset
+title_tr: ui-plaque-cream
+title_en: plaque-cream (ui)
+status: in-production
+horizon: now
+summary: >-
+  The same plaque shape, but the face is cream linen cloth (#FBF1DE) set into a thin honey-wood
+  rim: smooth and soft, the linen weave only suggested near the edge, the centre perfectly
+  flat and even. Same bevel, lip and shadow.
+links:
+  variant_of:
+  - asset-ui-plaque-honey
+art:
+  images: []
+  jobs:
+  - batch-61-ui-kit-v3:ui-plaque-cream
+sources:
+- doc: tools/imagegen/manifest/batch-61-ui-kit-v3.yaml
+kind: ui
+batch: batch-61-ui-kit-v3
+size: 1536x1024

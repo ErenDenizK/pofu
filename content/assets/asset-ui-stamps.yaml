@@ -1,0 +1,21 @@
+id: asset-ui-stamps
+type: asset
+title_tr: ui-stamps
+title_en: stamps (ui)
+status: in-production
+horizon: now
+summary: >-
+  A sheet of four round ink-stamp imprints on a transparent background, in a 2 by 2 grid with
+  wide empty space between them. Each is a single-color rubber-stamp print: a thin circular
+  ring, a simple emblem inside, the ink slightly uneven and soft, with a faint second strike
+  offset by a hair, no texture of paper. Top left, dawn: a half sun rising on a horizon line,
+  peach-rose ink. Top right, day: a full sun with short r…
+art:
+  images: []
+  jobs:
+  - batch-61-ui-kit-v3:ui-stamps
+sources:
+- doc: tools/imagegen/manifest/batch-61-ui-kit-v3.yaml
+kind: ui
+batch: batch-61-ui-kit-v3
+size: 1536x1024

@@ -1,0 +1,21 @@
+id: asset-breath-clouds-near
+type: asset
+title_tr: breath-clouds-near
+title_en: breath-clouds-near (ui)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached image into one layer of it, on a transparent background, same canvas,
+  every kept pixel exactly in place.
+links:
+  variant_of:
+  - asset-breath-scene
+art:
+  images: []
+  jobs:
+  - batch-62-breath-room:breath-clouds-near
+sources:
+- doc: tools/imagegen/manifest/batch-62-breath-room.yaml
+kind: ui
+batch: batch-62-breath-room
+size: 1024x1536

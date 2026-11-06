@@ -1,0 +1,21 @@
+id: asset-breath-clouds-far
+type: asset
+title_tr: breath-clouds-far
+title_en: breath-clouds-far (ui)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached image into one layer of it, on a transparent background, same canvas,
+  every kept pixel exactly in place.
+links:
+  variant_of:
+  - asset-breath-scene
+art:
+  images: []
+  jobs:
+  - batch-62-breath-room:breath-clouds-far
+sources:
+- doc: tools/imagegen/manifest/batch-62-breath-room.yaml
+kind: ui
+batch: batch-62-breath-room
+size: 1024x1536

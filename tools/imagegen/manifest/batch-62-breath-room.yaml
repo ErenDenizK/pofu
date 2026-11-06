@@ -1,0 +1,230 @@
+# Batch 62: the breath room, layered (production; docs/design/ui-v3.md section 4).
+#
+# The break screen ("the calmest twenty seconds in the app") after
+# batch-48's `x-gate-breath` take 1: Pofu with his eyes closed on a small
+# mossy isle inside a glowing halo, over sunset clouds. The app composes,
+# back to front: the sky (CODE: a gradient by hour, tinted 30 percent toward
+# lavender) · `breath-clouds-far` · `breath-halo` (additive glow) · the
+# BREATH RING (CODE: a 3 pt honey-to-cream angular stroke that fills
+# clockwise in and unwinds out; no art) · `breath-isle` (or the night
+# lamplit version) · Pofu (CODE: live, eyes closed, chest and cheeks swell
+# 4 percent; the three pofu-breath-* poses of section 4 are NOT in this batch
+# because the lead decided Pofu is drawn by code) · `breath-clouds-near` ·
+# `breath-petals` and `breath-ring-spark` (sprites) · the existing
+# `ui-firefly` at night. On the in-breath the isle rises 6 pt and the clouds
+# part slightly, so every layer must be complete behind whatever overlaps it
+# (the isle plate is drawn whole under the near clouds; the far clouds are
+# whole behind the isle).
+#
+# All composite layers share one 1024 x 1536 canvas and register pixel for
+# pixel: the root is the full composite WITHOUT Pofu and without the ring;
+# every layer is an EDIT of it that keeps only its part (the method of
+# batch-58). The isle's flat lawn top sits on the vertical centre line at
+# y = 870 px and is ~560 px wide, sized for a 170 pt Pofu; the halo and the
+# ring center on (512, 770). Pilot: if registration fails, the lead falls
+# back to the composite as one image with the sky in it.
+#
+# The two glow sprites and the petals are independent roots. The glows are
+# `ui` jobs on pure black (the app adds them with plus-lighter blending),
+# like batch-35's pilot glows.
+#
+# Reduce Motion: the ring still fills, the glow fades; no art needed.
+# Night: `-night` edits of the day layers (lamplit).
+
+batch: batch-62-breath-room
+title: The breath room (composite root, isle and cloud layers day and night, halo, ring spark, petals)
+status: open
+
+refs:
+  gate-breath: design/art/takes/batch-48-gate-scenes/x-gate-breath/ui__x-gate-breath--t1.webp
+  tea-stall-5: design/art/stations/tea-stall-5/tea-stall-5.png
+
+defaults:
+  variants: 2
+
+_shared:
+  breath: &breath
+    ref: gate-breath
+    role: "Batch-48's breath direction (take 1): the palette, the calm, the soft halo and the sunset cloud bands. Take the mood and colors; the new image is a quiet scene without Pofu, without the ring and without a sky gradient to the edges."
+  island: &island
+    ref: approved:island-main-l-v3
+    role: "The home island's mossy lawn, earth edge and soft painting: the isle is a small sibling of it."
+  stall: &stall
+    ref: approved:tea-stall-5
+    role: "A finished prop of the game: match its soft airbrushed finish, matte materials, warm light and colors (do not draw the stall)."
+  keep: &keep
+    text: "Edit the attached image into one layer of it, on a transparent background, same canvas, every kept pixel exactly in place."
+  night: &night
+    text: |
+      NIGHT VERSION of the attached day piece: the identical shape, size and position, every edge in the same pixels; only the light and color change. It is now deep blue hour: indigo and plum shadows, the tops lit faintly lavender, calm and cozy.
+  avoid: &avoid
+    text: "AVOID: text, letters, numbers, Pofu or any character or animal, the breath ring, a phone frame, UI chrome, glass panels, a dark or scary mood, saturated or neon colors, outlines, hard edges, pure black"
+
+jobs:
+  - {id: island-main-l-v3, kind: world, name: island-main-l-v3, external: batch-05-fixes-pilot, master: design/art/masters/island-main-l-v3/island-main-l-v3.webp}
+  - {id: tea-stall-5, kind: station, name: tea-stall-5, external: batch-01-slice}
+
+  - id: breath-scene
+    kind: ui
+    name: breath-scene
+    size: 1024x1536
+    canvas: 1024x1536
+    transparent: false
+    chat: "Pofu · Breath room"
+    notes: "ROOT (pilot): the full composite without Pofu and without the ring, after x-gate-breath take 1. Review: soft sunset lilac and rose, a small mossy isle centered with a flat empty lawn top (a 170 pt hamster fits on it), a warm halo behind it, two cloud bands, the top 22 percent calm sky for a title and the area below the isle for one line; the isle is complete (its earth underside shows, so it can rise 6 pt)."
+    attach:
+      - *breath
+      - *island
+    prompt:
+      - text: |
+          A full portrait phone screen for a cozy mobile game, painted, no text. A calm dusk: a soft lilac-to-rose sky with a few long, flat, soft cloud bands. In the middle of the screen, low on the vertical centre line, a small floating isle seen from the front: a mossy green lawn top about 560 px wide and flat enough for a small round hamster to sit on it (empty, no character), a few tiny pebbles and clover at its edge, and a rounded warm-earth underside tapering to a gentle point with two small roots. Behind the isle a large soft glow of warm honey-cream light, like a sunrise halo, brightest right behind the lawn and fading into the sky. A far band of soft peach clouds sits behind the isle and a nearer band of plump cream-and-rose clouds crosses in front of the lower part of the isle's underside, leaving the lawn top clear. The top fifth of the screen is calm empty sky and so is the area under the isle. No ring is drawn.
+      - block: style-anchor-v1
+      - *avoid
+
+  - id: breath-isle
+    kind: ui
+    name: breath-isle
+    size: 1024x1536
+    canvas: 1024x1536
+    transparent: true
+    edit_of: breath-scene
+    chat: "Pofu · Breath room"
+    acceptance: {edit_mode: keep}
+    notes: "Layer 'isle' (day): the mossy isle whole, lawn top, pebbles, clover, earth underside and roots, complete even where the near clouds overlapped it. Registered with the root. The lawn top is empty and flat."
+    prompt:
+      - *keep
+      - text: "Keep ONLY the floating isle: the whole mossy lawn top, its earth underside and its roots, drawn complete (finish any part the near clouds covered, in the same paint). The halo, the sky and every cloud become fully transparent."
+      - block: edit-keep-v1
+      - text: "AVOID: moving or redrawing anything else, any character, new details, a background color, text"
+
+  - id: breath-isle-night
+    kind: ui
+    name: breath-isle-night
+    size: 1024x1536
+    canvas: 1024x1536
+    transparent: true
+    edit_of: breath-isle
+    chat: "Pofu · Breath room"
+    acceptance: {edit_mode: region}
+    palettes: [world-night]
+    notes: "Layer 'isle' (night): the same isle, lamplit: a small standing lantern on the left edge of the lawn lit warm amber, its light on the moss; the rest deep blue-hour. Fireflies are the app's existing ui-firefly, none here. Review: the lantern is small and clean, the lawn top still empty and flat, shapes identical."
+    prompt:
+      - *night
+      - text: "Add one small paper lantern on a short wooden post at the left edge of the lawn, lit warm amber from inside, with a soft amber glow on the moss near it. Nothing else is added."
+      - block: edit-keep-v1
+
+  - id: breath-clouds-far
+    kind: ui
+    name: breath-clouds-far
+    size: 1024x1536
+    canvas: 1024x1536
+    transparent: true
+    edit_of: breath-scene
+    chat: "Pofu · Breath room"
+    acceptance: {edit_mode: keep}
+    notes: "Layer 'far clouds' (day): the soft cloud band behind the isle, whole, so it can part a little on the in-breath. The glow, isle and near clouds are transparent."
+    prompt:
+      - *keep
+      - text: "Keep ONLY the far band of soft peach clouds behind the isle, drawn complete (finish any part the isle hid, in the same paint). The sky, the glow, the isle and the near clouds become fully transparent."
+      - block: edit-keep-v1
+      - text: "AVOID: moving or redrawing anything else, new details, a background color, text"
+
+  - id: breath-clouds-near
+    kind: ui
+    name: breath-clouds-near
+    size: 1024x1536
+    canvas: 1024x1536
+    transparent: true
+    edit_of: breath-scene
+    chat: "Pofu · Breath room"
+    acceptance: {edit_mode: keep}
+    notes: "Layer 'near clouds' (day): the plump cream-and-rose band in front of the lower isle, whole, with clear air above it so the lawn top is never covered."
+    prompt:
+      - *keep
+      - text: "Keep ONLY the nearer band of plump cream-and-rose clouds in front of the isle's lower part. The sky, the glow, the far clouds and the isle become fully transparent."
+      - block: edit-keep-v1
+      - text: "AVOID: moving or redrawing anything else, new details, a background color, text"
+
+  - id: breath-clouds-far-night
+    kind: ui
+    name: breath-clouds-far-night
+    size: 1024x1536
+    canvas: 1024x1536
+    transparent: true
+    edit_of: breath-clouds-far
+    chat: "Pofu · Breath room"
+    acceptance: {edit_mode: recolor}
+    palettes: [world-night]
+    notes: "Far clouds, night: indigo-lavender bands, a faint pink edge."
+    prompt:
+      - *night
+      - block: edit-keep-v1
+
+  - id: breath-clouds-near-night
+    kind: ui
+    name: breath-clouds-near-night
+    size: 1024x1536
+    canvas: 1024x1536
+    transparent: true
+    edit_of: breath-clouds-near
+    chat: "Pofu · Breath room"
+    acceptance: {edit_mode: recolor}
+    palettes: [world-night]
+    notes: "Near clouds, night: deep plum-and-lavender, lit faintly from below by the lantern."
+    prompt:
+      - *night
+      - block: edit-keep-v1
+
+  - id: breath-halo
+    kind: ui
+    name: breath-halo
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: false
+    blend: additive
+    deliver: {scale: 0.5}
+    chat: "Pofu · Breath room"
+    notes: "The halo glow behind the isle: one soft round bloom of warm honey-cream light, ~900 px across, brightest at the center and fading to nothing before the edge. The app adds it with plus-lighter blending and tints it (lavender at night, rose at dusk) and fades it in and out with the breath. Review: smooth falloff, slightly uneven painterly edge, no rings, no rays, black stays black."
+    attach:
+      - *stall
+    prompt:
+      - text: |
+          A single large round bloom of warm light, centered, about nine tenths of the image across, brightest at the middle in soft cream-honey (#FFE6B0) and falling smoothly through warm gold (#FFC872) and rose-peach (#FF9F7A) to nothing before the border. The edge is slightly uneven and painterly, never a perfect digital circle.
+      - block: ui-object-v1
+      - text: |
+          GLOW SPRITE: a painterly additive light sprite: the app adds it on top of the scene with plus-lighter blending, so black means no light at all. Painted with the same soft airbrushed grain as the attached art. Pure black (#000000) background, not transparent, no other colors, no objects.
+      - text: "AVOID: any object, a sun disc, a sphere, a ring or halo outline, rays or spikes, stars, lens flare, hard edges, outlines, text, letters, a border, grey or colored backgrounds, banding. Everything outside the glow is pure black (#000000)."
+
+  - id: breath-ring-spark
+    kind: ui
+    name: breath-ring-spark
+    size: 1024x1024
+    canvas: 512x512
+    transparent: false
+    blend: additive
+    chat: "Pofu · Breath room"
+    notes: "The bright head that rides the leading end of the breath ring as it fills (the ring itself is code): a small warm cream-white star-bloom with a short soft comet tail pointing LEFT (the app rotates it along the stroke). Centered in the head, ~220 px long. Review: soft, reads at 14 pt, no cross-flare."
+    attach:
+      - *stall
+    prompt:
+      - text: |
+          A tiny soft spark of light: a bright cream-white core (#FFF3D6) with a round warm-gold bloom (#FFC872) around it and a short faint comet tail trailing to the left, fading to nothing. Centered, small, about a fifth of the image across.
+      - block: ui-object-v1
+      - text: |
+          GLOW SPRITE: a painterly additive light sprite: the app adds it with plus-lighter blending, so black means no light at all. Pure black (#000000) background, not transparent, no other colors, no objects.
+      - text: "AVOID: a four-point star, cross flare, rays, a ring, any object, text, letters, hard edges, grey or colored backgrounds. Everything outside the glow is pure black (#000000)."
+
+  - id: breath-petals
+    kind: ui
+    name: breath-petals
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Breath room"
+    notes: "Six drifting petals on one sheet (3 by 2 grid, each ~380 px): the done moment drops three of them, and they drift in the room (fireflies are the existing ui-firefly). Different petals, same family: two sakura-pink, two cream, one honey, one lilac, each a different curl and angle so they can be rotated and mixed. Review: chunky soft shapes, a tiny lighter vein at most, readable at 20 pt, no stems."
+    attach:
+      - *stall
+    prompt:
+      - text: |
+          A sheet of six single flower petals on a transparent background, in a 3 by 2 grid with wide empty space between them, each petal separate and a little curled, seen straight on, at different angles: two soft sakura-pink, two cream, one honey-gold, one pale lilac. Soft, plump, simple shapes with a slightly lighter edge on one side and a very soft shadow, nothing attached.
+      - block: prop-style-v2
+      - text: "AVOID: stems, whole flowers, leaves, text, letters, outlines, glints, a background, pieces touching"

@@ -1,0 +1,21 @@
+id: asset-ui-seals
+type: asset
+title_tr: ui-seals
+title_en: seals (ui)
+status: in-production
+horizon: now
+summary: >-
+  A sheet of three round wax seals on a transparent background, in a row with wide empty space
+  between them. Each is a plump, slightly irregular blob of matte wax with a raised soft rim
+  and a gently embossed emblem in the middle, lit from the upper left. First, moss green wax
+  with a small rounded shield bearing one leaf. Second, soft rose wax with a small bow. Third,
+  honey-gold wax with a small rising sun above one lea…
+art:
+  images: []
+  jobs:
+  - batch-61-ui-kit-v3:ui-seals
+sources:
+- doc: tools/imagegen/manifest/batch-61-ui-kit-v3.yaml
+kind: ui
+batch: batch-61-ui-kit-v3
+size: 1536x1024

@@ -1,0 +1,21 @@
+id: asset-ui-bubble-tail
+type: asset
+title_tr: ui-bubble-tail
+title_en: bubble-tail (ui)
+status: in-production
+horizon: now
+summary: >-
+  A sheet of three small speech-bubble tails on a transparent background, in a row of three
+  with wide empty space between them, each centered in its third: warm cream paper (#FFF7E8)
+  with a thin soft cocoa-brown edge on the two long sides only, the flat top edge open and
+  edgeless so it can join a bubble. The first tail leans to the lower left, the second points
+  straight down, the third leans to the lower right. Soft cu…
+art:
+  images: []
+  jobs:
+  - batch-61-ui-kit-v3:ui-bubble-tail
+sources:
+- doc: tools/imagegen/manifest/batch-61-ui-kit-v3.yaml
+kind: ui
+batch: batch-61-ui-kit-v3
+size: 1536x1024

@@ -1,0 +1,20 @@
+id: asset-breath-halo
+type: asset
+title_tr: breath-halo
+title_en: breath-halo (ui)
+status: in-production
+horizon: now
+summary: >-
+  A single large round bloom of warm light, centered, about nine tenths of the image across,
+  brightest at the middle in soft cream-honey (#FFE6B0) and falling smoothly through warm
+  gold (#FFC872) and rose-peach (#FF9F7A) to nothing before the border. The edge is slightly
+  uneven and painterly, never a perfect digital circle.
+art:
+  images: []
+  jobs:
+  - batch-62-breath-room:breath-halo
+sources:
+- doc: tools/imagegen/manifest/batch-62-breath-room.yaml
+kind: ui
+batch: batch-62-breath-room
+size: 1024x1024

@@ -1,0 +1,19 @@
+id: asset-breath-ring-spark
+type: asset
+title_tr: breath-ring-spark
+title_en: breath-ring-spark (ui)
+status: in-production
+horizon: now
+summary: >-
+  A tiny soft spark of light: a bright cream-white core (#FFF3D6) with a round warm-gold bloom
+  (#FFC872) around it and a short faint comet tail trailing to the left, fading to nothing.
+  Centered, small, about a fifth of the image across.
+art:
+  images: []
+  jobs:
+  - batch-62-breath-room:breath-ring-spark
+sources:
+- doc: tools/imagegen/manifest/batch-62-breath-room.yaml
+kind: ui
+batch: batch-62-breath-room
+size: 1024x1024

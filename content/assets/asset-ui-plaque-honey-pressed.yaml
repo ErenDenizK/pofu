@@ -1,0 +1,23 @@
+id: asset-ui-plaque-honey-pressed
+type: asset
+title_tr: ui-plaque-honey-pressed
+title_en: plaque-honey-pressed (ui)
+status: in-production
+horizon: now
+summary: >-
+  Show the plaque pressed down into the table: the whole wood about 6 percent darker and a
+  touch more orange-brown, the bevel along the top edge softer, the lighter rim gone, the
+  lip along the bottom flatter and the shadow tucked tight under it. The outline, size and
+  position stay.
+links:
+  variant_of:
+  - asset-ui-plaque-honey
+art:
+  images: []
+  jobs:
+  - batch-61-ui-kit-v3:ui-plaque-honey-pressed
+sources:
+- doc: tools/imagegen/manifest/batch-61-ui-kit-v3.yaml
+kind: ui
+batch: batch-61-ui-kit-v3
+size: 1536x1024

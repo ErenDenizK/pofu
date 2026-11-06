@@ -1,0 +1,661 @@
+# Batch 61: UI kit v3 (production; docs/design/ui-v3.md section 5, ADR-0020).
+#
+# ADR-0020: Pofu-owned surfaces are PAINTED, behaviour stays native, and every
+# word and number is live text. So nothing here carries a letter, a digit or a
+# symbol that means something: plaques, paper, cards, bubbles, chips, toast,
+# groove and fill are blank materials the app puts live text on. The seals and
+# stamps carry a small emblem (a leaf, a bow, a sun), never lettering.
+#
+# One material family (ui-v3 section 1): honey-stained wood, cream linen and
+# felt, paper (day) and lamplit paper (night), clay. The look is the round
+# door gate (the batch-48 round door take 1 (batch-58 repaints it in layers; it does not block this batch): its honey plaques are the plaque
+# reference) and tea-stall-5 (finish and soft light). Every surface is lit
+# from straight above or the upper left with one soft key; it has a flat,
+# even middle so it can be stretched.
+#
+# Slices. The pipeline supports `slice: {caps: [top, left, bottom, right],
+# ship_height}` on ui jobs (written to meta.json, converted to Contents.json
+# by the asset step). Caps are in pt at 1x for the piece trimmed to its
+# bounds and scaled to `ship_height` pt tall (3x density = three px per
+# pt on device). Insets quoted in notes are px of the painted art:
+#   3-slice (plaque, chip, toast, groove, fill, tag): caps [0, c, 0, c],
+#     the art is a wide strip ~4:1 to 6:1 that fills the canvas width
+#     (canvas 1536 x 1024; the strip sits in the middle band); c is half the
+#     strip's height so the round ends are the caps.
+#   9-slice (sheet, cards, bubble): caps on all four sides.
+# The lead re-checks every cap against the picked take and edits the
+# `slice` before promote; the numbers are the plan, not a QA fact.
+#
+# Night: sheet, cards, bubble, tag, toast and the clay disc have a painted
+# lamplit night version (a recolor EDIT of the day piece: same shape, same
+# pixels). Wood plaques, felt chips, groove and seals are warm enough to be
+# dimmed by code at night (the app multiplies by the light field); the plaque
+# is the only action colour and must not change hue at night.
+#
+# Native by design, no art (ui-v3 section 5): Toggle (system, tint moss
+# #7FA36B by day, amber by night) and the text field (a paper inset the app
+# draws with an inner shadow). The fill of the progress bar is drawn by the
+# app per the spec; `ui-fill-honey` below is a painted option so the lead can
+# compare, not a promise.
+#
+# Tracks (independent): plaques (honey first; its edits follow), paper,
+# cards, bubbles, chips, progress, marks, disc. PILOT: ui-plaque-honey,
+# ui-sheet-paper-v3, ui-card-stitched; if a pilot fails after its one retry,
+# skip the rest of that track.
+
+batch: batch-61-ui-kit-v3
+title: UI kit v3 (plaques, paper, cards, bubbles, chips, toast, progress, clay disc, seals, stamps)
+status: open
+
+refs:
+  tea-stall-5: design/art/stations/tea-stall-5/tea-stall-5.png
+
+defaults:
+  variants: 2
+
+_shared:
+  door: &door
+    ref: design/art/takes/batch-48-gate-scenes/x-gate-round-door/ui__x-gate-round-door--t1.webp
+    role: "The round door gate scene (take 1, the lead's pick; batch-58 repaints it as layers and does not block this batch): the material, light and finish of the honey wood plaques hanging on the rope at the bottom (and its warm paper-and-wood look). Take the material only; do not draw the door, the burrow, the rope or the scene."
+  stall: &stall
+    ref: approved:tea-stall-5
+    role: "A finished prop of the game: match its soft airbrushed finish, matte materials, warm light and colors (do not draw the stall)."
+  palette: &palette
+    ref: palette:world-props
+    role: "The palette card for props: use only these colors (and mixes of them)."
+  avoid: &avoid
+    text: "AVOID: text, letters, numbers, symbols, icons, glass, frosted or transparent parts, a drop shadow or cast shadow on the ground, an outline, a border around the canvas, a background, gloss or specular glints, texture that varies along the width, pure black, neon or saturated colors, a 3D render look"
+  night: &night
+    text: |
+      NIGHT VERSION of the attached day piece: the identical shape, size and position, every edge in the same pixels; only the light and color change. It is now lit by a warm lantern from the upper left at night: the material turns a deep warm plum-brown and ink-blue shade, the highlight along the top edge becomes a soft amber, shadows are deeper warm indigo-brown (never black), the whole piece stays readable as the same object and keeps the soft milky finish.
+
+jobs:
+  - {id: tea-stall-5, kind: station, name: tea-stall-5, external: batch-01-slice}
+  - {id: ui-face-disc, kind: ui, name: face-disc, external: batch-11-ui-pilot}
+  - {id: ui-sheet-paper, kind: ui, name: sheet-paper, external: batch-13-ui-rest}
+  - {id: ui-menu-paper, kind: ui, name: menu-paper, external: batch-13-ui-rest}
+
+  # ----------------------------------------------------------- PLAQUES
+  - id: ui-plaque-honey
+    kind: ui
+    name: plaque-honey
+    size: 1536x1024
+    canvas: 1536x1024
+    slice: {caps: [0, 28, 0, 28], ship_height: 56}
+    chat: "Pofu · UI kit v3"
+    notes: "PILOT, plaque track root. The primary action: a honey-stained wooden plaque, a wide rounded capsule ~4:1 (about 1536 x 384 px, filling the canvas width, centered vertically), soft carved bevel, cocoa-dark shadow tucked under the bottom lip. Slice: 3-slice, left and right caps 192 px (28 pt at ship_height 56), top and bottom 0; the whole rounded end sits inside the cap, the middle 1152 px is plain flat honey wood with no grain variation. Review: matches the gate's hanging plaques, blank, centre perfectly even from left to right, a live label in cocoa #4A3326 stays readable on it at 17 pt, reads as the one verb colour (#F6C453 family)."
+    attach:
+      - *door
+      - *stall
+      - *palette
+    prompt:
+      - text: |
+          One wide wooden plaque, blank, like a small hanging shop sign laid flat and seen straight on: a rounded capsule about four times as wide as it is tall, filling the width of the canvas and centered, honey-stained wood in warm #F6C453 gold-amber, a soft carved bevel just inside the edge, a slightly darker honey lip along the bottom, a faint lighter rim along the top edge. Lit from straight above. The middle third is perfectly flat honey wood with no grain, no knots, no nail heads, no screws, no rope, no holes: a calm place for a live label.
+      - block: crafted-face-v1
+      - block: prop-style-v2
+      - *avoid
+
+  - id: ui-plaque-honey-pressed
+    kind: ui
+    name: plaque-honey-pressed
+    edit_of: ui-plaque-honey
+    size: 1536x1024
+    canvas: 1536x1024
+    slice: {caps: [0, 28, 0, 28], ship_height: 56}
+    chat: "Pofu · UI kit v3"
+    acceptance: {edit_mode: region}
+    notes: "Pressed state: the plaque sinks about 2 pt (the app also moves it), 6 percent darker, the shadow under it tightens. Same shape and bounds as the rest state so the swap does not jump. Review: reads as pushed in; silhouette identical; the centre still flat."
+    prompt:
+      - text: |
+          Show the plaque pressed down into the table: the whole wood about 6 percent darker and a touch more orange-brown, the bevel along the top edge softer, the lighter rim gone, the lip along the bottom flatter and the shadow tucked tight under it. The outline, size and position stay.
+      - block: edit-keep-v1
+
+  - id: ui-plaque-bare
+    kind: ui
+    name: plaque-bare
+    edit_of: ui-plaque-honey
+    size: 1536x1024
+    canvas: 1536x1024
+    slice: {caps: [0, 28, 0, 28], ship_height: 56}
+    chat: "Pofu · UI kit v3"
+    acceptance: {edit_mode: recolor}
+    notes: "Disabled state: bare unstained wood (never transparent). The app shows a live reason line next to it and dims the label to 60 percent. Review: same shape as honey, pale unstained pine in warm cream-tan (#E8D5B5 family), no honey, no glow, still a solid object."
+    prompt:
+      - text: |
+          The same plaque, but bare, unstained, pale wood: a soft cream-tan pine (#E8D5B5), dry and matte, with the same bevel, lip and shadow, no honey stain, no warmth glow. Still solid and clearly a button, only quiet.
+      - block: edit-keep-v1
+
+  - id: ui-plaque-cream
+    kind: ui
+    name: plaque-cream
+    edit_of: ui-plaque-honey
+    size: 1536x1024
+    canvas: 1536x1024
+    slice: {caps: [0, 28, 0, 28], ship_height: 56}
+    chat: "Pofu · UI kit v3"
+    acceptance: {edit_mode: recolor}
+    notes: "The quiet plaque (secondary action): cream linen laid on a thin wood base, so it ranks below honey. Same shape and caps. Review: cream linen #FBF1DE with a faint woven feel only at the edge, a thin honey-wood rim, label in umber stays readable, clearly secondary to honey, never violet."
+    prompt:
+      - text: |
+          The same plaque shape, but the face is cream linen cloth (#FBF1DE) set into a thin honey-wood rim: smooth and soft, the linen weave only suggested near the edge, the centre perfectly flat and even. Same bevel, lip and shadow.
+      - block: edit-keep-v1
+
+  - id: ui-plaque-cream-pressed
+    kind: ui
+    name: plaque-cream-pressed
+    edit_of: ui-plaque-cream
+    size: 1536x1024
+    canvas: 1536x1024
+    slice: {caps: [0, 28, 0, 28], ship_height: 56}
+    chat: "Pofu · UI kit v3"
+    acceptance: {edit_mode: region}
+    notes: "Pressed state of the cream plaque: the same recipe as the honey pressed state."
+    prompt:
+      - text: |
+          Show the cream plaque pressed down: the linen about 6 percent darker, the top bevel softer, the lip flatter and the shadow tucked tight under it. The outline, size and position stay.
+      - block: edit-keep-v1
+
+  - id: ui-plaque-quiet
+    kind: ui
+    name: plaque-quiet
+    size: 1536x1024
+    canvas: 1536x1024
+    slice: {caps: [0, 28, 0, 28], ship_height: 56}
+    chat: "Pofu · UI kit v3"
+    notes: "The quietest control (tertiary: Not now, filters off, a menu row): a flat felt-and-paper strip with almost no bevel, barely raised, no wood. Slice as the honey plaque. Review: ranks clearly below cream, soft, never a flat grey rectangle; centre perfectly even."
+    attach:
+      - ref: approved:ui-plaque-cream
+        role: "The family: the same shape, size on the canvas, linen and light. This one is flatter and quieter."
+      - *stall
+      - *palette
+    prompt:
+      - text: |
+          One wide quiet strip, blank, a rounded capsule four times as wide as it is tall, filling the canvas width and centered: soft warm sand-colored felt (#F0E4CF) with a faint stitched line just inside the edge, almost flat, a very small raised edge and a barely visible shadow underneath. Nothing on it.
+      - block: crafted-face-v1
+      - block: prop-style-v2
+      - *avoid
+
+  - id: ui-plaque-quiet-pressed
+    kind: ui
+    name: plaque-quiet-pressed
+    edit_of: ui-plaque-quiet
+    size: 1536x1024
+    canvas: 1536x1024
+    slice: {caps: [0, 28, 0, 28], ship_height: 56}
+    chat: "Pofu · UI kit v3"
+    acceptance: {edit_mode: region}
+    notes: "Pressed state of the quiet strip: pressed felt, a little darker, shadow gone."
+    prompt:
+      - text: |
+          Show the strip pressed: the felt a touch darker and flatter, the raised edge gone, the shadow underneath almost gone. The outline, size and position stay.
+      - block: edit-keep-v1
+
+  - id: ui-swash
+    kind: ui
+    name: swash
+    size: 1536x1024
+    canvas: 1536x1024
+    transparent: true
+    chat: "Pofu · UI kit v3"
+    notes: "Text button press mark: a hand-drawn underline swash in cocoa ink that the app draws on (mask reveal left to right) under a live text button. One stroke, three widths on one sheet, stacked in three rows (short ~420 px, medium ~860 px, long ~1300 px), each separate, well spaced. Review: a confident single brush stroke with a small flick at the end, uneven but friendly, tapering both ends, the three share the same line quality; no letters."
+    attach:
+      - *stall
+      - *palette
+    prompt:
+      - text: |
+          A sheet of three hand-drawn underline swashes on a transparent background, stacked in three rows with wide empty space between them: a short one, a medium one and a long one. Each is a single confident brush stroke in warm cocoa brown (#4A3326), slightly wavy, thicker in the middle, tapering to a point at both ends, with a small soft flick up at the right end. Painterly, like a soft ink brush, no outline, no texture.
+      - block: prop-style-v2
+      - *avoid
+
+  # -------------------------------------------------------- CLAY DISC
+  - id: ui-face-disc-v2
+    kind: ui
+    name: face-disc-v2
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · UI kit v3"
+    notes: "Round icon button face (close, gear, place control), day. A clay disc 1024 px wide filling about 88 percent of the canvas, no icon on it (the app draws the duo glyph). Fixed size, no slice. The pressed look is code (sink 2 pt). Review: a calm cream-honey clay disc, flat even face so any glyph reads on it, soft bevel and a small shadow tucked under the lower edge, centered; reads at 44 pt."
+    attach:
+      - ref: approved:ui-face-disc
+        role: "The earlier clay disc (batch-11): keep the family, the glaze and the size on the canvas, but make it a little warmer and chunkier with a softer bevel (do not copy it exactly)."
+      - *door
+      - *palette
+    prompt:
+      - text: |
+          One round clay disc, blank, seen straight on and centered, filling about 88 percent of the canvas: warm cream-honey glazed clay (#FBE9C6) with a soft rounded bevel around the edge, a slightly darker lip at the bottom and a small soft shadow tucked under it. The face is perfectly flat and even. Lit from straight above.
+      - block: crafted-face-v1
+      - block: prop-style-v2
+      - *avoid
+
+  - id: ui-face-disc-v2-night
+    kind: ui
+    name: face-disc-v2-night
+    edit_of: ui-face-disc-v2
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · UI kit v3"
+    acceptance: {edit_mode: recolor}
+    palettes: [world-night]
+    notes: "Night clay disc: the same disc, lamplit, deeper umber-plum clay with an amber rim light. Review: still the same object and size, a glyph in cream reads on it at 44 pt."
+    prompt:
+      - *night
+      - block: edit-keep-v1
+
+  # ----------------------------------------------------- PAPER SHEET
+  - id: ui-sheet-paper-v3
+    kind: ui
+    name: sheet-paper-v3
+    size: 1024x1024
+    canvas: 1024x1024
+    slice: {caps: [32, 32, 32, 32], ship_height: 341}
+    chat: "Pofu · UI kit v3"
+    notes: "PILOT, paper track root. The bottom sheet at every detent: cream paper filling the canvas from the left edge to the right edge, from a deckled top edge to the bottom (it runs off the canvas). 9-slice, insets 96 px on every side (32 pt at ship_height 341); the corners and the top edge carry all detail inside the 96 px, the middle 832 px is plain, flat, even cream paper. Review: reads as thick handmade paper, not a card; the top corners are softly rounded with a small lifted lip; a row of tiny even stitches sits just inside the top and side edges; no stains; the middle can be stretched tall without a visible change."
+    attach:
+      - ref: approved:ui-sheet-paper
+        role: "The earlier paper sheet (batch-13): the same cream paper, stitches and warm light; make the top edge a gently deckled (torn-soft) edge and the whole sheet a little thicker and warmer. Do not copy it exactly."
+      - *door
+      - *palette
+    prompt:
+      - text: |
+          A tall sheet of thick handmade cream paper (#FBF1DE) seen straight on, filling the canvas from the left edge to the right edge and from near the top down past the bottom edge: its top corners softly rounded, the top edge gently deckled with a thin lifted lighter paper lip, a faint darker paper edge outside a thin row of small even warm-brown stitches running just inside the top and side edges. The middle is plain, flat, even cream paper with no stains and no fibres. Nothing written or drawn on it.
+      - block: crafted-face-v1
+      - block: prop-style-v2
+      - *avoid
+
+  - id: ui-sheet-paper-v3-night
+    kind: ui
+    name: sheet-paper-v3-night
+    edit_of: ui-sheet-paper-v3
+    size: 1024x1024
+    canvas: 1024x1024
+    slice: {caps: [32, 32, 32, 32], ship_height: 341}
+    chat: "Pofu · UI kit v3"
+    acceptance: {edit_mode: recolor}
+    palettes: [world-night]
+    notes: "Lamplit paper at night: the same sheet by lantern light, warm parchment dimmed to #3A3250-to-#4A3B5A with an amber top rim. Review: live cream text at 17 pt reads on the centre with contrast 7:1; identical edges."
+    prompt:
+      - *night
+      - block: edit-keep-v1
+
+  - id: ui-sheet-deckle
+    kind: ui
+    name: sheet-deckle
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · UI kit v3"
+    notes: "Tileable top edge of a paper sheet (the ragged deckle that the app repeats across any width), a strip ~1536 x 128 px centered in the canvas. No slice (tiles horizontally). The left and right ends must match so it repeats seamlessly. Review: the same paper as the sheet, deckle irregular but never a regular saw tooth, the lower half of the strip is solid paper that joins the sheet's flat middle."
+    attach:
+      - ref: approved:ui-sheet-paper-v3
+        role: "The same cream paper and light: this strip is its top edge. Match the color of the paper exactly."
+      - *palette
+    prompt:
+      - text: |
+          A single horizontal strip about twelve times as wide as it is tall, centered on a transparent background and spanning the full canvas width: the top edge of a sheet of cream paper. The upper edge is a soft, irregular deckled edge with a thin lighter lifted lip, the lower half is solid flat cream paper. The strip repeats seamlessly: the left and right ends are the same edge at the same height.
+      - block: crafted-face-v1
+      - block: prop-style-v2
+      - *avoid
+
+  - id: ui-ribbon-grip
+    kind: ui
+    name: ribbon-grip
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · UI kit v3"
+    notes: "The sheet's grabber, drawn as a ribbon: a short honey-and-cream ribbon tab laid across the top of a sheet (the system grabber stays for VoiceOver). A small piece ~512 x 128 px centered in the canvas. No slice. Review: reads as a little ribbon at 40 x 10 pt, soft, with swallowtail-free rounded ends, not a pill."
+    attach:
+      - *door
+      - *palette
+    prompt:
+      - text: |
+          One short, plump ribbon tab seen straight on, about four times as wide as it is tall, centered: honey-gold satin ribbon (#F2C77A) with a thin cream stripe along the middle and softly rounded ends, a gentle crease at each end and a small soft shadow beneath.
+      - block: prop-style-v2
+      - *avoid
+
+  # ------------------------------------------------------------ CARDS
+  - id: ui-card-stitched
+    kind: ui
+    name: card-stitched
+    size: 1024x1024
+    canvas: 1024x1024
+    slice: {caps: [24, 24, 24, 24], ship_height: 160}
+    chat: "Pofu · UI kit v3"
+    notes: "PILOT, cards track root. A stitched paper card (rewards, info): cream paper with a scalloped-soft rim and a row of warm-brown stitches inside it. 9-slice, insets 96 px of a ~960 px square (24 pt at ship_height 160); stitches and shadow inside the insets; the middle 768 px plain flat paper. Review: a card you would hang on a string, the stitches evenly spaced, nothing printed on it, the centre stretches without change."
+    attach:
+      - ref: approved:ui-menu-paper
+        role: "The earlier paper card (batch-13): the same cream paper and warm light; this one has a sewn border and a little more weight."
+      - *door
+      - *palette
+    prompt:
+      - text: |
+          A square card of cream paper (#FBF1DE) seen straight on, filling about 94 percent of the canvas and centered, softly rounded corners, a thin lifted lighter rim, and just inside it a single row of small even warm-brown stitches all the way round. A soft shadow tucked under the lower edge. The middle is plain, flat, even paper. No hole, no string, no pin, nothing on it.
+      - block: crafted-face-v1
+      - block: prop-style-v2
+      - *avoid
+
+  - id: ui-card-stitched-night
+    kind: ui
+    name: card-stitched-night
+    edit_of: ui-card-stitched
+    size: 1024x1024
+    canvas: 1024x1024
+    slice: {caps: [24, 24, 24, 24], ship_height: 160}
+    chat: "Pofu · UI kit v3"
+    acceptance: {edit_mode: recolor}
+    palettes: [world-night]
+    notes: "Night stitched card, lamplit paper, same recipe as the night sheet."
+    prompt:
+      - *night
+      - block: edit-keep-v1
+
+  - id: ui-card-linen
+    kind: ui
+    name: card-linen
+    size: 1024x1024
+    canvas: 1024x1024
+    slice: {caps: [24, 24, 24, 24], ship_height: 160}
+    chat: "Pofu · UI kit v3"
+    notes: "A linen card for statistics (Today, weekly numbers): soft oatmeal linen with a bound edge, no stitches, quieter than the paper card. 9-slice, insets 96 px; the middle plain. Review: ranks below the stitched card, fabric feel only at the edge, a live number in cocoa reads on it at 28 pt."
+    attach:
+      - ref: approved:ui-card-stitched
+        role: "The family: the same size on the canvas, corner radius, weight and light. This one is oatmeal linen with a bound edge instead of stitches."
+      - *palette
+    prompt:
+      - text: |
+          A square card of soft oatmeal linen (#F3E8D2) seen straight on, filling about 94 percent of the canvas and centered, softly rounded corners, a thin bound edge in a slightly deeper oatmeal, the weave only suggested at the edge, the middle smooth and even. A soft shadow tucked under the lower edge. Nothing on it.
+      - block: crafted-face-v1
+      - block: prop-style-v2
+      - *avoid
+
+  - id: ui-card-linen-night
+    kind: ui
+    name: card-linen-night
+    edit_of: ui-card-linen
+    size: 1024x1024
+    canvas: 1024x1024
+    slice: {caps: [24, 24, 24, 24], ship_height: 160}
+    chat: "Pofu · UI kit v3"
+    acceptance: {edit_mode: recolor}
+    palettes: [world-night]
+    notes: "Night linen card."
+    prompt:
+      - *night
+      - block: edit-keep-v1
+
+  - id: ui-pin-ribbon
+    kind: ui
+    name: pin-ribbon
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · UI kit v3"
+    notes: "The little ribbon bow that pins a reward card's top (and the corner ribbon on a new item), ~512 px wide, centered. No slice. Review: a tiny honey-and-rose bow with two short tails, reads at 28 pt, soft, no knot detail."
+    attach:
+      - ref: approved:ui-card-stitched
+        role: "The card this bow is pinned to: match its warm paper colors and light."
+      - *palette
+    prompt:
+      - text: |
+          One small satin ribbon bow with two short tails hanging down, seen straight on and centered: rose-pink ribbon (#E8A5A0) with a thin cream edge, a plump simple knot, a soft shadow beneath. Chunky and simple.
+      - block: prop-style-v2
+      - *avoid
+
+  # ----------------------------------------------------------- BUBBLES
+  - id: ui-bubble-paper
+    kind: ui
+    name: bubble-paper
+    size: 1024x1024
+    canvas: 1024x1024
+    slice: {caps: [28, 28, 28, 28], ship_height: 120}
+    chat: "Pofu · UI kit v3"
+    notes: "Speech bubble body (residents, story): paper with a soft cocoa edge, NO tail (the tail is a separate piece, so the bubble stretches to any text length). 9-slice, insets 112 px of a ~960 px rounded rectangle (28 pt at ship_height 120); the middle plain. Review: rounded rectangle, generous corner radius, a thin soft cocoa-brown edge, flat warm paper centre, live Baloo 2 text reads on it at 17 pt."
+    attach:
+      - ref: approved:ui-card-stitched
+        role: "The family: the same cream paper and light. The bubble has no stitches but a thin cocoa-brown outline-like edge made of paint, softly."
+      - *palette
+    prompt:
+      - text: |
+          A rounded-rectangle speech bubble body of warm cream paper (#FFF7E8), seen straight on, filling about 94 percent of the canvas and centered, with a generous corner radius, a thin soft cocoa-brown (#8A6A52) edge painted like a pencil-soft rim, and a small soft shadow beneath. No tail, no pointer. The middle is plain flat paper.
+      - block: crafted-face-v1
+      - block: prop-style-v2
+      - *avoid
+
+  - id: ui-bubble-paper-night
+    kind: ui
+    name: bubble-paper-night
+    edit_of: ui-bubble-paper
+    size: 1024x1024
+    canvas: 1024x1024
+    slice: {caps: [28, 28, 28, 28], ship_height: 120}
+    chat: "Pofu · UI kit v3"
+    acceptance: {edit_mode: recolor}
+    palettes: [world-night]
+    notes: "Night bubble: lamplit paper, edge in warm amber-brown."
+    prompt:
+      - *night
+      - block: edit-keep-v1
+
+  - id: ui-bubble-tail
+    kind: ui
+    name: bubble-tail
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · UI kit v3"
+    notes: "Three bubble tails on one sheet (3 columns, ~380 px each): pointing down-left, straight down, down-right. Each is a small cut paper wedge in the same paper and cocoa edge as the bubble, with an open top that overlaps the bubble's lower edge seamlessly (the top edge has no outline). The app slices the sheet into three. Review: same cream and edge as ui-bubble-paper, soft curved wedge, reads at 24 pt, no outline across the top."
+    attach:
+      - ref: approved:ui-bubble-paper
+        role: "The bubble body the tails attach to: the same paper color, cocoa edge and light."
+      - *palette
+    prompt:
+      - text: |
+          A sheet of three small speech-bubble tails on a transparent background, in a row of three with wide empty space between them, each centered in its third: warm cream paper (#FFF7E8) with a thin soft cocoa-brown edge on the two long sides only, the flat top edge open and edgeless so it can join a bubble. The first tail leans to the lower left, the second points straight down, the third leans to the lower right. Soft curved wedge shapes, a little shadow beneath each.
+      - block: prop-style-v2
+      - *avoid
+
+  - id: ui-tab-ribbon
+    kind: ui
+    name: tab-ribbon
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · UI kit v3"
+    notes: "Speaker tab ribbons in five tints on one sheet (5 rows, each ~1100 x 150 px, wide strips, evenly spaced): honey, rose, sage, sky, lilac. A ribbon tab with a notched left end that sits on the bubble's top-left corner; the name is live text. The app slices the sheet into five. Review: five identical ribbons, only the color differs (honey #F2C77A, rose #E8A5A0, sage #A9C79A, sky #A8CBE0, lilac #C4B3DE), flat even middle, notched end, no letters."
+    attach:
+      - ref: approved:ui-bubble-paper
+        role: "The bubble the tab sits on: match the light, softness and warmth."
+      - *palette
+    prompt:
+      - text: |
+          A sheet of five identical satin ribbon tabs on a transparent background, stacked in five rows with wide empty space between them, each a wide strip about seven times as wide as it is tall, with a small V notch cut into the left end and a softly rounded right end, a thin lighter edge on top and a soft shadow beneath. The five differ only in color, top to bottom: honey gold, rose pink, sage green, sky blue, soft lilac. The middle of each is perfectly flat and even.
+      - block: prop-style-v2
+      - *avoid
+
+  # ------------------------------------------------------ CHIPS AND TAGS
+  - id: ui-chip-felt
+    kind: ui
+    name: chip-felt
+    size: 1536x1024
+    canvas: 1536x1024
+    slice: {caps: [0, 18, 0, 18], ship_height: 36}
+    chat: "Pofu · UI kit v3"
+    notes: "Felt chip for filters, reasons and the app chip: a soft sewn felt capsule ~5:1 (about 1536 x 307 px, filling the canvas width). 3-slice, caps 154 px each end (18 pt at ship_height 36); the centre flat felt. Review: warm sand felt (#F0E1C8), a sewn edge just inside, a soft felt thickness, a live label in umber reads at 14 pt."
+    attach:
+      - ref: approved:ui-plaque-quiet
+        role: "The family: the quiet felt strip. This chip is smaller, rounder and a bit thicker, with a visible sewn edge."
+      - *palette
+    prompt:
+      - text: |
+          One wide felt chip, blank: a capsule about five times as wide as it is tall, filling the canvas width and centered, soft warm sand felt (#F0E1C8) with a fine row of tiny cream stitches just inside the rim, a slight felt thickness at the edge and a soft shadow beneath. The middle is flat and even.
+      - block: crafted-face-v1
+      - block: prop-style-v2
+      - *avoid
+
+  - id: ui-chip-felt-selected
+    kind: ui
+    name: chip-felt-selected
+    edit_of: ui-chip-felt
+    size: 1536x1024
+    canvas: 1536x1024
+    slice: {caps: [0, 18, 0, 18], ship_height: 36}
+    chat: "Pofu · UI kit v3"
+    acceptance: {edit_mode: recolor}
+    notes: "Selected chip: darker felt and a stitched border in honey thread. Review: unmistakably selected without a color other than the honey family; same shape."
+    prompt:
+      - text: |
+          The same chip, selected: the felt a shade darker and warmer (#E3C79A) and the stitches just inside the rim now bold honey-gold thread (#E9A93B), slightly larger. The outline, size and position stay.
+      - block: edit-keep-v1
+
+  - id: ui-tag-v3
+    kind: ui
+    name: tag-v3
+    size: 1536x1024
+    canvas: 1536x1024
+    slice: {caps: [0, 26, 0, 26], ship_height: 44}
+    chat: "Pofu · UI kit v3"
+    notes: "World name tag: a paper luggage tag on a short string (resident and island names float above them in the world, swinging with the camera). Strip ~5:1 (about 1536 x 307 px). 3-slice: the left cap holds the string loop and the punched hole, the right cap the pointed or clipped corner, caps 26 pt at ship_height 44; the centre is flat paper. Review: cream paper tag, a small hole with a reinforced ring and a short brown string at the left, clipped corners at the right, blank, a live Baloo 2 name reads at 15 pt."
+    attach:
+      - ref: approved:ui-card-stitched
+        role: "The family: the same cream paper, rim and light."
+      - *palette
+    prompt:
+      - text: |
+          One blank paper luggage tag lying flat and seen straight on, a wide strip about five times as wide as it is tall, filling the canvas width and centered: warm cream paper (#FBF1DE), the left end rounded with a small punched hole, a reinforcing ring around it and a short loop of brown string, the right end with two clipped corners, a thin darker paper edge and a soft shadow beneath. The middle is flat and even.
+      - block: crafted-face-v1
+      - block: prop-style-v2
+      - *avoid
+
+  - id: ui-tag-v3-night
+    kind: ui
+    name: tag-v3-night
+    edit_of: ui-tag-v3
+    size: 1536x1024
+    canvas: 1536x1024
+    slice: {caps: [0, 26, 0, 26], ship_height: 44}
+    chat: "Pofu · UI kit v3"
+    acceptance: {edit_mode: recolor}
+    palettes: [world-night]
+    notes: "Night tag, lamplit paper."
+    prompt:
+      - *night
+      - block: edit-keep-v1
+
+  # ------------------------------------------------------------- TOAST
+  - id: ui-toast-strip
+    kind: ui
+    name: toast-strip
+    size: 1536x1024
+    canvas: 1536x1024
+    slice: {caps: [0, 32, 0, 32], ship_height: 64}
+    chat: "Pofu · UI kit v3"
+    notes: "Toast: a paper strip with a stitched edge, painted STRAIGHT (the app rotates it -1 degree). Strip ~6:1 (about 1536 x 256 px). 3-slice, caps 128 px (32 pt at ship_height 64); the centre flat. Review: cream paper, soft rounded ends, a stitched edge, a shadow that lets it float over any island, a live line of text reads on it at 15 pt."
+    attach:
+      - ref: approved:ui-card-stitched
+        role: "The family: the same cream paper, stitches and light."
+      - *palette
+    prompt:
+      - text: |
+          One wide paper strip, blank, a capsule about six times as wide as it is tall, filling the canvas width and centered: warm cream paper (#FFF7E8) with a row of small even warm-brown stitches just inside the rim, softly rounded ends, a soft shadow under it so it floats. The middle is flat and even.
+      - block: crafted-face-v1
+      - block: prop-style-v2
+      - *avoid
+
+  - id: ui-toast-strip-night
+    kind: ui
+    name: toast-strip-night
+    edit_of: ui-toast-strip
+    size: 1536x1024
+    canvas: 1536x1024
+    slice: {caps: [0, 32, 0, 32], ship_height: 64}
+    chat: "Pofu · UI kit v3"
+    acceptance: {edit_mode: recolor}
+    palettes: [world-night]
+    notes: "Night toast, lamplit paper."
+    prompt:
+      - *night
+      - block: edit-keep-v1
+
+  # ---------------------------------------------------------- PROGRESS
+  - id: ui-groove-wood
+    kind: ui
+    name: groove-wood
+    size: 1536x1024
+    canvas: 1536x1024
+    slice: {caps: [0, 10, 0, 10], ship_height: 20}
+    chat: "Pofu · UI kit v3"
+    notes: "Progress track: a groove carved into dark honey wood, a capsule ~7.5:1 (about 1536 x 205 px). 3-slice, caps 102 px (10 pt at ship_height 20); the centre flat. The fill is drawn by the app over it (or ui-fill-honey). Review: the inside of the groove is a deeper, calmer brown than the wood around it, a soft inner shadow along the top, an even middle, no ticks, no numbers."
+    attach:
+      - ref: approved:ui-plaque-honey
+        role: "The same honey wood: match the stain and light. This is a carved channel in it, much slimmer."
+      - *palette
+    prompt:
+      - text: |
+          One slim carved groove, blank, a long capsule about seven and a half times as wide as it is tall, filling the canvas width and centered: a channel cut into honey-stained wood, the inside a deeper warm brown (#C99A5A to #A87B44) with a soft inner shadow along the top edge, a thin lighter wood lip along the bottom edge, rounded ends. The middle is flat and even.
+      - block: crafted-face-v1
+      - block: prop-style-v2
+      - *avoid
+
+  - id: ui-fill-honey
+    kind: ui
+    name: fill-honey
+    size: 1536x1024
+    canvas: 1536x1024
+    slice: {caps: [0, 10, 0, 10], ship_height: 20}
+    chat: "Pofu · UI kit v3"
+    notes: "OPTIONAL painted honey fill for the groove (the spec draws the fill in code with a gradient; this lets the lead compare). Same strip proportions and caps as the groove, but inset: the fill is about 78 percent of the groove's height. Review: glowing honey (#F6C453 to #E9A93B), one soft highlight along the top, flat even middle, rounded ends, no glint."
+    attach:
+      - ref: approved:ui-groove-wood
+        role: "The groove this fill sits in: the same length, end shapes and light; the fill is slimmer and sits centered."
+      - *palette
+    prompt:
+      - text: |
+          One slim bar of poured honey, blank, a long capsule about nine times as wide as it is tall, filling the canvas width and centered: warm honey (#F6C453 at the top, #E9A93B at the bottom), a single soft lighter highlight along the top, rounded ends, a flat and even middle, no bubbles.
+      - block: crafted-face-v1
+      - block: prop-style-v2
+      - *avoid
+
+  - id: ui-pip-pot
+    kind: ui
+    name: pip-pot
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · UI kit v3"
+    notes: "Progress pips as tiny pots: three pieces on one sheet in a row (empty pot, pot with a bud, pot in bloom), each ~380 px, evenly spaced. The app slices the sheet; one pip per step of a streak or ladder. Review: the same small terracotta pot in all three, empty is plain soil, bud is a closed green bud, bloom is a small open daisy, each reads at 20 pt; strong silhouettes."
+    attach:
+      - *stall
+      - *palette
+    prompt:
+      - text: |
+          A sheet of three tiny flower pots on a transparent background, in a row with wide empty space between them. All three are the same small round terracotta pot (#D9825B) seen from a low front three-quarter view. First, an empty pot with plain dark soil. Second, the same pot with a small closed green bud on a short stem. Third, the same pot with a small open cream daisy with a honey center. Chunky and simple.
+      - block: prop-style-v2
+      - *avoid
+
+  # ------------------------------------------------------------- MARKS
+  - id: ui-seals
+    kind: ui
+    name: seals
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · UI kit v3"
+    notes: "Wax seals on one sheet in a row of three (each ~420 px, evenly spaced): resist (the shield-leaf, for a resisted open), gift (a small bow, for gifts), day (a small sun over a leaf, for a finished day). The app stamps them with a 0.18 s press and a puff. They are marks, not words: a raised emblem, no letters. Review: three clearly distinct emblems in the same wax family, a chunky organic wax blob with a raised rim and a soft emboss, readable at 44 pt, the colors resist = moss green #7FA36B, gift = rose #E8A5A0, day = honey #F6C453; no trailing ribbon."
+    attach:
+      - *door
+      - *stall
+      - *palette
+    prompt:
+      - text: |
+          A sheet of three round wax seals on a transparent background, in a row with wide empty space between them. Each is a plump, slightly irregular blob of matte wax with a raised soft rim and a gently embossed emblem in the middle, lit from the upper left. First, moss green wax with a small rounded shield bearing one leaf. Second, soft rose wax with a small bow. Third, honey-gold wax with a small rising sun above one leaf. No letters, no numbers, no ribbon, no text ring.
+      - block: prop-style-v2
+      - *avoid
+
+  - id: ui-stamps
+    kind: ui
+    name: stamps
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · UI kit v3"
+    notes: "Ink stamps on one sheet in a 2 by 2 grid (each ~600 px): the mood of the day by hour, dawn, day, golden, night. A round rubber-stamp imprint with a slightly uneven ink edge and a faint double-strike, as if pressed on the paper; one emblem each; no letters. They are placed on the door and on the day card. Review: four distinct emblems in one ink style (dawn = a half sun on a line in peach-rose #E8A5A0, day = a full sun with short rays in honey-brown #C99A5A, golden = a low sun and one long cloud in amber #E9A93B, night = a crescent moon and one star in indigo #5B5A8C), round outer ring, readable at 56 pt."
+    attach:
+      - *door
+      - *palette
+    prompt:
+      - text: |
+          A sheet of four round ink-stamp imprints on a transparent background, in a 2 by 2 grid with wide empty space between them. Each is a single-color rubber-stamp print: a thin circular ring, a simple emblem inside, the ink slightly uneven and soft, with a faint second strike offset by a hair, no texture of paper. Top left, dawn: a half sun rising on a horizon line, peach-rose ink. Top right, day: a full sun with short rays, honey-brown ink. Bottom left, golden hour: a low sun and one long cloud, amber ink. Bottom right, night: a crescent moon and one small star, indigo ink. No letters, no numbers.
+      - block: prop-style-v2
+      - *avoid

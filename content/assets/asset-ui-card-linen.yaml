@@ -1,0 +1,20 @@
+id: asset-ui-card-linen
+type: asset
+title_tr: ui-card-linen
+title_en: card-linen (ui)
+status: in-production
+horizon: now
+summary: >-
+  A square card of soft oatmeal linen (#F3E8D2) seen straight on, filling about 94 percent
+  of the canvas and centered, softly rounded corners, a thin bound edge in a slightly deeper
+  oatmeal, the weave only suggested at the edge, the middle smooth and even. A soft shadow
+  tucked under the lower edge. Nothing on it.
+art:
+  images: []
+  jobs:
+  - batch-61-ui-kit-v3:ui-card-linen
+sources:
+- doc: tools/imagegen/manifest/batch-61-ui-kit-v3.yaml
+kind: ui
+batch: batch-61-ui-kit-v3
+size: 1024x1024
