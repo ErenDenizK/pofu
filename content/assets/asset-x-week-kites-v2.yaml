@@ -1,0 +1,35 @@
+id: asset-x-week-kites-v2
+type: asset
+title_tr: x-week-kites-v2
+title_en: x-week-kites-v2 (prop)
+status: cut
+horizon: now
+summary: >-
+  Three diamond kites of different sizes flying together on gently curving thin strings that
+  meet at one small wooden spool: one of coral and cream, one of sea-blue and mustard, one
+  of rose and mint, each with a ribbon tail of small bows; drawn completely including the
+  strings and the spool at the bottom; the kites hang high in the height bar. It stands on
+  the guide's ground ellipse, centered on the cross, never wider …
+art:
+  images: []
+  jobs:
+  - batch-32-weekly-themes-v2:x-week-kites-v2
+sources:
+- doc: tools/imagegen/manifest/batch-32-weekly-themes-v2.yaml
+kind: prop
+batch: batch-32-weekly-themes-v2
+size: 1024x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Skipped after the sole allowed retry; registration remains cut and art.images is empty.
+- >-
+  SKIPPED after the sole unchanged-prompt retry. All four official normalized full-group widths
+  are 447, 404, 476 and 468 px, each above the original explicit one-third-frame limit of
+  341.33 px. The declared hanging profile also leaves bottoms at 1024, 880, 968 and 985 against
+  its existing floor of 620; those canonical anchor warnings remain recorded and unchanged.
+  Every hard automated check is warning-only; no style, light or Harmony warning is promoted
+  into a new failure. Manual exclusion is the literal normalized size requirement, never the
+  preferred raw drawing range. All four source PNGs, exact frozen prompts/reference hashes,
+  canonical reports and q90 take copies are preserved. No extra image call, crop, local shrink,
+  alpha cleanup, manifest/QA edit or forced promotion. This independent job has no true dependents.

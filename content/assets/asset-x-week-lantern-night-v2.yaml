@@ -1,0 +1,35 @@
+id: asset-x-week-lantern-night-v2
+type: asset
+title_tr: x-week-lantern-night-v2
+title_en: x-week-lantern-night-v2 (prop)
+status: cut
+horizon: now
+summary: >-
+  A tall slim honey-wood pole with a crossbar holding five paper lanterns in different shapes
+  (round, long, star-shaped, small, pear-shaped) in cream, rose, mustard, sage and lilac,
+  hung from short cords, all unlit, with a round clay base with stones. It stands on the guide's
+  ground ellipse, centered on the cross, never wider than the ellipse and never taller than
+  the height bar; it is small, a third of the image width…
+art:
+  images: []
+  jobs:
+  - batch-32-weekly-themes-v2:x-week-lantern-night-v2
+sources:
+- doc: tools/imagegen/manifest/batch-32-weekly-themes-v2.yaml
+kind: prop
+batch: batch-32-weekly-themes-v2
+size: 1024x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Skipped after the sole allowed retry; registration remains cut and art.images is empty.
+- >-
+  SKIPPED after the sole unchanged-prompt retry. The four official normalized complete-group
+  widths are 523, 427, 505 and 522 px, all exceeding the source explicit one-third-frame limit
+  of 341.33 px. The declared hanging-profile bottoms are 887, 839, 916 and 931 against its
+  existing floor 620. Every hard automated check is warning-only; style, light and Harmony
+  warnings stay advisory. The manual exclusion is the unchanged normalized literal size requirement,
+  never the preferred raw drawing range or an invented alpha/geometry gate. All four original
+  source PNGs, exact frozen prompt/reference hashes, canonical reports and q90 take copies
+  are preserved. No third pair, manual shrink/crop, pixel or alpha cleanup, manifest/QA threshold
+  change or promotion. This job has no true dependents; all independent jobs continue.
