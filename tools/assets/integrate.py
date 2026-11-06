@@ -26,7 +26,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import vivid  # noqa: E402
 
 REPO = Path(__file__).resolve().parents[2]
-FLAT = ("games", "ui", "glow", "sprite", "shield", "shield-icons", "app", "postcard")  # flat PNGs baked here, not through preblur
+FLAT = ("games", "ui", "glow", "sprite", "shield", "shield-icons", "app", "postcard", "fx", "icons-duo")  # flat PNGs baked here, not through preblur
 MAP = Path(__file__).resolve().parent / "integration_map.json"
 PREBLUR = REPO / "design/prototypes/interactions/tools/preblur.py"
 
@@ -46,9 +46,9 @@ def master_file(folder: str) -> Path | None:
 
 
 def source_file(entry: dict) -> Path | None:
-    """The entry's source image: a `postcard` names the exploration take it was cut from (`source`,
-    the provenance); every other target has a master folder."""
-    if entry["target"] in ("postcard", "shield-icons"):
+    """The entry's source image: an entry with a `source` names the exploration take it was cut from (the
+    provenance: shield icons, weather FX, the two-tone icons); every other entry has a master folder."""
+    if "source" in entry:
         path = REPO / entry["source"]
         return path if path.is_file() else None
     return master_file(entry["master"])
@@ -58,7 +58,7 @@ def output_path(entry: dict, targets: dict) -> Path:
     root = REPO / targets[entry["target"]]
     if entry["target"] == "postcard":
         return root / f"gate-postcard-{entry['name']}.imageset" / f"gate-postcard-{entry['name']}.jpg"
-    if entry["target"] in ("glow", "sprite"):
+    if entry["target"] in ("glow", "sprite", "fx"):
         return root / f"{entry['name']}.imageset" / f"{entry['name']}.png"
     if entry["target"] in ("shield", "shield-icons"):
         return root / f"{entry['name']}.png"
@@ -183,10 +183,14 @@ def bake_sprite(entry: dict, out: Path) -> None:
 
 
 def bake_postcard(entry: dict, out: Path) -> None:
-    """A full-bleed painted postcard for the gate landing (Hop!): the take cropped to `crop` (source pixels
-    x0, y0, x1, y1, a portrait slice), the long side capped at `max_long` (1600), JPEG under 400 KB. An
-    exploration take, never promoted: the `source` path in the map is its provenance."""
-    image = Image.open(source_file(entry)).convert("RGB").crop(tuple(entry["crop"]))
+    """A full-bleed painted postcard for the gate landing (Hop!): a gate master (batch 50, `master`, restored
+    to `size`) or an exploration take (`source`, cropped to `crop`, a portrait slice), the long side capped at
+    `max_long` (1600), JPEG under 400 KB."""
+    image = Image.open(source_file(entry)).convert("RGB")
+    if "crop" in entry:
+        image = image.crop(tuple(entry["crop"]))
+    if "size" in entry:  # a master delivered at half scale, restored to its declared size (a soft painted sky)
+        image = image.resize(tuple(entry["size"]), Image.LANCZOS)
     f = min(1.0, entry.get("max_long", 1600) / max(image.size))
     if f < 1.0:
         image = image.resize((round(image.width * f), round(image.height * f)), Image.LANCZOS)
@@ -196,7 +200,82 @@ def bake_postcard(entry: dict, out: Path) -> None:
     _imageset_contents(out)
 
 
+def _luminance_alpha(image: Image.Image, colour: bool) -> Image.Image:
+    """Light on black as an alpha image: alpha is the brightest channel; `colour` keeps the hue (the pixel
+    divided by its alpha), else the light is white and the app tints it."""
+    import numpy as np
+
+    rgb = np.asarray(image.convert("RGB"), dtype=np.float64)
+    alpha = rgb.max(axis=2)
+    if colour:
+        out = rgb / np.maximum(alpha, 1.0)[..., None] * 255.0
+    else:
+        out = np.full_like(rgb, 255.0)
+    return Image.fromarray(np.dstack([np.clip(out, 0, 255), alpha]).round().astype("uint8"), "RGBA")
+
+
+def _seamless(image: Image.Image) -> Image.Image:
+    """Makes a tile wrap: the tile blended with itself rolled by half in both axes, weighted so the seams
+    show only the rolled copy (whose own edges are the tile's continuous middle)."""
+    import numpy as np
+
+    a = np.asarray(image, dtype=np.float64)
+    h, w = a.shape[:2]
+    ramp = lambda n: np.sin(np.pi * (np.arange(n) + 0.5) / n) ** 2
+    weight = (ramp(h)[:, None] * ramp(w)[None, :])[..., None]
+    rolled = np.roll(a, (h // 2, w // 2), axis=(0, 1))
+    return Image.fromarray((a * weight + rolled * (1 - weight)).round().astype("uint8"), image.mode)
+
+
+def bake_fx(entry: dict, out: Path) -> None:
+    """A weather or light FX plate from a light-on-black exploration take (batch 44): the light becomes alpha
+    (`colour` keeps its hue, else white for the app to tint), trimmed where `trim` (a luminance floor) says
+    and either stretched to `canvas` (the fog cards, which the app lays out at one ratio) or fitted into
+    `points` x `scale`; `tile` makes a rain tile wrap (centre-cropped to `crop` first). The `source` take is
+    the provenance."""
+    image = Image.open(source_file(entry)).convert("RGB")
+    if "crop" in entry:
+        image = image.crop(tuple(entry["crop"]))
+    image = _luminance_alpha(image, entry.get("colour", False))
+    if entry.get("tile"):
+        image = _seamless(image.resize(tuple(entry["canvas"]), Image.LANCZOS))
+    else:
+        floor = entry.get("trim", 8)
+        box = image.getchannel("A").point(lambda v: 255 if v > floor else 0).getbbox()
+        image = image.crop(box)
+        if "canvas" in entry:
+            image = image.resize(tuple(entry["canvas"]), Image.LANCZOS)
+        else:
+            image = _fit(image, entry)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    image.save(out, "PNG", optimize=True)
+    _imageset_contents(out)
+
+
+def bake_icon_duo(entry: dict, out: Path) -> None:
+    """One two-tone icon of the 3x3 sheet (reading order, `index`): the cell trimmed and centred on a square
+    canvas of `points` x `scale` px, all icons at one shared scale so they weigh the same. The `source`
+    take is the provenance."""
+    image = Image.open(source_file(entry)).convert("RGBA")
+    cols, rows = entry["grid"]
+    w, h = image.width // cols, image.height // rows
+    cells = [trim(image.crop((c * w, r * h, (c + 1) * w, (r + 1) * h))) for r in range(rows) for c in range(cols)]
+    biggest = max(max(cell.size) for cell in cells)
+    side = entry["points"][0] * entry.get("scale", 3)
+    f = side * 0.94 / biggest
+    cell = cells[entry["index"]]
+    cell = cell.resize((max(1, round(cell.width * f)), max(1, round(cell.height * f))), Image.LANCZOS)
+    canvas = Image.new("RGBA", (side, side), (0, 0, 0, 0))
+    canvas.alpha_composite(cell, ((side - cell.width) // 2, (side - cell.height) // 2))
+    out.parent.mkdir(parents=True, exist_ok=True)
+    canvas.save(out, "PNG", optimize=True)
+
+
 def bake_games(entry: dict, out: Path) -> None:
+    if entry["target"] == "fx":
+        return bake_fx(entry, out)
+    if entry["target"] == "icons-duo":
+        return bake_icon_duo(entry, out)
     if entry["target"] == "postcard":
         return bake_postcard(entry, out)
     if entry["target"] == "app":

@@ -807,7 +807,7 @@ private struct WorldCanvas: View {
             if layer == .environment {
                 otherIsles
                 kokeIsle
-                ForEach(IslandLayout.plateBands, id: \.art) { band in
+                ForEach(IslandLayout.plateBands(islandLevel: life.islandLevel), id: \.art) { band in
                     if let sprite = WorldArt.sprite(band.art) {
                         DepthImage(
                             name: band.art,

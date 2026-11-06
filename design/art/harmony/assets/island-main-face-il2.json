@@ -6,8 +6,8 @@
   "L_mean": 82.36,
   "L_p2": 62.153,
   "L_p98": 92.056,
-  "detail": 0.823,
-  "edge": 1.114,
+  "detail": 0.637,
+  "edge": 1.478,
   "warmth_b": 24.018
  },
  "before": {
@@ -17,8 +17,8 @@
   "L_mean": 82.448,
   "L_p2": 62.153,
   "L_p98": 92.374,
-  "detail": 0.82,
-  "edge": 1.114,
+  "detail": 0.622,
+  "edge": 1.478,
   "tint_a": 5.867,
   "tint_b": 10.802,
   "warmth_b": 16.657
@@ -37,16 +37,18 @@
  "kind": "world",
  "matched_to": "world",
  "outliers_after": [
-  "C_p95"
+  "C_p95",
+  "edge"
  ],
  "outliers_before": [
-  "C_p95"
+  "C_p95",
+  "edge"
  ],
- "ppu": 4.103,
+ "ppu": 3.0917,
  "reference": false,
- "score_after": 88.0,
- "score_before": 74.5,
- "shipped": false,
+ "score_after": 84.0,
+ "score_before": 70.5,
+ "shipped": true,
  "source": "design/art/masters/island-main-face-il2/island-main-face-il2.webp",
  "source_sha": "26e5dd4242bf0576"
 }

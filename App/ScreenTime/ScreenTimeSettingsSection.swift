@@ -36,7 +36,11 @@ struct ScreenTimeSettingsSection: View {
                         .foregroundStyle(PofuColor.textSecondary)
                 }
             } label: {
-                Label("Shield", systemImage: "hand.raised")
+                Label {
+                    Text("Shield")
+                } icon: {
+                    PofuDuoIcon(.duoShield, size: 26, fallback: "hand.raised")
+                }
             }
             .onAppear { gate.refreshStatus() }
             if gate.authorization == .approved {

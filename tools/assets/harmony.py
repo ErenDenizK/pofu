@@ -551,8 +551,10 @@ def has_direction(name: str, direction: dict | None = None) -> bool:
 # The manifest
 # ---------------------------------------------------------------------------
 
-def build(cfg: dict | None = None) -> tuple[dict, dict]:
-    """Measures every source; returns (manifest, images) where images holds before/after arrays."""
+def build(cfg: dict | None = None, keep_images: bool = True) -> tuple[dict, dict]:
+    """Measures every source; returns (manifest, images) where images holds before/after arrays
+    (`keep_images=False` holds none, so a run without a contact sheet stays small: each source is
+    read again for its correction instead of staying in memory)."""
     cfg = cfg or load_config()
     sources = world_sources(cfg)
     sources.update(catalog_sources(cfg, sources))
@@ -561,7 +563,7 @@ def build(cfg: dict | None = None) -> tuple[dict, dict]:
         rgba = load_rgba(src["path"])
         mats[name] = materials_for(name, cfg, rgba.shape[:2])
         before[name] = measure(rgba, src["ppu"], cfg["display_ppu"], mats[name])
-        images[name] = {"before": rgba}
+        images[name] = {"before": rgba} if keep_images else {}
     refs = reference_stats(before, cfg)
     reference_names = {n for g, names in cfg["reference"].items() if not g.startswith("$") for n in names}
     assets = {}
@@ -582,8 +584,10 @@ def build(cfg: dict | None = None) -> tuple[dict, dict]:
         ref = refs[reference_group(kind, cfg)]
         chain = chain_ref(name)
         corr = plan(before[name], ref, cfg, guarded, kind, chain)
-        after_img = apply(images[name]["before"], corr, before[name], mats[name])
-        images[name]["after"] = after_img
+        original = images[name]["before"] if keep_images else load_rgba(src["path"])
+        after_img = apply(original, corr, before[name], mats[name])
+        if keep_images:
+            images[name]["after"] = after_img
         after = before[name] if is_identity(corr) else measure(after_img, src["ppu"], cfg["display_ppu"], mats[name])
         assets[name] = {
             "source": str(src["path"].relative_to(REPO)),
@@ -822,7 +826,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.cmd == "score":
         print(json.dumps(score_image(load_rgba(args.image), args.ppu, cfg, kind=args.kind), indent=1))
         return 0
-    manifest, images = build(cfg)
+    manifest, images = build(cfg, keep_images=bool(args.sheet))
     print(table(manifest))
     if args.sheet:
         sheet(manifest, images, cfg, args.sheet, material_zooms(cfg))

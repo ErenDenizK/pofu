@@ -20,7 +20,7 @@ struct HopView: View {
     var body: some View {
         Group {
             if let session = model.hop {
-                let hour = hourOverride ?? GateHour(date: model.now, isBedtime: session.isNight)
+                let hour = hourOverride ?? GateHour(date: model.now, isBedtime: session.isNight, mist: model.isMistMorning)
                 HopContent(model: model, session: session, hour: hour)
                     .environment(\.colorScheme, hour.isDark || session.isNight ? .dark : .light)
             } else {

@@ -80,6 +80,8 @@
   "kinds": {
     "$note": "The kind of each shipped source (preblur's APP_SOURCES) that is not a station.",
     "island-main": "world",
+    "island-main-face-il2": "world",
+    "island-main-face-il6": "world",
     "mochi": "char",
     "pofu": "char",
     "isle-harbor-standin": "world",

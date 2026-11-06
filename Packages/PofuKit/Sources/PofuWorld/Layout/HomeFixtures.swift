@@ -19,7 +19,8 @@ public enum HomeFixtures {
 
     /// Mochi's rose door with the tea-glass sign, from the island level her
     /// station opens (H2), and Fındık's sage door with the gear sign when
-    /// the workshop opens (H3).
+    /// the workshop opens (H3). Painted into the earth-face plates; `art` is
+    /// the retired sprite's name.
     public static let doors: [Door] = [
         Door(id: "door-mochi", art: "door-mochi", centre: WorldPoint(x: 40, y: 84), opensAtLevel: 2),
         Door(id: "door-findik", art: "door-findik", centre: WorldPoint(x: 165, y: 80), opensAtLevel: 6),
@@ -72,9 +73,19 @@ public enum HomeFixtures {
         public var point: WorldPoint
     }
 
-    /// Every fixture shown at an island level, doors first, then the path lamps.
+    /// The earth-face plate for an island level (batch 60): the residents' doors are painted into the
+    /// earth, Mochi's from level 2 and Fındık's from level 6, so the pasted door sprites are retired.
+    /// The outline is the main plate's at every level.
+    public static func plateStem(islandLevel: Int) -> String {
+        if islandLevel >= 6 { return "island-main-face-il6" }
+        if islandLevel >= 2 { return "island-main-face-il2" }
+        return "island-main"
+    }
+
+    /// Every fixture shown at an island level: the path lamps and the hive. The doors are part of the
+    /// plate (`plateStem`), their slots stay here for the lit windows.
     public static func placed(islandLevel: Int, homeStationsAtTop: Bool) -> [Placed] {
-        var result = doors(atLevel: islandLevel).map { Placed(id: $0.id, art: $0.art, point: $0.centre) }
+        var result: [Placed] = []
         if islandLevel >= lampsOpenAtLevel {
             for (i, feet) in lampFeet.enumerated() {
                 result.append(Placed(id: "lamp-\(i + 1)", art: "path-lamp", point: feet))

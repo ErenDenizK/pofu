@@ -164,7 +164,14 @@ struct KokeIsleView: View {
                             .mask { plate(stage: s, green: g) }
                     }
                 }
-            Canvas { context, _ in Self.drawStone(&context, stage: s) }
+            Canvas { context, _ in Self.drawStone(&context, stage: s, painted: KokeArt.has("world-koke-stone")) }
+            // The painted stone (batch 60) stands on its lawn spot; the code stone is the fallback only.
+            if KokeArt.has("world-koke-stone") {
+                Self.art(
+                    "world-koke-stone", key: "koke-stone", scale: 1,
+                    feet: Self.at(KokeLayout.stoneOffset.x, KokeLayout.stoneOffset.y + 38), fallbackWidth: 27
+                )
+            }
             // The painted plate already shows Koke on his island (asleep,
             // stretching, standing): no pose sprite is ever drawn over it.
             if !KokeArt.has(KokeLayout.plateArt(stage: s)) {
@@ -278,7 +285,7 @@ struct KokeIsleView: View {
         }
     }
 
-    private static func drawStone(_ context: inout GraphicsContext, stage: Int) {
+    private static func drawStone(_ context: inout GraphicsContext, stage: Int, painted: Bool) {
         let base = at(KokeLayout.stoneOffset.x, KokeLayout.stoneOffset.y + 38)
         if KokeLayout.hasWarmLight(stage: stage) {
             // The first warm practical: a lamp at the stone, added to the light.
@@ -292,35 +299,40 @@ struct KokeIsleView: View {
                 with: .radialGradient(Gradient(colors: [warm.opacity(0.55), warm.opacity(0)]), center: c, startRadius: 0, endRadius: r)
             )
         }
-        // A placeholder painted to sit in the plate's light until the
-        // `koke-stone` sprite lands (batch-60): a soft contact shadow, a
-        // warm-lit top fading to a cool foot, a moss cap that greens with
-        // the stage, and faint carved lines.
-        let stone = CGRect(x: base.x - 11, y: base.y - 30, width: 22, height: 30)
-        context.fill(
-            Path(ellipseIn: CGRect(x: stone.minX - 6, y: stone.maxY - 5, width: stone.width + 12, height: 9)),
-            with: .color(Color(red: 0.24, green: 0.24, blue: 0.30).opacity(0.28))
-        )
-        context.fill(
-            Path(roundedRect: stone, cornerRadius: 10),
-            with: .linearGradient(
-                Gradient(colors: [Color(red: 0.80, green: 0.77, blue: 0.70), Color(red: 0.55, green: 0.55, blue: 0.58)]),
-                startPoint: CGPoint(x: stone.minX, y: stone.minY),
-                endPoint: CGPoint(x: stone.maxX, y: stone.maxY)
+        if painted {
+            // The sprite is drawn over this canvas; only its soft contact shadow is code.
+            let foot = CGRect(x: base.x - 15, y: base.y - 3, width: 30, height: 7)
+            context.fill(Path(ellipseIn: foot), with: .color(Color(red: 0.24, green: 0.24, blue: 0.30).opacity(0.22)))
+        } else {
+            // The fallback when the `koke-stone` sprite is missing: a soft contact shadow, a
+            // warm-lit top fading to a cool foot, a moss cap that greens with
+            // the stage, and faint carved lines.
+            let stone = CGRect(x: base.x - 11, y: base.y - 30, width: 22, height: 30)
+            context.fill(
+                Path(ellipseIn: CGRect(x: stone.minX - 6, y: stone.maxY - 5, width: stone.width + 12, height: 9)),
+                with: .color(Color(red: 0.24, green: 0.24, blue: 0.30).opacity(0.28))
             )
-        )
-        let moss = Double(min(max(stage, 0), 4)) / 4
-        context.fill(
-            Path(ellipseIn: CGRect(x: stone.minX + 1, y: stone.minY - 2, width: stone.width - 2, height: 9)),
-            with: .color(Color(red: 0.55 - 0.15 * moss, green: 0.60 + 0.12 * moss, blue: 0.45 - 0.10 * moss).opacity(0.9))
-        )
-        // The carved lines Mochi reads.
-        for k in 0..<3 {
-            var line = Path()
-            let y = stone.minY + 12 + Double(k) * 6
-            line.move(to: CGPoint(x: stone.minX + 6, y: y))
-            line.addLine(to: CGPoint(x: stone.maxX - 6 - Double(k) * 2, y: y))
-            context.stroke(line, with: .color(Color(red: 0.42, green: 0.40, blue: 0.40).opacity(0.55)), style: StrokeStyle(lineWidth: 1.1, lineCap: .round))
+            context.fill(
+                Path(roundedRect: stone, cornerRadius: 10),
+                with: .linearGradient(
+                    Gradient(colors: [Color(red: 0.80, green: 0.77, blue: 0.70), Color(red: 0.55, green: 0.55, blue: 0.58)]),
+                    startPoint: CGPoint(x: stone.minX, y: stone.minY),
+                    endPoint: CGPoint(x: stone.maxX, y: stone.maxY)
+                )
+            )
+            let moss = Double(min(max(stage, 0), 4)) / 4
+            context.fill(
+                Path(ellipseIn: CGRect(x: stone.minX + 1, y: stone.minY - 2, width: stone.width - 2, height: 9)),
+                with: .color(Color(red: 0.55 - 0.15 * moss, green: 0.60 + 0.12 * moss, blue: 0.45 - 0.10 * moss).opacity(0.9))
+            )
+            // The carved lines Mochi reads.
+            for k in 0..<3 {
+                var line = Path()
+                let y = stone.minY + 12 + Double(k) * 6
+                line.move(to: CGPoint(x: stone.minX + 6, y: y))
+                line.addLine(to: CGPoint(x: stone.maxX - 6 - Double(k) * 2, y: y))
+                context.stroke(line, with: .color(Color(red: 0.42, green: 0.40, blue: 0.40).opacity(0.55)), style: StrokeStyle(lineWidth: 1.1, lineCap: .round))
+            }
         }
         if KokeLayout.hasWarmLight(stage: stage) {
             // The lamp's core at the stone's foot.

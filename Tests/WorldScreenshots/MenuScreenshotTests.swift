@@ -89,7 +89,7 @@ final class MenuScreenshotTests: XCTestCase {
     }
 
     /// The gate's landing painted for the hours of the day (gate v2 section
-    /// 5.1): 07:00, 12:00, 18:30, 22:30, and the rain postcard.
+    /// 5.1): 07:00, 12:00, 18:30, 22:30, and the rain and mist postcards.
     @MainActor
     func testRenderTheGateLandingAtFourHoursAndInRain() async throws {
         let model = AppModel.shared
@@ -97,7 +97,7 @@ final class MenuScreenshotTests: XCTestCase {
         defer { model.dismissHop() }
         let shots: [(String, GateHour)] = [
             ("20-gate-0700", .dawn), ("20-gate-1200", .day), ("20-gate-1830", .golden),
-            ("20-gate-2230", .night), ("20-gate-rain", .rain),
+            ("20-gate-2230", .night), ("20-gate-rain", .rain), ("20-gate-mist", .mist),
         ]
         for (name, hour) in shots {
             let window = try makeWindow(AnyView(HopView(model: model, hourOverride: hour)), style: .light)

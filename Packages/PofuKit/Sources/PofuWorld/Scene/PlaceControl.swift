@@ -75,14 +75,24 @@ private struct PlaceGlyphView: View {
     var body: some View {
         switch glyph {
         case .island:
-            IslandSilhouette()
-                .frame(width: 30, height: 26)
+            if PofuPaint.duoIsland.isAvailable {
+                PofuPaintedIcon(.duoIsland, size: 34, scales: false)
+            } else {
+                IslandSilhouette().frame(width: 30, height: 26)
+            }
         case .archipelago:
-            ArchipelagoGlyph()
-                .frame(width: 30, height: 26)
+            if PofuPaint.duoMap.isAvailable {
+                PofuPaintedIcon(.duoMap, size: 34, scales: false)
+            } else {
+                ArchipelagoGlyph().frame(width: 30, height: 26)
+            }
         case .pofu:
             // Pofu's face: home.
-            PofuFaceGlyph()
+            if PofuPaint.duoHome.isAvailable {
+                PofuPaintedIcon(.duoHome, size: 34, scales: false)
+            } else {
+                PofuFaceGlyph()
+            }
         }
     }
 }

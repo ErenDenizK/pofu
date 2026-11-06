@@ -134,6 +134,15 @@ public enum IslandLayout {
         PlateBand(art: "island-main-band\(k)", depth: IslandLayout.depth(ofY: y))
     }
 
+    /// The plate's bands for an island level: the earth-face plates (batch 60) share the main plate's
+    /// bands, depths and outline.
+    public static func plateBands(islandLevel: Int) -> [PlateBand] {
+        let stem = HomeFixtures.plateStem(islandLevel: islandLevel)
+        return plateBands.enumerated().map { k, band in
+            PlateBand(art: "\(stem)-band\(k)", depth: band.depth)
+        }
+    }
+
     /// The other islands, at fixed world positions around the home one.
     /// Yıldız, Kaplıca and Kitap are retired (game plan §2); wonder islands
     /// join here when they are built.

@@ -23,7 +23,7 @@ struct PofuSheetChrome: ViewModifier {
                         onClose?()
                         dismiss()
                     } label: {
-                        Image(systemName: "xmark")
+                        PofuDuoIcon(.duoClose, size: 24, fallback: "xmark")
                     }
                     .accessibilityLabel(Text("Close"))
                 }

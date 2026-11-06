@@ -1,5 +1,5 @@
 {
-  "_doc": "Master -> app imageset map for the vertical slice (tools/assets/integrate.py). `master` is an art folder under design/art (the lock-light re-lock wins, then .png, then .webp). target `games` writes a flat PNG into PofuGames/Resources at `scale` px per point, fitted into `points` and never upscaled; target `world` names an imageset baked into World.xcassets by design/prototypes/interactions/tools/preblur.py (integrate.py runs it, then checks the imageset exists). target `ui` is the same flat bake into PofuDesignSystem/Resources (the painted menu art, named paint-*; PofuPaint in the design system lists them). target `glow` bakes an additive glow on black (a Codex glow-* sprite) into World.xcassets as a white-on-alpha imageset named by `name` (alpha is the brightest channel), fitted into `points` at `scale`; the app tints it per source and adds it. target `sprite` bakes a coloured alpha sprite (optionally one `cell` of a sheet, `alpha_floor` clearing the halation round it) into World.xcassets for screen-space drawing (the fireflies); `shield` bakes a cell of a sheet as a square PNG for the shield extension and its replica; `app` bakes a plate into the app's own catalog as a @3x imageset (the launch sky, restored to `size`, and the cloud curtain), with harmony's correction.",
+  "_doc": "Master -> app imageset map for the vertical slice (tools/assets/integrate.py). `master` is an art folder under design/art (the lock-light re-lock wins, then .png, then .webp). target `games` writes a flat PNG into PofuGames/Resources at `scale` px per point, fitted into `points` and never upscaled; target `world` names an imageset baked into World.xcassets by design/prototypes/interactions/tools/preblur.py (integrate.py runs it, then checks the imageset exists). target `ui` is the same flat bake into PofuDesignSystem/Resources (the painted menu art, named paint-*; PofuPaint in the design system lists them). target `glow` bakes an additive glow on black (a Codex glow-* sprite) into World.xcassets as a white-on-alpha imageset named by `name` (alpha is the brightest channel), fitted into `points` at `scale`; the app tints it per source and adds it. target `sprite` bakes a coloured alpha sprite (optionally one `cell` of a sheet, `alpha_floor` clearing the halation round it) into World.xcassets for screen-space drawing (the fireflies); `shield` bakes a cell of a sheet as a square PNG for the shield extension and its replica; `app` bakes a plate into the app's own catalog as a @3x imageset (the launch sky, restored to `size`, and the cloud curtain), with harmony's correction. target `fx` bakes a light-on-black exploration take (batch 44) as alpha (`colour` keeps hue; else white to tint) into World.xcassets under the hook name the code asks for (world-fog-card-N, world-rain-tile, ...), stretched to `canvas` or fitted into `points`, `tile` making a wrap-around tile; target `icons-duo` slices the two-tone icon sheet (`grid`, `index`) into flat paint-duo-* PNGs for PofuPaint; both name their exploration take in `source`. `postcard` entries take a gate master (`master`, restored to `size`) or an exploration take (`source`).",
   "targets": {
     "games": "Packages/PofuKit/Sources/PofuGames/Resources",
     "world": "Packages/PofuKit/Sources/PofuWorld/Resources/World.xcassets",
@@ -9,7 +9,9 @@
     "shield": "Packages/PofuKit/Sources/PofuCompanion/Resources",
     "app": "App/Resources/Assets.xcassets",
     "postcard": "App/Resources/Assets.xcassets",
-    "shield-icons": "Packages/PofuKit/Sources/PofuCompanion/Resources"
+    "shield-icons": "Packages/PofuKit/Sources/PofuCompanion/Resources",
+    "fx": "Packages/PofuKit/Sources/PofuWorld/Resources/World.xcassets",
+    "icons-duo": "Packages/PofuKit/Sources/PofuDesignSystem/Resources"
   },
   "entries": [
     {
@@ -516,16 +518,6 @@
       "target": "world",
       "name": "goat-work",
       "master": "design/art/masters/goat-work"
-    },
-    {
-      "target": "world",
-      "name": "door-mochi",
-      "master": "design/art/masters/door-mochi"
-    },
-    {
-      "target": "world",
-      "name": "door-findik",
-      "master": "design/art/masters/door-findik"
     },
     {
       "target": "world",
@@ -1106,64 +1098,274 @@
       "master": "design/art/masters/nazli-body"
     },
     {
+      "target": "world",
+      "name": "koke-stone",
+      "master": "design/art/masters/koke-stone"
+    },
+    {
       "target": "postcard",
       "name": "dawn",
-      "source": "design/art/takes/batch-25-seasons/x-season-spring/plate__x-season-spring--t2.webp",
-      "crop": [
-        460,
-        0,
-        1060,
-        1024
+      "master": "design/art/masters/gate-postcard-dawn",
+      "size": [
+        1024,
+        1536
       ],
       "max_long": 1600
     },
     {
       "target": "postcard",
       "name": "day",
-      "source": "design/art/takes/batch-34-islands-in-game/x-home-tam-cicek/plate__x-home-tam-cicek--t4.webp",
-      "crop": [
-        420,
-        0,
-        1020,
-        1024
+      "master": "design/art/masters/gate-postcard-day",
+      "size": [
+        1024,
+        1536
       ],
       "max_long": 1600
     },
     {
       "target": "postcard",
       "name": "golden",
-      "source": "design/art/takes/batch-25-seasons/x-season-summer-evening/plate__x-season-summer-evening--t2.webp",
-      "crop": [
-        400,
-        0,
-        1000,
-        1024
+      "master": "design/art/masters/gate-postcard-golden",
+      "size": [
+        1024,
+        1536
+      ],
+      "max_long": 1600
+    },
+    {
+      "target": "postcard",
+      "name": "mist",
+      "master": "design/art/masters/gate-postcard-mist",
+      "size": [
+        1024,
+        1536
       ],
       "max_long": 1600
     },
     {
       "target": "postcard",
       "name": "night",
-      "source": "design/art/takes/batch-31-island-milestones/x-tam-cicek-night/plate__x-tam-cicek-night--t2.webp",
-      "crop": [
-        400,
-        0,
-        1000,
-        1024
+      "master": "design/art/masters/gate-postcard-night",
+      "size": [
+        1024,
+        1536
       ],
       "max_long": 1600
     },
     {
       "target": "postcard",
       "name": "rain",
-      "source": "design/art/takes/batch-25-seasons/x-season-rain/plate__x-season-rain--t2.webp",
-      "crop": [
-        468,
-        0,
-        1068,
-        1024
+      "master": "design/art/masters/gate-postcard-rain",
+      "size": [
+        1024,
+        1536
       ],
       "max_long": 1600
+    },
+    {
+      "target": "fx",
+      "name": "world-fog-card-1",
+      "source": "design/art/takes/batch-44-weather-fx/fog-card-1/ui__fog-card-1--t1.webp",
+      "canvas": [
+        768,
+        240
+      ]
+    },
+    {
+      "target": "fx",
+      "name": "world-fog-card-2",
+      "source": "design/art/takes/batch-44-weather-fx/fog-card-2/ui__fog-card-2--t1.webp",
+      "canvas": [
+        768,
+        240
+      ]
+    },
+    {
+      "target": "fx",
+      "name": "world-fog-card-3",
+      "source": "design/art/takes/batch-44-weather-fx/fog-card-3/ui__fog-card-3--t1.webp",
+      "canvas": [
+        768,
+        240
+      ]
+    },
+    {
+      "target": "fx",
+      "name": "world-rain-tile",
+      "source": "design/art/takes/batch-44-weather-fx/rain-tile/ui__rain-tile--t1.webp",
+      "canvas": [
+        512,
+        512
+      ],
+      "tile": true,
+      "colour": true
+    },
+    {
+      "target": "fx",
+      "name": "world-rainbow-arc",
+      "source": "design/art/takes/batch-44-weather-fx/rainbow-arc/ui__rainbow-arc--t1.webp",
+      "colour": true,
+      "points": [
+        420,
+        220
+      ],
+      "scale": 3
+    },
+    {
+      "target": "fx",
+      "name": "world-puddle-glint",
+      "source": "design/art/takes/batch-44-weather-fx/puddle-glint/ui__puddle-glint--t1.webp",
+      "colour": true,
+      "points": [
+        96,
+        48
+      ],
+      "scale": 3
+    },
+    {
+      "target": "fx",
+      "name": "world-light-shaft",
+      "source": "design/art/takes/batch-44-weather-fx/light-shaft/ui__light-shaft--t1.webp",
+      "points": [
+        120,
+        150
+      ],
+      "scale": 3
+    },
+    {
+      "target": "icons-duo",
+      "name": "paint-duo-home",
+      "source": "design/art/takes/batch-46-flat-icons/x-icons-flat-duo/ui__x-icons-flat-duo--t2.webp",
+      "grid": [
+        3,
+        3
+      ],
+      "index": 0,
+      "points": [
+        64,
+        64
+      ],
+      "scale": 3
+    },
+    {
+      "target": "icons-duo",
+      "name": "paint-duo-island",
+      "source": "design/art/takes/batch-46-flat-icons/x-icons-flat-duo/ui__x-icons-flat-duo--t2.webp",
+      "grid": [
+        3,
+        3
+      ],
+      "index": 1,
+      "points": [
+        64,
+        64
+      ],
+      "scale": 3
+    },
+    {
+      "target": "icons-duo",
+      "name": "paint-duo-map",
+      "source": "design/art/takes/batch-46-flat-icons/x-icons-flat-duo/ui__x-icons-flat-duo--t2.webp",
+      "grid": [
+        3,
+        3
+      ],
+      "index": 2,
+      "points": [
+        64,
+        64
+      ],
+      "scale": 3
+    },
+    {
+      "target": "icons-duo",
+      "name": "paint-duo-settings",
+      "source": "design/art/takes/batch-46-flat-icons/x-icons-flat-duo/ui__x-icons-flat-duo--t2.webp",
+      "grid": [
+        3,
+        3
+      ],
+      "index": 3,
+      "points": [
+        64,
+        64
+      ],
+      "scale": 3
+    },
+    {
+      "target": "icons-duo",
+      "name": "paint-duo-close",
+      "source": "design/art/takes/batch-46-flat-icons/x-icons-flat-duo/ui__x-icons-flat-duo--t2.webp",
+      "grid": [
+        3,
+        3
+      ],
+      "index": 4,
+      "points": [
+        64,
+        64
+      ],
+      "scale": 3
+    },
+    {
+      "target": "icons-duo",
+      "name": "paint-duo-add",
+      "source": "design/art/takes/batch-46-flat-icons/x-icons-flat-duo/ui__x-icons-flat-duo--t2.webp",
+      "grid": [
+        3,
+        3
+      ],
+      "index": 5,
+      "points": [
+        64,
+        64
+      ],
+      "scale": 3
+    },
+    {
+      "target": "icons-duo",
+      "name": "paint-duo-letter",
+      "source": "design/art/takes/batch-46-flat-icons/x-icons-flat-duo/ui__x-icons-flat-duo--t2.webp",
+      "grid": [
+        3,
+        3
+      ],
+      "index": 6,
+      "points": [
+        64,
+        64
+      ],
+      "scale": 3
+    },
+    {
+      "target": "icons-duo",
+      "name": "paint-duo-shield",
+      "source": "design/art/takes/batch-46-flat-icons/x-icons-flat-duo/ui__x-icons-flat-duo--t2.webp",
+      "grid": [
+        3,
+        3
+      ],
+      "index": 7,
+      "points": [
+        64,
+        64
+      ],
+      "scale": 3
+    },
+    {
+      "target": "icons-duo",
+      "name": "paint-duo-gift",
+      "source": "design/art/takes/batch-46-flat-icons/x-icons-flat-duo/ui__x-icons-flat-duo--t2.webp",
+      "grid": [
+        3,
+        3
+      ],
+      "index": 8,
+      "points": [
+        64,
+        64
+      ],
+      "scale": 3
     }
   ]
 }

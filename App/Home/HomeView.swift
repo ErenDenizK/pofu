@@ -212,7 +212,7 @@ struct HomeView: View {
             } label: {
                 // Exactly the seed pill's height and capsule shape: glass
                 // drawn in the frame, not around it as `.glass` would.
-                Image(systemName: "gearshape")
+                PofuDuoIcon(.duoSettings, size: 26, fallback: "gearshape")
                     .font(PofuFont.title3)
                     .foregroundStyle(PofuColor.textPrimary)
                     .frame(width: PofuSize.minimumTouch, height: PofuSize.minimumTouch)

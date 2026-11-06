@@ -32,6 +32,14 @@ final class AppModel {
     /// The instant the model last refreshed, so derived values are stable
     /// within one render.
     private(set) var now: Date
+    /// Whether the world's weather is mist right now (the same sky the island shows): the gate paints
+    /// its mist postcard then.
+    var isMistMorning: Bool {
+        let calendar = Calendar.current
+        let parts = calendar.dateComponents([.hour, .minute], from: now)
+        let hour = Double(parts.hour ?? 12) + Double(parts.minute ?? 0) / 60
+        return WeatherForecast.conditions(clock: now, firstDay: game.firstDay, hour: hour, calendar: calendar).weather == .mist
+    }
     /// Counts quiet-seed collections, so Pofu celebrates each one.
     private(set) var quietCollections = 0
     /// The Hop! on screen, if any. Drives the full-screen cover.

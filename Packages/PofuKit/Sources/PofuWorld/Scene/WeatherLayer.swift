@@ -248,6 +248,7 @@ struct WeatherRain: View {
 
     private func drawPuddles(_ gc: inout GraphicsContext, projection: WeatherProjection, time: Double, reflection: PofuRGB, count: Int) {
         let colour = reflection.color
+        let glintArt = WeatherArt.puddleGlint().map { gc.resolve(Image(uiImage: $0)) }
         for (i, puddle) in Self.puddles.prefix(count).enumerated() {
             let centre = projection.point(puddle.x, puddle.y)
             let rx = puddle.rx * Double(projection.scale)
@@ -261,6 +262,14 @@ struct WeatherRain: View {
                     center: centre, startRadius: 0, endRadius: CGFloat(rx)
                 )
             )
+            if let glintArt {
+                // The painted glint (batch 44): light on alpha, added over the puddle.
+                var lit = gc
+                lit.blendMode = .plusLighter
+                lit.opacity = min(1, shimmer + 0.25)
+                lit.draw(glintArt, in: rect.insetBy(dx: -rx * 0.2, dy: -ry * 0.35))
+                continue
+            }
             // The bright wet glint on the puddle's far edge.
             let glint = CGRect(x: centre.x - rx * 0.38, y: centre.y - ry * 0.45, width: rx * 0.76, height: ry * 0.34)
             gc.fill(Path(ellipseIn: glint), with: .color(Color.white.opacity(0.45 * shimmer + 0.15)))
