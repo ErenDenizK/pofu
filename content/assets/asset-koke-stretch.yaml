@@ -23,20 +23,48 @@ kind: char
 batch: batch-39-koke-production
 size: 1024x1024
 notes:
-- 'Skipped without generation: true dependency koke-asleep failed after its one allowed
-  retry. Skipped after the sole unchanged-prompt retry. All four takes fail the canonical
-  ground_line contract: feet at 96.0%, 96.2%, 95.3% and 95.9% of the square canvas
-  versus 88%. Takes 1, 2 and 4 also fail palette_drift with mean dE 4.69, 6.1255 and
-  5.1507; take 3 clears palette but still fails ground_line. Sources show the intended
-  soft living moss mound, closed sleepy eyes, crown sprout and four tucked paws, but
-  the authored placement cannot be waived. No manual translation, scaling, recolouring,
-  pixel cleanup, prompt edit or third pair is used. Skip only this root and its three
-  true pose dependents; the independent island root was evaluated separately. All
-  four originals, exact QA checks and contact are retained. Light and Harmony warnings
-  are advisory and are not the cause of the skip. Automated failures: t1 palette_drift:
-  mean dE 4.7, p95 12.4, off-palette 5.9% (top: #BBCC55 (0.6%), #99AA33 (0.5%)), ground_line:
-  feet at 96.0% of the height (contract 88%); t2 palette_drift: mean dE 6.1, p95 13.3,
-  off-palette 8.8% (top: #889933 (1.0%), #99AA33 (0.8%)), ground_line: feet at 96.2%
-  of the height (contract 88%); t3 ground_line: feet at 95.3% of the height (contract
-  88%); t4 palette_drift: mean dE 5.2, p95 13.5, off-palette 9.8% (top: #999933 (0.8%),
-  #BBBB44 (0.7%)), ground_line: feet at 95.9% of the height (contract 88%).'
+- 'Historical original batch-39 run before the separately authorized koke-repost-2026-11-06
+  operation: Skipped without generation: true dependency koke-asleep failed after
+  its one allowed retry. Skipped after the sole unchanged-prompt retry. All four takes
+  fail the canonical ground_line contract: feet at 96.0%, 96.2%, 95.3% and 95.9% of
+  the square canvas versus 88%. Takes 1, 2 and 4 also fail palette_drift with mean
+  dE 4.69, 6.1255 and 5.1507; take 3 clears palette but still fails ground_line. Sources
+  show the intended soft living moss mound, closed sleepy eyes, crown sprout and four
+  tucked paws, but the authored placement cannot be waived. No manual translation,
+  scaling, recolouring, pixel cleanup, prompt edit or third pair is used. Skip only
+  this root and its three true pose dependents; the independent island root was evaluated
+  separately. All four originals, exact QA checks and contact are retained. Light
+  and Harmony warnings are advisory and are not the cause of the skip. Automated failures:
+  t1 palette_drift: mean dE 4.7, p95 12.4, off-palette 5.9% (top: #BBCC55 (0.6%),
+  #99AA33 (0.5%)), ground_line: feet at 96.0% of the height (contract 88%); t2 palette_drift:
+  mean dE 6.1, p95 13.3, off-palette 8.8% (top: #889933 (1.0%), #99AA33 (0.8%)), ground_line:
+  feet at 96.2% of the height (contract 88%); t3 ground_line: feet at 95.3% of the
+  height (contract 88%); t4 palette_drift: mean dE 5.2, p95 13.5, off-palette 9.8%
+  (top: #999933 (0.8%), #BBBB44 (0.7%)), ground_line: feet at 95.9% of the height
+  (contract 88%).'
+- 'batch-39-koke-production skipped after four takes: Skipped after the sole unchanged-prompt
+  retry. All four takes hard-fail edit_silhouette and edit_stability under the authored
+  region profile: alpha overlap0.7083/0.6712/0.6279/0.6659 and parent kept0.2089/0.1868/0.2059/0.2195.
+  The requested large stretch/yawn deliberately changes the pose, but the operator
+  does not waive or retune those hard registration checks to ship it. All four PNG
+  originals, canonical reports and q90 take archives retained; no third pair, source
+  edits or prompt/profile changes. No true dependents, so only this pose is skipped.
+  Automated failures: t1 edit_silhouette: 71% of the parent''s shape kept, edit_stability:
+  21% of the parent level unchanged; t2 edit_silhouette: 67% of the parent''s shape
+  kept, edit_stability: 19% of the parent level unchanged; t3 edit_silhouette: 63%
+  of the parent''s shape kept, edit_stability: 21% of the parent level unchanged;
+  t4 edit_silhouette: 67% of the parent''s shape kept, edit_stability: 22% of the
+  parent level unchanged.'
+- 'Current operation koke-repost-2026-11-06: skipped; Skipped after the sole unchanged-prompt
+  retry. All four takes hard-fail edit_silhouette and edit_stability under the authored
+  region profile: alpha overlap0.7083/0.6712/0.6279/0.6659 and parent kept0.2089/0.1868/0.2059/0.2195.
+  The requested large stretch/yawn deliberately changes the pose, but the operator
+  does not waive or retune those hard registration checks to ship it. All four PNG
+  originals, canonical reports and q90 take archives retained; no third pair, source
+  edits or prompt/profile changes. No true dependents, so only this pose is skipped.
+  Automated failures: t1 edit_silhouette: 71% of the parent''s shape kept, edit_stability:
+  21% of the parent level unchanged; t2 edit_silhouette: 67% of the parent''s shape
+  kept, edit_stability: 19% of the parent level unchanged; t3 edit_silhouette: 63%
+  of the parent''s shape kept, edit_stability: 21% of the parent level unchanged;
+  t4 edit_silhouette: 67% of the parent''s shape kept, edit_stability: 22% of the
+  parent level unchanged.'
