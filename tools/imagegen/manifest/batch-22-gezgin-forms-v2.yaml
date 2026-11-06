@@ -1,0 +1,507 @@
+# Fresh backlog cycle v2: authorized exploration-only manifest copy (AGENTS.md).
+# Each job is a new early-winter seasonal study, using style-anchor-v2 and
+# its original explicit LIGHT cell. Original manifests and QA are unchanged.
+# This manifest is committed alongside takes under the standing variation exception.
+#
+# Batch 22: exploration, never promoted (the backlog)
+#
+# Gezgin is the cloud-whale Nazlı, the travel companion who carries Pofu and
+# Mochi. Form 1 is humble and tired, a small mossy patch on her back; form 2 is
+# grown and majestic, a lush island with a grove and a waterfall. Her hints are
+# the same in both: a lantern hook on her back and a faint scar shaped like a
+# switched-off light (docs/research/story-references.md; docs/product/game-plan.md
+# section 4). In form 2 the hook and the scar glow softly: she was always
+# this. Concepts decide shape, palette and the whoa; nothing here ships.
+#
+# Tracks: `form1`, `form2` (all later jobs attach the form 1 side view, so it runs first).
+#
+# BACKLOG (docs/design/art-production-plan.md#the-backlog): every job here is
+# an EXPLORATION with an `x-` id. EXPLORATION RULES (AGENTS.md): do NOT run
+# `promote`; commit the takes (WebP q90), the contact sheet and review.yaml
+# under design/art/takes/<batch>/<id>/ and nothing else. No painted text
+# anywhere. Never paint glass, UI chrome or buttons. A failed or refused job
+# is recorded and skipped; the run continues with the next job. There is no
+# pilot gate: run the jobs in the order written.
+#
+# Fresh variations: when the backlog comes round again, copy a job under a
+# new id (`-v2`, `-v3`, ...) with a new angle, never the same prompt twice.
+
+batch: batch-22-gezgin-forms-v2
+title: Gezgin, early-winter variations of the two forms (concepts)
+status: open
+
+refs:
+  tea-stall-1: design/art/stations/tea-stall-1/tea-stall-1.png
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: island-main-s, kind: world, name: island-main-s, external: batch-01-slice}
+  - {id: cloud-sea, kind: world, name: cloud-sea, external: batch-04-sky}
+  - {id: pofu, kind: char, name: pofu-r1, external: r1, master: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png}
+  - {id: pier-1, kind: station, name: pier-1, external: batch-21-harbor-ladders}
+
+  - id: x-gezgin-f1-side-v2
+    kind: plate
+    name: x-gezgin-f1-side-v2
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Form 1, left side view, the creature anchor of this batch. Review: humble and tired but lovable; the hook and the scar read without a label."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting, the same low camera (about 20 degrees), the same softness and scale of a floating island. Do not draw this island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Style reference only (no characters unless asked): the hamster's soft painting and pastel colors."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Nazlı the cloud-whale
+          is huge, soft and rounded, grey-blue on the back fading to cream
+          on the belly, with a small closed or half-closed eye, a faint
+          gentle smile, broad rounded flippers and a wide tail fluke of
+          cloud-white. FORM 1 (humble, tired): her body is a little thin and
+          pale, her head hangs low, her eye is heavy-lidded. On her back is
+          a small patch of mossy island no bigger than a cottage lot: a
+          short wooden bench, a single mooring post with a coil of rope, a
+          tiny tuft of grass, and one lantern hook of dark honey wood with
+          nothing hanging on it. Beside the hook, in the grey-blue skin, is
+          a faint pale scar shaped like a switched-off light bulb, unlit. A
+          full side view from her left, head at the left of the frame, the
+          whole body in profile floating slowly over the clouds, the small
+          mossy patch on her back clearly readable. Seen from the same low
+          camera as the attached island, floating over a sea of clouds.
+          Peaceful and wondrous, never dramatic.
+      - text: |
+          FRESH V2 VARIATION: early winter, not the original mild-season
+          study. A thin soft dusting of snow rests on the back patch,
+          bench and mooring post without hiding their silhouettes; small
+          sage-green areas of moss remain visible. For FORM 2, the grove
+          keeps its rounded evergreen foliage with snow only on the upper
+          branches, the waterfall still flows and the meadow has broad
+          patches of light frost. Sparse large soft snowflakes drift far
+          behind the whale, never as a veil over her skin, eye, hook or
+          scar. Preserve the original form, camera and story landmarks.
+          Keep the whale skin smooth and matte, with broad simple shapes;
+          the style reference does not give the whale hamster fur. The
+          declared LIGHT cell alone sets the light direction and colours.
+      - block: style-anchor-v2
+      - text: "AVOID: a border, text, harsh shadows, saturated or neon colors, dark moods, outlines, photorealism, a 3D render look, characters other than the whale, a face on the island"
+
+  - id: x-gezgin-f1-side-r-v2
+    kind: plate
+    name: x-gezgin-f1-side-r-v2
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Form 1, right side view. Review: does the right side still carry the hook and the scar, or should they sit on one side only."
+    attach:
+      - ref: approved:x-gezgin-f1-side-v2
+        role: "The same whale, Nazlı, in the same form: keep her head shape, colors, hook and scar exactly. Show the new view or moment."
+      - ref: approved:island-main-s
+        role: "The home island: the same painting, the same low camera (about 20 degrees), the same softness and scale of a floating island. Do not draw this island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Style reference only (no characters unless asked): the hamster's soft painting and pastel colors."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Nazlı the cloud-whale
+          is huge, soft and rounded, grey-blue on the back fading to cream
+          on the belly, with a small closed or half-closed eye, a faint
+          gentle smile, broad rounded flippers and a wide tail fluke of
+          cloud-white. FORM 1 (humble, tired): her body is a little thin and
+          pale, her head hangs low, her eye is heavy-lidded. On her back is
+          a small patch of mossy island no bigger than a cottage lot: a
+          short wooden bench, a single mooring post with a coil of rope, a
+          tiny tuft of grass, and one lantern hook of dark honey wood with
+          nothing hanging on it. Beside the hook, in the grey-blue skin, is
+          a faint pale scar shaped like a switched-off light bulb, unlit. A
+          full side view from her right, head at the right of the frame, the
+          whole body in profile, the bench and the mooring post on her back
+          readable. Seen from the same low camera as the attached island,
+          floating over a sea of clouds. Peaceful and wondrous, never
+          dramatic.
+      - text: |
+          FRESH V2 VARIATION: early winter, not the original mild-season
+          study. A thin soft dusting of snow rests on the back patch,
+          bench and mooring post without hiding their silhouettes; small
+          sage-green areas of moss remain visible. For FORM 2, the grove
+          keeps its rounded evergreen foliage with snow only on the upper
+          branches, the waterfall still flows and the meadow has broad
+          patches of light frost. Sparse large soft snowflakes drift far
+          behind the whale, never as a veil over her skin, eye, hook or
+          scar. Preserve the original form, camera and story landmarks.
+          Keep the whale skin smooth and matte, with broad simple shapes;
+          the style reference does not give the whale hamster fur. The
+          declared LIGHT cell alone sets the light direction and colours.
+      - block: style-anchor-v2
+      - text: "AVOID: a border, text, harsh shadows, saturated or neon colors, dark moods, outlines, photorealism, a 3D render look, characters other than the whale, a face on the island"
+
+  - id: x-gezgin-f1-34-v2
+    kind: plate
+    name: x-gezgin-f1-34-v2
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Form 1, three-quarter view. Review: the face is gentle, the proportions hold from a new angle."
+    attach:
+      - ref: approved:x-gezgin-f1-side-v2
+        role: "The same whale, Nazlı, in the same form: keep her head shape, colors, hook and scar exactly. Show the new view or moment."
+      - ref: approved:island-main-s
+        role: "The home island: the same painting, the same low camera (about 20 degrees), the same softness and scale of a floating island. Do not draw this island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Style reference only (no characters unless asked): the hamster's soft painting and pastel colors."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Nazlı the cloud-whale
+          is huge, soft and rounded, grey-blue on the back fading to cream
+          on the belly, with a small closed or half-closed eye, a faint
+          gentle smile, broad rounded flippers and a wide tail fluke of
+          cloud-white. FORM 1 (humble, tired): her body is a little thin and
+          pale, her head hangs low, her eye is heavy-lidded. On her back is
+          a small patch of mossy island no bigger than a cottage lot: a
+          short wooden bench, a single mooring post with a coil of rope, a
+          tiny tuft of grass, and one lantern hook of dark honey wood with
+          nothing hanging on it. Beside the hook, in the grey-blue skin, is
+          a faint pale scar shaped like a switched-off light bulb, unlit. A
+          three-quarter view from the front left, her head and one flipper
+          toward the viewer, the patch on her back foreshortened but
+          readable. Seen from the same low camera as the attached island,
+          floating over a sea of clouds. Peaceful and wondrous, never
+          dramatic.
+      - text: |
+          FRESH V2 VARIATION: early winter, not the original mild-season
+          study. A thin soft dusting of snow rests on the back patch,
+          bench and mooring post without hiding their silhouettes; small
+          sage-green areas of moss remain visible. For FORM 2, the grove
+          keeps its rounded evergreen foliage with snow only on the upper
+          branches, the waterfall still flows and the meadow has broad
+          patches of light frost. Sparse large soft snowflakes drift far
+          behind the whale, never as a veil over her skin, eye, hook or
+          scar. Preserve the original form, camera and story landmarks.
+          Keep the whale skin smooth and matte, with broad simple shapes;
+          the style reference does not give the whale hamster fur. The
+          declared LIGHT cell alone sets the light direction and colours.
+      - block: style-anchor-v2
+      - text: "AVOID: a border, text, harsh shadows, saturated or neon colors, dark moods, outlines, photorealism, a 3D render look, characters other than the whale, a face on the island"
+
+  - id: x-gezgin-f1-dock-v2
+    kind: plate
+    name: x-gezgin-f1-dock-v2
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Form 1 docked at a small harbor pier. Review: scale against the pier reads as enormous but friendly."
+    attach:
+      - ref: approved:x-gezgin-f1-side-v2
+        role: "The same whale, Nazlı, in the same form: keep her head shape, colors, hook and scar exactly. Show the new view or moment."
+      - ref: approved:pier-1
+        role: "The harbor pier: match its painting, wood and scale (do not copy it exactly)."
+      - ref: approved:island-main-s
+        role: "The home island: the same painting, the same low camera (about 20 degrees), the same softness and scale of a floating island. Do not draw this island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Style reference only (no characters unless asked): the hamster's soft painting and pastel colors."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Nazlı the cloud-whale
+          is huge, soft and rounded, grey-blue on the back fading to cream
+          on the belly, with a small closed or half-closed eye, a faint
+          gentle smile, broad rounded flippers and a wide tail fluke of
+          cloud-white. FORM 1 (humble, tired): her body is a little thin and
+          pale, her head hangs low, her eye is heavy-lidded. On her back is
+          a small patch of mossy island no bigger than a cottage lot: a
+          short wooden bench, a single mooring post with a coil of rope, a
+          tiny tuft of grass, and one lantern hook of dark honey wood with
+          nothing hanging on it. Beside the hook, in the grey-blue skin, is
+          a faint pale scar shaped like a switched-off light bulb, unlit.
+          She is docked at a small wooden harbor pier (like the attached
+          pier) with her flipper resting beside it, a mooring rope from the
+          post on her back to a bollard, the pier tiny against her size,
+          morning light. Seen from the same low camera as the attached
+          island, floating over a sea of clouds. Peaceful and wondrous,
+          never dramatic.
+      - text: |
+          FRESH V2 VARIATION: early winter, not the original mild-season
+          study. A thin soft dusting of snow rests on the back patch,
+          bench and mooring post without hiding their silhouettes; small
+          sage-green areas of moss remain visible. For FORM 2, the grove
+          keeps its rounded evergreen foliage with snow only on the upper
+          branches, the waterfall still flows and the meadow has broad
+          patches of light frost. Sparse large soft snowflakes drift far
+          behind the whale, never as a veil over her skin, eye, hook or
+          scar. Preserve the original form, camera and story landmarks.
+          Keep the whale skin smooth and matte, with broad simple shapes;
+          the style reference does not give the whale hamster fur. The
+          declared LIGHT cell alone sets the light direction and colours.
+      - block: style-anchor-v2
+      - text: "AVOID: a border, text, harsh shadows, saturated or neon colors, dark moods, outlines, photorealism, a 3D render look, characters other than the whale, a face on the island"
+
+  - id: x-gezgin-f1-night-v2
+    kind: plate
+    name: x-gezgin-f1-night-v2
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    light: {cell: night, layer: subject}
+    notes: "Exploration. Form 1 at night. Review: lonely and tender, not sad; the dark scar is still visible."
+    attach:
+      - ref: approved:x-gezgin-f1-side-v2
+        role: "The same whale, Nazlı, in the same form: keep her head shape, colors, hook and scar exactly. Show the new view or moment."
+      - ref: approved:island-main-s
+        role: "The home island: the same painting, the same low camera (about 20 degrees), the same softness and scale of a floating island. Do not draw this island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Style reference only (no characters unless asked): the hamster's soft painting and pastel colors."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Nazlı the cloud-whale
+          is huge, soft and rounded, grey-blue on the back fading to cream
+          on the belly, with a small closed or half-closed eye, a faint
+          gentle smile, broad rounded flippers and a wide tail fluke of
+          cloud-white. FORM 1 (humble, tired): her body is a little thin and
+          pale, her head hangs low, her eye is heavy-lidded. On her back is
+          a small patch of mossy island no bigger than a cottage lot: a
+          short wooden bench, a single mooring post with a coil of rope, a
+          tiny tuft of grass, and one lantern hook of dark honey wood with
+          nothing hanging on it. Beside the hook, in the grey-blue skin, is
+          a faint pale scar shaped like a switched-off light bulb, unlit.
+          Blue night, a big pale moon and a few soft stars, she floats very
+          still, the empty hook and the unlit scar dark, a single small
+          paper lantern on the bench the only warm light. Seen from the same
+          low camera as the attached island, floating over a sea of clouds.
+          Peaceful and wondrous, never dramatic.
+      - text: |
+          FRESH V2 VARIATION: early winter, not the original mild-season
+          study. A thin soft dusting of snow rests on the back patch,
+          bench and mooring post without hiding their silhouettes; small
+          sage-green areas of moss remain visible. For FORM 2, the grove
+          keeps its rounded evergreen foliage with snow only on the upper
+          branches, the waterfall still flows and the meadow has broad
+          patches of light frost. Sparse large soft snowflakes drift far
+          behind the whale, never as a veil over her skin, eye, hook or
+          scar. Preserve the original form, camera and story landmarks.
+          Keep the whale skin smooth and matte, with broad simple shapes;
+          the style reference does not give the whale hamster fur. The
+          declared LIGHT cell alone sets the light direction and colours.
+      - block: style-anchor-v2
+      - text: "AVOID: a border, text, harsh shadows, saturated or neon colors, dark moods, outlines, photorealism, a 3D render look, characters other than the whale, a face on the island"
+
+  - id: x-gezgin-f2-side-v2
+    kind: plate
+    name: x-gezgin-f2-side-v2
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Form 2, left side view. Review: majestic and recognisably the same whale as form 1; the glowing hook and scar read at a glance."
+    attach:
+      - ref: approved:x-gezgin-f1-side-v2
+        role: "Form 1 of the same whale, Nazlı: the same creature (head shape, colors, hook and scar placement), only grown. Do not copy the island on her back."
+      - ref: approved:island-main-s
+        role: "The home island: the same painting, the same low camera (about 20 degrees), the same softness and scale of a floating island. Do not draw this island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Style reference only (no characters unless asked): the hamster's soft painting and pastel colors."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Nazlı the cloud-whale
+          is huge, soft and rounded, grey-blue on the back fading to cream
+          on the belly, with a small closed or half-closed eye, a faint
+          gentle smile, broad rounded flippers and a wide tail fluke of
+          cloud-white. FORM 2 (grown, majestic): her body is full, glowing
+          with health and much longer, her head lifted, her eye calm and
+          wise. On her back is a lush floating island: a small grove of
+          rounded trees, a gentle waterfall pouring off the island's edge
+          into the clouds with a soft mist, flowering meadow and a stone
+          path. The same lantern hook of dark honey wood now holds one small
+          lantern, and the scar beside it, shaped like a switched-off light
+          bulb, now glows softly in warm gold. A full side view from her
+          left, head at the left of the frame, the whole body in profile,
+          floating majestically over the clouds in golden morning light.
+          Seen from the same low camera as the attached island, floating
+          over a sea of clouds. Peaceful and wondrous, never dramatic.
+      - text: |
+          FRESH V2 VARIATION: early winter, not the original mild-season
+          study. A thin soft dusting of snow rests on the back patch,
+          bench and mooring post without hiding their silhouettes; small
+          sage-green areas of moss remain visible. For FORM 2, the grove
+          keeps its rounded evergreen foliage with snow only on the upper
+          branches, the waterfall still flows and the meadow has broad
+          patches of light frost. Sparse large soft snowflakes drift far
+          behind the whale, never as a veil over her skin, eye, hook or
+          scar. Preserve the original form, camera and story landmarks.
+          Keep the whale skin smooth and matte, with broad simple shapes;
+          the style reference does not give the whale hamster fur. The
+          declared LIGHT cell alone sets the light direction and colours.
+      - block: style-anchor-v2
+      - text: "AVOID: a border, text, harsh shadows, saturated or neon colors, dark moods, outlines, photorealism, a 3D render look, characters other than the whale, a face on the island"
+
+  - id: x-gezgin-f2-34-v2
+    kind: plate
+    name: x-gezgin-f2-34-v2
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Form 2, three-quarter view. Review: godlike but still gentle; the face is the same as form 1."
+    attach:
+      - ref: approved:x-gezgin-f1-side-v2
+        role: "Form 1 of the same whale, Nazlı: the same creature (head shape, colors, hook and scar placement), only grown. Do not copy the island on her back."
+      - ref: approved:island-main-s
+        role: "The home island: the same painting, the same low camera (about 20 degrees), the same softness and scale of a floating island. Do not draw this island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Style reference only (no characters unless asked): the hamster's soft painting and pastel colors."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Nazlı the cloud-whale
+          is huge, soft and rounded, grey-blue on the back fading to cream
+          on the belly, with a small closed or half-closed eye, a faint
+          gentle smile, broad rounded flippers and a wide tail fluke of
+          cloud-white. FORM 2 (grown, majestic): her body is full, glowing
+          with health and much longer, her head lifted, her eye calm and
+          wise. On her back is a lush floating island: a small grove of
+          rounded trees, a gentle waterfall pouring off the island's edge
+          into the clouds with a soft mist, flowering meadow and a stone
+          path. The same lantern hook of dark honey wood now holds one small
+          lantern, and the scar beside it, shaped like a switched-off light
+          bulb, now glows softly in warm gold. A three-quarter view from the
+          front left, her lifted head and one broad flipper toward the
+          viewer, the grove and the waterfall on her back visible behind.
+          Seen from the same low camera as the attached island, floating
+          over a sea of clouds. Peaceful and wondrous, never dramatic.
+      - text: |
+          FRESH V2 VARIATION: early winter, not the original mild-season
+          study. A thin soft dusting of snow rests on the back patch,
+          bench and mooring post without hiding their silhouettes; small
+          sage-green areas of moss remain visible. For FORM 2, the grove
+          keeps its rounded evergreen foliage with snow only on the upper
+          branches, the waterfall still flows and the meadow has broad
+          patches of light frost. Sparse large soft snowflakes drift far
+          behind the whale, never as a veil over her skin, eye, hook or
+          scar. Preserve the original form, camera and story landmarks.
+          Keep the whale skin smooth and matte, with broad simple shapes;
+          the style reference does not give the whale hamster fur. The
+          declared LIGHT cell alone sets the light direction and colours.
+      - block: style-anchor-v2
+      - text: "AVOID: a border, text, harsh shadows, saturated or neon colors, dark moods, outlines, photorealism, a 3D render look, characters other than the whale, a face on the island"
+
+  - id: x-gezgin-f2-dock-v2
+    kind: plate
+    name: x-gezgin-f2-dock-v2
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Form 2 docked at a small harbor pier. Review: awe from the scale; the harbor stays cozy."
+    attach:
+      - ref: approved:x-gezgin-f1-side-v2
+        role: "Form 1 of the same whale, Nazlı: the same creature (head shape, colors, hook and scar placement), only grown. Do not copy the island on her back."
+      - ref: approved:pier-1
+        role: "The harbor pier: match its painting, wood and scale (do not copy it exactly)."
+      - ref: approved:island-main-s
+        role: "The home island: the same painting, the same low camera (about 20 degrees), the same softness and scale of a floating island. Do not draw this island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Style reference only (no characters unless asked): the hamster's soft painting and pastel colors."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Nazlı the cloud-whale
+          is huge, soft and rounded, grey-blue on the back fading to cream
+          on the belly, with a small closed or half-closed eye, a faint
+          gentle smile, broad rounded flippers and a wide tail fluke of
+          cloud-white. FORM 2 (grown, majestic): her body is full, glowing
+          with health and much longer, her head lifted, her eye calm and
+          wise. On her back is a lush floating island: a small grove of
+          rounded trees, a gentle waterfall pouring off the island's edge
+          into the clouds with a soft mist, flowering meadow and a stone
+          path. The same lantern hook of dark honey wood now holds one small
+          lantern, and the scar beside it, shaped like a switched-off light
+          bulb, now glows softly in warm gold. She is docked at a small
+          wooden harbor pier (like the attached pier), her flipper laid
+          beside it like a bridge, the waterfall's mist drifting over the
+          harbor, the pier tiny against her size. Seen from the same low
+          camera as the attached island, floating over a sea of clouds.
+          Peaceful and wondrous, never dramatic.
+      - text: |
+          FRESH V2 VARIATION: early winter, not the original mild-season
+          study. A thin soft dusting of snow rests on the back patch,
+          bench and mooring post without hiding their silhouettes; small
+          sage-green areas of moss remain visible. For FORM 2, the grove
+          keeps its rounded evergreen foliage with snow only on the upper
+          branches, the waterfall still flows and the meadow has broad
+          patches of light frost. Sparse large soft snowflakes drift far
+          behind the whale, never as a veil over her skin, eye, hook or
+          scar. Preserve the original form, camera and story landmarks.
+          Keep the whale skin smooth and matte, with broad simple shapes;
+          the style reference does not give the whale hamster fur. The
+          declared LIGHT cell alone sets the light direction and colours.
+      - block: style-anchor-v2
+      - text: "AVOID: a border, text, harsh shadows, saturated or neon colors, dark moods, outlines, photorealism, a 3D render look, characters other than the whale, a face on the island"
+
+  - id: x-gezgin-f2-night-v2
+    kind: plate
+    name: x-gezgin-f2-night-v2
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    light: {cell: night, layer: subject}
+    notes: "Exploration. Form 2 at night. Review: the glow of the scar is the focal point and reads as hope, not magic overload."
+    attach:
+      - ref: approved:x-gezgin-f1-side-v2
+        role: "Form 1 of the same whale, Nazlı: the same creature (head shape, colors, hook and scar placement), only grown. Do not copy the island on her back."
+      - ref: approved:island-main-s
+        role: "The home island: the same painting, the same low camera (about 20 degrees), the same softness and scale of a floating island. Do not draw this island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Style reference only (no characters unless asked): the hamster's soft painting and pastel colors."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Nazlı the cloud-whale
+          is huge, soft and rounded, grey-blue on the back fading to cream
+          on the belly, with a small closed or half-closed eye, a faint
+          gentle smile, broad rounded flippers and a wide tail fluke of
+          cloud-white. FORM 2 (grown, majestic): her body is full, glowing
+          with health and much longer, her head lifted, her eye calm and
+          wise. On her back is a lush floating island: a small grove of
+          rounded trees, a gentle waterfall pouring off the island's edge
+          into the clouds with a soft mist, flowering meadow and a stone
+          path. The same lantern hook of dark honey wood now holds one small
+          lantern, and the scar beside it, shaped like a switched-off light
+          bulb, now glows softly in warm gold. Blue night under a huge moon,
+          the lantern on the hook lit warm gold and the scar glowing softly
+          in the same gold, the waterfall silver in the moonlight, fireflies
+          in the grove. Seen from the same low camera as the attached
+          island, floating over a sea of clouds. Peaceful and wondrous,
+          never dramatic.
+      - text: |
+          FRESH V2 VARIATION: early winter, not the original mild-season
+          study. A thin soft dusting of snow rests on the back patch,
+          bench and mooring post without hiding their silhouettes; small
+          sage-green areas of moss remain visible. For FORM 2, the grove
+          keeps its rounded evergreen foliage with snow only on the upper
+          branches, the waterfall still flows and the meadow has broad
+          patches of light frost. Sparse large soft snowflakes drift far
+          behind the whale, never as a veil over her skin, eye, hook or
+          scar. Preserve the original form, camera and story landmarks.
+          Keep the whale skin smooth and matte, with broad simple shapes;
+          the style reference does not give the whale hamster fur. The
+          declared LIGHT cell alone sets the light direction and colours.
+      - block: style-anchor-v2
+      - text: "AVOID: a border, text, harsh shadows, saturated or neon colors, dark moods, outlines, photorealism, a 3D render look, characters other than the whale, a face on the island"

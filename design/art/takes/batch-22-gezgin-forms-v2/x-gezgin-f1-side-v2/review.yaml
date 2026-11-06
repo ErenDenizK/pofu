@@ -1,0 +1,186 @@
+batch: batch-22-gezgin-forms-v2
+manifest: tools/imagegen/manifest/batch-22-gezgin-forms-v2.yaml
+manifest_sha256: e2a391476d28225d6de3381d445616c4d38e5ef414c86062e0a9e468417cc1eb
+jobs:
+  x-gezgin-f1-side-v2:
+    pick: none
+    publication: skipped superseded brief; retry unused
+    note: Historical first pair is manually ineligible for fur despite numeric WARN;
+      the newer queue explicitly supersedes this left-profile B1-v2 brief with a camera-facing,
+      pier-clear brief. Terminal superseded; sole retry remains unused, not exhausted.
+terminal_obsolete_proof_sha256: 338a66a3942de0dd7f885f5ef50d46866c727ef550e904850c9d1b5368cb540c
+legacy_generation_base: 8116313094ea7379915a2a881e0bffe0f8f2cc00
+publication_base: 16c8d42720e2044b225d74a7a8f47e4526832a5f
+generated_takes: 2
+retry_dispatched: false
+retry_unused: true
+sources:
+- batch: batch-22-gezgin-forms-v2
+  job: x-gezgin-f1-side-v2
+  take: 1
+  round: 1
+  logical_run: 20261105-backlog-v2-anchor
+  source_file: /workspace/generated_images/exec-5de41e30-88ea-4493-adc9-aff16f4e144b.png
+  returned_at: '2026-11-05T15:06:57.897Z'
+  prompt_sha256: 384ef53e0e83c6f496f00b74428293ceb11e2583cc6076b57b58a79ad450aa1c
+  fingerprint: 8a21de48b548f57a
+  saved_at: '2026-11-05T15:06:58.347604+00:00'
+  original_generated_png_sha256: 4e6e496e83bc7a0cd74cfc6d6c11f8b724d7066a823569da85f15570a32eb2a8
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 6328fe625bb06ff7349c7b8c71d0675dea3b0111bed71188dc563f3d17c4b6a6
+- batch: batch-22-gezgin-forms-v2
+  job: x-gezgin-f1-side-v2
+  take: 2
+  round: 1
+  logical_run: 20261105-backlog-v2-anchor
+  source_file: /workspace/generated_images/exec-2c119b72-5a17-412f-8e6a-050463ba5d93.png
+  returned_at: '2026-11-05T15:07:42.243Z'
+  prompt_sha256: 384ef53e0e83c6f496f00b74428293ceb11e2583cc6076b57b58a79ad450aa1c
+  fingerprint: 8a21de48b548f57a
+  saved_at: '2026-11-05T15:07:44.261515+00:00'
+  original_generated_png_sha256: 898f305fcfd4d25e9fb27208f1072d09e94d909bb0cc817635c0a5b9faf1ff03
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 519c1f0a3d760275770a67e4e818696becbd0e29eefc6475826c37944a8f51b5
+qa_reports:
+  1:
+    job: x-gezgin-f1-side-v2
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 24 (R1 51)
+      value: 24.0
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 63 (at most 22), p98 96 (at least 90), spread 33
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 33.2
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 85 (band 55-90)'
+      value: 84.7
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.60 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.596
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 1.4 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 1.37
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.4 (R1 5.3)
+      value: 1.41
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.6546
+    - check: palette_drift
+      status: warn
+      message: mean dE 3.3, p95 7.7, off-palette 0.0%
+      value: 3.2615
+    info:
+      metrics_raw:
+        L_p5: 69.8
+        L_p50: 83.2
+        L_p95: 95.3
+        C_p50: 11.2
+        C_p95: 24.1
+        C_p99: 31.7
+        detail: 1.8
+      metrics_locked:
+        L_p5: 69.8
+        L_p50: 83.2
+        L_p95: 95.2
+        C_p50: 11.0
+        C_p95: 24.0
+        C_p99: 29.2
+        detail: 1.41
+    fingerprint: 8a21de48b548f57a
+  2:
+    job: x-gezgin-f1-side-v2
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 25 (R1 51)
+      value: 25.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 65 (at most 22), p98 96 (at least 90), spread 31
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 31.1
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 86 (band 55-90)'
+      value: 85.8
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.60 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.6
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 1.2 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 1.23
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.2 (R1 5.3)
+      value: 1.25
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.6147
+    - check: palette_drift
+      status: warn
+      message: mean dE 3.0, p95 8.1, off-palette 0.0%
+      value: 2.9667
+    info:
+      metrics_raw:
+        L_p5: 71.4
+        L_p50: 84.3
+        L_p95: 95.1
+        C_p50: 12.9
+        C_p95: 25.5
+        C_p99: 27.2
+        detail: 1.61
+      metrics_locked:
+        L_p5: 71.4
+        L_p50: 84.3
+        L_p95: 95.0
+        C_p50: 12.7
+        C_p95: 25.4
+        C_p99: 26.9
+        detail: 1.25
+    fingerprint: 8a21de48b548f57a
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+never_promoted: true
+contact_sheet: design/art/takes/batch-22-gezgin-forms-v2/x-gezgin-f1-side-v2/contact.jpg
+manual_exclusions:
+- 1
+- 2
