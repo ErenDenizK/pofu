@@ -1,0 +1,133 @@
+{
+  "job": "path-lamp-lit",
+  "batch": "batch-36-lit-ladder-pilot",
+  "asset": "prop__path-lamp-lit",
+  "take": 1,
+  "takes_considered": 4,
+  "approved_at": "2026-11-06T01:30:26+00:00",
+  "image": "design/art/masters/path-lamp-lit/path-lamp-lit.png",
+  "raw": "design/art/masters/path-lamp-lit/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "2d396615642dc8f9",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nLight the path lamp: the plump round paper-glass lantern now glows\nfrom inside, a soft warm candle-amber filling the whole glass shape,\na little brighter toward its middle, with a tiny soft flame shape\nsuggested at its center, painted as soft broad shapes. Only the\nlantern glass changes: the coral cap, the curled hook, the wooden\npost and the stone foot keep their exact day colors (the app adds\nthe glow and the pool of light on the ground).\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: light rays, a glow or halo outside the glass, a light pool on the ground, light on the post or the cap, a sharp bright flame, blown yellow-white highlights, text.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/path-lamp/path-lamp.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud-retained-salvage",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-05T23:11:16.560Z",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": {
+    "dx": 5,
+    "dy": 10
+  },
+  "alignment": null,
+  "fit": null,
+  "emit_region": [
+    [
+      0.465,
+      0.575,
+      0.13,
+      0.11
+    ]
+  ],
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "warn",
+        "message": "chroma p95 57 (R1 51)",
+        "value": 57.4
+      },
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 56 (at most 22), p98 88 (at least 90), spread 32 (at least 60) (warn-only until the founder has seen the light pilot)",
+        "value": 32.2
+      },
+      {
+        "check": "light_median",
+        "status": "pass",
+        "message": "day/subject: median L 74 (band 55-90)",
+        "value": 74.4
+      },
+      {
+        "check": "light_haze",
+        "status": "pass",
+        "message": "day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means a wash)",
+        "value": 0.0
+      },
+      {
+        "check": "light_contrast",
+        "status": "pass",
+        "message": "day/subject: p75 local contrast 6.2 (at least 3.5)",
+        "value": 6.18
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 1.1 (R1 5.3)",
+        "value": 1.07
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 2.5",
+        "value": 2.5142
+      },
+      {
+        "check": "no_guide_magenta",
+        "status": "pass",
+        "message": "0 guide-magenta pixels (per 1024^2)",
+        "value": 0.0
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 2.1, p95 7.1, off-palette 0.7% (top: #BB6633 (0.5%), #CC7744 (0.1%))",
+        "value": 2.0702
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 74 against the world reference (outliers: C_p95, L_p98, edge)",
+        "value": 74.5
+      },
+      {
+        "check": "emit_leak",
+        "status": "pass",
+        "message": "100% of the parent unchanged outside the emit region (masked out of the master)",
+        "value": 1.0
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. All four full locked images and region crops retain the plump paper-glass lantern, coral cap, hook, wood post and stone foot. Soft warm candle-amber fills the glass with a small broad central flame impression, no sharp flame, rays, ground pool or exterior halo. The warm light remains visible in light/dark 28 px diagnostics; full-canvas rendering is small, and the same fixed-parent-bounds 28 px rendering also stays distinct from unlit parent. Every outside-mask RGBA pixel exactly equals the day parent. All four manually eligible; use unchanged official QA ranking."
+}

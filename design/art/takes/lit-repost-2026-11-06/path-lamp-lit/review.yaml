@@ -1,0 +1,774 @@
+batch: batch-36-lit-ladder-pilot
+contact_sheet: design/art/takes/lit-repost-2026-11-06/path-lamp-lit/contact.jpg
+jobs:
+  path-lamp-lit:
+    pick: 1
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. All four full locked images and
+      region crops retain the plump paper-glass lantern, coral cap, hook, wood post
+      and stone foot. Soft warm candle-amber fills the glass with a small broad central
+      flame impression, no sharp flame, rays, ground pool or exterior halo. The warm
+      light remains visible in light/dark 28 px diagnostics; full-canvas rendering
+      is small, and the same fixed-parent-bounds 28 px rendering also stays distinct
+      from unlit parent. Every outside-mask RGBA pixel exactly equals the day parent.
+      All four manually eligible; use unchanged official QA ranking.
+qa_reports:
+  1:
+    job: path-lamp-lit
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 57 (R1 51)
+      value: 57.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 56 (at most 22), p98 88 (at least 90), spread 32
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 32.2
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 74 (band 55-90)'
+      value: 74.4
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.2 (at least 3.5)'
+      value: 6.18
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.07
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.5
+      value: 2.5142
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.1, p95 7.1, off-palette 0.7% (top: #BB6633 (0.5%), #CC7744
+        (0.1%))'
+      value: 2.0702
+    - check: harmony
+      status: pass
+      message: 'harmony score 74 against the world reference (outliers: C_p95, L_p98,
+        edge)'
+      value: 74.5
+    - check: emit_leak
+      status: pass
+      message: 100% of the parent unchanged outside the emit region (masked out of
+        the master)
+      value: 1.0
+    info:
+      emit_region:
+      - - 0.465
+        - 0.575
+        - 0.13
+        - 0.11
+      metrics_raw:
+        L_p5: 57.4
+        L_p50: 75.0
+        L_p95: 86.2
+        C_p50: 45.4
+        C_p95: 57.7
+        C_p99: 64.4
+        detail: 1.54
+      metrics_locked:
+        L_p5: 59.3
+        L_p50: 74.4
+        L_p95: 86.3
+        C_p50: 44.6
+        C_p95: 57.4
+        C_p99: 61.6
+        detail: 1.07
+    fingerprint: 2d396615642dc8f9
+  3:
+    job: path-lamp-lit
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 55 (R1 51)
+      value: 55.0
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 57 (at most 22), p98 92 (at least 90), spread 36
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 35.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 75 (band 55-90)'
+      value: 75.0
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.9 (at least 3.5)'
+      value: 5.94
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.0 (R1 5.3)
+      value: 1.0
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 3.8
+      value: 3.7552
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.2, p95 7.8, off-palette 0.1% (top: #BB6633 (0.1%), #CC7733
+        (0.0%))'
+      value: 2.2348
+    - check: harmony
+      status: pass
+      message: 'harmony score 87 against the world reference (outliers: edge)'
+      value: 87.2
+    - check: emit_leak
+      status: pass
+      message: 98% of the parent unchanged outside the emit region (masked out of
+        the master)
+      value: 0.9846
+    info:
+      emit_region:
+      - - 0.465
+        - 0.575
+        - 0.13
+        - 0.11
+      metrics_raw:
+        L_p5: 60.2
+        L_p50: 77.1
+        L_p95: 90.3
+        C_p50: 46.2
+        C_p95: 55.3
+        C_p99: 59.9
+        detail: 1.53
+      metrics_locked:
+        L_p5: 59.9
+        L_p50: 75.0
+        L_p95: 90.5
+        C_p50: 44.0
+        C_p95: 55.0
+        C_p99: 58.4
+        detail: 1.0
+    fingerprint: 2d396615642dc8f9
+  4:
+    job: path-lamp-lit
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 52 (R1 51)
+      value: 52.5
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 56 (at most 22), p98 89 (at least 90), spread 33
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 33.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 74 (band 55-90)'
+      value: 74.5
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.0 (at least 3.5)'
+      value: 6.01
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.0 (R1 5.3)
+      value: 1.04
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 3.5
+      value: 3.5241
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.9, p95 4.9, off-palette 1.4% (top: #FFEE88 (1.0%), #FFEE99
+        (0.4%))'
+      value: 1.9071
+    - check: harmony
+      status: pass
+      message: 'harmony score 82 against the world reference (outliers: L_p98, edge)'
+      value: 82.5
+    - check: emit_leak
+      status: pass
+      message: 99% of the parent unchanged outside the emit region (masked out of
+        the master)
+      value: 0.9897
+    info:
+      emit_region:
+      - - 0.465
+        - 0.575
+        - 0.13
+        - 0.11
+      metrics_raw:
+        L_p5: 55.1
+        L_p50: 71.9
+        L_p95: 84.9
+        C_p50: 44.3
+        C_p95: 52.7
+        C_p99: 54.4
+        detail: 1.84
+      metrics_locked:
+        L_p5: 59.4
+        L_p50: 74.6
+        L_p95: 85.1
+        C_p50: 44.3
+        C_p95: 52.5
+        C_p99: 53.9
+        detail: 1.04
+    fingerprint: 2d396615642dc8f9
+  2:
+    job: path-lamp-lit
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 51 (R1 51)
+      value: 51.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 56 (at most 22), p98 90 (at least 90), spread 35
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 34.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 74 (band 55-90)'
+      value: 74.3
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.9 (at least 3.5)'
+      value: 5.92
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.0 (R1 5.3)
+      value: 1.04
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.7
+      value: 2.72
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.8, p95 5.2, off-palette 0.1% (top: #BB6633 (0.1%), #AA6633
+        (0.0%))'
+      value: 1.7618
+    - check: harmony
+      status: pass
+      message: 'harmony score 85 against the world reference (outliers: edge)'
+      value: 85.4
+    - check: emit_leak
+      status: pass
+      message: 100% of the parent unchanged outside the emit region (masked out of
+        the master)
+      value: 1.0
+    info:
+      emit_region:
+      - - 0.465
+        - 0.575
+        - 0.13
+        - 0.11
+      metrics_raw:
+        L_p5: 55.6
+        L_p50: 71.8
+        L_p95: 86.6
+        C_p50: 44.4
+        C_p95: 51.5
+        C_p99: 53.8
+        detail: 1.72
+      metrics_locked:
+        L_p5: 59.2
+        L_p50: 74.3
+        L_p95: 86.9
+        C_p50: 43.9
+        C_p95: 51.1
+        C_p99: 53.1
+        detail: 1.04
+    fingerprint: 2d396615642dc8f9
+manual_review:
+  excluded_takes: []
+  note: All four full locked images and region crops retain the plump paper-glass
+    lantern, coral cap, hook, wood post and stone foot. Soft warm candle-amber fills
+    the glass with a small broad central flame impression, no sharp flame, rays, ground
+    pool or exterior halo. The warm light remains visible in light/dark 28 px diagnostics;
+    full-canvas rendering is small, and the same fixed-parent-bounds 28 px rendering
+    also stays distinct from unlit parent. Every outside-mask RGBA pixel exactly equals
+    the day parent. All four manually eligible; use unchanged official QA ranking.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-45429570-b03e-44ac-a916-f6bdd5784843.png
+  original_generated_png_sha256: 5ffa7dce8ac252b7d29f3c1c0d43643030688409d7cf0a7d4af440d7c5b44ef0
+  inbox_png_sha256: 9fa95d7bdc09c17eb2290ea64633438bd707aa82fa160584f4ee973c726ccd9d
+  rgba_sha256: 25faca0fc79f5bba3e23778f26a58e9505c84aeb474d01d0b714094e49d50cce
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 2d396615642dc8f9
+- take: 2
+  source_file: /workspace/generated_images/exec-9175c3b7-6b42-439c-bdfc-bb751b521be6.png
+  original_generated_png_sha256: 1529983bad2fe1fa0724f2d47775ad78fee52c0dad369ab07bc58bb5ca0844e1
+  inbox_png_sha256: 12a1b5372cac3f1e84d9987a97ad194f2c6f015596ae99c0a3265c6e57bbb2da
+  rgba_sha256: 39d61c3ea3a5ef44f42adcbc155f8f95fe4fd13581f5ef0e1d2374e2dade7f15
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 2d396615642dc8f9
+- take: 3
+  source_file: /workspace/generated_images/exec-95844c94-5f0d-4343-b6b2-b1f8c6f32989.png
+  original_generated_png_sha256: 24238f1c5bea33394c6c5b1001b0e421a62b8387de3c5282d27f12eac037b61f
+  inbox_png_sha256: 5e8f5558ec3c603b804d3f71ddcfc90cebc6fc92378de59e2896bc96648a8454
+  rgba_sha256: aa8103a04415a35c3aba496af93e7694b6efcf6160f0db71ad4784d883c8f264
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 2d396615642dc8f9
+- take: 4
+  source_file: /workspace/generated_images/exec-8710a3cf-3957-487a-bc09-e6950bdd78e6.png
+  original_generated_png_sha256: fb7700491e4659ca7eaaf3445130b46dc37f1929de2cd70d96701267feafb6e3
+  inbox_png_sha256: 4b78629cf712436f8e872ed9fa4261f3f72031f940cde2080b1b53775026fb88
+  rgba_sha256: bb183c2b7dc803f35ac00015e6245e3d4489772d9e8c864779e678c91c6cad67
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 2d396615642dc8f9
+salvage:
+  batch: batch-36-lit-ladder-pilot
+  source_count: 4
+  sources:
+  - batch: batch-36-lit-ladder-pilot
+    job: path-lamp-lit
+    take: 1
+    round: 1
+    logical_run: 20261105-b36-lit-ladder
+    source_file: /workspace/generated_images/exec-45429570-b03e-44ac-a916-f6bdd5784843.png
+    returned_at: '2026-11-05T23:11:16.560Z'
+    prompt_sha256: c4f192e9e1198b231f2d6211cd7db1b8b8d7f88dfd34c5296b054e58c0ed0ec7
+    fingerprint: 2d396615642dc8f9
+    saved_at: '2026-11-05T23:11:16.938259+00:00'
+    original_generated_png_sha256: 5ffa7dce8ac252b7d29f3c1c0d43643030688409d7cf0a7d4af440d7c5b44ef0
+    dimensions:
+    - 1254
+    - 1254
+    rgba_sha256: 25faca0fc79f5bba3e23778f26a58e9505c84aeb474d01d0b714094e49d50cce
+    evaluation_take: 1
+    original_run: batch-36-lit-ladder-pilot
+    original_take: 1
+    original_callback: /workspace/art-operator-runtime/run-20261105-night/batch-36-lit-ladder-pilot/generated-path-lamp-lit-t1.json
+    original_callback_sha256: 83762cccfc0518f56ee21d270fc372245a7297362073b75e5ebb07520bda968e
+    original_packet:
+      batch: batch-36-lit-ladder-pilot
+      job: path-lamp-lit
+      worktree: /workspace/art-20261105-lit-ladder
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. The image to edit (the approved previous level). Edit it; do not redraw
+        it.
+
+
+        Light the path lamp: the plump round paper-glass lantern now glows
+
+        from inside, a soft warm candle-amber filling the whole glass shape,
+
+        a little brighter toward its middle, with a tiny soft flame shape
+
+        suggested at its center, painted as soft broad shapes. Only the
+
+        lantern glass changes: the coral cap, the curled hook, the wooden
+
+        post and the stone foot keep their exact day colors (the app adds
+
+        the glow and the pool of light on the ground).
+
+
+        KEEP: everything not named above stays exactly the same as in the
+
+        attached image: every existing part, its shape, color, position and size,
+
+        the canvas, the camera, the light and the painting style. Do not zoom out
+
+        or reframe: if a new part does not fit, make the new part smaller, never
+
+        the existing ones. Outside the new parts, the result must line up with
+
+        the attached image pixel for pixel.
+
+
+        AVOID: light rays, a glow or halo outside the glass, a light pool on the ground,
+        light on the post or the cap, a sharp bright flame, blown yellow-white highlights,
+        text.
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      refs:
+      - /workspace/art-20261105-lit-ladder/design/art/masters/path-lamp/path-lamp.png
+      reference_sha256:
+        /workspace/art-20261105-lit-ladder/design/art/masters/path-lamp/path-lamp.png: 2a2b4d371cca0f3f134d51f089533e05a9683ea8b501dec03bfd38ef1a8a879a
+      fingerprint: 2d396615642dc8f9
+      prompt_sha256: c4f192e9e1198b231f2d6211cd7db1b8b8d7f88dfd34c5296b054e58c0ed0ec7
+      transparent: true
+    evaluation_fingerprint: 2d396615642dc8f9
+  - batch: batch-36-lit-ladder-pilot
+    job: path-lamp-lit
+    take: 2
+    round: 1
+    logical_run: 20261105-b36-lit-ladder
+    source_file: /workspace/generated_images/exec-9175c3b7-6b42-439c-bdfc-bb751b521be6.png
+    returned_at: '2026-11-05T23:11:56.686Z'
+    prompt_sha256: c4f192e9e1198b231f2d6211cd7db1b8b8d7f88dfd34c5296b054e58c0ed0ec7
+    fingerprint: 2d396615642dc8f9
+    saved_at: '2026-11-05T23:11:57.044131+00:00'
+    original_generated_png_sha256: 1529983bad2fe1fa0724f2d47775ad78fee52c0dad369ab07bc58bb5ca0844e1
+    dimensions:
+    - 1254
+    - 1254
+    rgba_sha256: 39d61c3ea3a5ef44f42adcbc155f8f95fe4fd13581f5ef0e1d2374e2dade7f15
+    evaluation_take: 2
+    original_run: batch-36-lit-ladder-pilot
+    original_take: 2
+    original_callback: /workspace/art-operator-runtime/run-20261105-night/batch-36-lit-ladder-pilot/generated-path-lamp-lit-t2.json
+    original_callback_sha256: 841a4449a2dd64b8098f4b768ec4f59f244a95018314e9da49d66a3c8f4d817e
+    original_packet:
+      batch: batch-36-lit-ladder-pilot
+      job: path-lamp-lit
+      worktree: /workspace/art-20261105-lit-ladder
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. The image to edit (the approved previous level). Edit it; do not redraw
+        it.
+
+
+        Light the path lamp: the plump round paper-glass lantern now glows
+
+        from inside, a soft warm candle-amber filling the whole glass shape,
+
+        a little brighter toward its middle, with a tiny soft flame shape
+
+        suggested at its center, painted as soft broad shapes. Only the
+
+        lantern glass changes: the coral cap, the curled hook, the wooden
+
+        post and the stone foot keep their exact day colors (the app adds
+
+        the glow and the pool of light on the ground).
+
+
+        KEEP: everything not named above stays exactly the same as in the
+
+        attached image: every existing part, its shape, color, position and size,
+
+        the canvas, the camera, the light and the painting style. Do not zoom out
+
+        or reframe: if a new part does not fit, make the new part smaller, never
+
+        the existing ones. Outside the new parts, the result must line up with
+
+        the attached image pixel for pixel.
+
+
+        AVOID: light rays, a glow or halo outside the glass, a light pool on the ground,
+        light on the post or the cap, a sharp bright flame, blown yellow-white highlights,
+        text.
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      refs:
+      - /workspace/art-20261105-lit-ladder/design/art/masters/path-lamp/path-lamp.png
+      reference_sha256:
+        /workspace/art-20261105-lit-ladder/design/art/masters/path-lamp/path-lamp.png: 2a2b4d371cca0f3f134d51f089533e05a9683ea8b501dec03bfd38ef1a8a879a
+      fingerprint: 2d396615642dc8f9
+      prompt_sha256: c4f192e9e1198b231f2d6211cd7db1b8b8d7f88dfd34c5296b054e58c0ed0ec7
+      transparent: true
+    evaluation_fingerprint: 2d396615642dc8f9
+  - batch: batch-36-lit-ladder-pilot
+    job: path-lamp-lit
+    take: 3
+    round: 2
+    logical_run: 20261105-b36-lit-ladder
+    source_file: /workspace/generated_images/exec-95844c94-5f0d-4343-b6b2-b1f8c6f32989.png
+    returned_at: '2026-11-05T23:18:50.625Z'
+    prompt_sha256: c4f192e9e1198b231f2d6211cd7db1b8b8d7f88dfd34c5296b054e58c0ed0ec7
+    fingerprint: 2d396615642dc8f9
+    saved_at: '2026-11-05T23:18:50.931137+00:00'
+    original_generated_png_sha256: 24238f1c5bea33394c6c5b1001b0e421a62b8387de3c5282d27f12eac037b61f
+    dimensions:
+    - 1254
+    - 1254
+    rgba_sha256: aa8103a04415a35c3aba496af93e7694b6efcf6160f0db71ad4784d883c8f264
+    evaluation_take: 3
+    original_run: batch-36-lit-ladder-pilot
+    original_take: 3
+    original_callback: /workspace/art-operator-runtime/run-20261105-night/batch-36-lit-ladder-pilot/generated-path-lamp-lit-t3.json
+    original_callback_sha256: 49f691c16fed2f8f2a306010a125f59b5a1abb95f1de087b94073f3b7be4574b
+    original_packet:
+      batch: batch-36-lit-ladder-pilot
+      job: path-lamp-lit
+      worktree: /workspace/art-20261105-lit-ladder
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. The image to edit (the approved previous level). Edit it; do not redraw
+        it.
+
+
+        Light the path lamp: the plump round paper-glass lantern now glows
+
+        from inside, a soft warm candle-amber filling the whole glass shape,
+
+        a little brighter toward its middle, with a tiny soft flame shape
+
+        suggested at its center, painted as soft broad shapes. Only the
+
+        lantern glass changes: the coral cap, the curled hook, the wooden
+
+        post and the stone foot keep their exact day colors (the app adds
+
+        the glow and the pool of light on the ground).
+
+
+        KEEP: everything not named above stays exactly the same as in the
+
+        attached image: every existing part, its shape, color, position and size,
+
+        the canvas, the camera, the light and the painting style. Do not zoom out
+
+        or reframe: if a new part does not fit, make the new part smaller, never
+
+        the existing ones. Outside the new parts, the result must line up with
+
+        the attached image pixel for pixel.
+
+
+        AVOID: light rays, a glow or halo outside the glass, a light pool on the ground,
+        light on the post or the cap, a sharp bright flame, blown yellow-white highlights,
+        text.
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      refs:
+      - /workspace/art-20261105-lit-ladder/design/art/masters/path-lamp/path-lamp.png
+      reference_sha256:
+        /workspace/art-20261105-lit-ladder/design/art/masters/path-lamp/path-lamp.png: 2a2b4d371cca0f3f134d51f089533e05a9683ea8b501dec03bfd38ef1a8a879a
+      fingerprint: 2d396615642dc8f9
+      prompt_sha256: c4f192e9e1198b231f2d6211cd7db1b8b8d7f88dfd34c5296b054e58c0ed0ec7
+      transparent: true
+    evaluation_fingerprint: 2d396615642dc8f9
+  - batch: batch-36-lit-ladder-pilot
+    job: path-lamp-lit
+    take: 4
+    round: 2
+    logical_run: 20261105-b36-lit-ladder
+    source_file: /workspace/generated_images/exec-8710a3cf-3957-487a-bc09-e6950bdd78e6.png
+    returned_at: '2026-11-05T23:18:13.251Z'
+    prompt_sha256: c4f192e9e1198b231f2d6211cd7db1b8b8d7f88dfd34c5296b054e58c0ed0ec7
+    fingerprint: 2d396615642dc8f9
+    saved_at: '2026-11-05T23:18:13.620413+00:00'
+    original_generated_png_sha256: fb7700491e4659ca7eaaf3445130b46dc37f1929de2cd70d96701267feafb6e3
+    dimensions:
+    - 1254
+    - 1254
+    rgba_sha256: bb183c2b7dc803f35ac00015e6245e3d4489772d9e8c864779e678c91c6cad67
+    evaluation_take: 4
+    original_run: batch-36-lit-ladder-pilot
+    original_take: 4
+    original_callback: /workspace/art-operator-runtime/run-20261105-night/batch-36-lit-ladder-pilot/generated-path-lamp-lit-t4.json
+    original_callback_sha256: aad08644ef131b818337f5380534c24659b62de49f131477783e0db66303fc0f
+    original_packet:
+      batch: batch-36-lit-ladder-pilot
+      job: path-lamp-lit
+      worktree: /workspace/art-20261105-lit-ladder
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. The image to edit (the approved previous level). Edit it; do not redraw
+        it.
+
+
+        Light the path lamp: the plump round paper-glass lantern now glows
+
+        from inside, a soft warm candle-amber filling the whole glass shape,
+
+        a little brighter toward its middle, with a tiny soft flame shape
+
+        suggested at its center, painted as soft broad shapes. Only the
+
+        lantern glass changes: the coral cap, the curled hook, the wooden
+
+        post and the stone foot keep their exact day colors (the app adds
+
+        the glow and the pool of light on the ground).
+
+
+        KEEP: everything not named above stays exactly the same as in the
+
+        attached image: every existing part, its shape, color, position and size,
+
+        the canvas, the camera, the light and the painting style. Do not zoom out
+
+        or reframe: if a new part does not fit, make the new part smaller, never
+
+        the existing ones. Outside the new parts, the result must line up with
+
+        the attached image pixel for pixel.
+
+
+        AVOID: light rays, a glow or halo outside the glass, a light pool on the ground,
+        light on the post or the cap, a sharp bright flame, blown yellow-white highlights,
+        text.
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      refs:
+      - /workspace/art-20261105-lit-ladder/design/art/masters/path-lamp/path-lamp.png
+      reference_sha256:
+        /workspace/art-20261105-lit-ladder/design/art/masters/path-lamp/path-lamp.png: 2a2b4d371cca0f3f134d51f089533e05a9683ea8b501dec03bfd38ef1a8a879a
+      fingerprint: 2d396615642dc8f9
+      prompt_sha256: c4f192e9e1198b231f2d6211cd7db1b8b8d7f88dfd34c5296b054e58c0ed0ec7
+      transparent: true
+    evaluation_fingerprint: 2d396615642dc8f9

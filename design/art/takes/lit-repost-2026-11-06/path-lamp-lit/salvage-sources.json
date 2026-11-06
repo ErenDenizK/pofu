@@ -1,0 +1,162 @@
+{
+  "batch": "batch-36-lit-ladder-pilot",
+  "source_count": 4,
+  "sources": [
+    {
+      "batch": "batch-36-lit-ladder-pilot",
+      "job": "path-lamp-lit",
+      "take": 1,
+      "round": 1,
+      "logical_run": "20261105-b36-lit-ladder",
+      "source_file": "/workspace/generated_images/exec-45429570-b03e-44ac-a916-f6bdd5784843.png",
+      "returned_at": "2026-11-05T23:11:16.560Z",
+      "prompt_sha256": "c4f192e9e1198b231f2d6211cd7db1b8b8d7f88dfd34c5296b054e58c0ed0ec7",
+      "fingerprint": "2d396615642dc8f9",
+      "saved_at": "2026-11-05T23:11:16.938259+00:00",
+      "original_generated_png_sha256": "5ffa7dce8ac252b7d29f3c1c0d43643030688409d7cf0a7d4af440d7c5b44ef0",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "rgba_sha256": "25faca0fc79f5bba3e23778f26a58e9505c84aeb474d01d0b714094e49d50cce",
+      "evaluation_take": 1,
+      "original_run": "batch-36-lit-ladder-pilot",
+      "original_take": 1,
+      "original_callback": "/workspace/art-operator-runtime/run-20261105-night/batch-36-lit-ladder-pilot/generated-path-lamp-lit-t1.json",
+      "original_callback_sha256": "83762cccfc0518f56ee21d270fc372245a7297362073b75e5ebb07520bda968e",
+      "original_packet": {
+        "batch": "batch-36-lit-ladder-pilot",
+        "job": "path-lamp-lit",
+        "worktree": "/workspace/art-20261105-lit-ladder",
+        "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nLight the path lamp: the plump round paper-glass lantern now glows\nfrom inside, a soft warm candle-amber filling the whole glass shape,\na little brighter toward its middle, with a tiny soft flame shape\nsuggested at its center, painted as soft broad shapes. Only the\nlantern glass changes: the coral cap, the curled hook, the wooden\npost and the stone foot keep their exact day colors (the app adds\nthe glow and the pool of light on the ground).\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: light rays, a glow or halo outside the glass, a light pool on the ground, light on the post or the cap, a sharp bright flame, blown yellow-white highlights, text.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+        "refs": [
+          "/workspace/art-20261105-lit-ladder/design/art/masters/path-lamp/path-lamp.png"
+        ],
+        "reference_sha256": {
+          "/workspace/art-20261105-lit-ladder/design/art/masters/path-lamp/path-lamp.png": "2a2b4d371cca0f3f134d51f089533e05a9683ea8b501dec03bfd38ef1a8a879a"
+        },
+        "fingerprint": "2d396615642dc8f9",
+        "prompt_sha256": "c4f192e9e1198b231f2d6211cd7db1b8b8d7f88dfd34c5296b054e58c0ed0ec7",
+        "transparent": true
+      },
+      "evaluation_fingerprint": "2d396615642dc8f9"
+    },
+    {
+      "batch": "batch-36-lit-ladder-pilot",
+      "job": "path-lamp-lit",
+      "take": 2,
+      "round": 1,
+      "logical_run": "20261105-b36-lit-ladder",
+      "source_file": "/workspace/generated_images/exec-9175c3b7-6b42-439c-bdfc-bb751b521be6.png",
+      "returned_at": "2026-11-05T23:11:56.686Z",
+      "prompt_sha256": "c4f192e9e1198b231f2d6211cd7db1b8b8d7f88dfd34c5296b054e58c0ed0ec7",
+      "fingerprint": "2d396615642dc8f9",
+      "saved_at": "2026-11-05T23:11:57.044131+00:00",
+      "original_generated_png_sha256": "1529983bad2fe1fa0724f2d47775ad78fee52c0dad369ab07bc58bb5ca0844e1",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "rgba_sha256": "39d61c3ea3a5ef44f42adcbc155f8f95fe4fd13581f5ef0e1d2374e2dade7f15",
+      "evaluation_take": 2,
+      "original_run": "batch-36-lit-ladder-pilot",
+      "original_take": 2,
+      "original_callback": "/workspace/art-operator-runtime/run-20261105-night/batch-36-lit-ladder-pilot/generated-path-lamp-lit-t2.json",
+      "original_callback_sha256": "841a4449a2dd64b8098f4b768ec4f59f244a95018314e9da49d66a3c8f4d817e",
+      "original_packet": {
+        "batch": "batch-36-lit-ladder-pilot",
+        "job": "path-lamp-lit",
+        "worktree": "/workspace/art-20261105-lit-ladder",
+        "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nLight the path lamp: the plump round paper-glass lantern now glows\nfrom inside, a soft warm candle-amber filling the whole glass shape,\na little brighter toward its middle, with a tiny soft flame shape\nsuggested at its center, painted as soft broad shapes. Only the\nlantern glass changes: the coral cap, the curled hook, the wooden\npost and the stone foot keep their exact day colors (the app adds\nthe glow and the pool of light on the ground).\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: light rays, a glow or halo outside the glass, a light pool on the ground, light on the post or the cap, a sharp bright flame, blown yellow-white highlights, text.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+        "refs": [
+          "/workspace/art-20261105-lit-ladder/design/art/masters/path-lamp/path-lamp.png"
+        ],
+        "reference_sha256": {
+          "/workspace/art-20261105-lit-ladder/design/art/masters/path-lamp/path-lamp.png": "2a2b4d371cca0f3f134d51f089533e05a9683ea8b501dec03bfd38ef1a8a879a"
+        },
+        "fingerprint": "2d396615642dc8f9",
+        "prompt_sha256": "c4f192e9e1198b231f2d6211cd7db1b8b8d7f88dfd34c5296b054e58c0ed0ec7",
+        "transparent": true
+      },
+      "evaluation_fingerprint": "2d396615642dc8f9"
+    },
+    {
+      "batch": "batch-36-lit-ladder-pilot",
+      "job": "path-lamp-lit",
+      "take": 3,
+      "round": 2,
+      "logical_run": "20261105-b36-lit-ladder",
+      "source_file": "/workspace/generated_images/exec-95844c94-5f0d-4343-b6b2-b1f8c6f32989.png",
+      "returned_at": "2026-11-05T23:18:50.625Z",
+      "prompt_sha256": "c4f192e9e1198b231f2d6211cd7db1b8b8d7f88dfd34c5296b054e58c0ed0ec7",
+      "fingerprint": "2d396615642dc8f9",
+      "saved_at": "2026-11-05T23:18:50.931137+00:00",
+      "original_generated_png_sha256": "24238f1c5bea33394c6c5b1001b0e421a62b8387de3c5282d27f12eac037b61f",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "rgba_sha256": "aa8103a04415a35c3aba496af93e7694b6efcf6160f0db71ad4784d883c8f264",
+      "evaluation_take": 3,
+      "original_run": "batch-36-lit-ladder-pilot",
+      "original_take": 3,
+      "original_callback": "/workspace/art-operator-runtime/run-20261105-night/batch-36-lit-ladder-pilot/generated-path-lamp-lit-t3.json",
+      "original_callback_sha256": "49f691c16fed2f8f2a306010a125f59b5a1abb95f1de087b94073f3b7be4574b",
+      "original_packet": {
+        "batch": "batch-36-lit-ladder-pilot",
+        "job": "path-lamp-lit",
+        "worktree": "/workspace/art-20261105-lit-ladder",
+        "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nLight the path lamp: the plump round paper-glass lantern now glows\nfrom inside, a soft warm candle-amber filling the whole glass shape,\na little brighter toward its middle, with a tiny soft flame shape\nsuggested at its center, painted as soft broad shapes. Only the\nlantern glass changes: the coral cap, the curled hook, the wooden\npost and the stone foot keep their exact day colors (the app adds\nthe glow and the pool of light on the ground).\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: light rays, a glow or halo outside the glass, a light pool on the ground, light on the post or the cap, a sharp bright flame, blown yellow-white highlights, text.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+        "refs": [
+          "/workspace/art-20261105-lit-ladder/design/art/masters/path-lamp/path-lamp.png"
+        ],
+        "reference_sha256": {
+          "/workspace/art-20261105-lit-ladder/design/art/masters/path-lamp/path-lamp.png": "2a2b4d371cca0f3f134d51f089533e05a9683ea8b501dec03bfd38ef1a8a879a"
+        },
+        "fingerprint": "2d396615642dc8f9",
+        "prompt_sha256": "c4f192e9e1198b231f2d6211cd7db1b8b8d7f88dfd34c5296b054e58c0ed0ec7",
+        "transparent": true
+      },
+      "evaluation_fingerprint": "2d396615642dc8f9"
+    },
+    {
+      "batch": "batch-36-lit-ladder-pilot",
+      "job": "path-lamp-lit",
+      "take": 4,
+      "round": 2,
+      "logical_run": "20261105-b36-lit-ladder",
+      "source_file": "/workspace/generated_images/exec-8710a3cf-3957-487a-bc09-e6950bdd78e6.png",
+      "returned_at": "2026-11-05T23:18:13.251Z",
+      "prompt_sha256": "c4f192e9e1198b231f2d6211cd7db1b8b8d7f88dfd34c5296b054e58c0ed0ec7",
+      "fingerprint": "2d396615642dc8f9",
+      "saved_at": "2026-11-05T23:18:13.620413+00:00",
+      "original_generated_png_sha256": "fb7700491e4659ca7eaaf3445130b46dc37f1929de2cd70d96701267feafb6e3",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "rgba_sha256": "bb183c2b7dc803f35ac00015e6245e3d4489772d9e8c864779e678c91c6cad67",
+      "evaluation_take": 4,
+      "original_run": "batch-36-lit-ladder-pilot",
+      "original_take": 4,
+      "original_callback": "/workspace/art-operator-runtime/run-20261105-night/batch-36-lit-ladder-pilot/generated-path-lamp-lit-t4.json",
+      "original_callback_sha256": "aad08644ef131b818337f5380534c24659b62de49f131477783e0db66303fc0f",
+      "original_packet": {
+        "batch": "batch-36-lit-ladder-pilot",
+        "job": "path-lamp-lit",
+        "worktree": "/workspace/art-20261105-lit-ladder",
+        "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nLight the path lamp: the plump round paper-glass lantern now glows\nfrom inside, a soft warm candle-amber filling the whole glass shape,\na little brighter toward its middle, with a tiny soft flame shape\nsuggested at its center, painted as soft broad shapes. Only the\nlantern glass changes: the coral cap, the curled hook, the wooden\npost and the stone foot keep their exact day colors (the app adds\nthe glow and the pool of light on the ground).\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: light rays, a glow or halo outside the glass, a light pool on the ground, light on the post or the cap, a sharp bright flame, blown yellow-white highlights, text.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+        "refs": [
+          "/workspace/art-20261105-lit-ladder/design/art/masters/path-lamp/path-lamp.png"
+        ],
+        "reference_sha256": {
+          "/workspace/art-20261105-lit-ladder/design/art/masters/path-lamp/path-lamp.png": "2a2b4d371cca0f3f134d51f089533e05a9683ea8b501dec03bfd38ef1a8a879a"
+        },
+        "fingerprint": "2d396615642dc8f9",
+        "prompt_sha256": "c4f192e9e1198b231f2d6211cd7db1b8b8d7f88dfd34c5296b054e58c0ed0ec7",
+        "transparent": true
+      },
+      "evaluation_fingerprint": "2d396615642dc8f9"
+    }
+  ]
+}

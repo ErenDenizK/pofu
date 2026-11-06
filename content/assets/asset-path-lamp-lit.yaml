@@ -4,17 +4,18 @@ title_tr: path-lamp-lit
 title_en: path-lamp-lit (prop)
 status: in-production
 horizon: now
-summary: >-
-  Light the path lamp: the plump round paper-glass lantern now glows from inside, a soft warm
-  candle-amber filling the whole glass shape, a little brighter toward its middle, with a
-  tiny soft flame shape suggested at its center, painted as soft broad shapes. Only the lantern
-  glass changes: the coral cap, the curled hook, the wooden post and the stone foot keep their
-  exact day colors (the app adds the glow and the pool …
+summary: 'Light the path lamp: the plump round paper-glass lantern now glows from
+  inside, a soft warm candle-amber filling the whole glass shape, a little brighter
+  toward its middle, with a tiny soft flame shape suggested at its center, painted
+  as soft broad shapes. Only the lantern glass changes: the coral cap, the curled
+  hook, the wooden post and the stone foot keep their exact day colors (the app adds
+  the glow and the pool …'
 links:
   variant_of:
   - asset-path-lamp
 art:
-  images: []
+  images:
+  - design/art/masters/path-lamp-lit/path-lamp-lit.png
   jobs:
   - batch-36-lit-ladder-pilot:path-lamp-lit
 sources:
