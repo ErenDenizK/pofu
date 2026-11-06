@@ -56,6 +56,19 @@ final class FlowTextures {
     /// The groove's width.
     private var grooveWidth: CGFloat { cell * 0.30 }
 
+    /// The stone under the mill wheel (batch 64, `flow-tile-wheel`) and the wheel itself, one frame
+    /// that code rotates (`flow-wheel`). Both hooks load by name; the drawings below stay as the fallback.
+    static let wheelTileArt = "flow-tile-wheel"
+    static let wheelArt = "flow-wheel"
+
+    /// A painted texture by its art id, or nil until the batch is integrated.
+    private func painted(_ name: String) -> SKTexture? {
+        guard let image = UIImage(named: name, in: .module, compatibleWith: nil) else { return nil }
+        let texture = SKTexture(image: image)
+        texture.filteringMode = .linear
+        return texture
+    }
+
     /// The art id for a kind (`docs/design/flow-game.md` §7).
     static func artName(_ kind: FlowTileKind) -> String? {
         switch kind {
@@ -65,7 +78,7 @@ final class FlowTextures {
         case .gate: "flow-tile-gate"
         case .source: "flow-tile-source"
         case .mouth: "flow-tile-mouth"
-        case .wheel: nil
+        case .wheel: Self.wheelTileArt
         case .rock: "flow-rock"
         case .grass: "flow-grass"
         }
@@ -74,7 +87,8 @@ final class FlowTextures {
     // MARK: Cached textures
 
     func stone(_ kind: FlowTileKind, _ openings: FlowDirection) -> SKTexture {
-        cached("stone-\(kind.rawValue)-\(openings.rawValue)") { context in
+        if kind == .wheel, let art = painted(Self.wheelTileArt) { return art }
+        return cached("stone-\(kind.rawValue)-\(openings.rawValue)") { context in
             switch kind {
             case .rock: self.drawRock(context)
             case .grass: self.drawGrass(context)
@@ -117,7 +131,9 @@ final class FlowTextures {
     }
 
     func wheel(blurred: Bool) -> SKTexture {
-        cached("wheel-\(blurred)") { context in
+        // The painted wheel is one sharp frame; while it is "blurred" (settled) the drawn ghost stays.
+        if !blurred, let art = painted(Self.wheelArt) { return art }
+        return cached("wheel-\(blurred)") { context in
             let center = CGPoint(x: self.cell / 2, y: self.cell / 2)
             let radius = self.cell * 0.42
             if blurred {

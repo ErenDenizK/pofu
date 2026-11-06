@@ -1074,6 +1074,41 @@
     },
     {
       "target": "world",
+      "name": "caglayan-island-0",
+      "master": "design/art/masters/caglayan-island-0"
+    },
+    {
+      "target": "world",
+      "name": "caglayan-island-1",
+      "master": "design/art/masters/caglayan-island-1"
+    },
+    {
+      "target": "world",
+      "name": "caglayan-island-2",
+      "master": "design/art/masters/caglayan-island-2"
+    },
+    {
+      "target": "world",
+      "name": "caglayan-island-3",
+      "master": "design/art/masters/caglayan-island-3"
+    },
+    {
+      "target": "world",
+      "name": "caglayan-island-4",
+      "master": "design/art/masters/caglayan-island-4"
+    },
+    {
+      "target": "world",
+      "name": "damla",
+      "master": "design/art/masters/damla"
+    },
+    {
+      "target": "world",
+      "name": "damla-glass",
+      "master": "design/art/masters/damla-glass"
+    },
+    {
+      "target": "world",
       "name": "nazli-tail",
       "master": "design/art/masters/nazli-tail"
     },
