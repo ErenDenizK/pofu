@@ -1,6 +1,16 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "Breath" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nefes"
+          }
+        }
+      }
+    },
     "%@ pass running" : {
       "localizations" : {
         "tr" : {

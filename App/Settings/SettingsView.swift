@@ -14,8 +14,15 @@ struct SettingsView: View {
         NavigationStack {
             Form {
                 Section {
+                    SettingsHeader()
+                }
+                .listRowBackground(Color.clear)
+                .listRowInsets(EdgeInsets())
+                .listRowSeparator(.hidden)
+
+                Section {
                     HStack(spacing: PofuSpacing.m) {
-                        PofuPaintedIcon(.iconMoodContent, size: 44)
+                        SettingsIcon(systemName: "pawprint.fill", tone: .honey)
                         TextField(text: $name, prompt: Text(verbatim: UserProfile.defaultName)) {
                             Text("Name")
                         }
@@ -27,7 +34,7 @@ struct SettingsView: View {
                     Text("Pofu")
                         .pofuSectionHeader()
                 }
-                .listRowBackground(PofuColor.card)
+                .settingsRow()
 
                 if model.screenTime.isAvailable {
                     ScreenTimeSettingsSection(model: model)
@@ -40,7 +47,7 @@ struct SettingsView: View {
                     NavigationLink {
                         SetupGuideView(model: model)
                     } label: {
-                        PaintedLabel("Set up automations", paint: .iconPlus)
+                        SettingsLabel("Set up automations", systemName: "wand.and.stars", tone: .moss)
                     }
                 } header: {
                     // With the shield, the Shortcuts gate is the optional,
@@ -59,14 +66,16 @@ struct SettingsView: View {
                         Text("Turning an app off here doesn't remove its automation. Delete it in Shortcuts if you want me gone from that door.")
                     }
                 }
-                .listRowBackground(PofuColor.card)
+                .settingsRow()
 
                 SoundSettingsSection()
+
+                BreathSettingsSection()
 
                 RehearsalSettingsSection()
 
                 Section {
-                    PaintedLabel("Everything stays on this iPhone.", paint: .iconCalm)
+                    SettingsLabel("Everything stays on this iPhone.", systemName: "lock.fill", tone: .cocoa)
                     if model.persistenceProblem {
                         Label("I couldn't save my last change. Free up some space?", systemImage: "exclamationmark.triangle")
                             .foregroundStyle(PofuColor.warning)
@@ -75,9 +84,10 @@ struct SettingsView: View {
                     Text("Privacy")
                         .pofuSectionHeader()
                 }
-                .listRowBackground(PofuColor.card)
+                .settingsRow()
             }
             .navigationTitle(Text("Settings"))
+            .settingsList()
             .pofuSheetChrome { model.setCompanionName(name) }
             .onAppear { name = model.profile.companionName }
             .onDisappear { model.setCompanionName(name) }
@@ -88,8 +98,6 @@ struct SettingsView: View {
 /// Pofu's tiny sounds: on by default; the Silent switch always wins.
 private struct SoundSettingsSection: View {
     @State private var isOn = !SoundEngine.shared.settings.isMuted
-    /// The Core Haptics swell during the breath (UI v3 section 4).
-    @AppStorage(BreathHapticsSetting.key) private var breathHaptics = true
 
     var body: some View {
         Section {
@@ -100,20 +108,32 @@ private struct SoundSettingsSection: View {
                     SoundEngine.shared.settings = SoundSettings(isMuted: !value)
                 }
             )) {
-                PaintedLabel("Pofu's sounds", paint: .iconBreath)
+                SettingsLabel("Pofu's sounds", systemName: "speaker.wave.2.fill", tone: .honey)
             }
-            .tint(PofuColor.accent)
-            Toggle(isOn: $breathHaptics) {
-                PaintedLabel("Breath haptics", paint: .iconBreath)
-            }
-            .tint(PofuColor.accent)
         } header: {
             Text("Sounds")
                 .pofuSectionHeader()
         } footer: {
             Text("Tiny sounds while you play. They follow the Silent switch and stay under your music.")
         }
-        .listRowBackground(PofuColor.card)
+        .settingsRow()
+    }
+}
+
+/// The breath: the Core Haptics swell during it (UI v3 section 4).
+private struct BreathSettingsSection: View {
+    @AppStorage(BreathHapticsSetting.key) private var breathHaptics = true
+
+    var body: some View {
+        Section {
+            Toggle(isOn: $breathHaptics) {
+                SettingsLabel("Breath haptics", systemName: "waveform.path", tone: .moss)
+            }
+        } header: {
+            Text("Breath")
+                .pofuSectionHeader()
+        }
+        .settingsRow()
     }
 }
 
@@ -131,9 +151,8 @@ private struct RehearsalSettingsSection: View {
                     RehearsalMode.setEnabled(value)
                 }
             )) {
-                Label("Rehearsal mode", systemImage: "theatermasks")
+                SettingsLabel("Rehearsal mode", systemName: "theatermasks.fill", tone: .cocoa)
             }
-            .tint(PofuColor.accent)
             if isOn != RehearsalMode.isOnAtLaunch {
                 Text("Close Pofu in the app switcher and open it again to switch.")
                     .font(PofuFont.footnote)
@@ -145,7 +164,7 @@ private struct RehearsalSettingsSection: View {
         } footer: {
             Text("Rehearsal mode simulates Screen Time inside Pofu: the permission, the app picker, the shield and usage. Its data is kept apart from live data and tagged as simulated.")
         }
-        .listRowBackground(PofuColor.card)
+        .settingsRow()
     }
 }
 
@@ -174,7 +193,6 @@ private struct GuardedAppRow: View {
                 }
             }
         }
-        .tint(PofuColor.accent)
         .onAppear { isOn = model.profile.protectedApps.contains(app) }
         .onChange(of: isOn) { _, value in
             model.setProtected(app, value)

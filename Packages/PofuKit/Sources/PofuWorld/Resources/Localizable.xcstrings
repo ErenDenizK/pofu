@@ -1,6 +1,26 @@
 {
   "sourceLanguage": "en",
   "strings": {
+    "Your cheeks hold %lld of %lld seeds.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yanaklarında %1$lld / %2$lld çekirdek var."
+          }
+        }
+      }
+    },
+    "It uses %lld seeds from the jar.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kavanozdan %lld çekirdek harcar."
+          }
+        }
+      }
+    },
     "%@ seeds a day": {
       "localizations": {
         "tr": {

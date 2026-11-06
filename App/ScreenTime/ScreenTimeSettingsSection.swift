@@ -81,7 +81,7 @@ struct ScreenTimeSettingsSection: View {
         } footer: {
             Text("Measured by Screen Time, in 15-minute steps. Past the daily hour, every open starts with a breath.")
         }
-        .listRowBackground(PofuColor.card)
+        .settingsRow()
         .task { await checkNotifications() }
     }
 
