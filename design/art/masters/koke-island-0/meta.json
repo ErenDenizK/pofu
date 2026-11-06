@@ -1,0 +1,127 @@
+{
+  "job": "koke-island-0",
+  "batch": "batch-39-koke-production",
+  "asset": "plate__koke-island-0",
+  "take": 2,
+  "takes_considered": 4,
+  "approved_at": "2026-11-06T01:36:03+00:00",
+  "image": "design/art/masters/koke-island-0/koke-island-0.png",
+  "raw": "design/art/masters/koke-island-0/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "b3e58bbf45d02f65",
+  "prompt": "REFERENCES (attached, in this order):\n1. The home island: copy ONLY its camera, its plate proportions (shallow top, rounded banded body) and its soft painting. Do not copy its lawn, its colors, its round door or its pebbles.\n2. The small island plate: the Koke island is this size in the frame (a small plate, narrower than home). Copy the size and the earth body's proportions only.\n3. A finished station of the game: every prop on Koke's island is at this scale and in this finish (do not draw this stall).\n4. The sea of clouds below every island: paint the clouds like this.\n\nA game plate for a cozy mobile game: Koke, a small island where a big\nmossy creature sleeps, in the game, on a still overcast-bright\nnoon. STAGE 0, STUCK. The island is a floating diorama plate with a\nshallow top about a fifth as deep as it is wide, over a soft rounded\nearth body with gentle bands, a small plate: about 62 percent of the\nimage width, centered. The top is a low rounded lawn of moss and\nshort grass. At the back centre sleeps Koke: a huge round mound of\nmoss about as tall as a windmill, like a plump hill, its soft fur\nmade of moss. It has a round sleepy face low on the near side, a\nsmall blunt snout, two tiny round ears, eyes gently closed with\nsoft lids, the corners of its mouth slightly down, and four stubby\nlegs tucked under its belly, one front paw curled in front of it.\nSTUCK STATE: the whole creature and the whole island are faded and\ngrey: the moss is a dull grey-sage, like a dusty blanket, chroma\nabout 40 percent of a healthy meadow, under a flat cool light with\nsoft cool shadows and no warm light anywhere. Around it, five small\nclusters of flowers stand tightly closed, each a ring of\nshut grey-lilac and grey-blue buds with drooping leaves. A few\nrounded mossy boulders, a path of four stepping stones from the\nfront lip to Koke's side, two soft ferns, and a small wooden rake\nleaning on a boulder. ONE SIGN OF LIFE only: on the crown of the\nhump a single tiny bright fresh-green sprout of two leaves, the\nonly vivid colour in the picture. The mood is quiet and sad, but it\nis a sleeping creature, not a dead one: gentle, never eerie.\nGAME CAMERA (this is how the island looks inside the game): exactly\nthe camera of the attached home island, a low front three-quarter\nview about 20 degrees above the horizon, a pale sky with soft far\nclouds above and the sea of clouds below rising to the island's\nunderside. Every prop is at the scale of the attached tea stall.\nNo characters other than Koke.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: scary or hollow eyes, teeth, claws, a skull, bones, rot, ruins, fog walls, gloom, darkness, a sad crying face, a pointed or spiky underside, a drop or anything falling off the island, a copy of the home island's green lawn and round door, a whale shape, text, letters, zzz, a border, harsh shadows, outlines, photorealism, a 3D render look\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nKey light #FFF6EC from the upper left; fill #BFD6EE; rim #FFE9C9 along the edge facing away from the key. Shadows are tinted #A99BC4 (never grey or black) and fall toward the lower right; paint a contact shadow in that hue under every object that touches the ground or another form, firmest in the subject plane.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, opaque, full bleed, landscape 1536 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/island-main-l-v3/island-main-l-v3.webp",
+      "role": "The home island: copy ONLY its camera, its plate proportions (shallow top, rounded banded body) and its soft painting. Do not copy its lawn, its colors, its round door or its pebbles."
+    },
+    {
+      "path": "design/art/masters/island-main-s/island-main-s.png",
+      "role": "The small island plate: the Koke island is this size in the frame (a small plate, narrower than home). Copy the size and the earth body's proportions only."
+    },
+    {
+      "path": "design/art/stations/tea-stall-5/tea-stall-5.png",
+      "role": "A finished station of the game: every prop on Koke's island is at this scale and in this finish (do not draw this stall)."
+    },
+    {
+      "path": "design/art/masters/cloud-sea/cloud-sea.png",
+      "role": "The sea of clouds below every island: paint the clouds like this."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud-retained-salvage",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-05T23:43:48+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "fit": null,
+  "emit_region": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "opaque, as this kind must be"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1536x1024"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 22 (R1 51)",
+        "value": 21.7
+      },
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 57 (at most 22), p98 95 (at least 90), spread 38 (at least 60) (warn-only until the founder has seen the light pilot)",
+        "value": 37.7
+      },
+      {
+        "check": "light_median",
+        "status": "pass",
+        "message": "day/subject: median L 79 (band 55-90)",
+        "value": 78.6
+      },
+      {
+        "check": "light_haze",
+        "status": "warn",
+        "message": "day/subject: dark-channel haze 0.49 (at most 0.20; no true dark means a wash) (warn-only until the founder has seen the light pilot)",
+        "value": 0.486
+      },
+      {
+        "check": "light_contrast",
+        "status": "warn",
+        "message": "day/subject: p75 local contrast 2.9 (at least 3.5)",
+        "value": 2.93
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 1.4 (R1 5.3)",
+        "value": 1.35
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 0.5",
+        "value": 0.5178
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.5, p95 3.3, off-palette 0.0% (top: #CCDD77 (0.0%))",
+        "value": 1.4579
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Retained-source re-post only: all four original takes clear every hard canonical QA check; take2 has the lowest style-lock load 0.5178. Full locked and official half-size delivered views retain the gentle grey-sage sleeping mound, five shut bud groups, four stepping stones, two fern groups, rake, rounded moss boulders and sole vivid crown sprout. No teeth, claws, text, copied round door or added resident. The canonical deliver.scale 0.5 produces 768 × 512 without changing the retained source or full-size QA. The original composition occupies roughly 80 percent of the frame versus the approximate 62 percent brief; this inherited framing observation is explicitly disclosed for founder review and is not hidden by a source crop or an invented numeric QA waiver. Source/callback identities and original generation time/account remain preserved. Light warnings stay advisory; no regeneration.",
+  "deliver": {
+    "scale": 0.5,
+    "original_size": [
+      1536,
+      1024
+    ],
+    "delivered_size": [
+      768,
+      512
+    ]
+  }
+}
