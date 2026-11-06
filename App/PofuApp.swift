@@ -10,6 +10,7 @@ struct PofuApp: App {
         // Before launch finishes, so a tap on the pass reminder that
         // launches Pofu is delivered.
         PassExpiryReminder.install()
+        WorldSound.install()
         #if DEBUG
         // Power and performance metrics to the unified log (dev builds).
         PowerTelemetry.install()

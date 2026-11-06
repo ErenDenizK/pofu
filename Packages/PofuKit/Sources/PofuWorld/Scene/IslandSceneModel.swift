@@ -166,6 +166,8 @@ public final class IslandSceneModel {
     /// Sends a game event for a tap on the visit (greeting, gift, help,
     /// invitation); Home sets it.
     @ObservationIgnored public var onVisitorEvent: (@MainActor (GameEvent.Kind) -> Void)?
+    /// Today's visitor reached the lawn (the app plays the door knock).
+    @ObservationIgnored public var onVisitorArrived: (@MainActor () -> Void)?
     /// A quiet day's invitation sheet is up.
     public var isInviting = false
     /// Koke's bubble, swell and haptic (the first wonder island).
@@ -228,6 +230,7 @@ public final class IslandSceneModel {
         guard let visitor, !still, VisitorStage.hasArrival(visitor) else { return false }
         guard arrivalsPlayed.insert(VisitorStage.arrivalKey(of: visitor)).inserted else { return false }
         react(.visitorArrived, for: ResidentReactions.everyone, at: now)
+        onVisitorArrived?()
         guard !reduceMotion else { return true }
         arrivalStart = now
         holdMoment(seconds: VisitorStage.momentSeconds, from: now)

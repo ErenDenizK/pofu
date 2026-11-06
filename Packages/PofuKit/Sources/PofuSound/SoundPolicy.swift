@@ -5,19 +5,25 @@ import PofuTuning
 /// plays regardless (it is a separate target that does not link this one).
 public struct SoundSettings: Equatable, Sendable {
     public var isMuted: Bool
+    /// The world's ambience and the breath guide's pad. Off by default
+    /// (sound identity §1.4: ambience is optional, offered, never forced).
+    public var isAmbienceOn: Bool
 
-    public init(isMuted: Bool = false) {
+    public init(isMuted: Bool = false, isAmbienceOn: Bool = false) {
         self.isMuted = isMuted
+        self.isAmbienceOn = isAmbienceOn
     }
 
     public static let mutedKey = "pofu.sound.muted"
+    public static let ambienceKey = "pofu.sound.ambience"
 
     public static func load(from defaults: UserDefaults = .standard) -> SoundSettings {
-        SoundSettings(isMuted: defaults.bool(forKey: mutedKey))
+        SoundSettings(isMuted: defaults.bool(forKey: mutedKey), isAmbienceOn: defaults.bool(forKey: ambienceKey))
     }
 
     public func save(to defaults: UserDefaults = .standard) {
         defaults.set(isMuted, forKey: Self.mutedKey)
+        defaults.set(isAmbienceOn, forKey: Self.ambienceKey)
     }
 }
 
@@ -53,6 +59,10 @@ public struct CueLimiter: Sendable {
         case .deal: Rule(minimumGap: 0.15)
         case .cheek: Rule(minimumGap: 0.1, runReset: 0.8, runDecay: 0.1, runFloor: 0.4)
         case .gulp, .collect: Rule(minimumGap: 0.4)
+        case .waterSplash: Rule(minimumGap: 0.12, runReset: 0.6, runDecay: 0.12, runFloor: 0.4)
+        case .waterWheel: Rule(minimumGap: 1.5)
+        case .doorKnock, .kettle, .levelUp: Rule(minimumGap: 2.0)
+        case .waterPour: Rule(minimumGap: 1.0)
         // Rationed: the chime and the hop wear out by day 3 (sound identity §1.3).
         case .skipChime, .roundEnd, .pofuHop: Rule(minimumGap: 1.0)
         }

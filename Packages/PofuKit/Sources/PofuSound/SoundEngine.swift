@@ -22,6 +22,7 @@ public final class SoundEngine {
         set {
             policy.settings = newValue
             newValue.save()
+            AmbienceConductor.shared.refresh()
         }
     }
 
@@ -29,6 +30,9 @@ public final class SoundEngine {
         get { policy.volumes }
         set { policy.volumes = newValue }
     }
+
+    /// Whether the engine is up.
+    public var isRunning: Bool { started }
 
     private var policy: SoundPolicy
     private let engine = AVAudioEngine()
@@ -64,6 +68,7 @@ public final class SoundEngine {
         player.scheduleBuffer(buffer, at: nil, options: .interrupts)
         if !player.isPlaying { player.play() }
         scheduleIdleStop()
+        AmbienceConductor.shared.noteCue()
     }
 
     /// Stops the engine and releases the audio session; the next cue
@@ -76,7 +81,10 @@ public final class SoundEngine {
         engine.stop()
         started = false
         #if os(iOS)
-        try? AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
+        // The ambience engine may still be using the session.
+        if !AmbienceConductor.shared.isRunning {
+            try? AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
+        }
         #endif
     }
 

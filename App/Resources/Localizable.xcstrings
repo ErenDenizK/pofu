@@ -2922,6 +2922,16 @@
         }
       }
     },
+    "Island ambience" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ada ortamı"
+          }
+        }
+      }
+    },
     "Sounds" : {
       "localizations" : {
         "tr" : {
@@ -2932,12 +2942,12 @@
         }
       }
     },
-    "Tiny sounds while you play. They follow the Silent switch and stay under your music." : {
+    "Tiny sounds while you play. Island ambience adds wind, crickets, rain and the breath's soft tone. They follow the Silent switch and stay under your music." : {
       "localizations" : {
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Oynarken küçük sesler. Sessiz düğmesine uyar, müziğinin altında kalır."
+            "value" : "Oynarken küçük sesler. Ada ortamı rüzgâr, cırcır böceği, yağmur ve nefesin yumuşak tınısını ekler. Sessiz düğmesine uyar, müziğinin altında kalır."
           }
         }
       }

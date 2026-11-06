@@ -96,6 +96,7 @@ struct HomeView: View {
             while !Task.isCancelled {
                 try? await Task.sleep(for: .seconds(30))
                 model.tick()
+                model.updateWorldSound(active: scenePhase == .active)
             }
         }
         // Sheets and covers freeze the world's ambient layers while they
@@ -185,7 +186,9 @@ struct HomeView: View {
         .onChange(of: scenePhase, initial: true) { _, phase in
             if phase == .active {
                 model.beginWorldVisit()
+                AmbienceConductor.shared.beginVisit()
             }
+            model.updateWorldSound(active: phase == .active)
         }
     }
 

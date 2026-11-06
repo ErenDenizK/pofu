@@ -98,6 +98,7 @@ struct SettingsView: View {
 /// Pofu's tiny sounds: on by default; the Silent switch always wins.
 private struct SoundSettingsSection: View {
     @State private var isOn = !SoundEngine.shared.settings.isMuted
+    @State private var ambience = SoundEngine.shared.settings.isAmbienceOn
 
     var body: some View {
         Section {
@@ -105,16 +106,29 @@ private struct SoundSettingsSection: View {
                 get: { isOn },
                 set: { value in
                     isOn = value
-                    SoundEngine.shared.settings = SoundSettings(isMuted: !value)
+                    var settings = SoundEngine.shared.settings
+                    settings.isMuted = !value
+                    SoundEngine.shared.settings = settings
                 }
             )) {
                 SettingsLabel("Pofu's sounds", systemName: "speaker.wave.2.fill", tone: .honey)
+            }
+            Toggle(isOn: Binding(
+                get: { ambience },
+                set: { value in
+                    ambience = value
+                    var settings = SoundEngine.shared.settings
+                    settings.isAmbienceOn = value
+                    SoundEngine.shared.settings = settings
+                }
+            )) {
+                SettingsLabel("Island ambience", systemName: "wind", tone: .honey)
             }
         } header: {
             Text("Sounds")
                 .pofuSectionHeader()
         } footer: {
-            Text("Tiny sounds while you play. They follow the Silent switch and stay under your music.")
+            Text("Tiny sounds while you play. Island ambience adds wind, crickets, rain and the breath's soft tone. They follow the Silent switch and stay under your music.")
         }
         .settingsRow()
     }

@@ -55,3 +55,13 @@ limits (≤ −1 dBTP, −18 LUFS momentary, clean edges) plus 100 KB per file.
 A few are also written as WAV to `design/sound/proof/cues/` for listening.
 The file names are `SoundCue.assetName`; a test checks every cue has a file.
 Vocal sounds stay synthesized placeholders until a performer records them.
+
+## World sound pass: `world.py`
+
+`python3 tools/sound/world.py` renders the world's cues and ambience into
+`Packages/PofuKit/Sources/PofuSound/Resources/` (each file under 50 KB, the
+run fails otherwise): `level-up`, `door-knock`, `kettle`, `water-wheel`,
+`water-splash`, `water-pour` (32 kHz cues); `ambience-wind`, `-crickets`,
+`-rain`, `-hush` (8 kHz, 3 s, periodic by construction so the loop has no
+seam); `gull-0`, `gull-1`; `breath-pad` (a 1 s loop the app bends upward on
+the in-breath and back down on the out-breath). Nobody has listened yet.
