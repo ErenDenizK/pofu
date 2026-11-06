@@ -1,0 +1,66 @@
+{
+  "batch": "batch-42-stickers",
+  "job": "sticker-pofu-proud",
+  "take": 2,
+  "round": 1,
+  "logical_run": "20261106-b42-proud",
+  "source_file": "/workspace/generated_images/exec-7358a024-bdf1-42ff-bb6d-3f2c35aa59f8.png",
+  "returned_at": "2026-11-06T02:06:04.210Z",
+  "prompt_sha256": "ecd3f79e51ba7cf18e4979ebb55f7d0c27e8c2d3105c6e7741d7581db1866615",
+  "fingerprint": "96a22280b9d41eec",
+  "saved_at": "2026-11-06T02:06:04.503253+00:00",
+  "original_generated_png_sha256": "6f948e57112263a984dd6e6619cbad0e762bc056f18e62d75e69d676b74879b8",
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "rgba_sha256": "15baa8b953daa8541d6c2e8284f977bc024465372411ff5a1c6806c490875c62",
+  "evaluation_take": 2,
+  "original_take": 2,
+  "original_run": "batch-42-stickers",
+  "original_callback": "/workspace/art-operator-runtime/run-20261106/batch-42-stickers/generated-sticker-pofu-proud-t2.json",
+  "original_callback_sha256": "ec01926d2f46b7b8d75f6880f045308b1c372e894d0f220bf26b95985557bc2d",
+  "original_tool_callback": "/workspace/art-operator-runtime/run-20261106/batch-42-stickers/callback-sticker-pofu-proud-t2.json",
+  "original_tool_callback_sha256": "6c5da78b38cf8a23281dbf97b0b83ce7d2a074a8ed027150cd38577c7cb7479f",
+  "original_sidecar": {
+    "job": "sticker-pofu-proud",
+    "take": 2,
+    "batch": "batch-42-stickers",
+    "fingerprint": "96a22280b9d41eec",
+    "prompt": "REFERENCES (attached, in this order):\n1. Pofu, the hamster: his exact look, fur, colors, eyes and signature curl.\n\nA single full-body sticker of Pofu the hamster in the exact attached look, chest out, chin up, eyes bright, a small content smile. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.\n\nAVOID: text, a white outline, a background, teeth, tears, motion lines, a different design.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+    "attachments": [
+      {
+        "path": "design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png",
+        "role": "Pofu, the hamster: his exact look, fur, colors, eyes and signature curl."
+      }
+    ],
+    "background": "transparent",
+    "generated_at": "2026-11-06T02:06:11+00:00",
+    "backend": "codex-cloud",
+    "source_file": "/workspace/generated_images/exec-7358a024-bdf1-42ff-bb6d-3f2c35aa59f8.png",
+    "account": {
+      "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+      "kind": "chatgpt-plan"
+    }
+  },
+  "original_sidecar_path": "/workspace/art-20261106-stickers/design/art/inbox/batch-42-stickers/char__sticker-pofu-proud--t2.json",
+  "original_sidecar_sha256": "3f1d9c02c6572421832599e6b275f14f8de4a71cb63bc23e6d542adac000ee74",
+  "original_sidecar_archive": "/workspace/art-operator-runtime/run-20261106/completed-art-checkout-backups/run-20261106--batch-42-stickers.tar.gz",
+  "original_sidecar_archive_member": "design/art/inbox/batch-42-stickers/char__sticker-pofu-proud--t2.json",
+  "original_packet": {
+    "batch": "batch-42-stickers",
+    "job": "sticker-pofu-proud",
+    "worktree": "/workspace/art-20261106-stickers",
+    "prompt": "REFERENCES (attached, in this order):\n1. Pofu, the hamster: his exact look, fur, colors, eyes and signature curl.\n\nA single full-body sticker of Pofu the hamster in the exact attached look, chest out, chin up, eyes bright, a small content smile. Centred on a plain transparent background with wide empty space around it, drawn complete with the whole body. No text, no speech bubbles, no floating hearts, no sticker border, no ground shadow.\n\nAVOID: text, a white outline, a background, teeth, tears, motion lines, a different design.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+    "refs": [
+      "/workspace/art-20261106-stickers/design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png"
+    ],
+    "reference_sha256": {
+      "/workspace/art-20261106-stickers/design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png": "d4f0ce88dc0541053dd515845c1f2bbb2a4ebe101c5ce4a6080d340a5c872454"
+    },
+    "fingerprint": "96a22280b9d41eec",
+    "prompt_sha256": "ecd3f79e51ba7cf18e4979ebb55f7d0c27e8c2d3105c6e7741d7581db1866615",
+    "transparent": true
+  },
+  "original_packet_sha256": "292ac84917b91132c640377c85bfa6780b75cfa0870d461cd632f019f62beb47"
+}
