@@ -1,0 +1,39 @@
+{
+  "batch": "batch-36-lit-ladder-pilot",
+  "job": "door-mochi-lit",
+  "take": 3,
+  "round": 2,
+  "logical_run": "20261105-b36-lit-ladder",
+  "source_file": "/workspace/generated_images/exec-b5e59d60-dff7-4bc0-abb7-d504ca2f45e9.png",
+  "returned_at": "2026-11-05T23:22:12.633Z",
+  "prompt_sha256": "37e66f285d27896ffc98dea41e64338916fbf85d0cfd3be6cd91b3c608e995a9",
+  "fingerprint": "1d672a6f9de0aaa6",
+  "saved_at": "2026-11-05T23:22:13.079373+00:00",
+  "original_generated_png_sha256": "0cad54b456fabddfa369cb5669502fb5e29f861550f94c5b7524b2f3a4db3a21",
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "rgba_sha256": "ca269a9e755c73e059fe94998320de514f2fac4df678f4f86aab4a161f5e6283",
+  "evaluation_take": 3,
+  "original_run": "batch-36-lit-ladder-pilot",
+  "original_take": 3,
+  "original_callback": "/workspace/art-operator-runtime/run-20261105-night/batch-36-lit-ladder-pilot/generated-door-mochi-lit-t3.json",
+  "original_callback_sha256": "7e701f7ae0dc8ce286f30f70b4ffe9f20c398cb10e2074c3faeff06145204848",
+  "original_packet": {
+    "batch": "batch-36-lit-ladder-pilot",
+    "job": "door-mochi-lit",
+    "worktree": "/workspace/art-20261105-lit-ladder",
+    "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nLight Mochi's door from inside: the small round window with its cream\ncross bar now glows warm candle-amber, the four panes of glass soft\nand a little brighter toward the middle, painted as soft broad\nshapes. Only the window glass changes: the cross bar keeps its cream\ncolor, and the rose door, the honey frame, the knob, the doorstep,\nthe hanging tea-glass sign and the earth ring keep their exact day\ncolors (the app adds the glow around the door).\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: light rays, a glow outside the window, a halo, light on the door or the sign, a changed cross bar, blown yellow-white highlights, text.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+    "refs": [
+      "/workspace/art-20261105-lit-ladder/design/art/masters/door-mochi/door-mochi.png"
+    ],
+    "reference_sha256": {
+      "/workspace/art-20261105-lit-ladder/design/art/masters/door-mochi/door-mochi.png": "c6831d029c5f558002c66c313bfdaf027a57e394339435de9272c4153ac3edf8"
+    },
+    "fingerprint": "1d672a6f9de0aaa6",
+    "prompt_sha256": "37e66f285d27896ffc98dea41e64338916fbf85d0cfd3be6cd91b3c608e995a9",
+    "transparent": true
+  },
+  "evaluation_fingerprint": "1d672a6f9de0aaa6"
+}

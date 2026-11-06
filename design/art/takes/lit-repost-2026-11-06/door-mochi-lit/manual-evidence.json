@@ -1,0 +1,96 @@
+{
+  "job": "door-mochi-lit",
+  "manual_eligible_takes": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "manual_excluded_takes": [],
+  "note": "All four full locked images and region crops retain the four glass panes, cream crossbar, rose door, honey frame, knob, step, tea-glass sign and existing peach earth-ring halo. The four panes glow soft candle-amber, while the crossbar remains visibly cream and no new shape or spill reaches sign/door. Warm light remains distinct against light/dark at 28 px. Every outside-mask RGBA pixel exactly equals the day parent. Independent peer review agrees all four eligible; use unchanged official QA ranking.",
+  "masked_visual_evidence": {
+    "parent_sha256": "c6831d029c5f558002c66c313bfdaf027a57e394339435de9272c4153ac3edf8",
+    "packet_sha256": "d31e6bc79488d659b863a0a8356193271b1019c1cb82e3905ebf3293ab6ad26b",
+    "diagnostic": "/workspace/art-operator-runtime/run-20261106/lit-repost-2026-11-06/visual/door-mochi-lit-masked-region-and-28px.jpg",
+    "diagnostic_sha256": "5318766b7c9da7b61f1e179878f82645c8d947180bbf186ca7b6d24280111c31",
+    "source_and_locked_unchanged": true,
+    "same_parent_crop_bounds": [
+      227,
+      237,
+      782,
+      787
+    ],
+    "takes": {
+      "1": {
+        "original_sha256": "75db75407067f81c976082f2fc4525b3b8b646d877182eb6f25a6d22a9f11f9a",
+        "locked_sha256": "1cb1ee77a2dee2c679a745b6bbf26a9ac80446b6623139493fba8a199aae3cb0",
+        "qa_sha256": "131ccf91dfca6f5a52583434cf57b29e8b28099c1b3016401b28895718a1a92c",
+        "outside_mask_nonidentical_rgba_pixels": 0,
+        "outside_mask_total_pixels": 1010169,
+        "mask_box_fraction": [
+          [
+            0.4,
+            0.43,
+            0.185,
+            0.19
+          ]
+        ],
+        "qa_status": "warn",
+        "hard_fails": []
+      },
+      "2": {
+        "original_sha256": "6171621aadf8dcb205f7b794593320080ecb3379081abe56ce8677aa4a2de031",
+        "locked_sha256": "7407c71eede299a29e22605dbea703e55a856a3b6cbefda6ccdfa7f87fa08eca",
+        "qa_sha256": "3af4e15a208821bac189361e71cce5d96a92e135feededeaff4ae67b4f5e47ea",
+        "outside_mask_nonidentical_rgba_pixels": 0,
+        "outside_mask_total_pixels": 1010169,
+        "mask_box_fraction": [
+          [
+            0.4,
+            0.43,
+            0.185,
+            0.19
+          ]
+        ],
+        "qa_status": "warn",
+        "hard_fails": []
+      },
+      "3": {
+        "original_sha256": "0cad54b456fabddfa369cb5669502fb5e29f861550f94c5b7524b2f3a4db3a21",
+        "locked_sha256": "51f0177c893feef05a99dbd69894de966ac001c6a2498b1bf9ee0262a56e5d85",
+        "qa_sha256": "ec9b1440d054d2967f5fbea80153c3427edd7fadf5dcdeeaca2e5c7f076522ff",
+        "outside_mask_nonidentical_rgba_pixels": 0,
+        "outside_mask_total_pixels": 1010169,
+        "mask_box_fraction": [
+          [
+            0.4,
+            0.43,
+            0.185,
+            0.19
+          ]
+        ],
+        "qa_status": "warn",
+        "hard_fails": []
+      },
+      "4": {
+        "original_sha256": "798fc2685b32c890562e9892df89ec27b9dd2d96c50244bb3e3f4f5cdf1488ab",
+        "locked_sha256": "9f3de86c70b5e1d2e1a4582f3706efb103a9eea376fcc4c0cb5c4bfbf1c154c1",
+        "qa_sha256": "99314163502ac3922fe146359974ef8736f94bf4785a0c87e9254d3a8cc921e5",
+        "outside_mask_nonidentical_rgba_pixels": 0,
+        "outside_mask_total_pixels": 1010169,
+        "mask_box_fraction": [
+          [
+            0.4,
+            0.43,
+            0.185,
+            0.19
+          ]
+        ],
+        "qa_status": "warn",
+        "hard_fails": []
+      }
+    }
+  },
+  "source_or_locked_pixels_changed": false,
+  "review_28px": "Actual 28px images on light and dark, then4x nearest upscaling for inspection; identical fixed parent crop bounds across takes"
+}
