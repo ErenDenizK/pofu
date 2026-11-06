@@ -35,3 +35,4 @@ notes:
   (top: #4466BB (2.7%), #7788CC (2.4%)); t3 palette_drift: mean dE 7.0, p95 20.9,
   off-palette 19.5% (top: #5577BB (3.5%), #6688CC (1.7%)); t4 palette_drift: mean
   dE 6.9, p95 20.7, off-palette 20.9% (top: #5577CC (1.9%), #5577BB (1.7%)).'
+- "lead-picks-2026-11-06-gate: Skipped without generation in lead-picks-2026-11-06-gate: the true edit_of parent gate-door-scene retained lead pick take 2 cannot be delivered losslessly under the upload cap. The palette exception does not waive delivery. No child call, child QA result or placeholder take is claimed. The historical parent-reference-only contact/review remains unchanged."

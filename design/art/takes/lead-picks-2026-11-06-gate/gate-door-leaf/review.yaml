@@ -1,0 +1,19 @@
+batch: lead-picks-2026-11-06-gate
+source_batch: batch-58-gate-round-door
+contact_sheet_reference: design/art/takes/batch-58-gate-round-door/gate-door-scene/contact.jpg
+contact_reference_role: historical retained root; not a new child take
+jobs:
+  gate-door-leaf:
+    pick: none
+    publication: true-dependent zero-take skip
+    new_generated_takes: 0
+    note: 'Skipped without generation in lead-picks-2026-11-06-gate: the true edit_of
+      parent gate-door-scene retained lead pick take 2 cannot be delivered losslessly
+      under the upload cap. The palette exception does not waive delivery. No child
+      call, child QA result or placeholder take is claimed. The historical parent-reference-only
+      contact/review remains unchanged.'
+edit_of: gate-door-scene
+retained_original_count: 0
+qa_reports: {}
+dependency_skip_reason: retained selected parent exceeds native lossless delivery
+  cap
