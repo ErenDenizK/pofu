@@ -1,0 +1,283 @@
+batch: batch-44-weather-fx
+contact_sheet: design/art/takes/batch-44-weather-fx/fog-card-1/contact.jpg
+jobs:
+  fog-card-1:
+    pick: none
+    publication: skipped after one allowed retry
+    note: 'Skipped after the sole retry:takes 1 and 3 hard-fail additive_background;takes
+      2 and 4 only warn but visible delivered mist touches lower edge after canonical
+      cover crop removes remaining falloff. Notes require every-edge fade; prompt
+      names only left/right/top, disclosed brief tension. Peer516c198a supports conservative
+      manual exclusion, without invented zero-RGB, hard-outline or banding gates.
+      Automated failures: t1 additive_background: border luma p99 0.133 (near-black,
+      at most 0.05): the glow dies before the edge; t3 additive_background: border
+      luma p99 0.310 (near-black, at most 0.05): the glow dies before the edge.'
+qa_reports:
+  4:
+    job: fog-card-1
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024 scaled x1.000 and center-cropped to 1536x512
+      value: 1.0
+    - check: chroma_ceiling
+      status: pass
+      message: glow chroma p95 1 on 41% lit pixels (additive profile)
+      value: 1.0095
+    - check: additive_background
+      status: warn
+      message: 'border luma p99 0.090 (near-black, at most 0.05): the glow dies before
+        the edge'
+      value: 0.0902
+    - check: additive_falloff
+      status: pass
+      message: 0.00% of the image has a hard edge (luma step over 0.08 per px at 256
+        px; soft falloff, at most 0.8%)
+      value: 0.0
+    - check: additive_banding
+      status: pass
+      message: 146 of 146 luma levels used across the falloff (100%; low means banding)
+      value: 1.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.8 (R1 5.3)
+      value: 0.78
+    info:
+      lock_skipped: 'additive glow: black stays black'
+      metrics_raw:
+        L_p5: 0.0
+        L_p50: 5.1
+        L_p95: 58.7
+        C_p50: 0.0
+        C_p95: 0.8
+        C_p99: 1.3
+        detail: 0.78
+      metrics_locked:
+        L_p5: 0.0
+        L_p50: 5.1
+        L_p95: 58.7
+        C_p50: 0.0
+        C_p95: 0.8
+        C_p99: 1.3
+        detail: 0.78
+    fingerprint: 91adf1952f256e8c
+  1:
+    job: fog-card-1
+    take: 1
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024 scaled x1.000 and center-cropped to 1536x512
+      value: 1.0
+    - check: chroma_ceiling
+      status: pass
+      message: glow chroma p95 1 on 44% lit pixels (additive profile)
+      value: 0.9725
+    - check: additive_background
+      status: fail
+      message: 'border luma p99 0.133 (near-black, at most 0.05): the glow dies before
+        the edge'
+      value: 0.1331
+    - check: additive_falloff
+      status: pass
+      message: 0.00% of the image has a hard edge (luma step over 0.08 per px at 256
+        px; soft falloff, at most 0.8%)
+      value: 0.0
+    - check: additive_banding
+      status: pass
+      message: 141 of 141 luma levels used across the falloff (100%; low means banding)
+      value: 1.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.9 (R1 5.3)
+      value: 0.9
+    info:
+      lock_skipped: 'additive glow: black stays black'
+      metrics_raw:
+        L_p5: 0.0
+        L_p50: 7.7
+        L_p95: 59.0
+        C_p50: 0.0
+        C_p95: 0.9
+        C_p99: 1.3
+        detail: 0.9
+      metrics_locked:
+        L_p5: 0.0
+        L_p50: 7.7
+        L_p95: 59.0
+        C_p50: 0.0
+        C_p95: 0.9
+        C_p99: 1.3
+        detail: 0.9
+    fingerprint: 91adf1952f256e8c
+  3:
+    job: fog-card-1
+    take: 3
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024 scaled x1.000 and center-cropped to 1536x512
+      value: 1.0
+    - check: chroma_ceiling
+      status: pass
+      message: glow chroma p95 1 on 40% lit pixels (additive profile)
+      value: 1.0613
+    - check: additive_background
+      status: fail
+      message: 'border luma p99 0.310 (near-black, at most 0.05): the glow dies before
+        the edge'
+      value: 0.3095
+    - check: additive_falloff
+      status: pass
+      message: 0.00% of the image has a hard edge (luma step over 0.08 per px at 256
+        px; soft falloff, at most 0.8%)
+      value: 0.0
+    - check: additive_banding
+      status: pass
+      message: 161 of 161 luma levels used across the falloff (100%; low means banding)
+      value: 1.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.8 (R1 5.3)
+      value: 0.79
+    info:
+      lock_skipped: 'additive glow: black stays black'
+      metrics_raw:
+        L_p5: 0.0
+        L_p50: 4.3
+        L_p95: 62.1
+        C_p50: 0.0
+        C_p95: 0.8
+        C_p99: 1.3
+        detail: 0.79
+      metrics_locked:
+        L_p5: 0.0
+        L_p50: 4.3
+        L_p95: 62.1
+        C_p50: 0.0
+        C_p95: 0.8
+        C_p99: 1.3
+        detail: 0.79
+    fingerprint: 91adf1952f256e8c
+  2:
+    job: fog-card-1
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024 scaled x1.000 and center-cropped to 1536x512
+      value: 1.0
+    - check: chroma_ceiling
+      status: pass
+      message: glow chroma p95 1 on 41% lit pixels (additive profile)
+      value: 1.359
+    - check: additive_background
+      status: warn
+      message: 'border luma p99 0.059 (near-black, at most 0.05): the glow dies before
+        the edge'
+      value: 0.0588
+    - check: additive_falloff
+      status: pass
+      message: 0.00% of the image has a hard edge (luma step over 0.08 per px at 256
+        px; soft falloff, at most 0.8%)
+      value: 0.0
+    - check: additive_banding
+      status: pass
+      message: 161 of 161 luma levels used across the falloff (100%; low means banding)
+      value: 1.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.8 (R1 5.3)
+      value: 0.82
+    info:
+      lock_skipped: 'additive glow: black stays black'
+      metrics_raw:
+        L_p5: 0.0
+        L_p50: 4.7
+        L_p95: 65.1
+        C_p50: 0.0
+        C_p95: 1.0
+        C_p99: 1.5
+        detail: 0.82
+      metrics_locked:
+        L_p5: 0.0
+        L_p50: 4.7
+        L_p95: 65.1
+        C_p50: 0.0
+        C_p95: 1.0
+        C_p99: 1.5
+        detail: 0.82
+    fingerprint: 91adf1952f256e8c
+manual_review:
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+  note: Skipped after the sole retry:takes 1 and 3 hard-fail additive_background;takes
+    2 and 4 only warn but visible delivered mist touches lower edge after canonical
+    cover crop removes remaining falloff. Notes require every-edge fade; prompt names
+    only left/right/top, disclosed brief tension. Peer516c198a supports conservative
+    manual exclusion, without invented zero-RGB, hard-outline or banding gates.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-c2e91912-b995-4466-bd7f-103c76e174a2.png
+  original_generated_png_sha256: 08c3cdcd2d1d33d09193665c66d4ad3b0c0ccc587d662debe6475fb98659e323
+  inbox_png_sha256: a738c49a1ddf99d9e841397186e2dea885c6311ccc7c44f87f36d4414a576760
+  rgba_sha256: eecaf27fc674d60a30cbb72fd5d1097aa61f6a640b8f27eaa91fb79a03d866fe
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 91adf1952f256e8c
+- take: 2
+  source_file: /workspace/generated_images/exec-d9689c25-2159-4fb5-81d4-63987a9458ed.png
+  original_generated_png_sha256: 1eea0d829817363c73e6b60c398d2b33b7fe6a13d2a4f1cf150778b71a60b470
+  inbox_png_sha256: 673885f3c28bb9e6a0cc5c48163003bee03e6c1cca7ff6849c7174fb90055e3a
+  rgba_sha256: 5bc0d708edb8eeccc1915717ab2d9c83cf30e1d104a57b924878bbd852269de6
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 91adf1952f256e8c
+- take: 3
+  source_file: /workspace/generated_images/exec-aae96c73-79b8-4f29-b003-c86fc703cd08.png
+  original_generated_png_sha256: 1621b8f510129b95f853ced56450b90a4a29c80420ee5de593ccdcafe69bf9d7
+  inbox_png_sha256: a79ce656280011776d0c4fd6f484163606d469921f2995a9d071b021bd23d4c1
+  rgba_sha256: bac1541f6a51174ddddb3f30356dd218ce321055ef33b8868079cf0a34f039aa
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 91adf1952f256e8c
+- take: 4
+  source_file: /workspace/generated_images/exec-360fef99-1a6c-4867-a7d3-d4bbca894a5f.png
+  original_generated_png_sha256: f5b3e1448fd372d1afd762e5cee75d61bac90a1cc3287cb561226c61a6aad461
+  inbox_png_sha256: 17b65f6821045d9d6db851310bea468342f6d30e936ceece7d3a5c1d112149e9
+  rgba_sha256: c4621d38db7fe6f2efa333e6a826b65ec6eff0606656cb3d3f2be48cd4db0e47
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 91adf1952f256e8c

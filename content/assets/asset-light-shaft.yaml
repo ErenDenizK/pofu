@@ -2,14 +2,13 @@ id: asset-light-shaft
 type: asset
 title_tr: light-shaft
 title_en: light-shaft (ui)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  One single soft beam of light falling from the top left corner diagonally toward the lower
-  middle of the image, a gentle wedge that widens as it falls, brightest near the top and
-  fading softly to nothing before the bottom edge, its sides soft and slightly uneven like
-  light through mist. A few tiny soft dust motes float inside the beam. Warm pale gold light
-  on pure black.
+summary: One single soft beam of light falling from the top left corner diagonally
+  toward the lower middle of the image, a gentle wedge that widens as it falls, brightest
+  near the top and fading softly to nothing before the bottom edge, its sides soft
+  and slightly uneven like light through mist. A few tiny soft dust motes float inside
+  the beam. Warm pale gold light on pure black.
 art:
   images: []
   jobs:
@@ -19,3 +18,13 @@ sources:
 kind: ui
 batch: batch-44-weather-fx
 size: 1024x1024
+notes:
+- 'batch-44-weather-fx: skipped. Skipped after the sole retry:all4 hard-fail additive_background,
+  border luma p99 .866/.859/.808/.901 at authored upper-left beam origin. One warm
+  diagonal beam itself is correct; origin conflicts with unchanged all-border QA.
+  No force/profile/pixel waiver. Automated failures: t1 additive_background: border
+  luma p99 0.866 (near-black, at most 0.05): the glow dies before the edge; t2 additive_background:
+  border luma p99 0.859 (near-black, at most 0.05): the glow dies before the edge;
+  t3 additive_background: border luma p99 0.808 (near-black, at most 0.05): the glow
+  dies before the edge; t4 additive_background: border luma p99 0.901 (near-black,
+  at most 0.05): the glow dies before the edge.'

@@ -2,14 +2,13 @@ id: asset-fog-card-1
 type: asset
 title_tr: fog-card-1
 title_en: fog-card-1 (ui)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  A long, low bank of soft mist seen from the side, filling the width of the image: pale white-grey
-  wisps that are densest along the bottom third and thin out upward into delicate curling
-  veils, with a few gentle thicker billows and thinner gaps inside so it has volume and depth,
-  like morning fog lying on water. The mist fades smoothly to pure black well before the left,
-  right and top edges.
+summary: 'A long, low bank of soft mist seen from the side, filling the width of the
+  image: pale white-grey wisps that are densest along the bottom third and thin out
+  upward into delicate curling veils, with a few gentle thicker billows and thinner
+  gaps inside so it has volume and depth, like morning fog lying on water. The mist
+  fades smoothly to pure black well before the left, right and top edges.'
 art:
   images: []
   jobs:
@@ -19,3 +18,12 @@ sources:
 kind: ui
 batch: batch-44-weather-fx
 size: 1536x1024
+notes:
+- 'batch-44-weather-fx skipped after four takes: Skipped after the sole retry:takes
+  1 and 3 hard-fail additive_background;takes 2 and 4 only warn but visible delivered
+  mist touches lower edge after canonical cover crop removes remaining falloff. Notes
+  require every-edge fade; prompt names only left/right/top, disclosed brief tension.
+  Peer516c198a supports conservative manual exclusion, without invented zero-RGB,
+  hard-outline or banding gates. Automated failures: t1 additive_background: border
+  luma p99 0.133 (near-black, at most 0.05): the glow dies before the edge; t3 additive_background:
+  border luma p99 0.310 (near-black, at most 0.05): the glow dies before the edge.'

@@ -1,0 +1,87 @@
+{
+  "job": "rain-tile",
+  "batch": "batch-44-weather-fx",
+  "asset": "ui__rain-tile",
+  "take": 3,
+  "takes_considered": 4,
+  "approved_at": "2026-11-06T08:29:33+00:00",
+  "image": "design/art/ui/ui-rain-tile/ui-rain-tile.png",
+  "raw": "design/art/ui/ui-rain-tile/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "f68a6bd7f676a5c2",
+  "prompt": "REFERENCES (attached, in this order):\n1. An approved glow sprite of the game: match its soft painted grain on pure black (do not draw a pool).\n\nA seamless, tileable pattern of gentle falling rain on pure black:\nabout sixty thin, soft, slightly slanted streaks of pale white-blue\nlight, varied in length and brightness, evenly scattered over the\nwhole square with no clumps and no empty corners, each streak\nsoftly tapered at both ends. The pattern continues across the edges\nso copies placed side by side or stacked join without a seam.\n\nUI OBJECT: a painted object that the app places under or inside native\niOS glass controls. Never paint glass, frosted panels, buttons, frames,\nprogress bars or any interface chrome: the app draws all glass and all\ncontrols natively. The object is centered with a generous transparent\nmargin of about 10% on every side.\n\nMASK SPRITE: painted light-on-black for a game, pure black\n(#000000) background, only white and pale blue-white, soft painted\nstreaks, never hard digital lines.\n\nAVOID: a storm, lightning, splashes, drops with outlines, clouds, a ground, any object, colour beyond pale blue-white, text, letters, a border, a visible seam\n\nOutput: one image, opaque, full bleed, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/ui/ui-glow-ground-pool/ui-glow-ground-pool.png",
+      "role": "An approved glow sprite of the game: match its soft painted grain on pure black (do not draw a pool)."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-06T07:41:38+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "fit": null,
+  "emit_region": null,
+  "qa": {
+    "status": "pass",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "opaque, as this kind must be"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 and center-cropped to 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "glow chroma p95 12 on 1% lit pixels (additive profile)",
+        "value": 11.8708
+      },
+      {
+        "check": "additive_background",
+        "status": "pass",
+        "message": "border luma p99 0.038 (near-black, at most 0.05): the glow dies before the edge",
+        "value": 0.0384
+      },
+      {
+        "check": "additive_falloff",
+        "status": "pass",
+        "message": "0.36% of the image has a hard edge (luma step over 0.08 per px at 256 px; soft falloff, at most 0.8%)",
+        "value": 0.0036
+      },
+      {
+        "check": "additive_banding",
+        "status": "pass",
+        "message": "149 of 149 luma levels used across the falloff (100%; low means banding)",
+        "value": 1.0
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 0.7 (R1 5.3)",
+        "value": 0.67
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. auto-picked by QA; founder review pending. Only3 passes hard QA after the sole retry. Roughly60 thin soft pale blue-white slanted tapered streaks, varied length/brightness, even coverage, no objects. Actual normalized2x2 diagnostic has no conspicuous straight seam or empty-corner block; visual review does not claim exact pixel periodicity."
+}

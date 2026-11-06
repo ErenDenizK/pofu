@@ -4,14 +4,14 @@ title_tr: rain-tile
 title_en: rain-tile (ui)
 status: in-production
 horizon: now
-summary: >-
-  A seamless, tileable pattern of gentle falling rain on pure black: about sixty thin, soft,
-  slightly slanted streaks of pale white-blue light, varied in length and brightness, evenly
-  scattered over the whole square with no clumps and no empty corners, each streak softly
-  tapered at both ends. The pattern continues across the edges so copies placed side by side
-  or stacked join without a seam.
+summary: 'A seamless, tileable pattern of gentle falling rain on pure black: about
+  sixty thin, soft, slightly slanted streaks of pale white-blue light, varied in length
+  and brightness, evenly scattered over the whole square with no clumps and no empty
+  corners, each streak softly tapered at both ends. The pattern continues across the
+  edges so copies placed side by side or stacked join without a seam.'
 art:
-  images: []
+  images:
+  - design/art/ui/ui-rain-tile/ui-rain-tile.png
   jobs:
   - batch-44-weather-fx:rain-tile
 sources:
@@ -19,3 +19,9 @@ sources:
 kind: ui
 batch: batch-44-weather-fx
 size: 1024x1024
+notes:
+- 'batch-44-weather-fx: promoted take 3. auto-picked by QA; founder review pending.
+  Only3 passes hard QA after the sole retry. Roughly60 thin soft pale blue-white slanted
+  tapered streaks, varied length/brightness, even coverage, no objects. Actual normalized2x2
+  diagnostic has no conspicuous straight seam or empty-corner block; visual review
+  does not claim exact pixel periodicity.'

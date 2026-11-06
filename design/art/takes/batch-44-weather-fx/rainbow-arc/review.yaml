@@ -1,0 +1,275 @@
+batch: batch-44-weather-fx
+contact_sheet: design/art/takes/batch-44-weather-fx/rainbow-arc/contact.jpg
+jobs:
+  rainbow-arc:
+    pick: none
+    publication: skipped after one allowed retry
+    note: Skipped after sole unchanged-prompt technical-cap retry:all4 QA/manual-content
+      pass but maximum-effort lossless bytes783126/739610/827390/792124 exceed614400.
+      PNG/default lossless also fail. All sources retained, no source resize/lossy
+      master/alternate-pixel/threshold workaround. Six pastel soft bands andonearc
+      are correct.
+qa_reports:
+  4:
+    job: rainbow-arc
+    take: 4
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: glow chroma p95 45 on 34% lit pixels (additive profile)
+      value: 45.4337
+    - check: additive_background
+      status: pass
+      message: 'border luma p99 0.010 (near-black, at most 0.05): the glow dies before
+        the edge'
+      value: 0.0095
+    - check: additive_falloff
+      status: pass
+      message: 0.00% of the image has a hard edge (luma step over 0.08 per px at 256
+        px; soft falloff, at most 0.8%)
+      value: 0.0
+    - check: additive_banding
+      status: pass
+      message: 192 of 192 luma levels used across the falloff (100%; low means banding)
+      value: 1.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.5 (R1 5.3)
+      value: 0.5
+    info:
+      lock_skipped: 'additive glow: black stays black'
+      metrics_raw:
+        L_p5: 0.0
+        L_p50: 0.5
+        L_p95: 81.5
+        C_p50: 0.5
+        C_p95: 44.0
+        C_p99: 45.8
+        detail: 0.5
+      metrics_locked:
+        L_p5: 0.0
+        L_p50: 0.5
+        L_p95: 81.5
+        C_p50: 0.5
+        C_p95: 44.0
+        C_p99: 45.8
+        detail: 0.5
+    fingerprint: 9826f4a72dc269c5
+  2:
+    job: rainbow-arc
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: glow chroma p95 47 on 28% lit pixels (additive profile)
+      value: 46.882
+    - check: additive_background
+      status: pass
+      message: 'border luma p99 0.016 (near-black, at most 0.05): the glow dies before
+        the edge'
+      value: 0.016
+    - check: additive_falloff
+      status: pass
+      message: 0.00% of the image has a hard edge (luma step over 0.08 per px at 256
+        px; soft falloff, at most 0.8%)
+      value: 0.0
+    - check: additive_banding
+      status: pass
+      message: 192 of 192 luma levels used across the falloff (100%; low means banding)
+      value: 1.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.5 (R1 5.3)
+      value: 0.47
+    info:
+      lock_skipped: 'additive glow: black stays black'
+      metrics_raw:
+        L_p5: 0.0
+        L_p50: 0.3
+        L_p95: 77.2
+        C_p50: 0.3
+        C_p95: 44.4
+        C_p99: 47.2
+        detail: 0.47
+      metrics_locked:
+        L_p5: 0.0
+        L_p50: 0.3
+        L_p95: 77.2
+        C_p50: 0.3
+        C_p95: 44.4
+        C_p99: 47.2
+        detail: 0.47
+    fingerprint: 9826f4a72dc269c5
+  1:
+    job: rainbow-arc
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: glow chroma p95 44 on 31% lit pixels (additive profile)
+      value: 43.6429
+    - check: additive_background
+      status: pass
+      message: 'border luma p99 0.008 (near-black, at most 0.05): the glow dies before
+        the edge'
+      value: 0.0078
+    - check: additive_falloff
+      status: pass
+      message: 0.00% of the image has a hard edge (luma step over 0.08 per px at 256
+        px; soft falloff, at most 0.8%)
+      value: 0.0
+    - check: additive_banding
+      status: pass
+      message: 194 of 194 luma levels used across the falloff (100%; low means banding)
+      value: 1.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.5 (R1 5.3)
+      value: 0.51
+    info:
+      lock_skipped: 'additive glow: black stays black'
+      metrics_raw:
+        L_p5: 0.0
+        L_p50: 0.4
+        L_p95: 79.1
+        C_p50: 0.4
+        C_p95: 41.0
+        C_p99: 44.1
+        detail: 0.51
+      metrics_locked:
+        L_p5: 0.0
+        L_p50: 0.4
+        L_p95: 79.1
+        C_p50: 0.4
+        C_p95: 41.0
+        C_p99: 44.1
+        detail: 0.51
+    fingerprint: 9826f4a72dc269c5
+  3:
+    job: rainbow-arc
+    take: 3
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: glow chroma p95 42 on 30% lit pixels (additive profile)
+      value: 41.6375
+    - check: additive_background
+      status: pass
+      message: 'border luma p99 0.012 (near-black, at most 0.05): the glow dies before
+        the edge'
+      value: 0.0118
+    - check: additive_falloff
+      status: pass
+      message: 0.00% of the image has a hard edge (luma step over 0.08 per px at 256
+        px; soft falloff, at most 0.8%)
+      value: 0.0
+    - check: additive_banding
+      status: pass
+      message: 193 of 193 luma levels used across the falloff (100%; low means banding)
+      value: 1.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.6 (R1 5.3)
+      value: 0.55
+    info:
+      lock_skipped: 'additive glow: black stays black'
+      metrics_raw:
+        L_p5: 0.0
+        L_p50: 0.3
+        L_p95: 78.2
+        C_p50: 0.4
+        C_p95: 39.1
+        C_p99: 42.1
+        detail: 0.55
+      metrics_locked:
+        L_p5: 0.0
+        L_p50: 0.3
+        L_p95: 78.2
+        C_p50: 0.4
+        C_p95: 39.1
+        C_p99: 42.1
+        detail: 0.55
+    fingerprint: 9826f4a72dc269c5
+manual_review:
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+  note: Skipped after sole unchanged-prompt technical-cap retry:all4 QA/manual-content
+    pass but maximum-effort lossless bytes783126/739610/827390/792124 exceed614400.
+    PNG/default lossless also fail. All sources retained, no source resize/lossy master/alternate-pixel/threshold
+    workaround. Six pastel soft bands andonearc are correct.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-565b56dd-f21a-4730-a7c2-ba8f56ae7603.png
+  original_generated_png_sha256: 2ecbdaca038cd83270f9c0f86f1a0fe1d038c9810f72e133cf2e4823530017dd
+  inbox_png_sha256: f208bf3230c993b2476c6f15deb0ea35fb4407acc877c8c7c42869f751555e8e
+  rgba_sha256: 36ce6d6762fe351312214c7dc42bc0bbfe3309171d74e89674cd8894cc5267ea
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 9826f4a72dc269c5
+- take: 2
+  source_file: /workspace/generated_images/exec-4fe98cd3-0fe8-491e-897a-87ca6688acf9.png
+  original_generated_png_sha256: 4863936e637cfeec0d3e1e58e79d46906c9299ab38512e2267a22f8b7bac85ae
+  inbox_png_sha256: c1beee901ad92019936fdc0fdc0595c1e7b3c9df82b06c0ce1c84d65669e2b23
+  rgba_sha256: 9eea89287a71873d934efaa7ba6aaa9906a95edc50517f1d6ab2d46de63963a6
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 9826f4a72dc269c5
+- take: 3
+  source_file: /workspace/generated_images/exec-6b0ae018-f5d8-4f87-b641-9b391cf7bae8.png
+  original_generated_png_sha256: ffcdaddada9dfdeda9bf50f490e573ab27471afa37d8d0826504748a798dd7db
+  inbox_png_sha256: 0b577567264eb6f9e25eba9b0ca4b0299c32c8f886d977dc3a46ea86df81c709
+  rgba_sha256: 795587bea21d73efff94e4bfbeaa77d3224682d83d32480ab059c81bba380107
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 9826f4a72dc269c5
+- take: 4
+  source_file: /workspace/generated_images/exec-eb6902b1-0299-49f0-b535-03a6ba879bb1.png
+  original_generated_png_sha256: b2a255c37025fc047160d37c10d07bec79d495234f8396c5b91e767f33eebb87
+  inbox_png_sha256: 9d89451f859e4e38ef88c8186e7d67b0023d22ff3e409bc9b3656a284ac61823
+  rgba_sha256: cfd9de7d941743a0fe49fd676571535a567253c83c687e0642d23c4bef73a629
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 9826f4a72dc269c5
