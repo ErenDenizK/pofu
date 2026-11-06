@@ -1,0 +1,248 @@
+batch: batch-44-weather-fx
+contact_sheet: design/art/takes/batch-44-weather-fx/rain-tile/contact.jpg
+jobs:
+  rain-tile:
+    pick: 3
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. auto-picked by QA; founder review
+      pending. Only3 passes hard QA after the sole retry. Roughly60 thin soft pale
+      blue-white slanted tapered streaks, varied length/brightness, even coverage,
+      no objects. Actual normalized2x2 diagnostic has no conspicuous straight seam
+      or empty-corner block; visual review does not claim exact pixel periodicity.
+qa_reports:
+  2:
+    job: rain-tile
+    take: 2
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: glow_present
+      status: fail
+      message: only 0.9% of the image is lit (at least 1%)
+      value: 0.009
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.6 (R1 5.3)
+      value: 0.57
+    info:
+      lock_skipped: 'additive glow: black stays black'
+      metrics_raw:
+        L_p5: 0.0
+        L_p50: 0.0
+        L_p95: 1.5
+        C_p50: 0.0
+        C_p95: 0.8
+        C_p99: 5.4
+        detail: 0.57
+      metrics_locked:
+        L_p5: 0.0
+        L_p50: 0.0
+        L_p95: 1.5
+        C_p50: 0.0
+        C_p95: 0.8
+        C_p99: 5.4
+        detail: 0.57
+    fingerprint: f68a6bd7f676a5c2
+  4:
+    job: rain-tile
+    take: 4
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: glow_present
+      status: fail
+      message: only 0.9% of the image is lit (at least 1%)
+      value: 0.0085
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.7 (R1 5.3)
+      value: 0.72
+    info:
+      lock_skipped: 'additive glow: black stays black'
+      metrics_raw:
+        L_p5: 0.0
+        L_p50: 0.0
+        L_p95: 1.6
+        C_p50: 0.0
+        C_p95: 0.8
+        C_p99: 4.2
+        detail: 0.72
+      metrics_locked:
+        L_p5: 0.0
+        L_p50: 0.0
+        L_p95: 1.6
+        C_p50: 0.0
+        C_p95: 0.8
+        C_p99: 4.2
+        detail: 0.72
+    fingerprint: f68a6bd7f676a5c2
+  1:
+    job: rain-tile
+    take: 1
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: glow chroma p95 12 on 1% lit pixels (additive profile)
+      value: 11.9533
+    - check: additive_background
+      status: fail
+      message: 'border luma p99 0.102 (near-black, at most 0.05): the glow dies before
+        the edge'
+      value: 0.1023
+    - check: additive_falloff
+      status: pass
+      message: 0.36% of the image has a hard edge (luma step over 0.08 per px at 256
+        px; soft falloff, at most 0.8%)
+      value: 0.0036
+    - check: additive_banding
+      status: pass
+      message: 121 of 121 luma levels used across the falloff (100%; low means banding)
+      value: 1.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.7 (R1 5.3)
+      value: 0.69
+    info:
+      lock_skipped: 'additive glow: black stays black'
+      metrics_raw:
+        L_p5: 0.0
+        L_p50: 0.0
+        L_p95: 1.9
+        C_p50: 0.0
+        C_p95: 0.9
+        C_p99: 6.0
+        detail: 0.69
+      metrics_locked:
+        L_p5: 0.0
+        L_p50: 0.0
+        L_p95: 1.9
+        C_p50: 0.0
+        C_p95: 0.9
+        C_p99: 6.0
+        detail: 0.69
+    fingerprint: f68a6bd7f676a5c2
+  3:
+    job: rain-tile
+    take: 3
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: glow chroma p95 12 on 1% lit pixels (additive profile)
+      value: 11.8708
+    - check: additive_background
+      status: pass
+      message: 'border luma p99 0.038 (near-black, at most 0.05): the glow dies before
+        the edge'
+      value: 0.0384
+    - check: additive_falloff
+      status: pass
+      message: 0.36% of the image has a hard edge (luma step over 0.08 per px at 256
+        px; soft falloff, at most 0.8%)
+      value: 0.0036
+    - check: additive_banding
+      status: pass
+      message: 149 of 149 luma levels used across the falloff (100%; low means banding)
+      value: 1.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.7 (R1 5.3)
+      value: 0.67
+    info:
+      lock_skipped: 'additive glow: black stays black'
+      metrics_raw:
+        L_p5: 0.0
+        L_p50: 0.0
+        L_p95: 1.6
+        C_p50: 0.0
+        C_p95: 1.0
+        C_p99: 6.7
+        detail: 0.67
+      metrics_locked:
+        L_p5: 0.0
+        L_p50: 0.0
+        L_p95: 1.6
+        C_p50: 0.0
+        C_p95: 1.0
+        C_p99: 6.7
+        detail: 0.67
+    fingerprint: f68a6bd7f676a5c2
+manual_review:
+  excluded_takes: []
+  note: auto-picked by QA; founder review pending. Only3 passes hard QA after the
+    sole retry. Roughly60 thin soft pale blue-white slanted tapered streaks, varied
+    length/brightness, even coverage, no objects. Actual normalized2x2 diagnostic
+    has no conspicuous straight seam or empty-corner block; visual review does not
+    claim exact pixel periodicity.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-928a95a0-b005-478d-b6d4-c01060e4170d.png
+  original_generated_png_sha256: 5fa18e6c031226c9af2f61547840ca2d10a911005edf85fe02a9317eedbe7322
+  inbox_png_sha256: 1662759da1674e93a284fc3a7f52f1ef032f1a7013092c458460a67bddfb79cf
+  rgba_sha256: bbee1c9088eda45e26eb5bb80423b7c669879098f53274bcaef8419c71c41aa3
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: f68a6bd7f676a5c2
+- take: 2
+  source_file: /workspace/generated_images/exec-808b0b00-ee83-42c7-abd4-1482813cbe55.png
+  original_generated_png_sha256: f8597b3884936942b2bb67c6d3b3aaaccd29963927ad80b8610be70832811b75
+  inbox_png_sha256: df8f12f3214bdd1a3b45cf40ae5a85843e08e1d0343fd221251ab3dc519c4498
+  rgba_sha256: 803becd1ff72308e1dbb10701eca6e364e2fc5c0cf1d982be26a66430c9bf625
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: f68a6bd7f676a5c2
+- take: 3
+  source_file: /workspace/generated_images/exec-3d474ae5-4740-4d31-8346-ce0183f2e6a9.png
+  original_generated_png_sha256: 50fc15891f8cea251eb5bf70de69860088c6b89c81c8574c6a8099b95c25cc7b
+  inbox_png_sha256: 79e94b41bf83ecfbf4ae06e7bb2cdc35a0221342065aa1b8fdb589b98a004fc2
+  rgba_sha256: fa7143ffbbdae431694e378a4caf2b6fadfad2d8144c34b6f29ab47653364608
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: f68a6bd7f676a5c2
+- take: 4
+  source_file: /workspace/generated_images/exec-4b82df75-c401-488b-b7d8-91742cd1d2d4.png
+  original_generated_png_sha256: 234b101caef9908a81fe4887cdfe6bdffe85fdc5b6c66e0b9745f3a750517ccc
+  inbox_png_sha256: 37b516978e90b142a49a926362d477e9af14432643f1e6c2e97401d540e6d62c
+  rgba_sha256: 6291971822819a835b6e2b9582be323c1474794384c7811817578678df6ab3ec
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: f68a6bd7f676a5c2
