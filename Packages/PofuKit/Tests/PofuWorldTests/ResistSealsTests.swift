@@ -34,21 +34,18 @@ struct ResistSealsTests {
         #expect(ResistSealTally(total: 3, fresh: 9, start: start).press(of: 0, at: start) == 0, "all three are new")
     }
 
-    @Test func slotsHangUnderTheDoorAndNeverOverlap() {
-        let slots = (0..<DoorStamp.maxSeals).map { ResistSealLayout.offset(of: $0) }
-        for (index, slot) in slots.enumerated() {
-            #expect(slot.dy > 10, "under the door")
+    @Test func slotsHangUnderPofuBelowTheDoorsAndNeverOverlap() {
+        for index in 0..<DoorStamp.maxSeals {
             let p = ResistSealLayout.point(of: index)
-            #expect(p.x < 0, "never reaches Mochi's door (H2 at x 40)")
-            #expect(p.y >= 45 && p.y <= 150, "on the earth face")
+            #expect(p.y >= 110 && p.y <= 150, "on the earth band under the doors' feet")
+            #expect(abs(p.x - 22) <= 90, "centred under Pofu, on screen")
         }
-        for a in 0..<slots.count {
-            for b in (a + 1)..<slots.count {
-                let d = hypot(slots[a].dx - slots[b].dx, slots[a].dy - slots[b].dy)
-                #expect(d >= 16, "\(a) and \(b)")
+        for a in 0..<DoorStamp.maxSeals {
+            for b in (a + 1)..<DoorStamp.maxSeals {
+                let pa = ResistSealLayout.point(of: a), pb = ResistSealLayout.point(of: b)
+                #expect(hypot(pa.x - pb.x, pa.y - pb.y) >= 18, "\(a) and \(b)")
             }
         }
-        #expect(ResistSealLayout.anchor.x == -107 && ResistSealLayout.anchor.y == 80)
     }
 
     @Test func aSealIsTwentyFourToTwentyEightPoints() {

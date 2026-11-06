@@ -72,17 +72,17 @@ public struct ResistSealTally: Equatable, Sendable {
 
 /// Where the seals sit on the earth face, in world units from H1.
 public enum ResistSealLayout {
-    /// Pofu's round door (`home-layout` H1).
-    public static let anchor = WorldPoint(x: -107, y: 80)
+    /// Under Pofu, on the earth band below the residents' doors (lead,
+    /// 2026-11-06: at the readable home framing Pofu's own door, H1, sits at
+    /// the screen's left edge, so the seals hang centred under Pofu instead,
+    /// below the doors' feet, always on screen).
+    public static let anchor = WorldPoint(x: 22, y: 126)
 
-    /// Slot `index`: a necklace under the round door, a lower half-ellipse
-    /// from its left shoulder to its right (lead, 2026-11-06: an arc beside
-    /// the door spilled onto Mochi's door). Slot 0 is the left end.
+    /// Slot `index`: a gentle smile of eight seals, left to right.
     public static func offset(of index: Int) -> (dx: Double, dy: Double) {
         let slot = min(max(index, 0), DoorStamp.maxSeals - 1)
-        let degrees = 200.0 + 20.0 * Double(slot)
-        let radians = degrees * .pi / 180
-        return (dx: 70 * cos(radians), dy: -40 * sin(radians))
+        let u = (Double(slot) - 3.5) / 3.5
+        return (dx: 22 * (Double(slot) - 3.5), dy: 7 * (1 - u * u))
     }
 
     public static func point(of index: Int) -> WorldPoint {
