@@ -351,5 +351,9 @@ the act lists need the new order); `content/islands/*.yaml` predate both.
    wait); fall back to the blessing only if tests show a long wait.
 3. **The seventh filler** (§6).
 4. **Arı island art.** No `ari-island` batch is in the art queue (only the
-   proposal `batch-54-ari` in the old sheet); it is dropped. The home hive
-   art (batch-28 concepts) is what Arı needs.
+   proposal `batch-54-ari` in the old sheet); it is dropped. Arı needs the
+   home hive: `hive-1` to `hive-3` are merged, `hive-4`/`hive-5` are
+   blocked on the lead's review (art queue row 0-x). Art queue row B-A
+   still calls Fanus's greenhouse and Çömlek's kiln "Book Two hilltop
+   add-ons"; on the map they are Book One fillers, so that row's wording
+   needs a pass.
