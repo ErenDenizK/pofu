@@ -1,0 +1,452 @@
+batch: batch-39-koke-production
+contact_sheet: design/art/takes/koke-repost-2026-11-06/koke-standing/contact.jpg
+jobs:
+  koke-standing:
+    pick: none
+    publication: skipped after one allowed retry
+    note: 'Skipped after the sole unchanged-prompt retry. All four takes hard-fail
+      palette_drift, edit_silhouette and edit_stability under the unchanged authored
+      region profile. Alpha overlap0.6218/0.6054/0.6666/0.6741; parent kept0.2015/0.2050/0.2112/0.1893;
+      palette mean dE4.6591/4.9762/4.7602/4.1974 with recorded off-palette failures.
+      An expressive standing/flowering pose cannot bypass the hard checks. All four
+      source PNGs and exact QA preserved; no third generation round, threshold/manifest/palette
+      edits or forced promotion. No true dependents; the passing registered one-eye
+      reaction and other island jobs continue. Automated failures: t1 palette_drift:
+      mean dE 4.7, p95 15.2, off-palette 15.7% (top: #888822 (0.9%), #99AA33 (0.8%)),
+      edit_silhouette: 62% of the parent''s shape kept, edit_stability: 20% of the
+      parent level unchanged; t2 palette_drift: mean dE 5.0, p95 15.4, off-palette
+      15.2% (top: #BBCC55 (0.8%), #CCCC55 (0.8%)), edit_silhouette: 61% of the parent''s
+      shape kept, edit_stability: 20% of the parent level unchanged; t3 palette_drift:
+      mean dE 4.8, p95 14.7, off-palette 14.0% (top: #AABB44 (0.9%), #CCCC55 (0.8%)),
+      edit_silhouette: 67% of the parent''s shape kept, edit_stability: 21% of the
+      parent level unchanged; t4 palette_drift: mean dE 4.2, p95 13.7, off-palette
+      10.3% (top: #AABB44 (0.8%), #BBBB55 (0.7%)), edit_silhouette: 67% of the parent''s
+      shape kept, edit_stability: 19% of the parent level unchanged.'
+qa_reports:
+  3:
+    job: koke-standing
+    take: 3
+    status: fail
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: edit_alignment
+      status: pass
+      message: the edit rescaled the object x0.979 and moved it; aligned back to the
+        parent
+      value: 1.0217
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 57 (R1 51)
+      value: 57.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 38 (at most 22), p98 94 (at least 90), spread 56
+        (at least 60)'
+      value: 56.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 78 (band 55-90)'
+      value: 78.0
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.02 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.02
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.1 (at least 3.5)'
+      value: 6.06
+    - check: detail_budget
+      status: pass
+      message: detail at display size 7.0 (R1 5.3)
+      value: 6.99
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 4.8, p95 14.7, off-palette 14.0% (top: #AABB44 (0.9%), #CCCC55
+        (0.8%))'
+      value: 4.7602
+    - check: ground_line
+      status: pass
+      message: feet at 88.3% of the height (contract 88%)
+      value: 0.8828
+    - check: harmony
+      status: warn
+      message: 'harmony score 68 against the char reference (outliers: C_p95, L_p2,
+        detail)'
+      value: 68.0
+    - check: edit_silhouette
+      status: fail
+      message: 67% of the parent's shape kept
+      value: 0.6666
+    - check: edit_stability
+      status: fail
+      message: 21% of the parent level unchanged
+      value: 0.2112
+    - check: edit_chroma
+      status: warn
+      message: chroma x0.81 of the parent level (drift compounds along a chain)
+      value: 0.806
+    info:
+      alignment:
+        scale: 1.0217
+        cx: 512.5
+        cy: 900.0
+        dx: -7
+        dy: 5
+      metrics_raw:
+        L_p5: 49.3
+        L_p50: 78.0
+        L_p95: 92.1
+        C_p50: 37.1
+        C_p95: 62.0
+        C_p99: 67.6
+        detail: 7.0
+      metrics_locked:
+        L_p5: 49.5
+        L_p50: 78.0
+        L_p95: 92.4
+        C_p50: 37.0
+        C_p95: 57.4
+        C_p99: 58.9
+        detail: 6.99
+    fingerprint: 42a190b6943ea808
+  4:
+    job: koke-standing
+    take: 4
+    status: fail
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: edit_alignment
+      status: pass
+      message: the edit rescaled the object x0.972 and moved it; aligned back to the
+        parent
+      value: 1.029
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 57 (R1 51)
+      value: 56.7
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 39 (at most 22), p98 94 (at least 90), spread 55
+        (at least 60)'
+      value: 55.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 77 (band 55-90)'
+      value: 76.8
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.04 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.043
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.6 (at least 3.5)'
+      value: 5.59
+    - check: detail_budget
+      status: warn
+      message: detail at display size 7.3 (R1 5.3)
+      value: 7.35
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 4.2, p95 13.7, off-palette 10.3% (top: #AABB44 (0.8%), #BBBB55
+        (0.7%))'
+      value: 4.1974
+    - check: ground_line
+      status: pass
+      message: feet at 88.4% of the height (contract 88%)
+      value: 0.8838
+    - check: harmony
+      status: warn
+      message: 'harmony score 68 against the char reference (outliers: C_p95, L_p2,
+        detail)'
+      value: 68.3
+    - check: edit_silhouette
+      status: fail
+      message: 67% of the parent's shape kept
+      value: 0.6741
+    - check: edit_stability
+      status: fail
+      message: 19% of the parent level unchanged
+      value: 0.1893
+    - check: edit_chroma
+      status: warn
+      message: chroma x0.83 of the parent level (drift compounds along a chain)
+      value: 0.8263
+    info:
+      alignment:
+        scale: 1.029
+        cx: 514.5
+        cy: 908.0
+        dx: -4
+        dy: -3
+      metrics_raw:
+        L_p5: 47.0
+        L_p50: 76.7
+        L_p95: 91.3
+        C_p50: 35.1
+        C_p95: 59.6
+        C_p99: 63.8
+        detail: 7.33
+      metrics_locked:
+        L_p5: 47.3
+        L_p50: 76.8
+        L_p95: 91.6
+        C_p50: 35.1
+        C_p95: 56.7
+        C_p99: 57.9
+        detail: 7.35
+    fingerprint: 42a190b6943ea808
+  2:
+    job: koke-standing
+    take: 2
+    status: fail
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: edit_alignment
+      status: warn
+      message: the edit rescaled the object x0.904 and moved it; aligned back to the
+        parent
+      value: 1.1058
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 58 (R1 51)
+      value: 57.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 37 (at most 22), p98 95 (at least 90), spread 58
+        (at least 60)'
+      value: 57.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 79 (band 55-90)'
+      value: 79.0
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.01 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.008
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.8 (at least 3.5)'
+      value: 5.85
+    - check: detail_budget
+      status: warn
+      message: detail at display size 7.5 (R1 5.3)
+      value: 7.45
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 5.0, p95 15.4, off-palette 15.2% (top: #BBCC55 (0.8%), #CCCC55
+        (0.8%))'
+      value: 4.9762
+    - check: ground_line
+      status: pass
+      message: feet at 88.3% of the height (contract 88%)
+      value: 0.8828
+    - check: harmony
+      status: warn
+      message: 'harmony score 70 against the char reference (outliers: C_p95, L_p2,
+        detail)'
+      value: 69.7
+    - check: edit_silhouette
+      status: fail
+      message: 61% of the parent's shape kept
+      value: 0.6054
+    - check: edit_stability
+      status: fail
+      message: 20% of the parent level unchanged
+      value: 0.205
+    - check: edit_chroma
+      status: warn
+      message: chroma x0.71 of the parent level (drift compounds along a chain)
+      value: 0.7142
+    info:
+      alignment:
+        scale: 1.1058
+        cx: 511.5
+        cy: 909.0
+        dx: 2
+        dy: -5
+      metrics_raw:
+        L_p5: 48.6
+        L_p50: 78.9
+        L_p95: 92.7
+        C_p50: 36.1
+        C_p95: 63.3
+        C_p99: 69.0
+        detail: 7.43
+      metrics_locked:
+        L_p5: 48.9
+        L_p50: 79.0
+        L_p95: 93.0
+        C_p50: 36.1
+        C_p95: 57.8
+        C_p99: 59.2
+        detail: 7.45
+    fingerprint: 42a190b6943ea808
+  1:
+    job: koke-standing
+    take: 1
+    status: fail
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: edit_alignment
+      status: warn
+      message: the edit rescaled the object x0.913 and moved it; aligned back to the
+        parent
+      value: 1.0952
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 58 (R1 51)
+      value: 57.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 36 (at most 22), p98 94 (at least 90), spread 59
+        (at least 60)'
+      value: 58.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 78 (band 55-90)'
+      value: 77.6
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.01 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.012
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.9 (at least 3.5)'
+      value: 5.94
+    - check: detail_budget
+      status: warn
+      message: detail at display size 7.9 (R1 5.3)
+      value: 7.86
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 4.7, p95 15.2, off-palette 15.7% (top: #888822 (0.9%), #99AA33
+        (0.8%))'
+      value: 4.6591
+    - check: ground_line
+      status: pass
+      message: feet at 88.3% of the height (contract 88%)
+      value: 0.8828
+    - check: harmony
+      status: pass
+      message: 'harmony score 70 against the char reference (outliers: C_p95, L_p2,
+        detail)'
+      value: 70.1
+    - check: edit_silhouette
+      status: fail
+      message: 62% of the parent's shape kept
+      value: 0.6218
+    - check: edit_stability
+      status: fail
+      message: 20% of the parent level unchanged
+      value: 0.2015
+    - check: edit_chroma
+      status: warn
+      message: chroma x0.79 of the parent level (drift compounds along a chain)
+      value: 0.7915
+    info:
+      alignment:
+        scale: 1.0952
+        cx: 512.5
+        cy: 904.0
+        dx: 2
+        dy: 1
+      metrics_raw:
+        L_p5: 47.3
+        L_p50: 77.6
+        L_p95: 92.2
+        C_p50: 36.4
+        C_p95: 63.4
+        C_p99: 68.5
+        detail: 7.84
+      metrics_locked:
+        L_p5: 47.6
+        L_p50: 77.7
+        L_p95: 92.4
+        C_p50: 36.3
+        C_p95: 57.8
+        C_p99: 59.2
+        detail: 7.86
+    fingerprint: 42a190b6943ea808
+manual_review:
+  excluded_takes: []
+  note: Skipped after the sole unchanged-prompt retry. All four takes hard-fail palette_drift,
+    edit_silhouette and edit_stability under the unchanged authored region profile.
+    Alpha overlap0.6218/0.6054/0.6666/0.6741; parent kept0.2015/0.2050/0.2112/0.1893;
+    palette mean dE4.6591/4.9762/4.7602/4.1974 with recorded off-palette failures.
+    An expressive standing/flowering pose cannot bypass the hard checks. All four
+    source PNGs and exact QA preserved; no third generation round, threshold/manifest/palette
+    edits or forced promotion. No true dependents; the passing registered one-eye
+    reaction and other island jobs continue.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-cee7f69c-ff54-47cc-844c-11a1b6c22d2f.png
+  original_generated_png_sha256: 660965dc8d23098bbd90f07e4c61475378e3aad0b21920531c59a12c7e168b9f
+  inbox_png_sha256: 1796dd3926bb57dfa2f53d1741a094fc5ae977892dc915e9db81c8d453d5037d
+  rgba_sha256: ec27091a35ffbeff13db306f2aba2bae02b264d572187a5975c327676723c662
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 42a190b6943ea808
+- take: 2
+  source_file: /workspace/generated_images/exec-bb6642ed-806f-4ff6-812c-870b529c08f8.png
+  original_generated_png_sha256: 84073e5e23adf40d7f9e14eb700e811604af4cd73f23c473c9194552f3f128c3
+  inbox_png_sha256: 3e4cc376c7b71e9d66fd7dfa75e2c9e79a9b3bbd2b542d42053b0eee2201d823
+  rgba_sha256: a4d70a8b988c69816ec50ed1d73adb0c136050b4631ee9640a4e453d5eb04433
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 42a190b6943ea808
+- take: 3
+  source_file: /workspace/generated_images/exec-17731f39-b60c-46de-bf43-7884317a9279.png
+  original_generated_png_sha256: 53e844c9575b4019844e89c64c7dc63992f98dceeffbd42e8673573b9f146bc9
+  inbox_png_sha256: 3221698671409101b3f005143fce020e73d2f48e52918b8d208eac82d0742b79
+  rgba_sha256: 962d1e7dea7413707a3988c78972bfddfdcbac9dbe642733475a5bed334747b5
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 42a190b6943ea808
+- take: 4
+  source_file: /workspace/generated_images/exec-62751235-4350-4c0b-ba58-ec45239fdcb8.png
+  original_generated_png_sha256: fde62a7126cefd58e09d79630add0ea2611672a5d4dab3ed7f4273f11a0b4685
+  inbox_png_sha256: 55b14b92b971fb65bc65db51d2f402f84c0480f78b55856904cce32f38bebb3c
+  rgba_sha256: de057c8deadc03fdde4b8e717550b5ea43fc77f248995076b3ce3ea668ada4da
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 42a190b6943ea808
