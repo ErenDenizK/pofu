@@ -1,0 +1,24 @@
+batch: batch-22-gezgin-forms-v2
+manifest: tools/imagegen/manifest/batch-22-gezgin-forms-v2.yaml
+manifest_sha256: e2a391476d28225d6de3381d445616c4d38e5ef414c86062e0a9e468417cc1eb
+jobs:
+  x-gezgin-f1-side-r-v2:
+    pick: none
+    publication: skipped true dependent; never dispatched
+    note: 'Never dispatched: a true approved:x-gezgin-f1-side-v2 dependent of the
+      terminal superseded anchor. No source, QA post, selection, promotion or retry
+      is invented.'
+terminal_obsolete_proof_sha256: 338a66a3942de0dd7f885f5ef50d46866c727ef550e904850c9d1b5368cb540c
+legacy_generation_base: 8116313094ea7379915a2a881e0bffe0f8f2cc00
+publication_base: 16c8d42720e2044b225d74a7a8f47e4526832a5f
+generated_takes: 0
+retry_dispatched: false
+retry_unused: true
+sources: []
+qa_reports: {}
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+never_promoted: true
+dependent_on: x-gezgin-f1-side-v2
+parent_terminal_state: skipped superseded brief; retry unused
