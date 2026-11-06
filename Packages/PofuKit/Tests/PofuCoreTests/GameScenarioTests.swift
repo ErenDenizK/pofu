@@ -109,7 +109,26 @@ struct GameScenarioTests {
         }
     }
 
+    /// What the world showed at the end of one simulated day (the flow
+    /// audit reads these; the other tests ignore them).
+    struct DayLog: Sendable {
+        var day: Int
+        var tendedDays: Int
+        var levels: Int
+        var islandLevel: Int
+        var harborOpen: Bool
+        var kokePhase: WonderStatus.Phase
+        var kokeStage: Int
+        var hearts: Int
+        var decor: Int
+        var built: Int
+        var seeds: Int
+        var resisted: Int
+        var wellbeing: Double
+    }
+
     struct Outcome: Sendable {
+        var log: [DayLog] = []
         var firstBuildDay: Int?
         var homeDoneDay: Int?
         var arrivalDay: [IslandID: Int] = [:]
@@ -200,7 +219,8 @@ struct GameScenarioTests {
         seed: UInt64,
         measurement: GuardedMeasurement = .softGate,
         roundsPerVisit: [Int] = [0, 0, 0],
-        roundYield: Int = 3
+        roundYield: Int = 3,
+        greetsVisitors: Bool = false
     ) -> Outcome {
         var world = World(rules: GameRules(measurement: measurement))
         var rng = SplitMix64(seed: seed)
@@ -265,6 +285,13 @@ struct GameScenarioTests {
                     if minuteOfDay == 870 {
                         // The evening visit also calls on Koke, once it is there.
                         world.advance(to: now, GameEvent(at: now, kind: .tendedWonder(.koke)))
+                        if greetsVisitors {
+                            // The evening visit also greets today's visitor,
+                            // opens the parcel and helps if asked.
+                            world.advance(to: now, GameEvent(at: now, kind: .greetedVisitor))
+                            world.advance(to: now, GameEvent(at: now, kind: .openedGift))
+                            world.advance(to: now, GameEvent(at: now, kind: .helped))
+                        }
                     }
                     var built = 0
                     while built < 2 {
@@ -351,6 +378,22 @@ struct GameScenarioTests {
             if world.state.care.wellbeing < 25 {
                 outcome.unwellDays += 1
             }
+            let kokeState = world.state.wonders[.koke]
+            outcome.log.append(DayLog(
+                day: day,
+                tendedDays: world.state.tendedDays,
+                levels: world.state.stations.levels.values.reduce(0, +),
+                islandLevel: world.snapshot.islandLevel,
+                harborOpen: world.state.stations.arrivalOrder.contains(.harbor),
+                kokePhase: kokeState.arrivedOn != nil ? .arrived : kokeState.rumouredOn != nil ? .rumoured : .hidden,
+                kokeStage: kokeState.stage,
+                hearts: world.state.visitors.hearts.values.reduce(0, +),
+                decor: world.state.visitors.decor.count,
+                built: outcome.buildDays.contains(day) ? 1 : 0,
+                seeds: outcome.seedsByDay[day],
+                resisted: outcome.resistedByDay[day],
+                wellbeing: world.state.care.wellbeing
+            ))
             outcome.levelsByDay.append(world.state.stations.levels.values.reduce(0, +))
             outcome.islandLevelByDay.append(world.snapshot.islandLevel)
             outcome.cheapestNextCostByDay.append(
