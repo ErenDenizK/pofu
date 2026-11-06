@@ -19,18 +19,26 @@ public struct CompanionArt: @unchecked Sendable {
     /// line for blinks and below it for happy eyes.
     public let lidPlate: CGImage?
     public let rig: CompanionRig
+    /// The rig parts laid over the base for moods (`PofuExpression`); a part
+    /// whose image is missing is simply not drawn.
+    public let faceParts: [PofuFacePart: CGImage]
 
-    public init(base: CGImage, lidPlate: CGImage?, rig: CompanionRig) {
+    public init(base: CGImage, lidPlate: CGImage?, rig: CompanionRig, faceParts: [PofuFacePart: CGImage] = [:]) {
         self.base = base
         self.lidPlate = lidPlate
         self.rig = rig
+        self.faceParts = faceParts
     }
 
     /// The bundled placeholder hamster, or `nil` if the resources are
     /// missing from the bundle.
     public static let placeholder: CompanionArt? = {
         guard let base = loadImage(named: "pofu-hamster") else { return nil }
-        return CompanionArt(base: base, lidPlate: loadImage(named: "pofu-hamster-lids"), rig: .hamster)
+        var parts: [PofuFacePart: CGImage] = [:]
+        for part in PofuFacePart.allCases {
+            parts[part] = loadImage(named: part.resourceName)
+        }
+        return CompanionArt(base: base, lidPlate: loadImage(named: "pofu-hamster-lids"), rig: .hamster, faceParts: parts)
     }()
 
     /// The URL of a bundled PNG resource.

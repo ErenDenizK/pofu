@@ -28,6 +28,7 @@ public struct CompanionView: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.companionBlinks) private var blinks
     @Environment(\.companionLife) private var life
+    @Environment(\.companionMood) private var mood
     @State private var driver = CompanionDriver()
     @State private var taps = 0
 
@@ -59,6 +60,8 @@ public struct CompanionView: View {
                 TimelineView(.animation(minimumInterval: 1.0 / 30.0)) { context in
                     CompanionStage(
                         art: art,
+                        mood: mood,
+                        animatesFace: blinks && !reduceMotion,
                         pose: driver.pose(
                             at: context.date,
                             vitality: vitality,
@@ -101,6 +104,8 @@ extension EnvironmentValues {
     @Entry public var companionBlinks: Bool = true
     /// How Pofu breathes and blinks; the tuning lab panel sets it live.
     @Entry public var companionLife: CompanionLife = .standard
+    /// How Pofu feels, shown on his face (`PofuExpression`).
+    @Entry public var companionMood: PofuMood = .calm
 }
 
 /// Owns the motion simulation across view updates and advances it with
@@ -142,6 +147,9 @@ final class CompanionDriver {
 /// and the transforms that keep the feet planted.
 struct CompanionStage: View {
     let art: CompanionArt
+    var mood: PofuMood = .calm
+    /// Whether a mood change fades (off for still frames and Reduce Motion).
+    var animatesFace = true
     let pose: CompanionPose
 
     static func aspectRatio(for rig: CompanionRig) -> Double {
@@ -152,12 +160,14 @@ struct CompanionStage: View {
         GeometryReader { proxy in
             let layout = CompanionStageLayout(width: Double(proxy.size.width), rig: art.rig)
             let artSize = CGSize(width: layout.artWidth, height: layout.artHeight)
+            // Sleepy eyes rest half closed; a blink still goes over them.
+            let restingPose = pose.withLidFloor(PofuExpression.restingLidClosure(for: mood))
 
             ZStack(alignment: .topLeading) {
                 ContactShadow(pose: pose, artWidth: layout.artWidth)
                     .position(x: layout.groundX, y: layout.groundY + layout.artHeight * 0.006)
 
-                CompanionFigure(art: art, pose: pose, size: artSize)
+                CompanionFigure(art: art, mood: mood, animatesFace: animatesFace, pose: restingPose, size: artSize)
                     .padding(layout.padding)
                     .distortionEffect(
                         CompanionShaders.deform(pose: pose, rig: art.rig, artRect: layout.artRectInPaddedFigure),
@@ -276,6 +286,8 @@ private struct ContactShadow: View {
 /// (without the shader) an approximate cheek bulge.
 private struct CompanionFigure: View {
     let art: CompanionArt
+    var mood: PofuMood = .calm
+    var animatesFace = true
     let pose: CompanionPose
     let size: CGSize
 
@@ -290,6 +302,24 @@ private struct CompanionFigure: View {
             if !CompanionShaders.isAvailable {
                 FallbackCheek(art: art, center: rig.leftCheek, pose: pose, size: size)
                 FallbackCheek(art: art, center: rig.rightCheek, pose: pose, size: size)
+            }
+
+            // The mood's rig parts, over the base and under the lids.
+            ForEach(PofuFacePart.allCases, id: \.self) { part in
+                if let image = art.faceParts[part] {
+                    let place = part.placement
+                    Image(decorative: image, scale: 1)
+                        .resizable()
+                        .interpolation(.high)
+                        .frame(width: place.width * size.width, height: place.height * size.height)
+                        .position(
+                            x: (place.x + place.width / 2) * size.width,
+                            y: (place.y + place.height / 2) * size.height
+                        )
+                        .opacity(PofuExpression.opacity(of: part, in: mood))
+                        .animation(animatesFace ? .easeInOut(duration: 0.28) : nil, value: mood)
+                        .allowsHitTesting(false)
+                }
             }
 
             BlushLayer(rig: rig, intensity: pose.blush, size: size)
