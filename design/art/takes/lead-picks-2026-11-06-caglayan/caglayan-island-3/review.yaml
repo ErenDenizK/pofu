@@ -1,0 +1,213 @@
+batch: batch-43-caglayan-production
+contact_sheet: design/art/takes/lead-picks-2026-11-06-caglayan/caglayan-island-3/contact.jpg
+jobs:
+  caglayan-island-3:
+    pick: 2
+    publication: promoted; founder review pending
+    note: 'auto-picked by QA; founder review pending. auto-picked by QA; founder review
+      pending. Both initial sources manually meet stage3: three separate ribbons,
+      full pool, wet turning wheel with spray, two ferns and white/yellow/lilac bloom,
+      no signature; root frame/props retained. Take2 WARN/no hard failure and lower
+      lock_load2.0321 than take1 2.7847. Take1 actualFAIL onlypalette_drift/chroma_ceiling
+      remains recorded within authored stage3 exception but is not selected. No force
+      or retry needed for selected2; no prompt/threshold changes.'
+qa_reports:
+  1:
+    job: caglayan-island-3
+    take: 1
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: fail
+      message: chroma p95 60 (R1 51)
+      value: 60.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 39 (at most 22), p98 95 (at least 90), spread 55
+        (at least 60)'
+      value: 55.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 71 (band 55-90)'
+      value: 70.8
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.10 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.102
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 8.3 (at least 3.5)'
+      value: 8.29
+    - check: detail_budget
+      status: pass
+      message: detail at display size 5.2 (R1 5.3)
+      value: 5.21
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.8
+      value: 2.7847
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 4.4, p95 15.2, off-palette 10.8% (top: #BBBB44 (1.2%), #CCCC55
+        (0.8%))'
+      value: 4.3702
+    - check: edit_silhouette
+      status: pass
+      message: 100% of the parent's shape kept
+      value: 1.0
+    - check: edit_stability
+      status: pass
+      message: 52% of the parent level unchanged
+      value: 0.5174
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.67 of the parent level (drift compounds along a chain)
+      value: 1.6698
+    info:
+      parent_canvas:
+        source:
+        - 768
+        - 512
+        target:
+        - 1536
+        - 1024
+      metrics_raw:
+        L_p5: 45.5
+        L_p50: 82.2
+        L_p95: 94.4
+        C_p50: 22.3
+        C_p95: 72.5
+        C_p99: 82.2
+        detail: 6.1
+      metrics_locked:
+        L_p5: 46.2
+        L_p50: 82.1
+        L_p95: 94.1
+        C_p50: 22.0
+        C_p95: 60.1
+        C_p99: 64.7
+        detail: 5.21
+    fingerprint: 7cd45944648ba64f
+  2:
+    job: caglayan-island-3
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 58 (R1 51)
+      value: 58.2
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 39 (at most 22), p98 94 (at least 90), spread 55
+        (at least 60)'
+      value: 54.8
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 69 (band 55-90)'
+      value: 69.1
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.15 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.153
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 7.5 (at least 3.5)'
+      value: 7.46
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.6 (R1 5.3)
+      value: 4.6
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.0
+      value: 2.0321
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.7, p95 13.3, off-palette 6.5% (top: #BBBB44 (1.4%), #AAAA33
+        (0.7%))'
+      value: 3.7159
+    - check: edit_silhouette
+      status: pass
+      message: 100% of the parent's shape kept
+      value: 1.0
+    - check: edit_stability
+      status: pass
+      message: 53% of the parent level unchanged
+      value: 0.5342
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.66 of the parent level (drift compounds along a chain)
+      value: 1.6593
+    info:
+      parent_canvas:
+        source:
+        - 768
+        - 512
+        target:
+        - 1536
+        - 1024
+      metrics_raw:
+        L_p5: 45.6
+        L_p50: 80.6
+        L_p95: 93.2
+        C_p50: 22.1
+        C_p95: 64.5
+        C_p99: 72.6
+        detail: 5.49
+      metrics_locked:
+        L_p5: 46.2
+        L_p50: 80.5
+        L_p95: 93.0
+        C_p50: 21.9
+        C_p95: 58.2
+        C_p99: 62.8
+        detail: 4.6
+    fingerprint: 7cd45944648ba64f
+manual_review:
+  excluded_takes: []
+  note: 'auto-picked by QA; founder review pending. Both initial sources manually
+    meet stage3: three separate ribbons, full pool, wet turning wheel with spray,
+    two ferns and white/yellow/lilac bloom, no signature; root frame/props retained.
+    Take2 WARN/no hard failure and lower lock_load2.0321 than take1 2.7847. Take1
+    actualFAIL onlypalette_drift/chroma_ceiling remains recorded within authored stage3
+    exception but is not selected. No force or retry needed for selected2; no prompt/threshold
+    changes.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-5b2f8e1d-de12-4cb4-b64e-254a0035bfa2.png
+  original_generated_png_sha256: c15f2fcae55ce34bf6b12d520d8a02d372f12d59af5aa4425fd625735dca5cbd
+  inbox_png_sha256: 2a129f19d4c66b720849018b0131514086ac31e31715f7568623aa7a623ad38e
+  rgba_sha256: 2e8ce9f3b5d92e7ad3934a0470b7aa59645ddd975976a44bea8c95e5d58cada5
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 7cd45944648ba64f
+- take: 2
+  source_file: /workspace/generated_images/exec-8b96bc5a-343b-4df1-8032-76c38d7449ec.png
+  original_generated_png_sha256: 8d1759e2e42c7192b777862af6e498e5de7a5e8fac3934463ac2240690cdaada
+  inbox_png_sha256: 587e16f0ca7ac37b304b803cce676c99239ff8f19e94f245a947d998da8ba3d0
+  rgba_sha256: 4aa17a51396b479b6b84159cdfccd7e7d073461bb9a4169befd74d533c81b7c1
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 7cd45944648ba64f
+operation: lead-picks-2026-11-06-caglayan

@@ -2,7 +2,7 @@ id: asset-caglayan-island-3
 type: asset
 title_tr: caglayan-island-3
 title_en: caglayan-island-3 (plate)
-status: cut
+status: in-production
 horizon: now
 summary: 'Edit the attached island plate from stage 0 to stage 3: nearly there. Three
   clear streams of water fall down the left, centre and right of the cliff steps,
@@ -14,7 +14,8 @@ links:
   variant_of:
   - asset-caglayan-island-0
 art:
-  images: []
+  images:
+  - design/art/masters/caglayan-island-3/caglayan-island-3.png
   jobs:
   - batch-43-caglayan-production:caglayan-island-3
 sources:
