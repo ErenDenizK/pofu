@@ -7,7 +7,8 @@
     "glow": "Packages/PofuKit/Sources/PofuWorld/Resources/World.xcassets",
     "sprite": "Packages/PofuKit/Sources/PofuWorld/Resources/World.xcassets",
     "shield": "Packages/PofuKit/Sources/PofuCompanion/Resources",
-    "app": "App/Resources/Assets.xcassets"
+    "app": "App/Resources/Assets.xcassets",
+    "postcard": "App/Resources/Assets.xcassets"
   },
   "entries": [
     {
@@ -972,6 +973,66 @@
       "target": "world",
       "name": "koke-one-eye",
       "master": "design/art/masters/koke-one-eye"
+    },
+    {
+      "target": "postcard",
+      "name": "dawn",
+      "source": "design/art/takes/batch-25-seasons/x-season-spring/plate__x-season-spring--t2.webp",
+      "crop": [
+        460,
+        0,
+        1060,
+        1024
+      ],
+      "max_long": 1600
+    },
+    {
+      "target": "postcard",
+      "name": "day",
+      "source": "design/art/takes/batch-34-islands-in-game/x-home-tam-cicek/plate__x-home-tam-cicek--t4.webp",
+      "crop": [
+        420,
+        0,
+        1020,
+        1024
+      ],
+      "max_long": 1600
+    },
+    {
+      "target": "postcard",
+      "name": "golden",
+      "source": "design/art/takes/batch-25-seasons/x-season-summer-evening/plate__x-season-summer-evening--t2.webp",
+      "crop": [
+        400,
+        0,
+        1000,
+        1024
+      ],
+      "max_long": 1600
+    },
+    {
+      "target": "postcard",
+      "name": "night",
+      "source": "design/art/takes/batch-31-island-milestones/x-tam-cicek-night/plate__x-tam-cicek-night--t2.webp",
+      "crop": [
+        400,
+        0,
+        1000,
+        1024
+      ],
+      "max_long": 1600
+    },
+    {
+      "target": "postcard",
+      "name": "rain",
+      "source": "design/art/takes/batch-25-seasons/x-season-rain/plate__x-season-rain--t2.webp",
+      "crop": [
+        468,
+        0,
+        1068,
+        1024
+      ],
+      "max_long": 1600
     }
   ]
 }

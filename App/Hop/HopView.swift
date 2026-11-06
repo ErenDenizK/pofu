@@ -11,14 +11,18 @@ import SwiftUI
 /// live from the first frame. Leaving without choosing counts as skipping.
 struct HopView: View {
     let model: AppModel
+    /// Pins the postcard (a screenshot, the rain when there is weather);
+    /// otherwise the hour's sky decides.
+    var hourOverride: GateHour?
 
     @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
         Group {
             if let session = model.hop {
-                HopContent(model: model, session: session)
-                    .environment(\.colorScheme, session.isNight ? .dark : .light)
+                let hour = hourOverride ?? GateHour(date: model.now, isBedtime: session.isNight)
+                HopContent(model: model, session: session, hour: hour)
+                    .environment(\.colorScheme, hour.isDark || session.isNight ? .dark : .light)
             } else {
                 Color.clear
             }
@@ -39,17 +43,23 @@ struct HopView: View {
 private struct HopContent: View {
     let model: AppModel
     let session: HopSession
+    let hour: GateHour
 
     var body: some View {
         ZStack {
-            background.ignoresSafeArea()
+            GatePostcard(hour: hour)
+            GateScrim(hour: hour)
+            if !(session.phase == .deciding && !session.isBreathing) {
+                // Screens that are all text sit on the hour's sky, wholly.
+                hour.scrim.opacity(0.82).ignoresSafeArea()
+            }
             switch session.phase {
             case .deciding:
                 if session.isBreathing, let plan = session.breath {
                     BreathRoom(model: model, session: session, plan: plan)
                         .transition(.opacity)
                 } else {
-                    HopDecision(model: model, session: session)
+                    HopDecision(model: model, session: session, hour: hour)
                         .transition(.opacity)
                 }
             case .skipped(let skipsToday):
@@ -65,14 +75,6 @@ private struct HopContent: View {
         }
         .animation(PofuMotion.settle, value: session.phase)
     }
-
-    @ViewBuilder private var background: some View {
-        if session.isNight {
-            PofuColor.nightWash
-        } else {
-            PofuColor.dayWash
-        }
-    }
 }
 
 // MARK: - Deciding
@@ -80,6 +82,7 @@ private struct HopContent: View {
 private struct HopDecision: View {
     let model: AppModel
     let session: HopSession
+    let hour: GateHour
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @AccessibilityFocusState private var skipFocused: Bool
@@ -89,18 +92,25 @@ private struct HopDecision: View {
     @State private var payMinutes: Int?
 
     var body: some View {
-        ScrollView {
-            VStack(spacing: PofuSpacing.l) {
-                HopAppChip(app: session.app, reachOrdinal: session.reachOrdinal)
-                    .padding(.top, PofuSpacing.s)
-                header
-                stage
-                rungElement
+        GeometryReader { proxy in
+            ScrollView {
+                // Spacers on both sides of Pofu put him lower-middle on the
+                // postcard's ground whenever the rung has no element.
+                VStack(spacing: PofuSpacing.l) {
+                    HopAppChip(app: session.app, reachOrdinal: session.reachOrdinal)
+                        .padding(.top, PofuSpacing.s)
+                    header
+                    Spacer(minLength: PofuSpacing.s)
+                    stage
+                    rungElement
+                    Spacer(minLength: PofuSpacing.s)
+                }
+                .padding(.horizontal, PofuSpacing.screen)
+                .padding(.bottom, PofuSpacing.l)
+                .frame(maxWidth: .infinity, minHeight: max(proxy.size.height - 190, 0))
             }
-            .padding(.horizontal, PofuSpacing.screen)
-            .padding(.bottom, PofuSpacing.l)
+            .scrollBounceBehavior(.basedOnSize)
         }
-        .scrollBounceBehavior(.basedOnSize)
         .safeAreaInset(edge: .bottom) {
             actions
                 .padding(.horizontal, PofuSpacing.screen)
@@ -128,11 +138,12 @@ private struct HopDecision: View {
         VStack(spacing: PofuSpacing.xs) {
             Text(verbatim: "Hop!")
                 .pofuDisplayFont()
-                .foregroundStyle(PofuColor.accent)
+                .foregroundStyle(hour.title)
+                .shadow(color: hour.scrim.opacity(0.7), radius: 6)
                 .accessibilityAddTraits(.isHeader)
             Text(question)
                 .font(PofuFont.title2)
-                .foregroundStyle(PofuColor.textPrimary)
+                .foregroundStyle(hour.ink)
                 .multilineTextAlignment(.center)
         }
         .accessibilityElement(children: .combine)
@@ -156,7 +167,7 @@ private struct HopDecision: View {
                 SpeechBubble { Text(line) }
                     .transition(.scale(scale: 0.9).combined(with: .opacity))
             }
-            HopCompanion(model: model, session: session, breathes: session.rung == .pause)
+            HopCompanion(model: model, session: session, hour: hour, breathes: session.rung == .pause)
         }
         .animation(PofuMotion.respecting(reduceMotion, PofuMotion.hop), value: session.reason)
     }
@@ -203,11 +214,11 @@ private struct HopDecision: View {
             } label: {
                 Text(skipLabel)
             }
-            .buttonStyle(PofuPrimaryButtonStyle())
+            .buttonStyle(PofuPlaqueButtonStyle(isProminent: true))
             .accessibilityFocused($skipFocused)
             Text("Swiping away counts as skipping.")
                 .font(PofuFont.footnote)
-                .foregroundStyle(PofuColor.textSecondary)
+                .foregroundStyle(hour.inkSoft)
                 .multilineTextAlignment(.center)
         }
     }
@@ -226,7 +237,7 @@ private struct HopDecision: View {
             } label: {
                 Text("Open for \(model.economy.configuration.friction.freePassMinutes) min")
             }
-            .buttonStyle(PofuQuietButtonStyle())
+            .buttonStyle(PofuPlaqueButtonStyle())
             .disabled(session.reason == nil)
         case .pay:
             if let quote = PayRung.quote(model: model, selectedMinutes: payMinutes) {
@@ -239,7 +250,7 @@ private struct HopDecision: View {
                 } label: {
                     Text("Spend \(quote.price.units) seeds for \(quote.minutes) min")
                 }
-                .buttonStyle(PofuQuietButtonStyle())
+                .buttonStyle(PofuPlaqueButtonStyle())
             }
         case .askFriend:
             EmergencyPassButton(model: model, isProminent: true)
@@ -282,17 +293,33 @@ struct HopAppChip: View {
 private struct HopCompanion: View {
     let model: AppModel
     let session: HopSession
+    let hour: GateHour
     let breathes: Bool
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.scenePhase) private var scenePhase
     @State private var inhale = false
+    @State private var idle = false
 
     var body: some View {
+        let still = reduceMotion || scenePhase != .active
         CompanionView(vitality: model.vitality, energy: model.cheekFill)
-            .frame(maxWidth: 230)
-            .scaleEffect(breathes && inhale && !reduceMotion ? 1.07 : 1, anchor: .bottom)
+            .frame(maxWidth: 170)
+            .background { GateGlow(hour: hour, breathe: idle && !still) }
+            .scaleEffect(breathes && inhale && !reduceMotion ? 1.07 : (idle && !still ? 1.015 : 1), anchor: .bottom)
+            .background(alignment: .bottom) {
+                // The contact shadow on the ground.
+                Ellipse()
+                    .fill(Color(hex: 0x2A1F2D).opacity(hour.isDark ? 0.5 : 0.28))
+                    .frame(width: 130, height: 22)
+                    .blur(radius: 7)
+                    .offset(y: 8)
+            }
             .task {
-                guard breathes, !reduceMotion else { return }
+                guard !reduceMotion else { return }
+                // A 4 s idle breath: 2 s in, 2 s out.
+                withAnimation(.easeInOut(duration: 2).repeatForever(autoreverses: true)) { idle = true }
+                guard breathes else { return }
                 withAnimation(.easeInOut(duration: BreathOpenButton.halfBreath)) { inhale = true }
                 try? await Task.sleep(for: .seconds(BreathOpenButton.halfBreath))
                 withAnimation(.easeInOut(duration: BreathOpenButton.halfBreath)) { inhale = false }
@@ -324,7 +351,7 @@ private struct BreathOpenButton: View {
             } label: {
                 Text("Open for \(model.economy.configuration.friction.freePassMinutes) min")
             }
-            .buttonStyle(PofuQuietButtonStyle(progress: isReady ? nil : progress))
+            .buttonStyle(PofuPlaqueButtonStyle(progress: isReady ? nil : progress))
             .disabled(!isReady)
         }
         .task {

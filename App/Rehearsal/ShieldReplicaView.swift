@@ -53,7 +53,7 @@ struct ShieldReplicaView: View {
             .padding(.horizontal, PofuSpacing.xl)
         }
         // The system draws the shield in the app's place, light or dark;
-        // bedtime and the dusk and night skies are always dark.
+        // bedtime and the night sky are always dark; dusk is warm apricot.
         .environment(\.colorScheme, ShieldColors.isDark(palette: copy.palette, sky: sky) ? .dark : colorScheme)
         .sensoryFeedback(.selection, trigger: tapped)
     }

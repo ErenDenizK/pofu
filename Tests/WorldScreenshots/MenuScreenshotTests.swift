@@ -88,6 +88,26 @@ final class MenuScreenshotTests: XCTestCase {
         }
     }
 
+    /// The gate's landing painted for the hours of the day (gate v2 section
+    /// 5.1): 07:00, 12:00, 18:30, 22:30, and the rain postcard.
+    @MainActor
+    func testRenderTheGateLandingAtFourHoursAndInRain() async throws {
+        let model = AppModel.shared
+        model.startHop(for: .instagram)
+        defer { model.dismissHop() }
+        let shots: [(String, GateHour)] = [
+            ("20-gate-0700", .dawn), ("20-gate-1200", .day), ("20-gate-1830", .golden),
+            ("20-gate-2230", .night), ("20-gate-rain", .rain),
+        ]
+        for (name, hour) in shots {
+            let window = try makeWindow(AnyView(HopView(model: model, hourOverride: hour)), style: .light)
+            try await Task.sleep(for: .milliseconds(900))
+            try capture(window, name: name)
+            tearDown(window)
+            try await Task.sleep(for: .milliseconds(150))
+        }
+    }
+
     /// Every title the shield can show fits the 28-character rule of the
     /// copy (experience v1 section 3.4), in both languages and at every hour.
     func testEveryShieldTitleIsAtMostTwentyEightCharacters() {

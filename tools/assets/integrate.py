@@ -26,7 +26,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import vivid  # noqa: E402
 
 REPO = Path(__file__).resolve().parents[2]
-FLAT = ("games", "ui", "glow", "sprite", "shield", "app")  # flat PNGs baked here, not through preblur
+FLAT = ("games", "ui", "glow", "sprite", "shield", "app", "postcard")  # flat PNGs baked here, not through preblur
 MAP = Path(__file__).resolve().parent / "integration_map.json"
 PREBLUR = REPO / "design/prototypes/interactions/tools/preblur.py"
 
@@ -45,8 +45,19 @@ def master_file(folder: str) -> Path | None:
     return None
 
 
+def source_file(entry: dict) -> Path | None:
+    """The entry's source image: a `postcard` names the exploration take it was cut from (`source`,
+    the provenance); every other target has a master folder."""
+    if entry["target"] == "postcard":
+        path = REPO / entry["source"]
+        return path if path.is_file() else None
+    return master_file(entry["master"])
+
+
 def output_path(entry: dict, targets: dict) -> Path:
     root = REPO / targets[entry["target"]]
+    if entry["target"] == "postcard":
+        return root / f"gate-postcard-{entry['name']}.imageset" / f"gate-postcard-{entry['name']}.jpg"
     if entry["target"] in ("glow", "sprite"):
         return root / f"{entry['name']}.imageset" / f"{entry['name']}.png"
     if entry["target"] == "shield":
@@ -151,7 +162,23 @@ def bake_sprite(entry: dict, out: Path) -> None:
     _imageset_contents(out)
 
 
+def bake_postcard(entry: dict, out: Path) -> None:
+    """A full-bleed painted postcard for the gate landing (Hop!): the take cropped to `crop` (source pixels
+    x0, y0, x1, y1, a portrait slice), the long side capped at `max_long` (1600), JPEG under 400 KB. An
+    exploration take, never promoted: the `source` path in the map is its provenance."""
+    image = Image.open(source_file(entry)).convert("RGB").crop(tuple(entry["crop"]))
+    f = min(1.0, entry.get("max_long", 1600) / max(image.size))
+    if f < 1.0:
+        image = image.resize((round(image.width * f), round(image.height * f)), Image.LANCZOS)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    image.save(out, "JPEG", quality=entry.get("quality", 86), optimize=True)
+    assert out.stat().st_size <= 400_000, f"{entry['name']}: {out.stat().st_size} bytes is over the 400 KB postcard budget"
+    _imageset_contents(out)
+
+
 def bake_games(entry: dict, out: Path) -> None:
+    if entry["target"] == "postcard":
+        return bake_postcard(entry, out)
     if entry["target"] == "app":
         return bake_app(entry, out)
     if entry["target"] == "shield":
@@ -195,8 +222,8 @@ def problems(data: dict) -> list[str]:
         if e["target"] not in data["targets"]:
             found.append(f"{e['name']}: unknown target {e['target']}")
             continue
-        if master_file(e["master"]) is None:
-            found.append(f"{e['name']}: no master in {e['master']}")
+        if source_file(e) is None:
+            found.append(f"{e['name']}: no source image ({e.get('source') or e.get('master')})")
         out = output_path(e, data["targets"])
         if not out.is_file():
             found.append(f"{e['name']}: output missing ({out.relative_to(REPO)}); run integrate.py run")
