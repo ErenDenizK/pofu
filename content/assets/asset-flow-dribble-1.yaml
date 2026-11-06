@@ -1,0 +1,21 @@
+id: asset-flow-dribble-1
+type: asset
+title_tr: flow-dribble-1
+title_en: flow-dribble-1 (prop)
+status: in-production
+horizon: now
+summary: >-
+  Draw a small harmless dribble where a channel faces nothing: a thin trickle spilling over
+  the stone lip onto the bank and soaking in. FRAME 1 OF 4: a thin bead of water at the lip,
+  the start of a trickle. As a small game sprite on a transparent background, centred, about
+  60 percent of the canvas wide, soft painted water in pale blue-green and white, rounded
+  shapes, no outline.
+art:
+  images: []
+  jobs:
+  - batch-64-flow-pieces:flow-dribble-1
+sources:
+- doc: tools/imagegen/manifest/batch-64-flow-pieces.yaml
+kind: prop
+batch: batch-64-flow-pieces
+size: 512x512

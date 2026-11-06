@@ -1,0 +1,21 @@
+id: asset-flow-wheel
+type: asset
+title_tr: flow-wheel
+title_en: flow-wheel (prop)
+status: in-production
+horizon: now
+summary: >-
+  A mill water wheel seen straight from above, as a game sprite on a transparent background:
+  a round wooden wheel, perfectly circular and centred, about 84 percent of the canvas wide,
+  with a small round hub and a short axle, eight identical flat paddles at equal angles (every
+  45 degrees), a plain wooden rim joining their tips, honey-stained matte wood (no grain)
+  with a slightly darker cocoa hub and a tiny touch of gree…
+art:
+  images: []
+  jobs:
+  - batch-64-flow-pieces:flow-wheel
+sources:
+- doc: tools/imagegen/manifest/batch-64-flow-pieces.yaml
+kind: prop
+batch: batch-64-flow-pieces
+size: 1024x1024

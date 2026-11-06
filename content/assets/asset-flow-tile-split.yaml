@@ -1,0 +1,21 @@
+id: asset-flow-tile-split
+type: asset
+title_tr: flow-tile-split
+title_en: flow-tile-split (ui)
+status: in-production
+horizon: now
+summary: >-
+  A game tile for a cozy mobile puzzle, seen straight from above with a very slight tilt,
+  lit softly from the upper left. A SQUARE of carved, mossy river stone that fills the whole
+  canvas edge to edge (full bleed, no margin, no outline, no shadow around it): pale warm-grey
+  stone with a faint cream and sage tint, rounded and softly worn, a little soft green moss
+  gathered on the shoulders and corners, never on the groove…
+art:
+  images: []
+  jobs:
+  - batch-64-flow-pieces:flow-tile-split
+sources:
+- doc: tools/imagegen/manifest/batch-64-flow-pieces.yaml
+kind: ui
+batch: batch-64-flow-pieces
+size: 1024x1024

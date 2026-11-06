@@ -1,0 +1,23 @@
+id: asset-flow-dribble-3
+type: asset
+title_tr: flow-dribble-3
+title_en: flow-dribble-3 (prop)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached frame into FRAME 3 OF 4 of the same motion (a small harmless dribble where
+  a channel faces nothing: a thin trickle spilling over the stone lip onto the bank and soaking
+  in): the trickle at full length, the puddle wider. Keep the canvas, centre, scale, colours
+  and painting style.
+links:
+  variant_of:
+  - asset-flow-dribble-1
+art:
+  images: []
+  jobs:
+  - batch-64-flow-pieces:flow-dribble-3
+sources:
+- doc: tools/imagegen/manifest/batch-64-flow-pieces.yaml
+kind: prop
+batch: batch-64-flow-pieces
+size: 512x512

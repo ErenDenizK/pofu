@@ -1,0 +1,23 @@
+id: asset-flow-splash-2
+type: asset
+title_tr: flow-splash-2
+title_en: flow-splash-2 (prop)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached frame into FRAME 2 OF 4 of the same motion (a small splash where the stream
+  meets the pool: the droplets rise, crown, then fall and settle into a ripple): a small crown
+  of six droplets and a soft spray, at its highest. Keep the canvas, centre, scale, colours
+  and painting style.
+links:
+  variant_of:
+  - asset-flow-splash-1
+art:
+  images: []
+  jobs:
+  - batch-64-flow-pieces:flow-splash-2
+sources:
+- doc: tools/imagegen/manifest/batch-64-flow-pieces.yaml
+kind: prop
+batch: batch-64-flow-pieces
+size: 512x512
