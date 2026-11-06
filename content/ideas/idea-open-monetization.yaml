@@ -19,8 +19,8 @@ links:
   - sys-plus
   - sys-island-arrivals
 sources:
-- doc: docs/product/monetization.md
+- doc: docs/archive/monetization-v1.md
   anchor: '#0-the-short-answer'
-- doc: docs/product/monetization.md
+- doc: docs/archive/monetization-v1.md
   anchor: '#10-decisions-for-the-founder'
 kind: question

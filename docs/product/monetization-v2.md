@@ -1,7 +1,7 @@
 # Monetization v2: one membership for a compact game
 
 _Status: proposal for the founder, 2026-11-05. Replaces the
-recommendation of [monetization.md](monetization.md) (v1), whose market
+recommendation of [monetization.md](../archive/monetization-v1.md) (v1), whose market
 data, Türkiye tax notes, fair-lock test (§6) and sources still hold. The
 game changed under v1: its station islands are retired ([game plan §2](game-plan.md#2-structure-two-layers)),
 Book One ends near day 45, home blooms near day 60 and lives on through

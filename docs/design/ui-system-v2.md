@@ -3,7 +3,7 @@
 _Status: proposal for the founder. Last updated: 2026-11-02._
 _Builds on [ADR-0018](../adr/0018-visual-system-v1.md) (Glass++), the
 [design language](design-language.md), the [interaction spec](interaction-spec.md),
-[UI critique 01](ui-critique-01.md) (PR #63, Direction B "Living Diorama")
+[UI critique 01](../archive/ui-critique-01.md) (PR #63, Direction B "Living Diorama")
 and the archipelago system (PR #64, not merged yet) (PR #64:
 island games, rounds, decor spots, rumours). Mockups:
 [`ui-system-v2/`](ui-system-v2/), source in

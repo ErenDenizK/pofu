@@ -8,7 +8,7 @@ _Status: proposal for the founder's decision, 2026-11-02. It builds on the
 founder's "Hybrid (D)" input from the Hub. Nothing here is implemented.
 After the founder decides, the free/paid boundary becomes an ADR (it is
 expensive to reverse: see section 9), and
-[game-design.md](game-design.md) pillar 7 and rule A6 are amended._
+[game-design.md](../product/game-design.md) pillar 7 and rule A6 are amended._
 
 ## 0. The short answer
 
@@ -164,7 +164,7 @@ day 22 converts.
 ## 5. The four models
 
 Common to all: the fixed rules of section 1. The island pacing is the
-current simulation's ([game-design.md](game-design.md) section 14):
+current simulation's ([game-design.md](../product/game-design.md) section 14):
 İskele arrives on day 9, Yıldız on day 22, Kaplıca around day 35, Kitap
 with a season update (simulated at day 50); the home island is finished
 between day 42 (never opens) and day 64 (heavy scroller).
@@ -530,7 +530,7 @@ friends beta is the last moment to set the line.
 | 11 | Who sells? | **Never Pofu.** A plain native sheet, opened by a tap. |
 | 12 | Lapsed members | **Keep everything built**, residents and rituals included; new building on Plus islands waits. |
 | 13 | Friends beta | Everyone gets Plus free via sandbox; show the real day-22 card and measure taps on each price (fake door, decision audit U13). Beta testers keep Plus for life at launch, as a thank-you (offer codes; confirm non-consumable support in App Store Connect). |
-| 14 | Paperwork | After decisions 1–8: an **ADR** for the free/paid boundary; amend game-design pillar 7 ("Plus sells places and beauty, never speed or relief") and A6/A7; update [research](../research/monetization.md) and [vision](vision.md) principle 3. |
+| 14 | Paperwork | After decisions 1–8: an **ADR** for the free/paid boundary; amend game-design pillar 7 ("Plus sells places and beauty, never speed or relief") and A6/A7; update [research](../research/monetization.md) and [vision](../product/vision.md) principle 3. |
 | 15 | Competitor TR prices | Founder screenshots the TR in-app purchase lists of Opal, one sec, Finch, Duolingo, and Headspace from his iPhone (10 minutes); I add them here. |
 
 ### What would change my mind

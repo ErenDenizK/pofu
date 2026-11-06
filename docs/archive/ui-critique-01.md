@@ -7,7 +7,7 @@ _Status: proposal for the founder. Last updated: 2026-11-02._
 _Reviewed: `main` at #59 (look-dev), CI screenshots on the orphan branches
 `screenshots/main` and `screenshots/feat-rehearsal-mode` (iPhone 17
 simulator, 402 × 874 pt). Read with [ADR-0018](../adr/0018-visual-system-v1.md),
-the [design language](design-language.md), the [interaction spec](interaction-spec.md),
+the [design language](../design/design-language.md), the [interaction spec](../design/interaction-spec.md),
 the [app and game boundary](../product/app-game-boundary.md) and
 [gate v2](../product/ux/gate-v2.md). Mockups: [`ui-critique-01/`](ui-critique-01/),
 their source in [`ui-critique-01/mockup-src/`](ui-critique-01/mockup-src/)._
