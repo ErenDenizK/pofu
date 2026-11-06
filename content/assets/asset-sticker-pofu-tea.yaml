@@ -2,13 +2,13 @@ id: asset-sticker-pofu-tea
 type: asset
 title_tr: sticker-pofu-tea
 title_en: sticker-pofu-tea (char)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  A single full-body sticker of Pofu the hamster in the exact attached look, holding a small
-  tulip-shaped tea glass in both paws, eyes closed in a cosy smile. Centred on a plain transparent
-  background with wide empty space around it, drawn complete with the whole body. No text,
-  no speech bubbles, no floating hearts, no sticker border, no ground shadow.
+summary: A single full-body sticker of Pofu the hamster in the exact attached look,
+  holding a small tulip-shaped tea glass in both paws, eyes closed in a cosy smile.
+  Centred on a plain transparent background with wide empty space around it, drawn
+  complete with the whole body. No text, no speech bubbles, no floating hearts, no
+  sticker border, no ground shadow.
 art:
   images: []
   jobs:
@@ -18,3 +18,16 @@ sources:
 kind: char
 batch: batch-42-stickers
 size: 1024x1024
+notes:
+- 'batch-42-stickers skipped after four takes: All four originals preserved after
+  the sole unchanged retry. Every take hard-fails canonical ground_line; square sticker
+  sources are center-padded into the implicit 1024x1536 char QA canvas. No source,
+  prompt, canvas, fit or threshold workaround and no master selection. Any other actual
+  hard failures are recorded below. Recommend an author-owned square canvas and retained-first
+  re-post, without regeneration. Automated failures: t1 ground_line: feet at 75.4%
+  of the height (contract 88%); t2 palette_drift: mean dE 3.5, p95 15.7, off-palette
+  7.8% (top: #EE9955 (1.5%), #EE7766 (0.4%)), ground_line: feet at 74.7% of the height
+  (contract 88%); t3 palette_drift: mean dE 3.5, p95 15.0, off-palette 7.0% (top:
+  #EE7766 (0.5%), #EE9955 (0.4%)), ground_line: feet at 77.1% of the height (contract
+  88%); t4 palette_drift: mean dE 3.5, p95 15.1, off-palette 6.8% (top: #EE9955 (0.6%),
+  #EE7766 (0.3%)), ground_line: feet at 74.4% of the height (contract 88%).'
