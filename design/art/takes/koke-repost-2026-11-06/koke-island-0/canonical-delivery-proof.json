@@ -1,0 +1,15 @@
+{
+  "metadata": {
+    "scale": 0.5,
+    "original_size": [
+      1536,
+      1024
+    ],
+    "delivered_size": [
+      768,
+      512
+    ]
+  },
+  "rgba_sha256": "a4095807da97be188cb8373389c6dc9cce01f191e3010101ed4e456d450af118",
+  "recipe": "Canonical check_upload.downscale and official promote, no local source pixel edits."
+}
