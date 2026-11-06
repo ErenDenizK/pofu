@@ -1,0 +1,35 @@
+id: asset-x-altin-ada-v2
+type: asset
+title_tr: x-altin-ada-v2
+title_en: x-altin-ada-v2 (plate)
+status: cut
+horizon: now
+summary: >-
+  A fresh independent concept plate of Ayçiçeği using the CURRENT home-layout interpretation.
+  Keep the familiar approved home-island identity and painterly family, with a fixed low front
+  three-quarter game camera (about 17 degrees above the horizon). The lawn outline is fixed
+  across levels: growth adds the named details within existing slots, or separate harbor/Tepe
+  pieces beside the home, never widens the lawn or extr…
+art:
+  images: []
+  jobs:
+  - batch-31-island-milestones-v2:x-altin-ada-v2
+sources:
+- doc: tools/imagegen/manifest/batch-31-island-milestones-v2.yaml
+kind: plate
+batch: batch-31-island-milestones-v2
+size: 1536x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Skipped after the sole allowed retry; registration remains cut and art.images is empty.
+- >-
+  All four originals are preserved after the sole unchanged retry. They retain the recognizable
+  eight station identities, open hill gate/bench/telescope, two-head sunflower, dusk stars,
+  rising golden seeds and matte gold details (the soft rim is clearest in the retries). Every
+  source nevertheless fuses the harbor into one continuous home soil bowl rather than the
+  explicitly separate right islet and connecting bridge; both retry sources were owner-viewed.
+  Initial back-middle gate/hill staging is an additional layout concern, not a fabricated
+  numeric threshold. Exclude all four for literal harbor topology, no exact pixel-registration
+  or extra-prop requirement. Skip only this independent job; no further generation or pixel
+  edits; never promoted.

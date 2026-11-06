@@ -1,0 +1,35 @@
+id: asset-x-island-il7-v2
+type: asset
+title_tr: x-island-il7-v2
+title_en: x-island-il7-v2 (plate)
+status: cut
+horizon: now
+summary: >-
+  A fresh independent concept plate of Ayçiçeği using the CURRENT home-layout interpretation.
+  Keep the familiar approved home-island identity and painterly family, with a fixed low front
+  three-quarter game camera (about 17 degrees above the horizon). The lawn outline is fixed
+  across levels: growth adds the named details within existing slots, or separate harbor/Tepe
+  pieces beside the home, never widens the lawn or extr…
+art:
+  images: []
+  jobs:
+  - batch-31-island-milestones-v2:x-island-il7-v2
+sources:
+- doc: tools/imagegen/manifest/batch-31-island-milestones-v2.yaml
+kind: plate
+batch: batch-31-island-milestones-v2
+size: 1536x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Skipped after the sole allowed retry; registration remains cut and art.images is empty.
+- >-
+  All four originals and the sole unchanged retry are preserved. Every take fuses the explicitly
+  separate right harbor islet into one continuous home soil bowl with an internal canal/arched
+  bridge instead of the connecting bridge to a separate islet. Take2 and retry3 additionally
+  substitute a vegetable/rose-arch bed for the earlier sunflower garden; other takes retain
+  that garden. Workshop tools/chimney/gear, tea, pond, pier/ferry, lighthouse, borders, bench,
+  lanterns, sailboat and mailbox are visible with no windmill, but cannot excuse literal topology
+  failure. Exclude all four and skip only this independent job. Initial pair peer/owner reviewed,
+  both retries owner viewed. No pixel-continuity or extra-prop threshold, no further generation,
+  exploration never promoted.

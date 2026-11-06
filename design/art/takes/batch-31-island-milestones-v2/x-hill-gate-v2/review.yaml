@@ -1,0 +1,373 @@
+batch: batch-31-island-milestones-v2
+manifest: tools/imagegen/manifest/batch-31-island-milestones-v2.yaml
+manifest_sha256: 85bede599fbf3a3dc59c4dd8f262ee41b8b0f653fa445bcf26f07a645b47269f
+contact_sheet: design/art/takes/batch-31-island-milestones-v2/x-hill-gate-v2/contact.jpg
+jobs:
+  x-hill-gate-v2:
+    pick: none
+    publication: skipped after one allowed retry
+    note: All four originals are preserved after the sole unchanged retry. The CLOSED
+      round wooden gate, carved sunflower, warm light between planks, path, grass
+      and wildflowers are correct. Every take nonetheless presents a nearly whole-home
+      overview with the full lawn/earth bowl/roots, round home door, full windmill
+      and multiple stations; the authored portrait CLOSE VIEW of the hill gate is
+      not delivered. Both initial sources independently reviewed and both retries
+      owner-viewed. Exclude all four for actual framing, without a fabricated size
+      threshold or zero-extra-prop rule, and skip only this independent job. No further
+      generation or pixel edits; exploration never promoted.
+qa_reports:
+  1:
+    job: x-hill-gate-v2
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 55 (R1 51)
+      value: 54.6
+    - check: light_values
+      status: warn
+      message: 'golden/subject: L p2 46 (at most 24), p98 94 (at least 86), spread
+        48 (at least 55) (warn-only until the founder has seen the light pilot)'
+      value: 47.8
+    - check: light_median
+      status: pass
+      message: 'golden/subject: median L 79 (band 48-86)'
+      value: 78.8
+    - check: light_haze
+      status: pass
+      message: 'golden/subject: dark-channel haze 0.18 (at most 0.22; no true dark
+        means a wash)'
+      value: 0.176
+    - check: light_contrast
+      status: pass
+      message: 'golden/subject: p75 local contrast 6.5 (at least 3.4)'
+      value: 6.51
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.1 (R1 5.3)
+      value: 4.12
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.7
+      value: 1.7051
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.7, p95 8.9, off-palette 2.4% (top: #DD8844 (0.3%), #CC7733
+        (0.2%))'
+      value: 2.6941
+    info:
+      metrics_raw:
+        L_p5: 54.2
+        L_p50: 82.7
+        L_p95: 93.0
+        C_p50: 21.4
+        C_p95: 56.2
+        C_p99: 69.8
+        detail: 5.04
+      metrics_locked:
+        L_p5: 55.0
+        L_p50: 82.5
+        L_p95: 92.9
+        C_p50: 21.7
+        C_p95: 54.6
+        C_p99: 62.5
+        detail: 4.12
+    fingerprint: 31b49f2878b65bf3
+  2:
+    job: x-hill-gate-v2
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 54 (R1 51)
+      value: 54.0
+    - check: light_values
+      status: warn
+      message: 'golden/subject: L p2 44 (at most 24), p98 94 (at least 86), spread
+        50 (at least 55) (warn-only until the founder has seen the light pilot)'
+      value: 49.6
+    - check: light_median
+      status: pass
+      message: 'golden/subject: median L 79 (band 48-86)'
+      value: 78.6
+    - check: light_haze
+      status: pass
+      message: 'golden/subject: dark-channel haze 0.18 (at most 0.22; no true dark
+        means a wash)'
+      value: 0.184
+    - check: light_contrast
+      status: pass
+      message: 'golden/subject: p75 local contrast 6.1 (at least 3.4)'
+      value: 6.11
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.1 (R1 5.3)
+      value: 4.14
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.7
+      value: 1.6537
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.0, p95 9.1, off-palette 2.3% (top: #DD8844 (0.3%), #CC7733
+        (0.3%))'
+      value: 2.9651
+    info:
+      metrics_raw:
+        L_p5: 52.3
+        L_p50: 82.8
+        L_p95: 93.0
+        C_p50: 16.1
+        C_p95: 55.9
+        C_p99: 68.8
+        detail: 5.0
+      metrics_locked:
+        L_p5: 53.0
+        L_p50: 82.7
+        L_p95: 92.9
+        C_p50: 16.1
+        C_p95: 54.0
+        C_p99: 62.1
+        detail: 4.14
+    fingerprint: 31b49f2878b65bf3
+  3:
+    job: x-hill-gate-v2
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 54 (R1 51)
+      value: 53.5
+    - check: light_values
+      status: warn
+      message: 'golden/subject: L p2 50 (at most 24), p98 93 (at least 86), spread
+        44 (at least 55) (warn-only until the founder has seen the light pilot)'
+      value: 43.6
+    - check: light_median
+      status: pass
+      message: 'golden/subject: median L 78 (band 48-86)'
+      value: 77.8
+    - check: light_haze
+      status: pass
+      message: 'golden/subject: dark-channel haze 0.21 (at most 0.22; no true dark
+        means a wash)'
+      value: 0.208
+    - check: light_contrast
+      status: pass
+      message: 'golden/subject: p75 local contrast 4.8 (at least 3.4)'
+      value: 4.85
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.5 (R1 5.3)
+      value: 3.47
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.7
+      value: 1.6876
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.3, p95 9.6, off-palette 2.7% (top: #DD8844 (0.4%), #EE9944
+        (0.2%))'
+      value: 3.2814
+    info:
+      metrics_raw:
+        L_p5: 57.0
+        L_p50: 82.3
+        L_p95: 91.8
+        C_p50: 17.6
+        C_p95: 54.7
+        C_p99: 69.0
+        detail: 4.38
+      metrics_locked:
+        L_p5: 57.7
+        L_p50: 82.2
+        L_p95: 91.6
+        C_p50: 17.6
+        C_p95: 53.5
+        C_p99: 62.3
+        detail: 3.47
+    fingerprint: 31b49f2878b65bf3
+  4:
+    job: x-hill-gate-v2
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 56 (R1 51)
+      value: 56.5
+    - check: light_values
+      status: warn
+      message: 'golden/subject: L p2 47 (at most 24), p98 90 (at least 86), spread
+        44 (at least 55) (warn-only until the founder has seen the light pilot)'
+      value: 43.7
+    - check: light_median
+      status: pass
+      message: 'golden/subject: median L 73 (band 48-86)'
+      value: 73.4
+    - check: light_haze
+      status: pass
+      message: 'golden/subject: dark-channel haze 0.20 (at most 0.22; no true dark
+        means a wash)'
+      value: 0.204
+    - check: light_contrast
+      status: pass
+      message: 'golden/subject: p75 local contrast 5.7 (at least 3.4)'
+      value: 5.71
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.5 (R1 5.3)
+      value: 4.47
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.9
+      value: 1.8899
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.5, p95 9.8, off-palette 2.9% (top: #DD8844 (0.5%), #CC7733
+        (0.4%))'
+      value: 3.5421
+    info:
+      metrics_raw:
+        L_p5: 51.8
+        L_p50: 77.2
+        L_p95: 89.7
+        C_p50: 31.1
+        C_p95: 58.2
+        C_p99: 65.8
+        detail: 5.71
+      metrics_locked:
+        L_p5: 52.5
+        L_p50: 77.1
+        L_p95: 89.3
+        C_p50: 31.4
+        C_p95: 56.5
+        C_p99: 61.0
+        detail: 4.47
+    fingerprint: 31b49f2878b65bf3
+manual_review:
+  observed_note: All four originals are preserved after the sole unchanged retry.
+    The CLOSED round wooden gate, carved sunflower, warm light between planks, path,
+    grass and wildflowers are correct. Every take nonetheless presents a nearly whole-home
+    overview with the full lawn/earth bowl/roots, round home door, full windmill and
+    multiple stations; the authored portrait CLOSE VIEW of the hill gate is not delivered.
+    Both initial sources independently reviewed and both retries owner-viewed. Exclude
+    all four for actual framing, without a fabricated size threshold or zero-extra-prop
+    rule, and skip only this independent job. No further generation or pixel edits;
+    exploration never promoted.
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+sources:
+- batch: batch-31-island-milestones-v2
+  job: x-hill-gate-v2
+  take: 1
+  round: 1
+  logical_run: b31-milestones-v2-initial
+  source_file: /workspace/generated_images/exec-56e892a9-f6f1-45ac-9a2f-86383430f2e5.png
+  returned_at: '2026-11-06T02:42:32.882Z'
+  prompt_sha256: 639b9c7638c8f400dd332a5ffdf710ce89a95370e06ebec30aa260015ca456fb
+  fingerprint: 31b49f2878b65bf3
+  saved_at: '2026-11-06T02:42:33.329399+00:00'
+  original_generated_png_sha256: 9247a935339f99ef2d2796bd8542a41e0c27fa7c5f14fa2bae570f74a20fbfe2
+  dimensions:
+  - 1024
+  - 1536
+  rgba_sha256: 00c5197bdd31722f0822b2ac0398295486e0b0655615655cd7472e5630e9dcd1
+  inbox_png_sha256: 4e1d268f70dab9f91e4a48b3ce9899171f26a6be77d642215bf96018a1d896a1
+  qa_sha256: 75a3ac6eb92204d3795ec226ea74adffb8a4da152de212005344eaf4b1362086
+- batch: batch-31-island-milestones-v2
+  job: x-hill-gate-v2
+  take: 2
+  round: 1
+  logical_run: b31-milestones-v2-initial
+  source_file: /workspace/generated_images/exec-a0a61cfa-13a4-444e-b230-b2acdf51955d.png
+  returned_at: '2026-11-06T02:43:15.633Z'
+  prompt_sha256: 639b9c7638c8f400dd332a5ffdf710ce89a95370e06ebec30aa260015ca456fb
+  fingerprint: 31b49f2878b65bf3
+  saved_at: '2026-11-06T02:43:15.925751+00:00'
+  original_generated_png_sha256: 8b9786d83edf28656f2bed47ce6d9508b79c544a845713e4a602e03366125eaf
+  dimensions:
+  - 1024
+  - 1536
+  rgba_sha256: c69dd81819b25a3886b4897f87f9c0e12590335703a7ed8cfdecf52c50b3cd70
+  inbox_png_sha256: 9c3c424b24fa210dacb25e4df91c39fe5519f2fc9fff6fae4e6a1aa6247ebfcd
+  qa_sha256: 96f8c4fb1c041587518ccedf877d9404a944710bbcc18d922145435f1c8b13ef
+- batch: batch-31-island-milestones-v2
+  job: x-hill-gate-v2
+  take: 3
+  round: 2
+  logical_run: b31-milestones-v2-retries
+  source_file: /workspace/generated_images/exec-5a1dcbb2-0a00-4dcf-83f9-936c90143990.png
+  returned_at: '2026-11-06T02:58:36.896Z'
+  prompt_sha256: 639b9c7638c8f400dd332a5ffdf710ce89a95370e06ebec30aa260015ca456fb
+  fingerprint: 31b49f2878b65bf3
+  saved_at: '2026-11-06T02:58:37.322638+00:00'
+  original_generated_png_sha256: cf8f975a5825a6744d11416ac3850ef74619bbd1acab57b4b715b7f905d8f254
+  dimensions:
+  - 1024
+  - 1536
+  rgba_sha256: 7acb255818d77e281c7f2e678076dd16deeaba1228f530260308d26a21f30806
+  inbox_png_sha256: bcc49e52885cd3a072d4b33608c24b0efe88ae87b6e9229c54445e04dd47dd0d
+  qa_sha256: 2c45cd4b1347fa57d801cb642a2d223ae1a5038a795288cecfdd8a691bfa3dbe
+- batch: batch-31-island-milestones-v2
+  job: x-hill-gate-v2
+  take: 4
+  round: 2
+  logical_run: b31-milestones-v2-retries
+  source_file: /workspace/generated_images/exec-3c833cff-7c29-4ab5-993d-a412902c4265.png
+  returned_at: '2026-11-06T03:00:14.457Z'
+  prompt_sha256: 639b9c7638c8f400dd332a5ffdf710ce89a95370e06ebec30aa260015ca456fb
+  fingerprint: 31b49f2878b65bf3
+  saved_at: '2026-11-06T03:00:14.906861+00:00'
+  original_generated_png_sha256: a28ec5379aebec8fe31afeb1840000c7fdf1bd033103b9bce614eaee3ff8f47d
+  dimensions:
+  - 1024
+  - 1536
+  rgba_sha256: 066b043cea34b7a8a0a34d2695186e80ccb1e16439466e01d3f806db4f1d5fbf
+  inbox_png_sha256: 5e747484d2c273fe3b961ccc6c93b096211cb14f78a01a626327a1aebff9b86b
+  qa_sha256: 35cd7d7e4188aedd77eb5cab2133f847b13791ee57399745d97e7a76a46655c8
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+variation_proof_sha256: 3c60578f1d589d625fd8c95bbc87020ea1257cd3bab482159f31dee243a23c2c
