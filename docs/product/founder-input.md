@@ -512,3 +512,7 @@ His views (translated), not orders; the decisions are ours. Handled in
 
 1. The "Boş ver" (shield) screen should be a stunning, eye-catching design like the break screen; he does not want it as it is. Handled: honest constraint (Apple's shield is a fixed template: a colour, a ~60 pt icon, two labels, two buttons); the best inside it (hour and mood colours, the mood icons, copy); the wow moves to what we own: the round-door landing, a payoff moment when the app opens after a resisted reach, the break screen redesign. In `docs/design/ui-v3.md`.
 2. Every UI, menu, pop-up and component must look, feel and work wonderfully, as the world's best designer would do it; there are good and bad examples. Handled: an Opus design review of every screen against the good examples, a component kit v3 and implementation waves (`docs/design/ui-v3.md`).
+
+## 2026-11-06 (afternoon): shield, breath and gate are too close
+
+1. The shield, the breath and the gate feel very close; with a clear head: should they merge, how many screens, how, when and why. Earlier "breath" meant the shield. Criticise the gate harshly too; add the whole consolidation to the to-dos. A note, not a prompt. Handled: [the Door](../design/the-door.md): two places (Apple's shield, our Door); the landing, skipped, a minute with Pofu, the hand-off and the breathing room become states of one scene; a harsh critique of the built gate (#265); the tracker gains the item; the in-flight wave 1 builds the breath as reusable pieces for the Door.

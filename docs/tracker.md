@@ -297,3 +297,8 @@ Each has a recommendation. Silence means yes, except item 1, which needs the fou
 4. **Seasons follow the real calendar** (home progression §13.5). Recommend yes.
 5. **Session length:** allow a 5-10 minute session when the player chooses it, keeping a 90 s median as the target. Recommend yes.
 6. **English rename:** do it in one planned window, or keep the Turkish ids. Recommend doing it after the Çağlayan wave.
+
+
+## Added 2026-11-06 (afternoon)
+
+- **The gate flow consolidated** ([the Door](design/the-door.md)): six in-app screens become one scene with states; the shield stays Apple's. Next: build `DoorScene` when batch-58 lands; the wave-1 breath pieces become its Breath state.
