@@ -2,7 +2,7 @@ id: asset-sticker-duo-tea
 type: asset
 title_tr: sticker-duo-tea
 title_en: sticker-duo-tea (char)
-status: cut
+status: in-production
 horizon: now
 summary: A single full-body sticker of Pofu the hamster and Mochi the bunny together,
   both in their exact attached looks and correct relative size, side by side, each
@@ -11,7 +11,8 @@ summary: A single full-body sticker of Pofu the hamster and Mochi the bunny toge
   it, drawn complete with the whole body. No text, no speech bubbles, no floating
   hearts, no sti…
 art:
-  images: []
+  images:
+  - design/art/masters/sticker-duo-tea/sticker-duo-tea.webp
   jobs:
   - batch-42-stickers:sticker-duo-tea
 sources:
@@ -32,3 +33,9 @@ notes:
   #AA3322 (0.6%), #992211 (0.4%)), ground_line: feet at 68.4% of the height (contract
   88%); t4 palette_drift: mean dE 2.8, p95 14.1, off-palette 5.8% (top: #EE9955 (0.4%),
   #AA3322 (0.4%)), ground_line: feet at 69.0% of the height (contract 88%).'
+- 'sticker-repost-2026-11-06: promoted retained take 1; auto-picked by QA; founder
+  review pending. Retained-only re-post of four historical originals on the author-fixed
+  native 1024 square canvas with ground_line:false; original ordinals/account/generation
+  timestamps preserved; no new generation. Manual full-body/expression/identity and
+  proper light/dark 28 px checks passed. Official advisory light/palette/Harmony warnings
+  remain advisory; hard QA failures are excluded.'

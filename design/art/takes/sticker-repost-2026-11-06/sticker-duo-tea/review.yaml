@@ -1,0 +1,885 @@
+batch: batch-42-stickers
+contact_sheet: design/art/takes/sticker-repost-2026-11-06/sticker-duo-tea/contact.jpg
+jobs:
+  sticker-duo-tea:
+    pick: 1
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Retained-only re-post of four
+      historical originals on the author-fixed native 1024 square canvas with ground_line:false;
+      original ordinals/account/generation timestamps preserved; no new generation.
+      Manual full-body/expression/identity and proper light/dark 28 px checks passed.
+      Official advisory light/palette/Harmony warnings remain advisory; hard QA failures
+      are excluded.
+qa_reports:
+  1:
+    job: sticker-duo-tea
+    take: 1
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 52 (R1 51)
+      value: 51.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 24 (at most 22), p98 97 (at least 90), spread 73
+        (at least 60)'
+      value: 73.2
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 89 (band 55-90)'
+      value: 88.9
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.10 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.102
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.3 (at least 3.5)'
+      value: 4.3
+    - check: detail_budget
+      status: pass
+      message: detail at display size 6.2 (R1 5.3)
+      value: 6.22
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.7, p95 13.3, off-palette 5.3% (top: #AA3322 (0.6%), #BB4422
+        (0.5%))'
+      value: 2.6848
+    - check: harmony
+      status: pass
+      message: 'harmony score 83 against the char reference (outliers: C_p95, detail)'
+      value: 82.7
+    info:
+      metrics_raw:
+        L_p5: 47.1
+        L_p50: 88.9
+        L_p95: 96.1
+        C_p50: 11.8
+        C_p95: 51.9
+        C_p99: 83.7
+        detail: 6.27
+      metrics_locked:
+        L_p5: 47.1
+        L_p50: 88.9
+        L_p95: 96.1
+        C_p50: 11.8
+        C_p95: 51.9
+        C_p99: 60.7
+        detail: 6.22
+    fingerprint: 490172c0258f6a26
+  4:
+    job: sticker-duo-tea
+    take: 4
+    status: fail
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 54 (R1 51)
+      value: 54.5
+    - check: light_values
+      status: pass
+      message: 'day/subject: L p2 22 (at most 22), p98 97 (at least 90), spread 75
+        (at least 60)'
+      value: 74.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 89 (band 55-90)'
+      value: 88.8
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.08 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.078
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.8 (at least 3.5)'
+      value: 4.8
+    - check: detail_budget
+      status: pass
+      message: detail at display size 6.8 (R1 5.3)
+      value: 6.77
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 2.8, p95 14.1, off-palette 5.8% (top: #EE9955 (0.4%), #AA3322
+        (0.4%))'
+      value: 2.781
+    - check: harmony
+      status: pass
+      message: 'harmony score 78 against the char reference (outliers: C_p95, detail,
+        tint_b)'
+      value: 78.3
+    info:
+      metrics_raw:
+        L_p5: 47.0
+        L_p50: 88.9
+        L_p95: 95.9
+        C_p50: 10.2
+        C_p95: 55.2
+        C_p99: 77.4
+        detail: 6.85
+      metrics_locked:
+        L_p5: 47.0
+        L_p50: 88.9
+        L_p95: 95.9
+        C_p50: 10.2
+        C_p95: 54.5
+        C_p99: 60.2
+        detail: 6.77
+    fingerprint: 490172c0258f6a26
+  3:
+    job: sticker-duo-tea
+    take: 3
+    status: fail
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 56 (R1 51)
+      value: 55.9
+    - check: light_values
+      status: pass
+      message: 'day/subject: L p2 19 (at most 22), p98 97 (at least 90), spread 78
+        (at least 60)'
+      value: 77.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 89 (band 55-90)'
+      value: 89.2
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.06 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.055
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.1 (at least 3.5)'
+      value: 5.06
+    - check: detail_budget
+      status: pass
+      message: detail at display size 6.9 (R1 5.3)
+      value: 6.86
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 2.9, p95 16.9, off-palette 6.7% (top: #AA3322 (0.6%), #992211
+        (0.4%))'
+      value: 2.9359
+    - check: harmony
+      status: pass
+      message: 'harmony score 77 against the char reference (outliers: C_p95, detail,
+        tint_b)'
+      value: 77.4
+    info:
+      metrics_raw:
+        L_p5: 42.5
+        L_p50: 89.3
+        L_p95: 96.3
+        C_p50: 11.0
+        C_p95: 57.8
+        C_p99: 82.1
+        detail: 6.94
+      metrics_locked:
+        L_p5: 42.5
+        L_p50: 89.3
+        L_p95: 96.3
+        C_p50: 11.0
+        C_p95: 55.9
+        C_p99: 60.6
+        detail: 6.86
+    fingerprint: 490172c0258f6a26
+  2:
+    job: sticker-duo-tea
+    take: 2
+    status: fail
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 57 (R1 51)
+      value: 57.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 22 (at most 22), p98 97 (at least 90), spread 74
+        (at least 60)'
+      value: 74.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 88 (band 55-90)'
+      value: 87.8
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.08 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.082
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.1 (at least 3.5)'
+      value: 5.11
+    - check: detail_budget
+      status: pass
+      message: detail at display size 6.9 (R1 5.3)
+      value: 6.9
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 3.1, p95 17.4, off-palette 7.6% (top: #EE9955 (0.6%), #BB4422
+        (0.5%))'
+      value: 3.0864
+    - check: harmony
+      status: pass
+      message: 'harmony score 76 against the char reference (outliers: C_p95, detail)'
+      value: 76.2
+    info:
+      metrics_raw:
+        L_p5: 46.7
+        L_p50: 87.8
+        L_p95: 96.0
+        C_p50: 11.7
+        C_p95: 61.8
+        C_p99: 84.2
+        detail: 7.02
+      metrics_locked:
+        L_p5: 46.7
+        L_p50: 87.8
+        L_p95: 96.0
+        C_p50: 11.7
+        C_p95: 57.4
+        C_p99: 60.7
+        detail: 6.9
+    fingerprint: 490172c0258f6a26
+manual_review:
+  excluded_takes: []
+  note: Retained-only re-post of four historical originals on the author-fixed native
+    1024 square canvas with ground_line:false; original ordinals/account/generation
+    timestamps preserved; no new generation. Manual full-body/expression/identity
+    and proper light/dark 28 px checks passed. Official advisory light/palette/Harmony
+    warnings remain advisory; hard QA failures are excluded.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-0dca729d-a3f2-42e2-8163-34a296823a99.png
+  original_generated_png_sha256: bfc13a430d83bc9e43030cdb63beb27b969512d47c4568138cbb4ac0f993f173
+  inbox_png_sha256: a5f20abb09940b640f997e87d567e8f0d711afbbc404ea8f4b41257e3274317d
+  rgba_sha256: 49d67814ac2ab8e424e2c7157cb2df56a9c5edaa7b577035a79cfd5d2b0dc8d9
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 490172c0258f6a26
+- take: 2
+  source_file: /workspace/generated_images/exec-733372cf-15c8-4519-9861-c91f31082d07.png
+  original_generated_png_sha256: 7994bd596538faf000d9dd80edc942ad5f389aca5ea09b52b3469d25f6746017
+  inbox_png_sha256: 2bb0c3f02e150fcbb71e393085c4ca66a35af4bb00719471ac280d7963b1bd9a
+  rgba_sha256: f5311806c90f708d29a5c1b9e5b58c84d04d1e3f1ed2f37156544b648f7f924e
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 490172c0258f6a26
+- take: 3
+  source_file: /workspace/generated_images/exec-3400a15c-0cfd-4215-9dda-d2cf56a794fd.png
+  original_generated_png_sha256: e7a86dc7b0605caa87c376e2dec62406f8167780958702ef00de0ba9dd513623
+  inbox_png_sha256: 064faf055d52497d3fa9f2303b5bc0935d8df77a4550ec15f34c5865efe46c74
+  rgba_sha256: f7a504318fada96408580f2a81b79ed43f83e395ecacf70ef26513d680027455
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 490172c0258f6a26
+- take: 4
+  source_file: /workspace/generated_images/exec-04d54610-87a5-4cc2-ae4f-46398e61bfac.png
+  original_generated_png_sha256: cec307382f8fbe0484844e63af96ee110c1d89844500a0707adbf5d3b612dba0
+  inbox_png_sha256: 42ba20e46e8ad5ab972cbf044c4808bb8d59c5f5050e96e7a16080daf37ad2d2
+  rgba_sha256: 5157e0d389f2a6304c8b0ca553e8298f0bdca75ee6510f9e07913a6f51c05839
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 490172c0258f6a26
+salvage:
+  batch: batch-42-stickers
+  source_count: 4
+  original_branch: art/batch-42-stickers/all
+  original_commit: b77792fc184547204c0710b19223c68b5a64fde1
+  sources:
+  - batch: batch-42-stickers
+    job: sticker-duo-tea
+    take: 1
+    round: 1
+    logical_run: b42-residents-a
+    source_file: /workspace/generated_images/exec-0dca729d-a3f2-42e2-8163-34a296823a99.png
+    returned_at: '2026-11-06T02:17:14.186Z'
+    prompt_sha256: be168f5ab7688306cceb74802ac9f43283c05fe199ab4090ecced4f9d5fcfe61
+    fingerprint: 490172c0258f6a26
+    saved_at: '2026-11-06T02:17:15.598333+00:00'
+    original_generated_png_sha256: bfc13a430d83bc9e43030cdb63beb27b969512d47c4568138cbb4ac0f993f173
+    dimensions:
+    - 1254
+    - 1254
+    rgba_sha256: 49d67814ac2ab8e424e2c7157cb2df56a9c5edaa7b577035a79cfd5d2b0dc8d9
+    evaluation_take: 1
+    original_take: 1
+    original_run: batch-42-stickers
+    original_callback: /workspace/art-operator-runtime/run-20261106/batch-42-stickers/generated-sticker-duo-tea-t1.json
+    original_callback_sha256: d31c600c984cc59413c2d9c591ef1a02b8f1d48eb1d19b83a3861e91d33b9c92
+    original_tool_callback: /workspace/art-operator-runtime/run-20261106/batch-42-stickers/callback-sticker-duo-tea-t1.json
+    original_tool_callback_sha256: 1fb8d13aa485c2f6ca9d29f5d6b868186f6cdfc445ce8aefaa5b797beb91d424
+    original_sidecar:
+      job: sticker-duo-tea
+      take: 1
+      batch: batch-42-stickers
+      fingerprint: 490172c0258f6a26
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. Pofu, the hamster: his exact look, fur, colors, eyes and signature curl.
+
+        2. Mochi, the bunny: her exact look, fur, colors and eyes.
+
+
+        A single full-body sticker of Pofu the hamster and Mochi the bunny together,
+        both in their exact attached looks and correct relative size, side by side,
+        each holding a small tulip-shaped tea glass and clinking gently, smiling.
+        Centred on a plain transparent background with wide empty space around it,
+        drawn complete with the whole body. No text, no speech bubbles, no floating
+        hearts, no sticker border, no ground shadow.
+
+
+        AVOID: text, a white outline, a background, teeth, tears, motion lines, a
+        different design.
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      attachments:
+      - path: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+        role: 'Pofu, the hamster: his exact look, fur, colors, eyes and signature
+          curl.'
+      - path: design/art/masters/mochi-v2/mochi-v2.webp
+        role: 'Mochi, the bunny: her exact look, fur, colors and eyes.'
+      background: transparent
+      generated_at: '2026-11-06T02:17:17+00:00'
+      backend: codex-cloud
+      source_file: /workspace/generated_images/exec-0dca729d-a3f2-42e2-8163-34a296823a99.png
+      account:
+        owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+        kind: chatgpt-plan
+    original_sidecar_path: /workspace/art-20261106-stickers/design/art/inbox/batch-42-stickers/char__sticker-duo-tea--t1.json
+    original_sidecar_sha256: 03f305f97d3700941a37d71635db0bcd86f4b3d0f61e4a2c27a36d4a01ef5907
+    original_sidecar_archive: /workspace/art-operator-runtime/run-20261106/completed-art-checkout-backups/run-20261106--batch-42-stickers.tar.gz
+    original_sidecar_archive_member: design/art/inbox/batch-42-stickers/char__sticker-duo-tea--t1.json
+    original_packet:
+      batch: batch-42-stickers
+      job: sticker-duo-tea
+      worktree: /workspace/art-20261106-stickers
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. Pofu, the hamster: his exact look, fur, colors, eyes and signature curl.
+
+        2. Mochi, the bunny: her exact look, fur, colors and eyes.
+
+
+        A single full-body sticker of Pofu the hamster and Mochi the bunny together,
+        both in their exact attached looks and correct relative size, side by side,
+        each holding a small tulip-shaped tea glass and clinking gently, smiling.
+        Centred on a plain transparent background with wide empty space around it,
+        drawn complete with the whole body. No text, no speech bubbles, no floating
+        hearts, no sticker border, no ground shadow.
+
+
+        AVOID: text, a white outline, a background, teeth, tears, motion lines, a
+        different design.
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      refs:
+      - /workspace/art-20261106-stickers/design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+      - /workspace/art-20261106-stickers/design/art/masters/mochi-v2/mochi-v2.webp
+      reference_sha256:
+        /workspace/art-20261106-stickers/design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png: d4f0ce88dc0541053dd515845c1f2bbb2a4ebe101c5ce4a6080d340a5c872454
+        /workspace/art-20261106-stickers/design/art/masters/mochi-v2/mochi-v2.webp: d107327f7c35e283895babdadc487326cff93e13178ca594bc70285770f62ee5
+      fingerprint: 490172c0258f6a26
+      prompt_sha256: be168f5ab7688306cceb74802ac9f43283c05fe199ab4090ecced4f9d5fcfe61
+      transparent: true
+    original_packet_sha256: d6b4fb2c451b5cd56d9369b29707f5c3f862b04be45984f546c9850fbd8d0795
+  - batch: batch-42-stickers
+    job: sticker-duo-tea
+    take: 2
+    round: 1
+    logical_run: b42-residents-a
+    source_file: /workspace/generated_images/exec-733372cf-15c8-4519-9861-c91f31082d07.png
+    returned_at: '2026-11-06T02:16:40.810Z'
+    prompt_sha256: be168f5ab7688306cceb74802ac9f43283c05fe199ab4090ecced4f9d5fcfe61
+    fingerprint: 490172c0258f6a26
+    saved_at: '2026-11-06T02:16:41.278394+00:00'
+    original_generated_png_sha256: 7994bd596538faf000d9dd80edc942ad5f389aca5ea09b52b3469d25f6746017
+    dimensions:
+    - 1254
+    - 1254
+    rgba_sha256: f5311806c90f708d29a5c1b9e5b58c84d04d1e3f1ed2f37156544b648f7f924e
+    evaluation_take: 2
+    original_take: 2
+    original_run: batch-42-stickers
+    original_callback: /workspace/art-operator-runtime/run-20261106/batch-42-stickers/generated-sticker-duo-tea-t2.json
+    original_callback_sha256: ed54bfaeb326632b6da33ddf51dee1fe8bc2bf879da38bafeef77b26eeb07de7
+    original_tool_callback: /workspace/art-operator-runtime/run-20261106/batch-42-stickers/callback-sticker-duo-tea-t2.json
+    original_tool_callback_sha256: 85056a6a5e785339f4975ab4d03fa531ff33b304fe9fced318ed7590d85750e2
+    original_sidecar:
+      job: sticker-duo-tea
+      take: 2
+      batch: batch-42-stickers
+      fingerprint: 490172c0258f6a26
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. Pofu, the hamster: his exact look, fur, colors, eyes and signature curl.
+
+        2. Mochi, the bunny: her exact look, fur, colors and eyes.
+
+
+        A single full-body sticker of Pofu the hamster and Mochi the bunny together,
+        both in their exact attached looks and correct relative size, side by side,
+        each holding a small tulip-shaped tea glass and clinking gently, smiling.
+        Centred on a plain transparent background with wide empty space around it,
+        drawn complete with the whole body. No text, no speech bubbles, no floating
+        hearts, no sticker border, no ground shadow.
+
+
+        AVOID: text, a white outline, a background, teeth, tears, motion lines, a
+        different design.
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      attachments:
+      - path: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+        role: 'Pofu, the hamster: his exact look, fur, colors, eyes and signature
+          curl.'
+      - path: design/art/masters/mochi-v2/mochi-v2.webp
+        role: 'Mochi, the bunny: her exact look, fur, colors and eyes.'
+      background: transparent
+      generated_at: '2026-11-06T02:17:17+00:00'
+      backend: codex-cloud
+      source_file: /workspace/generated_images/exec-733372cf-15c8-4519-9861-c91f31082d07.png
+      account:
+        owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+        kind: chatgpt-plan
+    original_sidecar_path: /workspace/art-20261106-stickers/design/art/inbox/batch-42-stickers/char__sticker-duo-tea--t2.json
+    original_sidecar_sha256: 74567b7689419a92a797d14a604023eac545fa8a96d51acd16d5253d99241ff7
+    original_sidecar_archive: /workspace/art-operator-runtime/run-20261106/completed-art-checkout-backups/run-20261106--batch-42-stickers.tar.gz
+    original_sidecar_archive_member: design/art/inbox/batch-42-stickers/char__sticker-duo-tea--t2.json
+    original_packet:
+      batch: batch-42-stickers
+      job: sticker-duo-tea
+      worktree: /workspace/art-20261106-stickers
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. Pofu, the hamster: his exact look, fur, colors, eyes and signature curl.
+
+        2. Mochi, the bunny: her exact look, fur, colors and eyes.
+
+
+        A single full-body sticker of Pofu the hamster and Mochi the bunny together,
+        both in their exact attached looks and correct relative size, side by side,
+        each holding a small tulip-shaped tea glass and clinking gently, smiling.
+        Centred on a plain transparent background with wide empty space around it,
+        drawn complete with the whole body. No text, no speech bubbles, no floating
+        hearts, no sticker border, no ground shadow.
+
+
+        AVOID: text, a white outline, a background, teeth, tears, motion lines, a
+        different design.
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      refs:
+      - /workspace/art-20261106-stickers/design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+      - /workspace/art-20261106-stickers/design/art/masters/mochi-v2/mochi-v2.webp
+      reference_sha256:
+        /workspace/art-20261106-stickers/design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png: d4f0ce88dc0541053dd515845c1f2bbb2a4ebe101c5ce4a6080d340a5c872454
+        /workspace/art-20261106-stickers/design/art/masters/mochi-v2/mochi-v2.webp: d107327f7c35e283895babdadc487326cff93e13178ca594bc70285770f62ee5
+      fingerprint: 490172c0258f6a26
+      prompt_sha256: be168f5ab7688306cceb74802ac9f43283c05fe199ab4090ecced4f9d5fcfe61
+      transparent: true
+    original_packet_sha256: d6b4fb2c451b5cd56d9369b29707f5c3f862b04be45984f546c9850fbd8d0795
+  - batch: batch-42-stickers
+    job: sticker-duo-tea
+    take: 3
+    round: 2
+    logical_run: b42-residents-retries
+    source_file: /workspace/generated_images/exec-3400a15c-0cfd-4215-9dda-d2cf56a794fd.png
+    returned_at: '2026-11-06T02:22:16.134Z'
+    prompt_sha256: be168f5ab7688306cceb74802ac9f43283c05fe199ab4090ecced4f9d5fcfe61
+    fingerprint: 490172c0258f6a26
+    saved_at: '2026-11-06T02:22:16.645993+00:00'
+    original_generated_png_sha256: e7a86dc7b0605caa87c376e2dec62406f8167780958702ef00de0ba9dd513623
+    dimensions:
+    - 1254
+    - 1254
+    rgba_sha256: f7a504318fada96408580f2a81b79ed43f83e395ecacf70ef26513d680027455
+    evaluation_take: 3
+    original_take: 3
+    original_run: batch-42-stickers
+    original_callback: /workspace/art-operator-runtime/run-20261106/batch-42-stickers/generated-sticker-duo-tea-t3.json
+    original_callback_sha256: 4c15458259ad20a8461961a48a8229564f22389ed447ef8dc3f8e9e6068565d4
+    original_tool_callback: /workspace/art-operator-runtime/run-20261106/batch-42-stickers/callback-sticker-duo-tea-t3.json
+    original_tool_callback_sha256: d59f23695d40bb3f247b7d2287760ab5f338dc85c712ef112a897fc407eb2b00
+    original_sidecar:
+      job: sticker-duo-tea
+      take: 3
+      batch: batch-42-stickers
+      fingerprint: 490172c0258f6a26
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. Pofu, the hamster: his exact look, fur, colors, eyes and signature curl.
+
+        2. Mochi, the bunny: her exact look, fur, colors and eyes.
+
+
+        A single full-body sticker of Pofu the hamster and Mochi the bunny together,
+        both in their exact attached looks and correct relative size, side by side,
+        each holding a small tulip-shaped tea glass and clinking gently, smiling.
+        Centred on a plain transparent background with wide empty space around it,
+        drawn complete with the whole body. No text, no speech bubbles, no floating
+        hearts, no sticker border, no ground shadow.
+
+
+        AVOID: text, a white outline, a background, teeth, tears, motion lines, a
+        different design.
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      attachments:
+      - path: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+        role: 'Pofu, the hamster: his exact look, fur, colors, eyes and signature
+          curl.'
+      - path: design/art/masters/mochi-v2/mochi-v2.webp
+        role: 'Mochi, the bunny: her exact look, fur, colors and eyes.'
+      background: transparent
+      generated_at: '2026-11-06T02:23:08+00:00'
+      backend: codex-cloud
+      source_file: /workspace/generated_images/exec-3400a15c-0cfd-4215-9dda-d2cf56a794fd.png
+      account:
+        owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+        kind: chatgpt-plan
+    original_sidecar_path: /workspace/art-20261106-stickers/design/art/inbox/batch-42-stickers/char__sticker-duo-tea--t3.json
+    original_sidecar_sha256: 8fc65205ab2ea22d09a8853915043bbbc135c2fe6880b26ec1aeb117cc6dd15d
+    original_sidecar_archive: /workspace/art-operator-runtime/run-20261106/completed-art-checkout-backups/run-20261106--batch-42-stickers.tar.gz
+    original_sidecar_archive_member: design/art/inbox/batch-42-stickers/char__sticker-duo-tea--t3.json
+    original_packet:
+      batch: batch-42-stickers
+      job: sticker-duo-tea
+      worktree: /workspace/art-20261106-stickers
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. Pofu, the hamster: his exact look, fur, colors, eyes and signature curl.
+
+        2. Mochi, the bunny: her exact look, fur, colors and eyes.
+
+
+        A single full-body sticker of Pofu the hamster and Mochi the bunny together,
+        both in their exact attached looks and correct relative size, side by side,
+        each holding a small tulip-shaped tea glass and clinking gently, smiling.
+        Centred on a plain transparent background with wide empty space around it,
+        drawn complete with the whole body. No text, no speech bubbles, no floating
+        hearts, no sticker border, no ground shadow.
+
+
+        AVOID: text, a white outline, a background, teeth, tears, motion lines, a
+        different design.
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      refs:
+      - /workspace/art-20261106-stickers/design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+      - /workspace/art-20261106-stickers/design/art/masters/mochi-v2/mochi-v2.webp
+      reference_sha256:
+        /workspace/art-20261106-stickers/design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png: d4f0ce88dc0541053dd515845c1f2bbb2a4ebe101c5ce4a6080d340a5c872454
+        /workspace/art-20261106-stickers/design/art/masters/mochi-v2/mochi-v2.webp: d107327f7c35e283895babdadc487326cff93e13178ca594bc70285770f62ee5
+      fingerprint: 490172c0258f6a26
+      prompt_sha256: be168f5ab7688306cceb74802ac9f43283c05fe199ab4090ecced4f9d5fcfe61
+      transparent: true
+    original_packet_sha256: d6b4fb2c451b5cd56d9369b29707f5c3f862b04be45984f546c9850fbd8d0795
+  - batch: batch-42-stickers
+    job: sticker-duo-tea
+    take: 4
+    round: 2
+    logical_run: b42-residents-retries
+    source_file: /workspace/generated_images/exec-04d54610-87a5-4cc2-ae4f-46398e61bfac.png
+    returned_at: '2026-11-06T02:23:06.292Z'
+    prompt_sha256: be168f5ab7688306cceb74802ac9f43283c05fe199ab4090ecced4f9d5fcfe61
+    fingerprint: 490172c0258f6a26
+    saved_at: '2026-11-06T02:23:06.588085+00:00'
+    original_generated_png_sha256: cec307382f8fbe0484844e63af96ee110c1d89844500a0707adbf5d3b612dba0
+    dimensions:
+    - 1254
+    - 1254
+    rgba_sha256: 5157e0d389f2a6304c8b0ca553e8298f0bdca75ee6510f9e07913a6f51c05839
+    evaluation_take: 4
+    original_take: 4
+    original_run: batch-42-stickers
+    original_callback: /workspace/art-operator-runtime/run-20261106/batch-42-stickers/generated-sticker-duo-tea-t4.json
+    original_callback_sha256: f8c64b3c039d4f1d1f73e1aad901981965dac33299922f823859c83c41d63f34
+    original_tool_callback: /workspace/art-operator-runtime/run-20261106/batch-42-stickers/callback-sticker-duo-tea-t4.json
+    original_tool_callback_sha256: 114f437e7c6a1430b8063012775552461d746dfba11814efc5867433841756d5
+    original_sidecar:
+      job: sticker-duo-tea
+      take: 4
+      batch: batch-42-stickers
+      fingerprint: 490172c0258f6a26
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. Pofu, the hamster: his exact look, fur, colors, eyes and signature curl.
+
+        2. Mochi, the bunny: her exact look, fur, colors and eyes.
+
+
+        A single full-body sticker of Pofu the hamster and Mochi the bunny together,
+        both in their exact attached looks and correct relative size, side by side,
+        each holding a small tulip-shaped tea glass and clinking gently, smiling.
+        Centred on a plain transparent background with wide empty space around it,
+        drawn complete with the whole body. No text, no speech bubbles, no floating
+        hearts, no sticker border, no ground shadow.
+
+
+        AVOID: text, a white outline, a background, teeth, tears, motion lines, a
+        different design.
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      attachments:
+      - path: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+        role: 'Pofu, the hamster: his exact look, fur, colors, eyes and signature
+          curl.'
+      - path: design/art/masters/mochi-v2/mochi-v2.webp
+        role: 'Mochi, the bunny: her exact look, fur, colors and eyes.'
+      background: transparent
+      generated_at: '2026-11-06T02:23:09+00:00'
+      backend: codex-cloud
+      source_file: /workspace/generated_images/exec-04d54610-87a5-4cc2-ae4f-46398e61bfac.png
+      account:
+        owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+        kind: chatgpt-plan
+    original_sidecar_path: /workspace/art-20261106-stickers/design/art/inbox/batch-42-stickers/char__sticker-duo-tea--t4.json
+    original_sidecar_sha256: 67db64acfd108a4d7628884731f29528808c44d27600f9e401e61aa7c5a2a291
+    original_sidecar_archive: /workspace/art-operator-runtime/run-20261106/completed-art-checkout-backups/run-20261106--batch-42-stickers.tar.gz
+    original_sidecar_archive_member: design/art/inbox/batch-42-stickers/char__sticker-duo-tea--t4.json
+    original_packet:
+      batch: batch-42-stickers
+      job: sticker-duo-tea
+      worktree: /workspace/art-20261106-stickers
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. Pofu, the hamster: his exact look, fur, colors, eyes and signature curl.
+
+        2. Mochi, the bunny: her exact look, fur, colors and eyes.
+
+
+        A single full-body sticker of Pofu the hamster and Mochi the bunny together,
+        both in their exact attached looks and correct relative size, side by side,
+        each holding a small tulip-shaped tea glass and clinking gently, smiling.
+        Centred on a plain transparent background with wide empty space around it,
+        drawn complete with the whole body. No text, no speech bubbles, no floating
+        hearts, no sticker border, no ground shadow.
+
+
+        AVOID: text, a white outline, a background, teeth, tears, motion lines, a
+        different design.
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, square 1024 x 1024.
+
+        '
+      refs:
+      - /workspace/art-20261106-stickers/design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+      - /workspace/art-20261106-stickers/design/art/masters/mochi-v2/mochi-v2.webp
+      reference_sha256:
+        /workspace/art-20261106-stickers/design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png: d4f0ce88dc0541053dd515845c1f2bbb2a4ebe101c5ce4a6080d340a5c872454
+        /workspace/art-20261106-stickers/design/art/masters/mochi-v2/mochi-v2.webp: d107327f7c35e283895babdadc487326cff93e13178ca594bc70285770f62ee5
+      fingerprint: 490172c0258f6a26
+      prompt_sha256: be168f5ab7688306cceb74802ac9f43283c05fe199ab4090ecced4f9d5fcfe61
+      transparent: true
+    original_packet_sha256: d6b4fb2c451b5cd56d9369b29707f5c3f862b04be45984f546c9850fbd8d0795
