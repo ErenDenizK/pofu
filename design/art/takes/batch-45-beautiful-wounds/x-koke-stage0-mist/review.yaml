@@ -4,20 +4,22 @@ manifest_sha256: 76008f3117f50b58d4b037b6ab2cb8164cc2f68868f8f14932b29df37575f74
 contact_sheet: design/art/takes/batch-45-beautiful-wounds/x-koke-stage0-mist/contact.jpg
 jobs:
   x-koke-stage0-mist:
-    pick: 1
-    publication: selected exploration; never promoted
-    note: auto-picked by QA; founder review pending. Both source and official locked
-      takes retain the approved sleeping-moss composition, closed face, crown sprout,
-      five closed drooping flower groups, both ferns, seven-stone path, side mounds
-      and right rake. Low layered mist dissolves the foot and separates the back of
-      the mound, while the lawn and named props remain visible. One slanting warm
-      shaft focuses on the sprout; its natural rim and pale cloud spill are not extra
-      practical lights. Both are manually eligible; lowest lock load selects take1.
-      The full-value/haze/contrast/palette warnings are disclosed advisory exploration
-      measurements, not silently waived hard checks. The authored target and LIGHT
-      take precedence over the unchanged legacy prop-style high-key/milky prose; no
-      prompt, reference, pixel or QA change. Independent concept interpretation, not
-      a registered pixel-identical edit. Never promoted.
+    pick: none
+    publication: skipped after one allowed retry
+    note: 'FINAL CORRECTION after sole unchanged-prompt retry: the approved parent
+      has FOUR steppingstones, whereas all four original and official locked candidates
+      show FIVE, including an extra last oval near the hindpaw. The attachment explicitly
+      requires every prop exactly and permits only light/atmosphere/colour changes,
+      so all4 are manually excluded despite hard numeric QA passing. Initial take1
+      was mistakenly selected/published in20e582 after the owner miscounted; that
+      initial commit, all four published artifacts, original decision/source/QA/locked
+      receipts and pixels are preserved unchanged in Git and runtimepublication-history/x-koke-initial-20e58200
+      (REASSESSMENT4414c81f). This corrective review withdraws that selection truthfully
+      rather than rewriting history. Reference and retry native crops establish4-versus5;
+      sleeping face, sprout, five closed flower groups, bothferns/rake/side mounds
+      otherwise remain recognizable. No extra generation, local pixel edits, prompt/ref/threshold
+      change or invented value/raw-size gate. Terminal skipped after exactly one retry;
+      every original retained. Never promoted.'
 qa_reports:
   1:
     job: x-koke-stage0-mist
@@ -150,19 +152,156 @@ qa_reports:
         C_p99: 33.2
         detail: 1.36
     fingerprint: 47c36718b1af9b1a
+  3:
+    job: x-koke-stage0-mist
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 34 (R1 51)
+      value: 34.1
+    - check: light_values
+      status: warn
+      message: 'dawn/subject: L p2 48 (at most 26), p98 82 (at least 88), spread 35
+        (at least 55) (warn-only until the founder has seen the light pilot)'
+      value: 34.9
+    - check: light_median
+      status: pass
+      message: 'dawn/subject: median L 68 (band 50-88)'
+      value: 67.6
+    - check: light_haze
+      status: warn
+      message: 'dawn/subject: dark-channel haze 0.44 (at most 0.24; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.439
+    - check: light_contrast
+      status: warn
+      message: 'dawn/subject: p75 local contrast 2.4 (at least 3.2) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.36
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.2 (R1 5.3)
+      value: 1.23
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.5628
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.0, p95 5.9, off-palette 0.0%
+      value: 1.9745
+    info:
+      metrics_raw:
+        L_p5: 51.9
+        L_p50: 70.6
+        L_p95: 82.4
+        C_p50: 17.3
+        C_p95: 34.2
+        C_p99: 39.3
+        detail: 1.67
+      metrics_locked:
+        L_p5: 52.1
+        L_p50: 70.6
+        L_p95: 82.3
+        C_p50: 17.1
+        C_p95: 34.1
+        C_p99: 39.3
+        detail: 1.23
+    fingerprint: 47c36718b1af9b1a
+  4:
+    job: x-koke-stage0-mist
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 31 (R1 51)
+      value: 31.2
+    - check: light_values
+      status: warn
+      message: 'dawn/subject: L p2 49 (at most 26), p98 85 (at least 88), spread 36
+        (at least 55) (warn-only until the founder has seen the light pilot)'
+      value: 36.5
+    - check: light_median
+      status: pass
+      message: 'dawn/subject: median L 68 (band 50-88)'
+      value: 67.9
+    - check: light_haze
+      status: warn
+      message: 'dawn/subject: dark-channel haze 0.46 (at most 0.24; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.463
+    - check: light_contrast
+      status: warn
+      message: 'dawn/subject: p75 local contrast 2.1 (at least 3.2) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.12
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.07
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.5615
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.9, p95 5.8, off-palette 0.0%
+      value: 1.901
+    info:
+      metrics_raw:
+        L_p5: 53.1
+        L_p50: 71.0
+        L_p95: 85.3
+        C_p50: 15.2
+        C_p95: 31.2
+        C_p99: 37.0
+        detail: 1.44
+      metrics_locked:
+        L_p5: 53.3
+        L_p50: 71.0
+        L_p95: 85.2
+        C_p50: 15.1
+        C_p95: 31.2
+        C_p99: 37.0
+        detail: 1.07
+    fingerprint: 47c36718b1af9b1a
 manual_review:
-  observed_note: Both source and official locked takes retain the approved sleeping-moss
-    composition, closed face, crown sprout, five closed drooping flower groups, both
-    ferns, seven-stone path, side mounds and right rake. Low layered mist dissolves
-    the foot and separates the back of the mound, while the lawn and named props remain
-    visible. One slanting warm shaft focuses on the sprout; its natural rim and pale
-    cloud spill are not extra practical lights. Both are manually eligible; lowest
-    lock load selects take1. The full-value/haze/contrast/palette warnings are disclosed
-    advisory exploration measurements, not silently waived hard checks. The authored
-    target and LIGHT take precedence over the unchanged legacy prop-style high-key/milky
-    prose; no prompt, reference, pixel or QA change. Independent concept interpretation,
-    not a registered pixel-identical edit. Never promoted.
-  excluded_takes: []
+  observed_note: 'FINAL CORRECTION after sole unchanged-prompt retry: the approved
+    parent has FOUR steppingstones, whereas all four original and official locked
+    candidates show FIVE, including an extra last oval near the hindpaw. The attachment
+    explicitly requires every prop exactly and permits only light/atmosphere/colour
+    changes, so all4 are manually excluded despite hard numeric QA passing. Initial
+    take1 was mistakenly selected/published in20e582 after the owner miscounted; that
+    initial commit, all four published artifacts, original decision/source/QA/locked
+    receipts and pixels are preserved unchanged in Git and runtimepublication-history/x-koke-initial-20e58200
+    (REASSESSMENT4414c81f). This corrective review withdraws that selection truthfully
+    rather than rewriting history. Reference and retry native crops establish4-versus5;
+    sleeping face, sprout, five closed flower groups, bothferns/rake/side mounds otherwise
+    remain recognizable. No extra generation, local pixel edits, prompt/ref/threshold
+    change or invented value/raw-size gate. Terminal skipped after exactly one retry;
+    every original retained. Never promoted.'
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
 sources:
 - batch: batch-45-beautiful-wounds
   job: x-koke-stage0-mist
@@ -198,6 +337,40 @@ sources:
   rgba_sha256: 5d2aa7291781955bf7dc587860b5ecc7d9edc5cb7cded5b81154394ef353b23f
   inbox_png_sha256: 04bd3b59514a82ebfe57a122dfb8be56c869d95989f752a66c98974786c57150
   qa_sha256: d5e4158a50802b5d78756638ab2e7c1b5ffe9a41f3772f29941fa315d32e2622
+- batch: batch-45-beautiful-wounds
+  job: x-koke-stage0-mist
+  take: 3
+  round: 2
+  logical_run: 20261106-b45-r2-koke-path
+  source_file: /workspace/generated_images/exec-9e844f92-d937-47ac-b019-e86fe3203ab1.png
+  returned_at: '2026-11-06T07:17:53.015Z'
+  prompt_sha256: d06ee38acbdfb6f5d7469e21b416c59c45ed7e00fd2fc98b8a06998e51ba35d7
+  fingerprint: 47c36718b1af9b1a
+  saved_at: '2026-11-06T07:17:53.451901+00:00'
+  original_generated_png_sha256: 425c6751ccc59e7abe82ae4a951bac3ec50c4a649acc49432c0564d432ea2cc0
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 68d562626b3337d39c7f05af23c104eda28534cd2eddfe59b9718ad8f3d74f82
+  inbox_png_sha256: 28dafef40cfc7c2592914f93b8842584dad1d67998910215d3cd75490fee8a7c
+  qa_sha256: f83738412832e9a75898efcf773a8f4fbc88d98377f1eaf752228f671a81d13d
+- batch: batch-45-beautiful-wounds
+  job: x-koke-stage0-mist
+  take: 4
+  round: 2
+  logical_run: 20261106-b45-r2-koke-path
+  source_file: /workspace/generated_images/exec-8412e0f9-7037-4353-b474-39d1e16da1e0.png
+  returned_at: '2026-11-06T07:18:32.243Z'
+  prompt_sha256: d06ee38acbdfb6f5d7469e21b416c59c45ed7e00fd2fc98b8a06998e51ba35d7
+  fingerprint: 47c36718b1af9b1a
+  saved_at: '2026-11-06T07:18:32.587617+00:00'
+  original_generated_png_sha256: d2cf3b9e991c47a92af420e21d392b40577b70814491a0179480d539759094ca
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 931ad4213f28d30883b7f5a72f4b9366a11fdec2851c7cc3ad5eba024a7fdd18
+  inbox_png_sha256: 62cbac383e79a53f1af709f0ecc45164015d59c09636c8b23783067ce14d2930
+  qa_sha256: aa209eaaae25388d8e16f129af33a5653cebeda2fd00444f78f7d87779df766d
 account:
   owner: Founder's uncle's ChatGPT plan, used by the founder with permission
   kind: chatgpt-plan
