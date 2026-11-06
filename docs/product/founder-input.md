@@ -442,3 +442,9 @@ His views (translated), not orders; the decisions are ours. Handled in
   critique 01.
 - Wants **dictation inside Pofu Hub** (Whisper, multiplatform), because he
   cannot use his device's dictation. Handled: `feat/hub-dictation`.
+
+## 2026-11-06 (morning, third): night needs its own light system
+
+1. Shadows are a separate problem. Noted: light and shadow v2 stays its own track; the night work below covers the shadows lights cast on objects.
+2. Night needs its own art direction and tuning, maybe assets; light should affect objects too ("global illumination" logic), with different light and colour systems; the current system will not be enough, so judge the technical side well from the start. Handled: research `docs/research/night-lighting-2d.md`, then an offline night prototype on the lookdev sheet (darken the day art to moonlight, relight it per pixel from real sources with normal maps, hemisphere ambient and bounce) before any Swift; an ADR follows if it holds.
+3. Colours in the sample images look good except at night. Noted: day harmony stays as specified (SW-1); night gets the new system.
