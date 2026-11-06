@@ -2,14 +2,14 @@ id: asset-koke-stretch
 type: asset
 title_tr: koke-stretch
 title_en: koke-stretch (char)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  Edit the attached moss creature, Koke, into a big waking-up stretch. The front legs stretch
-  far forward along the ground with the paws spread, the haunches rise and the back arches
-  up in a rounded hump, the head lifts and tilts back a little in a huge soft yawn: a wide
-  round open mouth with a small pink tongue and no teeth, the eyes squeezed shut in happy
-  creases, the ears folded back. The moss, the sprout on the cro…
+summary: 'Edit the attached moss creature, Koke, into a big waking-up stretch. The
+  front legs stretch far forward along the ground with the paws spread, the haunches
+  rise and the back arches up in a rounded hump, the head lifts and tilts back a little
+  in a huge soft yawn: a wide round open mouth with a small pink tongue and no teeth,
+  the eyes squeezed shut in happy creases, the ears folded back. The moss, the sprout
+  on the cro…'
 links:
   variant_of:
   - asset-koke-asleep
@@ -22,3 +22,17 @@ sources:
 kind: char
 batch: batch-39-koke-production
 size: 1024x1024
+notes:
+- 'batch-39-koke-production skipped after four takes: Skipped after the sole unchanged-prompt
+  retry. All four takes hard-fail edit_silhouette and edit_stability under the authored
+  region profile: alpha overlap0.7083/0.6712/0.6279/0.6659 and parent kept0.2089/0.1868/0.2059/0.2195.
+  The requested large stretch/yawn deliberately changes the pose, but the operator
+  does not waive or retune those hard registration checks to ship it. All four PNG
+  originals, canonical reports and q90 take archives retained; no third pair, source
+  edits or prompt/profile changes. No true dependents, so only this pose is skipped.
+  Automated failures: t1 edit_silhouette: 71% of the parent''s shape kept, edit_stability:
+  21% of the parent level unchanged; t2 edit_silhouette: 67% of the parent''s shape
+  kept, edit_stability: 19% of the parent level unchanged; t3 edit_silhouette: 63%
+  of the parent''s shape kept, edit_stability: 21% of the parent level unchanged;
+  t4 edit_silhouette: 67% of the parent''s shape kept, edit_stability: 22% of the
+  parent level unchanged.'
