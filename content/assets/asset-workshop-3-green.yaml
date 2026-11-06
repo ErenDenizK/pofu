@@ -2,13 +2,12 @@ id: asset-workshop-3-green
 type: asset
 title_tr: workshop-3-green
 title_en: workshop-3-green (station)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  Add a pair of small rounded sage-green wooden shutters, open flat against the wall, one
-  on each side of the arched doorway, and a third pair around the tool board's frame. Each
-  shutter is a chunky rounded panel with a small round cut-out, painted sage green with a
-  cream edge. Everything else stays exactly as it is.
+summary: Add a pair of small rounded sage-green wooden shutters, open flat against
+  the wall, one on each side of the arched doorway, and a third pair around the tool
+  board's frame. Each shutter is a chunky rounded panel with a small round cut-out,
+  painted sage green with a cream edge. Everything else stays exactly as it is.
 links:
   variant_of:
   - asset-workshop-3
@@ -20,3 +19,12 @@ sources:
 - doc: tools/imagegen/manifest/batch-40-home-ladder-gaps.yaml
 kind: station
 batch: batch-40-home-ladder-gaps
+notes:
+- 'batch-40-home-ladder-gaps skipped after four takes: One unchanged-prompt retry
+  exhausted. The two explicitly named shutter pairs require four separate panels:
+  take1 and retry takes3/4 each contain only three panels, sharing one between the
+  doorway and tool board. Take2 has four but visibly narrows/recenters the protected
+  original doorway to fit them, moving arch/jamb geometry instead of only adding shutters.
+  All four official WARN results remain WARN; these are literal inventory or geometry
+  failures, not an invented numeric stability gate. Exact originals, locked outputs
+  and hashes retained in independent source-bound review. No master promoted.'
