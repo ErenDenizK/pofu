@@ -1,0 +1,87 @@
+{
+  "job": "breath-ring-spark",
+  "batch": "batch-62-breath-room",
+  "asset": "ui__breath-ring-spark",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-06T12:55:12+00:00",
+  "image": "design/art/ui/ui-breath-ring-spark/ui-breath-ring-spark.png",
+  "raw": "design/art/ui/ui-breath-ring-spark/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "06e168e3c1499d58",
+  "prompt": "REFERENCES (attached, in this order):\n1. A finished prop of the game: match its soft airbrushed finish, matte materials, warm light and colors (do not draw the stall).\n\nA tiny soft spark of light: a bright cream-white core (#FFF3D6) with a round warm-gold bloom (#FFC872) around it and a short faint comet tail trailing to the left, fading to nothing. Centered, small, about a fifth of the image across.\n\nUI OBJECT: a painted object that the app places under or inside native\niOS glass controls. Never paint glass, frosted panels, buttons, frames,\nprogress bars or any interface chrome: the app draws all glass and all\ncontrols natively. The object is centered with a generous transparent\nmargin of about 10% on every side.\n\nGLOW SPRITE: a painterly additive light sprite: the app adds it with plus-lighter blending, so black means no light at all. Pure black (#000000) background, not transparent, no other colors, no objects.\n\nAVOID: a four-point star, cross flare, rays, a ring, any object, text, letters, hard edges, grey or colored backgrounds. Everything outside the glow is pure black (#000000).\n\nOutput: one image, opaque, full bleed, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/stations/tea-stall-5/tea-stall-5.png",
+      "role": "A finished prop of the game: match its soft airbrushed finish, matte materials, warm light and colors (do not draw the stall)."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-06T11:20:30+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "fit": null,
+  "emit_region": null,
+  "qa": {
+    "status": "pass",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "opaque, as this kind must be"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.408 and center-cropped to 512x512",
+        "value": 0.4083
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "glow chroma p95 44 on 3% lit pixels (additive profile)",
+        "value": 43.6138
+      },
+      {
+        "check": "additive_background",
+        "status": "pass",
+        "message": "border luma p99 0.004 (near-black, at most 0.05): the glow dies before the edge",
+        "value": 0.0036
+      },
+      {
+        "check": "additive_falloff",
+        "status": "pass",
+        "message": "0.00% of the image has a hard edge (luma step over 0.08 per px at 256 px; soft falloff, at most 0.8%)",
+        "value": 0.0
+      },
+      {
+        "check": "additive_banding",
+        "status": "pass",
+        "message": "212 of 212 luma levels used across the falloff (100%; low means banding)",
+        "value": 1.0
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 0.2 (R1 5.3)",
+        "value": 0.16
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Retained initial pair only; both pass hard QA and manual round-head/soft-left-tail checks including14px review. Canonical fallback ranking selects take1. Native512 master and original1254 raw, no invented delivery scale, no generation or source edits on resume."
+}
