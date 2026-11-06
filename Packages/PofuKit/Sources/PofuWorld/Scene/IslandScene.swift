@@ -80,6 +80,7 @@ public struct IslandScene<Bubble: View>: View {
         // The visit's taps report here; set on every pass so it never holds
         // a stale closure.
         let _ = model.onVisitorEvent = onVisitor
+        let _ = model.koke.status = world.koke
         GeometryReader { proxy in
             let size = proxy.size
             // The interval and the pause come from the frame policy (§4.1):
@@ -153,10 +154,11 @@ public struct IslandScene<Bubble: View>: View {
                         x: Double(value.location.x),
                         y: Double(value.location.y),
                         stations: world.stations,
-                        arrived: Set(world.islands),
+                        arrived: Set(world.islands + (world.koke.isArrived ? [IslandID.koke] : [])),
                         visitor: world.visitor,
                         invitationOpen: world.invitationOpen,
-                        isBedtime: world.isBedtime
+                        isBedtime: world.isBedtime,
+                        koke: world.koke
                     )
                 }
             )
@@ -250,6 +252,7 @@ public struct IslandScene<Bubble: View>: View {
         .task {
             model.power.startObservingSystem()
         }
+        .overlay { KokeBubbleOverlay(state: model.koke) }
         .overlay(alignment: .bottomTrailing) {
             // The one control: the same spot in every framing, thumb zone.
             PlaceControl(model: model, islands: arrivedIslands)
@@ -304,6 +307,9 @@ public struct IslandScene<Bubble: View>: View {
         var ids = [IslandID.home]
         for id in world.islands where !ids.contains(id) {
             ids.append(id)
+        }
+        if world.koke.isArrived {
+            ids.append(.koke)
         }
         return ids
     }
@@ -467,7 +473,9 @@ private struct SceneFrame<Bubble: View>: View {
         // Without the shader library the grade pass cannot run, so the
         // time-of-day tint stands in.
         let tint = look.grade && WorldShaders.isAvailable ? Color.white : palette.grade.color
-        let grade = look.grade ? look.gradeOverride ?? light.grade : WorldGrade.neutral
+        let baseGrade = look.grade ? look.gradeOverride ?? light.grade : WorldGrade.neutral
+        // At Koke the colour comes back with the stage.
+        let grade = model.island == .koke && world.koke.isArrived ? KokeLayout.graded(baseGrade, stage: world.koke.stage) : baseGrade
         let characterGrade = look.grade ? light.characterGrade : WorldGrade.neutral
         // The sky and the cloud sea are pre-graded: no shader pass of their own.
         let sky = palette.graded(by: grade)
@@ -506,9 +514,14 @@ private struct SceneFrame<Bubble: View>: View {
             leaving: model.dressingLeaving(at: clock)
         )
 
+        // Seen from the harbor, Koke is a snoring hump on the horizon.
+        let farKoke: FarSky.Look.Koke? = model.island == .harbor && world.koke.phase != .hidden
+            ? FarSky.Look.Koke(lit: world.koke.giftUnlocked)
+            : nil
+
         ZStack(alignment: .topLeading) {
             ZStack(alignment: .topLeading) {
-                LivingSky(palette: sky, offset: offset, far: FarSky.Look(z: z, cell: light.cell, grade: grade))
+                LivingSky(palette: sky, offset: offset, far: FarSky.Look(z: z, cell: light.cell, grade: grade, koke: farKoke))
                     .environment(\.worldAmbientPaused, ambientPaused)
                     .animation(animation, value: sky)
 
@@ -718,6 +731,7 @@ private struct WorldCanvas: View {
         ZStack(alignment: .topLeading) {
             if layer == .environment {
                 otherIsles
+                kokeIsle
                 ForEach(IslandLayout.plateBands, id: \.art) { band in
                     if let sprite = WorldArt.sprite(band.art) {
                         DepthImage(
@@ -781,6 +795,8 @@ private struct WorldCanvas: View {
             case visitor(VisitorStage.Placed)
             /// A door in the earth face or the hive (`HomeFixtures`).
             case fixture(HomeFixtures.Placed)
+            /// The moss Koke gave, once it is healed.
+            case gift
         }
 
         var id: String
@@ -819,6 +835,10 @@ private struct WorldCanvas: View {
                 let atTop = !home.isEmpty && home.allSatisfy { $0.level >= $0.maxLevel }
                 for fixture in HomeFixtures.placed(islandLevel: life.islandLevel, homeStationsAtTop: atTop) {
                     objects.append(Object(id: "fixture-\(fixture.id)", kind: .fixture(fixture), anchor: fixture.point, depth: IslandLayout.depth(ofY: fixture.point.y)))
+                }
+                if world.koke.giftUnlocked {
+                    let spot = KokeLayout.homeGift
+                    objects.append(Object(id: "gift-moss", kind: .gift, anchor: spot, depth: IslandLayout.depth(ofY: spot.y)))
                 }
                 for entry in life.leaving where !shown.contains(where: { $0.id == entry.piece.id }) {
                     objects.append(Object(id: "dressing-\(entry.piece.id)", kind: .dressing(entry.piece, elapsed: entry.elapsed), anchor: entry.piece.point, depth: IslandLayout.depth(ofY: entry.piece.point.y)))
@@ -902,6 +922,8 @@ private struct WorldCanvas: View {
             )
         case .fixture(let fixture):
             FixtureView(art: fixture.art, point: point, level: level)
+        case .gift:
+            MossGiftView(point: point)
         case .critter(let critter):
             CritterView(
                 critter: critter,
@@ -1006,6 +1028,24 @@ private struct WorldCanvas: View {
                     }
                 }
             }
+        }
+    }
+
+    /// Koke's island, once it can be visited: the same fade as the other
+    /// isles, desaturated on the Map by how healed it is.
+    @ViewBuilder
+    private var kokeIsle: some View {
+        if world.koke.isArrived, z < 1.7 || model.island != .home {
+            let here = model.island == .koke
+            let fade = here ? 1 : max(0, 1 - max(z, 0) / 0.8) * (model.focus == nil ? 1 : 0)
+            KokeIsleView(
+                stage: world.koke.stage,
+                swellAge: model.koke.swellStart.map { clock.timeIntervalSince($0) },
+                reduceMotion: model.reduceMotion,
+                point: canvasPoint(KokeLayout.center, depth: 0)
+            )
+            .saturation(here ? 1 : KokeLayout.saturation(stage: world.koke.stage))
+            .opacity(fade)
         }
     }
 

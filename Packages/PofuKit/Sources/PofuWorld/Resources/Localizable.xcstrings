@@ -1200,6 +1200,182 @@
           }
         }
       }
+    },
+    "koke.name": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Koke"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Köke"
+          }
+        }
+      }
+    },
+    "koke.speaker.pofu": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pofu"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pofu"
+          }
+        }
+      }
+    },
+    "koke.speaker.mochi": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mochi"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mochi"
+          }
+        }
+      }
+    },
+    "koke.line.0": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "That hill is snoring. Grey moss, shut flowers. I'll wake it, easy."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tepe horluyor. Yosun gri, çiçekler kapalı. Uyandırırım ben bunu, kolay."
+          }
+        }
+      }
+    },
+    "koke.line.1": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A patch went green. That's what a quiet day does."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bir yama yeşerdi. Sessiz günün işi."
+          }
+        }
+      }
+    },
+    "koke.line.2": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A light came on. Told you. Didn't I tell you?"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bir ışık yandı. Ben demiştim. Demedim mi?"
+          }
+        }
+      }
+    },
+    "koke.line.3": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The stone says: \"I slept. Sorry.\" Under it, another hand: \"No need.\""
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Taşta yazıyor: \"Uyudum. Kusura bakmayın.\" Altında başka bir el: \"Gerek yok.\""
+          }
+        }
+      }
+    },
+    "koke.line.4": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mmmh."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mmmh."
+          }
+        }
+      }
+    },
+    "koke.rumour": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "There's a mossy lump snoring on the horizon. I'd bet that's an island."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ufukta yosunlu bir tümsek horluyor. Bence o bir ada."
+          }
+        }
+      }
+    },
+    "koke.rest": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Still deep asleep. Come back after a quiet day, we'll see."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uykusu derin. Sessiz bir günün ardından gel, bakarız."
+          }
+        }
+      }
+    },
+    "koke.gift": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Moss from Koke"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Köke'den yosun"
+          }
+        }
+      }
     }
   },
   "version": "1.0"

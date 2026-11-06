@@ -168,6 +168,8 @@ public final class IslandSceneModel {
     @ObservationIgnored public var onVisitorEvent: (@MainActor (GameEvent.Kind) -> Void)?
     /// A quiet day's invitation sheet is up.
     public var isInviting = false
+    /// Koke's bubble, swell and haptic (the first wonder island).
+    public let koke = KokeBeatState()
     /// A Moment is running: the visitor's arrival or the dressing's puff.
     /// The frame policy holds the Moment rate until it ends.
     public private(set) var isMoment = false
@@ -466,6 +468,26 @@ public final class IslandSceneModel {
         projectedFraming = .island
         travel { $0.startFlight(to: pose, landing: .pose(pose)) }
         kick()
+        koke.landed(on: target, model: self)
+    }
+
+    /// Holds the camera on another island's Island stop, still
+    /// (screenshots).
+    public func holdIsle(_ target: IslandID) {
+        closeSurfaces()
+        guard
+            target != .home,
+            let stop = IslandFraming.isleStop(target, width: engine.rig.rail.width, height: engine.rig.rail.height)
+        else { return }
+        island = target
+        engine.rig.jump(to: .island)
+        engine.rig.focus(pose: CameraPose(scale: stop.scale, look: stop.look, anchorY: stop.anchorY), lens: .island)
+        engine.rig.snapToTargets()
+        framing = .island
+        projectedFraming = .island
+        engine.isHeld = true
+        engine.lastDate = nil
+        revision &+= 1
     }
 
     /// Holds the camera on the rail at `z`, still (screenshots).
@@ -693,12 +715,18 @@ public final class IslandSceneModel {
         arrived: Set<IslandID>,
         visitor: VisitorSnapshot? = nil,
         invitationOpen: Bool = false,
-        isBedtime: Bool = false
+        isBedtime: Bool = false,
+        koke wonder: WonderStatus = WonderStatus()
     ) {
         let rig = engine.rig
-        var targets = WorldHitTest.targets(
-            stations: stations, z: rig.railPosition, visitor: visitor, invitationOpen: invitationOpen, isBedtime: isBedtime
-        )
+        // On Koke's island only Koke answers; elsewhere its island answers
+        // on the Map once it can be visited.
+        var targets = island == .koke
+            ? (wonder.isArrived ? [HitTarget(kind: .koke, worldBox: KokeLayout.kokeBox, depth: 0)] : [])
+            : WorldHitTest.targets(
+                stations: stations, z: rig.railPosition, visitor: visitor, invitationOpen: invitationOpen, isBedtime: isBedtime,
+                koke: wonder.isArrived ? .arrived : .none
+            )
         if focus != nil || sheet != nil {
             // Behind a card or a sheet the home objects and the visit step aside.
             targets.removeAll {
@@ -737,6 +765,9 @@ public final class IslandSceneModel {
         case .visitor(let part):
             pulse("visitor-\(part.rawValue)")
             visitorTapped(part, visitor: visitor)
+        case .koke:
+            pulse("koke")
+            koke.tapped(in: self)
         case .island(let id):
             guard arrived.contains(id) || id == .home else {
                 pulse("island-\(id.rawValue)")

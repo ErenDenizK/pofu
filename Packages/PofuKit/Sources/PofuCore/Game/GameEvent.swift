@@ -44,6 +44,9 @@ public struct GameEvent: Hashable, Sendable, Codable {
         /// The player picked a resident they have met from a quiet day's
         /// letter: they come on the next draw. Never expires, never costs.
         case invited(ResidentID)
+        /// The player visited a wonder island: it advances one stage on a
+        /// day with a resisted reach, at most once a day.
+        case tendedWonder(WonderIslandID)
     }
 
     public var at: Date

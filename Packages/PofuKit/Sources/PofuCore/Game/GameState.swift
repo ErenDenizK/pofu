@@ -16,6 +16,21 @@ public struct GuardedSpan: Hashable, Sendable, Codable {
 /// The counters of one local day. The breath's count resets at local
 /// midnight.
 public struct GameDay: Hashable, Sendable, Codable {
+    private enum CodingKeys: String, CodingKey {
+        case day, observed, estimatedGuardedMinutes, measuredGuardedMinutes, overLimitOpens, gatheredSeeds, resistedReaches
+    }
+
+    public init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        day = try container.decode(LocalDay.self, forKey: .day)
+        observed = try container.decode(Bool.self, forKey: .observed)
+        estimatedGuardedMinutes = try container.decode(Int.self, forKey: .estimatedGuardedMinutes)
+        measuredGuardedMinutes = try container.decode(Int.self, forKey: .measuredGuardedMinutes)
+        overLimitOpens = try container.decode(Int.self, forKey: .overLimitOpens)
+        gatheredSeeds = try container.decode(Energy.self, forKey: .gatheredSeeds)
+        resistedReaches = max(0, try container.decodeIfPresent(Int.self, forKey: .resistedReaches) ?? 0)
+    }
+
     public var day: LocalDay
     /// Whether Pofu observed any minute of the day: a tended day once it
     /// ends.
@@ -28,6 +43,9 @@ public struct GameDay: Hashable, Sendable, Codable {
     public var overLimitOpens: Int
     /// Seeds Pofu gathered from quiet blocks, for the daily cap.
     public var gatheredSeeds: Energy
+    /// Reaches that ended without opening today: the quiet effort a wonder
+    /// island asks for. Saves from before it existed read zero.
+    public var resistedReaches: Int
 
     public init(day: LocalDay) {
         self.day = day
@@ -36,6 +54,7 @@ public struct GameDay: Hashable, Sendable, Codable {
         self.measuredGuardedMinutes = 0
         self.overLimitOpens = 0
         self.gatheredSeeds = .zero
+        self.resistedReaches = 0
     }
 
     /// Today's guarded time for the breath: the measurement when there is
@@ -86,6 +105,9 @@ public struct GameState: Hashable, Sendable {
     /// Who visits: today's visitor, the hearts and the invitation. Saves
     /// from before visitors existed load with an empty ledger.
     public internal(set) var visitors: VisitorLedger
+    /// The wonder islands: rumour, arrival and healing. Saves from before
+    /// them load with none.
+    public internal(set) var wonders: WonderLedger
 
     public init(rules: GameRules = GameRules()) {
         self.clock = nil
@@ -104,6 +126,7 @@ public struct GameState: Hashable, Sendable {
         self.stations = StationLedger(catalog: rules.catalog)
         self.rounds = RoundLedger()
         self.visitors = VisitorLedger()
+        self.wonders = WonderLedger()
     }
 
     /// Whether a guarded app is open at the clock.
@@ -124,7 +147,7 @@ extension GameState: Codable {
 
     private enum CodingKeys: String, CodingKey {
         case version, clock, lastSignalAt, awaitingReturn, guarded, foregroundSince, recentOpens, today
-        case calmNightCandidate, tendedDays, calmNights, quietRunMinutes, care, calm, stations, rounds, visitors
+        case calmNightCandidate, tendedDays, calmNights, quietRunMinutes, care, calm, stations, rounds, visitors, wonders
     }
 
     /// A state from a newer build fails with `unsupportedVersion`; any
@@ -152,6 +175,7 @@ extension GameState: Codable {
         stations = try container.decodeIfPresent(StationLedger.self, forKey: .stations) ?? stations
         rounds = try container.decodeIfPresent(RoundLedger.self, forKey: .rounds) ?? rounds
         visitors = try container.decodeIfPresent(VisitorLedger.self, forKey: .visitors) ?? visitors
+        wonders = try container.decodeIfPresent(WonderLedger.self, forKey: .wonders) ?? wonders
     }
 
     public func encode(to encoder: any Encoder) throws {
@@ -173,6 +197,7 @@ extension GameState: Codable {
         try container.encode(stations, forKey: .stations)
         try container.encode(rounds, forKey: .rounds)
         try container.encode(visitors, forKey: .visitors)
+        try container.encode(wonders, forKey: .wonders)
     }
 }
 
@@ -383,6 +408,8 @@ public struct WorldSnapshot: Hashable, Sendable {
     public var metResidents: [ResidentID]
     /// The resident asked for; they come on the next draw.
     public var invited: ResidentID?
+    /// Koke, the first wonder island: the rumour, the arrival, the stage.
+    public var koke: WonderStatus
 
     /// Every field, for previews, screenshots and tests; the app reads
     /// snapshots from `WorldClock.snapshot(of:)`.
@@ -413,7 +440,8 @@ public struct WorldSnapshot: Hashable, Sendable {
         visitor: VisitorSnapshot? = nil,
         invitationOpen: Bool = false,
         metResidents: [ResidentID] = [],
-        invited: ResidentID? = nil
+        invited: ResidentID? = nil,
+        koke: WonderStatus = WonderStatus()
     ) {
         self.clock = clock
         self.activity = activity
@@ -442,5 +470,6 @@ public struct WorldSnapshot: Hashable, Sendable {
         self.invitationOpen = invitationOpen
         self.metResidents = metResidents
         self.invited = invited
+        self.koke = koke
     }
 }
