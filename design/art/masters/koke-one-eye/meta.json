@@ -1,0 +1,128 @@
+{
+  "job": "koke-one-eye",
+  "batch": "batch-39-koke-production",
+  "asset": "char__koke-one-eye",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-06T02:16:12+00:00",
+  "image": "design/art/masters/koke-one-eye/koke-one-eye.png",
+  "raw": "design/art/masters/koke-one-eye/raw.webp",
+  "raw_encoding": "webp q95",
+  "fingerprint": "f7eff8365388b226",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nEdit the attached moss creature, Koke. Change only the face: the\nnearer eye opens a sliver, a soft sleepy half-moon of warm brown\niris with a small catchlight under a heavy lid; the farther eye\nstays gently closed; the mouth relaxes into a small soft \"o\" of a\nsleepy breath. The body, the moss, the sprout, the ears, the paws,\nthe colours and the size stay exactly as they are.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: both eyes open, a wide awake look, teeth, a frown, a glow, tears, any change to the body, text\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/koke-asleep/koke-asleep.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-06T01:54:36+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "char-guard",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "fit": null,
+  "emit_region": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 56 (R1 51)",
+        "value": 55.5
+      },
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 49 (at most 22), p98 94 (at least 90), spread 45 (at least 60) (warn-only until the founder has seen the light pilot)",
+        "value": 44.7
+      },
+      {
+        "check": "light_median",
+        "status": "pass",
+        "message": "day/subject: median L 79 (band 55-90)",
+        "value": 78.6
+      },
+      {
+        "check": "light_haze",
+        "status": "pass",
+        "message": "day/subject: dark-channel haze 0.13 (at most 0.20; no true dark means a wash)",
+        "value": 0.129
+      },
+      {
+        "check": "light_contrast",
+        "status": "pass",
+        "message": "day/subject: p75 local contrast 4.8 (at least 3.5)",
+        "value": 4.77
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 5.9 (R1 5.3)",
+        "value": 5.9
+      },
+      {
+        "check": "palette_drift",
+        "status": "warn",
+        "message": "mean dE 3.5, p95 12.3, off-palette 5.7% (top: #BBBB55 (0.5%), #AABB44 (0.5%))",
+        "value": 3.5479
+      },
+      {
+        "check": "ground_line",
+        "status": "pass",
+        "message": "feet at 88.1% of the height (contract 88%)",
+        "value": 0.8809
+      },
+      {
+        "check": "no_ground_shadow",
+        "status": "warn",
+        "message": "a ground shadow seems painted in"
+      },
+      {
+        "check": "harmony",
+        "status": "warn",
+        "message": "harmony score 66 against the char reference (outliers: C_p95, L_p2, detail)",
+        "value": 66.0
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "99% of the parent level unchanged",
+        "value": 0.9869
+      },
+      {
+        "check": "edit_chroma",
+        "status": "pass",
+        "message": "chroma x0.96 of the parent level (drift compounds along a chain)",
+        "value": 0.9554
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Both initial takes clear every hard check and retain the approved1024x1024 moss body, tucked paws, crown leaves/clover, ears, palette and baseline. Exactly one eye opens as a small sleepy warm-brown half-moon with a catchlight while the other stays closed, and the mouth becomes a small soft breath-o. The near-front camera does not identify a literal viewer side; selected take1 uses the viewer-right eye and does not invent a side requirement for take2. No teeth, extra eye, ground, shadow, head curl, flower or text. Character-guard lock loads are equal0; take1 wins higher Harmony66.0 versus64.4. Full locked review supports face-only registration, with ordinary resampled fur retained rather than claiming byte-identical texture. Source binds to actual re-promoted/upload-verified asleep parent."
+}
