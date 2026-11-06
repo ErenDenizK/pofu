@@ -82,7 +82,7 @@ Taps: the heap (drag), the shelf bays (targets), Boncuk, the fog (hold), the hoo
 | Under the roots | a small net of found things hanging from a root, each labelled; memory: Boncuk recalls the first thing the player returned, by name |
 | Week page | stamp: a cream luggage tag on a teal string; the page draws the five things returned that week, in a row |
 
-### 1.4 Art (`batch-50-emanet`)
+### 1.4 Art (`batch-51-emanet`)
 
 - `emanet-island-0` … `-4`: plate chain — **concept first**: one layout concept, stage 0 and 4 side by side, rooted in `x-emanet-stage0-fog`
 - `boncuk`, `boncuk-duster`, `boncuk-polish`: character rig — no (lore bible look is enough)
@@ -145,7 +145,7 @@ Taps: the heap (drag), the shelf bays (targets), Boncuk, the fog (hold), the hoo
 | Under the roots | one small bell on a root; memory: Zil, too loud, praising the player's patience |
 | Week page | stamp: a bell with four dots; the page prints the notes the player rang |
 
-### 2.4 Art (`batch-51-canlar`)
+### 2.4 Art (`batch-52-canlar`)
 
 - `x-canlar-concept-a/b/c`: three layouts (spire + frame) — **concept first**, no concept exists
 - `canlar-island-0` … `-4`: plate chain (bells drawn askew, then straight) — after concepts
@@ -209,7 +209,7 @@ Taps: the heap (drag), the shelf bays (targets), Boncuk, the fog (hold), the hoo
 | Under the roots | a cluster of ice crystals holding a faint aurora at night; memory: Tuli, one line, about sitting |
 | Week page | stamp: a green-violet brush stroke; the page marks each calm night with a tiny ribbon |
 
-### 3.4 Art (`batch-52-revontuli`)
+### 3.4 Art (`batch-53-revontuli`)
 
 - `revontuli-island-0` … `-4`: plate chain (towers broken at 0; edits rebuild) — **concept first**: stage 0 and 4 at the same camera, rooted in `x-revontuli-stage0-night`
 - `revontuli-aurora-1`, `-2`: light-on-black curtain cards, two layers
@@ -273,7 +273,7 @@ Taps: the heap (drag), the shelf bays (targets), Boncuk, the fog (hold), the hoo
 | Under the roots | a small wild comb between roots, bees in and out by day; memory: Petek, counting, then stopping |
 | Week page | stamp: a hexagon with a bee; the page shows the three bands as the player planted them |
 
-### 4.4 Art (`batch-53-ari`)
+### 4.4 Art (`batch-54-ari`)
 
 - `x-ari-concept-a/b`: linden + bands layout — **concept first** (no island concept; the hive concepts of batch-28 are home's)
 - `ari-island-0` … `-4`: plate chain — after concepts
@@ -294,11 +294,11 @@ Taps: the heap (drag), the shelf bays (targets), Boncuk, the fog (hold), the hoo
 |---|---|
 | Wound | **dark** (stars missing from a dull sky) |
 | Register | dread, quiet: the darkest moment of the book |
-| Experiment | **a star goes out while you watch** on arrival (a 6 s fade with a cold glassy tone). The braver version; the cure is that they were never lost: they are dark stars, remembered lights, and they join into trails |
+| Experiment | **a star dims while you watch** on arrival (a 6 s fade to a faint ember, never to black, with a cold glassy tone; lead, 2026-11-06: dims, not dies). The braver version; the cure is that they were never lost: they are dark stars, remembered lights, and they join into trails |
 | Healed signature | **the new bright trail draws itself from Mehtap across the sky and ends at Ayçiçeği**; the camera follows it home. Its stars are **the player's real calm nights of Book One**, one star each, from the record |
 | Act, day | Act III, the last main island; typical arrival day 41, stages ~42-44; stage 4 is the finale night (~45) |
 | Engine | **flow (moon line)**: the board is the sky above the island (the camera tilts up); connect stars by rotating thread segments |
-| Moon gate | stage 4 opens on the first evening after stage 3 when the real moon is at least half lit (about 15 of every 29.5 nights; at most ~15 days' wait). While it waits, Nane says the moon is growing, and Pofu waits: Çanlar's turn paid |
+| Moon gate | **a blessing, not a gate** (lead, 2026-11-06: a hard wait of up to ~15 days could stall the finale): stage 4 opens on the next resisted day as usual; if the real moon is at least half lit that evening, the trail is drawn under it and Nane names the moon; if not, the trail glows on its own and the moon joins it on its first half-lit night after. Pofu's waiting is still paid (Çanlar's turn) without blocking anyone |
 
 ### 5.1 Layout
 
@@ -336,7 +336,7 @@ Taps: the heap (drag), the shelf bays (targets), Boncuk, the fog (hold), the hoo
 | Under the roots | a tiny moon lamp, the last light to come on at night; memory: Nane, good morning at dusk |
 | Week page | the finale page: the chart with the player's trail, each star dated |
 
-### 5.4 Art (`batch-54-mehtap`)
+### 5.4 Art (`batch-55-mehtap`)
 
 - `mehtap-island-0` … `-4`: plate chain — **concept first**: stage 0 and 4, rooted in batch-17's crescent (`x2-mehtap-a`)
 - `mehtap-trail`, `mehtap-star` (lit and dark): light-on-black sprites; code draws the trail from data
@@ -389,7 +389,7 @@ Taps: the heap (drag), the shelf bays (targets), Boncuk, the fog (hold), the hoo
 | Home change | from the finale Nazlı moors lit at the pier every night |
 | Under the roots | the hook where her lantern hangs when she docks; memory: none spoken, the lantern sways |
 | Week page | Book One's last page: every island's stamp in a row, then a blank page (Book Two) |
-| Art (`batch-55-nazli-forms`) | masters exist (`nazli-body`, `-fins`, `-tail`, `-eyes-closed`, `-island-patch`; batch-22 forms). New: `nazli-eyes-open`, `nazli-detail-1` … `-5` (each ships with its island), `nazli-form-2-patch` (**concept first**), `lantern-ihlamur` (unlit, lit), `nazli-scar-glow` |
+| Art (`batch-56-nazli-forms`) | masters exist (`nazli-body`, `-fins`, `-tail`, `-eyes-closed`, `-island-patch`; batch-22 forms). New: `nazli-eyes-open`, `nazli-detail-1` … `-5` (each ships with its island), `nazli-form-2-patch` (**concept first**), `lantern-ihlamur` (unlit, lit), `nazli-scar-glow` |
 
 ### 6.4 Risks
 
@@ -437,10 +437,18 @@ The fear curve rises 0, 1, 2, 1, 3, 0, 4, 0: each dip is a breath before the nex
 
 1. **Generalise the Koke model** in `PofuCore`: `WonderIslandID` gains `emanet`, `canlar`, `revontuli`, `ari`, `mehtap`; a `filler` pacing flag (stage per round, two visits); a per-island spec (anchors, stage props, gift) as data so islands 3-6 add content, not code.
 2. **Çağlayan and the flow engine** (in flight, batch-43). Build the flow engine with skins from the start (water, light, thread).
-3. **Emanet** (day 16, no new engine): the return act and the press-to-part fog; `batch-50` layout concept, then production.
-4. **Çanlar concepts now** (`batch-51` concepts; none exist) and the **recall engine + a four-tone audio sketch** in parallel; this is the long pole (audio identity has not landed).
-5. **Revontuli** (`batch-52`): the light skin, the prism piece, the island's own night grade.
-6. **Arı** (`batch-53` concepts, then production): the place engine's band twist; the hive S6 at IL9.
-7. **Mehtap** (`batch-54`): the moon phase in `PofuCore` (pure, from the date; tested on Linux), the trail drawn from the player's calm nights.
-8. **Nazlı** (`batch-55`): one back detail ships with each island; form 2 and the finale last.
+3. **Emanet** (day 16, no new engine): the return act and the press-to-part fog; `batch-51` layout concept, then production.
+4. **Çanlar concepts now** (`batch-52` concepts; none exist) and the **recall engine + a four-tone audio sketch** in parallel; this is the long pole (audio identity has not landed).
+5. **Revontuli** (`batch-53`): the light skin, the prism piece, the island's own night grade.
+6. **Arı** (`batch-54` concepts, then production): the place engine's band twist; the hive S6 at IL9.
+7. **Mehtap** (`batch-55`): the moon phase in `PofuCore` (pure, from the date; tested on Linux), the trail drawn from the player's calm nights.
+8. **Nazlı** (`batch-56`): one back detail ships with each island; form 2 and the finale last.
 9. **Keepsakes** ride with the roots (`batch-49`), one sprite per island, shipped with that island.
+
+## Lead decisions on the open risks (2026-11-06)
+
+1. **Mehtap's star:** it dims to a faint ember, never goes out; test the 6 s fade with five people before the art.
+2. **The moon gate:** a blessing, not a gate (§5 table); no finale waits on the calendar.
+3. **Çanlar's sound first:** keep it; the healed state also shows visually (the bells swing in time) so it never depends on audio alone.
+4. **Nazlı's form:** one tap between three back gardens, default after 10 s, as recommended.
+5. **Batch numbers** shifted by one (`batch-50` is the gate's postcards); names marked as proposals go through the `pofu-story` pass.
