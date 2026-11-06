@@ -4,12 +4,13 @@ title_tr: ui-ribbon-grip
 title_en: ribbon-grip (ui)
 status: in-production
 horizon: now
-summary: >-
-  One short, plump ribbon tab seen straight on, about four times as wide as it is tall, centered:
-  honey-gold satin ribbon (#F2C77A) with a thin cream stripe along the middle and softly rounded
-  ends, a gentle crease at each end and a small soft shadow beneath.
+summary: 'One short, plump ribbon tab seen straight on, about four times as wide as
+  it is tall, centered: honey-gold satin ribbon (#F2C77A) with a thin cream stripe
+  along the middle and softly rounded ends, a gentle crease at each end and a small
+  soft shadow beneath.'
 art:
-  images: []
+  images:
+  - design/art/ui/ui-ribbon-grip/ui-ribbon-grip.png
   jobs:
   - batch-61-ui-kit-v3:ui-ribbon-grip
 sources:

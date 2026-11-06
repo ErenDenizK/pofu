@@ -1,0 +1,160 @@
+batch: batch-61-ui-kit-v3
+contact_sheet: design/art/takes/batch-61-ui-kit-v3/ui-ribbon-grip/contact.jpg
+jobs:
+  ui-ribbon-grip:
+    pick: 2
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Both initial takes pass all hard
+      automated and manual proper-alpha checks; normal lowest style-lock load selects
+      take2 (0.5764 vs0.7124). Plump honey-gold satin grip with thin cream central
+      stripe, gentle end creases and small soft shadow allowed by the authored positive
+      brief; no text/icons/visible background. Colored raw fragments are hiddenRGB
+      underalpha0 and disappear in correct composites. Selected take2 retains canonical
+      canvas0.4715 advisory (native2172x724 normalized to declared1024x1024); selected
+      locked lossless PNG171024B. All originals/callbacks/orderedrefs/INITIAL2 QA+locked
+      seal preserved. Slice metadata unchanged, no claim of cap approval or completed
+      app integration. Real complete172source canonical Harmony measure/check and
+      byte-exact foreign restoration; UIexcluded/no fabricated shard. This normal
+      first fresh H also verifies the reviewed exact134 unusedBASEraw numerical-cache
+      omission, with rollback capacity held until proof. No retry, force, QA/profile
+      or pixel edits. auto-picked by QA; founder review pending.
+qa_reports:
+  2:
+    job: ui-ribbon-grip
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: warn
+      message: 2172x724 scaled x0.471 into 1024x1024 (aspect off by 200%, padded);
+        source smaller than the canvas (upscaled)
+      value: 0.4715
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 54 (R1 51)
+      value: 54.2
+    - check: value_floor
+      status: pass
+      message: lightness p5 71 (R1 59)
+      value: 71.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.8 (R1 5.3)
+      value: 0.76
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.5764
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.5, p95 3.4, off-palette 0.0%
+      value: 1.5195
+    info:
+      metrics_raw:
+        L_p5: 71.0
+        L_p50: 80.8
+        L_p95: 89.6
+        C_p50: 50.8
+        C_p95: 54.6
+        C_p99: 55.5
+        detail: 1.08
+      metrics_locked:
+        L_p5: 71.0
+        L_p50: 80.8
+        L_p95: 89.5
+        C_p50: 50.6
+        C_p95: 54.2
+        C_p99: 55.1
+        detail: 0.76
+    fingerprint: 52986bbc91410be4
+  1:
+    job: ui-ribbon-grip
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 60 (R1 51)
+      value: 59.8
+    - check: value_floor
+      status: pass
+      message: lightness p5 70 (R1 59)
+      value: 70.3
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.8 (R1 5.3)
+      value: 0.83
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.7124
+    - check: palette_drift
+      status: warn
+      message: mean dE 3.6, p95 8.2, off-palette 0.0%
+      value: 3.5503
+    info:
+      metrics_raw:
+        L_p5: 70.4
+        L_p50: 80.4
+        L_p95: 89.1
+        C_p50: 55.4
+        C_p95: 61.1
+        C_p99: 62.3
+        detail: 1.21
+      metrics_locked:
+        L_p5: 70.3
+        L_p50: 80.4
+        L_p95: 88.9
+        C_p50: 55.3
+        C_p95: 59.8
+        C_p99: 60.4
+        detail: 0.83
+    fingerprint: 52986bbc91410be4
+manual_review:
+  excluded_takes: []
+  note: Both initial takes pass all hard automated and manual proper-alpha checks;
+    normal lowest style-lock load selects take2 (0.5764 vs0.7124). Plump honey-gold
+    satin grip with thin cream central stripe, gentle end creases and small soft shadow
+    allowed by the authored positive brief; no text/icons/visible background. Colored
+    raw fragments are hiddenRGB underalpha0 and disappear in correct composites. Selected
+    take2 retains canonical canvas0.4715 advisory (native2172x724 normalized to declared1024x1024);
+    selected locked lossless PNG171024B. All originals/callbacks/orderedrefs/INITIAL2
+    QA+locked seal preserved. Slice metadata unchanged, no claim of cap approval or
+    completed app integration. Real complete172source canonical Harmony measure/check
+    and byte-exact foreign restoration; UIexcluded/no fabricated shard. This normal
+    first fresh H also verifies the reviewed exact134 unusedBASEraw numerical-cache
+    omission, with rollback capacity held until proof. No retry, force, QA/profile
+    or pixel edits. auto-picked by QA; founder review pending.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-ac5ba1e3-ff7c-4452-870c-93dc86231700.png
+  original_generated_png_sha256: 10228801429f902cd681e84755c03226c888584660bb05d6f72b15f3176ba783
+  inbox_png_sha256: 70d561472fc2d7ff1357f5a20e2400330ce621a5899d28986c356b7aeb67419e
+  rgba_sha256: 6c5c63c009802f82ffa8a8be5c9f21cff45513cf125c8c8a4c881060a7217406
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 52986bbc91410be4
+- take: 2
+  source_file: /workspace/generated_images/exec-59191844-4491-4040-9bc4-2d8fcc17412c.png
+  original_generated_png_sha256: bddbfbf514268a1d99e2175bc56f7faa0b85997584e65259e717dc3328bb40fd
+  inbox_png_sha256: 38158ca205b0ff95d9986e7fa462ebc9f03ea09ddf84f8f425cf056931ac3849
+  rgba_sha256: c3a8e75eba8d4fbdbc66f665ee12853e32e67ee5dcfb7f4f3344599c5cc11e7d
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 52986bbc91410be4
