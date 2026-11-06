@@ -268,3 +268,14 @@ struct WorldHomeModelTests {
         #expect(home.saysCheeksHuge)
     }
 }
+
+@Suite("The door payoff's hop")
+@MainActor
+struct HopProudTests {
+    @Test func hopProudAddsOneCelebration() {
+        let home = WorldHomeModel(now: { Date() }, schedulesCues: false)
+        let before = home.celebrations
+        home.hopProud()
+        #expect(home.celebrations == before + 1)
+    }
+}

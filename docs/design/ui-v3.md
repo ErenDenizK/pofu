@@ -139,6 +139,17 @@ is.** It can be the most *crafted* shield on the App Store.
   each, cap 5, then "+n"), the card folds into the jar; 2.4 s, tap to
   skip, Reduce Motion = the card appears stamped. (Amends experience v1
   §3.4: the lead decides.)
+  **Built** (`PofuDesignSystem/PofuDoorStamp.swift`, `App/RootView.swift`):
+  the door stamp replaces the 1 s overlay on Home for any unseen count of
+  one or more (not only 3+), 2.0 s: plaque in 0.3 s, a seal every 0.18 s
+  with a soft impact (`land`), Pofu hops proud and the chime plays after
+  the last seal, fade over the last 0.4 s; at most 5 seals then `+n`; at
+  most once per app open; any tap skips and still reaches what it hit;
+  Reduce Motion = a 0.2 s fade of the already stamped plaque, one haptic,
+  no hop. The pots still bloom and the screen haze parts
+  (`ScreenHazeClearing.part()`, also on a resist inside Hop!). The plaque
+  is code-drawn (floating, not yet anchored to the island's door) and the
+  seal uses `seal-resist` when batch-61 lands.
 - **(c) The notification** (`Extensions/Shared/GateNotificationContent.swift`).
   Allowed: a local notification can carry an image attachment
   (`UNNotificationAttachment`), shown as a thumbnail in the banner and

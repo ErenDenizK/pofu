@@ -29,6 +29,8 @@ public enum PofuKitArt: String, CaseIterable, Sendable {
     case chipFeltSelected = "ui-chip-felt-selected"
     case toastStrip = "ui-toast-strip"
     case grooveWood = "ui-groove-wood"
+    /// The wax seal of a resisted reach (batch-61 `seals-and-stamps`).
+    case sealResist = "seal-resist"
 }
 
 /// The kit's palette, day and night. Warm only: no grey, no system tint.
