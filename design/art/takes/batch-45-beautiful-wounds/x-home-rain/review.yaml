@@ -1,0 +1,388 @@
+batch: batch-45-beautiful-wounds
+manifest: tools/imagegen/manifest/batch-45-beautiful-wounds.yaml
+manifest_sha256: 76008f3117f50b58d4b037b6ab2cb8164cc2f68868f8f14932b29df37575f743
+contact_sheet: design/art/takes/batch-45-beautiful-wounds/x-home-rain/contact.jpg
+jobs:
+  x-home-rain:
+    pick: 4
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Only take4 is eligible after
+      the single unchanged-prompt retry. Source and official locked takes1/2/3 add
+      visibly amber emitting string bulbs beyond the explicitly ONE warm practical,
+      the burner; they remain manually excluded. In take4 the roof bulbs are pale
+      cream without convincing independent amber halos (consistent with the attached
+      unlit day fixture), the round-door window is unlit cream, and only the burner
+      has clear honey emission and a ground pool. It keeps the supplied bare-home
+      geometry and approved tea stall, slanting gentle rain, wet green grass/silver
+      surface glints, cool overcast breaks and low sea mist; no character, storm,
+      lightning or flooding. AUTHORED AMBIGUITY: no formal stone path is depicted.
+      The attached approved home is bare and the explicit attachment asks to retain
+      its layout; the incidental phrase glints on stones/path does not supply a named
+      laid path/count, so preserve the actual base instead of inventing foreign layout.
+      Disclose this absent formal path rather than claiming one is present. Independent
+      root native-source/locked review agrees (root-home-rain-t4.json SHA2d3b275d).
+      Light/value/haze/contrast warnings remain advisory exploration measurements;
+      no canonical QA, source, prompt, reference or pixel change/waiver. All4originals
+      and initialprocessinghistory retained. Never promoted.'
+qa_reports:
+  1:
+    job: x-home-rain
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 24 (R1 51)
+      value: 23.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 50 (at most 22), p98 90 (at least 90), spread 39
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 39.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 73 (band 55-90)'
+      value: 73.1
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.40 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.404
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.7 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.66
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.7 (R1 5.3)
+      value: 1.67
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.9133
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.4, p95 2.9, off-palette 0.0%
+      value: 1.4
+    info:
+      metrics_raw:
+        L_p5: 59.7
+        L_p50: 75.8
+        L_p95: 88.9
+        C_p50: 15.2
+        C_p95: 24.1
+        C_p99: 33.8
+        detail: 2.32
+      metrics_locked:
+        L_p5: 59.9
+        L_p50: 75.7
+        L_p95: 88.7
+        C_p50: 15.1
+        C_p95: 23.8
+        C_p99: 32.6
+        detail: 1.67
+    fingerprint: e4add40f8abd19a3
+  2:
+    job: x-home-rain
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 28 (R1 51)
+      value: 27.6
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 49 (at most 22), p98 91 (at least 90), spread 42
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 41.7
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 74 (band 55-90)'
+      value: 74.0
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.37 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.369
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.7 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.68
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.9 (R1 5.3)
+      value: 1.89
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.8891
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.3, p95 2.8, off-palette 0.0%
+      value: 1.2811
+    info:
+      metrics_raw:
+        L_p5: 57.1
+        L_p50: 75.9
+        L_p95: 89.2
+        C_p50: 15.1
+        C_p95: 28.0
+        C_p99: 36.6
+        detail: 2.63
+      metrics_locked:
+        L_p5: 57.4
+        L_p50: 75.9
+        L_p95: 88.9
+        C_p50: 15.1
+        C_p95: 27.6
+        C_p99: 35.7
+        detail: 1.89
+    fingerprint: e4add40f8abd19a3
+  3:
+    job: x-home-rain
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 27 (R1 51)
+      value: 27.2
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 49 (at most 22), p98 90 (at least 90), spread 41
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 40.7
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 74 (band 55-90)'
+      value: 74.4
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.38 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.38
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.5 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.55
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.61
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.9204
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.3, p95 2.7, off-palette 0.0%
+      value: 1.271
+    info:
+      metrics_raw:
+        L_p5: 57.7
+        L_p50: 76.5
+        L_p95: 89.3
+        C_p50: 15.9
+        C_p95: 27.6
+        C_p99: 36.5
+        detail: 2.21
+      metrics_locked:
+        L_p5: 57.9
+        L_p50: 76.5
+        L_p95: 89.0
+        C_p50: 15.8
+        C_p95: 27.2
+        C_p99: 35.8
+        detail: 1.61
+    fingerprint: e4add40f8abd19a3
+  4:
+    job: x-home-rain
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 23 (R1 51)
+      value: 23.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 54 (at most 22), p98 90 (at least 90), spread 35
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 35.1
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 75 (band 55-90)'
+      value: 75.2
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.43 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.435
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.3 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.34
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.4 (R1 5.3)
+      value: 1.43
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.8569
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.3, p95 2.8, off-palette 0.0%
+      value: 1.3116
+    info:
+      metrics_raw:
+        L_p5: 62.0
+        L_p50: 76.4
+        L_p95: 88.5
+        C_p50: 14.6
+        C_p95: 23.7
+        C_p99: 33.8
+        detail: 2.01
+      metrics_locked:
+        L_p5: 62.2
+        L_p50: 76.4
+        L_p95: 88.3
+        C_p50: 14.5
+        C_p95: 23.4
+        C_p99: 33.0
+        detail: 1.43
+    fingerprint: e4add40f8abd19a3
+manual_review:
+  observed_note: 'Only take4 is eligible after the single unchanged-prompt retry.
+    Source and official locked takes1/2/3 add visibly amber emitting string bulbs
+    beyond the explicitly ONE warm practical, the burner; they remain manually excluded.
+    In take4 the roof bulbs are pale cream without convincing independent amber halos
+    (consistent with the attached unlit day fixture), the round-door window is unlit
+    cream, and only the burner has clear honey emission and a ground pool. It keeps
+    the supplied bare-home geometry and approved tea stall, slanting gentle rain,
+    wet green grass/silver surface glints, cool overcast breaks and low sea mist;
+    no character, storm, lightning or flooding. AUTHORED AMBIGUITY: no formal stone
+    path is depicted. The attached approved home is bare and the explicit attachment
+    asks to retain its layout; the incidental phrase glints on stones/path does not
+    supply a named laid path/count, so preserve the actual base instead of inventing
+    foreign layout. Disclose this absent formal path rather than claiming one is present.
+    Independent root native-source/locked review agrees (root-home-rain-t4.json SHA2d3b275d).
+    Light/value/haze/contrast warnings remain advisory exploration measurements; no
+    canonical QA, source, prompt, reference or pixel change/waiver. All4originals
+    and initialprocessinghistory retained. Never promoted.'
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+sources:
+- batch: batch-45-beautiful-wounds
+  job: x-home-rain
+  take: 1
+  round: 1
+  logical_run: 20261106-b45-r1-revontuli-rain
+  source_file: /workspace/generated_images/exec-0d37f347-aeae-4716-8c9d-3ac9fcea34ec.png
+  returned_at: '2026-11-06T07:07:17.229Z'
+  prompt_sha256: 5c3f295bd121db20f280b5a31e43669e193c55134128d2db0a4e2bbbd3172d4f
+  fingerprint: e4add40f8abd19a3
+  saved_at: '2026-11-06T07:07:17.580994+00:00'
+  original_generated_png_sha256: 44c50ddbacebd2e3f4d29ee206def70367655c2c6c14625bb04c29c2e9f660e5
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: f52246e98fa9f90ab48487b5f0e2750725e9ae8ae0c8e2b7a9e153275853ef8f
+  inbox_png_sha256: 7cdac0ed89411b49b6c7b60830c0b971fbc99ff6e2aa251e45ee5de9ff9f5ac9
+  qa_sha256: 138cf245350b2bb5acb9fc40b0faafd00b533685077d270d2b1846db4866abf8
+- batch: batch-45-beautiful-wounds
+  job: x-home-rain
+  take: 2
+  round: 1
+  logical_run: 20261106-b45-r1-revontuli-rain
+  source_file: /workspace/generated_images/exec-f5ec8988-eed9-4f10-942f-f37e99bd1c7c.png
+  returned_at: '2026-11-06T07:05:59.448Z'
+  prompt_sha256: 5c3f295bd121db20f280b5a31e43669e193c55134128d2db0a4e2bbbd3172d4f
+  fingerprint: e4add40f8abd19a3
+  saved_at: '2026-11-06T07:05:59.927283+00:00'
+  original_generated_png_sha256: 603e06bf11ff3653f2708df3c124017e3be30f6bf384c91891aef1e4a41e135e
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: b50cd5768e2606ab40fd53b021da9051f5b4d5ff1b7e55090425382c872ad97a
+  inbox_png_sha256: b1a36cb3fe5430efb0324976a1cebb9aa3449386478db73b926c8156d0e7289d
+  qa_sha256: 8dbbe7ad1a48b0b284f6c51d0d180152b65ded02c7d2a68477a402d32706b678
+- batch: batch-45-beautiful-wounds
+  job: x-home-rain
+  take: 3
+  round: 2
+  logical_run: 20261106-b45-r2-home-rain
+  source_file: /workspace/generated_images/exec-c4e25412-af14-40ff-867d-320087965b6f.png
+  returned_at: '2026-11-06T07:31:20.771Z'
+  prompt_sha256: 5c3f295bd121db20f280b5a31e43669e193c55134128d2db0a4e2bbbd3172d4f
+  fingerprint: e4add40f8abd19a3
+  saved_at: '2026-11-06T07:31:21.231872+00:00'
+  original_generated_png_sha256: 910a22bf44a78e845fba6e3ca4d0b1d15349f8d2afd8a64c373f7dab9298d778
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 8c4fdc2955bfb0c35235ed8e547a8a4e79c0112c9fd672f7f2feaab5056f1d31
+  inbox_png_sha256: ad99548728fb11fa923be4535403c9af26f5907baddf977afc81fc2cbbb5efe9
+  qa_sha256: 7a368c4181d56c30247026690e01ec1cc2f6db20addd621276e276bebf725fda
+- batch: batch-45-beautiful-wounds
+  job: x-home-rain
+  take: 4
+  round: 2
+  logical_run: 20261106-b45-r2-home-rain
+  source_file: /workspace/generated_images/exec-1ef0e6cd-d0ca-42c7-b2ab-1ea2f51f1a26.png
+  returned_at: '2026-11-06T07:31:54.708Z'
+  prompt_sha256: 5c3f295bd121db20f280b5a31e43669e193c55134128d2db0a4e2bbbd3172d4f
+  fingerprint: e4add40f8abd19a3
+  saved_at: '2026-11-06T07:31:55.039279+00:00'
+  original_generated_png_sha256: 2081c3e3e0eb8e86c379f1fabd70134fc4d42ab5f871bf01cc1ebd17ea91cd3e
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: ff6aea25a98d9eed02a871812b4619b5a66ac483a05f61ec95c5bba87039f265
+  inbox_png_sha256: 4f8bb8b0461a6b1a1888608226b4e12582f554572f4030d65c9546516178c280
+  qa_sha256: c4ac370a0d3342d03b5946f029c6847f0f53481b6b4c207f65d1d7da257d75cc
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
