@@ -1,0 +1,34 @@
+id: asset-x-greenhouse-1-v2
+type: asset
+title_tr: x-greenhouse-1-v2
+title_en: x-greenhouse-1-v2 (station)
+status: cut
+horizon: now
+summary: >-
+  Fanus's small hilltop greenhouse at its first level in a new spring-opening configuration:
+  a low pale sage-green wooden frame with a sloping roof and the opening on the front right.
+  Only the front two panes and the roof's first row are glazed as broad soft mint-tinted painted
+  planes; all remaining ribs are open and clearly exposed. The simple potting bench stands
+  toward the left inside, holding exactly three clay see…
+art:
+  images: []
+  jobs:
+  - batch-28-home-shops-concepts-v2:x-greenhouse-1-v2
+sources:
+- doc: tools/imagegen/manifest/batch-28-home-shops-concepts-v2.yaml
+kind: station
+batch: batch-28-home-shops-concepts-v2
+size: 1024x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Skipped after the sole allowed retry; registration remains cut and art.images is empty.
+- >-
+  Skipped after the sole technical-failure retry, retaining original take ordinals 3 and 4.
+  Both initial calls were lost to stale code-mode hosts during the environment restart, with
+  no callback or retained PNG; they were never redispatched or relabeled. Both retry sources
+  and locked counterparts contain a continuous raised plank floor/platform spanning the whole
+  station, explicitly forbidden by AVOID. Three seedling pots, one watering can, two front
+  glazed panes and partial roof glazing/open ribs are correct, but do not override the floor
+  failure. Both numerical hard QA reports pass; independent visual review remains decisive.
+  No true dependents. Exact originals and interruption proof preserved; never promoted.

@@ -1,0 +1,35 @@
+id: asset-x-moon-telescope-2-v2
+type: asset
+title_tr: x-moon-telescope-2-v2
+title_en: x-moon-telescope-2-v2 (station)
+status: planned
+horizon: now
+summary: >-
+  The same chunky cream moon telescope at level two, pointing up-left from a small round honey-plank
+  platform with a low rail. A half canopy of soft indigo-lilac cloth is gathered in a broad
+  fold toward the right between exactly two poles, leaving a clear observing gap on the left:
+  a new rain-ready configuration, dry and unlit in daytime. One cushion rests near the telescope;
+  one round warm-cream paper lantern hangs un…
+art:
+  images: []
+  jobs:
+  - batch-28-home-shops-concepts-v2:x-moon-telescope-2-v2
+sources:
+- doc: tools/imagegen/manifest/batch-28-home-shops-concepts-v2.yaml
+kind: station
+batch: batch-28-home-shops-concepts-v2
+size: 1024x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Selected take 1; auto-picked by QA; founder review pending. Registration remains planned
+  and art.images is empty.
+- >-
+  auto-picked by QA; founder review pending. Source and locked images independently reviewed.
+  Both takes have one cream telescope pointing up-left, the explicitly requested round plank
+  platform and low rail, exactly two canopy poles, a right-gathered lilac half-canopy leaving
+  a left viewing gap, one cushion, one unlit paper lantern and exactly five moon-phase discs.
+  No text, faces, fur, visible guide or ground cast shadow. Take 2 adds an unrequested small
+  folded towel; recorded as advisory because the inventory is not exclusive. Tiny isolated
+  edge specks recorded as advisory. All hard QA passes; lowest eligible lock load selects
+  take 1. No promotion; publication waits for first-hive bootstrap.

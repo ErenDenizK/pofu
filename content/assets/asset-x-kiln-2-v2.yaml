@@ -1,0 +1,34 @@
+id: asset-x-kiln-2-v2
+type: asset
+title_tr: x-kiln-2-v2
+title_en: x-kiln-2-v2 (station)
+status: cut
+horizon: now
+summary: >-
+  The same small terracotta pottery kiln at level two, newly arranged for dry rain-ready work:
+  the dome sits at the back left under a small honey-wood lean-to roof on exactly two posts,
+  its open mouth visible from the fixed low game camera. At the front right place a potter's
+  wheel, a round wooden disc on a chunky stand, with one half-formed pot on it. Along the
+  back right place one short drying shelf bearing exactly t…
+art:
+  images: []
+  jobs:
+  - batch-28-home-shops-concepts-v2:x-kiln-2-v2
+sources:
+- doc: tools/imagegen/manifest/batch-28-home-shops-concepts-v2.yaml
+kind: station
+batch: batch-28-home-shops-concepts-v2
+size: 1024x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Skipped after the sole allowed retry; registration remains cut and art.images is empty.
+- >-
+  Skipped after the sole unchanged-prompt retry. Independent source and locked review excludes
+  all four takes for an unrequested continuous raised platform/floor. Takes 1, 2 and 4 also
+  visibly have three roof support posts instead of exactly two. Take 3 has two clear outer
+  posts and a partly occluded rear upright/panel; its third-post count is ambiguous and is
+  not asserted as a failure, because the forbidden floor is decisive. Three shelf pots and
+  one wheel pot are correct in every candidate. Numerical hard QA passes but cannot override
+  these literal observed content failures. No true dependents; all originals and complete
+  QA are preserved unchanged. Never promoted.

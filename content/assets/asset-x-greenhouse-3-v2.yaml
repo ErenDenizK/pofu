@@ -1,0 +1,35 @@
+id: asset-x-greenhouse-3-v2
+type: asset
+title_tr: x-greenhouse-3-v2
+title_en: x-greenhouse-3-v2 (station)
+status: cut
+horizon: now
+summary: >-
+  The finished small hilltop greenhouse at level three, a fresh spring-opening composition:
+  a fully glazed sage-green frame with soft mint-tinted painted panes, a small rounded cupola
+  on the ridge, and the doorway turned toward the front right. Inside are tomato vines at
+  the back left, one large fern near the right wall and one tiny lemon tree in the middle,
+  arranged as three broad readable plant masses. Exactly three …
+art:
+  images: []
+  jobs:
+  - batch-28-home-shops-concepts-v2:x-greenhouse-3-v2
+sources:
+- doc: tools/imagegen/manifest/batch-28-home-shops-concepts-v2.yaml
+kind: station
+batch: batch-28-home-shops-concepts-v2
+size: 1024x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Skipped after the sole allowed retry; registration remains cut and art.images is empty.
+- >-
+  Skipped after the sole unchanged-prompt retry. Independent source and locked review excludes
+  all four takes for an unrequested continuous interior plank floor. Every locked counterpart
+  additionally clips the left frame or plant mass at the canvas edge even though each original
+  source is complete with margin; the fixed pipeline output is retained unchanged, never repaired
+  by editing QA or fit. Take 2 also has two distinct lemon trees instead of one. Three lanterns,
+  two exterior rose pots and the requested plant types are otherwise present; retry takes
+  3 and 4 restore the single lemon tree but retain floor/clipping failures. No true dependents;
+  other shop families continue. Original sources and all source-bound QA preserved; never
+  promoted.

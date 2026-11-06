@@ -1,0 +1,679 @@
+# Authorized fresh exploration variation; originals and shared blocks remain unchanged.
+# Spring-opening / rain-ready layouts. EXPLORATION ONLY: NEVER PROMOTE.
+batch: batch-28-home-shops-concepts-v2
+title: 'Home shops v2: spring opening and rain-ready arrangements'
+status: open
+refs:
+  tea-stall-1: design/art/stations/tea-stall-1/tea-stall-1.png
+defaults:
+  variants: 2
+jobs:
+- id: tea-stall-1
+  kind: station
+  name: tea-stall-1
+  external: batch-01-slice
+- id: bagel-cart-1
+  kind: station
+  name: bagel-cart-1
+  external: batch-01-slice
+- id: x-hive-1-v2
+  kind: station
+  name: x-hive-1-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Hive
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. The hive (gift station from Arı) level 1 concept. Review: a single straw skep reads
+    as a beehive at 28 pt; bees are tiny soft dots, not insects with detail. Fresh variation: Spring-opening
+    skep, entrance turned toward the front left. Manual review also rejects fur, mascot faces, stray text,
+    omitted requested components, visible guide or baked cast shadow. No promotion.'
+  attach:
+  - ref: station-guide
+    role: 'The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove
+      it.'
+  - ref: approved:tea-stall-1
+    role: 'The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not
+      draw the stall).'
+  - ref: approved:bagel-cart-1
+    role: 'The harbor''s first station: same coral, cream and sea-blue family, same finish (do not draw
+      the cart).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Style-only: soft 2D painting, rounded shapes and controlled values. Do not copy the hamster,
+      fur, eyes, face, ears, paws or anatomy onto this inanimate station.'
+  prompt:
+  - text: 'A fresh spring-opening arrangement of the first garden hive: one plump straw skep, its small
+      dark arched entrance angled toward the front left, on a low round flat stone slab. Broad honey-gold
+      woven bands, a slightly tilted straw cap, a few short lavender sprigs grouped on the right rather
+      than framing the doorway, exactly three tiny soft cream dot-bees hovering in a loose ascending arc
+      on the left. The entrance remains a dark opening, never a face. Nothing else. This is a new asymmetrical
+      composition, not a copy of an earlier take. The single skep reads clearly as a beehive at 28 pt.
+      It fills the station footprint width and remains below the height bar.'
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'MATERIAL SCOPE FOR THIS STATION: the generic mascot STYLE above transfers only its soft 2D
+      painting, rounded shapes, clean edges and controlled value depth. This is an inanimate built station,
+      not a mascot. Render straw, wood, stone, clay, cloth and any stated glazing as those materials.
+      Absolutely no fur, plush fibers, hairy outline, eyes, face, cheeks, ears, paws or character anatomy
+      anywhere. R1 is a style-only reference; do not draw Pofu. Match the approved tea stall and bagel
+      cart finish, with matte broad color planes and restrained soft shading. Use the attached prop palette
+      and its mixes. No glossy specular shine, no outlines, no grain. Recesses may be true darks; never
+      lift subject blacks or add a milky haze. The appended LIGHT block is the sole lighting authority.
+      No baked cast shadow or floor shadow; only tiny contact occlusion where component forms touch. All
+      components must fit wholly inside the transparent canvas with clear margin. Keep the camera from
+      VIEW; the new variation is the arrangement and seasonal preparation, not a different camera.'
+  - text: 'AVOID: text, letters, numbers, labels, logos, watermarks, UI chrome, buttons, painted UI glass,
+      borders, frames, sticker outlines, terrain patches, floor, scene background, clouds, water, rain
+      streaks, puddles, ground shadow, guide markings, magenta, people or animal characters. Only the
+      explicitly requested tiny dot-bees may appear in hive jobs; do not give them faces or insect detail.
+      No bee dots in other stations. Do not reproduce either attached station or the attached hamster.'
+- id: x-hive-3-v2
+  kind: station
+  name: x-hive-3-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Hive
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. The hive level 3 concept. Review: a painted hive box is clearly a step up from
+    the skep, same honey family, same footprint. Fresh variation: Rain-ready hive box to the left, skeps
+    sheltered on the right. Manual review also rejects fur, mascot faces, stray text, omitted requested
+    components, visible guide or baked cast shadow. No promotion.'
+  attach:
+  - ref: station-guide
+    role: 'The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove
+      it.'
+  - ref: approved:tea-stall-1
+    role: 'The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not
+      draw the stall).'
+  - ref: approved:bagel-cart-1
+    role: 'The harbor''s first station: same coral, cream and sea-blue family, same finish (do not draw
+      the cart).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Style-only: soft 2D painting, rounded shapes and controlled values. Do not copy the hamster,
+      fur, eyes, face, ears, paws or anatomy onto this inanimate station.'
+  prompt:
+  - text: A fresh rain-ready arrangement of garden hive level three, dry in clear daytime. A painted wooden
+      hive box of stacked honey-cream square boxes stands on four short legs at the left, with a gently
+      sloped sage-green lid extending slightly farther on the right to shelter the landing board. Exactly
+      two plump straw skeps sit close together on the right at staggered depths, making a clear stepped
+      silhouette. A short row of lavender runs along the front; a handful of tiny cream dot-bees hover
+      near the landing board. No separate weather scene. The skep-and-box combination reads as a clear
+      upgrade from one skep, in the same family. Fill the station footprint width and stay below the height
+      bar.
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'MATERIAL SCOPE FOR THIS STATION: the generic mascot STYLE above transfers only its soft 2D
+      painting, rounded shapes, clean edges and controlled value depth. This is an inanimate built station,
+      not a mascot. Render straw, wood, stone, clay, cloth and any stated glazing as those materials.
+      Absolutely no fur, plush fibers, hairy outline, eyes, face, cheeks, ears, paws or character anatomy
+      anywhere. R1 is a style-only reference; do not draw Pofu. Match the approved tea stall and bagel
+      cart finish, with matte broad color planes and restrained soft shading. Use the attached prop palette
+      and its mixes. No glossy specular shine, no outlines, no grain. Recesses may be true darks; never
+      lift subject blacks or add a milky haze. The appended LIGHT block is the sole lighting authority.
+      No baked cast shadow or floor shadow; only tiny contact occlusion where component forms touch. All
+      components must fit wholly inside the transparent canvas with clear margin. Keep the camera from
+      VIEW; the new variation is the arrangement and seasonal preparation, not a different camera.'
+  - text: 'AVOID: text, letters, numbers, labels, logos, watermarks, UI chrome, buttons, painted UI glass,
+      borders, frames, sticker outlines, terrain patches, floor, scene background, clouds, water, rain
+      streaks, puddles, ground shadow, guide markings, magenta, people or animal characters. Only the
+      explicitly requested tiny dot-bees may appear in hive jobs; do not give them faces or insect detail.
+      No bee dots in other stations. Do not reproduce either attached station or the attached hamster.'
+- id: x-hive-5-v2
+  kind: station
+  name: x-hive-5-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Hive
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. The hive level 5 concept. Review: the finished hive reads as a small honey corner:
+    hive box, skeps, a honey stand with jars, bees visiting flowers. Fresh variation: Spring honey counter
+    left, mature hive garden right. Manual review also rejects fur, mascot faces, stray text, omitted
+    requested components, visible guide or baked cast shadow. No promotion.'
+  attach:
+  - ref: station-guide
+    role: 'The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove
+      it.'
+  - ref: approved:tea-stall-1
+    role: 'The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not
+      draw the stall).'
+  - ref: approved:bagel-cart-1
+    role: 'The harbor''s first station: same coral, cream and sea-blue family, same finish (do not draw
+      the cart).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Style-only: soft 2D painting, rounded shapes and controlled values. Do not copy the hamster,
+      fur, eyes, face, ears, paws or anatomy onto this inanimate station.'
+  prompt:
+  - text: The finished garden hive as a newly opened spring honey corner, composed with the small honey
+      stand at the left and a honey-cream hive box plus exactly two straw skeps grouped at the right.
+      The stand has a rounded wooden counter under a compact coral-and-cream striped awning, exactly five
+      round amber honey jars with opaque cream wax-sealed lids in one readable row, and one small drip
+      spoon. Lavender grows behind the skeps and a few sunflower seedlings gather at the far right; a
+      handful of tiny cream dot-bees visit the flowers. The counter faces slightly toward the front right
+      while keeping the fixed low game camera. An open middle gap separates stand and hives for a new
+      readable silhouette. Fill the station footprint width and stay below the height bar.
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'MATERIAL SCOPE FOR THIS STATION: the generic mascot STYLE above transfers only its soft 2D
+      painting, rounded shapes, clean edges and controlled value depth. This is an inanimate built station,
+      not a mascot. Render straw, wood, stone, clay, cloth and any stated glazing as those materials.
+      Absolutely no fur, plush fibers, hairy outline, eyes, face, cheeks, ears, paws or character anatomy
+      anywhere. R1 is a style-only reference; do not draw Pofu. Match the approved tea stall and bagel
+      cart finish, with matte broad color planes and restrained soft shading. Use the attached prop palette
+      and its mixes. No glossy specular shine, no outlines, no grain. Recesses may be true darks; never
+      lift subject blacks or add a milky haze. The appended LIGHT block is the sole lighting authority.
+      No baked cast shadow or floor shadow; only tiny contact occlusion where component forms touch. All
+      components must fit wholly inside the transparent canvas with clear margin. Keep the camera from
+      VIEW; the new variation is the arrangement and seasonal preparation, not a different camera.'
+  - text: 'AVOID: text, letters, numbers, labels, logos, watermarks, UI chrome, buttons, painted UI glass,
+      borders, frames, sticker outlines, terrain patches, floor, scene background, clouds, water, rain
+      streaks, puddles, ground shadow, guide markings, magenta, people or animal characters. Only the
+      explicitly requested tiny dot-bees may appear in hive jobs; do not give them faces or insect detail.
+      No bee dots in other stations. Do not reproduce either attached station or the attached hamster.'
+- id: x-greenhouse-1-v2
+  kind: station
+  name: x-greenhouse-1-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Greenhouse
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. Fanus''s greenhouse (hilltop add-on, three levels) level 1 concept. Review: reads
+    as a greenhouse frame at 28 pt; the first of three levels is a frame with few panes. Fresh variation:
+    Spring-opening frame with door to the right and bench exposed. Manual review also rejects fur, mascot
+    faces, stray text, omitted requested components, visible guide or baked cast shadow. No promotion.'
+  attach:
+  - ref: station-guide
+    role: 'The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove
+      it.'
+  - ref: approved:tea-stall-1
+    role: 'The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not
+      draw the stall).'
+  - ref: approved:bagel-cart-1
+    role: 'The harbor''s first station: same coral, cream and sea-blue family, same finish (do not draw
+      the cart).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Style-only: soft 2D painting, rounded shapes and controlled values. Do not copy the hamster,
+      fur, eyes, face, ears, paws or anatomy onto this inanimate station.'
+  prompt:
+  - text: 'Fanus''s small hilltop greenhouse at its first level in a new spring-opening configuration:
+      a low pale sage-green wooden frame with a sloping roof and the opening on the front right. Only
+      the front two panes and the roof''s first row are glazed as broad soft mint-tinted painted planes;
+      all remaining ribs are open and clearly exposed. The simple potting bench stands toward the left
+      inside, holding exactly three clay seedling pots in a low stepped group. One squat watering can
+      sits beside the right opening. Preserve the simple greenhouse-frame identity at 28 pt, with few
+      thick ribs and no micro-details. This is physical greenhouse glazing, not UI glass or a glass panel.
+      Fill the station footprint width and stay below the height bar.'
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'MATERIAL SCOPE FOR THIS STATION: the generic mascot STYLE above transfers only its soft 2D
+      painting, rounded shapes, clean edges and controlled value depth. This is an inanimate built station,
+      not a mascot. Render straw, wood, stone, clay, cloth and any stated glazing as those materials.
+      Absolutely no fur, plush fibers, hairy outline, eyes, face, cheeks, ears, paws or character anatomy
+      anywhere. R1 is a style-only reference; do not draw Pofu. Match the approved tea stall and bagel
+      cart finish, with matte broad color planes and restrained soft shading. Use the attached prop palette
+      and its mixes. No glossy specular shine, no outlines, no grain. Recesses may be true darks; never
+      lift subject blacks or add a milky haze. The appended LIGHT block is the sole lighting authority.
+      No baked cast shadow or floor shadow; only tiny contact occlusion where component forms touch. All
+      components must fit wholly inside the transparent canvas with clear margin. Keep the camera from
+      VIEW; the new variation is the arrangement and seasonal preparation, not a different camera.'
+  - text: 'AVOID: text, letters, numbers, labels, logos, watermarks, UI chrome, buttons, painted UI glass,
+      borders, frames, sticker outlines, terrain patches, floor, scene background, clouds, water, rain
+      streaks, puddles, ground shadow, guide markings, magenta, people or animal characters. Only the
+      explicitly requested tiny dot-bees may appear in hive jobs; do not give them faces or insect detail.
+      No bee dots in other stations. Do not reproduce either attached station or the attached hamster.'
+- id: x-greenhouse-2-v2
+  kind: station
+  name: x-greenhouse-2-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Greenhouse
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. Fanus''s greenhouse level 2 concept. Review: clearly the same greenhouse, half
+    glazed; hanging lantern shapes tell who gave it. Fresh variation: Rain-ready half glazing, climbing
+    beans behind a front bench. Manual review also rejects fur, mascot faces, stray text, omitted requested
+    components, visible guide or baked cast shadow. No promotion.'
+  attach:
+  - ref: station-guide
+    role: 'The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove
+      it.'
+  - ref: approved:tea-stall-1
+    role: 'The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not
+      draw the stall).'
+  - ref: approved:bagel-cart-1
+    role: 'The harbor''s first station: same coral, cream and sea-blue family, same finish (do not draw
+      the cart).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Style-only: soft 2D painting, rounded shapes and controlled values. Do not copy the hamster,
+      fur, eyes, face, ears, paws or anatomy onto this inanimate station.'
+  prompt:
+  - text: 'A new rain-ready daytime arrangement of the same small hilltop greenhouse at level two: its
+      pale sage-green frame has the front fully glazed and half the sloped roof glazed in broad soft mint-tinted
+      painted planes. Keep the front-right doorway open. Place a bench with exactly six clay pots, in
+      terracotta and rose, along the left front inside, with a row of climbing bean vines following the
+      rear ribs so the clear shape reads as half glazed. Exactly two round warm-cream paper lanterns hang
+      unlit from the ridge at different heights, well inside the roof. Slightly projecting roof eaves
+      give a protected feel without rain, clouds or puddles. Match the first-level frame family, clearly
+      upgraded. Physical greenhouse glazing only, never UI glass. Fill the footprint and stay below the
+      height bar.'
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'MATERIAL SCOPE FOR THIS STATION: the generic mascot STYLE above transfers only its soft 2D
+      painting, rounded shapes, clean edges and controlled value depth. This is an inanimate built station,
+      not a mascot. Render straw, wood, stone, clay, cloth and any stated glazing as those materials.
+      Absolutely no fur, plush fibers, hairy outline, eyes, face, cheeks, ears, paws or character anatomy
+      anywhere. R1 is a style-only reference; do not draw Pofu. Match the approved tea stall and bagel
+      cart finish, with matte broad color planes and restrained soft shading. Use the attached prop palette
+      and its mixes. No glossy specular shine, no outlines, no grain. Recesses may be true darks; never
+      lift subject blacks or add a milky haze. The appended LIGHT block is the sole lighting authority.
+      No baked cast shadow or floor shadow; only tiny contact occlusion where component forms touch. All
+      components must fit wholly inside the transparent canvas with clear margin. Keep the camera from
+      VIEW; the new variation is the arrangement and seasonal preparation, not a different camera.'
+  - text: 'AVOID: text, letters, numbers, labels, logos, watermarks, UI chrome, buttons, painted UI glass,
+      borders, frames, sticker outlines, terrain patches, floor, scene background, clouds, water, rain
+      streaks, puddles, ground shadow, guide markings, magenta, people or animal characters. Only the
+      explicitly requested tiny dot-bees may appear in hive jobs; do not give them faces or insect detail.
+      No bee dots in other stations. Do not reproduce either attached station or the attached hamster.'
+- id: x-greenhouse-3-v2
+  kind: station
+  name: x-greenhouse-3-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Greenhouse
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. Fanus''s greenhouse level 3 concept. Review: the finished greenhouse feels full
+    and warm, a place that could glow at night. Fresh variation: Finished spring greenhouse with cupola
+    and open right entrance. Manual review also rejects fur, mascot faces, stray text, omitted requested
+    components, visible guide or baked cast shadow. No promotion.'
+  attach:
+  - ref: station-guide
+    role: 'The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove
+      it.'
+  - ref: approved:tea-stall-1
+    role: 'The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not
+      draw the stall).'
+  - ref: approved:bagel-cart-1
+    role: 'The harbor''s first station: same coral, cream and sea-blue family, same finish (do not draw
+      the cart).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Style-only: soft 2D painting, rounded shapes and controlled values. Do not copy the hamster,
+      fur, eyes, face, ears, paws or anatomy onto this inanimate station.'
+  prompt:
+  - text: 'The finished small hilltop greenhouse at level three, a fresh spring-opening composition: a
+      fully glazed sage-green frame with soft mint-tinted painted panes, a small rounded cupola on the
+      ridge, and the doorway turned toward the front right. Inside are tomato vines at the back left,
+      one large fern near the right wall and one tiny lemon tree in the middle, arranged as three broad
+      readable plant masses. Exactly three round warm-cream paper lanterns hang unlit inside. Exactly
+      two rose-clay pots flank the open step; a short path of individual flat stones leads diagonally
+      in from the front right, not a floor or terrain patch. Keep the cupola and open entrance distinct
+      at thumbnail size. Physical greenhouse glazing only, no UI glass. Fill the station footprint and
+      stay under the height bar.'
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'MATERIAL SCOPE FOR THIS STATION: the generic mascot STYLE above transfers only its soft 2D
+      painting, rounded shapes, clean edges and controlled value depth. This is an inanimate built station,
+      not a mascot. Render straw, wood, stone, clay, cloth and any stated glazing as those materials.
+      Absolutely no fur, plush fibers, hairy outline, eyes, face, cheeks, ears, paws or character anatomy
+      anywhere. R1 is a style-only reference; do not draw Pofu. Match the approved tea stall and bagel
+      cart finish, with matte broad color planes and restrained soft shading. Use the attached prop palette
+      and its mixes. No glossy specular shine, no outlines, no grain. Recesses may be true darks; never
+      lift subject blacks or add a milky haze. The appended LIGHT block is the sole lighting authority.
+      No baked cast shadow or floor shadow; only tiny contact occlusion where component forms touch. All
+      components must fit wholly inside the transparent canvas with clear margin. Keep the camera from
+      VIEW; the new variation is the arrangement and seasonal preparation, not a different camera.'
+  - text: 'AVOID: text, letters, numbers, labels, logos, watermarks, UI chrome, buttons, painted UI glass,
+      borders, frames, sticker outlines, terrain patches, floor, scene background, clouds, water, rain
+      streaks, puddles, ground shadow, guide markings, magenta, people or animal characters. Only the
+      explicitly requested tiny dot-bees may appear in hive jobs; do not give them faces or insect detail.
+      No bee dots in other stations. Do not reproduce either attached station or the attached hamster.'
+- id: x-kiln-1-v2
+  kind: station
+  name: x-kiln-1-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Kiln
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. Çömlek''s kiln (hilltop add-on, three levels) level 1 concept. Review: a small
+    domed clay kiln that reads as pottery at 28 pt; matte clay, no shine. Fresh variation: Kiln mouth
+    left, five-pot drying plank stepping back right. Manual review also rejects fur, mascot faces, stray
+    text, omitted requested components, visible guide or baked cast shadow. No promotion.'
+  attach:
+  - ref: station-guide
+    role: 'The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove
+      it.'
+  - ref: approved:tea-stall-1
+    role: 'The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not
+      draw the stall).'
+  - ref: approved:bagel-cart-1
+    role: 'The harbor''s first station: same coral, cream and sea-blue family, same finish (do not draw
+      the cart).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Style-only: soft 2D painting, rounded shapes and controlled values. Do not copy the hamster,
+      fur, eyes, face, ears, paws or anatomy onto this inanimate station.'
+  prompt:
+  - text: 'A first-level pottery kiln in a new spring drying arrangement: one squat warm-terracotta clay
+      dome, its low arched mouth angled toward the front left, a short chimney pipe offset toward the
+      rear, and a ring of stacked flat stones at its base. Beside it at the right is one low drying plank
+      running slightly back in depth, holding exactly five unglazed pots in cream and terracotta, with
+      broad different silhouettes. The five are distinct, never duplicated by decoration. Keep the kiln
+      opening dark and unlit in daytime, with no flame or glow. A readable pottery silhouette at 28 pt,
+      few chunky parts, no people. Fill the station footprint width and remain below the height bar.'
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'MATERIAL SCOPE FOR THIS STATION: the generic mascot STYLE above transfers only its soft 2D
+      painting, rounded shapes, clean edges and controlled value depth. This is an inanimate built station,
+      not a mascot. Render straw, wood, stone, clay, cloth and any stated glazing as those materials.
+      Absolutely no fur, plush fibers, hairy outline, eyes, face, cheeks, ears, paws or character anatomy
+      anywhere. R1 is a style-only reference; do not draw Pofu. Match the approved tea stall and bagel
+      cart finish, with matte broad color planes and restrained soft shading. Use the attached prop palette
+      and its mixes. No glossy specular shine, no outlines, no grain. Recesses may be true darks; never
+      lift subject blacks or add a milky haze. The appended LIGHT block is the sole lighting authority.
+      No baked cast shadow or floor shadow; only tiny contact occlusion where component forms touch. All
+      components must fit wholly inside the transparent canvas with clear margin. Keep the camera from
+      VIEW; the new variation is the arrangement and seasonal preparation, not a different camera.'
+  - text: 'AVOID: text, letters, numbers, labels, logos, watermarks, UI chrome, buttons, painted UI glass,
+      borders, frames, sticker outlines, terrain patches, floor, scene background, clouds, water, rain
+      streaks, puddles, ground shadow, guide markings, magenta, people or animal characters. Only the
+      explicitly requested tiny dot-bees may appear in hive jobs; do not give them faces or insect detail.
+      No bee dots in other stations. Do not reproduce either attached station or the attached hamster.'
+- id: x-kiln-2-v2
+  kind: station
+  name: x-kiln-2-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Kiln
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. Çömlek''s kiln level 2 concept. Review: the same kiln with a lean-to roof and a
+    potter''s wheel; cozy workshop corner. Fresh variation: Rain-ready lean-to with wheel forward right
+    and shelf back left. Manual review also rejects fur, mascot faces, stray text, omitted requested components,
+    visible guide or baked cast shadow. No promotion.'
+  attach:
+  - ref: station-guide
+    role: 'The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove
+      it.'
+  - ref: approved:tea-stall-1
+    role: 'The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not
+      draw the stall).'
+  - ref: approved:bagel-cart-1
+    role: 'The harbor''s first station: same coral, cream and sea-blue family, same finish (do not draw
+      the cart).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Style-only: soft 2D painting, rounded shapes and controlled values. Do not copy the hamster,
+      fur, eyes, face, ears, paws or anatomy onto this inanimate station.'
+  prompt:
+  - text: 'The same small terracotta pottery kiln at level two, newly arranged for dry rain-ready work:
+      the dome sits at the back left under a small honey-wood lean-to roof on exactly two posts, its open
+      mouth visible from the fixed low game camera. At the front right place a potter''s wheel, a round
+      wooden disc on a chunky stand, with one half-formed pot on it. Along the back right place one short
+      drying shelf bearing exactly three tall pots, one sage, one rose and one cream. Roof eaves extend
+      toward the wheel, without rain or wet shine. This gives a new diagonal work flow while keeping a
+      coherent upgrade from the first-level clay dome. No fire or glow. Fill the footprint and remain
+      below the height bar.'
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'MATERIAL SCOPE FOR THIS STATION: the generic mascot STYLE above transfers only its soft 2D
+      painting, rounded shapes, clean edges and controlled value depth. This is an inanimate built station,
+      not a mascot. Render straw, wood, stone, clay, cloth and any stated glazing as those materials.
+      Absolutely no fur, plush fibers, hairy outline, eyes, face, cheeks, ears, paws or character anatomy
+      anywhere. R1 is a style-only reference; do not draw Pofu. Match the approved tea stall and bagel
+      cart finish, with matte broad color planes and restrained soft shading. Use the attached prop palette
+      and its mixes. No glossy specular shine, no outlines, no grain. Recesses may be true darks; never
+      lift subject blacks or add a milky haze. The appended LIGHT block is the sole lighting authority.
+      No baked cast shadow or floor shadow; only tiny contact occlusion where component forms touch. All
+      components must fit wholly inside the transparent canvas with clear margin. Keep the camera from
+      VIEW; the new variation is the arrangement and seasonal preparation, not a different camera.'
+  - text: 'AVOID: text, letters, numbers, labels, logos, watermarks, UI chrome, buttons, painted UI glass,
+      borders, frames, sticker outlines, terrain patches, floor, scene background, clouds, water, rain
+      streaks, puddles, ground shadow, guide markings, magenta, people or animal characters. Only the
+      explicitly requested tiny dot-bees may appear in hive jobs; do not give them faces or insect detail.
+      No bee dots in other stations. Do not reproduce either attached station or the attached hamster.'
+- id: x-kiln-3-v2
+  kind: station
+  name: x-kiln-3-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Kiln
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. Çömlek''s kiln level 3 concept. Review: the finished kiln house: a real little
+    pottery, glazes in the island palette. Fresh variation: Finished kiln house with sheltered work bay
+    on the right. Manual review also rejects fur, mascot faces, stray text, omitted requested components,
+    visible guide or baked cast shadow. No promotion.'
+  attach:
+  - ref: station-guide
+    role: 'The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove
+      it.'
+  - ref: approved:tea-stall-1
+    role: 'The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not
+      draw the stall).'
+  - ref: approved:bagel-cart-1
+    role: 'The harbor''s first station: same coral, cream and sea-blue family, same finish (do not draw
+      the cart).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Style-only: soft 2D painting, rounded shapes and controlled values. Do not copy the hamster,
+      fur, eyes, face, ears, paws or anatomy onto this inanimate station.'
+  prompt:
+  - text: 'The final little pottery at level three in a new spring-opening layout: a warm-terracotta kiln
+      dome housed under a rounded rose-clay tiled roof with a proper chimney, the visible low mouth unlit
+      and dark under daytime light. A small awning extends to the right over the potter''s wheel. Shelves
+      of a few broad glazed pots, jugs and bowls in sage, mustard, rose and lilac are set against the
+      left wall; the glazes are matte and softly painted. A wheelbarrow filled with clay is parked at
+      the right edge pointing inward, and one small plain flag rises from the roof. Keep the wheel bay
+      open and the chimney silhouette bold. No fire, emissive light, labels or signage. The layout is
+      a genuine new composition with a clear family progression. Fill the station footprint and remain
+      below the height bar.'
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'MATERIAL SCOPE FOR THIS STATION: the generic mascot STYLE above transfers only its soft 2D
+      painting, rounded shapes, clean edges and controlled value depth. This is an inanimate built station,
+      not a mascot. Render straw, wood, stone, clay, cloth and any stated glazing as those materials.
+      Absolutely no fur, plush fibers, hairy outline, eyes, face, cheeks, ears, paws or character anatomy
+      anywhere. R1 is a style-only reference; do not draw Pofu. Match the approved tea stall and bagel
+      cart finish, with matte broad color planes and restrained soft shading. Use the attached prop palette
+      and its mixes. No glossy specular shine, no outlines, no grain. Recesses may be true darks; never
+      lift subject blacks or add a milky haze. The appended LIGHT block is the sole lighting authority.
+      No baked cast shadow or floor shadow; only tiny contact occlusion where component forms touch. All
+      components must fit wholly inside the transparent canvas with clear margin. Keep the camera from
+      VIEW; the new variation is the arrangement and seasonal preparation, not a different camera.'
+  - text: 'AVOID: text, letters, numbers, labels, logos, watermarks, UI chrome, buttons, painted UI glass,
+      borders, frames, sticker outlines, terrain patches, floor, scene background, clouds, water, rain
+      streaks, puddles, ground shadow, guide markings, magenta, people or animal characters. Only the
+      explicitly requested tiny dot-bees may appear in hive jobs; do not give them faces or insect detail.
+      No bee dots in other stations. Do not reproduce either attached station or the attached hamster.'
+- id: x-moon-telescope-1-v2
+  kind: station
+  name: x-moon-telescope-1-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Moon telescope
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. Mehtap''s moon telescope (hilltop add-on, three levels) level 1 concept. Review:
+    a toy telescope on a tripod reads at 28 pt; the moon shape is on a dial, not painted text. Fresh variation:
+    Spring telescope points up-left, folded blanket at the right leg. Manual review also rejects fur,
+    mascot faces, stray text, omitted requested components, visible guide or baked cast shadow. No promotion.'
+  attach:
+  - ref: station-guide
+    role: 'The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove
+      it.'
+  - ref: approved:tea-stall-1
+    role: 'The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not
+      draw the stall).'
+  - ref: approved:bagel-cart-1
+    role: 'The harbor''s first station: same coral, cream and sea-blue family, same finish (do not draw
+      the cart).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Style-only: soft 2D painting, rounded shapes and controlled values. Do not copy the hamster,
+      fur, eyes, face, ears, paws or anatomy onto this inanimate station.'
+  prompt:
+  - text: 'The first hilltop moon telescope in a fresh spring setup: a short fat tube of soft cream and
+      brass-cream points gently up toward the left, on a sturdy honey-wood tripod with broad feet. A round
+      brass-cream dial plate sits under the tube and carries only one simple crescent-moon shape, no ticks,
+      letters or numbers. Place one small folded blanket beside the front-right tripod leg. Keep the eyepiece
+      and front aperture clearly different and the tube silhouette readable at 28 pt, with no face. It
+      is a daytime object awaiting night, no stars or sky. Preserve the low fixed game camera, fill the
+      station footprint width and stay under the height bar.'
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'MATERIAL SCOPE FOR THIS STATION: the generic mascot STYLE above transfers only its soft 2D
+      painting, rounded shapes, clean edges and controlled value depth. This is an inanimate built station,
+      not a mascot. Render straw, wood, stone, clay, cloth and any stated glazing as those materials.
+      Absolutely no fur, plush fibers, hairy outline, eyes, face, cheeks, ears, paws or character anatomy
+      anywhere. R1 is a style-only reference; do not draw Pofu. Match the approved tea stall and bagel
+      cart finish, with matte broad color planes and restrained soft shading. Use the attached prop palette
+      and its mixes. No glossy specular shine, no outlines, no grain. Recesses may be true darks; never
+      lift subject blacks or add a milky haze. The appended LIGHT block is the sole lighting authority.
+      No baked cast shadow or floor shadow; only tiny contact occlusion where component forms touch. All
+      components must fit wholly inside the transparent canvas with clear margin. Keep the camera from
+      VIEW; the new variation is the arrangement and seasonal preparation, not a different camera.'
+  - text: 'AVOID: text, letters, numbers, labels, logos, watermarks, UI chrome, buttons, painted UI glass,
+      borders, frames, sticker outlines, terrain patches, floor, scene background, clouds, water, rain
+      streaks, puddles, ground shadow, guide markings, magenta, people or animal characters. Only the
+      explicitly requested tiny dot-bees may appear in hive jobs; do not give them faces or insect detail.
+      No bee dots in other stations. Do not reproduce either attached station or the attached hamster.'
+- id: x-moon-telescope-2-v2
+  kind: station
+  name: x-moon-telescope-2-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Moon telescope
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. Mehtap''s moon telescope level 2 concept. Review: same telescope, now on a platform
+    with a canopy; a calm stargazing corner. Fresh variation: Rain-ready folded half-canopy with open
+    left observing gap. Manual review also rejects fur, mascot faces, stray text, omitted requested components,
+    visible guide or baked cast shadow. No promotion.'
+  attach:
+  - ref: station-guide
+    role: 'The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove
+      it.'
+  - ref: approved:tea-stall-1
+    role: 'The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not
+      draw the stall).'
+  - ref: approved:bagel-cart-1
+    role: 'The harbor''s first station: same coral, cream and sea-blue family, same finish (do not draw
+      the cart).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Style-only: soft 2D painting, rounded shapes and controlled values. Do not copy the hamster,
+      fur, eyes, face, ears, paws or anatomy onto this inanimate station.'
+  prompt:
+  - text: 'The same chunky cream moon telescope at level two, pointing up-left from a small round honey-plank
+      platform with a low rail. A half canopy of soft indigo-lilac cloth is gathered in a broad fold toward
+      the right between exactly two poles, leaving a clear observing gap on the left: a new rain-ready
+      configuration, dry and unlit in daytime. One cushion rests near the telescope; one round warm-cream
+      paper lantern hangs unlit under the canopy. On the right is a post-mounted ring dial with exactly
+      five small moon-phase discs, using full, half, crescent and new moon shapes, never symbols or text
+      beyond these simple filled shapes. Keep the canopy, tube and ring readable as separate masses, no
+      clutter. Fill the station footprint and stay under the height bar.'
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'MATERIAL SCOPE FOR THIS STATION: the generic mascot STYLE above transfers only its soft 2D
+      painting, rounded shapes, clean edges and controlled value depth. This is an inanimate built station,
+      not a mascot. Render straw, wood, stone, clay, cloth and any stated glazing as those materials.
+      Absolutely no fur, plush fibers, hairy outline, eyes, face, cheeks, ears, paws or character anatomy
+      anywhere. R1 is a style-only reference; do not draw Pofu. Match the approved tea stall and bagel
+      cart finish, with matte broad color planes and restrained soft shading. Use the attached prop palette
+      and its mixes. No glossy specular shine, no outlines, no grain. Recesses may be true darks; never
+      lift subject blacks or add a milky haze. The appended LIGHT block is the sole lighting authority.
+      No baked cast shadow or floor shadow; only tiny contact occlusion where component forms touch. All
+      components must fit wholly inside the transparent canvas with clear margin. Keep the camera from
+      VIEW; the new variation is the arrangement and seasonal preparation, not a different camera.'
+  - text: 'AVOID: text, letters, numbers, labels, logos, watermarks, UI chrome, buttons, painted UI glass,
+      borders, frames, sticker outlines, terrain patches, floor, scene background, clouds, water, rain
+      streaks, puddles, ground shadow, guide markings, magenta, people or animal characters. Only the
+      explicitly requested tiny dot-bees may appear in hive jobs; do not give them faces or insect detail.
+      No bee dots in other stations. Do not reproduce either attached station or the attached hamster.'
+- id: x-moon-telescope-3-v2
+  kind: station
+  name: x-moon-telescope-3-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Moon telescope
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. Mehtap''s moon telescope level 3 concept. Review: the finished little observatory;
+    round, soft, welcoming, a slit in the dome. Fresh variation: Finished observatory with left dome slit
+    and right-curving steps. Manual review also rejects fur, mascot faces, stray text, omitted requested
+    components, visible guide or baked cast shadow. No promotion.'
+  attach:
+  - ref: station-guide
+    role: 'The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove
+      it.'
+  - ref: approved:tea-stall-1
+    role: 'The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not
+      draw the stall).'
+  - ref: approved:bagel-cart-1
+    role: 'The harbor''s first station: same coral, cream and sea-blue family, same finish (do not draw
+      the cart).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Style-only: soft 2D painting, rounded shapes and controlled values. Do not copy the hamster,
+      fur, eyes, face, ears, paws or anatomy onto this inanimate station.'
+  prompt:
+  - text: 'The final small moon observatory in a new spring-opening arrangement: one short sage-green
+      stone drum under a rounded indigo-lilac dome, its narrow vertical observing slit turned toward the
+      front left. The chunky cream telescope tube peeks upward through the slit. A plain little doorway
+      is on the front right beneath a moon-phase wheel of exactly five soft discs; one small round window
+      sits on the left drum wall. Exactly two cushions rest on the exterior steps, which curve gently
+      in from the front right without becoming a terrain patch. Keep the dome as one calm silhouette and
+      the telescope visible, with no eyes or face. All windows and apertures are unlit in daytime. No
+      scene background, sky or stars. Fill the station footprint and stay below the height bar.'
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'MATERIAL SCOPE FOR THIS STATION: the generic mascot STYLE above transfers only its soft 2D
+      painting, rounded shapes, clean edges and controlled value depth. This is an inanimate built station,
+      not a mascot. Render straw, wood, stone, clay, cloth and any stated glazing as those materials.
+      Absolutely no fur, plush fibers, hairy outline, eyes, face, cheeks, ears, paws or character anatomy
+      anywhere. R1 is a style-only reference; do not draw Pofu. Match the approved tea stall and bagel
+      cart finish, with matte broad color planes and restrained soft shading. Use the attached prop palette
+      and its mixes. No glossy specular shine, no outlines, no grain. Recesses may be true darks; never
+      lift subject blacks or add a milky haze. The appended LIGHT block is the sole lighting authority.
+      No baked cast shadow or floor shadow; only tiny contact occlusion where component forms touch. All
+      components must fit wholly inside the transparent canvas with clear margin. Keep the camera from
+      VIEW; the new variation is the arrangement and seasonal preparation, not a different camera.'
+  - text: 'AVOID: text, letters, numbers, labels, logos, watermarks, UI chrome, buttons, painted UI glass,
+      borders, frames, sticker outlines, terrain patches, floor, scene background, clouds, water, rain
+      streaks, puddles, ground shadow, guide markings, magenta, people or animal characters. Only the
+      explicitly requested tiny dot-bees may appear in hive jobs; do not give them faces or insect detail.
+      No bee dots in other stations. Do not reproduce either attached station or the attached hamster.'
+light_standard: true

@@ -1,0 +1,33 @@
+id: asset-x-greenhouse-2-v2
+type: asset
+title_tr: x-greenhouse-2-v2
+title_en: x-greenhouse-2-v2 (station)
+status: cut
+horizon: now
+summary: >-
+  A new rain-ready daytime arrangement of the same small hilltop greenhouse at level two:
+  its pale sage-green frame has the front fully glazed and half the sloped roof glazed in
+  broad soft mint-tinted painted planes. Keep the front-right doorway open. Place a bench
+  with exactly six clay pots, in terracotta and rose, along the left front inside, with a
+  row of climbing bean vines following the rear ribs so the clear shap…
+art:
+  images: []
+  jobs:
+  - batch-28-home-shops-concepts-v2:x-greenhouse-2-v2
+sources:
+- doc: tools/imagegen/manifest/batch-28-home-shops-concepts-v2.yaml
+kind: station
+batch: batch-28-home-shops-concepts-v2
+size: 1024x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Skipped after the sole allowed retry; registration remains cut and art.images is empty.
+- >-
+  Skipped after the sole unchanged-prompt retry. Independent source and locked review excludes
+  all four takes for a continuous plank floor, explicitly forbidden by the prompt. Take 3
+  additionally has seven distinct seedling pots rather than exactly six; the other takes have
+  six pots, and all four have two lanterns. Numerical hard QA passes but cannot override observed
+  content failures. No dependent exploration jobs exist, so only this job is skipped. All
+  four original source PNGs and hashes remain unchanged outside Git; q90 copies, complete
+  QA and contact sheet are retained. Never promoted.

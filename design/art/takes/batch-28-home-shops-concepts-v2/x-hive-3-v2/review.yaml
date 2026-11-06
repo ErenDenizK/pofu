@@ -1,0 +1,244 @@
+batch: batch-28-home-shops-concepts-v2
+manifest: tools/imagegen/manifest/batch-28-home-shops-concepts-v2.yaml
+manifest_sha256: 8952fa7bbb48106f2dc8d24c294ea72102e303d38878ed265fa95406f5e661a9
+contact_sheet: design/art/takes/batch-28-home-shops-concepts-v2/x-hive-3-v2/contact.jpg
+jobs:
+  x-hive-3-v2:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Source and locked images reviewed
+      by two agents. Both takes retain one stacked hive box on the left, exactly two
+      staggered skeps on the right, four short supporting legs with rear legs partly
+      occluded, lavender and tiny cream dot-bees; no text, guide, floor, cast ground
+      shadow, faces or fur. Same low game camera and a new rain-ready arrangement.
+      All hard QA passes; advisory style/light checks retained. Lowest eligible lock
+      load selects take 1. Publication waits for verified first-hive manifest bootstrap.
+qa_reports:
+  1:
+    job: x-hive-3-v2
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 49 (R1 51)
+      value: 49.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 44 (at most 22), p98 90 (at least 90), spread 46
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 45.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 74 (band 55-90)'
+      value: 74.5
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.20 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.196
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.2 (at least 3.5)'
+      value: 5.25
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.8 (R1 5.3)
+      value: 2.79
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.1
+      value: 1.0536
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.7, p95 10.9, off-palette 3.7% (top: #888866 (1.0%), #AA88BB
+        (0.4%))'
+      value: 2.6579
+    - check: station_anchor
+      status: pass
+      message: on the anchor
+      value: 900.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 79 against the world reference (outliers: detail, edge)'
+      value: 78.6
+    info:
+      fit:
+        scale: 0.7869
+        anchor:
+        - 512.0
+        - 883
+      registration:
+        dx: 0
+        dy: 17
+      metrics_raw:
+        L_p5: 53.1
+        L_p50: 74.5
+        L_p95: 88.6
+        C_p50: 37.0
+        C_p95: 49.6
+        C_p99: 52.1
+        detail: 3.72
+      metrics_locked:
+        L_p5: 54.0
+        L_p50: 74.6
+        L_p95: 88.3
+        C_p50: 37.1
+        C_p95: 49.1
+        C_p99: 51.2
+        detail: 2.79
+    fingerprint: 9f32bafacbb332c3
+  2:
+    job: x-hive-3-v2
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 52 (R1 51)
+      value: 51.6
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 48 (at most 22), p98 89 (at least 90), spread 40
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 40.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 74 (band 55-90)'
+      value: 74.2
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.19 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.192
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.0 (at least 3.5)'
+      value: 4.98
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.9 (R1 5.3)
+      value: 2.88
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.2
+      value: 1.1595
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.5, p95 13.7, off-palette 7.4% (top: #888855 (1.8%), #888866
+        (1.1%))'
+      value: 3.4879
+    - check: station_anchor
+      status: pass
+      message: on the anchor
+      value: 900.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 77 against the world reference (outliers: L_p98, detail,
+        edge)'
+      value: 77.3
+    info:
+      fit:
+        scale: 0.8154
+        anchor:
+        - 526.9
+        - 924
+      registration:
+        dx: -15
+        dy: -24
+      metrics_raw:
+        L_p5: 52.7
+        L_p50: 74.3
+        L_p95: 88.1
+        C_p50: 39.9
+        C_p95: 52.1
+        C_p99: 54.4
+        detail: 3.92
+      metrics_locked:
+        L_p5: 53.9
+        L_p50: 74.2
+        L_p95: 87.8
+        C_p50: 40.2
+        C_p95: 51.6
+        C_p99: 53.6
+        detail: 2.88
+    fingerprint: 9f32bafacbb332c3
+manual_review:
+  observed_note: Source and locked images reviewed by two agents. Both takes retain
+    one stacked hive box on the left, exactly two staggered skeps on the right, four
+    short supporting legs with rear legs partly occluded, lavender and tiny cream
+    dot-bees; no text, guide, floor, cast ground shadow, faces or fur. Same low game
+    camera and a new rain-ready arrangement. All hard QA passes; advisory style/light
+    checks retained. Lowest eligible lock load selects take 1. Publication waits for
+    verified first-hive manifest bootstrap.
+  excluded_takes: []
+sources:
+- batch: batch-28-home-shops-concepts-v2
+  job: x-hive-3-v2
+  take: 1
+  round: 1
+  logical_run: run-20261105-night
+  source_file: /workspace/generated_images/exec-f07f33a6-d993-4650-9d58-701322c7690f.png
+  returned_at: '2026-11-05T21:27:23.007Z'
+  prompt_sha256: f574cb0f45510c6605b53016fa1ef687860bfd62e4a67bb85bb3d249b6f8ad1f
+  fingerprint: 9f32bafacbb332c3
+  saved_at: '2026-11-05T21:27:23.432371+00:00'
+  original_generated_png_sha256: b6427c896fb3fe82fa03505805d8aa1ca4feb26ef5453675f2e2db47648492b4
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 7e1bf8b6094f1c8cccbe9bb18a916ec430a8a925cf33c29c79cda4d195b4d8ae
+  inbox_png_sha256: 68001dc5437ad893f63b601b093996d9ec4f9d28e49fc7c9e401e230d91617fb
+  qa_sha256: b8674ac3ecf9b952f1aa3bbf53a3a8a55af6a02998609823a2d002768f753491
+- batch: batch-28-home-shops-concepts-v2
+  job: x-hive-3-v2
+  take: 2
+  round: 1
+  logical_run: run-20261105-night
+  source_file: /workspace/generated_images/exec-e3982aa6-567f-471e-8a9c-9dc0e45e8232.png
+  returned_at: '2026-11-05T21:29:27.774Z'
+  prompt_sha256: f574cb0f45510c6605b53016fa1ef687860bfd62e4a67bb85bb3d249b6f8ad1f
+  fingerprint: 9f32bafacbb332c3
+  saved_at: '2026-11-05T21:29:28.242972+00:00'
+  original_generated_png_sha256: bd3720e2ea0ca37bdd261f6b5cdb5a4a1593ace77193a8ff228459e5b64c39dc
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 6aa23425f14ca3a4410d2e28ca796276fb5871e49f3ac64040c35b9ca9e34ef9
+  inbox_png_sha256: 5dc58a66c9c0cf79e9f0bdbd585c1712861a4042ef56af726a5bd869cc9efaf8
+  qa_sha256: 61b683035089eed655b7a3088abffaa55db76bb782392925118b27b6c737d203
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+variation_proof_sha256: d72f7922c853ad8ceffdf1e89697122dfd8e3b6492da6362fc5bd85cfadd189c

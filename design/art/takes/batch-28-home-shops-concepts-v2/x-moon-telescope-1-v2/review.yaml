@@ -1,0 +1,280 @@
+batch: batch-28-home-shops-concepts-v2
+manifest: tools/imagegen/manifest/batch-28-home-shops-concepts-v2.yaml
+manifest_sha256: 8952fa7bbb48106f2dc8d24c294ea72102e303d38878ed265fa95406f5e661a9
+contact_sheet: design/art/takes/batch-28-home-shops-concepts-v2/x-moon-telescope-1-v2/contact.jpg
+jobs:
+  x-moon-telescope-1-v2:
+    pick: none
+    publication: skipped after one allowed retry
+    note: Skipped after the sole technical-failure retry; original ordinals 3 and
+      4 preserved. Initial takes 1 and 2 belong to stale code-mode hosts after the
+      managed environment restart, with no callback or PNG, and were never redispatched
+      or relabeled. Retry take 3 has correct source content with three tripod legs,
+      one crescent-only dial and one folded blanket, but the locked output contains
+      conspicuous detached ochre pixel fragments above and around the tube; independent
+      visual review excludes that rendered cutout. Retry take 4 additionally has an
+      unrequested continuous raised wooden platform/floor and detached fragments.
+      Both hard numerical QA reports pass but cannot override observed output defects.
+      No further retry, cleanup, QA edit or promotion; no true dependents. Every returned
+      original source and complete QA is preserved unchanged.
+qa_reports:
+  3:
+    job: x-moon-telescope-1-v2
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 44 (R1 51)
+      value: 44.0
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 32 (at most 22), p98 92 (at least 90), spread 60
+        (at least 60)'
+      value: 60.4
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 76 (band 55-90)'
+      value: 75.9
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.19 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.188
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.3 (at least 3.5)'
+      value: 4.28
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.1 (R1 5.3)
+      value: 2.15
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.1
+      value: 1.094
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.0, p95 2.7, off-palette 0.0%
+      value: 1.0093
+    - check: station_anchor
+      status: pass
+      message: on the anchor
+      value: 900.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 72 against the world reference (outliers: L_p2, edge)'
+      value: 71.9
+    info:
+      fit:
+        scale: 0.9124
+        anchor:
+        - 578.5
+        - 950
+      registration:
+        dx: -67
+        dy: -50
+      metrics_raw:
+        L_p5: 41.1
+        L_p50: 75.8
+        L_p95: 91.3
+        C_p50: 35.2
+        C_p95: 44.3
+        C_p99: 45.8
+        detail: 2.86
+      metrics_locked:
+        L_p5: 39.6
+        L_p50: 75.9
+        L_p95: 91.0
+        C_p50: 35.1
+        C_p95: 44.0
+        C_p99: 45.0
+        detail: 2.15
+    fingerprint: f6b42c40873e8509
+  4:
+    job: x-moon-telescope-1-v2
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 44 (R1 51)
+      value: 44.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 50 (at most 22), p98 92 (at least 90), spread 42
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 42.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 74 (band 55-90)'
+      value: 74.5
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.27 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.271
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.2 (at least 3.5)'
+      value: 4.23
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.3 (R1 5.3)
+      value: 2.26
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.8628
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.3, p95 3.8, off-palette 1.7% (top: #668899 (0.3%), #556677
+        (0.2%))'
+      value: 1.3466
+    - check: station_anchor
+      status: pass
+      message: on the anchor
+      value: 900.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 86 against the world reference (outliers: edge)'
+      value: 85.9
+    info:
+      fit:
+        scale: 0.8306
+        anchor:
+        - 509.6
+        - 952
+      registration:
+        dx: 3
+        dy: -52
+      metrics_raw:
+        L_p5: 54.6
+        L_p50: 74.5
+        L_p95: 89.9
+        C_p50: 33.8
+        C_p95: 44.3
+        C_p99: 46.0
+        detail: 3.0
+      metrics_locked:
+        L_p5: 55.3
+        L_p50: 74.5
+        L_p95: 89.2
+        C_p50: 33.7
+        C_p95: 44.1
+        C_p99: 45.7
+        detail: 2.26
+    fingerprint: f6b42c40873e8509
+manual_review:
+  observed_note: Skipped after the sole technical-failure retry; original ordinals
+    3 and 4 preserved. Initial takes 1 and 2 belong to stale code-mode hosts after
+    the managed environment restart, with no callback or PNG, and were never redispatched
+    or relabeled. Retry take 3 has correct source content with three tripod legs,
+    one crescent-only dial and one folded blanket, but the locked output contains
+    conspicuous detached ochre pixel fragments above and around the tube; independent
+    visual review excludes that rendered cutout. Retry take 4 additionally has an
+    unrequested continuous raised wooden platform/floor and detached fragments. Both
+    hard numerical QA reports pass but cannot override observed output defects. No
+    further retry, cleanup, QA edit or promotion; no true dependents. Every returned
+    original source and complete QA is preserved unchanged.
+  excluded_takes:
+  - 3
+  - 4
+sources:
+- batch: batch-28-home-shops-concepts-v2
+  job: x-moon-telescope-1-v2
+  take: 3
+  round: 2
+  logical_run: run-20261105-night
+  source_file: /workspace/generated_images/exec-08a7e50c-9858-4a69-9acd-a4d280143a03.png
+  returned_at: '2026-11-05T21:37:55.058Z'
+  prompt_sha256: bff58970872816efc2ed631f6200ec71397819f2e9820037094b77950a7640d1
+  fingerprint: f6b42c40873e8509
+  saved_at: '2026-11-05T21:37:55.842657+00:00'
+  original_generated_png_sha256: db7293096b80558402b5980b94ccea4d645f574fc5cb3463908467855f1e66b7
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 92f4b2ef007dd3925ffee2304acae52ab3d99c7bca26589cab7468ab277f4d83
+  inbox_png_sha256: d4e287988757273993af13c547729ef9e16fbd8b7ab11b12a40e3e1041eadbd3
+  qa_sha256: 42502502bb43acd5e84d19be15f6cd9afc2da3a8574fe370296fb1c63f8052f5
+- batch: batch-28-home-shops-concepts-v2
+  job: x-moon-telescope-1-v2
+  take: 4
+  round: 2
+  logical_run: run-20261105-night
+  source_file: /workspace/generated_images/exec-bb196dfe-7849-4091-bd80-6670224df040.png
+  returned_at: '2026-11-05T21:36:57.446Z'
+  prompt_sha256: bff58970872816efc2ed631f6200ec71397819f2e9820037094b77950a7640d1
+  fingerprint: f6b42c40873e8509
+  saved_at: '2026-11-05T21:36:57.818597+00:00'
+  original_generated_png_sha256: c2048e0bc6a2da00910d38ce8d5af18b2a4311e78ecde1b9482f47cdf53ce83e
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 5a099666afd98572c66f66ee59e3c4b8c7cd8967dd9058f5f06a0292f23a50c3
+  inbox_png_sha256: c0b93fa9955110d8133eb7ac6fcfb6c8cce2ca549190a837a52ad94d50a2e61e
+  qa_sha256: c09f2adcd231e7a315ac56f6fb83b0cb202393f7bc25ea727a11f905ab0af217
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+interruption:
+  schema: 1
+  receipt: /workspace/art-operator-runtime/run-20261105-night/batch-28-home-shops-concepts-v2/interruption-reconciliation.json
+  receipt_sha256: d7ce00f07f10f68689288c384eda72566b51dc200607d0ffad25d3e4fcbd37aa
+  job: x-moon-telescope-1-v2
+  reserved_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+  retained_takes:
+  - 3
+  - 4
+  missing_outputs:
+  - job: x-moon-telescope-1-v2
+    take: 1
+    outcome: No callback or retained PNG; original tool cell is stale after environment
+      restart; not redispatched
+  - job: x-moon-telescope-1-v2
+    take: 2
+    outcome: No callback or retained PNG; original tool cell is stale after environment
+      restart; not redispatched
+  pending_takes: []
+  retry_reserved: true
+  dispatch_sha256:
+    dispatch-x-moon-telescope-1-v2-r1.json: 5344b47b7f032af4e8baea4290c9ba2ec9c02f039afb498cfc53613ca139971a
+    dispatch-x-moon-telescope-1-v2-r2.json: 68ad4b212db1f2b0292cb7a7356bd10f489915a0cd554a8df63fb67dea9cebfb
+  original_ordinals_preserved: true
+variation_proof_sha256: d72f7922c853ad8ceffdf1e89697122dfd8e3b6492da6362fc5bd85cfadd189c

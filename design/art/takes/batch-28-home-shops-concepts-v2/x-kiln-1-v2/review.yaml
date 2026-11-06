@@ -1,0 +1,171 @@
+batch: batch-28-home-shops-concepts-v2
+manifest: tools/imagegen/manifest/batch-28-home-shops-concepts-v2.yaml
+manifest_sha256: 8952fa7bbb48106f2dc8d24c294ea72102e303d38878ed265fa95406f5e661a9
+contact_sheet: design/art/takes/batch-28-home-shops-concepts-v2/x-kiln-1-v2/contact.jpg
+jobs:
+  x-kiln-1-v2:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Retained original take 1 without
+      regeneration or renumbering. Initial take 2 was lost to a stale code-mode host
+      during the environment restart; no callback or PNG exists and the immutable
+      interruption proof records the exact missing output. The surviving source and
+      locked counterpart pass all hard QA and independent visual review: one unlit
+      terracotta kiln dome with dark mouth and offset chimney, the requested low stone
+      ring and drying plank, and exactly five distinct pots. One extra folded cream
+      cloth over the plank is recorded as advisory because this inventory is not exclusive;
+      it introduces no floor/platform and does not alter the five-pot count. Tiny
+      isolated edge speck advisory; no conspicuous cutout residue, mascot fur/face,
+      text, guide, baked ground shadow or clipped component. The sole eligible surviving
+      candidate is selected with its original take ordinal and exact source byte/RGBA
+      hashes. Never promoted.'
+qa_reports:
+  1:
+    job: x-kiln-1-v2
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 45 (R1 51)
+      value: 45.0
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 27 (at most 22), p98 89 (at least 90), spread 62
+        (at least 60)'
+      value: 62.4
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 71 (band 55-90)'
+      value: 70.8
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.17 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.169
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.7 (at least 3.5)'
+      value: 4.65
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.4 (R1 5.3)
+      value: 2.42
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.5
+      value: 1.5164
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.5, p95 4.9, off-palette 0.0%
+      value: 1.5104
+    - check: station_anchor
+      status: pass
+      message: on the anchor
+      value: 900.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 61 against the world reference (outliers: L_p2, L_p98,
+        detail, edge)'
+      value: 61.3
+    info:
+      fit:
+        scale: 0.766
+        anchor:
+        - 455.1
+        - 818
+      registration:
+        dx: 58
+        dy: 82
+      metrics_raw:
+        L_p5: 40.9
+        L_p50: 70.8
+        L_p95: 86.6
+        C_p50: 35.8
+        C_p95: 45.2
+        C_p99: 46.1
+        detail: 3.15
+      metrics_locked:
+        L_p5: 40.9
+        L_p50: 70.8
+        L_p95: 86.2
+        C_p50: 35.8
+        C_p95: 45.0
+        C_p99: 45.8
+        detail: 2.42
+    fingerprint: 8e15a22a4079d650
+manual_review:
+  observed_note: 'Retained original take 1 without regeneration or renumbering. Initial
+    take 2 was lost to a stale code-mode host during the environment restart; no callback
+    or PNG exists and the immutable interruption proof records the exact missing output.
+    The surviving source and locked counterpart pass all hard QA and independent visual
+    review: one unlit terracotta kiln dome with dark mouth and offset chimney, the
+    requested low stone ring and drying plank, and exactly five distinct pots. One
+    extra folded cream cloth over the plank is recorded as advisory because this inventory
+    is not exclusive; it introduces no floor/platform and does not alter the five-pot
+    count. Tiny isolated edge speck advisory; no conspicuous cutout residue, mascot
+    fur/face, text, guide, baked ground shadow or clipped component. The sole eligible
+    surviving candidate is selected with its original take ordinal and exact source
+    byte/RGBA hashes. Never promoted.'
+  excluded_takes: []
+sources:
+- batch: batch-28-home-shops-concepts-v2
+  job: x-kiln-1-v2
+  take: 1
+  round: 1
+  logical_run: run-20261105-night
+  source_file: /workspace/generated_images/exec-a370b795-544c-4ef7-9218-65982bc45f57.png
+  returned_at: '2026-11-05T21:08:12.177Z'
+  prompt_sha256: 1e77152057b1376f648b47ab5ea5ed2e95ed2a20be6bf999131c2ccfdf60c54b
+  fingerprint: 8e15a22a4079d650
+  saved_at: '2026-11-05T21:08:12.569320+00:00'
+  original_generated_png_sha256: a9300991625711f45eab8fe0ac0f95fdc3829599214bf94d81d925e79cbc5842
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: fc2fec9595e507d1783682c01dbb4ee1ce967ecf516486733d02ff44ed0bbcc8
+  inbox_png_sha256: 2f38d6281aa2096c526db41d4dfd5ca343df2dee6dd0754837d63c8b6a25c766
+  qa_sha256: 2f9ebd5642288f19cb3b2aef0bef2e49b5017c8a6c75a3fac18a2abd237c7494
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+interruption:
+  schema: 1
+  receipt: /workspace/art-operator-runtime/run-20261105-night/batch-28-home-shops-concepts-v2/interruption-reconciliation.json
+  receipt_sha256: d7ce00f07f10f68689288c384eda72566b51dc200607d0ffad25d3e4fcbd37aa
+  job: x-kiln-1-v2
+  reserved_takes:
+  - 1
+  - 2
+  retained_takes:
+  - 1
+  missing_outputs:
+  - job: x-kiln-1-v2
+    take: 2
+    outcome: No callback or retained PNG; original tool cell is stale after environment
+      restart; not redispatched
+  pending_takes: []
+  retry_reserved: false
+  dispatch_sha256:
+    dispatch-x-kiln-1-v2-r1.json: 93f3168c640538b59a7d91a0e7212ff6433065c7e5fb6d2a96afd849ef051cac
+  original_ordinals_preserved: true
+variation_proof_sha256: d72f7922c853ad8ceffdf1e89697122dfd8e3b6492da6362fc5bd85cfadd189c

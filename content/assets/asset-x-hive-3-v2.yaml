@@ -1,0 +1,33 @@
+id: asset-x-hive-3-v2
+type: asset
+title_tr: x-hive-3-v2
+title_en: x-hive-3-v2 (station)
+status: planned
+horizon: now
+summary: >-
+  A fresh rain-ready arrangement of garden hive level three, dry in clear daytime. A painted
+  wooden hive box of stacked honey-cream square boxes stands on four short legs at the left,
+  with a gently sloped sage-green lid extending slightly farther on the right to shelter the
+  landing board. Exactly two plump straw skeps sit close together on the right at staggered
+  depths, making a clear stepped silhouette. A short row of…
+art:
+  images: []
+  jobs:
+  - batch-28-home-shops-concepts-v2:x-hive-3-v2
+sources:
+- doc: tools/imagegen/manifest/batch-28-home-shops-concepts-v2.yaml
+kind: station
+batch: batch-28-home-shops-concepts-v2
+size: 1024x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Selected take 1; auto-picked by QA; founder review pending. Registration remains planned
+  and art.images is empty.
+- >-
+  auto-picked by QA; founder review pending. Source and locked images reviewed by two agents.
+  Both takes retain one stacked hive box on the left, exactly two staggered skeps on the right,
+  four short supporting legs with rear legs partly occluded, lavender and tiny cream dot-bees;
+  no text, guide, floor, cast ground shadow, faces or fur. Same low game camera and a new
+  rain-ready arrangement. All hard QA passes; advisory style/light checks retained. Lowest
+  eligible lock load selects take 1. Publication waits for verified first-hive manifest bootstrap.

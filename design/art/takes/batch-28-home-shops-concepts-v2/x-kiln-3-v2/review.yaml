@@ -1,0 +1,461 @@
+batch: batch-28-home-shops-concepts-v2
+manifest: tools/imagegen/manifest/batch-28-home-shops-concepts-v2.yaml
+manifest_sha256: 8952fa7bbb48106f2dc8d24c294ea72102e303d38878ed265fa95406f5e661a9
+contact_sheet: design/art/takes/batch-28-home-shops-concepts-v2/x-kiln-3-v2/contact.jpg
+jobs:
+  x-kiln-3-v2:
+    pick: none
+    publication: skipped after one allowed retry
+    note: Skipped after the sole unchanged-prompt retry. Independent source and locked
+      review excludes every take for a large continuous raised oval wooden floor/platform
+      carrying the entire kiln house and work bay, beyond the requested structural
+      house walls or roof and contrary to the explicit no-floor brief. All four otherwise
+      show the terracotta kiln with dark unlit mouth, rose roof, chimney, one plain
+      flag, right-side wheel and clay wheelbarrow, and left pottery shelves. No source
+      or post output was edited to force a pass; all hard numerical QA and advisory
+      checks remain recorded. No true dependents; complete sources, q90 copies, contact
+      sheet and observed failures are preserved. Never promoted.
+qa_reports:
+  1:
+    job: x-kiln-3-v2
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 44 (R1 51)
+      value: 43.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 32 (at most 22), p98 89 (at least 90), spread 57
+        (at least 60)'
+      value: 56.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 68 (band 55-90)'
+      value: 68.3
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.18 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.18
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.1 (at least 3.5)'
+      value: 6.06
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.1 (R1 5.3)
+      value: 3.06
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.2
+      value: 2.2157
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.4, p95 5.0, off-palette 0.0% (top: #BB8899 (0.0%), #AA8899
+        (0.0%))'
+      value: 1.4094
+    - check: station_anchor
+      status: pass
+      message: on the anchor
+      value: 900.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 62 against the world reference (outliers: L_p2, detail,
+        edge)'
+      value: 62.3
+    info:
+      fit:
+        scale: 0.7709
+        anchor:
+        - 505.8
+        - 925
+      registration:
+        dx: 6
+        dy: -25
+      metrics_raw:
+        L_p5: 45.4
+        L_p50: 68.5
+        L_p95: 86.1
+        C_p50: 37.2
+        C_p95: 44.2
+        C_p99: 55.5
+        detail: 3.96
+      metrics_locked:
+        L_p5: 46.3
+        L_p50: 68.4
+        L_p95: 85.5
+        C_p50: 37.1
+        C_p95: 43.8
+        C_p99: 55.2
+        detail: 3.06
+    fingerprint: bcb0e77f5ea2a1f3
+  2:
+    job: x-kiln-3-v2
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 46 (R1 51)
+      value: 45.6
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 38 (at most 22), p98 90 (at least 90), spread 53
+        (at least 60)'
+      value: 52.8
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 70 (band 55-90)'
+      value: 70.0
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.17 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.173
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.5 (at least 3.5)'
+      value: 6.55
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.3 (R1 5.3)
+      value: 3.26
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.0
+      value: 1.9552
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.8, p95 6.8, off-palette 0.0% (top: #995533 (0.0%), #774422
+        (0.0%))'
+      value: 1.798
+    - check: station_anchor
+      status: pass
+      message: on the anchor
+      value: 900.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 71 against the world reference (outliers: L_p2, detail,
+        edge)'
+      value: 71.2
+    info:
+      fit:
+        scale: 0.7684
+        anchor:
+        - 509.2
+        - 969
+      registration:
+        dx: 3
+        dy: -69
+      metrics_raw:
+        L_p5: 41.2
+        L_p50: 70.2
+        L_p95: 88.2
+        C_p50: 36.1
+        C_p95: 46.0
+        C_p99: 48.8
+        detail: 4.13
+      metrics_locked:
+        L_p5: 41.7
+        L_p50: 70.0
+        L_p95: 87.7
+        C_p50: 36.1
+        C_p95: 45.6
+        C_p99: 47.7
+        detail: 3.26
+    fingerprint: bcb0e77f5ea2a1f3
+  3:
+    job: x-kiln-3-v2
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 44 (R1 51)
+      value: 43.6
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 36 (at most 22), p98 90 (at least 90), spread 54
+        (at least 60)'
+      value: 53.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 70 (band 55-90)'
+      value: 70.0
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.19 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.188
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.4 (at least 3.5)'
+      value: 6.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.2 (R1 5.3)
+      value: 3.24
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.2
+      value: 2.1662
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.5, p95 5.7, off-palette 0.0% (top: #998866 (0.0%), #888866
+        (0.0%))'
+      value: 1.4662
+    - check: station_anchor
+      status: pass
+      message: on the anchor
+      value: 900.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 67 against the world reference (outliers: L_p2, detail,
+        edge)'
+      value: 66.9
+    info:
+      fit:
+        scale: 0.766
+        anchor:
+        - 511.2
+        - 940
+      registration:
+        dx: 1
+        dy: -40
+      metrics_raw:
+        L_p5: 44.2
+        L_p50: 70.2
+        L_p95: 87.7
+        C_p50: 34.8
+        C_p95: 44.0
+        C_p99: 50.2
+        detail: 4.14
+      metrics_locked:
+        L_p5: 45.0
+        L_p50: 70.0
+        L_p95: 87.2
+        C_p50: 34.8
+        C_p95: 43.6
+        C_p99: 49.9
+        detail: 3.24
+    fingerprint: bcb0e77f5ea2a1f3
+  4:
+    job: x-kiln-3-v2
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 46 (R1 51)
+      value: 45.7
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 34 (at most 22), p98 90 (at least 90), spread 56
+        (at least 60)'
+      value: 55.8
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 69 (band 55-90)'
+      value: 68.7
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.19 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.192
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.6 (at least 3.5)'
+      value: 6.56
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.4 (R1 5.3)
+      value: 3.41
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.7
+      value: 2.7325
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.9, p95 7.0, off-palette 0.0% (top: #995533 (0.0%), #994433
+        (0.0%))'
+      value: 1.9149
+    - check: station_anchor
+      status: pass
+      message: on the anchor
+      value: 900.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 65 against the world reference (outliers: L_p2, detail,
+        edge)'
+      value: 64.7
+    info:
+      fit:
+        scale: 0.7579
+        anchor:
+        - 504.0
+        - 961
+      registration:
+        dx: 8
+        dy: -61
+      metrics_raw:
+        L_p5: 41.9
+        L_p50: 68.9
+        L_p95: 87.1
+        C_p50: 35.8
+        C_p95: 46.2
+        C_p99: 50.4
+        detail: 4.39
+      metrics_locked:
+        L_p5: 42.7
+        L_p50: 68.8
+        L_p95: 86.5
+        C_p50: 35.8
+        C_p95: 45.7
+        C_p99: 49.8
+        detail: 3.41
+    fingerprint: bcb0e77f5ea2a1f3
+manual_review:
+  observed_note: Skipped after the sole unchanged-prompt retry. Independent source
+    and locked review excludes every take for a large continuous raised oval wooden
+    floor/platform carrying the entire kiln house and work bay, beyond the requested
+    structural house walls or roof and contrary to the explicit no-floor brief. All
+    four otherwise show the terracotta kiln with dark unlit mouth, rose roof, chimney,
+    one plain flag, right-side wheel and clay wheelbarrow, and left pottery shelves.
+    No source or post output was edited to force a pass; all hard numerical QA and
+    advisory checks remain recorded. No true dependents; complete sources, q90 copies,
+    contact sheet and observed failures are preserved. Never promoted.
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+sources:
+- batch: batch-28-home-shops-concepts-v2
+  job: x-kiln-3-v2
+  take: 1
+  round: 1
+  logical_run: run-20261105-night
+  source_file: /workspace/generated_images/exec-3d79e699-0e3d-44e6-bd21-2ca9af6c5809.png
+  returned_at: '2026-11-05T21:31:40.960Z'
+  prompt_sha256: 61c8746eeac0456a151e7eeaf0ad9f42ff5b6a8c027654a90f479e9ba7a7928b
+  fingerprint: bcb0e77f5ea2a1f3
+  saved_at: '2026-11-05T21:31:41.285123+00:00'
+  original_generated_png_sha256: 7061f51fc7c4204221126ba7ae6b754d06c37d65fefd3c902b19665f2f3c052a
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 54f72a6a7afe0e945b0651adb38053c22889ea93a7fc5b7da052d08d5e856763
+  inbox_png_sha256: 8fce91629ca0a3163bd4e71f8a912230e95d2ebdd128f10b02b282c0d5a87784
+  qa_sha256: d71b0cf085d3e95b8222f90a0cf10d40eff426d9e1736de9f789add5865a987b
+- batch: batch-28-home-shops-concepts-v2
+  job: x-kiln-3-v2
+  take: 2
+  round: 1
+  logical_run: run-20261105-night
+  source_file: /workspace/generated_images/exec-0707967f-38e3-482d-98e0-c2c1bdef2ac1.png
+  returned_at: '2026-11-05T21:30:58.002Z'
+  prompt_sha256: 61c8746eeac0456a151e7eeaf0ad9f42ff5b6a8c027654a90f479e9ba7a7928b
+  fingerprint: bcb0e77f5ea2a1f3
+  saved_at: '2026-11-05T21:30:58.453082+00:00'
+  original_generated_png_sha256: 5790a2b9592d37b063370a9ad7b2230db19629a8294ee42456b3745647b732a3
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: a77f7349579da15962f684a19e242d0f1d947bd239b9654100ef666eed691063
+  inbox_png_sha256: 3622bf439b172b0f803eb68aa15fc9fe5b1fc6b46cea130ee4c9cf1fcd9408a9
+  qa_sha256: 15443ba024fa27ef624277b0d78ac760792f1cb577ee50bff113bd4f413dad35
+- batch: batch-28-home-shops-concepts-v2
+  job: x-kiln-3-v2
+  take: 3
+  round: 2
+  logical_run: run-20261105-night
+  source_file: /workspace/generated_images/exec-094945ff-4bff-4be1-8746-76653906ca44.png
+  returned_at: '2026-11-05T21:38:22.957Z'
+  prompt_sha256: 61c8746eeac0456a151e7eeaf0ad9f42ff5b6a8c027654a90f479e9ba7a7928b
+  fingerprint: bcb0e77f5ea2a1f3
+  saved_at: '2026-11-05T21:38:23.285866+00:00'
+  original_generated_png_sha256: ee44d792f545d02179ca555e28679c7dc52d19119ab7c58a39624f213c81b49b
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 623c47e53afacc4d3e19d656ad428d3f2cf33155dfdcbbf44375428c4aaf9bb4
+  inbox_png_sha256: 0ed80ae5cc799962f5fe8d6a762abcd458c34f2a447a87aee17183b4b9d02799
+  qa_sha256: 6b2da42888f3ddd43fdd35f559570fd4616fc9e3f076de382fd6fe1cc1838d12
+- batch: batch-28-home-shops-concepts-v2
+  job: x-kiln-3-v2
+  take: 4
+  round: 2
+  logical_run: run-20261105-night
+  source_file: /workspace/generated_images/exec-8fce69a7-5091-4257-bacf-dba0c0f6a6d5.png
+  returned_at: '2026-11-05T21:37:19.728Z'
+  prompt_sha256: 61c8746eeac0456a151e7eeaf0ad9f42ff5b6a8c027654a90f479e9ba7a7928b
+  fingerprint: bcb0e77f5ea2a1f3
+  saved_at: '2026-11-05T21:37:20.101840+00:00'
+  original_generated_png_sha256: 212e06d210b3180ed241692923b1f05b188de30971896a8d9736b8408781739c
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 7c599822799b9e653c5f00551660b4a78ed378710ec217e68cfa6b414475728b
+  inbox_png_sha256: 591d735bd6d2616480f16a10c5af943aa5e9700b259bb1655882d8c2f38a8aee
+  qa_sha256: a2fdb6a13ac87b4a014ca3ed6ceeb35c97e7a63270fa4491dc99f650f227ad47
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+variation_proof_sha256: d72f7922c853ad8ceffdf1e89697122dfd8e3b6492da6362fc5bd85cfadd189c

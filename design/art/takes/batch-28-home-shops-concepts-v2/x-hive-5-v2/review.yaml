@@ -1,0 +1,249 @@
+batch: batch-28-home-shops-concepts-v2
+manifest: tools/imagegen/manifest/batch-28-home-shops-concepts-v2.yaml
+manifest_sha256: 8952fa7bbb48106f2dc8d24c294ea72102e303d38878ed265fa95406f5e661a9
+contact_sheet: design/art/takes/batch-28-home-shops-concepts-v2/x-hive-5-v2/contact.jpg
+jobs:
+  x-hive-5-v2:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Source and locked review by
+      two agents: take 1 has exactly five amber jars with cream sealed lids, exactly
+      two skeps plus one box, the left coral/cream honey counter and right lavender/seedlings,
+      tiny cream dot-bees and a clear open middle gap. The honey drip tool is rendered
+      as a traditional grooved honey dipper; functionally the requested honey spoon,
+      documented as a representation advisory. Take 2 has correct counts but the locked
+      cutout contains broad pale residue bridging the middle gap and surrounding the
+      awning/lavender/bees; excluded manually. No text, face, fur, guide or baked
+      ground shadow in eligible take. Hard QA passes; style/light warnings retained.
+      Only eligible take 1 selected; never promoted.'
+qa_reports:
+  1:
+    job: x-hive-5-v2
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 58 (R1 51)
+      value: 58.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 49 (at most 22), p98 92 (at least 90), spread 43
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 42.9
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 74 (band 55-90)'
+      value: 73.8
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.06 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.059
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 7.5 (at least 3.5)'
+      value: 7.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.5 (R1 5.3)
+      value: 4.48
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.2
+      value: 2.2144
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.3, p95 14.7, off-palette 9.4% (top: #999944 (1.0%), #DD8833
+        (1.0%)) (advisory in an exploration)'
+      value: 3.3458
+    - check: station_anchor
+      status: pass
+      message: on the anchor
+      value: 900.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 74 against the world reference (outliers: detail, edge)'
+      value: 73.9
+    info:
+      fit:
+        scale: 0.7563
+        anchor:
+        - 461.6
+        - 845
+      registration:
+        dx: 50
+        dy: 55
+      metrics_raw:
+        L_p5: 53.0
+        L_p50: 73.5
+        L_p95: 91.4
+        C_p50: 40.1
+        C_p95: 58.1
+        C_p99: 72.2
+        detail: 5.79
+      metrics_locked:
+        L_p5: 54.4
+        L_p50: 73.8
+        L_p95: 91.1
+        C_p50: 40.2
+        C_p95: 58.1
+        C_p99: 64.3
+        detail: 4.48
+    fingerprint: 3490b9ccea9edb44
+  2:
+    job: x-hive-5-v2
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 60 (R1 51)
+      value: 59.7
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 51 (at most 22), p98 92 (at least 90), spread 41
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 40.7
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 74 (band 55-90)'
+      value: 74.0
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.14 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.137
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.0 (at least 3.5)'
+      value: 5.99
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.5 (R1 5.3)
+      value: 4.49
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.4
+      value: 2.3505
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.9, p95 15.2, off-palette 8.2% (top: #DD8833 (1.5%), #EE9933
+        (0.6%)) (advisory in an exploration)'
+      value: 2.8502
+    - check: station_anchor
+      status: pass
+      message: on the anchor
+      value: 900.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 80 against the world reference (outliers: C_p95, detail)'
+      value: 80.4
+    info:
+      fit:
+        scale: 0.7759
+        anchor:
+        - 420.5
+        - 841
+      registration:
+        dx: 93
+        dy: 59
+      metrics_raw:
+        L_p5: 54.6
+        L_p50: 73.9
+        L_p95: 91.0
+        C_p50: 37.5
+        C_p95: 60.3
+        C_p99: 76.9
+        detail: 5.82
+      metrics_locked:
+        L_p5: 55.8
+        L_p50: 74.0
+        L_p95: 90.6
+        C_p50: 37.5
+        C_p95: 59.7
+        C_p99: 65.5
+        detail: 4.49
+    fingerprint: 3490b9ccea9edb44
+manual_review:
+  observed_note: 'Source and locked review by two agents: take 1 has exactly five
+    amber jars with cream sealed lids, exactly two skeps plus one box, the left coral/cream
+    honey counter and right lavender/seedlings, tiny cream dot-bees and a clear open
+    middle gap. The honey drip tool is rendered as a traditional grooved honey dipper;
+    functionally the requested honey spoon, documented as a representation advisory.
+    Take 2 has correct counts but the locked cutout contains broad pale residue bridging
+    the middle gap and surrounding the awning/lavender/bees; excluded manually. No
+    text, face, fur, guide or baked ground shadow in eligible take. Hard QA passes;
+    style/light warnings retained. Only eligible take 1 selected; never promoted.'
+  excluded_takes:
+  - 2
+sources:
+- batch: batch-28-home-shops-concepts-v2
+  job: x-hive-5-v2
+  take: 1
+  round: 1
+  logical_run: run-20261105-night
+  source_file: /workspace/generated_images/exec-5c9011bb-db2f-43c2-824d-4fc0ef885e6e.png
+  returned_at: '2026-11-05T21:29:57.719Z'
+  prompt_sha256: 843614d03ba8e83b97341edb544ed5f8afd6170bb4b76317314e7dbc7cfb4de2
+  fingerprint: 3490b9ccea9edb44
+  saved_at: '2026-11-05T21:29:58.167246+00:00'
+  original_generated_png_sha256: 40a1b2b9bd943eeb18b5bd9d07bf2a77760e2826de16378105b4a02df0ac2957
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: f500dacad69c6fb92d724061f82533147540954917f160d1fc887354615d5c27
+  inbox_png_sha256: 82b5b9720dd9111175dc5707fa9dee111d275a08c3a1f5fd091ea8c9612325ac
+  qa_sha256: d341da891ace41f10d8f0b89aedfe5739d58d9deea26a3b0215df77d05aa223f
+- batch: batch-28-home-shops-concepts-v2
+  job: x-hive-5-v2
+  take: 2
+  round: 1
+  logical_run: run-20261105-night
+  source_file: /workspace/generated_images/exec-a30821b9-8972-426f-baba-45609d3b3999.png
+  returned_at: '2026-11-05T21:33:01.709Z'
+  prompt_sha256: 843614d03ba8e83b97341edb544ed5f8afd6170bb4b76317314e7dbc7cfb4de2
+  fingerprint: 3490b9ccea9edb44
+  saved_at: '2026-11-05T21:33:02.035594+00:00'
+  original_generated_png_sha256: 4ae1e5e75d161567069363f8b157fb97500ac8f057b5b4b67926c0c328417ddf
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 698ee947ac8eb1ce9e21cf3d8a4ec788081cff79ceb57d9d20a1c46ce4783930
+  inbox_png_sha256: 1940294d1fb34c4423e3b0376fc8cdfd63069cdc3ffd973576f44bd179424346
+  qa_sha256: 7e84c4d24430c6660bead6791bb9551485df229baf8815626ccfe27d91f763aa
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+variation_proof_sha256: d72f7922c853ad8ceffdf1e89697122dfd8e3b6492da6362fc5bd85cfadd189c

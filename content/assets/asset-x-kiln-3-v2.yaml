@@ -1,0 +1,34 @@
+id: asset-x-kiln-3-v2
+type: asset
+title_tr: x-kiln-3-v2
+title_en: x-kiln-3-v2 (station)
+status: cut
+horizon: now
+summary: >-
+  The final little pottery at level three in a new spring-opening layout: a warm-terracotta
+  kiln dome housed under a rounded rose-clay tiled roof with a proper chimney, the visible
+  low mouth unlit and dark under daytime light. A small awning extends to the right over the
+  potter's wheel. Shelves of a few broad glazed pots, jugs and bowls in sage, mustard, rose
+  and lilac are set against the left wall; the glazes are matt…
+art:
+  images: []
+  jobs:
+  - batch-28-home-shops-concepts-v2:x-kiln-3-v2
+sources:
+- doc: tools/imagegen/manifest/batch-28-home-shops-concepts-v2.yaml
+kind: station
+batch: batch-28-home-shops-concepts-v2
+size: 1024x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Skipped after the sole allowed retry; registration remains cut and art.images is empty.
+- >-
+  Skipped after the sole unchanged-prompt retry. Independent source and locked review excludes
+  every take for a large continuous raised oval wooden floor/platform carrying the entire
+  kiln house and work bay, beyond the requested structural house walls or roof and contrary
+  to the explicit no-floor brief. All four otherwise show the terracotta kiln with dark unlit
+  mouth, rose roof, chimney, one plain flag, right-side wheel and clay wheelbarrow, and left
+  pottery shelves. No source or post output was edited to force a pass; all hard numerical
+  QA and advisory checks remain recorded. No true dependents; complete sources, q90 copies,
+  contact sheet and observed failures are preserved. Never promoted.

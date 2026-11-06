@@ -1,0 +1,36 @@
+id: asset-x-moon-telescope-1-v2
+type: asset
+title_tr: x-moon-telescope-1-v2
+title_en: x-moon-telescope-1-v2 (station)
+status: cut
+horizon: now
+summary: >-
+  The first hilltop moon telescope in a fresh spring setup: a short fat tube of soft cream
+  and brass-cream points gently up toward the left, on a sturdy honey-wood tripod with broad
+  feet. A round brass-cream dial plate sits under the tube and carries only one simple crescent-moon
+  shape, no ticks, letters or numbers. Place one small folded blanket beside the front-right
+  tripod leg. Keep the eyepiece and front aperture c…
+art:
+  images: []
+  jobs:
+  - batch-28-home-shops-concepts-v2:x-moon-telescope-1-v2
+sources:
+- doc: tools/imagegen/manifest/batch-28-home-shops-concepts-v2.yaml
+kind: station
+batch: batch-28-home-shops-concepts-v2
+size: 1024x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Skipped after the sole allowed retry; registration remains cut and art.images is empty.
+- >-
+  Skipped after the sole technical-failure retry; original ordinals 3 and 4 preserved. Initial
+  takes 1 and 2 belong to stale code-mode hosts after the managed environment restart, with
+  no callback or PNG, and were never redispatched or relabeled. Retry take 3 has correct source
+  content with three tripod legs, one crescent-only dial and one folded blanket, but the locked
+  output contains conspicuous detached ochre pixel fragments above and around the tube; independent
+  visual review excludes that rendered cutout. Retry take 4 additionally has an unrequested
+  continuous raised wooden platform/floor and detached fragments. Both hard numerical QA reports
+  pass but cannot override observed output defects. No further retry, cleanup, QA edit or
+  promotion; no true dependents. Every returned original source and complete QA is preserved
+  unchanged.

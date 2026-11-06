@@ -1,0 +1,35 @@
+id: asset-x-moon-telescope-3-v2
+type: asset
+title_tr: x-moon-telescope-3-v2
+title_en: x-moon-telescope-3-v2 (station)
+status: planned
+horizon: now
+summary: >-
+  The final small moon observatory in a new spring-opening arrangement: one short sage-green
+  stone drum under a rounded indigo-lilac dome, its narrow vertical observing slit turned
+  toward the front left. The chunky cream telescope tube peeks upward through the slit. A
+  plain little doorway is on the front right beneath a moon-phase wheel of exactly five soft
+  discs; one small round window sits on the left drum wall. Exac…
+art:
+  images: []
+  jobs:
+  - batch-28-home-shops-concepts-v2:x-moon-telescope-3-v2
+sources:
+- doc: tools/imagegen/manifest/batch-28-home-shops-concepts-v2.yaml
+kind: station
+batch: batch-28-home-shops-concepts-v2
+size: 1024x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Selected take 1; auto-picked by QA; founder review pending. Registration remains planned
+  and art.images is empty.
+- >-
+  auto-picked by QA; founder review pending. Source and locked review by two agents: both
+  takes have exactly five moon-phase discs, two cushions, one left round window, a right doorway
+  and curved steps, and a left dome slit with a visible cream telescope. The phase display
+  follows a shallow wheel-like arc above the door. Take 2 has conspicuous detached lilac cutout
+  fragments above the dome after post; excluded despite lower lock load. Take 1 is complete
+  and clean, with no text, face, fur, guide, external floor or ground cast shadow. All hard
+  QA passes; advisory Harmony/light/style warnings retained. Eligible take 1 selected; never
+  promoted.

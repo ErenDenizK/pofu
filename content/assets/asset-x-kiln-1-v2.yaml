@@ -1,0 +1,38 @@
+id: asset-x-kiln-1-v2
+type: asset
+title_tr: x-kiln-1-v2
+title_en: x-kiln-1-v2 (station)
+status: planned
+horizon: now
+summary: >-
+  A first-level pottery kiln in a new spring drying arrangement: one squat warm-terracotta
+  clay dome, its low arched mouth angled toward the front left, a short chimney pipe offset
+  toward the rear, and a ring of stacked flat stones at its base. Beside it at the right is
+  one low drying plank running slightly back in depth, holding exactly five unglazed pots
+  in cream and terracotta, with broad different silhouettes. The …
+art:
+  images: []
+  jobs:
+  - batch-28-home-shops-concepts-v2:x-kiln-1-v2
+sources:
+- doc: tools/imagegen/manifest/batch-28-home-shops-concepts-v2.yaml
+kind: station
+batch: batch-28-home-shops-concepts-v2
+size: 1024x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Selected take 1; auto-picked by QA; founder review pending. Registration remains planned
+  and art.images is empty.
+- >-
+  auto-picked by QA; founder review pending. Retained original take 1 without regeneration
+  or renumbering. Initial take 2 was lost to a stale code-mode host during the environment
+  restart; no callback or PNG exists and the immutable interruption proof records the exact
+  missing output. The surviving source and locked counterpart pass all hard QA and independent
+  visual review: one unlit terracotta kiln dome with dark mouth and offset chimney, the requested
+  low stone ring and drying plank, and exactly five distinct pots. One extra folded cream
+  cloth over the plank is recorded as advisory because this inventory is not exclusive; it
+  introduces no floor/platform and does not alter the five-pot count. Tiny isolated edge speck
+  advisory; no conspicuous cutout residue, mascot fur/face, text, guide, baked ground shadow
+  or clipped component. The sole eligible surviving candidate is selected with its original
+  take ordinal and exact source byte/RGBA hashes. Never promoted.

@@ -1,0 +1,172 @@
+batch: batch-28-home-shops-concepts-v2
+manifest: tools/imagegen/manifest/batch-28-home-shops-concepts-v2.yaml
+manifest_sha256: 8952fa7bbb48106f2dc8d24c294ea72102e303d38878ed265fa95406f5e661a9
+contact_sheet: design/art/takes/batch-28-home-shops-concepts-v2/x-hive-1-v2/contact.jpg
+jobs:
+  x-hive-1-v2:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Retained original take 2, without
+      regeneration or renumbering. Initial take 1 was lost when its code-mode host
+      became stale during the managed environment restart; no callback or PNG exists,
+      and the exact technical outcome is recorded in the interruption proof. The surviving
+      take passes all hard QA and independent source/locked review: one broad woven
+      straw skep, front-left arched entrance, low stone slab, lavender at right and
+      exactly three tiny cream bee abstractions at left. Bees use soft body/wing dots
+      with no faces, stripes, legs, antennae or insect detail. No mascot fur, guide,
+      text, floor beyond the requested slab, baked cast shadow, clipping or cutout
+      residue. Sparse official ingest preserves original ordinal 2 and exact byte/RGBA
+      hashes. Lowest eligible lock load selects the sole surviving eligible source;
+      founder review pending. Authorized frozen v2 manifest bootstraps with this first
+      listed job; exploration never promoted.'
+qa_reports:
+  2:
+    job: x-hive-1-v2
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 49 (R1 51)
+      value: 49.3
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 26 (at most 22), p98 88 (at least 90), spread 62
+        (at least 60)'
+      value: 62.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 75 (band 55-90)'
+      value: 75.3
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.21 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.212
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.1 (at least 3.5)'
+      value: 4.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.1 (R1 5.3)
+      value: 2.09
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 0.9963
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.3, p95 9.9, off-palette 3.4% (top: #AA88AA (0.8%), #AA9966
+        (0.5%))'
+      value: 2.2922
+    - check: station_anchor
+      status: pass
+      message: on the anchor
+      value: 900.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 63 against the world reference (outliers: L_p2, L_p98,
+        edge)'
+      value: 62.9
+    info:
+      fit:
+        scale: 0.9499
+        anchor:
+        - 506.7
+        - 934
+      registration:
+        dx: 6
+        dy: -34
+      metrics_raw:
+        L_p5: 50.8
+        L_p50: 75.4
+        L_p95: 87.5
+        C_p50: 39.4
+        C_p95: 49.6
+        C_p99: 50.8
+        detail: 2.88
+      metrics_locked:
+        L_p5: 51.7
+        L_p50: 75.3
+        L_p95: 87.2
+        C_p50: 39.6
+        C_p95: 49.3
+        C_p99: 50.3
+        detail: 2.09
+    fingerprint: de124db7bda4600b
+manual_review:
+  observed_note: 'Retained original take 2, without regeneration or renumbering. Initial
+    take 1 was lost when its code-mode host became stale during the managed environment
+    restart; no callback or PNG exists, and the exact technical outcome is recorded
+    in the interruption proof. The surviving take passes all hard QA and independent
+    source/locked review: one broad woven straw skep, front-left arched entrance,
+    low stone slab, lavender at right and exactly three tiny cream bee abstractions
+    at left. Bees use soft body/wing dots with no faces, stripes, legs, antennae or
+    insect detail. No mascot fur, guide, text, floor beyond the requested slab, baked
+    cast shadow, clipping or cutout residue. Sparse official ingest preserves original
+    ordinal 2 and exact byte/RGBA hashes. Lowest eligible lock load selects the sole
+    surviving eligible source; founder review pending. Authorized frozen v2 manifest
+    bootstraps with this first listed job; exploration never promoted.'
+  excluded_takes: []
+sources:
+- batch: batch-28-home-shops-concepts-v2
+  job: x-hive-1-v2
+  take: 2
+  round: 1
+  logical_run: run-20261105-night
+  source_file: /workspace/generated_images/exec-1fe69527-a986-4147-81ee-2bbe181b8e0b.png
+  returned_at: '2026-11-05T21:08:16.026Z'
+  prompt_sha256: 5257e92f64dbb33c5eda299531659b3e0a78f8a5022451db1973a5686a60e8ae
+  fingerprint: de124db7bda4600b
+  saved_at: '2026-11-05T21:08:18.246218+00:00'
+  original_generated_png_sha256: 28d046c98dc9171287e922782075d8c63e114475e14f412a04fb1cf101ef19e0
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 2e965a88e34eaa929d60d2e1fbfa15d57bd6735d0ead7ca7ca3e640984d6d1d2
+  inbox_png_sha256: f392506c6fb3ac0671a71be7a78e1c1d147d52d466fe73c573553922b75848ec
+  qa_sha256: b7eea89034dfe0f3707dff855d76e6df57ef86e9d2083caae309929f2d52bb36
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+interruption:
+  schema: 1
+  receipt: /workspace/art-operator-runtime/run-20261105-night/batch-28-home-shops-concepts-v2/interruption-reconciliation.json
+  receipt_sha256: d7ce00f07f10f68689288c384eda72566b51dc200607d0ffad25d3e4fcbd37aa
+  job: x-hive-1-v2
+  reserved_takes:
+  - 1
+  - 2
+  retained_takes:
+  - 2
+  missing_outputs:
+  - job: x-hive-1-v2
+    take: 1
+    outcome: No callback or retained PNG; original tool cell is stale after environment
+      restart; not redispatched
+  pending_takes: []
+  retry_reserved: false
+  dispatch_sha256:
+    dispatch-x-hive-1-v2-r1.json: 34ca06a2cc7a6709c8b4d8f67267a7ee9a0bf48d7f454c319f3762df80095598
+  original_ordinals_preserved: true
+variation_proof_sha256: d72f7922c853ad8ceffdf1e89697122dfd8e3b6492da6362fc5bd85cfadd189c

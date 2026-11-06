@@ -1,0 +1,278 @@
+batch: batch-28-home-shops-concepts-v2
+manifest: tools/imagegen/manifest/batch-28-home-shops-concepts-v2.yaml
+manifest_sha256: 8952fa7bbb48106f2dc8d24c294ea72102e303d38878ed265fa95406f5e661a9
+contact_sheet: design/art/takes/batch-28-home-shops-concepts-v2/x-greenhouse-1-v2/contact.jpg
+jobs:
+  x-greenhouse-1-v2:
+    pick: none
+    publication: skipped after one allowed retry
+    note: Skipped after the sole technical-failure retry, retaining original take
+      ordinals 3 and 4. Both initial calls were lost to stale code-mode hosts during
+      the environment restart, with no callback or retained PNG; they were never redispatched
+      or relabeled. Both retry sources and locked counterparts contain a continuous
+      raised plank floor/platform spanning the whole station, explicitly forbidden
+      by AVOID. Three seedling pots, one watering can, two front glazed panes and
+      partial roof glazing/open ribs are correct, but do not override the floor failure.
+      Both numerical hard QA reports pass; independent visual review remains decisive.
+      No true dependents. Exact originals and interruption proof preserved; never
+      promoted.
+qa_reports:
+  3:
+    job: x-greenhouse-1-v2
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 31 (R1 51)
+      value: 31.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 54 (at most 22), p98 91 (at least 90), spread 37
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 37.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 76 (band 55-90)'
+      value: 75.5
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.32 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.318
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.7 (at least 3.5)'
+      value: 4.71
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.2 (R1 5.3)
+      value: 2.2
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.792
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 4.2, p95 13.1, off-palette 6.5% (top: #998866 (1.7%), #999966
+        (1.5%))'
+      value: 4.2478
+    - check: station_anchor
+      status: pass
+      message: on the anchor
+      value: 900.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 69 against the world reference (outliers: C_p95, edge)'
+      value: 69.2
+    info:
+      fit:
+        scale: 0.8696
+        anchor:
+        - 500.4
+        - 922
+      registration:
+        dx: 12
+        dy: -22
+      metrics_raw:
+        L_p5: 58.1
+        L_p50: 75.5
+        L_p95: 90.1
+        C_p50: 25.3
+        C_p95: 31.6
+        C_p99: 38.1
+        detail: 2.98
+      metrics_locked:
+        L_p5: 58.6
+        L_p50: 75.5
+        L_p95: 90.0
+        C_p50: 25.3
+        C_p95: 31.1
+        C_p99: 37.8
+        detail: 2.2
+    fingerprint: fff3e8a353f92875
+  4:
+    job: x-greenhouse-1-v2
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 35 (R1 51)
+      value: 35.3
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 58 (at most 22), p98 92 (at least 90), spread 35
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 34.7
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 79 (band 55-90)'
+      value: 78.7
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.33 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.333
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.7 (at least 3.5)'
+      value: 4.67
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.3 (R1 5.3)
+      value: 2.26
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.8739
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.9, p95 9.4, off-palette 2.0% (top: #888855 (0.8%), #888866
+        (0.5%))'
+      value: 2.9391
+    - check: station_anchor
+      status: pass
+      message: on the anchor
+      value: 900.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 74 against the world reference (outliers: C_p95, edge)'
+      value: 73.9
+    info:
+      fit:
+        scale: 0.8727
+        anchor:
+        - 511.9
+        - 930
+      registration:
+        dx: 0
+        dy: -30
+      metrics_raw:
+        L_p5: 60.7
+        L_p50: 78.8
+        L_p95: 90.5
+        C_p50: 26.0
+        C_p95: 36.0
+        C_p99: 41.1
+        detail: 3.07
+      metrics_locked:
+        L_p5: 61.4
+        L_p50: 78.8
+        L_p95: 90.0
+        C_p50: 25.9
+        C_p95: 35.3
+        C_p99: 40.2
+        detail: 2.26
+    fingerprint: fff3e8a353f92875
+manual_review:
+  observed_note: Skipped after the sole technical-failure retry, retaining original
+    take ordinals 3 and 4. Both initial calls were lost to stale code-mode hosts during
+    the environment restart, with no callback or retained PNG; they were never redispatched
+    or relabeled. Both retry sources and locked counterparts contain a continuous
+    raised plank floor/platform spanning the whole station, explicitly forbidden by
+    AVOID. Three seedling pots, one watering can, two front glazed panes and partial
+    roof glazing/open ribs are correct, but do not override the floor failure. Both
+    numerical hard QA reports pass; independent visual review remains decisive. No
+    true dependents. Exact originals and interruption proof preserved; never promoted.
+  excluded_takes:
+  - 3
+  - 4
+sources:
+- batch: batch-28-home-shops-concepts-v2
+  job: x-greenhouse-1-v2
+  take: 3
+  round: 2
+  logical_run: run-20261105-night
+  source_file: /workspace/generated_images/exec-f7fbfbad-320d-44dc-a9cc-24ed8b9f6bd2.png
+  returned_at: '2026-11-05T21:34:54.071Z'
+  prompt_sha256: a7da77e4876b42e8ce70d4d0e2740e8b5a4c06ea067b7f67ba9e7cd93a41b667
+  fingerprint: fff3e8a353f92875
+  saved_at: '2026-11-05T21:34:54.603235+00:00'
+  original_generated_png_sha256: e8f1bf88ee5e33a7942ca1432339ab971139440b574c0b2e84d23137d7d34350
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 8b79aad729fce8fe0c1d773c00540ee37cbd4f8240ae8e51a6cd95fcaaced3ad
+  inbox_png_sha256: 4971aa5f8da88c1f5f83031b3b6c8b3b08fc5499b620a5ef1e37b8c7bf3f2266
+  qa_sha256: 2deef6472bb547b1d041f8f066272a5780251f5406746bf501b6740915a54995
+- batch: batch-28-home-shops-concepts-v2
+  job: x-greenhouse-1-v2
+  take: 4
+  round: 2
+  logical_run: run-20261105-night
+  source_file: /workspace/generated_images/exec-ebdfc036-29e5-4722-8dcd-9bc695d7690c.png
+  returned_at: '2026-11-05T21:35:57.657Z'
+  prompt_sha256: a7da77e4876b42e8ce70d4d0e2740e8b5a4c06ea067b7f67ba9e7cd93a41b667
+  fingerprint: fff3e8a353f92875
+  saved_at: '2026-11-05T21:35:58.088020+00:00'
+  original_generated_png_sha256: 7307bfe5793d79361379a31be54fc90086a95fc96d74fd5aae08ac74c0031c7c
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 7a505925708f02fa67b7431f21f1cfc6bcd40db5f21728ae394f60ddf2c4ccab
+  inbox_png_sha256: 28c060f4309afc0e95cbd31781bc4bafc72b4b11e4ccacc19110f96a8c84f668
+  qa_sha256: f3a554e4d760702666e8d850893791d346737d546cbbe9ca8a871da47abca95f
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+interruption:
+  schema: 1
+  receipt: /workspace/art-operator-runtime/run-20261105-night/batch-28-home-shops-concepts-v2/interruption-reconciliation.json
+  receipt_sha256: d7ce00f07f10f68689288c384eda72566b51dc200607d0ffad25d3e4fcbd37aa
+  job: x-greenhouse-1-v2
+  reserved_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+  retained_takes:
+  - 3
+  - 4
+  missing_outputs:
+  - job: x-greenhouse-1-v2
+    take: 1
+    outcome: No callback or retained PNG; original tool cell is stale after environment
+      restart; not redispatched
+  - job: x-greenhouse-1-v2
+    take: 2
+    outcome: No callback or retained PNG; original tool cell is stale after environment
+      restart; not redispatched
+  pending_takes: []
+  retry_reserved: true
+  dispatch_sha256:
+    dispatch-x-greenhouse-1-v2-r1.json: 5e8500ba3da9a8db7ffab34877c71eb4a1663d2c6ac140f3bc43202060d5ff01
+    dispatch-x-greenhouse-1-v2-r2.json: 18adfbbff9afaeef40615bdbaddd3c83cd75d6bfe0f19e954e986a6312d86d16
+  original_ordinals_preserved: true
+variation_proof_sha256: d72f7922c853ad8ceffdf1e89697122dfd8e3b6492da6362fc5bd85cfadd189c
