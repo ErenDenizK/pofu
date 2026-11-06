@@ -1,0 +1,374 @@
+batch: batch-30-decor-sets-v2
+manifest: tools/imagegen/manifest/batch-30-decor-sets-v2.yaml
+manifest_sha256: b3ad9969db61265c404adbbba5d5ec9b7adc55cd188052401aa697117a682515
+contact_sheet: design/art/takes/batch-30-decor-sets-v2/x-corner-harbor-v2/contact.jpg
+jobs:
+  x-corner-harbor-v2:
+    pick: none
+    publication: skipped after one allowed retry
+    note: Skipped after the sole unchanged-prompt retry. All four source and locked
+      frames show the whole home-island lawn oval, complete earth bowl, roots and
+      round door, not the explicitly cropped harbor-side corner and edge. The harbor
+      group also repeats an OPEN X-leg stool rather than the FOLDED canvas stool requested.
+      Root/independent reviewer confirmed retry framing failure; it is not a ban on
+      the required home-island identity. Numeric hard QA passes, but observed content/composition
+      failure excludes every take before style ranking. No third pair, manual crop/resize,
+      prompt/QA waiver or promotion; all four originals, callbacks, q90 takes/contact
+      and full source-bound reports preserved.
+qa_reports:
+  1:
+    job: x-corner-harbor-v2
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 40.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 57 (at most 22), p98 96 (at least 90), spread 39
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 39.1
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 84 (band 55-90)'
+      value: 84.1
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.33 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.329
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 3.6 (at least 3.5)'
+      value: 3.58
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.9 (R1 5.3)
+      value: 1.87
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.7377
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.2, p95 4.4, off-palette 0.1% (top: #DD8844 (0.0%), #CC7733
+        (0.0%))'
+      value: 2.1776
+    info:
+      metrics_raw:
+        L_p5: 66.9
+        L_p50: 88.9
+        L_p95: 95.7
+        C_p50: 12.2
+        C_p95: 41.1
+        C_p99: 48.5
+        detail: 2.4
+      metrics_locked:
+        L_p5: 67.2
+        L_p50: 88.8
+        L_p95: 95.6
+        C_p50: 12.2
+        C_p95: 40.4
+        C_p99: 47.1
+        detail: 1.87
+    fingerprint: 38e5bc32120f441e
+  2:
+    job: x-corner-harbor-v2
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 38 (R1 51)
+      value: 37.5
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 58 (at most 22), p98 96 (at least 90), spread 38
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 37.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 85 (band 55-90)'
+      value: 85.1
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.36 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.361
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.7 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.69
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.0 (R1 5.3)
+      value: 2.03
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.8083
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.3, p95 4.4, off-palette 0.3% (top: #CC7733 (0.1%), #BB7733
+        (0.0%))'
+      value: 2.2717
+    info:
+      metrics_raw:
+        L_p5: 66.8
+        L_p50: 86.6
+        L_p95: 95.3
+        C_p50: 18.2
+        C_p95: 38.3
+        C_p99: 48.7
+        detail: 2.61
+      metrics_locked:
+        L_p5: 67.0
+        L_p50: 86.6
+        L_p95: 95.2
+        C_p50: 18.2
+        C_p95: 37.5
+        C_p99: 46.7
+        detail: 2.03
+    fingerprint: 38e5bc32120f441e
+  3:
+    job: x-corner-harbor-v2
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 39 (R1 51)
+      value: 38.6
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 56 (at most 22), p98 96 (at least 90), spread 39
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 39.1
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 84 (band 55-90)'
+      value: 84.3
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.33 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.333
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 3.2 (at least 3.5)'
+      value: 3.21
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.0 (R1 5.3)
+      value: 1.98
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.8156
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.1, p95 4.4, off-palette 0.1% (top: #DD8844 (0.0%), #CC7744
+        (0.0%))'
+      value: 2.1176
+    info:
+      metrics_raw:
+        L_p5: 66.4
+        L_p50: 87.8
+        L_p95: 95.3
+        C_p50: 13.8
+        C_p95: 39.6
+        C_p99: 49.0
+        detail: 2.56
+      metrics_locked:
+        L_p5: 66.7
+        L_p50: 87.7
+        L_p95: 95.1
+        C_p50: 13.9
+        C_p95: 38.6
+        C_p99: 47.0
+        detail: 1.98
+    fingerprint: 38e5bc32120f441e
+  4:
+    job: x-corner-harbor-v2
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 40.5
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 56 (at most 22), p98 96 (at least 90), spread 40
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 40.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 84 (band 55-90)'
+      value: 84.2
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.33 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.325
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 3.1 (at least 3.5)'
+      value: 3.13
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.0 (R1 5.3)
+      value: 1.98
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.7281
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.2, p95 4.3, off-palette 0.1% (top: #CC7733 (0.1%), #BB6633
+        (0.0%))'
+      value: 2.1754
+    info:
+      metrics_raw:
+        L_p5: 65.7
+        L_p50: 88.6
+        L_p95: 95.6
+        C_p50: 10.3
+        C_p95: 41.1
+        C_p99: 49.9
+        detail: 2.53
+      metrics_locked:
+        L_p5: 65.9
+        L_p50: 88.6
+        L_p95: 95.4
+        C_p50: 10.3
+        C_p95: 40.5
+        C_p99: 48.3
+        detail: 1.98
+    fingerprint: 38e5bc32120f441e
+manual_review:
+  observed_note: Skipped after the sole unchanged-prompt retry. All four source and
+    locked frames show the whole home-island lawn oval, complete earth bowl, roots
+    and round door, not the explicitly cropped harbor-side corner and edge. The harbor
+    group also repeats an OPEN X-leg stool rather than the FOLDED canvas stool requested.
+    Root/independent reviewer confirmed retry framing failure; it is not a ban on
+    the required home-island identity. Numeric hard QA passes, but observed content/composition
+    failure excludes every take before style ranking. No third pair, manual crop/resize,
+    prompt/QA waiver or promotion; all four originals, callbacks, q90 takes/contact
+    and full source-bound reports preserved.
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+sources:
+- batch: batch-30-decor-sets-v2
+  job: x-corner-harbor-v2
+  take: 1
+  round: 1
+  logical_run: 20261105-b30-v2-initial-corners
+  source_file: /workspace/generated_images/exec-791f5821-d1a2-485f-944b-b4c7002708e9.png
+  returned_at: '2026-11-05T22:15:59.612Z'
+  prompt_sha256: 70101deb61720beb614376f39894b6f7b64712acc5da06fb0551f4e3d049f83f
+  fingerprint: 38e5bc32120f441e
+  saved_at: '2026-11-05T22:16:00.087995+00:00'
+  original_generated_png_sha256: b71d4578317de9d13f3e78f8bdd091b6b291d5caa12f4075ece585e558be22ed
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: dd4735c81805928275431e70706066d9227fed2fe16f2e417a8cfa98b9975abe
+  inbox_png_sha256: cdc437c862c649b13d09ba8b068f1bea0940a039004791ce233111d0a294ad3a
+  qa_sha256: af8ee55bfca8c6e5217dd02a71074c8e04846ae09df6379a0e2ac114d826de0c
+- batch: batch-30-decor-sets-v2
+  job: x-corner-harbor-v2
+  take: 2
+  round: 1
+  logical_run: 20261105-b30-v2-initial-corners
+  source_file: /workspace/generated_images/exec-aa6b4854-d021-44a7-a883-b52c9d00fb16.png
+  returned_at: '2026-11-05T22:16:36.899Z'
+  prompt_sha256: 70101deb61720beb614376f39894b6f7b64712acc5da06fb0551f4e3d049f83f
+  fingerprint: 38e5bc32120f441e
+  saved_at: '2026-11-05T22:16:37.214152+00:00'
+  original_generated_png_sha256: 810dadc128d6ef60b8ff376f8294ec9b0fb4cd10541fcd49d4d4ac4df9cca799
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: f55848f728851f008948bca2694b447e5ac4addc82c4408f1f7031160eb9f942
+  inbox_png_sha256: bff215623c8eab0e52cbd5043f92ef6a88345447aff61d3174523653668f7857
+  qa_sha256: c3db82929a17d35b6e111cc59ffee7997ca0918fef0711d542f7f13358930edf
+- batch: batch-30-decor-sets-v2
+  job: x-corner-harbor-v2
+  take: 3
+  round: 2
+  logical_run: 20261105-b30-v2-sole-corner-retries
+  source_file: /workspace/generated_images/exec-22cdafd5-f7d5-4d91-a119-488696819421.png
+  returned_at: '2026-11-05T22:24:21.914Z'
+  prompt_sha256: 70101deb61720beb614376f39894b6f7b64712acc5da06fb0551f4e3d049f83f
+  fingerprint: 38e5bc32120f441e
+  saved_at: '2026-11-05T22:24:22.386863+00:00'
+  original_generated_png_sha256: 9b59970588f37ca24bdf137b1a4ce3f56433499e0c9d0a5a1c820a39344e8f8d
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 499b8a2c941e80b143008104d21647d9ca67d64f099d561d734893ff46f7f8f4
+  inbox_png_sha256: e255014bb04bc8bfc56c72d785316110b3c153c46f99637ce3f6d1532fa36a19
+  qa_sha256: d713a45d2a5aa750ae2c0c11f1d80e6031d380076c1172a22aee903a6dee2375
+- batch: batch-30-decor-sets-v2
+  job: x-corner-harbor-v2
+  take: 4
+  round: 2
+  logical_run: 20261105-b30-v2-sole-corner-retries
+  source_file: /workspace/generated_images/exec-f6756af3-1b2e-4155-b95c-a9a7f333ac19.png
+  returned_at: '2026-11-05T22:23:46.386Z'
+  prompt_sha256: 70101deb61720beb614376f39894b6f7b64712acc5da06fb0551f4e3d049f83f
+  fingerprint: 38e5bc32120f441e
+  saved_at: '2026-11-05T22:23:46.868875+00:00'
+  original_generated_png_sha256: d1ab08f5dc8532800d84fe17883d98b8f8213798f9f459bb4ef47430bdda6b3a
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: e5ac449ff4a70e73db601b1f494157203172a813e73e7c1b25442b5f1de36cdd
+  inbox_png_sha256: 7b9c051eb1db97d764ca9ea8ef5af2330d2edcea833a00a7baa778e5993b875c
+  qa_sha256: 62ee11b442c57195ec4cd0ec6ed2888833037f761208d3570f03d1f2eec9aa35
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+variation_proof_sha256: c84355a7e9865d22a6b6c3cf020cd6aa93f9d460916b03207c002e7e860c4c00

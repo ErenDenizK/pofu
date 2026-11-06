@@ -1,0 +1,461 @@
+batch: batch-30-decor-sets-v2
+manifest: tools/imagegen/manifest/batch-30-decor-sets-v2.yaml
+manifest_sha256: b3ad9969db61265c404adbbba5d5ec9b7adc55cd188052401aa697117a682515
+contact_sheet: design/art/takes/batch-30-decor-sets-v2/x-decor-gift-moss-stool-v2/contact.jpg
+jobs:
+  x-decor-gift-moss-stool-v2:
+    pick: none
+    publication: skipped after one allowed retry
+    note: Skipped after the sole unchanged-prompt retry. Official locked alpha>24
+      widths t1/t2/t3/t4 are360/361/360/361px, all above the literal1024/3=341.33px
+      maximum. The new native280-310px target was not followed; official shrink-only
+      guide fits cannot force the narrower prose cap because the ground guide is360px
+      wide. This is an observed composition failure even though numeric hard QA passes
+      and style/light/colour warnings are advisory. No third round, manual rescaling,
+      fit/QA edit, prompt rephrasing or promotion. All four original PNGs and callbacks
+      remain unchanged; q90 takes, contact and full source-bound QA preserved. No
+      other job attaches this x-id, so independent jobs continue. The new exploration
+      manifest is included only in this first-job bootstrap commit.
+qa_reports:
+  1:
+    job: x-decor-gift-moss-stool-v2
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 46 (R1 51)
+      value: 46.5
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 42 (at most 22), p98 89 (at least 90), spread 46
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 46.4
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 68 (band 55-90)'
+      value: 67.9
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.14 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.137
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.7 (at least 3.5)'
+      value: 4.65
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.7 (R1 5.3)
+      value: 1.71
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 0.979
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 7.2, p95 17.5, off-palette 25.2% (top: #887733 (5.1%), #999944
+        (3.4%)) (advisory in an exploration)'
+      value: 7.2175
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 77 against the world reference (outliers: L_p98, edge)'
+      value: 76.8
+    info:
+      fit:
+        scale: 0.7826
+        anchor:
+        - 504.3
+        - 864
+      registration:
+        dx: 8
+        dy: 24
+      metrics_raw:
+        L_p5: 44.9
+        L_p50: 68.0
+        L_p95: 85.3
+        C_p50: 42.7
+        C_p95: 47.3
+        C_p99: 49.2
+        detail: 2.6
+      metrics_locked:
+        L_p5: 45.5
+        L_p50: 67.8
+        L_p95: 84.8
+        C_p50: 42.6
+        C_p95: 46.5
+        C_p99: 48.2
+        detail: 1.71
+    fingerprint: 57702889e344706e
+  2:
+    job: x-decor-gift-moss-stool-v2
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 53 (R1 51)
+      value: 53.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 42 (at most 22), p98 90 (at least 90), spread 48
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 48.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 66 (band 55-90)'
+      value: 66.3
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.15 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.149
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.0 (at least 3.5)'
+      value: 4.03
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.5 (R1 5.3)
+      value: 1.5
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.1
+      value: 1.0738
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 8.9, p95 19.2, off-palette 44.6% (top: #AAAA44 (4.5%), #998833
+        (4.1%)) (advisory in an exploration)'
+      value: 8.933
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 79 against the world reference (outliers: L_p2, edge)'
+      value: 79.1
+    info:
+      fit:
+        scale: 0.9
+        anchor:
+        - 507.6
+        - 879
+      registration:
+        dx: 4
+        dy: 9
+      metrics_raw:
+        L_p5: 44.9
+        L_p50: 66.4
+        L_p95: 85.8
+        C_p50: 45.3
+        C_p95: 54.0
+        C_p99: 55.9
+        detail: 2.32
+      metrics_locked:
+        L_p5: 45.5
+        L_p50: 66.3
+        L_p95: 85.4
+        C_p50: 45.1
+        C_p95: 53.4
+        C_p99: 55.2
+        detail: 1.5
+    fingerprint: 57702889e344706e
+  3:
+    job: x-decor-gift-moss-stool-v2
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 51 (R1 51)
+      value: 51.2
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 41 (at most 22), p98 87 (at least 90), spread 46
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 45.9
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 65 (band 55-90)'
+      value: 64.9
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.14 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.137
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.7 (at least 3.5)'
+      value: 4.65
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.62
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 1.0437
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 7.8, p95 17.3, off-palette 33.4% (top: #AA9944 (4.3%), #999944
+        (4.0%)) (advisory in an exploration)'
+      value: 7.8391
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 71 against the world reference (outliers: L_p2, L_p98,
+        edge)'
+      value: 71.4
+    info:
+      fit:
+        scale: 0.8451
+        anchor:
+        - 501.7
+        - 905
+      registration:
+        dx: 10
+        dy: -18
+      metrics_raw:
+        L_p5: 43.9
+        L_p50: 64.9
+        L_p95: 84.2
+        C_p50: 43.9
+        C_p95: 51.6
+        C_p99: 57.7
+        detail: 2.45
+      metrics_locked:
+        L_p5: 44.5
+        L_p50: 64.9
+        L_p95: 83.7
+        C_p50: 43.9
+        C_p95: 51.2
+        C_p99: 56.7
+        detail: 1.62
+    fingerprint: 57702889e344706e
+  4:
+    job: x-decor-gift-moss-stool-v2
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 48 (R1 51)
+      value: 48.0
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 41 (at most 22), p98 88 (at least 90), spread 47
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 47.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 65 (band 55-90)'
+      value: 65.1
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.16 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.157
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.3 (at least 3.5)'
+      value: 4.33
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.63
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 1.0293
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 7.7, p95 18.5, off-palette 27.4% (top: #666633 (3.6%), #999944
+        (3.4%)) (advisory in an exploration)'
+      value: 7.731
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 72 against the world reference (outliers: L_p2, L_p98,
+        detail, edge)'
+      value: 71.7
+    info:
+      fit:
+        scale: 0.989
+        anchor:
+        - 506.9
+        - 844
+      registration:
+        dx: 5
+        dy: 44
+      metrics_raw:
+        L_p5: 42.6
+        L_p50: 65.1
+        L_p95: 84.4
+        C_p50: 41.2
+        C_p95: 48.5
+        C_p99: 51.0
+        detail: 2.47
+      metrics_locked:
+        L_p5: 43.0
+        L_p50: 65.1
+        L_p95: 83.8
+        C_p50: 41.3
+        C_p95: 48.0
+        C_p99: 50.3
+        detail: 1.63
+    fingerprint: 57702889e344706e
+manual_review:
+  observed_note: Skipped after the sole unchanged-prompt retry. Official locked alpha>24
+    widths t1/t2/t3/t4 are360/361/360/361px, all above the literal1024/3=341.33px
+    maximum. The new native280-310px target was not followed; official shrink-only
+    guide fits cannot force the narrower prose cap because the ground guide is360px
+    wide. This is an observed composition failure even though numeric hard QA passes
+    and style/light/colour warnings are advisory. No third round, manual rescaling,
+    fit/QA edit, prompt rephrasing or promotion. All four original PNGs and callbacks
+    remain unchanged; q90 takes, contact and full source-bound QA preserved. No other
+    job attaches this x-id, so independent jobs continue. The new exploration manifest
+    is included only in this first-job bootstrap commit.
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+sources:
+- batch: batch-30-decor-sets-v2
+  job: x-decor-gift-moss-stool-v2
+  take: 1
+  round: 1
+  logical_run: 20261105-b30-v2-initial-gifts
+  source_file: /workspace/generated_images/exec-0700f291-a0f8-449e-b66b-697cbe8d7c00.png
+  returned_at: '2026-11-05T22:11:17.383Z'
+  prompt_sha256: f627aa25f4d0a1fbf16a1122163e0fd9d49db2ecf56a0dde87842c65f8e7f812
+  fingerprint: 57702889e344706e
+  saved_at: '2026-11-05T22:11:17.683166+00:00'
+  original_generated_png_sha256: 572d0d2d93dd3131db5ba1b19bc7860d805f7d56f9aa5355edbbf1ef0e86137c
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: ff849579789c03306f0400acb3c2f320713e3432efd752c085ef308e1f41b728
+  inbox_png_sha256: 1ed60fd8c1a54095ce12df829e819438e8db0634eae4a2b3b7e35126aa02000a
+  qa_sha256: 19546475ab435cb9b7f53c4c48b9df69831a67fa19232ffad3b445f388929ce7
+- batch: batch-30-decor-sets-v2
+  job: x-decor-gift-moss-stool-v2
+  take: 2
+  round: 1
+  logical_run: 20261105-b30-v2-initial-gifts
+  source_file: /workspace/generated_images/exec-e1c4b326-3c06-4a46-a6c1-2c7a1f43bc61.png
+  returned_at: '2026-11-05T22:09:58.159Z'
+  prompt_sha256: f627aa25f4d0a1fbf16a1122163e0fd9d49db2ecf56a0dde87842c65f8e7f812
+  fingerprint: 57702889e344706e
+  saved_at: '2026-11-05T22:09:58.500921+00:00'
+  original_generated_png_sha256: caedf368548d4620b31caf1ba51b7e0bf97925b5957f768260a9dbc346c25b39
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 7466b0fc3e7334cfa462cbe96b0bfe729b821fb41b321f0d89742f76043391a4
+  inbox_png_sha256: bc649183fdd255b9f7d558078ba45ec0e7de599279d0f52819dfb80ace2b5867
+  qa_sha256: d9fee332d750d2f6fd6acf8f89217ea169826ed7526f76979d18c909cddc5507
+- batch: batch-30-decor-sets-v2
+  job: x-decor-gift-moss-stool-v2
+  take: 3
+  round: 2
+  logical_run: 20261105-b30-v2-sole-gift-retries
+  source_file: /workspace/generated_images/exec-7fea0dc8-9c9e-4393-bfff-28b1c48e6235.png
+  returned_at: '2026-11-05T22:14:08.939Z'
+  prompt_sha256: f627aa25f4d0a1fbf16a1122163e0fd9d49db2ecf56a0dde87842c65f8e7f812
+  fingerprint: 57702889e344706e
+  saved_at: '2026-11-05T22:14:09.304365+00:00'
+  original_generated_png_sha256: 026c077ec455780206d089a73dab890a779e208466485c8b57f1fa74df4e3265
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 4dc7831488cd8105e743e944f2af26f9dd1d1bb8bca32bcf1442fbc5532d85ca
+  inbox_png_sha256: ef2011332d52be31b05c0c5e93efdb61aba446f1f76dbed4fbdecb79ee8ae7d1
+  qa_sha256: 59498337cc6ecff9e2b2a094794cbdfd69a87bd4543d8a2d60fba83eb6fa1c75
+- batch: batch-30-decor-sets-v2
+  job: x-decor-gift-moss-stool-v2
+  take: 4
+  round: 2
+  logical_run: 20261105-b30-v2-sole-gift-retries
+  source_file: /workspace/generated_images/exec-43065fd8-ad8d-49b6-b4c2-ee887e3e42fe.png
+  returned_at: '2026-11-05T22:15:52.196Z'
+  prompt_sha256: f627aa25f4d0a1fbf16a1122163e0fd9d49db2ecf56a0dde87842c65f8e7f812
+  fingerprint: 57702889e344706e
+  saved_at: '2026-11-05T22:15:52.583727+00:00'
+  original_generated_png_sha256: ed2abe96d73cb93f28b06e1d30680cd938adf5cc2a72f171fa7563b3d01f4362
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 1c0427190b67b7b4e23528de810d287629b77fec48001fa4989626f049da4df3
+  inbox_png_sha256: 6adaa0d7e7b519c1a5067720f2561f9a38da1fd39472190671c15561f5e2ca51
+  qa_sha256: 5b1093a05da471b8645aa6271c36017ac2a1ca182784b87e81488447cc1777ba
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+variation_proof_sha256: c84355a7e9865d22a6b6c3cf020cd6aa93f9d460916b03207c002e7e860c4c00

@@ -1,0 +1,246 @@
+batch: batch-30-decor-sets-v2
+manifest: tools/imagegen/manifest/batch-30-decor-sets-v2.yaml
+manifest_sha256: b3ad9969db61265c404adbbba5d5ec9b7adc55cd188052401aa697117a682515
+contact_sheet: design/art/takes/batch-30-decor-sets-v2/x-decor-gift-water-bell-v2/contact.jpg
+jobs:
+  x-decor-gift-water-bell-v2:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Original t1 passes hard QA and
+      explicit inventory: aqua drop-shaped flared bell, cream clapper, two honey posts/short
+      crossbar, exact three separate droplets and fern at post foot; no guide, letters
+      or characters. Official posted alpha>24 width315px fits the inherited at-most-third341.33px
+      cap. t2 width361px fails that literal brief even though numeric guide QA passes,
+      so excluded before style ranking. t1 lock-load .9053 and Harmony87.4; exploration
+      light/palette/style warnings remain advisory and are preserved. No rescaling,
+      fit edit or promotion; source PNGs unchanged.'
+qa_reports:
+  1:
+    job: x-decor-gift-water-bell-v2
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 53 (R1 51)
+      value: 52.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 50 (at most 22), p98 93 (at least 90), spread 44
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 43.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 75 (band 55-90)'
+      value: 75.4
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.6 (at least 3.5)'
+      value: 5.57
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.5 (R1 5.3)
+      value: 1.47
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.9053
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.3, p95 10.4, off-palette 3.7% (top: #557777 (0.8%), #778844
+        (0.4%))'
+      value: 3.2767
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 87 against the world reference (outliers: edge)'
+      value: 87.4
+    info:
+      fit:
+        scale: 0.8858
+        anchor:
+        - 472.2
+        - 854
+      registration:
+        dx: 40
+        dy: 34
+      metrics_raw:
+        L_p5: 56.0
+        L_p50: 75.5
+        L_p95: 91.4
+        C_p50: 42.7
+        C_p95: 53.2
+        C_p99: 54.6
+        detail: 2.11
+      metrics_locked:
+        L_p5: 56.2
+        L_p50: 75.4
+        L_p95: 90.9
+        C_p50: 43.1
+        C_p95: 52.9
+        C_p99: 54.2
+        detail: 1.47
+    fingerprint: 2d7d27b15b36c1d3
+  2:
+    job: x-decor-gift-water-bell-v2
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 47 (R1 51)
+      value: 47.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 52 (at most 22), p98 93 (at least 90), spread 41
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 40.9
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 75 (band 55-90)'
+      value: 75.0
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.23 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.231
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.0 (at least 3.5)'
+      value: 4.01
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.3 (R1 5.3)
+      value: 1.31
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.788
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.6, p95 9.1, off-palette 2.9% (top: #557777 (0.6%), #999944
+        (0.4%))'
+      value: 2.6438
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 98 against the world reference (outliers: none)'
+      value: 97.6
+    info:
+      fit:
+        scale: 0.7643
+        anchor:
+        - 481.1
+        - 793
+      registration:
+        dx: 31
+        dy: 94
+      metrics_raw:
+        L_p5: 56.6
+        L_p50: 75.2
+        L_p95: 90.6
+        C_p50: 40.3
+        C_p95: 47.9
+        C_p99: 49.7
+        detail: 1.89
+      metrics_locked:
+        L_p5: 57.4
+        L_p50: 75.0
+        L_p95: 90.4
+        C_p50: 40.7
+        C_p95: 47.4
+        C_p99: 48.5
+        detail: 1.31
+    fingerprint: 2d7d27b15b36c1d3
+manual_review:
+  observed_note: 'Original t1 passes hard QA and explicit inventory: aqua drop-shaped
+    flared bell, cream clapper, two honey posts/short crossbar, exact three separate
+    droplets and fern at post foot; no guide, letters or characters. Official posted
+    alpha>24 width315px fits the inherited at-most-third341.33px cap. t2 width361px
+    fails that literal brief even though numeric guide QA passes, so excluded before
+    style ranking. t1 lock-load .9053 and Harmony87.4; exploration light/palette/style
+    warnings remain advisory and are preserved. No rescaling, fit edit or promotion;
+    source PNGs unchanged.'
+  excluded_takes:
+  - 2
+sources:
+- batch: batch-30-decor-sets-v2
+  job: x-decor-gift-water-bell-v2
+  take: 1
+  round: 1
+  logical_run: 20261105-b30-v2-initial-gifts
+  source_file: /workspace/generated_images/exec-5b661a3d-77f1-47db-9f33-449329cf5f76.png
+  returned_at: '2026-11-05T22:10:49.788Z'
+  prompt_sha256: 0b7fed71abf60fe952c055058ec76c1e7b56122004693669990eef673e2749d5
+  fingerprint: 2d7d27b15b36c1d3
+  saved_at: '2026-11-05T22:10:50.179005+00:00'
+  original_generated_png_sha256: 7e3176ff59757ca58d12fd480b663b7a386b445bdaed8bafbbb55e180c50d08c
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: af8b003c81710419f7aa4acab07c8685052d4612efbfe9b70f3782c5940fd6c5
+  inbox_png_sha256: df8596bfd89867ff5c627d5b244f082d82ea2e34a5c0c22385ef4332f6f7498e
+  qa_sha256: ad52ce71a68662971d090138dfaab60527947ab4f8e0038e0d67600ab4c50e68
+- batch: batch-30-decor-sets-v2
+  job: x-decor-gift-water-bell-v2
+  take: 2
+  round: 1
+  logical_run: 20261105-b30-v2-initial-gifts
+  source_file: /workspace/generated_images/exec-74d73c10-8d8c-43d2-8c30-dd96306f2b9e.png
+  returned_at: '2026-11-05T22:09:07.589Z'
+  prompt_sha256: 0b7fed71abf60fe952c055058ec76c1e7b56122004693669990eef673e2749d5
+  fingerprint: 2d7d27b15b36c1d3
+  saved_at: '2026-11-05T22:09:07.976058+00:00'
+  original_generated_png_sha256: 18e9db4a11823cf94bc0a179f1a15ff27c013d9fce051bbaa109c8fb76879d89
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: fb3cd1f5acb15cee03df448eaa3b4972ee026ce3639347b9743d7fabf35e501f
+  inbox_png_sha256: af00c002d46a0b64c73a19e74a917c47bc9cb9af908be5fd46e6a52dae7b1d7f
+  qa_sha256: 515fed1f52e6286ecc1b5408c457eaa612769d19f1f65a92fd0e5243c36e2486
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+variation_proof_sha256: c84355a7e9865d22a6b6c3cf020cd6aa93f9d460916b03207c002e7e860c4c00

@@ -1,0 +1,33 @@
+id: asset-x-decor-harbor-rope-crates-v2
+type: asset
+title_tr: x-decor-harbor-rope-crates-v2
+title_en: x-decor-harbor-rope-crates-v2 (prop)
+status: cut
+horizon: now
+summary: >-
+  A new vertically compact harbor bundle: exactly one narrow slatted honey-wood crate behind
+  a neat thick honey-colored rope coil tucked against its front-left. Inside the crate, exactly
+  THREE small round sea-blue floats sit in a clearly countable triangular group, with a FOLDED
+  striped sack tucked behind them. The crate's distinct hinged wooden lid lies flat close
+  to its front, and exactly one small coral starfish res…
+art:
+  images: []
+  jobs:
+  - batch-30-decor-sets-v2:x-decor-harbor-rope-crates-v2
+sources:
+- doc: tools/imagegen/manifest/batch-30-decor-sets-v2.yaml
+kind: prop
+batch: batch-30-decor-sets-v2
+size: 1024x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Skipped after the sole allowed retry; registration remains cut and art.images is empty.
+- >-
+  Skipped after the sole unchanged-prompt retry. Official locked alpha>24 widths359/358/360/360px
+  all exceed the literal at-most-third341.33px maximum. The inherited guide fit shrinks to
+  its360px footprint, which does not satisfy the narrower prose cap. Numeric hard QA passes;
+  this observed composition failure is separate from advisory palette/light/style/Harmony
+  warnings. No third round, manual scaling, changed guide fit, prompt/QA waiver or promotion.
+  Preserve all four unchanged originals and source-bound contact/q90 takes/reports; no true
+  dependents attach this x-id.

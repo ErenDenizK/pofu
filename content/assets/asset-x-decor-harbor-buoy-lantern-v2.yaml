@@ -1,0 +1,34 @@
+id: asset-x-decor-harbor-buoy-lantern-v2
+type: asset
+title_tr: x-decor-harbor-buoy-lantern-v2
+title_en: x-decor-harbor-buoy-lantern-v2 (prop)
+status: planned
+horizon: now
+summary: >-
+  A fresh slightly right-turned view of one plump round buoy in broad coral-and-cream stripes,
+  resting on a small flat stone. A SHORT mast on top carries a small cage lantern whose lamp
+  is an UNLIT soft pale cream glass shape, with no flame or glow. A compact loop of honey
+  rope lies at the stone's front-left, kept close to the buoy. Few matte chunky parts; clear
+  buoy silhouette. The entire group stands on the decor gui…
+art:
+  images: []
+  jobs:
+  - batch-30-decor-sets-v2:x-decor-harbor-buoy-lantern-v2
+sources:
+- doc: tools/imagegen/manifest/batch-30-decor-sets-v2.yaml
+kind: prop
+batch: batch-30-decor-sets-v2
+size: 1024x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Selected take 1; auto-picked by QA; founder review pending. Registration remains planned
+  and art.images is empty.
+- >-
+  auto-picked by QA; founder review pending. Both originals pass hard QA and manual content/size
+  review: plump coral/cream striped buoy, short mast with cream cage lantern holding an UNLIT
+  pale glass shape, flat stone and compact rope loop. No flame, glow pool, guide, text, cast
+  ground shadow or characters. Official posted alpha>24 widths261/233px fit the341.33px cap;
+  tops500 sit at the height bar and full silhouettes stay inside the canvas. t1 wins lowest
+  eligible lock-load2.7908 versus2.8454; Harmony82.7 and advisory light/palette/style warnings
+  preserved. Original PNGs unchanged, no retry, manual rescale, fit edit or promotion.

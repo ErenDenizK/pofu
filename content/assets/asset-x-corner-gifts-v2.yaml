@@ -1,0 +1,33 @@
+id: asset-x-corner-gifts-v2
+type: asset
+title_tr: x-corner-gifts-v2
+title_en: x-corner-gifts-v2 (plate)
+status: cut
+horizon: now
+summary: >-
+  A fresh concept composition of one quiet corner of the SAME attached home island Aycicegi:
+  a shallow S-shaped stone path sweeps from foreground-right to back-left through a broad
+  patch of lawn, with a cropped edge of the original island above the attached sea of clouds.
+  Keep the approved island's low front three-quarter camera, about 20 degrees, its painting
+  and proportions; do not invent a different island. Stagger …
+art:
+  images: []
+  jobs:
+  - batch-30-decor-sets-v2:x-corner-gifts-v2
+sources:
+- doc: tools/imagegen/manifest/batch-30-decor-sets-v2.yaml
+kind: plate
+batch: batch-30-decor-sets-v2
+size: 1536x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Skipped after the sole allowed retry; registration remains cut and art.images is empty.
+- >-
+  Skipped after the sole unchanged-prompt retry. All four official posts pass hard numeric
+  QA and include the four gift groups, but every take shows the entire home-island lawn oval,
+  soil bowl, roots and round door, not the explicitly requested softly cropped quiet corner/edge
+  with foreground path framing. Root independently confirmed the initial pair and retry boards
+  show the same framing mismatch. The same home island is required: copying its identity is
+  not itself a failure. No manual post-crop, third pair, prompt/QA/fit waiver or promotion.
+  Preserve all originals and full source-bound QA/contact/q90 takes; independent jobs continue.

@@ -1,0 +1,249 @@
+batch: batch-30-decor-sets-v2
+manifest: tools/imagegen/manifest/batch-30-decor-sets-v2.yaml
+manifest_sha256: b3ad9969db61265c404adbbba5d5ec9b7adc55cd188052401aa697117a682515
+contact_sheet: design/art/takes/batch-30-decor-sets-v2/x-decor-gift-umbrella-v2/contact.jpg
+jobs:
+  x-decor-gift-umbrella-v2:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Both retained takes pass hard
+      QA and semantic review: one tightly closed faded-plum/cream striped umbrella
+      with curved left-facing honey handle, visible sage mended patch, blank tag/string
+      and small round clay stand. Posted alpha>24 width161px for each fits literal341.33
+      maximum; height fitting explains the narrow silhouette, and there is no invented
+      minimum width. t2 lowest eligible lock-load2.2848 wins; Harmony65.2 and light/palette/style
+      warnings remain advisory and visible. Root independent source/locked review
+      agrees t2 content survives post, no guide/text/fur transfer. No retry, rescaling,
+      fit changes or promotion; original PNGs unchanged.'
+qa_reports:
+  1:
+    job: x-decor-gift-umbrella-v2
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 51 (R1 51)
+      value: 51.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 36 (at most 22), p98 89 (at least 90), spread 53
+        (at least 60)'
+      value: 53.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 68 (band 55-90)'
+      value: 68.1
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 12.1 (at least 3.5)'
+      value: 12.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.3 (R1 5.3)
+      value: 4.27
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.4
+      value: 2.3755
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.3, p95 8.8, off-palette 1.6% (top: #888866 (0.9%), #AA6622
+        (0.1%))'
+      value: 2.3428
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 64 against the world reference (outliers: L_p2, detail,
+        edge)'
+      value: 63.5
+    info:
+      fit:
+        scale: 0.7004
+        anchor:
+        - 488.4
+        - 874
+      registration:
+        dx: 24
+        dy: 14
+      metrics_raw:
+        L_p5: 40.5
+        L_p50: 68.4
+        L_p95: 88.2
+        C_p50: 33.8
+        C_p95: 52.2
+        C_p99: 55.0
+        detail: 5.29
+      metrics_locked:
+        L_p5: 41.2
+        L_p50: 68.1
+        L_p95: 87.1
+        C_p50: 33.4
+        C_p95: 51.4
+        C_p99: 54.4
+        detail: 4.27
+    fingerprint: c6cc459e801205f3
+  2:
+    job: x-decor-gift-umbrella-v2
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 51 (R1 51)
+      value: 51.0
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 40 (at most 22), p98 89 (at least 90), spread 48
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 48.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 69 (band 55-90)'
+      value: 68.7
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 12.3 (at least 3.5)'
+      value: 12.35
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.4 (R1 5.3)
+      value: 4.36
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.3
+      value: 2.2848
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.9, p95 7.7, off-palette 0.8% (top: #AA6622 (0.2%), #AA5522
+        (0.1%))'
+      value: 1.9493
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 65 against the world reference (outliers: L_p2, L_p98,
+        detail, edge)'
+      value: 65.2
+    info:
+      fit:
+        scale: 0.7266
+        anchor:
+        - 493.0
+        - 877
+      registration:
+        dx: 19
+        dy: 11
+      metrics_raw:
+        L_p5: 45.6
+        L_p50: 68.8
+        L_p95: 88.0
+        C_p50: 32.6
+        C_p95: 51.4
+        C_p99: 53.6
+        detail: 5.38
+      metrics_locked:
+        L_p5: 46.3
+        L_p50: 68.7
+        L_p95: 87.5
+        C_p50: 32.4
+        C_p95: 51.0
+        C_p99: 53.0
+        detail: 4.36
+    fingerprint: c6cc459e801205f3
+manual_review:
+  observed_note: 'Both retained takes pass hard QA and semantic review: one tightly
+    closed faded-plum/cream striped umbrella with curved left-facing honey handle,
+    visible sage mended patch, blank tag/string and small round clay stand. Posted
+    alpha>24 width161px for each fits literal341.33 maximum; height fitting explains
+    the narrow silhouette, and there is no invented minimum width. t2 lowest eligible
+    lock-load2.2848 wins; Harmony65.2 and light/palette/style warnings remain advisory
+    and visible. Root independent source/locked review agrees t2 content survives
+    post, no guide/text/fur transfer. No retry, rescaling, fit changes or promotion;
+    original PNGs unchanged.'
+  excluded_takes: []
+sources:
+- batch: batch-30-decor-sets-v2
+  job: x-decor-gift-umbrella-v2
+  take: 1
+  round: 1
+  logical_run: 20261105-b30-v2-initial-gifts
+  source_file: /workspace/generated_images/exec-98e07b49-4b85-4467-9440-b66aaa714274.png
+  returned_at: '2026-11-05T22:09:59.433Z'
+  prompt_sha256: b90c1d8fe41d7892c59c67a5bb7b0f54b09c81b734b6bc4a76c3a6f7d5e4b72f
+  fingerprint: c6cc459e801205f3
+  saved_at: '2026-11-05T22:09:59.781316+00:00'
+  original_generated_png_sha256: b3cafc671510d9c2390a1e9c427e010ed7e315acf51eca9db4634f2518be8553
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 2757a0810c9371ad0bc6b403194e65a244a5f74243e3337bb2a1bd9cd4ce5089
+  inbox_png_sha256: 11af05c6394b6da4017a818abc7e75858dffa748e9d930ed06384e350a7d50df
+  qa_sha256: da2f51b9aad643d918f8ec71ea831d64e0b4956dcb74d3cd4abb40422b7c5d5f
+- batch: batch-30-decor-sets-v2
+  job: x-decor-gift-umbrella-v2
+  take: 2
+  round: 1
+  logical_run: 20261105-b30-v2-initial-gifts
+  source_file: /workspace/generated_images/exec-5838f315-3b5b-4734-8adc-3478a235ac99.png
+  returned_at: '2026-11-05T22:09:13.283Z'
+  prompt_sha256: b90c1d8fe41d7892c59c67a5bb7b0f54b09c81b734b6bc4a76c3a6f7d5e4b72f
+  fingerprint: c6cc459e801205f3
+  saved_at: '2026-11-05T22:09:13.821704+00:00'
+  original_generated_png_sha256: 0fb35f5ad6fb731227033bc803b21ee10c35f41f11604d96c58d667129e6c217
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 2e854085c758e61009759aa46b989343edf5515619b5856875c08f9ab988b720
+  inbox_png_sha256: 6d8c3069042a3cac042ec364cf5e819fb2b46fae80f282f7d996a7984dd059e0
+  qa_sha256: d5f6885d64f30d4a7df88a9e96ed56ba73f9bee9f402f2df7ae9099a7f78928a
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+variation_proof_sha256: c84355a7e9865d22a6b6c3cf020cd6aa93f9d460916b03207c002e7e860c4c00

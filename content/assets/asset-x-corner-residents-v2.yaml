@@ -1,0 +1,35 @@
+id: asset-x-corner-residents-v2
+type: asset
+title_tr: x-corner-residents-v2
+title_en: x-corner-residents-v2 (plate)
+status: cut
+horizon: now
+summary: >-
+  A new friendly meeting-place layout on a quiet corner of the SAME attached home island Aycicegi,
+  with its same low front three-quarter camera about 20 degrees, soft painting and scale,
+  a few path stones, cropped lawn and original island edge above the attached clouds. A low
+  round table at left foreground holds Mochi's rose-clay teapot and exactly TWO tulip-shaped
+  tea glasses. A small hedgehog-sized bench at back-righ…
+art:
+  images: []
+  jobs:
+  - batch-30-decor-sets-v2:x-corner-residents-v2
+sources:
+- doc: tools/imagegen/manifest/batch-30-decor-sets-v2.yaml
+kind: plate
+batch: batch-30-decor-sets-v2
+size: 1536x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Skipped after the sole allowed retry; registration remains cut and art.images is empty.
+- >-
+  Skipped after the sole unchanged-prompt retry. All four original and locked frames show
+  the whole lawn oval/earth bowl/roots/round door rather than the explicitly cropped quiet
+  meeting corner. Retry inventories were independently checked as correct: rose teapot and
+  two tulip glasses, small bench with goggles and SCREWDRIVER, collar bell/hook, goat stool
+  with visibly FOLDED sailor hat and sesame-simit basket, and three lily-pad cushions in a
+  row; no residents. The folded-state improvement does not waive the separate framing failure.
+  Numeric hard QA passes and style/light warnings remain advisory. No extra generation, manual
+  post-crop, prompt/QA waiver or promotion; all four originals/callbacks and source-bound
+  q90/contact/reports preserved.

@@ -1,0 +1,35 @@
+id: asset-x-decor-gift-umbrella-v2
+type: asset
+title_tr: x-decor-gift-umbrella-v2
+title_en: x-decor-gift-umbrella-v2 (prop)
+status: planned
+horizon: now
+summary: >-
+  A new pose for Emanet's loved old umbrella: exactly one CLOSED umbrella in faded plum-and-cream
+  stripes leans gently right inside a little round clay stand. Its curved honey-wood handle
+  faces left, a small mended sage-cloth patch faces the viewer, and a tiny BLANK tag on a
+  string is tucked close to the folded canopy. The canopy stays tightly closed, slightly worn
+  and cared for, never spread open. This narrow group st…
+art:
+  images: []
+  jobs:
+  - batch-30-decor-sets-v2:x-decor-gift-umbrella-v2
+sources:
+- doc: tools/imagegen/manifest/batch-30-decor-sets-v2.yaml
+kind: prop
+batch: batch-30-decor-sets-v2
+size: 1024x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Selected take 2; auto-picked by QA; founder review pending. Registration remains planned
+  and art.images is empty.
+- >-
+  auto-picked by QA; founder review pending. Both retained takes pass hard QA and semantic
+  review: one tightly closed faded-plum/cream striped umbrella with curved left-facing honey
+  handle, visible sage mended patch, blank tag/string and small round clay stand. Posted alpha>24
+  width161px for each fits literal341.33 maximum; height fitting explains the narrow silhouette,
+  and there is no invented minimum width. t2 lowest eligible lock-load2.2848 wins; Harmony65.2
+  and light/palette/style warnings remain advisory and visible. Root independent source/locked
+  review agrees t2 content survives post, no guide/text/fur transfer. No retry, rescaling,
+  fit changes or promotion; original PNGs unchanged.
