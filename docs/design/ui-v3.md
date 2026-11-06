@@ -217,7 +217,7 @@ below are blank (no letters), 3× density, and ship a night variant.
 | **Text field** | Native field on a paper inset (drawn inner shadow) | focused = honey underline | system | — |
 | **Empty state** | One painted vignette + a Baloo 2 line + one plaque | n/a | vignette fades up 0.4 s | batch-62: `empty-today`, `empty-map`, `empty-friends`, `empty-letters`, `permission-key` |
 | **Loading** | Pofu doing something (yawn, rolling a seed), never a spinner | n/a | loop ≤ 1.2 s | `loading-seed-roll` (6 frames), `pofu-yawn` |
-| **Marks** | Wax seals (resisted, gift, day done), ink stamps (day mood by hour) | stamped = 0.18 s press with a puff | soft impact per stamp | batch-60: `seal-resist`, `seal-gift`, `seal-day`, `stamp-dawn/day/golden/night` |
+| **Marks** | Wax seals (resisted, gift, day done), ink stamps (day mood by hour) | stamped = 0.18 s press with a puff | soft impact per stamp | batch-61 (with the kit): `seal-resist`, `seal-gift`, `seal-day`, `stamp-dawn/day/golden/night` |
 
 ## 6. Waves
 
