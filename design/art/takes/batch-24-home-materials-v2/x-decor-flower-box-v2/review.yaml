@@ -1,0 +1,451 @@
+batch: batch-24-home-materials-v2
+manifest: tools/imagegen/manifest/batch-24-home-materials-v2.yaml
+manifest_sha256: b61416abeacb9caa3197174c50d198baea91b686b02ce420255d4693b93dc3cc
+contact_sheet: design/art/takes/batch-24-home-materials-v2/x-decor-flower-box-v2/contact.jpg
+jobs:
+  x-decor-flower-box-v2:
+    pick: none
+    publication: skipped after one allowed retry
+    note: Exactly four originals across initial pair plus sole unchanged-prompt retry.
+      Original contents keep one low rounded honey-wood flower box, small sunflowers
+      and cream daisies with green leaves, no faces/extra pots/text. Official normalized
+      widths361/633/360/642px all exceed authored complete-group one-third341.33px.
+      Skip after sole retry for size, with original source/locked diagnostic evidence
+      preserved; no invented flower count or new height gate, no pixel or QA waiver,
+      never promoted.
+qa_reports:
+  1:
+    job: x-decor-flower-box-v2
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 64 (R1 51) (advisory in an exploration)
+      value: 64.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 36 (at most 22), p98 91 (at least 90), spread 54
+        (at least 60)'
+      value: 54.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 70 (band 55-90)'
+      value: 69.9
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.06 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.055
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 9.4 (at least 3.5)'
+      value: 9.38
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.6 (R1 5.3)
+      value: 2.6
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.5
+      value: 2.4641
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 5.8, p95 19.4, off-palette 19.3% (top: #AAAA44 (1.8%), #666622
+        (1.4%)) (advisory in an exploration)'
+      value: 5.7887
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 52 against the world reference (outliers: C_p95, L_p2,
+        detail, edge)'
+      value: 51.7
+    info:
+      fit:
+        scale: 0.6486
+        anchor:
+        - 472.8
+        - 835
+      registration:
+        dx: 39
+        dy: 53
+      metrics_raw:
+        L_p5: 41.0
+        L_p50: 70.2
+        L_p95: 88.9
+        C_p50: 44.7
+        C_p95: 73.2
+        C_p99: 77.3
+        detail: 3.25
+      metrics_locked:
+        L_p5: 41.5
+        L_p50: 70.0
+        L_p95: 88.2
+        C_p50: 44.7
+        C_p95: 64.4
+        C_p99: 65.5
+        detail: 2.6
+    fingerprint: e750b39498e4d0cc
+  2:
+    job: x-decor-flower-box-v2
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 64 (R1 51) (advisory in an exploration)
+      value: 63.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 33 (at most 22), p98 93 (at least 90), spread 60
+        (at least 60)'
+      value: 59.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 73 (band 55-90)'
+      value: 73.2
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.07 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.067
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.2 (at least 3.5)'
+      value: 5.23
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.8 (R1 5.3)
+      value: 2.77
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.0
+      value: 2.0046
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 5.8, p95 17.5, off-palette 19.1% (top: #999944 (1.5%), #776622
+        (1.4%)) (advisory in an exploration)'
+      value: 5.8341
+    - check: decor_anchor
+      status: warn
+      message: top y 314 above the height bar (500); width 633 px wider than the footprint
+        (360) (advisory in an exploration)
+      value: 888.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 57 against the world reference (outliers: C_p95, L_p2,
+        detail, edge)'
+      value: 56.8
+    info:
+      fit_skipped: needs x0.57, below x0.6 (a real art failure)
+      registration:
+        dx: 69
+        dy: 31
+      metrics_raw:
+        L_p5: 36.3
+        L_p50: 73.3
+        L_p95: 90.9
+        C_p50: 42.3
+        C_p95: 70.3
+        C_p99: 71.9
+        detail: 3.43
+      metrics_locked:
+        L_p5: 36.7
+        L_p50: 73.2
+        L_p95: 90.7
+        C_p50: 42.2
+        C_p95: 63.9
+        C_p99: 64.4
+        detail: 2.77
+    fingerprint: e750b39498e4d0cc
+  3:
+    job: x-decor-flower-box-v2
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 63 (R1 51) (advisory in an exploration)
+      value: 62.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 39 (at most 22), p98 92 (at least 90), spread 53
+        (at least 60)'
+      value: 52.8
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 73 (band 55-90)'
+      value: 73.1
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.07 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.075
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 8.5 (at least 3.5)'
+      value: 8.53
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.4 (R1 5.3)
+      value: 2.35
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.7
+      value: 1.6854
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 4.5, p95 18.7, off-palette 13.7% (top: #666622 (1.9%), #999944
+        (1.2%)) (advisory in an exploration)'
+      value: 4.5145
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 58 against the world reference (outliers: C_p95, L_p2,
+        detail, edge)'
+      value: 58.1
+    info:
+      fit:
+        scale: 0.6977
+        anchor:
+        - 465.3
+        - 875
+      registration:
+        dx: 47
+        dy: 13
+      metrics_raw:
+        L_p5: 42.7
+        L_p50: 73.3
+        L_p95: 90.3
+        C_p50: 41.6
+        C_p95: 67.7
+        C_p99: 71.7
+        detail: 2.94
+      metrics_locked:
+        L_p5: 43.2
+        L_p50: 73.1
+        L_p95: 89.8
+        C_p50: 41.5
+        C_p95: 62.8
+        C_p99: 63.9
+        detail: 2.35
+    fingerprint: e750b39498e4d0cc
+  4:
+    job: x-decor-flower-box-v2
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 64 (R1 51) (advisory in an exploration)
+      value: 63.5
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 39 (at most 22), p98 92 (at least 90), spread 53
+        (at least 60)'
+      value: 53.1
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 76 (band 55-90)'
+      value: 75.5
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.10 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.098
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.0 (at least 3.5)'
+      value: 3.97
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.4 (R1 5.3)
+      value: 2.39
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.6
+      value: 1.5802
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 4.3, p95 17.6, off-palette 11.6% (top: #999944 (1.3%), #776622
+        (1.0%)) (advisory in an exploration)'
+      value: 4.2982
+    - check: decor_anchor
+      status: warn
+      message: top y 324 above the height bar (500); width 642 px wider than the footprint
+        (360) (advisory in an exploration)
+      value: 888.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 64 against the world reference (outliers: C_p95, L_p2,
+        detail, edge)'
+      value: 64.1
+    info:
+      fit_skipped: needs x0.56, below x0.6 (a real art failure)
+      registration:
+        dx: 107
+        dy: 24
+      metrics_raw:
+        L_p5: 44.5
+        L_p50: 75.6
+        L_p95: 90.2
+        C_p50: 40.2
+        C_p95: 69.1
+        C_p99: 72.1
+        detail: 3.06
+      metrics_locked:
+        L_p5: 44.7
+        L_p50: 75.5
+        L_p95: 90.0
+        C_p50: 40.1
+        C_p95: 63.5
+        C_p99: 64.3
+        detail: 2.39
+    fingerprint: e750b39498e4d0cc
+manual_review:
+  observed_note: Exactly four originals across initial pair plus sole unchanged-prompt
+    retry. Original contents keep one low rounded honey-wood flower box, small sunflowers
+    and cream daisies with green leaves, no faces/extra pots/text. Official normalized
+    widths361/633/360/642px all exceed authored complete-group one-third341.33px.
+    Skip after sole retry for size, with original source/locked diagnostic evidence
+    preserved; no invented flower count or new height gate, no pixel or QA waiver,
+    never promoted.
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+sources:
+- batch: batch-24-home-materials-v2
+  job: x-decor-flower-box-v2
+  take: 1
+  round: 1
+  logical_run: 20261106-b24-v2-garden-pair-c
+  source_file: /workspace/generated_images/exec-154738c7-a44d-4493-a5ce-14fa556ecd9a.png
+  returned_at: '2026-11-06T06:10:28.803Z'
+  prompt_sha256: ff82906dcc38bacccbb82764d0e2178f6eca7f73a5107432fc8e19825e30eae8
+  fingerprint: e750b39498e4d0cc
+  saved_at: '2026-11-06T06:10:29.175043+00:00'
+  original_generated_png_sha256: c5541b8e9af25f9400c572f8b78a7366024e2f6bbd5aec7cd24240408a21f69d
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 2280462f706b319ba436c60792640709976f9495f1e616522948430d83418d85
+  inbox_png_sha256: e32f2cc8aeb6d4e6b82c841011a3da69a1ba6c6c5f66c6fa9f9c8b987080a028
+  qa_sha256: ba483693bf90be92d02d1738de610676f9fd357fcf82f30bef71e1fb4d653c2d
+- batch: batch-24-home-materials-v2
+  job: x-decor-flower-box-v2
+  take: 2
+  round: 1
+  logical_run: 20261106-b24-v2-garden-pair-c
+  source_file: /workspace/generated_images/exec-ce4196be-45c4-40f1-8ad0-e556c5d5690f.png
+  returned_at: '2026-11-06T06:12:59.695Z'
+  prompt_sha256: ff82906dcc38bacccbb82764d0e2178f6eca7f73a5107432fc8e19825e30eae8
+  fingerprint: e750b39498e4d0cc
+  saved_at: '2026-11-06T06:13:00.035963+00:00'
+  original_generated_png_sha256: 21bc2fcfecbe4a7e9dd27a1406dedf34da548afcbd3396358f82f644acf8f033
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 123841d21422fc1278e521e5c0892beadc29cb78280d01ff192e6ed59a3f2471
+  inbox_png_sha256: c5836781e1aca3125113174efdfd6db52fc4a15ac888faf0a11b540bbc1f81d1
+  qa_sha256: c57c1456ec5148267e88823c95c1f12a71a0dfe0c8dfe073b2c0654b3c4f4e80
+- batch: batch-24-home-materials-v2
+  job: x-decor-flower-box-v2
+  take: 3
+  round: 2
+  logical_run: 20261106-b24-v2-sole-retry-flower-bench
+  source_file: /workspace/generated_images/exec-9090f764-d3f5-4772-8682-b97f0223a588.png
+  returned_at: '2026-11-06T06:19:11.709Z'
+  prompt_sha256: ff82906dcc38bacccbb82764d0e2178f6eca7f73a5107432fc8e19825e30eae8
+  fingerprint: e750b39498e4d0cc
+  saved_at: '2026-11-06T06:19:15.883746+00:00'
+  original_generated_png_sha256: 396a3b88a516904d837ca1ea019348ba36d4b626625154a974fa6458b29b61ed
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: d217b9dd203b99af930f38002c20af58166711ee0fd8cee0890991da61772d1a
+  inbox_png_sha256: a0b7fd759b5e016822a7e9e8cce564dfd6348e9f188be59c5e67d804f2ed33be
+  qa_sha256: c5de6a7afdcf058abb0af1c7c4741b6f2e72c9cb91c01778789506021382a9ef
+- batch: batch-24-home-materials-v2
+  job: x-decor-flower-box-v2
+  take: 4
+  round: 2
+  logical_run: 20261106-b24-v2-sole-retry-flower-bench
+  source_file: /workspace/generated_images/exec-b90a087e-aab6-4fbe-a386-a244e61f1e0c.png
+  returned_at: '2026-11-06T06:18:25.364Z'
+  prompt_sha256: ff82906dcc38bacccbb82764d0e2178f6eca7f73a5107432fc8e19825e30eae8
+  fingerprint: e750b39498e4d0cc
+  saved_at: '2026-11-06T06:18:25.775077+00:00'
+  original_generated_png_sha256: 9291de9a5f4127f81f10be73d69b54b0cfd72be259e074b8343e0d1c7124692b
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 47ceedf8fc5f0a9f07e73f24746b7dbd0b5be73817b1946771a907bb1fc1c865
+  inbox_png_sha256: fcbea82b0d6c7dd67ed21f0fe5f28e951cb8b9377fa39a9177c3fcf8c53989da
+  qa_sha256: d70e0fbe0312a71adf752565e85b4e7fb11dd39cd2f919d097821c72f9f7a641
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+variation_proof_sha256: 51327809ac2f2a984a9e3f40493821e9d1ab9cb0cc49da5fcdb87795b791dddc

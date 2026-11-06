@@ -1,0 +1,32 @@
+id: asset-x-decor-cushions-v2
+type: asset
+title_tr: x-decor-cushions-v2
+title_en: x-decor-cushions-v2 (prop)
+status: cut
+horizon: now
+summary: >-
+  A stack of three plump square cushions with softly pinched corners, in rose, cream and sage,
+  with simple plain stripes on one of them (no pattern, no motif), a tiny tassel on one corner.
+  It stands on the guide's ground ellipse, centered on the cross, never wider than the ellipse
+  and never taller than the height bar; it is small, a third of the image width at most.
+art:
+  images: []
+  jobs:
+  - batch-24-home-materials-v2:x-decor-cushions-v2
+sources:
+- doc: tools/imagegen/manifest/batch-24-home-materials-v2.yaml
+kind: prop
+batch: batch-24-home-materials-v2
+size: 1024x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Skipped after the sole allowed retry; registration remains cut and art.images is empty.
+- >-
+  Exactly four original takes across initial pair plus sole unchanged-prompt retry. Source
+  and official locked inspected: exactly three cloth cushions, striped cream lower cushion,
+  plain sage middle and rose top, one corner tassel; no character, fur or extra prop. All
+  four normalized visible widths361/361/361/360px exceed the authored whole-group one-third
+  cap341.33px, despite canonical guide tolerance. Skip after sole retry for scale. Advisory
+  style warnings unchanged; no pixel or threshold workaround, no further generation; original
+  PNG/RGBA preserved; never promoted.

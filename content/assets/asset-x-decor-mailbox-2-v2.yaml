@@ -1,0 +1,34 @@
+id: asset-x-decor-mailbox-2-v2
+type: asset
+title_tr: x-decor-mailbox-2-v2
+title_en: x-decor-mailbox-2-v2 (prop)
+status: planned
+horizon: now
+summary: >-
+  A small rounded post-box on a short wooden post, painted soft sage with a cream roof, a
+  little rose flag raised, and two blank envelopes poking out of the slot. Toy-like, chunky.
+  It stands on the guide's ground ellipse, centered on the cross, never wider than the ellipse
+  and never taller than the height bar; it is small, a third of the image width at most.
+art:
+  images: []
+  jobs:
+  - batch-24-home-materials-v2:x-decor-mailbox-2-v2
+sources:
+- doc: tools/imagegen/manifest/batch-24-home-materials-v2.yaml
+kind: prop
+batch: batch-24-home-materials-v2
+size: 1024x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Selected take 3; auto-picked by QA; founder review pending. Registration remains planned
+  and art.images is empty.
+- >-
+  auto-picked by QA; founder review pending. Exactly four originals across initial pair plus
+  sole unchanged-prompt retry. Source and official locked inspected: take3 has one rounded
+  soft-sage box on short wood post with cream roof, little ROSE flag RAISED and exactly TWO
+  BLANK envelopes, no text/stamps/animal/fur/extra prop. Take3 normalized width329px satisfies
+  authored one-third341.33 and canonical ground guide. Widths343/359/342 for takes1/2/4 exceed
+  the same literal cap; exclude those. Take3 is sole eligible candidate; official QA ranks
+  it, style/light warnings advisory. No pixels/thresholds changed; original hashes preserved;
+  never promoted.

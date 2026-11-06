@@ -1,0 +1,242 @@
+batch: batch-24-home-materials-v2
+manifest: tools/imagegen/manifest/batch-24-home-materials-v2.yaml
+manifest_sha256: b61416abeacb9caa3197174c50d198baea91b686b02ce420255d4693b93dc3cc
+contact_sheet: design/art/takes/batch-24-home-materials-v2/x-decor-lantern-v2/contact.jpg
+jobs:
+  x-decor-lantern-v2:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Both source and official locked
+      inspected: short honey-wood standing post and rounded base, one plump cream
+      PAPER lantern, small wooden cap and short tassel; UNLIT, no flame, emissive
+      glow, text, mascot, fur or extra props. Official widths248/223 satisfy authored
+      whole-group one-third341.33; ground registration checked with existing canonical
+      tolerance, not HANG or new height gate. Both eligible; official QA ranking selects
+      lowest lock load.'
+qa_reports:
+  1:
+    job: x-decor-lantern-v2
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 50 (R1 51)
+      value: 49.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 55 (at most 22), p98 96 (at least 90), spread 41
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 41.2
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 82 (band 55-90)'
+      value: 81.8
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.23 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.227
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.9 (at least 3.5)'
+      value: 2.9
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.3 (R1 5.3)
+      value: 1.29
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.859
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.4, p95 3.6, off-palette 0.0% (top: #995522 (0.0%), #AA5522
+        (0.0%))'
+      value: 1.3552
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 89 against the world reference (outliers: edge)'
+      value: 89.3
+    info:
+      fit:
+        scale: 0.6413
+        anchor:
+        - 508.2
+        - 855
+      registration:
+        dx: 4
+        dy: 33
+      metrics_raw:
+        L_p5: 57.6
+        L_p50: 81.6
+        L_p95: 95.0
+        C_p50: 22.7
+        C_p95: 50.1
+        C_p99: 51.7
+        detail: 1.99
+      metrics_locked:
+        L_p5: 58.1
+        L_p50: 81.8
+        L_p95: 94.8
+        C_p50: 22.2
+        C_p95: 49.8
+        C_p99: 51.2
+        detail: 1.29
+    fingerprint: a0176edbb1b6c230
+  2:
+    job: x-decor-lantern-v2
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 49 (R1 51)
+      value: 49.3
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 54 (at most 22), p98 94 (at least 90), spread 40
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 39.8
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 81 (band 55-90)'
+      value: 81.4
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.14 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.145
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 3.8 (at least 3.5)'
+      value: 3.83
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.4 (R1 5.3)
+      value: 1.35
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 0.9888
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.4, p95 5.4, off-palette 0.4% (top: #AA5522 (0.2%), #BB6633
+        (0.1%))'
+      value: 1.4084
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 90 against the world reference (outliers: edge)'
+      value: 90.2
+    info:
+      fit:
+        scale: 0.6248
+        anchor:
+        - 508.8
+        - 870
+      registration:
+        dx: 3
+        dy: 18
+      metrics_raw:
+        L_p5: 56.7
+        L_p50: 81.1
+        L_p95: 93.1
+        C_p50: 21.9
+        C_p95: 49.8
+        C_p99: 51.8
+        detail: 2.05
+      metrics_locked:
+        L_p5: 57.2
+        L_p50: 81.4
+        L_p95: 92.9
+        C_p50: 21.0
+        C_p95: 49.3
+        C_p99: 51.0
+        detail: 1.35
+    fingerprint: a0176edbb1b6c230
+manual_review:
+  observed_note: 'Both source and official locked inspected: short honey-wood standing
+    post and rounded base, one plump cream PAPER lantern, small wooden cap and short
+    tassel; UNLIT, no flame, emissive glow, text, mascot, fur or extra props. Official
+    widths248/223 satisfy authored whole-group one-third341.33; ground registration
+    checked with existing canonical tolerance, not HANG or new height gate. Both eligible;
+    official QA ranking selects lowest lock load.'
+  excluded_takes: []
+sources:
+- batch: batch-24-home-materials-v2
+  job: x-decor-lantern-v2
+  take: 1
+  round: 1
+  logical_run: 20261106-b24-v2-stall-pair-b
+  source_file: /workspace/generated_images/exec-0fb58e47-dc34-4f1c-a6a2-2c5d43d8aac2.png
+  returned_at: '2026-11-06T06:10:11.065Z'
+  prompt_sha256: 358b5d00180eb63dfe73986c7a4cc57f028015ccaa9ec7002c52b5c2559191d3
+  fingerprint: a0176edbb1b6c230
+  saved_at: '2026-11-06T06:10:11.411688+00:00'
+  original_generated_png_sha256: e3a3e6d4bd7a1b839a5148b60bf22d13dcb48ec6638ba84da4e1163bd09d1d70
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 64b24aae9e1085c9c1402167d8b41717f04f2a24ae08b21eb472036afcf92369
+  inbox_png_sha256: 7cf73af5ed24286f8e3dc8e702d205751664e86ba2c01143ed196208fa383ae5
+  qa_sha256: b7a7d938ee9276c54584d170d541290d5acca551bfa65dcbfedeb1026904b9c4
+- batch: batch-24-home-materials-v2
+  job: x-decor-lantern-v2
+  take: 2
+  round: 1
+  logical_run: 20261106-b24-v2-stall-pair-b
+  source_file: /workspace/generated_images/exec-d6055fc1-9033-4e27-a494-9d0db19b256f.png
+  returned_at: '2026-11-06T06:08:50.604Z'
+  prompt_sha256: 358b5d00180eb63dfe73986c7a4cc57f028015ccaa9ec7002c52b5c2559191d3
+  fingerprint: a0176edbb1b6c230
+  saved_at: '2026-11-06T06:08:50.968785+00:00'
+  original_generated_png_sha256: d8c8daaac36f24a3836b9cc2a37ff5ec0dfca2cb12fe431bcc243b222bc91383
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 1119b91d0ec1b2984726346042c847ec4cebb6a1276b8ed5efb0207e7dd5351f
+  inbox_png_sha256: 1372458309f625009be8fc01dfdf76f336998378a908cd0f0e6a25b3fc8f2d83
+  qa_sha256: ddc90f2973102654d0c647c5eb85e7b663ebe6caec43ace47f6840a8656e3fd8
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+variation_proof_sha256: 51327809ac2f2a984a9e3f40493821e9d1ab9cb0cc49da5fcdb87795b791dddc

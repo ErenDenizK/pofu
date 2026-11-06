@@ -1,0 +1,32 @@
+id: asset-x-decor-tea-set-v2
+type: asset
+title_tr: x-decor-tea-set-v2
+title_en: x-decor-tea-set-v2 (prop)
+status: cut
+horizon: now
+summary: >-
+  A small round tray of soft brass-cream with three tulip-shaped tea glasses on saucers, filled
+  with amber tea, a small sugar bowl and two plain rounded clay cups of pale sage, for the
+  tea stall counter. Chunky, toy-like proportions, glass as a soft tinted shape. It stands
+  on the guide's ground ellipse, centered on the cross, never wider than the ellipse and never
+  taller than the height bar; it is small, a third of the…
+art:
+  images: []
+  jobs:
+  - batch-24-home-materials-v2:x-decor-tea-set-v2
+sources:
+- doc: tools/imagegen/manifest/batch-24-home-materials-v2.yaml
+kind: prop
+batch: batch-24-home-materials-v2
+size: 1024x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Skipped after the sole allowed retry; registration remains cut and art.images is empty.
+- >-
+  Exactly four original takes across initial pair plus sole unchanged-prompt retry. Source
+  and official locked inspected. All keep the requested tray, three tulip tea glasses on three
+  saucers, two cups and one sugar bowl, without characters or text. All four normalized visible
+  widths621/601/683/651px exceed the authored complete-group one-third cap341.33px. Skip after
+  one allowed retry for scale; style warnings advisory, no threshold or pixel workaround,
+  no further generation. Original PNG/RGBA hashes preserved; exploration never promoted.

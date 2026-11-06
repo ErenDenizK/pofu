@@ -1,0 +1,775 @@
+# Fresh second-cycle EXPLORATION: eleven independent home upgrade ground props.
+# Preserve all source inventories, states, fixed fields, original ref roles and
+# the original normalized one-third-width rule; append R1 as fifth style-only ref.
+# New view/style/LIGHT; non-character material scope follows generic fur style.
+# Physical tea vessels are allowed; no native UI glass, no characters or text.
+# Never promote. No pilot gate, no raw-pixel limit or threshold changes.
+batch: batch-24-home-materials-v2
+title: 'Fresh compact home upgrades: readable spring-opening arrangements'
+status: open
+refs:
+  tea-stall-1: design/art/stations/tea-stall-1/tea-stall-1.png
+defaults:
+  variants: 2
+jobs:
+- id: tea-stall-1
+  kind: station
+  name: tea-stall-1
+  external: batch-01-slice
+- id: island-main-s
+  kind: world
+  name: island-main-s
+  external: batch-01-slice
+- id: decor-bench
+  kind: prop
+  name: decor-bench
+  external: batch-08-decor-pilot
+- id: x-decor-tea-set-v2
+  kind: prop
+  name: x-decor-tea-set-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Decor
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. Tea stall cups and glasses: a small round tray with three tulip-shaped tea glasses
+    on saucers and two plain cups. Review: the glasses read as tea at 64 px, not as flowers. Fresh second-cycle
+    composition with all original named parts/states and normalized one-third-width ground-guide review;
+    R1 is finish-only, no character depiction. Exploration only, never promote.'
+  attach:
+  - ref: decor-guide
+    role: 'The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors, finish and scale exactly
+      (do not draw the bench unless asked).'
+  - ref: approved:tea-stall-1
+    role: 'The approved tea stall: match its style, camera, light, colors and scale (do not draw the stall).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: Style-only family finish and softened edges for these non-character materials. Do not draw Pofu,
+      fur, eyes, ears or a forehead curl; the original four reference roles remain authoritative for objects
+      and scale.
+  prompt:
+  - text: 'A small round tray of soft brass-cream with three tulip-shaped tea
+
+      glasses on saucers, filled with amber tea, a small sugar bowl and
+
+      two plain rounded clay cups of pale sage, for the tea stall
+
+      counter. Chunky, toy-like proportions, glass as a soft tinted
+
+      shape. It stands on the guide''s ground ellipse, centered on the
+
+      cross, never wider than the ellipse and never taller than the
+
+      height bar; it is small, a third of the image width at most.
+
+      '
+  - text: 'FRESH COMPOSITION: a compact host''s tray viewed in the same low game camera, its round rim
+      read from a modest front-right object turn. Arrange EXACTLY THREE complete tulip tea glasses in
+      a shallow rear arc, each visibly containing amber tea and each on its own saucer. Place the TWO
+      plain pale-sage rounded clay cups toward the front left and front right, with the ONE small sugar
+      bowl between them. All objects sit on the ONE brass-cream round tray; leave visible gaps so the
+      glasses read as tea vessels at thumbnail size rather than flowers. This is a new tray arrangement,
+      not an additional table or tea stall.'
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'REFERENCE CAMERA SCOPE: no island image is attached. VIEW''s family-camera comparison is supplied
+      by the ACTUAL decor guide, approved bench and approved tea-stall references; follow those for the
+      low game camera and do not draw an island.
+
+      MATERIAL SCOPE AFTER GENERIC STYLE: R1 supplies only the family''s painterly finish, softened edges
+      and coherent light; this picture contains NO character, animal, mascot, ears, eyes, forehead curl
+      or living furniture. The generic fur and eye instructions in STYLE do not apply to any of these
+      non-character materials. Use each named material below rather than velvety fur. LIGHT is authoritative
+      for direction, values and contact occlusion: keep real darks in recesses, no milky veil, lifted
+      blacks, baked cast ground shadow, floor or background. Keep the original palette and the source''s
+      complete object inventory; no painted text, numbers, logos, border, guide marks or extra props.
+      The complete visible group must satisfy the original one-third-width instruction AFTER official
+      normalization as well as the ground guide. This is not a raw-pixel or additional height limit, and
+      no local resize or post-QA workaround is permitted.
+
+      The tray is smooth matte brass-cream; the THREE tulip glasses are soft amber-tinted physical painted
+      vessels with amber tea, THREE saucers are smooth painted crockery, TWO cups and the ONE small sugar
+      bowl are rounded matte clay. These requested tea vessels are physical objects, not UI glass panels.
+      No realistic transparency, glare or microscopic ornament.'
+- id: x-decor-samovar-v2
+  kind: prop
+  name: x-decor-samovar-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Decor
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. A samovar for the tea stall, matte, toy-like. Review: the silhouette is unmistakable
+    and the metal stays matte. Fresh second-cycle composition with all original named parts/states and
+    normalized one-third-width ground-guide review; R1 is finish-only, no character depiction. Exploration
+    only, never promote.'
+  attach:
+  - ref: decor-guide
+    role: 'The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors, finish and scale exactly
+      (do not draw the bench unless asked).'
+  - ref: approved:tea-stall-1
+    role: 'The approved tea stall: match its style, camera, light, colors and scale (do not draw the stall).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: Style-only family finish and softened edges for these non-character materials. Do not draw Pofu,
+      fur, eyes, ears or a forehead curl; the original four reference roles remain authoritative for objects
+      and scale.
+  prompt:
+  - text: 'A rounded samovar for the tea stall: a plump urn of soft warm
+
+      brass-cream with a small domed lid, two chunky round handles, a
+
+      short tap and a small teapot of rose clay resting on top. Matte, a
+
+      soft form without reflections or hammering. It stands on the
+
+      guide''s ground ellipse, centered on the cross, never wider than
+
+      the ellipse and never taller than the height bar; it is small, a
+
+      third of the image width at most.
+
+      '
+  - text: 'FRESH COMPOSITION: turn the whole rounded samovar slightly so its SHORT TAP projects toward
+      the front left while BOTH chunky round handles remain separately visible. The soft brass-cream urn
+      has its small domed lid and supports the ONE small ROSE CLAY teapot on top; turn the teapot''s spout
+      gently toward the right for a clear alternating silhouette. Keep one cohesive compact vertical group,
+      with no tray, fire, steam, extra pot or engraved decoration. The urn remains matte and toy-like,
+      never reflective metal.'
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'REFERENCE CAMERA SCOPE: no island image is attached. VIEW''s family-camera comparison is supplied
+      by the ACTUAL decor guide, approved bench and approved tea-stall references; follow those for the
+      low game camera and do not draw an island.
+
+      MATERIAL SCOPE AFTER GENERIC STYLE: R1 supplies only the family''s painterly finish, softened edges
+      and coherent light; this picture contains NO character, animal, mascot, ears, eyes, forehead curl
+      or living furniture. The generic fur and eye instructions in STYLE do not apply to any of these
+      non-character materials. Use each named material below rather than velvety fur. LIGHT is authoritative
+      for direction, values and contact occlusion: keep real darks in recesses, no milky veil, lifted
+      blacks, baked cast ground shadow, floor or background. Keep the original palette and the source''s
+      complete object inventory; no painted text, numbers, logos, border, guide marks or extra props.
+      The complete visible group must satisfy the original one-third-width instruction AFTER official
+      normalization as well as the ground guide. This is not a raw-pixel or additional height limit, and
+      no local resize or post-QA workaround is permitted.
+
+      The urn, domed lid, TWO round handles and short tap are smooth matte brass-cream, not shiny metal.
+      The ONE top teapot is smooth ROSE CLAY, not fur or brass. Preserve the complete soft silhouettes
+      and readable openings without engraved or hammered texture.'
+- id: x-decor-cushions-v2
+  kind: prop
+  name: x-decor-cushions-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Decor
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. A stack of three cushions in the home palette. Review: plump, no pattern beyond
+    plain stripes. Fresh second-cycle composition with all original named parts/states and normalized
+    one-third-width ground-guide review; R1 is finish-only, no character depiction. Exploration only,
+    never promote.'
+  attach:
+  - ref: decor-guide
+    role: 'The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors, finish and scale exactly
+      (do not draw the bench unless asked).'
+  - ref: approved:tea-stall-1
+    role: 'The approved tea stall: match its style, camera, light, colors and scale (do not draw the stall).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: Style-only family finish and softened edges for these non-character materials. Do not draw Pofu,
+      fur, eyes, ears or a forehead curl; the original four reference roles remain authoritative for objects
+      and scale.
+  prompt:
+  - text: 'A stack of three plump square cushions with softly pinched
+
+      corners, in rose, cream and sage, with simple plain stripes on one
+
+      of them (no pattern, no motif), a tiny tassel on one corner. It
+
+      stands on the guide''s ground ellipse, centered on the cross, never
+
+      wider than the ellipse and never taller than the height bar; it is
+
+      small, a third of the image width at most.
+
+      '
+  - text: 'FRESH COMPOSITION: keep EXACTLY THREE plump square pinched-corner cushions in a compact stepped
+      stack with a gentle rotational offset. Put cream at the bottom, sage in the middle and rose at the
+      top; keep each cushion distinctly countable. The cream cushion alone carries the simple plain stripes,
+      and ONE tiny tassel belongs to one corner of the top cushion. Other cushions stay plain, without
+      motifs or extra tassels. Softly compressed contact between the cushions gives weight without a floor
+      or cast shadow.'
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'REFERENCE CAMERA SCOPE: no island image is attached. VIEW''s family-camera comparison is supplied
+      by the ACTUAL decor guide, approved bench and approved tea-stall references; follow those for the
+      low game camera and do not draw an island.
+
+      MATERIAL SCOPE AFTER GENERIC STYLE: R1 supplies only the family''s painterly finish, softened edges
+      and coherent light; this picture contains NO character, animal, mascot, ears, eyes, forehead curl
+      or living furniture. The generic fur and eye instructions in STYLE do not apply to any of these
+      non-character materials. Use each named material below rather than velvety fur. LIGHT is authoritative
+      for direction, values and contact occlusion: keep real darks in recesses, no milky veil, lifted
+      blacks, baked cast ground shadow, floor or background. Keep the original palette and the source''s
+      complete object inventory; no painted text, numbers, logos, border, guide marks or extra props.
+      The complete visible group must satisfy the original one-third-width instruction AFTER official
+      normalization as well as the ground guide. This is not a raw-pixel or additional height limit, and
+      no local resize or post-QA workaround is permitted.
+
+      All THREE cushion bodies, their pinched corners, the ONE cushion striped fabric and the ONE tiny
+      corner tassel are soft matte cloth, with rounded volume but no furry pile, hair strands, embroidery
+      or extra ornament.'
+- id: x-decor-lantern-v2
+  kind: prop
+  name: x-decor-lantern-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Decor
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. A standing garden lantern, unlit. Review: no flame shape (code adds the glow);
+    the cap and the paper read. Fresh second-cycle composition with all original named parts/states and
+    normalized one-third-width ground-guide review; R1 is finish-only, no character depiction. Exploration
+    only, never promote.'
+  attach:
+  - ref: decor-guide
+    role: 'The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors, finish and scale exactly
+      (do not draw the bench unless asked).'
+  - ref: approved:tea-stall-1
+    role: 'The approved tea stall: match its style, camera, light, colors and scale (do not draw the stall).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: Style-only family finish and softened edges for these non-character materials. Do not draw Pofu,
+      fur, eyes, ears or a forehead curl; the original four reference roles remain authoritative for objects
+      and scale.
+  prompt:
+  - text: 'A small standing garden lantern: a short honey-wood post with a
+
+      rounded base, topped by a plump paper lantern of cream with a
+
+      small wooden cap and a short tassel. Unlit: simple soft shapes,
+
+      not glowing. It stands on the guide''s ground ellipse, centered on
+
+      the cross, never wider than the ellipse and never taller than the
+
+      height bar; it is small, a third of the image width at most.
+
+      '
+  - text: 'FRESH COMPOSITION: a compact upright standing lantern, its short honey-wood post turned slightly
+      to expose the post''s side face and the rounded base as one clear grounding shape. Set the plump
+      cream PAPER lantern above it with the little wooden cap readable against the paper and the SHORT
+      TASSEL hanging beside the post instead of hiding behind it. Keep the whole piece calm, UNLIT and
+      unglowing: no flame, smoke, light spill or dangling overhead rig. It is the source''s standing GROUND
+      prop, not a hanging decor profile.'
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'REFERENCE CAMERA SCOPE: no island image is attached. VIEW''s family-camera comparison is supplied
+      by the ACTUAL decor guide, approved bench and approved tea-stall references; follow those for the
+      low game camera and do not draw an island.
+
+      MATERIAL SCOPE AFTER GENERIC STYLE: R1 supplies only the family''s painterly finish, softened edges
+      and coherent light; this picture contains NO character, animal, mascot, ears, eyes, forehead curl
+      or living furniture. The generic fur and eye instructions in STYLE do not apply to any of these
+      non-character materials. Use each named material below rather than velvety fur. LIGHT is authoritative
+      for direction, values and contact occlusion: keep real darks in recesses, no milky veil, lifted
+      blacks, baked cast ground shadow, floor or background. Keep the original palette and the source''s
+      complete object inventory; no painted text, numbers, logos, border, guide marks or extra props.
+      The complete visible group must satisfy the original one-third-width instruction AFTER official
+      normalization as well as the ground guide. This is not a raw-pixel or additional height limit, and
+      no local resize or post-QA workaround is permitted.
+
+      The short post, rounded base and small cap are smooth matte HONEY WOOD. The plump cream lantern
+      body is PAPER and its short tassel is matte thread, not animal hair. All parts are unlit and non-emissive;
+      paper must not become glass or fur.'
+- id: x-decor-flower-box-v2
+  kind: prop
+  name: x-decor-flower-box-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Decor
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. A flower box of sunflowers and daisies. Review: the box and the flowers are separate
+    big shapes. Fresh second-cycle composition with all original named parts/states and normalized one-third-width
+    ground-guide review; R1 is finish-only, no character depiction. Exploration only, never promote.'
+  attach:
+  - ref: decor-guide
+    role: 'The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors, finish and scale exactly
+      (do not draw the bench unless asked).'
+  - ref: approved:tea-stall-1
+    role: 'The approved tea stall: match its style, camera, light, colors and scale (do not draw the stall).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: Style-only family finish and softened edges for these non-character materials. Do not draw Pofu,
+      fur, eyes, ears or a forehead curl; the original four reference roles remain authoritative for objects
+      and scale.
+  prompt:
+  - text: 'A low wooden flower box of soft honey wood with rounded ends,
+
+      planted with a cheerful cluster of small sunflowers, cream daisies
+
+      and soft green leaves in plump simple shapes. It stands on the
+
+      guide''s ground ellipse, centered on the cross, never wider than
+
+      the ellipse and never taller than the height bar; it is small, a
+
+      third of the image width at most.
+
+      '
+  - text: 'FRESH COMPOSITION: turn the single low rounded-end honey-wood flower box slightly so its front
+      left corner faces us. Compose the source''s small sunflowers, cream daisies and soft green leaves
+      as a gently asymmetric planted cluster, with the taller flower shapes toward the back right and
+      lower blooms toward the front left. Preserve both flower types and the visible wooden box as separate
+      chunky masses; no extra pots, signs, insects, faces or fixed invented flower count. Keep the entire
+      planted group compact inside its original decor envelope.'
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'REFERENCE CAMERA SCOPE: no island image is attached. VIEW''s family-camera comparison is supplied
+      by the ACTUAL decor guide, approved bench and approved tea-stall references; follow those for the
+      low game camera and do not draw an island.
+
+      MATERIAL SCOPE AFTER GENERIC STYLE: R1 supplies only the family''s painterly finish, softened edges
+      and coherent light; this picture contains NO character, animal, mascot, ears, eyes, forehead curl
+      or living furniture. The generic fur and eye instructions in STYLE do not apply to any of these
+      non-character materials. Use each named material below rather than velvety fur. LIGHT is authoritative
+      for direction, values and contact occlusion: keep real darks in recesses, no milky veil, lifted
+      blacks, baked cast ground shadow, floor or background. Keep the original palette and the source''s
+      complete object inventory; no painted text, numbers, logos, border, guide marks or extra props.
+      The complete visible group must satisfy the original one-third-width instruction AFTER official
+      normalization as well as the ground guide. This is not a raw-pixel or additional height limit, and
+      no local resize or post-QA workaround is permitted.
+
+      The one box and its rounded ends are smooth matte HONEY WOOD; the sunflower heads, cream daisies
+      and soft green leaves are chunky smooth PLANT shapes. No furry petals or leaves, wood grain, moss
+      coating, animal faces or extra ornaments.'
+- id: x-decor-bench-2-v2
+  kind: prop
+  name: x-decor-bench-2-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Decor
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. A bench upgrade, level 2. Review: clearly the same family as the approved bench,
+    clearly richer. Fresh second-cycle composition with all original named parts/states and normalized
+    one-third-width ground-guide review; R1 is finish-only, no character depiction. Exploration only,
+    never promote.'
+  attach:
+  - ref: decor-guide
+    role: 'The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors, finish and scale exactly
+      (do not draw the bench unless asked).'
+  - ref: approved:tea-stall-1
+    role: 'The approved tea stall: match its style, camera, light, colors and scale (do not draw the stall).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: Style-only family finish and softened edges for these non-character materials. Do not draw Pofu,
+      fur, eyes, ears or a forehead curl; the original four reference roles remain authoritative for objects
+      and scale.
+  prompt:
+  - text: 'An upgraded garden bench for two little animals, the same family
+
+      as the attached bench but richer: a chunky honey-wood bench with a
+
+      curved backrest of rounded slats, scrolled rounded armrests, a
+
+      plump rose-and-cream striped cushion and a small folded sage
+
+      blanket over one arm. It stands on the guide''s ground ellipse,
+
+      centered on the cross, never wider than the ellipse and never
+
+      taller than the height bar; it is small, a third of the image
+
+      width at most.
+
+      '
+  - text: 'FRESH COMPOSITION: turn the richer honey-wood bench slightly toward the left within the same
+      low game camera, keeping the curved rounded-slat back and BOTH scrolled rounded armrests easy to
+      read. The ONE plump rose-and-cream striped cushion rests on its seat. The ONE small sage blanket
+      is visibly FOLDED over the foreground right arm, with a compact layered folded edge rather than
+      a long drape. This is still the approved bench''s family, made richer through its named shapes;
+      no actual animals, table, flower pot or extra cushion. The bench itself is not a folding bench.'
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'REFERENCE CAMERA SCOPE: no island image is attached. VIEW''s family-camera comparison is supplied
+      by the ACTUAL decor guide, approved bench and approved tea-stall references; follow those for the
+      low game camera and do not draw an island.
+
+      MATERIAL SCOPE AFTER GENERIC STYLE: R1 supplies only the family''s painterly finish, softened edges
+      and coherent light; this picture contains NO character, animal, mascot, ears, eyes, forehead curl
+      or living furniture. The generic fur and eye instructions in STYLE do not apply to any of these
+      non-character materials. Use each named material below rather than velvety fur. LIGHT is authoritative
+      for direction, values and contact occlusion: keep real darks in recesses, no milky veil, lifted
+      blacks, baked cast ground shadow, floor or background. Keep the original palette and the source''s
+      complete object inventory; no painted text, numbers, logos, border, guide marks or extra props.
+      The complete visible group must satisfy the original one-third-width instruction AFTER official
+      normalization as well as the ground guide. This is not a raw-pixel or additional height limit, and
+      no local resize or post-QA workaround is permitted.
+
+      The bench frame, rounded slats, scrolled arms and supporting structure are smooth matte HONEY WOOD.
+      The single striped cushion and the small FOLDED SAGE blanket are matte CLOTH, never furry upholstery.
+      Keep every named part in its own material.'
+- id: x-decor-mailbox-2-v2
+  kind: prop
+  name: x-decor-mailbox-2-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Decor
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. A mailbox upgrade: a rounded post box with a flag and a few letters poking out.
+    Review: the flag is a rose accent, not a signal red. Fresh second-cycle composition with all original
+    named parts/states and normalized one-third-width ground-guide review; R1 is finish-only, no character
+    depiction. Exploration only, never promote.'
+  attach:
+  - ref: decor-guide
+    role: 'The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors, finish and scale exactly
+      (do not draw the bench unless asked).'
+  - ref: approved:tea-stall-1
+    role: 'The approved tea stall: match its style, camera, light, colors and scale (do not draw the stall).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: Style-only family finish and softened edges for these non-character materials. Do not draw Pofu,
+      fur, eyes, ears or a forehead curl; the original four reference roles remain authoritative for objects
+      and scale.
+  prompt:
+  - text: 'A small rounded post-box on a short wooden post, painted soft sage
+
+      with a cream roof, a little rose flag raised, and two blank
+
+      envelopes poking out of the slot. Toy-like, chunky. It stands on
+
+      the guide''s ground ellipse, centered on the cross, never wider
+
+      than the ellipse and never taller than the height bar; it is
+
+      small, a third of the image width at most.
+
+      '
+  - text: 'FRESH COMPOSITION: turn the rounded sage post-box slightly so its slot faces the front left
+      and its cream roof shows a modest side plane. TWO separate BLANK envelopes poke out at slightly
+      different heights, both clearly visible. Keep the little ROSE flag RAISED on the visible side, with
+      a clean gap from the roof silhouette. The box stands on its SHORT wooden post, one cohesive compact
+      prop. Envelope fold seams are fine; do not paint writing, stamps, numbers, symbols, flowers or extra
+      mail.'
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'REFERENCE CAMERA SCOPE: no island image is attached. VIEW''s family-camera comparison is supplied
+      by the ACTUAL decor guide, approved bench and approved tea-stall references; follow those for the
+      low game camera and do not draw an island.
+
+      MATERIAL SCOPE AFTER GENERIC STYLE: R1 supplies only the family''s painterly finish, softened edges
+      and coherent light; this picture contains NO character, animal, mascot, ears, eyes, forehead curl
+      or living furniture. The generic fur and eye instructions in STYLE do not apply to any of these
+      non-character materials. Use each named material below rather than velvety fur. LIGHT is authoritative
+      for direction, values and contact occlusion: keep real darks in recesses, no milky veil, lifted
+      blacks, baked cast ground shadow, floor or background. Keep the original palette and the source''s
+      complete object inventory; no painted text, numbers, logos, border, guide marks or extra props.
+      The complete visible group must satisfy the original one-third-width instruction AFTER official
+      normalization as well as the ground guide. This is not a raw-pixel or additional height limit, and
+      no local resize or post-QA workaround is permitted.
+
+      The rounded sage box, cream roof and little raised ROSE flag are smooth matte painted surfaces;
+      the SHORT post is matte WOOD. Both blank envelopes are folded matte PAPER, with no writing. No fur,
+      shiny metal or literal hamster parts.'
+- id: x-decor-rope-coil-v2
+  kind: prop
+  name: x-decor-rope-coil-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Decor
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. A coil of mooring rope with a small wooden cleat. Review: the rope is thick and
+    soft, never thin. Fresh second-cycle composition with all original named parts/states and normalized
+    one-third-width ground-guide review; R1 is finish-only, no character depiction. Exploration only,
+    never promote.'
+  attach:
+  - ref: decor-guide
+    role: 'The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors, finish and scale exactly
+      (do not draw the bench unless asked).'
+  - ref: approved:tea-stall-1
+    role: 'The approved tea stall: match its style, camera, light, colors and scale (do not draw the stall).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: Style-only family finish and softened edges for these non-character materials. Do not draw Pofu,
+      fur, eyes, ears or a forehead curl; the original four reference roles remain authoritative for objects
+      and scale.
+  prompt:
+  - text: 'A neat round coil of thick, soft cream rope lying in a flat spiral
+
+      beside a chunky honey-wood cleat, for the harbor and the boat. The
+
+      rope is thick and rounded, never a thin line, without fibre
+
+      detail. It stands on the guide''s ground ellipse, centered on the
+
+      cross, never wider than the ellipse and never taller than the
+
+      height bar; it is small, a third of the image width at most.
+
+      '
+  - text: 'FRESH COMPOSITION: arrange the thick soft cream rope in ONE neat ROUND FLAT-SPIRAL coil, then
+      set the ONE chunky honey-wood cleat beside it toward the back left, angled gently across the coil''s
+      direction. Keep the cleat distinct and readable rather than hidden underneath the rope. The cream
+      rope stays rounded, broad and soft, without thin strands or fibre detail. No extra rope bundle,
+      knot ornament, boat, dock planks or invented fixed loop count. Preserve the low compact harbor-prop
+      silhouette.'
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'REFERENCE CAMERA SCOPE: no island image is attached. VIEW''s family-camera comparison is supplied
+      by the ACTUAL decor guide, approved bench and approved tea-stall references; follow those for the
+      low game camera and do not draw an island.
+
+      MATERIAL SCOPE AFTER GENERIC STYLE: R1 supplies only the family''s painterly finish, softened edges
+      and coherent light; this picture contains NO character, animal, mascot, ears, eyes, forehead curl
+      or living furniture. The generic fur and eye instructions in STYLE do not apply to any of these
+      non-character materials. Use each named material below rather than velvety fur. LIGHT is authoritative
+      for direction, values and contact occlusion: keep real darks in recesses, no milky veil, lifted
+      blacks, baked cast ground shadow, floor or background. Keep the original palette and the source''s
+      complete object inventory; no painted text, numbers, logos, border, guide marks or extra props.
+      The complete visible group must satisfy the original one-third-width instruction AFTER official
+      normalization as well as the ground guide. This is not a raw-pixel or additional height limit, and
+      no local resize or post-QA workaround is permitted.
+
+      The one thick cream flat-spiral rope is smooth rounded matte cord without fine fibres. The one cleat
+      is smooth matte HONEY WOOD, never furry, alive or metallic. Contact occlusion only where parts touch;
+      no dock or ground plane.'
+- id: x-decor-crates-v2
+  kind: prop
+  name: x-decor-crates-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Decor
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. Stacked wooden crates with a sack. Review: reads as a cozy stack, not as a wall.
+    Fresh second-cycle composition with all original named parts/states and normalized one-third-width
+    ground-guide review; R1 is finish-only, no character depiction. Exploration only, never promote.'
+  attach:
+  - ref: decor-guide
+    role: 'The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors, finish and scale exactly
+      (do not draw the bench unless asked).'
+  - ref: approved:tea-stall-1
+    role: 'The approved tea stall: match its style, camera, light, colors and scale (do not draw the stall).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: Style-only family finish and softened edges for these non-character materials. Do not draw Pofu,
+      fur, eyes, ears or a forehead curl; the original four reference roles remain authoritative for objects
+      and scale.
+  prompt:
+  - text: 'A small stack of three chunky wooden crates of soft honey wood
+
+      with rounded corners and simple slats, a plump cream cloth sack
+
+      leaning against them and a pale sage cabbage-like leaf vegetable
+
+      on top. It stands on the guide''s ground ellipse, centered on the
+
+      cross, never wider than the ellipse and never taller than the
+
+      height bar; it is small, a third of the image width at most.
+
+      '
+  - text: 'FRESH COMPOSITION: stack EXACTLY THREE chunky rounded honey-wood simple-slat crates in a cozy
+      low triangular arrangement, TWO on the lower tier and ONE above, rather than a tall wall. The ONE
+      plump cream CLOTH sack leans against the left side of the stack; the ONE pale-sage cabbage-like
+      leaf vegetable sits ON TOP of the upper crate. Keep all three crate bodies countable and the sack
+      and vegetable distinct. Do not invent a folded-crate requirement, extra produce, lid props, lettering,
+      wheels or furniture.'
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'REFERENCE CAMERA SCOPE: no island image is attached. VIEW''s family-camera comparison is supplied
+      by the ACTUAL decor guide, approved bench and approved tea-stall references; follow those for the
+      low game camera and do not draw an island.
+
+      MATERIAL SCOPE AFTER GENERIC STYLE: R1 supplies only the family''s painterly finish, softened edges
+      and coherent light; this picture contains NO character, animal, mascot, ears, eyes, forehead curl
+      or living furniture. The generic fur and eye instructions in STYLE do not apply to any of these
+      non-character materials. Use each named material below rather than velvety fur. LIGHT is authoritative
+      for direction, values and contact occlusion: keep real darks in recesses, no milky veil, lifted
+      blacks, baked cast ground shadow, floor or background. Keep the original palette and the source''s
+      complete object inventory; no painted text, numbers, logos, border, guide marks or extra props.
+      The complete visible group must satisfy the original one-third-width instruction AFTER official
+      normalization as well as the ground guide. This is not a raw-pixel or additional height limit, and
+      no local resize or post-QA workaround is permitted.
+
+      All THREE simple-slat rounded crates are smooth matte HONEY WOOD. The ONE plump leaning sack is
+      cream CLOTH, and the ONE top cabbage-like vegetable has smooth pale-sage PLANT leaves. No fur, wood
+      grain, printed marks or extra inventory.'
+- id: x-decor-weather-vane-v2
+  kind: prop
+  name: x-decor-weather-vane-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Decor
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. A weather vane with a little sunflower on an arrow. Review: thin arms are thickened
+    to read on a phone. Fresh second-cycle composition with all original named parts/states and normalized
+    one-third-width ground-guide review; R1 is finish-only, no character depiction. Exploration only,
+    never promote.'
+  attach:
+  - ref: decor-guide
+    role: 'The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors, finish and scale exactly
+      (do not draw the bench unless asked).'
+  - ref: approved:tea-stall-1
+    role: 'The approved tea stall: match its style, camera, light, colors and scale (do not draw the stall).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: Style-only family finish and softened edges for these non-character materials. Do not draw Pofu,
+      fur, eyes, ears or a forehead curl; the original four reference roles remain authoritative for objects
+      and scale.
+  prompt:
+  - text: 'A weather vane on a short, thick wooden post: a plump rounded
+
+      arrow of warm brass-cream pointing left with a small sunflower in
+
+      place of a flag, two chunky crossbars with rounded balls at their
+
+      ends. All parts thick and rounded. It stands on the guide''s ground
+
+      ellipse, centered on the cross, never wider than the ellipse and
+
+      never taller than the height bar; it is small, a third of the
+
+      image width at most.
+
+      '
+  - text: 'FRESH COMPOSITION: keep the SHORT THICK wooden post upright as a ground prop, with the warm
+      brass-cream rounded arrow pointing unmistakably LEFT across the top. The ONE small sunflower replaces
+      a flag toward the arrow''s right-hand tail. Show EXACTLY TWO chunky crossbars beneath it with their
+      rounded ball ends distinct; a slight depth offset may separate the bars while preserving the arrow''s
+      clear left direction. Every thin-looking part remains chunky enough for a phone. No compass letters,
+      extra flag, bird, face, roof or hanging support.'
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'REFERENCE CAMERA SCOPE: no island image is attached. VIEW''s family-camera comparison is supplied
+      by the ACTUAL decor guide, approved bench and approved tea-stall references; follow those for the
+      low game camera and do not draw an island.
+
+      MATERIAL SCOPE AFTER GENERIC STYLE: R1 supplies only the family''s painterly finish, softened edges
+      and coherent light; this picture contains NO character, animal, mascot, ears, eyes, forehead curl
+      or living furniture. The generic fur and eye instructions in STYLE do not apply to any of these
+      non-character materials. Use each named material below rather than velvety fur. LIGHT is authoritative
+      for direction, values and contact occlusion: keep real darks in recesses, no milky veil, lifted
+      blacks, baked cast ground shadow, floor or background. Keep the original palette and the source''s
+      complete object inventory; no painted text, numbers, logos, border, guide marks or extra props.
+      The complete visible group must satisfy the original one-third-width instruction AFTER official
+      normalization as well as the ground guide. This is not a raw-pixel or additional height limit, and
+      no local resize or post-QA workaround is permitted.
+
+      The SHORT post is smooth matte WOOD; the LEFT-pointing arrow, TWO crossbars and their rounded ball
+      ends are soft matte BRASS-CREAM. The single sunflower is a simple smooth PLANT flower, not an animal
+      face or extra flag. No reflective highlights or fur on any part.'
+- id: x-decor-boat-2-v2
+  kind: prop
+  name: x-decor-boat-2-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Decor
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. A small rowing boat for the harbor, with an oar and a bow hook. Review: rounded,
+    toy-like, the water is not drawn. Fresh second-cycle composition with all original named parts/states
+    and normalized one-third-width ground-guide review; R1 is finish-only, no character depiction. Exploration
+    only, never promote.'
+  attach:
+  - ref: decor-guide
+    role: 'The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors, finish and scale exactly
+      (do not draw the bench unless asked).'
+  - ref: approved:tea-stall-1
+    role: 'The approved tea stall: match its style, camera, light, colors and scale (do not draw the stall).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: Style-only family finish and softened edges for these non-character materials. Do not draw Pofu,
+      fur, eyes, ears or a forehead curl; the original four reference roles remain authoritative for objects
+      and scale.
+  prompt:
+  - text: 'A small wooden rowing boat for two little animals: a plump rounded
+
+      hull of honey wood with a cream stripe, one pale sage cushion on
+
+      the seat, a single chunky oar resting across it and a small hook
+
+      at the bow. The waterline sits on the ground ellipse; draw no
+
+      water. It stands on the guide''s ground ellipse, centered on the
+
+      cross, never wider than the ellipse and never taller than the
+
+      height bar; it is small, a third of the image width at most.
+
+      '
+  - text: 'FRESH COMPOSITION: turn the plump rounded honey-wood rowboat so the bow points gently toward
+      the front right within the same low game camera. Keep its cream hull stripe, ONE pale-sage cushion
+      ON the seat, ONE chunky oar resting ACROSS the boat, and the ONE small hook AT THE BOW all separately
+      legible. Lay the oar diagonally from the back-left rim toward the front-right rim without hiding
+      the cushion or bow hook. Keep the complete hull visible. The guide ellipse marks ground placement,
+      never a crop line or a painted water surface; no water, wake, pier, sail, passengers or second oar.'
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'REFERENCE CAMERA SCOPE: no island image is attached. VIEW''s family-camera comparison is supplied
+      by the ACTUAL decor guide, approved bench and approved tea-stall references; follow those for the
+      low game camera and do not draw an island.
+
+      MATERIAL SCOPE AFTER GENERIC STYLE: R1 supplies only the family''s painterly finish, softened edges
+      and coherent light; this picture contains NO character, animal, mascot, ears, eyes, forehead curl
+      or living furniture. The generic fur and eye instructions in STYLE do not apply to any of these
+      non-character materials. Use each named material below rather than velvety fur. LIGHT is authoritative
+      for direction, values and contact occlusion: keep real darks in recesses, no milky veil, lifted
+      blacks, baked cast ground shadow, floor or background. Keep the original palette and the source''s
+      complete object inventory; no painted text, numbers, logos, border, guide marks or extra props.
+      The complete visible group must satisfy the original one-third-width instruction AFTER official
+      normalization as well as the ground guide. This is not a raw-pixel or additional height limit, and
+      no local resize or post-QA workaround is permitted.
+
+      The complete rounded hull, its cream stripe, seat and ONE chunky oar are smooth matte painted HONEY
+      WOOD. The ONE sage cushion is CLOTH. The small bow hook is a soft rounded matte fitting. None has
+      fur, faces or anatomy. No water is painted; preserve the entire hull.'
