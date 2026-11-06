@@ -18,11 +18,24 @@ struct RootView: View {
     @State private var presentedHop: HopCover?
     /// The "I resisted" payoff playing now (experience v1 section 3.4).
     @State private var payoffRun: ResistPayoffRun?
-    /// The door stamp playing now: the day's seals on the round door's plaque.
+    /// The door stamp playing now: today's new seals pressing onto the earth.
     @State private var doorRun: DoorStampRun?
     /// Whether this open has had its door stamp (at most once per open).
     @State private var visit = DoorStampOpen()
+    /// New seals waiting for their moment: held back from the island's tally
+    /// until the stamp starts.
+    @State private var sealHold = 0
     private let launchGate = LaunchGate.shared
+
+    /// Today's seals on the island: all of today's resists, the new ones
+    /// pressing in while the stamp plays, held back until it starts.
+    private var sealTally: ResistSealTally {
+        let resisted = model.reachesToday.resisted
+        if let doorRun {
+            return ResistSealTally(total: resisted, fresh: doorRun.stamp.resists, start: doorRun.start)
+        }
+        return ResistSealTally(total: max(resisted - sealHold, 0))
+    }
 
     var body: some View {
         Group {
@@ -40,6 +53,7 @@ struct RootView: View {
         }
         .environment(\.resistPayoff, payoffRun)
         .environment(\.screenHazeClearing, model.hazeClearing)
+        .environment(\.resistSeals, sealTally)
         // Any tap skips the door stamp; the tap still reaches what it hit.
         .simultaneousGesture(TapGesture().onEnded { skipDoorStamp() })
         #if DEBUG
@@ -51,12 +65,6 @@ struct RootView: View {
             // the Prova panel, under any sheet and Hop!'s cover.
             if let rehearsal = model.rehearsal {
                 RehearsalOverlay(model: model, rehearsal: rehearsal)
-            }
-        }
-        .overlay {
-            if let doorRun {
-                DoorStampOverlay(run: doorRun)
-                    .transition(.opacity)
             }
         }
         .fullScreenCover(item: $presentedHop) { _ in
@@ -97,20 +105,25 @@ struct RootView: View {
 
     /// Resists made at the shield sent no notification and left the app
     /// closed. The next time Pofu is on screen, once per open, the day's
-    /// seals press on the round door's plaque for 2 s (ui-v3 section 3b):
+    /// seals press on the earth beside the round door (ui-v3 section 3b):
     /// one soft haptic per seal, Pofu hops proud, the pots bloom and the
     /// screen haze parts. It never blocks input and any tap skips it.
     private func playPayoffIfOwed() {
         guard !model.needsOnboarding, model.hop == nil, model.rehearsal == nil, payoffRun == nil, doorRun == nil, !visit.isSpent else { return }
         let unseen = ResistPayoffStore().takeUnseen(resisted: model.reachesToday.resisted)
         guard let stamp = visit.claim(unseen: unseen) else { return }
+        sealHold = stamp.resists
         Task { @MainActor in
             // Let the launch curtain part and Home settle first.
             try? await Task.sleep(for: .milliseconds(700))
-            guard model.hop == nil, doorRun == nil else { return }
+            guard model.hop == nil, doorRun == nil else {
+                sealHold = 0
+                return
+            }
             let reduce = UIAccessibility.isReduceMotionEnabled
             let run = DoorStampRun(stamp: stamp)
-            withAnimation(.easeOut(duration: 0.2)) { doorRun = run }
+            doorRun = run
+            sealHold = 0
             let bloom = ResistPayoffRun(payoff: ResistPayoff(resists: stamp.resists))
             payoffRun = bloom
             model.hazeClearing.part()
@@ -122,7 +135,7 @@ struct RootView: View {
                 elapsed = max(elapsed, beat.time)
                 guard doorRun?.id == run.id else { return }
                 if beat.time == DoorStamp.duration {
-                    withAnimation(.easeOut(duration: 0.2)) { doorRun = nil }
+                    doorRun = nil
                 } else if beat.hop {
                     model.worldHome.hopProud()
                     SoundEngine.shared.play(.skipChime)
@@ -136,7 +149,7 @@ struct RootView: View {
 
     private func skipDoorStamp() {
         guard doorRun != nil else { return }
-        withAnimation(.easeOut(duration: 0.2)) { doorRun = nil }
+        doorRun = nil
         payoffRun = nil
     }
 

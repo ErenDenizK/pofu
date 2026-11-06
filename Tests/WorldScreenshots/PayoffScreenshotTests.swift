@@ -4,10 +4,9 @@ import SwiftUI
 import UIKit
 import XCTest
 
-/// The payoff at the door (ui-v3 section 3b): three seals pressed on the
-/// round door's plaque over Home, day and night, at 0.3 s, 1.0 s, 1.8 s
-/// (fading) and 2.0 s (the world settled). The screen haze before and after
-/// `part()` is `WeatherScreenshotTests`' `screen-haze` / `screen-haze-parted`.
+/// The payoff at the door (ui-v3 section 3b): seals pressed onto the earth
+/// beside Pofu's round door, projected from H1. Day at 0.3 s, 1.0 s and 2.0 s
+/// with three new seals; night at rest with five.
 final class PayoffScreenshotTests: XCTestCase {
     @MainActor
     func testRenderThePayoffAtTheDoor() async throws {
@@ -15,30 +14,31 @@ final class PayoffScreenshotTests: XCTestCase {
             UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first,
             "the test needs the host app's window scene"
         )
-        let times: [Double] = [0.3, 1.0, 1.8, 2.0]
-        for (label, hour, night) in [("day", 12.0, false), ("night", 22.0, true)] {
-            for time in times {
-                let image = try await render(hour: hour, night: night, time: time, in: scene)
-                try write(image, name: "payoff-door-\(label)-\(Int(time * 10))")
-            }
+        let start = Date()
+        for time in [0.3, 1.0, 2.0] {
+            // Two earlier seals are already there; three are new.
+            var tally = ResistSealTally(total: 5, fresh: 3, start: start)
+            tally.pinnedTime = time
+            let image = try await render(hour: 12, tally: tally, in: scene)
+            try write(image, name: "payoff-door-day-\(Int(time * 10))")
         }
+        let night = try await render(hour: 22, tally: ResistSealTally(total: 5), in: scene)
+        try write(night, name: "payoff-door-night-rest-5")
+        let many = try await render(hour: 12, tally: ResistSealTally(total: 11), in: scene)
+        try write(many, name: "payoff-door-day-rest-11")
     }
 
     @MainActor
-    private func render(hour: Double, night: Bool, time: Double, in scene: UIWindowScene) async throws -> UIImage {
+    private func render(hour: Double, tally: ResistSealTally, in scene: UIWindowScene) async throws -> UIImage {
         let model = IslandSceneModel(framing: .home)
         var look = WorldLook(hourOverride: hour)
         look.weatherOverride = .clear
-        let run = DoorStampRun(stamp: DoorStamp(resists: 3))
-        let view = ZStack {
-            IslandScene(world: IslandSamples.grownIsland(wellbeing: 78), model: model)
-                .environment(\.worldLook, look)
-                .environment(\.worldStillFrame, true)
-            DoorStampOverlay(run: run, frozenAt: time)
-                .environment(\.pofuNight, night)
-        }
+        let view = IslandScene(world: IslandSamples.grownIsland(wellbeing: 78), model: model)
+            .environment(\.worldLook, look)
+            .environment(\.worldStillFrame, true)
+            .environment(\.resistSeals, tally)
         let window = UIWindow(windowScene: scene)
-        window.overrideUserInterfaceStyle = night ? .dark : .light
+        window.overrideUserInterfaceStyle = hour > 20 ? .dark : .light
         window.rootViewController = UIHostingController(rootView: AnyView(view))
         window.windowLevel = .alert + 3
         window.makeKeyAndVisible()

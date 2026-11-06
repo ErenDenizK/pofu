@@ -12,31 +12,23 @@ struct DoorStampTests {
         #expect(stamp.sealProgress(of: 0, at: 0.2) == 0)
         #expect(stamp.sealProgress(of: 0, at: stamp.sealStart(of: 0) + 0.09) > 0)
         #expect(stamp.sealProgress(of: 2, at: stamp.stampedAt + 0.001) == 1)
-        #expect(stamp.stampedAt < DoorStamp.duration - DoorStamp.fadeOut, "every seal lands before the fade")
+        #expect(stamp.stampedAt < DoorStamp.duration, "every seal lands inside the moment")
     }
 
-    @Test(arguments: [1, 3, 5, 6, 40])
-    func itIsAlwaysAboutTwoSecondsAndFadesOut(resists: Int) {
+    @Test(arguments: [1, 3, 5, 8, 9, 40])
+    func everySealLandsInsideTwoSeconds(resists: Int) {
         let stamp = DoorStamp(resists: resists)
         #expect(DoorStamp.duration == 2.0)
-        #expect(stamp.sealCount <= DoorStamp.maxSeals)
-        #expect(stamp.stampedAt <= DoorStamp.duration - DoorStamp.fadeOut)
-        #expect(stamp.plaqueOpacity(at: DoorStamp.duration) == 0)
-        #expect(stamp.plaqueOpacity(at: 1.0) == 1)
+        #expect(stamp.sealCount == min(resists, 8))
+        #expect(DoorStamp.maxSeals == 8)
+        #expect(stamp.stampedAt <= DoorStamp.duration)
         #expect(stamp.hapticTimes(reduceMotion: false).count == stamp.sealCount)
     }
 
-    @Test func moreThanFiveShowPlusN() {
-        #expect(DoorStamp(resists: 5).overflow == 0)
-        #expect(DoorStamp(resists: 8).overflow == 3)
-        #expect(DoorStamp(resists: 8).sealCount == 5)
-    }
-
-    @Test func reduceMotionIsAStaticFadeWithOneHaptic() {
+    @Test func reduceMotionIsAFadeWithOneHaptic() {
         let stamp = DoorStamp(resists: 3)
-        #expect(stamp.reducedOpacity(at: 0.3) == 1, "already stamped, fully there")
-        #expect(stamp.reducedOpacity(at: 0) == 0)
-        #expect(stamp.reducedOpacity(at: DoorStamp.duration) == 0)
+        #expect(stamp.fadeProgress(at: 0) == 0)
+        #expect(stamp.fadeProgress(at: DoorStamp.leadIn + 0.2) == 1, "pressed, fully there")
         #expect(stamp.hapticTimes(reduceMotion: true).count == 1)
     }
 
