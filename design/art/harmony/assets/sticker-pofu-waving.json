@@ -1,0 +1,55 @@
+{
+ "after": {
+  "C_mean": 21.316,
+  "C_p50": 14.525,
+  "C_p95": 49.085,
+  "L_mean": 84.254,
+  "L_p2": 18.024,
+  "L_p98": 96.633,
+  "detail": 7.847,
+  "edge": 0.182,
+  "tint_a": 3.923,
+  "tint_b": 9.122,
+  "warmth_b": 18.321
+ },
+ "before": {
+  "C_mean": 18.945,
+  "C_p50": 11.827,
+  "C_p95": 48.092,
+  "L_mean": 84.255,
+  "L_p2": 18.024,
+  "L_p98": 96.641,
+  "detail": 7.854,
+  "edge": 0.182,
+  "tint_a": 4.214,
+  "tint_b": 5.648,
+  "warmth_b": 15.546
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 4.67,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "char",
+ "matched_to": "char",
+ "outliers_after": [
+  "detail"
+ ],
+ "outliers_before": [
+  "detail",
+  "tint_b"
+ ],
+ "ppu": 29.0,
+ "reference": false,
+ "score_after": 91.0,
+ "score_before": 86.4,
+ "shipped": false,
+ "source": "design/art/masters/sticker-pofu-waving/sticker-pofu-waving.webp",
+ "source_sha": "93d98eace9fb3a59"
+}
