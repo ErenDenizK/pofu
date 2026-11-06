@@ -516,3 +516,8 @@ His views (translated), not orders; the decisions are ours. Handled in
 ## 2026-11-06 (afternoon): shield, breath and gate are too close
 
 1. The shield, the breath and the gate feel very close; with a clear head: should they merge, how many screens, how, when and why. Earlier "breath" meant the shield. Criticise the gate harshly too; add the whole consolidation to the to-dos. A note, not a prompt. Handled: [the Door](../design/the-door.md): two places (Apple's shield, our Door); the landing, skipped, a minute with Pofu, the hand-off and the breathing room become states of one scene; a harsh critique of the built gate (#265); the tracker gains the item; the in-flight wave 1 builds the breath as reusable pieces for the Door.
+
+## 2026-11-06 (afternoon, later): why the shield is one template; no more PDFs
+
+1. Why does Apple allow only one template; is that the shield or the other screen; isn't it our screen? Handled in chat: the shield is drawn by iOS in its own process (no app may draw over another app; Screen Time's ShieldConfiguration takes only a colour, an icon, two labels and two button titles, and cannot open our app); the gate/Door is ours entirely; the Shortcuts automation path (the free `Pofu` target) can show a fully custom screen but needs per-app setup, shows a system banner and a flash of the app, and is easy to skip, so the Screen Time path stays the product.
+2. No PDF needed for now: queue all the work and do it; Codex has its instructions and works in the background. Handled: results reported briefly in chat; work continues from the tracker.

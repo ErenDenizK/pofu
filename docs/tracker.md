@@ -303,3 +303,6 @@ Each has a recommendation. Silence means yes, except item 1, which needs the fou
 
 - **The gate flow consolidated** ([the Door](design/the-door.md)): six in-app screens become one scene with states; the shield stays Apple's. Next: build `DoorScene` when batch-58 lands; the wave-1 breath pieces become its Breath state.
 - **Weather and the screen haze built** (#275): seeded weather bag, rain, mist, golden haze, rainbow after rain, the screen haze. Open: wire `ScreenHazeClearing.part()` to the resisted-reach handler (with the Door build); tune golden haze and rain visibility on device.
+- **UI v3 wave 2 merged** (#293: station sheet never clips, pot pips; Today day card; Settings header and Nefes section). Follow-ups when batch-61 art lands: Settings night rows warm (not purple-indigo), drop the duplicate "Ayarlar" title, a warm sticker for Today's empty day, motion on Today and the station sheet (ui-v3 principles 6 and 8), the build flow without the spinner sheet (not started).
+- **Flow game built** (#297: engine, 8 Çağlayan boards, 23 tests). Next: Çağlayan's island on the wonder-island model (stages 0-4, batch-43 art), FlowTextures hooks for `flow-wheel` and `flow-tile-wheel`, the painted pieces (batch-64, #301).
+- **Home growth not readable** (growth sheet, #295): camera too close, most IL steps invisible. Fix in flight (`feat/growth-readable`).
