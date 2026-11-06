@@ -1,6 +1,6 @@
 # Experience v1: navigation, light, menus, frame rate, visitors, fullness
 
-_Status: proposal (2026-11-05). Owner: the lead. Inputs: the founder's night
+_Status: accepted; built in part (2026-11-05). Owner: the lead. Inputs: the founder's night
 list and slice test (founder input, 2026-11-05), the Apple Design Awards
 study (`docs/research/apple-design-awards.md`), ADR-0015, ADR-0017, ADR-0018,
 `home-layout.md`, `ui-system-v2.md` §2–3, `design-language.md` §8 and §11,

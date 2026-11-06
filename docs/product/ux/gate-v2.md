@@ -19,6 +19,17 @@ Check: `node design/prototypes/gate-v2/tools/check.js`._
 
 ![The day-1 flow in the prototype](../../../design/prototypes/gate-v2/screenshots/overview.png)
 
+## v2.1: the painted gate (2026-11-06)
+
+The landing is now a painted scene (#265): hour postcards, Pofu at the door,
+plaque buttons and warm shield palettes. The chosen direction is the round
+door (`batch-48` take 1; the layered production pass is `batch-58`). The
+shield icons are Pofu's six moods at his door (`batch-48`
+`x-shield-icons` take 1). The postcards without characters (`batch-50`)
+are the fallback and the weather backdrops. Sections below are the
+2026-11-01 spec; where they disagree about the landing or the shield
+icons, this section wins.
+
 ## 0. The answer in one page
 
 The product is the half second at the door of Instagram. With Screen Time,

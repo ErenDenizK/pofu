@@ -1,6 +1,6 @@
 # Game plan v1
 
-**Status:** proposal by the lead, 2026-11-05. This file is the single
+**Status:** accepted; built in part (lead, 2026-11-05). This file is the single
 source of truth for what the game is and when things happen. Where an older
 doc disagrees (game-design, archipelago-system, island-curation,
 story-delivery, minigames, design-loop 1 and 2), this file wins; those
@@ -81,37 +81,44 @@ without.
 
 ## 4. Book One: the islands (rising curve)
 
-> **Superseded in part (founder, 2026-11-05):** Gezgin comes early as the
-> travel companion and grows into her godlike form by the end; islands split
-> into main-story and filler (Çanlar is a filler); arrival days are not
-> fixed. The rules are in
-> [story-references](../research/story-references.md#synthesis-the-story-rules-these-give-pofu);
-> this section is rewritten after the founder's dictation on the flow.
+The canonical order, stages, residents and layouts are in
+[book-one-islands](../design/book-one-islands.md); this section is its
+summary. The rules come from the founder (2026-11-05): Gezgin (the whale
+Nazlı) comes early as the travel companion and carries the player, growing
+toward her godlike form; islands split into main-story and filler (Çanlar is
+a filler); arrival days are not fixed, the gates are order, the previous
+bloom and quiet days, so "around day N" is only the typical day. The story
+rules are in
+[story-references](../research/story-references.md#synthesis-the-story-rules-these-give-pofu).
 
 Each wait is a little longer, and each island a little bigger than the one
-before (peak score 3 to 6; Gezgin, the founder's 10, is the finale, not
+before (peak score 3 to 6; the founder's 10 is Gezgin's grown form, never
 day 8).
 
-| # | Day | Island | Type | The one idea | Turn | Peak |
+| # | Around day | Island | Type | The one idea | Turn | Peak |
 |---|---|---|---|---|---|---|
 | 0 | 1-3 | Ayçiçeği + İskele | home | the garden puzzle; the harbor wakes | | |
-| 1 | 6 | Koke | story | a moss creature asleep; three visits wake it | | 3 |
-| 2 | 10 | Çağlayan | game: **flow** debut | a waterfall that stopped; reconnect its streams (only this; the windows-into-hours idea is cut) | Mochi is afraid of the drop | 4 |
-| 3 | 16 | Emanet | story | the lost-and-found; return things to residents | **Mochi lets go** of something kept | 4 |
-| 4 | 23 | Çanlar | game: **recall** debut | the four-note call of the bells | **Pofu learns to wait** (end of his cocky start) | 5 |
-| 5 | 30 | Revontuli | game: flow + light | night only; guide the aurora's lantern | | 5 |
-| 6 | 37 | Arı | upgrade | the hive comes to home: bees over Ayçiçeği, flowers change | | 5 |
-| 7 | 45 | Gezgin | finale | the whale is alive and carries Pofu and Mochi | **both**: the duo's promise | 6 |
+| 1 | 6 | Koke | main, story | a moss creature asleep; three visits wake it | | 3 |
+| 2 | 10 | Çağlayan | main, game: **flow** debut | a waterfall that stopped; reconnect its streams (only this; the windows-into-hours idea is cut) | Mochi is afraid of the drop | 4 |
+| 3 | 16 | Emanet | main, story | the lost-and-found; return things to residents | **Mochi lets go** of something kept | 4 |
+| f | 23 | Çanlar | **filler**, game: **recall** debut | the four-note call of the bells; one or two visits | **Pofu learns to wait** (a feeling, never lore) | 3 |
+| 4 | 30 | Revontuli | main, game: flow + light | a ruin under the aurora, night only; carry the sauna's warm light to the lantern | | 5 |
+| 5 | 37 | Arı | main, upgrade (place + bees) | the hive comes to home: bees over Ayçiçeği, flowers change | | 5 |
+| 6 | 41 | Mehtap | main, game: flow (moon line) | the dark stars; the last main island | the darkest night before the release | 6 |
+| - | 45 | Gezgin finale | finale, none (the four notes are heard) | Nazlı's grown form; the finale is the night of Mehtap's stage 4 | **both**: the duo's promise | 6 |
 
-Three islands play, three tell, one changes home, one is the finale. The
-book ends around day 45, as the founder asked; few reach it, and nothing
-on it is required to keep the shield working.
+Gezgin is not only a destination at the end: she carries the player from
+early on, one detail grows on her back with each main island, and her grown
+form arrives on Mehtap's finale night. Four islands play (Çağlayan, Çanlar,
+Revontuli, Mehtap), Koke and Emanet tell, Arı changes home, and the book
+ends around day 45, as the founder asked; few reach it, and nothing on it
+is required to keep the shield working.
 
 ## 5. The three games
 
 | Engine | Verb | Debut | Reused | Code |
 |---|---|---|---|---|
-| Garden | place | home, day 1 | home every day | built (`PofuGames`), only reachable from Rehearsal today |
+| Garden | place | home, day 1 | home every day | built (`PofuGames`), in the home flow (the station sheet's Play opens it) |
 | Flow | connect | Çağlayan, day 10 | Revontuli (light), Mehtap (moon line) | new |
 | Recall | listen and repeat | Çanlar, day 23 | Book Two islands | new |
 
@@ -123,8 +130,9 @@ on a wonder island it pays that island's progress instead.
 ## 6. After day 45 (Book Two and the long tail)
 
 - **Seasons.** Every six weeks one new wonder island (Fanus, Çömlek, then
-  Mehtap tied to the real moon as the year's finale; Kitap opens year two),
-  delivered as app updates. Each reuses an engine with one twist.
+  Kitap, which opens year two), delivered as app updates. Mehtap, tied to
+  the real moon, is not here: it is Book One's last main island and its
+  stage 4 is the finale night (section 4). Each reuses an engine with one twist.
 - **Home keeps living.** Seasonal events on Ayçiçeği (storks in spring, the
   first snow), visitors, the decor collection, the last levels of the
   harbor (about 2,788 seeds in all means the typical user is still
@@ -158,7 +166,7 @@ on purpose, and Codex stops drawing chrome.
 
 | Surface | View today | Needs | Painted assets |
 |---|---|---|---|
-| Home | built | wire the game round into the real flow (today only in Rehearsal) | jar, lantern, pots: 3 of 9 integrated; integrate the 6 approved |
+| Home | built | none for the garden (the station sheet's Play opens it) | jar, lantern, pots: 3 of 9 integrated; integrate the 6 approved |
 | Harbor | map only | a walkable scene like home | plate, Simit, goat, ladders: masters exist |
 | Map | none | islands, rumours, arrival | map plate (exists), rumour card |
 | Wonder island | none | arrival, stages, the game door | per island, in its own batch |
@@ -177,9 +185,10 @@ in the art queue is rewritten to this list.
 
 1. **Three engines: place, connect, recall.** Alternative: flow only, with
    twists. Recommend three; one engine for a year would feel thin.
-2. **Gezgin as the finale (day 45).** Alternative: keep it at day 8 as the
-   hook. Recommend the finale; a 10 at day 8 makes everything after it
-   smaller, which the founder named.
+2. **Gezgin early as the carrier, grown form at the finale (around day
+   45, Mehtap's night).** Decided by the founder (2026-11-05). Alternative:
+   her grown form at day 8 as the hook; a 10 at day 8 makes everything
+   after it smaller, which the founder named.
 3. **Two voices (Pofu and Mochi).** story-delivery recommended Pofu alone;
    the founder asked for a duo twice. Recommend the duo.
 4. **Retire the station islands.** Recommend yes (section 2).
@@ -191,7 +200,7 @@ in the art queue is rewritten to this list.
 1. `PofuCore`: harbor unlock to tended day 3 (tea stall L1); retire
    Yıldız, Kaplıca, Kitap; a wonder-island model (arrival day, stages,
    engine, beats, gift); tests re-banded (İskele day 3, islands by day).
-2. Game round in the production home flow.
+2. Game round in the production home flow (done: the station sheet's Play opens it).
 3. Map view with rumours; Koke as the first story island (no new engine).
 4. Flow engine and Çağlayan.
 5. Content: `content/stations/*.yaml` still carry pre-scale-A prices;

@@ -44,7 +44,7 @@ grow, and each week ends with a screenshot sheet or a short video for him.
 |---|---|
 | One station level (a station's next look on the home cluster) | [home progression §4](product/home-progression.md#4-stations), the [art queue](design/art-production-plan.md) |
 | One new resident, or one resident relationship scene | [home progression §6](product/home-progression.md#6-residents-cats--soup-assignment-without-the-gacha), [experience v1 §5](design/experience-v1.md#5-visitors-someone-comes-every-day) |
-| One island stage or one filler | [game plan §4](product/game-plan.md#4-book-one-the-islands-rising-curve), the story map |
+| One island stage or one filler | [game plan §4](product/game-plan.md#4-book-one-the-islands-rising-curve), [book-one-islands](design/book-one-islands.md) |
 | One decor set, or part of one | [home progression §8](product/home-progression.md#8-decor-sets) |
 | One system polish, from the app or the game track | the tracks below |
 
@@ -76,13 +76,14 @@ grow, and each week ends with a screenshot sheet or a short video for him.
 - **Visitors and residents:** **residents visit daily** (founder); then
   Animal Crossing–style relationships: residents talk to each other, visit
   each other, have small scenes (wave 3).
-- **Book One islands in story-map order:** a wonder-island model in
+- **Book One islands in the order of
+  [book-one-islands](design/book-one-islands.md):** a wonder-island model in
   `PofuCore` (arrival by order and gates, stages, engine, beats, gift;
   [game plan §10](product/game-plan.md#10-what-changes-in-code-and-docs-in-order)),
   the map with rumours, then the main islands one by one with fillers
-  drifting in between. The story map poster (commissioned 2026-11-05)
-  fixes the order; until then the provisional acts in
-  [monetization v2 §2.1](product/monetization-v2.md#21-units) apply.
+  drifting in between. That sheet fixes the order (the story map poster was never made); the
+  acts in [monetization v2 §2.1](product/monetization-v2.md#21-units)
+  follow it.
 - **Gezgin (the whale Nazlı) as a layered rig:** body, tail, fins and the
   island patch painted as separate parts, moved in code, not one flat
   sprite. Form 1 humble, form 2 grown at the end of Book One. **Next
