@@ -20,6 +20,9 @@ final class AppModel {
 
     private(set) var state: PofuState
     private(set) var profile: UserProfile
+    /// Where a resisted reach parts the screen haze (screen haze v1); the
+    /// root hands it to the world.
+    let hazeClearing = ScreenHazeClearing()
     /// The running honor session, if any.
     private(set) var activeSession: ActiveSession?
     /// The game model (game design v2), fed by the gate's event log and
@@ -695,6 +698,9 @@ final class AppModel {
             )
             log(.checkInResolved(record))
             Log.hop.info("Hop! resolved: \(choice.logName, privacy: .public)")
+            if choice == .resist {
+                hazeClearing.part()
+            }
             var updated = session
             if let pass = record.outcome.pass {
                 if let shieldedApp = session.shieldedApp {

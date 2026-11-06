@@ -334,6 +334,11 @@ public final class WorldHomeModel {
         }
     }
 
+    /// Pofu hops proud, as for a finished build (the payoff at the door).
+    public func hopProud() {
+        celebrations += 1
+    }
+
     private func play(_ cue: BuildMoment.Cue, of moment: BuildMoment) {
         switch cue {
         case .pushIn:

@@ -55,7 +55,7 @@ never cuts; the door, Pofu and the plaques carry every state.
 
 **Payoff, not a screen:** the next time the app opens after resists, the
 home shows the day's seals pressed on the door's plaque for 2 s (UI v3
-§3b), then the world.
+§3b), then the world. Built as `DoorStamp` (once per open, any tap skips).
 
 ## 3. Rules
 

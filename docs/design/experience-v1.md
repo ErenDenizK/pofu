@@ -293,7 +293,10 @@ ver" (primary) and "Açmam lazım".
 **The "I resisted" moment.** "Boş ver" closes the app to the Home Screen.
 **No notification follows**: we never pull someone into an app at the
 moment they resisted. The next time they see Pofu, a **fixed 1.0 s payoff**
-plays, the same length every time: the day's skip pot blooms, one seed arcs
+plays, the same length every time (amended by [ui-v3 §3b](ui-v3.md): on Home
+the payoff is now the door stamp, new seals pressed onto the earth beside the
+round door (and staying as the day's tally), 2 s, once per open, skippable by any tap; Hop! keeps the
+1.0 s payoff below): the day's skip pot blooms, one seed arcs
 into the jar, the `resist` haptic and the chime play, and a line in Baloo
 appears in the bubble ("Vazgeçtin. Bir tohum."). Several resists play as one
 1.0 s cascade, with the pots blooming left to right. Hop! plays the same

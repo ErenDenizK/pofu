@@ -139,6 +139,21 @@ is.** It can be the most *crafted* shield on the App Store.
   each, cap 5, then "+n"), the card folds into the jar; 2.4 s, tap to
   skip, Reduce Motion = the card appears stamped. (Amends experience v1
   §3.4: the lead decides.)
+  **Built** (`PofuDesignSystem/PofuDoorStamp.swift`,
+  `PofuWorld/Scene/ResistSeals.swift`, `App/RootView.swift`): no plaque and
+  no card. Wax seals press directly onto the earth face in a staggered arc
+  to the right of Pofu's round door, projected from `home-layout` H1
+  (-107, 80). For any unseen count of one or more, once per app open, 2.0 s:
+  a seal every 0.18 s (24-28 pt) with a tiny dust puff and a soft `land`
+  haptic, then Pofu hops proud and the chime plays. The island shows at most
+  8 seals, the 8th carrying `+N`. The seals then **stay all day** as the
+  island's tally of today's resists, drawn by the world at rest (0 Hz, 0.85
+  opacity, graded and relit like any earth detail) and fading at the day's
+  roll; a later open animates only its new seals. Any tap skips the pressing
+  and still reaches what it hit; Reduce Motion fades the new seals in (one
+  haptic, no hop). The pots still bloom and the screen haze parts
+  (`ScreenHazeClearing.part()`, also on a resist inside Hop!). The seal uses
+  `seal-resist` when batch-61 lands; code-drawn until then.
 - **(c) The notification** (`Extensions/Shared/GateNotificationContent.swift`).
   Allowed: a local notification can carry an image attachment
   (`UNNotificationAttachment`), shown as a thumbnail in the banner and

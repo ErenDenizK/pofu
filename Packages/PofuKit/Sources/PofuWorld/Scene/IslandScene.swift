@@ -426,6 +426,7 @@ private struct SceneFrame<Bubble: View>: View {
     @Environment(\.worldLook) private var look
     @Environment(\.worldStillFrame) private var still
     @Environment(\.screenHazeClearing) private var hazeClearing
+    @Environment(\.resistSeals) private var resistSeals
 
     /// The residents' loop now (`ResidentLife`): only while the Ambient state
     /// runs and Reduce Motion is off; a still frame, a settled island and Low
@@ -613,6 +614,12 @@ private struct SceneFrame<Bubble: View>: View {
                 // is drawn once over everything below.
                 .modifier(GradeEffect(grade: grade.withoutVignette, isEnabled: look.grade))
                 .animation(animation, value: grade)
+
+                // Today's resist seals on the earth beside Pofu's door: an
+                // earth detail, graded with the world, still at rest.
+                ResistSealsLayer(tally: resistSeals, pose: pose, offset: offset, size: size, night: world.isBedtime)
+                    .tinted(tint, isEnabled: !(look.grade && WorldShaders.isAvailable))
+                    .modifier(GradeEffect(grade: grade.withoutVignette, isEnabled: look.grade))
 
                 // The characters keep their warmth: the colour script's
                 // character light, graded per sprite.
