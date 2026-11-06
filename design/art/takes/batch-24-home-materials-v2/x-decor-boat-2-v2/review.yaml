@@ -1,0 +1,444 @@
+batch: batch-24-home-materials-v2
+manifest: tools/imagegen/manifest/batch-24-home-materials-v2.yaml
+manifest_sha256: b61416abeacb9caa3197174c50d198baea91b686b02ce420255d4693b93dc3cc
+contact_sheet: design/art/takes/batch-24-home-materials-v2/x-decor-boat-2-v2/contact.jpg
+jobs:
+  x-decor-boat-2-v2:
+    pick: none
+    publication: skipped after one allowed retry
+    note: Exactly four originals across initial pair plus sole unchanged-prompt retry.
+      Independent source and official locked review confirms one complete honey-wood
+      hull with cream stripe, one sage cushion on seat, exactly ONE oar across and
+      one BOW hook; no water, passengers, cropped hull or extra props. Numeric QA
+      has no hard fails, but official normalized whole-group widths 620/638/675/613px
+      all exceed authored one-third341.33px cap. Skip after sole retry for size; no
+      raw-pixel, extra height/HANG or invented object-state gate; no pixel or QA waiver
+      and no further generation. PNG/RGBA/QA hashes and boards preserved; exploration
+      never promoted.
+qa_reports:
+  1:
+    job: x-decor-boat-2-v2
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 49 (R1 51)
+      value: 48.7
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 47 (at most 22), p98 88 (at least 90), spread 41
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 40.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 73 (band 55-90)'
+      value: 73.1
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.20 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.2
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.4 (at least 3.5)'
+      value: 4.41
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.0 (R1 5.3)
+      value: 1.98
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.94
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.9, p95 9.4, off-palette 0.7% (top: #AA9966 (0.6%), #AA9955
+        (0.0%))'
+      value: 2.8919
+    - check: decor_anchor
+      status: warn
+      message: top y 432 above the height bar (500); width 620 px wider than the footprint
+        (360) (advisory in an exploration)
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 79 against the world reference (outliers: L_p98, edge)'
+      value: 79.0
+    info:
+      fit_skipped: needs x0.58, below x0.6 (a real art failure)
+      registration:
+        dx: -16
+        dy: 66
+      metrics_raw:
+        L_p5: 50.2
+        L_p50: 73.1
+        L_p95: 87.6
+        C_p50: 44.9
+        C_p95: 49.0
+        C_p99: 50.4
+        detail: 2.7
+      metrics_locked:
+        L_p5: 50.5
+        L_p50: 73.1
+        L_p95: 87.2
+        C_p50: 44.7
+        C_p95: 48.7
+        C_p99: 49.8
+        detail: 1.98
+    fingerprint: 1346d63f19a7be2d
+  2:
+    job: x-decor-boat-2-v2
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 44 (R1 51)
+      value: 44.3
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 46 (at most 22), p98 87 (at least 90), spread 41
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 40.8
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 72 (band 55-90)'
+      value: 72.4
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.22 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.224
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.2 (at least 3.5)'
+      value: 4.24
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.9 (R1 5.3)
+      value: 1.88
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.7966
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.7, p95 5.8, off-palette 0.7% (top: #AA9966 (0.4%), #998855
+        (0.2%))'
+      value: 1.6976
+    - check: decor_anchor
+      status: warn
+      message: top y 420 above the height bar (500); width 638 px wider than the footprint
+        (360) (advisory in an exploration)
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 74 against the world reference (outliers: L_p98, edge)'
+      value: 73.7
+    info:
+      fit_skipped: needs x0.56, below x0.6 (a real art failure)
+      registration:
+        dx: -5
+        dy: 17
+      metrics_raw:
+        L_p5: 50.5
+        L_p50: 72.5
+        L_p95: 86.8
+        C_p50: 39.3
+        C_p95: 44.6
+        C_p99: 45.6
+        detail: 2.52
+      metrics_locked:
+        L_p5: 50.8
+        L_p50: 72.4
+        L_p95: 86.4
+        C_p50: 39.1
+        C_p95: 44.3
+        C_p99: 45.4
+        detail: 1.88
+    fingerprint: 1346d63f19a7be2d
+  3:
+    job: x-decor-boat-2-v2
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 46 (R1 51)
+      value: 46.5
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 44 (at most 22), p98 88 (at least 90), spread 44
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 44.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 73 (band 55-90)'
+      value: 72.9
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.20 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.2
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.8 (at least 3.5)'
+      value: 4.76
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.1 (R1 5.3)
+      value: 2.06
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.8297
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.0, p95 8.1, off-palette 0.0%
+      value: 2.0141
+    - check: decor_anchor
+      status: warn
+      message: top y 411 above the height bar (500); width 675 px wider than the footprint
+        (360) (advisory in an exploration)
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 77 against the world reference (outliers: L_p98, edge)'
+      value: 77.2
+    info:
+      fit_skipped: needs x0.53, below x0.6 (a real art failure)
+      registration:
+        dx: -4
+        dy: -18
+      metrics_raw:
+        L_p5: 49.2
+        L_p50: 73.0
+        L_p95: 87.7
+        C_p50: 40.2
+        C_p95: 46.7
+        C_p99: 47.8
+        detail: 2.73
+      metrics_locked:
+        L_p5: 49.8
+        L_p50: 73.0
+        L_p95: 87.3
+        C_p50: 40.1
+        C_p95: 46.5
+        C_p99: 47.4
+        detail: 2.06
+    fingerprint: 1346d63f19a7be2d
+  4:
+    job: x-decor-boat-2-v2
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 46 (R1 51)
+      value: 46.5
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 45 (at most 22), p98 88 (at least 90), spread 43
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 42.9
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 72 (band 55-90)'
+      value: 71.9
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.18 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.18
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.7 (at least 3.5)'
+      value: 4.72
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.0 (R1 5.3)
+      value: 2.04
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.8096
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.3, p95 9.2, off-palette 0.6% (top: #AA9966 (0.5%), #884422
+        (0.0%))'
+      value: 2.3104
+    - check: decor_anchor
+      status: warn
+      message: top y 448 above the height bar (500); width 613 px wider than the footprint
+        (360) (advisory in an exploration)
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 75 against the world reference (outliers: L_p98, edge)'
+      value: 74.9
+    info:
+      fit_skipped: needs x0.59, below x0.6 (a real art failure)
+      registration:
+        dx: -17
+        dy: 59
+      metrics_raw:
+        L_p5: 47.9
+        L_p50: 72.1
+        L_p95: 86.8
+        C_p50: 40.4
+        C_p95: 46.8
+        C_p99: 48.2
+        detail: 2.72
+      metrics_locked:
+        L_p5: 48.2
+        L_p50: 71.9
+        L_p95: 86.5
+        C_p50: 40.2
+        C_p95: 46.5
+        C_p99: 48.0
+        detail: 2.04
+    fingerprint: 1346d63f19a7be2d
+manual_review:
+  observed_note: Exactly four originals across initial pair plus sole unchanged-prompt
+    retry. Independent source and official locked review confirms one complete honey-wood
+    hull with cream stripe, one sage cushion on seat, exactly ONE oar across and one
+    BOW hook; no water, passengers, cropped hull or extra props. Numeric QA has no
+    hard fails, but official normalized whole-group widths 620/638/675/613px all exceed
+    authored one-third341.33px cap. Skip after sole retry for size; no raw-pixel,
+    extra height/HANG or invented object-state gate; no pixel or QA waiver and no
+    further generation. PNG/RGBA/QA hashes and boards preserved; exploration never
+    promoted.
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+sources:
+- batch: batch-24-home-materials-v2
+  job: x-decor-boat-2-v2
+  take: 1
+  round: 1
+  logical_run: 20261106-b24-v2-vane-boat-initial
+  source_file: /workspace/generated_images/exec-cd4a1026-b134-4c9b-96bc-c1d08576c2b9.png
+  returned_at: '2026-11-06T06:18:04.493Z'
+  prompt_sha256: 920e1f4601a6b271f97943ec2d691331ba2e11fa1002336f7b4fbf51a4fe0734
+  fingerprint: 1346d63f19a7be2d
+  saved_at: '2026-11-06T06:18:04.875797+00:00'
+  original_generated_png_sha256: 72592a8ee16223f822cb0890187e92a61cc8f0ac9e51877396e42759a5230b75
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 4fe5a649ec35ad6bcf49dbe588106acbce08ecfd619ef80606540ecac0dbe1f1
+  inbox_png_sha256: 8cb915fb72adc8a2b7af389ac224bea132944a5526adb95406b978a8ac80e0b2
+  qa_sha256: 7d7bf4a43386f8346664bdad351c71fc691710005adacb353e88d0e564387a18
+- batch: batch-24-home-materials-v2
+  job: x-decor-boat-2-v2
+  take: 2
+  round: 1
+  logical_run: 20261106-b24-v2-vane-boat-initial
+  source_file: /workspace/generated_images/exec-37a0dbe6-ccee-4276-b70d-96940dfe02c9.png
+  returned_at: '2026-11-06T06:18:54.197Z'
+  prompt_sha256: 920e1f4601a6b271f97943ec2d691331ba2e11fa1002336f7b4fbf51a4fe0734
+  fingerprint: 1346d63f19a7be2d
+  saved_at: '2026-11-06T06:18:54.511769+00:00'
+  original_generated_png_sha256: 60cb6b533de1022279cc0fb2dbbc3fe82ba90f22c57922aecee8aeda1bbe3826
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: b28270092460c1ceeda0cdf1515c4b2487bd449d8f8348adefeb7c8098b14c4d
+  inbox_png_sha256: 2d2c806b2ff91a05e9278d9f63e9ca8eae51a9ad18e3a7051f2f549dca25a087
+  qa_sha256: 2ac3a572ed3b405d1bb92923b4bc23a701172913237e86bbdab5ebe270902cc8
+- batch: batch-24-home-materials-v2
+  job: x-decor-boat-2-v2
+  take: 3
+  round: 2
+  logical_run: 20261106-b24-v2-boat-sole-retry
+  source_file: /workspace/generated_images/exec-a67d982b-1734-44ad-834c-96f73d74ae64.png
+  returned_at: '2026-11-06T06:36:02.959Z'
+  prompt_sha256: 920e1f4601a6b271f97943ec2d691331ba2e11fa1002336f7b4fbf51a4fe0734
+  fingerprint: 1346d63f19a7be2d
+  saved_at: '2026-11-06T06:36:03.316395+00:00'
+  original_generated_png_sha256: 995867e416373705523cc3c67f8e2b4a16f514ca818ef18ee3f5408bcbd4c964
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 765cce577e7ead119c3a74a1caab38ec1cc2f57de287ff63a4707064f6e53f58
+  inbox_png_sha256: 6385b74a390510a1d315ca2c0f68e35c183a787947356fb07d9d85bf0f88297a
+  qa_sha256: 3efe0b83d317598e425f8420b762d9bae3cb49e31b42f39c8dd1bc0693d52aa5
+- batch: batch-24-home-materials-v2
+  job: x-decor-boat-2-v2
+  take: 4
+  round: 2
+  logical_run: 20261106-b24-v2-boat-sole-retry
+  source_file: /workspace/generated_images/exec-14d40806-3e09-49e8-a783-2176bd013995.png
+  returned_at: '2026-11-06T06:36:49.596Z'
+  prompt_sha256: 920e1f4601a6b271f97943ec2d691331ba2e11fa1002336f7b4fbf51a4fe0734
+  fingerprint: 1346d63f19a7be2d
+  saved_at: '2026-11-06T06:36:51.862341+00:00'
+  original_generated_png_sha256: 8bd3c9e1ffc7133df4c8cd176b7d1d9203e5bbbdc9fa9d169e52aa7062b74cb5
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: b81f3d60cbdaac3deb8501e378677285cd19a72bb2621e51c7c91aaabc9f93be
+  inbox_png_sha256: b8eb8c6ec6b142999482e7f19d70d0f49185384bf009832c50527b55865eee7c
+  qa_sha256: 0c259e67638bec4399c9f1283f92f409003976128d72ddb914aa57b13b069f3d
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+variation_proof_sha256: 51327809ac2f2a984a9e3f40493821e9d1ab9cb0cc49da5fcdb87795b791dddc
