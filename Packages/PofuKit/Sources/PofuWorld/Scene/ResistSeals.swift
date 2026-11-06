@@ -80,7 +80,7 @@ public enum ResistSealLayout {
     public static func offset(of index: Int) -> (dx: Double, dy: Double) {
         let slot = min(max(index, 0), DoorStamp.maxSeals - 1)
         let dx = 66 + 16 * Double(slot)
-        let dy = slot.isMultiple(of: 2) ? 4.0 : -24.0
+        let dy = slot.isMultiple(of: 2) ? 16.0 : -6.0
         return (dx, dy)
     }
 
@@ -152,8 +152,12 @@ struct ResistSealsLayer: View {
                 }
             }
             if tally.overflow > 0, index == DoorStamp.maxSeals - 1 {
+                Circle()
+                    .fill(Color(red: 0.71, green: 0.28, blue: 0.23))
+                    .frame(width: side * 0.86, height: side * 0.86)
+                    .opacity(press >= 1 ? ResistSealTally.restOpacity : 0)
                 Text(verbatim: "+\(tally.overflow)")
-                    .font(.system(size: 10, weight: .heavy, design: .rounded))
+                    .font(.system(size: 12, weight: .heavy, design: .rounded))
                     .foregroundStyle(Color.white)
                     .opacity(press >= 1 ? 1 : 0)
             }
