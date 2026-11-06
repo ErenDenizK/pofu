@@ -1,0 +1,20 @@
+id: asset-puddle-glint
+type: asset
+title_tr: puddle-glint
+title_en: puddle-glint (ui)
+status: in-production
+horizon: now
+summary: >-
+  A small shimmer of reflected sky light on a wet patch of ground, seen from a low camera
+  about 17 degrees above the ground, so it is a flat soft ellipse about three times as wide
+  as tall, centered, filling about 60 percent of the width: a soft pale silver-blue sheen
+  with one or two tiny brighter highlights near its upper edge, fading smoothly to black.
+art:
+  images: []
+  jobs:
+  - batch-44-weather-fx:puddle-glint
+sources:
+- doc: tools/imagegen/manifest/batch-44-weather-fx.yaml
+kind: ui
+batch: batch-44-weather-fx
+size: 1024x1024

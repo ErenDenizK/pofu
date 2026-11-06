@@ -1,0 +1,21 @@
+id: asset-x-koke-stage0-mist
+type: asset
+title_tr: x-koke-stage0-mist
+title_en: x-koke-stage0-mist (plate)
+status: in-production
+horizon: now
+summary: >-
+  The attached sleeping-moss island, same layout and camera, at the blue hour just before
+  sunrise, wrapped in real mist: soft layered fog lies low on the sea of clouds and drifts
+  in veils around the island's foot, so its base dissolves while the top stands clear; thinner
+  mist hangs behind Koke's hump so it stands out in layers. The warm colours are drained (the
+  moss a cool grey-sage, the flowers shut), but the picture …
+art:
+  images: []
+  jobs:
+  - batch-45-beautiful-wounds:x-koke-stage0-mist
+sources:
+- doc: tools/imagegen/manifest/batch-45-beautiful-wounds.yaml
+kind: plate
+batch: batch-45-beautiful-wounds
+size: 1536x1024

@@ -1,0 +1,21 @@
+id: asset-x-revontuli-stage0-night
+type: asset
+title_tr: x-revontuli-stage0-night
+title_en: x-revontuli-stage0-night (plate)
+status: in-production
+horizon: now
+summary: >-
+  A game plate for a cozy mobile game: Revontuli, a small northern island at night, in the
+  game camera (a low front three-quarter view, a small floating diorama plate over a soft
+  rounded earth body, the sea of clouds below). STAGE 0, A GENTLE RUIN: three tall wooden
+  lantern towers, two of them leaning and half fallen, their lanterns dark and some lying
+  in the snow-dusted grass; a path of stones leading to them. A deep …
+art:
+  images: []
+  jobs:
+  - batch-45-beautiful-wounds:x-revontuli-stage0-night
+sources:
+- doc: tools/imagegen/manifest/batch-45-beautiful-wounds.yaml
+kind: plate
+batch: batch-45-beautiful-wounds
+size: 1536x1024

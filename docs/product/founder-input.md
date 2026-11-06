@@ -454,3 +454,13 @@ His views (translated), not orders; the decisions are ours. Handled in
 1. Study the background: the day-light cycle, islands, colours, clouds, weather, the sky cycle. Handled: research (`docs/research/sky-weather-and-harmony.md`) then a lead spec (sky and weather v1) and concept explorations for Codex.
 2. Fog can be real fog; a new place must keep its magic, even the bad state should be impressive, not just pale. Handled: Çağlayan's stage 0 (#254) rewritten before generation (drained warm hues, but a full value range, rich cool shade, layered haze, one focal light); the healing-arc rule and Emanet's fog follow in the spec.
 3. Start the colour and light harmony research together with the earlier message. Handled: the same research covers harmony; the lookdev sheet measures it.
+## 2026-11-06 (morning, third): night needs its own light system
+
+1. Shadows are a separate problem. Noted: light and shadow v2 stays its own track; the night work below covers the shadows lights cast on objects.
+2. Night needs its own art direction and tuning, maybe assets; light should affect objects too ("global illumination" logic), with different light and colour systems; the current system will not be enough, so judge the technical side well from the start. Handled: research `docs/research/night-lighting-2d.md`, then an offline night prototype on the lookdev sheet (darken the day art to moonlight, relight it per pixel from real sources with normal maps, hemisphere ambient and bounce) before any Swift; an ADR follows if it holds.
+3. Colours in the sample images look good except at night. Noted: day harmony stays as specified (SW-1); night gets the new system.
+
+## 2026-11-06 (morning, fourth): moments, and weather that follows the player
+
+1. Special moments (night, some weathers) may get detailed art: concepts, maybe structures built for them. Handled: yes, tiered. The night relight system carries most of it; painted night keys per island are tuning targets; hero night variants only for a few structures; a design rule that every structure carries a light (window, lantern hook); night-only and weather-only life. In the night lighting ADR after the prototype.
+2. Day, fog and weather could depend on the user; a good player must experience everything, a doomscroller must see the effect, game and app. Handled: sky and weather v1 §2.2b: weather is the world's (a shuffled bag, every weather within 14 days), the screen haze is the player's (the unwell state in its own visual language, parted by a resisted reach), night shown at bedtime, and the widget, shield and week page share the sky.

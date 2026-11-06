@@ -1,0 +1,20 @@
+id: asset-fog-card-2
+type: asset
+title_tr: fog-card-2
+title_en: fog-card-2 (ui)
+status: in-production
+horizon: now
+summary: >-
+  A thin, broken band of drifting mist across the middle of the image, lighter and more transparent
+  than a fog bank: separate soft wisps with gaps of black between them, two or three slow
+  curls of mist rising from it like steam. Pale white-grey on pure black, fading to black
+  well before every edge.
+art:
+  images: []
+  jobs:
+  - batch-44-weather-fx:fog-card-2
+sources:
+- doc: tools/imagegen/manifest/batch-44-weather-fx.yaml
+kind: ui
+batch: batch-44-weather-fx
+size: 1536x1024

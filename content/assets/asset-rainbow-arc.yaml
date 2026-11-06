@@ -1,0 +1,20 @@
+id: asset-rainbow-arc
+type: asset
+title_tr: rainbow-arc
+title_en: rainbow-arc (ui)
+status: in-production
+horizon: now
+summary: >-
+  A soft pastel rainbow on pure black: a wide, gentle arc spanning about 80 percent of the
+  image width, its top near the upper quarter, made of soft blended bands of rose pink, peach,
+  butter yellow, mint, sky blue and lilac, each band soft-edged and melting into the next,
+  the whole arc a little misty. Both feet fade softly into black before the bottom edge.
+art:
+  images: []
+  jobs:
+  - batch-44-weather-fx:rainbow-arc
+sources:
+- doc: tools/imagegen/manifest/batch-44-weather-fx.yaml
+kind: ui
+batch: batch-44-weather-fx
+size: 1536x1024
