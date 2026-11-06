@@ -40,6 +40,7 @@ links:
   - asset-koke-one-eye
   - asset-koke-stretch
   - asset-koke-standing
+  - asset-koke-stone
 sources:
 - doc: docs/archive/archipelago-system.md
   anchor: '#11-island-concepts'

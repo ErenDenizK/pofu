@@ -4,14 +4,15 @@ title_tr: koke-stone
 title_en: koke-stone (prop)
 status: in-production
 horizon: now
-summary: >-
-  A small upright standing stone for a cozy mobile game, as a game sprite on a transparent
-  background: a soft rounded grey-sage stone a little taller than wide, with a cap of fresh
-  moss on its top and a few moss patches on its sides, three faint carved horizontal lines
-  on its face like an old message worn smooth, softly lit from the upper left with a cool
-  shade on the right, standing on a tiny tuft of grass, in exactly…
+summary: 'A small upright standing stone for a cozy mobile game, as a game sprite
+  on a transparent background: a soft rounded grey-sage stone a little taller than
+  wide, with a cap of fresh moss on its top and a few moss patches on its sides, three
+  faint carved horizontal lines on its face like an old message worn smooth, softly
+  lit from the upper left with a cool shade on the right, standing on a tiny tuft
+  of grass, in exactly…'
 art:
-  images: []
+  images:
+  - design/art/masters/koke-stone/koke-stone.png
   jobs:
   - batch-60-earth-face:koke-stone
 sources:
