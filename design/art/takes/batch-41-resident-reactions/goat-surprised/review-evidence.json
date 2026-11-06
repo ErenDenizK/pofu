@@ -1,0 +1,39 @@
+{
+  "reviewer": "experience_delivery_adapter",
+  "independent_evidence_file": "/workspace/art-operator-runtime/run-20261105-night/batch-41-resident-reactions/independent-reviews/review-mochi-proud-goat-surprised.json",
+  "independent_evidence_sha256": "bd61abfdf815f643fa2bf042c77d33edbaa6c5704a197e05919f2ae0d93a077b",
+  "job": "goat-surprised",
+  "review": {
+    "evidence": {
+      "parent": "45c27632bebc3eb33a625d11164f3f298aede1a32ef9f806396c942af03e1630",
+      "takes": {
+        "1": {
+          "source": "/workspace/generated_images/exec-6f6b9ab1-5f2b-4892-bb59-0eb62a164620.png",
+          "original_sha256": "1b3112350fa61179ec945ef3c5508abff53aa39f4c9367c57c5c6fa21a469e38",
+          "locked_sha256": "df7baec3d80d0da8ec115f9c5db4147c0b474ad89416e47ba7ec1c9597d996f6"
+        },
+        "2": {
+          "source": "/workspace/generated_images/exec-16194482-4ca6-4a21-9580-b32705d6d149.png",
+          "original_sha256": "3f42a10574fdb4b2ec98b602103616a36f465b76150c90523b8f3fd6da18650e",
+          "locked_sha256": "2b1077b59af07ed25f0785a5134ed1cda342fc5ec203ad7776bf66593cf7d078"
+        }
+      }
+    },
+    "eligible_takes": [
+      1,
+      2
+    ],
+    "reason": "Both originals and official locked alpha composites show small round soft o, wider catchlit eyes, raised brows and slightly lifted floppy ears. Horn buds, beard, tan patch, body, paws, colors and framing remain the parent. No tears, text, ground shadow or opaque backdrop.",
+    "preview": "/workspace/art-operator-runtime/run-20261105-night/batch-41-resident-reactions/independent-reviews/goat-surprised-independent-preview.jpg"
+  },
+  "owner_decision": {
+    "eligible": [
+      1,
+      2
+    ],
+    "pick": 1,
+    "note": "Independent source/parent/locked review accepts both initial takes: small round o mouth, wider catchlit eyes, raised brows and slightly lifted floppy ears; two horn buds, beard, tan patch, body/paws/framing preserved, no backdrop, cast shadow, text or motion lines. Both pass every QA check. Character-guard applies no grading, so take1 wins higher Harmony92.8 vs91.4. Exact full-canvas lossless490630 bytes preserves locked RGBA. No added stability threshold or pixel edits. Independent evidence: independent-reviews/review-mochi-proud-goat-surprised.json."
+  },
+  "source_originals_unchanged": true,
+  "local_art_edits": false
+}
