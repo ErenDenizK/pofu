@@ -292,15 +292,35 @@ struct KokeIsleView: View {
                 with: .radialGradient(Gradient(colors: [warm.opacity(0.55), warm.opacity(0)]), center: c, startRadius: 0, endRadius: r)
             )
         }
-        let stone = CGRect(x: base.x - 12, y: base.y - 34, width: 24, height: 34)
-        context.fill(Path(roundedRect: stone, cornerRadius: 9), with: .color(Color(red: 0.62, green: 0.62, blue: 0.60)))
+        // A placeholder painted to sit in the plate's light until the
+        // `koke-stone` sprite lands (batch-60): a soft contact shadow, a
+        // warm-lit top fading to a cool foot, a moss cap that greens with
+        // the stage, and faint carved lines.
+        let stone = CGRect(x: base.x - 11, y: base.y - 30, width: 22, height: 30)
+        context.fill(
+            Path(ellipseIn: CGRect(x: stone.minX - 6, y: stone.maxY - 5, width: stone.width + 12, height: 9)),
+            with: .color(Color(red: 0.24, green: 0.24, blue: 0.30).opacity(0.28))
+        )
+        context.fill(
+            Path(roundedRect: stone, cornerRadius: 10),
+            with: .linearGradient(
+                Gradient(colors: [Color(red: 0.80, green: 0.77, blue: 0.70), Color(red: 0.55, green: 0.55, blue: 0.58)]),
+                startPoint: CGPoint(x: stone.minX, y: stone.minY),
+                endPoint: CGPoint(x: stone.maxX, y: stone.maxY)
+            )
+        )
+        let moss = Double(min(max(stage, 0), 4)) / 4
+        context.fill(
+            Path(ellipseIn: CGRect(x: stone.minX + 1, y: stone.minY - 2, width: stone.width - 2, height: 9)),
+            with: .color(Color(red: 0.55 - 0.15 * moss, green: 0.60 + 0.12 * moss, blue: 0.45 - 0.10 * moss).opacity(0.9))
+        )
         // The carved lines Mochi reads.
         for k in 0..<3 {
             var line = Path()
-            let y = stone.minY + 11 + Double(k) * 7
+            let y = stone.minY + 12 + Double(k) * 6
             line.move(to: CGPoint(x: stone.minX + 6, y: y))
             line.addLine(to: CGPoint(x: stone.maxX - 6 - Double(k) * 2, y: y))
-            context.stroke(line, with: .color(Color(red: 0.40, green: 0.40, blue: 0.40)), style: StrokeStyle(lineWidth: 1.4, lineCap: .round))
+            context.stroke(line, with: .color(Color(red: 0.42, green: 0.40, blue: 0.40).opacity(0.55)), style: StrokeStyle(lineWidth: 1.1, lineCap: .round))
         }
         if KokeLayout.hasWarmLight(stage: stage) {
             // The lamp's core at the stone's foot.
