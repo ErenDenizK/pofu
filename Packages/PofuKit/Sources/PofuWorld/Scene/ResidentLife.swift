@@ -35,6 +35,17 @@ public enum ResidentLife {
         }
     }
 
+    /// A day and a time into a visit, to pin the loop for a screenshot.
+    public struct Pin: Hashable, Sendable {
+        public var day: Int
+        public var elapsed: Double
+
+        public init(day: Int, elapsed: Double) {
+            self.day = day
+            self.elapsed = elapsed
+        }
+    }
+
     /// What a resident does this cycle.
     public enum Activity: Hashable, Sendable {
         /// Breathes, glances about.
@@ -270,6 +281,35 @@ public enum ResidentLife {
     /// How many of `plans` are walking `time` seconds into the cycle.
     public static func movers(of plans: [Plan], at time: Double) -> Int {
         plans.filter { step(of: $0, at: time).isWalking }.count
+    }
+
+    // MARK: - The whole island
+
+    /// Where `elapsed` seconds into a visit falls: the cycle number and the
+    /// time inside it.
+    public static func cycle(at elapsed: Double) -> (index: Int, time: Double) {
+        guard elapsed.isFinite, elapsed > 0 else { return (0, 0) }
+        let index = Int(elapsed / cycleSeconds)
+        return (index, elapsed - Double(index) * cycleSeconds)
+    }
+
+    /// Every resident's frame `elapsed` seconds into a visit, by id. Empty
+    /// (everyone at rest) unless `isAmbient`.
+    public static func steps(
+        of specs: [Spec],
+        day: Int,
+        elapsed: Double,
+        walkable: WorldPolygon?,
+        avoid: [WorldPoint],
+        isAmbient: Bool
+    ) -> [String: Step] {
+        guard isAmbient else { return [:] }
+        let (index, time) = cycle(at: elapsed)
+        var result: [String: Step] = [:]
+        for plan in plans(for: specs, day: day, cycle: index, walkable: walkable, avoid: avoid) {
+            result[plan.spec.id] = step(of: plan, at: time)
+        }
+        return result
     }
 
     // MARK: - Reactions
