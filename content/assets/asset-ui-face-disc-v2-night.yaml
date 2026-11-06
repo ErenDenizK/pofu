@@ -2,14 +2,14 @@ id: asset-ui-face-disc-v2-night
 type: asset
 title_tr: ui-face-disc-v2-night
 title_en: face-disc-v2-night (ui)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  NIGHT VERSION of the attached day piece: the identical shape, size and position, every edge
-  in the same pixels; only the light and color change. It is now lit by a warm lantern from
-  the upper left at night: the material turns a deep warm plum-brown and ink-blue shade, the
-  highlight along the top edge becomes a soft amber, shadows are deeper warm indigo-brown
-  (never black), the whole piece stays readable as the same o…
+summary: 'NIGHT VERSION of the attached day piece: the identical shape, size and position,
+  every edge in the same pixels; only the light and color change. It is now lit by
+  a warm lantern from the upper left at night: the material turns a deep warm plum-brown
+  and ink-blue shade, the highlight along the top edge becomes a soft amber, shadows
+  are deeper warm indigo-brown (never black), the whole piece stays readable as the
+  same o…'
 links:
   variant_of:
   - asset-ui-face-disc-v2
@@ -22,3 +22,26 @@ sources:
 kind: ui
 batch: batch-61-ui-kit-v3
 size: 1024x1024
+notes:
+- 'batch-61-ui-kit-v3 skipped after four takes: Skipped after initial2 plus sole unchanged
+  retry2: allfour actual officialQA reports hardfail value_floor, palette_drift, edit_structure
+  and edit_lightness. p5lightness22.5/22.3/22.5/22.4, palette_drift5.0697/5.4146/5.8406/6.2502,
+  lightstructure0.4009/0.3772/0.417/0.4101, lightnessmove57.1043/58.0369/57.9878/57.7992.
+  The authored NIGHT recolor requests deepplum/inkblue and amberlight but omits acceptance.profile
+  night, retaining ordinary keep structure/lightness; no localprofile/prompt/QA waiver
+  or force. All4 originalPNG/RGBA/account/orderedrefs/dispatchordinals retained. Initial2
+  fullprocessing/sourcepacket evidence copied before retry, and first2 QA+locked hashes
+  remain byteidentical after final4post; INITIAL2/FINAL4 seals and root-disc-night-final-review.json
+  preserved. No thirdround; no true dependents toskip. Unrelatedjobs continue. Automated
+  failures: t1 value_floor: lightness p5 22 (R1 59), palette_drift: mean dE 5.1, p95
+  9.4, off-palette 0.0%, edit_structure: light structure matches the parent (r 0.40),
+  edit_lightness: mean lightness moved by 57.1 L (the same lightness was asked); t2
+  value_floor: lightness p5 22 (R1 59), palette_drift: mean dE 5.4, p95 9.7, off-palette
+  0.0%, edit_structure: light structure matches the parent (r 0.38), edit_lightness:
+  mean lightness moved by 58.0 L (the same lightness was asked); t3 value_floor: lightness
+  p5 22 (R1 59), palette_drift: mean dE 5.8, p95 9.6, off-palette 0.0%, edit_structure:
+  light structure matches the parent (r 0.42), edit_lightness: mean lightness moved
+  by 58.0 L (the same lightness was asked); t4 value_floor: lightness p5 22 (R1 59),
+  palette_drift: mean dE 6.3, p95 9.7, off-palette 0.0%, edit_structure: light structure
+  matches the parent (r 0.41), edit_lightness: mean lightness moved by 57.8 L (the
+  same lightness was asked).'
