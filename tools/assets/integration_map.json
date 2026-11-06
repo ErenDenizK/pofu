@@ -1366,6 +1366,41 @@
         64
       ],
       "scale": 3
+    },
+    {
+      "target": "world",
+      "name": "mochi-step-a",
+      "master": "design/art/masters/mochi-step-a"
+    },
+    {
+      "target": "world",
+      "name": "mochi-step-b",
+      "master": "design/art/masters/mochi-step-b"
+    },
+    {
+      "target": "world",
+      "name": "mochi-work-beat",
+      "master": "design/art/masters/mochi-work-beat"
+    },
+    {
+      "target": "world",
+      "name": "goat-step-a",
+      "master": "design/art/masters/goat-step-a"
+    },
+    {
+      "target": "world",
+      "name": "goat-step-b",
+      "master": "design/art/masters/goat-step-b"
+    },
+    {
+      "target": "world",
+      "name": "goat-work-beat",
+      "master": "design/art/masters/goat-work-beat"
+    },
+    {
+      "target": "world",
+      "name": "simit-step-b",
+      "master": "design/art/masters/simit-step-b"
     }
   ]
 }

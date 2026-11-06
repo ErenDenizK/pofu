@@ -1,16 +1,16 @@
 {
  "after": {
-  "C_mean": 18.016,
-  "C_p50": 13.544,
-  "C_p95": 40.919,
-  "L_mean": 84.204,
-  "L_p2": 22.125,
-  "L_p98": 96.464,
-  "detail": 5.899,
-  "edge": 0.266,
-  "tint_a": 4.893,
-  "tint_b": 8.801,
-  "warmth_b": 14.996
+  "C_mean": 20.744,
+  "C_p50": 15.903,
+  "C_p95": 47.13,
+  "L_mean": 86.589,
+  "L_p2": 38.125,
+  "L_p98": 96.42,
+  "detail": 4.773,
+  "edge": 0.267,
+  "tint_a": 4.766,
+  "tint_b": 9.499,
+  "warmth_b": 17.578
  },
  "before": {
   "C_mean": 18.016,
@@ -19,32 +19,41 @@
   "L_mean": 84.204,
   "L_p2": 22.125,
   "L_p98": 96.464,
-  "detail": 5.899,
-  "edge": 0.266,
+  "detail": 5.883,
+  "edge": 0.267,
   "tint_a": 4.893,
   "tint_b": 8.801,
   "warmth_b": 14.996
  },
  "chain": null,
  "correction": {
-  "black": 0.0,
+  "black": 16.0,
   "ceiling": 0.0,
-  "chroma": 1.0,
+  "chroma": 1.198,
   "materials": {},
   "tint_a": 0.0,
   "tint_b": 0.0,
   "white": 0.0
  },
  "guarded": false,
- "kind": "char",
- "matched_to": "char",
- "outliers_after": [],
- "outliers_before": [],
- "ppu": 29.0,
+ "kind": "station",
+ "matched_to": "world",
+ "outliers_after": [
+  "L_p2",
+  "detail",
+  "edge"
+ ],
+ "outliers_before": [
+  "C_p95",
+  "L_p2",
+  "detail",
+  "edge"
+ ],
+ "ppu": 28.9412,
  "reference": false,
- "score_after": 95.7,
- "score_before": 95.7,
- "shipped": false,
+ "score_after": 65.9,
+ "score_before": 45.9,
+ "shipped": true,
  "source": "design/art/masters/goat-step-a/goat-step-a.webp",
  "source_sha": "d79a8f722721f21b"
 }

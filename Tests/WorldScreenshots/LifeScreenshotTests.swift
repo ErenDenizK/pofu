@@ -70,6 +70,43 @@ final class LifeScreenshotTests: XCTestCase {
             frames.append(image)
         }
         try write(grid(frames, titles: times.map { String(format: "%.1f s", $0) }), name: "life-residents-walk", to: folder)
+
+        // Home framing at IL6, settled: Pofu's own door (H1) is on screen on the left.
+        let settled = IslandScene(world: world, model: IslandSceneModel(framing: .home))
+            .environment(\.worldLook, WorldLook(hourOverride: 12))
+            .environment(\.worldStillFrame, true)
+        try write(try await render(AnyView(settled), in: scene), name: "life-home-il6-settled", to: folder)
+
+        // Mochi's gait: four consecutive 1/6 s frames in the middle of her walk, cropped to her.
+        let mochi = try XCTUnwrap(IslandLayout.resident(.mochi))
+        var mochiDay = 0
+        var mochiPlan: ResidentLife.Plan?
+        while mochiDay < 400 {
+            let plans = ResidentLife.plans(for: specs, day: mochiDay, cycle: 0, walkable: walkable, avoid: [IslandLayout.pofu])
+            if let plan = plans.first(where: { $0.spec.id == "mochi" }), case .walk = plan.activity { mochiPlan = plan; break }
+            mochiDay += 1
+        }
+        let plan = try XCTUnwrap(mochiPlan)
+        guard case .walk(_, let start, _, _) = plan.activity else { return }
+        let stop = IslandFraming.homeStop()
+        var strip: [UIImage] = []
+        let gaitTimes = (0..<4).map { start + 1.0 + Double($0) / ResidentLife.walkFPS }
+        for t in gaitTimes {
+            let step = ResidentLife.step(of: plan, at: t)
+            let model = IslandSceneModel(framing: .home)
+            let view = IslandScene(world: world, model: model)
+                .environment(\.worldLook, WorldLook(hourOverride: 12))
+                .environment(\.worldStillFrame, true)
+                .environment(\.worldResidentPin, ResidentLife.Pin(day: mochiDay, elapsed: t))
+            let image = try await render(AnyView(view), in: scene)
+            let x = 201 + (mochi.feet.x + step.dx - stop.look.x) * stop.scale
+            let y = stop.anchorY + (mochi.feet.y + step.dy - IslandLayout.pofu.y) * stop.scale
+            let rect = CGRect(x: x - 60, y: y - 100, width: 120, height: 120).applying(CGAffineTransform(scaleX: image.scale, y: image.scale))
+            if let cropped = image.cgImage?.cropping(to: rect) {
+                strip.append(UIImage(cgImage: cropped, scale: image.scale, orientation: .up))
+            }
+        }
+        try write(grid(strip, titles: gaitTimes.map { String(format: "%.2f s", $0) }, cell: CGSize(width: 240, height: 240)), name: "life-mochi-gait", to: folder)
     }
 
     // MARK: - Rendering

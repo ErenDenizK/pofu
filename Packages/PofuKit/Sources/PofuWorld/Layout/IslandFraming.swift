@@ -46,9 +46,15 @@ public enum IslandFraming {
     /// speech bubble still clears the top chrome.
     public static let homeFeetY = 470.0
 
-    /// The look x at Home: a little right of Pofu, so the tea corner, the
-    /// path and the harbor side are in frame with the pond.
-    public static let homeLookX = 36.0
+    /// The look x at Home: just right of the island's middle, so Pofu's own
+    /// door (H1, painted into the plate) is whole on the left edge while the
+    /// tea corner, the path and the pond stay in frame (36 pushed the door
+    /// off the screen).
+    public static let homeLookX = 12.0
+
+    /// The centre of Pofu's own door in the plate's earth face (home layout
+    /// H1), in world x.
+    public static let pofuDoorX = -107.0
 
     // MARK: - Content
 

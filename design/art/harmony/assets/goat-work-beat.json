@@ -1,16 +1,16 @@
 {
  "after": {
-  "C_mean": 19.501,
-  "C_p50": 14.925,
-  "C_p95": 43.437,
-  "L_mean": 83.181,
-  "L_p2": 20.417,
+  "C_mean": 19.329,
+  "C_p50": 14.875,
+  "C_p95": 43.254,
+  "L_mean": 85.929,
+  "L_p2": 36.417,
   "L_p98": 96.48,
-  "detail": 7.873,
-  "edge": 0.2,
-  "tint_a": 4.645,
-  "tint_b": 8.818,
-  "warmth_b": 16.518
+  "detail": 6.37,
+  "edge": 0.201,
+  "tint_a": 4.652,
+  "tint_b": 8.819,
+  "warmth_b": 16.442
  },
  "before": {
   "C_mean": 19.501,
@@ -19,15 +19,15 @@
   "L_mean": 83.181,
   "L_p2": 20.417,
   "L_p98": 96.48,
-  "detail": 7.873,
-  "edge": 0.2,
+  "detail": 7.913,
+  "edge": 0.201,
   "tint_a": 4.645,
   "tint_b": 8.818,
   "warmth_b": 16.518
  },
  "chain": null,
  "correction": {
-  "black": 0.0,
+  "black": 16.0,
   "ceiling": 0.0,
   "chroma": 1.0,
   "materials": {},
@@ -36,19 +36,23 @@
   "white": 0.0
  },
  "guarded": false,
- "kind": "char",
- "matched_to": "char",
+ "kind": "station",
+ "matched_to": "world",
  "outliers_after": [
-  "detail"
+  "L_p2",
+  "detail",
+  "edge"
  ],
  "outliers_before": [
-  "detail"
+  "L_p2",
+  "detail",
+  "edge"
  ],
- "ppu": 29.0,
+ "ppu": 28.9412,
  "reference": false,
- "score_after": 92.2,
- "score_before": 92.2,
- "shipped": false,
+ "score_after": 58.2,
+ "score_before": 46.8,
+ "shipped": true,
  "source": "design/art/masters/goat-work-beat/goat-work-beat.webp",
  "source_sha": "00c83af793f49d99"
 }

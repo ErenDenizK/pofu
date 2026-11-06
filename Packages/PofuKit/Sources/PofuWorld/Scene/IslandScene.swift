@@ -987,7 +987,7 @@ private struct WorldCanvas: View {
                 + step.hop + (reaction?.hop ?? 0)
             let focused = model.focus == .resident(resident.id) || model.focus == .station(resident.station)
             let pose = build.flatMap { $0.moment.station == resident.station ? $0.moment.residentPose(at: $0.time) : nil }
-                ?? resident.idlePose(isBedtime: world.isBedtime, isFocused: focused || step.pose == .work,
+                ?? resident.idlePose(isBedtime: world.isBedtime, isFocused: focused,
                                      event: model.reactions.event(of: resident.id.rawValue, at: clock))
                 .lifePose(step.pose)
             ResidentView(

@@ -1,16 +1,16 @@
 {
  "after": {
-  "C_mean": 18.534,
-  "C_p50": 14.141,
-  "C_p95": 42.288,
-  "L_mean": 84.266,
-  "L_p2": 22.617,
+  "C_mean": 18.312,
+  "C_p50": 14.115,
+  "C_p95": 41.78,
+  "L_mean": 86.791,
+  "L_p2": 38.617,
   "L_p98": 96.163,
-  "detail": 6.267,
-  "edge": 0.24,
-  "tint_a": 4.92,
+  "detail": 4.993,
+  "edge": 0.241,
+  "tint_a": 4.926,
   "tint_b": 8.952,
-  "warmth_b": 15.418
+  "warmth_b": 15.321
  },
  "before": {
   "C_mean": 18.534,
@@ -19,15 +19,15 @@
   "L_mean": 84.266,
   "L_p2": 22.617,
   "L_p98": 96.163,
-  "detail": 6.267,
-  "edge": 0.24,
+  "detail": 6.255,
+  "edge": 0.241,
   "tint_a": 4.92,
   "tint_b": 8.952,
   "warmth_b": 15.418
  },
  "chain": null,
  "correction": {
-  "black": 0.0,
+  "black": 16.0,
   "ceiling": 0.0,
   "chroma": 1.0,
   "materials": {},
@@ -36,15 +36,23 @@
   "white": 0.0
  },
  "guarded": false,
- "kind": "char",
- "matched_to": "char",
- "outliers_after": [],
- "outliers_before": [],
- "ppu": 29.0,
+ "kind": "station",
+ "matched_to": "world",
+ "outliers_after": [
+  "L_p2",
+  "detail",
+  "edge"
+ ],
+ "outliers_before": [
+  "L_p2",
+  "detail",
+  "edge"
+ ],
+ "ppu": 28.9412,
  "reference": false,
- "score_after": 95.1,
- "score_before": 95.1,
- "shipped": false,
+ "score_after": 61.4,
+ "score_before": 48.1,
+ "shipped": true,
  "source": "design/art/masters/goat-step-b/goat-step-b.webp",
  "source_sha": "a888de7a9188b161"
 }

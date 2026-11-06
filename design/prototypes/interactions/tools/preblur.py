@@ -454,6 +454,12 @@ APP_SOURCES = {
     "goat-work": _blob("design/art/masters/goat-work", 34, "feet", like="design/art/masters/harbor-goat"),
     **{f"goat-{pose}": _blob(f"design/art/masters/goat-{pose}", 34, "feet", like="design/art/masters/harbor-goat")
        for pose in ("happy", "surprised", "sleepy", "proud")},
+    # Walk and work frames (batch 59): step-a, step-b and the work beat, edits on the bases' canvases.
+    **{f"mochi-{pose}": {"src": f"design/art/masters/mochi-{pose}/mochi-{pose}.webp", "ppu": 901 / 30, "anchor": (515.5, 1349)}
+       for pose in ("step-a", "step-b", "work-beat")},
+    **{f"goat-{pose}": _blob(f"design/art/masters/goat-{pose}", 34, "feet", like="design/art/masters/harbor-goat")
+       for pose in ("step-a", "step-b", "work-beat")},
+    "simit-step-b": _blob("design/art/masters/simit-step-b", 26, "feet", like="design/art/masters/simit-kitten"),
     "simit-proud": _blob("design/art/masters/simit-proud", 26, "feet", like="design/art/masters/simit-kitten"),
     # The second L3 style option of the stations that have one so far (batch 40, home progression 4.2):
     # on the harbor guide at the harbor's size, like their first options.
