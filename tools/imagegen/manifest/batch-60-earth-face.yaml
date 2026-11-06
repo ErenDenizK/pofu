@@ -30,6 +30,7 @@ defaults:
 jobs:
   - {id: island-main-l-v3, kind: world, name: island-main-l-v3, external: batch-05-fixes-pilot, master: design/art/masters/island-main-l-v3/island-main-l-v3.webp}
   - {id: door-mochi, kind: prop, name: door-mochi, external: batch-33-home-showcase, master: design/art/masters/door-mochi/door-mochi.png}
+  - {id: koke-island-0, kind: plate, name: koke-island-0, external: batch-39-koke-production}
   - {id: door-findik, kind: prop, name: door-findik, external: batch-33-home-showcase, master: design/art/masters/door-findik/door-findik.png}
 
   - id: island-main-face-il2
@@ -78,3 +79,30 @@ jobs:
           recess shadow and light. Everything else stays exactly as it is.
       - block: edit-keep-v1
       - text: "AVOID: a pasted-on look, a different light or texture, moving or resizing anything, characters, text"
+
+  # ------------------------------------------------------- Koke's stone
+
+  - id: koke-stone
+    kind: prop
+    name: koke-stone
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: true
+    palettes: [world-foliage, world-props]
+    chat: "Pofu · Koke"
+    light: {cell: day, layer: subject}
+    notes: "The carved stone Mochi reads at Koke's stage 3 (koke-prototype), replacing a code-drawn placeholder. Review: a small upright mossy standing stone, rounded, with three faint carved lines (no letters), at the scale of the Koke plates' boulders; reads as part of the island, not a sign."
+    attach:
+      - ref: approved:koke-island-0
+        role: "Koke's island plate: match its painting, light, boulders and moss exactly; the stone stands on this lawn."
+    prompt:
+      - text: |
+          A small upright standing stone for a cozy mobile game, as a game
+          sprite on a transparent background: a soft rounded grey-sage stone
+          a little taller than wide, with a cap of fresh moss on its top and a
+          few moss patches on its sides, three faint carved horizontal lines
+          on its face like an old message worn smooth, softly lit from the
+          upper left with a cool shade on the right, standing on a tiny tuft
+          of grass, in exactly the painting style of the attached island.
+      - block: prop-style-v2
+      - text: "AVOID: letters, runes, text, a face, a gravestone look, a sign post, a shadow on the ground, a background"
