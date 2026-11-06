@@ -1,0 +1,322 @@
+batch: batch-46-flat-icons
+manifest: tools/imagegen/manifest/batch-46-flat-icons.yaml
+manifest_sha256: 9f0b3d779a7c55faccf1f0965b60a11dff7192ad7bcf9e84168ce7f49d97f61b
+contact_sheet: design/art/takes/batch-46-flat-icons/x-icons-flat-solid/contact.jpg
+jobs:
+  x-icons-flat-solid:
+    pick: none
+    publication: skipped after one allowed retry
+    note: 'Skipped after the initial pair and sole unchanged retry pair: all four
+      native originals show broad visible diffuse brown interior shading/mottling
+      despite the explicit flat solid single cocoa, no gradients, no shading brief.
+      Independent initial971b24f4 and retry review independent-flat-solid-retry-review-20261106T081541Z.json
+      agree with root original/official locked review. This is a literal manual content
+      failure; original numeric QA remains warn-only on value_floor with passing lock
+      loads, never relabelled. Nine glyphs,3x3order,front hamster,one island/two roots,three
+      islands,six-tooth gear,x,plus,envelopeheart,shieldleaf,giftbow otherwise pass.
+      Island/map22pt ambiguity is advisory only; no invented exact-hex/pixel-uniformity
+      threshold, extra root gate, palette waiver, cleanup or prompt modification.
+      All four source PNG/RGBA and unchanged initial POSTED QA/locked bytes preserved.
+      No third round, promotion, master, content, Harmony or production metadata.'
+qa_reports:
+  1:
+    job: x-icons-flat-solid
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 16 (R1 51)
+      value: 16.1
+    - check: value_floor
+      status: warn
+      message: lightness p5 30 (R1 59)
+      value: 29.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.4 (R1 5.3)
+      value: 0.41
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.6327
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.2, p95 2.5, off-palette 0.0%
+      value: 2.1512
+    info:
+      metrics_raw:
+        L_p5: 29.2
+        L_p50: 30.3
+        L_p95: 31.1
+        C_p50: 15.6
+        C_p95: 16.4
+        C_p99: 16.9
+        detail: 0.88
+      metrics_locked:
+        L_p5: 29.5
+        L_p50: 30.3
+        L_p95: 30.9
+        C_p50: 15.6
+        C_p95: 16.1
+        C_p99: 16.5
+        detail: 0.41
+    fingerprint: 65055948713fd263
+  2:
+    job: x-icons-flat-solid
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 15 (R1 51)
+      value: 15.4
+    - check: value_floor
+      status: warn
+      message: lightness p5 30 (R1 59)
+      value: 30.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.4 (R1 5.3)
+      value: 0.42
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.5867
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.5, p95 2.0, off-palette 0.0%
+      value: 1.4613
+    info:
+      metrics_raw:
+        L_p5: 29.9
+        L_p50: 31.0
+        L_p95: 31.6
+        C_p50: 14.9
+        C_p95: 15.8
+        C_p99: 16.3
+        detail: 0.91
+      metrics_locked:
+        L_p5: 30.1
+        L_p50: 31.0
+        L_p95: 31.5
+        C_p50: 14.9
+        C_p95: 15.4
+        C_p99: 15.8
+        detail: 0.42
+    fingerprint: 65055948713fd263
+  3:
+    job: x-icons-flat-solid
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 16 (R1 51)
+      value: 16.5
+    - check: value_floor
+      status: warn
+      message: lightness p5 30 (R1 59)
+      value: 29.9
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.4 (R1 5.3)
+      value: 0.44
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.6382
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.3, p95 2.5, off-palette 0.0%
+      value: 2.288
+    info:
+      metrics_raw:
+        L_p5: 29.7
+        L_p50: 30.9
+        L_p95: 31.4
+        C_p50: 16.2
+        C_p95: 16.8
+        C_p99: 17.5
+        detail: 0.88
+      metrics_locked:
+        L_p5: 29.9
+        L_p50: 30.8
+        L_p95: 31.3
+        C_p50: 16.2
+        C_p95: 16.5
+        C_p99: 16.9
+        detail: 0.44
+    fingerprint: 65055948713fd263
+  4:
+    job: x-icons-flat-solid
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 17 (R1 51)
+      value: 17.0
+    - check: value_floor
+      status: warn
+      message: lightness p5 30 (R1 59)
+      value: 29.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.3 (R1 5.3)
+      value: 0.33
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.1
+      value: 1.0537
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.0, p95 2.2, off-palette 0.0%
+      value: 1.9815
+    info:
+      metrics_raw:
+        L_p5: 29.5
+        L_p50: 30.2
+        L_p95: 31.0
+        C_p50: 15.9
+        C_p95: 17.3
+        C_p99: 17.7
+        detail: 0.78
+      metrics_locked:
+        L_p5: 29.6
+        L_p50: 30.1
+        L_p95: 30.8
+        C_p50: 15.9
+        C_p95: 17.0
+        C_p99: 17.3
+        detail: 0.33
+    fingerprint: 65055948713fd263
+manual_review:
+  observed_note: 'Skipped after the initial pair and sole unchanged retry pair: all
+    four native originals show broad visible diffuse brown interior shading/mottling
+    despite the explicit flat solid single cocoa, no gradients, no shading brief.
+    Independent initial971b24f4 and retry review independent-flat-solid-retry-review-20261106T081541Z.json
+    agree with root original/official locked review. This is a literal manual content
+    failure; original numeric QA remains warn-only on value_floor with passing lock
+    loads, never relabelled. Nine glyphs,3x3order,front hamster,one island/two roots,three
+    islands,six-tooth gear,x,plus,envelopeheart,shieldleaf,giftbow otherwise pass.
+    Island/map22pt ambiguity is advisory only; no invented exact-hex/pixel-uniformity
+    threshold, extra root gate, palette waiver, cleanup or prompt modification. All
+    four source PNG/RGBA and unchanged initial POSTED QA/locked bytes preserved. No
+    third round, promotion, master, content, Harmony or production metadata.'
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+sources:
+- batch: batch-46-flat-icons
+  job: x-icons-flat-solid
+  take: 1
+  round: 1
+  logical_run: 20261106-b46-flat-icons
+  source_file: /workspace/generated_images/exec-1f9bc251-480c-429c-81ca-9899cbaf34eb.png
+  returned_at: '2026-11-06T08:06:15.186Z'
+  prompt_sha256: c8cd093f651c0af882ce2578a5852523799d43cf5aa5c284cf8c57f0942065b2
+  fingerprint: 65055948713fd263
+  saved_at: '2026-11-06T08:06:15.504334+00:00'
+  original_generated_png_sha256: 2428733f6e8c29ab37e9b79cd43fac5e5fec88a80be75ae96f6ff6ed47540ba7
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: a1c6a6507e036eea1165dd44f58d79acd2f16568e5315b8e959aeaa6bba92952
+  inbox_png_sha256: 04044f4aebfbf1f15f06a5037469dce4a8337dac40d09a168164caead146a1ae
+  qa_sha256: 3920d32aa08d8c5b21ef68cd7915a037223534561074d9c9a5157d1616544719
+- batch: batch-46-flat-icons
+  job: x-icons-flat-solid
+  take: 2
+  round: 1
+  logical_run: 20261106-b46-flat-icons
+  source_file: /workspace/generated_images/exec-e20ec9c5-92d6-49fc-91f9-b86860cb93e5.png
+  returned_at: '2026-11-06T08:05:19.807Z'
+  prompt_sha256: c8cd093f651c0af882ce2578a5852523799d43cf5aa5c284cf8c57f0942065b2
+  fingerprint: 65055948713fd263
+  saved_at: '2026-11-06T08:05:25.665253+00:00'
+  original_generated_png_sha256: 8a785eccab470c5ca344e199b10b0a99cea91bf4c61367de3bce08bc043af575
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: b34f2ec33860c715a00befe02ec612f4aefd03d3f18c61e167a8aa314d1773ee
+  inbox_png_sha256: 2bf2fc489a009f546a9caccb2dbedef17b7369f8a6d7cc784350a6487164751b
+  qa_sha256: 0688223f57a96fefe7fe3a8b18c675fe94d400212252d0ccc549bca8966888fd
+- batch: batch-46-flat-icons
+  job: x-icons-flat-solid
+  take: 3
+  round: 2
+  logical_run: 20261106-b46-flat-icons
+  source_file: /workspace/generated_images/exec-337d9509-03a5-4b89-adca-1bb17d7bb710.png
+  returned_at: '2026-11-06T08:12:05.285Z'
+  prompt_sha256: c8cd093f651c0af882ce2578a5852523799d43cf5aa5c284cf8c57f0942065b2
+  fingerprint: 65055948713fd263
+  saved_at: '2026-11-06T08:12:05.745843+00:00'
+  original_generated_png_sha256: cd7fde22b547a45d4829e9745a685928c683fc342e0085285b7c7e4cd008d03c
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: b9a4af24c196ca47aa5e421f7b0c8d9d5140d703b13ff3ef62b3af742d507516
+  inbox_png_sha256: 40842f568c17bece7a4f237a12f8f2d03d1f7863f1f0d817681947f540fbfcce
+  qa_sha256: 903fc5fb20a3097c87065dc8fb7e2f26dfaf17f0519c8ced8350ab0f199fe7db
+- batch: batch-46-flat-icons
+  job: x-icons-flat-solid
+  take: 4
+  round: 2
+  logical_run: 20261106-b46-flat-icons
+  source_file: /workspace/generated_images/exec-86207eca-88e7-465a-84f4-6fa5e78b96e3.png
+  returned_at: '2026-11-06T08:13:01.570Z'
+  prompt_sha256: c8cd093f651c0af882ce2578a5852523799d43cf5aa5c284cf8c57f0942065b2
+  fingerprint: 65055948713fd263
+  saved_at: '2026-11-06T08:13:01.882025+00:00'
+  original_generated_png_sha256: 7fa2f9661edab37366bac194631cfe55459d9fe577eb31c1410e887ae1d1fee5
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 9cb8a5c60a9313bd7a66270b86fdf9b17f0d2be8d95a8a6d20b2e087a27a2ee9
+  inbox_png_sha256: ff485c6fc666fb578b67793ecaf1117a5073691dba21d04a2ebf02d529d26b10
+  qa_sha256: 93e5fc9faec3d38073ed2a368b7540e2f28873a32fbdcaf80408e23c7a345ea9
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
