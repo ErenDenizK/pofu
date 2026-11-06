@@ -1,0 +1,21 @@
+id: asset-x-home-night-key
+type: asset
+title_tr: x-home-night-key
+title_en: x-home-night-key (plate)
+status: in-production
+horizon: now
+summary: >-
+  The attached home island, same layout and camera, on a clear, luminous night. A big soft
+  moon high on the upper right lights the scene in cool silver: every top edge (the lawn's
+  rim, the tops of the stall, the lamp, the round door's frame, the sea of clouds) catches
+  a soft silver-blue rim of moonlight, while the shade is a deep but clearly coloured blue-violet,
+  never black, never grey. The lawn is a dark moonlit blue…
+art:
+  images: []
+  jobs:
+  - batch-45-beautiful-wounds:x-home-night-key
+sources:
+- doc: tools/imagegen/manifest/batch-45-beautiful-wounds.yaml
+kind: plate
+batch: batch-45-beautiful-wounds
+size: 1536x1024

@@ -1,0 +1,21 @@
+id: asset-light-shaft
+type: asset
+title_tr: light-shaft
+title_en: light-shaft (ui)
+status: in-production
+horizon: now
+summary: >-
+  One single soft beam of light falling from the top left corner diagonally toward the lower
+  middle of the image, a gentle wedge that widens as it falls, brightest near the top and
+  fading softly to nothing before the bottom edge, its sides soft and slightly uneven like
+  light through mist. A few tiny soft dust motes float inside the beam. Warm pale gold light
+  on pure black.
+art:
+  images: []
+  jobs:
+  - batch-44-weather-fx:light-shaft
+sources:
+- doc: tools/imagegen/manifest/batch-44-weather-fx.yaml
+kind: ui
+batch: batch-44-weather-fx
+size: 1024x1024

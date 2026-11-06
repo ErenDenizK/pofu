@@ -1,0 +1,21 @@
+id: asset-x-home-rain
+type: asset
+title_tr: x-home-rain
+title_en: x-home-rain (plate)
+status: in-production
+horizon: now
+summary: >-
+  The attached home island, same layout and camera, in a gentle light rain at midday: soft
+  slanting streaks of rain, a soft overcast sky in cool lilac-grey with brighter breaks, the
+  lawn a deeper, wetter green with small silver glints of water on the stones and the path,
+  soft cool shadows, gentle mist on the sea of clouds below. ONE warm light: the tea stall's
+  burner glows honey-gold with a warm pool on the wet ground.…
+art:
+  images: []
+  jobs:
+  - batch-45-beautiful-wounds:x-home-rain
+sources:
+- doc: tools/imagegen/manifest/batch-45-beautiful-wounds.yaml
+kind: plate
+batch: batch-45-beautiful-wounds
+size: 1536x1024
