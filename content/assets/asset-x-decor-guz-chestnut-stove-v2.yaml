@@ -1,0 +1,34 @@
+id: asset-x-decor-guz-chestnut-stove-v2
+type: asset
+title_tr: x-decor-guz-chestnut-stove-v2
+title_en: x-decor-guz-chestnut-stove-v2 (prop)
+status: planned
+horizon: now
+summary: >-
+  A fresh compact chestnut-warming arrangement: a small round matte dark-sage stove turned
+  slightly toward the right, standing on exactly three short legs. Its little door has a round
+  warm-cream window; the short bent chimney pipe bends toward the left. Tuck an ordinary small
+  wooden stool close to the stove at front left, carrying a paper cone of chestnuts and a
+  tiny wooden scoop beside the cone. Keep the scoop, cone, …
+art:
+  images: []
+  jobs:
+  - batch-30c-decor-seasons-2-v2:x-decor-guz-chestnut-stove-v2
+sources:
+- doc: tools/imagegen/manifest/batch-30c-decor-seasons-2-v2.yaml
+kind: prop
+batch: batch-30c-decor-seasons-2-v2
+size: 1024x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Selected take 2; auto-picked by QA; founder review pending. Registration remains planned
+  and art.images is empty.
+- >-
+  auto-picked by QA; founder review pending. Both original and official locked alpha-composites
+  preserve the round matte sage stove with exactly three short stove legs, round cream window
+  and short left-bending pipe; one ordinary wooden stool front-left supports the chestnut
+  paper cone and tiny wooden scoop. No smoke, steam, extra scene object, living mascot, text
+  or ground cast shadow. Complete posted silhouettes are 337 px and 335 px wide, within the
+  literal one-third cap; top 500 and bottom 889/888. Both are eligible for the unchanged QA
+  ranking. Exploration only, never promoted.

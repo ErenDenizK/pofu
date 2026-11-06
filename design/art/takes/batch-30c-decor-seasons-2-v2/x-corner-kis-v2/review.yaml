@@ -1,0 +1,207 @@
+batch: batch-30c-decor-seasons-2-v2
+manifest: tools/imagegen/manifest/batch-30c-decor-seasons-2-v2.yaml
+manifest_sha256: ea5cacbf97d06a6c7df0fdc0cfe18e40fe973d63e48e965cce6438809fb462ce
+contact_sheet: design/art/takes/batch-30c-decor-seasons-2-v2/x-corner-kis-v2/contact.jpg
+jobs:
+  x-corner-kis-v2:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Both original and official locked
+      opaque paintings preserve the independent open winter corner: two complete star-string
+      poles at back-left, plump inanimate snow figure with two round snow ears and
+      plum scarf at back-right, sled leaning against snow mound front-left, copper-cream
+      salep pot on a stand and exactly two separate cups near foreground center, thin
+      snow/path stones and familiar cropped lawn edge over clouds. Warm pot glow is
+      explicitly requested here; individual prop-only eight-star, seed, three-ball,
+      lid/spout and no-steam requirements were not imported. No living resident, copied
+      whole island, roots, door or reference bench. Both eligible for unchanged QA
+      ranking; day local winter colors; exploration never promoted.'
+qa_reports:
+  1:
+    job: x-corner-kis-v2
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 41 (R1 51)
+      value: 41.0
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 53 (at most 22), p98 94 (at least 90), spread 41
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 41.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 85 (band 55-90)'
+      value: 85.2
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.29 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.29
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 3.8 (at least 3.5)'
+      value: 3.77
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.5 (R1 5.3)
+      value: 2.48
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 1.0497
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.8, p95 5.4, off-palette 2.0% (top: #BB6633 (0.2%), #995577
+        (0.2%))'
+      value: 2.8163
+    info:
+      metrics_raw:
+        L_p5: 61.5
+        L_p50: 85.7
+        L_p95: 93.9
+        C_p50: 11.5
+        C_p95: 42.1
+        C_p99: 53.9
+        detail: 3.38
+      metrics_locked:
+        L_p5: 62.1
+        L_p50: 85.7
+        L_p95: 93.6
+        C_p50: 11.4
+        C_p95: 41.0
+        C_p99: 52.4
+        detail: 2.48
+    fingerprint: 750fa9c65ca7b880
+  2:
+    job: x-corner-kis-v2
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 36 (R1 51)
+      value: 35.5
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 56 (at most 22), p98 94 (at least 90), spread 38
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 38.1
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 88 (band 55-90)'
+      value: 88.2
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.33 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.325
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 3.7 (at least 3.5)'
+      value: 3.66
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.5 (R1 5.3)
+      value: 2.47
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.1
+      value: 1.0831
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.6, p95 5.2, off-palette 1.6% (top: #AA5577 (0.2%), #AA6688
+        (0.2%))'
+      value: 2.587
+    info:
+      metrics_raw:
+        L_p5: 62.8
+        L_p50: 86.2
+        L_p95: 94.4
+        C_p50: 12.3
+        C_p95: 36.3
+        C_p99: 47.6
+        detail: 3.36
+      metrics_locked:
+        L_p5: 63.3
+        L_p50: 86.2
+        L_p95: 94.0
+        C_p50: 12.2
+        C_p95: 35.5
+        C_p99: 46.5
+        detail: 2.47
+    fingerprint: 750fa9c65ca7b880
+manual_review:
+  observed_note: 'Both original and official locked opaque paintings preserve the
+    independent open winter corner: two complete star-string poles at back-left, plump
+    inanimate snow figure with two round snow ears and plum scarf at back-right, sled
+    leaning against snow mound front-left, copper-cream salep pot on a stand and exactly
+    two separate cups near foreground center, thin snow/path stones and familiar cropped
+    lawn edge over clouds. Warm pot glow is explicitly requested here; individual
+    prop-only eight-star, seed, three-ball, lid/spout and no-steam requirements were
+    not imported. No living resident, copied whole island, roots, door or reference
+    bench. Both eligible for unchanged QA ranking; day local winter colors; exploration
+    never promoted.'
+  excluded_takes: []
+sources:
+- batch: batch-30c-decor-seasons-2-v2
+  job: x-corner-kis-v2
+  take: 1
+  round: 1
+  logical_run: 20261106-b30c-v2-winter-corner
+  source_file: /workspace/generated_images/exec-9d56c822-c1fc-4dcf-9078-42267172ef48.png
+  returned_at: '2026-11-06T00:51:42.420Z'
+  prompt_sha256: f8bfdc0629338b22d817ed76c25a9f50fbefc0f48fd3679cf2b2dad929769620
+  fingerprint: 750fa9c65ca7b880
+  saved_at: '2026-11-06T00:51:42.835156+00:00'
+  original_generated_png_sha256: cefdb5a53d40a3d765515f857038549f3628e7320a78d16de20d91e8aa1c9272
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: ad032911ca03edd522f6e730a816ca79b492ba59b6228a50d75e684653653298
+  inbox_png_sha256: c3ac510c0ac42c35465cae1993e6c419196c4244d16890d37dd6bd12087683cd
+  qa_sha256: e366bbb681dc73697f54d29259010387774862c9a1c1c0bee18c76508829ad6b
+- batch: batch-30c-decor-seasons-2-v2
+  job: x-corner-kis-v2
+  take: 2
+  round: 1
+  logical_run: 20261106-b30c-v2-winter-corner
+  source_file: /workspace/generated_images/exec-8c09c3c9-591a-45ae-9c4d-fb1c39d7c8a0.png
+  returned_at: '2026-11-06T00:52:13.636Z'
+  prompt_sha256: f8bfdc0629338b22d817ed76c25a9f50fbefc0f48fd3679cf2b2dad929769620
+  fingerprint: 750fa9c65ca7b880
+  saved_at: '2026-11-06T00:52:13.932091+00:00'
+  original_generated_png_sha256: aebd308b54b7069079d9055de892de941c59367b3e6fa7a0d751f3615712bb1e
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: bf31451484a23b3aa4463b6bc4a8f702ab287f06db96c4497c02dbe594e7f566
+  inbox_png_sha256: a6ae1e1fe60594ac9cfafa13d92dce01b6f3afdf0bac88164534de253ffde8e0
+  qa_sha256: 94fa55d0bd2c492a8bcbc76923962d466fb7e18df721acade60252221d60293b
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+variation_proof_sha256: a6b42f3fbfdb3ab513b04eb9c4e1ea02889b0542875eb6cff926b45df031def0

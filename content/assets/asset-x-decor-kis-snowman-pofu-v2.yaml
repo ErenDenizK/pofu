@@ -1,0 +1,34 @@
+id: asset-x-decor-kis-snowman-pofu-v2
+type: asset
+title_tr: x-decor-kis-snowman-pofu-v2
+title_en: x-decor-kis-snowman-pofu-v2 (prop)
+status: planned
+horizon: now
+summary: >-
+  A fresh plump winter snow figure turned gently toward the left, built from exactly three
+  distinct soft white snowballs. Give its top snowball exactly two small round hamster-shaped
+  ears sculpted from smooth snow, exactly two big glossy dark eyes, one tiny pink nose and
+  round pink cheeks. A plum knitted scarf crosses the separate snow forms without hiding their
+  three-ball construction. It has exactly two twig arms: on…
+art:
+  images: []
+  jobs:
+  - batch-30c-decor-seasons-2-v2:x-decor-kis-snowman-pofu-v2
+sources:
+- doc: tools/imagegen/manifest/batch-30c-decor-seasons-2-v2.yaml
+kind: prop
+batch: batch-30c-decor-seasons-2-v2
+size: 1024x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Selected take 1; auto-picked by QA; founder review pending. Registration remains planned
+  and art.images is empty.
+- >-
+  auto-picked by QA; founder review pending. Take 1 preserves three stacked smooth snowballs,
+  two round snow ears, two glossy sculpted dark eyes, tiny pink nose/cheeks, plum knitted
+  scarf, exactly two complete twig arms and one inward-held sunflower seed; no fur, curl or
+  living hamster body. It turns slightly left and its complete posted silhouette is 263 px
+  wide, within the one-third cap. Take 2 is excluded for complete posted width 467 px above
+  341.33, not its explicitly allowed sculpted eyes or snow ears. Take 1 eligible; no unnecessary
+  retry; exploration only and never promoted.

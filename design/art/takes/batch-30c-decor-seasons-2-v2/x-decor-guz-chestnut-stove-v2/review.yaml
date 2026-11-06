@@ -1,0 +1,246 @@
+batch: batch-30c-decor-seasons-2-v2
+manifest: tools/imagegen/manifest/batch-30c-decor-seasons-2-v2.yaml
+manifest_sha256: ea5cacbf97d06a6c7df0fdc0cfe18e40fe973d63e48e965cce6438809fb462ce
+contact_sheet: design/art/takes/batch-30c-decor-seasons-2-v2/x-decor-guz-chestnut-stove-v2/contact.jpg
+jobs:
+  x-decor-guz-chestnut-stove-v2:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both original and official locked
+      alpha-composites preserve the round matte sage stove with exactly three short
+      stove legs, round cream window and short left-bending pipe; one ordinary wooden
+      stool front-left supports the chestnut paper cone and tiny wooden scoop. No
+      smoke, steam, extra scene object, living mascot, text or ground cast shadow.
+      Complete posted silhouettes are 337 px and 335 px wide, within the literal one-third
+      cap; top 500 and bottom 889/888. Both are eligible for the unchanged QA ranking.
+      Exploration only, never promoted.
+qa_reports:
+  1:
+    job: x-decor-guz-chestnut-stove-v2
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 47 (R1 51)
+      value: 46.7
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 27 (at most 22), p98 90 (at least 90), spread 64
+        (at least 60)'
+      value: 63.6
+    - check: light_median
+      status: warn
+      message: 'day/subject: median L 51 (band 55-90)'
+      value: 51.3
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.04 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.039
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 8.7 (at least 3.5)'
+      value: 8.72
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.6 (R1 5.3)
+      value: 2.57
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.2
+      value: 1.2217
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 6.1, p95 13.5, off-palette 24.5% (top: #666644 (5.9%), #777755
+        (3.9%)) (advisory in an exploration)'
+      value: 6.0621
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 59 against the world reference (outliers: L_p2, detail,
+        edge)'
+      value: 58.7
+    info:
+      fit:
+        scale: 0.6929
+        anchor:
+        - 453.4
+        - 870
+      registration:
+        dx: 59
+        dy: 18
+      metrics_raw:
+        L_p5: 29.9
+        L_p50: 51.6
+        L_p95: 86.5
+        C_p50: 23.4
+        C_p95: 47.2
+        C_p99: 52.2
+        detail: 3.35
+      metrics_locked:
+        L_p5: 30.8
+        L_p50: 51.2
+        L_p95: 86.0
+        C_p50: 23.3
+        C_p95: 46.7
+        C_p99: 51.0
+        detail: 2.57
+    fingerprint: 9d71674fa086cd29
+  2:
+    job: x-decor-guz-chestnut-stove-v2
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 46 (R1 51)
+      value: 45.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 27 (at most 22), p98 90 (at least 90), spread 63
+        (at least 60)'
+      value: 63.3
+    - check: light_median
+      status: warn
+      message: 'day/subject: median L 52 (band 55-90)'
+      value: 52.0
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.06 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.063
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 8.8 (at least 3.5)'
+      value: 8.83
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.8 (R1 5.3)
+      value: 2.75
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.2
+      value: 1.1915
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 7.3, p95 13.9, off-palette 26.9% (top: #666644 (9.5%), #777755
+        (4.5%)) (advisory in an exploration)'
+      value: 7.318
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 58 against the world reference (outliers: L_p2, detail,
+        edge)'
+      value: 58.3
+    info:
+      fit:
+        scale: 0.635
+        anchor:
+        - 446.1
+        - 847
+      registration:
+        dx: 67
+        dy: 41
+      metrics_raw:
+        L_p5: 29.0
+        L_p50: 52.5
+        L_p95: 85.1
+        C_p50: 20.1
+        C_p95: 46.2
+        C_p99: 48.5
+        detail: 3.58
+      metrics_locked:
+        L_p5: 30.0
+        L_p50: 52.0
+        L_p95: 84.4
+        C_p50: 20.0
+        C_p95: 45.8
+        C_p99: 47.9
+        detail: 2.75
+    fingerprint: 9d71674fa086cd29
+manual_review:
+  observed_note: Both original and official locked alpha-composites preserve the round
+    matte sage stove with exactly three short stove legs, round cream window and short
+    left-bending pipe; one ordinary wooden stool front-left supports the chestnut
+    paper cone and tiny wooden scoop. No smoke, steam, extra scene object, living
+    mascot, text or ground cast shadow. Complete posted silhouettes are 337 px and
+    335 px wide, within the literal one-third cap; top 500 and bottom 889/888. Both
+    are eligible for the unchanged QA ranking. Exploration only, never promoted.
+  excluded_takes: []
+sources:
+- batch: batch-30c-decor-seasons-2-v2
+  job: x-decor-guz-chestnut-stove-v2
+  take: 1
+  round: 1
+  logical_run: 20261106-b30c-v2-first-roots
+  source_file: /workspace/generated_images/exec-917505c9-f439-4c4b-8b15-94dab140cf2f.png
+  returned_at: '2026-11-06T00:47:19.077Z'
+  prompt_sha256: 4bf19ed267a091789bf4ab4abc34cb241d18c814fd130ab55dfff4b1761d3014
+  fingerprint: 9d71674fa086cd29
+  saved_at: '2026-11-06T00:47:19.399427+00:00'
+  original_generated_png_sha256: ecdf15f22c66d593ca795c072632fd99d5fd05ee4120158ccbc9404741dcd9e9
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: e91753779c4199cb3b375c7d49af0b28ed81059887099177a3ea30105e4568f4
+  inbox_png_sha256: 664c6c146d12d2e6471d9a49c3a9271bd82ff55ff8a1a3e0d270e1850dfbb8b1
+  qa_sha256: 549496137740cef96d98cb5fed12cb997c0f353c1835ae93a547608cd123f480
+- batch: batch-30c-decor-seasons-2-v2
+  job: x-decor-guz-chestnut-stove-v2
+  take: 2
+  round: 1
+  logical_run: 20261106-b30c-v2-first-roots
+  source_file: /workspace/generated_images/exec-3a45b793-a683-436b-9a3d-35b5c269c572.png
+  returned_at: '2026-11-06T00:46:28.015Z'
+  prompt_sha256: 4bf19ed267a091789bf4ab4abc34cb241d18c814fd130ab55dfff4b1761d3014
+  fingerprint: 9d71674fa086cd29
+  saved_at: '2026-11-06T00:46:28.358359+00:00'
+  original_generated_png_sha256: b32631c3af9b12a77b2129544dfd90ffd9d17d7741a876e12784ba36565ecb98
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 8b7cc9a173e5703b2f28516570e58211548bf69581231f8cb821c9f0394183ab
+  inbox_png_sha256: 82bbe08b51526f9ca5137eb7d4d52a0fcce31626b6daf0c844126df3f4c32640
+  qa_sha256: a57aacecd8fabc91d21328456c27e635eaab029ed50889a6ad15635542bbc703
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+variation_proof_sha256: a6b42f3fbfdb3ab513b04eb9c4e1ea02889b0542875eb6cff926b45df031def0

@@ -1,0 +1,34 @@
+id: asset-x-decor-kis-star-string-v2
+type: asset
+title_tr: x-decor-kis-star-string-v2
+title_en: x-decor-kis-star-string-v2 (prop)
+status: cut
+horizon: now
+summary: >-
+  A fresh compact high-hanging winter star string, with a thin line in a shallow gently uneven
+  sag between exactly two very short slim honey-wood poles with round tops. Show both complete
+  poles. Hang exactly eight separate soft five-pointed stars along the line, each a flat rounded
+  shape, alternating cream and pale gold. Keep each whole star separate enough to count, with
+  five rounded points per star. Use no extra spar…
+art:
+  images: []
+  jobs:
+  - batch-30c-decor-seasons-2-v2:x-decor-kis-star-string-v2
+sources:
+- doc: tools/imagegen/manifest/batch-30c-decor-seasons-2-v2.yaml
+kind: prop
+batch: batch-30c-decor-seasons-2-v2
+size: 1024x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Skipped after the sole allowed retry; registration remains cut and art.images is empty.
+- >-
+  Skipped after exactly one unchanged-prompt retry: complete posted hanging silhouettes are
+  632, 610, 732 and 571 px wide, each above the literal at-most-one-third cap 341.33 px. Original
+  and official locked alpha-composites show exactly eight separate whole five-point cream/pale-gold
+  stars between two complete short round-topped honey poles, with line sag and no extra sparkle
+  or glow. Takes 2-4 start at y300 with bottom <=620 and height <=300, but width still fails;
+  take 1 additionally starts at y317 rather than requested y300. Hanging profile retained;
+  no ground substitution, shrink, crop, prompt edit or threshold waiver. All four immutable
+  originals preserved; independent winter corner is not a dependent.
