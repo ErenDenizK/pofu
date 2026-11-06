@@ -1,0 +1,56 @@
+{
+ "after": {
+  "C_mean": 26.071,
+  "C_p50": 25.693,
+  "C_p95": 44.67,
+  "L_mean": 80.66,
+  "L_p2": 48.071,
+  "L_p98": 94.004,
+  "detail": 2.768,
+  "edge": 5.15,
+  "tint_a": 4.73,
+  "tint_b": 9.585,
+  "warmth_b": 22.817
+ },
+ "before": {
+  "C_mean": 26.071,
+  "C_p50": 25.693,
+  "C_p95": 44.67,
+  "L_mean": 80.66,
+  "L_p2": 48.071,
+  "L_p98": 94.004,
+  "detail": 2.768,
+  "edge": 5.15,
+  "tint_a": 4.73,
+  "tint_b": 9.585,
+  "warmth_b": 22.817
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "sheet",
+ "matched_to": "world",
+ "outliers_after": [
+  "detail",
+  "edge"
+ ],
+ "outliers_before": [
+  "detail",
+  "edge"
+ ],
+ "ppu": 4.103,
+ "reference": false,
+ "score_after": 80.2,
+ "score_before": 80.2,
+ "shipped": false,
+ "source": "design/art/masters/shield-pofu-door/shield-pofu-door.webp",
+ "source_sha": "82a57d5ca75e691f"
+}

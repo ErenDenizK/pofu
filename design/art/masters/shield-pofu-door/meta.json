@@ -1,0 +1,107 @@
+{
+  "job": "shield-pofu-door",
+  "batch": "batch-35-experience",
+  "asset": "sheet__shield-pofu-door",
+  "take": 2,
+  "takes_considered": 2,
+  "approved_at": "2026-11-06T00:49:11+00:00",
+  "image": "design/art/masters/shield-pofu-door/shield-pofu-door.png",
+  "raw": "design/art/masters/shield-pofu-door/raw.webp",
+  "raw_encoding": "webp q95",
+  "fingerprint": "2c7fcf6eee9b3cb4",
+  "prompt": "REFERENCES (attached, in this order):\n1. Pofu, the hamster: his exact look, fur, colors, eyes and signature curl.\n2. The home island: copy ONLY the round door (its shape, wood, color and size relative to the plate) and the soft painting. Do not draw the island.\n\nA sheet of three small scenes in one row, each showing Pofu the hamster, in his exact attached look, standing\nat his round wooden door (the attached island's round door: a round honey-wood door with a small round\nwindow, set in a low rounded cream wall segment), the same door and the same place in all three, evenly\nspaced with wide empty space between them: (1) calm: standing relaxed beside the door, a soft content\nsmile, eyes open and gentle; (2) proud: chest out, chin up, eyes bright, a small proud smile, one paw\nresting on the door frame; (3) sleepy: eyes half closed, head drooping, a tiny yawn, leaning gently on\nthe door frame. Pofu's cheeks are never puffed in any of them. On a plain transparent background, each\nscene complete, none touching another.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: puffed cheeks, a floor, a ground shadow, cast shadows, text, speech bubbles, hearts, sparkles, a curl on any head except Pofu's, extra limbs, a background, a border\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, landscape 1536 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png",
+      "role": "Pofu, the hamster: his exact look, fur, colors, eyes and signature curl."
+    },
+    {
+      "path": "design/art/masters/island-main-l-v3/island-main-l-v3.webp",
+      "role": "The home island: copy ONLY the round door (its shape, wood, color and size relative to the plate) and the soft painting. Do not draw the island."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-05T23:55:28+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "char-guard",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "fit": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1536x1024"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 45 (R1 51)",
+        "value": 44.7
+      },
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 48 (at most 22), p98 94 (at least 90), spread 46 (at least 60) (warn-only until the founder has seen the light pilot)",
+        "value": 45.9
+      },
+      {
+        "check": "light_median",
+        "status": "pass",
+        "message": "day/subject: median L 83 (band 55-90)",
+        "value": 83.2
+      },
+      {
+        "check": "light_haze",
+        "status": "warn",
+        "message": "day/subject: dark-channel haze 0.22 (at most 0.20; no true dark means a wash)",
+        "value": 0.216
+      },
+      {
+        "check": "light_contrast",
+        "status": "pass",
+        "message": "day/subject: p75 local contrast 6.2 (at least 3.5)",
+        "value": 6.23
+      },
+      {
+        "check": "detail_budget",
+        "status": "warn",
+        "message": "detail at display size 6.5 (R1 5.3)",
+        "value": 6.55
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 0.0",
+        "value": 0.01
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.8, p95 5.6, off-palette 0.9% (top: #EE7766 (0.1%), #DD7755 (0.1%))",
+        "value": 1.7755
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Both original and official locked candidates are independently visually eligible: exactly three complete separate scenes with the same Pofu and honey round door/window in a low cream wall segment. Calm has gentle open eyes; proud has lifted chin/chest and a paw on the frame; sleepy droops, yawns and leans with heavy lids. Signature curl is retained only on Pofu, cheeks are natural and unpuffed, and no island, lettering, sparkle, extra limbs or background is painted. Take2 has the lowest eligible lock load0.0100 versus0.0138. The canonical sheet char-guard preserves the fur finish without a prop-lock override; no manual pixel edits. Exact-RGBA lossless preflight verifies its553930-byte WebP can preserve the full1536x1024 master under614400 without resizing. Real Harmony measure/check and own shard accompany the master; advisory light warnings remain for founder review."
+}
