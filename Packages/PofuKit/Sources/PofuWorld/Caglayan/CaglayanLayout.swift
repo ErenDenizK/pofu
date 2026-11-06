@@ -125,6 +125,9 @@ public enum CaglayanLayout {
         "caglayan-island-\(clamped(stage))"
     }
 
+    /// Damla is baked 38 units wide; she is drawn at this share of that, about Mochi's size.
+    public static let damlaScale = 26.0 / 38.0
+
     /// Damla by the pool; with a full glass at stage 4.
     public static func damlaArt(stage: Int) -> String {
         clamped(stage) >= stages - 1 ? "world-damla-glass" : "world-damla"
@@ -171,9 +174,9 @@ public enum CaglayanLayout {
     /// The y of the body's lowest line, where the falls leave it.
     public static let undersideY = 56.0
     public static let ribbons: [Ribbon] = [
-        Ribbon(x: -20, width: 6, length: 120, phase: 0.0),
-        Ribbon(x: 2, width: 10, length: 150, phase: 0.37),
-        Ribbon(x: 24, width: 6, length: 105, phase: 0.71),
+        Ribbon(x: -22, width: 4, length: 110, phase: 0.0),
+        Ribbon(x: 0, width: 7, length: 140, phase: 0.37),
+        Ribbon(x: 22, width: 4, length: 95, phase: 0.71),
     ]
     /// Seconds for the highlight to run one ribbon's length.
     public static let fallPeriod = 1.1

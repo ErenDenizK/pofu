@@ -552,7 +552,7 @@ private struct SceneFrame<Bubble: View>: View {
             )
             : nil
         let depthMap: Image? = (spikeDOF && rack > 0.001) || spike.debug == .depth
-            ? SpikeDepthMap.image(world: world, pose: pose, offset: offset, size: size, art: look.art, koke: model.island == .koke && world.koke.isArrived)
+            ? SpikeDepthMap.image(world: world, pose: pose, offset: offset, size: size, art: look.art, koke: model.island == .koke && world.koke.isArrived, caglayan: model.island == .caglayan && world.caglayan.isArrived)
             : nil
         let field: DepthOfField = {
             var f = spike.field(focus: SpikeDepthMap.focusDepth(model.focus, island: model.island), focused: model.focus != nil, z: z)

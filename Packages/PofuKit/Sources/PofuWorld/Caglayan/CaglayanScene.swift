@@ -306,12 +306,13 @@ struct CaglayanIsleView: View {
             // Her contact shadow, then she.
             Ellipse()
                 .fill(Color(red: 0.24, green: 0.24, blue: 0.30).opacity(0.22))
-                .frame(width: 26, height: 6)
+                .frame(width: 18, height: 5)
                 .position(x: Self.origin.x + feet.x, y: Self.origin.y + feet.y)
+            let k = CaglayanLayout.damlaScale
             Image(name, bundle: .module)
                 .resizable()
-                .frame(width: box.width, height: box.height)
-                .position(x: Self.origin.x + feet.x + box.midX, y: Self.origin.y + feet.y + box.midY)
+                .frame(width: box.width * k, height: box.height * k)
+                .position(x: Self.origin.x + feet.x + box.midX * k, y: Self.origin.y + feet.y + box.midY * k)
         }
     }
 
@@ -394,7 +395,11 @@ struct CaglayanFalls: View {
             context.fill(
                 shape,
                 with: .linearGradient(
-                    Gradient(colors: [deep.opacity(0.9 * strength), water.opacity(0.75 * strength), water.opacity(0)]),
+                    Gradient(stops: [
+                        .init(color: deep.opacity(0.85 * strength), location: 0),
+                        .init(color: water.opacity(0.6 * strength), location: 0.35),
+                        .init(color: water.opacity(0), location: 1),
+                    ]),
                     startPoint: CGPoint(x: x, y: top), endPoint: CGPoint(x: x, y: end)
                 )
             )
@@ -444,9 +449,9 @@ struct HomeFountainView: View {
             for k in 0..<3 {
                 let spread = Double(k - 1) * 7
                 var arc = Path()
-                arc.move(to: CGPoint(x: base.x, y: base.y - 14))
-                arc.addQuadCurve(to: CGPoint(x: base.x + spread * 1.6, y: base.y), control: CGPoint(x: base.x + spread * 0.6, y: base.y - 30 - 3 * sin(t * 4 + Double(k))))
-                context.stroke(arc, with: .color(water.opacity(0.85)), style: StrokeStyle(lineWidth: 2.2, lineCap: .round))
+                arc.move(to: CGPoint(x: base.x, y: base.y - 22))
+                arc.addQuadCurve(to: CGPoint(x: base.x + spread * 1.6, y: base.y), control: CGPoint(x: base.x + spread * 0.6, y: base.y - 46 - 3 * sin(t * 4 + Double(k))))
+                context.stroke(arc, with: .color(water.opacity(0.85)), style: StrokeStyle(lineWidth: 3.2, lineCap: .round))
                 context.stroke(arc, with: .color(.white.opacity(0.7)), style: StrokeStyle(lineWidth: 0.8, lineCap: .round, dash: [3, 5], dashPhase: -t * 14))
             }
             for k in 0..<2 {
@@ -458,8 +463,8 @@ struct HomeFountainView: View {
                 )
             }
         }
-        .frame(width: 60, height: 60)
-        .position(x: point.x, y: point.y - 20)
+        .frame(width: 90, height: 90)
+        .position(x: point.x, y: point.y - 30)
         .allowsHitTesting(false)
         .accessibilityElement()
         .accessibilityLabel(Text(verbatim: WorldStrings.caglayanGift))
