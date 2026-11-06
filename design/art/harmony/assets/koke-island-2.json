@@ -1,0 +1,55 @@
+{
+ "after": {
+  "C_mean": 18.462,
+  "C_p50": 13.454,
+  "C_p95": 49.03,
+  "L_mean": 79.765,
+  "L_p2": 44.007,
+  "L_p98": 94.257,
+  "detail": 1.642,
+  "edge": 0.0,
+  "tint_a": 3.469,
+  "tint_b": -4.14,
+  "warmth_b": 8.748
+ },
+ "before": {
+  "C_mean": 22.46,
+  "C_p50": 16.367,
+  "C_p95": 59.648,
+  "L_mean": 79.765,
+  "L_p2": 44.007,
+  "L_p98": 94.257,
+  "detail": 1.638,
+  "edge": 0.0,
+  "tint_a": 4.449,
+  "tint_b": -3.518,
+  "warmth_b": 10.643
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 0.822,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "plate",
+ "matched_to": "world",
+ "outliers_after": [
+  "edge"
+ ],
+ "outliers_before": [
+  "C_p95",
+  "edge"
+ ],
+ "ppu": 4.103,
+ "reference": false,
+ "score_after": 83.1,
+ "score_before": 73.1,
+ "shipped": false,
+ "source": "design/art/masters/koke-island-2/koke-island-2.png",
+ "source_sha": "0e674749d450278f"
+}

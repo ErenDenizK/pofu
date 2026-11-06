@@ -4,17 +4,18 @@ title_tr: koke-island-2
 title_en: koke-island-2 (plate)
 status: in-production
 horizon: now
-summary: >-
-  Edit the attached island plate from stage 0 to stage 2: the first warm light. Repaint about
-  two thirds of the moss on Koke's hump and on the lawn a fresh living green, with a few brighter
-  patches on its back; only the underside and the far side stay grey. The two flower clusters
-  nearest the viewer are open: soft round blossoms in butter yellow and blush pink with green
-  leaves; the other three clusters have swollen bu…
+summary: 'Edit the attached island plate from stage 0 to stage 2: the first warm light.
+  Repaint about two thirds of the moss on Koke''s hump and on the lawn a fresh living
+  green, with a few brighter patches on its back; only the underside and the far side
+  stay grey. The two flower clusters nearest the viewer are open: soft round blossoms
+  in butter yellow and blush pink with green leaves; the other three clusters have
+  swollen bu…'
 links:
   variant_of:
   - asset-koke-island-0
 art:
-  images: []
+  images:
+  - design/art/masters/koke-island-2/koke-island-2.png
   jobs:
   - batch-39-koke-production:koke-island-2
 sources:
