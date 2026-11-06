@@ -1,0 +1,21 @@
+id: asset-gate-postcard-rain
+type: asset
+title_tr: gate-postcard-rain
+title_en: gate-postcard-rain (plate)
+status: in-production
+horizon: now
+summary: >-
+  A portrait painting for a cozy mobile game: standing on a small floating island's lawn,
+  looking across it toward its edge and the sea of clouds beyond, in a gentle light rain,
+  a soft lilac-grey sky with brighter breaks, the lawn wet and deep green with silver glints
+  on the stones. In the lower middle, at about two thirds of the height, an empty soft patch
+  of lawn with a few stepping stones leading to it, clearly a pl…
+art:
+  images: []
+  jobs:
+  - batch-50-gate-postcards:gate-postcard-rain
+sources:
+- doc: tools/imagegen/manifest/batch-50-gate-postcards.yaml
+kind: plate
+batch: batch-50-gate-postcards
+size: 1024x1536

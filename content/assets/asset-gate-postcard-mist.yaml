@@ -1,0 +1,21 @@
+id: asset-gate-postcard-mist
+type: asset
+title_tr: gate-postcard-mist
+title_en: gate-postcard-mist (plate)
+status: in-production
+horizon: now
+summary: >-
+  A portrait painting for a cozy mobile game: standing on a small floating island's lawn,
+  looking across it toward its edge and the sea of clouds beyond, in a misty morning, real
+  layered fog lying on the sea of clouds and drifting in veils at the far edge of the lawn,
+  a soft slanting shaft of warm light. In the lower middle, at about two thirds of the height,
+  an empty soft patch of lawn with a few stepping stones leadi…
+art:
+  images: []
+  jobs:
+  - batch-50-gate-postcards:gate-postcard-mist
+sources:
+- doc: tools/imagegen/manifest/batch-50-gate-postcards.yaml
+kind: plate
+batch: batch-50-gate-postcards
+size: 1024x1536

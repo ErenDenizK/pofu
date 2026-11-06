@@ -1,0 +1,21 @@
+id: asset-gate-postcard-night
+type: asset
+title_tr: gate-postcard-night
+title_en: gate-postcard-night (plate)
+status: in-production
+horizon: now
+summary: >-
+  A portrait painting for a cozy mobile game: standing on a small floating island's lawn,
+  looking across it toward its edge and the sea of clouds beyond, in a clear luminous night,
+  a big soft moon high on the right, silver rims on the lawn, deep blue-violet shade, a few
+  fireflies, a warm lantern on a post at the side. In the lower middle, at about two thirds
+  of the height, an empty soft patch of lawn with a few steppin…
+art:
+  images: []
+  jobs:
+  - batch-50-gate-postcards:gate-postcard-night
+sources:
+- doc: tools/imagegen/manifest/batch-50-gate-postcards.yaml
+kind: plate
+batch: batch-50-gate-postcards
+size: 1024x1536
