@@ -1,0 +1,121 @@
+{
+  "job": "mochi-proud",
+  "batch": "batch-41-resident-reactions",
+  "asset": "char__mochi-proud",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-06T00:51:57+00:00",
+  "image": "design/art/masters/mochi-proud/mochi-proud.png",
+  "raw": "design/art/masters/mochi-proud/raw.webp",
+  "raw_encoding": "webp q95",
+  "fingerprint": "5647a447b66ce90f",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nEdit the attached bunny, Mochi, into a proud reaction. Change only the face and ears: the chin lifts a touch, both eyes become calm, content half-closed lids with the catchlights kept, the small mouth becomes a quietly confident closed smile, the blush deepens a little, and the long ears stand tall and upright. Body, paws, colors and size stay exactly as they are.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: a smirk, a sneer, tears, a worried look, teeth, a ground shadow, text, motion lines.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, portrait 1024 x 1536.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/mochi-v2/mochi-v2.webp",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-06T00:28:42+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "char-guard",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "fit": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1024x1536"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 32 (R1 51)",
+        "value": 31.6
+      },
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 64 (at most 22), p98 97 (at least 90), spread 33 (at least 60) (warn-only until the founder has seen the light pilot)",
+        "value": 33.2
+      },
+      {
+        "check": "light_median",
+        "status": "warn",
+        "message": "day/subject: median L 91 (band 55-90)",
+        "value": 91.0
+      },
+      {
+        "check": "light_haze",
+        "status": "warn",
+        "message": "day/subject: dark-channel haze 0.43 (at most 0.20; no true dark means a wash) (warn-only until the founder has seen the light pilot)",
+        "value": 0.435
+      },
+      {
+        "check": "light_contrast",
+        "status": "warn",
+        "message": "day/subject: p75 local contrast 2.2 (at least 3.5) (warn-only until the founder has seen the light pilot)",
+        "value": 2.19
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 3.4 (R1 5.3)",
+        "value": 3.44
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 0.8, p95 1.9, off-palette 0.6% (top: #441100 (0.1%), #EE7766 (0.1%))",
+        "value": 0.764
+      },
+      {
+        "check": "ground_line",
+        "status": "pass",
+        "message": "feet at 87.8% of the height (contract 88%)",
+        "value": 0.8783
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 72 against the char reference (outliers: C_p95, L_p2)",
+        "value": 71.6
+      },
+      {
+        "check": "edit_stability",
+        "status": "warn",
+        "message": "71% of the parent level unchanged",
+        "value": 0.7079
+      },
+      {
+        "check": "edit_chroma",
+        "status": "pass",
+        "message": "chroma x1.10 of the parent level (drift compounds along a chain)",
+        "value": 1.0956
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Independent read-only review accepts take1: tall upright ears are expressly requested, warm half-closed catchlit eyes, small closed confident smile and lifted chin; no curl, smirk or teeth. Parent lower-body/paws/feet remain visually registered. Exclude take2 because official alignment scale1.1769 visibly enlarges the torso and shifts front paws, violating unchanged body/size; this is not an invented stability threshold or an objection to upright ears. Independently, its best exact lossless WebP767690 bytes exceeds614400; all failed encodings are preserved. Take1 exact full-canvas lossless593344 bytes fits. Both numerical QA reports and advisory warnings remain available. No further pair is justified because take1 is fully eligible. Independent evidence: independent-reviews/review-mochi-proud-goat-surprised.json."
+}
