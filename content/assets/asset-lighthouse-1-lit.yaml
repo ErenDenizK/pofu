@@ -2,14 +2,14 @@ id: asset-lighthouse-1-lit
 type: asset
 title_tr: lighthouse-1-lit
 title_en: lighthouse-1-lit (station)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  Light the lighthouse from inside: the lamp room under the coral cap (the row of dark glass
-  panes between the cream posts) now glows warm candle-amber, brightest in the middle of the
-  room with a soft rounded lamp shape suggested inside, painted as soft broad shapes. Only
-  the glass panes of the lamp room change: the posts between them, the cap, the balcony and
-  railing, the stripes, the round window, the door and the ba…
+summary: 'Light the lighthouse from inside: the lamp room under the coral cap (the
+  row of dark glass panes between the cream posts) now glows warm candle-amber, brightest
+  in the middle of the room with a soft rounded lamp shape suggested inside, painted
+  as soft broad shapes. Only the glass panes of the lamp room change: the posts between
+  them, the cap, the balcony and railing, the stripes, the round window, the door
+  and the ba…'
 links:
   variant_of:
   - asset-lighthouse-1
@@ -21,3 +21,11 @@ sources:
 - doc: tools/imagegen/manifest/batch-36-lit-ladder-pilot.yaml
 kind: station
 batch: batch-36-lit-ladder-pilot
+notes:
+- 'batch-36-lit-ladder-pilot skipped after four takes: All four takes pass hard QA
+  and edit_stability above 0.9, but independent source and locked reviews reject visible
+  changes outside the permitted lamp-room panes. Takes1/2/4 brighten or warm the balcony
+  and railing; take3 is closer there but changes cap and striped-body color and shading.
+  Three amber panes and rounded inner lamp are present without rays or exterior halo.
+  One unchanged-prompt retry exhausted; no checks waived, no master promoted. Exact
+  per-part evidence and source hashes retained in runtime independent reviews.'

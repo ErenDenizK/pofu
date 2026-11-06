@@ -2,14 +2,14 @@ id: asset-door-mochi-lit
 type: asset
 title_tr: door-mochi-lit
 title_en: door-mochi-lit (prop)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  Light Mochi's door from inside: the small round window with its cream cross bar now glows
-  warm candle-amber, the four panes of glass soft and a little brighter toward the middle,
-  painted as soft broad shapes. Only the window glass changes: the cross bar keeps its cream
-  color, and the rose door, the honey frame, the knob, the doorstep, the hanging tea-glass
-  sign and the earth ring keep their exact day colors (the app …
+summary: 'Light Mochi''s door from inside: the small round window with its cream cross
+  bar now glows warm candle-amber, the four panes of glass soft and a little brighter
+  toward the middle, painted as soft broad shapes. Only the window glass changes:
+  the cross bar keeps its cream color, and the rose door, the honey frame, the knob,
+  the doorstep, the hanging tea-glass sign and the earth ring keep their exact day
+  colors (the app …'
 links:
   variant_of:
   - asset-door-mochi
@@ -21,3 +21,13 @@ sources:
 - doc: tools/imagegen/manifest/batch-36-lit-ladder-pilot.yaml
 kind: prop
 batch: batch-36-lit-ladder-pilot
+notes:
+- 'batch-36-lit-ladder-pilot skipped after four takes: All four takes pass hard QA
+  and manual edit_stability above0.9 (0.9430,0.9344,0.9420,0.9328), and paint four
+  warm panes. Independent source and locked reviews reject visible recoloring of the
+  cream crossbar and changes outside those panes: initialtake1 brightens the doorstep,
+  initialtake2 changes the sign, and retry3/4 repaint the existing peach earth or
+  frame ring into a smoother different top crest and outer contour. The inherited
+  peach ring itself is expected and is not rejected as an added halo. Take3 has lowest
+  lock load but fails content preservation. One unchanged-prompt retry exhausted,
+  no master promoted and no check waived; exact source hashes and reviews retained.'
