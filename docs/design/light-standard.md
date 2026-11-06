@@ -1,9 +1,8 @@
 # Light standard
 
-Status: v1, **warn-only** (2026-11-03). Thresholds stay warnings until the
-founder has seen the light pilot; flip `enforce` in
-`design/art/light-standard.json` after that and a failing check becomes a hard
-fail for production jobs (exploration jobs stay advisory either way).
+Status: v1, **enforced for production batches** (the lit-ladder pilot shipped,
+#231); exploration jobs stay advisory. Originally warn-only (2026-11-03); the
+`enforce` flag lives in `design/art/light-standard.json`.
 
 Why: the approved island master and every concept take so far are washed.
 They sit in a high, milky value band (L 60 to 98) with no true dark anywhere,
