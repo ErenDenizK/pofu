@@ -627,6 +627,7 @@ private struct SceneFrame<Bubble: View>: View {
                         tilt: tilt,
                         art: look.art,
                         litOverlays: look.litOverlays,
+                        harborFade: model.island == .harbor ? 1 : max(0, 1 - max(z, 0) / 0.8) * (model.focus == nil ? 1 : 0),
                         relit: relight != nil,
                         guestNight: VisitorStage.isGuestNight(world.visitor),
                         directive: directive
@@ -893,7 +894,8 @@ private struct WorldCanvas: View {
             let lift = build.map { $0.moment.station == resident.station ? $0.moment.residentLift(at: $0.time) : 0 } ?? 0
             let focused = model.focus == .resident(resident.id) || model.focus == .station(resident.station)
             let pose = build.flatMap { $0.moment.station == resident.station ? $0.moment.residentPose(at: $0.time) : nil }
-                ?? resident.idlePose(isBedtime: world.isBedtime, isFocused: focused)
+                ?? resident.idlePose(isBedtime: world.isBedtime, isFocused: focused,
+                                     event: model.reactions.event(of: resident.id.rawValue, at: clock))
             ResidentView(
                 resident: resident,
                 art: resident.art(for: pose),
@@ -1060,14 +1062,19 @@ private struct WorldCanvas: View {
     /// A cast member's sprite: Simit's pose follows the cart, the hour and Pofu's calm ring (`SimitPose`);
     /// the goat coils rope once the pier is going up (`GoatPose`).
     private func castArt(_ member: IslandCastMember) -> String {
+        let hopping = build?.moment.residentPose(at: build?.time ?? 0) == .happy
         if member.id == "goat" {
             let pier = world.stations.first { $0.id == .pier }?.level ?? 0
-            return GoatPose.pose(pierLevel: pier).art
+            let event = (build?.moment.station == .pier && hopping ? ResidentEvent.stationLevelledUp : nil)
+                ?? model.reactions.event(of: member.id, at: clock)
+            return GoatPose.pose(pierLevel: pier, isBedtime: world.isBedtime, event: event).art
         }
         guard member.id == "simit" else { return member.art }
         let level = world.stations.first { $0.id == .bagelCart }?.level ?? 0
         let isStartled = build?.moment.station == .bagelCart && (build?.moment.residentPose(at: build?.time ?? 0) == .surprised)
-        return SimitPose.pose(bagelCartLevel: level, calmIsFull: world.calmIsFull, isBedtime: world.isBedtime, isStartled: isStartled).art
+        let event = (build?.moment.station == .bagelCart && hopping ? ResidentEvent.stationLevelledUp : nil)
+            ?? model.reactions.event(of: member.id, at: clock)
+        return SimitPose.pose(bagelCartLevel: level, calmIsFull: world.calmIsFull, isBedtime: world.isBedtime, isStartled: isStartled, event: event).art
     }
 
     // MARK: Placement

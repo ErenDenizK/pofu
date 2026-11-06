@@ -19,6 +19,17 @@ struct HarborCastTests {
         #expect(SimitPose.pose(bagelCartLevel: 1, calmIsFull: true, isBedtime: true, isStartled: true) == .surprised)
     }
 
+    @Test func theirReactionsFollowWhatHappened() {
+        #expect(SimitPose.pose(bagelCartLevel: 1, calmIsFull: false, event: .ceremonyDone) == .proud)
+        #expect(SimitPose.pose(bagelCartLevel: 1, calmIsFull: false, event: .visitorArrived) == .happy)
+        #expect(SimitPose.pose(bagelCartLevel: 1, calmIsFull: false, event: .firstTapOfDay) == .surprised)
+        #expect(GoatPose.pose(pierLevel: 1, event: .ceremonyDone) == .proud)
+        #expect(GoatPose.pose(pierLevel: 0, event: .visitorArrived) == .happy)
+        #expect(GoatPose.pose(pierLevel: 1, event: .firstTapOfDay) == .surprised)
+        #expect(GoatPose.pose(pierLevel: 1, isBedtime: true) == .sleepy)
+        #expect(GoatPose.pose(pierLevel: 1, isBedtime: true, event: .stationLevelledUp) == .happy)
+    }
+
     @Test func everySimitPoseWasBaked() {
         for pose in SimitPose.allCases {
             #expect(WorldArt.sprite(pose.art) != nil, "\(pose)")

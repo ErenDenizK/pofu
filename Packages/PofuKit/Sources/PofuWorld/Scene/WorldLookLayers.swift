@@ -145,6 +145,9 @@ struct HD2DLayer: View {
     var art: WorldLook.ArtSet = .lockLight
     /// The painted night overlays of practical lights.
     var litOverlays = true
+    /// How much of the harbor is on screen, 0...1 (its art fades as the camera leaves it): the harbor's
+    /// lit overlays follow it.
+    var harborFade = 0.0
     /// The graphics spike's normal lighting does the practicals' pools and
     /// the characters' rims instead.
     var relit = false
@@ -303,10 +306,13 @@ struct HD2DLayer: View {
         let k = IslandLayout.litOverlayStrength(in: light)
         guard k > 0.01 else { return }
         for row in LitSources.rows {
-            guard let lit = row.overlayAnchor(world: world, guestNight: guestNight),
-                  let image = sprite(lit.art, at: lit.anchor, depth: IslandLayout.depth(ofY: lit.anchor.y)) else { continue }
+            // Another island's overlay sits at depth 0 like its art and fades with it.
+            let home = row.island == .home
+            let fade = home ? 1 : harborFade
+            guard fade > 0.01, let lit = row.overlayAnchor(world: world, guestNight: guestNight),
+                  let image = sprite(lit.art, at: lit.anchor, depth: home ? IslandLayout.depth(ofY: lit.anchor.y) : 0) else { continue }
             var layer = context
-            layer.opacity = k
+            layer.opacity = k * fade
             layer.draw(image.0, in: image.1)
         }
     }

@@ -180,6 +180,9 @@ public final class IslandSceneModel {
     private var arrivalTask: Task<Void, Never>?
     /// Arrivals this scene has played: each visit arrives once.
     @ObservationIgnored private var arrivalsPlayed: Set<String> = []
+    /// What shows on the residents' faces now (`ResidentEvent`): each lapses after its seconds; `holdMoment`
+    /// keeps frames coming until it does.
+    private(set) var reactions = ResidentReactions()
     /// The island level the scene last saw; dressing leaves when it rises.
     @ObservationIgnored private var lastIslandLevel: Int?
     @ObservationIgnored private var leavingDressing: [(piece: DressingPiece, start: Date)] = []
@@ -187,6 +190,12 @@ public final class IslandSceneModel {
     /// The island level the dressing is drawn at.
     var shownIslandLevel: Int {
         lastIslandLevel ?? 1
+    }
+
+    /// `event` shows on `ids` now.
+    public func react(_ event: ResidentEvent, for ids: [String], at now: Date = Date()) {
+        reactions.add(event, for: ids, at: now)
+        holdMoment(seconds: event.seconds + 0.1, from: now)
     }
 
     /// Holds the Moment state for `seconds` (at least until any earlier hold
@@ -218,6 +227,7 @@ public final class IslandSceneModel {
     func noteVisitor(_ visitor: VisitorSnapshot?, at now: Date, still: Bool) -> Bool {
         guard let visitor, !still, VisitorStage.hasArrival(visitor) else { return false }
         guard arrivalsPlayed.insert(VisitorStage.arrivalKey(of: visitor)).inserted else { return false }
+        react(.visitorArrived, for: ResidentReactions.everyone, at: now)
         guard !reduceMotion else { return true }
         arrivalStart = now
         holdMoment(seconds: VisitorStage.momentSeconds, from: now)
@@ -636,6 +646,10 @@ public final class IslandSceneModel {
         let from = engine.rig.rail.pose(z: Double(framing.rawValue))
         guard let pose = IslandLayout.residentFocusPose(id, from: from) else { return }
         focus = .resident(id)
+        // The first resident tapped today starts (wide-eyed for a moment).
+        if reactions.noteTap(on: id.rawValue, at: Date()) {
+            holdMoment(seconds: ResidentEvent.firstTapOfDay.seconds + 0.1)
+        }
         let lines = WorldStrings.residentLines(id)
         let said = linesSaid[id, default: 0]
         residentLine = said < lines.count ? lines[said] : nil
@@ -1113,6 +1127,8 @@ extension IslandSceneModel: WorldCamera {
     public func endBuildFraming(_ station: StationID) {
         guard buildFraming == station else { return }
         buildFraming = nil
+        // The ceremony is over: the station's resident is proud of it for a while.
+        react(.ceremonyDone, for: ResidentReactions.cast(of: station))
         guard sheet?.station == station else { return }
         sheetDetent = .medium
         guard
