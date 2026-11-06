@@ -13,13 +13,15 @@ extension EnvironmentValues {
 
 /// The sky behind the islands (design language §12; boundary doc §6.3's
 /// calm bands): a gradient and a sun or moon glow that follow the
-/// snapshot's clock, faint stars at night, and two layers of clouds that
-/// drift slowly at different speeds (parallax: the far layer moves least).
+/// snapshot's clock, stars that twinkle at night, and three layers of
+/// painted clouds that drift slowly at different speeds (parallax 1x, 1.8x
+/// and 3x: the far layer moves least; sky and weather v1 §2.1).
 ///
-/// Cheap enough to idle under the 60 fps world: the clouds are drawn once
-/// per palette (equatable canvases) and only their offsets change, on a
-/// 30 Hz timeline (a cloud moves at most 5 pt a second, a sixth of a point
-/// a frame). Reduce Motion, Low Power Mode and still frames stop the drift.
+/// Cheap enough to idle under the 60 fps world: the clouds are tinted once
+/// per palette (equatable, rasterised once) and only their offsets change,
+/// on a 30 Hz timeline (a cloud moves under 3 pt a second, a tenth of a
+/// point a frame). Reduce Motion, Low Power Mode and still frames stop the
+/// drift and the twinkle, so the settled frame is cached at 0 Hz.
 struct LivingSky: View {
     /// Already graded (`SkyPalette.graded(by:)`): the sky takes no shader
     /// pass of its own (look round 3).
@@ -44,20 +46,21 @@ struct LivingSky: View {
                 )
                 SunGlow(palette: palette, size: size)
                     .offset(x: offset.width * 0.15, y: offset.height * 0.15)
-                if palette.stars > 0.01 {
-                    StarField(width: Double(size.width), height: Double(size.height))
-                        .equatable()
-                        .opacity(palette.stars * 0.85)
-                }
-                TimelineView(.animation(minimumInterval: 1.0 / 20.0, paused: isPaused)) { context in
-                    let time = still ? 0 : context.date.timeIntervalSinceReferenceDate
+                TimelineView(.animation(minimumInterval: 1.0 / 30.0, paused: isPaused)) { context in
+                    let time = still ? 0 : FramePolicy.ambientTime(context.date.timeIntervalSinceReferenceDate)
                     ZStack(alignment: .topLeading) {
-                        cloudLayer(SkyCloud.far, time: time, size: size, parallax: 0.3)
-                        cloudLayer(SkyCloud.near, time: time, size: size, parallax: 0.6)
+                        if palette.stars > 0.01 {
+                            StarField(width: Double(size.width), height: Double(size.height), time: time)
+                                .opacity(palette.stars * 0.9)
+                        }
+                        ForEach(SkyCloudLayer.allCases, id: \.rawValue) { layer in
+                            cloudLayer(layer, time: time, size: size)
+                        }
                     }
                 }
                 if let far {
-                    FarSky(look: far, offset: offset, size: size)
+                    // The depth fog's colour is the sky's own horizon.
+                    FarSky(look: far.withHorizon(palette.horizon), offset: offset, size: size)
                 }
             }
             .frame(width: size.width, height: size.height, alignment: .topLeading)
@@ -71,16 +74,17 @@ struct LivingSky: View {
         still || ambientPaused || reduceMotion || ProcessInfo.processInfo.isLowPowerModeEnabled
     }
 
-    private func cloudLayer(_ clouds: [SkyCloud], time: Double, size: CGSize, parallax: Double) -> some View {
-        ForEach(clouds, id: \.seed) { cloud in
-            let width = Double(size.width)
+    private func cloudLayer(_ layer: SkyCloudLayer, time: Double, size: CGSize) -> some View {
+        let tint = CloudTint(palette: palette, layer: layer).quantised()
+        let width = Double(size.width)
+        return ForEach(layer.clouds, id: \.seed) { cloud in
             let x = SkyModel.cloudX(time: time, speed: cloud.speed, phase: cloud.phase * width, width: cloud.width, span: width)
-            CloudPuff(seed: cloud.seed, width: cloud.width, light: palette.cloudLight, shade: palette.cloudShade)
+            PaintedCloud(art: cloud.art, mirrored: cloud.mirrored, width: cloud.width, tint: tint)
                 .equatable()
                 .opacity(cloud.opacity * palette.cloudOpacity)
                 .offset(
-                    x: CGFloat(x) + offset.width * CGFloat(parallax),
-                    y: CGFloat(cloud.top) * size.height + offset.height * CGFloat(parallax)
+                    x: CGFloat(x) + offset.width * CGFloat(layer.parallax),
+                    y: CGFloat(cloud.top) * size.height + offset.height * CGFloat(layer.parallax)
                 )
         }
     }
@@ -102,6 +106,19 @@ private struct SunGlow: View {
                 endRadius: size.width * 0.85
             )
             if palette.stars > 0.5 {
+                // The moon's halo: a wide, faint ring of cool light.
+                Circle()
+                    .fill(
+                        RadialGradient(
+                            colors: [Color(red: 0.82, green: 0.86, blue: 1).opacity(0.30), Color(red: 0.74, green: 0.80, blue: 0.98).opacity(0.10), Color(red: 0.7, green: 0.76, blue: 0.96).opacity(0)],
+                            center: .center,
+                            startRadius: 6,
+                            endRadius: LookTuning.moonHaloRadius * size.width
+                        )
+                    )
+                    .frame(width: LookTuning.moonHaloRadius * size.width * 2, height: LookTuning.moonHaloRadius * size.width * 2)
+                    .opacity((palette.stars - 0.5) * 2)
+                    .position(x: size.width * palette.sun.x, y: size.height * palette.sun.y)
                 Circle()
                     .fill(
                         RadialGradient(
@@ -119,46 +136,38 @@ private struct SunGlow: View {
     }
 }
 
-/// One cloud: soft lobes, a shaded underside and a lit top, drawn once.
-struct CloudPuff: View, Equatable {
-    let seed: Int
+/// One painted cloud, tinted (sky and weather v1 §2.1): the lit side takes
+/// the cell's cloud light, a gradient of the shade colour (the zenith
+/// darkened, the horizon glow at dusk) takes the underside, both through the
+/// painting's own silhouette. Rasterised once per tint, so a drifting cloud
+/// only moves a texture.
+struct PaintedCloud: View, Equatable {
+    let art: String
+    let mirrored: Bool
     let width: Double
-    let light: PofuRGB
-    let shade: PofuRGB
+    let tint: CloudTint
 
     var body: some View {
-        Canvas { context, size in
-            let w = Double(size.width)
-            let lobes = CloudShape.lobes(seed: seed)
-            for lobe in lobes {
-                let r = lobe.r * w
-                let c = CGPoint(x: lobe.x * w, y: lobe.y * w + r * 0.18)
-                context.fill(circle(c, r), with: soft(shade.color, at: c, radius: r, core: 0.75))
+        if let box = WorldArt.sprite(art)?.sharp {
+            let name = WorldArt.assetName(art, variant: .sharp)
+            ZStack {
+                Image(name, bundle: .module)
+                    .resizable()
+                    .colorMultiply(tint.lit.color)
+                LinearGradient(
+                    stops: [
+                        .init(color: tint.shade.color.opacity(0), location: 0.3),
+                        .init(color: tint.shade.color.opacity(0.75), location: 1),
+                    ],
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+                .mask { Image(name, bundle: .module).resizable() }
             }
-            for lobe in lobes {
-                let r = lobe.r * w * 0.95
-                let c = CGPoint(x: lobe.x * w, y: lobe.y * w - r * 0.05)
-                context.fill(circle(c, r), with: soft(light.color, at: c, radius: r, core: 1))
-            }
+            .frame(width: CGFloat(width), height: CGFloat(width * box.height / box.width))
+            .scaleEffect(x: mirrored ? -1 : 1, y: 1)
+            .drawingGroup()
         }
-        .frame(width: CGFloat(width), height: CGFloat(width * 0.62))
-    }
-
-    private func circle(_ c: CGPoint, _ r: Double) -> Path {
-        Path(ellipseIn: CGRect(x: c.x - r, y: c.y - r, width: 2 * r, height: 2 * r))
-    }
-
-    private func soft(_ color: Color, at c: CGPoint, radius r: Double, core: Double) -> GraphicsContext.Shading {
-        .radialGradient(
-            Gradient(stops: [
-                .init(color: color.opacity(core), location: 0),
-                .init(color: color.opacity(core * 0.92), location: 0.62),
-                .init(color: color.opacity(0), location: 1),
-            ]),
-            center: c,
-            startRadius: 0,
-            endRadius: r
-        )
     }
 }
 
@@ -380,21 +389,23 @@ private struct SeaStrip: View, Equatable {
     }
 }
 
-/// A few fixed stars in the upper sky, for night.
-private struct StarField: View, Equatable {
+/// The stars of the night sky: 36 fixed ones, each twinkling at its own
+/// 0.1 to 0.3 Hz (`SkyModel.twinkle`). Redrawn only while the ambient
+/// timeline runs; settled, the last frame holds.
+private struct StarField: View {
     let width: Double
     let height: Double
+    let time: Double
 
     var body: some View {
         Canvas { context, _ in
-            var g = CloudShape.Generator(state: 977)
-            for _ in 0..<38 {
-                let x = g.next() * width
-                let y = g.next() * height * 0.42
-                let r = 0.6 + g.next() * 1.1
+            for star in SkyModel.stars {
+                let x = star.x * width
+                let y = star.y * height
+                let r = star.radius
                 context.fill(
                     Path(ellipseIn: CGRect(x: x - r, y: y - r, width: 2 * r, height: 2 * r)),
-                    with: .color(Color.white.opacity(0.45 + 0.5 * g.next()))
+                    with: .color(Color.white.opacity(SkyModel.twinkle(star, time: time)))
                 )
             }
         }
