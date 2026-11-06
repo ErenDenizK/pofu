@@ -1,0 +1,26 @@
+id: asset-x-gezgin-f2-dock-v2
+type: asset
+title_tr: x-gezgin-f2-dock-v2
+title_en: x-gezgin-f2-dock-v2 (plate)
+status: cut
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: Nazlı the cloud-whale is huge, soft and rounded,
+  grey-blue on the back fading to cream on the belly, with a small closed or half-closed eye,
+  a faint gentle smile, broad rounded flippers and a wide tail fluke of cloud-white. FORM
+  2 (grown, majestic): her body is full, glowing with health and much longer, her head lifted,
+  her eye calm and wise. On her back is a lush floating i…
+art:
+  images: []
+  jobs:
+  - batch-22-gezgin-forms-v2:x-gezgin-f2-dock-v2
+sources:
+- doc: tools/imagegen/manifest/batch-22-gezgin-forms-v2.yaml
+kind: plate
+batch: batch-22-gezgin-forms-v2
+size: 1536x1024
+notes:
+- Historical exploration only; never promoted; art.images remains empty.
+- >-
+  Never dispatched: a true approved:x-gezgin-f1-side-v2 dependent of the terminal superseded
+  anchor. No source, QA post, selection, promotion or retry is invented.
