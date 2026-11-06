@@ -1,7 +1,10 @@
 # Archive
 
 Documents whose decision is made or whose role ended. Kept as history; do
-not build on them. The current set is in the [docs index](../README.md).
+not build on them, and do not load them unless you need the reasoning. The
+current set is in the [docs map](../README.md). To archive a doc: `git mv`
+it here, add a two-line "Archived YYYY-MM-DD: superseded by X" header, fix
+every link (`python3 -I tools/docs/check_links.py`), and add a row below.
 
 | File | Why archived | Superseded by |
 |---|---|---|
@@ -19,3 +22,5 @@ not build on them. The current set is in the [docs index](../README.md).
 | [island-curation.md](island-curation.md) | Island arcs, order and verdicts of 2026-11-03; the order and the main/filler split changed | [game plan §4](../product/game-plan.md#4-book-one-the-islands-rising-curve), [story references](../research/story-references.md#synthesis-the-story-rules-these-give-pofu), [deep lore §6](../product/deep-lore.md) |
 | [handoff-2026-11.md](handoff-2026-11.md) | Lead handoffs older than the last two entries | [handoff](../handoff.md) |
 | [roadmap-2026-11-02.md](roadmap-2026-11-02.md) | The phase roadmap before the 2026-11-05 rebuild | [roadmap](../roadmap.md) |
+| [monetization-v1.md](monetization-v1.md) | The 2026-11-02 monetization proposal; its recommendation and prices were replaced after the game became compact (archived 2026-11-06). v2 still cites its market data and fair-lock test (§6) | [monetization v2](../product/monetization-v2.md) |
+| [ui-critique-01.md](ui-critique-01.md) and [ui-critique-01/](ui-critique-01/) | The 2026-11-02 critique of the game screen and its mockups, decided (archived 2026-11-06) | [UI system v2](../design/ui-system-v2.md), [experience v1](../design/experience-v1.md) |

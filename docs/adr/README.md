@@ -9,8 +9,8 @@ Format: a lightweight variant of [MADR](https://adr.github.io/madr/). Use
 
 **Only for decisions that cost weeks to undo** (decision audit, 2026-11-01).
 Tunable values (breath seconds, thresholds, seed amounts, names) live in
-`PofuCore` configuration and the [game design](../product/game-design.md),
-not in ADRs. Prefer deciding from real use over deciding from prototypes.
+`PofuCore` configuration, the [game plan](../product/game-plan.md) and the
+[economy](../product/economy.md), not in ADRs. Prefer deciding from real use over deciding from prototypes.
 
 | # | Title | Status |
 |---|---|---|
@@ -23,13 +23,17 @@ not in ADRs. Prefer deciding from real use over deciding from prototypes.
 | [0007](0007-product-name-pofu.md) | Product and character name: Pofu | Accepted |
 | [0008](0008-hybrid-intervention-delivery.md) | Hybrid intervention delivery | Accepted, amended by 0015 |
 | [0009](0009-xcodegen-and-package-layout.md) | XcodeGen project and a single local package | Accepted |
-| [0010](0010-illustrated-hamster-art-direction.md) | Illustrated hamster art direction | Accepted |
+| [0010](0010-illustrated-hamster-art-direction.md) | Illustrated hamster art direction | Accepted, amended by 0011 |
 | [0011](0011-companion-motion-system.md) | Companion motion system | Accepted |
 | [0012](0012-ux-v1-decisions.md) | UX v1 decisions | Accepted, amended by 0015 and 0016 |
-| [0013](0013-zero-setup-default-gate.md) | Zero-setup default gate, live Pofu as an enhancement | Accepted |
+| [0013](0013-zero-setup-default-gate.md) | Zero-setup default gate, live Pofu as an enhancement | Accepted (the Shortcuts path is frozen: no new features) |
 | [0014](0014-quiet-time-earning.md) | Quiet-time earning | Accepted, amended by 0015 |
 | [0015](0015-care-over-currency.md) | Care over currency: seeds as world material | Accepted |
 | [0016](0016-pre-planned-idle-archipelago.md) | Pre-planned idle archipelago | Accepted, amended by 0019 |
 | [0017](0017-pofu-never-dies.md) | Pofu never dies | Accepted |
 | [0018](0018-visual-system-v1.md) | Visual system v1: balanced diorama, Glass++, continuous camera | Accepted |
 | [0019](0019-home-cluster-and-wonder-islands.md) | Home cluster and wonder islands: station islands retired | Accepted |
+
+**Read an ADR's status line and this table first; do not load ADR bodies
+you do not need.** A status here that says "amended" or "superseded" means
+the later ADR wins on that point; the older body stays unchanged as history.

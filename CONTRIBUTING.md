@@ -31,9 +31,9 @@ Trunk-based development with short-lived branches.
   | `ci/`       | Continuous integration                    |
   | `design/`   | Design system, assets, visual work        |
 
-  Two operator branches are also allowed: `local/<topic>` for the local Mac
-  agent's reports ([local agent brief](docs/archive/local-agent.md)) and
-  `art/<batch>` for image pipeline rounds ([`AGENTS.md`](AGENTS.md)).
+  One operator branch is also allowed: `art/<batch>` (or
+  `art/<batch>/<track>`) for image pipeline rounds ([`AGENTS.md`](AGENTS.md)).
+  Parallel agents each work in their own `git worktree`.
 
 ## Commit messages
 
