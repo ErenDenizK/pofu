@@ -40,6 +40,22 @@ and the lock in `run.py post`, is skipped for edits (they inherit the parent's
 frame), is recorded as `meta.json` `fit`, and `relock.py` replays it (no `fit`
 = no scaling). A job can set `fit: {max_width: px, top: y}` or `fit: false`.
 
+A root `char` job (no `edit_of`) can set `fit: {ground: true}`:
+`qa.fit_char_ground` translates it so the feet sit on the 88% ground line,
+shrinking about the feet only if the head would leave the canvas (headroom 2%,
+never below x0.6). `meta.json` `fit` records `scale`, `anchor` and `dy`; relock
+replays them. Edits of the character inherit the fitted parent.
+
+## Masked lit edits
+
+A lit edit (the app's overlay is lit minus day) can set `emit_region`: boxes
+`{x, y, w, h}` in canvas fractions around the light-carrying part (job must have
+`edit_of`). The shipped master is the parent everywhere outside the region and
+the take inside it, with a feathered edge of ~2% of each box size, so it is
+identical to the day master outside the light. `edit_stability` and
+`edit_chroma` are replaced by an `emit_leak` check (warn only) that reports how
+much of the take changed outside the region. Recorded as `meta.json` `emit_region`.
+
 ## Soft delivery
 
 Uploads over ~768 KB arrive as stubs, so the 600 KB cap (`check_upload.py`) is a

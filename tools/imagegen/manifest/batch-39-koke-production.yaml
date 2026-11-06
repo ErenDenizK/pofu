@@ -75,6 +75,7 @@ jobs:
   - id: koke-island-0
     kind: plate
     name: koke-island-0
+    deliver: {scale: 0.5}   # soft plate: half-size lossless stays under the upload cap
     size: 1536x1024
     canvas: 1536x1024
     palettes: [world-foliage]
@@ -128,6 +129,7 @@ jobs:
   - id: koke-island-1
     kind: plate
     name: koke-island-1
+    deliver: {scale: 0.5}   # soft plate: half-size lossless stays under the upload cap
     size: 1536x1024
     canvas: 1536x1024
     edit_of: koke-island-0
@@ -156,6 +158,7 @@ jobs:
   - id: koke-island-2
     kind: plate
     name: koke-island-2
+    deliver: {scale: 0.5}   # soft plate: half-size lossless stays under the upload cap
     size: 1536x1024
     canvas: 1536x1024
     edit_of: koke-island-0
@@ -190,6 +193,7 @@ jobs:
   - id: koke-island-3
     kind: plate
     name: koke-island-3
+    deliver: {scale: 0.5}   # soft plate: half-size lossless stays under the upload cap
     size: 1536x1024
     canvas: 1536x1024
     edit_of: koke-island-0
@@ -224,6 +228,7 @@ jobs:
   - id: koke-island-4
     kind: plate
     name: koke-island-4
+    deliver: {scale: 0.5}   # soft plate: half-size lossless stays under the upload cap
     size: 1536x1024
     canvas: 1536x1024
     edit_of: koke-island-0
@@ -265,7 +270,7 @@ jobs:
     size: 1024x1024
     canvas: 1024x1024
     transparent: true
-    fit: false
+    fit: {ground: true}   # root character onto the 88% ground line (qa.fit_char_ground)
     palettes: [character, world-foliage]
     chat: "Pofu · Koke"
     light: {cell: day, layer: subject}

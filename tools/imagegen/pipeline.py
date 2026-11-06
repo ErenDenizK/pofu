@@ -126,6 +126,9 @@ class Job:
     # an explicitly fitted plain root prop (plain props have no default fit):
     # {max_width, top}, or False to turn the downscale off. None = guide defaults.
     fit: dict | bool | None = None
+    # Lit edits: boxes [x, y, w, h] (canvas fractions) of the light-carrying
+    # region. Only that region of the take ships; the rest is the parent's.
+    emit_region: list[list[float]] | None = None
     # Soft delivery: {scale: s}, 0 < s <= 1. QA and picking run on the full
     # take; the promoted master (and its raw) is written downscaled by s
     # (Lanczos, still lossless WebP) so soft art fits the 600 KB upload cap.
@@ -274,9 +277,28 @@ def parse_manifest(data: dict, config_refs: dict | None = None, path: Path | Non
             slice_ = {"caps": [float(c) for c in caps], "ship_height": float(height)}
         fit = merged.get("fit")
         if fit is not None and fit is not False and (
-                not isinstance(fit, dict) or set(fit) - {"max_width", "top"}
-                or not all(isinstance(v, int) and not isinstance(v, bool) and v > 0 for v in fit.values())):
-            raise ManifestError(f"{where}: fit is {{max_width: px, top: y}} or false")
+                not isinstance(fit, dict) or set(fit) - {"max_width", "top", "ground"}
+                or not all(isinstance(v, int) and not isinstance(v, bool) and v > 0 for k, v in fit.items() if k != "ground")
+                or ("ground" in fit and fit["ground"] is not True)):
+            raise ManifestError(f"{where}: fit is {{max_width: px, top: y, ground: true}} or false")
+        if isinstance(fit, dict) and fit.get("ground") and (kind != "char" or merged.get("edit_of")):
+            raise ManifestError(f"{where}: fit.ground places a root char job (no edit_of) on its ground line")
+        emit_region = merged.get("emit_region")
+        if emit_region is not None:
+            ok = merged.get("edit_of") and isinstance(emit_region, list) and emit_region
+            boxes = []
+            for b in (emit_region if ok else []):
+                if isinstance(b, dict) and set(b) == {"x", "y", "w", "h"}:
+                    b = [b["x"], b["y"], b["w"], b["h"]]
+                if (isinstance(b, (list, tuple)) and len(b) == 4
+                        and all(isinstance(v, (int, float)) and not isinstance(v, bool) for v in b)
+                        and b[0] >= 0 and b[1] >= 0 and b[2] > 0 and b[3] > 0 and b[0] + b[2] <= 1 and b[1] + b[3] <= 1):
+                    boxes.append([float(v) for v in b])
+                else:
+                    ok = False
+            if not ok:
+                raise ManifestError(f"{where}: emit_region is a list of boxes {{x, y, w, h}} in canvas fractions inside 0..1, on an edit_of job")
+            emit_region = boxes
         deliver = merged.get("deliver")
         if deliver is not None:
             s = deliver.get("scale") if isinstance(deliver, dict) else None
@@ -317,7 +339,7 @@ def parse_manifest(data: dict, config_refs: dict | None = None, path: Path | Non
                   variants=variants,
                   acceptance={**(merged.get("acceptance", {}) or {}), **({"blend": blend} if blend else {})}, chat=merged.get("chat"),
                   notes=merged.get("notes", "") or "", canvas=canvas, external=str(external) if external else None,
-                  master=str(master) if master else None, slice=slice_, decor=decor, palettes=list(extra), light=light, fit=fit,
+                  master=str(master) if master else None, slice=slice_, decor=decor, palettes=list(extra), light=light, fit=fit, emit_region=emit_region,
                   deliver=deliver, style_exclude=list(style_exclude))
         jobs.append(job)
     if not jobs:

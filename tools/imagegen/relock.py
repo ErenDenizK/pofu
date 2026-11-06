@@ -60,6 +60,8 @@ def normalize(job: pl.Job, raw: np.ndarray, meta: dict, preset: dict, pad: int =
     fit = meta.get("fit")
     if fit and fit.get("scale"):
         rgba = qa.scale_about(rgba, fit["scale"], tuple(fit["anchor"]))
+    if fit and fit.get("dy"):
+        rgba = qa.shift(rgba, 0, fit["dy"])  # a root character moved onto the ground line
     reg = None
     if job.kind == "station":
         reg = meta.get("registration") or (qa.station_registration(rgba) if not job.edit_of else None)

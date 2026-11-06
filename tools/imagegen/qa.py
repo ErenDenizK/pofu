@@ -329,6 +329,62 @@ def fit_to_guide(rgba: np.ndarray, kind: str, mode: str = "ground", max_width: i
     return scale_about(rgba, s, (g.base_x, g.baseline)), {"scale": s, "anchor": anchor}
 
 
+CHAR_GROUND = 0.88          # the character contract: feet at this share of the height
+CHAR_TOP_MARGIN = 0.02      # headroom kept when a character must shrink to reach the ground line
+
+
+def fit_char_ground(rgba: np.ndarray) -> tuple[np.ndarray, dict]:
+    """Put a root character's feet on the ground line (88% of the height).
+
+    The model often draws a character too low on the canvas. The fix is
+    placement, not regeneration: shrink uniformly about the feet only when the
+    head would otherwise leave the canvas (never up, never below
+    MIN_FIT_SCALE), then translate vertically so the baseline lands on the
+    contract. Returns (image, info): {"scale", "anchor", "dy"} or
+    {"fit": None, "reason"}."""
+    h = rgba.shape[0]
+    g = pa.measure(rgba)
+    target = int(round(CHAR_GROUND * h))
+    room = target - int(round(CHAR_TOP_MARGIN * h))
+    s = min(1.0, room / max(1, g.baseline - g.top))
+    if s < MIN_FIT_SCALE:
+        return rgba, {"fit": None, "reason": f"needs x{s:.2f}, below x{MIN_FIT_SCALE} (a real art failure)"}
+    anchor = [round(g.base_x, 1), g.baseline]
+    s = round(s, 4)
+    out = scale_about(rgba, s, (g.base_x, g.baseline))
+    dy = target - pa.measure(out).baseline
+    return shift(out, 0, dy), {"scale": s, "anchor": anchor, "dy": int(dy), "ground": True}
+
+
+def emit_mask(shape: tuple[int, int], boxes: list[list[float]], feather: float = 0.02) -> np.ndarray:
+    """Soft mask (H, W) of boxes given as canvas fractions [x, y, w, h].
+
+    Each edge is a linear ramp `feather` x the box size wide, centred on the
+    edge; boxes are united with max."""
+    h, w = shape
+    mask = np.zeros((h, w), dtype=np.float64)
+    xs, ys = np.arange(w) + 0.5, np.arange(h) + 0.5
+    for x, y, bw, bh in boxes:
+        x0, x1, y0, y1 = x * w, (x + bw) * w, y * h, (y + bh) * h
+        fx, fy = max(1.0, feather * (x1 - x0)), max(1.0, feather * (y1 - y0))
+        mx = np.clip(np.minimum(xs - x0, x1 - xs) / fx + 0.5, 0, 1)
+        my = np.clip(np.minimum(ys - y0, y1 - ys) / fy + 0.5, 0, 1)
+        mask = np.maximum(mask, my[:, None] * mx[None, :])
+    return mask
+
+
+def edit_kept_outside(child: np.ndarray, parent: np.ndarray, mask: np.ndarray, tol: float = 10.0, px: int = 128) -> float:
+    """edit_kept_fraction over the parent area outside the emit region."""
+    if child.shape != parent.shape:
+        return 0.0
+    c, p, m = downsample(child, px), downsample(parent, px), downsample(np.repeat(mask[..., None], 4, axis=-1), px)[..., 0]
+    solid = (p[..., 3] > 0.9) & (m < 0.05)
+    if not solid.any():
+        return 1.0
+    d = np.linalg.norm(sl.srgb_to_lab(c[..., :3][solid]) - sl.srgb_to_lab(p[..., :3][solid]), axis=-1)
+    return float(((d < tol) & (c[..., 3] > 0.9)[solid]).mean())
+
+
 def station_registration(rgba: np.ndarray) -> dict:
     """Translation that puts a station's footprint on the guide's anchor."""
     g = pa.measure(rgba)
@@ -916,7 +972,8 @@ def process_take(raw: np.ndarray, kind: str, canvas: tuple[int, int] | None, pre
                  acceptance: dict | None = None, registration: dict | None = None,
                  parent_locked: np.ndarray | None = None, register_root: bool = False,
                  transparent: bool = True, decor: str | None = None, light: dict | None = None,
-                 fit: dict | None = None, declared_size: tuple[int, int] | None = None) -> TakeResult:
+                 fit: dict | None = None, declared_size: tuple[int, int] | None = None,
+                 emit_region: list[list[float]] | None = None) -> TakeResult:
     checks: list[Check] = []
     if transparent:
         rgba, c = ensure_alpha(raw)
@@ -948,6 +1005,12 @@ def process_take(raw: np.ndarray, kind: str, canvas: tuple[int, int] | None, pre
             info["fit"] = finfo
         else:
             info["fit_skipped"] = finfo["reason"]
+    if fit and fit.get("ground") and kind == "char" and parent_locked is None and registration is None and transparent:
+        rgba, finfo = fit_char_ground(rgba)
+        if "scale" in finfo:
+            info["fit"] = finfo
+        else:
+            info["fit_skipped"] = finfo["reason"]
     if kind == "station":
         reg = registration if registration is not None else (station_registration(rgba) if register_root else None)
         if reg:
@@ -975,7 +1038,20 @@ def process_take(raw: np.ndarray, kind: str, canvas: tuple[int, int] | None, pre
             checks.append(Check("edit_alignment", "pass" if off <= 0.03 else "warn" if off <= 0.25 else "fail",
                                 f"the edit rescaled the object x{1 / t['scale']:.3f} and moved it; aligned back to the parent",
                                 t["scale"]))
+    leak = None
+    if emit_region and parent_locked is not None and locked.shape == parent_locked.shape:
+        # Lit edit: only the light-carrying region of the take ships. The master
+        # is the parent outside it (feathered edge), so whole-image stability and
+        # chroma cannot fail the take; its leakage outside the region is a warning.
+        mask = emit_mask(locked.shape[:2], emit_region)
+        kept = edit_kept_outside(locked, parent_locked, mask)
+        leak = Check("emit_leak", "pass" if kept >= 0.98 else "warn",
+                     f"{kept:.0%} of the parent unchanged outside the emit region (masked out of the master)", kept)
+        locked = parent_locked * (1 - mask[..., None]) + locked * mask[..., None]
+        info["emit_region"] = [list(b) for b in emit_region]
     style = run_checks(kind, normalized, locked, palettes, acceptance, parent_locked, decor, light)
+    if leak:
+        style = [c for c in style if c.name not in ("edit_stability", "edit_chroma")] + [leak]
     checks.extend(advisory(style) if (acceptance or {}).get("exploration") else style)
     info["metrics_raw"] = sl.measure(normalized)
     info["metrics_locked"] = sl.measure(locked)

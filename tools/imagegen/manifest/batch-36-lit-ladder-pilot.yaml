@@ -17,8 +17,13 @@
 #   windmill-1-lit     the windmill's door (L1 has no window; see the job)
 #   door-mochi-lit     the round window of Mochi's door (slot H2)
 #
-# Review checks: the lit part reads warm and soft at 28 pt; the rest of the
-# image is unchanged; no new shapes; amber, not yellow-white.
+# Masked: each lit job has an `emit_region` (boxes in canvas fractions). Only
+# that region of the take ships; the master is the day master everywhere else
+# (feathered edge), so a repaint, a recolor or a halo outside the light cannot
+# reach the overlay. Changes outside the region only show as an `emit_leak`
+# warning; edit_stability and edit_chroma no longer judge the whole take.
+#
+# Review checks: the lit part reads warm and soft at 28 pt; no new shapes inside the region; amber, not yellow-white.
 #
 # Tracks: `all` (the four jobs, any order).
 
@@ -39,6 +44,7 @@ jobs:
     kind: station
     name: lighthouse-1-lit
     edit_of: lighthouse-1
+    emit_region: [{x: 0.38, y: 0.28, w: 0.25, h: 0.105}]   # lamp room panes under the cap
     chat: "Pofu · Lighthouse"
     light: {cell: day, layer: subject}
     notes: "PILOT. Source of the lamp room's emissive overlay (difference against lighthouse-1). Review: only the panes of the lamp room under the cap glow; the round window below, the stripes, the door and the cap are unchanged; a beam is not wanted."
@@ -59,6 +65,7 @@ jobs:
     kind: prop
     name: path-lamp-lit
     edit_of: path-lamp
+    emit_region: [{x: 0.465, y: 0.575, w: 0.13, h: 0.11}]   # the lantern glass
     chat: "Pofu · Decor"
     light: {cell: day, layer: subject}
     notes: "PILOT. Source of the lantern's emissive overlay (difference against path-lamp). Review: only the plump lantern glass glows; the post, the stone foot, the hook and the coral cap are unchanged. The lantern is thumb-sized at game scale, so the glow must fill the whole glass shape."
@@ -78,6 +85,7 @@ jobs:
     kind: station
     name: windmill-1-lit
     edit_of: windmill-1
+    emit_region: [{x: 0.39, y: 0.65, w: 0.18, h: 0.17}]   # the door, its seam and upper arch
     chat: "Pofu · Windmill"
     light: {cell: day, layer: subject}
     notes: "PILOT, WITH A DOUBT. windmill-1 has no window (they first appear at L5; batch-07's windmill-5-lit lights those). At L1 the only place light can come from is the door, so the light is the door: warm amber leaks through the door's arched upper panel and seam as if a lamp burned inside. Review: the door still reads as a closed wooden door, the amber is confined to the door and its seam, no new shape was drawn. If the lead prefers to wait for a windowed level, skip this job."
@@ -97,6 +105,7 @@ jobs:
     kind: prop
     name: door-mochi-lit
     edit_of: door-mochi
+    emit_region: [{x: 0.40, y: 0.43, w: 0.185, h: 0.19}]   # the round window and its cross bar
     chat: "Pofu · Doors"
     light: {cell: day, layer: subject}
     notes: "PILOT. Source of the round window's emissive overlay (difference against door-mochi). Review: only the window glass inside the cream cross bar glows; the rose door, the honey frame, the knob, the tea-glass sign and the soft earth ring are unchanged. The soft peach halo already painted around the frame is part of the master: leave it exactly as it is."
