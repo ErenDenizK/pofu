@@ -1,0 +1,416 @@
+batch: batch-39-koke-production
+contact_sheet: design/art/takes/koke-repost-2026-11-06/koke-island-3/contact.jpg
+jobs:
+  koke-island-3:
+    pick: none
+    publication: skipped after one allowed retry
+    note: 'Skipped after exactly one unchanged-prompt retry. Initial take1 clears
+      hard QA but leaves the upper/back-right blue group closed while the outermost
+      far-right group is visibly open, contrary to the explicit fifth far-right group
+      still in bud; independent source/locked/parent review agrees. Initial take2
+      has that same semantic mismatch and hard palette drift. Retry takes3/4 both
+      hard-fail the unchanged palette_drift check (mean dE4.5297/4.5922); no eligible
+      candidate remains. All four originals, canonical QA and exact prompts are preserved.
+      Requested raking action was not falsely rejected for moving its explicitly named
+      rake. No further generation, palette/profile edits or forced promotion. This
+      job has no true dependents: later island stages independently edit stage0, so
+      only this job is skipped. Canonical full-frame before-grade Harmony C_mean across
+      these rejected candidates: 21.582,21.822,22.63,22.664. These are candidate observations,
+      never a delivered healed-stage claim. Automated failures: t2 palette_drift:
+      mean dE 4.5, p95 14.5, off-palette 10.8% (top: #BBBB44 (1.1%), #99AA33 (1.0%));
+      t3 palette_drift: mean dE 4.5, p95 14.3, off-palette 10.8% (top: #AAAA33 (1.3%),
+      #BBBB44 (1.3%)); t4 palette_drift: mean dE 4.6, p95 14.2, off-palette 9.8% (top:
+      #99AA33 (1.2%), #BBBB44 (1.2%)).'
+qa_reports:
+  2:
+    job: koke-island-3
+    take: 2
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 59 (R1 51)
+      value: 58.7
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 34 (at most 22), p98 96 (at least 90), spread 62
+        (at least 60)'
+      value: 61.8
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 71 (band 55-90)'
+      value: 71.2
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.11 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.11
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.0 (at least 3.5)'
+      value: 6.05
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.9 (R1 5.3)
+      value: 2.9
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.3
+      value: 2.3048
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 4.5, p95 14.5, off-palette 10.8% (top: #BBBB44 (1.1%), #99AA33
+        (1.0%))'
+      value: 4.4666
+    - check: edit_silhouette
+      status: pass
+      message: 100% of the parent's shape kept
+      value: 1.0
+    - check: edit_stability
+      status: pass
+      message: 62% of the parent level unchanged
+      value: 0.6175
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.81 of the parent level (drift compounds along a chain)
+      value: 1.8144
+    info:
+      parent_canvas:
+        source:
+        - 768
+        - 512
+        target:
+        - 1536
+        - 1024
+      metrics_raw:
+        L_p5: 45.3
+        L_p50: 91.1
+        L_p95: 96.1
+        C_p50: 11.4
+        C_p95: 69.0
+        C_p99: 78.3
+        detail: 3.51
+      metrics_locked:
+        L_p5: 45.8
+        L_p50: 91.1
+        L_p95: 96.0
+        C_p50: 11.4
+        C_p95: 58.7
+        C_p99: 63.2
+        detail: 2.9
+    fingerprint: a490e481b0ac5fda
+  1:
+    job: koke-island-3
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 58 (R1 51)
+      value: 58.0
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 38 (at most 22), p98 96 (at least 90), spread 58
+        (at least 60)'
+      value: 57.9
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 72 (band 55-90)'
+      value: 71.5
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.12 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.118
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.7 (at least 3.5)'
+      value: 5.69
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.0 (R1 5.3)
+      value: 2.99
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.0
+      value: 2.0079
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 4.2, p95 13.6, off-palette 9.2% (top: #BBBB44 (1.5%), #AABB44
+        (1.4%))'
+      value: 4.1917
+    - check: edit_silhouette
+      status: pass
+      message: 100% of the parent's shape kept
+      value: 1.0
+    - check: edit_stability
+      status: pass
+      message: 63% of the parent level unchanged
+      value: 0.6312
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.78 of the parent level (drift compounds along a chain)
+      value: 1.7814
+    info:
+      parent_canvas:
+        source:
+        - 768
+        - 512
+        target:
+        - 1536
+        - 1024
+      metrics_raw:
+        L_p5: 47.4
+        L_p50: 90.4
+        L_p95: 95.6
+        C_p50: 11.3
+        C_p95: 66.8
+        C_p99: 71.7
+        detail: 3.69
+      metrics_locked:
+        L_p5: 47.9
+        L_p50: 90.4
+        L_p95: 95.5
+        C_p50: 11.2
+        C_p95: 58.0
+        C_p99: 61.2
+        detail: 2.99
+    fingerprint: a490e481b0ac5fda
+  4:
+    job: koke-island-3
+    take: 4
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 59 (R1 51)
+      value: 58.6
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 36 (at most 22), p98 96 (at least 90), spread 60
+        (at least 60)'
+      value: 59.7
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 71 (band 55-90)'
+      value: 71.4
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.10 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.098
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.2 (at least 3.5)'
+      value: 6.19
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.0 (R1 5.3)
+      value: 2.96
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.2
+      value: 2.2216
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 4.6, p95 14.2, off-palette 9.8% (top: #99AA33 (1.2%), #BBBB44
+        (1.2%))'
+      value: 4.5922
+    - check: edit_silhouette
+      status: pass
+      message: 100% of the parent's shape kept
+      value: 1.0
+    - check: edit_stability
+      status: pass
+      message: 59% of the parent level unchanged
+      value: 0.5899
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.83 of the parent level (drift compounds along a chain)
+      value: 1.8297
+    info:
+      parent_canvas:
+        source:
+        - 768
+        - 512
+        target:
+        - 1536
+        - 1024
+      metrics_raw:
+        L_p5: 46.1
+        L_p50: 90.6
+        L_p95: 95.6
+        C_p50: 11.5
+        C_p95: 68.0
+        C_p99: 74.0
+        detail: 3.6
+      metrics_locked:
+        L_p5: 46.5
+        L_p50: 90.6
+        L_p95: 95.5
+        C_p50: 11.5
+        C_p95: 58.6
+        C_p99: 62.3
+        detail: 2.96
+    fingerprint: a490e481b0ac5fda
+  3:
+    job: koke-island-3
+    take: 3
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 59 (R1 51)
+      value: 59.0
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 35 (at most 22), p98 96 (at least 90), spread 60
+        (at least 60)'
+      value: 60.1
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 71 (band 55-90)'
+      value: 70.7
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.11 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.11
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.8 (at least 3.5)'
+      value: 5.77
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.8 (R1 5.3)
+      value: 2.77
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.0
+      value: 1.9536
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 4.5, p95 14.3, off-palette 10.8% (top: #AAAA33 (1.3%), #BBBB44
+        (1.3%))'
+      value: 4.5297
+    - check: edit_silhouette
+      status: pass
+      message: 100% of the parent's shape kept
+      value: 1.0
+    - check: edit_stability
+      status: pass
+      message: 62% of the parent level unchanged
+      value: 0.6175
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.90 of the parent level (drift compounds along a chain)
+      value: 1.8999
+    info:
+      parent_canvas:
+        source:
+        - 768
+        - 512
+        target:
+        - 1536
+        - 1024
+      metrics_raw:
+        L_p5: 45.8
+        L_p50: 90.3
+        L_p95: 95.8
+        C_p50: 12.0
+        C_p95: 67.3
+        C_p99: 74.0
+        detail: 3.38
+      metrics_locked:
+        L_p5: 46.3
+        L_p50: 90.2
+        L_p95: 95.6
+        C_p50: 12.0
+        C_p95: 59.0
+        C_p99: 62.5
+        detail: 2.77
+    fingerprint: a490e481b0ac5fda
+manual_review:
+  excluded_takes:
+  - 1
+  note: 'Skipped after exactly one unchanged-prompt retry. Initial take1 clears hard
+    QA but leaves the upper/back-right blue group closed while the outermost far-right
+    group is visibly open, contrary to the explicit fifth far-right group still in
+    bud; independent source/locked/parent review agrees. Initial take2 has that same
+    semantic mismatch and hard palette drift. Retry takes3/4 both hard-fail the unchanged
+    palette_drift check (mean dE4.5297/4.5922); no eligible candidate remains. All
+    four originals, canonical QA and exact prompts are preserved. Requested raking
+    action was not falsely rejected for moving its explicitly named rake. No further
+    generation, palette/profile edits or forced promotion. This job has no true dependents:
+    later island stages independently edit stage0, so only this job is skipped. Canonical
+    full-frame before-grade Harmony C_mean across these rejected candidates: 21.582,21.822,22.63,22.664.
+    These are candidate observations, never a delivered healed-stage claim.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-e115909b-4de3-4531-a8bb-a73eb1407edd.png
+  original_generated_png_sha256: c6f4538860e07ea5928e950f2e620e5b3a349b6fa7047e8115146318431cd34d
+  inbox_png_sha256: 3aa06b0caba8a14f1158e2944368048d54af7d3c11ab61699e35ce51e772197a
+  rgba_sha256: 22387b97324bed2749f5c1bceea69419bf23249e9c61fcef3230d5ec13e346bc
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: a490e481b0ac5fda
+- take: 2
+  source_file: /workspace/generated_images/exec-62a46c9b-3df2-4433-86c0-140dae2ece10.png
+  original_generated_png_sha256: 6cc464361b25661f9a4168896d6eeed7e033d8ebc975d8e6d0865715e9e1406a
+  inbox_png_sha256: dca92f0fba5836889401ed3c557b4634746398b95ba487b220b917adc81df6c8
+  rgba_sha256: e31e6a74f29bea98c7f5288c2a1ffa48dbd78912953ca2d4c6ac54f9a9487654
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: a490e481b0ac5fda
+- take: 3
+  source_file: /workspace/generated_images/exec-96d940e8-d36c-4784-a3c2-b998f76c4ff6.png
+  original_generated_png_sha256: 403daa08630b27f7248a1e6ee9b7186678f43cbaa70e89f76204edb8cf0b137a
+  inbox_png_sha256: 6dbd0bfab60c90c9493044671b1bafd1993955fdc3f0f4787d70afbefcbfe127
+  rgba_sha256: 538c07e89a5c526ada15609fbca4a078aef99f4aeb6e1fbd47d1e58fa7757326
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: a490e481b0ac5fda
+- take: 4
+  source_file: /workspace/generated_images/exec-5a5474b9-84f1-468b-bdc2-b4343b5ff326.png
+  original_generated_png_sha256: 14b5a6c6c8985d5c6816cb397e7468ecc6680082e35cc1286fffe9df805c211d
+  inbox_png_sha256: a7f8cb963124046ca72f1253e9a9b87084a663ef38860617234a2d440acd1706
+  rgba_sha256: c9b2a591b47628747fdfd88dfc3a3f4284a2c89821f187f6fef06d0623689065
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: a490e481b0ac5fda
