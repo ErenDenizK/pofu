@@ -464,3 +464,11 @@ His views (translated), not orders; the decisions are ours. Handled in
 
 1. Special moments (night, some weathers) may get detailed art: concepts, maybe structures built for them. Handled: yes, tiered. The night relight system carries most of it; painted night keys per island are tuning targets; hero night variants only for a few structures; a design rule that every structure carries a light (window, lantern hook); night-only and weather-only life. In the night lighting ADR after the prototype.
 2. Day, fog and weather could depend on the user; a good player must experience everything, a doomscroller must see the effect, game and app. Handled: sky and weather v1 §2.2b: weather is the world's (a shuffled bag, every weather within 14 days), the screen haze is the player's (the unwell state in its own visual language, parted by a resisted reach), night shown at bedtime, and the widget, shield and week page share the sky.
+
+## 2026-11-06 (midday): plan the next work; icons; night notes
+
+1. Plan everything worth doing next (technical, game, game design, flow, progression, app); the lead drives the scope. Handled: `docs/roadmap.md` "Next, in order (plan of 2026-11-06)", four phases.
+2. The icon at the bottom right of the screenshots is very bad; icons need not be glass; Codex can draw flat menu icons; vectorise later if needed. Handled: `batch-46-flat-icons` (two style sheets), queued P8.
+3. Some lit spots shine too sharply; the shaft's lit area is cut like a diagonal line instead of a round falloff. Handled: SW-3's Koke tuning (narrow, soft gaussian shaft ending on the sprout, a round pool); a rule in the plan (no hard-edged light).
+4. Pofu's normal map is a little angular; Pofu gets his own normal tuning later. Handled: plan step 2 and the light-direction pilot (`batch-47`, real normals by photometric stereo).
+5. At night the lights are still not balanced: the island's 3D surfaces (its underside) take light badly; backgrounds are saved, characters, a few objects and effects are not seated yet. Handled: the night lighting track (plan step 2), tuned against the night key and the pilot's normals.

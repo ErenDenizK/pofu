@@ -1,0 +1,23 @@
+id: asset-x-plate-light-bottom
+type: asset
+title_tr: x-plate-light-bottom
+title_en: x-plate-light-bottom (world)
+status: in-production
+horizon: now
+summary: >-
+  Relight the attached floating island as a pure lighting study: the same island, every shape,
+  outline and detail exactly in place. The only light is one soft white light shining from
+  below, under the island; everything facing away from it falls into deep dark grey, so the
+  rounded forms (the lawn's edge, the earth body's bands, the round stones, the door's frame,
+  the roots) show clearly by their light and shade. Desatu…
+links:
+  variant_of:
+  - asset-island-main-l-v3
+art:
+  images: []
+  jobs:
+  - batch-47-light-direction-pilot:x-plate-light-bottom
+sources:
+- doc: tools/imagegen/manifest/batch-47-light-direction-pilot.yaml
+kind: world
+batch: batch-47-light-direction-pilot

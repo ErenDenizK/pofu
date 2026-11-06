@@ -97,7 +97,9 @@ rows here whenever an idea comes, without waiting for the founder.
 | P4 | `batch-42-stickers` | Stickers for the game (visitor letters and gift cards, the residents' reaction bubbles, the week page and Today summary): Pofu x6, Mochi x3, Simit, Fındık, the goat, one duo; code swaps them in by asset name over SF Symbol stand-ins (`Sticker`) | 12 | done (#245; row 0-s re-posts) |
 | P5 | `batch-43-caglayan-production` | Çağlayan, the second story island (day 10, the flow game): the island plate at arc stages 0 to 4 (the falls stopped, one stream back per stage, the waterfall and a soft rainbow at 4) and Damla the otter in two poses. The header's lead rule promotes healed stages and pose edits that fail only palette_drift, chroma_ceiling or edit_silhouette | 7 | **READY** |
 | P6 | `batch-45-beautiful-wounds` (exploration, taken here on purpose) | Painted targets for [sky and weather v1](sky-and-weather-v1.md) and the night lighting: Koke in mist with one shaft, Emanet's fog with one lantern, Revontuli's ruin at night, home in rain, in mist and at night (the night key the night relight is tuned against). x- ids, never promoted | 6 | **READY** |
-| P7 | `batch-44-weather-fx` | Weather and fog sprites, light-on-black: three fog cards, a rain tile, a light shaft, a rainbow arc, a puddle glint (spec §2.2-§2.3) | 7 | **READY** |
+| P7 | `batch-47-light-direction-pilot` (exploration) | The home plate relit from four sides, one light each, so nightlab solves real normals by photometric stereo (founder 2026-11-06: the island's underside and Pofu's normals relight badly). Feeds the night lighting ADR | 4 | **READY** |
+| P8 | `batch-46-flat-icons` (exploration) | Flat menu icons in two style sheets (solid cocoa pictograms; cream and cocoa two-tone): home, island, map, settings, close, add, letter, shield, gift. The founder: the place control's glyph looks bad; icons need not be glass; vectorise the winner later | 2 | **READY** |
+| P9 | `batch-44-weather-fx` | Weather and fog sprites, light-on-black: three fog cards, a rain tile, a light shaft, a rainbow arc, a puddle glint (spec §2.2-§2.3) | 7 | **READY** |
 
 ## The backlog
 

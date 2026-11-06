@@ -1,0 +1,21 @@
+id: asset-x-icons-flat-duo
+type: asset
+title_tr: x-icons-flat-duo
+title_en: x-icons-flat-duo (ui)
+status: in-production
+horizon: now
+summary: >-
+  A sheet of nine app menu icons in a 3 by 3 grid on a transparent background, evenly spaced,
+  each centered in its cell with generous padding. Flat two-tone illustrated icons: a soft
+  cream fill (#FBF1D8) inside a rounded warm cocoa line (#5B4636) of one consistent weight,
+  with one small flat accent of honey (#F2B45A) or moss green (#94B062) per icon; no gradients,
+  no shading. Rounded, friendly, cozy forms. In order, le…
+art:
+  images: []
+  jobs:
+  - batch-46-flat-icons:x-icons-flat-duo
+sources:
+- doc: tools/imagegen/manifest/batch-46-flat-icons.yaml
+kind: ui
+batch: batch-46-flat-icons
+size: 1024x1024

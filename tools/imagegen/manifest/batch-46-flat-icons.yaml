@@ -1,0 +1,88 @@
+# Batch 46: flat menu icons (exploration; x- ids, never promoted).
+#
+# The founder (2026-11-06): the place control's icon (bottom right of every
+# screenshot, a code-drawn island silhouette in a glass disc) looks bad.
+# Custom icons need not be glass: Codex can draw plain flat menu icons;
+# try them, and vectorise the winner later if it pays (trace to SVG, then an
+# SF-Symbol-style template). Two style directions, each ONE sheet of the
+# same nine icons in a 3 x 3 grid so the set is consistent; the lead slices
+# the winner into a production batch.
+#
+# The nine icons (the app's current glyphs, ui-system-v2 icon semantics):
+#   1 home (Pofu's round hamster face)    2 our island (a small floating island)
+#   3 the archipelago map (three islands) 4 settings (a gear)
+#   5 close (an x)                        6 add (a plus)
+#   7 a letter (an envelope with a heart seal, for visitor letters)
+#   8 the shield (a rounded shield with a small leaf)
+#   9 a gift (a small wrapped box, for island gifts)
+
+batch: batch-46-flat-icons
+title: Flat menu icons (two style sheets of the nine app icons)
+status: open
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: tea-stall-5, kind: station, name: tea-stall-5, external: batch-01-slice}
+
+  - id: x-icons-flat-solid
+    kind: ui
+    name: x-icons-flat-solid
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: true
+    chat: "Pofu · Icons"
+    acceptance: {exploration: true}
+    notes: "Direction A: solid flat pictograms in one warm cocoa colour, like a calm SF-Symbol set drawn by hand. Review: each icon reads at 22 pt, one consistent stroke weight and corner radius, cozy rounded forms, the set looks like one family; it can be traced to a vector."
+    attach:
+      - ref: approved:tea-stall-5
+        role: "A finished prop of the game: only for the warmth and softness of the world the icons belong to (do not draw it)."
+    prompt:
+      - text: |
+          A sheet of nine app menu icons in a 3 by 3 grid on a transparent
+          background, evenly spaced, each icon centered in its cell with
+          generous padding. Flat solid pictograms in one single warm cocoa
+          brown (#5B4636), no gradients, no shading, no outlines of another
+          colour: rounded, friendly, chunky shapes with soft corners and one
+          consistent visual weight, like a cozy hand-made version of a
+          system icon set. In order, left to right, top to bottom: (1) the
+          round face of a fluffy hamster seen from the front, with two round
+          ears and two dot eyes; (2) a small floating island, a rounded lawn
+          top over a rounded earth body with two small roots below; (3) three
+          small floating islands at different sizes; (4) a rounded gear with
+          six soft teeth; (5) a soft rounded x; (6) a soft rounded plus; (7) an
+          envelope with a small heart-shaped seal; (8) a rounded shield with a
+          small leaf in its centre; (9) a small wrapped gift box with a bow.
+          Every icon simple enough to read at a tiny size.
+      - text: "AVOID: text, letters, numbers, gradients, shading, 3D, glass, shadows, multiple colours, thin hairlines, a frame or grid lines, backgrounds"
+
+  - id: x-icons-flat-duo
+    kind: ui
+    name: x-icons-flat-duo
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: true
+    chat: "Pofu · Icons"
+    acceptance: {exploration: true}
+    notes: "Direction B: flat two-tone illustrated icons (cream body, cocoa line, one small honey or moss accent), a little more character than A, still flat. Review: as A, plus the accents are consistent and never noisy."
+    attach:
+      - ref: approved:tea-stall-5
+        role: "A finished prop of the game: only for the colours and softness of the world the icons belong to (do not draw it)."
+    prompt:
+      - text: |
+          A sheet of nine app menu icons in a 3 by 3 grid on a transparent
+          background, evenly spaced, each centered in its cell with generous
+          padding. Flat two-tone illustrated icons: a soft cream fill
+          (#FBF1D8) inside a rounded warm cocoa line (#5B4636) of one
+          consistent weight, with one small flat accent of honey (#F2B45A) or
+          moss green (#94B062) per icon; no gradients, no shading. Rounded,
+          friendly, cozy forms. In order, left to right, top to bottom: (1)
+          the round face of a fluffy hamster from the front, pink-cheek
+          accent; (2) a small floating island, moss-green lawn accent; (3)
+          three small floating islands; (4) a rounded gear; (5) a soft
+          rounded x; (6) a soft rounded plus; (7) an envelope with a honey
+          heart seal; (8) a rounded shield with a moss leaf; (9) a wrapped
+          gift box with a honey bow. Every icon simple enough to read at a
+          tiny size.
+      - text: "AVOID: text, letters, numbers, gradients, shading, 3D, glass, drop shadows, more than three colours per icon, thin hairlines, a frame or grid lines, backgrounds"
