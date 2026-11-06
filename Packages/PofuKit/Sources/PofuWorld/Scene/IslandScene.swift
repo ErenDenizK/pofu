@@ -430,9 +430,9 @@ private struct SceneFrame<Bubble: View>: View {
         let motion = look.hd2d && look.depthMotion && !model.reduceMotion ? rig.motion.parallax(look.tuning.parallax) : CameraMotion.still
         let lookPoint = WorldPoint(x: pose.lookX, y: pose.lookY)
         // HD-2D's tilt-shift: the depth lens, stronger per framing.
-        var baseLens = DepthMotion.lens(look.hd2d ? rig.lens.tiltShifted(by: LookTuning.tiltShift(z: z, island: look.tuning.tiltShiftIsland, home: look.tuning.tiltShiftHome)) : rig.lens, motion: motion)
+        let rigLens = DepthMotion.lens(look.hd2d ? rig.lens.tiltShifted(by: LookTuning.tiltShift(z: z, island: look.tuning.tiltShiftIsland, home: look.tuning.tiltShiftHome)) : rig.lens, motion: motion)
         // At Koke the focus plane is Koke's lawn, not the home lawn's.
-        if model.island == .koke { baseLens.focus = KokeLayout.focusDepth }
+        let baseLens = model.island == .koke ? Lens(focus: KokeLayout.focusDepth, slab: rigLens.slab, gain: rigLens.gain) : rigLens
         // Graphics spike: with the depth map's depth of field on, whole-layer
         // blur is off (every layer stays sharp) and the shader blurs per pixel.
         let spike = look.spike
