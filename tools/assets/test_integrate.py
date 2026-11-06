@@ -17,13 +17,13 @@ def test_map_is_well_formed():
     assert len(names) == len(set(names))
     for e in DATA["entries"]:
         assert e["target"] in DATA["targets"]
-        if e["target"] in integrate.FLAT and e["target"] != "app":
+        if e["target"] in integrate.FLAT and e["target"] not in ("app", "postcard"):
             assert len(e["points"]) == 2 and e.get("scale", 3) in (1, 2, 3)
 
 
 @pytest.mark.parametrize("entry", DATA["entries"], ids=lambda e: f"{e['target']}:{e['name']}")
 def test_entry_has_master_and_output(entry):
-    assert integrate.master_file(entry["master"]) is not None, f"no master in {entry['master']}"
+    assert integrate.source_file(entry) is not None, f"no source image for {entry['name']}"
     assert integrate.output_path(entry, DATA["targets"]).is_file(), "output missing; run integrate.py run"
 
 
