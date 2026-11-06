@@ -6,8 +6,8 @@
   "L_mean": 71.411,
   "L_p2": 54.131,
   "L_p98": 91.149,
-  "detail": 1.324,
-  "edge": 0.518,
+  "detail": 3.381,
+  "edge": 0.187,
   "tint_a": 3.257,
   "tint_b": 7.666,
   "warmth_b": 14.568
@@ -19,8 +19,8 @@
   "L_mean": 71.411,
   "L_p2": 54.131,
   "L_p98": 91.149,
-  "detail": 1.324,
-  "edge": 0.518,
+  "detail": 3.381,
+  "edge": 0.187,
   "tint_a": 3.257,
   "tint_b": 7.666,
   "warmth_b": 14.568
@@ -36,21 +36,23 @@
   "white": 0.0
  },
  "guarded": true,
- "kind": "prop",
+ "kind": "station",
  "matched_to": "world",
  "outliers_after": [
   "C_p95",
+  "detail",
   "edge"
  ],
  "outliers_before": [
   "C_p95",
+  "detail",
   "edge"
  ],
- "ppu": 8.533,
+ "ppu": 23.5556,
  "reference": false,
- "score_after": 69.5,
- "score_before": 69.5,
- "shipped": false,
+ "score_after": 60.0,
+ "score_before": 60.0,
+ "shipped": true,
  "source": "design/art/masters/koke-stone/koke-stone.png",
  "source_sha": "4468f98c37284d65"
 }
