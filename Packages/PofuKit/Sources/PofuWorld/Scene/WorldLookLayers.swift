@@ -25,13 +25,26 @@ enum WorldShaders {
     static var library: ShaderLibrary { .bundle(.module) }
 
     static func grade(_ g: WorldGrade, size: CGSize) -> Shader {
-        Shader(function: ShaderFunction(library: library, name: "pofuWorldGrade"), arguments: [
+        // The fitted LUTs (look pipeline v2): the three heaviest of the
+        // blend; unused slots repeat a LUT at weight 0 and are not sampled.
+        let group = g.lut?.group ?? .island
+        let picked = g.lut?.top3 ?? []
+        func slot(_ i: Int) -> (image: Image, weight: Double) {
+            let set = i < picked.count ? picked[i].set : (picked.first?.set ?? .day)
+            return (Image(LookLUT.assetName(group, set), bundle: .module), i < picked.count ? picked[i].weight : 0)
+        }
+        let l0 = slot(0), l1 = slot(1), l2 = slot(2)
+        return Shader(function: ShaderFunction(library: library, name: "pofuWorldGrade"), arguments: [
             .float2(g.black, g.white),
             .float3(g.lift.r, g.lift.g, g.lift.b),
             .float3(g.gamma.r, g.gamma.g, g.gamma.b),
             .float3(g.gain.r, g.gain.g, g.gain.b),
             .float4(g.contrast, g.pivot, g.saturation, g.vignette),
             .float2(size.width, size.height),
+            .image(l0.image),
+            .image(l1.image),
+            .image(l2.image),
+            .float3(l0.weight, l1.weight, l2.weight),
         ])
     }
 }
@@ -51,11 +64,22 @@ struct GradeVector: VectorArithmetic {
             g.lift.r, g.lift.g, g.lift.b, g.gamma.r, g.gamma.g, g.gamma.b,
             g.gain.r, g.gain.g, g.gain.b, g.contrast, g.pivot, g.saturation, g.vignette,
             g.black, g.white,
-        ]
+        ] + (g.lut?.vector ?? Array(repeating: 0, count: LookLUT.Set.allCases.count))
+    }
+
+    /// The grade, with the LUT weights (values 15 to 20, `LookLUT.Set`
+    /// order) for `group` when there are any.
+    func grade(group: LookLUT.Group?) -> WorldGrade {
+        var g = grade
+        if let group, values.count == 15 + LookLUT.Set.allCases.count {
+            let blend = LookLUT.Blend(group: group, vector: Array(values[15...]))
+            g.lut = blend.weights.isEmpty ? nil : blend
+        }
+        return g
     }
 
     var grade: WorldGrade {
-        guard values.count == 15 else { return .neutral }
+        guard values.count >= 15 else { return .neutral }
         let v = values
         return WorldGrade(
             black: v[13],
@@ -96,10 +120,13 @@ struct GradeVector: VectorArithmetic {
 struct GradeEffect: ViewModifier, Animatable {
     var vector: GradeVector
     var isEnabled: Bool
+    /// The LUTs' layer group; their weights animate with the grade.
+    var group: LookLUT.Group?
 
     init(grade: WorldGrade, isEnabled: Bool) {
         vector = GradeVector(grade)
         self.isEnabled = isEnabled
+        group = grade.lut?.group
     }
 
     // Stored Sendable properties of a value type are readable off the
@@ -110,7 +137,7 @@ struct GradeEffect: ViewModifier, Animatable {
     }
 
     func body(content: Content) -> some View {
-        let grade = vector.grade
+        let grade = vector.grade(group: group)
         let enabled = isEnabled && WorldShaders.isAvailable && !grade.isNeutral
         content.visualEffect { view, proxy in
             view.colorEffect(WorldShaders.grade(grade, size: proxy.size), isEnabled: enabled)

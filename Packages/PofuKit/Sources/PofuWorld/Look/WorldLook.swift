@@ -67,6 +67,10 @@ public struct WorldLook: Hashable, Sendable {
     /// default), switched in Rehearsal mode's tuning lab panel. Whole-layer blur
     /// remains the fallback where shaders are unavailable.
     public var spike: GraphicsSpike = .standard
+    /// At night and dusk the practicals light Pofu, the residents and the
+    /// key props through their baked normals (look pipeline v2); off only
+    /// to compare.
+    public var nightRelight = true
 
     public init(
         art: ArtSet = .lockLight,
