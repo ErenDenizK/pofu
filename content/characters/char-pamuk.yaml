@@ -2,8 +2,8 @@ id: char-pamuk
 type: character
 title_tr: Pamuk
 title_en: Pamuk, the capybara
-status: planned
-horizon: later
+status: cut
+horizon: maybe
 summary: >-
   An unbothered capybara at Kaplıca's hot spring. Nothing has ever hurried Pamuk.
 links:

@@ -5,7 +5,7 @@ title_en: Nane, the owl
 status: planned
 horizon: later
 summary: >-
-  A tiny, sleepy owl, awake when everyone sleeps; keeps the star book on Yıldız.
+  A tiny, sleepy owl, awake when everyone sleeps; greets the player at dusk on Mehtap (the map: a curled-up owl by her lantern who wakes at the healing; Sunday visitor).
 links:
   related:
   - station-observatory
@@ -17,5 +17,4 @@ unlock:
   day: 22
   rule_en: Arrives with its station or island
 species_en: Owl, tiny and sleepy
-home: island-yildiz
 station: station-observatory
