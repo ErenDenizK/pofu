@@ -42,7 +42,7 @@ No cross piece (two crossing streams on a 70 pt tile read as a muddle).
 
 ## 3. Puzzles per stage
 
-**A round** is 1-3 small boards played back to back, aimed at 60-90 s (median 90 s, A10). Çağlayan's island rules hold: a visit plays one round, the round advances one stage, at most one stage a day, only on a day with a resisted reach (Koke prototype §1). The round counts as one of the day's rounds (game plan §5). When the stage is done the island says "all caught up" (A1); there is no replay and no extra board to grind.
+**A round** is 1-3 small boards played back to back, aimed at 60-90 s (median 90 s, A10). Çağlayan's island rules hold: a visit plays one round, the round advances one stage, at most one stage a day, only on a day with a resisted reach (Koke prototype §1). The round counts as one of the day's rounds (game plan §5). When the stage is done the island says "all caught up" (A1) for that day. After stage 4 the island keeps its game (register G4, open question Q-6): earned rounds pay its material, free play beyond that pays nothing, and there is no extra board to grind for seeds (seeds are never paid by islands, G7).
 
 **Difficulty is taps and choices, not size.** About 2.5-3.5 s per tap (look, turn, watch) means a board of 12 taps is about 35-45 s.
 
@@ -125,7 +125,7 @@ Each tap count above is the board's true minimum (checked with an exhaustive sea
 ## 4. Rewards
 
 - **No seeds.** Islands never pay seeds (Book One sheets §0, Koke prototype §1); a round on a wonder island pays that island's progress instead of the garden's 2-5 seeds (game plan §5). Nothing in [economy](../product/economy.md) changes.
-- **The island changes:** solving the round advances Çağlayan one stage (batch-43): 1 the left steps run, 2 two streams and the pool half full, first warm light, 3 three streams and the wheel turns, 4 the full falls and the rainbow (the signature), then the gift at home (game plan day 14: a waterfall off home's edge).
+- **The island changes:** solving the round advances Çağlayan one stage (batch-43): 1 the left steps run, 2 two streams and the pool half full, first warm light, 3 three streams and the wheel turns, 4 the full falls and the rainbow (the signature), then the gift at home (game plan day 14; the map: "Evdeki havuzun çeşmesi akar", the home pool's fountain runs).
 - **The end-of-round moment** (about 6 s, no button needed until the end): the last tap → water rushes through the whole channel (1.2 s) → the board's stones slide away and the camera is back on the island → the stage's 3-6 s eased reveal (the new stream pours down the plate in the same path shape as the last board, which is the point) → Damla's beat (one line; stage 4 wordless) → one "Tamam". No score, no time, no "next".
 - Between boards inside a round: a 1 s pour and splash, then the next board slides up. No result screen in between.
 
