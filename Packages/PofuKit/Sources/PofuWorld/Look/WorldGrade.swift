@@ -72,6 +72,10 @@ public struct WorldGrade: Hashable, Sendable {
     public var saturation: Double
     /// How much the corners darken, 0…1.
     public var vignette: Double
+    /// The fitted LUTs looked up after the grade (look pipeline v2,
+    /// `LookLUT`); nil looks nothing up. The CPU twin (`apply`) leaves them
+    /// out: they live in textures.
+    public var lut: LookLUT.Blend?
 
     public init(
         black: Double = 0,
@@ -82,7 +86,8 @@ public struct WorldGrade: Hashable, Sendable {
         contrast: Double = 1,
         pivot: Double = 0.55,
         saturation: Double = 1,
-        vignette: Double = 0
+        vignette: Double = 0,
+        lut: LookLUT.Blend? = nil
     ) {
         self.black = black
         self.white = white
@@ -93,6 +98,7 @@ public struct WorldGrade: Hashable, Sendable {
         self.pivot = pivot
         self.saturation = saturation
         self.vignette = vignette
+        self.lut = lut
     }
 
     // MARK: - Presets (data; tune here, never in the art)
@@ -153,13 +159,24 @@ public struct WorldGrade: Hashable, Sendable {
             contrast: a.contrast + (b.contrast - a.contrast) * t,
             pivot: a.pivot + (b.pivot - a.pivot) * t,
             saturation: a.saturation + (b.saturation - a.saturation) * t,
-            vignette: a.vignette + (b.vignette - a.vignette) * t
+            vignette: a.vignette + (b.vignette - a.vignette) * t,
+            lut: mixedLUT(a.lut, b.lut, t)
         )
+    }
+
+    private static func mixedLUT(_ a: LookLUT.Blend?, _ b: LookLUT.Blend?, _ t: Double) -> LookLUT.Blend? {
+        switch (a, b) {
+        case let (a?, b?): .mix(a, b, t)
+        case let (a?, nil): .mix(a, LookLUT.Blend(group: a.group, weights: [:]), t)
+        case let (nil, b?): .mix(LookLUT.Blend(group: b.group, weights: [:]), b, t)
+        case (nil, nil): nil
+        }
     }
 
     /// This grade with `overlay` layered on at `amount`: multiplicative
     /// parameters multiply, lift adds, the levels and the vignette take the
-    /// stronger. An overlay over `neutral` at 1 is the overlay itself.
+    /// stronger. An overlay over `neutral` at 1 is the overlay itself. The
+    /// LUTs stay this grade's (an overlay never brings its own).
     public func layered(with overlay: WorldGrade, amount: Double) -> WorldGrade {
         let o = WorldGrade.mix(.neutral, overlay, amount)
         return WorldGrade(
@@ -171,15 +188,25 @@ public struct WorldGrade: Hashable, Sendable {
             contrast: contrast * o.contrast,
             pivot: pivot,
             saturation: saturation * o.saturation,
-            vignette: max(vignette, o.vignette)
+            vignette: max(vignette, o.vignette),
+            lut: lut
         )
     }
 
-    /// The grade for the sky: the same without its input levels.
+    /// The grade for the sky: the same without its input levels or LUTs
+    /// (the sky is graded on the CPU).
     public var sky: WorldGrade {
         var copy = self
         copy.black = 0
         copy.white = 1
+        copy.lut = nil
+        return copy
+    }
+
+    /// This grade with these LUTs.
+    public func with(lut: LookLUT.Blend?) -> WorldGrade {
+        var copy = self
+        copy.lut = lut
         return copy
     }
 

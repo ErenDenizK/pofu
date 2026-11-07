@@ -39,9 +39,9 @@ MIN_BLUR = 0.6
 SUFFIX = "-shadow"
 
 # World imagesets that do not cast: plates and islands, the sky, the weather FX, the glow overlays, and the pipeline's
-# variants (depth blur `__soft` / `__deep`, normals and the grade experiments `--...`).
+# variants (depth blur `__soft` / `__deep`, normals and the grade experiments `--...`) and the look LUTs (`world-lut-`).
 EXCLUDE = re.compile(
-    r"(^world-(island-|isle-|far-isle|cloud|harbor-island|fog-card|rain-tile|rainbow-arc|puddle-glint|light-shaft))|-standin|-glow|__|--"
+    r"(^world-(island-|isle-|far-isle|cloud|harbor-island|fog-card|rain-tile|rainbow-arc|puddle-glint|light-shaft|lut-))|-standin|-glow|__|--"
 )
 # Home props from the UI catalog that stand on the lawn.
 EXTRA_CASTERS = ("ui-jar-empty", "ui-lantern-off")

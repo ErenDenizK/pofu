@@ -1,0 +1,285 @@
+{
+ "$note": "Per-cell 3D LUTs per layer group (look pipeline v2, phase 1): fitted by tools/looklab/bake_luts.py from the game's Home frames toward the references (I1 day, golden, rain; Gezgin f2 + Revontuli night). Each round: the source frames, whether it composed a correction, and dE before / predicted.",
+ "size": 17,
+ "groups": [
+  "island",
+  "characters"
+ ],
+ "cells": [
+  "dawn",
+  "day",
+  "golden",
+  "dusk",
+  "night",
+  "rain"
+ ],
+ "references": {
+  "day": [
+   "design/art/takes/batch-25-seasons/x-season-summer/plate__x-season-summer--t2.webp"
+  ],
+  "golden": [
+   "design/art/takes/batch-25-seasons/x-season-summer-evening/plate__x-season-summer-evening--t2.webp"
+  ],
+  "rain": [
+   "design/art/takes/batch-25-seasons/x-season-rain/plate__x-season-rain--t1.webp"
+  ],
+  "night": [
+   "design/art/takes/batch-22-gezgin-forms/x-gezgin-f2-night/plate__x-gezgin-f2-night--t1.webp",
+   "design/art/takes/batch-34-islands-in-game/x-revontuli-stuck/plate__x-revontuli-stuck--t1.webp"
+  ]
+ },
+ "rounds": [
+  {
+   "source": "src-r0",
+   "composed": false,
+   "states": {
+    "day": {
+     "before": {
+      "dE": 9.3,
+      "dE_regions": {
+       "sky": 8.8,
+       "back": 8.5,
+       "focal": 6.6,
+       "earth": 13.4,
+       "sea": 9.3
+      },
+      "hist": 9.4,
+      "bf": 0.7
+     },
+     "predicted": {
+      "dE": 6.5,
+      "dE_regions": {
+       "sky": 8.8,
+       "back": 7.4,
+       "focal": 4.4,
+       "earth": 2.4,
+       "sea": 9.3
+      },
+      "hist": 3.4,
+      "bf": 0.64
+     },
+     "p50": [
+      69.7,
+      82.6
+     ]
+    },
+    "golden": {
+     "before": {
+      "dE": 15.0,
+      "dE_regions": {
+       "sky": 25.1,
+       "back": 14.8,
+       "focal": 6.7,
+       "earth": 6.7,
+       "sea": 21.5
+      },
+      "hist": 6.0,
+      "bf": 0.74
+     },
+     "predicted": {
+      "dE": 12.8,
+      "dE_regions": {
+       "sky": 25.1,
+       "back": 12.1,
+       "focal": 4.3,
+       "earth": 0.9,
+       "sea": 21.5
+      },
+      "hist": 3.1,
+      "bf": 0.71
+     },
+     "p50": [
+      69.5,
+      75.7
+     ]
+    },
+    "night": {
+     "before": {
+      "dE": 8.4,
+      "dE_regions": {
+       "sky": 2.2,
+       "back": 7.6,
+       "focal": 10.8,
+       "earth": 13.8,
+       "sea": 7.5
+      },
+      "hist": 10.0,
+      "bf": 0.97
+     },
+     "predicted": {
+      "dE": 9.7,
+      "dE_regions": {
+       "sky": 2.2,
+       "back": 15.7,
+       "focal": 16.2,
+       "earth": 7.1,
+       "sea": 7.5
+      },
+      "hist": 8.4,
+      "bf": 0.89
+     },
+     "p50": [
+      65.9,
+      71.8
+     ]
+    },
+    "rain": {
+     "before": {
+      "dE": 9.6,
+      "dE_regions": {
+       "sky": 8.8,
+       "back": 12.2,
+       "focal": 2.1,
+       "earth": 14.2,
+       "sea": 10.7
+      },
+      "hist": 9.3,
+      "bf": 0.72
+     },
+     "predicted": {
+      "dE": 8.5,
+      "dE_regions": {
+       "sky": 8.8,
+       "back": 14.1,
+       "focal": 7.0,
+       "earth": 2.0,
+       "sea": 10.7
+      },
+      "hist": 4.0,
+      "bf": 0.71
+     },
+     "p50": [
+      64.9,
+      79.1
+     ]
+    }
+   }
+  },
+  {
+   "source": "r1",
+   "composed": true,
+   "states": {
+    "day": {
+     "before": {
+      "dE": 6.2,
+      "dE_regions": {
+       "sky": 8.8,
+       "back": 6.5,
+       "focal": 4.1,
+       "earth": 1.8,
+       "sea": 9.6
+      },
+      "hist": 2.2,
+      "bf": 0.6
+     },
+     "predicted": {
+      "dE": 6.2,
+      "dE_regions": {
+       "sky": 8.8,
+       "back": 7.5,
+       "focal": 3.4,
+       "earth": 1.6,
+       "sea": 9.6
+      },
+      "hist": 2.2,
+      "bf": 0.54
+     },
+     "p50": [
+      80.3,
+      82.5
+     ]
+    },
+    "golden": {
+     "before": {
+      "dE": 9.3,
+      "dE_regions": {
+       "sky": 13.5,
+       "back": 13.4,
+       "focal": 5.1,
+       "earth": 2.8,
+       "sea": 11.8
+      },
+      "hist": 2.9,
+      "bf": 0.65
+     },
+     "predicted": {
+      "dE": 9.1,
+      "dE_regions": {
+       "sky": 13.5,
+       "back": 12.9,
+       "focal": 5.4,
+       "earth": 2.0,
+       "sea": 11.8
+      },
+      "hist": 2.2,
+      "bf": 0.59
+     },
+     "p50": [
+      74.3,
+      75.2
+     ]
+    },
+    "night": {
+     "before": {
+      "dE": 9.6,
+      "dE_regions": {
+       "sky": 2.3,
+       "back": 13.3,
+       "focal": 13.7,
+       "earth": 7.5,
+       "sea": 11.0
+      },
+      "hist": 7.7,
+      "bf": 0.85
+     },
+     "predicted": {
+      "dE": 10.4,
+      "dE_regions": {
+       "sky": 2.3,
+       "back": 14.8,
+       "focal": 16.7,
+       "earth": 7.3,
+       "sea": 11.0
+      },
+      "hist": 8.1,
+      "bf": 0.81
+     },
+     "p50": [
+      71.5,
+      73.1
+     ]
+    },
+    "rain": {
+     "before": {
+      "dE": 6.7,
+      "dE_regions": {
+       "sky": 5.6,
+       "back": 12.8,
+       "focal": 4.4,
+       "earth": 1.9,
+       "sea": 8.9
+      },
+      "hist": 2.5,
+      "bf": 0.69
+     },
+     "predicted": {
+      "dE": 6.6,
+      "dE_regions": {
+       "sky": 5.6,
+       "back": 14.4,
+       "focal": 3.3,
+       "earth": 0.8,
+       "sea": 8.9
+      },
+      "hist": 3.0,
+      "bf": 0.65
+     },
+     "p50": [
+      77.4,
+      79.8
+     ]
+    }
+   }
+  }
+ ]
+}

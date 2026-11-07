@@ -532,16 +532,26 @@ private struct SceneFrame<Bubble: View>: View {
         // At Koke the colour comes back with the stage.
         let grade = model.island == .koke && world.koke.isArrived ? KokeLayout.graded(baseGrade, stage: world.koke.stage) : baseGrade
         let characterGrade = look.grade ? light.characterGrade : WorldGrade.neutral
-        // The sky and the cloud sea are pre-graded: no shader pass of their own.
-        let skyBase = palette.graded(by: grade)
+        // The sky and the cloud sea are pre-graded: no shader pass of their
+        // own. Their colours are final (look pipeline v2), so only the
+        // overlays grade them (wellbeing, calm, weather, the haze).
+        let backdropBase = look.grade ? light.backdropGrade : WorldGrade.neutral
+        let backdrop = model.island == .koke && world.koke.isArrived ? KokeLayout.graded(backdropBase, stage: world.koke.stage) : backdropBase
+        let skyBase = palette.graded(by: backdrop)
         // Behind Koke at its first stages the sky deepens, so the island's
         // silhouette sits off it (sky and weather v1 §2.4).
         let sky = model.island == .koke && world.koke.isArrived ? KokeStageLook(stage: world.koke.stage).sky(skyBase) : skyBase
-        let sea = CloudSea.Colours(cell: light.cell, grade: grade, unwell: look.grade ? light.unwell : 0)
+        let sea = CloudSea.Colours(cell: light.cell, grade: backdrop, unwell: look.grade ? light.unwell : 0, weather: look.grade ? atmosphere.conditions.weather.state : nil)
         // Where the cloud-sea's crest sits (the height fog's densest line):
         // the strip's lobes top out about 140 pt above the screen's bottom.
         let fogSeaLine = Double(size.height) - 140 - CloudSea.rise(z: z, pose: pose, height: Double(size.height))
         // Graphics spike: the key, fill, practicals and rim on the painted art.
+        // At night and dusk the practicals light Pofu, the residents and the
+        // key props through their baked normals (look pipeline v2): each lit
+        // sprite takes its two nearest sources from the light field.
+        let nightRelight = look.grade && look.hd2d && look.nightRelight && WorldShaders.isAvailable
+            ? RelightRig.night(light: light, field: pools)
+            : nil
         let relight: RelightRig? = (spike.normalLighting || spike.debug == .normals) && WorldShaders.isAvailable
             ? RelightRig.make(
                 light: light,
@@ -550,7 +560,7 @@ private struct SceneFrame<Bubble: View>: View {
                 },
                 strength: spike.debug == .normals ? 1 : spike.lightStrength
             )
-            : nil
+            : nightRelight
         let depthMap: Image? = (spikeDOF && rack > 0.001) || spike.debug == .depth
             ? SpikeDepthMap.image(world: world, pose: pose, offset: offset, size: size, art: look.art, koke: model.island == .koke && world.koke.isArrived, caglayan: model.island == .caglayan && world.caglayan.isArrived)
             : nil
@@ -687,7 +697,10 @@ private struct SceneFrame<Bubble: View>: View {
 
                 // One fog card across the island's base: the foot dissolves,
                 // the top stays clear.
-                FogCards(layer: .front, horizon: sky.horizon, mist: atmosphere.mist, offset: offset, size: size, seaLine: fogSeaLine)
+                // Look pipeline v2: haze only on the backdrop; this card lies on
+                // the cloud sea, so it takes the sea's warm white more than the
+                // sky's horizon (the references' sea is never a lavender veil).
+                FogCards(layer: .front, horizon: sky.horizon.mixed(with: sea.light, amount: LookTuning.frontFogSeaShare), mist: atmosphere.mist, offset: offset, size: size, seaLine: fogSeaLine)
                     .environment(\.worldAmbientPaused, ambientPaused)
 
                 // Rain, splash ticks and puddle glints in front of the island.
@@ -717,7 +730,9 @@ private struct SceneFrame<Bubble: View>: View {
                         art: look.art,
                         litOverlays: look.litOverlays,
                         harborFade: model.island == .harbor ? 1 : max(0, 1 - max(z, 0) / 0.8) * (model.focus == nil ? 1 : 0),
-                        relit: relight != nil,
+                        // The night relight adds form; the field's pools and the
+                        // characters' directional key stay (the spike replaces them).
+                        relit: relight != nil && relight != nightRelight,
                         guestNight: VisitorStage.isGuestNight(world.visitor),
                         directive: directive
                     )
@@ -1543,7 +1558,8 @@ extension PofuLayer {
                 let at = pose.project(p, width: Double(size.width))
                 return CGPoint(x: at.x + Double(offset.width) - originX, y: at.y + Double(offset.height) - originY)
             },
-            unit: s
+            unit: s,
+            centre: CGPoint(x: view.width / 2, y: view.height / 2)
         )
         // The art's rectangle inside the view, as fractions of it.
         let x0 = 0.1 / 1.2, y0 = 0.24 / 1.3, w = 1 / 1.2, h = 1 / 1.3

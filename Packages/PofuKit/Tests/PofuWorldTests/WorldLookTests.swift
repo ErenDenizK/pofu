@@ -132,7 +132,8 @@ struct WorldLightTests {
 
     @Test func noonIsTheDayGrade() {
         let light = WorldLight.at(hour: 12, wellbeing: 78, calm: 1.4)
-        #expect(light.grade == .day)
+        #expect(light.grade.with(lut: nil) == .day)
+        #expect(light.grade.lut?.weights == [.day: 1])
         #expect(light.shafts == 0)
         #expect(light.fireflies == 0)
         #expect(light.pollen > 0.9)
@@ -140,10 +141,10 @@ struct WorldLightTests {
 
     @Test func goldenHourHasShaftsAndNightHasFireflies() {
         let golden = WorldLight.at(hour: 18.5, wellbeing: 78, calm: 1.4)
-        #expect(golden.grade == .goldenHour)
+        #expect(golden.grade.with(lut: nil) == .goldenHour)
         #expect(golden.shafts > 0.9)
         let night = WorldLight.at(hour: 22, wellbeing: 78, calm: 1.4)
-        #expect(night.grade == .night)
+        #expect(night.grade.with(lut: nil) == .night)
         #expect(night.fireflies > 0.9)
         #expect(night.shafts == 0)
     }
@@ -157,7 +158,7 @@ struct WorldLightTests {
         #expect(WorldLight.at(hour: 12, wellbeing: 78, calm: 1.4).unwell == 0)
         let low = WorldLight.at(hour: 12, wellbeing: 25, calm: 1.4)
         #expect(low.unwell == 1)
-        #expect(low.grade == WorldGrade.day.layered(with: .unwell, amount: 1))
+        #expect(low.grade.with(lut: nil) == WorldGrade.day.layered(with: .unwell, amount: 1))
         #expect(low.grade.saturation < WorldGrade.day.saturation)
     }
 

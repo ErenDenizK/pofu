@@ -169,7 +169,7 @@ struct WeatherTests {
         #expect(over.keyIntensity == 0.7 && over.fillIntensity == 1.05)
         #expect(over.grade.saturation == 0.9 && over.grade.contrast == 0.8)
         let rain = ColourScript.weather(named: "lightRain")
-        #expect(rain.grade.saturation == 0.82 && rain.grade.contrast == 0.68)
+        #expect(rain.grade.saturation == 0.82 && rain.grade.contrast == 0.8)
         let mist = ColourScript.weather(named: "mist")
         #expect(mist.keyIntensity == 0.85 && mist.fogExtra == LookTuning.fogMistExtra)
         #expect(ColourScript.weather(named: "goldenHaze").grade.saturation == 1.08)

@@ -306,6 +306,16 @@ extension WorldLight {
         if let state = atmosphere.conditions.weather.state {
             copy.grade = copy.grade.layered(with: state.grade, amount: 1)
             copy.characterGrade = copy.characterGrade.layered(with: state.character, amount: 1)
+            // The backdrop takes the weather as overcast colour, never as a
+            // darkening grade (look pipeline v2 §6.3): `SkyPalette.atmospheric`
+            // and `CloudSea.Colours(weather:)`.
+            // Rain moves the sun-lit cells to the rain LUT (look pipeline v2).
+            let rain = LookLUT.rainAmount(atmosphere.conditions.weather)
+            if rain > 0 {
+                let lut = LookLUT.Blend(group: .island, cells: cellWeights, rain: rain)
+                copy.grade.lut = lut
+                copy.characterGrade.lut = lut.for(.characters)
+            }
             copy.practicals.window = max(copy.practicals.window, state.windowFloor * (1 - night))
             // Overcast and rain put the sun out; golden haze blooms.
             let dull = atmosphere.conditions.weather == .overcast || atmosphere.conditions.weather.isRaining
@@ -317,6 +327,7 @@ extension WorldLight {
         if atmosphere.haze > 0 {
             let haze = ColourScript.weather(named: "screenHaze")
             copy.grade = copy.grade.layered(with: haze.grade, amount: atmosphere.haze)
+            copy.backdropGrade = copy.backdropGrade.layered(with: haze.grade, amount: atmosphere.haze)
             copy.characterGrade = copy.characterGrade.layered(with: haze.character, amount: atmosphere.haze)
             // Practicals dim but never go out.
             copy.practicals.ember *= 1 - 0.4 * atmosphere.haze
