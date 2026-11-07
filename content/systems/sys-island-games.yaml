@@ -4,19 +4,46 @@ title_tr: Ada oyunları
 title_en: Island games and rounds
 status: idea
 horizon: maybe
-summary: >-
-  Every wonder island is playable: its own verb built on a shared game grammar (Serve, Pack, Flow, Connect, Trace, Echo, Patience, Deduce, Shape, Guide), played in rounds of 30 to 90 seconds with no failure. Resisting earns the round; playing it is the reward. Rounds: 2 a day for everyone, +1 per resisted reach (6 a day), +1 per calm night or quiet afternoon; never expire; at most 12 played a day; five make a set that ends with a story beat.
+summary: 'Every wonder island is playable: its own verb built on a shared game grammar
+  (Serve, Pack, Flow, Connect, Trace, Echo, Patience, Deduce, Shape, Guide), played
+  in rounds of 30 to 90 seconds with no failure. Resisting earns the round; playing
+  it is the reward. Rounds: 2 a day for everyone, +1 per resisted reach (6 a day),
+  +1 per calm night or quiet afternoon; never expire; at most 12 played a day; five
+  make a set that ends with a story beat.'
 notes:
-- >-
-  Proposed session rules A10 prime, A20 prime, A22 to A26: visits stay short, play 5 to 10 minutes, finite and entered on purpose, with an automatic step-down if reflex opens rise.
-- >-
-  Plus never sells rounds.
+- 'Proposed session rules A10 prime, A20 prime, A22 to A26: visits stay short, play
+  5 to 10 minutes, finite and entered on purpose, with an automatic step-down if reflex
+  opens rise.'
+- Plus never sells rounds.
 links:
   related:
   - sys-island-toys
   - sys-island-materials
   - sys-skip-gift
   - sys-guardrails
+  uses_asset:
+  - asset-flow-tile-straight
+  - asset-flow-tile-bend
+  - asset-flow-tile-split
+  - asset-flow-tile-gate
+  - asset-flow-tile-wheel
+  - asset-flow-tile-source
+  - asset-flow-tile-mouth
+  - asset-flow-rock
+  - asset-flow-rock-2
+  - asset-flow-grass
+  - asset-flow-grass-2
+  - asset-flow-wheel
+  - asset-flow-pool
+  - asset-flow-frame-caglayan
+  - asset-flow-splash-1
+  - asset-flow-splash-2
+  - asset-flow-splash-3
+  - asset-flow-splash-4
+  - asset-flow-dribble-1
+  - asset-flow-dribble-2
+  - asset-flow-dribble-3
+  - asset-flow-dribble-4
 sources:
 - doc: docs/archive/archipelago-system.md
   anchor: '#4-island-games-one-core-loop-a-different-game-on-every-island'
