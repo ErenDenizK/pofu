@@ -1,0 +1,21 @@
+id: asset-x-caglayan-flow-4
+type: asset
+title_tr: x-caglayan-flow-4
+title_en: x-caglayan-flow-4 (plate)
+status: in-production
+horizon: now
+summary: >-
+  A game plate for a cozy mobile game: Çağlayan, the waterfall island, at noon, STAGE 4, HEALED
+  and full of life. The plate's top is warm pale cream stone in two low rounded terraces over
+  a rounded honey-and-cream body in soft bands. At the back centre a low rounded cream rock
+  knoll, about as tall as a windmill, with a plain carved stone spout in its face; at its
+  foot a wide round pool. On the left a small stone mill h…
+art:
+  images: []
+  jobs:
+  - batch-67-caglayan-flow:x-caglayan-flow-4
+sources:
+- doc: tools/imagegen/manifest/batch-67-caglayan-flow.yaml
+kind: plate
+batch: batch-67-caglayan-flow
+size: 1536x1024

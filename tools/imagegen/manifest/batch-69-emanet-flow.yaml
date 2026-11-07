@@ -1,0 +1,372 @@
+# Batch 69: Emanet's concept flow (exploration; one coherent stage 0 -> 4).
+#
+# Founder (2026-11-07, Q-16): EM1 (batch-34 x-emanet-stuck t1 / -healed t1:
+# the tiled round island, heap -> shelves, the hand-cart) with EM2's
+# stilted bureau (batch-17 x2-emanet-a t1) or suitcase pile (x2-emanet-b t1)
+# and EM2's misty stuck state (batch-45 x-emanet-stage0-fog t2), which he
+# finds beautiful. Lead call: both loved pieces become ONE landmark, the
+# office: EM2's stilted bureau standing on a low plinth of stacked
+# suitcases (the back room is the bottom suitcase). The flow, landmarks and
+# upgrade spots: docs/design/concept-flows-islands.md §4. Afternoon
+# (İKİNDİ): cell golden.
+#
+# FINAL-FIRST CHAIN (docs/design/concept-flows-islands.md §0; shared rules
+# in docs/design/concept-flows.md). Stage 4 is painted first, at the island
+# camera, as the ROOT. Stages 3, 2, 1 and 0 are a parent chain of edits
+# (3 edits 4, 2 edits 3, 1 edits 2, 0 edits 1) that only take away, dim,
+# dry, cover, drain or pile up: nothing moves between stages, so they register
+# and the game crossfades between them. Leaves: `-4-bare` and `-0-bare`
+# (the plate without its movable pieces, the pair the layer cut needs),
+# `-4-life` (the residents, the duo and the critters added, for the
+# founder's review only; the game draws them as sprites) and `-4-up` (the
+# three island upgrades in their reserved spots, a fit check). The chain
+# plates never contain a character or an animal.
+#
+# EXPLORATION (x- ids, acceptance exploration: QA is advisory). LEAD RULE,
+# CHAIN PROMOTION: an edit can only attach an approved parent, so the five
+# chain jobs (`-4`, `-3`, `-2`, `-1`, `-0`) ARE promoted after the auto-pick
+# (`promote --only <id>`, review note "concept chain parent; auto-picked by
+# QA; founder review pending"), with their harmony entry and content node
+# as for any master. This is the one exception to "explorations are never
+# promoted" and covers only those five ids. They are concept targets, not
+# wired into the app. The four leaves are never promoted: takes, contact
+# sheet and review.yaml only. A chain job that fails twice is skipped with
+# everything below it in the chain (AGENTS.md, stop conditions).
+#
+# Order (one track, `all`): -4, then -3, -2, -1, -0 in order; the leaves
+# -4-bare, -4-life and -4-up as soon as -4 is promoted, -0-bare after -0.
+# Review every take against the parent at the same size: if anything moved,
+# grew or shrank between stages, the take fails the review.
+
+batch: batch-69-emanet-flow
+title: "Emanet concept flow (EM1 with EM2's stilted bureau on a suitcase plinth and EM2's fog), stage 4 first, chain to stage 0, bare pair, life and upgrade checks"
+status: open
+
+refs:
+  em1-healed: design/art/takes/batch-34-islands-in-game/x-emanet-healed/plate__x-emanet-healed--t1.webp
+  em1-stuck: design/art/takes/batch-34-islands-in-game/x-emanet-stuck/plate__x-emanet-stuck--t1.webp
+  em2-bureau: design/art/takes/batch-17-islands-v2/x2-emanet-a/plate__x2-emanet-a--t1.webp
+  em2-suitcases: design/art/takes/batch-17-islands-v2/x2-emanet-b/plate__x2-emanet-b--t1.webp
+  em2-fog: design/art/takes/batch-45-beautiful-wounds/x-emanet-stage0-fog/plate__x-emanet-stage0-fog--t2.webp
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: island-main-l-v3, kind: world, name: island-main-l-v3, external: batch-05-fixes-pilot, master: design/art/masters/island-main-l-v3/island-main-l-v3.webp}
+  - {id: tea-stall-5, kind: station, name: tea-stall-5, external: batch-01-slice}
+  - {id: cloud-sea, kind: world, name: cloud-sea, external: batch-04-sky}
+  - {id: mochi-v2, kind: char, name: mochi-v2, external: batch-03-home-island, master: design/art/masters/mochi-v2/mochi-v2.webp}
+
+  - id: x-emanet-flow-4
+    kind: plate
+    name: x-emanet-flow-4
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 0.5}
+    palettes: [world-props, world-sunset, world-foliage]
+    chat: "Pofu · Emanet flow"
+    light: {cell: golden, layer: subject}
+    acceptance: {exploration: true}
+    notes: "ROOT, stage 4 healed: EM1's plate and places with EM2's bureau on a suitcase plinth as the office. Review: the office reads as one building (bureau on suitcases), not two; tidy and warm; the three empty spots clear; no characters; the bunting and windows read in a 28 pt thumbnail."
+    attach:
+      - ref: approved:island-main-l-v3
+        role: "The home island: copy ONLY its camera, its size in the frame, its plate proportions (shallow top, rounded banded body) and its soft painting. Do not copy its lawn, colours, round door or pebbles."
+      - ref: em1-healed
+        role: "THE ISLAND (EM1, the founder's pick): copy its round plate with the cream and peach hexagon tiles and the teal tiled rim, its body, and the places of the hook post, the shelves, the hand-cart and the counter. Do not copy its office; do not draw its magpie, hamster or bunny."
+      - ref: em2-bureau
+        role: "THE OFFICE (EM2's stilted bureau): copy this building: teal boards, scalloped teal umbrella roof, the teacup water tank, the top-hat chimney, the striped awning over the counter window and the spoon ladder. Do not draw its magpie or its raft."
+      - ref: em2-suitcases
+        role: "ONLY the stacked old suitcases and hat boxes tied with red ribbon, and the little round door in the bottom suitcase: they become the office's low plinth."
+      - ref: approved:tea-stall-5
+        role: "A finished station of the game: every building and prop is at this scale and finish (do not draw this stall)."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+    prompt:
+      - text: |
+          A game plate for a cozy mobile game: Emanet, the lost-and-found
+          office island, in warm late-afternoon gold, STAGE 4, HEALED. A wide
+          round island whose flat top is paved in soft cream and peach
+          hexagonal tiles, ringed by a rim of teal glazed tiles with small
+          brass studs, over a warm peach-honey body in soft bands. At the back
+          centre stands THE OFFICE: a crooked little cabin of teal boards with
+          a scalloped teal umbrella roof, a big cream teacup as its water tank
+          on a stand, a brown top-hat chimney, a striped awning over a wide
+          counter window, round warm windows and a ladder whose rungs are big
+          wooden spoons; it stands on short wooden stilts that rise from a
+          low, wide plinth of stacked old suitcases and hat boxes tied with
+          red ribbon, the bottom suitcase with a little round door and a lit
+          round window (the back room). At the back right a tall brass HOOK
+          POST with eight hooks: seven hold small covered things and little
+          bells, the eighth hook is empty; a small paper kite on a string tied
+          to it flies above. In the middle right a long low wooden SHELF unit
+          of three bays, every shelf full of found things (teapots, a clock, a
+          globe, a camera, hats, books, jars), each with a cream luggage tag
+          on a teal string. In the middle left a wooden HAND-CART piled with
+          parcels in brown paper and red ribbon. At the front right a little
+          outdoor COUNTER with a brass weighing scale and a teacup on it.
+          HEALED AT GOLDEN HOUR: everything is shelved, tagged and tidy; a
+          small neat heap of three or four unclaimed things sits on the tiles
+          at the front centre; the office windows and the suitcase door glow
+          warm; a string of cream luggage tags and small pennants hangs from
+          the office roof to the hook post; thin curls of steam rise from the
+          teacup tank and the top-hat chimney; small lanterns glow on the
+          office porch and on the hook post; long soft golden light. Keep
+          these places EMPTY for later: a clear patch of tiles between the
+          shelf unit and the counter (room for a fourth bay), a clear lane of
+          tiles in front of the counter (where a queue will stand), and a
+          clear diagonal strip of tiles from the office porch down to the
+          hand-cart.
+      - text: |
+          GAME CAMERA: exactly the camera of the attached home island, a low
+          front three-quarter view about 20 degrees above the horizon; the
+          island centred and filling about 88 percent of the image width; its
+          plate a shallow top about a fifth as deep as it is wide over a soft,
+          rounded body in gentle bands; the sea of clouds below rising to the
+          underside. Every building and prop is at the scale of the attached
+          tea stall. NO CHARACTERS OR ANIMALS anywhere: the game draws Pofu,
+          Mochi, the resident and every critter as its own sprite, so their
+          places stay empty.
+      - block: prop-style-v2
+      - text: "AVOID: characters, animals, text, letters, numbers, a border, harsh shadows, near-black shade, neon colours, outlines, photorealism, a 3D render look, anything falling off the island into the void, a copy of the home island's lawn and round door"
+
+  - id: x-emanet-flow-3
+    kind: plate
+    name: x-emanet-flow-3
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 0.5}
+    palettes: [world-props, world-sunset, world-foliage]
+    chat: "Pofu · Emanet flow"
+    light: {cell: golden, layer: subject}
+    edit_of: x-emanet-flow-4
+    acceptance: {exploration: true, edit_mode: region}
+    notes: "Stage 3 (DÖNÜM, Söz 7 under the scale): the office opens, three bays full; no parcels, no bunting yet. Review: nothing moved; the back room door glows."
+    prompt:
+      - text: |
+          Edit the attached island plate one stage back: it is the same
+          island, less healed. NOTHING MOVES: every landmark, building, pool
+          rim, post, stone, the island's outline and size, the camera and the
+          composition stay exactly where they are. This edit only takes away,
+          empties, dims, dries, covers, drains or piles up what is named here.
+          STAGE 3: the hand-cart is empty except for a folded blanket; the
+          string of tags and pennants is gone; the kite is gone; no steam from
+          the teacup tank (the chimney still smokes); the heap at the front
+          centre is a little bigger, about a dozen things; a thin lilac mist
+          lies only under the island, around its body; all three shelf bays
+          stay full and tagged; the office windows and the suitcase door stay
+          lit. Colour about 95 percent.
+      - block: edit-keep-v1
+      - text: "AVOID: moving, resizing or redrawing any landmark or prop, reframing or zooming, new buildings, characters or animals, text, letters, a border"
+
+  - id: x-emanet-flow-2
+    kind: plate
+    name: x-emanet-flow-2
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 0.5}
+    palettes: [world-props, world-sunset, world-foliage]
+    chat: "Pofu · Emanet flow"
+    light: {cell: golden, layer: subject}
+    edit_of: x-emanet-flow-3
+    acceptance: {exploration: true, edit_mode: region}
+    notes: "Stage 2: labels return, two bays full, the office window is the first warm practical. Review: nothing moved; the third bay bare; fog behind the shelves only."
+    prompt:
+      - text: |
+          Edit the attached island plate one stage back: it is the same
+          island, less healed. NOTHING MOVES: every landmark, building, pool
+          rim, post, stone, the island's outline and size, the camera and the
+          composition stay exactly where they are. This edit only takes away,
+          empties, dims, dries, covers, drains or piles up what is named here.
+          STAGE 2: the third shelf bay (the right one) is bare; the suitcase
+          door and its window are dark and shut; the lanterns on the porch and
+          the hook post are dark; the heap at the front centre is bigger, a
+          tumbled pile up to a hamster's waist, and a small heap lies at the
+          front left; knee-deep lilac fog lies over the far half of the tiles,
+          around the office stilts and behind the shelves; the office windows
+          still glow (the first warm light). Colour about 80 percent.
+      - block: edit-keep-v1
+      - text: "AVOID: moving, resizing or redrawing any landmark or prop, reframing or zooming, new buildings, characters or animals, text, letters, a border"
+
+  - id: x-emanet-flow-1
+    kind: plate
+    name: x-emanet-flow-1
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 0.5}
+    palettes: [world-props, world-sunset, world-foliage]
+    chat: "Pofu · Emanet flow"
+    light: {cell: golden, layer: subject}
+    edit_of: x-emanet-flow-2
+    acceptance: {exploration: true, edit_mode: region}
+    notes: "Stage 1: the heaps begin to become shelves: one bay full, no tags. Review: nothing moved; only the counter lantern is warm."
+    attach:
+      - ref: em1-stuck
+        role: "The heap's look at the stuck end: the tumbled pile of teapots, quilts, hats, an umbrella and toys."
+    prompt:
+      - text: |
+          Edit the attached island plate one stage back: it is the same
+          island, less healed. NOTHING MOVES: every landmark, building, pool
+          rim, post, stone, the island's outline and size, the camera and the
+          composition stay exactly where they are. This edit only takes away,
+          empties, dims, dries, covers, drains or piles up what is named here.
+          STAGE 1: the second shelf bay is bare too, only the left bay holds
+          things; every cream tag is gone, the things are unlabelled; the
+          office windows are dark; the big heap at the front centre is a large
+          tumbled pile of teapots, quilts, hats, an umbrella, a rocking horse
+          and parcels, and the small heap at the front left is bigger; lilac
+          fog lies knee-deep over the whole top, thicker toward the back; only
+          a small oil lantern on the counter window sill glows. Colour about
+          65 percent.
+      - block: edit-keep-v1
+      - text: "AVOID: moving, resizing or redrawing any landmark or prop, reframing or zooming, new buildings, characters or animals, text, letters, a border"
+
+  - id: x-emanet-flow-0
+    kind: plate
+    name: x-emanet-flow-0
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 0.5}
+    palettes: [world-props, world-sunset, world-foliage]
+    chat: "Pofu · Emanet flow"
+    light: {cell: golden, layer: subject}
+    edit_of: x-emanet-flow-1
+    acceptance: {exploration: true, edit_mode: region}
+    notes: "Stage 0, the wound in one word, 'sisli' (unclaimed, in fog), eerie but enchanting (x-emanet-stage0-fog t2, the founder: beautiful). Review: the lantern is the first thing seen; the fog has depth; the fog shape reads as a hat on an umbrella, never a stranger; nothing moved."
+    attach:
+      - ref: em2-fog
+        role: "STAGE 0's look (the founder finds it beautiful): the thick lilac fog in layers, the things looming out of it and the one warm lantern. Copy that fog and light; keep the attached plate's layout."
+    prompt:
+      - text: |
+          Edit the attached island plate one stage back: it is the same
+          island, less healed. NOTHING MOVES: every landmark, building, pool
+          rim, post, stone, the island's outline and size, the camera and the
+          composition stay exactly where they are. This edit only takes away,
+          empties, dims, dries, covers, drains or piles up what is named here.
+          STAGE 0, THE FOG: thick, real lilac fog fills the island in soft
+          layered veils: the nearest things are clear, and the office, the
+          suitcases, the hook post and the shelves fade into soft silhouettes;
+          the left shelf bay is bare too, every shelf empty; out of the fog at
+          the front loom a few things, large and clear (an open striped
+          umbrella, a rubber boot, a teacup on a saucer, a toy sailboat); on
+          the hand-cart stands a tall shape, a top hat resting on an open
+          umbrella, half lost in the fog; the fog pools under the plate as a
+          cloud skirt. Afternoon drained to amber-grey with violet shade, but
+          a FULL value range. ONE warm light: the small oil lantern on the
+          counter window sill, its glow the only warm colour. Hushed, a little
+          uncanny, enchanting: you want to go in.
+      - block: edit-keep-v1
+      - text: "AVOID: moving, resizing or redrawing any landmark or prop, reframing or zooming, new buildings, characters or animals, text, letters, a border"
+
+  - id: x-emanet-flow-4-bare
+    kind: plate
+    name: x-emanet-flow-4-bare
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 0.5}
+    palettes: [world-props, world-sunset, world-foliage]
+    chat: "Pofu · Emanet flow"
+    light: {cell: golden, layer: subject}
+    edit_of: x-emanet-flow-4
+    acceptance: {exploration: true, edit_mode: region}
+    notes: "Bare pair, stage 4 (the cut's base). Review: the shelves empty and clean, the cart empty; no ghosts of the things."
+    prompt:
+      - text: |
+          Edit the attached island plate into its BARE version for cutting
+          layers: keep the island plate, its ground, its water and every fixed
+          landmark exactly as they are, pixel for pixel, in the same light.
+          Remove ONLY the movable pieces named here, and paint the ground that
+          was under each one as it would simply continue (the same stone,
+          grass, snow or tile), with no hole, no ghost shadow and no new
+          detail. Remove only: every found thing on the shelves and its tag
+          (the empty shelf unit stays), the parcels on the hand-cart (the
+          empty cart stays), the small heap at the front centre, the teacup on
+          the counter, the string of tags and pennants, the kite and its
+          string, and the steam.
+      - block: edit-keep-v1
+      - text: "AVOID: moving, resizing or redrawing any landmark or prop, reframing or zooming, new buildings, characters or animals, text, letters, a border"
+
+  - id: x-emanet-flow-0-bare
+    kind: plate
+    name: x-emanet-flow-0-bare
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 0.5}
+    palettes: [world-props, world-sunset, world-foliage]
+    chat: "Pofu · Emanet flow"
+    light: {cell: golden, layer: subject}
+    edit_of: x-emanet-flow-0
+    acceptance: {exploration: true, edit_mode: region}
+    notes: "Bare pair, stage 0: the plate under the fog, in stage 0's light, for the 'fog parts where you touch' experiment. Review: no fog left; the light still drained amber-grey with the one lantern."
+    prompt:
+      - text: |
+          Edit the attached island plate into its BARE version for cutting
+          layers: keep the island plate, its ground, its water and every fixed
+          landmark exactly as they are, pixel for pixel, in the same light.
+          Remove ONLY the movable pieces named here, and paint the ground that
+          was under each one as it would simply continue (the same stone,
+          grass, snow or tile), with no hole, no ghost shadow and no new
+          detail. Remove only: the fog, all of it, including the skirt under
+          the plate (the app draws the fog and parts it where you touch), the
+          heaps and the looming things at the front, and the hat-on-umbrella
+          shape on the cart; keep stage 0's drained light and the lantern's
+          glow.
+      - block: edit-keep-v1
+      - text: "AVOID: moving, resizing or redrawing any landmark or prop, reframing or zooming, new buildings, characters or animals, text, letters, a border"
+
+  - id: x-emanet-flow-4-life
+    kind: plate
+    name: x-emanet-flow-4-life
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 0.5}
+    palettes: [world-props, world-sunset, world-foliage]
+    chat: "Pofu · Emanet flow"
+    light: {cell: golden, layer: subject}
+    edit_of: x-emanet-flow-4
+    acceptance: {exploration: true, edit_mode: region}
+    notes: "For the founder's review only (the game draws these as sprites): stage 4 with Boncuk, the duo and critters. Review: the busiest, warmest island so far, never cluttered."
+    attach:
+      - ref: em1-healed
+        role: "Boncuk, the magpie with a soft teal sheen: draw her exactly as in this picture, at this size."
+      - ref: R1
+        role: "Pofu, the hamster: draw him small, in this exact style, at the size he has on the home island."
+      - ref: approved:mochi-v2
+        role: "Mochi, the bunny: draw her small beside Pofu, in this exact style."
+    prompt:
+      - text: |
+          Add life to the attached healed island, in these places only:
+          Boncuk, the magpie of the attached picture, stands behind the
+          outdoor counter polishing a teacup with a cloth; Pofu (the hamster)
+          and Mochi (the bunny) stand small at the front centre beside the
+          little heap, at the size they have at home, Pofu wearing a found top
+          hat; two small sparrows sit on the umbrella roof. Add nothing else.
+      - block: edit-keep-v1
+      - text: "AVOID: moving, resizing or redrawing anything already there, more characters than named, crowds, text, letters, a border"
+
+  - id: x-emanet-flow-4-up
+    kind: plate
+    name: x-emanet-flow-4-up
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 0.5}
+    palettes: [world-props, world-sunset, world-foliage]
+    chat: "Pofu · Emanet flow"
+    light: {cell: golden, layer: subject}
+    edit_of: x-emanet-flow-4
+    acceptance: {exploration: true, edit_mode: region}
+    notes: "Fit check of the three upgrades (decisions G5) in their reserved spots; never shipped as one picture."
+    prompt:
+      - text: |
+          Add the island's three upgrades to the attached healed island, each
+          in its reserved empty spot, and nothing else: (1) A FOURTH SHELF BAY
+          matching the others, full of tagged found things, on the clear tiles
+          between the shelf unit and the counter; (2) A BELL AND A QUEUE: a
+          brass bell on a small curved bracket on the counter's corner post,
+          and a queue line of three short brass posts joined by a soft red
+          rope along the clear lane in front of the counter (the visitors come
+          later as their own pictures); (3) A PARCEL SLIDE: a smooth wooden
+          chute with low rails curving from the office porch down to the
+          hand-cart, two parcels sliding down it.
+      - block: edit-keep-v1
+      - text: "AVOID: moving, resizing or redrawing anything already there, characters, animals, text, letters, a border"

@@ -1,0 +1,24 @@
+id: asset-x-mehtap-flow-4-life
+type: asset
+title_tr: x-mehtap-flow-4-life
+title_en: x-mehtap-flow-4-life (plate)
+status: in-production
+horizon: now
+summary: >-
+  Add life to the attached finale island, in these places only: Nane, the small round owl
+  of the attached picture, stands on top of her perch with her wings wide open, holding a
+  small rolled star chart; Pofu (the hamster) and Mochi (the bunny) sit small at the front
+  centre, at the size they have at home, Mochi holding a cup, both looking up along the bright
+  gold trail; four pale moon moths, softly glowing, flutter arou…
+links:
+  variant_of:
+  - asset-x-mehtap-flow-4
+art:
+  images: []
+  jobs:
+  - batch-70-mehtap-flow:x-mehtap-flow-4-life
+sources:
+- doc: tools/imagegen/manifest/batch-70-mehtap-flow.yaml
+kind: plate
+batch: batch-70-mehtap-flow
+size: 1536x1024

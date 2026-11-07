@@ -1,0 +1,24 @@
+id: asset-x-mehtap-flow-4-up
+type: asset
+title_tr: x-mehtap-flow-4-up
+title_en: x-mehtap-flow-4-up (plate)
+status: in-production
+horizon: now
+summary: >-
+  Add the island's three upgrades to the attached finale island, each in its reserved empty
+  spot, and nothing else: (1) TELESCOPE VIEWS: a small brass viewing scope on a three-legged
+  stand on the left horn's ledge, pointing out over the clouds; (2) A HAMMOCK: a soft striped
+  cream-and-blush hammock strung between the right horn and Nane's perch, with a small pillow;
+  (3) THE MOON POOL REFLECTS HOME: in the pool's silver …
+links:
+  variant_of:
+  - asset-x-mehtap-flow-4
+art:
+  images: []
+  jobs:
+  - batch-70-mehtap-flow:x-mehtap-flow-4-up
+sources:
+- doc: tools/imagegen/manifest/batch-70-mehtap-flow.yaml
+kind: plate
+batch: batch-70-mehtap-flow
+size: 1536x1024

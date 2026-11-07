@@ -1,0 +1,358 @@
+# Batch 70: Mehtap's concept flow (exploration; one coherent stage 0 -> 4).
+#
+# Founder (2026-11-07, Q-16): M1 (batch-34 x-mehtap-stuck t1 / -healed t1:
+# the crescent moonstone, closed dome -> telescope, star trail), not M2. As
+# the last island it must be the FLASHIEST of the game, and the gap between
+# stuck and healed must be much bigger than M1's. Stage 4 is the finale
+# night under the real full moon (story map, Mehtap). The flow, landmarks
+# and upgrade spots: docs/design/concept-flows-islands.md §5. The blue
+# hour: cell dusk for the whole chain (one light, so nothing shifts).
+#
+# FINAL-FIRST CHAIN (docs/design/concept-flows-islands.md §0; shared rules
+# in docs/design/concept-flows.md). Stage 4 is painted first, at the island
+# camera, as the ROOT. Stages 3, 2, 1 and 0 are a parent chain of edits
+# (3 edits 4, 2 edits 3, 1 edits 2, 0 edits 1) that only take away, dim,
+# dry, cover, drain or pile up: nothing moves between stages, so they register
+# and the game crossfades between them. Leaves: `-4-bare` and `-0-bare`
+# (the plate without its movable pieces, the pair the layer cut needs),
+# `-4-life` (the residents, the duo and the critters added, for the
+# founder's review only; the game draws them as sprites) and `-4-up` (the
+# three island upgrades in their reserved spots, a fit check). The chain
+# plates never contain a character or an animal.
+#
+# EXPLORATION (x- ids, acceptance exploration: QA is advisory). LEAD RULE,
+# CHAIN PROMOTION: an edit can only attach an approved parent, so the five
+# chain jobs (`-4`, `-3`, `-2`, `-1`, `-0`) ARE promoted after the auto-pick
+# (`promote --only <id>`, review note "concept chain parent; auto-picked by
+# QA; founder review pending"), with their harmony entry and content node
+# as for any master. This is the one exception to "explorations are never
+# promoted" and covers only those five ids. They are concept targets, not
+# wired into the app. The four leaves are never promoted: takes, contact
+# sheet and review.yaml only. A chain job that fails twice is skipped with
+# everything below it in the chain (AGENTS.md, stop conditions).
+#
+# Order (one track, `all`): -4, then -3, -2, -1, -0 in order; the leaves
+# -4-bare, -4-life and -4-up as soon as -4 is promoted, -0-bare after -0.
+# Review every take against the parent at the same size: if anything moved,
+# grew or shrank between stages, the take fails the review.
+
+batch: batch-70-mehtap-flow
+title: "Mehtap concept flow (M1, the flashiest island; the biggest gap from dark to the full-moon finale), stage 4 first, chain to stage 0, bare pair, life and upgrade checks"
+status: open
+
+refs:
+  m1-healed: design/art/takes/batch-34-islands-in-game/x-mehtap-healed/plate__x-mehtap-healed--t1.webp
+  m1-stuck: design/art/takes/batch-34-islands-in-game/x-mehtap-stuck/plate__x-mehtap-stuck--t1.webp
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: island-main-l-v3, kind: world, name: island-main-l-v3, external: batch-05-fixes-pilot, master: design/art/masters/island-main-l-v3/island-main-l-v3.webp}
+  - {id: tea-stall-5, kind: station, name: tea-stall-5, external: batch-01-slice}
+  - {id: cloud-sea, kind: world, name: cloud-sea, external: batch-04-sky}
+  - {id: mochi-v2, kind: char, name: mochi-v2, external: batch-03-home-island, master: design/art/masters/mochi-v2/mochi-v2.webp}
+
+  - id: x-mehtap-flow-4
+    kind: plate
+    name: x-mehtap-flow-4
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 0.5}
+    palettes: [world-night, world-props, world-foliage]
+    chat: "Pofu · Mehtap flow"
+    light: {cell: dusk, layer: subject}
+    acceptance: {exploration: true}
+    notes: "ROOT, stage 4, the finale night: M1's crescent pushed to the most spectacular picture of the game. Review: the bright gold trail, the full moon and the silver pool read in a 28 pt thumbnail; rich but calm (never neon, never a light show that hides the island); the three empty spots clear; no characters."
+    attach:
+      - ref: approved:island-main-l-v3
+        role: "The home island: copy ONLY its camera, its size in the frame, its plate proportions (shallow top, rounded banded body) and its soft painting. Do not copy its lawn, colours, round door or pebbles."
+      - ref: m1-healed
+        role: "THE ISLAND (M1, the founder's pick): copy its crescent moonstone plate with the two rising horns, its craters, and the places and shapes of the dome, the moon pool, the owl's perch with its lantern, the bench and the chart board. Do not draw its owl, hamster or bunny."
+      - ref: approved:tea-stall-5
+        role: "A finished station of the game: every building and prop is at this scale and finish (do not draw this stall)."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+    prompt:
+      - text: |
+          A game plate for a cozy mobile game: Mehtap, the moonstone cradle,
+          the last island of the game and its most magical, at the deep blue
+          hour under a rising full moon, STAGE 4, HEALED: the finale night.
+          The island is a wide crescent of pale pearl moonstone with soft
+          round craters, its two ends rising at the left and right like the
+          horns of a cradle, over a rounded moonstone body. At the back centre
+          a round OBSERVATORY DOME on a cream drum with arched windows and
+          steps; at the front left a round MOON POOL in a low stone rim; at
+          the middle right NANE'S PERCH, a tall curved wooden post with a
+          lantern on its hook and a small round platform on top; at the front
+          right a wooden BENCH with a striped blanket beside the CHART BOARD
+          on two legs. HEALED, the most spectacular picture of the game: the
+          dome's shell stands open in two halves and a brass telescope leans
+          out toward the sky, the dome glowing warm from inside; a huge soft
+          full moon rises behind the island at the upper left, pale gold with
+          a gentle halo; the sky is deep blue-violet and full of soft stars,
+          and across it run seven faint, thin silver trails of small stars and
+          ONE NEW BRIGHT TRAIL of warm gold stars that starts at the
+          telescope, arcs high over the island and leaves the frame at the
+          upper right, toward home; the moon pool has turned to liquid silver
+          and mirrors the trails; the moonstone glows softly from within,
+          pearl and warm, brightest along the rims and the horns; seven small
+          round moonstone lamps, soft glowing orbs, stand along the crescent's
+          back rim; round bushes of white moonflowers beside the dome are open
+          and faintly glowing; the chart board shows the seven faint trails
+          and the bright one as soft gold lines (no letters); Nane's lantern
+          glows gold; two soft shooting stars; the island's underside is
+          speckled with tiny stars. Keep these places EMPTY for later: the
+          flat top step of the left horn (a small clear ledge), the clear
+          moonstone between the right horn and Nane's perch (room for a
+          hammock), and the moon pool's whole surface (nothing in it or over
+          it).
+      - text: |
+          GAME CAMERA: exactly the camera of the attached home island, a low
+          front three-quarter view about 20 degrees above the horizon; the
+          island centred and filling about 88 percent of the image width; its
+          plate a shallow top about a fifth as deep as it is wide over a soft,
+          rounded body in gentle bands; the sea of clouds below rising to the
+          underside. Every building and prop is at the scale of the attached
+          tea stall. NO CHARACTERS OR ANIMALS anywhere: the game draws Pofu,
+          Mochi, the resident and every critter as its own sprite, so their
+          places stay empty.
+      - block: prop-style-v2
+      - text: "AVOID: characters, animals, text, letters, numbers, a border, harsh shadows, near-black shade, neon colours, outlines, photorealism, a 3D render look, anything falling off the island into the void, a copy of the home island's lawn and round door, a harsh or neon light show, lens flares, glare that hides the island"
+
+  - id: x-mehtap-flow-3
+    kind: plate
+    name: x-mehtap-flow-3
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 0.5}
+    palettes: [world-night, world-props, world-foliage]
+    chat: "Pofu · Mehtap flow"
+    light: {cell: dusk, layer: subject}
+    edit_of: x-mehtap-flow-4
+    acceptance: {exploration: true, edit_mode: region}
+    notes: "Stage 3 (DÖNÜM, Söz 10 on the pool's rim): the chart drawn, seven faint trails, the new trail stops short of home; the moon a few nights before full. Review: nothing moved; the big gold trail gone."
+    prompt:
+      - text: |
+          Edit the attached island plate one stage back: it is the same
+          island, less healed. NOTHING MOVES: every landmark, building, pool
+          rim, post, stone, the island's outline and size, the camera and the
+          composition stay exactly where they are. This edit only takes away,
+          empties, dims, dries, covers, drains or piles up what is named here.
+          STAGE 3: the bright gold trail is gone except a short stub of three
+          gold stars just above the telescope that stops short; the moon is a
+          few nights before full, a smaller pale gibbous moon with a fainter
+          halo; the seven faint silver trails stay; the moon pool is a still,
+          dim silver-grey that mirrors only stars; the moonflowers are half
+          open and do not glow; five of the seven rim lamps are lit, two are
+          dark; no shooting stars; only a few stars on the underside. Colour
+          about 95 percent.
+      - block: edit-keep-v1
+      - text: "AVOID: moving, resizing or redrawing any landmark or prop, reframing or zooming, new buildings, characters or animals, text, letters, a border"
+
+  - id: x-mehtap-flow-2
+    kind: plate
+    name: x-mehtap-flow-2
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 0.5}
+    palettes: [world-night, world-props, world-foliage]
+    chat: "Pofu · Mehtap flow"
+    light: {cell: dusk, layer: subject}
+    edit_of: x-mehtap-flow-3
+    acceptance: {exploration: true, edit_mode: region}
+    notes: "Stage 2: the dome opens, the telescope out, Nane's lantern the first warm practical; two faint trails. Review: nothing moved."
+    prompt:
+      - text: |
+          Edit the attached island plate one stage back: it is the same
+          island, less healed. NOTHING MOVES: every landmark, building, pool
+          rim, post, stone, the island's outline and size, the camera and the
+          composition stay exactly where they are. This edit only takes away,
+          empties, dims, dries, covers, drains or piles up what is named here.
+          STAGE 2: only two of the seven faint trails remain in the sky, the
+          other five are gone, and the chart board shows only those two faint
+          lines; three of the rim lamps are lit, four are dark; the
+          moonstone's inner glow is faint; the pool is pewter with a faint
+          shimmer; the moonflowers are closed buds; the underside is plain;
+          the moon is a pale half moon, low and faint. The dome stays open
+          with the telescope out and Nane's lantern stays lit (the first warm
+          light). Colour about 80 percent.
+      - block: edit-keep-v1
+      - text: "AVOID: moving, resizing or redrawing any landmark or prop, reframing or zooming, new buildings, characters or animals, text, letters, a border"
+
+  - id: x-mehtap-flow-1
+    kind: plate
+    name: x-mehtap-flow-1
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 0.5}
+    palettes: [world-night, world-props, world-foliage]
+    chat: "Pofu · Mehtap flow"
+    light: {cell: dusk, layer: subject}
+    edit_of: x-mehtap-flow-2
+    acceptance: {exploration: true, edit_mode: region}
+    notes: "Stage 1: the first faint trail; the dome still shut. Review: nothing moved; the dome shell closed in place (the same outline as stage 0)."
+    prompt:
+      - text: |
+          Edit the attached island plate one stage back: it is the same
+          island, less healed. NOTHING MOVES: every landmark, building, pool
+          rim, post, stone, the island's outline and size, the camera and the
+          composition stay exactly where they are. This edit only takes away,
+          empties, dims, dries, covers, drains or piles up what is named here.
+          STAGE 1: the dome's shell is closed (its two halves shut, the
+          telescope inside and out of sight) and its windows are dim; Nane's
+          lantern is dark; only one faint trail remains in the sky and on the
+          chart; one rim lamp glows faintly, the rest are dark; the moonflower
+          bushes are grey-green; the moon is a thin crescent. Colour about 65
+          percent.
+      - block: edit-keep-v1
+      - text: "AVOID: moving, resizing or redrawing any landmark or prop, reframing or zooming, new buildings, characters or animals, text, letters, a border"
+
+  - id: x-mehtap-flow-0
+    kind: plate
+    name: x-mehtap-flow-0
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 0.5}
+    palettes: [world-night, world-props, world-foliage]
+    chat: "Pofu · Mehtap flow"
+    light: {cell: dusk, layer: subject}
+    edit_of: x-mehtap-flow-1
+    acceptance: {exploration: true, edit_mode: region}
+    notes: "Stage 0, the wound in one word, 'karanlık' (dark): the darkest picture of the game and still beautiful, the biggest gap to stage 4 (founder). Review: the keyhole is the first thing seen; cold, not grey mush; never horror; nothing moved."
+    attach:
+      - ref: m1-stuck
+        role: "The same crescent, stuck: the closed dome, the dull pool, the blank chart. Push it much darker and colder, as written."
+    prompt:
+      - text: |
+          Edit the attached island plate one stage back: it is the same
+          island, less healed. NOTHING MOVES: every landmark, building, pool
+          rim, post, stone, the island's outline and size, the camera and the
+          composition stay exactly where they are. This edit only takes away,
+          empties, dims, dries, covers, drains or piles up what is named here.
+          STAGE 0, THE DARK: every trail is gone; the sky is thin and cold, a
+          few dim stars, one of them fading to a faint ember; no moon at all
+          (a new-moon night); the moonstone is a dull chalky grey-lilac with
+          no inner glow; every rim lamp is dark and grey; the moon pool is a
+          flat, dull pewter disc; the chart board is blank; the bushes are
+          bare grey twigs; the closed dome's shell is a dull lead grey and its
+          windows are dark. Cold, drained blue-grey everywhere, but a FULL
+          value range, from deep blue-violet shade to pale cold highlights.
+          ONE warm light: a pale-gold glow through the keyhole of the dome's
+          door, the only warm colour in the picture. Hushed and cold, the
+          darkest picture in the game, still beautiful, never horror.
+      - block: edit-keep-v1
+      - text: "AVOID: moving, resizing or redrawing any landmark or prop, reframing or zooming, new buildings, characters or animals, text, letters, a border"
+
+  - id: x-mehtap-flow-4-bare
+    kind: plate
+    name: x-mehtap-flow-4-bare
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 0.5}
+    palettes: [world-night, world-props, world-foliage]
+    chat: "Pofu · Mehtap flow"
+    light: {cell: dusk, layer: subject}
+    edit_of: x-mehtap-flow-4
+    acceptance: {exploration: true, edit_mode: region}
+    notes: "Bare pair, stage 4 (the cut's base). Review: the sky keeps only its stars and colour; no ghost of the lamps or bushes."
+    prompt:
+      - text: |
+          Edit the attached island plate into its BARE version for cutting
+          layers: keep the island plate, its ground, its water and every fixed
+          landmark exactly as they are, pixel for pixel, in the same light.
+          Remove ONLY the movable pieces named here, and paint the ground that
+          was under each one as it would simply continue (the same stone,
+          grass, snow or tile), with no hole, no ghost shadow and no new
+          detail. Remove only: the seven rim lamps, the moonflower bushes, the
+          striped blanket, the trails, the full moon, its halo and the
+          shooting stars in the sky (the app draws the trails and the moon
+          from data), and the tiny stars on the underside; the starry sky
+          colour stays.
+      - block: edit-keep-v1
+      - text: "AVOID: moving, resizing or redrawing any landmark or prop, reframing or zooming, new buildings, characters or animals, text, letters, a border"
+
+  - id: x-mehtap-flow-0-bare
+    kind: plate
+    name: x-mehtap-flow-0-bare
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 0.5}
+    palettes: [world-night, world-props, world-foliage]
+    chat: "Pofu · Mehtap flow"
+    light: {cell: dusk, layer: subject}
+    edit_of: x-mehtap-flow-0
+    acceptance: {exploration: true, edit_mode: region}
+    notes: "Bare pair, stage 0. Review: as the -4 bare, in stage 0's light; the keyhole glow stays."
+    prompt:
+      - text: |
+          Edit the attached island plate into its BARE version for cutting
+          layers: keep the island plate, its ground, its water and every fixed
+          landmark exactly as they are, pixel for pixel, in the same light.
+          Remove ONLY the movable pieces named here, and paint the ground that
+          was under each one as it would simply continue (the same stone,
+          grass, snow or tile), with no hole, no ghost shadow and no new
+          detail. Remove only: the seven dark rim lamps, the bare twig bushes
+          and the striped blanket.
+      - block: edit-keep-v1
+      - text: "AVOID: moving, resizing or redrawing any landmark or prop, reframing or zooming, new buildings, characters or animals, text, letters, a border"
+
+  - id: x-mehtap-flow-4-life
+    kind: plate
+    name: x-mehtap-flow-4-life
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 0.5}
+    palettes: [world-night, world-props, world-foliage]
+    chat: "Pofu · Mehtap flow"
+    light: {cell: dusk, layer: subject}
+    edit_of: x-mehtap-flow-4
+    acceptance: {exploration: true, edit_mode: region}
+    notes: "For the founder's review only (the game draws these as sprites): the finale with Nane, the duo and critters. Review: Nane's open wings and the chart read; the duo looks along the new trail."
+    attach:
+      - ref: m1-healed
+        role: "Nane, the small round grey-and-cream owl: draw her exactly as in this picture, at this size."
+      - ref: R1
+        role: "Pofu, the hamster: draw him small, in this exact style, at the size he has on the home island."
+      - ref: approved:mochi-v2
+        role: "Mochi, the bunny: draw her small beside Pofu, in this exact style."
+    prompt:
+      - text: |
+          Add life to the attached finale island, in these places only: Nane,
+          the small round owl of the attached picture, stands on top of her
+          perch with her wings wide open, holding a small rolled star chart;
+          Pofu (the hamster) and Mochi (the bunny) sit small at the front
+          centre, at the size they have at home, Mochi holding a cup, both
+          looking up along the bright gold trail; four pale moon moths, softly
+          glowing, flutter around the moonflowers and Nane's lantern. Add
+          nothing else.
+      - block: edit-keep-v1
+      - text: "AVOID: moving, resizing or redrawing anything already there, more characters than named, crowds, text, letters, a border"
+
+  - id: x-mehtap-flow-4-up
+    kind: plate
+    name: x-mehtap-flow-4-up
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 0.5}
+    palettes: [world-night, world-props, world-foliage]
+    chat: "Pofu · Mehtap flow"
+    light: {cell: dusk, layer: subject}
+    edit_of: x-mehtap-flow-4
+    acceptance: {exploration: true, edit_mode: region}
+    notes: "Fit check of the three upgrades (decisions G5) in their reserved spots; never shipped as one picture."
+    attach:
+      - ref: approved:island-main-l-v3
+        role: "The home island: its small reflection appears in the moon pool."
+    prompt:
+      - text: |
+          Add the island's three upgrades to the attached finale island, each
+          in its reserved empty spot, and nothing else: (1) TELESCOPE VIEWS: a
+          small brass viewing scope on a three-legged stand on the left horn's
+          ledge, pointing out over the clouds; (2) A HAMMOCK: a soft striped
+          cream-and-blush hammock strung between the right horn and Nane's
+          perch, with a small pillow; (3) THE MOON POOL REFLECTS HOME: in the
+          pool's silver surface, a soft, small reflection of the attached home
+          island, upside down as a reflection would be.
+      - block: edit-keep-v1
+      - text: "AVOID: moving, resizing or redrawing anything already there, characters, animals, text, letters, a border"

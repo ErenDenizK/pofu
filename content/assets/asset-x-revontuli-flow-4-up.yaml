@@ -1,0 +1,24 @@
+id: asset-x-revontuli-flow-4-up
+type: asset
+title_tr: x-revontuli-flow-4-up
+title_en: x-revontuli-flow-4-up (plate)
+status: in-production
+horizon: now
+summary: >-
+  Add the island's three upgrades to the attached healed island, each in its reserved empty
+  spot, and nothing else: (1) A LANTERN PATH: six small knee-high lanterns on short wooden
+  posts, glowing warm, line the trodden snow lane from the sauna steps along the lake to the
+  front lip; (2) A SAUNA BENCH: a little wooden bench with a folded towel against the sauna's
+  left wall under its eave, with a tiny lit lantern on the w…
+links:
+  variant_of:
+  - asset-x-revontuli-flow-4
+art:
+  images: []
+  jobs:
+  - batch-68-revontuli-flow:x-revontuli-flow-4-up
+sources:
+- doc: tools/imagegen/manifest/batch-68-revontuli-flow.yaml
+kind: plate
+batch: batch-68-revontuli-flow
+size: 1536x1024
