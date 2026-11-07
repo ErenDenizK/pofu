@@ -74,36 +74,36 @@
     "dusk": {
       "feeling": "Coming home",
       "sun": [0.88, 0.36],
-      "sky": {"zenith": "#3F3D78", "horizon": "#B98AA3", "glow": "#F2B48A", "glowStrength": 0.4, "cloudLight": "#C9A7BE", "cloudShade": "#6E5F86", "cloudOpacity": 0.85, "stars": 0.4, "tint": "#DCD6F2"},
+      "sky": {"zenith": "#3F3D78", "horizon": "#B98AA3", "glow": "#F2B48A", "glowStrength": 0.4, "cloudLight": "#D4B6CA", "cloudShade": "#8A7AA2", "cloudOpacity": 0.85, "stars": 0.4, "tint": "#DCD6F2"},
       "key": {"colour": "#8F86C9", "intensity": 0.5, "from": [0.0, -1.0]},
       "fill": {"colour": "#4B4180", "intensity": 0.4},
       "shadow": "#2E2547",
       "rim": {"colour": "#FFB866", "strength": 0.3},
       "practicals": {"ember": 0.9, "window": 0.8},
       "light": {"poolGain": 0.8, "ambientFloor": 0.1, "moonRim": 0.25},
-      "fog": {"colour": "#8E7FB0", "far": 0.40},
-      "sea": {"light": "#D2C2DA", "shade": "#8E80AA", "opacity": 0.9},
+      "fog": {"colour": "#A091BE", "far": 0.36},
+      "sea": {"light": "#E6DAEA", "shade": "#B0A2C4", "opacity": 0.95},
       "gamut": {"hue": [240, 330], "chroma": 30},
       "accents": ["practical-light", "rose-copper"],
-      "grade": {"black": 0.06, "lift": [0.04, 0.03, 0.12], "gamma": [0.93, 0.94, 1.0], "gain": [0.78, 0.72, 0.86], "contrast": 1.08, "pivot": 0.35, "saturation": 1.0, "vignette": 0.24},
-      "character": {"lift": [0.012, 0.008, 0.02], "gamma": [0.97, 0.97, 0.98], "gain": [0.80, 0.76, 0.74], "contrast": 1.05, "pivot": 0.45, "saturation": 1.05}
+      "grade": {"lift": [0.05, 0.03, 0.30], "gamma": [1.04, 1.02, 1.06], "gain": [1.0, 0.93, 0.92], "contrast": 0.94, "pivot": 0.5, "saturation": 0.92, "vignette": 0.12},
+      "character": {"lift": [0.012, 0.008, 0.02], "gain": [0.99, 0.95, 0.91], "contrast": 1.02, "pivot": 0.45, "saturation": 1.02}
     },
     "night": {
       "feeling": "Safe, cozy",
       "sun": [0.76, 0.16],
-      "sky": {"zenith": "#2E2E58", "horizon": "#7A6888", "glow": "#D9D2F5", "glowStrength": 0.26, "cloudLight": "#C8C2D8", "cloudShade": "#76708F", "cloudOpacity": 0.8, "stars": 1.0, "tint": "#BDC2EB"},
+      "sky": {"zenith": "#2A2C4E", "horizon": "#8E7C9E", "glow": "#D9D2F5", "glowStrength": 0.26, "cloudLight": "#D6D0E4", "cloudShade": "#8A84A6", "cloudOpacity": 0.8, "stars": 1.0, "tint": "#BDC2EB"},
       "key": {"colour": "#B8A8B1", "intensity": 0.35, "from": [0.6, -0.8]},
       "fill": {"colour": "#2A2350", "intensity": 0.5},
-      "shadow": "#1E1828",
+      "shadow": "#2A2440",
       "rim": {"colour": "#FFB060", "strength": 0.42},
       "practicals": {"ember": 1.0, "window": 1.0},
       "light": {"poolGain": 1.0, "ambientFloor": 0.14, "moonRim": 0.5},
-      "fog": {"colour": "#7A7098", "far": 0.42},
-      "sea": {"light": "#E0D8E8", "shade": "#A49CB8", "opacity": 0.92},
+      "fog": {"colour": "#958BB4", "far": 0.36},
+      "sea": {"light": "#EAE4F2", "shade": "#B8B0CC", "opacity": 0.95},
       "gamut": {"hue": [230, 320], "chroma": 24},
       "accents": ["practical-light", "rose-copper", "pofu-fur"],
-      "grade": {"black": 0.04, "lift": [0.05, 0.04, 0.18], "gamma": [0.95, 0.95, 1.0], "gain": [0.62, 0.64, 0.86], "contrast": 1.08, "pivot": 0.3, "saturation": 1.0, "vignette": 0.28},
-      "character": {"gamma": [0.95, 0.95, 0.95], "gain": [0.76, 0.72, 0.68], "contrast": 1.05, "pivot": 0.4, "saturation": 1.05}
+      "grade": {"lift": [0.05, 0.04, 0.50], "gamma": [1.08, 1.08, 1.12], "gain": [0.93, 0.93, 0.91], "contrast": 0.90, "pivot": 0.5, "saturation": 0.88, "vignette": 0.08},
+      "character": {"gain": [0.97, 0.94, 0.90], "contrast": 1.0, "pivot": 0.4, "saturation": 1.0}
     }
   },
   "states": {
