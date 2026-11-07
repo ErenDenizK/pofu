@@ -188,6 +188,22 @@ struct LookTuningTests {
         #expect(abs(LookTuning.tiltShift(z: 2) - 1.3) < 1e-12)
     }
 
+    /// Concept match: with nothing focused the whole home island is sharp
+    /// (its back row as crisp as Pofu); only the sky and the far isles blur.
+    @Test func theDepthOfFieldKeepsTheWholeIslandSharp() {
+        let focus = IslandLayout.depth(ofY: IslandLayout.pofu.y)
+        let field = GraphicsSpike.standard.field(focus: focus)
+        let backEdge = IslandLayout.depth(ofY: -IslandLayout.lawnRadiusY)
+        #expect(field.blurRadius(depth: backEdge) == 0)
+        for anchor in IslandLayout.stationAnchors.values {
+            #expect(field.blurRadius(depth: IslandLayout.depth(ofY: anchor.y)) == 0)
+        }
+        #expect(field.blurRadius(depth: DepthOfField.farthest) > 4)
+        // A focused station still pulls focus: the far plate softens.
+        let focused = GraphicsSpike.standard.field(focus: focus, focused: true)
+        #expect(focused.blurRadius(depth: backEdge) > 0)
+    }
+
     @Test func tiltShiftKeepsTheFocusPlaneSharp() {
         let lens = Lens.island.tiltShifted(by: 1.7)
         #expect(lens.blurLevel(depth: lens.focus) == 0)
