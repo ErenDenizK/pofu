@@ -4,8 +4,8 @@
 board ([decisions](../product/decisions.md) §10.3, [founder log](../product/founder-input.md)
 "2026-11-07 (midday)"). His point: every concept set so far was a row of
 separate pictures, and things moved between them. A flow is one picture
-painted once at its finished state and walked backwards, so nothing can
-shift. This file holds the **shared rules** (§1) and the **home flow**
+painted once at its finished state, with every stage derived from it
+directly, so nothing can shift. This file holds the **shared rules** (§1) and the **home flow**
 (§2). The four map islands (Çağlayan, Revontuli, Emanet, Mehtap) are in
 the sibling file `concept-flows-islands.md` (batches 67-70). Codex: home
 is `tools/imagegen/manifest/batch-66-home-flow.yaml`. Founder storyboard
@@ -39,14 +39,15 @@ its own row: fixed or movable, why, and the levels where a move is allowed.
 
 1. **Paint the finished state first**, at the game camera, with its
    background (the root job).
-2. **Every earlier stage is an edit of the next later one** that only
-   removes, steps a station down a level, or adds a veil (fog, haze, a dim
-   island). An edit never adds a new building; the one exception is a
-   planned move (§1.1), where the edit puts the same piece back on its
-   earlier spot. Removal is cumulative, so
-   neighbouring stages always agree.
-3. Every stage also attaches the final as its colour target, against the
-   per-edit fading batch 03 showed (`edit_chroma`).
+2. **A star, not a chain.** Every stage edits the final directly (parent =
+   the final, never the previous stage), so a deep chain cannot drift in
+   colour or position. Each prompt lists exactly what is present at that
+   level (cumulative), what is removed or degraded relative to the final,
+   and restates the fixed anchors so nothing shifts. An edit never adds a
+   new building; the one exception is a planned move (§1.1), where the edit
+   puts the same piece back on its earlier spot.
+3. The final is also the colour target of every stage, against the per-edit
+   fading batch 03 showed (`edit_chroma`).
 4. **Land alone and land with assets, one light.** The bare island (Job A
    of concept match (`docs/research/concept-match.md`, PR pending) §6) is an edit of the
    final that removes everything built. Props are cut as *stage minus
@@ -55,12 +56,15 @@ its own row: fixed or movable, why, and the levels where a move is allowed.
 5. **Light and weather are edits of the final** (golden, night, rain), the
    tuning targets for the colour script; in production, of the bare too.
 6. **Concept first, then production.** These batches are explorations
-   (`x-` ids, never promoted). After the founder's pick, a production batch
-   repeats the same chain with real ids and is cut into layers.
-7. **Staged parents.** An exploration parent is never promoted, so the
-   manifest header tells Codex to stage the parent's pick locally at the
-   path `approved:` resolves to, never committed. The chain then runs with
-   the normal `edit_of`.
+   (`x-` ids). After the founder's pick, a production batch repeats the same
+   star with real ids and is cut into layers.
+7. **Two phases.** Phase 1 runs only the final job (home: Tam Çiçek by day;
+   islands: stage 4) and the lead or founder picks a take. The batch header
+   then carries a lead rule that promotes that one job as a concept master,
+   the reference truth every stage derives from (the single exception to
+   "explorations are never promoted"). Phase 2 runs the other jobs, which
+   wait on the final's master (`run.py plan` shows "waiting for approval of
+   <final>" until the lead names the pick).
 
 ### 1.3 Camera and canvas
 
@@ -198,11 +202,9 @@ the golden and night edits (§1.5), not a painting.
 | `x-home-flow-final` | (root) | Tam Çiçek by day, whole island, far islands and Gezgin, from the guide |
 | `x-home-flow-bare` | final | Job A: land, doors, sky and far islands only |
 | `x-home-flow-golden`, `-night`, `-rain` | final | light states, recolour edits |
-| `x-home-flow-il9` … `-il1` | final → il9 → il8 → … → il2 | each level, removing and stepping down |
+| `x-home-flow-il9` … `-il1` | final | each level, edited from the final directly: present, removed or degraded, anchors restated |
 
-14 generated jobs, 2 takes each (28 images), one track `all`. A failed level skips the levels below it. The chain is nine edits deep;
-if the colour drifts by IL1, the fallback is to re-root IL5 to IL1 on the
-bare island plus the final's props, not to regenerate.
+14 generated jobs, 2 takes each (28 images), one track `all`. **Phase 1:** only `x-home-flow-final`. **Phase 2:** after the lead names the picked final and promotes it as the concept master (header lead rule), the other 13 jobs run in any order; no job depends on another level, so one failed level blocks nothing.
 
 ### 2.4 Code follow-ups (when the build reaches them)
 
