@@ -1,16 +1,18 @@
 # User Flows
 
+> **Archived 2026-11-07: superseded by the-door.md, gate-v2.md and game-plan.md (partly reversed by ADR-0015).** Kept as history; do not build from it.
+
 _Status: proposal v1, for founder review. Last updated: 2026-10-31._
 
 > **Superseded in part (2026-11-01).** Flow 1 (setup) and the skip path of
 > flow 2 still describe the shipping app; the Pay rung, the passes store,
 > night prices, and the "out of seeds" friend copy were replaced by
-> [ADR-0015](../../adr/0015-care-over-currency.md). Setup guide v2 replaces
+> [ADR-0015](../adr/0015-care-over-currency.md). Setup guide v2 replaces
 > the guided Shortcuts steps. A rewrite follows the founder's first gate
-> week; see the [decision audit](../../archive/decision-audit.md), C2.
+> week; see the [decision audit](decision-audit.md), C2.
 _Companion docs: [information architecture](information-architecture.md),
-[clickable prototype](../../../design/prototypes/ux/README.md),
-[economy](../economy.md), [ADR-0008](../../adr/0008-hybrid-intervention-delivery.md)._
+[clickable prototype](../../design/prototypes/ux/README.md),
+[economy](../product/economy.md), [ADR-0008](../adr/0008-hybrid-intervention-delivery.md)._
 
 Every flow lists its states, edge cases, and copy. Copy is written natively
 in English and Turkish; the Turkish column is not a translation of the

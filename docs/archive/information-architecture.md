@@ -1,23 +1,25 @@
 # Information Architecture
 
+> **Archived 2026-11-07: superseded by ui-v3.md, the-door.md and experience-v1.md.** Kept as history; do not build from it.
+
 _Status: proposal v1, for founder review. Last updated: 2026-10-31._
 
 > **Superseded in part (2026-11-01).** This document describes the room-era
 > Home, seed prices, and the passes store. Those were replaced by
-> [ADR-0015](../../adr/0015-care-over-currency.md) (seeds never buy screen
-> time), [ADR-0016](../../adr/0016-pre-planned-idle-archipelago.md) (the
-> island), and [ADR-0018](../../adr/0018-visual-system-v1.md). The gate
+> [ADR-0015](../adr/0015-care-over-currency.md) (seeds never buy screen
+> time), [ADR-0016](../adr/0016-pre-planned-idle-archipelago.md) (the
+> island), and [ADR-0018](../adr/0018-visual-system-v1.md). The gate
 > setup, Hop!, and settings sections still describe the shipping app. A
 > rewrite follows the founder's first gate week; see the
-> [decision audit](../../archive/decision-audit.md), C2.
-_Companion docs: [user flows](user-flows.md), [clickable prototype](../../../design/prototypes/ux/README.md)._
+> [decision audit](decision-audit.md), C2.
+_Companion docs: [user flows](user-flows.md), [clickable prototype](../../design/prototypes/ux/README.md)._
 
 This document defines how Pofu is organized: where things live, how people
 move between them, and what is free. It assumes the decisions of tonight:
 Pofu is a **round, very fluffy hamster** drawn in a soft storybook style,
 the UI is warm cream and peach with deep violet `#6C4FD8` as the accessible
 accent, and interventions arrive through the hybrid model of
-[ADR-0008](../../adr/0008-hybrid-intervention-delivery.md).
+[ADR-0008](../adr/0008-hybrid-intervention-delivery.md).
 
 ## 1. The shape of Pofu usage
 
@@ -103,7 +105,7 @@ neighbors' village), move to option B with three tabs. Never five.
 
 Three Home concepts (the room, a ledger of reaches, a wheel of beads) are
 compared side by side in the
-[prototype README](../../../design/prototypes/ux/README.md#home-three-concepts);
+[prototype README](../../design/prototypes/ux/README.md#home-three-concepts);
 the room is recommended and drawn above.
 
 Rules for Home:
@@ -207,7 +209,7 @@ stay as they are):
 
 ## 5. Free and Plus
 
-The principle from [monetization research](../../research/monetization.md)
+The principle from [monetization research](../research/monetization.md)
 holds without exception: **nothing that helps someone stop scrolling sits
 behind the paywall.**
 

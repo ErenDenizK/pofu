@@ -6,9 +6,9 @@ must look, feel and be used wonderfully"; the "Boş ver" shield and the
 break screen must be stunning. Inputs: every shot on
 `screenshots/main`, `screenshots/feat-gate-painted-scene` and
 `screenshots/feat-life-pass` (2026-11-06), the batch-11, 13, 27, 46, 48
-and 58 takes, [ui-system-v2](ui-system-v2.md),
+and 58 takes, [ui-system-v2](../archive/ui-system-v2.md),
 [the audit](ui-audit-2026-11-06.md), [gate v2](../product/ux/gate-v2.md)
-§1, §5, §6, [design language](design-language.md), and the code in
+§1, §5, §6, [design language](../archive/design-language.md), and the code in
 `PofuDesignSystem`, `App/Hop` and `Extensions/`._
 
 **The verdict in one paragraph.** Pofu has two products on one phone. The
@@ -51,7 +51,7 @@ batch in §6.
 | Shield, 4 hours (`19-shield-*`, life-pass) | C | The 60 pt icon is a wide Pofu-plus-door composite that reads as two blobs; the subtitle repeats the title and leaks "Huzur ×1,4" | §3: round door medallion icon by mood, copy rewrite, honey stays | 48 t1 medallions (exist) |
 | Breath room (`BreathRoom.swift`, no shot exists) | D | Flat lavender, an `accentTint` circle, stock buttons; no scene, no haptic during the breath, no sound | §4: the painted halo isle, drawn ring, breathing Pofu, Core Haptics swell, sound | 61 |
 | Station sheet, medium (`17-…-glass`, `integration-reaction-happy-workshop`) | D | Content clipped mid-card ("Seviye 1 / 5" cut), muddy glass, ghost button, left-aligned flavour line under a centred one | Paper at every detent; a fixed five-slot layout that never clips; the level shown as five painted pots | 59 |
-| Today (`15-menu-today-*`) | D | A beige page with a purple teacup glyph and two cards; the day has no picture | A day-card: the hour's painted island strip on top, today's resists as wax seals in a row, the cheek count as a jar, one Pofu line in Baloo 2 | 59, 60, 62 |
+| Today (`15-menu-today-*`) | D | A beige page with a purple teacup glyph and two cards; the day has no picture | A day-card: the hour's painted island strip on top, today's resists as wax seals in a row, the cheek count as a jar, one Pofu line in Baloo 2 | 59, 60, 63 |
 | Home chrome (`01/02/09/13-home-*`, `10-home-ax3`, `01-home-visit-dark`) | C | White system bubble, violet "Topla" pill overlapping the pots, glance pill, glass gear; dark mode turns it charcoal at noon; at AX3 the bubble buries Pofu | Paper bubble with a cut tail and speaker tab; "Topla" a honey plaque under the jar (not over pots); the glance a paper strip; chrome follows world light; AX sizes move the bubble above the island top | 59 |
 | Gate landing (`20-gate-*`) | B | Postcards 1200 and 2230 paint a second hamster where Pofu stands; "Vazgeç" not "Boş ver"; the pause plaque reads as a disabled grey bar; flat drawn plaques | Move to the batch-58 round door (layered); "Boş ver"; the pause is a honey fill that breathes, labelled "Bir nefes, sonra açılır"; painted plaques on the rope | 58, 59 |
 | Build flow (`04`, `05`, `06-build-*`) | C | The build — the game's best moment — happens behind a sheet that shrinks to "İnşa ediliyor…" with a spinner | Sheet drops away on "İnşa et"; camera eases to the stake; dust puff, plank pop, the station rises; level-up card swings in (`look-celebration-card` pattern) | 60 |
@@ -59,11 +59,11 @@ batch in §6.
 | Large station sheet (`18-…-large-paper`) | C | 70 % empty paper | Large detent shows the station's painted ladder (levels 1–5 as small plates), the resident, the next yield | 59 |
 | Resident card (`08-resident-card`) | C | A system popover with an SF smiley and a grey capsule | A paper tag on a string from the resident, sticker reaction face, honey "Tezgâha git" plaque | 59 (sticker 42 exists) |
 | Map (`07-map-light`) | C | White pills, a generic violet paw pin, empty sky | Paper name flags on stakes; a drawn Pofu pin (ADR-0018 §4); faint dotted flight path; unexplored islands as painted silhouettes | 59 |
-| Settings (`16-menu-settings-*`) | C | A stock grouped list on beige; eight identical toggles; violet links | Keep the native list (behaviour), add a painted header (Pofu at a desk), paper-night canvas, flat-duo row icons, moss-tinted toggles, app rows with real app icons | 46, 62 |
+| Settings (`16-menu-settings-*`) | C | A stock grouped list on beige; eight identical toggles; violet links | Keep the native list (behaviour), add a painted header (Pofu at a desk), paper-night canvas, flat-duo row icons, moss-tinted toggles, app rows with real app icons | 46, 63 |
 | Speech bubbles, story (`koke-beat-3`, `koke-rumour-harbor`) | B | White rounded rect, speaker name in grey caption | Paper bubble, speaker's name on a small coloured ribbon tab (resident colour), Baloo 2 for the line's first word only when it is a name | 59 |
 | Island name tag (`03-island-light`) | B | White capsule "Ayçiçeği" | Paper tag on string (batch-11 `ui-tag-paper`), swings with camera | 11 (exists) |
 | Place control (bottom-right disc) | B | White disc with an SF-ish glyph; three looks across shots | Clay disc (`ui-face-disc`) with the batch-46 duo icon; one disc, glyph morphs home ↔ map | 46, 11 |
-| Launch (`20-launch-sky`, `21-launch-curtain`) | B | Lovely sky, then "Pofu uyanıyor…" in plain bold | Baloo 2 line under a sleepy Pofu peeking through the curtain; one yawn | 62 |
+| Launch (`20-launch-sky`, `21-launch-curtain`) | B | Lovely sky, then "Pofu uyanıyor…" in plain bold | Baloo 2 line under a sleepy Pofu peeking through the curtain; one yawn | 63 |
 | Celebration card (`look-celebration-card`) | A− | The bar; ribbon pin slightly small | Keep; it is the template for every reward card | — |
 | Level-up glow (`levelup-*`) | B | Glow only, no word | Glow, then the celebration card | — |
 | Garden HUD and rounds (`20`–`26-garden-*`) | A− | Violet clay buttons in an otherwise wooden game | Honey clay buttons; nothing else | — |
@@ -199,7 +199,7 @@ wooden chime at the end. **Done:** Pofu opens his eyes, one small hop,
 three petals fall. Reduce Motion: the ring still fills, nothing moves,
 the glow fades in and out. Night: the isle is lamplit, ink sky.
 
-**Art list (batch-63 `breath-room`, kind `ui`/`world`, 1024 × 1536 shared
+**Art list (batch-62 `breath-room`, kind `ui`/`world`, 1024 × 1536 shared
 canvas, layers register):** `breath-isle` (transparent, mossy isle, no
 Pofu), `breath-isle-night` (lamp, fireflies), `breath-halo` (soft glow
 sprite, transparent), `breath-clouds-far`, `breath-clouds-near`
@@ -230,7 +230,7 @@ below are blank (no letters), 3× density, and ship a night variant.
 | **Progress** | Carved wood groove, honey fill (drawn), pips as tiny pots or seeds | fill animates with spring; full = one glint | `.success` at full | `ui-groove-wood` (3-slice), `ui-pip-pot` (empty, bud, bloom) |
 | **Toggle** | Native `Toggle`, tint moss #7FA36B (day) / amber (night) | system | system | — (native by design) |
 | **Text field** | Native field on a paper inset (drawn inner shadow) | focused = honey underline | system | — |
-| **Empty state** | One painted vignette + a Baloo 2 line + one plaque | n/a | vignette fades up 0.4 s | batch-62: `empty-today`, `empty-map`, `empty-friends`, `empty-letters`, `permission-key` |
+| **Empty state** | One painted vignette + a Baloo 2 line + one plaque | n/a | vignette fades up 0.4 s | batch-63: `empty-today`, `empty-map`, `empty-friends`, `empty-letters`, `permission-key` |
 | **Loading** | Pofu doing something (yawn, rolling a seed), never a spinner | n/a | loop ≤ 1.2 s | `loading-seed-roll` (6 frames), `pofu-yawn` |
 | **Marks** | Wax seals (resisted, gift, day done), ink stamps (day mood by hour) | stamped = 0.18 s press with a puff | soft impact per stamp | batch-61 (with the kit): `seal-resist`, `seal-gift`, `seal-day`, `stamp-dawn/day/golden/night` |
 
@@ -248,7 +248,7 @@ page.
 |---|---|---|
 | 61 `ui-kit-v3` | plaques (honey, cream, bare, pressed), sheet paper v3 day/night + deckle + ribbon grip, cards (stitched, linen), bubble + tails + tab ribbons, felt chips, toast strip, wood groove, pot pips, clay disc night, swash | waves 1–3 |
 | 46 (finish) | pick the duo direction; extend to 18 glyphs (home, island, map, today, settings, close, back, plus, info, shield, letter, gift, bell, clock, friend, sound, haptic, lock) | wave 3 |
-| 63 `breath-room` | §4 list | wave 1 |
+| 62 `breath-room` | §4 list | wave 1 |
 | 48 → shield icons | produce the six medallions at 180 px + night set from `x-shield-icons` t1 | wave 1 |
 | 58 (running) | round door layers | wave 2 |
 | 60 `seals-and-stamps` | wax seals, ink stamps, build dust and plank pop sprites | wave 2 |

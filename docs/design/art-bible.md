@@ -1,7 +1,7 @@
 # Pofu Art Bible: Governing AI-Generated Imagery
 
 _Status: v1.1. Last updated: 2026-11-01 (amendment A1, section 15)._
-_Read with the [design language](design-language.md) (where art is
+_Read with the [design language](../archive/design-language.md) (where art is
 allowed) and the [prompt library](prompt-library.md) (what to make)._
 
 Pofu's illustrations are generated with GPT Image in ChatGPT and curated by

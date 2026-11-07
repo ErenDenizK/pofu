@@ -1,17 +1,19 @@
 # UI System v2: Glass Where It Is the Device, Craft Where It Is the World
 
+> **Archived 2026-11-07: superseded by the-door.md and ui-v3.md (docs/design/).** Kept as history; do not build from it.
+
 _Status: proposal for the founder. Last updated: 2026-11-02._
 _Builds on [ADR-0018](../adr/0018-visual-system-v1.md) (Glass++), the
-[design language](design-language.md), the [interaction spec](interaction-spec.md),
+[design language](design-language.md), the [interaction spec](../design/interaction-spec.md),
 [UI critique 01](../archive/ui-critique-01.md) (PR #63, Direction B "Living Diorama")
 and the archipelago system (PR #64, not merged yet) (PR #64:
 island games, rounds, decor spots, rumours). Mockups:
-[`ui-system-v2/`](ui-system-v2/), source in
-[`ui-system-v2/mockup-src/`](ui-system-v2/mockup-src/) (render with
+[`ui-system-v2/`](../design/ui-system-v2/), source in
+[`ui-system-v2/mockup-src/`](../design/ui-system-v2/mockup-src/) (render with
 `NODE_PATH=$(npm root -g) node render.js <outdir>`). No Swift changes in
 this document._
 
-![Home, day visit and night](ui-system-v2/01-home-day-night.png)
+![Home, day visit and night](../design/ui-system-v2/01-home-day-night.png)
 
 ## 0. The answer in one paragraph
 
@@ -199,7 +201,7 @@ the çay ocağı's ceramics, and paper matches the existing
 `CelebrationCard`. Wood is kept for the game layer's trays, where
 "workbench" is the right feeling.
 
-![Glass and crafted skins on the same Home](ui-system-v2/02-home-glass-vs-crafted.png)
+![Glass and crafted skins on the same Home](../design/ui-system-v2/02-home-glass-vs-crafted.png)
 
 ## 4. The switch in `PofuDesignSystem` (spec, no Swift yet)
 
@@ -279,7 +281,7 @@ component's layer, role, size and what differs.
 
 ### 5.2 Home (visit and settled)
 
-![Home day and night](ui-system-v2/01-home-day-night.png)
+![Home day and night](../design/ui-system-v2/01-home-day-night.png)
 
 | Component | Layer | Role | Size and place | Night | Notes |
 |---|---|---|---|---|---|
@@ -365,7 +367,7 @@ the uncollected balance, and you can see it on Pofu's face.**
 
 ### 5.5 An island game round
 
-![An island game round](ui-system-v2/03-island-game-round.png)
+![An island game round](../design/ui-system-v2/03-island-game-round.png)
 
 | Component | Layer | Role | Size | Notes |
 |---|---|---|---|---|
@@ -409,7 +411,7 @@ buttons. We control colour, copy and the icon only (gate v2 §5).
 
 ### 5.8 Today
 
-![The Today panel](ui-system-v2/04-today-panel.png)
+![The Today panel](../design/ui-system-v2/04-today-panel.png)
 
 | Component | Layer | Notes |
 |---|---|---|
@@ -660,10 +662,10 @@ amendment 5 when the founder approves.
 
 | File | What it shows |
 |---|---|
-| [`01-home-day-night.png`](ui-system-v2/01-home-day-night.png) | Home in the glass skin: the morning visit with full cheeks and "Topla · 12", and the settled night with the lantern carrying the scene |
-| [`02-home-glass-vs-crafted.png`](ui-system-v2/02-home-glass-vs-crafted.png) | The same Home in both skins, side by side |
-| [`03-island-game-round.png`](ui-system-v2/03-island-game-round.png) | Ayçiçeği's "Serve" game mid-round and at the set's end |
-| [`04-today-panel.png`](ui-system-v2/04-today-panel.png) | The glance, then Today at the medium detent by day and at night |
+| [`01-home-day-night.png`](../design/ui-system-v2/01-home-day-night.png) | Home in the glass skin: the morning visit with full cheeks and "Topla · 12", and the settled night with the lantern carrying the scene |
+| [`02-home-glass-vs-crafted.png`](../design/ui-system-v2/02-home-glass-vs-crafted.png) | The same Home in both skins, side by side |
+| [`03-island-game-round.png`](../design/ui-system-v2/03-island-game-round.png) | Ayçiçeği's "Serve" game mid-round and at the set's end |
+| [`04-today-panel.png`](../design/ui-system-v2/04-today-panel.png) | The glance, then Today at the medium detent by day and at night |
 
 Real art: `island-main-l-v2`, `pofu-hamster-base`, `mochi-v2`,
 `findik-base`, `cay-3`, `windmill-2`, `cloud-1`, `cloud-2`,

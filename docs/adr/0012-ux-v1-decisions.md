@@ -6,8 +6,8 @@
 
 ## Context
 
-The UX work ([information architecture](../product/ux/information-architecture.md),
-[user flows](../product/ux/user-flows.md), and the clickable prototype)
+The UX work ([information architecture](../archive/information-architecture.md),
+[user flows](../archive/user-flows.md), and the clickable prototype)
 raised open questions. The founder delegated product decisions to the
 agent, except for radical direction changes. None of these is radical; they
 refine choices already made in the vision and ADR-0004, ADR-0005, and
