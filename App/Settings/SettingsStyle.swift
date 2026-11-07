@@ -88,21 +88,26 @@ extension View {
     func settingsRow() -> some View { modifier(SettingsRowSurface()) }
 }
 
-/// The painted header: a paper band with Pofu's face; the title is the navigation title, once.
+/// The painted header: a paper band with Pofu's face and "Ayarlar".
 struct SettingsHeader: View {
     @Environment(\.colorScheme) private var scheme
 
     var body: some View {
         let palette: PofuKitPalette = scheme == .dark ? .night : .day
-        HStack {
-            Spacer(minLength: 0)
-            PofuPaintedIcon(.iconMoodContent, size: 72)
+        HStack(spacing: PofuSpacing.m) {
+            PofuPaintedIcon(.iconMoodContent, size: 56)
                 .padding(PofuSpacing.xs)
                 .background { Circle().fill(palette.felt) }
                 .overlay { Circle().strokeBorder(palette.stitch.opacity(0.7), style: StrokeStyle(lineWidth: 1.2, dash: [4, 3])) }
                 .accessibilityHidden(true)
+            Text("Settings")
+                .font(PofuFont.largeTitle)
+                .foregroundStyle(palette.onPaper)
+                .fixedSize(horizontal: false, vertical: true)
+                .accessibilityAddTraits(.isHeader)
             Spacer(minLength: 0)
         }
+        .pofuKitCard(.stitched)
         .accessibilityElement(children: .combine)
     }
 }

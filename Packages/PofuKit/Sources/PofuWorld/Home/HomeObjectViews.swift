@@ -280,6 +280,7 @@ struct CollectAction: View {
                 Text(verbatim: WorldStrings.collectAction(seeds))
                     .font(PofuFont.headline.monospacedDigit())
             }
+            .foregroundStyle(PofuKitPalette.day.ink)
             .frame(minHeight: PofuSize.minimumTouch)
             .padding(.horizontal, PofuSpacing.xs)
         }

@@ -398,7 +398,7 @@ struct ScreenHazeLayer: View {
                         width: size.width * 0.34,
                         slant: size.width * 0.22,
                         height: CGFloat(seaLine),
-                        strength: 0.40 * parting
+                        strength: 0.6 * parting
                     )
                 }
             }

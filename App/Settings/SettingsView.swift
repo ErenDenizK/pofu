@@ -86,7 +86,9 @@ struct SettingsView: View {
                 }
                 .settingsRow()
             }
-            .navigationTitle(Text("Settings"))
+            // The painted header carries the title; an empty bar title avoids a duplicate.
+            .navigationTitle(Text(verbatim: ""))
+            .navigationBarTitleDisplayMode(.inline)
             .settingsList()
             .pofuSheetChrome { model.setCompanionName(name) }
             .onAppear { name = model.profile.companionName }

@@ -153,7 +153,7 @@ private struct PofuActionStyleModifier: ViewModifier {
     func body(content: Content) -> some View {
         if PofuSkinPolicy.effective(skin, reduceTransparency: reduceTransparency) == .glass {
             if weight == .primary {
-                content.buttonStyle(.glassProminent).tint(PofuKitPalette.day.honey)
+                content.foregroundStyle(PofuKitPalette.day.ink).buttonStyle(.glassProminent).tint(PofuKitPalette.day.honey)
             } else {
                 content.buttonStyle(.glass)
             }
