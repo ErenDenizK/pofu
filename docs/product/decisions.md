@@ -120,7 +120,7 @@ is missing from the Koke scene.
 | # | Decision | Status | Source and notes |
 |---|---|---|---|
 | V1 | The grade follows the time of day | F: Hub q-look A ("görsel iyileştirme ve daha fazla assetle çok daha iyi olur") | — |
-| V2 | Less paleness: haze grows toward the background and falls toward the centre; objects keep their own colour | F (11-03, 11-05 twice) | L: clear midday contrast is every hour's base, and weather sits lightly on top. The light standard is enforced on production art (haze > 0.20 fails) |
+| V2 | Less paleness: haze grows toward the background and falls toward the centre; objects keep their own colour | F (11-03, 11-05 twice) | L: clear midday contrast is every hour's base, and weather sits lightly on top. Superseded by [ADR-0021](../adr/0021-reference-light-targets.md) (2026-11-07): the light standard's targets are measured from the founder's liked references; a milky envelope is now the target, not a failure |
 | V3 | Fog may be real fog; even the bad state must be impressive | F (11-06 05:52) | — |
 | V4 | Night needs its own art direction: light comes from real sources onto characters and ground (GI logic); the current system is not enough | F (11-05, 11-06) | **FIX:** the tracker says "built". In code the per-pixel relight is a spike that is off by default, and Pofu is still self-lit at night. Brightness: **Q-10**. A night ADR follows the answer |
 | V5 | No hard-edged light | F (critique 11-06: "çapraz çizgi gibi kesiliyor") + L (rule) | **FIX:** the screen-haze shaft (`WeatherLayer.swift`, `ShaftShape`) is still a hard diagonal |
