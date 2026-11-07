@@ -1,0 +1,188 @@
+batch: batch-63-empty-states
+manifest: tools/imagegen/manifest/batch-63-empty-states.yaml
+manifest_sha256: 16e2f6cf9233a81573226e366bc5ef6b93e66724b5c90f66dc096e5a9502d160
+contact_sheet: design/art/takes/batch-63-empty-states/x-loading-seed-roll/contact.jpg
+jobs:
+  x-loading-seed-roll:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Retained initial pair only;
+      official post after authorized allowance reset, no regeneration/retry reset.
+      Full native1536x1024/official locked/proper cream-night composites reviewed.
+      Exactly6frames3by2: R1 curl sideview Pofu walksRIGHT pushing cream-honeystriped
+      roundseed, shared posefamily/scale/rowlocalgroundline. Take1 feet alternate/ears
+      bob and stripe orientations visibly cycle vertical-diagonal-horizontal-diagonal-vertical;
+      root independently agrees. Exclude2 despite lower load1.7537: stripe orientation
+      remains near-same obliquity in last severalframes, weak/absent continued turn
+      violates actual turns-a-little-more-each-frame brief. No invented exact360/60degree
+      or samefirst-lastpixel gate; optical timing/physical rotation/app-loop integration
+      NOT certified. Both hardQA pass; take1 load1.805 chosen as only manualeligible,
+      no retry. Raw blank gradient is hiddenRGB(alpha0 probes), no actual baked-background
+      haze on proper composites. No spinner,text,gridlines/otherfigures; localcontact
+      only. All originals/callbacks/QA/locked/ref hashes preserved; styles advisory,
+      UI no LIGHT, never promoted.'
+qa_reports:
+  1:
+    job: x-loading-seed-roll
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 47 (R1 51)
+      value: 47.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 64 (R1 59)
+      value: 64.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.5 (R1 5.3)
+      value: 4.55
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.8
+      value: 1.805
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.2, p95 3.4, off-palette 0.5% (top: #663311 (0.1%), #BB6633
+        (0.1%))'
+      value: 1.1813
+    info:
+      metrics_raw:
+        L_p5: 63.0
+        L_p50: 83.1
+        L_p95: 93.3
+        C_p50: 25.9
+        C_p95: 48.9
+        C_p99: 54.8
+        detail: 6.04
+      metrics_locked:
+        L_p5: 64.1
+        L_p50: 82.9
+        L_p95: 93.0
+        C_p50: 26.2
+        C_p95: 47.3
+        C_p99: 51.2
+        detail: 4.55
+    fingerprint: cd33f5a735d72c09
+  2:
+    job: x-loading-seed-roll
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 46 (R1 51)
+      value: 46.2
+    - check: value_floor
+      status: pass
+      message: lightness p5 63 (R1 59)
+      value: 63.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.6 (R1 5.3)
+      value: 4.63
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.8
+      value: 1.7537
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.0, p95 2.4, off-palette 0.3% (top: #BB6633 (0.1%), #CC7733
+        (0.1%))'
+      value: 1.0096
+    info:
+      metrics_raw:
+        L_p5: 61.9
+        L_p50: 82.1
+        L_p95: 94.6
+        C_p50: 26.3
+        C_p95: 47.5
+        C_p99: 52.5
+        detail: 6.14
+      metrics_locked:
+        L_p5: 63.0
+        L_p50: 81.9
+        L_p95: 94.1
+        C_p50: 26.6
+        C_p95: 46.2
+        C_p99: 49.9
+        detail: 4.63
+    fingerprint: cd33f5a735d72c09
+manual_review:
+  observed_note: 'Retained initial pair only; official post after authorized allowance
+    reset, no regeneration/retry reset. Full native1536x1024/official locked/proper
+    cream-night composites reviewed. Exactly6frames3by2: R1 curl sideview Pofu walksRIGHT
+    pushing cream-honeystriped roundseed, shared posefamily/scale/rowlocalgroundline.
+    Take1 feet alternate/ears bob and stripe orientations visibly cycle vertical-diagonal-horizontal-diagonal-vertical;
+    root independently agrees. Exclude2 despite lower load1.7537: stripe orientation
+    remains near-same obliquity in last severalframes, weak/absent continued turn
+    violates actual turns-a-little-more-each-frame brief. No invented exact360/60degree
+    or samefirst-lastpixel gate; optical timing/physical rotation/app-loop integration
+    NOT certified. Both hardQA pass; take1 load1.805 chosen as only manualeligible,
+    no retry. Raw blank gradient is hiddenRGB(alpha0 probes), no actual baked-background
+    haze on proper composites. No spinner,text,gridlines/otherfigures; localcontact
+    only. All originals/callbacks/QA/locked/ref hashes preserved; styles advisory,
+    UI no LIGHT, never promoted.'
+  excluded_takes:
+  - 2
+sources:
+- batch: batch-63-empty-states
+  job: x-loading-seed-roll
+  take: 1
+  round: 1
+  logical_run: 20261106-b63-empty-states
+  source_file: /workspace/generated_images/exec-0ea89ce4-3ea3-41ee-a0ff-20e5fe9a32ab.png
+  returned_at: '2026-11-06T11:21:40.778Z'
+  prompt_sha256: 2bf6647090300738928fc82c84b91c8b23d701ba1c4b60a2f8b42d1a1f70d0d6
+  fingerprint: cd33f5a735d72c09
+  saved_at: '2026-11-06T11:21:41.103274+00:00'
+  original_generated_png_sha256: fce8dd3e2745e69eee25cf0f3b753e42b191b60bca6c403f5578c654fdfdd5c7
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 62476890a5cc76e17fd8000b97720e85bb4353fd10faa74c3e21ab684312512f
+  inbox_png_sha256: 88f6aab686243e29a687582fba77b73159d6975cfeb2a9f697b9a1e99eafab7f
+  qa_sha256: e7b1bad54a24c58c70f89b6d997019663b82358ba407da815816f7013f1f5fa9
+- batch: batch-63-empty-states
+  job: x-loading-seed-roll
+  take: 2
+  round: 1
+  logical_run: 20261106-b63-empty-states
+  source_file: /workspace/generated_images/exec-81689952-7a16-41f9-8a38-97fc876c57ee.png
+  returned_at: '2026-11-06T11:20:46.943Z'
+  prompt_sha256: 2bf6647090300738928fc82c84b91c8b23d701ba1c4b60a2f8b42d1a1f70d0d6
+  fingerprint: cd33f5a735d72c09
+  saved_at: '2026-11-06T11:20:47.374217+00:00'
+  original_generated_png_sha256: c8729c5f79f2fecd052274ac70cfab7bef7856f3188f15c23d2148674431b7dc
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: f0b9e91155310fd6e7b6afc63a300507e0f6d8580ba64a437de577ad3ee3dfc0
+  inbox_png_sha256: f1df8821671c3e5ddc913fe4768ea862759036065c71be43498b230822b77bac
+  qa_sha256: bcb89ee7cdc443827f62215bd4dddc52a98413ede9f35f4edf82b1638d2ec226
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
