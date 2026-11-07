@@ -1,5 +1,5 @@
 {
-  "$schema-note": "Design source of truth for Pofu colors. Documented in docs/design/design-language.md and docs/design/art-bible.md. Swift tokens in PofuDesignSystem are ported from this file by hand; tools/design/contrast_report.py and tools/assets/process_assets.py read it directly.",
+  "$schema-note": "Design source of truth for Pofu colors. Documented in docs/archive/design-language.md and docs/design/art-bible.md. Swift tokens in PofuDesignSystem are ported from this file by hand; tools/design/contrast_report.py and tools/assets/process_assets.py read it directly.",
   "version": "1.0.0",
   "primitives": {
     "cream-50": "#FFFBF5",

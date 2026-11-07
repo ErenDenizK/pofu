@@ -35,9 +35,9 @@ links:
   - asset-icon-decor
   - asset-ui-menu-paper
 sources:
-- doc: docs/design/ui-system-v2.md
+- doc: docs/archive/ui-system-v2.md
   anchor: '#2-the-principle-three-layers-and-a-switch'
-- doc: docs/design/ui-system-v2.md
+- doc: docs/archive/ui-system-v2.md
   anchor: '#6-art-list-feeds-the-codex-production-queue'
 group: visual
 board:

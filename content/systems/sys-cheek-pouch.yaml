@@ -19,7 +19,7 @@ links:
   - sys-face-kit
   - sys-ui-hybrid
 sources:
-- doc: docs/design/ui-system-v2.md
+- doc: docs/archive/ui-system-v2.md
   anchor: '#521-the-cheek-pouch-the-founders-yanaklarım-kocaman-oldu'
 source: founder
 group: character

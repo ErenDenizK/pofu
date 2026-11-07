@@ -1,11 +1,11 @@
 # Design Review 01: Proportion, UI Language, and Choreography
 
-> **Superseded in part (2026-11-02)** by [UI critique 01](ui-critique-01.md) and [UI system v2](../design/ui-system-v2.md), for the UI language and Home. Proportion and choreography conclusions are carried by [ADR-0018](../adr/0018-visual-system-v1.md) and the [interaction spec](../design/interaction-spec.md).
+> **Superseded in part (2026-11-02)** by [UI critique 01](ui-critique-01.md) and [UI system v2](ui-system-v2.md), for the UI language and Home. Proportion and choreography conclusions are carried by [ADR-0018](../adr/0018-visual-system-v1.md) and the [interaction spec](../design/interaction-spec.md).
 
 _Status: proposal, for founder review. Last updated: 2026-11-01._
 _Review page (animated, mobile-first, Turkish captions):
 [`design/prototypes/review-01/`](../../design/prototypes/review-01/index.html).
-Read with the [design language](../design/design-language.md), the [art bible](../design/art-bible.md),
+Read with the [design language](design-language.md), the [art bible](../design/art-bible.md),
 [Home directions](home-directions.md), [game design v2](../product/game-design.md),
 and ADR-0015 to ADR-0017._
 

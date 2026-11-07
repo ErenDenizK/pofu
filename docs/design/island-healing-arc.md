@@ -48,13 +48,14 @@ more as the game goes on, even if hidden; experiment and drop what fails.
 | Emanet | **eerie fog** | muffled sounds, a shape that moves in the fog (only lost things) | the fog parts where you look; first island with a hint of unease |
 | Çanlar (filler) | odd, funny | **a wrong note**: one bell rings off-key at night | a playful creep, solved with a joke |
 | Revontuli | **ruin** | wind through broken lantern towers | half-fallen towers rebuilt, the most visible repair in the book |
-| Arı | tired | a low hum, no bees | none: a breather before the end |
 | Mehtap | **dread, quiet** | stars going out one by one, a cold sound | the darkest moment of the book, right before the finale |
 
 Concepts try the braver version first and the lead pulls it back if it
 scares more than it charms; the device test decides.
 
 ## Per island (Book One)
+
+Arı is a home hive upgrade, not an island, so it has no row here. Per-island detail (the map's set and order) lives in [book-one-islands](book-one-islands.md); this table is older and where they disagree that file wins.
 
 | Island | Wound (stage 0) | Stages 1-3 mend | Healed signature |
 |---|---|---|---|
@@ -63,7 +64,6 @@ scares more than it charms; the device test decides.
 | Emanet | lost things piled in fog, unlabeled, a closed shed | piles become shelves, labels return, the shed opens | lantern-lit shelves, every thing in its place, residents collect |
 | Çanlar (filler) | bells hang mute and tangled | ropes untangled one by one | the four-note chord rings (sound first) |
 | Revontuli | a black night sky, an unlit lantern post | lanterns lit along a path | the aurora moves over the island |
-| Arı | an empty hive, closed flowers | bees return in groups, flowers open in colour bands | the swarm's dance over Ayçiçeği |
 | Mehtap | stars missing from a dull sky | each stage joins a constellation | the moon trail reaches home |
 | Gezgin (Nazlı) | form 1: tired, faded, a lantern hook empty | a detail on her back per main island | form 2: grown, lush, the hook and scar glow |
 

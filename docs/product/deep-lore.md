@@ -116,7 +116,7 @@ sleeping cat keeps a blanket in place.
 | 1 | **Işıl** | firefly | Her own light, so the moths could sleep: a light that learned to go dark | An empty glow-jar | In the heart of Ayçiçeği's sunflower, which grew around her sleep | Last book |
 | 2 | **Ayaz** | snow hare | The northern lamps, for the fox kits of Revontuli | One mitten | Under the sauna stone at Revontuli (why it is always warm) | Book Two |
 | 3 | **Balaban** | bittern | The mill's lamp at noon, for an otter pup's nap | The mill key | Behind Çağlayan's stopped falls | Book Two (hinted in Book One) |
-| 4 | **Gümüş** | magpie | A lamp over the counter, for a tired clerk | A silver thimble | In Emanet's back room, in a drawer with no handle | Book Two |
+| 4 | ~~**Gümüş**~~ (dropped from Book One: the map dropped invented names, 2026-11-06; the slot and its objects stay unnamed until Book Two) | magpie | A lamp over the counter, for a tired clerk | A silver thimble | In Emanet's back room, in a drawer with no handle | Book Two |
 | 5 | **Ağır** | tortoise | Every lamp on one long road, slowly, for travellers | A postage stamp with no value printed | At the bottom of Gezgin's mail sack, folded small (a joke Yosun does not know) | Book Three |
 | 6 | **Pervin** | moth | All lamps but one: she kept one lit for the lost | A wick | In the wax of Pervane's lamp | Book Three |
 | 7 | **Ihlamur** | dormouse | Stray lamps around Ayçiçeği, for many winters, alone | His lantern | Asleep in the south, at Fener Kayası (the lighthouse rock) | Book One (trail), Book Two (place) |
@@ -152,7 +152,7 @@ season, each re-reading an island the player already loves.
 - **The handover.** One autumn night a light went out below that he had
   not touched. He understood at once: a keeper from below. He did what
   old night watchmen do when the next one arrives: he went to rest. He
-  hung his lantern on Emanet's seventh hook, set his glass upside down on
+  let his lantern go where it would be found (the map: it is fished up through Revontuli's ice hole at Olta and rides to the finale; it did not hang on Emanet's hook), set his glass upside down on
   Mochi's top shelf, wrote one last letter (to Yosun, the first ever
   addressed to him), and asked Lale to carry him south, where a dormouse
   can sleep a very long winter. He did not say goodbye to Nazlı, because
@@ -214,7 +214,7 @@ season, each re-reading an island the player already loves.
   **sings for the first time**: the four notes, low enough to move
   water. It is the first Carrier song in the sky since the Long Bright.
   The soil on her back blooms into a young sunflower (a cutting of home);
-  Ihlamur's lantern, brought from Emanet, hangs on the hook, lit, a light
+  Ihlamur's lantern, fished up at Olta (the map; not Emanet), hangs on the hook, lit, a light
   kept for someone. Far off, Koke breathes once in answer. Nobody
   comments; the book ends on good night.
 - **The ceiling.** Each later book may bring a new "edition" of her
@@ -334,7 +334,7 @@ re-read by later books, which is how a small filler grows big later.
 |---|---|---|---|---|
 | **Çağlayan** | noon | A waterfall that stopped; reconnect its streams | The falls stopped at noon the day Balaban, the third keeper, lay down to rest behind them; the water held still to keep his sleep, out of love, and has held too long. Reconnecting the streams teaches §2.2: a resting keeper can sleep through falling water; quiet is not silence | **Damla** the otter was the pup Balaban put the mill lamp out for. The falling water was her lullaby; she wants it back in a glass because she misses the sound, not the water |
 | **Revontuli** | night | Night only; guide the aurora's lantern; Tuli paints the sky | The aurora is received quiet. Ayaz, the second keeper, sleeps under the sauna stone, which is why it never cools; the no-talking rule of the sauna was his | **Tuli** does not paint the aurora: she traces it. The sky writes it on the ice first and she paints over it, copying the Still Script without knowing. Her grandmother sat the whole sauna with Ayaz. Tuli's want (someone to sit without talking) is waiting for the next keeper's company |
-| **Emanet** | late afternoon | The lost-and-found; return things to residents | Nothing here is lost: everything was **entrusted**. Gümüş, the fourth keeper, founded it as the handover house. The back shelf holds seven handover objects on seven hooks (§3.2) and an empty eighth hook. Pofu's own night-light is on a lower shelf, tagged with the player's real day one | **Boncuk** is Gümüş's granddaughter. She polishes every object before returning it because Gümüş taught her that an entrusted thing goes back better than it came. Her need, to be given something on purpose, is met by Mochi's ıhlamur tin |
+| **Emanet** | late afternoon | The lost-and-found; return things to residents | Nothing here is lost: everything was **entrusted**. (Dropped with the invented names: the fourth keeper, once called Gümüş, founded it as the handover house.) The back shelf holds seven handover objects on seven hooks (§3.2) and an empty eighth hook. Pofu's own night-light is on a lower shelf, tagged with the player's real day one | **Boncuk** (once written as the fourth keeper's granddaughter; that name is dropped). She polishes every object before returning it because Gümüş taught her that an entrusted thing goes back better than it came. Her need, to be given something on purpose, is met by Mochi's ıhlamur tin |
 | **Mehtap** | blue hour | The moon owl; the finale on the real full moon | The chart of dark stars: seven faint trails and one bright new one that ends at Ayçiçeği, tonight. The moon pool is the clearest view of the Still Water in the sky | **Nane** comes from a line of owls (the Reckoners) who have drawn the chart since the Long Bright began. She says "günaydın" at dusk because keepers wake at dusk; Ihlamur answered her every evening; she has had no one to say it to since. At the finale she says it to the player |
 | **Gezgin** (Nazlı) | moves | The whale you travel on; humble, then grown | §4.3 | **Yosun** the tortoise postman descends from Ağır, the fifth keeper, who started the custom of thank-you letters to "Bekçi". The letters are never late: the address moves with the quiet, and he delivers when he finds it. His want (one letter for him) is Ihlamur's last letter, which waits in Book Two |
 

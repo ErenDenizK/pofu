@@ -14,7 +14,7 @@ direction: the interface should not be "only glass". Icons, widgets, the
 app icon, and the world must read as **one product**, and image generation
 can produce icons as well as scenes.
 
-That request collides with [design language §2 and §9](../design/design-language.md),
+That request collides with [design language §2 and §9](../archive/design-language.md),
 which ban illustration in chrome because raster controls break Dynamic
 Type, localization, dark mode, VoiceOver, pressed states, and Liquid Glass,
 and because AI-generated UI looks cheapest exactly there. Both concerns are

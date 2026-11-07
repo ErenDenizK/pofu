@@ -10,7 +10,7 @@ Reads with the [lore bible](lore-bible.md), [island curation](../archive/island-
 (the arc template), the [archipelago system](../archive/archipelago-system.md)
 (stages, rounds, rumours, the web), the [app–game boundary](app-game-boundary.md)
 (intents, the visit queue, A15–A26), [game design v2](game-design.md)
-(A1–A14), [UI system v2](../design/ui-system-v2.md) (surfaces) and
+(A1–A14), [UI system v2](../archive/ui-system-v2.md) (surfaces) and
 [Pofu's voice](../brand/pofu-voice.md) (where Pofu speaks)._
 
 > **Founder (translated):** "We must get the app–game–story axis right.

@@ -3,7 +3,7 @@
 _Status: v0.1, **superseded in part (2026-11-02)**: the species and style
 were decided in [ADR-0010](../adr/0010-illustrated-hamster-art-direction.md)
 (illustrated hamster; the lilac fluffball below is obsolete) and the look
-lives in the [design language](../design/design-language.md) and
+lives in the [design language](../archive/design-language.md) and
 [art bible](../design/art-bible.md). Personality and voice sections still
 apply. Options explored: [archive](../archive/character-exploration.md).
 Last updated: 2026-10-31._

@@ -5,7 +5,7 @@ _Interactive prototype (touch, Turkish copy):
 [`design/prototypes/interactions/`](../../design/prototypes/interactions/index.html).
 Builds on [ADR-0018](../adr/0018-visual-system-v1.md) (on the open
 `docs/visual-system-v1` branch), [design review 01](../archive/review-01.md), the
-[design language](design-language.md) (§8 materials, §10 motion, §11 haptics),
+[design language](../archive/design-language.md) (§8 materials, §10 motion, §11 haptics),
 the [companion motion system](companion-motion.md), and
 [game design v2](../product/game-design.md)._
 

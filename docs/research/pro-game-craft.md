@@ -6,7 +6,7 @@ small cozy-games studio. No code changes in this document._
 
 _Reads with: [look-dev](../design/look-dev.md) (and look round 2, PR #61),
 [ADR-0018](../adr/0018-visual-system-v1.md), UI system v2 (PR #70,
-`docs/design/ui-system-v2.md`), the
+`docs/archive/ui-system-v2.md`), the
 [interaction spec](../design/interaction-spec.md), the
 [companion motion spec](../design/companion-motion.md),
 [sound identity](../design/sound-identity.md), the

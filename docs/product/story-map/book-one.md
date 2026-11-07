@@ -1,9 +1,12 @@
 # Book One story map: "Bekçi kim?"
 
-**Status:** canonical for Book One (lead proposal 2026-11-05, shown to the
-founder 2026-11-05 and 2026-11-06; supersedes conflicting docs). Where any
-other doc disagrees on Book One's islands, order, residents, themes, Söz
-lines, gifts or Nazlı's growth, this file wins and that doc is fixed.
+**Status:** the lead's proposal ("ÖNERİ … kurucu onayına"), shown to the
+founder 2026-11-05 and 2026-11-06. He called it "elimdeki en iyi
+dokümantasyon" but added "birebir uymak zorunda değiliz" (2026-11-07). So
+it is the base we follow and depart from on purpose, row by row, and not
+law. Where another doc disagrees on Book One's islands, order, residents,
+themes, Söz lines, gifts or Nazlı's growth, this file is the starting
+point, and the [decisions register](../decisions.md) wins over both.
 
 The founder saw these two pages on 2026-11-05; they were not committed, the
 tracker then called them "never made" and new docs drifted from them. They
@@ -44,6 +47,14 @@ The finale: the trail ends at home, and the keeper is you.
 | Nazlı (Gezgin) | "taşır · bulut-balina" | carries; the cloud whale |
 | Fındık | "evin tamircisi" | the home's mender |
 | Simit | "yeni nesil" | the new generation |
+
+**Species, as the pages draw them** (register §2.1): Pofu a hamster, Mochi
+a lop bunny, Fındık a hedgehog, Simit a ginger kitten, Nazlı a cloud
+whale, Yosun a tortoise, Damla a river otter (player text "su samuru",
+since "samur" alone is a sable), Tuli a white arctic fox, Boncuk a magpie,
+Nane an owl, Sumi a dormouse (Koke), Zil a bell-ringer mouse, Zümrüt a
+glass frog, Kil a potter mole, Lale an old stork, Ihlamur the old keeper
+(never seen in Book One).
 
 ### 1.1 The iceberg (Buzdağı)
 
@@ -299,7 +310,7 @@ before the finale; visitors come only at home.
 ## 6. What follows from the map (lead notes, not on the page)
 
 - **Weekly visitors** named on the page: Pazartesi Koke (Sumi), Salı
-  Damla, Çarşamba Emanet's parcel (Boncuk), Cuma Tuli, Cumartesi Arı's
+  Damla, Çarşamba a parcel at the door ("kapıda bir paket"; no Boncuk), Cuma Tuli, Cumartesi Arı's
   honey, Pazar Nane. Thursday is not on the page; older docs give it to
   Yosun.
 - **Order of everything:** Ayçiçeği → Gezgin arrives → Koke (first filler,
@@ -366,6 +377,6 @@ the map's summary, role and order.
 
 1. **Koke** stays as built and becomes what the map says: the first filler and the Monday visitor; its five-stage arc is the gentle tutorial of the healing arc. No new Koke art.
 2. **Mehtap's full moon** stays (the map's "GERÇEK DOLUNAY"): Mehtap's door is timed so stage 3 lands a few days before a real full moon; the "blessing" fallback (the trail glows without the moon) applies only if tests show a wait longer than seven days.
-3. **The seventh filler** is Leylek (the seasonal one): Koke, Çanlar, Martı Kayası, Fanus, Pervane, Çömlek and Leylek.
+3. **Leylek is the seasonal card**, not a seventh filler. Six fillers are drawn (Koke, Çanlar, Martı Kayası, Fanus, Pervane, Çömlek) plus Leylek as "1 mevsimlik". The map's "+7 filler" count is probably a miscount, and no seventh filler is defined (corrected 2026-11-07, register S5; the original read "the seventh filler is Leylek").
 4. **Arı** is the home hive upgrade; its art is the home hive (`hive-4`, `hive-5`), unblocked in the next art round.
 5. **Stale docs** (home progression §7, monetization v2 §2.1, art queue row B-A, `content/islands/*.yaml`) are aligned in a follow-up PR the same day.
