@@ -14,10 +14,14 @@ and friends. Reads with: [archipelago system](../archive/archipelago-system.md)
 [character bible](../brand/character.md), ADR-0015 (seeds never buy
 screen time) and ADR-0017 (Pofu never dies)._
 
-> **Design loop 1 (2026-11-03) proposes changes** to Pofu's origin and to
-> mysteries M1, M3, M4 and M5 (the old Bekçi, the player as the new one):
-> [loop-1 §2.6](design-loop/loop-1.md#26-changes-to-earlier-docs-after-the-founder-agrees).
-> This bible changes only after the founder agrees.
+> **Design loops 1 and 2 are folded in (pending the founder's
+> agreement on this change):** the Bekçi spine (section 5A), Pofu's
+> revised origin (section 3), the duo of Pofu and Mochi (section 4),
+> Çağlayan as the falls that remember, the mysteries' new payoffs
+> (section 5) and the hour rule (section 1). Sources:
+> [loop 1 §2](design-loop/loop-1.md#2-the-big-story-book-one) and
+> [loop 2 §2](design-loop/loop-2.md#2-the-big-story-what-loop-2-adds).
+> Still beats and intents only: no new line here is final dialogue.
 
 ## 0. How to read this
 
@@ -70,6 +74,21 @@ moored boat off its pier. Where it is loud, everything is pushed apart a
 little, constantly. Where it is quiet, the currents settle and things
 float back together. The user's calm is literally the still water that
 lets an island come in. Nobody chose this; it is how the sky works.
+
+**Where the quiet comes from (loop 1).** Every light switched off in the
+loud world below drifts up as a little quiet. The sky remembers each one
+three ways: as **clear water** (Çağlayan's pools show it), as **aurora**
+(Revontuli) and as a **dark star**, a gap where a light was (Mehtap's
+chart). Whoever switches a light off for someone's quiet is, that night,
+a **Bekçi** (section 5A).
+
+**The hour rule (loop 2).** An island goes quiet at the hour a light was
+switched off for it, and it keeps that hour, the way a photograph keeps
+its light: Çağlayan is always noon, Revontuli always night, Mehtap
+always blue hour. Visiting one is travelling to another time of day. Only
+home runs on the player's own clock and weather, because the Bekçi lives
+there: it is the one island that is not a memory. Never said; re-read at
+Mehtap.
 
 ## 2. The noise and the fog
 
@@ -132,8 +151,9 @@ bedside table, always glowing, and a wheel beside it. He ran because the
 wheel was there and the room was bright and running felt like going
 somewhere.
 
-One night the screen went dark by itself (the battery died; the person
-had fallen asleep). The wheel slowed. In the dark Pofu heard two things
+On the player's day one, the screen went dark, and not by itself: **a
+hand switched it off** (loop 1; it was the battery in draft 0). The wheel
+slowed. In the dark Pofu heard two things
 for the first time: the person breathing, and his own wheel squeaking.
 He stopped running **to hear better**. That is the whole origin: he did
 not quit, he got curious.
@@ -142,6 +162,13 @@ The four notes he hums are that night: breath, breath, squeak, squeak.
 The room was so quiet that the first island heard it and came in.
 Ayçiçeği was the first island and Pofu its first passenger. He pulled
 his wheel along like a hoop because it was his.
+
+The bright room is the player's own screen. This is never shown or said,
+but every clue is built from it: the night-light on Emanet's shelf is
+tagged with the player's real day-one date, Fanus's tags are the player's
+real quiet days, Revontuli's aurora is brighter after a calm night (all
+deterministic, on-device, from logs the app already keeps). Pofu does not
+know who switched off his light; finding out is Book One (section 5A).
 
 ### Want, need, wound, tell
 
@@ -184,23 +211,52 @@ not a trait.
 
 Simit's arc is the user's arc and must never be said aloud: across the
 first weeks she learns to spend the afternoon (a nap on the pier, then
-watching the gulls, then teaching the goat to sit).
+watching the gulls, then teaching the goat to sit). From the day Mochi
+starts travelling, Simit minds the çay ocağı in the afternoons; Mochi is
+back every evening, so home never reads as "Mochi is gone".
+
+### The duo: Pofu and Mochi (loop 1)
+
+Pofu travels with **Mochi**, as Atreus with Kratos, used as a writer's
+tool, not a copy. Pofu is young, curious, hears the islands and does not
+know he is a listener. Mochi is older, practical, terse; her lop ears
+hang down, so she **cannot hear the islands**. She comes along "only to
+carry the tea" and hides that **she knew the old Bekçi**: his glass
+stands upside down on her top shelf. Her hidden gift: her tea **ripples**
+when an island is near; she notices it at Martı Kayası, hides it, uses it
+openly from Olta on, and at Mehtap sees it first.
+
+- **What Pofu learns:** he did not stop running alone; being a listener is
+  not being special, it is being with someone who makes it quiet; the one
+  he looked for was always at home.
+- **What Mochi learns:** to sit down (her need, now with a reason); that
+  people who leave can be let go; that she hears in her own way.
+- **Their arc** is thirteen beats, `DUO-01` to `DUO-13` (intent and
+  subtext in [loop 1 §2.2](design-loop/loop-1.md#22-the-duo-pofu-and-mochi)),
+  plus `DUO-02b` (loop 2): on the first ferry home from Çağlayan, Pofu
+  notices it was noon there and is evening at home; Mochi answers as if
+  it were obvious (subtext: she knows why). The midpoint is Olta (she
+  knew them); her arc closes at Çömlek (she turns the old glass upright,
+  pours and sits down); the reveal is Mehtap (a full glass at the edge of
+  the screen).
+- **Fındık stays home** and mends what the duo brings back; **the moth**
+  stays the wordless compass.
 
 ### The wonder islands (one line each; full arcs when each island is briefed)
 
 | Resident | Island | Want | Need | Tell |
 |---|---|---|---|---|
-| **Damla**, otter | Çağlayan | To catch the waterfall in a tea glass | Enough | The glass is always half full; she drinks it and tries again |
+| **Damla**, otter | Çağlayan | To catch the waterfall in a tea glass, to keep the pictures in it | To let it go round: a picture lives only in moving water | The glass is always half full; she drinks it and tries again. Her island is always noon; she has seen sunsets only in a pool |
 | **Nazlı**, cloud-whale | Gezgin | To carry | To be carried (to rest) | Her breathing slows when someone near her breathes slowly |
 | **Yosun**, tortoise postman | Gezgin | One letter addressed to him | (it is the want) | Letters arrive weeks late; he apologises for being early |
 | **Tuli**, arctic fox | Revontuli | Someone to sit the whole sauna without talking | Company without words | Paints the aurora only on quiet nights, and never admits it |
 | **Zil**, bell-ringer mouse | Çanlar | To ring the old tunes again | To be told he forgot, kindly | Hard of hearing; rings by the buzz in his feet |
-| **Sumi**, dormouse | Koke | To stop apologising for sleeping through winter | That rest is not a fault | Apologises in her sleep |
+| **Sumi**, dormouse | Koke | To stop apologising for sleeping through winter | That rest is not a fault | Apologises in her sleep; rakes around the sleeping moss island so as not to wake it (loop 2) |
 | **Boncuk**, magpie | Emanet | One shiny thing to keep | To be given something on purpose | Polishes each object before she gives it back |
 | **Zümrüt**, glass frog | Fanus | Not to be seen | To be seen and be fine | She is see-through; when shy, you can watch her swallow |
 | **Kil**, potter mole | Çömlek | A pot for every island that came home | (content; the one resident who has what he needs) | A thumbprint on everything he touches |
 | **Nane**, owl | Mehtap | Someone to say good morning to at dusk | (it is the want) | Says "günaydın" at sunset |
-| **Lale**, old stork | Leylek | To see every city once more | To come back | Clatters her beak instead of laughing |
+| **Lale**, old stork | Leylek (a seasonal visitor, loop 2) | To see every city once more | To come back | Clatters her beak instead of laughing; once carried "a small one with a squeaky door" south |
 
 > **[SPICE]** Every row is a hypothesis. A friend should pick **one**
 > resident they love and write that resident's five stage lines from
@@ -214,11 +270,11 @@ as an object or a moment, never as an explanation.
 
 | # | Seed on Ayçiçeği | Rungs | Payoff | Below the waterline |
 |---|---|---|---|---|
-| **M1. The four notes** | Pofu hums four notes while watering and stops at the same place (the home motif, archipelago §11.1) | Çağlayan's mill creaks a fifth note; every new island's first rumour is a bell that knows a little more | **Çanlar**, stage 5: Zil's oldest tune, rung to call islands home, begins with Pofu's four notes. Pofu hears the rest of the song. He says nothing; he hums along | Nobody taught him. Breath, breath, squeak, squeak: quiet sounds the same everywhere, so the islands' oldest call and a hamster's first silence are the same four notes |
+| **M1. The four notes** | Pofu hums four notes while watering and stops at the same place (the home motif, archipelago §11.1) | Çağlayan's mill creaks a fifth note; every new island's first rumour is a bell that knows a little more | **Çanlar**, stage 5: Zil's oldest tune, rung to call islands home, begins with Pofu's four notes. Pofu hears the rest of the song. He says nothing; he hums along | Nobody taught him. Breath, breath, squeak, squeak: quiet sounds the same everywhere, so the islands' oldest call and a hamster's first silence are the same four notes. The old Bekçi hummed them too: it is every Bekçi's tune, and it tells Pofu he is a listener (loop 1, rung 4) |
 | **M2. The wheel behind the round door** | The lore hook "What is behind the little round door?"; the dusted wheel in the den | Fındık offers to fix it (it is not broken); Pofu says "Kalsın." ("Leave it.") | **Çağlayan**, a late season: the mill under the falls "grinds nothing, it just likes turning". Pofu carries the wheel there; it becomes a water wheel. Pofu watches it turn with nobody in it: "Kendi kendine dönüyormuş." ("It turns by itself.") | The thesis: the wheel never needed him |
-| **M3. The sunflower at night** | The giant sunflower follows the real sun; at night it does not droop, it turns toward the fog | Each night it points somewhere slightly different; the morning after, a rumour arrives from that side | **Mehtap**: Nane's star charts draw the routes of the outer ring, and they match the nights the sunflower pointed | The sunflower is the oldest living thing in the archipelago, planted by the old bell-ringers as a compass that points to whatever island is listening. (Real young sunflowers do turn back east at night; ours just has a different east.) |
-| **M4. Letters without a sender** | Once in a while the mailbox holds a very old envelope, addressed "Ayçiçeği'ne, kim oturuyorsa" ("To Ayçiçeği, whoever lives there"), with one practical line: "Kapı gıcırdarsa zeytinyağı." ("If the door squeaks, olive oil.") | Yosun delivers them; they are years late, which no one finds odd; the handwriting appears on a label in the den | **Emanet**: the back room's hand-drawn map of the outer ring is in the same handwriting. Its corner note: "Ben de atamamıştım." ("I couldn't throw mine away either.") | Someone lived on Ayçiçeği before Pofu, also stepped off a wheel, and one autumn rode south with the storks and stayed. We never say who, or what species. Lale's address in scene 5 ("Güney") is the only echo |
-| **M5. Where the sneezed seeds go** | The toy: three boops and Pofu sneezes a seed off the edge into the clouds | Now and then the vapur brings back a sunflower seed in a twist of paper, no note | **Fanus**: in the jar's warm rain, a row of small sunflowers, each with a tag. The tags are the dates the user made Pofu sneeze. Pofu: "Hepsi benim hapşırığım mı?" ("Are these all my sneezes?") | The jar keeps what falls until the sky is quiet enough to plant it (archipelago §11.9). Deterministic: the dates come from the toy's log |
+| **M3. The sunflower at night** | The giant sunflower follows the real sun; at night it does not droop, it turns toward the fog | Each night it points somewhere slightly different; the morning after, a rumour arrives from that side | **Mehtap**: Nane's star charts draw the routes of the outer ring, and they match the nights the sunflower pointed | The sunflower is the oldest living thing in the archipelago, planted by the old bell-ringers as a compass that points to whatever is listening. (Real young sunflowers do turn back east at night; ours just has a different east.) At Arı the bees' dance and the sunflower point the same way at night, **toward the viewer** (loop 1, rung 9) |
+| **M4. Letters without a sender** | Once in a while the mailbox holds a very old envelope, addressed "Ayçiçeği'ne, kim oturuyorsa" ("To Ayçiçeği, whoever lives there"), with one practical line: "Kapı gıcırdarsa zeytinyağı." ("If the door squeaks, olive oil.") | Yosun delivers them; they are years late, which no one finds odd; the handwriting appears on a label in the den | **Emanet**: the back room's hand-drawn map of the outer ring is in the same handwriting. Its corner note: "Ben de atamamıştım." ("I couldn't throw mine away either.") | The previous keeper was **the old Bekçi** (loop 1). He also stepped off a wheel, and when a new Bekçi came, he rode south with the storks, in Leylek's nest, and stayed. We never say what species. Mochi knew him. Lale, when Leylek passes in season, is the only one who tells it herself |
+| **M5. Where the sneezed seeds go** | The toy: three boops and Pofu sneezes a seed off the edge into the clouds | Now and then the vapur brings back a sunflower seed in a twist of paper, no note | **Fanus**: in the jar's warm rain, a row of small sunflowers, each with a tag. The tags are the dates the user made Pofu sneeze. Pofu: "Hepsi benim hapşırığım mı?" ("Are these all my sneezes?") | The jar keeps what falls until the sky is quiet enough to plant it (archipelago §11.9). Loop 1: the tags are **the player's real quiet days** (rung 7), not the sneeze dates; deterministic and on-device |
 
 Rules for mysteries:
 
@@ -233,6 +289,54 @@ Rules for mysteries:
 > cared for this place before you) or sad (someone left)? My
 > recommendation: keep it, because the letters are practical and funny,
 > not mournful. A friend's gut reaction decides.
+
+## 5A. The spine: the Bekçi (loop 1)
+
+**In two lines.** Somebody keeps switching off lights in the loud world
+below, one at a time, and every light switched off becomes a little quiet
+that lets an island come home. All of Book One, Pofu follows the trail of
+this night watchman, the **Bekçi**, to say thank you; at the real full
+moon the trail ends at his own island, tonight: **the Bekçi is the
+player.**
+
+- **The Bekçi** is the night watchman of a Turkish neighbourhood, who
+  walks at night so that others sleep. Ayçiçeği had one before Pofu (M4).
+- **The thesis, never said:** _you are the one who made it quiet, and
+  someone is glad._ The player is the hero of a world they never saw
+  themselves in; the opposite of a guilt app.
+- **The reveal ladder.** Every island's surface story closes cozy and
+  complete; each also leaves one rung, and a later island re-reads an
+  earlier one: Çağlayan's deepest pool (a far window goes dark, rung 1),
+  Koke's raked thank-you letters and its sleeper's one breath (rung 2),
+  Gezgin's letters all addressed to "Bekçi" (rung 3), Çanlar's oldest tune
+  (rung 4), Revontuli's aurora of switched-off lights (rung 5), Olta's
+  lantern and Mochi's confession (rung 6), Fanus's quiet days (rung 7),
+  Emanet's night-light tagged with the player's day one in a new hand
+  (rung 8), Arı's dance toward the viewer (rung 9), Mehtap's chart of dark
+  stars ending at home (the reveal) and Yakamoz's one window still lit
+  (rung 10, Book Two). Full table:
+  [loop 1 §2.3](design-loop/loop-1.md#23-the-reveal-ladder-early-islands-look-small-later-turn-out-big),
+  changes in [loop 2 §2.2](design-loop/loop-2.md#22-changes-to-the-reveal-ladder).
+- **Çağlayan, the falls that remember.** Water that has gone round the
+  sky shows what it passed: every pool you clear becomes a live window
+  onto another island, in that island's own hour (loop 2: a piece of
+  night or dusk inside Çağlayan's noon). The deepest pool, at the bloom,
+  shows for one breath a far night window whose light goes out; Pofu's
+  ears flatten, Mochi sees water. Re-read at Emanet: that night was the
+  player's day one.
+- **The reveal, at Mehtap, at home:** Mochi's tea ripples first; she sets
+  a full glass at the edge of the screen; Pofu turns and, for the only
+  time in the game, looks at the camera. `[MEH-S5: Pofu, one line,
+  recognition and thanks; humans write it]`. Then good night.
+- **Book Two's question:** the window that is still lit (Yakamoz).
+
+Rules: one open question at a time; a rung is an object or an image first
+and at most one line; nobody explains a rung; nothing is said about
+phones (section 6).
+
+> **[ASK]** The founder accepted the Bekçi mystery, the duo and the
+> falls that remember as loop 1's direction. This section makes them
+> canon once he agrees; the hour rule (section 1) is new in loop 2.
 
 ## 6. Tone rules
 

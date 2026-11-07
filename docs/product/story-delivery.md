@@ -19,11 +19,12 @@ Reads with the [lore bible](lore-bible.md), [island curation](../archive/island-
 > us in the story, like the little companion who travels with you in
 > Genshin."
 
-> **Design loop 1 (2026-11-03)** answers the founder's later ask for a
-> travelling duo: Pofu and Mochi, within a one-exchange-a-day budget
-> ([loop-1 §2.2](design-loop/loop-1.md#22-the-duo-pofu-and-mochi),
-> [§2.5](design-loop/loop-1.md#25-how-the-duo-speaks-delivery)). It
-> supersedes §3.3's "Pofu alone" once the founder agrees.
+> **Design loops 1 and 2 are folded in (pending the founder's
+> agreement on this change):** the travelling duo of Pofu and Mochi
+> (§3.6, superseding §3.3's "Pofu alone"), Çağlayan as the falls that
+> remember (§5) and the hour rule ([lore §1](lore-bible.md#below-the-waterline)).
+> Sources: [loop 1 §2](design-loop/loop-1.md#2-the-big-story-book-one),
+> [loop 2 §2](design-loop/loop-2.md#2-the-big-story-what-loop-2-adds).
 
 ## 0. The answer in one paragraph
 
@@ -247,6 +248,43 @@ free).
 9. **No knowledge the player lacks.** Pofu never names an island,
    resident or object the player has not met (no spoilers, no pull).
 
+### 3.6 The duo: Pofu and Mochi (loop 1, supersedes 3.3's "Pofu alone")
+
+The founder asked for a travelling pair that talks, like Kratos and
+Atreus. A second voice is safe only if it is bounded:
+
+- **Who:** Pofu (the constant face, still the Paimon of §3.3) and
+  **Mochi**, who cannot hear the islands and comes "to carry the tea".
+  Why her, and not Fındık, Simit or the moth:
+  [loop 1 §2.2](design-loop/loop-1.md#22-the-duo-pofu-and-mochi). The
+  moth stays the wordless compass of §3.3.
+- **Where the duo speaks:** the vapur ride (the travel transition to an
+  island, first visit of the day), arrivals, stage turns (S3), blooms and
+  feasts. **Never** on the shield, Hop!, widgets or notifications.
+- **Budget:** at most **one duo exchange a day**, two to four lines,
+  always skippable, kept in the Seyir defteri (§4.4). **Mochi never speaks
+  outside an exchange.** The "Az konuşsun" setting also silences duo
+  exchanges except arrivals and blooms.
+- **Beats:** `DUO-01`…`DUO-13` (loop 1) and `DUO-02b` (loop 2), each an
+  ID, an intent and a subtext; humans write the words; the `pofu-story`
+  skill's device rule applies (no two consecutive exchanges on the same
+  device).
+- **Trigger** (the three locks of §4.5): progress = the island's beat;
+  context = the vapur ride or the island view; calm = none (the duo never
+  rewards or reproaches calm).
+
+**Mochi as a travel companion** (sketch for writers, not lines):
+
+- **Terse and practical.** She asks "açık mı, demli mi?", never
+  "nasılsın"; on the vapur she pours before she sits, and she does not
+  sit for long until Çömlek.
+- **She watches Pofu, not the wonder.** Where he looks at the island, she
+  looks at him (the pool, the fog, the lantern).
+- **Her tell, inverted.** She turns a glass's waist toward you; when hurt,
+  she turns it away (`DUO-05`).
+- **She hides one thing and lies about nothing.** At the midpoint (Olta)
+  she tells less than she knows, and Pofu lets her.
+
 ## 4. Progression through systems
 
 ### 4.1 Quests: the stage cost is the request
@@ -399,24 +437,30 @@ economy pass):
 
 Days are tended days (cumulative, 1A.6). The arc follows curation §2's
 rework (the fall has stopped; a leaf boat from home was blocking the
-spring). Line IDs are placeholders: `[ID: speaker, intent]`.
+spring), revised by the design loops into **the falls that remember**:
+water that has gone round the sky shows what it passed, so every pool you
+clear becomes a live window onto another island in that island's own
+hour; the island itself is always noon (the hour rule). Want (Damla):
+catch the whole fall in her glass, to keep the pictures; need: let it go
+round. Line IDs are placeholders: `[ID: speaker, intent]`. Rows marked
+**(loop)** are the revisions.
 
 | # | Beat (level) | Trigger: progress · context · calm | Surface and UI moment | Who | Placeholder | Log page / stamp |
 |---|---|---|---|---|---|---|
 | R1 | **Rumour 1, a sound** (L2) | ⅓ of the arrival condition (≈ day 2) · first visit after 06:00 · calm lock | Home visit, morning bubble (queue news). The fog's east edge shimmers; the moth sits on the east rail | Pofu | `[CAG-R1: Pofu asks if you heard water in the night]` | Söylentiler 1 |
 | R2 | **Rumour 2, an object** + the myth, once (L3) | ⅔ (≈ day 3) · the vapur's first run (needs the harbor planks) · day | Harbor: a bottle on the pier, half full of dry travertine sand. Tap it: the one spoken premise line (lore §1, ASK 1) | Pofu | `[MYTH-1: Pofu says islands come in when it is quiet]`, `[CAG-R2: Pofu shakes the bottle; sand, no water]` | Söylentiler 2 |
 | R3 | **Rumour 3, a sight** (L1) | All but the release (≈ day 3) · dusk · none | Map's outer ring: the lighthouse beam catches a mist rainbow; also visible on Home's sky at dusk. No bubble | — | (wordless) | Söylentiler 3 |
-| A | **Arrival** (L5) | Day 4 conditions · arrives in the night (A21) · first visit after 06:00, calm lock | Archipelago §3.2 choreography: morning bubble "See it" → cloud pass → **a thin trickle runs over the lowest rim and stops** → Damla with an empty glass → the toy glows → first page card with the lore hook → "Oyna" (free tutorial round). Gift: a spring bubbles up by home's pond | Pofu, Damla | `[CAG-A1: Pofu, delighted, refers to last night's water]`, `[CAG-A2: Damla, the want: catch it all]` | Islands › Çağlayan p1 (sketch inked) |
+| A | **Arrival** (L5) | Day 4 conditions · arrives in the night (A21) · first visit after 06:00, calm lock | Archipelago §3.2 choreography: morning bubble "See it" → cloud pass → **a thin trickle runs over the lowest rim and stops** → Damla with an empty glass → the toy glows → first page card with the lore hook → "Oyna" (free tutorial round). Gift: a spring bubbles up by home's pond | Pofu, Damla | `[CAG-A1: Pofu, delighted, refers to last night's water]`, `[CAG-A2: Damla, the want: catch it all]`; **(loop)** the pools are milky (the water "forgot"); `[CAG-S0b: Damla complains the island is always noon]`; the vapur ride there carries `DUO-02` | Islands › Çağlayan p1 (sketch inked) |
 | S1 | **Stage 1, Meet** (L3) | The first set on Çağlayan ends · — · — | Set-end card → the first pool fills; a shy trickle returns, stops. "Bugünlük yeter" | Damla | `[CAG-S1: Damla, encouraged, refills the glass]` | p1 complete |
 | Q2 | **Request for stage 2** (card) | Stage 1 seen | Damla's noticeboard: the stage-2 card (want in her voice; a painted jar fills with drops) | Damla | `[CAG-Q2: Damla wants to try the second pool]` | Ricalar |
 | V1 | **Visitor** (L3) | Day 5–7, Çağlayan awake (web rule) · day · calm | Home: Damla at the çay ocağı; Mochi's order question | Mochi, Damla | `[CAG-V1: Mochi asks how she takes it; Damla answers about water]` | — |
-| S2 | **Stage 2, First help** (L4) | 20 drops + 15 seeds, ≥ 2 days · **player taps "Aç"** · — | Island view: the plate edit (the spring behind the rim is found; a second pool); the game adds curved stones. Pofu on the island, sitting on the rim | Damla, Pofu | `[CAG-S2a: Damla finds the spring]`, `[CAG-S2b: Pofu, a body joke about wet fluff]` | p2 |
-| T1 | **Toy thread** (L3) | A leaf boat dropped over the falls ≥ 3 tended days ago · morning · calm | Harbor: the boat washes up on the home pier, no note | — | (wordless) | `[STAMP-boat-home]` |
+| S2 | **Stage 2, First help** (L4) | 20 drops + 15 seeds, ≥ 2 days · **player taps "Aç"** · — | Island view: the plate edit (the spring behind the rim is found; a second pool); the game adds curved stones. Pofu on the island, sitting on the rim | Damla, Pofu | `[CAG-S2a: Damla finds the spring]`, `[CAG-S2b: Pofu, a body joke about wet fluff]`; **(loop)** the first pool clears and becomes a window: today's awake island, in its own hour | p2 |
+| T1 | **Toy thread** (L3) | A leaf boat dropped over the falls ≥ 3 tended days ago · morning · calm | Harbor: the boat washes up on the home pier, no note. **(loop)** In between, the player can watch it in the pools, passing other islands | — | (wordless) | `[STAMP-boat-home]` |
 | S3 | **Stage 3, the Turn** (L4) | 40 drops + 25 seeds, ≥ 5 days · player taps "Aç" · — | A leaf boat **from home's pond** is wedged in the spring. If the player has used the toy, it is **their** boat (deterministic from the toy log). The need spoken once: she thought she stopped the fall by trying to catch it. She laughs at herself. Locks appear in the game | Damla, Pofu | `[CAG-S3a: Damla's need, said lightly]`, `[CAG-S3b: Pofu recognises the boat; no guilt, a shrug]` | p3 |
 | Q4 | **Request for stage 4** + **first web request** | Stage 3 seen | Damla's board asks for drops; the stage-4 extra (the mill race) asks home for **planks from the harbor** | Damla | `[CAG-Q4: Damla wants a mill "for no reason"]` | Ricalar |
 | S4 | **Stage 4, Gathering** (L4) | 60 drops + 35 seeds, ≥ 9 days · player taps "Aç" · — (planks are an extra: the mill wheel turns faster with them) | The mill under the falls turns, grinding nothing. Pofu watches it a beat too long (M2 rung, wordless) | Damla, Pofu | `[CAG-S4: Damla says it just likes turning]` (Pofu silent) | p4 |
-| S5 | **Stage 5, Bloom** (L5) | 80 drops + 50 seeds, ≥ 14 days · **player taps "Aç"** · — | The full fall pours off the rim into the clouds, longer than the island is tall, with a mist rainbow. Damla catches a glass and **gives it to Pofu** | Damla, Pofu | `[CAG-S5a: Damla's want turns into need]`, `[CAG-S5b: Pofu, one line]` | p5 |
-| B+ | **The bloom's extra** (L3) | Stage 5 seen · **the first morning after a calm night** · calm | Home: the first morning rainbow over Ayçiçeği (the permanent gift). Pofu points; no line needed | — | (wordless; optional `[CAG-B: Pofu points]`) | `[STAMP-first-rain-rainbow]` |
+| S5 | **Stage 5, Bloom** (L5) | 80 drops + 50 seeds, ≥ 14 days · **player taps "Aç"** · — | The full fall pours off the rim into the clouds, longer than the island is tall, with a mist rainbow. Damla catches a glass and **gives it to Pofu**. **(loop)** Every pool clears at once: every hour of the sky in one island. In the deepest pool, for one breath, a far night window whose light goes out (rung 1); Pofu's ears flatten; Mochi sees water | Damla, Pofu, Mochi | `[CAG-S5a: Damla's want turns into need]`, `[CAG-S5b: Pofu, one line]`, `DUO-03` (wordless or one line) | p5 |
+| B+ | **The bloom's extra** (L3) | Stage 5 seen · **the first morning after a calm night** · calm | Home: the first morning rainbow over Ayçiçeği (the permanent gift). Pofu points; no line needed. **(loop)** The spring by the pond becomes the square's çeşme; its basin shows Çağlayan's fall, the only place at home that shows another hour | — | (wordless; optional `[CAG-B: Pofu points]`) | `[STAMP-first-rain-rainbow]` |
 | F | **Feast** (L5) | Stage 5 seen, ≥ 1 day after · **forced light rain on home** (the answer: the clouds rain on every island) · calm lock | Home, çay ocağı under rain: lore §7.3 shape. Damla's glass fills drop by drop; she sets it before Pofu | Mochi, Damla, Pofu | `[CAG-F1..F6: the feast scene]` | Feast page; keepsake card: **the glass that never empties**; `[STAMP-full-glass]` |
 | TH | **Thread** (L3) | Feast seen · dusk · calm | Map: the rainbow points north at dusk toward the fog (a later island; curation §2) | — | (wordless) | Söylentiler |
 | SE | **Seasonal** (L1) | Every autumn | Leaves float in the boats; Damla fishes them out | — | (wordless) | — |
