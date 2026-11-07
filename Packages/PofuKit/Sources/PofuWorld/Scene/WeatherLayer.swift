@@ -398,7 +398,7 @@ struct ScreenHazeLayer: View {
                         width: size.width * 0.34,
                         slant: size.width * 0.22,
                         height: CGFloat(seaLine),
-                        strength: 0.22 * parting
+                        strength: 0.40 * parting
                     )
                 }
             }
@@ -446,8 +446,8 @@ private struct SoftShaft: View {
                     LinearGradient(
                         stops: [
                             .init(color: .clear, location: 0),
-                            .init(color: .black, location: 0.35),
-                            .init(color: .black, location: 0.6),
+                            .init(color: .black, location: 0.25),
+                            .init(color: .black, location: 0.7),
                             .init(color: .clear, location: 1),
                         ],
                         startPoint: .top, endPoint: .bottom

@@ -94,15 +94,15 @@ struct SettingsHeader: View {
 
     var body: some View {
         let palette: PofuKitPalette = scheme == .dark ? .night : .day
-        HStack(spacing: PofuSpacing.m) {
-            PofuPaintedIcon(.iconMoodContent, size: 56)
+        HStack {
+            Spacer(minLength: 0)
+            PofuPaintedIcon(.iconMoodContent, size: 72)
                 .padding(PofuSpacing.xs)
                 .background { Circle().fill(palette.felt) }
                 .overlay { Circle().strokeBorder(palette.stitch.opacity(0.7), style: StrokeStyle(lineWidth: 1.2, dash: [4, 3])) }
                 .accessibilityHidden(true)
             Spacer(minLength: 0)
         }
-        .pofuKitCard(.stitched)
         .accessibilityElement(children: .combine)
     }
 }
