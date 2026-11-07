@@ -11,19 +11,20 @@ content per island: [story map](../product/story-map/book-one.md) §3 and
 `batch-70-mehtap-flow.yaml`). Storyboards for the founder:
 [`concept-flows/`](concept-flows/).
 
-The founder picked one direction per island and asked for the liked parts of
-the others to be folded in, because no concept set was connected from stage
-to stage. Each island below is **one** flow: one plate, one layout, five
-stages.
+He picked one direction per island with the liked parts of the others
+folded in: each island below is **one** flow, one plate, five stages.
 
 ## 0. Rules for the four flows
 
-1. **Nothing moves.** Every island has five numbered **landmarks** (the
-   storyboards' dots) that keep their place, size and outline at every stage.
-   A stage changes only **movable pieces** (water level, things on shelves,
-   lamps, flowers, a tower frame on its fixed footing) and the light. A
-   stage's big change may move a minor piece (a tower frame rising on its
-   footing), never a landmark.
+1. **Object by object, not one blanket rule** (founder follow-up,
+   2026-11-07). Each island's table lists every object: fixed or movable,
+   why, and the stage where a move is allowed. Landmarks (the spout and
+   falls, the mill, the sauna, post and tower footings, the dome, the
+   office) never move: they are the storyboards' numbered dots. Small
+   pieces (boats, heaps, parcels, stools) may move at a big change; the
+   storyboards mark each with a red arrow at that stage. Revontuli's tower
+   frames are the one larger piece that changes: each rises in place on
+   its fixed footing (Q-4 C).
 2. **Final-first chain.** Stage 4 is painted first, at the island camera, as
    the root (`x-<island>-flow-4`). Stage 3 is an edit of 4, 2 of 3, 1 of 2, 0
    of 1. Each edit only takes away, dims, dries, covers, drains or piles up,
@@ -37,11 +38,9 @@ stages.
    game draws them as sprites, so the chain never contains a character).
    `-4-up` paints the three upgrades (decisions G5) into their **reserved
    empty spots**, a fit check that the spots exist and work.
-4. **Frame.** 1536 × 1024 plates in the home camera (about 20° above the
-   horizon), the island about 88 % of the width, delivered at 768 × 512
-   (`deliver: {scale: 0.5}`, under the upload cap). Code places islands from
-   a traced matte (`CaglayanLayout.plateSize`, `artWidth`), so the frame
-   only needs to be the same for all five stages.
+4. **Frame.** 1536 × 1024 plates in the home camera (about 20°), the
+   island about 88 % of the width, delivered at 768 × 512 (`deliver: {scale:
+   0.5}`); code places islands from a traced matte (`CaglayanLayout`).
 5. **Promotion.** An edit attaches an approved parent, so the five chain
    jobs are promoted as concept targets (a header lead rule in each batch);
    the leaves are takes only. Nothing here is wired into the app.
@@ -71,16 +70,19 @@ light, life and the size of the change:
 `caglayan-island-4` t2) as greenery only, the cream stone stays visible;
 the stone spout is the source (Q-2); the map's frozen fall at stage 0 (I3).
 
-**Landmarks (never move):** ① the cream rock knoll with the stone spout
-(back centre) · ② the big round pool at its foot · ③ the mill hut, its
-waterwheel and the grindstone where Söz 1 is read (left) · ④ the stream and
-the round basin on the front lip · ⑤ the three saucer pools and the
-stepping stones (right).
-
-**Movable:** the water (level, fall width), the three leaf boats, grass
-carpets, moss, flower clumps, the mill window light and smoke; the
-rainbow, mist and light shaft (code effects in the bare plates); Damla and
-the critters (sprites).
+| Object | Fixed or movable | Why | Moves (stage) |
+|---|---|---|---|
+| ① knoll with the stone spout and the falls | fixed | the source (Q-2); Damla's seat on top at 4 | never |
+| ② big round pool | fixed | the falls land here; only its water level changes | never |
+| ③ mill hut, waterwheel, grindstone | fixed | landmark; Söz 1 is read on the grindstone | never (the wheel turns in place from 2) |
+| ④ stream and front basin | fixed | a carved channel that fills and empties | never |
+| ⑤ saucer pools and stepping stones | fixed | the flow board's pools and the path | never |
+| water (curtain, ribbon, levels) | changes in place | the cure itself | every stage |
+| grass, moss, flowers | grow in place | C2's greens arrive | 2 to 4 |
+| leaf boats (3) | movable | small pieces: aground in dry saucers, afloat when full | 2 (the top boat floats), 3 (all float); drift at 4 |
+| rainbow, mist, smoke, sun shaft | code effects | not in the bare plates | 0 (shaft), 4 |
+| Damla (sprite) | movable | the map: empty glass by the pool → full glass on top | 4 |
+| dragonflies, butterfly; frogs (U1) | sprites | life | 4; after the upgrade |
 
 **Reserved spots:** Damla's seat on top of the knoll above the spout (stage
 4, Q-2) · U1 lily pads (and frogs, sprites): the front-right half of the big
@@ -119,16 +121,19 @@ stage). **Joining them:** the island is R1's at every stage; the ruin is its
 three fallen towers; the lake is there from stage 0 under snow and is
 swept clear as the towers rise; the tail arrives last.
 
-**Landmarks:** ① the sauna on stilts (back left; the one warm light at 0,
-"ama sauna hâlâ sıcak") · ② the tall aurora post with its lantern (back
-centre) · ③ the snowy spruce (back right) · ④ the ice lake with the fishing
-hole and stool (centre left; Olta happens here) · ⑤ the three round stone
-footings of towers A (front right), B (mid right, by the spruce), C (back
-left, between sauna and post).
-
-**Movable:** the three tower frames (fallen or standing on their fixed
-footings), the snow on the lake, drifts, the stool, bucket and towel; the
-aurora curtains and tail (code cards, `revontuli-aurora-1`, `-2`).
+| Object | Fixed or movable | Why | Moves (stage) |
+|---|---|---|---|
+| ① sauna on stilts | fixed | the one warm light at 0 ("ama sauna hâlâ sıcak"); Söz 4 inside | never |
+| ② aurora post and its lantern | fixed | where the tail ends | never (lit at 4) |
+| ③ snowy spruce | fixed | frames the back right | never |
+| ④ ice lake and fishing hole | fixed | Olta happens at the hole | never (snow on it clears at 2 and 3) |
+| ⑤ tower footings A, B, C | fixed | each tower's place | never |
+| tower frames A, B, C | rise in place (Q-4 C) | the cure itself: toppled beside its footing, then upright on it; never anywhere else | A at 1, B at 2, C at 3 |
+| stool, bucket, towel | movable | small pieces | at any big change |
+| snow drifts | change in place | the cold recedes | 0 to 3 |
+| aurora curtains and tail | code layer | the signature | a faint ribbon at 2, full at 4 |
+| Tuli (sprite) | movable | back turned at the hole → paints the sky | 4 |
+| snow buntings, hare | sprites | life | 4 |
 
 **Reserved spots:** U1 a lantern path: the trodden lane from the sauna
 steps along the lake to the front lip · U2 a sauna bench: the snow by the
@@ -162,17 +167,20 @@ scalloped teal roof) standing on a low plinth of stacked suitcases whose
 bottom one has the round door of the back room. One building, both loved
 pieces, no crowding.
 
-**Landmarks:** ① the office on its suitcase plinth (back centre) · ② the
-brass hook post, eight hooks, the eighth empty (back right; ESKİ BEKÇİ) ·
-③ the three-bay shelf unit (mid right; the frame, not its contents) · ④ the
-hand-cart (mid left) · ⑤ the counter with the brass scale (front right; Söz
-7 under the scale).
-
-**Movable:** the heaps (big at the front centre, small at the front left),
-the things on the shelves and their tags, parcels, the tag bunting, the kite,
-steam, the fog shape (a top hat on an open umbrella, on the cart); the fog
-itself (code: it parts where you touch, so `-0-bare` is the stage 0 plate
-with no fog at all).
+| Object | Fixed or movable | Why | Moves (stage) |
+|---|---|---|---|
+| ① the office: bureau on its suitcase plinth | fixed | landmark; Boncuk's office; the back room | never (the back-room door opens at 3) |
+| ② hook post, eight hooks | fixed | ESKİ BEKÇİ: the eighth hook is empty | never |
+| ③ shelf unit (the frame) | fixed | the return target | never (bays fill at 1, 2, 3) |
+| ④ hand-cart | fixed | carries the fog shape, then the parcels | never |
+| ⑤ counter and scale | fixed | Söz 7 under the scale | never |
+| the heaps (front centre, front left) | movable | the drag source; they shrink | 1 to 4 (the small one gone at 2) |
+| found things and their tags | movable | heap → shelf, one return a day | 1 to 3 |
+| fog shape (a top hat on an umbrella) | movable | drifts on the cart; Pofu pops it open | 2 |
+| parcels | movable | into the cart | 4 |
+| bunting, kite, steam | movable | life | 4 |
+| fog | code layer | parts where you touch | 0 to 3 |
+| Boncuk (sprite) | movable | asleep on the heap → at the counter | 4 |
 
 **Reserved spots:** U1 a shelf bay: the tiles between the shelves and the
 counter · U2 a bell and a queue: the bell on the counter's corner post, the
@@ -202,15 +210,20 @@ board), pushed at both ends because it is the last island: stage 0 is much
 darker and colder than M1's stuck, stage 4 is the full-moon finale and the
 most spectacular picture of the game.
 
-**Landmarks:** ① the crescent plate and its two horns · ② the observatory
-dome (back centre; its shell opens in place at stage 2) · ③ the moon pool
-(front left; Söz 10 on its rim) · ④ Nane's perch with its lantern (mid
-right) · ⑤ the bench and the chart board (front right).
-
-**Movable:** the seven moonstone rim lamps (lit one by one), the moonflower
-bushes, the blanket; the telescope (inside the dome until stage 2); the sky
-(the moon's phase, the trails, shooting stars: code draws the trails from
-the player's real calm nights).
+| Object | Fixed or movable | Why | Moves (stage) |
+|---|---|---|---|
+| ① crescent plate and its two horns | fixed | the island's shape | never |
+| ② observatory dome | fixed | landmark; its shell opens in place | never (opens at 2) |
+| telescope | moves out of the dome | the stage 2 beat | 2 |
+| ③ moon pool | fixed | Söz 10 on its rim | never (pewter → silver) |
+| ④ Nane's perch and lantern | fixed | the first warm practical at 2 | never |
+| ⑤ bench and chart board | fixed | ESKİ BEKÇİ: the seven faint trails | never (the chart fills at 1 to 3) |
+| seven rim lamps | fixed places | they light one by one | lit at 1 to 4 |
+| moonflower bushes | grow in place | bloom with the cure | 3, 4 |
+| blanket, flower pot | movable | small pieces | at any big change |
+| moon, trails, shooting stars | code sky | the trails come from the player's calm nights | 1 to 4 |
+| Nane (sprite) | movable | asleep at the perch's foot → wings open on top | 4 |
+| moon moths | sprites | life | 4 |
 
 **Reserved spots:** U1 telescope views: a brass viewer on the left horn's
 ledge · U2 a hammock: between the right horn and Nane's perch · U3 the moon
@@ -234,16 +247,13 @@ night after the finale.
 ## 6. Order, counts and what reaches the founder
 
 - **Jobs:** 9 per island (5 chain, 2 bare, 1 life, 1 upgrade fit), 36 in
-  all, 2 takes each. Every batch is one track (`all`); the chain runs in
-  order 4 → 0, the leaves as soon as their parent is promoted.
-- **Order:** Çağlayan first (it is built; the plates replace batch-43's
-  cliff), then Revontuli, Emanet, Mehtap. The queue rows are the lead's to
-  add in `art-production-plan.md`.
+  all, 2 takes each, one track per batch, the chain 4 → 0. Order: Çağlayan
+  (built; replaces batch-43's cliff), Revontuli, Emanet, Mehtap; the queue
+  rows are the lead's to add.
 - **Founder review:** the storyboards in [`concept-flows/`](concept-flows/)
   show today's closest pictures, labelled with what will change; once the
   batches land, the same boards are rebuilt from the five real stages and
   the `-4-life` take, and he answers per island.
-- **Open:** whether the Emanet office reads as one building (review the
-  `-4` take at 28 pt); whether the Mehtap stage 4 stays calm enough (the
-  founder found the Tam Çiçek nights too contrasty; the Revontuli and
-  Gezgin nights are the reference).
+- **Open:** does the Emanet office read as one building (the `-4` take at
+  28 pt)? Does Mehtap's stage 4 stay calm (Tam Çiçek nights were too
+  contrasty; Revontuli's and Gezgin's are the reference)?
