@@ -1,0 +1,18 @@
+frame                      grade   band     mean     p2    p98  range  local chroma  empty    run  sky_L  sky_C  sky_b pofu_h pofu_C pofu_L
+grade-day-home             day     home    61.20  11.10 100.00  88.90  10.45  23.90   0.11   0.07  72.60   7.50  -7.00  67.40  14.90  84.80
+grade-day-island           day     island  62.40  14.40  85.30  70.80   8.75  21.20   0.24   0.05  73.10   7.00  -6.50  67.50  14.90  84.90
+grade-golden-home          golden  home    61.00  16.00 100.00  84.00   9.56  25.50   0.10   0.06  63.20  11.80   6.80  75.10  25.30  83.30
+grade-golden-island        golden  island  60.10  20.40  83.40  63.00   7.67  24.00   0.23   0.05  63.10  11.40   6.10  75.10  25.20  83.30
+grade-night-home           night   home    60.80  25.90 100.00  74.10   7.93  11.50   0.12   0.06  51.00  15.40 -13.70  67.40  13.10  69.40
+grade-night-island         night   island  55.70  33.00  74.90  41.90   5.62  13.90   0.24   0.07  52.60  14.30 -12.70  67.50  13.00  69.50
+grade-unwell-home          unwell  home    54.40  17.10 100.00  82.90   8.61   7.20   0.10   0.06  57.50  12.90 -11.60 326.70   5.70  76.40
+grade-unwell-island        unwell  island  53.20  24.30  75.40  51.10   6.16   9.30   0.30   0.10  57.90  12.60 -11.30 325.00   5.90  76.30
+
+ok   grade-day-home: within targets
+ok   grade-day-island: within targets
+MISS grade-golden-home: p2 1.44x day outside [None, 1.1]
+MISS grade-golden-island: p2 1.42x day outside [None, 1.1]
+MISS grade-night-home: p2 25.9 outside [None, 10]; mean 60.8 outside [15, 40]; range 0.83x day outside [0.85, None]
+MISS grade-night-island: p2 33.0 outside [None, 10]; mean 55.7 outside [15, 40]; local 0.64x day outside [0.75, None]; range 0.59x day outside [0.85, None]
+MISS grade-unwell-home: chroma 0.30x day outside [0.35, 0.8]; local 0.82x day outside [0.95, None]; range 0.93x day outside [0.95, None]; p2 1.54x day outside [None, 1.0]; sky_L 0.79x day outside [0.8, 0.94]; pofu_h +100.7 vs day outside [None, 20]
+MISS grade-unwell-island: local 0.70x day outside [0.95, None]; range 0.72x day outside [0.95, None]; p2 1.69x day outside [None, 1.0]; sky_L 0.79x day outside [0.8, 0.94]; pofu_L 0.90x day outside [0.9, None]; pofu_h +102.5 vs day outside [None, 20]
