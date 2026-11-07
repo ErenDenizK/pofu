@@ -1,0 +1,558 @@
+# Batch 66: the home flow, final first (exploration; x- ids, never promoted).
+#
+# Founder (2026-11-07, decisions §10.3): home is E1 (the level stones to the
+# Tam Çiçek final) with E2's IL7 charm; things keep their places from level
+# to level; the background is never empty (fixed far islands and Gezgin);
+# light follows I1, and night is NOT the bright, contrasty Tam Çiçek night.
+# The plan is docs/design/concept-flows.md (shared rules §1, home flow §2):
+# read its anchor table before judging a take.
+#
+# FINAL FIRST. The root paints the finished island (IL10, Tam Çiçek) at the
+# game's whole-island camera, by day, with the fixed far islands and Gezgin.
+# Every earlier level is an EDIT of the next later one that only removes or
+# steps down (IL9 from the final, IL8 from IL9, ... IL1 from IL2), so nothing
+# can shift (the one planned move, the bench, is put back on the lawn at
+# il9). The bare island (Job A of docs/research/concept-match.md §6) and
+# the golden, night and rain states are edits of the final. Props are later
+# cut as stage minus bare, so land and props share one light.
+#
+# Track `all`, in this order: final; then bare, golden, night, rain (may run
+# concurrently); then the chain il9 -> il8 -> ... -> il1 (strictly
+# sequential).
+#
+# LEAD RULE, STAGED PARENTS (this batch only): explorations are never
+# promoted, so an `edit_of` or `approved:` parent here is STAGED, not
+# promoted. When a parent job has its auto-pick, copy that take's full-size
+# PNG from the build folder to the path `prompt --job <child>` lists for it
+# (design/art/masters/<parent>/<parent>.png), never `git add` it, and delete
+# every staged folder before the PR's last push (`git status` shows none).
+# The child's attachments are then exactly as `prompt` prints them.
+#
+# EXPLORATION RULES (AGENTS.md): do NOT run `promote`; commit the takes (WebP
+# q90), the contact sheet and review.yaml under design/art/takes/<batch>/<id>/
+# and nothing else. No characters anywhere (the app draws Pofu and the
+# residents; painting them makes two Pofus, #265). No painted text. A failed
+# or refused job is recorded and skipped with its true dependents (a failed
+# il5 skips il4 to il1); the run continues.
+#
+# Review for every take: the plate keeps its outline; each anchor stands where
+# the guide and the previous take put it; the far islands and Gezgin keep
+# their spots; the step from the next level is obvious at a glance.
+
+batch: batch-66-home-flow
+title: Home flow, final first (Tam Çiçek root, IL9 to IL1 as edits, bare, golden, night, rain)
+status: open
+
+refs:
+  home-flow-guide: design/art/templates/home-flow-guide.png
+  e1-tam-cicek: design/art/takes/batch-34-islands-in-game/x-home-tam-cicek/plate__x-home-tam-cicek--t4.webp
+  e2-il7: design/art/takes/batch-57-home-growth-strip/x-growth-il7/plate__x-growth-il7--t1.webp
+  i1-day: design/art/takes/batch-25-seasons/x-season-summer/plate__x-season-summer--t2.webp
+  i1-golden: design/art/takes/batch-25-seasons/x-season-summer-evening/plate__x-season-summer-evening--t2.webp
+  i1-rain: design/art/takes/batch-25-seasons/x-season-rain/plate__x-season-rain--t2.webp
+  night-gezgin: design/art/takes/batch-22-gezgin-forms/x-gezgin-f2-night/plate__x-gezgin-f2-night--t1.webp
+  night-revontuli: design/art/takes/batch-34-islands-in-game/x-revontuli-stuck/plate__x-revontuli-stuck--t1.webp
+  gezgin-f2: design/art/takes/batch-22-gezgin-forms/x-gezgin-f2-side/plate__x-gezgin-f2-side--t2.webp
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: island-main-l-v3, kind: world, name: island-main-l-v3, external: batch-05-fixes-pilot, master: design/art/masters/island-main-l-v3/island-main-l-v3.webp}
+  - {id: harbor-island-s, kind: world, name: harbor-island-s, external: batch-14-harbor, master: design/art/masters/harbor-island-s/harbor-island-s.webp}
+  - {id: cloud-sea, kind: world, name: cloud-sea, external: batch-04-sky}
+  - {id: tea-stall-5, kind: station, name: tea-stall-5, external: batch-01-slice}
+
+  # ------------------------------------------------------------ the root
+
+  - id: x-home-flow-final
+    kind: plate
+    name: x-home-flow-final
+    size: 1024x1536
+    canvas: 1024x1536
+    deliver: {scale: 0.5}
+    chat: "Pofu · Home flow"
+    light: {cell: day, layer: subject}
+    palettes: [world-foliage, world-props]
+    acceptance: {exploration: true}
+    notes: "ROOT. Home at Tam Çiçek (IL10), clear summer day, whole-island camera, portrait. Review: every anchor on its guide mark (concept-flows §2.1); İskele joined on the right over the bridge; the Tepe up left; four far islands and Gezgin on their marks; I1 day colour (sky L* ~84, lawn deep green, earth peach); nothing crowded; no characters."
+    attach:
+      - ref: home-flow-guide
+        role: "The composition guide for the whole picture: the home lawn (big magenta oval), the harbor islet's lawn (small magenta oval, right), the hilltop terrace (magenta oval, upper left), the rope bridge (grey bar), magenta crosses where each building stands, small magenta rings where round doors sit in the earth, grey ovals in the sky for the four far islands and the cloud-whale, the grey line where the cloud sea begins. Follow it exactly, then remove every guide mark: no magenta, no grey lines, no ovals may remain."
+      - ref: approved:island-main-l-v3
+        role: "The home island plate: keep its exact outline, lawn shape, rounded earth body, round wooden door and roots, at the size the guide gives it."
+      - ref: e1-tam-cicek
+        role: "The chosen concept (the founder's pick): the look, the finish and what each building looks like at full bloom. Its layout is only approximate; where it differs, follow the guide."
+      - ref: i1-day
+        role: "The light and colour target: this exact clear summer day, its sky, lawn green, peach earth, soft shadows and white cloud sea with a faint blue-lilac shade."
+      - ref: approved:harbor-island-s
+        role: "The harbor islet İskele: its shape and earth, smaller than the home island, on the right."
+      - ref: approved:tea-stall-5
+        role: "A finished station: every building is at this scale and finish."
+      - ref: gezgin-f2
+        role: "Gezgin, the cloud-whale, in her grown form: small and far in the sky, gentle face, a little garden with a pool on her back."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game, portrait, no text: the
+          home island Ayçiçeği at full bloom, on a clear summer day, seen whole
+          from the game camera (about 20 degrees above the horizon). The island
+          sits in the lower half of the picture over a soft sea of clouds; the
+          upper half is open summer sky with a few far things in it.
+
+          Everything stands exactly where the guide marks it. On the home lawn,
+          left to right: at the far left tip a flower garden with one giant
+          golden sunflower; behind it, on a low grassy knoll at the back left, a
+          white plaster windmill with cream sails and small lanterns on its cap;
+          at the back centre, on a low raised terrace, a workshop with a big
+          gear sign over its door; a small straw beehive on the back lawn right
+          of the workshop; at the far right tip a tea stall with a tiled roof,
+          a red geranium and a small flag; at the front left a round lily pond
+          with a little wooden dock and floating paper lanterns; a stone path
+          from the garden to the tea stall with three warm path lamps; flower
+          borders along the path and the front edge; a few round mossy
+          stepping stones from the front centre toward the pond; a toy
+          sailboat at the pond's edge and a
+          small mailbox on the front edge left of the door; flowering vines in soft
+          pink and lilac trailing over the lawn's rim and a little way down the
+          earth. On the front lip, just above the round door, an old wooden
+          hamster wheel stands still, a young sunflower growing through its
+          middle and small flowers twined around it. A paper lantern string
+          runs from the windmill's cap to the workshop's eave to the tea
+          stall's roof. Leave a clear patch of lawn at front centre (the
+          hamster stands there in the game). In the warm peach earth body,
+          four small round doors in a row with tiny windows, set INTO the
+          earth like the attached round door, with the same rim stones; left
+          to right: the plain wooden door (the attached one), a sky-blue
+          door, a rose door, a sage-green door.
+
+          On the right, a short rope bridge leads to the small harbor islet:
+          a bagel cart with a striped umbrella and a little flag at its left
+          end, a white lighthouse with soft stripes at its back right, a
+          wooden pier running toward us at its front right with a lantern
+          post, bunting, a small bell and a little ferry moored beside it, a
+          plank shed door in its earth.
+
+          Up and behind the home island's left end floats a small grassy
+          hilltop terrace, joined to the lawn's left tip by curved stone steps
+          and an open little wooden gate with a carved sunflower; on top a
+          bench, a small brass telescope and a round low grass stage.
+
+          In the sky, small, soft and hazed by distance, at their guide marks:
+          upper left, a round island with tiered pools and a small silver
+          waterfall; above it to the right, a misty island with a tall stilted
+          wooden house; high in the middle, the smallest and farthest, an
+          island with a little moon-white dome; at the right, a cool pale
+          island with slender ice towers. Between them, larger and nearer but
+          still far, the gentle cloud-whale glides left to right with a small
+          garden on her back. The far islands are clearly islands like home,
+          only far: lighter, softer, less detailed, never sharper than home.
+
+          Clear summer day light. MOOD: warm, cozy, gentle, abundant and
+          tidy, every building readable at a glance; peaceful and wondrous,
+          never busy.
+      - block: style-anchor-v2
+      - text: "AVOID: characters or animals of any kind, text, letters, numbers, a border, guide marks, a different island shape, buildings outside their marks, clutter, overlapping buildings, a dark or muddy earth body, black door holes, saturated or neon colours, harsh shadows, outlines, photorealism, a 3D render look"
+
+  # ------------------------------------------------- bare island (Job A)
+
+  - id: x-home-flow-bare
+    kind: plate
+    name: x-home-flow-bare
+    size: 1024x1536
+    canvas: 1024x1536
+    deliver: {scale: 0.5}
+    edit_of: x-home-flow-final
+    chat: "Pofu · Home flow"
+    light: {cell: day, layer: subject}
+    palettes: [world-foliage, world-props]
+    acceptance: {exploration: true, edit_mode: region}
+    notes: "Job A of concept-match §6: the land alone, same light. Review: plate, earth with all five doors, İskele islet, knolls, Tepe hill, sky and far islands identical to the final; every built thing, path, lamp, plant bed and vine gone, lawn painted through where they stood."
+    prompt:
+      - text: |
+          Edit the attached painting: remove every built and planted thing
+          and leave only the land, the sky and the far things. Remove the
+          windmill, the workshop, the beehive, the tea stall, the garden and
+          its sunflower, the pond and its dock (paint plain lawn where it
+          was), the stone path, the path lamps, the lantern string, the
+          flower borders, the vines, the hamster wheel, the rope bridge, the
+          bagel cart, the lighthouse, the pier, and on the hilltop the bench,
+          the telescope, the stage, the steps and the gate. Paint plain soft
+          lawn wherever something stood, with the same grass, light and
+          shading. Keep the island's outline, its earth body with all its
+          small round doors, the low knolls, the harbor islet's land, the
+          hilltop's land, the roots, the cloud sea, the sky, the far islands
+          and the cloud-whale exactly as they are.
+      - block: edit-keep-v1
+      - text: "AVOID: characters, text, moving or resizing the land, holes or shadows where objects were, a different light"
+
+  # ------------------------------------------------------- light states
+
+  - id: x-home-flow-golden
+    kind: plate
+    name: x-home-flow-golden
+    size: 1024x1536
+    canvas: 1024x1536
+    deliver: {scale: 0.5}
+    edit_of: x-home-flow-final
+    chat: "Pofu · Home flow"
+    light: {cell: golden, layer: subject}
+    palettes: [world-foliage, world-props, world-sunset]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Golden hour as an edit of the final (I1 summer evening). Review: pink-lilac sky, peach light, lilac cloud shade; not orange; first lamps on; nothing moved."
+    attach:
+      - ref: i1-golden
+        role: "The light target: this golden summer evening, its pink-lilac sky, peach light and lilac cloud shade."
+    prompt:
+      - text: |
+          Edit the attached painting into the same scene at golden hour, as in
+          the attached evening: a soft pink and lilac sky warming to peach near
+          the clouds, low warm peach light raking from the side, lilac shadows,
+          the cloud sea blushed peach with lilac shade. The path lamps, the
+          lantern string and the tea stall's lights are just coming on, small
+          and soft; the round doors' windows glow faintly. The far islands and
+          the cloud-whale catch the same evening light. Everything stays in its
+          place, the same shapes and sizes; only light and colour change.
+      - block: edit-keep-v1
+      - text: "AVOID: orange or red saturation, a dark scene, new objects, characters, text, moving anything"
+
+  - id: x-home-flow-night
+    kind: plate
+    name: x-home-flow-night
+    size: 1024x1536
+    canvas: 1024x1536
+    deliver: {scale: 0.5}
+    edit_of: x-home-flow-final
+    chat: "Pofu · Home flow"
+    light: {cell: night, layer: subject}
+    palettes: [world-foliage, world-props, world-night]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Night as an edit of the final, after the Gezgin and Revontuli nights, NOT the Tam Çiçek night (too contrasty, too bright). Targets (concept-flows §1.5): sky L* 34-46 blue, island L* ~74-79 at low chroma (~16), cloud sea L* 74-84, darkest 5 % above L* 28, blue-violet shadows, warm light only at sources. Review: calm, moonlit, readable; few small warm pools; not a festival."
+    attach:
+      - ref: night-gezgin
+        role: "Night reference: this calm moonlit blue sky, the soft cool light on forms and the light lilac-white cloud sea. Do not copy the whale or its layout."
+      - ref: night-revontuli
+        role: "Night reference: the same calm, low-contrast moonlit night, the island still light and readable, one warm window. Do not copy the island."
+    prompt:
+      - text: |
+          Edit the attached painting into the same scene on a calm, clear
+          night, lit like the two attached night references: a soft deep-blue
+          sky (blue, never black or purple-black) with a gentle glow near the
+          clouds, a soft round moon high on the left and a few small stars; the
+          cloud sea stays light, lilac-white. The island stays readable and
+          fairly light under cool moonlight, its colours soft and quiet, its
+          shadows blue-violet, no deep blacks. Warm light only from real
+          sources, each a small soft pool: the round doors' windows, the three
+          path lamps, the lantern string, the lighthouse lamp with a faint soft
+          beam, a few floating lanterns on the pond. Most of the island is
+          moonlit, not lamplit. The far islands are dim, quiet shapes, a tiny
+          warm light on each; the cloud-whale is a soft pale shape. Everything
+          stays in its place, the same shapes and sizes; only light and colour
+          change.
+      - block: edit-keep-v1
+      - text: "AVOID: high contrast, black shadows, an indigo-purple festival night, many bright lights, glowing everything, saturated warm colour over the whole island, neon, new objects, characters, text, moving anything"
+
+  - id: x-home-flow-rain
+    kind: plate
+    name: x-home-flow-rain
+    size: 1024x1536
+    canvas: 1024x1536
+    deliver: {scale: 0.5}
+    edit_of: x-home-flow-final
+    chat: "Pofu · Home flow"
+    light: {cell: day, layer: subject}
+    palettes: [world-foliage, world-props]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Soft summer rain as an edit of the final (I1 rain). Review: lilac-grey sky, the island stays bright (earth L* ~75), puddles, drooping sunflower heads, fine soft rain; far islands fade into the rain but stay visible."
+    attach:
+      - ref: i1-rain
+        role: "The rain target: this soft lilac-grey rain, the island still bright, small puddles, drooping sunflowers, fine soft rain streaks."
+    prompt:
+      - text: |
+          Edit the attached painting into the same scene in a soft summer
+          rain, as in the attached rain: a soft lilac-grey overcast sky, fine
+          gentle rain streaks, the island still bright and clean, small
+          puddles on the path, the giant sunflower's head bowed a little,
+          wet sheen kept matte and soft, rings on the pond. The far islands
+          and the cloud-whale fade softly into the rain but stay visible.
+          Everything stays in its place, the same shapes and sizes.
+      - block: edit-keep-v1
+      - text: "AVOID: a dark or grey-blue gloomy scene, a storm, hard diagonal rain, new objects, characters, text, moving anything"
+
+  # ------------------------------------- the levels, backwards from the final
+
+  - id: x-home-flow-il9
+    kind: plate
+    name: x-home-flow-il9
+    size: 1024x1536
+    canvas: 1024x1536
+    deliver: {scale: 0.5}
+    edit_of: x-home-flow-final
+    chat: "Pofu · Home flow"
+    light: {cell: day, layer: subject}
+    palettes: [world-foliage, world-props]
+    acceptance: {exploration: true, edit_mode: region}
+    notes: "IL9 (day 44): the gate closed, the hilltop still hidden in a cloud; the bench back on lawn spot D1 (it climbs to the Tepe at IL10, concept-flows §2.1 row 16). Stations: workshop L3, windmill L3, lighthouse and pier L4, hive L1. Review per the header."
+    attach:
+      - ref: approved:x-home-flow-final
+        role: "The colour and light target for every level: keep this exact light, colour and finish."
+    prompt:
+      - text: |
+          Edit the attached painting to an earlier day. Hide the hilltop
+          terrace above the island's left end inside a soft, round, sunlit
+          cloud, so only the first three stone steps show rising from the
+          lawn's left tip into it. Move the hilltop's wooden bench down onto
+          the lawn, left of centre, in front of the windmill, the same bench
+          at the same scale (the one planned move of this flow). The little
+          wooden gate on the steps is CLOSED, with a soft warm glow behind it. Make the windmill plainer:
+          bare cream sails, no lanterns on its cap, no flag. Make the workshop
+          plainer: no big gear sign and no chimney. Remove the lighthouse's
+          flag and the garden at its foot, and the pier's bunting and bell.
+          The beehive becomes a smaller, simpler straw hive. The cloud-whale
+          is her earlier self: paler, thinner, a small mossy patch on her
+          back instead of a garden. The moon-dome island far up in the
+          middle is dim and grey, unlit. Everything else stays exactly the
+          same.
+      - block: edit-keep-v1
+      - text: "AVOID: characters, text, moving anything that stays, a different light, new objects"
+
+  - id: x-home-flow-il8
+    kind: plate
+    name: x-home-flow-il8
+    size: 1024x1536
+    canvas: 1024x1536
+    deliver: {scale: 0.5}
+    edit_of: x-home-flow-il9
+    chat: "Pofu · Home flow"
+    light: {cell: day, layer: subject}
+    palettes: [world-foliage, world-props]
+    acceptance: {exploration: true, edit_mode: region}
+    notes: "IL8 (day 32): no hive, no steps, no gate; windmill L1 on its new knoll. Stations: pond L4, pier L3, lighthouse L3, workshop L3. Review per the header."
+    attach:
+      - ref: approved:x-home-flow-final
+        role: "The colour and light target for every level: keep this exact light, colour and finish."
+    prompt:
+      - text: |
+          Edit the attached painting to an earlier day. Remove the beehive
+          (plain lawn there). Remove the stone steps and the closed gate at
+          the lawn's left tip (plain lawn edge there); the soft round cloud
+          up on the left stays. Make the windmill its first simple self: a
+          small stone mill with bare wooden sails, on the same low knoll in
+          the same place. Remove the floating lanterns from the pond (the
+          dock stays). Make the pier plainer: no bench and no tea glasses. The pale
+          ice-tower island far on the right and the moon-dome island stay;
+          the misty stilted-house island far on the left is dim and grey,
+          unlit. Everything else stays exactly the same.
+      - block: edit-keep-v1
+      - text: "AVOID: characters, text, moving anything that stays, a different light, new objects"
+
+  - id: x-home-flow-il7
+    kind: plate
+    name: x-home-flow-il7
+    size: 1024x1536
+    canvas: 1024x1536
+    deliver: {scale: 0.5}
+    edit_of: x-home-flow-il8
+    chat: "Pofu · Home flow"
+    light: {cell: day, layer: subject}
+    palettes: [world-foliage, world-props]
+    acceptance: {exploration: true, edit_mode: region}
+    notes: "IL7 (day 19): no windmill, no knoll, no lantern string; the decor spots and the flowering vines (E2 IL7) are the news. Stations: garden L4, tea L4, cart L3, pond L3, pier L2, workshop L2, lighthouse L2. Review per the header and against e2-il7's charm."
+    attach:
+      - ref: approved:x-home-flow-final
+        role: "The colour and light target for every level: keep this exact light, colour and finish."
+      - ref: e2-il7
+        role: "The charm of this level: flowering vines trailing over the rim, soft pastel flower borders, a bench on the lawn. Only the charm; not its layout or buildings."
+    prompt:
+      - text: |
+          Edit the attached painting to an earlier day. Remove the windmill
+          and flatten its low knoll into plain lawn. Remove the paper lantern
+          string. The garden's giant golden sunflower becomes a sunflower
+          arch with a little bunting over the bed. The tea stall loses its
+          tiled roof, geranium and flag: a striped awning with a string of
+          small lights. The bagel cart loses its kiosk and bench: a cart with
+          a striped umbrella and a pole of bagels. The pond loses its dock and
+          moss: lily pads, reeds and one blossom. Remove the little ferry at
+          the pier. The workshop loses its wind vane and shutters; the
+          lighthouse loses the balcony around its top. The
+          flowering vines over the rim, the flower borders, the bench on the
+          lawn, the little sailboat at the pond's edge and the mailbox by the
+          front edge all stay. The far ice-tower island on the right is now
+          only partly lit, softer. Everything else stays exactly the same.
+      - block: edit-keep-v1
+      - text: "AVOID: characters, text, moving anything that stays, a different light, new objects"
+
+  - id: x-home-flow-il6
+    kind: plate
+    name: x-home-flow-il6
+    size: 1024x1536
+    canvas: 1024x1536
+    deliver: {scale: 0.5}
+    edit_of: x-home-flow-il7
+    chat: "Pofu · Home flow"
+    light: {cell: day, layer: subject}
+    palettes: [world-foliage, world-props]
+    acceptance: {exploration: true, edit_mode: region}
+    notes: "IL6 (day 13): no decor pieces, no vines, no borders; the workshop and lighthouse are new (L1). Stations: garden L4, tea L4, cart L3, pond L2, pier L2. The guest door (H4) is not yet painted. Review per the header."
+    attach:
+      - ref: approved:x-home-flow-final
+        role: "The colour and light target for every level: keep this exact light, colour and finish."
+    prompt:
+      - text: |
+          Edit the attached painting to an earlier day. Remove the flowering
+          vines from the rim and the earth, and the flower borders (plain
+          lawn edge and plain earth there). Remove the bench, the sailboat
+          and the mailbox. Around the old hamster wheel, remove the flowers
+          and the young sunflower; leave one small green sprout at its foot.
+          Remove the sky-blue round door, the second door from the left in
+          the earth (plain earth there). The workshop is its first self: a small
+          shed with a workbench, on the same raised terrace. The lighthouse is
+          its first self: a plain striped tower. The pond: lily pads and
+          pebbles only. The bagel cart: no pole of bagels. The far round
+          island with the waterfall on the upper left is softer, its
+          waterfall thin; the ice-tower island on the right is dim and grey,
+          unlit. Everything else stays exactly the same.
+      - block: edit-keep-v1
+      - text: "AVOID: characters, text, moving anything that stays, a different light, new objects"
+
+  - id: x-home-flow-il5
+    kind: plate
+    name: x-home-flow-il5
+    size: 1024x1536
+    canvas: 1024x1536
+    deliver: {scale: 0.5}
+    edit_of: x-home-flow-il6
+    chat: "Pofu · Home flow"
+    light: {cell: day, layer: subject}
+    palettes: [world-foliage, world-props]
+    acceptance: {exploration: true, edit_mode: region}
+    notes: "IL5 (day 8): no workshop, terrace, lighthouse, path lamps or Fındık's door; the pier is new (L1). Stations: garden L4, tea L3, cart L2, pond L2. Review per the header."
+    attach:
+      - ref: approved:x-home-flow-final
+        role: "The colour and light target for every level: keep this exact light, colour and finish."
+    prompt:
+      - text: |
+          Edit the attached painting to an earlier day. Remove the workshop
+          and flatten its raised terrace into plain lawn. Remove the
+          lighthouse (plain islet lawn there). Remove the three path lamps.
+          Remove the sage-green round door at the right of the home island's
+          earth (plain earth there). The tea stall loses its string of
+          lights. The pier: planks and posts only, no lantern post. The far island with the waterfall, upper left, is dim and
+          grey, its waterfall dry, unlit. Everything else stays exactly the
+          same.
+      - block: edit-keep-v1
+      - text: "AVOID: characters, text, moving anything that stays, a different light, new objects"
+
+  - id: x-home-flow-il4
+    kind: plate
+    name: x-home-flow-il4
+    size: 1024x1536
+    canvas: 1024x1536
+    deliver: {scale: 0.5}
+    edit_of: x-home-flow-il5
+    chat: "Pofu · Home flow"
+    light: {cell: day, layer: subject}
+    palettes: [world-foliage, world-props]
+    acceptance: {exploration: true, edit_mode: region}
+    notes: "IL4 (day 4): no pier, no stepping stones; the pond is new (L1). Stations: garden L3, tea L2, cart L1. Review per the header."
+    attach:
+      - ref: approved:x-home-flow-final
+        role: "The colour and light target for every level: keep this exact light, colour and finish."
+    prompt:
+      - text: |
+          Edit the attached painting to an earlier day. Remove the pier and
+          its posts at the harbor islet's front right (plain islet edge
+          there). Remove the round stepping stones near the pond. The pond is
+          its first self: a small round pond with a ring of pebbles. The
+          garden: a bed of sunflowers with a watering can and seedlings, no
+          fence arch. The tea stall: a counter, a kettle and a striped awning,
+          no stools or table. The bagel cart: a small cart with a pile of
+          bagels, no umbrella. Everything else stays exactly the same.
+      - block: edit-keep-v1
+      - text: "AVOID: characters, text, moving anything that stays, a different light, new objects"
+
+  - id: x-home-flow-il3
+    kind: plate
+    name: x-home-flow-il3
+    size: 1024x1536
+    canvas: 1024x1536
+    deliver: {scale: 0.5}
+    edit_of: x-home-flow-il4
+    chat: "Pofu · Home flow"
+    light: {cell: day, layer: subject}
+    palettes: [world-foliage, world-props]
+    acceptance: {exploration: true, edit_mode: region}
+    notes: "IL3 (day 3): no pond; the bridge, İskele, the cart and the goat's shed door are new, the fog has just lifted, and Gezgin arrives (form 1). Opening done: full I1 day. Stations: garden L3, tea L2, cart L1. Review per the header."
+    attach:
+      - ref: approved:x-home-flow-final
+        role: "The colour and light target for every level: keep this exact light, colour and finish."
+    prompt:
+      - text: |
+          Edit the attached painting to an earlier day. Remove the pond and
+          paint plain lawn where it was. A few soft wisps of
+          white fog are lifting off the harbor islet and the rope bridge on
+          the right, as if a fog bank has just rolled back. Everything else
+          stays exactly the same.
+      - block: edit-keep-v1
+      - text: "AVOID: characters, text, moving anything that stays, a different light, new objects"
+
+  - id: x-home-flow-il2
+    kind: plate
+    name: x-home-flow-il2
+    size: 1024x1536
+    canvas: 1024x1536
+    deliver: {scale: 0.5}
+    edit_of: x-home-flow-il3
+    chat: "Pofu · Home flow"
+    light: {cell: day, layer: subject}
+    palettes: [world-foliage, world-props]
+    acceptance: {exploration: true, edit_mode: region}
+    notes: "IL2 (day 2): İskele hidden in a fog bank, no Gezgin; tea stall L2, Mochi's door, the path. The opening's middle step: lawn and light one step paler than IL3. Review per the header; the islet's place still reads as a soft shape in the fog."
+    attach:
+      - ref: approved:x-home-flow-final
+        role: "The colour and light target the opening grows toward; this level is one step paler and dimmer."
+    prompt:
+      - text: |
+          Edit the attached painting to an earlier day. Wrap the whole harbor
+          islet and the rope bridge in a soft, thick, sunlit bank of white
+          fog, so only a faint soft shape of the islet shows through it.
+          Remove the cloud-whale from the sky (plain sky there). The garden
+          has fewer sunflowers and no watering can or seedlings. Remove the
+          small green sprout at the old hamster wheel's foot; the wheel looks
+          a little dusty. Make the lawn a little paler and drier, a softer
+          yellow-green, and the daylight a little softer and hazier. The far
+          islands stay where they are, a little fainter. Everything else
+          stays exactly the same.
+      - block: edit-keep-v1
+      - text: "AVOID: characters, text, moving anything that stays, a grey or gloomy day, new objects"
+
+  - id: x-home-flow-il1
+    kind: plate
+    name: x-home-flow-il1
+    size: 1024x1536
+    canvas: 1024x1536
+    deliver: {scale: 0.5}
+    edit_of: x-home-flow-il2
+    chat: "Pofu · Home flow"
+    light: {cell: day, layer: subject}
+    palettes: [world-foliage, world-props]
+    acceptance: {exploration: true, edit_mode: region}
+    notes: "IL1 (day 1, the first morning): 'a little worse' (decisions H6): dusty wheel on its side, pale thin grass, dim hazy light; only the garden (L1) and Pofu's door. Review: humble and quiet but still pretty, never grey or sad; the islands and the fog are in their places."
+    attach:
+      - ref: approved:x-home-flow-final
+        role: "Only to keep the painting's finish; this first morning is clearly paler and dimmer than it."
+    prompt:
+      - text: |
+          Edit the attached painting to the very first morning. Remove the
+          tea stall (plain lawn there), the stone path, and the rose round
+          door in the earth (plain earth there): only the first round wooden
+          door remains. The garden is its first self: three sunflowers in a
+          small bed with no fence, their heads a little low. The old wooden hamster wheel
+          on the front lip lies tipped on its side, dusty and still. The
+          lawn is pale and thin, a dry straw-green with a few bare patches;
+          the earth a little dusty. The morning light is dim and hazy, a thin
+          pale veil over the sky, soft and low in contrast. The fog bank on
+          the right and the far islands stay in their places, the far
+          islands fainter, grey and unlit. Everything else stays exactly the
+          same.
+      - block: edit-keep-v1
+      - text: "AVOID: characters, text, moving anything that stays, a dark, grey or sad mood, dead plants, ruins, new objects"

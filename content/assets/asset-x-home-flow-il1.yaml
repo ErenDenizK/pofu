@@ -1,0 +1,24 @@
+id: asset-x-home-flow-il1
+type: asset
+title_tr: x-home-flow-il1
+title_en: x-home-flow-il1 (plate)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached painting to the very first morning. Remove the tea stall (plain lawn there),
+  the stone path, and the rose round door in the earth (plain earth there): only the first
+  round wooden door remains. The garden is its first self: three sunflowers in a small bed
+  with no fence, their heads a little low. The old wooden hamster wheel on the front lip lies
+  tipped on its side, dusty and still. The lawn is pale a…
+links:
+  variant_of:
+  - asset-x-home-flow-il2
+art:
+  images: []
+  jobs:
+  - batch-66-home-flow:x-home-flow-il1
+sources:
+- doc: tools/imagegen/manifest/batch-66-home-flow.yaml
+kind: plate
+batch: batch-66-home-flow
+size: 1024x1536
