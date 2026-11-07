@@ -41,6 +41,13 @@ question, different furniture.
 | 1 | **The shield** | Apple's template | every reach for a guarded app | the pause; one tap ("Boş ver") is the whole product working |
 | 2 | **The Door** | ours, one scene | only after "Açmam lazım" (the notification) or from Today | a real need to open: Pofu meets you at his door |
 
+**Three scenes, rotating** (founder, 2026-11-07: "3 kapı da gözükebilir
+hani dönüşümlü olarak"): the round door, the halo isle and the pier under
+the sky are three looks of the same Door. One is chosen per visit (no
+repeat twice in a row; time of day may weight the pick, e.g. the pier at
+dusk). Every look carries the same states and the same plaques in the same
+place, so the choice never changes what the user has to read or tap.
+
 Everything else is a **state of the Door**, never a new screen. The camera
 never cuts; the door, Pofu and the plaques carry every state.
 

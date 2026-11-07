@@ -536,3 +536,14 @@ His views (translated), not orders; the decisions are ours. Handled in
 6. The two-page story map is his best doc. Islands should start a little worse and end much better and livelier (open both ends). The map need not be followed one to one: Çağlayan's stream came out of an otter-shaped statue, not travertine, but that may change (Damla is already an otter; water animation, effects and shaders may be harder to build). Handled: a per-island stage 0 / stage 4 calibration and the Çağlayan source question (with water feasibility) in the question sheet.
 7. Gather technical, menu, app and game: every part; draw our own path; join the disconnected pieces; then talk, argue and decide together. Handled: the register and the day plan.
 8. Codex: he gives it its tasks; no need to think about it now. Noted.
+
+## 2026-11-07 (late morning): answers to the 15 questions; copy the concepts
+
+1. He accepts every recommendation on the sheet, with exceptions. Handled: [decisions](decisions.md) §10.1; rows moved from Q to F.
+2. Concepts went in very different directions from the first level to the last; he wants to pick which becomes the accepted one and comment. Handled: a concept board of every direction per subject (Q-16).
+3. Do not drift from the concepts when turning them into a game; build the game directly from the concepts, imitate them. Handled: register §10.1 (concept fidelity).
+4. Light and colour do not match: a concept looks clean, then a development screenshot looks worse and muddled, so he cannot judge. Copy the single-image Codex concepts (day, night, weather) one to one: compare, find why they differ, match; the same when building the island; fill the gaps again if needed. Handled: a concept-match study (side-by-side diagnosis and fixes).
+5. The Door: all three door scenes can show, rotating. Handled: decisions D3; the-door.md.
+6. The "Dokunmadan ana ekrana kaydır" line on the shield screen is not needed; the system draws its own home bar. Handled: removed from the rehearsal replica (Apple's real shield never showed it).
+7. New doors added to the island look patched; treat everything as one whole; fix the system if needed; have Codex paint the island and the island with its assets so they match. Handled: register §10.1 item 4; the concept-match study proposes the art route.
+8. He had sent images of fixes, thought it was fixed, came back and could not judge. Do your best; he answers open questions. Handled: side-by-side concept comparisons before anything reaches him.

@@ -52,7 +52,7 @@ we follow and depart from on purpose, row by row. It is not law.
 | S9 | Different moods per island (scary fog, a scary sound, a ruin): a view, not an order | F (11-05 22:27) | — |
 | S10 | The finale waits for the real full moon; Mehtap's door is timed so stage 3 lands a few days before it; fallback only past 7 days | L (story map §9.2) | Kept: it is the map's own tag |
 | S11 | Two islands may run at once: the next island's rumour shows at the current main island's stage 3; at most one main island plus one filler is unhealed at a time | L | Answers his "birkaç tanesi aynı anda gidebilsin… abartmadan" (Hub, 11-02) |
-| S12 | Koke's secret (the hill breathes, Book Two) stays hidden; at the finale "Uzakta Koke bir kez nefes alır" | Q-5 | Built Koke stands up and "snores" at stage 4, so it gives the secret away |
+| S12 | Koke's secret (the hill breathes, Book Two) stays hidden; at the finale "Uzakta Koke bir kez nefes alır" | F (Q-5 B, 11-07) | Built Koke stands up and "snores" at stage 4, so it gives the secret away |
 | S13 | Ihlamur's lantern is fished up at Olta and rides to the finale | L (the map) | **FIX:** deep lore line 217 says it comes from Emanet |
 | S14 | Söz 1 is read on the mill stone through spilled tea | L (the map) | **FIX:** code `caglayan.line.3` says "Duvarda yazıyor" (the wall) |
 | S15 | Nazlı: two forms; form 1 faces the camera (her face turned to the pier hid it) | F (11-05 06:14, 20:09) | — |
@@ -74,10 +74,10 @@ is missing from the Koke scene.
 
 | # | Island | Decision | Status |
 |---|---|---|---|
-| I1 | Çağlayan look | The founder loved the batch-34 Çağlayan (the map's plate): "yeni Çağlayan çok güzel" (11-05 20:09). The game ships a different island from batch-43 (a stepped grey cliff, one pool), which he never saw beside it | **Q-1** (recommended: back to the map's plate) |
-| I2 | Çağlayan water source | The map shows a plain stone spout in a cream boulder. **No otter statue appears on the map or in any take.** The otter-with-water picture is Damla's card (she pours her glass into the falls). The log recorded his memory as fact | **Q-2** (recommended: the spout for stages 0-3; at stage 4 Damla sits on top with a full glass) |
+| I1 | Çağlayan look (F, Q-1 A, 11-07: back to the map's plate; the stage concepts are picked on the Q-16 board) | The founder loved the batch-34 Çağlayan (the map's plate): "yeni Çağlayan çok güzel" (11-05 20:09). The game ships a different island from batch-43 (a stepped grey cliff, one pool), which he never saw beside it | **Q-1** (recommended: back to the map's plate) |
+| I2 | Çağlayan water source (F, Q-2: spout for stages 0-3, Damla with a full glass on top at stage 4) | The map shows a plain stone spout in a cream boulder. **No otter statue appears on the map or in any take.** The otter-with-water picture is Damla's card (she pours her glass into the falls). The log recorded his memory as fact | **Q-2** (recommended: the spout for stages 0-3; at stage 4 Damla sits on top with a full glass) |
 | I3 | Çağlayan stage 0 | The map's line: "havada donup kalmış bir şelale". The built stage 0 has a full, still pool instead | L: follow the map (frozen curtain, dry side pools, leaf boats aground) |
-| I4 | Revontuli wound | The map has an ice island (cabin, lamp post, ice hole). batch-45 tried ruined towers on an earth plate | **Q-4** |
+| I4 | Revontuli wound | The map has an ice island (cabin, lamp post, ice hole). batch-45 tried ruined towers on an earth plate | F (Q-4 C, 11-07): ice island + three toppled lantern posts, one rises per stage |
 | I5 | Emanet, Mehtap | Follow the map plates, pushed at both ends (Q-3) | L |
 | I6 | Water effects | Feasible in our stack (SwiftUI Canvas plus Metal `layerEffect`). The falls off the underside and the home fountain are already code. A one-day spike (`docs/research/water-2d.md`) comes before new water art. The water-source choice is taste, not tech risk | L |
 | I7 | Undersides | Not every island needs one ("her adanın ihtiyacı yok zaten", 11-06). Çağlayan, Emanet and Revontuli get one | F (principle) + L (which) |
@@ -103,9 +103,9 @@ is missing from the Koke scene.
 | H1 | Home is the centre | F: "Asıl merkez ana ada zaten." (11-03) | — |
 | H2 | Many things grow together, gently capped, with big payoffs and Cats & Soup level-ups; growth is visible step by step: shop, house, character, light, decor | F (11-05, asked five times) | **FIX:** on screen IL1-5 and IL8-10 look almost the same. All 16 growth pieces are code stand-ins (batch-65 merged manifests only). The tracker's "art for most steps" is wrong |
 | H3 | The IL1-10 table, caps, eight stations, 1,950 seeds to Tam Çiçek | L (`home-progression.md`) | Built in `Archipelago.swift`. "10 levels" was his example ("10 tane yok, salladım sayıyı") |
-| H4 | Home framing (whole island vs close) | **Q-7** | — |
-| H5 | How the plate grows (repainted vs fixed plus pieces) | **Q-8** | **FIX:** the tracker calls the batch-57 strip "the target for every level", but it reshapes the plate, which `home-layout.md` §1.1 forbids, and its IL10 take was rejected |
-| H6 | Does home also start a little worse? | **Q-9** | He gave the rule for islands only |
+| H4 | Home framing: the whole island on open, one tap to come close to Pofu | F (Q-7 C, 11-07) | Which home concept is the target: **Q-16** |
+| H5 | The plate keeps its shape and is repainted at 5-6 levels, plus pieces, plus İskele on the right over a bridge | F (Q-8 C, 11-07); concept pick **Q-16** | **FIX:** the tracker calls the batch-57 strip "the target for every level", but it reshapes the plate, which `home-layout.md` §1.1 forbids, and its IL10 take was rejected |
+| H6 | Home starts a little worse too (dusty wheel, pale grass, dim light), opening over IL1-3 | F (Q-9 B, 11-07) | He gave the rule for islands only |
 | H7 | İskele joins the home frame on the right, over a bridge | L (the map's "Evin varacağı hal", home-layout §2) | **FIX:** the code still places the harbour as a separate isle (`IslandLayout.swift:160`) |
 | H8 | Residents of healed islands stay home and **visit** (git-gel); they do not move in | F in spirit: "belki arasında git gel yapabilir" (11-05 16:24) | **FIX:** `home-progression.md` §2/§6 still has them moving in |
 | H9 | Visitors: a daily draw, with the resident's own day likelier; quiet days are invitation days | F: "karakterler haftalık değil… günlük" (11-05) + L (weighting) | The map says "kendi gününde", so the built mix serves both. Thursday becomes a letter day, not Yosun |
@@ -124,7 +124,7 @@ is missing from the Koke scene.
 | V3 | Fog may be real fog; even the bad state must be impressive | F (11-06 05:52) | — |
 | V4 | Night needs its own art direction: light comes from real sources onto characters and ground (GI logic); the current system is not enough | F (11-05, 11-06) | **FIX:** the tracker says "built". In code the per-pixel relight is a spike that is off by default, and Pofu is still self-lit at night. Brightness: **Q-10**. A night ADR follows the answer |
 | V5 | No hard-edged light | F (critique 11-06: "çapraz çizgi gibi kesiliyor") + L (rule) | **FIX:** the screen-haze shaft (`WeatherLayer.swift`, `ShaftShape`) is still a hard diagonal |
-| V6 | "Pofu'nun vektör map'i köşeli": what he meant | **Q-11** | We read it as the normal map; that is unconfirmed |
+| V6 | "Pofu'nun vektör map'i köşeli": what he meant | F (Q-11 A, 11-07): the normal map | Rebake softer before relight goes default |
 | V7 | Plate base: v2 with more thickness | F: Hub q-plate C | Island bases should be parts Codex fits, not patches (11-06) |
 | V8 | Concept art is a target, not the game; harmony is tested with near-game concepts as background, decor and character | F (11-03, 11-06) | — |
 
@@ -134,13 +134,13 @@ is missing from the Koke scene.
 |---|---|---|---|
 | D1 | The wall must be a wow masterpiece, not a flat wall with plain text; every UI, menu and pop-up world-class | F (11-06) | — |
 | D2 | Two places: Apple's shield (a fixed template: colour, ~60 pt icon, two labels, two buttons) and our in-app Door scene with the states Arrive, Breath, Choose, Boş ver, A minute, Hand-off. The wow goes into the Door | **Q-12** | He asked "Sonuç olarak bizim ekranımız değil mi?" and never answered the trade |
-| D3 | The Door's look (round door vs halo isle vs pier) | **Q-13** | **FIX:** no doc says the Door is blocked on art. The batch-58 door came back at half resolution with its layers skipped, and `DoorScene` does not exist in code |
+| D3 | The Door's look: **all three scenes (round door, halo isle, pier and sky) rotate** | F (11-07: "3 kapı da gözükebilir hani dönüşümlü olarak"; against the lead's A) | **FIX:** no doc says the Door is blocked on art. The batch-58 door came back at half resolution with its layers skipped, and `DoorScene` does not exist in code |
 | D4 | Breath only past the daily threshold; one word "Boş ver" everywhere | L (ADR-0015, the Door) | **FIX:** the built gate breathes 5 s on every first open and says "Vazgeç". The shield subtitle says "vazgeçtin" |
 | D5 | "Pofu'yla bir dakika": three times a day, 60 s | F: Hub q-minute A | — |
 | D6 | Pofu's personality: sweet and lightly jealous; never shame, at most one tease a day, never at night | F: Hub q-personality B | L: humour comes from the situation; memes only if the founder or friends write them (he later called the meme lines "AI slop", per the log) |
 | D7 | Sound: Pofu's tiny sounds on, ambience optional; procedural chord music welcome | F: Hub q-sound B | **FIX:** the tracker says "the world is silent", but a world sound pass is on main |
-| D8 | Menus: glass and custom together | F: "camı da tamamen kaldırmayalım. Cam ve hani custom'ı birleştirmek… unique" (11-05) | **Q-14.** ADR-0020 and UI v3 turned every menu to paper, against his words |
-| D9 | The bottom-right icon is very bad; flat menu icons are fine | F (11-06) | Style: **Q-15** |
+| D8 | Menus: glass and custom together | F: "camı da tamamen kaldırmayalım. Cam ve hani custom'ı birleştirmek… unique" (11-05) | F (Q-14 C, 11-07): round buttons and the top strip glass, panels paper. ADR-0020 and UI v3 turned every menu to paper, against his words |
+| D9 | The bottom-right icon is very bad; flat menu icons are fine | F (11-06) | F (Q-15 A, 11-07): two-tone flat icons on a painted clay disc |
 | D10 | One honey verb colour; violet retired | L (UI v3) | **FIX:** violet is still in the Topla pill, the map pin, the resident card, Today and the Settings night rows |
 | D11 | UI direction: the Living Diorama (the UI is the game), and "find the middle way" | F: Hub q-ui-direction B + "doğru orta yolu bulalım" | — |
 | D12 | 60 fps for beta; 120 Hz while touching, 30-60 ambient, 0 settled | F (60 fps) + L (the rest, not "agreed") | Measure on device first |
@@ -229,3 +229,43 @@ Lead calls that do not need his answer, told to him on the sheet:
 - The roots grow lightly (H11).
 - Humour comes from the situation (D6).
 - Seasons follow the calendar (H10).
+
+### 10.1 Answers (2026-11-07, late morning)
+
+The founder accepted every recommendation on the sheet ("önerdiğin her
+şeyi şey yapıyorum"), with these exceptions and additions, all **F**:
+
+1. **Concept picks are his.** "arada çok farklı yönlerde birkaç konsept
+   tasarım oldu. İlk seviyeden son seviyeye. Dolayısıyla aradan seçip yorum
+   yapsam daha iyi olur." He picks which concept becomes the accepted target
+   for each subject, from a board of the different directions (**Q-16**).
+2. **Concept fidelity.** "oyunlaştırırken konseptten uzaklaşmak
+   istemiyorum… direkt konsepte göre oyunu yap… konsepti taklit etmeye
+   çalışırsak çok iyi olur." The game imitates the picked concept; when a
+   game screen and its concept disagree, the concept wins and the gap is a
+   bug.
+3. **Concept match for light and colour.** Concepts look clean, game
+   screens look muddy and inconsistent. Take the single-image Codex concepts
+   (day, night, weather), copy them one to one, compare side by side, find
+   why they differ, and match them; the same when building an island.
+4. **Island and its assets painted together.** The new doors in the earth
+   face look patched because they were added later. Treat the island as one
+   whole; if needed, have Codex paint the island and the island with its
+   assets in one image so the parts match.
+5. **The Door: all three scenes rotate** (D3).
+6. **No drawn swipe hint** on the shield replica: the system's home
+   indicator is enough (done in code).
+7. He fixed some visuals earlier, thought they were fixed, then could not
+   judge them later. Every visual change is judged against its concept,
+   side by side, before it reaches him.
+
+### 10.2 Q-16: the concept board (sent 2026-11-07)
+
+`decisions-2026-11-07/board-p1.jpg` to `board-p4.jpg`. The founder picks one
+direction per subject: home (E1-E7), the light and weather target set
+(I1-I5), Çağlayan stages (Ç1-Ç4), and Revontuli, Emanet, Mehtap (R, EM,
+M). The lead recommends E1 with E3's distant islands, I1 (I4 for mist, the
+Tam Çiçek night for night), Ç1, R1 with the three toppled lantern posts,
+EM1 and M1. Only stage 0 and stage 4 exist for the map's islands; stages
+1-3 are painted from the same plate after his pick.
+
