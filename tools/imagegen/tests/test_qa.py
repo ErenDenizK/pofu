@@ -337,12 +337,13 @@ class KindProfileTests(unittest.TestCase):
         self.assertEqual(qa.grade(66.0, qa.limits_for("ui")["chroma_p95"]), "fail")
 
     def test_extra_palettes_cover_the_colors_a_brief_names(self):
-        violet = np.zeros((64, 64, 4))
-        violet[..., :3] = (0x6C / 255, 0x4F / 255, 0xD8 / 255)
-        violet[..., 3] = 1
+        # The UI's deep honey verb colour (the violet left the UI palette in #320).
+        honey = np.zeros((64, 64, 4))
+        honey[..., :3] = (0x8A / 255, 0x5A / 255, 0x00 / 255)
+        honey[..., 3] = 1
         base = ["world-props", "world-day", "character"]
-        self.assertEqual(qa.check_palette(violet, base).status, "fail")
-        self.assertEqual(qa.check_palette(violet, base + ["ui"]).status, "pass")
+        self.assertEqual(qa.check_palette(honey, base).status, "fail")
+        self.assertEqual(qa.check_palette(honey, base + ["ui"]).status, "pass")
         tabby = np.zeros((64, 64, 4))
         tabby[..., :3] = (0xD5 / 255, 0x80 / 255, 0x3E / 255)
         tabby[..., 3] = 1
