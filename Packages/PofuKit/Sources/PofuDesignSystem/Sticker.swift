@@ -128,8 +128,8 @@ public struct StickerView: View {
             .resizable()
             .scaledToFit()
             .padding(side * 0.14)
-            .foregroundStyle(PofuColor.accent)
-            .background(Circle().fill(PofuColor.accentTint))
+            .foregroundStyle(PofuKitPalette.day.ink)
+            .background(Circle().fill(PofuKitPalette.day.honey.opacity(0.45)))
     }
 }
 #endif

@@ -775,12 +775,14 @@ private struct ShaftArt: View {
             let target = CGPoint(x: canvas.width * 0.62, y: canvas.height * 0.78)
             let base = atan2(target.y - sun.y, target.x - sun.x)
             let length = hypot(canvas.width, canvas.height) * 1.1
-            var layer = context
-            layer.addFilter(.blur(radius: 14))
             let beams: [(angle: Double, width: Double, strength: Double)] = [
                 (-0.30, 70, 0.8), (-0.13, 46, 1.0), (0.02, 96, 0.7), (0.17, 40, 0.9), (0.31, 64, 0.6),
             ]
             for beam in beams {
+                // The feather grows with the beam: a gaussian-soft edge at
+                // every width, never a hard line (drawn once, then cached).
+                var layer = context
+                layer.addFilter(.blur(radius: max(14, beam.width * 0.55)))
                 let a = base + beam.angle * 0.55
                 let dir = CGPoint(x: cos(a), y: sin(a))
                 let normal = CGPoint(x: -dir.y, y: dir.x)

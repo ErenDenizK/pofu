@@ -18,14 +18,10 @@
     "ink-600": "#66555F",
     "ink-400": "#8E7D88",
     "ink-300": "#A99AA3",
-    "violet-100": "#EEE8FF",
-    "violet-300": "#B9A2FF",
-    "violet-500": "#8F74F0",
-    "violet-600": "#6C4FD8",
-    "violet-700": "#553BB8",
     "meadow-300": "#8FD4A4",
     "meadow-400": "#8CC084",
     "meadow-700": "#2F7349",
+    "honey-100": "#FDEFC9",
     "honey-300": "#F7C873",
     "honey-400": "#F5B83D",
     "honey-800": "#8A5A00",
@@ -37,7 +33,7 @@
     "night-700": "#3A3048",
     "mist-300": "#B8A8B1",
     "mist-500": "#85768A",
-    "violet-night-200": "#2E2547",
+    "cocoa-night-200": "#3A2C1E",
     "white": "#FFFFFF"
   },
   "semantic": {
@@ -49,9 +45,9 @@
     "text.secondary": { "light": "ink-600", "dark": "mist-300" },
     "text.tertiary": { "light": "ink-400", "dark": "mist-500" },
     "text.onAccent": { "light": "white", "dark": "night-950" },
-    "accent": { "light": "violet-600", "dark": "violet-300" },
-    "accent.pressed": { "light": "violet-700", "dark": "violet-500" },
-    "accent.tint": { "light": "violet-100", "dark": "violet-night-200" },
+    "accent": { "light": "honey-800", "dark": "honey-300" },
+    "accent.pressed": { "light": "peach-800", "dark": "honey-400" },
+    "accent.tint": { "light": "honey-100", "dark": "cocoa-night-200" },
     "success": { "light": "meadow-700", "dark": "meadow-300" },
     "warning": { "light": "honey-800", "dark": "honey-300" },
     "critical": { "light": "rose-700", "dark": "rose-300" },
@@ -139,8 +135,8 @@
     "ui": {
       "cream-100": "#FFF6EC",
       "ink-900": "#2A1F2D",
-      "violet-600": "#6C4FD8",
-      "violet-300": "#B9A2FF",
+      "honey-800": "#8A5A00",
+      "honey-300": "#F7C873",
       "honey-400": "#F5B83D",
       "meadow-700": "#2F7349"
     }

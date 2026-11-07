@@ -390,16 +390,16 @@ struct ScreenHazeLayer: View {
                             y: CGFloat(seaLine - (i == 0 ? 120 : 20) - h / 2)
                         )
                 }
-                // The part: a soft shaft of light through the haze.
+                // The part: a soft shaft of light through the haze, with a
+                // round pool where it lands (no hard edge anywhere).
                 if parting > 0.01 {
-                    ShaftShape(topX: size.width * CGFloat(0.25 + 0.5 * sunX), width: size.width * 0.34, slant: size.width * 0.22)
-                        .fill(
-                            LinearGradient(
-                                colors: [Color(red: 1, green: 0.93, blue: 0.78).opacity(0.22 * parting), Color(red: 1, green: 0.93, blue: 0.78).opacity(0)],
-                                startPoint: .top, endPoint: .bottom
-                            )
-                        )
-                        .frame(height: CGFloat(seaLine))
+                    SoftShaft(
+                        topX: size.width * CGFloat(0.25 + 0.5 * sunX),
+                        width: size.width * 0.34,
+                        slant: size.width * 0.22,
+                        height: CGFloat(seaLine),
+                        strength: 0.22 * parting
+                    )
                 }
             }
             .frame(width: size.width, height: size.height, alignment: .topLeading)
@@ -412,20 +412,63 @@ struct ScreenHazeLayer: View {
     }
 }
 
-/// A slanted beam: narrow at the top, wide and shifted at the bottom.
-private struct ShaftShape: Shape {
+/// A slanted shaft of light with no hard edge: a straight band whose
+/// brightness falls off like a gaussian across its width (a feathered
+/// horizontal gradient), fades to nothing at both ends, and is tilted as a
+/// whole; at its foot a soft round pool. Only gradients: no blur, no
+/// per-frame cost.
+private struct SoftShaft: View {
     let topX: CGFloat
     let width: CGFloat
     let slant: CGFloat
+    let height: CGFloat
+    let strength: Double
 
-    func path(in rect: CGRect) -> Path {
-        var path = Path()
-        path.move(to: CGPoint(x: topX - width * 0.12, y: 0))
-        path.addLine(to: CGPoint(x: topX + width * 0.12, y: 0))
-        path.addLine(to: CGPoint(x: topX + width * 0.6 - slant, y: rect.maxY))
-        path.addLine(to: CGPoint(x: topX - width * 0.6 - slant, y: rect.maxY))
-        path.closeSubpath()
-        return path
+    private var glow: Color { Color(red: 1, green: 0.93, blue: 0.78) }
+
+    /// Gaussian-like falloff: the sampled bell of exp(-x^2) across the width.
+    private var bell: [Gradient.Stop] {
+        [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1].map { t in
+            let x = (t - 0.5) * 2 * 2.0
+            return .init(color: glow.opacity(exp(-x * x * 0.5)), location: t)
+        }
+    }
+
+    var body: some View {
+        let length = (height * height + slant * slant).squareRoot()
+        let angle = Angle(radians: Double(atan2(slant, height)))
+        let landing = CGPoint(x: topX - slant, y: height)
+        ZStack(alignment: .topLeading) {
+            Rectangle()
+                .fill(LinearGradient(stops: bell, startPoint: .leading, endPoint: .trailing))
+                .frame(width: width * 0.9, height: length)
+                .mask(
+                    LinearGradient(
+                        stops: [
+                            .init(color: .clear, location: 0),
+                            .init(color: .black, location: 0.35),
+                            .init(color: .black, location: 0.6),
+                            .init(color: .clear, location: 1),
+                        ],
+                        startPoint: .top, endPoint: .bottom
+                    )
+                )
+                .opacity(strength)
+                // Tilt (clockwise) around the top centre so the foot lands left of it.
+                .rotationEffect(angle, anchor: .top)
+                .position(x: topX, y: length / 2)
+            Ellipse()
+                .fill(
+                    RadialGradient(
+                        colors: [glow.opacity(strength * 1.3), glow.opacity(strength * 0.5), glow.opacity(0)],
+                        center: .center, startRadius: 0, endRadius: width * 0.5
+                    )
+                )
+                .frame(width: width, height: width * 0.4)
+                .position(landing)
+        }
+        .frame(height: height, alignment: .topLeading)
+        .allowsHitTesting(false)
     }
 }
 #endif

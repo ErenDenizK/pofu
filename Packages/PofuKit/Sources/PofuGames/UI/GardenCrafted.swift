@@ -3,7 +3,7 @@ import SwiftUI
 
 /// The crafted layer's SwiftUI pieces for the game HUD and cards
 /// (ui-system-v2 §2, layer C): paper plates with a stitched edge and
-/// violet-glazed clay buttons. Drawn stand-ins until the painted faces
+/// honey-glazed clay buttons. Drawn stand-ins until the painted faces
 /// (`ui-face-primary`, the paper plate slices) are generated; the shapes,
 /// sizes and states are final, only the fill becomes art.
 enum GardenInk {
@@ -11,9 +11,9 @@ enum GardenInk {
     static let paperTop = Color(red: 1.0, green: 0.975, blue: 0.91)
     static let paperBottom = Color(red: 0.97, green: 0.90, blue: 0.78)
     static let stitch = Color(red: 0.84, green: 0.56, blue: 0.37)
-    static let glaze = Color(red: 0.53, green: 0.42, blue: 0.86)
-    static let glazeLight = Color(red: 0.66, green: 0.56, blue: 0.95)
-    static let glazeLip = Color(red: 0.38, green: 0.29, blue: 0.66)
+    static let glaze = Color(red: 0.96, green: 0.77, blue: 0.33)
+    static let glazeLight = Color(red: 0.98, green: 0.84, blue: 0.47)
+    static let glazeLip = Color(red: 0.80, green: 0.56, blue: 0.16)
     static let scrim = Color(red: 0.25, green: 0.16, blue: 0.10)
 }
 
@@ -34,14 +34,14 @@ struct PaperSurface<S: InsettableShape>: View {
     }
 }
 
-/// A violet-glazed clay capsule: a darker lip under a glossy face. The
+/// A honey-glazed clay capsule: a darker lip under a glossy face. The
 /// face sinks onto the lip when pressed.
 struct ClayButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         let pressed = configuration.isPressed
         return configuration.label
             .font(.system(size: 18, weight: .bold, design: .rounded))
-            .foregroundStyle(.white)
+            .foregroundStyle(GardenInk.ink)
             .padding(.horizontal, 28)
             .frame(minWidth: 200, minHeight: 52)
             .background {

@@ -51,7 +51,7 @@ enum PofuCraftedPalette {
     }
 
     static var stitch: Color {
-        Color.pofuAdaptive(light: PofuPrimitive.peach600.rgb, dark: PofuPrimitive.violetNight200.rgb)
+        Color.pofuAdaptive(light: PofuPrimitive.peach600.rgb, dark: PofuPrimitive.cocoaNight200.rgb)
     }
 
     static var clayTop: Color {
@@ -66,9 +66,11 @@ enum PofuCraftedPalette {
         Color.pofuAdaptive(light: PofuPrimitive.peach400.rgb, dark: PofuPrimitive.night950.rgb)
     }
 
-    static var violetTop: Color { PofuPrimitive.violet500.rgb.color }
-    static var violetBottom: Color { PofuPrimitive.violet600.rgb.color }
-    static var violetLip: Color { PofuPrimitive.violet700.rgb.color }
+    // The one verb colour: honey wood with cocoa ink (UI v3 section 1).
+    static var honeyTop: Color { PofuKitPalette.day.honeyTop }
+    static var honeyBottom: Color { PofuKitPalette.day.honeyBottom }
+    static var honeyLip: Color { PofuPrimitive.honey800.rgb.color }
+    static var cocoaInk: Color { PofuKitPalette.day.ink }
 
     /// The label on a cream face.
     static var onFace: Color {
@@ -123,15 +125,15 @@ struct PofuCraftedActionStyle: ButtonStyle {
         let isPrimary = weight == .primary
         configuration.label
             .font(PofuFont.headline)
-            .foregroundStyle(isPrimary ? Color.white : PofuCraftedPalette.onFace)
+            .foregroundStyle(isPrimary ? PofuCraftedPalette.cocoaInk : PofuCraftedPalette.onFace)
             .padding(.horizontal, PofuSpacing.l)
             .frame(minHeight: PofuSize.minimumTouch)
             .background {
                 PofuClayFace(
                     shape: Capsule(style: .continuous),
-                    top: isPrimary ? PofuCraftedPalette.violetTop : PofuCraftedPalette.clayTop,
-                    bottom: isPrimary ? PofuCraftedPalette.violetBottom : PofuCraftedPalette.clayBottom,
-                    lip: isPrimary ? PofuCraftedPalette.violetLip : PofuCraftedPalette.clayLip
+                    top: isPrimary ? PofuCraftedPalette.honeyTop : PofuCraftedPalette.clayTop,
+                    bottom: isPrimary ? PofuCraftedPalette.honeyBottom : PofuCraftedPalette.clayBottom,
+                    lip: isPrimary ? PofuCraftedPalette.honeyLip : PofuCraftedPalette.clayLip
                 )
             }
             .scaleEffect(configuration.isPressed ? 0.97 : 1)
@@ -151,7 +153,7 @@ private struct PofuActionStyleModifier: ViewModifier {
     func body(content: Content) -> some View {
         if PofuSkinPolicy.effective(skin, reduceTransparency: reduceTransparency) == .glass {
             if weight == .primary {
-                content.buttonStyle(.glassProminent).tint(PofuColor.accent)
+                content.buttonStyle(.glassProminent).tint(PofuKitPalette.day.honey)
             } else {
                 content.buttonStyle(.glass)
             }
@@ -307,7 +309,7 @@ private struct PaperStrip: View {
 }
 
 extension View {
-    /// The action over the world: `.glassProminent` or a violet clay
+    /// The action over the world: `.glassProminent` or a honey clay
     /// capsule for the primary, `.glass` or cream clay for the secondary.
     public func pofuActionStyle(_ weight: PofuActionWeight = .primary) -> some View {
         modifier(PofuActionStyleModifier(weight: weight))
