@@ -541,6 +541,16 @@
         }
       }
     },
+    "Go home" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ana ekrana dön"
+          }
+        }
+      }
+    },
     "Go reply. I'll keep it short for you." : {
       "localizations" : {
         "tr" : {
@@ -2598,16 +2608,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Prova: gerçek cihazda Apple'ın ekranı"
-          }
-        }
-      }
-    },
-    "Swipe home without tapping" : {
-      "localizations" : {
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dokunmadan ana ekrana kaydır"
           }
         }
       }

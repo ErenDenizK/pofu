@@ -115,22 +115,18 @@ struct ShieldReplicaView: View {
         }
     }
 
-    /// Leaving the shield without a tap: the swipe home.
+    /// Leaving the shield without a tap: the swipe home. Nothing is drawn:
+    /// the system's own home indicator is the cue (founder, 2026-11-07), so
+    /// this is only an invisible swipe area at the bottom edge.
     private var homeIndicator: some View {
         Button {
             model.rehearsalGoHome()
         } label: {
-            VStack(spacing: PofuSpacing.xs) {
-                Capsule()
-                    .fill(Color(uiColor: shieldColors.subtitle).opacity(0.6))
-                    .frame(width: 134, height: 5)
-                Text("Swipe home without tapping")
-                    .font(PofuFont.caption)
-                    .foregroundStyle(Color(uiColor: shieldColors.subtitle))
-            }
-            .frame(maxWidth: .infinity, minHeight: PofuSize.minimumTouch)
-            .contentShape(Rectangle())
+            Color.clear
+                .frame(maxWidth: .infinity, minHeight: PofuSize.minimumTouch)
+                .contentShape(Rectangle())
         }
+        .accessibilityLabel(Text("Go home"))
         .buttonStyle(.plain)
         .simultaneousGesture(
             DragGesture(minimumDistance: 20).onEnded { value in
