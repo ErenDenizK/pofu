@@ -1,0 +1,24 @@
+id: asset-x-home-flow-il8
+type: asset
+title_tr: x-home-flow-il8
+title_en: x-home-flow-il8 (plate)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached painting to an earlier day. Remove the beehive (plain lawn there). Remove
+  the stone steps and the closed gate at the lawn's left tip (plain lawn edge there); the
+  soft round cloud up on the left stays. Make the windmill its first simple self: a small
+  stone mill with bare wooden sails, on the same low knoll in the same place. Remove the floating
+  lanterns from the pond (the dock stays). Make the pier p…
+links:
+  variant_of:
+  - asset-x-home-flow-il9
+art:
+  images: []
+  jobs:
+  - batch-66-home-flow:x-home-flow-il8
+sources:
+- doc: tools/imagegen/manifest/batch-66-home-flow.yaml
+kind: plate
+batch: batch-66-home-flow
+size: 1024x1536

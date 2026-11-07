@@ -1,0 +1,24 @@
+id: asset-x-home-flow-il6
+type: asset
+title_tr: x-home-flow-il6
+title_en: x-home-flow-il6 (plate)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached painting to an earlier day. Remove the flowering vines from the rim and
+  the earth, and the flower borders (plain lawn edge and plain earth there). Remove the bench,
+  the sailboat and the mailbox. Around the old hamster wheel, remove the flowers and the young
+  sunflower; leave one small green sprout at its foot. Remove the sky-blue round door, the
+  second door from the left in the earth (plain earth the…
+links:
+  variant_of:
+  - asset-x-home-flow-il7
+art:
+  images: []
+  jobs:
+  - batch-66-home-flow:x-home-flow-il6
+sources:
+- doc: tools/imagegen/manifest/batch-66-home-flow.yaml
+kind: plate
+batch: batch-66-home-flow
+size: 1024x1536

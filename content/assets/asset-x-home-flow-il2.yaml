@@ -1,0 +1,24 @@
+id: asset-x-home-flow-il2
+type: asset
+title_tr: x-home-flow-il2
+title_en: x-home-flow-il2 (plate)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached painting to an earlier day. Wrap the whole harbor islet and the rope bridge
+  in a soft, thick, sunlit bank of white fog, so only a faint soft shape of the islet shows
+  through it. Remove the cloud-whale from the sky (plain sky there). The garden has fewer
+  sunflowers and no watering can or seedlings. Remove the small green sprout at the old hamster
+  wheel's foot; the wheel looks a little dusty. Make the…
+links:
+  variant_of:
+  - asset-x-home-flow-il3
+art:
+  images: []
+  jobs:
+  - batch-66-home-flow:x-home-flow-il2
+sources:
+- doc: tools/imagegen/manifest/batch-66-home-flow.yaml
+kind: plate
+batch: batch-66-home-flow
+size: 1024x1536
