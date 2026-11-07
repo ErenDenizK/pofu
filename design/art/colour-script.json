@@ -48,7 +48,7 @@
       "practicals": {"ember": 0.35, "window": 0.0},
       "light": {"poolGain": 0.0, "ambientFloor": 0.0, "moonRim": 0.0},
       "fog": {"colour": "#CDE3F5", "far": 0.24},
-      "sea": {"light": "#FFFFFF", "shade": "#D8E3EF", "opacity": 0.95},
+      "sea": {"light": "#FFF6EE", "shade": "#C4D5EE", "opacity": 0.95},
       "gamut": {"hue": [0, 360], "chroma": 50},
       "accents": ["rose-copper", "awning-rose", "petal-honey"],
       "grade": {"lift": [0.0, 0.0, 0.012], "gain": [1.0, 1.0, 0.985], "contrast": 1.16, "saturation": 1.32, "vignette": 0.12},
@@ -65,10 +65,10 @@
       "practicals": {"ember": 0.6, "window": 0.2},
       "light": {"poolGain": 0.15, "ambientFloor": 0.04, "moonRim": 0.0},
       "fog": {"colour": "#F2BCA2", "far": 0.32},
-      "sea": {"light": "#FFE5D2", "shade": "#D3A3B0", "opacity": 0.95},
+      "sea": {"light": "#FFE5D2", "shade": "#C8B0D0", "opacity": 0.95},
       "gamut": {"hue": [10, 110], "chroma": 52},
       "accents": ["rose-copper", "petal-honey"],
-      "grade": {"lift": [0.03, 0.008, -0.015], "gamma": [1.02, 1.0, 0.97], "gain": [1.07, 0.97, 0.85], "contrast": 1.12, "saturation": 1.30, "vignette": 0.20},
+      "grade": {"lift": [0.03, 0.008, -0.005], "gamma": [1.02, 1.0, 0.98], "gain": [1.06, 0.98, 0.90], "contrast": 1.10, "saturation": 1.15, "vignette": 0.20},
       "character": {"lift": [0.015, 0.004, 0.0], "gain": [1.05, 0.97, 0.86], "contrast": 1.05, "saturation": 1.10}
     },
     "dusk": {
@@ -82,28 +82,28 @@
       "practicals": {"ember": 0.9, "window": 0.8},
       "light": {"poolGain": 0.8, "ambientFloor": 0.1, "moonRim": 0.25},
       "fog": {"colour": "#8E7FB0", "far": 0.40},
-      "sea": {"light": "#A795BC", "shade": "#5E5384", "opacity": 0.9},
+      "sea": {"light": "#D2C2DA", "shade": "#8E80AA", "opacity": 0.9},
       "gamut": {"hue": [240, 330], "chroma": 30},
       "accents": ["practical-light", "rose-copper"],
-      "grade": {"black": 0.18, "gamma": [0.88, 0.9, 0.98], "gain": [0.68, 0.68, 0.92], "contrast": 1.14, "pivot": 0.35, "saturation": 0.90, "vignette": 0.26},
+      "grade": {"black": 0.06, "lift": [0.04, 0.03, 0.12], "gamma": [0.93, 0.94, 1.0], "gain": [0.78, 0.72, 0.86], "contrast": 1.08, "pivot": 0.35, "saturation": 1.0, "vignette": 0.24},
       "character": {"lift": [0.012, 0.008, 0.02], "gamma": [0.97, 0.97, 0.98], "gain": [0.80, 0.76, 0.74], "contrast": 1.05, "pivot": 0.45, "saturation": 1.05}
     },
     "night": {
       "feeling": "Safe, cozy",
       "sun": [0.76, 0.16],
-      "sky": {"zenith": "#1C2242", "horizon": "#3E3659", "glow": "#D9D2F5", "glowStrength": 0.22, "cloudLight": "#6F6A92", "cloudShade": "#3A3759", "cloudOpacity": 0.7, "stars": 1.0, "tint": "#BDC2EB"},
+      "sky": {"zenith": "#2E2E58", "horizon": "#7A6888", "glow": "#D9D2F5", "glowStrength": 0.26, "cloudLight": "#C8C2D8", "cloudShade": "#76708F", "cloudOpacity": 0.8, "stars": 1.0, "tint": "#BDC2EB"},
       "key": {"colour": "#B8A8B1", "intensity": 0.35, "from": [0.6, -0.8]},
       "fill": {"colour": "#2A2350", "intensity": 0.5},
       "shadow": "#1E1828",
       "rim": {"colour": "#FFB060", "strength": 0.42},
       "practicals": {"ember": 1.0, "window": 1.0},
       "light": {"poolGain": 1.0, "ambientFloor": 0.14, "moonRim": 0.5},
-      "fog": {"colour": "#4A4677", "far": 0.42},
-      "sea": {"light": "#9490C0", "shade": "#57527F", "opacity": 0.88},
+      "fog": {"colour": "#7A7098", "far": 0.42},
+      "sea": {"light": "#E0D8E8", "shade": "#A49CB8", "opacity": 0.92},
       "gamut": {"hue": [230, 320], "chroma": 24},
       "accents": ["practical-light", "rose-copper", "pofu-fur"],
-      "grade": {"black": 0.32, "gamma": [0.80, 0.85, 0.97], "gain": [0.44, 0.50, 0.90], "contrast": 1.20, "pivot": 0.2, "saturation": 0.72, "vignette": 0.32},
-      "character": {"gamma": [0.95, 0.95, 0.95], "gain": [0.64, 0.61, 0.57], "contrast": 1.05, "pivot": 0.4, "saturation": 1.05}
+      "grade": {"black": 0.04, "lift": [0.05, 0.04, 0.18], "gamma": [0.95, 0.95, 1.0], "gain": [0.62, 0.64, 0.86], "contrast": 1.08, "pivot": 0.3, "saturation": 1.0, "vignette": 0.28},
+      "character": {"gamma": [0.95, 0.95, 0.95], "gain": [0.76, 0.72, 0.68], "contrast": 1.05, "pivot": 0.4, "saturation": 1.05}
     }
   },
   "states": {
@@ -119,16 +119,16 @@
       "$note": "Sky and weather v1 section 2.2 and 2.2b. Each row is layered over the hour like unwell is. key and fill are the spec's percentages; the grade's gain carries them (0.7 key + 0.3 fill) with a floor so the ground never reads gloomy (rain: the lawn stays above L* 55). Weather never follows the player. screenHaze is the player's sky (the unwell state's drawn haze): cool lilac-grey, value kept over chroma, never taking anything back; it is never weather mist (pale peach, from the sea at dawn).",
       "overcast": {
         "key": 0.7, "fill": 1.05, "fogExtra": 0.0,
-        "grade": {"gain": [0.80, 0.81, 0.83], "saturation": 0.9, "contrast": 0.8, "vignette": 0.1},
+        "grade": {"gain": [0.92, 0.92, 0.95], "saturation": 0.9, "contrast": 0.8, "vignette": 0.1},
         "character": {"gain": [0.99, 0.99, 1.0], "contrast": 0.96},
-        "sky": {"value": 0.92, "chroma": 0.7, "toward": "#AEB8C6", "amount": 0.35},
+        "sky": {"value": 0.97, "chroma": 0.85, "toward": "#B4AEC8", "amount": 0.35},
         "practicals": {"window": 0.3}
       },
       "lightRain": {
         "key": 0.5, "fill": 1.1, "fogExtra": 0.05,
-        "grade": {"lift": [0.012, 0.015, 0.024], "gain": [0.80, 0.84, 0.90], "saturation": 0.82, "contrast": 0.68, "vignette": 0.14},
+        "grade": {"lift": [0.012, 0.012, 0.024], "gain": [0.90, 0.90, 0.95], "saturation": 0.82, "contrast": 0.68, "vignette": 0.14},
         "character": {"gain": [0.98, 0.99, 1.0], "contrast": 0.94},
-        "sky": {"value": 0.86, "chroma": 0.6, "toward": "#8E9DB2", "amount": 0.45},
+        "sky": {"value": 0.94, "chroma": 0.8, "toward": "#A59EBB", "amount": 0.45},
         "practicals": {"window": 0.85}
       },
       "mist": {

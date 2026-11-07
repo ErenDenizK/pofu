@@ -59,14 +59,24 @@ struct WorldGradeTests {
         #expect(unwell.apply(GradeRGB(all: 0.7)).b > unwell.apply(GradeRGB(all: 0.7)).r)
     }
 
-    @Test func nightHasTrueDarksAndNoLiftedBlacks() {
+    /// Concept match (2026-11-07): the night concept keeps the earth near
+    /// L* 50 to 70 with blue-violet shadows; round 3's grade crushed it to
+    /// L* 13 and neutral grey. The night stays clearly darker than day,
+    /// its shadows lean blue-violet, and nothing is a grey void.
+    @Test func nightIsReadableWithBlueVioletShadows() {
         // The art's darkest values sit near L* 50 (sRGB ~0.47).
         let shadow = GradeRGB(0.47, 0.42, 0.36)
-        #expect(luma(WorldGrade.night.apply(shadow)) < 0.08)
-        #expect(luma(WorldGrade.night.apply(GradeRGB(all: 0))) == 0)
+        let night = WorldGrade.night.apply(shadow)
+        #expect(luma(night) > 0.08 && luma(night) < 0.3)
+        #expect(luma(night) < luma(WorldGrade.day.apply(shadow)) * 0.7)
+        #expect(night.b > night.r && night.b > night.g, "shadows lean blue-violet")
+        // Black stays dark but coloured, never lifted to a grey.
+        let black = WorldGrade.night.apply(GradeRGB(all: 0))
+        #expect(luma(black) < 0.08)
+        #expect(black.b > black.g + 0.02)
         // Highlights still read: a cream highlight stays well above the shadow.
         let cream = GradeRGB(0.97, 0.94, 0.88)
-        #expect(luma(WorldGrade.night.apply(cream)) - luma(WorldGrade.night.apply(shadow)) > 0.3)
+        #expect(luma(WorldGrade.night.apply(cream)) - luma(night) > 0.25)
     }
 
     @Test func theSkyTakesTheGradeWithoutItsLevels() {
@@ -79,7 +89,7 @@ struct WorldGradeTests {
 
     @Test func levelsLayerByTheStronger() {
         let g = WorldGrade.night.layered(with: .unwell, amount: 1)
-        #expect(g.black == WorldGrade.night.black)
+        #expect(g.black == max(WorldGrade.night.black, WorldGrade.unwell.black))
         #expect(WorldGrade.day.layered(with: .unwell, amount: 1).black == WorldGrade.unwell.black)
         #expect(abs(WorldGrade.mix(.day, .night, 0.5).black - WorldGrade.night.black / 2) < 1e-12)
     }
