@@ -9,6 +9,7 @@ with `python3 -I tools/docs/check_links.py`.
 
 - **Rules:** `CLAUDE.md` (lead and sub-agents), `AGENTS.md` (Codex), `CONTRIBUTING.md` (commits, branches, PRs).
 - **Status and next steps:** `docs/tracker.md` and [roadmap.md](roadmap.md) (parallel tracks, no dated phases).
+- **What is decided:** [product/decisions.md](product/decisions.md) (the register: founder-confirmed, lead, open, and corrections; wins over any doc until that doc is fixed).
 - **Founder:** [product/founder-input.md](product/founder-input.md) (every message and how it was handled; standing decisions at the top).
 - **Last sessions:** [handoff.md](handoff.md). **Decisions:** [adr/](adr/README.md) (immutable; status per ADR).
 - **Pofu Hub:** frozen since 2026-11-03; chat is the channel for questions and status. Source `design/hub/index.html`.
