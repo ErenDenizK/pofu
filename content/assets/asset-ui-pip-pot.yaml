@@ -4,14 +4,14 @@ title_tr: ui-pip-pot
 title_en: pip-pot (ui)
 status: in-production
 horizon: now
-summary: >-
-  A sheet of three tiny flower pots on a transparent background, in a row with wide empty
-  space between them. All three are the same small round terracotta pot (#D9825B) seen from
-  a low front three-quarter view. First, an empty pot with plain dark soil. Second, the same
-  pot with a small closed green bud on a short stem. Third, the same pot with a small open
-  cream daisy with a honey center. Chunky and simple.
+summary: A sheet of three tiny flower pots on a transparent background, in a row with
+  wide empty space between them. All three are the same small round terracotta pot
+  (#D9825B) seen from a low front three-quarter view. First, an empty pot with plain
+  dark soil. Second, the same pot with a small closed green bud on a short stem. Third,
+  the same pot with a small open cream daisy with a honey center. Chunky and simple.
 art:
-  images: []
+  images:
+  - design/art/ui/ui-pip-pot/ui-pip-pot.png
   jobs:
   - batch-61-ui-kit-v3:ui-pip-pot
 sources:

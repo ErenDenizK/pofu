@@ -1,0 +1,163 @@
+batch: batch-61-ui-kit-v3
+contact_sheet: design/art/takes/batch-61-ui-kit-v3/ui-sheet-paper-v3/contact.jpg
+jobs:
+  ui-sheet-paper-v3:
+    pick: 1
+    publication: promoted; founder review pending
+    note: 'auto-picked by QA; founder review pending. Both initial takes pass hardQA
+      and root/independent native+locked/proper-alpha literal review34ad19fd; take1
+      wins normal lowest load0.2846 versus0.2973. The tall blank warmcream paper has
+      a gently deckled lifted top edge, soft top corners, continuous side/top stitches
+      and genuinely runs off bottom with no closed-card bottom rim. Real native1254square
+      side-alpha gutters are disclosed, NOT falsely certified fullwidth: this is a
+      sheet MATERIAL under the authored header trim-to-art-bounds/stretch workflow;
+      untrimmed fullcanvas will not fill a hostsheet. Authored32pt caps/ship341 observed
+      at341x220/440 preserve top and quietcenter without conspicuous seams, with stitch
+      pitch stretch disclosed; no claimed lead capapproval or completed end-to-end
+      integration. Sourcecaps/prompt/refs/QA/PNGpixels unchanged; no force or retry.
+      Native654469PNG uses exactlosslessWebPdelivery undercap (preflight401314B),
+      rawretained. Complete unchanged172source canonicalHmeasure/check required, all
+      foreignmetadata restored and no fabricatedUIshard. Consumer full34plannedfamily
+      stays byte-stable after first honey commit. Original2PNG/RGBA/QA/locked seals
+      retained. auto-picked by QA; founder review pending.'
+qa_reports:
+  1:
+    job: ui-sheet-paper-v3
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 25 (R1 51)
+      value: 25.4
+    - check: value_floor
+      status: pass
+      message: lightness p5 87 (R1 59)
+      value: 86.8
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.0 (R1 5.3)
+      value: 1.0
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.3
+      value: 0.2846
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.4, p95 0.8, off-palette 0.0%
+      value: 0.4396
+    info:
+      metrics_raw:
+        L_p5: 86.7
+        L_p50: 92.7
+        L_p95: 93.1
+        C_p50: 10.6
+        C_p95: 25.7
+        C_p99: 40.2
+        detail: 1.14
+      metrics_locked:
+        L_p5: 86.8
+        L_p50: 92.7
+        L_p95: 93.0
+        C_p50: 10.4
+        C_p95: 25.4
+        C_p99: 38.5
+        detail: 1.0
+    fingerprint: c6da6b4aeadafa8c
+  2:
+    job: ui-sheet-paper-v3
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 26 (R1 51)
+      value: 25.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 86 (R1 59)
+      value: 86.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.0 (R1 5.3)
+      value: 0.98
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.3
+      value: 0.2973
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.5, p95 0.8, off-palette 0.0%
+      value: 0.517
+    info:
+      metrics_raw:
+        L_p5: 86.0
+        L_p50: 92.4
+        L_p95: 92.8
+        C_p50: 12.1
+        C_p95: 25.6
+        C_p99: 34.1
+        detail: 1.13
+      metrics_locked:
+        L_p5: 86.0
+        L_p50: 92.4
+        L_p95: 92.7
+        C_p50: 12.0
+        C_p95: 25.5
+        C_p99: 32.8
+        detail: 0.98
+    fingerprint: c6da6b4aeadafa8c
+manual_review:
+  excluded_takes: []
+  note: 'Both initial takes pass hardQA and root/independent native+locked/proper-alpha
+    literal review34ad19fd; take1 wins normal lowest load0.2846 versus0.2973. The
+    tall blank warmcream paper has a gently deckled lifted top edge, soft top corners,
+    continuous side/top stitches and genuinely runs off bottom with no closed-card
+    bottom rim. Real native1254square side-alpha gutters are disclosed, NOT falsely
+    certified fullwidth: this is a sheet MATERIAL under the authored header trim-to-art-bounds/stretch
+    workflow; untrimmed fullcanvas will not fill a hostsheet. Authored32pt caps/ship341
+    observed at341x220/440 preserve top and quietcenter without conspicuous seams,
+    with stitch pitch stretch disclosed; no claimed lead capapproval or completed
+    end-to-end integration. Sourcecaps/prompt/refs/QA/PNGpixels unchanged; no force
+    or retry. Native654469PNG uses exactlosslessWebPdelivery undercap (preflight401314B),
+    rawretained. Complete unchanged172source canonicalHmeasure/check required, all
+    foreignmetadata restored and no fabricatedUIshard. Consumer full34plannedfamily
+    stays byte-stable after first honey commit. Original2PNG/RGBA/QA/locked seals
+    retained. auto-picked by QA; founder review pending.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-f0166e72-0d02-413a-a186-34decd2a5282.png
+  original_generated_png_sha256: 9a1217bbb70c4ee1b4fb648d97ae35263a8a88d258054b990f42e6c6f57b56dc
+  inbox_png_sha256: 6cb0b5051b4f82a9eb6c2068eea8db3468b009d784d633b915f4ac30b8c48376
+  rgba_sha256: 21ab833195fa278cfb4205f0202f029c84850086ed26ba5dfda65959c347fa24
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: c6da6b4aeadafa8c
+- take: 2
+  source_file: /workspace/generated_images/exec-cf68dd02-05f9-4b37-9352-47e0c9c39d9d.png
+  original_generated_png_sha256: 978373050e8191ce1e899c9863e8bb708ab72a894b2230b130ed238edc50feb9
+  inbox_png_sha256: d219a8a61411e7cbc7ed56ac2384af995b9e9f662f86cf5c6ee2688191cf8325
+  rgba_sha256: e48eea503e06b02da77ef40b053a583959cd322c2aa40c43d98b9eff59808dce
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: c6da6b4aeadafa8c

@@ -1,0 +1,90 @@
+{
+  "job": "ui-pip-pot",
+  "batch": "batch-61-ui-kit-v3",
+  "asset": "ui__pip-pot",
+  "take": 2,
+  "takes_considered": 2,
+  "approved_at": "2026-11-06T12:38:59+00:00",
+  "image": "design/art/ui/ui-pip-pot/ui-pip-pot.png",
+  "raw": "design/art/ui/ui-pip-pot/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "ae8fc142856ef00e",
+  "prompt": "REFERENCES (attached, in this order):\n1. A finished prop of the game: match its soft airbrushed finish, matte materials, warm light and colors (do not draw the stall).\n2. The palette card for props: use only these colors (and mixes of them).\n\nA sheet of three tiny flower pots on a transparent background, in a row with wide empty space between them. All three are the same small round terracotta pot (#D9825B) seen from a low front three-quarter view. First, an empty pot with plain dark soil. Second, the same pot with a small closed green bud on a short stem. Third, the same pot with a small open cream daisy with a honey center. Chunky and simple.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: text, letters, numbers, symbols, icons, glass, frosted or transparent parts, a drop shadow or cast shadow on the ground, an outline, a border around the canvas, a background, gloss or specular glints, texture that varies along the width, pure black, neon or saturated colors, a 3D render look\n\nOutput: one image, transparent background PNG, landscape 1536 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/stations/tea-stall-5/tea-stall-5.png",
+      "role": "A finished prop of the game: match its soft airbrushed finish, matte materials, warm light and colors (do not draw the stall)."
+    },
+    {
+      "path": "design/reference/palette-card-world-props.png",
+      "role": "The palette card for props: use only these colors (and mixes of them)."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-06T10:37:22+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "fit": null,
+  "emit_region": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1536x1024"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 35 (R1 51)",
+        "value": 35.0
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 46 (R1 59)",
+        "value": 46.1
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 1.6 (R1 5.3)",
+        "value": 1.55
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 0.9",
+        "value": 0.9387
+      },
+      {
+        "check": "palette_drift",
+        "status": "warn",
+        "message": "mean dE 1.9, p95 10.7, off-palette 3.3% (top: #999966 (1.0%), #998855 (0.8%))",
+        "value": 1.8744
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Both retained initial takes pass hard QA and literal full-native/official-locked/proper-alpha review in root-disc-pip-initial-manual-review.json SHA01cb7139caa552497027a3b9715b3a919c9cf4029b8ee958002be3d435a47fda. Ordinary lowest style-lock load selects take2 (0.9387 vs1.3966). Exactly three same-design pots show plain soil, closed green bud, and open cream daisy, with clean transparent margins. No extra flower-petal count or invented raw-footprint gate. Native PNG300249B fits614400B; retain raw and originals. Authored slice/consumer/source/QA unchanged; required real canonical full-catalog Harmony measure/check plus byte-exact foreign restoration; no fabricated UI shard. No regeneration, force or additional retry. auto-picked by QA; founder review pending."
+}

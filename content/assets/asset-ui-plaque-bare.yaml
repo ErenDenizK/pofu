@@ -4,15 +4,15 @@ title_tr: ui-plaque-bare
 title_en: plaque-bare (ui)
 status: in-production
 horizon: now
-summary: >-
-  The same plaque, but bare, unstained, pale wood: a soft cream-tan pine (#E8D5B5), dry and
-  matte, with the same bevel, lip and shadow, no honey stain, no warmth glow. Still solid
-  and clearly a button, only quiet.
+summary: 'The same plaque, but bare, unstained, pale wood: a soft cream-tan pine (#E8D5B5),
+  dry and matte, with the same bevel, lip and shadow, no honey stain, no warmth glow.
+  Still solid and clearly a button, only quiet.'
 links:
   variant_of:
   - asset-ui-plaque-honey
 art:
-  images: []
+  images:
+  - design/art/ui/ui-plaque-bare/ui-plaque-bare.png
   jobs:
   - batch-61-ui-kit-v3:ui-plaque-bare
 sources:
