@@ -258,3 +258,14 @@ The founder accepted every recommendation on the sheet ("önerdiğin her
 7. He fixed some visuals earlier, thought they were fixed, then could not
    judge them later. Every visual change is judged against its concept,
    side by side, before it reaches him.
+
+### 10.2 Q-16: the concept board (sent 2026-11-07)
+
+`decisions-2026-11-07/board-p1.jpg` to `board-p4.jpg`. The founder picks one
+direction per subject: home (E1-E7), the light and weather target set
+(I1-I5), Çağlayan stages (Ç1-Ç4), and Revontuli, Emanet, Mehtap (R, EM,
+M). The lead recommends E1 with E3's distant islands, I1 (I4 for mist, the
+Tam Çiçek night for night), Ç1, R1 with the three toppled lantern posts,
+EM1 and M1. Only stage 0 and stage 4 exist for the map's islands; stages
+1-3 are painted from the same plate after his pick.
+
