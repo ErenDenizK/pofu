@@ -547,3 +547,22 @@ His views (translated), not orders; the decisions are ours. Handled in
 6. The "Dokunmadan ana ekrana kaydır" line on the shield screen is not needed; the system draws its own home bar. Handled: removed from the rehearsal replica (Apple's real shield never showed it).
 7. New doors added to the island look patched; treat everything as one whole; fix the system if needed; have Codex paint the island and the island with its assets so they match. Handled: register §10.1 item 4; the concept-match study proposes the art route.
 8. He had sent images of fixes, thought it was fixed, came back and could not judge. Do your best; he answers open questions. Handled: side-by-side concept comparisons before anything reaches him.
+
+## 2026-11-07 (midday): picks on the concept board; one flow per subject
+
+1. Home: E1 (the level stones to the Tam Çiçek final) is better; E2 is too pale and the island does not feel good, though E2's IL7 is cute. The roots can be designed differently (to discuss). Handled: [concept flows](../design/concept-flows.md), home.
+2. Positions must not shift at every level: a big change may move things, and a stall may move, but a tower moving is illogical; plan it well, tie it to the system. Handled: anchor rule in the flows (fixed anchors, movable pieces, final-first art with stages as edits).
+3. The background must not be empty: islands or Gezgin behind home; every island except home is fixed (as agreed); seasons change in the game. Handled: background rule in the flows.
+4. E6: he does not like it overall; the base looks bad, the fogs do not look good. Handled: E6 retired as a direction.
+5. Light: the seasonal island's 7 lights (I1) make sense; the postcards are nice too. Night: I4's and I5's Tam Çiçek nights are too contrasty and too bright; Gezgin's and Revontuli's nights are fine; do not copy them one to one. Handled: light targets in the flows.
+6. Çağlayan: C3 (travertine) is nice but the island itself changes at every level, which is not good; C1 is more elegant, but nothing may move between stages; C2's greens and flowers are a little nicer. Go with C1. Handled: the Çağlayan flow.
+7. Revontuli: wants it; the stuck state like R2 (ruined towers), then the ice island, then healing: ice lake, aurora tail; join them into one flow (all the images are disconnected). Handled: the Revontuli flow.
+8. Emanet: EM1 is nice, but he loved EM2's stilted bureau or suitcase pile, and EM2's misty state is beautiful; fold those into EM1's flow. Handled: the Emanet flow.
+9. Mehtap: M1, not M2; as the last island of the game it must be the flashiest; the stuck and healed states are both fine but the difference must be much bigger. Handled: the Mehtap flow.
+10. General: he picks one direction but wants the liked parts of the others built into one flow per subject, since no concept set is connected level to level. Handled: [concept flows](../design/concept-flows.md) and Codex batches 66-70.
+
+## 2026-11-07 (afternoon): consistency per object; copy the references' whole look; a bigger budget today
+
+1. A single fixed-point rule can be wrong: watch consistency and object positions as the island advances level by level; some things may move depending on the island, others must stay where they are. Handled: both flow agents give every object its own row (fixed or movable, why, and where a move is allowed).
+2. Copy the whole system from these references: their cohesion (light, consistency, shadows, colour) is very good; understand why, evaluate every game, graphics and image-processing technique, invent creative solutions if needed, aim for one to one with the best references. Handled: a reference-look study (why the references work, every technique ranked, the look pipeline v2) and an offline look lab proving techniques with images (fitted LUT grades, AO and contact shadows from estimated depth, relight with a light rig, atmosphere and bloom, a harmonise-by-repaint job design).
+3. Budget: today the lead may spend about twice the token rate; Opus at medium or high effort for thinking and planning, Sonnet for clearly specified implementation, Haiku or Sonnet for image processing; more agents are fine, to keep context and produce faster, without going uncontrolled. Handled: four agents in parallel today (two flows, the study, the lab) instead of two or three; noted as today's allowance, not a standing rule.

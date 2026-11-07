@@ -269,3 +269,26 @@ Tam Çiçek night for night), Ç1, R1 with the three toppled lantern posts,
 EM1 and M1. Only stage 0 and stage 4 exist for the map's islands; stages
 1-3 are painted from the same plate after his pick.
 
+### 10.3 Q-16 answered (2026-11-07, midday): one flow per subject
+
+All **F**; details and the stage-by-stage flows in
+[concept flows](../design/concept-flows.md).
+- **Home: E1**, plus E2's IL7 charm; E6 retired (bad base, poor fog); the
+  roots are redesigned later. **Anchors:** things keep their places from
+  level to level; only a big change may move something, a stall may move,
+  a tower never.
+- **Background never empty:** fixed distant islands and Gezgin behind
+  home; every island but home is fixed in the sky.
+- **Light: I1** (the seasonal island's seven lights) is the target set; the
+  postcards help. Night is **not** I4/I5's Tam Çiçek (too contrasty, too
+  bright); Gezgin's and Revontuli's nights are good references; no
+  one-to-one copy.
+- **Çağlayan: C1**, nothing moves between stages, with C2's greens and
+  flowers.
+- **Revontuli:** one flow: R2's ruined towers (stuck) → R1's ice island →
+  the ice lake → the aurora tail.
+- **Emanet: EM1's** flow with EM2's stilted bureau or suitcase pile and
+  EM2's misty stuck state.
+- **Mehtap: M1**, the flashiest island of the game (the last); a much
+  bigger gap between stuck and healed.
+
