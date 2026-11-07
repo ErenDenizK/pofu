@@ -124,7 +124,7 @@ struct ConfigurationTests {
         #expect(config.spending.nightMultiplier == 2)
         #expect(config.spending.bedtime == DailyWindow(start: LocalTime(hour: 23), end: LocalTime(hour: 6)))
         #expect(config.friction.cooldown == 3600)
-        #expect(config.friction.highestAttemptRung == .pay)
+        #expect(config.friction.highestAttemptRung == .intent)
         #expect(config.friction.freePassMinutes == 5)
         #expect(config.vitality.dailyBudgetMinutes == 60)
         #expect(config.vitality.smoothing == 0.3)
@@ -134,7 +134,7 @@ struct ConfigurationTests {
         var config = EconomyConfiguration.standard
         config.dailyAllowance = 20
         config.spending.bedtime = DailyWindow(start: LocalTime(hour: 22, minute: 30), end: LocalTime(hour: 7))
-        config.friction.highestAttemptRung = .askFriend
+        config.friction.highestAttemptRung = .pause
         let data = try JSONEncoder().encode(config)
         #expect(try JSONDecoder().decode(EconomyConfiguration.self, from: data) == config)
     }

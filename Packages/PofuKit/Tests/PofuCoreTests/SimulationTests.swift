@@ -182,26 +182,7 @@ struct SimulationTests {
         if Double.random(in: 0..<1, using: &rng) < persona.resistChance {
             return try gatekeeper.resolve(attempt, with: .resist, at: decide, state: &state)
         }
-        switch attempt.rung {
-        case .pause, .intent:
-            return try gatekeeper.resolve(attempt, with: .proceed, at: decide, state: &state)
-        case .pay:
-            let minutes = [5, 10, 15, 30].randomElement(using: &rng) ?? 5
-            do {
-                return try gatekeeper.resolve(attempt, with: .pay(minutes: minutes), at: decide, state: &state)
-            } catch CheckInError.spend(.insufficientBalance) {
-                // Cannot afford the chosen window: try the cheapest one, else give up.
-                if let record = try? gatekeeper.resolve(attempt, with: .pay(minutes: 5), at: decide, state: &state) {
-                    return record
-                }
-                return try gatekeeper.resolve(attempt, with: .resist, at: decide, state: &state)
-            }
-        case .askFriend:
-            if Bool.random(using: &rng) {
-                return try gatekeeper.resolve(attempt, with: .friendApproved(minutes: 10), at: decide, state: &state)
-            }
-            return try gatekeeper.resolve(attempt, with: .resist, at: decide, state: &state)
-        }
+        return try gatekeeper.resolve(attempt, with: .proceed, at: decide, state: &state)
     }
 
     /// One day of events in time order, from 07:00 until 01:00 the next

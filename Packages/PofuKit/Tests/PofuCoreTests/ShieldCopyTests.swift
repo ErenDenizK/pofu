@@ -185,7 +185,7 @@ struct ShieldCopyLadderTests {
         // Reaches without a resist: nothing to count, and no number about opens.
         #expect(!tr(context { $0.reachesToday = 3; $0.resistedToday = 0 }).subtitle.contains("\n"))
         let second = tr(context { $0.reachesToday = 1; $0.resistedToday = 1 })
-        #expect(second.subtitle.hasSuffix("\nBugün 1 kez vazgeçtin."))
+        #expect(second.subtitle.hasSuffix("\nBugün 1 kez boş verdin."))
         let english = en(context { $0.reachesToday = 7; $0.resistedToday = 5 })
         #expect(english.subtitle.hasSuffix("\nYou skipped 5 times today."))
         #expect(en(context { $0.reachesToday = 1; $0.resistedToday = 1 }).subtitle.hasSuffix("\nYou skipped 1 time today."))

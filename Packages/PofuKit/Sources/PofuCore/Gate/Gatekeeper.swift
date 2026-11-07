@@ -102,8 +102,8 @@ public struct PassEnding: Hashable, Sendable {
 ///    attempt with `.resist`: an attempt that did not open the app is an
 ///    impulse resisted (ADR-0008).
 ///
-/// Resisting never earns energy. Paying for skips would turn the gate into
-/// a slot machine (open, skip, collect); skips feed vitality instead.
+/// Resisting never earns energy, and seeds never buy screen time: the only
+/// ways through are a free pass or leaving (ADR-0015).
 ///
 /// The gate also keeps quiet time (ADR-0014) in step: every check-in is a
 /// sign of life, every opened outcome breaks the quiet stretch, and the
@@ -133,15 +133,12 @@ public struct Gatekeeper: Sendable {
         }
 
         let ladderRung = state.ladder.registerAttempt(at: date, rules: economy.configuration.friction)
-        let cheapest = economy.cheapestQuote(at: date, for: state.wallet)
-        let canAfford = cheapest.map { state.wallet.balance >= $0.price } ?? false
         let attempt = CheckInAttempt(
             id: attemptID,
             target: target,
             attemptedAt: date,
             ladderRung: ladderRung,
-            rung: FrictionLadder.effectiveRung(ladderRung: ladderRung, canAffordAnyUnlock: canAfford),
-            cheapestPrice: cheapest?.price
+            rung: ladderRung
         )
         return .intervene(attempt)
     }
@@ -150,10 +147,9 @@ public struct Gatekeeper: Sendable {
     ///
     /// - Parameter reason: The reason the user gave on the `intent` rung,
     ///   recorded with the outcome whatever the choice.
-    /// - Throws: `CheckInError` when the choice is not available on the
-    ///   attempt's rung, the payment fails, or today's emergency pass is
-    ///   used. Nothing is recorded then, so the app can offer another
-    ///   choice.
+    /// - Throws: `CheckInError` when a choice is refused. Today every choice
+    ///   is available on every rung, so it does not throw; the signature
+    ///   stays so a future rung can refuse one. Nothing is recorded then.
     @discardableResult
     public func resolve(
         _ attempt: CheckInAttempt,
@@ -169,9 +165,6 @@ public struct Gatekeeper: Sendable {
             outcome = .resisted
 
         case .proceed:
-            guard attempt.rung.isFree else {
-                throw CheckInError.choiceNotAvailable(choice, rung: attempt.rung)
-            }
             outcome = .proceeded(
                 Pass(
                     id: passID,
@@ -181,55 +174,6 @@ public struct Gatekeeper: Sendable {
                     source: .free(attempt.rung)
                 )
             )
-
-        case .pay(let minutes):
-            do {
-                let pass = try economy.purchaseUnlock(
-                    minutes: minutes,
-                    for: attempt.target,
-                    at: date,
-                    from: &state.wallet,
-                    passID: passID
-                )
-                outcome = .proceeded(pass)
-            } catch let error as SpendError {
-                throw CheckInError.spend(error)
-            }
-
-        case .friendApproved(let minutes):
-            guard attempt.rung == .askFriend else {
-                throw CheckInError.choiceNotAvailable(choice, rung: attempt.rung)
-            }
-            guard minutes > 0, economy.configuration.spending.unlockDurations.contains(minutes) else {
-                throw CheckInError.spend(.unsupportedDuration(minutes: minutes))
-            }
-            outcome = .friendApproved(
-                Pass(
-                    id: passID,
-                    target: attempt.target,
-                    grantedAt: date,
-                    minutes: minutes,
-                    source: .friendApproved
-                )
-            )
-
-        case .emergency:
-            guard !attempt.rung.isFree else {
-                throw CheckInError.choiceNotAvailable(choice, rung: attempt.rung)
-            }
-            guard
-                let pass = economy.grantEmergencyPass(
-                    for: attempt.target,
-                    at: date,
-                    from: &state.wallet,
-                    passID: passID
-                )
-            else {
-                throw CheckInError.emergencyPassUsed(
-                    nextAvailable: economy.nextEmergencyPassDay(for: state.wallet, at: date)
-                )
-            }
-            outcome = .proceeded(pass)
         }
 
         if let pass = outcome.pass {

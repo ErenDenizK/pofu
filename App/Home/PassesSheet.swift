@@ -55,23 +55,6 @@ struct PassesSheet: View {
                     Text("Ending a pass early gives back every unused whole minute at the price you paid.")
                 }
                 .listRowBackground(PofuColor.card)
-
-                Section {
-                    Group {
-                        Text("Each window costs 1 seed a minute. Every pass bought in the last 3 hours makes the next one a quarter pricier. From 23:00 to 06:00, prices double.")
-                        if model.economy.isEmergencyPassAvailable(in: model.state.wallet, at: model.now) {
-                            Text("Today's emergency pass is still yours: \(model.economy.configuration.friction.emergencyPassMinutes) min, free.")
-                        } else {
-                            Text("Today's emergency pass is used. It's back tomorrow.")
-                        }
-                    }
-                    .font(PofuFont.callout)
-                    .foregroundStyle(PofuColor.textSecondary)
-                } header: {
-                    Text("How passes work")
-                        .pofuSectionHeader()
-                }
-                .listRowBackground(PofuColor.card)
             }
             .navigationTitle(Text("Passes"))
             .pofuSheetChrome()

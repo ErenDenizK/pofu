@@ -642,9 +642,9 @@ final class AppModel {
         resolveHop(current, with: .resist)
     }
 
-    /// Opens the app with `choice` (`.proceed`, `.pay`, or `.emergency`).
+    /// Opens the app with `choice` (`.proceed`).
     ///
-    /// - Returns: Whether the choice went through. A failed payment leaves
+    /// - Returns: Whether the choice went through. A refused choice leaves
     ///   Hop! open so the user can choose again.
     @discardableResult
     func openFromHop(with choice: CheckInChoice) -> Bool {
@@ -676,14 +676,6 @@ final class AppModel {
 
     func dismissHop() {
         hop = nil
-    }
-
-    /// Hop! asked for the earn sheet ("Or earn seeds with a focus"):
-    /// the reach counts as skipped, then Home opens the sheet.
-    func skipHopAndEarn() {
-        skipHop()
-        hop = nil
-        requestHomeSheet(.earn)
     }
 
     /// Opens a sheet over Home once Hop!'s cover has finished dismissing;

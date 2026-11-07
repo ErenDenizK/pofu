@@ -176,14 +176,7 @@ struct QuietTimeSimulationTests {
         if Double.random(in: 0..<1, using: &rng) < 0.55 {
             return try gatekeeper.resolve(attempt, with: .resist, at: date, state: &state)
         }
-        if attempt.rung.isFree {
-            return try gatekeeper.resolve(attempt, with: .proceed, at: date, state: &state)
-        }
-        let minutes = Bool.random(using: &rng) ? 5 : 10
-        if let record = try? gatekeeper.resolve(attempt, with: .pay(minutes: minutes), at: date, state: &state) {
-            return record
-        }
-        return try gatekeeper.resolve(attempt, with: .resist, at: date, state: &state)
+        return try gatekeeper.resolve(attempt, with: .proceed, at: date, state: &state)
     }
 
     // MARK: - Reference model

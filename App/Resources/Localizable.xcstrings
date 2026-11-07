@@ -51,16 +51,6 @@
         }
       }
     },
-    "%lld in my cheeks · %lld after" : {
-      "localizations" : {
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Yanaklarımda %1$lld · sonra %2$lld"
-          }
-        }
-      }
-    },
     "%lld min" : {
       "localizations" : {
         "tr" : {
@@ -96,7 +86,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%2$lld açma isteği, %1$lld vazgeçiş"
+            "value" : "%2$lld açma isteği, %1$lld boş verme"
           }
         }
       }
@@ -180,7 +170,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bugün %lld kez vazgeçtin. Kabardıkça kabarıyorum."
+            "value" : "Bugün %lld kez boş verdin. Kabardıkça kabarıyorum."
           }
         }
       }
@@ -249,16 +239,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Uygulama"
-          }
-        }
-      }
-    },
-    "Asking a friend is coming soon." : {
-      "localizations" : {
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Arkadaşa sormak çok yakında."
           }
         }
       }
@@ -379,26 +359,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tamam"
-          }
-        }
-      }
-    },
-    "Each window costs 1 seed a minute. Every pass bought in the last 3 hours makes the next one a quarter pricier. From 23:00 to 06:00, prices double." : {
-      "localizations" : {
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Her dakika 1 çekirdek. Son 3 saatte aldığın her izin, sonrakini dörtte bir pahalılaştırır. 23.00 ile 06.00 arasında fiyatlar iki katı."
-          }
-        }
-      }
-    },
-    "Emergency: open for %lld min, free" : {
-      "localizations" : {
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Acil durum: %lld dakikalığına aç, ücretsiz"
           }
         }
       }
@@ -571,16 +531,6 @@
         }
       }
     },
-    "Free again in %lld min." : {
-      "localizations" : {
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld dakika sonra yine ücretsiz."
-          }
-        }
-      }
-    },
     "Go ahead and open it. Your pass is running." : {
       "localizations" : {
         "tr" : {
@@ -697,16 +647,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ne kadar?"
-          }
-        }
-      }
-    },
-    "How passes work" : {
-      "localizations" : {
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "İzinler nasıl işler"
           }
         }
       }
@@ -861,16 +801,6 @@
         }
       }
     },
-    "My cheeks are empty." : {
-      "localizations" : {
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Yanaklarım bomboş."
-          }
-        }
-      }
-    },
     "My cheeks can't fit more honor seeds today." : {
       "localizations" : {
         "tr" : {
@@ -891,32 +821,12 @@
         }
       }
     },
-    "need %lld more" : {
-      "localizations" : {
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld eksik"
-          }
-        }
-      }
-    },
     "Need a break" : {
       "localizations" : {
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mola lazım"
-          }
-        }
-      }
-    },
-    "Night prices until 06:00" : {
-      "localizations" : {
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "06.00'ya kadar gece fiyatı"
           }
         }
       }
@@ -971,16 +881,6 @@
         }
       }
     },
-    "Once a day, for when you really need the app." : {
-      "localizations" : {
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Günde bir kere, uygulamaya gerçekten ihtiyacın olduğunda."
-          }
-        }
-      }
-    },
     "One breath first." : {
       "localizations" : {
         "tr" : {
@@ -1017,16 +917,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kestirmeler'i aç"
-          }
-        }
-      }
-    },
-    "Or earn seeds with a focus" : {
-      "localizations" : {
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ya da odaklanıp çekirdek kazan"
           }
         }
       }
@@ -1234,7 +1124,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vazgeç"
+            "value" : "Boş ver"
           }
         }
       }
@@ -1244,7 +1134,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vazgeçtin."
+            "value" : "Boş verdin."
           }
         }
       }
@@ -1255,26 +1145,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Snapchat"
-          }
-        }
-      }
-    },
-    "Soon a friend you trust can say yes to a few minutes for you." : {
-      "localizations" : {
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Yakında güvendiğin bir arkadaşın sana birkaç dakikalık izin verebilecek."
-          }
-        }
-      }
-    },
-    "Spend %lld seeds for %lld min" : {
-      "localizations" : {
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$lld çekirdeğe %2$lld dk al"
           }
         }
       }
@@ -1324,7 +1194,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kaydırıp çıkmak da vazgeçmek sayılır."
+            "value" : "Kaydırıp çıkmak da boş vermek sayılır."
           }
         }
       }
@@ -1399,16 +1269,6 @@
         }
       }
     },
-    "This one costs seeds." : {
-      "localizations" : {
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bu sefer çekirdek lazım."
-          }
-        }
-      }
-    },
     "thriving" : {
       "localizations" : {
         "tr" : {
@@ -1455,26 +1315,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bugün"
-          }
-        }
-      }
-    },
-    "Today's emergency pass is still yours: %lld min, free." : {
-      "localizations" : {
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bugünkü acil iznin duruyor: %lld dakika, ücretsiz."
-          }
-        }
-      }
-    },
-    "Today's emergency pass is used. It's back tomorrow." : {
-      "localizations" : {
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bugünkü acil iznini kullandın. Yarın yine burada."
           }
         }
       }
@@ -1623,16 +1463,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "X"
-          }
-        }
-      }
-    },
-    "You bought a pass in the last 3 hours, so prices are up a bit." : {
-      "localizations" : {
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Son 3 saatte izin aldın, fiyatlar biraz arttı."
           }
         }
       }
@@ -2547,7 +2377,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kapıdayım. İlk vazgeçişin bu. Gerisi kendiliğinden işler."
+            "value" : "Kapıdayım. İlk boş vermen bu. Gerisi kendiliğinden işler."
           }
         }
       }
@@ -3077,7 +2907,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vazgeçtin. Bir tohum."
+            "value" : "Boş verdin. Bir tohum."
           }
         }
       }
@@ -3088,6 +2918,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pofu uyanıyor…"
+          }
+        }
+      }
+    },
+    "Quick check-in." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kısa bir uğrama."
           }
         }
       }

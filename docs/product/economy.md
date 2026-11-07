@@ -268,6 +268,8 @@ balance cannot cover the price. The balance therefore never goes negative.
 ## The friction ladder
 
 > **Amended by [ADR-0015](../adr/0015-care-over-currency.md).** The ladder becomes pause → intent → **care** → askFriend. The care rung shows the cost in calm and wellbeing and offers a quick check (≤ 3 min, halves the calm bonus) or a full open (resets it); past 60 guarded minutes a day, either one first waits for a breathing break. Skips still never earn currency, but now earn a few seeds of world material (+3, at most 5 a day).
+>
+> **Code status:** `PofuCore` and Hop! no longer have the `pay` or `askFriend` rungs or any choice that spends seeds on minutes; the ladder is pause → intent, both free.
 
 Every open of a protected app goes through the soft gate (ADR-0008).
 

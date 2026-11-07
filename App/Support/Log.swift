@@ -45,9 +45,6 @@ extension CheckInChoice {
         switch self {
         case .resist: "resist"
         case .proceed: "proceed"
-        case .pay: "pay"
-        case .friendApproved: "friendApproved"
-        case .emergency: "emergency"
         }
     }
 }
