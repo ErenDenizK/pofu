@@ -1,0 +1,21 @@
+id: asset-x-revontuli-flow-4
+type: asset
+title_tr: x-revontuli-flow-4
+title_en: x-revontuli-flow-4 (plate)
+status: in-production
+horizon: now
+summary: >-
+  A game plate for a cozy mobile game: Revontuli, the northern ice island, at night, STAGE
+  4, HEALED: the aurora has risen. The island is a round plate topped with soft deep snow
+  over a body of glowing pale blue ice with short rounded icicles. At the back left a small
+  log SAUNA on short stilts with a snowy roof, a stone chimney breathing soft steam, a warm-lit
+  window, three wooden steps, a bucket and a towel on a hange…
+art:
+  images: []
+  jobs:
+  - batch-68-revontuli-flow:x-revontuli-flow-4
+sources:
+- doc: tools/imagegen/manifest/batch-68-revontuli-flow.yaml
+kind: plate
+batch: batch-68-revontuli-flow
+size: 1536x1024

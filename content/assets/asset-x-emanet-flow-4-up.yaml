@@ -1,0 +1,24 @@
+id: asset-x-emanet-flow-4-up
+type: asset
+title_tr: x-emanet-flow-4-up
+title_en: x-emanet-flow-4-up (plate)
+status: in-production
+horizon: now
+summary: >-
+  Add the island's three upgrades to the attached healed island, each in its reserved empty
+  spot, and nothing else: (1) A FOURTH SHELF BAY matching the others, full of tagged found
+  things, on the clear tiles between the shelf unit and the counter; (2) A BELL AND A QUEUE:
+  a brass bell on a small curved bracket on the counter's corner post, and a queue line of
+  three short brass posts joined by a soft red rope along the c…
+links:
+  variant_of:
+  - asset-x-emanet-flow-4
+art:
+  images: []
+  jobs:
+  - batch-69-emanet-flow:x-emanet-flow-4-up
+sources:
+- doc: tools/imagegen/manifest/batch-69-emanet-flow.yaml
+kind: plate
+batch: batch-69-emanet-flow
+size: 1536x1024

@@ -1,0 +1,24 @@
+id: asset-x-mehtap-flow-4-bare
+type: asset
+title_tr: x-mehtap-flow-4-bare
+title_en: x-mehtap-flow-4-bare (plate)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached island plate into its BARE version for cutting layers: keep the island
+  plate, its ground, its water and every fixed landmark exactly as they are, pixel for pixel,
+  in the same light. Remove ONLY the movable pieces named here, and paint the ground that
+  was under each one as it would simply continue (the same stone, grass, snow or tile), with
+  no hole, no ghost shadow and no new detail. Remove only: the…
+links:
+  variant_of:
+  - asset-x-mehtap-flow-4
+art:
+  images: []
+  jobs:
+  - batch-70-mehtap-flow:x-mehtap-flow-4-bare
+sources:
+- doc: tools/imagegen/manifest/batch-70-mehtap-flow.yaml
+kind: plate
+batch: batch-70-mehtap-flow
+size: 1536x1024

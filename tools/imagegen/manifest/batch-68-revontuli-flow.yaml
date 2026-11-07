@@ -1,0 +1,449 @@
+# Batch 68: Revontuli's concept flow (exploration; one coherent stage 0 -> 4).
+#
+# Founder (2026-11-07, Q-16): one flow joining four disconnected pictures:
+# R2's ruined towers as the stuck state (batch-45 x-revontuli-stage0-night
+# t2) -> R1's ice island (batch-34 x-revontuli-stuck t1 / -healed t2: sauna
+# cabin, lamp post, ice hole) -> the ice lake (batch-17 x2-revontuli-b t2)
+# -> the aurora tail. Q-4 C: the ice island with three toppled lantern
+# towers, one rises per stage. The island is R1's from stage 0; the ruin is
+# its three fallen towers, the lake is there from stage 0 under snow. The
+# flow, landmarks and upgrade spots: docs/design/concept-flows-islands.md §3.
+# The island keeps its own polar night: cell night.
+#
+# TWO PHASES, THEN A STAR (docs/design/concept-flows-islands.md §0; shared
+# rules in docs/design/concept-flows.md). Stage 4 is painted first, at the
+# island camera, as the ROOT. Every other job edits that final DIRECTLY
+# (parent = stage 4, never the previous stage), so nothing drifts or moves
+# and the stages register for the game's crossfade: stages 3, 2, 1 and 0 take
+# away, dim, dry, cover, drain or pile up; each prompt lists exactly what is
+# present at that stage (cumulative), what is removed or degraded relative to
+# the final, and restates the fixed anchors. Leaves: `-4-bare` and `-0-bare`
+# (the plate without its movable pieces, the pair the layer cut needs; the
+# stage-0 bare restates stage 0 and then strips the pieces), `-4-life` (the
+# residents, the duo and the critters added, for the founder's review only;
+# the game draws them as sprites) and `-4-up` (the three island upgrades in
+# their reserved spots, a fit check). No plate contains a character or an
+# animal except `-4-life`.
+#
+# Phase 1 runs ONLY `x-revontuli-flow-4` (2 takes). The lead or the founder picks a take.
+# Until then every other job waits: `run.py plan` shows each as "waiting for
+# approval of x-revontuli-flow-4" and `run` skips it. Phase 2 (stages 3, 2, 1, 0, the two
+# bares, life and up; independent of each other, any order, up to three
+# tracks) runs after the picked final is promoted.
+#
+# EXPLORATION (x- ids, acceptance exploration: QA is advisory). LEAD RULE,
+# CONCEPT MASTER (this batch only, overriding "explorations are never
+# promoted"): once the lead names the picked take of `x-revontuli-flow-4` (and only that
+# job id), promote it with `promote --only x-revontuli-flow-4` (review note "concept
+# master; picked by the lead"), with its harmony entry and content node as for
+# any master. It is the reference truth every stage derives from, a concept
+# target, not wired into the app. No other job of this batch is promoted: the
+# stages and leaves are takes, contact sheet and review.yaml only. Do not run
+# phase 2 before the lead names the pick. A failed job is skipped and the run
+# continues (no job depends on another stage).
+#
+# Order (phase 2, track `all`): -3, -2, -1, -0, then -4-bare, -0-bare, -4-life,
+# -4-up. Review every take against the final at the same size: if anything
+# moved, grew or shrank between stages, the take fails the review.
+
+batch: batch-68-revontuli-flow
+title: "Revontuli concept flow: ruined towers -> ice island -> ice lake -> aurora tail, stage 4 first, stages 3 to 0 as edits of it, bare pair, life and upgrade checks"
+status: open
+
+refs:
+  r1-healed: design/art/takes/batch-34-islands-in-game/x-revontuli-healed/plate__x-revontuli-healed--t2.webp
+  r1-stuck: design/art/takes/batch-34-islands-in-game/x-revontuli-stuck/plate__x-revontuli-stuck--t1.webp
+  r2-ruin: design/art/takes/batch-45-beautiful-wounds/x-revontuli-stage0-night/plate__x-revontuli-stage0-night--t2.webp
+  ice-lake: design/art/takes/batch-17-islands-v2/x2-revontuli-b/plate__x2-revontuli-b--t2.webp
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: island-main-l-v3, kind: world, name: island-main-l-v3, external: batch-05-fixes-pilot, master: design/art/masters/island-main-l-v3/island-main-l-v3.webp}
+  - {id: tea-stall-5, kind: station, name: tea-stall-5, external: batch-01-slice}
+  - {id: cloud-sea, kind: world, name: cloud-sea, external: batch-04-sky}
+  - {id: mochi-v2, kind: char, name: mochi-v2, external: batch-03-home-island, master: design/art/masters/mochi-v2/mochi-v2.webp}
+
+  - id: x-revontuli-flow-4
+    kind: plate
+    name: x-revontuli-flow-4
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 0.5}
+    palettes: [world-night, world-props, world-water]
+    chat: "Pofu · Revontuli flow"
+    light: {cell: night, layer: subject}
+    acceptance: {exploration: true}
+    notes: "ROOT, stage 4 healed: R1's ice island with R2's towers standing lit, the swept ice lake and the aurora tail ending at the post. Review: the aurora tail and the four gold lanterns read in a 28 pt thumbnail; the sky deep blue-violet, never black; the three empty spots clear; no characters."
+    attach:
+      - ref: approved:island-main-l-v3
+        role: "The home island: copy ONLY its camera, its size in the frame, its plate proportions (shallow top, rounded banded body) and its soft painting. Do not copy its lawn, colours, round door or pebbles."
+      - ref: r1-healed
+        role: "THE ISLAND (R1): copy this ice island's plate, its snow top, its glowing ice body with icicles, the sauna cabin, the curved lamp post and the spruce. Do not draw its fox, hamster or bunny."
+      - ref: r2-ruin
+        role: "ONLY the lantern towers' design: a light wooden lattice frame on four legs, a little snowy roof, one lantern under it. Do not copy its earth island or its layout."
+      - ref: ice-lake
+        role: "ONLY the clear glassy ice lake and the long sweeping aurora tail. Do not copy its island shape."
+      - ref: approved:tea-stall-5
+        role: "A finished station of the game: every building and prop is at this scale and finish (do not draw this stall)."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+    prompt:
+      - text: |
+          A game plate for a cozy mobile game: Revontuli, the northern ice
+          island, at night, STAGE 4, HEALED: the aurora has risen. The island
+          is a round plate topped with soft deep snow over a body of glowing
+          pale blue ice with short rounded icicles. At the back left a small
+          log SAUNA on short stilts with a snowy roof, a stone chimney
+          breathing soft steam, a warm-lit window, three wooden steps, a
+          bucket and a towel on a hanger by the door. At the back centre a
+          tall curved wooden AURORA POST, about one and a half times the
+          sauna's height, with a big round lantern on its hook. At the back
+          right a round snowy spruce. In the middle, from the left toward the
+          centre, a round frozen LAKE about a third of the island's width, its
+          ice swept clear and glassy, with a small round fishing hole near its
+          left end and a little wooden stool beside it. Three small wooden
+          LANTERN TOWERS, each a light lattice frame on four legs with a
+          little snowy roof and one lantern, about two thirds of the sauna's
+          height, stand on round stone footings: tower A at the front right,
+          tower B in the middle right in front of the spruce, tower C on the
+          back left between the sauna and the post. HEALED AT NIGHT: a deep
+          blue-violet starry sky (never black); soft green and violet aurora
+          curtains fill the sky behind the island, and one long aurora TAIL
+          sweeps down from them in a soft curve and ends at the aurora post's
+          lantern, which glows gold; the lake mirrors the aurora in soft green
+          and violet; the three tower lanterns glow honey-gold, each with a
+          small amber pool on the snow; the ice body glows softly from inside
+          with a faint aurora tint. Keep these places EMPTY for later: a
+          trodden snow lane from the sauna steps along the lake's back and
+          right edge to the front lip (clear, no props), the snow beside the
+          sauna's left wall under its eave (a clear patch), and the island's
+          right flank where the snow lip curves over the ice body between
+          tower A and the spruce (smooth ice, no icicles there).
+      - text: |
+          GAME CAMERA: exactly the camera of the attached home island, a low
+          front three-quarter view about 20 degrees above the horizon; the
+          island centred and filling about 88 percent of the image width; its
+          plate a shallow top about a fifth as deep as it is wide over a soft,
+          rounded body in gentle bands; the sea of clouds below rising to the
+          underside. Every building and prop is at the scale of the attached
+          tea stall. NO CHARACTERS OR ANIMALS anywhere: the game draws Pofu,
+          Mochi, the resident and every critter as its own sprite, so their
+          places stay empty.
+      - block: prop-style-v2
+      - text: "AVOID: characters, animals, text, letters, numbers, a border, harsh shadows, near-black shade, neon colours, outlines, photorealism, a 3D render look, anything falling off the island into the void, a copy of the home island's lawn and round door"
+
+  - id: x-revontuli-flow-3
+    kind: plate
+    name: x-revontuli-flow-3
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 0.5}
+    palettes: [world-night, world-props, world-water]
+    chat: "Pofu · Revontuli flow"
+    light: {cell: night, layer: subject}
+    edit_of: x-revontuli-flow-4
+    acceptance: {exploration: true, edit_mode: region}
+    notes: "Stage 3 (DÖNÜM, Söz 4 in the bucket under the sauna bench): three towers lit in a ring, the lake clear, no aurora yet. Review: nothing moved; the post's lantern dark; only a faint ribbon low in the sky."
+    prompt:
+      - text: |
+          Edit the attached FINAL island plate (stage 4, the fully healed island,
+          the reference truth of this flow) into STAGE 3. It is derived from the
+          final directly, never from another stage, so everything not named stays
+          pixel for pixel as in the final. NOTHING MOVES: every landmark, building,
+          pool rim, post, stone, the island's outline and size, the camera and the
+          composition stay exactly where the final has them. This edit only takes
+          away, empties, dims, dries, covers, drains or piles up, and it names the
+          whole difference from the final.
+          PRESENT, unchanged from the final: towers A, B and C upright and lit with
+          their amber pools; the sauna with its warm window and steam; the clear
+          glassy lake with its fishing hole and stool; the spruce; the deep blue-
+          violet starry sky (never black).
+          REMOVED OR DEGRADED relative to the final (everything below applies at
+          once): NO aurora curtains and no tail: the sky has only a faint, still
+          green ribbon low at the horizon; the aurora post's lantern is dark, cold
+          glass with a little snow on its cap; the lake mirrors only the stars and
+          the three warm tower lanterns; the ice body glows a faint cold blue
+          without the aurora tint; colour about 95 percent.
+          FIXED ANCHORS (restated): the sauna at the back left with its steps,
+          chimney and window, the aurora post at the back centre, the round spruce
+          at the back right, the frozen lake with its fishing hole and stool, the
+          three round stone footings (A front right, B middle right in front of the
+          spruce, C back left between the sauna and the post), the island's outline
+          and size.
+      - block: edit-keep-v1
+      - text: "AVOID: moving, resizing or redrawing any landmark or prop, reframing or zooming, new buildings, characters or animals, text, letters, a border"
+
+  - id: x-revontuli-flow-2
+    kind: plate
+    name: x-revontuli-flow-2
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 0.5}
+    palettes: [world-night, world-props, world-water]
+    chat: "Pofu · Revontuli flow"
+    light: {cell: night, layer: subject}
+    edit_of: x-revontuli-flow-4
+    acceptance: {exploration: true, edit_mode: region}
+    notes: "Stage 2: towers A and B lit; C down; the lake half under snow; a faint low ribbon. Review: tower C's frame lies beside its footing, the footing unmoved."
+    prompt:
+      - text: |
+          Edit the attached FINAL island plate (stage 4, the fully healed island,
+          the reference truth of this flow) into STAGE 2. It is derived from the
+          final directly, never from another stage, so everything not named stays
+          pixel for pixel as in the final. NOTHING MOVES: every landmark, building,
+          pool rim, post, stone, the island's outline and size, the camera and the
+          composition stay exactly where the final has them. This edit only takes
+          away, empties, dims, dries, covers, drains or piles up, and it names the
+          whole difference from the final.
+          PRESENT, unchanged from the final: towers A and B upright and lit with
+          their amber pools; the sauna with its warm window and steam; the right
+          half of the lake as clear ice, the fishing hole and stool; the spruce; the
+          faint still ribbon low at the horizon.
+          REMOVED OR DEGRADED relative to the final (everything below applies at
+          once): tower C is down: its lattice frame lies toppled on its side in the
+          snow right beside its stone footing (the footing stays exactly where it
+          is), its lantern dark and half buried; drifted snow covers the left half
+          of the lake; NO aurora curtains and no tail; the post's lantern is dark
+          with a little snow on its cap; the ice body a faint cold blue without the
+          aurora tint; colour about 80 percent.
+          FIXED ANCHORS (restated): the sauna at the back left with its steps,
+          chimney and window, the aurora post at the back centre, the round spruce
+          at the back right, the frozen lake with its fishing hole and stool, the
+          three round stone footings (A front right, B middle right in front of the
+          spruce, C back left between the sauna and the post), the island's outline
+          and size.
+      - block: edit-keep-v1
+      - text: "AVOID: moving, resizing or redrawing any landmark or prop, reframing or zooming, new buildings, characters or animals, text, letters, a border"
+
+  - id: x-revontuli-flow-1
+    kind: plate
+    name: x-revontuli-flow-1
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 0.5}
+    palettes: [world-night, world-props, world-water]
+    chat: "Pofu · Revontuli flow"
+    light: {cell: night, layer: subject}
+    edit_of: x-revontuli-flow-4
+    acceptance: {exploration: true, edit_mode: region}
+    notes: "Stage 1: tower A lit; B leaning on the spruce; the lake fully snowed over. Review: B's footing unmoved; the lake reads only as a smooth dip with the hole's dark ring."
+    prompt:
+      - text: |
+          Edit the attached FINAL island plate (stage 4, the fully healed island,
+          the reference truth of this flow) into STAGE 1. It is derived from the
+          final directly, never from another stage, so everything not named stays
+          pixel for pixel as in the final. NOTHING MOVES: every landmark, building,
+          pool rim, post, stone, the island's outline and size, the camera and the
+          composition stay exactly where the final has them. This edit only takes
+          away, empties, dims, dries, covers, drains or piles up, and it names the
+          whole difference from the final.
+          PRESENT, unchanged from the final: tower A upright and lit; the sauna with
+          its warm window and steam; the spruce; the starry sky.
+          REMOVED OR DEGRADED relative to the final (everything below applies at
+          once): tower B leans heavily against the spruce, half off its stone
+          footing, its lantern dark and capped with snow; tower C lies toppled
+          beside its footing, dark and half buried; the lake is fully snowed over,
+          only a smooth shallow dip in the snow and the fishing hole's dark ring
+          show where it is; NO aurora and no ribbon at the horizon; the post's
+          lantern is dark with a snow cap; the ice body a faint cold blue; colour
+          about 65 percent.
+          FIXED ANCHORS (restated): the sauna at the back left with its steps,
+          chimney and window, the aurora post at the back centre, the round spruce
+          at the back right, the frozen lake with its fishing hole and stool, the
+          three round stone footings (A front right, B middle right in front of the
+          spruce, C back left between the sauna and the post), the island's outline
+          and size.
+      - block: edit-keep-v1
+      - text: "AVOID: moving, resizing or redrawing any landmark or prop, reframing or zooming, new buildings, characters or animals, text, letters, a border"
+
+  - id: x-revontuli-flow-0
+    kind: plate
+    name: x-revontuli-flow-0
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 0.5}
+    palettes: [world-night, world-props, world-water]
+    chat: "Pofu · Revontuli flow"
+    light: {cell: night, layer: subject}
+    edit_of: x-revontuli-flow-4
+    acceptance: {exploration: true, edit_mode: region}
+    notes: "Stage 0, the wound in one word, 'sönük' (unlit), beautiful: R2's ruin on R1's island. Review: the sauna window is the first thing seen ('ama sauna hâlâ sıcak'); towers toppled beside unmoved footings; sky never black; never horror."
+    attach:
+      - ref: r2-ruin
+        role: "STAGE 0's mood (the founder's pick for the stuck state): the half-fallen, snow-covered towers, the starry blue-violet night and the moon's silver rim. Copy that mood; keep the attached plate's layout."
+      - ref: r1-stuck
+        role: "The same ice island, stuck: the cold glow of its ice body and its dark lamp post."
+    prompt:
+      - text: |
+          Edit the attached FINAL island plate (stage 4, the fully healed island,
+          the reference truth of this flow) into STAGE 0, THE GENTLE RUIN. It is
+          derived from the final directly, never from another stage, so everything
+          not named stays pixel for pixel as in the final. NOTHING MOVES: every
+          landmark, building, pool rim, post, stone, the island's outline and size,
+          the camera and the composition stay exactly where the final has them. This
+          edit only takes away, empties, dims, dries, covers, drains or piles up,
+          and it names the whole difference from the final.
+          PRESENT, unchanged from the final: the sauna with its steps and chimney;
+          the spruce; the three round stone footings; the island's outline.
+          REMOVED OR DEGRADED relative to the final (everything below applies at
+          once): all three towers (A, B and C) lie toppled or leaning, dark and
+          snow-covered, each beside its unmoved stone footing (tower A's frame
+          slumps forward off its footing into a snowdrift); the aurora post's
+          lantern is dark under a cap of snow; the lake is under deep snow, the
+          fishing hole frozen over; the snow is deeper, in soft drifts against
+          everything; NO aurora, no ribbon. A deep indigo starry sky (never black),
+          the moon's cool silver light rimming every shape, deep blue shade, the ice
+          body only a faint cold glow: a full value range. ONE warm light: the sauna
+          window glows honey-gold with a small warm pool on the snow beneath it, and
+          a thin curl of steam still leaves the chimney: the sauna is still warm.
+          Quiet, cold and beautiful, a place to mend.
+          FIXED ANCHORS (restated): the sauna at the back left with its steps,
+          chimney and window, the aurora post at the back centre, the round spruce
+          at the back right, the frozen lake with its fishing hole and stool, the
+          three round stone footings (A front right, B middle right in front of the
+          spruce, C back left between the sauna and the post), the island's outline
+          and size.
+      - block: edit-keep-v1
+      - text: "AVOID: moving, resizing or redrawing any landmark or prop, reframing or zooming, new buildings, characters or animals, text, letters, a border"
+
+  - id: x-revontuli-flow-4-bare
+    kind: plate
+    name: x-revontuli-flow-4-bare
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 0.5}
+    palettes: [world-night, world-props, world-water]
+    chat: "Pofu · Revontuli flow"
+    light: {cell: night, layer: subject}
+    edit_of: x-revontuli-flow-4
+    acceptance: {exploration: true, edit_mode: region}
+    notes: "Bare pair, stage 4 (the cut's base): the towers are movable (they fall and rise), their footings are the plate. Review: three empty footings; no ghost of the towers or the aurora."
+    prompt:
+      - text: |
+          Edit the attached island plate into its BARE version for cutting
+          layers: keep the island plate, its ground, its water and every fixed
+          landmark exactly as they are, pixel for pixel, in the same light.
+          Remove ONLY the movable pieces named here, and paint the ground that
+          was under each one as it would simply continue (the same stone,
+          grass, snow or tile), with no hole, no ghost shadow and no new
+          detail. Remove only: the three lantern tower frames with their
+          lanterns and their amber light pools (the three round stone footings
+          stay, empty), the stool, the bucket and towel, and the aurora
+          curtains and tail in the sky (the app draws them as their own
+          layers); the starry sky stays.
+      - block: edit-keep-v1
+      - text: "AVOID: moving, resizing or redrawing any landmark or prop, reframing or zooming, new buildings, characters or animals, text, letters, a border"
+
+  - id: x-revontuli-flow-0-bare
+    kind: plate
+    name: x-revontuli-flow-0-bare
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 0.5}
+    palettes: [world-night, world-props, world-water]
+    chat: "Pofu · Revontuli flow"
+    light: {cell: night, layer: subject}
+    edit_of: x-revontuli-flow-4
+    acceptance: {exploration: true, edit_mode: region}
+    notes: "Bare pair, stage 0. Review: as the -4 bare, in stage 0's light; the sauna window stays lit."
+    prompt:
+      - text: |
+          Edit the attached FINAL island plate (stage 4, the fully healed island,
+          the reference truth of this flow) into STAGE 0, THE GENTLE RUIN. It is
+          derived from the final directly, never from another stage, so everything
+          not named stays pixel for pixel as in the final. NOTHING MOVES: every
+          landmark, building, pool rim, post, stone, the island's outline and size,
+          the camera and the composition stay exactly where the final has them. This
+          edit only takes away, empties, dims, dries, covers, drains or piles up,
+          and it names the whole difference from the final.
+          PRESENT, unchanged from the final: the sauna with its steps and chimney;
+          the spruce; the three round stone footings; the island's outline.
+          REMOVED OR DEGRADED relative to the final (everything below applies at
+          once): all three towers (A, B and C) lie toppled or leaning, dark and
+          snow-covered, each beside its unmoved stone footing (tower A's frame
+          slumps forward off its footing into a snowdrift); the aurora post's
+          lantern is dark under a cap of snow; the lake is under deep snow, the
+          fishing hole frozen over; the snow is deeper, in soft drifts against
+          everything; NO aurora, no ribbon. A deep indigo starry sky (never black),
+          the moon's cool silver light rimming every shape, deep blue shade, the ice
+          body only a faint cold glow: a full value range. ONE warm light: the sauna
+          window glows honey-gold with a small warm pool on the snow beneath it, and
+          a thin curl of steam still leaves the chimney: the sauna is still warm.
+          Quiet, cold and beautiful, a place to mend.
+          FIXED ANCHORS (restated): the sauna at the back left with its steps,
+          chimney and window, the aurora post at the back centre, the round spruce
+          at the back right, the frozen lake with its fishing hole and stool, the
+          three round stone footings (A front right, B middle right in front of the
+          spruce, C back left between the sauna and the post), the island's outline
+          and size.
+          Then make the result its BARE version for cutting layers: keep the plate,
+          its ground and every fixed landmark exactly as just described, pixel for
+          pixel, in the same light. Remove ONLY the three fallen tower frames with
+          their dark lanterns (the three round stone footings stay, empty), the
+          stool, the bucket and towel, painting the ground that was under each as it
+          would simply continue, with no hole and no ghost shadow; the snow drifts
+          close smoothly where the frames lay.
+      - block: edit-keep-v1
+      - text: "AVOID: moving, resizing or redrawing any landmark or prop, reframing or zooming, new buildings, characters or animals, text, letters, a border"
+
+  - id: x-revontuli-flow-4-life
+    kind: plate
+    name: x-revontuli-flow-4-life
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 0.5}
+    palettes: [world-night, world-props, world-water]
+    chat: "Pofu · Revontuli flow"
+    light: {cell: night, layer: subject}
+    edit_of: x-revontuli-flow-4
+    acceptance: {exploration: true, edit_mode: region}
+    notes: "For the founder's review only (the game draws these as sprites): stage 4 with Tuli, the duo and critters. Review: Tuli's painting stroke reads; the duo side by side, quiet."
+    attach:
+      - ref: r1-healed
+        role: "Tuli, the round white arctic fox: draw her exactly as in this picture, at this size."
+      - ref: R1
+        role: "Pofu, the hamster: draw him small, in this exact style, at the size he has on the home island."
+      - ref: approved:mochi-v2
+        role: "Mochi, the bunny: draw her small beside Pofu, in this exact style."
+    prompt:
+      - text: |
+          Add life to the attached healed island, in these places only: Tuli,
+          the round white arctic fox of the attached picture, sits at the
+          fishing hole's edge with her big white tail lifted, its tip painting
+          one soft green-violet stroke into the air; Pofu (the hamster) and
+          Mochi (the bunny) sit side by side, small, on the snow at the front
+          lip, at the size they have at home, quiet and content; two small
+          round snow buntings perch on tower B's roof, and a small round white
+          arctic hare sits by the spruce. Add nothing else.
+      - block: edit-keep-v1
+      - text: "AVOID: moving, resizing or redrawing anything already there, more characters than named, crowds, text, letters, a border"
+
+  - id: x-revontuli-flow-4-up
+    kind: plate
+    name: x-revontuli-flow-4-up
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 0.5}
+    palettes: [world-night, world-props, world-water]
+    chat: "Pofu · Revontuli flow"
+    light: {cell: night, layer: subject}
+    edit_of: x-revontuli-flow-4
+    acceptance: {exploration: true, edit_mode: region}
+    notes: "Fit check of the three upgrades (decisions G5) in their reserved spots; never shipped as one picture. Review: nothing covers a landmark or the lake."
+    prompt:
+      - text: |
+          Add the island's three upgrades to the attached healed island, each
+          in its reserved empty spot, and nothing else: (1) A LANTERN PATH:
+          six small knee-high lanterns on short wooden posts, glowing warm,
+          line the trodden snow lane from the sauna steps along the lake to
+          the front lip; (2) A SAUNA BENCH: a little wooden bench with a
+          folded towel against the sauna's left wall under its eave, with a
+          tiny lit lantern on the wall above it; (3) AN ICE SLIDE: a smooth,
+          rounded, glassy pale-blue ice slide that starts at the snow rim on
+          the island's right flank and curls once down around the outside of
+          the ice body, ending in a soft pile of snow on a small ice ledge of
+          the body, never leaving the island.
+      - block: edit-keep-v1
+      - text: "AVOID: moving, resizing or redrawing anything already there, characters, animals, text, letters, a border"

@@ -1,0 +1,21 @@
+id: asset-x-emanet-flow-4
+type: asset
+title_tr: x-emanet-flow-4
+title_en: x-emanet-flow-4 (plate)
+status: in-production
+horizon: now
+summary: >-
+  A game plate for a cozy mobile game: Emanet, the lost-and-found office island, in warm late-afternoon
+  gold, STAGE 4, HEALED. A wide round island whose flat top is paved in soft cream and peach
+  hexagonal tiles, ringed by a rim of teal glazed tiles with small brass studs, over a warm
+  peach-honey body in soft bands. At the back centre stands THE OFFICE: a crooked little cabin
+  of teal boards with a scalloped teal umbrell…
+art:
+  images: []
+  jobs:
+  - batch-69-emanet-flow:x-emanet-flow-4
+sources:
+- doc: tools/imagegen/manifest/batch-69-emanet-flow.yaml
+kind: plate
+batch: batch-69-emanet-flow
+size: 1536x1024

@@ -1,0 +1,24 @@
+id: asset-x-emanet-flow-4-life
+type: asset
+title_tr: x-emanet-flow-4-life
+title_en: x-emanet-flow-4-life (plate)
+status: in-production
+horizon: now
+summary: >-
+  Add life to the attached healed island, in these places only: Boncuk, the magpie of the
+  attached picture, stands behind the outdoor counter polishing a teacup with a cloth; Pofu
+  (the hamster) and Mochi (the bunny) stand small at the front centre beside the little heap,
+  at the size they have at home, Pofu wearing a found top hat; two small sparrows sit on the
+  umbrella roof. Add nothing else.
+links:
+  variant_of:
+  - asset-x-emanet-flow-4
+art:
+  images: []
+  jobs:
+  - batch-69-emanet-flow:x-emanet-flow-4-life
+sources:
+- doc: tools/imagegen/manifest/batch-69-emanet-flow.yaml
+kind: plate
+batch: batch-69-emanet-flow
+size: 1536x1024
