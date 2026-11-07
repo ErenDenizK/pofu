@@ -1,0 +1,31 @@
+# Draft job (not queued): the look lab's harmonise-by-repaint test (docs/research/look-lab.md, section 7).
+# To queue: copy into a batch manifest under tools/imagegen/manifest/, keep the attachment order.
+  - id: x-lab-repaint-day
+    kind: plate
+    name: x-lab-repaint-day
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. The lab's composed home frame repainted as one picture in the look of x-season-summer. Review: no part moved or resized (overlay the layout mask), faces kept, contact shadows painted, one light."
+    attach:
+      - ref: docs/research/look-lab/repaint/frame-day.webp
+        role: "The image to edit. Edit it; do not redraw its layout."
+      - ref: docs/research/look-lab/repaint/layout.png
+        role: "The layout mask of the image to edit: every coloured shape stays exactly where it is."
+      - ref: design/art/takes/batch-25-seasons/x-season-summer/plate__x-season-summer--t2.webp
+        role: "The look to match: copy only its light, colour, softness and finish."
+    prompt:
+      - text: |
+          REFERENCES (attached, in this order):
+          1. The image to edit: the game's home island, composed from its separate parts. Edit it; do not redraw its layout.
+          2. The layout mask of image 1: one flat colour per part. Every coloured shape is a part that must stay exactly where it is, at exactly its size and outline.
+          3. The look to match: a finished concept of the same island in the summer noon. Copy ONLY its light, colour, softness and finish, never its layout or its props.
+
+          Repaint image 1 as one painting under one light, as if the whole island and everything on it had been painted together in the look of image 3: the same clear warm noon light from the upper left, pale blue sky, white clouds, colour and value; soft painted contact shadows under every building, prop and character where they touch the lawn; the lawn as a dense soft carpet with tiny flowers and stepping stones between the parts; the earth body under the lawn light honey and cream like image 3, with its round door lit warmly from inside; the cloud sea below soft and luminous. The windmill, the house, the garden, the pond, the tea stall, the lamp, Pofu the hamster and Mochi the bunny stay exactly where they are, at exactly their size, outline, pose and face, and keep their own colours: only their light and their finish join the rest of the picture.
+
+          KEEP: the canvas, the camera, the island's outline and position, every part's position, size and outline (image 2), Pofu's and Mochi's faces and eyes.
+
+          AVOID: moving, adding or removing any building, prop or character; new buildings; text; a border; outlines; harsh shadows; neon or saturated colours; a 3D render look; changing the camera or the framing.
+
+          Output: one image, landscape 1536 x 1024, the same framing as image 1.
