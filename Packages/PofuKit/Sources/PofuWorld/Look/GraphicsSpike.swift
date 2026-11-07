@@ -50,8 +50,19 @@ public struct GraphicsSpike: Hashable, Sendable {
     public static let off = GraphicsSpike(depthOfField: false)
 
     /// The sprites that have a baked normal map (`world-<name>--normal` in
-    /// the asset catalog).
-    public static let litSprites: Set<String> = ["tea-stall-1", "mochi", "pofu"]
+    /// the asset catalog, `tools/assets/normals.py spike` and `night`): Pofu,
+    /// every resident pose and the tea stall's levels, so the night's
+    /// practicals light them (look pipeline v2).
+    public static let litSprites: Set<String> = {
+        var names: Set<String> = ["pofu"]
+        for level in 1...5 { names.insert("tea-stall-\(level)") }
+        let poses = ["", "-eyes-closed", "-eyes-happy", "-happy", "-proud", "-sleepy", "-surprised", "-work"]
+        for who in ["mochi", "findik"] {
+            for pose in poses { names.insert(who + pose) }
+        }
+        names.formUnion(["mochi-step-a", "mochi-step-b", "mochi-work-beat"])
+        return names
+    }()
 
     /// The depth blur's lens: in focus at `focus` (the focal object's
     /// depth). Crisp by default (the founder, 2026-11-05: "always very

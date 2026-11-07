@@ -23,8 +23,16 @@ public struct WorldLight: Hashable, Sendable {
     /// The colour script's cell for the hour, blended between its
     /// neighbours.
     public var cell: ColourCell
-    /// The world's grade: plates and stations.
+    /// The world's grade: plates and stations, with the island's fitted
+    /// LUTs (look pipeline v2, `LookLUT`).
     public var grade: WorldGrade
+    /// The sky's and the cloud sea's grade: only the overlays (wellbeing,
+    /// calm, weather, the screen haze). Their colours in the colour script
+    /// are final colours, measured from the references (look pipeline v2),
+    /// so the hour's own grade never touches them again.
+    public var backdropGrade: WorldGrade = .neutral
+    /// The colour script's cell weights at this hour (they sum to 1).
+    public var cellWeights: [ColourCell.Name: Double] = [:]
     /// Pofu's and the residents' light: the cell's key and fill with the
     /// unwell state at a gentler strength, never the world's saturation cut
     /// or contrast push (pro-game-craft §4.3).
@@ -66,7 +74,12 @@ public struct WorldLight: Hashable, Sendable {
 
         let cell = ColourScript.blend(weights)
         let state = ColourScript.unwell
+        let lut = LookLUT.Blend(group: .island, cells: weights)
         let grade = cell.grade
+            .layered(with: state.grade, amount: unwell)
+            .layered(with: .calmGlow, amount: glow)
+            .with(lut: lut)
+        let backdrop = WorldGrade.neutral
             .layered(with: state.grade, amount: unwell)
             .layered(with: .calmGlow, amount: glow)
         var character = cell.character
@@ -76,6 +89,7 @@ public struct WorldLight: Hashable, Sendable {
         // separate lift shrinks to a small readability exposure. Gain only,
         // so Pofu keeps his hue and saturation.
         character.gain = nightExposed(character.gain, night: night)
+        character.lut = lut.for(.characters)
         let practicals = Practicals(
             ember: cell.practicals.ember,
             window: max(cell.practicals.window, state.windowFloor * unwell)
@@ -85,7 +99,7 @@ public struct WorldLight: Hashable, Sendable {
         // on the right at night.
         let sunX = (0.24 * day + 0.16 * golden + 0.78 * night)
         let sunY = (0.12 * day + 0.30 * golden + 0.14 * night)
-        return WorldLight(
+        var light = WorldLight(
             day: day,
             golden: golden,
             night: night,
@@ -102,6 +116,9 @@ public struct WorldLight: Hashable, Sendable {
             sunX: sunX,
             sunY: sunY
         )
+        light.backdropGrade = backdrop
+        light.cellWeights = weights
+        return light
     }
 
     /// The light for a world snapshot, at the snapshot's clock in
@@ -223,6 +240,22 @@ public enum LookTuning {
 
     /// Night stays luminous: the zenith never falls below this L*.
     public static let nightZenithFloor = 12.0
+    /// Look pipeline v2: the night relight starts above this night share
+    /// (dusk is 0.5) and is full at night.
+    public static let nightRelightFrom = 0.2
+    /// The light field's sources as relight practicals: their reach on a
+    /// character (times the pool's reach) and their gain.
+    public static let nightRelightReach = 1.6
+    public static let nightRelightSourceGain = 0.9
+    /// The contact pad (look pipeline v2, look lab §4): its wide falloff
+    /// and its core, and a station's pad strength (was 0.20, 0.16 and 1.9;
+    /// the references' contact is lighter and softer).
+    public static let padOuterOpacity = 0.15
+    public static let padCoreOpacity = 0.08
+    public static let stationPadStrength = 1.4
+    /// How much of the cloud sea's light colour the front fog card takes
+    /// over the sky's horizon (look pipeline v2).
+    public static let frontFogSeaShare = 0.6
     /// Stars: how many, and how fast they twinkle (Hz).
     public static let starCount = 36
     public static let starTwinkleHz: ClosedRange<Double> = 0.1...0.3
@@ -284,6 +317,13 @@ public enum LookTuning {
     /// A halo's art (`glow-warm-halo`) draws this much wider than the radius
     /// the bloom fades out at: the painted disc has a soft rim.
     public static let warmHaloArtScale = 1.15
+    /// A field source's halo (lantern, path lamp, window) reaches this many
+    /// times its core radius, at this opacity at full strength: the liked
+    /// night references' lamp halos spread 3 to 4 times the lamp's body and
+    /// lift the air around it (ADR-0021, `docs/research/reference-look.md`
+    /// principle 11). Was 3x at 0.22.
+    public static let fieldHaloSpread = 4.0
+    public static let fieldHaloOpacity = 0.3
     /// The fireflies (`firefly-1...4`, four frames of one bug: belly dim,
     /// warming, bright, dim): how many, how wide in world units, the halo's
     /// radius, and the frame a blink 0.25...1 shows.

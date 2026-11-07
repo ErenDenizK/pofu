@@ -847,9 +847,9 @@ def check_harmony(locked: np.ndarray, kind: str, lim: dict) -> Check | None:
 
 
 def check_light(rgba: np.ndarray, light: dict, enforce: bool | None = None) -> list[Check]:
-    """The light standard (design/art/light-standard.json): values, median band,
-    dark-channel haze and local contrast of the subject region, per colour-script
-    cell x layer. Generalises NIGHT_PROFILE and replaces value_floor for jobs that
+    """The light standard v2 (design/art/light-standard.json, ADR-0021): the dark floor,
+    median band and local-contrast band of the subject region, and for an opaque take
+    the sky, the cloud sea and the darks under the sky, per colour-script cell x layer. Generalises NIGHT_PROFILE and replaces value_floor for jobs that
     declare `light`. A failure is hard for production unless the standard is still
     warn-only (`enforce: false`); an exploration job downgrades it again (advisory)."""
     std = lt.standard()

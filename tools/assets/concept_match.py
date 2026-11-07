@@ -38,7 +38,8 @@ TAKES = REPO / "design" / "art" / "takes"
 TARGETS = {
     "day": "batch-25-seasons/x-season-summer/plate__x-season-summer--t2.webp",
     "golden": "batch-25-seasons/x-season-summer-evening/plate__x-season-summer-evening--t2.webp",
-    "night": "batch-45-beautiful-wounds/x-home-night-key/plate__x-home-night-key--t1.webp",
+    # The founder's liked night (2026-11-07, ADR-0021), not the "too contrasty" home night key.
+    "night": "batch-22-gezgin-forms/x-gezgin-f2-night/plate__x-gezgin-f2-night--t1.webp",
     "rain": "batch-45-beautiful-wounds/x-home-rain/plate__x-home-rain--t1.webp",
     "mist": "batch-45-beautiful-wounds/x-home-mist/plate__x-home-mist--t1.webp",
 }

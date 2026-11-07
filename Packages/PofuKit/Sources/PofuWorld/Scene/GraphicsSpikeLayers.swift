@@ -29,11 +29,12 @@ struct RelightConfig {
 extension RelightRig {
     /// The practicals in a view's own points: `place` maps a world point to
     /// the view's local points, `unit` is points per world unit.
-    func points(place: (WorldPoint) -> CGPoint, unit: Double) -> [RelightRig.Point] {
-        practicals.prefix(2).map { p in
+    func points(place: (WorldPoint) -> CGPoint, unit: Double, centre: CGPoint) -> [RelightRig.Point] {
+        let all = practicals.map { p in
             let at = place(p.point)
             return RelightRig.Point(x: Double(at.x), y: Double(at.y), height: p.height * unit, radius: p.radius * unit, colour: p.colour)
         }
+        return RelightRig.nearest(all, to: (Double(centre.x), Double(centre.y)))
     }
 }
 

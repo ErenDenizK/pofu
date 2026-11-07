@@ -22,19 +22,25 @@ import qa  # noqa: E402
 REFS = {"station-guide": "design/art/templates/station-guide.png"}
 
 
-def washed_plate(w=480, h=320, seed=4) -> np.ndarray:
-    """An opaque plate painted in a high, milky value range (L about 62-97): the failure the standard exists for."""
+def dark_plate(w=480, h=320, seed=4, lo=0.04, hi=0.85) -> np.ndarray:
+    """An opaque plate in v1's look: true darks, crisp detail, a wide value range (L about 5-90).
+    The references fail nothing of the standard; this fails it."""
     rng = np.random.default_rng(seed)
     yy, xx = np.mgrid[0:h, 0:w]
-    base = 0.80 + 0.12 * np.sin(xx / 29.0) * np.cos(yy / 23.0)
+    base = 0.50 + 0.25 * np.sin(xx / 29.0) * np.cos(yy / 23.0)
     blobs = np.zeros((h, w))
     for _ in range(40):
         cx, cy, r = rng.uniform(0, w), rng.uniform(0, h), rng.uniform(10, 40)
-        blobs += np.exp(-(((xx - cx) ** 2 + (yy - cy) ** 2) / (2 * r * r))) * rng.uniform(-0.12, 0.12)
-    fine = rng.normal(0, 0.02, (h, w))
-    v = np.clip(base + blobs + fine, 0.62, 0.97)
-    rgb = np.stack([v, v * 0.98, v * 0.95 + 0.04], axis=-1)
+        blobs += np.exp(-(((xx - cx) ** 2 + (yy - cy) ** 2) / (2 * r * r))) * rng.uniform(-0.25, 0.25)
+    fine = rng.normal(0, 0.05, (h, w))
+    v = np.clip(base + blobs + fine, lo, hi)
+    rgb = np.stack([v, v * 0.97, v * 0.92], axis=-1)
     return np.dstack([np.clip(rgb, 0, 1), np.ones((h, w))])
+
+
+def take(rel: str) -> np.ndarray:
+    import style_lock as sl
+    return sl.load_rgba(lt.ART_ROOT / "takes" / rel)
 
 
 def job(**changes) -> dict:
@@ -56,7 +62,10 @@ class BlockTests(unittest.TestCase):
             self.assertIn(lt.direction(key["from"]), text, cell)
             self.assertIn(key["colour"], text, cell)
             self.assertIn(cs[cell]["shadow"], text, cell)
-            self.assertIn("never lifted blacks", text)
+            self.assertIn("reference envelope", text)
+            self.assertIn("never black", text)
+        self.assertIn("hue change, not a value drop", lt.render_block({"cell": "night", "layer": "subject"}))
+        self.assertNotIn("hue change", lt.render_block({"cell": "day", "layer": "subject"}))
 
     def test_directions_read_naturally(self):
         self.assertEqual(lt.direction([-0.7, -0.7]), "the upper left")
@@ -146,70 +155,110 @@ class ManifestTests(unittest.TestCase):
 
 
 class StandardTests(unittest.TestCase):
-    def test_every_cell_and_layer_has_targets_and_contrast_falls_with_distance(self):
+    def test_every_cell_and_layer_has_targets_and_far_planes_are_lighter_and_flatter(self):
         std = lt.standard()
+        self.assertEqual(std["version"], 2)
         for cell in lt.CELLS:
+            self.assertIn("sky_L", std["cells"][cell]["frame"])
             for layer in lt.LAYERS:
-                self.assertIn("p2_max", std["cells"][cell][layer])
-            s, n, f = (std["cells"][cell][l] for l in ("subject", "near", "far"))
-            self.assertGreaterEqual(s["spread_min"], n["spread_min"])
-            self.assertGreaterEqual(n["spread_min"], f["spread_min"])
-            self.assertLessEqual(s["haze_max"], f["haze_max"])
+                self.assertIn("p5_min", std["cells"][cell][layer])
+            s, f = (std["cells"][cell][l] for l in ("subject", "far"))
+            self.assertGreaterEqual(f["p5_min"], s["p5_min"])
+            self.assertLessEqual(f["lc_p75"][1], s["lc_p75"][1])
+
+    def test_night_is_a_hue_change_not_a_value_drop(self):
+        cells = lt.standard()["cells"]
+        day, night = cells["day"]["subject"], cells["night"]["subject"]
+        self.assertGreaterEqual(night["median"][0], day["median"][0] - 10)
+        self.assertGreaterEqual(night["p5_min"], day["p5_min"] - 10)
+        self.assertLess(cells["night"]["frame"]["sky_L"][1], 50)  # only the sky goes dark
+        self.assertGreaterEqual(cells["night"]["frame"]["sea_L_min"], 70)  # the sea is the reflector
 
     def test_colours_are_not_duplicated_in_the_standard(self):
         text = (lt.STANDARD_PATH).read_text(encoding="utf-8")
         self.assertNotRegex(text, r"#[0-9A-Fa-f]{6}")
 
+    def statuses(self, rgba, cell):
+        return {n: s for n, s, _, _ in lt.evaluate(lt.measure_light(rgba), {"cell": cell, "layer": "subject"})}
+
+    def test_every_liked_reference_passes_its_cell(self):
+        refs = lt.standard()["reference"]
+        for cell in ("day", "golden", "night"):
+            for rel in refs[cell]:
+                with self.subTest(rel):
+                    self.assertEqual(set(self.statuses(take(rel), cell).values()), {"pass"})
+
+    def test_the_too_contrasty_night_fails_on_contrast(self):
+        for rel in lt.standard()["reference"]["too_contrasty_night"]:
+            self.assertEqual(self.statuses(take(rel), "night")["light_contrast"], "fail")
+
     def test_the_approved_pofu_passes_the_day_subject_cell(self):
         import style_lock as sl
         r1 = lt.ART_ROOT / "masters" / "pofu-hamster-base-v1" / "pofu-hamster-base.png"
-        m = lt.measure_light(sl.load_rgba(r1))
-        self.assertEqual({s for _, s, _, _ in lt.evaluate(m, {"cell": "day", "layer": "subject"})}, {"pass"})
+        self.assertEqual(set(self.statuses(sl.load_rgba(r1), "day").values()), {"pass"})
+
+    def test_the_dark_earth_band_fails_the_day_cell(self):
+        import style_lock as sl
+        band = (HERE.parents[2] / "Packages/PofuKit/Sources/PofuWorld/Resources/World.xcassets"
+                / "world-island-main-band2.imageset/world-island-main-band2.png")
+        self.assertEqual(self.statuses(sl.load_rgba(band), "day")["light_values"], "fail")
+
+    def test_a_crushed_night_frame_fails(self):
+        # The game's night before ADR-0021: island L* 10-50 under a near-black sky and sea.
+        frame = dark_plate(lo=0.02, hi=0.45)
+        s = self.statuses(frame, "night")
+        for name in ("light_values", "light_median", "light_sea", "light_dark"):
+            self.assertEqual(s[name], "fail", name)
 
 
 class CheckAndGradeTests(unittest.TestCase):
     LIGHT = {"cell": "day", "layer": "subject"}
 
-    def statuses(self, rgba, enforce):
-        return {c.name: c.status for c in qa.check_light(rgba, self.LIGHT, enforce=enforce)}
+    def statuses(self, rgba, enforce, light=None):
+        return {c.name: c.status for c in qa.check_light(rgba, light or self.LIGHT, enforce=enforce)}
 
-    def test_a_washed_take_fails_then_passes_once_graded(self):
-        take = washed_plate()
-        before = self.statuses(take, enforce=True)
+    def test_a_dark_contrasty_take_fails_then_passes_once_graded(self):
+        t = dark_plate()
+        before = self.statuses(t, enforce=True)
         self.assertEqual(before["light_values"], "fail")
-        self.assertEqual(before["light_haze"], "fail")
-        graded, info = gt.grade_rgba(take, self.LIGHT)
-        self.assertIn("black_point", info)
+        graded, info = gt.grade_rgba(t, self.LIGHT)
+        self.assertIn("airlight", info)
         after = self.statuses(graded, enforce=True)
-        self.assertEqual(set(after.values()), {"pass"}, after)
-        np.testing.assert_array_equal(graded[..., 3], take[..., 3])
+        self.assertEqual({after[k] for k in ("light_values", "light_median")}, {"pass"}, after)
+        np.testing.assert_array_equal(graded[..., 3], t[..., 3])
 
-    def test_a_dark_cell_comes_down_and_a_dark_take_is_left_alone(self):
+    def test_a_night_take_is_lifted_into_the_band_and_a_graded_take_is_left_alone(self):
         night = {"cell": "night", "layer": "subject"}
-        graded, _ = gt.grade_rgba(washed_plate(), night)
+        graded, _ = gt.grade_rgba(dark_plate(), night)
         m = lt.measure_light(graded)
         lo, hi = lt.targets(night)["median"]
         self.assertTrue(lo - 2 <= m["L_p50"] <= hi, m)
-        again, info = gt.grade_rgba(graded, night)
+        self.assertGreaterEqual(m["L_p5"], lt.targets(night)["p5_min"] - 1, m)
+        again, _ = gt.grade_rgba(graded, night)
         self.assertLess(abs(lt.measure_light(again)["L_p50"] - m["L_p50"]), 3)
 
+    def test_a_reference_is_left_alone(self):
+        ref = take(lt.standard()["reference"]["day"][0])
+        _, info = gt.grade_rgba(ref, self.LIGHT)
+        self.assertEqual(info, {})
+
     def test_the_standard_is_warn_only_until_enforced(self):
-        take = washed_plate()
+        t = dark_plate()
         self.assertTrue(lt.standard()["enforce"] is False)
-        shipped = self.statuses(take, enforce=None)
+        shipped = self.statuses(t, enforce=None)
         self.assertNotIn("fail", shipped.values())
         self.assertIn("warn", shipped.values())
 
     def test_exploration_downgrades_a_failing_light_check(self):
-        checks = qa.advisory(qa.check_light(washed_plate(), self.LIGHT, enforce=True))
+        checks = qa.advisory(qa.check_light(dark_plate(), self.LIGHT, enforce=True))
         self.assertNotIn("fail", {c.status for c in checks})
 
     def test_light_replaces_value_floor_in_run_checks(self):
-        take = washed_plate()
-        names = [c.name for c in qa.run_checks("plate", take, take, ["world-props"], light=self.LIGHT)]
+        t = dark_plate()
+        names = [c.name for c in qa.run_checks("plate", t, t, ["world-props"], light=self.LIGHT)]
         self.assertIn("light_values", names)
         self.assertNotIn("value_floor", names)
-        names = [c.name for c in qa.run_checks("plate", take, take, ["world-props"])]
+        names = [c.name for c in qa.run_checks("plate", t, t, ["world-props"])]
         self.assertIn("value_floor", names)
         self.assertNotIn("light_values", names)
 

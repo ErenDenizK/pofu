@@ -116,6 +116,41 @@ public struct RelightRig: Hashable, Sendable {
     }
 }
 
+extension RelightRig {
+    /// The night's rig (look pipeline v2): the cell's moon key, sky fill and
+    /// rim, and every source of the light field (lamps, the tea stall's
+    /// ember, Pofu's door, his lantern, the lighthouse when present) as a
+    /// practical; nil by day. Its strength follows the night's share of the
+    /// hour, so dusk is lit at half strength and day not at all. Pofu is
+    /// never self-lit: his light is the nearest source (his lantern).
+    public static func night(light: WorldLight, field: LightField) -> RelightRig? {
+        let strength = min(max((light.night - LookTuning.nightRelightFrom) / (1 - LookTuning.nightRelightFrom), 0), 1)
+        guard strength > 0.01 else { return nil }
+        var rig = make(light: light, emitters: [], strength: strength)
+        rig.practicals = field.sources.filter { $0.kind != .pond }.map { source in
+            let k = min(source.strength, 1.2) * LookTuning.nightRelightSourceGain
+            return WorldPractical(
+                point: source.point,
+                height: source.height,
+                radius: source.reach * LookTuning.nightRelightReach,
+                colour: GradeRGB(source.colour.r * k, source.colour.g * k, source.colour.b * k)
+            )
+        }
+        return rig
+    }
+
+    /// The `count` practicals that reach nearest to `centre` (a sprite's
+    /// middle, in the same points `place` maps to), strongest reach first:
+    /// the shader lights each sprite from two sources.
+    public static func nearest(_ points: [Point], to centre: (x: Double, y: Double), count: Int = 2) -> [Point] {
+        let ranked = points.map { p -> (Point, Double) in
+            let d = ((p.x - centre.x) * (p.x - centre.x) + (p.y - centre.y) * (p.y - centre.y)).squareRoot()
+            return (p, d / max(p.radius, 1e-6))
+        }
+        return ranked.filter { $0.1 < 1 }.sorted { $0.1 < $1.1 }.prefix(count).map(\.0)
+    }
+}
+
 public enum RelightMath {
     /// Wrapped diffuse: a soft terminator, never a hard black side.
     static let wrap = 0.35

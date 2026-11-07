@@ -96,7 +96,8 @@ extension DepthImage {
                     y: (origin.y + p.y - Double(anchor.y) - box.minY) * s
                 )
             },
-            unit: s
+            unit: s,
+            centre: CGPoint(x: box.width * s / 2, y: box.height * s / 2)
         )
         return RelightConfig(
             normal: "world-\(name)--normal",
@@ -110,7 +111,9 @@ extension DepthImage {
 }
 
 /// A soft contact shadow where an object meets the ground (§12.3 d): a
-/// wide falloff and a darker, tighter core.
+/// wide falloff and a darker, tighter core. Look pipeline v2: warm, light
+/// and soft, like the references' painted contact (the look lab found dark
+/// pads hurt; `LookTuning.padOuterOpacity`).
 struct ContactShadow: View {
     let width: CGFloat
     let height: CGFloat
@@ -128,7 +131,7 @@ struct ContactShadow: View {
         }
         let width = (maxX - minX) * 1.3 + 12
         let depth = maxY - minY
-        return (width, depth * 0.9 + 10, (minX + maxX) / 2 + 4, maxY - depth * 0.3, isWater ? 0.7 : 1.9)
+        return (width, depth * 0.9 + 10, (minX + maxX) / 2 + 4, maxY - depth * 0.3, isWater ? 0.6 : LookTuning.stationPadStrength)
     }
 
     var body: some View {
@@ -136,7 +139,7 @@ struct ContactShadow: View {
             Ellipse()
                 .fill(
                     RadialGradient(
-                        colors: [Color.shadowInk.opacity(0.20 * strength), Color.shadowInk.opacity(0)],
+                        colors: [Color.shadowInk.opacity(LookTuning.padOuterOpacity * strength), Color.shadowInk.opacity(0)],
                         center: .center,
                         startRadius: 0,
                         endRadius: width / 2
@@ -146,7 +149,7 @@ struct ContactShadow: View {
             Ellipse()
                 .fill(
                     RadialGradient(
-                        colors: [Color.shadowInk.opacity(0.16 * strength), Color.shadowInk.opacity(0)],
+                        colors: [Color.shadowInk.opacity(LookTuning.padCoreOpacity * strength), Color.shadowInk.opacity(0)],
                         center: .center,
                         startRadius: 0,
                         endRadius: width * 0.27

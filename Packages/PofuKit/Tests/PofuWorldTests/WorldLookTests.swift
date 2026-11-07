@@ -36,7 +36,8 @@ struct WorldGradeTests {
         #expect(golden.r > golden.b + 0.05)
         let night = WorldGrade.night.apply(grey)
         #expect(night.b > night.r + 0.05)
-        #expect(night.g < 0.5)
+        #expect(night.g < night.r, "violet, not teal")
+        #expect(luma(night) > 0.5, "night is a hue change, not a value drop")
     }
 
     private func luma(_ c: GradeRGB) -> Double {
@@ -59,24 +60,29 @@ struct WorldGradeTests {
         #expect(unwell.apply(GradeRGB(all: 0.7)).b > unwell.apply(GradeRGB(all: 0.7)).r)
     }
 
-    /// Concept match (2026-11-07): the night concept keeps the earth near
-    /// L* 50 to 70 with blue-violet shadows; round 3's grade crushed it to
-    /// L* 13 and neutral grey. The night stays clearly darker than day,
-    /// its shadows lean blue-violet, and nothing is a grey void.
-    @Test func nightIsReadableWithBlueVioletShadows() {
+    /// ADR-0021: night is a hue change, not a value drop. The liked night
+    /// references keep the island near its day value (frame L* p50 72 to
+    /// 77, only the sky dark), shadows violet, lights cream. Round 3 and
+    /// the concept-match grade crushed the earth to L* 13 and then 38.
+    @Test func nightIsAHueChangeNotAValueDrop() {
         // The art's darkest values sit near L* 50 (sRGB ~0.47).
         let shadow = GradeRGB(0.47, 0.42, 0.36)
         let night = WorldGrade.night.apply(shadow)
-        #expect(luma(night) > 0.08 && luma(night) < 0.3)
-        #expect(luma(night) < luma(WorldGrade.day.apply(shadow)) * 0.7)
+        #expect(luma(night) > 0.38 && luma(night) < 0.6, "a shadow keeps about its day value")
         #expect(night.b > night.r && night.b > night.g, "shadows lean blue-violet")
-        // Black stays dark but coloured, never lifted to a grey.
+        #expect(night.r > night.g, "violet, not a cold steel blue")
+        // Black is lifted to a coloured violet, never a void.
         let black = WorldGrade.night.apply(GradeRGB(all: 0))
-        #expect(luma(black) < 0.08)
-        #expect(black.b > black.g + 0.02)
-        // Highlights still read: a cream highlight stays well above the shadow.
-        let cream = GradeRGB(0.97, 0.94, 0.88)
-        #expect(luma(WorldGrade.night.apply(cream)) - luma(night) > 0.25)
+        #expect(luma(black) > 0.06 && luma(black) < 0.2)
+        #expect(black.b > black.r + 0.2)
+        // Lights stay cream: bright, red at or above blue.
+        let cream = WorldGrade.night.apply(GradeRGB(0.97, 0.94, 0.88))
+        #expect(luma(cream) > 0.8)
+        #expect(cream.r >= cream.b)
+        // Softer than day: no contrast push, a light vignette.
+        #expect(WorldGrade.night.contrast < 1)
+        #expect(WorldGrade.night.vignette <= 0.1)
+        #expect(WorldGrade.night.black == 0)
     }
 
     @Test func theSkyTakesTheGradeWithoutItsLevels() {
@@ -126,7 +132,8 @@ struct WorldLightTests {
 
     @Test func noonIsTheDayGrade() {
         let light = WorldLight.at(hour: 12, wellbeing: 78, calm: 1.4)
-        #expect(light.grade == .day)
+        #expect(light.grade.with(lut: nil) == .day)
+        #expect(light.grade.lut?.weights == [.day: 1])
         #expect(light.shafts == 0)
         #expect(light.fireflies == 0)
         #expect(light.pollen > 0.9)
@@ -134,10 +141,10 @@ struct WorldLightTests {
 
     @Test func goldenHourHasShaftsAndNightHasFireflies() {
         let golden = WorldLight.at(hour: 18.5, wellbeing: 78, calm: 1.4)
-        #expect(golden.grade == .goldenHour)
+        #expect(golden.grade.with(lut: nil) == .goldenHour)
         #expect(golden.shafts > 0.9)
         let night = WorldLight.at(hour: 22, wellbeing: 78, calm: 1.4)
-        #expect(night.grade == .night)
+        #expect(night.grade.with(lut: nil) == .night)
         #expect(night.fireflies > 0.9)
         #expect(night.shafts == 0)
     }
@@ -151,7 +158,7 @@ struct WorldLightTests {
         #expect(WorldLight.at(hour: 12, wellbeing: 78, calm: 1.4).unwell == 0)
         let low = WorldLight.at(hour: 12, wellbeing: 25, calm: 1.4)
         #expect(low.unwell == 1)
-        #expect(low.grade == WorldGrade.day.layered(with: .unwell, amount: 1))
+        #expect(low.grade.with(lut: nil) == WorldGrade.day.layered(with: .unwell, amount: 1))
         #expect(low.grade.saturation < WorldGrade.day.saturation)
     }
 
