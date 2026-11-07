@@ -1,0 +1,24 @@
+id: asset-x-home-flow-il5
+type: asset
+title_tr: x-home-flow-il5
+title_en: x-home-flow-il5 (plate)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached painting to an earlier day. Remove the workshop and flatten its raised
+  terrace into plain lawn. Remove the lighthouse (plain islet lawn there). Remove the three
+  path lamps. Remove the sage-green round door at the right of the home island's earth (plain
+  earth there). The tea stall loses its string of lights. The pier: planks and posts only,
+  no lantern post. The far island with the waterfall, upper le…
+links:
+  variant_of:
+  - asset-x-home-flow-il6
+art:
+  images: []
+  jobs:
+  - batch-66-home-flow:x-home-flow-il5
+sources:
+- doc: tools/imagegen/manifest/batch-66-home-flow.yaml
+kind: plate
+batch: batch-66-home-flow
+size: 1024x1536

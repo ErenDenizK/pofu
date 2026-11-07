@@ -1,0 +1,24 @@
+id: asset-x-home-flow-bare
+type: asset
+title_tr: x-home-flow-bare
+title_en: x-home-flow-bare (plate)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached painting: remove every built and planted thing and leave only the land,
+  the sky and the far things. Remove the windmill, the workshop, the beehive, the tea stall,
+  the garden and its sunflower, the pond and its dock (paint plain lawn where it was), the
+  stone path, the path lamps, the lantern string, the flower borders, the vines, the hamster
+  wheel, the rope bridge, the bagel cart, the lighthouse, the…
+links:
+  variant_of:
+  - asset-x-home-flow-final
+art:
+  images: []
+  jobs:
+  - batch-66-home-flow:x-home-flow-bare
+sources:
+- doc: tools/imagegen/manifest/batch-66-home-flow.yaml
+kind: plate
+batch: batch-66-home-flow
+size: 1024x1536

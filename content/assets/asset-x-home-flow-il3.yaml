@@ -1,0 +1,22 @@
+id: asset-x-home-flow-il3
+type: asset
+title_tr: x-home-flow-il3
+title_en: x-home-flow-il3 (plate)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached painting to an earlier day. Remove the pond and paint plain lawn where
+  it was. A few soft wisps of white fog are lifting off the harbor islet and the rope bridge
+  on the right, as if a fog bank has just rolled back. Everything else stays exactly the same.
+links:
+  variant_of:
+  - asset-x-home-flow-il4
+art:
+  images: []
+  jobs:
+  - batch-66-home-flow:x-home-flow-il3
+sources:
+- doc: tools/imagegen/manifest/batch-66-home-flow.yaml
+kind: plate
+batch: batch-66-home-flow
+size: 1024x1536

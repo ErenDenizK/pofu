@@ -1,0 +1,24 @@
+id: asset-x-home-flow-il4
+type: asset
+title_tr: x-home-flow-il4
+title_en: x-home-flow-il4 (plate)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached painting to an earlier day. Remove the pier and its posts at the harbor
+  islet's front right (plain islet edge there). Remove the round stepping stones near the
+  pond. The pond is its first self: a small round pond with a ring of pebbles. The garden:
+  a bed of sunflowers with a watering can and seedlings, no fence arch. The tea stall: a counter,
+  a kettle and a striped awning, no stools or table. The ba…
+links:
+  variant_of:
+  - asset-x-home-flow-il5
+art:
+  images: []
+  jobs:
+  - batch-66-home-flow:x-home-flow-il4
+sources:
+- doc: tools/imagegen/manifest/batch-66-home-flow.yaml
+kind: plate
+batch: batch-66-home-flow
+size: 1024x1536
