@@ -65,7 +65,7 @@ extension ColourScript {
             ambientFloor: 0.0,
             moonRim: 0.0,
             fog: ScriptFog(colour: PofuRGB(hex: 0xCDE3F5), far: 0.24),
-            sea: SeaColours(light: PofuRGB(hex: 0xFFFFFF), shade: PofuRGB(hex: 0xD8E3EF), opacity: 0.95),
+            sea: SeaColours(light: PofuRGB(hex: 0xFFF6EE), shade: PofuRGB(hex: 0xC4D5EE), opacity: 0.95),
             grade: WorldGrade(
                 lift: GradeRGB(0.0, 0.0, 0.012),
                 gain: GradeRGB(1.0, 1.0, 0.985),
@@ -103,13 +103,13 @@ extension ColourScript {
             ambientFloor: 0.04,
             moonRim: 0.0,
             fog: ScriptFog(colour: PofuRGB(hex: 0xF2BCA2), far: 0.32),
-            sea: SeaColours(light: PofuRGB(hex: 0xFFE5D2), shade: PofuRGB(hex: 0xD3A3B0), opacity: 0.95),
+            sea: SeaColours(light: PofuRGB(hex: 0xFFE5D2), shade: PofuRGB(hex: 0xC8B0D0), opacity: 0.95),
             grade: WorldGrade(
-                lift: GradeRGB(0.03, 0.008, -0.015),
-                gamma: GradeRGB(1.02, 1.0, 0.97),
-                gain: GradeRGB(1.07, 0.97, 0.85),
-                contrast: 1.12,
-                saturation: 1.3,
+                lift: GradeRGB(0.03, 0.008, -0.005),
+                gamma: GradeRGB(1.02, 1.0, 0.98),
+                gain: GradeRGB(1.06, 0.98, 0.9),
+                contrast: 1.1,
+                saturation: 1.15,
                 vignette: 0.2
             ),
             character: WorldGrade(
@@ -142,15 +142,16 @@ extension ColourScript {
             ambientFloor: 0.1,
             moonRim: 0.25,
             fog: ScriptFog(colour: PofuRGB(hex: 0x8E7FB0), far: 0.4),
-            sea: SeaColours(light: PofuRGB(hex: 0xA795BC), shade: PofuRGB(hex: 0x5E5384), opacity: 0.9),
+            sea: SeaColours(light: PofuRGB(hex: 0xD2C2DA), shade: PofuRGB(hex: 0x8E80AA), opacity: 0.9),
             grade: WorldGrade(
-                black: 0.18,
-                gamma: GradeRGB(0.88, 0.9, 0.98),
-                gain: GradeRGB(0.68, 0.68, 0.92),
-                contrast: 1.14,
+                black: 0.06,
+                lift: GradeRGB(0.04, 0.03, 0.12),
+                gamma: GradeRGB(0.93, 0.94, 1.0),
+                gain: GradeRGB(0.78, 0.72, 0.86),
+                contrast: 1.08,
                 pivot: 0.35,
-                saturation: 0.9,
-                vignette: 0.26
+                saturation: 1.0,
+                vignette: 0.24
             ),
             character: WorldGrade(
                 lift: GradeRGB(0.012, 0.008, 0.02),
@@ -165,13 +166,13 @@ extension ColourScript {
             name: .night,
             sun: SkyPoint(x: 0.76, y: 0.16),
             sky: SkyColours(
-                zenith: PofuRGB(hex: 0x1C2242),
-                horizon: PofuRGB(hex: 0x3E3659),
+                zenith: PofuRGB(hex: 0x2E2E58),
+                horizon: PofuRGB(hex: 0x7A6888),
                 glow: PofuRGB(hex: 0xD9D2F5),
-                glowStrength: 0.22,
-                cloudLight: PofuRGB(hex: 0x6F6A92),
-                cloudShade: PofuRGB(hex: 0x3A3759),
-                cloudOpacity: 0.7,
+                glowStrength: 0.26,
+                cloudLight: PofuRGB(hex: 0xC8C2D8),
+                cloudShade: PofuRGB(hex: 0x76708F),
+                cloudOpacity: 0.8,
                 stars: 1.0,
                 tint: PofuRGB(hex: 0xBDC2EB)
             ),
@@ -183,20 +184,21 @@ extension ColourScript {
             poolGain: 1.0,
             ambientFloor: 0.14,
             moonRim: 0.5,
-            fog: ScriptFog(colour: PofuRGB(hex: 0x4A4677), far: 0.42),
-            sea: SeaColours(light: PofuRGB(hex: 0x9490C0), shade: PofuRGB(hex: 0x57527F), opacity: 0.88),
+            fog: ScriptFog(colour: PofuRGB(hex: 0x7A7098), far: 0.42),
+            sea: SeaColours(light: PofuRGB(hex: 0xE0D8E8), shade: PofuRGB(hex: 0xA49CB8), opacity: 0.92),
             grade: WorldGrade(
-                black: 0.32,
-                gamma: GradeRGB(0.8, 0.85, 0.97),
-                gain: GradeRGB(0.44, 0.5, 0.9),
-                contrast: 1.2,
-                pivot: 0.2,
-                saturation: 0.72,
-                vignette: 0.32
+                black: 0.04,
+                lift: GradeRGB(0.05, 0.04, 0.18),
+                gamma: GradeRGB(0.95, 0.95, 1.0),
+                gain: GradeRGB(0.62, 0.64, 0.86),
+                contrast: 1.08,
+                pivot: 0.3,
+                saturation: 1.0,
+                vignette: 0.28
             ),
             character: WorldGrade(
                 gamma: GradeRGB(0.95, 0.95, 0.95),
-                gain: GradeRGB(0.64, 0.61, 0.57),
+                gain: GradeRGB(0.76, 0.72, 0.68),
                 contrast: 1.05,
                 pivot: 0.4,
                 saturation: 1.05
@@ -245,7 +247,7 @@ extension ColourScript {
     static let generatedWeather: [String: ColourState] = [
         "overcast": ColourState(
             grade: WorldGrade(
-                gain: GradeRGB(0.8, 0.81, 0.83),
+                gain: GradeRGB(0.92, 0.92, 0.95),
                 contrast: 0.8,
                 saturation: 0.9,
                 vignette: 0.1
@@ -254,9 +256,9 @@ extension ColourScript {
                 gain: GradeRGB(0.99, 0.99, 1.0),
                 contrast: 0.96
             ),
-            skyValue: 0.92,
-            skyChroma: 0.7,
-            skyToward: PofuRGB(hex: 0xAEB8C6),
+            skyValue: 0.97,
+            skyChroma: 0.85,
+            skyToward: PofuRGB(hex: 0xB4AEC8),
             skyAmount: 0.35,
             keyIntensity: 0.7,
             fillIntensity: 1.05,
@@ -265,8 +267,8 @@ extension ColourScript {
         ),
         "lightRain": ColourState(
             grade: WorldGrade(
-                lift: GradeRGB(0.012, 0.015, 0.024),
-                gain: GradeRGB(0.8, 0.84, 0.9),
+                lift: GradeRGB(0.012, 0.012, 0.024),
+                gain: GradeRGB(0.9, 0.9, 0.95),
                 contrast: 0.68,
                 saturation: 0.82,
                 vignette: 0.14
@@ -275,9 +277,9 @@ extension ColourScript {
                 gain: GradeRGB(0.98, 0.99, 1.0),
                 contrast: 0.94
             ),
-            skyValue: 0.86,
-            skyChroma: 0.6,
-            skyToward: PofuRGB(hex: 0x8E9DB2),
+            skyValue: 0.94,
+            skyChroma: 0.8,
+            skyToward: PofuRGB(hex: 0xA59EBB),
             skyAmount: 0.45,
             keyIntensity: 0.5,
             fillIntensity: 1.1,

@@ -173,6 +173,15 @@ public enum LookTuning {
         return island + (home - island) * (z - 1)
     }
 
+    /// Half the depth of field's in-focus slab when nothing is focused, in
+    /// depth units around Pofu (depth 54): it reaches past the lawn's back
+    /// edge (depth about -87) and the stations on it, so the whole island
+    /// is sharp and the blur only takes what lies beyond it (concept match,
+    /// `docs/research/concept-match.md`: the concepts' back row keeps 0.8
+    /// to 1.4x the front row's local contrast; at a 34 slab the game kept
+    /// 0.42x).
+    public static let islandSharpSlab = 150.0
+
     /// How long the effects stay live after the scene appears (a visit),
     /// in seconds; after that the settled frame is cached.
     public static let visitSeconds = 2.5

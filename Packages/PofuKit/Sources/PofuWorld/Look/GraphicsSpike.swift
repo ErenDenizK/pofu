@@ -55,16 +55,18 @@ public struct GraphicsSpike: Hashable, Sendable {
 
     /// The depth blur's lens: in focus at `focus` (the focal object's
     /// depth). Crisp by default (the founder, 2026-11-05: "always very
-    /// heavy", "no detail shows"): a thick in-focus slab and a small
-    /// largest radius, so the playable island reads sharp and only the
-    /// far plate and the island's roots recede. With a station or a
-    /// resident focused (`focused`), the slab is thicker still and the
-    /// blur lighter, so the object and the ground around it are sharp
-    /// and only the far background softens. On the Map (`z` 0) there is
-    /// no blur; it eases in by the Island framing (`z` 1).
+    /// heavy", "no detail shows"; 2026-11-07: match the concepts): the
+    /// in-focus slab spans the whole island (`LookTuning.islandSharpSlab`),
+    /// so its back row (the windmill, the workshop, the garden) is as
+    /// sharp as Pofu, as in every home concept, and only what lies past
+    /// the island (the sky, the far isles) softens. With a station or a
+    /// resident focused (`focused`), the slab is thinner and the blur
+    /// lighter, so the object and the ground around it are sharp and the
+    /// rest recedes. On the Map (`z` 0) there is no blur; it eases in by
+    /// the Island framing (`z` 1).
     public func field(focus: Double, focused: Bool = false, z: Double = 2) -> DepthOfField {
         let ease = min(max(z.isFinite ? z : 2, 0), 1)
         let radius = (focused ? 3.5 : 5.0) * max(dofStrength, 0) * ease
-        return DepthOfField(focus: focus, slab: focused ? 48 : 34, range: focused ? 190 : 170, maxRadius: radius)
+        return DepthOfField(focus: focus, slab: focused ? 48 : LookTuning.islandSharpSlab, range: focused ? 190 : 170, maxRadius: radius)
     }
 }
