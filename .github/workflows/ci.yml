@@ -376,6 +376,13 @@ jobs:
           # Measured numbers for every grade frame (tools/assets/frame_metrics.py).
           python3 -I repo/tools/assets/frame_metrics.py shots > out/grade-metrics.txt || true
           cat out/grade-metrics.txt
+          # The concept match sheet: each home light state beside its concept,
+          # with main's frames as "before" (docs/research/concept-match.md).
+          mkdir -p main-shots
+          if git -C repo fetch -q --depth 1 origin screenshots/main; then
+            git -C repo archive FETCH_HEAD | tar -x -C main-shots
+          fi
+          python3 -I repo/tools/assets/concept_match.py shots out/concept-match.jpg --before main-shots > out/concept-match.txt || true
           # The colour script's swatches.
           python3 -I repo/tools/assets/colour_script.py swatches out/colour-script.png
           # Framing before and after: round 2's published frames beside these.
