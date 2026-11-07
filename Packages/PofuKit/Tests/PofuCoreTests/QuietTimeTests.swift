@@ -9,6 +9,13 @@ import Testing
 struct QuietTimeTests {
     let accrual = QuietTimeAccrual(calendar: .istanbul)
     let gatekeeper = Gatekeeper(economy: Economy(calendar: .istanbul))
+    /// A gate whose free pass lasts 15 minutes, for tests that need a pass
+    /// to be running for a while.
+    let longGatekeeper: Gatekeeper = {
+        var configuration = EconomyConfiguration.standard
+        configuration.friction.freePassMinutes = 15
+        return Gatekeeper(economy: Economy(configuration: configuration, calendar: .istanbul))
+    }()
     let noon = instant(2026, 11, 2, 12)
 
     /// A ledger that heard its first sign of life at `date`.
@@ -176,7 +183,7 @@ struct QuietTimeTests {
     @Test func signsOfLifeWhileAPassRunsDoNotResumeQuiet() throws {
         var state = PofuState()
         let reach = try attempt(at: noon, in: &state)
-        try gatekeeper.resolve(reach, with: .pay(minutes: 15), at: noon, state: &state)
+        try longGatekeeper.resolve(reach, with: .proceed, at: noon, state: &state)
         // A pass-through, Pofu in the foreground, an automation run.
         _ = gatekeeper.beginCheckIn(for: testTarget, at: noon.adding(minutes: 3), state: &state)
         gatekeeper.noteUserReturned(at: noon.adding(minutes: 5), state: &state)
@@ -223,7 +230,7 @@ struct QuietTimeTests {
     @Test func passThroughsDuringAPassChangeNothing() throws {
         var state = PofuState()
         let first = try attempt(at: noon, in: &state)
-        try gatekeeper.resolve(first, with: .pay(minutes: 15), at: noon, state: &state)
+        try longGatekeeper.resolve(first, with: .proceed, at: noon, state: &state)
         var withVisits = state
         _ = gatekeeper.beginCheckIn(for: testTarget, at: noon.adding(minutes: 3), state: &withVisits)
         _ = gatekeeper.beginCheckIn(for: testTarget, at: noon.adding(minutes: 9), state: &withVisits)
@@ -238,7 +245,7 @@ struct QuietTimeTests {
     @Test func endingAPassEarlyResumesQuietAtOnce() throws {
         var state = PofuState()
         let first = try attempt(at: noon, in: &state)
-        let record = try gatekeeper.resolve(first, with: .pay(minutes: 15), at: noon, state: &state)
+        let record = try longGatekeeper.resolve(first, with: .proceed, at: noon, state: &state)
         let pass = try #require(record.outcome.pass)
         gatekeeper.endPass(id: pass.id, at: noon.adding(minutes: 3), state: &state)
         #expect(state.quietTime.quietSince == noon.adding(minutes: 3))
@@ -249,17 +256,17 @@ struct QuietTimeTests {
     @Test func endingOnePassWhileAnotherRunsWaitsForASignOfLifeAfterIt() throws {
         var state = PofuState()
         let first = try attempt(at: noon, in: &state)
-        let record = try gatekeeper.resolve(first, with: .pay(minutes: 5), at: noon, state: &state)
+        let record = try longGatekeeper.resolve(first, with: .proceed, at: noon, state: &state)
         let short = try #require(record.outcome.pass)
         let decision = gatekeeper.beginCheckIn(for: "youtube", at: noon.adding(minutes: 1), state: &state)
         guard case .intervene(let other) = decision else {
             Issue.record("Expected an intervention")
             return
         }
-        try gatekeeper.resolve(other, with: .pay(minutes: 5), at: noon.adding(minutes: 1), state: &state)
+        try longGatekeeper.resolve(other, with: .proceed, at: noon.adding(minutes: 1), state: &state)
         gatekeeper.endPass(id: short.id, at: noon.adding(minutes: 2), state: &state)
         #expect(state.quietTime.quietSince == nil)
-        // The other pass expires at 12:06; the user is back at 12:20.
+        // The other pass expires at 12:16; the user is back at 12:20.
         gatekeeper.noteUserReturned(at: noon.adding(minutes: 20), state: &state)
         #expect(state.quietTime.quietSince == noon.adding(minutes: 20))
     }
@@ -267,7 +274,7 @@ struct QuietTimeTests {
     @Test func aVoidedPassGivesQuietBackFromItsGrant() throws {
         var state = PofuState()
         let first = try attempt(at: noon, in: &state)
-        let record = try gatekeeper.resolve(first, with: .pay(minutes: 10), at: noon.adding(minutes: 12), state: &state)
+        let record = try longGatekeeper.resolve(first, with: .proceed, at: noon.adding(minutes: 12), state: &state)
         let pass = try #require(record.outcome.pass)
         #expect(state.quietTime.quietSince == nil)
         gatekeeper.voidPass(id: pass.id, state: &state)

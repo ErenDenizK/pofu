@@ -42,8 +42,7 @@ final class UIV3ScreenshotTests: XCTestCase {
             target: ProtectedApp.instagram.target,
             attemptedAt: Date(),
             ladderRung: .pause,
-            rung: .pause,
-            cheapestPrice: nil
+            rung: .pause
         )
         let plan = BreathPlan(rules: .standard, overLimitOpen: 1, explains: false)
         let shots: [(String, Bool, BreathFreeze)] = [

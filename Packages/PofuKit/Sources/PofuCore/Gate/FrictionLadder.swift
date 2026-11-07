@@ -1,29 +1,30 @@
 import Foundation
 
 /// The rungs of the friction ladder (vision.md), from gentlest to firmest.
+///
+/// Seeds never buy screen time (ADR-0015), so both rungs are free: there is
+/// no paying rung and no asking a friend to pay for the user. Records saved
+/// before ADR-0015 may hold the removed `pay` (2) and `askFriend` (3)
+/// rungs; they decode as `intent`.
 public enum FrictionRung: Int, Hashable, Sendable, Codable, CaseIterable, Comparable {
     /// A short breathing moment, then the user may continue for free.
     case pause = 0
     /// "What are you opening this for?", then the user may continue for
     /// free.
     case intent = 1
-    /// Continuing costs energy.
-    case pay = 2
-    /// Only a friend can approve continuing.
-    case askFriend = 3
 
     public static func < (lhs: FrictionRung, rhs: FrictionRung) -> Bool {
         lhs.rawValue < rhs.rawValue
     }
 
-    /// The next rung up; `askFriend` is the top.
-    public var next: FrictionRung {
-        FrictionRung(rawValue: rawValue + 1) ?? .askFriend
+    public init(from decoder: any Decoder) throws {
+        let raw = try decoder.singleValueContainer().decode(Int.self)
+        self = FrictionRung(rawValue: raw) ?? .intent
     }
 
-    /// Whether the user may continue on this rung without paying.
-    public var isFree: Bool {
-        self == .pause || self == .intent
+    /// The next rung up; `intent` is the top.
+    public var next: FrictionRung {
+        FrictionRung(rawValue: rawValue + 1) ?? .intent
     }
 }
 
@@ -61,17 +62,5 @@ public struct FrictionLadder: Hashable, Sendable, Codable {
         lastAttemptAt = date
         lastRung = landed
         return landed
-    }
-
-    /// The rung the user actually faces: once continuing would cost energy
-    /// and the balance cannot cover any unlock, only a friend can help.
-    public static func effectiveRung(
-        ladderRung: FrictionRung,
-        canAffordAnyUnlock: Bool
-    ) -> FrictionRung {
-        if ladderRung >= .pay && !canAffordAnyUnlock {
-            return .askFriend
-        }
-        return ladderRung
     }
 }

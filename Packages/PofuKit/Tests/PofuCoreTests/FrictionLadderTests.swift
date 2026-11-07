@@ -8,12 +8,18 @@ struct FrictionLadderTests {
     let start = instant(2026, 11, 2, 10)
 
     @Test func rungsAreOrdered() {
-        #expect(FrictionRung.allCases == [.pause, .intent, .pay, .askFriend])
-        #expect(FrictionRung.pause < .intent && FrictionRung.intent < .pay && FrictionRung.pay < .askFriend)
+        #expect(FrictionRung.allCases == [.pause, .intent])
+        #expect(FrictionRung.pause < .intent)
         #expect(FrictionRung.pause.next == .intent)
-        #expect(FrictionRung.askFriend.next == .askFriend)
-        #expect(FrictionRung.pause.isFree && FrictionRung.intent.isFree)
-        #expect(!FrictionRung.pay.isFree && !FrictionRung.askFriend.isFree)
+        #expect(FrictionRung.intent.next == .intent)
+    }
+
+    @Test func recordsFromBeforeThePayRungLeftDecodeAsIntent() throws {
+        for legacy in ["2", "3"] {
+            let rung = try JSONDecoder().decode(FrictionRung.self, from: Data(legacy.utf8))
+            #expect(rung == .intent)
+        }
+        #expect(try JSONDecoder().decode(FrictionRung.self, from: Data("0".utf8)) == .pause)
     }
 
     @Test func firstAttemptPauses() {
@@ -23,13 +29,13 @@ struct FrictionLadderTests {
         #expect(ladder.lastAttemptAt == start)
     }
 
-    @Test func attemptsInsideTheCooldownClimbUpToPay() {
+    @Test func attemptsInsideTheCooldownClimbUpToIntent() {
         var ladder = FrictionLadder()
         var rungs: [FrictionRung] = []
         for minute in [0.0, 10, 20, 30, 40] {
             rungs.append(ladder.registerAttempt(at: start.adding(minutes: minute), rules: rules))
         }
-        #expect(rungs == [.pause, .intent, .pay, .pay, .pay])
+        #expect(rungs == [.pause, .intent, .intent, .intent, .intent])
     }
 
     @Test func cooldownIsMeasuredFromTheLastAttempt() {
@@ -40,7 +46,7 @@ struct FrictionLadderTests {
         // 100 minutes after the first, but only 50 after the second.
         let third = ladder.registerAttempt(at: start.adding(minutes: 100), rules: rules)
         #expect(second == .intent)
-        #expect(third == .pay)
+        #expect(third == .intent)
     }
 
     @Test func aHealthyGapResetsToPause() {
@@ -74,30 +80,16 @@ struct FrictionLadderTests {
         #expect(rung == .intent)
     }
 
-    @Test func highestAttemptRungIsConfigurable() {
-        var strict = FrictionRules()
-        strict.highestAttemptRung = .askFriend
-        var ladder = FrictionLadder()
-        let rungs = (0..<5).map { ladder.registerAttempt(at: start.adding(minutes: Double($0)), rules: strict) }
-        #expect(rungs == [.pause, .intent, .pay, .askFriend, .askFriend])
+    @Test func theDefaultLadderTopsOutAtIntent() {
+        #expect(FrictionRules().highestAttemptRung == .intent)
+    }
 
+    @Test func highestAttemptRungIsConfigurable() {
         var gentle = FrictionRules()
         gentle.highestAttemptRung = .pause
         var calm = FrictionLadder()
         let calmRungs = (0..<3).map { calm.registerAttempt(at: start.adding(minutes: Double($0)), rules: gentle) }
         #expect(calmRungs == [.pause, .pause, .pause])
-    }
-
-    @Test(arguments: [
-        (FrictionRung.pause, false, FrictionRung.pause),
-        (FrictionRung.intent, false, FrictionRung.intent),
-        (FrictionRung.pay, true, FrictionRung.pay),
-        (FrictionRung.pay, false, FrictionRung.askFriend),
-        (FrictionRung.askFriend, true, FrictionRung.askFriend),
-        (FrictionRung.askFriend, false, FrictionRung.askFriend),
-    ])
-    func askFriendWhenPayingIsDueButUnaffordable(ladderRung: FrictionRung, canAfford: Bool, expected: FrictionRung) {
-        #expect(FrictionLadder.effectiveRung(ladderRung: ladderRung, canAffordAnyUnlock: canAfford) == expected)
     }
 
     @Test func codableRoundTrip() throws {

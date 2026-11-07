@@ -7,26 +7,22 @@ public struct CheckInAttempt: Hashable, Sendable, Codable, Identifiable {
     public let attemptedAt: Date
     /// The rung that the pattern of attempts reached.
     public let ladderRung: FrictionRung
-    /// The rung the user faces: `ladderRung`, raised to `askFriend` when
-    /// paying is due but unaffordable.
+    /// The rung the user faces. Always `ladderRung`: nothing raises it, as
+    /// seeds never buy screen time (ADR-0015).
     public let rung: FrictionRung
-    /// The cheapest unlock on offer at the time of the attempt.
-    public let cheapestPrice: Energy?
 
     public init(
         id: UUID,
         target: TargetGroupID,
         attemptedAt: Date,
         ladderRung: FrictionRung,
-        rung: FrictionRung,
-        cheapestPrice: Energy?
+        rung: FrictionRung
     ) {
         self.id = id
         self.target = target
         self.attemptedAt = attemptedAt
         self.ladderRung = ladderRung
         self.rung = rung
-        self.cheapestPrice = cheapestPrice
     }
 }
 
@@ -43,15 +39,9 @@ public enum CheckInDecision: Hashable, Sendable {
 public enum CheckInChoice: Hashable, Sendable {
     /// Leave without opening the app.
     case resist
-    /// Continue for free with a short pass. Only on `pause` and `intent`.
+    /// Continue for free with a short pass. Seeds never buy minutes
+    /// (ADR-0015), so this is the only way in.
     case proceed
-    /// Buy an unlock window. Allowed on any rung; fails when unaffordable.
-    case pay(minutes: Int)
-    /// A friend approved an unlock window. Only on `askFriend`.
-    case friendApproved(minutes: Int)
-    /// Use today's free emergency pass. Only on `pay` and `askFriend`, and
-    /// once per local day.
-    case emergency
 }
 
 /// Why the user says they are opening an app, asked on the `intent` rung.
@@ -174,9 +164,4 @@ public struct PassThrough: Hashable, Sendable, Codable {
 public enum CheckInError: Error, Hashable, Sendable {
     /// The choice is not available on the attempt's rung.
     case choiceNotAvailable(CheckInChoice, rung: FrictionRung)
-    /// Paying failed.
-    case spend(SpendError)
-    /// Today's emergency pass is already used; the next one is available
-    /// on `nextAvailable`.
-    case emergencyPassUsed(nextAvailable: LocalDay)
 }

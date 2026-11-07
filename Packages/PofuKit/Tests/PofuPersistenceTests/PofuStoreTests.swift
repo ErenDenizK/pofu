@@ -33,7 +33,7 @@ func sampleSnapshot() throws -> PofuSnapshot {
     let noon = Date(timeIntervalSince1970: 1_793_610_000)
     var state = PofuState()
     if case .intervene(let attempt) = gatekeeper.beginCheckIn(for: "instagram", at: noon, state: &state) {
-        try gatekeeper.resolve(attempt, with: .pay(minutes: 15), at: noon.addingTimeInterval(4.25), state: &state, reason: .lookUp)
+        try gatekeeper.resolve(attempt, with: .proceed, at: noon.addingTimeInterval(4.25), state: &state, reason: .lookUp)
     }
     _ = gatekeeper.beginCheckIn(for: "instagram", at: noon.addingTimeInterval(61.5), state: &state)
     // Back in Pofu after the pass: quiet time starts counting again.

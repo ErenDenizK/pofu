@@ -378,7 +378,7 @@ struct ShieldWords {
 
     /// Counts resists only, never opens (experience v1, section 3.4).
     func tally(resisted: Int) -> String {
-        pick("Bugün \(resisted) kez vazgeçtin.", "You skipped \(resisted) \(resisted == 1 ? "time" : "times") today.")
+        pick("Bugün \(resisted) kez boş verdin.", "You skipped \(resisted) \(resisted == 1 ? "time" : "times") today.")
     }
 
     var waitingTitle: String { pick("Bildirime dokun ↑", "Tap the notification ↑") }

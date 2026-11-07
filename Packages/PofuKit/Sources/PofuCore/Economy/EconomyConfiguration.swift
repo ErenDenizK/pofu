@@ -140,19 +140,20 @@ public struct FrictionRules: Hashable, Sendable, Codable {
     /// An attempt less than this many seconds after the previous attempt
     /// climbs one rung; a longer gap resets the ladder to `pause`.
     public var cooldown: TimeInterval
-    /// The highest rung that repeated attempts alone can reach. `askFriend`
-    /// is otherwise reserved for when the balance cannot cover an unlock.
+    /// The highest rung that repeated attempts alone can reach. Both rungs
+    /// are free; there is no rung above `intent`.
     public var highestAttemptRung: FrictionRung
     /// Length, in minutes, of the pass granted when the user proceeds on a
     /// free rung (`pause` or `intent`).
     public var freePassMinutes: Int
-    /// Length, in minutes, of the free emergency pass offered once per
-    /// local day on the `pay` and `askFriend` rungs. Zero switches it off.
+    /// Length, in minutes, of the free emergency pass. No rung offers it
+    /// since the pay rung left (ADR-0015); `Economy` still grants it.
+    /// Zero switches it off.
     public var emergencyPassMinutes: Int
 
     public init(
         cooldown: TimeInterval = 60 * 60,
-        highestAttemptRung: FrictionRung = .pay,
+        highestAttemptRung: FrictionRung = .intent,
         freePassMinutes: Int = 5,
         emergencyPassMinutes: Int = 3
     ) {

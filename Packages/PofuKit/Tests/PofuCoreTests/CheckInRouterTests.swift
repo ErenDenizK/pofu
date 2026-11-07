@@ -199,7 +199,7 @@ struct BeadsTests {
             Issue.record("Expected an intervention")
             return
         }
-        try gatekeeper.resolve(attempt, with: .pay(minutes: 10), at: noon, state: &state, reason: .habit)
+        try gatekeeper.resolve(attempt, with: .proceed, at: noon, state: &state, reason: .habit)
         _ = gatekeeper.beginCheckIn(for: testTarget, at: noon.adding(minutes: 1), state: &state)
         economy.earn(session(25, endingAt: noon.adding(hours: 1)), into: &state.wallet)
         state.vitality.settle(through: economy.day(of: noon), model: VitalityModel()) { _ in VitalityInput() }

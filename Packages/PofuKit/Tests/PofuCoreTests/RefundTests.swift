@@ -160,7 +160,7 @@ struct SkipsNeverEarnTests {
             #expect(state.wallet.balance == opening.balance)
             #expect(state.wallet.activityEnergy(on: economy.day(of: at)) == .zero)
         }
-        #expect(rungs.count >= 3)
+        #expect(rungs == [.pause, .intent])
         #expect(state.checkIns.allSatisfy { $0.outcome.isResisted })
     }
 }

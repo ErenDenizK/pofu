@@ -87,9 +87,6 @@ private struct HopDecision: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @AccessibilityFocusState private var skipFocused: Bool
     @State private var appeared = false
-    @State private var declinedPayment = 0
-    @State private var paidChoice = 0
-    @State private var payMinutes: Int?
 
     var body: some View {
         GeometryReader { proxy in
@@ -128,8 +125,6 @@ private struct HopDecision: View {
             }
         }
         .sensoryFeedback(.impact(weight: .light, intensity: 0.35), trigger: appeared) { _, _ in session.isNight }
-        .sensoryFeedback(.warning, trigger: declinedPayment)
-        .sensoryFeedback(.decrease, trigger: paidChoice)
     }
 
     // MARK: Header and stage
@@ -154,10 +149,8 @@ private struct HopDecision: View {
             return "Shh, it's late."
         }
         switch session.rung {
-        case .pause: return "One breath first."
+        case .pause: return model.isPastDailyHour ? "One breath first." : "Quick check-in."
         case .intent: return "What's this one for?"
-        case .pay: return "This one costs seeds."
-        case .askFriend: return "My cheeks are empty."
         }
     }
 
@@ -167,7 +160,7 @@ private struct HopDecision: View {
                 SpeechBubble { Text(line) }
                     .transition(.scale(scale: 0.9).combined(with: .opacity))
             }
-            HopCompanion(model: model, session: session, hour: hour, breathes: session.rung == .pause)
+            HopCompanion(model: model, session: session, hour: hour, breathes: session.rung == .pause && model.isPastDailyHour)
         }
         .animation(PofuMotion.respecting(reduceMotion, PofuMotion.hop), value: session.reason)
     }
@@ -197,10 +190,6 @@ private struct HopDecision: View {
             EmptyView()
         case .intent:
             ReasonGrid(selected: session.reason) { model.chooseReason($0) }
-        case .pay:
-            PayRung(model: model, session: session, selectedMinutes: $payMinutes)
-        case .askFriend:
-            FriendRung(model: model, session: session)
         }
     }
 
@@ -230,7 +219,19 @@ private struct HopDecision: View {
     @ViewBuilder private var openAction: some View {
         switch session.rung {
         case .pause:
-            BreathOpenButton(model: model)
+            // The 5 s breath is for reaches past the daily hour only
+            // (ADR-0015, gate v2 section 6.5); under it, opening is
+            // immediate.
+            if model.isPastDailyHour {
+                BreathOpenButton(model: model)
+            } else {
+                Button {
+                    model.openFromHop(with: .proceed)
+                } label: {
+                    Text("Open for \(model.economy.configuration.friction.freePassMinutes) min")
+                }
+                .buttonStyle(PofuPlaqueButtonStyle())
+            }
         case .intent:
             Button {
                 model.openFromHop(with: .proceed)
@@ -239,21 +240,6 @@ private struct HopDecision: View {
             }
             .buttonStyle(PofuPlaqueButtonStyle())
             .disabled(session.reason == nil)
-        case .pay:
-            if let quote = PayRung.quote(model: model, selectedMinutes: payMinutes) {
-                Button {
-                    if model.openFromHop(with: .pay(minutes: quote.minutes)) {
-                        paidChoice += 1
-                    } else {
-                        declinedPayment += 1
-                    }
-                } label: {
-                    Text("Spend \(quote.price.units) seeds for \(quote.minutes) min")
-                }
-                .buttonStyle(PofuPlaqueButtonStyle())
-            }
-        case .askFriend:
-            EmergencyPassButton(model: model, isProminent: true)
         }
     }
 }
@@ -328,7 +314,7 @@ private struct HopCompanion: View {
     }
 }
 
-/// The pause rung's open action. It fills like a progress bar while the
+/// The pause rung's open action past the daily hour. It fills like a progress bar while the
 /// user breathes, and opens only once the breath is done.
 private struct BreathOpenButton: View {
     static let halfBreath: Double = 2.5
