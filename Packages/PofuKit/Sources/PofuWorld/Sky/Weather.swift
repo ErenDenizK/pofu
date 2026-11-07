@@ -306,7 +306,9 @@ extension WorldLight {
         if let state = atmosphere.conditions.weather.state {
             copy.grade = copy.grade.layered(with: state.grade, amount: 1)
             copy.characterGrade = copy.characterGrade.layered(with: state.character, amount: 1)
-            copy.backdropGrade = copy.backdropGrade.layered(with: state.grade, amount: 1)
+            // The backdrop takes the weather as overcast colour, never as a
+            // darkening grade (look pipeline v2 §6.3): `SkyPalette.atmospheric`
+            // and `CloudSea.Colours(weather:)`.
             // Rain moves the sun-lit cells to the rain LUT (look pipeline v2).
             let rain = LookLUT.rainAmount(atmosphere.conditions.weather)
             if rain > 0 {

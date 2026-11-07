@@ -46,7 +46,7 @@ extension ColourScript {
             name: .day,
             sun: SkyPoint(x: 0.5, y: 0.11),
             sky: SkyColours(
-                zenith: PofuRGB(hex: 0x7AD0FF),
+                zenith: PofuRGB(hex: 0x69CFFF),
                 horizon: PofuRGB(hex: 0xF4FFFE),
                 glow: PofuRGB(hex: 0xFFFFDC),
                 glowStrength: 0.62,
@@ -65,7 +65,7 @@ extension ColourScript {
             ambientFloor: 0.0,
             moonRim: 0.0,
             fog: ScriptFog(colour: PofuRGB(hex: 0xCDE3F5), far: 0.24),
-            sea: SeaColours(light: PofuRGB(hex: 0xFFFFF5), shade: PofuRGB(hex: 0xC7E1FF), opacity: 0.95),
+            sea: SeaColours(light: PofuRGB(hex: 0xFAFFFF), shade: PofuRGB(hex: 0xBFE2FF), opacity: 0.95),
             grade: WorldGrade(
                 lift: GradeRGB(0.0, 0.0, 0.012),
                 gain: GradeRGB(1.0, 1.0, 0.985),
@@ -84,8 +84,8 @@ extension ColourScript {
             name: .golden,
             sun: SkyPoint(x: 0.84, y: 0.3),
             sky: SkyColours(
-                zenith: PofuRGB(hex: 0xC498C3),
-                horizon: PofuRGB(hex: 0xFFC5B1),
+                zenith: PofuRGB(hex: 0xE2ADC7),
+                horizon: PofuRGB(hex: 0xFFCAB3),
                 glow: PofuRGB(hex: 0xFFDAAA),
                 glowStrength: 0.72,
                 cloudLight: PofuRGB(hex: 0xFFE2D5),
@@ -103,7 +103,7 @@ extension ColourScript {
             ambientFloor: 0.04,
             moonRim: 0.0,
             fog: ScriptFog(colour: PofuRGB(hex: 0xF2BCA2), far: 0.32),
-            sea: SeaColours(light: PofuRGB(hex: 0xF8DDD3), shade: PofuRGB(hex: 0xD6BAC5), opacity: 0.95),
+            sea: SeaColours(light: PofuRGB(hex: 0xFFE3EB), shade: PofuRGB(hex: 0xE5C6E2), opacity: 0.95),
             grade: WorldGrade(
                 lift: GradeRGB(0.03, 0.008, -0.005),
                 gamma: GradeRGB(1.02, 1.0, 0.98),
@@ -183,7 +183,7 @@ extension ColourScript {
             ambientFloor: 0.14,
             moonRim: 0.5,
             fog: ScriptFog(colour: PofuRGB(hex: 0x958BB4), far: 0.36),
-            sea: SeaColours(light: PofuRGB(hex: 0xE5DBD7), shade: PofuRGB(hex: 0xB9B3CC), opacity: 0.95),
+            sea: SeaColours(light: PofuRGB(hex: 0xEBE0E1), shade: PofuRGB(hex: 0xC2BDE2), opacity: 0.95),
             grade: WorldGrade(
                 lift: GradeRGB(0.05, 0.04, 0.5),
                 gamma: GradeRGB(1.08, 1.08, 1.12),

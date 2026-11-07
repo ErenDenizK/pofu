@@ -246,7 +246,7 @@ public enum LookTuning {
     /// The light field's sources as relight practicals: their reach on a
     /// character (times the pool's reach) and their gain.
     public static let nightRelightReach = 1.6
-    public static let nightRelightSourceGain = 0.9
+    public static let nightRelightSourceGain = 0.6
     /// The contact pad (look pipeline v2, look lab §4): its wide falloff
     /// and its core, and a station's pad strength (was 0.20, 0.16 and 1.9;
     /// the references' contact is lighter and softer).

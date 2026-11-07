@@ -541,7 +541,7 @@ private struct SceneFrame<Bubble: View>: View {
         // Behind Koke at its first stages the sky deepens, so the island's
         // silhouette sits off it (sky and weather v1 §2.4).
         let sky = model.island == .koke && world.koke.isArrived ? KokeStageLook(stage: world.koke.stage).sky(skyBase) : skyBase
-        let sea = CloudSea.Colours(cell: light.cell, grade: backdrop, unwell: look.grade ? light.unwell : 0)
+        let sea = CloudSea.Colours(cell: light.cell, grade: backdrop, unwell: look.grade ? light.unwell : 0, weather: look.grade ? atmosphere.conditions.weather.state : nil)
         // Where the cloud-sea's crest sits (the height fog's densest line):
         // the strip's lobes top out about 140 pt above the screen's bottom.
         let fogSeaLine = Double(size.height) - 140 - CloudSea.rise(z: z, pose: pose, height: Double(size.height))
@@ -730,7 +730,9 @@ private struct SceneFrame<Bubble: View>: View {
                         art: look.art,
                         litOverlays: look.litOverlays,
                         harborFade: model.island == .harbor ? 1 : max(0, 1 - max(z, 0) / 0.8) * (model.focus == nil ? 1 : 0),
-                        relit: relight != nil,
+                        // The night relight adds form; the field's pools and the
+                        // characters' directional key stay (the spike replaces them).
+                        relit: relight != nil && relight != nightRelight,
                         guestNight: VisitorStage.isGuestNight(world.visitor),
                         directive: directive
                     )

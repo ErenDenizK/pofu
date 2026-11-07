@@ -188,10 +188,14 @@ struct CloudSea: View {
 
         /// The colour script's sea for `cell` through the sky's grade
         /// (without input levels), overcast when Pofu is unwell.
-        init(cell: ColourCell, grade: WorldGrade, unwell: Double) {
+        init(cell: ColourCell, grade: WorldGrade, unwell: Double, weather: ColourState? = nil) {
             let g = grade.sky
-            light = g.apply(cell.sea.light).overcast(ColourScript.unwell, amount: unwell)
-            shade = g.apply(cell.sea.shade).overcast(ColourScript.unwell, amount: unwell)
+            func coloured(_ c: PofuRGB) -> PofuRGB {
+                let lit = g.apply(c).overcast(ColourScript.unwell, amount: unwell)
+                return weather.map { lit.overcast($0, amount: 1) } ?? lit
+            }
+            light = coloured(cell.sea.light)
+            shade = coloured(cell.sea.shade)
             opacity = cell.sea.opacity
         }
     }

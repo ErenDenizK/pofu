@@ -98,7 +98,9 @@ struct LookLUTTests {
         #expect(!unwell.backdropGrade.isNeutral)
         let rain = WorldLight.at(hour: 12, wellbeing: 80, calm: 1)
             .withAtmosphere(Atmosphere(conditions: WeatherConditions(weather: .lightRain)))
-        #expect(!rain.backdropGrade.isNeutral && rain.backdropGrade.lut == nil)
+        // Weather reaches the backdrop as overcast colour, never as a grade.
+        #expect(rain.backdropGrade.isNeutral)
+        #expect(!rain.grade.with(lut: nil).isNeutral)
     }
 
     /// The liked nights (Gezgin f2, Revontuli): a dark, saturated
