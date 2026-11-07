@@ -15,7 +15,7 @@ public struct PofuPrimaryButtonStyle: ButtonStyle {
         configuration.label
             .font(PofuFont.headline)
             .multilineTextAlignment(.center)
-            .foregroundStyle(PofuCraftedPalette.cocoaInk)
+            .foregroundStyle(PofuKitPalette.day.ink)
             .padding(.horizontal, PofuSpacing.xl)
             .frame(maxWidth: .infinity, minHeight: PofuSize.buttonHeight)
             .background { face(pressed: configuration.isPressed) }
@@ -29,13 +29,13 @@ public struct PofuPrimaryButtonStyle: ButtonStyle {
     /// old violet painted face is retired).
     @ViewBuilder
     private func face(pressed: Bool) -> some View {
-        PofuClayFace(
-            shape: Capsule(style: .continuous),
-            top: PofuCraftedPalette.honeyTop,
-            bottom: PofuCraftedPalette.honeyBottom,
-            lip: PofuCraftedPalette.honeyLip
-        )
-        .brightness(pressed ? -0.06 : 0)
+        Capsule(style: .continuous)
+            .fill(LinearGradient(
+                colors: [PofuKitPalette.day.honeyTop, PofuKitPalette.day.honeyBottom],
+                startPoint: .top, endPoint: .bottom
+            ))
+            .shadow(color: PofuPrimitive.honey800.rgb.color, radius: 0, y: 3)
+            .brightness(pressed ? -0.06 : 0)
     }
 }
 
