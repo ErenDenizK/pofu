@@ -22,6 +22,7 @@ texture's colour decoding.
 Usage:
   python3 -I tools/assets/normals.py bake SRC.png OUT.png [--scale 0.5]
   python3 -I tools/assets/normals.py spike      # the three spike sprites
+  python3 -I tools/assets/normals.py night      # residents' poses, tea stall levels
 """
 
 from __future__ import annotations
@@ -46,6 +47,25 @@ SPIKE = [
     (ASSETS / "world-mochi.imageset/world-mochi.png", "world-mochi--normal", dict(bevel=18.0, dome=0.6, detail=0.25, strength=6.0)),
     # A fur ball: nearly all dome, so the key wraps round the whole body.
     (COMPANION / "pofu-hamster.png", "world-pofu--normal", dict(bevel=60.0, dome=0.8, detail=0.2, strength=8.0)),
+]
+
+
+# Look pipeline v2 (night relight): every resident pose and the tea stall's
+# levels, so the practicals light whatever the night draws. Same method and
+# settings as the spike's Mochi and tea stall.
+RESIDENT_POSES = {
+    "mochi": ["", "-eyes-closed", "-eyes-happy", "-happy", "-proud", "-sleepy", "-step-a", "-step-b",
+              "-surprised", "-work", "-work-beat"],
+    "findik": ["", "-eyes-closed", "-eyes-happy", "-happy", "-proud", "-sleepy", "-surprised", "-work"],
+}
+NIGHT = [
+    (ASSETS / f"world-{who}{pose}.imageset/world-{who}{pose}.png", f"world-{who}{pose}--normal",
+     dict(bevel=18.0, dome=0.6, detail=0.25, strength=6.0))
+    for who, poses in RESIDENT_POSES.items() for pose in poses
+] + [
+    (ASSETS / f"world-tea-stall-{level}.imageset/world-tea-stall-{level}.png", f"world-tea-stall-{level}--normal",
+     dict(bevel=14.0, dome=0.25, detail=0.45, strength=6.0))
+    for level in range(2, 6)
 ]
 
 
@@ -168,11 +188,12 @@ def main(argv: list[str]) -> int:
     b.add_argument("--strength", type=float, default=4.0)
     b.add_argument("--keep-luma", action="store_true", help="bright = high instead of dark = high")
     sub.add_parser("spike", help="bake the spike scene's three sprites into the asset catalog")
+    sub.add_parser("night", help="bake the residents' poses and the tea stall's levels (night relight)")
     args = ap.parse_args(argv)
     if args.cmd == "bake":
         bake(args.src, args.out, args.scale, args.strength, invert_luma=not args.keep_luma)
         return 0
-    for src, name, kw in SPIKE:
+    for src, name, kw in (SPIKE if args.cmd == "spike" else NIGHT):
         out = ASSETS / f"{name}.imageset" / f"{name}.png"
         bake(src, out, **kw)
         write_imageset(name, out)
