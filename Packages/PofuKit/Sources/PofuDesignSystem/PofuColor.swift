@@ -39,7 +39,7 @@ extension Color {
 }
 
 /// Semantic colors for UI (docs/design/design-language.md, section 3).
-/// Warm is the world; violet is the action.
+/// Warm is the world; honey is the action.
 public enum PofuColor {
     public static var canvas: Color { Color(token: .backgroundCanvas) }
     public static var sunken: Color { Color(token: .backgroundSunken) }

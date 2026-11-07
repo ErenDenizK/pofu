@@ -15,7 +15,7 @@ public struct PofuPrimaryButtonStyle: ButtonStyle {
         configuration.label
             .font(PofuFont.headline)
             .multilineTextAlignment(.center)
-            .foregroundStyle(PofuColor.onAccent)
+            .foregroundStyle(PofuKitPalette.day.ink)
             .padding(.horizontal, PofuSpacing.xl)
             .frame(maxWidth: .infinity, minHeight: PofuSize.buttonHeight)
             .background { face(pressed: configuration.isPressed) }
@@ -25,19 +25,17 @@ public struct PofuPrimaryButtonStyle: ButtonStyle {
             .contentShape(Capsule(style: .continuous))
     }
 
-    /// The painted primary face (a violet pill), or the accent capsule when
-    /// the bundle lacks it.
+    /// The painted primary face (honey clay with a darker lip, drawn: the
+    /// old violet painted face is retired).
     @ViewBuilder
     private func face(pressed: Bool) -> some View {
-        #if canImport(UIKit)
-        PofuPaintedFace(.facePrimary)
-            .brightness(pressed ? -0.08 : 0)
-            .shadow(color: PofuColor.accent.opacity(isEnabled ? 0.28 : 0), radius: 14, y: 6)
-        #else
         Capsule(style: .continuous)
-            .fill(pressed ? PofuColor.accentPressed : PofuColor.accent)
-            .shadow(color: PofuColor.accent.opacity(isEnabled ? 0.28 : 0), radius: 14, y: 6)
-        #endif
+            .fill(LinearGradient(
+                colors: [PofuKitPalette.day.honeyTop, PofuKitPalette.day.honeyBottom],
+                startPoint: .top, endPoint: .bottom
+            ))
+            .shadow(color: PofuPrimitive.honey800.rgb.color, radius: 0, y: 3)
+            .brightness(pressed ? -0.06 : 0)
     }
 }
 

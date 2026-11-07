@@ -79,11 +79,11 @@ public struct PofuKitPalette: Sendable {
     public static let night = PofuKitPalette(
         ink: rgb(0x2A1E14), inkSoft: rgb(0xD9C3A0),
         honeyTop: rgb(0xF2BC5E), honey: rgb(0xE9A93B), honeyBottom: rgb(0xCC8F2A),
-        creamTop: rgb(0x54476A), cream: rgb(0x4A3F5C), creamBottom: rgb(0x3C3249),
-        woodTop: rgb(0x6A5A52), woodBottom: rgb(0x54463F),
-        paperTop: rgb(0x362E4A), paperBottom: rgb(0x2A2339),
-        linen: rgb(0x3F3552), felt: rgb(0x4A3F5C), feltSelected: rgb(0xE9A93B),
-        stitch: rgb(0x8F7E9E), edge: rgb(0x120D1C), glow: rgb(0xFFC76A), focus: rgb(0xF6C453),
+        creamTop: rgb(0x5E4A38), cream: rgb(0x54422F), creamBottom: rgb(0x46362A),
+        woodTop: rgb(0x7A634C), woodBottom: rgb(0x5E4A38),
+        paperTop: rgb(0x4A3A2C), paperBottom: rgb(0x3A2D22),
+        linen: rgb(0x33271D), felt: rgb(0x54422F), feltSelected: rgb(0xE9A93B),
+        stitch: rgb(0xA58B6B), edge: rgb(0x1A120B), glow: rgb(0xFFC76A), focus: rgb(0xF6C453),
         onPaper: rgb(0xF6E7D2), isNight: true
     )
 }

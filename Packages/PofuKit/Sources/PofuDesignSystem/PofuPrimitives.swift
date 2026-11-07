@@ -51,14 +51,10 @@ public enum PofuPrimitive: String, CaseIterable, Sendable {
     case ink600 = "ink-600"
     case ink400 = "ink-400"
     case ink300 = "ink-300"
-    case violet100 = "violet-100"
-    case violet300 = "violet-300"
-    case violet500 = "violet-500"
-    case violet600 = "violet-600"
-    case violet700 = "violet-700"
     case meadow300 = "meadow-300"
     case meadow400 = "meadow-400"
     case meadow700 = "meadow-700"
+    case honey100 = "honey-100"
     case honey300 = "honey-300"
     case honey400 = "honey-400"
     case honey800 = "honey-800"
@@ -70,7 +66,7 @@ public enum PofuPrimitive: String, CaseIterable, Sendable {
     case night700 = "night-700"
     case mist300 = "mist-300"
     case mist500 = "mist-500"
-    case violetNight200 = "violet-night-200"
+    case cocoaNight200 = "cocoa-night-200"
     case white = "white"
 
     public var hex: UInt32 {
@@ -91,14 +87,10 @@ public enum PofuPrimitive: String, CaseIterable, Sendable {
         case .ink600: 0x66555F
         case .ink400: 0x8E7D88
         case .ink300: 0xA99AA3
-        case .violet100: 0xEEE8FF
-        case .violet300: 0xB9A2FF
-        case .violet500: 0x8F74F0
-        case .violet600: 0x6C4FD8
-        case .violet700: 0x553BB8
         case .meadow300: 0x8FD4A4
         case .meadow400: 0x8CC084
         case .meadow700: 0x2F7349
+        case .honey100: 0xFDEFC9
         case .honey300: 0xF7C873
         case .honey400: 0xF5B83D
         case .honey800: 0x8A5A00
@@ -110,7 +102,7 @@ public enum PofuPrimitive: String, CaseIterable, Sendable {
         case .night700: 0x3A3048
         case .mist300: 0xB8A8B1
         case .mist500: 0x85768A
-        case .violetNight200: 0x2E2547
+        case .cocoaNight200: 0x3A2C1E
         case .white: 0xFFFFFF
         }
     }
@@ -153,9 +145,9 @@ public enum PofuSemanticColor: String, CaseIterable, Sendable {
         case .textSecondary: .ink600
         case .textTertiary: .ink400
         case .textOnAccent: .white
-        case .accent: .violet600
-        case .accentPressed: .violet700
-        case .accentTint: .violet100
+        case .accent: .honey800
+        case .accentPressed: .peach800
+        case .accentTint: .honey100
         case .success: .meadow700
         case .warning: .honey800
         case .critical: .rose700
@@ -176,9 +168,9 @@ public enum PofuSemanticColor: String, CaseIterable, Sendable {
         case .textSecondary: .mist300
         case .textTertiary: .mist500
         case .textOnAccent: .night950
-        case .accent: .violet300
-        case .accentPressed: .violet500
-        case .accentTint: .violetNight200
+        case .accent: .honey300
+        case .accentPressed: .honey400
+        case .accentTint: .cocoaNight200
         case .success: .meadow300
         case .warning: .honey300
         case .critical: .rose300

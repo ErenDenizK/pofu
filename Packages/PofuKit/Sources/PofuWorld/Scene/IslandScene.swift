@@ -1563,9 +1563,9 @@ private struct PofuPin: View {
     var body: some View {
         Image(systemName: "pawprint.fill")
             .font(.system(size: 13, weight: .bold))
-            .foregroundStyle(PofuColor.onAccent)
+            .foregroundStyle(PofuKitPalette.day.ink)
             .frame(width: 30, height: 30)
-            .background(PofuColor.accent, in: Circle())
+            .background(PofuKitPalette.day.honey, in: Circle())
             .overlay { Circle().strokeBorder(Color.white.opacity(0.9), lineWidth: 2) }
             .shadow(color: Color.shadowInk.opacity(0.25), radius: 3, y: 1)
             .allowsHitTesting(false)
