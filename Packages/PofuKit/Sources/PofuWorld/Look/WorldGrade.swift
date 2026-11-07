@@ -110,14 +110,15 @@ public struct WorldGrade: Hashable, Sendable {
     /// Golden hour: warm highlights, slightly cool-lifted shadows.
     public static let goldenHour = ColourScript.cell(.golden).grade
 
-    /// Night: moonlit blue-violet that keeps the island readable, as in the
-    /// night concept (`x-home-night-key`; concept match, 2026-11-07): a
-    /// small black point, shadows lifted toward blue-violet instead of
-    /// crushed to a neutral black (round 3's black 0.32 took the earth to
-    /// L* 13 and every shadow to grey), the art's own saturation kept, so
-    /// the warm practicals (the ember, the door's window), drawn after the
-    /// grade, still carry the warmth. Pofu and the residents take the
-    /// cell's character light instead (`ColourCell.character`).
+    /// Night is a hue change, not a value drop (ADR-0021): the island
+    /// keeps nearly its day value (the liked nights, gezgin f2 and
+    /// Revontuli stuck, sit at frame L* p50 72 to 77 with only the sky
+    /// dark). No black point, a strong blue lift in the shadows so they turn
+    /// violet, near-equal gains so the lights stay cream, softer contrast
+    /// and a little less chroma (the "too contrasty" Tam Çiçek night is the
+    /// most saturated). The warm practicals, drawn after the grade, carry
+    /// the warmth. Pofu and the residents take the cell's character light
+    /// instead (`ColourCell.character`).
     public static let night = ColourScript.cell(.night).grade
 
     /// Pofu unwell: cooler and about half as saturated, with deeper

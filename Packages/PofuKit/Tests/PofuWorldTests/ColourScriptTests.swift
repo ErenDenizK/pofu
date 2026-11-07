@@ -66,7 +66,7 @@ struct ColourScriptTests {
         #expect(abs(night.hue - day.hue) < 6)
         #expect(night.chroma > day.chroma * 0.55)
         let world = hueAndChroma(WorldGrade.night.apply(fur))
-        #expect(abs(world.hue - day.hue) > 60, "the world's night grade no longer shifts the hue; the test lost its point")
+        #expect(abs(world.hue - day.hue) > 25, "the world's night grade no longer shifts the hue; the test lost its point")
     }
 
     @Test func unwellPofuIsDesaturatedButReadable() {

@@ -1,69 +1,70 @@
 {
-  "$note": "Light standard v1 (docs/design/light-standard.md). Value targets per colour-script cell x layer, measured by tools/imagegen/light.py on the subject region at 800 px. Key direction, rim, fill, shadow hue and fog are NOT stored here: they are read from design/art/colour-script.json. Thresholds are WARN-ONLY (enforce: false) until the founder has seen the light pilot; set enforce to true to make a failing check a hard fail for production jobs (exploration jobs stay advisory either way).",
-  "version": 1,
+  "$note": "Light standard v2 (ADR-0021, docs/design/light-standard.md): value targets measured from the founder-picked references (I1's seasons for day, golden, rain and snow; the gezgin f2 night and Revontuli stuck for night), per colour-script cell x layer, measured by tools/imagegen/light.py on the subject region at 800 px; the frame block applies to opaque takes (sky above, cloud sea below). The references live in a high-key envelope (L* p5 50-64, p50 74-90, p98 90-97); night is a hue change, not a value drop (only the sky goes dark); the cloud sea is a bright reflector. v1's 'true darks, never lifted blacks' rules (p2 <= 22, haze <= 0.20) failed every liked reference and are gone. Key direction, rim, fill, shadow hue and fog are NOT stored here: they are read from design/art/colour-script.json. enforce: false keeps a failing check a warning for production jobs.",
+  "version": 2,
   "enforce": false,
   "metrics": {
-    "L": "CIELAB lightness 0-100 of the subject region",
-    "p2/p98/spread": "L percentiles; spread = p98 - p2",
-    "median": "L p50 band [lo, hi]",
-    "haze": "dark-channel p10 (min over RGB, 9 px minimum filter, 0-1) on the subject region: high means no true dark anywhere",
-    "lc": "p75 of the local standard deviation of L/100 in a 9x9 window, x100"
+    "L": "CIELAB lightness 0-100",
+    "p5": "5th percentile of L on the subject region: the floor of the darks (eyes and the darkest recesses, under 5 % of a sprite, are allowed below it)",
+    "median": "L p50 band [lo, hi] on the subject region",
+    "p98": "98th percentile of L on the subject region: the lights reach cream",
+    "lc_p75": "band [min, max] of the p75 local standard deviation of L/100 in a 9x9 window, x100: one soft texture scale (the 'too contrasty' Tam Cicek night is 6.6, the liked nights 2.4-3.9)",
+    "frame.sky_L": "opaque takes: mean L of the top eighth (the sky), band [lo, hi]",
+    "frame.sea_L_min": "opaque takes: mean L of the bottom eighth (the cloud sea, the world's reflector), at least",
+    "frame.dark_max": "opaque takes: % of pixels below L* 30 under the top quarter (only the sky may be dark), at most"
+  },
+  "reference": {
+    "$note": "Measured 2026-11-07 with tools/imagegen/light.py (subject p5 / p50 / p98 / lc; frame sky / sea / dark %). Each must pass its cell; tools/imagegen/tests/test_light.py checks it.",
+    "day": ["batch-25-seasons/x-season-summer/plate__x-season-summer--t2.webp", "batch-25-seasons/x-season-spring/plate__x-season-spring--t2.webp", "batch-25-seasons/x-season-autumn/plate__x-season-autumn--t2.webp", "batch-25-seasons/x-season-rain/plate__x-season-rain--t2.webp", "batch-25-seasons/x-season-snow/plate__x-season-snow--t2.webp"],
+    "golden": ["batch-25-seasons/x-season-summer-evening/plate__x-season-summer-evening--t2.webp"],
+    "night": ["batch-22-gezgin-forms/x-gezgin-f2-night/plate__x-gezgin-f2-night--t1.webp", "batch-22-gezgin-forms/x-gezgin-f2-night/plate__x-gezgin-f2-night--t2.webp", "batch-34-islands-in-game/x-revontuli-stuck/plate__x-revontuli-stuck--t2.webp", "batch-25-seasons/x-season-snow-night/plate__x-season-snow-night--t2.webp"],
+    "too_contrasty_night": ["batch-31-island-milestones/x-tam-cicek-night/plate__x-tam-cicek-night--t1.webp"]
   },
   "fail_slack": {
-    "p2": 18,
+    "p5": 10,
+    "median": 8,
     "p98": 10,
-    "spread": 18,
-    "haze": 0.12,
     "lc": 0.6,
-    "median": 8
+    "sky": 6,
+    "sea": 8,
+    "dark": 5
   },
   "layers": {
-    "subject": "the plane the player reads (the character, the station, the home island): full value range, no haze",
-    "near": "close but not the focus: nearly full range, a touch of atmosphere",
-    "far": "receding: contrast falls with distance only, fog tint from colour-script"
+    "subject": "the plane the player reads (the character, the station, the home island): the clearest forms, still inside the envelope",
+    "near": "close but not the focus: the same envelope, a touch of air",
+    "far": "receding: lighter and flatter, drifting toward the fog colour from colour-script"
   },
   "cells": {
     "day": {
+      "frame": {
+        "sky_L": [70, 94],
+        "sea_L_min": 82,
+        "dark_max": 3
+      },
       "subject": {
-        "p2_max": 22,
+        "p5_min": 50,
+        "median": [74, 92],
         "p98_min": 90,
-        "spread_min": 60,
-        "median": [
-          55,
-          90
-        ],
-        "haze_max": 0.2,
-        "lc_p75_min": 3.5,
+        "lc_p75": [2.5, 6.5],
         "contact_shadow": {
           "sprite": "occlusion-only",
-          "plate": "painted, firm, in the cell's shadow hue, opposite the key"
+          "plate": "painted soft and short, directly under the object, in the cell's shadow hue (an occlusion pad, never a black cast shadow)"
         }
       },
       "near": {
-        "p2_max": 28,
+        "p5_min": 48,
+        "median": [74, 92],
         "p98_min": 88,
-        "spread_min": 51,
-        "median": [
-          55,
-          90
-        ],
-        "haze_max": 0.25,
-        "lc_p75_min": 2.98,
+        "lc_p75": [2.12, 6.5],
         "contact_shadow": {
           "sprite": "occlusion-only",
-          "plate": "painted, soft, in the cell's shadow hue, opposite the key"
+          "plate": "a soft occlusion pad in the cell's shadow hue"
         }
       },
       "far": {
-        "p2_max": 40,
-        "p98_min": 84,
-        "spread_min": 33,
-        "median": [
-          50,
-          95
-        ],
-        "haze_max": 0.38,
-        "lc_p75_min": 1.75,
+        "p5_min": 55,
+        "median": [77, 95],
+        "p98_min": 86,
+        "lc_p75": [1.5, 4.88],
         "contact_shadow": {
           "sprite": "none",
           "plate": "none (too small to read)"
@@ -71,46 +72,36 @@
       }
     },
     "dawn": {
+      "frame": {
+        "sky_L": [60, 90],
+        "sea_L_min": 80,
+        "dark_max": 3
+      },
       "subject": {
-        "p2_max": 26,
-        "p98_min": 88,
-        "spread_min": 55,
-        "median": [
-          50,
-          88
-        ],
-        "haze_max": 0.24,
-        "lc_p75_min": 3.2,
+        "p5_min": 50,
+        "median": [70, 90],
+        "p98_min": 87,
+        "lc_p75": [2.5, 6.0],
         "contact_shadow": {
           "sprite": "occlusion-only",
-          "plate": "painted, firm, in the cell's shadow hue, opposite the key"
+          "plate": "painted soft and short, directly under the object, in the cell's shadow hue (an occlusion pad, never a black cast shadow)"
         }
       },
       "near": {
-        "p2_max": 32,
-        "p98_min": 86,
-        "spread_min": 47,
-        "median": [
-          50,
-          88
-        ],
-        "haze_max": 0.29,
-        "lc_p75_min": 2.72,
+        "p5_min": 48,
+        "median": [70, 90],
+        "p98_min": 85,
+        "lc_p75": [2.12, 6.0],
         "contact_shadow": {
           "sprite": "occlusion-only",
-          "plate": "painted, soft, in the cell's shadow hue, opposite the key"
+          "plate": "a soft occlusion pad in the cell's shadow hue"
         }
       },
       "far": {
-        "p2_max": 44,
-        "p98_min": 82,
-        "spread_min": 30,
-        "median": [
-          45,
-          93
-        ],
-        "haze_max": 0.42,
-        "lc_p75_min": 1.6,
+        "p5_min": 55,
+        "median": [73, 93],
+        "p98_min": 83,
+        "lc_p75": [1.5, 4.5],
         "contact_shadow": {
           "sprite": "none",
           "plate": "none (too small to read)"
@@ -118,46 +109,36 @@
       }
     },
     "golden": {
+      "frame": {
+        "sky_L": [60, 86],
+        "sea_L_min": 78,
+        "dark_max": 3
+      },
       "subject": {
-        "p2_max": 24,
-        "p98_min": 86,
-        "spread_min": 55,
-        "median": [
-          48,
-          86
-        ],
-        "haze_max": 0.22,
-        "lc_p75_min": 3.4,
+        "p5_min": 50,
+        "median": [68, 86],
+        "p98_min": 85,
+        "lc_p75": [2.5, 6.0],
         "contact_shadow": {
           "sprite": "occlusion-only",
-          "plate": "painted, firm, in the cell's shadow hue, opposite the key"
+          "plate": "painted soft and short, directly under the object, in the cell's shadow hue (an occlusion pad, never a black cast shadow)"
         }
       },
       "near": {
-        "p2_max": 30,
-        "p98_min": 84,
-        "spread_min": 47,
-        "median": [
-          48,
-          86
-        ],
-        "haze_max": 0.27,
-        "lc_p75_min": 2.89,
+        "p5_min": 48,
+        "median": [68, 86],
+        "p98_min": 83,
+        "lc_p75": [2.12, 6.0],
         "contact_shadow": {
           "sprite": "occlusion-only",
-          "plate": "painted, soft, in the cell's shadow hue, opposite the key"
+          "plate": "a soft occlusion pad in the cell's shadow hue"
         }
       },
       "far": {
-        "p2_max": 42,
-        "p98_min": 80,
-        "spread_min": 30,
-        "median": [
-          43,
-          91
-        ],
-        "haze_max": 0.4,
-        "lc_p75_min": 1.7,
+        "p5_min": 55,
+        "median": [71, 89],
+        "p98_min": 81,
+        "lc_p75": [1.5, 4.5],
         "contact_shadow": {
           "sprite": "none",
           "plate": "none (too small to read)"
@@ -165,46 +146,36 @@
       }
     },
     "dusk": {
+      "frame": {
+        "sky_L": [36, 70],
+        "sea_L_min": 74,
+        "dark_max": 3
+      },
       "subject": {
-        "p2_max": 12,
-        "p98_min": 68,
-        "spread_min": 48,
-        "median": [
-          28,
-          60
-        ],
-        "haze_max": 0.14,
-        "lc_p75_min": 3.0,
+        "p5_min": 47,
+        "median": [66, 86],
+        "p98_min": 85,
+        "lc_p75": [1.8, 5.0],
         "contact_shadow": {
           "sprite": "occlusion-only",
-          "plate": "painted, firm, in the cell's shadow hue, opposite the key"
+          "plate": "painted soft and short, directly under the object, in the cell's shadow hue (an occlusion pad, never a black cast shadow)"
         }
       },
       "near": {
-        "p2_max": 18,
-        "p98_min": 66,
-        "spread_min": 41,
-        "median": [
-          28,
-          60
-        ],
-        "haze_max": 0.19,
-        "lc_p75_min": 2.55,
+        "p5_min": 45,
+        "median": [66, 86],
+        "p98_min": 83,
+        "lc_p75": [1.53, 5.0],
         "contact_shadow": {
           "sprite": "occlusion-only",
-          "plate": "painted, soft, in the cell's shadow hue, opposite the key"
+          "plate": "a soft occlusion pad in the cell's shadow hue"
         }
       },
       "far": {
-        "p2_max": 30,
-        "p98_min": 62,
-        "spread_min": 26,
-        "median": [
-          23,
-          65
-        ],
-        "haze_max": 0.32,
-        "lc_p75_min": 1.5,
+        "p5_min": 52,
+        "median": [69, 89],
+        "p98_min": 81,
+        "lc_p75": [1.08, 3.75],
         "contact_shadow": {
           "sprite": "none",
           "plate": "none (too small to read)"
@@ -212,46 +183,36 @@
       }
     },
     "night": {
+      "frame": {
+        "sky_L": [24, 46],
+        "sea_L_min": 70,
+        "dark_max": 3
+      },
       "subject": {
-        "p2_max": 8,
-        "p98_min": 58,
-        "spread_min": 42,
-        "median": [
-          18,
-          50
-        ],
-        "haze_max": 0.1,
-        "lc_p75_min": 2.8,
+        "p5_min": 45,
+        "median": [66, 88],
+        "p98_min": 85,
+        "lc_p75": [1.5, 5.0],
         "contact_shadow": {
           "sprite": "occlusion-only",
-          "plate": "painted, firm, in the cell's shadow hue, opposite the key"
+          "plate": "painted soft and short, directly under the object, in the cell's shadow hue (an occlusion pad, never a black cast shadow)"
         }
       },
       "near": {
-        "p2_max": 14,
-        "p98_min": 56,
-        "spread_min": 36,
-        "median": [
-          18,
-          50
-        ],
-        "haze_max": 0.15,
-        "lc_p75_min": 2.38,
+        "p5_min": 43,
+        "median": [66, 88],
+        "p98_min": 83,
+        "lc_p75": [1.27, 5.0],
         "contact_shadow": {
           "sprite": "occlusion-only",
-          "plate": "painted, soft, in the cell's shadow hue, opposite the key"
+          "plate": "a soft occlusion pad in the cell's shadow hue"
         }
       },
       "far": {
-        "p2_max": 26,
-        "p98_min": 52,
-        "spread_min": 23,
-        "median": [
-          13,
-          55
-        ],
-        "haze_max": 0.28,
-        "lc_p75_min": 1.4,
+        "p5_min": 50,
+        "median": [69, 91],
+        "p98_min": 81,
+        "lc_p75": [0.9, 3.75],
         "contact_shadow": {
           "sprite": "none",
           "plate": "none (too small to read)"

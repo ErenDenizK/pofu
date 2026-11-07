@@ -127,8 +127,8 @@ extension ColourScript {
                 horizon: PofuRGB(hex: 0xB98AA3),
                 glow: PofuRGB(hex: 0xF2B48A),
                 glowStrength: 0.4,
-                cloudLight: PofuRGB(hex: 0xC9A7BE),
-                cloudShade: PofuRGB(hex: 0x6E5F86),
+                cloudLight: PofuRGB(hex: 0xD4B6CA),
+                cloudShade: PofuRGB(hex: 0x8A7AA2),
                 cloudOpacity: 0.85,
                 stars: 0.4,
                 tint: PofuRGB(hex: 0xDCD6F2)
@@ -141,67 +141,63 @@ extension ColourScript {
             poolGain: 0.8,
             ambientFloor: 0.1,
             moonRim: 0.25,
-            fog: ScriptFog(colour: PofuRGB(hex: 0x8E7FB0), far: 0.4),
-            sea: SeaColours(light: PofuRGB(hex: 0xD2C2DA), shade: PofuRGB(hex: 0x8E80AA), opacity: 0.9),
+            fog: ScriptFog(colour: PofuRGB(hex: 0xA091BE), far: 0.36),
+            sea: SeaColours(light: PofuRGB(hex: 0xE6DAEA), shade: PofuRGB(hex: 0xB0A2C4), opacity: 0.95),
             grade: WorldGrade(
-                black: 0.06,
-                lift: GradeRGB(0.04, 0.03, 0.12),
-                gamma: GradeRGB(0.93, 0.94, 1.0),
-                gain: GradeRGB(0.78, 0.72, 0.86),
-                contrast: 1.08,
-                pivot: 0.35,
-                saturation: 1.0,
-                vignette: 0.24
+                lift: GradeRGB(0.05, 0.03, 0.3),
+                gamma: GradeRGB(1.04, 1.02, 1.06),
+                gain: GradeRGB(1.0, 0.93, 0.92),
+                contrast: 0.94,
+                pivot: 0.5,
+                saturation: 0.92,
+                vignette: 0.12
             ),
             character: WorldGrade(
                 lift: GradeRGB(0.012, 0.008, 0.02),
-                gamma: GradeRGB(0.97, 0.97, 0.98),
-                gain: GradeRGB(0.8, 0.76, 0.74),
-                contrast: 1.05,
+                gain: GradeRGB(0.99, 0.95, 0.91),
+                contrast: 1.02,
                 pivot: 0.45,
-                saturation: 1.05
+                saturation: 1.02
             )
         ),
         .night: ColourCell(
             name: .night,
             sun: SkyPoint(x: 0.76, y: 0.16),
             sky: SkyColours(
-                zenith: PofuRGB(hex: 0x2E2E58),
-                horizon: PofuRGB(hex: 0x7A6888),
+                zenith: PofuRGB(hex: 0x2A2C4E),
+                horizon: PofuRGB(hex: 0x8E7C9E),
                 glow: PofuRGB(hex: 0xD9D2F5),
                 glowStrength: 0.26,
-                cloudLight: PofuRGB(hex: 0xC8C2D8),
-                cloudShade: PofuRGB(hex: 0x76708F),
+                cloudLight: PofuRGB(hex: 0xD6D0E4),
+                cloudShade: PofuRGB(hex: 0x8A84A6),
                 cloudOpacity: 0.8,
                 stars: 1.0,
                 tint: PofuRGB(hex: 0xBDC2EB)
             ),
             key: ScriptLight(colour: GradeRGB(0.7216, 0.6588, 0.6941), intensity: 0.35, from: SkyPoint(x: 0.6, y: -0.8)),
             fill: ScriptLight(colour: GradeRGB(0.1647, 0.1373, 0.3137), intensity: 0.5),
-            shadow: GradeRGB(0.1176, 0.0941, 0.1569),
+            shadow: GradeRGB(0.1647, 0.1412, 0.2510),
             rim: ScriptLight(colour: GradeRGB(1.0000, 0.6902, 0.3765), intensity: 0.42),
             practicals: Practicals(ember: 1.0, window: 1.0),
             poolGain: 1.0,
             ambientFloor: 0.14,
             moonRim: 0.5,
-            fog: ScriptFog(colour: PofuRGB(hex: 0x7A7098), far: 0.42),
-            sea: SeaColours(light: PofuRGB(hex: 0xE0D8E8), shade: PofuRGB(hex: 0xA49CB8), opacity: 0.92),
+            fog: ScriptFog(colour: PofuRGB(hex: 0x958BB4), far: 0.36),
+            sea: SeaColours(light: PofuRGB(hex: 0xEAE4F2), shade: PofuRGB(hex: 0xB8B0CC), opacity: 0.95),
             grade: WorldGrade(
-                black: 0.04,
-                lift: GradeRGB(0.05, 0.04, 0.18),
-                gamma: GradeRGB(0.95, 0.95, 1.0),
-                gain: GradeRGB(0.62, 0.64, 0.86),
-                contrast: 1.08,
-                pivot: 0.3,
-                saturation: 1.0,
-                vignette: 0.28
+                lift: GradeRGB(0.05, 0.04, 0.5),
+                gamma: GradeRGB(1.08, 1.08, 1.12),
+                gain: GradeRGB(0.93, 0.93, 0.91),
+                contrast: 0.9,
+                pivot: 0.5,
+                saturation: 0.88,
+                vignette: 0.08
             ),
             character: WorldGrade(
-                gamma: GradeRGB(0.95, 0.95, 0.95),
-                gain: GradeRGB(0.76, 0.72, 0.68),
-                contrast: 1.05,
+                gain: GradeRGB(0.97, 0.94, 0.9),
+                contrast: 1.0,
                 pivot: 0.4,
-                saturation: 1.05
+                saturation: 1.0
             )
         ),
     ]

@@ -1,8 +1,8 @@
 """The art light standard: prompt block, measurement and target lookup.
 
-Rules live in docs/design/light-standard.md; numbers in
+Rules live in docs/design/light-standard.md (ADR-0021); numbers in
 design/art/light-standard.json (value targets per colour-script cell x
-layer); key direction, rim, fill, shadow hue and fog are read from
+layer, measured from the founder-picked references); key direction, rim, fill, shadow hue and fog are read from
 design/art/colour-script.json and never duplicated. Pure functions (no
 network), unit-tested on Linux.
 
@@ -124,19 +124,24 @@ def render_block(light: dict, sprite: bool = False) -> str:
     else:
         lines.append(
             f"Key light {key['colour']} from {fromw}; fill {fill['colour']}; rim {rim['colour']} along the edge facing away from the key. "
-            f"Shadows are tinted {c['shadow']} (never grey or black) and fall {opposite(key['from'])}; paint a contact shadow in that hue "
-            "under every object that touches the ground or another form, firmest in the subject plane.")
+            f"Shadows are tinted {c['shadow']} (never grey or black), short and soft, falling {opposite(key['from'])}; every object "
+            "sits on a soft occlusion pad in that hue where it touches the ground or another form.")
     lines.append(
-        "VALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest "
-        "recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. "
-        "A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.")
+        "VALUES (the reference envelope): a high-key picture inside one envelope of soft, milky air. Every value sits between "
+        "light mid-tone and cream-white; the darkest recesses (door holes, gaps, pond rims) are a mid-value tinted with the shadow "
+        "hue, never black. Form turns in small value steps. Colour lives in the halftones; lights bleach to cream. No dark outlines: "
+        "edges are found by value and hue. The cloud sea below is the brightest large surface and lights the island's underside "
+        "with a warm bounce.")
+    if cell == "night":
+        lines.append(
+            "NIGHT is a hue change, not a value drop: only the sky is dark (deep indigo); the island and the clouds stay light, "
+            "moonlit lavender, with violet shadows and cream practicals whose glow spreads three to four times the lamp's size.")
     if layer == "subject":
-        lines.append("This is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.")
+        lines.append("This is the SUBJECT plane: the clearest forms and the crispest edges in the picture, still inside the envelope.")
     elif layer == "near":
-        lines.append("This is a NEAR plane: close, almost the full value range, with at most a touch of atmosphere.")
+        lines.append("This is a NEAR plane: close, the same envelope, with a touch of air.")
     else:
-        lines.append(f"This is a FAR plane: contrast and darks soften with distance and forms drift toward the fog colour {fog['colour']}, "
-                     "but no black becomes grey-white and nothing is washed out.")
+        lines.append(f"This is a FAR plane: lighter and flatter with distance, drifting toward the fog colour {fog['colour']}.")
     return "\n".join(lines)
 
 
@@ -170,8 +175,13 @@ def dark_channel(rgb: np.ndarray, size: int = 9) -> np.ndarray:
     return np.asarray(Image.fromarray(dc).filter(ImageFilter.MinFilter(size)), dtype=np.float64) / 255
 
 
+def is_opaque(rgba: np.ndarray) -> bool:
+    return float((rgba[..., 3] < 0.9).mean()) <= 0.02
+
+
 def measure_light(rgba: np.ndarray) -> dict:
-    """Light statistics of the subject region (see design/art/light-standard.json `metrics`)."""
+    """Light statistics of the subject region, plus the frame's sky, sea and darks for an opaque take
+    (see design/art/light-standard.json `metrics`)."""
     rgba = _shrink(rgba)
     m = subject_mask(rgba)
     if not m.any():
@@ -182,10 +192,14 @@ def measure_light(rgba: np.ndarray) -> dict:
     Ls = L[m]
     g = L / 100
     sd = np.sqrt(np.clip(sl.box(g * g, 4) - sl.box(g, 4) ** 2, 0, None))
-    dc = dark_channel(rgb)
-    p2, p98 = q(Ls, 2), q(Ls, 98)
-    return {"L_p2": round(p2, 1), "L_p50": round(q(Ls, 50), 1), "L_p98": round(p98, 1), "spread": round(p98 - p2, 1),
-            "haze": round(q(dc[m], 10), 3), "lc_p75": round(q(sd[m], 75) * 100, 2)}
+    out = {"L_p5": round(q(Ls, 5), 1), "L_p50": round(q(Ls, 50), 1), "L_p98": round(q(Ls, 98), 1),
+           "lc_p75": round(q(sd[m], 75) * 100, 2)}
+    if is_opaque(rgba):
+        h = L.shape[0]
+        out.update({"sky_L": round(float(L[: max(h // 8, 1)].mean()), 1),
+                    "sea_L": round(float(L[h - max(h // 8, 1):].mean()), 1),
+                    "dark_pct": round(float((L[h // 4:] < 30).mean()) * 100, 1)})
+    return out
 
 
 def evaluate(m: dict, light: dict, std: dict | None = None) -> list[tuple[str, str, str, float]]:
@@ -201,23 +215,34 @@ def evaluate(m: dict, light: dict, std: dict | None = None) -> list[tuple[str, s
     def lo_bad(v, warn, fail):
         return "fail" if v < fail else "warn" if v < warn else "pass"
 
+    def band(v, lo, hi, sl_):
+        return "pass" if lo <= v <= hi else "warn" if lo - sl_ <= v <= hi + sl_ else "fail"
+
+    def worst(*s):
+        return "fail" if "fail" in s else "warn" if "warn" in s else "pass"
+
     out = []
-    s = [hi_bad(m["L_p2"], t["p2_max"], t["p2_max"] + slack["p2"]),
-         lo_bad(m["L_p98"], t["p98_min"], t["p98_min"] - slack["p98"]),
-         lo_bad(m["spread"], t["spread_min"], t["spread_min"] - slack["spread"])]
-    st = "fail" if "fail" in s else "warn" if "warn" in s else "pass"
+    st = worst(lo_bad(m["L_p5"], t["p5_min"], t["p5_min"] - slack["p5"]),
+               lo_bad(m["L_p98"], t["p98_min"], t["p98_min"] - slack["p98"]))
     out.append(("light_values", st,
-                f"{cell}: L p2 {m['L_p2']:.0f} (at most {t['p2_max']}), p98 {m['L_p98']:.0f} (at least {t['p98_min']}), "
-                f"spread {m['spread']:.0f} (at least {t['spread_min']})", m["spread"]))
+                f"{cell}: L p5 {m['L_p5']:.0f} (at least {t['p5_min']}: darks stay a light mid-tone), "
+                f"p98 {m['L_p98']:.0f} (at least {t['p98_min']})", m["L_p5"]))
     lo, hi = t["median"]
-    med = m["L_p50"]
-    sl_ = slack["median"]
-    st = "pass" if lo <= med <= hi else "warn" if lo - sl_ <= med <= hi + sl_ else "fail"
-    out.append(("light_median", st, f"{cell}: median L {med:.0f} (band {lo}-{hi})", med))
-    out.append(("light_haze", hi_bad(m["haze"], t["haze_max"], t["haze_max"] + slack["haze"]),
-                f"{cell}: dark-channel haze {m['haze']:.2f} (at most {t['haze_max']:.2f}; no true dark means a wash)", m["haze"]))
-    out.append(("light_contrast", lo_bad(m["lc_p75"], t["lc_p75_min"], t["lc_p75_min"] - slack["lc"]),
-                f"{cell}: p75 local contrast {m['lc_p75']:.1f} (at least {t['lc_p75_min']})", m["lc_p75"]))
+    out.append(("light_median", band(m["L_p50"], lo, hi, slack["median"]),
+                f"{cell}: median L {m['L_p50']:.0f} (band {lo}-{hi})", m["L_p50"]))
+    lo, hi = t["lc_p75"]
+    out.append(("light_contrast", band(m["lc_p75"], lo, hi, slack["lc"]),
+                f"{cell}: p75 local contrast {m['lc_p75']:.1f} (band {lo}-{hi}; above it reads too contrasty)", m["lc_p75"]))
+    if "sky_L" in m:
+        f = std["cells"][light["cell"]]["frame"]
+        lo, hi = f["sky_L"]
+        out.append(("light_sky", band(m["sky_L"], lo, hi, slack["sky"]),
+                    f"{light['cell']}: sky L {m['sky_L']:.0f} (band {lo}-{hi})", m["sky_L"]))
+        out.append(("light_sea", lo_bad(m["sea_L"], f["sea_L_min"], f["sea_L_min"] - slack["sea"]),
+                    f"{light['cell']}: cloud sea L {m['sea_L']:.0f} (at least {f['sea_L_min']}: the sea is the reflector)", m["sea_L"]))
+        out.append(("light_dark", hi_bad(m["dark_pct"], f["dark_max"], f["dark_max"] + slack["dark"]),
+                    f"{light['cell']}: {m['dark_pct']:.1f} % below L* 30 under the sky (at most {f['dark_max']}; only the sky is dark)",
+                    m["dark_pct"]))
     return out
 
 
