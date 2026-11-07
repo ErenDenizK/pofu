@@ -24,21 +24,29 @@ the anti-addiction rules A1 to A14 in
 no timers, no storage cap, no notifications, no streaks, no FOMO, no paid
 acceleration, visits of one to two minutes.
 
-## Founder decisions (2026-11-05)
+## Founder words and open decisions (2026-11-05)
 
-"Start everything that is certain: upgrades, different shops, residents,
-decorations, a cozy island; seasons follow the real calendar plus a weekly
-small theme; residents first get a fixed favourite station (moving later)."
+What he said on 2026-11-05: "Start everything that is certain: upgrades,
+different shops, residents, decorations, a cozy island" (the list of what
+to begin). On seasons and moving he did **not** decide: "mevsimler takvime
+bağlı olabilir haftalık da olabilir bilmiyorum taşınma olayından tam emin
+değilim değerlendirelim" (15:16). A little later he said what "taşınma"
+meant: a story character moving home, and the island they left must not
+feel empty: "belki arasında git gel yapabilir" (16:24).
 
-- **Seasons:** the real calendar (section 10, question 5 is settled) plus a
-  **weekly small theme** on top (a visitor, a market stall, kites, a lantern
-  night, a fishing day, rain boots, a picnic, a stargazing night); a theme
-  is a small prop or overlay, nothing expires or is bought, and it returns
-  in later years.
-- **Residents:** each resident first works their **fixed favourite
-  station** (section 6; no assign sheet at first). **Moving** a resident to
-  another station is optional and opens at **island level 4** (question 3's
-  free moves are therefore a later step, not day 1).
+- **Seasons:** a lead decision, not his (register H10). The real calendar
+  for the island's look plus a weekly small theme on top (a visitor, a
+  market stall, kites, a lantern night, a fishing day, rain boots, a
+  picnic, a stargazing night); a theme is a small prop or overlay, nothing
+  expires or is bought, and it returns in later years.
+- **Residents of healed islands visit, they do not move in** (register
+  H8). They come home and go back (*git-gel*), so their own island never
+  feels empty. The home residents of Book One (Mochi, Simit, the goat, the
+  frogs, Fındık and Pofu) do live on the home island.
+- **Stations:** each home resident first works their fixed favourite
+  station (section 6; no assign sheet at first). Moving a resident to
+  another station is optional and opens at island level 4. This is the
+  lead's design for station work; it is not what "taşınma" meant.
 - The concept art for all of this is queued as backlog rows B-A to B-F in
   the [art plan](../design/art-production-plan.md#the-backlog).
 
@@ -50,7 +58,7 @@ Crossing and Hay Day from design knowledge).
 | Game | We take | We refuse |
 |---|---|---|
 | Cats & Soup | Facilities that visibly change as they level; small numbers on every card; residents (cats) assigned to a station, animating there and boosting it; a reason to move a resident once a station is done; decor that dresses the world; area expansions as the big moments; themed seasonal decor | Limited-time events and tokens that expire; gems and the star reroll (gacha); ads for boosts; a 24,000-level ladder of invisible increments; login rewards, daily missions, feeding chores |
-| Animal Crossing | The home that grows in readable steps (tent, house, rooms); an island rating that quietly opens the next thing; seasonal looks that return every year; residents who move in and stay | Real-time pressure (turnips, a two-week window for an item); a debt framing |
+| Animal Crossing | The home that grows in readable steps (tent, house, rooms); an island rating that quietly opens the next thing; seasonal looks that return every year; residents who come to live (ours from other islands only visit) | Real-time pressure (turnips, a two-week window for an item); a debt framing |
 | Hay Day | The farm level that opens new buildings, so the next slot is always in view | Timers, storage caps, speed-ups for currency, orders that expire |
 
 **Our line:** every level is a picture you notice, every cap is visible
@@ -65,7 +73,7 @@ materials that cannot be bought.
 | **Island level** (*Ada seviyesi*) | 1 to 10 | tended days (a floor) + built levels | opens station slots, raises the station cap, adds island-wide light and life |
 | **Stations** | 8 in Book One (5 home, 3 harbor), +1 gift station (the hive) | seeds, and at a few levels one island material | idle seeds; a visible change every level; a payoff at L5 |
 | **Pairs** (*ikililer*) | 4 | both stations of a pair at L5 | a shared scene that only exists when both are done |
-| **Residents** (*sakinler*) | 6 at home in Book One, 1 more per main island | move in by story; work a station you choose | +25 % at their station (+50 % at their favourite), hearts that unlock looks and lines |
+| **Residents** (*sakinler*) | 6 at home in Book One; one visitor per healed island | the six live at home; island residents visit; work a station you choose | +25 % at their station (+50 % at their favourite), hearts that unlock looks and lines |
 | **Decor sets** (*takımlar*) | 4 in Book One, 1 per season after | seeds, island gifts, resident hearts | a piece per spot; a full set adds one light or sound effect |
 | **Materials** (*malzemeler*) | 6 in Book One | finishing wonder islands; later, their rounds | needed for a few late station levels and the hive |
 | **Mastery levels** L6 to L10 | 8 stations × 5 | seeds + a material; the cap rises one level per season | a small touch per level, a golden master at L10 |
@@ -242,20 +250,21 @@ bridge).
 
 ## 6. Residents (Cats & Soup assignment, without the gacha)
 
-Residents move in through story, never by purchase or chance, and stay
-forever. Each station has one work slot (two at L5). A resident can work
-any station and can be moved at any time for free; at their favourite
+The home residents arrive through story, never by purchase or chance,
+and stay forever. Residents of healed islands **visit and go back**; they
+do not move in (register H8). Each station has one work slot (two at L5).
+A resident can work any station and can be moved at any time for free; at their favourite
 station they give +50 % to that station's output, elsewhere +25 %. A
 working resident animates at the station; an idle one wanders the lawn.
 
-| Resident | Moves in | Favourite | Hearts unlock |
+| Resident | Arrives | Favourite | Hearts unlock |
 |---|---|---|---|
 | Pofu | day 1 | garden (cannot be moved away from the island; can work any station) | his outfits by season |
 | Mochi (bunny) | IL2 | tea stall | a scarf, then the İznik apron; lines about how you take your tea |
 | Simit (kitten) and the goat | IL3 | bagel cart (Simit), pier (goat) | Simit's bell, the goat's hat |
 | the frogs | IL4 | pond | a frog choir at dusk |
 | Fındık (hedgehog) | IL6 | workshop | goggles; makes the style variants |
-| a small resident from each main island | when that island is done | from the story plan (Koke's sprout: pond or garden) | their island's small decor piece |
+| a small resident from each main island (a visitor, not a lodger) | when that island is done | from the story plan (Koke's sprout: pond or garden) | their island's small decor piece |
 
 **Hearts** (1 to 5) grow with days worked (cumulative, any station): at
 3, 7, 14, 28 and 50 days; at their favourite station each day counts
@@ -270,10 +279,13 @@ number.
 
 ## 7. Materials from the wonder islands
 
-Each main wonder island leaves one material when it is finished, and its
-rounds after that pay one more now and then (one per three rounds,
-never more than one a day). Fillers leave decor, never a material, so a
-random filler can never gate home. The one exception is **Koke**, the
+Each main wonder island leaves one material when it is finished. After
+stage 4 the island **keeps its game** (register G4, open question Q-6):
+earned rounds (won by resisting) pay that island's material now and then
+(one per three rounds, never more than one a day), and free play beyond
+that pays nothing. `flow-game.md` §3 follows the same rule. Fillers leave
+decor, never a material, so a random filler can never gate home. The one
+exception is **Koke**, the
 first filler and the arc's tutorial ([story map](story-map/book-one.md)
 §9), which always comes on the first journey, so its moss can never gate
 home by chance. Order and roles follow the
@@ -287,7 +299,7 @@ home by chance. Order and roles follow the
 | light (*ışık*) | Revontuli (main 2) | ~20 | pond L5, lighthouse L5; mastery L9 |
 | keepsake (*emanet*): the polished finds | Emanet (main 3; "atölyeye cilalı buluntular") | ~33 | workshop L4, pier L5; mastery L8 |
 | wax and honey (*bal mumu*) | Arı, the home hive upgrade (after Emanet; not an island) | ~40 | windmill L5; the hive |
-| sea glass (*deniz camı*) | the finale (Mehtap's full-moon night) | ~45 | mastery L10 (the golden level) |
+| moonstone (*ay taşı*, the map's Mehtap object) | the finale (Mehtap's full-moon night) | ~45 | mastery L10 (the golden level) |
 
 Separate from these home materials, each main island also leaves one
 piece on Nazlı's back and one lasting gift at home (the map's EVE HEDİYE;
@@ -340,7 +352,7 @@ play more than a visit a day.
 | L7 | 140 to 180 | water | a weather reaction (rain drips, steam, a rainbow in the spray) |
 | L8 | 160 to 200 | keepsake | a story object from the old Bekçi set into the station |
 | L9 | 180 to 220 | light | a new night light pattern |
-| L10 | 200 to 250 | sea glass | **golden master** (one painted edit per station), a title, a heart for the resident |
+| L10 | 200 to 250 | moonstone | **golden master** (one painted edit per station), a title, a heart for the resident |
 
 Prices stay inside scale A's legible range (no number above 250). One
 mastery level for all eight stations costs about 1,100 to 1,700 seeds, a
@@ -399,7 +411,7 @@ week 2 is two to eight days later (full bloom day 67).
 | 5 | 19 | bagel cart 2 (8) | 4 | Koke rumour |
 | 6 | 19 | tea stall 3: style choice (9) | 4 | Koke arrives |
 | 7 | 19 | (saving) | 4 | week page; Mochi heart 2 |
-| 8 | 27 | pond 2, garden 4 (11) | **5** | Koke wakes: moss, Koke's sprout moves in; fireflies |
+| 8 | 27 | pond 2, garden 4 (11) | **5** | Koke wakes: moss, Koke's sprout starts to visit; fireflies |
 | 9 | 27 | pier 1 (12) | 5 | |
 | 10 | 27 | bagel cart 3 (13) | 5 | Çağlayan arrives |
 | 11 | 27 | pier 2 (14) | 5 | Çağlayan stage 2 |
@@ -424,7 +436,7 @@ week 2 is two to eight days later (full bloom day 67).
 | 39 | 34 | windmill 3 (32) | 8 | |
 | 42 | 34 | lighthouse 4: the beam (33) | 8 | Arı's first honey: wax |
 | 44 | 39 | **pond 5** (34) | **9** | **pair Su**; the hill gate; the hive slot |
-| 45 | 39 | hive 1 | 9 | the finale (Mehtap, full moon): sea glass |
+| 45 | 39 | hive 1 | 9 | the finale (Mehtap, full moon): moonstone |
 | 46 | 39 | workshop 4 (35) | 9 | |
 | 49 | 39 | **pier 5** (36) | 9 | |
 | 51 | 44 | windmill 4 (37) | 9 | |
@@ -531,7 +543,7 @@ can upgrade); C onwards follow the dogfood.
 2. **Mastery cap rises one level a season.** Alternative: no cap after
    the bloom. Recommend the season cap: it keeps every station growing
    together and gives each season a home reason.
-3. **Residents move freely, no stars.** Alternative: fixed stations.
+3. **Home residents move freely between stations, no stars.** Alternative: fixed stations.
    Recommend free moves: it is the Cats & Soup joy without its gacha.
 4. **The harbor re-budget (1,385 to 777).** Recommend yes; it opens on
    day 3 now.

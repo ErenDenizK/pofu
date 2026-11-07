@@ -1,8 +1,10 @@
 # Pofu Design Language
 
+> **Archived 2026-11-07: superseded by the art bible, ui-v3.md and the sky, light and sound docs under docs/design/.** Kept as history; do not build from it.
+
 _Status: v1.0, proposed. Last updated: 2026-10-31._
-_Companions: [art bible](art-bible.md) (how AI imagery is made),
-[prompt library](prompt-library.md) (what to generate first),
+_Companions: [art bible](../design/art-bible.md) (how AI imagery is made),
+[prompt library](../design/prompt-library.md) (what to generate first),
 [tokens](../../design/tokens/pofu-tokens.json) (the numbers),
 [visual board](../../design/boards/design-language.png)._
 
@@ -62,7 +64,7 @@ scene held in a crisp, unmistakably Apple frame.
 
 | Layer | What it contains | Made with | Example |
 |---|---|---|---|
-| **World** | Pofu, scenes, props, badges, empty-state and onboarding art, the app icon | AI-generated, human-curated raster art governed by the [art bible](art-bible.md); animated in code | Home scene, Pofu's expressions, "First resist" badge |
+| **World** | Pofu, scenes, props, badges, empty-state and onboarding art, the app icon | AI-generated, human-curated raster art governed by the [art bible](../design/art-bible.md); animated in code | Home scene, Pofu's expressions, "First resist" badge |
 | **Brand surfaces** | Cards, buttons, chips, the energy pill, progress rings, gradients | SwiftUI shapes and the tokens in this document | Primary button, streak card |
 | **Chrome** | Navigation and tab bars, toolbars, sheets, menus, lists, forms, alerts, pickers, toggles | Native SwiftUI controls, SF Symbols, Liquid Glass | Settings, app picker, schedule editor |
 
@@ -114,7 +116,7 @@ Before any new illustrated asset is generated, it must pass all six:
    only the base.
 4. Does it **contain no text**?
 5. Is there a **place reserved** for it in the asset list of the
-   [prompt library](prompt-library.md)? If not, add it there first, with a
+   [prompt library](../design/prompt-library.md)? If not, add it there first, with a
    reason.
 6. If it **shows state**, where is its native twin? A world object (at most
    two per scene, such as the seed jar and the calm lantern) may repeat
@@ -240,7 +242,7 @@ What the numbers force:
 Turkish coverage was **tested, not assumed**: each candidate's font files
 were inspected for `ğ Ğ ş Ş ı İ ç Ç ö Ö ü Ü` and rendered side by side.
 
-![Turkish glyph check](assets/turkish-glyph-check.png)
+![Turkish glyph check](../design/assets/turkish-glyph-check.png)
 
 | Typeface | License | Turkish | Character | Verdict |
 |---|---|---|---|---|
@@ -319,10 +321,10 @@ stays.
 - Vertical rhythm between sections: 32 pt; between related items: 12 pt.
 - Touch targets: at least 44 × 44 pt, including Pofu himself.
 - Home is **Pofu's room**, the single root of the app with sheets and no
-  tab bar ([information architecture](../product/ux/information-architecture.md)).
+  tab bar ([information architecture](information-architecture.md)).
   The room fills the screen edge to edge; Pofu stands on the rug in the
   middle; the meadow shows through a round window above him. Chrome floats
-  in the room's calm zones (see the [art bible](art-bible.md)): glass
+  in the room's calm zones (see the [art bible](../design/art-bible.md)): glass
   buttons for the seed pouch, friends, and settings at the top; the Today
   card, one primary ("Fill my cheeks"), and one secondary at the bottom.
 
@@ -378,7 +380,7 @@ seen. Rules:
 - **Group neighbouring glass** in a `GlassEffectContainer` so shapes morph
   together instead of stacking.
 - **Scenes reserve calm zones** for glass: the top band and the bottom band
-  of every plate are low-detail sky and grass ([art bible](art-bible.md)),
+  of every plate are low-detail sky and grass ([art bible](../design/art-bible.md)),
   so glass over them stays legible.
 - **Reduce Transparency**: glass falls back to `surface.raised`; scenes stay.
 - Off the scene (Settings, lists), use standard system backgrounds tinted
@@ -583,7 +585,7 @@ memory). The Lock Screen uses `pofu.glyph`.
 
 [ADR-0010](../adr/0010-illustrated-hamster-art-direction.md) makes the
 illustrated hamster the source of truth, and the
-[companion motion system](companion-motion.md) (`PofuCompanion`)
+[companion motion system](../design/companion-motion.md) (`PofuCompanion`)
 implements its hybrid motion. That document owns the asset contract; this
 section states how it fits the rest of the design language:
 

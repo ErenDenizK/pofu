@@ -3,8 +3,8 @@
 A clickable, high-fidelity prototype of Pofu's core loop in an iPhone 17
 frame (402 × 874 pt), in English and Turkish. Dependency-free: one
 `index.html` plus assets. Companion to the
-[information architecture](../../../docs/product/ux/information-architecture.md)
-and [user flows](../../../docs/product/ux/user-flows.md); where the
+[information architecture](../../../docs/archive/information-architecture.md)
+and [user flows](../../../docs/archive/user-flows.md); where the
 prototype and the flows differ, the flows are the source of truth for copy
 and behaviour.
 

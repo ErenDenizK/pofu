@@ -4,8 +4,8 @@
 
 _Status: proposal, for founder review. Last updated: 2026-11-01._
 _Mockups: [`design/prototypes/home-directions/`](../../design/prototypes/home-directions/README.md).
-Read with the [design language](../design/design-language.md), the [art bible](../design/art-bible.md)
-and the [information architecture](../product/ux/information-architecture.md)._
+Read with the [design language](design-language.md), the [art bible](../design/art-bible.md)
+and the [information architecture](information-architecture.md)._
 
 ![Comparison sheet](../../design/prototypes/home-directions/screenshots/comparison.png)
 

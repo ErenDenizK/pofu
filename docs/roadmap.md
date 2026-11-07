@@ -1,12 +1,13 @@
 # Roadmap
 
-_Living document. Last updated: 2026-11-05 (rebuilt in the housekeeping
-pass; the stage G/W plan of 2026-11-02 is in the
-[archive](archive/iteration-plan.md))._
+_Living document. Last updated: 2026-11-07 (adds the Door and UI v3 tracks;
+the stage G/W plan of 2026-11-02 is in the
+[archive](archive/iteration-plan.md)). What is decided and what is open:
+[the decisions register](product/decisions.md)._
 
 Every thread, decision and half-finished item, with its status: [the tracker](tracker.md).
 
-## Status (2026-11-06)
+## Status (2026-11-07)
 
 - **Built and merged:** the Screen Time gate v2 as the `PofuLive` target
   with its extensions (#34, #41; it waits for the membership); the game
@@ -19,12 +20,13 @@ Every thread, decision and half-finished item, with its status: [the tracker](tr
   the frame-rate policy (#194), menus, shield and an honest launch (#192),
   daily visitors and fullness as data (#201); vivid sprites (#200);
   painted menus (#183); approved art in the app (#185).
-- **In review:** experience v1 wave 2 (#212): visitors drawn, the lawn's
-  dressing and critters, three fixes.
+- **Since then:** the English rename (#130, #132, #137), the world sound
+  pass, the gate v2.1 spec and concepts (#268), the flow game and Çağlayan
+  (#297, #315), UI v3 waves 1-2 ([UI v3](design/ui-v3.md)).
 - **Plans in place:** the [game plan](product/game-plan.md) (canonical),
   [home progression](product/home-progression.md),
   [home layout](product/home-layout.md), [deep lore](product/deep-lore.md),
-  [monetization v2](product/monetization-v2.md) (proposal).
+  [monetization v2](product/monetization-v2.md) (proposal; prices are his working numbers, not approved).
 - **Membership:** expected after 2026-11-24. The Screen Time core waits for
   it; everything else is tested now in the free build's Rehearsal mode.
   New work targets the Screen Time product; the free `Pofu` target and the
@@ -46,7 +48,6 @@ grow, and each week ends with a screenshot sheet or a short video for him.
 | One new resident, or one resident relationship scene | [home progression §6](product/home-progression.md#6-residents-cats--soup-assignment-without-the-gacha), [experience v1 §5](design/experience-v1.md#5-visitors-someone-comes-every-day) |
 | One island stage or one filler | [game plan §4](product/game-plan.md#4-book-one-the-islands-rising-curve), [book-one-islands](design/book-one-islands.md) |
 | One decor set, or part of one | [home progression §8](product/home-progression.md#8-decor-sets) |
-| One system polish, from the app or the game track | the tracks below |
 
 ## Tracks
 
@@ -64,9 +65,6 @@ grow, and each week ends with a screenshot sheet or a short video for him.
   ([game plan §3](product/game-plan.md#3-day-by-day-the-typical-user)).
 - **Accessibility:** a full pass (VoiceOver, Dynamic Type, Reduce Motion)
   over every screen.
-- **Haptics:** the `PofuHaptics` palette applied as
-  [experience v1 §3.3](design/experience-v1.md#33-haptics-and-sound-palette-pofuhaptics)
-  says: haptics confirm, never decorate.
 
 ### Game side
 
@@ -106,13 +104,14 @@ grow, and each week ends with a screenshot sheet or a short video for him.
 ### Business
 
 - **Monetization v2** (proposal, the founder decides): one membership,
-  *Pofu Üyelik*, at 129,99 TL a month, 349,99 TL a year or 999,99 TL for
-  life; the gate is always free; nothing is taken back when a membership
+  *Pofu Üyelik*, at about 349,99 TL a year or 999,99 TL for life (his
+  working numbers; the monthly 129,99 TL is the lead's; he gives details
+  later); the gate is always free; nothing is taken back when a membership
   lapses. After a yes: a monetization ADR (it replaces ADR-0016's "Plus"
   clause), then the game design, then `PofuCore` tests before StoreKit 2
   and UI.
 - **Beta:** a TestFlight friends beta once the Family Controls
-  distribution entitlement arrives; the free/paid line is measured there.
+  distribution entitlement arrives; where the free part ends is open; Act I is a default to test there.
 - **App Store:** icon, screenshots, preview video, TR and EN metadata,
   privacy policy, support page, the domain for universal links; art
   provenance (a written assignment or masters regenerated on the founder's
@@ -129,13 +128,14 @@ The lead keeps this list current: each track names its next step only.
 
 | Track | Next step | Waits on |
 |---|---|---|
-| **The gate and the shield** (the top design priority) | Spec "the gate v2": the system shield at its best (painted icon, the hour's colours, the voice) and the in-app gate as a living painted scene; three concept directions from Codex (batch-48); then build | nothing |
-| **Codex's concepts in use** | An inventory of every exploration take with a use for each (screen, moment, sticker, background, inspiration); wire the best into the game and app | nothing |
-| **Light and colour** | Merge SW-1 (#258) and SW-3 (#256, Koke stage 0 tuned); SW-2 weather and the screen haze | SW-3 for SW-2 |
-| **Night lighting** | Tune nightlab to the night key (batch-45) and real normals (batch-47); the ADR; the Metal port. No hard-edged light; Pofu's form round; the island's underside lit as a volume; characters and effects seated | the batch-45 and 47 takes |
-| **Icons** | The flat icon sheets (batch-46); the winner replaces the place control's glyph and the menu symbols | the takes |
+| **The gate fix** | Seeds must stop buying minutes (the built pay rung); breath only past the daily threshold; "Boş ver" everywhere (PR in flight) | nothing |
+| **The Door** (the top design priority) | `DoorScene` per [the Door](design/the-door.md): one scene, six states; the look waits for his Q-12 and Q-13; the shield stays Apple's | his answers, the batch-58 art |
+| **UI v3** | Waves 1-2 merged; wave 3 (home chrome, world cards), violet out, the menu material after Q-14 ([UI v3](design/ui-v3.md)) | his Q-14, Q-15 |
+| **Light and colour** | Soft light: the hard diagonal haze shaft goes; weather and the screen haze are in (#275) | nothing |
+| **Night lighting** | The relight is a spike, off by default; the ADR comes after his Q-10 answer, then the Metal port. No hard-edged light; Pofu's form round; the island's underside lit as a volume; characters and effects seated | his Q-10 |
+| **Icons** | The two-tone take replaces the place control's glyph and menu symbols, once he picks the style (Q-15) | his Q-15 |
 | **Koke** | Integrate row 0-k's takes; one Koke on screen; stage 0-2 plates repainted under the beautiful-wound rule (code grading of the pale, high-key plates stops short: #256's sheet), after the `x-koke-stage0-mist` concept | 0-k, batch-45 |
-| **Çağlayan and flow** | A game-design note for the flow game, then `PofuGames` flow, then Çağlayan with batch-43 | nothing (the art arrives in parallel) |
+| **Çağlayan and flow** | Built (#297, #315). Next: the plates and water source (Q-1, Q-2), a one-day water spike | his answers |
 | **Game flow** | The flow audit: a `PofuCore` test that plays days 1-21 for a typical player and for a heavy scroller; no dead day | nothing |
 | **The roots** (island undersides) | Concepts (batch-49), then `UndersideLayout` and the first pieces by island level; the keepsakes arrive with each healed island ([the roots](design/island-undersides.md)) | the concepts |
 | **Home growth** | A screenshot sheet of IL1 to IL10; every level adds something seen and something moving; IL1's decor | nothing |
@@ -143,10 +143,10 @@ The lead keeps this list current: each track names its next step only.
 | **App** | Onboarding (pick the apps, the first resisted reach, Pofu wakes); the widget and the week page sharing the sky; accessibility; haptics | the gate spec for the onboarding's look |
 | **Health** | The frame meter after weather and night; the snail drift in `integrate.py`; prune worktrees | nothing |
 | **Pofu** | Wire the rig parts (mouths, ears, paws on main) into `PofuCompanion` by mood; Pofu's normal tuning | nothing |
-| **Story and lore** | Close #135 and carry its live ideas into the lore bible; Book One follows the [story map](product/story-map/book-one.md) (canonical; its §8 open decisions) | nothing |
-| **Sound** | Five world cues (level-up, visitor, gift, Koke wakes, evening bell) through `SoundEngine`; then an ambience bed | nothing |
-| **Business** | Monetization v2 answer, then its ADR; the Asian-market question studied or dropped | the founder |
-| **Process** | The English rename window planned or dropped; close #108; a weekly device install with a checklist | nothing |
+| **Story and lore** | Close #135 and carry its live ideas into the lore bible; Book One follows the [story map](product/story-map/book-one.md) (the base we follow, not law) | nothing |
+| **Sound** | A world pass is on main; the missing cues (visitor, Koke, evening bell) | nothing |
+| **Business** | His prices and answers (decisions register §8), then the ADR | the founder |
+| **Process** | Close #108; a weekly device install with a checklist | nothing |
 | **Later** | Emanet, Çanlar (recall), Revontuli, the Gezgin rig, sound, App Store assets; membership day 1 when the account arrives | the membership |
 
 ## Day 1 of the paid membership
@@ -176,6 +176,6 @@ A checklist; these steps have long lead times.
 
 | Question | Owner | Needed by |
 |---|---|---|
-| Monetization v2: one membership and its prices | Agent proposed, founder decides | Before StoreKit work |
-| Where the free part ends (after Act I) | Measured in the beta | Launch |
+| Monetization v2: prices and the shape of the membership | Founder, details later | Before StoreKit work |
+| Where the free part ends | Open; Act I (Olta) is a default to test | Launch |
 | Repository visibility before launch (public for now) | Agent proposes | Launch |

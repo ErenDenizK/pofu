@@ -3,7 +3,7 @@
 _Status: v1 proposal, 2026-11-02. Founder decision: **sound B**, Pofu's
 tiny sounds on, ambience optional; music and effects may be made
 mathematically from chords and progressions. Builds on the [design
-language §11](design-language.md#11-haptics-and-sound) (plush foley, one
+language §11](../archive/design-language.md#11-haptics-and-sound) (plush foley, one
 key, Pofu has no words, silence for failure) and the [interaction spec
 §6.2](interaction-spec.md#62-sound-palette-optional-off-when-the-sounds-toggle-is-off)
 (the interaction sound palette). The words are in

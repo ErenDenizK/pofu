@@ -7,7 +7,7 @@ Ready-to-run GPT Image prompts, in priority order. Every prompt is complete
 and copy-pasteable on its own: it repeats the style and character anchors
 verbatim, says what to attach, and what to ask for. The rules behind them
 are in the [art bible](art-bible.md); where each asset is used is in the
-[design language](design-language.md).
+[design language](../archive/design-language.md).
 
 No video prompts: Sora is discontinued and there is no budget for other
 video tools. Motion comes from sprite sheets plus code.
@@ -351,7 +351,7 @@ trademark candidate; see the art bible's legal notes).
 ### 6r. Pofu's room plate (Home)
 
 Home is Pofu's room, the single root of the app
-([information architecture](../product/ux/information-architecture.md)).
+([information architecture](../archive/information-architecture.md)).
 The meadow plates below show through its window and fill Hop! and focus.
 
 - **Chat:** Pofu · Scenes. **Template:** İllüstrasyon.
@@ -669,7 +669,7 @@ design language) and becomes the trademark filing.
 ### 20. Home look-and-feel exploration (optional, inspiration only)
 
 **Inspiration only.** The real UI stays native SwiftUI, SF Symbols, and
-Liquid Glass per the [design language](design-language.md); nothing in
+Liquid Glass per the [design language](../archive/design-language.md); nothing in
 these mockups is traced or shipped, and any text in them is placeholder.
 Use it to react to art direction, not layout.
 

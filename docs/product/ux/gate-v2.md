@@ -1,6 +1,6 @@
 # The Gate v2: Day 1 with Screen Time
 
-_Status: proposal for the lead and the founder. Last updated: 2026-11-01._
+_Status: proposal for the lead and the founder. Last updated: 2026-11-06 (v2.1). Superseded for the in-app screens by [the Door](../../design/the-door.md); the shield sections still stand._
 _Scope: everything the founder lives with from the first day of the paid
 membership: onboarding with Screen Time, Pofu on Apple's shield, the way
 from the shield to Hop!, the pass, the glance surfaces, setup health, and
@@ -9,7 +9,7 @@ _Builds on: [vision](../vision.md), [the app and the game](../app-game-boundary.
 (accepted direction), [game design v2](../game-design.md) (care rung,
 quick check, breathing break v2), ADR-0012, ADR-0013, ADR-0015, ADR-0017,
 ADR-0018, the [decision audit](../../archive/decision-audit.md) (U1, U6, the PNAS
-findings), the [design language](../../design/design-language.md),
+findings), the [design language](../../archive/design-language.md),
 [review 01](../../archive/review-01.md), the
 [interaction spec](../../design/interaction-spec.md), the app in `App/`,
 and open PR #34 (`feat/screen-time-gate`)._

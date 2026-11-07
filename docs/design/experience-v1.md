@@ -3,7 +3,7 @@
 _Status: accepted; built in part (2026-11-05). Owner: the lead. Inputs: the founder's night
 list and slice test (founder input, 2026-11-05), the Apple Design Awards
 study (`docs/research/apple-design-awards.md`), ADR-0015, ADR-0017, ADR-0018,
-`home-layout.md`, `ui-system-v2.md` §2–3, `design-language.md` §8 and §11,
+`home-layout.md`, `../archive/ui-system-v2.md` §2–3, `../archive/design-language.md` §8 and §11,
 `light-standard.md`. Numbers are starting values; they live in `LookTuning`
 or config, never as code literals._
 
