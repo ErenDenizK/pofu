@@ -154,6 +154,132 @@
      ]
     }
    }
+  },
+  {
+   "source": "r1",
+   "composed": true,
+   "states": {
+    "day": {
+     "before": {
+      "dE": 6.2,
+      "dE_regions": {
+       "sky": 8.8,
+       "back": 6.5,
+       "focal": 4.1,
+       "earth": 1.8,
+       "sea": 9.6
+      },
+      "hist": 2.2,
+      "bf": 0.6
+     },
+     "predicted": {
+      "dE": 6.2,
+      "dE_regions": {
+       "sky": 8.8,
+       "back": 7.5,
+       "focal": 3.4,
+       "earth": 1.6,
+       "sea": 9.6
+      },
+      "hist": 2.2,
+      "bf": 0.54
+     },
+     "p50": [
+      80.3,
+      82.5
+     ]
+    },
+    "golden": {
+     "before": {
+      "dE": 9.3,
+      "dE_regions": {
+       "sky": 13.5,
+       "back": 13.4,
+       "focal": 5.1,
+       "earth": 2.8,
+       "sea": 11.8
+      },
+      "hist": 2.9,
+      "bf": 0.65
+     },
+     "predicted": {
+      "dE": 9.1,
+      "dE_regions": {
+       "sky": 13.5,
+       "back": 12.9,
+       "focal": 5.4,
+       "earth": 2.0,
+       "sea": 11.8
+      },
+      "hist": 2.2,
+      "bf": 0.59
+     },
+     "p50": [
+      74.3,
+      75.2
+     ]
+    },
+    "night": {
+     "before": {
+      "dE": 9.6,
+      "dE_regions": {
+       "sky": 2.3,
+       "back": 13.3,
+       "focal": 13.7,
+       "earth": 7.5,
+       "sea": 11.0
+      },
+      "hist": 7.7,
+      "bf": 0.85
+     },
+     "predicted": {
+      "dE": 10.4,
+      "dE_regions": {
+       "sky": 2.3,
+       "back": 14.8,
+       "focal": 16.7,
+       "earth": 7.3,
+       "sea": 11.0
+      },
+      "hist": 8.1,
+      "bf": 0.81
+     },
+     "p50": [
+      71.5,
+      73.1
+     ]
+    },
+    "rain": {
+     "before": {
+      "dE": 6.7,
+      "dE_regions": {
+       "sky": 5.6,
+       "back": 12.8,
+       "focal": 4.4,
+       "earth": 1.9,
+       "sea": 8.9
+      },
+      "hist": 2.5,
+      "bf": 0.69
+     },
+     "predicted": {
+      "dE": 6.6,
+      "dE_regions": {
+       "sky": 5.6,
+       "back": 14.4,
+       "focal": 3.3,
+       "earth": 0.8,
+       "sea": 8.9
+      },
+      "hist": 3.0,
+      "bf": 0.65
+     },
+     "p50": [
+      77.4,
+      79.8
+     ]
+    }
+   }
   }
  ]
 }

@@ -67,7 +67,7 @@ SCALE_CLIP = (0.75, 1.3)
 # materials: the Gezgin lawn is lamp-lit yellow-green and the Revontuli "earth" is ice, so the
 # lawn keeps a moonlit teal-green and the earth face turns light mauve (violet shadows), at the
 # references' island value (p50 ~70; reference-look.md 6.4, ADR-0021). Spreads stay the references'.
-MEAN_OVERRIDES = {"night": {"lawn": (66.0, -11.0, 12.0), "earth": (72.0, 10.0, -8.0)}}
+MEAN_OVERRIDES = {"night": {"lawn": (68.0, -8.0, 8.0), "earth": (72.0, 10.0, -8.0)}}
 
 
 def box_mask(shape, boxes) -> np.ndarray:
@@ -284,7 +284,7 @@ def fit(shots: Path, composing: bool) -> dict:
 # (zenith L* 27-34 saturated blue-violet, lighter toward the horizon; the cloud sea warm white).
 # Golden: I1 summer evening, pink-peach where our sky was lilac.
 SKY_TARGETS = {
-    "night": {"zenith": (28, 14, -36), "horizon": (50, 12, -30), "glow": (78, 6, -12),
+    "night": {"zenith": (28, 14, -36), "horizon": (44, 13, -34), "glow": (78, 6, -12),
               "cloudLight": (86, 4, -6), "cloudShade": (62, 10, -24),
               "sea.light": (88, 3, 3), "sea.shade": (74, 7, -12)},
     "dusk": {"zenith": (36, 18, -32), "horizon": (66, 20, -6), "glow": (80, 16, 18),

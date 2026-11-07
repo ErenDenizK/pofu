@@ -91,7 +91,7 @@
     "night": {
       "feeling": "Safe, cozy",
       "sun": [0.76, 0.16],
-      "sky": {"zenith": "#303E7A", "horizon": "#6E73AA", "glow": "#C2BED7", "glowStrength": 0.26, "cloudLight": "#DAD5E2", "cloudShade": "#9192C0", "cloudOpacity": 0.8, "stars": 1.0, "tint": "#BDC2EB"},
+      "sky": {"zenith": "#303E7A", "horizon": "#5B64A0", "glow": "#C2BED7", "glowStrength": 0.26, "cloudLight": "#DAD5E2", "cloudShade": "#9192C0", "cloudOpacity": 0.8, "stars": 1.0, "tint": "#BDC2EB"},
       "key": {"colour": "#B8A8B1", "intensity": 0.35, "from": [0.6, -0.8]},
       "fill": {"colour": "#2A2350", "intensity": 0.5},
       "shadow": "#2A2440",
