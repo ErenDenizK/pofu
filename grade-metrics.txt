@@ -1,0 +1,18 @@
+frame                      grade   band     mean     p2    p98  range  local chroma  empty    run  sky_L  sky_C  sky_b pofu_h pofu_C pofu_L
+grade-day-home             day     home    55.70  10.90 100.00  89.10   9.40  21.40   0.11   0.06  63.50   5.10  -4.10  67.40  14.90  84.80
+grade-day-island           day     island  55.50  17.40  84.10  66.70   7.24  18.30   0.28   0.07  64.20   4.80  -3.80  67.50  14.90  84.90
+grade-golden-home          golden  home    56.10  15.50 100.00  84.50   8.74  28.20   0.04   0.03  56.20  12.90  11.40  75.00  25.30  83.30
+grade-golden-island        golden  island  54.20  22.70  82.50  59.80   6.45  26.40   0.26   0.07  56.00  12.30  10.80  75.10  25.30  83.30
+grade-night-home           night   home    22.60   0.50 100.00  99.50   9.02   8.80   0.05   0.04  13.90  15.70 -14.80  67.80  12.10  49.80
+grade-night-island         night   island  14.20   1.10  53.40  52.30   5.86   9.10   0.26   0.18  16.30  16.40 -15.40  67.80  12.10  49.80
+grade-unwell-home          unwell  home    51.20  18.10 100.00  81.90   7.95   6.60   0.10   0.05  52.50  11.70 -10.50 326.80   5.70  76.40
+grade-unwell-island        unwell  island  49.50  25.30  75.10  49.70   5.11   8.50   0.30   0.10  52.90  11.40 -10.30 325.10   5.90  76.30
+
+ok   grade-day-home: within targets
+ok   grade-day-island: within targets
+MISS grade-golden-home: p2 1.42x day outside [None, 1.1]
+MISS grade-golden-island: p2 1.30x day outside [None, 1.1]
+ok   grade-night-home: within targets
+MISS grade-night-island: mean 14.2 outside [15, 40]; run 0.181 outside [None, 0.12]; range 0.78x day outside [0.85, None]
+MISS grade-unwell-home: chroma 0.31x day outside [0.35, 0.8]; local 0.85x day outside [0.95, None]; range 0.92x day outside [0.95, None]; p2 1.66x day outside [None, 1.0]; pofu_h +100.6 vs day outside [None, 20]
+MISS grade-unwell-island: local 0.71x day outside [0.95, None]; range 0.75x day outside [0.95, None]; p2 1.45x day outside [None, 1.0]; pofu_L 0.90x day outside [0.9, None]; pofu_h +102.4 vs day outside [None, 20]
