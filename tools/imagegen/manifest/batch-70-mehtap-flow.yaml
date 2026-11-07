@@ -8,36 +8,44 @@
 # and upgrade spots: docs/design/concept-flows-islands.md §5. The blue
 # hour: cell dusk for the whole chain (one light, so nothing shifts).
 #
-# FINAL-FIRST CHAIN (docs/design/concept-flows-islands.md §0; shared rules
-# in docs/design/concept-flows.md). Stage 4 is painted first, at the island
-# camera, as the ROOT. Stages 3, 2, 1 and 0 are a parent chain of edits
-# (3 edits 4, 2 edits 3, 1 edits 2, 0 edits 1) that only take away, dim,
-# dry, cover, drain or pile up: nothing moves between stages, so they register
-# and the game crossfades between them. Leaves: `-4-bare` and `-0-bare`
-# (the plate without its movable pieces, the pair the layer cut needs),
-# `-4-life` (the residents, the duo and the critters added, for the
-# founder's review only; the game draws them as sprites) and `-4-up` (the
-# three island upgrades in their reserved spots, a fit check). The chain
-# plates never contain a character or an animal.
+# TWO PHASES, THEN A STAR (docs/design/concept-flows-islands.md §0; shared
+# rules in docs/design/concept-flows.md). Stage 4 is painted first, at the
+# island camera, as the ROOT. Every other job edits that final DIRECTLY
+# (parent = stage 4, never the previous stage), so nothing drifts or moves
+# and the stages register for the game's crossfade: stages 3, 2, 1 and 0 take
+# away, dim, dry, cover, drain or pile up; each prompt lists exactly what is
+# present at that stage (cumulative), what is removed or degraded relative to
+# the final, and restates the fixed anchors. Leaves: `-4-bare` and `-0-bare`
+# (the plate without its movable pieces, the pair the layer cut needs; the
+# stage-0 bare restates stage 0 and then strips the pieces), `-4-life` (the
+# residents, the duo and the critters added, for the founder's review only;
+# the game draws them as sprites) and `-4-up` (the three island upgrades in
+# their reserved spots, a fit check). No plate contains a character or an
+# animal except `-4-life`.
+#
+# Phase 1 runs ONLY `x-mehtap-flow-4` (2 takes). The lead or the founder picks a take.
+# Until then every other job waits: `run.py plan` shows each as "waiting for
+# approval of x-mehtap-flow-4" and `run` skips it. Phase 2 (stages 3, 2, 1, 0, the two
+# bares, life and up; independent of each other, any order, up to three
+# tracks) runs after the picked final is promoted.
 #
 # EXPLORATION (x- ids, acceptance exploration: QA is advisory). LEAD RULE,
-# CHAIN PROMOTION: an edit can only attach an approved parent, so the five
-# chain jobs (`-4`, `-3`, `-2`, `-1`, `-0`) ARE promoted after the auto-pick
-# (`promote --only <id>`, review note "concept chain parent; auto-picked by
-# QA; founder review pending"), with their harmony entry and content node
-# as for any master. This is the one exception to "explorations are never
-# promoted" and covers only those five ids. They are concept targets, not
-# wired into the app. The four leaves are never promoted: takes, contact
-# sheet and review.yaml only. A chain job that fails twice is skipped with
-# everything below it in the chain (AGENTS.md, stop conditions).
+# CONCEPT MASTER (this batch only, overriding "explorations are never
+# promoted"): once the lead names the picked take of `x-mehtap-flow-4` (and only that
+# job id), promote it with `promote --only x-mehtap-flow-4` (review note "concept
+# master; picked by the lead"), with its harmony entry and content node as for
+# any master. It is the reference truth every stage derives from, a concept
+# target, not wired into the app. No other job of this batch is promoted: the
+# stages and leaves are takes, contact sheet and review.yaml only. Do not run
+# phase 2 before the lead names the pick. A failed job is skipped and the run
+# continues (no job depends on another stage).
 #
-# Order (one track, `all`): -4, then -3, -2, -1, -0 in order; the leaves
-# -4-bare, -4-life and -4-up as soon as -4 is promoted, -0-bare after -0.
-# Review every take against the parent at the same size: if anything moved,
-# grew or shrank between stages, the take fails the review.
+# Order (phase 2, track `all`): -3, -2, -1, -0, then -4-bare, -0-bare, -4-life,
+# -4-up. Review every take against the final at the same size: if anything
+# moved, grew or shrank between stages, the take fails the review.
 
 batch: batch-70-mehtap-flow
-title: "Mehtap concept flow (M1, the flashiest island; the biggest gap from dark to the full-moon finale), stage 4 first, chain to stage 0, bare pair, life and upgrade checks"
+title: "Mehtap concept flow (M1, the flashiest island; the biggest gap from dark to the full-moon finale), stage 4 first, stages 3 to 0 as edits of it, bare pair, life and upgrade checks"
 status: open
 
 refs:
@@ -134,19 +142,29 @@ jobs:
     notes: "Stage 3 (DÖNÜM, Söz 10 on the pool's rim): the chart drawn, seven faint trails, the new trail stops short of home; the moon a few nights before full. Review: nothing moved; the big gold trail gone."
     prompt:
       - text: |
-          Edit the attached island plate one stage back: it is the same
-          island, less healed. NOTHING MOVES: every landmark, building, pool
-          rim, post, stone, the island's outline and size, the camera and the
-          composition stay exactly where they are. This edit only takes away,
-          empties, dims, dries, covers, drains or piles up what is named here.
-          STAGE 3: the bright gold trail is gone except a short stub of three
-          gold stars just above the telescope that stops short; the moon is a
-          few nights before full, a smaller pale gibbous moon with a fainter
-          halo; the seven faint silver trails stay; the moon pool is a still,
-          dim silver-grey that mirrors only stars; the moonflowers are half
-          open and do not glow; five of the seven rim lamps are lit, two are
-          dark; no shooting stars; only a few stars on the underside. Colour
-          about 95 percent.
+          Edit the attached FINAL island plate (stage 4, the fully healed island,
+          the reference truth of this flow) into STAGE 3. It is derived from the
+          final directly, never from another stage, so everything not named stays
+          pixel for pixel as in the final. NOTHING MOVES: every landmark, building,
+          pool rim, post, stone, the island's outline and size, the camera and the
+          composition stay exactly where the final has them. This edit only takes
+          away, empties, dims, dries, covers, drains or piles up, and it names the
+          whole difference from the final.
+          PRESENT, unchanged from the final: the dome open with the telescope out
+          and glowing warm; Nane's lantern lit; the seven faint silver trails; the
+          chart board; five of the seven rim lamps lit; the moonstone's inner glow.
+          REMOVED OR DEGRADED relative to the final (everything below applies at
+          once): the bright gold trail is gone except a short stub of three gold
+          stars just above the telescope that stops short; the moon is a few nights
+          before full, a smaller pale gibbous moon with a fainter halo; the moon
+          pool is a still, dim silver-grey that mirrors only stars; the moonflowers
+          are half open and do not glow; two of the rim lamps are dark; no shooting
+          stars; only a few stars on the underside; colour about 95 percent.
+          FIXED ANCHORS (restated): the observatory dome on its drum at the back
+          centre, the moon pool at the front left, Nane's perch at the middle right,
+          the bench and the chart board at the front right, the seven rim lamps'
+          places along the crescent's back rim, the crescent plate with its two
+          horns and craters, the island's outline and size.
       - block: edit-keep-v1
       - text: "AVOID: moving, resizing or redrawing any landmark or prop, reframing or zooming, new buildings, characters or animals, text, letters, a border"
 
@@ -159,24 +177,33 @@ jobs:
     palettes: [world-night, world-props, world-foliage]
     chat: "Pofu · Mehtap flow"
     light: {cell: dusk, layer: subject}
-    edit_of: x-mehtap-flow-3
+    edit_of: x-mehtap-flow-4
     acceptance: {exploration: true, edit_mode: region}
     notes: "Stage 2: the dome opens, the telescope out, Nane's lantern the first warm practical; two faint trails. Review: nothing moved."
     prompt:
       - text: |
-          Edit the attached island plate one stage back: it is the same
-          island, less healed. NOTHING MOVES: every landmark, building, pool
-          rim, post, stone, the island's outline and size, the camera and the
-          composition stay exactly where they are. This edit only takes away,
-          empties, dims, dries, covers, drains or piles up what is named here.
-          STAGE 2: only two of the seven faint trails remain in the sky, the
-          other five are gone, and the chart board shows only those two faint
-          lines; three of the rim lamps are lit, four are dark; the
-          moonstone's inner glow is faint; the pool is pewter with a faint
-          shimmer; the moonflowers are closed buds; the underside is plain;
-          the moon is a pale half moon, low and faint. The dome stays open
-          with the telescope out and Nane's lantern stays lit (the first warm
-          light). Colour about 80 percent.
+          Edit the attached FINAL island plate (stage 4, the fully healed island,
+          the reference truth of this flow) into STAGE 2. It is derived from the
+          final directly, never from another stage, so everything not named stays
+          pixel for pixel as in the final. NOTHING MOVES: every landmark, building,
+          pool rim, post, stone, the island's outline and size, the camera and the
+          composition stay exactly where the final has them. This edit only takes
+          away, empties, dims, dries, covers, drains or piles up, and it names the
+          whole difference from the final.
+          PRESENT, unchanged from the final: the dome open with the telescope out;
+          Nane's lantern lit (the first warm light); three of the rim lamps lit.
+          REMOVED OR DEGRADED relative to the final (everything below applies at
+          once): only two of the seven faint trails remain in the sky and on the
+          chart board, the other five are gone; no gold trail, no stub; four rim
+          lamps dark; the moonstone's inner glow faint; the pool is pewter with a
+          faint shimmer; the moonflowers are closed buds; no shooting stars; the
+          underside is plain; the moon is a pale half moon, low and faint; colour
+          about 80 percent.
+          FIXED ANCHORS (restated): the observatory dome on its drum at the back
+          centre, the moon pool at the front left, Nane's perch at the middle right,
+          the bench and the chart board at the front right, the seven rim lamps'
+          places along the crescent's back rim, the crescent plate with its two
+          horns and craters, the island's outline and size.
       - block: edit-keep-v1
       - text: "AVOID: moving, resizing or redrawing any landmark or prop, reframing or zooming, new buildings, characters or animals, text, letters, a border"
 
@@ -189,22 +216,33 @@ jobs:
     palettes: [world-night, world-props, world-foliage]
     chat: "Pofu · Mehtap flow"
     light: {cell: dusk, layer: subject}
-    edit_of: x-mehtap-flow-2
+    edit_of: x-mehtap-flow-4
     acceptance: {exploration: true, edit_mode: region}
     notes: "Stage 1: the first faint trail; the dome still shut. Review: nothing moved; the dome shell closed in place (the same outline as stage 0)."
     prompt:
       - text: |
-          Edit the attached island plate one stage back: it is the same
-          island, less healed. NOTHING MOVES: every landmark, building, pool
-          rim, post, stone, the island's outline and size, the camera and the
-          composition stay exactly where they are. This edit only takes away,
-          empties, dims, dries, covers, drains or piles up what is named here.
-          STAGE 1: the dome's shell is closed (its two halves shut, the
-          telescope inside and out of sight) and its windows are dim; Nane's
-          lantern is dark; only one faint trail remains in the sky and on the
-          chart; one rim lamp glows faintly, the rest are dark; the moonflower
-          bushes are grey-green; the moon is a thin crescent. Colour about 65
-          percent.
+          Edit the attached FINAL island plate (stage 4, the fully healed island,
+          the reference truth of this flow) into STAGE 1. It is derived from the
+          final directly, never from another stage, so everything not named stays
+          pixel for pixel as in the final. NOTHING MOVES: every landmark, building,
+          pool rim, post, stone, the island's outline and size, the camera and the
+          composition stay exactly where the final has them. This edit only takes
+          away, empties, dims, dries, covers, drains or piles up, and it names the
+          whole difference from the final.
+          PRESENT, unchanged from the final: one faint trail in the sky and on the
+          chart; one rim lamp glowing faintly; the moonstone with a faint inner
+          glow.
+          REMOVED OR DEGRADED relative to the final (everything below applies at
+          once): the dome's shell is closed (its two halves shut, the telescope
+          inside and out of sight) and its windows are dim; Nane's lantern is dark;
+          no gold trail, no stub, no other trails; six rim lamps dark; the pool is
+          pewter; the moonflower bushes are grey-green; no shooting stars; the
+          underside is plain; the moon is a thin crescent; colour about 65 percent.
+          FIXED ANCHORS (restated): the observatory dome on its drum at the back
+          centre, the moon pool at the front left, Nane's perch at the middle right,
+          the bench and the chart board at the front right, the seven rim lamps'
+          places along the crescent's back rim, the crescent plate with its two
+          horns and craters, the island's outline and size.
       - block: edit-keep-v1
       - text: "AVOID: moving, resizing or redrawing any landmark or prop, reframing or zooming, new buildings, characters or animals, text, letters, a border"
 
@@ -217,7 +255,7 @@ jobs:
     palettes: [world-night, world-props, world-foliage]
     chat: "Pofu · Mehtap flow"
     light: {cell: dusk, layer: subject}
-    edit_of: x-mehtap-flow-1
+    edit_of: x-mehtap-flow-4
     acceptance: {exploration: true, edit_mode: region}
     notes: "Stage 0, the wound in one word, 'karanlık' (dark): the darkest picture of the game and still beautiful, the biggest gap to stage 4 (founder). Review: the keyhole is the first thing seen; cold, not grey mush; never horror; nothing moved."
     attach:
@@ -225,22 +263,33 @@ jobs:
         role: "The same crescent, stuck: the closed dome, the dull pool, the blank chart. Push it much darker and colder, as written."
     prompt:
       - text: |
-          Edit the attached island plate one stage back: it is the same
-          island, less healed. NOTHING MOVES: every landmark, building, pool
-          rim, post, stone, the island's outline and size, the camera and the
-          composition stay exactly where they are. This edit only takes away,
-          empties, dims, dries, covers, drains or piles up what is named here.
-          STAGE 0, THE DARK: every trail is gone; the sky is thin and cold, a
-          few dim stars, one of them fading to a faint ember; no moon at all
-          (a new-moon night); the moonstone is a dull chalky grey-lilac with
-          no inner glow; every rim lamp is dark and grey; the moon pool is a
-          flat, dull pewter disc; the chart board is blank; the bushes are
-          bare grey twigs; the closed dome's shell is a dull lead grey and its
-          windows are dark. Cold, drained blue-grey everywhere, but a FULL
-          value range, from deep blue-violet shade to pale cold highlights.
-          ONE warm light: a pale-gold glow through the keyhole of the dome's
-          door, the only warm colour in the picture. Hushed and cold, the
-          darkest picture in the game, still beautiful, never horror.
+          Edit the attached FINAL island plate (stage 4, the fully healed island,
+          the reference truth of this flow) into STAGE 0, THE DARK. It is derived
+          from the final directly, never from another stage, so everything not named
+          stays pixel for pixel as in the final. NOTHING MOVES: every landmark,
+          building, pool rim, post, stone, the island's outline and size, the camera
+          and the composition stay exactly where the final has them. This edit only
+          takes away, empties, dims, dries, covers, drains or piles up, and it names
+          the whole difference from the final.
+          PRESENT, unchanged from the final: the dome, the pool, the chart board,
+          the bushes and the lamps as dim, dull shapes; the island's outline.
+          REMOVED OR DEGRADED relative to the final (everything below applies at
+          once): every trail is gone; the sky is thin and cold, a few dim stars, one
+          of them fading to a faint ember; no moon at all (a new-moon night); the
+          moonstone is a dull chalky grey-lilac with no inner glow; every rim lamp
+          is dark and grey; the moon pool is a flat, dull pewter disc; the chart
+          board is blank; the bushes are bare grey twigs; the closed dome's shell is
+          a dull lead grey and its windows are dark; no shooting stars. Cold,
+          drained blue-grey everywhere, but a FULL value range, from deep blue-
+          violet shade to pale cold highlights. ONE warm light: a pale-gold glow
+          through the keyhole of the dome's door, the only warm colour in the
+          picture. Hushed and cold, the darkest picture in the game, still
+          beautiful, never horror.
+          FIXED ANCHORS (restated): the observatory dome on its drum at the back
+          centre, the moon pool at the front left, Nane's perch at the middle right,
+          the bench and the chart board at the front right, the seven rim lamps'
+          places along the crescent's back rim, the crescent plate with its two
+          horns and craters, the island's outline and size.
       - block: edit-keep-v1
       - text: "AVOID: moving, resizing or redrawing any landmark or prop, reframing or zooming, new buildings, characters or animals, text, letters, a border"
 
@@ -281,19 +330,43 @@ jobs:
     palettes: [world-night, world-props, world-foliage]
     chat: "Pofu · Mehtap flow"
     light: {cell: dusk, layer: subject}
-    edit_of: x-mehtap-flow-0
+    edit_of: x-mehtap-flow-4
     acceptance: {exploration: true, edit_mode: region}
     notes: "Bare pair, stage 0. Review: as the -4 bare, in stage 0's light; the keyhole glow stays."
     prompt:
       - text: |
-          Edit the attached island plate into its BARE version for cutting
-          layers: keep the island plate, its ground, its water and every fixed
-          landmark exactly as they are, pixel for pixel, in the same light.
-          Remove ONLY the movable pieces named here, and paint the ground that
-          was under each one as it would simply continue (the same stone,
-          grass, snow or tile), with no hole, no ghost shadow and no new
-          detail. Remove only: the seven dark rim lamps, the bare twig bushes
-          and the striped blanket.
+          Edit the attached FINAL island plate (stage 4, the fully healed island,
+          the reference truth of this flow) into STAGE 0, THE DARK. It is derived
+          from the final directly, never from another stage, so everything not named
+          stays pixel for pixel as in the final. NOTHING MOVES: every landmark,
+          building, pool rim, post, stone, the island's outline and size, the camera
+          and the composition stay exactly where the final has them. This edit only
+          takes away, empties, dims, dries, covers, drains or piles up, and it names
+          the whole difference from the final.
+          PRESENT, unchanged from the final: the dome, the pool, the chart board,
+          the bushes and the lamps as dim, dull shapes; the island's outline.
+          REMOVED OR DEGRADED relative to the final (everything below applies at
+          once): every trail is gone; the sky is thin and cold, a few dim stars, one
+          of them fading to a faint ember; no moon at all (a new-moon night); the
+          moonstone is a dull chalky grey-lilac with no inner glow; every rim lamp
+          is dark and grey; the moon pool is a flat, dull pewter disc; the chart
+          board is blank; the bushes are bare grey twigs; the closed dome's shell is
+          a dull lead grey and its windows are dark; no shooting stars. Cold,
+          drained blue-grey everywhere, but a FULL value range, from deep blue-
+          violet shade to pale cold highlights. ONE warm light: a pale-gold glow
+          through the keyhole of the dome's door, the only warm colour in the
+          picture. Hushed and cold, the darkest picture in the game, still
+          beautiful, never horror.
+          FIXED ANCHORS (restated): the observatory dome on its drum at the back
+          centre, the moon pool at the front left, Nane's perch at the middle right,
+          the bench and the chart board at the front right, the seven rim lamps'
+          places along the crescent's back rim, the crescent plate with its two
+          horns and craters, the island's outline and size.
+          Then make the result its BARE version for cutting layers: keep the plate,
+          its ground and every fixed landmark exactly as just described, pixel for
+          pixel, in the same light. Remove ONLY the seven dark rim lamps, the bare
+          twig bushes and the striped blanket, painting the ground that was under
+          each as it would simply continue, with no hole and no ghost shadow.
       - block: edit-keep-v1
       - text: "AVOID: moving, resizing or redrawing any landmark or prop, reframing or zooming, new buildings, characters or animals, text, letters, a border"
 

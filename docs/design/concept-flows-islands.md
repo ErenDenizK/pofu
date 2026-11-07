@@ -25,25 +25,34 @@ folded in: each island below is **one** flow, one plate, five stages.
    storyboards mark each with a red arrow at that stage. Revontuli's tower
    frames are the one larger piece that changes: each rises in place on
    its fixed footing (Q-4 C).
-2. **Final-first chain.** Stage 4 is painted first, at the island camera, as
-   the root (`x-<island>-flow-4`). Stage 3 is an edit of 4, 2 of 3, 1 of 2, 0
-   of 1. Each edit only takes away, dims, dries, covers, drains or piles up,
-   so the stages register and the game crossfades between them. Painting the
-   healed state first fixes every landmark's place where it matters most.
-3. **Leaves of the chain.** `-4-bare` and `-0-bare` are the plate without
+2. **Final first, then a star.** Stage 4 is painted first, at the island
+   camera, as the root (`x-<island>-flow-4`). Stages 3, 2, 1 and 0 each edit
+   the final directly (parent = stage 4, never the previous stage), so
+   nothing drifts. Each prompt lists exactly what is present at that stage
+   (cumulative), what is removed or degraded relative to the final, and
+   restates the fixed anchors. Each edit only takes away, dims, dries, covers,
+   drains or piles up, so the stages register and the game crossfades between
+   them. Painting the healed state first fixes every landmark's place where it
+   matters most.
+3. **Leaves.** `-4-bare` and `-0-bare` are the plate without
    its movable pieces at both ends of the light range: the pair the layer cut
    needs ([concept match](../research/concept-match.md) §6 route; the bare
    plate plus the full plate, props = the difference). `-4-life` adds the
    resident, Pofu, Mochi and the critters for the founder's review only (the
-   game draws them as sprites, so the chain never contains a character).
+   game draws them as sprites, so no stage contains a character).
    `-4-up` paints the three upgrades (decisions G5) into their **reserved
    empty spots**, a fit check that the spots exist and work.
 4. **Frame.** 1536 × 1024 plates in the home camera (about 20°), the
    island about 88 % of the width, delivered at 768 × 512 (`deliver: {scale:
    0.5}`); code places islands from a traced matte (`CaglayanLayout`).
-5. **Promotion.** An edit attaches an approved parent, so the five chain
-   jobs are promoted as concept targets (a header lead rule in each batch);
-   the leaves are takes only. Nothing here is wired into the app.
+5. **Two phases and promotion.** Phase 1 runs only the final (stage 4, 2
+   takes) and the lead or founder picks a take. A header lead rule in each
+   batch then promotes that one job as a concept master, the reference truth
+   every stage derives from (the single exception to "explorations are never
+   promoted"). Phase 2 runs the other eight jobs, which wait on that master
+   (`run.py plan` shows "waiting for approval of <final>" until the lead names
+   the pick). The stages and leaves are takes only. Nothing here is wired
+   into the app.
 6. **Wound and cure** (S8, Q-3 B). Stage 0's wound is sayable in one word
    and still magical: a full value range and one warm focal light the
    camera finds first. Stage 4 has motion, lights, residents and critters,
@@ -92,10 +101,10 @@ into the pool.
 
 | Stage | What is there | Beat (wound → cure) | Fed by |
 |---|---|---|---|
-| 0 | the water hangs frozen under the spout as a glassy curtain with still drops; the pool low and mirror-still; stream, basin and saucers dry; boats aground; pale moss; one shaft of sun on the drops | **donmuş**: Damla with an empty glass, puzzled | `x-caglayan-stuck` t1 (the frozen curtain) + the chain |
-| 1 | one thin trickle; the pool half full; stream damp, basin dry; saucers dry; wheel dry, window dark | the first sound of water | chain |
-| 2 | a thin ribbon; pool full; the top saucer full (boat afloat), the two lower dry; small grass patches; **the mill window lit** | the wheel turns; the first warm light | chain |
-| 3 | a strong ribbon; every pool full, boats afloat; flowers in bud; no rainbow, no smoke | DÖNÜM: Mochi spills tea on the grindstone, reads Söz 1 | chain |
+| 0 | the water hangs frozen under the spout as a glassy curtain with still drops; the pool low and mirror-still; stream, basin and saucers dry; boats aground; pale moss; one shaft of sun on the drops | **donmuş**: Damla with an empty glass, puzzled | `x-caglayan-stuck` t1 (the frozen curtain) + the final |
+| 1 | one thin trickle; the pool half full; stream damp, basin dry; saucers dry; wheel dry, window dark | the first sound of water | the final |
+| 2 | a thin ribbon; pool full; the top saucer full (boat afloat), the two lower dry; small grass patches; **the mill window lit** | the wheel turns; the first warm light | the final |
+| 3 | a strong ribbon; every pool full, boats afloat; flowers in bud; no rainbow, no smoke | DÖNÜM: Mochi spills tea on the grindstone, reads Söz 1 | the final |
 | 4 | a full curtain into the full pool, mist rainbow; turquoise pools; wheel spray; window and smoke; green carpets and flowers (C2) | ÇÖZÜLME: Damla on top with a full glass | root: C1 healed t2 (layout) + C2 t2 (greens) |
 
 **Stage 4, lively:** the falls and the stream move (code over the painted
@@ -143,10 +152,10 @@ A and the spruce, curling down the outside of the body.
 
 | Stage | What is there | Beat | Fed by |
 |---|---|---|---|
-| 0 | all three towers toppled beside their footings, dark, snow-covered; the post dark; the lake under deep snow, the hole frozen; indigo starry sky with a silver moon rim; **the sauna window and steam** | **sönük**: Tuli at the hole, her back to everyone | R2 t2 (ruin mood) + R1 stuck t1 + the chain |
-| 1 | tower A stands, lit; B leans on the spruce; the lake a smooth dip in the snow | a whistle in the wind stops | chain |
-| 2 | B stands, lit; C still down; the lake's right half swept clear; a faint low ribbon at the horizon | first warm practicals on the snow; the no-talking sauna | chain |
-| 3 | C stands: three lanterns in a ring; the lake clear and glassy, mirroring stars and lanterns; the post still dark | DÖNÜM: Söz 4 in the bucket under the sauna bench | chain; the lake from `x2-revontuli-b` |
+| 0 | all three towers toppled beside their footings, dark, snow-covered; the post dark; the lake under deep snow, the hole frozen; indigo starry sky with a silver moon rim; **the sauna window and steam** | **sönük**: Tuli at the hole, her back to everyone | R2 t2 (ruin mood) + R1 stuck t1 + the final |
+| 1 | tower A stands, lit; B leans on the spruce; the lake a smooth dip in the snow | a whistle in the wind stops | the final |
+| 2 | B stands, lit; C still down; the lake's right half swept clear; a faint low ribbon at the horizon | first warm practicals on the snow; the no-talking sauna | the final |
+| 3 | C stands: three lanterns in a ring; the lake clear and glassy, mirroring stars and lanterns; the post still dark | DÖNÜM: Söz 4 in the bucket under the sauna bench | the final; the lake from `x2-revontuli-b` |
 | 4 | aurora curtains; the tail sweeps down and ends in the post's lantern, gold; the lake mirrors green and violet; the ice body glows with aurora tint | ÇÖZÜLME: Tuli paints a stroke with her tail; the duo sit side by side, silent | root: R1 healed t2 + R2 t2 (towers) + `x2-revontuli-b` t2 (lake, tail) |
 
 **Stage 4, lively:** the curtains ripple slowly; the tail's tip pulses at the
@@ -189,10 +198,10 @@ from the office porch down to the cart.
 
 | Stage | What is there | Beat | Fed by |
 |---|---|---|---|
-| 0 | thick layered lilac fog; the office, shelves and post fade to silhouettes; every shelf bare; things loom at the front (umbrella, boot, teacup, sailboat); the hat-on-umbrella on the cart; **one oil lantern on the counter sill** | **sisli**: Boncuk asleep on the heap with her duster | `x-emanet-stage0-fog` t2 + the chain |
-| 1 | knee-deep fog; one bay full, nothing tagged; a big tumbled heap and a small one; windows dark | the first clean wooden knock | EM1 stuck t1 (the heap) + chain |
-| 2 | two bays full; tags return; the small heap shrinks; fog only behind the shelves; **the office window lit** | Pofu pops the umbrella open and laughs | chain |
-| 3 | three bays full; the back-room door glows; the cart empty; fog only under the plate | DÖNÜM: Söz 7 under the scale; Mochi gives the ıhlamur tin | chain |
+| 0 | thick layered lilac fog; the office, shelves and post fade to silhouettes; every shelf bare; things loom at the front (umbrella, boot, teacup, sailboat); the hat-on-umbrella on the cart; **one oil lantern on the counter sill** | **sisli**: Boncuk asleep on the heap with her duster | `x-emanet-stage0-fog` t2 + the final |
+| 1 | knee-deep fog; one bay full, nothing tagged; a big tumbled heap and a small one; windows dark | the first clean wooden knock | EM1 stuck t1 (the heap) + the final |
+| 2 | two bays full; tags return; the small heap shrinks; fog only behind the shelves; **the office window lit** | Pofu pops the umbrella open and laughs | the final |
+| 3 | three bays full; the back-room door glows; the cart empty; fog only under the plate | DÖNÜM: Söz 7 under the scale; Mochi gives the ıhlamur tin | the final |
 | 4 | everything shelved and tagged; the cart full of ribboned parcels; bunting from roof to post; steam; porch and post lanterns; a kite; a small heap of the day's return | ÇÖZÜLME: Boncuk polishes a cup at the counter | root: EM1 healed t1 (plate, places) + `x2-emanet-a` t1 (office) + `x2-emanet-b` t1 (plinth) |
 
 **Stage 4, lively:** the bunting flutters; the kite bobs; steam curls from
@@ -231,10 +240,10 @@ pool reflects home: the pool's whole surface stays clear.
 
 | Stage | What is there | Beat | Fed by |
 |---|---|---|---|
-| 0 | no moon, a thin cold sky, one star fading to an ember; chalky grey moonstone without glow; every lamp dark; the pool a dull pewter disc; the chart blank; bare twigs; the dome shut, lead grey; **the gold keyhole** | **karanlık**: Nane asleep; Mochi holds Pofu's paw | M1 stuck t1, pushed darker + the chain |
-| 1 | one faint trail in the sky and on the chart; one lamp; a thin crescent moon; the dome still shut | the cold tone warms half a step | chain |
-| 2 | **the dome opens, the telescope out; Nane's lantern lit**; two faint trails; three lamps; a half moon | Nane shows Pofu the telescope; he looks the wrong way | chain |
-| 3 | seven faint trails on the sky and the chart; five lamps; a gibbous moon; the pool still silver-grey; a stub of the new trail stops short | DÖNÜM: Söz 10 at the pool; the newest trail ends at Ayçiçeği tonight | chain |
+| 0 | no moon, a thin cold sky, one star fading to an ember; chalky grey moonstone without glow; every lamp dark; the pool a dull pewter disc; the chart blank; bare twigs; the dome shut, lead grey; **the gold keyhole** | **karanlık**: Nane asleep; Mochi holds Pofu's paw | M1 stuck t1, pushed darker + the final |
+| 1 | one faint trail in the sky and on the chart; one lamp; a thin crescent moon; the dome still shut | the cold tone warms half a step | the final |
+| 2 | **the dome opens, the telescope out; Nane's lantern lit**; two faint trails; three lamps; a half moon | Nane shows Pofu the telescope; he looks the wrong way | the final |
+| 3 | seven faint trails on the sky and the chart; five lamps; a gibbous moon; the pool still silver-grey; a stub of the new trail stops short | DÖNÜM: Söz 10 at the pool; the newest trail ends at Ayçiçeği tonight | the final |
 | 4 | a huge full moon; seven faint trails and a bright gold one from the telescope toward home; the pool liquid silver; the crescent glowing from within; seven lamps; glowing moonflowers; shooting stars; a starry underside | ÇÖZÜLME and the four closing beats | root: M1 healed t1 (layout), pushed |
 
 **Stage 4, lively:** the new trail lights star by star toward home and the
@@ -246,8 +255,8 @@ night after the finale.
 
 ## 6. Order, counts and what reaches the founder
 
-- **Jobs:** 9 per island (5 chain, 2 bare, 1 life, 1 upgrade fit), 36 in
-  all, 2 takes each, one track per batch, the chain 4 → 0. Order: Çağlayan
+- **Jobs:** 9 per island (the final, 4 stages, 2 bare, 1 life, 1 upgrade fit), 36 in
+  all, 2 takes each, one track per batch: phase 1 the final, phase 2 the other eight. Order: Çağlayan
   (built; replaces batch-43's cliff), Revontuli, Emanet, Mehtap; the queue
   rows are the lead's to add.
 - **Founder review:** the storyboards in [`concept-flows/`](concept-flows/)

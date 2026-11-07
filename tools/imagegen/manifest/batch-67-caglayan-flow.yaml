@@ -8,36 +8,44 @@
 # 0 is the map's "havada donup kalmış bir şelale". The flow, landmarks and
 # upgrade spots: docs/design/concept-flows-islands.md §2. Noon: cell day.
 #
-# FINAL-FIRST CHAIN (docs/design/concept-flows-islands.md §0; shared rules
-# in docs/design/concept-flows.md). Stage 4 is painted first, at the island
-# camera, as the ROOT. Stages 3, 2, 1 and 0 are a parent chain of edits
-# (3 edits 4, 2 edits 3, 1 edits 2, 0 edits 1) that only take away, dim,
-# dry, cover, drain or pile up: nothing moves between stages, so they register
-# and the game crossfades between them. Leaves: `-4-bare` and `-0-bare`
-# (the plate without its movable pieces, the pair the layer cut needs),
-# `-4-life` (the residents, the duo and the critters added, for the
-# founder's review only; the game draws them as sprites) and `-4-up` (the
-# three island upgrades in their reserved spots, a fit check). The chain
-# plates never contain a character or an animal.
+# TWO PHASES, THEN A STAR (docs/design/concept-flows-islands.md §0; shared
+# rules in docs/design/concept-flows.md). Stage 4 is painted first, at the
+# island camera, as the ROOT. Every other job edits that final DIRECTLY
+# (parent = stage 4, never the previous stage), so nothing drifts or moves
+# and the stages register for the game's crossfade: stages 3, 2, 1 and 0 take
+# away, dim, dry, cover, drain or pile up; each prompt lists exactly what is
+# present at that stage (cumulative), what is removed or degraded relative to
+# the final, and restates the fixed anchors. Leaves: `-4-bare` and `-0-bare`
+# (the plate without its movable pieces, the pair the layer cut needs; the
+# stage-0 bare restates stage 0 and then strips the pieces), `-4-life` (the
+# residents, the duo and the critters added, for the founder's review only;
+# the game draws them as sprites) and `-4-up` (the three island upgrades in
+# their reserved spots, a fit check). No plate contains a character or an
+# animal except `-4-life`.
+#
+# Phase 1 runs ONLY `x-caglayan-flow-4` (2 takes). The lead or the founder picks a take.
+# Until then every other job waits: `run.py plan` shows each as "waiting for
+# approval of x-caglayan-flow-4" and `run` skips it. Phase 2 (stages 3, 2, 1, 0, the two
+# bares, life and up; independent of each other, any order, up to three
+# tracks) runs after the picked final is promoted.
 #
 # EXPLORATION (x- ids, acceptance exploration: QA is advisory). LEAD RULE,
-# CHAIN PROMOTION: an edit can only attach an approved parent, so the five
-# chain jobs (`-4`, `-3`, `-2`, `-1`, `-0`) ARE promoted after the auto-pick
-# (`promote --only <id>`, review note "concept chain parent; auto-picked by
-# QA; founder review pending"), with their harmony entry and content node
-# as for any master. This is the one exception to "explorations are never
-# promoted" and covers only those five ids. They are concept targets, not
-# wired into the app. The four leaves are never promoted: takes, contact
-# sheet and review.yaml only. A chain job that fails twice is skipped with
-# everything below it in the chain (AGENTS.md, stop conditions).
+# CONCEPT MASTER (this batch only, overriding "explorations are never
+# promoted"): once the lead names the picked take of `x-caglayan-flow-4` (and only that
+# job id), promote it with `promote --only x-caglayan-flow-4` (review note "concept
+# master; picked by the lead"), with its harmony entry and content node as for
+# any master. It is the reference truth every stage derives from, a concept
+# target, not wired into the app. No other job of this batch is promoted: the
+# stages and leaves are takes, contact sheet and review.yaml only. Do not run
+# phase 2 before the lead names the pick. A failed job is skipped and the run
+# continues (no job depends on another stage).
 #
-# Order (one track, `all`): -4, then -3, -2, -1, -0 in order; the leaves
-# -4-bare, -4-life and -4-up as soon as -4 is promoted, -0-bare after -0.
-# Review every take against the parent at the same size: if anything moved,
-# grew or shrank between stages, the take fails the review.
+# Order (phase 2, track `all`): -3, -2, -1, -0, then -4-bare, -0-bare, -4-life,
+# -4-up. Review every take against the final at the same size: if anything
+# moved, grew or shrank between stages, the take fails the review.
 
 batch: batch-67-caglayan-flow
-title: "Çağlayan concept flow, stage 4 first (C1 with C2's greens), chain to stage 0, bare pair, life and upgrade checks"
+title: "Çağlayan concept flow, stage 4 first (C1 with C2's greens), stages 3 to 0 as edits of it, bare pair, life and upgrade checks"
 status: open
 
 refs:
@@ -135,16 +143,26 @@ jobs:
     notes: "Stage 3 (DÖNÜM, Söz 1 on the mill stone): full water, no signature. Review: nothing moved; no rainbow, no mist, no smoke; the flowers in bud."
     prompt:
       - text: |
-          Edit the attached island plate one stage back: it is the same
-          island, less healed. NOTHING MOVES: every landmark, building, pool
-          rim, post, stone, the island's outline and size, the camera and the
-          composition stay exactly where they are. This edit only takes away,
-          empties, dims, dries, covers, drains or piles up what is named here.
-          STAGE 3: the waterfall is a strong ribbon about half the width of
-          the curtain, not a full curtain; there is NO rainbow and no mist; no
-          smoke from the chimney; the flower clumps are green buds, only a few
-          open; every pool stays full and the leaf boats float; the mill
-          window still glows. Colour a touch less rich (about 95 percent).
+          Edit the attached FINAL island plate (stage 4, the fully healed island,
+          the reference truth of this flow) into STAGE 3. It is derived from the
+          final directly, never from another stage, so everything not named stays
+          pixel for pixel as in the final. NOTHING MOVES: every landmark, building,
+          pool rim, post, stone, the island's outline and size, the camera and the
+          composition stay exactly where the final has them. This edit only takes
+          away, empties, dims, dries, covers, drains or piles up, and it names the
+          whole difference from the final.
+          PRESENT, unchanged from the final: the three saucer pools full with their
+          leaf boats afloat; the big pool full; the mill with its glowing window;
+          the grass carpets, moss and ferns; the cream stone.
+          REMOVED OR DEGRADED relative to the final (everything below applies at
+          once): the waterfall is a strong ribbon about half the width of the
+          curtain, not a full curtain; NO rainbow and no mist; no smoke from the
+          chimney; the flower clumps are green buds, only a few open; colour a touch
+          less rich (about 95 percent).
+          FIXED ANCHORS (restated): the stone spout and the knoll above it, the big
+          pool with its rim, the three saucer pools, the mill with its waterwheel,
+          window and chimney, the stream bank and its flat stone step, the island's
+          outline and size.
       - block: edit-keep-v1
       - text: "AVOID: moving, resizing or redrawing any landmark or prop, reframing or zooming, new buildings, characters or animals, text, letters, a border"
 
@@ -157,23 +175,32 @@ jobs:
     palettes: [world-foliage, world-water, world-props]
     chat: "Pofu · Çağlayan flow"
     light: {cell: day, layer: subject}
-    edit_of: x-caglayan-flow-3
+    edit_of: x-caglayan-flow-4
     acceptance: {exploration: true, edit_mode: region}
     notes: "Stage 2: the wheel turns, the first warm light (the mill window). Review: nothing moved; the two lower saucer pools dry with their boats aground."
     prompt:
       - text: |
-          Edit the attached island plate one stage back: it is the same
-          island, less healed. NOTHING MOVES: every landmark, building, pool
-          rim, post, stone, the island's outline and size, the camera and the
-          composition stay exactly where they are. This edit only takes away,
-          empties, dims, dries, covers, drains or piles up what is named here.
-          STAGE 2: the waterfall is a thin ribbon; the big pool is full but
-          calm; the two LOWER saucer pools (front right) are dry, pale cream
-          stone floors with a damp ring, and their leaf boats rest tilted on
-          the dry floors; the top saucer pool is still full with its boat
-          afloat; the grass carpets shrink to small patches and the moss is
-          thinner; no flowers, only a few green buds; the mill window still
-          glows warm (the first warm light). Colour about 80 percent.
+          Edit the attached FINAL island plate (stage 4, the fully healed island,
+          the reference truth of this flow) into STAGE 2. It is derived from the
+          final directly, never from another stage, so everything not named stays
+          pixel for pixel as in the final. NOTHING MOVES: every landmark, building,
+          pool rim, post, stone, the island's outline and size, the camera and the
+          composition stay exactly where the final has them. This edit only takes
+          away, empties, dims, dries, covers, drains or piles up, and it names the
+          whole difference from the final.
+          PRESENT, unchanged from the final: the big pool full but calm; the top
+          saucer pool full with its boat afloat; the mill with its window glowing
+          warm (the first warm light); the cream stone.
+          REMOVED OR DEGRADED relative to the final (everything below applies at
+          once): the waterfall is a thin ribbon; NO rainbow, no mist and no chimney
+          smoke; the two LOWER saucer pools (front right) are dry, pale cream stone
+          floors with a damp ring, their leaf boats resting tilted on the dry
+          floors; the grass carpets shrink to small patches and the moss is thinner;
+          no flowers, only a few green buds; colour about 80 percent.
+          FIXED ANCHORS (restated): the stone spout and the knoll above it, the big
+          pool with its rim, the three saucer pools, the mill with its waterwheel,
+          window and chimney, the stream bank and its flat stone step, the island's
+          outline and size.
       - block: edit-keep-v1
       - text: "AVOID: moving, resizing or redrawing any landmark or prop, reframing or zooming, new buildings, characters or animals, text, letters, a border"
 
@@ -186,23 +213,33 @@ jobs:
     palettes: [world-foliage, world-water, world-props]
     chat: "Pofu · Çağlayan flow"
     light: {cell: day, layer: subject}
-    edit_of: x-caglayan-flow-2
+    edit_of: x-caglayan-flow-4
     acceptance: {exploration: true, edit_mode: region}
     notes: "Stage 1: one thread of water. Review: nothing moved; the mill dark, the wheel dry, all saucers dry."
     prompt:
       - text: |
-          Edit the attached island plate one stage back: it is the same
-          island, less healed. NOTHING MOVES: every landmark, building, pool
-          rim, post, stone, the island's outline and size, the camera and the
-          composition stay exactly where they are. This edit only takes away,
-          empties, dims, dries, covers, drains or piles up what is named here.
-          STAGE 1: the waterfall is a single thin trickle from the spout; the
-          big pool is half full, its rim stone dry above a wet line; the
-          stream is a damp channel with a few puddles, and the front basin is
-          dry; all three saucer pools are dry with their leaf boats aground;
-          the waterwheel is dry and still; the mill window is dark; the grass
-          is gone to pale dry moss along the rims; no buds. Colour about 65
-          percent.
+          Edit the attached FINAL island plate (stage 4, the fully healed island,
+          the reference truth of this flow) into STAGE 1. It is derived from the
+          final directly, never from another stage, so everything not named stays
+          pixel for pixel as in the final. NOTHING MOVES: every landmark, building,
+          pool rim, post, stone, the island's outline and size, the camera and the
+          composition stay exactly where the final has them. This edit only takes
+          away, empties, dims, dries, covers, drains or piles up, and it names the
+          whole difference from the final.
+          PRESENT, unchanged from the final: the cream stone; the knoll, the mill
+          and every landmark.
+          REMOVED OR DEGRADED relative to the final (everything below applies at
+          once): the waterfall is a single thin trickle from the spout; NO rainbow,
+          no mist, no chimney smoke; the big pool is half full, its rim stone dry
+          above a wet line; the stream is a damp channel with a few puddles and the
+          front basin is dry; all three saucer pools are dry with their leaf boats
+          aground; the waterwheel is dry and still; the mill window is dark; the
+          grass is gone to pale dry moss along the rims; no flowers, no buds; colour
+          about 65 percent.
+          FIXED ANCHORS (restated): the stone spout and the knoll above it, the big
+          pool with its rim, the three saucer pools, the mill with its waterwheel,
+          window and chimney, the stream bank and its flat stone step, the island's
+          outline and size.
       - block: edit-keep-v1
       - text: "AVOID: moving, resizing or redrawing any landmark or prop, reframing or zooming, new buildings, characters or animals, text, letters, a border"
 
@@ -215,7 +252,7 @@ jobs:
     palettes: [world-foliage, world-water, world-props]
     chat: "Pofu · Çağlayan flow"
     light: {cell: day, layer: subject}
-    edit_of: x-caglayan-flow-1
+    edit_of: x-caglayan-flow-4
     acceptance: {exploration: true, edit_mode: region}
     notes: "Stage 0, the map's wound in one word, 'donmuş' (frozen), and still magical: the frozen curtain with hanging drops (x-caglayan-stuck t1). Review: the shaft of sun on the hanging drops is the first thing seen; full value range, not pale; nothing moved."
     attach:
@@ -223,23 +260,33 @@ jobs:
         role: "STAGE 0's look (the map): the water hangs frozen in the air under the spout as a short glassy curtain with drops hanging still below it. Copy that frozen water only; keep the attached plate's layout."
     prompt:
       - text: |
-          Edit the attached island plate one stage back: it is the same
-          island, less healed. NOTHING MOVES: every landmark, building, pool
-          rim, post, stone, the island's outline and size, the camera and the
-          composition stay exactly where they are. This edit only takes away,
-          empties, dims, dries, covers, drains or piles up what is named here.
-          STAGE 0, THE FROZEN FALL (the story map: a waterfall frozen in the
-          air in the noon sun): under the spout the water hangs perfectly
-          still in the air as a short glassy curtain, with a row of round
-          drops hanging motionless below it, as if time stopped; the big pool
-          is low and still as a mirror, without one ripple; the stream, the
-          basin and the saucer pools are dry, the leaf boats aground; the moss
-          is pale and dry, no flowers. Warm hues drained to about half, but a
-          FULL value range: cool blue-violet shade under the knoll and the
-          mill, bright lit stone. ONE warm focal light: a soft shaft of noon
-          sun falls on the hanging drops so they glint like a string of beads,
-          the first thing the eye finds. Hushed and strange, never sad, never
-          ruined.
+          Edit the attached FINAL island plate (stage 4, the fully healed island,
+          the reference truth of this flow) into STAGE 0, THE FROZEN FALL (the story
+          map: a waterfall frozen in the air in the noon sun). It is derived from
+          the final directly, never from another stage, so everything not named
+          stays pixel for pixel as in the final. NOTHING MOVES: every landmark,
+          building, pool rim, post, stone, the island's outline and size, the camera
+          and the composition stay exactly where the final has them. This edit only
+          takes away, empties, dims, dries, covers, drains or piles up, and it names
+          the whole difference from the final.
+          PRESENT, unchanged from the final: the cream stone; the knoll, the mill
+          and every landmark.
+          REMOVED OR DEGRADED relative to the final (everything below applies at
+          once): NO rainbow, no mist, no chimney smoke; the mill window is dark and
+          the waterwheel dry and still; the grass is gone, the moss is pale and dry,
+          no flowers or buds; under the spout the water hangs perfectly still in the
+          air as a short glassy curtain, with a row of round drops hanging
+          motionless below it, as if time stopped; the big pool is low and still as
+          a mirror, without one ripple; the stream, the basin and the saucer pools
+          are dry and the leaf boats aground. Warm hues drained to about half, but a
+          FULL value range: cool blue-violet shade under the knoll and the mill,
+          bright lit stone. ONE warm focal light: a soft shaft of noon sun falls on
+          the hanging drops so they glint like a string of beads, the first thing
+          the eye finds. Hushed and strange, never sad, never ruined.
+          FIXED ANCHORS (restated): the stone spout and the knoll above it, the big
+          pool with its rim, the three saucer pools, the mill with its waterwheel,
+          window and chimney, the stream bank and its flat stone step, the island's
+          outline and size.
       - block: edit-keep-v1
       - text: "AVOID: moving, resizing or redrawing any landmark or prop, reframing or zooming, new buildings, characters or animals, text, letters, a border"
 
@@ -278,20 +325,45 @@ jobs:
     palettes: [world-foliage, world-water, world-props]
     chat: "Pofu · Çağlayan flow"
     light: {cell: day, layer: subject}
-    edit_of: x-caglayan-flow-0
+    edit_of: x-caglayan-flow-4
     acceptance: {exploration: true, edit_mode: region}
     notes: "Bare pair, stage 0. Review: as the -4 bare; the frozen curtain and its drops stay (they are the plate)."
     prompt:
       - text: |
-          Edit the attached island plate into its BARE version for cutting
-          layers: keep the island plate, its ground, its water and every fixed
-          landmark exactly as they are, pixel for pixel, in the same light.
-          Remove ONLY the movable pieces named here, and paint the ground that
-          was under each one as it would simply continue (the same stone,
-          grass, snow or tile), with no hole, no ghost shadow and no new
-          detail. Remove only: the three aground leaf boats and the shaft of
-          sunlight with its glints (the app draws the light shaft); the frozen
-          curtain and its hanging drops stay.
+          Edit the attached FINAL island plate (stage 4, the fully healed island,
+          the reference truth of this flow) into STAGE 0, THE FROZEN FALL (the story
+          map: a waterfall frozen in the air in the noon sun). It is derived from
+          the final directly, never from another stage, so everything not named
+          stays pixel for pixel as in the final. NOTHING MOVES: every landmark,
+          building, pool rim, post, stone, the island's outline and size, the camera
+          and the composition stay exactly where the final has them. This edit only
+          takes away, empties, dims, dries, covers, drains or piles up, and it names
+          the whole difference from the final.
+          PRESENT, unchanged from the final: the cream stone; the knoll, the mill
+          and every landmark.
+          REMOVED OR DEGRADED relative to the final (everything below applies at
+          once): NO rainbow, no mist, no chimney smoke; the mill window is dark and
+          the waterwheel dry and still; the grass is gone, the moss is pale and dry,
+          no flowers or buds; under the spout the water hangs perfectly still in the
+          air as a short glassy curtain, with a row of round drops hanging
+          motionless below it, as if time stopped; the big pool is low and still as
+          a mirror, without one ripple; the stream, the basin and the saucer pools
+          are dry and the leaf boats aground. Warm hues drained to about half, but a
+          FULL value range: cool blue-violet shade under the knoll and the mill,
+          bright lit stone. ONE warm focal light: a soft shaft of noon sun falls on
+          the hanging drops so they glint like a string of beads, the first thing
+          the eye finds. Hushed and strange, never sad, never ruined.
+          FIXED ANCHORS (restated): the stone spout and the knoll above it, the big
+          pool with its rim, the three saucer pools, the mill with its waterwheel,
+          window and chimney, the stream bank and its flat stone step, the island's
+          outline and size.
+          Then make the result its BARE version for cutting layers: keep the plate,
+          its ground, its water and every fixed landmark exactly as just described,
+          pixel for pixel, in the same light. Remove ONLY the three aground leaf
+          boats and the shaft of sunlight with its glints (the app draws the light
+          shaft), painting the ground that was under each as it would simply
+          continue, with no hole and no ghost shadow; the frozen curtain and its
+          hanging drops stay (they are the plate).
       - block: edit-keep-v1
       - text: "AVOID: moving, resizing or redrawing any landmark or prop, reframing or zooming, new buildings, characters or animals, text, letters, a border"
 

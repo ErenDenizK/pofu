@@ -10,36 +10,44 @@
 # upgrade spots: docs/design/concept-flows-islands.md §4. Afternoon
 # (İKİNDİ): cell golden.
 #
-# FINAL-FIRST CHAIN (docs/design/concept-flows-islands.md §0; shared rules
-# in docs/design/concept-flows.md). Stage 4 is painted first, at the island
-# camera, as the ROOT. Stages 3, 2, 1 and 0 are a parent chain of edits
-# (3 edits 4, 2 edits 3, 1 edits 2, 0 edits 1) that only take away, dim,
-# dry, cover, drain or pile up: nothing moves between stages, so they register
-# and the game crossfades between them. Leaves: `-4-bare` and `-0-bare`
-# (the plate without its movable pieces, the pair the layer cut needs),
-# `-4-life` (the residents, the duo and the critters added, for the
-# founder's review only; the game draws them as sprites) and `-4-up` (the
-# three island upgrades in their reserved spots, a fit check). The chain
-# plates never contain a character or an animal.
+# TWO PHASES, THEN A STAR (docs/design/concept-flows-islands.md §0; shared
+# rules in docs/design/concept-flows.md). Stage 4 is painted first, at the
+# island camera, as the ROOT. Every other job edits that final DIRECTLY
+# (parent = stage 4, never the previous stage), so nothing drifts or moves
+# and the stages register for the game's crossfade: stages 3, 2, 1 and 0 take
+# away, dim, dry, cover, drain or pile up; each prompt lists exactly what is
+# present at that stage (cumulative), what is removed or degraded relative to
+# the final, and restates the fixed anchors. Leaves: `-4-bare` and `-0-bare`
+# (the plate without its movable pieces, the pair the layer cut needs; the
+# stage-0 bare restates stage 0 and then strips the pieces), `-4-life` (the
+# residents, the duo and the critters added, for the founder's review only;
+# the game draws them as sprites) and `-4-up` (the three island upgrades in
+# their reserved spots, a fit check). No plate contains a character or an
+# animal except `-4-life`.
+#
+# Phase 1 runs ONLY `x-emanet-flow-4` (2 takes). The lead or the founder picks a take.
+# Until then every other job waits: `run.py plan` shows each as "waiting for
+# approval of x-emanet-flow-4" and `run` skips it. Phase 2 (stages 3, 2, 1, 0, the two
+# bares, life and up; independent of each other, any order, up to three
+# tracks) runs after the picked final is promoted.
 #
 # EXPLORATION (x- ids, acceptance exploration: QA is advisory). LEAD RULE,
-# CHAIN PROMOTION: an edit can only attach an approved parent, so the five
-# chain jobs (`-4`, `-3`, `-2`, `-1`, `-0`) ARE promoted after the auto-pick
-# (`promote --only <id>`, review note "concept chain parent; auto-picked by
-# QA; founder review pending"), with their harmony entry and content node
-# as for any master. This is the one exception to "explorations are never
-# promoted" and covers only those five ids. They are concept targets, not
-# wired into the app. The four leaves are never promoted: takes, contact
-# sheet and review.yaml only. A chain job that fails twice is skipped with
-# everything below it in the chain (AGENTS.md, stop conditions).
+# CONCEPT MASTER (this batch only, overriding "explorations are never
+# promoted"): once the lead names the picked take of `x-emanet-flow-4` (and only that
+# job id), promote it with `promote --only x-emanet-flow-4` (review note "concept
+# master; picked by the lead"), with its harmony entry and content node as for
+# any master. It is the reference truth every stage derives from, a concept
+# target, not wired into the app. No other job of this batch is promoted: the
+# stages and leaves are takes, contact sheet and review.yaml only. Do not run
+# phase 2 before the lead names the pick. A failed job is skipped and the run
+# continues (no job depends on another stage).
 #
-# Order (one track, `all`): -4, then -3, -2, -1, -0 in order; the leaves
-# -4-bare, -4-life and -4-up as soon as -4 is promoted, -0-bare after -0.
-# Review every take against the parent at the same size: if anything moved,
-# grew or shrank between stages, the take fails the review.
+# Order (phase 2, track `all`): -3, -2, -1, -0, then -4-bare, -0-bare, -4-life,
+# -4-up. Review every take against the final at the same size: if anything
+# moved, grew or shrank between stages, the take fails the review.
 
 batch: batch-69-emanet-flow
-title: "Emanet concept flow (EM1 with EM2's stilted bureau on a suitcase plinth and EM2's fog), stage 4 first, chain to stage 0, bare pair, life and upgrade checks"
+title: "Emanet concept flow (EM1 with EM2's stilted bureau on a suitcase plinth and EM2's fog), stage 4 first, stages 3 to 0 as edits of it, bare pair, life and upgrade checks"
 status: open
 
 refs:
@@ -144,18 +152,29 @@ jobs:
     notes: "Stage 3 (DÖNÜM, Söz 7 under the scale): the office opens, three bays full; no parcels, no bunting yet. Review: nothing moved; the back room door glows."
     prompt:
       - text: |
-          Edit the attached island plate one stage back: it is the same
-          island, less healed. NOTHING MOVES: every landmark, building, pool
-          rim, post, stone, the island's outline and size, the camera and the
-          composition stay exactly where they are. This edit only takes away,
-          empties, dims, dries, covers, drains or piles up what is named here.
-          STAGE 3: the hand-cart is empty except for a folded blanket; the
-          string of tags and pennants is gone; the kite is gone; no steam from
-          the teacup tank (the chimney still smokes); the heap at the front
-          centre is a little bigger, about a dozen things; a thin lilac mist
-          lies only under the island, around its body; all three shelf bays
-          stay full and tagged; the office windows and the suitcase door stay
-          lit. Colour about 95 percent.
+          Edit the attached FINAL island plate (stage 4, the fully healed island,
+          the reference truth of this flow) into STAGE 3. It is derived from the
+          final directly, never from another stage, so everything not named stays
+          pixel for pixel as in the final. NOTHING MOVES: every landmark, building,
+          pool rim, post, stone, the island's outline and size, the camera and the
+          composition stay exactly where the final has them. This edit only takes
+          away, empties, dims, dries, covers, drains or piles up, and it names the
+          whole difference from the final.
+          PRESENT, unchanged from the final: all three shelf bays full and tagged;
+          the office windows and the suitcase door lit; the lanterns on the porch
+          and the hook post; the counter with its scale and teacup; the golden-hour
+          light.
+          REMOVED OR DEGRADED relative to the final (everything below applies at
+          once): the hand-cart is empty except for a folded blanket; the string of
+          tags and pennants is gone; the kite and its string are gone; no steam from
+          the teacup tank (the chimney still smokes); the heap at the front centre
+          is a little bigger, about a dozen things; a thin lilac mist lies only
+          under the island, around its body; colour about 95 percent.
+          FIXED ANCHORS (restated): the office on its suitcase plinth at the back
+          centre, the tall brass hook post at the back right, the three-bay shelf
+          unit in the middle right, the hand-cart in the middle left, the outdoor
+          counter at the front right, the hexagon-tiled plate and its teal rim, the
+          island's outline and size.
       - block: edit-keep-v1
       - text: "AVOID: moving, resizing or redrawing any landmark or prop, reframing or zooming, new buildings, characters or animals, text, letters, a border"
 
@@ -168,23 +187,36 @@ jobs:
     palettes: [world-props, world-sunset, world-foliage]
     chat: "Pofu · Emanet flow"
     light: {cell: golden, layer: subject}
-    edit_of: x-emanet-flow-3
+    edit_of: x-emanet-flow-4
     acceptance: {exploration: true, edit_mode: region}
     notes: "Stage 2: labels return, two bays full, the office window is the first warm practical. Review: nothing moved; the third bay bare; fog behind the shelves only."
     prompt:
       - text: |
-          Edit the attached island plate one stage back: it is the same
-          island, less healed. NOTHING MOVES: every landmark, building, pool
-          rim, post, stone, the island's outline and size, the camera and the
-          composition stay exactly where they are. This edit only takes away,
-          empties, dims, dries, covers, drains or piles up what is named here.
-          STAGE 2: the third shelf bay (the right one) is bare; the suitcase
-          door and its window are dark and shut; the lanterns on the porch and
-          the hook post are dark; the heap at the front centre is bigger, a
-          tumbled pile up to a hamster's waist, and a small heap lies at the
-          front left; knee-deep lilac fog lies over the far half of the tiles,
-          around the office stilts and behind the shelves; the office windows
-          still glow (the first warm light). Colour about 80 percent.
+          Edit the attached FINAL island plate (stage 4, the fully healed island,
+          the reference truth of this flow) into STAGE 2. It is derived from the
+          final directly, never from another stage, so everything not named stays
+          pixel for pixel as in the final. NOTHING MOVES: every landmark, building,
+          pool rim, post, stone, the island's outline and size, the camera and the
+          composition stay exactly where the final has them. This edit only takes
+          away, empties, dims, dries, covers, drains or piles up, and it names the
+          whole difference from the final.
+          PRESENT, unchanged from the final: the left and middle shelf bays full and
+          tagged; the office windows glowing (the first warm light); the counter
+          with its scale and teacup.
+          REMOVED OR DEGRADED relative to the final (everything below applies at
+          once): the third shelf bay (the right one) is bare; the hand-cart is empty
+          except for a folded blanket; no string of tags and pennants, no kite, no
+          steam from the teacup tank or the chimney; the suitcase door and its
+          window are dark and shut; the lanterns on the porch and the hook post are
+          dark; the heap at the front centre is bigger, a tumbled pile up to a
+          hamster's waist, and a small heap lies at the front left; knee-deep lilac
+          fog lies over the far half of the tiles, around the office stilts and
+          behind the shelves; colour about 80 percent.
+          FIXED ANCHORS (restated): the office on its suitcase plinth at the back
+          centre, the tall brass hook post at the back right, the three-bay shelf
+          unit in the middle right, the hand-cart in the middle left, the outdoor
+          counter at the front right, the hexagon-tiled plate and its teal rim, the
+          island's outline and size.
       - block: edit-keep-v1
       - text: "AVOID: moving, resizing or redrawing any landmark or prop, reframing or zooming, new buildings, characters or animals, text, letters, a border"
 
@@ -197,7 +229,7 @@ jobs:
     palettes: [world-props, world-sunset, world-foliage]
     chat: "Pofu · Emanet flow"
     light: {cell: golden, layer: subject}
-    edit_of: x-emanet-flow-2
+    edit_of: x-emanet-flow-4
     acceptance: {exploration: true, edit_mode: region}
     notes: "Stage 1: the heaps begin to become shelves: one bay full, no tags. Review: nothing moved; only the counter lantern is warm."
     attach:
@@ -205,19 +237,31 @@ jobs:
         role: "The heap's look at the stuck end: the tumbled pile of teapots, quilts, hats, an umbrella and toys."
     prompt:
       - text: |
-          Edit the attached island plate one stage back: it is the same
-          island, less healed. NOTHING MOVES: every landmark, building, pool
-          rim, post, stone, the island's outline and size, the camera and the
-          composition stay exactly where they are. This edit only takes away,
-          empties, dims, dries, covers, drains or piles up what is named here.
-          STAGE 1: the second shelf bay is bare too, only the left bay holds
-          things; every cream tag is gone, the things are unlabelled; the
-          office windows are dark; the big heap at the front centre is a large
-          tumbled pile of teapots, quilts, hats, an umbrella, a rocking horse
-          and parcels, and the small heap at the front left is bigger; lilac
-          fog lies knee-deep over the whole top, thicker toward the back; only
-          a small oil lantern on the counter window sill glows. Colour about
-          65 percent.
+          Edit the attached FINAL island plate (stage 4, the fully healed island,
+          the reference truth of this flow) into STAGE 1. It is derived from the
+          final directly, never from another stage, so everything not named stays
+          pixel for pixel as in the final. NOTHING MOVES: every landmark, building,
+          pool rim, post, stone, the island's outline and size, the camera and the
+          composition stay exactly where the final has them. This edit only takes
+          away, empties, dims, dries, covers, drains or piles up, and it names the
+          whole difference from the final.
+          PRESENT, unchanged from the final: the left shelf bay holding things; a
+          small oil lantern glowing on the counter window sill (the only warm
+          light); the counter.
+          REMOVED OR DEGRADED relative to the final (everything below applies at
+          once): the second and third shelf bays are bare; every cream tag is gone,
+          the things are unlabelled; the hand-cart is empty except for a folded
+          blanket; no string of tags and pennants, no kite, no steam; the office
+          windows and the suitcase door are dark and the porch and hook-post
+          lanterns dark; the big heap at the front centre is a large tumbled pile of
+          teapots, quilts, hats, an umbrella, a rocking horse and parcels, and the
+          small heap at the front left is bigger; lilac fog lies knee-deep over the
+          whole top, thicker toward the back; colour about 65 percent.
+          FIXED ANCHORS (restated): the office on its suitcase plinth at the back
+          centre, the tall brass hook post at the back right, the three-bay shelf
+          unit in the middle right, the hand-cart in the middle left, the outdoor
+          counter at the front right, the hexagon-tiled plate and its teal rim, the
+          island's outline and size.
       - block: edit-keep-v1
       - text: "AVOID: moving, resizing or redrawing any landmark or prop, reframing or zooming, new buildings, characters or animals, text, letters, a border"
 
@@ -230,7 +274,7 @@ jobs:
     palettes: [world-props, world-sunset, world-foliage]
     chat: "Pofu · Emanet flow"
     light: {cell: golden, layer: subject}
-    edit_of: x-emanet-flow-1
+    edit_of: x-emanet-flow-4
     acceptance: {exploration: true, edit_mode: region}
     notes: "Stage 0, the wound in one word, 'sisli' (unclaimed, in fog), eerie but enchanting (x-emanet-stage0-fog t2, the founder: beautiful). Review: the lantern is the first thing seen; the fog has depth; the fog shape reads as a hat on an umbrella, never a stranger; nothing moved."
     attach:
@@ -238,23 +282,34 @@ jobs:
         role: "STAGE 0's look (the founder finds it beautiful): the thick lilac fog in layers, the things looming out of it and the one warm lantern. Copy that fog and light; keep the attached plate's layout."
     prompt:
       - text: |
-          Edit the attached island plate one stage back: it is the same
-          island, less healed. NOTHING MOVES: every landmark, building, pool
-          rim, post, stone, the island's outline and size, the camera and the
-          composition stay exactly where they are. This edit only takes away,
-          empties, dims, dries, covers, drains or piles up what is named here.
-          STAGE 0, THE FOG: thick, real lilac fog fills the island in soft
-          layered veils: the nearest things are clear, and the office, the
-          suitcases, the hook post and the shelves fade into soft silhouettes;
-          the left shelf bay is bare too, every shelf empty; out of the fog at
-          the front loom a few things, large and clear (an open striped
-          umbrella, a rubber boot, a teacup on a saucer, a toy sailboat); on
-          the hand-cart stands a tall shape, a top hat resting on an open
-          umbrella, half lost in the fog; the fog pools under the plate as a
-          cloud skirt. Afternoon drained to amber-grey with violet shade, but
-          a FULL value range. ONE warm light: the small oil lantern on the
+          Edit the attached FINAL island plate (stage 4, the fully healed island,
+          the reference truth of this flow) into STAGE 0, THE FOG. It is derived
+          from the final directly, never from another stage, so everything not named
+          stays pixel for pixel as in the final. NOTHING MOVES: every landmark,
+          building, pool rim, post, stone, the island's outline and size, the camera
+          and the composition stay exactly where the final has them. This edit only
+          takes away, empties, dims, dries, covers, drains or piles up, and it names
+          the whole difference from the final.
+          PRESENT, unchanged from the final: the office, the suitcases, the hook
+          post and the shelves as fading soft silhouettes; the counter with the one
+          small oil lantern on its window sill.
+          REMOVED OR DEGRADED relative to the final (everything below applies at
+          once): thick, real lilac fog fills the island in soft layered veils: the
+          nearest things are clear, the rest fade; every shelf bay is bare; no tags,
+          no string of pennants, no kite, no steam; every window and lantern dark
+          except the one oil lantern; out of the fog at the front loom a few things,
+          large and clear (an open striped umbrella, a rubber boot, a teacup on a
+          saucer, a toy sailboat); on the hand-cart stands a tall shape, a top hat
+          resting on an open umbrella, half lost in the fog; the fog pools under the
+          plate as a cloud skirt. Afternoon drained to amber-grey with violet shade,
+          but a FULL value range. ONE warm light: the small oil lantern on the
           counter window sill, its glow the only warm colour. Hushed, a little
           uncanny, enchanting: you want to go in.
+          FIXED ANCHORS (restated): the office on its suitcase plinth at the back
+          centre, the tall brass hook post at the back right, the three-bay shelf
+          unit in the middle right, the hand-cart in the middle left, the outdoor
+          counter at the front right, the hexagon-tiled plate and its teal rim, the
+          island's outline and size.
       - block: edit-keep-v1
       - text: "AVOID: moving, resizing or redrawing any landmark or prop, reframing or zooming, new buildings, characters or animals, text, letters, a border"
 
@@ -295,22 +350,47 @@ jobs:
     palettes: [world-props, world-sunset, world-foliage]
     chat: "Pofu · Emanet flow"
     light: {cell: golden, layer: subject}
-    edit_of: x-emanet-flow-0
+    edit_of: x-emanet-flow-4
     acceptance: {exploration: true, edit_mode: region}
     notes: "Bare pair, stage 0: the plate under the fog, in stage 0's light, for the 'fog parts where you touch' experiment. Review: no fog left; the light still drained amber-grey with the one lantern."
     prompt:
       - text: |
-          Edit the attached island plate into its BARE version for cutting
-          layers: keep the island plate, its ground, its water and every fixed
-          landmark exactly as they are, pixel for pixel, in the same light.
-          Remove ONLY the movable pieces named here, and paint the ground that
-          was under each one as it would simply continue (the same stone,
-          grass, snow or tile), with no hole, no ghost shadow and no new
-          detail. Remove only: the fog, all of it, including the skirt under
-          the plate (the app draws the fog and parts it where you touch), the
-          heaps and the looming things at the front, and the hat-on-umbrella
-          shape on the cart; keep stage 0's drained light and the lantern's
-          glow.
+          Edit the attached FINAL island plate (stage 4, the fully healed island,
+          the reference truth of this flow) into STAGE 0, THE FOG. It is derived
+          from the final directly, never from another stage, so everything not named
+          stays pixel for pixel as in the final. NOTHING MOVES: every landmark,
+          building, pool rim, post, stone, the island's outline and size, the camera
+          and the composition stay exactly where the final has them. This edit only
+          takes away, empties, dims, dries, covers, drains or piles up, and it names
+          the whole difference from the final.
+          PRESENT, unchanged from the final: the office, the suitcases, the hook
+          post and the shelves as fading soft silhouettes; the counter with the one
+          small oil lantern on its window sill.
+          REMOVED OR DEGRADED relative to the final (everything below applies at
+          once): thick, real lilac fog fills the island in soft layered veils: the
+          nearest things are clear, the rest fade; every shelf bay is bare; no tags,
+          no string of pennants, no kite, no steam; every window and lantern dark
+          except the one oil lantern; out of the fog at the front loom a few things,
+          large and clear (an open striped umbrella, a rubber boot, a teacup on a
+          saucer, a toy sailboat); on the hand-cart stands a tall shape, a top hat
+          resting on an open umbrella, half lost in the fog; the fog pools under the
+          plate as a cloud skirt. Afternoon drained to amber-grey with violet shade,
+          but a FULL value range. ONE warm light: the small oil lantern on the
+          counter window sill, its glow the only warm colour. Hushed, a little
+          uncanny, enchanting: you want to go in.
+          FIXED ANCHORS (restated): the office on its suitcase plinth at the back
+          centre, the tall brass hook post at the back right, the three-bay shelf
+          unit in the middle right, the hand-cart in the middle left, the outdoor
+          counter at the front right, the hexagon-tiled plate and its teal rim, the
+          island's outline and size.
+          Then make the result its BARE version for cutting layers: keep the plate,
+          its ground and every fixed landmark exactly as just described, pixel for
+          pixel, in the same light. Remove ONLY the fog, all of it, including the
+          skirt under the plate (the app draws the fog and parts it where you
+          touch), the heaps and the looming things at the front, and the hat-on-
+          umbrella shape on the cart, painting the ground that was under each as it
+          would simply continue, with no hole and no ghost shadow; keep stage 0's
+          drained light and the lantern's glow.
       - block: edit-keep-v1
       - text: "AVOID: moving, resizing or redrawing any landmark or prop, reframing or zooming, new buildings, characters or animals, text, letters, a border"
 
