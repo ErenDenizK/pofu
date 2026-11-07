@@ -31,8 +31,9 @@ Tunable values (breath seconds, thresholds, seed amounts, names) live in
 | [0015](0015-care-over-currency.md) | Care over currency: seeds as world material | Accepted |
 | [0016](0016-pre-planned-idle-archipelago.md) | Pre-planned idle archipelago | Accepted, amended by 0019 |
 | [0017](0017-pofu-never-dies.md) | Pofu never dies | Accepted |
-| [0018](0018-visual-system-v1.md) | Visual system v1: balanced diorama, Glass++, continuous camera | Accepted |
+| [0018](0018-visual-system-v1.md) | Visual system v1: balanced diorama, Glass++, continuous camera | Accepted, amended by 0020 |
 | [0019](0019-home-cluster-and-wonder-islands.md) | Home cluster and wonder islands: station islands retired | Accepted |
+| [0020](0020-painted-surfaces-native-behaviour.md) | Painted surfaces, native behaviour | Accepted (amends 0018; the founder's menu-material view is open, see the decisions register D8) |
 
 **Read an ADR's status line and this table first; do not load ADR bodies
 you do not need.** A status here that says "amended" or "superseded" means
