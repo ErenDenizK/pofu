@@ -1,0 +1,24 @@
+id: asset-x-caglayan-flow-4-life
+type: asset
+title_tr: x-caglayan-flow-4-life
+title_en: x-caglayan-flow-4-life (plate)
+status: in-production
+horizon: now
+summary: >-
+  Add life to the attached healed island, in these empty places only: Damla, the small round
+  otter of the attached picture, sits on the little stone seat on top of the knoll right above
+  the spout, holding her full tulip glass of water up toward the sun; Pofu (the hamster) and
+  Mochi (the bunny) stand small on the stepping stones at the front centre, at the size they
+  have at home; two small dragonflies hover over the sau…
+links:
+  variant_of:
+  - asset-x-caglayan-flow-4
+art:
+  images: []
+  jobs:
+  - batch-67-caglayan-flow:x-caglayan-flow-4-life
+sources:
+- doc: tools/imagegen/manifest/batch-67-caglayan-flow.yaml
+kind: plate
+batch: batch-67-caglayan-flow
+size: 1536x1024

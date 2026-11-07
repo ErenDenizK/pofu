@@ -1,0 +1,24 @@
+id: asset-x-home-flow-night
+type: asset
+title_tr: x-home-flow-night
+title_en: x-home-flow-night (plate)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached painting into the same scene on a calm, clear night, lit like the two
+  attached night references: a soft deep-blue sky (blue, never black or purple-black) with
+  a gentle glow near the clouds, a soft round moon high on the left and a few small stars;
+  the cloud sea stays light, lilac-white. The island stays readable and fairly light under
+  cool moonlight, its colours soft and quiet, its shadows blue-viol…
+links:
+  variant_of:
+  - asset-x-home-flow-final
+art:
+  images: []
+  jobs:
+  - batch-66-home-flow:x-home-flow-night
+sources:
+- doc: tools/imagegen/manifest/batch-66-home-flow.yaml
+kind: plate
+batch: batch-66-home-flow
+size: 1024x1536

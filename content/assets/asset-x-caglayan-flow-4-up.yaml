@@ -1,0 +1,24 @@
+id: asset-x-caglayan-flow-4-up
+type: asset
+title_tr: x-caglayan-flow-4-up
+title_en: x-caglayan-flow-4-up (plate)
+status: in-production
+horizon: now
+summary: >-
+  Add the island's three upgrades to the attached healed island, each in its reserved empty
+  spot, and nothing else: (1) LILY PADS: round green lily pads with two pale pink water-lily
+  flowers on the front-right half of the big pool (the frogs come later as their own pictures);
+  (2) A SECOND WHEEL AND A MILL LANTERN: a second, smaller round wooden waterwheel on the
+  flat stone step on the stream bank in front of the mill, …
+links:
+  variant_of:
+  - asset-x-caglayan-flow-4
+art:
+  images: []
+  jobs:
+  - batch-67-caglayan-flow:x-caglayan-flow-4-up
+sources:
+- doc: tools/imagegen/manifest/batch-67-caglayan-flow.yaml
+kind: plate
+batch: batch-67-caglayan-flow
+size: 1536x1024

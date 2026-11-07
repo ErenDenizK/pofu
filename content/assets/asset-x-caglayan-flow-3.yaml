@@ -1,0 +1,24 @@
+id: asset-x-caglayan-flow-3
+type: asset
+title_tr: x-caglayan-flow-3
+title_en: x-caglayan-flow-3 (plate)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached island plate one stage back: it is the same island, less healed. NOTHING
+  MOVES: every landmark, building, pool rim, post, stone, the island's outline and size, the
+  camera and the composition stay exactly where they are. This edit only takes away, empties,
+  dims, dries, covers, drains or piles up what is named here. STAGE 3: the waterfall is a
+  strong ribbon about half the width of the curtain, not a f…
+links:
+  variant_of:
+  - asset-x-caglayan-flow-4
+art:
+  images: []
+  jobs:
+  - batch-67-caglayan-flow:x-caglayan-flow-3
+sources:
+- doc: tools/imagegen/manifest/batch-67-caglayan-flow.yaml
+kind: plate
+batch: batch-67-caglayan-flow
+size: 1536x1024

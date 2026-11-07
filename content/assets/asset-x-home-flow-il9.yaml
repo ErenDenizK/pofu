@@ -1,0 +1,24 @@
+id: asset-x-home-flow-il9
+type: asset
+title_tr: x-home-flow-il9
+title_en: x-home-flow-il9 (plate)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached painting to an earlier day. Hide the hilltop terrace above the island's
+  left end inside a soft, round, sunlit cloud, so only the first three stone steps show rising
+  from the lawn's left tip into it; the little wooden gate on the steps is CLOSED, with a
+  soft warm glow behind it. Make the windmill plainer: bare cream sails, no lanterns on its
+  cap, no flag. Make the workshop plainer: no big gear sign a…
+links:
+  variant_of:
+  - asset-x-home-flow-final
+art:
+  images: []
+  jobs:
+  - batch-66-home-flow:x-home-flow-il9
+sources:
+- doc: tools/imagegen/manifest/batch-66-home-flow.yaml
+kind: plate
+batch: batch-66-home-flow
+size: 1024x1536

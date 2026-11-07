@@ -1,0 +1,24 @@
+id: asset-x-revontuli-flow-3
+type: asset
+title_tr: x-revontuli-flow-3
+title_en: x-revontuli-flow-3 (plate)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached island plate one stage back: it is the same island, less healed. NOTHING
+  MOVES: every landmark, building, pool rim, post, stone, the island's outline and size, the
+  camera and the composition stay exactly where they are. This edit only takes away, empties,
+  dims, dries, covers, drains or piles up what is named here. STAGE 3: there are no aurora
+  curtains and no tail: the sky is the same deep blue-viole…
+links:
+  variant_of:
+  - asset-x-revontuli-flow-4
+art:
+  images: []
+  jobs:
+  - batch-68-revontuli-flow:x-revontuli-flow-3
+sources:
+- doc: tools/imagegen/manifest/batch-68-revontuli-flow.yaml
+kind: plate
+batch: batch-68-revontuli-flow
+size: 1536x1024

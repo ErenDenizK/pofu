@@ -1,0 +1,114 @@
+{
+ "title": "Look lab home (whole island, landscape like I1)",
+ "canvas": [
+  1200,
+  800
+ ],
+ "background": {
+  "image": "design/art/masters/island-main-l-v3/island-main-l-v3.webp",
+  "harmony_as": "island-main",
+  "kind": "plate",
+  "fit": 0.86,
+  "center_y": 0.5
+ },
+ "layers": [
+  {
+   "image": "Packages/PofuKit/Sources/PofuWorld/Resources/World.xcassets/world-windmill-1.imageset/world-windmill-1.png",
+   "name": "windmill",
+   "role": "decor",
+   "x": 0.27,
+   "y": 0.3,
+   "height": 0.25,
+   "casts": true
+  },
+  {
+   "image": "Packages/PofuKit/Sources/PofuWorld/Resources/World.xcassets/world-workshop-1.imageset/world-workshop-1.png",
+   "name": "house",
+   "role": "decor",
+   "x": 0.47,
+   "y": 0.27,
+   "height": 0.16,
+   "casts": true,
+   "light": {
+    "color": "#FFB060",
+    "radius": 0.08,
+    "intensity": 0.9,
+    "at": [
+     0.5,
+     0.62
+    ]
+   }
+  },
+  {
+   "image": "Packages/PofuKit/Sources/PofuWorld/Resources/World.xcassets/world-garden-1.imageset/world-garden-1.png",
+   "name": "garden",
+   "role": "decor",
+   "x": 0.69,
+   "y": 0.29,
+   "height": 0.15,
+   "casts": true
+  },
+  {
+   "image": "Packages/PofuKit/Sources/PofuWorld/Resources/World.xcassets/world-pond-1.imageset/world-pond-1.png",
+   "name": "pond",
+   "role": "decor",
+   "x": 0.36,
+   "y": 0.4,
+   "height": 0.08,
+   "casts": false
+  },
+  {
+   "image": "Packages/PofuKit/Sources/PofuWorld/Resources/World.xcassets/world-tea-stall-1.imageset/world-tea-stall-1.png",
+   "name": "tea-stall",
+   "role": "decor",
+   "x": 0.75,
+   "y": 0.4,
+   "height": 0.17,
+   "casts": true,
+   "light": {
+    "color": "#FF9A3C",
+    "radius": 0.07,
+    "intensity": 1.0,
+    "at": [
+     0.5,
+     0.45
+    ]
+   }
+  },
+  {
+   "image": "Packages/PofuKit/Sources/PofuWorld/Resources/World.xcassets/world-path-lamp.imageset/world-path-lamp.png",
+   "name": "path-lamp",
+   "role": "decor",
+   "x": 0.585,
+   "y": 0.42,
+   "height": 0.21,
+   "casts": true,
+   "light": {
+    "color": "#FFB36B",
+    "radius": 0.12,
+    "at": [
+     0.6,
+     0.25
+    ]
+   }
+  },
+  {
+   "image": "design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png",
+   "name": "pofu",
+   "role": "character",
+   "x": 0.5,
+   "y": 0.455,
+   "height": 0.13,
+   "casts": true
+  },
+  {
+   "image": "design/art/masters/mochi-base/mochi-base.png",
+   "name": "mochi",
+   "role": "character",
+   "x": 0.65,
+   "y": 0.46,
+   "height": 0.1,
+   "casts": true
+  }
+ ]
+}
