@@ -369,8 +369,10 @@ struct HD2DLayer: View {
                 k *= 0.97 + 0.03 * sin(ambient * 9.1)
             }
             let radius = source.kind == .window || source.kind == .guestRoom ? 5.0 : 8.0
-            // The painted halo round the lamp, then its tight core.
-            drawHalo(&context, at: p, radius: max(radius * 3 * s, 2), color: color(source.colour, 0.22 * k))
+            // The painted halo round the lamp (it lifts and warms the air
+            // around it, `LookTuning.fieldHaloSpread`), then its tight core.
+            drawHalo(&context, at: p, radius: max(radius * LookTuning.fieldHaloSpread * s, 2),
+                     color: color(source.colour, LookTuning.fieldHaloOpacity * k))
             let r = max(radius * s, 2)
             context.fill(
                 Path(ellipseIn: CGRect(x: p.x - r, y: p.y - r, width: 2 * r, height: 2 * r)),

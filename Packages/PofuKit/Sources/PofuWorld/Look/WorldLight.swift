@@ -284,6 +284,13 @@ public enum LookTuning {
     /// A halo's art (`glow-warm-halo`) draws this much wider than the radius
     /// the bloom fades out at: the painted disc has a soft rim.
     public static let warmHaloArtScale = 1.15
+    /// A field source's halo (lantern, path lamp, window) reaches this many
+    /// times its core radius, at this opacity at full strength: the liked
+    /// night references' lamp halos spread 3 to 4 times the lamp's body and
+    /// lift the air around it (ADR-0021, `docs/research/reference-look.md`
+    /// principle 11). Was 3x at 0.22.
+    public static let fieldHaloSpread = 4.0
+    public static let fieldHaloOpacity = 0.3
     /// The fireflies (`firefly-1...4`, four frames of one bug: belly dim,
     /// warming, bright, dim): how many, how wide in world units, the halo's
     /// radius, and the frame a blink 0.25...1 shows.
