@@ -599,3 +599,9 @@ Result (same day, #338): the real app now draws Home (Tam Çiçek, 09:00–17:00
 5. The settings gear is not centred in its bubble. Handled: a fix PR.
 6. Should Codex run a cheaper, faster model, since the weekly limit drains fast and the tasks are fully specified? Handled: answered in the reply (use the mini model for production runs; the image model, not Codex's model, paints the pictures).
 7. If the app side stalls, work on the visual side alone: settle every technique of one visual system, compare brightness and options, weigh pros and cons, then proceed with the best method; the design is left to the lead. Handled: the visual system doc, the ladder and the upscaler pilot are that work, all judged in the real app.
+
+## 2026-11-08 (late): resolution, ADR count, the upscaler
+
+1. The low resolution he saw is probably from how images reach his phone, not the real picture. Handled: partly true; the CI frames are also reduced (460 x 1000). Frames for the founder are now made at full device resolution (`docs/design/visual-system.md`, Resolution).
+2. Many ADRs were written; are they really needed? Do not break the workflow with them. Handled: ADRs only for decisions whose reversal costs days of rework; everything about the visual system lives in one living doc, `docs/design/visual-system.md`; no ADRs for tunable numbers or methods.
+3. What is the upscale? It looks good, maybe a bit "AI"; maybe the zoom; real use must decide. Handled: explained (a free offline model doubles the plate's pixels and re-sharpens edges without changing colour). It is wired into ingest only after an in-app, full-resolution comparison on the first portrait plate: Lanczos vs upscaler vs a 0.8 / 0.2 blend.
