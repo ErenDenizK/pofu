@@ -1,0 +1,370 @@
+batch: batch-64-flow-pieces
+contact_sheet: design/art/takes/batch-64-flow-pieces/flow-dribble-1/contact.jpg
+jobs:
+  flow-dribble-1:
+    pick: none
+    publication: skipped after one allowed retry
+    note: 'Manual review excludes all four takes: an already-connected falling stream
+      reaches the bank or ground instead of the explicit FRAME1 thin bead at the lip/start
+      of a trickle. Retry3/4 also let a substantial cliff/basin/grass scene dominate,
+      despite the reference being style only and explicitly excluding a cliff or pool
+      scene. Small stone-lip/bank context is allowed; no invented bush counts, pixel
+      gates or numerical threshold changes. Native, official512, proper cream/night
+      alpha and70px views were inspected; independent ROOT review agrees. All4 official
+      reports are WARN-only with no hard failures and remain preserved. Sole unchanged
+      retry exhausted; only literal edit_of children are cut. No third round, crop
+      or repaint repair.'
+qa_reports:
+  3:
+    job: flow-dribble-1
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.408 into 512x512
+      value: 0.4083
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 37 (R1 51)
+      value: 37.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 66 (at most 22), p98 97 (at least 90), spread 30
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 30.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 82 (band 55-90)'
+      value: 81.8
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.45 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.447
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.1 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.12
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.0 (R1 5.3)
+      value: 0.99
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.5
+      value: 0.5209
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.8, p95 5.2, off-palette 0.0%
+      value: 1.8308
+    - check: harmony
+      status: pass
+      message: 'harmony score 74 against the world reference (outliers: C_p95, L_p2)'
+      value: 74.4
+    info:
+      metrics_raw:
+        L_p5: 68.7
+        L_p50: 81.9
+        L_p95: 95.1
+        C_p50: 16.0
+        C_p95: 37.7
+        C_p99: 41.2
+        detail: 1.52
+      metrics_locked:
+        L_p5: 68.8
+        L_p50: 81.8
+        L_p95: 95.0
+        C_p50: 15.9
+        C_p95: 37.4
+        C_p99: 40.4
+        detail: 0.99
+    fingerprint: 4788087a46b92dae
+  4:
+    job: flow-dribble-1
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.408 into 512x512
+      value: 0.4083
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 37 (R1 51)
+      value: 36.6
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 68 (at most 22), p98 96 (at least 90), spread 28
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 27.7
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 83 (band 55-90)'
+      value: 82.6
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.46 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.459
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.1 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.11
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.07
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.558
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.0, p95 5.7, off-palette 0.0%
+      value: 1.9738
+    - check: harmony
+      status: pass
+      message: 'harmony score 74 against the world reference (outliers: C_p95, L_p2)'
+      value: 73.7
+    info:
+      metrics_raw:
+        L_p5: 70.4
+        L_p50: 82.6
+        L_p95: 94.6
+        C_p50: 16.2
+        C_p95: 36.9
+        C_p99: 40.5
+        detail: 1.63
+      metrics_locked:
+        L_p5: 70.5
+        L_p50: 82.6
+        L_p95: 94.4
+        C_p50: 16.0
+        C_p95: 36.6
+        C_p99: 40.0
+        detail: 1.07
+    fingerprint: 4788087a46b92dae
+  1:
+    job: flow-dribble-1
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.408 into 512x512
+      value: 0.4083
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 39.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 70 (at most 22), p98 96 (at least 90), spread 26
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 26.2
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 82 (band 55-90)'
+      value: 82.0
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.44 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.443
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.2 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.18
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.9 (R1 5.3)
+      value: 0.89
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.6085
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.8, p95 4.6, off-palette 0.0%
+      value: 1.7646
+    - check: harmony
+      status: pass
+      message: 'harmony score 75 against the world reference (outliers: C_p95, L_p2)'
+      value: 74.7
+    info:
+      metrics_raw:
+        L_p5: 72.5
+        L_p50: 82.1
+        L_p95: 95.2
+        C_p50: 18.0
+        C_p95: 40.5
+        C_p99: 43.0
+        detail: 1.36
+      metrics_locked:
+        L_p5: 72.6
+        L_p50: 82.0
+        L_p95: 94.8
+        C_p50: 17.9
+        C_p95: 39.9
+        C_p99: 42.4
+        detail: 0.89
+    fingerprint: 4788087a46b92dae
+  2:
+    job: flow-dribble-1
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.408 into 512x512
+      value: 0.4083
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 36 (R1 51)
+      value: 36.2
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 70 (at most 22), p98 97 (at least 90), spread 27
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 27.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 84 (band 55-90)'
+      value: 83.7
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.47 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.471
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 1.8 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 1.8
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.0 (R1 5.3)
+      value: 0.98
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.5
+      value: 0.5144
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.0, p95 5.2, off-palette 0.0%
+      value: 1.9512
+    - check: harmony
+      status: warn
+      message: 'harmony score 69 against the world reference (outliers: C_p95, L_p2)'
+      value: 69.1
+    info:
+      metrics_raw:
+        L_p5: 72.4
+        L_p50: 83.7
+        L_p95: 95.7
+        C_p50: 16.1
+        C_p95: 36.4
+        C_p99: 38.1
+        detail: 1.55
+      metrics_locked:
+        L_p5: 72.5
+        L_p50: 83.7
+        L_p95: 95.5
+        C_p50: 16.0
+        C_p95: 36.2
+        C_p99: 37.6
+        detail: 0.98
+    fingerprint: 4788087a46b92dae
+manual_review:
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+  note: 'Manual review excludes all four takes: an already-connected falling stream
+    reaches the bank or ground instead of the explicit FRAME1 thin bead at the lip/start
+    of a trickle. Retry3/4 also let a substantial cliff/basin/grass scene dominate,
+    despite the reference being style only and explicitly excluding a cliff or pool
+    scene. Small stone-lip/bank context is allowed; no invented bush counts, pixel
+    gates or numerical threshold changes. Native, official512, proper cream/night
+    alpha and70px views were inspected; independent ROOT review agrees. All4 official
+    reports are WARN-only with no hard failures and remain preserved. Sole unchanged
+    retry exhausted; only literal edit_of children are cut. No third round, crop or
+    repaint repair.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-9363fb95-7c67-462e-858a-d57de39a7fa8.png
+  original_generated_png_sha256: c0654289f4ff497f7f8b7bd3ae5aa332f18ddffce72383562d0d5d28c5185caa
+  inbox_png_sha256: f64f5b46347663fabfd7f8a48a1197d0a3bdea36390bdf6b790372d02b64adf8
+  rgba_sha256: 78fa59c97c0b3125dc091db6ceb6b03b5ccabeb36fe1ef54c069741645b3a52a
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 4788087a46b92dae
+- take: 2
+  source_file: /workspace/generated_images/exec-005a745e-6702-4e6e-9b2c-fca634c9dd11.png
+  original_generated_png_sha256: cbe8d0229b36eda923520c3a6449ea2e558cdc9693edf8549e6c297b5a2795ac
+  inbox_png_sha256: 41b5de048b4d437b5743ac1047d60c08d4425a827a5d5d4768d5705da66b26dc
+  rgba_sha256: 09ff67911b4fec4d19c8398b13d2eb25ba07362449cfc56e44dedd87a054a3c1
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 4788087a46b92dae
+- take: 3
+  source_file: /workspace/generated_images/exec-11caf1c5-4a2b-4ba1-baf5-a76b7cdd3d77.png
+  original_generated_png_sha256: 21c390bbbe1359b994620d7844c9f36f4eab915d753e9edc21be105bda5b80dd
+  inbox_png_sha256: 98507ff201beb50ba89f94bba020d3a1cd86ed919f7b6a4c0a2a56aa9cdd3f36
+  rgba_sha256: 093ef594fd0938ce61262b3959eb088ed4ef6d64bd4bd01d48508dde3f2281ef
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 4788087a46b92dae
+- take: 4
+  source_file: /workspace/generated_images/exec-a2ae5151-e3fc-4ea7-9a34-6e80bb28eed2.png
+  original_generated_png_sha256: 5cf627d0235cbe0b8666fd1305431e5fbf60dd08224eb8e516682a33e76803ba
+  inbox_png_sha256: b57bef045487134d2d7e422590fcc37e8b80ca2042147ef850c74f70cafa972c
+  rgba_sha256: a373fe7915df87a173b379dbec10a6d64f7c93e130c70e9840dbd16e4816e41e
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 4788087a46b92dae
