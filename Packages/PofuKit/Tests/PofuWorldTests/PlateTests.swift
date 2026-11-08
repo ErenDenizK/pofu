@@ -241,11 +241,17 @@ struct HomePlateTests {
         #expect(home.plate.object("door")?.tap == true)
     }
 
-    @Test func findikPeeksFromBehindTheEastBushAndPofuStandsInFront() throws {
+    @Test func theEastBushHidesWhoeverStandsBehindItAndNobodyAtRest() throws {
         let home = try plate
+        let art = WorldBox(minX: -14.3, minY: -26.8, maxX: 14.4, maxY: 0.2)
+        let bush = try #require(home.plate.object("eastBush"))
+        let b = PlateMath.bounds(bush.polygon)
+        // Just behind the bush's foot line, in its middle: drawn under it.
+        let behind = home.world(PlatePoint(x: (b.minX + b.maxX) / 2, y: bush.footY - 30))
+        #expect(home.occluders(over: behind, box: home.residentBox(art: art, at: behind)).map(\.id) == ["eastBush"])
+        // At rest, everyone stands in the open, whole.
         let findik = try #require(home.residentFeet(.findik))
-        let box = home.residentBox(art: WorldBox(minX: -14.3, minY: -26.8, maxX: 14.4, maxY: 0.2), at: findik)
-        #expect(home.occluders(over: findik, box: box).map(\.id) == ["eastBush"])
+        #expect(home.occluders(over: findik, box: home.residentBox(art: art, at: findik)).isEmpty)
         #expect(home.occluders(over: IslandLayout.pofu, box: home.pofuBox).isEmpty)
     }
 

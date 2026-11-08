@@ -496,7 +496,7 @@ private struct SceneFrame<Bubble: View>: View {
         let tilt = plate != nil ? (x: 0.0, y: 0.0) : (x: min(max(peek.x + device.x, -1), 1), y: min(max(peek.y + device.y, -1), 1))
         // The plate and its backdrop at the Island stop and closer; toward
         // the Map only the island cut stays, among the other islands.
-        let plateFade = plate != nil && model.island == .home ? PlateHomeLayer.fade(z: z) : 0
+        let plateFade = plate != nil && model.island == .home ? PlateHomeLayer.opacity(z: z) : 0
         let offset = CGSize(width: rig.offsetX.value, height: rig.offsetY.value)
         // Stations answer taps in every framing: on the Map and at Home a
         // tap flies to the island and opens the sheet in one gesture.

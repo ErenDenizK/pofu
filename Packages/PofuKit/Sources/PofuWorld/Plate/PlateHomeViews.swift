@@ -19,7 +19,7 @@ struct PlateHomeLayer: View {
     /// The backdrop and the whole plate fade in from z 0.55 to 0.95: the
     /// Island stop and Home show the painting edge to edge, the Map the
     /// island among the others.
-    static func fade(z: Double) -> Double {
+    static func opacity(z: Double) -> Double {
         let t = min(max((z - 0.55) / 0.4, 0), 1)
         return t * t * (3 - 2 * t)
     }

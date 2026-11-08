@@ -777,15 +777,15 @@
       44.9
     ],
     "findik": [
-      85.5,
-      41.4
+      86.4,
+      47.7
     ]
   },
   "pofuWidth": 7.6,
   "framing": {
     "homeWidths": 1.15,
     "homeCenterX": 0.5,
-    "homeTopY": 190,
+    "homeTopY": 245,
     "islandWidths": 0.84,
     "wholeWidths": 0.92
   },
