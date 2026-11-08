@@ -31,17 +31,44 @@ public enum FarSkyLayout {
         }
     }
 
+    /// The islands behind home (concept flows §1.4): A Çağlayan, B Emanet,
+    /// C Mehtap, D Revontuli, G Gezgin (Nazlı).
+    public enum Mark: String, CaseIterable, Hashable, Sendable {
+        case caglayan, emanet, mehtap, revontuli, gezgin
+    }
+
     public struct Element: Hashable, Sendable, Identifiable {
         /// The baked sprite (screen-space sky art).
         public var art: String
+        /// A stable id (an art can stand in more than one place).
+        public var id: String
+        /// The map island or Gezgin this element is (concept flows §1.4):
+        /// unlit and grey while stuck, coloured with one small warm light
+        /// once healed. Nil for the clouds.
+        public var mark: Mark?
+        /// The sprite once healed, when it differs from `art`.
+        public var healedArt: String?
         /// How far it is: the share of the colour script's fog it takes
         /// (1 the farthest) and how little it follows the peek.
         public var distance: Double
         /// Map, Island, Home.
         public var stops: [Placement]
 
-        public var id: String {
-            art
+        public init(
+            art: String, id: String? = nil, mark: Mark? = nil, healedArt: String? = nil,
+            distance: Double, stops: [Placement]
+        ) {
+            self.art = art
+            self.id = id ?? art
+            self.mark = mark
+            self.healedArt = healedArt
+            self.distance = distance
+            self.stops = stops
+        }
+
+        /// The sprite to draw for a healed or stuck mark.
+        public func art(healed: Bool) -> String {
+            healed ? (healedArt ?? art) : art
         }
 
         /// Its placement at rail position `z`.
@@ -52,26 +79,40 @@ public enum FarSkyLayout {
         }
     }
 
+    /// A map island's spot at both framings, hidden on the Map.
+    static func spot(_ x: Double, _ y: Double, _ width: Double) -> [Placement] {
+        [
+            Placement(x: x, y: max(y - 0.05, 0.02), width: width * 402 * 0.8, opacity: 0),
+            Placement(x: x, y: y, width: width * 402),
+            Placement(x: x, y: y, width: width * 402),
+        ]
+    }
+
+    /// The elements that are a map island or Gezgin.
+    public static func element(for mark: Mark) -> Element? {
+        elements.first { $0.mark == mark }
+    }
+
     /// Back to front.
     public static let elements: [Element] = [
-        // The pair of small isles: farthest, high on one side.
-        Element(art: "far-isle-3", distance: 1.0, stops: [
-            Placement(x: 0.80, y: 0.08, width: 150, opacity: 0.0),
-            Placement(x: 0.78, y: 0.185, width: 190),
-            Placement(x: 0.80, y: 0.17, width: 210),
-        ]),
-        // The small round isle with its tree.
-        Element(art: "far-isle-2", distance: 0.85, stops: [
-            Placement(x: 0.5, y: 0.06, width: 60, opacity: 0.0),
-            Placement(x: 0.58, y: 0.17, width: 64),
-            Placement(x: 0.58, y: 0.15, width: 66),
-        ]),
-        // The long isle: nearer, lower.
-        Element(art: "far-isle-1", distance: 0.7, stops: [
-            Placement(x: 0.2, y: 0.9, width: 180, opacity: 0.0),
-            Placement(x: 0.22, y: 0.165, width: 240),
-            Placement(x: 0.18, y: 0.20, width: 260),
-        ]),
+        // Concept flows §1.4: fractions of the screen (centre x, centre y)
+        // and width / 402, at the Island and Home framings alike ("fixed at
+        // every level, hour and weather"); hidden on the Map. Painted art
+        // exists only for Çağlayan; the rest keep a generic far isle until
+        // theirs is made. Far things are lighter, never sharper.
+        // G, Gezgin (Nazlı): no sprite yet; the generic pair of isles.
+        Element(art: "far-isle-3", id: "far-gezgin", mark: .gezgin, distance: 1.0, stops: spot(0.68, 0.225, 0.30)),
+        // C, Mehtap: smallest and farthest (a moon-white dome, art pending).
+        Element(art: "far-isle-2", id: "far-mehtap", mark: .mehtap, distance: 1.0, stops: spot(0.58, 0.13, 0.09)),
+        // B, Emanet: misty, a tall stilted bureau (art pending).
+        Element(art: "far-isle-2", id: "far-emanet", mark: .emanet, distance: 0.9, stops: spot(0.40, 0.235, 0.12)),
+        // D, Revontuli: cool pale, slender ice towers (art pending).
+        Element(art: "far-isle-1", id: "far-revontuli", mark: .revontuli, distance: 0.8, stops: spot(0.88, 0.37, 0.14)),
+        // A, Çağlayan: tiered pools, a small silver fall (its stage 0 and 4 plates).
+        Element(
+            art: "caglayan-island-0", id: "far-caglayan", mark: .caglayan, healedArt: "caglayan-island-4",
+            distance: 0.7, stops: spot(0.17, 0.33, 0.20)
+        ),
         // A wide painted cloud bank under the far isles.
         Element(art: "cloud-4", distance: 0.5, stops: [
             Placement(x: 0.5, y: 0.9, width: 260, opacity: 0.0),
