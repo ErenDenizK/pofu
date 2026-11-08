@@ -9,13 +9,12 @@ silhouette only, and the transition shows that residue honestly. The painted Pof
 out of both takes (in production the plate is painted without them) and the sprites are put back, lit
 from the plate.
 
-Per frame, back to front (the runtime order of docs/design/plate-islands.md):
-  1. sky from the colour script's night cell (zenith, horizon, glow, stars), ungraded;
-  2. code aurora curtains (screen blend), strength by stage;
-  3. the plate at full resolution, cut by its matte, no grade, no fog, no haze;
-  4. Pofu and Mochi sprites, gain from the plate's sampled local light, a contact pad in the plate's own
-     shadow colour and a rim from the nearest practical;
-  5. the cloud sea (colour script sea colours) with one front row over the plate's foot.
+Per frame (fix round, `painted_frame`): the whole painted take is the backdrop, its own sky,
+aurora and clouds (the procedural sky, aurora and cloud sea above are kept for reference but no
+longer used: they read cheaper than the painting). Above the take its sky continues in one tone
+deepening to the colour script's night zenith, with stars; below it, its own cloud band (icicles
+inpainted out) repeats at growing sizes. Pofu and Mochi are lit from the plate with contact pads.
+Stage 4 is shown at three framings (0.96, 1.0 and 1.35 screen widths); 1.35 is used elsewhere.
 
     python3 -I tools/plate/pilot.py SHOTS_DIR OUT.jpg [--frames DIR]
 
@@ -418,6 +417,104 @@ def compose(plate: np.ndarray, plate_a: np.ndarray, stage: int, key: str, pose: 
     return out, {"box": box, "island": island, "lit": info}
 
 
+# ---------------------------------------------------------------- painted backdrop (fix round)
+
+def painted_frame(take: np.ndarray, take_a: np.ndarray, key: str, width: float, centre_y: float,
+                  shimmer: float = 0.0) -> tuple[np.ndarray, dict]:
+    """The whole painted take as the frame: the plate's own sky, aurora and clouds, no code backdrop.
+    The take is scaled so the island is `width` screen widths, its centre at `centre_y` of the frame.
+    Above the take, its own top sky continues (column colours, blurred) with code stars; below it, its
+    own cloud band is repeated at 1.7x and 2.6x (nearer clouds are bigger), mirrored and offset, so no
+    puff repeats at one size. `shimmer` slides the painted aurora by a few pixels inside its sky mask
+    (the runtime's slow shimmer; a still frame shows phase 0)."""
+    W, H = FRAME[0] * SS, FRAME[1] * SS
+    x0b, y0b, x1b, y1b = bbox(take_a)
+    k = width * W / (x1b - x0b)
+    tw, th = round(take.shape[1] * k), round(take.shape[0] * k)
+    big = np.asarray(to_img(take).resize((tw, th), Image.Resampling.LANCZOS), np.float64) / 255
+    ba = np.asarray(Image.fromarray(np.uint8(take_a * 255)).resize((tw, th), Image.Resampling.LANCZOS), np.float64) / 255
+    if shimmer:
+        sky = (ba < 0.05)[..., None]
+        big = np.where(sky, np.roll(big, round(shimmer * SS), axis=1), big)
+    px = round(W / 2 - (x0b + x1b) / 2 * k)
+    py = round(centre_y * H - (y0b + y1b) / 2 * k)
+    canvas = np.zeros((H, W, 3))
+    # Above: the take's own top sky as one soft colour (no aurora columns stretched), deepening upward,
+    # with code stars; it fills the whole canvas first so no feather ever blends toward black.
+    # The base sky tone: the take's darker top pixels (the 25 % darkest, so stars and aurora do not
+    # wash it grey), deepening to the colour script's night zenith at the top of the frame.
+    topband = big[:max(4, round(0.05 * th))].reshape(-1, 3)
+    Lt = srgb_to_lab(topband)[:, 0]
+    topc = topband[Lt <= np.percentile(Lt, 25)].mean(0)
+    zen = hexrgb(CELLS["night"]["sky"]["zenith"])
+    yy = np.arange(H)[:, None, None]
+    deepen = smooth(0, 1, np.clip((py - yy) / max(py, 1), 0, 1))
+    canvas[:] = topc * (1 - deepen) + zen * deepen
+    if py > 0:
+        stars = sky_stars(W, H, seed=9) * (np.arange(H) < py + 0.1 * th)[:, None]
+        canvas = np.clip(canvas + stars[..., None] * np.array([0.95, 0.95, 1.0]), 0, 1)
+    # Below: the take's cloud band (bottom 12 %, the island's icicles inpainted out), bigger copies
+    # toward the viewer, mirrored and offset, until the frame's foot.
+    cut = int(th * 0.88)
+    band = big[cut:].copy()
+    hole = np.uint8(ndimage.binary_dilation(ba[cut:] > 0.2, iterations=round(3 * SS)) * 255)
+    band = cv2.inpaint(np.uint8(band * 255), hole, 7, cv2.INPAINT_TELEA).astype(np.float64) / 255
+    y, i = py + th - round(0.05 * th), 0
+    while y < H:
+        scale = min(1.7 * 1.45 ** i, 6.0)
+        src = band[:, ::-1] if i % 2 == 0 else band
+        b = np.asarray(to_img(src).resize((round(band.shape[1] * scale), round(band.shape[0] * scale)), Image.Resampling.LANCZOS), np.float64) / 255
+        if b.shape[1] < W:
+            b = np.asarray(to_img(b).resize((W, round(b.shape[0] * W / b.shape[1])), Image.Resampling.LANCZOS), np.float64) / 255
+        off = round((b.shape[1] - W) * ((0.3 + 0.27 * i) % 1.0))
+        b = b[:, off:off + W]
+        feather = round(b.shape[0] * 0.5)
+        y_top = y - feather
+        hh = min(b.shape[0], H - y_top)
+        m = smooth(0, feather, np.arange(hh))[:, None, None]
+        canvas[y_top:y_top + hh] = b[:hh] * m + canvas[y_top:y_top + hh] * (1 - m)
+        y, i = y_top + hh, i + 1
+    # The take itself, its bottom edge feathered into the cloud copies.
+    sx0, sy0 = max(-px, 0), max(-py, 0)
+    dx0, dy0 = max(px, 0), max(py, 0)
+    dx1, dy1 = min(W, px + tw), min(H, py + th)
+    sub = big[sy0:sy0 + dy1 - dy0, sx0:sx0 + dx1 - dx0]
+    rows_ = sy0 + np.arange(sub.shape[0])
+    fade = smooth(0, 0.08 * th, th - rows_).reshape(-1, 1, 1)
+    if py > 0:  # the top of the take melts into the continued sky (the painted aurora fades upward)
+        fade = np.minimum(fade, smooth(0, 0.14 * th, rows_).reshape(-1, 1, 1))
+    # The island itself is never faded.
+    keep = ba[sy0:sy0 + dy1 - dy0, sx0:sx0 + dx1 - dx0][..., None]
+    fade = np.maximum(fade, keep)
+    canvas[dy0:dy1, dx0:dx1] = sub * fade + canvas[dy0:dy1, dx0:dx1] * (1 - fade)
+    full_a = np.zeros((H, W))
+    full_a[dy0:dy1, dx0:dx1] = ba[sy0:sy0 + dy1 - dy0, sx0:sx0 + dx1 - dx0]
+    plate_frame = canvas.copy()
+    info = {}
+    for name in ("pofu", "mochi"):
+        (fx, fy), wpct = FEET[name]
+        sw = round(wpct / 100 * tw)
+        spr = sprite(name, sw)
+        feet = (px + round(fx / 100 * tw), py + round(fy / 100 * th))
+        prac = ((px + round(0.52 * tw), py + round(0.18 * th)), PRACTICAL[key][1], PRACTICAL[key][2])
+        lit, inf = lit_from_plate(spr, plate_frame, np.pad(full_a, 0), feet, prac)
+        info[name] = inf["gain"]
+        contact_pad(canvas, feet[0], feet[1], sw, inf["ratio"])
+        place(canvas, lit, feet[0], feet[1] + round(0.02 * sw))
+    out = np.asarray(to_img(canvas).resize(FRAME, Image.Resampling.LANCZOS), np.float64) / 255
+    island = np.asarray(Image.fromarray(np.uint8(full_a * 255)).resize(FRAME, Image.Resampling.BILINEAR), np.float64) / 255
+    box = ((px + x0b * k) / SS, (py + y0b * k) / SS, (px + x1b * k) / SS, (py + y1b * k) / SS)
+    return out, {"box": box, "island": island, "lit": info}
+
+
+def sky_stars(W: int, H: int, seed: int) -> np.ndarray:
+    rng = np.random.default_rng(seed)
+    n = int(W * H / 2600)
+    st = np.zeros((H, W))
+    st[rng.integers(0, H, n), rng.integers(0, W, n)] = rng.uniform(0.3, 1.0, n) ** 2
+    return ndimage.gaussian_filter(st, 0.8 * SS) * (6 * SS)
+
+
 def diff_mask(a: np.ndarray, b: np.ndarray, alpha: np.ndarray) -> np.ndarray:
     d = ll.de2000(srgb_to_lab(a), srgb_to_lab(b))
     d = ndimage.gaussian_filter(d, 3)
@@ -536,12 +633,18 @@ def main(argv: list[str] | None = None) -> int:
     alpha = np.minimum(sa, ha)  # one matte for the pair, as production plates share one
 
     frames, readout = {}, {}
-    frames["s0-whole"] = compose(stuck, sa, 0, "stuck", "whole", cell)
-    frames["s4-whole"] = compose(healed_raw, ha_raw, 4, "healed", "whole", cell)
-    frames["s4-close"] = compose(healed_raw, ha_raw, 4, "healed", "close", cell)
+    # Fix round: the painted take is the backdrop (its own sky, aurora and clouds). Framings for the
+    # founder: the current camera (0.96 widths, centre 46 %), 1.0 widths lower (more sky), 1.35 widths.
+    FRAMINGS = {"current": (0.96, 0.457), "1.0": (1.0, 0.56), "1.35": (1.35, 0.52)}
+    WIN = "1.35"
+    ones = np.ones_like(sa)
+    frames["s0"] = painted_frame(stuck, sa, "stuck", *FRAMINGS[WIN])
+    frames["s4"] = painted_frame(healed_raw, ha_raw, "healed", *FRAMINGS[WIN])
+    for f in FRAMINGS:
+        frames[f"s4-{f}"] = painted_frame(healed_raw, ha_raw, "healed", *FRAMINGS[f])
     for i, t in enumerate((0.0, 1 / 3, 2 / 3, 1.0)):
-        mid = transition(stuck, healed, alpha, (52, 18), t)
-        frames[f"tr-{i}"] = compose(mid, alpha, 4, "healed" if t >= 0.5 else "stuck", "whole", cell, aurora_strength=t ** 1.5)
+        mid = transition(stuck, healed, ones, (52, 18), t)
+        frames[f"tr-{i}"] = painted_frame(mid, alpha, "healed" if t >= 0.5 else "stuck", *FRAMINGS[WIN])
 
     def native(path, key):
         rgb = ll.load_rgb(path)
@@ -571,18 +674,21 @@ def main(argv: list[str] | None = None) -> int:
         return to_img(img), caption(name, r, ref)
 
     rows = []
-    for key, ref_key, label in (("s0-whole", "s0", "stage 0"), ("s4-whole", "s4", "stage 4"), ("s4-close", "s4c", "stage 4 close")):
+    for key, ref_key, label in (("s0", "s0", "stage 0"), ("s4", "s4", "stage 4")):
         img, info = frames[key]
         rows.append([
             cell_of(*refs[ref_key], f"concept · {label} (whole take)", None, measured[ref_key]),
-            cell_of(*cur[ref_key], "current (Çağlayan CI, night)" if ref_key != "s4c" else "current (home, night CI)", R[ref_key]),
-            cell_of(img, info["island"], info["box"], f"plate-first · {label}", R[ref_key]),
+            cell_of(*cur[ref_key], "current (Çağlayan CI, night)", R[ref_key]),
+            cell_of(img, info["island"], info["box"], f"plate-first · {label}, {WIN} w", R[ref_key]),
         ])
+    names = {"current": "0.96 w (current camera)", "1.0": "1.0 w, lower (more sky)", "1.35": "1.35 w (chosen)"}
+    rows.append([cell_of(*frames[f"s4-{f}"][:1], frames[f"s4-{f}"][1]["island"], frames[f"s4-{f}"][1]["box"],
+                         "framing · " + names[f], R["s4"]) for f in FRAMINGS])
     # The transition row: the concept pair, the current plain crossfade, the pilot's reveal as 2 x 2
     # crops of the island (the change is too small to read on whole frames at this size).
     pair = np.concatenate([refs["s0"][0], refs["s4"][0]], 0)
     cross = cur["s0"][0] * 0.5 + cur["s4"][0] * 0.5
-    crops = [frames[f"tr-{i}"][0][150:600] for i in range(4)]
+    crops = [frames[f"tr-{i}"][0][250:750] for i in range(4)]
     grid = np.concatenate([np.concatenate(crops[:2], 1), np.concatenate(crops[2:], 1)], 0)
     des = []
     for i in range(4):
@@ -592,7 +698,7 @@ def main(argv: list[str] | None = None) -> int:
     rows.append([
         (to_img(pair), "concept · stuck t1 / healed t2\n(independent takes: props move)"),
         (to_img(cross), "current · Çağlayan 0 → 4\nplain crossfade at 50 %"),
-        (to_img(grid), "plate-first · reveal t = 0, 1/3 (top) · 2/3, 1 (bottom), from the lantern\n"
+        (to_img(grid), f"plate-first · reveal at {WIN} widths: t = 0, 1/3 (top) · 2/3, 1 (bottom), from the lantern\n"
                        f"dE2000 to healed concept {des[0]:.1f} → {des[1]:.1f} → {des[2]:.1f} → {des[3]:.1f}"),
     ])
     ll.sheet(rows, a.out, title="Plate-first pilot · Revontuli at night, iPhone 17 portrait (460 x 1000 = 402 x 874 pt)"
@@ -601,7 +707,7 @@ def main(argv: list[str] | None = None) -> int:
         a.frames.mkdir(parents=True, exist_ok=True)
         for k, (img, _) in frames.items():
             to_img(img).save(a.frames / f"{k}.png")
-    readout["lit"] = {k: v[1]["lit"] for k, v in frames.items() if k.startswith("s")}
+    readout["lit"] = {k: v[1]["lit"] for k, v in frames.items() if k in ("s0", "s4")}
     readout["transition_dE"] = [round(x, 1) for x in des]
     print(json.dumps(readout, indent=1, ensure_ascii=False))
     return 0
