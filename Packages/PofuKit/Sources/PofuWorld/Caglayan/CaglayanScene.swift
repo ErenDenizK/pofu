@@ -451,8 +451,6 @@ struct HomeFountainView: View {
         .accessibilityLabel(Text(verbatim: WorldStrings.caglayanGift))
     }
 }
-#endif
-
 /// Damla, on Çağlayan's lawn or at the top of the falls: drawn in the
 /// scene's characters layer, so the character light grades her like Pofu
 /// (the island's LUT is fitted to lawn, earth and props and left her pale
@@ -492,3 +490,4 @@ struct CaglayanDamlaView: View {
         }
     }
 }
+#endif
