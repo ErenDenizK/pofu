@@ -234,3 +234,79 @@ struct WeatherTests {
         #expect(hazy.practicals.window > 0.4, "practicals dim but never go out")
     }
 }
+
+@Suite("Island stops carry no veil (ADR-0021)")
+struct IslandStopVeilTests {
+    private let fixtureClock = Date(timeIntervalSinceReferenceDate: 815_000_000)
+
+    /// The cause of the pale Çağlayan stops: the fixtures' date rolls
+    /// overcast at noon and at night, and the overcast row lifts the island.
+    @Test func theFixtureDateIsOvercastSoShotsMustPinTheWeather() {
+        let world = IslandSamples.grownIsland(clock: fixtureClock)
+        for hour in [12.0, 23.0] {
+            let seeded = WeatherForecast.conditions(clock: world.clock, firstDay: world.firstDay, hour: hour, calendar: .current)
+            #expect(seeded.weather != .clear, "hour \(hour): if this is clear the pin is no longer needed")
+        }
+    }
+
+    @Test func theIslandStopLookPinsAClearSky() {
+        for hour in [12.0, 23.0] {
+            let look = WorldLook.islandStop(hour: hour)
+            #expect(look.hourOverride == hour)
+            #expect(look.weatherOverride?.weather == .clear)
+            #expect(look.weatherOverride?.rainbow == false)
+        }
+    }
+
+    /// A clear sky adds no weather layer to the island's grade: the grade is
+    /// the hour's own, with no rain LUT weight and no contrast loss.
+    @Test func aClearSkyLeavesTheIslandGradeAtTheHoursOwn() {
+        for hour in [12.0, 23.0] {
+            let base = WorldLight.at(hour: hour, wellbeing: 78, calm: 0)
+            let clear = base.withAtmosphere(Atmosphere(conditions: WorldLook.islandStop(hour: hour).weatherOverride ?? .clear, haze: 0))
+            #expect(clear.grade == base.grade)
+            #expect(clear.grade.lut?.weights[.rain] == nil)
+        }
+    }
+}
+
+@Suite("The island is graded once under rain and overcast")
+struct IslandWeatherGradeTests {
+    @Test func overcastNoonTakesTheRainLUTAloneNotTheRowToo() {
+        let base = WorldLight.at(hour: 12, wellbeing: 78, calm: 0)
+        let overcast = base.withAtmosphere(Atmosphere(conditions: WeatherConditions(weather: .overcast), haze: 0))
+        #expect(overcast.grade.lut?.weights[.rain] ?? 0 > 0.5)
+        // No contrast, gain or saturation from the overcast row on top of the LUT.
+        #expect(overcast.grade.contrast == base.grade.contrast)
+        #expect(overcast.grade.gain == base.grade.gain)
+        #expect(overcast.grade.saturation == base.grade.saturation)
+    }
+
+    @Test func rainNoonAlsoTakesTheLUTAlone() {
+        let base = WorldLight.at(hour: 12, wellbeing: 78, calm: 0)
+        let rain = base.withAtmosphere(Atmosphere(conditions: WeatherConditions(weather: .lightRain), haze: 0))
+        #expect(rain.grade.contrast == base.grade.contrast)
+        #expect(rain.grade.saturation == base.grade.saturation)
+    }
+
+    @Test func nightKeepsTheRowBecauseTheLUTDoesNotTakeRainThen() {
+        let base = WorldLight.at(hour: 23, wellbeing: 78, calm: 0)
+        let overcast = base.withAtmosphere(Atmosphere(conditions: WeatherConditions(weather: .overcast), haze: 0))
+        #expect(overcast.grade.lut?.weights[.rain] == nil)
+        #expect(overcast.grade.contrast < base.grade.contrast)
+    }
+
+    @Test func mistStillTakesTheRow() {
+        let base = WorldLight.at(hour: 12, wellbeing: 78, calm: 0)
+        let mist = base.withAtmosphere(Atmosphere(conditions: WeatherConditions(weather: .mist), haze: 0))
+        #expect(mist.grade.contrast < base.grade.contrast)
+    }
+
+    @Test func theNightIslandKeepsItsChroma() {
+        #expect(WorldLight.at(hour: 23, wellbeing: 78, calm: 0).grade.saturation >= 1.2)
+    }
+
+    @Test func damlaStaysInFocusWithTheLawn() {
+        #expect(CaglayanLayout.damlaBoxHeight >= 30)
+    }
+}

@@ -190,7 +190,7 @@ extension ColourScript {
                 gain: GradeRGB(0.93, 0.93, 0.91),
                 contrast: 0.9,
                 pivot: 0.5,
-                saturation: 0.88,
+                saturation: 1.5,
                 vignette: 0.08
             ),
             character: WorldGrade(

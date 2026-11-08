@@ -187,7 +187,6 @@ struct CaglayanIsleView: View {
                 shaftView(CaglayanLayout.shaftAlpha(stage: from) * (1 - progress))
             }
             poolLight(s)
-            damla(s)
             note(s)
             Canvas { context, _ in
                 if let swellAge, let swell = KokeLayout.swell(age: swellAge, reduceMotion: reduceMotion) {
@@ -296,25 +295,7 @@ struct CaglayanIsleView: View {
         }
     }
 
-    // MARK: Damla and the note
-
-    @ViewBuilder
-    private func damla(_ s: Int) -> some View {
-        let name = CaglayanLayout.damlaArt(stage: s)
-        let feet = CaglayanLayout.damlaPoint(stage: s)
-        if KokeArt.has(name), let box = WorldArt.sprite(CaglayanLayout.damlaKey(stage: s))?.sharp {
-            // Her contact shadow, then she.
-            Ellipse()
-                .fill(Color(red: 0.24, green: 0.24, blue: 0.30).opacity(0.22))
-                .frame(width: 18, height: 5)
-                .position(x: Self.origin.x + feet.x, y: Self.origin.y + feet.y)
-            let k = CaglayanLayout.damlaScale
-            Image(name, bundle: .module)
-                .resizable()
-                .frame(width: box.width * k, height: box.height * k)
-                .position(x: Self.origin.x + feet.x + box.midX * k, y: Self.origin.y + feet.y + box.midY * k)
-        }
-    }
+    // MARK: The note
 
     /// The old Bekçi's note on the mill hut: "Kapı gıcırdarsa, zeytinyağı."
     @ViewBuilder
@@ -468,6 +449,45 @@ struct HomeFountainView: View {
         .allowsHitTesting(false)
         .accessibilityElement()
         .accessibilityLabel(Text(verbatim: WorldStrings.caglayanGift))
+    }
+}
+/// Damla, on Çağlayan's lawn or at the top of the falls: drawn in the
+/// scene's characters layer, so the character light grades her like Pofu
+/// (the island's LUT is fitted to lawn, earth and props and left her pale
+/// and peach). Same canvas and position as `CaglayanIsleView`.
+struct CaglayanDamlaView: View {
+    let stage: Int
+    /// Where the island's centre lands on the canvas.
+    let point: CGPoint
+    let characterGrade: WorldGrade
+
+    private static let canvas = CGSize(width: 320, height: 200)
+    private static let origin = CGPoint(x: 160, y: 100)
+
+    var body: some View {
+        let s = CaglayanLayout.clamped(stage)
+        let name = CaglayanLayout.damlaArt(stage: s)
+        let feet = CaglayanLayout.damlaPoint(stage: s)
+        if KokeArt.has(name), let box = WorldArt.sprite(CaglayanLayout.damlaKey(stage: s))?.sharp {
+            let k = CaglayanLayout.damlaScale
+            ZStack {
+                // Her contact shadow, then she.
+                Ellipse()
+                    .fill(Color(red: 0.24, green: 0.24, blue: 0.30).opacity(0.22))
+                    .frame(width: 18, height: 5)
+                    .position(x: Self.origin.x + feet.x, y: Self.origin.y + feet.y)
+                Image(name, bundle: .module)
+                    .resizable()
+                    .interpolation(.high)
+                    .frame(width: box.width * k, height: box.height * k)
+                    .position(x: Self.origin.x + feet.x + box.midX * k, y: Self.origin.y + feet.y + box.midY * k)
+            }
+            .frame(width: Self.canvas.width, height: Self.canvas.height)
+            .gradedIfNeeded(characterGrade)
+            .position(x: point.x, y: point.y)
+            .allowsHitTesting(false)
+            .accessibilityHidden(true)
+        }
     }
 }
 #endif

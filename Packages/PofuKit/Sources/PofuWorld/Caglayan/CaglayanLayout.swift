@@ -92,6 +92,10 @@ public enum CaglayanLayout {
     public static let damlaFeet = WorldPoint(x: -50, y: 14)
     /// At stage 4 she sits at the top of the waterfall with her glass full.
     public static let damlaTop = WorldPoint(x: -14, y: -52)
+    /// Her drawn height and width in world units (the depth map keeps all of
+    /// her in focus with the lawn).
+    public static let damlaBoxHeight = 34.0
+    public static let damlaBoxWidth = 30.0
     /// The pool's middle, where its tiny night light lies.
     public static let pool = WorldPoint(x: -15, y: -1)
     /// The note on the mill hut's wall, shown from stage 2.

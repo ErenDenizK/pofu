@@ -304,15 +304,21 @@ extension WorldLight {
         guard !atmosphere.isClear else { return self }
         var copy = self
         if let state = atmosphere.conditions.weather.state {
-            copy.grade = copy.grade.layered(with: state.grade, amount: 1)
+            // The island takes a rain or overcast sky through the rain LUT,
+            // which is already fitted to the rain reference; the row's own
+            // grade (contrast 0.8, gain 0.92) only covers what the LUT does
+            // not (night, dusk, mist), so the island is never graded twice.
+            let rain = LookLUT.rainAmount(atmosphere.conditions.weather)
+            let lut = LookLUT.Blend(group: .island, cells: cellWeights, rain: rain)
+            // The sun-lit share of the hour is graded by the LUT alone.
+            let sunlit = rain > 0 ? min(max((lut.weights[.rain] ?? 0) / rain, 0), 1) : 0
+            copy.grade = copy.grade.layered(with: state.grade, amount: 1 - sunlit)
             copy.characterGrade = copy.characterGrade.layered(with: state.character, amount: 1)
             // The backdrop takes the weather as overcast colour, never as a
             // darkening grade (look pipeline v2 §6.3): `SkyPalette.atmospheric`
             // and `CloudSea.Colours(weather:)`.
             // Rain moves the sun-lit cells to the rain LUT (look pipeline v2).
-            let rain = LookLUT.rainAmount(atmosphere.conditions.weather)
             if rain > 0 {
-                let lut = LookLUT.Blend(group: .island, cells: cellWeights, rain: rain)
                 copy.grade.lut = lut
                 copy.characterGrade.lut = lut.for(.characters)
             }

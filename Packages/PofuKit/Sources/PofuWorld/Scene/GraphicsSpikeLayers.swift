@@ -224,6 +224,16 @@ private struct SpikeDepthMapView: View {
                 let rect = CGRect(x: a.x + Double(offset.width), y: a.y + Double(offset.height), width: b.x - a.x, height: b.y - a.y)
                 let depth = DepthOfField.encoded(KokeLayout.focusDepth)
                 context.fill(Path(ellipseIn: rect.insetBy(dx: -rect.width * 0.04, dy: -rect.height * 0.05)), with: .color(Self.grey(depth)))
+                // Damla sits at the top of the falls at stage 4, her head above
+                // the ellipse: without this her head fell on the far plane and
+                // blurred (a ghosted otter). She is in focus with the lawn.
+                let top = CaglayanLayout.damlaTop
+                let h = CaglayanLayout.damlaBoxHeight
+                let w = CaglayanLayout.damlaBoxWidth
+                let ta = pose.project(WorldPoint(x: CaglayanLayout.center.x + top.x - w / 2, y: CaglayanLayout.center.y + top.y - h), width: Double(size.width))
+                let tb = pose.project(WorldPoint(x: CaglayanLayout.center.x + top.x + w / 2, y: CaglayanLayout.center.y + top.y + 4), width: Double(size.width))
+                let damla = CGRect(x: ta.x + Double(offset.width), y: ta.y + Double(offset.height), width: tb.x - ta.x, height: tb.y - ta.y)
+                context.fill(Path(roundedRect: damla, cornerRadius: damla.width / 2), with: .color(Self.grey(depth)))
             }
 
             // Çağlayan's island: the same, at its own row.
