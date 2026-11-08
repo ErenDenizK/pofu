@@ -186,7 +186,14 @@ public struct CameraRig: Hashable, Sendable {
     /// the caller refocuses.
     public mutating func resize(width: Double, height: Double) {
         guard width != rail.width || height != rail.height else { return }
-        rail = CameraRail(width: width, height: height, stops: rail.stops)
+        rail = CameraRail(width: width, height: height, stops: rail.stops, whole: rail.whole)
+    }
+
+    /// New stops for the rail (a plate-first home shows or leaves): the
+    /// rail position stays, so the camera lands on the new framing at once.
+    public mutating func setStops(_ stops: [CameraRail.Stop], whole: CameraRail.Stop?) {
+        guard stops != rail.stops || whole != rail.whole else { return }
+        rail = CameraRail(width: rail.width, height: rail.height, stops: stops, whole: whole)
     }
 
     // MARK: - Framings

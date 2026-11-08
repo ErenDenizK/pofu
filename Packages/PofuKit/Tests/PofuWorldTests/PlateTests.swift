@@ -1,0 +1,326 @@
+import Foundation
+import PofuCore
+import PofuDesignSystem
+@testable import PofuWorld
+import Testing
+
+struct PlateMathTests {
+    /// A U: the notch between its arms is outside.
+    let u = [
+        PlatePoint(x: 0, y: 0), PlatePoint(x: 10, y: 0), PlatePoint(x: 10, y: 10), PlatePoint(x: 7, y: 10),
+        PlatePoint(x: 7, y: 3), PlatePoint(x: 3, y: 3), PlatePoint(x: 3, y: 10), PlatePoint(x: 0, y: 10),
+    ]
+
+    @Test func containsAConcavePolygonButNotItsNotch() {
+        #expect(PlateMath.contains(u, PlatePoint(x: 1.5, y: 8)))
+        #expect(PlateMath.contains(u, PlatePoint(x: 5, y: 1.5)))
+        #expect(!PlateMath.contains(u, PlatePoint(x: 5, y: 8)))
+        #expect(!PlateMath.contains(u, PlatePoint(x: 12, y: 5)))
+    }
+
+    @Test func hitPrefersTheNearestObject() throws {
+        let island = try PlateIsland.decode(Data(PlateIslandTests.example.utf8))
+        // The hut (foot 60) and the well (foot 80) overlap at (55, 55).
+        #expect(PlateMath.hit(island, at: PlatePoint(x: 55, y: 55))?.id == "well")
+        #expect(PlateMath.hit(island, at: PlatePoint(x: 25, y: 25))?.id == "hut")
+        #expect(PlateMath.hit(island, at: PlatePoint(x: 300, y: 300)) == nil)
+    }
+
+    @Test func occludersCoverOnlyACharacterBehindThem() throws {
+        let island = try PlateIsland.decode(Data(PlateIslandTests.example.utf8))
+        let behind = PlateMath.occluders(over: (footY: 50, box: PlateRect(minX: 25, minY: 30, maxX: 35, maxY: 50)), in: island)
+        #expect(behind.map(\.id) == ["hut"])
+        let inFront = PlateMath.occluders(over: (footY: 70, box: PlateRect(minX: 25, minY: 50, maxX: 35, maxY: 70)), in: island)
+        #expect(inFront.isEmpty)
+        let aside = PlateMath.occluders(over: (footY: 50, box: PlateRect(minX: 200, minY: 30, maxX: 210, maxY: 50)), in: island)
+        #expect(aside.isEmpty)
+    }
+
+    @Test func lightOfAConstantMapIsThatColour() {
+        let map = Array(repeating: Array(repeating: "#336699", count: 32), count: 20)
+        let c = PlateMath.light(at: PlatePoint(x: 700, y: 300), map: map, plateSize: PlateRect(minX: 0, minY: 0, maxX: 1536, maxY: 1024))
+        #expect(abs(c.red - 0x33 / 255.0) < 1e-9)
+        #expect(abs(c.blue - 0x99 / 255.0) < 1e-9)
+    }
+
+    @Test func lightInterpolatesBetweenCells() {
+        let map = [["#000000", "#ffffff"]]
+        let size = PlateRect(minX: 0, minY: 0, maxX: 200, maxY: 100)
+        let mid = PlateMath.light(at: PlatePoint(x: 100, y: 50), map: map, plateSize: size)
+        #expect(abs(mid.green - 0.5) < 1e-9)
+        let left = PlateMath.light(at: PlatePoint(x: 10, y: 50), map: map, plateSize: size)
+        #expect(left.green == 0)
+    }
+
+    @Test func gainIsOneInTheOpenAndDarkerInTheLee() {
+        let open = PofuRGB(hex: 0x9ACD5A)
+        #expect(PlateMath.characterGain(light: open, reference: open) == 1)
+        #expect(PlateMath.characterGain(light: PofuRGB(hex: 0xFFFFFF), reference: open) == 1)
+        let lee = PlateMath.characterGain(light: PofuRGB(hex: 0x6E9A3E), reference: open)
+        #expect(lee < 1 && lee >= 0.78)
+        #expect(PlateMath.characterGain(light: PofuRGB(hex: 0x000000), reference: open) == 0.78)
+    }
+
+    @Test func contactRatioIsTheShadowOverTheLitClamped() {
+        let lit = PofuRGB(hex: 0xA0C060)
+        #expect(PlateMath.contactRatio(lit: lit, shadow: lit) == PofuRGB(red: 1, green: 1, blue: 1))
+        let black = PlateMath.contactRatio(lit: lit, shadow: PofuRGB(hex: 0x000000))
+        let floor = 1.055 * pow(0.15, 1 / 2.4) - 0.055
+        #expect(abs(black.red - floor) < 1e-9)
+        let dark = PlateMath.contactRatio(lit: lit, shadow: PofuRGB(hex: 0x506030))
+        #expect(dark.green < 1 && dark.green > floor)
+    }
+
+    @Test func framingGivesTheWidths() {
+        let s = PlateMath.framing(islandWidthUnits: 300, widths: 1.35, screenWidthPoints: 402)
+        #expect(abs(300 * s - 1.35 * 402) < 1e-9)
+    }
+
+    @Test func budgetIsEightMegabytes() throws {
+        var island = try PlateIsland.decode(Data(PlateIslandTests.example.utf8))
+        island.textureBytes = 8_000_000
+        #expect(PlateMath.budgetOK(island))
+        island.textureBytes = 8_000_001
+        #expect(!PlateMath.budgetOK(island))
+    }
+}
+
+struct PlateIslandTests {
+    static let example = """
+    {"island":"test","version":1,"standIn":true,"minLevel":10,"plateSize":[1536,1024],"stages":1,"lights":["day"],
+     "islandBox":[10,10,1500,900],"backdropBox":[-300,-1500,1800,3500],
+     "objects":[
+      {"id":"hut","tap":true,"label":"test.hut","station":"teaStall","polygon":[[20,20],[60,20],[60,60],[20,60]],"footY":60,"occluder":true,"box":[16,16,64,64],"sway":0,"emissive":false},
+      {"id":"well","tap":true,"label":"test.well","polygon":[[50,50],[90,50],[90,80],[50,80]],"footY":80,"occluder":false,"sway":0,"emissive":false}
+     ],
+     "walkable":[[0,0],[200,0],[200,200],[0,200]],
+     "characters":{"pofu":[100,100],"mochi":[60,120]},
+     "pofuWidth":110,"residentBoost":1.3,
+     "framing":{"homeWidths":1.2,"homeCenterX":0.5,"homeTopY":180,"islandWidths":0.8,"wholeWidths":0.9},
+     "lightDirection":[-0.5,0.3],
+     "lightMap":{"day":[[["#ffffff","#ffffff"],["#ffffff","#ffffff"]]]},
+     "shadowMap":{"day":[[["#808080","#808080"],["#808080","#808080"]]]},
+     "textureBytes":3000000}
+    """
+
+    @Test func decodesTheIngestSchema() throws {
+        let island = try PlateIsland.decode(Data(Self.example.utf8))
+        #expect(island.island == "test")
+        #expect(island.minLevel == 10)
+        #expect(island.plateSize.width == 1536)
+        #expect(island.objects.count == 2)
+        #expect(island.object("hut")?.station == .teaStall)
+        #expect(island.object("hut")?.box == PlateRect(minX: 16, minY: 16, maxX: 64, maxY: 64))
+        #expect(island.object("well")?.station == nil)
+        #expect(island.characters["pofu"] == PlatePoint(x: 100, y: 100))
+        #expect(island.framing.homeTopY == 180)
+        #expect(island.lightMap["day"]?.first?.count == 2)
+    }
+
+    @Test func assetNamesFollowTheSpec() throws {
+        let island = try PlateIsland.decode(Data(Self.example.utf8))
+        #expect(island.plateArt(light: "day", stage: 0) == "world-test-plate-day-0")
+        #expect(island.islandArt(light: "day", stage: 0) == "world-test-island-day-0")
+        #expect(island.backdropArt(light: "day", stage: 0) == "world-test-backdrop-day-0")
+        #expect(island.occluderArt(id: "hut", light: "day", stage: 0) == "world-test-occ-hut-day-0")
+        #expect(island.diffArt(light: "night", from: 2) == "world-test-diff-night-2")
+        #expect(island.emissiveArt(light: "night", stage: 4) == "world-test-emit-night-4")
+        #expect(island.upgradeArt(id: "bench", light: "day") == "world-test-up-bench-day")
+        #expect(island.lutArt(light: "golden") == "world-lut-plate-test-golden")
+    }
+
+    @Test func loadReturnsNilWithoutTheResource() {
+        #expect(PlateIsland.load("nowhere") == nil)
+    }
+}
+
+struct HomePlateTests {
+    var plate: HomePlate {
+        get throws { try #require(HomePlate.shipped, "the package ships Plates/plate-home.json") }
+    }
+
+    @Test func pofuStandsOnHisPaintedSpot() throws {
+        let home = try plate
+        let spot = try #require(home.plate.characters["pofu"])
+        let w = home.world(spot)
+        #expect(abs(w.x - IslandLayout.pofu.x) < 1e-9)
+        #expect(abs(w.y - IslandLayout.pofu.y) < 1e-9)
+        let back = home.plate(w)
+        #expect(abs(back.x - spot.x) < 1e-9 && abs(back.y - spot.y) < 1e-9)
+    }
+
+    @Test func everyCharacterStandsOnTheWalkableLawn() throws {
+        let home = try plate
+        for (name, spot) in home.plate.characters {
+            #expect(PlateMath.contains(home.plate.walkable, spot), "\(name)")
+        }
+    }
+
+    @Test func homeFramesTheIslandAtItsWidthsWithItsTopWhereAsked() throws {
+        let home = try plate
+        let stop = home.homeStop
+        let pose = CameraPose(scale: stop.scale, look: stop.look, anchorY: stop.anchorY)
+        let box = home.islandBox
+        let left = pose.project(WorldPoint(x: box.minX, y: box.minY), width: CameraRail.referenceWidth)
+        let right = pose.project(WorldPoint(x: box.maxX, y: box.minY), width: CameraRail.referenceWidth)
+        #expect(abs((right.x - left.x) - home.plate.framing.homeWidths * CameraRail.referenceWidth) < 1e-6)
+        #expect(abs(left.y - home.plate.framing.homeTopY) < 1e-6)
+        // The island's centre sits in the middle of the screen.
+        #expect(abs((left.x + right.x) / 2 - CameraRail.referenceWidth / 2) < 1)
+    }
+
+    @Test func theIslandStopAndTheWholeShotShowTheWholeIsland() throws {
+        let home = try plate
+        for stop in [home.islandStop, home.wholeStop] {
+            let pose = CameraPose(scale: stop.scale, look: stop.look, anchorY: stop.anchorY)
+            let box = home.islandBox
+            let a = pose.project(WorldPoint(x: box.minX, y: box.minY), width: CameraRail.referenceWidth)
+            let b = pose.project(WorldPoint(x: box.maxX, y: box.maxY), width: CameraRail.referenceWidth)
+            #expect(a.x > 0 && b.x < CameraRail.referenceWidth)
+            #expect(a.y > IslandFraming.topBand && b.y < CameraRail.referenceHeight - IslandFraming.bottomBand + 60)
+        }
+    }
+
+    @Test func theBackdropCoversTheScreenAtEveryStop() throws {
+        let home = try plate
+        for stop in [home.homeStop, home.islandStop, home.wholeStop] {
+            let pose = CameraPose(scale: stop.scale, look: stop.look, anchorY: stop.anchorY)
+            let box = home.backdropBox
+            let a = pose.project(WorldPoint(x: box.minX, y: box.minY), width: CameraRail.referenceWidth)
+            let b = pose.project(WorldPoint(x: box.maxX, y: box.maxY), width: CameraRail.referenceWidth)
+            #expect(a.x <= 0 && a.y <= 0)
+            #expect(b.x >= CameraRail.referenceWidth && b.y >= CameraRail.referenceHeight)
+        }
+    }
+
+    @Test func charactersAreSmallOnThePlate() throws {
+        let home = try plate
+        // Pofu about 35 to 45 points wide at Home, the residents at least 18.
+        let pofu = 64 * home.characterScale * IslandFraming.homeScale
+        #expect(pofu > 30 && pofu < 48)
+        let mochi = 30.4 * home.residentScale * IslandFraming.homeScale
+        #expect(mochi > 18)
+    }
+
+    @Test func showsByDayInClearWeatherAtItsLevel() throws {
+        let home = try plate
+        let level = home.plate.minLevel
+        #expect(home.shows(islandLevel: level, hour: 12, weather: .clear, isBedtime: false))
+        #expect(!home.shows(islandLevel: level - 1, hour: 12, weather: .clear, isBedtime: false))
+        #expect(!home.shows(islandLevel: level, hour: 22.5, weather: .clear, isBedtime: false))
+        #expect(!home.shows(islandLevel: level, hour: 7, weather: .clear, isBedtime: false))
+        #expect(!home.shows(islandLevel: level, hour: 12, weather: WeatherConditions(weather: .lightRain), isBedtime: false))
+        #expect(!home.shows(islandLevel: level, hour: 12, weather: .clear, isBedtime: true))
+    }
+
+    @Test func resolvesFromTheLooksHourAndWeather() throws {
+        let home = try plate
+        let world = IslandSamples.world(
+            clock: nil, tendedDays: 60, levels: [:], jar: .zero, islands: [.home], islandLevel: home.plate.minLevel
+        )
+        #expect(HomePlate.resolve(home, world: world, look: WorldLook(hourOverride: 12)) != nil)
+        #expect(HomePlate.resolve(home, world: world, look: WorldLook(hourOverride: 22.5)) == nil)
+        var rain = WorldLook(hourOverride: 12)
+        rain.weatherOverride = WeatherConditions(weather: .lightRain)
+        #expect(HomePlate.resolve(home, world: world, look: rain) == nil)
+    }
+
+    @Test func tapsLandOnTheirStations() throws {
+        let home = try plate
+        for station in [StationID.teaStall, .garden, .windmill, .pond] {
+            let object = try #require(home.plate.objects.first { $0.station == station }, "\(station)")
+            let b = PlateMath.bounds(object.polygon)
+            // A point well inside the outline: the centroid of its vertices.
+            let c = PlatePoint(
+                x: object.polygon.map(\.x).reduce(0, +) / Double(object.polygon.count),
+                y: object.polygon.map(\.y).reduce(0, +) / Double(object.polygon.count)
+            )
+            #expect(b.width > 0)
+            #expect(home.tapObject(at: home.world(c))?.station == station, "\(station)")
+        }
+        #expect(home.plate.object("door")?.tap == true)
+    }
+
+    @Test func theEastBushHidesWhoeverStandsBehindItAndNobodyAtRest() throws {
+        let home = try plate
+        let art = WorldBox(minX: -14.3, minY: -26.8, maxX: 14.4, maxY: 0.2)
+        let bush = try #require(home.plate.object("eastBush"))
+        let b = PlateMath.bounds(bush.polygon)
+        // Just behind the bush's foot line, in its middle: drawn under it.
+        let behind = home.world(PlatePoint(x: (b.minX + b.maxX) / 2, y: bush.footY - 30))
+        #expect(home.occluders(over: behind, box: home.residentBox(art: art, at: behind)).map(\.id) == ["eastBush"])
+        // At rest, everyone stands in the open, whole.
+        let findik = try #require(home.residentFeet(.findik))
+        #expect(home.occluders(over: findik, box: home.residentBox(art: art, at: findik)).isEmpty)
+        #expect(home.occluders(over: IslandLayout.pofu, box: home.pofuBox).isEmpty)
+    }
+
+    @Test func pofuKeepsHisPaintOnTheOpenLawn() throws {
+        let home = try plate
+        #expect(home.gain(at: IslandLayout.pofu) == 1)
+        let tone = home.contactTone(at: IslandLayout.pofu)
+        #expect(tone.green < 1 && tone.green > 0.3)
+    }
+
+    @Test func theIslandStaysClearOfTheHarbor() throws {
+        let home = try plate
+        let harbor = try #require(IslandLayout.isles.first { $0.id == .harbor })
+        #expect(home.islandBox.maxX < harbor.center.x - 40)
+    }
+
+    @Test func budgetFits() throws {
+        #expect(PlateMath.budgetOK(try plate.plate))
+    }
+}
+
+struct PlateHitTests {
+    @Test func aPolygonTargetAnswersOnlyInsideItsOutline() {
+        // A triangle: its box's corner is outside it.
+        let triangle = [WorldPoint(x: 0, y: 0), WorldPoint(x: 100, y: 0), WorldPoint(x: 0, y: 100)]
+        let target = HitTarget(
+            kind: .plateObject("hut"), worldBox: WorldBox(minX: 0, minY: 0, maxX: 100, maxY: 100), depth: 0, polygon: triangle
+        )
+        let pose = CameraPose(scale: 1, look: WorldPoint(x: 0, y: 0), anchorY: 0)
+        let width = 402.0
+        #expect(WorldHitTest.resolve(x: 201 + 20, y: 20, targets: [target], pose: pose, width: width) != nil)
+        #expect(WorldHitTest.resolve(x: 201 + 90, y: 90, targets: [target], pose: pose, width: width) == nil)
+    }
+
+    @Test func thePlateAnswersWithItsObjectsAndResidents() throws {
+        let home = try #require(HomePlate.shipped)
+        let world = IslandSamples.world(
+            clock: nil, tendedDays: 60,
+            levels: [.garden: 5, .teaStall: 5, .pond: 5, .windmill: 5, .workshop: 5],
+            jar: .zero, islands: [.home], islandLevel: home.plate.minLevel
+        )
+        let targets = WorldHitTest.plateTargets(home, stations: world.stations, z: 2)
+        let kinds = Set(targets.map(\.kind))
+        for id in ["teaStall", "garden", "windmill", "pond", "door"] {
+            #expect(kinds.contains(.plateObject(id)), "\(id)")
+        }
+        #expect(kinds.contains(.resident(.mochi)))
+        #expect(kinds.contains(.resident(.findik)))
+        #expect(!kinds.contains { if case .prop = $0 { true } else { false } })
+        // On the Archipelago only the islands answer.
+        #expect(WorldHitTest.plateTargets(home, stations: world.stations, z: 0.2).allSatisfy {
+            if case .island = $0.kind { true } else { false }
+        })
+    }
+
+    @Test func aTapOnTheTeaStallAtHomeFindsIt() throws {
+        let home = try #require(HomePlate.shipped)
+        let world = IslandSamples.world(
+            clock: nil, tendedDays: 60, levels: [.garden: 5, .teaStall: 5, .pond: 5, .windmill: 5, .workshop: 5],
+            jar: .zero, islands: [.home], islandLevel: home.plate.minLevel
+        )
+        let stop = home.homeStop
+        let pose = CameraPose(scale: stop.scale, look: stop.look, anchorY: stop.anchorY)
+        let awning = home.world(PlatePoint(x: 0.17 * 1536, y: 0.27 * 1024))
+        let p = pose.project(awning, width: CameraRail.referenceWidth)
+        let hit = WorldHitTest.resolve(
+            x: p.x, y: p.y, targets: WorldHitTest.plateTargets(home, stations: world.stations, z: 2),
+            pose: pose, width: CameraRail.referenceWidth
+        )
+        #expect(hit?.kind == .plateObject("teaStall"))
+    }
+}

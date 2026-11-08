@@ -53,6 +53,13 @@ public final class IslandSceneModel {
     public private(set) var island: IslandID = .home
     /// Taps on the home objects (jar, lantern, pots); Home sets it.
     @ObservationIgnored public var onPropTap: (@MainActor (HomeSlots.Prop) -> Void)?
+    /// The home drawn from its painted plate (ADR-0022), when it shows: the
+    /// scene draws the plate instead of the sprite island, taps land on its
+    /// polygons and the rail takes its stops. Set by the scene.
+    public private(set) var homePlate: HomePlate?
+    /// Taps on a plate object Home handles itself (the door, the garden
+    /// at Collect); returns whether it did. Home sets it.
+    @ObservationIgnored public var onPlateTap: (@MainActor (String) -> Bool)?
     /// Per-target tap pulses, bumped by every resolved tap: the squish
     /// answers inside one frame (§1.3). Keyed by `HitTarget` id.
     public private(set) var pulses: [String: Int] = [:]
@@ -372,6 +379,15 @@ public final class IslandSceneModel {
         self.engine = SceneEngine(rig: CameraRig(framing: framing))
     }
 
+    /// The plate shows or leaves: the rail takes its stops (the camera
+    /// lands on the new framing at once) and the frame redraws.
+    public func setHomePlate(_ plate: HomePlate?) {
+        guard plate != homePlate else { return }
+        homePlate = plate
+        engine.rig.setStops(plate?.stops ?? CameraRail.referenceStops, whole: plate?.wholeStop)
+        kick()
+    }
+
     public var hasSheet: Bool {
         sheet != nil
     }
@@ -628,8 +644,8 @@ public final class IslandSceneModel {
     /// another station retargets without dismissing.
     public func focusStation(_ id: StationID, animated: Bool = true) {
         guard
-            let anchor = IslandLayout.stationAnchors[id],
-            let pose = IslandLayout.stationFocusPose(
+            let anchor = homePlate?.stationBox(id).map({ WorldPoint(x: $0.midX, y: $0.maxY) }) ?? IslandLayout.stationAnchors[id],
+            let pose = plateFocusPose(id) ?? IslandLayout.stationFocusPose(
                 id,
                 width: engine.rig.rail.width,
                 height: engine.rig.rail.height,
@@ -649,6 +665,17 @@ public final class IslandSceneModel {
         kick()
     }
 
+    /// On the plate, a station's painted object centred between the top
+    /// band and the sheet, filling at most 80 % of either side.
+    private func plateFocusPose(_ id: StationID) -> CameraPose? {
+        guard let box = homePlate?.stationBox(id) else { return nil }
+        let width = engine.rig.rail.width, height = engine.rig.rail.height
+        let top = engine.safeTop + 100
+        let bottom = height * (1 - 0.42)
+        let scale = min(2.6 * width / CameraRail.referenceWidth, max(bottom - top, 1) * 0.8 / max(box.height, 1), width * 0.8 / max(box.width, 1))
+        return CameraPose(scale: scale, look: WorldPoint(x: box.midX, y: box.midY), anchorY: (top + bottom) / 2)
+    }
+
     /// Focuses a resident and shows their card (§12.2). Behind a station
     /// sheet, a resident means their station.
     public func focusResident(_ id: ResidentID, animated: Bool = true) {
@@ -660,7 +687,15 @@ public final class IslandSceneModel {
         // From another resident, start from the rail's pose so the ×1.3
         // does not compound.
         let from = engine.rig.rail.pose(z: Double(framing.rawValue))
-        guard let pose = IslandLayout.residentFocusPose(id, from: from) else { return }
+        let plateFeet = homePlate?.residentFeet(id)
+        guard let pose = plateFeet.map({ feet in
+            CameraPose(
+                logScale: from.logScale + log(1.3),
+                lookX: from.lookX + (feet.x - from.lookX) * 0.35,
+                lookY: from.lookY + (feet.y - 6 - from.lookY) * 0.35,
+                anchorY: from.anchorY
+            )
+        }) ?? IslandLayout.residentFocusPose(id, from: from) else { return }
         focus = .resident(id)
         // The first resident tapped today starts (wide-eyed for a moment).
         if reactions.noteTap(on: id.rawValue, at: Date()) {
@@ -672,7 +707,7 @@ public final class IslandSceneModel {
         let said = linesSaid[id, default: 0]
         residentLine = said < lines.count ? lines[said] : nil
         linesSaid[id] = said + 1
-        let lens = Lens.resident(depth: IslandLayout.depth(ofY: resident.feet.y))
+        let lens = Lens.resident(depth: IslandLayout.depth(ofY: (plateFeet ?? resident.feet).y))
         if animated {
             travel { $0.focus(pose: pose, lens: lens, camera: WorldSprings.residentFocus) }
         } else {
@@ -758,7 +793,13 @@ public final class IslandSceneModel {
             ? (wonder.isArrived ? [HitTarget(kind: .koke, worldBox: KokeLayout.kokeBox, depth: 0)] : [])
             : island == .caglayan
             ? (flowIsland.isArrived ? [HitTarget(kind: .caglayan, worldBox: CaglayanLayout.tapBox, depth: 0)] : [])
-            : WorldHitTest.targets(
+            : homePlate.map { plate in
+                WorldHitTest.plateTargets(
+                    plate, stations: stations, z: rig.railPosition,
+                    koke: wonder.isArrived ? .arrived : .none,
+                    caglayan: flowIsland.isArrived ? .arrived : .none
+                )
+            } ?? WorldHitTest.targets(
                 stations: stations, z: rig.railPosition, visitor: visitor, invitationOpen: invitationOpen, isBedtime: isBedtime,
                 koke: wonder.isArrived ? .arrived : .none,
                 caglayan: flowIsland.isArrived ? .arrived : .none
@@ -807,6 +848,12 @@ public final class IslandSceneModel {
         case .caglayan:
             pulse("caglayan")
             caglayan.tapped(in: self)
+        case .plateObject(let id):
+            pulse("plate-\(id)")
+            if onPlateTap?(id) == true { return }
+            if let station = homePlate?.plate.object(id)?.station {
+                stationTapped(station)
+            }
         case .island(let id):
             guard arrived.contains(id) || id == .home else {
                 pulse("island-\(id.rawValue)")

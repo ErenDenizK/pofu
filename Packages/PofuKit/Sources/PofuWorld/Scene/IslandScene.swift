@@ -247,6 +247,11 @@ public struct IslandScene<Bubble: View>: View {
         .onChange(of: world.islandLevel, initial: true) { _, level in
             model.noteIslandLevel(level, at: Date())
         }
+        // The painted home plate (ADR-0022): at its level, by day, in clear
+        // weather; otherwise the sprite island.
+        .onChange(of: HomePlate.resolve(world: world, look: look), initial: true) { _, plate in
+            model.setHomePlate(plate)
+        }
         .onChange(of: world.visitor, initial: true) { _, visitor in
             if model.noteVisitor(visitor, at: Date(), still: still), let visitor {
                 AccessibilityNotification.Announcement(WorldStrings.visitorArrived(visitor.resident)).post()
@@ -468,7 +473,10 @@ private struct SceneFrame<Bubble: View>: View {
         let z = rig.railPosition
         // Depth in motion (HD-2D): while the camera moves, layers parallax
         // by depth and the depth of field strengthens; both settle to zero.
-        let motion = look.hd2d && look.depthMotion && !model.reduceMotion ? rig.motion.parallax(look.tuning.parallax) : CameraMotion.still
+        // The painted home plate (ADR-0022) is the final picture: no grade,
+        // fog, haze, vignette, light layers, depth of field or parallax.
+        let plate = model.homePlate
+        let motion = plate == nil && look.hd2d && look.depthMotion && !model.reduceMotion ? rig.motion.parallax(look.tuning.parallax) : CameraMotion.still
         let lookPoint = WorldPoint(x: pose.lookX, y: pose.lookY)
         // HD-2D's tilt-shift: the depth lens, stronger per framing.
         let rigLens = DepthMotion.lens(look.hd2d ? rig.lens.tiltShifted(by: LookTuning.tiltShift(z: z, island: look.tuning.tiltShiftIsland, home: look.tuning.tiltShiftHome)) : rig.lens, motion: motion)
@@ -482,10 +490,13 @@ private struct SceneFrame<Bubble: View>: View {
         let spikeDOF = spike.depthOfField && WorldShaders.isAvailable
         // Focus follows the camera: no depth of field while it moves, then
         // a rack focus once it settles.
-        let lens = spikeDOF ? Lens(focus: baseLens.focus, slab: baseLens.slab, gain: 0) : Lens(focus: baseLens.focus, slab: baseLens.slab, gain: baseLens.gain * rack)
+        let lens = spikeDOF || plate != nil ? Lens(focus: baseLens.focus, slab: baseLens.slab, gain: 0) : Lens(focus: baseLens.focus, slab: baseLens.slab, gain: baseLens.gain * rack)
         let peek = rig.peekTilt
         let device = model.deviceTilt
-        let tilt = (x: min(max(peek.x + device.x, -1), 1), y: min(max(peek.y + device.y, -1), 1))
+        let tilt = plate != nil ? (x: 0.0, y: 0.0) : (x: min(max(peek.x + device.x, -1), 1), y: min(max(peek.y + device.y, -1), 1))
+        // The plate and its backdrop at the Island stop and closer; toward
+        // the Map only the island cut stays, among the other islands.
+        let plateFade = plate != nil && model.island == .home ? PlateHomeLayer.opacity(z: z) : 0
         let offset = CGSize(width: rig.offsetX.value, height: rig.offsetY.value)
         // Stations answer taps in every framing: on the Map and at Home a
         // tap flies to the island and opens the sheet in one gesture.
@@ -561,7 +572,7 @@ private struct SceneFrame<Bubble: View>: View {
                 strength: spike.debug == .normals ? 1 : spike.lightStrength
             )
             : nightRelight
-        let depthMap: Image? = (spikeDOF && rack > 0.001) || spike.debug == .depth
+        let depthMap: Image? = plate == nil && ((spikeDOF && rack > 0.001) || spike.debug == .depth)
             ? SpikeDepthMap.image(world: world, pose: pose, offset: offset, size: size, art: look.art, koke: model.island == .koke && world.koke.isArrived, caglayan: model.island == .caglayan && world.caglayan.isArrived)
             : nil
         let field: DepthOfField = {
@@ -599,16 +610,20 @@ private struct SceneFrame<Bubble: View>: View {
 
         ZStack(alignment: .topLeading) {
             ZStack(alignment: .topLeading) {
-                LivingSky(palette: sky, offset: offset, far: FarSky.Look(z: z, cell: light.cell, grade: grade, koke: farKoke, healed: farHealed, mist: atmosphere.mist))
-                    .environment(\.worldAmbientPaused, ambientPaused)
-                    .animation(animation, value: sky)
+                if plateFade < 0.999 {
+                    LivingSky(palette: sky, offset: offset, far: FarSky.Look(z: z, cell: light.cell, grade: grade, koke: farKoke, healed: farHealed, mist: atmosphere.mist))
+                        .environment(\.worldAmbientPaused, ambientPaused)
+                        .animation(animation, value: sky)
+                }
 
-                // The rainbow, soft and pastel, behind the island and its fog.
-                WeatherRainbow(atmosphere: atmosphere, size: size, seaLine: fogSeaLine, offset: offset)
+                if plate == nil {
+                    // The rainbow, soft and pastel, behind the island and its fog.
+                    WeatherRainbow(atmosphere: atmosphere, size: size, seaLine: fogSeaLine, offset: offset)
 
-                // Height fog behind the island, densest at the cloud-sea line.
-                FogCards(layer: .behind, horizon: sky.horizon, mist: atmosphere.mist, offset: offset, size: size, seaLine: fogSeaLine)
-                    .environment(\.worldAmbientPaused, ambientPaused)
+                    // Height fog behind the island, densest at the cloud-sea line.
+                    FogCards(layer: .behind, horizon: sky.horizon, mist: atmosphere.mist, offset: offset, size: size, seaLine: fogSeaLine)
+                        .environment(\.worldAmbientPaused, ambientPaused)
+                }
 
                 WorldCanvas(
                     world: world,
@@ -627,7 +642,8 @@ private struct SceneFrame<Bubble: View>: View {
                     life: life,
                     shadow: shadow,
                     pools: pools,
-                    clouds: clouds
+                    clouds: clouds,
+                    plate: plate
                 )
                 .frame(width: IslandLayout.canvasWidth, height: IslandLayout.canvasHeight, alignment: .topLeading)
                 .cameraTransform(pose: pose, viewportWidth: Double(size.width), offset: offset)
@@ -639,11 +655,17 @@ private struct SceneFrame<Bubble: View>: View {
                 .modifier(GradeEffect(grade: grade.withoutVignette, isEnabled: look.grade))
                 .animation(animation, value: grade)
 
-                // Today's resist seals on the earth beside Pofu's door: an
-                // earth detail, graded with the world, still at rest.
-                ResistSealsLayer(tally: resistSeals, pose: pose, offset: offset, size: size, night: world.isBedtime)
-                    .tinted(tint, isEnabled: !(look.grade && WorldShaders.isAvailable))
-                    .modifier(GradeEffect(grade: grade.withoutVignette, isEnabled: look.grade))
+                if let plate {
+                    // The painted plate, never graded: its backdrop, the
+                    // plate and, toward the Map, the island cut alone.
+                    PlateHomeLayer(plate: plate, pose: pose, size: size, offset: offset, fade: plateFade)
+                } else {
+                    // Today's resist seals on the earth beside Pofu's door: an
+                    // earth detail, graded with the world, still at rest.
+                    ResistSealsLayer(tally: resistSeals, pose: pose, offset: offset, size: size, night: world.isBedtime)
+                        .tinted(tint, isEnabled: !(look.grade && WorldShaders.isAvailable))
+                        .modifier(GradeEffect(grade: grade.withoutVignette, isEnabled: look.grade))
+                }
 
                 // The characters keep their warmth: the colour script's
                 // character light, graded per sprite.
@@ -660,11 +682,12 @@ private struct SceneFrame<Bubble: View>: View {
                     build: build,
                     model: model,
                     clock: clock,
-                    characterGrade: characterGrade,
+                    characterGrade: plate == nil ? characterGrade : .neutral,
                     life: life,
                     shadow: shadow,
                     pools: pools,
-                    clouds: clouds
+                    clouds: clouds,
+                    plate: plate
                 )
                 .frame(width: IslandLayout.canvasWidth, height: IslandLayout.canvasHeight, alignment: .topLeading)
                 .cameraTransform(pose: pose, viewportWidth: Double(size.width), offset: offset)
@@ -687,64 +710,79 @@ private struct SceneFrame<Bubble: View>: View {
                     model: model,
                     onPofuTap: onPofuTap,
                     part: .body,
-                    bubble: bubble
+                    bubble: bubble,
+                    plate: plate
                 )
 
-                if let props {
+                if let plate {
+                    // What Pofu stands behind is drawn again over him.
+                    PlateOccluders(
+                        plate: plate,
+                        objects: plate.occluders(over: IslandLayout.pofu, box: plate.pofuBox),
+                        pose: pose,
+                        size: size,
+                        offset: offset
+                    )
+                }
+
+                if let props, plate == nil {
                     // The jar, the lantern and the pots share the island's
                     // transform: they never lag or bob (§1.4).
                     props.world(WorldPropsFrame(pose: pose, size: size, offset: offset, z: z, isFocused: model.focus != nil || model.hasSheet, model: model))
                 }
 
-                CloudSea(colours: sea, offset: offset, rise: CloudSea.rise(z: z, pose: pose, height: Double(size.height)))
-                    .environment(\.worldAmbientPaused, ambientPaused)
-                    .animation(animation, value: sea)
+                if plate == nil {
+                    // The sprite island's atmosphere: none of it lies over a plate.
+                    CloudSea(colours: sea, offset: offset, rise: CloudSea.rise(z: z, pose: pose, height: Double(size.height)))
+                        .environment(\.worldAmbientPaused, ambientPaused)
+                        .animation(animation, value: sea)
 
-                // One fog card across the island's base: the foot dissolves,
-                // the top stays clear.
-                // Look pipeline v2: haze only on the backdrop; this card lies on
-                // the cloud sea, so it takes the sea's warm white more than the
-                // sky's horizon (the references' sea is never a lavender veil).
-                FogCards(layer: .front, horizon: sky.horizon.mixed(with: sea.light, amount: LookTuning.frontFogSeaShare), mist: atmosphere.mist, offset: offset, size: size, seaLine: fogSeaLine)
-                    .environment(\.worldAmbientPaused, ambientPaused)
+                    // One fog card across the island's base: the foot dissolves,
+                    // the top stays clear.
+                    // Look pipeline v2: haze only on the backdrop; this card lies on
+                    // the cloud sea, so it takes the sea's warm white more than the
+                    // sky's horizon (the references' sea is never a lavender veil).
+                    FogCards(layer: .front, horizon: sky.horizon.mixed(with: sea.light, amount: LookTuning.frontFogSeaShare), mist: atmosphere.mist, offset: offset, size: size, seaLine: fogSeaLine)
+                        .environment(\.worldAmbientPaused, ambientPaused)
 
-                // Rain, splash ticks and puddle glints in front of the island.
-                WeatherRain(atmosphere: atmosphere, pose: pose, offset: offset, size: size, horizon: sky.horizon)
-                    .environment(\.worldAmbientPaused, ambientPaused)
+                    // Rain, splash ticks and puddle glints in front of the island.
+                    WeatherRain(atmosphere: atmosphere, pose: pose, offset: offset, size: size, horizon: sky.horizon)
+                        .environment(\.worldAmbientPaused, ambientPaused)
 
-                // The screen haze (the player's sky): from the harbor side.
-                ScreenHazeLayer(haze: rawHaze, sunX: palette.sun.x, offset: offset, size: size, seaLine: fogSeaLine)
-                    .environment(\.worldAmbientPaused, ambientPaused)
+                    // The screen haze (the player's sky): from the harbor side.
+                    ScreenHazeLayer(haze: rawHaze, sunX: palette.sun.x, offset: offset, size: size, seaLine: fogSeaLine)
+                        .environment(\.worldAmbientPaused, ambientPaused)
 
-                if look.grade {
-                    VignetteOverlay(strength: grade.vignette)
-                        .animation(animation, value: grade.vignette)
-                }
+                    if look.grade {
+                        VignetteOverlay(strength: grade.vignette)
+                            .animation(animation, value: grade.vignette)
+                    }
 
-                if look.hd2d {
-                    HD2DLayer(
-                        world: world,
-                        light: light,
-                        pose: pose,
-                        offset: offset,
-                        size: size,
-                        time: still ? 0 : time,
-                        motion: motion,
-                        focus: lens.focus,
-                        tilt: tilt,
-                        art: look.art,
-                        litOverlays: look.litOverlays,
-                        harborFade: model.island == .harbor ? 1 : max(0, 1 - max(z, 0) / 0.8) * (model.focus == nil ? 1 : 0),
-                        // The night relight adds form; the field's pools and the
-                        // characters' directional key stay (the spike replaces them).
-                        relit: relight != nil && relight != nightRelight,
-                        guestNight: VisitorStage.isGuestNight(world.visitor),
-                        directive: directive
-                    )
+                    if look.hd2d {
+                        HD2DLayer(
+                            world: world,
+                            light: light,
+                            pose: pose,
+                            offset: offset,
+                            size: size,
+                            time: still ? 0 : time,
+                            motion: motion,
+                            focus: lens.focus,
+                            tilt: tilt,
+                            art: look.art,
+                            litOverlays: look.litOverlays,
+                            harborFade: model.island == .harbor ? 1 : max(0, 1 - max(z, 0) / 0.8) * (model.focus == nil ? 1 : 0),
+                            // The night relight adds form; the field's pools and the
+                            // characters' directional key stay (the spike replaces them).
+                            relit: relight != nil && relight != nightRelight,
+                            guestNight: VisitorStage.isGuestNight(world.visitor),
+                            directive: directive
+                        )
+                    }
                 }
             }
             .frame(width: size.width, height: size.height, alignment: .topLeading)
-            .environment(\.worldRelight, relight)
+            .environment(\.worldRelight, plate == nil ? relight : nil)
             .environment(\.worldHorizon, sky.horizon)
             .environment(\.worldNight, light.night)
             .modifier(SpikeDepthOfFieldEffect(depth: depthMap, field: field, size: size, showsDepth: spike.debug == .depth))
@@ -765,12 +803,13 @@ private struct SceneFrame<Bubble: View>: View {
                 model: model,
                 onPofuTap: onPofuTap,
                 part: .overlay,
-                bubble: bubble
+                bubble: bubble,
+                plate: plate
             )
 
             ScreenOverlays(world: world, pose: pose, z: z, size: size, offset: offset, build: build, model: model)
 
-            if let props {
+            if let props, plate == nil {
                 props.screen(WorldPropsFrame(pose: pose, size: size, offset: offset, z: z, isFocused: model.focus != nil || model.hasSheet, model: model))
             }
 
@@ -838,6 +877,10 @@ private struct WorldCanvas: View {
     let pools: LightField
     /// The cloud shadows by day, or nil.
     var clouds: CloudShadows.Frame?
+    /// The painted home plate, when it shows: the sprite island's plate,
+    /// stations, dressing, shadows and pools are not drawn, and the
+    /// residents stand on the plate (`PlateHomeLayer` draws the plate).
+    var plate: HomePlate?
 
     var body: some View {
         ZStack(alignment: .topLeading) {
@@ -848,6 +891,8 @@ private struct WorldCanvas: View {
                 otherIsles
                 kokeIsle
                 caglayanIsle
+            }
+            if layer == .environment, plate == nil {
                 ForEach(IslandLayout.plateBands(islandLevel: life.islandLevel), id: \.art) { band in
                     if let sprite = WorldArt.sprite(band.art) {
                         DepthImage(
@@ -917,6 +962,8 @@ private struct WorldCanvas: View {
             case fountain
             /// The island's growth at this level (`IslandGrowth`).
             case growth(GrowthPiece)
+            /// A painted plate object drawn again over a resident behind it.
+            case plateOccluder(PlateIsland.Object)
         }
 
         var id: String
@@ -928,6 +975,9 @@ private struct WorldCanvas: View {
     /// Stations whose slot is open on the home island, and the residents
     /// of built stations, sorted back to front.
     private var objects: [Object] {
+        if let plate {
+            return plateObjects(plate)
+        }
         var objects: [Object] = []
         for status in world.stations where layer == .environment && status.island == .home && status.isOpen {
             guard let slot = IslandLayout.stationAnchors[status.id] else { continue }
@@ -987,6 +1037,29 @@ private struct WorldCanvas: View {
         return objects.sorted { $0.depth < $1.depth }
     }
 
+    /// On the plate: only the residents, where they stand on it, and the
+    /// painted objects they stand behind, back to front. The sprite island's
+    /// critters and today's visit are not drawn on the plate yet.
+    private func plateObjects(_ plate: HomePlate) -> [Object] {
+        guard layer == .characters else { return [] }
+        var objects: [Object] = []
+        var behind: [String: PlateIsland.Object] = [:]
+        for resident in IslandLayout.residents {
+            guard let station = world.stations.first(where: { $0.id == resident.station }), station.level > 0,
+                  let feet = plate.residentFeet(resident.id) else { continue }
+            objects.append(Object(id: "resident-\(resident.id)", kind: .resident(resident), anchor: feet, depth: IslandLayout.depth(ofY: feet.y)))
+            let box = plate.residentBox(art: WorldArt.sprite(resident.art)?.sharp ?? IslandLayout.residentHitBox, at: feet)
+            for object in plate.occluders(over: feet, box: box) {
+                behind[object.id] = object
+            }
+        }
+        for object in behind.values {
+            let box = plate.occluderBox(object)
+            objects.append(Object(id: "occluder-\(object.id)", kind: .plateOccluder(object), anchor: WorldPoint(x: box.minX, y: box.minY), depth: plate.depth(of: object)))
+        }
+        return objects.sorted { $0.depth < $1.depth }
+    }
+
     /// Whether what a critter perches on is built (a bird needs its roof, a
     /// frog its pond).
     private func perchStands(_ critter: Critter) -> Bool {
@@ -1020,6 +1093,45 @@ private struct WorldCanvas: View {
                         activate: { model.focusStation(status.id) }
                     )
                 }
+        case .resident(let resident) where plate != nil:
+            if let plate {
+                let reaction = model.reactions.age(of: resident.id.rawValue, at: clock).flatMap { ResidentLife.reaction(age: $0) }
+                let lift = (build.map { $0.moment.station == resident.station ? $0.moment.residentLift(at: $0.time) : 0 } ?? 0)
+                    + (reaction?.hop ?? 0)
+                let focused = model.focus == .resident(resident.id) || model.focus == .station(resident.station)
+                let pose = build.flatMap { $0.moment.station == resident.station ? $0.moment.residentPose(at: $0.time) : nil }
+                    ?? resident.idlePose(isBedtime: world.isBedtime, isFocused: focused,
+                                         event: model.reactions.event(of: resident.id.rawValue, at: clock))
+                PlateCharacter(
+                    art: resident.art(for: pose),
+                    point: point,
+                    scale: plate.residentScale,
+                    lift: lift * plate.residentScale,
+                    gain: plate.gain(at: object.anchor),
+                    contact: plate.contactTone(at: object.anchor),
+                    pulse: model.pulses["resident-\(resident.id.rawValue)", default: 0]
+                )
+                .overlay {
+                    hitArea(
+                        box: plate.residentBox(art: WorldArt.sprite(resident.art)?.sharp ?? IslandLayout.residentHitBox, at: .zero),
+                        at: point,
+                        label: "\(WorldStrings.residentName(resident.id)), \(WorldStrings.stationName(resident.station))",
+                        value: "",
+                        activate: { model.focusResident(resident.id) }
+                    )
+                }
+            }
+        case .plateOccluder(let occluder):
+            if let plate {
+                let box = plate.occluderBox(occluder)
+                Image(plate.plate.occluderArt(id: occluder.id, light: plate.light, stage: plate.stage), bundle: .module)
+                    .resizable()
+                    .interpolation(.high)
+                    .frame(width: CGFloat(box.width), height: CGFloat(box.height))
+                    .position(x: point.x + CGFloat(box.width) / 2, y: point.y + CGFloat(box.height) / 2)
+                    .allowsHitTesting(false)
+                    .accessibilityHidden(true)
+            }
         case .resident(let resident):
             let step = life.residents[resident.id.rawValue] ?? .rest
             let reaction = model.reactions.age(of: resident.id.rawValue, at: clock).flatMap { ResidentLife.reaction(age: $0) }
@@ -1444,6 +1556,9 @@ private struct PofuLayer<Bubble: View>: View {
     /// bubble (UI, never graded).
     let part: Part
     let bubble: Bubble
+    /// The painted home plate: Pofu stands on it at its scale, lit from it,
+    /// with a contact pad, and his line moves to Home's bottom band.
+    var plate: HomePlate?
 
     enum Part {
         case body
@@ -1480,17 +1595,26 @@ private struct PofuLayer<Bubble: View>: View {
         let weights = DepthWeights(level: level)
         // The painted body above z 0.55, the pin below 0.25 (§1.6).
         let painted = min(max((z - 0.25) / 0.3, 0), 1)
-        let bubbleOpacity = model.focus == nil ? min(max((z - 1.6) / 0.3, 0), 1) : 0
+        let bubbleOpacity = model.focus == nil && plate == nil ? min(max((z - 1.6) / 0.3, 0), 1) : 0
+        // On the plate he is drawn at its scale, in its light.
+        let drawn = s * (plate?.characterScale ?? 1)
+        let paint = plate.map { Color(white: $0.gain(at: IslandLayout.pofu)) } ?? grade
+        let light = plate == nil ? characterGrade : .neutral
 
         ZStack(alignment: .topLeading) {
             if part == .body, painted > 0.01 {
+                if let plate {
+                    ContactPad(width: Self.artWidth * drawn, tone: plate.contactTone(at: IslandLayout.pofu))
+                        .position(x: feet.x, y: feet.y - CGFloat(drawn))
+                        .opacity(painted)
+                }
                 if let sprite = WorldArt.sprite("pofu") {
-                    DepthImage(name: "pofu", sprite: sprite, level: level, anchor: feet, scale: CGFloat(s), opacity: painted, skipsSharp: true, grade: characterGrade)
-                        .colorMultiply(grade)
+                    DepthImage(name: "pofu", sprite: sprite, level: level, anchor: feet, scale: CGFloat(drawn), opacity: painted, skipsSharp: true, grade: light)
+                        .colorMultiply(paint)
                 }
                 if weights.sharp * painted > DepthWeights.visibleThreshold {
-                    companion(feet: feet, scale: s)
-                        .colorMultiply(grade)
+                    companion(feet: feet, scale: drawn)
+                        .colorMultiply(paint)
                         .opacity(weights.sharp * painted)
                 }
             }
@@ -1500,7 +1624,7 @@ private struct PofuLayer<Bubble: View>: View {
                     .position(x: feet.x, y: feet.y - 15)
             }
             if part == .overlay, bubbleOpacity > 0.01 {
-                let head = feet.y - CGFloat(62 * s)
+                let head = feet.y - CGFloat(62 * drawn)
                 bubble
                     .frame(maxWidth: min(size.width - 40, 320))
                     .frame(width: size.width, height: max(head - 4, 0), alignment: .bottom)
@@ -1565,7 +1689,7 @@ private struct PofuLayer<Bubble: View>: View {
             }
         }
         .modifier(RelightEffect(config: relightConfig(feet: feet, scale: s, ground: CGPoint(x: groundX, y: groundY), view: CGSize(width: viewWidth, height: viewHeight))))
-        .gradedIfNeeded(characterGrade)
+        .gradedIfNeeded(plate == nil ? characterGrade : .neutral)
         .position(x: feet.x - groundX + viewWidth / 2, y: feet.y - groundY + viewHeight / 2)
     }
 }

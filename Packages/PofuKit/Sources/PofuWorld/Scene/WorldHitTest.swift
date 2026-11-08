@@ -16,6 +16,8 @@ public struct HitTarget: Hashable, Sendable {
         case koke
         /// Çağlayan, on its own island: opens the stage's flow round.
         case caglayan
+        /// An object painted into a plate-first home (`HomePlate`), by id.
+        case plateObject(String)
     }
 
     public var kind: Kind
@@ -23,11 +25,15 @@ public struct HitTarget: Hashable, Sendable {
     public var worldBox: WorldBox
     /// Larger is nearer (`IslandLayout.depth(ofY:)`).
     public var depth: Double
+    /// A painted object's outline in world units: the finger must land
+    /// inside it (the box is then only its bounds).
+    public var polygon: [WorldPoint]?
 
-    public init(kind: Kind, worldBox: WorldBox, depth: Double) {
+    public init(kind: Kind, worldBox: WorldBox, depth: Double, polygon: [WorldPoint]? = nil) {
         self.kind = kind
         self.worldBox = worldBox
         self.depth = depth
+        self.polygon = polygon
     }
 }
 
@@ -75,9 +81,15 @@ public enum WorldHitTest {
         offset: (x: Double, y: Double) = (0, 0)
     ) -> HitTarget? {
         var best: (target: HitTarget, distance: Double)?
+        let world = pose.unproject(x: x - offset.x, y: y - offset.y, width: width)
         for target in targets {
             let rect = screenRect(of: target, pose: pose, width: width, offset: offset)
-            guard x >= rect.minX, x <= rect.maxX, y >= rect.minY, y <= rect.maxY else { continue }
+            if let polygon = target.polygon {
+                let plate = polygon.map { PlatePoint(x: $0.x, y: $0.y) }
+                guard PlateMath.contains(plate, PlatePoint(x: world.x, y: world.y)) else { continue }
+            } else {
+                guard x >= rect.minX, x <= rect.maxX, y >= rect.minY, y <= rect.maxY else { continue }
+            }
             let dx = x - (rect.minX + rect.maxX) / 2
             let dy = y - (rect.minY + rect.maxY) / 2
             let distance = dx * dx + dy * dy
@@ -109,6 +121,37 @@ public enum WorldHitTest {
             if let box = WorldArt.sprite(isle.art)?.sharp {
                 targets.append(HitTarget(kind: .island(isle.id), worldBox: IslandFraming.placed(box, at: isle.center), depth: 0))
             }
+        }
+        return targets
+    }
+
+    /// Everything tappable on a plate-first home at rail position `z`
+    /// (only the islands on the Archipelago): its painted tap objects (a
+    /// station's only once its slot is open), and the residents where they
+    /// stand on the plate. The sprite home's objects (the jar, the lantern,
+    /// the pots) and the visit are not drawn on the plate.
+    public static func plateTargets(
+        _ plate: HomePlate,
+        stations: [StationStatus],
+        z: Double,
+        koke: KokeReach = .none,
+        caglayan: KokeReach = .none
+    ) -> [HitTarget] {
+        guard z >= archipelagoZ else { return islandTargets(koke: koke != .none, caglayan: caglayan != .none) }
+        var targets: [HitTarget] = []
+        for object in plate.plate.objects where object.tap {
+            if let station = object.station {
+                guard stations.contains(where: { $0.id == station && $0.island == .home && $0.isOpen }) else { continue }
+            }
+            let polygon = plate.worldPolygon(object)
+            let bounds = plate.worldBox(PlateMath.bounds(object.polygon))
+            targets.append(HitTarget(kind: .plateObject(object.id), worldBox: bounds, depth: plate.depth(of: object), polygon: polygon))
+        }
+        for resident in IslandLayout.residents {
+            guard let station = stations.first(where: { $0.id == resident.station }), station.level > 0,
+                  let feet = plate.residentFeet(resident.id) else { continue }
+            let box = plate.residentBox(art: WorldArt.sprite(resident.art)?.sharp ?? IslandLayout.residentHitBox, at: feet)
+            targets.append(HitTarget(kind: .resident(resident.id), worldBox: box, depth: IslandLayout.depth(ofY: feet.y) + 0.001))
         }
         return targets
     }

@@ -91,6 +91,9 @@ jobs:
       - name: Test the asset tools
         run: python3 -I -m unittest discover -s tools/assets -p "test_*.py"
 
+      - name: Test the plate tools
+        run: python3 -I -m unittest discover -s tools/plate -p "test_*.py"
+
       # Every caster has a current pre-blurred shadow silhouette
       # (light and shadow v2); `shadows.py run` regenerates them.
       - name: Check the shadow silhouettes
@@ -383,6 +386,8 @@ jobs:
             git -C repo archive FETCH_HEAD | tar -x -C main-shots
           fi
           python3 -I repo/tools/assets/concept_match.py shots out/concept-match.jpg --before main-shots > out/concept-match.txt || true
+          # The plate-first home beside its concept (ADR-0022).
+          python3 -I repo/tools/plate/home_sheet.py shots out/home-plate.jpg --before main-shots || true
           # The colour script's swatches.
           python3 -I repo/tools/assets/colour_script.py swatches out/colour-script.png
           # Framing before and after: round 2's published frames beside these.

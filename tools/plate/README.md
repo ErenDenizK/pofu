@@ -5,12 +5,20 @@ numpy, Pillow, scipy; OpenCV only for registration and the pilot's matte. Determ
 
 | File | What it does |
 |---|---|
+| `ingest.py` | plate-first ingest (`docs/design/plate-islands.md` §0): from `design/art/plates/<island>/objects.json` (plates, trace, tap and occluder polygons, walkable lawn, character spots, framing) the matte, the whole plate with a feathered border, the island cut, the plate's sky and cloud sea extended past its edges (the backdrop), occluder cut-outs, the light and shadow maps and `Plates/plate-<island>.json`; `check` guards polygons, assets and the texture budget |
 | `pale.py` | the numbers behind `docs/research/pale-assets.md`: per-region L*, C*, hue, local contrast, fine detail, accent and dark shares for references, CI frames and raw sprites; the H2, H3 and H6 tests |
 | `light.py` | can a fitted LUT replace a painted light state? fits golden, rain and night on one painted pair, applies to another plate, measures dE2000 against its painted truth: `docs/research/plate-pilot/light-fit.jpg` |
 | `proofs.py` | the risky mechanisms as frames: occlusion behind a painted object, a sway mask, an upgrade insert, a tap highlight, light from the plate: `docs/research/plate-pilot/mechanisms.jpg` |
 | `pilot.py` | the plate-first pilot: Revontuli stand-ins composed at the CI frame (460 x 1000 = 402 x 874 pt) with a code sky, a code aurora, lit sprites and a diff-mask reveal; the sheet `docs/research/plate-pilot/plate-pilot.jpg` |
 
 ## Run
+
+The home plate (stand-in: the I1 day concept until batch 66's final lands; swapping it is a data
+change in `design/art/plates/home/objects.json`):
+
+    python3 -I tools/plate/ingest.py matte home   # once per plate, needs OpenCV; writes matte-day-0.png
+    python3 -I tools/plate/ingest.py all home     # ~5 s: deliver, objects, json, check
+
 
 The CI frames come from the look-pipeline-v2 screenshots branch:
 

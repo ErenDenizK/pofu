@@ -80,6 +80,7 @@ public struct WorldHome: View {
         // The one resolver reports taps on the home objects here; set on
         // every pass so it never holds a stale world.
         let _ = scene.onPropTap = { prop in propTapped(prop) }
+        let _ = scene.onPlateTap = { id in plateTapped(id) }
         ZStack {
             IslandScene(
                 world: world,
@@ -152,6 +153,13 @@ public struct WorldHome: View {
 
     // MARK: - The chrome
 
+    /// The painted home plate, when it shows (ADR-0022): the jar, the
+    /// lantern and the pots are not on it, so the seed count, Collect and
+    /// Pofu's line live in the bottom band, clear of the island.
+    private var plate: HomePlate? {
+        scene.homePlate
+    }
+
     private var showsHomeChrome: Bool {
         scene.projectedFraming == .home && scene.focus == nil && !scene.hasSheet
     }
@@ -208,6 +216,11 @@ public struct WorldHome: View {
     /// in the scene; the play door lives in the garden.
     private var bottomBand: some View {
         VStack(spacing: PofuSpacing.m) {
+            if plate != nil, let line {
+                PlateLine(line: line)
+                    .id(line)
+                    .transition(.opacity.combined(with: .move(edge: .bottom)))
+            }
             actionSlot
             HStack(alignment: .bottom, spacing: PofuSpacing.m) {
                 HomeGlance(
@@ -224,14 +237,22 @@ public struct WorldHome: View {
     /// Past the first accessibility size the jar's tag hides and the glance
     /// carries the number.
     private var showsJarTag: Bool {
-        typeSize <= .accessibility1
+        typeSize <= .accessibility1 && plate == nil
     }
 
     @ViewBuilder
     private var actionSlot: some View {
         if let beat = home.currentBeat {
             if case .collect = beat {
-                EmptyView()
+                if plate != nil, collectBeatIsOpen {
+                    // On the plate there is no jar to hold Collect: it is the
+                    // band's primary.
+                    CollectAction(seeds: world.pending.total.units, action: { collect() })
+                        .frame(maxWidth: .infinity)
+                        .transition(.opacity)
+                } else {
+                    EmptyView()
+                }
             } else {
                 Button {
                     primary(beat)
@@ -366,6 +387,22 @@ public struct WorldHome: View {
         }
     }
 
+    /// What a tap on a painted plate object does before its station's sheet:
+    /// Pofu's door opens today's page; the sunflower garden collects while
+    /// seeds wait (the jar's job on the sprite island).
+    private func plateTapped(_ id: String) -> Bool {
+        switch id {
+        case "door":
+            actions.openToday?()
+            return actions.openToday != nil
+        case "garden" where collectBeatIsOpen:
+            collect()
+            return true
+        default:
+            return false
+        }
+    }
+
     /// Seeds wait and the visit is on its Collect beat.
     private var collectBeatIsOpen: Bool {
         if case .collect? = home.currentBeat {
@@ -407,6 +444,11 @@ public struct WorldHome: View {
 
     /// The jar on screen now: where the seeds land.
     private func jarTarget() -> MomentPoint {
+        if plate != nil {
+            // The glance's seed count, bottom leading.
+            let height = scene.engine.rig.rail.height
+            return MomentPoint(x: PofuSpacing.screen + 120, y: height - 52)
+        }
         let p = scene.screenPoint(of: HomeSlots.jar)
         return MomentPoint(x: p.x, y: p.y)
     }
@@ -419,6 +461,14 @@ public struct WorldHome: View {
     /// Where seeds leave from: every built station on the home island and
     /// Pofu himself, kept on screen so they fly in from the edge.
     private func seedSources() -> [MomentPoint] {
+        if let plate {
+            let built = Set(world.stations.filter { $0.island == .home && $0.level > 0 }.map(\.id))
+            let width = scene.engine.rig.rail.width
+            return plate.seedSources(builtStations: built).map { point in
+                let p = scene.screenPoint(of: point)
+                return MomentPoint(x: min(max(p.x, 16), width - 16), y: max(p.y, 140))
+            }
+        }
         var points: [WorldPoint] = []
         for status in world.stations where status.island == .home && status.level > 0 {
             if let anchor = IslandLayout.stationAnchors[status.id] {
@@ -477,6 +527,32 @@ struct GuardedSteps: View {
             }
         }
         .accessibilityHidden(true)
+    }
+}
+
+/// Pofu's line on the painted plate: a card in the bottom band with his
+/// name, so no bubble covers the island (the plate has no sky to spare
+/// above him).
+struct PlateLine: View {
+    let line: String
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 2) {
+            Text(verbatim: "Pofu")
+                .font(PofuFont.caption)
+                .foregroundStyle(PofuColor.textSecondary)
+            Text(verbatim: line)
+                .font(PofuFont.headline)
+                .foregroundStyle(PofuColor.textPrimary)
+                .lineLimit(3)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.horizontal, PofuSpacing.l)
+        .padding(.vertical, PofuSpacing.m)
+        .background(PofuColor.raised, in: RoundedRectangle(cornerRadius: PofuRadius.large, style: .continuous))
+        .shadow(color: PofuColor.shadow.opacity(0.1), radius: 12, y: 6)
+        .accessibilityElement(children: .combine)
     }
 }
 
