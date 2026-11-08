@@ -1,0 +1,15 @@
+STYLE: a finished painted illustration for a premium cozy mobile game, like
+a page from a beloved picture book: soft painterly 2D with gentle airbrushed
+shading, rounded chunky forms, no outlines, no hard edges, matte surfaces
+with at most one soft highlight per object. COLOUR: vivid, saturated and
+jewel-like, as in the key art of a high-end animated film: intense grass
+greens, glowing sunflower yellow, deep sky blue, warm peach earth, crisp
+white petals; strong contrast between warm lit colour and cool shadow
+colour; every material keeps its own true colour. VALUES: a full range, from
+bright sunlit tops to deep warm shadows under eaves, inside foliage, beneath
+the lawn rim and around doors, so every object separates clearly from what
+is behind it and the picture reads at a glance on a small phone screen.
+Shadows are coloured (warm brown, plum, deep teal), never black or grey.
+Light direction and shadow hue follow the LIGHT block of this prompt.
+Colourful but never neon, never HDR, never glossy. No text, no letters, no
+numbers, no logos, no watermark, no border, no frame.

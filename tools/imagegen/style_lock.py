@@ -15,6 +15,7 @@ color so nothing dark bleeds into the edges.
 
 Presets live in ``style_lock.json`` next to this file:
 
+    plate-final kind plate (ADR-0023): alpha snap and edge feather only
     lock-light  the default: bakes only the floor, detail, hue fixes and edges;
                 saturation and contrast are graded at runtime (WorldGrade)
     soft-lock   the default until 2026-11-02 (hybrid of A and a light B)
