@@ -66,11 +66,15 @@ ADR-0023 in practice:
 
 ## Checks before the founder sees anything
 
-1. Colour metrics are within bands of the I1 reference. Run
-   `python3 -I tools/plate/colour_metrics.py compare REF IMG...` with REF =
-   `design/art/takes/batch-25-seasons/x-season-summer/plate__x-season-summer--t2.webp`.
-   Flags: "pale" when C* p90 is under 0.85 x REF or accent share is under
-   0.7 x REF; "hot" when C* p99 is over 1.25 x REF.
+1. Colour metrics are within bands of the reference. Run
+   `python3 -I tools/plate/colour_metrics.py compare REF IMG...`. Until the
+   ladder is picked, REF is the I1 day take
+   (`design/art/takes/batch-25-seasons/x-season-summer/plate__x-season-summer--t2.webp`),
+   which is only a floor: the founder calls even I1 pale. After the pick, REF
+   is the picked home root. Flags: "pale" when C* p90 is under 0.85 x REF or
+   accent share is under 0.7 x REF; "hot" when C* p99 is over 1.25 x REF.
+   Weather states (rain, snow, mist) are meant to be calmer and get their own
+   bands from their first approved plate.
 2. A real in-app screenshot from CI (not a mock-up or a bare file).
 3. The lead looks at it. Metrics do not replace eyes.
 

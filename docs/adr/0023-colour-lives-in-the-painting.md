@@ -44,9 +44,11 @@ Option 3.
 - (e) Plates are delivered at full take size (scale 1.0).
 - (f) The colour level is chosen once by a ladder (control / clear / rich, the
   last using `plate-style-rich-v1`) on the home root, then held by measured
-  bands against the founder-approved concept: the I1 day picture
-  (`design/art/takes/batch-25-seasons/x-season-summer/plate__x-season-summer--t2.webp`),
-  measured with `tools/plate/colour_metrics.py`.
+  bands against the picked root, measured with `tools/plate/colour_metrics.py`.
+  The I1 day picture
+  (`design/art/takes/batch-25-seasons/x-season-summer/plate__x-season-summer--t2.webp`)
+  is only the floor: the shipped stand-in matches it within 2 to 8% and the
+  founder still calls it pale, so I1 itself sits in the pastel family.
 
 Pofu's character art keeps `char-guard`. Sprite props that are not plates are
 out of scope.
