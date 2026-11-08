@@ -53,7 +53,7 @@ struct CameraFlightTests {
 
     @Test func aRigFlightLandsOnTheTargetAndSettles() {
         var rig = CameraRig(framing: .island)
-        let target = pose(x: 265, y: 300, scale: rig.pose.scale)
+        let target = pose(x: 395, y: 14, scale: rig.pose.scale)
         rig.startFlight(to: target, landing: .pose(target))
         #expect(rig.flight != nil)
         #expect(rig.isMoving)
@@ -75,7 +75,7 @@ struct CameraFlightTests {
 
     @Test func aRigFlightHomeLandsOnTheRail() {
         var rig = CameraRig(framing: .island)
-        let harbor = pose(x: 265, y: 300, scale: rig.pose.scale)
+        let harbor = pose(x: 395, y: 14, scale: rig.pose.scale)
         rig.startFlight(to: harbor, landing: .pose(harbor))
         for _ in 0..<400 { rig.advance(1.0 / 120) }
         let home = rig.rail.pose(of: .map)
@@ -89,7 +89,7 @@ struct CameraFlightTests {
     @Test func reduceMotionJumpsWithoutAFlight() {
         var rig = CameraRig(framing: .island)
         rig.reduceMotion = true
-        let target = pose(x: 265, y: 300, scale: rig.pose.scale)
+        let target = pose(x: 395, y: 14, scale: rig.pose.scale)
         rig.startFlight(to: target, landing: .pose(target))
         #expect(rig.flight == nil)
         #expect(abs(rig.pose.lookX - target.lookX) < 1e-9)
@@ -97,7 +97,7 @@ struct CameraFlightTests {
 
     @Test func aPinchCatchesAFlight() {
         var rig = CameraRig(framing: .island)
-        let target = pose(x: 265, y: 300, scale: rig.pose.scale)
+        let target = pose(x: 395, y: 14, scale: rig.pose.scale)
         rig.startFlight(to: target, landing: .pose(target))
         rig.advance(0.4)
         rig.beginPinch()

@@ -140,12 +140,20 @@ public enum IslandFraming {
         max(height - topBand - bottomBand, 1)
     }
 
+    /// Home plus İskele: the plate and every neighbouring islet beside it
+    /// (concept flows §2.4), absolute.
+    public static var homeAndIsleBox: WorldBox {
+        let isles = IslandLayout.isles.compactMap { isle in WorldArt.sprite(isle.art)?.sharp.map { placed($0, at: isle.center) } }
+        return union([plateBox] + isles) ?? plateBox
+    }
+
     /// The whole island (round 3's Island framing, now the establishing
-    /// shot): the plate fills `islandFill` of the width (or the island fills
-    /// the band, whichever is smaller), the island's box centred in the band.
+    /// shot): home plus İskele fill `islandFill` of the width (or the island
+    /// fills the band, whichever is smaller), the island's box centred in
+    /// the band.
     public static func wholeStop(width: Double, height: Double) -> CameraRail.Stop {
-        let plate = plateBox
-        let island = islandBox
+        let plate = homeAndIsleBox
+        let island = union([islandBox, plate]) ?? islandBox
         let scale = min(width * islandFill / max(plate.width, 1), bandHeight(height: height) / max(island.height, 1))
         return CameraRail.Stop(
             scale: scale,

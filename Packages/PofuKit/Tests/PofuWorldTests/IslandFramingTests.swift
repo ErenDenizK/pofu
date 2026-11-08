@@ -17,14 +17,14 @@ struct IslandFramingTests {
     static let sizes: [(Double, Double)] = [(402.0, 874.0), (375.0, 812.0), (440.0, 956.0)]
 
     /// The establishing shot (round 3's Island framing): the plate fills
-    /// 88 % of the width tip to tip and nothing is cropped.
+    /// 88 % of the width tip to tip (home plus İskele) and nothing is cropped.
     @Test(arguments: sizes)
     func theWholeIslandFillsTheWidthWithNothingCropped(size: (Double, Double)) {
         let pose = CameraRail(width: size.0, height: size.1).wholeIslandPose
-        let plate = span(IslandFraming.plateBox, pose, width: size.0)
-        #expect(plate.lo >= 0 && plate.hi <= size.0, "the plate is cropped: \(plate)")
+        let plate = span(IslandFraming.homeAndIsleBox, pose, width: size.0)
+        #expect(plate.lo >= 0 && plate.hi <= size.0, "home and İskele are cropped: \(plate)")
         let fill = (plate.hi - plate.lo) / size.0
-        #expect(fill > 0.85 && fill < 0.90, "the plate fills \(fill) of the width")
+        #expect(fill > 0.85 && fill < 0.90, "home and İskele fill \(fill) of the width")
     }
 
     /// Growth round: Home is the 90 pt framing; the Island framing is the wide
@@ -246,5 +246,40 @@ struct IslandFramingTests {
             return p.opacity > 0.5 && p.y > IslandFraming.topBand / 874 && p.y < top
         }
         #expect(inBand.count >= 3)
+    }
+
+    @Test func iskeleSitsBesideHomeAndTheWholeShotFramesBoth() throws {
+        let harbor = try #require(IslandLayout.isles.first { $0.id == .harbor })
+        #expect(harbor.center == WorldPoint(x: 395, y: 14))
+        let stop = IslandFraming.wholeStop(width: 402, height: 874)
+        let islet = try #require(WorldArt.sprite(harbor.art)?.sharp)
+        let box = IslandFraming.placed(islet, at: harbor.center)
+        let plate = IslandFraming.plateBox
+        for edge in [plate.minX, plate.maxX, box.minX, box.maxX] {
+            let x = 201 + (edge - stop.look.x) * stop.scale
+            #expect(x >= -0.5 && x <= 402.5, "edge at \(x) pt is off screen")
+        }
+    }
+
+    @Test func theFourMapIslesAndGezginSitAtTheirSpots() throws {
+        let spots: [FarSkyLayout.Mark: (Double, Double, Double)] = [
+            .caglayan: (0.17, 0.33, 0.20), .emanet: (0.40, 0.235, 0.12), .mehtap: (0.58, 0.13, 0.09),
+            .revontuli: (0.88, 0.37, 0.14), .gezgin: (0.68, 0.225, 0.30),
+        ]
+        for (mark, spot) in spots {
+            let element = try #require(FarSkyLayout.element(for: mark))
+            for z in [1.0, 2.0] {
+                let p = element.placement(z: z)
+                #expect(p.x == spot.0 && p.y == spot.1 && abs(p.width - spot.2 * 402) < 1e-9, "\(mark) at z \(z)")
+                #expect(p.opacity == 1)
+            }
+            #expect(element.placement(z: 0).opacity == 0)
+        }
+        #expect(!FarSkyLayout.elements.contains { $0.id == "far-isle-1" || $0.id == "far-isle-2" || $0.id == "far-isle-3" })
+        let ids = FarSkyLayout.elements.map(\.id)
+        #expect(Set(ids).count == ids.count)
+        let caglayan = try #require(FarSkyLayout.element(for: .caglayan))
+        #expect(caglayan.art(healed: false) != caglayan.art(healed: true))
+        #expect(WorldArt.sprite(caglayan.art(healed: true)) != nil)
     }
 }
