@@ -53,8 +53,14 @@ ADR-0023 in practice:
 
 - Generate at the image model's largest portrait size.
 - Use the full take: `deliver` scale 1.0, no half-size copy.
-- A x2 upscale step is a pilot (`tools/plate/upscale.py`). It may not exist
-  yet. Do not depend on it.
+- A x2 upscale step exists as a tool (`tools/plate/upscale.py`, Real-ESRGAN
+  general-x4v3 with a colour match; `docs/research/plate-upscale.md`). It is
+  not wired into `ingest.py` until an in-app test on the first portrait plate
+  compares, at full device resolution: Lanczos, the upscaler, and a 0.8 / 0.2
+  blend of the two. The founder asked whether it feels "too AI"; the in-app
+  view at real size decides, not a zoomed crop.
+- Frames shown to the founder are at full device resolution (1206 x 2622 for
+  the iPhone 17), not the reduced CI size, so softness in them is real.
 - Textures are ASTC.
 
 ## Composition
