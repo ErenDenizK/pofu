@@ -116,7 +116,7 @@ public struct CameraRail: Hashable, Sendable {
 
     /// The whole island (the establishing shot) at this viewport.
     public var wholeIslandPose: CameraPose {
-        let stop = IslandFraming.wholeStop(width: Self.referenceWidth, height: Self.referenceHeight)
+        let stop = whole ?? IslandFraming.wholeStop(width: Self.referenceWidth, height: Self.referenceHeight)
         return CameraPose(
             scale: stop.scale * width / Self.referenceWidth,
             look: stop.look,
@@ -131,11 +131,20 @@ public struct CameraRail: Hashable, Sendable {
     public let width: Double
     public let height: Double
     public let stops: [Stop]
+    /// The establishing shot's stop when it is not the sprite island's
+    /// (a plate-first home, `HomePlate.wholeStop`).
+    public let whole: Stop?
 
-    public init(width: Double = CameraRail.referenceWidth, height: Double = CameraRail.referenceHeight, stops: [Stop] = CameraRail.referenceStops) {
+    public init(
+        width: Double = CameraRail.referenceWidth,
+        height: Double = CameraRail.referenceHeight,
+        stops: [Stop] = CameraRail.referenceStops,
+        whole: Stop? = nil
+    ) {
         self.width = width > 0 ? width : Self.referenceWidth
         self.height = height > 0 ? height : Self.referenceHeight
         self.stops = stops
+        self.whole = whole
     }
 
     /// Scales follow the width; screen rows follow the height.
