@@ -87,7 +87,7 @@ final class CaglayanScreenshotTests: XCTestCase {
     @MainActor
     private func render(_ world: WorldSnapshot, model: IslandSceneModel, hour: Double = 12, in scene: UIWindowScene) async throws -> UIImage {
         let view = IslandScene(world: world, model: model)
-            .environment(\.worldLook, WorldLook(hourOverride: hour))
+            .environment(\.worldLook, WorldLook.islandStop(hour: hour))
             .environment(\.worldStillFrame, true)
         let window = UIWindow(windowScene: scene)
         window.overrideUserInterfaceStyle = .light

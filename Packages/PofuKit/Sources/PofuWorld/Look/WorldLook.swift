@@ -72,6 +72,17 @@ public struct WorldLook: Hashable, Sendable {
     /// to compare.
     public var nightRelight = true
 
+    /// A screenshot of an island at its stop: a fixed hour under a clear
+    /// sky. The seeded forecast of the fixtures' date is overcast, whose
+    /// grade (contrast 0.8, the rain LUT at 0.6) lays a light veil over the
+    /// island; the reference look keeps haze on the backdrop and the island
+    /// at full value (ADR-0021), so island shots pin the weather.
+    public static func islandStop(hour: Double) -> WorldLook {
+        var look = WorldLook(hourOverride: hour)
+        look.weatherOverride = .clear
+        return look
+    }
+
     public init(
         art: ArtSet = .lockLight,
         grade: Bool = true,
