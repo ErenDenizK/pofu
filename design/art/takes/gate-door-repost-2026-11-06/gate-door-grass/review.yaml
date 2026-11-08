@@ -1,0 +1,343 @@
+batch: batch-58-gate-round-door
+contact_sheet: design/art/takes/gate-door-repost-2026-11-06/gate-door-grass/contact.jpg
+jobs:
+  gate-door-grass:
+    pick: none
+    publication: skipped after one allowed retry
+    note: 'Sole unchanged retry exhausted. All four official reports fail palette_drift13.67/15.7626/15.2944/14.9713
+      and edit_stability0.1367/0.1058/0.1082/0.0992. Proper-alpha source and official
+      locked review also excludes takes1 and4 for retaining path stones although ONLY
+      foreground grass and flowers are requested; takes2 and3 remove the stones but
+      still hard-fail QA. Apparent raw RGB glow disappears on proper cream/night alpha
+      composites. Initial source, QA and locked seals and processing history remain
+      unchanged; all four original PNGs are retained. Full-parent extraction checks
+      receive no child exception or force. No master is promoted and no further grass
+      generation is allowed; founder review pending. Automated failures: t1 palette_drift:
+      mean dE 13.7, p95 23.2, off-palette 73.7% (top: #777733 (8.3%), #888833 (7.9%)),
+      edit_stability: 14% of the parent level unchanged; t2 palette_drift: mean dE
+      15.8, p95 21.9, off-palette 86.7% (top: #888833 (11.7%), #999933 (10.5%)), edit_stability:
+      11% of the parent level unchanged; t3 palette_drift: mean dE 15.3, p95 21.6,
+      off-palette 86.8% (top: #999944 (11.2%), #BBAA44 (10.6%)), edit_stability: 11%
+      of the parent level unchanged; t4 palette_drift: mean dE 15.0, p95 22.8, off-palette
+      78.2% (top: #888833 (9.7%), #AAAA44 (9.1%)), edit_stability: 10% of the parent
+      level unchanged.'
+qa_reports:
+  4:
+    job: gate-door-grass
+    take: 4
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 59 (R1 51)
+      value: 58.9
+    - check: value_floor
+      status: pass
+      message: lightness p5 44 (R1 59)
+      value: 44.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.0 (R1 5.3)
+      value: 2.99
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.2
+      value: 2.1947
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 15.0, p95 22.8, off-palette 78.2% (top: #888833 (9.7%), #AAAA44
+        (9.1%))'
+      value: 14.9713
+    - check: edit_stability
+      status: fail
+      message: 10% of the parent level unchanged
+      value: 0.0992
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.04 of the parent level (drift compounds along a chain)
+      value: 1.0394
+    info:
+      parent_canvas:
+        source:
+        - 512
+        - 768
+        target:
+        - 1024
+        - 1536
+      metrics_raw:
+        L_p5: 44.1
+        L_p50: 62.7
+        L_p95: 84.3
+        C_p50: 47.0
+        C_p95: 62.0
+        C_p99: 67.7
+        detail: 4.28
+      metrics_locked:
+        L_p5: 44.5
+        L_p50: 62.6
+        L_p95: 83.6
+        C_p50: 45.2
+        C_p95: 58.9
+        C_p99: 62.2
+        detail: 2.99
+    fingerprint: 5620390d753ba650
+  1:
+    job: gate-door-grass
+    take: 1
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 56 (R1 51)
+      value: 56.4
+    - check: value_floor
+      status: pass
+      message: lightness p5 45 (R1 59)
+      value: 45.3
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.1 (R1 5.3)
+      value: 3.11
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.7
+      value: 1.7347
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 13.7, p95 23.2, off-palette 73.7% (top: #777733 (8.3%), #888833
+        (7.9%))'
+      value: 13.67
+    - check: edit_stability
+      status: fail
+      message: 14% of the parent level unchanged
+      value: 0.1367
+    - check: edit_chroma
+      status: pass
+      message: chroma x0.99 of the parent level (drift compounds along a chain)
+      value: 0.9877
+    info:
+      parent_canvas:
+        source:
+        - 512
+        - 768
+        target:
+        - 1024
+        - 1536
+      metrics_raw:
+        L_p5: 45.0
+        L_p50: 61.6
+        L_p95: 81.3
+        C_p50: 43.6
+        C_p95: 57.8
+        C_p99: 63.7
+        detail: 4.55
+      metrics_locked:
+        L_p5: 45.3
+        L_p50: 61.5
+        L_p95: 80.6
+        C_p50: 43.0
+        C_p95: 56.4
+        C_p99: 60.4
+        detail: 3.11
+    fingerprint: 5620390d753ba650
+  2:
+    job: gate-door-grass
+    take: 2
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 61 (R1 51)
+      value: 61.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 49 (R1 59)
+      value: 49.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.0 (R1 5.3)
+      value: 3.0
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.2
+      value: 2.2034
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 15.8, p95 21.9, off-palette 86.7% (top: #888833 (11.7%), #999933
+        (10.5%))'
+      value: 15.7626
+    - check: edit_stability
+      status: fail
+      message: 11% of the parent level unchanged
+      value: 0.1058
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.17 of the parent level (drift compounds along a chain)
+      value: 1.1695
+    info:
+      parent_canvas:
+        source:
+        - 512
+        - 768
+        target:
+        - 1024
+        - 1536
+      metrics_raw:
+        L_p5: 48.7
+        L_p50: 64.1
+        L_p95: 83.2
+        C_p50: 52.2
+        C_p95: 65.2
+        C_p99: 72.0
+        detail: 4.45
+      metrics_locked:
+        L_p5: 49.1
+        L_p50: 64.0
+        L_p95: 82.4
+        C_p50: 51.1
+        C_p95: 61.3
+        C_p99: 63.9
+        detail: 3.0
+    fingerprint: 5620390d753ba650
+  3:
+    job: gate-door-grass
+    take: 3
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 60 (R1 51)
+      value: 60.0
+    - check: value_floor
+      status: pass
+      message: lightness p5 48 (R1 59)
+      value: 48.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.7 (R1 5.3)
+      value: 2.7
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.9
+      value: 1.9344
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 15.3, p95 21.6, off-palette 86.8% (top: #999944 (11.2%), #BBAA44
+        (10.6%))'
+      value: 15.2944
+    - check: edit_stability
+      status: fail
+      message: 11% of the parent level unchanged
+      value: 0.1082
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.11 of the parent level (drift compounds along a chain)
+      value: 1.1058
+    info:
+      parent_canvas:
+        source:
+        - 512
+        - 768
+        target:
+        - 1024
+        - 1536
+      metrics_raw:
+        L_p5: 48.1
+        L_p50: 63.6
+        L_p95: 80.3
+        C_p50: 49.1
+        C_p95: 63.0
+        C_p99: 67.7
+        detail: 4.09
+      metrics_locked:
+        L_p5: 48.4
+        L_p50: 63.5
+        L_p95: 79.4
+        C_p50: 48.3
+        C_p95: 60.0
+        C_p99: 62.1
+        detail: 2.7
+    fingerprint: 5620390d753ba650
+manual_review:
+  excluded_takes:
+  - 1
+  - 4
+  note: Sole unchanged retry exhausted. All four official reports fail palette_drift13.67/15.7626/15.2944/14.9713
+    and edit_stability0.1367/0.1058/0.1082/0.0992. Proper-alpha source and official
+    locked review also excludes takes1 and4 for retaining path stones although ONLY
+    foreground grass and flowers are requested; takes2 and3 remove the stones but
+    still hard-fail QA. Apparent raw RGB glow disappears on proper cream/night alpha
+    composites. Initial source, QA and locked seals and processing history remain
+    unchanged; all four original PNGs are retained. Full-parent extraction checks
+    receive no child exception or force. No master is promoted and no further grass
+    generation is allowed; founder review pending.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-0e54eba0-d81d-4022-98c4-272a9b1c1ec9.png
+  original_generated_png_sha256: bdcf146e9274dcb10d6f4111b3fd053cfc38d94c056819e4a557fb886288f90d
+  inbox_png_sha256: f9ff7aa0d6c940d81228bd7c2a293b2fda87a78abe458b6eccdc88b3fa5653e4
+  rgba_sha256: 158282fe1865928e1c5e058917ca3d8f0d9d56ea368f971285b1e9bc4d24f9f3
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 5620390d753ba650
+- take: 2
+  source_file: /workspace/generated_images/exec-f6faa4b0-578e-48ed-a5b7-b23e8cb85bc4.png
+  original_generated_png_sha256: a9f464fe6777ad457512c6b9ce37749ecdc1a2ad64643d0f8fc42d16eeb230d0
+  inbox_png_sha256: a21ca08762e60a6a0b4572eae128e51d8886d638715bcc3b3e61d1c0bc1c1695
+  rgba_sha256: e247d81fab4904d2ddf40f45f0ca8df2fb35a7a593e548ceab618f2903902ddc
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 5620390d753ba650
+- take: 3
+  source_file: /workspace/generated_images/exec-1b0bce31-9e81-4dfd-b389-99085a947c4d.png
+  original_generated_png_sha256: b68dff1b486f4dc8f78754717fa5610d2f69114cb1f1a36ec6acbf2ef7d448c9
+  inbox_png_sha256: 2c079640375518df398647a19262b17e1cfa6ffa8e44e438190c2028f5b1c098
+  rgba_sha256: bf483fd48df642b3e2a8839ec9672f35fd4cd91b412d4abc7f9a3b900b214b40
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 5620390d753ba650
+- take: 4
+  source_file: /workspace/generated_images/exec-f8f27bba-4999-4f53-a6c3-3439dc00f6ab.png
+  original_generated_png_sha256: 23e41854af5cab028e34f8536cf10deec74c096470ca8f0d2f7012dcfa96e918
+  inbox_png_sha256: 9b090685369523af8cad98dab89a19903c0a2a4befea51ac135a4ec15cfebccd
+  rgba_sha256: 72c4bfe394d2c1bb4a1887535ade9e6e4db37b711d66d998e3d7345b2cadbbaa
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 5620390d753ba650
+operation: gate-door-repost-2026-11-06
