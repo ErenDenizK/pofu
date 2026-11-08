@@ -1,0 +1,19 @@
+batch: batch-64-flow-pieces
+jobs:
+  flow-splash-4:
+    pick: none
+    publication: dependent-skip
+    note: 'Skipped without generation: literal edit_of parent flow-splash-1 was terminally
+      skipped after its sole unchanged retry because all four whole water bodies materially
+      exceeded the authored approximate60percent width. No additional takes, numerical
+      QA failures or fabricated source records.'
+generated_takes: 0
+failed_dependency: flow-splash-1
+qa_reports: {}
+manual_review:
+  excluded_takes: []
+  note: 'Skipped without generation: literal edit_of parent flow-splash-1 was terminally
+    skipped after its sole unchanged retry because all four whole water bodies materially
+    exceeded the authored approximate60percent width. No additional takes, numerical
+    QA failures or fabricated source records.'
+sources: []
