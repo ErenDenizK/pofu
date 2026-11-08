@@ -108,26 +108,27 @@ home progression §4.2; here only what the slot itself adds.
 
 | Id | Slot | World | Opens | Family |
 |---|---|---|---|---|
-| D1 | lawn spot | (−72, −6) | IL7 | seat or ground piece (bench, kite, hammock), middle band |
+| D1 | lawn spot | (−72, −6) | IL7 | seat or ground piece (bench, kite, hammock), middle band; the bench stands here IL7-IL9 and climbs to T1 at IL10 (concept flows §2.1 row 16). The code has no decor-level system yet, so the bench appears only at T1 from IL10; the D1 stage waits for the decor set's art and system |
 | D2 | awning spot | (154, −52) | IL7 | hang line on the tea stall's awning (paper lanterns) |
 | D3 | pond-edge spot | (−40, 28) | IL7 | on the pond's right rim (toy sailboat, paper boat) |
 | D4 | door spot | (−135, 31) | IL7 | front lip left of Pofu's door (mailbox, pumpkin lantern) |
 | D5 | quay spot | (440, 36) | İskele complete | harbor lip beside the pier (decor set 4) |
-| P1 | stone path | (−140, 20) → (−118, 6) → (−10, 6) → (90, 10) → (118, 24) | IL2 | garden to tea stall, behind the pond and behind Pofu |
+| P1 | stone path | (−140, 20) → (−118, 6) → (−10, 6) → (90, 10) → (118, 24) | IL2 | garden to tea stall, behind the pond and behind Pofu (y 6…24); the front-lip stones from Pofu to the tea corner lie at y 34 |
 | P2 | bridge | (118, 24) → (236, 8) → (300, 12) | IL3 | the path continues onto `bridge-east` |
-| P3 | hill path | (−104, −12) → (−104, −40) → (−130, −104) | IL9 | stone steps up the back gap to the Tepe |
+| P3 | hill path | (−228, −8) → (−242, −55) → (−205, −100) | IL9 | four stone steps up the hill at the lawn's left tip to the Tepe (concept flows §2.1 row 14; moved from behind the windmill, which hid them) |
 | L1 | path lamp | (−120, 0) | IL6 | `path-lamp`; warm pool on P1 at dusk |
 | L2 | path lamp | (98, 2) | IL6 | between Fındık and the tea stall |
 | L3 | bridgehead lamp | (230, 6) | IL6 | lights the bridge |
 | L4 | harbor bell | (300, −4) | IL3 | `harbor-bell` on the bridge's harbor end |
 | L5 | festoon | windmill cap → workshop eave → tea awning | IL8 | a line of `decor-lanterns` strung between stations (replaces "lanterns along the terraces": the back rim is hidden) |
-| T0 | hill gate | (−104, −40) | IL9 closed, IL10 open | `hill-gate`, a soft glow behind it (code) |
+| T0 | hill gate | (−226, −12) | IL9 closed, IL10 open | `hill-gate`, a soft glow behind it (code); stands just inside the lawn's left tip (−240, 0), under the Tepe |
+| W1 | the old wheel | (−115, 36) | day 1 | front lip above Pofu's door, fixed; the story's first clue (concept flows §2.1 row 2). The anchor is in `IslandLayout.wheelAnchor`; its painted states (tipped, sprout, vine, sunflower) are pending art, so nothing draws there yet |
 
 ### 3.4 The Tepe (IL10)
 
 | Id | Slot | World | Opens | What |
 |---|---|---|---|---|
-| T1 | lookout | (−150, −112) | IL10 | Pofu's bench and a small telescope; Mehtap's moon telescope replaces the telescope (add-on) |
+| T1 | lookout | (−150, −112) | IL10 | Pofu's bench (`decor-bench`, already placed here in code) and a small telescope; Mehtap's moon telescope replaces the telescope (add-on) |
 | T2 | season stage | (−188, −108) | IL10 | a low round grass dais where the season set's centrepiece and the season visitor appear |
 | T3 | add-on A | (−225, −116) | edition | Fanus, the glass greenhouse (three levels) |
 | T4 | add-on B | (−122, −121) | edition | Çömlek, the kiln (three levels) |

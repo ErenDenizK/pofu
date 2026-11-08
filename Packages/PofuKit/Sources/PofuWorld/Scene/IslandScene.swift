@@ -592,9 +592,14 @@ private struct SceneFrame<Bubble: View>: View {
             ? FarSky.Look.Koke(lit: world.koke.giftUnlocked)
             : nil
 
+        // The story timeline's healed flags for the far marks (concept flows
+        // §1.4). Only Çağlayan has progress state today; Emanet, Mehtap,
+        // Revontuli and Gezgin stay stuck until their islands exist.
+        let farHealed: Set<FarSkyLayout.Mark> = world.caglayan.isHealed ? [.caglayan] : []
+
         ZStack(alignment: .topLeading) {
             ZStack(alignment: .topLeading) {
-                LivingSky(palette: sky, offset: offset, far: FarSky.Look(z: z, cell: light.cell, grade: grade, koke: farKoke, mist: atmosphere.mist))
+                LivingSky(palette: sky, offset: offset, far: FarSky.Look(z: z, cell: light.cell, grade: grade, koke: farKoke, healed: farHealed, mist: atmosphere.mist))
                     .environment(\.worldAmbientPaused, ambientPaused)
                     .animation(animation, value: sky)
 

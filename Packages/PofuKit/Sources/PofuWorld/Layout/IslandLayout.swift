@@ -152,13 +152,17 @@ public enum IslandLayout {
         public var art: String
     }
 
-    /// Around the home island, clear of the large plate (488 units
-    /// wide), so the Map shows the neighbours (game design §3: the archipelago is
-    /// felt, never cluttering). At the Island framing the neighbours leave
-    /// the frame to the far isles of the living sky.
+    /// İskele sits beside home on the right, over the rope bridge (concept
+    /// flows §2.1 row 9, decisions H7): its islet at (395, 14). The Map and
+    /// the whole-island shot frame home plus İskele.
     public static let isles: [Isle] = [
-        Isle(id: .harbor, center: WorldPoint(x: 265, y: 320), art: "harbor-island-s"),
+        Isle(id: .harbor, center: WorldPoint(x: 395, y: 14), art: "harbor-island-s"),
     ]
+
+    /// The old wheel W1 (concept flows §2.1 row 2): on the front lip above
+    /// Pofu's door from day one, fixed. Its art is pending (it is dressing,
+    /// no mechanic); the anchor is here so nothing else claims the spot.
+    public static let wheelAnchor = WorldPoint(x: -115, y: 36)
 
     /// The world canvas the scene lays objects out on: x −500…500,
     /// y −700…500, with the world origin at `canvasOrigin`.

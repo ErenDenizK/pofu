@@ -27,6 +27,9 @@ struct FarSky: View {
         /// White through the sky's grade: the hour's light on the far art.
         var light: PofuRGB
         var koke: Koke?
+        /// The map islands (and Gezgin) that are healed: coloured with one
+        /// small warm light. Every other mark is stuck: unlit and grey.
+        var healed: Set<FarSkyLayout.Mark> = []
 
         /// This look with the fog taken from `horizon`, the sky's own.
         func withHorizon(_ horizon: PofuRGB) -> Look {
@@ -35,8 +38,9 @@ struct FarSky: View {
             return copy
         }
 
-        init(z: Double, cell: ColourCell, grade: WorldGrade, koke: Koke? = nil, mist: Double = 0) {
+        init(z: Double, cell: ColourCell, grade: WorldGrade, koke: Koke? = nil, healed: Set<FarSkyLayout.Mark> = [], mist: Double = 0) {
             self.z = z
+            self.healed = healed
             self.koke = koke
             self.mist = mist
             let g = grade.sky
@@ -55,24 +59,44 @@ struct FarSky: View {
         ZStack(alignment: .topLeading) {
             ForEach(FarSkyLayout.elements) { element in
                 let p = element.placement(z: look.z)
-                if p.opacity > 0.01, let box = WorldArt.sprite(element.art)?.sharp {
+                let isHealed = element.mark.map { look.healed.contains($0) } ?? true
+                let art = element.art(healed: isHealed)
+                if p.opacity > 0.01, let box = WorldArt.sprite(art)?.sharp {
                     let w = p.width * k
                     let h = w * box.height / box.width
                     // Farther elements take more of the fog and follow the
                     // peek less (they are nearly at infinity). The fog is a
                     // true mix toward the horizon colour, drawn as a mask of
                     // the art over it, so the far isles take the sky's hue.
-                    let haze = FogModel.amount(distance: element.distance, mist: look.mist)
-                    let name = WorldArt.assetName(element.art, variant: .sharp)
+                    let markLook: FarSkyLayout.MarkLook = isHealed ? .healed : .stuck
+                    let haze = min(FogModel.amount(distance: element.distance, mist: look.mist) + (element.mark == nil ? 0 : markLook.extraHaze), 1)
+                    let name = WorldArt.assetName(art, variant: .sharp)
                     let parallax = 0.12 + 0.2 * (1 - element.distance)
                     Image(name, bundle: .module)
                         .resizable()
                         .frame(width: CGFloat(w), height: CGFloat(h))
+                        // Stuck: desaturated, lifted toward the haze, softly blurred, never
+                        // darker than the clouds. Healed: its own colour.
+                        .saturation(element.mark == nil ? 1 : markLook.saturation)
+                        .brightness(element.mark == nil ? 0 : markLook.lift)
+                        .blur(radius: element.mark == nil ? 0 : CGFloat(markLook.blur))
                         .colorMultiply(look.light.color)
                         .overlay {
                             FogModel.colour(horizon: look.fog).color
                                 .opacity(haze)
                                 .mask { Image(name, bundle: .module).resizable() }
+                        }
+                        .overlay {
+                            // One small warm light once healed.
+                            if isHealed, element.mark != nil {
+                                RadialGradient(
+                                    colors: [Color(red: 1.0, green: 0.82, blue: 0.5).opacity(0.85), Color(red: 1.0, green: 0.82, blue: 0.5).opacity(0)],
+                                    center: .center, startRadius: 0, endRadius: CGFloat(max(w * 0.06, 3))
+                                )
+                                .frame(width: CGFloat(max(w * 0.12, 6)), height: CGFloat(max(w * 0.12, 6)))
+                                .blendMode(.plusLighter)
+                                .offset(y: CGFloat(-h * 0.12))
+                            }
                         }
                         .opacity(p.opacity * (1 - 0.45 * haze))
                         .position(

@@ -115,19 +115,77 @@ public enum IslandGrowth {
         GrowthPiece(id: id, kind: kind, variant: variant, point: WorldPoint(x: x, y: y), from: from)
     }
 
-    /// The stones of the path from Pofu's spot to the tea corner.
+    static func length(of line: [(Double, Double)]) -> Double {
+        zip(line, line.dropFirst()).reduce(0.0) { sum, pair in
+            let dx = pair.1.0 - pair.0.0, dy = pair.1.1 - pair.0.1
+            return sum + (dx * dx + dy * dy).squareRoot()
+        }
+    }
+
+    /// Points on a polyline at the given distances from its start (clamped
+    /// to its end). Pure, so the derived stones are tested.
+    static func along(_ line: [(Double, Double)], distances: [Double]) -> [(Double, Double)] {
+        var lengths: [Double] = []
+        for i in 1..<line.count {
+            lengths.append(((line[i].0 - line[i - 1].0) * (line[i].0 - line[i - 1].0)
+                + (line[i].1 - line[i - 1].1) * (line[i].1 - line[i - 1].1)).squareRoot())
+        }
+        return distances.map { distance in
+            var rest = max(distance, 0)
+            for (i, length) in lengths.enumerated() {
+                if rest <= length || i == lengths.count - 1 {
+                    let t = min(rest / max(length, 1e-9), 1)
+                    return (line[i].0 + (line[i + 1].0 - line[i].0) * t, line[i].1 + (line[i + 1].1 - line[i].1) * t)
+                }
+                rest -= length
+            }
+            return line[0]
+        }
+    }
+
+    /// The front-lip stones from Pofu's spot to the tea corner (concept
+    /// flows §2.4): along the lip at y 34 (33 at x 111, where the walkable lip narrows), then up to the stall.
     static let pathStones: [(Double, Double)] = [
-        (48, 34), (68, 34), (90, 32), (111, 31), (130, 28), (144, 23), (152, 15),
+        (48, 34), (68, 34), (90, 34), (111, 33), (130, 29), (144, 23), (152, 15),
     ]
+    /// P1, the garden-to-tea-stall path, runs behind Pofu (home layout §3.3:
+    /// (−140, 20) → (−118, 6) → (−10, 6) → (90, 10) → (118, 24), y 6…24).
+    static let p1Line: [(Double, Double)] = [(-140, 20), (-118, 6), (-10, 6), (90, 10), (118, 24)]
+    /// One stone about every 27 units along P1, from the garden's step to the
+    /// bridgehead (the last at the line's end).
+    static let p1Stones: [(Double, Double)] = {
+        let total = length(of: p1Line)
+        let count = Int((total / 27).rounded())
+        return along(p1Line, distances: (0...count).map { total * Double($0) / Double(count) })
+    }()
     /// The stepping stones from Pofu toward the pond.
     static let steppingStones: [(Double, Double)] = [(6, 34), (-12, 35), (-32, 35), (-50, 35)]
-    /// The hill path from the back lawn up to the gate.
-    static let hillStones: [(Double, Double)] = [(104, -24), (108, -31), (110, -38), (112, -45)]
+
+    /// Hill stones, gate and hilltop at the lawn's left tip (concept flows
+    /// §2.1 row 14, under the Tepe at (−172, −112)). The lawn's left tip is
+    /// (−`lawnRadiusX`, 0) = (−240, 0); the gate stands just inside it at
+    /// (−226, −12) (inside the ellipse: (226/240)² + (12/43.67)² ≈ 0.96).
+    /// The steps climb (−228, −8) → (−242, −55) → (−205, −100) up the hill
+    /// (they leave the lawn's ellipse, so they are not ground-checked); four
+    /// stones sit at 15 %, 40 %, 65 % and 90 % of that polyline's length.
+    static let gatePoint = (-226.0, -12.0)
+    static let hillLine: [(Double, Double)] = [(-228, -8), (-242, -55), (-205, -100)]
+    static let hillStones: [(Double, Double)] = {
+        let total = length(of: hillLine)
+        return along(hillLine, distances: [0.15, 0.40, 0.65, 0.90].map { $0 * total })
+    }()
+    /// The Tepe's centre (concept flows §2.1 row 15) and the lookout T1 where
+    /// the bench stands from IL10 (row 16).
+    static let tepe = (-172.0, -112.0)
+    static let lookout = (-150.0, -112.0)
 
     public static let pieces: [GrowthPiece] = {
         var all: [GrowthPiece] = []
         for (i, p) in pathStones.enumerated() {
             all.append(piece("path-\(i + 1)", .pathStone, p.0, p.1, from: 2, variant: i))
+        }
+        for (i, p) in p1Stones.enumerated() {
+            all.append(piece("p1-\(i + 1)", .pathStone, p.0, p.1, from: 2, variant: i + pathStones.count))
         }
         all.append(piece("kettle-steam", .steam, 150, -30, from: 2))
         all.append(piece("harbor-flag", .flagPole, 176, 22, from: 3))
@@ -148,9 +206,9 @@ public enum IslandGrowth {
         for (i, p) in hillStones.enumerated() {
             all.append(piece("hill-\(i + 1)", .hillStone, p.0, p.1, from: 9, variant: i))
         }
-        all.append(piece("gate", .gate, 114, -52, from: 9))
-        all.append(piece("hilltop", .hilltop, 92, -78, from: 10))
-        all.append(piece("hilltop-bench", .bench, 76, -82, from: 10))
+        all.append(piece("gate", .gate, gatePoint.0, gatePoint.1, from: 9))
+        all.append(piece("hilltop", .hilltop, tepe.0, tepe.1, from: 10))
+        all.append(piece("hilltop-bench", .bench, lookout.0, lookout.1, from: 10))
         return all
     }()
 
