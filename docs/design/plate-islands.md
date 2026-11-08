@@ -1,5 +1,7 @@
 # Plate islands: implementation spec
 
+See [visual-system.md](visual-system.md) for how a whole screen is made (ADR-0023: colour lives in the painting; it overrides any grade or lock-light note below).
+
 Status: draft for ADR-0022 (Proposed). Executes the hybrid plate-first
 technique for Revontuli. Two PRs that own disjoint files; merge (ii) first.
 No judgement calls are left to the implementer: where a number is needed it

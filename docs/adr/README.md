@@ -35,7 +35,8 @@ Tunable values (breath seconds, thresholds, seed amounts, names) live in
 | [0019](0019-home-cluster-and-wonder-islands.md) | Home cluster and wonder islands: station islands retired | Accepted |
 | [0020](0020-painted-surfaces-native-behaviour.md) | Painted surfaces, native behaviour | Accepted (amends 0018; the founder's menu-material view is open, see the decisions register D8) |
 | [0021](0021-reference-light-targets.md) | Reference light targets: the light standard follows the liked references; night is a hue change | Accepted (amends 0018 §5; replaces the light standard v1's value rules) |
-| [0022](0022-plate-first-islands.md) | Plate-first islands: the painted plate is the final picture; the runtime adds only light and life (hybrid: upgrades cut from plate edits) | Accepted (amends 0018 and lock-light for plate-first islands) |
+| [0022](0022-plate-first-islands.md) | Plate-first islands: the painted plate is the final picture; the runtime adds only light and life (hybrid: upgrades cut from plate edits) | Accepted (amends 0018 and lock-light for plate-first islands; amended by 0023) |
+| [0023](0023-colour-lives-in-the-painting.md) | Colour lives in the painting: plates are painted at final colour, no runtime grade, style lock `plate-final`, full-size delivery, colour ladder and metric bands | Accepted (amends 0022) |
 
 **Read an ADR's status line and this table first; do not load ADR bodies
 you do not need.** A status here that says "amended" or "superseded" means

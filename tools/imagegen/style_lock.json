@@ -6,7 +6,7 @@
       "station": "lock-light",
       "prop": "lock-light",
       "world": "lock-light",
-      "plate": "lock-light",
+      "plate": "plate-final",
       "char": "char-guard",
       "sheet": "char-guard",
       "icon": "lock-light",
@@ -26,6 +26,11 @@
           {"name": "reds", "hue": 38, "width": 22, "knee": 44, "ceiling": 60, "hue_shift": 10}
         ]
       },
+      "edge": {"feather_px": 0.8}
+    },
+    "plate-final": {
+      "$note": "Kind plate (ADR-0023): the painting is the final colour and contrast, so nothing is clamped, lifted or blurred. Only the alpha snap and the edge feather stay. Replaces lock-light for plates; earlier notes that lock-light keeps files near neutral do not apply to plates.",
+      "alpha_snap": 0.97,
       "edge": {"feather_px": 0.8}
     },
     "soft-lock": {

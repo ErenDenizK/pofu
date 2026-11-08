@@ -20,17 +20,24 @@
 # minus bare, so land and props share one light.
 #
 # TWO PHASES.
-# Phase 1 runs ONLY `x-home-flow-final` (2 takes). The lead or the founder
-# picks a take. Until then every other job waits: `run.py plan` shows each as
-# "waiting for approval of x-home-flow-final" and `run` skips it.
+# Phase 1 runs ONLY the three roots (2 takes each): `x-home-flow-final` (the
+# colour control, as first written: old style block, half-size delivery),
+# `x-home-flow-final-clear` (block plate-style-v1) and
+# `x-home-flow-final-rich` (block plate-style-rich-v1). Same picture, three
+# colour levels (the ladder of ADR-0023 and docs/design/visual-system.md). The
+# lead names one of the three roots as the master by eye plus
+# tools/plate/colour_metrics.py. Until then every edit job waits: `run.py plan`
+# shows each as "waiting for approval of x-home-flow-final" and `run` skips it.
 # Phase 2 (bare, golden, night, rain, il9 ... il1, all independent of each
-# other, any order, up to three tracks) runs after the picked final is
-# promoted.
+# other, any order, up to three tracks) starts from whichever root the lead
+# names. The 13 edit jobs keep `edit_of: x-home-flow-final` as the default;
+# the lead's naming PR repoints them (`edit_of`) to the named root. The edit
+# jobs are delivered at full size (scale 1.0, ADR-0023).
 #
 # LEAD RULE, CONCEPT MASTER (this batch only, overriding "explorations are
 # never promoted"): once the lead names the picked take of `x-home-flow-final`
-# (and only that job id), promote it with `promote --only x-home-flow-final`
-# (review note "concept master; picked by the lead"). It is the reference
+# (and only that job id, one of the three roots), promote it with
+# `promote --only <that id>` (review note "concept master; picked by the lead"). It is the reference
 # truth every level and state derives from. It is a concept target, not wired
 # into the app. No other job of this batch is promoted. Do not run phase 2
 # before the lead names the pick.
@@ -48,7 +55,7 @@
 # spots; the step from the final is obvious at a glance.
 
 batch: batch-66-home-flow
-title: Home flow, final first (Tam Çiçek root; then IL9 to IL1, bare, golden, night, rain as edits of the final)
+title: Home flow, final first, three colour roots (Tam Çiçek root; then IL9 to IL1, bare, golden, night, rain as edits of the final)
 status: open
 
 refs:
@@ -161,6 +168,184 @@ jobs:
       - block: style-anchor-v2
       - text: "AVOID: characters or animals of any kind, text, letters, numbers, a border, guide marks, a different island shape, buildings outside their marks, clutter, overlapping buildings, a dark or muddy earth body, black door holes, saturated or neon colours, harsh shadows, outlines, photorealism, a 3D render look"
 
+  # ---- colour ladder (ADR-0023): the same picture at two more colour levels
+
+  - id: x-home-flow-final-clear
+    kind: plate
+    name: x-home-flow-final-clear
+    size: 1024x1536
+    canvas: 1024x1536
+    deliver: {scale: 1.0}
+    chat: "Pofu · Home flow"
+    light: {cell: day, layer: subject}
+    palettes: [world-foliage, world-props]
+    acceptance: {exploration: true}
+    notes: "ROOT. Home at Tam Çiçek (IL10), clear summer day, whole-island camera, portrait. Review: every anchor on its guide mark (concept-flows §2.1); İskele joined on the right over the bridge; the Tepe up left; four far islands and Gezgin on their marks; I1 day colour (sky L* ~84, lawn deep green, earth peach); nothing crowded; no characters. Colour ladder (ADR-0023): clear; the lead names one of the three roots as the master."
+    attach:
+      - ref: home-flow-guide
+        role: "The composition guide for the whole picture: the home lawn (big magenta oval), the harbor islet's lawn (small magenta oval, right), the hilltop terrace (magenta oval, upper left), the rope bridge (grey bar), magenta crosses where each building stands, small magenta rings where round doors sit in the earth, grey ovals in the sky for the four far islands and the cloud-whale, the grey line where the cloud sea begins. Follow it exactly, then remove every guide mark: no magenta, no grey lines, no ovals may remain."
+      - ref: approved:island-main-l-v3
+        role: "The home island plate: keep its exact outline, lawn shape, rounded earth body, round wooden door and roots, at the size the guide gives it."
+      - ref: e1-tam-cicek
+        role: "The chosen concept (the founder's pick): the look, the finish and what each building looks like at full bloom. Its layout is only approximate; where it differs, follow the guide."
+      - ref: i1-day
+        role: "The light and colour target: this exact clear summer day, its sky, lawn green, peach earth, soft shadows and white cloud sea with a faint blue-lilac shade."
+      - ref: approved:harbor-island-s
+        role: "The harbor islet İskele: its shape and earth, smaller than the home island, on the right."
+      - ref: approved:tea-stall-5
+        role: "A finished station: every building is at this scale and finish."
+      - ref: gezgin-f2
+        role: "Gezgin, the cloud-whale, in her grown form: small and far in the sky, gentle face, a little garden with a pool on her back."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game, portrait, no text: the
+          home island Ayçiçeği at full bloom, on a clear summer day, seen whole
+          from the game camera (about 20 degrees above the horizon). The island
+          sits in the lower half of the picture over a soft sea of clouds; the
+          upper half is open summer sky with a few far things in it.
+
+          Everything stands exactly where the guide marks it. On the home lawn,
+          left to right: at the far left tip a flower garden with one giant
+          golden sunflower; behind it, on a low grassy knoll at the back left, a
+          white plaster windmill with cream sails and small lanterns on its cap;
+          at the back centre, on a low raised terrace, a workshop with a big
+          gear sign over its door; a small straw beehive on the back lawn right
+          of the workshop; at the far right tip a tea stall with a tiled roof,
+          a red geranium and a small flag; at the front left a round lily pond
+          with a little wooden dock and floating paper lanterns; a stone path
+          from the garden to the tea stall with three warm path lamps; flower
+          borders along the path and the front edge; a few round mossy
+          stepping stones from the front centre toward the pond; a toy
+          sailboat at the pond's edge and a
+          small mailbox on the front edge left of the door; flowering vines in soft
+          pink and lilac trailing over the lawn's rim and a little way down the
+          earth. On the front lip, just above the round door, an old wooden
+          hamster wheel stands still, a young sunflower growing through its
+          middle and small flowers twined around it. A paper lantern string
+          runs from the windmill's cap to the workshop's eave to the tea
+          stall's roof. Leave a clear patch of lawn at front centre (the
+          hamster stands there in the game). In the warm peach earth body,
+          four small round doors in a row with tiny windows, set INTO the
+          earth like the attached round door, with the same rim stones; left
+          to right: the plain wooden door (the attached one), a sky-blue
+          door, a rose door, a sage-green door.
+
+          On the right, a short rope bridge leads to the small harbor islet:
+          a bagel cart with a striped umbrella and a little flag at its left
+          end, a white lighthouse with soft stripes at its back right, a
+          wooden pier running toward us at its front right with a lantern
+          post, bunting, a small bell and a little ferry moored beside it, a
+          plank shed door in its earth.
+
+          Up and behind the home island's left end floats a small grassy
+          hilltop terrace, joined to the lawn's left tip by curved stone steps
+          and an open little wooden gate with a carved sunflower; on top a
+          bench, a small brass telescope and a round low grass stage.
+
+          In the sky, small, soft and hazed by distance, at their guide marks:
+          upper left, a round island with tiered pools and a small silver
+          waterfall; above it to the right, a misty island with a tall stilted
+          wooden house; high in the middle, the smallest and farthest, an
+          island with a little moon-white dome; at the right, a cool pale
+          island with slender ice towers. Between them, larger and nearer but
+          still far, the gentle cloud-whale glides left to right with a small
+          garden on her back. The far islands are clearly islands like home,
+          only far: lighter, softer, less detailed, never sharper than home.
+
+          Clear summer day light. MOOD: warm, cozy, gentle, abundant and
+          tidy, every building readable at a glance; peaceful and wondrous,
+          never busy.
+      - block: plate-style-v1
+      - text: "AVOID: characters or animals of any kind, text, letters, numbers, a border, guide marks, a different island shape, buildings outside their marks, clutter, overlapping buildings, a dark or muddy earth body, black door holes, neon or oversaturated colours, HDR glow, washed-out pastel colour, milky haze, grey or muddy colour, harsh shadows, outlines, photorealism, a 3D render look"
+
+  - id: x-home-flow-final-rich
+    kind: plate
+    name: x-home-flow-final-rich
+    size: 1024x1536
+    canvas: 1024x1536
+    deliver: {scale: 1.0}
+    chat: "Pofu · Home flow"
+    light: {cell: day, layer: subject}
+    palettes: [world-foliage, world-props]
+    acceptance: {exploration: true}
+    notes: "ROOT. Home at Tam Çiçek (IL10), clear summer day, whole-island camera, portrait. Review: every anchor on its guide mark (concept-flows §2.1); İskele joined on the right over the bridge; the Tepe up left; four far islands and Gezgin on their marks; I1 day colour (sky L* ~84, lawn deep green, earth peach); nothing crowded; no characters. Colour ladder (ADR-0023): rich; the lead names one of the three roots as the master."
+    attach:
+      - ref: home-flow-guide
+        role: "The composition guide for the whole picture: the home lawn (big magenta oval), the harbor islet's lawn (small magenta oval, right), the hilltop terrace (magenta oval, upper left), the rope bridge (grey bar), magenta crosses where each building stands, small magenta rings where round doors sit in the earth, grey ovals in the sky for the four far islands and the cloud-whale, the grey line where the cloud sea begins. Follow it exactly, then remove every guide mark: no magenta, no grey lines, no ovals may remain."
+      - ref: approved:island-main-l-v3
+        role: "The home island plate: keep its exact outline, lawn shape, rounded earth body, round wooden door and roots, at the size the guide gives it."
+      - ref: e1-tam-cicek
+        role: "The chosen concept (the founder's pick): the look, the finish and what each building looks like at full bloom. Its layout is only approximate; where it differs, follow the guide."
+      - ref: i1-day
+        role: "The light and colour target: this exact clear summer day, its sky, lawn green, peach earth, soft shadows and white cloud sea with a faint blue-lilac shade."
+      - ref: approved:harbor-island-s
+        role: "The harbor islet İskele: its shape and earth, smaller than the home island, on the right."
+      - ref: approved:tea-stall-5
+        role: "A finished station: every building is at this scale and finish."
+      - ref: gezgin-f2
+        role: "Gezgin, the cloud-whale, in her grown form: small and far in the sky, gentle face, a little garden with a pool on her back."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game, portrait, no text: the
+          home island Ayçiçeği at full bloom, on a clear summer day, seen whole
+          from the game camera (about 20 degrees above the horizon). The island
+          sits in the lower half of the picture over a soft sea of clouds; the
+          upper half is open summer sky with a few far things in it.
+
+          Everything stands exactly where the guide marks it. On the home lawn,
+          left to right: at the far left tip a flower garden with one giant
+          golden sunflower; behind it, on a low grassy knoll at the back left, a
+          white plaster windmill with cream sails and small lanterns on its cap;
+          at the back centre, on a low raised terrace, a workshop with a big
+          gear sign over its door; a small straw beehive on the back lawn right
+          of the workshop; at the far right tip a tea stall with a tiled roof,
+          a red geranium and a small flag; at the front left a round lily pond
+          with a little wooden dock and floating paper lanterns; a stone path
+          from the garden to the tea stall with three warm path lamps; flower
+          borders along the path and the front edge; a few round mossy
+          stepping stones from the front centre toward the pond; a toy
+          sailboat at the pond's edge and a
+          small mailbox on the front edge left of the door; flowering vines in soft
+          pink and lilac trailing over the lawn's rim and a little way down the
+          earth. On the front lip, just above the round door, an old wooden
+          hamster wheel stands still, a young sunflower growing through its
+          middle and small flowers twined around it. A paper lantern string
+          runs from the windmill's cap to the workshop's eave to the tea
+          stall's roof. Leave a clear patch of lawn at front centre (the
+          hamster stands there in the game). In the warm peach earth body,
+          four small round doors in a row with tiny windows, set INTO the
+          earth like the attached round door, with the same rim stones; left
+          to right: the plain wooden door (the attached one), a sky-blue
+          door, a rose door, a sage-green door.
+
+          On the right, a short rope bridge leads to the small harbor islet:
+          a bagel cart with a striped umbrella and a little flag at its left
+          end, a white lighthouse with soft stripes at its back right, a
+          wooden pier running toward us at its front right with a lantern
+          post, bunting, a small bell and a little ferry moored beside it, a
+          plank shed door in its earth.
+
+          Up and behind the home island's left end floats a small grassy
+          hilltop terrace, joined to the lawn's left tip by curved stone steps
+          and an open little wooden gate with a carved sunflower; on top a
+          bench, a small brass telescope and a round low grass stage.
+
+          In the sky, small, soft and hazed by distance, at their guide marks:
+          upper left, a round island with tiered pools and a small silver
+          waterfall; above it to the right, a misty island with a tall stilted
+          wooden house; high in the middle, the smallest and farthest, an
+          island with a little moon-white dome; at the right, a cool pale
+          island with slender ice towers. Between them, larger and nearer but
+          still far, the gentle cloud-whale glides left to right with a small
+          garden on her back. The far islands are clearly islands like home,
+          only far: lighter, softer, less detailed, never sharper than home.
+
+          Clear summer day light. MOOD: warm, cozy, gentle, abundant and
+          tidy, every building readable at a glance; peaceful and wondrous,
+          never busy.
+      - block: plate-style-rich-v1
+      - text: "AVOID: characters or animals of any kind, text, letters, numbers, a border, guide marks, a different island shape, buildings outside their marks, clutter, overlapping buildings, a dark or muddy earth body, black door holes, neon colours, HDR glow, grey or muddy colour, harsh shadows, outlines, photorealism, a 3D render look"
+
   # ------------------------------------------------- bare island (Job A)
 
   - id: x-home-flow-bare
@@ -168,7 +353,7 @@ jobs:
     name: x-home-flow-bare
     size: 1024x1536
     canvas: 1024x1536
-    deliver: {scale: 0.5}
+    deliver: {scale: 1.0}
     edit_of: x-home-flow-final
     chat: "Pofu · Home flow"
     light: {cell: day, layer: subject}
@@ -200,7 +385,7 @@ jobs:
     name: x-home-flow-golden
     size: 1024x1536
     canvas: 1024x1536
-    deliver: {scale: 0.5}
+    deliver: {scale: 1.0}
     edit_of: x-home-flow-final
     chat: "Pofu · Home flow"
     light: {cell: golden, layer: subject}
@@ -228,7 +413,7 @@ jobs:
     name: x-home-flow-night
     size: 1024x1536
     canvas: 1024x1536
-    deliver: {scale: 0.5}
+    deliver: {scale: 1.0}
     edit_of: x-home-flow-final
     chat: "Pofu · Home flow"
     light: {cell: night, layer: subject}
@@ -264,7 +449,7 @@ jobs:
     name: x-home-flow-rain
     size: 1024x1536
     canvas: 1024x1536
-    deliver: {scale: 0.5}
+    deliver: {scale: 1.0}
     edit_of: x-home-flow-final
     chat: "Pofu · Home flow"
     light: {cell: day, layer: subject}
@@ -293,7 +478,7 @@ jobs:
     name: x-home-flow-il9
     size: 1024x1536
     canvas: 1024x1536
-    deliver: {scale: 0.5}
+    deliver: {scale: 1.0}
     edit_of: x-home-flow-final
     chat: "Pofu · Home flow"
     light: {cell: day, layer: subject}
@@ -353,7 +538,7 @@ jobs:
     name: x-home-flow-il8
     size: 1024x1536
     canvas: 1024x1536
-    deliver: {scale: 0.5}
+    deliver: {scale: 1.0}
     edit_of: x-home-flow-final
     chat: "Pofu · Home flow"
     light: {cell: day, layer: subject}
@@ -411,7 +596,7 @@ jobs:
     name: x-home-flow-il7
     size: 1024x1536
     canvas: 1024x1536
-    deliver: {scale: 0.5}
+    deliver: {scale: 1.0}
     edit_of: x-home-flow-final
     chat: "Pofu · Home flow"
     light: {cell: day, layer: subject}
@@ -473,7 +658,7 @@ jobs:
     name: x-home-flow-il6
     size: 1024x1536
     canvas: 1024x1536
-    deliver: {scale: 0.5}
+    deliver: {scale: 1.0}
     edit_of: x-home-flow-final
     chat: "Pofu · Home flow"
     light: {cell: day, layer: subject}
@@ -531,7 +716,7 @@ jobs:
     name: x-home-flow-il5
     size: 1024x1536
     canvas: 1024x1536
-    deliver: {scale: 0.5}
+    deliver: {scale: 1.0}
     edit_of: x-home-flow-final
     chat: "Pofu · Home flow"
     light: {cell: day, layer: subject}
@@ -590,7 +775,7 @@ jobs:
     name: x-home-flow-il4
     size: 1024x1536
     canvas: 1024x1536
-    deliver: {scale: 0.5}
+    deliver: {scale: 1.0}
     edit_of: x-home-flow-final
     chat: "Pofu · Home flow"
     light: {cell: day, layer: subject}
@@ -651,7 +836,7 @@ jobs:
     name: x-home-flow-il3
     size: 1024x1536
     canvas: 1024x1536
-    deliver: {scale: 0.5}
+    deliver: {scale: 1.0}
     edit_of: x-home-flow-final
     chat: "Pofu · Home flow"
     light: {cell: day, layer: subject}
@@ -715,7 +900,7 @@ jobs:
     name: x-home-flow-il2
     size: 1024x1536
     canvas: 1024x1536
-    deliver: {scale: 0.5}
+    deliver: {scale: 1.0}
     edit_of: x-home-flow-final
     chat: "Pofu · Home flow"
     light: {cell: day, layer: subject}
@@ -780,7 +965,7 @@ jobs:
     name: x-home-flow-il1
     size: 1024x1536
     canvas: 1024x1536
-    deliver: {scale: 0.5}
+    deliver: {scale: 1.0}
     edit_of: x-home-flow-final
     chat: "Pofu · Home flow"
     light: {cell: day, layer: subject}

@@ -69,8 +69,9 @@ class PresetTests(unittest.TestCase):
         self.assertTrue(np.all(out[..., 3] <= src[..., 3] + 1e-9))
 
     def test_lock_light_is_the_default_for_world_art(self):
-        for kind in ("station", "prop", "world", "plate", "icon"):
+        for kind in ("station", "prop", "world", "icon"):
             self.assertEqual(sl.preset_for(kind, self.presets)[0], "lock-light", kind)
+        self.assertEqual(sl.preset_for("plate", self.presets)[0], "plate-final")
         self.assertEqual(sl.preset_for("char", self.presets)[0], "char-guard")
         self.assertIn("soft-lock", self.presets)  # kept for comparison
 
@@ -115,6 +116,17 @@ class PresetTests(unittest.TestCase):
         solid = r1[..., 3] > 0.9
         diff = np.abs(out[..., :3][solid] - r1[..., :3][solid]).mean()
         self.assertLess(diff, 0.004)
+
+    def test_plate_final_leaves_an_opaque_plate_unchanged(self):
+        """ADR-0023: kind plate only snaps alpha and feathers edges."""
+        self.assertEqual(self.presets["_by_kind"]["plate"], "plate-final")
+        rng = np.random.default_rng(3)
+        rgb = rng.random((96, 96, 3))
+        rgb[:48] *= 0.05  # near-black region a value floor would lift
+        rgb[48:, :48] = [0.0, 0.9, 0.1]  # vivid green a chroma clamp would cut
+        src = np.dstack([rgb, np.ones((96, 96))])
+        out = sl.apply_lock(src, self.presets["plate-final"])
+        self.assertLessEqual(np.abs(out - src).max() * 255, 1.0)
 
 
 if __name__ == "__main__":

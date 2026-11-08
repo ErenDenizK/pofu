@@ -68,7 +68,7 @@ jobs:
     name: x-caglayan-flow-4
     size: 1536x1024
     canvas: 1536x1024
-    deliver: {scale: 0.5}
+    deliver: {scale: 1.0}
     palettes: [world-foliage, world-water, world-props]
     chat: "Pofu · Çağlayan flow"
     light: {cell: day, layer: subject}
@@ -126,15 +126,15 @@ jobs:
           tea stall. NO CHARACTERS OR ANIMALS anywhere: the game draws Pofu,
           Mochi, the resident and every critter as its own sprite, so their
           places stay empty.
-      - block: prop-style-v2
-      - text: "AVOID: characters, animals, text, letters, numbers, a border, harsh shadows, near-black shade, neon colours, outlines, photorealism, a 3D render look, anything falling off the island into the void, a copy of the home island's lawn and round door"
+      - block: plate-style-v1
+      - text: "AVOID: characters, animals, text, letters, numbers, a border, harsh shadows, near-black shade, neon or oversaturated colours, HDR glow, washed-out pastel colour, milky haze, grey or muddy colour, outlines, photorealism, a 3D render look, anything falling off the island into the void, a copy of the home island's lawn and round door"
 
   - id: x-caglayan-flow-3
     kind: plate
     name: x-caglayan-flow-3
     size: 1536x1024
     canvas: 1536x1024
-    deliver: {scale: 0.5}
+    deliver: {scale: 1.0}
     palettes: [world-foliage, world-water, world-props]
     chat: "Pofu · Çağlayan flow"
     light: {cell: day, layer: subject}
@@ -171,7 +171,7 @@ jobs:
     name: x-caglayan-flow-2
     size: 1536x1024
     canvas: 1536x1024
-    deliver: {scale: 0.5}
+    deliver: {scale: 1.0}
     palettes: [world-foliage, world-water, world-props]
     chat: "Pofu · Çağlayan flow"
     light: {cell: day, layer: subject}
@@ -209,7 +209,7 @@ jobs:
     name: x-caglayan-flow-1
     size: 1536x1024
     canvas: 1536x1024
-    deliver: {scale: 0.5}
+    deliver: {scale: 1.0}
     palettes: [world-foliage, world-water, world-props]
     chat: "Pofu · Çağlayan flow"
     light: {cell: day, layer: subject}
@@ -248,7 +248,7 @@ jobs:
     name: x-caglayan-flow-0
     size: 1536x1024
     canvas: 1536x1024
-    deliver: {scale: 0.5}
+    deliver: {scale: 1.0}
     palettes: [world-foliage, world-water, world-props]
     chat: "Pofu · Çağlayan flow"
     light: {cell: day, layer: subject}
@@ -295,7 +295,7 @@ jobs:
     name: x-caglayan-flow-4-bare
     size: 1536x1024
     canvas: 1536x1024
-    deliver: {scale: 0.5}
+    deliver: {scale: 1.0}
     palettes: [world-foliage, world-water, world-props]
     chat: "Pofu · Çağlayan flow"
     light: {cell: day, layer: subject}
@@ -321,7 +321,7 @@ jobs:
     name: x-caglayan-flow-0-bare
     size: 1536x1024
     canvas: 1536x1024
-    deliver: {scale: 0.5}
+    deliver: {scale: 1.0}
     palettes: [world-foliage, world-water, world-props]
     chat: "Pofu · Çağlayan flow"
     light: {cell: day, layer: subject}
@@ -372,7 +372,7 @@ jobs:
     name: x-caglayan-flow-4-life
     size: 1536x1024
     canvas: 1536x1024
-    deliver: {scale: 0.5}
+    deliver: {scale: 1.0}
     palettes: [world-foliage, world-water, world-props]
     chat: "Pofu · Çağlayan flow"
     light: {cell: day, layer: subject}
@@ -404,7 +404,7 @@ jobs:
     name: x-caglayan-flow-4-up
     size: 1536x1024
     canvas: 1536x1024
-    deliver: {scale: 0.5}
+    deliver: {scale: 1.0}
     palettes: [world-foliage, world-water, world-props]
     chat: "Pofu · Çağlayan flow"
     light: {cell: day, layer: subject}
