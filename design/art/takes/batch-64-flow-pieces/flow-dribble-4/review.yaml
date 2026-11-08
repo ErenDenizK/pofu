@@ -1,0 +1,21 @@
+batch: batch-64-flow-pieces
+jobs:
+  flow-dribble-4:
+    pick: none
+    publication: dependent-skip
+    note: 'Skipped without generation: literal edit_of parent flow-dribble-1 was terminally
+      skipped after its sole unchanged retry because all four takes already showed
+      a connected falling stream to the bank/ground instead of the explicit FRAME1
+      thin bead at the lip/start of a trickle. No additional takes, invented numerical
+      QA failures or fabricated source records.'
+generated_takes: 0
+failed_dependency: flow-dribble-1
+qa_reports: {}
+manual_review:
+  excluded_takes: []
+  note: 'Skipped without generation: literal edit_of parent flow-dribble-1 was terminally
+    skipped after its sole unchanged retry because all four takes already showed a
+    connected falling stream to the bank/ground instead of the explicit FRAME1 thin
+    bead at the lip/start of a trickle. No additional takes, invented numerical QA
+    failures or fabricated source records.'
+sources: []
