@@ -35,3 +35,19 @@ notes:
   (top: #4466BB (2.7%), #7788CC (2.4%)); t3 palette_drift: mean dE 7.0, p95 20.9,
   off-palette 19.5% (top: #5577BB (3.5%), #6688CC (1.7%)); t4 palette_drift: mean
   dE 6.9, p95 20.7, off-palette 20.9% (top: #5577CC (1.9%), #5577BB (1.7%)).'
+- 'batch-58-gate-round-door skipped after four takes: Sole unchanged retry exhausted.
+  All four takes fail canonical edit_stability: 0.0610, 0.0606, 0.0602 and 0.0612.
+  Takes1-3 also hard-fail palette_drift; take4 is exactly WARN3.8546, not a hard palette
+  failure. Proper-alpha source and official locked review confirms the three blank
+  plaques and rope inventory; apparent amber RGB outside the plaques has alpha0 and
+  disappears on cream/night composites. Initial source/QA/locked seals remain unchanged,
+  with all four original PNGs and processing history retained. The authored layer
+  extraction is checked against the full opaque parent; no child QA exception or force
+  is authorized. No master is promoted and no further plaques generation is allowed;
+  founder review pending. Automated failures: t1 palette_drift: mean dE 8.4, p95 13.2,
+  off-palette 6.3% (top: #CC7733 (2.0%), #BB6622 (1.6%)), edit_stability: 6% of the
+  parent level unchanged; t2 palette_drift: mean dE 6.1, p95 9.0, off-palette 0.2%
+  (top: #AA6622 (0.1%), #995522 (0.1%)), edit_stability: 6% of the parent level unchanged;
+  t3 palette_drift: mean dE 6.5, p95 10.1, off-palette 3.1% (top: #BB7733 (0.7%),
+  #CC7733 (0.7%)), edit_stability: 6% of the parent level unchanged; t4 edit_stability:
+  6% of the parent level unchanged.'
