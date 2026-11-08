@@ -1,13 +1,15 @@
 # 0022. Plate-first islands: the painted plate is the final picture
 
-- **Status:** Proposed
+- **Status:** Accepted (2026-11-08: the founder left the method to the lead; the home island is the first in-app example, before Revontuli)
 - **Date:** 2026-11-08
 
 ## Context
 
 The founder says the islands still look pale against the concepts and asks
 us to rethink, from zero, how island art is produced, starting with the next
-unbuilt island, Revontuli. `docs/research/pale-assets.md` measured why: the
+unbuilt island, Revontuli. `docs/research/pale-assets.md` measured why (note:
+the veil in point 1 was mostly the screenshot fixtures' seeded overcast
+weather, fixed in #336; the island stays pale in clear weather too): the
 art is close to the references in lightness and mean chroma, but (1) runtime
 layers lay a cream veil of about 35 % over an island at its stop (gain 0.64,
 lift 0.32; darks 5.5 % to 0 %; chroma −76 % at night); (2) the island fills
