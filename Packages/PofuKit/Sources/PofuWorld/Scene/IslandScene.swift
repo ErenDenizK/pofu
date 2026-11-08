@@ -836,6 +836,9 @@ private struct WorldCanvas: View {
 
     var body: some View {
         ZStack(alignment: .topLeading) {
+            if layer == .characters {
+                caglayanDamla
+            }
             if layer == .environment {
                 otherIsles
                 kokeIsle
@@ -1197,6 +1200,22 @@ private struct WorldCanvas: View {
                 reduceMotion: model.reduceMotion,
                 point: canvasPoint(CaglayanLayout.center, depth: here ? CaglayanLayout.focusDepth : 0),
                 time: here && life.isAmbient ? life.time : nil
+            )
+            .opacity(fade)
+        }
+    }
+
+    /// Damla on Çağlayan, in the characters layer so she takes the
+    /// character light, not the island's grade.
+    @ViewBuilder
+    private var caglayanDamla: some View {
+        if world.caglayan.isArrived, z < 1.7 || model.island != .home {
+            let here = model.island == .caglayan
+            let fade = here ? 1 : max(0, 1 - max(z, 0) / 0.8) * (model.focus == nil ? 1 : 0)
+            CaglayanDamlaView(
+                stage: world.caglayan.stage,
+                point: canvasPoint(CaglayanLayout.center, depth: here ? CaglayanLayout.focusDepth : 0),
+                characterGrade: characterGrade
             )
             .opacity(fade)
         }
