@@ -79,6 +79,26 @@ public enum FarSkyLayout {
         }
     }
 
+    /// The stuck look (concept flows §1.4: far things are lighter and softer
+    /// than home, never darker): desaturated, lifted toward the haze colour
+    /// and slightly blurred. Healed keeps its own colour (saturation 1,
+    /// no lift, no extra haze) plus a small warm light.
+    public struct MarkLook: Hashable, Sendable {
+        public var saturation: Double
+        /// Added brightness (never negative: stuck is never darker).
+        public var lift: Double
+        /// Extra share of the horizon colour mixed in.
+        public var extraHaze: Double
+        public var blur: Double
+
+        public static let stuck = MarkLook(saturation: 0.15, lift: 0.12, extraHaze: 0.30, blur: 1.2)
+        public static let healed = MarkLook(saturation: 1, lift: 0, extraHaze: 0, blur: 0)
+
+        /// A lightness proxy: lift plus the haze share (both only brighten
+        /// toward the pale sky).
+        public var lightness: Double { lift + extraHaze }
+    }
+
     /// A map island's spot at both framings, hidden on the Map.
     static func spot(_ x: Double, _ y: Double, _ width: Double) -> [Placement] {
         [

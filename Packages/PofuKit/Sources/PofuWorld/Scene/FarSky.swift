@@ -68,15 +68,18 @@ struct FarSky: View {
                     // peek less (they are nearly at infinity). The fog is a
                     // true mix toward the horizon colour, drawn as a mask of
                     // the art over it, so the far isles take the sky's hue.
-                    let haze = FogModel.amount(distance: element.distance, mist: look.mist)
+                    let markLook: FarSkyLayout.MarkLook = isHealed ? .healed : .stuck
+                    let haze = min(FogModel.amount(distance: element.distance, mist: look.mist) + (element.mark == nil ? 0 : markLook.extraHaze), 1)
                     let name = WorldArt.assetName(art, variant: .sharp)
                     let parallax = 0.12 + 0.2 * (1 - element.distance)
                     Image(name, bundle: .module)
                         .resizable()
                         .frame(width: CGFloat(w), height: CGFloat(h))
-                        // Stuck: grey and unlit. Healed: its own colour.
-                        .saturation(isHealed ? 1 : 0.12)
-                        .brightness(isHealed ? 0 : -0.06)
+                        // Stuck: desaturated, lifted toward the haze, softly blurred, never
+                        // darker than the clouds. Healed: its own colour.
+                        .saturation(element.mark == nil ? 1 : markLook.saturation)
+                        .brightness(element.mark == nil ? 0 : markLook.lift)
+                        .blur(radius: element.mark == nil ? 0 : CGFloat(markLook.blur))
                         .colorMultiply(look.light.color)
                         .overlay {
                             FogModel.colour(horizon: look.fog).color

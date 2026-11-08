@@ -282,4 +282,12 @@ struct IslandFramingTests {
         #expect(caglayan.art(healed: false) != caglayan.art(healed: true))
         #expect(WorldArt.sprite(caglayan.art(healed: true)) != nil)
     }
+
+    @Test func aStuckIsleIsNeverDarkerThanAHealedOne() {
+        let stuck = FarSkyLayout.MarkLook.stuck, healed = FarSkyLayout.MarkLook.healed
+        #expect(stuck.lightness >= healed.lightness)
+        #expect(stuck.lift >= 0)
+        #expect(stuck.saturation < healed.saturation)
+        #expect(stuck.blur > healed.blur)
+    }
 }
