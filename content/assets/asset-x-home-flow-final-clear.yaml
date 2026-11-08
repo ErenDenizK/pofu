@@ -1,0 +1,21 @@
+id: asset-x-home-flow-final-clear
+type: asset
+title_tr: x-home-flow-final-clear
+title_en: x-home-flow-final-clear (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game, portrait, no text: the home island Ayçiçeği at
+  full bloom, on a clear summer day, seen whole from the game camera (about 20 degrees above
+  the horizon). The island sits in the lower half of the picture over a soft sea of clouds;
+  the upper half is open summer sky with a few far things in it. Everything stands exactly
+  where the guide marks it. On the home lawn, left to right: a…
+art:
+  images: []
+  jobs:
+  - batch-66-home-flow:x-home-flow-final-clear
+sources:
+- doc: tools/imagegen/manifest/batch-66-home-flow.yaml
+kind: plate
+batch: batch-66-home-flow
+size: 1024x1536
