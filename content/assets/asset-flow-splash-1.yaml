@@ -2,14 +2,13 @@ id: asset-flow-splash-1
 type: asset
 title_tr: flow-splash-1
 title_en: flow-splash-1 (prop)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  Draw a small splash where the stream meets the pool: the droplets rise, crown, then fall
-  and settle into a ripple. FRAME 1 OF 4: a flat ripple ring and two tiny droplets just leaving
-  the water. As a small game sprite on a transparent background, centred, about 60 percent
-  of the canvas wide, soft painted water in pale blue-green and white, rounded shapes, no
-  outline.
+summary: 'Draw a small splash where the stream meets the pool: the droplets rise,
+  crown, then fall and settle into a ripple. FRAME 1 OF 4: a flat ripple ring and
+  two tiny droplets just leaving the water. As a small game sprite on a transparent
+  background, centred, about 60 percent of the canvas wide, soft painted water in
+  pale blue-green and white, rounded shapes, no outline.'
 art:
   images: []
   jobs:
@@ -19,3 +18,12 @@ sources:
 kind: prop
 batch: batch-64-flow-pieces
 size: 512x512
+notes:
+- 'batch-64-flow-pieces skipped after four takes: Manual review excludes all four
+  takes: the entire visible water body is materially wider than the authored about60percent
+  sprite, not merely a faint peripheral wash. Retry3 is roughly three quarters wide
+  and retry4 nearly nine tenths in unmodified native and official512 proper-alpha/70px
+  views; these are descriptive estimates, not added numerical thresholds. All4 official
+  QA reports are WARN-only and preserved. The flat ripple/two-droplet FRAME1 otherwise
+  reads. Independent ROOT review agrees. Sole unchanged retry exhausted; no resize
+  repair or extra generation. Only true edit_of children are cut.'
