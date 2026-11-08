@@ -266,8 +266,47 @@ struct IslandStopVeilTests {
             let clear = base.withAtmosphere(Atmosphere(conditions: WorldLook.islandStop(hour: hour).weatherOverride ?? .clear, haze: 0))
             #expect(clear.grade == base.grade)
             #expect(clear.grade.lut?.weights[.rain] == nil)
-            let overcast = base.withAtmosphere(Atmosphere(conditions: WeatherConditions(weather: .overcast), haze: 0))
-            #expect(overcast.grade.contrast < base.grade.contrast, "the veil this pin removes")
         }
+    }
+}
+
+@Suite("The island is graded once under rain and overcast")
+struct IslandWeatherGradeTests {
+    @Test func overcastNoonTakesTheRainLUTAloneNotTheRowToo() {
+        let base = WorldLight.at(hour: 12, wellbeing: 78, calm: 0)
+        let overcast = base.withAtmosphere(Atmosphere(conditions: WeatherConditions(weather: .overcast), haze: 0))
+        #expect(overcast.grade.lut?.weights[.rain] ?? 0 > 0.5)
+        // No contrast, gain or saturation from the overcast row on top of the LUT.
+        #expect(overcast.grade.contrast == base.grade.contrast)
+        #expect(overcast.grade.gain == base.grade.gain)
+        #expect(overcast.grade.saturation == base.grade.saturation)
+    }
+
+    @Test func rainNoonAlsoTakesTheLUTAlone() {
+        let base = WorldLight.at(hour: 12, wellbeing: 78, calm: 0)
+        let rain = base.withAtmosphere(Atmosphere(conditions: WeatherConditions(weather: .lightRain), haze: 0))
+        #expect(rain.grade.contrast == base.grade.contrast)
+        #expect(rain.grade.saturation == base.grade.saturation)
+    }
+
+    @Test func nightKeepsTheRowBecauseTheLUTDoesNotTakeRainThen() {
+        let base = WorldLight.at(hour: 23, wellbeing: 78, calm: 0)
+        let overcast = base.withAtmosphere(Atmosphere(conditions: WeatherConditions(weather: .overcast), haze: 0))
+        #expect(overcast.grade.lut?.weights[.rain] == nil)
+        #expect(overcast.grade.contrast < base.grade.contrast)
+    }
+
+    @Test func mistStillTakesTheRow() {
+        let base = WorldLight.at(hour: 12, wellbeing: 78, calm: 0)
+        let mist = base.withAtmosphere(Atmosphere(conditions: WeatherConditions(weather: .mist), haze: 0))
+        #expect(mist.grade.contrast < base.grade.contrast)
+    }
+
+    @Test func theNightIslandKeepsItsChroma() {
+        #expect(WorldLight.at(hour: 23, wellbeing: 78, calm: 0).grade.saturation >= 1.2)
+    }
+
+    @Test func damlaStaysInFocusWithTheLawn() {
+        #expect(CaglayanLayout.damlaBoxHeight >= 30)
     }
 }

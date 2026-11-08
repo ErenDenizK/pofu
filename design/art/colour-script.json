@@ -102,7 +102,7 @@
       "sea": {"light": "#EBE0E1", "shade": "#C2BDE2", "opacity": 0.95},
       "gamut": {"hue": [230, 320], "chroma": 24},
       "accents": ["practical-light", "rose-copper", "pofu-fur"],
-      "grade": {"lift": [0.05, 0.04, 0.50], "gamma": [1.08, 1.08, 1.12], "gain": [0.93, 0.93, 0.91], "contrast": 0.90, "pivot": 0.5, "saturation": 0.88, "vignette": 0.08},
+      "grade": {"lift": [0.05, 0.04, 0.50], "gamma": [1.08, 1.08, 1.12], "gain": [0.93, 0.93, 0.91], "contrast": 0.90, "pivot": 0.5, "saturation": 1.25, "vignette": 0.08},
       "character": {"gain": [0.97, 0.94, 0.90], "contrast": 1.0, "pivot": 0.4, "saturation": 1.0}
     }
   },
