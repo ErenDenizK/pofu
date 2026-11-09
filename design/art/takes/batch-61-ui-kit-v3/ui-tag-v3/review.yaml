@@ -1,0 +1,179 @@
+batch: batch-61-ui-kit-v3
+contact_sheet: design/art/takes/batch-61-ui-kit-v3/ui-tag-v3/contact.jpg
+jobs:
+  ui-tag-v3:
+    pick: 1
+    publication: promoted; founder review pending
+    note: Take 1 is QA warn only for canvas; take 2 passes automated QA but is manually
+      excluded because its left hole reads filled and its extra stitches conflict
+      with the requested inventory. Take 1 visually has the blank tag, punched left
+      hole with brown loop, and clipped right corners. Pick take 1; disclose canvas
+      warning.
+qa_reports:
+  1:
+    job: ui-tag-v3
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: warn
+      message: 2172x724 scaled x0.707 into 1536x1024 (aspect off by 100%, padded);
+        source smaller than the canvas (upscaled)
+      value: 0.7072
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 24 (R1 51)
+      value: 23.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 82 (R1 59)
+      value: 82.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.8 (R1 5.3)
+      value: 0.81
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.3
+      value: 0.3178
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 0.5, p95 0.9, off-palette 0.0% (top: #774411 (0.0%))'
+      value: 0.4586
+    info:
+      metrics_raw:
+        L_p5: 80.6
+        L_p50: 92.5
+        L_p95: 92.9
+        C_p50: 9.5
+        C_p95: 25.4
+        C_p99: 41.7
+        detail: 0.93
+      metrics_locked:
+        L_p5: 82.1
+        L_p50: 92.5
+        L_p95: 92.9
+        C_p50: 9.4
+        C_p95: 23.5
+        C_p99: 40.9
+        detail: 0.81
+    fingerprint: 33a7bd3c53d51527
+  2:
+    job: ui-tag-v3
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 28 (R1 51)
+      value: 28.1
+    - check: value_floor
+      status: pass
+      message: lightness p5 73 (R1 59)
+      value: 72.8
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.0 (R1 5.3)
+      value: 1.96
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.4
+      value: 0.3656
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.4, p95 1.0, off-palette 0.0%
+      value: 0.4023
+    info:
+      metrics_raw:
+        L_p5: 71.9
+        L_p50: 92.9
+        L_p95: 93.5
+        C_p50: 10.3
+        C_p95: 29.0
+        C_p99: 35.7
+        detail: 2.29
+      metrics_locked:
+        L_p5: 72.8
+        L_p50: 93.0
+        L_p95: 93.4
+        C_p50: 10.3
+        C_p95: 28.1
+        C_p99: 34.9
+        detail: 1.96
+    fingerprint: 33a7bd3c53d51527
+manual_review:
+  excluded_takes:
+  - 2
+  note: Take 1 is QA warn only for canvas; take 2 passes automated QA but is manually
+    excluded because its left hole reads filled and its extra stitches conflict with
+    the requested inventory. Take 1 visually has the blank tag, punched left hole
+    with brown loop, and clipped right corners. Pick take 1; disclose canvas warning.
+sources:
+- take: 1
+  round: 1
+  dispatch_ordinal: 1
+  source_file: /workspace/generated_images/exec-514d09c6-967c-43df-ac66-8b4bef086ab2.png
+  original_generated_png_sha256: 7770a15d1f3cf0140545f0bec1b106d3ffbfcf4da64d4c4a27149ddc1d33a417
+  inbox_png_sha256: 304bdcefc4a798458891637929b4e8d2c646f01eab70169cc5787e8ea6bc3624
+  rgba_sha256: 7630e0832a0f2f1f82fca2746254a56178841ef486ffd63577306938e8e4d71f
+  dimensions:
+  - 2172
+  - 724
+  bytes: 1366386
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  returned_at: '2026-11-09T21:56:17.158Z'
+  prompt_sha256: 77d88a21366fd33220b246e96c0cc05f08330e7a7bcaf4eba95d6d8d80e0e54d
+  fingerprint: 33a7bd3c53d51527
+  reference_paths:
+  - /tmp/pofu-b61-resume-20261109/design/art/ui/ui-card-stitched/ui-card-stitched.png
+  - /tmp/pofu-b61-resume-20261109/design/reference/palette-card-world-props.png
+  reference_sha256:
+    /tmp/pofu-b61-resume-20261109/design/art/ui/ui-card-stitched/ui-card-stitched.png: 16dcb66f508f4d7155e84283f23cb7c10a72761226bc22ad7796094cc6200908
+    /tmp/pofu-b61-resume-20261109/design/reference/palette-card-world-props.png: d31df285d7f915ff04d14ef9386940e1745a48ffb951bd041df405392a0939f2
+  source_rgba_matches_inbox: true
+- take: 2
+  round: 1
+  dispatch_ordinal: 2
+  source_file: /workspace/generated_images/exec-a91c0372-2573-4f29-8172-cfc1b1b91097.png
+  original_generated_png_sha256: e0efd6c86ef77fd4c91e7e38cbc24b5d9a824f8dc3fd83da286d9a263b386432
+  inbox_png_sha256: 5478c0946e7a00bc90f6cc93db0a3eacdf660a3aacf489f53e539747e321b382
+  rgba_sha256: 2da929f52d4c593d5e031f0d488a0e25390b1757661cc2910074b1b85ae4df9b
+  dimensions:
+  - 1536
+  - 1024
+  bytes: 1136112
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  returned_at: '2026-11-09T21:57:22.829Z'
+  prompt_sha256: 77d88a21366fd33220b246e96c0cc05f08330e7a7bcaf4eba95d6d8d80e0e54d
+  fingerprint: 33a7bd3c53d51527
+  reference_paths:
+  - /tmp/pofu-b61-resume-20261109/design/art/ui/ui-card-stitched/ui-card-stitched.png
+  - /tmp/pofu-b61-resume-20261109/design/reference/palette-card-world-props.png
+  reference_sha256:
+    /tmp/pofu-b61-resume-20261109/design/art/ui/ui-card-stitched/ui-card-stitched.png: 16dcb66f508f4d7155e84283f23cb7c10a72761226bc22ad7796094cc6200908
+    /tmp/pofu-b61-resume-20261109/design/reference/palette-card-world-props.png: d31df285d7f915ff04d14ef9386940e1745a48ffb951bd041df405392a0939f2
+  source_rgba_matches_inbox: true
+harmony:
+  canonical_measure: passed
+  canonical_check: passed
+  catalog_count: 172
+  ui_cataloged: false
+  own_asset_shard: null
+  note: One complete canonical measurement-worktree measure/check was run for the
+    retained UI batch; the catalog excludes UI assets. The known tea-stall-1 ULP write
+    from measure was restored byte-exactly to the pinned base after check.
