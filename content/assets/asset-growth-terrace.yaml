@@ -11,7 +11,8 @@ summary: >-
   as tall, with a soft lighter grass top and lip, a short earthy face below it in the same
   warm cocoa-brown earth as the attached island's earth b…
 art:
-  images: []
+  images:
+  - design/art/masters/growth-terrace/growth-terrace.png
   jobs:
   - batch-65-growth-pieces:growth-terrace
 sources:

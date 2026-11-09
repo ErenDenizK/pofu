@@ -1,0 +1,55 @@
+{
+ "after": {
+  "C_mean": 25.589,
+  "C_p50": 25.026,
+  "C_p95": 32.91,
+  "L_mean": 75.939,
+  "L_p2": 53.551,
+  "L_p98": 91.063,
+  "detail": 1.041,
+  "edge": 0.578,
+  "warmth_b": 23.13
+ },
+ "before": {
+  "C_mean": 17.648,
+  "C_p50": 17.26,
+  "C_p95": 22.697,
+  "L_mean": 80.922,
+  "L_p2": 65.911,
+  "L_p98": 91.062,
+  "detail": 0.788,
+  "edge": 0.578,
+  "tint_a": 4.847,
+  "tint_b": 11.462,
+  "warmth_b": 15.952
+ },
+ "chain": null,
+ "correction": {
+  "black": -12.36,
+  "ceiling": 0.0,
+  "chroma": 1.45,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "prop",
+ "matched_to": "world",
+ "outliers_after": [
+  "C_p95",
+  "edge"
+ ],
+ "outliers_before": [
+  "C_p95",
+  "L_p2",
+  "edge"
+ ],
+ "ppu": 8.533,
+ "reference": false,
+ "score_after": 75.4,
+ "score_before": 62.0,
+ "shipped": false,
+ "source": "design/art/masters/growth-terrace/growth-terrace.png",
+ "source_sha": "a5f17f0daf4c10b5"
+}
