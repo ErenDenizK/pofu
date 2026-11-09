@@ -1,0 +1,56 @@
+{
+ "after": {
+  "C_mean": 31.294,
+  "C_p50": 34.888,
+  "C_p95": 43.973,
+  "L_mean": 74.459,
+  "L_p2": 53.549,
+  "L_p98": 90.922,
+  "detail": 1.351,
+  "edge": 0.426,
+  "tint_a": 5.21,
+  "tint_b": 10.208,
+  "warmth_b": 28.792
+ },
+ "before": {
+  "C_mean": 21.585,
+  "C_p50": 24.075,
+  "C_p95": 30.326,
+  "L_mean": 80.011,
+  "L_p2": 66.149,
+  "L_p98": 90.922,
+  "detail": 0.989,
+  "edge": 0.426,
+  "tint_a": 3.635,
+  "tint_b": 9.0,
+  "warmth_b": 19.858
+ },
+ "chain": null,
+ "correction": {
+  "black": -12.6,
+  "ceiling": 0.0,
+  "chroma": 1.45,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "prop",
+ "matched_to": "world",
+ "outliers_after": [
+  "edge"
+ ],
+ "outliers_before": [
+  "C_p95",
+  "L_p2",
+  "edge"
+ ],
+ "ppu": 8.533,
+ "reference": false,
+ "score_after": 87.2,
+ "score_before": 63.4,
+ "shipped": false,
+ "source": "design/art/masters/growth-bridge/growth-bridge.png",
+ "source_sha": "f637b39380bdc7df"
+}

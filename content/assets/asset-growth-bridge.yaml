@@ -11,7 +11,8 @@ summary: >-
   degrees above: a low arch of honey-wood planks with two short rope-and-post railings and
   little round cream post caps, resting on two small ston…
 art:
-  images: []
+  images:
+  - design/art/masters/growth-bridge/growth-bridge.png
   jobs:
   - batch-65-growth-pieces:growth-bridge
 sources:

@@ -19,6 +19,8 @@ links:
   uses_asset:
   - asset-pond-5-lit
   - asset-growth-stepping-stone
+  - asset-growth-bridge
+  - asset-growth-lily-pad
 sources:
 - doc: docs/product/game-design.md
   anchor: '#idle-production-and-stations'
