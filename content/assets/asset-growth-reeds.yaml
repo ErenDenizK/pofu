@@ -2,7 +2,7 @@ id: asset-growth-reeds
 type: asset
 title_tr: growth-reeds
 title_en: growth-reeds (prop)
-status: in-production
+status: cut
 horizon: now
 summary: >-
   A single small lawn piece for a cozy mobile game, as a game sprite on a transparent background,
@@ -19,3 +19,7 @@ sources:
 kind: prop
 batch: batch-65-growth-pieces
 size: 1024x1024
+notes:
+- >-
+  Skipped after one retry: all four takes read as three separate stalks; leaves do not count
+  as a fourth stalk.
