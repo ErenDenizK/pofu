@@ -1,0 +1,175 @@
+batch: batch-61-ui-kit-v3
+contact_sheet: design/art/takes/batch-61-ui-kit-v3/ui-groove-wood/contact.jpg
+jobs:
+  ui-groove-wood:
+    pick: 1
+    publication: promoted; founder review pending
+    note: Take 1 passes and wins on official lock load 0.5341 versus 0.6272 for take
+      2, which is QA warn for palette drift. Manual cream/dark composite review confirms
+      a honey-wood groove with recessed brown center, upper inner shade, lower lip,
+      and no painted backdrop.
+qa_reports:
+  1:
+    job: ui-groove-wood
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 52 (R1 51)
+      value: 52.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 47 (R1 59)
+      value: 47.3
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.2 (R1 5.3)
+      value: 2.17
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.5
+      value: 0.5341
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.2, p95 7.6, off-palette 0.0%
+      value: 2.2444
+    info:
+      metrics_raw:
+        L_p5: 46.7
+        L_p50: 60.8
+        L_p95: 87.5
+        C_p50: 40.3
+        C_p95: 53.3
+        C_p99: 54.8
+        detail: 2.54
+      metrics_locked:
+        L_p5: 47.3
+        L_p50: 60.7
+        L_p95: 87.3
+        C_p50: 40.3
+        C_p95: 52.5
+        C_p99: 54.3
+        detail: 2.17
+    fingerprint: c47421d8288a3dd0
+  2:
+    job: ui-groove-wood
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 53 (R1 51)
+      value: 52.7
+    - check: value_floor
+      status: pass
+      message: lightness p5 46 (R1 59)
+      value: 45.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.5 (R1 5.3)
+      value: 2.49
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.6272
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.7, p95 10.4, off-palette 0.0% (top: #995522 (0.0%))'
+      value: 3.7358
+    info:
+      metrics_raw:
+        L_p5: 45.3
+        L_p50: 61.7
+        L_p95: 88.3
+        C_p50: 46.8
+        C_p95: 53.0
+        C_p99: 53.7
+        detail: 2.97
+      metrics_locked:
+        L_p5: 45.5
+        L_p50: 61.7
+        L_p95: 87.4
+        C_p50: 46.7
+        C_p95: 52.7
+        C_p99: 53.2
+        detail: 2.49
+    fingerprint: c47421d8288a3dd0
+manual_review:
+  excluded_takes: []
+  note: Take 1 passes and wins on official lock load 0.5341 versus 0.6272 for take
+    2, which is QA warn for palette drift. Manual cream/dark composite review confirms
+    a honey-wood groove with recessed brown center, upper inner shade, lower lip,
+    and no painted backdrop.
+sources:
+- take: 1
+  round: 1
+  dispatch_ordinal: 1
+  source_file: /workspace/generated_images/exec-ae096cd2-ca80-4b1c-8940-c3e1649ab4e5.png
+  original_generated_png_sha256: 96ba90c1ccebc4bedd31e807f2ddc3b62f2014970c7751c8ed03237104ef37a6
+  inbox_png_sha256: c33a13945497d52f37ca38de1010b16a53860b8c5474f54de85ad504b0f85710
+  rgba_sha256: 311023c064a2303194e1d39492faf63aab81587966994ee5946522bb3565785a
+  dimensions:
+  - 1536
+  - 1024
+  bytes: 950246
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  returned_at: '2026-11-09T21:58:36.222Z'
+  prompt_sha256: 15efcb8d8571c4313847a38b2c914bc4be256e3b7fd8ba0b23b47101113d53f9
+  fingerprint: c47421d8288a3dd0
+  reference_paths:
+  - /tmp/pofu-b61-resume-20261109/design/art/ui/ui-plaque-honey/ui-plaque-honey.png
+  - /tmp/pofu-b61-resume-20261109/design/reference/palette-card-world-props.png
+  reference_sha256:
+    /tmp/pofu-b61-resume-20261109/design/art/ui/ui-plaque-honey/ui-plaque-honey.png: 00960d71046002582394bb5a2d0c9ccd9023bc51a42c75d2acf3d33c208eee47
+    /tmp/pofu-b61-resume-20261109/design/reference/palette-card-world-props.png: d31df285d7f915ff04d14ef9386940e1745a48ffb951bd041df405392a0939f2
+  source_rgba_matches_inbox: true
+- take: 2
+  round: 1
+  dispatch_ordinal: 2
+  source_file: /workspace/generated_images/exec-78147eb2-d805-4b46-88e9-c1d9ac0a7dee.png
+  original_generated_png_sha256: a79e309cb39824e632dbac91338728b32299f63606262ecdbd281e8bb48a93dc
+  inbox_png_sha256: 9f5cceaef66dad06f1323ca3467c117cdbd6b2e840f376fd8e9e2e2ba17cc821
+  rgba_sha256: 28bc77ec6b9741564f8bb47aab1cab6b9702810d9f64bc8d0ebf41d72a2437f7
+  dimensions:
+  - 1536
+  - 1024
+  bytes: 1022685
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  returned_at: '2026-11-09T21:57:52.372Z'
+  prompt_sha256: 15efcb8d8571c4313847a38b2c914bc4be256e3b7fd8ba0b23b47101113d53f9
+  fingerprint: c47421d8288a3dd0
+  reference_paths:
+  - /tmp/pofu-b61-resume-20261109/design/art/ui/ui-plaque-honey/ui-plaque-honey.png
+  - /tmp/pofu-b61-resume-20261109/design/reference/palette-card-world-props.png
+  reference_sha256:
+    /tmp/pofu-b61-resume-20261109/design/art/ui/ui-plaque-honey/ui-plaque-honey.png: 00960d71046002582394bb5a2d0c9ccd9023bc51a42c75d2acf3d33c208eee47
+    /tmp/pofu-b61-resume-20261109/design/reference/palette-card-world-props.png: d31df285d7f915ff04d14ef9386940e1745a48ffb951bd041df405392a0939f2
+  source_rgba_matches_inbox: true
+harmony:
+  canonical_measure: passed
+  canonical_check: passed
+  catalog_count: 172
+  ui_cataloged: false
+  own_asset_shard: null
+  note: One complete canonical measurement-worktree measure/check was run for the
+    retained UI batch; the catalog excludes UI assets. The known tea-stall-1 ULP write
+    from measure was restored byte-exactly to the pinned base after check.
