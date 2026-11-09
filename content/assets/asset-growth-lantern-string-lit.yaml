@@ -13,7 +13,9 @@ links:
   variant_of:
   - asset-growth-lantern-string
 art:
-  images: []
+  images:
+  - >-
+    design/art/masters/growth-lantern-string-lit/growth-lantern-string-lit.png
   jobs:
   - batch-65-growth-pieces:growth-lantern-string-lit
 sources:

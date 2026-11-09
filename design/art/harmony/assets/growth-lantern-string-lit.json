@@ -1,0 +1,51 @@
+{
+ "after": {
+  "C_mean": 32.824,
+  "C_p50": 30.578,
+  "C_p95": 49.592,
+  "L_mean": 72.031,
+  "L_p2": 53.548,
+  "L_p98": 92.661,
+  "detail": 1.261,
+  "edge": 0.436,
+  "warmth_b": 30.705
+ },
+ "before": {
+  "C_mean": 32.824,
+  "C_p50": 30.578,
+  "C_p95": 49.592,
+  "L_mean": 79.532,
+  "L_p2": 67.769,
+  "L_p98": 92.661,
+  "detail": 0.936,
+  "edge": 0.436,
+  "warmth_b": 30.705
+ },
+ "chain": null,
+ "correction": {
+  "black": -14.22,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "prop",
+ "matched_to": "world",
+ "outliers_after": [
+  "edge"
+ ],
+ "outliers_before": [
+  "L_p2",
+  "edge"
+ ],
+ "ppu": 8.533,
+ "reference": false,
+ "score_after": 92.0,
+ "score_before": 83.7,
+ "shipped": false,
+ "source": "design/art/masters/growth-lantern-string-lit/growth-lantern-string-lit.png",
+ "source_sha": "5afb643db73ecbcf"
+}

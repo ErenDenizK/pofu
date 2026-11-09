@@ -1,0 +1,124 @@
+{
+  "job": "growth-lantern-string-lit",
+  "batch": "batch-65-growth-pieces",
+  "asset": "prop__growth-lantern-string-lit",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-09T21:43:17+00:00",
+  "image": "design/art/masters/growth-lantern-string-lit/growth-lantern-string-lit.png",
+  "raw": "design/art/masters/growth-lantern-string-lit/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "ca4a0eea1a7e34ff",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nLight the lanterns from inside: every small round paper lantern now\nglows warm candle-amber, a little brighter toward its middle,\npainted as soft broad shapes. Only the lantern paper changes: the\ncord, the posts and the lantern caps keep their exact day colors\n(the app adds the glow, the halos and the night grade).\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: light rays, a glow or halo outside the paper, light on the cord or the posts, a night sky, darkening anything, blown yellow-white highlights, text.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES (the reference envelope): a high-key picture inside one envelope of soft, milky air. Every value sits between light mid-tone and cream-white; the darkest recesses (door holes, gaps, pond rims) are a mid-value tinted with the shadow hue, never black. Form turns in small value steps. Colour lives in the halftones; lights bleach to cream. No dark outlines: edges are found by value and hue. The cloud sea below is the brightest large surface and lights the island's underside with a warm bounce.\nThis is the SUBJECT plane: the clearest forms and the crispest edges in the picture, still inside the envelope.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/growth-lantern-string/growth-lantern-string.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-09T21:42:06+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "fit": null,
+  "emit_region": [
+    [
+      0.05,
+      0.3,
+      0.9,
+      0.5
+    ]
+  ],
+  "qa": {
+    "status": "pass",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 50 (R1 51)",
+        "value": 49.5
+      },
+      {
+        "check": "light_values",
+        "status": "pass",
+        "message": "day/subject: L p5 70 (at least 50: darks stay a light mid-tone), p98 93 (at least 90)",
+        "value": 70.1
+      },
+      {
+        "check": "light_median",
+        "status": "pass",
+        "message": "day/subject: median L 80 (band 74-92)",
+        "value": 79.5
+      },
+      {
+        "check": "light_contrast",
+        "status": "pass",
+        "message": "day/subject: p75 local contrast 2.7 (band 2.5-6.5; above it reads too contrasty)",
+        "value": 2.67
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 1.0 (R1 5.3)",
+        "value": 1.04
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 0.6",
+        "value": 0.6165
+      },
+      {
+        "check": "no_guide_magenta",
+        "status": "pass",
+        "message": "0 guide-magenta pixels (per 1024^2)",
+        "value": 0.0
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.7, p95 5.3, off-palette 0.0%",
+        "value": 1.7256
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 84 against the world reference (outliers: L_p2, edge)",
+        "value": 83.7
+      },
+      {
+        "check": "emit_leak",
+        "status": "pass",
+        "message": "100% of the parent unchanged outside the emit region (masked out of the master)",
+        "value": 1.0
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending"
+}
