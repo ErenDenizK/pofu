@@ -11,7 +11,8 @@ summary: >-
   gentle curves between two short honey-wood posts, with seven small round paper lanterns
   hanging from it in soft coral, cream and honey colours, e…
 art:
-  images: []
+  images:
+  - design/art/masters/growth-lantern-string/growth-lantern-string.png
   jobs:
   - batch-65-growth-pieces:growth-lantern-string
 sources:
