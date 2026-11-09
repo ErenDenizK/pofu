@@ -11,7 +11,8 @@ summary: >-
   in a soft open V, a cream-white body with soft pale-grey wings and wingtips, a tiny honey-orange
   beak, a small dark round eye. Round and so…
 art:
-  images: []
+  images:
+  - design/art/masters/growth-gull/growth-gull.png
   jobs:
   - batch-65-growth-pieces:growth-gull
 sources:

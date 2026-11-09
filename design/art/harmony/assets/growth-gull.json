@@ -1,0 +1,57 @@
+{
+ "after": {
+  "C_mean": 14.809,
+  "C_p50": 12.509,
+  "C_p95": 25.135,
+  "L_mean": 73.321,
+  "L_p2": 53.547,
+  "L_p98": 92.682,
+  "detail": 0.812,
+  "edge": 0.451,
+  "tint_a": 6.537,
+  "tint_b": 9.66,
+  "warmth_b": 12.636
+ },
+ "before": {
+  "C_mean": 10.217,
+  "C_p50": 8.629,
+  "C_p95": 17.335,
+  "L_mean": 80.32,
+  "L_p2": 67.687,
+  "L_p98": 92.697,
+  "detail": 0.628,
+  "edge": 0.451,
+  "tint_a": 4.817,
+  "tint_b": 7.462,
+  "warmth_b": 8.717
+ },
+ "chain": null,
+ "correction": {
+  "black": -14.14,
+  "ceiling": 0.0,
+  "chroma": 1.45,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "prop",
+ "matched_to": "world",
+ "outliers_after": [
+  "C_p95",
+  "edge"
+ ],
+ "outliers_before": [
+  "C_p95",
+  "L_p2",
+  "edge"
+ ],
+ "ppu": 8.533,
+ "reference": false,
+ "score_after": 69.1,
+ "score_before": 59.1,
+ "shipped": false,
+ "source": "design/art/masters/growth-gull/growth-gull.png",
+ "source_sha": "6a1765ccb53800e8"
+}
