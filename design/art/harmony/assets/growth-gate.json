@@ -1,0 +1,55 @@
+{
+ "after": {
+  "C_mean": 30.611,
+  "C_p50": 27.936,
+  "C_p95": 45.445,
+  "L_mean": 78.442,
+  "L_p2": 61.2,
+  "L_p98": 92.937,
+  "detail": 1.1,
+  "edge": 0.58,
+  "tint_a": 3.189,
+  "tint_b": 12.75,
+  "warmth_b": 27.756
+ },
+ "before": {
+  "C_mean": 21.136,
+  "C_p50": 19.283,
+  "C_p95": 31.356,
+  "L_mean": 78.457,
+  "L_p2": 61.2,
+  "L_p98": 93.094,
+  "detail": 1.073,
+  "edge": 0.58,
+  "tint_a": 5.599,
+  "tint_b": 11.157,
+  "warmth_b": 19.157
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.45,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "prop",
+ "matched_to": "world",
+ "outliers_after": [
+  "edge"
+ ],
+ "outliers_before": [
+  "C_p95",
+  "edge"
+ ],
+ "ppu": 8.533,
+ "reference": false,
+ "score_after": 90.2,
+ "score_before": 72.8,
+ "shipped": false,
+ "source": "design/art/masters/growth-gate/growth-gate.png",
+ "source_sha": "9b998030964add4e"
+}

@@ -11,7 +11,8 @@ summary: >-
   double door shut in it, a carved sunflower (a simple round bloom) above the door in the
   arch, small rim stones at its feet, and a few t…
 art:
-  images: []
+  images:
+  - design/art/masters/growth-gate/growth-gate.png
   jobs:
   - batch-65-growth-pieces:growth-gate
 sources:

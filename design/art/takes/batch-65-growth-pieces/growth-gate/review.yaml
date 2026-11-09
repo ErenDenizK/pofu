@@ -1,0 +1,16 @@
+batch: batch-65-growth-pieces
+contact_sheet: design/art/takes/batch-65-growth-pieces/growth-gate/contact.jpg
+jobs:
+  growth-gate:
+    pick: 2
+    note: auto-picked by QA; founder review pending
+    takes:
+      t1:
+        qa: warn
+        summary: light_contrast warn; harmony warn
+      t2:
+        qa: warn
+        summary: light_contrast warn
+    approved:
+      take: 2
+      at: '2026-11-09T21:41:44+00:00'
