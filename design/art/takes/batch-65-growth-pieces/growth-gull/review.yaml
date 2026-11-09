@@ -14,3 +14,109 @@ jobs:
     approved:
       take: 1
       at: '2026-11-09T21:37:11+00:00'
+    source_evidence:
+      selection_method: QA autopick among the recorded takes; human content review
+        is listed per take below.
+      pick: 1
+      manual_review_receipt_sha256: 59e40fe0889f191d121757a86ced66a3c0a0279b1f01f4b2ec065dbaf652d231
+      takes:
+      - take: t1
+        round: 1
+        take_ordinal: 1
+        source_receipt_file: source-growth-gull-t1.json
+        source_receipt_sha256: 6e0fb0069d77834da8456ca5f1714353ca2dd566d3b771926fecc9a79d684018
+        source_file: exec-87b6cf33-82eb-4c6e-a441-d20068961c78.png
+        source_png_sha256: 7fb03f8e6775d5a1e7b6a7c97d45a0ff7aa9f98dabbe5d2f69cd782761b0c591
+        rgba_sha256: 0049c558a0d3471ff20d1bd14a37560a2aad4112143f8138ca89608e0575f030
+        dimensions:
+        - 1254
+        - 1254
+        bytes: 794670
+        tool_returned_at: '2026-11-09T21:20:33.868Z'
+        prompt_sha256: a7570d757e71a6f13bc7faa132376822bde7930a548f3bd667e106cf73ff3750
+        fingerprint: 36728345ed136fb0
+        account:
+          owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+          kind: chatgpt-plan
+        manual_review:
+          verdict: pass
+          note: Both show one plump cream gull with pale grey wings, a small orange
+            beak and no extra objects.
+          receipt_catalog_sha256: 6e0fb0069d77834da8456ca5f1714353ca2dd566d3b771926fecc9a79d684018
+        qa_status: warn
+        qa_summary: light_contrast warn; harmony warn
+        qa_checks_at_pick:
+          status: warn
+          checks:
+          - check: transparency
+            status: pass
+            message: source has an alpha channel
+          - check: canvas
+            status: pass
+            message: 1254x1254 scaled x0.817 into 1024x1024
+            value: 0.8166
+          - check: chroma_ceiling
+            status: pass
+            message: chroma p95 17 (R1 51)
+            value: 16.7
+          - check: light_values
+            status: pass
+            message: 'day/subject: L p5 69 (at least 50: darks stay a light mid-tone),
+              p98 93 (at least 90)'
+            value: 69.2
+          - check: light_median
+            status: pass
+            message: 'day/subject: median L 80 (band 74-92)'
+            value: 79.9
+          - check: light_contrast
+            status: warn
+            message: 'day/subject: p75 local contrast 0.6 (band 2.5-6.5; above it
+              reads too contrasty) (warn-only until the founder has seen the light
+              pilot)'
+            value: 0.6
+          - check: detail_budget
+            status: pass
+            message: detail at display size 0.6 (R1 5.3)
+            value: 0.63
+          - check: lock_load
+            status: pass
+            message: the lock moved colors by mean dE 0.5
+            value: 0.525
+          - check: no_guide_magenta
+            status: pass
+            message: 0 guide-magenta pixels (per 1024^2)
+            value: 0.0
+          - check: palette_drift
+            status: pass
+            message: mean dE 0.7, p95 1.3, off-palette 0.0%
+            value: 0.7403
+          - check: harmony
+            status: warn
+            message: 'harmony score 59 against the world reference (outliers: C_p95,
+              L_p2, edge)'
+            value: 59.1
+      - take: t2
+        round: 1
+        take_ordinal: 2
+        source_receipt_file: source-growth-gull-t2.json
+        source_receipt_sha256: bb129e60c872a31808fa5947256565e2b6073febec3569e32ce37df051da96da
+        source_file: exec-332b6277-772d-4efe-a339-ae24dc817d98.png
+        source_png_sha256: 34f98fac0c8ac475ee7f236fcc5c181fc81f0c55700d5add18b5abf317fa5eb1
+        rgba_sha256: 2b93c2a57f88f8542a8487a2f4324a7a83faefa173a5002b724519938b49caa0
+        dimensions:
+        - 1254
+        - 1254
+        bytes: 728245
+        tool_returned_at: '2026-11-09T21:19:49.507Z'
+        prompt_sha256: a7570d757e71a6f13bc7faa132376822bde7930a548f3bd667e106cf73ff3750
+        fingerprint: 36728345ed136fb0
+        account:
+          owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+          kind: chatgpt-plan
+        manual_review:
+          verdict: pass
+          note: Both show one plump cream gull with pale grey wings, a small orange
+            beak and no extra objects.
+          receipt_catalog_sha256: bb129e60c872a31808fa5947256565e2b6073febec3569e32ce37df051da96da
+        qa_status: warn
+        qa_summary: light_contrast warn; harmony warn

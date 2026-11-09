@@ -14,3 +14,109 @@ jobs:
     approved:
       take: 2
       at: '2026-11-09T21:43:13+00:00'
+    source_evidence:
+      selection_method: QA autopick among the recorded takes; human content review
+        is listed per take below.
+      pick: 2
+      manual_review_receipt_sha256: 59e40fe0889f191d121757a86ced66a3c0a0279b1f01f4b2ec065dbaf652d231
+      takes:
+      - take: t1
+        round: 1
+        take_ordinal: 1
+        source_receipt_file: source-growth-lily-pad-t1.json
+        source_receipt_sha256: a40d8f53eb389c75979820e21502bcbb3c636105b987313dedc217b68981365c
+        source_file: exec-b3e35e13-45bf-4acc-bc30-ed9e0f5ebaa8.png
+        source_png_sha256: d17b9088f0606ad15729ec72203eac60b69ac9e4eb4ae7c3f3c73fe2ddf08d20
+        rgba_sha256: 84d6035e243bb89e1f7e737825a6d286ece9a182456647a92484216c5dcef852
+        dimensions:
+        - 1254
+        - 1254
+        bytes: 523487
+        tool_returned_at: '2026-11-09T21:24:21.478Z'
+        prompt_sha256: 5e2ef9e72170d47e56b6f2f0533c213c430087236a5bf50dd4feaa546515dd88
+        fingerprint: e3a8115ec370984c
+        account:
+          owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+          kind: chatgpt-plan
+        manual_review:
+          verdict: pass
+          note: Both show one low green notched oval lily pad with a small pink lotus
+            and honey centre, with no water or extra objects.
+          receipt_catalog_sha256: a40d8f53eb389c75979820e21502bcbb3c636105b987313dedc217b68981365c
+        qa_status: warn
+        qa_summary: light_values warn; light_contrast warn; harmony warn
+      - take: t2
+        round: 1
+        take_ordinal: 2
+        source_receipt_file: source-growth-lily-pad-t2.json
+        source_receipt_sha256: 421c03b846f943682ac4a40dac8db724f31eeef53cd0ed5a9a8f8d0543ae02be
+        source_file: exec-b4ab2088-ef7b-4055-ab24-1af3cab252b8.png
+        source_png_sha256: a2a5b017a4aed2df0bd8559e581b3b9614cd21a4cef2b72cc686dc783c7b364f
+        rgba_sha256: f997bf17100ef8280543177f384a6cd283adf4f989bb2936f746237469675fac
+        dimensions:
+        - 1254
+        - 1254
+        bytes: 508614
+        tool_returned_at: '2026-11-09T21:26:43.857Z'
+        prompt_sha256: 5e2ef9e72170d47e56b6f2f0533c213c430087236a5bf50dd4feaa546515dd88
+        fingerprint: e3a8115ec370984c
+        account:
+          owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+          kind: chatgpt-plan
+        manual_review:
+          verdict: pass
+          note: Both show one low green notched oval lily pad with a small pink lotus
+            and honey centre, with no water or extra objects.
+          receipt_catalog_sha256: 421c03b846f943682ac4a40dac8db724f31eeef53cd0ed5a9a8f8d0543ae02be
+        qa_status: warn
+        qa_summary: light_values warn; light_contrast warn; harmony warn
+        qa_checks_at_pick:
+          status: warn
+          checks:
+          - check: transparency
+            status: pass
+            message: source has an alpha channel
+          - check: canvas
+            status: pass
+            message: 1254x1254 scaled x0.817 into 1024x1024
+            value: 0.8166
+          - check: chroma_ceiling
+            status: pass
+            message: chroma p95 25 (R1 51)
+            value: 25.3
+          - check: light_values
+            status: warn
+            message: 'day/subject: L p5 66 (at least 50: darks stay a light mid-tone),
+              p98 90 (at least 90)'
+            value: 66.0
+          - check: light_median
+            status: pass
+            message: 'day/subject: median L 80 (band 74-92)'
+            value: 80.0
+          - check: light_contrast
+            status: warn
+            message: 'day/subject: p75 local contrast 1.1 (band 2.5-6.5; above it
+              reads too contrasty) (warn-only until the founder has seen the light
+              pilot)'
+            value: 1.06
+          - check: detail_budget
+            status: pass
+            message: detail at display size 0.7 (R1 5.3)
+            value: 0.69
+          - check: lock_load
+            status: pass
+            message: the lock moved colors by mean dE 1.0
+            value: 0.952
+          - check: no_guide_magenta
+            status: pass
+            message: 0 guide-magenta pixels (per 1024^2)
+            value: 0.0
+          - check: palette_drift
+            status: pass
+            message: mean dE 1.2, p95 2.1, off-palette 0.0%
+            value: 1.2197
+          - check: harmony
+            status: warn
+            message: 'harmony score 60 against the world reference (outliers: C_p95,
+              edge)'
+            value: 60.0

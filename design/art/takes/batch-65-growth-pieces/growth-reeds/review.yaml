@@ -22,3 +22,117 @@ jobs:
         qa: warn
         summary: light_values warn; light_median warn; light_contrast warn; harmony
           warn
+    source_evidence:
+      selection_method: QA autopick among the recorded takes; human content review
+        is listed per take below.
+      pick: none
+      manual_review_receipt_sha256: 59e40fe0889f191d121757a86ced66a3c0a0279b1f01f4b2ec065dbaf652d231
+      takes:
+      - take: t1
+        round: 1
+        take_ordinal: 1
+        source_receipt_file: source-growth-reeds-t1.json
+        source_receipt_sha256: 0c8e22b7f3f6a795ff08b4f5626eefa02bb6c8008b822027414acbdbd00d3a34
+        source_file: exec-fe050945-5d51-4809-9edc-879afebf6cff.png
+        source_png_sha256: e9063b63160a33f239cf9bb4b73d896d937c193257e1cc5642af6706afb9fac3
+        rgba_sha256: 13a8aaaa78b8d1008c12ff9e23a8abad8c84c81a470fcde662abf23f1e994d20
+        dimensions:
+        - 1254
+        - 1254
+        bytes: 436335
+        tool_returned_at: '2026-11-09T21:30:16.990Z'
+        prompt_sha256: c5d1f9a8bc9ae47c681a95d8e9c42cedd207a99acbceaf82cd3ce987da8062be
+        fingerprint: f27159783c17f0e2
+        account:
+          owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+          kind: chatgpt-plan
+        manual_review:
+          verdict: fail
+          note: 'All four takes show three separate stalks: two cattail stalks plus
+            one bare central stalk. Leaves do not count as a fourth stalk; skipped
+            after the one allowed retry.'
+          receipt_catalog_sha256: 0c8e22b7f3f6a795ff08b4f5626eefa02bb6c8008b822027414acbdbd00d3a34
+        qa_status: warn
+        qa_summary: light_values warn; light_median warn; light_contrast warn; harmony
+          warn
+      - take: t2
+        round: 1
+        take_ordinal: 2
+        source_receipt_file: source-growth-reeds-t2.json
+        source_receipt_sha256: a67471bcd0850c2493b105cd08928e7b9521906a33680a3a7504d8464758a93b
+        source_file: exec-145e4571-e1c5-4220-977d-57fbdf243016.png
+        source_png_sha256: c28ae44b733f511d0162396d59bb0bb14ce7d9e71cefcd7221fa7e34e4aaef42
+        rgba_sha256: af7136e582293131096c21f0b9fd107b1cb86e1a6a3710f12853295b0e69cde4
+        dimensions:
+        - 1254
+        - 1254
+        bytes: 427353
+        tool_returned_at: '2026-11-09T21:28:42.069Z'
+        prompt_sha256: c5d1f9a8bc9ae47c681a95d8e9c42cedd207a99acbceaf82cd3ce987da8062be
+        fingerprint: f27159783c17f0e2
+        account:
+          owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+          kind: chatgpt-plan
+        manual_review:
+          verdict: fail
+          note: 'All four takes show three separate stalks: two cattail stalks plus
+            one bare central stalk. Leaves do not count as a fourth stalk; skipped
+            after the one allowed retry.'
+          receipt_catalog_sha256: a67471bcd0850c2493b105cd08928e7b9521906a33680a3a7504d8464758a93b
+        qa_status: warn
+        qa_summary: light_values warn; light_median warn; light_contrast warn; harmony
+          warn
+      - take: t3
+        round: 2
+        take_ordinal: 3
+        source_receipt_file: source-growth-reeds-t3.json
+        source_receipt_sha256: 3e5a6e8a9997f9b3241e009e20dc17ee5306cf065dcc3b398e674e68c7f78b58
+        source_file: exec-c1f32453-4d71-4f67-90e3-ceaf442c9a21.png
+        source_png_sha256: 789eb3c7f4d2622192ff0b98c13648e8b1750b1b97924d63f8c8970d022a69fd
+        rgba_sha256: a7cf6b0e93540b1e582bcb2b38aee883cf2f8af8bf748ddfd5d0e94ca2632b0b
+        dimensions:
+        - 1254
+        - 1254
+        bytes: 506077
+        tool_returned_at: '2026-11-09T21:35:18.198Z'
+        prompt_sha256: c5d1f9a8bc9ae47c681a95d8e9c42cedd207a99acbceaf82cd3ce987da8062be
+        fingerprint: f27159783c17f0e2
+        account:
+          owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+          kind: chatgpt-plan
+        manual_review:
+          verdict: fail
+          note: 'All four takes show three separate stalks: two cattail stalks plus
+            one bare central stalk. Leaves do not count as a fourth stalk; skipped
+            after the one allowed retry.'
+          receipt_catalog_sha256: 3e5a6e8a9997f9b3241e009e20dc17ee5306cf065dcc3b398e674e68c7f78b58
+        qa_status: warn
+        qa_summary: light_values warn; light_median warn; light_contrast warn; harmony
+          warn
+      - take: t4
+        round: 2
+        take_ordinal: 4
+        source_receipt_file: source-growth-reeds-t4.json
+        source_receipt_sha256: 3934ad5463e4c02ba845a0da69bc6c1d34b25b3d1733a981a10b5b8e4fe902c9
+        source_file: exec-284102c0-5c6d-4b68-bc15-841058acbe62.png
+        source_png_sha256: 0a176f9db70bb0581ebe7a034a0670c10d69941b13c22280c2f1d8d44a8d8f24
+        rgba_sha256: b8dfa43030140449b53340b3d893202f60b56f52e8aba24c824c21dddeecdaa8
+        dimensions:
+        - 1254
+        - 1254
+        bytes: 460569
+        tool_returned_at: '2026-11-09T21:36:03.094Z'
+        prompt_sha256: c5d1f9a8bc9ae47c681a95d8e9c42cedd207a99acbceaf82cd3ce987da8062be
+        fingerprint: f27159783c17f0e2
+        account:
+          owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+          kind: chatgpt-plan
+        manual_review:
+          verdict: fail
+          note: 'All four takes show three separate stalks: two cattail stalks plus
+            one bare central stalk. Leaves do not count as a fourth stalk; skipped
+            after the one allowed retry.'
+          receipt_catalog_sha256: 3934ad5463e4c02ba845a0da69bc6c1d34b25b3d1733a981a10b5b8e4fe902c9
+        qa_status: warn
+        qa_summary: light_values warn; light_median warn; light_contrast warn; harmony
+          warn

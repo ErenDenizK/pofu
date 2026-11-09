@@ -67,3 +67,12 @@ Output: one image, transparent background PNG, square 1024 x 1024.
 - pass: no_guide_magenta (0 guide-magenta pixels (per 1024^2))
 - pass: palette_drift (mean dE 1.0, p95 2.1, off-palette 0.0%)
 - warn: harmony (harmony score 62 against the world reference (outliers: C_p95, edge))
+
+## Exact image-source receipt
+
+- **Source receipt:** `source-growth-hilltop-t2.json` (SHA-256 `69c3a40d8f30a8e891a8ef032349747c6311d808aa982c729211dc0baffbd171`).
+- **Original image file:** `exec-d1c4ddb7-d2a1-48d9-a44a-7f7a571523fe.png`; PNG SHA-256 `5f5038aab4ea930a47d9f1dd668993cd727159b0d4e02f7009f391bed4782aa4`; RGBA-pixel SHA-256 `245ae450eb0acfb07e980780f0f3e73f6d5e36d1f546ec8200a6b6af622b4b1b`; dimensions `1254x1254`; 847649 bytes.
+- **Image tool returned:** `2026-11-09T21:36:53.252Z`; take ordinal `2`, round `1`.
+- **Prompt binding:** SHA-256 `dc6e07ac52b04f4ee648cda24d252a44bd0586b8fb09d106afa404684284dbfe`; fingerprint `9c59b70a53d7426d`.
+- **Generating account:** Founder's uncle's ChatGPT plan, used by the founder with permission (`chatgpt-plan`).
+- `meta.json` `generation.generated_at` records pipeline import/ingest time, not tool-return time; the exact tool-return time above comes from the preserved source receipt.

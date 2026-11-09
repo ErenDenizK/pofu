@@ -18,3 +18,109 @@ jobs:
       t4:
         qa: warn
         summary: light_contrast warn
+    source_evidence:
+      selection_method: QA autopick among the recorded takes; human content review
+        is listed per take below.
+      pick: none
+      manual_review_receipt_sha256: 59e40fe0889f191d121757a86ced66a3c0a0279b1f01f4b2ec065dbaf652d231
+      takes:
+      - take: t1
+        round: 1
+        take_ordinal: 1
+        source_receipt_file: source-growth-steam-t1.json
+        source_receipt_sha256: 54e7fd5017df1fc78d89061cc7987a3772dc5001f6100088c93fda3fc97366ee
+        source_file: exec-bb08a3fe-6522-4a1c-b63c-94cec0277c05.png
+        source_png_sha256: b523dc778d714ade2fd4de324632c692f325eaec3fb59999b25a820f41b6abd3
+        rgba_sha256: 3b04544055fa01614a69acc2797f47f2c2bb95195697e5ef23c1c062785a04c5
+        dimensions:
+        - 1254
+        - 1254
+        bytes: 948196
+        tool_returned_at: '2026-11-09T21:22:11.231Z'
+        prompt_sha256: 5935afe13638d4cf540f0093297a4d2fb16ff4e8237d217a84899ddf91e2287d
+        fingerprint: 338489671ba6d39b
+        account:
+          owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+          kind: chatgpt-plan
+        manual_review:
+          verdict: fail
+          note: All four takes depict a cottage or teapot/teapot stack instead of
+            the requested steam-only plume; skipped after the one allowed retry.
+          receipt_catalog_sha256: 54e7fd5017df1fc78d89061cc7987a3772dc5001f6100088c93fda3fc97366ee
+        qa_status: warn
+        qa_summary: light_contrast warn
+      - take: t2
+        round: 1
+        take_ordinal: 2
+        source_receipt_file: source-growth-steam-t2.json
+        source_receipt_sha256: d437b140cc83dbdc0c742f9681c4ad5de8e50b7e71d6b5381769f0739cb4eb2b
+        source_file: exec-263c998a-e3f8-4aeb-acce-1b068670804b.png
+        source_png_sha256: dad4738ce002cda5349431ab664d55831a7b02cebbb80820002321f559c84e8b
+        rgba_sha256: 66f8db10fed89af547f76fcd13de84d4d1574b0f191f2a9d5d5023eff2b16e8c
+        dimensions:
+        - 1254
+        - 1254
+        bytes: 740803
+        tool_returned_at: '2026-11-09T21:21:20.809Z'
+        prompt_sha256: 5935afe13638d4cf540f0093297a4d2fb16ff4e8237d217a84899ddf91e2287d
+        fingerprint: 338489671ba6d39b
+        account:
+          owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+          kind: chatgpt-plan
+        manual_review:
+          verdict: fail
+          note: All four takes depict a cottage or teapot/teapot stack instead of
+            the requested steam-only plume; skipped after the one allowed retry.
+          receipt_catalog_sha256: d437b140cc83dbdc0c742f9681c4ad5de8e50b7e71d6b5381769f0739cb4eb2b
+        qa_status: warn
+        qa_summary: light_contrast warn; harmony warn
+      - take: t3
+        round: 2
+        take_ordinal: 3
+        source_receipt_file: source-growth-steam-t3.json
+        source_receipt_sha256: 5d1a2b81345cf66699a7c239f62384c9c1ebf585e75c188df43710f935feb2e6
+        source_file: exec-fc9aaefd-c9f3-4656-9dbb-029751e28ad7.png
+        source_png_sha256: e7c8660290f479c3ebcb7c3b97add23ee5059c25af11de5c4cc2e36fdf5c306a
+        rgba_sha256: 6a5fc196898c1b908bcad2e62311b739c07b3187e9206b4f29ab5e07354befb1
+        dimensions:
+        - 1254
+        - 1254
+        bytes: 688124
+        tool_returned_at: '2026-11-09T21:27:29.534Z'
+        prompt_sha256: 5935afe13638d4cf540f0093297a4d2fb16ff4e8237d217a84899ddf91e2287d
+        fingerprint: 338489671ba6d39b
+        account:
+          owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+          kind: chatgpt-plan
+        manual_review:
+          verdict: fail
+          note: All four takes depict a cottage or teapot/teapot stack instead of
+            the requested steam-only plume; skipped after the one allowed retry.
+          receipt_catalog_sha256: 5d1a2b81345cf66699a7c239f62384c9c1ebf585e75c188df43710f935feb2e6
+        qa_status: warn
+        qa_summary: light_contrast warn; harmony warn
+      - take: t4
+        round: 2
+        take_ordinal: 4
+        source_receipt_file: source-growth-steam-t4.json
+        source_receipt_sha256: e31eed7cc5a6a0c80d0910d7728aa4b38aed1a212e91262d0acbe7209e92cc26
+        source_file: exec-9140e966-6244-49cb-b4d4-e0206eeafdbc.png
+        source_png_sha256: 2f009cfeeb4b7932e382bfebfa3283dafc892a324c5c78c8b37f8d27ab1496c1
+        rgba_sha256: 464961be7926520e8f44b481aad8185071e123b990cbc160c08fef97490592c3
+        dimensions:
+        - 1254
+        - 1254
+        bytes: 858053
+        tool_returned_at: '2026-11-09T21:23:37.140Z'
+        prompt_sha256: 5935afe13638d4cf540f0093297a4d2fb16ff4e8237d217a84899ddf91e2287d
+        fingerprint: 338489671ba6d39b
+        account:
+          owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+          kind: chatgpt-plan
+        manual_review:
+          verdict: fail
+          note: All four takes depict a cottage or teapot/teapot stack instead of
+            the requested steam-only plume; skipped after the one allowed retry.
+          receipt_catalog_sha256: e31eed7cc5a6a0c80d0910d7728aa4b38aed1a212e91262d0acbe7209e92cc26
+        qa_status: warn
+        qa_summary: light_contrast warn

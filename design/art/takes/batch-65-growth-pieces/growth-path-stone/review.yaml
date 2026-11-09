@@ -14,3 +14,113 @@ jobs:
     approved:
       take: 2
       at: '2026-11-09T21:19:52+00:00'
+    source_evidence:
+      selection_method: QA autopick among the recorded takes; human content review
+        is listed per take below.
+      pick: 2
+      manual_review_receipt_sha256: 59e40fe0889f191d121757a86ced66a3c0a0279b1f01f4b2ec065dbaf652d231
+      takes:
+      - take: t1
+        round: 1
+        take_ordinal: 1
+        source_receipt_file: source-growth-path-stone-t1.json
+        source_receipt_sha256: a7bd419acd34a69ed78a755ea972f6b9d5d64b75f5540d0e09eebbc52a3e3ed0
+        source_file: exec-68f69876-4842-48d7-9d99-53f3c7bc4769.png
+        source_png_sha256: 5c6b2fb12c61a308578ac8f3ef34b88d0271e0b2992515283a0e558dba6d6f54
+        rgba_sha256: a682ed4a2e956eb6b4f360c50fd0c4f43087b8761401f9bb1189d8b997f9d414
+        dimensions:
+        - 1254
+        - 1254
+        bytes: 209766
+        tool_returned_at: '2026-11-09T21:12:18.225Z'
+        prompt_sha256: 119dd61dcae139c540b2b84e2bb1cf49af3c0dadbd8262d8e7b51c3fa414b0bd
+        fingerprint: 20352b454fd29ad7
+        account:
+          owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+          kind: chatgpt-plan
+        manual_review:
+          verdict: pass
+          note: Both are single flat warm-cream stones with a grass tuft and no extra
+            background, cast shadow, text or border. The manifest brief contradicts
+            its AVOID line about the requested path stone and tuft; prompt preserved
+            as authored.
+          receipt_catalog_sha256: a7bd419acd34a69ed78a755ea972f6b9d5d64b75f5540d0e09eebbc52a3e3ed0
+        qa_status: warn
+        qa_summary: light_contrast warn; harmony warn
+      - take: t2
+        round: 1
+        take_ordinal: 2
+        source_receipt_file: source-growth-path-stone-t2.json
+        source_receipt_sha256: a8f7958cffb8cf31b8042e08b148ed518925b4878917a6e1e9278dc65cc60520
+        source_file: exec-b4352aef-7950-4a19-a086-e593e44725cf.png
+        source_png_sha256: 2bb7000146d36aff48a66b10b356162c51770e567fe1dcc9049481c7b3fb0aff
+        rgba_sha256: 62d490b45e9bec21f22a7a39d0ad07d9ec092ec1fa4903483a9f350a1a954f29
+        dimensions:
+        - 1254
+        - 1254
+        bytes: 435233
+        tool_returned_at: '2026-11-09T21:14:30.273Z'
+        prompt_sha256: 119dd61dcae139c540b2b84e2bb1cf49af3c0dadbd8262d8e7b51c3fa414b0bd
+        fingerprint: 20352b454fd29ad7
+        account:
+          owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+          kind: chatgpt-plan
+        manual_review:
+          verdict: pass
+          note: Both are single flat warm-cream stones with a grass tuft and no extra
+            background, cast shadow, text or border. The manifest brief contradicts
+            its AVOID line about the requested path stone and tuft; prompt preserved
+            as authored.
+          receipt_catalog_sha256: a8f7958cffb8cf31b8042e08b148ed518925b4878917a6e1e9278dc65cc60520
+        qa_status: warn
+        qa_summary: light_contrast warn; harmony warn
+        qa_checks_at_pick:
+          status: warn
+          checks:
+          - check: transparency
+            status: pass
+            message: source has an alpha channel
+          - check: canvas
+            status: pass
+            message: 1254x1254 scaled x0.817 into 1024x1024
+            value: 0.8166
+          - check: chroma_ceiling
+            status: pass
+            message: chroma p95 29 (R1 51)
+            value: 28.6
+          - check: light_values
+            status: pass
+            message: 'day/subject: L p5 71 (at least 50: darks stay a light mid-tone),
+              p98 94 (at least 90)'
+            value: 70.7
+          - check: light_median
+            status: pass
+            message: 'day/subject: median L 87 (band 74-92)'
+            value: 86.9
+          - check: light_contrast
+            status: warn
+            message: 'day/subject: p75 local contrast 0.7 (band 2.5-6.5; above it
+              reads too contrasty) (warn-only until the founder has seen the light
+              pilot)'
+            value: 0.68
+          - check: detail_budget
+            status: pass
+            message: detail at display size 0.6 (R1 5.3)
+            value: 0.59
+          - check: lock_load
+            status: pass
+            message: the lock moved colors by mean dE 0.3
+            value: 0.2945
+          - check: no_guide_magenta
+            status: pass
+            message: 0 guide-magenta pixels (per 1024^2)
+            value: 0.0
+          - check: palette_drift
+            status: pass
+            message: mean dE 0.7, p95 1.5, off-palette 0.0%
+            value: 0.6773
+          - check: harmony
+            status: warn
+            message: 'harmony score 62 against the world reference (outliers: C_p95,
+              L_p2, edge)'
+            value: 61.7

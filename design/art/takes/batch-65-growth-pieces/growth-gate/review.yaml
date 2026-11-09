@@ -14,3 +14,109 @@ jobs:
     approved:
       take: 2
       at: '2026-11-09T21:41:44+00:00'
+    source_evidence:
+      selection_method: QA autopick among the recorded takes; human content review
+        is listed per take below.
+      pick: 2
+      manual_review_receipt_sha256: 59e40fe0889f191d121757a86ced66a3c0a0279b1f01f4b2ec065dbaf652d231
+      takes:
+      - take: t1
+        round: 1
+        take_ordinal: 1
+        source_receipt_file: source-growth-gate-t1.json
+        source_receipt_sha256: 7477450e2970fe4954e56da793792582118fb30e5c32de6a481adc8abf3b4a73
+        source_file: exec-336f0ae4-538e-4812-a58c-16ec90ac73a8.png
+        source_png_sha256: 0e2e80a82b9480b7b4407d612a3c8a5a942aab54533b69aed2a5cb0a1dc4f8fc
+        rgba_sha256: 952c03d05b4653f7ac2e04092589b804fc8098c9907e519b0fddec57e99e0069
+        dimensions:
+        - 1254
+        - 1254
+        bytes: 1141152
+        tool_returned_at: '2026-11-09T21:37:42.371Z'
+        prompt_sha256: c972c58373a7f133d86ba091552378d896287c7376a5e982f7807e6b462dd654
+        fingerprint: 32622831a261cfdd
+        account:
+          owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+          kind: chatgpt-plan
+        manual_review:
+          verdict: pass
+          note: Both show a closed honey-wood double gate in a pale sandstone arch
+            with a sunflower above it, grass/stone details and no light seam.
+          receipt_catalog_sha256: 7477450e2970fe4954e56da793792582118fb30e5c32de6a481adc8abf3b4a73
+        qa_status: warn
+        qa_summary: light_contrast warn; harmony warn
+      - take: t2
+        round: 1
+        take_ordinal: 2
+        source_receipt_file: source-growth-gate-t2.json
+        source_receipt_sha256: 1bbc373c46754a809f1e48f7ed30fe7f358de580351806af1002679a53a67e6b
+        source_file: exec-0bcab64a-38f8-4f94-92b1-a030972630fd.png
+        source_png_sha256: d032b861977340f1784b65c1ca62fec97139054b307aa4d4dbc118e32ce8ddd7
+        rgba_sha256: 976252208000954e99b9cf93afb0a6b9f28a0112d8eb334918afe0df2fde2c6a
+        dimensions:
+        - 1254
+        - 1254
+        bytes: 1211784
+        tool_returned_at: '2026-11-09T21:39:27.435Z'
+        prompt_sha256: c972c58373a7f133d86ba091552378d896287c7376a5e982f7807e6b462dd654
+        fingerprint: 32622831a261cfdd
+        account:
+          owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+          kind: chatgpt-plan
+        manual_review:
+          verdict: pass
+          note: Both show a closed honey-wood double gate in a pale sandstone arch
+            with a sunflower above it, grass/stone details and no light seam.
+          receipt_catalog_sha256: 1bbc373c46754a809f1e48f7ed30fe7f358de580351806af1002679a53a67e6b
+        qa_status: warn
+        qa_summary: light_contrast warn
+        qa_checks_at_pick:
+          status: warn
+          checks:
+          - check: transparency
+            status: pass
+            message: source has an alpha channel
+          - check: canvas
+            status: pass
+            message: 1254x1254 scaled x0.817 into 1024x1024
+            value: 0.8166
+          - check: chroma_ceiling
+            status: pass
+            message: chroma p95 31 (R1 51)
+            value: 31.4
+          - check: light_values
+            status: pass
+            message: 'day/subject: L p5 66 (at least 50: darks stay a light mid-tone),
+              p98 93 (at least 90)'
+            value: 66.0
+          - check: light_median
+            status: pass
+            message: 'day/subject: median L 78 (band 74-92)'
+            value: 78.5
+          - check: light_contrast
+            status: warn
+            message: 'day/subject: p75 local contrast 1.5 (band 2.5-6.5; above it
+              reads too contrasty) (warn-only until the founder has seen the light
+              pilot)'
+            value: 1.47
+          - check: detail_budget
+            status: pass
+            message: detail at display size 1.1 (R1 5.3)
+            value: 1.11
+          - check: lock_load
+            status: pass
+            message: the lock moved colors by mean dE 0.4
+            value: 0.4424
+          - check: no_guide_magenta
+            status: pass
+            message: 0 guide-magenta pixels (per 1024^2)
+            value: 0.0
+          - check: palette_drift
+            status: pass
+            message: mean dE 0.9, p95 2.0, off-palette 0.0%
+            value: 0.921
+          - check: harmony
+            status: pass
+            message: 'harmony score 73 against the world reference (outliers: C_p95,
+              edge)'
+            value: 72.8

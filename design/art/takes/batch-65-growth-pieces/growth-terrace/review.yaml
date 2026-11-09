@@ -14,3 +14,109 @@ jobs:
     approved:
       take: 2
       at: '2026-11-09T21:37:25+00:00'
+    source_evidence:
+      selection_method: QA autopick among the recorded takes; human content review
+        is listed per take below.
+      pick: 2
+      manual_review_receipt_sha256: 59e40fe0889f191d121757a86ced66a3c0a0279b1f01f4b2ec065dbaf652d231
+      takes:
+      - take: t1
+        round: 1
+        take_ordinal: 1
+        source_receipt_file: source-growth-terrace-t1.json
+        source_receipt_sha256: 1f29302e1ae298ec736d5a2d356613c4b24b1d260c41686ccad982848383da2f
+        source_file: exec-211b3280-af5b-43cc-a604-a21d8af6a459.png
+        source_png_sha256: e7811a76f3bf6f2fe4b891db9c51d1b7451c04218b14cc491870f95fb5d3d0f3
+        rgba_sha256: 7356087091a9f80e93894eb23678dde317206cd6f5db62c2871f499a8abf8fc9
+        dimensions:
+        - 1254
+        - 1254
+        bytes: 399588
+        tool_returned_at: '2026-11-09T21:32:25.423Z'
+        prompt_sha256: 2e780c37fbb64ad13be7b6dbce2b9503f987d065ad7b105a668e174931872e7d
+        fingerprint: b278093c63830272
+        account:
+          owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+          kind: chatgpt-plan
+        manual_review:
+          verdict: pass
+          note: Both show one long low grass bank with an earth face, rim stones and
+            roots, with no extra objects.
+          receipt_catalog_sha256: 1f29302e1ae298ec736d5a2d356613c4b24b1d260c41686ccad982848383da2f
+        qa_status: warn
+        qa_summary: light_contrast warn; harmony warn
+      - take: t2
+        round: 1
+        take_ordinal: 2
+        source_receipt_file: source-growth-terrace-t2.json
+        source_receipt_sha256: 41195cc9ed8fb468941e484b8e6bed386427254db624bf65022a4dbe539236ff
+        source_file: exec-5c1a10d2-b461-4363-852a-2eaa3df59bc2.png
+        source_png_sha256: e3ad12f58d2bbef3360b0d961107ab841bd2a09eba29682186b745d6513eee58
+        rgba_sha256: e3cb9909f0b346fee21b058011a0a742e00c111a4a305f8c75d4c6e23c57960e
+        dimensions:
+        - 1254
+        - 1254
+        bytes: 573762
+        tool_returned_at: '2026-11-09T21:30:59.952Z'
+        prompt_sha256: 2e780c37fbb64ad13be7b6dbce2b9503f987d065ad7b105a668e174931872e7d
+        fingerprint: b278093c63830272
+        account:
+          owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+          kind: chatgpt-plan
+        manual_review:
+          verdict: pass
+          note: Both show one long low grass bank with an earth face, rim stones and
+            roots, with no extra objects.
+          receipt_catalog_sha256: 41195cc9ed8fb468941e484b8e6bed386427254db624bf65022a4dbe539236ff
+        qa_status: warn
+        qa_summary: light_contrast warn; harmony warn
+        qa_checks_at_pick:
+          status: warn
+          checks:
+          - check: transparency
+            status: pass
+            message: source has an alpha channel
+          - check: canvas
+            status: pass
+            message: 1254x1254 scaled x0.817 into 1024x1024
+            value: 0.8166
+          - check: chroma_ceiling
+            status: pass
+            message: chroma p95 23 (R1 51)
+            value: 22.7
+          - check: light_values
+            status: pass
+            message: 'day/subject: L p5 68 (at least 50: darks stay a light mid-tone),
+              p98 91 (at least 90)'
+            value: 67.7
+          - check: light_median
+            status: pass
+            message: 'day/subject: median L 82 (band 74-92)'
+            value: 81.8
+          - check: light_contrast
+            status: warn
+            message: 'day/subject: p75 local contrast 1.8 (band 2.5-6.5; above it
+              reads too contrasty) (warn-only until the founder has seen the light
+              pilot)'
+            value: 1.77
+          - check: detail_budget
+            status: pass
+            message: detail at display size 0.9 (R1 5.3)
+            value: 0.88
+          - check: lock_load
+            status: pass
+            message: the lock moved colors by mean dE 0.4
+            value: 0.435
+          - check: no_guide_magenta
+            status: pass
+            message: 0 guide-magenta pixels (per 1024^2)
+            value: 0.0
+          - check: palette_drift
+            status: pass
+            message: mean dE 0.9, p95 1.8, off-palette 0.0%
+            value: 0.8727
+          - check: harmony
+            status: warn
+            message: 'harmony score 62 against the world reference (outliers: C_p95,
+              L_p2, edge)'
+            value: 62.0
