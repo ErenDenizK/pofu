@@ -1,0 +1,277 @@
+batch: batch-66-home-flow
+manifest: tools/imagegen/manifest/batch-66-home-flow.yaml
+manifest_sha256: 793c1f4466dd40e8eb3204e30b880232611ca4c9c30d1859df1302d956ae6a32
+contact_sheet: design/art/takes/batch-66-home-flow/x-home-flow-final/contact.jpg
+jobs:
+  x-home-flow-final:
+    pick: null
+    publication: exploration; never promoted
+    note: Take 1 has no bagel cart on the harbor islet. Take 2 includes the bagel cart, but the harbor islet adds
+      an unintended raised second lawn tier beyond the simple guide. Both show the four doors in the correct row,
+      no characters and no text. Neither has been selected; lead review is pending. Publish both exploration takes
+      for review; never promote.
+qa_reports:
+  1:
+    job: x-home-flow-final
+    take: 1
+    status: warn
+    preset: plate-final
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 48 (R1 51)
+      value: 48.0
+    - check: light_values
+      status: pass
+      message: 'day/subject: L p5 61 (at least 50: darks stay a light mid-tone), p98 97 (at least 90)'
+      value: 61.2
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 83 (band 74-92)'
+      value: 83.3
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 6.9 (band 2.5-6.5; above it reads too contrasty)'
+      value: 6.9
+    - check: light_sky
+      status: pass
+      message: 'day: sky L 78 (band 70-94)'
+      value: 78.3
+    - check: light_sea
+      status: pass
+      message: 'day: cloud sea L 90 (at least 82: the sea is the reflector)'
+      value: 89.9
+    - check: light_dark
+      status: pass
+      message: 'day: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+      value: 0.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.4 (R1 5.3)
+      value: 4.37
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 4.3, p95 12.9, off-palette 6.8% (top: #88BBFF (4.2%), #99BBFF (1.9%))'
+      value: 4.3207
+    info:
+      metrics_raw:
+        L_p5: 65.6
+        L_p50: 83.1
+        L_p95: 95.1
+        C_p50: 24.0
+        C_p95: 48.0
+        C_p99: 56.8
+        detail: 4.37
+      metrics_locked:
+        L_p5: 65.6
+        L_p50: 83.1
+        L_p95: 95.1
+        C_p50: 24.0
+        C_p95: 48.0
+        C_p99: 56.8
+        detail: 4.37
+    fingerprint: 9bbcba00a8693382
+  2:
+    job: x-home-flow-final
+    take: 2
+    status: warn
+    preset: plate-final
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 46 (R1 51)
+      value: 46.1
+    - check: light_values
+      status: pass
+      message: 'day/subject: L p5 61 (at least 50: darks stay a light mid-tone), p98 96 (at least 90)'
+      value: 61.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 84 (band 74-92)'
+      value: 84.1
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 6.8 (band 2.5-6.5; above it reads too contrasty)'
+      value: 6.76
+    - check: light_sky
+      status: pass
+      message: 'day: sky L 78 (band 70-94)'
+      value: 77.9
+    - check: light_sea
+      status: pass
+      message: 'day: cloud sea L 90 (at least 82: the sea is the reflector)'
+      value: 89.9
+    - check: light_dark
+      status: pass
+      message: 'day: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+      value: 0.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.4 (R1 5.3)
+      value: 4.36
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 4.0, p95 12.7, off-palette 6.0% (top: #88BBFF (4.2%), #99BBFF (1.2%))'
+      value: 4.0272
+    info:
+      metrics_raw:
+        L_p5: 65.8
+        L_p50: 84.0
+        L_p95: 94.8
+        C_p50: 22.0
+        C_p95: 46.1
+        C_p99: 54.3
+        detail: 4.36
+      metrics_locked:
+        L_p5: 65.8
+        L_p50: 84.0
+        L_p95: 94.8
+        C_p50: 22.0
+        C_p95: 46.1
+        C_p99: 54.3
+        detail: 4.36
+    fingerprint: 9bbcba00a8693382
+manual_review:
+  observed_note: Take 1 has no bagel cart on the harbor islet. Take 2 includes the bagel cart, but the harbor islet
+    adds an unintended raised second lawn tier beyond the simple guide. Both show the four doors in the correct
+    row, no characters and no text. Neither has been selected; lead review is pending. Publish both exploration
+    takes for review; never promote.
+  selection: pending lead review; no take selected
+sources:
+- batch: batch-66-home-flow
+  job: x-home-flow-final
+  take: 1
+  round: 1
+  logical_run: 20261109-phase1
+  source_file: /workspace/generated_images/exec-b46e2cfb-e1a8-406b-b19f-1145cdd3cb03.png
+  returned_at: '2026-11-09T14:42:21.169Z'
+  prompt_sha256: a95de2ba02001982bec5abfb545270257dadcda35bdd418d9a0ea9f2bf7cd105
+  fingerprint: 9bbcba00a8693382
+  saved_at: '2026-11-09T14:42:21.169Z'
+  original_generated_png_sha256: 1b9641b1cd363bb3cb85088db65358fb230a8f0a5933815b05d3e954843d8cc4
+  dimensions:
+  - 1024
+  - 1536
+  rgba_sha256: f83728e1029b0f34fed33effe42c90c5101334e0886c2ae439cfdb6d2327df9f
+  inbox_png_sha256: 91c52f8434bee3c084819784c480d94977a6ce84deae0c73920feda0e8515520
+  qa_sha256: 69ecae870c3b25d5af99ec64e18b5dc7bcf103e75946b85d61df0043fa5c7634
+  q90_take: design/art/takes/batch-66-home-flow/x-home-flow-final/plate__x-home-flow-final--t1.webp
+  q90_take_sha256: f002904867836d7eb3ea6e0e86ab547bcb0448120d1712f2c78561843b75047f
+- batch: batch-66-home-flow
+  job: x-home-flow-final
+  take: 2
+  round: 1
+  logical_run: 20261109-phase1
+  source_file: /workspace/generated_images/exec-4127f3b4-2660-4309-ad09-5576bb247e00.png
+  returned_at: '2026-11-09T14:43:44.619Z'
+  prompt_sha256: a95de2ba02001982bec5abfb545270257dadcda35bdd418d9a0ea9f2bf7cd105
+  fingerprint: 9bbcba00a8693382
+  saved_at: '2026-11-09T14:43:44.619Z'
+  original_generated_png_sha256: efee81043cfc9cca63707b300d0a93ca37efaafe4922dfc244704ec462888b19
+  dimensions:
+  - 1024
+  - 1536
+  rgba_sha256: 8dcf274f1ec7f423ddb111cc5dae4c4c20b90c9776fd9697d8ddf318160ebb50
+  inbox_png_sha256: a69a8d253dd9273f504619634f6061b76b95c7b0279b6278c567c29bd20a6162
+  qa_sha256: df0b3499d58a8c827727be1f4448bfa1448fd5bbb4f881ee42dd48ab93e60268
+  q90_take: design/art/takes/batch-66-home-flow/x-home-flow-final/plate__x-home-flow-final--t2.webp
+  q90_take_sha256: 4edb279cf51cf897d553b811f210b891f67a3671dad9c3d69596a7bfb0c1ab24
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: exploration warnings are advisory; hard checks unchanged
+  source_preservation: Original generated PNGs retained unchanged in /workspace/generated_images; q90 WebP review
+    copies published
+  plate_style: plate-final, no chroma clamp, value floor, detail blur, grade or filter
+reference_packaging:
+  reason: Tool attachment limit is five paths; canonical references 5, 6 and 7 were supplied as a labelled reference
+    contact sheet.
+  tool_attachment_order:
+  - path: design/art/templates/home-flow-guide.png
+    role: 'The composition guide for the whole picture: the home lawn (big magenta oval), the harbor islet''s lawn
+      (small magenta oval, right), the hilltop terrace (magenta oval, upper left), the rope bridge (grey bar), magenta
+      crosses where each building stands, small magenta rings where round doors sit in the earth, grey ovals in
+      the sky for the four far islands and the cloud-whale, the grey line where the cloud sea begins. Follow it
+      exactly, then remove every guide mark: no magenta, no grey lines, no ovals may remain.'
+    sha256: 610741e53cfac838668597ce0e576e85b34b21f6f04aeb2a4a405fd1628b06c3
+  - path: design/art/masters/island-main-l-v3/island-main-l-v3.webp
+    role: 'The home island plate: keep its exact outline, lawn shape, rounded earth body, round wooden door and
+      roots, at the size the guide gives it.'
+    sha256: f2e539ed4eb75131b0d90454c1b12dbfd8737935fe95e3564956ea967c5ffa29
+  - path: design/art/takes/batch-34-islands-in-game/x-home-tam-cicek/plate__x-home-tam-cicek--t4.webp
+    role: 'The chosen concept (the founder''s pick): the look, the finish and what each building looks like at full
+      bloom. Its layout is only approximate; where it differs, follow the guide.'
+    sha256: a3902a5b21ef8dd01836c8c9661df5c3f42c434ca69aa09dcef206552372ac62
+  - path: design/art/takes/batch-25-seasons/x-season-summer/plate__x-season-summer--t2.webp
+    role: 'The light and colour target: this exact clear summer day, its sky, lawn green, peach earth, soft shadows
+      and white cloud sea with a faint blue-lilac shade.'
+    sha256: c7bf23a0b6c2ef4c15e417e8d60ffdbf7813e7d3e20b34027715efa24b99af66
+  - path: design/art/takes/batch-66-home-flow/x-home-flow-final/reference-board-5-6-7.jpg
+    sha256: d2266c2d8945ee68afc647f4f5022e99d42f477cb51063b6163be70a7def6e01
+    transport_only_for_references:
+    - 5
+    - 6
+    - 7
+  original_board_durable_path: /workspace/art-operator-runtime/run-20261109-phase1/reference-board-5-6-7.png
+  original_board_sha256: 3a2385a91a6277aad76dcbdf514f734867fa48fdebb0b362d6e401edb08eb8a3
+  published_board: reference-board-5-6-7.jpg
+  published_board_sha256: d2266c2d8945ee68afc647f4f5022e99d42f477cb51063b6163be70a7def6e01
+  original_references:
+  - path: design/art/templates/home-flow-guide.png
+    sha256: 610741e53cfac838668597ce0e576e85b34b21f6f04aeb2a4a405fd1628b06c3
+    role: 'The composition guide for the whole picture: the home lawn (big magenta oval), the harbor islet''s lawn
+      (small magenta oval, right), the hilltop terrace (magenta oval, upper left), the rope bridge (grey bar), magenta
+      crosses where each building stands, small magenta rings where round doors sit in the earth, grey ovals in
+      the sky for the four far islands and the cloud-whale, the grey line where the cloud sea begins. Follow it
+      exactly, then remove every guide mark: no magenta, no grey lines, no ovals may remain.'
+  - path: design/art/masters/island-main-l-v3/island-main-l-v3.webp
+    sha256: f2e539ed4eb75131b0d90454c1b12dbfd8737935fe95e3564956ea967c5ffa29
+    role: 'The home island plate: keep its exact outline, lawn shape, rounded earth body, round wooden door and
+      roots, at the size the guide gives it.'
+  - path: design/art/takes/batch-34-islands-in-game/x-home-tam-cicek/plate__x-home-tam-cicek--t4.webp
+    sha256: a3902a5b21ef8dd01836c8c9661df5c3f42c434ca69aa09dcef206552372ac62
+    role: 'The chosen concept (the founder''s pick): the look, the finish and what each building looks like at full
+      bloom. Its layout is only approximate; where it differs, follow the guide.'
+  - path: design/art/takes/batch-25-seasons/x-season-summer/plate__x-season-summer--t2.webp
+    sha256: c7bf23a0b6c2ef4c15e417e8d60ffdbf7813e7d3e20b34027715efa24b99af66
+    role: 'The light and colour target: this exact clear summer day, its sky, lawn green, peach earth, soft shadows
+      and white cloud sea with a faint blue-lilac shade.'
+  - path: design/art/masters/harbor-island-s/harbor-island-s.webp
+    sha256: ecd09ecf0ac212c50dfb6795a426d88a3ba9302815ad52a8edc57de2d8ebd3e4
+    role: 'The harbor islet İskele: its shape and earth, smaller than the home island, on the right.'
+  - path: design/art/stations/tea-stall-5/tea-stall-5.png
+    sha256: c9a9f018b2dc6bcb1189f497f750dd98e80c69610c10ba3c71081d8b84d157b3
+    role: 'A finished station: every building is at this scale and finish.'
+  - path: design/art/takes/batch-22-gezgin-forms/x-gezgin-f2-side/plate__x-gezgin-f2-side--t2.webp
+    sha256: bce536e716cc150cc0b6d7d6358ad516ed9ac8f9655ade5937ad6073461b6e34
+    role: 'Gezgin, the cloud-whale, in her grown form: small and far in the sky, gentle face, a little garden with
+      a pool on her back.'
+  printed_prompt_unchanged: true
+  original_rgba_pixels_preserved: true
+  transport_note: 'Transport only: the fifth tool attachment is a numbered contact sheet representing authored references
+    5, 6 and 7. Canonical prompt text and all original reference files remain unchanged.'
+prompt_sha256: a95de2ba02001982bec5abfb545270257dadcda35bdd418d9a0ea9f2bf7cd105
+transport_prompt_sha256: 18b01d95ff251e097f044849401b542ebd95250fb69b04036778004c749bc911
+base_head: 20be6dc2eb7dff96a68108d336e8e0433b0e6d0c
