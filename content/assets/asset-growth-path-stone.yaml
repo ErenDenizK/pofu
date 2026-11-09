@@ -11,7 +11,8 @@ summary: >-
   tall, lying flat on the lawn, a soft lighter top and a slightly darker lower rim, a tiny
   tuft of grass at one edge. Seen from the home camera, ab…
 art:
-  images: []
+  images:
+  - design/art/masters/growth-path-stone/growth-path-stone.png
   jobs:
   - batch-65-growth-pieces:growth-path-stone
 sources:

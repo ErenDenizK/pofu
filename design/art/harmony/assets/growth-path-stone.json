@@ -1,0 +1,56 @@
+{
+ "after": {
+  "C_mean": 21.439,
+  "C_p50": 18.489,
+  "C_p95": 41.632,
+  "L_mean": 79.218,
+  "L_p2": 53.547,
+  "L_p98": 94.068,
+  "detail": 0.668,
+  "edge": 0.419,
+  "tint_a": 1.383,
+  "tint_b": 13.071,
+  "warmth_b": 19.661
+ },
+ "before": {
+  "C_mean": 14.789,
+  "C_p50": 12.751,
+  "C_p95": 28.712,
+  "L_mean": 84.406,
+  "L_p2": 67.637,
+  "L_p98": 94.171,
+  "detail": 0.572,
+  "edge": 0.419,
+  "tint_a": 4.901,
+  "tint_b": 10.955,
+  "warmth_b": 13.562
+ },
+ "chain": null,
+ "correction": {
+  "black": -14.09,
+  "ceiling": 0.0,
+  "chroma": 1.45,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "prop",
+ "matched_to": "world",
+ "outliers_after": [
+  "edge"
+ ],
+ "outliers_before": [
+  "C_p95",
+  "L_p2",
+  "edge"
+ ],
+ "ppu": 8.533,
+ "reference": false,
+ "score_after": 85.8,
+ "score_before": 61.7,
+ "shipped": false,
+ "source": "design/art/masters/growth-path-stone/growth-path-stone.png",
+ "source_sha": "a9346aa596d3fcdf"
+}
