@@ -1,0 +1,234 @@
+batch: batch-67-caglayan-flow
+manifest: tools/imagegen/manifest/batch-67-caglayan-flow.yaml
+manifest_sha256: ffc55e0c78e238b20487fa4e1f334beda97a0c907acdb3afa81227531768cf48
+prompt_sha256: d6e8dfd992ab5707e64057923caf152d0c9e8f44b34416c8e0820632b7305d99
+base_head: 20be6dc2eb7dff96a68108d336e8e0433b0e6d0c
+contact_sheet: design/art/takes/batch-67-caglayan-flow/x-caglayan-flow-4/contact.jpg
+jobs:
+  x-caglayan-flow-4:
+    pick: null
+    publication: exploration; never promoted
+    note: Take 1 contains the smoke curl; take 2 omits it. Both show three saucer pools, three leaf boats, the open
+      front pool and an empty seat, with no characters or text. The plate camera/depth looks deeper than the authored
+      guide by about one fifth of the island width, and pebbles appear on the body despite the home-island reference
+      instructing not to copy pebbles. These are composition warnings for lead review; no exact pixel-registration
+      pass is claimed. No take is selected and neither is promoted.
+qa_reports:
+  1:
+    job: x-caglayan-flow-4
+    take: 1
+    status: warn
+    preset: plate-final
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 72 (R1 51) (advisory in an exploration)
+      value: 72.1
+    - check: light_values
+      status: pass
+      message: 'day/subject: L p5 54 (at least 50: darks stay a light mid-tone), p98 95 (at least 90)'
+      value: 54.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 80 (band 74-92)'
+      value: 79.6
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 6.9 (band 2.5-6.5; above it reads too contrasty)'
+      value: 6.91
+    - check: light_sky
+      status: pass
+      message: 'day: sky L 82 (band 70-94)'
+      value: 82.5
+    - check: light_sea
+      status: pass
+      message: 'day: cloud sea L 90 (at least 82: the sea is the reflector)'
+      value: 90.2
+    - check: light_dark
+      status: pass
+      message: 'day: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+      value: 0.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 5.9 (R1 5.3)
+      value: 5.94
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 5.7, p95 22.5, off-palette 15.9% (top: #BBBB22 (1.1%), #CCCC22 (0.9%)) (advisory in an exploration)'
+      value: 5.6901
+    info:
+      metrics_raw:
+        L_p5: 56.2
+        L_p50: 82.6
+        L_p95: 95.0
+        C_p50: 25.0
+        C_p95: 72.1
+        C_p99: 78.9
+        detail: 5.94
+      metrics_locked:
+        L_p5: 56.2
+        L_p50: 82.6
+        L_p95: 95.0
+        C_p50: 25.0
+        C_p95: 72.1
+        C_p99: 78.9
+        detail: 5.94
+    fingerprint: 36ad38a25da28309
+  2:
+    job: x-caglayan-flow-4
+    take: 2
+    status: warn
+    preset: plate-final
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 72 (R1 51) (advisory in an exploration)
+      value: 71.8
+    - check: light_values
+      status: pass
+      message: 'day/subject: L p5 57 (at least 50: darks stay a light mid-tone), p98 95 (at least 90)'
+      value: 56.7
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 81 (band 74-92)'
+      value: 80.8
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.4 (band 2.5-6.5; above it reads too contrasty)'
+      value: 6.43
+    - check: light_sky
+      status: pass
+      message: 'day: sky L 82 (band 70-94)'
+      value: 82.1
+    - check: light_sea
+      status: pass
+      message: 'day: cloud sea L 90 (at least 82: the sea is the reflector)'
+      value: 90.3
+    - check: light_dark
+      status: pass
+      message: 'day: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+      value: 0.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 5.8 (R1 5.3)
+      value: 5.76
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 5.7, p95 23.4, off-palette 16.1% (top: #BBBB11 (0.7%), #AAAA11 (0.7%)) (advisory in an exploration)'
+      value: 5.7263
+    info:
+      metrics_raw:
+        L_p5: 57.5
+        L_p50: 82.9
+        L_p95: 94.6
+        C_p50: 25.2
+        C_p95: 71.8
+        C_p99: 80.4
+        detail: 5.76
+      metrics_locked:
+        L_p5: 57.5
+        L_p50: 82.9
+        L_p95: 94.6
+        C_p50: 25.2
+        C_p95: 71.8
+        C_p99: 80.4
+        detail: 5.76
+    fingerprint: 36ad38a25da28309
+manual_review:
+  observed_note: Take 1 contains the smoke curl; take 2 omits it. Both show three saucer pools, three leaf boats,
+    the open front pool and an empty seat, with no characters or text. The plate camera/depth looks deeper than
+    the authored guide by about one fifth of the island width, and pebbles appear on the body despite the home-island
+    reference instructing not to copy pebbles. These are composition warnings for lead review; no exact pixel-registration
+    pass is claimed. No take is selected and neither is promoted.
+  selection: pending lead review; no take selected
+sources:
+- batch: batch-67-caglayan-flow
+  job: x-caglayan-flow-4
+  take: 1
+  round: 1
+  logical_run: 20261109-phase1
+  source_file: /workspace/generated_images/exec-9cc87b04-40f3-439f-a5e0-496ec429a2a8.png
+  returned_at: '2026-11-09T14:55:17.746Z'
+  prompt_sha256: d6e8dfd992ab5707e64057923caf152d0c9e8f44b34416c8e0820632b7305d99
+  fingerprint: 36ad38a25da28309
+  original_generated_png_sha256: 2d1bf15ecf360774236d2e6d23e758970445533e687f0a787a4fbecb5444b304
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 545d6f0bee4c6ebc412a237db53ef043a596658551ba1d5932ac920e758c1636
+  inbox_png_sha256: cece3e1b7a802eaf0ce4840e17dc26f241716184b398dfcc6efcb345afa81db2
+  qa_sha256: f752c41dc7277f066868bbd3337a19623e943bca36c756253eb55c85c99693cf
+  q90_take: design/art/takes/batch-67-caglayan-flow/x-caglayan-flow-4/plate__x-caglayan-flow-4--t1.webp
+  q90_take_sha256: 8eedb861f847b1492f63256d5e5b5e151e891c15c4e5341714c25b3458726eef
+- batch: batch-67-caglayan-flow
+  job: x-caglayan-flow-4
+  take: 2
+  round: 1
+  logical_run: 20261109-phase1
+  source_file: /workspace/generated_images/exec-08e60951-6102-4878-9050-eec56de0f715.png
+  returned_at: '2026-11-09T14:56:18.712Z'
+  prompt_sha256: d6e8dfd992ab5707e64057923caf152d0c9e8f44b34416c8e0820632b7305d99
+  fingerprint: 36ad38a25da28309
+  original_generated_png_sha256: 1d3f589ead8802096c9eb792d4dcffbfba024c1b7105b2c6dcdd84fd27536f87
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: bbc0d765db406af8104a5a2c4f923848ca4e0aa03adf7ea9ce7d82846ef1ad58
+  inbox_png_sha256: 0639dd538a94bb99bd5b38b7e180d809f778a5bd4a3ce7459ad52312dac815d3
+  qa_sha256: 0017e3207a079b52958d3f0b74dcf63969f73b8ed55c1742326c0719a22f502f
+  q90_take: design/art/takes/batch-67-caglayan-flow/x-caglayan-flow-4/plate__x-caglayan-flow-4--t2.webp
+  q90_take_sha256: 95a0af1d98fa1a361940692067a942f0ec6ebb57971b665f59adb6200d8d57d8
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: exploration warnings are advisory; hard checks unchanged
+  source_preservation: Original generated PNGs retained unchanged in /workspace/generated_images; q90 WebP review
+    copies published
+  plate_style: plate-final, no grade, filter or runtime correction
+reference_packaging:
+  attachment_count: 5
+  tool_attachment_order:
+  - path: design/art/masters/island-main-l-v3/island-main-l-v3.webp
+    sha256: f2e539ed4eb75131b0d90454c1b12dbfd8737935fe95e3564956ea967c5ffa29
+    role: 'The home island: copy ONLY its camera, its size in the frame, its plate proportions (shallow top, rounded
+      banded body) and its soft painting. Do not copy its lawn, colours, round door or pebbles.'
+  - path: design/art/takes/batch-34-islands-in-game/x-caglayan-healed/plate__x-caglayan-healed--t2.webp
+    sha256: 02db824d10f45477ecb0257df26c43551983c5b4df607c88083ddeac4892f9de
+    role: 'THE LAYOUT (C1, the founder''s pick): copy every place and shape of this island exactly: the knoll and
+      its spout, the big round pool, the mill hut and wheel, the stream and front basin, the three saucer pools
+      and the stepping stones. Do not draw its otter or the hamster and bunny.'
+  - path: design/art/takes/lead-picks-2026-11-06-caglayan/caglayan-island-4/plate__caglayan-island-4--t2.webp
+    sha256: bbccf82938e08ddaae5a83f8f67a5cb8a69f4ab8ef4b5f0009ae24179cf14df3
+    role: 'ONLY its greenery: the soft green grass, moss, ferns and the flower colours. Do not copy its cliff, its
+      pool shape, its mill or its layout.'
+  - path: design/art/stations/tea-stall-5/tea-stall-5.png
+    sha256: c9a9f018b2dc6bcb1189f497f750dd98e80c69610c10ba3c71081d8b84d157b3
+    role: 'A finished station of the game: every building and prop is at this scale and finish (do not draw this
+      stall).'
+  - path: design/art/masters/cloud-sea/cloud-sea.png
+    sha256: bb693d333d53fd5fc3e385335fc912574ccda580ac018bc12c2143c12031579a
+    role: 'The sea of clouds below every island: paint the clouds like this.'
+  printed_prompt_unchanged: true
+  original_reference_files_unchanged: true
