@@ -1,0 +1,53 @@
+{
+ "after": {
+  "C_mean": 22.517,
+  "C_p50": 19.503,
+  "C_p95": 44.61,
+  "L_mean": 81.294,
+  "L_p2": 64.392,
+  "L_p98": 91.682,
+  "detail": 0.576,
+  "edge": 0.427,
+  "warmth_b": 20.341
+ },
+ "before": {
+  "C_mean": 15.536,
+  "C_p50": 13.45,
+  "C_p95": 30.766,
+  "L_mean": 81.297,
+  "L_p2": 64.392,
+  "L_p98": 91.767,
+  "detail": 0.559,
+  "edge": 0.427,
+  "tint_a": 6.073,
+  "tint_b": 11.356,
+  "warmth_b": 14.032
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.45,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "prop",
+ "matched_to": "world",
+ "outliers_after": [
+  "edge"
+ ],
+ "outliers_before": [
+  "C_p95",
+  "edge"
+ ],
+ "ppu": 8.533,
+ "reference": false,
+ "score_after": 83.5,
+ "score_before": 66.3,
+ "shipped": false,
+ "source": "design/art/masters/growth-hill-stone/growth-hill-stone.png",
+ "source_sha": "4e481d897db8897d"
+}

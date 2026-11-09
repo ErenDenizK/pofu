@@ -11,7 +11,8 @@ summary: >-
   stone, with a little moss on its shaded side, lying flat as seen from about 17 degrees above.
   Centered, its feet or base on the bottom edge o…
 art:
-  images: []
+  images:
+  - design/art/masters/growth-hill-stone/growth-hill-stone.png
   jobs:
   - batch-65-growth-pieces:growth-hill-stone
 sources:
