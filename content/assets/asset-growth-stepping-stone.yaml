@@ -11,7 +11,8 @@ summary: >-
   wide, a patch of fresh green moss on one side, a thin darker rim, lying flat as seen from
   about 17 degrees above. Centered, its feet or base on t…
 art:
-  images: []
+  images:
+  - design/art/masters/growth-stepping-stone/growth-stepping-stone.png
   jobs:
   - batch-65-growth-pieces:growth-stepping-stone
 sources:

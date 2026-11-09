@@ -1,0 +1,55 @@
+{
+ "after": {
+  "C_mean": 19.164,
+  "C_p50": 13.483,
+  "C_p95": 49.055,
+  "L_mean": 76.405,
+  "L_p2": 59.593,
+  "L_p98": 89.078,
+  "detail": 0.594,
+  "edge": 0.425,
+  "tint_a": 2.112,
+  "tint_b": 11.865,
+  "warmth_b": 18.545
+ },
+ "before": {
+  "C_mean": 13.496,
+  "C_p50": 9.495,
+  "C_p95": 34.546,
+  "L_mean": 76.405,
+  "L_p2": 59.593,
+  "L_p98": 89.078,
+  "detail": 0.575,
+  "edge": 0.425,
+  "tint_a": 1.747,
+  "tint_b": 8.913,
+  "warmth_b": 13.06
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.42,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "prop",
+ "matched_to": "world",
+ "outliers_after": [
+  "edge"
+ ],
+ "outliers_before": [
+  "C_p95",
+  "edge"
+ ],
+ "ppu": 8.533,
+ "reference": false,
+ "score_after": 83.7,
+ "score_before": 68.4,
+ "shipped": false,
+ "source": "design/art/masters/growth-stepping-stone/growth-stepping-stone.png",
+ "source_sha": "57328f5e48218748"
+}

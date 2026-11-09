@@ -18,6 +18,7 @@ links:
   - sys-build
   uses_asset:
   - asset-pond-5-lit
+  - asset-growth-stepping-stone
 sources:
 - doc: docs/product/game-design.md
   anchor: '#idle-production-and-stations'

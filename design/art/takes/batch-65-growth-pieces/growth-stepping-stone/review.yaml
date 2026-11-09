@@ -1,0 +1,16 @@
+batch: batch-65-growth-pieces
+contact_sheet: /tmp/pofu-b65-growth-20261109/design/art/takes/batch-65-growth-pieces/growth-stepping-stone/contact.jpg
+jobs:
+  growth-stepping-stone:
+    pick: 2
+    note: auto-picked by QA; founder review pending
+    takes:
+      t1:
+        qa: warn
+        summary: light_contrast warn
+      t2:
+        qa: warn
+        summary: light_values warn; light_contrast warn; harmony warn
+    approved:
+      take: 2
+      at: '2026-11-09T21:14:59+00:00'
