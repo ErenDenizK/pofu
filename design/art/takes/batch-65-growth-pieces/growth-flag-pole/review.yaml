@@ -1,0 +1,16 @@
+batch: batch-65-growth-pieces
+contact_sheet: /tmp/pofu-b65-growth-20261109/design/art/takes/batch-65-growth-pieces/growth-flag-pole/contact.jpg
+jobs:
+  growth-flag-pole:
+    pick: 1
+    note: auto-picked by QA; founder review pending
+    takes:
+      t1:
+        qa: warn
+        summary: light_contrast warn
+      t2:
+        qa: warn
+        summary: light_contrast warn
+    approved:
+      take: 1
+      at: '2026-11-09T21:19:36+00:00'

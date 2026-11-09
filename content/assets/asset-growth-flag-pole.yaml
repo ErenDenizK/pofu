@@ -11,7 +11,8 @@ summary: >-
   pole with a small round finial, and a soft cream triangular pennant with a gently wavy edge
   flying to the right from near the top, with…
 art:
-  images: []
+  images:
+  - design/art/masters/growth-flag-pole/growth-flag-pole.png
   jobs:
   - batch-65-growth-pieces:growth-flag-pole
 sources:

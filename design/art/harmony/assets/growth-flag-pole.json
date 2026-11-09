@@ -1,0 +1,55 @@
+{
+ "after": {
+  "C_mean": 25.167,
+  "C_p50": 26.456,
+  "C_p95": 43.068,
+  "L_mean": 75.09,
+  "L_p2": 53.552,
+  "L_p98": 93.099,
+  "detail": 1.611,
+  "edge": 0.415,
+  "tint_a": 3.406,
+  "tint_b": 12.141,
+  "warmth_b": 24.242
+ },
+ "before": {
+  "C_mean": 25.167,
+  "C_p50": 26.456,
+  "C_p95": 43.068,
+  "L_mean": 81.602,
+  "L_p2": 67.852,
+  "L_p98": 93.099,
+  "detail": 1.152,
+  "edge": 0.415,
+  "tint_a": 3.406,
+  "tint_b": 12.141,
+  "warmth_b": 24.242
+ },
+ "chain": null,
+ "correction": {
+  "black": -14.3,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "prop",
+ "matched_to": "world",
+ "outliers_after": [
+  "edge"
+ ],
+ "outliers_before": [
+  "L_p2",
+  "edge"
+ ],
+ "ppu": 8.533,
+ "reference": false,
+ "score_after": 87.8,
+ "score_before": 79.8,
+ "shipped": false,
+ "source": "design/art/masters/growth-flag-pole/growth-flag-pole.png",
+ "source_sha": "f9ce126e4472a3b3"
+}
