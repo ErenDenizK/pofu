@@ -11,7 +11,8 @@ summary: >-
   body, a small round head with big dark eyes, two pairs of delicate translucent pale-blue
   wings spread flat, a faint cream sheen on them. Rou…
 art:
-  images: []
+  images:
+  - design/art/masters/growth-dragonfly/growth-dragonfly.png
   jobs:
   - batch-65-growth-pieces:growth-dragonfly
 sources:
