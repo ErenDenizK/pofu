@@ -11,7 +11,8 @@ summary: >-
   green inner area, and one small pale-pink lotus blossom with a honey-yellow centre sitting
   on it. Flat on the water as seen from about 17 degr…
 art:
-  images: []
+  images:
+  - design/art/masters/growth-lily-pad/growth-lily-pad.png
   jobs:
   - batch-65-growth-pieces:growth-lily-pad
 sources:
