@@ -11,7 +11,8 @@ summary: >-
   edgeless so it can join a bubble. The first tail leans to the lower left, the second points
   straight down, the third leans to the lower right. Soft cu…
 art:
-  images: []
+  images:
+  - design/art/ui/ui-bubble-tail/ui-bubble-tail.png
   jobs:
   - batch-61-ui-kit-v3:ui-bubble-tail
 sources:
