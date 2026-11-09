@@ -1,0 +1,20 @@
+batch: batch-65-growth-pieces
+contact_sheet: design/art/takes/batch-65-growth-pieces/growth-steam/contact.jpg
+jobs:
+  growth-steam:
+    pick: none
+    note: 'Skipped after the one allowed retry: all four takes depicted a cottage
+      or teapot rather than a steam-only plume.'
+    takes:
+      t1:
+        qa: warn
+        summary: light_contrast warn
+      t2:
+        qa: warn
+        summary: light_contrast warn; harmony warn
+      t3:
+        qa: warn
+        summary: light_contrast warn; harmony warn
+      t4:
+        qa: warn
+        summary: light_contrast warn

@@ -1,5 +1,5 @@
 batch: batch-65-growth-pieces
-contact_sheet: /tmp/pofu-b65-growth-20261109/design/art/takes/batch-65-growth-pieces/growth-hill-stone/contact.jpg
+contact_sheet: design/art/takes/batch-65-growth-pieces/growth-hill-stone/contact.jpg
 jobs:
   growth-hill-stone:
     pick: 1
