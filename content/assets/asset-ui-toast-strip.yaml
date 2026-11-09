@@ -10,7 +10,8 @@ summary: >-
   stitches just inside the rim, softly rounded ends, a soft shadow under it so it floats.
   The middle is flat and even.
 art:
-  images: []
+  images:
+  - design/art/ui/ui-toast-strip/ui-toast-strip.png
   jobs:
   - batch-61-ui-kit-v3:ui-toast-strip
 sources:
