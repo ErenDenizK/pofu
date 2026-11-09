@@ -2,7 +2,7 @@ id: asset-growth-steam
 type: asset
 title_tr: growth-steam
 title_en: growth-steam (prop)
-status: in-production
+status: cut
 horizon: now
 summary: >-
   A single small lawn piece for a cozy mobile game, as a game sprite on a transparent background,
@@ -19,3 +19,7 @@ sources:
 kind: prop
 batch: batch-65-growth-pieces
 size: 1024x1024
+notes:
+- >-
+  Skipped after the one allowed retry: all four takes depicted a cottage or teapot rather
+  than a steam-only plume.
