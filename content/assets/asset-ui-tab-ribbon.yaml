@@ -19,3 +19,12 @@ sources:
 kind: ui
 batch: batch-61-ui-kit-v3
 size: 1536x1024
+notes:
+- >-
+  Candidate retained; no master is approved or uploaded. Selected take 2 passes official QA
+  with palette_drift warning and official lock load 0.8493 (take 1: 0.9980). Exact 1536x1024
+  PNG master is 1,114,931 bytes; exact RGBA lossless WebP optimization at quality 100/method
+  6 remains 800,122 bytes, above the 614,400-byte cap. Cropping, scaling, quantization and
+  lossy conversion were not used. Two unchanged retry slots remain unused; further image calls
+  are held by the session output limit. Reviewable takes, full QA and sources are preserved
+  under design/art/takes/batch-61-ui-kit-v3/ui-tab-ribbon/.
