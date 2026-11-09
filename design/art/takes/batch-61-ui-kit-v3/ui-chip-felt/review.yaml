@@ -1,0 +1,175 @@
+batch: batch-61-ui-kit-v3
+contact_sheet: design/art/takes/batch-61-ui-kit-v3/ui-chip-felt/contact.jpg
+jobs:
+  ui-chip-felt:
+    pick: 2
+    publication: promoted; founder review pending
+    note: Both takes pass. Manual review confirms a blank warm-sand capsule with cream
+      stitching and no icon or text. Take 2 wins on official lock load 0.3119 versus
+      0.3268. Shape appears about 3.2:1 versus the brief’s approximate 5:1; no slice-fit
+      or app integration claim.
+qa_reports:
+  1:
+    job: ui-chip-felt
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 23 (R1 51)
+      value: 23.2
+    - check: value_floor
+      status: pass
+      message: lightness p5 81 (R1 59)
+      value: 80.9
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.0 (R1 5.3)
+      value: 1.03
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.3
+      value: 0.3268
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.6, p95 1.6, off-palette 0.0%
+      value: 0.6451
+    info:
+      metrics_raw:
+        L_p5: 80.0
+        L_p50: 87.9
+        L_p95: 88.7
+        C_p50: 15.7
+        C_p95: 23.4
+        C_p99: 24.5
+        detail: 1.38
+      metrics_locked:
+        L_p5: 80.9
+        L_p50: 88.0
+        L_p95: 88.5
+        C_p50: 15.7
+        C_p95: 23.2
+        C_p99: 24.0
+        detail: 1.03
+    fingerprint: 4a79797d37683eb0
+  2:
+    job: ui-chip-felt
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 22 (R1 51)
+      value: 21.8
+    - check: value_floor
+      status: pass
+      message: lightness p5 83 (R1 59)
+      value: 82.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.9 (R1 5.3)
+      value: 0.94
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.3
+      value: 0.3119
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.5, p95 1.1, off-palette 0.0%
+      value: 0.47
+    info:
+      metrics_raw:
+        L_p5: 82.1
+        L_p50: 87.2
+        L_p95: 87.9
+        C_p50: 15.5
+        C_p95: 22.3
+        C_p99: 24.8
+        detail: 1.22
+      metrics_locked:
+        L_p5: 82.7
+        L_p50: 87.1
+        L_p95: 87.7
+        C_p50: 15.4
+        C_p95: 21.8
+        C_p99: 23.9
+        detail: 0.94
+    fingerprint: 4a79797d37683eb0
+manual_review:
+  excluded_takes: []
+  note: Both takes pass. Manual review confirms a blank warm-sand capsule with cream
+    stitching and no icon or text. Take 2 wins on official lock load 0.3119 versus
+    0.3268. Shape appears about 3.2:1 versus the brief’s approximate 5:1; no slice-fit
+    or app integration claim.
+sources:
+- take: 1
+  round: 1
+  dispatch_ordinal: 1
+  source_file: /workspace/generated_images/exec-701d2488-735a-4286-94bd-f3af3a923050.png
+  original_generated_png_sha256: 7e9d3e11ea6138a92a6cddc43c405e8011d84bad8a4dd5f26bc56dd3d75494f0
+  inbox_png_sha256: fb99b3621d7a07d8ab8334792b6fa2532cf9e5282dc8112a468cd521998486f0
+  rgba_sha256: 2f1b207aff8a720650768c1439d219544fa1255a39002dc8fe67ba1e5b37e064
+  dimensions:
+  - 1536
+  - 1024
+  bytes: 1111467
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  returned_at: '2026-11-09T21:50:56.305Z'
+  prompt_sha256: 0e3231c3abec56cb81b27a3c92d6722586d443a6426ee8da96a716285b4debd6
+  fingerprint: 4a79797d37683eb0
+  reference_paths:
+  - /tmp/pofu-b61-resume-20261109/design/art/ui/ui-plaque-quiet/ui-plaque-quiet.png
+  - /tmp/pofu-b61-resume-20261109/design/reference/palette-card-world-props.png
+  reference_sha256:
+    /tmp/pofu-b61-resume-20261109/design/art/ui/ui-plaque-quiet/ui-plaque-quiet.png: 6f825bb4d583dcd96ebc69bb2e4fb12b03481e984b346d24f666b84bcae9c246
+    /tmp/pofu-b61-resume-20261109/design/reference/palette-card-world-props.png: d31df285d7f915ff04d14ef9386940e1745a48ffb951bd041df405392a0939f2
+  source_rgba_matches_inbox: true
+- take: 2
+  round: 1
+  dispatch_ordinal: 2
+  source_file: /workspace/generated_images/exec-d2be3bfa-ec7a-457d-9093-418b2af105f5.png
+  original_generated_png_sha256: 17ba2e7572060045a61fddd9cac5d57e6ebed945bf0e19f7c25d795e2a503438
+  inbox_png_sha256: a215f4055776c45d24b03f0db50b2b38e0849490eb833bcd8df8400bc4debc59
+  rgba_sha256: b170c5d9f69e0ff0015547205d4a34daeae8f1b0c24bf4e8bf49d4feea5e242d
+  dimensions:
+  - 1536
+  - 1024
+  bytes: 1225724
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  returned_at: '2026-11-09T21:51:29.454Z'
+  prompt_sha256: 0e3231c3abec56cb81b27a3c92d6722586d443a6426ee8da96a716285b4debd6
+  fingerprint: 4a79797d37683eb0
+  reference_paths:
+  - /tmp/pofu-b61-resume-20261109/design/art/ui/ui-plaque-quiet/ui-plaque-quiet.png
+  - /tmp/pofu-b61-resume-20261109/design/reference/palette-card-world-props.png
+  reference_sha256:
+    /tmp/pofu-b61-resume-20261109/design/art/ui/ui-plaque-quiet/ui-plaque-quiet.png: 6f825bb4d583dcd96ebc69bb2e4fb12b03481e984b346d24f666b84bcae9c246
+    /tmp/pofu-b61-resume-20261109/design/reference/palette-card-world-props.png: d31df285d7f915ff04d14ef9386940e1745a48ffb951bd041df405392a0939f2
+  source_rgba_matches_inbox: true
+harmony:
+  canonical_measure: passed
+  canonical_check: passed
+  catalog_count: 172
+  ui_cataloged: false
+  own_asset_shard: null
+  note: One complete canonical measurement-worktree measure/check was run for the
+    retained UI batch; the catalog excludes UI assets. The known tea-stall-1 ULP write
+    from measure was restored byte-exactly to the pinned base after check.
