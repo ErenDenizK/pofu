@@ -11,7 +11,8 @@ summary: >-
   wide as tall, with a soft lighter grass lip, a short warm cocoa-brown earth face with rim
   stones, a few wildflowers at the edge, and one small ro…
 art:
-  images: []
+  images:
+  - design/art/masters/growth-hilltop/growth-hilltop.png
   jobs:
   - batch-65-growth-pieces:growth-hilltop
 sources:
