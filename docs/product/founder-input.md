@@ -646,3 +646,12 @@ Result (same day, #338): the real app now draws Home (Tam Çiçek, 09:00–17:00
 1. Codex keeps stopping minutes after a task starts, for days; our instructions cause part of it; remove every stop/wait/ask phrasing permanently. Handled: `AGENTS.md` Factory mode, the manifests and the plan reworded, a `CLAUDE.md` rule for every future brief.
 2. If a problem has an obvious first step only Codex can take, it takes it without asking. Handled: pre-authorised fallbacks (quota: non-generation work and retry every 15 minutes; pip: `--user`; disk: self-cleanup; lead picks: provisional auto-picks, accepted by `run.py`).
 3. Review the new deliveries with care for character-background harmony, colour and weather. Handled: the lead's review round on #358-#363. Lead review: 90 takes, all pixel-registered; picks named; home il1, bare and rain redone (batch-71: whole-frame veil, flat lawn); emanet stage 0-1 fog and mehtap stage 0 grey are by story design. Sheets: `docs/product/decisions-2026-11-10/phase2-*.jpg`.
+
+## 2026-11-10 (night): Fable limits, elephant–goldfish, promotion
+
+1. Fable usage draws on both its own and the shared weekly limit (100% Fable is about 50% of a week). Handled: corrected; Fable is used only at four checkpoints (`docs/state/README.md`).
+2. Rule of thumb: not smart enough, use a bigger model; not careful enough, use more effort. Handled: kept as the model/effort rule.
+3. Elephant–goldfish orchestration (a manager with context, fresh-context critics). Handled: researched and adopted as the review rule in `CLAUDE.md`.
+4. Promote the lead to Fable 5.2? Handled: not now; a Fable-led route review at a milestone (pre-launch).
+
+Fable consult of 2026-11-10 and its four actions: (a) purge the collage-era queue rows and add the plate state table (this PR); (b) a character harmony rule (runtime station); (c) exception-only lead review; (d) per-island colour bands (this PR; `docs/design/visual-system.md`).

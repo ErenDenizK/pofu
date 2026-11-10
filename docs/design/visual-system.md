@@ -73,12 +73,21 @@ ADR-0023 in practice:
 ## Checks before the founder sees anything
 
 1. Colour metrics are within bands of the reference. Run
-   `python3 -I tools/plate/colour_metrics.py compare REF IMG...`. REF is the picked
-   home root, `design/art/takes/batch-66-home-flow/x-home-flow-final-rich/plate__x-home-flow-final-rich--t1.webp`
-   (the ladder is decided; the old I1 floor no longer applies). Flags: "pale" when C* p90 is under 0.85 x REF or
-   accent share is under 0.7 x REF; "hot" when C* p99 is over 1.25 x REF.
-   Weather states (rain, snow, mist) are meant to be calmer and get their own
-   bands from their first approved plate.
+   `python3 -I tools/plate/colour_metrics.py compare REF IMG...`. **Each island's
+   REF is its own picked root** (the ladder is decided; the old I1 floor no
+   longer applies):
+   - home: `design/art/takes/batch-66-home-flow/x-home-flow-final-rich/plate__x-home-flow-final-rich--t1.webp`
+   - Çağlayan: `design/art/takes/batch-67-caglayan-flow/x-caglayan-flow-4/plate__x-caglayan-flow-4--t1.webp`
+   - Revontuli: `design/art/takes/batch-68-revontuli-flow/x-revontuli-flow-4/plate__x-revontuli-flow-4--t1.webp`
+   - Emanet: `design/art/takes/batch-69-emanet-flow/x-emanet-flow-4/plate__x-emanet-flow-4--t1.webp`
+   - Mehtap: `design/art/takes/batch-70-mehtap-flow/x-mehtap-flow-4/plate__x-mehtap-flow-4--t1.webp`
+
+   Flags: "pale" when C* p90 is under 0.85 x REF or accent share is under 0.7 x REF;
+   "hot" when C* p99 is over 1.25 x REF. **Cross-island accent floor:** for day
+   states the accent share is also at least 0.15 whatever the island's REF, so
+   a quiet root cannot lower the bar. Weather and night states (rain, snow,
+   mist, night) are meant to be calmer and get their own bands from their
+   first picked plate of that island.
 2. A real in-app screenshot from CI (not a mock-up or a bare file).
 3. The lead looks at it. Metrics do not replace eyes.
 

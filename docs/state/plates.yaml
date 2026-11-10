@@ -1,0 +1,492 @@
+# Plate state table: one painted picture per island state (ADR-0022).
+# Cells: painted = path of the lead-picked take (null = not painted, or the take was rejected
+# and is being redone); lead_pick = take number; in_app = shipped in the app; founder_ok = null
+# until the founder approves. Validated by tools/state/check_plates.py. See docs/state/README.md.
+# root_time: the time of day the island's picked root is painted at; its stage plates fill that column.
+version: 1
+islands:
+  home:
+    root_time: day
+    stages:
+      bare:
+        day:
+          clear: {painted: "design/art/takes/batch-66-home-flow/x-home-flow-bare/plate__x-home-flow-bare--t2.webp", lead_pick: 2, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        golden:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        night:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      il1:
+        day:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        golden:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        night:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      il2:
+        day:
+          clear: {painted: "design/art/takes/batch-66-home-flow/x-home-flow-il2/plate__x-home-flow-il2--t1.webp", lead_pick: 1, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        golden:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        night:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      il3:
+        day:
+          clear: {painted: "design/art/takes/batch-66-home-flow/x-home-flow-il3/plate__x-home-flow-il3--t1.webp", lead_pick: 1, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        golden:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        night:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      il4:
+        day:
+          clear: {painted: "design/art/takes/batch-66-home-flow/x-home-flow-il4/plate__x-home-flow-il4--t2.webp", lead_pick: 2, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        golden:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        night:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      il5:
+        day:
+          clear: {painted: "design/art/takes/batch-66-home-flow/x-home-flow-il5/plate__x-home-flow-il5--t1.webp", lead_pick: 1, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        golden:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        night:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      il6:
+        day:
+          clear: {painted: "design/art/takes/batch-66-home-flow/x-home-flow-il6/plate__x-home-flow-il6--t1.webp", lead_pick: 1, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        golden:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        night:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      il7:
+        day:
+          clear: {painted: "design/art/takes/batch-66-home-flow/x-home-flow-il7/plate__x-home-flow-il7--t1.webp", lead_pick: 1, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        golden:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        night:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      il8:
+        day:
+          clear: {painted: "design/art/takes/batch-66-home-flow/x-home-flow-il8/plate__x-home-flow-il8--t1.webp", lead_pick: 1, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        golden:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        night:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      il9:
+        day:
+          clear: {painted: "design/art/takes/batch-66-home-flow/x-home-flow-il9/plate__x-home-flow-il9--t1.webp", lead_pick: 1, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        golden:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        night:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      final:
+        day:
+          clear: {painted: "design/art/takes/batch-66-home-flow/x-home-flow-final-rich/plate__x-home-flow-final-rich--t1.webp", lead_pick: 1, in_app: true, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        golden:
+          clear: {painted: "design/art/takes/batch-66-home-flow/x-home-flow-golden/plate__x-home-flow-golden--t1.webp", lead_pick: 1, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        night:
+          clear: {painted: "design/art/takes/batch-66-home-flow/x-home-flow-night/plate__x-home-flow-night--t1.webp", lead_pick: 1, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+  caglayan:
+    root_time: day
+    stages:
+      0-bare:
+        day:
+          clear: {painted: "design/art/takes/batch-67-caglayan-flow/x-caglayan-flow-0-bare/plate__x-caglayan-flow-0-bare--t1.webp", lead_pick: 1, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        golden:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        night:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      0:
+        day:
+          clear: {painted: "design/art/takes/batch-67-caglayan-flow/x-caglayan-flow-0/plate__x-caglayan-flow-0--t1.webp", lead_pick: 1, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        golden:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        night:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      1:
+        day:
+          clear: {painted: "design/art/takes/batch-67-caglayan-flow/x-caglayan-flow-1/plate__x-caglayan-flow-1--t1.webp", lead_pick: 1, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        golden:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        night:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      2:
+        day:
+          clear: {painted: "design/art/takes/batch-67-caglayan-flow/x-caglayan-flow-2/plate__x-caglayan-flow-2--t1.webp", lead_pick: 1, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        golden:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        night:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      3:
+        day:
+          clear: {painted: "design/art/takes/batch-67-caglayan-flow/x-caglayan-flow-3/plate__x-caglayan-flow-3--t1.webp", lead_pick: 1, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        golden:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        night:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      4-bare:
+        day:
+          clear: {painted: "design/art/takes/batch-67-caglayan-flow/x-caglayan-flow-4-bare/plate__x-caglayan-flow-4-bare--t1.webp", lead_pick: 1, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        golden:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        night:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      4:
+        day:
+          clear: {painted: "design/art/takes/batch-67-caglayan-flow/x-caglayan-flow-4/plate__x-caglayan-flow-4--t1.webp", lead_pick: 1, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        golden:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        night:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      4-life:
+        day:
+          clear: {painted: "design/art/takes/batch-67-caglayan-flow/x-caglayan-flow-4-life/plate__x-caglayan-flow-4-life--t1.webp", lead_pick: 1, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        golden:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        night:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      4-up:
+        day:
+          clear: {painted: "design/art/takes/batch-67-caglayan-flow/x-caglayan-flow-4-up/plate__x-caglayan-flow-4-up--t1.webp", lead_pick: 1, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        golden:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        night:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+  revontuli:
+    root_time: night
+    stages:
+      0-bare:
+        day:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        golden:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        night:
+          clear: {painted: "design/art/takes/batch-68-revontuli-flow/x-revontuli-flow-0-bare/plate__x-revontuli-flow-0-bare--t1.webp", lead_pick: 1, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      0:
+        day:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        golden:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        night:
+          clear: {painted: "design/art/takes/batch-68-revontuli-flow/x-revontuli-flow-0/plate__x-revontuli-flow-0--t1.webp", lead_pick: 1, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      1:
+        day:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        golden:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        night:
+          clear: {painted: "design/art/takes/batch-68-revontuli-flow/x-revontuli-flow-1/plate__x-revontuli-flow-1--t1.webp", lead_pick: 1, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      2:
+        day:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        golden:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        night:
+          clear: {painted: "design/art/takes/batch-68-revontuli-flow/x-revontuli-flow-2/plate__x-revontuli-flow-2--t1.webp", lead_pick: 1, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      3:
+        day:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        golden:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        night:
+          clear: {painted: "design/art/takes/batch-68-revontuli-flow/x-revontuli-flow-3/plate__x-revontuli-flow-3--t1.webp", lead_pick: 1, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      4-bare:
+        day:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        golden:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        night:
+          clear: {painted: "design/art/takes/batch-68-revontuli-flow/x-revontuli-flow-4-bare/plate__x-revontuli-flow-4-bare--t2.webp", lead_pick: 2, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      4:
+        day:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        golden:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        night:
+          clear: {painted: "design/art/takes/batch-68-revontuli-flow/x-revontuli-flow-4/plate__x-revontuli-flow-4--t1.webp", lead_pick: 1, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      4-life:
+        day:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        golden:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        night:
+          clear: {painted: "design/art/takes/batch-68-revontuli-flow/x-revontuli-flow-4-life/plate__x-revontuli-flow-4-life--t1.webp", lead_pick: 1, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      4-up:
+        day:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        golden:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        night:
+          clear: {painted: "design/art/takes/batch-68-revontuli-flow/x-revontuli-flow-4-up/plate__x-revontuli-flow-4-up--t1.webp", lead_pick: 1, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+  emanet:
+    root_time: golden
+    stages:
+      0-bare:
+        day:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        golden:
+          clear: {painted: "design/art/takes/batch-69-emanet-flow/x-emanet-flow-0-bare/plate__x-emanet-flow-0-bare--t1.webp", lead_pick: 1, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        night:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      0:
+        day:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        golden:
+          clear: {painted: "design/art/takes/batch-69-emanet-flow/x-emanet-flow-0/plate__x-emanet-flow-0--t1.webp", lead_pick: 1, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        night:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      1:
+        day:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        golden:
+          clear: {painted: "design/art/takes/batch-69-emanet-flow/x-emanet-flow-1/plate__x-emanet-flow-1--t1.webp", lead_pick: 1, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        night:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      2:
+        day:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        golden:
+          clear: {painted: "design/art/takes/batch-69-emanet-flow/x-emanet-flow-2/plate__x-emanet-flow-2--t1.webp", lead_pick: 1, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        night:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      3:
+        day:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        golden:
+          clear: {painted: "design/art/takes/batch-69-emanet-flow/x-emanet-flow-3/plate__x-emanet-flow-3--t1.webp", lead_pick: 1, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        night:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      4-bare:
+        day:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        golden:
+          clear: {painted: "design/art/takes/batch-69-emanet-flow/x-emanet-flow-4-bare/plate__x-emanet-flow-4-bare--t1.webp", lead_pick: 1, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        night:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      4:
+        day:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        golden:
+          clear: {painted: "design/art/takes/batch-69-emanet-flow/x-emanet-flow-4/plate__x-emanet-flow-4--t1.webp", lead_pick: 1, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        night:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      4-life:
+        day:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        golden:
+          clear: {painted: "design/art/takes/batch-69-emanet-flow/x-emanet-flow-4-life/plate__x-emanet-flow-4-life--t1.webp", lead_pick: 1, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        night:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      4-up:
+        day:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        golden:
+          clear: {painted: "design/art/takes/batch-69-emanet-flow/x-emanet-flow-4-up/plate__x-emanet-flow-4-up--t1.webp", lead_pick: 1, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        night:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+  mehtap:
+    root_time: night
+    stages:
+      0-bare:
+        day:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        golden:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        night:
+          clear: {painted: "design/art/takes/batch-70-mehtap-flow/x-mehtap-flow-0-bare/plate__x-mehtap-flow-0-bare--t2.webp", lead_pick: 2, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      0:
+        day:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        golden:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        night:
+          clear: {painted: "design/art/takes/batch-70-mehtap-flow/x-mehtap-flow-0/plate__x-mehtap-flow-0--t1.webp", lead_pick: 1, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      1:
+        day:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        golden:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        night:
+          clear: {painted: "design/art/takes/batch-70-mehtap-flow/x-mehtap-flow-1/plate__x-mehtap-flow-1--t1.webp", lead_pick: 1, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      2:
+        day:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        golden:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        night:
+          clear: {painted: "design/art/takes/batch-70-mehtap-flow/x-mehtap-flow-2/plate__x-mehtap-flow-2--t1.webp", lead_pick: 1, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      3:
+        day:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        golden:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        night:
+          clear: {painted: "design/art/takes/batch-70-mehtap-flow/x-mehtap-flow-3/plate__x-mehtap-flow-3--t1.webp", lead_pick: 1, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      4-bare:
+        day:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        golden:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        night:
+          clear: {painted: "design/art/takes/batch-70-mehtap-flow/x-mehtap-flow-4-bare/plate__x-mehtap-flow-4-bare--t1.webp", lead_pick: 1, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      4:
+        day:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        golden:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        night:
+          clear: {painted: "design/art/takes/batch-70-mehtap-flow/x-mehtap-flow-4/plate__x-mehtap-flow-4--t1.webp", lead_pick: 1, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      4-life:
+        day:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        golden:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        night:
+          clear: {painted: "design/art/takes/batch-70-mehtap-flow/x-mehtap-flow-4-life/plate__x-mehtap-flow-4-life--t1.webp", lead_pick: 1, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      4-up:
+        day:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        golden:
+          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+        night:
+          clear: {painted: "design/art/takes/batch-70-mehtap-flow/x-mehtap-flow-4-up/plate__x-mehtap-flow-4-up--t1.webp", lead_pick: 1, in_app: false, founder_ok: null}
+          rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}

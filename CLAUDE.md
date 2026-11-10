@@ -62,6 +62,11 @@ Loaded every turn: keep it short. Map of the docs: `docs/README.md`.
   precise enough for Sonnet to execute at Opus level. Sonnet implements.
   Haiku reads, searches and checks visuals. When a hand-off costs more than
   doing it, one Opus pass does it all.
+- **Elephant and goldfish reviews:** the lead keeps the context; at decision
+  points 2–3 fresh-context reviewers (mixed models, different lenses: art,
+  player, contrarian) see only the artifact and its references, never the
+  lead's view, and report back; the consultant model (Fable) only at the four
+  checkpoints in `docs/state/` README.
 - **One spec, parallel PRs:** big work gets one spec split into PRs that
   own disjoint files; at most three agents at once; the lead merges in a
   stated order and reviews each screenshot sheet itself.

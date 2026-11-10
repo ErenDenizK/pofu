@@ -1,0 +1,24 @@
+id: asset-x-emanet-flow-4-day
+type: asset
+title_tr: x-emanet-flow-4-day
+title_en: x-emanet-flow-4-day (plate)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached painting into the same scene in calm, clear daytime: a soft pale-blue
+  sky with a few light clouds, gentle neutral daylight from the upper left, soft shadows,
+  a bright light cloud sea. Emanet keeps its rich colours (the shelves, the bunting, the warm
+  windows and the steam); lanterns and windows are unlit but their shapes stay. Everything
+  stays in its place, the same shapes and sizes; only light and c…
+links:
+  variant_of:
+  - asset-x-emanet-flow-4
+art:
+  images: []
+  jobs:
+  - batch-73-islands-states:x-emanet-flow-4-day
+sources:
+- doc: tools/imagegen/manifest/batch-73-islands-states.yaml
+kind: plate
+batch: batch-73-islands-states
+size: 1536x1024

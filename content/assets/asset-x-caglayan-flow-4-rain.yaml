@@ -1,0 +1,24 @@
+id: asset-x-caglayan-flow-4-rain
+type: asset
+title_tr: x-caglayan-flow-4-rain
+title_en: x-caglayan-flow-4-rain (plate)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached painting into the same scene in a soft rain: a soft lilac-grey overcast
+  sky, fine gentle rain streaks, the island still bright and keeping its rich colour (not
+  a grey veil), small puddles and rings in the water, wet sheen kept matte and soft (the falls,
+  the mill wheel, the stone spout and the pools). The far clouds fade softly into the rain
+  but stay visible. Lamps and windows that exist glow a littl…
+links:
+  variant_of:
+  - asset-x-caglayan-flow-4
+art:
+  images: []
+  jobs:
+  - batch-73-islands-states:x-caglayan-flow-4-rain
+sources:
+- doc: tools/imagegen/manifest/batch-73-islands-states.yaml
+kind: plate
+batch: batch-73-islands-states
+size: 1536x1024
