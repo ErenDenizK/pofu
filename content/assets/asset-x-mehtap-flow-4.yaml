@@ -4,14 +4,14 @@ title_tr: x-mehtap-flow-4
 title_en: x-mehtap-flow-4 (plate)
 status: in-production
 horizon: now
-summary: >-
-  A game plate for a cozy mobile game: Mehtap, the moonstone cradle, the last island of the
-  game and its most magical, at the deep blue hour under a rising full moon, STAGE 4, HEALED:
-  the finale night. The island is a wide crescent of pale pearl moonstone with soft round
-  craters, its two ends rising at the left and right like the horns of a cradle, over a rounded
-  moonstone body. At the back centre a round OBSERVATORY D…
+summary: 'A game plate for a cozy mobile game: Mehtap, the moonstone cradle, the last island
+  of the game and its most magical, at the deep blue hour under a rising full moon, STAGE
+  4, HEALED: the finale night. The island is a wide crescent of pale pearl moonstone with
+  soft round craters, its two ends rising at the left and right like the horns of a cradle,
+  over a rounded moonstone body. At the back centre a round OBSERVATORY D…'
 art:
-  images: []
+  images:
+  - design/art/masters/x-mehtap-flow-4/x-mehtap-flow-4.webp
   jobs:
   - batch-70-mehtap-flow:x-mehtap-flow-4
 sources:

@@ -1,0 +1,181 @@
+{
+  "job": "x-emanet-flow-4",
+  "batch": "batch-69-emanet-flow",
+  "asset": "plate__x-emanet-flow-4",
+  "take": 1,
+  "takes_considered": 1,
+  "approved_at": "2026-11-10T14:24:01+00:00",
+  "image": "design/art/masters/x-emanet-flow-4/x-emanet-flow-4.webp",
+  "raw": "design/art/masters/x-emanet-flow-4/raw.webp",
+  "raw_encoding": "webp q90 retained source; byte-for-byte copy",
+  "fingerprint": "382df88b1d3aa7d1",
+  "prompt": "",
+  "attachments": [
+    {
+      "path": "design/art/masters/island-main-l-v3/island-main-l-v3.webp",
+      "role": "The home island: copy ONLY its camera, its size in the frame, its plate proportions (shallow top, rounded banded body) and its soft painting. Do not copy its lawn, colours, round door or pebbles."
+    },
+    {
+      "path": "design/art/takes/batch-34-islands-in-game/x-emanet-healed/plate__x-emanet-healed--t1.webp",
+      "role": "THE ISLAND (EM1, the founder's pick): copy its round plate with the cream and peach hexagon tiles and the teal tiled rim, its body, and the places of the hook post, the shelves, the hand-cart and the counter. Do not copy its office; do not draw its magpie, hamster or bunny."
+    },
+    {
+      "path": "design/art/takes/batch-17-islands-v2/x2-emanet-a/plate__x2-emanet-a--t1.webp",
+      "role": "THE OFFICE (EM2's stilted bureau): copy this building: teal boards, scalloped teal umbrella roof, the teacup water tank, the top-hat chimney, the striped awning over the counter window and the spoon ladder. Do not draw its magpie or its raft."
+    },
+    {
+      "path": "design/art/takes/batch-17-islands-v2/x2-emanet-b/plate__x2-emanet-b--t1.webp",
+      "role": "ONLY the stacked old suitcases and hat boxes tied with red ribbon, and the little round door in the bottom suitcase: they become the office's low plinth."
+    },
+    {
+      "path": "design/art/stations/tea-stall-5/tea-stall-5.png",
+      "role": "A finished station of the game: every building and prop is at this scale and finish (do not draw this stall)."
+    },
+    {
+      "path": "design/art/masters/cloud-sea/cloud-sea.png",
+      "role": "The sea of clouds below every island: paint the clouds like this."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": null,
+    "seconds": null,
+    "background": "transparent",
+    "returned_at": "2026-11-09T15:04:52.121Z"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "plate-final",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "fit": null,
+  "emit_region": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "opaque, as this kind must be"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1536x1024"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "warn",
+        "message": "chroma p95 54 (R1 51)",
+        "value": 54.3
+      },
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "golden/subject: L p5 42 (at least 50: darks stay a light mid-tone), p98 89 (at least 85)",
+        "value": 42.5
+      },
+      {
+        "check": "light_median",
+        "status": "pass",
+        "message": "golden/subject: median L 78 (band 68-86)",
+        "value": 78.0
+      },
+      {
+        "check": "light_contrast",
+        "status": "warn",
+        "message": "golden/subject: p75 local contrast 9.2 (band 2.5-6.0; above it reads too contrasty) (warn-only until the founder has seen the light pilot)",
+        "value": 9.19
+      },
+      {
+        "check": "light_sky",
+        "status": "pass",
+        "message": "golden: sky L 81 (band 60-86)",
+        "value": 81.3
+      },
+      {
+        "check": "light_sea",
+        "status": "pass",
+        "message": "golden: cloud sea L 87 (at least 78: the sea is the reflector)",
+        "value": 87.2
+      },
+      {
+        "check": "light_dark",
+        "status": "pass",
+        "message": "golden: 0.1 % below L* 30 under the sky (at most 3; only the sky is dark)",
+        "value": 0.1
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 5.9 (R1 5.3)",
+        "value": 5.89
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 0.0",
+        "value": 0.0
+      },
+      {
+        "check": "palette_drift",
+        "status": "warn",
+        "message": "mean dE 2.8, p95 9.6, off-palette 3.1% (top: #BB6622 (0.2%), #CC7733 (0.1%))",
+        "value": 2.7968
+      }
+    ]
+  },
+  "note": "concept master; picked by the lead. Founder authorized recovery from the retained q90 WebP on 2026-11-10 because the previous session original PNG is unavailable. Source is a lossy review copy, not the original generated PNG; no recoloring or filtering applied.",
+  "source_recovery": {
+    "source": "design/art/takes/batch-69-emanet-flow/x-emanet-flow-4/plate__x-emanet-flow-4--t1.webp",
+    "source_sha256": "8f5688eddb7f2cb391938575f4568f80d2f7891fe73a6f9611b433c3d72bd429",
+    "original_available": false,
+    "original_png_sha256": "1c6a05b104e67a5cd80527b3250dab34d4103ce8f9b969f314530293d7889d01",
+    "authorization": "Founder instruction in chat, 2026-11-10; continue from existing copies or regenerate.",
+    "master_encoding": "Exact retained q90 WebP bytes; lossless re-encoding exceeds upload cap, founder authorized continued publication from retained copies.",
+    "ingested_at": "2026-11-10T14:23:50+00:00",
+    "ingestion_backend": "founder-authorized-q90-recovery",
+    "ingestion_fingerprint": "6f3706d30edeea4a",
+    "ingestion_prompt": "REFERENCES (attached, in this order):\n1. The home island: copy ONLY its camera, its size in the frame, its plate proportions (shallow top, rounded banded body) and its soft painting. Do not copy its lawn, colours, round door or pebbles.\n2. THE ISLAND (EM1, the founder's pick): copy its round plate with the cream and peach hexagon tiles and the teal tiled rim, its body, and the places of the hook post, the shelves, the hand-cart and the counter. Do not copy its office; do not draw its magpie, hamster or bunny.\n3. THE OFFICE (EM2's stilted bureau): copy this building: teal boards, scalloped teal umbrella roof, the teacup water tank, the top-hat chimney, the striped awning over the counter window and the spoon ladder. Do not draw its magpie or its raft.\n4. ONLY the stacked old suitcases and hat boxes tied with red ribbon, and the little round door in the bottom suitcase: they become the office's low plinth.\n5. A finished station of the game: every building and prop is at this scale and finish (do not draw this stall).\n6. The sea of clouds below every island: paint the clouds like this.\n\nA game plate for a cozy mobile game: Emanet, the lost-and-found\noffice island, in warm late-afternoon gold, STAGE 4, HEALED. A wide\nround island whose flat top is paved in soft cream and peach\nhexagonal tiles, ringed by a rim of teal glazed tiles with small\nbrass studs, over a warm peach-honey body in soft bands. At the back\ncentre stands THE OFFICE: a crooked little cabin of teal boards with\na scalloped teal umbrella roof, a big cream teacup as its water tank\non a stand, a brown top-hat chimney, a striped awning over a wide\ncounter window, round warm windows and a ladder whose rungs are big\nwooden spoons; it stands on short wooden stilts that rise from a\nlow, wide plinth of stacked old suitcases and hat boxes tied with\nred ribbon, the bottom suitcase with a little round door and a lit\nround window (the back room). At the back right a tall brass HOOK\nPOST with eight hooks: seven hold small covered things and little\nbells, the eighth hook is empty; a small paper kite on a string tied\nto it flies above. In the middle right a long low wooden SHELF unit\nof three bays, every shelf full of found things (teapots, a clock, a\nglobe, a camera, hats, books, jars), each with a cream luggage tag\non a teal string. In the middle left a wooden HAND-CART piled with\nparcels in brown paper and red ribbon. At the front right a little\noutdoor COUNTER with a brass weighing scale and a teacup on it.\nHEALED AT GOLDEN HOUR: everything is shelved, tagged and tidy; a\nsmall neat heap of three or four unclaimed things sits on the tiles\nat the front centre; the office windows and the suitcase door glow\nwarm; a string of cream luggage tags and small pennants hangs from\nthe office roof to the hook post; thin curls of steam rise from the\nteacup tank and the top-hat chimney; small lanterns glow on the\noffice porch and on the hook post; long soft golden light. Keep\nthese places EMPTY for later: a clear patch of tiles between the\nshelf unit and the counter (room for a fourth bay), a clear lane of\ntiles in front of the counter (where a queue will stand), and a\nclear diagonal strip of tiles from the office porch down to the\nhand-cart.\n\nGAME CAMERA: exactly the camera of the attached home island, a low\nfront three-quarter view about 20 degrees above the horizon; the\nisland centred and filling about 88 percent of the image width; its\nplate a shallow top about a fifth as deep as it is wide over a soft,\nrounded body in gentle bands; the sea of clouds below rising to the\nunderside. Every building and prop is at the scale of the attached\ntea stall. NO CHARACTERS OR ANIMALS anywhere: the game draws Pofu,\nMochi, the resident and every critter as its own sprite, so their\nplaces stay empty.\n\nSTYLE: a finished painted illustration for a premium cozy mobile game, like\na page from a beloved picture book: soft painterly 2D with gentle airbrushed\nshading, rounded chunky forms, no outlines, no hard edges, matte surfaces\nwith at most one soft highlight per object. COLOUR: vivid, saturated and\njewel-like, as in the key art of a high-end animated film: intense grass\ngreens, glowing sunflower yellow, deep sky blue, warm peach earth, crisp\nwhite petals; strong contrast between warm lit colour and cool shadow\ncolour; every material keeps its own true colour. VALUES: a full range, from\nbright sunlit tops to deep warm shadows under eaves, inside foliage, beneath\nthe lawn rim and around doors, so every object separates clearly from what\nis behind it and the picture reads at a glance on a small phone screen.\nShadows are coloured (warm brown, plum, deep teal), never black or grey.\nLight direction and shadow hue follow the LIGHT block of this prompt.\nColourful but never neon, never HDR, never glossy. No text, no letters, no\nnumbers, no logos, no watermark, no border, no frame.\n\nAVOID: characters, animals, text, letters, numbers, a border, harsh shadows, near-black shade, neon or oversaturated colours, HDR glow, washed-out pastel colour, milky haze, grey or muddy colour, outlines, photorealism, a 3D render look, anything falling off the island into the void, a copy of the home island's lawn and round door\n\nLIGHT (hour: golden, layer: subject). The day's reward.\nKey light #F7C873 from the right, a little above; fill #D9A9C4; rim #FFC77A along the edge facing away from the key. Shadows are tinted #8E78C8 (never grey or black), short and soft, falling toward the left, a little below; every object sits on a soft occlusion pad in that hue where it touches the ground or another form.\nVALUES (the reference envelope): a high-key picture inside one envelope of soft, milky air. Every value sits between light mid-tone and cream-white; the darkest recesses (door holes, gaps, pond rims) are a mid-value tinted with the shadow hue, never black. Form turns in small value steps. Colour lives in the halftones; lights bleach to cream. No dark outlines: edges are found by value and hue. The cloud sea below is the brightest large surface and lights the island's underside with a warm bounce.\nThis is the SUBJECT plane: the clearest forms and the crispest edges in the picture, still inside the envelope.\n\nOutput: one image, opaque, full bleed, landscape 1536 x 1024.\n",
+    "ingestion_attachments": [
+      {
+        "path": "design/art/masters/island-main-l-v3/island-main-l-v3.webp",
+        "role": "The home island: copy ONLY its camera, its size in the frame, its plate proportions (shallow top, rounded banded body) and its soft painting. Do not copy its lawn, colours, round door or pebbles."
+      },
+      {
+        "path": "design/art/takes/batch-34-islands-in-game/x-emanet-healed/plate__x-emanet-healed--t1.webp",
+        "role": "THE ISLAND (EM1, the founder's pick): copy its round plate with the cream and peach hexagon tiles and the teal tiled rim, its body, and the places of the hook post, the shelves, the hand-cart and the counter. Do not copy its office; do not draw its magpie, hamster or bunny."
+      },
+      {
+        "path": "design/art/takes/batch-17-islands-v2/x2-emanet-a/plate__x2-emanet-a--t1.webp",
+        "role": "THE OFFICE (EM2's stilted bureau): copy this building: teal boards, scalloped teal umbrella roof, the teacup water tank, the top-hat chimney, the striped awning over the counter window and the spoon ladder. Do not draw its magpie or its raft."
+      },
+      {
+        "path": "design/art/takes/batch-17-islands-v2/x2-emanet-b/plate__x2-emanet-b--t1.webp",
+        "role": "ONLY the stacked old suitcases and hat boxes tied with red ribbon, and the little round door in the bottom suitcase: they become the office's low plinth."
+      },
+      {
+        "path": "design/art/stations/tea-stall-5/tea-stall-5.png",
+        "role": "A finished station of the game: every building and prop is at this scale and finish (do not draw this stall)."
+      },
+      {
+        "path": "design/art/masters/cloud-sea/cloud-sea.png",
+        "role": "The sea of clouds below every island: paint the clouds like this."
+      }
+    ],
+    "original_prompt_sha256": "4b661b2379defd5dd7d0ae7bcd2bf5fc78b6d8ec0725c51a2f250a8723ed307b",
+    "original_source_record": "design/art/takes/batch-69-emanet-flow/x-emanet-flow-4/review.yaml",
+    "ingestion_prompt_matches_original_hash": false
+  },
+  "original_prompt_sha256": "4b661b2379defd5dd7d0ae7bcd2bf5fc78b6d8ec0725c51a2f250a8723ed307b",
+  "prompt_status": "original prompt text unavailable; current recovery brief is stored in source_recovery.ingestion_prompt",
+  "attachments_note": "Current recovery references; original generation packaging is recorded in the cited take review."
+}

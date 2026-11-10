@@ -1,0 +1,165 @@
+{
+  "job": "x-mehtap-flow-4",
+  "batch": "batch-70-mehtap-flow",
+  "asset": "plate__x-mehtap-flow-4",
+  "take": 1,
+  "takes_considered": 1,
+  "approved_at": "2026-11-10T14:24:11+00:00",
+  "image": "design/art/masters/x-mehtap-flow-4/x-mehtap-flow-4.webp",
+  "raw": "design/art/masters/x-mehtap-flow-4/raw.webp",
+  "raw_encoding": "webp q90 retained source; byte-for-byte copy",
+  "fingerprint": "a3e114206e2a33c2",
+  "prompt": "",
+  "attachments": [
+    {
+      "path": "design/art/masters/island-main-l-v3/island-main-l-v3.webp",
+      "role": "The home island: copy ONLY its camera, its size in the frame, its plate proportions (shallow top, rounded banded body) and its soft painting. Do not copy its lawn, colours, round door or pebbles."
+    },
+    {
+      "path": "design/art/takes/batch-34-islands-in-game/x-mehtap-healed/plate__x-mehtap-healed--t1.webp",
+      "role": "THE ISLAND (M1, the founder's pick): copy its crescent moonstone plate with the two rising horns, its craters, and the places and shapes of the dome, the moon pool, the owl's perch with its lantern, the bench and the chart board. Do not draw its owl, hamster or bunny."
+    },
+    {
+      "path": "design/art/stations/tea-stall-5/tea-stall-5.png",
+      "role": "A finished station of the game: every building and prop is at this scale and finish (do not draw this stall)."
+    },
+    {
+      "path": "design/art/masters/cloud-sea/cloud-sea.png",
+      "role": "The sea of clouds below every island: paint the clouds like this."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": null,
+    "seconds": null,
+    "background": "transparent",
+    "returned_at": "2026-11-09T15:07:26.705Z"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "plate-final",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "fit": null,
+  "emit_region": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "opaque, as this kind must be"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1536x1024"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "warn",
+        "message": "chroma p95 57 (R1 51)",
+        "value": 57.4
+      },
+      {
+        "check": "light_values",
+        "status": "pass",
+        "message": "dusk/subject: L p5 51 (at least 47: darks stay a light mid-tone), p98 95 (at least 85)",
+        "value": 50.9
+      },
+      {
+        "check": "light_median",
+        "status": "pass",
+        "message": "dusk/subject: median L 80 (band 66-86)",
+        "value": 79.8
+      },
+      {
+        "check": "light_contrast",
+        "status": "warn",
+        "message": "dusk/subject: p75 local contrast 5.9 (band 1.8-5.0; above it reads too contrasty) (warn-only until the founder has seen the light pilot)",
+        "value": 5.91
+      },
+      {
+        "check": "light_sky",
+        "status": "pass",
+        "message": "dusk: sky L 42 (band 36-70)",
+        "value": 41.7
+      },
+      {
+        "check": "light_sea",
+        "status": "pass",
+        "message": "dusk: cloud sea L 87 (at least 74: the sea is the reflector)",
+        "value": 87.3
+      },
+      {
+        "check": "light_dark",
+        "status": "pass",
+        "message": "dusk: 0.1 % below L* 30 under the sky (at most 3; only the sky is dark)",
+        "value": 0.1
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 4.1 (R1 5.3)",
+        "value": 4.07
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 0.0",
+        "value": 0.0
+      },
+      {
+        "check": "palette_drift",
+        "status": "warn",
+        "message": "mean dE 4.9, p95 17.8, off-palette 16.6% (top: #4455AA (3.2%), #334499 (2.2%)) (advisory in an exploration)",
+        "value": 4.8976
+      }
+    ]
+  },
+  "note": "concept master; picked by the lead. Founder authorized recovery from the retained q90 WebP on 2026-11-10 because the previous session original PNG is unavailable. Source is a lossy review copy, not the original generated PNG; no recoloring or filtering applied.",
+  "source_recovery": {
+    "source": "design/art/takes/batch-70-mehtap-flow/x-mehtap-flow-4/plate__x-mehtap-flow-4--t1.webp",
+    "source_sha256": "dbcdcc8358213ef750f4b8ca99dfaab7276432d4cdb5c459da6f7f3231582259",
+    "original_available": false,
+    "original_png_sha256": "055b0e2bef565ff008ff3b9a08c2b374597e1b1e12e7f44924d4e83ae68173d8",
+    "authorization": "Founder instruction in chat, 2026-11-10; continue from existing copies or regenerate.",
+    "master_encoding": "Exact retained q90 WebP bytes; lossless re-encoding exceeds upload cap, founder authorized continued publication from retained copies.",
+    "ingested_at": "2026-11-10T14:24:03+00:00",
+    "ingestion_backend": "founder-authorized-q90-recovery",
+    "ingestion_fingerprint": "374e82efb80cc5cf",
+    "ingestion_prompt": "REFERENCES (attached, in this order):\n1. The home island: copy ONLY its camera, its size in the frame, its plate proportions (shallow top, rounded banded body) and its soft painting. Do not copy its lawn, colours, round door or pebbles.\n2. THE ISLAND (M1, the founder's pick): copy its crescent moonstone plate with the two rising horns, its craters, and the places and shapes of the dome, the moon pool, the owl's perch with its lantern, the bench and the chart board. Do not draw its owl, hamster or bunny.\n3. A finished station of the game: every building and prop is at this scale and finish (do not draw this stall).\n4. The sea of clouds below every island: paint the clouds like this.\n\nA game plate for a cozy mobile game: Mehtap, the moonstone cradle,\nthe last island of the game and its most magical, at the deep blue\nhour under a rising full moon, STAGE 4, HEALED: the finale night.\nThe island is a wide crescent of pale pearl moonstone with soft\nround craters, its two ends rising at the left and right like the\nhorns of a cradle, over a rounded moonstone body. At the back centre\na round OBSERVATORY DOME on a cream drum with arched windows and\nsteps; at the front left a round MOON POOL in a low stone rim; at\nthe middle right NANE'S PERCH, a tall curved wooden post with a\nlantern on its hook and a small round platform on top; at the front\nright a wooden BENCH with a striped blanket beside the CHART BOARD\non two legs. HEALED, the most spectacular picture of the game: the\ndome's shell stands open in two halves and a brass telescope leans\nout toward the sky, the dome glowing warm from inside; a huge soft\nfull moon rises behind the island at the upper left, pale gold with\na gentle halo; the sky is deep blue-violet and full of soft stars,\nand across it run seven faint, thin silver trails of small stars and\nONE NEW BRIGHT TRAIL of warm gold stars that starts at the\ntelescope, arcs high over the island and leaves the frame at the\nupper right, toward home; the moon pool has turned to liquid silver\nand mirrors the trails; the moonstone glows softly from within,\npearl and warm, brightest along the rims and the horns; seven small\nround moonstone lamps, soft glowing orbs, stand along the crescent's\nback rim; round bushes of white moonflowers beside the dome are open\nand faintly glowing; the chart board shows the seven faint trails\nand the bright one as soft gold lines (no letters); Nane's lantern\nglows gold; two soft shooting stars; the island's underside is\nspeckled with tiny stars. Keep these places EMPTY for later: the\nflat top step of the left horn (a small clear ledge), the clear\nmoonstone between the right horn and Nane's perch (room for a\nhammock), and the moon pool's whole surface (nothing in it or over\nit).\n\nGAME CAMERA: exactly the camera of the attached home island, a low\nfront three-quarter view about 20 degrees above the horizon; the\nisland centred and filling about 88 percent of the image width; its\nplate a shallow top about a fifth as deep as it is wide over a soft,\nrounded body in gentle bands; the sea of clouds below rising to the\nunderside. Every building and prop is at the scale of the attached\ntea stall. NO CHARACTERS OR ANIMALS anywhere: the game draws Pofu,\nMochi, the resident and every critter as its own sprite, so their\nplaces stay empty.\n\nSTYLE: a finished painted illustration for a premium cozy mobile game, like\na page from a beloved picture book: soft painterly 2D with gentle airbrushed\nshading, rounded chunky forms, no outlines, no hard edges, matte surfaces\nwith at most one soft highlight per object. COLOUR: vivid, saturated and\njewel-like, as in the key art of a high-end animated film: intense grass\ngreens, glowing sunflower yellow, deep sky blue, warm peach earth, crisp\nwhite petals; strong contrast between warm lit colour and cool shadow\ncolour; every material keeps its own true colour. VALUES: a full range, from\nbright sunlit tops to deep warm shadows under eaves, inside foliage, beneath\nthe lawn rim and around doors, so every object separates clearly from what\nis behind it and the picture reads at a glance on a small phone screen.\nShadows are coloured (warm brown, plum, deep teal), never black or grey.\nLight direction and shadow hue follow the LIGHT block of this prompt.\nColourful but never neon, never HDR, never glossy. No text, no letters, no\nnumbers, no logos, no watermark, no border, no frame.\n\nAVOID: characters, animals, text, letters, numbers, a border, harsh shadows, near-black shade, neon or oversaturated colours, HDR glow, washed-out pastel colour, milky haze, grey or muddy colour, outlines, photorealism, a 3D render look, anything falling off the island into the void, a copy of the home island's lawn and round door, a harsh or neon light show, lens flares, glare that hides the island\n\nLIGHT (hour: dusk, layer: subject). Coming home.\nKey light #8F86C9 from straight above; fill #4B4180; rim #FFB866 along the edge facing away from the key. Shadows are tinted #2E2547 (never grey or black), short and soft, falling straight down, directly under the object; every object sits on a soft occlusion pad in that hue where it touches the ground or another form.\nVALUES (the reference envelope): a high-key picture inside one envelope of soft, milky air. Every value sits between light mid-tone and cream-white; the darkest recesses (door holes, gaps, pond rims) are a mid-value tinted with the shadow hue, never black. Form turns in small value steps. Colour lives in the halftones; lights bleach to cream. No dark outlines: edges are found by value and hue. The cloud sea below is the brightest large surface and lights the island's underside with a warm bounce.\nThis is the SUBJECT plane: the clearest forms and the crispest edges in the picture, still inside the envelope.\n\nOutput: one image, opaque, full bleed, landscape 1536 x 1024.\n",
+    "ingestion_attachments": [
+      {
+        "path": "design/art/masters/island-main-l-v3/island-main-l-v3.webp",
+        "role": "The home island: copy ONLY its camera, its size in the frame, its plate proportions (shallow top, rounded banded body) and its soft painting. Do not copy its lawn, colours, round door or pebbles."
+      },
+      {
+        "path": "design/art/takes/batch-34-islands-in-game/x-mehtap-healed/plate__x-mehtap-healed--t1.webp",
+        "role": "THE ISLAND (M1, the founder's pick): copy its crescent moonstone plate with the two rising horns, its craters, and the places and shapes of the dome, the moon pool, the owl's perch with its lantern, the bench and the chart board. Do not draw its owl, hamster or bunny."
+      },
+      {
+        "path": "design/art/stations/tea-stall-5/tea-stall-5.png",
+        "role": "A finished station of the game: every building and prop is at this scale and finish (do not draw this stall)."
+      },
+      {
+        "path": "design/art/masters/cloud-sea/cloud-sea.png",
+        "role": "The sea of clouds below every island: paint the clouds like this."
+      }
+    ],
+    "original_prompt_sha256": "71d548a535d6fd1f0a807f1de6f695aac9fc14e46c526c2dfc8e2cb18207863a",
+    "original_source_record": "design/art/takes/batch-70-mehtap-flow/x-mehtap-flow-4/review.yaml",
+    "ingestion_prompt_matches_original_hash": false
+  },
+  "original_prompt_sha256": "71d548a535d6fd1f0a807f1de6f695aac9fc14e46c526c2dfc8e2cb18207863a",
+  "prompt_status": "original prompt text unavailable; current recovery brief is stored in source_recovery.ingestion_prompt",
+  "attachments_note": "Current recovery references; original generation packaging is recorded in the cited take review."
+}

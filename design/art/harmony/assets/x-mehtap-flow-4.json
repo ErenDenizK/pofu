@@ -1,0 +1,56 @@
+{
+ "after": {
+  "C_mean": 23.498,
+  "C_p50": 19.431,
+  "C_p95": 49.043,
+  "L_mean": 75.525,
+  "L_p2": 43.52,
+  "L_p98": 95.076,
+  "detail": 1.255,
+  "edge": 0.0,
+  "tint_a": 6.762,
+  "tint_b": -0.897,
+  "warmth_b": -4.823
+ },
+ "before": {
+  "C_mean": 27.522,
+  "C_p50": 22.753,
+  "C_p95": 57.427,
+  "L_mean": 69.461,
+  "L_p2": 27.52,
+  "L_p98": 95.076,
+  "detail": 1.563,
+  "edge": 0.0,
+  "tint_a": 6.814,
+  "tint_b": -0.689,
+  "warmth_b": -5.643
+ },
+ "chain": null,
+ "correction": {
+  "black": 16.0,
+  "ceiling": 0.0,
+  "chroma": 0.854,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "plate",
+ "matched_to": "world",
+ "outliers_after": [
+  "edge"
+ ],
+ "outliers_before": [
+  "C_p95",
+  "L_p2",
+  "edge"
+ ],
+ "ppu": 4.103,
+ "reference": false,
+ "score_after": 81.9,
+ "score_before": 60.9,
+ "shipped": false,
+ "source": "design/art/masters/x-mehtap-flow-4/x-mehtap-flow-4.webp",
+ "source_sha": "dbcdcc8358213ef7"
+}

@@ -7,12 +7,10 @@ contact_sheet: design/art/takes/batch-67-caglayan-flow/x-caglayan-flow-4/contact
 jobs:
   x-caglayan-flow-4:
     pick: 1
-    publication: exploration; concept master picked by the lead 2026-11-10 (take 1); promote --only <id> next (needs the unlocked raw)
-    note: Take 1 contains the smoke curl; take 2 omits it. Both show three saucer pools, three leaf boats, the open
-      front pool and an empty seat, with no characters or text. The plate camera/depth looks deeper than the authored
-      guide by about one fifth of the island width, and pebbles appear on the body despite the home-island reference
-      instructing not to copy pebbles. These are composition warnings for lead review; no exact pixel-registration
-      pass is claimed. No take is selected and neither is promoted.
+    publication: concept master; promoted from retained q90 source with founder authorization
+    note: concept master; picked by the lead. Founder authorized recovery from the retained q90 WebP on
+      2026-11-10 because the previous session original PNG is unavailable. Source is a lossy review copy,
+      not the original generated PNG; no recoloring or filtering applied.
 qa_reports:
   1:
     job: x-caglayan-flow-4
@@ -64,7 +62,8 @@ qa_reports:
       value: 0.0
     - check: palette_drift
       status: warn
-      message: 'mean dE 5.7, p95 22.5, off-palette 15.9% (top: #BBBB22 (1.1%), #CCCC22 (0.9%)) (advisory in an exploration)'
+      message: 'mean dE 5.7, p95 22.5, off-palette 15.9% (top: #BBBB22 (1.1%), #CCCC22 (0.9%)) (advisory
+        in an exploration)'
       value: 5.6901
     info:
       metrics_raw:
@@ -134,7 +133,8 @@ qa_reports:
       value: 0.0
     - check: palette_drift
       status: warn
-      message: 'mean dE 5.7, p95 23.4, off-palette 16.1% (top: #BBBB11 (0.7%), #AAAA11 (0.7%)) (advisory in an exploration)'
+      message: 'mean dE 5.7, p95 23.4, off-palette 16.1% (top: #BBBB11 (0.7%), #AAAA11 (0.7%)) (advisory
+        in an exploration)'
       value: 5.7263
     info:
       metrics_raw:
@@ -155,12 +155,13 @@ qa_reports:
         detail: 5.76
     fingerprint: 36ad38a25da28309
 manual_review:
-  observed_note: Take 1 contains the smoke curl; take 2 omits it. Both show three saucer pools, three leaf boats,
-    the open front pool and an empty seat, with no characters or text. The plate camera/depth looks deeper than
-    the authored guide by about one fifth of the island width, and pebbles appear on the body despite the home-island
-    reference instructing not to copy pebbles. These are composition warnings for lead review; no exact pixel-registration
-    pass is claimed. No take is selected and neither is promoted.
-  selection: pending lead review; no take selected
+  observed_note: Take 1 contains the smoke curl; take 2 omits it. Both show three saucer pools, three
+    leaf boats, the open front pool and an empty seat, with no characters or text. The plate camera/depth
+    looks deeper than the authored guide by about one fifth of the island width, and pebbles appear on
+    the body despite the home-island reference instructing not to copy pebbles. These are composition
+    warnings for lead review; no exact pixel-registration pass is claimed. No take is selected and neither
+    is promoted.
+  selection: take 1 picked by the lead, 2026-11-10; recovered source promoted with founder authorization
 sources:
 - batch: batch-67-caglayan-flow
   job: x-caglayan-flow-4
@@ -202,33 +203,43 @@ account:
   owner: Founder's uncle's ChatGPT plan, used by the founder with permission
   kind: chatgpt-plan
 policy:
-  never_promote: true
+  never_promote: false
   style_checks: exploration warnings are advisory; hard checks unchanged
-  source_preservation: Original generated PNGs retained unchanged in /workspace/generated_images; q90 WebP review
-    copies published
+  source_preservation: Original PNG paths and hashes are historical records from the previous session;
+    those PNGs are unavailable in this environment. The recovered master and raw preserve the exact selected
+    q90 review source bytes. New edits preserve new generated PNGs immediately.
   plate_style: plate-final, no grade, filter or runtime correction
+  promotion_scope: Named root only; all phase 2 edits remain explorations
 reference_packaging:
   attachment_count: 5
   tool_attachment_order:
   - path: design/art/masters/island-main-l-v3/island-main-l-v3.webp
     sha256: f2e539ed4eb75131b0d90454c1b12dbfd8737935fe95e3564956ea967c5ffa29
-    role: 'The home island: copy ONLY its camera, its size in the frame, its plate proportions (shallow top, rounded
-      banded body) and its soft painting. Do not copy its lawn, colours, round door or pebbles.'
+    role: 'The home island: copy ONLY its camera, its size in the frame, its plate proportions (shallow
+      top, rounded banded body) and its soft painting. Do not copy its lawn, colours, round door or pebbles.'
   - path: design/art/takes/batch-34-islands-in-game/x-caglayan-healed/plate__x-caglayan-healed--t2.webp
     sha256: 02db824d10f45477ecb0257df26c43551983c5b4df607c88083ddeac4892f9de
-    role: 'THE LAYOUT (C1, the founder''s pick): copy every place and shape of this island exactly: the knoll and
-      its spout, the big round pool, the mill hut and wheel, the stream and front basin, the three saucer pools
-      and the stepping stones. Do not draw its otter or the hamster and bunny.'
+    role: 'THE LAYOUT (C1, the founder''s pick): copy every place and shape of this island exactly: the
+      knoll and its spout, the big round pool, the mill hut and wheel, the stream and front basin, the
+      three saucer pools and the stepping stones. Do not draw its otter or the hamster and bunny.'
   - path: design/art/takes/lead-picks-2026-11-06-caglayan/caglayan-island-4/plate__caglayan-island-4--t2.webp
     sha256: bbccf82938e08ddaae5a83f8f67a5cb8a69f4ab8ef4b5f0009ae24179cf14df3
-    role: 'ONLY its greenery: the soft green grass, moss, ferns and the flower colours. Do not copy its cliff, its
-      pool shape, its mill or its layout.'
+    role: 'ONLY its greenery: the soft green grass, moss, ferns and the flower colours. Do not copy its
+      cliff, its pool shape, its mill or its layout.'
   - path: design/art/stations/tea-stall-5/tea-stall-5.png
     sha256: c9a9f018b2dc6bcb1189f497f750dd98e80c69610c10ba3c71081d8b84d157b3
-    role: 'A finished station of the game: every building and prop is at this scale and finish (do not draw this
-      stall).'
+    role: 'A finished station of the game: every building and prop is at this scale and finish (do not
+      draw this stall).'
   - path: design/art/masters/cloud-sea/cloud-sea.png
     sha256: bb693d333d53fd5fc3e385335fc912574ccda580ac018bc12c2143c12031579a
     role: 'The sea of clouds below every island: paint the clouds like this.'
   printed_prompt_unchanged: true
   original_reference_files_unchanged: true
+source_recovery:
+  source: design/art/takes/batch-67-caglayan-flow/x-caglayan-flow-4/plate__x-caglayan-flow-4--t1.webp
+  source_sha256: 8eedb861f847b1492f63256d5e5b5e151e891c15c4e5341714c25b3458726eef
+  original_available: false
+  original_png_sha256: 2d1bf15ecf360774236d2e6d23e758970445533e687f0a787a4fbecb5444b304
+  authorization: Founder instruction in chat, 2026-11-10; continue from existing copies or regenerate.
+  master_encoding: Exact retained q90 WebP bytes; lossless re-encoding exceeds upload cap, founder authorized
+    continued publication from retained copies.
