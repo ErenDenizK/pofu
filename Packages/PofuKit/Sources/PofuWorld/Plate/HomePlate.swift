@@ -2,8 +2,9 @@ import Foundation
 import PofuCore
 import PofuDesignSystem
 
-/// The home island drawn from its painted plate (ADR-0022, the home first):
-/// where the plate sits in the world, where the characters stand on it and
+/// An island drawn from its painted plate (ADR-0022, the home first, then Çağlayan): one
+/// painted state of it (`light`, `stage`) and everything the runtime derives from the plate's
+/// data: where the plate sits in the world, where the characters stand on it and
 /// how large they are, its tap polygons and occluders, its light, and the
 /// camera's stops while it shows.
 ///
@@ -12,11 +13,23 @@ import PofuDesignSystem
 /// bubble, the collect moment) works unchanged. Its scale makes the island
 /// `framing.homeWidths` screen widths wide at Home's scale.
 ///
-/// It shows in clear weather: by day at island levels 2...10 (one painted
-/// plate per level), at golden hour and by night at level 10. Every other
-/// hour, level and weather keeps the sprite island until its painted states
+/// Home shows in clear weather: by day at island levels 2...10 (one painted
+/// plate per level), at golden hour and by night at level 10. Çağlayan
+/// (`CaglayanPlate.swift`) shows the states its data paints, by story stage. Every
+/// other hour, level, stage and weather keeps the sprite island until its painted states
 /// exist (ADR-0022 L1).
 public struct HomePlate: Hashable, Sendable {
+    /// Where the plate sits in the world.
+    public enum Placement: Hashable, Sendable {
+        /// Pofu's painted spot on Pofu's world feet, the island `framing.homeWidths` screen widths
+        /// wide at Home's scale.
+        case home
+        /// The plate's island box centred on `centre`, `width` world units wide (an island with
+        /// its own place on the map).
+        case island(centre: WorldPoint, width: Double)
+    }
+
+    public let placement: Placement
     public let plate: PlateIsland
     public let light: String
     public let stage: Int
@@ -34,16 +47,25 @@ public struct HomePlate: Hashable, Sendable {
     /// Pofu's art is 64 units wide (`PofuLayer.artWidth`).
     public static let pofuArtWidth = 64.0
 
-    public init(plate: PlateIsland, light: String = "day", stage: Int = 0) {
+    public init(plate: PlateIsland, light: String = "day", stage: Int = 0, placement: Placement = .home) {
         self.plate = plate
         self.light = light
         self.stage = stage
+        self.placement = placement
         let islandPixels = max(plate.islandBox.width, 1)
-        let u = plate.framing.homeWidths * CameraRail.referenceWidth / IslandFraming.homeScale / islandPixels
-        unitsPerPixel = u
-        let pofu = plate.characters["pofu"]
-            ?? PlatePoint(x: (plate.islandBox.minX + plate.islandBox.maxX) / 2, y: (plate.islandBox.minY + plate.islandBox.maxY) / 2)
-        origin = PlatePoint(x: pofu.x - IslandLayout.pofu.x / u, y: pofu.y - IslandLayout.pofu.y / u)
+        let box = plate.islandBox
+        let middle = PlatePoint(x: (box.minX + box.maxX) / 2, y: (box.minY + box.maxY) / 2)
+        switch placement {
+        case .home:
+            let u = plate.framing.homeWidths * CameraRail.referenceWidth / IslandFraming.homeScale / islandPixels
+            unitsPerPixel = u
+            let pofu = plate.characters["pofu"] ?? middle
+            origin = PlatePoint(x: pofu.x - IslandLayout.pofu.x / u, y: pofu.y - IslandLayout.pofu.y / u)
+        case .island(let centre, let width):
+            let u = width / islandPixels
+            unitsPerPixel = u
+            origin = PlatePoint(x: middle.x - centre.x / u, y: middle.y - centre.y / u)
+        }
         referenceLight = Self.reference(plate: plate, light: light, stage: stage)
         harmony = plate.harmony(light: light, stage: stage)
     }
@@ -65,6 +87,15 @@ public struct HomePlate: Hashable, Sendable {
         hour >= 20 || hour < 5.75
     }
 
+    /// The painted light of an hour: `day`, `golden` or `night` (the bedtime window is night), or
+    /// `nil` at dawn and dusk, which keep the sprite island.
+    public static func lightBand(hour: Double, isBedtime: Bool) -> String? {
+        if isBedtime || isNightHour(hour) { return "night" }
+        if dayHours.contains(hour) { return "day" }
+        if goldenHours.contains(hour) { return "golden" }
+        return nil
+    }
+
     /// The painted state for this level, hour and weather: the light and
     /// the stage (day: one per island level; golden and night: level 10), or
     /// `nil` for the sprite island.
@@ -75,17 +106,7 @@ public struct HomePlate: Hashable, Sendable {
         weather: WeatherConditions,
         isBedtime: Bool
     ) -> (light: String, stage: Int)? {
-        guard weather.weather == .clear, !weather.rainbow else { return nil }
-        let light: String
-        if isBedtime || isNightHour(hour) {
-            light = "night"
-        } else if dayHours.contains(hour) {
-            light = "day"
-        } else if goldenHours.contains(hour) {
-            light = "golden"
-        } else {
-            return nil
-        }
+        guard weather.weather == .clear, !weather.rainbow, let light = lightBand(hour: hour, isBedtime: isBedtime) else { return nil }
         guard plate.lights.contains(light) else { return nil }
         if light == "day" {
             return plate.dayStage(islandLevel: islandLevel).map { (light, $0) }
@@ -259,6 +280,8 @@ public struct HomePlate: Hashable, Sendable {
         public var core: PofuRGB
         /// The state's contact strength.
         public var contact: Double
+        /// How much of its colour the sprite keeps (`Harmony.saturation`).
+        public var saturation: Double
     }
 
     /// How deep the occlusion core is against the lawn's own shadow (linear light).
@@ -293,7 +316,8 @@ public struct HomePlate: Hashable, Sendable {
             pool: h.pool * closeness,
             pad: PlateMath.contactRatio(lit: lit, shadow: shadow),
             core: PlateMath.contactRatio(lit: lit, shadow: shadow, depth: Self.coreDepth),
-            contact: h.contact
+            contact: h.contact,
+            saturation: h.saturation
         )
     }
 

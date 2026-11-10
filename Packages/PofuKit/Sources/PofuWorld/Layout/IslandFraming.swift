@@ -130,6 +130,10 @@ public enum IslandFraming {
 
     // MARK: - The framings
 
+    /// Where a plate island's mass is centred, as a share of the screen's height (Home's plate is
+    /// framed at 54 %, `homeTopY` in its hand data; Çağlayan's Island stop follows the same rule).
+    public static let massY = 0.54
+
     /// The middle of the band between the chrome, in points.
     public static func bandMid(height: Double) -> Double {
         (topBand + (height - bottomBand)) / 2
@@ -249,11 +253,13 @@ public enum IslandFraming {
             )
         }
         if island == .caglayan {
+            // The same composition rule as Home's plate (docs/design/visual-system.md "Composition"):
+            // the island's mass centred at `massY` of the screen's height.
             let box = CaglayanLayout.islandBox
             return CameraRail.Stop(
                 scale: CaglayanLayout.closeScale * width / CameraRail.referenceWidth,
                 look: WorldPoint(x: box.midX, y: box.midY),
-                anchorY: bandMid(height: height)
+                anchorY: massY * height
             )
         }
         guard let isle = IslandLayout.isles.first(where: { $0.id == island }) else { return nil }

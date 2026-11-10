@@ -162,6 +162,7 @@ struct PlateCharacter: View {
                     .position(x: point.x, y: point.y - CGFloat(0.5 * scale))
                 let grounded = CGPoint(x: point.x, y: point.y - CGFloat(lift))
                 DepthImage(name: art, sprite: sprite, level: 0, anchor: grounded, scale: CGFloat(scale))
+                    .saturation(light.saturation)
                     .colorMultiply(Color(red: light.paint.red, green: light.paint.green, blue: light.paint.blue))
                 CharacterLightLayers(
                     image: Image(WorldArt.assetName(WorldArt.key(art, art: lookArt), variant: .sharp), bundle: .module),

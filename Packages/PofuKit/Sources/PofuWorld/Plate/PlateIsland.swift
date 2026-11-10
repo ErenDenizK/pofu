@@ -83,11 +83,17 @@ public struct PlateIsland: Hashable, Sendable {
         public var bounce: Double
         /// A character's own share of the ambient `tint` where its lawn is darker (night), by id.
         public var scale: [String: Double]
+        /// How much of its colour a sprite keeps (1 by default): a plate paler than the island's
+        /// root (Çağlayan's dry stages) asks the character to be less colourful than its lawn,
+        /// which a multiply cannot do.
+        public var saturation: Double
 
         public init(
             tint: PofuRGB, contact: Double, key: PofuRGB = PofuRGB(red: 1, green: 1, blue: 1),
-            rim: Double = 0, fill: Double = 0, pool: Double = 0, bounce: Double = 0, scale: [String: Double] = [:]
+            rim: Double = 0, fill: Double = 0, pool: Double = 0, bounce: Double = 0, scale: [String: Double] = [:],
+            saturation: Double = 1
         ) {
+            self.saturation = saturation
             self.scale = scale
             self.tint = tint
             self.contact = contact
@@ -122,8 +128,11 @@ public struct PlateIsland: Hashable, Sendable {
     public var plateSize: PlateRect
     public var stages: Int
     public var lights: [String]
-    /// How many painted states each light has (day: one per level).
+    /// How many stages each light's arrays hold (day: one per level, or one per story stage).
     public var lightStages: [String: Int]
+    /// The stages each light paints. A light painted at some stages only (Çağlayan's night: 2 and 3)
+    /// has arrays padded to its highest stage; every other state keeps the sprite island.
+    public var painted: [String: [Int]]
     /// The island level each day stage paints, stage 0 first (`[10, 9, ... 2]`).
     public var stageLevels: [Int]
     /// Per light, per stage: the character harmony data.
@@ -191,6 +200,11 @@ public struct PlateIsland: Hashable, Sendable {
         "world-lut-plate-\(island)-\(light)"
     }
 
+    /// Whether the island paints this light at this stage.
+    public func paints(light: String, stage: Int) -> Bool {
+        painted[light]?.contains(stage) ?? false
+    }
+
     public func object(_ id: String) -> Object? {
         objects.first { $0.id == id }
     }
@@ -229,7 +243,7 @@ public struct PlateIsland: Hashable, Sendable {
 
 extension PlateIsland: Decodable {
     private enum Keys: String, CodingKey {
-        case island, version, standIn, minLevel, plateSize, stages, lights, lightStages, stageLevels, harmony, islandBox, backdropBox, objects
+        case island, version, standIn, minLevel, plateSize, stages, lights, lightStages, painted, stageLevels, harmony, islandBox, backdropBox, objects
         case walkable, characters, pofuWidth, residentBoost, residentBoosts, lamps, lampHeight, framing, lightDirection, lightMap, shadowMap, textureBytes
     }
 
@@ -246,6 +260,15 @@ extension PlateIsland: Decodable {
         let lightNames = try c.decode([String].self, forKey: .lights)
         lights = lightNames
         lightStages = try c.decodeIfPresent([String: Int].self, forKey: .lightStages) ?? Dictionary(uniqueKeysWithValues: lightNames.map { ($0, stageCount) })
+        if let stagesPainted = try c.decodeIfPresent([String: [Int]].self, forKey: .painted) {
+            painted = stagesPainted
+        } else {
+            var everyStage: [String: [Int]] = [:]
+            for (light, count) in lightStages {
+                everyStage[light] = Array(0..<count)
+            }
+            painted = everyStage
+        }
         stageLevels = try c.decodeIfPresent([Int].self, forKey: .stageLevels) ?? [minLevel]
         harmony = try (c.decodeIfPresent([String: [RawHarmony]].self, forKey: .harmony) ?? [:]).mapValues { $0.map(\.harmony) }
         islandBox = try Self.rect(c.decode([Double].self, forKey: .islandBox))
@@ -281,13 +304,14 @@ extension PlateIsland: Decodable {
         var pool: Double?
         var bounce: Double?
         var scale: [String: Double]?
+        var saturation: Double?
 
         var harmony: Harmony {
             func rgb(_ v: [Double]?) -> PofuRGB {
                 guard let v, v.count == 3 else { return PofuRGB(red: 1, green: 1, blue: 1) }
                 return PofuRGB(red: v[0], green: v[1], blue: v[2])
             }
-            return Harmony(tint: rgb(tint), contact: contact, key: rgb(key), rim: rim ?? 0, fill: fill ?? 0, pool: pool ?? 0, bounce: bounce ?? 0, scale: scale ?? [:])
+            return Harmony(tint: rgb(tint), contact: contact, key: rgb(key), rim: rim ?? 0, fill: fill ?? 0, pool: pool ?? 0, bounce: bounce ?? 0, scale: scale ?? [:], saturation: saturation ?? 1)
         }
     }
 

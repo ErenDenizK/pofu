@@ -426,3 +426,165 @@ struct PlateHitTests {
         #expect(hit?.kind == .plateObject("teaStall"))
     }
 }
+
+/// Çağlayan, the first island besides Home drawn from its painted plates (ADR-0022): the same
+/// `HomePlate`, placed by data, shown only where a plate is painted.
+struct CaglayanPlateTests {
+    var island: PlateIsland {
+        get throws { try #require(HomePlate.caglayanIsland, "the package ships Plates/plate-caglayan.json") }
+    }
+
+    func state(_ island: PlateIsland, _ stage: Int, _ hour: Double, _ weather: WeatherConditions = .clear, bed: Bool = false) -> String? {
+        HomePlate.caglayanState(in: island, stage: stage, hour: hour, weather: weather, isBedtime: bed).map { "\($0.light)-\($0.stage)" }
+    }
+
+    @Test func paintsTheDayOfEveryStageAndTheNightsGoldenAndRainThatExist() throws {
+        let island = try island
+        #expect(island.painted["day"] == [0, 1, 2, 3, 4])
+        #expect(island.painted["night"] == [2, 3])
+        #expect(island.painted["golden"] == [4])
+        #expect(island.painted["rain"] == [4])
+        for stage in 0...4 {
+            #expect(state(island, stage, 12) == "day-\(stage)")
+        }
+        #expect(state(island, 3, 22.5) == "night-3")
+        #expect(state(island, 2, 3) == "night-2")
+        #expect(state(island, 2, 12, bed: true) == "night-2")
+        #expect(state(island, 4, 18) == "golden-4")
+        #expect(state(island, 4, 12, WeatherConditions(weather: .lightRain)) == "rain-4")
+        #expect(state(island, 4, 12, WeatherConditions(weather: .clear, rainbow: true)) == "day-4")
+    }
+
+    @Test func everyOtherStateKeepsTheSpriteIsland() throws {
+        let island = try island
+        // Not painted: night at stages 0, 1 and 4, golden hour and rain before the island is healed.
+        #expect(state(island, 0, 22.5) == nil)
+        #expect(state(island, 1, 22.5) == nil)
+        #expect(state(island, 4, 22.5) == nil)
+        #expect(state(island, 3, 18) == nil)
+        #expect(state(island, 3, 12, WeatherConditions(weather: .lightRain)) == nil)
+        // Rain at night, the other weathers and the dawn and dusk hours.
+        #expect(state(island, 4, 22.5, WeatherConditions(weather: .lightRain)) == nil)
+        for weather in [Weather.overcast, .mist, .goldenHaze] {
+            #expect(state(island, 4, 12, WeatherConditions(weather: weather)) == nil)
+        }
+        #expect(state(island, 4, 6.5) == nil)
+        #expect(state(island, 4, 19.75) == nil)
+    }
+
+    @Test func resolvesFromTheWorldsStageAndTheLooksHour() throws {
+        let island = try island
+        var world = IslandSamples.world(clock: nil, tendedDays: 60, levels: [:], jar: .zero, islands: [.home], islandLevel: 5)
+        var look = WorldLook(hourOverride: 12)
+        look.weatherOverride = .clear
+        // Not arrived: the sprite path (there is nothing to draw).
+        #expect(HomePlate.resolveCaglayan(island, world: world, look: look) == nil)
+        world.caglayan = WonderStatus(phase: .arrived, stage: 3)
+        let plate = try #require(HomePlate.resolveCaglayan(island, world: world, look: look))
+        #expect(plate.light == "day" && plate.stage == 3)
+        #expect(plate.placement == CaglayanLayout.placement)
+        look.homePlates = false
+        #expect(HomePlate.resolveCaglayan(island, world: world, look: look) == nil)
+    }
+
+    @Test func theIslandLandsOnItsOwnBoxAtTheStopsScale() throws {
+        let plate = HomePlate(plate: try island, placement: CaglayanLayout.placement)
+        let box = plate.islandBox
+        #expect(abs(box.width - CaglayanLayout.plateSize.width) < 1e-6)
+        #expect(abs((box.minX + box.maxX) / 2 - CaglayanLayout.center.x) < 1e-6)
+        #expect(abs((box.minY + box.maxY) / 2 - CaglayanLayout.center.y) < 1e-6)
+        // Round trip.
+        let p = PlatePoint(x: 700, y: 500)
+        let back = plate.plate(plate.world(p))
+        #expect(abs(back.x - p.x) < 1e-9 && abs(back.y - p.y) < 1e-9)
+    }
+
+    @Test func theStopFramesTheIslandAtItsMassHeightWithTheDataTop() throws {
+        let island = try island
+        let plate = HomePlate(plate: island, placement: CaglayanLayout.placement)
+        let stop = try #require(IslandFraming.isleStop(.caglayan, width: 402, height: 874))
+        let pose = CameraPose(scale: stop.scale, look: stop.look, anchorY: stop.anchorY)
+        let a = pose.project(WorldPoint(x: plate.islandBox.minX, y: plate.islandBox.minY), width: 402)
+        let b = pose.project(WorldPoint(x: plate.islandBox.maxX, y: plate.islandBox.maxY), width: 402)
+        // The island is `homeWidths` screens wide, its centre at 54 % of the screen's height, its
+        // top where `framing.homeTopY` (the backdrop's frame, `tools/plate/ingest.py`) says.
+        #expect(abs((b.x - a.x) / 402 - island.framing.homeWidths) < 0.003)
+        #expect(abs((a.y + b.y) / 2 - IslandFraming.massY * 874) < 0.5)
+        #expect(abs(a.y - island.framing.homeTopY) < 1.5)
+        #expect(a.x > 0 && b.x < 402)
+        // Clear of the top button band and the bottom UI.
+        #expect(a.y > IslandFraming.topBand && b.y < 874 - IslandFraming.bottomBand)
+    }
+
+    @Test func theBackdropCoversTheScreenAtTheStop() throws {
+        let plate = HomePlate(plate: try island, placement: CaglayanLayout.placement)
+        let stop = try #require(IslandFraming.isleStop(.caglayan, width: 402, height: 874))
+        let pose = CameraPose(scale: stop.scale, look: stop.look, anchorY: stop.anchorY)
+        let box = plate.backdropBox
+        let a = pose.project(WorldPoint(x: box.minX, y: box.minY), width: 402)
+        let b = pose.project(WorldPoint(x: box.maxX, y: box.maxY), width: 402)
+        #expect(a.x <= 0 && a.y <= 0 && b.x >= 402 && b.y >= 874)
+        // At a wider phone too (the stop's scale follows the width, the rows the height).
+        let wide = try #require(IslandFraming.isleStop(.caglayan, width: 440, height: 956))
+        let w = CameraPose(scale: wide.scale, look: wide.look, anchorY: wide.anchorY)
+        let c = w.project(WorldPoint(x: box.minX, y: box.minY), width: 440)
+        let d = w.project(WorldPoint(x: box.maxX, y: box.maxY), width: 440)
+        #expect(c.x <= 0 && c.y <= 0 && d.x >= 440 && d.y >= 956)
+    }
+
+    @Test func damlaStandsOnTheLawnAtPofusScaleRule() throws {
+        let island = try island
+        let plate = HomePlate(plate: island, placement: CaglayanLayout.placement)
+        let spot = try #require(island.characters["damla"])
+        #expect(PlateMath.contains(island.walkable, spot))
+        #expect(island.characters["pofu"] == nil)
+        // Pofu's proportion (about a tenth of the island's width), Damla boosted so she reads: her
+        // art is 38.3 units wide, drawn between 7 and 11 % of the island's width.
+        #expect(abs(plate.characterScale * 64 / plate.islandBox.width - 0.1) < 0.02)
+        let width = 38.267 * plate.residentScale(.damla)
+        #expect(width / plate.islandBox.width > 0.07 && width / plate.islandBox.width < 0.11)
+        #expect(plate.damla(stage: 3)?.art == "damla")
+        #expect(plate.damla(stage: 4)?.art == "damla-glass")
+    }
+
+    @Test func eachPaintedStateCarriesHarmonyAndTheRootIsTheReference() throws {
+        let island = try island
+        for (light, stages) in island.painted {
+            for stage in stages {
+                let h = island.harmony(light: light, stage: stage)
+                #expect(h.contact >= 0.5 && h.contact <= 1.2, "\(light) \(stage)")
+                #expect(h.tint.red <= 1 && h.tint.green <= 1 && h.tint.blue <= 1)
+                #expect(min(h.tint.red, h.tint.green, h.tint.blue) >= 0.25)
+                #expect(!island.lightMap[light, default: []][stage].isEmpty, "\(light) \(stage) has its light map")
+            }
+        }
+        // The stage 4 day is the island's own root: its sprites are not tinted.
+        #expect(island.harmony(light: "day", stage: 4).tint == PofuRGB(red: 1, green: 1, blue: 1))
+        // At night the lantern and the window are the key light.
+        #expect(island.lamps.count == 2)
+        let night = HomePlate(plate: island, light: "night", stage: 3, placement: CaglayanLayout.placement)
+        #expect(night.harmony.rim > 0 && night.harmony.pool > 0)
+    }
+
+    @Test func thePlateFadesInWithTheCameraNeverAsARectangleOverTheSky() throws {
+        let stop = try #require(IslandFraming.isleStop(.caglayan, width: 402, height: 874))
+        let at = CameraPose(scale: stop.scale, look: stop.look, anchorY: stop.anchorY)
+        #expect(HomePlate.caglayanFade(pose: at, viewportWidth: 402) == 1)
+        // Zoomed out to the Map, or flying across the sea at the Island scale, it is the island cut alone.
+        let map = IslandFraming.mapStop(width: 402, height: 874)
+        #expect(HomePlate.caglayanFade(pose: CameraPose(scale: map.scale, look: map.look, anchorY: map.anchorY), viewportWidth: 402) == 0)
+        let home = IslandFraming.homeStop(width: 402)
+        #expect(HomePlate.caglayanFade(pose: CameraPose(scale: home.scale, look: home.look, anchorY: home.anchorY), viewportWidth: 402) == 0)
+        var across = at
+        across.lookX += CaglayanLayout.plateSize.width
+        #expect(HomePlate.caglayanFade(pose: across, viewportWidth: 402) == 0)
+        // A little off centre keeps it whole.
+        var near = at
+        near.lookX += 4
+        #expect(HomePlate.caglayanFade(pose: near, viewportWidth: 402) == 1)
+    }
+
+    @Test func budgetFits() throws {
+        #expect(PlateMath.budgetOK(try island))
+    }
+}

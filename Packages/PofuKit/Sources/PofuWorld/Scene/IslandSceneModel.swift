@@ -57,6 +57,9 @@ public final class IslandSceneModel {
     /// scene draws the plate instead of the sprite island, taps land on its
     /// polygons and the rail takes its stops. Set by the scene.
     public private(set) var homePlate: HomePlate?
+    /// Çağlayan drawn from its painted plate, when its state is painted (ADR-0022): the scene draws
+    /// the plate instead of the sprite island and Damla stands on it. Set by the scene.
+    public private(set) var caglayanPlate: HomePlate?
     /// Taps on a plate object Home handles itself (the door, the garden
     /// at Collect); returns whether it did. Home sets it.
     @ObservationIgnored public var onPlateTap: (@MainActor (String) -> Bool)?
@@ -385,6 +388,14 @@ public final class IslandSceneModel {
         guard plate != homePlate else { return }
         homePlate = plate
         engine.rig.setStops(plate?.stops ?? CameraRail.referenceStops, whole: plate?.wholeStop)
+        kick()
+    }
+
+    /// Çağlayan's plate shows, changes state or leaves; the frame redraws (the camera is where
+    /// the Island stop puts it either way).
+    public func setCaglayanPlate(_ plate: HomePlate?) {
+        guard plate != caglayanPlate else { return }
+        caglayanPlate = plate
         kick()
     }
 
