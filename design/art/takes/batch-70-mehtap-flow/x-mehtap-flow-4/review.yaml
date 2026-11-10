@@ -205,8 +205,9 @@ account:
 policy:
   never_promote: false
   style_checks: exploration warnings are advisory; hard checks unchanged
-  source_preservation: Original generated PNGs retained unchanged in /workspace/generated_images; q90
-    WebP review copies published
+  source_preservation: Original PNG paths and hashes are historical records from the previous session;
+    those PNGs are unavailable in this environment. The recovered master and raw preserve the exact selected
+    q90 review source bytes. New edits preserve new generated PNGs immediately.
   plate_style: plate-final; no grade, filter or runtime correction
   promotion_scope: Named root only; all phase 2 edits remain explorations
 reference_packaging:
