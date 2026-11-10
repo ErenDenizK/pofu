@@ -605,3 +605,8 @@ Result (same day, #338): the real app now draws Home (Tam Çiçek, 09:00–17:00
 1. The low resolution he saw is probably from how images reach his phone, not the real picture. Handled: partly true; the CI frames are also reduced (460 x 1000). Frames for the founder are now made at full device resolution (`docs/design/visual-system.md`, Resolution).
 2. Many ADRs were written; are they really needed? Do not break the workflow with them. Handled: ADRs only for decisions whose reversal costs days of rework; everything about the visual system lives in one living doc, `docs/design/visual-system.md`; no ADRs for tunable numbers or methods.
 3. What is the upscale? It looks good, maybe a bit "AI"; maybe the zoom; real use must decide. Handled: explained (a free offline model doubles the plate's pixels and re-sharpens edges without changing colour). It is wired into ingest only after an in-app, full-resolution comparison on the first portrait plate: Lanczos vs upscaler vs a 0.8 / 0.2 blend.
+
+## 2026-11-10: Codex delivered; Higgsfield may be free
+
+1. Codex has delivered new work; the lead should work on it. Handled: the ladder and island roots were reviewed and merged (#345–#349); rich t1 is named as the home master and the t1 roots for the four islands; phase 2 is queued; the home plate is being rebuilt in the app from rich t1. Sheets: `docs/product/decisions-2026-11-10/ladder-home-root.jpg`, `docs/product/decisions-2026-11-10/island-roots.jpg`.
+2. Higgsfield may be free and unlimited for a while (a launch promotion); usable if needed, nothing to do now. Handled: noted; not needed while Codex keeps up; a candidate for video or extra takes later.
