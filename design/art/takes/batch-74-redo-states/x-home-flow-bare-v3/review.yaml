@@ -112,6 +112,11 @@ qa_reports:
     status: pass
     message: chroma x1.07 of the parent level (drift compounds along a chain)
     value: 1.0749
+  - &id001
+    check: harmony
+    status: warn
+    message: 'harmony score 57 against the world reference (outliers: C_p95, edge)'
+    value: 57.2
   info:
     metrics_raw:
       L_p5: 66.8
@@ -196,6 +201,12 @@ qa_reports:
     status: pass
     message: chroma x1.03 of the parent level (drift compounds along a chain)
     value: 1.0299
+  - &id002
+    check: harmony
+    status: warn
+    message: 'harmony score 57 against the world reference (outliers: C_p95, L_p98,
+      edge)'
+    value: 57.1
   info:
     metrics_raw:
       L_p5: 68.1
@@ -246,7 +257,7 @@ policy:
   selection: lead picks
   source_preservation: Original generated images retained at source_file paths; published
     takes are q90 review copies.
-harmony_scores:
+auxiliary_focused_world_scores:
   method: Focused individual scoring against the precomputed world reference; no full
     measure/catalog scan.
   command_base:
@@ -298,3 +309,36 @@ harmony_scores:
     - L_p98
     - edge
     reference_group: world
+  selection_role: Auxiliary earlier focused world CLI output; superseded for selection
+    by the canonical plate QA check.
+harmony_scores:
+  method: Existing unchanged qa.check_harmony(locked, kind=plate, limits_for plate
+    exploration); no full-catalog measure
+  kind: plate
+  ppu_formula: cfg.ppu_by_kind.world * locked_image_width / 1024
+  reference_data:
+    config_sha256: d2ed591e6e8a7d0eafd54f95e3e3c98290453a81aaff11a9f800afea6fc43a18
+    reference_sha256: 602aff8ff097bad430ebfc0bf3837c647cf738bc407b90d58b8eb689810a673e
+    materials_sha256: 495011a0bfbe8c9c890ec62f8ff6f7a2e1f5fe1d061f73c23ec26518b938b557
+    assets_json_count: 211
+    assets_json_digest_sha256: f8f88057d3b860d56318b4a6bdfbf0fc70f16eb9237516ab9d3234b901c4f6b3
+  scores:
+  - take: 1
+    locked_file: build/imagegen/batch-74-redo-states/locked/plate__x-home-flow-bare-v3--t1.png
+    kind: plate
+    ppu: 4.103
+    reference_group: world
+    score: 57.2
+    status: warn
+    message: 'harmony score 57 against the world reference (outliers: C_p95, edge)'
+    qa_check: *id001
+  - take: 2
+    locked_file: build/imagegen/batch-74-redo-states/locked/plate__x-home-flow-bare-v3--t2.png
+    kind: plate
+    ppu: 4.103
+    reference_group: world
+    score: 57.1
+    status: warn
+    message: 'harmony score 57 against the world reference (outliers: C_p95, L_p98,
+      edge)'
+    qa_check: *id002

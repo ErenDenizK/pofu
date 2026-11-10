@@ -4,10 +4,10 @@ jobs:
   x-mehtap-flow-1-day-v2:
     pick: 1
     publication: exploration; not promoted; lead review pending
-    note: Both takes are manually eligible. Actual QA lock_load ties at 0.0; focused
-      harmony scores break the tie, with t1 at 74.5 over t2 at 67.4. The moon, stars
-      and faint sky trail remain as explicitly required by the prompt. Auto-picked
-      by QA; founder review pending. Not promoted because this is an exploration.
+    note: Both takes are manually eligible. Actual QA lock_load ties at 0.0; canonical
+      plate QA harmony scores break the tie, with t1 at 73.9 over t2 at 66.7. The
+      moon, stars and faint sky trail remain as explicitly required by the prompt.
+      Auto-picked by QA; founder review pending. Not promoted because this is an exploration.
     actual_generation_calls: 2
     manual_review:
       job: x-mehtap-flow-1-day-v2
@@ -113,6 +113,11 @@ qa_reports:
     status: warn
     message: mean lightness moved by 16.1 L (the same lightness was asked)
     value: 16.0625
+  - &id001
+    check: harmony
+    status: pass
+    message: 'harmony score 74 against the world reference (outliers: L_p98, edge)'
+    value: 73.9
   info:
     metrics_raw:
       L_p5: 64.9
@@ -197,6 +202,12 @@ qa_reports:
     status: warn
     message: mean lightness moved by 17.0 L (the same lightness was asked)
     value: 17.0065
+  - &id002
+    check: harmony
+    status: warn
+    message: 'harmony score 67 against the world reference (outliers: C_p95, L_p98,
+      edge)'
+    value: 66.7
   info:
     metrics_raw:
       L_p5: 66.1
@@ -252,7 +263,12 @@ sources:
   provenance_time_note: Tool call start and return timestamps were not captured contemporaneously;
     left null rather than inferred from exec duration or file mtime. Original receipt
     preserved under receipt-corrections/history/.
-harmony_scores:
+policy:
+  never_promote: true
+  selection: lead picks
+  source_preservation: Original generated images retained at source_file paths; published
+    takes are q90 review copies.
+auxiliary_focused_world_scores:
   method: Focused individual scoring against the precomputed world reference; no full
     measure/catalog scan.
   command_base:
@@ -304,8 +320,36 @@ harmony_scores:
     - L_p98
     - edge
     reference_group: world
-policy:
-  never_promote: true
-  selection: lead picks
-  source_preservation: Original generated images retained at source_file paths; published
-    takes are q90 review copies.
+  selection_role: Auxiliary earlier focused world CLI output; superseded for selection
+    by the canonical plate QA check.
+harmony_scores:
+  method: Existing unchanged qa.check_harmony(locked, kind=plate, limits_for plate
+    exploration); no full-catalog measure
+  kind: plate
+  ppu_formula: cfg.ppu_by_kind.world * locked_image_width / 1024
+  reference_data:
+    config_sha256: d2ed591e6e8a7d0eafd54f95e3e3c98290453a81aaff11a9f800afea6fc43a18
+    reference_sha256: 602aff8ff097bad430ebfc0bf3837c647cf738bc407b90d58b8eb689810a673e
+    materials_sha256: 495011a0bfbe8c9c890ec62f8ff6f7a2e1f5fe1d061f73c23ec26518b938b557
+    assets_json_count: 211
+    assets_json_digest_sha256: f8f88057d3b860d56318b4a6bdfbf0fc70f16eb9237516ab9d3234b901c4f6b3
+  scores:
+  - take: 1
+    locked_file: build/imagegen/batch-74-redo-states/locked/plate__x-mehtap-flow-1-day-v2--t1.png
+    kind: plate
+    ppu: 6.1545
+    reference_group: world
+    score: 73.9
+    status: pass
+    message: 'harmony score 74 against the world reference (outliers: L_p98, edge)'
+    qa_check: *id001
+  - take: 2
+    locked_file: build/imagegen/batch-74-redo-states/locked/plate__x-mehtap-flow-1-day-v2--t2.png
+    kind: plate
+    ppu: 6.1545
+    reference_group: world
+    score: 66.7
+    status: warn
+    message: 'harmony score 67 against the world reference (outliers: C_p95, L_p98,
+      edge)'
+    qa_check: *id002
