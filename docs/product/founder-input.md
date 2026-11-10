@@ -640,3 +640,9 @@ Result (same day, #338): the real app now draws Home (Tam Çiçek, 09:00–17:00
 1. He cannot see a difference between b and c, both are clearly sharper than a; c if the lead thinks it is better. Handled: c ships as the standard plate upscale (this PR); Pofu reduced to 33 pt.
 2. A personal side-project idea shared as a friend, explicitly not part of Pofu. Handled: answered in chat; not recorded here by his wish.
 3. He cannot reach the environment variables from mobile. Handled: the auto-compact setting is done from claude.ai in a desktop browser; the lead compacts by hand with a focus at chapter ends meanwhile.
+
+## 2026-11-10 (late): Codex must work like a factory
+
+1. Codex keeps stopping minutes after a task starts, for days; our instructions cause part of it; remove every stop/wait/ask phrasing permanently. Handled: `AGENTS.md` Factory mode, the manifests and the plan reworded, a `CLAUDE.md` rule for every future brief.
+2. If a problem has an obvious first step only Codex can take, it takes it without asking. Handled: pre-authorised fallbacks (quota: non-generation work and retry every 15 minutes; pip: `--user`; disk: self-cleanup; lead picks: provisional auto-picks, accepted by `run.py`).
+3. Review the new deliveries with care for character-background harmony, colour and weather. Handled: the lead's review round on #358-#363. Lead review: 90 takes, all pixel-registered; picks named; home il1, bare and rain redone (batch-71: whole-frame veil, flat lawn); emanet stage 0-1 fog and mehtap stage 0 grey are by story design. Sheets: `docs/product/decisions-2026-11-10/phase2-*.jpg`.
