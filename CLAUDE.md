@@ -72,7 +72,9 @@ Loaded every turn: keep it short. Map of the docs: `docs/README.md`.
   agents read sections, not whole docs; continue a live agent with
   SendMessage; no optional steps unless the change or the founder needs
   them. Pilot, then scale; never regenerate what a grade or fit can fix.
-- **Codex never idles:** the lead reviews and merges its PRs in its own
-  rounds.
+- **Codex is a factory that never stops:** briefs and queue rows for Codex
+  never say stop, wait, hold or ask; they give an order of work, a fallback
+  for each failure, and provisional auto-picks so nothing waits on the lead;
+  the lead reviews and merges in its own rounds (`AGENTS.md`, Factory mode).
 - **Research once** (`docs/research/`, check before researching); keep
   reports short; archive superseded docs in `docs/archive/`, never delete.
