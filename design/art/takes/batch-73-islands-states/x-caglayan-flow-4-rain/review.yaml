@@ -1,0 +1,218 @@
+batch: batch-73-islands-states
+manifest: tools/imagegen/manifest/batch-73-islands-states.yaml
+manifest_sha256: d598a7718fdc51cab7d3ef7944d558393127bf9f5af63194465deac8a25f0b83
+jobs:
+  x-caglayan-flow-4-rain:
+    pick: 2
+    status: review
+    publication: exploration; never promoted
+    note: Factory QA auto-pick; lead review pending. Manual comparison retains stage inventory and water
+      state. Lighting/weather repaint is not exact pixel registration; both candidates retained for review.
+selection:
+  method: QA non-fail and manual eligibility; lowest style-lock load, then highest measured harmony; take
+    number only breaks ties
+  scores:
+  - take: 1
+    style_lock_load: 0.0
+    harmony: 56.3
+    eligible: true
+  - take: 2
+    style_lock_load: 0.0
+    harmony: 57.0
+    eligible: true
+  rejected_takes: []
+qa_reports:
+- job: x-caglayan-flow-4-rain
+  take: 1
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: warn
+    message: chroma p95 68 (R1 51) (advisory in an exploration)
+    value: 68.5
+  - check: light_values
+    status: pass
+    message: 'day/subject: L p5 56 (at least 50: darks stay a light mid-tone), p98 95 (at least 90)'
+    value: 55.5
+  - check: light_median
+    status: pass
+    message: 'day/subject: median L 79 (band 74-92)'
+    value: 78.6
+  - check: light_contrast
+    status: warn
+    message: 'day/subject: p75 local contrast 6.9 (band 2.5-6.5; above it reads too contrasty)'
+    value: 6.86
+  - check: light_sky
+    status: pass
+    message: 'day: sky L 75 (band 70-94)'
+    value: 75.3
+  - check: light_sea
+    status: pass
+    message: 'day: cloud sea L 87 (at least 82: the sea is the reflector)'
+    value: 87.0
+  - check: light_dark
+    status: pass
+    message: 'day: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.0
+  - check: detail_budget
+    status: pass
+    message: detail at display size 5.9 (R1 5.3)
+    value: 5.9
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 4.3, p95 19.6, off-palette 11.6% (top: #BBBB22 (0.8%), #AAAA22 (0.7%)) (advisory
+      in an exploration)'
+    value: 4.2818
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_structure
+    status: pass
+    message: light structure matches the parent (r 0.93)
+    value: 0.9261
+  - check: edit_lightness
+    status: pass
+    message: mean lightness moved by 2.5 L (the same lightness was asked)
+    value: 2.5167
+  info:
+    metrics_raw:
+      L_p5: 57.8
+      L_p50: 79.0
+      L_p95: 92.9
+      C_p50: 20.5
+      C_p95: 68.5
+      C_p99: 75.5
+      detail: 5.9
+    metrics_locked:
+      L_p5: 57.8
+      L_p50: 79.0
+      L_p95: 92.9
+      C_p50: 20.5
+      C_p95: 68.5
+      C_p99: 75.5
+      detail: 5.9
+  fingerprint: fec27b573f8cdcbe
+- job: x-caglayan-flow-4-rain
+  take: 2
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: warn
+    message: chroma p95 71 (R1 51) (advisory in an exploration)
+    value: 71.1
+  - check: light_values
+    status: pass
+    message: 'day/subject: L p5 58 (at least 50: darks stay a light mid-tone), p98 94 (at least 90)'
+    value: 57.5
+  - check: light_median
+    status: pass
+    message: 'day/subject: median L 80 (band 74-92)'
+    value: 79.9
+  - check: light_contrast
+    status: pass
+    message: 'day/subject: p75 local contrast 6.4 (band 2.5-6.5; above it reads too contrasty)'
+    value: 6.4
+  - check: light_sky
+    status: pass
+    message: 'day: sky L 77 (band 70-94)'
+    value: 77.1
+  - check: light_sea
+    status: pass
+    message: 'day: cloud sea L 86 (at least 82: the sea is the reflector)'
+    value: 86.0
+  - check: light_dark
+    status: pass
+    message: 'day: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.0
+  - check: detail_budget
+    status: pass
+    message: detail at display size 5.7 (R1 5.3)
+    value: 5.68
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 4.9, p95 22.8, off-palette 13.0% (top: #BBBB22 (0.9%), #CCCC33 (0.8%)) (advisory
+      in an exploration)'
+    value: 4.8932
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_structure
+    status: pass
+    message: light structure matches the parent (r 0.93)
+    value: 0.9268
+  - check: edit_lightness
+    status: pass
+    message: mean lightness moved by 1.8 L (the same lightness was asked)
+    value: 1.7535
+  info:
+    metrics_raw:
+      L_p5: 59.4
+      L_p50: 80.0
+      L_p95: 92.2
+      C_p50: 21.5
+      C_p95: 71.1
+      C_p99: 78.9
+      detail: 5.68
+    metrics_locked:
+      L_p5: 59.4
+      L_p50: 80.0
+      L_p95: 92.2
+      C_p50: 21.5
+      C_p95: 71.1
+      C_p99: 78.9
+      detail: 5.68
+  fingerprint: fec27b573f8cdcbe
+sources:
+- take: 1
+  source_file: /workspace/art-operator-runtime/factory/generated/x-caglayan-flow-4-rain/take-1.png
+  source_sha256: 3a3e14bf0039b4c432ca07fffa7bd9f81c78ea90389f873c5551cc7b9b5a5386
+  q90_take: design/art/takes/batch-73-islands-states/x-caglayan-flow-4-rain/plate__x-caglayan-flow-4-rain--t1.webp
+  q90_take_sha256: 695fdea03b59039c990f4e3cc8bfef33a8474e82ae1a8ea09b9d29bbd6040149
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 1dc1d0179ac479c45a1278b91ca94094854928caa65ff700112adcc7c5c8ac19
+  references:
+  - path: design/art/takes/batch-67-caglayan-flow/x-caglayan-flow-4/plate__x-caglayan-flow-4--t1.webp
+    role: The image to edit (the approved previous level). Edit it; do not redraw it.
+    sha256: 8eedb861f847b1492f63256d5e5b5e151e891c15c4e5341714c25b3458726eef
+- take: 2
+  source_file: /workspace/art-operator-runtime/factory/generated/x-caglayan-flow-4-rain/take-2.png
+  source_sha256: 12237169a8bb26ac872a378101704750d2727826cdcb4ac845df868036b55893
+  q90_take: design/art/takes/batch-73-islands-states/x-caglayan-flow-4-rain/plate__x-caglayan-flow-4-rain--t2.webp
+  q90_take_sha256: 547f80be041a4214130f9a1f3021dd9ed67240fa53bcfaa5954de10e6a239eea
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 1dc1d0179ac479c45a1278b91ca94094854928caa65ff700112adcc7c5c8ac19
+  references:
+  - path: design/art/takes/batch-67-caglayan-flow/x-caglayan-flow-4/plate__x-caglayan-flow-4--t1.webp
+    role: The image to edit (the approved previous level). Edit it; do not redraw it.
+    sha256: 8eedb861f847b1492f63256d5e5b5e151e891c15c4e5341714c25b3458726eef
+policy:
+  never_promote: true
+  originals: source_file PNGs preserved unchanged; published takes are q90 copies
