@@ -92,7 +92,7 @@ applied in Swift (`HomePlate.characterLight`, `PlateCharacter`,
   `contact`: the lawn's shadow depth (L* p90 minus p10) around the contact
   points over the level-10 day's, 0.5 to 1.2.
 
-Scale: Pofu is 33 pt (settled). Mochi and Findik are drawn at least 60 % of his
+Scale: Pofu keeps his size relative to the painted world (8.14 % of the plate width; 33 pt at the old 1.0 framing, about 38 pt at 1.15). Mochi and Findik are drawn at least 60 % of his
 painted height (`residentBoosts`: Mochi 1.62, Findik 1.40 of his proportion;
 62 % and 52 % +, measured on the sprites' boxes, 23.3 and 26.8 units against
 his 60.8). Sharpness: measured at full resolution (Laplacian energy of the
@@ -103,8 +103,7 @@ the deform shader on top of the 5.3x minification of a 522 px portrait); the
 companion art is shared by the whole app, so no density change was made for
 Pofu here. Home framing: the island is 1.15 screens wide (`homeWidths`), its
 mass centred at 54 % of the screen height (`homeTopY` 292) and the screen at
-47 % of its width (`homeCenterX`); Pofu's painted width is 1/1.15 of what the
-old framing gave, so he stays 33 pt.
+47 % of its width (`homeCenterX`); Pofu grows with the zoom.
 
 Measured, not judged: `python3 -I tools/plate/harmony_check.py
 home-plate-full-<state>.png ...` takes full-resolution app frames, finds each
@@ -151,7 +150,7 @@ Any new plate state runs the check on its CI frame before the founder sees it.
   sky or cloud sea is needed.
 - The UI lives in the bottom band and one top-right button.
 - Nothing covers the island.
-- Characters: Pofu 33 pt at the home framing; Mochi and Fındık in proportion.
+- Characters: Pofu about 38 pt at the home framing (his share of the painted world is fixed); Mochi and Fındık in proportion.
 
 ## Checks before the founder sees anything
 

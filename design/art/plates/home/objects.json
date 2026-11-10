@@ -1,6 +1,6 @@
 {
  "island": "home",
- "note": "The founder's pick: batch 66's x-home-flow-final-rich t1 (1024 x 1536 portrait, painted at final colour), level 10, day. Points are percent of the plate (`size`). Taps map to the existing stations only (beehive, hamster wheel, hilltop and the other round doors have no action, so no polygon). Day stages 0..8 are island levels 10..2 (`stageLevels`); golden and night exist at level 10 only. An object's `stages` lists the day stages where it is painted (diff against the level-10 plate, checked by eye: tools/plate/README.md); absent means all. `lamps` are the three painted lamp posts' ground points (percent of the plate; the lantern glow sits `LAMP_HEIGHT` above), `residentBoosts` size Mochi and Findik at 62 % and 52 %+ of Pofu's painted height (docs/design/visual-system.md, Characters). Home framing: the island is 1.15 screens wide (was 1.0) with its mass centred at 54 % of the screen height and the screen centred at 47 % of its width, Pofu kept at 33 pt by painting him 1/1.15 as many plate pixels wide.",
+ "note": "The founder's pick: batch 66's x-home-flow-final-rich t1 (1024 x 1536 portrait, painted at final colour), level 10, day. Points are percent of the plate (`size`). Taps map to the existing stations only (beehive, hamster wheel, hilltop and the other round doors have no action, so no polygon). Day stages 0..8 are island levels 10..2 (`stageLevels`); golden and night exist at level 10 only. An object's `stages` lists the day stages where it is painted (diff against the level-10 plate, checked by eye: tools/plate/README.md); absent means all. `lamps` are the three painted lamp posts' ground points (percent of the plate; the lantern glow sits `LAMP_HEIGHT` above), `residentBoosts` size Mochi and Findik at 62 % and 52 %+ of Pofu's painted height (docs/design/visual-system.md, Characters). Home framing: the island is 1.15 screens wide (was 1.0) with its mass centred at 54 % of the screen height and the screen centred at 47 % of its width, Pofu keeping his share of the painted world (8.14 % of the plate width), so he grows with the zoom to about 38 pt.",
  "size": [
   1024,
   1536
@@ -1236,7 +1236,7 @@
    56.25
   ]
  },
- "pofuWidth": 7.08,
+ "pofuWidth": 8.14,
  "framing": {
   "homeWidths": 1.15,
   "homeCenterX": 0.47,

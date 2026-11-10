@@ -30,10 +30,10 @@ def frame(lawn, body) -> np.ndarray:
 
 
 class Geometry(unittest.TestCase):
-    def test_pofu_is_33_points_wide_and_stands_on_his_spot(self):
+    def test_pofu_is_33_points_per_screen_width_of_island_and_stands_on_his_spot(self):
         d = data()
         c = hc.characters(d, 402)  # a 1x frame: pixels are points
-        self.assertAlmostEqual(c["pofu"]["width"], 33, delta=0.6)
+        self.assertAlmostEqual(c["pofu"]["width"], 33 * d["framing"]["homeWidths"], delta=0.6)
         m, fx, fy = hc.frame_map(d, 402)
         x, y = d["characters"]["pofu"]
         self.assertAlmostEqual(c["pofu"]["feet"][0], fx(x))

@@ -196,10 +196,10 @@ struct HomePlateTests {
 
     @Test func charactersAreSmallOnThePlate() throws {
         let home = try plate
-        // Pofu is 33 points tall at the Home framing (about 1.5 windmill doors), the residents in
-        // proportion (docs/design/visual-system.md, Composition).
+        // Pofu keeps his share of the painted world (33 points at a 1.0 framing, 1.15 times that at
+        // 1.15: about 38), the residents in proportion (docs/design/visual-system.md, Composition).
         let pofu = 64 * home.characterScale * IslandFraming.homeScale
-        #expect(abs(pofu - 33) < 0.5)
+        #expect(abs(pofu - 33 * home.plate.framing.homeWidths) < 0.5)
         let mochi = 30.4 * home.residentScale(.mochi) * IslandFraming.homeScale
         #expect(mochi > 17)
         #expect(abs(home.residentScale / home.characterScale - home.plate.residentBoost) < 1e-9)
