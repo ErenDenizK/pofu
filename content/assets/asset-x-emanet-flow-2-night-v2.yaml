@@ -1,0 +1,24 @@
+id: asset-x-emanet-flow-2-night-v2
+type: asset
+title_tr: x-emanet-flow-2-night-v2
+title_en: x-emanet-flow-2-night-v2 (plate)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached painting into the same scene on a calm, clear night: a soft deep-blue
+  sky (blue, never black) with a gentle glow near the clouds, a soft round moon and a few
+  small stars; the cloud sea stays light and lilac-white. Emanet stays readable and fairly
+  light under cool moonlight, its colours soft but still rich, its shadows blue-violet, no
+  deep blacks, no grey veil over the whole frame. KEEP THE STORY FOG…
+links:
+  variant_of:
+  - asset-x-emanet-flow-2
+art:
+  images: []
+  jobs:
+  - batch-74-redo-states:x-emanet-flow-2-night-v2
+sources:
+- doc: tools/imagegen/manifest/batch-74-redo-states.yaml
+kind: plate
+batch: batch-74-redo-states
+size: 1536x1024

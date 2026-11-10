@@ -1,0 +1,24 @@
+id: asset-x-revontuli-flow-1-day-v2
+type: asset
+title_tr: x-revontuli-flow-1-day-v2
+title_en: x-revontuli-flow-1-day-v2 (plate)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached painting into the same scene in calm, clear daytime with bright snow,
+  keeping the colour richness of the attached picture. The snow is bright but never a bleached
+  white frame: blue-violet shadows lie in the snow (under the trees, the post, the rocks and
+  along every drift), the snow itself carries soft cool blue and lilac tints in its lit planes;
+  warm sunlight from the upper left lands on the wood an…
+links:
+  variant_of:
+  - asset-x-revontuli-flow-1
+art:
+  images: []
+  jobs:
+  - batch-74-redo-states:x-revontuli-flow-1-day-v2
+sources:
+- doc: tools/imagegen/manifest/batch-74-redo-states.yaml
+kind: plate
+batch: batch-74-redo-states
+size: 1536x1024
