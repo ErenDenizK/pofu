@@ -1,0 +1,24 @@
+id: asset-x-home-flow-rain-v2
+type: asset
+title_tr: x-home-flow-rain-v2
+title_en: x-home-flow-rain-v2 (plate)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached painting into the same scene in a soft summer rain, as in the attached
+  rain: a soft lilac-grey overcast sky, fine gentle rain streaks, the island still bright
+  and clean, small puddles on the path, the giant sunflower's head bowed a little, wet sheen
+  kept matte and soft, rings on the pond. The far islands and the cloud-whale fade softly
+  into the rain but stay visible. Everything stays in its place, t…
+links:
+  variant_of:
+  - asset-x-home-flow-final-rich
+art:
+  images: []
+  jobs:
+  - batch-71-home-redo:x-home-flow-rain-v2
+sources:
+- doc: tools/imagegen/manifest/batch-71-home-redo.yaml
+kind: plate
+batch: batch-71-home-redo
+size: 1024x1536

@@ -1,0 +1,24 @@
+id: asset-x-home-flow-il1-v2
+type: asset
+title_tr: x-home-flow-il1-v2
+title_en: x-home-flow-il1-v2 (plate)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached FINAL painting (Tam Çiçek, the finished island, the reference truth of
+  this flow) into its earlier state at the very first morning. It is derived from the final
+  directly, never from another level, so everything not named stays pixel for pixel as in
+  the final. PRESENT, unchanged from the final: the island plate with its lawn, rounded earth
+  body, roots and the first round wooden door; the rope bridge …
+links:
+  variant_of:
+  - asset-x-home-flow-final-rich
+art:
+  images: []
+  jobs:
+  - batch-71-home-redo:x-home-flow-il1-v2
+sources:
+- doc: tools/imagegen/manifest/batch-71-home-redo.yaml
+kind: plate
+batch: batch-71-home-redo
+size: 1024x1536
