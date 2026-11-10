@@ -1,0 +1,228 @@
+batch: batch-71-home-redo
+manifest: tools/imagegen/manifest/batch-71-home-redo.yaml
+manifest_sha256: d50c10e7666cf279de3e679c6887ac99cda33d4bd546451d6f138573c49ec23b
+jobs:
+  x-home-flow-rain-v2:
+    pick: 1
+    status: review
+    publication: exploration; never promoted
+    note: Both direct-root edits retain the four earth doors, harbor, far islands and whale, with bowed
+      sunflower, puddles and warm lamps. Take 2 adds clearer warm wet-path reflections. Rain remains diagonal
+      and sky is veiled blue-grey; island greens and peach earth remain visible. Exact registration not
+      manually proven. Auto-picked by QA; founder review pending.
+selection:
+  method: QA non-fail and manual eligibility; lowest style-lock load, then highest measured harmony; take
+    number only breaks ties
+  scores:
+  - take: 1
+    style_lock_load: 0.0
+    harmony: 79.1
+    eligible: true
+  - take: 2
+    style_lock_load: 0.0
+    harmony: 78.2
+    eligible: true
+  rejected_takes: []
+qa_reports:
+- job: x-home-flow-rain-v2
+  take: 1
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1024x1536
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 43 (R1 51)
+    value: 43.3
+  - check: light_values
+    status: pass
+    message: 'day/subject: L p5 54 (at least 50: darks stay a light mid-tone), p98 96 (at least 90)'
+    value: 54.1
+  - check: light_median
+    status: pass
+    message: 'day/subject: median L 76 (band 74-92)'
+    value: 76.2
+  - check: light_contrast
+    status: warn
+    message: 'day/subject: p75 local contrast 7.9 (band 2.5-6.5; above it reads too contrasty) (warn-only
+      until the founder has seen the light pilot)'
+    value: 7.88
+  - check: light_sky
+    status: pass
+    message: 'day: sky L 71 (band 70-94)'
+    value: 71.3
+  - check: light_sea
+    status: pass
+    message: 'day: cloud sea L 86 (at least 82: the sea is the reflector)'
+    value: 85.8
+  - check: light_dark
+    status: pass
+    message: 'day: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.0
+  - check: detail_budget
+    status: pass
+    message: detail at display size 5.2 (R1 5.3)
+    value: 5.17
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 2.6, p95 4.6, off-palette 0.5% (top: #BB6633 (0.0%), #CCCC44 (0.0%))'
+    value: 2.6389
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_structure
+    status: pass
+    message: light structure matches the parent (r 0.95)
+    value: 0.949
+  - check: edit_lightness
+    status: pass
+    message: mean lightness moved by 2.5 L (the same lightness was asked)
+    value: 2.4508
+  info:
+    metrics_raw:
+      L_p5: 58.4
+      L_p50: 76.1
+      L_p95: 92.9
+      C_p50: 17.0
+      C_p95: 43.3
+      C_p99: 54.9
+      detail: 5.17
+    metrics_locked:
+      L_p5: 58.4
+      L_p50: 76.1
+      L_p95: 92.9
+      C_p50: 17.0
+      C_p95: 43.3
+      C_p99: 54.9
+      detail: 5.17
+  fingerprint: 171ceabd1642984d
+- job: x-home-flow-rain-v2
+  take: 2
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1024x1536
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 44 (R1 51)
+    value: 43.9
+  - check: light_values
+    status: pass
+    message: 'day/subject: L p5 55 (at least 50: darks stay a light mid-tone), p98 96 (at least 90)'
+    value: 54.6
+  - check: light_median
+    status: pass
+    message: 'day/subject: median L 76 (band 74-92)'
+    value: 76.1
+  - check: light_contrast
+    status: warn
+    message: 'day/subject: p75 local contrast 7.6 (band 2.5-6.5; above it reads too contrasty) (warn-only
+      until the founder has seen the light pilot)'
+    value: 7.64
+  - check: light_sky
+    status: pass
+    message: 'day: sky L 73 (band 70-94)'
+    value: 73.1
+  - check: light_sea
+    status: pass
+    message: 'day: cloud sea L 87 (at least 82: the sea is the reflector)'
+    value: 87.2
+  - check: light_dark
+    status: pass
+    message: 'day: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.0
+  - check: detail_budget
+    status: pass
+    message: detail at display size 5.1 (R1 5.3)
+    value: 5.11
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 2.8, p95 4.6, off-palette 0.4% (top: #DD8833 (0.0%), #BB6633 (0.0%))'
+    value: 2.7768
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_structure
+    status: pass
+    message: light structure matches the parent (r 0.94)
+    value: 0.9353
+  - check: edit_lightness
+    status: pass
+    message: mean lightness moved by 1.6 L (the same lightness was asked)
+    value: 1.586
+  info:
+    metrics_raw:
+      L_p5: 58.4
+      L_p50: 76.7
+      L_p95: 94.3
+      C_p50: 16.9
+      C_p95: 43.9
+      C_p99: 56.9
+      detail: 5.11
+    metrics_locked:
+      L_p5: 58.4
+      L_p50: 76.7
+      L_p95: 94.3
+      C_p50: 16.9
+      C_p95: 43.9
+      C_p99: 56.9
+      detail: 5.11
+  fingerprint: 171ceabd1642984d
+sources:
+- take: 1
+  source_file: /workspace/art-operator-runtime/factory/generated/x-home-flow-rain-v2/take-1.png
+  source_sha256: 83f94bd43c085c602fe183da9ade00fa312c89219501ec207717cf6fde98bd71
+  q90_take: design/art/takes/batch-71-home-redo/x-home-flow-rain-v2/plate__x-home-flow-rain-v2--t1.webp
+  q90_take_sha256: d49b1c04b31a8400f4a64b2c887f7c7b7d83f52aaaca3fb94611eaaa8fe6e0a5
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: b88a4d987b54e22dccbc680c2787251fb06c0ef74eae6fd0ae1d4fa37f7939d1
+  references:
+  - path: design/art/masters/x-home-flow-final-rich/x-home-flow-final-rich.webp
+    role: The image to edit (the approved previous level). Edit it; do not redraw it.
+    sha256: 610f92abdd46cb454fd98b0cf1afbc6654d935185b643e7621c90e1b14186fc9
+  - path: design/art/takes/batch-25-seasons/x-season-rain/plate__x-season-rain--t2.webp
+    role: 'The rain target: this soft lilac-grey rain, the island still bright, small puddles, drooping
+      sunflowers, fine soft rain streaks.'
+    sha256: eacaccc847c739bd02e5d574c7f83336bb2afe630a462a145c0d52a652812dda
+- take: 2
+  source_file: /workspace/art-operator-runtime/factory/generated/x-home-flow-rain-v2/take-2.png
+  source_sha256: e6967478b494fc89c21e8f216b9643e6d4fb8e5a1b8bb3cf00323e5a99da3d5f
+  q90_take: design/art/takes/batch-71-home-redo/x-home-flow-rain-v2/plate__x-home-flow-rain-v2--t2.webp
+  q90_take_sha256: 449a9a8de1a49953ad6c5bef5273247521f06b0f984c16325f0db6b51cb513d7
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: b88a4d987b54e22dccbc680c2787251fb06c0ef74eae6fd0ae1d4fa37f7939d1
+  references:
+  - path: design/art/masters/x-home-flow-final-rich/x-home-flow-final-rich.webp
+    role: The image to edit (the approved previous level). Edit it; do not redraw it.
+    sha256: 610f92abdd46cb454fd98b0cf1afbc6654d935185b643e7621c90e1b14186fc9
+  - path: design/art/takes/batch-25-seasons/x-season-rain/plate__x-season-rain--t2.webp
+    role: 'The rain target: this soft lilac-grey rain, the island still bright, small puddles, drooping
+      sunflowers, fine soft rain streaks.'
+    sha256: eacaccc847c739bd02e5d574c7f83336bb2afe630a462a145c0d52a652812dda
+policy:
+  never_promote: true
+  originals: source_file PNGs preserved unchanged; published takes are q90 copies
