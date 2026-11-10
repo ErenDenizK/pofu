@@ -196,6 +196,60 @@ class IngestTests(unittest.TestCase):
         self.assertEqual(len(hut["box"]), 4)
         self.assertEqual(len(data["lightMap"]["day"][0]), 20)
 
+    def test_present_follows_the_day_stages(self):
+        windmill = {"id": "windmill", "stages": [0, 1, 2]}
+        self.assertTrue(ingest.present(windmill, "day", 2))
+        self.assertFalse(ingest.present(windmill, "day", 3))
+        self.assertTrue(ingest.present(windmill, "night", 0))  # golden and night paint everything
+        self.assertTrue(ingest.present({"id": "door"}, "day", 8))
+
+    def test_check_wants_assets_per_painted_state_only(self):
+        a = np.ones((100, 100))
+        obj = {"id": "mill", "polygon": [[40, 40], [60, 40], [60, 60]], "occluder": True, "stages": [0]}
+        data = self._data(objects=[obj], stages=2, lightStages={"day": 2}, lights=["day"])
+        assets = {f"world-test-{k}-day-{s}" for k in ("plate", "island", "backdrop") for s in (0, 1)} | {"world-test-occ-mill-day-0"}
+        self.assertEqual(ingest.problems(data, a, assets), [])  # no occluder asset for the stage that does not paint it
+        self.assertIn("missing asset world-test-occ-mill-day-0",
+                      "\n".join(ingest.problems(data, a, assets - {"world-test-occ-mill-day-0"})))
+
+
+class HarmonyTests(unittest.TestCase):
+    def setUp(self):
+        self._size = ingest.SIZE
+
+    def tearDown(self):
+        ingest.SIZE = self._size
+
+    def _plate(self, lawn, w=200, h=300):
+        return np.full((h, w, 3), lawn, np.float64)
+
+    def _hand(self, w=200, h=300):
+        ingest.SIZE = (w, h)
+        return {"walkable": [[10, 40], [90, 40], [90, 90], [10, 90]], "pofuWidth": 10,
+                "characters": {"pofu": [50, 60], "mochi": [30, 60], "findik": [70, 60]}}
+
+    def test_the_reference_state_is_neutral(self):
+        h = ingest.harmony_state(self._plate([0.4, 0.7, 0.3]), self._hand(), None)
+        self.assertEqual(h["tint"], [1.0, 1.0, 1.0])
+        self.assertEqual(h["contact"], 1.0)
+
+    def test_a_darker_lawn_darkens_the_tint_and_a_brighter_one_never_brightens_it(self):
+        hand = self._hand()
+        ref = ingest.harmony_state(self._plate([0.4, 0.7, 0.3]), hand, None)
+        dark = ingest.harmony_state(self._plate([0.2, 0.35, 0.3]), hand, ref)
+        self.assertLess(dark["tint"][0], 0.9)
+        self.assertLess(dark["tint"][1], 0.9)
+        self.assertEqual(dark["tint"][2], 1.0)  # blue did not fall
+        bright = ingest.harmony_state(self._plate([0.6, 0.9, 0.6]), hand, ref)
+        self.assertEqual(bright["tint"], [1.0, 1.0, 1.0])
+
+    def test_tint_and_contact_stay_in_their_ranges(self):
+        hand = self._hand()
+        ref = ingest.harmony_state(self._plate([0.4, 0.7, 0.3]), hand, None)
+        black = ingest.harmony_state(self._plate([0.0, 0.0, 0.0]), hand, ref)
+        self.assertTrue(all(0.25 <= v <= 1 for v in black["tint"]))
+        self.assertTrue(0.5 <= black["contact"] <= 1.2)
+
 
 if __name__ == "__main__":
     unittest.main()

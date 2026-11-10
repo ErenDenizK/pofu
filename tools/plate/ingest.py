@@ -59,7 +59,7 @@ SIZE = DEFAULT_SIZE
 #: Set by --no-upscale.
 SCALE_UP = True
 #: ASTC bytes. Was 8 MB for the original take; the x2 plate alone is 6.3 MB (8.27 MB in all), so 9 MB (PlateMath).
-BUDGET = 9_000_000
+BUDGET = 9_000_000  # per state (the largest one)
 #: Plates ship upscaled by UPSCALE x2 at MIX of the model, the rest Lanczos.
 UPSCALE = 2
 MIX = 0.8
@@ -178,6 +178,12 @@ def plates(hand: dict):
             yield light, int(stage), REPO / rel
 
 
+def present(obj: dict, light: str, stage: int) -> bool:
+    """Whether the object is painted in the state: `stages` lists the day stages that show it
+    (absent: all); golden and night exist at level 10 only, where everything is painted."""
+    return light != "day" or "stages" not in obj or stage in obj["stages"]
+
+
 def asset_name(island: str, kind: str, light: str, stage: int, oid: str | None = None) -> str:
     return f"world-{island}-{kind}-{oid}-{light}-{stage}" if oid else f"world-{island}-{kind}-{light}-{stage}"
 
@@ -241,7 +247,12 @@ def matte_path(island: str, light: str, stage: int) -> Path:
 
 
 def load_matte(island: str, light: str, stage: int) -> np.ndarray:
-    return np.asarray(Image.open(matte_path(island, light, stage)).convert("L"), np.float64) / 255
+    """The state's matte; a state without its own (golden, night, the lower island levels share
+    the level-10 day geometry, checked pixel for pixel) takes the first plate's."""
+    path = matte_path(island, light, stage)
+    if not path.exists():
+        path = matte_path(island, "day", 0)
+    return np.asarray(Image.open(path).convert("L"), np.float64) / 255
 
 
 def cmd_matte(island: str) -> None:
@@ -311,9 +322,14 @@ def backdrop(rgb: np.ndarray, a: np.ndarray, box: tuple[int, int, int, int], sca
     canvas = np.zeros((H, W, 3))
     # Above: the plate's top sky, column by column (mirrored past its sides, blurred), deepening
     # upward toward one zenith tone, so its own left-to-right gradient runs on with no seam.
-    top = small[: max(3, round(0.03 * ph))].mean(0)
+    # The median over the rows, and over columns a quarter of the plate wide: a moon or a sun glow
+    # at the top edge must not run up the sky as a stripe.
+    top = np.median(small[: max(3, round(0.03 * ph))], axis=0)
+    top = ndimage.median_filter(top, size=(max(3, round(0.22 * pw)), 1), mode="nearest")
     lpad, rpad = max(px, 0), max(W - (px + pw), 0)
-    cols = np.concatenate([top[:lpad][::-1], top, top[pw - rpad:][::-1]], axis=0) if (lpad or rpad) else top
+    # Past the plate's sides the edge column runs on (a mirror would make a ridge of the plate's
+    # left-to-right gradient at each edge).
+    cols = np.concatenate([np.repeat(top[:1], lpad, 0), top, np.repeat(top[-1:], rpad, 0)], axis=0) if (lpad or rpad) else top
     cols = ndimage.gaussian_filter1d(cols, max(2, pw / 12), axis=0, mode="nearest")
     c0 = px - lpad
     cols = cols[max(-c0, 0):max(-c0, 0) + W]
@@ -423,7 +439,7 @@ def cmd_objects(island: str) -> None:
         a1 = load_matte(island, light, stage)
         a = scaled_matte(a1, k)
         for obj in hand["objects"]:
-            if not obj.get("occluder"):
+            if not obj.get("occluder") or not present(obj, light, stage):
                 continue
             poly = pct_to_px(obj["points"])
             # The box is the metadata's (original-plate pixels); the picture covers it exactly, x k.
@@ -472,20 +488,101 @@ def light_map(rgb: np.ndarray, a: np.ndarray, grid=None, lit_pct: float = 60, sh
             [[hexc(dark[j, i]) for i in range(gw)] for j in range(gh)])
 
 
+# ---------------------------------------------------------------- character harmony
+
+def srgb_to_linear(c: np.ndarray) -> np.ndarray:
+    c = np.clip(c, 0, 1)
+    return np.where(c <= 0.04045, c / 12.92, ((c + 0.055) / 1.055) ** 2.4)
+
+
+def linear_to_srgb(c: np.ndarray) -> np.ndarray:
+    c = np.clip(c, 0, 1)
+    return np.where(c <= 0.0031308, c * 12.92, 1.055 * c ** (1 / 2.4) - 0.055)
+
+
+def lawn_samples(rgb: np.ndarray, walk: np.ndarray, spots, radius: float) -> dict:
+    """What the plate shows where characters stand: the lawn's mid-tone (walkable pixels between
+    the 25th and 75th L* percentile) overall and around each contact point (within `radius`),
+    as mean linear RGB, and the lawn's own shadow depth there (L* p90 - p10)."""
+    h, w = walk.shape
+    lab = srgb_to_lab(np.clip(rgb, 0, 1))
+    L = lab[..., 0]
+    lin = srgb_to_linear(rgb)
+    yy, xx = np.mgrid[0:h, 0:w]
+
+    def mid(mask: np.ndarray):
+        l = L[mask]
+        keep = (l >= np.percentile(l, 25)) & (l <= np.percentile(l, 75))
+        return lin[mask][keep].mean(0), float(np.percentile(l, 90) - np.percentile(l, 10))
+
+    ambient, _ = mid(walk)
+    near, depth = [], []
+    for x, y in spots:
+        disc = walk & ((xx - x) ** 2 + (yy - y) ** 2 <= radius ** 2)
+        if disc.sum() < 50:
+            continue
+        c, d = mid(disc)
+        near.append(c)
+        depth.append(d)
+    return {"ambient": ambient, "contact": np.mean(near, 0), "depth": float(np.mean(depth))}
+
+
+def harmony_state(rgb: np.ndarray, hand: dict, ref: dict | None) -> dict:
+    """The character harmony rule (docs/design/visual-system.md "Characters"): one multiply tint and
+    one contact-shadow opacity per state, read from the plate.
+
+      A     the plate's lawn light: the geometric mean of the walkable lawn's mid-tone and the
+            mid-tone around the three contact points (linear RGB)
+      tint  A of the state over A of the level-10 day plate, per channel, at most 1 (a multiply
+            only darkens: the day sprites are painted for the day plate), as sRGB
+      contact  the lawn's shadow depth around the contact points over the day's, 0.5...1.2
+    """
+    walk = poly_mask(rgb.shape[:2], pct_to_px(hand["walkable"]))
+    spots = list(pct_to_px_pts(hand))
+    s = lawn_samples(rgb, walk, spots, hand["pofuWidth"] * SIZE[0] / 100 * 0.9)
+    a = np.sqrt(s["ambient"] * s["contact"])
+    if ref is None:
+        return {"tint": [1.0, 1.0, 1.0], "contact": 1.0, "_a": a, "_depth": s["depth"]}
+    ratio = np.clip(a / np.maximum(ref["_a"], 1e-4), 0.25, 1.0)
+    contact = float(np.clip(s["depth"] / max(ref["_depth"], 1e-4), 0.5, 1.2))
+    return {"tint": [round(float(v), 4) for v in linear_to_srgb(ratio)], "contact": round(contact, 3),
+            "_a": a, "_depth": s["depth"]}
+
+
+def pct_to_px_pts(hand: dict):
+    for _, p in sorted(hand["characters"].items()):
+        yield pct_to_px([p])[0]
+
+
+def harmony_all(hand: dict, mattes: dict) -> dict:
+    """`{light: [{tint, contact}, ...]}` per painted state, against the first plate's lawn."""
+    out, ref = {}, None
+    for light, stage, path in plates(hand):
+        h = harmony_state(load_rgb(path), hand, ref)
+        if ref is None:
+            ref = h
+        out.setdefault(light, []).append({"tint": h["tint"], "contact": h["contact"]})
+    return out
+
+
 # ---------------------------------------------------------------- json
 
 def texture_bytes(island: str, hand: dict) -> int:
-    """ASTC 4 x 4: one byte per pixel, over every image the island ships."""
-    total = 0
-    for folder in ASSETS.glob(f"world-{island}-*.imageset"):
-        for f in folder.iterdir():
-            if f.suffix in (".png", ".jpg"):
-                with Image.open(f) as im:
-                    total += im.width * im.height
-    return total
+    """ASTC 4 x 4: one byte per pixel, the largest state's images (plate, island, backdrop,
+    occluders): the app holds one state, or two for the length of a crossfade."""
+    worst = 0
+    for light, stage, _ in plates(hand):
+        total = 0
+        for folder in ASSETS.glob(f"world-{island}-*-{light}-{stage}.imageset"):
+            for f in folder.iterdir():
+                if f.suffix in (".png", ".jpg"):
+                    with Image.open(f) as im:
+                        total += im.width * im.height
+        worst = max(worst, total)
+    return worst
 
 
-def build_json(island: str, hand: dict, mattes: dict, maps: dict) -> dict:
+def build_json(island: str, hand: dict, mattes: dict, maps: dict, harmony: dict | None = None) -> dict:
     light0, stage0 = next((l, s) for l, s, _ in plates(hand))
     a = mattes[(light0, stage0)]
     objects = []
@@ -503,6 +600,8 @@ def build_json(island: str, hand: dict, mattes: dict, maps: dict) -> dict:
         }
         if "station" in obj:
             entry["station"] = obj["station"]
+        if "stages" in obj:
+            entry["stages"] = obj["stages"]
         if obj.get("occluder"):
             _, box = occluder_cut(np.zeros(a.shape + (3,)), a, poly)
             entry["box"] = list(box)
@@ -516,6 +615,9 @@ def build_json(island: str, hand: dict, mattes: dict, maps: dict) -> dict:
         "plateSize": list(SIZE),
         "stages": max(int(s) for st in hand["plates"].values() for s in st) + 1,
         "lights": lights,
+        "lightStages": {l: len(hand["plates"][l]) for l in lights},
+        "stageLevels": hand.get("stageLevels", [hand.get("minLevel", 1)]),
+        "harmony": harmony or {},
         "islandBox": list(bbox(a, 0.02)),
         "backdropBox": list(backdrop_box(home_frame(hand, a))),
         "feather": FEATHER,
@@ -539,7 +641,7 @@ def cmd_json(island: str) -> Path:
         a = load_matte(island, light, stage)
         mattes[(light, stage)] = a
         maps[(light, stage)] = light_map(load_rgb(path), a)
-    data = build_json(island, hand, mattes, maps)
+    data = build_json(island, hand, mattes, maps, harmony_all(hand, mattes))
     JSON_DIR.mkdir(parents=True, exist_ok=True)
     out = JSON_DIR / f"plate-{island}.json"
     out.write_text(json.dumps(data, separators=(",", ":")) + "\n")
@@ -573,11 +675,13 @@ def problems(data: dict, a: np.ndarray, assets: set[str], tolerance: float = 32.
     if data["textureBytes"] > BUDGET:
         out.append(f"textureBytes {data['textureBytes']:,} > {BUDGET:,}")
     for light in data["lights"]:
-        for stage in range(data["stages"]):
+        for stage in range(data.get("lightStages", {}).get(light, data["stages"])):
             for kind in ("plate", "island", "backdrop"):
                 if asset_name(island, kind, light, stage) not in assets:
                     out.append(f"missing asset {asset_name(island, kind, light, stage)}")
             for obj in data["objects"]:
+                if light == "day" and "stages" in obj and stage not in obj["stages"]:
+                    continue
                 if obj["occluder"] and asset_name(island, "occ", light, stage, obj["id"]) not in assets:
                     out.append(f"missing asset {asset_name(island, 'occ', light, stage, obj['id'])}")
     return out
