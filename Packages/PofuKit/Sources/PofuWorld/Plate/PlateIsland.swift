@@ -69,9 +69,34 @@ public struct PlateIsland: Hashable, Sendable {
     /// The character harmony rule's data for one painted state
     /// (docs/design/visual-system.md "Characters"): the multiply tint (sRGB) that puts a sprite
     /// in the plate's light and the strength of its contact shadow against the level-10 day's.
+    ///
+    /// The rest is the state's key light: its colour, the `rim` strength on the lit side and the
+    /// `fill` that stays on the shaded side, the night lamp `pool`'s strength and the lawn-colour
+    /// `bounce` on a sprite's lower third (`HomePlate.characterLight`).
     public struct Harmony: Hashable, Sendable {
         public var tint: PofuRGB
         public var contact: Double
+        public var key: PofuRGB
+        public var rim: Double
+        public var fill: Double
+        public var pool: Double
+        public var bounce: Double
+        /// A character's own share of the ambient `tint` where its lawn is darker (night), by id.
+        public var scale: [String: Double]
+
+        public init(
+            tint: PofuRGB, contact: Double, key: PofuRGB = PofuRGB(red: 1, green: 1, blue: 1),
+            rim: Double = 0, fill: Double = 0, pool: Double = 0, bounce: Double = 0, scale: [String: Double] = [:]
+        ) {
+            self.scale = scale
+            self.tint = tint
+            self.contact = contact
+            self.key = key
+            self.rim = rim
+            self.fill = fill
+            self.pool = pool
+            self.bounce = bounce
+        }
 
         public static let neutral = Harmony(tint: PofuRGB(red: 1, green: 1, blue: 1), contact: 1)
     }
@@ -115,6 +140,12 @@ public struct PlateIsland: Hashable, Sendable {
     public var pofuWidth: Double
     /// How much larger residents are drawn than Pofu's proportion gives.
     public var residentBoost: Double
+    /// A resident's own boost by id (`mochi`, `findik`), over `residentBoost`.
+    public var residentBoosts: [String: Double]
+    /// The painted lamp posts' ground points, in plate pixels; the lantern's glow sits `lampHeight`
+    /// above each.
+    public var lamps: [PlatePoint]
+    public var lampHeight: Double
     public var framing: Framing
     public var lightDirection: PlatePoint
     /// Per light, per stage: 20 rows of 32 lit colours (`#rrggbb`).
@@ -199,7 +230,7 @@ public struct PlateIsland: Hashable, Sendable {
 extension PlateIsland: Decodable {
     private enum Keys: String, CodingKey {
         case island, version, standIn, minLevel, plateSize, stages, lights, lightStages, stageLevels, harmony, islandBox, backdropBox, objects
-        case walkable, characters, pofuWidth, residentBoost, framing, lightDirection, lightMap, shadowMap, textureBytes
+        case walkable, characters, pofuWidth, residentBoost, residentBoosts, lamps, lampHeight, framing, lightDirection, lightMap, shadowMap, textureBytes
     }
 
     public init(from decoder: Decoder) throws {
@@ -224,6 +255,9 @@ extension PlateIsland: Decodable {
         characters = try (c.decodeIfPresent([String: [Double]].self, forKey: .characters) ?? [:]).mapValues(Self.point)
         pofuWidth = try c.decodeIfPresent(Double.self, forKey: .pofuWidth) ?? 100
         residentBoost = try c.decodeIfPresent(Double.self, forKey: .residentBoost) ?? 1
+        residentBoosts = try c.decodeIfPresent([String: Double].self, forKey: .residentBoosts) ?? [:]
+        lamps = try (c.decodeIfPresent([[Double]].self, forKey: .lamps) ?? []).map(Self.point)
+        lampHeight = try c.decodeIfPresent(Double.self, forKey: .lampHeight) ?? 30
         let f = try c.decodeIfPresent(RawFraming.self, forKey: .framing) ?? RawFraming()
         framing = Framing(
             homeWidths: f.homeWidths ?? 1.15,
@@ -241,12 +275,19 @@ extension PlateIsland: Decodable {
     private struct RawHarmony: Decodable {
         var tint: [Double]
         var contact: Double
+        var key: [Double]?
+        var rim: Double?
+        var fill: Double?
+        var pool: Double?
+        var bounce: Double?
+        var scale: [String: Double]?
 
         var harmony: Harmony {
-            Harmony(
-                tint: tint.count == 3 ? PofuRGB(red: tint[0], green: tint[1], blue: tint[2]) : PofuRGB(red: 1, green: 1, blue: 1),
-                contact: contact
-            )
+            func rgb(_ v: [Double]?) -> PofuRGB {
+                guard let v, v.count == 3 else { return PofuRGB(red: 1, green: 1, blue: 1) }
+                return PofuRGB(red: v[0], green: v[1], blue: v[2])
+            }
+            return Harmony(tint: rgb(tint), contact: contact, key: rgb(key), rim: rim ?? 0, fill: fill ?? 0, pool: pool ?? 0, bounce: bounce ?? 0, scale: scale ?? [:])
         }
     }
 

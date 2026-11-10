@@ -136,58 +136,147 @@ struct PlateOccluders: View {
 }
 
 /// A character standing on the plate: its sprite at the plate's scale, in
-/// the plate's light (`HomePlate.paint`: the state's harmony tint), on a
-/// contact pad of the grass's own shadow tone at the state's strength. Drawn
-/// in the world canvas (world units).
+/// the plate's light (`HomePlate.characterLight`): the state's ambient
+/// multiply, the key light's rim, the lawn's bounce and, at night, a lamp's
+/// pool under it, on a two-layer contact shadow in the grass's own shadow
+/// hue. Drawn in the world canvas (world units).
 struct PlateCharacter: View {
     let art: String
     let point: CGPoint
     let scale: Double
     /// World units off the ground (a hop), already scaled.
     var lift: Double = 0
-    let paint: PofuRGB
-    let contact: PofuRGB
-    var contactOpacity = 1.0
+    let light: HomePlate.CharacterLight
     var pulse = 0
+
+    @Environment(\.worldLook.art) private var lookArt
 
     var body: some View {
         let anchor = UnitPoint(x: point.x / IslandLayout.canvasWidth, y: point.y / IslandLayout.canvasHeight)
         ZStack(alignment: .topLeading) {
             if let sprite = WorldArt.sprite(art), let box = sprite.sharp {
-                ContactPad(width: box.width * scale, tone: contact, strength: 1 - min(lift / max(box.height * scale, 1), 0.5), opacity: contactOpacity)
+                let width = box.width * scale
+                LampPool(width: width, light: light)
                     .position(x: point.x, y: point.y - CGFloat(0.5 * scale))
-                DepthImage(name: art, sprite: sprite, level: 0, anchor: CGPoint(x: point.x, y: point.y - CGFloat(lift)), scale: CGFloat(scale))
-                    .colorMultiply(Color(red: paint.red, green: paint.green, blue: paint.blue))
+                ContactPad(width: width, light: light, strength: 1 - min(lift / max(box.height * scale, 1), 0.5))
+                    .position(x: point.x, y: point.y - CGFloat(0.5 * scale))
+                let grounded = CGPoint(x: point.x, y: point.y - CGFloat(lift))
+                DepthImage(name: art, sprite: sprite, level: 0, anchor: grounded, scale: CGFloat(scale))
+                    .colorMultiply(Color(red: light.paint.red, green: light.paint.green, blue: light.paint.blue))
+                CharacterLightLayers(
+                    image: Image(WorldArt.assetName(WorldArt.key(art, art: lookArt), variant: .sharp), bundle: .module),
+                    size: CGSize(width: box.width * scale, height: box.height * scale),
+                    light: light
+                )
+                .position(x: grounded.x + CGFloat(box.midX * scale), y: grounded.y + CGFloat(box.midY * scale))
             }
         }
         .modifier(TapSquish(trigger: pulse, anchor: anchor))
     }
 }
 
-/// The contact pad under a character on the plate (ADR-0022): an ellipse
-/// 0.92 × 0.2 of its width in the grass's own shadow tone, multiplied, so
-/// it darkens the painted lawn toward its painted shadow, never grey.
-/// `opacity` is the state's contact strength (the harmony rule).
-struct ContactPad: View {
-    let width: Double
-    let tone: PofuRGB
-    var strength = 1.0
-    var opacity = 1.0
+/// The key light's rim and the lawn's bounce over a sprite, as two flat
+/// silhouettes of its own alpha: the key colour over a gradient across the
+/// sprite from the lit side (full at the edge, `fill` on the far side), and
+/// the lawn's colour over its lower third. Drawn over the ambient multiply,
+/// in normal blending, so they mix toward a colour and never go past it.
+struct CharacterLightLayers: View {
+    let image: Image
+    let size: CGSize
+    let light: HomePlate.CharacterLight
 
     var body: some View {
-        let colour = Color(red: tone.red, green: tone.green, blue: tone.blue)
+        let u = light.toward
+        let lit = UnitPoint(x: 0.5 + 0.5 * u.x, y: 0.5 + 0.5 * u.y)
+        let shaded = UnitPoint(x: 0.5 - 0.5 * u.x, y: 0.5 - 0.5 * u.y)
+        ZStack {
+            if light.rim > 0 {
+                silhouette(Color(red: light.key.red, green: light.key.green, blue: light.key.blue))
+                    .mask {
+                        LinearGradient(
+                            stops: [
+                                .init(color: .black, location: 0),
+                                .init(color: .black.opacity(0.5), location: 0.4),
+                                .init(color: .black.opacity(light.fill), location: 0.8),
+                                .init(color: .black.opacity(light.fill), location: 1),
+                            ],
+                            startPoint: lit,
+                            endPoint: shaded
+                        )
+                    }
+                    .opacity(min(light.rim, 1))
+            }
+            if light.bounceAmount > 0 {
+                silhouette(Color(red: light.bounce.red, green: light.bounce.green, blue: light.bounce.blue))
+                    .mask {
+                        LinearGradient(
+                            stops: [.init(color: .clear, location: 0.62), .init(color: .black, location: 1)],
+                            startPoint: .top,
+                            endPoint: .bottom
+                        )
+                    }
+                    .opacity(min(light.bounceAmount, 1))
+            }
+        }
+        .frame(width: size.width, height: size.height)
+        .allowsHitTesting(false)
+        .accessibilityHidden(true)
+    }
+
+    private func silhouette(_ colour: Color) -> some View {
+        image.resizable().renderingMode(.template).foregroundStyle(colour)
+            .frame(width: size.width, height: size.height)
+    }
+}
+
+/// A lamp's warm pool on the lawn under a character standing near it (night):
+/// the key colour screened over the grass in an ellipse on the ground plane,
+/// fading to nothing, so the painted lawn is never edited past the character.
+struct LampPool: View {
+    let width: Double
+    let light: HomePlate.CharacterLight
+
+    var body: some View {
+        if light.pool > 0.005 {
+            let key = Color(red: light.key.red, green: light.key.green, blue: light.key.blue)
+            Ellipse()
+                .fill(EllipticalGradient(colors: [key.opacity(min(light.pool, 1)), key.opacity(0)]))
+                .frame(width: CGFloat(width * 1.9), height: CGFloat(width * 0.68))
+                .blendMode(.screen)
+                .allowsHitTesting(false)
+                .accessibilityHidden(true)
+        }
+    }
+}
+
+/// The contact shadow under a character on the plate (ADR-0022), in two
+/// layers, each multiplied so it darkens the painted lawn toward its own
+/// painted shadow, in its hue, never grey: a soft pad (1.15 x 0.28 of the
+/// width) and, right under the body, a tight dark occlusion core (0.6 x 0.11,
+/// the lawn's shadow at `HomePlate.coreDepth`). `light.contact` is the
+/// state's strength (the harmony rule).
+struct ContactPad: View {
+    let width: Double
+    let light: HomePlate.CharacterLight
+    var strength = 1.0
+
+    var body: some View {
+        let pad = Color(red: light.pad.red, green: light.pad.green, blue: light.pad.blue)
+        let core = Color(red: light.core.red, green: light.core.green, blue: light.core.blue)
         ZStack {
             Ellipse()
-                .fill(EllipticalGradient(colors: [colour, colour.opacity(0)]))
+                .fill(EllipticalGradient(colors: [pad, pad.opacity(0)]))
                 .frame(width: CGFloat(width * 1.15), height: CGFloat(width * 0.28))
-                .opacity(min(0.55 * strength * opacity, 1))
+                .opacity(min(0.55 * strength * light.contact, 1))
+                .blendMode(.multiply)
             Ellipse()
-                .fill(colour)
-                .frame(width: CGFloat(width * 0.62), height: CGFloat(width * 0.13))
-                .blur(radius: CGFloat(max(width * 0.035, 0.5)))
-                .opacity(min(0.75 * strength * opacity, 1))
+                .fill(core)
+                .frame(width: CGFloat(width * 0.6), height: CGFloat(width * 0.11))
+                .blur(radius: CGFloat(max(width * 0.02, 0.5)))
+                .opacity(min(0.9 * strength * light.contact, 1))
+                .offset(y: CGFloat(-width * 0.045))
+                .blendMode(.multiply)
         }
-        .blendMode(.multiply)
         .allowsHitTesting(false)
         .accessibilityHidden(true)
     }

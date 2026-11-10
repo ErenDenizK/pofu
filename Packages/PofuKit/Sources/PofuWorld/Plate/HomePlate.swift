@@ -143,6 +143,12 @@ public struct HomePlate: Hashable, Sendable {
         characterScale * plate.residentBoost
     }
 
+    /// A resident's own scale: its boost (`residentBoosts`: Mochi and Findik are drawn at least 60 %
+    /// of Pofu's painted height) or the plate's.
+    public func residentScale(_ id: ResidentID) -> Double {
+        characterScale * (plate.residentBoosts[id.rawValue] ?? plate.residentBoost)
+    }
+
     /// Where a resident stands on the plate, in world units; `nil` keeps
     /// them off it.
     public func residentFeet(_ id: ResidentID) -> WorldPoint? {
@@ -150,8 +156,8 @@ public struct HomePlate: Hashable, Sendable {
     }
 
     /// A resident's sprite box (`sharp`) scaled and placed at its feet.
-    public func residentBox(art box: WorldBox, at feet: WorldPoint) -> WorldBox {
-        let s = residentScale
+    public func residentBox(art box: WorldBox, at feet: WorldPoint, id: ResidentID? = nil) -> WorldBox {
+        let s = id.map(residentScale) ?? residentScale
         return WorldBox(minX: feet.x + box.minX * s, minY: feet.y + box.minY * s, maxX: feet.x + box.maxX * s, maxY: feet.y + box.maxY * s)
     }
 
@@ -227,6 +233,68 @@ public struct HomePlate: Hashable, Sendable {
     public func paint(at feet: WorldPoint) -> PofuRGB {
         let g = gain(at: feet), t = harmony.tint
         return PofuRGB(red: t.red * g, green: t.green * g, blue: t.blue * g)
+    }
+
+    /// The light on one character (docs/design/visual-system.md "Characters"): the ambient multiply,
+    /// the key light's rim on its lit side, the lawn's bounce on its lower third, the lamp pool at
+    /// night and the two-layer contact shadow, all read from the state's `harmony` and the plate's
+    /// light maps. `width` and `height` are the sprite's size in world units, `id` the character's
+    /// (`pofu`, `mochi`, `findik`).
+    public struct CharacterLight: Hashable, Sendable {
+        /// The ambient multiply.
+        public var paint: PofuRGB
+        /// The key light's colour, its rim strength on the lit side and the fill left on the other.
+        public var key: PofuRGB
+        public var rim: Double
+        public var fill: Double
+        /// The unit vector toward the key light, in screen axes (y grows down).
+        public var toward: PlatePoint
+        /// The lawn's colour and how much of it bounces onto the lower third.
+        public var bounce: PofuRGB
+        public var bounceAmount: Double
+        /// The lamp pool's strength under the character (0 away from a lamp, and in daylight).
+        public var pool: Double
+        /// The soft pad's and the core's multiply colours, in the lawn's own shadow hue.
+        public var pad: PofuRGB
+        public var core: PofuRGB
+        /// The state's contact strength.
+        public var contact: Double
+    }
+
+    /// How deep the occlusion core is against the lawn's own shadow (linear light).
+    public static let coreDepth = 0.55
+
+    public func characterLight(at feet: WorldPoint, width: Double, height: Double, id: String) -> CharacterLight {
+        let h = harmony
+        let g = gain(at: feet) * (h.scale[id] ?? 1)
+        let at = plate(feet)
+        let widthPlate = width / unitsPerPixel
+        let centre = PlatePoint(x: at.x, y: at.y - 0.45 * height / unitsPerPixel)
+        // By day and at golden hour the key is the sun, up on the side the plate is lit from; at
+        // night the nearest lamp's lantern, and the pool and the rim grow as one steps toward it.
+        var toward = PlatePoint(x: plate.lightDirection.x, y: -abs(plate.lightDirection.y))
+        var closeness = 1.0
+        if h.pool > 0, let lamp = plate.lamps.min(by: { hypot($0.x - at.x, $0.y - at.y) < hypot($1.x - at.x, $1.y - at.y) }) {
+            let t = max(0, 1 - hypot(lamp.x - at.x, lamp.y - at.y) / (2 * widthPlate))
+            closeness = t * t * (3 - 2 * t)
+            toward = PlatePoint(x: lamp.x - centre.x, y: lamp.y - plate.lampHeight - centre.y)
+        }
+        let length = hypot(toward.x, toward.y)
+        toward = length > 1e-6 ? PlatePoint(x: toward.x / length, y: toward.y / length) : PlatePoint(x: 0, y: -1)
+        let lit = litColour(at: feet), shadow = shadowColour(at: feet)
+        return CharacterLight(
+            paint: PofuRGB(red: h.tint.red * g, green: h.tint.green * g, blue: h.tint.blue * g),
+            key: h.key,
+            rim: h.pool > 0 ? h.rim * (0.4 + 0.6 * closeness) : h.rim,
+            fill: h.fill,
+            toward: toward,
+            bounce: lit,
+            bounceAmount: h.bounce,
+            pool: h.pool * closeness,
+            pad: PlateMath.contactRatio(lit: lit, shadow: shadow),
+            core: PlateMath.contactRatio(lit: lit, shadow: shadow, depth: Self.coreDepth),
+            contact: h.contact
+        )
     }
 
     // MARK: - Occlusion
