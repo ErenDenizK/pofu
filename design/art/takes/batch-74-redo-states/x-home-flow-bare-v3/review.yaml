@@ -1,0 +1,71 @@
+batch: batch-74-redo-states
+manifest: tools/imagegen/manifest/batch-74-redo-states.yaml
+jobs:
+  x-home-flow-bare-v3:
+    pick: null
+    publication: exploration; not promoted; lead review pending
+    note: 'Both takes fail manual review: the lawn is lime/yellow rather than the
+      requested deep green, and the exposed upper contour is broader and smoother
+      than the root. The harbour islet remains separate and the named structures appear
+      removed. No eligible take; the two-take request is complete, so skip without
+      regeneration.'
+    status: skipped
+    skip_reason: Both requested takes fail manual eligibility review for lawn color
+      and island silhouette. Batch header directs retaining both and moving on; no
+      additional takes requested.
+    manual_review:
+    - take: 1
+      source_sha256: 4b303cac40316ed106a75e6a79ed7808ff3b30d249345985b0e14b5397ce35b4
+      eligible: false
+      reasons:
+      - The lawn is much brighter and more lime/yellow than the root's deep green,
+        despite having visible grass texture.
+      - The newly exposed upper land contour reads as a broader, smoother mound than
+        the root; exact silhouette and cliff-edge preservation are not established
+        visually.
+      - The harbour islet is visibly separate, and the buildings, props, and flowers
+        appear removed while the doors, sky, distant islands, and whale remain broadly
+        present.
+      caveats:
+      - This is a visual comparison, not a pixel-registration test; small shifts in
+        the sky elements cannot be ruled out.
+    - take: 2
+      source_sha256: c246af4d6c44e8a768aeb44d3a6770a4039e04541a320a16c2492202a5e56946
+      eligible: false
+      reasons:
+      - The lawn is much brighter and more lime/yellow than the root's deep green;
+        grass texture remains visible but does not match the requested color and shading.
+      - The newly exposed upper land contour reads as a broader, smoother mound than
+        the root; exact silhouette and cliff-edge preservation are not established
+        visually.
+      - The harbour islet is visibly separate, and the buildings, props, and flowers
+        appear removed while the doors, sky, distant islands, and whale remain broadly
+        present.
+      caveats:
+      - This is a visual comparison, not a pixel-registration test; small shifts in
+        the sky elements cannot be ruled out.
+qa_reports: []
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-2e607c1d-64c4-4472-b8d8-1451c5ecd1db.png
+  source_sha256: 4b303cac40316ed106a75e6a79ed7808ff3b30d249345985b0e14b5397ce35b4
+  q90_take: design/art/takes/batch-74-redo-states/x-home-flow-bare-v3/plate__x-home-flow-bare-v3--t1.webp
+  q90_take_sha256: 9ceb9137d14cab830be36806681a00d5cef2e9cc649049f8ffb5123fa343bd2c
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: aeeb04a34f54d04f940ae83e860ec48941998e583f61266ced7b47c5dd99a2aa
+- take: 2
+  source_file: /workspace/generated_images/exec-703e78d2-3c11-40c2-8da3-8f08f3bd54ab.png
+  source_sha256: c246af4d6c44e8a768aeb44d3a6770a4039e04541a320a16c2492202a5e56946
+  q90_take: design/art/takes/batch-74-redo-states/x-home-flow-bare-v3/plate__x-home-flow-bare-v3--t2.webp
+  q90_take_sha256: ca587f096f39045f5afa89f450b5d8b0b03179e0b05d6566ab597d78d99befcf
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: aeeb04a34f54d04f940ae83e860ec48941998e583f61266ced7b47c5dd99a2aa
+policy:
+  never_promote: true
+  selection: lead picks
+  source_preservation: Original generated images retained at source_file paths; published
+    takes are q90 review copies.
