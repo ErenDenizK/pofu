@@ -8,12 +8,16 @@ contact_sheet: design/art/takes/batch-68-revontuli-flow/x-revontuli-flow-4/conta
 jobs:
   x-revontuli-flow-4:
     pick: 1
-    publication: exploration; concept master picked by the lead 2026-11-10 (take 1); promote --only <id> next (needs the unlocked raw)
-    note: Both takes have the ice body’s own silhouette, three lantern towers, sauna with towel and bucket, three
-      steps, a tail connected to the aurora, and the glass lake with its hole and stool. Neither has characters
-      or text. The lake reads about 45% of the island width versus the authored target of about one third. This
-      is a composition warning; no exact pixel-registration pass is claimed. No take is selected and neither is
-      promoted.
+    publication: concept master picked by the lead (take 1); promoted locally; publication held because the full-size lossless master exceeds the upload cap
+    note: >-
+      Both takes have the ice body’s own silhouette, three lantern towers, sauna with towel and
+      bucket, three steps, a tail connected to the aurora, and the glass lake with its hole and stool.
+      Neither has characters or text. The lake reads about 45% of the island width versus the authored
+      target of about one third. This is a composition warning; no exact pixel-registration pass is
+      claimed. Lead pick: take 1. Local promotion succeeded. The locked master remains pixel-identical
+      to the native take at 1536x1024; the lossless PNG is 1,900,386 bytes and its exact lossless WebP
+      equivalent is 1,338,864 bytes, both above the 614,400-byte upload limit. No resize, lossy
+      master, or pixel edit was applied. Publication is held pending an approved delivery solution.
 qa_reports:
   1:
     job: x-revontuli-flow-4

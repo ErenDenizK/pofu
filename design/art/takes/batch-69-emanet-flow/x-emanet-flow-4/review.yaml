@@ -8,12 +8,17 @@ contact_sheet: design/art/takes/batch-69-emanet-flow/x-emanet-flow-4/contact.jpg
 jobs:
   x-emanet-flow-4:
     pick: 1
-    publication: exploration; concept master picked by the lead 2026-11-10 (take 1); promote --only <id> next (needs the unlocked raw)
-    note: 'Both takes show the teal office, suitcase plinth and round door, spoon ladder, teacup tank, top hat,
-      three service bays, cart, scales and kite, with no characters or text. The exact authored count of eight hooks
-      (seven occupied and one empty) is not certified: the visible hook/attachment arrangement is unclear and differs
-      from the brief. The fourth-bay expansion gap also remains unclear. These are explicit manual-review warnings;
-      no pass is fabricated. No take is selected and neither is promoted.'
+    publication: concept master picked by the lead (take 1); promoted locally; publication held because the full-size lossless master exceeds the upload cap
+    note: >-
+      Both takes show the teal office, suitcase plinth and round door, spoon ladder, teacup tank, top
+      hat, three service bays, cart, scales and kite, with no characters or text. The exact authored
+      count of eight hooks (seven occupied and one empty) is not certified: the visible
+      hook/attachment arrangement is unclear and differs from the brief. The fourth-bay expansion gap
+      also remains unclear. These are explicit manual-review warnings; no pass is fabricated. Lead
+      pick: take 1. Local promotion succeeded. The locked master remains pixel-identical to the native
+      take at 1536x1024; the lossless PNG is 2,058,514 bytes and its exact lossless WebP equivalent is
+      1,507,488 bytes, both above the 614,400-byte upload limit. No resize, lossy master, or pixel
+      edit was applied. Publication is held pending an approved delivery solution.
 qa_reports:
   1:
     job: x-emanet-flow-4
