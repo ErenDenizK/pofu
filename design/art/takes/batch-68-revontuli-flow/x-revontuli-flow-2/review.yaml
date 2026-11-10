@@ -1,0 +1,196 @@
+batch: batch-68-revontuli-flow
+manifest: tools/imagegen/manifest/batch-68-revontuli-flow.yaml
+jobs:
+  x-revontuli-flow-2:
+    pick: null
+    publication: exploration; not promoted; lead review pending
+    note: 'Both direct root edits topple rear-left tower C, keep front/right lamps lit, extinguish post
+      and snow-cover left lake. Manual warning: faint green horizon ribbon appears absent; no exact pixel-registration
+      claim. Lead review pending, neither take selected.'
+qa_reports:
+- job: x-revontuli-flow-2
+  take: 1
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 39 (R1 51)
+    value: 39.4
+  - check: light_values
+    status: pass
+    message: 'night/subject: L p5 45 (at least 45: darks stay a light mid-tone), p98 90 (at least 85)'
+    value: 45.2
+  - check: light_median
+    status: pass
+    message: 'night/subject: median L 78 (band 66-88)'
+    value: 77.8
+  - check: light_contrast
+    status: pass
+    message: 'night/subject: p75 local contrast 4.4 (band 1.5-5.0; above it reads too contrasty)'
+    value: 4.39
+  - check: light_sky
+    status: pass
+    message: 'night: sky L 29 (band 24-46)'
+    value: 28.7
+  - check: light_sea
+    status: pass
+    message: 'night: cloud sea L 83 (at least 70: the sea is the reflector)'
+    value: 83.4
+  - check: light_dark
+    status: pass
+    message: 'night: 0.1 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.1
+  - check: detail_budget
+    status: pass
+    message: detail at display size 3.5 (R1 5.3)
+    value: 3.49
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 2.9, p95 6.8, off-palette 0.1% (top: #445599 (0.0%), #5577AA (0.0%))'
+    value: 2.9335
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_stability
+    status: pass
+    message: 62% of the parent level unchanged
+    value: 0.6151
+  - check: edit_chroma
+    status: pass
+    message: chroma x0.97 of the parent level (drift compounds along a chain)
+    value: 0.9717
+  info:
+    metrics_raw:
+      L_p5: 25.4
+      L_p50: 74.1
+      L_p95: 89.2
+      C_p50: 23.5
+      C_p95: 39.4
+      C_p99: 44.5
+      detail: 3.49
+    metrics_locked:
+      L_p5: 25.4
+      L_p50: 74.1
+      L_p95: 89.2
+      C_p50: 23.5
+      C_p95: 39.4
+      C_p99: 44.5
+      detail: 3.49
+  fingerprint: 0d4d390a3dc40a81
+- job: x-revontuli-flow-2
+  take: 2
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 46 (R1 51)
+    value: 45.6
+  - check: light_values
+    status: pass
+    message: 'night/subject: L p5 45 (at least 45: darks stay a light mid-tone), p98 91 (at least 85)'
+    value: 45.1
+  - check: light_median
+    status: pass
+    message: 'night/subject: median L 78 (band 66-88)'
+    value: 77.6
+  - check: light_contrast
+    status: pass
+    message: 'night/subject: p75 local contrast 4.5 (band 1.5-5.0; above it reads too contrasty)'
+    value: 4.54
+  - check: light_sky
+    status: pass
+    message: 'night: sky L 30 (band 24-46)'
+    value: 29.7
+  - check: light_sea
+    status: pass
+    message: 'night: cloud sea L 83 (at least 70: the sea is the reflector)'
+    value: 83.3
+  - check: light_dark
+    status: pass
+    message: 'night: 0.1 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.1
+  - check: detail_budget
+    status: pass
+    message: detail at display size 3.4 (R1 5.3)
+    value: 3.44
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 3.7, p95 10.2, off-palette 1.8% (top: #555599 (0.9%), #5555AA (0.5%))'
+    value: 3.7472
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_stability
+    status: pass
+    message: 71% of the parent level unchanged
+    value: 0.711
+  - check: edit_chroma
+    status: pass
+    message: chroma x1.11 of the parent level (drift compounds along a chain)
+    value: 1.1062
+  info:
+    metrics_raw:
+      L_p5: 26.4
+      L_p50: 74.0
+      L_p95: 89.1
+      C_p50: 26.7
+      C_p95: 45.6
+      C_p99: 48.3
+      detail: 3.44
+    metrics_locked:
+      L_p5: 26.4
+      L_p50: 74.0
+      L_p95: 89.1
+      C_p50: 26.7
+      C_p95: 45.6
+      C_p99: 48.3
+      detail: 3.44
+  fingerprint: 0d4d390a3dc40a81
+sources:
+- take: 1
+  source_file: /workspace/art-operator-runtime/generated/x-revontuli-flow-2/take-1.png
+  source_sha256: 840ac27dcd64064ff5cfcb785fe2384e52a04bcb602a430033839eb2734bdb96
+  q90_take: design/art/takes/batch-68-revontuli-flow/x-revontuli-flow-2/plate__x-revontuli-flow-2--t1.webp
+  q90_take_sha256: 5c0e2ca519ff1ab7be8881a97f282d3450e7b358f04f41fe225618e392e3308f
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: c61c029193167e5bd7340185fd4a0eb9c27cb6c998edecb5b660d45462474989
+- take: 2
+  source_file: /workspace/art-operator-runtime/generated/x-revontuli-flow-2/take-2.png
+  source_sha256: e097aa5f782a31ef9c674bc63084a3dd72fe4be411f1fe4a1b80144485be204f
+  q90_take: design/art/takes/batch-68-revontuli-flow/x-revontuli-flow-2/plate__x-revontuli-flow-2--t2.webp
+  q90_take_sha256: 11d320e6dd685c1b83c7efc9d8456c1b2ea05436ee8775e85a403b0269e83433
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: c61c029193167e5bd7340185fd4a0eb9c27cb6c998edecb5b660d45462474989
+policy:
+  never_promote: true
+  selection: lead picks
+  source_preservation: Original generated images retained at source_file paths; published takes are q90
+    review copies.
