@@ -655,3 +655,5 @@ Result (same day, #338): the real app now draws Home (Tam Çiçek, 09:00–17:00
 4. Promote the lead to Fable 5.2? Handled: not now; a Fable-led route review at a milestone (pre-launch).
 
 Fable consult of 2026-11-10 and its four actions: (a) purge the collage-era queue rows and add the plate state table (this PR); (b) a character harmony rule (runtime station); (c) exception-only lead review; (d) per-island colour bands (this PR; `docs/design/visual-system.md`).
+
+Result of the night items (b): home now draws its painted plate at level 10 day, golden and night and at levels 2-9 by day, with crossfades; Pofu, Mochi and Fındık get a per-state tint and contact shadow, measured by `tools/plate/harmony_check.py` (#368). Sheet: `docs/product/decisions-2026-11-10/result-home-states.jpg`. Still on the sprite island: il1, bare, rain, dawn, dusk, and golden or night below level 10.
