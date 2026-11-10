@@ -25,9 +25,9 @@ public enum PlateMath {
 
     /// The tap object under `p`: of those containing it, the nearest (the
     /// largest foot y) wins.
-    public static func hit(_ island: PlateIsland, at p: PlatePoint) -> PlateIsland.Object? {
+    public static func hit(_ island: PlateIsland, at p: PlatePoint, light: String = "day", stage: Int = 0) -> PlateIsland.Object? {
         island.objects
-            .filter { $0.tap && contains($0.polygon, p) }
+            .filter { $0.tap && $0.isPresent(light: light, stage: stage) && contains($0.polygon, p) }
             .max { $0.footY < $1.footY }
     }
 
@@ -39,9 +39,9 @@ public enum PlateMath {
 
     /// The occluders drawn over a character: those it stands behind (its
     /// feet above their foot line) and overlaps.
-    public static func occluders(over character: (footY: Double, box: PlateRect), in island: PlateIsland) -> [PlateIsland.Object] {
+    public static func occluders(over character: (footY: Double, box: PlateRect), in island: PlateIsland, light: String = "day", stage: Int = 0) -> [PlateIsland.Object] {
         island.objects.filter { object in
-            guard object.occluder else { return false }
+            guard object.occluder, object.isPresent(light: light, stage: stage) else { return false }
             let box = object.box ?? bounds(object.polygon)
             return character.footY < object.footY && box.overlaps(character.box)
         }

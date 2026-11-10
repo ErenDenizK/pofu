@@ -1,5 +1,6 @@
 import Foundation
 import PofuCore
+import PofuDesignSystem
 
 /// A point in a plate's pixels (the full 1536 x 1024 plate).
 public struct PlatePoint: Hashable, Sendable {
@@ -55,6 +56,24 @@ public struct PlateIsland: Hashable, Sendable {
         public var occluder: Bool
         /// The occluder cut-out's box, in plate pixels.
         public var box: PlateRect?
+        /// The day stages that paint it; `nil`: all (golden and night are level 10, where
+        /// everything is painted). A lower level never has a tap polygon or an occluder on
+        /// something that is not painted.
+        public var stages: [Int]?
+
+        public func isPresent(light: String, stage: Int) -> Bool {
+            light != "day" || stages?.contains(stage) ?? true
+        }
+    }
+
+    /// The character harmony rule's data for one painted state
+    /// (docs/design/visual-system.md "Characters"): the multiply tint (sRGB) that puts a sprite
+    /// in the plate's light and the strength of its contact shadow against the level-10 day's.
+    public struct Harmony: Hashable, Sendable {
+        public var tint: PofuRGB
+        public var contact: Double
+
+        public static let neutral = Harmony(tint: PofuRGB(red: 1, green: 1, blue: 1), contact: 1)
     }
 
     public struct Framing: Hashable, Sendable {
@@ -78,6 +97,12 @@ public struct PlateIsland: Hashable, Sendable {
     public var plateSize: PlateRect
     public var stages: Int
     public var lights: [String]
+    /// How many painted states each light has (day: one per level).
+    public var lightStages: [String: Int]
+    /// The island level each day stage paints, stage 0 first (`[10, 9, ... 2]`).
+    public var stageLevels: [Int]
+    /// Per light, per stage: the character harmony data.
+    public var harmony: [String: [Harmony]]
     /// The island's art (the matte's box), in plate pixels.
     public var islandBox: PlateRect
     /// The backdrop image's box, in plate pixels (it runs past the plate).
@@ -139,6 +164,18 @@ public struct PlateIsland: Hashable, Sendable {
         objects.first { $0.id == id }
     }
 
+    /// The day stage that paints an island level: the plate's own level or the nearest below it,
+    /// `nil` under the lowest painted level.
+    public func dayStage(islandLevel: Int) -> Int? {
+        guard let lowest = stageLevels.min(), islandLevel >= lowest else { return nil }
+        return stageLevels.firstIndex { $0 <= islandLevel }
+    }
+
+    public func harmony(light: String, stage: Int) -> Harmony {
+        let states = harmony[light] ?? []
+        return stage < states.count ? states[stage] : .neutral
+    }
+
     // MARK: Loading
 
     /// The island's metadata from the package's resources, or `nil`
@@ -161,7 +198,7 @@ public struct PlateIsland: Hashable, Sendable {
 
 extension PlateIsland: Decodable {
     private enum Keys: String, CodingKey {
-        case island, version, standIn, minLevel, plateSize, stages, lights, islandBox, backdropBox, objects
+        case island, version, standIn, minLevel, plateSize, stages, lights, lightStages, stageLevels, harmony, islandBox, backdropBox, objects
         case walkable, characters, pofuWidth, residentBoost, framing, lightDirection, lightMap, shadowMap, textureBytes
     }
 
@@ -173,8 +210,13 @@ extension PlateIsland: Decodable {
         minLevel = try c.decodeIfPresent(Int.self, forKey: .minLevel) ?? 1
         let size = try c.decode([Double].self, forKey: .plateSize)
         plateSize = PlateRect(minX: 0, minY: 0, maxX: size.first ?? 1536, maxY: size.last ?? 1024)
-        stages = try c.decodeIfPresent(Int.self, forKey: .stages) ?? 1
-        lights = try c.decode([String].self, forKey: .lights)
+        let stageCount = try c.decodeIfPresent(Int.self, forKey: .stages) ?? 1
+        stages = stageCount
+        let lightNames = try c.decode([String].self, forKey: .lights)
+        lights = lightNames
+        lightStages = try c.decodeIfPresent([String: Int].self, forKey: .lightStages) ?? Dictionary(uniqueKeysWithValues: lightNames.map { ($0, stageCount) })
+        stageLevels = try c.decodeIfPresent([Int].self, forKey: .stageLevels) ?? [minLevel]
+        harmony = try (c.decodeIfPresent([String: [RawHarmony]].self, forKey: .harmony) ?? [:]).mapValues { $0.map(\.harmony) }
         islandBox = try Self.rect(c.decode([Double].self, forKey: .islandBox))
         backdropBox = try c.decodeIfPresent([Double].self, forKey: .backdropBox).map(Self.rect) ?? plateSize
         objects = try c.decode([RawObject].self, forKey: .objects).map(\.object)
@@ -196,6 +238,18 @@ extension PlateIsland: Decodable {
         textureBytes = try c.decodeIfPresent(Int.self, forKey: .textureBytes) ?? 0
     }
 
+    private struct RawHarmony: Decodable {
+        var tint: [Double]
+        var contact: Double
+
+        var harmony: Harmony {
+            Harmony(
+                tint: tint.count == 3 ? PofuRGB(red: tint[0], green: tint[1], blue: tint[2]) : PofuRGB(red: 1, green: 1, blue: 1),
+                contact: contact
+            )
+        }
+    }
+
     private struct RawFraming: Decodable {
         var homeWidths: Double?
         var homeCenterX: Double?
@@ -213,6 +267,7 @@ extension PlateIsland: Decodable {
         var footY: Double?
         var occluder: Bool?
         var box: [Double]?
+        var stages: [Int]?
 
         var object: Object {
             let points = polygon.compactMap { p in p.count == 2 ? PlatePoint(x: p[0], y: p[1]) : nil }
@@ -224,7 +279,8 @@ extension PlateIsland: Decodable {
                 polygon: points,
                 footY: footY ?? points.map(\.y).max() ?? 0,
                 occluder: occluder ?? false,
-                box: box.flatMap { $0.count == 4 ? PlateRect(minX: $0[0], minY: $0[1], maxX: $0[2], maxY: $0[3]) : nil }
+                box: box.flatMap { $0.count == 4 ? PlateRect(minX: $0[0], minY: $0[1], maxX: $0[2], maxY: $0[3]) : nil },
+                stages: stages
             )
         }
     }

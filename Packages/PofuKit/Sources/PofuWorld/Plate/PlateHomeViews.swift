@@ -17,6 +17,25 @@ struct PlateHomeLayer: View {
     /// 1 at the Island stop and closer, 0 toward the Map.
     let fade: Double
 
+    /// A stage, a level or an hour change is a crossfade between two whole
+    /// paintings (the plain form of the spec's diff-mask reveal: every pixel
+    /// still comes from a painting).
+    static let crossfade = 1.4
+
+    /// The painting on screen, and the one fading in over it.
+    @State private var shown: HomePlate
+    @State private var incoming: HomePlate?
+    @State private var incomingOpacity = 0.0
+
+    init(plate: HomePlate, pose: CameraPose, size: CGSize, offset: CGSize, fade: Double) {
+        self.plate = plate
+        self.pose = pose
+        self.size = size
+        self.offset = offset
+        self.fade = fade
+        _shown = State(initialValue: plate)
+    }
+
     /// The backdrop and the whole plate fade in from z 0.55 to 0.95: the
     /// Island stop and Home show the painting edge to edge, the Map the
     /// island among the others.
@@ -26,6 +45,35 @@ struct PlateHomeLayer: View {
     }
 
     var body: some View {
+        ZStack(alignment: .topLeading) {
+            painting(shown)
+            if let incoming {
+                painting(incoming).opacity(incomingOpacity)
+            }
+        }
+        .frame(width: size.width, height: size.height, alignment: .topLeading)
+        .allowsHitTesting(false)
+        .accessibilityHidden(true)
+        .onChange(of: plate) { _, new in
+            if let incoming { shown = incoming }
+            guard new != shown else {
+                incoming = nil
+                return
+            }
+            incoming = new
+            incomingOpacity = 0
+            withAnimation(.easeInOut(duration: Self.crossfade)) {
+                incomingOpacity = 1
+            } completion: {
+                if incoming == new {
+                    shown = new
+                    incoming = nil
+                }
+            }
+        }
+    }
+
+    private func painting(_ plate: HomePlate) -> some View {
         ZStack(alignment: .topLeading) {
             if fade < 0.999 {
                 PlateImage(name: plate.plate.islandArt(light: plate.light, stage: plate.stage), box: plate.islandBox, pose: pose, size: size, offset: offset)
@@ -38,9 +86,6 @@ struct PlateHomeLayer: View {
                 .opacity(fade)
             }
         }
-        .frame(width: size.width, height: size.height, alignment: .topLeading)
-        .allowsHitTesting(false)
-        .accessibilityHidden(true)
     }
 }
 
@@ -91,26 +136,28 @@ struct PlateOccluders: View {
 }
 
 /// A character standing on the plate: its sprite at the plate's scale, in
-/// the plate's light (`HomePlate.gain`), on a contact pad of the grass's
-/// own shadow tone. Drawn in the world canvas (world units).
+/// the plate's light (`HomePlate.paint`: the state's harmony tint), on a
+/// contact pad of the grass's own shadow tone at the state's strength. Drawn
+/// in the world canvas (world units).
 struct PlateCharacter: View {
     let art: String
     let point: CGPoint
     let scale: Double
     /// World units off the ground (a hop), already scaled.
     var lift: Double = 0
-    let gain: Double
+    let paint: PofuRGB
     let contact: PofuRGB
+    var contactOpacity = 1.0
     var pulse = 0
 
     var body: some View {
         let anchor = UnitPoint(x: point.x / IslandLayout.canvasWidth, y: point.y / IslandLayout.canvasHeight)
         ZStack(alignment: .topLeading) {
             if let sprite = WorldArt.sprite(art), let box = sprite.sharp {
-                ContactPad(width: box.width * scale, tone: contact, strength: 1 - min(lift / max(box.height * scale, 1), 0.5))
+                ContactPad(width: box.width * scale, tone: contact, strength: 1 - min(lift / max(box.height * scale, 1), 0.5), opacity: contactOpacity)
                     .position(x: point.x, y: point.y - CGFloat(0.5 * scale))
                 DepthImage(name: art, sprite: sprite, level: 0, anchor: CGPoint(x: point.x, y: point.y - CGFloat(lift)), scale: CGFloat(scale))
-                    .colorMultiply(Color(white: gain))
+                    .colorMultiply(Color(red: paint.red, green: paint.green, blue: paint.blue))
             }
         }
         .modifier(TapSquish(trigger: pulse, anchor: anchor))
@@ -120,10 +167,12 @@ struct PlateCharacter: View {
 /// The contact pad under a character on the plate (ADR-0022): an ellipse
 /// 0.92 × 0.2 of its width in the grass's own shadow tone, multiplied, so
 /// it darkens the painted lawn toward its painted shadow, never grey.
+/// `opacity` is the state's contact strength (the harmony rule).
 struct ContactPad: View {
     let width: Double
     let tone: PofuRGB
     var strength = 1.0
+    var opacity = 1.0
 
     var body: some View {
         let colour = Color(red: tone.red, green: tone.green, blue: tone.blue)
@@ -131,12 +180,12 @@ struct ContactPad: View {
             Ellipse()
                 .fill(EllipticalGradient(colors: [colour, colour.opacity(0)]))
                 .frame(width: CGFloat(width * 1.15), height: CGFloat(width * 0.28))
-                .opacity(0.55 * strength)
+                .opacity(min(0.55 * strength * opacity, 1))
             Ellipse()
                 .fill(colour)
                 .frame(width: CGFloat(width * 0.62), height: CGFloat(width * 0.13))
                 .blur(radius: CGFloat(max(width * 0.035, 0.5)))
-                .opacity(0.75 * strength)
+                .opacity(min(0.75 * strength * opacity, 1))
         }
         .blendMode(.multiply)
         .allowsHitTesting(false)

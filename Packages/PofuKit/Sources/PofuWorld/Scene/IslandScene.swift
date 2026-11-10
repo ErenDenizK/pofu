@@ -1107,8 +1107,9 @@ private struct WorldCanvas: View {
                     point: point,
                     scale: plate.residentScale,
                     lift: lift * plate.residentScale,
-                    gain: plate.gain(at: object.anchor),
+                    paint: plate.paint(at: object.anchor),
                     contact: plate.contactTone(at: object.anchor),
+                    contactOpacity: plate.harmony.contact,
                     pulse: model.pulses["resident-\(resident.id.rawValue)", default: 0]
                 )
                 .overlay {
@@ -1598,13 +1599,16 @@ private struct PofuLayer<Bubble: View>: View {
         let bubbleOpacity = model.focus == nil && plate == nil ? min(max((z - 1.6) / 0.3, 0), 1) : 0
         // On the plate he is drawn at its scale, in its light.
         let drawn = s * (plate?.characterScale ?? 1)
-        let paint = plate.map { Color(white: $0.gain(at: IslandLayout.pofu)) } ?? grade
+        let paint = plate.map { p -> Color in
+            let c = p.paint(at: IslandLayout.pofu)
+            return Color(red: c.red, green: c.green, blue: c.blue)
+        } ?? grade
         let light = plate == nil ? characterGrade : .neutral
 
         ZStack(alignment: .topLeading) {
             if part == .body, painted > 0.01 {
                 if let plate {
-                    ContactPad(width: Self.artWidth * drawn, tone: plate.contactTone(at: IslandLayout.pofu))
+                    ContactPad(width: Self.artWidth * drawn, tone: plate.contactTone(at: IslandLayout.pofu), opacity: plate.harmony.contact)
                         .position(x: feet.x, y: feet.y - CGFloat(drawn))
                         .opacity(painted)
                 }
