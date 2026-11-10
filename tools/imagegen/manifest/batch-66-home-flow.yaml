@@ -26,8 +26,9 @@
 # `x-home-flow-final-rich` (block plate-style-rich-v1). Same picture, three
 # colour levels (the ladder of ADR-0023 and docs/design/visual-system.md). The
 # lead names one of the three roots as the master by eye plus
-# tools/plate/colour_metrics.py. Until then every edit job waits: `run.py plan`
-# shows each as "waiting for approval of x-home-flow-final" and `run` skips it.
+# tools/plate/colour_metrics.py. Until the root is promoted, `run.py plan`
+# lists each edit job as "waiting for approval of x-home-flow-final"; `run` goes
+# on with other rows and uses the QA auto-pick as a provisional parent.
 # Phase 2 (bare, golden, night, rain, il9 ... il1, all independent of each
 # other, any order, up to three tracks) starts from the root the lead named
 # (2026-11-10): `x-home-flow-final-rich` take 1. The 13 edit jobs now carry
@@ -40,8 +41,7 @@
 # `x-home-flow-final-rich` take 1, `pick: 1` in its review.yaml), promote it with
 # `promote --only <that id>` (review note "concept master; picked by the lead"). It is the reference
 # truth every level and state derives from. It is a concept target, not wired
-# into the app. No other job of this batch is promoted. Do not run phase 2
-# before the lead names the pick.
+# into the app. No other job of this batch is promoted. Phase 2 follows the root's promotion (the lead's pick is named in its review.yaml).
 #
 #
 # EXPLORATION RULES (AGENTS.md): do NOT run `promote`; commit the takes (WebP

@@ -2,7 +2,7 @@ batch: batch-70-mehtap-flow
 manifest: tools/imagegen/manifest/batch-70-mehtap-flow.yaml
 jobs:
   x-mehtap-flow-0:
-    pick: null
+    pick: 1
     publication: exploration; not promoted; lead review pending
     note: 'Both takes achieve cold drained blue-grey, no moon/trails, blank chart, dark rim/perch lights,
       bare twigs, dull pool and a single keyhole glow. Both FAIL the requested closed dome: the shell

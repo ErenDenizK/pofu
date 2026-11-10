@@ -2,7 +2,7 @@ batch: batch-67-caglayan-flow
 manifest: tools/imagegen/manifest/batch-67-caglayan-flow.yaml
 jobs:
   x-caglayan-flow-4-bare:
-    pick: null
+    pick: 1
     publication: exploration; not promoted; lead review pending
     note: Both takes remove leaf boats, flower clumps, rainbow and chimney smoke while retaining major
       pools, waterwheel and spout. Tiny white ground flowers remain and take 2 keeps a stronger splash/foam

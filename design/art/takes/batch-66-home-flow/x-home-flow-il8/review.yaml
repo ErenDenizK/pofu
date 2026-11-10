@@ -2,7 +2,7 @@ batch: batch-66-home-flow
 manifest: tools/imagegen/manifest/batch-66-home-flow.yaml
 jobs:
   x-home-flow-il8:
-    pick: null
+    pick: 1
     publication: exploration; not promoted; lead review pending
     note: Both takes remove hill steps and gate, hive and pond lanterns, simplify mill/workshop/lighthouse,
       and preserve four earth doors. Take 2 places the bench on the hill rather than lawn and removes

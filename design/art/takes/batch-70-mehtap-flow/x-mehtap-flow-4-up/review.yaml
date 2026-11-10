@@ -2,7 +2,7 @@ batch: batch-70-mehtap-flow
 manifest: tools/imagegen/manifest/batch-70-mehtap-flow.yaml
 jobs:
   x-mehtap-flow-4-up:
-    pick: null
+    pick: 1
     publication: exploration; not promoted; lead review pending
     note: Both takes add the small left-horn brass scope and a cream-blush hammock between right horn
       and perch, keeping the finale composition broadly aligned. Both pool images depict an upright floating

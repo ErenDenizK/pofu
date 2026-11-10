@@ -2,7 +2,7 @@ batch: batch-68-revontuli-flow
 manifest: tools/imagegen/manifest/batch-68-revontuli-flow.yaml
 jobs:
   x-revontuli-flow-3:
-    pick: null
+    pick: 1
     publication: exploration; not promoted; lead review pending
     note: Direct stage4-root edits remove aurora curtains and extinguish central post while retaining
       three lit tower lamps and sauna. Take1 preserves only faint horizon ribbon and warm/star ice reflections.

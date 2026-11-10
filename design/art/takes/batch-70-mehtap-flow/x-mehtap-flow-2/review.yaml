@@ -2,7 +2,7 @@ batch: batch-70-mehtap-flow
 manifest: tools/imagegen/manifest/batch-70-mehtap-flow.yaml
 jobs:
   x-mehtap-flow-2:
-    pick: null
+    pick: 1
     publication: exploration; not promoted; lead review pending
     note: Both direct root edits retain two faint trails/board arcs, remove gold trail and underside stars,
       close flower buds and dim pool/inner glow with low pale half moon. Take1 appears to retain only

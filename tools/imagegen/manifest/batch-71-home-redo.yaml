@@ -1,0 +1,195 @@
+# Batch 71: the home redo (exploration; x- ids, never promoted).
+#
+# Lead review 2026-11-10 of batch 66: il1 (a whole-frame veil), bare (a flat
+# lime lawn) and rain (a grey veil, a desaturated island) came out wrong. Each
+# job below repeats the original prompt and adds what to keep. All three are
+# direct edits of the promoted root `x-home-flow-final-rich`, 2 takes each,
+# full-size delivery. The original edit prompts carry no style block (only
+# `edit-keep-v1`), so none is added here.
+#
+# ORDER: il1-v2, bare-v2, rain-v2, independent of each other, any order, up to
+# three tracks. EXPLORATION RULES (AGENTS.md): no `promote`; commit the takes
+# (WebP q90), the contact sheet and review.yaml under
+# design/art/takes/<batch>/<id>/. A failed or refused job is recorded and
+# skipped; the run continues.
+#
+# Review for every take: same picture as the root (anchors, far islands,
+# Gezgin in their places); the colour stays the root's clear, rich colour.
+
+batch: batch-71-home-redo
+title: 'Home redo: il1, bare and rain again (edits of the rich root)'
+status: open
+refs:
+  home-flow-guide: design/art/templates/home-flow-guide.png
+  i1-rain: design/art/takes/batch-25-seasons/x-season-rain/plate__x-season-rain--t2.webp
+defaults:
+  variants: 2
+jobs:
+- id: x-home-flow-final-rich
+  kind: plate
+  name: x-home-flow-final-rich
+  external: batch-66-home-flow
+  master: design/art/masters/x-home-flow-final-rich/x-home-flow-final-rich.webp
+- id: x-home-flow-il1-v2
+  kind: plate
+  name: x-home-flow-il1-v2
+  size: 1024x1536
+  canvas: 1024x1536
+  deliver:
+    scale: 1.0
+  edit_of: x-home-flow-final-rich
+  chat: Pofu · Home flow
+  light:
+    cell: day
+    layer: subject
+  palettes:
+  - world-foliage
+  - world-props
+  acceptance:
+    exploration: true
+    edit_mode: region
+  notes: 'IL1 (day 1, the first morning): ''a little worse'' (decisions H6): dusty wheel on its side,
+    pale thin grass, dim hazy light; only the garden (L1) and Pofu''s door. Review: humble and quiet but
+    still pretty, never grey or sad; the islands and the fog are in their places. REDO v2 (lead review
+    2026-11-10): Keep the master''s clear, rich colour across the whole picture: the sky, the lawn, the
+    earth and the cloud sea keep the final''s saturation and clarity. The mist sits only over the locked
+    areas (the left hilltop cloud and the right islet''s fog bank), never as a veil over the whole frame
+    or the sky.'
+  prompt:
+  - text: |
+      Edit the attached FINAL painting (Tam Çiçek, the finished island, the
+      reference truth of this flow) into its earlier state at the very first
+      morning. It is derived from the final directly, never from another
+      level, so everything not named stays pixel for pixel as in the final.
+      PRESENT, unchanged from the final: the island plate with its lawn,
+      rounded earth body, roots and the first round wooden door; the rope
+      bridge and the harbor islet's lawn, earth and plank shed door; the
+      cloud sea.
+      REMOVED OR DEGRADED relative to the final (everything below applies at
+      once): the hilltop terrace is hidden inside a soft, round, sunlit
+      cloud; no stone steps and no gate (plain lawn edge at the left tip);
+      Remove the hilltop bench; Remove the white plaster windmill with cream
+      sails and lanterns on its cap, on its low knoll; its low knoll is
+      flattened into plain lawn; Remove the paper lantern string from the
+      windmill to the workshop to the tea stall; Remove the workshop on its
+      raised terrace with the big gear sign over its door; its raised
+      terrace is flattened into plain lawn; Remove the harbor islet's white
+      striped lighthouse with its flag, balcony and the little garden at its
+      foot (plain islet lawn there); Remove the harbor pier with lantern
+      post, bunting, bell, bench, tea glasses and the moored ferry (plain
+      islet edge there); Remove the straw beehive (plain lawn); Remove the
+      cloud-whale Gezgin in her grown form with a little garden and pool on
+      her back (plain sky there); the moon-dome island is dim and grey,
+      unlit; the stilted-house island is dim and grey, unlit; the ice-tower
+      island is dim and grey, unlit; the waterfall island is dim and grey,
+      its waterfall dry, unlit; Remove the round lily pond with its wooden
+      dock and floating paper lanterns (plain lawn where it was); Remove the
+      round mossy stepping stones near the pond; the garden is its first
+      self: three sunflowers in a small bed with no fence, their heads a
+      little low; Remove the tea stall with tiled roof, red geranium and
+      small flag (plain lawn there); the bagel cart is a small cart with a
+      pile of bagels, no umbrella; Remove the stone path from the garden to
+      the tea stall; Remove the three warm path lamps; Remove the flowering
+      vines over the lawn's rim and the flower borders along the path and
+      front edge (plain lawn edge and plain earth there); Remove the toy
+      sailboat at the pond's edge and the mailbox by the front edge; the old
+      hamster wheel lies tipped on its side, dusty and still; only the first
+      plain wooden round door remains (plain earth where the rose door was);
+      the whole harbor islet and the rope bridge are wrapped in a soft,
+      thick, sunlit bank of white fog, so only a faint soft shape of the
+      islet shows through it; the lawn is pale and thin, a dry straw-green
+      with a few bare patches; the earth a little dusty; the morning light
+      dim and hazy, a thin pale veil over the sky, soft and low in contrast;
+      the far islands fainter, grey and unlit.
+      FIXED ANCHORS (they stay exactly where the attached final has them):
+      the island's outline, lawn and earth body; the first round wooden
+      door; the home lawn's clear front patch; the rope bridge and the
+      harbor islet's outline; the four far islands' and the cloud-whale's
+      spots in the sky; the light, colour and finish. Nothing that stays
+      moves, grows or shrinks.
+      Keep the master's clear, rich colour across the whole picture: the sky, the lawn, the earth and the cloud sea keep the final's saturation and clarity. The mist sits only over the locked areas (the left hilltop cloud and the right islet's fog bank), never as a veil over the whole frame or the sky.
+  - block: edit-keep-v1
+  - text: 'AVOID: characters, text, moving anything that stays, a dark, grey or sad mood, dead plants,
+      ruins, new objects, whole-frame haze, washed-out colour, a grey veil, a pale veil over the sky'
+- id: x-home-flow-bare-v2
+  kind: plate
+  name: x-home-flow-bare-v2
+  size: 1024x1536
+  canvas: 1024x1536
+  deliver:
+    scale: 1.0
+  edit_of: x-home-flow-final-rich
+  chat: Pofu · Home flow
+  light:
+    cell: day
+    layer: subject
+  palettes:
+  - world-foliage
+  - world-props
+  acceptance:
+    exploration: true
+    edit_mode: region
+  notes: 'Job A of concept-match §6: the land alone, same light. Review: plate, earth with all five doors,
+    İskele islet, knolls, Tepe hill, sky and far islands identical to the final; every built thing, path,
+    lamp, plant bed and vine gone, lawn painted through where they stood. REDO v2 (lead review 2026-11-10):
+    The lawn keeps the master''s grass texture and its deep natural green: short grass with a few daisies,
+    soft painted shading and a soft rim light, never a flat lime surface.'
+  prompt:
+  - text: |
+      Edit the attached painting: remove every built and planted thing
+      and leave only the land, the sky and the far things. Remove the
+      windmill, the workshop, the beehive, the tea stall, the garden and
+      its sunflower, the pond and its dock (paint plain lawn where it
+      was), the stone path, the path lamps, the lantern string, the
+      flower borders, the vines, the hamster wheel, the rope bridge, the
+      bagel cart, the lighthouse, the pier, and on the hilltop the bench,
+      the telescope, the stage, the steps and the gate. Paint plain soft
+      lawn wherever something stood, with the same grass, light and
+      shading. Keep the island's outline, its earth body with all its
+      small round doors, the low knolls, the harbor islet's land, the
+      hilltop's land, the roots, the cloud sea, the sky, the far islands
+      and the cloud-whale exactly as they are.
+      The lawn keeps the master's grass texture and its deep natural green: short grass with a few daisies, soft painted shading and a soft rim light, never a flat lime surface.
+  - block: edit-keep-v1
+  - text: 'AVOID: characters, text, moving or resizing the land, holes or shadows where objects were,
+      a different light, a flat lime-green lawn, a plain smooth fill, lost grass texture'
+- id: x-home-flow-rain-v2
+  kind: plate
+  name: x-home-flow-rain-v2
+  size: 1024x1536
+  canvas: 1024x1536
+  deliver:
+    scale: 1.0
+  edit_of: x-home-flow-final-rich
+  chat: Pofu · Home flow
+  light:
+    cell: day
+    layer: subject
+  palettes:
+  - world-foliage
+  - world-props
+  acceptance:
+    exploration: true
+    edit_mode: recolor
+  notes: 'Soft summer rain as an edit of the final (I1 rain). Review: lilac-grey sky, the island stays
+    bright (earth L* ~75), puddles, drooping sunflower heads, fine soft rain; far islands fade into the
+    rain but stay visible. REDO v2 (lead review 2026-11-10): A gentle summer rain on the same picture:
+    the island keeps its colours, only a little darker and wet-looking, with soft reflections on the paths
+    and the pond; the sky a soft blue-grey; thin light rain streaks; the lanterns and windows glow warmly.'
+  attach:
+  - ref: i1-rain
+    role: 'The rain target: this soft lilac-grey rain, the island still bright, small puddles, drooping
+      sunflowers, fine soft rain streaks.'
+  prompt:
+  - text: |
+      Edit the attached painting into the same scene in a soft summer
+      rain, as in the attached rain: a soft lilac-grey overcast sky, fine
+      gentle rain streaks, the island still bright and clean, small
+      puddles on the path, the giant sunflower's head bowed a little,
+      wet sheen kept matte and soft, rings on the pond. The far islands
+      and the cloud-whale fade softly into the rain but stay visible.
+      Everything stays in its place, the same shapes and sizes.
+      A gentle summer rain on the same picture: the island keeps its colours, only a little darker and wet-looking, with soft reflections on the paths and the pond; the sky a soft blue-grey; thin light rain streaks; the lanterns and windows glow warmly.
+  - block: edit-keep-v1
+  - text: 'AVOID: a dark or grey-blue gloomy scene, a storm, hard diagonal rain, new objects, characters,
+      text, moving anything, a grey veil over the whole image, a desaturated island, a heavy dark storm'

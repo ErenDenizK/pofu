@@ -2,7 +2,7 @@ batch: batch-68-revontuli-flow
 manifest: tools/imagegen/manifest/batch-68-revontuli-flow.yaml
 jobs:
   x-revontuli-flow-0-bare:
-    pick: null
+    pick: 1
     publication: exploration; not promoted; lead review pending
     note: Both takes remove all three tower frames, stool, bucket and towel, cover the lake in deep snow,
       darken the post and remove aurora while keeping the sauna warm. Remaining stone clusters suggest

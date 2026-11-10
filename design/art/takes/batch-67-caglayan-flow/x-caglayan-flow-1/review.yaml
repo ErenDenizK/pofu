@@ -2,7 +2,7 @@ batch: batch-67-caglayan-flow
 manifest: tools/imagegen/manifest/batch-67-caglayan-flow.yaml
 jobs:
   x-caglayan-flow-1:
-    pick: null
+    pick: 1
     publication: exploration; not promoted; lead review pending
     note: Both takes retain spout, mill, main pool and three dry saucer pools with grounded leaf boats;
       thin trickle, half-full main pool, dry channel and dark mill window clearly separate this stage

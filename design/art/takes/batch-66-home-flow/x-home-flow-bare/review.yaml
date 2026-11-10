@@ -2,7 +2,7 @@ batch: batch-66-home-flow
 manifest: tools/imagegen/manifest/batch-66-home-flow.yaml
 jobs:
   x-home-flow-bare:
-    pick: null
+    pick: 2
     publication: exploration; not promoted; lead review pending
     note: Both takes remove built props and retain four earth doors, far islands and whale. Take 1 flattens
       the former workshop terrace more than take 2; outlines require lead comparison. No characters or

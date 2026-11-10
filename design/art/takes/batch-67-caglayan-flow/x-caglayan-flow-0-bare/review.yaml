@@ -2,7 +2,7 @@ batch: batch-67-caglayan-flow
 manifest: tools/imagegen/manifest/batch-67-caglayan-flow.yaml
 jobs:
   x-caglayan-flow-0-bare:
-    pick: null
+    pick: 1
     publication: exploration; not promoted; lead review pending
     note: Both takes show drained channels, dry wheel, unlit window, low mirror pool and suspended waterfall
       drops. Take 1 incorrectly leaves three white sail shapes in the bare saucers and more dry ferns;

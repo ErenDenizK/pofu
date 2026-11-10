@@ -2,7 +2,7 @@ batch: batch-66-home-flow
 manifest: tools/imagegen/manifest/batch-66-home-flow.yaml
 jobs:
   x-home-flow-il6:
-    pick: null
+    pick: 1
     publication: exploration; not promoted; lead review pending
     note: Both takes remove windmill, bench, vines, beehive, boat, mailbox and blue door; retain three
       other doors, bridge and the four far-island positions. Take 1 retains two pond lanterns and hints

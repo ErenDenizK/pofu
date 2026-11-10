@@ -2,7 +2,7 @@ batch: batch-66-home-flow
 manifest: tools/imagegen/manifest/batch-66-home-flow.yaml
 jobs:
   x-home-flow-night:
-    pick: null
+    pick: 1
     publication: exploration; not promoted; lead review pending
     note: Both takes retain the composition and four earth doors under blue moonlight, with a left moon
       and warm practical lamps. The island stays readable; no new characters or text observed. Take 2

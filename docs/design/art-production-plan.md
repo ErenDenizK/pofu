@@ -10,9 +10,10 @@ Codex reads it at the start of every task.
 1. **The line never ends** (founder, 2026-11-05: "Codex sits idle. From now
    on it must never stop"). Codex works the `READY` rows in order; when none
    is left it takes the `BACKLOG` rows ([the backlog](#the-backlog)) in
-   order; when the backlog is exhausted it starts again from its first row
-   with fresh variations (new takes under new exploration ids `-v2`, `-v3`,
-   ...; never the same prompt twice). When it opens a batch PR it starts the
+   order; when none is left it paints the plate-era standing work this page's
+   header names (the lead keeps it filled), never variations for their own
+   sake. Collage-era rows (separately painted sprites or props placed on an
+   island) are skipped. When it opens a batch PR it starts the
    next batch at once on its own branch, never waiting for a review or a
    merge. There is no "queue empty" state and no stop after a batch.
 2. **Iterate, then scale** (founder, 2026-11-02). Lock the method on a small
@@ -31,12 +32,12 @@ Codex reads it at the start of every task.
 4. **Explorations never ship.** An `EXPLORATION` batch is generated, posted
    and auto-picked, but never promoted; its takes, contact sheet and
    `review.yaml` are committed for deciding.
-5. **A failed job skips, it does not stop the line** (`AGENTS.md`, Stop
-   conditions, 2026-11-02): after its one retry it is recorded as skipped with
+5. **A failed job skips, it does not stop the line** (`AGENTS.md`, Failures,
+   2026-11-02): after its one retry it is recorded as skipped with
    its reason, its dependents are skipped, and Codex goes on to the next job and
-   batch. Global stop only for account, sign-in, quota or usage-limit messages,
-   three refusals or image-less answers in a row, or identity or upload
-   corruption (a single refusal is skipped, never retried or rephrased).
+   batch. Quota, usage-limit and sign-in messages mean: do the non-generation
+   work, retry every 15 minutes (`AGENTS.md`, Failures); a single refusal is
+   skipped, never retried or rephrased.
    Before each batch Codex re-reads this queue.
 6. **Publish before you generate.** Selected candidates that were never promoted
    (the 14 rig picks of batch 06, `pond-5-lit`, 4 UI takes of batch 11) are
@@ -52,7 +53,7 @@ Codex reads it at the start of every task.
 - **READY:** its manifest is on `main` with `status: open`, and the queue row
   says `READY`. Codex may start it.
 - **BLOCKED:** `status: blocked` with `blocked_on` naming the gate (usually
-  "the lead's review of the pilot"). Codex never starts it.
+  "the lead's review of the pilot"). Codex skips it and goes on.
 - **Opening a batch** is one PR by the lead: flip `status` to `open`, drop
   `blocked_on`, apply what the pilot taught to the prompts, and change the
   row here to `READY`. The same PR merges the pilot's art.
@@ -70,6 +71,7 @@ when none is left it moves on to [the backlog](#the-backlog).
 
 | # | Batch | Kind | Purpose | Needs | Jobs | State |
 |---|---|---|---|---|---|---|
+| 0-h | `batch-71-home-redo` | exploration, top priority | Home redo (lead review 2026-11-10): `x-home-flow-il1-v2` (the mist only over the locked areas, no whole-frame veil), `x-home-flow-bare-v2` (the lawn keeps the grass texture and deep green), `x-home-flow-rain-v2` (gentle summer rain, colours kept, warm glow); edits of `x-home-flow-final-rich`, 2 takes each; auto-pick, never promote | none | 3 | **READY** |
 | 0-r | lead picks, 2026-11-06 afternoon | production | The lead reviewed the skips: (1) `caglayan-island-0` take 3 (batch-43; only light warnings; the dry stage reads): promote with `promote --force` citing this row, then generate its dependents `caglayan-island-1` to `-4` and continue the chain under the header's lead rule. (2) `gate-door-scene` take 2 (batch-58; failed palette_drift only, expected for a warm interior): promote with `--force`, then generate its five layers. No other changes | none | 2 + dependents | **READY** |
 | 0-q | gate door re-post | production | `gate-door-scene` take 2 (row 0-r) hit the upload cap (#308). The manifest now declares `deliver: {scale: 0.5}` for the root and all five layers: re-post the retained take 2 with soft delivery (no generation), promote with `--force` per row 0-r, then generate the five layers | none | 1 + 5 | **READY** |
 | 0-s | sticker re-post | production | sticker re-post: re-post the 52 retained batch-42 originals on the square canvas (the manifest now declares `canvas: 1024x1024` and `acceptance: {ground_line: false}`; the first run skipped all 13 on the 1024 x 1536 char canvas and the 88 % ground line), pick, promote (no generation); review palette outliers per take | the canvas fix (`feat/koke-art-and-framing`) | 13 | **READY** |
@@ -82,15 +84,15 @@ when none is left it moves on to [the backlog](#the-backlog).
 | 0-p | `batch-50-gate-postcards` | production | The gate's six postcards (dawn, day, golden, night, rain, mist) as portrait scenes with NO characters and an empty patch of lawn for Pofu (the first ones were exploration takes with hamsters in them, so Pofu appeared twice, #265) | none | 6 | **READY** |
 | 0-h | `batch-57-home-growth-strip` | exploration, high priority | The home island in the same camera at IL1, IL3, IL5, IL7 and IL10 (founder 2026-11-06: plan for real how the island grows level by level; every step a visible, living change) | none | 5 | **READY** |
 | 0-w | `batch-59-resident-walks` | production | Two step frames and one work frame for Mochi, Simit, Fındık and the goat, as rig edits of their bases, so the life pass (#277) walks them on steps instead of sliding (founder 2026-11-06: residents work and move naturally) | none | 12 | **READY** |
-| 0-f | `batch-64-flow-pieces` | production | The flow game's painted pieces (Çağlayan): carved mossy river-stone tiles (straight, bend, split, gate, wheel housing, spring, mouth), rocks and grass banks, the mill wheel, the pool, the board frame (9-slice), splash and dribble frames, and Damla pointing (replaces the code-drawn stand-ins; the dark grooves read like bars) | none (`damla-point` waits for `damla`) | 24 | **READY** |
+| 0-f | `batch-64-flow-pieces` | production | The flow game's painted pieces (Çağlayan): carved mossy river-stone tiles (straight, bend, split, gate, wheel housing, spring, mouth), rocks and grass banks, the mill wheel, the pool, the board frame (9-slice), splash and dribble frames, and Damla pointing (replaces the code-drawn stand-ins; the dark grooves read like bars) | none (`damla-point` runs after `damla`) | 24 | **READY** |
 | 0-n | `batch-65-growth-pieces` | production | The home's growth pieces, painted to the batch-57 strip (path, stepping and hill stones, harbor pennant, gull, steam, bridge, lily pad, reeds, dragonfly, terrace, lantern string with a lit night edit, gate, hilltop); high priority | none | 15 | **READY** |
 | 0-fh | `batch-66-home-flow` | exploration, concept flow | [Concept flows](concept-flows.md) §2: the home island at Tam Çiçek by day, then IL9 to IL1, the bare island and the golden, night and rain states as edits of it (PR #328). **Phase 2.** Phase 1 is done: the lead picked `x-home-flow-final-rich` take 1 (rich: C* p90 47.2, accent 0.20; clear and control were flatter or pale). The header's lead rule promotes that one job as the concept master; the 13 edit jobs (full-size delivery, `edit_of` now `x-home-flow-final-rich`) then run directly from it (a star, not a chain), any order, up to three tracks. x- ids; only the root is ever promoted. | none | 16 | **READY** (phase 2)
 | 0-fc | `batch-67-caglayan-flow` | exploration, concept flow | Concept flows, islands (`concept-flows-islands.md`, lands with #327): Çağlayan's stage 4 first, then stages 3 to 0, the two bare plates, the life check and the upgrade fit as edits of it (PR #327; the manifest lands with it, merge order #328 then #327). **Phase 2.** Phase 1 is done: the lead picked `x-caglayan-flow-4` take 1; the manifest now uses `plate-style-rich-v1`. The header's lead rule promotes that one job as the concept master; the other 8 jobs (stages 3 to 0, the two bares, life, up; full-size delivery) then edit it directly (a star, not a chain), any order, up to three tracks. x- ids; only the root is ever promoted. | none | 9 | **READY** (phase 2)
 | 0-fr | `batch-68-revontuli-flow` | exploration, concept flow | Concept flows, islands (`concept-flows-islands.md`, lands with #327): Revontuli's stage 4 first, then stages 3 to 0, the two bare plates, the life check and the upgrade fit as edits of it (PR #327; the manifest lands with it, merge order #328 then #327). **Phase 2.** Phase 1 is done: the lead picked `x-revontuli-flow-4` take 1; the manifest now uses `plate-style-rich-v1`. The header's lead rule promotes that one job as the concept master; the other 8 jobs (stages 3 to 0, the two bares, life, up; full-size delivery) then edit it directly (a star, not a chain), any order, up to three tracks. x- ids; only the root is ever promoted. | none | 9 | **READY** (phase 2)
 | 0-fe | `batch-69-emanet-flow` | exploration, concept flow | Concept flows, islands (`concept-flows-islands.md`, lands with #327): Emanet's stage 4 first, then stages 3 to 0, the two bare plates, the life check and the upgrade fit as edits of it (PR #327; the manifest lands with it, merge order #328 then #327). **Phase 2.** Phase 1 is done: the lead picked `x-emanet-flow-4` take 1; the manifest now uses `plate-style-rich-v1`. The header's lead rule promotes that one job as the concept master; the other 8 jobs (stages 3 to 0, the two bares, life, up; full-size delivery) then edit it directly (a star, not a chain), any order, up to three tracks. x- ids; only the root is ever promoted. | none | 9 | **READY** (phase 2)
 | 0-fm | `batch-70-mehtap-flow` | exploration, concept flow | Concept flows, islands (`concept-flows-islands.md`, lands with #327): Mehtap's stage 4 first, then stages 3 to 0, the two bare plates, the life check and the upgrade fit as edits of it (PR #327; the manifest lands with it, merge order #328 then #327). **Phase 2.** Phase 1 is done: the lead picked `x-mehtap-flow-4` take 1; the manifest now uses `plate-style-rich-v1`. The header's lead rule promotes that one job as the concept master; the other 8 jobs (stages 3 to 0, the two bares, life, up; full-size delivery) then edit it directly (a star, not a chain), any order, up to three tracks. x- ids; only the root is ever promoted. | none | 9 | **READY** (phase 2)
-| 0-x | `hive-4`, `hive-5` | production | hive-4 failed chroma and palette drift in all four takes (#207); the lead reviews the takes and names a palette or profile fix before any re-post | the lead's review | 2 | BLOCKED on the lead's review |
-| 4 | `batch-11-ui` | production | The remaining ui-system-v2 section 6 gaps (night variants of the faces, game layer extras, the remaining domain icons, surfaces) | the UI audit's icon list | about 15 | BLOCKED until the UI audit's icon list is decided; batch-46 flat icons explore it (decor runs through the backlog rows) |
+| 0-x | `hive-4`, `hive-5` | production | hive-4 failed chroma and palette drift in all four takes (#207); the lead names a palette or profile fix after reviewing the takes | the lead's review | 2 | BLOCKED (skip; the lead re-opens it after review) |
+| 4 | `batch-11-ui` | production | The remaining ui-system-v2 section 6 gaps (night variants of the faces, game layer extras, the remaining domain icons, surfaces) | the UI audit's icon list | about 15 | BLOCKED (skip; the lead opens it once the UI audit icon list is decided); batch-46 flat icons explore it (decor runs through the backlog rows) |
 
 Home stations: nothing else needs a painted night variant (tea stall, windmill and pond are merged, the workshop doorway is row 2; the garden and the simit cart carry no light-carrying part, their night is code).
 
@@ -434,11 +436,11 @@ Start at the top of the queue; a row names its --only jobs when it is a re-run.
 For every promoted master run `python3 -I tools/assets/harmony.py measure` and commit
 the manifest in the same PR, or CI fails.
 When you open a batch's PR, start the next batch at once on a new branch. When no READY
-batch is left, take the BACKLOG rows in order; when the backlog is done, start again from
-its first row with fresh variations (-v2, -v3, ...). A failed or refused job is skipped
+batch is left, take the BACKLOG rows in order; when none is left, paint the standing
+plate-era work the plan's header names. Skip collage-era rows. A failed or refused job is skipped
 and recorded, never retried or rephrased; go on with the next job.
-Never start a BLOCKED batch, never promote an EXPLORATION batch, never merge.
-Stop only on a global stop condition in AGENTS.md.
+Skip BLOCKED batches, never promote an EXPLORATION batch, never merge.
+Every failure has a fallback in AGENTS.md (Failures); the line never stops.
 ```
 
 ## Log
@@ -469,7 +471,7 @@ Stop only on a global stop condition in AGENTS.md.
   written) by batches 17 and 18, which answer it under the uniqueness
   contract. `batch-15-explore` skipped jobs `x-appicon-layer-island`,
   `x-appicon-layer-sky` (app icon redone in batch 16), `x-winter-island`
-  (batch 17 hub edits) and `x-res-sumi` (resident sheets wait for the story
+  (batch 17 hub edits) and `x-res-sumi` (resident sheets come after the story
   work); not re-queued. `batch-16` skipped salvage variants (`icon-b-tinted`,
   `icon-c-*`, `infographic`) are exploration only and not re-queued.
 - 2026-11-02 (round 2): batch-05-fixes-pilot merged (#71); batch-06 pilot

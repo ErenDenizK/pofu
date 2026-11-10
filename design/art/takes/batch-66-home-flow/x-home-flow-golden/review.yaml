@@ -2,7 +2,7 @@ batch: batch-66-home-flow
 manifest: tools/imagegen/manifest/batch-66-home-flow.yaml
 jobs:
   x-home-flow-golden:
-    pick: null
+    pick: 1
     publication: exploration; not promoted; lead review pending
     note: Both takes retain the home composition, four earth doors, harbor bridge, far islands and whale
       while shifting the sky to pink-lilac and the scene to warm peach. No new characters or text observed.

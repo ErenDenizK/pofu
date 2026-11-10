@@ -2,7 +2,7 @@ batch: batch-70-mehtap-flow
 manifest: tools/imagegen/manifest/batch-70-mehtap-flow.yaml
 jobs:
   x-mehtap-flow-4-bare:
-    pick: null
+    pick: 1
     publication: exploration; not promoted; lead review pending
     note: 'Both direct root edits remove rim lamps, moonflowers, blanket, full moon and underside stars.
       Manual failure: take1 retains the bright gold sky trail. Take2 removes sky trails; lake reflections

@@ -2,7 +2,7 @@ batch: batch-66-home-flow
 manifest: tools/imagegen/manifest/batch-66-home-flow.yaml
 jobs:
   x-home-flow-il5:
-    pick: null
+    pick: 1
     publication: exploration; not promoted; lead review pending
     note: Both takes show the earlier open lawn with workshop, lighthouse, windmill, beehive, vines, path
       lamps and two colored doors removed. Two home doors remain and distant islands are grey. Both retain

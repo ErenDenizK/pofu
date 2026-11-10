@@ -5,6 +5,23 @@ Codex reads this file at the start of every session, as Claude Code reads
 [`CONTRIBUTING.md`](CONTRIBUTING.md); if they ever disagree, `CLAUDE.md`
 wins and you say so in your PR.
 
+## Factory mode (read first, applies to everything below)
+
+You are a factory that never stops. Founder's permanent rule.
+
+- Never stop while any `READY` or backlog row exists. Never ask the founder
+  or the lead anything; nobody answers, so decide and note it in the PR.
+- When blocked, take the smallest reversible step that unblocks you (retry,
+  fall back, skip the one job, clean regenerable files), write what you did
+  in the PR, and continue.
+- When a choice is unclear, pick the option that keeps the line moving and
+  is reversible, and note it.
+- End a task only by starting the next batch.
+- Scope stays tight: you run only the queue's manifests. The hard limits
+  below (no push to `main`, no merge, no secrets, no `OPENAI_API_KEY`, no
+  browser automation, truthful provenance, commits only in
+  `tools/imagegen/`, `design/art/`, `content/` and your PR text) never move.
+
 ## Who and what
 
 - **Product:** Pofu, an iOS app with an illustrated fluffy hamster
@@ -17,8 +34,7 @@ wins and you say so in your PR.
   and QA them, let QA auto-pick, promote the picks, open a PR. You do not
   change app code, Swift, ADRs, `CLAUDE.md`, prompt blocks, manifests,
   `style_lock.json` or QA thresholds (propose changes in the PR; the lead
-  makes them). Two exceptions: the `-v2` manifest copies of the standing
-  rule, and the marked adapter block in `tools/imagegen/backends.py` if
+  makes them). One exception: the marked adapter block in `tools/imagegen/backends.py` if
   Codex stores images or names events differently (run
   `.venv/bin/python -I -m pytest tools/imagegen/tests`, explain in the PR).
 
@@ -50,17 +66,15 @@ plan with permission, and provenance says so truthfully. Before launch, a
 written assignment or masters regenerated on his own plan.
 
 - Every master names its generating account exactly as `account.owner` in
-  `tools/imagegen/config.yaml` says. If `account.owner` or `account.kind`
-  is empty, or you are unsure the signed-in account is the right one,
-  **stop and ask the founder** (in Turkish).
+  `tools/imagegen/config.yaml` says (the file is filled; just use it).
 - **Codex path (`chatgpt-plan`):** "Sign in with ChatGPT". **Never set
   `OPENAI_API_KEY`** (it switches to API billing; the pipeline refuses).
 - **API path (`api`):** the key lives only in the macOS Keychain (service
   `pofu-openai-api`) or `POFU_OPENAI_API_KEY` in the founder's shell; never
   in a file, log, commit or message. `run` prints a cost estimate; `--yes`
-  only after the founder agrees to that amount.
-- **Never automate chatgpt.com in a browser.** If neither path works, stop
-  and report.
+  only when that amount is already agreed; otherwise stay on the Codex path.
+- **Never automate chatgpt.com in a browser.** If neither path works, do
+  the non-generation work and retry (Failures below).
 
 ## The queue: the line never ends
 
@@ -75,18 +89,24 @@ order, forever (founder, 2026-11-05: "it must never stop"):
    rows whose manifest is on `main`, in order: real ids, promoted on pass.
 3. Then the [`BACKLOG`](docs/design/art-production-plan.md#the-backlog)
    rows, in order: explorations (`x-` ids), never promoted.
-4. When the backlog is exhausted, start again from its first row with
-   **fresh variations**: copy the manifest to `batch-NN-<name>-v2.yaml`
-   (then `-v3`, ...; new `batch:` name, same header rules, new exploration
-   ids) and give each job a new angle (pose, camera, time of day, season,
-   palette, composition). Never run the same prompt twice. This is the one
-   manifest edit you may make, only for `x-` explorations, committed in that
-   batch's PR.
+4. When no `READY` or backlog row is left, paint the next plate-era job the
+   queue's header names as standing work (the lead keeps it filled); never
+   generate variations for their own sake.
+
+Collage-era rows are not runnable: skip any row whose notes describe
+separately painted sprites or props placed on an island (for example the
+batch-65 growth pieces, batch-60 earth-face, weather or light-direction
+sprite batches) and go on. A separate PR marks them `DROPPED`.
 
 New `READY` rows always go first. There is no "queue empty" state. When you
 open a batch's PR, start the next batch on a new branch at once; never wait
-for a review or merge. Never start a `BLOCKED` batch (`status: blocked`).
+for a review or merge. Skip `BLOCKED` batches (`status: blocked`) and go on.
 
+- **Lead picks never gate you.** When a job's parent is not yet picked by
+  the lead, use your own QA auto-pick as the provisional parent (`plan` and
+  `run` do this once `post` has run), write `provisional_parent: <id> t<n>
+  (auto-pick, lead review pending)` in the job's `review.yaml` and the PR,
+  and continue. The lead may re-run later.
 - **Pilot gate (production only):** a production batch may have a pilot
   manifest (`batch-NN-<name>-pilot`, 2 to 5 jobs), run exactly as written.
   Jobs gated behind it are skipped and the line goes on. A failed pilot
@@ -124,8 +144,9 @@ concurrent generations; say which in the PR), otherwise run them in header
 order. PR title: `art(batch-NN): <track>`. Every command runs from the repo
 root as `python3 -I tools/imagegen/run.py <command> --manifest <manifest>`.
 
-1. `pip install -r tools/imagegen/requirements.txt`. If that fails, stop and
-   ask the founder to add it to the Codex environment's setup script.
+1. `pip install -r tools/imagegen/requirements.txt`. If that fails, retry
+   with `--user`; then run what works and skip what needs the missing
+   package, noted in the PR.
 2. **Dependencies:** get approved parent masters from `main`, or from the
    other track's branch (`git fetch origin art/<batch>/<track>`, then
    `git checkout origin/art/<batch>/<track> -- design/art/<master folder>`,
@@ -134,15 +155,17 @@ root as `python3 -I tools/imagegen/run.py <command> --manifest <manifest>`.
    first: `python3 -I -c "from PIL import Image; Image.open('<dir>/<name>.webp').save('<dir>/<name>.png')"`.
 3. `plan` shows which jobs are ready. Print a job's prompt and attachments
    with `prompt --job <id>` and generate **2 takes** with your built-in image
-   tool, attaching the listed references. No image tool: stop and say so.
-   Pacing: at most 2 takes per job and 40 images per run; independent jobs
+   tool, attaching the listed references. No image tool in this session: do
+   the non-generation work, open the PRs, and say in the PR that generation
+   needs a session with the image tool. Pacing: at most 2 takes per job, no
+   per-run cap; independent jobs
    may generate concurrently. A refusal skips that job (never retried or
    rephrased).
 4. `ingest --job <id> --source codex-cloud <files>`, then `post --only <id>`.
 5. **Auto-pick:** the take that passes QA with the lowest style-lock load;
    between equals, the higher `harmony` score (match to the approved island,
    or to Pofu for characters; below 70 warns). If none passes, one more
-   round of takes; if that fails too, skip the job (Stop conditions). Read
+   round of takes; if that fails too, skip the job (Failures). Read
    the job's `notes` for review checks or skip cases. Run
    `promote --only <id>` and write "auto-picked by QA; founder review
    pending" in the provenance note.
@@ -229,7 +252,7 @@ harmony entry fails CI. For every promoted master:
   lantern is two layers, off and on). The map pin and the cloud pass are
   code. `batch-02-ui` stays blocked until the friends beta.
 
-## Stop conditions
+## Failures: a fallback for each, never a stop
 
 **A failed job never stops the line.** A job that fails (the same QA check
 twice, a timeout, an answer without an image, a manual check) gets one retry
@@ -240,15 +263,21 @@ batch. There is no consecutive-failure stop. Never loop; never waive a check
 to force a pass (only the `promote --force` rule above). Finished picks are
 always published.
 
-**Global stop** (stop, report, do not retry) only for:
+**Fallbacks** (pre-authorised; never ask):
 
-- Free disk below 1 GB: stop immediately and tell the founder.
-
-- The batch is `blocked`, or `account.owner` / `account.kind` is empty.
-- Any account, sign-in, key, quota, usage-limit or rate-limit message.
-- Three refusals or image-less answers in a row (one is a skip, not a stop).
-- Upload or identity corruption: a pushed file still fails `check_upload.py`
-  after one re-push, or the commit identity is wrong.
-- The key guard fires, or the API estimate exceeds what the founder agreed.
-- Anything needs `sudo`, a system install, or a change outside
-  `tools/imagegen/`, `design/art/`, `content/` and the PR: ask the founder.
+- **Quota, usage-limit, rate-limit or refusal messages:** do all
+  non-generation work available (ingest, post, QA, contact sheets, commits,
+  PRs, disk cleanup), then retry generation every 15 minutes. Never end the
+  task for it. A single refusal skips that job.
+- **Disk:** keep at least 1 GB free yourself: remove git-tracked unchanged
+  working copies of merged batches, `~/.cache` generation caches and
+  worktrees whose branches are merged into `origin/main`. Never touch
+  unpushed or modified files.
+- **Wrong commit identity:** fix the identity and re-commit.
+- **Upload corruption** (a pushed file still fails `check_upload.py`):
+  re-push once, then skip that file and note it in the PR.
+- **Anything needing `sudo`, a system install or a change outside
+  `tools/imagegen/`, `design/art/`, `content/` and the PR:** skip that
+  step, note it in the PR, continue.
+- **Key guard fires or an API estimate is not agreed:** carry on with the
+  Codex path.
