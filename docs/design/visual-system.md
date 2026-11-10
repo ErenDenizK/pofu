@@ -45,9 +45,42 @@ ADR-0023 in practice:
   pastel, not saturation.
 - The style lock for kind `plate` is `plate-final`: alpha snap and edge
   feather only.
-- Characters take the plate's light map, so they sit in the same light. The
-  plate never takes the character's.
+- Characters take the plate's light, so they sit in the same light (see
+  "Characters"). The plate never takes the character's.
 - A pale plate is painted again or edited. It is never graded.
+
+## Characters
+
+Pofu, Mochi and Findik are sprites painted for the level-10 day plate. In every
+other state they get two numbers from the plate, no more, stored per state in
+`Plates/plate-home.json` (`harmony`, written by `tools/plate/ingest.py`) and
+applied in Swift (`HomePlate.harmony`, `PlateCharacter`, `ContactPad`):
+
+- **tint**: one multiply colour. A is the plate's lawn light: the geometric
+  mean of the walkable lawn's mid-tone (25th to 75th L* percentile) and the
+  mid-tone within 0.9 Pofu widths of the three contact points, in linear RGB.
+  tint = A(state) / A(level-10 day) per channel, at most 1 (a multiply only
+  darkens), at least 0.25. A lee on the lawn still darkens a character further
+  (`PlateMath.characterGain`).
+- **contact**: the contact shadow's opacity factor. The lawn's own shadow depth
+  (L* p90 minus p10) around the contact points over the level-10 day's,
+  0.5 to 1.2; it scales the pad's two ellipses.
+
+Measured, not judged: `python3 -I tools/plate/harmony_check.py
+home-plate-full-<state>.png` takes a full-resolution app frame, finds each
+body from the app's own geometry (the island is `homeWidths` screen widths
+wide, Pofu's art is `pofuWidth` plate pixels wide, the body is the rig's body
+ellipse shrunk to 0.75; Mochi and Findik by their sprite boxes), and compares
+its mean L* and C* with the surrounding lawn (walkable lawn in a ring 0.8 to
+2.4 character widths out, 25th to 75th percentile mean). With dL* and dC* =
+character minus lawn:
+
+- dL* within 10 of the level-10 day frame's (Pofu +6.7, Mochi +12.4, Findik
+  +1.7 in the CI frame): as much lighter than the lawn as by day;
+- dC* at most +6 (never louder than the lawn: the night lawn is nearly grey)
+  and at least the day's minus 12 (the day spread across levels 10 to 2).
+
+Any new plate state runs the check on its CI frame before the founder sees it.
 
 ## Resolution
 

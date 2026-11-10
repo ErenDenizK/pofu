@@ -6,6 +6,7 @@ numpy, Pillow, scipy; OpenCV only for registration and the pilot's matte. Determ
 | File | What it does |
 |---|---|
 | `ingest.py` | plate-first ingest (`docs/design/plate-islands.md` §0): from `design/art/plates/<island>/objects.json` (plates, trace, tap and occluder polygons, walkable lawn, character spots, framing) the matte, the whole plate with a feathered border, the island cut, the plate's sky and cloud sea extended past its edges (the backdrop), occluder cut-outs, the light and shadow maps and `Plates/plate-<island>.json`; `check` guards polygons, assets and the texture budget |
+| `harmony_check.py` | the character harmony rule as a measurement (`docs/design/visual-system.md` "Characters"): from a full-resolution Home frame (`home-plate-full-<state>.png`), each character's body L* and C* against its surrounding lawn, checked against the band calibrated on the level-10 day frame; `python3 -I tools/plate/test_harmony_check.py` |
 | `pale.py` | the numbers behind `docs/research/pale-assets.md`: per-region L*, C*, hue, local contrast, fine detail, accent and dark shares for references, CI frames and raw sprites; the H2, H3 and H6 tests |
 | `light.py` | can a fitted LUT replace a painted light state? fits golden, rain and night on one painted pair, applies to another plate, measures dE2000 against its painted truth: `docs/research/plate-pilot/light-fit.jpg` |
 | `proofs.py` | the risky mechanisms as frames: occlusion behind a painted object, a sway mask, an upgrade insert, a tap highlight, light from the plate: `docs/research/plate-pilot/mechanisms.jpg` |
@@ -22,6 +23,8 @@ The home plate (batch 66's `x-home-flow-final-rich` t1, a 1024 x 1536 portrait: 
                                                    # (0.8 model / 0.2 Lanczos); the first run takes a few minutes
     python3 -I tools/plate/ingest.py all home --no-upscale   # only when the model is unavailable: ships the original
 
+
+States: `objects.json` lists the painted states (`plates`: `day` stages 0..8 are island levels 10..2, `stageLevels`; `golden` and `night` at level 10) and, per object, the day `stages` where it is painted (absent: all). Derive them by diffing each plate's object polygon against the level-10 plate (a high-pass normalised correlation separates a changed object from the edit's global drift), then check the crops by eye: `ingest.py` cuts an occluder only for the stages that paint it and `check` wants no more. The generated `Plates/plate-home.json` carries each state's character `harmony` (tint, contact).
 
 The CI frames come from the look-pipeline-v2 screenshots branch:
 
