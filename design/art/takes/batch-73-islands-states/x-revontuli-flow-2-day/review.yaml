@@ -5,7 +5,7 @@ jobs:
   x-revontuli-flow-2-day:
     pick: 1
     status: review
-    publication: exploration; never promoted
+    publication: exploration; picked by the lead 2026-11-10 (take 1); never promoted
     note: Both preserve the stage-2 fallen tower beside the post, two standing towers, partial snow-covered
       lake and open fishing hole, with unlit lanterns/window in soft daylight. No healing, new objects,
       characters or text observed; exact registration not manually proven. Auto-picked by QA; founder

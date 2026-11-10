@@ -5,7 +5,7 @@ jobs:
   x-revontuli-flow-4-golden:
     pick: 1
     status: review
-    publication: exploration; never promoted
+    publication: exploration; picked by the lead 2026-11-10 (take 1); never promoted
     note: Factory QA auto-pick; lead review pending. Manual comparison retains sauna, bucket, towel, stool,
       ice lake and fishing hole, three lit towers, post aurora tail, spruce and smoke. Golden is warmer
       than source; rain adds small wet patches/ripples without melting the overall snowy setting. Both

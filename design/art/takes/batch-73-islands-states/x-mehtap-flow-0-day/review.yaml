@@ -5,7 +5,7 @@ jobs:
   x-mehtap-flow-0-day:
     pick: 1
     status: review
-    publication: exploration; never promoted
+    publication: exploration; picked by the lead 2026-11-10 (take 1); never promoted
     note: 'Both takes preserve the authored external parent as picked: open telescope dome, bare twigs,
       blank chart, flat pewter pool, keyhole shape, bench/perch and faint underside stars. Calm pale-blue
       daytime removes luminous keyhole/practicals, with no added moon or trails. This intentionally inherits

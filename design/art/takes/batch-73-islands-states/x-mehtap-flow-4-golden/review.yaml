@@ -5,7 +5,7 @@ jobs:
   x-mehtap-flow-4-golden:
     pick: 1
     status: review
-    publication: exploration; never promoted
+    publication: exploration; picked by the lead 2026-11-10 (take 1); never promoted
     note: Both takes keep crescent horns/craters, open telescope dome, star trails/moon, chart, bench,
       pool and perch at the same main anchors. Golden pink-lilac sky, peach light and lilac cloud shade
       match target; no new characters or text. Local flower and star-point geometry drift remains and

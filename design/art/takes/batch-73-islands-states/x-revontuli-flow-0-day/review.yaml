@@ -5,7 +5,7 @@ jobs:
   x-revontuli-flow-0-day:
     pick: 2
     status: review
-    publication: exploration; never promoted
+    publication: exploration; picked by the lead 2026-11-10 (take 2); never promoted
     note: Both preserve all three toppled tower frames, buried lake, snowy stool, unlit post, sauna and
       spruce under clear daylight. Window light is extinguished and no tower repaired. No new objects,
       characters or text observed; exact registration not manually proven. Auto-picked by QA; founder
