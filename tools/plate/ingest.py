@@ -63,7 +63,7 @@ BUDGET = 9_000_000  # per state (the largest one)
 #: How much of the lawn's colour cast the character tint keeps (the rest is its luminance), per
 #: light: by day half (the sprites are painted for the day plate and the lawn's cast is slight);
 #: at golden hour and night all of it (the cast is the light).
-TINT_CAST = {"day": 0.5, "golden": 1.0, "night": 1.0}
+TINT_CAST = {"day": 0.5, "golden": 1.0, "night": 1.0, "rain": 0.5}
 #: The key light on the characters (docs/design/visual-system.md "Characters"), per light: the rim's
 #: strength (the key colour mixed in over the side gradient), the night's ground pool, and, for every
 #: state, the lawn-colour bounce on a sprite's lower third. Overridable in the hand data's
@@ -75,7 +75,7 @@ CHARACTER_LIGHT = {"rim": {"day": 0.0, "golden": 0.40, "night": 0.40}, "fill": {
 #: (a sprite's brightest fur is `SPRITE_L`; art units of the residents' boxes: `SPRITE_WIDTH`).
 STONE_MARGIN = {"night": 7.0}
 SPRITE_L = 97.0
-SPRITE_WIDTH = {"mochi": 30.4, "findik": 28.666}
+SPRITE_WIDTH = {"mochi": 30.4, "findik": 28.666, "damla": 38.267}
 #: A lamp's glow centre sits this many plate pixels above its base on the ground.
 LAMP_HEIGHT = 30.0
 #: Plates ship upscaled by UPSCALE x2 at MIX of the model, the rest Lanczos.
@@ -325,7 +325,23 @@ def resize(x: np.ndarray, w: int, h: int) -> np.ndarray:
     return np.asarray(to_img(x).resize((max(w, 1), max(h, 1)), Image.Resampling.LANCZOS), np.float64) / 255
 
 
-def backdrop(rgb: np.ndarray, a: np.ndarray, box: tuple[int, int, int, int], scale: float = BACKDROP_SCALE) -> np.ndarray:
+def calm_sea(rgb: np.ndarray, a: np.ndarray, width: int, px: int, pw: int, up: float, scale: float) -> np.ndarray:
+    """One colour per column for the sea below a landscape plate: the plate's bottom band (the
+    island's roots filled out), averaged over its rows, blurred across the plate's width and
+    lightened toward a quiet mist as it runs down. It carries the plate's own left-to-right
+    gradient and no puff: a landscape plate on a portrait screen has a quarter of the screen of
+    sea under it, behind the bottom UI, and a repeated cloud band there reads as haze."""
+    cut = round(rgb.shape[0] * 0.90)
+    band = fill_holes(rgb[cut:].copy(), ndimage.binary_dilation(a[cut:] > 0.1, iterations=10))
+    cols = band.mean(0)
+    cols = resize(cols[None], pw, 1)[0]
+    lpad, rpad = max(px, 0), max(width - px - pw, 0)
+    cols = np.concatenate([np.repeat(cols[:1], lpad, 0), cols, np.repeat(cols[-1:], rpad, 0)], 0)
+    cols = cols[max(-px, 0):max(-px, 0) + width]
+    return ndimage.gaussian_filter1d(cols, max(2, pw / 10), axis=0, mode="nearest")
+
+
+def backdrop(rgb: np.ndarray, a: np.ndarray, box: tuple[int, int, int, int], scale: float = BACKDROP_SCALE, calm: bool = False) -> np.ndarray:
     """The plate's own sky and cloud sea continued past its edges, in `box` (plate pixels), at
     `scale` (as `pilot.painted_frame`): above, the plate's top sky deepens upward; at the sides the
     plate mirrors; below, its cloud band (the roots filled out) repeats at growing sizes, mirrored
@@ -358,26 +374,35 @@ def backdrop(rgb: np.ndarray, a: np.ndarray, box: tuple[int, int, int, int], sca
     yy = np.arange(H)[:, None, None]
     deepen = smooth(0, 1, np.clip((py - yy) / max(py, 1), 0, 1)) * 0.85
     canvas[:] = cols[None] * (1 - deepen) + zen * deepen
-    # Below: the cloud band (full resolution, the island's roots filled out), repeated from the
-    # plate's foot down, each copy resized once from the full-resolution band.
-    cut = round(rgb.shape[0] * 0.86)
-    band = rgb[cut:].copy()
-    band = fill_holes(band, ndimage.binary_dilation(a[cut:] > 0.1, iterations=10))
-    y, i = py + ph - round(0.06 * ph), 0
-    while y < H:
-        k = min(1.6 * 1.4 ** i, 6.0) * scale / up
-        src = band[:, ::-1] if i % 2 == 0 else band
-        b = resize(src, round(band.shape[1] * k), round(band.shape[0] * k))
-        if b.shape[1] < W:
-            b = resize(b, W, round(b.shape[0] * W / b.shape[1]))
-        off = round((b.shape[1] - W) * ((0.31 + 0.29 * i) % 1.0))
-        b = b[:, off:off + W]
-        feather = round(b.shape[0] * 0.5)
-        y_top = y - feather
-        hh = min(b.shape[0], H - y_top)
-        m = smooth(0, feather, np.arange(hh))[:, None, None]
-        canvas[y_top:y_top + hh] = b[:hh] * m + canvas[y_top:y_top + hh] * (1 - m)
-        y, i = y_top + hh, i + 1
+    if calm:
+        # Below: a calm sea, one colour field running down and lightening to mist (`calm_sea`).
+        sea = calm_sea(rgb, a, W, px, pw, up, scale)
+        y0 = py + ph - round(0.10 * ph)
+        yy = np.arange(max(H - y0, 0))[:, None, None]
+        mist = np.clip(sea.mean(0) * 0.5 + np.array([0.93, 0.93, 0.98]) * 0.5, 0, 1)
+        t = smooth(0, max(H - y0, 1) * 0.9, yy) * 0.55
+        canvas[y0:] = sea[None] * (1 - t) + mist * t
+    else:
+        # Below: the cloud band (full resolution, the island's roots filled out), repeated from the
+        # plate's foot down, each copy resized once from the full-resolution band.
+        cut = round(rgb.shape[0] * 0.86)
+        band = rgb[cut:].copy()
+        band = fill_holes(band, ndimage.binary_dilation(a[cut:] > 0.1, iterations=10))
+        y, i = py + ph - round(0.06 * ph), 0
+        while y < H:
+            k = min(1.6 * 1.4 ** i, 6.0) * scale / up
+            src = band[:, ::-1] if i % 2 == 0 else band
+            b = resize(src, round(band.shape[1] * k), round(band.shape[0] * k))
+            if b.shape[1] < W:
+                b = resize(b, W, round(b.shape[0] * W / b.shape[1]))
+            off = round((b.shape[1] - W) * ((0.31 + 0.29 * i) % 1.0))
+            b = b[:, off:off + W]
+            feather = round(b.shape[0] * 0.5)
+            y_top = y - feather
+            hh = min(b.shape[0], H - y_top)
+            m = smooth(0, feather, np.arange(hh))[:, None, None]
+            canvas[y_top:y_top + hh] = b[:hh] * m + canvas[y_top:y_top + hh] * (1 - m)
+            y, i = y_top + hh, i + 1
     # The plate, mirrored past its sides so the sky and the clouds run on.
     left, right = max(px, 0), max(W - (px + pw), 0)
     wide = np.concatenate([small[:, :left][:, ::-1], small, small[:, pw - right:][:, ::-1]], axis=1) if (left or right) else small
@@ -427,7 +452,7 @@ def cmd_deliver(island: str) -> None:
         img = img.resize((round((x1 - x0) * ISLAND_SCALE), round((y1 - y0) * ISLAND_SCALE)), Image.Resampling.LANCZOS)
         write_imageset(asset_name(island, "island", light, stage), img)
         box = backdrop_box(home_frame(hand, a1))
-        write_imageset(asset_name(island, "backdrop", light, stage), to_img(backdrop(rgb, a, box)), jpeg=True)
+        write_imageset(asset_name(island, "backdrop", light, stage), to_img(backdrop(rgb, a, box, hand.get("backdropScale", BACKDROP_SCALE), calm=hand.get("backdrop") == "calm")), jpeg=True)
         print(f"deliver {light} {stage} (x{k}): island box {(x0, y0, x1, y1)}, backdrop box {box}")
 
 
@@ -545,6 +570,22 @@ def lawn_samples(rgb: np.ndarray, walk: np.ndarray, spots, radius: float) -> dic
     return {"ambient": ambient, "contact": np.mean(near, 0), "depth": float(np.mean(depth))}
 
 
+def lawn_chroma(rgb: np.ndarray, walk: np.ndarray) -> float:
+    """The walkable lawn's colourfulness: the mean CIELAB chroma of its mid-tone (25th to 75th L*
+    percentile)."""
+    lab = srgb_to_lab(np.clip(rgb, 0, 1))
+    l = lab[..., 0][walk]
+    c = np.hypot(lab[..., 1], lab[..., 2])[walk]
+    keep = (l >= np.percentile(l, 25)) & (l <= np.percentile(l, 75))
+    return float(c[keep].mean())
+
+
+#: How far a sprite's chroma follows the lawn's (`saturation` in a state's harmony data): the
+#: lawn's chroma over the reference plate's to this power, never under `SATURATION_FLOOR`.
+SATURATION_POWER = 0.6
+SATURATION_FLOOR = 0.5
+
+
 def key_colour(rgb: np.ndarray, hand: dict, walk: np.ndarray, light: str) -> list[float]:
     """The key light's colour, read from the plate (sRGB): at night the lamps' glow (the bright
     half of a disc around each lamp's lantern), otherwise the lit stones (the walkable lawn's top
@@ -614,8 +655,9 @@ def harmony_state(rgb: np.ndarray, hand: dict, ref: dict | None, light: str = "d
     s = lawn_samples(rgb, walk, spots, hand["pofuWidth"] * SIZE[0] / 100 * 0.9)
     a = np.sqrt(s["ambient"] * s["contact"])
     cl = {**CHARACTER_LIGHT, **hand.get("characterLight", {})}
+    chroma = lawn_chroma(rgb, walk)
     if ref is None:
-        return {"tint": [1.0, 1.0, 1.0], "contact": 1.0, "bounce": cl["bounce"], "_a": a, "_depth": s["depth"]}
+        return {"tint": [1.0, 1.0, 1.0], "contact": 1.0, "bounce": cl["bounce"], "_a": a, "_depth": s["depth"], "_chroma": chroma}
     y = np.array([0.2126, 0.7152, 0.0722])
     ratio = np.clip(a / np.maximum(ref["_a"], 1e-4), 0.25, 1.0)
     luma = float(ratio @ y)
@@ -624,17 +666,24 @@ def harmony_state(rgb: np.ndarray, hand: dict, ref: dict | None, light: str = "d
     ratio = np.clip(luma + (ratio - luma) * cast, 0.25, 1.0)
     tint = linear_to_srgb(ratio)
     scales: dict[str, float] = {}
-    if light in STONE_MARGIN:
+    margins = {**STONE_MARGIN, **cl.get("stoneMargin", {})}
+    if light in margins:
         # The brightest stone around each character caps its own top; the shared tint is capped by
         # the brightest of them and each darker neighbourhood scales its character down from it.
         stones = stone_levels(rgb, hand, walk)
         def cap(stone: float) -> float:
-            return lstar_to_srgb(stone - STONE_MARGIN[light]) / (lstar_to_srgb(SPRITE_L) * float(tint.mean()))
+            return lstar_to_srgb(stone - margins[light]) / (lstar_to_srgb(SPRITE_L) * float(tint.mean()))
         tint = np.clip(tint * min(1.0, max(cap(v) for v in stones.values())), 0.25, 1.0)
         top = max(cap(v) for v in stones.values())
         scales = {k: round(min(1.0, cap(v) / top), 3) for k, v in stones.items()}
     contact = float(np.clip(s["depth"] / max(ref["_depth"], 1e-4), 0.5, 1.2))
-    out = {"tint": [round(float(v), 4) for v in tint], "contact": round(contact, 3), "_a": a, "_depth": s["depth"]}
+    out = {"tint": [round(float(v), 4) for v in tint], "contact": round(contact, 3), "_a": a, "_depth": s["depth"], "_chroma": chroma}
+    if cl.get("saturate"):
+        # A plate paler than the reference (Çağlayan's dry stages) asks the sprite to be less
+        # colourful than the lawn it stands on: a multiply cannot take chroma out.
+        sat = float(np.clip((chroma / max(ref["_chroma"], 1e-4)) ** SATURATION_POWER, SATURATION_FLOOR, 1.0))
+        if sat < 0.995:
+            out["saturation"] = round(sat, 3)
     rim = cl["rim"].get(light, 0.0)
     if rim > 0:
         out["key"] = key_colour(rgb, hand, walk, light)
@@ -654,15 +703,39 @@ def pct_to_px_pts(hand: dict):
         yield pct_to_px([p])[0]
 
 
+#: A state's harmony data where the island does not paint it (a sparse light): the arrays are
+#: indexed by stage and the runtime never asks for it.
+UNPAINTED_HARMONY = {"tint": [1.0, 1.0, 1.0], "contact": 1.0}
+
+
+def stage_count(hand: dict, light: str) -> int:
+    """How many stages a light's arrays hold: the highest painted stage + 1 (a light painted at
+    some stages only, as Çağlayan's night, pads the others)."""
+    return max(int(s) for s in hand["plates"][light]) + 1
+
+
+def is_sparse(hand: dict) -> bool:
+    return any(sorted(int(s) for s in st) != list(range(len(st))) for st in hand["plates"].values())
+
+
+def painted_stages(hand: dict) -> dict:
+    return {l: sorted(int(s) for s in st) for l, st in sorted(hand["plates"].items())}
+
+
 def harmony_all(hand: dict, mattes: dict) -> dict:
-    """`{light: [{tint, contact}, ...]}` per painted state, against the first plate's lawn."""
-    out, ref = {}, None
+    """`{light: [{tint, contact}, ...]}` per painted state, against the reference plate's lawn
+    (`referenceState` in the hand data, else the first plate: the island's picked root), by stage."""
+    ref = None
+    if "referenceState" in hand:
+        light, stage = hand["referenceState"]
+        ref = harmony_state(load_rgb(REPO / hand["plates"][light][str(stage)]), hand, None, light)
+    out: dict[str, dict[int, dict]] = {}
     for light, stage, path in plates(hand):
-        h = harmony_state(load_rgb(path), hand, ref, light)
+        h = harmony_state(load_rgb(path), hand, ref, light) if ref is not None else harmony_state(load_rgb(path), hand, None, light)
         if ref is None:
             ref = h
-        out.setdefault(light, []).append({k: v for k, v in h.items() if not k.startswith("_")})
-    return out
+        out.setdefault(light, {})[stage] = {k: v for k, v in h.items() if not k.startswith("_")}
+    return {l: [st.get(i, dict(UNPAINTED_HARMONY)) for i in range(stage_count(hand, l))] for l, st in out.items()}
 
 
 # ---------------------------------------------------------------- json
@@ -707,7 +780,7 @@ def build_json(island: str, hand: dict, mattes: dict, maps: dict, harmony: dict 
             entry["box"] = list(box)
         objects.append(entry)
     lights = sorted(hand["plates"])
-    return {
+    data = {
         "island": island,
         "version": 1,
         "standIn": bool(hand.get("standIn", False)),
@@ -715,7 +788,7 @@ def build_json(island: str, hand: dict, mattes: dict, maps: dict, harmony: dict 
         "plateSize": list(SIZE),
         "stages": max(int(s) for st in hand["plates"].values() for s in st) + 1,
         "lights": lights,
-        "lightStages": {l: len(hand["plates"][l]) for l in lights},
+        "lightStages": {l: stage_count(hand, l) for l in lights},
         "stageLevels": hand.get("stageLevels", [hand.get("minLevel", 1)]),
         "harmony": harmony or {},
         "islandBox": list(bbox(a, 0.02)),
@@ -731,10 +804,15 @@ def build_json(island: str, hand: dict, mattes: dict, maps: dict, harmony: dict 
         "lamps": pct_to_px(hand.get("lamps", [])),
         "lampHeight": LAMP_HEIGHT,
         "lightDirection": hand.get("lightDirection", [0.5, 0.3]),
-        "lightMap": {l: [maps[(l, s)][0] for s in range(len(hand["plates"][l]))] for l in lights},
-        "shadowMap": {l: [maps[(l, s)][1] for s in range(len(hand["plates"][l]))] for l in lights},
+        "lightMap": {l: [maps[(l, s)][0] if (l, s) in maps else [] for s in range(stage_count(hand, l))] for l in lights},
+        "shadowMap": {l: [maps[(l, s)][1] if (l, s) in maps else [] for s in range(stage_count(hand, l))] for l in lights},
         "textureBytes": texture_bytes(island, hand),
     }
+    if is_sparse(hand):
+        data["painted"] = painted_stages(hand)
+    if hand.get("backdrop"):
+        data["backdropStyle"] = hand["backdrop"]
+    return data
 
 
 def cmd_json(island: str) -> Path:
@@ -778,7 +856,7 @@ def problems(data: dict, a: np.ndarray, assets: set[str], tolerance: float = 32.
     if data["textureBytes"] > BUDGET:
         out.append(f"textureBytes {data['textureBytes']:,} > {BUDGET:,}")
     for light in data["lights"]:
-        for stage in range(data.get("lightStages", {}).get(light, data["stages"])):
+        for stage in data.get("painted", {}).get(light, range(data.get("lightStages", {}).get(light, data["stages"]))):
             for kind in ("plate", "island", "backdrop"):
                 if asset_name(island, kind, light, stage) not in assets:
                     out.append(f"missing asset {asset_name(island, kind, light, stage)}")

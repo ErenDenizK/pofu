@@ -92,6 +92,14 @@ applied in Swift (`HomePlate.characterLight`, `PlateCharacter`,
   `contact`: the lawn's shadow depth (L* p90 minus p10) around the contact
   points over the level-10 day's, 0.5 to 1.2.
 
+A plate paler than the island's root asks one more thing: **saturation**. Çağlayan's dry
+stages (a pale, nearly grey lawn) would put a full-colour otter on it, louder than the lawn, which a
+multiply cannot fix. Its hand data turns on `characterLight.saturate`: a state's `saturation` is the
+lawn's chroma over the reference plate's, to the power 0.6, at least 0.5 (omitted at 1, so Home's
+data is untouched), and the sprite keeps that share of its colour (`PlateCharacter`). Çağlayan's
+night also sets `stoneMargin` to 3 L* (Home 7): its tint was capped so far under the stones that its
+otter read darker than any day plate allows. The golden rim is 0.5 there (Home 0.40).
+
 Scale: Pofu keeps his size relative to the painted world (8.14 % of the plate width; 33 pt at the old 1.0 framing, about 38 pt at 1.15). Mochi and Findik are drawn at least 60 % of his
 painted height (`residentBoosts`: Mochi 1.62, Findik 1.40 of his proportion;
 62 % and 52 % +, measured on the sprites' boxes, 23.3 and 26.8 units against
@@ -127,7 +135,13 @@ character minus lawn:
 - **golden hour: the fur follows the light.** The CIELAB hue angle of Pofu's
   mean fur colour moves from the level-10 day frame's at least half as far, in
   the same direction, as the lawn ring's does (a lawn that moves under 2 degrees
-  asks nothing).
+  asks nothing). A fur on the far side of the key light from the lawn (Damla's
+  brown against Çağlayan's yellow-green, the key at 88 degrees) follows it by
+  moving at least half as far *toward the key's hue* (the plate's `key`) as the
+  lawn does.
+- **Çağlayan's band is its own root's.** `--island caglayan --reference s4-day`
+  anchors dL* and dC* on its stage 4 day frame (the picked root, as the colour
+  check's REF is); every other shipped state is measured against it.
 
 Any new plate state runs the check on its CI frame before the founder sees it.
 
@@ -151,6 +165,15 @@ Any new plate state runs the check on its CI frame before the founder sees it.
 - The UI lives in the bottom band and one top-right button.
 - Nothing covers the island.
 - Characters: Pofu about 38 pt at the home framing (his share of the painted world is fixed); Mochi and Fındık in proportion.
+- A landscape plate (Çağlayan, 1536 x 1024) follows the same rule on the portrait screen: the
+  island is 0.95 screens wide at the Island stop (`CaglayanLayout.closeScale`), its box centred at
+  54 % of the screen's height (`IslandFraming.massY`), so a third of the screen is sky above it and
+  a quarter sea below it, behind the bottom UI. The sky above deepens as Home's does; **the sea below
+  is a calm continuation** (`backdrop: calm`: the plate's bottom band averaged across the rows,
+  blurred and lightened to mist), never a cloud band repeated at growing sizes, which read as haze
+  behind the buttons. Damla is the only resident drawn on it, at Pofu's painted proportion
+  (`pofuWidth` 9.8 % of the plate, a tenth of the island) times 1.47 (about 9 % of the island's
+  width, 34 pt wide), in the plate's light like Mochi and Fındık at Home.
 
 ## Checks before the founder sees anything
 

@@ -5,8 +5,8 @@ numpy, Pillow, scipy; OpenCV only for registration and the pilot's matte. Determ
 
 | File | What it does |
 |---|---|
-| `ingest.py` | plate-first ingest (`docs/design/plate-islands.md` §0): from `design/art/plates/<island>/objects.json` (plates, trace, tap and occluder polygons, walkable lawn, character spots, framing) the matte, the whole plate with a feathered border, the island cut, the plate's sky and cloud sea extended past its edges (the backdrop), occluder cut-outs, the light and shadow maps and `Plates/plate-<island>.json`; `check` guards polygons, assets and the texture budget |
-| `harmony_check.py` | the character harmony rule as a measurement (`docs/design/visual-system.md` "Characters"): from a full-resolution Home frame (`home-plate-full-<state>.png`), each character's body L* and C* against its surrounding lawn, checked against the band calibrated on the level-10 day frame, plus the night "no sticker" and golden "fur follows the lawn's hue" rules; `python3 -I tools/plate/test_harmony_check.py` |
+| `ingest.py` | plate-first ingest (`docs/design/plate-islands.md` §0): from `design/art/plates/<island>/objects.json` (plates, trace, tap and occluder polygons, walkable lawn, character spots, framing) the matte, the whole plate with a feathered border, the island cut, the plate's sky and cloud sea extended past its edges (the backdrop), occluder cut-outs, the light and shadow maps and `Plates/plate-<island>.json`; `check` guards polygons, assets and the texture budget. A light painted at some stages only (Çağlayan's night: 2 and 3) is "sparse": its arrays are padded and the JSON lists `painted` per light; `referenceState` names the harmony reference (default: the first plate); `backdrop: "calm"` and `backdropScale` give a landscape plate a quiet sea below it; `characterLight` overrides the rim, `stoneMargin` and turns on `saturate` per island |
+| `harmony_check.py` | the character harmony rule as a measurement (`docs/design/visual-system.md` "Characters"): from a full-resolution Home frame (`home-plate-full-<state>.png`), each character's body L* and C* against its surrounding lawn, checked against the band calibrated on the level-10 day frame, plus the night "no sticker" and golden "fur follows the lawn's hue" rules; `--island caglayan --reference s4-day` measures Damla in `caglayan-plate-full-s<stage>-<light>.png` against the island's own root frame; `python3 -I tools/plate/test_harmony_check.py` |
 | `pale.py` | the numbers behind `docs/research/pale-assets.md`: per-region L*, C*, hue, local contrast, fine detail, accent and dark shares for references, CI frames and raw sprites; the H2, H3 and H6 tests |
 | `light.py` | can a fitted LUT replace a painted light state? fits golden, rain and night on one painted pair, applies to another plate, measures dE2000 against its painted truth: `docs/research/plate-pilot/light-fit.jpg` |
 | `proofs.py` | the risky mechanisms as frames: occlusion behind a painted object, a sway mask, an upgrade insert, a tap highlight, light from the plate: `docs/research/plate-pilot/mechanisms.jpg` |
@@ -36,6 +36,11 @@ The CI frames come from the look-pipeline-v2 screenshots branch:
 
     python3 -I tools/plate/light.py docs/research/plate-pilot/light-fit.jpg       # ~10 s
     python3 -I tools/plate/proofs.py docs/research/plate-pilot/mechanisms.jpg    # ~20 s
+
+Çağlayan (landscape 1536 x 1024, `design/art/plates/caglayan/objects.json`; one matte, the stage 4 day's, `matte-day-0.png`):
+
+    python3 -I tools/plate/ingest.py all caglayan
+    python3 -I tools/plate/harmony_check.py --island caglayan --reference s4-day caglayan-plate-full-*.png
 
 `pale.py --register` re-finds where Çağlayan's plate sits in the CI frame (scale 0.606, at 9, 316).
 
