@@ -1,0 +1,223 @@
+batch: batch-71-home-redo
+manifest: tools/imagegen/manifest/batch-71-home-redo.yaml
+manifest_sha256: d50c10e7666cf279de3e679c6887ac99cda33d4bd546451d6f138573c49ec23b
+jobs:
+  x-home-flow-bare-v2:
+    pick: null
+    status: skipped
+    publication: exploration; never promoted
+    note: Both takes restore grass texture and remove all built/planted objects; far islands, whale, earth
+      and doors stay recognizable. Both FAIL island-outline preservation by inventing a land neck between
+      home and harbor after removing the rope bridge. Grass also remains yellow-green rather than the
+      requested deep natural green. The two requested takes are retained, manually rejected and skipped;
+      no promotion. Take 1 keeps hilltop ledge closer than take 2.
+selection:
+  method: QA non-fail and manual eligibility; lowest style-lock load, then highest measured harmony; take
+    number only breaks ties
+  scores:
+  - take: 1
+    style_lock_load: 0.0
+    harmony: 66.8
+    eligible: false
+  - take: 2
+    style_lock_load: 0.0
+    harmony: 60.2
+    eligible: false
+  rejected_takes:
+  - 1
+  - 2
+qa_reports:
+- job: x-home-flow-bare-v2
+  take: 1
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1024x1536
+  - check: chroma_ceiling
+    status: warn
+    message: chroma p95 63 (R1 51) (advisory in an exploration)
+    value: 62.7
+  - check: light_values
+    status: pass
+    message: 'day/subject: L p5 61 (at least 50: darks stay a light mid-tone), p98 97 (at least 90)'
+    value: 61.4
+  - check: light_median
+    status: pass
+    message: 'day/subject: median L 81 (band 74-92)'
+    value: 81.0
+  - check: light_contrast
+    status: pass
+    message: 'day/subject: p75 local contrast 3.1 (band 2.5-6.5; above it reads too contrasty)'
+    value: 3.11
+  - check: light_sky
+    status: pass
+    message: 'day: sky L 74 (band 70-94)'
+    value: 74.1
+  - check: light_sea
+    status: pass
+    message: 'day: cloud sea L 89 (at least 82: the sea is the reflector)'
+    value: 88.9
+  - check: light_dark
+    status: pass
+    message: 'day: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.0
+  - check: detail_budget
+    status: pass
+    message: detail at display size 2.7 (R1 5.3)
+    value: 2.69
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 7.6, p95 18.6, off-palette 26.9% (top: #88BBFF (6.5%), #77AAFF (2.9%)) (advisory
+      in an exploration)'
+    value: 7.6306
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_stability
+    status: pass
+    message: 79% of the parent level unchanged
+    value: 0.7864
+  - check: edit_chroma
+    status: pass
+    message: chroma x1.01 of the parent level (drift compounds along a chain)
+    value: 1.0114
+  info:
+    metrics_raw:
+      L_p5: 67.0
+      L_p50: 81.0
+      L_p95: 95.3
+      C_p50: 28.1
+      C_p95: 62.7
+      C_p99: 65.7
+      detail: 2.69
+    metrics_locked:
+      L_p5: 67.0
+      L_p50: 81.0
+      L_p95: 95.3
+      C_p50: 28.1
+      C_p95: 62.7
+      C_p99: 65.7
+      detail: 2.69
+  fingerprint: 7541c3d2dbc1a834
+- job: x-home-flow-bare-v2
+  take: 2
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1024x1536
+  - check: chroma_ceiling
+    status: warn
+    message: chroma p95 68 (R1 51) (advisory in an exploration)
+    value: 68.5
+  - check: light_values
+    status: pass
+    message: 'day/subject: L p5 62 (at least 50: darks stay a light mid-tone), p98 96 (at least 90)'
+    value: 62.4
+  - check: light_median
+    status: pass
+    message: 'day/subject: median L 81 (band 74-92)'
+    value: 80.8
+  - check: light_contrast
+    status: pass
+    message: 'day/subject: p75 local contrast 3.2 (band 2.5-6.5; above it reads too contrasty)'
+    value: 3.21
+  - check: light_sky
+    status: pass
+    message: 'day: sky L 74 (band 70-94)'
+    value: 74.4
+  - check: light_sea
+    status: pass
+    message: 'day: cloud sea L 89 (at least 82: the sea is the reflector)'
+    value: 88.9
+  - check: light_dark
+    status: pass
+    message: 'day: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.0
+  - check: detail_budget
+    status: pass
+    message: detail at display size 2.7 (R1 5.3)
+    value: 2.71
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 8.6, p95 23.9, off-palette 29.2% (top: #88BBFF (6.5%), #BBCC44 (3.4%)) (advisory
+      in an exploration)'
+    value: 8.5818
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_stability
+    status: pass
+    message: 78% of the parent level unchanged
+    value: 0.7778
+  - check: edit_chroma
+    status: pass
+    message: chroma x1.03 of the parent level (drift compounds along a chain)
+    value: 1.0261
+  info:
+    metrics_raw:
+      L_p5: 67.8
+      L_p50: 81.0
+      L_p95: 95.0
+      C_p50: 28.5
+      C_p95: 68.5
+      C_p99: 71.3
+      detail: 2.71
+    metrics_locked:
+      L_p5: 67.8
+      L_p50: 81.0
+      L_p95: 95.0
+      C_p50: 28.5
+      C_p95: 68.5
+      C_p99: 71.3
+      detail: 2.71
+  fingerprint: 7541c3d2dbc1a834
+sources:
+- take: 1
+  source_file: /workspace/art-operator-runtime/factory/generated/x-home-flow-bare-v2/take-1.png
+  source_sha256: 3ba443c8418884adf502a04be3bd3d73e747ff87efef7e252af8ee09a35800de
+  q90_take: design/art/takes/batch-71-home-redo/x-home-flow-bare-v2/plate__x-home-flow-bare-v2--t1.webp
+  q90_take_sha256: 8e4946e7e5e199be85d326f130fe70ee732c9008ca05456dc6847aa0d9546abf
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: ce6a5df5cf89d729b30f001913213877f9fa649d40af934e19ed7c6805e301b0
+  references:
+  - path: design/art/masters/x-home-flow-final-rich/x-home-flow-final-rich.webp
+    role: The image to edit (the approved previous level). Edit it; do not redraw it.
+    sha256: 610f92abdd46cb454fd98b0cf1afbc6654d935185b643e7621c90e1b14186fc9
+- take: 2
+  source_file: /workspace/art-operator-runtime/factory/generated/x-home-flow-bare-v2/take-2.png
+  source_sha256: b9d993af6ed50cff3c59d56264917ab9989a04d7ef99c095d9f3cf5175b43c39
+  q90_take: design/art/takes/batch-71-home-redo/x-home-flow-bare-v2/plate__x-home-flow-bare-v2--t2.webp
+  q90_take_sha256: e4b92ad3205b7449890afd383440b9e2178d4cf4fc9be1b63ab85cc389a15526
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: ce6a5df5cf89d729b30f001913213877f9fa649d40af934e19ed7c6805e301b0
+  references:
+  - path: design/art/masters/x-home-flow-final-rich/x-home-flow-final-rich.webp
+    role: The image to edit (the approved previous level). Edit it; do not redraw it.
+    sha256: 610f92abdd46cb454fd98b0cf1afbc6654d935185b643e7621c90e1b14186fc9
+policy:
+  never_promote: true
+  originals: source_file PNGs preserved unchanged; published takes are q90 copies
