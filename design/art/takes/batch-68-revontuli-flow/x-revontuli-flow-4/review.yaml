@@ -7,8 +7,8 @@ base_head: 20be6dc2eb7dff96a68108d336e8e0433b0e6d0c
 contact_sheet: design/art/takes/batch-68-revontuli-flow/x-revontuli-flow-4/contact.jpg
 jobs:
   x-revontuli-flow-4:
-    pick: null
-    publication: exploration; never promoted
+    pick: 1
+    publication: exploration; concept master picked by the lead 2026-11-10 (take 1); promote --only <id> next (needs the unlocked raw)
     note: Both takes have the ice body’s own silhouette, three lantern towers, sauna with towel and bucket, three
       steps, a tail connected to the aurora, and the glass lake with its hole and stool. Neither has characters
       or text. The lake reads about 45% of the island width versus the authored target of about one third. This

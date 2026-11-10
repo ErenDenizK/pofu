@@ -7,8 +7,8 @@ base_head: 20be6dc2eb7dff96a68108d336e8e0433b0e6d0c
 contact_sheet: design/art/takes/batch-66-home-flow/x-home-flow-final-rich/contact.jpg
 jobs:
   x-home-flow-final-rich:
-    pick: null
-    publication: exploration; never promoted
+    pick: 1
+    publication: exploration; concept master picked by the lead 2026-11-10 (take 1); promote --only <id> next (needs the unlocked raw)
     note: 'Take 1 has all four home doors in the correct row; its harbor islet rises in two lawn tiers beyond the
       guide. Take 2 also shows the two-tier harbor, and has only three home round doors: the rose door is missing.
       No take is selected; both remain for lead review and neither is promoted. The clear and rich prompts use the

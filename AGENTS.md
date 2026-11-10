@@ -206,7 +206,7 @@ harmony entry fails CI. For every promoted master:
   outlines; for sprites, the `lock-light` style lock (the app grades
   saturation and contrast at runtime); **Pofu is never locked**. Plates are
   painted at final colour and size (ADR-0023, docs/design/visual-system.md):
-  use `plate-style-v1`, never filter a plate.
+  use `plate-style-rich-v1` (`plate-style-v1` only for calmer states), never filter a plate.
 - **Light standard:** every new job declares `light: {cell, layer}`; paint
   sprites under the day cell with no cast shadow, never lift the subject's
   blacks, use `style-anchor-v2`
