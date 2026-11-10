@@ -11,7 +11,8 @@ summary: >-
   plump, simple shapes with a slightly lighter edge on one side and a very soft shadow, nothing
   attached.
 art:
-  images: []
+  images:
+  - design/art/ui/ui-breath-petals/ui-breath-petals.webp
   jobs:
   - batch-62-breath-room:breath-petals
 sources:
