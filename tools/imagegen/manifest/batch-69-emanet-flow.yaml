@@ -25,7 +25,8 @@
 # their reserved spots, a fit check). No plate contains a character or an
 # animal except `-4-life`.
 #
-# Phase 1 runs ONLY `x-emanet-flow-4` (2 takes). The lead or the founder picks a take.
+# Phase 1 runs ONLY `x-emanet-flow-4` (2 takes). The lead picked take 1 (2026-11-10;
+# `pick: 1` in its review.yaml).
 # Until then every other job waits: `run.py plan` shows each as "waiting for
 # approval of x-emanet-flow-4" and `run` skips it. Phase 2 (stages 3, 2, 1, 0, the two
 # bares, life and up; independent of each other, any order, up to three
@@ -135,7 +136,7 @@ jobs:
           tea stall. NO CHARACTERS OR ANIMALS anywhere: the game draws Pofu,
           Mochi, the resident and every critter as its own sprite, so their
           places stay empty.
-      - block: plate-style-v1
+      - block: plate-style-rich-v1
       - text: "AVOID: characters, animals, text, letters, numbers, a border, harsh shadows, near-black shade, neon or oversaturated colours, HDR glow, washed-out pastel colour, milky haze, grey or muddy colour, outlines, photorealism, a 3D render look, anything falling off the island into the void, a copy of the home island's lawn and round door"
 
   - id: x-emanet-flow-3

@@ -7,8 +7,8 @@ base_head: 20be6dc2eb7dff96a68108d336e8e0433b0e6d0c
 contact_sheet: design/art/takes/batch-69-emanet-flow/x-emanet-flow-4/contact.jpg
 jobs:
   x-emanet-flow-4:
-    pick: null
-    publication: exploration; never promoted
+    pick: 1
+    publication: exploration; concept master picked by the lead 2026-11-10 (take 1); promote --only <id> next (needs the unlocked raw)
     note: 'Both takes show the teal office, suitcase plinth and round door, spoon ladder, teacup tank, top hat,
       three service bays, cart, scales and kite, with no characters or text. The exact authored count of eight hooks
       (seven occupied and one empty) is not certified: the visible hook/attachment arrangement is unclear and differs

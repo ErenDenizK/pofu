@@ -29,14 +29,15 @@
 # tools/plate/colour_metrics.py. Until then every edit job waits: `run.py plan`
 # shows each as "waiting for approval of x-home-flow-final" and `run` skips it.
 # Phase 2 (bare, golden, night, rain, il9 ... il1, all independent of each
-# other, any order, up to three tracks) starts from whichever root the lead
-# names. The 13 edit jobs keep `edit_of: x-home-flow-final` as the default;
-# the lead's naming PR repoints them (`edit_of`) to the named root. The edit
+# other, any order, up to three tracks) starts from the root the lead named
+# (2026-11-10): `x-home-flow-final-rich` take 1. The 13 edit jobs now carry
+# `edit_of: x-home-flow-final-rich`. The edit
 # jobs are delivered at full size (scale 1.0, ADR-0023).
 #
 # LEAD RULE, CONCEPT MASTER (this batch only, overriding "explorations are
 # never promoted"): once the lead names the picked take of `x-home-flow-final`
-# (and only that job id, one of the three roots), promote it with
+# (and only that job id, one of the three roots; named 2026-11-10:
+# `x-home-flow-final-rich` take 1, `pick: 1` in its review.yaml), promote it with
 # `promote --only <that id>` (review note "concept master; picked by the lead"). It is the reference
 # truth every level and state derives from. It is a concept target, not wired
 # into the app. No other job of this batch is promoted. Do not run phase 2
@@ -354,7 +355,7 @@ jobs:
     size: 1024x1536
     canvas: 1024x1536
     deliver: {scale: 1.0}
-    edit_of: x-home-flow-final
+    edit_of: x-home-flow-final-rich
     chat: "Pofu · Home flow"
     light: {cell: day, layer: subject}
     palettes: [world-foliage, world-props]
@@ -386,7 +387,7 @@ jobs:
     size: 1024x1536
     canvas: 1024x1536
     deliver: {scale: 1.0}
-    edit_of: x-home-flow-final
+    edit_of: x-home-flow-final-rich
     chat: "Pofu · Home flow"
     light: {cell: golden, layer: subject}
     palettes: [world-foliage, world-props, world-sunset]
@@ -414,7 +415,7 @@ jobs:
     size: 1024x1536
     canvas: 1024x1536
     deliver: {scale: 1.0}
-    edit_of: x-home-flow-final
+    edit_of: x-home-flow-final-rich
     chat: "Pofu · Home flow"
     light: {cell: night, layer: subject}
     palettes: [world-foliage, world-props, world-night]
@@ -450,7 +451,7 @@ jobs:
     size: 1024x1536
     canvas: 1024x1536
     deliver: {scale: 1.0}
-    edit_of: x-home-flow-final
+    edit_of: x-home-flow-final-rich
     chat: "Pofu · Home flow"
     light: {cell: day, layer: subject}
     palettes: [world-foliage, world-props]
@@ -479,7 +480,7 @@ jobs:
     size: 1024x1536
     canvas: 1024x1536
     deliver: {scale: 1.0}
-    edit_of: x-home-flow-final
+    edit_of: x-home-flow-final-rich
     chat: "Pofu · Home flow"
     light: {cell: day, layer: subject}
     palettes: [world-foliage, world-props]
@@ -539,7 +540,7 @@ jobs:
     size: 1024x1536
     canvas: 1024x1536
     deliver: {scale: 1.0}
-    edit_of: x-home-flow-final
+    edit_of: x-home-flow-final-rich
     chat: "Pofu · Home flow"
     light: {cell: day, layer: subject}
     palettes: [world-foliage, world-props]
@@ -597,7 +598,7 @@ jobs:
     size: 1024x1536
     canvas: 1024x1536
     deliver: {scale: 1.0}
-    edit_of: x-home-flow-final
+    edit_of: x-home-flow-final-rich
     chat: "Pofu · Home flow"
     light: {cell: day, layer: subject}
     palettes: [world-foliage, world-props]
@@ -659,7 +660,7 @@ jobs:
     size: 1024x1536
     canvas: 1024x1536
     deliver: {scale: 1.0}
-    edit_of: x-home-flow-final
+    edit_of: x-home-flow-final-rich
     chat: "Pofu · Home flow"
     light: {cell: day, layer: subject}
     palettes: [world-foliage, world-props]
@@ -717,7 +718,7 @@ jobs:
     size: 1024x1536
     canvas: 1024x1536
     deliver: {scale: 1.0}
-    edit_of: x-home-flow-final
+    edit_of: x-home-flow-final-rich
     chat: "Pofu · Home flow"
     light: {cell: day, layer: subject}
     palettes: [world-foliage, world-props]
@@ -776,7 +777,7 @@ jobs:
     size: 1024x1536
     canvas: 1024x1536
     deliver: {scale: 1.0}
-    edit_of: x-home-flow-final
+    edit_of: x-home-flow-final-rich
     chat: "Pofu · Home flow"
     light: {cell: day, layer: subject}
     palettes: [world-foliage, world-props]
@@ -837,7 +838,7 @@ jobs:
     size: 1024x1536
     canvas: 1024x1536
     deliver: {scale: 1.0}
-    edit_of: x-home-flow-final
+    edit_of: x-home-flow-final-rich
     chat: "Pofu · Home flow"
     light: {cell: day, layer: subject}
     palettes: [world-foliage, world-props]
@@ -901,7 +902,7 @@ jobs:
     size: 1024x1536
     canvas: 1024x1536
     deliver: {scale: 1.0}
-    edit_of: x-home-flow-final
+    edit_of: x-home-flow-final-rich
     chat: "Pofu · Home flow"
     light: {cell: day, layer: subject}
     palettes: [world-foliage, world-props]
@@ -966,7 +967,7 @@ jobs:
     size: 1024x1536
     canvas: 1024x1536
     deliver: {scale: 1.0}
-    edit_of: x-home-flow-final
+    edit_of: x-home-flow-final-rich
     chat: "Pofu · Home flow"
     light: {cell: day, layer: subject}
     palettes: [world-foliage, world-props]

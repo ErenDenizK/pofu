@@ -6,8 +6,8 @@ base_head: 20be6dc2eb7dff96a68108d336e8e0433b0e6d0c
 contact_sheet: design/art/takes/batch-67-caglayan-flow/x-caglayan-flow-4/contact.jpg
 jobs:
   x-caglayan-flow-4:
-    pick: null
-    publication: exploration; never promoted
+    pick: 1
+    publication: exploration; concept master picked by the lead 2026-11-10 (take 1); promote --only <id> next (needs the unlocked raw)
     note: Take 1 contains the smoke curl; take 2 omits it. Both show three saucer pools, three leaf boats, the open
       front pool and an empty seat, with no characters or text. The plate camera/depth looks deeper than the authored
       guide by about one fifth of the island width, and pebbles appear on the body despite the home-island reference
