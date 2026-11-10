@@ -1,0 +1,203 @@
+batch: batch-70-mehtap-flow
+manifest: tools/imagegen/manifest/batch-70-mehtap-flow.yaml
+jobs:
+  x-mehtap-flow-0-bare:
+    pick: null
+    publication: exploration; not promoted; lead review pending
+    note: Both direct root edits remove sky trails/moon, bushes/blanket/rim lamps, darken all practicals
+      except door keyhole and blank the chart. Take1 closes dome shell but leaves telescope protruding;
+      take2 incorrectly keeps dome open. Faint underside stars persist. Both retained as unselected review
+      candidates; exact registration not claimed.
+qa_reports:
+- job: x-mehtap-flow-0-bare
+  take: 1
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 32 (R1 51)
+    value: 31.5
+  - check: light_values
+    status: warn
+    message: 'dusk/subject: L p5 24 (at least 47: darks stay a light mid-tone), p98 75 (at least 85) (warn-only
+      until the founder has seen the light pilot)'
+    value: 24.5
+  - check: light_median
+    status: warn
+    message: 'dusk/subject: median L 45 (band 66-86) (warn-only until the founder has seen the light pilot)'
+    value: 45.1
+  - check: light_contrast
+    status: pass
+    message: 'dusk/subject: p75 local contrast 4.8 (band 1.8-5.0; above it reads too contrasty)'
+    value: 4.75
+  - check: light_sky
+    status: warn
+    message: 'dusk: sky L 12 (band 36-70) (warn-only until the founder has seen the light pilot)'
+    value: 12.4
+  - check: light_sea
+    status: warn
+    message: 'dusk: cloud sea L 61 (at least 74: the sea is the reflector) (warn-only until the founder
+      has seen the light pilot)'
+    value: 60.7
+  - check: light_dark
+    status: warn
+    message: 'dusk: 13.6 % below L* 30 under the sky (at most 3; only the sky is dark) (warn-only until
+      the founder has seen the light pilot)'
+    value: 13.6
+  - check: detail_budget
+    status: pass
+    message: detail at display size 2.4 (R1 5.3)
+    value: 2.42
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: mean dE 4.1, p95 7.6, off-palette 0.0%
+    value: 4.1061
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_stability
+    status: warn
+    message: 0% of the parent level unchanged (advisory in an exploration)
+    value: 0.0001
+  - check: edit_chroma
+    status: pass
+    message: chroma x1.15 of the parent level (drift compounds along a chain)
+    value: 1.1489
+  info:
+    metrics_raw:
+      L_p5: 12.0
+      L_p50: 43.1
+      L_p95: 68.7
+      C_p50: 26.1
+      C_p95: 31.5
+      C_p99: 32.6
+      detail: 2.42
+    metrics_locked:
+      L_p5: 12.0
+      L_p50: 43.1
+      L_p95: 68.7
+      C_p50: 26.1
+      C_p95: 31.5
+      C_p99: 32.6
+      detail: 2.42
+  fingerprint: 33ce266024a093d5
+- job: x-mehtap-flow-0-bare
+  take: 2
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 32 (R1 51)
+    value: 32.2
+  - check: light_values
+    status: warn
+    message: 'dusk/subject: L p5 27 (at least 47: darks stay a light mid-tone), p98 71 (at least 85) (warn-only
+      until the founder has seen the light pilot)'
+    value: 26.6
+  - check: light_median
+    status: warn
+    message: 'dusk/subject: median L 48 (band 66-86) (warn-only until the founder has seen the light pilot)'
+    value: 48.2
+  - check: light_contrast
+    status: pass
+    message: 'dusk/subject: p75 local contrast 4.5 (band 1.8-5.0; above it reads too contrasty)'
+    value: 4.47
+  - check: light_sky
+    status: warn
+    message: 'dusk: sky L 17 (band 36-70) (warn-only until the founder has seen the light pilot)'
+    value: 16.6
+  - check: light_sea
+    status: warn
+    message: 'dusk: cloud sea L 59 (at least 74: the sea is the reflector) (warn-only until the founder
+      has seen the light pilot)'
+    value: 58.9
+  - check: light_dark
+    status: warn
+    message: 'dusk: 12.6 % below L* 30 under the sky (at most 3; only the sky is dark) (warn-only until
+      the founder has seen the light pilot)'
+    value: 12.6
+  - check: detail_budget
+    status: pass
+    message: detail at display size 2.5 (R1 5.3)
+    value: 2.45
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: mean dE 4.0, p95 6.9, off-palette 0.0%
+    value: 3.968
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_stability
+    status: warn
+    message: 0% of the parent level unchanged (advisory in an exploration)
+    value: 0.0
+  - check: edit_chroma
+    status: warn
+    message: chroma x1.20 of the parent level (drift compounds along a chain)
+    value: 1.1988
+  info:
+    metrics_raw:
+      L_p5: 16.3
+      L_p50: 45.9
+      L_p95: 66.4
+      C_p50: 27.3
+      C_p95: 32.2
+      C_p99: 34.4
+      detail: 2.45
+    metrics_locked:
+      L_p5: 16.3
+      L_p50: 45.9
+      L_p95: 66.4
+      C_p50: 27.3
+      C_p95: 32.2
+      C_p99: 34.4
+      detail: 2.45
+  fingerprint: 33ce266024a093d5
+sources:
+- take: 1
+  source_file: /workspace/art-operator-runtime/generated/x-mehtap-flow-0-bare/take-1.png
+  source_sha256: 9ed259fd3b44387c464030226c74dac47bbcd00b3984340f427be436bff63ba7
+  q90_take: design/art/takes/batch-70-mehtap-flow/x-mehtap-flow-0-bare/plate__x-mehtap-flow-0-bare--t1.webp
+  q90_take_sha256: d736f60f1a5b21f8e41b596e8acbe35c0af34ad77ed43655a0b9d468aa835100
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 61d3d18d6ba4ae6b60b57ec09115a463636369188d7a4031c0c256537cfc390e
+- take: 2
+  source_file: /workspace/art-operator-runtime/generated/x-mehtap-flow-0-bare/take-2.png
+  source_sha256: 3303f7029f8194de7691326a2799f94c621839f448f2a1764413410c50df00d4
+  q90_take: design/art/takes/batch-70-mehtap-flow/x-mehtap-flow-0-bare/plate__x-mehtap-flow-0-bare--t2.webp
+  q90_take_sha256: 251463cdb1c39340e2c9cc91ee88482c3baaa6094a6345445e097dabeda5275a
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 61d3d18d6ba4ae6b60b57ec09115a463636369188d7a4031c0c256537cfc390e
+policy:
+  never_promote: true
+  selection: lead picks
+  source_preservation: Original generated images retained at source_file paths; published takes are q90
+    review copies.
