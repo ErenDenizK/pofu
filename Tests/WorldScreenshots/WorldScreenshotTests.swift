@@ -232,6 +232,13 @@ private struct ScreenshotHome: View {
     var skin: PofuSkin = .glass
     var typeSize: DynamicTypeSize = .large
 
+    /// These shots are the sprite island's (its props and their anchors).
+    private var spriteLook: WorldLook {
+        var look = WorldLook.standard
+        look.homePlates = false
+        return look
+    }
+
     var body: some View {
         WorldHome(
             world: world.game.snapshot,
@@ -246,6 +253,7 @@ private struct ScreenshotHome: View {
             )
         )
         .environment(\.worldStillFrame, true)
+        .environment(\.worldLook, spriteLook)
         .environment(\.pofuSkin, skin)
         .dynamicTypeSize(typeSize)
     }

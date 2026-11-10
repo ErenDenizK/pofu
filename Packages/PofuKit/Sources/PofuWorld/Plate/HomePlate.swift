@@ -103,7 +103,7 @@ public struct HomePlate: Hashable, Sendable {
         look: WorldLook,
         calendar: Calendar = .current
     ) -> HomePlate? {
-        guard let plate else { return nil }
+        guard let plate, look.homePlates else { return nil }
         let minute = look.hourOverride.map { $0 * 60 } ?? world.clock.map { SkyModel.minuteOfDay($0, calendar: calendar) } ?? 12 * 60
         let weather = look.weatherOverride
             ?? WeatherForecast.conditions(clock: world.clock, firstDay: world.firstDay, hour: minute / 60, calendar: calendar)

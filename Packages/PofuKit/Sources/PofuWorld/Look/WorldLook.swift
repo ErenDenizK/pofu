@@ -71,6 +71,9 @@ public struct WorldLook: Hashable, Sendable {
     /// key props through their baked normals (look pipeline v2); off only
     /// to compare.
     public var nightRelight = true
+    /// The painted home plate where one exists for the state (ADR-0022); off
+    /// only for the sprite island's own screenshots and to compare.
+    public var homePlates = true
 
     /// A screenshot of an island at its stop: a fixed hour under a clear
     /// sky. The seeded forecast of the fixtures' date is overcast, whose
