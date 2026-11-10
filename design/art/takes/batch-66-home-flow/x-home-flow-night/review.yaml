@@ -1,0 +1,201 @@
+batch: batch-66-home-flow
+manifest: tools/imagegen/manifest/batch-66-home-flow.yaml
+jobs:
+  x-home-flow-night:
+    pick: null
+    publication: exploration; not promoted; lead review pending
+    note: Both takes retain the composition and four earth doors under blue moonlight, with a left moon
+      and warm practical lamps. The island stays readable; no new characters or text observed. Take 2
+      dims the upper-left lamps more than take 1. Exact registration not manually proven; lead selection
+      pending.
+qa_reports:
+- job: x-home-flow-night
+  take: 1
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1024x1536
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 42 (R1 51)
+    value: 41.5
+  - check: light_values
+    status: warn
+    message: 'night/subject: L p5 42 (at least 45: darks stay a light mid-tone), p98 93 (at least 85)'
+    value: 42.0
+  - check: light_median
+    status: warn
+    message: 'night/subject: median L 63 (band 66-88)'
+    value: 63.2
+  - check: light_contrast
+    status: warn
+    message: 'night/subject: p75 local contrast 8.1 (band 1.5-5.0; above it reads too contrasty) (warn-only
+      until the founder has seen the light pilot)'
+    value: 8.13
+  - check: light_sky
+    status: pass
+    message: 'night: sky L 37 (band 24-46)'
+    value: 37.4
+  - check: light_sea
+    status: pass
+    message: 'night: cloud sea L 80 (at least 70: the sea is the reflector)'
+    value: 80.0
+  - check: light_dark
+    status: pass
+    message: 'night: 0.5 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.5
+  - check: detail_budget
+    status: pass
+    message: detail at display size 5.3 (R1 5.3)
+    value: 5.28
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 6.1, p95 13.3, off-palette 12.6% (top: #445599 (6.7%), #5566AA (2.7%)) (advisory
+      in an exploration)'
+    value: 6.1035
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_structure
+    status: warn
+    message: light structure matches the parent (r 0.72)
+    value: 0.7158
+  - check: edit_lightness
+    status: warn
+    message: mean lightness moved by 20.0 L (the same lightness was asked) (advisory in an exploration)
+    value: 19.9956
+  info:
+    metrics_raw:
+      L_p5: 33.3
+      L_p50: 58.3
+      L_p95: 88.9
+      C_p50: 26.6
+      C_p95: 41.5
+      C_p99: 42.5
+      detail: 5.28
+    metrics_locked:
+      L_p5: 33.3
+      L_p50: 58.3
+      L_p95: 88.9
+      C_p50: 26.6
+      C_p95: 41.5
+      C_p99: 42.5
+      detail: 5.28
+  fingerprint: d894a79ff4e1a595
+- job: x-home-flow-night
+  take: 2
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1024x1536
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 45 (R1 51)
+    value: 45.4
+  - check: light_values
+    status: pass
+    message: 'night/subject: L p5 45 (at least 45: darks stay a light mid-tone), p98 92 (at least 85)'
+    value: 45.1
+  - check: light_median
+    status: warn
+    message: 'night/subject: median L 65 (band 66-88)'
+    value: 65.4
+  - check: light_contrast
+    status: warn
+    message: 'night/subject: p75 local contrast 8.6 (band 1.5-5.0; above it reads too contrasty) (warn-only
+      until the founder has seen the light pilot)'
+    value: 8.61
+  - check: light_sky
+    status: pass
+    message: 'night: sky L 39 (band 24-46)'
+    value: 39.3
+  - check: light_sea
+    status: pass
+    message: 'night: cloud sea L 79 (at least 70: the sea is the reflector)'
+    value: 79.2
+  - check: light_dark
+    status: pass
+    message: 'night: 0.2 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.2
+  - check: detail_budget
+    status: pass
+    message: detail at display size 5.5 (R1 5.3)
+    value: 5.49
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 6.7, p95 15.7, off-palette 24.6% (top: #4466AA (7.4%), #335599 (6.0%)) (advisory
+      in an exploration)'
+    value: 6.6916
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_structure
+    status: warn
+    message: light structure matches the parent (r 0.70)
+    value: 0.698
+  - check: edit_lightness
+    status: warn
+    message: mean lightness moved by 18.3 L (the same lightness was asked) (advisory in an exploration)
+    value: 18.3227
+  info:
+    metrics_raw:
+      L_p5: 35.1
+      L_p50: 60.5
+      L_p95: 88.1
+      C_p50: 28.0
+      C_p95: 45.4
+      C_p99: 46.1
+      detail: 5.49
+    metrics_locked:
+      L_p5: 35.1
+      L_p50: 60.5
+      L_p95: 88.1
+      C_p50: 28.0
+      C_p95: 45.4
+      C_p99: 46.1
+      detail: 5.49
+  fingerprint: d894a79ff4e1a595
+sources:
+- take: 1
+  source_file: /workspace/art-operator-runtime/generated/x-home-flow-night/take-1.png
+  source_sha256: ea37863ada42aa659f7034bd2a2103b0b60384ea5e0401cc0d0ebd2eba540be8
+  q90_take: design/art/takes/batch-66-home-flow/x-home-flow-night/plate__x-home-flow-night--t1.webp
+  q90_take_sha256: c1c606bc3f1329a87a353cc85c603c1c09547bc03f84c8687babd3f3d5823918
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: d78e0bd6c0389fb6345da73b9dd0b142f253031428ca8181b785a17001ca3703
+- take: 2
+  source_file: /workspace/art-operator-runtime/generated/x-home-flow-night/take-2.png
+  source_sha256: 275809a36813edaae6d13130c6bfd69e0807d0e7caaf9fe94435309803e1ac51
+  q90_take: design/art/takes/batch-66-home-flow/x-home-flow-night/plate__x-home-flow-night--t2.webp
+  q90_take_sha256: 71516126cfbfa4aa27c7bd02906adacbafffca7adef12fed8a2364890f6176b1
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: d78e0bd6c0389fb6345da73b9dd0b142f253031428ca8181b785a17001ca3703
+policy:
+  never_promote: true
+  selection: lead picks
+  source_preservation: Original generated images retained at source_file paths; published takes are q90
+    review copies.
