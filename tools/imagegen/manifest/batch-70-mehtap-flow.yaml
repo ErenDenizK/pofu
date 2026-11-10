@@ -25,8 +25,9 @@
 #
 # Phase 1 runs ONLY `x-mehtap-flow-4` (2 takes). The lead picked take 1 (2026-11-10;
 # `pick: 1` in its review.yaml).
-# Until then every other job waits: `run.py plan` shows each as "waiting for
-# approval of x-mehtap-flow-4" and `run` skips it. Phase 2 (stages 3, 2, 1, 0, the two
+# Order: `run.py plan` lists each other job as "waiting for approval of x-mehtap-flow-4" until its
+# promotion; `run` goes on with the other rows and uses the QA auto-pick as a
+# provisional parent (AGENTS.md, Factory mode). Phase 2 (stages 3, 2, 1, 0, the two
 # bares, life and up; independent of each other, any order, up to three
 # tracks) runs after the picked final is promoted.
 #
@@ -37,8 +38,7 @@
 # master; picked by the lead"), with its harmony entry and content node as for
 # any master. It is the reference truth every stage derives from, a concept
 # target, not wired into the app. No other job of this batch is promoted: the
-# stages and leaves are takes, contact sheet and review.yaml only. Do not run
-# phase 2 before the lead names the pick. A failed job is skipped and the run
+# stages and leaves are takes, contact sheet and review.yaml only. Phase 2 follows the root's promotion (the lead's pick is named in its review.yaml). A failed job is skipped and the run
 # continues (no job depends on another stage).
 #
 # Order (phase 2, track `all`): -3, -2, -1, -0, then -4-bare, -0-bare, -4-life,
