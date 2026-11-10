@@ -62,7 +62,7 @@ SHRINK = 0.75
 RING = (0.8, 2.4)
 
 #: The level-10 day frame's (dL*, dC*) per character, the band's anchor ...
-REF = {"pofu": (6.6, -37.5), "mochi": (12.4, -37.5), "findik": (1.7, -29.0)}
+REF = {"pofu": (6.2, -37.9), "mochi": (11.3, -39.5), "findik": (2.5, -30.3)}
 #: ... how far dL* may stray from it, how far dC* may fall below it, and dC*'s ceiling.
 TOL_L = 10.0
 FLOOR_C = 12.0
