@@ -1,0 +1,227 @@
+batch: batch-73-islands-states
+manifest: tools/imagegen/manifest/batch-73-islands-states.yaml
+manifest_sha256: d598a7718fdc51cab7d3ef7944d558393127bf9f5af63194465deac8a25f0b83
+jobs:
+  x-mehtap-flow-4-golden:
+    pick: 1
+    status: review
+    publication: exploration; never promoted
+    note: Both takes keep crescent horns/craters, open telescope dome, star trails/moon, chart, bench,
+      pool and perch at the same main anchors. Golden pink-lilac sky, peach light and lilac cloud shade
+      match target; no new characters or text. Local flower and star-point geometry drift remains and
+      warm practicals are still strong rather than barely coming on, noted for review. Auto-pick by QA/load/harmony;
+      no promotion.
+selection:
+  method: QA non-fail and manual eligibility; lowest style-lock load, then highest measured harmony; take
+    number only breaks ties
+  scores:
+  - take: 1
+    style_lock_load: 0.0
+    harmony: 82.0
+    eligible: true
+  - take: 2
+    style_lock_load: 0.0
+    harmony: 81.2
+    eligible: true
+  rejected_takes: []
+qa_reports:
+- job: x-mehtap-flow-4-golden
+  take: 1
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 42 (R1 51)
+    value: 42.2
+  - check: light_values
+    status: pass
+    message: 'golden/subject: L p5 57 (at least 50: darks stay a light mid-tone), p98 92 (at least 85)'
+    value: 56.9
+  - check: light_median
+    status: pass
+    message: 'golden/subject: median L 79 (band 68-86)'
+    value: 79.0
+  - check: light_contrast
+    status: pass
+    message: 'golden/subject: p75 local contrast 5.3 (band 2.5-6.0; above it reads too contrasty)'
+    value: 5.27
+  - check: light_sky
+    status: pass
+    message: 'golden: sky L 67 (band 60-86)'
+    value: 67.3
+  - check: light_sea
+    status: pass
+    message: 'golden: cloud sea L 80 (at least 78: the sea is the reflector)'
+    value: 80.1
+  - check: light_dark
+    status: pass
+    message: 'golden: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.0
+  - check: detail_budget
+    status: pass
+    message: detail at display size 3.2 (R1 5.3)
+    value: 3.22
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: pass
+    message: 'mean dE 2.4, p95 5.3, off-palette 0.7% (top: #BB6622 (0.1%), #AA6622 (0.1%))'
+    value: 2.4226
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_structure
+    status: warn
+    message: light structure matches the parent (r 0.78)
+    value: 0.7775
+  - check: edit_lightness
+    status: pass
+    message: mean lightness moved by 6.5 L (the same lightness was asked)
+    value: 6.4758
+  info:
+    metrics_raw:
+      L_p5: 59.8
+      L_p50: 77.0
+      L_p95: 89.8
+      C_p50: 27.3
+      C_p95: 42.2
+      C_p99: 57.6
+      detail: 3.22
+    metrics_locked:
+      L_p5: 59.8
+      L_p50: 77.0
+      L_p95: 89.8
+      C_p50: 27.3
+      C_p95: 42.2
+      C_p99: 57.6
+      detail: 3.22
+  fingerprint: 425691d483aedd8c
+- job: x-mehtap-flow-4-golden
+  take: 2
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 42 (R1 51)
+    value: 41.8
+  - check: light_values
+    status: pass
+    message: 'golden/subject: L p5 57 (at least 50: darks stay a light mid-tone), p98 92 (at least 85)'
+    value: 57.2
+  - check: light_median
+    status: pass
+    message: 'golden/subject: median L 78 (band 68-86)'
+    value: 78.0
+  - check: light_contrast
+    status: pass
+    message: 'golden/subject: p75 local contrast 5.6 (band 2.5-6.0; above it reads too contrasty)'
+    value: 5.59
+  - check: light_sky
+    status: pass
+    message: 'golden: sky L 66 (band 60-86)'
+    value: 66.3
+  - check: light_sea
+    status: pass
+    message: 'golden: cloud sea L 80 (at least 78: the sea is the reflector)'
+    value: 80.2
+  - check: light_dark
+    status: pass
+    message: 'golden: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.0
+  - check: detail_budget
+    status: pass
+    message: detail at display size 3.4 (R1 5.3)
+    value: 3.38
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: pass
+    message: 'mean dE 2.4, p95 5.6, off-palette 1.1% (top: #EE8855 (0.1%), #996699 (0.1%))'
+    value: 2.4219
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_structure
+    status: warn
+    message: light structure matches the parent (r 0.78)
+    value: 0.7829
+  - check: edit_lightness
+    status: pass
+    message: mean lightness moved by 6.3 L (the same lightness was asked)
+    value: 6.2565
+  info:
+    metrics_raw:
+      L_p5: 59.0
+      L_p50: 76.6
+      L_p95: 89.5
+      C_p50: 27.2
+      C_p95: 41.8
+      C_p99: 56.0
+      detail: 3.38
+    metrics_locked:
+      L_p5: 59.0
+      L_p50: 76.6
+      L_p95: 89.5
+      C_p50: 27.2
+      C_p95: 41.8
+      C_p99: 56.0
+      detail: 3.38
+  fingerprint: 425691d483aedd8c
+sources:
+- take: 1
+  source_file: /workspace/art-operator-runtime/factory/generated/x-mehtap-flow-4-golden/take-1.png
+  source_sha256: 84aeb09218de143269a4096de8dbf6df1f912b4f8d96d3a1674184c9aa117278
+  q90_take: design/art/takes/batch-73-islands-states/x-mehtap-flow-4-golden/plate__x-mehtap-flow-4-golden--t1.webp
+  q90_take_sha256: 2ea97a26eaa2c327ffa31c2ed3940eb88f51f14c9102e69271a2730b547cd4a5
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 76555ac2bde9ac319bf8b89367aa147fc2b75474e84353623b701333e8d03087
+  references:
+  - path: design/art/takes/batch-70-mehtap-flow/x-mehtap-flow-4/plate__x-mehtap-flow-4--t1.webp
+    role: The image to edit (the approved previous level). Edit it; do not redraw it.
+    sha256: dbcdcc8358213ef750f4b8ca99dfaab7276432d4cdb5c459da6f7f3231582259
+  - path: design/art/takes/batch-66-home-flow/x-home-flow-golden/plate__x-home-flow-golden--t1.webp
+    role: 'The light target: this golden evening of the home island, its pink-lilac sky, peach light and
+      lilac cloud shade. Match the light, not the objects.'
+    sha256: f03dceaf68f712e04c34c4233d23863ebc9df7a75f212fe45aabbc763412fada
+- take: 2
+  source_file: /workspace/art-operator-runtime/factory/generated/x-mehtap-flow-4-golden/take-2.png
+  source_sha256: e62c3cc89f2cb07703ccd721f446fe2672da5a95b824e9992af92247a9df7d0e
+  q90_take: design/art/takes/batch-73-islands-states/x-mehtap-flow-4-golden/plate__x-mehtap-flow-4-golden--t2.webp
+  q90_take_sha256: f2090fd9c8f8081f33ec76e8b0e44b6cab3437e557eb85843259fc911a1354e3
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 76555ac2bde9ac319bf8b89367aa147fc2b75474e84353623b701333e8d03087
+  references:
+  - path: design/art/takes/batch-70-mehtap-flow/x-mehtap-flow-4/plate__x-mehtap-flow-4--t1.webp
+    role: The image to edit (the approved previous level). Edit it; do not redraw it.
+    sha256: dbcdcc8358213ef750f4b8ca99dfaab7276432d4cdb5c459da6f7f3231582259
+  - path: design/art/takes/batch-66-home-flow/x-home-flow-golden/plate__x-home-flow-golden--t1.webp
+    role: 'The light target: this golden evening of the home island, its pink-lilac sky, peach light and
+      lilac cloud shade. Match the light, not the objects.'
+    sha256: f03dceaf68f712e04c34c4233d23863ebc9df7a75f212fe45aabbc763412fada
+policy:
+  never_promote: true
+  originals: source_file PNGs preserved unchanged; published takes are q90 copies
