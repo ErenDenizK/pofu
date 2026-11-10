@@ -1,0 +1,101 @@
+{
+  "job": "flow-pool",
+  "batch": "batch-64-flow-pieces",
+  "asset": "ui__flow-pool",
+  "take": 2,
+  "takes_considered": 2,
+  "approved_at": "2026-11-10T16:50:28+00:00",
+  "image": "design/art/ui/ui-flow-pool/ui-flow-pool.png",
+  "raw": "design/art/ui/ui-flow-pool/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "4b85f8c1475026a7",
+  "prompt": "REFERENCES (attached, in this order):\n1. Çağlayan's concept plate: take ONLY the look of its pale rounded cliff stone, its soft moss and grass, its soft painted water and its light. Do not draw the island, the cliff, the mill or the pool as a scene.\n2. A finished prop of the game: match its soft airbrushed finish, matte materials and warm light (do not draw the stall).\n\nA wide shallow pool seen from above with a slight tilt, as a game sprite on a transparent background: a soft oval of calm, clear blue-green water (soft painted, the same water as the island plate, a faint paler ripple, no glints), set in a rounded rim of pale warm-grey river stone with a little soft green moss and two tiny tufts of grass. About 80 percent of the canvas wide, centred. Even and calm in the middle.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: text, letters, numbers, symbols, an outline, a background, a ground shadow, foam clumps with hard edges, gloss, glints, pure black, neon blue, a 3D render look\n\nOutput: one image, transparent background PNG, landscape 1536 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/takes/batch-17-islands-v2/x2-caglayan-b/plate__x2-caglayan-b--t1.webp",
+      "role": "Çağlayan's concept plate: take ONLY the look of its pale rounded cliff stone, its soft moss and grass, its soft painted water and its light. Do not draw the island, the cliff, the mill or the pool as a scene."
+    },
+    {
+      "path": "design/art/stations/tea-stall-5/tea-stall-5.png",
+      "role": "A finished prop of the game: match its soft airbrushed finish, matte materials and warm light (do not draw the stall)."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-10T16:44:12+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "fit": null,
+  "emit_region": null,
+  "qa": {
+    "status": "pass",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1536x1024"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 30 (R1 51)",
+        "value": 29.6
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 72 (R1 59)",
+        "value": 72.3
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 1.0 (R1 5.3)",
+        "value": 1.02
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 0.5",
+        "value": 0.4802
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.8, p95 4.7, off-palette 0.0%",
+        "value": 1.8182
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Both candidates show calm clear water, light rounded stone rim, moss and two grass tufts, faint ripples. Pool is somewhat wider than the approximate80percent brief; app framing not certified. Proper alpha composites clean; raw exterior glow is hidden RGB. Auto-picked by QA; founder review pending.",
+  "deliver": {
+    "scale": 0.5,
+    "original_size": [
+      1536,
+      1024
+    ],
+    "delivered_size": [
+      768,
+      512
+    ]
+  }
+}
