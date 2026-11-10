@@ -1,0 +1,199 @@
+batch: batch-68-revontuli-flow
+manifest: tools/imagegen/manifest/batch-68-revontuli-flow.yaml
+jobs:
+  x-revontuli-flow-0-bare:
+    pick: null
+    publication: exploration; not promoted; lead review pending
+    note: Both takes remove all three tower frames, stool, bucket and towel, cover the lake in deep snow,
+      darken the post and remove aurora while keeping the sauna warm. Remaining stone clusters suggest
+      former footings but their round footprint is not clearly preserved; flag for lead review. No characters
+      or text observed; exact registration not manually proven.
+qa_reports:
+- job: x-revontuli-flow-0-bare
+  take: 1
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 47 (R1 51)
+    value: 47.2
+  - check: light_values
+    status: warn
+    message: 'night/subject: L p5 34 (at least 45: darks stay a light mid-tone), p98 90 (at least 85)
+      (warn-only until the founder has seen the light pilot)'
+    value: 33.9
+  - check: light_median
+    status: pass
+    message: 'night/subject: median L 71 (band 66-88)'
+    value: 70.7
+  - check: light_contrast
+    status: pass
+    message: 'night/subject: p75 local contrast 3.0 (band 1.5-5.0; above it reads too contrasty)'
+    value: 3.03
+  - check: light_sky
+    status: warn
+    message: 'night: sky L 17 (band 24-46) (warn-only until the founder has seen the light pilot)'
+    value: 17.0
+  - check: light_sea
+    status: pass
+    message: 'night: cloud sea L 81 (at least 70: the sea is the reflector)'
+    value: 81.2
+  - check: light_dark
+    status: warn
+    message: 'night: 7.2 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 7.2
+  - check: detail_budget
+    status: pass
+    message: detail at display size 3.1 (R1 5.3)
+    value: 3.09
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 4.4, p95 9.0, off-palette 1.1% (top: #444499 (0.4%), #5555AA (0.3%))'
+    value: 4.3935
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_stability
+    status: warn
+    message: 16% of the parent level unchanged (advisory in an exploration)
+    value: 0.1573
+  - check: edit_chroma
+    status: warn
+    message: chroma x1.52 of the parent level (drift compounds along a chain) (advisory in an exploration)
+    value: 1.5221
+  info:
+    metrics_raw:
+      L_p5: 14.1
+      L_p50: 67.5
+      L_p95: 88.3
+      C_p50: 36.8
+      C_p95: 47.2
+      C_p99: 52.0
+      detail: 3.09
+    metrics_locked:
+      L_p5: 14.1
+      L_p50: 67.5
+      L_p95: 88.3
+      C_p50: 36.8
+      C_p95: 47.2
+      C_p99: 52.0
+      detail: 3.09
+  fingerprint: daf75285a637407f
+- job: x-revontuli-flow-0-bare
+  take: 2
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 46 (R1 51)
+    value: 46.0
+  - check: light_values
+    status: warn
+    message: 'night/subject: L p5 32 (at least 45: darks stay a light mid-tone), p98 87 (at least 85)
+      (warn-only until the founder has seen the light pilot)'
+    value: 32.5
+  - check: light_median
+    status: pass
+    message: 'night/subject: median L 69 (band 66-88)'
+    value: 69.1
+  - check: light_contrast
+    status: pass
+    message: 'night/subject: p75 local contrast 3.1 (band 1.5-5.0; above it reads too contrasty)'
+    value: 3.07
+  - check: light_sky
+    status: warn
+    message: 'night: sky L 18 (band 24-46) (warn-only until the founder has seen the light pilot)'
+    value: 17.7
+  - check: light_sea
+    status: pass
+    message: 'night: cloud sea L 80 (at least 70: the sea is the reflector)'
+    value: 80.3
+  - check: light_dark
+    status: warn
+    message: 'night: 7.9 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 7.9
+  - check: detail_budget
+    status: pass
+    message: detail at display size 3.0 (R1 5.3)
+    value: 2.97
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 4.3, p95 8.1, off-palette 0.2% (top: #555599 (0.1%), #5555AA (0.1%))'
+    value: 4.3216
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_stability
+    status: warn
+    message: 17% of the parent level unchanged (advisory in an exploration)
+    value: 0.169
+  - check: edit_chroma
+    status: warn
+    message: chroma x1.41 of the parent level (drift compounds along a chain)
+    value: 1.4119
+  info:
+    metrics_raw:
+      L_p5: 14.9
+      L_p50: 65.4
+      L_p95: 86.6
+      C_p50: 34.1
+      C_p95: 46.0
+      C_p99: 47.8
+      detail: 2.97
+    metrics_locked:
+      L_p5: 14.9
+      L_p50: 65.4
+      L_p95: 86.6
+      C_p50: 34.1
+      C_p95: 46.0
+      C_p99: 47.8
+      detail: 2.97
+  fingerprint: daf75285a637407f
+sources:
+- take: 1
+  source_file: /workspace/art-operator-runtime/generated/x-revontuli-flow-0-bare/take-1.png
+  source_sha256: d06c16b35d9846e97c9b0c724b1ed12571f918abe49161fd1a2d7d9297f735bd
+  q90_take: design/art/takes/batch-68-revontuli-flow/x-revontuli-flow-0-bare/plate__x-revontuli-flow-0-bare--t1.webp
+  q90_take_sha256: cd6997a0bfb5ff03b3bb1865cf852ac4dac824984f4eafafdb4c6117cc600e13
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 49f28dc2a54585ff927df798c9a83840fd9b33afce4768eae8ecc4f98ef48579
+- take: 2
+  source_file: /workspace/art-operator-runtime/generated/x-revontuli-flow-0-bare/take-2.png
+  source_sha256: 7e36915a31cb212236d802ee09f1a7d2ef60c6db535ec8bb61b3300e3b318f6b
+  q90_take: design/art/takes/batch-68-revontuli-flow/x-revontuli-flow-0-bare/plate__x-revontuli-flow-0-bare--t2.webp
+  q90_take_sha256: a56173f5bc5c19779b18a47121774ce3a50aa186b519cc1b995586c77c4ea561
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 49f28dc2a54585ff927df798c9a83840fd9b33afce4768eae8ecc4f98ef48579
+policy:
+  never_promote: true
+  selection: lead picks
+  source_preservation: Original generated images retained at source_file paths; published takes are q90
+    review copies.
