@@ -2,7 +2,7 @@ batch: batch-66-home-flow
 manifest: tools/imagegen/manifest/batch-66-home-flow.yaml
 jobs:
   x-home-flow-il9:
-    pick: null
+    pick: 1
     publication: exploration; not promoted; lead review pending
     note: Both takes hide the hilltop in cloud, close its gate, move the bench to the lawn, simplify the
       workshop and lighthouse, and retain four earth doors. The whale is thinner but visibly smaller than

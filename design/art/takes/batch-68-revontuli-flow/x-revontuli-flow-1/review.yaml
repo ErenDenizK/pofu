@@ -2,7 +2,7 @@ batch: batch-68-revontuli-flow
 manifest: tools/imagegen/manifest/batch-68-revontuli-flow.yaml
 jobs:
   x-revontuli-flow-1:
-    pick: null
+    pick: 1
     publication: exploration; not promoted; lead review pending
     note: Both takes show tower A upright and lit, tower B leaning against the spruce, tower C fallen
       near its footing, snow-covered lake with hole visible, dark capped post, no aurora, warm sauna window

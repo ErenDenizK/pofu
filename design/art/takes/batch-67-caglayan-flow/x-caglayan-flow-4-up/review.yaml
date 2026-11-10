@@ -2,7 +2,7 @@ batch: batch-67-caglayan-flow
 manifest: tools/imagegen/manifest/batch-67-caglayan-flow.yaml
 jobs:
   x-caglayan-flow-4-up:
-    pick: null
+    pick: 1
     publication: exploration; not promoted; lead review pending
     note: Both takes add two pink water lilies on front-right pads, a smaller wheel and warm lantern beside
       the mill stream, and a stone water slide from the knoll. Existing mill, spout and pools remain broadly

@@ -2,7 +2,7 @@ batch: batch-69-emanet-flow
 manifest: tools/imagegen/manifest/batch-69-emanet-flow.yaml
 jobs:
   x-emanet-flow-0:
-    pick: null
+    pick: 1
     publication: exploration; not promoted; lead review pending
     note: Both takes show thick layered lilac fog, empty shelf bays, office/suitcase/hook silhouettes,
       one glowing sill lantern and clear foreground umbrella, boot, teacup and boat. Cart umbrella/top

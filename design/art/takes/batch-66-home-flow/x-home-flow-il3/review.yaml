@@ -2,7 +2,7 @@ batch: batch-66-home-flow
 manifest: tools/imagegen/manifest/batch-66-home-flow.yaml
 jobs:
   x-home-flow-il3:
-    pick: null
+    pick: 1
     publication: exploration; not promoted; lead review pending
     note: 'Two direct root edits retain wooden and rose doors, simplify tea stall/cart and gray distant
       islands. Manual warning: take 2 has a lingering dark patch under the hilltop cloud and wheel/prop

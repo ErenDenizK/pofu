@@ -2,7 +2,7 @@ batch: batch-68-revontuli-flow
 manifest: tools/imagegen/manifest/batch-68-revontuli-flow.yaml
 jobs:
   x-revontuli-flow-0:
-    pick: null
+    pick: 1
     publication: exploration; not promoted; lead review pending
     note: Both takes have three dark leaning/fallen towers, dark capped post, deep snowy lake and one
       warm sauna window with steam. No aurora. Both add a visible moon from mood reference; take 1 keeps

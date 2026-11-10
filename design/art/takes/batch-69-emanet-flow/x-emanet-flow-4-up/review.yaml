@@ -2,7 +2,7 @@ batch: batch-69-emanet-flow
 manifest: tools/imagegen/manifest/batch-69-emanet-flow.yaml
 jobs:
   x-emanet-flow-4-up:
-    pick: null
+    pick: 1
     publication: exploration; not promoted; lead review pending
     note: Both takes add a fourth shelf bay, corner bell and three brass queue posts with red rope, plus
       a parcel chute carrying two parcels from porch to cart. Existing office, shelf bays and plate remain

@@ -2,7 +2,7 @@ batch: batch-68-revontuli-flow
 manifest: tools/imagegen/manifest/batch-68-revontuli-flow.yaml
 jobs:
   x-revontuli-flow-4-life:
-    pick: null
+    pick: 1
     publication: exploration; not promoted; lead review pending
     note: Both takes retain the three towers, sauna and lake while adding Tuli with aurora tail, the front
       Pofu/Mochi pair, two birds on tower B and a hare by the spruce. Tuli sits on the right lake edge,

@@ -2,7 +2,7 @@ batch: batch-69-emanet-flow
 manifest: tools/imagegen/manifest/batch-69-emanet-flow.yaml
 jobs:
   x-emanet-flow-3:
-    pick: null
+    pick: 1
     publication: exploration; not promoted; lead review pending
     note: Both direct root edits remove pennants/kite and teacup steam, empty cart except blanket, keep
       full tagged shelves and lights, enlarge front heap. Exact prop registration remains for lead review.

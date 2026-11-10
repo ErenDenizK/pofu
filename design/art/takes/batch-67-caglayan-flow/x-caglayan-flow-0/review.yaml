@@ -2,7 +2,7 @@ batch: batch-67-caglayan-flow
 manifest: tools/imagegen/manifest/batch-67-caglayan-flow.yaml
 jobs:
   x-caglayan-flow-0:
-    pick: null
+    pick: 1
     publication: exploration; not promoted; lead review pending
     note: Both takes show a short suspended glassy curtain and separate still drops under the spout, with
       sun shaft, mirror pool, dark mill and dry channel. Take 1 retains all three leaf boats aground;

@@ -2,7 +2,7 @@ batch: batch-69-emanet-flow
 manifest: tools/imagegen/manifest/batch-69-emanet-flow.yaml
 jobs:
   x-emanet-flow-4-life:
-    pick: null
+    pick: 1
     publication: exploration; not promoted; lead review pending
     note: Both takes retain the stilted office, shelves, cart and tiled plate, adding Boncuk polishing
       a teacup at the outdoor counter, Pofu wearing a top hat beside Mochi near the small heap, and two

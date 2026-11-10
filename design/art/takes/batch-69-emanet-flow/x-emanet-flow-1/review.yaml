@@ -2,7 +2,7 @@ batch: batch-69-emanet-flow
 manifest: tools/imagegen/manifest/batch-69-emanet-flow.yaml
 jobs:
   x-emanet-flow-1:
-    pick: null
+    pick: 1
     publication: exploration; not promoted; lead review pending
     note: Both takes show two empty shelf bays, unlabelled items, dark office and hook lamps, one small
       glowing sill lantern, blanket-only cart and large tumbled front heap through lilac fog. No characters,

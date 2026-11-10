@@ -2,7 +2,7 @@ batch: batch-66-home-flow
 manifest: tools/imagegen/manifest/batch-66-home-flow.yaml
 jobs:
   x-home-flow-il7:
-    pick: null
+    pick: 1
     publication: exploration; not promoted; lead review pending
     note: Both takes retain the four doors and remove the windmill and beehive, replacing the hilltop
       with a cloud and moving the bench to the lawn. Take 1 retains a waterfall from the cloud-whale and

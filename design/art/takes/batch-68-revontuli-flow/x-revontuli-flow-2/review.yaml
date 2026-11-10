@@ -2,7 +2,7 @@ batch: batch-68-revontuli-flow
 manifest: tools/imagegen/manifest/batch-68-revontuli-flow.yaml
 jobs:
   x-revontuli-flow-2:
-    pick: null
+    pick: 1
     publication: exploration; not promoted; lead review pending
     note: 'Both direct root edits topple rear-left tower C, keep front/right lamps lit, extinguish post
       and snow-cover left lake. Manual warning: faint green horizon ribbon appears absent; no exact pixel-registration

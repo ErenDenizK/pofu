@@ -2,7 +2,7 @@ batch: batch-69-emanet-flow
 manifest: tools/imagegen/manifest/batch-69-emanet-flow.yaml
 jobs:
   x-emanet-flow-2:
-    pick: null
+    pick: 1
     publication: exploration; not promoted; lead review pending
     note: Both direct root edits empty right shelf bay, darken exterior lamps/door, keep office windows
       and add lilac fog and larger centre/left heaps. Exact prop registration requires lead review; neither

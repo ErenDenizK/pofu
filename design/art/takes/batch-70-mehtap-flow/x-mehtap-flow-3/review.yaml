@@ -2,7 +2,7 @@ batch: batch-70-mehtap-flow
 manifest: tools/imagegen/manifest/batch-70-mehtap-flow.yaml
 jobs:
   x-mehtap-flow-3:
-    pick: null
+    pick: 1
     publication: exploration; not promoted; lead review pending
     note: Both direct root edits keep telescope/dome open, leave a three-gold-star stub, use a smaller
       gibbous moon, dim pool and remove shooting stars. Two visible rim lamps dark; visible lamp count

@@ -2,7 +2,7 @@ batch: batch-69-emanet-flow
 manifest: tools/imagegen/manifest/batch-69-emanet-flow.yaml
 jobs:
   x-emanet-flow-4-bare:
-    pick: null
+    pick: 1
     publication: exploration; not promoted; lead review pending
     note: Both direct root edits empty shelf unit and cart, remove ground heap and tea cup while preserving
       office, counter and hook post. Review any remaining requested movable pieces against the brief;

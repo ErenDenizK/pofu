@@ -2,7 +2,7 @@ batch: batch-66-home-flow
 manifest: tools/imagegen/manifest/batch-66-home-flow.yaml
 jobs:
   x-home-flow-il2:
-    pick: null
+    pick: 1
     publication: exploration; not promoted; lead review pending
     note: 'Both direct root edits remove whale, pond, windmill and workshop. Manual failure: sunflower
       remains inside wheel and garden fencing remains despite requested removal; take 2 also retains flower

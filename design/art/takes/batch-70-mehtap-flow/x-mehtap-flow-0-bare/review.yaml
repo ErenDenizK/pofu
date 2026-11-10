@@ -2,7 +2,7 @@ batch: batch-70-mehtap-flow
 manifest: tools/imagegen/manifest/batch-70-mehtap-flow.yaml
 jobs:
   x-mehtap-flow-0-bare:
-    pick: null
+    pick: 2
     publication: exploration; not promoted; lead review pending
     note: Both direct root edits remove sky trails/moon, bushes/blanket/rim lamps, darken all practicals
       except door keyhole and blank the chart. Take1 closes dome shell but leaves telescope protruding;

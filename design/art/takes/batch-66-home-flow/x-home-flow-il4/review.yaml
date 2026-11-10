@@ -2,7 +2,7 @@ batch: batch-66-home-flow
 manifest: tools/imagegen/manifest/batch-66-home-flow.yaml
 jobs:
   x-home-flow-il4:
-    pick: null
+    pick: 2
     publication: exploration; not promoted; lead review pending
     note: Both takes remove pier, lighthouse, workshop and windmill; show small pond, sunflower bed with
       watering can, plain wheel with sprout, two home doors, simple tea counter and bagel cart. Take 1
