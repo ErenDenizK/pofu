@@ -315,7 +315,7 @@ struct PlateHitTests {
         )
         let stop = home.homeStop
         let pose = CameraPose(scale: stop.scale, look: stop.look, anchorY: stop.anchorY)
-        let awning = home.world(PlatePoint(x: 0.17 * 1536, y: 0.27 * 1024))
+        let awning = home.world(PlatePoint(x: 0.68 * 1024, y: 0.45 * 1536))
         let p = pose.project(awning, width: CameraRail.referenceWidth)
         let hit = WorldHitTest.resolve(
             x: p.x, y: p.y, targets: WorldHitTest.plateTargets(home, stations: world.stations, z: 2),
