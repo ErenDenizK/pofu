@@ -14,11 +14,12 @@ numpy, Pillow, scipy; OpenCV only for registration and the pilot's matte. Determ
 
 ## Run
 
-The home plate (stand-in: the I1 day concept until batch 66's final lands; swapping it is a data
-change in `design/art/plates/home/objects.json`):
+The home plate (batch 66's `x-home-flow-final-rich` t1, a 1024 x 1536 portrait: `size` in
+`design/art/plates/home/objects.json`; swapping a plate is a data change there):
 
     python3 -I tools/plate/ingest.py matte home   # once per plate, needs OpenCV; writes matte-day-0.png
     python3 -I tools/plate/ingest.py all home     # ~5 s: deliver, objects, json, check
+    python3 -I tools/plate/ingest.py variant home --plate up2x.png --out DIR --prefix b   # A/B textures for the screenshot tests
 
 
 The CI frames come from the look-pipeline-v2 screenshots branch:

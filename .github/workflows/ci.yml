@@ -343,7 +343,7 @@ jobs:
           pip install --quiet "Pillow>=10.1" "numpy>=1.26"
           mkdir -p out
           python3 -I - shots out <<'PY'
-          import pathlib, sys
+          import pathlib, shutil, sys
           from PIL import Image, ImageDraw
           src, out = map(pathlib.Path, sys.argv[1:3])
           pngs = sorted(src.glob("*.png"))
@@ -351,6 +351,10 @@ jobs:
               sys.exit("no screenshots in the artifact")
           thumbs = []
           for png in pngs:
+              # Full device resolution, kept as written (the Home plate resolution A/B).
+              if png.stem.startswith("home-plate-full-"):
+                  shutil.copy(png, out / png.name)
+                  continue
               im = Image.open(png).convert("RGB")
               # The look grids and the camera strip hold many phones; keep them readable.
               h = {"look-compare": 1800, "look-grades": 2000, "look-script": 1800, "look-motion": 1100, "look-pan": 1100, "look-teapot": 900, "look-plates": 1800, "home-growth-il1-il10": 1864}.get(png.stem, 1000)
