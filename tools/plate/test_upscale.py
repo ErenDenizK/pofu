@@ -25,6 +25,14 @@ class UpscaleTest(unittest.TestCase):
         a[10:30, 12:40] = (220, 180, 60)
         self.im = Image.fromarray(a)
 
+    def test_blend_is_between_lanczos_and_the_model(self):
+        sess = upscale.session("general-x4v3")
+        blend = np.asarray(upscale.blend_image(self.im, 2, 0.8, sess=sess), np.float32)
+        lan = np.asarray(self.im.resize((112, 96), Image.LANCZOS), np.float32)
+        full = np.asarray(upscale.upscale_image(self.im, 2, sess=sess), np.float32)
+        self.assertEqual(blend.shape, full.shape)
+        self.assertLess(np.abs(blend - full).mean(), np.abs(lan - full).mean())
+
     def test_size_and_alpha(self):
         rgba = self.im.convert("RGBA")
         rgba.putalpha(Image.linear_gradient("L").resize(rgba.size))

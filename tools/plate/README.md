@@ -18,8 +18,9 @@ The home plate (batch 66's `x-home-flow-final-rich` t1, a 1024 x 1536 portrait: 
 `design/art/plates/home/objects.json`; swapping a plate is a data change there):
 
     python3 -I tools/plate/ingest.py matte home   # once per plate, needs OpenCV; writes matte-day-0.png
-    python3 -I tools/plate/ingest.py all home     # ~5 s: deliver, objects, json, check
-    python3 -I tools/plate/ingest.py variant home --plate up2x.png --out DIR --prefix b   # A/B textures for the screenshot tests
+    python3 -I tools/plate/ingest.py all home     # deliver, objects, json, check; plates ship upscaled x2
+                                                   # (0.8 model / 0.2 Lanczos); the first run takes a few minutes
+    python3 -I tools/plate/ingest.py all home --no-upscale   # only when the model is unavailable: ships the original
 
 
 The CI frames come from the look-pipeline-v2 screenshots branch:
