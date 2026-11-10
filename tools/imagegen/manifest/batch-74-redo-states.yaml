@@ -1,0 +1,403 @@
+# Batch 74: redo of the states the lead rejected in batches 71 to 73, plus two pilots (exploration; x- ids, never promoted).
+#
+# Lead review 2026-11-10 of batches 71, 72 and 73 (picks are recorded in their
+# review.yaml files and docs/state/plates.yaml). Every job below names the exact
+# failure of its first try and repeats the original request with that fix. Each
+# is a direct edit of the same parent as before (the picked take of the root or
+# stage plate), 2 takes each, full-size delivery, plate-style-rich-v1.
+#
+# ORDER OF WORK: the redo jobs first, any order, up to three tracks:
+#   1. x-home-flow-bare-v3, x-home-flow-il1-v3, x-home-flow-il2-night-v2
+#   2. x-caglayan-flow-0-night-v2, x-caglayan-flow-1-night-v2
+#   3. x-emanet-flow-0-night-v2, x-emanet-flow-1-night-v2, x-emanet-flow-2-night-v2
+#   4. x-mehtap-flow-1-day-v2
+# Then the two PILOTS (one job each, 2 takes each): x-revontuli-flow-1-day-v2
+# (bright snow that keeps the root's colour richness) and x-home-flow-night-sea
+# (a moonlit night cloud sea). The pilots do NOT scale to other cells until the
+# lead's next review round; meanwhile continue to the next READY row and the
+# standing work.
+# FALLBACKS: a refused or failed job is recorded in review.yaml and skipped, the
+# run continues. If a take still shows the named failure, keep both takes, note
+# the failure in review.yaml and go on; the lead decides in the next round.
+#
+# EXPLORATION RULES (AGENTS.md): no `promote`; commit the takes (WebP q90), the
+# contact sheet and review.yaml under design/art/takes/<batch>/<id>/. No
+# characters, no painted text.
+#
+# Review for every take: the same picture as the parent (nothing moved, healed
+# or added); the colour stays the parent's clear, rich colour; the named failure
+# of the first try does not come back.
+
+batch: batch-74-redo-states
+title: 'Redo states: home bare/il1/il2-night, island night and day states, two pilots (edits of the picked plates)'
+status: open
+refs:
+  home-night: design/art/takes/batch-66-home-flow/x-home-flow-night/plate__x-home-flow-night--t1.webp
+  home-flow-guide: design/art/templates/home-flow-guide.png
+defaults:
+  variants: 2
+jobs:
+  - {id: x-home-flow-final-rich, kind: plate, name: x-home-flow-final-rich, external: batch-66-home-flow, master: design/art/masters/x-home-flow-final-rich/x-home-flow-final-rich.webp}
+  - {id: x-home-flow-il2, kind: plate, name: x-home-flow-il2, external: batch-66-home-flow, master: design/art/takes/batch-66-home-flow/x-home-flow-il2/plate__x-home-flow-il2--t1.webp}
+  - {id: x-home-flow-night, kind: plate, name: x-home-flow-night, external: batch-66-home-flow, master: design/art/takes/batch-66-home-flow/x-home-flow-night/plate__x-home-flow-night--t1.webp}
+  - {id: x-caglayan-flow-0, kind: plate, name: x-caglayan-flow-0, external: batch-67-caglayan-flow, master: design/art/takes/batch-67-caglayan-flow/x-caglayan-flow-0/plate__x-caglayan-flow-0--t1.webp}
+  - {id: x-caglayan-flow-1, kind: plate, name: x-caglayan-flow-1, external: batch-67-caglayan-flow, master: design/art/takes/batch-67-caglayan-flow/x-caglayan-flow-1/plate__x-caglayan-flow-1--t1.webp}
+  - {id: x-revontuli-flow-1, kind: plate, name: x-revontuli-flow-1, external: batch-68-revontuli-flow, master: design/art/takes/batch-68-revontuli-flow/x-revontuli-flow-1/plate__x-revontuli-flow-1--t1.webp}
+  - {id: x-emanet-flow-0, kind: plate, name: x-emanet-flow-0, external: batch-69-emanet-flow, master: design/art/takes/batch-69-emanet-flow/x-emanet-flow-0/plate__x-emanet-flow-0--t1.webp}
+  - {id: x-emanet-flow-1, kind: plate, name: x-emanet-flow-1, external: batch-69-emanet-flow, master: design/art/takes/batch-69-emanet-flow/x-emanet-flow-1/plate__x-emanet-flow-1--t1.webp}
+  - {id: x-emanet-flow-2, kind: plate, name: x-emanet-flow-2, external: batch-69-emanet-flow, master: design/art/takes/batch-69-emanet-flow/x-emanet-flow-2/plate__x-emanet-flow-2--t1.webp}
+  - {id: x-mehtap-flow-1, kind: plate, name: x-mehtap-flow-1, external: batch-70-mehtap-flow, master: design/art/takes/batch-70-mehtap-flow/x-mehtap-flow-1/plate__x-mehtap-flow-1--t1.webp}
+
+  - id: x-home-flow-bare-v3
+    kind: plate
+    name: x-home-flow-bare-v3
+    size: 1024x1536
+    canvas: 1024x1536
+    deliver: {scale: 1.0}
+    edit_of: x-home-flow-final-rich
+    chat: "Pofu · Redo states"
+    light: {cell: day, layer: subject}
+    palettes: [world-foliage, world-props]
+    acceptance: {exploration: true, edit_mode: region}
+    notes: "Redo 3 of the bare home. Failure of v2: new land appeared and the lawn went flat. Review: the exact silhouette, the cliff edge and the separate harbour islet of the root; only buildings, props and flowers gone; deep textured lawn."
+    prompt:
+      - text: |
+          Edit the attached FINAL painting (Tam Çiçek, the finished island) into the bare
+          island: the land alone, the same light. Remove ONLY the buildings, props and
+          flowers: the windmill, the workshop, the beehive, the tea stall, the garden
+          and its sunflowers, the pond and its dock, the stone path, the path lamps, the
+          lantern string, the flower borders, the vines, the hamster wheel, the bagel
+          cart, the rope bridge, the lighthouse, the pier, and on the hilltop the bench,
+          the telescope, the stage, the steps and the gate. Paint plain lawn where
+          something stood, with the same grass texture, the same deep green and the
+          same light and shading as the lawn around it.
+          KEEP EXACTLY: the island's exact silhouette and outline, the cliff edge, the
+          earth body with all its small round doors, the roots, the low knolls, the
+          separate harbour islet with its own lawn and earth (it stays a separate
+          islet, not joined to the main island), the cloud sea, the sky, the far
+          islands and the cloud-whale. NO NEW LAND: nothing extends past the root's
+          outline, no new ledge, shore or islet.
+      - block: edit-keep-v1
+      - block: plate-style-rich-v1
+      - text: "AVOID: new land, a bigger or smoother silhouette, a joined harbour islet, a flat lime-green lawn, a plain smooth fill, lost grass texture, a different light, new objects, characters, text"
+
+  - id: x-home-flow-il1-v3
+    kind: plate
+    name: x-home-flow-il1-v3
+    size: 1024x1536
+    canvas: 1024x1536
+    deliver: {scale: 1.0}
+    edit_of: x-home-flow-final-rich
+    chat: "Pofu · Redo states"
+    light: {cell: day, layer: subject}
+    palettes: [world-foliage, world-props]
+    acceptance: {exploration: true, edit_mode: region}
+    notes: "Redo 3 of IL1. Failure of v2: the mist veiled too much. Review: exact silhouette and every door of the root; soft mist only over the locked areas; the far islands and the whale keep their full colour."
+    prompt:
+      - text: |
+          Edit the attached FINAL painting (Tam Çiçek, the finished island) into its
+          first morning, IL1. It is derived from the final directly, so everything not
+          named stays pixel for pixel as in the final. Remove the windmill, the
+          workshop, the beehive, the tea stall, the pond and its dock, the stone path,
+          the path lamps, the lantern string, the flower borders, the vines, the
+          lighthouse, the pier, the hilltop bench, telescope, stage, steps and gate;
+          the garden is its first self (three sunflowers in a small bed, no fence);
+          the old hamster wheel lies tipped on its side; the lawn is a little paler.
+          KEEP EXACTLY: the island's exact silhouette and every door in the earth, the
+          rope bridge, the harbour islet's outline, the sky, the cloud sea, and the
+          far islands and the cloud-whale in their places AT FULL COLOUR, clear and rich
+          as in the final (they are not veiled, not greyed, not dimmed).
+          SOFT MIST ONLY over the locked areas: the hilltop and the harbour islet sit in
+          a soft, thin, sunlit white mist. No mist anywhere else; the rest of the frame
+          keeps the final's clear, rich colour.
+      - block: edit-keep-v1
+      - block: plate-style-rich-v1
+      - text: "AVOID: a whole-frame veil, mist over the sky, mist over the far islands or the whale, greyed or dimmed far islands, a washed-out frame, a changed silhouette, a removed door, new objects, characters, text"
+
+  - id: x-home-flow-il2-night-v2
+    kind: plate
+    name: x-home-flow-il2-night-v2
+    size: 1024x1536
+    canvas: 1024x1536
+    deliver: {scale: 1.0}
+    edit_of: x-home-flow-il2
+    chat: "Pofu · Redo states"
+    light: {cell: night, layer: subject}
+    palettes: [world-foliage, world-props, world-night]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Redo 2 of IL2 at night. Failure of v1: lamps, bulbs or strings the day plate does not have. Review: nothing added beyond the day plate; warm glow only from its existing windows."
+    attach:
+      - ref: home-night
+        role: "The night target: this calm moonlit night of the finished island, its blue sky, moon, light cloud sea and quiet island colour. Match the light and colour; do not copy its objects, lamps or lights."
+    prompt:
+      - text: |
+          Edit the attached painting into the same scene on a calm, clear night: a soft
+          deep-blue sky (blue, never black) with a gentle glow near the clouds, a soft
+          round moon and a few small stars; the cloud sea stays light and lilac-white.
+          The island stays readable and fairly light under cool moonlight, its colours soft
+          but still rich, its shadows blue-violet, no deep blacks, no grey veil over the
+          whole frame. Warm light comes ONLY from the windows that already exist in the attached
+          picture, each a small soft pool. Do NOT add any lamp, bulb, lantern, string
+          of lights or glowing object that is not in the attached picture; the day
+          plate's inventory is the night plate's inventory. The far islands are dim,
+          quiet shapes with a tiny warm light on each; the cloud-whale is a soft pale
+          shape.
+          Everything stays in its place, the same shapes and sizes; only light and
+          colour change.
+      - block: edit-keep-v1
+      - block: plate-style-rich-v1
+      - text: "AVOID: high contrast, black shadows, an indigo-purple festival night, many bright lights, a grey or blue veil over the whole frame, neon, new objects, characters, text, moving anything, new lamps, new bulbs, strings of lights, glowing everything"
+
+  - id: x-caglayan-flow-0-night-v2
+    kind: plate
+    name: x-caglayan-flow-0-night-v2
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 1.0}
+    edit_of: x-caglayan-flow-0
+    chat: "Pofu · Redo states"
+    light: {cell: night, layer: subject}
+    palettes: [world-night, world-props, world-foliage]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Redo 2 of Çağlayan stage 0 at night. Failure of the first try: the mill was lit although the island is not yet restored. Review: mill dark and unlit; only moonlight and a faint glow from the house window."
+    attach:
+      - ref: home-night
+        role: "The night target: this calm moonlit night, its blue sky and light cloud sea. Match the light, not the objects."
+    prompt:
+      - text: |
+          Edit the attached painting into the same scene on a calm, clear night: a soft
+          deep-blue sky (blue, never black) with a gentle glow near the clouds, a soft
+          round moon and a few small stars; the cloud sea stays light and lilac-white.
+          Çağlayan stays readable and fairly light under cool moonlight, its colours soft
+          but still rich, its shadows blue-violet, no deep blacks, no grey veil over the
+          whole frame. The mill stays DARK and UNLIT: the island is not yet restored, so the mill
+          wheel stands still and no mill lamp glows. The only light is cool moonlight
+          and a faint warm glow from the house window. Nothing is healed or added.
+          Everything stays in its place, the same shapes and sizes; only light and
+          colour change.
+      - block: edit-keep-v1
+      - block: plate-style-rich-v1
+      - text: "AVOID: high contrast, black shadows, an indigo-purple festival night, many bright lights, a grey or blue veil over the whole frame, neon, new objects, characters, text, moving anything, a lit mill, a glowing mill window, lamps lit at the mill, a healed stage"
+
+  - id: x-caglayan-flow-1-night-v2
+    kind: plate
+    name: x-caglayan-flow-1-night-v2
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 1.0}
+    edit_of: x-caglayan-flow-1
+    chat: "Pofu · Redo states"
+    light: {cell: night, layer: subject}
+    palettes: [world-night, world-props, world-foliage]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Redo 2 of Çağlayan stage 1 at night. Failure of the first try: the mill was lit although the island is not yet restored. Review: mill dark and unlit; only moonlight and a faint glow from the house window."
+    attach:
+      - ref: home-night
+        role: "The night target: this calm moonlit night, its blue sky and light cloud sea. Match the light, not the objects."
+    prompt:
+      - text: |
+          Edit the attached painting into the same scene on a calm, clear night: a soft
+          deep-blue sky (blue, never black) with a gentle glow near the clouds, a soft
+          round moon and a few small stars; the cloud sea stays light and lilac-white.
+          Çağlayan stays readable and fairly light under cool moonlight, its colours soft
+          but still rich, its shadows blue-violet, no deep blacks, no grey veil over the
+          whole frame. The mill stays DARK and UNLIT: the island is not yet restored, so the mill
+          wheel stands still and no mill lamp glows. The only light is cool moonlight
+          and a faint warm glow from the house window. Nothing is healed or added.
+          Everything stays in its place, the same shapes and sizes; only light and
+          colour change.
+      - block: edit-keep-v1
+      - block: plate-style-rich-v1
+      - text: "AVOID: high contrast, black shadows, an indigo-purple festival night, many bright lights, a grey or blue veil over the whole frame, neon, new objects, characters, text, moving anything, a lit mill, a glowing mill window, lamps lit at the mill, a healed stage"
+
+  - id: x-emanet-flow-0-night-v2
+    kind: plate
+    name: x-emanet-flow-0-night-v2
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 1.0}
+    edit_of: x-emanet-flow-0
+    chat: "Pofu · Redo states"
+    light: {cell: night, layer: subject}
+    palettes: [world-night, world-props, world-foliage]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Redo 2 of Emanet stage 0 at night. Failure of the first try: the story fog changed and lamps lit that are unlit in the parent. Review: the fog exactly as in the day parent, no new lit lamp, moonlight over the fog."
+    attach:
+      - ref: home-night
+        role: "The night target: this calm moonlit night, its blue sky and light cloud sea. Match the light, not the objects."
+    prompt:
+      - text: |
+          Edit the attached painting into the same scene on a calm, clear night: a soft
+          deep-blue sky (blue, never black) with a gentle glow near the clouds, a soft
+          round moon and a few small stars; the cloud sea stays light and lilac-white.
+          Emanet stays readable and fairly light under cool moonlight, its colours soft
+          but still rich, its shadows blue-violet, no deep blacks, no grey veil over the
+          whole frame. KEEP THE STORY FOG EXACTLY as in the attached picture: the same banks of
+          fog in the same places, the same shapes and extent, neither thicker nor
+          thinner nor moved. Moonlight falls over the fog (a cool silver-blue sheen on
+          it). Lamps, lanterns and windows that are UNLIT in the attached picture stay
+          unlit; only light sources that already glow in it keep a small soft warm pool.
+          Nothing is lit, healed or added.
+          Everything stays in its place, the same shapes and sizes; only light and
+          colour change.
+      - block: edit-keep-v1
+      - block: plate-style-rich-v1
+      - text: "AVOID: high contrast, black shadows, an indigo-purple festival night, many bright lights, a grey or blue veil over the whole frame, neon, new objects, characters, text, moving anything, changed fog, new or removed fog, a lit lamp that is unlit in the parent, a healed stage"
+
+  - id: x-emanet-flow-1-night-v2
+    kind: plate
+    name: x-emanet-flow-1-night-v2
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 1.0}
+    edit_of: x-emanet-flow-1
+    chat: "Pofu · Redo states"
+    light: {cell: night, layer: subject}
+    palettes: [world-night, world-props, world-foliage]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Redo 2 of Emanet stage 1 at night. Failure of the first try: the story fog changed and lamps lit that are unlit in the parent. Review: the fog exactly as in the day parent, no new lit lamp, moonlight over the fog."
+    attach:
+      - ref: home-night
+        role: "The night target: this calm moonlit night, its blue sky and light cloud sea. Match the light, not the objects."
+    prompt:
+      - text: |
+          Edit the attached painting into the same scene on a calm, clear night: a soft
+          deep-blue sky (blue, never black) with a gentle glow near the clouds, a soft
+          round moon and a few small stars; the cloud sea stays light and lilac-white.
+          Emanet stays readable and fairly light under cool moonlight, its colours soft
+          but still rich, its shadows blue-violet, no deep blacks, no grey veil over the
+          whole frame. KEEP THE STORY FOG EXACTLY as in the attached picture: the same banks of
+          fog in the same places, the same shapes and extent, neither thicker nor
+          thinner nor moved. Moonlight falls over the fog (a cool silver-blue sheen on
+          it). Lamps, lanterns and windows that are UNLIT in the attached picture stay
+          unlit; only light sources that already glow in it keep a small soft warm pool.
+          Nothing is lit, healed or added.
+          Everything stays in its place, the same shapes and sizes; only light and
+          colour change.
+      - block: edit-keep-v1
+      - block: plate-style-rich-v1
+      - text: "AVOID: high contrast, black shadows, an indigo-purple festival night, many bright lights, a grey or blue veil over the whole frame, neon, new objects, characters, text, moving anything, changed fog, new or removed fog, a lit lamp that is unlit in the parent, a healed stage"
+
+  - id: x-emanet-flow-2-night-v2
+    kind: plate
+    name: x-emanet-flow-2-night-v2
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 1.0}
+    edit_of: x-emanet-flow-2
+    chat: "Pofu · Redo states"
+    light: {cell: night, layer: subject}
+    palettes: [world-night, world-props, world-foliage]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Redo 2 of Emanet stage 2 at night. Failure of the first try: the story fog changed and lamps lit that are unlit in the parent. Review: the fog exactly as in the day parent, no new lit lamp, moonlight over the fog."
+    attach:
+      - ref: home-night
+        role: "The night target: this calm moonlit night, its blue sky and light cloud sea. Match the light, not the objects."
+    prompt:
+      - text: |
+          Edit the attached painting into the same scene on a calm, clear night: a soft
+          deep-blue sky (blue, never black) with a gentle glow near the clouds, a soft
+          round moon and a few small stars; the cloud sea stays light and lilac-white.
+          Emanet stays readable and fairly light under cool moonlight, its colours soft
+          but still rich, its shadows blue-violet, no deep blacks, no grey veil over the
+          whole frame. KEEP THE STORY FOG EXACTLY as in the attached picture: the same banks of
+          fog in the same places, the same shapes and extent, neither thicker nor
+          thinner nor moved. Moonlight falls over the fog (a cool silver-blue sheen on
+          it). Lamps, lanterns and windows that are UNLIT in the attached picture stay
+          unlit; only light sources that already glow in it keep a small soft warm pool.
+          Nothing is lit, healed or added.
+          Everything stays in its place, the same shapes and sizes; only light and
+          colour change.
+      - block: edit-keep-v1
+      - block: plate-style-rich-v1
+      - text: "AVOID: high contrast, black shadows, an indigo-purple festival night, many bright lights, a grey or blue veil over the whole frame, neon, new objects, characters, text, moving anything, changed fog, new or removed fog, a lit lamp that is unlit in the parent, a healed stage"
+
+  - id: x-mehtap-flow-1-day-v2
+    kind: plate
+    name: x-mehtap-flow-1-day-v2
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 1.0}
+    edit_of: x-mehtap-flow-1
+    chat: "Pofu · Redo states"
+    light: {cell: day, layer: subject}
+    palettes: [world-foliage, world-props, world-water]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Redo 2 of Mehtap stage 1 by day. Failure of the first try: the sky trail was removed. Review: the stage's single faint sky trail and every sky element of the parent stay."
+    prompt:
+      - text: |
+          Edit the attached painting into the same scene in calm, clear daytime: a soft
+          pale-blue sky with a few light clouds, gentle neutral daylight from the upper
+          left, soft shadows, a bright light cloud sea. Mehtap keeps its rich colours
+          (the crescent plate, the dome, the moon pool and the owl's perch); lanterns
+          and windows are unlit but their shapes stay.
+          KEEP THE SKY TRAIL and every sky element of the attached picture: the single
+          faint trail across the sky stays exactly where and as it is (it may read paler
+          against the daylight sky but must stay visible), and every other element of
+          the sky stays in its place.
+          The stage's state stays exactly as painted: whatever is broken, dry, dark,
+          covered or missing at this stage stays so, nothing healed, nothing new.
+          Everything stays in its place, the same shapes and sizes; only light and
+          colour change.
+      - block: edit-keep-v1
+      - block: plate-style-rich-v1
+      - text: "AVOID: a dark scene, harsh noon contrast, a grey veil, a removed or hidden sky trail, a clean empty sky, healing or changing the stage, new objects, characters, text, moving anything"
+
+  - id: x-revontuli-flow-1-day-v2
+    kind: plate
+    name: x-revontuli-flow-1-day-v2
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 1.0}
+    edit_of: x-revontuli-flow-1
+    chat: "Pofu · Redo states"
+    light: {cell: day, layer: subject}
+    palettes: [world-foliage, world-props, world-water]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "PILOT (snow day, 2 takes). Failure of the first try: bright snow bleached the frame white. Review: the root's colour richness in daylight: blue-violet snow shadows, warm sunlight on wood and lanterns, saturated tree green. Scales to the other Revontuli day cells only after the lead's next review round."
+    prompt:
+      - text: |
+          Edit the attached painting into the same scene in calm, clear daytime with
+          bright snow, keeping the colour richness of the attached picture. The snow is
+          bright but never a bleached white frame: blue-violet shadows lie in the snow
+          (under the trees, the post, the rocks and along every drift), the snow
+          itself carries soft cool blue and lilac tints in its lit planes; warm
+          sunlight from the upper left lands on the wood and on the lanterns (their
+          shapes stay, unlit); the trees keep a saturated, deep green; the ice lake
+          stays a rich glassy blue. A soft pale-blue sky with a few light clouds and a
+          bright light cloud sea. Revontuli keeps its rich colours (the ice lake, the
+          post's lantern and the aurora tail).
+          The stage's state stays exactly as painted: whatever is broken, dry, dark,
+          covered or missing at this stage stays so, nothing healed, nothing new.
+          Everything stays in its place, the same shapes and sizes; only light and
+          colour change.
+      - block: edit-keep-v1
+      - block: plate-style-rich-v1
+      - text: "AVOID: a bleached white frame, flat white snow, a grey veil, washed-out colour, pastel milk, a dark scene, harsh noon contrast, healing or changing the stage, new objects, characters, text, moving anything"
+
+  - id: x-home-flow-night-sea
+    kind: plate
+    name: x-home-flow-night-sea
+    size: 1024x1536
+    canvas: 1024x1536
+    deliver: {scale: 1.0}
+    edit_of: x-home-flow-night
+    chat: "Pofu · Redo states"
+    light: {cell: night, layer: subject}
+    palettes: [world-night, world-foliage]
+    acceptance: {exploration: true, edit_mode: region}
+    notes: "PILOT (night cloud sea, 2 takes), an edit of the in-app home night plate of the finished island (x-home-flow-night, take 1). Review: the cloud sea moonlit blue-violet, clearly darker than the day cloud sea, with soft silver highlights; island and sky unchanged. Scales to other night plates only after the lead's next review round."
+    prompt:
+      - text: |
+          Edit the attached night painting of the finished island: change ONLY the
+          cloud sea below the island. It becomes moonlit: blue-violet, clearly darker
+          than the day cloud sea (a deep soft blue-violet in the hollows, a lighter
+          blue-lilac on the crests), with soft silver highlights where the moon touches
+          the tops of the clouds. The clouds keep their soft, round, painted shapes
+          and their places.
+          KEEP EXACTLY: the island, its earth body, roots, buildings, doors, lamps and
+          windows, the sky, the moon, the stars, the far islands and the cloud-whale:
+          every pixel outside the cloud sea stays as it is.
+      - block: edit-keep-v1
+      - block: plate-style-rich-v1
+      - text: "AVOID: a changed island, a changed sky or moon, new lights, black clouds, a flat dark fill, grey or muddy cloud colour, neon, a hard glow, new objects, characters, text, moving anything"

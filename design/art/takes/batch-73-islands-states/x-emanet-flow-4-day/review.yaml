@@ -3,9 +3,9 @@ manifest: tools/imagegen/manifest/batch-73-islands-states.yaml
 manifest_sha256: d598a7718fdc51cab7d3ef7944d558393127bf9f5af63194465deac8a25f0b83
 jobs:
   x-emanet-flow-4-day:
-    pick: 2
+    pick: 1
     status: review
-    publication: exploration; never promoted
+    publication: exploration; picked by the lead 2026-11-10 (take 1); never promoted
     note: Both retain the healed office, shelves, cart, tagged possessions, bunting and counter under
       clear blue daylight. Lamps are pale rather than glowing; windows retain warm material colour with
       reduced glow. No new objects, characters or text observed; exact registration not manually proven.

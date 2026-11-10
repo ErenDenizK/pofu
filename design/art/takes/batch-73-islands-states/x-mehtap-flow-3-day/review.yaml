@@ -5,7 +5,7 @@ jobs:
   x-mehtap-flow-3-day:
     pick: 1
     status: review
-    publication: exploration; never promoted
+    publication: exploration; picked by the lead 2026-11-10 (take 1); never promoted
     note: Take 1 retains stage3 faint sky trails, short gold stub, pool stars, chart paths and partial
       flower opening while changing to clear daylight and unlit lamps/windows. Minor flower/contour drift
       remains; eligible for provisional selection. Take 2 removes the faint sky trails entirely, a state-preservation

@@ -5,7 +5,7 @@ jobs:
   x-caglayan-flow-4-rain:
     pick: 2
     status: review
-    publication: exploration; never promoted
+    publication: exploration; picked by the lead 2026-11-10 (take 2); never promoted
     note: Factory QA auto-pick; lead review pending. Manual comparison retains stage inventory and water
       state. Lighting/weather repaint is not exact pixel registration; both candidates retained for review.
 selection:

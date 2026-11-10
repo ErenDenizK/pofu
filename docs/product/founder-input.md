@@ -657,3 +657,8 @@ Result (same day, #338): the real app now draws Home (Tam Çiçek, 09:00–17:00
 Fable consult of 2026-11-10 and its four actions: (a) purge the collage-era queue rows and add the plate state table (this PR); (b) a character harmony rule (runtime station); (c) exception-only lead review; (d) per-island colour bands (this PR; `docs/design/visual-system.md`).
 
 Result of the night items (b): home now draws its painted plate at level 10 day, golden and night and at levels 2-9 by day, with crossfades; Pofu, Mochi and Fındık get a per-state tint and contact shadow, measured by `tools/plate/harmony_check.py` (#368). Sheet: `docs/product/decisions-2026-11-10/result-home-states.jpg`. Still on the sprite island: il1, bare, rain, dawn, dusk, and golden or night below level 10.
+
+## 2026-11-10 (late night): Codex done?, the empty top of the home screen
+
+1. Codex finished its batches; check and give it the next work. Handled: lead review of #366, #367 and #369, merged with picks; the redos and two pilots are in batch-74 (queue row 0-h2); a paste message for Codex.
+2. The top of the home screen is nearly empty; is it intentional? Handled: no; it is a by-product of the plate's shorter canvas and of lowering the island to hide the haze. A camera framing pass (home scale +10, 15 and 20 percent, the island mass at 52 to 55 percent of the height) runs in the character-light PR; a repaint on a phone-tall canvas only if the framing is not enough.

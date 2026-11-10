@@ -1,0 +1,24 @@
+id: asset-x-home-flow-il1-v3
+type: asset
+title_tr: x-home-flow-il1-v3
+title_en: x-home-flow-il1-v3 (plate)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached FINAL painting (Tam Çiçek, the finished island) into its first morning,
+  IL1. It is derived from the final directly, so everything not named stays pixel for pixel
+  as in the final. Remove the windmill, the workshop, the beehive, the tea stall, the pond
+  and its dock, the stone path, the path lamps, the lantern string, the flower borders, the
+  vines, the lighthouse, the pier, the hilltop bench, telescope…
+links:
+  variant_of:
+  - asset-x-home-flow-final-rich
+art:
+  images: []
+  jobs:
+  - batch-74-redo-states:x-home-flow-il1-v3
+sources:
+- doc: tools/imagegen/manifest/batch-74-redo-states.yaml
+kind: plate
+batch: batch-74-redo-states
+size: 1024x1536

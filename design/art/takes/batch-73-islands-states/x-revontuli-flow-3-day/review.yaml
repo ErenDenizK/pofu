@@ -5,7 +5,7 @@ jobs:
   x-revontuli-flow-3-day:
     pick: 1
     status: review
-    publication: exploration; never promoted
+    publication: exploration; picked by the lead 2026-11-10 (take 1); never promoted
     note: Both retain the stage-3 sauna, three standing towers, unlit post, open ice lake and stool under
       pale clear daylight. All lanterns and window are unlit; the faint horizon aurora remains. No new
       objects, characters or text observed; exact registration not manually proven. Auto-picked by QA;

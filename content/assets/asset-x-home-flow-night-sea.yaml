@@ -1,0 +1,24 @@
+id: asset-x-home-flow-night-sea
+type: asset
+title_tr: x-home-flow-night-sea
+title_en: x-home-flow-night-sea (plate)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached night painting of the finished island: change ONLY the cloud sea below
+  the island. It becomes moonlit: blue-violet, clearly darker than the day cloud sea (a deep
+  soft blue-violet in the hollows, a lighter blue-lilac on the crests), with soft silver highlights
+  where the moon touches the tops of the clouds. The clouds keep their soft, round, painted
+  shapes and their places. KEEP EXACTLY: the island, i…
+links:
+  variant_of:
+  - asset-x-home-flow-night
+art:
+  images: []
+  jobs:
+  - batch-74-redo-states:x-home-flow-night-sea
+sources:
+- doc: tools/imagegen/manifest/batch-74-redo-states.yaml
+kind: plate
+batch: batch-74-redo-states
+size: 1024x1536

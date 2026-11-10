@@ -1,0 +1,24 @@
+id: asset-x-home-flow-bare-v3
+type: asset
+title_tr: x-home-flow-bare-v3
+title_en: x-home-flow-bare-v3 (plate)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached FINAL painting (Tam Çiçek, the finished island) into the bare island:
+  the land alone, the same light. Remove ONLY the buildings, props and flowers: the windmill,
+  the workshop, the beehive, the tea stall, the garden and its sunflowers, the pond and its
+  dock, the stone path, the path lamps, the lantern string, the flower borders, the vines,
+  the hamster wheel, the bagel cart, the rope bridge, the light…
+links:
+  variant_of:
+  - asset-x-home-flow-final-rich
+art:
+  images: []
+  jobs:
+  - batch-74-redo-states:x-home-flow-bare-v3
+sources:
+- doc: tools/imagegen/manifest/batch-74-redo-states.yaml
+kind: plate
+batch: batch-74-redo-states
+size: 1024x1536
