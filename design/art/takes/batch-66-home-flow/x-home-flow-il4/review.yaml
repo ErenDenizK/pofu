@@ -1,0 +1,200 @@
+batch: batch-66-home-flow
+manifest: tools/imagegen/manifest/batch-66-home-flow.yaml
+jobs:
+  x-home-flow-il4:
+    pick: null
+    publication: exploration; not promoted; lead review pending
+    note: Both takes remove pier, lighthouse, workshop and windmill; show small pond, sunflower bed with
+      watering can, plain wheel with sprout, two home doors, simple tea counter and bagel cart. Take 1
+      keeps one pond blossom and cups on the tea counter; take 2 leaves the pond empty and kettle alone.
+      The garden includes mature sunflowers as well as seedlings, and hill/island contour drift is visible;
+      lead review required, no pixel-perfect registration claim.
+qa_reports:
+- job: x-home-flow-il4
+  take: 1
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1024x1536
+  - check: chroma_ceiling
+    status: warn
+    message: chroma p95 60 (R1 51) (advisory in an exploration)
+    value: 60.4
+  - check: light_values
+    status: pass
+    message: 'day/subject: L p5 63 (at least 50: darks stay a light mid-tone), p98 97 (at least 90)'
+    value: 63.4
+  - check: light_median
+    status: pass
+    message: 'day/subject: median L 81 (band 74-92)'
+    value: 81.3
+  - check: light_contrast
+    status: pass
+    message: 'day/subject: p75 local contrast 3.4 (band 2.5-6.5; above it reads too contrasty)'
+    value: 3.4
+  - check: light_sky
+    status: pass
+    message: 'day: sky L 73 (band 70-94)'
+    value: 73.0
+  - check: light_sea
+    status: pass
+    message: 'day: cloud sea L 88 (at least 82: the sea is the reflector)'
+    value: 88.3
+  - check: light_dark
+    status: pass
+    message: 'day: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.0
+  - check: detail_budget
+    status: pass
+    message: detail at display size 2.5 (R1 5.3)
+    value: 2.55
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 6.9, p95 18.6, off-palette 23.3% (top: #88BBFF (6.7%), #77AAFF (3.9%)) (advisory
+      in an exploration)'
+    value: 6.935
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_stability
+    status: pass
+    message: 76% of the parent level unchanged
+    value: 0.7595
+  - check: edit_chroma
+    status: pass
+    message: chroma x0.99 of the parent level (drift compounds along a chain)
+    value: 0.9902
+  info:
+    metrics_raw:
+      L_p5: 68.2
+      L_p50: 80.9
+      L_p95: 95.4
+      C_p50: 27.5
+      C_p95: 60.4
+      C_p99: 65.2
+      detail: 2.55
+    metrics_locked:
+      L_p5: 68.2
+      L_p50: 80.9
+      L_p95: 95.4
+      C_p50: 27.5
+      C_p95: 60.4
+      C_p99: 65.2
+      detail: 2.55
+  fingerprint: 51e536fca6bbc2fc
+- job: x-home-flow-il4
+  take: 2
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1024x1536
+  - check: chroma_ceiling
+    status: warn
+    message: chroma p95 63 (R1 51) (advisory in an exploration)
+    value: 62.6
+  - check: light_values
+    status: pass
+    message: 'day/subject: L p5 63 (at least 50: darks stay a light mid-tone), p98 97 (at least 90)'
+    value: 63.4
+  - check: light_median
+    status: pass
+    message: 'day/subject: median L 82 (band 74-92)'
+    value: 82.5
+  - check: light_contrast
+    status: pass
+    message: 'day/subject: p75 local contrast 3.4 (band 2.5-6.5; above it reads too contrasty)'
+    value: 3.35
+  - check: light_sky
+    status: pass
+    message: 'day: sky L 74 (band 70-94)'
+    value: 73.6
+  - check: light_sea
+    status: pass
+    message: 'day: cloud sea L 90 (at least 82: the sea is the reflector)'
+    value: 89.8
+  - check: light_dark
+    status: pass
+    message: 'day: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.0
+  - check: detail_budget
+    status: pass
+    message: detail at display size 2.5 (R1 5.3)
+    value: 2.45
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 7.4, p95 20.2, off-palette 24.5% (top: #88BBFF (6.9%), #77AAFF (3.3%)) (advisory
+      in an exploration)'
+    value: 7.4272
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_stability
+    status: pass
+    message: 75% of the parent level unchanged
+    value: 0.7471
+  - check: edit_chroma
+    status: pass
+    message: chroma x0.97 of the parent level (drift compounds along a chain)
+    value: 0.9692
+  info:
+    metrics_raw:
+      L_p5: 68.5
+      L_p50: 82.0
+      L_p95: 96.1
+      C_p50: 26.9
+      C_p95: 62.6
+      C_p99: 67.9
+      detail: 2.45
+    metrics_locked:
+      L_p5: 68.5
+      L_p50: 82.0
+      L_p95: 96.1
+      C_p50: 26.9
+      C_p95: 62.6
+      C_p99: 67.9
+      detail: 2.45
+  fingerprint: 51e536fca6bbc2fc
+sources:
+- take: 1
+  source_file: /workspace/art-operator-runtime/generated/x-home-flow-il4/take-1.png
+  source_sha256: 802f7a4bba8528a55d2d26f15171171f35f815f1e924b72f5b29a4191316ec51
+  q90_take: design/art/takes/batch-66-home-flow/x-home-flow-il4/plate__x-home-flow-il4--t1.webp
+  q90_take_sha256: fac7099be6fd552fe2d39269cf16f0f00c9e64630ec8b7b9b8e000d9703dacb7
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 486d05c956d3da5c786dc9e175a7cda620597690e77f2ddc8d05e2a777c8d222
+- take: 2
+  source_file: /workspace/art-operator-runtime/generated/x-home-flow-il4/take-2.png
+  source_sha256: 87137b1992aa3d726934fb6ec1c0b8085945f6835a5eced0363ef502a1cac4d6
+  q90_take: design/art/takes/batch-66-home-flow/x-home-flow-il4/plate__x-home-flow-il4--t2.webp
+  q90_take_sha256: f2de4264dd1eb26bc6fc651b22892937e7122e87d29af123272efed1c3875c50
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 486d05c956d3da5c786dc9e175a7cda620597690e77f2ddc8d05e2a777c8d222
+policy:
+  never_promote: true
+  selection: lead picks
+  source_preservation: Original generated images retained at source_file paths; published takes are q90
+    review copies.

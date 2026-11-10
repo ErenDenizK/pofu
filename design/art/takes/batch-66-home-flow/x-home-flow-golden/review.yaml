@@ -1,0 +1,198 @@
+batch: batch-66-home-flow
+manifest: tools/imagegen/manifest/batch-66-home-flow.yaml
+jobs:
+  x-home-flow-golden:
+    pick: null
+    publication: exploration; not promoted; lead review pending
+    note: Both takes retain the home composition, four earth doors, harbor bridge, far islands and whale
+      while shifting the sky to pink-lilac and the scene to warm peach. No new characters or text observed.
+      Exact pixel registration has not been manually proven. Lead selection pending.
+qa_reports:
+- job: x-home-flow-golden
+  take: 1
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1024x1536
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 48 (R1 51)
+    value: 47.6
+  - check: light_values
+    status: pass
+    message: 'golden/subject: L p5 55 (at least 50: darks stay a light mid-tone), p98 92 (at least 85)'
+    value: 54.8
+  - check: light_median
+    status: pass
+    message: 'golden/subject: median L 77 (band 68-86)'
+    value: 76.9
+  - check: light_contrast
+    status: warn
+    message: 'golden/subject: p75 local contrast 7.5 (band 2.5-6.0; above it reads too contrasty) (warn-only
+      until the founder has seen the light pilot)'
+    value: 7.54
+  - check: light_sky
+    status: pass
+    message: 'golden: sky L 70 (band 60-86)'
+    value: 70.3
+  - check: light_sea
+    status: pass
+    message: 'golden: cloud sea L 82 (at least 78: the sea is the reflector)'
+    value: 81.5
+  - check: light_dark
+    status: pass
+    message: 'golden: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.0
+  - check: detail_budget
+    status: pass
+    message: detail at display size 4.8 (R1 5.3)
+    value: 4.84
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: pass
+    message: 'mean dE 2.2, p95 5.0, off-palette 0.4% (top: #CC6644 (0.0%), #DD7755 (0.0%))'
+    value: 2.2114
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_structure
+    status: pass
+    message: light structure matches the parent (r 0.96)
+    value: 0.9559
+  - check: edit_lightness
+    status: pass
+    message: mean lightness moved by 3.3 L (the same lightness was asked)
+    value: 3.311
+  info:
+    metrics_raw:
+      L_p5: 58.6
+      L_p50: 76.7
+      L_p95: 89.8
+      C_p50: 27.5
+      C_p95: 47.6
+      C_p99: 56.8
+      detail: 4.84
+    metrics_locked:
+      L_p5: 58.6
+      L_p50: 76.7
+      L_p95: 89.8
+      C_p50: 27.5
+      C_p95: 47.6
+      C_p99: 56.8
+      detail: 4.84
+  fingerprint: 6bc04a0a49118984
+- job: x-home-flow-golden
+  take: 2
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1024x1536
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 51 (R1 51)
+    value: 50.7
+  - check: light_values
+    status: pass
+    message: 'golden/subject: L p5 55 (at least 50: darks stay a light mid-tone), p98 92 (at least 85)'
+    value: 55.4
+  - check: light_median
+    status: pass
+    message: 'golden/subject: median L 77 (band 68-86)'
+    value: 77.3
+  - check: light_contrast
+    status: warn
+    message: 'golden/subject: p75 local contrast 7.6 (band 2.5-6.0; above it reads too contrasty) (warn-only
+      until the founder has seen the light pilot)'
+    value: 7.6
+  - check: light_sky
+    status: pass
+    message: 'golden: sky L 69 (band 60-86)'
+    value: 69.1
+  - check: light_sea
+    status: pass
+    message: 'golden: cloud sea L 80 (at least 78: the sea is the reflector)'
+    value: 79.9
+  - check: light_dark
+    status: pass
+    message: 'golden: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.0
+  - check: detail_budget
+    status: pass
+    message: detail at display size 5.0 (R1 5.3)
+    value: 5.01
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 2.6, p95 5.6, off-palette 1.2% (top: #CC6644 (0.1%), #FFDD44 (0.1%))'
+    value: 2.5525
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_structure
+    status: pass
+    message: light structure matches the parent (r 0.90)
+    value: 0.9006
+  - check: edit_lightness
+    status: pass
+    message: mean lightness moved by 3.6 L (the same lightness was asked)
+    value: 3.5518
+  info:
+    metrics_raw:
+      L_p5: 59.6
+      L_p50: 76.4
+      L_p95: 89.5
+      C_p50: 28.7
+      C_p95: 50.7
+      C_p99: 62.0
+      detail: 5.01
+    metrics_locked:
+      L_p5: 59.6
+      L_p50: 76.4
+      L_p95: 89.5
+      C_p50: 28.7
+      C_p95: 50.7
+      C_p99: 62.0
+      detail: 5.01
+  fingerprint: 6bc04a0a49118984
+sources:
+- take: 1
+  source_file: /workspace/art-operator-runtime/generated/x-home-flow-golden/take-1.png
+  source_sha256: 89d71a42e509373502d60dc2ce26f7128f041bf23f820741c446c3266ffd22ea
+  q90_take: design/art/takes/batch-66-home-flow/x-home-flow-golden/plate__x-home-flow-golden--t1.webp
+  q90_take_sha256: f03dceaf68f712e04c34c4233d23863ebc9df7a75f212fe45aabbc763412fada
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 2779f207559120e3a8e0e21e78b847e696a0217f579885b18dac24b2128f0670
+- take: 2
+  source_file: /workspace/art-operator-runtime/generated/x-home-flow-golden/take-2.png
+  source_sha256: c56bd61b1b0423989fe50eef527cea754a8e3a3c95dc9acbc897c0f83ce4328a
+  q90_take: design/art/takes/batch-66-home-flow/x-home-flow-golden/plate__x-home-flow-golden--t2.webp
+  q90_take_sha256: 24fb62bd57ac227764adb7ff901505c40f8e0d9f1c6726fe4abeaf9353870dfd
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 2779f207559120e3a8e0e21e78b847e696a0217f579885b18dac24b2128f0670
+policy:
+  never_promote: true
+  selection: lead picks
+  source_preservation: Original generated images retained at source_file paths; published takes are q90
+    review copies.
