@@ -1,0 +1,320 @@
+# Batch 72: the home at night, IL2 to IL9 (exploration; x- ids, never promoted).
+#
+# Plate-first (ADR-0022): one painted picture per island state. The state table
+# docs/state/plates.yaml says which night cells of home are null; this batch
+# paints them. Each job is a night edit of that level's PICKED day plate
+# (batch-66: il4 take 2, every other level take 1), through an `external` job
+# whose `master` is the picked take file, so the parent is the lead's pick and
+# the registration is exact. The finished island's night (x-home-flow-night
+# take 1) is the light and colour target: same calm moonlit blue, light
+# lilac-white cloud sea, warm light only at real sources. il1 is waiting for
+# the batch-71 redo and is not in this batch.
+#
+# EXPLORATION RULES (AGENTS.md): do NOT run `promote`; commit the takes (WebP
+# q90), the contact sheet and review.yaml under design/art/takes/<batch>/<id>/.
+# A failed or refused job is recorded and skipped; the run continues. No
+# characters, no painted text. Jobs are independent: any order, up to three
+# tracks.
+#
+# Review for every take: the same picture as the day plate (nothing moved,
+# nothing added or removed); the island keeps its rich colour at low chroma
+# under moonlight, no whole-frame grey veil; lanterns and windows that exist at
+# that level glow warm and small; matches the finished island's night.
+
+batch: batch-72-home-night
+title: 'Home night, IL2 to IL9 (edits of the picked day plates)'
+status: open
+refs:
+  home-night: design/art/takes/batch-66-home-flow/x-home-flow-night/plate__x-home-flow-night--t1.webp
+  night-gezgin: design/art/takes/batch-22-gezgin-forms/x-gezgin-f2-night/plate__x-gezgin-f2-night--t1.webp
+defaults:
+  variants: 2
+jobs:
+  - {id: x-home-flow-il2, kind: plate, name: x-home-flow-il2, external: batch-66-home-flow, master: design/art/takes/batch-66-home-flow/x-home-flow-il2/plate__x-home-flow-il2--t1.webp}
+  - {id: x-home-flow-il3, kind: plate, name: x-home-flow-il3, external: batch-66-home-flow, master: design/art/takes/batch-66-home-flow/x-home-flow-il3/plate__x-home-flow-il3--t1.webp}
+  - {id: x-home-flow-il4, kind: plate, name: x-home-flow-il4, external: batch-66-home-flow, master: design/art/takes/batch-66-home-flow/x-home-flow-il4/plate__x-home-flow-il4--t2.webp}
+  - {id: x-home-flow-il5, kind: plate, name: x-home-flow-il5, external: batch-66-home-flow, master: design/art/takes/batch-66-home-flow/x-home-flow-il5/plate__x-home-flow-il5--t1.webp}
+  - {id: x-home-flow-il6, kind: plate, name: x-home-flow-il6, external: batch-66-home-flow, master: design/art/takes/batch-66-home-flow/x-home-flow-il6/plate__x-home-flow-il6--t1.webp}
+  - {id: x-home-flow-il7, kind: plate, name: x-home-flow-il7, external: batch-66-home-flow, master: design/art/takes/batch-66-home-flow/x-home-flow-il7/plate__x-home-flow-il7--t1.webp}
+  - {id: x-home-flow-il8, kind: plate, name: x-home-flow-il8, external: batch-66-home-flow, master: design/art/takes/batch-66-home-flow/x-home-flow-il8/plate__x-home-flow-il8--t1.webp}
+  - {id: x-home-flow-il9, kind: plate, name: x-home-flow-il9, external: batch-66-home-flow, master: design/art/takes/batch-66-home-flow/x-home-flow-il9/plate__x-home-flow-il9--t1.webp}
+
+  - id: x-home-flow-il2-night
+    kind: plate
+    name: x-home-flow-il2-night
+    size: 1024x1536
+    canvas: 1024x1536
+    deliver: {scale: 1.0}
+    edit_of: x-home-flow-il2
+    chat: "Pofu · Home night"
+    light: {cell: night, layer: subject}
+    palettes: [world-foliage, world-props, world-night]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Night edit of home IL2 (picked day plate t1). Review: same picture, calm moonlit blue sky, light lilac-white cloud sea, island readable at low chroma with blue-violet shadows, warm light only from the lamps, lantern string and windows that exist at this level."
+    attach:
+      - ref: home-night
+        role: "The night target: this calm moonlit night of the finished island: its blue sky, moon, light cloud sea, quiet island colour and small warm pools. Match the light and colour; do not copy its objects."
+      - ref: night-gezgin
+        role: "Night reference: the same calm, low-contrast moonlit sky and cloud sea. Do not copy the whale or its layout."
+    prompt:
+      - text: |
+          Edit the attached painting into the same scene on a calm, clear night,
+          lit like the attached night of the finished island: a soft deep-blue sky
+          (blue, never black or purple-black) with a gentle glow near the clouds, a soft
+          round moon high on the left and a few small stars; the cloud sea stays light,
+          lilac-white. The island stays readable and fairly light under cool moonlight,
+          its colours soft and quiet but still rich, its shadows blue-violet, no deep
+          blacks, and no grey veil over the whole frame. Warm light only from real
+          sources that are already in the picture, each a small soft pool: the round
+          doors' windows, the lamps and lanterns, the tea stall's lights. The far
+          islands are dim, quiet shapes with a tiny warm light on each; the cloud-whale
+          is a soft pale shape. Do not add any lamp, window or object that is not in
+          the attached picture. Everything stays in its place, the same shapes and
+          sizes; only light and colour change.
+      - block: edit-keep-v1
+      - text: "AVOID: high contrast, black shadows, an indigo-purple festival night, many bright lights, glowing everything, a flat grey or blue veil over the whole frame, saturated warm colour over the whole island, neon, new objects, characters, text, moving anything"
+
+  - id: x-home-flow-il3-night
+    kind: plate
+    name: x-home-flow-il3-night
+    size: 1024x1536
+    canvas: 1024x1536
+    deliver: {scale: 1.0}
+    edit_of: x-home-flow-il3
+    chat: "Pofu · Home night"
+    light: {cell: night, layer: subject}
+    palettes: [world-foliage, world-props, world-night]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Night edit of home IL3 (picked day plate t1). Review: same picture, calm moonlit blue sky, light lilac-white cloud sea, island readable at low chroma with blue-violet shadows, warm light only from the lamps, lantern string and windows that exist at this level."
+    attach:
+      - ref: home-night
+        role: "The night target: this calm moonlit night of the finished island: its blue sky, moon, light cloud sea, quiet island colour and small warm pools. Match the light and colour; do not copy its objects."
+      - ref: night-gezgin
+        role: "Night reference: the same calm, low-contrast moonlit sky and cloud sea. Do not copy the whale or its layout."
+    prompt:
+      - text: |
+          Edit the attached painting into the same scene on a calm, clear night,
+          lit like the attached night of the finished island: a soft deep-blue sky
+          (blue, never black or purple-black) with a gentle glow near the clouds, a soft
+          round moon high on the left and a few small stars; the cloud sea stays light,
+          lilac-white. The island stays readable and fairly light under cool moonlight,
+          its colours soft and quiet but still rich, its shadows blue-violet, no deep
+          blacks, and no grey veil over the whole frame. Warm light only from real
+          sources that are already in the picture, each a small soft pool: the round
+          doors' windows, the lamps and lanterns, the tea stall's lights. The far
+          islands are dim, quiet shapes with a tiny warm light on each; the cloud-whale
+          is a soft pale shape. Do not add any lamp, window or object that is not in
+          the attached picture. Everything stays in its place, the same shapes and
+          sizes; only light and colour change.
+      - block: edit-keep-v1
+      - text: "AVOID: high contrast, black shadows, an indigo-purple festival night, many bright lights, glowing everything, a flat grey or blue veil over the whole frame, saturated warm colour over the whole island, neon, new objects, characters, text, moving anything"
+
+  - id: x-home-flow-il4-night
+    kind: plate
+    name: x-home-flow-il4-night
+    size: 1024x1536
+    canvas: 1024x1536
+    deliver: {scale: 1.0}
+    edit_of: x-home-flow-il4
+    chat: "Pofu · Home night"
+    light: {cell: night, layer: subject}
+    palettes: [world-foliage, world-props, world-night]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Night edit of home IL4 (picked day plate t2). Review: same picture, calm moonlit blue sky, light lilac-white cloud sea, island readable at low chroma with blue-violet shadows, warm light only from the lamps, lantern string and windows that exist at this level."
+    attach:
+      - ref: home-night
+        role: "The night target: this calm moonlit night of the finished island: its blue sky, moon, light cloud sea, quiet island colour and small warm pools. Match the light and colour; do not copy its objects."
+      - ref: night-gezgin
+        role: "Night reference: the same calm, low-contrast moonlit sky and cloud sea. Do not copy the whale or its layout."
+    prompt:
+      - text: |
+          Edit the attached painting into the same scene on a calm, clear night,
+          lit like the attached night of the finished island: a soft deep-blue sky
+          (blue, never black or purple-black) with a gentle glow near the clouds, a soft
+          round moon high on the left and a few small stars; the cloud sea stays light,
+          lilac-white. The island stays readable and fairly light under cool moonlight,
+          its colours soft and quiet but still rich, its shadows blue-violet, no deep
+          blacks, and no grey veil over the whole frame. Warm light only from real
+          sources that are already in the picture, each a small soft pool: the round
+          doors' windows, the lamps and lanterns, the tea stall's lights. The far
+          islands are dim, quiet shapes with a tiny warm light on each; the cloud-whale
+          is a soft pale shape. Do not add any lamp, window or object that is not in
+          the attached picture. Everything stays in its place, the same shapes and
+          sizes; only light and colour change.
+      - block: edit-keep-v1
+      - text: "AVOID: high contrast, black shadows, an indigo-purple festival night, many bright lights, glowing everything, a flat grey or blue veil over the whole frame, saturated warm colour over the whole island, neon, new objects, characters, text, moving anything"
+
+  - id: x-home-flow-il5-night
+    kind: plate
+    name: x-home-flow-il5-night
+    size: 1024x1536
+    canvas: 1024x1536
+    deliver: {scale: 1.0}
+    edit_of: x-home-flow-il5
+    chat: "Pofu · Home night"
+    light: {cell: night, layer: subject}
+    palettes: [world-foliage, world-props, world-night]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Night edit of home IL5 (picked day plate t1). Review: same picture, calm moonlit blue sky, light lilac-white cloud sea, island readable at low chroma with blue-violet shadows, warm light only from the lamps, lantern string and windows that exist at this level."
+    attach:
+      - ref: home-night
+        role: "The night target: this calm moonlit night of the finished island: its blue sky, moon, light cloud sea, quiet island colour and small warm pools. Match the light and colour; do not copy its objects."
+      - ref: night-gezgin
+        role: "Night reference: the same calm, low-contrast moonlit sky and cloud sea. Do not copy the whale or its layout."
+    prompt:
+      - text: |
+          Edit the attached painting into the same scene on a calm, clear night,
+          lit like the attached night of the finished island: a soft deep-blue sky
+          (blue, never black or purple-black) with a gentle glow near the clouds, a soft
+          round moon high on the left and a few small stars; the cloud sea stays light,
+          lilac-white. The island stays readable and fairly light under cool moonlight,
+          its colours soft and quiet but still rich, its shadows blue-violet, no deep
+          blacks, and no grey veil over the whole frame. Warm light only from real
+          sources that are already in the picture, each a small soft pool: the round
+          doors' windows, the lamps and lanterns, the tea stall's lights. The far
+          islands are dim, quiet shapes with a tiny warm light on each; the cloud-whale
+          is a soft pale shape. Do not add any lamp, window or object that is not in
+          the attached picture. Everything stays in its place, the same shapes and
+          sizes; only light and colour change.
+      - block: edit-keep-v1
+      - text: "AVOID: high contrast, black shadows, an indigo-purple festival night, many bright lights, glowing everything, a flat grey or blue veil over the whole frame, saturated warm colour over the whole island, neon, new objects, characters, text, moving anything"
+
+  - id: x-home-flow-il6-night
+    kind: plate
+    name: x-home-flow-il6-night
+    size: 1024x1536
+    canvas: 1024x1536
+    deliver: {scale: 1.0}
+    edit_of: x-home-flow-il6
+    chat: "Pofu · Home night"
+    light: {cell: night, layer: subject}
+    palettes: [world-foliage, world-props, world-night]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Night edit of home IL6 (picked day plate t1). Review: same picture, calm moonlit blue sky, light lilac-white cloud sea, island readable at low chroma with blue-violet shadows, warm light only from the lamps, lantern string and windows that exist at this level."
+    attach:
+      - ref: home-night
+        role: "The night target: this calm moonlit night of the finished island: its blue sky, moon, light cloud sea, quiet island colour and small warm pools. Match the light and colour; do not copy its objects."
+      - ref: night-gezgin
+        role: "Night reference: the same calm, low-contrast moonlit sky and cloud sea. Do not copy the whale or its layout."
+    prompt:
+      - text: |
+          Edit the attached painting into the same scene on a calm, clear night,
+          lit like the attached night of the finished island: a soft deep-blue sky
+          (blue, never black or purple-black) with a gentle glow near the clouds, a soft
+          round moon high on the left and a few small stars; the cloud sea stays light,
+          lilac-white. The island stays readable and fairly light under cool moonlight,
+          its colours soft and quiet but still rich, its shadows blue-violet, no deep
+          blacks, and no grey veil over the whole frame. Warm light only from real
+          sources that are already in the picture, each a small soft pool: the round
+          doors' windows, the lamps and lanterns, the tea stall's lights. The far
+          islands are dim, quiet shapes with a tiny warm light on each; the cloud-whale
+          is a soft pale shape. Do not add any lamp, window or object that is not in
+          the attached picture. Everything stays in its place, the same shapes and
+          sizes; only light and colour change.
+      - block: edit-keep-v1
+      - text: "AVOID: high contrast, black shadows, an indigo-purple festival night, many bright lights, glowing everything, a flat grey or blue veil over the whole frame, saturated warm colour over the whole island, neon, new objects, characters, text, moving anything"
+
+  - id: x-home-flow-il7-night
+    kind: plate
+    name: x-home-flow-il7-night
+    size: 1024x1536
+    canvas: 1024x1536
+    deliver: {scale: 1.0}
+    edit_of: x-home-flow-il7
+    chat: "Pofu · Home night"
+    light: {cell: night, layer: subject}
+    palettes: [world-foliage, world-props, world-night]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Night edit of home IL7 (picked day plate t1). Review: same picture, calm moonlit blue sky, light lilac-white cloud sea, island readable at low chroma with blue-violet shadows, warm light only from the lamps, lantern string and windows that exist at this level."
+    attach:
+      - ref: home-night
+        role: "The night target: this calm moonlit night of the finished island: its blue sky, moon, light cloud sea, quiet island colour and small warm pools. Match the light and colour; do not copy its objects."
+      - ref: night-gezgin
+        role: "Night reference: the same calm, low-contrast moonlit sky and cloud sea. Do not copy the whale or its layout."
+    prompt:
+      - text: |
+          Edit the attached painting into the same scene on a calm, clear night,
+          lit like the attached night of the finished island: a soft deep-blue sky
+          (blue, never black or purple-black) with a gentle glow near the clouds, a soft
+          round moon high on the left and a few small stars; the cloud sea stays light,
+          lilac-white. The island stays readable and fairly light under cool moonlight,
+          its colours soft and quiet but still rich, its shadows blue-violet, no deep
+          blacks, and no grey veil over the whole frame. Warm light only from real
+          sources that are already in the picture, each a small soft pool: the round
+          doors' windows, the lamps and lanterns, the tea stall's lights. The far
+          islands are dim, quiet shapes with a tiny warm light on each; the cloud-whale
+          is a soft pale shape. Do not add any lamp, window or object that is not in
+          the attached picture. Everything stays in its place, the same shapes and
+          sizes; only light and colour change.
+      - block: edit-keep-v1
+      - text: "AVOID: high contrast, black shadows, an indigo-purple festival night, many bright lights, glowing everything, a flat grey or blue veil over the whole frame, saturated warm colour over the whole island, neon, new objects, characters, text, moving anything"
+
+  - id: x-home-flow-il8-night
+    kind: plate
+    name: x-home-flow-il8-night
+    size: 1024x1536
+    canvas: 1024x1536
+    deliver: {scale: 1.0}
+    edit_of: x-home-flow-il8
+    chat: "Pofu · Home night"
+    light: {cell: night, layer: subject}
+    palettes: [world-foliage, world-props, world-night]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Night edit of home IL8 (picked day plate t1). Review: same picture, calm moonlit blue sky, light lilac-white cloud sea, island readable at low chroma with blue-violet shadows, warm light only from the lamps, lantern string and windows that exist at this level."
+    attach:
+      - ref: home-night
+        role: "The night target: this calm moonlit night of the finished island: its blue sky, moon, light cloud sea, quiet island colour and small warm pools. Match the light and colour; do not copy its objects."
+      - ref: night-gezgin
+        role: "Night reference: the same calm, low-contrast moonlit sky and cloud sea. Do not copy the whale or its layout."
+    prompt:
+      - text: |
+          Edit the attached painting into the same scene on a calm, clear night,
+          lit like the attached night of the finished island: a soft deep-blue sky
+          (blue, never black or purple-black) with a gentle glow near the clouds, a soft
+          round moon high on the left and a few small stars; the cloud sea stays light,
+          lilac-white. The island stays readable and fairly light under cool moonlight,
+          its colours soft and quiet but still rich, its shadows blue-violet, no deep
+          blacks, and no grey veil over the whole frame. Warm light only from real
+          sources that are already in the picture, each a small soft pool: the round
+          doors' windows, the lamps and lanterns, the tea stall's lights. The far
+          islands are dim, quiet shapes with a tiny warm light on each; the cloud-whale
+          is a soft pale shape. Do not add any lamp, window or object that is not in
+          the attached picture. Everything stays in its place, the same shapes and
+          sizes; only light and colour change.
+      - block: edit-keep-v1
+      - text: "AVOID: high contrast, black shadows, an indigo-purple festival night, many bright lights, glowing everything, a flat grey or blue veil over the whole frame, saturated warm colour over the whole island, neon, new objects, characters, text, moving anything"
+
+  - id: x-home-flow-il9-night
+    kind: plate
+    name: x-home-flow-il9-night
+    size: 1024x1536
+    canvas: 1024x1536
+    deliver: {scale: 1.0}
+    edit_of: x-home-flow-il9
+    chat: "Pofu · Home night"
+    light: {cell: night, layer: subject}
+    palettes: [world-foliage, world-props, world-night]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Night edit of home IL9 (picked day plate t1). Review: same picture, calm moonlit blue sky, light lilac-white cloud sea, island readable at low chroma with blue-violet shadows, warm light only from the lamps, lantern string and windows that exist at this level."
+    attach:
+      - ref: home-night
+        role: "The night target: this calm moonlit night of the finished island: its blue sky, moon, light cloud sea, quiet island colour and small warm pools. Match the light and colour; do not copy its objects."
+      - ref: night-gezgin
+        role: "Night reference: the same calm, low-contrast moonlit sky and cloud sea. Do not copy the whale or its layout."
+    prompt:
+      - text: |
+          Edit the attached painting into the same scene on a calm, clear night,
+          lit like the attached night of the finished island: a soft deep-blue sky
+          (blue, never black or purple-black) with a gentle glow near the clouds, a soft
+          round moon high on the left and a few small stars; the cloud sea stays light,
+          lilac-white. The island stays readable and fairly light under cool moonlight,
+          its colours soft and quiet but still rich, its shadows blue-violet, no deep
+          blacks, and no grey veil over the whole frame. Warm light only from real
+          sources that are already in the picture, each a small soft pool: the round
+          doors' windows, the lamps and lanterns, the tea stall's lights. The far
+          islands are dim, quiet shapes with a tiny warm light on each; the cloud-whale
+          is a soft pale shape. Do not add any lamp, window or object that is not in
+          the attached picture. Everything stays in its place, the same shapes and
+          sizes; only light and colour change.
+      - block: edit-keep-v1
+      - text: "AVOID: high contrast, black shadows, an indigo-purple festival night, many bright lights, glowing everything, a flat grey or blue veil over the whole frame, saturated warm colour over the whole island, neon, new objects, characters, text, moving anything"

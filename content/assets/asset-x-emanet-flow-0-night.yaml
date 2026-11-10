@@ -1,0 +1,24 @@
+id: asset-x-emanet-flow-0-night
+type: asset
+title_tr: x-emanet-flow-0-night
+title_en: x-emanet-flow-0-night (plate)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached painting into the same scene on a calm, clear night: a soft deep-blue
+  sky (blue, never black) with a gentle glow near the clouds, a soft round moon and a few
+  small stars; the cloud sea stays light and lilac-white. Emanet stays readable and fairly
+  light under cool moonlight, its colours soft but still rich, its shadows blue-violet, no
+  deep blacks, no grey veil over the whole frame. Warm light only fr…
+links:
+  variant_of:
+  - asset-x-emanet-flow-0
+art:
+  images: []
+  jobs:
+  - batch-73-islands-states:x-emanet-flow-0-night
+sources:
+- doc: tools/imagegen/manifest/batch-73-islands-states.yaml
+kind: plate
+batch: batch-73-islands-states
+size: 1536x1024

@@ -1,0 +1,685 @@
+# Batch 73: the four islands' state edits (exploration; x- ids, never promoted).
+#
+# Plate-first (ADR-0022): one painted picture per island state; the state
+# table docs/state/plates.yaml lists the null cells this batch fills. Every
+# job is an edit of that island's PICKED stage plate (batches 67 to 70, the
+# lead's pick in each review.yaml), through an `external` job whose `master`
+# is the picked take file. Per island:
+#   - stage 4 at a second hour of the day, and stage 4 in soft rain;
+#   - stages 0 to 3 at a second hour of the day (the stage's wound stays).
+# The second hour is NIGHT for Çağlayan (a day island) and Emanet (a golden
+# island). Revontuli and Mehtap are already night islands (Mehtap: dusk to
+# full moon), so for them the alternate is a CALM DAYTIME version instead of
+# night: stages 0 to 3 in daylight, and stage 4 at golden hour. Emanet's stage 4
+# is already golden, so its stage 4 alternate is a clear DAY plate (the table
+# cell `day`). Çağlayan and the other two get golden at stage 4 as the brief
+# says: Çağlayan golden; Revontuli golden (a low polar sun); Mehtap golden.
+#
+# EXPLORATION RULES (AGENTS.md): do NOT run `promote`; commit the takes (WebP
+# q90), the contact sheet and review.yaml under design/art/takes/<batch>/<id>/.
+# A failed or refused job is recorded and skipped; the run continues. No
+# characters, no painted text. Jobs are independent; ORDER: per island
+# Çağlayan, Revontuli, Emanet, Mehtap; within an island the stage 4 jobs
+# first, then stages 3, 2, 1, 0. Up to three tracks.
+#
+# Review for every take: the same picture as the parent stage plate (nothing
+# moved, healed or added); the island keeps its rich colour, no whole-frame
+# grey veil; lanterns and windows glow where the light says so.
+
+batch: batch-73-islands-states
+title: 'Islands states: stage 4 golden/alt and rain, stages 0 to 3 at night or calm day (edits of the picked plates)'
+status: open
+refs:
+  home-night: design/art/takes/batch-66-home-flow/x-home-flow-night/plate__x-home-flow-night--t1.webp
+  home-golden: design/art/takes/batch-66-home-flow/x-home-flow-golden/plate__x-home-flow-golden--t1.webp
+defaults:
+  variants: 2
+jobs:
+  - {id: x-caglayan-flow-4, kind: plate, name: x-caglayan-flow-4, external: batch-67-caglayan-flow, master: design/art/takes/batch-67-caglayan-flow/x-caglayan-flow-4/plate__x-caglayan-flow-4--t1.webp}
+  - {id: x-caglayan-flow-3, kind: plate, name: x-caglayan-flow-3, external: batch-67-caglayan-flow, master: design/art/takes/batch-67-caglayan-flow/x-caglayan-flow-3/plate__x-caglayan-flow-3--t1.webp}
+  - {id: x-caglayan-flow-2, kind: plate, name: x-caglayan-flow-2, external: batch-67-caglayan-flow, master: design/art/takes/batch-67-caglayan-flow/x-caglayan-flow-2/plate__x-caglayan-flow-2--t1.webp}
+  - {id: x-caglayan-flow-1, kind: plate, name: x-caglayan-flow-1, external: batch-67-caglayan-flow, master: design/art/takes/batch-67-caglayan-flow/x-caglayan-flow-1/plate__x-caglayan-flow-1--t1.webp}
+  - {id: x-caglayan-flow-0, kind: plate, name: x-caglayan-flow-0, external: batch-67-caglayan-flow, master: design/art/takes/batch-67-caglayan-flow/x-caglayan-flow-0/plate__x-caglayan-flow-0--t1.webp}
+  - {id: x-revontuli-flow-4, kind: plate, name: x-revontuli-flow-4, external: batch-68-revontuli-flow, master: design/art/takes/batch-68-revontuli-flow/x-revontuli-flow-4/plate__x-revontuli-flow-4--t1.webp}
+  - {id: x-revontuli-flow-3, kind: plate, name: x-revontuli-flow-3, external: batch-68-revontuli-flow, master: design/art/takes/batch-68-revontuli-flow/x-revontuli-flow-3/plate__x-revontuli-flow-3--t1.webp}
+  - {id: x-revontuli-flow-2, kind: plate, name: x-revontuli-flow-2, external: batch-68-revontuli-flow, master: design/art/takes/batch-68-revontuli-flow/x-revontuli-flow-2/plate__x-revontuli-flow-2--t1.webp}
+  - {id: x-revontuli-flow-1, kind: plate, name: x-revontuli-flow-1, external: batch-68-revontuli-flow, master: design/art/takes/batch-68-revontuli-flow/x-revontuli-flow-1/plate__x-revontuli-flow-1--t1.webp}
+  - {id: x-revontuli-flow-0, kind: plate, name: x-revontuli-flow-0, external: batch-68-revontuli-flow, master: design/art/takes/batch-68-revontuli-flow/x-revontuli-flow-0/plate__x-revontuli-flow-0--t1.webp}
+  - {id: x-emanet-flow-4, kind: plate, name: x-emanet-flow-4, external: batch-69-emanet-flow, master: design/art/takes/batch-69-emanet-flow/x-emanet-flow-4/plate__x-emanet-flow-4--t1.webp}
+  - {id: x-emanet-flow-3, kind: plate, name: x-emanet-flow-3, external: batch-69-emanet-flow, master: design/art/takes/batch-69-emanet-flow/x-emanet-flow-3/plate__x-emanet-flow-3--t1.webp}
+  - {id: x-emanet-flow-2, kind: plate, name: x-emanet-flow-2, external: batch-69-emanet-flow, master: design/art/takes/batch-69-emanet-flow/x-emanet-flow-2/plate__x-emanet-flow-2--t1.webp}
+  - {id: x-emanet-flow-1, kind: plate, name: x-emanet-flow-1, external: batch-69-emanet-flow, master: design/art/takes/batch-69-emanet-flow/x-emanet-flow-1/plate__x-emanet-flow-1--t1.webp}
+  - {id: x-emanet-flow-0, kind: plate, name: x-emanet-flow-0, external: batch-69-emanet-flow, master: design/art/takes/batch-69-emanet-flow/x-emanet-flow-0/plate__x-emanet-flow-0--t1.webp}
+  - {id: x-mehtap-flow-4, kind: plate, name: x-mehtap-flow-4, external: batch-70-mehtap-flow, master: design/art/takes/batch-70-mehtap-flow/x-mehtap-flow-4/plate__x-mehtap-flow-4--t1.webp}
+  - {id: x-mehtap-flow-3, kind: plate, name: x-mehtap-flow-3, external: batch-70-mehtap-flow, master: design/art/takes/batch-70-mehtap-flow/x-mehtap-flow-3/plate__x-mehtap-flow-3--t1.webp}
+  - {id: x-mehtap-flow-2, kind: plate, name: x-mehtap-flow-2, external: batch-70-mehtap-flow, master: design/art/takes/batch-70-mehtap-flow/x-mehtap-flow-2/plate__x-mehtap-flow-2--t1.webp}
+  - {id: x-mehtap-flow-1, kind: plate, name: x-mehtap-flow-1, external: batch-70-mehtap-flow, master: design/art/takes/batch-70-mehtap-flow/x-mehtap-flow-1/plate__x-mehtap-flow-1--t1.webp}
+  - {id: x-mehtap-flow-0, kind: plate, name: x-mehtap-flow-0, external: batch-70-mehtap-flow, master: design/art/takes/batch-70-mehtap-flow/x-mehtap-flow-0/plate__x-mehtap-flow-0--t1.webp}
+
+  - id: x-caglayan-flow-4-golden
+    kind: plate
+    name: x-caglayan-flow-4-golden
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 1.0}
+    edit_of: x-caglayan-flow-4
+    chat: "Pofu · Çağlayan states"
+    light: {cell: golden, layer: subject}
+    palettes: [world-props, world-sunset, world-foliage]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Çağlayan stage 4, golden edit of the picked stage plate (t1). Review: nothing moved or healed; rich colour kept; no grey veil."
+    attach:
+      - ref: home-golden
+        role: "The light target: this golden evening of the home island, its pink-lilac sky, peach light and lilac cloud shade. Match the light, not the objects."
+    prompt:
+      - text: |
+          Edit the attached painting into the same scene at golden hour: a soft pink
+          and lilac sky warming to peach near the clouds, low warm peach light raking
+          from the side, lilac shadows, the cloud sea blushed peach with lilac shade.
+          Lamps and windows that exist in the picture are just coming on, small and
+          soft. Çağlayan's own colours stay rich (the falls, the mill wheel, the stone spout and the pools).
+          Everything stays in its place, the same shapes and sizes; only light and
+          colour change.
+      - block: edit-keep-v1
+      - text: "AVOID: orange or red saturation, a dark scene, healing or changing the stage, new objects, characters, text, moving anything"
+
+  - id: x-caglayan-flow-4-rain
+    kind: plate
+    name: x-caglayan-flow-4-rain
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 1.0}
+    edit_of: x-caglayan-flow-4
+    chat: "Pofu · Çağlayan states"
+    light: {cell: day, layer: subject}
+    palettes: [world-foliage, world-props, world-water]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Çağlayan stage 4, rain edit of the picked stage plate (t1). Review: nothing moved or healed; rich colour kept; no grey veil."
+    prompt:
+      - text: |
+          Edit the attached painting into the same scene in a soft rain: a soft
+          lilac-grey overcast sky, fine gentle rain streaks, the island still bright and
+          keeping its rich colour (not a grey veil), small puddles and rings in the
+          water, wet sheen kept matte and soft (the falls, the mill wheel, the stone spout and the pools). The far clouds fade softly into
+          the rain but stay visible. Lamps and windows that exist glow a little warmer.
+          Everything stays in its place, the same shapes and sizes.
+      - block: edit-keep-v1
+      - text: "AVOID: a dark or grey-blue gloomy scene, a storm, hard diagonal rain, a grey veil, new objects, characters, text, moving anything"
+
+  - id: x-caglayan-flow-3-night
+    kind: plate
+    name: x-caglayan-flow-3-night
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 1.0}
+    edit_of: x-caglayan-flow-3
+    chat: "Pofu · Çağlayan states"
+    light: {cell: night, layer: subject}
+    palettes: [world-night, world-props, world-foliage]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Çağlayan stage 3, night edit of the picked stage plate (t1). Review: nothing moved or healed; rich colour kept; no grey veil."
+    attach:
+      - ref: home-night
+        role: "The night target: this calm moonlit night, its blue sky, light cloud sea and small warm pools. Match the light, not the objects."
+    prompt:
+      - text: |
+          Edit the attached painting into the same scene on a calm, clear night: a soft
+          deep-blue sky (blue, never black) with a gentle glow near the clouds, a soft
+          round moon and a few small stars; the cloud sea stays light and lilac-white.
+          Çağlayan stays readable and fairly light under cool moonlight, its colours soft
+          but still rich, its shadows blue-violet, no deep blacks, no grey veil over the
+          whole frame. Warm light only from real sources already in the picture
+          (windows, lanterns, lamps), each a small soft pool; nothing is added.
+          The stage's state stays exactly as painted: whatever is broken, dry, dark, covered or missing at this stage stays so, nothing healed, nothing new.
+          Everything stays in its place, the same shapes and sizes; only light and
+          colour change.
+      - block: edit-keep-v1
+      - text: "AVOID: high contrast, black shadows, an indigo-purple festival night, many bright lights, a grey or blue veil over the whole frame, neon, new objects, characters, text, moving anything"
+
+  - id: x-caglayan-flow-2-night
+    kind: plate
+    name: x-caglayan-flow-2-night
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 1.0}
+    edit_of: x-caglayan-flow-2
+    chat: "Pofu · Çağlayan states"
+    light: {cell: night, layer: subject}
+    palettes: [world-night, world-props, world-foliage]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Çağlayan stage 2, night edit of the picked stage plate (t1). Review: nothing moved or healed; rich colour kept; no grey veil."
+    attach:
+      - ref: home-night
+        role: "The night target: this calm moonlit night, its blue sky, light cloud sea and small warm pools. Match the light, not the objects."
+    prompt:
+      - text: |
+          Edit the attached painting into the same scene on a calm, clear night: a soft
+          deep-blue sky (blue, never black) with a gentle glow near the clouds, a soft
+          round moon and a few small stars; the cloud sea stays light and lilac-white.
+          Çağlayan stays readable and fairly light under cool moonlight, its colours soft
+          but still rich, its shadows blue-violet, no deep blacks, no grey veil over the
+          whole frame. Warm light only from real sources already in the picture
+          (windows, lanterns, lamps), each a small soft pool; nothing is added.
+          The stage's state stays exactly as painted: whatever is broken, dry, dark, covered or missing at this stage stays so, nothing healed, nothing new.
+          Everything stays in its place, the same shapes and sizes; only light and
+          colour change.
+      - block: edit-keep-v1
+      - text: "AVOID: high contrast, black shadows, an indigo-purple festival night, many bright lights, a grey or blue veil over the whole frame, neon, new objects, characters, text, moving anything"
+
+  - id: x-caglayan-flow-1-night
+    kind: plate
+    name: x-caglayan-flow-1-night
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 1.0}
+    edit_of: x-caglayan-flow-1
+    chat: "Pofu · Çağlayan states"
+    light: {cell: night, layer: subject}
+    palettes: [world-night, world-props, world-foliage]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Çağlayan stage 1, night edit of the picked stage plate (t1). Review: nothing moved or healed; rich colour kept; no grey veil."
+    attach:
+      - ref: home-night
+        role: "The night target: this calm moonlit night, its blue sky, light cloud sea and small warm pools. Match the light, not the objects."
+    prompt:
+      - text: |
+          Edit the attached painting into the same scene on a calm, clear night: a soft
+          deep-blue sky (blue, never black) with a gentle glow near the clouds, a soft
+          round moon and a few small stars; the cloud sea stays light and lilac-white.
+          Çağlayan stays readable and fairly light under cool moonlight, its colours soft
+          but still rich, its shadows blue-violet, no deep blacks, no grey veil over the
+          whole frame. Warm light only from real sources already in the picture
+          (windows, lanterns, lamps), each a small soft pool; nothing is added.
+          The stage's state stays exactly as painted: whatever is broken, dry, dark, covered or missing at this stage stays so, nothing healed, nothing new.
+          Everything stays in its place, the same shapes and sizes; only light and
+          colour change.
+      - block: edit-keep-v1
+      - text: "AVOID: high contrast, black shadows, an indigo-purple festival night, many bright lights, a grey or blue veil over the whole frame, neon, new objects, characters, text, moving anything"
+
+  - id: x-caglayan-flow-0-night
+    kind: plate
+    name: x-caglayan-flow-0-night
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 1.0}
+    edit_of: x-caglayan-flow-0
+    chat: "Pofu · Çağlayan states"
+    light: {cell: night, layer: subject}
+    palettes: [world-night, world-props, world-foliage]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Çağlayan stage 0, night edit of the picked stage plate (t1). Review: nothing moved or healed; rich colour kept; no grey veil."
+    attach:
+      - ref: home-night
+        role: "The night target: this calm moonlit night, its blue sky, light cloud sea and small warm pools. Match the light, not the objects."
+    prompt:
+      - text: |
+          Edit the attached painting into the same scene on a calm, clear night: a soft
+          deep-blue sky (blue, never black) with a gentle glow near the clouds, a soft
+          round moon and a few small stars; the cloud sea stays light and lilac-white.
+          Çağlayan stays readable and fairly light under cool moonlight, its colours soft
+          but still rich, its shadows blue-violet, no deep blacks, no grey veil over the
+          whole frame. Warm light only from real sources already in the picture
+          (windows, lanterns, lamps), each a small soft pool; nothing is added.
+          The stage's state stays exactly as painted: whatever is broken, dry, dark, covered or missing at this stage stays so, nothing healed, nothing new.
+          Everything stays in its place, the same shapes and sizes; only light and
+          colour change.
+      - block: edit-keep-v1
+      - text: "AVOID: high contrast, black shadows, an indigo-purple festival night, many bright lights, a grey or blue veil over the whole frame, neon, new objects, characters, text, moving anything"
+
+  - id: x-revontuli-flow-4-golden
+    kind: plate
+    name: x-revontuli-flow-4-golden
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 1.0}
+    edit_of: x-revontuli-flow-4
+    chat: "Pofu · Revontuli states"
+    light: {cell: golden, layer: subject}
+    palettes: [world-props, world-sunset, world-foliage]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Revontuli stage 4, golden edit of the picked stage plate (t1). Review: nothing moved or healed; rich colour kept; no grey veil."
+    attach:
+      - ref: home-golden
+        role: "The light target: this golden evening of the home island, its pink-lilac sky, peach light and lilac cloud shade. Match the light, not the objects."
+    prompt:
+      - text: |
+          Edit the attached painting into the same scene at golden hour: a soft pink
+          and lilac sky warming to peach near the clouds, low warm peach light raking
+          from the side, lilac shadows, the cloud sea blushed peach with lilac shade.
+          Lamps and windows that exist in the picture are just coming on, small and
+          soft. Revontuli's own colours stay rich (the ice lake, the post's lantern and the aurora tail).
+          Everything stays in its place, the same shapes and sizes; only light and
+          colour change.
+      - block: edit-keep-v1
+      - text: "AVOID: orange or red saturation, a dark scene, healing or changing the stage, new objects, characters, text, moving anything"
+
+  - id: x-revontuli-flow-4-rain
+    kind: plate
+    name: x-revontuli-flow-4-rain
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 1.0}
+    edit_of: x-revontuli-flow-4
+    chat: "Pofu · Revontuli states"
+    light: {cell: day, layer: subject}
+    palettes: [world-foliage, world-props, world-water]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Revontuli stage 4, rain edit of the picked stage plate (t1). Review: nothing moved or healed; rich colour kept; no grey veil."
+    prompt:
+      - text: |
+          Edit the attached painting into the same scene in a soft rain: a soft
+          lilac-grey overcast sky, fine gentle rain streaks, the island still bright and
+          keeping its rich colour (not a grey veil), small puddles and rings in the
+          water, wet sheen kept matte and soft (the ice lake, the post's lantern and the aurora tail). The far clouds fade softly into
+          the rain but stay visible. Lamps and windows that exist glow a little warmer.
+          Everything stays in its place, the same shapes and sizes.
+      - block: edit-keep-v1
+      - text: "AVOID: a dark or grey-blue gloomy scene, a storm, hard diagonal rain, a grey veil, new objects, characters, text, moving anything"
+
+  - id: x-revontuli-flow-3-day
+    kind: plate
+    name: x-revontuli-flow-3-day
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 1.0}
+    edit_of: x-revontuli-flow-3
+    chat: "Pofu · Revontuli states"
+    light: {cell: day, layer: subject}
+    palettes: [world-foliage, world-props, world-water]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Revontuli stage 3, day edit of the picked stage plate (t1). Revontuli is already a night island, so the alternate is a calm daytime version, not night. Review: nothing moved or healed; rich colour kept; no grey veil."
+    prompt:
+      - text: |
+          Edit the attached painting into the same scene in calm, clear daytime: a soft
+          pale-blue sky with a few light clouds, gentle neutral daylight from the upper
+          left, soft shadows, a bright light cloud sea. Revontuli keeps its rich colours
+          (the ice lake, the post's lantern and the aurora tail); lanterns and windows are unlit but their shapes stay.
+          The stage's state stays exactly as painted: whatever is broken, dry, dark, covered or missing at this stage stays so, nothing healed, nothing new.
+          Everything stays in its place, the same shapes and sizes; only light and
+          colour change.
+      - block: edit-keep-v1
+      - text: "AVOID: a dark scene, harsh noon contrast, a grey veil, healing or changing the stage, new objects, characters, text, moving anything"
+
+  - id: x-revontuli-flow-2-day
+    kind: plate
+    name: x-revontuli-flow-2-day
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 1.0}
+    edit_of: x-revontuli-flow-2
+    chat: "Pofu · Revontuli states"
+    light: {cell: day, layer: subject}
+    palettes: [world-foliage, world-props, world-water]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Revontuli stage 2, day edit of the picked stage plate (t1). Revontuli is already a night island, so the alternate is a calm daytime version, not night. Review: nothing moved or healed; rich colour kept; no grey veil."
+    prompt:
+      - text: |
+          Edit the attached painting into the same scene in calm, clear daytime: a soft
+          pale-blue sky with a few light clouds, gentle neutral daylight from the upper
+          left, soft shadows, a bright light cloud sea. Revontuli keeps its rich colours
+          (the ice lake, the post's lantern and the aurora tail); lanterns and windows are unlit but their shapes stay.
+          The stage's state stays exactly as painted: whatever is broken, dry, dark, covered or missing at this stage stays so, nothing healed, nothing new.
+          Everything stays in its place, the same shapes and sizes; only light and
+          colour change.
+      - block: edit-keep-v1
+      - text: "AVOID: a dark scene, harsh noon contrast, a grey veil, healing or changing the stage, new objects, characters, text, moving anything"
+
+  - id: x-revontuli-flow-1-day
+    kind: plate
+    name: x-revontuli-flow-1-day
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 1.0}
+    edit_of: x-revontuli-flow-1
+    chat: "Pofu · Revontuli states"
+    light: {cell: day, layer: subject}
+    palettes: [world-foliage, world-props, world-water]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Revontuli stage 1, day edit of the picked stage plate (t1). Revontuli is already a night island, so the alternate is a calm daytime version, not night. Review: nothing moved or healed; rich colour kept; no grey veil."
+    prompt:
+      - text: |
+          Edit the attached painting into the same scene in calm, clear daytime: a soft
+          pale-blue sky with a few light clouds, gentle neutral daylight from the upper
+          left, soft shadows, a bright light cloud sea. Revontuli keeps its rich colours
+          (the ice lake, the post's lantern and the aurora tail); lanterns and windows are unlit but their shapes stay.
+          The stage's state stays exactly as painted: whatever is broken, dry, dark, covered or missing at this stage stays so, nothing healed, nothing new.
+          Everything stays in its place, the same shapes and sizes; only light and
+          colour change.
+      - block: edit-keep-v1
+      - text: "AVOID: a dark scene, harsh noon contrast, a grey veil, healing or changing the stage, new objects, characters, text, moving anything"
+
+  - id: x-revontuli-flow-0-day
+    kind: plate
+    name: x-revontuli-flow-0-day
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 1.0}
+    edit_of: x-revontuli-flow-0
+    chat: "Pofu · Revontuli states"
+    light: {cell: day, layer: subject}
+    palettes: [world-foliage, world-props, world-water]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Revontuli stage 0, day edit of the picked stage plate (t1). Revontuli is already a night island, so the alternate is a calm daytime version, not night. Review: nothing moved or healed; rich colour kept; no grey veil."
+    prompt:
+      - text: |
+          Edit the attached painting into the same scene in calm, clear daytime: a soft
+          pale-blue sky with a few light clouds, gentle neutral daylight from the upper
+          left, soft shadows, a bright light cloud sea. Revontuli keeps its rich colours
+          (the ice lake, the post's lantern and the aurora tail); lanterns and windows are unlit but their shapes stay.
+          The stage's state stays exactly as painted: whatever is broken, dry, dark, covered or missing at this stage stays so, nothing healed, nothing new.
+          Everything stays in its place, the same shapes and sizes; only light and
+          colour change.
+      - block: edit-keep-v1
+      - text: "AVOID: a dark scene, harsh noon contrast, a grey veil, healing or changing the stage, new objects, characters, text, moving anything"
+
+  - id: x-emanet-flow-4-day
+    kind: plate
+    name: x-emanet-flow-4-day
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 1.0}
+    edit_of: x-emanet-flow-4
+    chat: "Pofu · Emanet states"
+    light: {cell: day, layer: subject}
+    palettes: [world-foliage, world-props, world-water]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Emanet stage 4, day edit of the picked stage plate (t1). Emanet's root is already golden, so the alternate is a clear day. Review: nothing moved or healed; rich colour kept; no grey veil."
+    prompt:
+      - text: |
+          Edit the attached painting into the same scene in calm, clear daytime: a soft
+          pale-blue sky with a few light clouds, gentle neutral daylight from the upper
+          left, soft shadows, a bright light cloud sea. Emanet keeps its rich colours
+          (the shelves, the bunting, the warm windows and the steam); lanterns and windows are unlit but their shapes stay.
+          Everything stays in its place, the same shapes and sizes; only light and
+          colour change.
+      - block: edit-keep-v1
+      - text: "AVOID: a dark scene, harsh noon contrast, a grey veil, healing or changing the stage, new objects, characters, text, moving anything"
+
+  - id: x-emanet-flow-4-rain
+    kind: plate
+    name: x-emanet-flow-4-rain
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 1.0}
+    edit_of: x-emanet-flow-4
+    chat: "Pofu · Emanet states"
+    light: {cell: day, layer: subject}
+    palettes: [world-foliage, world-props, world-water]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Emanet stage 4, rain edit of the picked stage plate (t1). Review: nothing moved or healed; rich colour kept; no grey veil."
+    prompt:
+      - text: |
+          Edit the attached painting into the same scene in a soft rain: a soft
+          lilac-grey overcast sky, fine gentle rain streaks, the island still bright and
+          keeping its rich colour (not a grey veil), small puddles and rings in the
+          water, wet sheen kept matte and soft (the shelves, the bunting, the warm windows and the steam). The far clouds fade softly into
+          the rain but stay visible. Lamps and windows that exist glow a little warmer.
+          Everything stays in its place, the same shapes and sizes.
+      - block: edit-keep-v1
+      - text: "AVOID: a dark or grey-blue gloomy scene, a storm, hard diagonal rain, a grey veil, new objects, characters, text, moving anything"
+
+  - id: x-emanet-flow-3-night
+    kind: plate
+    name: x-emanet-flow-3-night
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 1.0}
+    edit_of: x-emanet-flow-3
+    chat: "Pofu · Emanet states"
+    light: {cell: night, layer: subject}
+    palettes: [world-night, world-props, world-foliage]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Emanet stage 3, night edit of the picked stage plate (t1). Review: nothing moved or healed; rich colour kept; no grey veil."
+    attach:
+      - ref: home-night
+        role: "The night target: this calm moonlit night, its blue sky, light cloud sea and small warm pools. Match the light, not the objects."
+    prompt:
+      - text: |
+          Edit the attached painting into the same scene on a calm, clear night: a soft
+          deep-blue sky (blue, never black) with a gentle glow near the clouds, a soft
+          round moon and a few small stars; the cloud sea stays light and lilac-white.
+          Emanet stays readable and fairly light under cool moonlight, its colours soft
+          but still rich, its shadows blue-violet, no deep blacks, no grey veil over the
+          whole frame. Warm light only from real sources already in the picture
+          (windows, lanterns, lamps), each a small soft pool; nothing is added.
+          The stage's state stays exactly as painted: whatever is broken, dry, dark, covered or missing at this stage stays so, nothing healed, nothing new.
+          Everything stays in its place, the same shapes and sizes; only light and
+          colour change.
+      - block: edit-keep-v1
+      - text: "AVOID: high contrast, black shadows, an indigo-purple festival night, many bright lights, a grey or blue veil over the whole frame, neon, new objects, characters, text, moving anything"
+
+  - id: x-emanet-flow-2-night
+    kind: plate
+    name: x-emanet-flow-2-night
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 1.0}
+    edit_of: x-emanet-flow-2
+    chat: "Pofu · Emanet states"
+    light: {cell: night, layer: subject}
+    palettes: [world-night, world-props, world-foliage]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Emanet stage 2, night edit of the picked stage plate (t1). Review: nothing moved or healed; rich colour kept; no grey veil."
+    attach:
+      - ref: home-night
+        role: "The night target: this calm moonlit night, its blue sky, light cloud sea and small warm pools. Match the light, not the objects."
+    prompt:
+      - text: |
+          Edit the attached painting into the same scene on a calm, clear night: a soft
+          deep-blue sky (blue, never black) with a gentle glow near the clouds, a soft
+          round moon and a few small stars; the cloud sea stays light and lilac-white.
+          Emanet stays readable and fairly light under cool moonlight, its colours soft
+          but still rich, its shadows blue-violet, no deep blacks, no grey veil over the
+          whole frame. Warm light only from real sources already in the picture
+          (windows, lanterns, lamps), each a small soft pool; nothing is added.
+          The stage's state stays exactly as painted: whatever is broken, dry, dark, covered or missing at this stage stays so, nothing healed, nothing new.
+          Everything stays in its place, the same shapes and sizes; only light and
+          colour change.
+      - block: edit-keep-v1
+      - text: "AVOID: high contrast, black shadows, an indigo-purple festival night, many bright lights, a grey or blue veil over the whole frame, neon, new objects, characters, text, moving anything"
+
+  - id: x-emanet-flow-1-night
+    kind: plate
+    name: x-emanet-flow-1-night
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 1.0}
+    edit_of: x-emanet-flow-1
+    chat: "Pofu · Emanet states"
+    light: {cell: night, layer: subject}
+    palettes: [world-night, world-props, world-foliage]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Emanet stage 1, night edit of the picked stage plate (t1). Review: nothing moved or healed; rich colour kept; no grey veil."
+    attach:
+      - ref: home-night
+        role: "The night target: this calm moonlit night, its blue sky, light cloud sea and small warm pools. Match the light, not the objects."
+    prompt:
+      - text: |
+          Edit the attached painting into the same scene on a calm, clear night: a soft
+          deep-blue sky (blue, never black) with a gentle glow near the clouds, a soft
+          round moon and a few small stars; the cloud sea stays light and lilac-white.
+          Emanet stays readable and fairly light under cool moonlight, its colours soft
+          but still rich, its shadows blue-violet, no deep blacks, no grey veil over the
+          whole frame. Warm light only from real sources already in the picture
+          (windows, lanterns, lamps), each a small soft pool; nothing is added.
+          The stage's state stays exactly as painted: whatever is broken, dry, dark, covered or missing at this stage stays so, nothing healed, nothing new.
+          Everything stays in its place, the same shapes and sizes; only light and
+          colour change.
+      - block: edit-keep-v1
+      - text: "AVOID: high contrast, black shadows, an indigo-purple festival night, many bright lights, a grey or blue veil over the whole frame, neon, new objects, characters, text, moving anything"
+
+  - id: x-emanet-flow-0-night
+    kind: plate
+    name: x-emanet-flow-0-night
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 1.0}
+    edit_of: x-emanet-flow-0
+    chat: "Pofu · Emanet states"
+    light: {cell: night, layer: subject}
+    palettes: [world-night, world-props, world-foliage]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Emanet stage 0, night edit of the picked stage plate (t1). Review: nothing moved or healed; rich colour kept; no grey veil."
+    attach:
+      - ref: home-night
+        role: "The night target: this calm moonlit night, its blue sky, light cloud sea and small warm pools. Match the light, not the objects."
+    prompt:
+      - text: |
+          Edit the attached painting into the same scene on a calm, clear night: a soft
+          deep-blue sky (blue, never black) with a gentle glow near the clouds, a soft
+          round moon and a few small stars; the cloud sea stays light and lilac-white.
+          Emanet stays readable and fairly light under cool moonlight, its colours soft
+          but still rich, its shadows blue-violet, no deep blacks, no grey veil over the
+          whole frame. Warm light only from real sources already in the picture
+          (windows, lanterns, lamps), each a small soft pool; nothing is added.
+          The stage's state stays exactly as painted: whatever is broken, dry, dark, covered or missing at this stage stays so, nothing healed, nothing new.
+          Everything stays in its place, the same shapes and sizes; only light and
+          colour change.
+      - block: edit-keep-v1
+      - text: "AVOID: high contrast, black shadows, an indigo-purple festival night, many bright lights, a grey or blue veil over the whole frame, neon, new objects, characters, text, moving anything"
+
+  - id: x-mehtap-flow-4-golden
+    kind: plate
+    name: x-mehtap-flow-4-golden
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 1.0}
+    edit_of: x-mehtap-flow-4
+    chat: "Pofu · Mehtap states"
+    light: {cell: golden, layer: subject}
+    palettes: [world-props, world-sunset, world-foliage]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Mehtap stage 4, golden edit of the picked stage plate (t1). Review: nothing moved or healed; rich colour kept; no grey veil."
+    attach:
+      - ref: home-golden
+        role: "The light target: this golden evening of the home island, its pink-lilac sky, peach light and lilac cloud shade. Match the light, not the objects."
+    prompt:
+      - text: |
+          Edit the attached painting into the same scene at golden hour: a soft pink
+          and lilac sky warming to peach near the clouds, low warm peach light raking
+          from the side, lilac shadows, the cloud sea blushed peach with lilac shade.
+          Lamps and windows that exist in the picture are just coming on, small and
+          soft. Mehtap's own colours stay rich (the crescent plate, the dome, the moon pool and the owl's perch).
+          Everything stays in its place, the same shapes and sizes; only light and
+          colour change.
+      - block: edit-keep-v1
+      - text: "AVOID: orange or red saturation, a dark scene, healing or changing the stage, new objects, characters, text, moving anything"
+
+  - id: x-mehtap-flow-4-rain
+    kind: plate
+    name: x-mehtap-flow-4-rain
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 1.0}
+    edit_of: x-mehtap-flow-4
+    chat: "Pofu · Mehtap states"
+    light: {cell: day, layer: subject}
+    palettes: [world-foliage, world-props, world-water]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Mehtap stage 4, rain edit of the picked stage plate (t1). Review: nothing moved or healed; rich colour kept; no grey veil."
+    prompt:
+      - text: |
+          Edit the attached painting into the same scene in a soft rain: a soft
+          lilac-grey overcast sky, fine gentle rain streaks, the island still bright and
+          keeping its rich colour (not a grey veil), small puddles and rings in the
+          water, wet sheen kept matte and soft (the crescent plate, the dome, the moon pool and the owl's perch). The far clouds fade softly into
+          the rain but stay visible. Lamps and windows that exist glow a little warmer.
+          Everything stays in its place, the same shapes and sizes.
+      - block: edit-keep-v1
+      - text: "AVOID: a dark or grey-blue gloomy scene, a storm, hard diagonal rain, a grey veil, new objects, characters, text, moving anything"
+
+  - id: x-mehtap-flow-3-day
+    kind: plate
+    name: x-mehtap-flow-3-day
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 1.0}
+    edit_of: x-mehtap-flow-3
+    chat: "Pofu · Mehtap states"
+    light: {cell: day, layer: subject}
+    palettes: [world-foliage, world-props, world-water]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Mehtap stage 3, day edit of the picked stage plate (t1). Mehtap is already a night island, so the alternate is a calm daytime version, not night. Review: nothing moved or healed; rich colour kept; no grey veil."
+    prompt:
+      - text: |
+          Edit the attached painting into the same scene in calm, clear daytime: a soft
+          pale-blue sky with a few light clouds, gentle neutral daylight from the upper
+          left, soft shadows, a bright light cloud sea. Mehtap keeps its rich colours
+          (the crescent plate, the dome, the moon pool and the owl's perch); lanterns and windows are unlit but their shapes stay.
+          The stage's state stays exactly as painted: whatever is broken, dry, dark, covered or missing at this stage stays so, nothing healed, nothing new.
+          Everything stays in its place, the same shapes and sizes; only light and
+          colour change.
+      - block: edit-keep-v1
+      - text: "AVOID: a dark scene, harsh noon contrast, a grey veil, healing or changing the stage, new objects, characters, text, moving anything"
+
+  - id: x-mehtap-flow-2-day
+    kind: plate
+    name: x-mehtap-flow-2-day
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 1.0}
+    edit_of: x-mehtap-flow-2
+    chat: "Pofu · Mehtap states"
+    light: {cell: day, layer: subject}
+    palettes: [world-foliage, world-props, world-water]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Mehtap stage 2, day edit of the picked stage plate (t1). Mehtap is already a night island, so the alternate is a calm daytime version, not night. Review: nothing moved or healed; rich colour kept; no grey veil."
+    prompt:
+      - text: |
+          Edit the attached painting into the same scene in calm, clear daytime: a soft
+          pale-blue sky with a few light clouds, gentle neutral daylight from the upper
+          left, soft shadows, a bright light cloud sea. Mehtap keeps its rich colours
+          (the crescent plate, the dome, the moon pool and the owl's perch); lanterns and windows are unlit but their shapes stay.
+          The stage's state stays exactly as painted: whatever is broken, dry, dark, covered or missing at this stage stays so, nothing healed, nothing new.
+          Everything stays in its place, the same shapes and sizes; only light and
+          colour change.
+      - block: edit-keep-v1
+      - text: "AVOID: a dark scene, harsh noon contrast, a grey veil, healing or changing the stage, new objects, characters, text, moving anything"
+
+  - id: x-mehtap-flow-1-day
+    kind: plate
+    name: x-mehtap-flow-1-day
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 1.0}
+    edit_of: x-mehtap-flow-1
+    chat: "Pofu · Mehtap states"
+    light: {cell: day, layer: subject}
+    palettes: [world-foliage, world-props, world-water]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Mehtap stage 1, day edit of the picked stage plate (t1). Mehtap is already a night island, so the alternate is a calm daytime version, not night. Review: nothing moved or healed; rich colour kept; no grey veil."
+    prompt:
+      - text: |
+          Edit the attached painting into the same scene in calm, clear daytime: a soft
+          pale-blue sky with a few light clouds, gentle neutral daylight from the upper
+          left, soft shadows, a bright light cloud sea. Mehtap keeps its rich colours
+          (the crescent plate, the dome, the moon pool and the owl's perch); lanterns and windows are unlit but their shapes stay.
+          The stage's state stays exactly as painted: whatever is broken, dry, dark, covered or missing at this stage stays so, nothing healed, nothing new.
+          Everything stays in its place, the same shapes and sizes; only light and
+          colour change.
+      - block: edit-keep-v1
+      - text: "AVOID: a dark scene, harsh noon contrast, a grey veil, healing or changing the stage, new objects, characters, text, moving anything"
+
+  - id: x-mehtap-flow-0-day
+    kind: plate
+    name: x-mehtap-flow-0-day
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 1.0}
+    edit_of: x-mehtap-flow-0
+    chat: "Pofu · Mehtap states"
+    light: {cell: day, layer: subject}
+    palettes: [world-foliage, world-props, world-water]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Mehtap stage 0, day edit of the picked stage plate (t1). Mehtap is already a night island, so the alternate is a calm daytime version, not night. Review: nothing moved or healed; rich colour kept; no grey veil."
+    prompt:
+      - text: |
+          Edit the attached painting into the same scene in calm, clear daytime: a soft
+          pale-blue sky with a few light clouds, gentle neutral daylight from the upper
+          left, soft shadows, a bright light cloud sea. Mehtap keeps its rich colours
+          (the crescent plate, the dome, the moon pool and the owl's perch); lanterns and windows are unlit but their shapes stay.
+          The stage's state stays exactly as painted: whatever is broken, dry, dark, covered or missing at this stage stays so, nothing healed, nothing new.
+          Everything stays in its place, the same shapes and sizes; only light and
+          colour change.
+      - block: edit-keep-v1
+      - text: "AVOID: a dark scene, harsh noon contrast, a grey veil, healing or changing the stage, new objects, characters, text, moving anything"

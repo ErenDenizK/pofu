@@ -1,0 +1,24 @@
+id: asset-x-home-flow-il8-night
+type: asset
+title_tr: x-home-flow-il8-night
+title_en: x-home-flow-il8-night (plate)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached painting into the same scene on a calm, clear night, lit like the attached
+  night of the finished island: a soft deep-blue sky (blue, never black or purple-black) with
+  a gentle glow near the clouds, a soft round moon high on the left and a few small stars;
+  the cloud sea stays light, lilac-white. The island stays readable and fairly light under
+  cool moonlight, its colours soft and quiet but still rich…
+links:
+  variant_of:
+  - asset-x-home-flow-il8
+art:
+  images: []
+  jobs:
+  - batch-72-home-night:x-home-flow-il8-night
+sources:
+- doc: tools/imagegen/manifest/batch-72-home-night.yaml
+kind: plate
+batch: batch-72-home-night
+size: 1024x1536

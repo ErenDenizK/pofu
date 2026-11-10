@@ -1,0 +1,24 @@
+id: asset-x-revontuli-flow-4-golden
+type: asset
+title_tr: x-revontuli-flow-4-golden
+title_en: x-revontuli-flow-4-golden (plate)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached painting into the same scene at golden hour: a soft pink and lilac sky
+  warming to peach near the clouds, low warm peach light raking from the side, lilac shadows,
+  the cloud sea blushed peach with lilac shade. Lamps and windows that exist in the picture
+  are just coming on, small and soft. Revontuli's own colours stay rich (the ice lake, the
+  post's lantern and the aurora tail). Everything stays in its…
+links:
+  variant_of:
+  - asset-x-revontuli-flow-4
+art:
+  images: []
+  jobs:
+  - batch-73-islands-states:x-revontuli-flow-4-golden
+sources:
+- doc: tools/imagegen/manifest/batch-73-islands-states.yaml
+kind: plate
+batch: batch-73-islands-states
+size: 1536x1024

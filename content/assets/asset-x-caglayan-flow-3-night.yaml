@@ -1,0 +1,24 @@
+id: asset-x-caglayan-flow-3-night
+type: asset
+title_tr: x-caglayan-flow-3-night
+title_en: x-caglayan-flow-3-night (plate)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached painting into the same scene on a calm, clear night: a soft deep-blue
+  sky (blue, never black) with a gentle glow near the clouds, a soft round moon and a few
+  small stars; the cloud sea stays light and lilac-white. Çağlayan stays readable and fairly
+  light under cool moonlight, its colours soft but still rich, its shadows blue-violet, no
+  deep blacks, no grey veil over the whole frame. Warm light only …
+links:
+  variant_of:
+  - asset-x-caglayan-flow-3
+art:
+  images: []
+  jobs:
+  - batch-73-islands-states:x-caglayan-flow-3-night
+sources:
+- doc: tools/imagegen/manifest/batch-73-islands-states.yaml
+kind: plate
+batch: batch-73-islands-states
+size: 1536x1024

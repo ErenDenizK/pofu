@@ -1,0 +1,24 @@
+id: asset-x-mehtap-flow-0-day
+type: asset
+title_tr: x-mehtap-flow-0-day
+title_en: x-mehtap-flow-0-day (plate)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached painting into the same scene in calm, clear daytime: a soft pale-blue
+  sky with a few light clouds, gentle neutral daylight from the upper left, soft shadows,
+  a bright light cloud sea. Mehtap keeps its rich colours (the crescent plate, the dome, the
+  moon pool and the owl's perch); lanterns and windows are unlit but their shapes stay. The
+  stage's state stays exactly as painted: whatever is broken, dry…
+links:
+  variant_of:
+  - asset-x-mehtap-flow-0
+art:
+  images: []
+  jobs:
+  - batch-73-islands-states:x-mehtap-flow-0-day
+sources:
+- doc: tools/imagegen/manifest/batch-73-islands-states.yaml
+kind: plate
+batch: batch-73-islands-states
+size: 1536x1024
