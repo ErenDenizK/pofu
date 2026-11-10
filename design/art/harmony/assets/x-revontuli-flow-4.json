@@ -1,0 +1,55 @@
+{
+ "after": {
+  "C_mean": 27.812,
+  "C_p50": 23.95,
+  "C_p95": 52.709,
+  "L_mean": 76.289,
+  "L_p2": 44.875,
+  "L_p98": 94.667,
+  "detail": 1.052,
+  "edge": 0.0,
+  "tint_a": 5.289,
+  "tint_b": -2.905,
+  "warmth_b": -15.388
+ },
+ "before": {
+  "C_mean": 27.941,
+  "C_p50": 24.167,
+  "C_p95": 53.054,
+  "L_mean": 70.407,
+  "L_p2": 28.875,
+  "L_p98": 94.667,
+  "detail": 1.31,
+  "edge": 0.0,
+  "tint_a": 5.343,
+  "tint_b": -2.953,
+  "warmth_b": -15.468
+ },
+ "chain": null,
+ "correction": {
+  "black": 16.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "plate",
+ "matched_to": "world",
+ "outliers_after": [
+  "edge"
+ ],
+ "outliers_before": [
+  "L_p2",
+  "edge"
+ ],
+ "ppu": 4.103,
+ "reference": false,
+ "score_after": 82.2,
+ "score_before": 67.7,
+ "shipped": false,
+ "source": "design/art/masters/x-revontuli-flow-4/x-revontuli-flow-4.webp",
+ "source_sha": "b90441a521a01c89"
+}

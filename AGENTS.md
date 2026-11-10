@@ -98,6 +98,16 @@ for a review or merge. Never start a `BLOCKED` batch (`status: blocked`).
 - **Salvage first:** a job whose `notes` say SALVAGE FIRST ingests the named
   takes already on `main` (`run.py ingest --source salvage-<batch> <files>`)
   and generates only if none passes.
+- **Factory continuity (founder, 2026-11-10):** keep authorized work moving
+  autonomously with parallel agents where jobs are independent. Recover missing
+  originals from authentic retained takes before regenerating. A retained q90
+  review take may serve as a concept master when the founder authorizes recovery;
+  record its exact path, hash and encoding, and explicitly distinguish it from
+  the unavailable original PNG. Never invent original-source provenance. If no
+  usable copy exists, regenerate and submit the replacement for its own review.
+  A recoverable source, processing or upload issue must not stop independent
+  work. Preserve generated originals promptly; retry uploads within the existing
+  limits and retain local work if publication is temporarily unavailable.
 - **`promote --force`** is allowed only when a queue row or the manifest
   header's lead rule names the job (and the failing checks); cite that row
   or rule in the review note. Otherwise a failed take is never promoted.
@@ -231,6 +241,8 @@ to force a pass (only the `promote --force` rule above). Finished picks are
 always published.
 
 **Global stop** (stop, report, do not retry) only for:
+
+- Free disk below 1 GB: stop immediately and tell the founder.
 
 - The batch is `blocked`, or `account.owner` / `account.kind` is empty.
 - Any account, sign-in, key, quota, usage-limit or rate-limit message.

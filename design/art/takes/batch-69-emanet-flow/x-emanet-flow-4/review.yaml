@@ -8,12 +8,10 @@ contact_sheet: design/art/takes/batch-69-emanet-flow/x-emanet-flow-4/contact.jpg
 jobs:
   x-emanet-flow-4:
     pick: 1
-    publication: exploration; concept master picked by the lead 2026-11-10 (take 1); promote --only <id> next (needs the unlocked raw)
-    note: 'Both takes show the teal office, suitcase plinth and round door, spoon ladder, teacup tank, top hat,
-      three service bays, cart, scales and kite, with no characters or text. The exact authored count of eight hooks
-      (seven occupied and one empty) is not certified: the visible hook/attachment arrangement is unclear and differs
-      from the brief. The fourth-bay expansion gap also remains unclear. These are explicit manual-review warnings;
-      no pass is fabricated. No take is selected and neither is promoted.'
+    publication: concept master; promoted from retained q90 source with founder authorization
+    note: concept master; picked by the lead. Founder authorized recovery from the retained q90 WebP on
+      2026-11-10 because the previous session original PNG is unavailable. Source is a lossy review copy,
+      not the original generated PNG; no recoloring or filtering applied.
 qa_reports:
   1:
     job: x-emanet-flow-4
@@ -41,8 +39,8 @@ qa_reports:
       value: 78.0
     - check: light_contrast
       status: warn
-      message: 'golden/subject: p75 local contrast 9.3 (band 2.5-6.0; above it reads too contrasty) (warn-only until
-        the founder has seen the light pilot)'
+      message: 'golden/subject: p75 local contrast 9.3 (band 2.5-6.0; above it reads too contrasty) (warn-only
+        until the founder has seen the light pilot)'
       value: 9.26
     - check: light_sky
       status: pass
@@ -112,8 +110,8 @@ qa_reports:
       value: 78.2
     - check: light_contrast
       status: warn
-      message: 'golden/subject: p75 local contrast 8.6 (band 2.5-6.0; above it reads too contrasty) (warn-only until
-        the founder has seen the light pilot)'
+      message: 'golden/subject: p75 local contrast 8.6 (band 2.5-6.0; above it reads too contrasty) (warn-only
+        until the founder has seen the light pilot)'
       value: 8.64
     - check: light_sky
       status: pass
@@ -158,12 +156,13 @@ qa_reports:
         detail: 5.74
     fingerprint: 382df88b1d3aa7d1
 manual_review:
-  observed_note: 'Both takes show the teal office, suitcase plinth and round door, spoon ladder, teacup tank, top
-    hat, three service bays, cart, scales and kite, with no characters or text. The exact authored count of eight
-    hooks (seven occupied and one empty) is not certified: the visible hook/attachment arrangement is unclear and
-    differs from the brief. The fourth-bay expansion gap also remains unclear. These are explicit manual-review
-    warnings; no pass is fabricated. No take is selected and neither is promoted.'
-  selection: pending lead review; no take selected
+  observed_note: 'Both takes show the teal office, suitcase plinth and round door, spoon ladder, teacup
+    tank, top hat, three service bays, cart, scales and kite, with no characters or text. The exact authored
+    count of eight hooks (seven occupied and one empty) is not certified: the visible hook/attachment
+    arrangement is unclear and differs from the brief. The fourth-bay expansion gap also remains unclear.
+    These are explicit manual-review warnings; no pass is fabricated. No take is selected and neither
+    is promoted.'
+  selection: take 1 picked by the lead, 2026-11-10; recovered source promoted with founder authorization
 sources:
 - batch: batch-69-emanet-flow
   job: x-emanet-flow-4
@@ -207,37 +206,38 @@ account:
   owner: Founder's uncle's ChatGPT plan, used by the founder with permission
   kind: chatgpt-plan
 policy:
-  never_promote: true
+  never_promote: false
   style_checks: exploration warnings are advisory; hard checks unchanged
-  source_preservation: Original generated PNGs retained unchanged in /workspace/generated_images; q90 WebP review
-    copies published
+  source_preservation: Original generated PNGs retained unchanged in /workspace/generated_images; q90
+    WebP review copies published
   plate_style: plate-final; no grade, filter or runtime correction
+  promotion_scope: Named root only; all phase 2 edits remain explorations
 reference_packaging:
-  reason: Tool attachment limit is five paths; canonical references 5 and 6 (tea stall and cloud sea) were supplied
-    as a labelled reference contact sheet.
+  reason: Tool attachment limit is five paths; canonical references 5 and 6 (tea stall and cloud sea)
+    were supplied as a labelled reference contact sheet.
   tool_attachment_order:
   - &id001
     path: design/art/masters/island-main-l-v3/island-main-l-v3.webp
     sha256: f2e539ed4eb75131b0d90454c1b12dbfd8737935fe95e3564956ea967c5ffa29
-    role: 'The home island: copy ONLY its camera, its size in the frame, its plate proportions (shallow top, rounded
-      banded body) and its soft painting. Do not copy its lawn, colours, round door or pebbles.'
+    role: 'The home island: copy ONLY its camera, its size in the frame, its plate proportions (shallow
+      top, rounded banded body) and its soft painting. Do not copy its lawn, colours, round door or pebbles.'
   - &id002
     path: design/art/takes/batch-34-islands-in-game/x-emanet-healed/plate__x-emanet-healed--t1.webp
     sha256: 62fa0060c3024a6e78a55537cbfc22da85bd204775d3f7e17a12d38f37830814
-    role: 'THE ISLAND (EM1, the founder''s pick): copy its round plate with the cream and peach hexagon tiles and
-      the teal tiled rim, its body, and the places of the hook post, the shelves, the hand-cart and the counter.
-      Do not copy its office; do not draw its magpie, hamster or bunny.'
+    role: 'THE ISLAND (EM1, the founder''s pick): copy its round plate with the cream and peach hexagon
+      tiles and the teal tiled rim, its body, and the places of the hook post, the shelves, the hand-cart
+      and the counter. Do not copy its office; do not draw its magpie, hamster or bunny.'
   - &id003
     path: design/art/takes/batch-17-islands-v2/x2-emanet-a/plate__x2-emanet-a--t1.webp
     sha256: 7fd861f815b6b87e82bde3b3aba83e7b03f6ddc12cc66300c542c5929cb0522b
-    role: 'THE OFFICE (EM2''s stilted bureau): copy this building: teal boards, scalloped teal umbrella roof, the
-      teacup water tank, the top-hat chimney, the striped awning over the counter window and the spoon ladder. Do
-      not draw its magpie or its raft.'
+    role: 'THE OFFICE (EM2''s stilted bureau): copy this building: teal boards, scalloped teal umbrella
+      roof, the teacup water tank, the top-hat chimney, the striped awning over the counter window and
+      the spoon ladder. Do not draw its magpie or its raft.'
   - &id004
     path: design/art/takes/batch-17-islands-v2/x2-emanet-b/plate__x2-emanet-b--t1.webp
     sha256: ba0dfa52d09f738b746863eb8c49883d459ee7b8bbf1176cb9abe1efb7cdc267
-    role: 'ONLY the stacked old suitcases and hat boxes tied with red ribbon, and the little round door in the bottom
-      suitcase: they become the office''s low plinth.'
+    role: 'ONLY the stacked old suitcases and hat boxes tied with red ribbon, and the little round door
+      in the bottom suitcase: they become the office''s low plinth.'
   - path: design/art/takes/batch-69-emanet-flow/x-emanet-flow-4/station-cloud-reference-board-5-6.jpg
     sha256: d4731cf1c282a9683eb7a78b4f9adb2cc3d95dd2856cf16332d7b7050f14725e
     transport_only_for_references:
@@ -254,12 +254,20 @@ reference_packaging:
   - *id004
   - path: design/art/stations/tea-stall-5/tea-stall-5.png
     sha256: c9a9f018b2dc6bcb1189f497f750dd98e80c69610c10ba3c71081d8b84d157b3
-    role: 'A finished station of the game: every building and prop is at this scale and finish (do not draw this
-      stall).'
+    role: 'A finished station of the game: every building and prop is at this scale and finish (do not
+      draw this stall).'
   - path: design/art/masters/cloud-sea/cloud-sea.png
     sha256: bb693d333d53fd5fc3e385335fc912574ccda580ac018bc12c2143c12031579a
     role: 'The sea of clouds below every island: paint the clouds like this.'
   printed_prompt_unchanged: true
   original_rgba_pixels_preserved: true
-  transport_note: 'Transport only: the fifth tool attachment is a numbered contact sheet representing authored references
-    5 and 6. Canonical prompt text and all original reference files remain unchanged.'
+  transport_note: 'Transport only: the fifth tool attachment is a numbered contact sheet representing
+    authored references 5 and 6. Canonical prompt text and all original reference files remain unchanged.'
+source_recovery:
+  source: design/art/takes/batch-69-emanet-flow/x-emanet-flow-4/plate__x-emanet-flow-4--t1.webp
+  source_sha256: 8f5688eddb7f2cb391938575f4568f80d2f7891fe73a6f9611b433c3d72bd429
+  original_available: false
+  original_png_sha256: 1c6a05b104e67a5cd80527b3250dab34d4103ce8f9b969f314530293d7889d01
+  authorization: Founder instruction in chat, 2026-11-10; continue from existing copies or regenerate.
+  master_encoding: Exact retained q90 WebP bytes; lossless re-encoding exceeds upload cap, founder authorized
+    continued publication from retained copies.

@@ -7,10 +7,10 @@ contact_sheet: design/art/takes/batch-70-mehtap-flow/x-mehtap-flow-4/contact.jpg
 jobs:
   x-mehtap-flow-4:
     pick: 1
-    publication: exploration; concept master picked by the lead 2026-11-10 (take 1); promote --only <id> next (needs the unlocked raw)
-    note: Both takes show the crescent plate, open observatory with lit telescope, moon pool, chart board and bench,
-      lantern, and sky trails; no characters or text are visible. Visual notes are preliminary; no exact count or
-      registration pass is claimed. No take is selected; lead review is pending. Neither is promoted.
+    publication: concept master; promoted from retained q90 source with founder authorization
+    note: concept master; picked by the lead. Founder authorized recovery from the retained q90 WebP on
+      2026-11-10 because the previous session original PNG is unavailable. Source is a lossy review copy,
+      not the original generated PNG; no recoloring or filtering applied.
 qa_reports:
   1:
     job: x-mehtap-flow-4
@@ -38,8 +38,8 @@ qa_reports:
       value: 79.7
     - check: light_contrast
       status: warn
-      message: 'dusk/subject: p75 local contrast 6.0 (band 1.8-5.0; above it reads too contrasty) (warn-only until
-        the founder has seen the light pilot)'
+      message: 'dusk/subject: p75 local contrast 6.0 (band 1.8-5.0; above it reads too contrasty) (warn-only
+        until the founder has seen the light pilot)'
       value: 5.95
     - check: light_sky
       status: pass
@@ -63,7 +63,8 @@ qa_reports:
       value: 0.0
     - check: palette_drift
       status: warn
-      message: 'mean dE 5.0, p95 17.9, off-palette 16.9% (top: #4455AA (3.0%), #334499 (2.3%)) (advisory in an exploration)'
+      message: 'mean dE 5.0, p95 17.9, off-palette 16.9% (top: #4455AA (3.0%), #334499 (2.3%)) (advisory
+        in an exploration)'
       value: 4.9577
     info:
       metrics_raw:
@@ -109,8 +110,8 @@ qa_reports:
       value: 78.6
     - check: light_contrast
       status: warn
-      message: 'dusk/subject: p75 local contrast 6.2 (band 1.8-5.0; above it reads too contrasty) (warn-only until
-        the founder has seen the light pilot)'
+      message: 'dusk/subject: p75 local contrast 6.2 (band 1.8-5.0; above it reads too contrasty) (warn-only
+        until the founder has seen the light pilot)'
       value: 6.2
     - check: light_sky
       status: pass
@@ -134,7 +135,8 @@ qa_reports:
       value: 0.0
     - check: palette_drift
       status: warn
-      message: 'mean dE 4.7, p95 16.9, off-palette 14.5% (top: #334499 (2.7%), #223388 (1.8%)) (advisory in an exploration)'
+      message: 'mean dE 4.7, p95 16.9, off-palette 14.5% (top: #334499 (2.7%), #223388 (1.8%)) (advisory
+        in an exploration)'
       value: 4.6935
     info:
       metrics_raw:
@@ -155,10 +157,11 @@ qa_reports:
         detail: 4.33
     fingerprint: a3e114206e2a33c2
 manual_review:
-  observed_note: Both takes show the crescent plate, open observatory with lit telescope, moon pool, chart board
-    and bench, lantern, and sky trails; no characters or text are visible. Visual notes are preliminary; no exact
-    count or registration pass is claimed. No take is selected; lead review is pending. Neither is promoted.
-  selection: pending lead review; no take selected
+  observed_note: Both takes show the crescent plate, open observatory with lit telescope, moon pool, chart
+    board and bench, lantern, and sky trails; no characters or text are visible. Visual notes are preliminary;
+    no exact count or registration pass is claimed. No take is selected; lead review is pending. Neither
+    is promoted.
+  selection: take 1 picked by the lead, 2026-11-10; recovered source promoted with founder authorization
 sources:
 - batch: batch-70-mehtap-flow
   job: x-mehtap-flow-4
@@ -200,29 +203,38 @@ account:
   owner: Founder's uncle's ChatGPT plan, used by the founder with permission
   kind: chatgpt-plan
 policy:
-  never_promote: true
+  never_promote: false
   style_checks: exploration warnings are advisory; hard checks unchanged
-  source_preservation: Original generated PNGs retained unchanged in /workspace/generated_images; q90 WebP review
-    copies published
+  source_preservation: Original generated PNGs retained unchanged in /workspace/generated_images; q90
+    WebP review copies published
   plate_style: plate-final; no grade, filter or runtime correction
+  promotion_scope: Named root only; all phase 2 edits remain explorations
 reference_packaging:
   attachment_count: 4
   tool_attachment_order:
   - path: design/art/masters/island-main-l-v3/island-main-l-v3.webp
     sha256: f2e539ed4eb75131b0d90454c1b12dbfd8737935fe95e3564956ea967c5ffa29
-    role: 'The home island: copy ONLY its camera, its size in the frame, its plate proportions (shallow top, rounded
-      banded body) and its soft painting. Do not copy its lawn, colours, round door or pebbles.'
+    role: 'The home island: copy ONLY its camera, its size in the frame, its plate proportions (shallow
+      top, rounded banded body) and its soft painting. Do not copy its lawn, colours, round door or pebbles.'
   - path: design/art/takes/batch-34-islands-in-game/x-mehtap-healed/plate__x-mehtap-healed--t1.webp
     sha256: 81872c69fb0ce3e27385cb5deb0cd94576b3688f83d47bb6539fc705f2b27c62
-    role: 'THE ISLAND (M1, the founder''s pick): copy its crescent moonstone plate with the two rising horns, its
-      craters, and the places and shapes of the dome, the moon pool, the owl''s perch with its lantern, the bench
-      and the chart board. Do not draw its owl, hamster or bunny.'
+    role: 'THE ISLAND (M1, the founder''s pick): copy its crescent moonstone plate with the two rising
+      horns, its craters, and the places and shapes of the dome, the moon pool, the owl''s perch with
+      its lantern, the bench and the chart board. Do not draw its owl, hamster or bunny.'
   - path: design/art/stations/tea-stall-5/tea-stall-5.png
     sha256: c9a9f018b2dc6bcb1189f497f750dd98e80c69610c10ba3c71081d8b84d157b3
-    role: 'A finished station of the game: every building and prop is at this scale and finish (do not draw this
-      stall).'
+    role: 'A finished station of the game: every building and prop is at this scale and finish (do not
+      draw this stall).'
   - path: design/art/masters/cloud-sea/cloud-sea.png
     sha256: bb693d333d53fd5fc3e385335fc912574ccda580ac018bc12c2143c12031579a
     role: 'The sea of clouds below every island: paint the clouds like this.'
   printed_prompt_unchanged: true
   original_reference_files_unchanged: true
+source_recovery:
+  source: design/art/takes/batch-70-mehtap-flow/x-mehtap-flow-4/plate__x-mehtap-flow-4--t1.webp
+  source_sha256: dbcdcc8358213ef750f4b8ca99dfaab7276432d4cdb5c459da6f7f3231582259
+  original_available: false
+  original_png_sha256: 055b0e2bef565ff008ff3b9a08c2b374597e1b1e12e7f44924d4e83ae68173d8
+  authorization: Founder instruction in chat, 2026-11-10; continue from existing copies or regenerate.
+  master_encoding: Exact retained q90 WebP bytes; lossless re-encoding exceeds upload cap, founder authorized
+    continued publication from retained copies.

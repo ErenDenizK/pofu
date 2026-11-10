@@ -26,6 +26,25 @@ not orders: each entry records **what he meant**, the **status**, and
   Feel is tuned natively on his iPhone.
 - **Merging:** the agent may merge PRs, with merge commits, only on green CI.
 
+## 2026-11-10: factory continuity and source recovery
+
+1. **Keep authorized production moving with multiple agents; resolve recoverable
+   failures without waiting for new instructions.** Handled: AGENTS.md now
+   states the factory continuity rule; only true dependencies block a job.
+2. **Use retained images when originals from the broken prior session are
+   unavailable, or regenerate when needed.** Handled: the five selected roots
+   are recovered from their authentic q90 review copies, with explicit source
+   hashes and lossy provenance. They are generated art, not missing palette
+   references. Edits use each named root directly.
+3. **Record this direction durably and explain it in the next PR.** Handled:
+   this log and AGENTS.md accompany the concept master promotion PR.
+4. **Two palette examples supplied.** Handled: retain the authored rich plate
+   prompts and existing reference assets; no automatic recoloring or replacement
+   of the lead's selected roots.
+5. **Keep work safe and durable.** Handled: preserve new originals immediately,
+   verify published files, continue independent work through temporary upload
+   issues, and stop if free disk falls below 1 GB.
+
 ## 2026-11-05 (overnight, later): variety, production, content
 
 Views, not orders; how each is handled:

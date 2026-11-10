@@ -1,0 +1,57 @@
+{
+ "after": {
+  "C_mean": 20.955,
+  "C_p50": 18.583,
+  "C_p95": 53.697,
+  "L_mean": 80.388,
+  "L_p2": 48.636,
+  "L_p98": 96.474,
+  "detail": 2.737,
+  "edge": 0.0,
+  "tint_a": 1.43,
+  "tint_b": -0.702,
+  "warmth_b": 10.588
+ },
+ "before": {
+  "C_mean": 27.94,
+  "C_p50": 24.778,
+  "C_p95": 71.596,
+  "L_mean": 80.388,
+  "L_p2": 48.636,
+  "L_p98": 96.474,
+  "detail": 2.767,
+  "edge": 0.0,
+  "tint_a": 1.583,
+  "tint_b": -2.476,
+  "warmth_b": 14.118
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 0.75,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "plate",
+ "matched_to": "world",
+ "outliers_after": [
+  "detail",
+  "edge"
+ ],
+ "outliers_before": [
+  "C_p95",
+  "detail",
+  "edge"
+ ],
+ "ppu": 4.103,
+ "reference": false,
+ "score_after": 76.8,
+ "score_before": 56.5,
+ "shipped": false,
+ "source": "design/art/masters/x-caglayan-flow-4/x-caglayan-flow-4.webp",
+ "source_sha": "8eedb861f847b149"
+}

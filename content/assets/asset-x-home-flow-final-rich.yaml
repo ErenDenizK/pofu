@@ -4,14 +4,14 @@ title_tr: x-home-flow-final-rich
 title_en: x-home-flow-final-rich (plate)
 status: in-production
 horizon: now
-summary: >-
-  A concept painting for a cozy mobile game, portrait, no text: the home island Ayçiçeği at
-  full bloom, on a clear summer day, seen whole from the game camera (about 20 degrees above
-  the horizon). The island sits in the lower half of the picture over a soft sea of clouds;
-  the upper half is open summer sky with a few far things in it. Everything stands exactly
-  where the guide marks it. On the home lawn, left to right: a…
+summary: 'A concept painting for a cozy mobile game, portrait, no text: the home island Ayçiçeği
+  at full bloom, on a clear summer day, seen whole from the game camera (about 20 degrees
+  above the horizon). The island sits in the lower half of the picture over a soft sea of
+  clouds; the upper half is open summer sky with a few far things in it. Everything stands
+  exactly where the guide marks it. On the home lawn, left to right: a…'
 art:
-  images: []
+  images:
+  - design/art/masters/x-home-flow-final-rich/x-home-flow-final-rich.webp
   jobs:
   - batch-66-home-flow:x-home-flow-final-rich
 sources:

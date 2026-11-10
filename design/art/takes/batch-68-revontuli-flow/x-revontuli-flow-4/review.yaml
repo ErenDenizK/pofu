@@ -8,12 +8,10 @@ contact_sheet: design/art/takes/batch-68-revontuli-flow/x-revontuli-flow-4/conta
 jobs:
   x-revontuli-flow-4:
     pick: 1
-    publication: exploration; concept master picked by the lead 2026-11-10 (take 1); promote --only <id> next (needs the unlocked raw)
-    note: Both takes have the ice body’s own silhouette, three lantern towers, sauna with towel and bucket, three
-      steps, a tail connected to the aurora, and the glass lake with its hole and stool. Neither has characters
-      or text. The lake reads about 45% of the island width versus the authored target of about one third. This
-      is a composition warning; no exact pixel-registration pass is claimed. No take is selected and neither is
-      promoted.
+    publication: concept master; promoted from retained q90 source with founder authorization
+    note: concept master; picked by the lead. Founder authorized recovery from the retained q90 WebP on
+      2026-11-10 because the previous session original PNG is unavailable. Source is a lossy review copy,
+      not the original generated PNG; no recoloring or filtering applied.
 qa_reports:
   1:
     job: x-revontuli-flow-4
@@ -65,7 +63,8 @@ qa_reports:
       value: 0.0
     - check: palette_drift
       status: warn
-      message: 'mean dE 5.2, p95 13.8, off-palette 9.8% (top: #5555AA (1.5%), #554499 (0.9%)) (advisory in an exploration)'
+      message: 'mean dE 5.2, p95 13.8, off-palette 9.8% (top: #5555AA (1.5%), #554499 (0.9%)) (advisory
+        in an exploration)'
       value: 5.1941
     info:
       metrics_raw:
@@ -135,7 +134,8 @@ qa_reports:
       value: 0.0
     - check: palette_drift
       status: warn
-      message: 'mean dE 5.6, p95 15.9, off-palette 13.3% (top: #444499 (2.2%), #5555AA (1.3%)) (advisory in an exploration)'
+      message: 'mean dE 5.6, p95 15.9, off-palette 13.3% (top: #444499 (2.2%), #5555AA (1.3%)) (advisory
+        in an exploration)'
       value: 5.6277
     info:
       metrics_raw:
@@ -156,11 +156,12 @@ qa_reports:
         detail: 3.81
     fingerprint: 3d2e936359ddfe0c
 manual_review:
-  observed_note: Both takes have the ice body’s own silhouette, three lantern towers, sauna with towel and bucket,
-    three steps, a tail connected to the aurora, and the glass lake with its hole and stool. Neither has characters
-    or text. The lake reads about 45% of the island width versus the authored target of about one third. This is
-    a composition warning; no exact pixel-registration pass is claimed. No take is selected and neither is promoted.
-  selection: pending lead review; no take selected
+  observed_note: Both takes have the ice body’s own silhouette, three lantern towers, sauna with towel
+    and bucket, three steps, a tail connected to the aurora, and the glass lake with its hole and stool.
+    Neither has characters or text. The lake reads about 45% of the island width versus the authored target
+    of about one third. This is a composition warning; no exact pixel-registration pass is claimed. No
+    take is selected and neither is promoted.
+  selection: take 1 picked by the lead, 2026-11-10; recovered source promoted with founder authorization
 sources:
 - batch: batch-68-revontuli-flow
   job: x-revontuli-flow-4
@@ -204,30 +205,31 @@ account:
   owner: Founder's uncle's ChatGPT plan, used by the founder with permission
   kind: chatgpt-plan
 policy:
-  never_promote: true
+  never_promote: false
   style_checks: exploration warnings are advisory; hard checks unchanged
-  source_preservation: Original generated PNGs retained unchanged in /workspace/generated_images; q90 WebP review
-    copies published
+  source_preservation: Original generated PNGs retained unchanged in /workspace/generated_images; q90
+    WebP review copies published
   plate_style: plate-final; no grade, filter or runtime correction
+  promotion_scope: Named root only; all phase 2 edits remain explorations
 reference_packaging:
-  reason: Tool attachment limit is five paths; canonical references 5 and 6 were supplied as a labelled contact
-    sheet.
+  reason: Tool attachment limit is five paths; canonical references 5 and 6 were supplied as a labelled
+    contact sheet.
   tool_attachment_order:
   - &id001
     path: design/art/masters/island-main-l-v3/island-main-l-v3.webp
     sha256: f2e539ed4eb75131b0d90454c1b12dbfd8737935fe95e3564956ea967c5ffa29
-    role: 'The home island: copy ONLY its camera, its size in the frame, its plate proportions (shallow top, rounded
-      banded body) and its soft painting. Do not copy its lawn, colours, round door or pebbles.'
+    role: 'The home island: copy ONLY its camera, its size in the frame, its plate proportions (shallow
+      top, rounded banded body) and its soft painting. Do not copy its lawn, colours, round door or pebbles.'
   - &id002
     path: design/art/takes/batch-34-islands-in-game/x-revontuli-healed/plate__x-revontuli-healed--t2.webp
     sha256: cdbda601d869f0f51aa960af41a310181b4a78efad1184397a5737b8380a3b31
-    role: 'THE ISLAND (R1): copy this ice island''s plate, its snow top, its glowing ice body with icicles, the
-      sauna cabin, the curved lamp post and the spruce. Do not draw its fox, hamster or bunny.'
+    role: 'THE ISLAND (R1): copy this ice island''s plate, its snow top, its glowing ice body with icicles,
+      the sauna cabin, the curved lamp post and the spruce. Do not draw its fox, hamster or bunny.'
   - &id003
     path: design/art/takes/batch-45-beautiful-wounds/x-revontuli-stage0-night/plate__x-revontuli-stage0-night--t2.webp
     sha256: b3f39402d1a5aadd99ef4cb5deb50849d82560549b70c2667812814137f12821
-    role: 'ONLY the lantern towers'' design: a light wooden lattice frame on four legs, a little snowy roof, one
-      lantern under it. Do not copy its earth island or its layout.'
+    role: 'ONLY the lantern towers'' design: a light wooden lattice frame on four legs, a little snowy
+      roof, one lantern under it. Do not copy its earth island or its layout.'
   - &id004
     path: design/art/takes/batch-17-islands-v2/x2-revontuli-b/plate__x2-revontuli-b--t2.webp
     sha256: cb6fb05df9836c0d8af8dfc2a65fb7b6880b08efad162e548c39aa8dd73c02e9
@@ -248,12 +250,20 @@ reference_packaging:
   - *id004
   - path: design/art/stations/tea-stall-5/tea-stall-5.png
     sha256: c9a9f018b2dc6bcb1189f497f750dd98e80c69610c10ba3c71081d8b84d157b3
-    role: 'A finished station of the game: every building and prop is at this scale and finish (do not draw this
-      stall).'
+    role: 'A finished station of the game: every building and prop is at this scale and finish (do not
+      draw this stall).'
   - path: design/art/masters/cloud-sea/cloud-sea.png
     sha256: bb693d333d53fd5fc3e385335fc912574ccda580ac018bc12c2143c12031579a
     role: 'The sea of clouds below every island: paint the clouds like this.'
   printed_prompt_unchanged: true
   original_rgba_pixels_preserved: true
-  transport_note: 'Transport only: the fifth tool attachment is a numbered contact sheet representing authored references
-    5 and 6. Canonical prompt text and all original reference files remain unchanged.'
+  transport_note: 'Transport only: the fifth tool attachment is a numbered contact sheet representing
+    authored references 5 and 6. Canonical prompt text and all original reference files remain unchanged.'
+source_recovery:
+  source: design/art/takes/batch-68-revontuli-flow/x-revontuli-flow-4/plate__x-revontuli-flow-4--t1.webp
+  source_sha256: b90441a521a01c89a9200c3131c5e992d49f4610cc374d0ad8f6800b4a3aa730
+  original_available: false
+  original_png_sha256: 7e3bd39ed0d4476bce8ee9b436fc0a55a867d40cc4a2b41e31fb21c470dd92ba
+  authorization: Founder instruction in chat, 2026-11-10; continue from existing copies or regenerate.
+  master_encoding: Exact retained q90 WebP bytes; lossless re-encoding exceeds upload cap, founder authorized
+    continued publication from retained copies.

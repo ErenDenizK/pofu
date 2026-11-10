@@ -1,0 +1,54 @@
+{
+ "after": {
+  "C_mean": 27.693,
+  "C_p50": 27.759,
+  "C_p95": 53.167,
+  "L_mean": 79.372,
+  "L_p2": 50.338,
+  "L_p98": 96.601,
+  "detail": 2.291,
+  "edge": 0.0,
+  "tint_a": 4.284,
+  "tint_b": -3.887,
+  "warmth_b": -6.38
+ },
+ "before": {
+  "C_mean": 27.693,
+  "C_p50": 27.759,
+  "C_p95": 53.167,
+  "L_mean": 79.372,
+  "L_p2": 50.338,
+  "L_p98": 96.601,
+  "detail": 2.291,
+  "edge": 0.0,
+  "tint_a": 4.284,
+  "tint_b": -3.887,
+  "warmth_b": -6.38
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "plate",
+ "matched_to": "world",
+ "outliers_after": [
+  "edge"
+ ],
+ "outliers_before": [
+  "edge"
+ ],
+ "ppu": 4.103,
+ "reference": false,
+ "score_after": 79.0,
+ "score_before": 79.0,
+ "shipped": false,
+ "source": "design/art/masters/x-home-flow-final-rich/x-home-flow-final-rich.webp",
+ "source_sha": "610f92abdd46cb45"
+}
