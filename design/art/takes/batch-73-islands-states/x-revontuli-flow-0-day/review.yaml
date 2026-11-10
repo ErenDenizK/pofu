@@ -1,0 +1,220 @@
+batch: batch-73-islands-states
+manifest: tools/imagegen/manifest/batch-73-islands-states.yaml
+manifest_sha256: d598a7718fdc51cab7d3ef7944d558393127bf9f5af63194465deac8a25f0b83
+jobs:
+  x-revontuli-flow-0-day:
+    pick: 2
+    status: review
+    publication: exploration; never promoted
+    note: Both preserve all three toppled tower frames, buried lake, snowy stool, unlit post, sauna and
+      spruce under clear daylight. Window light is extinguished and no tower repaired. No new objects,
+      characters or text observed; exact registration not manually proven. Auto-picked by QA; founder
+      review pending.
+selection:
+  method: QA non-fail and manual eligibility; lowest style-lock load, then highest measured harmony; take
+    number only breaks ties
+  scores:
+  - take: 1
+    style_lock_load: 0.0
+    harmony: 63.3
+    eligible: true
+  - take: 2
+    style_lock_load: 0.0
+    harmony: 64.7
+    eligible: true
+  rejected_takes: []
+qa_reports:
+- job: x-revontuli-flow-0-day
+  take: 1
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 35 (R1 51)
+    value: 35.2
+  - check: light_values
+    status: pass
+    message: 'day/subject: L p5 57 (at least 50: darks stay a light mid-tone), p98 97 (at least 90)'
+    value: 56.8
+  - check: light_median
+    status: pass
+    message: 'day/subject: median L 84 (band 74-92)'
+    value: 83.5
+  - check: light_contrast
+    status: pass
+    message: 'day/subject: p75 local contrast 4.0 (band 2.5-6.5; above it reads too contrasty)'
+    value: 3.95
+  - check: light_sky
+    status: pass
+    message: 'day: sky L 78 (band 70-94)'
+    value: 78.5
+  - check: light_sea
+    status: pass
+    message: 'day: cloud sea L 93 (at least 82: the sea is the reflector)'
+    value: 92.7
+  - check: light_dark
+    status: pass
+    message: 'day: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.0
+  - check: detail_budget
+    status: pass
+    message: detail at display size 2.7 (R1 5.3)
+    value: 2.72
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 5.1, p95 13.9, off-palette 12.5% (top: #88BBFF (6.1%), #99BBFF (2.1%)) (advisory
+      in an exploration)'
+    value: 5.1047
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_structure
+    status: warn
+    message: light structure matches the parent (r 0.54) (advisory in an exploration)
+    value: 0.5404
+  - check: edit_lightness
+    status: warn
+    message: mean lightness moved by 31.3 L (the same lightness was asked) (advisory in an exploration)
+    value: 31.2925
+  info:
+    metrics_raw:
+      L_p5: 62.4
+      L_p50: 83.6
+      L_p95: 97.1
+      C_p50: 19.0
+      C_p95: 35.2
+      C_p99: 37.2
+      detail: 2.72
+    metrics_locked:
+      L_p5: 62.4
+      L_p50: 83.6
+      L_p95: 97.1
+      C_p50: 19.0
+      C_p95: 35.2
+      C_p99: 37.2
+      detail: 2.72
+  fingerprint: 4b59449d40c1fe36
+- job: x-revontuli-flow-0-day
+  take: 2
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 37 (R1 51)
+    value: 36.9
+  - check: light_values
+    status: pass
+    message: 'day/subject: L p5 56 (at least 50: darks stay a light mid-tone), p98 97 (at least 90)'
+    value: 56.4
+  - check: light_median
+    status: pass
+    message: 'day/subject: median L 85 (band 74-92)'
+    value: 84.8
+  - check: light_contrast
+    status: pass
+    message: 'day/subject: p75 local contrast 3.5 (band 2.5-6.5; above it reads too contrasty)'
+    value: 3.53
+  - check: light_sky
+    status: pass
+    message: 'day: sky L 75 (band 70-94)'
+    value: 75.0
+  - check: light_sea
+    status: pass
+    message: 'day: cloud sea L 93 (at least 82: the sea is the reflector)'
+    value: 93.4
+  - check: light_dark
+    status: pass
+    message: 'day: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.0
+  - check: detail_budget
+    status: pass
+    message: detail at display size 2.7 (R1 5.3)
+    value: 2.66
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 5.3, p95 14.0, off-palette 13.6% (top: #88BBEE (5.8%), #88AAEE (4.7%)) (advisory
+      in an exploration)'
+    value: 5.2911
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_structure
+    status: warn
+    message: light structure matches the parent (r 0.63)
+    value: 0.6319
+  - check: edit_lightness
+    status: warn
+    message: mean lightness moved by 31.1 L (the same lightness was asked) (advisory in an exploration)
+    value: 31.0781
+  info:
+    metrics_raw:
+      L_p5: 62.2
+      L_p50: 83.7
+      L_p95: 97.5
+      C_p50: 20.3
+      C_p95: 36.9
+      C_p99: 38.1
+      detail: 2.66
+    metrics_locked:
+      L_p5: 62.2
+      L_p50: 83.7
+      L_p95: 97.5
+      C_p50: 20.3
+      C_p95: 36.9
+      C_p99: 38.1
+      detail: 2.66
+  fingerprint: 4b59449d40c1fe36
+sources:
+- take: 1
+  source_file: /workspace/art-operator-runtime/factory/generated/x-revontuli-flow-0-day/take-1.png
+  source_sha256: 496a3e51af509b5c6c2f0f11aef920008578212a7bac6be11ec77c141d1e9cf8
+  q90_take: design/art/takes/batch-73-islands-states/x-revontuli-flow-0-day/plate__x-revontuli-flow-0-day--t1.webp
+  q90_take_sha256: 30b4fe476f6ce51d914a87d6667700ffd981d26c80ffbf92e73207b236442e6c
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 8c5daa5c0707e5311e0cbf37c2534cefd33cbeb3877579ac85e5629e1444c244
+  references:
+  - path: design/art/takes/batch-68-revontuli-flow/x-revontuli-flow-0/plate__x-revontuli-flow-0--t1.webp
+    role: The image to edit (the approved previous level). Edit it; do not redraw it.
+    sha256: bd27f5874f786d3bbecba4ac1f0fce793e6ea6d5b3514f937e17849f9d72214f
+- take: 2
+  source_file: /workspace/art-operator-runtime/factory/generated/x-revontuli-flow-0-day/take-2.png
+  source_sha256: d07a3132e5020435615e7e6d811f280f433f48c2cd34211e5c3282540d272c67
+  q90_take: design/art/takes/batch-73-islands-states/x-revontuli-flow-0-day/plate__x-revontuli-flow-0-day--t2.webp
+  q90_take_sha256: 3077f11d2abca902a2206cab9cae6ec61be7e27ded7c56dc7bb53f05b198c097
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 8c5daa5c0707e5311e0cbf37c2534cefd33cbeb3877579ac85e5629e1444c244
+  references:
+  - path: design/art/takes/batch-68-revontuli-flow/x-revontuli-flow-0/plate__x-revontuli-flow-0--t1.webp
+    role: The image to edit (the approved previous level). Edit it; do not redraw it.
+    sha256: bd27f5874f786d3bbecba4ac1f0fce793e6ea6d5b3514f937e17849f9d72214f
+policy:
+  never_promote: true
+  originals: source_file PNGs preserved unchanged; published takes are q90 copies

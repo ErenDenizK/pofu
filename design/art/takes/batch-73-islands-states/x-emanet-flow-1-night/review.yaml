@@ -1,0 +1,233 @@
+batch: batch-73-islands-states
+manifest: tools/imagegen/manifest/batch-73-islands-states.yaml
+manifest_sha256: d598a7718fdc51cab7d3ef7944d558393127bf9f5af63194465deac8a25f0b83
+jobs:
+  x-emanet-flow-1-night:
+    pick: null
+    status: skipped
+    publication: exploration; never promoted
+    note: 'Both takes retain the shelf/heap/cart layout and give a readable blue night but FAIL to preserve
+      the stage wound: knee-deep lilac fog disappears. Take 1 also lights the formerly dark porch lantern;
+      take 2 lights the formerly dark hook-post lantern. Both manually rejected, retained and skipped;
+      no promotion.'
+selection:
+  method: QA non-fail and manual eligibility; lowest style-lock load, then highest measured harmony; take
+    number only breaks ties
+  scores:
+  - take: 1
+    style_lock_load: 0.0
+    harmony: 52.3
+    eligible: false
+  - take: 2
+    style_lock_load: 0.0
+    harmony: 55.3
+    eligible: false
+  rejected_takes:
+  - 1
+  - 2
+qa_reports:
+- job: x-emanet-flow-1-night
+  take: 1
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 44 (R1 51)
+    value: 44.0
+  - check: light_values
+    status: warn
+    message: 'night/subject: L p5 35 (at least 45: darks stay a light mid-tone), p98 80 (at least 85)'
+    value: 35.0
+  - check: light_median
+    status: warn
+    message: 'night/subject: median L 61 (band 66-88)'
+    value: 61.0
+  - check: light_contrast
+    status: warn
+    message: 'night/subject: p75 local contrast 8.6 (band 1.5-5.0; above it reads too contrasty) (warn-only
+      until the founder has seen the light pilot)'
+    value: 8.6
+  - check: light_sky
+    status: pass
+    message: 'night: sky L 40 (band 24-46)'
+    value: 40.1
+  - check: light_sea
+    status: pass
+    message: 'night: cloud sea L 77 (at least 70: the sea is the reflector)'
+    value: 76.7
+  - check: light_dark
+    status: pass
+    message: 'night: 0.9 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.9
+  - check: detail_budget
+    status: pass
+    message: detail at display size 5.5 (R1 5.3)
+    value: 5.54
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 5.7, p95 13.5, off-palette 11.0% (top: #445599 (4.6%), #5566AA (2.0%)) (advisory
+      in an exploration)'
+    value: 5.696
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_structure
+    status: warn
+    message: light structure matches the parent (r 0.58) (advisory in an exploration)
+    value: 0.5777
+  - check: edit_lightness
+    status: warn
+    message: mean lightness moved by 17.7 L (the same lightness was asked)
+    value: 17.668
+  info:
+    metrics_raw:
+      L_p5: 33.6
+      L_p50: 56.5
+      L_p95: 82.4
+      C_p50: 25.1
+      C_p95: 44.0
+      C_p99: 45.0
+      detail: 5.54
+    metrics_locked:
+      L_p5: 33.6
+      L_p50: 56.5
+      L_p95: 82.4
+      C_p50: 25.1
+      C_p95: 44.0
+      C_p99: 45.0
+      detail: 5.54
+  fingerprint: 8b7b2004f8d2c5b6
+- job: x-emanet-flow-1-night
+  take: 2
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 46 (R1 51)
+    value: 46.1
+  - check: light_values
+    status: warn
+    message: 'night/subject: L p5 34 (at least 45: darks stay a light mid-tone), p98 78 (at least 85)
+      (warn-only until the founder has seen the light pilot)'
+    value: 34.0
+  - check: light_median
+    status: warn
+    message: 'night/subject: median L 59 (band 66-88)'
+    value: 59.2
+  - check: light_contrast
+    status: warn
+    message: 'night/subject: p75 local contrast 8.4 (band 1.5-5.0; above it reads too contrasty) (warn-only
+      until the founder has seen the light pilot)'
+    value: 8.41
+  - check: light_sky
+    status: pass
+    message: 'night: sky L 39 (band 24-46)'
+    value: 39.0
+  - check: light_sea
+    status: pass
+    message: 'night: cloud sea L 77 (at least 70: the sea is the reflector)'
+    value: 76.7
+  - check: light_dark
+    status: pass
+    message: 'night: 1.1 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 1.1
+  - check: detail_budget
+    status: pass
+    message: detail at display size 5.5 (R1 5.3)
+    value: 5.46
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 5.9, p95 14.2, off-palette 13.7% (top: #445599 (4.0%), #4455AA (2.9%)) (advisory
+      in an exploration)'
+    value: 5.8993
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_structure
+    status: warn
+    message: light structure matches the parent (r 0.58) (advisory in an exploration)
+    value: 0.5803
+  - check: edit_lightness
+    status: warn
+    message: mean lightness moved by 18.5 L (the same lightness was asked) (advisory in an exploration)
+    value: 18.5319
+  info:
+    metrics_raw:
+      L_p5: 31.4
+      L_p50: 56.0
+      L_p95: 83.8
+      C_p50: 27.5
+      C_p95: 46.1
+      C_p99: 46.8
+      detail: 5.46
+    metrics_locked:
+      L_p5: 31.4
+      L_p50: 56.0
+      L_p95: 83.8
+      C_p50: 27.5
+      C_p95: 46.1
+      C_p99: 46.8
+      detail: 5.46
+  fingerprint: 8b7b2004f8d2c5b6
+sources:
+- take: 1
+  source_file: /workspace/art-operator-runtime/factory/generated/x-emanet-flow-1-night/take-1.png
+  source_sha256: e0ce4a9816e47c3e2c8633efed80587b1c6c111188323254f3da8a9b87c1563c
+  q90_take: design/art/takes/batch-73-islands-states/x-emanet-flow-1-night/plate__x-emanet-flow-1-night--t1.webp
+  q90_take_sha256: 9437fb840d803504afb1f40907932e84efa08a543d5c17df834758421e8ccb0e
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 91d225abb27d71d9369ac75b52ca340c2b62c6d0b513b7c9da670e0c2c0da8bd
+  references:
+  - path: design/art/takes/batch-69-emanet-flow/x-emanet-flow-1/plate__x-emanet-flow-1--t1.webp
+    role: The image to edit (the approved previous level). Edit it; do not redraw it.
+    sha256: daac38250c6c368bf398d8be6d16e543878607e0257a855a34c6a7925b20890d
+  - path: design/art/takes/batch-66-home-flow/x-home-flow-night/plate__x-home-flow-night--t1.webp
+    role: 'The night target: this calm moonlit night, its blue sky, light cloud sea and small warm pools.
+      Match the light, not the objects.'
+    sha256: c1c606bc3f1329a87a353cc85c603c1c09547bc03f84c8687babd3f3d5823918
+- take: 2
+  source_file: /workspace/art-operator-runtime/factory/generated/x-emanet-flow-1-night/take-2.png
+  source_sha256: 7c656d0d83aacf073b8daae8c4593d097fc5f9deca7bf2033b881eeb8392d957
+  q90_take: design/art/takes/batch-73-islands-states/x-emanet-flow-1-night/plate__x-emanet-flow-1-night--t2.webp
+  q90_take_sha256: 9c24dbde602b0b61b8ec6d13cddfc826c2c4b82615b63da34ff59a1f6dcc17b4
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 91d225abb27d71d9369ac75b52ca340c2b62c6d0b513b7c9da670e0c2c0da8bd
+  references:
+  - path: design/art/takes/batch-69-emanet-flow/x-emanet-flow-1/plate__x-emanet-flow-1--t1.webp
+    role: The image to edit (the approved previous level). Edit it; do not redraw it.
+    sha256: daac38250c6c368bf398d8be6d16e543878607e0257a855a34c6a7925b20890d
+  - path: design/art/takes/batch-66-home-flow/x-home-flow-night/plate__x-home-flow-night--t1.webp
+    role: 'The night target: this calm moonlit night, its blue sky, light cloud sea and small warm pools.
+      Match the light, not the objects.'
+    sha256: c1c606bc3f1329a87a353cc85c603c1c09547bc03f84c8687babd3f3d5823918
+policy:
+  never_promote: true
+  originals: source_file PNGs preserved unchanged; published takes are q90 copies

@@ -1,0 +1,220 @@
+batch: batch-73-islands-states
+manifest: tools/imagegen/manifest/batch-73-islands-states.yaml
+manifest_sha256: d598a7718fdc51cab7d3ef7944d558393127bf9f5af63194465deac8a25f0b83
+jobs:
+  x-emanet-flow-4-rain:
+    pick: 1
+    status: review
+    publication: exploration; never promoted
+    note: Both keep the rich healed Emanet composition, adding wet tile reflections, puddle rings, fine
+      rain and a lilac overcast sky; existing windows and lamps glow warmly. No new objects, characters
+      or text observed. Some rain streaks remain slightly diagonal, noted for review; exact registration
+      not manually proven. Auto-picked by QA; founder review pending.
+selection:
+  method: QA non-fail and manual eligibility; lowest style-lock load, then highest measured harmony; take
+    number only breaks ties
+  scores:
+  - take: 1
+    style_lock_load: 0.0
+    harmony: 69.9
+    eligible: true
+  - take: 2
+    style_lock_load: 0.0
+    harmony: 64.6
+    eligible: true
+  rejected_takes: []
+qa_reports:
+- job: x-emanet-flow-4-rain
+  take: 1
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: warn
+    message: chroma p95 55 (R1 51)
+    value: 54.6
+  - check: light_values
+    status: warn
+    message: 'day/subject: L p5 41 (at least 50: darks stay a light mid-tone), p98 87 (at least 90)'
+    value: 41.4
+  - check: light_median
+    status: pass
+    message: 'day/subject: median L 75 (band 74-92)'
+    value: 74.7
+  - check: light_contrast
+    status: warn
+    message: 'day/subject: p75 local contrast 8.9 (band 2.5-6.5; above it reads too contrasty) (warn-only
+      until the founder has seen the light pilot)'
+    value: 8.94
+  - check: light_sky
+    status: pass
+    message: 'day: sky L 73 (band 70-94)'
+    value: 73.3
+  - check: light_sea
+    status: pass
+    message: 'day: cloud sea L 86 (at least 82: the sea is the reflector)'
+    value: 85.7
+  - check: light_dark
+    status: pass
+    message: 'day: 0.1 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.1
+  - check: detail_budget
+    status: warn
+    message: detail at display size 6.0 (R1 5.3)
+    value: 6.03
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 2.8, p95 10.7, off-palette 3.9% (top: #DD7733 (0.2%), #BB6633 (0.2%))'
+    value: 2.7919
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_structure
+    status: pass
+    message: light structure matches the parent (r 0.94)
+    value: 0.9351
+  - check: edit_lightness
+    status: pass
+    message: mean lightness moved by 3.7 L (the same lightness was asked)
+    value: 3.7182
+  info:
+    metrics_raw:
+      L_p5: 49.1
+      L_p50: 75.7
+      L_p95: 90.8
+      C_p50: 20.2
+      C_p95: 54.6
+      C_p99: 68.0
+      detail: 6.03
+    metrics_locked:
+      L_p5: 49.1
+      L_p50: 75.7
+      L_p95: 90.8
+      C_p50: 20.2
+      C_p95: 54.6
+      C_p99: 68.0
+      detail: 6.03
+  fingerprint: 10fd08b73669f3d1
+- job: x-emanet-flow-4-rain
+  take: 2
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: warn
+    message: chroma p95 57 (R1 51)
+    value: 57.2
+  - check: light_values
+    status: warn
+    message: 'day/subject: L p5 41 (at least 50: darks stay a light mid-tone), p98 89 (at least 90)'
+    value: 41.4
+  - check: light_median
+    status: pass
+    message: 'day/subject: median L 76 (band 74-92)'
+    value: 75.9
+  - check: light_contrast
+    status: warn
+    message: 'day/subject: p75 local contrast 9.4 (band 2.5-6.5; above it reads too contrasty) (warn-only
+      until the founder has seen the light pilot)'
+    value: 9.4
+  - check: light_sky
+    status: pass
+    message: 'day: sky L 76 (band 70-94)'
+    value: 75.5
+  - check: light_sea
+    status: pass
+    message: 'day: cloud sea L 86 (at least 82: the sea is the reflector)'
+    value: 86.1
+  - check: light_dark
+    status: pass
+    message: 'day: 0.1 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.1
+  - check: detail_budget
+    status: warn
+    message: detail at display size 6.5 (R1 5.3)
+    value: 6.52
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 2.9, p95 12.2, off-palette 5.2% (top: #EE8844 (0.3%), #DD7733 (0.2%))'
+    value: 2.9111
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_structure
+    status: pass
+    message: light structure matches the parent (r 0.95)
+    value: 0.9489
+  - check: edit_lightness
+    status: pass
+    message: mean lightness moved by 2.6 L (the same lightness was asked)
+    value: 2.5865
+  info:
+    metrics_raw:
+      L_p5: 48.8
+      L_p50: 77.7
+      L_p95: 91.5
+      C_p50: 20.2
+      C_p95: 57.2
+      C_p99: 70.0
+      detail: 6.52
+    metrics_locked:
+      L_p5: 48.8
+      L_p50: 77.7
+      L_p95: 91.5
+      C_p50: 20.2
+      C_p95: 57.2
+      C_p99: 70.0
+      detail: 6.52
+  fingerprint: 10fd08b73669f3d1
+sources:
+- take: 1
+  source_file: /workspace/art-operator-runtime/factory/generated/x-emanet-flow-4-rain/take-1.png
+  source_sha256: 28c46500ce640cb6406a82dd33b534db21b74dd0a8787364b88b0235bbc748b8
+  q90_take: design/art/takes/batch-73-islands-states/x-emanet-flow-4-rain/plate__x-emanet-flow-4-rain--t1.webp
+  q90_take_sha256: 63f42ee98d639d23fc6021f5355ad50006279c5eba73e96ad6a01af2beb7e545
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: dbd402c4ee371c7ba7287c8848f7a0ef2a9296a95322b755d5b61252485035a2
+  references:
+  - path: design/art/takes/batch-69-emanet-flow/x-emanet-flow-4/plate__x-emanet-flow-4--t1.webp
+    role: The image to edit (the approved previous level). Edit it; do not redraw it.
+    sha256: 8f5688eddb7f2cb391938575f4568f80d2f7891fe73a6f9611b433c3d72bd429
+- take: 2
+  source_file: /workspace/art-operator-runtime/factory/generated/x-emanet-flow-4-rain/take-2.png
+  source_sha256: fdde7c743ef746edbd399d0d6b9b5ac0c2c1b4f36d882b5f4f386a682204d4c6
+  q90_take: design/art/takes/batch-73-islands-states/x-emanet-flow-4-rain/plate__x-emanet-flow-4-rain--t2.webp
+  q90_take_sha256: 99b76d0cc33e0fdba8233ca3bc14bc2e620d7e64a8a00add263d6af78c527c5b
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: dbd402c4ee371c7ba7287c8848f7a0ef2a9296a95322b755d5b61252485035a2
+  references:
+  - path: design/art/takes/batch-69-emanet-flow/x-emanet-flow-4/plate__x-emanet-flow-4--t1.webp
+    role: The image to edit (the approved previous level). Edit it; do not redraw it.
+    sha256: 8f5688eddb7f2cb391938575f4568f80d2f7891fe73a6f9611b433c3d72bd429
+policy:
+  never_promote: true
+  originals: source_file PNGs preserved unchanged; published takes are q90 copies
