@@ -1,0 +1,234 @@
+batch: batch-73-islands-states
+manifest: tools/imagegen/manifest/batch-73-islands-states.yaml
+manifest_sha256: d598a7718fdc51cab7d3ef7944d558393127bf9f5af63194465deac8a25f0b83
+jobs:
+  x-emanet-flow-2-night:
+    pick: null
+    status: skipped
+    publication: exploration; never promoted
+    note: Both retain the stage-2 unsorted heap, partial shelf contents, dark suitcase door, blanket cart
+      and missing bunting in blue moonlight. However both illuminate the office hanging lamp and coat-post
+      lantern that are dark in the picked stage-2 parent; the authored stage-preservation clause says
+      dark parts stay dark. Both rejected manually for healing these dark practicals. Sources retained;
+      job skipped, no promotion.
+selection:
+  method: QA non-fail and manual eligibility; lowest style-lock load, then highest measured harmony; take
+    number only breaks ties
+  scores:
+  - take: 1
+    style_lock_load: 0.0
+    harmony: 57.5
+    eligible: false
+  - take: 2
+    style_lock_load: 0.0
+    harmony: 59.8
+    eligible: false
+  rejected_takes:
+  - 1
+  - 2
+qa_reports:
+- job: x-emanet-flow-2-night
+  take: 1
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 46 (R1 51)
+    value: 45.7
+  - check: light_values
+    status: warn
+    message: 'night/subject: L p5 34 (at least 45: darks stay a light mid-tone), p98 82 (at least 85)
+      (warn-only until the founder has seen the light pilot)'
+    value: 34.3
+  - check: light_median
+    status: warn
+    message: 'night/subject: median L 62 (band 66-88)'
+    value: 62.3
+  - check: light_contrast
+    status: warn
+    message: 'night/subject: p75 local contrast 8.9 (band 1.5-5.0; above it reads too contrasty) (warn-only
+      until the founder has seen the light pilot)'
+    value: 8.91
+  - check: light_sky
+    status: pass
+    message: 'night: sky L 45 (band 24-46)'
+    value: 44.6
+  - check: light_sea
+    status: pass
+    message: 'night: cloud sea L 76 (at least 70: the sea is the reflector)'
+    value: 76.3
+  - check: light_dark
+    status: pass
+    message: 'night: 1.1 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 1.1
+  - check: detail_budget
+    status: pass
+    message: detail at display size 5.9 (R1 5.3)
+    value: 5.93
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 5.8, p95 14.2, off-palette 17.1% (top: #445599 (6.1%), #5566AA (2.9%)) (advisory
+      in an exploration)'
+    value: 5.8055
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_structure
+    status: warn
+    message: light structure matches the parent (r 0.49) (advisory in an exploration)
+    value: 0.4902
+  - check: edit_lightness
+    status: warn
+    message: mean lightness moved by 19.0 L (the same lightness was asked) (advisory in an exploration)
+    value: 18.9796
+  info:
+    metrics_raw:
+      L_p5: 34.7
+      L_p50: 58.1
+      L_p95: 84.3
+      C_p50: 25.6
+      C_p95: 45.7
+      C_p99: 46.5
+      detail: 5.93
+    metrics_locked:
+      L_p5: 34.7
+      L_p50: 58.1
+      L_p95: 84.3
+      C_p50: 25.6
+      C_p95: 45.7
+      C_p99: 46.5
+      detail: 5.93
+  fingerprint: f81a21206815d87f
+- job: x-emanet-flow-2-night
+  take: 2
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 46 (R1 51)
+    value: 45.5
+  - check: light_values
+    status: warn
+    message: 'night/subject: L p5 36 (at least 45: darks stay a light mid-tone), p98 83 (at least 85)'
+    value: 35.8
+  - check: light_median
+    status: warn
+    message: 'night/subject: median L 62 (band 66-88)'
+    value: 62.4
+  - check: light_contrast
+    status: warn
+    message: 'night/subject: p75 local contrast 8.7 (band 1.5-5.0; above it reads too contrasty) (warn-only
+      until the founder has seen the light pilot)'
+    value: 8.71
+  - check: light_sky
+    status: pass
+    message: 'night: sky L 43 (band 24-46)'
+    value: 42.8
+  - check: light_sea
+    status: pass
+    message: 'night: cloud sea L 79 (at least 70: the sea is the reflector)'
+    value: 79.2
+  - check: light_dark
+    status: pass
+    message: 'night: 0.8 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.8
+  - check: detail_budget
+    status: pass
+    message: detail at display size 5.6 (R1 5.3)
+    value: 5.59
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 5.7, p95 13.9, off-palette 12.8% (top: #445599 (5.1%), #4455AA (2.0%)) (advisory
+      in an exploration)'
+    value: 5.6658
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_structure
+    status: warn
+    message: light structure matches the parent (r 0.44) (advisory in an exploration)
+    value: 0.4417
+  - check: edit_lightness
+    status: warn
+    message: mean lightness moved by 18.1 L (the same lightness was asked) (advisory in an exploration)
+    value: 18.0523
+  info:
+    metrics_raw:
+      L_p5: 33.1
+      L_p50: 59.7
+      L_p95: 85.1
+      C_p50: 25.8
+      C_p95: 45.5
+      C_p99: 46.4
+      detail: 5.59
+    metrics_locked:
+      L_p5: 33.1
+      L_p50: 59.7
+      L_p95: 85.1
+      C_p50: 25.8
+      C_p95: 45.5
+      C_p99: 46.4
+      detail: 5.59
+  fingerprint: f81a21206815d87f
+sources:
+- take: 1
+  source_file: /workspace/art-operator-runtime/factory/generated/x-emanet-flow-2-night/take-1.png
+  source_sha256: d6e0b8f78e9024f827c2bdb6af79429b201a4e54a8d916a99d196de3d73fb862
+  q90_take: design/art/takes/batch-73-islands-states/x-emanet-flow-2-night/plate__x-emanet-flow-2-night--t1.webp
+  q90_take_sha256: b310bf1d109d4890afd59cd4bfb7186378b73edbe59526ec5a8d2be4bc9d3acd
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 91d225abb27d71d9369ac75b52ca340c2b62c6d0b513b7c9da670e0c2c0da8bd
+  references:
+  - path: design/art/takes/batch-69-emanet-flow/x-emanet-flow-2/plate__x-emanet-flow-2--t1.webp
+    role: The image to edit (the approved previous level). Edit it; do not redraw it.
+    sha256: 5a42a94e5962bcb1d51be06bc99efec1c6a1f3c3e1772ff8d9158a6a4289f8ef
+  - path: design/art/takes/batch-66-home-flow/x-home-flow-night/plate__x-home-flow-night--t1.webp
+    role: 'The night target: this calm moonlit night, its blue sky, light cloud sea and small warm pools.
+      Match the light, not the objects.'
+    sha256: c1c606bc3f1329a87a353cc85c603c1c09547bc03f84c8687babd3f3d5823918
+- take: 2
+  source_file: /workspace/art-operator-runtime/factory/generated/x-emanet-flow-2-night/take-2.png
+  source_sha256: 66b05e43c071e1ba80c52a31d41e27618c5367a3ab97139a9a907523a7ea15a6
+  q90_take: design/art/takes/batch-73-islands-states/x-emanet-flow-2-night/plate__x-emanet-flow-2-night--t2.webp
+  q90_take_sha256: 592e0360d9832e1013f7357212fb3b2861b2510193afcb5fbfb7955293637391
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 91d225abb27d71d9369ac75b52ca340c2b62c6d0b513b7c9da670e0c2c0da8bd
+  references:
+  - path: design/art/takes/batch-69-emanet-flow/x-emanet-flow-2/plate__x-emanet-flow-2--t1.webp
+    role: The image to edit (the approved previous level). Edit it; do not redraw it.
+    sha256: 5a42a94e5962bcb1d51be06bc99efec1c6a1f3c3e1772ff8d9158a6a4289f8ef
+  - path: design/art/takes/batch-66-home-flow/x-home-flow-night/plate__x-home-flow-night--t1.webp
+    role: 'The night target: this calm moonlit night, its blue sky, light cloud sea and small warm pools.
+      Match the light, not the objects.'
+    sha256: c1c606bc3f1329a87a353cc85c603c1c09547bc03f84c8687babd3f3d5823918
+policy:
+  never_promote: true
+  originals: source_file PNGs preserved unchanged; published takes are q90 copies
