@@ -43,7 +43,7 @@ SUFFIX = "-shadow"
 # plate-first islands (tools/plate/ingest.py) paint their own contact and shadows.
 EXCLUDE = re.compile(
     r"(^world-(island-|isle-|far-isle|cloud|harbor-island|fog-card|rain-tile|rainbow-arc|puddle-glint|light-shaft|lut-))|-standin|-glow|__|--"
-    r"|^world-[a-z]+-(plate|island|backdrop)-(day|night|golden)-\d+$|^world-[a-z]+-occ-"
+    r"|^world-[a-z]+-(plate|island|backdrop)-(day|night|golden|rain)-\d+$|^world-[a-z]+-occ-"
 )
 # Home props from the UI catalog that stand on the lawn.
 EXTRA_CASTERS = ("ui-jar-empty", "ui-lantern-off")
