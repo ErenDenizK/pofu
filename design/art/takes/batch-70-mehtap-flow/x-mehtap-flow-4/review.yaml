@@ -1,0 +1,228 @@
+batch: batch-70-mehtap-flow
+manifest: tools/imagegen/manifest/batch-70-mehtap-flow.yaml
+manifest_sha256: 98d2e01527f06ab533084febe461c50d27d7101f52f3839e5607c86ac9dfb086
+prompt_sha256: 71d548a535d6fd1f0a807f1de6f695aac9fc14e46c526c2dfc8e2cb18207863a
+base_head: 20be6dc2eb7dff96a68108d336e8e0433b0e6d0c
+contact_sheet: design/art/takes/batch-70-mehtap-flow/x-mehtap-flow-4/contact.jpg
+jobs:
+  x-mehtap-flow-4:
+    pick: null
+    publication: exploration; never promoted
+    note: Both takes show the crescent plate, open observatory with lit telescope, moon pool, chart board and bench,
+      lantern, and sky trails; no characters or text are visible. Visual notes are preliminary; no exact count or
+      registration pass is claimed. No take is selected; lead review is pending. Neither is promoted.
+qa_reports:
+  1:
+    job: x-mehtap-flow-4
+    take: 1
+    status: warn
+    preset: plate-final
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 58 (R1 51)
+      value: 57.6
+    - check: light_values
+      status: pass
+      message: 'dusk/subject: L p5 51 (at least 47: darks stay a light mid-tone), p98 95 (at least 85)'
+      value: 50.9
+    - check: light_median
+      status: pass
+      message: 'dusk/subject: median L 80 (band 66-86)'
+      value: 79.7
+    - check: light_contrast
+      status: warn
+      message: 'dusk/subject: p75 local contrast 6.0 (band 1.8-5.0; above it reads too contrasty) (warn-only until
+        the founder has seen the light pilot)'
+      value: 5.95
+    - check: light_sky
+      status: pass
+      message: 'dusk: sky L 42 (band 36-70)'
+      value: 41.7
+    - check: light_sea
+      status: pass
+      message: 'dusk: cloud sea L 87 (at least 74: the sea is the reflector)'
+      value: 87.2
+    - check: light_dark
+      status: pass
+      message: 'dusk: 0.1 % below L* 30 under the sky (at most 3; only the sky is dark)'
+      value: 0.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.1 (R1 5.3)
+      value: 4.12
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 5.0, p95 17.9, off-palette 16.9% (top: #4455AA (3.0%), #334499 (2.3%)) (advisory in an exploration)'
+      value: 4.9577
+    info:
+      metrics_raw:
+        L_p5: 30.7
+        L_p50: 77.8
+        L_p95: 93.5
+        C_p50: 23.0
+        C_p95: 57.6
+        C_p99: 60.7
+        detail: 4.12
+      metrics_locked:
+        L_p5: 30.7
+        L_p50: 77.8
+        L_p95: 93.5
+        C_p50: 23.0
+        C_p95: 57.6
+        C_p99: 60.7
+        detail: 4.12
+    fingerprint: a3e114206e2a33c2
+  2:
+    job: x-mehtap-flow-4
+    take: 2
+    status: warn
+    preset: plate-final
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 57 (R1 51)
+      value: 56.7
+    - check: light_values
+      status: pass
+      message: 'dusk/subject: L p5 48 (at least 47: darks stay a light mid-tone), p98 96 (at least 85)'
+      value: 47.7
+    - check: light_median
+      status: pass
+      message: 'dusk/subject: median L 79 (band 66-86)'
+      value: 78.6
+    - check: light_contrast
+      status: warn
+      message: 'dusk/subject: p75 local contrast 6.2 (band 1.8-5.0; above it reads too contrasty) (warn-only until
+        the founder has seen the light pilot)'
+      value: 6.2
+    - check: light_sky
+      status: pass
+      message: 'dusk: sky L 41 (band 36-70)'
+      value: 40.6
+    - check: light_sea
+      status: pass
+      message: 'dusk: cloud sea L 88 (at least 74: the sea is the reflector)'
+      value: 87.9
+    - check: light_dark
+      status: pass
+      message: 'dusk: 0.1 % below L* 30 under the sky (at most 3; only the sky is dark)'
+      value: 0.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.3 (R1 5.3)
+      value: 4.33
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 4.7, p95 16.9, off-palette 14.5% (top: #334499 (2.7%), #223388 (1.8%)) (advisory in an exploration)'
+      value: 4.6935
+    info:
+      metrics_raw:
+        L_p5: 29.2
+        L_p50: 76.5
+        L_p95: 93.6
+        C_p50: 23.0
+        C_p95: 56.7
+        C_p99: 60.9
+        detail: 4.33
+      metrics_locked:
+        L_p5: 29.2
+        L_p50: 76.5
+        L_p95: 93.6
+        C_p50: 23.0
+        C_p95: 56.7
+        C_p99: 60.9
+        detail: 4.33
+    fingerprint: a3e114206e2a33c2
+manual_review:
+  observed_note: Both takes show the crescent plate, open observatory with lit telescope, moon pool, chart board
+    and bench, lantern, and sky trails; no characters or text are visible. Visual notes are preliminary; no exact
+    count or registration pass is claimed. No take is selected; lead review is pending. Neither is promoted.
+  selection: pending lead review; no take selected
+sources:
+- batch: batch-70-mehtap-flow
+  job: x-mehtap-flow-4
+  take: 1
+  round: 1
+  logical_run: 20261109-phase1
+  source_file: /workspace/generated_images/exec-55806482-b9a3-4f43-828b-4c18c822e647.png
+  returned_at: '2026-11-09T15:07:26.705Z'
+  prompt_sha256: 71d548a535d6fd1f0a807f1de6f695aac9fc14e46c526c2dfc8e2cb18207863a
+  fingerprint: a3e114206e2a33c2
+  original_generated_png_sha256: 055b0e2bef565ff008ff3b9a08c2b374597e1b1e12e7f44924d4e83ae68173d8
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 4afe73f35cd71e30408465c9d6c29f32297aee01e0559485ca6c9b07db975bb9
+  inbox_png_sha256: 8b94c5e7b835a59bba0c73f5b784001a629e8ef1da6b4cb50e079854dbba5b94
+  qa_sha256: 5171aa5e2d2fdd7f4f75174230e17c1dbdf2efe3f2d545a06d6cd3f71650298e
+  q90_take: design/art/takes/batch-70-mehtap-flow/x-mehtap-flow-4/plate__x-mehtap-flow-4--t1.webp
+  q90_take_sha256: dbcdcc8358213ef750f4b8ca99dfaab7276432d4cdb5c459da6f7f3231582259
+- batch: batch-70-mehtap-flow
+  job: x-mehtap-flow-4
+  take: 2
+  round: 1
+  logical_run: 20261109-phase1
+  source_file: /workspace/generated_images/exec-b05be614-4619-479b-836f-2ad2eb12e14e.png
+  returned_at: '2026-11-09T15:08:21.020Z'
+  prompt_sha256: 71d548a535d6fd1f0a807f1de6f695aac9fc14e46c526c2dfc8e2cb18207863a
+  fingerprint: a3e114206e2a33c2
+  original_generated_png_sha256: 7292c1adfbfc61d9dbf1b2c710c695416a2b0040faf828bcaf3a31651f36d4d9
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 4f9e6a3d8383017d11ac99d2a8b3c952f7d51ec026ed5f81bdfaa6987b9655dc
+  inbox_png_sha256: d4e88543bcfd568c70ab0a231025122454baed81253c8ee53aaeb86f96e4fdb3
+  qa_sha256: d5782ca4d21e450980a7c61029bcafe7b2cad3bdb9b84683ed0ad5b95021728f
+  q90_take: design/art/takes/batch-70-mehtap-flow/x-mehtap-flow-4/plate__x-mehtap-flow-4--t2.webp
+  q90_take_sha256: 728ce49481924d6ec1386965a09ab0aa355a2c513b843e2c5e97129730356df5
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: exploration warnings are advisory; hard checks unchanged
+  source_preservation: Original generated PNGs retained unchanged in /workspace/generated_images; q90 WebP review
+    copies published
+  plate_style: plate-final; no grade, filter or runtime correction
+reference_packaging:
+  attachment_count: 4
+  tool_attachment_order:
+  - path: design/art/masters/island-main-l-v3/island-main-l-v3.webp
+    sha256: f2e539ed4eb75131b0d90454c1b12dbfd8737935fe95e3564956ea967c5ffa29
+    role: 'The home island: copy ONLY its camera, its size in the frame, its plate proportions (shallow top, rounded
+      banded body) and its soft painting. Do not copy its lawn, colours, round door or pebbles.'
+  - path: design/art/takes/batch-34-islands-in-game/x-mehtap-healed/plate__x-mehtap-healed--t1.webp
+    sha256: 81872c69fb0ce3e27385cb5deb0cd94576b3688f83d47bb6539fc705f2b27c62
+    role: 'THE ISLAND (M1, the founder''s pick): copy its crescent moonstone plate with the two rising horns, its
+      craters, and the places and shapes of the dome, the moon pool, the owl''s perch with its lantern, the bench
+      and the chart board. Do not draw its owl, hamster or bunny.'
+  - path: design/art/stations/tea-stall-5/tea-stall-5.png
+    sha256: c9a9f018b2dc6bcb1189f497f750dd98e80c69610c10ba3c71081d8b84d157b3
+    role: 'A finished station of the game: every building and prop is at this scale and finish (do not draw this
+      stall).'
+  - path: design/art/masters/cloud-sea/cloud-sea.png
+    sha256: bb693d333d53fd5fc3e385335fc912574ccda580ac018bc12c2143c12031579a
+    role: 'The sea of clouds below every island: paint the clouds like this.'
+  printed_prompt_unchanged: true
+  original_reference_files_unchanged: true
