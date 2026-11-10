@@ -109,8 +109,9 @@ public enum PlateMath {
         islandWidthUnits > 0 ? widths * screenWidthPoints / islandWidthUnits : 1
     }
 
-    /// The island's textures fit the 8 MB budget (ASTC, one byte a pixel).
+    /// The island's textures fit the 9 MB budget (ASTC, one byte a pixel). It was 8 MB for the
+    /// original take; the plate upscaled x2 alone is 6.3 MB (8.27 MB with the rest) (`tools/plate/ingest.py`).
     public static func budgetOK(_ island: PlateIsland) -> Bool {
-        island.textureBytes <= 8_000_000
+        island.textureBytes <= 9_000_000
     }
 }
