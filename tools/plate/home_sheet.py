@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""The plate-first home beside its concept: concept | app Home | app whole island | before.
+"""The plate-first home beside its master take: take | app Home | app whole island | before.
 
 `Tests/WorldScreenshots/HomePlateScreenshotTests.swift` renders the home plate in the real app
 (`home-plate-day-home`, `-whole`, `-settled`); CI's publish job lays them beside the concept the plate
-stands in for, and, with `--before`, main's Home at the same light (`concept-day-home`), as
+is painted from, and, with `--before`, main's Home at the same light (`concept-day-home`), as
 `home-plate.jpg` (the concept-match sheet's pattern, `tools/assets/concept_match.py`).
 
     python3 -I tools/plate/home_sheet.py SHOTS_DIR OUT.jpg [--before BEFORE_DIR]
@@ -44,7 +44,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--before", type=Path)
     args = ap.parse_args(argv)
     concept = REPO / json.loads(HAND.read_text())["plates"]["day"]["0"]
-    panels = [("concept (the stand-in plate)", Image.open(concept))]
+    panels = [("the master take", Image.open(concept))]
     for stem, name in (("home-plate-day-home", "app: Home"), ("home-plate-day-whole", "app: whole island"),
                        ("home-plate-day-settled", "app: Home, settled")):
         path = find(args.shots, stem)

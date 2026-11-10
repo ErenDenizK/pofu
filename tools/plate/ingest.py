@@ -3,7 +3,7 @@
 
 Reads the hand data `design/art/plates/<island>/objects.json` (plate paths, the silhouette trace,
 tap and occluder polygons, the walkable lawn, the characters' spots and the framing, all in percent
-of the 1536 x 1024 plate) and writes what the app draws:
+of the plate) and writes what the app draws:
 
   World.xcassets/world-<island>-plate-<light>-<stage>     the whole plate, opaque, its border
                                                           feathered (the island and its own sky)
@@ -21,11 +21,14 @@ Commands (python3 -I tools/plate/ingest.py <command> <island>):
   deliver   the plate, the island cut and the backdrop
   objects   the occluder cut-outs
   json      the metadata, light map included
+  variant   the plate and occluders from an upscaled picture, as flat PNGs for the screenshot tests'
+            A/B (`--plate P --out DIR --prefix b`); not part of `all`
   check     fails (exit 1, one line per problem) on a polygon off the matte, a missing asset or a
             texture budget past 8 MB
   all       deliver, objects, json, check (matte is run on its own, once per plate)
 
-Coordinates in the JSON are pixels of the full plate (1536 x 1024).
+Coordinates in the JSON are percent of the full plate (default 1536 x 1024; `size` in the hand data
+overrides it, the home master is 1024 x 1536).
 """
 from __future__ import annotations
 
@@ -47,8 +50,8 @@ PLATES = REPO / "design" / "art" / "plates"
 RESOURCES = REPO / "Packages" / "PofuKit" / "Sources" / "PofuWorld" / "Resources"
 ASSETS = RESOURCES / "World.xcassets"
 JSON_DIR = RESOURCES / "Plates"
-SIZE = (1536, 1024)
-GRID = (32, 20)
+DEFAULT_SIZE = (1536, 1024)
+SIZE = DEFAULT_SIZE
 BUDGET = 8_000_000
 #: The reference screen (iPhone 17) in points.
 SCREEN = (402.0, 874.0)
@@ -63,7 +66,12 @@ FEATHER = 48
 # ---------------------------------------------------------------- basics
 
 def load_hand(island: str) -> dict:
-    return json.loads((PLATES / island / "objects.json").read_text())
+    """The hand data; its optional `size` ([w, h], default 1536 x 1024) sets the plate size every
+    percent in it refers to (the home master is a 1024 x 1536 portrait)."""
+    global SIZE
+    hand = json.loads((PLATES / island / "objects.json").read_text())
+    SIZE = tuple(hand.get("size", DEFAULT_SIZE))
+    return hand
 
 
 def load_rgb(path: Path) -> np.ndarray:
@@ -77,12 +85,14 @@ def to_img(x: np.ndarray) -> Image.Image:
     return Image.fromarray(np.uint8(np.clip(x, 0, 1) * 255 + 0.5))
 
 
-def pct_to_px(points, size=SIZE) -> list[list[float]]:
+def pct_to_px(points, size=None) -> list[list[float]]:
     """Percent of the plate to plate pixels."""
+    size = size or SIZE
     return [[round(x * size[0] / 100, 1), round(y * size[1] / 100, 1)] for x, y in points]
 
 
-def px_to_pct(points, size=SIZE) -> list[list[float]]:
+def px_to_pct(points, size=None) -> list[list[float]]:
+    size = size or SIZE
     return [[x * 100 / size[0], y * 100 / size[1]] for x, y in points]
 
 
@@ -355,6 +365,32 @@ def cmd_objects(island: str) -> None:
             print(f"occluder {obj['id']} {light} {stage}: box {box}")
 
 
+# ---------------------------------------------------------------- A/B variants
+
+def cmd_variant(island: str, plate: Path, out: Path, prefix: str) -> None:
+    """The plate and its occluder cut-outs from a replacement picture of the same composition at a
+    whole-number scale (an upscaled plate), as flat PNGs `<prefix>-<asset name>.png` in `out`. They
+    are not imagesets: the screenshot tests load them to compare resolutions (README). The matte and
+    the polygons are the shipped ones, scaled."""
+    hand = load_hand(island)
+    light, stage, _ = next(plates(hand))
+    im = Image.open(plate).convert("RGB")
+    k = im.width / SIZE[0]
+    if abs(im.height - SIZE[1] * k) > 1:
+        raise SystemExit(f"{plate}: {im.width} x {im.height} is not a scale of {SIZE[0]} x {SIZE[1]}")
+    rgb = np.asarray(im, np.float64) / 255
+    m = Image.fromarray(np.uint8(np.clip(load_matte(island, light, stage), 0, 1) * 255 + 0.5)).resize(im.size, Image.Resampling.LANCZOS)
+    a = np.asarray(m, np.float64) / 255
+    out.mkdir(parents=True, exist_ok=True)
+    feathered_plate(rgb, a, round(FEATHER * k)).save(out / f"{prefix}-{asset_name(island, 'plate', light, stage)}.png", optimize=True)
+    for obj in hand["objects"]:
+        if obj.get("occluder"):
+            pts = [[x * k, y * k] for x, y in pct_to_px(obj["points"])]
+            cut, _ = occluder_cut(rgb, a, pts, round(4 * k))
+            to_img(cut).save(out / f"{prefix}-{asset_name(island, 'occ', light, stage, obj['id'])}.png", optimize=True)
+    print(f"variant {prefix}: {im.size} -> {out}")
+
+
 # ---------------------------------------------------------------- light map
 
 def hexc(c) -> str:
@@ -362,12 +398,12 @@ def hexc(c) -> str:
     return f"#{r:02x}{g:02x}{b:02x}"
 
 
-def light_map(rgb: np.ndarray, a: np.ndarray, grid=GRID, lit_pct: float = 60, shadow_pct: float = 12) -> tuple[list, list]:
-    """Per cell of a `grid` (32 x 20): the mean colour of the island's lit pixels (L* at or above the
+def light_map(rgb: np.ndarray, a: np.ndarray, grid=None, lit_pct: float = 60, shadow_pct: float = 12) -> tuple[list, list]:
+    """Per cell of a `grid` (32 columns, rows by aspect: 20 for the 3:2 landscape, 48 for the portrait): the mean colour of the island's lit pixels (L* at or above the
     cell's 60th percentile) and of its shadow pixels (at or below the 12th), alpha > 0.99; empty
     cells take their nearest filled neighbour's."""
-    gw, gh = grid
     h, w = a.shape
+    gw, gh = grid or (32, round(32 * h / w))
     L = srgb_to_lab(np.clip(rgb, 0, 1))[..., 0]
     lit = np.full((gh, gw, 3), np.nan)
     dark = np.full((gh, gw, 3), np.nan)
@@ -519,8 +555,11 @@ def cmd_check(island: str) -> int:
 
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("command", choices=["matte", "deliver", "objects", "json", "check", "all"])
+    ap.add_argument("command", choices=["matte", "deliver", "objects", "json", "check", "all", "variant"])
     ap.add_argument("island")
+    ap.add_argument("--plate", type=Path, help="variant: the replacement picture")
+    ap.add_argument("--out", type=Path, help="variant: the output folder")
+    ap.add_argument("--prefix", default="v", help="variant: the file name prefix")
     args = ap.parse_args(argv)
     if args.command == "matte":
         cmd_matte(args.island)
@@ -528,6 +567,10 @@ def main(argv: list[str] | None = None) -> int:
         cmd_deliver(args.island)
     elif args.command == "objects":
         cmd_objects(args.island)
+    elif args.command == "variant":
+        if not (args.plate and args.out):
+            ap.error("variant needs --plate and --out")
+        cmd_variant(args.island, args.plate, args.out, args.prefix)
     elif args.command == "json":
         cmd_json(args.island)
     elif args.command == "check":
