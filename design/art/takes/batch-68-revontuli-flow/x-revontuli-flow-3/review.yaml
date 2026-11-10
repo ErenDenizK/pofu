@@ -1,0 +1,200 @@
+batch: batch-68-revontuli-flow
+manifest: tools/imagegen/manifest/batch-68-revontuli-flow.yaml
+jobs:
+  x-revontuli-flow-3:
+    pick: null
+    publication: exploration; not promoted; lead review pending
+    note: Direct stage4-root edits remove aurora curtains and extinguish central post while retaining
+      three lit tower lamps and sauna. Take1 preserves only faint horizon ribbon and warm/star ice reflections.
+      Review exact landmark registration; no pixel-perfect claim. Lead picks.
+qa_reports:
+- job: x-revontuli-flow-3
+  take: 1
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 50 (R1 51)
+    value: 50.3
+  - check: light_values
+    status: warn
+    message: 'night/subject: L p5 44 (at least 45: darks stay a light mid-tone), p98 93 (at least 85)'
+    value: 44.4
+  - check: light_median
+    status: pass
+    message: 'night/subject: median L 77 (band 66-88)'
+    value: 77.0
+  - check: light_contrast
+    status: warn
+    message: 'night/subject: p75 local contrast 5.8 (band 1.5-5.0; above it reads too contrasty) (warn-only
+      until the founder has seen the light pilot)'
+    value: 5.82
+  - check: light_sky
+    status: pass
+    message: 'night: sky L 27 (band 24-46)'
+    value: 27.2
+  - check: light_sea
+    status: pass
+    message: 'night: cloud sea L 85 (at least 70: the sea is the reflector)'
+    value: 85.4
+  - check: light_dark
+    status: pass
+    message: 'night: 0.1 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.1
+  - check: detail_budget
+    status: pass
+    message: detail at display size 3.8 (R1 5.3)
+    value: 3.82
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 4.8, p95 11.8, off-palette 4.6% (top: #5555AA (1.2%), #444499 (0.9%)) (advisory
+      in an exploration)'
+    value: 4.8359
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_stability
+    status: pass
+    message: 71% of the parent level unchanged
+    value: 0.7091
+  - check: edit_chroma
+    status: warn
+    message: chroma x1.20 of the parent level (drift compounds along a chain)
+    value: 1.2045
+  info:
+    metrics_raw:
+      L_p5: 23.9
+      L_p50: 73.7
+      L_p95: 91.6
+      C_p50: 29.1
+      C_p95: 50.3
+      C_p99: 54.3
+      detail: 3.82
+    metrics_locked:
+      L_p5: 23.9
+      L_p50: 73.7
+      L_p95: 91.6
+      C_p50: 29.1
+      C_p95: 50.3
+      C_p99: 54.3
+      detail: 3.82
+  fingerprint: a70b92fe0d0974b3
+- job: x-revontuli-flow-3
+  take: 2
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 49 (R1 51)
+    value: 49.4
+  - check: light_values
+    status: warn
+    message: 'night/subject: L p5 43 (at least 45: darks stay a light mid-tone), p98 93 (at least 85)'
+    value: 43.0
+  - check: light_median
+    status: pass
+    message: 'night/subject: median L 76 (band 66-88)'
+    value: 76.3
+  - check: light_contrast
+    status: warn
+    message: 'night/subject: p75 local contrast 6.4 (band 1.5-5.0; above it reads too contrasty) (warn-only
+      until the founder has seen the light pilot)'
+    value: 6.44
+  - check: light_sky
+    status: pass
+    message: 'night: sky L 28 (band 24-46)'
+    value: 27.7
+  - check: light_sea
+    status: pass
+    message: 'night: cloud sea L 86 (at least 70: the sea is the reflector)'
+    value: 85.5
+  - check: light_dark
+    status: pass
+    message: 'night: 0.1 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.1
+  - check: detail_budget
+    status: pass
+    message: detail at display size 4.2 (R1 5.3)
+    value: 4.16
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 4.6, p95 11.4, off-palette 3.3% (top: #444499 (0.9%), #555599 (0.8%)) (advisory
+      in an exploration)'
+    value: 4.5635
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_stability
+    status: pass
+    message: 71% of the parent level unchanged
+    value: 0.7111
+  - check: edit_chroma
+    status: pass
+    message: chroma x1.15 of the parent level (drift compounds along a chain)
+    value: 1.1499
+  info:
+    metrics_raw:
+      L_p5: 24.2
+      L_p50: 73.9
+      L_p95: 91.9
+      C_p50: 27.8
+      C_p95: 49.4
+      C_p99: 54.0
+      detail: 4.16
+    metrics_locked:
+      L_p5: 24.2
+      L_p50: 73.9
+      L_p95: 91.9
+      C_p50: 27.8
+      C_p95: 49.4
+      C_p99: 54.0
+      detail: 4.16
+  fingerprint: a70b92fe0d0974b3
+sources:
+- take: 1
+  source_file: /workspace/art-operator-runtime/generated/x-revontuli-flow-3/take-1.png
+  source_sha256: 56064ea597118a1d5d9568c4de67107d6d89c855da152727c10e3f010a1beee8
+  q90_take: design/art/takes/batch-68-revontuli-flow/x-revontuli-flow-3/plate__x-revontuli-flow-3--t1.webp
+  q90_take_sha256: d7306e734813b67824f229a6a66f6e99775d36e4f6ef0f9e44edf279ec3f2ead
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 075b9a2946bf3c6d467f59a765821bd34152ab18d1ecfeb164b3891996b2e549
+- take: 2
+  source_file: /workspace/art-operator-runtime/generated/x-revontuli-flow-3/take-2.png
+  source_sha256: ba4c3944bd5443f0b64dfa5c004a0e8b0ac4f7d1a9d5a82b96e612b9e9308aca
+  q90_take: design/art/takes/batch-68-revontuli-flow/x-revontuli-flow-3/plate__x-revontuli-flow-3--t2.webp
+  q90_take_sha256: 7826e142e9189bfbb4b57fb6906c14f7965b68b306a1b5e4e0311ba7bc7fad6d
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 075b9a2946bf3c6d467f59a765821bd34152ab18d1ecfeb164b3891996b2e549
+policy:
+  never_promote: true
+  selection: lead picks
+  source_preservation: Original generated images retained at source_file paths; published takes are q90
+    review copies.
