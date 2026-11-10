@@ -1,0 +1,307 @@
+batch: batch-74-redo-states
+manifest: tools/imagegen/manifest/batch-74-redo-states.yaml
+jobs:
+  x-revontuli-flow-1-day-v2:
+    pick: 1
+    publication: exploration; not promoted; lead review pending
+    note: Both takes are manually eligible. Actual QA lock_load ties at 0.0; focused
+      harmony scores break the tie, with t1 at 73.6 over t2 at 70.5. Auto-picked by
+      QA; founder review pending. The bright snow and saturated wood/ice remain a
+      pilot for lead colour review; it does not scale until the next review. Not promoted
+      because this is an exploration.
+    actual_generation_calls: 2
+    manual_review:
+      job: x-revontuli-flow-1-day-v2
+      reviewer: root coordinator, independent of generating agent
+      reviewed_at: '2026-11-10T20:49:59.135363+00:00'
+      parent_sha256: 4f005dd1c67ba462c4a7dc6480782253901993efaf1822b5e170d898f72faf4f
+      prompt_sha256: fab536f8bc6dd16877e633d61fd06968696718484b3cbc32a290642a551c6173
+      takes:
+      - take: 1
+        source_sha256: 7a48db84407f193ff24c4f75cde297c4d949c07497e9667927e0dfe8c71421a0
+        eligible: true
+        failures: []
+        positive_checks:
+        - Bright textured snow with blue/lilac shadows, saturated green tree and rich
+          blue ice; not a bleached white frame.
+        - Snow drifts, cabin, fishing hole, post, upright front tower and the two
+          damaged/fallen structures remain in the stage arrangement.
+        - Post and tower lanterns appear unlit as requested; no new restoration structure
+          observed.
+        - Pale-blue daylight and light cloud sea.
+        caveats:
+        - Ice blue/wood saturation is strongly increased as requested for this colour
+          pilot; lead colour review remains pending.
+        - Cabin window remains warm as in the parent; the authored unlit clause names
+          lanterns, not a blanket window ban.
+        - Exact pixel registration is not established and is not claimed.
+      - take: 2
+        source_sha256: 82e82ff2c452559e3160dc8c28069e0ad850d6b0477afecfbe3b79d5aea4da64
+        eligible: true
+        failures: []
+        positive_checks:
+        - Bright textured snow with blue/lilac shadows, saturated green tree and rich
+          blue ice; not a bleached white frame.
+        - Snow drifts, cabin, fishing hole, post, upright front tower and the two
+          damaged/fallen structures remain in the stage arrangement.
+        - Post and tower lanterns appear unlit as requested; no new restoration structure
+          observed.
+        - Pale-blue daylight and light cloud sea.
+        caveats:
+        - Ice blue/wood saturation is strongly increased as requested for this colour
+          pilot; lead colour review remains pending.
+        - Cabin window remains warm as in the parent; the authored unlit clause names
+          lanterns, not a blanket window ban.
+        - Exact pixel registration is not established and is not claimed.
+qa_reports:
+- job: x-revontuli-flow-1-day-v2
+  take: 1
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: warn
+    message: chroma p95 53 (R1 51)
+    value: 53.3
+  - check: light_values
+    status: warn
+    message: 'day/subject: L p5 45 (at least 50: darks stay a light mid-tone), p98
+      95 (at least 90)'
+    value: 45.2
+  - check: light_median
+    status: pass
+    message: 'day/subject: median L 79 (band 74-92)'
+    value: 79.0
+  - check: light_contrast
+    status: pass
+    message: 'day/subject: p75 local contrast 5.2 (band 2.5-6.5; above it reads too
+      contrasty)'
+    value: 5.22
+  - check: light_sky
+    status: warn
+    message: 'day: sky L 69 (band 70-94)'
+    value: 69.3
+  - check: light_sea
+    status: pass
+    message: 'day: cloud sea L 87 (at least 82: the sea is the reflector)'
+    value: 86.8
+  - check: light_dark
+    status: pass
+    message: 'day: 0.5 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.5
+  - check: detail_budget
+    status: pass
+    message: detail at display size 3.7 (R1 5.3)
+    value: 3.68
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 9.1, p95 23.3, off-palette 34.6% (top: #66AAFF (5.3%), #77BBFF
+      (4.1%)) (advisory in an exploration)'
+    value: 9.112
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_structure
+    status: warn
+    message: light structure matches the parent (r 0.48) (advisory in an exploration)
+    value: 0.4755
+  - check: edit_lightness
+    status: warn
+    message: mean lightness moved by 12.6 L (the same lightness was asked)
+    value: 12.5846
+  info:
+    metrics_raw:
+      L_p5: 48.8
+      L_p50: 78.3
+      L_p95: 95.1
+      C_p50: 30.7
+      C_p95: 53.3
+      C_p99: 58.9
+      detail: 3.68
+    metrics_locked:
+      L_p5: 48.8
+      L_p50: 78.3
+      L_p95: 95.1
+      C_p50: 30.7
+      C_p95: 53.3
+      C_p99: 58.9
+      detail: 3.68
+  fingerprint: f2ebf695fefd8a6a
+- job: x-revontuli-flow-1-day-v2
+  take: 2
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: warn
+    message: chroma p95 52 (R1 51)
+    value: 52.3
+  - check: light_values
+    status: pass
+    message: 'day/subject: L p5 50 (at least 50: darks stay a light mid-tone), p98
+      97 (at least 90)'
+    value: 50.3
+  - check: light_median
+    status: pass
+    message: 'day/subject: median L 80 (band 74-92)'
+    value: 80.0
+  - check: light_contrast
+    status: pass
+    message: 'day/subject: p75 local contrast 5.2 (band 2.5-6.5; above it reads too
+      contrasty)'
+    value: 5.16
+  - check: light_sky
+    status: warn
+    message: 'day: sky L 68 (band 70-94)'
+    value: 68.1
+  - check: light_sea
+    status: pass
+    message: 'day: cloud sea L 90 (at least 82: the sea is the reflector)'
+    value: 90.5
+  - check: light_dark
+    status: pass
+    message: 'day: 0.3 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.3
+  - check: detail_budget
+    status: pass
+    message: detail at display size 3.7 (R1 5.3)
+    value: 3.68
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 9.0, p95 23.6, off-palette 33.0% (top: #66AAFF (3.4%), #5599EE
+      (3.2%)) (advisory in an exploration)'
+    value: 8.9733
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_structure
+    status: warn
+    message: light structure matches the parent (r 0.59) (advisory in an exploration)
+    value: 0.5863
+  - check: edit_lightness
+    status: warn
+    message: mean lightness moved by 14.1 L (the same lightness was asked)
+    value: 14.063
+  info:
+    metrics_raw:
+      L_p5: 53.6
+      L_p50: 79.2
+      L_p95: 96.9
+      C_p50: 29.7
+      C_p95: 52.3
+      C_p99: 55.6
+      detail: 3.68
+    metrics_locked:
+      L_p5: 53.6
+      L_p50: 79.2
+      L_p95: 96.9
+      C_p50: 29.7
+      C_p95: 52.3
+      C_p99: 55.6
+      detail: 3.68
+  fingerprint: f2ebf695fefd8a6a
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-d8fa9ec2-971e-450f-8dbf-4698fd03d7d2.png
+  source_sha256: 7a48db84407f193ff24c4f75cde297c4d949c07497e9667927e0dfe8c71421a0
+  q90_take: design/art/takes/batch-74-redo-states/x-revontuli-flow-1-day-v2/plate__x-revontuli-flow-1-day-v2--t1.webp
+  q90_take_sha256: 74f2d2c98cecc091cb28f5fcaf75979925207e1c7c363b811d98485afbf434c5
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: fab536f8bc6dd16877e633d61fd06968696718484b3cbc32a290642a551c6173
+  started_at: '2026-11-10T20:45:26.667Z'
+  returned_at: '2026-11-10T20:45:55.434Z'
+  model: null
+  tool: image_gen.imagegen
+- take: 2
+  source_file: /workspace/generated_images/exec-3387ff72-3454-4b8a-b85d-dd07f6d0889f.png
+  source_sha256: 82e82ff2c452559e3160dc8c28069e0ad850d6b0477afecfbe3b79d5aea4da64
+  q90_take: design/art/takes/batch-74-redo-states/x-revontuli-flow-1-day-v2/plate__x-revontuli-flow-1-day-v2--t2.webp
+  q90_take_sha256: 41cf3c8575c9cf5027e6abff55b4b426052b1a1a2b8aaef44a3faa981de3fa32
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: fab536f8bc6dd16877e633d61fd06968696718484b3cbc32a290642a551c6173
+  started_at: '2026-11-10T20:45:26.667Z'
+  returned_at: '2026-11-10T20:46:23.685Z'
+  model: null
+  tool: image_gen.imagegen
+harmony_scores:
+  method: Focused individual scoring against the precomputed world reference; no full
+    measure/catalog scan.
+  command_base:
+  - python3
+  - -I
+  - tools/assets/harmony.py
+  - score
+  reference_data:
+    config_sha256: d2ed591e6e8a7d0eafd54f95e3e3c98290453a81aaff11a9f800afea6fc43a18
+    reference_sha256: 602aff8ff097bad430ebfc0bf3837c647cf738bc407b90d58b8eb689810a673e
+    materials_sha256: 495011a0bfbe8c9c890ec62f8ff6f7a2e1f5fe1d061f73c23ec26518b938b557
+    assets_json_count: 211
+    assets_json_digest_sha256: f8f88057d3b860d56318b4a6bdfbf0fc70f16eb9237516ab9d3234b901c4f6b3
+  scores:
+  - take: 1
+    argv:
+    - python3
+    - -I
+    - tools/assets/harmony.py
+    - score
+    - build/imagegen/batch-74-redo-states/locked/plate__x-revontuli-flow-1-day-v2--t1.png
+    - --ppu
+    - '4.103'
+    - --kind
+    - world
+    ppu: 4.103
+    kind: world
+    score: 73.6
+    outliers:
+    - L_p2
+    - edge
+    reference_group: world
+  - take: 2
+    argv:
+    - python3
+    - -I
+    - tools/assets/harmony.py
+    - score
+    - build/imagegen/batch-74-redo-states/locked/plate__x-revontuli-flow-1-day-v2--t2.png
+    - --ppu
+    - '4.103'
+    - --kind
+    - world
+    ppu: 4.103
+    kind: world
+    score: 70.5
+    outliers:
+    - L_p98
+    - edge
+    reference_group: world
+policy:
+  never_promote: true
+  selection: lead picks
+  source_preservation: Original generated images retained at source_file paths; published
+    takes are q90 review copies.
