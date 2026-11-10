@@ -204,27 +204,97 @@ struct HomePlateTests {
         #expect(abs(home.residentScale / home.characterScale - home.plate.residentBoost) < 1e-9)
     }
 
-    @Test func showsByDayInClearWeatherAtItsLevel() throws {
-        let home = try plate
-        let level = home.plate.minLevel
-        #expect(home.shows(islandLevel: level, hour: 12, weather: .clear, isBedtime: false))
-        #expect(!home.shows(islandLevel: level - 1, hour: 12, weather: .clear, isBedtime: false))
-        #expect(!home.shows(islandLevel: level, hour: 22.5, weather: .clear, isBedtime: false))
-        #expect(!home.shows(islandLevel: level, hour: 7, weather: .clear, isBedtime: false))
-        #expect(!home.shows(islandLevel: level, hour: 12, weather: WeatherConditions(weather: .lightRain), isBedtime: false))
-        #expect(!home.shows(islandLevel: level, hour: 12, weather: .clear, isBedtime: true))
+    @Test func choosesItsPaintedStateByLevelHourAndWeather() throws {
+        let plate = try self.plate.plate
+        func state(_ level: Int, _ hour: Double, _ weather: WeatherConditions = .clear, bed: Bool = false) -> String? {
+            HomePlate.state(in: plate, islandLevel: level, hour: hour, weather: weather, isBedtime: bed).map { "\($0.light)-\($0.stage)" }
+        }
+        // Day: one painted plate per level, 10 down to 2.
+        #expect(state(10, 12) == "day-0")
+        #expect(state(9, 12) == "day-1")
+        #expect(state(2, 12) == "day-8")
+        #expect(state(1, 12) == nil)
+        #expect(state(12, 12) == "day-0")
+        // Golden hour and night: level 10 only.
+        #expect(state(10, 18) == "golden-0")
+        #expect(state(10, 22.5) == "night-0")
+        #expect(state(10, 3) == "night-0")
+        #expect(state(10, 12, bed: true) == "night-0")
+        #expect(state(9, 18) == nil)
+        #expect(state(9, 22.5) == nil)
+        // Dawn, dusk and weather keep the sprite island.
+        #expect(state(10, 6.5) == nil)
+        #expect(state(10, 19.75) == nil)
+        #expect(state(10, 12, WeatherConditions(weather: .lightRain)) == nil)
     }
 
     @Test func resolvesFromTheLooksHourAndWeather() throws {
         let home = try plate
         let world = IslandSamples.world(
-            clock: nil, tendedDays: 60, levels: [:], jar: .zero, islands: [.home], islandLevel: home.plate.minLevel
+            clock: nil, tendedDays: 60, levels: [:], jar: .zero, islands: [.home], islandLevel: 10
         )
-        #expect(HomePlate.resolve(home, world: world, look: WorldLook(hourOverride: 12)) != nil)
-        #expect(HomePlate.resolve(home, world: world, look: WorldLook(hourOverride: 22.5)) == nil)
+        #expect(HomePlate.resolve(home, world: world, look: WorldLook(hourOverride: 12))?.light == "day")
+        #expect(HomePlate.resolve(home, world: world, look: WorldLook(hourOverride: 18))?.light == "golden")
+        #expect(HomePlate.resolve(home, world: world, look: WorldLook(hourOverride: 22.5))?.light == "night")
         var rain = WorldLook(hourOverride: 12)
         rain.weatherOverride = WeatherConditions(weather: .lightRain)
         #expect(HomePlate.resolve(home, world: world, look: rain) == nil)
+        let low = IslandSamples.world(clock: nil, tendedDays: 5, levels: [:], jar: .zero, islands: [.home], islandLevel: 5)
+        #expect(HomePlate.resolve(home, world: low, look: WorldLook(hourOverride: 12))?.stage == 5)
+    }
+
+    @Test func aLowerLevelHasNoPolygonOrOccluderOnWhatItDoesNotPaint() throws {
+        let top = try plate
+        let plate = top.plate
+        // Level 5 (stage 5): no windmill, workshop, lighthouse or bushes; the tea stall and the door stay.
+        let five = HomePlate(plate: plate, light: "day", stage: 5)
+        let ids = Set(five.objects.map(\.id))
+        for gone in ["windmill", "workshop", "lighthouse", "mailbox", "westBush", "eastBush"] {
+            #expect(!ids.contains(gone), "\(gone)")
+        }
+        for kept in ["teaStall", "door", "wheel", "pond"] {
+            #expect(ids.contains(kept), "\(kept)")
+        }
+        let windmill = try #require(plate.object("windmill"))
+        let c = PlatePoint(
+            x: windmill.polygon.map(\.x).reduce(0, +) / Double(windmill.polygon.count),
+            y: windmill.polygon.map(\.y).reduce(0, +) / Double(windmill.polygon.count)
+        )
+        #expect(top.tapObject(at: top.world(c))?.id == "windmill")
+        #expect(five.tapObject(at: five.world(c))?.id != "windmill")
+        #expect(five.stationBox(.windmill) == nil)
+        // Every painted state has what its objects need: occluders only where present.
+        for light in plate.lights {
+            for stage in 0..<(plate.lightStages[light] ?? 1) {
+                let state = HomePlate(plate: plate, light: light, stage: stage)
+                #expect(state.objects.count <= plate.objects.count)
+                #expect(state.objects.contains { $0.id == "door" })
+            }
+        }
+        // Golden and night paint everything.
+        #expect(HomePlate(plate: plate, light: "night", stage: 0).objects.count == plate.objects.count)
+    }
+
+    @Test func eachStateCarriesItsHarmonyData() throws {
+        let plate = try self.plate.plate
+        for light in plate.lights {
+            #expect(plate.harmony[light]?.count == plate.lightStages[light])
+        }
+        let day = plate.harmony(light: "day", stage: 0)
+        #expect(day.tint == PofuRGB(red: 1, green: 1, blue: 1) && day.contact == 1)
+        // The night plate's lawn is darker: its tint darkens, never brightens.
+        let night = plate.harmony(light: "night", stage: 0)
+        #expect(night.tint.red < 1 && night.tint.green < 1 && night.tint.blue <= 1)
+        for light in plate.lights {
+            for h in plate.harmony[light] ?? [] {
+                #expect(h.contact >= 0.5 && h.contact <= 1.2)
+                #expect(h.tint.red <= 1 && h.tint.green <= 1 && h.tint.blue <= 1)
+                #expect(min(h.tint.red, h.tint.green, h.tint.blue) >= 0.25)
+            }
+        }
+        let nightPlate = HomePlate(plate: plate, light: "night", stage: 0)
+        let paint = nightPlate.paint(at: IslandLayout.pofu)
+        #expect(paint.red < 1)
     }
 
     @Test func tapsLandOnTheirStations() throws {
@@ -293,7 +363,7 @@ struct PlateHitTests {
         let world = IslandSamples.world(
             clock: nil, tendedDays: 60,
             levels: [.garden: 5, .teaStall: 5, .pond: 5, .windmill: 5, .workshop: 5],
-            jar: .zero, islands: [.home], islandLevel: home.plate.minLevel
+            jar: .zero, islands: [.home], islandLevel: 10
         )
         let targets = WorldHitTest.plateTargets(home, stations: world.stations, z: 2)
         let kinds = Set(targets.map(\.kind))
@@ -313,7 +383,7 @@ struct PlateHitTests {
         let home = try #require(HomePlate.shipped)
         let world = IslandSamples.world(
             clock: nil, tendedDays: 60, levels: [.garden: 5, .teaStall: 5, .pond: 5, .windmill: 5, .workshop: 5],
-            jar: .zero, islands: [.home], islandLevel: home.plate.minLevel
+            jar: .zero, islands: [.home], islandLevel: 10
         )
         let stop = home.homeStop
         let pose = CameraPose(scale: stop.scale, look: stop.look, anchorY: stop.anchorY)

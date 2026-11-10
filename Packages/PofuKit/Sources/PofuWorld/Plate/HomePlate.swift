@@ -12,9 +12,10 @@ import PofuDesignSystem
 /// bubble, the collect moment) works unchanged. Its scale makes the island
 /// `framing.homeWidths` screen widths wide at Home's scale.
 ///
-/// It shows at the plate's island level and above, by day, in clear
-/// weather; every other hour and weather keeps the sprite island until its
-/// painted states exist (night is painted per ADR-0022 L1).
+/// It shows in clear weather: by day at island levels 2...10 (one painted
+/// plate per level), at golden hour and by night at level 10. Every other
+/// hour, level and weather keeps the sprite island until its painted states
+/// exist (ADR-0022 L1).
 public struct HomePlate: Hashable, Sendable {
     public let plate: PlateIsland
     public let light: String
@@ -25,6 +26,10 @@ public struct HomePlate: Hashable, Sendable {
     public let origin: PlatePoint
     /// The open lawn's light: a character standing there keeps its paint.
     public let referenceLight: PofuRGB
+    /// The character harmony rule's data for this state: the multiply tint
+    /// that puts a sprite in the plate's light and the contact shadow's
+    /// strength (`tools/plate/ingest.py`, docs/design/visual-system.md).
+    public let harmony: PlateIsland.Harmony
 
     /// Pofu's art is 64 units wide (`PofuLayer.artWidth`).
     public static let pofuArtWidth = 64.0
@@ -40,6 +45,7 @@ public struct HomePlate: Hashable, Sendable {
             ?? PlatePoint(x: (plate.islandBox.minX + plate.islandBox.maxX) / 2, y: (plate.islandBox.minY + plate.islandBox.maxY) / 2)
         origin = PlatePoint(x: pofu.x - IslandLayout.pofu.x / u, y: pofu.y - IslandLayout.pofu.y / u)
         referenceLight = Self.reference(plate: plate, light: light, stage: stage)
+        harmony = plate.harmony(light: light, stage: stage)
     }
 
     /// The home plate shipped in the package, if any.
@@ -47,17 +53,45 @@ public struct HomePlate: Hashable, Sendable {
 
     // MARK: - When it shows
 
-    /// The hours of the painted day plate, local time.
-    public static let dayHours: Range<Double> = 9..<17
+    /// The hour bands of the painted lights, local time, on the sky's own
+    /// schedule (`SkyModel.keyframes`: day 07:45-17:15, golden hour
+    /// 17:45-19:15, night from 20:45, each edge blending over 30 minutes):
+    /// the band a plate paints runs to the middle of the blend. Dawn and
+    /// dusk keep the sprite island until they are painted.
+    public static let dayHours: Range<Double> = 7.75..<17.5
+    public static let goldenHours: Range<Double> = 17.5..<19.5
+    /// Night: from 20:00 to 05:45 (`hour` wraps), and the bedtime window.
+    public static func isNightHour(_ hour: Double) -> Bool {
+        hour >= 20 || hour < 5.75
+    }
 
-    /// Whether the plate shows: at its island level or above, by day, in
-    /// clear weather, awake.
-    public func shows(islandLevel: Int, hour: Double, weather: WeatherConditions, isBedtime: Bool) -> Bool {
-        islandLevel >= plate.minLevel
-            && Self.dayHours.contains(hour)
-            && weather.weather == .clear && !weather.rainbow
-            && !isBedtime
-            && plate.lights.contains(light)
+    /// The painted state for this level, hour and weather: the light and
+    /// the stage (day: one per island level; golden and night: level 10), or
+    /// `nil` for the sprite island.
+    public static func state(
+        in plate: PlateIsland,
+        islandLevel: Int,
+        hour: Double,
+        weather: WeatherConditions,
+        isBedtime: Bool
+    ) -> (light: String, stage: Int)? {
+        guard weather.weather == .clear, !weather.rainbow else { return nil }
+        let light: String
+        if isBedtime || isNightHour(hour) {
+            light = "night"
+        } else if dayHours.contains(hour) {
+            light = "day"
+        } else if goldenHours.contains(hour) {
+            light = "golden"
+        } else {
+            return nil
+        }
+        guard plate.lights.contains(light) else { return nil }
+        if light == "day" {
+            return plate.dayStage(islandLevel: islandLevel).map { (light, $0) }
+        }
+        // Golden and night are painted at the final level only.
+        return islandLevel >= (plate.stageLevels.max() ?? plate.minLevel) ? (light, 0) : nil
     }
 
     /// The plate for this world and look now, or `nil` for the sprite
@@ -69,11 +103,12 @@ public struct HomePlate: Hashable, Sendable {
         look: WorldLook,
         calendar: Calendar = .current
     ) -> HomePlate? {
-        guard let plate else { return nil }
+        guard let plate, look.homePlates else { return nil }
         let minute = look.hourOverride.map { $0 * 60 } ?? world.clock.map { SkyModel.minuteOfDay($0, calendar: calendar) } ?? 12 * 60
         let weather = look.weatherOverride
             ?? WeatherForecast.conditions(clock: world.clock, firstDay: world.firstDay, hour: minute / 60, calendar: calendar)
-        return plate.shows(islandLevel: world.islandLevel, hour: minute / 60, weather: weather, isBedtime: world.isBedtime) ? plate : nil
+        guard let state = state(in: plate.plate, islandLevel: world.islandLevel, hour: minute / 60, weather: weather, isBedtime: world.isBedtime) else { return nil }
+        return HomePlate(plate: plate.plate, light: state.light, stage: state.stage)
     }
 
     // MARK: - Plate and world
@@ -176,6 +211,24 @@ public struct HomePlate: Hashable, Sendable {
         return colours.sorted { PlateMath.luminance($0) < PlateMath.luminance($1) }[colours.count / 2]
     }
 
+    // MARK: - Objects
+
+    /// The objects painted in this state: a level that does not paint one
+    /// (no windmill at level 5) has no tap polygon or occluder for it.
+    public var objects: [PlateIsland.Object] {
+        plate.objects.filter { $0.isPresent(light: light, stage: stage) }
+    }
+
+    // MARK: - Characters in the plate's light
+
+    /// The paint multiply for a character standing at `feet`: this state's
+    /// harmony tint (the plate's lawn light against the level-10 day's) times
+    /// the gain for a lee on the plate (`gain(at:)`).
+    public func paint(at feet: WorldPoint) -> PofuRGB {
+        let g = gain(at: feet), t = harmony.tint
+        return PofuRGB(red: t.red * g, green: t.green * g, blue: t.blue * g)
+    }
+
     // MARK: - Occlusion
 
     /// The occluders that draw over a character standing at `feet` with
@@ -184,7 +237,7 @@ public struct HomePlate: Hashable, Sendable {
         let a = plate(WorldPoint(x: box.minX, y: box.minY)), b = plate(WorldPoint(x: box.maxX, y: box.maxY))
         return PlateMath.occluders(
             over: (footY: plate(feet).y, box: PlateRect(minX: a.x, minY: a.y, maxX: b.x, maxY: b.y)),
-            in: plate
+            in: plate, light: light, stage: stage
         )
     }
 
@@ -203,7 +256,7 @@ public struct HomePlate: Hashable, Sendable {
 
     /// The tap object under a world point (`PlateMath.hit`).
     public func tapObject(at w: WorldPoint) -> PlateIsland.Object? {
-        PlateMath.hit(plate, at: plate(w))
+        PlateMath.hit(plate, at: plate(w), light: light, stage: stage)
     }
 
     public func worldPolygon(_ object: PlateIsland.Object) -> [WorldPoint] {
@@ -212,14 +265,14 @@ public struct HomePlate: Hashable, Sendable {
 
     /// A station's polygon's box, in world units: what a focus frames.
     public func stationBox(_ station: StationID) -> WorldBox? {
-        plate.objects.first { $0.station == station }.map { worldBox(PlateMath.bounds($0.polygon)) }
+        objects.first { $0.station == station }.map { worldBox(PlateMath.bounds($0.polygon)) }
     }
 
     /// Where the seeds leave from at Collect: the built stations' objects
     /// on the plate, and Pofu.
     public func seedSources(builtStations: Set<StationID>) -> [WorldPoint] {
-        let objects = plate.objects.filter { $0.station.map(builtStations.contains) ?? false }
-        return objects.map { o in
+        let sources = objects.filter { $0.station.map(builtStations.contains) ?? false }
+        return sources.map { o in
             let b = PlateMath.bounds(o.polygon)
             return world(PlatePoint(x: (b.minX + b.maxX) / 2, y: b.minY + b.height * 0.35))
         } + [WorldPoint(x: IslandLayout.pofu.x, y: IslandLayout.pofu.y - 64 * characterScale * 0.5)]

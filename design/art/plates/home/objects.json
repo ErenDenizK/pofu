@@ -1,14 +1,28 @@
 {
  "island": "home",
- "note": "The founder's pick: batch 66's x-home-flow-final-rich t1 (1024 x 1536 portrait, painted at final colour), level 10, day. Points are percent of the plate (`size`). Taps map to the existing stations only (beehive, hamster wheel, hilltop and the other round doors have no action, so no polygon).",
+ "note": "The founder's pick: batch 66's x-home-flow-final-rich t1 (1024 x 1536 portrait, painted at final colour), level 10, day. Points are percent of the plate (`size`). Taps map to the existing stations only (beehive, hamster wheel, hilltop and the other round doors have no action, so no polygon). Day stages 0..8 are island levels 10..2 (`stageLevels`); golden and night exist at level 10 only. An object's `stages` lists the day stages where it is painted (diff against the level-10 plate, checked by eye: tools/plate/README.md); absent means all.",
  "size": [
   1024,
   1536
  ],
- "minLevel": 10,
+ "minLevel": 2,
  "plates": {
   "day": {
-   "0": "design/art/takes/batch-66-home-flow/x-home-flow-final-rich/plate__x-home-flow-final-rich--t1.webp"
+   "0": "design/art/takes/batch-66-home-flow/x-home-flow-final-rich/plate__x-home-flow-final-rich--t1.webp",
+   "1": "design/art/takes/batch-66-home-flow/x-home-flow-il9/plate__x-home-flow-il9--t1.webp",
+   "2": "design/art/takes/batch-66-home-flow/x-home-flow-il8/plate__x-home-flow-il8--t1.webp",
+   "3": "design/art/takes/batch-66-home-flow/x-home-flow-il7/plate__x-home-flow-il7--t1.webp",
+   "4": "design/art/takes/batch-66-home-flow/x-home-flow-il6/plate__x-home-flow-il6--t1.webp",
+   "5": "design/art/takes/batch-66-home-flow/x-home-flow-il5/plate__x-home-flow-il5--t1.webp",
+   "6": "design/art/takes/batch-66-home-flow/x-home-flow-il4/plate__x-home-flow-il4--t2.webp",
+   "7": "design/art/takes/batch-66-home-flow/x-home-flow-il3/plate__x-home-flow-il3--t1.webp",
+   "8": "design/art/takes/batch-66-home-flow/x-home-flow-il2/plate__x-home-flow-il2--t1.webp"
+  },
+  "golden": {
+   "0": "design/art/takes/batch-66-home-flow/x-home-flow-golden/plate__x-home-flow-golden--t1.webp"
+  },
+  "night": {
+   "0": "design/art/takes/batch-66-home-flow/x-home-flow-night/plate__x-home-flow-night--t1.webp"
   }
  },
  "trace": [
@@ -486,6 +500,13 @@
      43.46,
      47.85
     ]
+   ],
+   "stages": [
+    0,
+    1,
+    2,
+    3,
+    4
    ]
   },
   {
@@ -555,6 +576,11 @@
      26.56,
      42.32
     ]
+   ],
+   "stages": [
+    0,
+    1,
+    2
    ]
   },
   {
@@ -607,6 +633,16 @@
      2.93,
      50.78
     ]
+   ],
+   "stages": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    8
    ]
   },
   {
@@ -672,6 +708,15 @@
      9.77,
      59.57
     ]
+   ],
+   "stages": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
    ]
   },
   {
@@ -720,6 +765,16 @@
      77.64,
      49.15
     ]
+   ],
+   "stages": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
    ]
   },
   {
@@ -772,6 +827,12 @@
      84.77,
      54.36
     ]
+   ],
+   "stages": [
+    0,
+    1,
+    2,
+    5
    ]
   },
   {
@@ -820,6 +881,13 @@
      87.89,
      47.85
     ]
+   ],
+   "stages": [
+    0,
+    1,
+    2,
+    3,
+    4
    ]
   },
   {
@@ -967,6 +1035,12 @@
      26.56,
      61.85
     ]
+   ],
+   "stages": [
+    0,
+    1,
+    2,
+    3
    ]
   },
   {
@@ -1021,6 +1095,12 @@
      10.55,
      65.1
     ]
+   ],
+   "stages": [
+    0,
+    1,
+    2,
+    3
    ]
   },
   {
@@ -1083,6 +1163,12 @@
      59.08,
      63.48
     ]
+   ],
+   "stages": [
+    0,
+    1,
+    2,
+    3
    ]
   }
  ],
@@ -1154,7 +1240,7 @@
  "framing": {
   "homeWidths": 1.0,
   "homeCenterX": 0.5,
-  "homeTopY": 250,
+  "homeTopY": 390,
   "islandWidths": 0.9,
   "wholeWidths": 0.95
  },
@@ -1162,5 +1248,16 @@
   -0.5,
   0.3
  ],
- "residentBoost": 1.15
+ "residentBoost": 1.15,
+ "stageLevels": [
+  10,
+  9,
+  8,
+  7,
+  6,
+  5,
+  4,
+  3,
+  2
+ ]
 }

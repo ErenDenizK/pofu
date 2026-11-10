@@ -139,7 +139,7 @@ public enum WorldHitTest {
     ) -> [HitTarget] {
         guard z >= archipelagoZ else { return islandTargets(koke: koke != .none, caglayan: caglayan != .none) }
         var targets: [HitTarget] = []
-        for object in plate.plate.objects where object.tap {
+        for object in plate.objects where object.tap {
             if let station = object.station {
                 guard stations.contains(where: { $0.id == station && $0.island == .home && $0.isOpen }) else { continue }
             }
