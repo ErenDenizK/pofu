@@ -5,10 +5,9 @@ jobs:
     pick: 2
     publication: exploration; not promoted; lead review pending
     note: Take 1 is manually ineligible because a conspicuous band of clustered flowers
-      remains along the harbour islet edge. Take 2 is eligible on the observed criteria.
-      QA lock_load is 0.0 for both; among eligible takes, take 2 is the only candidate
-      and is auto-picked by QA. Palette drift is an advisory warning in this exploration.
-      Not promoted because this is an exploration.
+      remains along the harbour islet edge. Take 2 is the only manually eligible candidate
+      and is auto-picked by QA. Both lock_load values tie at 0.0; focused harmony
+      scores are 76.9 for t1 and 81.3 for t2. Not promoted because this is an exploration.
     manual_review:
       job: x-home-flow-il1-v3
       reviewer: independent visual review
@@ -63,6 +62,7 @@ jobs:
         - The broad island contour and distant elements look similar to the root,
           but visual inspection does not prove pixel-for-pixel registration. No specific
           displacement or silhouette change was established.
+    actual_generation_calls: 2
 qa_reports:
 - job: x-home-flow-il1-v3
   take: 1
@@ -242,6 +242,10 @@ sources:
     owner: Founder's uncle's ChatGPT plan, used by the founder with permission
     kind: chatgpt-plan
   prompt_sha256: 1ba3aaf9665af4e80b4837d65bc0d51c9afa771eb60656f94cc9db1388c392c0
+  started_at: '2026-11-10T20:19:58.791Z'
+  returned_at: '2026-11-10T20:20:38.943Z'
+  model: null
+  tool: image_gen.imagegen
 - take: 2
   source_file: /workspace/generated_images/exec-5cdae9da-8969-4f73-89cc-432b69c47c10.png
   source_sha256: 199f286c6d19f154a24cb6cbbbd89ae0359ac621be31d722623627754c95ad2c
@@ -251,8 +255,61 @@ sources:
     owner: Founder's uncle's ChatGPT plan, used by the founder with permission
     kind: chatgpt-plan
   prompt_sha256: 1ba3aaf9665af4e80b4837d65bc0d51c9afa771eb60656f94cc9db1388c392c0
+  started_at: '2026-11-10T20:19:58.791Z'
+  returned_at: '2026-11-10T20:21:21.383Z'
+  model: null
+  tool: image_gen.imagegen
 policy:
   never_promote: true
   selection: lead picks
   source_preservation: Original generated images retained at source_file paths; published
     takes are q90 review copies.
+harmony_scores:
+  method: Focused individual scoring against the precomputed world reference; no full
+    measure/catalog scan.
+  command_base:
+  - python3
+  - -I
+  - tools/assets/harmony.py
+  - score
+  reference_data:
+    config_sha256: d2ed591e6e8a7d0eafd54f95e3e3c98290453a81aaff11a9f800afea6fc43a18
+    reference_sha256: 602aff8ff097bad430ebfc0bf3837c647cf738bc407b90d58b8eb689810a673e
+    materials_sha256: 495011a0bfbe8c9c890ec62f8ff6f7a2e1f5fe1d061f73c23ec26518b938b557
+    assets_json_count: 211
+    assets_json_digest_sha256: f8f88057d3b860d56318b4a6bdfbf0fc70f16eb9237516ab9d3234b901c4f6b3
+  scores:
+  - take: 1
+    argv:
+    - python3
+    - -I
+    - tools/assets/harmony.py
+    - score
+    - build/imagegen/batch-74-redo-states/locked/plate__x-home-flow-il1-v3--t1.png
+    - --ppu
+    - '2.735'
+    - --kind
+    - world
+    ppu: 2.735
+    kind: world
+    score: 76.9
+    outliers:
+    - edge
+    reference_group: world
+  - take: 2
+    argv:
+    - python3
+    - -I
+    - tools/assets/harmony.py
+    - score
+    - build/imagegen/batch-74-redo-states/locked/plate__x-home-flow-il1-v3--t2.png
+    - --ppu
+    - '2.735'
+    - --kind
+    - world
+    ppu: 2.735
+    kind: world
+    score: 81.3
+    outliers:
+    - edge
+    reference_group: world

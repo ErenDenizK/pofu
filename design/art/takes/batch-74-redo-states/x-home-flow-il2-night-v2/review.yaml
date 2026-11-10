@@ -55,6 +55,7 @@ jobs:
         - The sky has more than a few stars by a strict count, though they remain
           small and subdued. No specific inventory or placement failure was established
           visually.
+    actual_generation_calls: 2
 qa_reports:
 - job: x-home-flow-il2-night-v2
   take: 1
@@ -237,6 +238,10 @@ sources:
     owner: Founder's uncle's ChatGPT plan, used by the founder with permission
     kind: chatgpt-plan
   prompt_sha256: 626d1f1253df26322ad30dd71a4cce70478a724d12d5ec4bfe8ecb7c9365990b
+  started_at: '2026-11-10T20:24:06.575Z'
+  returned_at: '2026-11-10T20:24:40.062Z'
+  model: null
+  tool: image_gen.imagegen
 - take: 2
   source_file: /workspace/generated_images/exec-d8740d11-a4a9-4bd0-8a95-c7061994abf1.png
   source_sha256: 89da45b0d67d4d1a88ce956b909d8eccf5af0c3fde1ea297c48d8bddcb42b3f2
@@ -246,23 +251,63 @@ sources:
     owner: Founder's uncle's ChatGPT plan, used by the founder with permission
     kind: chatgpt-plan
   prompt_sha256: 626d1f1253df26322ad30dd71a4cce70478a724d12d5ec4bfe8ecb7c9365990b
+  started_at: '2026-11-10T20:24:06.575Z'
+  returned_at: '2026-11-10T20:25:19.319Z'
+  model: null
+  tool: image_gen.imagegen
 policy:
   never_promote: true
   selection: lead picks
   source_preservation: Original generated images retained at source_file paths; published
     takes are q90 review copies.
 harmony_scores:
-- take: 1
-  kind: world
-  ppu: 2.735
-  score: 65.7
-  outliers:
-  - L_p2
-  - edge
-- take: 2
-  kind: world
-  ppu: 2.735
-  score: 66.5
-  outliers:
-  - L_p2
-  - edge
+  method: Focused individual scoring against the precomputed world reference; no full
+    measure/catalog scan.
+  command_base:
+  - python3
+  - -I
+  - tools/assets/harmony.py
+  - score
+  reference_data:
+    config_sha256: d2ed591e6e8a7d0eafd54f95e3e3c98290453a81aaff11a9f800afea6fc43a18
+    reference_sha256: 602aff8ff097bad430ebfc0bf3837c647cf738bc407b90d58b8eb689810a673e
+    materials_sha256: 495011a0bfbe8c9c890ec62f8ff6f7a2e1f5fe1d061f73c23ec26518b938b557
+    assets_json_count: 211
+    assets_json_digest_sha256: f8f88057d3b860d56318b4a6bdfbf0fc70f16eb9237516ab9d3234b901c4f6b3
+  scores:
+  - take: 1
+    argv:
+    - python3
+    - -I
+    - tools/assets/harmony.py
+    - score
+    - build/imagegen/batch-74-redo-states/locked/plate__x-home-flow-il2-night-v2--t1.png
+    - --ppu
+    - '2.735'
+    - --kind
+    - world
+    ppu: 2.735
+    kind: world
+    score: 65.7
+    outliers:
+    - L_p2
+    - edge
+    reference_group: world
+  - take: 2
+    argv:
+    - python3
+    - -I
+    - tools/assets/harmony.py
+    - score
+    - build/imagegen/batch-74-redo-states/locked/plate__x-home-flow-il2-night-v2--t2.png
+    - --ppu
+    - '2.735'
+    - --kind
+    - world
+    ppu: 2.735
+    kind: world
+    score: 66.5
+    outliers:
+    - L_p2
+    - edge
+    reference_group: world

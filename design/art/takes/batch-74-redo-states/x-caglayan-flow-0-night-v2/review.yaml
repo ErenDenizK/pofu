@@ -48,6 +48,7 @@ jobs:
     status: skipped
     skip_reason: Both requested takes exceed the faint warm window glow requirement;
       two-take phase complete, no regeneration requested.
+    actual_generation_calls: 2
 qa_reports:
 - job: x-caglayan-flow-0-night-v2
   take: 1
@@ -229,6 +230,10 @@ sources:
     owner: Founder's uncle's ChatGPT plan, used by the founder with permission
     kind: chatgpt-plan
   prompt_sha256: c54b7d7e7fab20999366cedc001e5dd76e406bf127d2ffa93cf4425e0fd072bf
+  started_at: '2026-11-10T20:24:06.575Z'
+  returned_at: '2026-11-10T20:25:59.199Z'
+  model: null
+  tool: image_gen.imagegen
 - take: 2
   source_file: /workspace/generated_images/exec-94b8e539-8b24-40f8-a0c6-3f864725c093.png
   source_sha256: 73c62c5f41e6314d4a977d7421d4c5b46620c391b76f217eeb0550d162846382
@@ -238,6 +243,10 @@ sources:
     owner: Founder's uncle's ChatGPT plan, used by the founder with permission
     kind: chatgpt-plan
   prompt_sha256: c54b7d7e7fab20999366cedc001e5dd76e406bf127d2ffa93cf4425e0fd072bf
+  started_at: '2026-11-10T20:24:06.575Z'
+  returned_at: '2026-11-10T20:26:45.585Z'
+  model: null
+  tool: image_gen.imagegen
 policy:
   never_promote: true
   selection: lead picks
