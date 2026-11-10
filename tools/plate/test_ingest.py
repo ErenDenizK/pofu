@@ -239,7 +239,8 @@ class HarmonyTests(unittest.TestCase):
         dark = ingest.harmony_state(self._plate([0.2, 0.35, 0.3]), hand, ref)
         self.assertLess(dark["tint"][0], 0.9)
         self.assertLess(dark["tint"][1], 0.9)
-        self.assertEqual(dark["tint"][2], 1.0)  # blue did not fall
+        self.assertGreater(dark["tint"][2], dark["tint"][0])  # blue did not fall: half of the cast stays
+        self.assertLessEqual(dark["tint"][2], 1.0)
         bright = ingest.harmony_state(self._plate([0.6, 0.9, 0.6]), hand, ref)
         self.assertEqual(bright["tint"], [1.0, 1.0, 1.0])
 

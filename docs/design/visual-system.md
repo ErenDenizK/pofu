@@ -60,7 +60,9 @@ applied in Swift (`HomePlate.harmony`, `PlateCharacter`, `ContactPad`):
   mean of the walkable lawn's mid-tone (25th to 75th L* percentile) and the
   mid-tone within 0.9 Pofu widths of the three contact points, in linear RGB.
   tint = A(state) / A(level-10 day) per channel, at most 1 (a multiply only
-  darkens), at least 0.25. A lee on the lawn still darkens a character further
+  darkens), at least 0.25, with half of its colour cast kept (its luminance
+  follows the lawn in full; a night lawn is nearly grey and a full cast made
+  white characters louder than it). A lee on the lawn still darkens a character further
   (`PlateMath.characterGain`).
 - **contact**: the contact shadow's opacity factor. The lawn's own shadow depth
   (L* p90 minus p10) around the contact points over the level-10 day's,
@@ -75,10 +77,13 @@ its mean L* and C* with the surrounding lawn (walkable lawn in a ring 0.8 to
 2.4 character widths out, 25th to 75th percentile mean). With dL* and dC* =
 character minus lawn:
 
-- dL* within 10 of the level-10 day frame's (Pofu +6.7, Mochi +12.4, Findik
-  +1.7 in the CI frame): as much lighter than the lawn as by day;
+- dL* within 10 of the level-10 day frame's (Pofu +6.6, Mochi +12.4, Findik
+  +1.7 in the CI frame): as much lighter than the lawn as by day. Calibration:
+  across the day plates (levels 10, 5, 2) dL* moves 5.1 (Pofu), 8.2 (Mochi)
+  and 3.7 (Findik);
 - dC* at most +6 (never louder than the lawn: the night lawn is nearly grey)
-  and at least the day's minus 12 (the day spread across levels 10 to 2).
+  and at least the day's minus 12. Calibration: across the day plates dC*
+  moves 11.2 (Pofu: -37.5, -39.3, -28.1), 10.0 (Mochi) and 9.6 (Findik).
 
 Any new plate state runs the check on its CI frame before the founder sees it.
 

@@ -60,6 +60,8 @@ SIZE = DEFAULT_SIZE
 SCALE_UP = True
 #: ASTC bytes. Was 8 MB for the original take; the x2 plate alone is 6.3 MB (8.27 MB in all), so 9 MB (PlateMath).
 BUDGET = 9_000_000  # per state (the largest one)
+#: How much of the lawn's colour cast the character tint keeps (the rest is its luminance).
+TINT_CAST = 0.5
 #: Plates ship upscaled by UPSCALE x2 at MIX of the model, the rest Lanczos.
 UPSCALE = 2
 MIX = 0.8
@@ -534,7 +536,8 @@ def harmony_state(rgb: np.ndarray, hand: dict, ref: dict | None) -> dict:
       A     the plate's lawn light: the geometric mean of the walkable lawn's mid-tone and the
             mid-tone around the three contact points (linear RGB)
       tint  A of the state over A of the level-10 day plate, per channel, at most 1 (a multiply
-            only darkens: the day sprites are painted for the day plate), as sRGB
+            only darkens: the day sprites are painted for the day plate), its colour cast halved
+            (`TINT_CAST`: lightness follows the lawn in full), as sRGB
       contact  the lawn's shadow depth around the contact points over the day's, 0.5...1.2
     """
     walk = poly_mask(rgb.shape[:2], pct_to_px(hand["walkable"]))
@@ -544,6 +547,10 @@ def harmony_state(rgb: np.ndarray, hand: dict, ref: dict | None) -> dict:
     if ref is None:
         return {"tint": [1.0, 1.0, 1.0], "contact": 1.0, "_a": a, "_depth": s["depth"]}
     ratio = np.clip(a / np.maximum(ref["_a"], 1e-4), 0.25, 1.0)
+    # The lawn's light sets the character's lightness in full and its colour cast by half: a night
+    # lawn is nearly grey, and a full cast made a white character louder than it (dC* +9.7 on Mochi).
+    luma = float(ratio @ np.array([0.2126, 0.7152, 0.0722]))
+    ratio = luma + (ratio - luma) * TINT_CAST
     contact = float(np.clip(s["depth"] / max(ref["_depth"], 1e-4), 0.5, 1.2))
     return {"tint": [round(float(v), 4) for v in linear_to_srgb(ratio)], "contact": round(contact, 3),
             "_a": a, "_depth": s["depth"]}

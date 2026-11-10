@@ -26,9 +26,9 @@ harmony when
   - dC* is at most `CAP_C` (a character is never louder than its lawn: night's lawn is nearly grey)
     and at least `REF`'s dC* minus `FLOOR_C` (and never flatter against it than by day).
 
-Calibration: `REF` is the level-10 day frame (CI frame of PR #352's rich plate: Pofu dL* +6.7 dC*
--37.5, Mochi +12.4 / -37.5, Findik +1.7 / -29.0); `TOL_L` and `FLOOR_C` are the spread of the day
-plates (levels 10 to 2) plus a margin, see docs/design/visual-system.md "Characters".
+Calibration: `REF` is the level-10 day frame (CI frame, Pofu dL* +6.6 dC* -37.5, Mochi +12.4 / -37.5,
+Findik +1.7 / -29.0); across the day plates (levels 10, 5, 2) dL* moves at most 8.2 and dC* at most
+11.2 (Pofu, Mochi, Findik), so `TOL_L` 10 and `FLOOR_C` 12 (docs/design/visual-system.md "Characters").
 """
 from __future__ import annotations
 
@@ -56,7 +56,7 @@ SHRINK = 0.75
 RING = (0.8, 2.4)
 
 #: The level-10 day frame's (dL*, dC*) per character, the band's anchor ...
-REF = {"pofu": (6.7, -37.5), "mochi": (12.4, -37.5), "findik": (1.7, -29.0)}
+REF = {"pofu": (6.6, -37.5), "mochi": (12.4, -37.5), "findik": (1.7, -29.0)}
 #: ... how far dL* may stray from it, how far dC* may fall below it, and dC*'s ceiling.
 TOL_L = 10.0
 FLOOR_C = 12.0
