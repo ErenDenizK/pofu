@@ -4,21 +4,22 @@
   of 1 considered.
 - **Generating account:** Founder's uncle's ChatGPT plan, used by the founder with permission
   (chatgpt-plan).
-- **Tool:** founder-authorized-q90-recovery;
-  generated 2026-11-10T14:24:03+00:00.
+- **Original tool return:** 2026-11-09T15:07:26.705Z (historical source record); recovery ingested 2026-11-10T14:24:03+00:00.
 - **Post-processing (human-authored, documented per art bible section 13):**
   canvas fit, style lock preset `plate-final` (style_lock.json v2).
 - **Files:** `raw.webp` preserves the retained q90 review source byte for byte; `x-mehtap-flow-4.webp` is the same recovered concept master. The prior-session original generated PNG is unavailable.
 - **Review note:** concept master; picked by the lead. Founder authorized recovery from the retained q90 WebP on 2026-11-10 because the previous session original PNG is unavailable. Source is a lossy review copy, not the original generated PNG; no recoloring or filtering applied.
 
-## References
+## Recovery references (original generation packaging is in the take review)
 
 - `design/art/masters/island-main-l-v3/island-main-l-v3.webp`: The home island: copy ONLY its camera, its size in the frame, its plate proportions (shallow top, rounded banded body) and its soft painting. Do not copy its lawn, colours, round door or pebbles.
 - `design/art/takes/batch-34-islands-in-game/x-mehtap-healed/plate__x-mehtap-healed--t1.webp`: THE ISLAND (M1, the founder's pick): copy its crescent moonstone plate with the two rising horns, its craters, and the places and shapes of the dome, the moon pool, the owl's perch with its lantern, the bench and the chart board. Do not draw its owl, hamster or bunny.
 - `design/art/stations/tea-stall-5/tea-stall-5.png`: A finished station of the game: every building and prop is at this scale and finish (do not draw this stall).
 - `design/art/masters/cloud-sea/cloud-sea.png`: The sea of clouds below every island: paint the clouds like this.
 
-## Prompt (fingerprint 374e82efb80cc5cf)
+## Recovery ingestion prompt (not the original generation prompt)
+
+Original generation prompt SHA-256: `71d548a535d6fd1f0a807f1de6f695aac9fc14e46c526c2dfc8e2cb18207863a`. The original text is unavailable here. This current manifest brief identifies the recovery job; it did not generate the retained take.
 
 ```text
 REFERENCES (attached, in this order):

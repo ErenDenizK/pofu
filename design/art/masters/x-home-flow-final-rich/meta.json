@@ -41,13 +41,14 @@
     }
   ],
   "generation": {
-    "backend": "founder-authorized-q90-recovery",
+    "backend": "codex-cloud",
     "model": null,
     "quality": null,
     "thread_id": null,
-    "generated_at": "2026-11-10T14:23:01+00:00",
+    "generated_at": null,
     "seconds": null,
-    "background": "transparent"
+    "background": "transparent",
+    "returned_at": "2026-11-09T14:51:06.104Z"
   },
   "account": {
     "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
@@ -143,6 +144,46 @@
     "original_available": false,
     "original_png_sha256": "c1b1e8a9381280b9be69181bb6410ee837336b0926bbe321ff49b315e3ef9c95",
     "authorization": "Founder instruction in chat, 2026-11-10; continue from existing copies or regenerate.",
-    "master_encoding": "Exact retained q90 WebP bytes; lossless re-encoding exceeds upload cap, founder authorized continued publication from retained copies."
-  }
+    "master_encoding": "Exact retained q90 WebP bytes; lossless re-encoding exceeds upload cap, founder authorized continued publication from retained copies.",
+    "ingested_at": "2026-11-10T14:23:01+00:00",
+    "ingestion_backend": "founder-authorized-q90-recovery",
+    "ingestion_fingerprint": "7adc2ad2b500bf0c",
+    "ingestion_prompt": "REFERENCES (attached, in this order):\n1. The composition guide for the whole picture: the home lawn (big magenta oval), the harbor islet's lawn (small magenta oval, right), the hilltop terrace (magenta oval, upper left), the rope bridge (grey bar), magenta crosses where each building stands, small magenta rings where round doors sit in the earth, grey ovals in the sky for the four far islands and the cloud-whale, the grey line where the cloud sea begins. Follow it exactly, then remove every guide mark: no magenta, no grey lines, no ovals may remain.\n2. The home island plate: keep its exact outline, lawn shape, rounded earth body, round wooden door and roots, at the size the guide gives it.\n3. The chosen concept (the founder's pick): the look, the finish and what each building looks like at full bloom. Its layout is only approximate; where it differs, follow the guide.\n4. The light and colour target: this exact clear summer day, its sky, lawn green, peach earth, soft shadows and white cloud sea with a faint blue-lilac shade.\n5. The harbor islet İskele: its shape and earth, smaller than the home island, on the right.\n6. A finished station: every building is at this scale and finish.\n7. Gezgin, the cloud-whale, in her grown form: small and far in the sky, gentle face, a little garden with a pool on her back.\n\nA concept painting for a cozy mobile game, portrait, no text: the\nhome island Ayçiçeği at full bloom, on a clear summer day, seen whole\nfrom the game camera (about 20 degrees above the horizon). The island\nsits in the lower half of the picture over a soft sea of clouds; the\nupper half is open summer sky with a few far things in it.\n\nEverything stands exactly where the guide marks it. On the home lawn,\nleft to right: at the far left tip a flower garden with one giant\ngolden sunflower; behind it, on a low grassy knoll at the back left, a\nwhite plaster windmill with cream sails and small lanterns on its cap;\nat the back centre, on a low raised terrace, a workshop with a big\ngear sign over its door; a small straw beehive on the back lawn right\nof the workshop; at the far right tip a tea stall with a tiled roof,\na red geranium and a small flag; at the front left a round lily pond\nwith a little wooden dock and floating paper lanterns; a stone path\nfrom the garden to the tea stall with three warm path lamps; flower\nborders along the path and the front edge; a few round mossy\nstepping stones from the front centre toward the pond; a toy\nsailboat at the pond's edge and a\nsmall mailbox on the front edge left of the door; flowering vines in soft\npink and lilac trailing over the lawn's rim and a little way down the\nearth. On the front lip, just above the round door, an old wooden\nhamster wheel stands still, a young sunflower growing through its\nmiddle and small flowers twined around it. A paper lantern string\nruns from the windmill's cap to the workshop's eave to the tea\nstall's roof. Leave a clear patch of lawn at front centre (the\nhamster stands there in the game). In the warm peach earth body,\nfour small round doors in a row with tiny windows, set INTO the\nearth like the attached round door, with the same rim stones; left\nto right: the plain wooden door (the attached one), a sky-blue\ndoor, a rose door, a sage-green door.\n\nOn the right, a short rope bridge leads to the small harbor islet:\na bagel cart with a striped umbrella and a little flag at its left\nend, a white lighthouse with soft stripes at its back right, a\nwooden pier running toward us at its front right with a lantern\npost, bunting, a small bell and a little ferry moored beside it, a\nplank shed door in its earth.\n\nUp and behind the home island's left end floats a small grassy\nhilltop terrace, joined to the lawn's left tip by curved stone steps\nand an open little wooden gate with a carved sunflower; on top a\nbench, a small brass telescope and a round low grass stage.\n\nIn the sky, small, soft and hazed by distance, at their guide marks:\nupper left, a round island with tiered pools and a small silver\nwaterfall; above it to the right, a misty island with a tall stilted\nwooden house; high in the middle, the smallest and farthest, an\nisland with a little moon-white dome; at the right, a cool pale\nisland with slender ice towers. Between them, larger and nearer but\nstill far, the gentle cloud-whale glides left to right with a small\ngarden on her back. The far islands are clearly islands like home,\nonly far: lighter, softer, less detailed, never sharper than home.\n\nClear summer day light. MOOD: warm, cozy, gentle, abundant and\ntidy, every building readable at a glance; peaceful and wondrous,\nnever busy.\n\nSTYLE: a finished painted illustration for a premium cozy mobile game, like\na page from a beloved picture book: soft painterly 2D with gentle airbrushed\nshading, rounded chunky forms, no outlines, no hard edges, matte surfaces\nwith at most one soft highlight per object. COLOUR: vivid, saturated and\njewel-like, as in the key art of a high-end animated film: intense grass\ngreens, glowing sunflower yellow, deep sky blue, warm peach earth, crisp\nwhite petals; strong contrast between warm lit colour and cool shadow\ncolour; every material keeps its own true colour. VALUES: a full range, from\nbright sunlit tops to deep warm shadows under eaves, inside foliage, beneath\nthe lawn rim and around doors, so every object separates clearly from what\nis behind it and the picture reads at a glance on a small phone screen.\nShadows are coloured (warm brown, plum, deep teal), never black or grey.\nLight direction and shadow hue follow the LIGHT block of this prompt.\nColourful but never neon, never HDR, never glossy. No text, no letters, no\nnumbers, no logos, no watermark, no border, no frame.\n\nAVOID: characters or animals of any kind, text, letters, numbers, a border, guide marks, a different island shape, buildings outside their marks, clutter, overlapping buildings, a dark or muddy earth body, black door holes, neon colours, HDR glow, grey or muddy colour, harsh shadows, outlines, photorealism, a 3D render look\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nKey light #FFF6EC from the upper left; fill #BFD6EE; rim #FFE9C9 along the edge facing away from the key. Shadows are tinted #A99BC4 (never grey or black), short and soft, falling toward the lower right; every object sits on a soft occlusion pad in that hue where it touches the ground or another form.\nVALUES (the reference envelope): a high-key picture inside one envelope of soft, milky air. Every value sits between light mid-tone and cream-white; the darkest recesses (door holes, gaps, pond rims) are a mid-value tinted with the shadow hue, never black. Form turns in small value steps. Colour lives in the halftones; lights bleach to cream. No dark outlines: edges are found by value and hue. The cloud sea below is the brightest large surface and lights the island's underside with a warm bounce.\nThis is the SUBJECT plane: the clearest forms and the crispest edges in the picture, still inside the envelope.\n\nOutput: one image, opaque, full bleed, portrait 1024 x 1536.\n",
+    "ingestion_attachments": [
+      {
+        "path": "design/art/templates/home-flow-guide.png",
+        "role": "The composition guide for the whole picture: the home lawn (big magenta oval), the harbor islet's lawn (small magenta oval, right), the hilltop terrace (magenta oval, upper left), the rope bridge (grey bar), magenta crosses where each building stands, small magenta rings where round doors sit in the earth, grey ovals in the sky for the four far islands and the cloud-whale, the grey line where the cloud sea begins. Follow it exactly, then remove every guide mark: no magenta, no grey lines, no ovals may remain."
+      },
+      {
+        "path": "design/art/masters/island-main-l-v3/island-main-l-v3.webp",
+        "role": "The home island plate: keep its exact outline, lawn shape, rounded earth body, round wooden door and roots, at the size the guide gives it."
+      },
+      {
+        "path": "design/art/takes/batch-34-islands-in-game/x-home-tam-cicek/plate__x-home-tam-cicek--t4.webp",
+        "role": "The chosen concept (the founder's pick): the look, the finish and what each building looks like at full bloom. Its layout is only approximate; where it differs, follow the guide."
+      },
+      {
+        "path": "design/art/takes/batch-25-seasons/x-season-summer/plate__x-season-summer--t2.webp",
+        "role": "The light and colour target: this exact clear summer day, its sky, lawn green, peach earth, soft shadows and white cloud sea with a faint blue-lilac shade."
+      },
+      {
+        "path": "design/art/masters/harbor-island-s/harbor-island-s.webp",
+        "role": "The harbor islet İskele: its shape and earth, smaller than the home island, on the right."
+      },
+      {
+        "path": "design/art/stations/tea-stall-5/tea-stall-5.png",
+        "role": "A finished station: every building is at this scale and finish."
+      },
+      {
+        "path": "design/art/takes/batch-22-gezgin-forms/x-gezgin-f2-side/plate__x-gezgin-f2-side--t2.webp",
+        "role": "Gezgin, the cloud-whale, in her grown form: small and far in the sky, gentle face, a little garden with a pool on her back."
+      }
+    ],
+    "original_prompt_sha256": "68920f2aa53c052b5bd5969d7a61372578898173f9e04881c4c84e3b519173bb",
+    "original_source_record": "design/art/takes/batch-66-home-flow/x-home-flow-final-rich/review.yaml",
+    "ingestion_prompt_matches_original_hash": true
+  },
+  "original_prompt_sha256": "68920f2aa53c052b5bd5969d7a61372578898173f9e04881c4c84e3b519173bb",
+  "prompt_status": "original prompt verified by historical hash",
+  "attachments_note": "Current recovery references; original generation packaging is recorded in the cited take review."
 }

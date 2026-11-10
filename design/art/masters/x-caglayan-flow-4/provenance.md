@@ -4,14 +4,13 @@
   of 1 considered.
 - **Generating account:** Founder's uncle's ChatGPT plan, used by the founder with permission
   (chatgpt-plan).
-- **Tool:** founder-authorized-q90-recovery;
-  generated 2026-11-10T14:23:31+00:00.
+- **Original tool return:** 2026-11-09T14:55:17.746Z (historical source record); recovery ingested 2026-11-10T14:23:31+00:00.
 - **Post-processing (human-authored, documented per art bible section 13):**
   canvas fit, style lock preset `plate-final` (style_lock.json v2).
 - **Files:** `raw.webp` preserves the retained q90 review source byte for byte; `x-caglayan-flow-4.webp` is the same recovered concept master. The prior-session original generated PNG is unavailable.
 - **Review note:** concept master; picked by the lead. Founder authorized recovery from the retained q90 WebP on 2026-11-10 because the previous session original PNG is unavailable. Source is a lossy review copy, not the original generated PNG; no recoloring or filtering applied.
 
-## References
+## Recovery references (original generation packaging is in the take review)
 
 - `design/art/masters/island-main-l-v3/island-main-l-v3.webp`: The home island: copy ONLY its camera, its size in the frame, its plate proportions (shallow top, rounded banded body) and its soft painting. Do not copy its lawn, colours, round door or pebbles.
 - `design/art/takes/batch-34-islands-in-game/x-caglayan-healed/plate__x-caglayan-healed--t2.webp`: THE LAYOUT (C1, the founder's pick): copy every place and shape of this island exactly: the knoll and its spout, the big round pool, the mill hut and wheel, the stream and front basin, the three saucer pools and the stepping stones. Do not draw its otter or the hamster and bunny.
@@ -19,7 +18,9 @@
 - `design/art/stations/tea-stall-5/tea-stall-5.png`: A finished station of the game: every building and prop is at this scale and finish (do not draw this stall).
 - `design/art/masters/cloud-sea/cloud-sea.png`: The sea of clouds below every island: paint the clouds like this.
 
-## Prompt (fingerprint 456e84a2d76c866c)
+## Recovery ingestion prompt (not the original generation prompt)
+
+Original generation prompt SHA-256: `d6e8dfd992ab5707e64057923caf152d0c9e8f44b34416c8e0820632b7305d99`. The original text is unavailable here. This current manifest brief identifies the recovery job; it did not generate the retained take.
 
 ```text
 REFERENCES (attached, in this order):

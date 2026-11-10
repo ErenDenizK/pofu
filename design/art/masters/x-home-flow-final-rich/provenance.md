@@ -4,14 +4,13 @@
   of 1 considered.
 - **Generating account:** Founder's uncle's ChatGPT plan, used by the founder with permission
   (chatgpt-plan).
-- **Tool:** founder-authorized-q90-recovery;
-  generated 2026-11-10T14:23:01+00:00.
+- **Original tool return:** 2026-11-09T14:51:06.104Z (historical source record); recovery ingested 2026-11-10T14:23:01+00:00.
 - **Post-processing (human-authored, documented per art bible section 13):**
   canvas fit, style lock preset `plate-final` (style_lock.json v2).
 - **Files:** `raw.webp` preserves the retained q90 review source byte for byte; `x-home-flow-final-rich.webp` is the same recovered concept master. The prior-session original generated PNG is unavailable.
 - **Review note:** concept master; picked by the lead. Founder authorized recovery from the retained q90 WebP on 2026-11-10 because the previous session original PNG is unavailable. Source is a lossy review copy, not the original generated PNG; no recoloring or filtering applied.
 
-## References
+## Recovery references (original generation packaging is in the take review)
 
 - `design/art/templates/home-flow-guide.png`: The composition guide for the whole picture: the home lawn (big magenta oval), the harbor islet's lawn (small magenta oval, right), the hilltop terrace (magenta oval, upper left), the rope bridge (grey bar), magenta crosses where each building stands, small magenta rings where round doors sit in the earth, grey ovals in the sky for the four far islands and the cloud-whale, the grey line where the cloud sea begins. Follow it exactly, then remove every guide mark: no magenta, no grey lines, no ovals may remain.
 - `design/art/masters/island-main-l-v3/island-main-l-v3.webp`: The home island plate: keep its exact outline, lawn shape, rounded earth body, round wooden door and roots, at the size the guide gives it.
@@ -21,7 +20,7 @@
 - `design/art/stations/tea-stall-5/tea-stall-5.png`: A finished station: every building is at this scale and finish.
 - `design/art/takes/batch-22-gezgin-forms/x-gezgin-f2-side/plate__x-gezgin-f2-side--t2.webp`: Gezgin, the cloud-whale, in her grown form: small and far in the sky, gentle face, a little garden with a pool on her back.
 
-## Prompt (fingerprint 7adc2ad2b500bf0c)
+## Original prompt (verified against its historical SHA-256)
 
 ```text
 REFERENCES (attached, in this order):
