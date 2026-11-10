@@ -53,12 +53,11 @@ ADR-0023 in practice:
 
 - Generate at the image model's largest portrait size.
 - Use the full take: `deliver` scale 1.0, no half-size copy.
-- A x2 upscale step exists as a tool (`tools/plate/upscale.py`, Real-ESRGAN
-  general-x4v3 with a colour match; `docs/research/plate-upscale.md`). It is
-  not wired into `ingest.py` until an in-app test on the first portrait plate
-  compares, at full device resolution: Lanczos, the upscaler, and a 0.8 / 0.2
-  blend of the two. The founder asked whether it feels "too AI"; the in-app
-  view at real size decides, not a zoomed crop.
+- Plates ship upscaled x2 with a 0.8/0.2 blend (in-app A/B 2026-11-10, #352):
+  `ingest.py` runs `tools/plate/upscale.py` (Real-ESRGAN general-x4v3 with a
+  colour match; `docs/research/plate-upscale.md`) and mixes 0.8 of it with 0.2
+  of Lanczos. It fails loudly without the model; `--no-upscale` ships the
+  original on purpose. The texture budget is 9 MB (the x2 home set is 8.27 MB).
 - Frames shown to the founder are at full device resolution (1206 x 2622 for
   the iPhone 17), not the reduced CI size, so softness in them is real.
 - Textures are ASTC.
@@ -69,6 +68,7 @@ ADR-0023 in practice:
   sky or cloud sea is needed.
 - The UI lives in the bottom band and one top-right button.
 - Nothing covers the island.
+- Characters: Pofu 33 pt at the home framing; Mochi and Fındık in proportion.
 
 ## Checks before the founder sees anything
 

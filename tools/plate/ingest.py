@@ -21,10 +21,13 @@ Commands (python3 -I tools/plate/ingest.py <command> <island>):
   deliver   the plate, the island cut and the backdrop
   objects   the occluder cut-outs
   json      the metadata, light map included
-  variant   the plate and occluders from an upscaled picture, as flat PNGs for the screenshot tests'
-            A/B (`--plate P --out DIR --prefix b`); not part of `all`
   check     fails (exit 1, one line per problem) on a polygon off the matte, a missing asset or a
-            texture budget past 8 MB
+            texture budget past 9 MB
+
+Plates ship upscaled x2 with a 0.8 / 0.2 blend of `upscale.py` and Lanczos (in-app A/B 2026-11-10,
+#352): `deliver` and `objects` read the upscaled plate (cached in the upscaler's cache folder). If
+the model or onnxruntime is unavailable they fail loudly; `--no-upscale` ships the original take
+on purpose (and says so). The JSON's coordinates stay in the original plate's pixels.
   all       deliver, objects, json, check (matte is run on its own, once per plate)
 
 Coordinates in the JSON are percent of the full plate (default 1536 x 1024; `size` in the hand data
@@ -43,6 +46,7 @@ from scipy import ndimage
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parent.parent
+sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(REPO / "tools" / "assets"))
 from process_assets import srgb_to_lab  # noqa: E402
 
@@ -52,7 +56,13 @@ ASSETS = RESOURCES / "World.xcassets"
 JSON_DIR = RESOURCES / "Plates"
 DEFAULT_SIZE = (1536, 1024)
 SIZE = DEFAULT_SIZE
-BUDGET = 8_000_000
+#: Set by --no-upscale.
+SCALE_UP = True
+#: ASTC bytes. Was 8 MB for the original take; the x2 plate alone is 6.3 MB (8.27 MB in all), so 9 MB (PlateMath).
+BUDGET = 9_000_000
+#: Plates ship upscaled by UPSCALE x2 at MIX of the model, the rest Lanczos.
+UPSCALE = 2
+MIX = 0.8
 #: The reference screen (iPhone 17) in points.
 SCREEN = (402.0, 874.0)
 #: The backdrop's extent around the Home frame (it must still cover the screen at the Island stop),
@@ -79,6 +89,48 @@ def load_rgb(path: Path) -> np.ndarray:
     if im.size != SIZE:
         raise SystemExit(f"{path}: the plate is {im.size[0]} x {im.size[1]}, not {SIZE[0]} x {SIZE[1]}")
     return np.asarray(im, np.float64) / 255
+
+
+def upscaled_plate(path: Path, scale: int = UPSCALE, mix: float = MIX) -> np.ndarray:
+    """The plate x`scale`, `mix` of the upscaler and the rest Lanczos, as RGB floats. Cached by the
+    picture's hash. Fails loudly (never ships the original by accident)."""
+    import hashlib
+
+    import upscale
+
+    key = hashlib.sha256(path.read_bytes() + f"|{scale}|{mix}|general-x4v3".encode()).hexdigest()[:20]
+    cached = upscale.cache_dir() / "plates" / f"{key}.png"
+    if not cached.exists():
+        try:
+            im = Image.open(path).convert("RGB")
+            big = upscale.blend_image(im, scale, mix)
+        except Exception as e:  # missing onnxruntime, weights, network
+            raise SystemExit(
+                f"upscale failed for {path.name}: {e!r}\n"
+                "the plate would ship at its original resolution; install onnxruntime and fetch the "
+                "model (tools/plate/README.md), or pass --no-upscale to ship the original on purpose")
+        cached.parent.mkdir(parents=True, exist_ok=True)
+        big.save(cached)
+    return np.asarray(Image.open(cached).convert("RGB"), np.float64) / 255
+
+
+def source_plate(path: Path) -> tuple[np.ndarray, int]:
+    """(rgb, k): the plate to cut assets from and its scale over the original (1 with --no-upscale)."""
+    rgb = load_rgb(path)
+    if not SCALE_UP:
+        print(f"WARNING: --no-upscale: {path.name} ships at its original resolution")
+        return rgb, 1
+    big = upscaled_plate(path)
+    if big.shape[:2] != (SIZE[1] * UPSCALE, SIZE[0] * UPSCALE):
+        raise SystemExit(f"{path}: upscaled to {big.shape[1]} x {big.shape[0]}, expected x{UPSCALE}")
+    return big, UPSCALE
+
+
+def scaled_matte(a: np.ndarray, k: int) -> np.ndarray:
+    if k == 1:
+        return a
+    m = Image.fromarray(np.uint8(np.clip(a, 0, 1) * 255 + 0.5)).resize((a.shape[1] * k, a.shape[0] * k), Image.Resampling.LANCZOS)
+    return np.asarray(m, np.float64) / 255
 
 
 def to_img(x: np.ndarray) -> Image.Image:
@@ -252,6 +304,7 @@ def backdrop(rgb: np.ndarray, a: np.ndarray, box: tuple[int, int, int, int], sca
     bx0, by0, bx1, by1 = box
     W, H = round((bx1 - bx0) * scale), round((by1 - by0) * scale)
     pw, ph = round(SIZE[0] * scale), round(SIZE[1] * scale)
+    up = rgb.shape[1] / SIZE[0]  # the picture's scale over the original plate (the upscaled one is 2)
     px, py = round(-bx0 * scale), round(-by0 * scale)
     small = resize(rgb, pw, ph)
     sa = resize(np.repeat(a[..., None], 3, 2), pw, ph)[..., 0]
@@ -273,12 +326,12 @@ def backdrop(rgb: np.ndarray, a: np.ndarray, box: tuple[int, int, int, int], sca
     canvas[:] = cols[None] * (1 - deepen) + zen * deepen
     # Below: the cloud band (full resolution, the island's roots filled out), repeated from the
     # plate's foot down, each copy resized once from the full-resolution band.
-    cut = round(SIZE[1] * 0.86)
+    cut = round(rgb.shape[0] * 0.86)
     band = rgb[cut:].copy()
     band = fill_holes(band, ndimage.binary_dilation(a[cut:] > 0.1, iterations=10))
     y, i = py + ph - round(0.06 * ph), 0
     while y < H:
-        k = min(1.6 * 1.4 ** i, 6.0) * scale
+        k = min(1.6 * 1.4 ** i, 6.0) * scale / up
         src = band[:, ::-1] if i % 2 == 0 else band
         b = resize(src, round(band.shape[1] * k), round(band.shape[0] * k))
         if b.shape[1] < W:
@@ -329,66 +382,55 @@ def feathered_plate(rgb: np.ndarray, a: np.ndarray, feather: int = FEATHER) -> I
 def cmd_deliver(island: str) -> None:
     hand = load_hand(island)
     for light, stage, path in plates(hand):
-        rgb, a = load_rgb(path), load_matte(island, light, stage)
-        write_imageset(asset_name(island, "plate", light, stage), feathered_plate(rgb, a))
-        x0, y0, x1, y1 = bbox(a, 0.02)
-        cut = np.dstack([rgb, np.clip(a, 0, 1)])[y0:y1, x0:x1]
+        rgb, k = source_plate(path)
+        a1 = load_matte(island, light, stage)
+        a = scaled_matte(a1, k)
+        write_imageset(asset_name(island, "plate", light, stage), feathered_plate(rgb, a, FEATHER * k))
+        x0, y0, x1, y1 = bbox(a1, 0.02)
+        cut = np.dstack([rgb, np.clip(a, 0, 1)])[y0 * k:y1 * k, x0 * k:x1 * k]
         img = to_img(cut)
-        img = img.resize((round(img.width * ISLAND_SCALE), round(img.height * ISLAND_SCALE)), Image.Resampling.LANCZOS)
+        # The Map's island stays at its size in original-plate pixels (it is drawn small).
+        img = img.resize((round((x1 - x0) * ISLAND_SCALE), round((y1 - y0) * ISLAND_SCALE)), Image.Resampling.LANCZOS)
         write_imageset(asset_name(island, "island", light, stage), img)
-        box = backdrop_box(home_frame(hand, a))
+        box = backdrop_box(home_frame(hand, a1))
         write_imageset(asset_name(island, "backdrop", light, stage), to_img(backdrop(rgb, a, box)), jpeg=True)
-        print(f"deliver {light} {stage}: island box {(x0, y0, x1, y1)}, backdrop box {box}")
+        print(f"deliver {light} {stage} (x{k}): island box {(x0, y0, x1, y1)}, backdrop box {box}")
 
 
 # ---------------------------------------------------------------- objects
 
 def occluder_cut(rgb: np.ndarray, a: np.ndarray, pts_px, pad: int = 4) -> tuple[np.ndarray, tuple[int, int, int, int]]:
     """The plate's pixels inside an object's polygon and the matte, feathered 1 px, in its box."""
+    return _occluder_cut(rgb, a, pts_px, pad)
+
+
+def _occluder_cut(rgb, a, pts_px, pad, box=None):
     m = poly_mask(a.shape, pts_px).astype(np.float64)
     m = np.minimum(ndimage.gaussian_filter(m, 1.0), np.clip(a, 0, 1))
-    x0, y0, x1, y1 = bbox(m, 0.02)
-    x0, y0 = max(x0 - pad, 0), max(y0 - pad, 0)
-    x1, y1 = min(x1 + pad, a.shape[1]), min(y1 + pad, a.shape[0])
+    if box is None:
+        x0, y0, x1, y1 = bbox(m, 0.02)
+        x0, y0 = max(x0 - pad, 0), max(y0 - pad, 0)
+        x1, y1 = min(x1 + pad, a.shape[1]), min(y1 + pad, a.shape[0])
+    else:
+        x0, y0, x1, y1 = box
     return np.dstack([rgb, m])[y0:y1, x0:x1], (x0, y0, x1, y1)
 
 
 def cmd_objects(island: str) -> None:
     hand = load_hand(island)
     for light, stage, path in plates(hand):
-        rgb, a = load_rgb(path), load_matte(island, light, stage)
+        rgb, k = source_plate(path)
+        a1 = load_matte(island, light, stage)
+        a = scaled_matte(a1, k)
         for obj in hand["objects"]:
             if not obj.get("occluder"):
                 continue
-            cut, box = occluder_cut(rgb, a, pct_to_px(obj["points"]))
+            poly = pct_to_px(obj["points"])
+            # The box is the metadata's (original-plate pixels); the picture covers it exactly, x k.
+            _, box = occluder_cut(np.zeros(a1.shape + (3,)), a1, poly)
+            cut, _ = _occluder_cut(rgb, a, [[x * k, y * k] for x, y in poly], 4 * k, tuple(v * k for v in box))
             write_imageset(asset_name(island, "occ", light, stage, obj["id"]), to_img(cut))
-            print(f"occluder {obj['id']} {light} {stage}: box {box}")
-
-
-# ---------------------------------------------------------------- A/B variants
-
-def cmd_variant(island: str, plate: Path, out: Path, prefix: str) -> None:
-    """The plate and its occluder cut-outs from a replacement picture of the same composition at a
-    whole-number scale (an upscaled plate), as flat PNGs `<prefix>-<asset name>.png` in `out`. They
-    are not imagesets: the screenshot tests load them to compare resolutions (README). The matte and
-    the polygons are the shipped ones, scaled."""
-    hand = load_hand(island)
-    light, stage, _ = next(plates(hand))
-    im = Image.open(plate).convert("RGB")
-    k = im.width / SIZE[0]
-    if abs(im.height - SIZE[1] * k) > 1:
-        raise SystemExit(f"{plate}: {im.width} x {im.height} is not a scale of {SIZE[0]} x {SIZE[1]}")
-    rgb = np.asarray(im, np.float64) / 255
-    m = Image.fromarray(np.uint8(np.clip(load_matte(island, light, stage), 0, 1) * 255 + 0.5)).resize(im.size, Image.Resampling.LANCZOS)
-    a = np.asarray(m, np.float64) / 255
-    out.mkdir(parents=True, exist_ok=True)
-    feathered_plate(rgb, a, round(FEATHER * k)).save(out / f"{prefix}-{asset_name(island, 'plate', light, stage)}.png", optimize=True)
-    for obj in hand["objects"]:
-        if obj.get("occluder"):
-            pts = [[x * k, y * k] for x, y in pct_to_px(obj["points"])]
-            cut, _ = occluder_cut(rgb, a, pts, round(4 * k))
-            to_img(cut).save(out / f"{prefix}-{asset_name(island, 'occ', light, stage, obj['id'])}.png", optimize=True)
-    print(f"variant {prefix}: {im.size} -> {out}")
+            print(f"occluder {obj['id']} {light} {stage} (x{k}): box {box}")
 
 
 # ---------------------------------------------------------------- light map
@@ -555,22 +597,19 @@ def cmd_check(island: str) -> int:
 
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("command", choices=["matte", "deliver", "objects", "json", "check", "all", "variant"])
+    ap.add_argument("command", choices=["matte", "deliver", "objects", "json", "check", "all"])
     ap.add_argument("island")
-    ap.add_argument("--plate", type=Path, help="variant: the replacement picture")
-    ap.add_argument("--out", type=Path, help="variant: the output folder")
-    ap.add_argument("--prefix", default="v", help="variant: the file name prefix")
+    ap.add_argument("--no-upscale", action="store_true",
+                    help="ship the original take (only when the model is unavailable; loud on purpose)")
     args = ap.parse_args(argv)
+    global SCALE_UP
+    SCALE_UP = not args.no_upscale
     if args.command == "matte":
         cmd_matte(args.island)
     elif args.command == "deliver":
         cmd_deliver(args.island)
     elif args.command == "objects":
         cmd_objects(args.island)
-    elif args.command == "variant":
-        if not (args.plate and args.out):
-            ap.error("variant needs --plate and --out")
-        cmd_variant(args.island, args.plate, args.out, args.prefix)
     elif args.command == "json":
         cmd_json(args.island)
     elif args.command == "check":

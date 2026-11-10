@@ -13,11 +13,8 @@ import XCTest
 /// - `home-plate-day-home`: Home as the app opens it;
 /// - `home-plate-day-whole`: the establishing shot of the whole island;
 /// - `home-plate-day-settled`: Home after Collect (no beat, the quiet line);
-/// - `home-plate-full-<a|b|c>-home` and `home-plate-full-a-settled`: Home at the
-///   simulator's full device resolution (CI keeps these as PNG, never reduced),
-///   the plate textures being (a) the shipped take, (b) its Real-ESRGAN x2 and
-///   (c) a 0.8 / 0.2 blend of that and Lanczos x2 (`tools/plate/upscale.py`;
-///   b and c live in `PlateVariants/`, only in this test target).
+/// - `home-plate-full-home` and `home-plate-full-settled`: Home at the
+///   simulator's full device resolution (CI keeps these as PNG, never reduced).
 final class HomePlateScreenshotTests: XCTestCase {
     @MainActor
     func testRenderTheHomePlate() async throws {
@@ -30,34 +27,15 @@ final class HomePlateScreenshotTests: XCTestCase {
         try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
 
         for shot in ["home", "whole", "settled"] {
-            try await render(shot: shot, variant: nil, plate: plate, scene: scene, folder: folder)
+            try await render(shot: shot, full: false, plate: plate, scene: scene, folder: folder)
         }
-        for (variant, shot) in [("a", "home"), ("b", "home"), ("c", "home"), ("a", "settled")] {
-            try await render(shot: shot, variant: variant, plate: plate, scene: scene, folder: folder)
-        }
-        PlateTextureOverride.loader = nil
-    }
-
-    /// The texture loader for a variant: the test bundle's flat PNGs
-    /// (`<prefix>-<asset name>.png`); anything without one stays shipped.
-    @MainActor
-    private func loader(prefix: String) -> (String) -> UIImage? {
-        let bundle = Bundle(for: Self.self)
-        let cache = ImageCache()
-        return { name in
-            if let hit = cache.images[name] { return hit }
-            let file = "\(prefix)-\(name)"
-            guard let path = bundle.path(forResource: file, ofType: "png")
-                ?? bundle.path(forResource: file, ofType: "png", inDirectory: "PlateVariants"),
-                let image = UIImage(contentsOfFile: path) else { return nil }
-            cache.images[name] = image
-            return image
+        for shot in ["home", "settled"] {
+            try await render(shot: shot, full: true, plate: plate, scene: scene, folder: folder)
         }
     }
 
     @MainActor
-    private func render(shot: String, variant: String?, plate: HomePlate, scene: UIWindowScene, folder: URL) async throws {
-        PlateTextureOverride.loader = (variant == "b" || variant == "c") ? loader(prefix: variant ?? "") : nil
+    private func render(shot: String, full: Bool, plate: HomePlate, scene: UIWindowScene, folder: URL) async throws {
         do {
             let now = Date(timeIntervalSinceReferenceDate: 815_000_000)
             let world = IslandSamples.world(
@@ -107,13 +85,9 @@ final class HomePlateScreenshotTests: XCTestCase {
             }
             window.isHidden = true
             window.rootViewController = nil
-            try write(image, name: variant.map { "home-plate-full-\($0)-\(shot)" } ?? "home-plate-day-\(shot)", to: folder)
+            try write(image, name: full ? "home-plate-full-\(shot)" : "home-plate-day-\(shot)", to: folder)
             try await Task.sleep(for: .milliseconds(150))
         }
-    }
-
-    private final class ImageCache {
-        var images: [String: UIImage] = [:]
     }
 
     private func write(_ image: UIImage, name: String, to folder: URL) throws {

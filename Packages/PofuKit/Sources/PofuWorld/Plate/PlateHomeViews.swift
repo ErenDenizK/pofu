@@ -44,13 +44,6 @@ struct PlateHomeLayer: View {
     }
 }
 
-/// A hook for the screenshot tests only: it swaps a plate texture for another
-/// picture of the same composition (the resolution A/B of `upscale.py`). The
-/// app never sets it, so it draws the shipped textures.
-public enum PlateTextureOverride {
-    @MainActor public static var loader: ((String) -> UIImage?)?
-}
-
 /// One plate image over its box in world units, at the camera's projection
 /// (the same transform as the world canvas, so plate, occluders and
 /// characters register).
@@ -65,13 +58,7 @@ struct PlateImage: View {
         let s = pose.scale
         let a = pose.project(WorldPoint(x: box.minX, y: box.minY), width: Double(size.width))
         let w = box.width * s, h = box.height * s
-        Group {
-            if let swapped = PlateTextureOverride.loader?(name) {
-                Image(uiImage: swapped).resizable().interpolation(.high)
-            } else {
-                Image(name, bundle: .module).resizable().interpolation(.high)
-            }
-        }
+        Image(name, bundle: .module).resizable().interpolation(.high)
             .frame(width: CGFloat(w), height: CGFloat(h))
             .position(x: CGFloat(a.x + w / 2) + offset.width, y: CGFloat(a.y + h / 2) + offset.height)
     }

@@ -114,6 +114,15 @@ def upscale_image(im, scale=2, model="general-x4v3", sess=None, tile=256, pad=16
     return big
 
 
+def blend_image(im, scale=2, mix=0.8, model="general-x4v3", sess=None, tile=256):
+    """What plates ship: `mix` of the upscaled picture and (1 - mix) of the plain Lanczos resize
+    (0.8 / 0.2, the in-app A/B of 2026-11-10: sharper edges without the model's invented texture)."""
+    size = (round(im.width * scale), round(im.height * scale))
+    rgb = im.convert("RGB")
+    big = upscale_image(rgb, scale, model, sess=sess, tile=tile)
+    return Image.blend(rgb.resize(size, Image.LANCZOS), big, mix)
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("input")
@@ -121,11 +130,16 @@ def main(argv=None):
     ap.add_argument("--scale", type=float, default=2.0)
     ap.add_argument("--model", default="general-x4v3", choices=sorted(MODELS))
     ap.add_argument("--tile", type=int, default=256)
+    ap.add_argument("--blend", type=float, default=None, metavar="MIX",
+                    help="write MIX x upscaled + (1 - MIX) x Lanczos (plates use 0.8)")
     ap.add_argument("--no-match", action="store_true", help="skip the low-frequency colour match")
     args = ap.parse_args(argv)
     im = Image.open(args.input)
     im.load()
-    out = upscale_image(im, args.scale, args.model, tile=args.tile, match=not args.no_match)
+    if args.blend is not None:
+        out = blend_image(im, args.scale, args.blend, args.model, tile=args.tile)
+    else:
+        out = upscale_image(im, args.scale, args.model, tile=args.tile, match=not args.no_match)
     out.save(args.output)
     print(f"{args.input} {im.size} -> {args.output} {out.size} ({args.model})")
 

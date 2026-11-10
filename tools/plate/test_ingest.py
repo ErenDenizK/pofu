@@ -17,6 +17,38 @@ def disc(shape, cx, cy, r) -> np.ndarray:
 
 
 class IngestTests(unittest.TestCase):
+    def test_upscale_failure_is_loud_not_silent(self):
+        import tempfile
+        import unittest.mock as mock
+
+        from PIL import Image
+
+        with tempfile.TemporaryDirectory() as d, mock.patch.dict("os.environ", {"POFU_UPSCALE_CACHE": d}):
+            path = Path(d) / "p.png"
+            Image.new("RGB", (8, 8)).save(path)
+            import upscale
+            with mock.patch.object(upscale, "blend_image", side_effect=FileNotFoundError("model")):
+                with self.assertRaises(SystemExit) as cm:
+                    ingest.upscaled_plate(path)
+            self.assertIn("--no-upscale", str(cm.exception))
+
+    def test_no_upscale_flag_ships_scale_one(self):
+        import tempfile
+
+        from PIL import Image
+
+        with tempfile.TemporaryDirectory() as d:
+            path = Path(d) / "p.png"
+            size = ingest.SIZE
+            Image.new("RGB", size).save(path)
+            ingest.SCALE_UP = False
+            try:
+                rgb, k = ingest.source_plate(path)
+            finally:
+                ingest.SCALE_UP = True
+            self.assertEqual(k, 1)
+            self.assertEqual(rgb.shape[:2], (size[1], size[0]))
+
     def test_percent_round_trip(self):
         pts = [[10.0, 20.0], [55.5, 70.25]]
         back = ingest.px_to_pct(ingest.pct_to_px(pts))
@@ -131,7 +163,7 @@ class IngestTests(unittest.TestCase):
         data = self._data(
             objects=[{"id": "far", "polygon": [[2, 2], [10, 2], [10, 10]], "occluder": True}],
             characters={"pofu": [5, 95]},
-            textureBytes=9_000_000,
+            textureBytes=10_000_000,
         )
         found = ingest.problems(data, a, set(), tolerance=4)
         text = "\n".join(found)
