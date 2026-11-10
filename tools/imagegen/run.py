@@ -68,21 +68,54 @@ def existing_takes(job: pl.Job, inbox: Path) -> list[tuple[int, Path, dict]]:
     return sorted(out)
 
 
-def job_refs(job: pl.Job, m: pl.Manifest) -> list[tuple[pl.Attach, Path]]:
-    return [(a, pl.resolve_ref(a.ref, m)) for a in pl.attachments_for(job)]
+def provisional_parent(parent: pl.Job, m: pl.Manifest, config: dict) -> tuple[int, Path] | None:
+    """Factory mode: the QA auto-pick (first take that passes, else the first
+    that warns; a failed take never counts) of a parent the lead has not
+    promoted yet, as (take, locked image). Needs `post` to have run."""
+    inbox, out_dir = pl.inbox_dir(config, m.batch), pl.build_dir(config, m.batch)
+    best = None
+    for n, path, _ in existing_takes(parent, inbox):
+        qa_path, locked = out_dir / "qa" / f"{path.stem}.json", out_dir / "locked" / path.name
+        if not (qa_path.exists() and locked.exists()):
+            continue
+        status = json.loads(qa_path.read_text(encoding="utf-8")).get("status")
+        if status == "fail":
+            continue
+        key = (status != "pass", n)
+        if best is None or key < best[0]:
+            best = (key, n, locked)
+    return (best[1], best[2]) if best else None
+
+
+def job_refs(job: pl.Job, m: pl.Manifest, provisional: dict | None = None) -> list[tuple[pl.Attach, Path]]:
+    provisional = provisional or {}
+    out = []
+    for a in pl.attachments_for(job):
+        pid = a.ref.split(":", 1)[1] if a.ref.startswith("approved:") else None
+        out.append((a, provisional[pid][1] if pid in provisional else pl.resolve_ref(a.ref, m)))
+    return out
 
 
 def job_state(job: pl.Job, m: pl.Manifest, config: dict, background: str) -> dict:
     deps = pl.dependencies(job)
-    blocked = [d for d in deps if not pl.approved_image(m.job(d)).exists()]
-    refs = job_refs(job, m)
+    # An unpicked parent never blocks the line: its QA auto-pick stands in,
+    # flagged provisional (AGENTS.md, Factory mode).
+    provisional = {}
+    for d in deps:
+        if not pl.approved_image(m.job(d)).exists():
+            pp = provisional_parent(m.job(d), m, config)
+            if pp:
+                provisional[d] = pp
+    blocked = [d for d in deps if d not in provisional and not pl.approved_image(m.job(d)).exists()]
+    refs = job_refs(job, m, provisional)
     missing = [rel(p) for a, p in refs if not p.exists() and not a.ref.startswith("approved:")]
     prompt = pl.compose_prompt(job, background)
     fp = pl.fingerprint(prompt, [p for _, p in refs]) if not blocked and not missing else None
     takes = existing_takes(job, pl.inbox_dir(config, m.batch))
     fresh = [t for t in takes if fp and t[2].get("fingerprint") == fp]
     return {"approved": pl.approved_image(job).exists(), "external": job.external, "blocked": blocked, "missing": missing,
-            "prompt": prompt, "fingerprint": fp, "takes": takes, "fresh": fresh, "refs": refs}
+            "prompt": prompt, "fingerprint": fp, "takes": takes, "fresh": fresh, "refs": refs,
+            "provisional": {d: f"{d} t{n} (auto-pick, lead review pending)" for d, (n, _) in provisional.items()}}
 
 
 def background_mode(args, config) -> str:
@@ -108,6 +141,8 @@ def cmd_plan(args, config, m: pl.Manifest) -> int:
             state = "missing reference " + ", ".join(st["missing"])
         else:
             state = f"ready ({len(st['fresh'])}/{job.variants} takes)"
+            if st["provisional"]:
+                state += " · provisional_parent: " + ", ".join(st["provisional"].values())
         stale = len(st["takes"]) - len(st["fresh"])
         print(f"  {job.id:18s} {job.kind:8s} {state}" + (f" · {stale} stale take(s) from an older prompt" if stale and st["fingerprint"] else ""))
     return EXIT_OK
@@ -150,7 +185,7 @@ def cmd_run(args, config, m: pl.Manifest) -> int:
     rate = config["rate"]
     bg = background_mode(args, config)
     pause = args.pause if args.pause is not None else rate["pause_seconds"]
-    max_images = min(args.max_images or rate["max_images_per_run"], rate["max_images_per_run"])
+    max_images = args.max_images or 10**6  # no per-run cap in factory mode; --max-images is optional
     per_job_cap = min(args.takes or rate["max_takes_per_job"], rate["max_takes_per_job"])
     inbox = pl.inbox_dir(config, m.batch)
     log_path = pl.build_dir(config, m.batch) / "run-log.jsonl"
@@ -183,7 +218,7 @@ def cmd_run(args, config, m: pl.Manifest) -> int:
         print("Nothing to generate: every ready job has its takes. Run `post`, then review.")
         return EXIT_OK
     if len(plan) > max_images:
-        print(f"Plan has {len(plan)} generations; this run makes the first {max_images} (max_images_per_run).")
+        print(f"Plan has {len(plan)} generations; this run makes the first {max_images} (--max-images).")
         plan = plan[:max_images]
 
     if args.dry_run:
@@ -244,12 +279,13 @@ def cmd_run(args, config, m: pl.Manifest) -> int:
                 if raw:
                     print("  last output:\n    " + raw.strip().replace("\n", "\n    ")[-1200:])
                 if err.stop:
-                    print(f"Stopped after {made} image(s). Read the error, then decide; do not loop.")
+                    print(f"Stopped after {made} image(s). Do the non-generation work, then retry in 15 minutes.")
                     return EXIT_STOP
                 continue
             side = {"job": job.id, "take": n, "batch": m.batch, "fingerprint": st["fingerprint"], "prompt": st["prompt"],
                     "attachments": [{"path": rel(p), "role": a.role, "sha256": pl.sha256_file(p)} for a, p in st["refs"]],
-                    "background": bg, "generated_at": now(), "seconds": round(res.seconds, 1), "account": account, **res.meta}
+                    "background": bg, "generated_at": now(), "seconds": round(res.seconds, 1), "account": account,
+                    **({"provisional_parent": list(st["provisional"].values())} if st["provisional"] else {}), **res.meta}
             out.with_suffix(".json").write_text(json.dumps(side, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
             log(log_path, {"event": "generated", "job": job.id, "take": n, "seconds": round(res.seconds, 1)})
             made += 1
@@ -355,9 +391,11 @@ def cmd_post(args, config, m: pl.Manifest) -> int:
         parent_locked, registration, parent_img = None, None, None
         if job.edit_of:
             pj = m.job(job.edit_of)
-            if pl.approved_image(pj).exists():
-                parent_locked = sl.load_rgba(pl.approved_image(pj))
-                parent_img = Image.open(pl.approved_image(pj)).copy()
+            prov = None if pl.approved_image(pj).exists() else provisional_parent(pj, m, config)
+            if pl.approved_image(pj).exists() or prov:
+                pp_path = pl.approved_image(pj) if not prov else prov[1]
+                parent_locked = sl.load_rgba(pp_path)
+                parent_img = Image.open(pp_path).copy()
                 # The edit is drawn on the approved master, which is already
                 # on the anchor: applying the chain root's registration again
                 # moved bagel-cart-2 and workshop-2 110 px off their parent and
@@ -530,7 +568,7 @@ def build_parser() -> argparse.ArgumentParser:
     sp.add_argument("--only", nargs="+", help="job ids")
     sp.add_argument("--takes", type=int, help="takes per job this run (capped by config)")
     sp.add_argument("--pause", type=int, help="seconds between generations (default from config)")
-    sp.add_argument("--max-images", type=int, help="images this run (capped by config)")
+    sp.add_argument("--max-images", type=int, help="optional: images this run (no cap by default)")
     sp.add_argument("--dry-run", action="store_true")
     sp.add_argument("--redo-approved", action="store_true", help="also generate for jobs that are already approved")
     sp.add_argument("--yes", action="store_true", help="accept the printed cost estimate (required for --backend openai-api)")

@@ -259,6 +259,23 @@ class EndToEnd(unittest.TestCase):
         code, out = self.cli("ingest", *m, "--job", "tea-stall-1", str(parent))
         self.assertEqual(code, run.EXIT_ERR, out)
 
+    def test_unpicked_parent_is_provisional_not_blocking(self):
+        m = ["--manifest", str(self.manifest)]
+        os.environ["STUB_IMAGE"] = str(save(stall(dx=30, scale=1.1, size=1254), self.tmp / "l1.png"))
+        self.cli("run", *m, "--takes", "2")
+        code, out = self.cli("post", *m)
+        self.assertEqual(code, 0, out)
+        # tea-stall-1 is not promoted: its QA auto-pick stands in, flagged provisional
+        code, out = self.cli("plan", *m)
+        self.assertNotIn("waiting for approval of tea-stall-1", out)
+        self.assertIn("provisional_parent: tea-stall-1 t", out)
+        self.assertIn("(auto-pick, lead review pending)", out)
+        code, out = self.cli("run", *m, "--takes", "1")
+        self.assertEqual(code, 0, out)
+        self.assertNotIn("skip tea-stall-2", out)
+        side = json.loads((self.tmp / "inbox" / "e2e" / "station__tea-stall-2--t1.json").read_text())
+        self.assertIn("(auto-pick, lead review pending)", side["provisional_parent"][0])
+
     def test_dry_run_sends_nothing(self):
         code, out = self.cli("run", "--manifest", str(self.manifest), "--dry-run")
         self.assertIn("Nothing was sent", out)
