@@ -1,0 +1,226 @@
+batch: batch-73-islands-states
+manifest: tools/imagegen/manifest/batch-73-islands-states.yaml
+manifest_sha256: d598a7718fdc51cab7d3ef7944d558393127bf9f5af63194465deac8a25f0b83
+jobs:
+  x-revontuli-flow-4-golden:
+    pick: 1
+    status: review
+    publication: exploration; never promoted
+    note: Factory QA auto-pick; lead review pending. Manual comparison retains sauna, bucket, towel, stool,
+      ice lake and fishing hole, three lit towers, post aurora tail, spruce and smoke. Golden is warmer
+      than source; rain adds small wet patches/ripples without melting the overall snowy setting. Both
+      original PNGs retained. Repaint is not exact pixel registration.
+selection:
+  method: QA non-fail and manual eligibility; lowest style-lock load, then highest measured harmony; take
+    number only breaks ties
+  scores:
+  - take: 1
+    style_lock_load: 0.0
+    harmony: 87.2
+    eligible: true
+  - take: 2
+    style_lock_load: 0.0
+    harmony: 86.1
+    eligible: true
+  rejected_takes: []
+qa_reports:
+- job: x-revontuli-flow-4-golden
+  take: 1
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 49 (R1 51)
+    value: 48.9
+  - check: light_values
+    status: pass
+    message: 'golden/subject: L p5 58 (at least 50: darks stay a light mid-tone), p98 92 (at least 85)'
+    value: 58.5
+  - check: light_median
+    status: pass
+    message: 'golden/subject: median L 78 (band 68-86)'
+    value: 78.2
+  - check: light_contrast
+    status: pass
+    message: 'golden/subject: p75 local contrast 5.1 (band 2.5-6.0; above it reads too contrasty)'
+    value: 5.08
+  - check: light_sky
+    status: pass
+    message: 'golden: sky L 64 (band 60-86)'
+    value: 64.2
+  - check: light_sea
+    status: pass
+    message: 'golden: cloud sea L 81 (at least 78: the sea is the reflector)'
+    value: 81.2
+  - check: light_dark
+    status: pass
+    message: 'golden: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.0
+  - check: detail_budget
+    status: pass
+    message: detail at display size 3.4 (R1 5.3)
+    value: 3.43
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 4.0, p95 10.8, off-palette 3.9% (top: #6699DD (0.3%), #77AADD (0.3%))'
+    value: 3.9746
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_structure
+    status: pass
+    message: light structure matches the parent (r 0.83)
+    value: 0.8336
+  - check: edit_lightness
+    status: pass
+    message: mean lightness moved by 4.9 L (the same lightness was asked)
+    value: 4.879
+  info:
+    metrics_raw:
+      L_p5: 55.6
+      L_p50: 76.9
+      L_p95: 90.0
+      C_p50: 26.5
+      C_p95: 48.9
+      C_p99: 61.6
+      detail: 3.43
+    metrics_locked:
+      L_p5: 55.6
+      L_p50: 76.9
+      L_p95: 90.0
+      C_p50: 26.5
+      C_p95: 48.9
+      C_p99: 61.6
+      detail: 3.43
+  fingerprint: fa680e0637012699
+- job: x-revontuli-flow-4-golden
+  take: 2
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 50 (R1 51)
+    value: 50.4
+  - check: light_values
+    status: pass
+    message: 'golden/subject: L p5 58 (at least 50: darks stay a light mid-tone), p98 91 (at least 85)'
+    value: 57.6
+  - check: light_median
+    status: pass
+    message: 'golden/subject: median L 78 (band 68-86)'
+    value: 77.6
+  - check: light_contrast
+    status: pass
+    message: 'golden/subject: p75 local contrast 5.2 (band 2.5-6.0; above it reads too contrasty)'
+    value: 5.24
+  - check: light_sky
+    status: pass
+    message: 'golden: sky L 64 (band 60-86)'
+    value: 63.6
+  - check: light_sea
+    status: pass
+    message: 'golden: cloud sea L 80 (at least 78: the sea is the reflector)'
+    value: 79.7
+  - check: light_dark
+    status: pass
+    message: 'golden: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.0
+  - check: detail_budget
+    status: pass
+    message: detail at display size 3.2 (R1 5.3)
+    value: 3.23
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 4.0, p95 11.9, off-palette 4.8% (top: #88BBDD (0.8%), #7799DD (0.3%))'
+    value: 3.9733
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_structure
+    status: pass
+    message: light structure matches the parent (r 0.84)
+    value: 0.8395
+  - check: edit_lightness
+    status: pass
+    message: mean lightness moved by 3.8 L (the same lightness was asked)
+    value: 3.7965
+  info:
+    metrics_raw:
+      L_p5: 54.5
+      L_p50: 76.3
+      L_p95: 88.9
+      C_p50: 25.9
+      C_p95: 50.4
+      C_p99: 66.0
+      detail: 3.23
+    metrics_locked:
+      L_p5: 54.5
+      L_p50: 76.3
+      L_p95: 88.9
+      C_p50: 25.9
+      C_p95: 50.4
+      C_p99: 66.0
+      detail: 3.23
+  fingerprint: fa680e0637012699
+sources:
+- take: 1
+  source_file: /workspace/art-operator-runtime/factory/generated/x-revontuli-flow-4-golden/take-1.png
+  source_sha256: c0ab4e2b384bd72c79785699df5b1b1748319d55b3692024fb9c0bd69e64c431
+  q90_take: design/art/takes/batch-73-islands-states/x-revontuli-flow-4-golden/plate__x-revontuli-flow-4-golden--t1.webp
+  q90_take_sha256: fa2e8fe15e3756d0792fdc47c86eed4eaa34fceb028fdac1b605480c7c7e24c4
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 7de84b17c7a587ec8205efb05c4e27c72aa3c4c33c8392ac489144870772bcea
+  references:
+  - path: design/art/takes/batch-68-revontuli-flow/x-revontuli-flow-4/plate__x-revontuli-flow-4--t1.webp
+    role: The image to edit (the approved previous level). Edit it; do not redraw it.
+    sha256: b90441a521a01c89a9200c3131c5e992d49f4610cc374d0ad8f6800b4a3aa730
+  - path: design/art/takes/batch-66-home-flow/x-home-flow-golden/plate__x-home-flow-golden--t1.webp
+    role: 'The light target: this golden evening of the home island, its pink-lilac sky, peach light and
+      lilac cloud shade. Match the light, not the objects.'
+    sha256: f03dceaf68f712e04c34c4233d23863ebc9df7a75f212fe45aabbc763412fada
+- take: 2
+  source_file: /workspace/art-operator-runtime/factory/generated/x-revontuli-flow-4-golden/take-2.png
+  source_sha256: afce67536dc88cfef0cecfe04c70e1b347f6f6fa8e79de4153ea88b368747fc3
+  q90_take: design/art/takes/batch-73-islands-states/x-revontuli-flow-4-golden/plate__x-revontuli-flow-4-golden--t2.webp
+  q90_take_sha256: d66ca6d057e5444cf7e780ada0505c04aad48868188b1abf48d5a0695e6ae022
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 7de84b17c7a587ec8205efb05c4e27c72aa3c4c33c8392ac489144870772bcea
+  references:
+  - path: design/art/takes/batch-68-revontuli-flow/x-revontuli-flow-4/plate__x-revontuli-flow-4--t1.webp
+    role: The image to edit (the approved previous level). Edit it; do not redraw it.
+    sha256: b90441a521a01c89a9200c3131c5e992d49f4610cc374d0ad8f6800b4a3aa730
+  - path: design/art/takes/batch-66-home-flow/x-home-flow-golden/plate__x-home-flow-golden--t1.webp
+    role: 'The light target: this golden evening of the home island, its pink-lilac sky, peach light and
+      lilac cloud shade. Match the light, not the objects.'
+    sha256: f03dceaf68f712e04c34c4233d23863ebc9df7a75f212fe45aabbc763412fada
+policy:
+  never_promote: true
+  originals: source_file PNGs preserved unchanged; published takes are q90 copies
