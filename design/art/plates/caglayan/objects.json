@@ -1,0 +1,758 @@
+{
+ "island": "caglayan",
+ "note": "Çağlayan (batch 67's x-caglayan-flow-N t1 day plates, 1536 x 1024 landscape; batch 73's picked night, golden and rain cells). Points are percent of the plate. Day stages 0..4 are the story's stages (not island levels); night is painted at stages 2 and 3, golden and rain at stage 4 (`plates`), every other state keeps the sprite island. One tap polygon (the whole island opens the flow round). Damla is the only resident drawn on the plate: one spot on the front lawn, in every stage; Pofu and Mochi speak from the bubble and are not drawn. `referenceState` (the harmony reference) is its picked root, the stage 4 day. Framing: the island is 0.949 screens wide (212 world units at the Island stop's 1.8 scale, `CaglayanLayout`), its box centred at 54 % of the screen height; the backdrop below and above the landscape plate is a calm continuation, never a repeated cloud band (`backdrop`: calm).",
+ "minLevel": 0,
+ "backdrop": "calm",
+ "referenceState": [
+  "day",
+  4
+ ],
+ "plates": {
+  "day": {
+   "0": "design/art/takes/batch-67-caglayan-flow/x-caglayan-flow-0/plate__x-caglayan-flow-0--t1.webp",
+   "1": "design/art/takes/batch-67-caglayan-flow/x-caglayan-flow-1/plate__x-caglayan-flow-1--t1.webp",
+   "2": "design/art/takes/batch-67-caglayan-flow/x-caglayan-flow-2/plate__x-caglayan-flow-2--t1.webp",
+   "3": "design/art/takes/batch-67-caglayan-flow/x-caglayan-flow-3/plate__x-caglayan-flow-3--t1.webp",
+   "4": "design/art/takes/batch-67-caglayan-flow/x-caglayan-flow-4/plate__x-caglayan-flow-4--t1.webp"
+  },
+  "golden": {
+   "4": "design/art/takes/batch-73-islands-states/x-caglayan-flow-4-golden/plate__x-caglayan-flow-4-golden--t2.webp"
+  },
+  "night": {
+   "2": "design/art/takes/batch-73-islands-states/x-caglayan-flow-2-night/plate__x-caglayan-flow-2-night--t2.webp",
+   "3": "design/art/takes/batch-73-islands-states/x-caglayan-flow-3-night/plate__x-caglayan-flow-3-night--t2.webp"
+  },
+  "rain": {
+   "4": "design/art/takes/batch-73-islands-states/x-caglayan-flow-4-rain/plate__x-caglayan-flow-4-rain--t2.webp"
+  }
+ },
+ "trace": [
+  [
+   8,
+   24
+  ],
+  [
+   10,
+   20
+  ],
+  [
+   15,
+   17
+  ],
+  [
+   16,
+   9
+  ],
+  [
+   17.5,
+   7.5
+  ],
+  [
+   23,
+   7.5
+  ],
+  [
+   24,
+   11
+  ],
+  [
+   25,
+   14
+  ],
+  [
+   31,
+   15
+  ],
+  [
+   32,
+   12
+  ],
+  [
+   38,
+   9
+  ],
+  [
+   41,
+   5
+  ],
+  [
+   46,
+   2.5
+  ],
+  [
+   52,
+   1.5
+  ],
+  [
+   59,
+   2.5
+  ],
+  [
+   64,
+   4.5
+  ],
+  [
+   67,
+   4
+  ],
+  [
+   69,
+   8
+  ],
+  [
+   72,
+   13
+  ],
+  [
+   74,
+   19
+  ],
+  [
+   77,
+   21.5
+  ],
+  [
+   81,
+   20.5
+  ],
+  [
+   85,
+   17
+  ],
+  [
+   89,
+   15.5
+  ],
+  [
+   92.5,
+   19
+  ],
+  [
+   93,
+   27
+  ],
+  [
+   96,
+   32
+  ],
+  [
+   97.5,
+   38
+  ],
+  [
+   97.5,
+   44
+  ],
+  [
+   95.5,
+   50
+  ],
+  [
+   92.5,
+   57
+  ],
+  [
+   90,
+   64
+  ],
+  [
+   87.5,
+   70
+  ],
+  [
+   84.5,
+   73
+  ],
+  [
+   86,
+   80
+  ],
+  [
+   85,
+   88
+  ],
+  [
+   83,
+   89
+  ],
+  [
+   82,
+   83
+  ],
+  [
+   80,
+   80
+  ],
+  [
+   75,
+   86
+  ],
+  [
+   68,
+   89.5
+  ],
+  [
+   62,
+   91
+  ],
+  [
+   58,
+   93
+  ],
+  [
+   57.5,
+   97
+  ],
+  [
+   55,
+   96
+  ],
+  [
+   55,
+   91.5
+  ],
+  [
+   50,
+   91.5
+  ],
+  [
+   44,
+   91
+  ],
+  [
+   38,
+   90
+  ],
+  [
+   34,
+   93
+  ],
+  [
+   35,
+   97
+  ],
+  [
+   32,
+   96
+  ],
+  [
+   31.5,
+   90
+  ],
+  [
+   26,
+   86
+  ],
+  [
+   20,
+   82
+  ],
+  [
+   14,
+   77
+  ],
+  [
+   14.5,
+   86
+  ],
+  [
+   13,
+   88
+  ],
+  [
+   11.5,
+   80
+  ],
+  [
+   8,
+   72
+  ],
+  [
+   4,
+   63
+  ],
+  [
+   2,
+   55
+  ],
+  [
+   1,
+   47
+  ],
+  [
+   1.5,
+   41
+  ],
+  [
+   4,
+   37
+  ],
+  [
+   7,
+   33
+  ],
+  [
+   8,
+   29
+  ]
+ ],
+ "objects": [
+  {
+   "id": "island",
+   "tap": true,
+   "label": "caglayan.name",
+   "points": [
+    [
+     98.18,
+     43.26
+    ],
+    [
+     97.07,
+     40.82
+    ],
+    [
+     96.68,
+     37.01
+    ],
+    [
+     91.47,
+     25.49
+    ],
+    [
+     88.02,
+     24.8
+    ],
+    [
+     82.23,
+     25.49
+    ],
+    [
+     80.4,
+     23.44
+    ],
+    [
+     76.76,
+     22.07
+    ],
+    [
+     75.39,
+     20.41
+    ],
+    [
+     71.74,
+     21.29
+    ],
+    [
+     69.66,
+     17.38
+    ],
+    [
+     68.36,
+     11.43
+    ],
+    [
+     65.49,
+     6.54
+    ],
+    [
+     63.74,
+     6.15
+    ],
+    [
+     62.24,
+     4.0
+    ],
+    [
+     51.76,
+     3.42
+    ],
+    [
+     48.63,
+     4.1
+    ],
+    [
+     45.57,
+     6.25
+    ],
+    [
+     42.45,
+     6.05
+    ],
+    [
+     37.17,
+     13.48
+    ],
+    [
+     33.53,
+     13.77
+    ],
+    [
+     32.03,
+     15.04
+    ],
+    [
+     29.1,
+     20.02
+    ],
+    [
+     24.8,
+     16.6
+    ],
+    [
+     21.88,
+     15.62
+    ],
+    [
+     20.9,
+     11.62
+    ],
+    [
+     18.62,
+     11.62
+    ],
+    [
+     17.58,
+     15.82
+    ],
+    [
+     11.78,
+     19.24
+    ],
+    [
+     8.27,
+     24.12
+    ],
+    [
+     8.27,
+     31.93
+    ],
+    [
+     7.36,
+     33.79
+    ],
+    [
+     5.47,
+     34.08
+    ],
+    [
+     4.56,
+     36.72
+    ],
+    [
+     2.8,
+     38.96
+    ],
+    [
+     1.17,
+     45.12
+    ],
+    [
+     1.11,
+     48.24
+    ],
+    [
+     6.45,
+     64.94
+    ],
+    [
+     12.3,
+     77.44
+    ],
+    [
+     13.48,
+     77.54
+    ],
+    [
+     21.22,
+     83.5
+    ],
+    [
+     32.81,
+     88.28
+    ],
+    [
+     49.54,
+     89.55
+    ],
+    [
+     56.38,
+     88.77
+    ],
+    [
+     57.75,
+     89.45
+    ],
+    [
+     59.57,
+     88.38
+    ],
+    [
+     68.42,
+     87.21
+    ],
+    [
+     76.56,
+     83.89
+    ],
+    [
+     85.42,
+     78.71
+    ],
+    [
+     86.26,
+     76.76
+    ],
+    [
+     85.87,
+     73.73
+    ],
+    [
+     88.8,
+     70.21
+    ],
+    [
+     90.89,
+     65.23
+    ],
+    [
+     93.36,
+     56.45
+    ],
+    [
+     94.6,
+     54.98
+    ],
+    [
+     97.4,
+     48.05
+    ]
+   ]
+  },
+  {
+   "id": "pool",
+   "tap": false,
+   "label": "",
+   "water": true,
+   "points": [
+    [
+     36,
+     34
+    ],
+    [
+     48,
+     29
+    ],
+    [
+     62,
+     31
+    ],
+    [
+     71,
+     38
+    ],
+    [
+     71,
+     46
+    ],
+    [
+     62,
+     51
+    ],
+    [
+     50,
+     52
+    ],
+    [
+     40,
+     50
+    ],
+    [
+     36,
+     44
+    ]
+   ]
+  },
+  {
+   "id": "falls",
+   "tap": false,
+   "label": "",
+   "water": true,
+   "points": [
+    [
+     46,
+     8
+    ],
+    [
+     57,
+     8
+    ],
+    [
+     58,
+     30
+    ],
+    [
+     46,
+     30
+    ]
+   ]
+  },
+  {
+   "id": "basinHigh",
+   "tap": false,
+   "label": "",
+   "water": true,
+   "points": [
+    [
+     79,
+     26
+    ],
+    [
+     89,
+     26
+    ],
+    [
+     89,
+     32
+    ],
+    [
+     79,
+     32
+    ]
+   ]
+  },
+  {
+   "id": "basinMid",
+   "tap": false,
+   "label": "",
+   "water": true,
+   "points": [
+    [
+     80,
+     36
+    ],
+    [
+     92,
+     36
+    ],
+    [
+     92,
+     42
+    ],
+    [
+     80,
+     42
+    ]
+   ]
+  },
+  {
+   "id": "basinLow",
+   "tap": false,
+   "label": "",
+   "water": true,
+   "points": [
+    [
+     75,
+     47
+    ],
+    [
+     89,
+     47
+    ],
+    [
+     89,
+     54
+    ],
+    [
+     75,
+     54
+    ]
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   40,
+   56
+  ],
+  [
+   46,
+   53.5
+  ],
+  [
+   54,
+   53
+  ],
+  [
+   66,
+   52.5
+  ],
+  [
+   70,
+   56
+  ],
+  [
+   68,
+   61
+  ],
+  [
+   60,
+   63.5
+  ],
+  [
+   50,
+   64
+  ],
+  [
+   42,
+   63
+  ],
+  [
+   38,
+   60
+  ]
+ ],
+ "characters": {
+  "damla": [
+   44,
+   59
+  ]
+ },
+ "pofuWidth": 9.8,
+ "residentBoost": 1.0,
+ "residentBoosts": {
+  "damla": 1.47
+ },
+ "lamps": [
+  [
+   13.2,
+   36.4
+  ],
+  [
+   17.5,
+   35.4
+  ]
+ ],
+ "lightDirection": [
+  -0.5,
+  0.3
+ ],
+ "framing": {
+  "homeWidths": 0.9493,
+  "homeCenterX": 0.5,
+  "homeTopY": 348.7,
+  "islandWidths": 0.9493,
+  "wholeWidths": 0.9493
+ },
+ "backdropScale": 0.2,
+ "characterLight": {
+  "saturate": true,
+  "stoneMargin": {
+   "night": 3.0
+  },
+  "rim": {
+   "day": 0.0,
+   "golden": 0.5,
+   "night": 0.4
+  }
+ }
+}
