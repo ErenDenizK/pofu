@@ -1,0 +1,313 @@
+batch: batch-74-redo-states
+manifest: tools/imagegen/manifest/batch-74-redo-states.yaml
+jobs:
+  x-caglayan-flow-1-night-v2:
+    pick: null
+    publication: exploration; not promoted; lead review pending
+    note: 'Both takes are manually ineligible: the house window glows intensely orange-yellow
+      with a strong halo rather than the requested faint warm light. The still wheel,
+      dark exterior lamp and stage 1 basin/channel state remain; the explicit faint-window
+      condition fails. Keep both and skip per the batch header.'
+    actual_generation_calls: 2
+    manual_review:
+      job: x-caglayan-flow-1-night-v2
+      reviewer: independent visual review
+      parent: plate__x-caglayan-flow-1--t1.webp
+      night_reference: plate__x-home-flow-night--t1.webp
+      criteria:
+      - Preserve the stage 1 shapes and positions, including its thin waterfall/channel
+        flow and partially dry boat basins.
+      - Use a calm blue night sky and light lilac-white cloud sea; keep the island
+        readable under cool moonlight.
+      - Keep the mill wheel still and the mill dark and unlit; only a faint warm glow
+        may come from the house window.
+      - Do not heal or add anything.
+      takes:
+      - take: 1
+        source_sha256: 85d1a2393520816df71c70e7a316fd91e164618ca132abe8267d721d5357d990
+        eligible: false
+        reasons:
+        - The wheel appears still and unlit, the exterior hanging lamp is dark, and
+          the thin waterfall/channel flow and boat basins remain in their stage 1
+          arrangement.
+        - The house window is intensely orange-yellow with a strong surrounding halo,
+          so its glow reads as prominent rather than faint as specified.
+        caveats:
+        - The scene is otherwise readable under blue-violet night light with a light
+          cloud sea. No specific object displacement or basin healing was established
+          visually; pixel registration was not tested.
+      - take: 2
+        source_sha256: 244903208a1b88cedfb1bb1c22f38d8ceee30798c49c5feb14c5bcba11d40494
+        eligible: false
+        reasons:
+        - The wheel appears still and unlit, the exterior hanging lamp is dark, and
+          the thin waterfall/channel flow and boat basins remain in their stage 1
+          arrangement.
+        - The house window is intensely orange-yellow with a strong surrounding halo,
+          so its glow reads as prominent rather than faint as specified.
+        caveats:
+        - The scene is otherwise readable under blue-violet night light with a light
+          cloud sea. No specific object displacement or basin healing was established
+          visually; pixel registration was not tested.
+    status: skipped
+    skip_reason: Both requested takes exceed the faint warm window glow requirement;
+      the two-take phase is complete.
+qa_reports:
+- job: x-caglayan-flow-1-night-v2
+  take: 1
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 50 (R1 51)
+    value: 50.0
+  - check: light_values
+    status: warn
+    message: 'night/subject: L p5 32 (at least 45: darks stay a light mid-tone), p98
+      84 (at least 85) (warn-only until the founder has seen the light pilot)'
+    value: 31.7
+  - check: light_median
+    status: warn
+    message: 'night/subject: median L 60 (band 66-88)'
+    value: 60.4
+  - check: light_contrast
+    status: warn
+    message: 'night/subject: p75 local contrast 8.1 (band 1.5-5.0; above it reads
+      too contrasty) (warn-only until the founder has seen the light pilot)'
+    value: 8.09
+  - check: light_sky
+    status: pass
+    message: 'night: sky L 42 (band 24-46)'
+    value: 41.9
+  - check: light_sea
+    status: pass
+    message: 'night: cloud sea L 76 (at least 70: the sea is the reflector)'
+    value: 76.5
+  - check: light_dark
+    status: pass
+    message: 'night: 2.8 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 2.8
+  - check: detail_budget
+    status: warn
+    message: detail at display size 6.5 (R1 5.3)
+    value: 6.53
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 5.5, p95 16.0, off-palette 11.9% (top: #334499 (3.5%), #4455AA
+      (1.4%)) (advisory in an exploration)'
+    value: 5.4817
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_structure
+    status: warn
+    message: light structure matches the parent (r 0.65)
+    value: 0.6502
+  - check: edit_lightness
+    status: warn
+    message: mean lightness moved by 23.6 L (the same lightness was asked) (advisory
+      in an exploration)
+    value: 23.6069
+  info:
+    metrics_raw:
+      L_p5: 29.5
+      L_p50: 60.0
+      L_p95: 84.1
+      C_p50: 27.6
+      C_p95: 50.0
+      C_p99: 52.1
+      detail: 6.53
+    metrics_locked:
+      L_p5: 29.5
+      L_p50: 60.0
+      L_p95: 84.1
+      C_p50: 27.6
+      C_p95: 50.0
+      C_p99: 52.1
+      detail: 6.53
+  fingerprint: 6fb99d4e53dcbc05
+- job: x-caglayan-flow-1-night-v2
+  take: 2
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 51 (R1 51)
+    value: 51.2
+  - check: light_values
+    status: warn
+    message: 'night/subject: L p5 33 (at least 45: darks stay a light mid-tone), p98
+      84 (at least 85) (warn-only until the founder has seen the light pilot)'
+    value: 33.1
+  - check: light_median
+    status: warn
+    message: 'night/subject: median L 58 (band 66-88) (warn-only until the founder
+      has seen the light pilot)'
+    value: 57.6
+  - check: light_contrast
+    status: warn
+    message: 'night/subject: p75 local contrast 7.2 (band 1.5-5.0; above it reads
+      too contrasty) (warn-only until the founder has seen the light pilot)'
+    value: 7.16
+  - check: light_sky
+    status: pass
+    message: 'night: sky L 43 (band 24-46)'
+    value: 43.3
+  - check: light_sea
+    status: pass
+    message: 'night: cloud sea L 76 (at least 70: the sea is the reflector)'
+    value: 75.5
+  - check: light_dark
+    status: pass
+    message: 'night: 2.2 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 2.2
+  - check: detail_budget
+    status: pass
+    message: detail at display size 5.9 (R1 5.3)
+    value: 5.92
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 6.1, p95 17.1, off-palette 17.3% (top: #334499 (5.1%), #4455AA
+      (2.7%)) (advisory in an exploration)'
+    value: 6.0567
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_structure
+    status: warn
+    message: light structure matches the parent (r 0.68)
+    value: 0.6805
+  - check: edit_lightness
+    status: warn
+    message: mean lightness moved by 24.3 L (the same lightness was asked) (advisory
+      in an exploration)
+    value: 24.265
+  info:
+    metrics_raw:
+      L_p5: 31.4
+      L_p50: 57.7
+      L_p95: 83.8
+      C_p50: 27.8
+      C_p95: 51.2
+      C_p99: 52.4
+      detail: 5.92
+    metrics_locked:
+      L_p5: 31.4
+      L_p50: 57.7
+      L_p95: 83.8
+      C_p50: 27.8
+      C_p95: 51.2
+      C_p99: 52.4
+      detail: 5.92
+  fingerprint: 6fb99d4e53dcbc05
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-eba845df-a5e2-4310-a04d-7cfcad28ce71.png
+  source_sha256: 85d1a2393520816df71c70e7a316fd91e164618ca132abe8267d721d5357d990
+  q90_take: design/art/takes/batch-74-redo-states/x-caglayan-flow-1-night-v2/plate__x-caglayan-flow-1-night-v2--t1.webp
+  q90_take_sha256: 8d4c5463045425ce36ef72624c7d33773d6558f4acad937563510d4fc53805f0
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: c54b7d7e7fab20999366cedc001e5dd76e406bf127d2ffa93cf4425e0fd072bf
+  started_at: '2026-11-10T20:28:52.455Z'
+  returned_at: '2026-11-10T20:30:15.398Z'
+  model: null
+  tool: image_gen.imagegen
+- take: 2
+  source_file: /workspace/generated_images/exec-daace2f9-49f2-406d-b2e7-5733b23f10a6.png
+  source_sha256: 244903208a1b88cedfb1bb1c22f38d8ceee30798c49c5feb14c5bcba11d40494
+  q90_take: design/art/takes/batch-74-redo-states/x-caglayan-flow-1-night-v2/plate__x-caglayan-flow-1-night-v2--t2.webp
+  q90_take_sha256: c3fbe88372251eef80a25a11a26bd65876c75a4671f59a0a1ce43ea387b7ffe0
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: c54b7d7e7fab20999366cedc001e5dd76e406bf127d2ffa93cf4425e0fd072bf
+  started_at: '2026-11-10T20:28:52.455Z'
+  returned_at: '2026-11-10T20:29:31.601Z'
+  model: null
+  tool: image_gen.imagegen
+harmony_scores:
+  method: Focused individual scoring against the precomputed world reference; no full
+    measure/catalog scan.
+  command_base:
+  - python3
+  - -I
+  - tools/assets/harmony.py
+  - score
+  reference_data:
+    config_sha256: d2ed591e6e8a7d0eafd54f95e3e3c98290453a81aaff11a9f800afea6fc43a18
+    reference_sha256: 602aff8ff097bad430ebfc0bf3837c647cf738bc407b90d58b8eb689810a673e
+    materials_sha256: 495011a0bfbe8c9c890ec62f8ff6f7a2e1f5fe1d061f73c23ec26518b938b557
+    assets_json_count: 211
+    assets_json_digest_sha256: f8f88057d3b860d56318b4a6bdfbf0fc70f16eb9237516ab9d3234b901c4f6b3
+  scores:
+  - take: 1
+    argv:
+    - python3
+    - -I
+    - tools/assets/harmony.py
+    - score
+    - build/imagegen/batch-74-redo-states/locked/plate__x-caglayan-flow-1-night-v2--t1.png
+    - --ppu
+    - '4.103'
+    - --kind
+    - world
+    ppu: 4.103
+    kind: world
+    score: 57.0
+    outliers:
+    - L_p2
+    - L_p98
+    - detail
+    - edge
+    reference_group: world
+  - take: 2
+    argv:
+    - python3
+    - -I
+    - tools/assets/harmony.py
+    - score
+    - build/imagegen/batch-74-redo-states/locked/plate__x-caglayan-flow-1-night-v2--t2.png
+    - --ppu
+    - '4.103'
+    - --kind
+    - world
+    ppu: 4.103
+    kind: world
+    score: 58.5
+    outliers:
+    - L_p2
+    - L_p98
+    - detail
+    - edge
+    reference_group: world
+policy:
+  never_promote: true
+  selection: lead picks
+  source_preservation: Original generated images retained at source_file paths; published
+    takes are q90 review copies.
