@@ -73,29 +73,35 @@ ADR-0023 in practice:
 ## Checks before the founder sees anything
 
 1. Colour metrics are within bands of the reference. Run
-   `python3 -I tools/plate/colour_metrics.py compare REF IMG...`. Until the
-   ladder is picked, REF is the I1 day take
-   (`design/art/takes/batch-25-seasons/x-season-summer/plate__x-season-summer--t2.webp`),
-   which is only a floor: the founder calls even I1 pale. After the pick, REF
-   is the picked home root. Flags: "pale" when C* p90 is under 0.85 x REF or
+   `python3 -I tools/plate/colour_metrics.py compare REF IMG...`. REF is the picked
+   home root, `design/art/takes/batch-66-home-flow/x-home-flow-final-rich/plate__x-home-flow-final-rich--t1.webp`
+   (the ladder is decided; the old I1 floor no longer applies). Flags: "pale" when C* p90 is under 0.85 x REF or
    accent share is under 0.7 x REF; "hot" when C* p99 is over 1.25 x REF.
    Weather states (rain, snow, mist) are meant to be calmer and get their own
    bands from their first approved plate.
 2. A real in-app screenshot from CI (not a mock-up or a bare file).
 3. The lead looks at it. Metrics do not replace eyes.
 
-## The ladder (now)
+## The ladder (result, 2026-11-10)
 
-The colour level is chosen once, on the home root (`batch-66-home-flow`),
-then held by the bands above. Three root jobs paint the same picture, 2 takes
-each:
+The colour level was chosen once, on the home root (`batch-66-home-flow`), and
+is now held by the bands above. Three root jobs painted the same picture, 2
+takes each:
 
-- `x-home-flow-final`: the control. The old block and half-size delivery, as
-  first written.
-- `x-home-flow-final-clear`: `plate-style-v1`, full size.
-- `x-home-flow-final-rich`: `plate-style-rich-v1`, full size. The deliberate
-  upper bracket.
+- `x-home-flow-final`: the control (old block, half-size delivery). Pale and
+  hazy: C* p90 39, accent share 0.08 to 0.09, flagged pale.
+- `x-home-flow-final-clear`: `plate-style-v1`, full size. Good but flatter:
+  C* p90 43.5 to 44, accent share 0.15.
+- `x-home-flow-final-rich`: `plate-style-rich-v1`, full size. C* p90 47.2,
+  p99 63.6, accent share 0.20, L* p50 80.2: the best depth and hierarchy
+  without going neon.
 
-The lead names the pick by eye plus metrics, and says which root is the
-master. A naming PR repoints the 13 edit jobs (`edit_of`) to that root. Every
-other plate batch (67 to 70) already uses the clear level.
+**Picked: `x-home-flow-final-rich` take 1** (`pick: 1` in its review.yaml, 
+concept master per the batch-66 lead rule). It is the master of the 13 phase 2
+edit jobs (`edit_of` now points at it) and the `REF` of check 1: 
+`design/art/takes/batch-66-home-flow/x-home-flow-final-rich/plate__x-home-flow-final-rich--t1.webp`.
+
+`plate-style-rich-v1` is the house plate style. `plate-style-v1` stays in
+`tools/imagegen/blocks/` (nothing is renamed) for calmer states such as rain,
+snow and mist. The four island roots (batches 67 to 70) were picked at take 1
+and their manifests now use the rich block.
