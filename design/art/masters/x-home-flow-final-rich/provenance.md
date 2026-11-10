@@ -8,7 +8,7 @@
   generated 2026-11-10T14:23:01+00:00.
 - **Post-processing (human-authored, documented per art bible section 13):**
   canvas fit, style lock preset `plate-final` (style_lock.json v2).
-- **Files:** `raw.webp` is the take as generated (webp q95), kept so the look can be re-locked; `x-home-flow-final-rich.png` is the locked master the app and later edits use.
+- **Files:** `raw.webp` preserves the retained q90 review source byte for byte; `x-home-flow-final-rich.webp` is the same recovered concept master. The prior-session original generated PNG is unavailable.
 - **Review note:** concept master; picked by the lead. Founder authorized recovery from the retained q90 WebP on 2026-11-10 because the previous session original PNG is unavailable. Source is a lossy review copy, not the original generated PNG; no recoloring or filtering applied.
 
 ## References
@@ -131,7 +131,5 @@ Output: one image, opaque, full bleed, portrait 1024 x 1536.
 - pass: detail_budget (detail at display size 5.3 (R1 5.3))
 - pass: lock_load (the lock moved colors by mean dE 0.0)
 - warn: palette_drift (mean dE 6.6, p95 19.5, off-palette 21.1% (top: #88BBFF (5.9%), #66AAFF (4.0%)) (advisory in an exploration))
-
-Source recovery: concept master; picked by the lead. Founder authorized recovery from the retained q90 WebP on 2026-11-10 because the previous session original PNG is unavailable. Source is a lossy review copy, not the original generated PNG; no recoloring or filtering applied.
 
 Source recovery: concept master; picked by the lead. Founder authorized recovery from the retained q90 WebP on 2026-11-10 because the previous session original PNG is unavailable. Source is a lossy review copy, not the original generated PNG; no recoloring or filtering applied.
