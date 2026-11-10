@@ -1,0 +1,259 @@
+batch: batch-68-revontuli-flow
+manifest: tools/imagegen/manifest/batch-68-revontuli-flow.yaml
+manifest_sha256: 79b2f1cfcb6bc0809f7bcea2499726a2b261eec9285816b79d40b7bae66dd474
+prompt_sha256: 64e8511a5e01b1736e079d3e7990a75dd5eaac4d32b42c1b5ab21f83dd9f3854
+transport_prompt_sha256: 79b369274ea9fce31a80e31c2a4c3efe9d0192622933e909f34c5ff239ac1e94
+base_head: 20be6dc2eb7dff96a68108d336e8e0433b0e6d0c
+contact_sheet: design/art/takes/batch-68-revontuli-flow/x-revontuli-flow-4/contact.jpg
+jobs:
+  x-revontuli-flow-4:
+    pick: null
+    publication: exploration; never promoted
+    note: Both takes have the ice body’s own silhouette, three lantern towers, sauna with towel and bucket, three
+      steps, a tail connected to the aurora, and the glass lake with its hole and stool. Neither has characters
+      or text. The lake reads about 45% of the island width versus the authored target of about one third. This
+      is a composition warning; no exact pixel-registration pass is claimed. No take is selected and neither is
+      promoted.
+qa_reports:
+  1:
+    job: x-revontuli-flow-4
+    take: 1
+    status: warn
+    preset: plate-final
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 53 (R1 51)
+      value: 53.4
+    - check: light_values
+      status: pass
+      message: 'night/subject: L p5 50 (at least 45: darks stay a light mid-tone), p98 95 (at least 85)'
+      value: 49.9
+    - check: light_median
+      status: pass
+      message: 'night/subject: median L 81 (band 66-88)'
+      value: 81.3
+    - check: light_contrast
+      status: warn
+      message: 'night/subject: p75 local contrast 5.5 (band 1.5-5.0; above it reads too contrasty)'
+      value: 5.46
+    - check: light_sky
+      status: warn
+      message: 'night: sky L 46 (band 24-46)'
+      value: 46.2
+    - check: light_sea
+      status: pass
+      message: 'night: cloud sea L 85 (at least 70: the sea is the reflector)'
+      value: 85.4
+    - check: light_dark
+      status: pass
+      message: 'night: 0.1 % below L* 30 under the sky (at most 3; only the sky is dark)'
+      value: 0.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.8 (R1 5.3)
+      value: 3.83
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 5.2, p95 13.8, off-palette 9.8% (top: #5555AA (1.5%), #554499 (0.9%)) (advisory in an exploration)'
+      value: 5.1941
+    info:
+      metrics_raw:
+        L_p5: 32.3
+        L_p50: 77.8
+        L_p95: 92.8
+        C_p50: 24.4
+        C_p95: 53.4
+        C_p99: 70.7
+        detail: 3.83
+      metrics_locked:
+        L_p5: 32.3
+        L_p50: 77.8
+        L_p95: 92.8
+        C_p50: 24.4
+        C_p95: 53.4
+        C_p99: 70.7
+        detail: 3.83
+    fingerprint: 3d2e936359ddfe0c
+  2:
+    job: x-revontuli-flow-4
+    take: 2
+    status: warn
+    preset: plate-final
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 56 (R1 51)
+      value: 55.5
+    - check: light_values
+      status: warn
+      message: 'night/subject: L p5 43 (at least 45: darks stay a light mid-tone), p98 94 (at least 85)'
+      value: 43.4
+    - check: light_median
+      status: pass
+      message: 'night/subject: median L 78 (band 66-88)'
+      value: 77.9
+    - check: light_contrast
+      status: warn
+      message: 'night/subject: p75 local contrast 5.4 (band 1.5-5.0; above it reads too contrasty)'
+      value: 5.38
+    - check: light_sky
+      status: pass
+      message: 'night: sky L 43 (band 24-46)'
+      value: 43.0
+    - check: light_sea
+      status: pass
+      message: 'night: cloud sea L 85 (at least 70: the sea is the reflector)'
+      value: 85.4
+    - check: light_dark
+      status: pass
+      message: 'night: 0.2 % below L* 30 under the sky (at most 3; only the sky is dark)'
+      value: 0.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.8 (R1 5.3)
+      value: 3.81
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 5.6, p95 15.9, off-palette 13.3% (top: #444499 (2.2%), #5555AA (1.3%)) (advisory in an exploration)'
+      value: 5.6277
+    info:
+      metrics_raw:
+        L_p5: 27.0
+        L_p50: 75.0
+        L_p95: 91.6
+        C_p50: 24.7
+        C_p95: 55.5
+        C_p99: 74.2
+        detail: 3.81
+      metrics_locked:
+        L_p5: 27.0
+        L_p50: 75.0
+        L_p95: 91.6
+        C_p50: 24.7
+        C_p95: 55.5
+        C_p99: 74.2
+        detail: 3.81
+    fingerprint: 3d2e936359ddfe0c
+manual_review:
+  observed_note: Both takes have the ice body’s own silhouette, three lantern towers, sauna with towel and bucket,
+    three steps, a tail connected to the aurora, and the glass lake with its hole and stool. Neither has characters
+    or text. The lake reads about 45% of the island width versus the authored target of about one third. This is
+    a composition warning; no exact pixel-registration pass is claimed. No take is selected and neither is promoted.
+  selection: pending lead review; no take selected
+sources:
+- batch: batch-68-revontuli-flow
+  job: x-revontuli-flow-4
+  take: 1
+  round: 1
+  logical_run: 20261109-phase1
+  source_file: /workspace/generated_images/exec-31540517-3ced-4412-9473-473dabdbb5d2.png
+  returned_at: '2026-11-09T14:59:14.834Z'
+  prompt_sha256: 64e8511a5e01b1736e079d3e7990a75dd5eaac4d32b42c1b5ab21f83dd9f3854
+  transport_prompt_sha256: 79b369274ea9fce31a80e31c2a4c3efe9d0192622933e909f34c5ff239ac1e94
+  fingerprint: 3d2e936359ddfe0c
+  original_generated_png_sha256: 7e3bd39ed0d4476bce8ee9b436fc0a55a867d40cc4a2b41e31fb21c470dd92ba
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 65b7b332392045028e0b40c9546e4deaedf9fdce24cc3849673e44ffaee35ad8
+  inbox_png_sha256: 5b6c9aa8f2078d0dba80bf260b9cb186a6d9b24a1a6d49fb4b216cdad9bf63a8
+  qa_sha256: 25c96ae04b5cfb89779d10861ba3ae4dc5bcfb45feade6f0be10e048c83ff9e0
+  q90_take: design/art/takes/batch-68-revontuli-flow/x-revontuli-flow-4/plate__x-revontuli-flow-4--t1.webp
+  q90_take_sha256: b90441a521a01c89a9200c3131c5e992d49f4610cc374d0ad8f6800b4a3aa730
+- batch: batch-68-revontuli-flow
+  job: x-revontuli-flow-4
+  take: 2
+  round: 1
+  logical_run: 20261109-phase1
+  source_file: /workspace/generated_images/exec-913c36a2-7a60-4714-b0ee-5270ddb4aae7.png
+  returned_at: '2026-11-09T15:00:02.927Z'
+  prompt_sha256: 64e8511a5e01b1736e079d3e7990a75dd5eaac4d32b42c1b5ab21f83dd9f3854
+  transport_prompt_sha256: 79b369274ea9fce31a80e31c2a4c3efe9d0192622933e909f34c5ff239ac1e94
+  fingerprint: 3d2e936359ddfe0c
+  original_generated_png_sha256: d51666ef5a1f0a32e5f603d2ec4ac4d4e0c908f799cec4ebefa945690b29e0c2
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: fb4e9b29464a280b1447b46c28935814934c7918f2a54e4e6effd9fda364c846
+  inbox_png_sha256: 7867a5d4610c2d5216228a2c156de12dd97ec2cde338da2f4301caef9d8ef6f9
+  qa_sha256: 9248b9c703c164214d4258709d07685ad34e100729065414c5f0c9ad427b7b3a
+  q90_take: design/art/takes/batch-68-revontuli-flow/x-revontuli-flow-4/plate__x-revontuli-flow-4--t2.webp
+  q90_take_sha256: dd1142f3c991c4c620d3ab2d94b82af08c300caefc726c2d96ddcc3e0660dd55
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: exploration warnings are advisory; hard checks unchanged
+  source_preservation: Original generated PNGs retained unchanged in /workspace/generated_images; q90 WebP review
+    copies published
+  plate_style: plate-final; no grade, filter or runtime correction
+reference_packaging:
+  reason: Tool attachment limit is five paths; canonical references 5 and 6 were supplied as a labelled contact
+    sheet.
+  tool_attachment_order:
+  - &id001
+    path: design/art/masters/island-main-l-v3/island-main-l-v3.webp
+    sha256: f2e539ed4eb75131b0d90454c1b12dbfd8737935fe95e3564956ea967c5ffa29
+    role: 'The home island: copy ONLY its camera, its size in the frame, its plate proportions (shallow top, rounded
+      banded body) and its soft painting. Do not copy its lawn, colours, round door or pebbles.'
+  - &id002
+    path: design/art/takes/batch-34-islands-in-game/x-revontuli-healed/plate__x-revontuli-healed--t2.webp
+    sha256: cdbda601d869f0f51aa960af41a310181b4a78efad1184397a5737b8380a3b31
+    role: 'THE ISLAND (R1): copy this ice island''s plate, its snow top, its glowing ice body with icicles, the
+      sauna cabin, the curved lamp post and the spruce. Do not draw its fox, hamster or bunny.'
+  - &id003
+    path: design/art/takes/batch-45-beautiful-wounds/x-revontuli-stage0-night/plate__x-revontuli-stage0-night--t2.webp
+    sha256: b3f39402d1a5aadd99ef4cb5deb50849d82560549b70c2667812814137f12821
+    role: 'ONLY the lantern towers'' design: a light wooden lattice frame on four legs, a little snowy roof, one
+      lantern under it. Do not copy its earth island or its layout.'
+  - &id004
+    path: design/art/takes/batch-17-islands-v2/x2-revontuli-b/plate__x2-revontuli-b--t2.webp
+    sha256: cb6fb05df9836c0d8af8dfc2a65fb7b6880b08efad162e548c39aa8dd73c02e9
+    role: ONLY the clear glassy ice lake and the long sweeping aurora tail. Do not copy its island shape.
+  - path: design/art/takes/batch-68-revontuli-flow/x-revontuli-flow-4/reference-board-5-6.jpg
+    sha256: d4731cf1c282a9683eb7a78b4f9adb2cc3d95dd2856cf16332d7b7050f14725e
+    transport_only_for_references:
+    - 5
+    - 6
+  original_board_durable_path: /workspace/art-operator-runtime/run-20261109-phase1/revontuli-reference-board-5-6.png
+  original_board_sha256: 9bfd5304e85af5db4bdd5307ebc2eadef34710e137d7ecd489c8b467de42d7ee
+  published_board: design/art/takes/batch-68-revontuli-flow/x-revontuli-flow-4/reference-board-5-6.jpg
+  published_board_sha256: d4731cf1c282a9683eb7a78b4f9adb2cc3d95dd2856cf16332d7b7050f14725e
+  original_references:
+  - *id001
+  - *id002
+  - *id003
+  - *id004
+  - path: design/art/stations/tea-stall-5/tea-stall-5.png
+    sha256: c9a9f018b2dc6bcb1189f497f750dd98e80c69610c10ba3c71081d8b84d157b3
+    role: 'A finished station of the game: every building and prop is at this scale and finish (do not draw this
+      stall).'
+  - path: design/art/masters/cloud-sea/cloud-sea.png
+    sha256: bb693d333d53fd5fc3e385335fc912574ccda580ac018bc12c2143c12031579a
+    role: 'The sea of clouds below every island: paint the clouds like this.'
+  printed_prompt_unchanged: true
+  original_rgba_pixels_preserved: true
+  transport_note: 'Transport only: the fifth tool attachment is a numbered contact sheet representing authored references
+    5 and 6. Canonical prompt text and all original reference files remain unchanged.'
