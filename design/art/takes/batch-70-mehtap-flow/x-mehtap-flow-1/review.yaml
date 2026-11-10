@@ -1,0 +1,200 @@
+batch: batch-70-mehtap-flow
+manifest: tools/imagegen/manifest/batch-70-mehtap-flow.yaml
+jobs:
+  x-mehtap-flow-1:
+    pick: null
+    publication: exploration; not promoted; lead review pending
+    note: Both takes show closed telescope dome, dim windows, dark perch lantern, one lit rim lamp, pewter
+      pool, plain underside, thin crescent and one faint trail on chart and sky. The lit rim lamp is in
+      different positions between takes and the source has ambiguous seven-lamp visibility. Some dome/sky
+      trail geometry shifts; bushes retain pale blossoms rather than fully grey-green appearance. Lead
+      review pending; no exact registration claim.
+qa_reports:
+- job: x-mehtap-flow-1
+  take: 1
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 41 (R1 51)
+    value: 40.8
+  - check: light_values
+    status: warn
+    message: 'dusk/subject: L p5 46 (at least 47: darks stay a light mid-tone), p98 95 (at least 85)'
+    value: 46.1
+  - check: light_median
+    status: pass
+    message: 'dusk/subject: median L 69 (band 66-86)'
+    value: 68.9
+  - check: light_contrast
+    status: warn
+    message: 'dusk/subject: p75 local contrast 6.2 (band 1.8-5.0; above it reads too contrasty) (warn-only
+      until the founder has seen the light pilot)'
+    value: 6.19
+  - check: light_sky
+    status: warn
+    message: 'dusk: sky L 35 (band 36-70)'
+    value: 34.6
+  - check: light_sea
+    status: pass
+    message: 'dusk: cloud sea L 86 (at least 74: the sea is the reflector)'
+    value: 86.5
+  - check: light_dark
+    status: pass
+    message: 'dusk: 0.2 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.2
+  - check: detail_budget
+    status: pass
+    message: detail at display size 3.0 (R1 5.3)
+    value: 3.0
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 3.8, p95 9.9, off-palette 0.0% (top: #555599 (0.0%))'
+    value: 3.7979
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_stability
+    status: warn
+    message: 36% of the parent level unchanged
+    value: 0.3631
+  - check: edit_chroma
+    status: warn
+    message: chroma x0.75 of the parent level (drift compounds along a chain)
+    value: 0.7516
+  info:
+    metrics_raw:
+      L_p5: 33.2
+      L_p50: 68.1
+      L_p95: 92.0
+      C_p50: 17.1
+      C_p95: 40.8
+      C_p99: 41.7
+      detail: 3.0
+    metrics_locked:
+      L_p5: 33.2
+      L_p50: 68.1
+      L_p95: 92.0
+      C_p50: 17.1
+      C_p95: 40.8
+      C_p99: 41.7
+      detail: 3.0
+  fingerprint: 104ce586ee4713f1
+- job: x-mehtap-flow-1
+  take: 2
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 45 (R1 51)
+    value: 45.2
+  - check: light_values
+    status: warn
+    message: 'dusk/subject: L p5 44 (at least 47: darks stay a light mid-tone), p98 95 (at least 85)'
+    value: 43.7
+  - check: light_median
+    status: pass
+    message: 'dusk/subject: median L 74 (band 66-86)'
+    value: 74.3
+  - check: light_contrast
+    status: warn
+    message: 'dusk/subject: p75 local contrast 5.8 (band 1.8-5.0; above it reads too contrasty) (warn-only
+      until the founder has seen the light pilot)'
+    value: 5.82
+  - check: light_sky
+    status: warn
+    message: 'dusk: sky L 32 (band 36-70)'
+    value: 32.3
+  - check: light_sea
+    status: pass
+    message: 'dusk: cloud sea L 87 (at least 74: the sea is the reflector)'
+    value: 86.9
+  - check: light_dark
+    status: pass
+    message: 'dusk: 0.2 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.2
+  - check: detail_budget
+    status: pass
+    message: detail at display size 2.9 (R1 5.3)
+    value: 2.9
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 4.4, p95 12.3, off-palette 5.8% (top: #445599 (2.9%), #5555AA (1.9%))'
+    value: 4.4219
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_stability
+    status: warn
+    message: 45% of the parent level unchanged
+    value: 0.4476
+  - check: edit_chroma
+    status: warn
+    message: chroma x0.71 of the parent level (drift compounds along a chain)
+    value: 0.7055
+  info:
+    metrics_raw:
+      L_p5: 30.8
+      L_p50: 71.3
+      L_p95: 92.1
+      C_p50: 16.1
+      C_p95: 45.2
+      C_p99: 46.3
+      detail: 2.9
+    metrics_locked:
+      L_p5: 30.8
+      L_p50: 71.3
+      L_p95: 92.1
+      C_p50: 16.1
+      C_p95: 45.2
+      C_p99: 46.3
+      detail: 2.9
+  fingerprint: 104ce586ee4713f1
+sources:
+- take: 1
+  source_file: /workspace/art-operator-runtime/generated/x-mehtap-flow-1/take-1.png
+  source_sha256: 5f867bb020e027550a11ea310ba21205e0df68ae0aa27d901b1abf4a026fc464
+  q90_take: design/art/takes/batch-70-mehtap-flow/x-mehtap-flow-1/plate__x-mehtap-flow-1--t1.webp
+  q90_take_sha256: 0b9367b824eef9920aaa4bc336041609bdcd99994593cb3c1dfa60073e8ed4f9
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 614312f873ac9422bce0ab088ec81a0c2e11a71b2bebe8f46801984682016fd3
+- take: 2
+  source_file: /workspace/art-operator-runtime/generated/x-mehtap-flow-1/take-2.png
+  source_sha256: 057adc7010c4785dd02f23c3ea162f32138a5829747dad496349b0a8c7ce09e3
+  q90_take: design/art/takes/batch-70-mehtap-flow/x-mehtap-flow-1/plate__x-mehtap-flow-1--t2.webp
+  q90_take_sha256: e0af94231d257c2507f5e9e8fafd797fea93772a1eb02a208a2428bae387eebb
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 614312f873ac9422bce0ab088ec81a0c2e11a71b2bebe8f46801984682016fd3
+policy:
+  never_promote: true
+  selection: lead picks
+  source_preservation: Original generated images retained at source_file paths; published takes are q90
+    review copies.

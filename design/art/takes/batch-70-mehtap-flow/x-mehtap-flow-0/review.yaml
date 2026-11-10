@@ -1,0 +1,217 @@
+batch: batch-70-mehtap-flow
+manifest: tools/imagegen/manifest/batch-70-mehtap-flow.yaml
+jobs:
+  x-mehtap-flow-0:
+    pick: null
+    publication: exploration; not promoted; lead review pending
+    note: 'Both takes achieve cold drained blue-grey, no moon/trails, blank chart, dark rim/perch lights,
+      bare twigs, dull pool and a single keyhole glow. Both FAIL the requested closed dome: the shell
+      remains open and telescope visible. Take 1 also retains faint underside stars; take 2 removes them.
+      These are manual-review failures, no pick or promotion; retained for lead review. Major anchors
+      remain near root but exact registration is not claimed.'
+    status: skipped
+    skip_reason: 'Both requested takes fail manual review: the dome is open and telescope visible although
+      the stage requires a closed shell. Two-take phase-2 request fulfilled; no edit promotion.'
+qa_reports:
+- job: x-mehtap-flow-0
+  take: 1
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 35 (R1 51)
+    value: 35.2
+  - check: light_values
+    status: warn
+    message: 'dusk/subject: L p5 30 (at least 47: darks stay a light mid-tone), p98 67 (at least 85) (warn-only
+      until the founder has seen the light pilot)'
+    value: 29.7
+  - check: light_median
+    status: warn
+    message: 'dusk/subject: median L 43 (band 66-86) (warn-only until the founder has seen the light pilot)'
+    value: 43.4
+  - check: light_contrast
+    status: warn
+    message: 'dusk/subject: p75 local contrast 5.5 (band 1.8-5.0; above it reads too contrasty)'
+    value: 5.48
+  - check: light_sky
+    status: warn
+    message: 'dusk: sky L 20 (band 36-70) (warn-only until the founder has seen the light pilot)'
+    value: 19.9
+  - check: light_sea
+    status: warn
+    message: 'dusk: cloud sea L 54 (at least 74: the sea is the reflector) (warn-only until the founder
+      has seen the light pilot)'
+    value: 54.4
+  - check: light_dark
+    status: warn
+    message: 'dusk: 8.9 % below L* 30 under the sky (at most 3; only the sky is dark) (warn-only until
+      the founder has seen the light pilot)'
+    value: 8.9
+  - check: detail_budget
+    status: pass
+    message: detail at display size 2.6 (R1 5.3)
+    value: 2.59
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: mean dE 4.8, p95 7.4, off-palette 0.0% (advisory in an exploration)
+    value: 4.7924
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_stability
+    status: warn
+    message: 0% of the parent level unchanged (advisory in an exploration)
+    value: 0.0
+  - check: edit_chroma
+    status: warn
+    message: chroma x1.36 of the parent level (drift compounds along a chain)
+    value: 1.3582
+  info:
+    metrics_raw:
+      L_p5: 19.3
+      L_p50: 40.9
+      L_p95: 62.9
+      C_p50: 30.9
+      C_p95: 35.2
+      C_p99: 37.1
+      detail: 2.59
+    metrics_locked:
+      L_p5: 19.3
+      L_p50: 40.9
+      L_p95: 62.9
+      C_p50: 30.9
+      C_p95: 35.2
+      C_p99: 37.1
+      detail: 2.59
+  fingerprint: 2a3cea581fcddc44
+- job: x-mehtap-flow-0
+  take: 2
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 32 (R1 51)
+    value: 32.1
+  - check: light_values
+    status: warn
+    message: 'dusk/subject: L p5 27 (at least 47: darks stay a light mid-tone), p98 65 (at least 85) (warn-only
+      until the founder has seen the light pilot)'
+    value: 27.3
+  - check: light_median
+    status: warn
+    message: 'dusk/subject: median L 43 (band 66-86) (warn-only until the founder has seen the light pilot)'
+    value: 43.4
+  - check: light_contrast
+    status: warn
+    message: 'dusk/subject: p75 local contrast 5.6 (band 1.8-5.0; above it reads too contrasty)'
+    value: 5.59
+  - check: light_sky
+    status: warn
+    message: 'dusk: sky L 14 (band 36-70) (warn-only until the founder has seen the light pilot)'
+    value: 13.5
+  - check: light_sea
+    status: warn
+    message: 'dusk: cloud sea L 51 (at least 74: the sea is the reflector) (warn-only until the founder
+      has seen the light pilot)'
+    value: 50.7
+  - check: light_dark
+    status: warn
+    message: 'dusk: 14.0 % below L* 30 under the sky (at most 3; only the sky is dark) (warn-only until
+      the founder has seen the light pilot)'
+    value: 14.0
+  - check: detail_budget
+    status: pass
+    message: detail at display size 2.6 (R1 5.3)
+    value: 2.62
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: mean dE 5.1, p95 8.5, off-palette 0.0% (advisory in an exploration)
+    value: 5.1319
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_stability
+    status: warn
+    message: 0% of the parent level unchanged (advisory in an exploration)
+    value: 0.0
+  - check: edit_chroma
+    status: warn
+    message: chroma x1.21 of the parent level (drift compounds along a chain)
+    value: 1.2099
+  info:
+    metrics_raw:
+      L_p5: 13.0
+      L_p50: 39.1
+      L_p95: 62.0
+      C_p50: 27.5
+      C_p95: 32.1
+      C_p99: 33.6
+      detail: 2.62
+    metrics_locked:
+      L_p5: 13.0
+      L_p50: 39.1
+      L_p95: 62.0
+      C_p50: 27.5
+      C_p95: 32.1
+      C_p99: 33.6
+      detail: 2.62
+  fingerprint: 2a3cea581fcddc44
+sources:
+- take: 1
+  source_file: /workspace/art-operator-runtime/generated/x-mehtap-flow-0/take-1.png
+  source_sha256: 37722638531748cd0c802231fccd8f6c803bbf7169ad5d45b4e7db488b29fec5
+  q90_take: design/art/takes/batch-70-mehtap-flow/x-mehtap-flow-0/plate__x-mehtap-flow-0--t1.webp
+  q90_take_sha256: 7d7b9ad50653c404b043bcccc3cd6df74598d8d25782055bf16a1bbbd682b313
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 9350275d2761acd2269e980074e9bbc6b200999c77457a18f00fa8735ebb46bf
+- take: 2
+  source_file: /workspace/art-operator-runtime/generated/x-mehtap-flow-0/take-2.png
+  source_sha256: c15ba5d32fd718319f42d902464845228d40a71c78e3c5cfbaae40ebcf010b6c
+  q90_take: design/art/takes/batch-70-mehtap-flow/x-mehtap-flow-0/plate__x-mehtap-flow-0--t2.webp
+  q90_take_sha256: 82c805c1f6fcc2e0e41fa3f9e4a5e681d70f3d070b723f13d4586f683d841b70
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 9350275d2761acd2269e980074e9bbc6b200999c77457a18f00fa8735ebb46bf
+policy:
+  never_promote: true
+  selection: lead picks
+  source_preservation: Original generated images retained at source_file paths; published takes are q90
+    review copies.
+manual_review:
+  status: fail
+  checks:
+  - check: closed_dome
+    status: fail
+    takes:
+    - 1
+    - 2
+    message: Both shell halves remain open with the telescope visible.
+  selection: lead review; no pick; takes retained despite manual failure

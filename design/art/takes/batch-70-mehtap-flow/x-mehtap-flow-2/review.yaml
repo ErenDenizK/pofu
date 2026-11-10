@@ -1,0 +1,197 @@
+batch: batch-70-mehtap-flow
+manifest: tools/imagegen/manifest/batch-70-mehtap-flow.yaml
+jobs:
+  x-mehtap-flow-2:
+    pick: null
+    publication: exploration; not promoted; lead review pending
+    note: Both direct root edits retain two faint trails/board arcs, remove gold trail and underside stars,
+      close flower buds and dim pool/inner glow with low pale half moon. Take1 appears to retain only
+      two visibly lit rim lamps instead of requested three; take2 shows three. The visible root lamp count
+      differs from seven named in brief. Lead review pending; no exact registration claim.
+qa_reports:
+- job: x-mehtap-flow-2
+  take: 1
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 32 (R1 51)
+    value: 32.2
+  - check: light_values
+    status: pass
+    message: 'dusk/subject: L p5 52 (at least 47: darks stay a light mid-tone), p98 93 (at least 85)'
+    value: 51.9
+  - check: light_median
+    status: pass
+    message: 'dusk/subject: median L 76 (band 66-86)'
+    value: 76.0
+  - check: light_contrast
+    status: warn
+    message: 'dusk/subject: p75 local contrast 5.2 (band 1.8-5.0; above it reads too contrasty)'
+    value: 5.19
+  - check: light_sky
+    status: pass
+    message: 'dusk: sky L 40 (band 36-70)'
+    value: 40.1
+  - check: light_sea
+    status: pass
+    message: 'dusk: cloud sea L 86 (at least 74: the sea is the reflector)'
+    value: 85.6
+  - check: light_dark
+    status: pass
+    message: 'dusk: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.0
+  - check: detail_budget
+    status: pass
+    message: detail at display size 2.8 (R1 5.3)
+    value: 2.8
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: mean dE 3.6, p95 9.2, off-palette 0.0%
+    value: 3.5683
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_stability
+    status: warn
+    message: 39% of the parent level unchanged
+    value: 0.386
+  - check: edit_chroma
+    status: warn
+    message: chroma x0.69 of the parent level (drift compounds along a chain) (advisory in an exploration)
+    value: 0.6936
+  info:
+    metrics_raw:
+      L_p5: 39.0
+      L_p50: 73.2
+      L_p95: 90.4
+      C_p50: 15.8
+      C_p95: 32.2
+      C_p99: 34.9
+      detail: 2.8
+    metrics_locked:
+      L_p5: 39.0
+      L_p50: 73.2
+      L_p95: 90.4
+      C_p50: 15.8
+      C_p95: 32.2
+      C_p99: 34.9
+      detail: 2.8
+  fingerprint: f570294e6e5b1891
+- job: x-mehtap-flow-2
+  take: 2
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 37 (R1 51)
+    value: 36.7
+  - check: light_values
+    status: pass
+    message: 'dusk/subject: L p5 55 (at least 47: darks stay a light mid-tone), p98 94 (at least 85)'
+    value: 55.1
+  - check: light_median
+    status: pass
+    message: 'dusk/subject: median L 77 (band 66-86)'
+    value: 76.8
+  - check: light_contrast
+    status: warn
+    message: 'dusk/subject: p75 local contrast 5.0 (band 1.8-5.0; above it reads too contrasty)'
+    value: 5.02
+  - check: light_sky
+    status: pass
+    message: 'dusk: sky L 44 (band 36-70)'
+    value: 43.8
+  - check: light_sea
+    status: pass
+    message: 'dusk: cloud sea L 87 (at least 74: the sea is the reflector)'
+    value: 87.2
+  - check: light_dark
+    status: pass
+    message: 'dusk: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.0
+  - check: detail_budget
+    status: pass
+    message: detail at display size 2.7 (R1 5.3)
+    value: 2.66
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: mean dE 3.2, p95 9.8, off-palette 0.0%
+    value: 3.1719
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_stability
+    status: warn
+    message: 38% of the parent level unchanged
+    value: 0.3798
+  - check: edit_chroma
+    status: warn
+    message: chroma x0.76 of the parent level (drift compounds along a chain)
+    value: 0.7551
+  info:
+    metrics_raw:
+      L_p5: 42.4
+      L_p50: 74.7
+      L_p95: 92.1
+      C_p50: 17.2
+      C_p95: 36.7
+      C_p99: 37.9
+      detail: 2.66
+    metrics_locked:
+      L_p5: 42.4
+      L_p50: 74.7
+      L_p95: 92.1
+      C_p50: 17.2
+      C_p95: 36.7
+      C_p99: 37.9
+      detail: 2.66
+  fingerprint: f570294e6e5b1891
+sources:
+- take: 1
+  source_file: /workspace/art-operator-runtime/generated/x-mehtap-flow-2/take-1.png
+  source_sha256: 1b425ec52b551ecd829f3c8f33f0e0325c4fdb00f63de797af58e04843d498cc
+  q90_take: design/art/takes/batch-70-mehtap-flow/x-mehtap-flow-2/plate__x-mehtap-flow-2--t1.webp
+  q90_take_sha256: 8a3fd048f46644ebabc78fe1e13e01fc5120b8957afab2914b17d5686805c4bd
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 6a6cb1ab11495f0214418792cc63676a42de22c21d5957a7046e40d7753bf05d
+- take: 2
+  source_file: /workspace/art-operator-runtime/generated/x-mehtap-flow-2/take-2.png
+  source_sha256: 5da3d8c541870c0cf5e7cc8c84a70c4892125d3ab1577617212ff738584333d1
+  q90_take: design/art/takes/batch-70-mehtap-flow/x-mehtap-flow-2/plate__x-mehtap-flow-2--t2.webp
+  q90_take_sha256: 9fa81b86dc96269b9c37e02ad62b77ee3d1479dd374e76a51cda6fe48db3e479
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 6a6cb1ab11495f0214418792cc63676a42de22c21d5957a7046e40d7753bf05d
+policy:
+  never_promote: true
+  selection: lead picks
+  source_preservation: Original generated images retained at source_file paths; published takes are q90
+    review copies.
