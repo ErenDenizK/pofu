@@ -1,0 +1,196 @@
+batch: batch-66-home-flow
+manifest: tools/imagegen/manifest/batch-66-home-flow.yaml
+jobs:
+  x-home-flow-il2:
+    pick: null
+    publication: exploration; not promoted; lead review pending
+    note: 'Both direct root edits remove whale, pond, windmill and workshop. Manual failure: sunflower
+      remains inside wheel and garden fencing remains despite requested removal; take 2 also retains flower
+      pot/tree detail. Both retained for lead review, neither selected or promoted.'
+qa_reports:
+- job: x-home-flow-il2
+  take: 1
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1024x1536
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 46 (R1 51)
+    value: 45.8
+  - check: light_values
+    status: pass
+    message: 'day/subject: L p5 70 (at least 50: darks stay a light mid-tone), p98 97 (at least 90)'
+    value: 70.0
+  - check: light_median
+    status: pass
+    message: 'day/subject: median L 84 (band 74-92)'
+    value: 83.6
+  - check: light_contrast
+    status: warn
+    message: 'day/subject: p75 local contrast 2.4 (band 2.5-6.5; above it reads too contrasty)'
+    value: 2.35
+  - check: light_sky
+    status: pass
+    message: 'day: sky L 78 (band 70-94)'
+    value: 77.9
+  - check: light_sea
+    status: pass
+    message: 'day: cloud sea L 89 (at least 82: the sea is the reflector)'
+    value: 89.4
+  - check: light_dark
+    status: pass
+    message: 'day: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.0
+  - check: detail_budget
+    status: pass
+    message: detail at display size 1.8 (R1 5.3)
+    value: 1.83
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 3.8, p95 10.8, off-palette 2.7% (top: #99BBFF (2.0%), #88BBFF (0.6%))'
+    value: 3.8292
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_stability
+    status: pass
+    message: 63% of the parent level unchanged
+    value: 0.6317
+  - check: edit_chroma
+    status: pass
+    message: chroma x0.89 of the parent level (drift compounds along a chain)
+    value: 0.8877
+  info:
+    metrics_raw:
+      L_p5: 74.6
+      L_p50: 83.4
+      L_p95: 95.9
+      C_p50: 24.6
+      C_p95: 45.8
+      C_p99: 49.8
+      detail: 1.83
+    metrics_locked:
+      L_p5: 74.6
+      L_p50: 83.4
+      L_p95: 95.9
+      C_p50: 24.6
+      C_p95: 45.8
+      C_p99: 49.8
+      detail: 1.83
+  fingerprint: e912c66ffa2f2d36
+- job: x-home-flow-il2
+  take: 2
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1024x1536
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 47 (R1 51)
+    value: 46.9
+  - check: light_values
+    status: pass
+    message: 'day/subject: L p5 69 (at least 50: darks stay a light mid-tone), p98 97 (at least 90)'
+    value: 68.6
+  - check: light_median
+    status: pass
+    message: 'day/subject: median L 83 (band 74-92)'
+    value: 83.4
+  - check: light_contrast
+    status: pass
+    message: 'day/subject: p75 local contrast 2.8 (band 2.5-6.5; above it reads too contrasty)'
+    value: 2.84
+  - check: light_sky
+    status: pass
+    message: 'day: sky L 77 (band 70-94)'
+    value: 76.9
+  - check: light_sea
+    status: pass
+    message: 'day: cloud sea L 88 (at least 82: the sea is the reflector)'
+    value: 88.5
+  - check: light_dark
+    status: pass
+    message: 'day: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.0
+  - check: detail_budget
+    status: pass
+    message: detail at display size 2.0 (R1 5.3)
+    value: 1.97
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 4.1, p95 12.0, off-palette 5.0% (top: #88BBFF (2.7%), #99BBFF (1.5%))'
+    value: 4.1367
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_stability
+    status: pass
+    message: 65% of the parent level unchanged
+    value: 0.6513
+  - check: edit_chroma
+    status: pass
+    message: chroma x0.89 of the parent level (drift compounds along a chain)
+    value: 0.8938
+  info:
+    metrics_raw:
+      L_p5: 72.8
+      L_p50: 83.1
+      L_p95: 95.4
+      C_p50: 24.8
+      C_p95: 46.9
+      C_p99: 52.7
+      detail: 1.97
+    metrics_locked:
+      L_p5: 72.8
+      L_p50: 83.1
+      L_p95: 95.4
+      C_p50: 24.8
+      C_p95: 46.9
+      C_p99: 52.7
+      detail: 1.97
+  fingerprint: e912c66ffa2f2d36
+sources:
+- take: 1
+  source_file: /workspace/art-operator-runtime/generated/x-home-flow-il2/take-1.png
+  source_sha256: 0269fdb170cc7959478993ce09bcd6a291dbd0b1810f44c4995182e6292efa42
+  q90_take: design/art/takes/batch-66-home-flow/x-home-flow-il2/plate__x-home-flow-il2--t1.webp
+  q90_take_sha256: 291e3978703103944663d91a636e76c46d2788bc20c3f181dac3d8acae6cd14e
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 8f72f8df7b3fa91c60920f38e322fb56c4e581298910d087ccfc5ce4bd926458
+- take: 2
+  source_file: /workspace/art-operator-runtime/generated/x-home-flow-il2/take-2.png
+  source_sha256: 827029c89dd25dbfbaab4f6b0181fb24bddf7e10d0c9b9cd1154f2b4fd00d720
+  q90_take: design/art/takes/batch-66-home-flow/x-home-flow-il2/plate__x-home-flow-il2--t2.webp
+  q90_take_sha256: 4bf2e7fa9b3b997f23a02ff08c88b89c43a7a41ebd64dbfb53a4c553a322395b
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 8f72f8df7b3fa91c60920f38e322fb56c4e581298910d087ccfc5ce4bd926458
+policy:
+  never_promote: true
+  selection: lead picks
+  source_preservation: Original generated images retained at source_file paths; published takes are q90
+    review copies.
