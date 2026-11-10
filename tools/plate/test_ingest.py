@@ -251,6 +251,39 @@ class HarmonyTests(unittest.TestCase):
         self.assertTrue(all(0.25 <= v <= 1 for v in black["tint"]))
         self.assertTrue(0.5 <= black["contact"] <= 1.2)
 
+    def test_golden_keeps_all_of_the_cast_and_day_half_of_it(self):
+        hand = self._hand()
+        ref = ingest.harmony_state(self._plate([0.4, 0.7, 0.3]), hand, None)
+        lawn = self._plate([0.2, 0.35, 0.3])
+        day = ingest.harmony_state(lawn, hand, ref, "day")["tint"]
+        golden = ingest.harmony_state(lawn, hand, ref, "golden")["tint"]
+        self.assertGreater(golden[2] - golden[0], day[2] - day[0])  # the cast is the light: all of it
+
+    def test_the_golden_and_night_states_carry_a_key_light_and_every_state_a_bounce(self):
+        hand = {**self._hand(), "lamps": [[20, 80], [80, 80]]}
+        ref = ingest.harmony_state(self._plate([0.4, 0.7, 0.3]), hand, None)
+        self.assertGreater(ref["bounce"], 0)
+        day = ingest.harmony_state(self._plate([0.4, 0.7, 0.3]), hand, ref, "day")
+        self.assertNotIn("rim", day)
+        golden = ingest.harmony_state(self._plate([0.5, 0.5, 0.4]), hand, ref, "golden")
+        self.assertGreater(golden["rim"], 0)
+        self.assertEqual(len(golden["key"]), 3)
+        self.assertNotIn("pool", golden)  # no lamps lit at golden hour
+        night = ingest.harmony_state(self._plate([0.5, 0.5, 0.4]), hand, ref, "night")
+        self.assertGreater(night["pool"], 0)
+        self.assertEqual(set(night["scale"]), {"pofu", "mochi", "findik"})
+
+    def test_at_night_a_sprites_top_stays_under_the_brightest_stone_around_it(self):
+        hand = self._hand()
+        ref = ingest.harmony_state(self._plate([0.4, 0.7, 0.3]), hand, None)
+        lawn = self._plate([0.45, 0.6, 0.45])
+        night = ingest.harmony_state(lawn, hand, ref, "night")
+        stone = min(ingest.stone_levels(lawn, hand, ingest.poly_mask(lawn.shape[:2], ingest.pct_to_px(hand["walkable"]))).values())
+        top = ingest.lstar_to_srgb(ingest.SPRITE_L) * float(np.mean(night["tint"]))
+        self.assertLessEqual(top, ingest.lstar_to_srgb(stone - ingest.STONE_MARGIN["night"]) + 0.01)
+        self.assertTrue(all(0.25 <= v <= 1 for v in night["tint"]))
+        self.assertTrue(all(0 < v <= 1 for v in night["scale"].values()))
+
 
 if __name__ == "__main__":
     unittest.main()
