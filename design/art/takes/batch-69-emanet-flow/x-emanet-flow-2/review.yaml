@@ -1,0 +1,196 @@
+batch: batch-69-emanet-flow
+manifest: tools/imagegen/manifest/batch-69-emanet-flow.yaml
+jobs:
+  x-emanet-flow-2:
+    pick: null
+    publication: exploration; not promoted; lead review pending
+    note: Both direct root edits empty right shelf bay, darken exterior lamps/door, keep office windows
+      and add lilac fog and larger centre/left heaps. Exact prop registration requires lead review; neither
+      selected.
+qa_reports:
+- job: x-emanet-flow-2
+  take: 1
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 38 (R1 51)
+    value: 38.2
+  - check: light_values
+    status: pass
+    message: 'golden/subject: L p5 52 (at least 50: darks stay a light mid-tone), p98 85 (at least 85)'
+    value: 51.8
+  - check: light_median
+    status: pass
+    message: 'golden/subject: median L 75 (band 68-86)'
+    value: 75.3
+  - check: light_contrast
+    status: warn
+    message: 'golden/subject: p75 local contrast 6.3 (band 2.5-6.0; above it reads too contrasty)'
+    value: 6.29
+  - check: light_sky
+    status: pass
+    message: 'golden: sky L 81 (band 60-86)'
+    value: 81.2
+  - check: light_sea
+    status: pass
+    message: 'golden: cloud sea L 87 (at least 78: the sea is the reflector)'
+    value: 87.0
+  - check: light_dark
+    status: pass
+    message: 'golden: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.0
+  - check: detail_budget
+    status: pass
+    message: detail at display size 4.0 (R1 5.3)
+    value: 3.98
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: pass
+    message: 'mean dE 2.1, p95 5.2, off-palette 0.3% (top: #BB7788 (0.1%), #AA7788 (0.1%))'
+    value: 2.1125
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_stability
+    status: warn
+    message: 47% of the parent level unchanged
+    value: 0.4745
+  - check: edit_chroma
+    status: warn
+    message: chroma x0.78 of the parent level (drift compounds along a chain)
+    value: 0.7783
+  info:
+    metrics_raw:
+      L_p5: 54.7
+      L_p50: 79.7
+      L_p95: 91.6
+      C_p50: 20.1
+      C_p95: 38.2
+      C_p99: 44.1
+      detail: 3.98
+    metrics_locked:
+      L_p5: 54.7
+      L_p50: 79.7
+      L_p95: 91.6
+      C_p50: 20.1
+      C_p95: 38.2
+      C_p99: 44.1
+      detail: 3.98
+  fingerprint: 1ee8ff79e5e1471c
+- job: x-emanet-flow-2
+  take: 2
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 36 (R1 51)
+    value: 36.4
+  - check: light_values
+    status: warn
+    message: 'golden/subject: L p5 50 (at least 50: darks stay a light mid-tone), p98 85 (at least 85)'
+    value: 49.8
+  - check: light_median
+    status: pass
+    message: 'golden/subject: median L 74 (band 68-86)'
+    value: 73.8
+  - check: light_contrast
+    status: warn
+    message: 'golden/subject: p75 local contrast 6.2 (band 2.5-6.0; above it reads too contrasty)'
+    value: 6.15
+  - check: light_sky
+    status: pass
+    message: 'golden: sky L 80 (band 60-86)'
+    value: 80.1
+  - check: light_sea
+    status: pass
+    message: 'golden: cloud sea L 86 (at least 78: the sea is the reflector)'
+    value: 86.5
+  - check: light_dark
+    status: pass
+    message: 'golden: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.0
+  - check: detail_budget
+    status: pass
+    message: detail at display size 4.2 (R1 5.3)
+    value: 4.16
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: pass
+    message: 'mean dE 1.9, p95 5.0, off-palette 0.1% (top: #BB7788 (0.1%), #AA7788 (0.0%))'
+    value: 1.9105
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_stability
+    status: warn
+    message: 44% of the parent level unchanged
+    value: 0.4431
+  - check: edit_chroma
+    status: warn
+    message: chroma x0.75 of the parent level (drift compounds along a chain)
+    value: 0.7507
+  info:
+    metrics_raw:
+      L_p5: 52.5
+      L_p50: 78.5
+      L_p95: 91.0
+      C_p50: 19.4
+      C_p95: 36.4
+      C_p99: 41.1
+      detail: 4.16
+    metrics_locked:
+      L_p5: 52.5
+      L_p50: 78.5
+      L_p95: 91.0
+      C_p50: 19.4
+      C_p95: 36.4
+      C_p99: 41.1
+      detail: 4.16
+  fingerprint: 1ee8ff79e5e1471c
+sources:
+- take: 1
+  source_file: /workspace/art-operator-runtime/generated/x-emanet-flow-2/take-1.png
+  source_sha256: ecbb0933d38f6d7fa647b6d6c8051a1dfc9a3b5ca57ef0b15bc8e97afff28edc
+  q90_take: design/art/takes/batch-69-emanet-flow/x-emanet-flow-2/plate__x-emanet-flow-2--t1.webp
+  q90_take_sha256: 5a42a94e5962bcb1d51be06bc99efec1c6a1f3c3e1772ff8d9158a6a4289f8ef
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 53628b489d1985ccbac5026823d2709fdce451e45d5040a5d03dfafd9660c7b2
+- take: 2
+  source_file: /workspace/art-operator-runtime/generated/x-emanet-flow-2/take-2.png
+  source_sha256: 0ab41ff99f14b4a2c54adc48f99f567465851e92a19c418c751cbf2b09e440f7
+  q90_take: design/art/takes/batch-69-emanet-flow/x-emanet-flow-2/plate__x-emanet-flow-2--t2.webp
+  q90_take_sha256: 42be7e401af6a10589c08d4c4fbdf3812c378bccebe691ab844dcebc86fe0628
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 53628b489d1985ccbac5026823d2709fdce451e45d5040a5d03dfafd9660c7b2
+policy:
+  never_promote: true
+  selection: lead picks
+  source_preservation: Original generated images retained at source_file paths; published takes are q90
+    review copies.
