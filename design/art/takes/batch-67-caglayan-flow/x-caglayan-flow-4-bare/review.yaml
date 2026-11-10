@@ -1,0 +1,199 @@
+batch: batch-67-caglayan-flow
+manifest: tools/imagegen/manifest/batch-67-caglayan-flow.yaml
+jobs:
+  x-caglayan-flow-4-bare:
+    pick: null
+    publication: exploration; not promoted; lead review pending
+    note: Both takes remove leaf boats, flower clumps, rainbow and chimney smoke while retaining major
+      pools, waterwheel and spout. Tiny white ground flowers remain and take 2 keeps a stronger splash/foam
+      cloud that needs mist-removal review. Plants, step stones and water texture drift locally; exact
+      pixel registration is not claimed. Neither take selected or promoted.
+qa_reports:
+- job: x-caglayan-flow-4-bare
+  take: 1
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: warn
+    message: chroma p95 79 (R1 51) (advisory in an exploration)
+    value: 78.7
+  - check: light_values
+    status: pass
+    message: 'day/subject: L p5 59 (at least 50: darks stay a light mid-tone), p98 95 (at least 90)'
+    value: 58.9
+  - check: light_median
+    status: pass
+    message: 'day/subject: median L 82 (band 74-92)'
+    value: 82.5
+  - check: light_contrast
+    status: pass
+    message: 'day/subject: p75 local contrast 5.5 (band 2.5-6.5; above it reads too contrasty)'
+    value: 5.5
+  - check: light_sky
+    status: pass
+    message: 'day: sky L 85 (band 70-94)'
+    value: 84.9
+  - check: light_sea
+    status: pass
+    message: 'day: cloud sea L 92 (at least 82: the sea is the reflector)'
+    value: 91.9
+  - check: light_dark
+    status: pass
+    message: 'day: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.0
+  - check: detail_budget
+    status: pass
+    message: detail at display size 4.7 (R1 5.3)
+    value: 4.69
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 6.8, p95 26.3, off-palette 22.4% (top: #CCCC22 (1.7%), #DDCC22 (1.7%)) (advisory
+      in an exploration)'
+    value: 6.7827
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_stability
+    status: pass
+    message: 86% of the parent level unchanged
+    value: 0.8612
+  - check: edit_chroma
+    status: pass
+    message: chroma x0.97 of the parent level (drift compounds along a chain)
+    value: 0.9683
+  info:
+    metrics_raw:
+      L_p5: 61.2
+      L_p50: 84.8
+      L_p95: 95.5
+      C_p50: 24.0
+      C_p95: 78.7
+      C_p99: 82.0
+      detail: 4.69
+    metrics_locked:
+      L_p5: 61.2
+      L_p50: 84.8
+      L_p95: 95.5
+      C_p50: 24.0
+      C_p95: 78.7
+      C_p99: 82.0
+      detail: 4.69
+  fingerprint: 6dc93e46d80cecdb
+- job: x-caglayan-flow-4-bare
+  take: 2
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: warn
+    message: chroma p95 78 (R1 51) (advisory in an exploration)
+    value: 77.8
+  - check: light_values
+    status: pass
+    message: 'day/subject: L p5 58 (at least 50: darks stay a light mid-tone), p98 95 (at least 90)'
+    value: 57.8
+  - check: light_median
+    status: pass
+    message: 'day/subject: median L 82 (band 74-92)'
+    value: 81.8
+  - check: light_contrast
+    status: pass
+    message: 'day/subject: p75 local contrast 6.1 (band 2.5-6.5; above it reads too contrasty)'
+    value: 6.12
+  - check: light_sky
+    status: pass
+    message: 'day: sky L 84 (band 70-94)'
+    value: 83.7
+  - check: light_sea
+    status: pass
+    message: 'day: cloud sea L 91 (at least 82: the sea is the reflector)'
+    value: 90.8
+  - check: light_dark
+    status: pass
+    message: 'day: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.0
+  - check: detail_budget
+    status: pass
+    message: detail at display size 5.1 (R1 5.3)
+    value: 5.08
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 6.7, p95 25.8, off-palette 20.6% (top: #DDCC22 (1.4%), #CCCC22 (1.2%)) (advisory
+      in an exploration)'
+    value: 6.7131
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_stability
+    status: pass
+    message: 90% of the parent level unchanged
+    value: 0.8994
+  - check: edit_chroma
+    status: pass
+    message: chroma x1.03 of the parent level (drift compounds along a chain)
+    value: 1.0326
+  info:
+    metrics_raw:
+      L_p5: 60.1
+      L_p50: 84.1
+      L_p95: 95.2
+      C_p50: 25.6
+      C_p95: 77.8
+      C_p99: 81.4
+      detail: 5.08
+    metrics_locked:
+      L_p5: 60.1
+      L_p50: 84.1
+      L_p95: 95.2
+      C_p50: 25.6
+      C_p95: 77.8
+      C_p99: 81.4
+      detail: 5.08
+  fingerprint: 6dc93e46d80cecdb
+sources:
+- take: 1
+  source_file: /workspace/art-operator-runtime/generated/x-caglayan-flow-4-bare/take-1.png
+  source_sha256: 30d096205d517e3c08e005cd71f01ca271d2d823d77e1505d4c4eb1286406550
+  q90_take: design/art/takes/batch-67-caglayan-flow/x-caglayan-flow-4-bare/plate__x-caglayan-flow-4-bare--t1.webp
+  q90_take_sha256: 3cd84edb94067f88fade6d702e67a91a2eb50ef15ba851aea8d19f74661755aa
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 1a984a17825f2efb600f1950a3ca2e34b13a49eb98a05b0841b6576ce12e57ad
+- take: 2
+  source_file: /workspace/art-operator-runtime/generated/x-caglayan-flow-4-bare/take-2.png
+  source_sha256: 77b66aa8731e4e0596cfa3dfebfc14c0bd32b88433d22d363de3a1f9ce0a6abc
+  q90_take: design/art/takes/batch-67-caglayan-flow/x-caglayan-flow-4-bare/plate__x-caglayan-flow-4-bare--t2.webp
+  q90_take_sha256: 13e67aa95bf6bfbc276c92d3b4a34a55b6793b674d50634e84b81d13111ef85f
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 1a984a17825f2efb600f1950a3ca2e34b13a49eb98a05b0841b6576ce12e57ad
+policy:
+  never_promote: true
+  selection: lead picks
+  source_preservation: Original generated images retained at source_file paths; published takes are q90
+    review copies.

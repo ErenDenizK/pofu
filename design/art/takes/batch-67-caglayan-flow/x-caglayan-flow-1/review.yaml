@@ -1,0 +1,197 @@
+batch: batch-67-caglayan-flow
+manifest: tools/imagegen/manifest/batch-67-caglayan-flow.yaml
+jobs:
+  x-caglayan-flow-1:
+    pick: null
+    publication: exploration; not promoted; lead review pending
+    note: Both takes retain spout, mill, main pool and three dry saucer pools with grounded leaf boats;
+      thin trickle, half-full main pool, dry channel and dark mill window clearly separate this stage
+      from healed root. No flowers or rainbow remain. Local plant/stone shapes and pool rim geometry were
+      repainted, so exact landmark registration is not claimed. Lead review pending.
+qa_reports:
+- job: x-caglayan-flow-1
+  take: 1
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 35 (R1 51)
+    value: 35.1
+  - check: light_values
+    status: pass
+    message: 'day/subject: L p5 58 (at least 50: darks stay a light mid-tone), p98 94 (at least 90)'
+    value: 57.9
+  - check: light_median
+    status: pass
+    message: 'day/subject: median L 80 (band 74-92)'
+    value: 80.5
+  - check: light_contrast
+    status: pass
+    message: 'day/subject: p75 local contrast 5.7 (band 2.5-6.5; above it reads too contrasty)'
+    value: 5.65
+  - check: light_sky
+    status: pass
+    message: 'day: sky L 84 (band 70-94)'
+    value: 83.6
+  - check: light_sea
+    status: pass
+    message: 'day: cloud sea L 90 (at least 82: the sea is the reflector)'
+    value: 90.3
+  - check: light_dark
+    status: pass
+    message: 'day: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.0
+  - check: detail_budget
+    status: pass
+    message: detail at display size 4.3 (R1 5.3)
+    value: 4.31
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: pass
+    message: mean dE 2.1, p95 6.3, off-palette 0.0%
+    value: 2.1321
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_stability
+    status: pass
+    message: 59% of the parent level unchanged
+    value: 0.5924
+  - check: edit_chroma
+    status: warn
+    message: chroma x0.78 of the parent level (drift compounds along a chain)
+    value: 0.7815
+  info:
+    metrics_raw:
+      L_p5: 60.1
+      L_p50: 83.7
+      L_p95: 94.8
+      C_p50: 19.4
+      C_p95: 35.1
+      C_p99: 39.5
+      detail: 4.31
+    metrics_locked:
+      L_p5: 60.1
+      L_p50: 83.7
+      L_p95: 94.8
+      C_p50: 19.4
+      C_p95: 35.1
+      C_p99: 39.5
+      detail: 4.31
+  fingerprint: b0970990760493c5
+- job: x-caglayan-flow-1
+  take: 2
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 37 (R1 51)
+    value: 36.9
+  - check: light_values
+    status: pass
+    message: 'day/subject: L p5 61 (at least 50: darks stay a light mid-tone), p98 94 (at least 90)'
+    value: 60.6
+  - check: light_median
+    status: pass
+    message: 'day/subject: median L 82 (band 74-92)'
+    value: 82.3
+  - check: light_contrast
+    status: pass
+    message: 'day/subject: p75 local contrast 5.0 (band 2.5-6.5; above it reads too contrasty)'
+    value: 5.0
+  - check: light_sky
+    status: pass
+    message: 'day: sky L 85 (band 70-94)'
+    value: 85.1
+  - check: light_sea
+    status: pass
+    message: 'day: cloud sea L 91 (at least 82: the sea is the reflector)'
+    value: 91.1
+  - check: light_dark
+    status: pass
+    message: 'day: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.0
+  - check: detail_budget
+    status: pass
+    message: detail at display size 3.7 (R1 5.3)
+    value: 3.73
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: pass
+    message: mean dE 1.9, p95 4.8, off-palette 0.0%
+    value: 1.8972
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_stability
+    status: pass
+    message: 60% of the parent level unchanged
+    value: 0.5956
+  - check: edit_chroma
+    status: warn
+    message: chroma x0.80 of the parent level (drift compounds along a chain)
+    value: 0.8009
+  info:
+    metrics_raw:
+      L_p5: 63.6
+      L_p50: 85.0
+      L_p95: 94.9
+      C_p50: 19.8
+      C_p95: 36.9
+      C_p99: 40.5
+      detail: 3.73
+    metrics_locked:
+      L_p5: 63.6
+      L_p50: 85.0
+      L_p95: 94.9
+      C_p50: 19.8
+      C_p95: 36.9
+      C_p99: 40.5
+      detail: 3.73
+  fingerprint: b0970990760493c5
+sources:
+- take: 1
+  source_file: /workspace/art-operator-runtime/generated/x-caglayan-flow-1/take-1.png
+  source_sha256: 83ac569c3a2f007fda30a74810d1bbd610bd677a1dff4f470b6c99abd2e891d1
+  q90_take: design/art/takes/batch-67-caglayan-flow/x-caglayan-flow-1/plate__x-caglayan-flow-1--t1.webp
+  q90_take_sha256: 549faaf96b48b2fcaeac519029583451c4f3c5fffcefd1973ba53209fb8163d9
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 65f0adc7953dc270efdfe796475fa45898c9438c1d7f158006054fdee1d28fe9
+- take: 2
+  source_file: /workspace/art-operator-runtime/generated/x-caglayan-flow-1/take-2.png
+  source_sha256: af65651922e4269b69959fda188fc7d10a72e8b8451c2fc7c3860b67925cfb5b
+  q90_take: design/art/takes/batch-67-caglayan-flow/x-caglayan-flow-1/plate__x-caglayan-flow-1--t2.webp
+  q90_take_sha256: 670868a19993c64a9541d69e2e2c25d31bc9115d68c800f5a9f54a3e5cb0f15f
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 65f0adc7953dc270efdfe796475fa45898c9438c1d7f158006054fdee1d28fe9
+policy:
+  never_promote: true
+  selection: lead picks
+  source_preservation: Original generated images retained at source_file paths; published takes are q90
+    review copies.
