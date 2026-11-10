@@ -1,0 +1,238 @@
+batch: batch-72-home-night
+manifest: tools/imagegen/manifest/batch-72-home-night.yaml
+manifest_sha256: aa995c6642d466f78b0d0836de79b8d5d90bc118d4ddaab749040918941586c3
+jobs:
+  x-home-flow-il6-night:
+    pick: 1
+    status: review
+    publication: exploration; never promoted
+    note: Both retain the picked IL6 shed, unlit solid lighthouse, three path lamps, two pond lanterns,
+      canopy bulbs, garden arch and earth doors under moonlight. Existing lamps cast small warm pools.
+      No new fixtures, characters or text observed. Exact registration not manually proven. Auto-picked
+      by QA; founder review pending.
+selection:
+  method: QA non-fail and manual eligibility; lowest style-lock load, then highest measured harmony; take
+    number only breaks ties
+  scores:
+  - take: 1
+    style_lock_load: 0.0
+    harmony: 66.5
+    eligible: true
+  - take: 2
+    style_lock_load: 0.0
+    harmony: 65.5
+    eligible: true
+  rejected_takes: []
+qa_reports:
+- job: x-home-flow-il6-night
+  take: 1
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1024x1536
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 44 (R1 51)
+    value: 44.5
+  - check: light_values
+    status: warn
+    message: 'night/subject: L p5 41 (at least 45: darks stay a light mid-tone), p98 92 (at least 85)'
+    value: 40.9
+  - check: light_median
+    status: warn
+    message: 'night/subject: median L 58 (band 66-88)'
+    value: 58.0
+  - check: light_contrast
+    status: warn
+    message: 'night/subject: p75 local contrast 5.2 (band 1.5-5.0; above it reads too contrasty)'
+    value: 5.22
+  - check: light_sky
+    status: pass
+    message: 'night: sky L 36 (band 24-46)'
+    value: 36.3
+  - check: light_sea
+    status: pass
+    message: 'night: cloud sea L 78 (at least 70: the sea is the reflector)'
+    value: 77.7
+  - check: light_dark
+    status: pass
+    message: 'night: 0.2 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.2
+  - check: detail_budget
+    status: pass
+    message: detail at display size 3.3 (R1 5.3)
+    value: 3.33
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 6.9, p95 14.8, off-palette 22.0% (top: #445599 (7.1%), #4466AA (3.9%)) (advisory
+      in an exploration)'
+    value: 6.9035
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_structure
+    status: warn
+    message: light structure matches the parent (r 0.76)
+    value: 0.763
+  - check: edit_lightness
+    status: warn
+    message: mean lightness moved by 24.0 L (the same lightness was asked) (advisory in an exploration)
+    value: 24.0458
+  info:
+    metrics_raw:
+      L_p5: 32.3
+      L_p50: 54.7
+      L_p95: 86.6
+      C_p50: 31.7
+      C_p95: 44.5
+      C_p99: 45.3
+      detail: 3.33
+    metrics_locked:
+      L_p5: 32.3
+      L_p50: 54.7
+      L_p95: 86.6
+      C_p50: 31.7
+      C_p95: 44.5
+      C_p99: 45.3
+      detail: 3.33
+  fingerprint: aa856c43aa39f719
+- job: x-home-flow-il6-night
+  take: 2
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1024x1536
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 43 (R1 51)
+    value: 42.7
+  - check: light_values
+    status: warn
+    message: 'night/subject: L p5 39 (at least 45: darks stay a light mid-tone), p98 95 (at least 85)'
+    value: 38.7
+  - check: light_median
+    status: warn
+    message: 'night/subject: median L 59 (band 66-88)'
+    value: 58.7
+  - check: light_contrast
+    status: warn
+    message: 'night/subject: p75 local contrast 5.3 (band 1.5-5.0; above it reads too contrasty)'
+    value: 5.31
+  - check: light_sky
+    status: pass
+    message: 'night: sky L 34 (band 24-46)'
+    value: 33.5
+  - check: light_sea
+    status: pass
+    message: 'night: cloud sea L 79 (at least 70: the sea is the reflector)'
+    value: 79.3
+  - check: light_dark
+    status: pass
+    message: 'night: 0.1 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.1
+  - check: detail_budget
+    status: pass
+    message: detail at display size 3.3 (R1 5.3)
+    value: 3.3
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 6.5, p95 13.7, off-palette 13.1% (top: #445599 (6.9%), #5566AA (2.0%)) (advisory
+      in an exploration)'
+    value: 6.509
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_structure
+    status: warn
+    message: light structure matches the parent (r 0.72)
+    value: 0.7154
+  - check: edit_lightness
+    status: warn
+    message: mean lightness moved by 24.4 L (the same lightness was asked) (advisory in an exploration)
+    value: 24.4317
+  info:
+    metrics_raw:
+      L_p5: 29.9
+      L_p50: 54.7
+      L_p95: 90.3
+      C_p50: 32.0
+      C_p95: 42.7
+      C_p99: 43.8
+      detail: 3.3
+    metrics_locked:
+      L_p5: 29.9
+      L_p50: 54.7
+      L_p95: 90.3
+      C_p50: 32.0
+      C_p95: 42.7
+      C_p99: 43.8
+      detail: 3.3
+  fingerprint: aa856c43aa39f719
+sources:
+- take: 1
+  source_file: /workspace/art-operator-runtime/factory/generated/x-home-flow-il6-night/take-1.png
+  source_sha256: b690e891d331e5da26f0a249f3dd5b14a85549e55f6b7cb829a337f7d002bbab
+  q90_take: design/art/takes/batch-72-home-night/x-home-flow-il6-night/plate__x-home-flow-il6-night--t1.webp
+  q90_take_sha256: f7c0494516eea826e75c20323f7f7ab241097b008ec2d09fc4bc9a617582437a
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 06e22f184471d6c7a4d5328802d0edd95ce55988e6d65738026948d6be50eb3f
+  references:
+  - path: design/art/takes/batch-66-home-flow/x-home-flow-il6/plate__x-home-flow-il6--t1.webp
+    role: The image to edit (the approved previous level). Edit it; do not redraw it.
+    sha256: ad8e0d789e80c9b9038fc87c8c9f6b71c31db3678a5d13449d5f38b286e8310a
+  - path: design/art/takes/batch-66-home-flow/x-home-flow-night/plate__x-home-flow-night--t1.webp
+    role: 'The night target: this calm moonlit night of the finished island: its blue sky, moon, light
+      cloud sea, quiet island colour and small warm pools. Match the light and colour; do not copy its
+      objects.'
+    sha256: c1c606bc3f1329a87a353cc85c603c1c09547bc03f84c8687babd3f3d5823918
+  - path: design/art/takes/batch-22-gezgin-forms/x-gezgin-f2-night/plate__x-gezgin-f2-night--t1.webp
+    role: 'Night reference: the same calm, low-contrast moonlit sky and cloud sea. Do not copy the whale
+      or its layout.'
+    sha256: 8f60554841950620a83c8242a87f93f012b3cdb114ab0b15f797972a4a7df7c8
+- take: 2
+  source_file: /workspace/art-operator-runtime/factory/generated/x-home-flow-il6-night/take-2.png
+  source_sha256: 7d6b0bfeeed8668f15365aba49566e905a534b2955aca3a884c305c4923e40f8
+  q90_take: design/art/takes/batch-72-home-night/x-home-flow-il6-night/plate__x-home-flow-il6-night--t2.webp
+  q90_take_sha256: f8c91ead3b71780a33219a3338e5385f780269f305267c8aa97b7f0b7a83cd02
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 06e22f184471d6c7a4d5328802d0edd95ce55988e6d65738026948d6be50eb3f
+  references:
+  - path: design/art/takes/batch-66-home-flow/x-home-flow-il6/plate__x-home-flow-il6--t1.webp
+    role: The image to edit (the approved previous level). Edit it; do not redraw it.
+    sha256: ad8e0d789e80c9b9038fc87c8c9f6b71c31db3678a5d13449d5f38b286e8310a
+  - path: design/art/takes/batch-66-home-flow/x-home-flow-night/plate__x-home-flow-night--t1.webp
+    role: 'The night target: this calm moonlit night of the finished island: its blue sky, moon, light
+      cloud sea, quiet island colour and small warm pools. Match the light and colour; do not copy its
+      objects.'
+    sha256: c1c606bc3f1329a87a353cc85c603c1c09547bc03f84c8687babd3f3d5823918
+  - path: design/art/takes/batch-22-gezgin-forms/x-gezgin-f2-night/plate__x-gezgin-f2-night--t1.webp
+    role: 'Night reference: the same calm, low-contrast moonlit sky and cloud sea. Do not copy the whale
+      or its layout.'
+    sha256: 8f60554841950620a83c8242a87f93f012b3cdb114ab0b15f797972a4a7df7c8
+policy:
+  never_promote: true
+  originals: source_file PNGs preserved unchanged; published takes are q90 copies
