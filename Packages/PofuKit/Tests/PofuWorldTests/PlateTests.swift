@@ -76,11 +76,11 @@ struct PlateMathTests {
         #expect(abs(300 * s - 1.35 * 402) < 1e-9)
     }
 
-    @Test func budgetIsEightMegabytes() throws {
+    @Test func budgetIsNineMegabytes() throws {
         var island = try PlateIsland.decode(Data(PlateIslandTests.example.utf8))
-        island.textureBytes = 8_000_000
+        island.textureBytes = 9_000_000
         #expect(PlateMath.budgetOK(island))
-        island.textureBytes = 8_000_001
+        island.textureBytes = 9_000_001
         #expect(!PlateMath.budgetOK(island))
     }
 }
@@ -195,11 +195,13 @@ struct HomePlateTests {
 
     @Test func charactersAreSmallOnThePlate() throws {
         let home = try plate
-        // Pofu about 35 to 45 points wide at Home, the residents at least 18.
+        // Pofu is 33 points tall at the Home framing (about 1.5 windmill doors), the residents in
+        // proportion (docs/design/visual-system.md, Composition).
         let pofu = 64 * home.characterScale * IslandFraming.homeScale
-        #expect(pofu > 30 && pofu < 48)
+        #expect(abs(pofu - 33) < 0.5)
         let mochi = 30.4 * home.residentScale * IslandFraming.homeScale
-        #expect(mochi > 18)
+        #expect(mochi > 17)
+        #expect(abs(home.residentScale / home.characterScale - home.plate.residentBoost) < 1e-9)
     }
 
     @Test func showsByDayInClearWeatherAtItsLevel() throws {
