@@ -1,0 +1,307 @@
+batch: batch-74-redo-states
+manifest: tools/imagegen/manifest/batch-74-redo-states.yaml
+jobs:
+  x-home-flow-night-sea:
+    pick: 2
+    publication: exploration; not promoted; lead review pending
+    note: Both takes are manually eligible. Actual QA lock_load ties at 0.0; focused
+      harmony scores break the tie, with t2 at 52.7 over t1 at 51.1. Auto-picked by
+      QA; founder review pending. Night sea values carry warnings in the pilot; the
+      pilot does not scale until the next lead review. Not promoted because this is
+      an exploration.
+    actual_generation_calls: 2
+    manual_review:
+      job: x-home-flow-night-sea
+      reviewer: independent visual cross-review
+      parent: plate__x-home-flow-night--t1.webp
+      criteria:
+      - Change only the cloud sea below the island to a darker blue-violet, with lighter
+        blue-lilac crests and soft silver highlights.
+      - Keep the cloud shapes and positions, and preserve the island, earth body,
+        roots, buildings, doors, lamps, windows, sky, moon, stars, far islands, and
+        cloud-whale.
+      takes:
+      - take: 1
+        source_sha256: 29a66bbc0129fb832e2c52a6bf2de4b10132f947c50ece5e1d04e1a501efd76c
+        eligible: true
+        reasons:
+        - The cloud sea is visibly darker than the parent, with blue-violet hollows,
+          lighter blue-lilac cloud crests, and soft pale highlights.
+        - The island and its underside, roots, sky, moon, stars, far islands, and
+          cloud-whale appear in the same positions and retain their parent colours;
+          no specific changed object or area outside the cloud sea was observed.
+        caveats:
+        - This is a visual comparison and does not establish pixel-for-pixel identity
+          outside the cloud sea.
+      - take: 2
+        source_sha256: 5a893fff3189db7afe495434197d1cf622eb178dca6590a96cd2209b4b319ea9
+        eligible: true
+        reasons:
+        - The cloud sea is visibly darker than the parent, with blue-violet hollows,
+          lighter blue-lilac cloud crests, and soft pale highlights.
+        - The island and its underside, roots, sky, moon, stars, far islands, and
+          cloud-whale appear in the same positions and retain their parent colours;
+          no specific changed object or area outside the cloud sea was observed.
+        caveats:
+        - This is a visual comparison and does not establish pixel-for-pixel identity
+          outside the cloud sea.
+qa_reports:
+- job: x-home-flow-night-sea
+  take: 1
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1024x1536
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 47 (R1 51)
+    value: 47.3
+  - check: light_values
+    status: warn
+    message: 'night/subject: L p5 39 (at least 45: darks stay a light mid-tone), p98
+      82 (at least 85)'
+    value: 38.7
+  - check: light_median
+    status: warn
+    message: 'night/subject: median L 53 (band 66-88) (warn-only until the founder
+      has seen the light pilot)'
+    value: 53.4
+  - check: light_contrast
+    status: warn
+    message: 'night/subject: p75 local contrast 8.8 (band 1.5-5.0; above it reads
+      too contrasty) (warn-only until the founder has seen the light pilot)'
+    value: 8.85
+  - check: light_sky
+    status: pass
+    message: 'night: sky L 39 (band 24-46)'
+    value: 38.6
+  - check: light_sea
+    status: warn
+    message: 'night: cloud sea L 44 (at least 70: the sea is the reflector) (warn-only
+      until the founder has seen the light pilot)'
+    value: 44.3
+  - check: light_dark
+    status: pass
+    message: 'night: 0.4 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.4
+  - check: detail_budget
+    status: pass
+    message: detail at display size 5.8 (R1 5.3)
+    value: 5.76
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 8.1, p95 14.1, off-palette 26.9% (top: #445599 (12.6%), #5555AA
+      (5.0%)) (advisory in an exploration)'
+    value: 8.1294
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_stability
+    status: pass
+    message: 70% of the parent level unchanged
+    value: 0.7024
+  - check: edit_chroma
+    status: warn
+    message: chroma x1.57 of the parent level (drift compounds along a chain) (advisory
+      in an exploration)
+    value: 1.5695
+  info:
+    metrics_raw:
+      L_p5: 34.9
+      L_p50: 46.8
+      L_p95: 74.1
+      C_p50: 41.5
+      C_p95: 47.3
+      C_p99: 48.1
+      detail: 5.76
+    metrics_locked:
+      L_p5: 34.9
+      L_p50: 46.8
+      L_p95: 74.1
+      C_p50: 41.5
+      C_p95: 47.3
+      C_p99: 48.1
+      detail: 5.76
+  fingerprint: eda260016b9d25f8
+- job: x-home-flow-night-sea
+  take: 2
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1024x1536
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 49 (R1 51)
+    value: 49.2
+  - check: light_values
+    status: warn
+    message: 'night/subject: L p5 39 (at least 45: darks stay a light mid-tone), p98
+      84 (at least 85)'
+    value: 38.9
+  - check: light_median
+    status: warn
+    message: 'night/subject: median L 55 (band 66-88) (warn-only until the founder
+      has seen the light pilot)'
+    value: 54.6
+  - check: light_contrast
+    status: warn
+    message: 'night/subject: p75 local contrast 9.2 (band 1.5-5.0; above it reads
+      too contrasty) (warn-only until the founder has seen the light pilot)'
+    value: 9.17
+  - check: light_sky
+    status: pass
+    message: 'night: sky L 39 (band 24-46)'
+    value: 38.8
+  - check: light_sea
+    status: warn
+    message: 'night: cloud sea L 46 (at least 70: the sea is the reflector) (warn-only
+      until the founder has seen the light pilot)'
+    value: 46.2
+  - check: light_dark
+    status: pass
+    message: 'night: 0.5 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.5
+  - check: detail_budget
+    status: pass
+    message: detail at display size 5.9 (R1 5.3)
+    value: 5.92
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 8.2, p95 14.9, off-palette 32.5% (top: #445599 (10.0%), #335599
+      (5.9%)) (advisory in an exploration)'
+    value: 8.209
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_stability
+    status: pass
+    message: 70% of the parent level unchanged
+    value: 0.704
+  - check: edit_chroma
+    status: warn
+    message: chroma x1.63 of the parent level (drift compounds along a chain) (advisory
+      in an exploration)
+    value: 1.6266
+  info:
+    metrics_raw:
+      L_p5: 35.1
+      L_p50: 47.8
+      L_p95: 75.0
+      C_p50: 43.0
+      C_p95: 49.2
+      C_p99: 50.3
+      detail: 5.92
+    metrics_locked:
+      L_p5: 35.1
+      L_p50: 47.8
+      L_p95: 75.0
+      C_p50: 43.0
+      C_p95: 49.2
+      C_p99: 50.3
+      detail: 5.92
+  fingerprint: eda260016b9d25f8
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-c596627c-1415-4a18-aa7a-f6cb7f26d895.png
+  source_sha256: 29a66bbc0129fb832e2c52a6bf2de4b10132f947c50ece5e1d04e1a501efd76c
+  q90_take: design/art/takes/batch-74-redo-states/x-home-flow-night-sea/plate__x-home-flow-night-sea--t1.webp
+  q90_take_sha256: f280abc30efbd63634150b3be74edf40b31b9ce3cbba526ca06ec924efdf7806
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: c241149a031ab88772addebb20955d3593eb95fa5976d9d382a1fbe115bb6a22
+  started_at: '2026-11-10T20:46:05.851Z'
+  returned_at: '2026-11-10T20:47:15.013Z'
+  model: null
+  tool: image_gen.imagegen
+- take: 2
+  source_file: /workspace/generated_images/exec-be548314-38ff-4d8d-89da-178d0ed2828d.png
+  source_sha256: 5a893fff3189db7afe495434197d1cf622eb178dca6590a96cd2209b4b319ea9
+  q90_take: design/art/takes/batch-74-redo-states/x-home-flow-night-sea/plate__x-home-flow-night-sea--t2.webp
+  q90_take_sha256: f4bf8cce942d7a33554dc9d90f71bb0330e49aa63a9d05de07ad75f4e261dc5b
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: c241149a031ab88772addebb20955d3593eb95fa5976d9d382a1fbe115bb6a22
+  started_at: '2026-11-10T20:46:05.851Z'
+  returned_at: '2026-11-10T20:46:41.411Z'
+  model: null
+  tool: image_gen.imagegen
+harmony_scores:
+  method: Focused individual scoring against the precomputed world reference; no full
+    measure/catalog scan.
+  command_base:
+  - python3
+  - -I
+  - tools/assets/harmony.py
+  - score
+  reference_data:
+    config_sha256: d2ed591e6e8a7d0eafd54f95e3e3c98290453a81aaff11a9f800afea6fc43a18
+    reference_sha256: 602aff8ff097bad430ebfc0bf3837c647cf738bc407b90d58b8eb689810a673e
+    materials_sha256: 495011a0bfbe8c9c890ec62f8ff6f7a2e1f5fe1d061f73c23ec26518b938b557
+    assets_json_count: 211
+    assets_json_digest_sha256: f8f88057d3b860d56318b4a6bdfbf0fc70f16eb9237516ab9d3234b901c4f6b3
+  scores:
+  - take: 1
+    argv:
+    - python3
+    - -I
+    - tools/assets/harmony.py
+    - score
+    - build/imagegen/batch-74-redo-states/locked/plate__x-home-flow-night-sea--t1.png
+    - --ppu
+    - '2.735'
+    - --kind
+    - world
+    ppu: 2.735
+    kind: world
+    score: 51.1
+    outliers:
+    - L_p2
+    - L_p98
+    - edge
+    reference_group: world
+  - take: 2
+    argv:
+    - python3
+    - -I
+    - tools/assets/harmony.py
+    - score
+    - build/imagegen/batch-74-redo-states/locked/plate__x-home-flow-night-sea--t2.png
+    - --ppu
+    - '2.735'
+    - --kind
+    - world
+    ppu: 2.735
+    kind: world
+    score: 52.7
+    outliers:
+    - L_p2
+    - L_p98
+    - edge
+    reference_group: world
+policy:
+  never_promote: true
+  selection: lead picks
+  source_preservation: Original generated images retained at source_file paths; published
+    takes are q90 review copies.
