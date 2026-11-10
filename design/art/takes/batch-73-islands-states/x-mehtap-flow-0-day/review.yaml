@@ -1,0 +1,219 @@
+batch: batch-73-islands-states
+manifest: tools/imagegen/manifest/batch-73-islands-states.yaml
+manifest_sha256: d598a7718fdc51cab7d3ef7944d558393127bf9f5af63194465deac8a25f0b83
+jobs:
+  x-mehtap-flow-0-day:
+    pick: 1
+    status: review
+    publication: exploration; never promoted
+    note: 'Both takes preserve the authored external parent as picked: open telescope dome, bare twigs,
+      blank chart, flat pewter pool, keyhole shape, bench/perch and faint underside stars. Calm pale-blue
+      daytime removes luminous keyhole/practicals, with no added moon or trails. This intentionally inherits
+      the picked parent open-shell defect rather than silently repairing the stage. Minor branch/contour
+      drift remains; no exact pixel-registration claim. QA/load/harmony auto-pick; exploration only.'
+selection:
+  method: QA non-fail and manual eligibility; lowest style-lock load, then highest measured harmony; take
+    number only breaks ties
+  scores:
+  - take: 1
+    style_lock_load: 0.0
+    harmony: 62.5
+    eligible: true
+  - take: 2
+    style_lock_load: 0.0
+    harmony: 62.0
+    eligible: true
+  rejected_takes: []
+qa_reports:
+- job: x-mehtap-flow-0-day
+  take: 1
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 35 (R1 51)
+    value: 35.2
+  - check: light_values
+    status: pass
+    message: 'day/subject: L p5 55 (at least 50: darks stay a light mid-tone), p98 98 (at least 90)'
+    value: 55.0
+  - check: light_median
+    status: pass
+    message: 'day/subject: median L 74 (band 74-92)'
+    value: 74.5
+  - check: light_contrast
+    status: pass
+    message: 'day/subject: p75 local contrast 5.7 (band 2.5-6.5; above it reads too contrasty)'
+    value: 5.68
+  - check: light_sky
+    status: pass
+    message: 'day: sky L 78 (band 70-94)'
+    value: 78.3
+  - check: light_sea
+    status: pass
+    message: 'day: cloud sea L 94 (at least 82: the sea is the reflector)'
+    value: 93.6
+  - check: light_dark
+    status: pass
+    message: 'day: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.0
+  - check: detail_budget
+    status: pass
+    message: detail at display size 2.7 (R1 5.3)
+    value: 2.68
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 4.1, p95 12.0, off-palette 5.0% (top: #88BBFF (3.4%), #99BBFF (1.6%))'
+    value: 4.0641
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_structure
+    status: warn
+    message: light structure matches the parent (r 0.40) (advisory in an exploration)
+    value: 0.3963
+  - check: edit_lightness
+    status: warn
+    message: mean lightness moved by 39.3 L (the same lightness was asked) (advisory in an exploration)
+    value: 39.2833
+  info:
+    metrics_raw:
+      L_p5: 61.0
+      L_p50: 81.1
+      L_p95: 96.8
+      C_p50: 24.8
+      C_p95: 35.2
+      C_p99: 37.0
+      detail: 2.68
+    metrics_locked:
+      L_p5: 61.0
+      L_p50: 81.1
+      L_p95: 96.8
+      C_p50: 24.8
+      C_p95: 35.2
+      C_p99: 37.0
+      detail: 2.68
+  fingerprint: cf464c95c983d277
+- job: x-mehtap-flow-0-day
+  take: 2
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 36 (R1 51)
+    value: 36.2
+  - check: light_values
+    status: pass
+    message: 'day/subject: L p5 51 (at least 50: darks stay a light mid-tone), p98 98 (at least 90)'
+    value: 51.2
+  - check: light_median
+    status: warn
+    message: 'day/subject: median L 70 (band 74-92)'
+    value: 70.2
+  - check: light_contrast
+    status: pass
+    message: 'day/subject: p75 local contrast 6.2 (band 2.5-6.5; above it reads too contrasty)'
+    value: 6.24
+  - check: light_sky
+    status: pass
+    message: 'day: sky L 78 (band 70-94)'
+    value: 77.7
+  - check: light_sea
+    status: pass
+    message: 'day: cloud sea L 92 (at least 82: the sea is the reflector)'
+    value: 92.1
+  - check: light_dark
+    status: pass
+    message: 'day: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.0
+  - check: detail_budget
+    status: pass
+    message: detail at display size 2.9 (R1 5.3)
+    value: 2.89
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 4.2, p95 11.3, off-palette 3.5% (top: #88BBFF (2.4%), #99BBFF (1.0%))'
+    value: 4.1514
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_structure
+    status: warn
+    message: light structure matches the parent (r 0.35) (advisory in an exploration)
+    value: 0.3522
+  - check: edit_lightness
+    status: warn
+    message: mean lightness moved by 37.3 L (the same lightness was asked) (advisory in an exploration)
+    value: 37.291
+  info:
+    metrics_raw:
+      L_p5: 57.2
+      L_p50: 79.4
+      L_p95: 96.7
+      C_p50: 26.4
+      C_p95: 36.2
+      C_p99: 38.1
+      detail: 2.89
+    metrics_locked:
+      L_p5: 57.2
+      L_p50: 79.4
+      L_p95: 96.7
+      C_p50: 26.4
+      C_p95: 36.2
+      C_p99: 38.1
+      detail: 2.89
+  fingerprint: cf464c95c983d277
+sources:
+- take: 1
+  source_file: /workspace/art-operator-runtime/factory/generated/x-mehtap-flow-0-day/take-1.png
+  source_sha256: e9687f7369d346fa43d264f97665f32e0fe0e0960275dec4414523aa13aeedec
+  q90_take: design/art/takes/batch-73-islands-states/x-mehtap-flow-0-day/plate__x-mehtap-flow-0-day--t1.webp
+  q90_take_sha256: 8792d6a7af88b080dbafba018d857f084e6201d2d676c41e3bd1666282b6c58b
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 47eba653844a4bfd72099049ea70761de2861023a9e96dcaad96193c124ddd48
+  references:
+  - path: design/art/takes/batch-70-mehtap-flow/x-mehtap-flow-0/plate__x-mehtap-flow-0--t1.webp
+    role: The image to edit (the approved previous level). Edit it; do not redraw it.
+    sha256: 7d7b9ad50653c404b043bcccc3cd6df74598d8d25782055bf16a1bbbd682b313
+- take: 2
+  source_file: /workspace/art-operator-runtime/factory/generated/x-mehtap-flow-0-day/take-2.png
+  source_sha256: 796525e628078208577eef5ca15d1e288284b785d19acda21aad7aade2e8ad44
+  q90_take: design/art/takes/batch-73-islands-states/x-mehtap-flow-0-day/plate__x-mehtap-flow-0-day--t2.webp
+  q90_take_sha256: e1d479e7e81f237ab7a2a4cb0d4edf5d8891d410a13d9db6da2a434ca5747857
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 47eba653844a4bfd72099049ea70761de2861023a9e96dcaad96193c124ddd48
+  references:
+  - path: design/art/takes/batch-70-mehtap-flow/x-mehtap-flow-0/plate__x-mehtap-flow-0--t1.webp
+    role: The image to edit (the approved previous level). Edit it; do not redraw it.
+    sha256: 7d7b9ad50653c404b043bcccc3cd6df74598d8d25782055bf16a1bbbd682b313
+policy:
+  never_promote: true
+  originals: source_file PNGs preserved unchanged; published takes are q90 copies
