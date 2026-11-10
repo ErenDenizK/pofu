@@ -1,0 +1,199 @@
+batch: batch-69-emanet-flow
+manifest: tools/imagegen/manifest/batch-69-emanet-flow.yaml
+jobs:
+  x-emanet-flow-4-life:
+    pick: null
+    publication: exploration; not promoted; lead review pending
+    note: Both takes retain the stilted office, shelves, cart and tiled plate, adding Boncuk polishing
+      a teacup at the outdoor counter, Pofu wearing a top hat beside Mochi near the small heap, and two
+      roof sparrows. Take 2 adds an extra saucer on the counter. No text observed; exact registration
+      not manually proven. Lead selection pending.
+qa_reports:
+- job: x-emanet-flow-4-life
+  take: 1
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: warn
+    message: chroma p95 56 (R1 51)
+    value: 56.1
+  - check: light_values
+    status: warn
+    message: 'golden/subject: L p5 41 (at least 50: darks stay a light mid-tone), p98 90 (at least 85)'
+    value: 41.2
+  - check: light_median
+    status: pass
+    message: 'golden/subject: median L 78 (band 68-86)'
+    value: 78.3
+  - check: light_contrast
+    status: warn
+    message: 'golden/subject: p75 local contrast 9.6 (band 2.5-6.0; above it reads too contrasty) (warn-only
+      until the founder has seen the light pilot)'
+    value: 9.57
+  - check: light_sky
+    status: pass
+    message: 'golden: sky L 82 (band 60-86)'
+    value: 81.6
+  - check: light_sea
+    status: pass
+    message: 'golden: cloud sea L 88 (at least 78: the sea is the reflector)'
+    value: 87.7
+  - check: light_dark
+    status: pass
+    message: 'golden: 0.3 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.3
+  - check: detail_budget
+    status: warn
+    message: detail at display size 6.2 (R1 5.3)
+    value: 6.18
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 3.1, p95 10.7, off-palette 3.9% (top: #CC7733 (0.2%), #EE8833 (0.2%))'
+    value: 3.1078
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_stability
+    status: pass
+    message: 97% of the parent level unchanged
+    value: 0.9742
+  - check: edit_chroma
+    status: pass
+    message: chroma x0.98 of the parent level (drift compounds along a chain)
+    value: 0.9825
+  info:
+    metrics_raw:
+      L_p5: 48.9
+      L_p50: 81.5
+      L_p95: 92.7
+      C_p50: 25.3
+      C_p95: 56.1
+      C_p99: 67.5
+      detail: 6.18
+    metrics_locked:
+      L_p5: 48.9
+      L_p50: 81.5
+      L_p95: 92.7
+      C_p50: 25.3
+      C_p95: 56.1
+      C_p99: 67.5
+      detail: 6.18
+  fingerprint: 652ddeac180d74d7
+- job: x-emanet-flow-4-life
+  take: 2
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: warn
+    message: chroma p95 57 (R1 51)
+    value: 56.9
+  - check: light_values
+    status: warn
+    message: 'golden/subject: L p5 41 (at least 50: darks stay a light mid-tone), p98 90 (at least 85)'
+    value: 41.4
+  - check: light_median
+    status: pass
+    message: 'golden/subject: median L 78 (band 68-86)'
+    value: 77.8
+  - check: light_contrast
+    status: warn
+    message: 'golden/subject: p75 local contrast 9.7 (band 2.5-6.0; above it reads too contrasty) (warn-only
+      until the founder has seen the light pilot)'
+    value: 9.73
+  - check: light_sky
+    status: pass
+    message: 'golden: sky L 81 (band 60-86)'
+    value: 81.4
+  - check: light_sea
+    status: pass
+    message: 'golden: cloud sea L 87 (at least 78: the sea is the reflector)'
+    value: 87.2
+  - check: light_dark
+    status: pass
+    message: 'golden: 0.3 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.3
+  - check: detail_budget
+    status: warn
+    message: detail at display size 6.3 (R1 5.3)
+    value: 6.33
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 3.2, p95 11.3, off-palette 4.4% (top: #CC7733 (0.2%), #BB6633 (0.2%))'
+    value: 3.1879
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_stability
+    status: pass
+    message: 97% of the parent level unchanged
+    value: 0.9748
+  - check: edit_chroma
+    status: pass
+    message: chroma x1.00 of the parent level (drift compounds along a chain)
+    value: 0.9958
+  info:
+    metrics_raw:
+      L_p5: 48.7
+      L_p50: 81.4
+      L_p95: 92.3
+      C_p50: 25.7
+      C_p95: 56.9
+      C_p99: 68.2
+      detail: 6.33
+    metrics_locked:
+      L_p5: 48.7
+      L_p50: 81.4
+      L_p95: 92.3
+      C_p50: 25.7
+      C_p95: 56.9
+      C_p99: 68.2
+      detail: 6.33
+  fingerprint: 652ddeac180d74d7
+sources:
+- take: 1
+  source_file: /workspace/art-operator-runtime/generated/x-emanet-flow-4-life/take-1.png
+  source_sha256: dd266e0c933a332ef6ac6562ec07b98bb2ba12db01130a3fc5113f4ce4048cd7
+  q90_take: design/art/takes/batch-69-emanet-flow/x-emanet-flow-4-life/plate__x-emanet-flow-4-life--t1.webp
+  q90_take_sha256: 4d611537c2270b47553b0487fddec71e16996ce3826c07423d957a96fa4a7764
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: a97cd9c2c51b1dce658d7c118f950dc88d21d79689541a4e68a44c12c4a5cdfc
+- take: 2
+  source_file: /workspace/art-operator-runtime/generated/x-emanet-flow-4-life/take-2.png
+  source_sha256: ff332fc7384043c3b34381a2511fb32be21f45080ff55f48059c630beb1b7b84
+  q90_take: design/art/takes/batch-69-emanet-flow/x-emanet-flow-4-life/plate__x-emanet-flow-4-life--t2.webp
+  q90_take_sha256: 287cbacf22bdbaf86861b59a5c16a94fca1cda6b4f782bf042fb4f849cd95a5a
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: a97cd9c2c51b1dce658d7c118f950dc88d21d79689541a4e68a44c12c4a5cdfc
+policy:
+  never_promote: true
+  selection: lead picks
+  source_preservation: Original generated images retained at source_file paths; published takes are q90
+    review copies.
