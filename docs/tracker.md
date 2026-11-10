@@ -11,12 +11,16 @@ Status words: **built** (on main, in the app) · **in PR** (open PR) ·
 **queued** (a READY art row or a named next step) · **designed only** (a spec,
 no code) · **talked only** (in the log, no spec) · **dropped**.
 
-## Top of the list (2026-11-07)
+## Current (2026-11-10, plate-first)
 
-1. **The gate fix:** seeds must stop buying minutes (register R1; PR in flight).
-2. **Soft light and violet out** (V5, D10; PR in flight).
-3. **The founder's 15 questions** (register §10).
-4. **Then, from his answers:** Çağlayan plates (Q-1, Q-2), the water spike, the home framing stop with İskele in frame (Q-7, H7), the Door scene on the composite (Q-12, Q-13), the night ADR (Q-10).
+State of every island picture: [`docs/state/plates.yaml`](state/plates.yaml).
+
+1. **Home plate is in the app** (final, day, clear); the home states (levels, golden, night, rain) follow it.
+2. **Phase-2 takes are merged** (batches 66 to 70); the lead's picks are in each `review.yaml`.
+3. **Redo batch-71** (il1, bare, rain) is READY; the batch-66 versions are rejected.
+4. **Runtime station:** working on the Home states and character harmony (Pofu and residents against the plate).
+5. **Queue refilled:** collage-era rows are DROPPED; READY batch-72 (home night, 8) and batch-73 (islands states, 24); standing work is the next null cell of the state table.
+6. **Still open:** the gate fix, the founder's 15 questions ([register](product/decisions.md) §10), the device check.
 
 ## 1. Where we are
 

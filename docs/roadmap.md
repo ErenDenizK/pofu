@@ -1,5 +1,7 @@
 # Roadmap
 
+> Plate state (what is painted, picked and in the app): [`docs/state/plates.yaml`](state/plates.yaml).
+
 _Living document. Last updated: 2026-11-07 (adds the Door and UI v3 tracks;
 the stage G/W plan of 2026-11-02 is in the
 [archive](archive/iteration-plan.md)). What is decided and what is open:
