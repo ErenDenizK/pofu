@@ -1,0 +1,265 @@
+batch: batch-69-emanet-flow
+manifest: tools/imagegen/manifest/batch-69-emanet-flow.yaml
+manifest_sha256: 7b558ceb02e6dbbf0093bba628d91013ba6d8c2df5670474c714380fcbebbe4f
+prompt_sha256: 4b661b2379defd5dd7d0ae7bcd2bf5fc78b6d8ec0725c51a2f250a8723ed307b
+transport_prompt_sha256: 3c797a9b6a872d87934ec9fcca847041fa0ab1f3ef412958ec641b32b642df5c
+base_head: 20be6dc2eb7dff96a68108d336e8e0433b0e6d0c
+contact_sheet: design/art/takes/batch-69-emanet-flow/x-emanet-flow-4/contact.jpg
+jobs:
+  x-emanet-flow-4:
+    pick: null
+    publication: exploration; never promoted
+    note: 'Both takes show the teal office, suitcase plinth and round door, spoon ladder, teacup tank, top hat,
+      three service bays, cart, scales and kite, with no characters or text. The exact authored count of eight hooks
+      (seven occupied and one empty) is not certified: the visible hook/attachment arrangement is unclear and differs
+      from the brief. The fourth-bay expansion gap also remains unclear. These are explicit manual-review warnings;
+      no pass is fabricated. No take is selected and neither is promoted.'
+qa_reports:
+  1:
+    job: x-emanet-flow-4
+    take: 1
+    status: warn
+    preset: plate-final
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 55 (R1 51)
+      value: 55.4
+    - check: light_values
+      status: warn
+      message: 'golden/subject: L p5 42 (at least 50: darks stay a light mid-tone), p98 89 (at least 85)'
+      value: 42.4
+    - check: light_median
+      status: pass
+      message: 'golden/subject: median L 78 (band 68-86)'
+      value: 78.0
+    - check: light_contrast
+      status: warn
+      message: 'golden/subject: p75 local contrast 9.3 (band 2.5-6.0; above it reads too contrasty) (warn-only until
+        the founder has seen the light pilot)'
+      value: 9.26
+    - check: light_sky
+      status: pass
+      message: 'golden: sky L 81 (band 60-86)'
+      value: 81.3
+    - check: light_sea
+      status: pass
+      message: 'golden: cloud sea L 87 (at least 78: the sea is the reflector)'
+      value: 87.1
+    - check: light_dark
+      status: pass
+      message: 'golden: 0.1 % below L* 30 under the sky (at most 3; only the sky is dark)'
+      value: 0.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 6.0 (R1 5.3)
+      value: 5.95
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.9, p95 10.2, off-palette 3.6% (top: #EE8833 (0.2%), #BB6622 (0.2%))'
+      value: 2.923
+    info:
+      metrics_raw:
+        L_p5: 49.7
+        L_p50: 81.3
+        L_p95: 91.9
+        C_p50: 25.5
+        C_p95: 55.4
+        C_p99: 66.9
+        detail: 5.95
+      metrics_locked:
+        L_p5: 49.7
+        L_p50: 81.3
+        L_p95: 91.9
+        C_p50: 25.5
+        C_p95: 55.4
+        C_p99: 66.9
+        detail: 5.95
+    fingerprint: 382df88b1d3aa7d1
+  2:
+    job: x-emanet-flow-4
+    take: 2
+    status: warn
+    preset: plate-final
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 53 (R1 51)
+      value: 53.3
+    - check: light_values
+      status: warn
+      message: 'golden/subject: L p5 42 (at least 50: darks stay a light mid-tone), p98 90 (at least 85)'
+      value: 42.3
+    - check: light_median
+      status: pass
+      message: 'golden/subject: median L 78 (band 68-86)'
+      value: 78.2
+    - check: light_contrast
+      status: warn
+      message: 'golden/subject: p75 local contrast 8.6 (band 2.5-6.0; above it reads too contrasty) (warn-only until
+        the founder has seen the light pilot)'
+      value: 8.64
+    - check: light_sky
+      status: pass
+      message: 'golden: sky L 82 (band 60-86)'
+      value: 82.4
+    - check: light_sea
+      status: pass
+      message: 'golden: cloud sea L 88 (at least 78: the sea is the reflector)'
+      value: 87.9
+    - check: light_dark
+      status: pass
+      message: 'golden: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+      value: 0.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 5.7 (R1 5.3)
+      value: 5.74
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.7, p95 10.0, off-palette 3.3% (top: #CC7733 (0.2%), #DD7722 (0.1%))'
+      value: 2.6856
+    info:
+      metrics_raw:
+        L_p5: 50.1
+        L_p50: 81.9
+        L_p95: 92.7
+        C_p50: 21.8
+        C_p95: 53.3
+        C_p99: 65.1
+        detail: 5.74
+      metrics_locked:
+        L_p5: 50.1
+        L_p50: 81.9
+        L_p95: 92.7
+        C_p50: 21.8
+        C_p95: 53.3
+        C_p99: 65.1
+        detail: 5.74
+    fingerprint: 382df88b1d3aa7d1
+manual_review:
+  observed_note: 'Both takes show the teal office, suitcase plinth and round door, spoon ladder, teacup tank, top
+    hat, three service bays, cart, scales and kite, with no characters or text. The exact authored count of eight
+    hooks (seven occupied and one empty) is not certified: the visible hook/attachment arrangement is unclear and
+    differs from the brief. The fourth-bay expansion gap also remains unclear. These are explicit manual-review
+    warnings; no pass is fabricated. No take is selected and neither is promoted.'
+  selection: pending lead review; no take selected
+sources:
+- batch: batch-69-emanet-flow
+  job: x-emanet-flow-4
+  take: 1
+  round: 1
+  logical_run: 20261109-phase1
+  source_file: /workspace/generated_images/exec-7e8fd26f-301c-4d7a-a198-fa470861db54.png
+  returned_at: '2026-11-09T15:04:52.121Z'
+  prompt_sha256: 4b661b2379defd5dd7d0ae7bcd2bf5fc78b6d8ec0725c51a2f250a8723ed307b
+  transport_prompt_sha256: 3c797a9b6a872d87934ec9fcca847041fa0ab1f3ef412958ec641b32b642df5c
+  fingerprint: 382df88b1d3aa7d1
+  original_generated_png_sha256: 1c6a05b104e67a5cd80527b3250dab34d4103ce8f9b969f314530293d7889d01
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 737820bdca965dbd99446acce6207a9abd1372abdfb5958b0051efc44abe8d12
+  inbox_png_sha256: 14c0842d4e063917e5e267be373a75cb1ae9fdb29dfb6814bdb95752756aa1b7
+  qa_sha256: 252733b74a65ada452411f31e904ae5623ff491f9d5fe70f1742c0f4f5f86d5c
+  q90_take: design/art/takes/batch-69-emanet-flow/x-emanet-flow-4/plate__x-emanet-flow-4--t1.webp
+  q90_take_sha256: 8f5688eddb7f2cb391938575f4568f80d2f7891fe73a6f9611b433c3d72bd429
+- batch: batch-69-emanet-flow
+  job: x-emanet-flow-4
+  take: 2
+  round: 1
+  logical_run: 20261109-phase1
+  source_file: /workspace/generated_images/exec-7b7c80a0-9120-414e-8cf8-2c0cdbdee0de.png
+  returned_at: '2026-11-09T15:03:28.401Z'
+  prompt_sha256: 4b661b2379defd5dd7d0ae7bcd2bf5fc78b6d8ec0725c51a2f250a8723ed307b
+  transport_prompt_sha256: 3c797a9b6a872d87934ec9fcca847041fa0ab1f3ef412958ec641b32b642df5c
+  fingerprint: 382df88b1d3aa7d1
+  original_generated_png_sha256: 783d1b6a91e8ffc6ba805a5ec07032f781af204599263fee0a16aa99652e73e0
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 15044d1b7304173978c808395fc71db19b6ead3e5822ad67e5d9806a78f31661
+  inbox_png_sha256: 7406462a030af55b3e23e618efa2348e452cf9c258226b8c2acbdb471bb08b1a
+  qa_sha256: 2bb2d27885d40e21977a0487dd5250d2521b40f027d1f0e7ceebb8438ecc2bb0
+  q90_take: design/art/takes/batch-69-emanet-flow/x-emanet-flow-4/plate__x-emanet-flow-4--t2.webp
+  q90_take_sha256: 05ff7d0fce3d12096e565aaf1a64ac596351e214fd66a8e238df563f47ac2e5f
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: exploration warnings are advisory; hard checks unchanged
+  source_preservation: Original generated PNGs retained unchanged in /workspace/generated_images; q90 WebP review
+    copies published
+  plate_style: plate-final; no grade, filter or runtime correction
+reference_packaging:
+  reason: Tool attachment limit is five paths; canonical references 5 and 6 (tea stall and cloud sea) were supplied
+    as a labelled reference contact sheet.
+  tool_attachment_order:
+  - &id001
+    path: design/art/masters/island-main-l-v3/island-main-l-v3.webp
+    sha256: f2e539ed4eb75131b0d90454c1b12dbfd8737935fe95e3564956ea967c5ffa29
+    role: 'The home island: copy ONLY its camera, its size in the frame, its plate proportions (shallow top, rounded
+      banded body) and its soft painting. Do not copy its lawn, colours, round door or pebbles.'
+  - &id002
+    path: design/art/takes/batch-34-islands-in-game/x-emanet-healed/plate__x-emanet-healed--t1.webp
+    sha256: 62fa0060c3024a6e78a55537cbfc22da85bd204775d3f7e17a12d38f37830814
+    role: 'THE ISLAND (EM1, the founder''s pick): copy its round plate with the cream and peach hexagon tiles and
+      the teal tiled rim, its body, and the places of the hook post, the shelves, the hand-cart and the counter.
+      Do not copy its office; do not draw its magpie, hamster or bunny.'
+  - &id003
+    path: design/art/takes/batch-17-islands-v2/x2-emanet-a/plate__x2-emanet-a--t1.webp
+    sha256: 7fd861f815b6b87e82bde3b3aba83e7b03f6ddc12cc66300c542c5929cb0522b
+    role: 'THE OFFICE (EM2''s stilted bureau): copy this building: teal boards, scalloped teal umbrella roof, the
+      teacup water tank, the top-hat chimney, the striped awning over the counter window and the spoon ladder. Do
+      not draw its magpie or its raft.'
+  - &id004
+    path: design/art/takes/batch-17-islands-v2/x2-emanet-b/plate__x2-emanet-b--t1.webp
+    sha256: ba0dfa52d09f738b746863eb8c49883d459ee7b8bbf1176cb9abe1efb7cdc267
+    role: 'ONLY the stacked old suitcases and hat boxes tied with red ribbon, and the little round door in the bottom
+      suitcase: they become the office''s low plinth.'
+  - path: design/art/takes/batch-69-emanet-flow/x-emanet-flow-4/station-cloud-reference-board-5-6.jpg
+    sha256: d4731cf1c282a9683eb7a78b4f9adb2cc3d95dd2856cf16332d7b7050f14725e
+    transport_only_for_references:
+    - 5
+    - 6
+  original_board_durable_path: /workspace/art-operator-runtime/run-20261109-phase1/revontuli-reference-board-5-6.png
+  original_board_sha256: 9bfd5304e85af5db4bdd5307ebc2eadef34710e137d7ecd489c8b467de42d7ee
+  published_board: design/art/takes/batch-69-emanet-flow/x-emanet-flow-4/station-cloud-reference-board-5-6.jpg
+  published_board_sha256: d4731cf1c282a9683eb7a78b4f9adb2cc3d95dd2856cf16332d7b7050f14725e
+  original_references:
+  - *id001
+  - *id002
+  - *id003
+  - *id004
+  - path: design/art/stations/tea-stall-5/tea-stall-5.png
+    sha256: c9a9f018b2dc6bcb1189f497f750dd98e80c69610c10ba3c71081d8b84d157b3
+    role: 'A finished station of the game: every building and prop is at this scale and finish (do not draw this
+      stall).'
+  - path: design/art/masters/cloud-sea/cloud-sea.png
+    sha256: bb693d333d53fd5fc3e385335fc912574ccda580ac018bc12c2143c12031579a
+    role: 'The sea of clouds below every island: paint the clouds like this.'
+  printed_prompt_unchanged: true
+  original_rgba_pixels_preserved: true
+  transport_note: 'Transport only: the fifth tool attachment is a numbered contact sheet representing authored references
+    5 and 6. Canonical prompt text and all original reference files remain unchanged.'
