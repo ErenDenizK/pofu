@@ -60,8 +60,24 @@ SIZE = DEFAULT_SIZE
 SCALE_UP = True
 #: ASTC bytes. Was 8 MB for the original take; the x2 plate alone is 6.3 MB (8.27 MB in all), so 9 MB (PlateMath).
 BUDGET = 9_000_000  # per state (the largest one)
-#: How much of the lawn's colour cast the character tint keeps (the rest is its luminance).
-TINT_CAST = 0.5
+#: How much of the lawn's colour cast the character tint keeps (the rest is its luminance), per
+#: light: by day half (the sprites are painted for the day plate and the lawn's cast is slight);
+#: at golden hour and night all of it (the cast is the light).
+TINT_CAST = {"day": 0.5, "golden": 1.0, "night": 1.0}
+#: The key light on the characters (docs/design/visual-system.md "Characters"), per light: the rim's
+#: strength (the key colour mixed in over the side gradient), the night's ground pool, and, for every
+#: state, the lawn-colour bounce on a sprite's lower third. Overridable in the hand data's
+#: `characterLight`.
+CHARACTER_LIGHT = {"rim": {"day": 0.0, "golden": 0.40, "night": 0.40}, "fill": {"day": 0.0, "golden": 0.20, "night": 0.0},
+                   "pool": {"day": 0.0, "golden": 0.0, "night": 0.35},
+                   "bounce": 0.12}
+#: Night: the characters' tops stay this many L* under the brightest lawn stone around them
+#: (a sprite's brightest fur is `SPRITE_L`; art units of the residents' boxes: `SPRITE_WIDTH`).
+STONE_MARGIN = {"night": 7.0}
+SPRITE_L = 97.0
+SPRITE_WIDTH = {"mochi": 30.4, "findik": 28.666}
+#: A lamp's glow centre sits this many plate pixels above its base on the ground.
+LAMP_HEIGHT = 30.0
 #: Plates ship upscaled by UPSCALE x2 at MIX of the model, the rest Lanczos.
 UPSCALE = 2
 MIX = 0.8
@@ -529,31 +545,108 @@ def lawn_samples(rgb: np.ndarray, walk: np.ndarray, spots, radius: float) -> dic
     return {"ambient": ambient, "contact": np.mean(near, 0), "depth": float(np.mean(depth))}
 
 
-def harmony_state(rgb: np.ndarray, hand: dict, ref: dict | None) -> dict:
-    """The character harmony rule (docs/design/visual-system.md "Characters"): one multiply tint and
-    one contact-shadow opacity per state, read from the plate.
+def key_colour(rgb: np.ndarray, hand: dict, walk: np.ndarray, light: str) -> list[float]:
+    """The key light's colour, read from the plate (sRGB): at night the lamps' glow (the bright
+    half of a disc around each lamp's lantern), otherwise the lit stones (the walkable lawn's top
+    10 % L*)."""
+    lab = srgb_to_lab(np.clip(rgb, 0, 1))[..., 0]
+    h, w = lab.shape
+    lamps = [(x, y - LAMP_HEIGHT) for x, y in pct_to_px(hand.get("lamps", []))]
+    if light == "night" and lamps:
+        yy, xx = np.mgrid[0:h, 0:w]
+        picks = []
+        for x, y in lamps:
+            disc = (xx - x) ** 2 + (yy - y) ** 2 <= 12 ** 2
+            picks.append(rgb[disc & (lab >= np.percentile(lab[disc], 60))].mean(0))
+        c = np.mean(picks, 0)
+    else:
+        c = rgb[walk & (lab >= np.percentile(lab[walk], 90))].mean(0)
+    return [round(float(v), 3) for v in c]
+
+
+def stone_levels(rgb: np.ndarray, hand: dict, walk: np.ndarray) -> dict:
+    """Per character, the brightest lawn stone around it: the walkable lawn's L* p95 in a ring 0.8 to
+    2.4 character widths out, outside every character's disc (`tools/plate/harmony_check.py`
+    measures the same ring in the app frame)."""
+    h, w = walk.shape
+    L = srgb_to_lab(np.clip(rgb, 0, 1))[..., 0]
+    yy, xx = np.mgrid[0:h, 0:w]
+    pw = hand["pofuWidth"] * SIZE[0] / 100
+    boosts = hand.get("residentBoosts", {})
+    spots = {k: pct_to_px([v])[0] for k, v in hand["characters"].items()}
+    widths = {k: pw if k == "pofu" else SPRITE_WIDTH[k] * pw / 64 * boosts.get(k, hand.get("residentBoost", 1.0)) for k in spots}
+    near = np.zeros((h, w), bool)
+    for k, (x, y) in spots.items():
+        near |= (xx - x) ** 2 + (yy - y) ** 2 <= (0.8 * widths[k]) ** 2
+    out = {}
+    for k, (x, y) in spots.items():
+        d2 = (xx - x) ** 2 + (yy - y) ** 2
+        ring = walk & ~near & (d2 >= (0.8 * widths[k]) ** 2) & (d2 <= (2.4 * widths[k]) ** 2)
+        out[k] = float(np.percentile(L[ring], 95))
+    return out
+
+
+def lstar_to_srgb(lstar: float) -> float:
+    """The grey sRGB value whose lightness is `lstar`."""
+    f = (lstar + 16) / 116
+    y = f ** 3 if f ** 3 > 0.008856 else (f - 16 / 116) / 7.787
+    return float(linear_to_srgb(np.array(y)))
+
+
+def harmony_state(rgb: np.ndarray, hand: dict, ref: dict | None, light: str = "day") -> dict:
+    """The character harmony rule (docs/design/visual-system.md "Characters"): per state one
+    ambient multiply tint, one contact-shadow strength and the key light, read from the plate.
 
       A     the plate's lawn light: the geometric mean of the walkable lawn's mid-tone and the
             mid-tone around the three contact points (linear RGB)
       tint  A of the state over A of the level-10 day plate, per channel, at most 1 (a multiply
-            only darkens: the day sprites are painted for the day plate), its colour cast halved
-            (`TINT_CAST`: lightness follows the lawn in full), as sRGB
+            only darkens: the day sprites are painted for the day plate), with `TINT_CAST[light]`
+            of its colour cast (day half, golden hour and night all of it); at night never lighter
+            than `STONE_MARGIN` L* under the brightest lawn stone around any character (a sprite's
+            top is `SPRITE_L` L*; the margin leaves room for the key light's lift), and each
+            character's own `scale` of it where its stones are darker
       contact  the lawn's shadow depth around the contact points over the day's, 0.5...1.2
+      key   the key light's colour (`key_colour`), `rim` its strength on the lit side, `pool` the
+            night lamp pool's strength, `bounce` the lawn-colour bounce on the lower third
     """
     walk = poly_mask(rgb.shape[:2], pct_to_px(hand["walkable"]))
     spots = list(pct_to_px_pts(hand))
     s = lawn_samples(rgb, walk, spots, hand["pofuWidth"] * SIZE[0] / 100 * 0.9)
     a = np.sqrt(s["ambient"] * s["contact"])
+    cl = {**CHARACTER_LIGHT, **hand.get("characterLight", {})}
     if ref is None:
-        return {"tint": [1.0, 1.0, 1.0], "contact": 1.0, "_a": a, "_depth": s["depth"]}
+        return {"tint": [1.0, 1.0, 1.0], "contact": 1.0, "bounce": cl["bounce"], "_a": a, "_depth": s["depth"]}
+    y = np.array([0.2126, 0.7152, 0.0722])
     ratio = np.clip(a / np.maximum(ref["_a"], 1e-4), 0.25, 1.0)
-    # The lawn's light sets the character's lightness in full and its colour cast by half: a night
-    # lawn is nearly grey, and a full cast made a white character louder than it (dC* +9.7 on Mochi).
-    luma = float(ratio @ np.array([0.2126, 0.7152, 0.0722]))
-    ratio = luma + (ratio - luma) * TINT_CAST
+    luma = float(ratio @ y)
+    cast = TINT_CAST.get(light, 0.5)
+    # The lawn's light sets the lightness in full and the colour cast by TINT_CAST.
+    ratio = np.clip(luma + (ratio - luma) * cast, 0.25, 1.0)
+    tint = linear_to_srgb(ratio)
+    scales: dict[str, float] = {}
+    if light in STONE_MARGIN:
+        # The brightest stone around each character caps its own top; the shared tint is capped by
+        # the brightest of them and each darker neighbourhood scales its character down from it.
+        stones = stone_levels(rgb, hand, walk)
+        def cap(stone: float) -> float:
+            return lstar_to_srgb(stone - STONE_MARGIN[light]) / (lstar_to_srgb(SPRITE_L) * float(tint.mean()))
+        tint = np.clip(tint * min(1.0, max(cap(v) for v in stones.values())), 0.25, 1.0)
+        top = max(cap(v) for v in stones.values())
+        scales = {k: round(min(1.0, cap(v) / top), 3) for k, v in stones.items()}
     contact = float(np.clip(s["depth"] / max(ref["_depth"], 1e-4), 0.5, 1.2))
-    return {"tint": [round(float(v), 4) for v in linear_to_srgb(ratio)], "contact": round(contact, 3),
-            "_a": a, "_depth": s["depth"]}
+    out = {"tint": [round(float(v), 4) for v in tint], "contact": round(contact, 3), "_a": a, "_depth": s["depth"]}
+    rim = cl["rim"].get(light, 0.0)
+    if rim > 0:
+        out["key"] = key_colour(rgb, hand, walk, light)
+        out["rim"] = rim
+        out["fill"] = cl["fill"].get(light, 0.0)
+    pool = cl["pool"].get(light, 0.0)
+    if pool > 0 and hand.get("lamps"):
+        out["pool"] = pool
+    out["bounce"] = cl["bounce"]
+    if scales:
+        out["scale"] = scales
+    return out
 
 
 def pct_to_px_pts(hand: dict):
@@ -565,10 +658,10 @@ def harmony_all(hand: dict, mattes: dict) -> dict:
     """`{light: [{tint, contact}, ...]}` per painted state, against the first plate's lawn."""
     out, ref = {}, None
     for light, stage, path in plates(hand):
-        h = harmony_state(load_rgb(path), hand, ref)
+        h = harmony_state(load_rgb(path), hand, ref, light)
         if ref is None:
             ref = h
-        out.setdefault(light, []).append({"tint": h["tint"], "contact": h["contact"]})
+        out.setdefault(light, []).append({k: v for k, v in h.items() if not k.startswith("_")})
     return out
 
 
@@ -634,6 +727,9 @@ def build_json(island: str, hand: dict, mattes: dict, maps: dict, harmony: dict 
         "pofuWidth": round(hand["pofuWidth"] * SIZE[0] / 100, 1),
         "framing": hand["framing"],
         "residentBoost": hand.get("residentBoost", 1.0),
+        "residentBoosts": hand.get("residentBoosts", {}),
+        "lamps": pct_to_px(hand.get("lamps", [])),
+        "lampHeight": LAMP_HEIGHT,
         "lightDirection": hand.get("lightDirection", [0.5, 0.3]),
         "lightMap": {l: [maps[(l, s)][0] for s in range(len(hand["plates"][l]))] for l in lights},
         "shadowMap": {l: [maps[(l, s)][1] for s in range(len(hand["plates"][l]))] for l in lights},

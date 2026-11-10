@@ -165,8 +165,9 @@ struct HomePlateTests {
         let right = pose.project(WorldPoint(x: box.maxX, y: box.minY), width: CameraRail.referenceWidth)
         #expect(abs((right.x - left.x) - home.plate.framing.homeWidths * CameraRail.referenceWidth) < 1e-6)
         #expect(abs(left.y - home.plate.framing.homeTopY) < 1e-6)
-        // The island's centre sits in the middle of the screen.
-        #expect(abs((left.x + right.x) / 2 - CameraRail.referenceWidth / 2) < 1)
+        // The screen's centre sits at `homeCenterX` of the island's width.
+        let centre = left.x + (right.x - left.x) * home.plate.framing.homeCenterX
+        #expect(abs(centre - CameraRail.referenceWidth / 2) < 1)
     }
 
     @Test func theIslandStopAndTheWholeShotShowTheWholeIsland() throws {
@@ -195,13 +196,17 @@ struct HomePlateTests {
 
     @Test func charactersAreSmallOnThePlate() throws {
         let home = try plate
-        // Pofu is 33 points tall at the Home framing (about 1.5 windmill doors), the residents in
-        // proportion (docs/design/visual-system.md, Composition).
+        // Pofu keeps his share of the painted world (33 points at a 1.0 framing, 1.15 times that at
+        // 1.15: about 38), the residents in proportion (docs/design/visual-system.md, Composition).
         let pofu = 64 * home.characterScale * IslandFraming.homeScale
-        #expect(abs(pofu - 33) < 0.5)
-        let mochi = 30.4 * home.residentScale * IslandFraming.homeScale
+        #expect(abs(pofu - 33 * home.plate.framing.homeWidths) < 0.5)
+        let mochi = 30.4 * home.residentScale(.mochi) * IslandFraming.homeScale
         #expect(mochi > 17)
         #expect(abs(home.residentScale / home.characterScale - home.plate.residentBoost) < 1e-9)
+        // Mochi and Findik are at least 60 % of Pofu's painted height (his art is 64 x 60.8 units).
+        let pofuHeight = 60.8 * home.characterScale
+        #expect(23.3 * home.residentScale(.mochi) >= 0.6 * pofuHeight)
+        #expect(26.8 * home.residentScale(.findik) >= 0.6 * pofuHeight)
     }
 
     @Test func choosesItsPaintedStateByLevelHourAndWeather() throws {
@@ -295,6 +300,31 @@ struct HomePlateTests {
         let nightPlate = HomePlate(plate: plate, light: "night", stage: 0)
         let paint = nightPlate.paint(at: IslandLayout.pofu)
         #expect(paint.red < 1)
+    }
+
+    @Test func goldenAndNightGiveTheCharactersAKeyLight() throws {
+        let plate = try self.plate.plate
+        let day = HomePlate(plate: plate, light: "day", stage: 0)
+        let golden = HomePlate(plate: plate, light: "golden", stage: 0)
+        let night = HomePlate(plate: plate, light: "night", stage: 0)
+        let size = (width: 64 * golden.characterScale, height: 60.8 * golden.characterScale)
+        let dayLight = day.characterLight(at: IslandLayout.pofu, width: size.width, height: size.height, id: "pofu")
+        let goldenLight = golden.characterLight(at: IslandLayout.pofu, width: size.width, height: size.height, id: "pofu")
+        let nightLight = night.characterLight(at: IslandLayout.pofu, width: size.width, height: size.height, id: "pofu")
+        #expect(dayLight.rim == 0 && dayLight.pool == 0)
+        // Golden hour: the sun's rim from the upper left, no lamp pool.
+        #expect(goldenLight.rim > 0 && goldenLight.pool == 0)
+        #expect(goldenLight.toward.x < 0 && goldenLight.toward.y < 0)
+        // Night: Pofu stands by a lamp, whose pool and rim light him; far from every lamp they fade.
+        #expect(nightLight.pool > 0 && nightLight.rim > 0)
+        let far = night.characterLight(at: WorldPoint(x: IslandLayout.pofu.x + 4000, y: IslandLayout.pofu.y), width: size.width, height: size.height, id: "pofu")
+        #expect(far.pool == 0 && far.rim < nightLight.rim)
+        for l in [dayLight, goldenLight, nightLight] {
+            // The core is the lawn's shadow, deeper, in the same hue: never lighter than the pad.
+            #expect(l.core.green <= l.pad.green && l.core.red <= l.pad.red && l.core.blue <= l.pad.blue)
+            #expect(abs(hypot(l.toward.x, l.toward.y) - 1) < 1e-9)
+            #expect(l.bounceAmount > 0 && l.bounceAmount <= 0.15)
+        }
     }
 
     @Test func tapsLandOnTheirStations() throws {

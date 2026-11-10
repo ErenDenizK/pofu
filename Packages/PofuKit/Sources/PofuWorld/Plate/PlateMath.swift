@@ -94,10 +94,12 @@ public enum PlateMath {
 
     /// The contact pad's multiply colour: the plate's own shadow tone over
     /// its lit tone, per channel in linear light, clamped 0.15...1 and
-    /// returned in sRGB (as `pilot.contact_pad`).
-    public static func contactRatio(lit: PofuRGB, shadow: PofuRGB) -> PofuRGB {
+    /// returned in sRGB (as `pilot.contact_pad`). `depth` scales the shadow's linear light first:
+    /// 1 is the lawn's own shadow, less is a deeper one in the same hue (the occlusion core under
+    /// a character).
+    public static func contactRatio(lit: PofuRGB, shadow: PofuRGB, depth: Double = 1) -> PofuRGB {
         func ratio(_ s: Double, _ l: Double) -> Double {
-            let r = min(max(linear(s) / max(linear(l), 1e-4), 0.15), 1)
+            let r = min(max(linear(s) * depth / max(linear(l), 1e-4), 0.15), 1)
             if r >= 1 { return 1 }
             return r <= 0.0031308 ? r * 12.92 : 1.055 * pow(r, 1 / 2.4) - 0.055
         }

@@ -1048,7 +1048,7 @@ private struct WorldCanvas: View {
             guard let station = world.stations.first(where: { $0.id == resident.station }), station.level > 0,
                   let feet = plate.residentFeet(resident.id) else { continue }
             objects.append(Object(id: "resident-\(resident.id)", kind: .resident(resident), anchor: feet, depth: IslandLayout.depth(ofY: feet.y)))
-            let box = plate.residentBox(art: WorldArt.sprite(resident.art)?.sharp ?? IslandLayout.residentHitBox, at: feet)
+            let box = plate.residentBox(art: WorldArt.sprite(resident.art)?.sharp ?? IslandLayout.residentHitBox, at: feet, id: resident.id)
             for object in plate.occluders(over: feet, box: box) {
                 behind[object.id] = object
             }
@@ -1105,16 +1105,19 @@ private struct WorldCanvas: View {
                 PlateCharacter(
                     art: resident.art(for: pose),
                     point: point,
-                    scale: plate.residentScale,
-                    lift: lift * plate.residentScale,
-                    paint: plate.paint(at: object.anchor),
-                    contact: plate.contactTone(at: object.anchor),
-                    contactOpacity: plate.harmony.contact,
+                    scale: plate.residentScale(resident.id),
+                    lift: lift * plate.residentScale(resident.id),
+                    light: plate.characterLight(
+                        at: object.anchor,
+                        width: (WorldArt.sprite(resident.art)?.sharp?.width ?? 30) * plate.residentScale(resident.id),
+                        height: (WorldArt.sprite(resident.art)?.sharp?.height ?? 24) * plate.residentScale(resident.id),
+                        id: resident.id.rawValue
+                    ),
                     pulse: model.pulses["resident-\(resident.id.rawValue)", default: 0]
                 )
                 .overlay {
                     hitArea(
-                        box: plate.residentBox(art: WorldArt.sprite(resident.art)?.sharp ?? IslandLayout.residentHitBox, at: .zero),
+                        box: plate.residentBox(art: WorldArt.sprite(resident.art)?.sharp ?? IslandLayout.residentHitBox, at: .zero, id: resident.id),
                         at: point,
                         label: "\(WorldStrings.residentName(resident.id)), \(WorldStrings.stationName(resident.station))",
                         value: "",
@@ -1599,16 +1602,21 @@ private struct PofuLayer<Bubble: View>: View {
         let bubbleOpacity = model.focus == nil && plate == nil ? min(max((z - 1.6) / 0.3, 0), 1) : 0
         // On the plate he is drawn at its scale, in its light.
         let drawn = s * (plate?.characterScale ?? 1)
-        let paint = plate.map { p -> Color in
-            let c = p.paint(at: IslandLayout.pofu)
-            return Color(red: c.red, green: c.green, blue: c.blue)
-        } ?? grade
+        let rigArt = CompanionArt.placeholder
+        let pofuLight = plate.map { p -> HomePlate.CharacterLight in
+            let aspect = (rigArt?.rig ?? CompanionRig.hamster).aspectRatio
+            return p.characterLight(at: IslandLayout.pofu, width: Self.artWidth * p.characterScale, height: Self.artWidth * p.characterScale / aspect, id: "pofu")
+        }
+        let paint = pofuLight.map { Color(red: $0.paint.red, green: $0.paint.green, blue: $0.paint.blue) } ?? grade
         let light = plate == nil ? characterGrade : .neutral
 
         ZStack(alignment: .topLeading) {
             if part == .body, painted > 0.01 {
-                if let plate {
-                    ContactPad(width: Self.artWidth * drawn, tone: plate.contactTone(at: IslandLayout.pofu), opacity: plate.harmony.contact)
+                if plate != nil, let pofuLight {
+                    LampPool(width: Self.artWidth * drawn, light: pofuLight)
+                        .position(x: feet.x, y: feet.y - CGFloat(drawn))
+                        .opacity(painted)
+                    ContactPad(width: Self.artWidth * drawn, light: pofuLight)
                         .position(x: feet.x, y: feet.y - CGFloat(drawn))
                         .opacity(painted)
                 }
@@ -1620,6 +1628,13 @@ private struct PofuLayer<Bubble: View>: View {
                     companion(feet: feet, scale: drawn)
                         .colorMultiply(paint)
                         .opacity(weights.sharp * painted)
+                    if let pofuLight, let base = rigArt?.base {
+                        let rig = rigArt?.rig ?? CompanionRig.hamster
+                        let w = Self.artWidth * drawn, h = w / rig.aspectRatio
+                        CharacterLightLayers(image: Image(decorative: base, scale: 1), size: CGSize(width: w, height: h), light: pofuLight)
+                            .position(x: feet.x - CGFloat(w * rig.ground.x) + CGFloat(w / 2), y: feet.y - CGFloat(h * rig.ground.y) + CGFloat(h / 2))
+                            .opacity(weights.sharp * painted)
+                    }
                 }
             }
             if part == .overlay, painted < 0.99 {

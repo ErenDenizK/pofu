@@ -52,24 +52,61 @@ ADR-0023 in practice:
 ## Characters
 
 Pofu, Mochi and Findik are sprites painted for the level-10 day plate. In every
-other state they get two numbers from the plate, no more, stored per state in
+other state the runtime puts them in the plate's light with three terms and a
+two-layer contact shadow, from numbers stored per state in
 `Plates/plate-home.json` (`harmony`, written by `tools/plate/ingest.py`) and
-applied in Swift (`HomePlate.harmony`, `PlateCharacter`, `ContactPad`):
+applied in Swift (`HomePlate.characterLight`, `PlateCharacter`,
+`CharacterLightLayers`, `LampPool`, `ContactPad`). The plate is never graded
+(ADR-0023): the characters go to the plate, never the plate to them.
 
-- **tint**: one multiply colour. A is the plate's lawn light: the geometric
-  mean of the walkable lawn's mid-tone (25th to 75th L* percentile) and the
-  mid-tone within 0.9 Pofu widths of the three contact points, in linear RGB.
-  tint = A(state) / A(level-10 day) per channel, at most 1 (a multiply only
-  darkens), at least 0.25, with half of its colour cast kept (its luminance
-  follows the lawn in full; a night lawn is nearly grey and a full cast made
-  white characters louder than it). A lee on the lawn still darkens a character further
-  (`PlateMath.characterGain`).
-- **contact**: the contact shadow's opacity factor. The lawn's own shadow depth
-  (L* p90 minus p10) around the contact points over the level-10 day's,
-  0.5 to 1.2; it scales the pad's two ellipses.
+- **ambient** (a multiply). A is the plate's lawn light: the geometric mean of
+  the walkable lawn's mid-tone (25th to 75th L* percentile) and the mid-tone
+  within 0.9 Pofu widths of the three contact points, in linear RGB. tint =
+  A(state) / A(level-10 day) per channel, at most 1, at least 0.25. By day half
+  of its colour cast is kept (the day plates differ little); at golden hour and
+  at night **all of it** (the cast is the light; no half-cast rule). At night
+  the tint is also capped so that a sprite's top (L* 97) sits `STONE_MARGIN`
+  (7) L* under the brightest lawn stone around any character (the margin is the
+  rim's and the pool's lift), and each character takes its own `scale` of it
+  where its stones are darker. A lee on the lawn still darkens (`characterGain`).
+- **key light** (golden hour and night). The key colour is read from the plate
+  (golden: the lit stones, the walkable lawn's top 10 % L*; night: the lamps'
+  glow). It is mixed over the sprite's own silhouette (normal blending, never
+  past the colour) through a gradient across the sprite from the lit side:
+  `rim` at the lit edge (golden 0.40, night 0.40), 0.5 of it at 40 % across,
+  `fill` on the far side (golden 0.20, night 0). The sun lights from the plate's
+  `lightDirection` (upper left); at night the nearest painted lamp does
+  (`lamps` in `design/art/plates/home/objects.json`, the glow `lampHeight`
+  above its ground point), and the rim fades to 40 % when a character is two
+  widths or more from every lamp.
+- **lamp pool** (night). A warm ellipse (1.9 x 0.68 of the sprite's width), the
+  key colour screened over the grass at `pool` 0.35, under a character standing
+  near a lamp; it fades to nothing at two widths from the lamp, and never
+  touches the plate beyond the character.
+- **bounce**. Every state: the lawn's own lit colour (the light map at the
+  feet) mixed into each sprite's lower third at `bounce` 0.12.
+- **contact** (two layers, each a multiply in the lawn's shadow hue, never grey):
+  a soft pad (1.15 x 0.28 of the width, the lawn's shadow over its lit tone at
+  0.55) and, right under the body, a tight occlusion core (0.6 x 0.11, the same
+  shadow at 0.55 of its linear light, 0.9). Both scale with the state's
+  `contact`: the lawn's shadow depth (L* p90 minus p10) around the contact
+  points over the level-10 day's, 0.5 to 1.2.
+
+Scale: Pofu keeps his size relative to the painted world (8.14 % of the plate width; 33 pt at the old 1.0 framing, about 38 pt at 1.15). Mochi and Findik are drawn at least 60 % of his
+painted height (`residentBoosts`: Mochi 1.62, Findik 1.40 of his proportion;
+62 % and 52 % +, measured on the sprites' boxes, 23.3 and 26.8 units against
+his 60.8). Sharpness: measured at full resolution (Laplacian energy of the
+body, registered against an ideal Lanczos downscale of the asset): Mochi and
+Findik render 1.35 to 1.5 times *crisper* than ideal (aliasing from a 3x
+minification, not softness), Pofu about 0.6 px softer (his rig is resampled by
+the deform shader on top of the 5.3x minification of a 522 px portrait); the
+companion art is shared by the whole app, so no density change was made for
+Pofu here. Home framing: the island is 1.15 screens wide (`homeWidths`), its
+mass centred at 54 % of the screen height (`homeTopY` 292) and the screen at
+47 % of its width (`homeCenterX`); Pofu grows with the zoom.
 
 Measured, not judged: `python3 -I tools/plate/harmony_check.py
-home-plate-full-<state>.png` takes a full-resolution app frame, finds each
+home-plate-full-<state>.png ...` takes full-resolution app frames, finds each
 body from the app's own geometry (the island is `homeWidths` screen widths
 wide, Pofu's art is `pofuWidth` plate pixels wide, the body is the rig's body
 ellipse shrunk to 0.75; Mochi and Findik by their sprite boxes), and compares
@@ -77,13 +114,20 @@ its mean L* and C* with the surrounding lawn (walkable lawn in a ring 0.8 to
 2.4 character widths out, 25th to 75th percentile mean). With dL* and dC* =
 character minus lawn:
 
-- dL* within 10 of the level-10 day frame's (Pofu +6.6, Mochi +12.4, Findik
-  +1.7 in the CI frame): as much lighter than the lawn as by day. Calibration:
-  across the day plates (levels 10, 5, 2) dL* moves 5.1 (Pofu), 8.2 (Mochi)
-  and 3.7 (Findik);
-- dC* at most +6 (never louder than the lawn: the night lawn is nearly grey)
-  and at least the day's minus 12. Calibration: across the day plates dC*
-  moves 11.2 (Pofu: -37.5, -39.3, -28.1), 10.0 (Mochi) and 9.6 (Findik).
+- dL* within 10 of the level-10 day frame's (`REF` in the tool): as much
+  lighter than the lawn as by day. Calibration: across the day plates (levels
+  10, 5, 2) dL* moves 5.1 (Pofu), 8.2 (Mochi) and 3.7 (Findik);
+- dC* at most +8 (never louder than the lawn, give or take the full cast of
+  night's light on a nearly grey lawn) and at least the day's minus 12.
+  Calibration: across the day plates dC* moves 11.2 (Pofu), 10.0 (Mochi) and
+  9.6 (Findik);
+- **night: no sticker.** Each character's L* 95th percentile is at or below
+  the L* 95th percentile of the lawn ring around it (the brightest lawn stone),
+  so by night the three are never the brightest things on the lawn;
+- **golden hour: the fur follows the light.** The CIELAB hue angle of Pofu's
+  mean fur colour moves from the level-10 day frame's at least half as far, in
+  the same direction, as the lawn ring's does (a lawn that moves under 2 degrees
+  asks nothing).
 
 Any new plate state runs the check on its CI frame before the founder sees it.
 
@@ -106,7 +150,7 @@ Any new plate state runs the check on its CI frame before the founder sees it.
   sky or cloud sea is needed.
 - The UI lives in the bottom band and one top-right button.
 - Nothing covers the island.
-- Characters: Pofu 33 pt at the home framing; Mochi and Fındık in proportion.
+- Characters: Pofu about 38 pt at the home framing (his share of the painted world is fixed); Mochi and Fındık in proportion.
 
 ## Checks before the founder sees anything
 
