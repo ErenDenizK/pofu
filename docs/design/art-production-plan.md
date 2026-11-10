@@ -10,9 +10,10 @@ Codex reads it at the start of every task.
 1. **The line never ends** (founder, 2026-11-05: "Codex sits idle. From now
    on it must never stop"). Codex works the `READY` rows in order; when none
    is left it takes the `BACKLOG` rows ([the backlog](#the-backlog)) in
-   order; when the backlog is exhausted it starts again from its first row
-   with fresh variations (new takes under new exploration ids `-v2`, `-v3`,
-   ...; never the same prompt twice). When it opens a batch PR it starts the
+   order; when none is left it paints the plate-era standing work this page's
+   header names (the lead keeps it filled), never variations for their own
+   sake. Collage-era rows (separately painted sprites or props placed on an
+   island) are skipped. When it opens a batch PR it starts the
    next batch at once on its own branch, never waiting for a review or a
    merge. There is no "queue empty" state and no stop after a batch.
 2. **Iterate, then scale** (founder, 2026-11-02). Lock the method on a small
@@ -435,8 +436,8 @@ Start at the top of the queue; a row names its --only jobs when it is a re-run.
 For every promoted master run `python3 -I tools/assets/harmony.py measure` and commit
 the manifest in the same PR, or CI fails.
 When you open a batch's PR, start the next batch at once on a new branch. When no READY
-batch is left, take the BACKLOG rows in order; when the backlog is done, start again from
-its first row with fresh variations (-v2, -v3, ...). A failed or refused job is skipped
+batch is left, take the BACKLOG rows in order; when none is left, paint the standing
+plate-era work the plan's header names. Skip collage-era rows. A failed or refused job is skipped
 and recorded, never retried or rephrased; go on with the next job.
 Skip BLOCKED batches, never promote an EXPLORATION batch, never merge.
 Every failure has a fallback in AGENTS.md (Failures); the line never stops.

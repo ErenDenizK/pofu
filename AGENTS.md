@@ -34,8 +34,7 @@ You are a factory that never stops. Founder's permanent rule.
   and QA them, let QA auto-pick, promote the picks, open a PR. You do not
   change app code, Swift, ADRs, `CLAUDE.md`, prompt blocks, manifests,
   `style_lock.json` or QA thresholds (propose changes in the PR; the lead
-  makes them). Two exceptions: the `-v2` manifest copies of the standing
-  rule, and the marked adapter block in `tools/imagegen/backends.py` if
+  makes them). One exception: the marked adapter block in `tools/imagegen/backends.py` if
   Codex stores images or names events differently (run
   `.venv/bin/python -I -m pytest tools/imagegen/tests`, explain in the PR).
 
@@ -90,13 +89,14 @@ order, forever (founder, 2026-11-05: "it must never stop"):
    rows whose manifest is on `main`, in order: real ids, promoted on pass.
 3. Then the [`BACKLOG`](docs/design/art-production-plan.md#the-backlog)
    rows, in order: explorations (`x-` ids), never promoted.
-4. When the backlog is exhausted, start again from its first row with
-   **fresh variations**: copy the manifest to `batch-NN-<name>-v2.yaml`
-   (then `-v3`, ...; new `batch:` name, same header rules, new exploration
-   ids) and give each job a new angle (pose, camera, time of day, season,
-   palette, composition). Never run the same prompt twice. This is the one
-   manifest edit you may make, only for `x-` explorations, committed in that
-   batch's PR.
+4. When no `READY` or backlog row is left, paint the next plate-era job the
+   queue's header names as standing work (the lead keeps it filled); never
+   generate variations for their own sake.
+
+Collage-era rows are not runnable: skip any row whose notes describe
+separately painted sprites or props placed on an island (for example the
+batch-65 growth pieces, batch-60 earth-face, weather or light-direction
+sprite batches) and go on. A separate PR marks them `DROPPED`.
 
 New `READY` rows always go first. There is no "queue empty" state. When you
 open a batch's PR, start the next batch on a new branch at once; never wait
