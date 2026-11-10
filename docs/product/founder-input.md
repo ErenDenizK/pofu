@@ -615,3 +615,9 @@ Result (same day, #338): the real app now draws Home (Tam Çiçek, 09:00–17:00
 
 1. Could a multi-agent orchestration with sub-agents returning summaries make the work faster, better and less prone to losing context, without much extra budget? Handled: the lead answered with a concrete setup (lean lead context, Sonnet builders, Haiku checkers, repeatable workflow scripts for Codex delivery review and plate ingest, state kept in the repo); workflows run only after the founder opts in.
 2. Should auto-compact be fixed at 60–70% instead of near-full? Handled: answered (about 70% through the documented auto-compact window setting, plus handoff notes in the repo so a compaction loses little).
+
+## 2026-11-10 (evening): upscale pick, a side idea, environment variables
+
+1. He cannot see a difference between b and c, both are clearly sharper than a; c if the lead thinks it is better. Handled: c ships as the standard plate upscale (this PR); Pofu reduced to 33 pt.
+2. A personal side-project idea shared as a friend, explicitly not part of Pofu. Handled: answered in chat; not recorded here by his wish.
+3. He cannot reach the environment variables from mobile. Handled: the auto-compact setting is done from claude.ai in a desktop browser; the lead compacts by hand with a focus at chapter ends meanwhile.
