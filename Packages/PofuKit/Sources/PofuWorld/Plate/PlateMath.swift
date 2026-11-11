@@ -116,4 +116,10 @@ public enum PlateMath {
     public static func budgetOK(_ island: PlateIsland) -> Bool {
         island.textureBytes <= 9_000_000
     }
+
+    /// A sky-set state's textures (the set, the island cut for the Map, the occluders) fit the same
+    /// budget: while a sky set draws, the plate and its backdrop are not loaded.
+    public static func budgetOK(_ sky: SkySet) -> Bool {
+        sky.textureBytes <= 9_000_000
+    }
 }

@@ -18,7 +18,9 @@ import XCTest
 ///   simulator's full device resolution (CI keeps these as PNG, never reduced);
 /// - `home-plate-full-l10-day`, `-l10-golden`, `-l10-night`, `-l5-day`,
 ///   `-l2-day`: the settled Home in each painted state, full resolution
-///   (`tools/plate/harmony_check.py` measures them).
+///   (`tools/plate/harmony_check.py` measures them). The level-10 frames draw
+///   their sky set at time zero (`worldStillFrame`; `tools/plate/screen_check.py
+///   ci` checks them against the plate-only frames).
 final class HomePlateScreenshotTests: XCTestCase {
     @MainActor
     func testRenderTheHomePlate() async throws {
@@ -87,6 +89,9 @@ final class HomePlateScreenshotTests: XCTestCase {
             window.makeKeyAndVisible()
             try await Task.sleep(for: .milliseconds(1200))
             XCTAssertEqual(island.homePlate?.light, state?.light ?? "day", "the plate shows its \(state?.name ?? "l10-day") state")
+            // Level 10's day, golden hour and night draw a sky set (ADR-0025), frozen at time zero by
+            // `worldStillFrame`, so the frame is the painting and every run draws the same one.
+            XCTAssertEqual(island.homePlate?.skySet != nil, (state?.name ?? "l10-day").hasPrefix("l10"), "the sky set follows the state")
             if shot == "whole" {
                 island.holdEstablishingShot()
             }
