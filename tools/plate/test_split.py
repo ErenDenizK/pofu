@@ -132,5 +132,44 @@ class SplitTests(unittest.TestCase):
         self.assertLess(float(np.abs(left - right).mean()), 0.25)
 
 
+class BridgeAndGamutTests(unittest.TestCase):
+    def test_a_bridge_adds_columns_and_leaves_the_painting_alone(self):
+        p, _ = synthetic()
+        a = np.clip((p.mean(-1) - 0.6) * 3, 0, 1).astype(np.float32)       # some cloud-like alpha
+        a[:40] = 0
+        out_rgb, out_a = split.bridge_wrap(p, a, 48, seed=0)
+        self.assertEqual(out_a.shape, (H, W + 48))
+        np.testing.assert_array_equal(out_a[:, :W], a)
+        np.testing.assert_allclose(out_rgb[:, :W][a > 0.01], p[a > 0.01], atol=1e-6)
+        # run through the bridge from the right edge into the left one: no wider a step than the layer's own
+        join = np.abs(out_a[:, -1] - out_a[:, 0]).mean()
+        typical = np.abs(np.diff(out_a, axis=1)).mean()
+        self.assertLess(join, 6 * typical + 0.02)
+        again = split.bridge_wrap(p, a, 48, seed=0)
+        np.testing.assert_array_equal(out_a, again[1])
+
+    def test_an_empty_layer_bridges_to_an_empty_layer(self):
+        rgb = np.full((20, 30, 3), 0.5, np.float32)
+        _, a = split.bridge_wrap(rgb, np.zeros((20, 30), np.float32), 8)
+        self.assertEqual(a.shape, (20, 38))
+        self.assertEqual(float(a.max()), 0.0)
+
+    def test_the_needed_alpha_is_what_makes_the_painting_without_clipping(self):
+        rng = np.random.default_rng(4)
+        bg = rng.random((30, 30, 3)).astype(np.float32)
+        p = rng.random((30, 30, 3)).astype(np.float32)
+        a = split.needed_alpha(p, bg)
+        # with that alpha the layer colour is inside the gamut, and over bg it makes p again
+        f = split.unmix(p, bg, np.maximum(a, 0.02))
+        solid = a > 0.02
+        recomposed = f * a[..., None] + bg * (1 - a[..., None])
+        np.testing.assert_allclose(recomposed[solid], p[solid], atol=2e-3)
+        # and with less than that, the clip shows
+        weak = np.where(solid, a * 0.6, a)
+        f2 = split.unmix(p, bg, np.maximum(weak, 0.01))
+        again = f2 * weak[..., None] + bg * (1 - weak[..., None])
+        self.assertGreater(float(np.abs(again - p)[solid].max()), 0.02)
+
+
 if __name__ == "__main__":
     unittest.main()

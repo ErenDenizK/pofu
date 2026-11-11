@@ -259,6 +259,133 @@ def _details(light: str):
             yield layer, d
 
 
+class CaglayanSkyTests(unittest.TestCase):
+    """Çağlayan's day: five story stages over one portrait sky, the landscape plates placed on it by `plateFrame`."""
+    DATA = json.loads((ex.JSON_DIR / "skyset-caglayan.json").read_text())
+    HAND = json.loads((ex.PLATES / "caglayan" / "sky" / "sky.json").read_text())
+    STAGES = range(5)
+
+    def state(self, n):
+        return self.DATA["lights"][f"day-{n}"]
+
+    def test_every_stage_has_a_state_that_differs_only_in_its_island_layer(self):
+        base = self.state(4)["layers"]
+        assets = set()
+        for n in self.STAGES:
+            layers = self.state(n)["layers"]
+            self.assertEqual(layers[0]["role"], "sky")
+            self.assertEqual(layers[-1]["role"], "island")
+            self.assertEqual([l["asset"] for l in layers[:-1]], [l["asset"] for l in base[:-1]])
+            assets.add(layers[-1]["asset"])
+            src = ex.PLATES / "caglayan" / "sky" / "day" / ("island.heic" if n == 4 else f"island-s{n}.heic")
+            dst = ex.ASSETS / f"{layers[-1]['asset']}.imageset" / f"{layers[-1]['asset']}.heic"
+            self.assertEqual(src.read_bytes(), dst.read_bytes(), f"stage {n}'s island is its plate's, copied untouched")
+            self.assertFalse({"drift", "bob", "twinkle"} & set(layers[-1]), "the island never moves")
+        self.assertEqual(len(assets), 5)
+
+    def test_the_budget_holds_in_every_stage(self):
+        for n in self.STAGES:
+            spec = self.state(n)
+            self.assertEqual(ex.state_bytes("caglayan", "day", spec["pixels"] + spec.get("detailPixels", 0), n), spec["textureBytes"])
+            self.assertLessEqual(spec["textureBytes"], ex.BUDGET, f"stage {n}")
+
+    def test_the_plates_place_on_the_master_is_the_one_in_the_hand_data(self):
+        self.assertEqual(self.DATA["plateFrame"], {"scale": self.HAND["matteFrame"]["scale"], "offset": self.HAND["matteFrame"]["offset"]})
+        objects = json.loads((ex.PLATES / "caglayan" / "objects.json").read_text())["portraitFrame"]
+        # the same frame twice: the portrait master at 1024 x 1536 and the x2 working size
+        self.assertAlmostEqual(self.HAND["matteFrame"]["scale"], objects["scale"] * 2, places=3)
+        self.assertEqual(self.HAND["matteFrame"]["offset"], [objects["offset"][0] * 2, objects["offset"][1] * 2])
+
+    def test_the_motion_is_homes(self):
+        layers = {l["id"]: l for l in self.state(4)["layers"]}
+        home = {l["id"]: l for l in DATA["lights"]["day"]["layers"]}
+        for i in ("far", "mid", "sea"):
+            self.assertEqual((layers[i]["drift"], layers[i]["bob"]), (home[i]["drift"], home[i]["bob"]), i)
+        for i in ("isle_dome", "isle_crystal"):                       # the same isles by name: the same bob
+            self.assertEqual(layers[i]["bob"], home[i]["bob"], i)
+        for l in self.state(4)["layers"]:
+            self.assertEqual(rd.bob_y(l.get("bob"), 0), 0, "time zero is the painting")
+
+    def test_the_drift_tiles_carry_a_bridge_and_wrap_at_their_own_width(self):
+        master_w = self.DATA["master"][0]
+        for l in self.state(4)["layers"]:
+            if l["role"] != "tile":
+                continue
+            self.assertEqual(l["size"][0], master_w + self.HAND["tileBridge"], l["id"])
+            self.assertEqual(l["tileWidth"], l["size"][0], l["id"])
+
+    def test_the_picture_runs_past_the_master_as_far_as_the_screen_shows(self):
+        s = rd.load("caglayan", "day")
+        fr = sc.framing(s["manifest"])
+        over_top = -fr["y0"]
+        over_bottom = fr["y0"] + sc.SCREEN[1] * fr["k"] - self.DATA["master"][1]
+        layers = {l["id"]: l for l in self.state(4)["layers"]}
+        self.assertGreater(over_top, 0)
+        self.assertGreater(over_bottom, 0)
+        for lid in ("sky", "far"):
+            self.assertLessEqual(layers[lid]["pos"][1], -over_top, f"{lid} reaches the top of the screen")
+        for lid in ("sky", "sea"):
+            self.assertGreaterEqual(layers[lid]["pos"][1] + layers[lid]["size"][1], self.DATA["master"][1] + over_bottom, f"{lid} reaches the bottom")
+        self.assertLessEqual(layers["sky"]["pos"][0], -(fr["x0"] * -1 if fr["x0"] < 0 else 0))
+
+    def test_the_sky_extension_is_continuous_at_the_masters_top_edge(self):
+        sky = np.asarray(heic.open_image(ex.ASSETS / "world-caglayan-sky-sky-day-0.imageset" / "world-caglayan-sky-sky-day-0.heic").convert("RGB"), np.float32) / 255
+        layer = next(l for l in self.state(4)["layers"] if l["id"] == "sky")
+        top_rows = round(-layer["pos"][1] / 8)
+        edge = sky[top_rows: top_rows + 2].mean((0, 1))
+        above = sky[top_rows - 2: top_rows].mean((0, 1))
+        self.assertLess(float(np.abs(edge - above).max()), 0.02, "no step at the join")
+        # it deepens toward the zenith and never runs off
+        self.assertLess(float(sky[0].mean(0)[0]), float(edge[0]) + 1e-3)
+        self.assertGreater(float(sky[0].mean()), 0.2)
+
+
+class ExtensionTests(unittest.TestCase):
+    def test_extend_sky_up_continues_value_and_slope_and_settles(self):
+        h, w = 60, 40
+        t = np.linspace(0.3, 0.6, h)[:, None, None]
+        sky = np.repeat(t, w, 1).repeat(3, 2).astype(np.float32)
+        sky[..., 2] = 0.95
+        out = ex.extend_sky_up(sky, 100)
+        self.assertEqual(out.shape, (h + 100, w, 3))
+        np.testing.assert_array_equal(out[100:], sky)
+        step = abs(float(out[99, 0, 0]) - float(out[100, 0, 0]))
+        slope = abs(float(sky[1, 0, 0]) - float(sky[0, 0, 0]))
+        self.assertAlmostEqual(step, slope, delta=slope * 0.5)             # slope carried on
+        self.assertLess(float(out[0, 0, 0]), float(out[100, 0, 0]))        # deeper above
+        d = np.abs(np.diff(out[:101, 0, 0]))
+        self.assertLess(float(d[:10].mean()), float(d[-10:].mean()) + 1e-6)  # the change dies away upward
+        self.assertTrue(np.isfinite(out).all() and out.min() >= 0 and out.max() <= 1)
+
+    def test_extend_sky_up_flattens_a_corner_tint_with_height(self):
+        sky = np.full((50, 40, 3), 0.6, np.float32)
+        sky[:, :10, 0] = 0.8                                               # a tint at the left
+        out = ex.extend_sky_up(sky, 120)
+        self.assertGreater(float(out[119, :5, 0].mean() - out[119, 30:, 0].mean()), 0.05)
+        self.assertLess(float(out[0, :5, 0].mean() - out[0, 30:, 0].mean()), 0.01)
+
+    def test_stamp_up_keeps_the_tile_and_adds_whole_clouds_above_only(self):
+        h, w = 400, 500
+        a = np.zeros((h, w, 4), np.float32)
+        yy, xx = np.mgrid[0:h, 0:w]
+        for cx, cy in ((120, 200), (330, 260)):
+            a[..., 3] = np.maximum(a[..., 3], np.clip(1.4 - np.hypot((xx - cx) / 60, (yy - cy) / 30), 0, 1))
+        a[..., :3] = 0.95
+        out = ex.stamp_up(a, 300, 0, count=6)
+        self.assertEqual(out.shape, (h + 300, w, 4))
+        np.testing.assert_array_equal(out[300:], a)
+        self.assertGreater(float(out[:300, :, 3].max()), 0.5)
+        self.assertGreater(int((out[:300, :, 3] > 0.3).sum()), 1500)
+        # thinner and smaller toward the top: less cover in the highest third than in the lowest
+        self.assertLessEqual(float(out[:100, :, 3].sum()), float(out[200:300, :, 3].sum()) * 1.2 + 1)
+        np.testing.assert_array_equal(out, ex.stamp_up(a, 300, 0, count=6))   # deterministic
+
+    def test_stamp_up_with_no_cloud_adds_nothing(self):
+        a = np.zeros((100, 120, 4), np.float32)
+        out = ex.stamp_up(a, 60, 0)
+        self.assertEqual(float(out.max()), 0.0)
+
+
 class DetailTests(unittest.TestCase):
     """The isles' and the whale's painted-detail motion (`skyset_detail.py`): masks, texture budget, t = 0."""
 

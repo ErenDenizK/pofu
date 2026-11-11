@@ -7,6 +7,8 @@ numpy, Pillow, scipy, pillow-heif (`pip install -r tools/plate/requirements.txt`
 |---|---|
 | `ingest.py` | plate-first ingest (`docs/design/plate-islands.md` §0): from `design/art/plates/<island>/objects.json` (plates, trace, tap and occluder polygons, walkable lawn, character spots, framing) the matte, the whole plate with a feathered border, the island cut, the plate's sky and cloud sea extended past its edges (the backdrop), occluder cut-outs, the light and shadow maps and `Plates/plate-<island>.json`; `check` guards polygons, assets and the texture budget. A light painted at some stages only (Çağlayan's night: 2 and 3) is "sparse": its arrays are padded and the JSON lists `painted` per light; `referenceState` names the harmony reference (default: the first plate); `backdrop: "calm"` and `backdropScale` give a landscape plate a quiet sea below it; `characterLight` overrides the rim, `stoneMargin` and turns on `saturate` per island |
 | `harmony_check.py` | the character harmony rule as a measurement (`docs/design/visual-system.md` "Characters"): from a full-resolution Home frame (`home-plate-full-<state>.png`), each character's body L* and C* against its surrounding lawn, checked against the band calibrated on the level-10 day frame, plus the night "no sticker" and golden "fur follows the lawn's hue" rules; `--island caglayan --reference s4-day` measures Damla in `caglayan-plate-full-s<stage>-<light>.png` against the island's own root frame; `python3 -I tools/plate/test_harmony_check.py` |
+| `portrait.py` | the portrait master of an island whose stage plates are landscape (Çağlayan, ADR-0025): `register` measures where a landscape plate sits in Codex's portrait outpaint (ECC on the island's body; `portraitFrame` in `objects.json` stores it: scale 2/3 at (0, 425) of the 1024 x 1536 master), `master` cuts the island out of the master by the committed matte and pastes the picked stage plate's island and a feathered margin over it at that place (so the island is the stage plate's, pixel for pixel before the resample), `stage_master` does the same for each stage; `python3 tools/plate/test_portrait.py` |
+| `sprite_matte.py` | mattes for a sky set's distant isles from the master's own pixels (where the painting leaves the fitted sky), written to `sky/mattes/` as hand data; Home's were BiRefNet-lite's |
 | `split.py` | the plate-first sky split: one painted master per light cut into an island plate (alpha matte unmixed from what is behind it, the cloud bank at its base kept so the seam falls in soft cloud) over a sky set (gradient, far and mid clouds, distant isles and the whale as sprites, a cloud sea whose area behind the island is quilted from the visible sea, drift tiles that wrap), HEIC q70 plus `manifest.json` under `design/art/plates/<island>/sky/<light>/`; hand data `sky/sky.json` |
 | `inpaint.py` | exemplar fills for it: `quilt` (masked-SSD block quilting by FFT correlation, no smear: the cloud-sea fill and the wrap seams) and a small multi-scale PatchMatch `inpaint` |
 | `screen_check.py` | six checks on composited frames at the Home framing (1206 x 2622): frame-zero identity, seam under drift (t = 0, 30, 120 s), colour drift, dead composition, life, resolution; the same functions read a CI screenshot (`check_frame`); thresholds and what Home measured: `design/art/plates/home/sky/calibration.json` |
@@ -51,6 +53,29 @@ The CI frames come from the look-pipeline-v2 screenshots branch:
 
 `pale.py --register` re-finds where Çağlayan's plate sits in the CI frame (scale 0.606, at 9, 316).
 
+Çağlayan's day is drawn as the stage plate's island over a sky set (ADR-0025). The set is split from one portrait
+master, `design/art/plates/caglayan/sky/master-day.heic` (x-caglayan-portrait-s4-day t1, x2, the picked plate's island
+pasted over it); the five stages share its sky and each cuts its own island layer (`island-s<stage>.heic`,
+`world-caglayan-sky-island-day-<stage>`), so the app's `SkySet.shipped(island:light:stage:)` looks up `day-<stage>`.
+The plates themselves, the characters, objects, tap polygon and light maps stay in the landscape plates' coordinates;
+only the sky set's picture is placed by `plateFrame` in `Plates/skyset-caglayan.json`. Golden, night and rain keep the
+landscape plate and its calm backdrop (`backdrop: calm` is still used by them) until their portrait masters exist.
+
+    python3 tools/plate/portrait.py register caglayan      # measure; compare with portraitFrame
+    python3 tools/plate/portrait.py master caglayan        # the day master
+    python3 tools/plate/sprite_matte.py caglayan           # the two distant isles' mattes (hand data, adjust by eye)
+    python3 tools/plate/split.py caglayan --light day      # ~2 min; also the four other stages' island layers
+    SKYSET_CACHE=/tmp/q python3 tools/plate/skyset_export.py caglayan --light day   # ~25 min: two block quilts, cached
+    python3 tools/plate/screen_check.py caglayan all --frames /tmp/frames
+    python3 tools/plate/screen_check.py caglayan sky
+    python3 tools/plate/skyset_render.py caglayan day --out caglayan-sky-day.mp4
+
+The picture runs on past the master: at the Island stop the screen shows about 1.03 master widths and 1.5 master heights
+(about 20 % above the master's top edge and 12 % below its bottom). `sky.json`'s `export` says how far: the sky gradient
+continues upward by a fitted field (`extend_sky_up`: the first row's own colours, the fitted slope easing off, so the
+join is continuous in value and slope), the far clouds continue upward by quilting their own blocks (`continue_up`,
+thinning toward the zenith), the sea downward as Home's does. Only the drifting cloud layers cross the join.
+
 ## Sky split (`split.py`, `screen_check.py`)
 
     python3 tools/plate/split.py home --light all        # ~4 min per light (the quilt); writes design/art/plates/home/sky/<light>/
@@ -81,7 +106,7 @@ limit 0.05 %. Dead composition: golden's own master already has a 19.5 % run (a 
 and at most 2 points over the master's own. Life: the sky moves 2.2 to 2.8 grey levels in 2 s (floor 0.25), the
 island 0.08 to 0.13 from lossy alpha (limit 0.5). Colour: the sky-to-lawn ratio drifts 0.4 to 1.3 % (night 5.9 % at
 t = 120 s, as the far clouds leave the sky; limit 10 %). Leak: island greens in a drifting layer are 0 to 17 px
-(limit 200; golden's yellow-green clouds start at hue 105).
+(limit 200; golden's yellow-green clouds start at hue 105). The leak check keys on the island matte's own colours (the island layer's lawn greens as eight CIELAB cluster centres; a pixel in the island's hue band within 12 dE of one is the lawn's), not on every green: Revontuli's aurora is green too.
 
 ## Upscale (`upscale.py`)
 

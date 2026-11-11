@@ -87,8 +87,10 @@ TWINKLE = [{"peak": 0.9, "period": 3.1}, {"peak": 0.9, "period": 4.3}, {"peak": 
 REFERENCE_WIDTH = 1206
 
 
-def asset_name(island: str, layer: str, light: str) -> str:
-    return f"world-{island}-sky-{layer.replace('_', '-')}-{light}-0"
+def asset_name(island: str, layer: str, light: str, n: int = 0) -> str:
+    """`world-<island>-sky-<layer>-<light>-<n>`: n is 0 for a shared layer; a staged island's own island layer
+    carries its stage (Çağlayan: five day stages over one sky)."""
+    return f"world-{island}-sky-{layer.replace('_', '-')}-{light}-{n}"
 
 
 def _premult_resize(rgba: np.ndarray, size: tuple[int, int]) -> np.ndarray:
@@ -190,10 +192,14 @@ def _star_blobs(sky: np.ndarray, hand: dict, light: str) -> list[np.ndarray]:
     return [lab == i for i in range(1, n + 1) if (lab == i).sum() <= STAR_MAX_AREA]
 
 
-def continue_sea(arr: np.ndarray, seed: int = 0, light: str = "") -> np.ndarray:
+def continue_sea(arr: np.ndarray, seed: int = 0, light: str = "", pad: int | None = None, quilt: dict | None = None) -> np.ndarray:
     """The sea tile (straight RGBA, opaque at its bottom) continued `SEA_PAD` rows downward: real cloud
     blocks of the visible sea quilted in, the last `SEA_BAND` known rows eased into the fill, and the
-    new rows closed round the tile's wrap (as `split.close_wrap` closes the rest)."""
+    new rows closed round the tile's wrap (as `split.close_wrap` closes the rest). `quilt` (Çağlayan, whose
+    screen shows 570 rows past the master) sets the block, overlap, topk, band and window: bigger blocks keep
+    the puffs crisp where the default 72 px blocks blur them."""
+    pad = SEA_PAD if pad is None else pad
+    q = {"block": 72, "overlap": 24, "topk": 10, "band": SEA_BAND, "window": 350, **(quilt or {})}
     cache = os.environ.get("SKYSET_CACHE")             # the quilt takes minutes: a work folder can keep it
     cached = Path(cache) / f"sea-{light}.npy" if cache and light else None
     if cached is not None and cached.exists():
@@ -201,17 +207,18 @@ def continue_sea(arr: np.ndarray, seed: int = 0, light: str = "") -> np.ndarray:
     h, w, _ = arr.shape
     pre = arr.copy()
     pre[..., :3] *= pre[..., 3:4]
-    ext = np.concatenate([pre, np.repeat(pre[-1:], SEA_PAD, 0)], 0)
+    ext = np.concatenate([pre, np.repeat(pre[-1:], pad, 0)], 0)
     hole = np.zeros(ext.shape[:2], bool)
-    hole[h - SEA_BAND:] = True
-    fill = inpaint.quilt(ext, hole, periodic_x=True, y_window=350, seed=seed)
+    hole[h - q["band"]:] = True
+    fill = inpaint.quilt(ext, hole, periodic_x=True, y_window=q["window"], block=q["block"], overlap=q["overlap"],
+                         topk=q["topk"], seed=seed)
     fa = fill[..., 3].clip(0, 1)
     frgb = np.where(fa[..., None] > 1e-3, fill[..., :3] / np.maximum(fa, 1e-3)[..., None], 0).clip(0, 1)
     frgb, fa = split.close_wrap(frgb, fa, 160, seed)
     fill = np.dstack([frgb * fa[..., None], fa])
     wgt = np.zeros(ext.shape[0], np.float32)
-    if SEA_BAND:
-        wgt[h - SEA_BAND:h] = split.smoothstep(0, SEA_BAND, np.arange(SEA_BAND, dtype=np.float32))
+    if q["band"]:
+        wgt[h - q["band"]:h] = split.smoothstep(0, q["band"], np.arange(q["band"], dtype=np.float32))
     wgt[h:] = 1
     out = ext * (1 - wgt[:, None, None]) + fill * wgt[:, None, None]
     a = out[..., 3:4].clip(0, 1)
@@ -222,6 +229,89 @@ def continue_sea(arr: np.ndarray, seed: int = 0, light: str = "") -> np.ndarray:
         np.save(cached, res)
     return res
 
+
+def extend_sky_up(sky: np.ndarray, rows: int, fit_rows: int = 40, tau_rows: float = 30.0, flat_rows: float = 25.0) -> np.ndarray:
+    """The gradient (H, W, 3 at 1/8 size) continued `rows` rows upward by a smooth fitted field, so the picture
+    runs on past the master's top edge with no band and no seam: the first row is the gradient's own (smoothed
+    along x), and each row above it moves on by the vertical slope fitted to the top `fit_rows` rows, the slope
+    easing off exponentially (`tau_rows`) so the zenith deepens and settles instead of running away, and the
+    colour's variation along x (a tint at one corner) dying away over `flat_rows`. The join is continuous in
+    value and in slope; only the drifting cloud layers cross it."""
+    h, w, _ = sky.shape
+    base = cv2.GaussianBlur(sky[:1], (0, 0), sigmaX=6, sigmaY=0.01)[0]                 # the first row, smoothed along x only
+    prof = sky[:fit_rows].mean(1)                                         # (fit_rows, 3)
+    t = np.arange(fit_rows, dtype=np.float64)
+    slope = np.array([np.polyfit(t, prof[:, c], 1)[0] for c in range(3)])  # per row, downward
+    up = np.arange(1, rows + 1, dtype=np.float64)[:, None]
+    shift = -slope[None, :] * tau_rows * (1 - np.exp(-up / tau_rows))     # (rows, 3): moving up darkens/deepens
+    mean = base.mean(0)
+    keep = np.exp(-up / flat_rows)[:, :, None]                            # how much of the row's own variation is left
+    rowbase = mean[None, None, :] + (base[None, :, :] - mean[None, None, :]) * keep
+    ext = np.clip(rowbase + shift[:, None, :], 0, 1)[::-1]                # farthest first
+    return np.concatenate([ext.astype(np.float32), sky], 0)
+
+
+def stamp_up(arr: np.ndarray, rows: int, y0: int, seed: int = 0, count: int = 16, scale_top: float = 0.6, thin_top: float = 0.35) -> np.ndarray:
+    """A cloud tile (straight RGBA, starting at master row `y0`) with clouds above the master's top edge: whole clouds
+    of the tile itself (connected pieces well inside it), stamped up over `rows` rows at deterministic places,
+    smaller (down to `scale_top`) and thinner (alpha down by `thin_top`) toward the zenith, some mirrored left to
+    right, never on top of each other or of the clouds already there, wrapping in x like the tile. No quilting: a
+    quilt copies hazy, half-transparent blocks and shows them as squares. Returns the tile with `rows` empty
+    rows added at the top, starting at master row -rows."""
+    h, w, _ = arr.shape
+    a = arr[..., 3]
+    lab, n = ndimage.label(a > 0.30)
+    area = ndimage.sum(np.ones_like(a), lab, range(1, n + 1))
+    boxes = ndimage.find_objects(lab)
+    pre = arr.copy()
+    pre[..., :3] *= pre[..., 3:4]
+    pieces = []
+    for i, sl in enumerate(boxes, 1):
+        ys, xs = sl
+        if not (6_000 <= area[i - 1] <= 2_500_000) or xs.start < 6 or xs.stop > w - 6 or ys.start + y0 < 140:
+            continue
+        m = 44
+        y_a, y_b, x_a, x_b = max(ys.start - m, 0), min(ys.stop + m, h), max(xs.start - m, 0), min(xs.stop + m, w)
+        near = ndimage.binary_dilation(lab[y_a:y_b, x_a:x_b] == i, iterations=m) & (a[y_a:y_b, x_a:x_b] > 0.004)
+        # only the cloud: faint haze round it is left behind (its colours are noise, and a hard cut would show as a polygon)
+        body = split.smoothstep(0.22, 0.60, a[y_a:y_b, x_a:x_b]) * near
+        crop = pre[y_a:y_b, x_a:x_b] * (body / np.maximum(a[y_a:y_b, x_a:x_b], 1e-3))[..., None]
+        pieces.append(crop.astype(np.float32))
+    if not pieces:
+        return np.concatenate([np.zeros((rows, w, 4), np.float32), arr], 0)
+    rng = np.random.default_rng(seed)
+    out = np.zeros((rows + y0 + h, w, 4), np.float32)        # premultiplied, row 0 = master row -rows
+    out[rows:] = np.concatenate([np.zeros((y0, w, 4), np.float32), pre], 0)
+    taken = out[..., 3] > 0.05
+    order = list(rng.permutation(len(pieces)))
+    placed = 0
+    for j in range(count * 3):
+        if placed >= count:
+            break
+        t = (placed + rng.random() * 0.6) / count                  # 0 at the join, 1 at the zenith
+        crop = pieces[order[j % len(order)]]
+        sc = (1 - (1 - scale_top) * t) * min(1.0, 900 / crop.shape[1])
+        if rng.random() < 0.5 or j >= len(order):
+            crop = crop[:, ::-1]
+        sc *= 0.9 + 0.2 * rng.random()
+        ch, cw = max(round(crop.shape[0] * sc), 2), max(round(crop.shape[1] * sc), 2)
+        img = cv2.resize(np.ascontiguousarray(crop), (cw, ch), interpolation=cv2.INTER_AREA)
+        img *= 1 - thin_top * t
+        y = round(rows - 40 - t * (rows - 200) - ch / 2 + rng.normal(0, 30))   # centre, in tile rows
+        y = int(np.clip(y, 0, rows - ch))
+        x = int(rng.integers(0, w))
+        idx = (np.arange(cw) + x) % w
+        region = out[y: y + ch][:, idx]
+        if (taken[y: y + ch][:, idx] & (img[..., 3] > 0.05)).any():
+            continue
+        out[y: y + ch][:, idx] = img + region * (1 - img[..., 3:4])
+        taken[y: y + ch][:, idx] |= img[..., 3] > 0.05
+        placed += 1
+    al = out[..., 3:4].clip(0, 1)
+    rgb = np.where(al > 1e-3, out[..., :3] / np.maximum(al, 1e-3), 0).clip(0, 1)
+    res = np.concatenate([rgb, al], -1).astype(np.float32)
+    res[rows:] = np.concatenate([np.zeros((y0, w, 4), np.float32), arr], 0)   # the known tile stays exactly as it was
+    return res
 
 def rebuild_sprites(sprites: dict[str, tuple[np.ndarray, tuple[int, int]]], plate: np.ndarray, bg: np.ndarray, k: float) -> dict:
     """Give each distant isle (and the whale) back the cloud puffs the split left in the painting: the
@@ -297,6 +387,9 @@ def export_light(island: str, light: str, hand: dict) -> dict:
     man = json.loads((src / "manifest.json").read_text())
     w, h = man["size"]
     k = 8                                                    # master px per gradient px
+    cfg = hand.get("export", {})                             # an island that runs on past its master (Çağlayan)
+    tag = light if island == "home" else f"{island}-{light}"   # the quilt caches' key
+    base_stage = hand.get("baseStage")
     layers, pixels = [], 0
     plate = np.asarray(heic.open_image(ROOT / man["source"]["plate"]).convert("RGB"), np.float32) / 255
 
@@ -358,9 +451,15 @@ def export_light(island: str, light: str, hand: dict) -> dict:
         entry = {"id": lid, "role": {"gradient": "sky", "tile": "tile", "sprite": "sprite", "island": "island"}[lay["kind"]],
                  "asset": name}
         if lay["kind"] == "gradient":
-            padded = np.pad(sky_arr, ((SKY_PAD, SKY_PAD), (SKY_PAD, SKY_PAD), (0, 0)), mode="edge")
+            if cfg:
+                top, bottom, side = cfg["skyPadTop"] // k, cfg["skyPadBottom"] // k, cfg["skyPadSide"] // k
+                padded = np.pad(extend_sky_up(sky_arr, top), ((0, bottom), (side, side), (0, 0)), mode="edge")
+                origin = [-side * k, -top * k]
+            else:
+                padded = np.pad(sky_arr, ((SKY_PAD, SKY_PAD), (SKY_PAD, SKY_PAD), (0, 0)), mode="edge")
+                origin = [-SKY_PAD * k, -SKY_PAD * k]
             padded = np.concatenate([padded, np.ones(padded.shape[:2] + (1,), np.float32)], -1)
-            entry.update(pos=[-SKY_PAD * k, -SKY_PAD * k], size=[padded.shape[1] * k, padded.shape[0] * k])
+            entry.update(pos=origin, size=[padded.shape[1] * k, padded.shape[0] * k])
             add(entry, _write(padded, src, name))
             if stars_on:
                 mname = asset_name(island, "moon", light)
@@ -375,13 +474,19 @@ def export_light(island: str, light: str, hand: dict) -> dict:
                                "size": [sky0.shape[1] * k, STAR_ROWS * k], "twinkle": TWINKLE[g]}
                     add(s_entry, _write(rgba, src, sname))
             continue
-        motion = MOTION.get(lid, {})
+        like = hand["sprites"].get(lid, {}).get("motionLike") if lay["kind"] == "sprite" else None
+        motion = MOTION.get(lid) or MOTION.get(like, {})
         if lay["kind"] == "island":
+            if base_stage:
+                name = entry["asset"] = asset_name(island, "island", light, int(base_stage))
             entry.update(pos=[x, y], size=[dw, dh])
             add(entry, _write(arr, src, name, copy=src / lay["file"]))
             continue
         if lid == "far":
             arr = far_arr
+            if cfg.get("farUp"):                              # clouds run on above the master's top edge
+                arr = stamp_up(arr, cfg["farUp"], y)
+                y, dh = -cfg["farUp"], arr.shape[0]
         if lid == "mid" and centres:                          # the stars' residue belongs to the still sky
             yy, xx = np.mgrid[0:arr.shape[0], 0:arr.shape[1]]
             for cx_, cy_ in centres:
@@ -389,10 +494,11 @@ def export_light(island: str, light: str, hand: dict) -> dict:
         if lay["kind"] == "sprite":
             arr, (x, y) = rebuilt[lid]
             dh, dw = arr.shape[:2]
-        scale = SCALES[lid]
+        scale = SCALES.get(lid, 0.75)
         if lid == "sea":
-            arr = continue_sea(arr, light=light)
-            dh += SEA_PAD
+            sea_pad = cfg.get("seaPad", SEA_PAD)
+            arr = continue_sea(arr, light=tag, pad=sea_pad, quilt=cfg.get("seaQuilt"))
+            dh += sea_pad
         small = _premult_resize(arr, (round(arr.shape[1] * scale), round(arr.shape[0] * scale)))
         entry.update(pos=[x, y], size=[dw, dh], **motion)
         if lay["kind"] == "tile":
@@ -400,15 +506,25 @@ def export_light(island: str, light: str, hand: dict) -> dict:
         if lid == "whale":
             entry["role"] = "whale"
         add(entry, _write(small, src, name))
-    return {"layers": layers, "pixels": pixels, "master": [w, h], "islandBox": man["islandBox"],
-            "plate": man["source"]["plate"]}
+    out = {"layers": layers, "pixels": pixels, "master": [w, h], "islandBox": man["islandBox"],
+           "plate": man["source"]["plate"]}
+    if man.get("stageIslands"):
+        # the other stages' island layers, the same box over the same sky; each its own imageset
+        stages = {}
+        for stage, fname in man["stageIslands"].items():
+            name = asset_name(island, "island", light, int(stage))
+            if stage != base_stage:
+                _write(None, src, name, copy=src / fname)
+            stages[stage] = name
+        out["stageIslands"] = stages
+    return out
 
 
-def state_bytes(island: str, light: str, sky_pixels: int) -> int:
+def state_bytes(island: str, light: str, sky_pixels: int, stage: int = 0) -> int:
     """The sky-set state's textures: the set, the island cut for the Map and the occluders (the
     plate and its backdrop are not loaded while a sky set draws)."""
     total = sky_pixels
-    for folder in ASSETS.glob(f"world-{island}-*-{light}-0.imageset"):
+    for folder in ASSETS.glob(f"world-{island}-*-{light}-{stage}.imageset"):
         if re.match(rf"world-{island}-(plate|backdrop|sky-)", folder.name):
             continue
         for f in folder.iterdir():
@@ -427,6 +543,8 @@ def main(argv: list[str] | None = None) -> int:
     lights = ["day", "golden", "night"] if a.light == "all" else [a.light]
     out_path = JSON_DIR / f"skyset-{a.island}.json"
     data = json.loads(out_path.read_text()) if out_path.exists() else {"lights": {}}
+    if hand.get("matteFrame"):                        # the plates are not the master (Çağlayan): where they sit on it
+        data["plateFrame"] = {"scale": hand["matteFrame"]["scale"], "offset": hand["matteFrame"]["offset"]}
     data.update(island=a.island, version=1, master=hand["size"], referenceWidth=REFERENCE_WIDTH,
                 note="Written by tools/plate/skyset_export.py. Positions and sizes are master pixels "
                      "(2048 x 3072); motion is screen px at the 1206 px reference screen.")
@@ -438,11 +556,29 @@ def main(argv: list[str] | None = None) -> int:
               f"({'ok' if res['textureBytes'] <= BUDGET else 'OVER BUDGET'})")
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(data, separators=(",", ":")) + "\n")
-    import skyset_detail                               # the isles' and the whale's painted-detail motion (after the sprites)
-    skyset_detail.attach(a.island, lights)
+    if (PLATES / a.island / "sky" / "detail.json").exists():
+        import skyset_detail                           # the isles' and the whale's painted-detail motion (after the sprites)
+        skyset_detail.attach(a.island, lights)
     data = json.loads(out_path.read_text())
-    return 0 if all(data["lights"][l]["textureBytes"] <= BUDGET for l in lights) else 1
+    derive_stages(data, lights)
+    out_path.write_text(json.dumps(data, separators=(",", ":")) + "\n")
+    return 0 if all(spec["textureBytes"] <= BUDGET for spec in data["lights"].values()) else 1
 
+
+def derive_stages(data: dict, lights: list[str]) -> None:
+    """A staged island (Çağlayan's five day stages over one sky): one state per stage, `<light>-<stage>`, the
+    same layers with the island layer of that stage's plate and the state's own texture bytes. The plain
+    `<light>` entry stays as the base stage's (the offline tools read it); the app asks for `<light>-<stage>` first."""
+    for light in lights:
+        spec = data["lights"][light]
+        for stage, asset in (spec.pop("stageIslands", None) or {}).items():
+            state = json.loads(json.dumps(spec))
+            for layer in state["layers"]:
+                if layer["role"] == "island":
+                    layer["asset"] = asset
+            state["textureBytes"] = state_bytes(data["island"], light, spec["pixels"] + spec.get("detailPixels", 0), int(stage))
+            data["lights"][f"{light}-{stage}"] = state
+            print(f"{light}-{stage}: state {state['textureBytes']:,} bytes ({'ok' if state['textureBytes'] <= BUDGET else 'OVER BUDGET'})")
 
 if __name__ == "__main__":
     raise SystemExit(main())
