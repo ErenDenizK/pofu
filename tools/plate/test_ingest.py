@@ -284,6 +284,40 @@ class HarmonyTests(unittest.TestCase):
         self.assertTrue(all(0.25 <= v <= 1 for v in night["tint"]))
         self.assertTrue(all(0 < v <= 1 for v in night["scale"].values()))
 
+    def test_a_sparse_light_pads_its_arrays_and_lists_what_it_paints(self):
+        hand = {"plates": {"day": {"0": "a", "1": "b"}, "night": {"1": "c"}}}
+        self.assertTrue(ingest.is_sparse(hand))
+        self.assertEqual(ingest.painted_stages(hand), {"day": [0, 1], "night": [1]})
+        self.assertEqual(ingest.stage_count(hand, "night"), 2)
+        self.assertFalse(ingest.is_sparse({"plates": {"day": {"0": "a", "1": "b"}, "golden": {"0": "c"}}}))
+
+    def test_a_calm_backdrop_runs_the_sea_on_below_the_plate_without_repeating_it(self):
+        rgb = np.zeros((ingest.SIZE[1], ingest.SIZE[0], 3))
+        rgb[:] = (0.6, 0.75, 0.95)
+        rgb[int(ingest.SIZE[1] * 0.85):] = (0.93, 0.92, 0.97)
+        a = np.zeros(rgb.shape[:2])
+        a[300:800, 300:1200] = 1.0
+        box = (-200, -800, 1736, 2200)
+        out = ingest.backdrop(rgb, a, box, scale=0.1, calm=True)
+        self.assertEqual(out.shape[:2], (300, 194))
+        below = out[int((1024 + 800) * 0.1) + 20:]
+        # No puffs: the rows below the plate vary slowly (a repeated cloud band would not).
+        self.assertLess(np.abs(np.diff(below, axis=0)).max(), 0.02)
+        self.assertLess(below.std(axis=1).max(), 0.05)
+
+    def test_saturation_follows_a_paler_lawn_and_is_never_asked_for_without_the_flag(self):
+        ingest.SIZE = (200, 300)
+        hand = {"walkable": [[10, 40], [90, 40], [90, 90], [10, 90]], "pofuWidth": 10, "characters": {"damla": [50, 60]},
+                "characterLight": {"saturate": True}}
+        lush = np.full((300, 200, 3), (0.4, 0.7, 0.3))
+        pale = np.full((300, 200, 3), (0.8, 0.75, 0.7))
+        ref = ingest.harmony_state(lush, hand, None)
+        self.assertLess(ingest.harmony_state(pale, hand, ref)["saturation"], 0.8)
+        self.assertGreaterEqual(ingest.harmony_state(pale, hand, ref)["saturation"], ingest.SATURATION_FLOOR)
+        self.assertNotIn("saturation", ingest.harmony_state(lush, hand, ref))
+        plain = {k: v for k, v in hand.items() if k != "characterLight"}
+        self.assertNotIn("saturation", ingest.harmony_state(pale, plain, ref))
+
 
 if __name__ == "__main__":
     unittest.main()

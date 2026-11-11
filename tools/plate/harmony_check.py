@@ -40,6 +40,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -51,11 +52,15 @@ REPO = HERE.parent.parent
 sys.path.insert(0, str(REPO / "tools" / "assets"))
 from process_assets import srgb_to_lab  # noqa: E402
 
-PLATE_JSON = REPO / "Packages" / "PofuKit" / "Sources" / "PofuWorld" / "Resources" / "Plates" / "plate-home.json"
+PLATES = REPO / "Packages" / "PofuKit" / "Sources" / "PofuWorld" / "Resources" / "Plates"
+PLATE_JSON = PLATES / "plate-home.json"
 SCREEN_W = 402.0
 
 #: The art's boxes in art units (`WorldArt+Generated.swift`, sharp): (min x, min y, max x, max y).
-SPRITE_BOX = {"mochi": (-15.2, -23.141, 15.2, 0.192), "findik": (-14.291, -26.835, 14.375, 0.232)}
+SPRITE_BOX = {"mochi": (-15.2, -23.141, 15.2, 0.192), "findik": (-14.291, -26.835, 14.375, 0.232),
+              "damla": (-19.119, -46.952, 19.148, 0.115)}
+#: Damla holds a full glass at Çağlayan's stage 4 (`damla-glass`): her box there.
+DAMLA_GLASS_BOX = (-19.593, -53.295, 18.807, 0.038)
 #: Pofu's rig (`CompanionRig.hamster`, 522 x 496 px): ground point and body ellipse.
 RIG = {"w": 522.0, "h": 496.0, "ground": (266.0, 481.0), "body": (265.0, 300.0, 249.0, 219.0)}
 SHRINK = 0.75
@@ -82,8 +87,9 @@ def frame_map(data: dict, w: int):
     return m, (lambda x: w / 2 + (x - cx) * m), (lambda y: top + (y - box[1]) * m)
 
 
-def characters(data: dict, w: int) -> dict:
-    """Each character's feet, body ellipse (cx, cy, rx, ry) and width, in frame pixels."""
+def characters(data: dict, w: int, stage: int = 0) -> dict:
+    """Each character's feet, body ellipse (cx, cy, rx, ry) and width, in frame pixels. `stage` is
+    the story stage of a Çağlayan frame (Damla's art holds a glass at 4)."""
     m, fx, fy = frame_map(data, w)
     out = {}
     unit = data["pofuWidth"] / 64.0 * m  # frame px per art unit, Pofu's proportion
@@ -99,7 +105,7 @@ def characters(data: dict, w: int) -> dict:
             width = aw
         else:
             k = unit * data.get("residentBoosts", {}).get(name, data.get("residentBoost", 1.0))
-            x0, y0, x1, y1 = SPRITE_BOX[name]
+            x0, y0, x1, y1 = DAMLA_GLASS_BOX if name == "damla" and stage >= 4 else SPRITE_BOX[name]
             c = (feet[0] + (x0 + x1) / 2 * k, feet[1] + (y0 + y1) / 2 * k, (x1 - x0) / 2 * k * 0.95, (y1 - y0) / 2 * k * 0.95)
             width = (x1 - x0) * k
         out[name] = {"feet": feet, "ellipse": (c[0], c[1], c[2] * SHRINK, c[3] * SHRINK), "width": width}
@@ -138,14 +144,14 @@ def trimmed_mean(v: np.ndarray) -> float:
     return float(v[(v >= lo) & (v <= hi)].mean())
 
 
-def measure(rgb: np.ndarray, data: dict) -> dict:
+def measure(rgb: np.ndarray, data: dict, stage: int = 0) -> dict:
     """Per character: body mean L*, C*, the lawn's, and the differences."""
     h, w = rgb.shape[:2]
     L, C = lab_of(rgb)
     A, B = lab_ab(rgb)
     m, fx, fy = frame_map(data, w)
     walk = polygon_mask((h, w), [(fx(x), fy(y)) for x, y in data["walkable"]])
-    chars = characters(data, w)
+    chars = characters(data, w, stage)
     yy, xx = np.mgrid[0:h, 0:w]
     near_any = np.zeros((h, w), bool)
     for c in chars.values():
@@ -169,9 +175,11 @@ def measure(rgb: np.ndarray, data: dict) -> dict:
     return out
 
 
-def in_band(result: dict) -> dict:
-    """Per character: is it within TOL of its reference difference?"""
-    return {n: abs(r["dL"] - REF[n][0]) <= TOL_L and REF[n][1] - FLOOR_C <= r["dC"] <= CAP_C for n, r in result.items()}
+def in_band(result: dict, ref: dict | None = None) -> dict:
+    """Per character: is it within TOL of its reference difference? (`ref` is the island's own
+    root frame's `{name: (dL, dC)}`; Home's is the calibrated `REF`.)"""
+    ref = ref or REF
+    return {n: abs(r["dL"] - ref[n][0]) <= TOL_L and ref[n][1] - FLOOR_C <= r["dC"] <= CAP_C for n, r in result.items()}
 
 
 def no_sticker(result: dict) -> dict:
@@ -183,24 +191,56 @@ def wrap(deg: float) -> float:
     return (deg + 180.0) % 360.0 - 180.0
 
 
-def follows_hue(day: dict, golden: dict, character: str = "pofu") -> tuple[bool, float, float]:
-    """Golden hour: does the character's hue move from the day frame's at least `HUE_FOLLOW` as far,
-    in the same direction, as the lawn's? Returns (ok, character shift, lawn shift) in degrees; a lawn
-    that moves under `HUE_MIN` degrees asks nothing."""
+def pull(day_hue: float, hue: float, key: float) -> float:
+    """How many degrees a hue moved toward the key light's hue from the day frame's."""
+    return abs(wrap(day_hue - key)) - abs(wrap(hue - key))
+
+
+def follows_hue(day: dict, golden: dict, character: str = "pofu", key: float | None = None) -> tuple[bool, float, float]:
+    """Golden hour: does the character's hue follow the light? It does when it moves from the day
+    frame's at least `HUE_FOLLOW` as far, in the same direction, as the lawn's (Pofu's fur sits on
+    the lawn's side of the key), or, with the key light's CIELAB hue angle `key`, at least
+    `HUE_FOLLOW` as far toward it as the lawn's does (an otter's brown sits on the other side
+    of the golden key from the lawn's yellow-green, and both close in on it). Returns (ok, the
+    character's shift, the lawn's shift) in degrees, the shifts signed by that rule; a lawn that
+    moves under `HUE_MIN` degrees asks nothing."""
     c = wrap(golden[character]["hue"] - day[character]["hue"])
     l = wrap(golden[character]["lawnHue"] - day[character]["lawnHue"])
     if abs(l) < HUE_MIN:
         return True, round(c, 1), round(l, 1)
-    return c * l > 0 and abs(c) >= HUE_FOLLOW * abs(l), round(c, 1), round(l, 1)
+    if c * l > 0 and abs(c) >= HUE_FOLLOW * abs(l):
+        return True, round(c, 1), round(l, 1)
+    if key is not None:
+        pc = pull(day[character]["hue"], golden[character]["hue"], key)
+        pl = pull(day[character]["lawnHue"], golden[character]["lawnHue"], key)
+        if pl >= HUE_MIN:
+            return pc >= HUE_FOLLOW * pl, round(pc, 1), round(pl, 1)
+    return False, round(c, 1), round(l, 1)
 
 
-def overlay(rgb: np.ndarray, data: dict, path: Path) -> None:
+def key_hue(data: dict, light: str, stage: int) -> float | None:
+    """The CIELAB hue angle of a state's key light (its stored `key` colour), or `None`."""
+    states = data.get("harmony", {}).get(light, [])
+    key = states[stage].get("key") if stage < len(states) else None
+    if not key:
+        return None
+    a, b = lab_ab(np.array([[key]], np.float64))
+    return hue_deg(float(a[0, 0]), float(b[0, 0]))
+
+
+def overlay(rgb: np.ndarray, data: dict, path: Path, stage: int = 0) -> None:
     img = Image.fromarray(np.uint8(np.clip(rgb, 0, 1) * 255 + 0.5))
     d = ImageDraw.Draw(img)
-    for c in characters(data, rgb.shape[1]).values():
+    for c in characters(data, rgb.shape[1], stage).values():
         ex, ey, rx, ry = c["ellipse"]
         d.ellipse([ex - rx, ey - ry, ex + rx, ey + ry], outline=(255, 0, 255), width=3)
     img.save(path)
+
+
+def stage_of(stem: str) -> int:
+    """The story stage in a Çağlayan frame's name (`caglayan-plate-full-s4-golden`), else 0."""
+    m = re.search(r"-s(\d)-", stem + "-")
+    return int(m.group(1)) if m else 0
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -208,35 +248,42 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("frames", nargs="+")
     ap.add_argument("--json", action="store_true", help="print JSON")
     ap.add_argument("--overlay", help="write each frame with the measured regions drawn to this folder")
-    ap.add_argument("--plate-json", default=str(PLATE_JSON))
+    ap.add_argument("--island", default="home", help="the plate island the frames show (Resources/Plates/plate-<island>.json)")
+    ap.add_argument("--reference", help="a substring of the frame that is the island's own root (Çağlayan: -s4-day): "
+                    "its (dL*, dC*) is the band's anchor instead of Home's calibrated REF, and golden hue follows it")
+    ap.add_argument("--plate-json")
     args = ap.parse_args(argv)
-    data = json.loads(Path(args.plate_json).read_text())
+    data = json.loads(Path(args.plate_json or PLATES / f"plate-{args.island}.json").read_text())
     report, ok = {}, True
     results = {}
     for f in args.frames:
         rgb = np.asarray(Image.open(f).convert("RGB"), np.float64) / 255
-        r = measure(rgb, data)
         stem = Path(f).stem
-        band = in_band(r)
+        results[stem] = measure(rgb, data, stage_of(stem))
+        if args.overlay:
+            Path(args.overlay).mkdir(parents=True, exist_ok=True)
+            overlay(rgb, data, Path(args.overlay) / f"{stem}.png", stage_of(stem))
+    anchor = args.reference or ("l10-day" if args.island == "home" else None)
+    day = next((r for s, r in results.items() if anchor and anchor in s), None)
+    ref = {n: (r["dL"], r["dC"]) for n, r in day.items()} if day is not None and args.reference else None
+    for stem, r in results.items():
+        band = in_band(r, ref)
         rep = {"characters": r, "inBand": band}
         ok &= all(band.values())
         if "night" in stem:
             rep["noSticker"] = no_sticker(r)
             ok &= all(rep["noSticker"].values())
-        results[stem] = r
         report[stem] = rep
-        if args.overlay:
-            Path(args.overlay).mkdir(parents=True, exist_ok=True)
-            overlay(rgb, data, Path(args.overlay) / f"{stem}.png")
-    day = next((r for s, r in results.items() if "l10-day" in s), None)
     for stem, r in results.items():
         if "golden" in stem and day is not None:
-            good, c, l = follows_hue(day, r)
+            good, c, l = follows_hue(day, r, "pofu" if "pofu" in r else next(iter(r)), key_hue(data, "golden", stage_of(stem)))
             report[stem]["hueFollow"] = {"ok": good, "furShift": c, "lawnShift": l}
             ok &= good
     if args.json:
         print(json.dumps(report, indent=1))
     else:
+        first = next(iter(report.values()))["characters"] if report else {"pofu": 0}
+        who = "pofu" if "pofu" in first else next(iter(first))
         for name, rep in report.items():
             print(name)
             for c, r in rep["characters"].items():
@@ -245,8 +292,8 @@ def main(argv: list[str] | None = None) -> int:
                       f" | dL* {r['dL']:+5.1f} dC* {r['dC']:+5.1f} {'ok' if rep['inBand'][c] else 'OUT OF BAND'}{extra}")
             if "hueFollow" in rep:
                 h = rep["hueFollow"]
-                print(f"  pofu fur hue shift {h['furShift']:+.1f} deg vs lawn {h['lawnShift']:+.1f} deg: {'ok' if h['ok'] else 'DOES NOT FOLLOW THE LIGHT'}")
-    print(f"harmony: {'ok' if ok else 'out of band'} (dL* within {TOL_L} of the level-10 day's, dC* in [its dC* - {FLOOR_C}, +{CAP_C}]; "
+                print(f"  {who} fur hue shift {h['furShift']:+.1f} deg vs lawn {h['lawnShift']:+.1f} deg: {'ok' if h['ok'] else 'DOES NOT FOLLOW THE LIGHT'}")
+    print(f"harmony: {'ok' if ok else 'out of band'} (dL* within {TOL_L} of the reference's, dC* in [its dC* - {FLOOR_C}, +{CAP_C}]; "
           f"night: character L* p95 <= the brightest lawn stone; golden: fur hue follows the lawn's by {HUE_FOLLOW:.0%})")
     return 0 if ok else 1
 

@@ -252,6 +252,10 @@ public struct IslandScene<Bubble: View>: View {
         .onChange(of: HomePlate.resolve(world: world, look: look), initial: true) { _, plate in
             model.setHomePlate(plate)
         }
+        // Çağlayan's painted plates (ADR-0022): by story stage, hour and weather where painted.
+        .onChange(of: HomePlate.resolveCaglayan(world: world, look: look), initial: true) { _, plate in
+            model.setCaglayanPlate(plate)
+        }
         .onChange(of: world.visitor, initial: true) { _, visitor in
             if model.noteVisitor(visitor, at: Date(), still: still), let visitor {
                 AccessibilityNotification.Announcement(WorldStrings.visitorArrived(visitor.resident)).post()
@@ -476,7 +480,11 @@ private struct SceneFrame<Bubble: View>: View {
         // The painted home plate (ADR-0022) is the final picture: no grade,
         // fog, haze, vignette, light layers, depth of field or parallax.
         let plate = model.homePlate
-        let motion = plate == nil && look.hd2d && look.depthMotion && !model.reduceMotion ? rig.motion.parallax(look.tuning.parallax) : CameraMotion.still
+        // Çağlayan's painted plate (ADR-0022), when its state is painted: while the camera is on
+        // that island the scene is the painting, like Home's, and nothing grades or hazes it.
+        let isle = model.caglayanPlate
+        let painted = model.island == .caglayan ? isle != nil : plate != nil
+        let motion = !painted && look.hd2d && look.depthMotion && !model.reduceMotion ? rig.motion.parallax(look.tuning.parallax) : CameraMotion.still
         let lookPoint = WorldPoint(x: pose.lookX, y: pose.lookY)
         // HD-2D's tilt-shift: the depth lens, stronger per framing.
         let rigLens = DepthMotion.lens(look.hd2d ? rig.lens.tiltShifted(by: LookTuning.tiltShift(z: z, island: look.tuning.tiltShiftIsland, home: look.tuning.tiltShiftHome)) : rig.lens, motion: motion)
@@ -490,13 +498,16 @@ private struct SceneFrame<Bubble: View>: View {
         let spikeDOF = spike.depthOfField && WorldShaders.isAvailable
         // Focus follows the camera: no depth of field while it moves, then
         // a rack focus once it settles.
-        let lens = spikeDOF || plate != nil ? Lens(focus: baseLens.focus, slab: baseLens.slab, gain: 0) : Lens(focus: baseLens.focus, slab: baseLens.slab, gain: baseLens.gain * rack)
+        let lens = spikeDOF || painted ? Lens(focus: baseLens.focus, slab: baseLens.slab, gain: 0) : Lens(focus: baseLens.focus, slab: baseLens.slab, gain: baseLens.gain * rack)
         let peek = rig.peekTilt
         let device = model.deviceTilt
-        let tilt = plate != nil ? (x: 0.0, y: 0.0) : (x: min(max(peek.x + device.x, -1), 1), y: min(max(peek.y + device.y, -1), 1))
+        let tilt = painted ? (x: 0.0, y: 0.0) : (x: min(max(peek.x + device.x, -1), 1), y: min(max(peek.y + device.y, -1), 1))
         // The plate and its backdrop at the Island stop and closer; toward
         // the Map only the island cut stays, among the other islands.
         let plateFade = plate != nil && model.island == .home ? PlateHomeLayer.opacity(z: z) : 0
+        let isleFade = isle != nil && model.island == .caglayan
+            ? HomePlate.caglayanFade(pose: pose, viewportWidth: Double(size.width))
+            : 0
         let offset = CGSize(width: rig.offsetX.value, height: rig.offsetY.value)
         // Stations answer taps in every framing: on the Map and at Home a
         // tap flies to the island and opens the sheet in one gesture.
@@ -572,7 +583,7 @@ private struct SceneFrame<Bubble: View>: View {
                 strength: spike.debug == .normals ? 1 : spike.lightStrength
             )
             : nightRelight
-        let depthMap: Image? = plate == nil && ((spikeDOF && rack > 0.001) || spike.debug == .depth)
+        let depthMap: Image? = !painted && ((spikeDOF && rack > 0.001) || spike.debug == .depth)
             ? SpikeDepthMap.image(world: world, pose: pose, offset: offset, size: size, art: look.art, koke: model.island == .koke && world.koke.isArrived, caglayan: model.island == .caglayan && world.caglayan.isArrived)
             : nil
         let field: DepthOfField = {
@@ -610,13 +621,13 @@ private struct SceneFrame<Bubble: View>: View {
 
         ZStack(alignment: .topLeading) {
             ZStack(alignment: .topLeading) {
-                if plateFade < 0.999 {
+                if max(plateFade, isleFade) < 0.999 {
                     LivingSky(palette: sky, offset: offset, far: FarSky.Look(z: z, cell: light.cell, grade: grade, koke: farKoke, healed: farHealed, mist: atmosphere.mist))
                         .environment(\.worldAmbientPaused, ambientPaused)
                         .animation(animation, value: sky)
                 }
 
-                if plate == nil {
+                if !painted {
                     // The rainbow, soft and pastel, behind the island and its fog.
                     WeatherRainbow(atmosphere: atmosphere, size: size, seaLine: fogSeaLine, offset: offset)
 
@@ -665,6 +676,14 @@ private struct SceneFrame<Bubble: View>: View {
                     ResistSealsLayer(tally: resistSeals, pose: pose, offset: offset, size: size, night: world.isBedtime)
                         .tinted(tint, isEnabled: !(look.grade && WorldShaders.isAvailable))
                         .modifier(GradeEffect(grade: grade.withoutVignette, isEnabled: look.grade))
+                }
+
+                if let isle, z < 1.7 || model.island != .home {
+                    // Çağlayan's painted plate, never graded: its backdrop and plate at the Island
+                    // stop, the island cut alone among the others toward the Map and in a flight
+                    // (the sprite island is not drawn while its state is painted).
+                    PlateHomeLayer(plate: isle, pose: pose, size: size, offset: offset, fade: isleFade)
+                        .opacity(model.island == .caglayan ? 1 : max(0, 1 - max(z, 0) / 0.8) * (model.focus == nil ? 1 : 0))
                 }
 
                 // The characters keep their warmth: the colour script's
@@ -731,7 +750,7 @@ private struct SceneFrame<Bubble: View>: View {
                     props.world(WorldPropsFrame(pose: pose, size: size, offset: offset, z: z, isFocused: model.focus != nil || model.hasSheet, model: model))
                 }
 
-                if plate == nil {
+                if !painted {
                     // The sprite island's atmosphere: none of it lies over a plate.
                     CloudSea(colours: sea, offset: offset, rise: CloudSea.rise(z: z, pose: pose, height: Double(size.height)))
                         .environment(\.worldAmbientPaused, ambientPaused)
@@ -782,7 +801,7 @@ private struct SceneFrame<Bubble: View>: View {
                 }
             }
             .frame(width: size.width, height: size.height, alignment: .topLeading)
-            .environment(\.worldRelight, plate == nil ? relight : nil)
+            .environment(\.worldRelight, !painted ? relight : nil)
             .environment(\.worldHorizon, sky.horizon)
             .environment(\.worldNight, light.night)
             .modifier(SpikeDepthOfFieldEffect(depth: depthMap, field: field, size: size, showsDepth: spike.debug == .depth))
@@ -1316,6 +1335,7 @@ private struct WorldCanvas: View {
             let here = model.island == .caglayan
             let fade = here ? 1 : max(0, 1 - max(z, 0) / 0.8) * (model.focus == nil ? 1 : 0)
             CaglayanIsleView(
+                painted: model.caglayanPlate != nil,
                 stage: world.caglayan.stage,
                 swellAge: model.caglayan.swellStart.map { clock.timeIntervalSince($0) },
                 reduceMotion: model.reduceMotion,
@@ -1333,12 +1353,28 @@ private struct WorldCanvas: View {
         if world.caglayan.isArrived, z < 1.7 || model.island != .home {
             let here = model.island == .caglayan
             let fade = here ? 1 : max(0, 1 - max(z, 0) / 0.8) * (model.focus == nil ? 1 : 0)
-            CaglayanDamlaView(
-                stage: world.caglayan.stage,
-                point: canvasPoint(CaglayanLayout.center, depth: here ? CaglayanLayout.focusDepth : 0),
-                characterGrade: characterGrade
-            )
-            .opacity(fade)
+            if let isle = model.caglayanPlate, let damla = isle.damla(stage: world.caglayan.stage),
+               let sprite = WorldArt.sprite(damla.art)?.sharp {
+                // On the painted plate she stands at her spot, at the plate's scale and in its
+                // light, like Mochi and Findik at Home.
+                let scale = isle.residentScale(.damla)
+                let point = canvasPoint(damla.feet, depth: here ? CaglayanLayout.focusDepth : 0)
+                PlateCharacter(
+                    art: damla.art,
+                    point: point,
+                    scale: scale,
+                    light: isle.characterLight(at: damla.feet, width: sprite.width * scale, height: sprite.height * scale, id: "damla"),
+                    pulse: model.pulses["caglayan", default: 0]
+                )
+                .opacity(fade)
+            } else {
+                CaglayanDamlaView(
+                    stage: world.caglayan.stage,
+                    point: canvasPoint(CaglayanLayout.center, depth: here ? CaglayanLayout.focusDepth : 0),
+                    characterGrade: characterGrade
+                )
+                .opacity(fade)
+            }
         }
     }
 

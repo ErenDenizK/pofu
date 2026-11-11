@@ -107,6 +107,28 @@ class Measure(unittest.TestCase):
         self.assertTrue(hc.follows_hue(r(70, 100), r(70, 101))[0])
         self.assertTrue(hc.follows_hue(r(175, 175), r(-175, -175))[0])
 
+    def test_golden_hue_may_close_in_on_the_key_from_the_other_side_of_it(self):
+        def r(fur, lawn):
+            return {"damla": {"hue": fur, "lawnHue": lawn}}
+        # An otter's brown (56) and a yellow-green lawn (97) sit on either side of a golden key (88):
+        # the lawn turns 8 toward it, the fur 4.5 toward it from the other side.
+        day, golden = r(56, 97), r(60.5, 89)
+        self.assertFalse(hc.follows_hue(day, golden, "damla")[0])
+        self.assertTrue(hc.follows_hue(day, golden, "damla", key=88.0)[0])
+        # A fur that barely moves toward the key still fails it.
+        self.assertFalse(hc.follows_hue(day, r(57, 89), "damla", key=88.0)[0])
+
+    def test_the_band_can_be_anchored_on_an_islands_own_root_frame(self):
+        ref = {"damla": (-2.7, -21.4)}
+        self.assertTrue(hc.in_band({"damla": {"dL": -11.0, "dC": -5.0}}, ref)["damla"])
+        self.assertFalse(hc.in_band({"damla": {"dL": -14.0, "dC": -5.0}}, ref)["damla"])
+        self.assertFalse(hc.in_band({"damla": {"dL": -3.0, "dC": 12.0}}, ref)["damla"])
+
+    def test_the_story_stage_is_read_from_a_frames_name(self):
+        self.assertEqual(hc.stage_of("caglayan-plate-full-s4-golden"), 4)
+        self.assertEqual(hc.stage_of("caglayan-plate-full-s0-day"), 0)
+        self.assertEqual(hc.stage_of("home-plate-full-l10-golden"), 0)
+
     def test_the_wrong_frame_size_fails_loudly(self):
         with self.assertRaises(SystemExit):
             hc.measure(np.full((20, 20, 3), 0.5), data())

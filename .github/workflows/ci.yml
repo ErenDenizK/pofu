@@ -358,7 +358,7 @@ jobs:
           thumbs = []
           for png in pngs:
               # Full device resolution, kept as written (the Home plate resolution A/B).
-              if png.stem.startswith("home-plate-full-"):
+              if png.stem.startswith(("home-plate-full-", "caglayan-plate-full-")):
                   shutil.copy(png, out / png.name)
                   continue
               im = Image.open(png).convert("RGB")

@@ -153,6 +153,10 @@ struct CaglayanPlaque: View {
 /// underside. Drawn like `KokeIsleView`: the scene's ambient clock hands in
 /// `time` (nil when settled, so a still frame costs nothing).
 struct CaglayanIsleView: View {
+    /// The painted plate draws the island in this state (`HomePlate.caglayanState`): the sprite
+    /// plate, the shaft, the falls, the pool's light and the note are all in the painting, and
+    /// pasting them on it again is the collage ADR-0022 forbids. Only the swell stays.
+    var painted = false
     let stage: Int
     let swellAge: Double?
     let reduceMotion: Bool
@@ -173,21 +177,23 @@ struct CaglayanIsleView: View {
     var body: some View {
         let s = CaglayanLayout.clamped(stage)
         ZStack {
-            // The falls leave the underside: behind the plate, so they pour out of its lower edge.
-            let strength = fallsStrength(s)
-            if strength > 0.001 {
-                CaglayanFalls(time: time, strength: strength)
-                    .frame(width: 160, height: 300)
-                    .position(x: Self.origin.x, y: Self.origin.y + CaglayanLayout.undersideY + 150)
+            if !painted {
+                // The falls leave the underside: behind the plate, so they pour out of its lower edge.
+                let strength = fallsStrength(s)
+                if strength > 0.001 {
+                    CaglayanFalls(time: time, strength: strength)
+                        .frame(width: 160, height: 300)
+                        .position(x: Self.origin.x, y: Self.origin.y + CaglayanLayout.undersideY + 150)
+                }
+                plates(s)
+                shaft(s)
+                if let from, progress < 1 {
+                    // The old stage's shaft fades out under the new one's fade-in.
+                    shaftView(CaglayanLayout.shaftAlpha(stage: from) * (1 - progress))
+                }
+                poolLight(s)
+                note(s)
             }
-            plates(s)
-            shaft(s)
-            if let from, progress < 1 {
-                // The old stage's shaft fades out under the new one's fade-in.
-                shaftView(CaglayanLayout.shaftAlpha(stage: from) * (1 - progress))
-            }
-            poolLight(s)
-            note(s)
             Canvas { context, _ in
                 if let swellAge, let swell = KokeLayout.swell(age: swellAge, reduceMotion: reduceMotion) {
                     Self.drawSwell(&context, radius: swell.radius, opacity: swell.opacity)
