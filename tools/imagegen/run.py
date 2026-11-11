@@ -87,11 +87,51 @@ def provisional_parent(parent: pl.Job, m: pl.Manifest, config: dict) -> tuple[in
     return (best[1], best[2]) if best else None
 
 
-def job_refs(job: pl.Job, m: pl.Manifest, provisional: dict | None = None) -> list[tuple[pl.Attach, Path]]:
+def outpaint_input(parent: Image.Image, canvas: tuple[int, int], anchor_y: float) -> tuple[Image.Image, Image.Image]:
+    """The edit input and mask of an outpaint job.
+
+    The parent is scaled to the canvas width (never cropped) and placed on a
+    transparent canvas, its vertical centre at anchor_y x height. Returns
+    (RGBA input, L mask): the mask is white where the model paints (the
+    transparent margin) and black over the parent. Nothing is redrawn inside
+    the parent: the ingest re-pastes it afterwards."""
+    cw, ch = canvas
+    scale = cw / parent.width
+    small = parent.convert("RGBA").resize((cw, max(1, round(parent.height * scale))), Image.LANCZOS)
+    top = min(max(round(anchor_y * ch - small.height / 2), 0), max(ch - small.height, 0))
+    inp = Image.new("RGBA", canvas, (0, 0, 0, 0))
+    inp.paste(small, (0, top))
+    mask = Image.new("L", canvas, 255)
+    mask.paste(Image.new("L", small.size, 0), (0, top))
+    return inp, mask
+
+
+def outpaint_files(job: pl.Job, parent_path: Path, config: dict, m: pl.Manifest) -> tuple[Path, Path]:
+    """Write the outpaint input and mask for a job under the batch's build folder."""
+    d = pl.build_dir(config, m.batch) / "outpaint"
+    d.mkdir(parents=True, exist_ok=True)
+    with Image.open(parent_path) as im:
+        inp, mask = outpaint_input(im, job.canvas or job.size, job.outpaint["anchor_y"])
+    a, b = d / f"{job.id}--input.png", d / f"{job.id}--mask.png"
+    inp.save(a)
+    mask.save(b)
+    return a, b
+
+
+def job_refs(job: pl.Job, m: pl.Manifest, provisional: dict | None = None, config: dict | None = None) -> list[tuple[pl.Attach, Path]]:
     provisional = provisional or {}
     out = []
     for a in pl.attachments_for(job):
-        pid = a.ref.split(":", 1)[1] if a.ref.startswith("approved:") else None
+        kind, _, pid = a.ref.partition(":")
+        if kind in ("outpaint-input", "outpaint-mask"):
+            parent = provisional[pid][1] if pid in provisional else pl.approved_image(m.job(pid))
+            if parent.exists() and config is not None:
+                files = outpaint_files(job, parent, config, m)
+                out.append((a, files[0] if kind == "outpaint-input" else files[1]))
+            else:
+                out.append((a, parent))
+            continue
+        pid = pid if kind == "approved" else None
         out.append((a, provisional[pid][1] if pid in provisional else pl.resolve_ref(a.ref, m)))
     return out
 
@@ -107,8 +147,8 @@ def job_state(job: pl.Job, m: pl.Manifest, config: dict, background: str) -> dic
             if pp:
                 provisional[d] = pp
     blocked = [d for d in deps if d not in provisional and not pl.approved_image(m.job(d)).exists()]
-    refs = job_refs(job, m, provisional)
-    missing = [rel(p) for a, p in refs if not p.exists() and not a.ref.startswith("approved:")]
+    refs = job_refs(job, m, provisional, config)
+    missing = [rel(p) for a, p in refs if not p.exists() and not a.ref.startswith(("approved:", "outpaint-"))]
     prompt = pl.compose_prompt(job, background)
     fp = pl.fingerprint(prompt, [p for _, p in refs]) if not blocked and not missing else None
     takes = existing_takes(job, pl.inbox_dir(config, m.batch))
@@ -396,6 +436,10 @@ def cmd_post(args, config, m: pl.Manifest) -> int:
                 pp_path = pl.approved_image(pj) if not prov else prov[1]
                 parent_locked = sl.load_rgba(pp_path)
                 parent_img = Image.open(pp_path).copy()
+                if job.outpaint:
+                    # Compare in the outpaint frame: the parent as placed on the canvas.
+                    inp, _ = outpaint_input(parent_img, job.canvas or job.size, job.outpaint["anchor_y"])
+                    parent_locked = np.asarray(inp, dtype=np.float64) / 255.0
                 # The edit is drawn on the approved master, which is already
                 # on the anchor: applying the chain root's registration again
                 # moved bagel-cart-2 and workshop-2 110 px off their parent and

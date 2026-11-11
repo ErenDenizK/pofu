@@ -662,3 +662,8 @@ Result of the night items (b): home now draws its painted plate at level 10 day,
 
 1. Codex finished its batches; check and give it the next work. Handled: lead review of #366, #367 and #369, merged with picks; the redos and two pilots are in batch-74 (queue row 0-h2); a paste message for Codex.
 2. The top of the home screen is nearly empty; is it intentional? Handled: no; it is a by-product of the plate's shorter canvas and of lowering the island to hide the haze. A camera framing pass (home scale +10, 15 and 20 percent, the island mass at 52 to 55 percent of the height) runs in the character-light PR; a repaint on a phone-tall canvas only if the framing is not enough.
+
+## 2026-11-11: a broken Codex chat, work without assets
+
+1. One Codex chat broke after it set itself an automation; a new chat was opened. Handled: the queue's open-PR rule keeps two chats from duplicating; the lead suggested archiving the old one.
+2. Do asset-independent work meanwhile. Handled: Çağlayan moved to painted plates in the app (#376); plate image weight measured and HEIC q70 chosen (ADR in the HEIC PR); portrait outpaints for the four islands queued (batch-75, queue row 0-p2) because the landscape plates leave the bottom 40% of the phone screen empty. The in-app frames that showed it: `docs/product/decisions-2026-11-11/result-caglayan-landscape-plates.jpg`.

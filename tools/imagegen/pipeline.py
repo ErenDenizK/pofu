@@ -133,6 +133,11 @@ class Job:
     # take; the promoted master (and its raw) is written downscaled by s
     # (Lanczos, still lossless WebP) so soft art fits the 600 KB upload cap.
     deliver: dict | None = None
+    # Outpaint: {anchor_y: f}. The edit input is the parent scaled to the canvas
+    # width and placed on a transparent canvas with its vertical centre at
+    # f x height, plus a mask (run.outpaint_input); the transparent margin is
+    # what the model paints. Needs edit_of.
+    outpaint: dict | None = None
     # Named sentences of a style block to drop from this job's prompt
     # (STYLE_LINES), e.g. [fur] for a smooth-skinned animal.
     style_exclude: list[str] = field(default_factory=list)
@@ -299,6 +304,13 @@ def parse_manifest(data: dict, config_refs: dict | None = None, path: Path | Non
             if not ok:
                 raise ManifestError(f"{where}: emit_region is a list of boxes {{x, y, w, h}} in canvas fractions inside 0..1, on an edit_of job")
             emit_region = boxes
+        outpaint = merged.get("outpaint")
+        if outpaint is not None:
+            a = outpaint.get("anchor_y") if isinstance(outpaint, dict) else None
+            if (not merged.get("edit_of") or set(outpaint) - {"anchor_y"} or isinstance(a, bool)
+                    or not isinstance(a, (int, float)) or not 0 < a < 1):
+                raise ManifestError(f"{where}: outpaint is {{anchor_y: f}} with 0 < f < 1, on an edit_of job")
+            outpaint = {"anchor_y": float(a)}
         deliver = merged.get("deliver")
         if deliver is not None:
             s = deliver.get("scale") if isinstance(deliver, dict) else None
@@ -340,7 +352,7 @@ def parse_manifest(data: dict, config_refs: dict | None = None, path: Path | Non
                   acceptance={**(merged.get("acceptance", {}) or {}), **({"blend": blend} if blend else {})}, chat=merged.get("chat"),
                   notes=merged.get("notes", "") or "", canvas=canvas, external=str(external) if external else None,
                   master=str(master) if master else None, slice=slice_, decor=decor, palettes=list(extra), light=light, fit=fit, emit_region=emit_region,
-                  deliver=deliver, style_exclude=list(style_exclude))
+                  deliver=deliver, outpaint=outpaint, style_exclude=list(style_exclude))
         jobs.append(job)
     if not jobs:
         raise ManifestError("manifest has no jobs")
@@ -446,7 +458,10 @@ def compose_prompt(job: Job, background: str = "transparent") -> str:
 def attachments_for(job: Job) -> list[Attach]:
     """Attachments in order; an edit's parent always comes first."""
     out = []
-    if job.edit_of:
+    if job.edit_of and job.outpaint:
+        out.append(Attach(f"outpaint-input:{job.edit_of}", "The image to outpaint: the approved plate, kept exactly as it is, placed on a larger canvas. The transparent area around it is what you paint; do not redraw the plate."))
+        out.append(Attach(f"outpaint-mask:{job.edit_of}", "The mask for the outpaint: white is the area to paint, black is the plate to keep unchanged."))
+    elif job.edit_of:
         out.append(Attach(f"approved:{job.edit_of}", "The image to edit (the approved previous level). Edit it; do not redraw it."))
     out.extend(a for a in job.attach if a.ref != f"approved:{job.edit_of}")
     return out
