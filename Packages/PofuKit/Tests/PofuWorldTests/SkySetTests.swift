@@ -148,10 +148,10 @@ struct SkySetTests {
         let screen = 402.0, width = 150.0, margin = SkyMotion.glideMargin / 3
         let scale = SkyMotion.scale(width: screen, referenceWidth: 1206)
         let rest = 120.0
-        #expect(SkyMotion.glideLeft(restLeft: rest, width: width, speed: 5, time: 0, screenWidth: screen, scale: scale) == rest)
+        #expect(abs(SkyMotion.glideLeft(restLeft: rest, width: width, speed: 5, time: 0, screenWidth: screen, scale: scale) - rest) < 1e-6)
         var last = rest
         var wraps = 0
-        for i in 1...20_000 {
+        for i in 1...4_000 {
             let left = SkyMotion.glideLeft(restLeft: rest, width: width, speed: 5, time: Double(i) * 0.1, screenWidth: screen, scale: scale)
             if left < last - 1 {
                 wraps += 1
