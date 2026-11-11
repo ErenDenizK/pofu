@@ -16,7 +16,8 @@ def table(cell: str) -> str:
         rows.append(f"        {t}:")
         for w in check_plates.WEATHER:
             rows.append(f"          {w}: {cell if (t, w) == ('day', 'clear') else EMPTY}")
-    return "islands:\n  x:\n    stages:\n      s:\n" + "\n".join(rows) + "\n"
+    sky = "\n".join(f"      {l}: {EMPTY}" for l in check_plates.SKY_LIGHTS)
+    return "islands:\n  x:\n    stages:\n      s:\n" + "\n".join(rows) + "\n    sky_sets:\n" + sky + "\n"
 
 
 class CheckPlates(unittest.TestCase):
@@ -46,6 +47,19 @@ class CheckPlates(unittest.TestCase):
     def test_unpainted_with_pick(self):
         cell = "{painted: null, lead_pick: 1, in_app: false, founder_ok: null}"
         self.assertIn("unpainted", self.run_table(cell)[0])
+
+    def test_sky_sets_missing(self):
+        with tempfile.TemporaryDirectory() as d:
+            f = Path(d) / "plates.yaml"
+            f.write_text(table(EMPTY).split("    sky_sets:")[0])
+            self.assertEqual(check_plates.check(f, Path(d)), ["x/sky_sets: missing section"])
+
+    def test_sky_set_bad_cell(self):
+        with tempfile.TemporaryDirectory() as d:
+            f = Path(d) / "plates.yaml"
+            f.write_text(table(EMPTY).replace("rain: " + EMPTY + "\n", "rain: {painted: null, lead_pick: 1, in_app: false, founder_ok: null}\n").rstrip("\n").rsplit("\n", 1)[0] + "\n      rain: {painted: null, lead_pick: 1, in_app: false, founder_ok: null}\n")
+            errs = check_plates.check(f, Path(d))
+            self.assertTrue(any("sky_sets/rain" in e and "unpainted" in e for e in errs))
 
     def test_real_table(self):
         self.assertEqual(check_plates.check(ROOT / "docs/state/plates.yaml", ROOT), [])

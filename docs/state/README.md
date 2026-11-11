@@ -8,7 +8,7 @@ re-read the chat. Plate-first (ADR-0022): one painted picture per island state.
   number), `in_app`, `founder_ok`. `root_time` names the hour of the island's
   picked root. Paint order is the next null `painted` cell (standing work in
   [the queue](../design/art-production-plan.md#the-queue)).
-- Checked by `python3 -I tools/state/check_plates.py` (paths and picks exist);
+- Checked by `python3 -I tools/state/check_plates.py` (paths and picks exist; each island also has a `sky_sets:` row per light, ADR-0025);
   it runs in the Python CI job.
 
 ## Who updates

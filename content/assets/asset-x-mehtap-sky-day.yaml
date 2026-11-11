@@ -1,0 +1,24 @@
+id: asset-x-mehtap-sky-day
+type: asset
+title_tr: x-mehtap-sky-day
+title_en: x-mehtap-sky-day (plate)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached tall painting into the same scene in this light: clear daylight: a bright
+  blue sky with soft white clouds and warm sun from the side, a sunlit cloud sea, the island's
+  own colours rich. Mehtap's own colours stay rich. The sky, the distant islands and the cloud
+  sea stay rich and slightly vivid. Everything stays in its place, the same shapes and sizes;
+  only light and colour change.
+links:
+  variant_of:
+  - asset-x-mehtap-portrait-s4-day
+art:
+  images: []
+  jobs:
+  - batch-75-portrait-islands:x-mehtap-sky-day
+sources:
+- doc: tools/imagegen/manifest/batch-75-portrait-islands.yaml
+kind: plate
+batch: batch-75-portrait-islands
+size: 1024x1536
