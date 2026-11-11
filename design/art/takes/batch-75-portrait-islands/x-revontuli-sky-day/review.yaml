@@ -1,0 +1,321 @@
+batch: batch-75-portrait-islands
+job: x-revontuli-sky-day
+pick: 1
+status: auto-picked
+note: Auto-picked by QA among manually eligible non-failing takes, lowest lock load then higher explicit canonical
+  plate harmony. Founder/lead review pending; exploration only, never promoted. Island redraws/movement are retained
+  under batch header fallback. Despite header wording, current run.py ingest does not re-paste the original band;
+  no pixel registration claim.
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+manifest:
+  path: tools/imagegen/manifest/batch-75-portrait-islands.yaml
+  sha256: 756a9e894ab9a4bd530975b22272865ca5b56ff00f3d51b598824a1b1a4205c1
+prompt:
+  text: 'REFERENCES (attached, in this order):
+
+    1. The image to edit (the approved previous level). Edit it; do not redraw it.
+
+
+    Edit the attached tall painting into the same scene in this light: clear daylight: a bright blue sky with soft
+    white clouds and warm sun from the side, a sunlit cloud sea, the island''s own colours rich.
+
+    Revontuli''s own colours stay rich. The sky, the distant islands and the cloud sea
+
+    stay rich and slightly vivid. Everything stays in its place, the same shapes and
+
+    sizes; only light and colour change.
+
+
+    KEEP: everything not named above stays exactly the same as in the
+
+    attached image: every existing part, its shape, color, position and size,
+
+    the canvas, the camera, the light and the painting style. Do not zoom out
+
+    or reframe: if a new part does not fit, make the new part smaller, never
+
+    the existing ones. Outside the new parts, the result must line up with
+
+    the attached image pixel for pixel.
+
+
+    AVOID: a flat gradient, a haze or mist band, a grey veil, a dark scene, orange or red saturation, healing or
+    changing the stage, new objects, characters, text, moving anything
+
+
+    LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+    Key light #FFF6EC from the upper left; fill #BFD6EE; rim #FFE9C9 along the edge facing away from the key. Shadows
+    are tinted #A99BC4 (never grey or black), short and soft, falling toward the lower right; every object sits
+    on a soft occlusion pad in that hue where it touches the ground or another form.
+
+    VALUES (the reference envelope): a high-key picture inside one envelope of soft, milky air. Every value sits
+    between light mid-tone and cream-white; the darkest recesses (door holes, gaps, pond rims) are a mid-value tinted
+    with the shadow hue, never black. Form turns in small value steps. Colour lives in the halftones; lights bleach
+    to cream. No dark outlines: edges are found by value and hue. The cloud sea below is the brightest large surface
+    and lights the island''s underside with a warm bounce.
+
+    This is the SUBJECT plane: the clearest forms and the crispest edges in the picture, still inside the envelope.
+
+
+    Output: one image, opaque, full bleed, portrait 1024 x 1536.
+
+    '
+  sha256: 8f219a77aa7c4e5c0348d8eec5489d7382aaa883596e225921309b8dcd004822
+attachments:
+- path: build/imagegen/batch-75-portrait-islands/locked/plate__x-revontuli-portrait-s4-day--t1.png
+  role: The image to edit (the approved previous level). Edit it; do not redraw it.
+  sha256: 8226a94e02f663c161ded9e486605094a9283bf09e2ab9a56c76a889e5feea27
+fingerprint: 9ef7acc804fafd22
+takes:
+  t1:
+    qa: warn
+    qa_report:
+      job: x-revontuli-sky-day
+      take: 1
+      status: warn
+      preset: plate-final
+      checks:
+      - check: transparency
+        status: pass
+        message: opaque, as this kind must be
+      - check: canvas
+        status: pass
+        message: 1024x1536
+      - check: chroma_ceiling
+        status: warn
+        message: chroma p95 62 (R1 51) (advisory in an exploration)
+        value: 61.8
+      - check: light_values
+        status: pass
+        message: 'day/subject: L p5 67 (at least 50: darks stay a light mid-tone), p98 99 (at least 90)'
+        value: 67.1
+      - check: light_median
+        status: pass
+        message: 'day/subject: median L 86 (band 74-92)'
+        value: 85.8
+      - check: light_contrast
+        status: pass
+        message: 'day/subject: p75 local contrast 4.8 (band 2.5-6.5; above it reads too contrasty)'
+        value: 4.83
+      - check: light_sky
+        status: warn
+        message: 'day: sky L 65 (band 70-94)'
+        value: 64.6
+      - check: light_sea
+        status: pass
+        message: 'day: cloud sea L 88 (at least 82: the sea is the reflector)'
+        value: 88.1
+      - check: light_dark
+        status: pass
+        message: 'day: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+        value: 0.0
+      - check: detail_budget
+        status: pass
+        message: detail at display size 3.7 (R1 5.3)
+        value: 3.66
+      - check: lock_load
+        status: pass
+        message: the lock moved colors by mean dE 0.0
+        value: 0.0
+      - check: palette_drift
+        status: warn
+        message: 'mean dE 9.0, p95 26.4, off-palette 31.1% (top: #2288EE (2.6%), #3399EE (2.3%)) (advisory in an
+          exploration)'
+        value: 8.9688
+      - check: edit_silhouette
+        status: pass
+        message: 100% of the parent's shape kept
+        value: 1.0
+      - check: edit_structure
+        status: pass
+        message: light structure matches the parent (r 0.83)
+        value: 0.8296
+      - check: edit_lightness
+        status: warn
+        message: mean lightness moved by 18.3 L (the same lightness was asked) (advisory in an exploration)
+        value: 18.309
+      info:
+        metrics_raw:
+          L_p5: 56.1
+          L_p50: 83.1
+          L_p95: 97.7
+          C_p50: 20.8
+          C_p95: 61.8
+          C_p99: 69.0
+          detail: 3.66
+        metrics_locked:
+          L_p5: 56.1
+          L_p50: 83.1
+          L_p95: 97.7
+          C_p50: 20.8
+          C_p95: 61.8
+          C_p99: 69.0
+          detail: 3.66
+      fingerprint: 9ef7acc804fafd22
+    qa_report_sha256: 6361854802fecc235daf7fd7d57ab90aaef8c9ede8c5ca9c890037213c15c1a9
+    explicit_canonical_plate_harmony:
+      check: harmony
+      status: warn
+      message: 'harmony score 63 against the world reference (outliers: C_p95, L_p98, edge)'
+      value: 63.3
+    manual:
+      eligible: true
+      note: Bright blue daylight and layered sunlit cloud sea; cabin, fir, lamps, pond and distant islands remain
+        recognizable. Aurora and glowing lamps remain bright in daylight; moon disappears and tiny stars persist.
+        This is a documented sky-inventory/relight deviation, retained as exploration under header fallback, not
+        exact registration.
+      started_at: '2026-11-11T13:00:04.472Z'
+      returned_at: '2026-11-11T13:02:08.023Z'
+    source:
+      path: /workspace/generated_images/exec-357ba78a-349f-4313-8125-e97721a5b440.png
+      preserved_path: /workspace/art-operator-runtime/batch75/revontuli/originals/exec-357ba78a-349f-4313-8125-e97721a5b440.png
+      sha256: 80af0022259780701440749be5d56c51b44865bf67c1e7b19b9e22b164699e83
+      dimensions:
+      - 1024
+      - 1536
+      encoding: original PNG
+      file_mtime_utc: '2026-11-11T13:02:06.395155+00:00'
+      tool_call_started_at: '2026-11-11T13:00:04.472Z'
+      tool_return_observed_at: '2026-11-11T13:02:08.023Z'
+    ingestion_time: '2026-11-11T13:07:38+00:00'
+    locked_sha256: ba97d12a2223a203719578bc589e9a9d0bda12ebd8dda296fea040ce665c7686
+    review_copy:
+      path: design/art/takes/batch-75-portrait-islands/x-revontuli-sky-day/plate__x-revontuli-sky-day--t1.webp
+      sha256: 5900f96b38990fa90e0ce02b417ab17a12019984e85455b40c01cb9b7fb37339
+      encoding: lossy WebP q90 method6, full original dimensions
+    lock_load: 0.0
+  t2:
+    qa: warn
+    qa_report:
+      job: x-revontuli-sky-day
+      take: 2
+      status: warn
+      preset: plate-final
+      checks:
+      - check: transparency
+        status: pass
+        message: opaque, as this kind must be
+      - check: canvas
+        status: pass
+        message: 1024x1536
+      - check: chroma_ceiling
+        status: warn
+        message: chroma p95 64 (R1 51) (advisory in an exploration)
+        value: 63.7
+      - check: light_values
+        status: pass
+        message: 'day/subject: L p5 66 (at least 50: darks stay a light mid-tone), p98 99 (at least 90)'
+        value: 65.8
+      - check: light_median
+        status: pass
+        message: 'day/subject: median L 86 (band 74-92)'
+        value: 86.1
+      - check: light_contrast
+        status: pass
+        message: 'day/subject: p75 local contrast 5.0 (band 2.5-6.5; above it reads too contrasty)'
+        value: 5.02
+      - check: light_sky
+        status: warn
+        message: 'day: sky L 65 (band 70-94)'
+        value: 65.0
+      - check: light_sea
+        status: pass
+        message: 'day: cloud sea L 87 (at least 82: the sea is the reflector)'
+        value: 86.7
+      - check: light_dark
+        status: pass
+        message: 'day: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+        value: 0.0
+      - check: detail_budget
+        status: pass
+        message: detail at display size 3.9 (R1 5.3)
+        value: 3.88
+      - check: lock_load
+        status: pass
+        message: the lock moved colors by mean dE 0.0
+        value: 0.0
+      - check: palette_drift
+        status: warn
+        message: 'mean dE 8.7, p95 25.7, off-palette 29.6% (top: #2288EE (2.5%), #3399EE (2.4%)) (advisory in an
+          exploration)'
+        value: 8.7268
+      - check: edit_silhouette
+        status: pass
+        message: 100% of the parent's shape kept
+        value: 1.0
+      - check: edit_structure
+        status: pass
+        message: light structure matches the parent (r 0.82)
+        value: 0.8237
+      - check: edit_lightness
+        status: warn
+        message: mean lightness moved by 18.2 L (the same lightness was asked) (advisory in an exploration)
+        value: 18.196
+      info:
+        metrics_raw:
+          L_p5: 56.0
+          L_p50: 83.0
+          L_p95: 98.1
+          C_p50: 19.1
+          C_p95: 63.7
+          C_p99: 70.8
+          detail: 3.88
+        metrics_locked:
+          L_p5: 56.0
+          L_p50: 83.0
+          L_p95: 98.1
+          C_p50: 19.1
+          C_p95: 63.7
+          C_p99: 70.8
+          detail: 3.88
+      fingerprint: 9ef7acc804fafd22
+    qa_report_sha256: a420d74345dff5832feef972f887fe8c13299e21e938ac45dcacaf021b139e18
+    explicit_canonical_plate_harmony:
+      check: harmony
+      status: warn
+      message: 'harmony score 61 against the world reference (outliers: C_p95, L_p98, edge)'
+      value: 60.7
+    manual:
+      eligible: true
+      note: Bright blue daylight and layered sunlit cloud sea; cabin, fir, lamps, pond and distant islands remain
+        recognizable. Aurora and glowing lamps remain bright in daylight; moon disappears and tiny stars persist.
+        This is a documented sky-inventory/relight deviation, retained as exploration under header fallback, not
+        exact registration.
+      started_at: '2026-11-11T13:00:04.473Z'
+      returned_at: '2026-11-11T13:00:51.141Z'
+    source:
+      path: /workspace/generated_images/exec-c7a82ba0-1ab9-4512-a4cc-2d8a6f560136.png
+      preserved_path: /workspace/art-operator-runtime/batch75/revontuli/originals/exec-c7a82ba0-1ab9-4512-a4cc-2d8a6f560136.png
+      sha256: 9d1895529a385d00d7a82fd2a86c1383334c622069d097477c6f339dc7f3e0d3
+      dimensions:
+      - 1024
+      - 1536
+      encoding: original PNG
+      file_mtime_utc: '2026-11-11T13:00:50.583906+00:00'
+      tool_call_started_at: '2026-11-11T13:00:04.473Z'
+      tool_return_observed_at: '2026-11-11T13:00:51.141Z'
+    ingestion_time: '2026-11-11T13:07:38+00:00'
+    locked_sha256: 862f95569ed5c423d0740ee52a993b5e7e0d21c91e462ddfa7a2cab236546b8e
+    review_copy:
+      path: design/art/takes/batch-75-portrait-islands/x-revontuli-sky-day/plate__x-revontuli-sky-day--t2.webp
+      sha256: 4c1d22b5c176ae49c36637954d3f01af8ecd9adc6af139f4ce01f77e33ef0241
+      encoding: lossy WebP q90 method6, full original dimensions
+    lock_load: 0.0
+selection_note: Canonical post excludes kind plate from HARMONY_KINDS; explicit qa.check_harmony(kind=plate) ran
+  on unchanged locked pixels, separately from untouched post reports.
+harmony_inputs:
+  tools/imagegen/qa.py: 773643762304d29432cdd5d88600bd4603e6296be1ebf23405f51e5f1a56304f
+  tools/assets/harmony.py: bdc4b81c9234d97e78140673d3a90a1407e2ae2af5b4a22786ab225468c2f576
+  design/art/harmony/config.json: d2ed591e6e8a7d0eafd54f95e3e3c98290453a81aaff11a9f800afea6fc43a18
+  design/art/harmony/reference.json: 602aff8ff097bad430ebfc0bf3837c647cf738bc407b90d58b8eb689810a673e
+contact_sheet:
+  sha256: 54ee5292c58efb1c4cd0e651081a6d55b1491d11e8e4e6d14b8cf25e0019f480
+  note: Canonical post contact; pilots show original landscape parent, while QA uses portrait-placed parent.
+timing_note: Tool timestamps are observed UTC clock samples around dispatch/return; source mtime and ingestion time
+  are separate.
+provisional_parent: x-revontuli-portrait-s4-day t1 (auto-pick, lead review pending)
+provisional_reference_note: Local-only symlink at expected master path resolves to QA-picked locked pilot. Not promoted
+  or lead-approved.

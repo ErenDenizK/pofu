@@ -1,0 +1,319 @@
+batch: batch-75-portrait-islands
+job: x-caglayan-sky-golden
+pick: 1
+status: auto-picked
+note: Auto-picked by QA among manually eligible non-failing takes, lowest lock load then higher explicit canonical
+  plate harmony. Founder/lead review pending; exploration only, never promoted. Island redraws/movement are retained
+  under batch header fallback. Despite header wording, current run.py ingest does not re-paste the original band;
+  no pixel registration claim.
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+manifest:
+  path: tools/imagegen/manifest/batch-75-portrait-islands.yaml
+  sha256: 756a9e894ab9a4bd530975b22272865ca5b56ff00f3d51b598824a1b1a4205c1
+prompt:
+  text: 'REFERENCES (attached, in this order):
+
+    1. The image to edit (the approved previous level). Edit it; do not redraw it.
+
+    2. The light target: the home island at this time, its sky, light and cloud sea. Match the light, not the objects.
+
+
+    Edit the attached tall painting into the same scene in this light: golden hour: a soft pink and lilac sky warming
+    to peach near the clouds, low warm peach light raking from the side, lilac shadows, the cloud sea blushed peach
+    with lilac shade. Lamps and windows that exist are just coming on, small and soft.
+
+    Çağlayan''s own colours stay rich. The sky, the distant islands and the cloud sea
+
+    stay rich and slightly vivid. Everything stays in its place, the same shapes and
+
+    sizes; only light and colour change.
+
+
+    KEEP: everything not named above stays exactly the same as in the
+
+    attached image: every existing part, its shape, color, position and size,
+
+    the canvas, the camera, the light and the painting style. Do not zoom out
+
+    or reframe: if a new part does not fit, make the new part smaller, never
+
+    the existing ones. Outside the new parts, the result must line up with
+
+    the attached image pixel for pixel.
+
+
+    AVOID: a flat gradient, a haze or mist band, a grey veil, a dark scene, orange or red saturation, healing or
+    changing the stage, new objects, characters, text, moving anything
+
+
+    LIGHT (hour: golden, layer: subject). The day''s reward.
+
+    Key light #F7C873 from the right, a little above; fill #D9A9C4; rim #FFC77A along the edge facing away from
+    the key. Shadows are tinted #8E78C8 (never grey or black), short and soft, falling toward the left, a little
+    below; every object sits on a soft occlusion pad in that hue where it touches the ground or another form.
+
+    VALUES (the reference envelope): a high-key picture inside one envelope of soft, milky air. Every value sits
+    between light mid-tone and cream-white; the darkest recesses (door holes, gaps, pond rims) are a mid-value tinted
+    with the shadow hue, never black. Form turns in small value steps. Colour lives in the halftones; lights bleach
+    to cream. No dark outlines: edges are found by value and hue. The cloud sea below is the brightest large surface
+    and lights the island''s underside with a warm bounce.
+
+    This is the SUBJECT plane: the clearest forms and the crispest edges in the picture, still inside the envelope.
+
+
+    Output: one image, opaque, full bleed, portrait 1024 x 1536.
+
+    '
+  sha256: 684222e8209dade0159ea6b563f4a17726c290686b65b98333fe29fce71086d5
+attachments:
+- path: build/imagegen/batch-75-portrait-islands/locked/plate__x-caglayan-portrait-s4-day--t2.png
+  role: The image to edit (the approved previous level). Edit it; do not redraw it.
+  sha256: 52ea008613d7380fe7cdee17f8c28f1d3a2d80b11b1bd81fa91b89966b54dd8b
+- path: design/art/takes/batch-66-home-flow/x-home-flow-golden/plate__x-home-flow-golden--t1.webp
+  role: 'The light target: the home island at this time, its sky, light and cloud sea. Match the light, not the
+    objects.'
+  sha256: f03dceaf68f712e04c34c4233d23863ebc9df7a75f212fe45aabbc763412fada
+fingerprint: 6d7dc2e735c1aa7e
+takes:
+  t1:
+    qa: warn
+    qa_report:
+      job: x-caglayan-sky-golden
+      take: 1
+      status: warn
+      preset: plate-final
+      checks:
+      - check: transparency
+        status: pass
+        message: opaque, as this kind must be
+      - check: canvas
+        status: pass
+        message: 1024x1536
+      - check: chroma_ceiling
+        status: warn
+        message: chroma p95 55 (R1 51)
+        value: 55.4
+      - check: light_values
+        status: pass
+        message: 'golden/subject: L p5 56 (at least 50: darks stay a light mid-tone), p98 94 (at least 85)'
+        value: 56.3
+      - check: light_median
+        status: pass
+        message: 'golden/subject: median L 77 (band 68-86)'
+        value: 77.1
+      - check: light_contrast
+        status: warn
+        message: 'golden/subject: p75 local contrast 6.6 (band 2.5-6.0; above it reads too contrasty)'
+        value: 6.56
+      - check: light_sky
+        status: pass
+        message: 'golden: sky L 70 (band 60-86)'
+        value: 70.3
+      - check: light_sea
+        status: pass
+        message: 'golden: cloud sea L 80 (at least 78: the sea is the reflector)'
+        value: 80.5
+      - check: light_dark
+        status: pass
+        message: 'golden: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+        value: 0.0
+      - check: detail_budget
+        status: pass
+        message: detail at display size 4.2 (R1 5.3)
+        value: 4.2
+      - check: lock_load
+        status: pass
+        message: the lock moved colors by mean dE 0.0
+        value: 0.0
+      - check: palette_drift
+        status: warn
+        message: 'mean dE 3.1, p95 13.6, off-palette 6.2% (top: #CCBB22 (0.4%), #BBAA22 (0.4%))'
+        value: 3.0537
+      - check: edit_silhouette
+        status: pass
+        message: 100% of the parent's shape kept
+        value: 1.0
+      - check: edit_structure
+        status: pass
+        message: light structure matches the parent (r 0.90)
+        value: 0.9048
+      - check: edit_lightness
+        status: pass
+        message: mean lightness moved by 4.3 L (the same lightness was asked)
+        value: 4.3041
+      info:
+        metrics_raw:
+          L_p5: 60.9
+          L_p50: 77.0
+          L_p95: 91.3
+          C_p50: 25.5
+          C_p95: 55.4
+          C_p99: 75.2
+          detail: 4.2
+        metrics_locked:
+          L_p5: 60.9
+          L_p50: 77.0
+          L_p95: 91.3
+          C_p50: 25.5
+          C_p95: 55.4
+          C_p99: 75.2
+          detail: 4.2
+      fingerprint: 6d7dc2e735c1aa7e
+    qa_report_sha256: 8081edc6b02772787d561aae9efb59b15af1a606de864f82a1d06d47b07aa842
+    explicit_canonical_plate_harmony:
+      check: harmony
+      status: pass
+      message: 'harmony score 83 against the world reference (outliers: edge)'
+      value: 82.7
+    manual:
+      eligible: true
+      note: Warm peach/lilac sky and cloud sea; inventory and composition retained with small redraw differences.
+        No conspicuous seam. Warm yellow highlights are strong but not red/orange clipping.
+    source:
+      path: /workspace/generated_images/exec-7468a37a-fae4-4d1d-9b8c-598387b4e3c3.png
+      preserved_path: /workspace/art-operator-runtime/batch75/caglayan/originals/exec-7468a37a-fae4-4d1d-9b8c-598387b4e3c3.png
+      sha256: e4fef3ed058a3afa46d72544c15232202f0bb38d36bdf5823902b0f6ff0f9e6c
+      dimensions:
+      - 1024
+      - 1536
+      encoding: original PNG
+      file_mtime_utc: '2026-11-11T12:51:05.374363+00:00'
+      tool_call_started_at: '2026-11-11T12:50:10.348Z'
+      tool_return_observed_at: '2026-11-11T12:51:07.433Z'
+    ingestion_time: '2026-11-11T12:52:43+00:00'
+    locked_sha256: be5cfde5b07210cd7f801f9779641fa5e165fd1891b28986c42d9ed0520cb3fb
+    review_copy:
+      path: design/art/takes/batch-75-portrait-islands/x-caglayan-sky-golden/plate__x-caglayan-sky-golden--t1.webp
+      sha256: 0a6f8e9f076b27c01473a25435f38b3704f401b781fd6ed42188814223ab27d4
+      encoding: lossy WebP q90 method6, full original dimensions
+    lock_load: 0.0
+  t2:
+    qa: warn
+    qa_report:
+      job: x-caglayan-sky-golden
+      take: 2
+      status: warn
+      preset: plate-final
+      checks:
+      - check: transparency
+        status: pass
+        message: opaque, as this kind must be
+      - check: canvas
+        status: pass
+        message: 1024x1536
+      - check: chroma_ceiling
+        status: warn
+        message: chroma p95 59 (R1 51)
+        value: 59.3
+      - check: light_values
+        status: pass
+        message: 'golden/subject: L p5 56 (at least 50: darks stay a light mid-tone), p98 93 (at least 85)'
+        value: 56.4
+      - check: light_median
+        status: pass
+        message: 'golden/subject: median L 77 (band 68-86)'
+        value: 76.6
+      - check: light_contrast
+        status: warn
+        message: 'golden/subject: p75 local contrast 6.3 (band 2.5-6.0; above it reads too contrasty)'
+        value: 6.33
+      - check: light_sky
+        status: pass
+        message: 'golden: sky L 71 (band 60-86)'
+        value: 71.4
+      - check: light_sea
+        status: pass
+        message: 'golden: cloud sea L 80 (at least 78: the sea is the reflector)'
+        value: 80.2
+      - check: light_dark
+        status: pass
+        message: 'golden: 0.1 % below L* 30 under the sky (at most 3; only the sky is dark)'
+        value: 0.1
+      - check: detail_budget
+        status: pass
+        message: detail at display size 4.0 (R1 5.3)
+        value: 4.03
+      - check: lock_load
+        status: pass
+        message: the lock moved colors by mean dE 0.0
+        value: 0.0
+      - check: palette_drift
+        status: warn
+        message: 'mean dE 3.4, p95 15.9, off-palette 7.8% (top: #BBAA11 (0.3%), #999922 (0.2%)) (advisory in an
+          exploration)'
+        value: 3.359
+      - check: edit_silhouette
+        status: pass
+        message: 100% of the parent's shape kept
+        value: 1.0
+      - check: edit_structure
+        status: pass
+        message: light structure matches the parent (r 0.88)
+        value: 0.8786
+      - check: edit_lightness
+        status: pass
+        message: mean lightness moved by 4.4 L (the same lightness was asked)
+        value: 4.4331
+      info:
+        metrics_raw:
+          L_p5: 60.9
+          L_p50: 76.6
+          L_p95: 90.8
+          C_p50: 26.2
+          C_p95: 59.3
+          C_p99: 76.8
+          detail: 4.03
+        metrics_locked:
+          L_p5: 60.9
+          L_p50: 76.6
+          L_p95: 90.8
+          C_p50: 26.2
+          C_p95: 59.3
+          C_p99: 76.8
+          detail: 4.03
+      fingerprint: 6d7dc2e735c1aa7e
+    qa_report_sha256: 7daed3dcfbdf48457da9f76b0acecac2e498e86d4df3e78e1fa8049804b1a939
+    explicit_canonical_plate_harmony:
+      check: harmony
+      status: pass
+      message: 'harmony score 78 against the world reference (outliers: C_p95, edge)'
+      value: 77.6
+    manual:
+      eligible: true
+      note: Warm peach/lilac sky and cloud sea; inventory and composition retained with small redraw differences.
+        No conspicuous seam. Warm yellow highlights are strong but not red/orange clipping.
+    source:
+      path: /workspace/generated_images/exec-c083a93c-b076-49f9-97af-41396514fa0a.png
+      preserved_path: /workspace/art-operator-runtime/batch75/caglayan/originals/exec-c083a93c-b076-49f9-97af-41396514fa0a.png
+      sha256: d7721b73442b825ad8da752f4a3c1a7e6b37d7b2ba4978fc5858fc3e9ec82070
+      dimensions:
+      - 1024
+      - 1536
+      encoding: original PNG
+      file_mtime_utc: '2026-11-11T12:52:12.821612+00:00'
+      tool_call_started_at: '2026-11-11T12:50:10.349Z'
+      tool_return_observed_at: '2026-11-11T12:52:13.442Z'
+    ingestion_time: '2026-11-11T12:52:44+00:00'
+    locked_sha256: 887d8ac6258bb6e45a5333e157c572f5978465b76c056b458157b8790e356ddc
+    review_copy:
+      path: design/art/takes/batch-75-portrait-islands/x-caglayan-sky-golden/plate__x-caglayan-sky-golden--t2.webp
+      sha256: a12888a0a597dd222a041e01bcca5595b27e3584b145aa63acd3cfde6af894eb
+      encoding: lossy WebP q90 method6, full original dimensions
+    lock_load: 0.0
+selection_note: Canonical post excludes kind plate from HARMONY_KINDS; explicit qa.check_harmony(kind=plate) ran
+  on unchanged locked pixels, separately from untouched post reports.
+harmony_inputs:
+  tools/imagegen/qa.py: 773643762304d29432cdd5d88600bd4603e6296be1ebf23405f51e5f1a56304f
+  tools/assets/harmony.py: bdc4b81c9234d97e78140673d3a90a1407e2ae2af5b4a22786ab225468c2f576
+  design/art/harmony/config.json: d2ed591e6e8a7d0eafd54f95e3e3c98290453a81aaff11a9f800afea6fc43a18
+  design/art/harmony/reference.json: 602aff8ff097bad430ebfc0bf3837c647cf738bc407b90d58b8eb689810a673e
+contact_sheet:
+  sha256: 6f067a88bdfd4c0fbccccf63e6f1bbafbdbb1eed77bf2b4983cef358019b7e52
+  note: Canonical post contact; pilots show original landscape parent, while QA uses portrait-placed parent.
+timing_note: Tool timestamps captured by JavaScript immediately around the image-tool call. File mtime and pipeline
+  ingestion time are separate observations.
+provisional_parent: x-caglayan-portrait-s4-day t2 (auto-pick, lead review pending)
+provisional_reference_note: Local-only symlink at expected master path resolves to QA-picked locked pilot. Not promoted
+  or lead-approved.

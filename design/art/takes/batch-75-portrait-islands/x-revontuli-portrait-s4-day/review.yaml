@@ -1,0 +1,381 @@
+batch: batch-75-portrait-islands
+job: x-revontuli-portrait-s4-day
+pick: 1
+status: auto-picked
+note: Auto-picked by QA; founder review pending. Exploration only; not promoted. Native post reports remain unchanged;
+  plate harmony measured explicitly with canonical qa.check_harmony.
+manual_review:
+  t1: Rich aurora sky, two small distant islands and layered blue-violet clouds. Main island shifted upward; cabin,
+    trees and lake retained. No flat band or hard seam. Moon added in expanded sky consistent with authored night
+    light.
+  t2: Rich aurora sky and deep layered clouds, two distant islands. Main island closer to parent placement; no conspicuous
+    hard seam. Moon added in expanded sky consistent with authored night light.
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+manifest:
+  path: tools/imagegen/manifest/batch-75-portrait-islands.yaml
+  sha256: 756a9e894ab9a4bd530975b22272865ca5b56ff00f3d51b598824a1b1a4205c1
+prompt:
+  text: 'REFERENCES (attached, in this order):
+
+    1. The image to outpaint: the approved plate, kept exactly as it is, placed on a larger canvas. The transparent
+    area around it is what you paint; do not redraw the plate.
+
+    2. The mask for the outpaint: white is the area to paint, black is the plate to keep unchanged.
+
+    3. The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness
+    and painting style, not its objects.
+
+
+    Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
+
+    painted: the same island, the same size, the same pixels, centred horizontally,
+
+    its mass at about the middle of the canvas (the transparent area above and below
+
+    it is yours to paint; the mask is white where you paint). Do not redraw, heal,
+
+    shift or add anything on the plate itself. Above the plate paint a tall, deep
+
+    sky with soft layered clouds and one or two small distant floating islands far
+
+    away, small and hazy, no larger than a thumb. Below the plate paint a deep
+
+    cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
+
+    painted with the same richness as the attached home reference (its sky, distant
+
+    islands and cloud sea are the treatment to match; take the treatment, not the
+
+    objects): layered cloud masses with painted light and shade, never a flat
+
+    gradient, never a haze band, never an empty fog. The seam where the plate meets
+
+    the new sky and cloud sea reads as one continuous painting.
+
+    Light of this plate: night: a deep blue-violet sky with stars and a moon, a moonlit blue-violet cloud sea with
+    soft silver edges; lit windows and lamps stay as small warm lights. The new sky and cloud sea carry
+
+    this light and keep the plate''s own colours rich.
+
+    Paint the sky and the cloud sea rich and slightly more vivid than home''s reference
+
+    (a touch more colour in the sky and in the cloud masses), but never louder than this
+
+    island''s own colours: the island band stays as painted.
+
+
+    KEEP: everything not named above stays exactly the same as in the
+
+    attached image: every existing part, its shape, color, position and size,
+
+    the canvas, the camera, the light and the painting style. Do not zoom out
+
+    or reframe: if a new part does not fit, make the new part smaller, never
+
+    the existing ones. Outside the new parts, the result must line up with
+
+    the attached image pixel for pixel.
+
+
+    STYLE: a finished painted illustration for a premium cozy mobile game, like
+
+    a page from a beloved picture book: soft painterly 2D with gentle airbrushed
+
+    shading, rounded chunky forms, no outlines, no hard edges, matte surfaces
+
+    with at most one soft highlight per object. COLOUR: vivid, saturated and
+
+    jewel-like, as in the key art of a high-end animated film: intense grass
+
+    greens, glowing sunflower yellow, deep sky blue, warm peach earth, crisp
+
+    white petals; strong contrast between warm lit colour and cool shadow
+
+    colour; every material keeps its own true colour. VALUES: a full range, from
+
+    bright sunlit tops to deep warm shadows under eaves, inside foliage, beneath
+
+    the lawn rim and around doors, so every object separates clearly from what
+
+    is behind it and the picture reads at a glance on a small phone screen.
+
+    Shadows are coloured (warm brown, plum, deep teal), never black or grey.
+
+    Light direction and shadow hue follow the LIGHT block of this prompt.
+
+    Colourful but never neon, never HDR, never glossy. No text, no letters, no
+
+    numbers, no logos, no watermark, no border, no frame.
+
+
+    AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or
+    moved island, new objects on the island, large floating islands, characters, text
+
+
+    LIGHT (hour: night, layer: subject). Safe, cozy.
+
+    Key light #B8A8B1 from the upper right; fill #2A2350; rim #FFB060 along the edge facing away from the key. Shadows
+    are tinted #2A2440 (never grey or black), short and soft, falling toward the lower left; every object sits on
+    a soft occlusion pad in that hue where it touches the ground or another form.
+
+    VALUES (the reference envelope): a high-key picture inside one envelope of soft, milky air. Every value sits
+    between light mid-tone and cream-white; the darkest recesses (door holes, gaps, pond rims) are a mid-value tinted
+    with the shadow hue, never black. Form turns in small value steps. Colour lives in the halftones; lights bleach
+    to cream. No dark outlines: edges are found by value and hue. The cloud sea below is the brightest large surface
+    and lights the island''s underside with a warm bounce.
+
+    NIGHT is a hue change, not a value drop: only the sky is dark (deep indigo); the island and the clouds stay
+    light, moonlit lavender, with violet shadows and cream practicals whose glow spreads three to four times the
+    lamp''s size.
+
+    This is the SUBJECT plane: the clearest forms and the crispest edges in the picture, still inside the envelope.
+
+
+    Output: one image, opaque, full bleed, portrait 1024 x 1536.
+
+    '
+  sha256: 9394cd9f9abfb26749cb841d80cf8c7bf0c595209a22b9482fa3a759355ae69f
+  actual_tool_packet_sha256: 38983504e26e7cba1c34212dde339128dcdebad6e8590781c0a6b09463b7416e
+attachments:
+- path: build/imagegen/batch-75-portrait-islands/outpaint/x-revontuli-portrait-s4-day--input.png
+  role: 'The image to outpaint: the approved plate, kept exactly as it is, placed on a larger canvas. The transparent
+    area around it is what you paint; do not redraw the plate.'
+  sha256: fd4fda814cee8be7632506bf70b4ac5c20126f202e6e360e0667bc4011e5c3d9
+- path: build/imagegen/batch-75-portrait-islands/outpaint/x-revontuli-portrait-s4-day--mask.png
+  role: 'The mask for the outpaint: white is the area to paint, black is the plate to keep unchanged.'
+  sha256: a304362b4359961ee04e7c10fdf5690f88f111600ecb63c87a3cdec5afb481bb
+- path: design/art/masters/x-home-flow-final-rich/x-home-flow-final-rich.webp
+  role: The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness
+    and painting style, not its objects.
+  sha256: 610f92abdd46cb454fd98b0cf1afbc6654d935185b643e7621c90e1b14186fc9
+takes:
+  t1:
+    source:
+      path: /workspace/generated_images/exec-f8942d26-ee7a-4285-9c0a-b78480bd91c5.png
+      preserved_path: /workspace/art-operator-runtime/batch75-north/originals/x-revontuli-portrait-s4-day/t1.png
+      sha256: 9cca8d20156137ff39164ab2acdda87fab1aad6783a7c279f175d2fb190fe310
+      rgba_sha256: b7c924d60e158ec6971be8bdb0fe3b544f26b3490dfc3180785ac5f537017395
+      size:
+      - 1024
+      - 1536
+      encoding: original PNG
+      tool_call_started_at: '2026-11-11T12:50:32.078Z'
+      tool_call_returned_at: '2026-11-11T12:54:34.324Z'
+    review_copy:
+      path: design/art/takes/batch-75-portrait-islands/x-revontuli-portrait-s4-day/plate__x-revontuli-portrait-s4-day--t1.webp
+      sha256: d6152a905ce4fd4e9308d493d9e17d6294187f9b38edff2780b9b74e65ad0693
+      encoding: lossy WebP quality 90 method 6, full dimensions
+    ingested_at: '2026-11-11T12:56:17+00:00'
+    ingest_time_note: Pipeline generated_at is ingestion time, not image generation time.
+    locked_sha256: 8226a94e02f663c161ded9e486605094a9283bf09e2ab9a56c76a889e5feea27
+    qa_report_sha256: 9b55e6be86a6804760f1ae6d18a1d646e8ac0c74fa5cbb4b93c27f973851c965
+    qa_report:
+      job: x-revontuli-portrait-s4-day
+      take: 1
+      status: warn
+      preset: plate-final
+      checks:
+      - check: transparency
+        status: pass
+        message: opaque, as this kind must be
+      - check: canvas
+        status: pass
+        message: 1024x1536
+      - check: chroma_ceiling
+        status: warn
+        message: chroma p95 65 (R1 51) (advisory in an exploration)
+        value: 65.0
+      - check: light_values
+        status: pass
+        message: 'night/subject: L p5 48 (at least 45: darks stay a light mid-tone), p98 96 (at least 85)'
+        value: 47.9
+      - check: light_median
+        status: pass
+        message: 'night/subject: median L 73 (band 66-88)'
+        value: 72.8
+      - check: light_contrast
+        status: warn
+        message: 'night/subject: p75 local contrast 5.9 (band 1.5-5.0; above it reads too contrasty) (warn-only
+          until the founder has seen the light pilot)'
+        value: 5.93
+      - check: light_sky
+        status: pass
+        message: 'night: sky L 40 (band 24-46)'
+        value: 39.6
+      - check: light_sea
+        status: warn
+        message: 'night: cloud sea L 70 (at least 70: the sea is the reflector)'
+        value: 69.6
+      - check: light_dark
+        status: pass
+        message: 'night: 0.9 % below L* 30 under the sky (at most 3; only the sky is dark)'
+        value: 0.9
+      - check: detail_budget
+        status: pass
+        message: detail at display size 4.4 (R1 5.3)
+        value: 4.36
+      - check: lock_load
+        status: pass
+        message: the lock moved colors by mean dE 0.0
+        value: 0.0
+      - check: palette_drift
+        status: warn
+        message: 'mean dE 8.1, p95 21.1, off-palette 26.7% (top: #333399 (2.6%), #444499 (2.4%)) (advisory in an
+          exploration)'
+        value: 8.1099
+      - check: edit_silhouette
+        status: warn
+        message: 44% of the parent's shape kept (advisory in an exploration)
+        value: 0.4447
+      - check: edit_stability
+        status: warn
+        message: 7% of the parent level unchanged (advisory in an exploration)
+        value: 0.0736
+      - check: edit_chroma
+        status: warn
+        message: chroma x1.42 of the parent level (drift compounds along a chain)
+        value: 1.425
+      info:
+        metrics_raw:
+          L_p5: 27.6
+          L_p50: 65.0
+          L_p95: 91.0
+          C_p50: 41.6
+          C_p95: 65.0
+          C_p99: 79.8
+          detail: 4.36
+        metrics_locked:
+          L_p5: 27.6
+          L_p50: 65.0
+          L_p95: 91.0
+          C_p50: 41.6
+          C_p95: 65.0
+          C_p99: 79.8
+          detail: 4.36
+      fingerprint: 30dcf1a338a3f336
+    explicit_canonical_plate_harmony:
+      check: harmony
+      status: warn
+      message: 'harmony score 49 against the world reference (outliers: C_p95, L_p2, edge)'
+      value: 48.9
+    lock_load: 0.0
+    manually_eligible: true
+  t2:
+    source:
+      path: /workspace/generated_images/exec-cce4272b-dfcf-4014-a5b0-221e32dca79f.png
+      preserved_path: /workspace/art-operator-runtime/batch75-north/originals/x-revontuli-portrait-s4-day/t2.png
+      sha256: 01a7d7e51aec695a60bdee59af3b61384fd05140b387b522709e8810a76ccb90
+      rgba_sha256: 18ba18b584c87346be809a9332eacb5608a558fe8a1068c37fb47f2072c9eade
+      size:
+      - 1024
+      - 1536
+      encoding: original PNG
+      tool_call_started_at: '2026-11-11T12:50:32.078Z'
+      tool_call_returned_at: '2026-11-11T12:53:33.837Z'
+    review_copy:
+      path: design/art/takes/batch-75-portrait-islands/x-revontuli-portrait-s4-day/plate__x-revontuli-portrait-s4-day--t2.webp
+      sha256: d1bd92a0a517e76442891bc440b9adfd4917903e6724b9c91a77cf4d99dcc300
+      encoding: lossy WebP quality 90 method 6, full dimensions
+    ingested_at: '2026-11-11T12:56:18+00:00'
+    ingest_time_note: Pipeline generated_at is ingestion time, not image generation time.
+    locked_sha256: 02bcef647df34b17c66001b8b41fa439fd26f5b24808bfcab9d5244689a23de2
+    qa_report_sha256: 7d2130d967cddc43930f2b37693207fce54aa540ed6914e6831a11f5f39dce31
+    qa_report:
+      job: x-revontuli-portrait-s4-day
+      take: 2
+      status: warn
+      preset: plate-final
+      checks:
+      - check: transparency
+        status: pass
+        message: opaque, as this kind must be
+      - check: canvas
+        status: pass
+        message: 1024x1536
+      - check: chroma_ceiling
+        status: warn
+        message: chroma p95 64 (R1 51) (advisory in an exploration)
+        value: 64.3
+      - check: light_values
+        status: warn
+        message: 'night/subject: L p5 42 (at least 45: darks stay a light mid-tone), p98 97 (at least 85)'
+        value: 42.1
+      - check: light_median
+        status: pass
+        message: 'night/subject: median L 75 (band 66-88)'
+        value: 75.1
+      - check: light_contrast
+        status: warn
+        message: 'night/subject: p75 local contrast 6.3 (band 1.5-5.0; above it reads too contrasty) (warn-only
+          until the founder has seen the light pilot)'
+        value: 6.3
+      - check: light_sky
+        status: pass
+        message: 'night: sky L 32 (band 24-46)'
+        value: 31.9
+      - check: light_sea
+        status: pass
+        message: 'night: cloud sea L 76 (at least 70: the sea is the reflector)'
+        value: 76.3
+      - check: light_dark
+        status: pass
+        message: 'night: 1.9 % below L* 30 under the sky (at most 3; only the sky is dark)'
+        value: 1.9
+      - check: detail_budget
+        status: pass
+        message: detail at display size 4.4 (R1 5.3)
+        value: 4.41
+      - check: lock_load
+        status: pass
+        message: the lock moved colors by mean dE 0.0
+        value: 0.0
+      - check: palette_drift
+        status: warn
+        message: 'mean dE 7.9, p95 20.6, off-palette 27.6% (top: #333388 (2.8%), #222277 (2.6%)) (advisory in an
+          exploration)'
+        value: 7.8746
+      - check: edit_silhouette
+        status: warn
+        message: 44% of the parent's shape kept (advisory in an exploration)
+        value: 0.4447
+      - check: edit_stability
+        status: warn
+        message: 9% of the parent level unchanged (advisory in an exploration)
+        value: 0.0922
+      - check: edit_chroma
+        status: warn
+        message: chroma x1.34 of the parent level (drift compounds along a chain)
+        value: 1.3367
+      info:
+        metrics_raw:
+          L_p5: 22.8
+          L_p50: 68.5
+          L_p95: 92.2
+          C_p50: 37.3
+          C_p95: 64.3
+          C_p99: 79.9
+          detail: 4.41
+        metrics_locked:
+          L_p5: 22.8
+          L_p50: 68.5
+          L_p95: 92.2
+          C_p50: 37.3
+          C_p95: 64.3
+          C_p99: 79.9
+          detail: 4.41
+      fingerprint: 30dcf1a338a3f336
+    explicit_canonical_plate_harmony:
+      check: harmony
+      status: warn
+      message: 'harmony score 46 against the world reference (outliers: C_p95, L_p2, edge)'
+      value: 45.9
+    lock_load: 0.0
+    manually_eligible: true
+selection: Eligible non-failing takes ranked by lock load ascending, canonical plate harmony descending.
+registration_note: No original band re-paste is implemented in the current run.py ingest. Island movement/redrawing
+  is retained with warning under the manifest fallback. Exact registration is not claimed.
+contact_sheet:
+  path: design/art/takes/batch-75-portrait-islands/x-revontuli-portrait-s4-day/contact.jpg
+  sha256: 38f0bc6360f43d7623117cc34ce5f9338d062bc6bd6e81b02b23c49f89d5dce6

@@ -1,0 +1,309 @@
+batch: batch-75-portrait-islands
+job: x-mehtap-sky-golden
+pick: 1
+status: auto-picked
+note: Auto-picked by QA; founder review pending. Exploration only; not promoted. Native post reports remain unchanged;
+  plate harmony measured explicitly with canonical qa.check_harmony.
+manual_review:
+  t1: Rich peach-lilac sky and layered cloud sea. Moon, star trail, telescope, bench, pool and lamps retained; small
+    redraws prevent an exact-registration claim. No flat mist band, hard seam, characters or text.
+  t2: Warm peach and lilac clouds retain detailed billowing cloud sea. Moon, star trail and island inventory retained
+    with minor redraws; no exact-registration claim. No flat mist band, hard seam, characters or text.
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+manifest:
+  path: tools/imagegen/manifest/batch-75-portrait-islands.yaml
+  sha256: 756a9e894ab9a4bd530975b22272865ca5b56ff00f3d51b598824a1b1a4205c1
+prompt:
+  text: 'REFERENCES (attached, in this order):
+
+    1. The image to edit (the approved previous level). Edit it; do not redraw it.
+
+    2. The light target: the home island at this time, its sky, light and cloud sea. Match the light, not the objects.
+
+
+    Edit the attached tall painting into the same scene in this light: golden hour: a soft pink and lilac sky warming
+    to peach near the clouds, low warm peach light raking from the side, lilac shadows, the cloud sea blushed peach
+    with lilac shade. Lamps and windows that exist are just coming on, small and soft.
+
+    Mehtap''s own colours stay rich. The sky, the distant islands and the cloud sea
+
+    stay rich and slightly vivid. Everything stays in its place, the same shapes and
+
+    sizes; only light and colour change.
+
+
+    KEEP: everything not named above stays exactly the same as in the
+
+    attached image: every existing part, its shape, color, position and size,
+
+    the canvas, the camera, the light and the painting style. Do not zoom out
+
+    or reframe: if a new part does not fit, make the new part smaller, never
+
+    the existing ones. Outside the new parts, the result must line up with
+
+    the attached image pixel for pixel.
+
+
+    AVOID: a flat gradient, a haze or mist band, a grey veil, a dark scene, orange or red saturation, healing or
+    changing the stage, new objects, characters, text, moving anything
+
+
+    LIGHT (hour: golden, layer: subject). The day''s reward.
+
+    Key light #F7C873 from the right, a little above; fill #D9A9C4; rim #FFC77A along the edge facing away from
+    the key. Shadows are tinted #8E78C8 (never grey or black), short and soft, falling toward the left, a little
+    below; every object sits on a soft occlusion pad in that hue where it touches the ground or another form.
+
+    VALUES (the reference envelope): a high-key picture inside one envelope of soft, milky air. Every value sits
+    between light mid-tone and cream-white; the darkest recesses (door holes, gaps, pond rims) are a mid-value tinted
+    with the shadow hue, never black. Form turns in small value steps. Colour lives in the halftones; lights bleach
+    to cream. No dark outlines: edges are found by value and hue. The cloud sea below is the brightest large surface
+    and lights the island''s underside with a warm bounce.
+
+    This is the SUBJECT plane: the clearest forms and the crispest edges in the picture, still inside the envelope.
+
+
+    Output: one image, opaque, full bleed, portrait 1024 x 1536.
+
+    '
+  sha256: 03ba4a052194f730a09cbc318a698ccaa872cfc2240d71c476469f4237f3e717
+  actual_tool_packet_sha256: 7b938bc336ac3bd00190cd1a518af989d54fb3576be9ab02899e8c0b07303204
+attachments:
+- path: build/imagegen/batch-75-portrait-islands/locked/plate__x-mehtap-portrait-s4-day--t2.png
+  role: The image to edit (the approved previous level). Edit it; do not redraw it.
+  sha256: 42cd89465958f5d5bb9bea7d63211cb4deadf552c91c219dc7628c7c72820882
+- path: design/art/takes/batch-66-home-flow/x-home-flow-golden/plate__x-home-flow-golden--t1.webp
+  role: 'The light target: the home island at this time, its sky, light and cloud sea. Match the light, not the
+    objects.'
+  sha256: f03dceaf68f712e04c34c4233d23863ebc9df7a75f212fe45aabbc763412fada
+takes:
+  t1:
+    source:
+      path: /workspace/generated_images/exec-5a271982-12bd-40e6-a81e-d1ac70dff53a.png
+      preserved_path: /workspace/art-operator-runtime/batch75-north/originals/x-mehtap-sky-golden/t1.png
+      sha256: 37dd8fc124cc62d270b212e7feed1a46bcf66fcc225299906af1d9e3d42bf57c
+      rgba_sha256: ad432140adfdcc73fb8c0f537a27982a85fe86d7630f4fb39d73b5055a0de61b
+      size:
+      - 1024
+      - 1536
+      encoding: original PNG
+      tool_call_started_at: '2026-11-11T12:56:56.250Z'
+      tool_call_returned_at: '2026-11-11T12:58:26.601Z'
+    review_copy:
+      path: design/art/takes/batch-75-portrait-islands/x-mehtap-sky-golden/plate__x-mehtap-sky-golden--t1.webp
+      sha256: ef5cdf1f985ec1f1d7ed04c728f9eb8e97d09ba6509ca8ecb4ecbdab82973f5c
+      encoding: lossy WebP quality 90 method 6, full dimensions
+    ingested_at: '2026-11-11T13:04:25+00:00'
+    ingest_time_note: Pipeline generated_at is ingestion time, not image generation time.
+    locked_sha256: af51d203151bb0a6d4070618d74cc0b00bc2c220a4ed35b561cfb5ffd1cd86a2
+    qa_report_sha256: 82f12e9750d2dc56f6f866dfdd4625fb4b8f79508c1e76b1408d93dbafb2872b
+    qa_report:
+      job: x-mehtap-sky-golden
+      take: 1
+      status: warn
+      preset: plate-final
+      checks:
+      - check: transparency
+        status: pass
+        message: opaque, as this kind must be
+      - check: canvas
+        status: pass
+        message: 1024x1536
+      - check: chroma_ceiling
+        status: pass
+        message: chroma p95 51 (R1 51)
+        value: 51.0
+      - check: light_values
+        status: pass
+        message: 'golden/subject: L p5 63 (at least 50: darks stay a light mid-tone), p98 94 (at least 85)'
+        value: 63.0
+      - check: light_median
+        status: pass
+        message: 'golden/subject: median L 78 (band 68-86)'
+        value: 77.7
+      - check: light_contrast
+        status: pass
+        message: 'golden/subject: p75 local contrast 4.9 (band 2.5-6.0; above it reads too contrasty)'
+        value: 4.93
+      - check: light_sky
+        status: pass
+        message: 'golden: sky L 63 (band 60-86)'
+        value: 62.6
+      - check: light_sea
+        status: pass
+        message: 'golden: cloud sea L 79 (at least 78: the sea is the reflector)'
+        value: 79.4
+      - check: light_dark
+        status: pass
+        message: 'golden: 0.1 % below L* 30 under the sky (at most 3; only the sky is dark)'
+        value: 0.1
+      - check: detail_budget
+        status: pass
+        message: detail at display size 3.4 (R1 5.3)
+        value: 3.4
+      - check: lock_load
+        status: pass
+        message: the lock moved colors by mean dE 0.0
+        value: 0.0
+      - check: palette_drift
+        status: pass
+        message: 'mean dE 2.5, p95 6.0, off-palette 1.1% (top: #DD7733 (0.1%), #EE8833 (0.1%))'
+        value: 2.4949
+      - check: edit_silhouette
+        status: pass
+        message: 100% of the parent's shape kept
+        value: 1.0
+      - check: edit_structure
+        status: pass
+        message: light structure matches the parent (r 0.86)
+        value: 0.859
+      - check: edit_lightness
+        status: warn
+        message: mean lightness moved by 13.5 L (the same lightness was asked)
+        value: 13.527
+      info:
+        metrics_raw:
+          L_p5: 57.1
+          L_p50: 74.8
+          L_p95: 91.1
+          C_p50: 26.8
+          C_p95: 51.0
+          C_p99: 58.1
+          detail: 3.4
+        metrics_locked:
+          L_p5: 57.1
+          L_p50: 74.8
+          L_p95: 91.1
+          C_p50: 26.8
+          C_p95: 51.0
+          C_p99: 58.1
+          detail: 3.4
+      fingerprint: 25a13ad049d0c6ae
+    explicit_canonical_plate_harmony:
+      check: harmony
+      status: pass
+      message: 'harmony score 87 against the world reference (outliers: edge)'
+      value: 87.2
+    lock_load: 0.0
+    manually_eligible: true
+  t2:
+    source:
+      path: /workspace/generated_images/exec-49fcbfbe-3cbf-40d8-b0ab-bbbb97235b7e.png
+      preserved_path: /workspace/art-operator-runtime/batch75-north/originals/x-mehtap-sky-golden/t2.png
+      sha256: a2c40a3ba2be2ef81f8f9cb7d69f3bd75984be0084564cf13a5a518837c92acb
+      rgba_sha256: 45f84db574864b3b9787512534eed5cf636f2f779d774e158a042d698cf37e4e
+      size:
+      - 1024
+      - 1536
+      encoding: original PNG
+      tool_call_started_at: '2026-11-11T12:56:56.250Z'
+      tool_call_returned_at: '2026-11-11T13:00:40.486Z'
+    review_copy:
+      path: design/art/takes/batch-75-portrait-islands/x-mehtap-sky-golden/plate__x-mehtap-sky-golden--t2.webp
+      sha256: 801e81c2889662f38cf0c6a919c1f104fc5a35397dd23b893e60bf66b512aec0
+      encoding: lossy WebP quality 90 method 6, full dimensions
+    ingested_at: '2026-11-11T13:04:26+00:00'
+    ingest_time_note: Pipeline generated_at is ingestion time, not image generation time.
+    locked_sha256: 6e7dc906671e280542ec5427105e15abfac681fa967355b8493d94747202887b
+    qa_report_sha256: 85e4c8e0ac2574bf7d80137d0a42210c21954a92c4d760a3b770cec7d075b7c7
+    qa_report:
+      job: x-mehtap-sky-golden
+      take: 2
+      status: warn
+      preset: plate-final
+      checks:
+      - check: transparency
+        status: pass
+        message: opaque, as this kind must be
+      - check: canvas
+        status: pass
+        message: 1024x1536
+      - check: chroma_ceiling
+        status: pass
+        message: chroma p95 46 (R1 51)
+        value: 46.3
+      - check: light_values
+        status: pass
+        message: 'golden/subject: L p5 65 (at least 50: darks stay a light mid-tone), p98 94 (at least 85)'
+        value: 65.0
+      - check: light_median
+        status: pass
+        message: 'golden/subject: median L 78 (band 68-86)'
+        value: 77.7
+      - check: light_contrast
+        status: pass
+        message: 'golden/subject: p75 local contrast 4.7 (band 2.5-6.0; above it reads too contrasty)'
+        value: 4.73
+      - check: light_sky
+        status: pass
+        message: 'golden: sky L 62 (band 60-86)'
+        value: 62.2
+      - check: light_sea
+        status: pass
+        message: 'golden: cloud sea L 80 (at least 78: the sea is the reflector)'
+        value: 80.5
+      - check: light_dark
+        status: pass
+        message: 'golden: 0.1 % below L* 30 under the sky (at most 3; only the sky is dark)'
+        value: 0.1
+      - check: detail_budget
+        status: pass
+        message: detail at display size 3.4 (R1 5.3)
+        value: 3.38
+      - check: lock_load
+        status: pass
+        message: the lock moved colors by mean dE 0.0
+        value: 0.0
+      - check: palette_drift
+        status: pass
+        message: 'mean dE 2.4, p95 5.0, off-palette 1.3% (top: #EE8822 (0.1%), #FF9922 (0.1%))'
+        value: 2.4312
+      - check: edit_silhouette
+        status: pass
+        message: 100% of the parent's shape kept
+        value: 1.0
+      - check: edit_structure
+        status: pass
+        message: light structure matches the parent (r 0.85)
+        value: 0.8533
+      - check: edit_lightness
+        status: warn
+        message: mean lightness moved by 14.4 L (the same lightness was asked)
+        value: 14.3631
+      info:
+        metrics_raw:
+          L_p5: 56.1
+          L_p50: 75.4
+          L_p95: 91.0
+          C_p50: 25.6
+          C_p95: 46.3
+          C_p99: 60.9
+          detail: 3.38
+        metrics_locked:
+          L_p5: 56.1
+          L_p50: 75.4
+          L_p95: 91.0
+          C_p50: 25.6
+          C_p95: 46.3
+          C_p99: 60.9
+          detail: 3.38
+      fingerprint: 25a13ad049d0c6ae
+    explicit_canonical_plate_harmony:
+      check: harmony
+      status: pass
+      message: 'harmony score 87 against the world reference (outliers: edge)'
+      value: 87.1
+    lock_load: 0.0
+    manually_eligible: true
+selection: Eligible non-failing takes ranked by lock load ascending, canonical plate harmony descending.
+registration_note: No original band re-paste is implemented in the current run.py ingest. Island movement/redrawing
+  is retained with warning under the manifest fallback. Exact registration is not claimed.
+provisional_parent: x-mehtap-portrait-s4-day t2 (auto-pick, lead review pending)
+provisional_reference_note: Local-only symlink at expected approved_image path resolves the QA-selected locked original.
+  No master is promoted or committed.
+contact_sheet:
+  path: design/art/takes/batch-75-portrait-islands/x-mehtap-sky-golden/contact.jpg
+  sha256: ae4050e4b394620d00ca81a318790b1d9212729bfb500e6b28a970e6868c7d53
