@@ -38,6 +38,7 @@ Tunable values (breath seconds, thresholds, seed amounts, names) live in
 | [0022](0022-plate-first-islands.md) | Plate-first islands: the painted plate is the final picture; the runtime adds only light and life (hybrid: upgrades cut from plate edits) | Accepted (amends 0018 and lock-light for plate-first islands; amended by 0023) |
 | [0023](0023-colour-lives-in-the-painting.md) | Colour lives in the painting: plates are painted at final colour, no runtime grade, style lock `plate-final`, full-size delivery, colour ladder and metric bands | Accepted (amends 0022) |
 | [0024](0024-shipped-plate-layers-are-heic.md) | Shipped plate layers are HEIC q70 with alpha (plates, islands, occluders; backdrops stay JPEG) | Accepted (amends 0022 delivery) |
+| [0025](0025-sky-sets-split-from-the-painting.md) | Sky sets are split from the painting: island plate over a sky set cut from one painted portrait master, motion in code, rain/golden bake as a founder-gated pilot | Accepted (amends 0022 and 0023) |
 
 **Read an ADR's status line and this table first; do not load ADR bodies
 you do not need.** A status here that says "amended" or "superseded" means

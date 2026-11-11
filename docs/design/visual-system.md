@@ -27,6 +27,15 @@ Separate layers exist only for:
 Anything static that is painted separately and pasted on the plate is
 forbidden. That is the old collage that made the game look like mud.
 
+## Sky sets
+
+A world screen is an island plate over a **sky set** (gradient sky, far and mid
+clouds, distant isles, a cloud sea) split from one painted portrait master per
+island and light, so at rest it equals the painting and motion is code only
+(off under Reduce Motion; the island never moves). It is not the old collage:
+the sky shares only atmosphere with the island and comes from the same
+painting. Decision, checks and consequences: [ADR-0025](../adr/0025-sky-sets-split-from-the-painting.md).
+
 ## Change is a new painting
 
 Levels, upgrades, time of day and weather are whole-plate edits of the
