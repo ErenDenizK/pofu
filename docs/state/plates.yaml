@@ -2,6 +2,8 @@
 # Cells: painted = path of the lead-picked take (null = not painted, or the take was rejected
 # and is being redone); lead_pick = take number; in_app = shipped in the app; founder_ok = null
 # until the founder approves. Validated by tools/state/check_plates.py. See docs/state/README.md.
+# sky_sets (ADR-0025): per island and light, the painted portrait master the sky set is split from;
+# same cell keys as a stage cell (a null cell is not painted yet; rain is a founder-gated pilot).
 # root_time: the time of day the island's picked root is painted at; its stage plates fill that column.
 version: 1
 islands:
@@ -118,6 +120,11 @@ islands:
         night:
           clear: {painted: "design/art/takes/batch-66-home-flow/x-home-flow-night/plate__x-home-flow-night--t1.webp", lead_pick: 1, in_app: false, founder_ok: null}
           rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+    sky_sets:
+      day: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      golden: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      night: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
   caglayan:
     root_time: day
     stages:
@@ -211,6 +218,11 @@ islands:
         night:
           clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
           rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+    sky_sets:
+      day: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      golden: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      night: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
   revontuli:
     root_time: night
     stages:
@@ -304,6 +316,11 @@ islands:
         night:
           clear: {painted: "design/art/takes/batch-68-revontuli-flow/x-revontuli-flow-4-up/plate__x-revontuli-flow-4-up--t1.webp", lead_pick: 1, in_app: false, founder_ok: null}
           rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+    sky_sets:
+      day: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      golden: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      night: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
   emanet:
     root_time: golden
     stages:
@@ -397,6 +414,11 @@ islands:
         night:
           clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
           rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+    sky_sets:
+      day: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      golden: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      night: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
   mehtap:
     root_time: night
     stages:
@@ -490,3 +512,8 @@ islands:
         night:
           clear: {painted: "design/art/takes/batch-70-mehtap-flow/x-mehtap-flow-4-up/plate__x-mehtap-flow-4-up--t1.webp", lead_pick: 1, in_app: false, founder_ok: null}
           rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+    sky_sets:
+      day: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      golden: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      night: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}

@@ -6,6 +6,8 @@ and be a take of the form plate__<job>--t<N>.webp; lead_pick must equal N and
 the take's review.yaml must name the same pick. A null painted cell has no
 pick and is not in the app.
 
+Each island also has sky_sets (ADR-0025): a cell per light in SKY_LIGHTS, same rules.
+
 Usage: python3 -I tools/state/check_plates.py [plates.yaml] [repo_root]
 """
 import re
@@ -16,6 +18,7 @@ import yaml
 
 TIMES = ("day", "golden", "night")
 WEATHER = ("clear", "rain")
+SKY_LIGHTS = ("day", "golden", "night", "rain")
 TAKE_RE = re.compile(r"plate__(?P<job>.+)--t(?P<n>\d+)\.webp$")
 
 
@@ -32,6 +35,19 @@ def check(plates_file: Path, root: Path) -> list[str]:
                         errors.append(f"{where}: missing cell")
                         continue
                     errors += _cell(where, c, root)
+        sky = body.get("sky_sets")
+        if not isinstance(sky, dict):
+            errors.append(f"{island}/sky_sets: missing section")
+            continue
+        for extra in sorted(set(sky) - set(SKY_LIGHTS)):
+            errors.append(f"{island}/sky_sets/{extra}: unknown light")
+        for light in SKY_LIGHTS:
+            where = f"{island}/sky_sets/{light}"
+            c = sky.get(light)
+            if c is None:
+                errors.append(f"{where}: missing cell")
+                continue
+            errors += _cell(where, c, root)
     return errors
 
 
