@@ -61,9 +61,9 @@ struct SkySetLayers: View {
         rect(pos: layer.pos, size: layer.size)
     }
 
-    private func rect(pos: PlatePoint, size: PlatePoint) -> CGRect {
+    private func rect(pos: PlatePoint, size extent: PlatePoint) -> CGRect {
         let box = plate.worldBox(
-            master: PlateRect(minX: pos.x, minY: pos.y, maxX: pos.x + size.x, maxY: pos.y + size.y),
+            master: PlateRect(minX: pos.x, minY: pos.y, maxX: pos.x + extent.x, maxY: pos.y + extent.y),
             of: sky
         )
         let a = pose.project(WorldPoint(x: box.minX, y: box.minY), width: Double(size.width))
