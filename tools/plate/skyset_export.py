@@ -438,6 +438,9 @@ def main(argv: list[str] | None = None) -> int:
               f"({'ok' if res['textureBytes'] <= BUDGET else 'OVER BUDGET'})")
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(data, separators=(",", ":")) + "\n")
+    import skyset_detail                               # the isles' and the whale's painted-detail motion (after the sprites)
+    skyset_detail.attach(a.island, lights)
+    data = json.loads(out_path.read_text())
     return 0 if all(data["lights"][l]["textureBytes"] <= BUDGET for l in lights) else 1
 
 

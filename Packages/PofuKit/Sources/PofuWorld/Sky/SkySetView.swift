@@ -7,7 +7,10 @@ import UIKit
 /// island layer, and with it the characters, never moves with the sky.
 ///
 /// Motion is `SkyMotion`'s: far, mid and sea clouds drift and breathe, the isles bob, the whale
-/// glides and wraps off screen, the painted stars brighten in beats (night). Battery: one
+/// glides and wraps off screen, the painted stars brighten in beats (night); the isles and the whale carry
+/// painted detail that moves on its own (`SkySet.Detail`: a waterfall's water flows down with a breathing
+/// mist, a canopy sways, a lamp flickers), each amount rising from zero so time zero is the painting.
+/// Battery: one
 /// `TimelineView` drawing one `Canvas` at 30 Hz that is paused in the background and not drawn at all while the plate is
 /// faded out (toward the Map); under Reduce Motion, Low Power Mode and still frames (screenshots) there
 /// is no timeline and every layer stays at time zero, so a settled frame is cached and costs nothing.
@@ -55,8 +58,12 @@ struct SkySetLayers: View {
     /// The layer's place on screen in points (before the peek's offset): its master box through the
     /// plate's placement and the camera.
     private func rect(of layer: SkySet.Layer) -> CGRect {
+        rect(pos: layer.pos, size: layer.size)
+    }
+
+    private func rect(pos: PlatePoint, size: PlatePoint) -> CGRect {
         let box = plate.worldBox(
-            master: PlateRect(minX: layer.pos.x, minY: layer.pos.y, maxX: layer.pos.x + layer.size.x, maxY: layer.pos.y + layer.size.y),
+            master: PlateRect(minX: pos.x, minY: pos.y, maxX: pos.x + size.x, maxY: pos.y + size.y),
             of: sky
         )
         let a = pose.project(WorldPoint(x: box.minX, y: box.minY), width: Double(size.width))
@@ -67,8 +74,11 @@ struct SkySetLayers: View {
         let r = rect(of: layer)
         let dy = SkyMotion.bob(layer.bob, time: time, scale: scale)
         switch layer.role {
-        case .sky, .island, .sprite:
+        case .sky, .island:
             piece(layer.asset, r, dx: 0, dy: dy, in: &context)
+        case .sprite:
+            piece(layer.asset, r, dx: 0, dy: dy, in: &context)
+            drawDetails(of: layer, dx: 0, dy: dy, in: &context, time: time, scale: scale)
         case .stars:
             let light = SkyMotion.twinkle(layer.twinkle, time: time)
             if light > 0.004 {
@@ -90,6 +100,104 @@ struct SkySetLayers: View {
                 restLeft: r.minX, width: r.width, speed: layer.drift, time: time, screenWidth: Double(size.width), scale: scale
             )
             piece(layer.asset, r, dx: left - r.minX, dy: dy, in: &context)
+            drawDetails(of: layer, dx: left - r.minX, dy: dy, in: &context, time: time, scale: scale)
+        }
+    }
+
+    // MARK: Painted detail
+
+    private func drawDetails(of layer: SkySet.Layer, dx: Double, dy: Double, in context: inout GraphicsContext, time: Double, scale: Double) {
+        for detail in layer.details {
+            let r = rect(pos: detail.pos, size: detail.size).offsetBy(dx: dx + offset.width, dy: dy + offset.height)
+            switch detail.kind {
+            case .fall: drawFall(detail, in: r, context: &context, time: time, scale: scale)
+            case .sway: drawSway(detail, in: r, context: &context, time: time, scale: scale)
+            case .glow: drawGlow(detail, in: r, context: &context, time: time)
+            }
+        }
+    }
+
+    private func image(_ name: String?, in context: inout GraphicsContext) -> GraphicsContext.ResolvedImage? {
+        guard let name else { return nil }
+        return context.resolve(Image(name, bundle: .module).interpolation(.high))
+    }
+
+    /// A waterfall: a veil of lighter and darker streaks (the painted fall's own detail) scrolls down inside
+    /// the fall's mask, then a faint mist breathes at its foot. Nothing is drawn at time zero.
+    private func drawFall(_ d: SkySet.Detail, in r: CGRect, context: inout GraphicsContext, time: Double, scale: Double) {
+        let e = SkyMotion.ease(time: time, ramp: d.ramp)
+        let opacity = d.strength * e
+        if opacity > 0.002, let mask = image(d.mask, in: &context), let flow = image(d.flow, in: &context) {
+            let tile = rect(pos: d.pos, size: PlatePoint(x: d.size.x, y: d.flowHeight)).height
+            let shift = SkyMotion.flowOffset(speed: d.speed, time: time, period: tile, scale: scale)
+            var veil = context
+            veil.clipToLayer { layer in
+                layer.draw(mask, in: r)
+            }
+            veil.opacity = opacity
+            // Two tiles abut at the scrolled seam; the veil is alpha-only streaks, so the join does not show.
+            for n in [-1.0, 0.0] {
+                veil.draw(flow, in: CGRect(x: r.minX, y: r.minY + shift + n * tile, width: r.width, height: tile))
+            }
+        }
+        if let mist = d.mist {
+            let level = SkyMotion.mist(mist, time: time, ease: e)
+            if level > 0.002, mist.color.count == 3 {
+                let home = rect(pos: d.pos, size: d.size)
+                let c = rect(pos: mist.centre, size: PlatePoint(x: 0, y: 0)).origin
+                let rx = rect(pos: mist.centre, size: PlatePoint(x: mist.radius.x, y: 0)).width
+                let ry = rect(pos: mist.centre, size: PlatePoint(x: 0, y: mist.radius.y)).height
+                var puff = context
+                puff.opacity = level
+                puff.translateBy(x: c.x + r.minX - home.minX, y: c.y + r.minY - home.minY)
+                puff.scaleBy(x: 1, y: ry / max(rx, 0.001))
+                let colour = Color(red: mist.color[0], green: mist.color[1], blue: mist.color[2])
+                puff.fill(
+                    Path(ellipseIn: CGRect(x: -rx, y: -rx, width: 2 * rx, height: 2 * rx)),
+                    with: .radialGradient(
+                        Gradient(stops: [
+                            .init(color: colour, location: 0),
+                            .init(color: colour.opacity(0.45), location: 0.5),
+                            .init(color: colour.opacity(0), location: 1),
+                        ]),
+                        center: .zero, startRadius: 0, endRadius: rx
+                    )
+                )
+            }
+        }
+    }
+
+    /// A canopy: its own pixels, sheared about the region's foot (the top moves most), seen only through the
+    /// feathered mask of its inside, so its silhouette stays where the painter put it.
+    private func drawSway(_ d: SkySet.Detail, in r: CGRect, context: inout GraphicsContext, time: Double, scale: Double) {
+        let top = SkyMotion.sway(d, time: time, scale: scale)
+        guard abs(top) > 0.01, r.height > 0, let mask = image(d.mask, in: &context), let crop = image(d.crop, in: &context) else { return }
+        var moved = context
+        moved.clipToLayer { layer in
+            layer.draw(mask, in: r)
+        }
+        moved.translateBy(x: 0, y: r.maxY)
+        moved.concatenate(CGAffineTransform(a: 1, b: 0, c: -top / r.height, d: 1, tx: 0, ty: 0))
+        moved.draw(crop, in: r.offsetBy(dx: 0, dy: -r.maxY))
+    }
+
+    /// A lantern or window: its lit pixels added over themselves (a brighter beat) or a little black under
+    /// their mask (a dimmer one), a few per cent either way.
+    private func drawGlow(_ d: SkySet.Detail, in r: CGRect, context: inout GraphicsContext, time: Double) {
+        let v = SkyMotion.flicker(d, time: time)
+        guard abs(v) > 0.002, let lit = image(d.asset, in: &context) else { return }
+        if v > 0 {
+            var added = context
+            added.blendMode = .plusLighter
+            added.opacity = v
+            added.draw(lit, in: r)
+        } else {
+            var dimmed = context
+            dimmed.clipToLayer { layer in
+                layer.draw(lit, in: r)
+            }
+            dimmed.opacity = -v
+            dimmed.fill(Path(r), with: .color(.black))
         }
     }
 

@@ -9,10 +9,12 @@ import unittest
 from pathlib import Path
 
 import numpy as np
+from PIL import Image
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import heic  # noqa: E402
 import screen_check as sc  # noqa: E402
+import skyset_detail as sd  # noqa: E402
 import skyset_export as ex  # noqa: E402
 import skyset_render as rd  # noqa: E402
 
@@ -31,7 +33,7 @@ class FileTests(unittest.TestCase):
                 with heic.open_image(f) as im:
                     pixels += im.width * im.height
             self.assertEqual(pixels, spec["pixels"], light)
-            self.assertEqual(ex.state_bytes("home", light, pixels), spec["textureBytes"], light)
+            self.assertEqual(ex.state_bytes("home", light, pixels + spec.get("detailPixels", 0)), spec["textureBytes"], light)
             self.assertLessEqual(spec["textureBytes"], ex.BUDGET, light)
 
     def test_the_island_is_copied_untouched_and_last(self):
@@ -245,6 +247,131 @@ class SkyCheckTests(unittest.TestCase):
     def test_the_sea_below_the_plate_is_a_continuation_not_a_reflection(self):
         sea = next(l for l in DATA["lights"]["day"]["layers"] if l["id"] == "sea")
         self.assertEqual(sea["size"][1], 1728 + ex.SEA_PAD)
+
+
+def _png(name: str) -> np.ndarray:
+    return np.asarray(Image.open(ex.ASSETS / f"{name}.imageset" / f"{name}.png").convert("RGBA"), np.float32) / 255
+
+
+def _details(light: str):
+    for layer in DATA["lights"][light]["layers"]:
+        for d in layer.get("details", []):
+            yield layer, d
+
+
+class DetailTests(unittest.TestCase):
+    """The isles' and the whale's painted-detail motion (`skyset_detail.py`): masks, texture budget, t = 0."""
+
+    def test_every_sprite_with_a_painted_fall_has_it_and_the_budget_holds(self):
+        for light in LIGHTS:
+            spec = DATA["lights"][light]
+            falls = {l["id"] for l, d in _details(light) if d["kind"] == "fall"}
+            self.assertEqual(falls, {"isle_falls", "whale"}, light)
+            pixels = 0
+            for _, d in _details(light):
+                for key in ("mask", "flow", "crop", "asset"):
+                    if key in d:
+                        pixels += _png(d[key]).shape[0] * _png(d[key]).shape[1]
+            self.assertEqual(pixels, spec["detailPixels"], light)
+            self.assertLessEqual(spec["textureBytes"], ex.BUDGET, light)
+            self.assertLess(spec["detailPixels"], 0.01 * ex.BUDGET, "the masks are small crops, not sprites")
+
+    def test_masks_stay_inside_the_sprites_alpha(self):
+        for light in LIGHTS:
+            for layer, d in _details(light):
+                sprite = sd.load_sprite(layer)
+                sh, sw = sprite.shape[:2]
+                rx, ry = layer["size"][0] / sw, layer["size"][1] / sh
+                x0, y0 = round((d["pos"][0] - layer["pos"][0]) / rx), round((d["pos"][1] - layer["pos"][1]) / ry)
+                key = "asset" if d["kind"] == "glow" else "mask"
+                m = _png(d[key])[..., 3]
+                a = sprite[y0: y0 + m.shape[0], x0: x0 + m.shape[1], 3]
+                self.assertEqual(m.shape, a.shape, f"{light} {layer['id']} {d['id']}")
+                self.assertLessEqual(float((m - a).max()), 0.05, f"{light} {layer['id']} {d['id']}: a mask never reaches past the sprite")
+                self.assertGreater(float(m.max()), 0.9, f"{light} {layer['id']} {d['id']}: not empty")
+                self.assertGreater(float((m > 0.5).mean()), 0.05)
+
+    def test_the_committed_png_masks_are_the_ones_shipped(self):
+        for light in LIGHTS:
+            for layer, d in _details(light):
+                f = sd.mask_path("home", light, layer["id"], d["id"])
+                self.assertTrue(f.exists(), f.name)
+                src = sd.read_mask(f)
+                key = "asset" if d["kind"] == "glow" else "mask"
+                self.assertLess(float(np.abs(src - _png(d[key])[..., 3]).max()), 1 / 255 + 1e-6, f.name)
+
+    def test_a_fall_veil_is_lighter_and_darker_in_equal_measure(self):
+        for light in LIGHTS:
+            for _, d in _details(light):
+                if d["kind"] != "fall":
+                    continue
+                flow, mask = _png(d["flow"]), _png(d["mask"])[..., 3]
+                h = mask.shape[0]
+                self.assertEqual(flow.shape[0], 2 * h, "a mirrored tile: it wraps without a seam")
+                self.assertTrue(np.allclose(flow[0], flow[-1]) or np.abs(flow[0, :, 3] - flow[-1, :, 3]).max() < 0.02)
+                lum = flow[..., :3].mean(-1)
+                col = np.median(lum, axis=0)
+                signed = (lum - col[None]) * flow[..., 3]
+                self.assertLess(abs(float(signed.mean())), 0.008, f"{light} {d['id']}")
+
+    def test_time_zero_draws_nothing_and_the_frame_is_the_painting(self):
+        for light in LIGHTS:
+            for _, d in _details(light):
+                self.assertEqual(rd.ease(0, d["ramp"]), 0)
+                self.assertEqual(rd.sway_top({**d, "amp": d.get("amp", 1), "period": d.get("period", 1)}, 0), 0)
+                if d["kind"] == "glow":
+                    self.assertEqual(rd.flicker(d, 0), 0)
+                if d["kind"] == "fall":
+                    self.assertEqual(rd.mist_level(d["mist"], 0, rd.ease(0, d["ramp"])), 0)
+            s = rd.load("home", light)
+            fr = sc.framing(s["manifest"])
+            with_detail, without = rd.render(s, 0, fr), rd.render(s, 0, fr, detail=False)
+            self.assertTrue(np.array_equal(with_detail, without), light)
+            # and the existing frame-zero identity check holds (RenderTests.test_frame_zero_is_the_painting)
+
+    def test_a_falls_mean_colour_holds_while_it_flows_and_the_canopy_silhouette_stays(self):
+        import cv2
+        for light in LIGHTS:
+            s = rd.load("home", light)
+            fr = sc.framing(s["manifest"])
+            g = rd.geometry(s["manifest"], fr)
+            for t in (2.2, 4.1, 7.7):
+                on = cv2.cvtColor(rd.render(s, t, fr).astype(np.float32) / 255, cv2.COLOR_RGB2Lab)
+                off = cv2.cvtColor(rd.render(s, t, fr, detail=False).astype(np.float32) / 255, cv2.COLOR_RGB2Lab)
+                for layer in s["layers"]:
+                    for d in layer.get("details", []):
+                        rd._detail_prep(d, g)
+                        if d["kind"] == "fall":
+                            m = d["_mask"]
+                            h, w = m.shape
+                            dy = rd.bob_y(layer.get("bob"), t)
+                            dx = 0.0
+                            if layer["role"] == "whale":
+                                img, x, _ = rd._scaled(layer, g, tuple(s["master"]))
+                                dx = rd.glide_left(x, img.shape[1], layer.get("drift", 0), t, rd.SCREEN[0]) - x
+                            x0, y0 = round(d["_x"] + dx), round(d["_y"] + dy)
+                            A, B = on[y0: y0 + h, x0: x0 + w], off[y0: y0 + h, x0: x0 + w]
+                            ma = (A * m[..., None]).sum((0, 1)) / m.sum()
+                            mb = (B * m[..., None]).sum((0, 1)) / m.sum()
+                            self.assertLess(float(np.linalg.norm(ma - mb)), 1.0, f"{light} {layer['id']} {d['id']} t={t}: dE of the mean colour")
+                            self.assertGreater(float(np.abs(A - B).max()), 0.5)       # and it does move
+
+    def test_motion_constants_live_in_the_json(self):
+        for light in LIGHTS:
+            for _, d in _details(light):
+                self.assertIn("ramp", d)
+                if d["kind"] == "fall":
+                    self.assertEqual(d["speed"], sd.DETAIL_MOTION["fall"]["speed"])
+                    self.assertLessEqual(d["mist"]["peak"], 0.2)
+                if d["kind"] == "glow":
+                    self.assertLessEqual(d["amp"], 0.06)
+                if d["kind"] == "sway":
+                    self.assertLessEqual(d["amp"], 2)
+
+    def test_the_scroll_is_seamless_within_one_tile(self):
+        self.assertAlmostEqual(rd.flow_offset(20, 0, 100), 0)
+        self.assertAlmostEqual(rd.flow_offset(20, 5, 100), 0, places=9)
+        self.assertLess(rd.flow_offset(20, 4.9, 100), 100)
 
 
 class CiFrameTests(unittest.TestCase):

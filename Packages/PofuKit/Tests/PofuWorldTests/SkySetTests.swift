@@ -193,4 +193,123 @@ struct SkySetTests {
         // And it is placed by the plate's own transform: its width is the master's width in world units.
         #expect(abs(box.width - home.plateBox.width) < 1e-6)
     }
+
+    // MARK: Painted detail (isles and whale)
+
+    @Test func theFallsLampsAndCanopiesAreShippedOnTheSpritesOnly() throws {
+        for light in Self.lights {
+            let set = try sky(light)
+            let withDetail = set.layers.filter { !$0.details.isEmpty }
+            #expect(Set(withDetail.map(\.id)) == ["isle_falls", "whale"], "\(light)")
+            for layer in set.layers where layer.role != .sprite && layer.role != .whale {
+                #expect(layer.details.isEmpty, "\(layer.id): the island and the clouds carry none")
+            }
+            for layer in withDetail {
+                #expect(layer.details.contains { $0.kind == .fall }, "\(light) \(layer.id) has a waterfall")
+                for d in layer.details {
+                    // A detail lies inside its sprite.
+                    #expect(d.pos.x >= layer.pos.x - 0.5 && d.pos.y >= layer.pos.y - 0.5, "\(d.id)")
+                    #expect(d.pos.x + d.size.x <= layer.pos.x + layer.size.x + 0.5, "\(d.id)")
+                    #expect(d.pos.y + d.size.y <= layer.pos.y + layer.size.y + 0.5, "\(d.id)")
+                }
+            }
+        }
+    }
+
+    @Test func detailAssetsAreImagesetsOnDisk() throws {
+        let catalog = URL(fileURLWithPath: #filePath)
+            .deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
+            .appendingPathComponent("Sources/PofuWorld/Resources/World.xcassets")
+        for light in Self.lights {
+            for layer in try sky(light).layers {
+                for d in layer.details {
+                    for name in [d.mask, d.flow, d.crop, d.asset].compactMap({ $0 }) {
+                        let file = catalog.appendingPathComponent("\(name).imageset/\(name).png")
+                        #expect(FileManager.default.fileExists(atPath: file.path), "\(name)")
+                    }
+                }
+            }
+        }
+    }
+
+    @Test func detailTimeZeroIsThePainting() throws {
+        for light in Self.lights {
+            for layer in try sky(light).layers {
+                for d in layer.details {
+                    #expect(SkyMotion.ease(time: 0, ramp: d.ramp) == 0)
+                    #expect(SkyMotion.flicker(d, time: 0) == 0)
+                    #expect(SkyMotion.sway(d, time: 0, scale: 1) == 0)
+                    if let mist = d.mist { #expect(SkyMotion.mist(mist, time: 0, ease: 0) == 0) }
+                }
+            }
+        }
+    }
+
+    @Test func theEnvelopeRisesSmoothlyFromZeroToOne() {
+        #expect(SkyMotion.ease(time: 0, ramp: 1.5) == 0)
+        #expect(abs(SkyMotion.ease(time: 0.75, ramp: 1.5) - 0.5) < 1e-9)
+        #expect(SkyMotion.ease(time: 1.5, ramp: 1.5) == 1)
+        #expect(SkyMotion.ease(time: 99, ramp: 1.5) == 1)
+        var last = 0.0
+        for i in 0...150 {
+            let e = SkyMotion.ease(time: Double(i) * 0.01, ramp: 1.5)
+            #expect(e >= last)
+            last = e
+        }
+    }
+
+    @Test func aFallsStreaksScrollDownAtTheStatedRateAndWrapWithinOneTile() {
+        // 20 reference px/s on a 402 pt screen (a third): 6.667 pt/s.
+        let scale = SkyMotion.scale(width: 402, referenceWidth: 1206)
+        #expect(abs(SkyMotion.flowOffset(speed: 20, time: 3, period: 100, scale: scale) - 20) < 1e-9)
+        // After exactly one tile's worth of time the picture is the same.
+        #expect(SkyMotion.flowOffset(speed: 20, time: 15, period: 100, scale: scale) < 1e-9)
+        var last = -1.0
+        var wrapped = false
+        for i in 0...2_000 {
+            let v = SkyMotion.flowOffset(speed: 20, time: Double(i) * 0.05, period: 60, scale: scale)
+            #expect(v >= 0 && v < 60)
+            if v < last { wrapped = true }
+            last = v
+        }
+        #expect(wrapped)
+    }
+
+    @Test func theMistBreathesBetweenNothingAndItsPeak() {
+        let mist = SkySet.Detail.Mist(centre: PlatePoint(x: 0, y: 0), radius: PlatePoint(x: 10, y: 5), color: [1, 1, 1], peak: 0.16, period: 5)
+        var most = 0.0
+        for i in 0...1_000 {
+            let v = SkyMotion.mist(mist, time: Double(i) * 0.01, ease: 1)
+            #expect(v >= 0 && v <= 0.16 + 1e-9)
+            most = max(most, v)
+        }
+        #expect(abs(most - 0.16) < 1e-3)
+        #expect(abs(SkyMotion.mist(mist, time: 2.5, ease: 1) - 0.16) < 1e-9)
+        #expect(abs(SkyMotion.mist(mist, time: 2.5, ease: 0.5) - 0.08) < 1e-9)
+    }
+
+    @Test func aLampFlickersAFewPerCentEitherWayAndASwayStaysUnderItsAmplitude() throws {
+        for light in Self.lights {
+            for layer in try sky(light).layers {
+                for d in layer.details where d.kind == .glow {
+                    #expect(d.amp > 0 && d.amp <= 0.06 + 1e-9, "\(light) \(d.id): at most +-6 %")
+                    var lo = 0.0, hi = 0.0
+                    for i in 0...4_000 {
+                        let v = SkyMotion.flicker(d, time: Double(i) * 0.05)
+                        lo = min(lo, v); hi = max(hi, v)
+                    }
+                    #expect(lo < -0.2 * d.amp && hi > 0.2 * d.amp, "it goes both ways")
+                    #expect(lo >= -d.amp - 1e-9 && hi <= d.amp + 1e-9)
+                }
+                for d in layer.details where d.kind == .sway {
+                    #expect(d.amp > 0 && d.amp <= 2, "\(d.id): a 1 to 2 px sway")
+                    var most = 0.0
+                    for i in 0...4_000 {
+                        most = max(most, abs(SkyMotion.sway(d, time: Double(i) * 0.05, scale: 1)))
+                    }
+                    #expect(most <= d.amp + 1e-9 && most > 0.95 * d.amp)
+                }
+            }
+        }
+    }
 }
