@@ -6,6 +6,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
+import cv2
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -102,6 +103,31 @@ class MeasureTests(unittest.TestCase):
         mx, my = to_master(50, 50)
         self.assertAlmostEqual(mx, 1024.0, places=3)
         self.assertAlmostEqual(my, 850 + 0.5 * 1365.3333, places=2)
+
+    def test_speckle_pieces_are_counted_and_soft_clouds_are_not(self):
+        th = {"floor": 0.02, "max_area": 250, "max_alpha": 0.30, "max_pieces": 0}
+        yy, xx = np.mgrid[0:200, 0:200]
+        cloud = np.clip(1.5 - np.hypot(xx - 100, yy - 100) / 40, 0, 1).astype(np.float32)   # one big soft cloud
+        layer = np.dstack([np.ones((200, 200, 3), np.float32), cloud])
+        self.assertTrue(sc.check_speckle({"far": layer}, th)["ok"])
+        for y, x in ((10, 10), (20, 170), (180, 30)):                                       # crumbs: faint, small, apart
+            layer[y: y + 3, x: x + 3, 3] = 0.12
+        r = sc.check_speckle({"far": layer}, th)
+        self.assertEqual(r["total"], 3)
+        self.assertFalse(r["ok"])
+        layer[10:13, 10:13, 3] = 0.9                                                         # a small solid piece is a sprite
+        self.assertEqual(sc.check_speckle({"far": layer}, th)["total"], 2)
+
+    def test_a_straight_horizontal_line_in_the_sea_is_caught_and_clouds_are_not(self):
+        th = {"window": 14, "ratio_max": 2.2, "excess_max": 1.2}
+        rng = np.random.default_rng(2)
+        clouds = cv2.GaussianBlur(rng.random((300, 400, 3)).astype(np.float32), (0, 0), 6) * 80 + 150
+        self.assertTrue(sc.check_horizontal_line(clouds, (20, 280), th)["ok"])
+        seam = clouds.copy()
+        seam[150:] += 14                                                                     # two pictures meeting
+        r = sc.check_horizontal_line(seam, (20, 280), th)
+        self.assertFalse(r["ok"], r)
+        self.assertAlmostEqual(r["row"], 149, delta=2)
 
     def test_resolution(self):
         th = sc.THRESHOLDS["resolution"]

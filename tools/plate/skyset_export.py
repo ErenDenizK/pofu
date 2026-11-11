@@ -210,8 +210,13 @@ def continue_sea(arr: np.ndarray, seed: int = 0, light: str = "", pad: int | Non
     ext = np.concatenate([pre, np.repeat(pre[-1:], pad, 0)], 0)
     hole = np.zeros(ext.shape[:2], bool)
     hole[h - q["band"]:] = True
-    fill = inpaint.quilt(ext, hole, periodic_x=True, y_window=q["window"], block=q["block"], overlap=q["overlap"],
-                         topk=q["topk"], seed=seed)
+    # only the solid cloud below the thin top is quilted from: a block drawn from the sea's half-transparent top would
+    # bring holes down with it
+    start = max(h - q.get("source", h), 0)
+    fill = np.zeros_like(ext)
+    fill[start:] = inpaint.quilt(ext[start:], hole[start:], periodic_x=True, y_window=q["window"], block=q["block"],
+                                 overlap=q["overlap"], topk=q["topk"], seed=seed)
+    fill[:start] = ext[:start]
     fa = fill[..., 3].clip(0, 1)
     frgb = np.where(fa[..., None] > 1e-3, fill[..., :3] / np.maximum(fa, 1e-3)[..., None], 0).clip(0, 1)
     frgb, fa = split.close_wrap(frgb, fa, 160, seed)
@@ -221,6 +226,12 @@ def continue_sea(arr: np.ndarray, seed: int = 0, light: str = "", pad: int | Non
         wgt[h - q["band"]:h] = split.smoothstep(0, q["band"], np.arange(q["band"], dtype=np.float32))
     wgt[h:] = 1
     out = ext * (1 - wgt[:, None, None]) + fill * wgt[:, None, None]
+    if q.get("step"):
+        # the first new row still meets the last (blended) one with a colour step all along it, a straight line across the
+        # sea: carry the step's difference, smoothed along x, off over `step` rows; the rows above stay as they are
+        d = cv2.GaussianBlur((out[h - 1] - out[h])[None], (0, 0), sigmaX=14, sigmaY=0.01)[0]
+        ramp = 1 - split.smoothstep(0, q["step"], np.arange(q["step"], dtype=np.float32))
+        out[h: h + q["step"]] += d[None] * ramp[:, None, None]
     a = out[..., 3:4].clip(0, 1)
     rgb = np.where(a > 1e-3, out[..., :3] / np.maximum(a, 1e-3), 0).clip(0, 1)
     res = np.concatenate([rgb, a], -1)
@@ -230,7 +241,7 @@ def continue_sea(arr: np.ndarray, seed: int = 0, light: str = "", pad: int | Non
     return res
 
 
-def extend_sky_up(sky: np.ndarray, rows: int, fit_rows: int = 40, tau_rows: float = 30.0, flat_rows: float = 25.0) -> np.ndarray:
+def extend_sky_up(sky: np.ndarray, rows: int, fit_rows: int = 40, tau_rows: float = 6.0, flat_rows: float = 25.0) -> np.ndarray:
     """The gradient (H, W, 3 at 1/8 size) continued `rows` rows upward by a smooth fitted field, so the picture
     runs on past the master's top edge with no band and no seam: the first row is the gradient's own (smoothed
     along x), and each row above it moves on by the vertical slope fitted to the top `fit_rows` rows, the slope
@@ -251,69 +262,7 @@ def extend_sky_up(sky: np.ndarray, rows: int, fit_rows: int = 40, tau_rows: floa
     return np.concatenate([ext.astype(np.float32), sky], 0)
 
 
-def stamp_up(arr: np.ndarray, rows: int, y0: int, seed: int = 0, count: int = 16, scale_top: float = 0.6, thin_top: float = 0.35) -> np.ndarray:
-    """A cloud tile (straight RGBA, starting at master row `y0`) with clouds above the master's top edge: whole clouds
-    of the tile itself (connected pieces well inside it), stamped up over `rows` rows at deterministic places,
-    smaller (down to `scale_top`) and thinner (alpha down by `thin_top`) toward the zenith, some mirrored left to
-    right, never on top of each other or of the clouds already there, wrapping in x like the tile. No quilting: a
-    quilt copies hazy, half-transparent blocks and shows them as squares. Returns the tile with `rows` empty
-    rows added at the top, starting at master row -rows."""
-    h, w, _ = arr.shape
-    a = arr[..., 3]
-    lab, n = ndimage.label(a > 0.30)
-    area = ndimage.sum(np.ones_like(a), lab, range(1, n + 1))
-    boxes = ndimage.find_objects(lab)
-    pre = arr.copy()
-    pre[..., :3] *= pre[..., 3:4]
-    pieces = []
-    for i, sl in enumerate(boxes, 1):
-        ys, xs = sl
-        if not (6_000 <= area[i - 1] <= 2_500_000) or xs.start < 6 or xs.stop > w - 6 or ys.start + y0 < 140:
-            continue
-        m = 44
-        y_a, y_b, x_a, x_b = max(ys.start - m, 0), min(ys.stop + m, h), max(xs.start - m, 0), min(xs.stop + m, w)
-        near = ndimage.binary_dilation(lab[y_a:y_b, x_a:x_b] == i, iterations=m) & (a[y_a:y_b, x_a:x_b] > 0.004)
-        # only the cloud: faint haze round it is left behind (its colours are noise, and a hard cut would show as a polygon)
-        body = split.smoothstep(0.22, 0.60, a[y_a:y_b, x_a:x_b]) * near
-        crop = pre[y_a:y_b, x_a:x_b] * (body / np.maximum(a[y_a:y_b, x_a:x_b], 1e-3))[..., None]
-        pieces.append(crop.astype(np.float32))
-    if not pieces:
-        return np.concatenate([np.zeros((rows, w, 4), np.float32), arr], 0)
-    rng = np.random.default_rng(seed)
-    out = np.zeros((rows + y0 + h, w, 4), np.float32)        # premultiplied, row 0 = master row -rows
-    out[rows:] = np.concatenate([np.zeros((y0, w, 4), np.float32), pre], 0)
-    taken = out[..., 3] > 0.05
-    order = list(rng.permutation(len(pieces)))
-    placed = 0
-    for j in range(count * 3):
-        if placed >= count:
-            break
-        t = (placed + rng.random() * 0.6) / count                  # 0 at the join, 1 at the zenith
-        crop = pieces[order[j % len(order)]]
-        sc = (1 - (1 - scale_top) * t) * min(1.0, 900 / crop.shape[1])
-        if rng.random() < 0.5 or j >= len(order):
-            crop = crop[:, ::-1]
-        sc *= 0.9 + 0.2 * rng.random()
-        ch, cw = max(round(crop.shape[0] * sc), 2), max(round(crop.shape[1] * sc), 2)
-        img = cv2.resize(np.ascontiguousarray(crop), (cw, ch), interpolation=cv2.INTER_AREA)
-        img *= 1 - thin_top * t
-        y = round(rows - 40 - t * (rows - 200) - ch / 2 + rng.normal(0, 30))   # centre, in tile rows
-        y = int(np.clip(y, 0, rows - ch))
-        x = int(rng.integers(0, w))
-        idx = (np.arange(cw) + x) % w
-        region = out[y: y + ch][:, idx]
-        if (taken[y: y + ch][:, idx] & (img[..., 3] > 0.05)).any():
-            continue
-        out[y: y + ch][:, idx] = img + region * (1 - img[..., 3:4])
-        taken[y: y + ch][:, idx] |= img[..., 3] > 0.05
-        placed += 1
-    al = out[..., 3:4].clip(0, 1)
-    rgb = np.where(al > 1e-3, out[..., :3] / np.maximum(al, 1e-3), 0).clip(0, 1)
-    res = np.concatenate([rgb, al], -1).astype(np.float32)
-    res[rows:] = np.concatenate([np.zeros((y0, w, 4), np.float32), arr], 0)   # the known tile stays exactly as it was
-    return res
-
-def rebuild_sprites(sprites: dict[str, tuple[np.ndarray, tuple[int, int]]], plate: np.ndarray, bg: np.ndarray, k: float) -> dict:
+def rebuild_sprites(sprites: dict[str, tuple[np.ndarray, tuple[int, int]]], plate: np.ndarray, bg: np.ndarray, k: float, floor: float = 0.0) -> dict:
     """Give each distant isle (and the whale) back the cloud puffs the split left in the painting: the
     split took a thin ring round each sprite (the pink underside of an isle, the wisps beside it were
     left behind or came out as stray fragments). Alpha is the painting's own difference from what is
@@ -336,7 +285,9 @@ def rebuild_sprites(sprites: dict[str, tuple[np.ndarray, tuple[int, int]]], plat
         near = cv2.dilate((a > 0.3).astype(np.uint8), np.ones((size, size), np.uint8)).astype(np.float32)
         zone = cv2.GaussianBlur(near, (0, 0), 18) * (1 - np.clip(others * 4, 0, 1))
         na = np.maximum(a, ca * zone).clip(0, 1)
-        na[na < 0.01] = 0
+        na[na < max(0.01, floor)] = 0
+        if floor:
+            na = split.clean_alpha(na, floor)
         ys, xs = np.nonzero(na > 0.003)
         y0, y1, x0, x1 = max(ys.min() - 2, 0), min(ys.max() + 3, h), max(xs.min() - 2, 0), min(xs.max() + 3, w)
         rgb = split.unmix(plate, bg, na)
@@ -440,7 +391,7 @@ def export_light(island: str, light: str, hand: dict) -> dict:
     if far_arr is not None:
         bg = over_rgb(bg, far_arr, tuple(next(l["pos"] for l in man["layers"] if l["id"] == "far")))
     sprite_in = {l["id"]: (raw[l["id"]], tuple(l["pos"])) for l in man["layers"] if l["kind"] == "sprite"}
-    rebuilt = rebuild_sprites(sprite_in, plate, bg, man["info"]["K"])
+    rebuilt = rebuild_sprites(sprite_in, plate, bg, man["info"]["K"], hand.get("alphaFloor", 0.0))
 
     for lay in man["layers"]:
         lid = lay["id"]
@@ -484,9 +435,6 @@ def export_light(island: str, light: str, hand: dict) -> dict:
             continue
         if lid == "far":
             arr = far_arr
-            if cfg.get("farUp"):                              # clouds run on above the master's top edge
-                arr = stamp_up(arr, cfg["farUp"], y)
-                y, dh = -cfg["farUp"], arr.shape[0]
         if lid == "mid" and centres:                          # the stars' residue belongs to the still sky
             yy, xx = np.mgrid[0:arr.shape[0], 0:arr.shape[1]]
             for cx_, cy_ in centres:
@@ -500,6 +448,9 @@ def export_light(island: str, light: str, hand: dict) -> dict:
             arr = continue_sea(arr, light=tag, pad=sea_pad, quilt=cfg.get("seaQuilt"))
             dh += sea_pad
         small = _premult_resize(arr, (round(arr.shape[1] * scale), round(arr.shape[0] * scale)))
+        if hand.get("alphaFloor"):                     # the resample and the codec leave faint crumbs again: clean the stored layer
+            small[..., 3] = split.clean_alpha(small[..., 3], hand["alphaFloor"] + 0.015, 250, 0.32)
+            small[..., :3] = np.where(small[..., 3:4] > 0, small[..., :3], 0)
         entry.update(pos=[x, y], size=[dw, dh], **motion)
         if lay["kind"] == "tile":
             entry["tileWidth"] = lay["tileWidth"]

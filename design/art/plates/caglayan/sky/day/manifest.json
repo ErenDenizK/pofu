@@ -43,11 +43,11 @@
    "file": "far.heic",
    "pos": [
     0,
-    0
+    23
    ],
    "size": [
     2240,
-    1186
+    1095
    ],
    "kind": "tile",
    "tileWidth": 2240,
@@ -100,11 +100,11 @@
    "file": "mid.heic",
    "pos": [
     0,
-    922
+    1090
    ],
    "size": [
     2240,
-    892
+    713
    ],
    "kind": "tile",
    "tileWidth": 2240,
@@ -119,11 +119,11 @@
    "file": "sea.heic",
    "pos": [
     0,
-    1388
+    1581
    ],
    "size": [
     2240,
-    1684
+    1491
    ],
    "kind": "tile",
    "tileWidth": 2240,
@@ -137,11 +137,11 @@
    "id": "island",
    "file": "island.heic",
    "pos": [
-    0,
+    1,
     737
    ],
    "size": [
-    2048,
+    2046,
     1561
    ],
    "kind": "island"
@@ -173,20 +173,20 @@
  },
  "bytes": {
   "sky": 3672,
-  "far": 776399,
-  "isle_dome": 21688,
-  "isle_crystal": 18232,
-  "mid": 168465,
-  "sea": 736682,
-  "island": 645870,
-  "island-s0": 705567,
-  "island-s1": 730634,
-  "island-s2": 690604,
-  "island-s3": 770223,
-  "total": 5268036
+  "far": 664352,
+  "isle_dome": 17911,
+  "isle_crystal": 16319,
+  "mid": 122514,
+  "sea": 672657,
+  "island": 655047,
+  "island-s0": 710408,
+  "island-s1": 736632,
+  "island-s2": 695856,
+  "island-s3": 776189,
+  "total": 5071557
  },
  "info": {
-  "hole_px": 2016768,
+  "hole_px": 1996902,
   "K": 0.3929,
   "sky_resid_p95": 0.0187
  }

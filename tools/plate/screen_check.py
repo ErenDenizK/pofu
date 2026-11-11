@@ -60,6 +60,8 @@ SKY_THRESHOLDS = {
     "mirror": {"ratio_min": 0.5, "rows": 300, "min_rows": 40},
     "sky_edges": {"col_hp": 0.4, "row_hp": 1.0, "band": 0.42},
     "ghosts": {"max_points": 0, "radius": 24, "min_area": 6, "max_area": 150},
+    "speckle": {"floor": 0.02, "max_area": 250, "max_alpha": 0.30, "max_pieces": 0},
+    "sea_line": {"window": 14, "ratio_max": 2.2, "excess_max": 1.2},
 }
 
 # starting guesses, calibrated on Home day, golden and night (see calibration.json)
@@ -68,6 +70,8 @@ THRESHOLDS = {
     # Çağlayan's CI frames against the landscape build: the island and the rows its plate covered. The island is the
     # stage plate's own pixels (strict); the rest of those rows is the portrait master's sky, repainted by the
     # outpaint, so it differs from the landscape plate's by a little (looser); the rows past the plate are new.
+    # Çağlayan's own sets drop the alpha under 0.08 (noise) and quilt the sea past the master: the p99 gives a little
+    "identity_portrait": {"mean_de": 1.5, "p99_de": 7.0},
     "identity_plate": {"island_mean_de": 1.5, "island_p99_de": 6.0, "rows_mean_de": 4.0, "rows_p99_de": 14.0},
     "seam": {"de": 8.0, "ring_px": 6, "max_new_share": 0.002, "block_de": 3.0, "block_run": 40, "near_px": 300,
              "max_new_block_share": 0.0005},
@@ -522,6 +526,45 @@ def check_ghosts(below: np.ndarray, above: np.ndarray, th: dict) -> dict:
     return {"stars": len(centres), "ghost_points": ghosts, "ok": ghosts <= th["max_points"]}
 
 
+def check_speckle(layers: dict, th: dict) -> dict:
+    """Noise in the cloud and sprite layers: isolated small pieces of faint alpha. A piece is a connected region of
+    alpha above `floor` no larger than `max_area` px whose strongest alpha stays under `max_alpha`; a matte that has
+    them shows crumbs and dots round a cloud once the layer drifts or is copied. Counted over `layers`
+    ({id: straight RGBA 0..1})."""
+    res, total = {}, 0
+    for lid, rgba in layers.items():
+        a = rgba[..., 3]
+        lab, n = ndimage.label(a > th["floor"])
+        if n == 0:
+            res[lid] = 0
+            continue
+        area = np.bincount(lab.ravel(), minlength=n + 1)[1:]
+        peak = np.asarray(ndimage.maximum(a, lab, range(1, n + 1)))
+        bad = int(((area <= th["max_area"]) & (peak < th["max_alpha"])).sum())
+        res[lid] = bad
+        total += bad
+    return {"pieces": res, "total": total, "ok": total <= th["max_pieces"]}
+
+
+def check_horizontal_line(frame: np.ndarray, rows: tuple[int, int], th: dict) -> dict:
+    """A straight horizontal line across the cloud sea: the mean absolute luminance step between a row and the next,
+    over the whole width, against the median of the rows around it. Clouds have steps that vary along a row and
+    average out; a seam (two pictures meeting, a block row) steps by the same amount all along it. `ratio` is the
+    worst row's step over its neighbours' median, `excess` its step above that median in grey levels."""
+    y = cv2.GaussianBlur(np.clip(luminance(frame) ** (1 / 2.2), 0, 1).astype(np.float32) * 255, (0, 0), 0.8)
+    d = np.abs(np.diff(y, axis=0)).mean(1)
+    r0, r1 = max(rows[0], th["window"]), min(rows[1], len(d) - th["window"])
+    worst, at, exc = 0.0, r0, 0.0
+    for r in range(r0, r1):
+        near = np.r_[d[r - th["window"]: r - 1], d[r + 2: r + th["window"]]]
+        base = float(np.median(near))
+        ratio = float(d[r] / max(base, 0.05))
+        if ratio > worst:
+            worst, at, exc = ratio, r, float(d[r] - base)
+    return {"row": int(at), "ratio": round(worst, 2), "excess": round(exc, 2),
+            "ok": not (worst > th["ratio_max"] and exc > th["excess_max"])}
+
+
 def run_sky(island: str, light: str, th: dict = SKY_THRESHOLDS) -> dict:
     """The three checks on the shipped sky set rendered by `skyset_render` (the app's layers and motion):
     the rows past the plate at t = 0 and 3 s, the sky layer alone, and the stars' ghosts at t = 0 and 60 s."""
@@ -546,7 +589,15 @@ def run_sky(island: str, light: str, th: dict = SKY_THRESHOLDS) -> dict:
         below = rd.render(s, t, fr, upto=last_still)
         ghosts[t] = check_ghosts(below, rd.render(s, t, fr, upto="far"), th["ghosts"]) if "far" in ids else {"ok": True}
     out["ghosts"] = {**{str(t): v for t, v in ghosts.items()}, "ok": all(v["ok"] for v in ghosts.values())}
-    out["ok"] = all(out[k]["ok"] for k in ("mirror", "mirror_top", "sky_edges", "ghosts") if k in out)
+    cloud = {l["id"]: l["rgba"] for l in s["layers"] if l["role"] in ("tile", "sprite", "whale")}
+    out["speckle"] = check_speckle(cloud, th["speckle"])
+    sea_top = int(round((s["manifest"]["islandBox"][3] - fr["y0"]) / fr["k"])) + 40    # below the island's lowest root
+    out["sea_line"] = {t: check_horizontal_line(rd.render(s, t, fr), (sea_top, SCREEN[1] - 4), th["sea_line"]) for t in (0, 3)}
+    out["sea_line"]["ok"] = all(v["ok"] for v in out["sea_line"].values())
+    # speckle is enforced where the hand data sets an `alphaFloor` (Çağlayan); Home's sets are older and only reported
+    hand_sky = json.loads((PLATES / island / "sky" / "sky.json").read_text())
+    keys = ["mirror", "mirror_top", "sky_edges", "ghosts", "sea_line"] + (["speckle"] if hand_sky.get("alphaFloor") else [])
+    out["ok"] = all(out[k]["ok"] for k in keys if k in out)
     return out
 
 
@@ -670,7 +721,7 @@ def run(island: str, light: str, set_dir: Path | None = None, plate: np.ndarray 
     f0 = comps[0]
     masks = region_masks(man, fr, f0["island_alpha"], hand)
     out = {"light": light, "frame": {"k": round(fr["k"], 4), "x0": round(fr["x0"], 1), "y0": round(fr["y0"], 1)}}
-    out["identity"] = check_identity(f0["rgb"], master, f0["covered"], th["identity"])
+    out["identity"] = check_identity(f0["rgb"], master, f0["covered"], th["identity_portrait" if hand.get("portraitFrame") else "identity"])
     out["seam"] = check_seam({t: comps[t]["rgb"] for t in TIMES}, f0["island_alpha"], th["seam"])
     out["blocks"] = check_blocks({t: comps[t]["rgb"] for t in TIMES}, f0["island_alpha"], th["seam"])
     out["leak"] = check_leaks(s, th["leak"])
@@ -679,7 +730,10 @@ def run(island: str, light: str, set_dir: Path | None = None, plate: np.ndarray 
         # the picture runs on past the master (above and below): the dead-composition check reads the shipped set
         # as the app draws it, `skyset_render`, not the split's own layers (whose gradient only repeats its edge rows)
         import skyset_render as rd
-        out["dead"] = check_dead(rd.render(rd.load(island, light), 0, fr), th["dead"])
+        # the gradient beyond the master is meant to be plain: only the rows the master covers count
+        shown = rd.render(rd.load(island, light), 0, fr)
+        r0, r1 = plate_rows(man, {}, fr, shown.shape[0])
+        out["dead"] = check_dead(shown[r0:r1], th["dead"])
     else:
         out["dead"] = check_dead_vs_master(f0["rgb"], master, th["dead"])
     out["life"] = check_life(f0["rgb"], comps[2]["rgb"], f0["island_alpha"], th["life"])

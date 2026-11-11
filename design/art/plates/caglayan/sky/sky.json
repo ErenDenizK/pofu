@@ -68,13 +68,14 @@
   "skyPadBottom": 700,
   "skyPadSide": 128,
   "seaPad": 760,
-  "farUp": 1200,
   "seaQuilt": {
    "block": 128,
    "overlap": 40,
    "topk": 5,
-   "band": 16,
-   "window": 500
+   "band": 48,
+   "window": 500,
+   "step": 96,
+   "source": 700
   }
  },
  "stages": [
@@ -90,5 +91,7 @@
  },
  "baseStage": "4",
  "tileBridge": 192,
- "gamutAlpha": true
+ "gamutAlpha": true,
+ "alphaFloor": 0.08,
+ "edgeFeather": 24
 }

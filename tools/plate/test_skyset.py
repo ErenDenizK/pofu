@@ -322,11 +322,21 @@ class CaglayanSkyTests(unittest.TestCase):
         layers = {l["id"]: l for l in self.state(4)["layers"]}
         self.assertGreater(over_top, 0)
         self.assertGreater(over_bottom, 0)
-        for lid in ("sky", "far"):
-            self.assertLessEqual(layers[lid]["pos"][1], -over_top, f"{lid} reaches the top of the screen")
+        self.assertLessEqual(layers["sky"]["pos"][1], -over_top, "the gradient reaches the top of the screen")
+        self.assertGreaterEqual(layers["far"]["pos"][1], 0, "no cloud is drawn above the master: the far layer is the painting's own")
         for lid in ("sky", "sea"):
             self.assertGreaterEqual(layers[lid]["pos"][1] + layers[lid]["size"][1], self.DATA["master"][1] + over_bottom, f"{lid} reaches the bottom")
         self.assertLessEqual(layers["sky"]["pos"][0], -(fr["x0"] * -1 if fr["x0"] < 0 else 0))
+
+    def test_no_layer_carries_speckle_and_the_sea_has_no_straight_line(self):
+        s = rd.load("caglayan", "day")
+        cloud = {l["id"]: l["rgba"] for l in s["layers"] if l["role"] in ("tile", "sprite")}
+        self.assertEqual(sc.check_speckle(cloud, sc.SKY_THRESHOLDS["speckle"])["total"], 0)
+        fr = sc.framing(s["manifest"])
+        sea_top = int(round((s["manifest"]["islandBox"][3] - fr["y0"]) / fr["k"])) + 40
+        for t in (0, 3):
+            r = sc.check_horizontal_line(rd.render(s, t, fr), (sea_top, sc.SCREEN[1] - 4), sc.SKY_THRESHOLDS["sea_line"])
+            self.assertTrue(r["ok"], r)
 
     def test_the_sky_extension_is_continuous_at_the_masters_top_edge(self):
         sky = np.asarray(heic.open_image(ex.ASSETS / "world-caglayan-sky-sky-day-0.imageset" / "world-caglayan-sky-sky-day-0.heic").convert("RGB"), np.float32) / 255
@@ -363,27 +373,6 @@ class ExtensionTests(unittest.TestCase):
         out = ex.extend_sky_up(sky, 120)
         self.assertGreater(float(out[119, :5, 0].mean() - out[119, 30:, 0].mean()), 0.05)
         self.assertLess(float(out[0, :5, 0].mean() - out[0, 30:, 0].mean()), 0.01)
-
-    def test_stamp_up_keeps_the_tile_and_adds_whole_clouds_above_only(self):
-        h, w = 400, 500
-        a = np.zeros((h, w, 4), np.float32)
-        yy, xx = np.mgrid[0:h, 0:w]
-        for cx, cy in ((120, 200), (330, 260)):
-            a[..., 3] = np.maximum(a[..., 3], np.clip(1.4 - np.hypot((xx - cx) / 60, (yy - cy) / 30), 0, 1))
-        a[..., :3] = 0.95
-        out = ex.stamp_up(a, 300, 0, count=6)
-        self.assertEqual(out.shape, (h + 300, w, 4))
-        np.testing.assert_array_equal(out[300:], a)
-        self.assertGreater(float(out[:300, :, 3].max()), 0.5)
-        self.assertGreater(int((out[:300, :, 3] > 0.3).sum()), 1500)
-        # thinner and smaller toward the top: less cover in the highest third than in the lowest
-        self.assertLessEqual(float(out[:100, :, 3].sum()), float(out[200:300, :, 3].sum()) * 1.2 + 1)
-        np.testing.assert_array_equal(out, ex.stamp_up(a, 300, 0, count=6))   # deterministic
-
-    def test_stamp_up_with_no_cloud_adds_nothing(self):
-        a = np.zeros((100, 120, 4), np.float32)
-        out = ex.stamp_up(a, 60, 0)
-        self.assertEqual(float(out.max()), 0.0)
 
 
 class DetailTests(unittest.TestCase):

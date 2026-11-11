@@ -148,6 +148,18 @@ class BridgeAndGamutTests(unittest.TestCase):
         again = split.bridge_wrap(p, a, 48, seed=0)
         np.testing.assert_array_equal(out_a, again[1])
 
+    def test_clean_alpha_drops_the_floor_and_isolated_crumbs_but_not_clouds(self):
+        yy, xx = np.mgrid[0:120, 0:160]
+        a = np.clip(1.5 - np.hypot(xx - 80, yy - 60) / 30, 0, 1).astype(np.float32)
+        a[5:8, 5:8] = 0.2                       # a crumb above the floor
+        a[100:102, 140:142] = 0.05              # and one under it
+        out = split.clean_alpha(a, 0.08)
+        self.assertEqual(float(out[5:8, 5:8].max()), 0.0)
+        self.assertEqual(float(out[100:102, 140:142].max()), 0.0)
+        self.assertGreater(float(out[60, 80]), 0.99)
+        self.assertEqual(float(out[out > 0].min() >= 0.08), 1.0)
+        self.assertGreater(int((out > 0).sum()), int((a > 0.5).sum()))   # the cloud's soft edge stays
+
     def test_an_empty_layer_bridges_to_an_empty_layer(self):
         rgb = np.full((20, 30, 3), 0.5, np.float32)
         _, a = split.bridge_wrap(rgb, np.zeros((20, 30), np.float32), 8)

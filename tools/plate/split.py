@@ -286,6 +286,20 @@ def close_wrap(rgb: np.ndarray, a: np.ndarray, seam: int, seed: int = 0) -> tupl
     return np.where(cols[None, :, None], nrgb, rgb), np.where(cols[None, :], na, a)
 
 
+def clean_alpha(a: np.ndarray, floor: float, max_area: int = 250, max_alpha: float = 0.30) -> np.ndarray:
+    """Alpha with the noise taken out: under `floor` is zero, and a connected piece (alpha over `floor`) no larger than
+    `max_area` px that never reaches `max_alpha` is crumbs, not cloud, and goes too (`screen_check.check_speckle` counts them)."""
+    a = np.where(a < floor, 0, a).astype(np.float32)
+    lab, n = ndimage.label(a > 0)
+    if n:
+        area = np.bincount(lab.ravel(), minlength=n + 1)[1:]
+        peak = np.asarray(ndimage.maximum(a, lab, range(1, n + 1)))
+        bad = np.zeros(n + 1, bool)
+        bad[1:] = (area <= max_area) & (peak < max_alpha)
+        a[bad[lab]] = 0
+    return a
+
+
 def split_smooth(x: np.ndarray) -> np.ndarray:
     return x * x * (3 - 2 * x)
 
@@ -305,13 +319,14 @@ def bridge_wrap(rgb: np.ndarray, a: np.ndarray, extra: int, seed: int = 0) -> tu
         return np.concatenate([rgb, rgb[:, :extra]], 1), np.concatenate([a, a[:, :extra]], 1)
     fill = inpaint.quilt(canvas, hole, periodic_x=True, y_window=300, block=96, overlap=32, topk=3, seed=seed)
     # a quilt matches its blocks to the known edge but leaves a small step, and a vertical line where its end meets the
-    # painting's other edge. So the bridge's two ends are the painting's own edges mirrored (continuous by construction,
+    # painting's other edge. So the bridge's two ends are the painting's own edge columns repeated (continuous by construction, and no mirrored cloud shapes,
     # and only a few screen px of them show at rest, where the screen is wider than the master) and the quilt sits
     # between them, crossfaded in over `m` columns on each side; the painting's columns are never touched.
-    m = min(72, extra // 2 - 8)
+    m = min(56, extra // 2 - 8)
     ramp = split_smooth(np.arange(m, dtype=np.float32) / max(m - 1, 1))[None, :, None]
-    left = pre[:, w - m: w][:, ::-1]                                  # col w continues col w - 1
-    right = pre[:, :m][:, ::-1]                                       # the last col continues col 0 (the wrap)
+    soft = lambda col: cv2.GaussianBlur(col, (0, 0), sigmaX=0.01, sigmaY=8)       # no hard-edged boxes along the screen's edge
+    left = np.repeat(soft(pre[:, w - 1: w]), m, 1)                    # col w continues col w - 1
+    right = np.repeat(soft(pre[:, :1]), m, 1)                         # the last col continues col 0 (the wrap)
     fill[:, w: w + m] = left * (1 - ramp) + fill[:, w: w + m] * ramp
     fill[:, w + extra - m: w + extra] = fill[:, w + extra - m: w + extra] * (1 - ramp) + right * ramp
     fa = fill[..., 3].clip(0, 1)
@@ -371,6 +386,8 @@ def split_plate(p: np.ndarray, hand: dict, mattes: dict | None = None, log=print
         wgt = cv2.GaussianBlur(nearm, (0, 0), 14) * (yy < sea_top - 200)
         take = ca * wgt
         spr[name] = np.maximum(m, take)
+        if hand.get("alphaFloor"):
+            spr[name] = clean_alpha(spr[name], hand["alphaFloor"])
 
     # -- paint the background behind the island and the sprites
     core = cv2.dilate((np.maximum.reduce([sil, zero] + list(spr_m.values())) > 0.003).astype(np.uint8), np.ones((15, 15), np.uint8)) > 0
@@ -413,6 +430,10 @@ def split_plate(p: np.ndarray, hand: dict, mattes: dict | None = None, log=print
     a_sea = np.maximum(a_sea, ramp)
     ex = np.maximum(a_far + a_mid + a_sea - np.maximum(ca2, a_sea), 0)  # overlaps of the soft split: off the sea
     a_sea = (a_sea - ex).clip(0, 1)
+    floor = hand.get("alphaFloor", 0.0)
+    if floor:
+        # alpha under the floor is noise (crumbs and dots round a cloud), not matte: gone from every cloud layer
+        a_far, a_mid, a_sea = (clean_alpha(a, floor) for a in (a_far, a_mid, a_sea))
     cloud = unmix(p_bg, sky_full, np.maximum(ca2, 1e-6))
     cloud = np.where(ca2[..., None] > 0.01, cloud, p_bg)
 
@@ -428,6 +449,12 @@ def split_plate(p: np.ndarray, hand: dict, mattes: dict | None = None, log=print
         layers[name] = {"rgb": f, "a": a, "pos": (0, 0), "kind": "sprite", "bg": bg_far}
     layers["mid"] = {"rgb": cloud, "a": a_mid, "pos": (0, 0), "kind": "tile"}
     layers["sea"] = {"rgb": cloud, "a": a_sea, "pos": (0, 0), "kind": "tile"}
+    ef = hand.get("edgeFeather", 0)
+    if ef:
+        # the screen is wider than the master: a cloud bank cut by the master's own edge would show as a sliver beside the
+        # tile layers' bridge, so the island layer's alpha eases to nothing over the last `ef` columns
+        fade = split_smooth(np.clip(np.arange(w, dtype=np.float32) / ef, 0, 1))
+        isl = (isl * np.minimum(fade, fade[::-1])[None]).astype(np.float32)
     if hand.get("gamutAlpha"):
         # where the bank's soft alpha cannot make the painting over the filled background without clipping (the cloud
         # beside the island's belly would come out grey), the island layer takes the pixel: only inside its own soft edge
@@ -473,6 +500,8 @@ def write_set(res: dict, hand: dict, light: str, out: Path, plate_rel: str, seed
         lay = layers[lid]
         if bridge:
             lay["rgb"], lay["a"] = bridge_wrap(lay["rgb"], lay["a"], bridge, seed)
+            if hand.get("alphaFloor"):
+                lay["a"] = clean_alpha(lay["a"], hand["alphaFloor"])
         else:
             lay["rgb"], lay["a"] = close_wrap(lay["rgb"], lay["a"], seam, seed)
     # sky: small
