@@ -1,0 +1,248 @@
+{
+ "island": "home",
+ "light": "golden",
+ "version": 1,
+ "size": [
+  2048,
+  3072
+ ],
+ "source": {
+  "plate": "Packages/PofuKit/Sources/PofuWorld/Resources/World.xcassets/world-home-plate-golden-0.imageset/world-home-plate-golden-0.heic"
+ },
+ "order": [
+  "sky",
+  "far",
+  "isle_falls",
+  "isle_house",
+  "isle_dome",
+  "isle_crystal",
+  "whale",
+  "mid",
+  "sea",
+  "island"
+ ],
+ "orderNote": "bottom to top",
+ "layers": [
+  {
+   "id": "sky",
+   "file": "sky.heic",
+   "pos": [
+    0,
+    0
+   ],
+   "size": [
+    256,
+    384
+   ],
+   "kind": "gradient",
+   "stretchTo": [
+    2048,
+    3072
+   ],
+   "note": "stretch over the plate; stands still"
+  },
+  {
+   "id": "far",
+   "file": "far.heic",
+   "pos": [
+    0,
+    7
+   ],
+   "size": [
+    2048,
+    1010
+   ],
+   "kind": "tile",
+   "tileWidth": 2048,
+   "parallax": {
+    "pxPerSecond": 4,
+    "unit": "screen px at referenceScreen",
+    "direction": "+x"
+   }
+  },
+  {
+   "id": "isle_falls",
+   "file": "isle_falls.heic",
+   "pos": [
+    0,
+    380
+   ],
+   "size": [
+    580,
+    460
+   ],
+   "kind": "sprite",
+   "parallax": {
+    "pxPerSecond": 2.0,
+    "unit": "screen px at referenceScreen",
+    "direction": "+x",
+    "wraps": false
+   }
+  },
+  {
+   "id": "isle_house",
+   "file": "isle_house.heic",
+   "pos": [
+    560,
+    280
+   ],
+   "size": [
+    400,
+    360
+   ],
+   "kind": "sprite",
+   "parallax": {
+    "pxPerSecond": 3.0,
+    "unit": "screen px at referenceScreen",
+    "direction": "+x",
+    "wraps": false
+   }
+  },
+  {
+   "id": "isle_dome",
+   "file": "isle_dome.heic",
+   "pos": [
+    1000,
+    200
+   ],
+   "size": [
+    340,
+    260
+   ],
+   "kind": "sprite",
+   "parallax": {
+    "pxPerSecond": 2.5,
+    "unit": "screen px at referenceScreen",
+    "direction": "+x",
+    "wraps": false
+   }
+  },
+  {
+   "id": "isle_crystal",
+   "file": "isle_crystal.heic",
+   "pos": [
+    1540,
+    220
+   ],
+   "size": [
+    480,
+    380
+   ],
+   "kind": "sprite",
+   "parallax": {
+    "pxPerSecond": 2.0,
+    "unit": "screen px at referenceScreen",
+    "direction": "+x",
+    "wraps": false
+   }
+  },
+  {
+   "id": "whale",
+   "file": "whale.heic",
+   "pos": [
+    1020,
+    460
+   ],
+   "size": [
+    740,
+    400
+   ],
+   "kind": "sprite",
+   "parallax": {
+    "pxPerSecond": 5.0,
+    "unit": "screen px at referenceScreen",
+    "direction": "+x",
+    "wraps": false
+   }
+  },
+  {
+   "id": "mid",
+   "file": "mid.heic",
+   "pos": [
+    0,
+    859
+   ],
+   "size": [
+    2048,
+    935
+   ],
+   "kind": "tile",
+   "tileWidth": 2048,
+   "parallax": {
+    "pxPerSecond": 9,
+    "unit": "screen px at referenceScreen",
+    "direction": "+x"
+   }
+  },
+  {
+   "id": "sea",
+   "file": "sea.heic",
+   "pos": [
+    0,
+    1585
+   ],
+   "size": [
+    2048,
+    1487
+   ],
+   "kind": "tile",
+   "tileWidth": 2048,
+   "parallax": {
+    "pxPerSecond": 14,
+    "unit": "screen px at referenceScreen",
+    "direction": "+x"
+   }
+  },
+  {
+   "id": "island",
+   "file": "island.heic",
+   "pos": [
+    0,
+    718
+   ],
+   "size": [
+    2048,
+    1855
+   ],
+   "kind": "island"
+  }
+ ],
+ "islandBox": [
+  12,
+  836,
+  2048,
+  2455
+ ],
+ "seaTop": 1700,
+ "seaSolid": 2250,
+ "referenceScreen": [
+  1206,
+  2622
+ ],
+ "tileSeamPx": 160,
+ "spritePxPerSecond": {
+  "isle_falls": 2.0,
+  "isle_house": 3.0,
+  "isle_dome": 2.5,
+  "isle_crystal": 2.0,
+  "whale": 5.0
+ },
+ "bytes": {
+  "sky": 4508,
+  "far": 347576,
+  "isle_falls": 61326,
+  "isle_house": 33939,
+  "isle_dome": 17273,
+  "isle_crystal": 36185,
+  "whale": 62322,
+  "mid": 176454,
+  "sea": 398871,
+  "island": 664591,
+  "total": 1803045
+ },
+ "info": {
+  "hole_px": 2755301,
+  "K": 0.172,
+  "sky_resid_p95": 0.0184
+ }
+}
