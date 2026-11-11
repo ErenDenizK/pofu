@@ -1,0 +1,319 @@
+batch: batch-75-portrait-islands
+job: x-caglayan-sky-night
+pick: 2
+status: auto-picked
+note: Auto-picked by QA among manually eligible non-failing takes, lowest lock load then higher explicit canonical
+  plate harmony. Founder/lead review pending; exploration only, never promoted. Island redraws/movement are retained
+  under batch header fallback. Despite header wording, current run.py ingest does not re-paste the original band;
+  no pixel registration claim.
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+manifest:
+  path: tools/imagegen/manifest/batch-75-portrait-islands.yaml
+  sha256: 756a9e894ab9a4bd530975b22272865ca5b56ff00f3d51b598824a1b1a4205c1
+prompt:
+  text: 'REFERENCES (attached, in this order):
+
+    1. The image to edit (the approved previous level). Edit it; do not redraw it.
+
+    2. The light target: the home island at this time, its sky, light and cloud sea. Match the light, not the objects.
+
+
+    Edit the attached tall painting into the same scene in this light: a calm, clear night: a soft deep-blue sky
+    (blue, never black) with a gentle glow near the clouds, a soft round moon and a few small stars, the cloud sea
+    light and lilac-white, shadows blue-violet, no deep blacks. Warm light only from real sources already in the
+    picture (windows, lanterns, lamps), each a small soft pool.
+
+    Çağlayan''s own colours stay rich. The sky, the distant islands and the cloud sea
+
+    stay rich and slightly vivid. Everything stays in its place, the same shapes and
+
+    sizes; only light and colour change.
+
+
+    KEEP: everything not named above stays exactly the same as in the
+
+    attached image: every existing part, its shape, color, position and size,
+
+    the canvas, the camera, the light and the painting style. Do not zoom out
+
+    or reframe: if a new part does not fit, make the new part smaller, never
+
+    the existing ones. Outside the new parts, the result must line up with
+
+    the attached image pixel for pixel.
+
+
+    AVOID: a flat gradient, a haze or mist band, a grey veil, a dark scene, orange or red saturation, healing or
+    changing the stage, new objects, characters, text, moving anything
+
+
+    LIGHT (hour: night, layer: subject). Safe, cozy.
+
+    Key light #B8A8B1 from the upper right; fill #2A2350; rim #FFB060 along the edge facing away from the key. Shadows
+    are tinted #2A2440 (never grey or black), short and soft, falling toward the lower left; every object sits on
+    a soft occlusion pad in that hue where it touches the ground or another form.
+
+    VALUES (the reference envelope): a high-key picture inside one envelope of soft, milky air. Every value sits
+    between light mid-tone and cream-white; the darkest recesses (door holes, gaps, pond rims) are a mid-value tinted
+    with the shadow hue, never black. Form turns in small value steps. Colour lives in the halftones; lights bleach
+    to cream. No dark outlines: edges are found by value and hue. The cloud sea below is the brightest large surface
+    and lights the island''s underside with a warm bounce.
+
+    NIGHT is a hue change, not a value drop: only the sky is dark (deep indigo); the island and the clouds stay
+    light, moonlit lavender, with violet shadows and cream practicals whose glow spreads three to four times the
+    lamp''s size.
+
+    This is the SUBJECT plane: the clearest forms and the crispest edges in the picture, still inside the envelope.
+
+
+    Output: one image, opaque, full bleed, portrait 1024 x 1536.
+
+    '
+  sha256: cf2551b72173eb9289c78ffb0a886f581e631af7d24ddd7b8bc77e9d20c49138
+attachments:
+- path: build/imagegen/batch-75-portrait-islands/locked/plate__x-caglayan-portrait-s4-day--t2.png
+  role: The image to edit (the approved previous level). Edit it; do not redraw it.
+  sha256: 52ea008613d7380fe7cdee17f8c28f1d3a2d80b11b1bd81fa91b89966b54dd8b
+- path: design/art/takes/batch-66-home-flow/x-home-flow-night/plate__x-home-flow-night--t1.webp
+  role: 'The light target: the home island at this time, its sky, light and cloud sea. Match the light, not the
+    objects.'
+  sha256: c1c606bc3f1329a87a353cc85c603c1c09547bc03f84c8687babd3f3d5823918
+fingerprint: 22d83f52dfa4c51b
+takes:
+  t1:
+    qa: warn
+    qa_report:
+      job: x-caglayan-sky-night
+      take: 1
+      status: warn
+      preset: plate-final
+      checks:
+      - check: transparency
+        status: pass
+        message: opaque, as this kind must be
+      - check: canvas
+        status: pass
+        message: 1024x1536
+      - check: chroma_ceiling
+        status: pass
+        message: chroma p95 49 (R1 51)
+        value: 48.6
+      - check: light_values
+        status: warn
+        message: 'night/subject: L p5 44 (at least 45: darks stay a light mid-tone), p98 95 (at least 85)'
+        value: 44.2
+      - check: light_median
+        status: pass
+        message: 'night/subject: median L 70 (band 66-88)'
+        value: 69.8
+      - check: light_contrast
+        status: warn
+        message: 'night/subject: p75 local contrast 8.3 (band 1.5-5.0; above it reads too contrasty) (warn-only
+          until the founder has seen the light pilot)'
+        value: 8.28
+      - check: light_sky
+        status: pass
+        message: 'night: sky L 36 (band 24-46)'
+        value: 36.1
+      - check: light_sea
+        status: pass
+        message: 'night: cloud sea L 76 (at least 70: the sea is the reflector)'
+        value: 76.0
+      - check: light_dark
+        status: pass
+        message: 'night: 0.3 % below L* 30 under the sky (at most 3; only the sky is dark)'
+        value: 0.3
+      - check: detail_budget
+        status: pass
+        message: detail at display size 5.4 (R1 5.3)
+        value: 5.37
+      - check: lock_load
+        status: pass
+        message: the lock moved colors by mean dE 0.0
+        value: 0.0
+      - check: palette_drift
+        status: warn
+        message: 'mean dE 6.3, p95 15.8, off-palette 19.4% (top: #335599 (4.3%), #334499 (4.3%)) (advisory in an
+          exploration)'
+        value: 6.309
+      - check: edit_silhouette
+        status: pass
+        message: 100% of the parent's shape kept
+        value: 1.0
+      - check: edit_structure
+        status: warn
+        message: light structure matches the parent (r 0.78)
+        value: 0.7784
+      info:
+        metrics_raw:
+          L_p5: 30.6
+          L_p50: 66.4
+          L_p95: 90.3
+          C_p50: 34.6
+          C_p95: 48.6
+          C_p99: 58.7
+          detail: 5.37
+        metrics_locked:
+          L_p5: 30.6
+          L_p50: 66.4
+          L_p95: 90.3
+          C_p50: 34.6
+          C_p95: 48.6
+          C_p99: 58.7
+          detail: 5.37
+      fingerprint: 22d83f52dfa4c51b
+    qa_report_sha256: 50fffaac31d7f78db6ecabc954f464044f7992d4e58b78e2ff1b6e895adaabde
+    explicit_canonical_plate_harmony:
+      check: harmony
+      status: warn
+      message: 'harmony score 68 against the world reference (outliers: L_p2, edge)'
+      value: 68.2
+    manual:
+      eligible: true
+      note: Deep blue starry sky and moon, lilac cloud sea, existing warm mill lights. Island remains readable;
+        small redraw differences and bright rainbow retained from parent.
+    source:
+      path: /workspace/generated_images/exec-0efc515b-9475-4193-ba56-ffbe675d3feb.png
+      preserved_path: /workspace/art-operator-runtime/batch75/caglayan/originals/exec-0efc515b-9475-4193-ba56-ffbe675d3feb.png
+      sha256: 8c79828317d054fc447c810b1e097adbce8fce615ee71d70ad2e380f4aeb731f
+      dimensions:
+      - 1024
+      - 1536
+      encoding: original PNG
+      file_mtime_utc: '2026-11-11T12:53:55.860467+00:00'
+      tool_call_started_at: '2026-11-11T12:52:56.621Z'
+      tool_return_observed_at: '2026-11-11T12:53:56.364Z'
+    ingestion_time: '2026-11-11T12:55:25+00:00'
+    locked_sha256: 23b7a4c07c3448d3c9e9f697303398476268d85b22e2ce4354e14388e80caa2a
+    review_copy:
+      path: design/art/takes/batch-75-portrait-islands/x-caglayan-sky-night/plate__x-caglayan-sky-night--t1.webp
+      sha256: 1b5c3d2afd8a1e4b30e55492bf28331c4e20b86d7a2f3a7dca032b495e2e620f
+      encoding: lossy WebP q90 method6, full original dimensions
+    lock_load: 0.0
+  t2:
+    qa: warn
+    qa_report:
+      job: x-caglayan-sky-night
+      take: 2
+      status: warn
+      preset: plate-final
+      checks:
+      - check: transparency
+        status: pass
+        message: opaque, as this kind must be
+      - check: canvas
+        status: pass
+        message: 1024x1536
+      - check: chroma_ceiling
+        status: pass
+        message: chroma p95 48 (R1 51)
+        value: 48.4
+      - check: light_values
+        status: warn
+        message: 'night/subject: L p5 44 (at least 45: darks stay a light mid-tone), p98 95 (at least 85)'
+        value: 44.2
+      - check: light_median
+        status: pass
+        message: 'night/subject: median L 68 (band 66-88)'
+        value: 68.5
+      - check: light_contrast
+        status: warn
+        message: 'night/subject: p75 local contrast 8.2 (band 1.5-5.0; above it reads too contrasty) (warn-only
+          until the founder has seen the light pilot)'
+        value: 8.21
+      - check: light_sky
+        status: pass
+        message: 'night: sky L 37 (band 24-46)'
+        value: 36.9
+      - check: light_sea
+        status: pass
+        message: 'night: cloud sea L 76 (at least 70: the sea is the reflector)'
+        value: 75.5
+      - check: light_dark
+        status: pass
+        message: 'night: 0.5 % below L* 30 under the sky (at most 3; only the sky is dark)'
+        value: 0.5
+      - check: detail_budget
+        status: pass
+        message: detail at display size 5.3 (R1 5.3)
+        value: 5.3
+      - check: lock_load
+        status: pass
+        message: the lock moved colors by mean dE 0.0
+        value: 0.0
+      - check: palette_drift
+        status: warn
+        message: 'mean dE 6.2, p95 15.5, off-palette 16.5% (top: #334499 (3.8%), #4455AA (3.8%)) (advisory in an
+          exploration)'
+        value: 6.2346
+      - check: edit_silhouette
+        status: pass
+        message: 100% of the parent's shape kept
+        value: 1.0
+      - check: edit_structure
+        status: pass
+        message: light structure matches the parent (r 0.81)
+        value: 0.8126
+      info:
+        metrics_raw:
+          L_p5: 30.5
+          L_p50: 65.2
+          L_p95: 89.6
+          C_p50: 35.3
+          C_p95: 48.4
+          C_p99: 57.4
+          detail: 5.3
+        metrics_locked:
+          L_p5: 30.5
+          L_p50: 65.2
+          L_p95: 89.6
+          C_p50: 35.3
+          C_p95: 48.4
+          C_p99: 57.4
+          detail: 5.3
+      fingerprint: 22d83f52dfa4c51b
+    qa_report_sha256: 21e7f793b77b9a4d1c4a9da5d1ad8128477f724b36e207774d1901f85268e96d
+    explicit_canonical_plate_harmony:
+      check: harmony
+      status: warn
+      message: 'harmony score 68 against the world reference (outliers: L_p2, edge)'
+      value: 68.4
+    manual:
+      eligible: true
+      note: Deep blue starry sky and moon, lilac cloud sea, existing warm mill lights. Island remains readable;
+        small redraw differences and bright rainbow retained from parent.
+    source:
+      path: /workspace/generated_images/exec-183b4127-5f7f-47a6-aa22-61ffa0f9abb8.png
+      preserved_path: /workspace/art-operator-runtime/batch75/caglayan/originals/exec-183b4127-5f7f-47a6-aa22-61ffa0f9abb8.png
+      sha256: ca3405825e0a9b6ea778de2a2d337b69b267d536576dffc9105cf60d4ca75313
+      dimensions:
+      - 1024
+      - 1536
+      encoding: original PNG
+      file_mtime_utc: '2026-11-11T12:55:00.443777+00:00'
+      tool_call_started_at: '2026-11-11T12:52:56.622Z'
+      tool_return_observed_at: '2026-11-11T12:55:01.001Z'
+    ingestion_time: '2026-11-11T12:55:26+00:00'
+    locked_sha256: 7a9703caab641fe72cd229c36bd184823a2417669e1dfd19683a16077e99b464
+    review_copy:
+      path: design/art/takes/batch-75-portrait-islands/x-caglayan-sky-night/plate__x-caglayan-sky-night--t2.webp
+      sha256: 2d7130bf63dc9da13eff046d27cf9ea0d442ff30393dc7d7c8fb76f48943b564
+      encoding: lossy WebP q90 method6, full original dimensions
+    lock_load: 0.0
+selection_note: Canonical post excludes kind plate from HARMONY_KINDS; explicit qa.check_harmony(kind=plate) ran
+  on unchanged locked pixels, separately from untouched post reports.
+harmony_inputs:
+  tools/imagegen/qa.py: 773643762304d29432cdd5d88600bd4603e6296be1ebf23405f51e5f1a56304f
+  tools/assets/harmony.py: bdc4b81c9234d97e78140673d3a90a1407e2ae2af5b4a22786ab225468c2f576
+  design/art/harmony/config.json: d2ed591e6e8a7d0eafd54f95e3e3c98290453a81aaff11a9f800afea6fc43a18
+  design/art/harmony/reference.json: 602aff8ff097bad430ebfc0bf3837c647cf738bc407b90d58b8eb689810a673e
+contact_sheet:
+  sha256: 9ee938f953f0db54f55c724fddfb9f05731cffad609d8ceaff15fecfb6506617
+  note: Canonical post contact; pilots show original landscape parent, while QA uses portrait-placed parent.
+timing_note: Tool timestamps captured by JavaScript immediately around the image-tool call. File mtime and pipeline
+  ingestion time are separate observations.
+provisional_parent: x-caglayan-portrait-s4-day t2 (auto-pick, lead review pending)
+provisional_reference_note: Local-only symlink at expected master path resolves to QA-picked locked pilot. Not promoted
+  or lead-approved.
