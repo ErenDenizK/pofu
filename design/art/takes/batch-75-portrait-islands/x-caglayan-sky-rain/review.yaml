@@ -1,0 +1,316 @@
+batch: batch-75-portrait-islands
+job: x-caglayan-sky-rain
+pick: 1
+status: auto-picked
+note: Auto-picked by QA among manually eligible non-failing takes, lowest lock load then higher explicit canonical
+  plate harmony. Founder/lead review pending; exploration only, never promoted. Island redraws/movement are retained
+  under batch header fallback. Despite header wording, current run.py ingest does not re-paste the original band;
+  no pixel registration claim.
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+manifest:
+  path: tools/imagegen/manifest/batch-75-portrait-islands.yaml
+  sha256: 756a9e894ab9a4bd530975b22272865ca5b56ff00f3d51b598824a1b1a4205c1
+prompt:
+  text: 'REFERENCES (attached, in this order):
+
+    1. The image to edit (the approved previous level). Edit it; do not redraw it.
+
+
+    Edit the attached tall painting into the same scene in a soft rain: a soft
+
+    lilac-grey overcast sky with layered rain clouds, fine gentle rain streaks, a
+
+    wetter, darker cloud sea with pearl highlights. The island and the sky keep their
+
+    rich colour (not a grey veil). The far clouds and distant islands fade softly into
+
+    the rain but stay visible. Everything stays in its place, the same shapes and sizes.
+
+
+    KEEP: everything not named above stays exactly the same as in the
+
+    attached image: every existing part, its shape, color, position and size,
+
+    the canvas, the camera, the light and the painting style. Do not zoom out
+
+    or reframe: if a new part does not fit, make the new part smaller, never
+
+    the existing ones. Outside the new parts, the result must line up with
+
+    the attached image pixel for pixel.
+
+
+    AVOID: a dark or grey-blue gloomy scene, a storm, hard diagonal rain, a grey veil, new objects, characters,
+    text, moving anything
+
+
+    LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+    Key light #FFF6EC from the upper left; fill #BFD6EE; rim #FFE9C9 along the edge facing away from the key. Shadows
+    are tinted #A99BC4 (never grey or black), short and soft, falling toward the lower right; every object sits
+    on a soft occlusion pad in that hue where it touches the ground or another form.
+
+    VALUES (the reference envelope): a high-key picture inside one envelope of soft, milky air. Every value sits
+    between light mid-tone and cream-white; the darkest recesses (door holes, gaps, pond rims) are a mid-value tinted
+    with the shadow hue, never black. Form turns in small value steps. Colour lives in the halftones; lights bleach
+    to cream. No dark outlines: edges are found by value and hue. The cloud sea below is the brightest large surface
+    and lights the island''s underside with a warm bounce.
+
+    This is the SUBJECT plane: the clearest forms and the crispest edges in the picture, still inside the envelope.
+
+
+    Output: one image, opaque, full bleed, portrait 1024 x 1536.
+
+    '
+  sha256: 67b0713c0127c4f7be1776127ab9b37859f20107a69b925c372eed3f52cc5512
+attachments:
+- path: build/imagegen/batch-75-portrait-islands/locked/plate__x-caglayan-portrait-s4-day--t2.png
+  role: The image to edit (the approved previous level). Edit it; do not redraw it.
+  sha256: 52ea008613d7380fe7cdee17f8c28f1d3a2d80b11b1bd81fa91b89966b54dd8b
+fingerprint: d3c6a40b27c1ff2b
+takes:
+  t1:
+    qa: warn
+    qa_report:
+      job: x-caglayan-sky-rain
+      take: 1
+      status: warn
+      preset: plate-final
+      checks:
+      - check: transparency
+        status: pass
+        message: opaque, as this kind must be
+      - check: canvas
+        status: pass
+        message: 1024x1536
+      - check: chroma_ceiling
+        status: warn
+        message: chroma p95 61 (R1 51) (advisory in an exploration)
+        value: 61.4
+      - check: light_values
+        status: pass
+        message: 'day/subject: L p5 61 (at least 50: darks stay a light mid-tone), p98 95 (at least 90)'
+        value: 61.2
+      - check: light_median
+        status: pass
+        message: 'day/subject: median L 76 (band 74-92)'
+        value: 76.3
+      - check: light_contrast
+        status: pass
+        message: 'day/subject: p75 local contrast 5.9 (band 2.5-6.5; above it reads too contrasty)'
+        value: 5.87
+      - check: light_sky
+        status: pass
+        message: 'day: sky L 73 (band 70-94)'
+        value: 73.1
+      - check: light_sea
+        status: warn
+        message: 'day: cloud sea L 73 (at least 82: the sea is the reflector) (warn-only until the founder has seen
+          the light pilot)'
+        value: 72.8
+      - check: light_dark
+        status: pass
+        message: 'day: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+        value: 0.0
+      - check: detail_budget
+        status: pass
+        message: detail at display size 4.3 (R1 5.3)
+        value: 4.34
+      - check: lock_load
+        status: pass
+        message: the lock moved colors by mean dE 0.0
+        value: 0.0
+      - check: palette_drift
+        status: warn
+        message: 'mean dE 3.2, p95 17.4, off-palette 7.9% (top: #CCCC22 (0.3%), #BBBB11 (0.3%)) (advisory in an
+          exploration)'
+        value: 3.1909
+      - check: edit_silhouette
+        status: pass
+        message: 100% of the parent's shape kept
+        value: 1.0
+      - check: edit_structure
+        status: warn
+        message: light structure matches the parent (r 0.62)
+        value: 0.6203
+      - check: edit_lightness
+        status: pass
+        message: mean lightness moved by 5.8 L (the same lightness was asked)
+        value: 5.8337
+      info:
+        metrics_raw:
+          L_p5: 62.8
+          L_p50: 74.3
+          L_p95: 90.6
+          C_p50: 23.2
+          C_p95: 61.4
+          C_p99: 78.3
+          detail: 4.34
+        metrics_locked:
+          L_p5: 62.8
+          L_p50: 74.3
+          L_p95: 90.6
+          C_p50: 23.2
+          C_p95: 61.4
+          C_p99: 78.3
+          detail: 4.34
+      fingerprint: d3c6a40b27c1ff2b
+    qa_report_sha256: c8133b497f9ab0ae12d967a599a6ea1c715f508a9447217a84ed95d8990223f0
+    explicit_canonical_plate_harmony:
+      check: harmony
+      status: pass
+      message: 'harmony score 74 against the world reference (outliers: C_p95, edge)'
+      value: 73.5
+    manual:
+      eligible: true
+      note: Soft lilac overcast sky, fine vertical rain, darker pearl cloud sea and rich island colour. Far isles
+        fade but remain visible; no obvious hard seam. Island remains brighter than rainy surroundings.
+    source:
+      path: /workspace/generated_images/exec-e5fb65d4-63a2-422d-813f-82ed07072856.png
+      preserved_path: /workspace/art-operator-runtime/batch75/caglayan/originals/exec-e5fb65d4-63a2-422d-813f-82ed07072856.png
+      sha256: 3fff6deb758898b30496d881e2aed30fc87a8975f87c48239d8e2f2cab031ef5
+      dimensions:
+      - 1024
+      - 1536
+      encoding: original PNG
+      file_mtime_utc: '2026-11-11T12:57:13.206235+00:00'
+      tool_call_started_at: '2026-11-11T12:55:42.343Z'
+      tool_return_observed_at: '2026-11-11T12:57:14.978Z'
+    ingestion_time: '2026-11-11T12:57:50+00:00'
+    locked_sha256: aedc1e8f42767634675af140de8faa1369d8c43694d74fde8190734888c01116
+    review_copy:
+      path: design/art/takes/batch-75-portrait-islands/x-caglayan-sky-rain/plate__x-caglayan-sky-rain--t1.webp
+      sha256: 169004f8acdc81646afd117da7711d6c21cfd771b70b07245a22dc9761a8dd4c
+      encoding: lossy WebP q90 method6, full original dimensions
+    lock_load: 0.0
+  t2:
+    qa: warn
+    qa_report:
+      job: x-caglayan-sky-rain
+      take: 2
+      status: warn
+      preset: plate-final
+      checks:
+      - check: transparency
+        status: pass
+        message: opaque, as this kind must be
+      - check: canvas
+        status: pass
+        message: 1024x1536
+      - check: chroma_ceiling
+        status: warn
+        message: chroma p95 63 (R1 51) (advisory in an exploration)
+        value: 63.2
+      - check: light_values
+        status: pass
+        message: 'day/subject: L p5 61 (at least 50: darks stay a light mid-tone), p98 94 (at least 90)'
+        value: 60.6
+      - check: light_median
+        status: pass
+        message: 'day/subject: median L 75 (band 74-92)'
+        value: 75.3
+      - check: light_contrast
+        status: pass
+        message: 'day/subject: p75 local contrast 6.0 (band 2.5-6.5; above it reads too contrasty)'
+        value: 5.96
+      - check: light_sky
+        status: pass
+        message: 'day: sky L 70 (band 70-94)'
+        value: 70.4
+      - check: light_sea
+        status: warn
+        message: 'day: cloud sea L 72 (at least 82: the sea is the reflector) (warn-only until the founder has seen
+          the light pilot)'
+        value: 72.0
+      - check: light_dark
+        status: pass
+        message: 'day: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+        value: 0.0
+      - check: detail_budget
+        status: pass
+        message: detail at display size 4.3 (R1 5.3)
+        value: 4.33
+      - check: lock_load
+        status: pass
+        message: the lock moved colors by mean dE 0.0
+        value: 0.0
+      - check: palette_drift
+        status: warn
+        message: 'mean dE 3.3, p95 18.3, off-palette 8.3% (top: #BBBB11 (0.3%), #CCCC11 (0.3%)) (advisory in an
+          exploration)'
+        value: 3.3178
+      - check: edit_silhouette
+        status: pass
+        message: 100% of the parent's shape kept
+        value: 1.0
+      - check: edit_structure
+        status: warn
+        message: light structure matches the parent (r 0.61)
+        value: 0.6104
+      - check: edit_lightness
+        status: pass
+        message: mean lightness moved by 7.0 L (the same lightness was asked)
+        value: 7.0275
+      info:
+        metrics_raw:
+          L_p5: 61.0
+          L_p50: 73.2
+          L_p95: 90.2
+          C_p50: 23.2
+          C_p95: 63.2
+          C_p99: 79.7
+          detail: 4.33
+        metrics_locked:
+          L_p5: 61.0
+          L_p50: 73.2
+          L_p95: 90.2
+          C_p50: 23.2
+          C_p95: 63.2
+          C_p99: 79.7
+          detail: 4.33
+      fingerprint: d3c6a40b27c1ff2b
+    qa_report_sha256: e10275794d047d46524d579f700b160a627dab1c0db8196f06062610e8dfcf05
+    explicit_canonical_plate_harmony:
+      check: harmony
+      status: pass
+      message: 'harmony score 71 against the world reference (outliers: C_p95, edge)'
+      value: 71.3
+    manual:
+      eligible: true
+      note: Soft lilac overcast sky, fine vertical rain, darker pearl cloud sea and rich island colour. Far isles
+        fade but remain visible; no obvious hard seam. Island remains brighter than rainy surroundings.
+    source:
+      path: /workspace/generated_images/exec-4fde840f-49e1-4bc6-9706-fa4c501d50b8.png
+      preserved_path: /workspace/art-operator-runtime/batch75/caglayan/originals/exec-4fde840f-49e1-4bc6-9706-fa4c501d50b8.png
+      sha256: 01bff179ce8d3584445769b7d472729d2e6d242ba517f1d186ed8b10450acd3f
+      dimensions:
+      - 1024
+      - 1536
+      encoding: original PNG
+      file_mtime_utc: '2026-11-11T12:56:22.390816+00:00'
+      tool_call_started_at: '2026-11-11T12:55:42.343Z'
+      tool_return_observed_at: '2026-11-11T12:56:24.369Z'
+    ingestion_time: '2026-11-11T12:57:51+00:00'
+    locked_sha256: 0ed5671f058f5e3e083a200f8ce32b42e1840b6b77197ecb545efeb93e784af4
+    review_copy:
+      path: design/art/takes/batch-75-portrait-islands/x-caglayan-sky-rain/plate__x-caglayan-sky-rain--t2.webp
+      sha256: e6efbf0f6cf96a241cd1515fc971d865de6a2dc99c769203f3b5c8ad4cb4d6a2
+      encoding: lossy WebP q90 method6, full original dimensions
+    lock_load: 0.0
+selection_note: Canonical post excludes kind plate from HARMONY_KINDS; explicit qa.check_harmony(kind=plate) ran
+  on unchanged locked pixels, separately from untouched post reports.
+harmony_inputs:
+  tools/imagegen/qa.py: 773643762304d29432cdd5d88600bd4603e6296be1ebf23405f51e5f1a56304f
+  tools/assets/harmony.py: bdc4b81c9234d97e78140673d3a90a1407e2ae2af5b4a22786ab225468c2f576
+  design/art/harmony/config.json: d2ed591e6e8a7d0eafd54f95e3e3c98290453a81aaff11a9f800afea6fc43a18
+  design/art/harmony/reference.json: 602aff8ff097bad430ebfc0bf3837c647cf738bc407b90d58b8eb689810a673e
+contact_sheet:
+  sha256: 0a5efbcfd34e7d707811cb09b16d175b6538a547612ced2a9629e99f464ccd89
+  note: Canonical post contact; pilots show original landscape parent, while QA uses portrait-placed parent.
+timing_note: Tool timestamps captured by JavaScript immediately around image-tool call; file mtime and ingestion
+  time are separate.
+provisional_parent: x-caglayan-portrait-s4-day t2 (auto-pick, lead review pending)
+provisional_reference_note: Local-only symlink at expected master path resolves to QA-picked locked pilot. Not promoted
+  or lead-approved.
