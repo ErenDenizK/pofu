@@ -1,0 +1,24 @@
+id: asset-x-emanet-sky-rain
+type: asset
+title_tr: x-emanet-sky-rain
+title_en: x-emanet-sky-rain (plate)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached tall painting into the same scene in a soft rain: a soft lilac-grey overcast
+  sky with layered rain clouds, fine gentle rain streaks, a wetter, darker cloud sea with
+  pearl highlights. The island and the sky keep their rich colour (not a grey veil). The far
+  clouds and distant islands fade softly into the rain but stay visible. Everything stays
+  in its place, the same shapes and sizes.
+links:
+  variant_of:
+  - asset-x-emanet-portrait-s4-day
+art:
+  images: []
+  jobs:
+  - batch-75-portrait-islands:x-emanet-sky-rain
+sources:
+- doc: tools/imagegen/manifest/batch-75-portrait-islands.yaml
+kind: plate
+batch: batch-75-portrait-islands
+size: 1024x1536
