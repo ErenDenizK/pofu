@@ -1,0 +1,24 @@
+id: asset-x-caglayan-sky-golden
+type: asset
+title_tr: x-caglayan-sky-golden
+title_en: x-caglayan-sky-golden (plate)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached tall painting into the same scene in this light: golden hour: a soft pink
+  and lilac sky warming to peach near the clouds, low warm peach light raking from the side,
+  lilac shadows, the cloud sea blushed peach with lilac shade. Lamps and windows that exist
+  are just coming on, small and soft. Çağlayan's own colours stay rich. The sky, the distant
+  islands and the cloud sea stay rich and slightly vivid. …
+links:
+  variant_of:
+  - asset-x-caglayan-portrait-s4-day
+art:
+  images: []
+  jobs:
+  - batch-75-portrait-islands:x-caglayan-sky-golden
+sources:
+- doc: tools/imagegen/manifest/batch-75-portrait-islands.yaml
+kind: plate
+batch: batch-75-portrait-islands
+size: 1024x1536

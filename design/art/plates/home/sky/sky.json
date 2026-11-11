@@ -1,0 +1,108 @@
+{
+ "island": "home",
+ "note": "Hand data for tools/plate/split.py: the plate-first sky split (ADR-0022). Pixels are plate pixels (2048 x 3072, the shipped x2 plates). One painted master per light; every layer is cut from it, never generated. The island matte is ingest's committed matte-day-0.png (all lights share the level-10 geometry); the distant sprites' mattes are BiRefNet-lite crops (mattes/<name>.png, one per box) kept as hand data like the island matte. Golden and night are the same painting relit, so the same mattes and boxes serve all three lights.",
+ "size": [
+  2048,
+  3072
+ ],
+ "seaTop": 1700,
+ "seaSolid": 2250,
+ "farMaxY": 900,
+ "beam": [
+  1790,
+  1100,
+  2048,
+  1360
+ ],
+ "bankPx": 120,
+ "bankGateY": [
+  -2,
+  -1
+ ],
+ "tileSeamPx": 160,
+ "spritePad": 40,
+ "sprites": {
+  "isle_falls": {
+   "box": [
+    40,
+    420,
+    540,
+    800
+   ],
+   "matte": "mattes/isle_falls.png",
+   "pxPerSecond": 2.0
+  },
+  "isle_house": {
+   "box": [
+    600,
+    320,
+    920,
+    600
+   ],
+   "matte": "mattes/isle_house.png",
+   "pxPerSecond": 3.0
+  },
+  "isle_dome": {
+   "box": [
+    1040,
+    240,
+    1300,
+    420
+   ],
+   "matte": "mattes/isle_dome.png",
+   "pxPerSecond": 2.5
+  },
+  "isle_crystal": {
+   "box": [
+    1580,
+    260,
+    1980,
+    560
+   ],
+   "matte": "mattes/isle_crystal.png",
+   "pxPerSecond": 2.0
+  },
+  "whale": {
+   "box": [
+    1060,
+    500,
+    1720,
+    820
+   ],
+   "matte": "mattes/whale.png",
+   "pxPerSecond": 5.0
+  }
+ },
+ "parallax": {
+  "referenceScreen": [
+   1206,
+   2622
+  ],
+  "pxPerSecond": {
+   "far": 4,
+   "mid": 9,
+   "sea": 14
+  },
+  "note": "Suggestions in screen pixels per second at the reference screen; the sky gradient and the island stand still. Layers marked tile wrap in x."
+ },
+ "lights": {
+  "day": {
+   "plate": "Packages/PofuKit/Sources/PofuWorld/Resources/World.xcassets/world-home-plate-day-0.imageset/world-home-plate-day-0.heic"
+  },
+  "golden": {
+   "plate": "Packages/PofuKit/Sources/PofuWorld/Resources/World.xcassets/world-home-plate-golden-0.imageset/world-home-plate-golden-0.heic"
+  },
+  "night": {
+   "plate": "Packages/PofuKit/Sources/PofuWorld/Resources/World.xcassets/world-home-plate-night-0.imageset/world-home-plate-night-0.heic",
+   "fixedSky": [
+    [
+     120,
+     0,
+     460,
+     330
+    ]
+   ],
+   "stars": 900
+  }
+ }
+}

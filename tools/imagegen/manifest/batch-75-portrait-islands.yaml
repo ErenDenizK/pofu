@@ -1,121 +1,56 @@
-# Batch 75: portrait outpaints of the four islands' painted plates (exploration; x- ids, never promoted).
+# Batch 75: portrait sky-set masters for the four islands (exploration; x- ids, never promoted).
 #
-# WHY: Çağlayan, Emanet, Mehtap and Revontuli are landscape paintings (1536x1024).
-# On a portrait phone the island is a thin band, about 40% of the screen below it
-# is flat featureless mist and the top is flat sky (lead review of PR #376, Çağlayan
-# in the app). Home looks right because its plates are portrait (1024x1536 here, 2:3)
-# with a painted sky, distant islands and a deep cloud sea. Fix at the source: every
-# painted cell of the four islands gets a portrait 2:3 version.
+# WHY (ADR-0025): the landscape plates leave about 40% of a portrait phone screen as flat
+# mist and sky. Each world screen is an island plate over a sky set (gradient sky, far and
+# mid clouds, distant isles, cloud sea) split from ONE painted portrait master per island
+# and light, never generated separately. This batch paints those masters: 16 jobs.
 #
-# WHAT: each job is an outpaint of the cell's picked landscape plate onto a 1024x1536
-# canvas (edit_of + `outpaint`). The plate is kept as painted; the model paints a sky
-# with soft clouds and one or two small distant floating islands above, and a deep,
-# sunlit cloud sea below, matching `x-home-flow-final-rich` (attached as the treatment
-# guide). No flat gradient, no haze band, no new objects on the island.
+# WHAT:
+#   Phase A (pilots, 4 jobs): per island its stage-4 portrait outpaint, x-<island>-portrait-s4-day
+#     (the picked stage-4 plate keeps its own light: Emanet golden, Mehtap and Revontuli night).
+#     The sky and cloud sea are painted rich, slightly more vivid than home's, still in the
+#     island's colour band; the island itself is unchanged.
+#   Phase B (light edits, 8 jobs): per island two light edits of its pilot, the two of
+#     day/golden/night the pilot does not have: x-<island>-sky-golden|night|day.
+#   Phase C (rain skies, 4 jobs): per island x-<island>-sky-rain, a soft overcast rain
+#     light with colours kept. These are the TARGET of an offline colour-transfer pilot (the
+#     lead fits it from each island's own painted pair); they ship only if the founder approves.
+#   Order: Phase A for all four islands (up to three tracks), then each island's Phase B and C
+#   as soon as its pilot exists. Day and night cells of the sets stay painted here.
+# PROVISIONAL AUTO-PICK: a pilot that is not picked yet never blocks its edits; run.py stands
+# in the pilot's QA auto-pick (flagged provisional in the sidecar). The lead reviews in its own
+# round and, if a pilot is replaced, that island's edits are redone.
+# FALLBACKS: a refused or failed job is recorded in review.yaml and skipped, the run continues.
+# If the island looks moved, redrawn or healed, keep both takes, note it in review.yaml and go
+# on: the ingest re-pastes the island band over the master anyway, so only the sky, the cloud
+# sea and the seam matter. If a take shows a flat gradient or a haze band, keep both takes,
+# note it and go on.
 #
-# OUTPAINT PRE-STEP (tools/imagegen/run.py, `outpaint: {anchor_y: f}`, tested in
-# tools/imagegen/tests/test_outpaint.py): the edit input is not the bare parent. run.py
-# scales the 1536x1024 parent to the canvas width (x 2/3, so a 1024x683 band; a plate
-# 1536 wide cannot sit on a 1024 wide canvas at 1:1, and the whole band is scaled the
-# same for every cell, so all states stay registered), places it on a transparent
-# 1024x1536 canvas with its vertical centre at 52% of the height, and attaches a mask
-# (white = paint, black = keep) as the second image. Both land in the build folder
-# (`outpaint/<job>--input.png` and `--mask.png`) and in the take's sidecar attachments.
-# `post` compares each take with that same placed parent (edit stability).
+# OUTPAINT PRE-STEP (tools/imagegen/run.py, `outpaint: {anchor_y: f}`, tests in
+# tools/imagegen/tests/test_outpaint.py): the pilots' edit input is the parent scaled to the
+# canvas width (x 2/3), placed on a transparent 1024x1536 canvas with its vertical centre at 52%
+# of the height, with a mask (white = paint, black = keep) as the second image. The ingest then
+# re-pastes the original island band over the result with a feathered seam.
 #
-# TODO (lead, ingest; not implemented here): after delivery, the ingest re-pastes the
-# original island band (the parent at the same scale and position) over the outpaint
-# with a feathered seam, so every state is pixel-registered with the others and the
-# island pixels are exactly the picked plate's, whatever the model redrew.
-#
-# ORDER OF WORK:
-#   Phase A (pilot, Çağlayan): x-caglayan-portrait-s4-day, 2 takes.
-#   Phase B (the rest of Çağlayan's painted cells, 12 jobs): each takes the picked
-#     Phase A take as the style reference, so the sky and cloud sea read as one place;
-#     night, golden and rain cells keep their own light.
-#   Phase C (Emanet, Mehtap, Revontuli): per island, its own stage-4 pilot first
-#     (x-<island>-portrait-s4-day, Phase A style), then its painted cells (11, 13 and
-#     14 jobs) with that pilot as the style reference.
-#   Any order between islands, up to three tracks; within an island, the pilot first.
-# PROVISIONAL AUTO-PICK: a pilot that is not picked yet never blocks its cells. run.py
-# stands in the pilot's QA auto-pick (flagged provisional in the sidecar); the lead
-# reviews in its own round and, if a pilot is replaced, the affected cells are redone.
-# FALLBACKS: a refused or failed job is recorded in review.yaml and skipped, the run
-# continues. If the island looks moved, redrawn or healed, keep both takes, note it in
-# review.yaml and go on: the ingest re-pastes the island anyway, so only the sky, the
-# cloud sea and the seam matter. If a take shows a flat gradient or a haze band, keep
-# both takes, note it and go on; the lead decides.
-#
-# EXPLORATION RULES (AGENTS.md): no `promote`; commit the takes (WebP q90), the contact
-# sheet and review.yaml under design/art/takes/<batch>/<id>/. No characters, no text.
-#
-# Review for every take: the plate unchanged; a painted sky with soft clouds and small
-# distant islands; a deep sunlit cloud sea as rich as home's; no flat band at the top
-# or the bottom; the seam invisible; the cell's own light.
+# EXPLORATION RULES (AGENTS.md): no `promote`; commit the takes (WebP q90), the contact sheet
+# and review.yaml under design/art/takes/<batch>/<id>/. No characters, no text.
 
 batch: batch-75-portrait-islands
-title: 'Portrait islands: 2:3 outpaints of the painted plates of Çağlayan, Emanet, Mehtap and Revontuli (edits of the picked plates)'
+title: 'Portrait sky-set masters: stage-4 pilots, light edits and rain skies for Çağlayan, Emanet, Mehtap and Revontuli'
 status: open
 refs:
   home-sky-guide: design/art/masters/x-home-flow-final-rich/x-home-flow-final-rich.webp
+  home-night: design/art/takes/batch-66-home-flow/x-home-flow-night/plate__x-home-flow-night--t1.webp
+  home-golden: design/art/takes/batch-66-home-flow/x-home-flow-golden/plate__x-home-flow-golden--t1.webp
 defaults:
   variants: 2
 jobs:
-  - {id: x-caglayan-flow-0-bare, kind: plate, name: x-caglayan-flow-0-bare, external: takes, master: design/art/takes/batch-67-caglayan-flow/x-caglayan-flow-0-bare/plate__x-caglayan-flow-0-bare--t1.webp}
-  - {id: x-caglayan-flow-0, kind: plate, name: x-caglayan-flow-0, external: takes, master: design/art/takes/batch-67-caglayan-flow/x-caglayan-flow-0/plate__x-caglayan-flow-0--t1.webp}
-  - {id: x-caglayan-flow-1, kind: plate, name: x-caglayan-flow-1, external: takes, master: design/art/takes/batch-67-caglayan-flow/x-caglayan-flow-1/plate__x-caglayan-flow-1--t1.webp}
-  - {id: x-caglayan-flow-2, kind: plate, name: x-caglayan-flow-2, external: takes, master: design/art/takes/batch-67-caglayan-flow/x-caglayan-flow-2/plate__x-caglayan-flow-2--t1.webp}
-  - {id: x-caglayan-flow-2-night, kind: plate, name: x-caglayan-flow-2-night, external: takes, master: design/art/takes/batch-73-islands-states/x-caglayan-flow-2-night/plate__x-caglayan-flow-2-night--t2.webp}
-  - {id: x-caglayan-flow-3, kind: plate, name: x-caglayan-flow-3, external: takes, master: design/art/takes/batch-67-caglayan-flow/x-caglayan-flow-3/plate__x-caglayan-flow-3--t1.webp}
-  - {id: x-caglayan-flow-3-night, kind: plate, name: x-caglayan-flow-3-night, external: takes, master: design/art/takes/batch-73-islands-states/x-caglayan-flow-3-night/plate__x-caglayan-flow-3-night--t2.webp}
-  - {id: x-caglayan-flow-4-bare, kind: plate, name: x-caglayan-flow-4-bare, external: takes, master: design/art/takes/batch-67-caglayan-flow/x-caglayan-flow-4-bare/plate__x-caglayan-flow-4-bare--t1.webp}
   - {id: x-caglayan-flow-4, kind: plate, name: x-caglayan-flow-4, external: takes, master: design/art/takes/batch-67-caglayan-flow/x-caglayan-flow-4/plate__x-caglayan-flow-4--t1.webp}
-  - {id: x-caglayan-flow-4-rain, kind: plate, name: x-caglayan-flow-4-rain, external: takes, master: design/art/takes/batch-73-islands-states/x-caglayan-flow-4-rain/plate__x-caglayan-flow-4-rain--t2.webp}
-  - {id: x-caglayan-flow-4-golden, kind: plate, name: x-caglayan-flow-4-golden, external: takes, master: design/art/takes/batch-73-islands-states/x-caglayan-flow-4-golden/plate__x-caglayan-flow-4-golden--t2.webp}
-  - {id: x-caglayan-flow-4-life, kind: plate, name: x-caglayan-flow-4-life, external: takes, master: design/art/takes/batch-67-caglayan-flow/x-caglayan-flow-4-life/plate__x-caglayan-flow-4-life--t1.webp}
-  - {id: x-caglayan-flow-4-up, kind: plate, name: x-caglayan-flow-4-up, external: takes, master: design/art/takes/batch-67-caglayan-flow/x-caglayan-flow-4-up/plate__x-caglayan-flow-4-up--t1.webp}
-  - {id: x-emanet-flow-0-bare, kind: plate, name: x-emanet-flow-0-bare, external: takes, master: design/art/takes/batch-69-emanet-flow/x-emanet-flow-0-bare/plate__x-emanet-flow-0-bare--t1.webp}
-  - {id: x-emanet-flow-0, kind: plate, name: x-emanet-flow-0, external: takes, master: design/art/takes/batch-69-emanet-flow/x-emanet-flow-0/plate__x-emanet-flow-0--t1.webp}
-  - {id: x-emanet-flow-1, kind: plate, name: x-emanet-flow-1, external: takes, master: design/art/takes/batch-69-emanet-flow/x-emanet-flow-1/plate__x-emanet-flow-1--t1.webp}
-  - {id: x-emanet-flow-2, kind: plate, name: x-emanet-flow-2, external: takes, master: design/art/takes/batch-69-emanet-flow/x-emanet-flow-2/plate__x-emanet-flow-2--t1.webp}
-  - {id: x-emanet-flow-3, kind: plate, name: x-emanet-flow-3, external: takes, master: design/art/takes/batch-69-emanet-flow/x-emanet-flow-3/plate__x-emanet-flow-3--t1.webp}
-  - {id: x-emanet-flow-3-night, kind: plate, name: x-emanet-flow-3-night, external: takes, master: design/art/takes/batch-73-islands-states/x-emanet-flow-3-night/plate__x-emanet-flow-3-night--t1.webp}
-  - {id: x-emanet-flow-4-bare, kind: plate, name: x-emanet-flow-4-bare, external: takes, master: design/art/takes/batch-69-emanet-flow/x-emanet-flow-4-bare/plate__x-emanet-flow-4-bare--t1.webp}
-  - {id: x-emanet-flow-4-day, kind: plate, name: x-emanet-flow-4-day, external: takes, master: design/art/takes/batch-73-islands-states/x-emanet-flow-4-day/plate__x-emanet-flow-4-day--t1.webp}
-  - {id: x-emanet-flow-4-rain, kind: plate, name: x-emanet-flow-4-rain, external: takes, master: design/art/takes/batch-73-islands-states/x-emanet-flow-4-rain/plate__x-emanet-flow-4-rain--t1.webp}
   - {id: x-emanet-flow-4, kind: plate, name: x-emanet-flow-4, external: takes, master: design/art/takes/batch-69-emanet-flow/x-emanet-flow-4/plate__x-emanet-flow-4--t1.webp}
-  - {id: x-emanet-flow-4-life, kind: plate, name: x-emanet-flow-4-life, external: takes, master: design/art/takes/batch-69-emanet-flow/x-emanet-flow-4-life/plate__x-emanet-flow-4-life--t1.webp}
-  - {id: x-emanet-flow-4-up, kind: plate, name: x-emanet-flow-4-up, external: takes, master: design/art/takes/batch-69-emanet-flow/x-emanet-flow-4-up/plate__x-emanet-flow-4-up--t1.webp}
-  - {id: x-mehtap-flow-0-bare, kind: plate, name: x-mehtap-flow-0-bare, external: takes, master: design/art/takes/batch-70-mehtap-flow/x-mehtap-flow-0-bare/plate__x-mehtap-flow-0-bare--t2.webp}
-  - {id: x-mehtap-flow-0-day, kind: plate, name: x-mehtap-flow-0-day, external: takes, master: design/art/takes/batch-73-islands-states/x-mehtap-flow-0-day/plate__x-mehtap-flow-0-day--t1.webp}
-  - {id: x-mehtap-flow-0, kind: plate, name: x-mehtap-flow-0, external: takes, master: design/art/takes/batch-70-mehtap-flow/x-mehtap-flow-0/plate__x-mehtap-flow-0--t1.webp}
-  - {id: x-mehtap-flow-1, kind: plate, name: x-mehtap-flow-1, external: takes, master: design/art/takes/batch-70-mehtap-flow/x-mehtap-flow-1/plate__x-mehtap-flow-1--t1.webp}
-  - {id: x-mehtap-flow-2-day, kind: plate, name: x-mehtap-flow-2-day, external: takes, master: design/art/takes/batch-73-islands-states/x-mehtap-flow-2-day/plate__x-mehtap-flow-2-day--t1.webp}
-  - {id: x-mehtap-flow-2, kind: plate, name: x-mehtap-flow-2, external: takes, master: design/art/takes/batch-70-mehtap-flow/x-mehtap-flow-2/plate__x-mehtap-flow-2--t1.webp}
-  - {id: x-mehtap-flow-3-day, kind: plate, name: x-mehtap-flow-3-day, external: takes, master: design/art/takes/batch-73-islands-states/x-mehtap-flow-3-day/plate__x-mehtap-flow-3-day--t1.webp}
-  - {id: x-mehtap-flow-3, kind: plate, name: x-mehtap-flow-3, external: takes, master: design/art/takes/batch-70-mehtap-flow/x-mehtap-flow-3/plate__x-mehtap-flow-3--t1.webp}
-  - {id: x-mehtap-flow-4-bare, kind: plate, name: x-mehtap-flow-4-bare, external: takes, master: design/art/takes/batch-70-mehtap-flow/x-mehtap-flow-4-bare/plate__x-mehtap-flow-4-bare--t1.webp}
-  - {id: x-mehtap-flow-4-rain, kind: plate, name: x-mehtap-flow-4-rain, external: takes, master: design/art/takes/batch-73-islands-states/x-mehtap-flow-4-rain/plate__x-mehtap-flow-4-rain--t1.webp}
-  - {id: x-mehtap-flow-4-golden, kind: plate, name: x-mehtap-flow-4-golden, external: takes, master: design/art/takes/batch-73-islands-states/x-mehtap-flow-4-golden/plate__x-mehtap-flow-4-golden--t1.webp}
   - {id: x-mehtap-flow-4, kind: plate, name: x-mehtap-flow-4, external: takes, master: design/art/takes/batch-70-mehtap-flow/x-mehtap-flow-4/plate__x-mehtap-flow-4--t1.webp}
-  - {id: x-mehtap-flow-4-life, kind: plate, name: x-mehtap-flow-4-life, external: takes, master: design/art/takes/batch-70-mehtap-flow/x-mehtap-flow-4-life/plate__x-mehtap-flow-4-life--t1.webp}
-  - {id: x-mehtap-flow-4-up, kind: plate, name: x-mehtap-flow-4-up, external: takes, master: design/art/takes/batch-70-mehtap-flow/x-mehtap-flow-4-up/plate__x-mehtap-flow-4-up--t1.webp}
-  - {id: x-revontuli-flow-0-bare, kind: plate, name: x-revontuli-flow-0-bare, external: takes, master: design/art/takes/batch-68-revontuli-flow/x-revontuli-flow-0-bare/plate__x-revontuli-flow-0-bare--t1.webp}
-  - {id: x-revontuli-flow-0-day, kind: plate, name: x-revontuli-flow-0-day, external: takes, master: design/art/takes/batch-73-islands-states/x-revontuli-flow-0-day/plate__x-revontuli-flow-0-day--t2.webp}
-  - {id: x-revontuli-flow-0, kind: plate, name: x-revontuli-flow-0, external: takes, master: design/art/takes/batch-68-revontuli-flow/x-revontuli-flow-0/plate__x-revontuli-flow-0--t1.webp}
-  - {id: x-revontuli-flow-1-day, kind: plate, name: x-revontuli-flow-1-day, external: takes, master: design/art/takes/batch-73-islands-states/x-revontuli-flow-1-day/plate__x-revontuli-flow-1-day--t2.webp}
-  - {id: x-revontuli-flow-1, kind: plate, name: x-revontuli-flow-1, external: takes, master: design/art/takes/batch-68-revontuli-flow/x-revontuli-flow-1/plate__x-revontuli-flow-1--t1.webp}
-  - {id: x-revontuli-flow-2-day, kind: plate, name: x-revontuli-flow-2-day, external: takes, master: design/art/takes/batch-73-islands-states/x-revontuli-flow-2-day/plate__x-revontuli-flow-2-day--t1.webp}
-  - {id: x-revontuli-flow-2, kind: plate, name: x-revontuli-flow-2, external: takes, master: design/art/takes/batch-68-revontuli-flow/x-revontuli-flow-2/plate__x-revontuli-flow-2--t1.webp}
-  - {id: x-revontuli-flow-3-day, kind: plate, name: x-revontuli-flow-3-day, external: takes, master: design/art/takes/batch-73-islands-states/x-revontuli-flow-3-day/plate__x-revontuli-flow-3-day--t1.webp}
-  - {id: x-revontuli-flow-3, kind: plate, name: x-revontuli-flow-3, external: takes, master: design/art/takes/batch-68-revontuli-flow/x-revontuli-flow-3/plate__x-revontuli-flow-3--t1.webp}
-  - {id: x-revontuli-flow-4-bare, kind: plate, name: x-revontuli-flow-4-bare, external: takes, master: design/art/takes/batch-68-revontuli-flow/x-revontuli-flow-4-bare/plate__x-revontuli-flow-4-bare--t2.webp}
-  - {id: x-revontuli-flow-4-rain, kind: plate, name: x-revontuli-flow-4-rain, external: takes, master: design/art/takes/batch-73-islands-states/x-revontuli-flow-4-rain/plate__x-revontuli-flow-4-rain--t1.webp}
-  - {id: x-revontuli-flow-4-golden, kind: plate, name: x-revontuli-flow-4-golden, external: takes, master: design/art/takes/batch-73-islands-states/x-revontuli-flow-4-golden/plate__x-revontuli-flow-4-golden--t1.webp}
   - {id: x-revontuli-flow-4, kind: plate, name: x-revontuli-flow-4, external: takes, master: design/art/takes/batch-68-revontuli-flow/x-revontuli-flow-4/plate__x-revontuli-flow-4--t1.webp}
-  - {id: x-revontuli-flow-4-life, kind: plate, name: x-revontuli-flow-4-life, external: takes, master: design/art/takes/batch-68-revontuli-flow/x-revontuli-flow-4-life/plate__x-revontuli-flow-4-life--t1.webp}
-  - {id: x-revontuli-flow-4-up, kind: plate, name: x-revontuli-flow-4-up, external: takes, master: design/art/takes/batch-68-revontuli-flow/x-revontuli-flow-4-up/plate__x-revontuli-flow-4-up--t1.webp}
 
+  # Phase A: pilots
   - id: x-caglayan-portrait-s4-day
     kind: plate
     name: x-caglayan-portrait-s4-day
@@ -149,480 +84,13 @@ jobs:
           the new sky and cloud sea reads as one continuous painting.
           Light of this plate: clear daylight: a bright blue sky with soft white clouds, a sunlit cloud sea. The new sky and cloud sea carry
           this light and keep the plate's own colours rich.
+          Paint the sky and the cloud sea rich and slightly more vivid than home's reference
+          (a touch more colour in the sky and in the cloud masses), but never louder than this
+          island's own colours: the island band stays as painted.
       - block: edit-keep-v1
       - block: plate-style-rich-v1
       - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
 
-  # Phase B: the rest of Çağlayan
-  - id: x-caglayan-portrait-0-bare
-    kind: plate
-    name: x-caglayan-portrait-0-bare
-    size: 1024x1536
-    canvas: 1024x1536
-    deliver: {scale: 1.0}
-    edit_of: x-caglayan-flow-0-bare
-    outpaint: {anchor_y: 0.52}
-    chat: "Pofu · Portrait islands"
-    light: {cell: day, layer: subject}
-    palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-caglayan-flow-0-bare (stage 0-bare, day, clear) in the style of the picked pilot x-caglayan-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
-    attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-caglayan-portrait-s4-day
-        role: "The picked portrait pilot of Çağlayan: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
-    prompt:
-      - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: clear daylight: a bright blue sky with soft white clouds, a sunlit cloud sea. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
-      - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
-
-  - id: x-caglayan-portrait-0
-    kind: plate
-    name: x-caglayan-portrait-0
-    size: 1024x1536
-    canvas: 1024x1536
-    deliver: {scale: 1.0}
-    edit_of: x-caglayan-flow-0
-    outpaint: {anchor_y: 0.52}
-    chat: "Pofu · Portrait islands"
-    light: {cell: day, layer: subject}
-    palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-caglayan-flow-0 (stage 0, day, clear) in the style of the picked pilot x-caglayan-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
-    attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-caglayan-portrait-s4-day
-        role: "The picked portrait pilot of Çağlayan: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
-    prompt:
-      - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: clear daylight: a bright blue sky with soft white clouds, a sunlit cloud sea. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
-      - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
-
-  - id: x-caglayan-portrait-1
-    kind: plate
-    name: x-caglayan-portrait-1
-    size: 1024x1536
-    canvas: 1024x1536
-    deliver: {scale: 1.0}
-    edit_of: x-caglayan-flow-1
-    outpaint: {anchor_y: 0.52}
-    chat: "Pofu · Portrait islands"
-    light: {cell: day, layer: subject}
-    palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-caglayan-flow-1 (stage 1, day, clear) in the style of the picked pilot x-caglayan-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
-    attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-caglayan-portrait-s4-day
-        role: "The picked portrait pilot of Çağlayan: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
-    prompt:
-      - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: clear daylight: a bright blue sky with soft white clouds, a sunlit cloud sea. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
-      - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
-
-  - id: x-caglayan-portrait-2
-    kind: plate
-    name: x-caglayan-portrait-2
-    size: 1024x1536
-    canvas: 1024x1536
-    deliver: {scale: 1.0}
-    edit_of: x-caglayan-flow-2
-    outpaint: {anchor_y: 0.52}
-    chat: "Pofu · Portrait islands"
-    light: {cell: day, layer: subject}
-    palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-caglayan-flow-2 (stage 2, day, clear) in the style of the picked pilot x-caglayan-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
-    attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-caglayan-portrait-s4-day
-        role: "The picked portrait pilot of Çağlayan: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
-    prompt:
-      - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: clear daylight: a bright blue sky with soft white clouds, a sunlit cloud sea. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
-      - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
-
-  - id: x-caglayan-portrait-2-night
-    kind: plate
-    name: x-caglayan-portrait-2-night
-    size: 1024x1536
-    canvas: 1024x1536
-    deliver: {scale: 1.0}
-    edit_of: x-caglayan-flow-2-night
-    outpaint: {anchor_y: 0.52}
-    chat: "Pofu · Portrait islands"
-    light: {cell: night, layer: subject}
-    palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-caglayan-flow-2-night (stage 2, night, clear) in the style of the picked pilot x-caglayan-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
-    attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-caglayan-portrait-s4-day
-        role: "The picked portrait pilot of Çağlayan: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
-    prompt:
-      - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: night: a deep blue-violet sky with stars and a moon, a moonlit blue-violet cloud sea with soft silver edges; lit windows and lamps stay as small warm lights. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
-      - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
-
-  - id: x-caglayan-portrait-3
-    kind: plate
-    name: x-caglayan-portrait-3
-    size: 1024x1536
-    canvas: 1024x1536
-    deliver: {scale: 1.0}
-    edit_of: x-caglayan-flow-3
-    outpaint: {anchor_y: 0.52}
-    chat: "Pofu · Portrait islands"
-    light: {cell: day, layer: subject}
-    palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-caglayan-flow-3 (stage 3, day, clear) in the style of the picked pilot x-caglayan-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
-    attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-caglayan-portrait-s4-day
-        role: "The picked portrait pilot of Çağlayan: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
-    prompt:
-      - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: clear daylight: a bright blue sky with soft white clouds, a sunlit cloud sea. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
-      - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
-
-  - id: x-caglayan-portrait-3-night
-    kind: plate
-    name: x-caglayan-portrait-3-night
-    size: 1024x1536
-    canvas: 1024x1536
-    deliver: {scale: 1.0}
-    edit_of: x-caglayan-flow-3-night
-    outpaint: {anchor_y: 0.52}
-    chat: "Pofu · Portrait islands"
-    light: {cell: night, layer: subject}
-    palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-caglayan-flow-3-night (stage 3, night, clear) in the style of the picked pilot x-caglayan-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
-    attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-caglayan-portrait-s4-day
-        role: "The picked portrait pilot of Çağlayan: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
-    prompt:
-      - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: night: a deep blue-violet sky with stars and a moon, a moonlit blue-violet cloud sea with soft silver edges; lit windows and lamps stay as small warm lights. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
-      - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
-
-  - id: x-caglayan-portrait-4-bare
-    kind: plate
-    name: x-caglayan-portrait-4-bare
-    size: 1024x1536
-    canvas: 1024x1536
-    deliver: {scale: 1.0}
-    edit_of: x-caglayan-flow-4-bare
-    outpaint: {anchor_y: 0.52}
-    chat: "Pofu · Portrait islands"
-    light: {cell: day, layer: subject}
-    palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-caglayan-flow-4-bare (stage 4-bare, day, clear) in the style of the picked pilot x-caglayan-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
-    attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-caglayan-portrait-s4-day
-        role: "The picked portrait pilot of Çağlayan: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
-    prompt:
-      - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: clear daylight: a bright blue sky with soft white clouds, a sunlit cloud sea. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
-      - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
-
-  - id: x-caglayan-portrait-4-rain
-    kind: plate
-    name: x-caglayan-portrait-4-rain
-    size: 1024x1536
-    canvas: 1024x1536
-    deliver: {scale: 1.0}
-    edit_of: x-caglayan-flow-4-rain
-    outpaint: {anchor_y: 0.52}
-    chat: "Pofu · Portrait islands"
-    light: {cell: day, layer: subject}
-    palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-caglayan-flow-4-rain (stage 4, day, rain) in the style of the picked pilot x-caglayan-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
-    attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-caglayan-portrait-s4-day
-        role: "The picked portrait pilot of Çağlayan: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
-    prompt:
-      - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: soft rain: a gentle grey-blue sky with layered rain clouds and fine rain streaks, a darker, wetter cloud sea with pearl highlights; colours stay rich, not grey. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
-      - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
-
-  - id: x-caglayan-portrait-4-golden
-    kind: plate
-    name: x-caglayan-portrait-4-golden
-    size: 1024x1536
-    canvas: 1024x1536
-    deliver: {scale: 1.0}
-    edit_of: x-caglayan-flow-4-golden
-    outpaint: {anchor_y: 0.52}
-    chat: "Pofu · Portrait islands"
-    light: {cell: golden, layer: subject}
-    palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-caglayan-flow-4-golden (stage 4, golden, clear) in the style of the picked pilot x-caglayan-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
-    attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-caglayan-portrait-s4-day
-        role: "The picked portrait pilot of Çağlayan: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
-    prompt:
-      - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: golden hour: a soft pink and lilac sky warming to peach near the clouds, low warm peach light, a cloud sea blushed peach with lilac shade. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
-      - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
-
-  - id: x-caglayan-portrait-4-life
-    kind: plate
-    name: x-caglayan-portrait-4-life
-    size: 1024x1536
-    canvas: 1024x1536
-    deliver: {scale: 1.0}
-    edit_of: x-caglayan-flow-4-life
-    outpaint: {anchor_y: 0.52}
-    chat: "Pofu · Portrait islands"
-    light: {cell: day, layer: subject}
-    palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-caglayan-flow-4-life (stage 4-life, day, clear) in the style of the picked pilot x-caglayan-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
-    attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-caglayan-portrait-s4-day
-        role: "The picked portrait pilot of Çağlayan: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
-    prompt:
-      - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: clear daylight: a bright blue sky with soft white clouds, a sunlit cloud sea. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
-      - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
-
-  - id: x-caglayan-portrait-4-up
-    kind: plate
-    name: x-caglayan-portrait-4-up
-    size: 1024x1536
-    canvas: 1024x1536
-    deliver: {scale: 1.0}
-    edit_of: x-caglayan-flow-4-up
-    outpaint: {anchor_y: 0.52}
-    chat: "Pofu · Portrait islands"
-    light: {cell: day, layer: subject}
-    palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-caglayan-flow-4-up (stage 4-up, day, clear) in the style of the picked pilot x-caglayan-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
-    attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-caglayan-portrait-s4-day
-        role: "The picked portrait pilot of Çağlayan: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
-    prompt:
-      - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: clear daylight: a bright blue sky with soft white clouds, a sunlit cloud sea. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
-      - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
-
-  # Phase C: Emanet, Mehtap, Revontuli
   - id: x-emanet-portrait-s4-day
     kind: plate
     name: x-emanet-portrait-s4-day
@@ -656,435 +124,9 @@ jobs:
           the new sky and cloud sea reads as one continuous painting.
           Light of this plate: golden hour: a soft pink and lilac sky warming to peach near the clouds, low warm peach light, a cloud sea blushed peach with lilac shade. The new sky and cloud sea carry
           this light and keep the plate's own colours rich.
-      - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
-
-  - id: x-emanet-portrait-0-bare
-    kind: plate
-    name: x-emanet-portrait-0-bare
-    size: 1024x1536
-    canvas: 1024x1536
-    deliver: {scale: 1.0}
-    edit_of: x-emanet-flow-0-bare
-    outpaint: {anchor_y: 0.52}
-    chat: "Pofu · Portrait islands"
-    light: {cell: golden, layer: subject}
-    palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-emanet-flow-0-bare (stage 0-bare, golden, clear) in the style of the picked pilot x-emanet-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
-    attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-emanet-portrait-s4-day
-        role: "The picked portrait pilot of Emanet: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
-    prompt:
-      - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: golden hour: a soft pink and lilac sky warming to peach near the clouds, low warm peach light, a cloud sea blushed peach with lilac shade. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
-      - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
-
-  - id: x-emanet-portrait-0
-    kind: plate
-    name: x-emanet-portrait-0
-    size: 1024x1536
-    canvas: 1024x1536
-    deliver: {scale: 1.0}
-    edit_of: x-emanet-flow-0
-    outpaint: {anchor_y: 0.52}
-    chat: "Pofu · Portrait islands"
-    light: {cell: golden, layer: subject}
-    palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-emanet-flow-0 (stage 0, golden, clear) in the style of the picked pilot x-emanet-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
-    attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-emanet-portrait-s4-day
-        role: "The picked portrait pilot of Emanet: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
-    prompt:
-      - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: golden hour: a soft pink and lilac sky warming to peach near the clouds, low warm peach light, a cloud sea blushed peach with lilac shade. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
-      - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
-
-  - id: x-emanet-portrait-1
-    kind: plate
-    name: x-emanet-portrait-1
-    size: 1024x1536
-    canvas: 1024x1536
-    deliver: {scale: 1.0}
-    edit_of: x-emanet-flow-1
-    outpaint: {anchor_y: 0.52}
-    chat: "Pofu · Portrait islands"
-    light: {cell: golden, layer: subject}
-    palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-emanet-flow-1 (stage 1, golden, clear) in the style of the picked pilot x-emanet-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
-    attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-emanet-portrait-s4-day
-        role: "The picked portrait pilot of Emanet: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
-    prompt:
-      - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: golden hour: a soft pink and lilac sky warming to peach near the clouds, low warm peach light, a cloud sea blushed peach with lilac shade. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
-      - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
-
-  - id: x-emanet-portrait-2
-    kind: plate
-    name: x-emanet-portrait-2
-    size: 1024x1536
-    canvas: 1024x1536
-    deliver: {scale: 1.0}
-    edit_of: x-emanet-flow-2
-    outpaint: {anchor_y: 0.52}
-    chat: "Pofu · Portrait islands"
-    light: {cell: golden, layer: subject}
-    palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-emanet-flow-2 (stage 2, golden, clear) in the style of the picked pilot x-emanet-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
-    attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-emanet-portrait-s4-day
-        role: "The picked portrait pilot of Emanet: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
-    prompt:
-      - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: golden hour: a soft pink and lilac sky warming to peach near the clouds, low warm peach light, a cloud sea blushed peach with lilac shade. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
-      - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
-
-  - id: x-emanet-portrait-3
-    kind: plate
-    name: x-emanet-portrait-3
-    size: 1024x1536
-    canvas: 1024x1536
-    deliver: {scale: 1.0}
-    edit_of: x-emanet-flow-3
-    outpaint: {anchor_y: 0.52}
-    chat: "Pofu · Portrait islands"
-    light: {cell: golden, layer: subject}
-    palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-emanet-flow-3 (stage 3, golden, clear) in the style of the picked pilot x-emanet-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
-    attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-emanet-portrait-s4-day
-        role: "The picked portrait pilot of Emanet: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
-    prompt:
-      - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: golden hour: a soft pink and lilac sky warming to peach near the clouds, low warm peach light, a cloud sea blushed peach with lilac shade. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
-      - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
-
-  - id: x-emanet-portrait-3-night
-    kind: plate
-    name: x-emanet-portrait-3-night
-    size: 1024x1536
-    canvas: 1024x1536
-    deliver: {scale: 1.0}
-    edit_of: x-emanet-flow-3-night
-    outpaint: {anchor_y: 0.52}
-    chat: "Pofu · Portrait islands"
-    light: {cell: night, layer: subject}
-    palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-emanet-flow-3-night (stage 3, night, clear) in the style of the picked pilot x-emanet-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
-    attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-emanet-portrait-s4-day
-        role: "The picked portrait pilot of Emanet: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
-    prompt:
-      - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: night: a deep blue-violet sky with stars and a moon, a moonlit blue-violet cloud sea with soft silver edges; lit windows and lamps stay as small warm lights. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
-      - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
-
-  - id: x-emanet-portrait-4-bare
-    kind: plate
-    name: x-emanet-portrait-4-bare
-    size: 1024x1536
-    canvas: 1024x1536
-    deliver: {scale: 1.0}
-    edit_of: x-emanet-flow-4-bare
-    outpaint: {anchor_y: 0.52}
-    chat: "Pofu · Portrait islands"
-    light: {cell: golden, layer: subject}
-    palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-emanet-flow-4-bare (stage 4-bare, golden, clear) in the style of the picked pilot x-emanet-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
-    attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-emanet-portrait-s4-day
-        role: "The picked portrait pilot of Emanet: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
-    prompt:
-      - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: golden hour: a soft pink and lilac sky warming to peach near the clouds, low warm peach light, a cloud sea blushed peach with lilac shade. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
-      - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
-
-  - id: x-emanet-portrait-4-day
-    kind: plate
-    name: x-emanet-portrait-4-day
-    size: 1024x1536
-    canvas: 1024x1536
-    deliver: {scale: 1.0}
-    edit_of: x-emanet-flow-4-day
-    outpaint: {anchor_y: 0.52}
-    chat: "Pofu · Portrait islands"
-    light: {cell: day, layer: subject}
-    palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-emanet-flow-4-day (stage 4, day, clear) in the style of the picked pilot x-emanet-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
-    attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-emanet-portrait-s4-day
-        role: "The picked portrait pilot of Emanet: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
-    prompt:
-      - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: clear daylight: a bright blue sky with soft white clouds, a sunlit cloud sea. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
-      - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
-
-  - id: x-emanet-portrait-4-rain
-    kind: plate
-    name: x-emanet-portrait-4-rain
-    size: 1024x1536
-    canvas: 1024x1536
-    deliver: {scale: 1.0}
-    edit_of: x-emanet-flow-4-rain
-    outpaint: {anchor_y: 0.52}
-    chat: "Pofu · Portrait islands"
-    light: {cell: day, layer: subject}
-    palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-emanet-flow-4-rain (stage 4, day, rain) in the style of the picked pilot x-emanet-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
-    attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-emanet-portrait-s4-day
-        role: "The picked portrait pilot of Emanet: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
-    prompt:
-      - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: soft rain: a gentle grey-blue sky with layered rain clouds and fine rain streaks, a darker, wetter cloud sea with pearl highlights; colours stay rich, not grey. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
-      - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
-
-  - id: x-emanet-portrait-4-life
-    kind: plate
-    name: x-emanet-portrait-4-life
-    size: 1024x1536
-    canvas: 1024x1536
-    deliver: {scale: 1.0}
-    edit_of: x-emanet-flow-4-life
-    outpaint: {anchor_y: 0.52}
-    chat: "Pofu · Portrait islands"
-    light: {cell: golden, layer: subject}
-    palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-emanet-flow-4-life (stage 4-life, golden, clear) in the style of the picked pilot x-emanet-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
-    attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-emanet-portrait-s4-day
-        role: "The picked portrait pilot of Emanet: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
-    prompt:
-      - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: golden hour: a soft pink and lilac sky warming to peach near the clouds, low warm peach light, a cloud sea blushed peach with lilac shade. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
-      - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
-
-  - id: x-emanet-portrait-4-up
-    kind: plate
-    name: x-emanet-portrait-4-up
-    size: 1024x1536
-    canvas: 1024x1536
-    deliver: {scale: 1.0}
-    edit_of: x-emanet-flow-4-up
-    outpaint: {anchor_y: 0.52}
-    chat: "Pofu · Portrait islands"
-    light: {cell: golden, layer: subject}
-    palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-emanet-flow-4-up (stage 4-up, golden, clear) in the style of the picked pilot x-emanet-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
-    attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-emanet-portrait-s4-day
-        role: "The picked portrait pilot of Emanet: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
-    prompt:
-      - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: golden hour: a soft pink and lilac sky warming to peach near the clouds, low warm peach light, a cloud sea blushed peach with lilac shade. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
+          Paint the sky and the cloud sea rich and slightly more vivid than home's reference
+          (a touch more colour in the sky and in the cloud masses), but never louder than this
+          island's own colours: the island band stays as painted.
       - block: edit-keep-v1
       - block: plate-style-rich-v1
       - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
@@ -1122,513 +164,9 @@ jobs:
           the new sky and cloud sea reads as one continuous painting.
           Light of this plate: night: a deep blue-violet sky with stars and a moon, a moonlit blue-violet cloud sea with soft silver edges; lit windows and lamps stay as small warm lights. The new sky and cloud sea carry
           this light and keep the plate's own colours rich.
-      - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
-
-  - id: x-mehtap-portrait-0-bare
-    kind: plate
-    name: x-mehtap-portrait-0-bare
-    size: 1024x1536
-    canvas: 1024x1536
-    deliver: {scale: 1.0}
-    edit_of: x-mehtap-flow-0-bare
-    outpaint: {anchor_y: 0.52}
-    chat: "Pofu · Portrait islands"
-    light: {cell: night, layer: subject}
-    palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-mehtap-flow-0-bare (stage 0-bare, night, clear) in the style of the picked pilot x-mehtap-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
-    attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-mehtap-portrait-s4-day
-        role: "The picked portrait pilot of Mehtap: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
-    prompt:
-      - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: night: a deep blue-violet sky with stars and a moon, a moonlit blue-violet cloud sea with soft silver edges; lit windows and lamps stay as small warm lights. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
-      - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
-
-  - id: x-mehtap-portrait-0-day
-    kind: plate
-    name: x-mehtap-portrait-0-day
-    size: 1024x1536
-    canvas: 1024x1536
-    deliver: {scale: 1.0}
-    edit_of: x-mehtap-flow-0-day
-    outpaint: {anchor_y: 0.52}
-    chat: "Pofu · Portrait islands"
-    light: {cell: day, layer: subject}
-    palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-mehtap-flow-0-day (stage 0, day, clear) in the style of the picked pilot x-mehtap-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
-    attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-mehtap-portrait-s4-day
-        role: "The picked portrait pilot of Mehtap: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
-    prompt:
-      - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: clear daylight: a bright blue sky with soft white clouds, a sunlit cloud sea. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
-      - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
-
-  - id: x-mehtap-portrait-0
-    kind: plate
-    name: x-mehtap-portrait-0
-    size: 1024x1536
-    canvas: 1024x1536
-    deliver: {scale: 1.0}
-    edit_of: x-mehtap-flow-0
-    outpaint: {anchor_y: 0.52}
-    chat: "Pofu · Portrait islands"
-    light: {cell: night, layer: subject}
-    palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-mehtap-flow-0 (stage 0, night, clear) in the style of the picked pilot x-mehtap-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
-    attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-mehtap-portrait-s4-day
-        role: "The picked portrait pilot of Mehtap: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
-    prompt:
-      - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: night: a deep blue-violet sky with stars and a moon, a moonlit blue-violet cloud sea with soft silver edges; lit windows and lamps stay as small warm lights. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
-      - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
-
-  - id: x-mehtap-portrait-1
-    kind: plate
-    name: x-mehtap-portrait-1
-    size: 1024x1536
-    canvas: 1024x1536
-    deliver: {scale: 1.0}
-    edit_of: x-mehtap-flow-1
-    outpaint: {anchor_y: 0.52}
-    chat: "Pofu · Portrait islands"
-    light: {cell: night, layer: subject}
-    palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-mehtap-flow-1 (stage 1, night, clear) in the style of the picked pilot x-mehtap-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
-    attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-mehtap-portrait-s4-day
-        role: "The picked portrait pilot of Mehtap: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
-    prompt:
-      - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: night: a deep blue-violet sky with stars and a moon, a moonlit blue-violet cloud sea with soft silver edges; lit windows and lamps stay as small warm lights. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
-      - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
-
-  - id: x-mehtap-portrait-2-day
-    kind: plate
-    name: x-mehtap-portrait-2-day
-    size: 1024x1536
-    canvas: 1024x1536
-    deliver: {scale: 1.0}
-    edit_of: x-mehtap-flow-2-day
-    outpaint: {anchor_y: 0.52}
-    chat: "Pofu · Portrait islands"
-    light: {cell: day, layer: subject}
-    palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-mehtap-flow-2-day (stage 2, day, clear) in the style of the picked pilot x-mehtap-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
-    attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-mehtap-portrait-s4-day
-        role: "The picked portrait pilot of Mehtap: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
-    prompt:
-      - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: clear daylight: a bright blue sky with soft white clouds, a sunlit cloud sea. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
-      - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
-
-  - id: x-mehtap-portrait-2
-    kind: plate
-    name: x-mehtap-portrait-2
-    size: 1024x1536
-    canvas: 1024x1536
-    deliver: {scale: 1.0}
-    edit_of: x-mehtap-flow-2
-    outpaint: {anchor_y: 0.52}
-    chat: "Pofu · Portrait islands"
-    light: {cell: night, layer: subject}
-    palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-mehtap-flow-2 (stage 2, night, clear) in the style of the picked pilot x-mehtap-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
-    attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-mehtap-portrait-s4-day
-        role: "The picked portrait pilot of Mehtap: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
-    prompt:
-      - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: night: a deep blue-violet sky with stars and a moon, a moonlit blue-violet cloud sea with soft silver edges; lit windows and lamps stay as small warm lights. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
-      - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
-
-  - id: x-mehtap-portrait-3-day
-    kind: plate
-    name: x-mehtap-portrait-3-day
-    size: 1024x1536
-    canvas: 1024x1536
-    deliver: {scale: 1.0}
-    edit_of: x-mehtap-flow-3-day
-    outpaint: {anchor_y: 0.52}
-    chat: "Pofu · Portrait islands"
-    light: {cell: day, layer: subject}
-    palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-mehtap-flow-3-day (stage 3, day, clear) in the style of the picked pilot x-mehtap-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
-    attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-mehtap-portrait-s4-day
-        role: "The picked portrait pilot of Mehtap: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
-    prompt:
-      - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: clear daylight: a bright blue sky with soft white clouds, a sunlit cloud sea. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
-      - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
-
-  - id: x-mehtap-portrait-3
-    kind: plate
-    name: x-mehtap-portrait-3
-    size: 1024x1536
-    canvas: 1024x1536
-    deliver: {scale: 1.0}
-    edit_of: x-mehtap-flow-3
-    outpaint: {anchor_y: 0.52}
-    chat: "Pofu · Portrait islands"
-    light: {cell: night, layer: subject}
-    palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-mehtap-flow-3 (stage 3, night, clear) in the style of the picked pilot x-mehtap-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
-    attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-mehtap-portrait-s4-day
-        role: "The picked portrait pilot of Mehtap: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
-    prompt:
-      - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: night: a deep blue-violet sky with stars and a moon, a moonlit blue-violet cloud sea with soft silver edges; lit windows and lamps stay as small warm lights. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
-      - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
-
-  - id: x-mehtap-portrait-4-bare
-    kind: plate
-    name: x-mehtap-portrait-4-bare
-    size: 1024x1536
-    canvas: 1024x1536
-    deliver: {scale: 1.0}
-    edit_of: x-mehtap-flow-4-bare
-    outpaint: {anchor_y: 0.52}
-    chat: "Pofu · Portrait islands"
-    light: {cell: night, layer: subject}
-    palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-mehtap-flow-4-bare (stage 4-bare, night, clear) in the style of the picked pilot x-mehtap-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
-    attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-mehtap-portrait-s4-day
-        role: "The picked portrait pilot of Mehtap: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
-    prompt:
-      - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: night: a deep blue-violet sky with stars and a moon, a moonlit blue-violet cloud sea with soft silver edges; lit windows and lamps stay as small warm lights. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
-      - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
-
-  - id: x-mehtap-portrait-4-rain
-    kind: plate
-    name: x-mehtap-portrait-4-rain
-    size: 1024x1536
-    canvas: 1024x1536
-    deliver: {scale: 1.0}
-    edit_of: x-mehtap-flow-4-rain
-    outpaint: {anchor_y: 0.52}
-    chat: "Pofu · Portrait islands"
-    light: {cell: day, layer: subject}
-    palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-mehtap-flow-4-rain (stage 4, day, rain) in the style of the picked pilot x-mehtap-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
-    attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-mehtap-portrait-s4-day
-        role: "The picked portrait pilot of Mehtap: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
-    prompt:
-      - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: soft rain: a gentle grey-blue sky with layered rain clouds and fine rain streaks, a darker, wetter cloud sea with pearl highlights; colours stay rich, not grey. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
-      - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
-
-  - id: x-mehtap-portrait-4-golden
-    kind: plate
-    name: x-mehtap-portrait-4-golden
-    size: 1024x1536
-    canvas: 1024x1536
-    deliver: {scale: 1.0}
-    edit_of: x-mehtap-flow-4-golden
-    outpaint: {anchor_y: 0.52}
-    chat: "Pofu · Portrait islands"
-    light: {cell: golden, layer: subject}
-    palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-mehtap-flow-4-golden (stage 4, golden, clear) in the style of the picked pilot x-mehtap-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
-    attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-mehtap-portrait-s4-day
-        role: "The picked portrait pilot of Mehtap: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
-    prompt:
-      - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: golden hour: a soft pink and lilac sky warming to peach near the clouds, low warm peach light, a cloud sea blushed peach with lilac shade. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
-      - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
-
-  - id: x-mehtap-portrait-4-life
-    kind: plate
-    name: x-mehtap-portrait-4-life
-    size: 1024x1536
-    canvas: 1024x1536
-    deliver: {scale: 1.0}
-    edit_of: x-mehtap-flow-4-life
-    outpaint: {anchor_y: 0.52}
-    chat: "Pofu · Portrait islands"
-    light: {cell: night, layer: subject}
-    palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-mehtap-flow-4-life (stage 4-life, night, clear) in the style of the picked pilot x-mehtap-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
-    attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-mehtap-portrait-s4-day
-        role: "The picked portrait pilot of Mehtap: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
-    prompt:
-      - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: night: a deep blue-violet sky with stars and a moon, a moonlit blue-violet cloud sea with soft silver edges; lit windows and lamps stay as small warm lights. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
-      - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
-
-  - id: x-mehtap-portrait-4-up
-    kind: plate
-    name: x-mehtap-portrait-4-up
-    size: 1024x1536
-    canvas: 1024x1536
-    deliver: {scale: 1.0}
-    edit_of: x-mehtap-flow-4-up
-    outpaint: {anchor_y: 0.52}
-    chat: "Pofu · Portrait islands"
-    light: {cell: night, layer: subject}
-    palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-mehtap-flow-4-up (stage 4-up, night, clear) in the style of the picked pilot x-mehtap-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
-    attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-mehtap-portrait-s4-day
-        role: "The picked portrait pilot of Mehtap: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
-    prompt:
-      - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: night: a deep blue-violet sky with stars and a moon, a moonlit blue-violet cloud sea with soft silver edges; lit windows and lamps stay as small warm lights. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
+          Paint the sky and the cloud sea rich and slightly more vivid than home's reference
+          (a touch more colour in the sky and in the cloud masses), but never louder than this
+          island's own colours: the island band stays as painted.
       - block: edit-keep-v1
       - block: plate-style-rich-v1
       - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
@@ -1666,552 +204,282 @@ jobs:
           the new sky and cloud sea reads as one continuous painting.
           Light of this plate: night: a deep blue-violet sky with stars and a moon, a moonlit blue-violet cloud sea with soft silver edges; lit windows and lamps stay as small warm lights. The new sky and cloud sea carry
           this light and keep the plate's own colours rich.
+          Paint the sky and the cloud sea rich and slightly more vivid than home's reference
+          (a touch more colour in the sky and in the cloud masses), but never louder than this
+          island's own colours: the island band stays as painted.
       - block: edit-keep-v1
       - block: plate-style-rich-v1
       - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
 
-  - id: x-revontuli-portrait-0-bare
+  # Phase B: light edits of the pilots
+  - id: x-caglayan-sky-golden
     kind: plate
-    name: x-revontuli-portrait-0-bare
+    name: x-caglayan-sky-golden
     size: 1024x1536
     canvas: 1024x1536
     deliver: {scale: 1.0}
-    edit_of: x-revontuli-flow-0-bare
-    outpaint: {anchor_y: 0.52}
-    chat: "Pofu · Portrait islands"
-    light: {cell: night, layer: subject}
-    palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-revontuli-flow-0-bare (stage 0-bare, night, clear) in the style of the picked pilot x-revontuli-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
-    attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-revontuli-portrait-s4-day
-        role: "The picked portrait pilot of Revontuli: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
-    prompt:
-      - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: night: a deep blue-violet sky with stars and a moon, a moonlit blue-violet cloud sea with soft silver edges; lit windows and lamps stay as small warm lights. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
-      - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
-
-  - id: x-revontuli-portrait-0-day
-    kind: plate
-    name: x-revontuli-portrait-0-day
-    size: 1024x1536
-    canvas: 1024x1536
-    deliver: {scale: 1.0}
-    edit_of: x-revontuli-flow-0-day
-    outpaint: {anchor_y: 0.52}
-    chat: "Pofu · Portrait islands"
-    light: {cell: day, layer: subject}
-    palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-revontuli-flow-0-day (stage 0, day, clear) in the style of the picked pilot x-revontuli-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
-    attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-revontuli-portrait-s4-day
-        role: "The picked portrait pilot of Revontuli: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
-    prompt:
-      - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: clear daylight: a bright blue sky with soft white clouds, a sunlit cloud sea. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
-      - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
-
-  - id: x-revontuli-portrait-0
-    kind: plate
-    name: x-revontuli-portrait-0
-    size: 1024x1536
-    canvas: 1024x1536
-    deliver: {scale: 1.0}
-    edit_of: x-revontuli-flow-0
-    outpaint: {anchor_y: 0.52}
-    chat: "Pofu · Portrait islands"
-    light: {cell: night, layer: subject}
-    palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-revontuli-flow-0 (stage 0, night, clear) in the style of the picked pilot x-revontuli-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
-    attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-revontuli-portrait-s4-day
-        role: "The picked portrait pilot of Revontuli: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
-    prompt:
-      - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: night: a deep blue-violet sky with stars and a moon, a moonlit blue-violet cloud sea with soft silver edges; lit windows and lamps stay as small warm lights. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
-      - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
-
-  - id: x-revontuli-portrait-1-day
-    kind: plate
-    name: x-revontuli-portrait-1-day
-    size: 1024x1536
-    canvas: 1024x1536
-    deliver: {scale: 1.0}
-    edit_of: x-revontuli-flow-1-day
-    outpaint: {anchor_y: 0.52}
-    chat: "Pofu · Portrait islands"
-    light: {cell: day, layer: subject}
-    palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-revontuli-flow-1-day (stage 1, day, clear) in the style of the picked pilot x-revontuli-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
-    attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-revontuli-portrait-s4-day
-        role: "The picked portrait pilot of Revontuli: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
-    prompt:
-      - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: clear daylight: a bright blue sky with soft white clouds, a sunlit cloud sea. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
-      - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
-
-  - id: x-revontuli-portrait-1
-    kind: plate
-    name: x-revontuli-portrait-1
-    size: 1024x1536
-    canvas: 1024x1536
-    deliver: {scale: 1.0}
-    edit_of: x-revontuli-flow-1
-    outpaint: {anchor_y: 0.52}
-    chat: "Pofu · Portrait islands"
-    light: {cell: night, layer: subject}
-    palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-revontuli-flow-1 (stage 1, night, clear) in the style of the picked pilot x-revontuli-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
-    attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-revontuli-portrait-s4-day
-        role: "The picked portrait pilot of Revontuli: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
-    prompt:
-      - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: night: a deep blue-violet sky with stars and a moon, a moonlit blue-violet cloud sea with soft silver edges; lit windows and lamps stay as small warm lights. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
-      - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
-
-  - id: x-revontuli-portrait-2-day
-    kind: plate
-    name: x-revontuli-portrait-2-day
-    size: 1024x1536
-    canvas: 1024x1536
-    deliver: {scale: 1.0}
-    edit_of: x-revontuli-flow-2-day
-    outpaint: {anchor_y: 0.52}
-    chat: "Pofu · Portrait islands"
-    light: {cell: day, layer: subject}
-    palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-revontuli-flow-2-day (stage 2, day, clear) in the style of the picked pilot x-revontuli-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
-    attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-revontuli-portrait-s4-day
-        role: "The picked portrait pilot of Revontuli: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
-    prompt:
-      - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: clear daylight: a bright blue sky with soft white clouds, a sunlit cloud sea. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
-      - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
-
-  - id: x-revontuli-portrait-2
-    kind: plate
-    name: x-revontuli-portrait-2
-    size: 1024x1536
-    canvas: 1024x1536
-    deliver: {scale: 1.0}
-    edit_of: x-revontuli-flow-2
-    outpaint: {anchor_y: 0.52}
-    chat: "Pofu · Portrait islands"
-    light: {cell: night, layer: subject}
-    palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-revontuli-flow-2 (stage 2, night, clear) in the style of the picked pilot x-revontuli-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
-    attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-revontuli-portrait-s4-day
-        role: "The picked portrait pilot of Revontuli: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
-    prompt:
-      - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: night: a deep blue-violet sky with stars and a moon, a moonlit blue-violet cloud sea with soft silver edges; lit windows and lamps stay as small warm lights. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
-      - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
-
-  - id: x-revontuli-portrait-3-day
-    kind: plate
-    name: x-revontuli-portrait-3-day
-    size: 1024x1536
-    canvas: 1024x1536
-    deliver: {scale: 1.0}
-    edit_of: x-revontuli-flow-3-day
-    outpaint: {anchor_y: 0.52}
-    chat: "Pofu · Portrait islands"
-    light: {cell: day, layer: subject}
-    palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-revontuli-flow-3-day (stage 3, day, clear) in the style of the picked pilot x-revontuli-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
-    attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-revontuli-portrait-s4-day
-        role: "The picked portrait pilot of Revontuli: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
-    prompt:
-      - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: clear daylight: a bright blue sky with soft white clouds, a sunlit cloud sea. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
-      - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
-
-  - id: x-revontuli-portrait-3
-    kind: plate
-    name: x-revontuli-portrait-3
-    size: 1024x1536
-    canvas: 1024x1536
-    deliver: {scale: 1.0}
-    edit_of: x-revontuli-flow-3
-    outpaint: {anchor_y: 0.52}
-    chat: "Pofu · Portrait islands"
-    light: {cell: night, layer: subject}
-    palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-revontuli-flow-3 (stage 3, night, clear) in the style of the picked pilot x-revontuli-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
-    attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-revontuli-portrait-s4-day
-        role: "The picked portrait pilot of Revontuli: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
-    prompt:
-      - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: night: a deep blue-violet sky with stars and a moon, a moonlit blue-violet cloud sea with soft silver edges; lit windows and lamps stay as small warm lights. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
-      - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
-
-  - id: x-revontuli-portrait-4-bare
-    kind: plate
-    name: x-revontuli-portrait-4-bare
-    size: 1024x1536
-    canvas: 1024x1536
-    deliver: {scale: 1.0}
-    edit_of: x-revontuli-flow-4-bare
-    outpaint: {anchor_y: 0.52}
-    chat: "Pofu · Portrait islands"
-    light: {cell: night, layer: subject}
-    palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-revontuli-flow-4-bare (stage 4-bare, night, clear) in the style of the picked pilot x-revontuli-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
-    attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-revontuli-portrait-s4-day
-        role: "The picked portrait pilot of Revontuli: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
-    prompt:
-      - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: night: a deep blue-violet sky with stars and a moon, a moonlit blue-violet cloud sea with soft silver edges; lit windows and lamps stay as small warm lights. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
-      - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
-
-  - id: x-revontuli-portrait-4-rain
-    kind: plate
-    name: x-revontuli-portrait-4-rain
-    size: 1024x1536
-    canvas: 1024x1536
-    deliver: {scale: 1.0}
-    edit_of: x-revontuli-flow-4-rain
-    outpaint: {anchor_y: 0.52}
-    chat: "Pofu · Portrait islands"
-    light: {cell: day, layer: subject}
-    palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-revontuli-flow-4-rain (stage 4, day, rain) in the style of the picked pilot x-revontuli-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
-    attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-revontuli-portrait-s4-day
-        role: "The picked portrait pilot of Revontuli: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
-    prompt:
-      - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: soft rain: a gentle grey-blue sky with layered rain clouds and fine rain streaks, a darker, wetter cloud sea with pearl highlights; colours stay rich, not grey. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
-      - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
-
-  - id: x-revontuli-portrait-4-golden
-    kind: plate
-    name: x-revontuli-portrait-4-golden
-    size: 1024x1536
-    canvas: 1024x1536
-    deliver: {scale: 1.0}
-    edit_of: x-revontuli-flow-4-golden
-    outpaint: {anchor_y: 0.52}
+    edit_of: x-caglayan-portrait-s4-day
     chat: "Pofu · Portrait islands"
     light: {cell: golden, layer: subject}
     palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-revontuli-flow-4-golden (stage 4, golden, clear) in the style of the picked pilot x-revontuli-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Çağlayan sky-set master, golden light: an edit of the picked portrait pilot (the sky set is split from this painting, ADR-0025). Review: nothing moved or healed, the island's colours rich, a rich sky and cloud sea, no grey veil."
     attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-revontuli-portrait-s4-day
-        role: "The picked portrait pilot of Revontuli: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
+      - ref: home-golden
+        role: "The light target: the home island at this time, its sky, light and cloud sea. Match the light, not the objects."
     prompt:
       - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: golden hour: a soft pink and lilac sky warming to peach near the clouds, low warm peach light, a cloud sea blushed peach with lilac shade. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
+          Edit the attached tall painting into the same scene in this light: golden hour: a soft pink and lilac sky warming to peach near the clouds, low warm peach light raking from the side, lilac shadows, the cloud sea blushed peach with lilac shade. Lamps and windows that exist are just coming on, small and soft.
+          Çağlayan's own colours stay rich. The sky, the distant islands and the cloud sea
+          stay rich and slightly vivid. Everything stays in its place, the same shapes and
+          sizes; only light and colour change.
       - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
+      - text: "AVOID: a flat gradient, a haze or mist band, a grey veil, a dark scene, orange or red saturation, healing or changing the stage, new objects, characters, text, moving anything"
 
-  - id: x-revontuli-portrait-4-life
+  - id: x-caglayan-sky-night
     kind: plate
-    name: x-revontuli-portrait-4-life
+    name: x-caglayan-sky-night
     size: 1024x1536
     canvas: 1024x1536
     deliver: {scale: 1.0}
-    edit_of: x-revontuli-flow-4-life
-    outpaint: {anchor_y: 0.52}
+    edit_of: x-caglayan-portrait-s4-day
     chat: "Pofu · Portrait islands"
     light: {cell: night, layer: subject}
-    palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-revontuli-flow-4-life (stage 4-life, night, clear) in the style of the picked pilot x-revontuli-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
+    palettes: [world-night, world-props, world-foliage]
+    acceptance: {exploration: true, edit_mode: recolor, profile: night}
+    notes: "Çağlayan sky-set master, night light: an edit of the picked portrait pilot (the sky set is split from this painting, ADR-0025). Review: nothing moved or healed, the island's colours rich, a rich sky and cloud sea, no grey veil."
     attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-revontuli-portrait-s4-day
-        role: "The picked portrait pilot of Revontuli: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
+      - ref: home-night
+        role: "The light target: the home island at this time, its sky, light and cloud sea. Match the light, not the objects."
     prompt:
       - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: night: a deep blue-violet sky with stars and a moon, a moonlit blue-violet cloud sea with soft silver edges; lit windows and lamps stay as small warm lights. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
+          Edit the attached tall painting into the same scene in this light: a calm, clear night: a soft deep-blue sky (blue, never black) with a gentle glow near the clouds, a soft round moon and a few small stars, the cloud sea light and lilac-white, shadows blue-violet, no deep blacks. Warm light only from real sources already in the picture (windows, lanterns, lamps), each a small soft pool.
+          Çağlayan's own colours stay rich. The sky, the distant islands and the cloud sea
+          stay rich and slightly vivid. Everything stays in its place, the same shapes and
+          sizes; only light and colour change.
       - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
+      - text: "AVOID: a flat gradient, a haze or mist band, a grey veil, a dark scene, orange or red saturation, healing or changing the stage, new objects, characters, text, moving anything"
 
-  - id: x-revontuli-portrait-4-up
+  - id: x-emanet-sky-day
     kind: plate
-    name: x-revontuli-portrait-4-up
+    name: x-emanet-sky-day
     size: 1024x1536
     canvas: 1024x1536
     deliver: {scale: 1.0}
-    edit_of: x-revontuli-flow-4-up
-    outpaint: {anchor_y: 0.52}
+    edit_of: x-emanet-portrait-s4-day
     chat: "Pofu · Portrait islands"
-    light: {cell: night, layer: subject}
+    light: {cell: day, layer: subject}
     palettes: [world-props, world-sunset, world-foliage]
-    acceptance: {exploration: true, edit_mode: region}
-    notes: "Portrait version of x-revontuli-flow-4-up (stage 4-up, night, clear) in the style of the picked pilot x-revontuli-portrait-s4-day. Review: island unchanged; sky and cloud sea one place with the pilot; this cell's own light."
-    attach:
-      - ref: home-sky-guide
-        role: "The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness and painting style, not its objects."
-      - ref: approved:x-revontuli-portrait-s4-day
-        role: "The picked portrait pilot of Revontuli: sky, distant islands and cloud sea read as one place with it. Take its sky and cloud-sea treatment, not its island or its light."
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Emanet sky-set master, day light: an edit of the picked portrait pilot (the sky set is split from this painting, ADR-0025). Review: nothing moved or healed, the island's colours rich, a rich sky and cloud sea, no grey veil."
     prompt:
       - text: |
-          Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
-          painted: the same island, the same size, the same pixels, centred horizontally,
-          its mass at about the middle of the canvas (the transparent area above and below
-          it is yours to paint; the mask is white where you paint). Do not redraw, heal,
-          shift or add anything on the plate itself. Above the plate paint a tall, deep
-          sky with soft layered clouds and one or two small distant floating islands far
-          away, small and hazy, no larger than a thumb. Below the plate paint a deep
-          cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
-          painted with the same richness as the attached home reference (its sky, distant
-          islands and cloud sea are the treatment to match; take the treatment, not the
-          objects): layered cloud masses with painted light and shade, never a flat
-          gradient, never a haze band, never an empty fog. The seam where the plate meets
-          the new sky and cloud sea reads as one continuous painting.
-          Light of this plate: night: a deep blue-violet sky with stars and a moon, a moonlit blue-violet cloud sea with soft silver edges; lit windows and lamps stay as small warm lights. The new sky and cloud sea carry
-          this light and keep the plate's own colours rich.
+          Edit the attached tall painting into the same scene in this light: clear daylight: a bright blue sky with soft white clouds and warm sun from the side, a sunlit cloud sea, the island's own colours rich.
+          Emanet's own colours stay rich. The sky, the distant islands and the cloud sea
+          stay rich and slightly vivid. Everything stays in its place, the same shapes and
+          sizes; only light and colour change.
       - block: edit-keep-v1
-      - block: plate-style-rich-v1
-      - text: "AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or moved island, new objects on the island, large floating islands, characters, text"
+      - text: "AVOID: a flat gradient, a haze or mist band, a grey veil, a dark scene, orange or red saturation, healing or changing the stage, new objects, characters, text, moving anything"
+
+  - id: x-emanet-sky-night
+    kind: plate
+    name: x-emanet-sky-night
+    size: 1024x1536
+    canvas: 1024x1536
+    deliver: {scale: 1.0}
+    edit_of: x-emanet-portrait-s4-day
+    chat: "Pofu · Portrait islands"
+    light: {cell: night, layer: subject}
+    palettes: [world-night, world-props, world-foliage]
+    acceptance: {exploration: true, edit_mode: recolor, profile: night}
+    notes: "Emanet sky-set master, night light: an edit of the picked portrait pilot (the sky set is split from this painting, ADR-0025). Review: nothing moved or healed, the island's colours rich, a rich sky and cloud sea, no grey veil."
+    attach:
+      - ref: home-night
+        role: "The light target: the home island at this time, its sky, light and cloud sea. Match the light, not the objects."
+    prompt:
+      - text: |
+          Edit the attached tall painting into the same scene in this light: a calm, clear night: a soft deep-blue sky (blue, never black) with a gentle glow near the clouds, a soft round moon and a few small stars, the cloud sea light and lilac-white, shadows blue-violet, no deep blacks. Warm light only from real sources already in the picture (windows, lanterns, lamps), each a small soft pool.
+          Emanet's own colours stay rich. The sky, the distant islands and the cloud sea
+          stay rich and slightly vivid. Everything stays in its place, the same shapes and
+          sizes; only light and colour change.
+      - block: edit-keep-v1
+      - text: "AVOID: a flat gradient, a haze or mist band, a grey veil, a dark scene, orange or red saturation, healing or changing the stage, new objects, characters, text, moving anything"
+
+  - id: x-mehtap-sky-day
+    kind: plate
+    name: x-mehtap-sky-day
+    size: 1024x1536
+    canvas: 1024x1536
+    deliver: {scale: 1.0}
+    edit_of: x-mehtap-portrait-s4-day
+    chat: "Pofu · Portrait islands"
+    light: {cell: day, layer: subject}
+    palettes: [world-props, world-sunset, world-foliage]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Mehtap sky-set master, day light: an edit of the picked portrait pilot (the sky set is split from this painting, ADR-0025). Review: nothing moved or healed, the island's colours rich, a rich sky and cloud sea, no grey veil."
+    prompt:
+      - text: |
+          Edit the attached tall painting into the same scene in this light: clear daylight: a bright blue sky with soft white clouds and warm sun from the side, a sunlit cloud sea, the island's own colours rich.
+          Mehtap's own colours stay rich. The sky, the distant islands and the cloud sea
+          stay rich and slightly vivid. Everything stays in its place, the same shapes and
+          sizes; only light and colour change.
+      - block: edit-keep-v1
+      - text: "AVOID: a flat gradient, a haze or mist band, a grey veil, a dark scene, orange or red saturation, healing or changing the stage, new objects, characters, text, moving anything"
+
+  - id: x-mehtap-sky-golden
+    kind: plate
+    name: x-mehtap-sky-golden
+    size: 1024x1536
+    canvas: 1024x1536
+    deliver: {scale: 1.0}
+    edit_of: x-mehtap-portrait-s4-day
+    chat: "Pofu · Portrait islands"
+    light: {cell: golden, layer: subject}
+    palettes: [world-props, world-sunset, world-foliage]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Mehtap sky-set master, golden light: an edit of the picked portrait pilot (the sky set is split from this painting, ADR-0025). Review: nothing moved or healed, the island's colours rich, a rich sky and cloud sea, no grey veil."
+    attach:
+      - ref: home-golden
+        role: "The light target: the home island at this time, its sky, light and cloud sea. Match the light, not the objects."
+    prompt:
+      - text: |
+          Edit the attached tall painting into the same scene in this light: golden hour: a soft pink and lilac sky warming to peach near the clouds, low warm peach light raking from the side, lilac shadows, the cloud sea blushed peach with lilac shade. Lamps and windows that exist are just coming on, small and soft.
+          Mehtap's own colours stay rich. The sky, the distant islands and the cloud sea
+          stay rich and slightly vivid. Everything stays in its place, the same shapes and
+          sizes; only light and colour change.
+      - block: edit-keep-v1
+      - text: "AVOID: a flat gradient, a haze or mist band, a grey veil, a dark scene, orange or red saturation, healing or changing the stage, new objects, characters, text, moving anything"
+
+  - id: x-revontuli-sky-day
+    kind: plate
+    name: x-revontuli-sky-day
+    size: 1024x1536
+    canvas: 1024x1536
+    deliver: {scale: 1.0}
+    edit_of: x-revontuli-portrait-s4-day
+    chat: "Pofu · Portrait islands"
+    light: {cell: day, layer: subject}
+    palettes: [world-props, world-sunset, world-foliage]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Revontuli sky-set master, day light: an edit of the picked portrait pilot (the sky set is split from this painting, ADR-0025). Review: nothing moved or healed, the island's colours rich, a rich sky and cloud sea, no grey veil."
+    prompt:
+      - text: |
+          Edit the attached tall painting into the same scene in this light: clear daylight: a bright blue sky with soft white clouds and warm sun from the side, a sunlit cloud sea, the island's own colours rich.
+          Revontuli's own colours stay rich. The sky, the distant islands and the cloud sea
+          stay rich and slightly vivid. Everything stays in its place, the same shapes and
+          sizes; only light and colour change.
+      - block: edit-keep-v1
+      - text: "AVOID: a flat gradient, a haze or mist band, a grey veil, a dark scene, orange or red saturation, healing or changing the stage, new objects, characters, text, moving anything"
+
+  - id: x-revontuli-sky-golden
+    kind: plate
+    name: x-revontuli-sky-golden
+    size: 1024x1536
+    canvas: 1024x1536
+    deliver: {scale: 1.0}
+    edit_of: x-revontuli-portrait-s4-day
+    chat: "Pofu · Portrait islands"
+    light: {cell: golden, layer: subject}
+    palettes: [world-props, world-sunset, world-foliage]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Revontuli sky-set master, golden light: an edit of the picked portrait pilot (the sky set is split from this painting, ADR-0025). Review: nothing moved or healed, the island's colours rich, a rich sky and cloud sea, no grey veil."
+    attach:
+      - ref: home-golden
+        role: "The light target: the home island at this time, its sky, light and cloud sea. Match the light, not the objects."
+    prompt:
+      - text: |
+          Edit the attached tall painting into the same scene in this light: golden hour: a soft pink and lilac sky warming to peach near the clouds, low warm peach light raking from the side, lilac shadows, the cloud sea blushed peach with lilac shade. Lamps and windows that exist are just coming on, small and soft.
+          Revontuli's own colours stay rich. The sky, the distant islands and the cloud sea
+          stay rich and slightly vivid. Everything stays in its place, the same shapes and
+          sizes; only light and colour change.
+      - block: edit-keep-v1
+      - text: "AVOID: a flat gradient, a haze or mist band, a grey veil, a dark scene, orange or red saturation, healing or changing the stage, new objects, characters, text, moving anything"
+
+  # Phase C: rain skies (colour-transfer pilot targets)
+  - id: x-caglayan-sky-rain
+    kind: plate
+    name: x-caglayan-sky-rain
+    size: 1024x1536
+    canvas: 1024x1536
+    deliver: {scale: 1.0}
+    edit_of: x-caglayan-portrait-s4-day
+    chat: "Pofu · Portrait islands"
+    light: {cell: day, layer: subject}
+    palettes: [world-foliage, world-props, world-water]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Çağlayan rain sky: an edit of the picked portrait pilot, overcast soft rain light with colours kept. It is the target of the offline colour transfer pilot (ADR-0025), not a shipped cell. Review: nothing moved or healed, colours kept, no grey veil."
+    prompt:
+      - text: |
+          Edit the attached tall painting into the same scene in a soft rain: a soft
+          lilac-grey overcast sky with layered rain clouds, fine gentle rain streaks, a
+          wetter, darker cloud sea with pearl highlights. The island and the sky keep their
+          rich colour (not a grey veil). The far clouds and distant islands fade softly into
+          the rain but stay visible. Everything stays in its place, the same shapes and sizes.
+      - block: edit-keep-v1
+      - text: "AVOID: a dark or grey-blue gloomy scene, a storm, hard diagonal rain, a grey veil, new objects, characters, text, moving anything"
+
+  - id: x-emanet-sky-rain
+    kind: plate
+    name: x-emanet-sky-rain
+    size: 1024x1536
+    canvas: 1024x1536
+    deliver: {scale: 1.0}
+    edit_of: x-emanet-portrait-s4-day
+    chat: "Pofu · Portrait islands"
+    light: {cell: day, layer: subject}
+    palettes: [world-foliage, world-props, world-water]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Emanet rain sky: an edit of the picked portrait pilot, overcast soft rain light with colours kept. It is the target of the offline colour transfer pilot (ADR-0025), not a shipped cell. Review: nothing moved or healed, colours kept, no grey veil."
+    prompt:
+      - text: |
+          Edit the attached tall painting into the same scene in a soft rain: a soft
+          lilac-grey overcast sky with layered rain clouds, fine gentle rain streaks, a
+          wetter, darker cloud sea with pearl highlights. The island and the sky keep their
+          rich colour (not a grey veil). The far clouds and distant islands fade softly into
+          the rain but stay visible. Everything stays in its place, the same shapes and sizes.
+      - block: edit-keep-v1
+      - text: "AVOID: a dark or grey-blue gloomy scene, a storm, hard diagonal rain, a grey veil, new objects, characters, text, moving anything"
+
+  - id: x-mehtap-sky-rain
+    kind: plate
+    name: x-mehtap-sky-rain
+    size: 1024x1536
+    canvas: 1024x1536
+    deliver: {scale: 1.0}
+    edit_of: x-mehtap-portrait-s4-day
+    chat: "Pofu · Portrait islands"
+    light: {cell: day, layer: subject}
+    palettes: [world-foliage, world-props, world-water]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Mehtap rain sky: an edit of the picked portrait pilot, overcast soft rain light with colours kept. It is the target of the offline colour transfer pilot (ADR-0025), not a shipped cell. Review: nothing moved or healed, colours kept, no grey veil."
+    prompt:
+      - text: |
+          Edit the attached tall painting into the same scene in a soft rain: a soft
+          lilac-grey overcast sky with layered rain clouds, fine gentle rain streaks, a
+          wetter, darker cloud sea with pearl highlights. The island and the sky keep their
+          rich colour (not a grey veil). The far clouds and distant islands fade softly into
+          the rain but stay visible. Everything stays in its place, the same shapes and sizes.
+      - block: edit-keep-v1
+      - text: "AVOID: a dark or grey-blue gloomy scene, a storm, hard diagonal rain, a grey veil, new objects, characters, text, moving anything"
+
+  - id: x-revontuli-sky-rain
+    kind: plate
+    name: x-revontuli-sky-rain
+    size: 1024x1536
+    canvas: 1024x1536
+    deliver: {scale: 1.0}
+    edit_of: x-revontuli-portrait-s4-day
+    chat: "Pofu · Portrait islands"
+    light: {cell: day, layer: subject}
+    palettes: [world-foliage, world-props, world-water]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Revontuli rain sky: an edit of the picked portrait pilot, overcast soft rain light with colours kept. It is the target of the offline colour transfer pilot (ADR-0025), not a shipped cell. Review: nothing moved or healed, colours kept, no grey veil."
+    prompt:
+      - text: |
+          Edit the attached tall painting into the same scene in a soft rain: a soft
+          lilac-grey overcast sky with layered rain clouds, fine gentle rain streaks, a
+          wetter, darker cloud sea with pearl highlights. The island and the sky keep their
+          rich colour (not a grey veil). The far clouds and distant islands fade softly into
+          the rain but stay visible. Everything stays in its place, the same shapes and sizes.
+      - block: edit-keep-v1
+      - text: "AVOID: a dark or grey-blue gloomy scene, a storm, hard diagonal rain, a grey veil, new objects, characters, text, moving anything"
