@@ -354,5 +354,114 @@
    },
    "ok": true
   }
+ },
+ "sky_checks": {
+  "thresholds": {
+   "mirror": {
+    "ratio_min": 0.5,
+    "rows": 300,
+    "min_rows": 40
+   },
+   "sky_edges": {
+    "col_hp": 0.4,
+    "row_hp": 1.0,
+    "band": 0.42
+   },
+   "ghosts": {
+    "max_points": 0,
+    "radius": 24,
+    "min_area": 6,
+    "max_area": 150
+   }
+  },
+  "note": "screen_check.py home sky: before = the first shipped export (mirrored sea, 1/8 night sky with the moon box, star residue in far), after = this one",
+  "before": {
+   "day": {
+    "mirror_ratio": {
+     "0": 0.035,
+     "3": 0.154
+    },
+    "sky_edges": {
+     "col_hp": 0.224,
+     "row_hp": 0.372
+    },
+    "ghost_points": {
+     "0": 0,
+     "60": 0
+    }
+   },
+   "golden": {
+    "mirror_ratio": {
+     "0": 0.036,
+     "3": 0.138
+    },
+    "sky_edges": {
+     "col_hp": 0.231,
+     "row_hp": 0.385
+    },
+    "ghost_points": {
+     "0": 0,
+     "60": 0
+    }
+   },
+   "night": {
+    "mirror_ratio": {
+     "0": 0.042,
+     "3": 0.134
+    },
+    "sky_edges": {
+     "col_hp": 0.635,
+     "row_hp": 2.118
+    },
+    "ghost_points": {
+     "0": 10,
+     "60": 0
+    }
+   }
+  },
+  "after": {
+   "day": {
+    "mirror_ratio": {
+     "0": 0.998,
+     "3": 0.997
+    },
+    "sky_edges": {
+     "col_hp": 0.159,
+     "row_hp": 0.413
+    },
+    "ghost_points": {
+     "0": 0,
+     "60": 0
+    }
+   },
+   "golden": {
+    "mirror_ratio": {
+     "0": 0.973,
+     "3": 0.976
+    },
+    "sky_edges": {
+     "col_hp": 0.207,
+     "row_hp": 0.299
+    },
+    "ghost_points": {
+     "0": 0,
+     "60": 0
+    }
+   },
+   "night": {
+    "mirror_ratio": {
+     "0": 0.995,
+     "3": 0.996
+    },
+    "sky_edges": {
+     "col_hp": 0.241,
+     "row_hp": 0.383
+    },
+    "ghost_points": {
+     "0": 0,
+     "60": 0
+    }
+   }
+  }
  }
 }

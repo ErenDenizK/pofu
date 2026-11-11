@@ -20,7 +20,9 @@ function on frames so the same code can read a CI screenshot later (`check_frame
   5 life       two seconds of drift change the sky and leave the island untouched
   6 resolution source pixels per screen pixel on the island
 
-`ci` reads the app's own frames instead: `--frames DIR` holds `home-plate-full-l10-<light>.png` from the
+`sky` renders the shipped sky set (`skyset_render.py`, the app's layers and motion) and runs three more: no mirror
+image in the rows past the plate, no stripe or box edge in the sky layer, no doubled star (a star's ghost left in a
+drifting layer). `ci` reads the app's own frames instead: `--frames DIR` holds `home-plate-full-l10-<light>.png` from the
 simulator (the sky set at time zero, `worldStillFrame`) and `--before DIR` the same frames of the
 plate-only build; each is checked as `check_ci` says (identity against the previous frame, colour,
 dead composition, resolution).
@@ -38,6 +40,7 @@ from pathlib import Path
 import cv2
 import numpy as np
 from PIL import Image
+from scipy import ndimage
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import colour_metrics  # noqa: E402
@@ -50,6 +53,14 @@ SCREEN = (1206, 2622)            # px: 402 x 874 pt at 3x
 SCREEN_PT = (402, 874)
 DRIFT = {"far": 4.0, "mid": 9.0, "sea": 14.0}   # screen px per second
 TIMES = (0, 30, 120)
+
+# the three checks on the shipped layers (`run_sky`) and the mirror check on any frame; calibrated on the
+# sky sets before and after the fixes (`calibration.json`)
+SKY_THRESHOLDS = {
+    "mirror": {"ratio_min": 0.5, "rows": 300, "min_rows": 40},
+    "sky_edges": {"col_hp": 0.4, "row_hp": 1.0, "band": 0.42},
+    "ghosts": {"max_points": 0, "radius": 24, "min_area": 6, "max_area": 150},
+}
 
 # starting guesses, calibrated on Home day, golden and night (see calibration.json)
 THRESHOLDS = {
@@ -399,6 +410,86 @@ def check_frame(frame: np.ndarray, master: np.ndarray, covered: np.ndarray, isla
             "dead": check_dead(frame, th["dead"])}
 
 
+# ---------------------------------------------------------------- sky checks (mirror, straight edges, ghosts)
+
+def check_mirror(frame: np.ndarray, plate_bottom: int, th: dict, limit: int | None = None) -> dict:
+    """No mirror image past the plate: the rows below its bottom edge must not be the rows above it
+    flipped. `ratio` is the mean absolute difference of the flipped rows against the rows below,
+    over the same against the flipped rows moved 311 px sideways (the control a plain texture
+    scores about 1 on); a mirror scores near 0. `limit` is the last usable row (CI frames end in chrome)."""
+    h = frame.shape[0] if limit is None else min(limit, frame.shape[0])
+    n = min(th["rows"], plate_bottom, h - plate_bottom)
+    if n < th["min_rows"]:
+        return {"rows": max(n, 0), "ratio": None, "ok": True, "note": "no rows past the plate"}
+    above = frame[plate_bottom - n: plate_bottom][::-1]
+    below = frame[plate_bottom: plate_bottom + n]
+    d = float(np.abs(above - below).mean())
+    control = float(np.abs(np.roll(above, 311, axis=1) - below).mean())
+    ratio = d / max(control, 1e-6)
+    return {"rows": n, "ratio": round(ratio, 3), "ok": ratio >= th["ratio_min"]}
+
+
+def check_sky_edges(sky: np.ndarray, th: dict) -> dict:
+    """Stripes and straight box edges in a sky-only frame, over the rows above the island: the column
+    means (and the row means) of the luminance, minus their own smooth version (Gaussian sigma 6 and 8),
+    must stay within `col_hp` and `row_hp` grey levels. A smooth gradient has only its 8-bit contours;
+    a stripe or the edge of a filled box (the first night's moon rectangle) is a step many rows long.
+    Stars are median-filtered away first."""
+    top = sky[: int(sky.shape[0] * th["band"])]
+    lum = cv2.medianBlur(np.uint8(np.clip(luminance(top) ** (1 / 2.2), 0, 1) * 255 + 0.5), 5).astype(np.float32)
+    cols = lum.mean(0)
+    rows = lum.mean(1)
+    hp_c = np.abs(cols - ndimage.gaussian_filter1d(cols, 6))[18:-18]       # the filter's own edge effect is cut off
+    hp_r = np.abs(rows - ndimage.gaussian_filter1d(rows, 8))[24:-24]
+    return {"col_hp": round(float(hp_c.max()), 3), "row_hp": round(float(hp_r.max()), 3),
+            "ok": bool(hp_c.max() <= th["col_hp"] and hp_r.max() <= th["row_hp"])}
+
+
+def check_ghosts(below: np.ndarray, above: np.ndarray, th: dict) -> dict:
+    """Doubled points: `below` is the still sky (gradient, moon, stars), `above` the same with the
+    drifting layers over it. A small compact patch that the drifting layers add within `radius` px of a
+    star of the sky is that star's ghost (residue of the star left in a cloud layer)."""
+    lum = luminance(below)
+    sm = cv2.medianBlur(np.uint8(np.clip(lum ** (1 / 2.2), 0, 1) * 255 + 0.5), 15).astype(np.float32)
+    stars_lab, n = ndimage.label(((np.uint8(np.clip(lum ** (1 / 2.2), 0, 1) * 255 + 0.5) - sm) > 10))
+    centres = [ndimage.center_of_mass(stars_lab == i) for i in range(1, n + 1) if (stars_lab == i).sum() <= 120]
+    added = de_map(above, below) > 2.0
+    lab, m = ndimage.label(added)
+    ghosts = 0
+    for i in range(1, m + 1):
+        comp = lab == i
+        area = int(comp.sum())
+        if area > th["max_area"] or area < th["min_area"]:
+            continue
+        cy, cx = ndimage.center_of_mass(comp)
+        if any(np.hypot(cy - sy, cx - sx) <= th["radius"] for sy, sx in centres):
+            ghosts += 1
+    return {"stars": len(centres), "ghost_points": ghosts, "ok": ghosts <= th["max_points"]}
+
+
+def run_sky(island: str, light: str, th: dict = SKY_THRESHOLDS) -> dict:
+    """The three checks on the shipped sky set rendered by `skyset_render` (the app's layers and motion):
+    the rows past the plate at t = 0 and 3 s, the sky layer alone, and the stars' ghosts at t = 0 and 60 s."""
+    import skyset_render as rd
+    s = rd.load(island, light)
+    fr = framing(s["manifest"])
+    h = s["manifest"]["size"][1]
+    bottom = int(round((h - fr["y0"]) / fr["k"]))
+    ids = [layer["id"] for layer in s["layers"]]
+    out: dict = {"light": light}
+    out["mirror"] = {t: check_mirror(rd.render(s, t, fr), bottom, th["mirror"]) for t in (0, 3)}
+    out["mirror"]["ok"] = all(v["ok"] for v in out["mirror"].values())
+    out["sky_edges"] = check_sky_edges(rd.render(s, 0, fr, upto="sky"), th["sky_edges"])
+    last_still = [i for i in ids if i.startswith("stars") or i in ("sky", "moon")][-1]
+    ghosts = {}
+    for t in (0, 60):                  # the stars twinkle with t: compare at the same time
+        below = rd.render(s, t, fr, upto=last_still)
+        ghosts[t] = check_ghosts(below, rd.render(s, t, fr, upto="far"), th["ghosts"]) if "far" in ids else {"ok": True}
+    out["ghosts"] = {**{str(t): v for t, v in ghosts.items()}, "ok": all(v["ok"] for v in ghosts.values())}
+    out["ok"] = all(out[k]["ok"] for k in ("mirror", "sky_edges", "ghosts"))
+    return out
+
+
 # ---------------------------------------------------------------- CI frames
 
 def _read(path: Path) -> np.ndarray:
@@ -428,7 +519,9 @@ def check_ci(island: str, light: str, frame: np.ndarray, before: np.ndarray, th:
     out["colour"] = check_colour({0: frame}, before, covered, masks, th["colour"])
     out["dead"] = check_dead_vs_master(frame, before, th["dead"])
     out["resolution"] = check_resolution(fr, th["resolution"])
-    out["ok"] = all(out[k]["ok"] for k in ("identity", "colour", "dead", "resolution"))
+    bottom = int(round((man["size"][1] - fr["y0"]) / fr["k"]))
+    out["mirror"] = check_mirror(frame, bottom, SKY_THRESHOLDS["mirror"], limit=frame.shape[0])
+    out["ok"] = all(out[k]["ok"] for k in ("identity", "colour", "dead", "resolution", "mirror"))
     return out
 
 
@@ -489,6 +582,12 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--frames", help="also save the composited frames (png) here; with `ci`, the CI frames")
     ap.add_argument("--before", help="with `ci`: the plate-only build's CI frames")
     a = ap.parse_args(argv)
+    if a.light == "sky":
+        res = {l: run_sky(a.island, l) for l in ("day", "golden", "night")}
+        print(json.dumps(res, indent=1))
+        if a.json:
+            Path(a.json).write_text(json.dumps({"thresholds": SKY_THRESHOLDS, "sky": res}, indent=1) + "\n")
+        return 0 if all(r["ok"] for r in res.values()) else 1
     if a.light == "ci":
         if not (a.frames and a.before):
             ap.error("ci needs --frames and --before")

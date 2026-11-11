@@ -62,7 +62,7 @@ painting and on any other background no halo shows. Motion is code only: the man
 parallax (far 4, mid 9, sea 14 screen px/s at 1206 wide) and the tile widths.
 
 The app draws the set (`PofuWorld/Sky/`, ADR-0025): `python3 tools/plate/skyset_export.py home` writes the imagesets and
-`Plates/skyset-home.json` (frame-zero identity of the shipped layers: mean dE 0.5 to 0.6, p99 3.1 to 4.9), then Home's level-10 day,
+`Plates/skyset-home.json` (frame-zero identity of the shipped layers: mean dE 0.56 to 0.63, p99 2.1 to 4.3; `screen_check.py home sky` adds the mirror, stripe and ghost-star checks), then Home's level-10 day,
 golden hour and night draw it behind the island layer and the other states keep their plate. The simulator's CI frames
 (`home-plate-full-l10-<light>.png`, the sky at time zero) are checked against the previous plate-only build's frames:
 

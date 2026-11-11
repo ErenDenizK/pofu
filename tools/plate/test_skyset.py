@@ -171,6 +171,82 @@ class RenderTests(unittest.TestCase):
                 self.assertTrue(np.array_equal(a["rgba"], b["rgba"]), a["id"])
 
 
+class SkyCheckTests(unittest.TestCase):
+    """The checks that would have caught the first version's mirror, stripes and ghost stars."""
+
+    def test_mirror_is_caught_and_a_plain_texture_is_not(self):
+        rng = np.random.default_rng(0)
+        tex = rng.random((600, 400, 3)).astype(np.float32) * 255
+        th = sc.SKY_THRESHOLDS["mirror"]
+        plain = sc.check_mirror(tex, 300, th)
+        self.assertTrue(plain["ok"], plain)
+        mirrored = tex.copy()
+        mirrored[300:] = tex[:300][::-1]
+        bad = sc.check_mirror(mirrored, 300, th)
+        self.assertFalse(bad["ok"], bad)
+        self.assertLess(bad["ratio"], 0.1)
+        self.assertTrue(sc.check_mirror(tex[:310], 300, th)["ok"])         # no rows past the plate: nothing to check
+
+    def test_stripes_and_a_box_edge_are_caught_and_a_smooth_gradient_is_not(self):
+        h, w = 400, 300
+        grad = np.repeat(np.linspace(0.2, 0.7, h)[:, None, None], w, 1) * np.array([0.6, 0.8, 1.0]) * 255
+        th = sc.SKY_THRESHOLDS["sky_edges"]
+        self.assertTrue(sc.check_sky_edges(grad.astype(np.float32), th)["ok"])
+        box = grad.copy()
+        box[:150, 200:] *= 1.08                                            # a rectangle edge
+        self.assertFalse(sc.check_sky_edges(box.astype(np.float32), th)["ok"])
+        stripes = grad.copy()
+        for x in range(0, w, 40):
+            stripes[:, x: x + 8] *= 1.05                                   # vertical bands
+        self.assertFalse(sc.check_sky_edges(stripes.astype(np.float32), th)["ok"])
+
+    def test_a_doubled_star_is_caught(self):
+        below = np.full((200, 200, 3), 0.1, np.float32)
+        below[50:53, 50:53] = 0.9                                          # a star
+        th = sc.SKY_THRESHOLDS["ghosts"]
+        self.assertTrue(sc.check_ghosts(below * 255, below * 255, th)["ok"])
+        above = below.copy()
+        above[56:59, 62:65] = 0.5                                          # a ghost beside it
+        r = sc.check_ghosts(below * 255, above * 255, th)
+        self.assertEqual(r["ghost_points"], 1)
+        far = below.copy()
+        far[150:160, 20:120] = 0.6                                         # a cloud far from any star
+        self.assertTrue(sc.check_ghosts(below * 255, far * 255, th)["ok"])
+
+    def test_the_shipped_sets_pass_all_three(self):
+        for light in LIGHTS:
+            r = sc.run_sky("home", light)
+            self.assertTrue(r["ok"], f"{light}: {r}")
+
+    def test_no_star_residue_is_left_in_the_far_and_mid_layers(self):
+        spec = DATA["lights"]["night"]
+        hand = json.loads((ex.PLATES / "home" / "sky" / "sky.json").read_text())
+        sky0 = np.asarray(heic.open_image(ex.PLATES / "home" / "sky" / "night" / "sky.heic").convert("RGB"), np.float32) / 255
+        centres = ex.star_centres(sky0, hand, "night")
+        self.assertGreater(len(centres), 10)
+        for lid in ("far", "mid"):
+            layer = next(l for l in spec["layers"] if l["id"] == lid)
+            f = ex.ASSETS / f"{layer['asset']}.imageset" / f"{layer['asset']}.heic"
+            a = np.asarray(heic.open_image(f).convert("RGBA"), np.float32)[..., 3] / 255
+            sx = a.shape[1] / layer["size"][0]
+            for cx, cy in centres:
+                x, y = int((cx - layer["pos"][0]) * sx), int((cy - layer["pos"][1]) * sx)
+                if 0 <= y < a.shape[0] and 0 <= x < a.shape[1]:
+                    self.assertLess(float(a[max(y - 4, 0): y + 5, max(x - 4, 0): x + 5].max()), 0.05, f"{lid} at {cx:.0f},{cy:.0f}")
+
+    def test_the_moon_is_a_sprite_with_a_soft_radial_edge(self):
+        moon = next(l for l in DATA["lights"]["night"]["layers"] if l["id"] == "moon")
+        f = ex.ASSETS / f"{moon['asset']}.imageset" / f"{moon['asset']}.heic"
+        a = np.asarray(heic.open_image(f).convert("RGBA"), np.float32)[..., 3] / 255
+        for edge in (a[0], a[-1], a[:, 0], a[:, -1]):
+            self.assertLess(float(edge.max()), 0.02, "no rectangle: the alpha is zero at the sprite's border")
+        self.assertGreater(float(a[a.shape[0] // 2, a.shape[1] // 2]), 0.99)
+
+    def test_the_sea_below_the_plate_is_a_continuation_not_a_reflection(self):
+        sea = next(l for l in DATA["lights"]["day"]["layers"] if l["id"] == "sea")
+        self.assertEqual(sea["size"][1], 1728 + ex.SEA_PAD)
+
+
 class CiFrameTests(unittest.TestCase):
     def test_the_same_frame_passes_and_a_changed_one_fails(self):
         s = rd.load("home", "day")
