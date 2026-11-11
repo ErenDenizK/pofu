@@ -1,0 +1,345 @@
+batch: batch-74-redo-states
+manifest: tools/imagegen/manifest/batch-74-redo-states.yaml
+jobs:
+  x-home-flow-bare-v3:
+    pick: null
+    publication: exploration; rejected by the lead 2026-11-11, redo queued; never promoted
+    lead_review: "Lead reject (third try): the lawn is a puffed lime pillow whose upper contour rises over where the buildings stood, so new land appears; not the root's deep green. Redo queued as a masked region edit."
+    note: 'Both takes fail manual review: the lawn is lime/yellow rather than the
+      requested deep green, and the exposed upper contour is broader and smoother
+      than the root. The harbour islet remains separate and the named structures appear
+      removed. No eligible take; the two-take request is complete, so skip without
+      regeneration.'
+    status: rejected
+    skip_reason: Both requested takes fail manual eligibility review for lawn color
+      and island silhouette. Batch header directs retaining both and moving on; no
+      additional takes requested.
+    manual_review:
+    - take: 1
+      source_sha256: 4b303cac40316ed106a75e6a79ed7808ff3b30d249345985b0e14b5397ce35b4
+      eligible: false
+      reasons:
+      - The lawn is much brighter and more lime/yellow than the root's deep green,
+        despite having visible grass texture.
+      - The newly exposed upper land contour reads as a broader, smoother mound than
+        the root; exact silhouette and cliff-edge preservation are not established
+        visually.
+      - The harbour islet is visibly separate, and the buildings, props, and flowers
+        appear removed while the doors, sky, distant islands, and whale remain broadly
+        present.
+      caveats:
+      - This is a visual comparison, not a pixel-registration test; small shifts in
+        the sky elements cannot be ruled out.
+    - take: 2
+      source_sha256: c246af4d6c44e8a768aeb44d3a6770a4039e04541a320a16c2492202a5e56946
+      eligible: false
+      reasons:
+      - The lawn is much brighter and more lime/yellow than the root's deep green;
+        grass texture remains visible but does not match the requested color and shading.
+      - The newly exposed upper land contour reads as a broader, smoother mound than
+        the root; exact silhouette and cliff-edge preservation are not established
+        visually.
+      - The harbour islet is visibly separate, and the buildings, props, and flowers
+        appear removed while the doors, sky, distant islands, and whale remain broadly
+        present.
+      caveats:
+      - This is a visual comparison, not a pixel-registration test; small shifts in
+        the sky elements cannot be ruled out.
+    actual_generation_calls: 2
+qa_reports:
+- job: x-home-flow-bare-v3
+  take: 1
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1024x1536
+  - check: chroma_ceiling
+    status: warn
+    message: chroma p95 73 (R1 51) (advisory in an exploration)
+    value: 73.2
+  - check: light_values
+    status: pass
+    message: 'day/subject: L p5 60 (at least 50: darks stay a light mid-tone), p98
+      97 (at least 90)'
+    value: 60.5
+  - check: light_median
+    status: pass
+    message: 'day/subject: median L 81 (band 74-92)'
+    value: 80.8
+  - check: light_contrast
+    status: pass
+    message: 'day/subject: p75 local contrast 3.5 (band 2.5-6.5; above it reads too
+      contrasty)'
+    value: 3.52
+  - check: light_sky
+    status: pass
+    message: 'day: sky L 73 (band 70-94)'
+    value: 73.3
+  - check: light_sea
+    status: pass
+    message: 'day: cloud sea L 89 (at least 82: the sea is the reflector)'
+    value: 89.4
+  - check: light_dark
+    status: pass
+    message: 'day: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.0
+  - check: detail_budget
+    status: pass
+    message: detail at display size 2.8 (R1 5.3)
+    value: 2.81
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 9.8, p95 28.4, off-palette 33.9% (top: #88BBFF (6.9%), #BBCC33
+      (3.8%)) (advisory in an exploration)'
+    value: 9.7934
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_stability
+    status: pass
+    message: 76% of the parent level unchanged
+    value: 0.7588
+  - check: edit_chroma
+    status: pass
+    message: chroma x1.07 of the parent level (drift compounds along a chain)
+    value: 1.0749
+  - &id001
+    check: harmony
+    status: warn
+    message: 'harmony score 57 against the world reference (outliers: C_p95, edge)'
+    value: 57.2
+  info:
+    metrics_raw:
+      L_p5: 66.8
+      L_p50: 80.7
+      L_p95: 95.6
+      C_p50: 29.8
+      C_p95: 73.2
+      C_p99: 76.2
+      detail: 2.81
+    metrics_locked:
+      L_p5: 66.8
+      L_p50: 80.7
+      L_p95: 95.6
+      C_p50: 29.8
+      C_p95: 73.2
+      C_p99: 76.2
+      detail: 2.81
+  fingerprint: 7f41056eba638ce5
+- job: x-home-flow-bare-v3
+  take: 2
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1024x1536
+  - check: chroma_ceiling
+    status: warn
+    message: chroma p95 71 (R1 51) (advisory in an exploration)
+    value: 70.7
+  - check: light_values
+    status: pass
+    message: 'day/subject: L p5 61 (at least 50: darks stay a light mid-tone), p98
+      97 (at least 90)'
+    value: 60.8
+  - check: light_median
+    status: pass
+    message: 'day/subject: median L 81 (band 74-92)'
+    value: 81.1
+  - check: light_contrast
+    status: pass
+    message: 'day/subject: p75 local contrast 3.4 (band 2.5-6.5; above it reads too
+      contrasty)'
+    value: 3.4
+  - check: light_sky
+    status: pass
+    message: 'day: sky L 74 (band 70-94)'
+    value: 74.4
+  - check: light_sea
+    status: pass
+    message: 'day: cloud sea L 90 (at least 82: the sea is the reflector)'
+    value: 89.8
+  - check: light_dark
+    status: pass
+    message: 'day: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.0
+  - check: detail_budget
+    status: pass
+    message: detail at display size 2.8 (R1 5.3)
+    value: 2.77
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 9.1, p95 26.1, off-palette 30.6% (top: #88BBFF (6.3%), #77BBFF
+      (3.6%)) (advisory in an exploration)'
+    value: 9.1235
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_stability
+    status: pass
+    message: 76% of the parent level unchanged
+    value: 0.7598
+  - check: edit_chroma
+    status: pass
+    message: chroma x1.03 of the parent level (drift compounds along a chain)
+    value: 1.0299
+  - &id002
+    check: harmony
+    status: warn
+    message: 'harmony score 57 against the world reference (outliers: C_p95, L_p98,
+      edge)'
+    value: 57.1
+  info:
+    metrics_raw:
+      L_p5: 68.1
+      L_p50: 81.3
+      L_p95: 96.4
+      C_p50: 28.6
+      C_p95: 70.7
+      C_p99: 73.4
+      detail: 2.77
+    metrics_locked:
+      L_p5: 68.1
+      L_p50: 81.3
+      L_p95: 96.4
+      C_p50: 28.6
+      C_p95: 70.7
+      C_p99: 73.4
+      detail: 2.77
+  fingerprint: 7f41056eba638ce5
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-2e607c1d-64c4-4472-b8d8-1451c5ecd1db.png
+  source_sha256: 4b303cac40316ed106a75e6a79ed7808ff3b30d249345985b0e14b5397ce35b4
+  q90_take: design/art/takes/batch-74-redo-states/x-home-flow-bare-v3/plate__x-home-flow-bare-v3--t1.webp
+  q90_take_sha256: 9ceb9137d14cab830be36806681a00d5cef2e9cc649049f8ffb5123fa343bd2c
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: aeeb04a34f54d04f940ae83e860ec48941998e583f61266ced7b47c5dd99a2aa
+  started_at: '2026-11-10T20:17:21.021Z'
+  returned_at: '2026-11-10T20:17:46.787Z'
+  model: null
+  tool: image_gen.imagegen
+- take: 2
+  source_file: /workspace/generated_images/exec-703e78d2-3c11-40c2-8da3-8f08f3bd54ab.png
+  source_sha256: c246af4d6c44e8a768aeb44d3a6770a4039e04541a320a16c2492202a5e56946
+  q90_take: design/art/takes/batch-74-redo-states/x-home-flow-bare-v3/plate__x-home-flow-bare-v3--t2.webp
+  q90_take_sha256: ca587f096f39045f5afa89f450b5d8b0b03179e0b05d6566ab597d78d99befcf
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: aeeb04a34f54d04f940ae83e860ec48941998e583f61266ced7b47c5dd99a2aa
+  started_at: '2026-11-10T20:17:21.021Z'
+  returned_at: '2026-11-10T20:18:14.830Z'
+  model: null
+  tool: image_gen.imagegen
+policy:
+  never_promote: true
+  selection: lead picks
+  source_preservation: Original generated images retained at source_file paths; published
+    takes are q90 review copies.
+auxiliary_focused_world_scores:
+  method: Focused individual scoring against the precomputed world reference; no full
+    measure/catalog scan.
+  command_base:
+  - python3
+  - -I
+  - tools/assets/harmony.py
+  - score
+  reference_data:
+    config_sha256: d2ed591e6e8a7d0eafd54f95e3e3c98290453a81aaff11a9f800afea6fc43a18
+    reference_sha256: 602aff8ff097bad430ebfc0bf3837c647cf738bc407b90d58b8eb689810a673e
+    materials_sha256: 495011a0bfbe8c9c890ec62f8ff6f7a2e1f5fe1d061f73c23ec26518b938b557
+    assets_json_count: 211
+    assets_json_digest_sha256: f8f88057d3b860d56318b4a6bdfbf0fc70f16eb9237516ab9d3234b901c4f6b3
+  scores:
+  - take: 1
+    argv:
+    - python3
+    - -I
+    - tools/assets/harmony.py
+    - score
+    - build/imagegen/batch-74-redo-states/locked/plate__x-home-flow-bare-v3--t1.png
+    - --ppu
+    - '2.735'
+    - --kind
+    - world
+    ppu: 2.735
+    kind: world
+    score: 57.8
+    outliers:
+    - C_p95
+    - edge
+    reference_group: world
+  - take: 2
+    argv:
+    - python3
+    - -I
+    - tools/assets/harmony.py
+    - score
+    - build/imagegen/batch-74-redo-states/locked/plate__x-home-flow-bare-v3--t2.png
+    - --ppu
+    - '2.735'
+    - --kind
+    - world
+    ppu: 2.735
+    kind: world
+    score: 57.8
+    outliers:
+    - C_p95
+    - L_p98
+    - edge
+    reference_group: world
+  selection_role: Auxiliary earlier focused world CLI output; superseded for selection
+    by the canonical plate QA check.
+harmony_scores:
+  method: Existing unchanged qa.check_harmony(locked, kind=plate, limits_for plate
+    exploration); no full-catalog measure
+  kind: plate
+  ppu_formula: cfg.ppu_by_kind.world * locked_image_width / 1024
+  reference_data:
+    config_sha256: d2ed591e6e8a7d0eafd54f95e3e3c98290453a81aaff11a9f800afea6fc43a18
+    reference_sha256: 602aff8ff097bad430ebfc0bf3837c647cf738bc407b90d58b8eb689810a673e
+    materials_sha256: 495011a0bfbe8c9c890ec62f8ff6f7a2e1f5fe1d061f73c23ec26518b938b557
+    assets_json_count: 211
+    assets_json_digest_sha256: f8f88057d3b860d56318b4a6bdfbf0fc70f16eb9237516ab9d3234b901c4f6b3
+  scores:
+  - take: 1
+    locked_file: build/imagegen/batch-74-redo-states/locked/plate__x-home-flow-bare-v3--t1.png
+    kind: plate
+    ppu: 4.103
+    reference_group: world
+    score: 57.2
+    status: warn
+    message: 'harmony score 57 against the world reference (outliers: C_p95, edge)'
+    qa_check: *id001
+  - take: 2
+    locked_file: build/imagegen/batch-74-redo-states/locked/plate__x-home-flow-bare-v3--t2.png
+    kind: plate
+    ppu: 4.103
+    reference_group: world
+    score: 57.1
+    status: warn
+    message: 'harmony score 57 against the world reference (outliers: C_p95, L_p98,
+      edge)'
+    qa_check: *id002

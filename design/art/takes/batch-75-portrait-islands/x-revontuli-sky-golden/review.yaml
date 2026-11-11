@@ -1,0 +1,330 @@
+batch: batch-75-portrait-islands
+job: x-revontuli-sky-golden
+jobs:
+  x-revontuli-sky-golden:
+    pick: 2
+    status: review
+    publication: exploration; picked by the lead 2026-11-11 (take 2); never promoted
+    lead_review: "Lead pick over the auto-pick: take 2 warms to peach at the horizon; both stay in the island's lilac band."
+pick: 2
+status: review
+note: Auto-picked by QA among manually eligible non-failing takes, lowest lock load then higher explicit canonical
+  plate harmony. Founder/lead review pending; exploration only, never promoted. Island redraws/movement are retained
+  under batch header fallback. Despite header wording, current run.py ingest does not re-paste the original band;
+  no pixel registration claim.
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+manifest:
+  path: tools/imagegen/manifest/batch-75-portrait-islands.yaml
+  sha256: 756a9e894ab9a4bd530975b22272865ca5b56ff00f3d51b598824a1b1a4205c1
+prompt:
+  text: 'REFERENCES (attached, in this order):
+
+    1. The image to edit (the approved previous level). Edit it; do not redraw it.
+
+    2. The light target: the home island at this time, its sky, light and cloud sea. Match the light, not the objects.
+
+
+    Edit the attached tall painting into the same scene in this light: golden hour: a soft pink and lilac sky warming
+    to peach near the clouds, low warm peach light raking from the side, lilac shadows, the cloud sea blushed peach
+    with lilac shade. Lamps and windows that exist are just coming on, small and soft.
+
+    Revontuli''s own colours stay rich. The sky, the distant islands and the cloud sea
+
+    stay rich and slightly vivid. Everything stays in its place, the same shapes and
+
+    sizes; only light and colour change.
+
+
+    KEEP: everything not named above stays exactly the same as in the
+
+    attached image: every existing part, its shape, color, position and size,
+
+    the canvas, the camera, the light and the painting style. Do not zoom out
+
+    or reframe: if a new part does not fit, make the new part smaller, never
+
+    the existing ones. Outside the new parts, the result must line up with
+
+    the attached image pixel for pixel.
+
+
+    AVOID: a flat gradient, a haze or mist band, a grey veil, a dark scene, orange or red saturation, healing or
+    changing the stage, new objects, characters, text, moving anything
+
+
+    LIGHT (hour: golden, layer: subject). The day''s reward.
+
+    Key light #F7C873 from the right, a little above; fill #D9A9C4; rim #FFC77A along the edge facing away from
+    the key. Shadows are tinted #8E78C8 (never grey or black), short and soft, falling toward the left, a little
+    below; every object sits on a soft occlusion pad in that hue where it touches the ground or another form.
+
+    VALUES (the reference envelope): a high-key picture inside one envelope of soft, milky air. Every value sits
+    between light mid-tone and cream-white; the darkest recesses (door holes, gaps, pond rims) are a mid-value tinted
+    with the shadow hue, never black. Form turns in small value steps. Colour lives in the halftones; lights bleach
+    to cream. No dark outlines: edges are found by value and hue. The cloud sea below is the brightest large surface
+    and lights the island''s underside with a warm bounce.
+
+    This is the SUBJECT plane: the clearest forms and the crispest edges in the picture, still inside the envelope.
+
+
+    Output: one image, opaque, full bleed, portrait 1024 x 1536.
+
+    '
+  sha256: d6c739afb15dc6de04e26c6f6c3f34b649bf948f67703ee72a3af198d2f30231
+attachments:
+- path: build/imagegen/batch-75-portrait-islands/locked/plate__x-revontuli-portrait-s4-day--t1.png
+  role: The image to edit (the approved previous level). Edit it; do not redraw it.
+  sha256: 8226a94e02f663c161ded9e486605094a9283bf09e2ab9a56c76a889e5feea27
+- path: design/art/takes/batch-66-home-flow/x-home-flow-golden/plate__x-home-flow-golden--t1.webp
+  role: 'The light target: the home island at this time, its sky, light and cloud sea. Match the light, not the
+    objects.'
+  sha256: f03dceaf68f712e04c34c4233d23863ebc9df7a75f212fe45aabbc763412fada
+fingerprint: 2e709429edd4308b
+takes:
+  t1:
+    qa: warn
+    qa_report:
+      job: x-revontuli-sky-golden
+      take: 1
+      status: warn
+      preset: plate-final
+      checks:
+      - check: transparency
+        status: pass
+        message: opaque, as this kind must be
+      - check: canvas
+        status: pass
+        message: 1024x1536
+      - check: chroma_ceiling
+        status: warn
+        message: chroma p95 55 (R1 51)
+        value: 55.1
+      - check: light_values
+        status: pass
+        message: 'golden/subject: L p5 60 (at least 50: darks stay a light mid-tone), p98 95 (at least 85)'
+        value: 60.0
+      - check: light_median
+        status: pass
+        message: 'golden/subject: median L 77 (band 68-86)'
+        value: 76.9
+      - check: light_contrast
+        status: pass
+        message: 'golden/subject: p75 local contrast 5.3 (band 2.5-6.0; above it reads too contrasty)'
+        value: 5.28
+      - check: light_sky
+        status: pass
+        message: 'golden: sky L 63 (band 60-86)'
+        value: 63.1
+      - check: light_sea
+        status: warn
+        message: 'golden: cloud sea L 76 (at least 78: the sea is the reflector)'
+        value: 76.4
+      - check: light_dark
+        status: pass
+        message: 'golden: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+        value: 0.0
+      - check: detail_budget
+        status: pass
+        message: detail at display size 3.5 (R1 5.3)
+        value: 3.46
+      - check: lock_load
+        status: pass
+        message: the lock moved colors by mean dE 0.0
+        value: 0.0
+      - check: palette_drift
+        status: warn
+        message: 'mean dE 3.3, p95 10.3, off-palette 3.2% (top: #88BBDD (0.3%), #6699CC (0.2%))'
+        value: 3.2926
+      - check: edit_silhouette
+        status: pass
+        message: 100% of the parent's shape kept
+        value: 1.0
+      - check: edit_structure
+        status: pass
+        message: light structure matches the parent (r 0.89)
+        value: 0.8898
+      - check: edit_lightness
+        status: warn
+        message: mean lightness moved by 11.2 L (the same lightness was asked)
+        value: 11.2066
+      info:
+        metrics_raw:
+          L_p5: 54.7
+          L_p50: 73.7
+          L_p95: 90.8
+          C_p50: 26.5
+          C_p95: 55.1
+          C_p99: 66.4
+          detail: 3.46
+        metrics_locked:
+          L_p5: 54.7
+          L_p50: 73.7
+          L_p95: 90.8
+          C_p50: 26.5
+          C_p95: 55.1
+          C_p99: 66.4
+          detail: 3.46
+      fingerprint: 2e709429edd4308b
+    qa_report_sha256: c3cea25ae2a99698373a69ab935435c7dc6b213f8317a21f74208d3c2bf2561f
+    explicit_canonical_plate_harmony:
+      check: harmony
+      status: pass
+      message: 'harmony score 84 against the world reference (outliers: edge)'
+      value: 83.8
+    manual:
+      eligible: true
+      note: Peach/lilac golden relight, rich aurora and layered cloud sea. Full moon/stars and island inventory
+        retained; warm highlights stronger at the island rim. No flat band, harsh orange clipping or obvious seam.
+        Small redraws are retained under header fallback; no exact registration.
+      started_at: '2026-11-11T13:00:04.473Z'
+      returned_at: '2026-11-11T13:03:03.991Z'
+    source:
+      path: /workspace/generated_images/exec-64a9ce75-1bce-46da-8c04-3af6d2681fbf.png
+      preserved_path: /workspace/art-operator-runtime/batch75/revontuli/originals/exec-64a9ce75-1bce-46da-8c04-3af6d2681fbf.png
+      sha256: 65e7ec208d8d78c315a66fb9bf7aa4dd0067441993c5db7a0a6a9710e3a53965
+      dimensions:
+      - 1024
+      - 1536
+      encoding: original PNG
+      file_mtime_utc: '2026-11-11T13:03:03.166490+00:00'
+      tool_call_started_at: '2026-11-11T13:00:04.473Z'
+      tool_return_observed_at: '2026-11-11T13:03:03.991Z'
+    ingestion_time: '2026-11-11T13:08:30+00:00'
+    locked_sha256: 93424e0fb2c15efbf251045eb502ef83d2cf33ed59c9bc98061f5e7d413035e5
+    review_copy:
+      path: design/art/takes/batch-75-portrait-islands/x-revontuli-sky-golden/plate__x-revontuli-sky-golden--t1.webp
+      sha256: 292a796c63e3b783ab440a770a0fce877a84905d9e5be043085c0ed1e816cc48
+      encoding: lossy WebP q90 method6, full original dimensions
+    lock_load: 0.0
+  t2:
+    qa: warn
+    qa_report:
+      job: x-revontuli-sky-golden
+      take: 2
+      status: warn
+      preset: plate-final
+      checks:
+      - check: transparency
+        status: pass
+        message: opaque, as this kind must be
+      - check: canvas
+        status: pass
+        message: 1024x1536
+      - check: chroma_ceiling
+        status: warn
+        message: chroma p95 53 (R1 51)
+        value: 53.2
+      - check: light_values
+        status: pass
+        message: 'golden/subject: L p5 60 (at least 50: darks stay a light mid-tone), p98 96 (at least 85)'
+        value: 60.3
+      - check: light_median
+        status: pass
+        message: 'golden/subject: median L 76 (band 68-86)'
+        value: 76.2
+      - check: light_contrast
+        status: pass
+        message: 'golden/subject: p75 local contrast 5.4 (band 2.5-6.0; above it reads too contrasty)'
+        value: 5.44
+      - check: light_sky
+        status: pass
+        message: 'golden: sky L 62 (band 60-86)'
+        value: 62.0
+      - check: light_sea
+        status: warn
+        message: 'golden: cloud sea L 77 (at least 78: the sea is the reflector)'
+        value: 77.2
+      - check: light_dark
+        status: pass
+        message: 'golden: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+        value: 0.0
+      - check: detail_budget
+        status: pass
+        message: detail at display size 3.6 (R1 5.3)
+        value: 3.58
+      - check: lock_load
+        status: pass
+        message: the lock moved colors by mean dE 0.0
+        value: 0.0
+      - check: palette_drift
+        status: warn
+        message: 'mean dE 3.1, p95 8.7, off-palette 1.8% (top: #CC77EE (0.1%), #BBFFBB (0.1%))'
+        value: 3.1103
+      - check: edit_silhouette
+        status: pass
+        message: 100% of the parent's shape kept
+        value: 1.0
+      - check: edit_structure
+        status: pass
+        message: light structure matches the parent (r 0.88)
+        value: 0.8812
+      - check: edit_lightness
+        status: warn
+        message: mean lightness moved by 11.1 L (the same lightness was asked)
+        value: 11.0636
+      info:
+        metrics_raw:
+          L_p5: 53.4
+          L_p50: 73.5
+          L_p95: 91.5
+          C_p50: 26.5
+          C_p95: 53.2
+          C_p99: 65.5
+          detail: 3.58
+        metrics_locked:
+          L_p5: 53.4
+          L_p50: 73.5
+          L_p95: 91.5
+          C_p50: 26.5
+          C_p95: 53.2
+          C_p99: 65.5
+          detail: 3.58
+      fingerprint: 2e709429edd4308b
+    qa_report_sha256: dcf038e1f6396c59d270b6d694e1ce2270a10a561fed61c3ea362528f77e1c69
+    explicit_canonical_plate_harmony:
+      check: harmony
+      status: pass
+      message: 'harmony score 84 against the world reference (outliers: edge)'
+      value: 84.1
+    manual:
+      eligible: true
+      note: Peach/lilac golden relight, rich aurora and layered cloud sea. Full moon/stars and island inventory
+        retained; warm highlights stronger at the island rim. No flat band, harsh orange clipping or obvious seam.
+        Small redraws are retained under header fallback; no exact registration.
+      started_at: '2026-11-11T13:00:04.473Z'
+      returned_at: '2026-11-11T13:04:53.910Z'
+    source:
+      path: /workspace/generated_images/exec-8a134fab-0078-42f4-ba7c-40d3554f2ac3.png
+      preserved_path: /workspace/art-operator-runtime/batch75/revontuli/originals/exec-8a134fab-0078-42f4-ba7c-40d3554f2ac3.png
+      sha256: 1d66407740f2fc13036eb0c5d0ccdab3e7dd6ae0738b33e52dec0c3ecc7f733b
+      dimensions:
+      - 1024
+      - 1536
+      encoding: original PNG
+      file_mtime_utc: '2026-11-11T13:04:53.461199+00:00'
+      tool_call_started_at: '2026-11-11T13:00:04.473Z'
+      tool_return_observed_at: '2026-11-11T13:04:53.910Z'
+    ingestion_time: '2026-11-11T13:08:31+00:00'
+    locked_sha256: 56b29acb35747d8cbd1b6d46a0f50fd6d210c12e88a7fe59ffbd34c2f43b1997
+    review_copy:
+      path: design/art/takes/batch-75-portrait-islands/x-revontuli-sky-golden/plate__x-revontuli-sky-golden--t2.webp
+      sha256: 65abd88e8755de2fba101237a00578bc415b544fdc85f9691edb33fa06ac0680
+      encoding: lossy WebP q90 method6, full original dimensions
+    lock_load: 0.0
+selection_note: Canonical post excludes kind plate from HARMONY_KINDS; explicit qa.check_harmony(kind=plate) ran
+  on unchanged locked pixels, separately from untouched post reports.
+harmony_inputs:
+  tools/imagegen/qa.py: 773643762304d29432cdd5d88600bd4603e6296be1ebf23405f51e5f1a56304f
+  tools/assets/harmony.py: bdc4b81c9234d97e78140673d3a90a1407e2ae2af5b4a22786ab225468c2f576
+  design/art/harmony/config.json: d2ed591e6e8a7d0eafd54f95e3e3c98290453a81aaff11a9f800afea6fc43a18
+  design/art/harmony/reference.json: 602aff8ff097bad430ebfc0bf3837c647cf738bc407b90d58b8eb689810a673e
+contact_sheet:
+  sha256: 0083edacff15d949088dc055e282ba43a56bbe2980b89b4d8bcaec97ffe11074
+  note: Canonical post contact; pilots show original landscape parent, while QA uses portrait-placed parent.
+timing_note: Tool timestamps are observed UTC clock samples around dispatch/return; source mtime and ingestion time
+  are separate.
+provisional_parent: x-revontuli-portrait-s4-day t1 (auto-pick, lead review pending)
+provisional_reference_note: Local-only symlink at expected master path resolves to QA-picked locked pilot. Not promoted
+  or lead-approved.

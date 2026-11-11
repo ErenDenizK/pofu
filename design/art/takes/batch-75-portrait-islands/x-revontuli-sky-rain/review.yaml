@@ -1,0 +1,328 @@
+batch: batch-75-portrait-islands
+job: x-revontuli-sky-rain
+jobs:
+  x-revontuli-sky-rain:
+    pick: 1
+    status: review
+    publication: exploration; picked by the lead 2026-11-11 (take 1); never promoted
+    lead_review: "Lead pick over the auto-pick: crisper cloud layering. Moon and aurora stay visible through the overcast: a brief miss the colour-transfer fit should ignore. Founder-gated."
+pick: 1
+status: review
+note: Auto-picked by QA among manually eligible non-failing takes, lowest lock load then higher explicit canonical
+  plate harmony. Founder/lead review pending; exploration only, never promoted. Island redraws/movement are retained
+  under batch header fallback. Despite header wording, current run.py ingest does not re-paste the original band;
+  no pixel registration claim.
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+manifest:
+  path: tools/imagegen/manifest/batch-75-portrait-islands.yaml
+  sha256: 756a9e894ab9a4bd530975b22272865ca5b56ff00f3d51b598824a1b1a4205c1
+prompt:
+  text: 'REFERENCES (attached, in this order):
+
+    1. The image to edit (the approved previous level). Edit it; do not redraw it.
+
+
+    Edit the attached tall painting into the same scene in a soft rain: a soft
+
+    lilac-grey overcast sky with layered rain clouds, fine gentle rain streaks, a
+
+    wetter, darker cloud sea with pearl highlights. The island and the sky keep their
+
+    rich colour (not a grey veil). The far clouds and distant islands fade softly into
+
+    the rain but stay visible. Everything stays in its place, the same shapes and sizes.
+
+
+    KEEP: everything not named above stays exactly the same as in the
+
+    attached image: every existing part, its shape, color, position and size,
+
+    the canvas, the camera, the light and the painting style. Do not zoom out
+
+    or reframe: if a new part does not fit, make the new part smaller, never
+
+    the existing ones. Outside the new parts, the result must line up with
+
+    the attached image pixel for pixel.
+
+
+    AVOID: a dark or grey-blue gloomy scene, a storm, hard diagonal rain, a grey veil, new objects, characters,
+    text, moving anything
+
+
+    LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+    Key light #FFF6EC from the upper left; fill #BFD6EE; rim #FFE9C9 along the edge facing away from the key. Shadows
+    are tinted #A99BC4 (never grey or black), short and soft, falling toward the lower right; every object sits
+    on a soft occlusion pad in that hue where it touches the ground or another form.
+
+    VALUES (the reference envelope): a high-key picture inside one envelope of soft, milky air. Every value sits
+    between light mid-tone and cream-white; the darkest recesses (door holes, gaps, pond rims) are a mid-value tinted
+    with the shadow hue, never black. Form turns in small value steps. Colour lives in the halftones; lights bleach
+    to cream. No dark outlines: edges are found by value and hue. The cloud sea below is the brightest large surface
+    and lights the island''s underside with a warm bounce.
+
+    This is the SUBJECT plane: the clearest forms and the crispest edges in the picture, still inside the envelope.
+
+
+    Output: one image, opaque, full bleed, portrait 1024 x 1536.
+
+    '
+  sha256: 67b0713c0127c4f7be1776127ab9b37859f20107a69b925c372eed3f52cc5512
+attachments:
+- path: build/imagegen/batch-75-portrait-islands/locked/plate__x-revontuli-portrait-s4-day--t1.png
+  role: The image to edit (the approved previous level). Edit it; do not redraw it.
+  sha256: 8226a94e02f663c161ded9e486605094a9283bf09e2ab9a56c76a889e5feea27
+fingerprint: d813968c4a74ae46
+takes:
+  t1:
+    qa: warn
+    qa_report:
+      job: x-revontuli-sky-rain
+      take: 1
+      status: warn
+      preset: plate-final
+      checks:
+      - check: transparency
+        status: pass
+        message: opaque, as this kind must be
+      - check: canvas
+        status: pass
+        message: 1024x1536
+      - check: chroma_ceiling
+        status: pass
+        message: chroma p95 44 (R1 51)
+        value: 44.4
+      - check: light_values
+        status: pass
+        message: 'day/subject: L p5 50 (at least 50: darks stay a light mid-tone), p98 96 (at least 90)'
+        value: 50.5
+      - check: light_median
+        status: warn
+        message: 'day/subject: median L 69 (band 74-92)'
+        value: 68.6
+      - check: light_contrast
+        status: pass
+        message: 'day/subject: p75 local contrast 6.0 (band 2.5-6.5; above it reads too contrasty)'
+        value: 6.01
+      - check: light_sky
+        status: warn
+        message: 'day: sky L 63 (band 70-94) (warn-only until the founder has seen the light pilot)'
+        value: 62.7
+      - check: light_sea
+        status: warn
+        message: 'day: cloud sea L 60 (at least 82: the sea is the reflector) (warn-only until the founder has seen
+          the light pilot)'
+        value: 59.9
+      - check: light_dark
+        status: pass
+        message: 'day: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+        value: 0.0
+      - check: detail_budget
+        status: pass
+        message: detail at display size 4.0 (R1 5.3)
+        value: 3.97
+      - check: lock_load
+        status: pass
+        message: the lock moved colors by mean dE 0.0
+        value: 0.0
+      - check: palette_drift
+        status: warn
+        message: 'mean dE 3.5, p95 8.7, off-palette 2.0% (top: #88CCEE (0.2%), #88BBDD (0.1%))'
+        value: 3.4596
+      - check: edit_silhouette
+        status: pass
+        message: 100% of the parent's shape kept
+        value: 1.0
+      - check: edit_structure
+        status: warn
+        message: light structure matches the parent (r 0.67)
+        value: 0.6731
+      - check: edit_lightness
+        status: pass
+        message: mean lightness moved by 3.1 L (the same lightness was asked)
+        value: 3.0724
+      info:
+        metrics_raw:
+          L_p5: 48.8
+          L_p50: 62.3
+          L_p95: 89.8
+          C_p50: 34.5
+          C_p95: 44.4
+          C_p99: 59.4
+          detail: 3.97
+        metrics_locked:
+          L_p5: 48.8
+          L_p50: 62.3
+          L_p95: 89.8
+          C_p50: 34.5
+          C_p95: 44.4
+          C_p99: 59.4
+          detail: 3.97
+      fingerprint: d813968c4a74ae46
+    qa_report_sha256: 08a0f8b24b43d3a7df9be46c6ccb39c43a86a50eba8cc18e64ceb9e35213aeca
+    explicit_canonical_plate_harmony:
+      check: harmony
+      status: pass
+      message: 'harmony score 82 against the world reference (outliers: edge)'
+      value: 82.3
+    manual:
+      eligible: true
+      note: Lilac overcast cloud layers with visible fine vertical rain and wet island highlights. Moon, aurora
+        and lamps remain conspicuously bright through clouds; rain is denser than a sparse gentle drizzle. Island
+        inventory remains recognizable; no flat band or obvious hard seam. Retained exploration with these relight
+        deviations, not exact registration.
+      started_at: '2026-11-11T13:00:04.473Z'
+      returned_at: '2026-11-11T13:05:57.575Z'
+    source:
+      path: /workspace/generated_images/exec-86c11676-150d-4e47-9e22-a6b4ab107b22.png
+      preserved_path: /workspace/art-operator-runtime/batch75/revontuli/originals/exec-86c11676-150d-4e47-9e22-a6b4ab107b22.png
+      sha256: 06b68712a767acd170ef4ae8ac56ea1070b6e0e62eee919a2ef8e25b2f3152d8
+      dimensions:
+      - 1024
+      - 1536
+      encoding: original PNG
+      file_mtime_utc: '2026-11-11T13:05:57.108495+00:00'
+      tool_call_started_at: '2026-11-11T13:00:04.473Z'
+      tool_return_observed_at: '2026-11-11T13:05:57.575Z'
+    ingestion_time: '2026-11-11T13:09:37+00:00'
+    locked_sha256: 7717de4ef13b715413a30cdc7852c1f7997bc3154804821590a3023fd3fe0429
+    review_copy:
+      path: design/art/takes/batch-75-portrait-islands/x-revontuli-sky-rain/plate__x-revontuli-sky-rain--t1.webp
+      sha256: 3ccbb0509dffa408bab9b2af98ccf01e850ef7d9578c1c1c66ce6b1760f36ec2
+      encoding: lossy WebP q90 method6, full original dimensions
+    lock_load: 0.0
+  t2:
+    qa: warn
+    qa_report:
+      job: x-revontuli-sky-rain
+      take: 2
+      status: warn
+      preset: plate-final
+      checks:
+      - check: transparency
+        status: pass
+        message: opaque, as this kind must be
+      - check: canvas
+        status: pass
+        message: 1024x1536
+      - check: chroma_ceiling
+        status: pass
+        message: chroma p95 43 (R1 51)
+        value: 42.6
+      - check: light_values
+        status: pass
+        message: 'day/subject: L p5 52 (at least 50: darks stay a light mid-tone), p98 94 (at least 90)'
+        value: 52.0
+      - check: light_median
+        status: warn
+        message: 'day/subject: median L 69 (band 74-92)'
+        value: 68.9
+      - check: light_contrast
+        status: pass
+        message: 'day/subject: p75 local contrast 5.3 (band 2.5-6.5; above it reads too contrasty)'
+        value: 5.28
+      - check: light_sky
+        status: warn
+        message: 'day: sky L 63 (band 70-94) (warn-only until the founder has seen the light pilot)'
+        value: 63.3
+      - check: light_sea
+        status: warn
+        message: 'day: cloud sea L 60 (at least 82: the sea is the reflector) (warn-only until the founder has seen
+          the light pilot)'
+        value: 60.1
+      - check: light_dark
+        status: pass
+        message: 'day: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+        value: 0.0
+      - check: detail_budget
+        status: pass
+        message: detail at display size 3.6 (R1 5.3)
+        value: 3.61
+      - check: lock_load
+        status: pass
+        message: the lock moved colors by mean dE 0.0
+        value: 0.0
+      - check: palette_drift
+        status: warn
+        message: 'mean dE 3.5, p95 8.2, off-palette 2.0% (top: #88BBDD (0.2%), #66AADD (0.1%))'
+        value: 3.4918
+      - check: edit_silhouette
+        status: pass
+        message: 100% of the parent's shape kept
+        value: 1.0
+      - check: edit_structure
+        status: warn
+        message: light structure matches the parent (r 0.65)
+        value: 0.6545
+      - check: edit_lightness
+        status: pass
+        message: mean lightness moved by 3.8 L (the same lightness was asked)
+        value: 3.8467
+      info:
+        metrics_raw:
+          L_p5: 51.1
+          L_p50: 63.5
+          L_p95: 88.3
+          C_p50: 33.7
+          C_p95: 42.6
+          C_p99: 56.7
+          detail: 3.61
+        metrics_locked:
+          L_p5: 51.1
+          L_p50: 63.5
+          L_p95: 88.3
+          C_p50: 33.7
+          C_p95: 42.6
+          C_p99: 56.7
+          detail: 3.61
+      fingerprint: d813968c4a74ae46
+    qa_report_sha256: 7f3145a44b1b7984447fc86872e3baa214f18688d14f2a05214e5956a9a32fc6
+    explicit_canonical_plate_harmony:
+      check: harmony
+      status: pass
+      message: 'harmony score 83 against the world reference (outliers: edge)'
+      value: 82.6
+    manual:
+      eligible: true
+      note: Lilac overcast cloud layers with visible fine vertical rain and wet island highlights. Moon, aurora
+        and lamps remain conspicuously bright through clouds; rain is denser than a sparse gentle drizzle. Island
+        inventory remains recognizable; no flat band or obvious hard seam. Retained exploration with these relight
+        deviations, not exact registration.
+      started_at: '2026-11-11T13:00:04.473Z'
+      returned_at: '2026-11-11T13:03:51.663Z'
+    source:
+      path: /workspace/generated_images/exec-642460dc-8038-43aa-986b-26ce4b8e502d.png
+      preserved_path: /workspace/art-operator-runtime/batch75/revontuli/originals/exec-642460dc-8038-43aa-986b-26ce4b8e502d.png
+      sha256: 4d637af4cbb183a602e475d36479b76a92e3fd6f7343a86a9f002850e57dc69f
+      dimensions:
+      - 1024
+      - 1536
+      encoding: original PNG
+      file_mtime_utc: '2026-11-11T13:03:51.129916+00:00'
+      tool_call_started_at: '2026-11-11T13:00:04.473Z'
+      tool_return_observed_at: '2026-11-11T13:03:51.663Z'
+    ingestion_time: '2026-11-11T13:09:38+00:00'
+    locked_sha256: f1f44ad77ed586bea8a0187d7733caa3d29fafabc8dae9e8deb300c95960ba75
+    review_copy:
+      path: design/art/takes/batch-75-portrait-islands/x-revontuli-sky-rain/plate__x-revontuli-sky-rain--t2.webp
+      sha256: 71a5b5a4d49edcc142355fc80bdcac75603999bd90e77dc37813b0c6f0770598
+      encoding: lossy WebP q90 method6, full original dimensions
+    lock_load: 0.0
+selection_note: Canonical post excludes kind plate from HARMONY_KINDS; explicit qa.check_harmony(kind=plate) ran
+  on unchanged locked pixels, separately from untouched post reports.
+harmony_inputs:
+  tools/imagegen/qa.py: 773643762304d29432cdd5d88600bd4603e6296be1ebf23405f51e5f1a56304f
+  tools/assets/harmony.py: bdc4b81c9234d97e78140673d3a90a1407e2ae2af5b4a22786ab225468c2f576
+  design/art/harmony/config.json: d2ed591e6e8a7d0eafd54f95e3e3c98290453a81aaff11a9f800afea6fc43a18
+  design/art/harmony/reference.json: 602aff8ff097bad430ebfc0bf3837c647cf738bc407b90d58b8eb689810a673e
+contact_sheet:
+  sha256: 4de70567381ccff2d2a9f178035ee1dd1622b9b253002782632d384328e88111
+  note: Canonical post contact; pilots show original landscape parent, while QA uses portrait-placed parent.
+timing_note: Tool timestamps are observed UTC clock samples around dispatch/return; source mtime and ingestion time
+  are separate.
+provisional_parent: x-revontuli-portrait-s4-day t1 (auto-pick, lead review pending)
+provisional_reference_note: Local-only symlink at expected master path resolves to QA-picked locked pilot. Not promoted
+  or lead-approved.

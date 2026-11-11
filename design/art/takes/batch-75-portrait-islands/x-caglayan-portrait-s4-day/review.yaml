@@ -1,0 +1,402 @@
+batch: batch-75-portrait-islands
+job: x-caglayan-portrait-s4-day
+jobs:
+  x-caglayan-portrait-s4-day:
+    pick: 1
+    status: review
+    publication: exploration; picked by the lead 2026-11-11 (take 1); never promoted
+    lead_review: "Lead pick over the auto-pick (take 2): take 1 keeps the island at the anchor (2 % high) and its distant isles are generic; take 2 paints a second, larger Çağlayan (waterfall and pink tree) as a distant isle, a duplicated landmark, and sits 6 % high. Çağlayan's day sky-set master."
+pick: 1
+status: review
+note: 'Auto-picked by QA among manually eligible takes: equal zero lock load, then higher canonical plate harmony
+  (t2 67.8 vs t1 63.5). Founder and lead review pending. Exploration only; never promoted. Both candidates retain
+  rich layered clouds, two small distant islands and no conspicuous seam in the coordinator visual review. Take
+  2 shifts the island noticeably upward; take 1 stays closer to the parent position. The batch header allows retaining
+  island redraw/movement for later lead band re-pasting; that re-pasting is a TODO and has NOT been performed. Exact
+  island registration is not claimed.'
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+manifest:
+  path: tools/imagegen/manifest/batch-75-portrait-islands.yaml
+  sha256: 008fb41b5291958440b2a9d737ca656db835f3e9d1fb4a97133fd918575bffaa
+prompt:
+  text: 'REFERENCES (attached, in this order):
+
+    1. The image to outpaint: the approved plate, kept exactly as it is, placed on a larger canvas. The transparent
+    area around it is what you paint; do not redraw the plate.
+
+    2. The mask for the outpaint: white is the area to paint, black is the plate to keep unchanged.
+
+    3. The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness
+    and painting style, not its objects.
+
+
+    Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
+
+    painted: the same island, the same size, the same pixels, centred horizontally,
+
+    its mass at about the middle of the canvas (the transparent area above and below
+
+    it is yours to paint; the mask is white where you paint). Do not redraw, heal,
+
+    shift or add anything on the plate itself. Above the plate paint a tall, deep
+
+    sky with soft layered clouds and one or two small distant floating islands far
+
+    away, small and hazy, no larger than a thumb. Below the plate paint a deep
+
+    cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
+
+    painted with the same richness as the attached home reference (its sky, distant
+
+    islands and cloud sea are the treatment to match; take the treatment, not the
+
+    objects): layered cloud masses with painted light and shade, never a flat
+
+    gradient, never a haze band, never an empty fog. The seam where the plate meets
+
+    the new sky and cloud sea reads as one continuous painting.
+
+    Light of this plate: clear daylight: a bright blue sky with soft white clouds, a sunlit cloud sea. The new sky
+    and cloud sea carry
+
+    this light and keep the plate''s own colours rich.
+
+
+    KEEP: everything not named above stays exactly the same as in the
+
+    attached image: every existing part, its shape, color, position and size,
+
+    the canvas, the camera, the light and the painting style. Do not zoom out
+
+    or reframe: if a new part does not fit, make the new part smaller, never
+
+    the existing ones. Outside the new parts, the result must line up with
+
+    the attached image pixel for pixel.
+
+
+    STYLE: a finished painted illustration for a premium cozy mobile game, like
+
+    a page from a beloved picture book: soft painterly 2D with gentle airbrushed
+
+    shading, rounded chunky forms, no outlines, no hard edges, matte surfaces
+
+    with at most one soft highlight per object. COLOUR: vivid, saturated and
+
+    jewel-like, as in the key art of a high-end animated film: intense grass
+
+    greens, glowing sunflower yellow, deep sky blue, warm peach earth, crisp
+
+    white petals; strong contrast between warm lit colour and cool shadow
+
+    colour; every material keeps its own true colour. VALUES: a full range, from
+
+    bright sunlit tops to deep warm shadows under eaves, inside foliage, beneath
+
+    the lawn rim and around doors, so every object separates clearly from what
+
+    is behind it and the picture reads at a glance on a small phone screen.
+
+    Shadows are coloured (warm brown, plum, deep teal), never black or grey.
+
+    Light direction and shadow hue follow the LIGHT block of this prompt.
+
+    Colourful but never neon, never HDR, never glossy. No text, no letters, no
+
+    numbers, no logos, no watermark, no border, no frame.
+
+
+    AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or
+    moved island, new objects on the island, large floating islands, characters, text
+
+
+    LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+    Key light #FFF6EC from the upper left; fill #BFD6EE; rim #FFE9C9 along the edge facing away from the key. Shadows
+    are tinted #A99BC4 (never grey or black), short and soft, falling toward the lower right; every object sits
+    on a soft occlusion pad in that hue where it touches the ground or another form.
+
+    VALUES (the reference envelope): a high-key picture inside one envelope of soft, milky air. Every value sits
+    between light mid-tone and cream-white; the darkest recesses (door holes, gaps, pond rims) are a mid-value tinted
+    with the shadow hue, never black. Form turns in small value steps. Colour lives in the halftones; lights bleach
+    to cream. No dark outlines: edges are found by value and hue. The cloud sea below is the brightest large surface
+    and lights the island''s underside with a warm bounce.
+
+    This is the SUBJECT plane: the clearest forms and the crispest edges in the picture, still inside the envelope.
+
+
+    Output: one image, opaque, full bleed, portrait 1024 x 1536.
+
+    '
+  sha256: 94673db5e3fdb411058a493ca238db01bab6efedec242c97fff324c34ee4f526
+  cli_packet_path: /workspace/art-operator-runtime/batch75/pilot-prompt.txt
+  cli_packet_sha256: c5b2b2cb11e5a938df1966d17e7b88ab513f817d90915d0cbd8d392b0592b846
+attachments:
+- path: build/imagegen/batch-75-portrait-islands/outpaint/x-caglayan-portrait-s4-day--input.png
+  role: 'The image to outpaint: the approved plate, kept exactly as it is, placed on a larger canvas. The transparent
+    area around it is what you paint; do not redraw the plate.'
+  sha256: 74aab4929f659981d5a859ade0495d7b3a8afa2ae83076818d8227b8daf23b8e
+- path: build/imagegen/batch-75-portrait-islands/outpaint/x-caglayan-portrait-s4-day--mask.png
+  role: 'The mask for the outpaint: white is the area to paint, black is the plate to keep unchanged.'
+  sha256: a304362b4359961ee04e7c10fdf5690f88f111600ecb63c87a3cdec5afb481bb
+- path: design/art/masters/x-home-flow-final-rich/x-home-flow-final-rich.webp
+  role: The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness
+    and painting style, not its objects.
+  sha256: 610f92abdd46cb454fd98b0cf1afbc6654d935185b643e7621c90e1b14186fc9
+fingerprint: 3d5d7e58702a990a
+generation:
+  backend: codex-cloud
+  tool: image_gen.imagegen
+  actual_call_started_at: null
+  actual_call_completed_at: null
+  timestamp_note: Actual image-tool call times were not captured. File modification times and pipeline ingestion
+    times below are distinct observations, not generation timestamps.
+selection:
+  method: eligible non-failing QA, lowest lock_load, highest explicit canonical qa.check_harmony(kind=plate) score
+  manual_review_by: coordinator
+  harmony_note: Canonical post excludes plate from HARMONY_KINDS. The existing qa.check_harmony helper was called
+    explicitly on each unchanged locked image, with kind=plate and canonical limits. These checks are separate from,
+    not inserted into, the unchanged post reports.
+  harmony_inputs:
+    tools/imagegen/qa.py: 773643762304d29432cdd5d88600bd4603e6296be1ebf23405f51e5f1a56304f
+    tools/assets/harmony.py: bdc4b81c9234d97e78140673d3a90a1407e2ae2af5b4a22786ab225468c2f576
+    design/art/harmony/config.json: d2ed591e6e8a7d0eafd54f95e3e3c98290453a81aaff11a9f800afea6fc43a18
+    design/art/harmony/reference.json: 602aff8ff097bad430ebfc0bf3837c647cf738bc407b90d58b8eb689810a673e
+  provisional_parent_warning: Native provisional_parent currently chooses lowest passing/warning ordinal and would
+    return t1; review pick t2 is not consumed by that helper. Dependent jobs must record their actual parent attachment.
+takes:
+  t1:
+    qa: warn
+    manually_eligible: true
+    manual_note: Rich layered clouds and two small distant islands; no conspicuous seam. Island position closer
+      to placed parent.
+    source:
+      path: /workspace/generated_images/exec-42462ce8-32a2-4eed-bacc-52c9e34fc3f0.png
+      preserved_path: /workspace/art-operator-runtime/batch75/originals/x-caglayan-portrait-s4-day/plate__x-caglayan-portrait-s4-day--t1.png
+      sha256: 7f960c49f68ed1ebc09736cb9509f3e8bbc46cfc6a45c0a41b64053670f61963
+      rgba_sha256: 4a2b6dc6b4169011eb13ebe4cbd130e188ae0a3979321bd6eed564d73786eb8f
+      size:
+      - 1024
+      - 1536
+      encoding: PNG original
+      file_mtime_utc: '2026-11-11T09:22:55.872947+00:00'
+      actual_generation_timestamp: null
+    ingestion:
+      time: '2026-11-11T09:23:55+00:00'
+      note: Pipeline generated_at is ingestion time, not actual generation time.
+      sidecar_sha256: 2210c6bedd8d1dcd2439c2b4280b0120d614957e5ca6d1a9ba2470a92e5c8cb5
+    review_copy:
+      path: design/art/takes/batch-75-portrait-islands/x-caglayan-portrait-s4-day/plate__x-caglayan-portrait-s4-day--t1.webp
+      sha256: a220c26db631086cca4133c7004c35a2a6ac5675e8b9d01146ba62cec1507b80
+      encoding: lossy WebP quality=90 method=6, original full dimensions
+    locked_sha256: 1ad8b0e281806adc1d4333adc599988daec8efcab283f42db58c5610717ccb9a
+    qa_report_sha256: cb90e63adc708825d2323c61731a2b52296d7b654980aeb88682462165abea8d
+    qa_report:
+      job: x-caglayan-portrait-s4-day
+      take: 1
+      status: warn
+      preset: plate-final
+      checks:
+      - check: transparency
+        status: pass
+        message: opaque, as this kind must be
+      - check: canvas
+        status: pass
+        message: 1024x1536
+      - check: chroma_ceiling
+        status: warn
+        message: chroma p95 63 (R1 51) (advisory in an exploration)
+        value: 63.4
+      - check: light_values
+        status: pass
+        message: 'day/subject: L p5 59 (at least 50: darks stay a light mid-tone), p98 98 (at least 90)'
+        value: 58.8
+      - check: light_median
+        status: pass
+        message: 'day/subject: median L 83 (band 74-92)'
+        value: 83.0
+      - check: light_contrast
+        status: pass
+        message: 'day/subject: p75 local contrast 6.4 (band 2.5-6.5; above it reads too contrasty)'
+        value: 6.44
+      - check: light_sky
+        status: pass
+        message: 'day: sky L 73 (band 70-94)'
+        value: 72.9
+      - check: light_sea
+        status: pass
+        message: 'day: cloud sea L 88 (at least 82: the sea is the reflector)'
+        value: 87.7
+      - check: light_dark
+        status: pass
+        message: 'day: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+        value: 0.0
+      - check: detail_budget
+        status: pass
+        message: detail at display size 4.2 (R1 5.3)
+        value: 4.23
+      - check: lock_load
+        status: pass
+        message: the lock moved colors by mean dE 0.0
+        value: 0.0
+      - check: palette_drift
+        status: warn
+        message: 'mean dE 7.5, p95 24.0, off-palette 26.9% (top: #88BBFF (4.6%), #66AAFF (2.8%)) (advisory in an
+          exploration)'
+        value: 7.5418
+      - check: edit_silhouette
+        status: warn
+        message: 44% of the parent's shape kept (advisory in an exploration)
+        value: 0.4447
+      - check: edit_stability
+        status: warn
+        message: 27% of the parent level unchanged (advisory in an exploration)
+        value: 0.2651
+      - check: edit_chroma
+        status: pass
+        message: chroma x1.02 of the parent level (drift compounds along a chain)
+        value: 1.017
+      info:
+        metrics_raw:
+          L_p5: 63.5
+          L_p50: 82.1
+          L_p95: 96.1
+          C_p50: 25.1
+          C_p95: 63.4
+          C_p99: 79.7
+          detail: 4.23
+        metrics_locked:
+          L_p5: 63.5
+          L_p50: 82.1
+          L_p95: 96.1
+          C_p50: 25.1
+          C_p95: 63.4
+          C_p99: 79.7
+          detail: 4.23
+      fingerprint: 3d5d7e58702a990a
+    explicit_canonical_plate_harmony:
+      check: harmony
+      status: warn
+      message: 'harmony score 64 against the world reference (outliers: C_p95, L_p98, edge)'
+      value: 63.5
+  t2:
+    qa: warn
+    manually_eligible: true
+    manual_note: Rich layered clouds and two small distant islands; no conspicuous seam. Island noticeably shifted
+      upward; retained per batch-header fallback, lead repaste pending.
+    source:
+      path: /workspace/generated_images/exec-838b83b0-d215-440a-ab6d-a3db125bfd7b.png
+      preserved_path: /workspace/art-operator-runtime/batch75/originals/x-caglayan-portrait-s4-day/plate__x-caglayan-portrait-s4-day--t2.png
+      sha256: 4f4475d1b3c0d107381ae66cb03b6769c3918fd440e1d47b45098c62955a9923
+      rgba_sha256: e442de9040a68ded9b845e9d431c2c627b1cb94b3b338f9d3474b522570f3f5c
+      size:
+      - 1024
+      - 1536
+      encoding: PNG original
+      file_mtime_utc: '2026-11-11T09:23:32.912577+00:00'
+      actual_generation_timestamp: null
+    ingestion:
+      time: '2026-11-11T09:23:56+00:00'
+      note: Pipeline generated_at is ingestion time, not actual generation time.
+      sidecar_sha256: 3de9e03ca036415b8373b0011b7cbc5abbd4131e0f3a54556ee33a52284499f8
+    review_copy:
+      path: design/art/takes/batch-75-portrait-islands/x-caglayan-portrait-s4-day/plate__x-caglayan-portrait-s4-day--t2.webp
+      sha256: a8fe4982dc20a85705cd4856b4b5bc290db79f8705ead225ffb6ce80f9e30c55
+      encoding: lossy WebP quality=90 method=6, original full dimensions
+    locked_sha256: 52ea008613d7380fe7cdee17f8c28f1d3a2d80b11b1bd81fa91b89966b54dd8b
+    qa_report_sha256: f96f21ace59cfd3a1e66cc5f8afc1d3c70af7861e4c096df254bde337098fff1
+    qa_report:
+      job: x-caglayan-portrait-s4-day
+      take: 2
+      status: warn
+      preset: plate-final
+      checks:
+      - check: transparency
+        status: pass
+        message: opaque, as this kind must be
+      - check: canvas
+        status: pass
+        message: 1024x1536
+      - check: chroma_ceiling
+        status: warn
+        message: chroma p95 61 (R1 51) (advisory in an exploration)
+        value: 60.8
+      - check: light_values
+        status: pass
+        message: 'day/subject: L p5 60 (at least 50: darks stay a light mid-tone), p98 98 (at least 90)'
+        value: 60.0
+      - check: light_median
+        status: pass
+        message: 'day/subject: median L 83 (band 74-92)'
+        value: 83.4
+      - check: light_contrast
+        status: pass
+        message: 'day/subject: p75 local contrast 5.9 (band 2.5-6.5; above it reads too contrasty)'
+        value: 5.92
+      - check: light_sky
+        status: pass
+        message: 'day: sky L 71 (band 70-94)'
+        value: 71.1
+      - check: light_sea
+        status: pass
+        message: 'day: cloud sea L 85 (at least 82: the sea is the reflector)'
+        value: 85.3
+      - check: light_dark
+        status: pass
+        message: 'day: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+        value: 0.0
+      - check: detail_budget
+        status: pass
+        message: detail at display size 4.1 (R1 5.3)
+        value: 4.14
+      - check: lock_load
+        status: pass
+        message: the lock moved colors by mean dE 0.0
+        value: 0.0
+      - check: palette_drift
+        status: warn
+        message: 'mean dE 7.4, p95 24.4, off-palette 24.7% (top: #66AAFF (3.1%), #55AAFF (2.6%)) (advisory in an
+          exploration)'
+        value: 7.3672
+      - check: edit_silhouette
+        status: warn
+        message: 44% of the parent's shape kept (advisory in an exploration)
+        value: 0.4447
+      - check: edit_stability
+        status: warn
+        message: 14% of the parent level unchanged (advisory in an exploration)
+        value: 0.1449
+      - check: edit_chroma
+        status: pass
+        message: chroma x0.97 of the parent level (drift compounds along a chain)
+        value: 0.9718
+      info:
+        metrics_raw:
+          L_p5: 63.2
+          L_p50: 82.0
+          L_p95: 96.3
+          C_p50: 25.5
+          C_p95: 60.8
+          C_p99: 77.7
+          detail: 4.14
+        metrics_locked:
+          L_p5: 63.2
+          L_p50: 82.0
+          L_p95: 96.3
+          C_p50: 25.5
+          C_p95: 60.8
+          C_p99: 77.7
+          detail: 4.14
+      fingerprint: 3d5d7e58702a990a
+    explicit_canonical_plate_harmony:
+      check: harmony
+      status: warn
+      message: 'harmony score 68 against the world reference (outliers: C_p95, L_p98, edge)'
+      value: 67.8
+contact_sheet:
+  path: design/art/takes/batch-75-portrait-islands/x-caglayan-portrait-s4-day/contact.jpg
+  source: design/art/review/batch-75-portrait-islands-contact.jpg
+  sha256: 61d40a4024cbf43573a2659b20e3301b1cd4a92413f6f13fbd4502cdfc63bf72
+  note: 'Canonical post contact for this one job: original landscape parent reference and two locked takes. QA compares the parent placed on the portrait canvas; the canonical contact displays the landscape source.'

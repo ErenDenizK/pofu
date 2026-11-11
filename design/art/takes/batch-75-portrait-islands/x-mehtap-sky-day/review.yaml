@@ -1,0 +1,313 @@
+batch: batch-75-portrait-islands
+job: x-mehtap-sky-day
+jobs:
+  x-mehtap-sky-day:
+    pick: 2
+    status: review
+    publication: exploration; picked by the lead 2026-11-11 (take 2); never promoted
+    lead_review: "Lead pick over the auto-pick: take 2 turns the moon into the sun in place; take 1 keeps stars in a day sky. The story's sky trail stays (parent content)."
+pick: 2
+status: review
+note: Auto-picked by QA; founder review pending. Exploration only; not promoted. Native post reports remain unchanged;
+  plate harmony measured explicitly with canonical qa.check_harmony.
+manual_review:
+  t1: Bright blue daylight and deep sunlit cloud sea. Island inventory and star trail retained, but original moon
+    is removed and replaced by a sun higher at the upper left. This changes sky inventory/position beyond a pure
+    colour edit; retained as a warned exploration candidate, not an exact-registration pass. No hard seam, flat
+    cloud band, characters or text.
+  t2: Bright daylight and layered cloud sea; island inventory remains recognizable. Original moon becomes a smaller
+    sun at the left and dense sky stars disappear, exceeding pure colour change. Retained as warned exploration
+    candidate, not an exact-registration pass. No hard seam or flat cloud band.
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+manifest:
+  path: tools/imagegen/manifest/batch-75-portrait-islands.yaml
+  sha256: 756a9e894ab9a4bd530975b22272865ca5b56ff00f3d51b598824a1b1a4205c1
+prompt:
+  text: 'REFERENCES (attached, in this order):
+
+    1. The image to edit (the approved previous level). Edit it; do not redraw it.
+
+
+    Edit the attached tall painting into the same scene in this light: clear daylight: a bright blue sky with soft
+    white clouds and warm sun from the side, a sunlit cloud sea, the island''s own colours rich.
+
+    Mehtap''s own colours stay rich. The sky, the distant islands and the cloud sea
+
+    stay rich and slightly vivid. Everything stays in its place, the same shapes and
+
+    sizes; only light and colour change.
+
+
+    KEEP: everything not named above stays exactly the same as in the
+
+    attached image: every existing part, its shape, color, position and size,
+
+    the canvas, the camera, the light and the painting style. Do not zoom out
+
+    or reframe: if a new part does not fit, make the new part smaller, never
+
+    the existing ones. Outside the new parts, the result must line up with
+
+    the attached image pixel for pixel.
+
+
+    AVOID: a flat gradient, a haze or mist band, a grey veil, a dark scene, orange or red saturation, healing or
+    changing the stage, new objects, characters, text, moving anything
+
+
+    LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+    Key light #FFF6EC from the upper left; fill #BFD6EE; rim #FFE9C9 along the edge facing away from the key. Shadows
+    are tinted #A99BC4 (never grey or black), short and soft, falling toward the lower right; every object sits
+    on a soft occlusion pad in that hue where it touches the ground or another form.
+
+    VALUES (the reference envelope): a high-key picture inside one envelope of soft, milky air. Every value sits
+    between light mid-tone and cream-white; the darkest recesses (door holes, gaps, pond rims) are a mid-value tinted
+    with the shadow hue, never black. Form turns in small value steps. Colour lives in the halftones; lights bleach
+    to cream. No dark outlines: edges are found by value and hue. The cloud sea below is the brightest large surface
+    and lights the island''s underside with a warm bounce.
+
+    This is the SUBJECT plane: the clearest forms and the crispest edges in the picture, still inside the envelope.
+
+
+    Output: one image, opaque, full bleed, portrait 1024 x 1536.
+
+    '
+  sha256: 5213851d3feb2ebccc5976c763ee61a14677bad1ea02b033c222e252601c55a7
+  actual_tool_packet_sha256: 68287628f916f005dac10d6a8fae805898c734d806e3906a634de089a6211c74
+attachments:
+- path: build/imagegen/batch-75-portrait-islands/locked/plate__x-mehtap-portrait-s4-day--t2.png
+  role: The image to edit (the approved previous level). Edit it; do not redraw it.
+  sha256: 42cd89465958f5d5bb9bea7d63211cb4deadf552c91c219dc7628c7c72820882
+takes:
+  t1:
+    source:
+      path: /workspace/generated_images/exec-cd87393e-fb42-493e-acb5-f02b8c5bdca7.png
+      preserved_path: /workspace/art-operator-runtime/batch75-north/originals/x-mehtap-sky-day/t1.png
+      sha256: 0497d5c34fd68acb8d6ee91fe9d166480a45ab1b464db980e83b6a0393f47681
+      rgba_sha256: aca18ed1e5fb7bff65db58e29ca517d68d894b65ef6e3932beb42b0ab22ba4d9
+      size:
+      - 1024
+      - 1536
+      encoding: original PNG
+      tool_call_started_at: '2026-11-11T12:56:56.250Z'
+      tool_call_returned_at: '2026-11-11T12:57:34.083Z'
+    review_copy:
+      path: design/art/takes/batch-75-portrait-islands/x-mehtap-sky-day/plate__x-mehtap-sky-day--t1.webp
+      sha256: 88e7571a2aeddd24cd9346adc3cb9273efed16785b45f4e5c2115a8594f7b2da
+      encoding: lossy WebP quality 90 method 6, full dimensions
+    ingested_at: '2026-11-11T13:03:43+00:00'
+    ingest_time_note: Pipeline generated_at is ingestion time, not image generation time.
+    locked_sha256: acd1acd829c9d7e1d36fadef42530bb96cdf3ff496405ff6b932ca5c0d1181fb
+    qa_report_sha256: 30037fd0a49c8d049a4c0976f0cf7119fbb9f2e5d3092119ef9f2aba0a5e2636
+    qa_report:
+      job: x-mehtap-sky-day
+      take: 1
+      status: warn
+      preset: plate-final
+      checks:
+      - check: transparency
+        status: pass
+        message: opaque, as this kind must be
+      - check: canvas
+        status: pass
+        message: 1024x1536
+      - check: chroma_ceiling
+        status: warn
+        message: chroma p95 62 (R1 51) (advisory in an exploration)
+        value: 61.7
+      - check: light_values
+        status: pass
+        message: 'day/subject: L p5 69 (at least 50: darks stay a light mid-tone), p98 99 (at least 90)'
+        value: 69.3
+      - check: light_median
+        status: pass
+        message: 'day/subject: median L 86 (band 74-92)'
+        value: 86.4
+      - check: light_contrast
+        status: pass
+        message: 'day/subject: p75 local contrast 4.6 (band 2.5-6.5; above it reads too contrasty)'
+        value: 4.62
+      - check: light_sky
+        status: warn
+        message: 'day: sky L 68 (band 70-94)'
+        value: 67.6
+      - check: light_sea
+        status: pass
+        message: 'day: cloud sea L 88 (at least 82: the sea is the reflector)'
+        value: 87.8
+      - check: light_dark
+        status: pass
+        message: 'day: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+        value: 0.0
+      - check: detail_budget
+        status: pass
+        message: detail at display size 3.9 (R1 5.3)
+        value: 3.89
+      - check: lock_load
+        status: pass
+        message: the lock moved colors by mean dE 0.0
+        value: 0.0
+      - check: palette_drift
+        status: warn
+        message: 'mean dE 8.6, p95 27.1, off-palette 28.9% (top: #3399FF (3.4%), #55AAFF (3.1%)) (advisory in an
+          exploration)'
+        value: 8.5781
+      - check: edit_silhouette
+        status: pass
+        message: 100% of the parent's shape kept
+        value: 1.0
+      - check: edit_structure
+        status: pass
+        message: light structure matches the parent (r 0.84)
+        value: 0.8438
+      - check: edit_lightness
+        status: warn
+        message: mean lightness moved by 20.3 L (the same lightness was asked) (advisory in an exploration)
+        value: 20.2647
+      info:
+        metrics_raw:
+          L_p5: 58.5
+          L_p50: 83.7
+          L_p95: 97.3
+          C_p50: 19.6
+          C_p95: 61.7
+          C_p99: 68.7
+          detail: 3.89
+        metrics_locked:
+          L_p5: 58.5
+          L_p50: 83.7
+          L_p95: 97.3
+          C_p50: 19.6
+          C_p95: 61.7
+          C_p99: 68.7
+          detail: 3.89
+      fingerprint: 532f98cb2aefe8e6
+    explicit_canonical_plate_harmony:
+      check: harmony
+      status: warn
+      message: 'harmony score 64 against the world reference (outliers: C_p95, L_p98, edge)'
+      value: 64.3
+    lock_load: 0.0
+    manually_eligible: true
+  t2:
+    source:
+      path: /workspace/generated_images/exec-10345b90-5357-4b3e-b96d-8104135b01b7.png
+      preserved_path: /workspace/art-operator-runtime/batch75-north/originals/x-mehtap-sky-day/t2.png
+      sha256: e46660a4fe55db30f0f32bf0796e5625ec5f7de101d19fb80e4792cd501f298f
+      rgba_sha256: a284192f17e72b86a09e2b2c23c8f429f14f757d949d2088710422bfb2472860
+      size:
+      - 1024
+      - 1536
+      encoding: original PNG
+      tool_call_started_at: '2026-11-11T12:56:56.250Z'
+      tool_call_returned_at: '2026-11-11T12:59:07.224Z'
+    review_copy:
+      path: design/art/takes/batch-75-portrait-islands/x-mehtap-sky-day/plate__x-mehtap-sky-day--t2.webp
+      sha256: 7df7fbb75a8b7e37614e0ccf83c578ee4b5b2d497d32e039bf2ffbfcaff09803
+      encoding: lossy WebP quality 90 method 6, full dimensions
+    ingested_at: '2026-11-11T13:03:44+00:00'
+    ingest_time_note: Pipeline generated_at is ingestion time, not image generation time.
+    locked_sha256: 772c55c02d64ff4c3f9efcf1129da137dc148cdbd6ee9accc7066a4094fe9a81
+    qa_report_sha256: 2ae6cce4e96d35aa0fa094225e5f885620a5b0db7a365b142434a287bdfd98b2
+    qa_report:
+      job: x-mehtap-sky-day
+      take: 2
+      status: warn
+      preset: plate-final
+      checks:
+      - check: transparency
+        status: pass
+        message: opaque, as this kind must be
+      - check: canvas
+        status: pass
+        message: 1024x1536
+      - check: chroma_ceiling
+        status: warn
+        message: chroma p95 62 (R1 51) (advisory in an exploration)
+        value: 62.4
+      - check: light_values
+        status: pass
+        message: 'day/subject: L p5 67 (at least 50: darks stay a light mid-tone), p98 100 (at least 90)'
+        value: 66.9
+      - check: light_median
+        status: pass
+        message: 'day/subject: median L 87 (band 74-92)'
+        value: 86.9
+      - check: light_contrast
+        status: pass
+        message: 'day/subject: p75 local contrast 5.0 (band 2.5-6.5; above it reads too contrasty)'
+        value: 4.96
+      - check: light_sky
+        status: warn
+        message: 'day: sky L 66 (band 70-94)'
+        value: 65.8
+      - check: light_sea
+        status: pass
+        message: 'day: cloud sea L 89 (at least 82: the sea is the reflector)'
+        value: 89.2
+      - check: light_dark
+        status: pass
+        message: 'day: 0.1 % below L* 30 under the sky (at most 3; only the sky is dark)'
+        value: 0.1
+      - check: detail_budget
+        status: pass
+        message: detail at display size 4.0 (R1 5.3)
+        value: 4.01
+      - check: lock_load
+        status: pass
+        message: the lock moved colors by mean dE 0.0
+        value: 0.0
+      - check: palette_drift
+        status: warn
+        message: 'mean dE 8.8, p95 28.6, off-palette 28.3% (top: #2299FF (5.7%), #33AAFF (2.8%)) (advisory in an
+          exploration)'
+        value: 8.8265
+      - check: edit_silhouette
+        status: pass
+        message: 100% of the parent's shape kept
+        value: 1.0
+      - check: edit_structure
+        status: pass
+        message: light structure matches the parent (r 0.86)
+        value: 0.8646
+      - check: edit_lightness
+        status: warn
+        message: mean lightness moved by 20.1 L (the same lightness was asked) (advisory in an exploration)
+        value: 20.1124
+      info:
+        metrics_raw:
+          L_p5: 59.1
+          L_p50: 83.5
+          L_p95: 98.7
+          C_p50: 19.7
+          C_p95: 62.4
+          C_p99: 68.5
+          detail: 4.01
+        metrics_locked:
+          L_p5: 59.1
+          L_p50: 83.5
+          L_p95: 98.7
+          C_p50: 19.7
+          C_p95: 62.4
+          C_p99: 68.5
+          detail: 4.01
+      fingerprint: 532f98cb2aefe8e6
+    explicit_canonical_plate_harmony:
+      check: harmony
+      status: warn
+      message: 'harmony score 61 against the world reference (outliers: C_p95, L_p98, edge)'
+      value: 61.0
+    lock_load: 0.0
+    manually_eligible: true
+selection: Eligible non-failing takes ranked by lock load ascending, canonical plate harmony descending.
+registration_note: No original band re-paste is implemented in the current run.py ingest. Island movement/redrawing
+  is retained with warning under the manifest fallback. Exact registration is not claimed.
+provisional_parent: x-mehtap-portrait-s4-day t2 (auto-pick, lead review pending)
+provisional_reference_note: Local-only symlink at expected approved_image path resolves the QA-selected locked original.
+  No master is promoted or committed.
+contact_sheet:
+  path: design/art/takes/batch-75-portrait-islands/x-mehtap-sky-day/contact.jpg
+  sha256: 681dbd4721cddbbfcb4f53789960f7809f642b6b05e4b16f3e2be1bbb4f004b8

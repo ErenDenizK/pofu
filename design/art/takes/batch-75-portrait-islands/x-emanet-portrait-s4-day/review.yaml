@@ -1,0 +1,389 @@
+batch: batch-75-portrait-islands
+job: x-emanet-portrait-s4-day
+jobs:
+  x-emanet-portrait-s4-day:
+    pick: 1
+    status: review
+    publication: exploration; picked by the lead 2026-11-11 (take 1); never promoted
+    lead_review: "Lead pick: the island at the anchor (2 % high), rich golden sky, generic distant isles, a full billowing cloud sea; no seam. Emanet's golden sky-set master."
+pick: 1
+status: review
+note: Auto-picked by QA among manually eligible non-failing takes, lowest lock load then higher explicit canonical
+  plate harmony. Founder/lead review pending; exploration only, never promoted. Island redraws/movement are retained
+  under batch header fallback. Despite header wording, current run.py ingest does not re-paste the original band;
+  no pixel registration claim.
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+manifest:
+  path: tools/imagegen/manifest/batch-75-portrait-islands.yaml
+  sha256: 756a9e894ab9a4bd530975b22272865ca5b56ff00f3d51b598824a1b1a4205c1
+prompt:
+  text: 'REFERENCES (attached, in this order):
+
+    1. The image to outpaint: the approved plate, kept exactly as it is, placed on a larger canvas. The transparent
+    area around it is what you paint; do not redraw the plate.
+
+    2. The mask for the outpaint: white is the area to paint, black is the plate to keep unchanged.
+
+    3. The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness
+    and painting style, not its objects.
+
+
+    Outpaint the attached plate onto a tall phone canvas. The plate stays EXACTLY as
+
+    painted: the same island, the same size, the same pixels, centred horizontally,
+
+    its mass at about the middle of the canvas (the transparent area above and below
+
+    it is yours to paint; the mask is white where you paint). Do not redraw, heal,
+
+    shift or add anything on the plate itself. Above the plate paint a tall, deep
+
+    sky with soft layered clouds and one or two small distant floating islands far
+
+    away, small and hazy, no larger than a thumb. Below the plate paint a deep
+
+    cloud sea that fills the whole bottom of the canvas, sunlit and billowing,
+
+    painted with the same richness as the attached home reference (its sky, distant
+
+    islands and cloud sea are the treatment to match; take the treatment, not the
+
+    objects): layered cloud masses with painted light and shade, never a flat
+
+    gradient, never a haze band, never an empty fog. The seam where the plate meets
+
+    the new sky and cloud sea reads as one continuous painting.
+
+    Light of this plate: golden hour: a soft pink and lilac sky warming to peach near the clouds, low warm peach
+    light, a cloud sea blushed peach with lilac shade. The new sky and cloud sea carry
+
+    this light and keep the plate''s own colours rich.
+
+    Paint the sky and the cloud sea rich and slightly more vivid than home''s reference
+
+    (a touch more colour in the sky and in the cloud masses), but never louder than this
+
+    island''s own colours: the island band stays as painted.
+
+
+    KEEP: everything not named above stays exactly the same as in the
+
+    attached image: every existing part, its shape, color, position and size,
+
+    the canvas, the camera, the light and the painting style. Do not zoom out
+
+    or reframe: if a new part does not fit, make the new part smaller, never
+
+    the existing ones. Outside the new parts, the result must line up with
+
+    the attached image pixel for pixel.
+
+
+    STYLE: a finished painted illustration for a premium cozy mobile game, like
+
+    a page from a beloved picture book: soft painterly 2D with gentle airbrushed
+
+    shading, rounded chunky forms, no outlines, no hard edges, matte surfaces
+
+    with at most one soft highlight per object. COLOUR: vivid, saturated and
+
+    jewel-like, as in the key art of a high-end animated film: intense grass
+
+    greens, glowing sunflower yellow, deep sky blue, warm peach earth, crisp
+
+    white petals; strong contrast between warm lit colour and cool shadow
+
+    colour; every material keeps its own true colour. VALUES: a full range, from
+
+    bright sunlit tops to deep warm shadows under eaves, inside foliage, beneath
+
+    the lawn rim and around doors, so every object separates clearly from what
+
+    is behind it and the picture reads at a glance on a small phone screen.
+
+    Shadows are coloured (warm brown, plum, deep teal), never black or grey.
+
+    Light direction and shadow hue follow the LIGHT block of this prompt.
+
+    Colourful but never neon, never HDR, never glossy. No text, no letters, no
+
+    numbers, no logos, no watermark, no border, no frame.
+
+
+    AVOID: a flat gradient, a haze or mist band, a flat empty cloud sea, a plain sky, a hard seam, a changed or
+    moved island, new objects on the island, large floating islands, characters, text
+
+
+    LIGHT (hour: golden, layer: subject). The day''s reward.
+
+    Key light #F7C873 from the right, a little above; fill #D9A9C4; rim #FFC77A along the edge facing away from
+    the key. Shadows are tinted #8E78C8 (never grey or black), short and soft, falling toward the left, a little
+    below; every object sits on a soft occlusion pad in that hue where it touches the ground or another form.
+
+    VALUES (the reference envelope): a high-key picture inside one envelope of soft, milky air. Every value sits
+    between light mid-tone and cream-white; the darkest recesses (door holes, gaps, pond rims) are a mid-value tinted
+    with the shadow hue, never black. Form turns in small value steps. Colour lives in the halftones; lights bleach
+    to cream. No dark outlines: edges are found by value and hue. The cloud sea below is the brightest large surface
+    and lights the island''s underside with a warm bounce.
+
+    This is the SUBJECT plane: the clearest forms and the crispest edges in the picture, still inside the envelope.
+
+
+    Output: one image, opaque, full bleed, portrait 1024 x 1536.
+
+    '
+  sha256: dd573705209fd1ff1d2bd31291c10cdd48e2d27554a26c45cd31a0fa88428271
+attachments:
+- path: build/imagegen/batch-75-portrait-islands/outpaint/x-emanet-portrait-s4-day--input.png
+  role: 'The image to outpaint: the approved plate, kept exactly as it is, placed on a larger canvas. The transparent
+    area around it is what you paint; do not redraw the plate.'
+  sha256: c83b51d7d2fa38ac6f5e8914c677b4bf94b0ce0b8ce71e0a447a094c2ff56a61
+- path: build/imagegen/batch-75-portrait-islands/outpaint/x-emanet-portrait-s4-day--mask.png
+  role: 'The mask for the outpaint: white is the area to paint, black is the plate to keep unchanged.'
+  sha256: a304362b4359961ee04e7c10fdf5690f88f111600ecb63c87a3cdec5afb481bb
+- path: design/art/masters/x-home-flow-final-rich/x-home-flow-final-rich.webp
+  role: The treatment reference for the sky, the distant floating islands and the deep cloud sea. Match its richness
+    and painting style, not its objects.
+  sha256: 610f92abdd46cb454fd98b0cf1afbc6654d935185b643e7621c90e1b14186fc9
+fingerprint: 11cd50f5c9b5487c
+takes:
+  t1:
+    qa: warn
+    qa_report:
+      job: x-emanet-portrait-s4-day
+      take: 1
+      status: warn
+      preset: plate-final
+      checks:
+      - check: transparency
+        status: pass
+        message: opaque, as this kind must be
+      - check: canvas
+        status: pass
+        message: 1024x1536
+      - check: chroma_ceiling
+        status: warn
+        message: chroma p95 53 (R1 51)
+        value: 53.1
+      - check: light_values
+        status: pass
+        message: 'golden/subject: L p5 50 (at least 50: darks stay a light mid-tone), p98 94 (at least 85)'
+        value: 50.4
+      - check: light_median
+        status: pass
+        message: 'golden/subject: median L 80 (band 68-86)'
+        value: 80.2
+      - check: light_contrast
+        status: warn
+        message: 'golden/subject: p75 local contrast 7.1 (band 2.5-6.0; above it reads too contrasty) (warn-only
+          until the founder has seen the light pilot)'
+        value: 7.14
+      - check: light_sky
+        status: pass
+        message: 'golden: sky L 67 (band 60-86)'
+        value: 67.1
+      - check: light_sea
+        status: pass
+        message: 'golden: cloud sea L 79 (at least 78: the sea is the reflector)'
+        value: 79.4
+      - check: light_dark
+        status: pass
+        message: 'golden: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+        value: 0.0
+      - check: detail_budget
+        status: pass
+        message: detail at display size 4.2 (R1 5.3)
+        value: 4.23
+      - check: lock_load
+        status: pass
+        message: the lock moved colors by mean dE 0.0
+        value: 0.0
+      - check: palette_drift
+        status: warn
+        message: 'mean dE 3.2, p95 11.9, off-palette 4.7% (top: #7788EE (1.8%), #8899EE (0.3%))'
+        value: 3.2278
+      - check: edit_silhouette
+        status: warn
+        message: 44% of the parent's shape kept (advisory in an exploration)
+        value: 0.4447
+      - check: edit_stability
+        status: warn
+        message: 23% of the parent level unchanged (advisory in an exploration)
+        value: 0.2347
+      - check: edit_chroma
+        status: pass
+        message: chroma x1.06 of the parent level (drift compounds along a chain)
+        value: 1.0625
+      info:
+        metrics_raw:
+          L_p5: 58.4
+          L_p50: 78.3
+          L_p95: 90.7
+          C_p50: 25.4
+          C_p95: 53.1
+          C_p99: 63.3
+          detail: 4.23
+        metrics_locked:
+          L_p5: 58.4
+          L_p50: 78.3
+          L_p95: 90.7
+          C_p50: 25.4
+          C_p95: 53.1
+          C_p99: 63.3
+          detail: 4.23
+      fingerprint: 11cd50f5c9b5487c
+    qa_report_sha256: b5ba11530eb657b4d6131e742b5e2bff9011a593acb73160e664fc1b855f5193
+    explicit_canonical_plate_harmony:
+      check: harmony
+      status: pass
+      message: 'harmony score 85 against the world reference (outliers: edge)'
+      value: 84.9
+    manual:
+      eligible: true
+      note: Rich peach-lilac golden clouds; two distant isles and no hard seam. Main band slightly shifted/redrawn;
+        preserved as header allows. No characters/text.
+    source:
+      path: /workspace/generated_images/exec-f3b25b32-0803-4eb5-9074-752196c4715d.png
+      preserved_path: /workspace/art-operator-runtime/batch75/emanet/originals/exec-f3b25b32-0803-4eb5-9074-752196c4715d.png
+      sha256: 2541f2cead18391d40df463e1a8419f200bdf97c5333d383abb79d475e0b158c
+      dimensions:
+      - 1024
+      - 1536
+      encoding: original PNG
+      file_mtime_utc: '2026-11-11T12:50:46.066564+00:00'
+      tool_call_started_at: 2026-11-11 12:50:06 UTC
+      tool_return_observed_at: 2026-11-11 12:51:46 UTC
+    ingestion_time: '2026-11-11T12:52:39+00:00'
+    locked_sha256: 7b7d1265285d7da15335b23fe1554525f1d7899b06a2e5a79fcb7893ae66ee41
+    review_copy:
+      path: design/art/takes/batch-75-portrait-islands/x-emanet-portrait-s4-day/plate__x-emanet-portrait-s4-day--t1.webp
+      sha256: 7098b3cce57aae3ab6a3f30409a3c2b6129851adcbaa35c5e46e30f930dd8de0
+      encoding: lossy WebP q90 method6, full original dimensions
+    lock_load: 0.0
+  t2:
+    qa: warn
+    qa_report:
+      job: x-emanet-portrait-s4-day
+      take: 2
+      status: warn
+      preset: plate-final
+      checks:
+      - check: transparency
+        status: pass
+        message: opaque, as this kind must be
+      - check: canvas
+        status: pass
+        message: 1024x1536
+      - check: chroma_ceiling
+        status: pass
+        message: chroma p95 52 (R1 51)
+        value: 51.5
+      - check: light_values
+        status: warn
+        message: 'golden/subject: L p5 48 (at least 50: darks stay a light mid-tone), p98 96 (at least 85)'
+        value: 48.5
+      - check: light_median
+        status: pass
+        message: 'golden/subject: median L 81 (band 68-86)'
+        value: 80.9
+      - check: light_contrast
+        status: warn
+        message: 'golden/subject: p75 local contrast 7.5 (band 2.5-6.0; above it reads too contrasty) (warn-only
+          until the founder has seen the light pilot)'
+        value: 7.5
+      - check: light_sky
+        status: pass
+        message: 'golden: sky L 72 (band 60-86)'
+        value: 71.6
+      - check: light_sea
+        status: pass
+        message: 'golden: cloud sea L 83 (at least 78: the sea is the reflector)'
+        value: 83.4
+      - check: light_dark
+        status: pass
+        message: 'golden: 0.2 % below L* 30 under the sky (at most 3; only the sky is dark)'
+        value: 0.2
+      - check: detail_budget
+        status: pass
+        message: detail at display size 4.6 (R1 5.3)
+        value: 4.59
+      - check: lock_load
+        status: pass
+        message: the lock moved colors by mean dE 0.0
+        value: 0.0
+      - check: palette_drift
+        status: warn
+        message: 'mean dE 3.5, p95 12.0, off-palette 5.0% (top: #8899EE (1.3%), #7799EE (1.2%))'
+        value: 3.4551
+      - check: edit_silhouette
+        status: warn
+        message: 44% of the parent's shape kept (advisory in an exploration)
+        value: 0.4447
+      - check: edit_stability
+        status: warn
+        message: 15% of the parent level unchanged (advisory in an exploration)
+        value: 0.148
+      - check: edit_chroma
+        status: pass
+        message: chroma x0.96 of the parent level (drift compounds along a chain)
+        value: 0.9553
+      info:
+        metrics_raw:
+          L_p5: 57.4
+          L_p50: 80.2
+          L_p95: 92.8
+          C_p50: 23.3
+          C_p95: 51.5
+          C_p99: 65.1
+          detail: 4.59
+        metrics_locked:
+          L_p5: 57.4
+          L_p50: 80.2
+          L_p95: 92.8
+          C_p50: 23.3
+          C_p95: 51.5
+          C_p99: 65.1
+          detail: 4.59
+      fingerprint: 11cd50f5c9b5487c
+    qa_report_sha256: 47f9c424e0c6f36c553a5ba8ea13371eb097d422b24ab90e78eed2bc2860d687
+    explicit_canonical_plate_harmony:
+      check: harmony
+      status: pass
+      message: 'harmony score 82 against the world reference (outliers: edge)'
+      value: 82.1
+    manual:
+      eligible: true
+      note: Rich warm cloud sea and two small distant isles; no hard seam. Main island moves upward and shrinks
+        vertically slightly; retained per header fallback, no registration claim.
+    source:
+      path: /workspace/generated_images/exec-af8d610d-f570-42d7-bf23-5ff157a66b72.png
+      preserved_path: /workspace/art-operator-runtime/batch75/emanet/originals/exec-af8d610d-f570-42d7-bf23-5ff157a66b72.png
+      sha256: 5eb9c9a40ad6e966e4a5ac59552ff60dc18864d8c9091847ed51130f030cbd28
+      dimensions:
+      - 1024
+      - 1536
+      encoding: original PNG
+      file_mtime_utc: '2026-11-11T12:51:44.617917+00:00'
+      tool_call_started_at: 2026-11-11 12:50:06 UTC
+      tool_return_observed_at: 2026-11-11 12:51:46 UTC
+    ingestion_time: '2026-11-11T12:52:40+00:00'
+    locked_sha256: 85b679eac1425419a8e5926bb26ea086e018b8d689a7cf9af065d6815c600f6e
+    review_copy:
+      path: design/art/takes/batch-75-portrait-islands/x-emanet-portrait-s4-day/plate__x-emanet-portrait-s4-day--t2.webp
+      sha256: d61c003345b57b3b49a2c66a674b377ff30ebb3e021939a37f29be18229ac643
+      encoding: lossy WebP q90 method6, full original dimensions
+    lock_load: 0.0
+selection_note: Canonical post excludes kind plate from HARMONY_KINDS; explicit qa.check_harmony(kind=plate) ran
+  on unchanged locked pixels, separately from untouched post reports.
+harmony_inputs:
+  tools/imagegen/qa.py: 773643762304d29432cdd5d88600bd4603e6296be1ebf23405f51e5f1a56304f
+  tools/assets/harmony.py: bdc4b81c9234d97e78140673d3a90a1407e2ae2af5b4a22786ab225468c2f576
+  design/art/harmony/config.json: d2ed591e6e8a7d0eafd54f95e3e3c98290453a81aaff11a9f800afea6fc43a18
+  design/art/harmony/reference.json: 602aff8ff097bad430ebfc0bf3837c647cf738bc407b90d58b8eb689810a673e
+contact_sheet:
+  sha256: 7b539cd11a02c3c7a0c2fd81bbe720bbe0add1f097ca4739a98c3c533460d2e6
+  note: Canonical post contact; pilots show original landscape parent, while QA uses portrait-placed parent.
+timing_note: Tool timestamps are observed UTC clock samples around dispatch/return; source mtime and ingestion time
+  are separate.

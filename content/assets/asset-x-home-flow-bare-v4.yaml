@@ -1,0 +1,24 @@
+id: asset-x-home-flow-bare-v4
+type: asset
+title_tr: x-home-flow-bare-v4
+title_en: x-home-flow-bare-v4 (plate)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached painting. Remove ONLY three things: the sunflower patch with its soil
+  bed (left), the old wooden cart wheel lying on the lawn (centre), and the rope bridge to
+  the harbour islet (right). Where each stood, continue the lawn around it: the same grass
+  texture, the same green, the same light and shading, the same tiny white flowers. KEEP EXACTLY
+  everything else: the island's silhouette and outline, the h…
+links:
+  variant_of:
+  - asset-x-home-flow-il1-v3
+art:
+  images: []
+  jobs:
+  - batch-76-redo-picks:x-home-flow-bare-v4
+sources:
+- doc: tools/imagegen/manifest/batch-76-redo-picks.yaml
+kind: plate
+batch: batch-76-redo-picks
+size: 1024x1536

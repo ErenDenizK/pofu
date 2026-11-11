@@ -1,0 +1,24 @@
+id: asset-x-caglayan-sky-night-v2
+type: asset
+title_tr: x-caglayan-sky-night-v2
+title_en: x-caglayan-sky-night-v2 (plate)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached tall painting into the same scene in this light: a calm, clear night:
+  a soft deep-blue sky (blue, never black) with a gentle glow near the clouds, a soft round
+  moon at the top left and a few small stars, the cloud sea light and lilac-white, shadows
+  blue-violet, no deep blacks. Warm light only from real sources already in the picture (the
+  mill window, the wall lamp), each a small soft pool. The rainb…
+links:
+  variant_of:
+  - asset-x-caglayan-portrait-s4-day
+art:
+  images: []
+  jobs:
+  - batch-76-redo-picks:x-caglayan-sky-night-v2
+sources:
+- doc: tools/imagegen/manifest/batch-76-redo-picks.yaml
+kind: plate
+batch: batch-76-redo-picks
+size: 1024x1536

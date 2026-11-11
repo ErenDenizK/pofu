@@ -1,0 +1,356 @@
+batch: batch-74-redo-states
+manifest: tools/imagegen/manifest/batch-74-redo-states.yaml
+jobs:
+  x-emanet-flow-0-night-v2:
+    pick: 2
+    publication: exploration; picked by the lead 2026-11-11 (take 2); never promoted
+    lead_review: "Lead pick over the factory skip: the story fog still veils the house, shelves and post while the foreground story props stay readable, as in the day parent; the sky above the fog is the night sky, as on the picked stage 3 night. No new lit lamp. Take 2's moon top right matches stage 3 night."
+    note: 'Both takes fail manual review: the authored story fog is broad, even mauve
+      haze in the parent, but these candidates introduce distinct upper-sky cloud
+      banks and a much thicker localized stage fog. The original inventory and existing
+      warm window source remain; lanterns stay unlit. No extra takes requested.'
+    status: review
+    skip_reason: Both candidates visibly change the fog pattern and extent; the two-take
+      phase is complete, so skip.
+    manual_review:
+      job: x-emanet-flow-0-night-v2
+      reviewer: independent visual cross-review
+      parent: plate__x-emanet-flow-0--t1.webp
+      criteria:
+      - Keep the stage 0 scene and object inventory, changing only light and colour.
+      - Keep the story fog in the same places, shapes, and extent as the parent.
+      - Keep lamps, lanterns, and windows that are unlit in the parent unlit; only
+        existing lit sources retain a small warm pool.
+      - Use a blue night sky and maintain readable, fairly light subject colours.
+      takes:
+      - take: 1
+        source_sha256: 323cbc1883c5a472dedbce1555daf2420d745a7dc9174b23e297a3af75f4e763
+        eligible: false
+        reasons:
+        - The parent is veiled by broad, even mauve haze. This take instead has distinct
+          billowing cloud banks across the upper sky and a thicker, localized horizontal
+          fog bank in front of the stage around the platform and objects. The fog
+          pattern and extent are visibly different from the parent.
+        - The original inventory remains broadly present. The shop's already-lit window
+          source stays warm, while the hanging lanterns on the right rack remain unlit;
+          no additional lit lamp is apparent.
+        caveats:
+        - No pixel-registration test was performed. The fog difference described above
+          is a visible compositional change, not a claim based solely on unproven
+          exact registration.
+      - take: 2
+        source_sha256: 9e683c5ff25d789a7b39218e3da6bc1ab11b553d9b8d90c196ee237f8cdb6a8d
+        eligible: false
+        reasons:
+        - The parent is veiled by broad, even mauve haze. This take instead has broad,
+          swirling cloud banks across much of the upper sky and a pronounced dense
+          mist layer across the stage. The fog pattern and extent are visibly different
+          from the parent.
+        - The original inventory remains broadly present. The shop's already-lit window
+          source stays warm, while the hanging lanterns on the right rack remain unlit;
+          no additional lit lamp is apparent.
+        caveats:
+        - No pixel-registration test was performed. The fog difference described above
+          is a visible compositional change, not a claim based solely on unproven
+          exact registration.
+    actual_generation_calls: 2
+qa_reports:
+- job: x-emanet-flow-0-night-v2
+  take: 1
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 42 (R1 51)
+    value: 42.2
+  - check: light_values
+    status: warn
+    message: 'night/subject: L p5 45 (at least 45: darks stay a light mid-tone), p98
+      78 (at least 85)'
+    value: 45.3
+  - check: light_median
+    status: warn
+    message: 'night/subject: median L 60 (band 66-88)'
+    value: 60.5
+  - check: light_contrast
+    status: pass
+    message: 'night/subject: p75 local contrast 4.2 (band 1.5-5.0; above it reads
+      too contrasty)'
+    value: 4.25
+  - check: light_sky
+    status: pass
+    message: 'night: sky L 44 (band 24-46)'
+    value: 44.0
+  - check: light_sea
+    status: warn
+    message: 'night: cloud sea L 68 (at least 70: the sea is the reflector)'
+    value: 68.3
+  - check: light_dark
+    status: pass
+    message: 'night: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.0
+  - check: detail_budget
+    status: pass
+    message: detail at display size 2.5 (R1 5.3)
+    value: 2.51
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 5.0, p95 11.4, off-palette 3.2% (top: #445599 (1.7%), #5566AA
+      (0.4%)) (advisory in an exploration)'
+    value: 5.0378
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_structure
+    status: pass
+    message: light structure matches the parent (r 0.89)
+    value: 0.8864
+  - check: edit_lightness
+    status: pass
+    message: mean lightness moved by 7.8 L (the same lightness was asked)
+    value: 7.8439
+  - &id001
+    check: harmony
+    status: warn
+    message: 'harmony score 46 against the world reference (outliers: L_p2, L_p98,
+      edge)'
+    value: 46.2
+  info:
+    metrics_raw:
+      L_p5: 38.6
+      L_p50: 59.3
+      L_p95: 74.2
+      C_p50: 32.2
+      C_p95: 42.2
+      C_p99: 43.8
+      detail: 2.51
+    metrics_locked:
+      L_p5: 38.6
+      L_p50: 59.3
+      L_p95: 74.2
+      C_p50: 32.2
+      C_p95: 42.2
+      C_p99: 43.8
+      detail: 2.51
+  fingerprint: 4214843815ac554f
+- job: x-emanet-flow-0-night-v2
+  take: 2
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 41 (R1 51)
+    value: 41.2
+  - check: light_values
+    status: warn
+    message: 'night/subject: L p5 42 (at least 45: darks stay a light mid-tone), p98
+      80 (at least 85)'
+    value: 41.8
+  - check: light_median
+    status: warn
+    message: 'night/subject: median L 60 (band 66-88)'
+    value: 59.6
+  - check: light_contrast
+    status: pass
+    message: 'night/subject: p75 local contrast 5.0 (band 1.5-5.0; above it reads
+      too contrasty)'
+    value: 4.99
+  - check: light_sky
+    status: pass
+    message: 'night: sky L 40 (band 24-46)'
+    value: 39.9
+  - check: light_sea
+    status: pass
+    message: 'night: cloud sea L 71 (at least 70: the sea is the reflector)'
+    value: 71.3
+  - check: light_dark
+    status: pass
+    message: 'night: 0.1 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.1
+  - check: detail_budget
+    status: pass
+    message: detail at display size 2.9 (R1 5.3)
+    value: 2.86
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 5.0, p95 10.7, off-palette 1.9% (top: #555599 (0.5%), #445599
+      (0.4%)) (advisory in an exploration)'
+    value: 5.0308
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_structure
+    status: pass
+    message: light structure matches the parent (r 0.90)
+    value: 0.9036
+  - check: edit_lightness
+    status: pass
+    message: mean lightness moved by 9.1 L (the same lightness was asked)
+    value: 9.0799
+  - &id002
+    check: harmony
+    status: warn
+    message: 'harmony score 43 against the world reference (outliers: L_p2, L_p98,
+      edge)'
+    value: 42.7
+  info:
+    metrics_raw:
+      L_p5: 34.6
+      L_p50: 58.4
+      L_p95: 76.9
+      C_p50: 31.6
+      C_p95: 41.2
+      C_p99: 42.7
+      detail: 2.86
+    metrics_locked:
+      L_p5: 34.6
+      L_p50: 58.4
+      L_p95: 76.9
+      C_p50: 31.6
+      C_p95: 41.2
+      C_p99: 42.7
+      detail: 2.86
+  fingerprint: 4214843815ac554f
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-27839f02-ea9b-49f0-8d51-ad3f6890ce9d.png
+  source_sha256: 323cbc1883c5a472dedbce1555daf2420d745a7dc9174b23e297a3af75f4e763
+  q90_take: design/art/takes/batch-74-redo-states/x-emanet-flow-0-night-v2/plate__x-emanet-flow-0-night-v2--t1.webp
+  q90_take_sha256: c71461c55e3fb1dfe4a5efebb9e1d60ea5d4cb4d0f3daf1afa8e8ddd30b1137b
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 5704324bb0b5a6b7064b076fac120fdfc571d7cef28657e97df5723069bb29b1
+  started_at: '2026-11-10T20:32:57.705Z'
+  returned_at: '2026-11-10T20:33:40.368Z'
+  model: null
+  tool: image_gen.imagegen
+- take: 2
+  source_file: /workspace/generated_images/exec-16bc208c-960f-412d-abdc-1192e2655794.png
+  source_sha256: 9e683c5ff25d789a7b39218e3da6bc1ab11b553d9b8d90c196ee237f8cdb6a8d
+  q90_take: design/art/takes/batch-74-redo-states/x-emanet-flow-0-night-v2/plate__x-emanet-flow-0-night-v2--t2.webp
+  q90_take_sha256: cc4e5965cb2b4a451163f10722a1e8f9649e0e1fd914a5fe2a61682ab6d2e411
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 5704324bb0b5a6b7064b076fac120fdfc571d7cef28657e97df5723069bb29b1
+  started_at: '2026-11-10T20:32:57.705Z'
+  returned_at: '2026-11-10T20:34:23.447Z'
+  model: null
+  tool: image_gen.imagegen
+policy:
+  never_promote: true
+  selection: lead picks
+  source_preservation: Original generated images retained at source_file paths; published
+    takes are q90 review copies.
+auxiliary_focused_world_scores:
+  method: Focused individual scoring against the precomputed world reference; no full
+    measure/catalog scan.
+  command_base:
+  - python3
+  - -I
+  - tools/assets/harmony.py
+  - score
+  reference_data:
+    config_sha256: d2ed591e6e8a7d0eafd54f95e3e3c98290453a81aaff11a9f800afea6fc43a18
+    reference_sha256: 602aff8ff097bad430ebfc0bf3837c647cf738bc407b90d58b8eb689810a673e
+    materials_sha256: 495011a0bfbe8c9c890ec62f8ff6f7a2e1f5fe1d061f73c23ec26518b938b557
+    assets_json_count: 211
+    assets_json_digest_sha256: f8f88057d3b860d56318b4a6bdfbf0fc70f16eb9237516ab9d3234b901c4f6b3
+  scores:
+  - take: 1
+    argv:
+    - python3
+    - -I
+    - tools/assets/harmony.py
+    - score
+    - build/imagegen/batch-74-redo-states/locked/plate__x-emanet-flow-0-night-v2--t1.png
+    - --ppu
+    - '4.103'
+    - --kind
+    - world
+    ppu: 4.103
+    kind: world
+    score: 46.5
+    outliers:
+    - L_p2
+    - L_p98
+    - edge
+    reference_group: world
+  - take: 2
+    argv:
+    - python3
+    - -I
+    - tools/assets/harmony.py
+    - score
+    - build/imagegen/batch-74-redo-states/locked/plate__x-emanet-flow-0-night-v2--t2.png
+    - --ppu
+    - '4.103'
+    - --kind
+    - world
+    ppu: 4.103
+    kind: world
+    score: 43.2
+    outliers:
+    - L_p2
+    - L_p98
+    - edge
+    reference_group: world
+  selection_role: Auxiliary earlier focused world CLI output; superseded for selection
+    by the canonical plate QA check.
+harmony_scores:
+  method: Existing unchanged qa.check_harmony(locked, kind=plate, limits_for plate
+    exploration); no full-catalog measure
+  kind: plate
+  ppu_formula: cfg.ppu_by_kind.world * locked_image_width / 1024
+  reference_data:
+    config_sha256: d2ed591e6e8a7d0eafd54f95e3e3c98290453a81aaff11a9f800afea6fc43a18
+    reference_sha256: 602aff8ff097bad430ebfc0bf3837c647cf738bc407b90d58b8eb689810a673e
+    materials_sha256: 495011a0bfbe8c9c890ec62f8ff6f7a2e1f5fe1d061f73c23ec26518b938b557
+    assets_json_count: 211
+    assets_json_digest_sha256: f8f88057d3b860d56318b4a6bdfbf0fc70f16eb9237516ab9d3234b901c4f6b3
+  scores:
+  - take: 1
+    locked_file: build/imagegen/batch-74-redo-states/locked/plate__x-emanet-flow-0-night-v2--t1.png
+    kind: plate
+    ppu: 6.1545
+    reference_group: world
+    score: 46.2
+    status: warn
+    message: 'harmony score 46 against the world reference (outliers: L_p2, L_p98,
+      edge)'
+    qa_check: *id001
+  - take: 2
+    locked_file: build/imagegen/batch-74-redo-states/locked/plate__x-emanet-flow-0-night-v2--t2.png
+    kind: plate
+    ppu: 6.1545
+    reference_group: world
+    score: 42.7
+    status: warn
+    message: 'harmony score 43 against the world reference (outliers: L_p2, L_p98,
+      edge)'
+    qa_check: *id002

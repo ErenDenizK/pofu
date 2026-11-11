@@ -1,0 +1,173 @@
+# Batch 76: redo of the jobs the lead rejected in batches 74 and 75 (exploration; x- ids, never promoted).
+#
+# Lead review 2026-11-11 (picks recorded in the review.yaml files of batches 74 and 75 and in
+# docs/state/plates.yaml). Five jobs, 2 takes each, full-size delivery.
+#
+# ORDER OF WORK (up to three tracks, any order between tracks):
+#   1. x-caglayan-sky-golden-v2, x-caglayan-sky-night-v2, x-caglayan-sky-rain-v2: Çağlayan's
+#      sky-set light edits, now of the PICKED pilot take 1 (the batch-75 edits were of the
+#      unpicked take 2, which paints a second Çağlayan as a distant isle).
+#   2. x-home-flow-bare-v4: the bare home as a SMALL edit of the picked IL1 (v3 take 2), which
+#      already has the root's silhouette and a bare lawn; three tries of a big edit of the
+#      finished island grew new land.
+#   3. x-emanet-flow-1-night-v3: Emanet stage 1 at night, with the picked stage 0 night attached
+#      as the reference for what the story fog looks like by moonlight.
+# FALLBACKS: a refused or failed job is recorded in review.yaml and skipped; the run continues
+# with the next job. If a take still shows the named failure, keep both takes, write the failure
+# in review.yaml and go on to the next job and then the next READY row; the lead decides in its
+# own round. No third take. PROVISIONAL AUTO-PICK as usual (QA non-fail, lowest lock load, then
+# harmony); it never blocks the next job.
+#
+# EXPLORATION RULES (AGENTS.md): no `promote`; commit the takes (WebP q90), the contact sheet and
+# review.yaml under design/art/takes/<batch>/<id>/. No characters, no painted text.
+
+batch: batch-76-redo-picks
+title: 'Redo of the lead rejects of batches 74-75: Çağlayan sky-set edits of the picked pilot, bare home, Emanet 1 night'
+status: open
+refs:
+  home-night: design/art/takes/batch-66-home-flow/x-home-flow-night/plate__x-home-flow-night--t1.webp
+  home-golden: design/art/takes/batch-66-home-flow/x-home-flow-golden/plate__x-home-flow-golden--t1.webp
+  emanet-0-night: design/art/takes/batch-74-redo-states/x-emanet-flow-0-night-v2/plate__x-emanet-flow-0-night-v2--t2.webp
+defaults:
+  variants: 2
+jobs:
+  - {id: x-caglayan-portrait-s4-day, kind: plate, name: x-caglayan-portrait-s4-day, external: takes, master: design/art/takes/batch-75-portrait-islands/x-caglayan-portrait-s4-day/plate__x-caglayan-portrait-s4-day--t1.webp}
+  - {id: x-home-flow-il1-v3, kind: plate, name: x-home-flow-il1-v3, external: takes, master: design/art/takes/batch-74-redo-states/x-home-flow-il1-v3/plate__x-home-flow-il1-v3--t2.webp}
+  - {id: x-emanet-flow-1, kind: plate, name: x-emanet-flow-1, external: batch-69-emanet-flow, master: design/art/takes/batch-69-emanet-flow/x-emanet-flow-1/plate__x-emanet-flow-1--t1.webp}
+
+  # Track 1: Çağlayan sky-set edits of the picked pilot (take 1)
+  - id: x-caglayan-sky-golden-v2
+    kind: plate
+    name: x-caglayan-sky-golden-v2
+    size: 1024x1536
+    canvas: 1024x1536
+    deliver: {scale: 1.0}
+    edit_of: x-caglayan-portrait-s4-day
+    chat: "Pofu · Redo picks"
+    light: {cell: golden, layer: subject}
+    palettes: [world-props, world-sunset, world-foliage]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Redo of x-caglayan-sky-golden. Failure: it was an edit of the unpicked pilot take 2 and kept its second Çağlayan in the sky. Review: an edit of pilot take 1; the two small distant isles stay generic (dome, crystal); nothing moved; golden light."
+    attach:
+      - ref: home-golden
+        role: "The light target: the home island at this time, its sky, light and cloud sea. Match the light, not the objects."
+    prompt:
+      - text: |
+          Edit the attached tall painting into the same scene in this light: golden hour: a soft pink and lilac sky warming to peach near the clouds, low warm peach light raking from the side, lilac shadows, the cloud sea blushed peach with lilac shade. Lamps and windows that exist are just coming on, small and soft.
+          Çağlayan's own colours stay rich. The sky, the two small distant islands and the
+          cloud sea stay rich and slightly vivid. The distant islands keep their shapes
+          exactly (a small dome isle and a small crystal isle); add no other island.
+          Everything stays in its place, the same shapes and sizes; only light and colour change.
+      - block: edit-keep-v1
+      - text: "AVOID: a second waterfall island or any copy of Çağlayan in the sky, a flat gradient, a haze or mist band, a grey veil, a dark scene, orange or red saturation, healing or changing the stage, new objects, characters, text, moving anything"
+
+  - id: x-caglayan-sky-night-v2
+    kind: plate
+    name: x-caglayan-sky-night-v2
+    size: 1024x1536
+    canvas: 1024x1536
+    deliver: {scale: 1.0}
+    edit_of: x-caglayan-portrait-s4-day
+    chat: "Pofu · Redo picks"
+    light: {cell: night, layer: subject}
+    palettes: [world-night, world-props, world-foliage]
+    acceptance: {exploration: true, edit_mode: recolor, profile: night}
+    notes: "Redo of x-caglayan-sky-night. Failures: an edit of the unpicked pilot take 2 (a second Çağlayan in the sky), and the waterfall's rainbow stayed lit at night. Review: an edit of pilot take 1; no rainbow; the mill window and the wall lamp are the only warm lights; moon top left as on the picked stage 2 and 3 nights."
+    attach:
+      - ref: home-night
+        role: "The light target: the home island at this time, its sky, light and cloud sea. Match the light, not the objects."
+    prompt:
+      - text: |
+          Edit the attached tall painting into the same scene in this light: a calm, clear night: a soft deep-blue sky (blue, never black) with a gentle glow near the clouds, a soft round moon at the top left and a few small stars, the cloud sea light and lilac-white, shadows blue-violet, no deep blacks. Warm light only from real sources already in the picture (the mill window, the wall lamp), each a small soft pool.
+          The rainbow over the waterfall is sunlight: at night it is gone; the falling water
+          keeps a faint silver moonlit sheen instead.
+          Çağlayan's own colours stay rich. The sky, the two small distant islands and the
+          cloud sea stay rich and slightly vivid. Everything stays in its place, the same shapes
+          and sizes; only light and colour change.
+      - block: edit-keep-v1
+      - text: "AVOID: a rainbow at night, a second waterfall island or any copy of Çağlayan in the sky, a flat gradient, a haze or mist band, a grey veil, a dark scene, new lamps or bulbs, healing or changing the stage, new objects, characters, text, moving anything"
+
+  - id: x-caglayan-sky-rain-v2
+    kind: plate
+    name: x-caglayan-sky-rain-v2
+    size: 1024x1536
+    canvas: 1024x1536
+    deliver: {scale: 1.0}
+    edit_of: x-caglayan-portrait-s4-day
+    chat: "Pofu · Redo picks"
+    light: {cell: day, layer: subject}
+    palettes: [world-foliage, world-props, world-water]
+    acceptance: {exploration: true, edit_mode: recolor}
+    notes: "Redo of x-caglayan-sky-rain. Failure: an edit of the unpicked pilot take 2 (a second Çağlayan in the sky). Review: an edit of pilot take 1; overcast soft rain with colours kept; no sun, no rainbow; wet sheen on stone. Target of the offline colour-transfer pilot (ADR-0025), founder-gated."
+    prompt:
+      - text: |
+          Edit the attached tall painting into the same scene in a soft rain: a soft
+          lilac-grey overcast sky with layered rain clouds, fine gentle rain streaks, a
+          wetter, darker cloud sea with pearl highlights, a soft wet sheen on the stones and
+          paths. Under the overcast there is no sun and no rainbow. The island and the sky
+          keep their rich colour (not a grey veil). The far clouds and the two small distant
+          islands fade softly into the rain but stay visible. Everything stays in its place,
+          the same shapes and sizes.
+      - block: edit-keep-v1
+      - text: "AVOID: a sun, a rainbow, a second waterfall island in the sky, a dark or grey-blue gloomy scene, a storm, hard diagonal rain, a grey veil, new objects, characters, text, moving anything"
+
+  # Track 2: the bare home as a small edit of the picked IL1
+  - id: x-home-flow-bare-v4
+    kind: plate
+    name: x-home-flow-bare-v4
+    size: 1024x1536
+    canvas: 1024x1536
+    deliver: {scale: 1.0}
+    edit_of: x-home-flow-il1-v3
+    chat: "Pofu · Redo picks"
+    light: {cell: day, layer: subject}
+    palettes: [world-foliage, world-props]
+    acceptance: {exploration: true, edit_mode: region}
+    notes: "Redo 4 of the bare home, now a small edit of the picked IL1 (x-home-flow-il1-v3 take 2). Failure of v3: a puffed lime lawn rising above the root's contour (new land). Review: IL1's exact silhouette, mist, tree, doors, harbour islet and sky; only the sunflower patch, the old cart wheel and the rope bridge gone; the lawn as IL1's."
+    prompt:
+      - text: |
+          Edit the attached painting. Remove ONLY three things: the sunflower patch with its
+          soil bed (left), the old wooden cart wheel lying on the lawn (centre), and the rope
+          bridge to the harbour islet (right). Where each stood, continue the lawn around it:
+          the same grass texture, the same green, the same light and shading, the same tiny
+          white flowers. KEEP EXACTLY everything else: the island's silhouette and outline,
+          the hill and its flowering tree, the soft mist over the hill top and the harbour
+          islet, the earth body with its four round doors and the islet's door, the roots,
+          the cloud sea, the sky, the far islands and the cloud-whale. The harbour islet stays
+          separate. NO NEW LAND: nothing extends past the outline; the lawn does not rise,
+          swell or smooth out.
+      - block: edit-keep-v1
+      - block: plate-style-rich-v1
+      - text: "AVOID: new land, a raised or puffed lawn, a bigger or smoother silhouette, a lime or yellow lawn, a joined harbour islet, removing the tree or the mist, a different light, new objects, characters, text"
+
+  # Track 3: Emanet stage 1 at night, fog referenced
+  - id: x-emanet-flow-1-night-v3
+    kind: plate
+    name: x-emanet-flow-1-night-v3
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 1.0}
+    edit_of: x-emanet-flow-1
+    chat: "Pofu · Redo picks"
+    light: {cell: night, layer: subject}
+    palettes: [world-night, world-props, world-foliage]
+    acceptance: {exploration: true, edit_mode: recolor, profile: night}
+    notes: "Redo 3 of Emanet stage 1 at night. Failure of v2: the stage-floor fog thinned (the heap and the floor read as clear night). Review: the fog over the floor, the heap, the house base and the shelves as dense as in the day parent; the night sky above it as on the picked stage 0 night (attached); no new lit lamp."
+    attach:
+      - ref: emanet-0-night
+        role: "The night and fog target: Emanet stage 0 by moonlight, how the story fog looks at night (a soft silver-lilac veil that keeps its density). Match the light and the fog's look, not its amount or the objects."
+    prompt:
+      - text: |
+          Edit the attached painting into the same scene on a calm, clear night: a soft
+          deep-blue sky (blue, never black) above the fog with a soft round moon at the top
+          right and a few small stars; the cloud sea light and lilac-white. KEEP THE STORY FOG
+          AS DENSE AS IN THE ATTACHED PICTURE, in the same places: it lies over the whole stage
+          floor, around the heap of things in the middle, at the base of the house and over
+          the shelves and the cart. The heap stays veiled by the fog, never crisp and clear.
+          Moonlight gives the fog a soft silver-lilac sheen (as on the night reference) but
+          does not thin it. Lamps, lanterns and windows that are unlit in the attached picture
+          stay unlit; only the shop window's small lantern keeps its soft warm glow.
+          Everything stays in its place, the same shapes and sizes; only light and colour change.
+      - block: edit-keep-v1
+      - block: plate-style-rich-v1
+      - text: "AVOID: thinner fog, a clear stage floor, a crisp heap, new fog banks in the sky, high contrast, black shadows, a grey or blue veil over the whole frame, a lit lamp that is unlit in the parent, new objects, characters, text, moving anything"
