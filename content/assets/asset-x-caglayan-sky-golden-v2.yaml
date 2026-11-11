@@ -1,0 +1,24 @@
+id: asset-x-caglayan-sky-golden-v2
+type: asset
+title_tr: x-caglayan-sky-golden-v2
+title_en: x-caglayan-sky-golden-v2 (plate)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached tall painting into the same scene in this light: golden hour: a soft pink
+  and lilac sky warming to peach near the clouds, low warm peach light raking from the side,
+  lilac shadows, the cloud sea blushed peach with lilac shade. Lamps and windows that exist
+  are just coming on, small and soft. Çağlayan's own colours stay rich. The sky, the two small
+  distant islands and the cloud sea stay rich and slight…
+links:
+  variant_of:
+  - asset-x-caglayan-portrait-s4-day
+art:
+  images: []
+  jobs:
+  - batch-76-redo-picks:x-caglayan-sky-golden-v2
+sources:
+- doc: tools/imagegen/manifest/batch-76-redo-picks.yaml
+kind: plate
+batch: batch-76-redo-picks
+size: 1024x1536

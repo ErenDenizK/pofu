@@ -1,0 +1,24 @@
+id: asset-x-caglayan-sky-rain-v2
+type: asset
+title_tr: x-caglayan-sky-rain-v2
+title_en: x-caglayan-sky-rain-v2 (plate)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached tall painting into the same scene in a soft rain: a soft lilac-grey overcast
+  sky with layered rain clouds, fine gentle rain streaks, a wetter, darker cloud sea with
+  pearl highlights, a soft wet sheen on the stones and paths. Under the overcast there is
+  no sun and no rainbow. The island and the sky keep their rich colour (not a grey veil).
+  The far clouds and the two small distant islands fade softly …
+links:
+  variant_of:
+  - asset-x-caglayan-portrait-s4-day
+art:
+  images: []
+  jobs:
+  - batch-76-redo-picks:x-caglayan-sky-rain-v2
+sources:
+- doc: tools/imagegen/manifest/batch-76-redo-picks.yaml
+kind: plate
+batch: batch-76-redo-picks
+size: 1024x1536

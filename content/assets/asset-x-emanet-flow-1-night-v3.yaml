@@ -1,0 +1,24 @@
+id: asset-x-emanet-flow-1-night-v3
+type: asset
+title_tr: x-emanet-flow-1-night-v3
+title_en: x-emanet-flow-1-night-v3 (plate)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached painting into the same scene on a calm, clear night: a soft deep-blue
+  sky (blue, never black) above the fog with a soft round moon at the top right and a few
+  small stars; the cloud sea light and lilac-white. KEEP THE STORY FOG AS DENSE AS IN THE
+  ATTACHED PICTURE, in the same places: it lies over the whole stage floor, around the heap
+  of things in the middle, at the base of the house and over the she…
+links:
+  variant_of:
+  - asset-x-emanet-flow-1
+art:
+  images: []
+  jobs:
+  - batch-76-redo-picks:x-emanet-flow-1-night-v3
+sources:
+- doc: tools/imagegen/manifest/batch-76-redo-picks.yaml
+kind: plate
+batch: batch-76-redo-picks
+size: 1536x1024
