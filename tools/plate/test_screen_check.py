@@ -70,6 +70,39 @@ class MeasureTests(unittest.TestCase):
         s["layers"]["far"]["rgba"][5:15, 5:15, :3] = (0.3, 0.7, 0.2)   # a green lawn bit
         self.assertFalse(sc.check_leaks(s, {"max_px": 5})["ok"])
 
+    def test_a_green_aurora_is_not_a_leak_but_the_lawn_is(self):
+        """Revontuli's aurora is green: the check keys on the island matte's own colours, not on every green."""
+        island = np.zeros((40, 40, 4), np.float32)
+        island[..., :3] = (0.30, 0.62, 0.20)
+        island[..., :3] += np.random.default_rng(1).normal(0, 0.01, island[..., :3].shape).astype(np.float32)
+        island[..., 3] = 1
+        far = np.zeros((30, 30, 4), np.float32)
+        far[..., :3] = 0.95
+        far[..., 3] = 1
+        far[5:25, 5:25, :3] = (0.45, 0.90, 0.40)                       # an aurora curtain: green, light, vivid
+        th = {"max_px": 5, "palette_de": 12.0, "palette_k": 4}
+        s = {"layers": {"island": {"rgba": island}, "far": {"rgba": far.copy()}}}
+        self.assertTrue(sc.check_leaks(s, th)["ok"], sc.check_leaks(s, th))
+        # without the island layer the old hue test still flags it (the false positive this replaces)
+        self.assertFalse(sc.check_leaks({"layers": {"far": {"rgba": far.copy()}}}, th)["ok"])
+        # a bit of the lawn itself in a cloud layer is flagged either way
+        s["layers"]["far"]["rgba"][5:25, 5:25, :3] = (0.30, 0.62, 0.20)
+        self.assertFalse(sc.check_leaks(s, th)["ok"])
+
+    def test_the_plate_rows_of_a_landscape_plate_on_a_portrait_master(self):
+        hand = {"portraitFrame": {"size": [1024, 1536], "scale": 2 / 3, "offset": [0, 425]}, "size": [1536, 1024]}
+        man = {"size": [2048, 3072]}
+        fr = {"y0": -937.0, "k": 1.746}
+        r0, r1 = sc.plate_rows(man, hand, fr, 2622)
+        self.assertAlmostEqual(r0, (850 + 937) / 1.746, delta=1)
+        self.assertAlmostEqual(r1, (850 + 1365.3 + 937) / 1.746, delta=1)
+        # Home's plate is the master itself
+        self.assertEqual(sc.plate_rows({"size": [100, 200]}, {}, {"y0": -10.0, "k": 1.0}, 150), (10, 150))
+        to_master = sc.plate_to_master(hand, (2048, 3072))
+        mx, my = to_master(50, 50)
+        self.assertAlmostEqual(mx, 1024.0, places=3)
+        self.assertAlmostEqual(my, 850 + 0.5 * 1365.3333, places=2)
+
     def test_resolution(self):
         th = sc.THRESHOLDS["resolution"]
         self.assertTrue(sc.check_resolution({"k": 1.4}, th)["ok"])

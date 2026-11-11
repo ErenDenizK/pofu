@@ -65,9 +65,13 @@ SKY_THRESHOLDS = {
 # starting guesses, calibrated on Home day, golden and night (see calibration.json)
 THRESHOLDS = {
     "identity": {"mean_de": 1.5, "p99_de": 6.0},
+    # Çağlayan's CI frames against the landscape build: the island and the rows its plate covered. The island is the
+    # stage plate's own pixels (strict); the rest of those rows is the portrait master's sky, repainted by the
+    # outpaint, so it differs from the landscape plate's by a little (looser); the rows past the plate are new.
+    "identity_plate": {"island_mean_de": 1.5, "island_p99_de": 6.0, "rows_mean_de": 4.0, "rows_p99_de": 14.0},
     "seam": {"de": 8.0, "ring_px": 6, "max_new_share": 0.002, "block_de": 3.0, "block_run": 40, "near_px": 300,
              "max_new_block_share": 0.0005},
-    "leak": {"max_px": 200},
+    "leak": {"max_px": 200, "palette_de": 12.0, "palette_k": 8},
     "colour": {"ratio_tol": 0.10, "pale_hot": True},
     "dead": {"max_run_share": 0.20, "over_master": 0.02, "row_detail": 0.0025},
     "life": {"sky_floor": 0.25, "island_max": 0.5},
@@ -145,8 +149,12 @@ def compose(s: dict, t: float = 0.0, frame: dict | None = None, upto: str | None
     for lid in man["order"]:
         lay = s["layers"][lid]
         kind = lay["meta"].get("role", lay["kind"])
-        canvas = _place(lay["rgba"], lay["pos"], (w, h), "sea" if lid == "sea" else lay["kind"], (top, bot))
-        img = cv2.resize(canvas, (sw, sh), interpolation=cv2.INTER_AREA).reshape(sh, sw, 4)
+        # a drift tile may be wider than the master (a bridge added to the right, `split.bridge_wrap`)
+        tile = lay["kind"] == "tile"
+        tw = lay["rgba"].shape[1] if tile else w
+        stw = int(round(tw * c)) if tile else sw
+        canvas = _place(lay["rgba"], lay["pos"], (tw, h), "sea" if lid == "sea" else lay["kind"], (top, bot))
+        img = cv2.resize(canvas, (stw, sh), interpolation=cv2.INTER_AREA).reshape(sh, stw, 4)
         shift = int(round(drift_rate.get(lid, 0.0) * t)) if (lay["kind"] == "tile" or lay["kind"] == "sprite") else 0
         if lay["kind"] == "tile" and shift:
             img = np.roll(img, shift, axis=1)
@@ -157,7 +165,11 @@ def compose(s: dict, t: float = 0.0, frame: dict | None = None, upto: str | None
         x_src0, y_src0 = ox, oy
         xs0, xs1 = max(x_src0, 0), min(x_src0 + scr[0], sw)
         ys0, ys1 = max(y_src0, 0), min(y_src0 + scr[1], sh)
-        if xs1 > xs0 and ys1 > ys0:
+        if tile and ys1 > ys0:
+            # a tile wraps: the columns past the master's edge (the screen can be wider than it) are its next copy
+            cols = (np.arange(scr[0]) + x_src0) % stw
+            win[ys0 - y_src0: ys1 - y_src0] = img[ys0:ys1][:, cols]
+        elif xs1 > xs0 and ys1 > ys0:
             win[ys0 - y_src0: ys1 - y_src0, xs0 - x_src0: xs1 - x_src0] = img[ys0:ys1, xs0:xs1]
         a = win[..., 3:4]
         out = win[..., :3] + out * (1 - a)
@@ -168,6 +180,9 @@ def compose(s: dict, t: float = 0.0, frame: dict | None = None, upto: str | None
     cover = np.zeros(scr[::-1], bool)
     r0, r1 = max(int(round((-fr["y0"]) * c)), 0), min(int(round((h - fr["y0"]) * c)), scr[1])
     cover[r0:r1] = True
+    c0, c1 = max(-ox, 0), min(sw - ox, scr[0])                    # the columns the master reaches (the screen may be wider)
+    cover[:, :c0] = False
+    cover[:, c1:] = False
     return {"rgb": np.clip(out, 0, 1) * 255, "island_alpha": island_a, "covered": cover, "frame": fr}
 
 
@@ -294,19 +309,58 @@ def check_blocks(frames: dict[int, np.ndarray], island_alpha: np.ndarray, th: di
     return {"t": res, "ok": bool(ok)}
 
 
+def island_palette(island_rgba: np.ndarray, k: int = 8) -> np.ndarray:
+    """The island's own greens as `k` CIELAB cluster centres: the opaque pixels of the island layer (the matte's
+    inside) that are in the island's hue band (`split.island_hued`). What a cloud layer must not hold is
+    *these* colours, not every green: an aurora is green too."""
+    rgb, a = island_rgba[..., :3], island_rgba[..., 3]
+    sel = (a > 0.95) & split.island_hued(rgb)
+    if sel.sum() < k:
+        return np.zeros((0, 3), np.float32)
+    lab = heic._lab(np.asarray(rgb[sel], np.float64) * 255).astype(np.float32)
+    if len(lab) > 40000:
+        lab = lab[np.random.default_rng(0).choice(len(lab), 40000, replace=False)]
+    _, _, centres = cv2.kmeans(lab, k, None, (cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_MAX_ITER, 30, 0.5), 3,
+                               cv2.KMEANS_PP_CENTERS)
+    return centres
+
+
 def check_leaks(s: dict, th: dict) -> dict:
-    """The drifting layers (far, mid, sea) must hold no island-hued pixels: an island bit the matte
-    rejected would wrap round and show as a second harbour at the edge."""
+    """The drifting layers (far, mid, sea) must hold no island pixels: an island bit the matte rejected would
+    wrap round and show as a second harbour at the edge. A pixel is island's when it is in the island's hue band
+    *and* within `palette_de` dE of one of the island layer's own colours (`island_palette`, taken from the
+    island matte's inside): a green aurora or a yellow-green sunset cloud is not the lawn. A set without an island
+    layer falls back to the hue band alone."""
     res, total = {}, 0
+    island = s["layers"].get("island")
+    palette = island_palette(island["rgba"], th.get("palette_k", 8)) if island is not None and "palette_de" in th else None
     for lid in ("far", "mid", "sea"):
         if lid not in s["layers"]:
             continue
         im = s["layers"][lid]["rgba"]
         bad = split.island_hued(im[..., :3]) & (im[..., 3] > 0.25)
+        if palette is not None and len(palette) and bad.any():
+            lab = heic._lab(np.asarray(im[..., :3][bad], np.float64) * 255)
+            near = np.sqrt(((lab[:, None, :] - palette[None, :, :]) ** 2).sum(-1)).min(1) < th["palette_de"]
+            keep = np.zeros_like(bad)
+            keep[bad] = near
+            bad = keep
         n = int(bad.sum())
         res[lid] = n
         total += n
     return {"px": res, "ok": total <= th["max_px"]}
+
+
+def plate_to_master(hand: dict, master_size: tuple[int, int]):
+    """A function (x percent, y percent of the plate) -> master pixels. Home's plate is the master; Çağlayan's
+    landscape plates sit on the portrait master at `portraitFrame` (`tools/plate/portrait.py`)."""
+    w, h = master_size
+    f = hand.get("portraitFrame")
+    if not f:
+        return lambda x, y: (x / 100 * w, y / 100 * h)
+    k = w / f["size"][0]
+    pw, ph = hand.get("size", (1536, 1024))
+    return lambda x, y: ((x / 100 * pw) * f["scale"] * k + f["offset"][0] * k, (y / 100 * ph) * f["scale"] * k + f["offset"][1] * k)
 
 
 def region_masks(man: dict, frame: dict, island_alpha: np.ndarray, hand: dict) -> dict:
@@ -321,8 +375,9 @@ def region_masks(man: dict, frame: dict, island_alpha: np.ndarray, hand: dict) -
     sky = (island_alpha < 0.01) & (py >= 0) & (py < man["seaTop"] - 100)
     sky &= cv2.erode((island_alpha > 0.01).astype(np.uint8), np.ones((9, 9), np.uint8)) == 0
     lawn = np.zeros(scr[::-1], np.uint8)
+    to_master = plate_to_master(hand, (w, h))
     for poly in [hand["walkable"]] if hand.get("walkable") else []:
-        pts = np.array([[(x / 100 * w - frame["x0"]) * c, (y / 100 * h - frame["y0"]) * c] for x, y in poly], np.int32)
+        pts = np.array([[(to_master(x, y)[0] - frame["x0"]) * c, (to_master(x, y)[1] - frame["y0"]) * c] for x, y in poly], np.int32)
         cv2.fillPoly(lawn, [pts], 1)
     return {"sky": sky, "lawn": lawn > 0}
 
@@ -479,6 +534,11 @@ def run_sky(island: str, light: str, th: dict = SKY_THRESHOLDS) -> dict:
     out: dict = {"light": light}
     out["mirror"] = {t: check_mirror(rd.render(s, t, fr), bottom, th["mirror"]) for t in (0, 3)}
     out["mirror"]["ok"] = all(v["ok"] for v in out["mirror"].values())
+    top = int(round(-fr["y0"] / fr["k"]))              # rows above the master (the picture runs on up: Çağlayan)
+    if top > th["mirror"]["min_rows"]:
+        sky_top = {t: rd.render(s, t, fr) for t in (0, 3)}
+        out["mirror_top"] = {t: check_mirror(f[::-1], f.shape[0] - top, th["mirror"]) for t, f in sky_top.items()}
+        out["mirror_top"]["ok"] = all(v["ok"] for v in out["mirror_top"].values())
     out["sky_edges"] = check_sky_edges(rd.render(s, 0, fr, upto="sky"), th["sky_edges"])
     last_still = [i for i in ids if i.startswith("stars") or i in ("sky", "moon")][-1]
     ghosts = {}
@@ -486,11 +546,41 @@ def run_sky(island: str, light: str, th: dict = SKY_THRESHOLDS) -> dict:
         below = rd.render(s, t, fr, upto=last_still)
         ghosts[t] = check_ghosts(below, rd.render(s, t, fr, upto="far"), th["ghosts"]) if "far" in ids else {"ok": True}
     out["ghosts"] = {**{str(t): v for t, v in ghosts.items()}, "ok": all(v["ok"] for v in ghosts.values())}
-    out["ok"] = all(out[k]["ok"] for k in ("mirror", "sky_edges", "ghosts"))
+    out["ok"] = all(out[k]["ok"] for k in ("mirror", "mirror_top", "sky_edges", "ghosts") if k in out)
     return out
 
 
 # ---------------------------------------------------------------- CI frames
+
+def set_lights(island: str) -> list[str]:
+    """The lights an island has a split sky set for (Home: day, golden, night; Çağlayan: day)."""
+    return [l for l in ("day", "golden", "night") if (PLATES / island / "sky" / l / "manifest.json").exists()]
+
+
+def ci_states(island: str) -> list[tuple[str, str]]:
+    """(light, the CI frame's name) per state with a sky set: Home's three level-10 lights; Çağlayan's day at its five
+    story stages (`caglayan-plate-full-s<stage>-day.png`)."""
+    if island == "home":
+        return [(l, f"home-plate-full-l10-{l}.png") for l in set_lights(island)]
+    return [("day", f"{island}-plate-full-s{n}-day.png") for n in range(5)]
+
+
+def plate_rows(man: dict, hand: dict, fr: dict, screen_h: int) -> tuple[int, int]:
+    """The screen rows the previous build's plate covered: Home's plate is the master; Çağlayan's landscape plate
+    is a band of it (`portraitFrame`)."""
+    w, h = man["size"]
+    f = hand.get("portraitFrame")
+    if f:
+        k = w / f["size"][0]
+        pw, ph = hand.get("size", (1536, 1024))
+        top = f["offset"][1] * k
+        bottom = top + ph * f["scale"] * k
+    else:
+        top, bottom = 0, h
+    r0 = int(round((top - fr["y0"]) / fr["k"]))
+    r1 = int(round((bottom - fr["y0"]) / fr["k"]))
+    return max(r0, 0), min(r1, screen_h)
+
 
 def _read(path: Path) -> np.ndarray:
     return np.asarray(Image.open(path).convert("RGB"), np.float32)
@@ -516,23 +606,46 @@ def check_ci(island: str, light: str, frame: np.ndarray, before: np.ndarray, th:
     covered = np.ones(frame.shape[:2], bool)
     masks = region_masks(man, fr, comp["island_alpha"], hand)
     out["identity"] = check_identity(frame, before, covered, th["identity"])
+    # the rows the plate covered, the rows past it, and the island itself, apart: past the plate the two builds
+    # paint different things (a calm sea, a repainted sky), and only the plate's rows are expected to match
+    r0, r1 = plate_rows(man, hand, fr, frame.shape[0])
+    on_plate = np.zeros(frame.shape[:2], bool)
+    on_plate[r0:r1] = True
+    dth = {"mean_de": 99, "p99_de": 99}
+    out["plate_rows"] = [r0, r1]
+    out["identity_plate_rows"] = check_identity(frame, before, on_plate, dth)
+    out["identity_past_plate"] = check_identity(frame, before, ~on_plate, dth) if (~on_plate).any() else None
+    isl = comp["island_alpha"] > 0.99
+    out["identity_island"] = check_identity(frame, before, isl, dth) if isl.any() else None
     out["colour"] = check_colour({0: frame}, before, covered, masks, th["colour"])
     out["dead"] = check_dead_vs_master(frame, before, th["dead"])
     out["resolution"] = check_resolution(fr, th["resolution"])
     bottom = int(round((man["size"][1] - fr["y0"]) / fr["k"]))
     out["mirror"] = check_mirror(frame, bottom, SKY_THRESHOLDS["mirror"], limit=frame.shape[0])
-    out["ok"] = all(out[k]["ok"] for k in ("identity", "colour", "dead", "resolution", "mirror"))
+    keys = ["colour", "dead", "resolution", "mirror"]
+    if hand.get("portraitFrame"):
+        # the build before drew a different picture past the plate: judge the island and the plate's rows
+        ip = th["identity_plate"]
+        out["identity_island"]["ok"] = bool(out["identity_island"]["mean_de"] < ip["island_mean_de"]
+                                              and out["identity_island"]["p99_de"] < ip["island_p99_de"])
+        out["identity_plate_rows"]["ok"] = bool(out["identity_plate_rows"]["mean_de"] < ip["rows_mean_de"]
+                                                  and out["identity_plate_rows"]["p99_de"] < ip["rows_p99_de"])
+        out["identity"]["ok"] = True                    # informational: the whole frame includes the new sky
+        keys += ["identity_island", "identity_plate_rows"]
+    else:
+        keys.append("identity")
+    out["ok"] = all(out[k]["ok"] for k in keys)
     return out
 
 
 def run_ci(island: str, frames_dir: Path, before_dir: Path, th: dict = THRESHOLDS) -> dict:
     res = {}
-    for light in ("day", "golden", "night"):
-        name = f"{island}-plate-full-l10-{light}.png"
+    for light, name in ci_states(island):
+        key = name.removeprefix(f"{island}-plate-full-").removesuffix(".png") if island != "home" else light
         if not (frames_dir / name).exists() or not (before_dir / name).exists():
-            res[light] = {"light": light, "ok": False, "error": f"{name} is missing"}
+            res[key] = {"light": light, "ok": False, "error": f"{name} is missing"}
             continue
-        res[light] = check_ci(island, light, _read(frames_dir / name), _read(before_dir / name), th)
+        res[key] = check_ci(island, light, _read(frames_dir / name), _read(before_dir / name), th)
     return res
 
 
@@ -562,7 +675,13 @@ def run(island: str, light: str, set_dir: Path | None = None, plate: np.ndarray 
     out["blocks"] = check_blocks({t: comps[t]["rgb"] for t in TIMES}, f0["island_alpha"], th["seam"])
     out["leak"] = check_leaks(s, th["leak"])
     out["colour"] = check_colour({t: comps[t]["rgb"] for t in TIMES}, master, f0["covered"], masks, th["colour"])
-    out["dead"] = check_dead_vs_master(f0["rgb"], master, th["dead"])
+    if hand.get("portraitFrame"):
+        # the picture runs on past the master (above and below): the dead-composition check reads the shipped set
+        # as the app draws it, `skyset_render`, not the split's own layers (whose gradient only repeats its edge rows)
+        import skyset_render as rd
+        out["dead"] = check_dead(rd.render(rd.load(island, light), 0, fr), th["dead"])
+    else:
+        out["dead"] = check_dead_vs_master(f0["rgb"], master, th["dead"])
     out["life"] = check_life(f0["rgb"], comps[2]["rgb"], f0["island_alpha"], th["life"])
     out["resolution"] = check_resolution(fr, th["resolution"])
     out["ok"] = all(out[k]["ok"] for k in ("identity", "seam", "blocks", "leak", "colour", "dead", "life", "resolution"))
@@ -583,7 +702,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--before", help="with `ci`: the plate-only build's CI frames")
     a = ap.parse_args(argv)
     if a.light == "sky":
-        res = {l: run_sky(a.island, l) for l in ("day", "golden", "night")}
+        res = {l: run_sky(a.island, l) for l in set_lights(a.island)}
         print(json.dumps(res, indent=1))
         if a.json:
             Path(a.json).write_text(json.dumps({"thresholds": SKY_THRESHOLDS, "sky": res}, indent=1) + "\n")
@@ -596,7 +715,7 @@ def main(argv: list[str] | None = None) -> int:
         if a.json:
             Path(a.json).write_text(json.dumps({"thresholds": THRESHOLDS, "ci": res}, indent=1) + "\n")
         return 0 if all(r["ok"] for r in res.values()) else 1
-    lights = ["day", "golden", "night"] if a.light == "all" else [a.light]
+    lights = set_lights(a.island) if a.light == "all" else [a.light]
     res = {}
     code = 0
     for light in lights:
