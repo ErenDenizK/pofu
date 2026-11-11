@@ -1,0 +1,355 @@
+batch: batch-74-redo-states
+manifest: tools/imagegen/manifest/batch-74-redo-states.yaml
+jobs:
+  x-mehtap-flow-1-day-v2:
+    pick: 1
+    publication: exploration; not promoted; lead review pending
+    note: Both takes are manually eligible. Actual QA lock_load ties at 0.0; canonical
+      plate QA harmony scores break the tie, with t1 at 73.9 over t2 at 66.7. The
+      moon, stars and faint sky trail remain as explicitly required by the prompt.
+      Auto-picked by QA; founder review pending. Not promoted because this is an exploration.
+    actual_generation_calls: 2
+    manual_review:
+      job: x-mehtap-flow-1-day-v2
+      reviewer: root coordinator, independent of generating agent
+      reviewed_at: '2026-11-10T20:44:30.231968+00:00'
+      parent_sha256: 0b9367b824eef9920aaa4bc336041609bdcd99994593cb3c1dfa60073e8ed4f9
+      prompt_sha256: 73484e501feed60a4b48b69174f8456abd9a37c01f3596d7c343bd1bddbe472f
+      takes:
+      - take: 1
+        source_sha256: 97fb6e25da20f163ff8d98ff15308bcf7bbfaca013f91312b6df4d808d2d025f
+        eligible: true
+        failures: []
+        positive_checks:
+        - Clear pale-blue daytime sky, soft daylight and light cloud sea.
+        - Faint sky trail, crescent and star elements remain; this follows the explicit
+          KEEP every sky element clause, not a generic assumption that daytime removes
+          them.
+        - Dome remains closed and pool/perch/chart/bench arrangement and crescent
+          plate remain; no new structure or healing observed.
+        - Windows and hanging globe appear unlit.
+        caveats:
+        - Exact pixel registration is not established and is not claimed.
+        - Pool reflections brighten under daylight; source stage geometry remains.
+      - take: 2
+        source_sha256: b509eac0fdec467b55a60b20f7bf9b2c313e8be33fecd408ebd7d3decf12197a
+        eligible: true
+        failures: []
+        positive_checks:
+        - Clear pale-blue daytime sky, soft daylight and light cloud sea.
+        - Faint sky trail, crescent and star elements remain; this follows the explicit
+          KEEP every sky element clause, not a generic assumption that daytime removes
+          them.
+        - Dome remains closed and pool/perch/chart/bench arrangement and crescent
+          plate remain; no new structure or healing observed.
+        - Windows and hanging globe appear unlit.
+        caveats:
+        - Exact pixel registration is not established and is not claimed.
+        - Pool reflections brighten under daylight; source stage geometry remains.
+qa_reports:
+- job: x-mehtap-flow-1-day-v2
+  take: 1
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 44 (R1 51)
+    value: 44.5
+  - check: light_values
+    status: pass
+    message: 'day/subject: L p5 53 (at least 50: darks stay a light mid-tone), p98
+      98 (at least 90)'
+    value: 53.2
+  - check: light_median
+    status: pass
+    message: 'day/subject: median L 79 (band 74-92)'
+    value: 79.2
+  - check: light_contrast
+    status: pass
+    message: 'day/subject: p75 local contrast 6.3 (band 2.5-6.5; above it reads too
+      contrasty)'
+    value: 6.29
+  - check: light_sky
+    status: warn
+    message: 'day: sky L 68 (band 70-94)'
+    value: 68.5
+  - check: light_sea
+    status: pass
+    message: 'day: cloud sea L 93 (at least 82: the sea is the reflector)'
+    value: 93.0
+  - check: light_dark
+    status: pass
+    message: 'day: 0.2 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.2
+  - check: detail_budget
+    status: pass
+    message: detail at display size 3.0 (R1 5.3)
+    value: 3.03
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 6.5, p95 19.7, off-palette 26.4% (top: #66AAEE (7.8%), #88BBFF
+      (5.6%)) (advisory in an exploration)'
+    value: 6.4565
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_structure
+    status: warn
+    message: light structure matches the parent (r 0.79)
+    value: 0.7947
+  - check: edit_lightness
+    status: warn
+    message: mean lightness moved by 16.1 L (the same lightness was asked)
+    value: 16.0625
+  - &id001
+    check: harmony
+    status: pass
+    message: 'harmony score 74 against the world reference (outliers: L_p98, edge)'
+    value: 73.9
+  info:
+    metrics_raw:
+      L_p5: 64.9
+      L_p50: 79.7
+      L_p95: 97.4
+      C_p50: 20.7
+      C_p95: 44.5
+      C_p99: 49.5
+      detail: 3.03
+    metrics_locked:
+      L_p5: 64.9
+      L_p50: 79.7
+      L_p95: 97.4
+      C_p50: 20.7
+      C_p95: 44.5
+      C_p99: 49.5
+      detail: 3.03
+  fingerprint: 6748796036c3d369
+- job: x-mehtap-flow-1-day-v2
+  take: 2
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 40 (R1 51)
+    value: 40.4
+  - check: light_values
+    status: pass
+    message: 'day/subject: L p5 54 (at least 50: darks stay a light mid-tone), p98
+      99 (at least 90)'
+    value: 54.1
+  - check: light_median
+    status: pass
+    message: 'day/subject: median L 80 (band 74-92)'
+    value: 79.9
+  - check: light_contrast
+    status: pass
+    message: 'day/subject: p75 local contrast 6.3 (band 2.5-6.5; above it reads too
+      contrasty)'
+    value: 6.33
+  - check: light_sky
+    status: warn
+    message: 'day: sky L 70 (band 70-94)'
+    value: 69.6
+  - check: light_sea
+    status: pass
+    message: 'day: cloud sea L 95 (at least 82: the sea is the reflector)'
+    value: 94.6
+  - check: light_dark
+    status: pass
+    message: 'day: 0.2 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.2
+  - check: detail_budget
+    status: pass
+    message: detail at display size 3.0 (R1 5.3)
+    value: 3.03
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 5.7, p95 18.4, off-palette 24.1% (top: #77AAEE (7.8%), #88BBEE
+      (5.9%)) (advisory in an exploration)'
+    value: 5.6897
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_structure
+    status: pass
+    message: light structure matches the parent (r 0.81)
+    value: 0.8146
+  - check: edit_lightness
+    status: warn
+    message: mean lightness moved by 17.0 L (the same lightness was asked)
+    value: 17.0065
+  - &id002
+    check: harmony
+    status: warn
+    message: 'harmony score 67 against the world reference (outliers: C_p95, L_p98,
+      edge)'
+    value: 66.7
+  info:
+    metrics_raw:
+      L_p5: 66.1
+      L_p50: 80.5
+      L_p95: 98.5
+      C_p50: 17.8
+      C_p95: 40.4
+      C_p99: 42.2
+      detail: 3.03
+    metrics_locked:
+      L_p5: 66.1
+      L_p50: 80.5
+      L_p95: 98.5
+      C_p50: 17.8
+      C_p95: 40.4
+      C_p99: 42.2
+      detail: 3.03
+  fingerprint: 6748796036c3d369
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-2a33c40d-780a-40ed-9027-6b2ee3774e9e.png
+  source_sha256: 97fb6e25da20f163ff8d98ff15308bcf7bbfaca013f91312b6df4d808d2d025f
+  q90_take: design/art/takes/batch-74-redo-states/x-mehtap-flow-1-day-v2/plate__x-mehtap-flow-1-day-v2--t1.webp
+  q90_take_sha256: 3e040e9a4d11d5c1064abc9302ac52b11379247f7a82714204f942ed2617da4a
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 73484e501feed60a4b48b69174f8456abd9a37c01f3596d7c343bd1bddbe472f
+  started_at: null
+  returned_at: null
+  model: null
+  tool: image_gen.imagegen
+  source_file_mtime_ns: 1794343218734711207
+  source_file_mtime_utc: '2026-11-10T20:40:18.734711Z'
+  provenance_time_note: Tool call start and return timestamps were not captured contemporaneously;
+    left null rather than inferred from exec duration or file mtime. Original receipt
+    preserved under receipt-corrections/history/.
+- take: 2
+  source_file: /workspace/generated_images/exec-7f03400a-cd9d-406c-8b8d-8f26d647d193.png
+  source_sha256: b509eac0fdec467b55a60b20f7bf9b2c313e8be33fecd408ebd7d3decf12197a
+  q90_take: design/art/takes/batch-74-redo-states/x-mehtap-flow-1-day-v2/plate__x-mehtap-flow-1-day-v2--t2.webp
+  q90_take_sha256: 2b50a596650099cf3dcabdeb59858cb144b84eb3f80da7f280c092b003194998
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 73484e501feed60a4b48b69174f8456abd9a37c01f3596d7c343bd1bddbe472f
+  started_at: null
+  returned_at: null
+  model: null
+  tool: image_gen.imagegen
+  source_file_mtime_ns: 1794343192222737211
+  source_file_mtime_utc: '2026-11-10T20:39:52.222737Z'
+  provenance_time_note: Tool call start and return timestamps were not captured contemporaneously;
+    left null rather than inferred from exec duration or file mtime. Original receipt
+    preserved under receipt-corrections/history/.
+policy:
+  never_promote: true
+  selection: lead picks
+  source_preservation: Original generated images retained at source_file paths; published
+    takes are q90 review copies.
+auxiliary_focused_world_scores:
+  method: Focused individual scoring against the precomputed world reference; no full
+    measure/catalog scan.
+  command_base:
+  - python3
+  - -I
+  - tools/assets/harmony.py
+  - score
+  reference_data:
+    config_sha256: d2ed591e6e8a7d0eafd54f95e3e3c98290453a81aaff11a9f800afea6fc43a18
+    reference_sha256: 602aff8ff097bad430ebfc0bf3837c647cf738bc407b90d58b8eb689810a673e
+    materials_sha256: 495011a0bfbe8c9c890ec62f8ff6f7a2e1f5fe1d061f73c23ec26518b938b557
+    assets_json_count: 211
+    assets_json_digest_sha256: f8f88057d3b860d56318b4a6bdfbf0fc70f16eb9237516ab9d3234b901c4f6b3
+  scores:
+  - take: 1
+    argv:
+    - python3
+    - -I
+    - tools/assets/harmony.py
+    - score
+    - build/imagegen/batch-74-redo-states/locked/plate__x-mehtap-flow-1-day-v2--t1.png
+    - --ppu
+    - '4.103'
+    - --kind
+    - world
+    ppu: 4.103
+    kind: world
+    score: 74.5
+    outliers:
+    - L_p98
+    - edge
+    reference_group: world
+  - take: 2
+    argv:
+    - python3
+    - -I
+    - tools/assets/harmony.py
+    - score
+    - build/imagegen/batch-74-redo-states/locked/plate__x-mehtap-flow-1-day-v2--t2.png
+    - --ppu
+    - '4.103'
+    - --kind
+    - world
+    ppu: 4.103
+    kind: world
+    score: 67.4
+    outliers:
+    - C_p95
+    - L_p98
+    - edge
+    reference_group: world
+  selection_role: Auxiliary earlier focused world CLI output; superseded for selection
+    by the canonical plate QA check.
+harmony_scores:
+  method: Existing unchanged qa.check_harmony(locked, kind=plate, limits_for plate
+    exploration); no full-catalog measure
+  kind: plate
+  ppu_formula: cfg.ppu_by_kind.world * locked_image_width / 1024
+  reference_data:
+    config_sha256: d2ed591e6e8a7d0eafd54f95e3e3c98290453a81aaff11a9f800afea6fc43a18
+    reference_sha256: 602aff8ff097bad430ebfc0bf3837c647cf738bc407b90d58b8eb689810a673e
+    materials_sha256: 495011a0bfbe8c9c890ec62f8ff6f7a2e1f5fe1d061f73c23ec26518b938b557
+    assets_json_count: 211
+    assets_json_digest_sha256: f8f88057d3b860d56318b4a6bdfbf0fc70f16eb9237516ab9d3234b901c4f6b3
+  scores:
+  - take: 1
+    locked_file: build/imagegen/batch-74-redo-states/locked/plate__x-mehtap-flow-1-day-v2--t1.png
+    kind: plate
+    ppu: 6.1545
+    reference_group: world
+    score: 73.9
+    status: pass
+    message: 'harmony score 74 against the world reference (outliers: L_p98, edge)'
+    qa_check: *id001
+  - take: 2
+    locked_file: build/imagegen/batch-74-redo-states/locked/plate__x-mehtap-flow-1-day-v2--t2.png
+    kind: plate
+    ppu: 6.1545
+    reference_group: world
+    score: 66.7
+    status: warn
+    message: 'harmony score 67 against the world reference (outliers: C_p95, L_p98,
+      edge)'
+    qa_check: *id002

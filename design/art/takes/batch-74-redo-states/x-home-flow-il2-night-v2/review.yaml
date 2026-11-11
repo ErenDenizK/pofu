@@ -1,0 +1,355 @@
+batch: batch-74-redo-states
+manifest: tools/imagegen/manifest/batch-74-redo-states.yaml
+jobs:
+  x-home-flow-il2-night-v2:
+    pick: 2
+    publication: exploration; not promoted; lead review pending
+    note: Both takes are manually eligible. The actual QA lock_load ties at 0.0; canonical
+      plate QA harmony scores break the tie, with t2 at 66.3 over t1 at 65.3. Auto-picked
+      by QA; founder review pending. Night-value and edit-lightness checks are warnings
+      in this exploration. Not promoted because this is an exploration.
+    manual_review:
+      job: x-home-flow-il2-night-v2
+      reviewer: independent visual review
+      parent: plate__x-home-flow-il2--t1.webp
+      night_reference: plate__x-home-flow-night--t1.webp
+      criteria:
+      - Preserve the day plate's objects, shapes, and positions while changing the
+        light and colour to night.
+      - Use a soft deep-blue sky, round moon, and a few small stars; keep the cloud
+        sea light and lilac-white and the island readable.
+      - Warm light comes only from windows already in the scene; do not add lamps,
+        bulbs, lanterns, strings, or other glowing objects.
+      - Far islands are dim shapes with tiny warm lights; keep the cloud-whale pale
+        if present.
+      takes:
+      - take: 1
+        source_sha256: a39f9b9c64e298df51a44dcb6f4d9208a44a8fd3f9a50c3ee88755895c2d526c
+        eligible: true
+        reasons:
+        - 'The island inventory is preserved: garden and fence, path, tea stall and
+          cart, upright wheel, and both doors remain; no additional lamp or glowing
+          object is visible.'
+        - The sky is deep blue, the moon is soft and round, the cloud sea remains
+          light lilac-white, and the island remains readable under cool light. Tiny
+          warm points appear on the far islands as requested.
+        - Warm light is confined to existing windows; the prompt's requested far-island
+          warm points are small.
+        caveats:
+        - The sky has more than a few stars by a strict count, though they remain
+          small and subdued. No specific inventory or placement failure was established
+          visually.
+      - take: 2
+        source_sha256: 89da45b0d67d4d1a88ce956b909d8eccf5af0c3fde1ea297c48d8bddcb42b3f2
+        eligible: true
+        reasons:
+        - 'The island inventory is preserved: garden and fence, path, tea stall and
+          cart, upright wheel, and both doors remain; no additional lamp or glowing
+          object is visible.'
+        - The sky is deep blue, the moon is soft and round, the cloud sea remains
+          light lilac-white, and the island remains readable under cool light. Tiny
+          warm points appear on the far islands as requested.
+        - Warm light is confined to existing windows; the prompt's requested far-island
+          warm points are small.
+        caveats:
+        - The sky has more than a few stars by a strict count, though they remain
+          small and subdued. No specific inventory or placement failure was established
+          visually.
+    actual_generation_calls: 2
+qa_reports:
+- job: x-home-flow-il2-night-v2
+  take: 1
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1024x1536
+  - check: chroma_ceiling
+    status: warn
+    message: chroma p95 53 (R1 51)
+    value: 53.0
+  - check: light_values
+    status: warn
+    message: 'night/subject: L p5 35 (at least 45: darks stay a light mid-tone), p98
+      93 (at least 85) (warn-only until the founder has seen the light pilot)'
+    value: 34.8
+  - check: light_median
+    status: warn
+    message: 'night/subject: median L 55 (band 66-88) (warn-only until the founder
+      has seen the light pilot)'
+    value: 55.2
+  - check: light_contrast
+    status: pass
+    message: 'night/subject: p75 local contrast 4.7 (band 1.5-5.0; above it reads
+      too contrasty)'
+    value: 4.67
+  - check: light_sky
+    status: pass
+    message: 'night: sky L 31 (band 24-46)'
+    value: 31.4
+  - check: light_sea
+    status: pass
+    message: 'night: cloud sea L 77 (at least 70: the sea is the reflector)'
+    value: 77.2
+  - check: light_dark
+    status: pass
+    message: 'night: 0.6 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.6
+  - check: detail_budget
+    status: pass
+    message: detail at display size 3.2 (R1 5.3)
+    value: 3.23
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 7.5, p95 17.1, off-palette 21.4% (top: #334499 (8.2%), #4455AA
+      (4.4%)) (advisory in an exploration)'
+    value: 7.4578
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_structure
+    status: warn
+    message: light structure matches the parent (r 0.79)
+    value: 0.7944
+  - check: edit_lightness
+    status: warn
+    message: mean lightness moved by 30.6 L (the same lightness was asked) (advisory
+      in an exploration)
+    value: 30.6226
+  - &id001
+    check: harmony
+    status: warn
+    message: 'harmony score 65 against the world reference (outliers: L_p2, edge)'
+    value: 65.3
+  info:
+    metrics_raw:
+      L_p5: 26.9
+      L_p50: 53.3
+      L_p95: 87.4
+      C_p50: 39.6
+      C_p95: 53.0
+      C_p99: 54.1
+      detail: 3.23
+    metrics_locked:
+      L_p5: 26.9
+      L_p50: 53.3
+      L_p95: 87.4
+      C_p50: 39.6
+      C_p95: 53.0
+      C_p99: 54.1
+      detail: 3.23
+  fingerprint: 5ba9d2073e8e726a
+- job: x-home-flow-il2-night-v2
+  take: 2
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1024x1536
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 50 (R1 51)
+    value: 50.3
+  - check: light_values
+    status: warn
+    message: 'night/subject: L p5 38 (at least 45: darks stay a light mid-tone), p98
+      91 (at least 85)'
+    value: 38.3
+  - check: light_median
+    status: warn
+    message: 'night/subject: median L 58 (band 66-88)'
+    value: 58.5
+  - check: light_contrast
+    status: pass
+    message: 'night/subject: p75 local contrast 4.2 (band 1.5-5.0; above it reads
+      too contrasty)'
+    value: 4.23
+  - check: light_sky
+    status: pass
+    message: 'night: sky L 34 (band 24-46)'
+    value: 34.1
+  - check: light_sea
+    status: pass
+    message: 'night: cloud sea L 78 (at least 70: the sea is the reflector)'
+    value: 77.6
+  - check: light_dark
+    status: pass
+    message: 'night: 0.1 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.1
+  - check: detail_budget
+    status: pass
+    message: detail at display size 3.0 (R1 5.3)
+    value: 3.01
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 7.6, p95 16.3, off-palette 28.5% (top: #334499 (9.7%), #4455AA
+      (7.2%)) (advisory in an exploration)'
+    value: 7.5779
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_structure
+    status: warn
+    message: light structure matches the parent (r 0.79)
+    value: 0.7853
+  - check: edit_lightness
+    status: warn
+    message: mean lightness moved by 28.3 L (the same lightness was asked) (advisory
+      in an exploration)
+    value: 28.2713
+  - &id002
+    check: harmony
+    status: warn
+    message: 'harmony score 66 against the world reference (outliers: L_p2, edge)'
+    value: 66.3
+  info:
+    metrics_raw:
+      L_p5: 30.0
+      L_p50: 56.5
+      L_p95: 86.4
+      C_p50: 37.2
+      C_p95: 50.3
+      C_p99: 51.1
+      detail: 3.01
+    metrics_locked:
+      L_p5: 30.0
+      L_p50: 56.5
+      L_p95: 86.4
+      C_p50: 37.2
+      C_p95: 50.3
+      C_p99: 51.1
+      detail: 3.01
+  fingerprint: 5ba9d2073e8e726a
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-8b8cf650-87ac-4e0d-aef0-0948b3d22615.png
+  source_sha256: a39f9b9c64e298df51a44dcb6f4d9208a44a8fd3f9a50c3ee88755895c2d526c
+  q90_take: design/art/takes/batch-74-redo-states/x-home-flow-il2-night-v2/plate__x-home-flow-il2-night-v2--t1.webp
+  q90_take_sha256: 456036ff0736e68e9adbbd887657f262d55dc83bf7e7047a78c9a678e742703c
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 626d1f1253df26322ad30dd71a4cce70478a724d12d5ec4bfe8ecb7c9365990b
+  started_at: '2026-11-10T20:24:06.575Z'
+  returned_at: '2026-11-10T20:24:40.062Z'
+  model: null
+  tool: image_gen.imagegen
+- take: 2
+  source_file: /workspace/generated_images/exec-d8740d11-a4a9-4bd0-8a95-c7061994abf1.png
+  source_sha256: 89da45b0d67d4d1a88ce956b909d8eccf5af0c3fde1ea297c48d8bddcb42b3f2
+  q90_take: design/art/takes/batch-74-redo-states/x-home-flow-il2-night-v2/plate__x-home-flow-il2-night-v2--t2.webp
+  q90_take_sha256: 41b21400b0c0025b44b5ce96a2e8a7db67c4e5a100928478077cf85d7584eb20
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 626d1f1253df26322ad30dd71a4cce70478a724d12d5ec4bfe8ecb7c9365990b
+  started_at: '2026-11-10T20:24:06.575Z'
+  returned_at: '2026-11-10T20:25:19.319Z'
+  model: null
+  tool: image_gen.imagegen
+policy:
+  never_promote: true
+  selection: lead picks
+  source_preservation: Original generated images retained at source_file paths; published
+    takes are q90 review copies.
+auxiliary_focused_world_scores:
+  method: Focused individual scoring against the precomputed world reference; no full
+    measure/catalog scan.
+  command_base:
+  - python3
+  - -I
+  - tools/assets/harmony.py
+  - score
+  reference_data:
+    config_sha256: d2ed591e6e8a7d0eafd54f95e3e3c98290453a81aaff11a9f800afea6fc43a18
+    reference_sha256: 602aff8ff097bad430ebfc0bf3837c647cf738bc407b90d58b8eb689810a673e
+    materials_sha256: 495011a0bfbe8c9c890ec62f8ff6f7a2e1f5fe1d061f73c23ec26518b938b557
+    assets_json_count: 211
+    assets_json_digest_sha256: f8f88057d3b860d56318b4a6bdfbf0fc70f16eb9237516ab9d3234b901c4f6b3
+  scores:
+  - take: 1
+    argv:
+    - python3
+    - -I
+    - tools/assets/harmony.py
+    - score
+    - build/imagegen/batch-74-redo-states/locked/plate__x-home-flow-il2-night-v2--t1.png
+    - --ppu
+    - '2.735'
+    - --kind
+    - world
+    ppu: 2.735
+    kind: world
+    score: 65.7
+    outliers:
+    - L_p2
+    - edge
+    reference_group: world
+  - take: 2
+    argv:
+    - python3
+    - -I
+    - tools/assets/harmony.py
+    - score
+    - build/imagegen/batch-74-redo-states/locked/plate__x-home-flow-il2-night-v2--t2.png
+    - --ppu
+    - '2.735'
+    - --kind
+    - world
+    ppu: 2.735
+    kind: world
+    score: 66.5
+    outliers:
+    - L_p2
+    - edge
+    reference_group: world
+  selection_role: Auxiliary earlier focused world CLI output; superseded for selection
+    by the canonical plate QA check.
+harmony_scores:
+  method: Existing unchanged qa.check_harmony(locked, kind=plate, limits_for plate
+    exploration); no full-catalog measure
+  kind: plate
+  ppu_formula: cfg.ppu_by_kind.world * locked_image_width / 1024
+  reference_data:
+    config_sha256: d2ed591e6e8a7d0eafd54f95e3e3c98290453a81aaff11a9f800afea6fc43a18
+    reference_sha256: 602aff8ff097bad430ebfc0bf3837c647cf738bc407b90d58b8eb689810a673e
+    materials_sha256: 495011a0bfbe8c9c890ec62f8ff6f7a2e1f5fe1d061f73c23ec26518b938b557
+    assets_json_count: 211
+    assets_json_digest_sha256: f8f88057d3b860d56318b4a6bdfbf0fc70f16eb9237516ab9d3234b901c4f6b3
+  scores:
+  - take: 1
+    locked_file: build/imagegen/batch-74-redo-states/locked/plate__x-home-flow-il2-night-v2--t1.png
+    kind: plate
+    ppu: 4.103
+    reference_group: world
+    score: 65.3
+    status: warn
+    message: 'harmony score 65 against the world reference (outliers: L_p2, edge)'
+    qa_check: *id001
+  - take: 2
+    locked_file: build/imagegen/batch-74-redo-states/locked/plate__x-home-flow-il2-night-v2--t2.png
+    kind: plate
+    ppu: 4.103
+    reference_group: world
+    score: 66.3
+    status: warn
+    message: 'harmony score 66 against the world reference (outliers: L_p2, edge)'
+    qa_check: *id002
