@@ -51,7 +51,7 @@ struct SkySetLayers: View {
 
     /// The layer's place on screen in points (before the peek's offset): its master box through the
     /// plate's placement and the camera.
-    private func frame(_ layer: SkySet.Layer) -> CGRect {
+    private func rect(of layer: SkySet.Layer) -> CGRect {
         let box = plate.worldBox(
             master: PlateRect(minX: layer.pos.x, minY: layer.pos.y, maxX: layer.pos.x + layer.size.x, maxY: layer.pos.y + layer.size.y),
             of: sky
@@ -62,7 +62,7 @@ struct SkySetLayers: View {
 
     @ViewBuilder
     private func layerView(_ layer: SkySet.Layer, time: Double, scale: Double) -> some View {
-        let r = frame(layer)
+        let r = rect(of: layer)
         let dy = SkyMotion.bob(layer.bob, time: time, scale: scale)
         switch layer.role {
         case .sky, .island, .sprite:
