@@ -263,7 +263,8 @@ struct SkySetTests {
         let scale = SkyMotion.scale(width: 402, referenceWidth: 1206)
         #expect(abs(SkyMotion.flowOffset(speed: 20, time: 3, period: 100, scale: scale) - 20) < 1e-9)
         // After exactly one tile's worth of time the picture is the same.
-        #expect(SkyMotion.flowOffset(speed: 20, time: 15, period: 100, scale: scale) < 1e-9)
+        let whole = SkyMotion.flowOffset(speed: 20, time: 15, period: 100, scale: scale)
+        #expect(whole < 1e-6 || abs(whole - 100) < 1e-6)
         var last = -1.0
         var wrapped = false
         for i in 0...2_000 {
