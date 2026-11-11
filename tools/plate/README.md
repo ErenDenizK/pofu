@@ -1,7 +1,7 @@
 # Plate tools
 
 Offline tools for plate-first islands (ADR-0022, `docs/design/plate-islands.md`). Python 3 with
-numpy, Pillow, scipy; OpenCV only for registration and the pilot's matte. Deterministic.
+numpy, Pillow, scipy, pillow-heif (`pip install -r tools/plate/requirements.txt`); OpenCV only for registration and the pilot's matte. Deterministic.
 
 | File | What it does |
 |---|---|
@@ -10,6 +10,7 @@ numpy, Pillow, scipy; OpenCV only for registration and the pilot's matte. Determ
 | `pale.py` | the numbers behind `docs/research/pale-assets.md`: per-region L*, C*, hue, local contrast, fine detail, accent and dark shares for references, CI frames and raw sprites; the H2, H3 and H6 tests |
 | `light.py` | can a fitted LUT replace a painted light state? fits golden, rain and night on one painted pair, applies to another plate, measures dE2000 against its painted truth: `docs/research/plate-pilot/light-fit.jpg` |
 | `proofs.py` | the risky mechanisms as frames: occlusion behind a painted object, a sway mask, an upgrade insert, a tap highlight, light from the plate: `docs/research/plate-pilot/mechanisms.jpg` |
+| `heic.py` | shipped plate, island and occluder layers are HEIC q70 with alpha (ADR-0024; backdrops stay JPEG): `save`, `open_image`, and the ΔE2000 p95 check the tests use |
 | `upscale.py` | offline AI x2 (or any scale) for plates: Real-ESRGAN general-x4v3 via onnxruntime, tiled, alpha kept, colour pinned to Lanczos; `docs/research/plate-upscale.md` |
 | `pilot.py` | the plate-first pilot: Revontuli stand-ins composed at the CI frame (460 x 1000 = 402 x 874 pt) with a code sky, a code aurora, lit sprites and a diff-mask reveal; the sheet `docs/research/plate-pilot/plate-pilot.jpg` |
 

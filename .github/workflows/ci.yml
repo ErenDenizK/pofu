@@ -86,7 +86,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install -r tools/assets/requirements.txt -r tools/imagegen/requirements.txt -r tools/content/requirements.txt
+          pip install -r tools/assets/requirements.txt -r tools/plate/requirements.txt -r tools/imagegen/requirements.txt -r tools/content/requirements.txt
 
       - name: Test the asset tools
         run: python3 -I -m unittest discover -s tools/assets -p "test_*.py"

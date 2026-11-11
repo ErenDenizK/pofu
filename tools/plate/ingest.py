@@ -24,6 +24,7 @@ Commands (python3 -I tools/plate/ingest.py <command> <island>):
   check     fails (exit 1, one line per problem) on a polygon off the matte, a missing asset or a
             texture budget past 9 MB
 
+Plate, island and occluder layers are written as HEIC q70 with alpha (heic.py, ADR-0024).
 Plates ship upscaled x2 with a 0.8 / 0.2 blend of `upscale.py` and Lanczos (in-app A/B 2026-11-10,
 #352): `deliver` and `objects` read the upscaled plate (cached in the upscaler's cache folder). If
 the model or onnxruntime is unavailable they fail loudly; `--no-upscale` ships the original take
@@ -49,6 +50,7 @@ REPO = HERE.parent.parent
 sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(REPO / "tools" / "assets"))
 from process_assets import srgb_to_lab  # noqa: E402
+import heic  # noqa: E402
 
 PLATES = REPO / "design" / "art" / "plates"
 RESOURCES = REPO / "Packages" / "PofuKit" / "Sources" / "PofuWorld" / "Resources"
@@ -210,13 +212,14 @@ def write_imageset(name: str, img: Image.Image, jpeg: bool = False) -> Path:
     folder = ASSETS / f"{name}.imageset"
     folder.mkdir(parents=True, exist_ok=True)
     for old in folder.glob(f"{name}.*"):
-        if old.suffix in (".png", ".jpg"):
+        if old.suffix in (".png", ".jpg", heic.SUFFIX):
             old.unlink()
-    filename = f"{name}.jpg" if jpeg else f"{name}.png"
+    # Layers with alpha (plate, island, occluder) ship as HEIC q70 (ADR-0024); the backdrop has none: JPEG.
+    filename = f"{name}.jpg" if jpeg else f"{name}{heic.SUFFIX}"
     if jpeg:
         img.convert("RGB").save(folder / filename, "JPEG", quality=90, optimize=True)
     else:
-        img.save(folder / filename, optimize=True)
+        heic.save(img, folder / filename)
     contents = {"images": [{"filename": filename, "idiom": "universal"}], "info": {"author": "xcode", "version": 1}}
     (folder / "Contents.json").write_text(json.dumps(contents, indent=2) + "\n")
     return folder / filename
@@ -748,8 +751,8 @@ def texture_bytes(island: str, hand: dict) -> int:
         total = 0
         for folder in ASSETS.glob(f"world-{island}-*-{light}-{stage}.imageset"):
             for f in folder.iterdir():
-                if f.suffix in (".png", ".jpg"):
-                    with Image.open(f) as im:
+                if f.suffix in (".png", ".jpg", heic.SUFFIX):
+                    with heic.open_image(f) as im:
                         total += im.width * im.height
         worst = max(worst, total)
     return worst
@@ -887,6 +890,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--no-upscale", action="store_true",
                     help="ship the original take (only when the model is unavailable; loud on purpose)")
     args = ap.parse_args(argv)
+    heic.require()  # fail before any work, like the upscaler
     global SCALE_UP
     SCALE_UP = not args.no_upscale
     if args.command == "matte":
