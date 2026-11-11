@@ -1,0 +1,358 @@
+{
+ "thresholds": {
+  "identity": {
+   "mean_de": 1.5,
+   "p99_de": 6.0
+  },
+  "seam": {
+   "de": 8.0,
+   "ring_px": 6,
+   "max_new_share": 0.002,
+   "block_de": 3.0,
+   "block_run": 40,
+   "near_px": 300,
+   "max_new_block_share": 0.0005
+  },
+  "leak": {
+   "max_px": 200
+  },
+  "colour": {
+   "ratio_tol": 0.1,
+   "pale_hot": true
+  },
+  "dead": {
+   "max_run_share": 0.2,
+   "over_master": 0.02,
+   "row_detail": 0.0025
+  },
+  "life": {
+   "sky_floor": 0.25,
+   "island_max": 0.5
+  },
+  "resolution": {
+   "min_source_per_screen": 0.9
+  }
+ },
+ "screen": [
+  1206,
+  2622
+ ],
+ "times": [
+  0,
+  30,
+  120
+ ],
+ "drift": {
+  "far": 4.0,
+  "mid": 9.0,
+  "sea": 14.0
+ },
+ "lights": {
+  "day": {
+   "light": "day",
+   "frame": {
+    "k": 1.468,
+    "x0": 83.7,
+    "y0": -409.0
+   },
+   "identity": {
+    "mean_de": 0.536,
+    "p99_de": 4.659,
+    "ok": true
+   },
+   "seam": {
+    "ring_px": 273382,
+    "t": {
+     "0": {
+      "line_share": 0.03124,
+      "new_share": 0.0,
+      "new_px": 0
+     },
+     "30": {
+      "line_share": 0.03108,
+      "new_share": 1e-05,
+      "new_px": 2
+     },
+     "120": {
+      "line_share": 0.03107,
+      "new_share": 1e-05,
+      "new_px": 3
+     }
+    },
+    "ok": true
+   },
+   "blocks": {
+    "t": {
+     "0": {
+      "new_px": 0,
+      "new_share": 0.0
+     },
+     "30": {
+      "new_px": 0,
+      "new_share": 0.0
+     },
+     "120": {
+      "new_px": 0,
+      "new_share": 0.0
+     }
+    },
+    "ok": true
+   },
+   "leak": {
+    "px": {
+     "far": 0,
+     "mid": 0,
+     "sea": 0
+    },
+    "ok": true
+   },
+   "colour": {
+    "master_ratio": 0.9287,
+    "master_C_p90": 48.02,
+    "t": {
+     "0": {
+      "flags": [],
+      "ambient_ratio": 0.9247,
+      "ratio_off": -0.0042,
+      "L_p50": 79.69,
+      "C_p90": 47.94
+     },
+     "30": {
+      "flags": [],
+      "ambient_ratio": 0.9236,
+      "ratio_off": -0.0055,
+      "L_p50": 79.69,
+      "C_p90": 47.94
+     },
+     "120": {
+      "flags": [],
+      "ambient_ratio": 0.9187,
+      "ratio_off": -0.0107,
+      "L_p50": 79.62,
+      "C_p90": 47.89
+     }
+    },
+    "ok": true
+   },
+   "dead": {
+    "longest_run_share": 0.1777,
+    "master": 0.1747,
+    "ok": true
+   },
+   "life": {
+    "sky_mean_abs": 2.422,
+    "island_max_abs": 0.0797,
+    "ok": true
+   },
+   "resolution": {
+    "source_per_screen": 1.468,
+    "ok": true
+   },
+   "ok": true
+  },
+  "golden": {
+   "light": "golden",
+   "frame": {
+    "k": 1.468,
+    "x0": 83.7,
+    "y0": -450.0
+   },
+   "identity": {
+    "mean_de": 0.505,
+    "p99_de": 2.75,
+    "ok": true
+   },
+   "seam": {
+    "ring_px": 307958,
+    "t": {
+     "0": {
+      "line_share": 0.01541,
+      "new_share": 0.0,
+      "new_px": 0
+     },
+     "30": {
+      "line_share": 0.01548,
+      "new_share": 6e-05,
+      "new_px": 19
+     },
+     "120": {
+      "line_share": 0.01536,
+      "new_share": 3e-05,
+      "new_px": 9
+     }
+    },
+    "ok": true
+   },
+   "blocks": {
+    "t": {
+     "0": {
+      "new_px": 0,
+      "new_share": 0.0
+     },
+     "30": {
+      "new_px": 40,
+      "new_share": 7.9e-05
+     },
+     "120": {
+      "new_px": 88,
+      "new_share": 0.000173
+     }
+    },
+    "ok": true
+   },
+   "leak": {
+    "px": {
+     "far": 17,
+     "mid": 0,
+     "sea": 0
+    },
+    "ok": true
+   },
+   "colour": {
+    "master_ratio": 0.8702,
+    "master_C_p90": 41.16,
+    "t": {
+     "0": {
+      "flags": [],
+      "ambient_ratio": 0.8661,
+      "ratio_off": -0.0048,
+      "L_p50": 76.43,
+      "C_p90": 41.12
+     },
+     "30": {
+      "flags": [],
+      "ambient_ratio": 0.8642,
+      "ratio_off": -0.0069,
+      "L_p50": 76.48,
+      "C_p90": 41.14
+     },
+     "120": {
+      "flags": [],
+      "ambient_ratio": 0.8668,
+      "ratio_off": -0.0039,
+      "L_p50": 76.57,
+      "C_p90": 41.0
+     }
+    },
+    "ok": true
+   },
+   "dead": {
+    "longest_run_share": 0.188,
+    "master": 0.1876,
+    "ok": true
+   },
+   "life": {
+    "sky_mean_abs": 2.432,
+    "island_max_abs": 0.0989,
+    "ok": true
+   },
+   "resolution": {
+    "source_per_screen": 1.468,
+    "ok": true
+   },
+   "ok": true
+  },
+  "night": {
+   "light": "night",
+   "frame": {
+    "k": 1.4572,
+    "x0": 83.2,
+    "y0": -397.5
+   },
+   "identity": {
+    "mean_de": 0.477,
+    "p99_de": 3.498,
+    "ok": true
+   },
+   "seam": {
+    "ring_px": 272545,
+    "t": {
+     "0": {
+      "line_share": 0.02482,
+      "new_share": 0.0,
+      "new_px": 0
+     },
+     "30": {
+      "line_share": 0.0248,
+      "new_share": 6e-05,
+      "new_px": 16
+     },
+     "120": {
+      "line_share": 0.02478,
+      "new_share": 3e-05,
+      "new_px": 7
+     }
+    },
+    "ok": true
+   },
+   "blocks": {
+    "t": {
+     "0": {
+      "new_px": 0,
+      "new_share": 0.0
+     },
+     "30": {
+      "new_px": 0,
+      "new_share": 0.0
+     },
+     "120": {
+      "new_px": 0,
+      "new_share": 0.0
+     }
+    },
+    "ok": true
+   },
+   "leak": {
+    "px": {
+     "far": 0,
+     "mid": 0,
+     "sea": 0
+    },
+    "ok": true
+   },
+   "colour": {
+    "master_ratio": 0.337,
+    "master_C_p90": 40.92,
+    "t": {
+     "0": {
+      "flags": [],
+      "ambient_ratio": 0.3318,
+      "ratio_off": -0.0154,
+      "L_p50": 57.74,
+      "C_p90": 40.86
+     },
+     "30": {
+      "flags": [],
+      "ambient_ratio": 0.3293,
+      "ratio_off": -0.0226,
+      "L_p50": 57.57,
+      "C_p90": 40.82
+     },
+     "120": {
+      "flags": [],
+      "ambient_ratio": 0.3172,
+      "ratio_off": -0.0587,
+      "L_p50": 57.07,
+      "C_p90": 40.87
+     }
+    },
+    "ok": true
+   },
+   "dead": {
+    "longest_run_share": 0.1281,
+    "master": 0.1274,
+    "ok": true
+   },
+   "life": {
+    "sky_mean_abs": 2.69,
+    "island_max_abs": 0.129,
+    "ok": true
+   },
+   "resolution": {
+    "source_per_screen": 1.457,
+    "ok": true
+   },
+   "ok": true
+  }
+ }
+}
