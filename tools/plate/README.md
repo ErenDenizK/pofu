@@ -1,12 +1,15 @@
 # Plate tools
 
 Offline tools for plate-first islands (ADR-0022, `docs/design/plate-islands.md`). Python 3 with
-numpy, Pillow, scipy, pillow-heif (`pip install -r tools/plate/requirements.txt`); OpenCV only for registration and the pilot's matte. Deterministic.
+numpy, Pillow, scipy, pillow-heif (`pip install -r tools/plate/requirements.txt`); OpenCV for registration, the pilot's matte and the sky split. Deterministic.
 
 | File | What it does |
 |---|---|
 | `ingest.py` | plate-first ingest (`docs/design/plate-islands.md` §0): from `design/art/plates/<island>/objects.json` (plates, trace, tap and occluder polygons, walkable lawn, character spots, framing) the matte, the whole plate with a feathered border, the island cut, the plate's sky and cloud sea extended past its edges (the backdrop), occluder cut-outs, the light and shadow maps and `Plates/plate-<island>.json`; `check` guards polygons, assets and the texture budget. A light painted at some stages only (Çağlayan's night: 2 and 3) is "sparse": its arrays are padded and the JSON lists `painted` per light; `referenceState` names the harmony reference (default: the first plate); `backdrop: "calm"` and `backdropScale` give a landscape plate a quiet sea below it; `characterLight` overrides the rim, `stoneMargin` and turns on `saturate` per island |
 | `harmony_check.py` | the character harmony rule as a measurement (`docs/design/visual-system.md` "Characters"): from a full-resolution Home frame (`home-plate-full-<state>.png`), each character's body L* and C* against its surrounding lawn, checked against the band calibrated on the level-10 day frame, plus the night "no sticker" and golden "fur follows the lawn's hue" rules; `--island caglayan --reference s4-day` measures Damla in `caglayan-plate-full-s<stage>-<light>.png` against the island's own root frame; `python3 -I tools/plate/test_harmony_check.py` |
+| `split.py` | the plate-first sky split: one painted master per light cut into an island plate (alpha matte unmixed from what is behind it, the cloud bank at its base kept so the seam falls in soft cloud) over a sky set (gradient, far and mid clouds, distant isles and the whale as sprites, a cloud sea whose area behind the island is quilted from the visible sea, drift tiles that wrap), HEIC q70 plus `manifest.json` under `design/art/plates/<island>/sky/<light>/`; hand data `sky/sky.json` |
+| `inpaint.py` | exemplar fills for it: `quilt` (masked-SSD block quilting by FFT correlation, no smear: the cloud-sea fill and the wrap seams) and a small multi-scale PatchMatch `inpaint` |
+| `screen_check.py` | six checks on composited frames at the Home framing (1206 x 2622): frame-zero identity, seam under drift (t = 0, 30, 120 s), colour drift, dead composition, life, resolution; the same functions read a CI screenshot (`check_frame`); thresholds and what Home measured: `design/art/plates/home/sky/calibration.json` |
 | `pale.py` | the numbers behind `docs/research/pale-assets.md`: per-region L*, C*, hue, local contrast, fine detail, accent and dark shares for references, CI frames and raw sprites; the H2, H3 and H6 tests |
 | `light.py` | can a fitted LUT replace a painted light state? fits golden, rain and night on one painted pair, applies to another plate, measures dE2000 against its painted truth: `docs/research/plate-pilot/light-fit.jpg` |
 | `proofs.py` | the risky mechanisms as frames: occlusion behind a painted object, a sway mask, an upgrade insert, a tap highlight, light from the plate: `docs/research/plate-pilot/mechanisms.jpg` |
@@ -44,6 +47,27 @@ The CI frames come from the look-pipeline-v2 screenshots branch:
     python3 -I tools/plate/harmony_check.py --island caglayan --reference s4-day caglayan-plate-full-*.png
 
 `pale.py --register` re-finds where Çağlayan's plate sits in the CI frame (scale 0.606, at 9, 316).
+
+## Sky split (`split.py`, `screen_check.py`)
+
+    python3 tools/plate/split.py home --light all        # ~4 min per light (the quilt); writes design/art/plates/home/sky/<light>/
+    python3 tools/plate/screen_check.py home all --frames /tmp/frames --json /tmp/check.json
+
+The master is the shipped x2 plate of each light (the three share their geometry, so the island matte
+and the sprite mattes in `sky/` serve all). Bottom to top: sky, far, sprites, mid, sea, island. The
+island layer's colours are unmixed against the layers behind it, so at rest the composite is the
+painting and on any other background no halo shows. Motion is code only: the manifest suggests
+parallax (far 4, mid 9, sea 14 screen px/s at 1206 wide) and the tile widths.
+
+Calibration on Home (`design/art/plates/home/sky/calibration.json`, written by `screen_check.py home all --json`):
+the lead's guesses held except three. Identity measures mean dE 0.48 to 0.54 and p99 2.8 to 4.7 (limits 1.5 and
+6). The seam ring (halo lines) is clean to 6e-5 of the ring, limit 0.2 %; a second measure, straight block edges in
+the sea round the island (`blocks`), caught the earlier stripe fills at 0.15 to 0.2 % and sits at 0 to 0.02 % now,
+limit 0.05 %. Dead composition: golden's own master already has a 19.5 % run (a smooth sky), so the limit is 20 %
+and at most 2 points over the master's own. Life: the sky moves 2.2 to 2.8 grey levels in 2 s (floor 0.25), the
+island 0.08 to 0.13 from lossy alpha (limit 0.5). Colour: the sky-to-lawn ratio drifts 0.4 to 1.3 % (night 5.9 % at
+t = 120 s, as the far clouds leave the sky; limit 10 %). Leak: island greens in a drifting layer are 0 to 17 px
+(limit 200; golden's yellow-green clouds start at hue 105).
 
 ## Upscale (`upscale.py`)
 

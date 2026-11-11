@@ -2,3 +2,4 @@ Pillow>=10.0
 numpy>=1.26
 scipy>=1.11
 pillow-heif>=0.18
+opencv-python-headless>=4.8
