@@ -20,6 +20,11 @@ function on frames so the same code can read a CI screenshot later (`check_frame
   5 life       two seconds of drift change the sky and leave the island untouched
   6 resolution source pixels per screen pixel on the island
 
+`ci` reads the app's own frames instead: `--frames DIR` holds `home-plate-full-l10-<light>.png` from the
+simulator (the sky set at time zero, `worldStillFrame`) and `--before DIR` the same frames of the
+plate-only build; each is checked as `check_ci` says (identity against the previous frame, colour,
+dead composition, resolution).
+
 The thresholds are starting guesses calibrated on Home (`THRESHOLDS`; `calibration.json` next to the
 sky sets records what each light measured). Needs numpy, OpenCV, Pillow, pillow-heif.
 """
@@ -394,6 +399,50 @@ def check_frame(frame: np.ndarray, master: np.ndarray, covered: np.ndarray, isla
             "dead": check_dead(frame, th["dead"])}
 
 
+# ---------------------------------------------------------------- CI frames
+
+def _read(path: Path) -> np.ndarray:
+    return np.asarray(Image.open(path).convert("RGB"), np.float32)
+
+
+def check_ci(island: str, light: str, frame: np.ndarray, before: np.ndarray, th: dict = THRESHOLDS) -> dict:
+    """A CI screenshot of the sky-set build against the plate-only build's frame of the same state:
+    frame-zero identity (mean and p99 dE2000 over the whole frame, chrome included: it is the same in
+    both), colour (the sky-to-lawn ratio and the pale / hot flags), dead composition (no more than the
+    previous frame's own, `check_dead_vs_master`) and resolution. The regions come from the shipped
+    set composited at the Home framing."""
+    set_dir = PLATES / island / "sky" / light
+    s = load_set(set_dir)
+    man = s["manifest"]
+    hand = json.loads((PLATES / island / "objects.json").read_text())
+    fr = framing(man, hand["framing"], (frame.shape[1], frame.shape[0]))
+    out: dict = {"light": light, "frame": list(frame.shape[1::-1]), "before": list(before.shape[1::-1])}
+    if frame.shape != before.shape:
+        out["ok"] = False
+        out["error"] = "the frames differ in size"
+        return out
+    comp = compose(s, 0, fr)
+    covered = np.ones(frame.shape[:2], bool)
+    masks = region_masks(man, fr, comp["island_alpha"], hand)
+    out["identity"] = check_identity(frame, before, covered, th["identity"])
+    out["colour"] = check_colour({0: frame}, before, covered, masks, th["colour"])
+    out["dead"] = check_dead_vs_master(frame, before, th["dead"])
+    out["resolution"] = check_resolution(fr, th["resolution"])
+    out["ok"] = all(out[k]["ok"] for k in ("identity", "colour", "dead", "resolution"))
+    return out
+
+
+def run_ci(island: str, frames_dir: Path, before_dir: Path, th: dict = THRESHOLDS) -> dict:
+    res = {}
+    for light in ("day", "golden", "night"):
+        name = f"{island}-plate-full-l10-{light}.png"
+        if not (frames_dir / name).exists() or not (before_dir / name).exists():
+            res[light] = {"light": light, "ok": False, "error": f"{name} is missing"}
+            continue
+        res[light] = check_ci(island, light, _read(frames_dir / name), _read(before_dir / name), th)
+    return res
+
+
 # ---------------------------------------------------------------- the whole check
 
 def run(island: str, light: str, set_dir: Path | None = None, plate: np.ndarray | None = None,
@@ -437,8 +486,17 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("island")
     ap.add_argument("light", nargs="?", default="all")
     ap.add_argument("--json", help="write the results here")
-    ap.add_argument("--frames", help="also save the composited frames (png) here")
+    ap.add_argument("--frames", help="also save the composited frames (png) here; with `ci`, the CI frames")
+    ap.add_argument("--before", help="with `ci`: the plate-only build's CI frames")
     a = ap.parse_args(argv)
+    if a.light == "ci":
+        if not (a.frames and a.before):
+            ap.error("ci needs --frames and --before")
+        res = run_ci(a.island, Path(a.frames), Path(a.before))
+        print(json.dumps(res, indent=1))
+        if a.json:
+            Path(a.json).write_text(json.dumps({"thresholds": THRESHOLDS, "ci": res}, indent=1) + "\n")
+        return 0 if all(r["ok"] for r in res.values()) else 1
     lights = ["day", "golden", "night"] if a.light == "all" else [a.light]
     res = {}
     code = 0
