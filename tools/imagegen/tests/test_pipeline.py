@@ -272,7 +272,7 @@ class ShippedManifestTests(unittest.TestCase):
                     pl.compose_prompt(job)
                     for a in pl.attachments_for(job):
                         target = pl.resolve_ref(a.ref, m)
-                        if a.ref.startswith(("approved:",)) or "masters/island" in str(target) or "stations/" in str(target):
+                        if a.ref.startswith(("approved:", "outpaint-")) or "masters/island" in str(target) or "stations/" in str(target):
                             continue  # produced by an earlier round
                         self.assertTrue(target.exists(), f"{job.id}: {a.ref} -> {target}")
 
