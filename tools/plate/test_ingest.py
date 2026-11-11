@@ -49,6 +49,64 @@ class IngestTests(unittest.TestCase):
             self.assertEqual(k, 1)
             self.assertEqual(rgb.shape[:2], (size[1], size[0]))
 
+    def test_plate_layers_ship_as_heic_q70_within_delta_e_2_5_of_the_source(self):
+        """ADR-0024: a painterly RGBA fixture (soft gradients, grain, a feathered alpha edge) written
+        by `write_imageset` is a .heic, far smaller than the PNG, and within ΔE2000 p95 2.5."""
+        import json
+        import tempfile
+        import unittest.mock as mock
+
+        from PIL import Image, ImageFilter
+
+        import heic
+
+        rng = np.random.default_rng(7)
+        h, w = 768, 512
+        ys, xs = np.mgrid[:h, :w]
+        base = np.stack([90 + 80 * xs / w, 140 + 60 * ys / h, 70 + 50 * np.sin(xs / 60.0) ** 2], -1)
+        grain = np.asarray(Image.fromarray(rng.integers(0, 256, (h, w), np.uint8)).filter(ImageFilter.GaussianBlur(2.0)), np.float64)
+        rgb = np.clip(base + (grain[..., None] - 128) * 0.25, 0, 255)
+        alpha = np.clip((1 - np.hypot(xs - w / 2, ys - h / 2) / 330) * 12, 0, 1) * 255
+        src = Image.fromarray(np.dstack([rgb, alpha]).astype(np.uint8), "RGBA")
+        with tempfile.TemporaryDirectory() as d, mock.patch.object(ingest, "ASSETS", Path(d)):
+            out = ingest.write_imageset("world-test-plate-day-0", src)
+            self.assertEqual(out.suffix, ".heic")
+            contents = json.loads((out.parent / "Contents.json").read_text())
+            self.assertEqual(contents["images"][0]["filename"], "world-test-plate-day-0.heic")
+            png = Path(d) / "p.png"
+            src.save(png, optimize=True)
+            self.assertLess(out.stat().st_size, png.stat().st_size / 3)
+            back = heic.open_image(out)
+            self.assertEqual(back.size, src.size)
+            self.assertLessEqual(heic.p95_vs_source(src, back), 2.5)
+
+    def test_a_backdrop_stays_jpeg(self):
+        import tempfile
+        import unittest.mock as mock
+
+        from PIL import Image
+
+        with tempfile.TemporaryDirectory() as d, mock.patch.object(ingest, "ASSETS", Path(d)):
+            out = ingest.write_imageset("world-test-backdrop-day-0", Image.new("RGB", (16, 16)), jpeg=True)
+            self.assertEqual(out.suffix, ".jpg")
+
+    def test_missing_pillow_heif_is_loud(self):
+        import unittest.mock as mock
+
+        with mock.patch.dict(sys.modules, {"pillow_heif": None}):
+            with self.assertRaises(SystemExit) as cm:
+                ingest.heic.require()
+        self.assertIn("pillow-heif", str(cm.exception))
+
+    def test_delta_e2000_anchors(self):
+        import heic
+
+        # Identical colours are 0; black against white is about 100.
+        z = np.zeros((1, 1, 3))
+        w = np.full((1, 1, 3), 255.0)
+        self.assertEqual(float(heic.delta_e2000(z, z)[0, 0]), 0.0)
+        self.assertAlmostEqual(float(heic.delta_e2000(z, w)[0, 0]), 100.0, delta=0.5)
+
     def test_percent_round_trip(self):
         pts = [[10.0, 20.0], [55.5, 70.25]]
         back = ingest.px_to_pct(ingest.pct_to_px(pts))
