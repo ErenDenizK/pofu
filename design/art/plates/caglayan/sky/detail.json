@@ -1,0 +1,17 @@
+{
+ "note": "Çağlayan's distant isles (tools/plate/skyset_detail.py, see Home's detail.json). Only what the master clearly paints: the dome isle's blossom tree sways a pixel or two. The crystal isle paints nothing that could move without repainting, so it carries none. Boxes and ellipses are in the shipped sprite's own pixels (the isle layers are stored at 0.75 of the master).",
+ "day": {
+  "isle_dome": [
+   {
+    "id": "blossom",
+    "kind": "sway",
+    "ellipse": [
+     80,
+     79,
+     20,
+     13
+    ]
+   }
+  ]
+ }
+}
