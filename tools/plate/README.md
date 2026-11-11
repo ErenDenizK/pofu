@@ -10,6 +10,8 @@ numpy, Pillow, scipy, pillow-heif (`pip install -r tools/plate/requirements.txt`
 | `split.py` | the plate-first sky split: one painted master per light cut into an island plate (alpha matte unmixed from what is behind it, the cloud bank at its base kept so the seam falls in soft cloud) over a sky set (gradient, far and mid clouds, distant isles and the whale as sprites, a cloud sea whose area behind the island is quilted from the visible sea, drift tiles that wrap), HEIC q70 plus `manifest.json` under `design/art/plates/<island>/sky/<light>/`; hand data `sky/sky.json` |
 | `inpaint.py` | exemplar fills for it: `quilt` (masked-SSD block quilting by FFT correlation, no smear: the cloud-sea fill and the wrap seams) and a small multi-scale PatchMatch `inpaint` |
 | `screen_check.py` | six checks on composited frames at the Home framing (1206 x 2622): frame-zero identity, seam under drift (t = 0, 30, 120 s), colour drift, dead composition, life, resolution; the same functions read a CI screenshot (`check_frame`); thresholds and what Home measured: `design/art/plates/home/sky/calibration.json` |
+| `skyset_export.py` | ships a sky set to the app: the layers as HEIC imagesets `world-<island>-sky-<layer>-<light>-0` (the soft cloud layers smaller than the master to fit the 9 MB state budget, the island byte for byte, the gradient and the sea padded past the plate, the night's stars as their own light in three groups) and `Plates/skyset-<island>.json`, the one source of the motion constants and the state's texture bytes; `PofuWorld/Sky/SkySet.swift` reads it |
+| `skyset_render.py` | renders the shipped sky set offline with the app's motion formulas (`SkyMotion`): a still or an H.264 clip at 1206 x 2622, with `--vivid` for an offline chroma raise of the sky and cloud layers; the review clips come from it because the simulator cannot record in CI |
 | `pale.py` | the numbers behind `docs/research/pale-assets.md`: per-region L*, C*, hue, local contrast, fine detail, accent and dark shares for references, CI frames and raw sprites; the H2, H3 and H6 tests |
 | `light.py` | can a fitted LUT replace a painted light state? fits golden, rain and night on one painted pair, applies to another plate, measures dE2000 against its painted truth: `docs/research/plate-pilot/light-fit.jpg` |
 | `proofs.py` | the risky mechanisms as frames: occlusion behind a painted object, a sway mask, an upgrade insert, a tap highlight, light from the plate: `docs/research/plate-pilot/mechanisms.jpg` |
@@ -58,6 +60,17 @@ and the sprite mattes in `sky/` serve all). Bottom to top: sky, far, sprites, mi
 island layer's colours are unmixed against the layers behind it, so at rest the composite is the
 painting and on any other background no halo shows. Motion is code only: the manifest suggests
 parallax (far 4, mid 9, sea 14 screen px/s at 1206 wide) and the tile widths.
+
+The app draws the set (`PofuWorld/Sky/`, ADR-0025): `python3 tools/plate/skyset_export.py home` writes the imagesets and
+`Plates/skyset-home.json` (frame-zero identity of the shipped layers: mean dE 0.56 to 0.63, p99 2.1 to 4.3; `screen_check.py home sky` adds the mirror, stripe and ghost-star checks), then Home's level-10 day,
+golden hour and night draw it behind the island layer and the other states keep their plate. The simulator's CI frames
+(`home-plate-full-l10-<light>.png`, the sky at time zero) are checked against the previous plate-only build's frames:
+
+    python3 -I tools/plate/screen_check.py home ci --frames shots --before before-shots
+
+    python3 tools/plate/skyset_render.py home day --out day.mp4          # 6 s at 30 fps, the app's motion
+    python3 tools/plate/skyset_render.py home day --out vivid.mp4 --vivid 1.09
+    python3 tools/plate/test_skyset.py
 
 Calibration on Home (`design/art/plates/home/sky/calibration.json`, written by `screen_check.py home all --json`):
 the lead's guesses held except three. Identity measures mean dE 0.48 to 0.54 and p99 2.8 to 4.7 (limits 1.5 and

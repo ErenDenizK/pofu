@@ -36,6 +36,14 @@ island and light, so at rest it equals the painting and motion is code only
 the sky shares only atmosphere with the island and comes from the same
 painting. Decision, checks and consequences: [ADR-0025](../adr/0025-sky-sets-split-from-the-painting.md).
 
+Home's level-10 day, golden hour and night draw theirs (`PofuWorld/Sky/`, motion constants in
+`Plates/skyset-home.json`): far, mid and sea clouds drift 4, 9 and 14 px/s (at a 1206 px screen, scaled by
+width) and breathe 3 px over 8 s, the isles bob 2 px, the whale glides and wraps off screen, and at night the
+stars the sky layer already paints brighten in beats (no star is drawn by code). Everything is at time zero
+under Reduce Motion, Low Power Mode and in screenshots; the island and the characters never move with it.
+One 30 Hz timeline, paused in the background and not drawn toward the Map. The other home states keep their
+plate until they are split.
+
 ## Change is a new painting
 
 Levels, upgrades, time of day and weather are whole-plate edits of the

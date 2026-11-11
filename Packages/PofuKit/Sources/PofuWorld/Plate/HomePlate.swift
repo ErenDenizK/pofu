@@ -147,6 +147,20 @@ public struct HomePlate: Hashable, Sendable {
         return WorldBox(minX: a.x, minY: a.y, maxX: b.x, maxY: b.y)
     }
 
+    /// The sky set this state draws behind its island layer (ADR-0025), or `nil`: the painted plate and
+    /// its backdrop. Home's level-10 day, golden hour and night have one; the other states keep the
+    /// plate until they are split.
+    public var skySet: SkySet? {
+        guard case .home = placement else { return nil }
+        return SkySet.shipped(island: plate.island, light: light, stage: stage)
+    }
+
+    /// A rectangle in the sky set's master pixels, in world units.
+    public func worldBox(master r: PlateRect, of sky: SkySet) -> WorldBox {
+        let u = sky.master.x > 0 ? plate.plateSize.width / sky.master.x : 1
+        return worldBox(PlateRect(minX: r.minX * u, minY: r.minY * u, maxX: r.maxX * u, maxY: r.maxY * u))
+    }
+
     /// The whole plate, the island's art and the backdrop, in world units.
     public var plateBox: WorldBox { worldBox(plate.plateSize) }
     public var islandBox: WorldBox { worldBox(plate.islandBox) }

@@ -7,7 +7,11 @@ import UIKit
 /// front: the plate's own sky and cloud sea extended (the backdrop), the
 /// whole plate over it (its border feathered into the backdrop), and,
 /// toward the Map where the backdrop fades, the island cut from its sky.
-/// Nothing grades, fogs or hazes it: the plate is the final picture. It is
+/// Nothing grades, fogs or hazes it: the plate is the final picture. Where a
+/// state has a sky set (ADR-0025: home's level-10 day, golden hour and night)
+/// the sky, the far and mid clouds, the distant isles and the cloud sea are
+/// its layers (`SkySetLayers`: they drift, bob and glide, the island never
+/// moves) and the plate and backdrop are not drawn; every other state is
 /// static, so a settled Home costs no frames.
 struct PlateHomeLayer: View {
     let plate: HomePlate
@@ -26,6 +30,9 @@ struct PlateHomeLayer: View {
     @State private var shown: HomePlate
     @State private var incoming: HomePlate?
     @State private var incomingOpacity = 0.0
+    /// When each painting appeared: the sky set's time zero (`SkySetLayers`).
+    @State private var shownStart = Date()
+    @State private var incomingStart = Date()
 
     init(plate: HomePlate, pose: CameraPose, size: CGSize, offset: CGSize, fade: Double) {
         self.plate = plate
@@ -46,45 +53,68 @@ struct PlateHomeLayer: View {
 
     var body: some View {
         ZStack(alignment: .topLeading) {
-            painting(shown)
+            painting(shown, start: shownStart)
             if let incoming {
-                painting(incoming).opacity(incomingOpacity)
+                // A crossfade is two whole paintings: the incoming one's layers fade as a group.
+                painting(incoming, start: incomingStart).compositingGroup().opacity(incomingOpacity)
             }
         }
         .frame(width: size.width, height: size.height, alignment: .topLeading)
         .allowsHitTesting(false)
         .accessibilityHidden(true)
         .onChange(of: plate) { _, new in
-            if let incoming { shown = incoming }
+            if let incoming {
+                shown = incoming
+                shownStart = incomingStart
+            }
             guard new != shown else {
                 incoming = nil
                 return
             }
             incoming = new
+            incomingStart = Date()
             incomingOpacity = 0
             withAnimation(.easeInOut(duration: Self.crossfade)) {
                 incomingOpacity = 1
             } completion: {
                 if incoming == new {
                     shown = new
+                    shownStart = incomingStart
                     incoming = nil
                 }
             }
         }
     }
 
-    private func painting(_ plate: HomePlate) -> some View {
+    private func painting(_ plate: HomePlate, start: Date) -> some View {
         ZStack(alignment: .topLeading) {
             if fade < 0.999 {
                 PlateImage(name: plate.plate.islandArt(light: plate.light, stage: plate.stage), box: plate.islandBox, pose: pose, size: size, offset: offset)
             }
             if fade > 0.001 {
                 ZStack(alignment: .topLeading) {
-                    PlateImage(name: plate.plate.backdropArt(light: plate.light, stage: plate.stage), box: plate.backdropBox, pose: pose, size: size, offset: offset)
-                    PlateImage(name: plate.plate.plateArt(light: plate.light, stage: plate.stage), box: plate.plateBox, pose: pose, size: size, offset: offset)
+                    if let sky = plate.skySet {
+                        SkySetLayers(sky: sky, plate: plate, pose: pose, size: size, offset: offset, start: start)
+                    } else {
+                        PlateImage(name: plate.plate.backdropArt(light: plate.light, stage: plate.stage), box: plate.backdropBox, pose: pose, size: size, offset: offset)
+                        PlateImage(name: plate.plate.plateArt(light: plate.light, stage: plate.stage), box: plate.plateBox, pose: pose, size: size, offset: offset)
+                    }
                 }
-                .opacity(fade)
+                .fading(fade)
             }
+        }
+    }
+}
+
+private extension View {
+    /// Opacity applied to the layers as one picture (a group), only while it is below 1: a settled
+    /// sky set is never flattened into an offscreen pass.
+    @ViewBuilder
+    func fading(_ opacity: Double) -> some View {
+        if opacity < 0.999 {
+            compositingGroup().opacity(opacity)
+        } else {
+            self
         }
     }
 }

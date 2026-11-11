@@ -121,9 +121,9 @@ islands:
           clear: {painted: "design/art/takes/batch-66-home-flow/x-home-flow-night/plate__x-home-flow-night--t1.webp", lead_pick: 1, in_app: false, founder_ok: null}
           rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
     sky_sets:
-      day: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
-      golden: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
-      night: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      day: {painted: "design/art/takes/batch-66-home-flow/x-home-flow-final-rich/plate__x-home-flow-final-rich--t1.webp", lead_pick: 1, in_app: true, founder_ok: null}
+      golden: {painted: "design/art/takes/batch-66-home-flow/x-home-flow-golden/plate__x-home-flow-golden--t1.webp", lead_pick: 1, in_app: true, founder_ok: null}
+      night: {painted: "design/art/takes/batch-66-home-flow/x-home-flow-night/plate__x-home-flow-night--t1.webp", lead_pick: 1, in_app: true, founder_ok: null}
       rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
   caglayan:
     root_time: day
