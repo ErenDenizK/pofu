@@ -1,0 +1,318 @@
+batch: batch-75-portrait-islands
+job: x-emanet-sky-rain
+pick: 1
+status: auto-picked
+note: Auto-picked by QA among manually eligible non-failing takes, lowest lock load then higher explicit canonical
+  plate harmony. Founder/lead review pending; exploration only, never promoted. Island redraws/movement are retained
+  under batch header fallback. Despite header wording, current run.py ingest does not re-paste the original band;
+  no pixel registration claim.
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+manifest:
+  path: tools/imagegen/manifest/batch-75-portrait-islands.yaml
+  sha256: 756a9e894ab9a4bd530975b22272865ca5b56ff00f3d51b598824a1b1a4205c1
+prompt:
+  text: 'REFERENCES (attached, in this order):
+
+    1. The image to edit (the approved previous level). Edit it; do not redraw it.
+
+
+    Edit the attached tall painting into the same scene in a soft rain: a soft
+
+    lilac-grey overcast sky with layered rain clouds, fine gentle rain streaks, a
+
+    wetter, darker cloud sea with pearl highlights. The island and the sky keep their
+
+    rich colour (not a grey veil). The far clouds and distant islands fade softly into
+
+    the rain but stay visible. Everything stays in its place, the same shapes and sizes.
+
+
+    KEEP: everything not named above stays exactly the same as in the
+
+    attached image: every existing part, its shape, color, position and size,
+
+    the canvas, the camera, the light and the painting style. Do not zoom out
+
+    or reframe: if a new part does not fit, make the new part smaller, never
+
+    the existing ones. Outside the new parts, the result must line up with
+
+    the attached image pixel for pixel.
+
+
+    AVOID: a dark or grey-blue gloomy scene, a storm, hard diagonal rain, a grey veil, new objects, characters,
+    text, moving anything
+
+
+    LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+    Key light #FFF6EC from the upper left; fill #BFD6EE; rim #FFE9C9 along the edge facing away from the key. Shadows
+    are tinted #A99BC4 (never grey or black), short and soft, falling toward the lower right; every object sits
+    on a soft occlusion pad in that hue where it touches the ground or another form.
+
+    VALUES (the reference envelope): a high-key picture inside one envelope of soft, milky air. Every value sits
+    between light mid-tone and cream-white; the darkest recesses (door holes, gaps, pond rims) are a mid-value tinted
+    with the shadow hue, never black. Form turns in small value steps. Colour lives in the halftones; lights bleach
+    to cream. No dark outlines: edges are found by value and hue. The cloud sea below is the brightest large surface
+    and lights the island''s underside with a warm bounce.
+
+    This is the SUBJECT plane: the clearest forms and the crispest edges in the picture, still inside the envelope.
+
+
+    Output: one image, opaque, full bleed, portrait 1024 x 1536.
+
+    '
+  sha256: 67b0713c0127c4f7be1776127ab9b37859f20107a69b925c372eed3f52cc5512
+attachments:
+- path: build/imagegen/batch-75-portrait-islands/locked/plate__x-emanet-portrait-s4-day--t1.png
+  role: The image to edit (the approved previous level). Edit it; do not redraw it.
+  sha256: 7b7d1265285d7da15335b23fe1554525f1d7899b06a2e5a79fcb7893ae66ee41
+fingerprint: b292b2535fa2b576
+takes:
+  t1:
+    qa: warn
+    qa_report:
+      job: x-emanet-sky-rain
+      take: 1
+      status: warn
+      preset: plate-final
+      checks:
+      - check: transparency
+        status: pass
+        message: opaque, as this kind must be
+      - check: canvas
+        status: pass
+        message: 1024x1536
+      - check: chroma_ceiling
+        status: pass
+        message: chroma p95 48 (R1 51)
+        value: 47.7
+      - check: light_values
+        status: warn
+        message: 'day/subject: L p5 53 (at least 50: darks stay a light mid-tone), p98 90 (at least 90)'
+        value: 52.8
+      - check: light_median
+        status: warn
+        message: 'day/subject: median L 74 (band 74-92)'
+        value: 73.8
+      - check: light_contrast
+        status: warn
+        message: 'day/subject: p75 local contrast 6.8 (band 2.5-6.5; above it reads too contrasty)'
+        value: 6.79
+      - check: light_sky
+        status: pass
+        message: 'day: sky L 73 (band 70-94)'
+        value: 73.3
+      - check: light_sea
+        status: warn
+        message: 'day: cloud sea L 68 (at least 82: the sea is the reflector) (warn-only until the founder has seen
+          the light pilot)'
+        value: 67.9
+      - check: light_dark
+        status: pass
+        message: 'day: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+        value: 0.0
+      - check: detail_budget
+        status: pass
+        message: detail at display size 4.3 (R1 5.3)
+        value: 4.32
+      - check: lock_load
+        status: pass
+        message: the lock moved colors by mean dE 0.0
+        value: 0.0
+      - check: palette_drift
+        status: warn
+        message: 'mean dE 2.6, p95 5.5, off-palette 1.3% (top: #CC7733 (0.1%), #BB6622 (0.1%))'
+        value: 2.6468
+      - check: edit_silhouette
+        status: pass
+        message: 100% of the parent's shape kept
+        value: 1.0
+      - check: edit_structure
+        status: warn
+        message: light structure matches the parent (r 0.59) (advisory in an exploration)
+        value: 0.5882
+      - check: edit_lightness
+        status: pass
+        message: mean lightness moved by 4.4 L (the same lightness was asked)
+        value: 4.4146
+      info:
+        metrics_raw:
+          L_p5: 59.1
+          L_p50: 72.0
+          L_p95: 85.6
+          C_p50: 21.5
+          C_p95: 47.7
+          C_p99: 60.5
+          detail: 4.32
+        metrics_locked:
+          L_p5: 59.1
+          L_p50: 72.0
+          L_p95: 85.6
+          C_p50: 21.5
+          C_p95: 47.7
+          C_p99: 60.5
+          detail: 4.32
+      fingerprint: b292b2535fa2b576
+    qa_report_sha256: d19e2aa48553ccdff8381c080fb2acffa3f4a3a15d67b4f5a7d2d76047451349
+    explicit_canonical_plate_harmony:
+      check: harmony
+      status: pass
+      message: 'harmony score 81 against the world reference (outliers: edge)'
+      value: 80.9
+    manual:
+      eligible: true
+      note: Layered lilac rain clouds and darker pearl-highlight cloud sea; distant isles visible through rain,
+        warm island colour kept. Rain streaks are denser/longer than gentle target, a review caveat.
+      started_at: 2026-11-11 12:53:56 UTC
+      returned_at: 2026-11-11 12:59:27 UTC
+    source:
+      path: /workspace/generated_images/exec-28b30b7d-6900-4a6f-adcf-1bbb63263401.png
+      preserved_path: /workspace/art-operator-runtime/batch75/emanet/originals/exec-28b30b7d-6900-4a6f-adcf-1bbb63263401.png
+      sha256: a1f5e82fe42cb30a1bd519d1b122534a76be4419103669816952fe85bccc3fcc
+      dimensions:
+      - 1024
+      - 1536
+      encoding: original PNG
+      file_mtime_utc: '2026-11-11T12:54:55.875827+00:00'
+      tool_call_started_at: 2026-11-11 12:53:56 UTC
+      tool_return_observed_at: 2026-11-11 12:59:27 UTC
+    ingestion_time: '2026-11-11T13:01:51+00:00'
+    locked_sha256: aaa4484ca935739ffee6afcab1ba77771d5e2fffa1662bd29572d9279ce034ba
+    review_copy:
+      path: design/art/takes/batch-75-portrait-islands/x-emanet-sky-rain/plate__x-emanet-sky-rain--t1.webp
+      sha256: f5b210f37beaea10f64c0ffb5196303e4bb695b7414c8e40389760fdeacaa5dd
+      encoding: lossy WebP q90 method6, full original dimensions
+    lock_load: 0.0
+  t2:
+    qa: warn
+    qa_report:
+      job: x-emanet-sky-rain
+      take: 2
+      status: warn
+      preset: plate-final
+      checks:
+      - check: transparency
+        status: pass
+        message: opaque, as this kind must be
+      - check: canvas
+        status: pass
+        message: 1024x1536
+      - check: chroma_ceiling
+        status: pass
+        message: chroma p95 48 (R1 51)
+        value: 48.0
+      - check: light_values
+        status: pass
+        message: 'day/subject: L p5 53 (at least 50: darks stay a light mid-tone), p98 90 (at least 90)'
+        value: 53.3
+      - check: light_median
+        status: pass
+        message: 'day/subject: median L 74 (band 74-92)'
+        value: 74.1
+      - check: light_contrast
+        status: warn
+        message: 'day/subject: p75 local contrast 6.9 (band 2.5-6.5; above it reads too contrasty)'
+        value: 6.92
+      - check: light_sky
+        status: warn
+        message: 'day: sky L 68 (band 70-94)'
+        value: 67.5
+      - check: light_sea
+        status: warn
+        message: 'day: cloud sea L 65 (at least 82: the sea is the reflector) (warn-only until the founder has seen
+          the light pilot)'
+        value: 65.0
+      - check: light_dark
+        status: pass
+        message: 'day: 0.0 % below L* 30 under the sky (at most 3; only the sky is dark)'
+        value: 0.0
+      - check: detail_budget
+        status: pass
+        message: detail at display size 4.4 (R1 5.3)
+        value: 4.37
+      - check: lock_load
+        status: pass
+        message: the lock moved colors by mean dE 0.0
+        value: 0.0
+      - check: palette_drift
+        status: warn
+        message: 'mean dE 3.2, p95 5.9, off-palette 1.8% (top: #DD8833 (0.1%), #CC7733 (0.1%))'
+        value: 3.1552
+      - check: edit_silhouette
+        status: pass
+        message: 100% of the parent's shape kept
+        value: 1.0
+      - check: edit_structure
+        status: warn
+        message: light structure matches the parent (r 0.65)
+        value: 0.647
+      - check: edit_lightness
+        status: pass
+        message: mean lightness moved by 5.7 L (the same lightness was asked)
+        value: 5.7182
+      info:
+        metrics_raw:
+          L_p5: 55.9
+          L_p50: 70.7
+          L_p95: 85.9
+          C_p50: 24.0
+          C_p95: 48.0
+          C_p99: 64.6
+          detail: 4.37
+        metrics_locked:
+          L_p5: 55.9
+          L_p50: 70.7
+          L_p95: 85.9
+          C_p50: 24.0
+          C_p95: 48.0
+          C_p99: 64.6
+          detail: 4.37
+      fingerprint: b292b2535fa2b576
+    qa_report_sha256: 4dbfbe9fee85c6ad623d40dbf65fcd912dd86c43ea9ad51445a903361eb3662c
+    explicit_canonical_plate_harmony:
+      check: harmony
+      status: pass
+      message: 'harmony score 79 against the world reference (outliers: L_p98, edge)'
+      value: 79.4
+    manual:
+      eligible: true
+      note: Lilac overcast with layered cloud sea and visible distant isles; island colour stays warm and rich.
+        Dense streaks are slightly slanted; not a storm but heavier than gentle-rain target, noted.
+      started_at: 2026-11-11 12:53:56 UTC
+      returned_at: 2026-11-11 12:58:45 UTC
+    source:
+      path: /workspace/generated_images/exec-1127063c-48f0-4ab9-ac02-632933284187.png
+      preserved_path: /workspace/art-operator-runtime/batch75/emanet/originals/exec-1127063c-48f0-4ab9-ac02-632933284187.png
+      sha256: 5cd2aee56077fbfff9a82adb2e533e2e502e357f38a981ac2f09a5581c48baab
+      dimensions:
+      - 1024
+      - 1536
+      encoding: original PNG
+      file_mtime_utc: '2026-11-11T12:58:43.925289+00:00'
+      tool_call_started_at: 2026-11-11 12:53:56 UTC
+      tool_return_observed_at: 2026-11-11 12:58:45 UTC
+    ingestion_time: '2026-11-11T13:01:52+00:00'
+    locked_sha256: 69d4e8917f2ba4fb40bd17191dde1d8c213f11ad0389701778ea89e132282d6e
+    review_copy:
+      path: design/art/takes/batch-75-portrait-islands/x-emanet-sky-rain/plate__x-emanet-sky-rain--t2.webp
+      sha256: d97b20abbdd870ea6804f00be3bb641be63726a31f40b23fd5b9c1a1d620b799
+      encoding: lossy WebP q90 method6, full original dimensions
+    lock_load: 0.0
+selection_note: Canonical post excludes kind plate from HARMONY_KINDS; explicit qa.check_harmony(kind=plate) ran
+  on unchanged locked pixels, separately from untouched post reports.
+harmony_inputs:
+  tools/imagegen/qa.py: 773643762304d29432cdd5d88600bd4603e6296be1ebf23405f51e5f1a56304f
+  tools/assets/harmony.py: bdc4b81c9234d97e78140673d3a90a1407e2ae2af5b4a22786ab225468c2f576
+  design/art/harmony/config.json: d2ed591e6e8a7d0eafd54f95e3e3c98290453a81aaff11a9f800afea6fc43a18
+  design/art/harmony/reference.json: 602aff8ff097bad430ebfc0bf3837c647cf738bc407b90d58b8eb689810a673e
+contact_sheet:
+  sha256: 647974c55040329b105dfecd8bff7600ddc097003b60e8b05074f6e94d31a773
+  note: Canonical post contact; pilots show original landscape parent, while QA uses portrait-placed parent.
+timing_note: Tool timestamps are observed UTC clock samples around dispatch/return; source mtime and ingestion time
+  are separate.
+provisional_parent: x-emanet-portrait-s4-day t1 (auto-pick, lead review pending)
+provisional_reference_note: Local-only symlink at expected master path resolves to QA-picked locked pilot. Not promoted
+  or lead-approved.
