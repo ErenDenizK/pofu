@@ -674,3 +674,9 @@ Result of the night items (b): home now draws its painted plate at level 10 day,
 2. Ask Fable 5.2 with a goal, not orders, as a temporary orchestrator within budget. Handled: Fable wrote the system, checks and order of work; the lead dispatches it to cheaper agents.
 3. Widgets and notifications before 2026-11-24? Handled: local notifications already exist and need no membership; the widget extension is not started and is buildable in the simulator and CI without membership; a half-page concept follows the week page note; widget art is a crop of the island plate over its sky set.
 4. Follow-up on item 1, shown to the founder: home's level-10 sky moves in the app (#382; far, mid and sea clouds drift, isles bob, the whale glides, night stars twinkle; Reduce Motion and Low Power hold still). A lead frame review stopped the first videos (a mirrored sea, night sky stripes, doubled stars); all three were fixed and new checks catch them. Shown: `docs/product/decisions-2026-11-11/home-sky-day.mp4`, `home-sky-night.mp4`, `home-sky-day-vivid.mp4` (sky chroma +9%) and `result-home-sky-frames.jpg`; the founder picks painted or vivid colour.
+
+## 2026-11-11 (evening): painted vs vivid, the isles' own motion
+
+1. Hardly any difference between painted and vivid. Handled: the lead keeps the painted colour (no extra grade to maintain); the vivid variant is dropped.
+2. The background isles must animate too (the wandering isle's waterfall and the like). Handled: a code-only micro-motion pass on the isle and whale sprites (waterfall streams flowing through a painted mask, small details), on home first, then carried to every island's sky set; Fable is consulted only if the approach is in doubt.
+3. Continue if everything is planned. Handled: next is the isle micro-motion, then Çağlayan on the sky set (plan step 4).
