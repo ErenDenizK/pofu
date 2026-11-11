@@ -667,3 +667,9 @@ Result of the night items (b): home now draws its painted plate at level 10 day,
 
 1. One Codex chat broke after it set itself an automation; a new chat was opened. Handled: the queue's open-PR rule keeps two chats from duplicating; the lead suggested archiving the old one.
 2. Do asset-independent work meanwhile. Handled: Çağlayan moved to painted plates in the app (#376); plate image weight measured and HEIC q70 chosen (ADR in the HEIC PR); portrait outpaints for the four islands queued (batch-75, queue row 0-p2) because the landscape plates leave the bottom 40% of the phone screen empty. The in-app frames that showed it: `docs/product/decisions-2026-11-11/result-caglayan-landscape-plates.jpg`.
+
+## 2026-11-11 (later): living sky, layers, Fable as orchestrator, widgets
+
+1. Clouds and background should move and be a touch more vivid; layers worried him because of the old light failure; maybe split one painted image (a seam-carving-like tool was mentioned). Handled: seam carving rejected (it stretches painted sky and stays static); decision ADR-0025: sky sets split from one painted master, motion in code; prototype and screen checks in progress.
+2. Ask Fable 5.2 with a goal, not orders, as a temporary orchestrator within budget. Handled: Fable wrote the system, checks and order of work; the lead dispatches it to cheaper agents.
+3. Widgets and notifications before 2026-11-24? Handled: local notifications already exist and need no membership; the widget extension is not started and is buildable in the simulator and CI without membership; a half-page concept follows the week page note; widget art is a crop of the island plate over its sky set.
