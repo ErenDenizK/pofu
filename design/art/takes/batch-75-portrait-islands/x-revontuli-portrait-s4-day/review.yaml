@@ -1,7 +1,13 @@
 batch: batch-75-portrait-islands
 job: x-revontuli-portrait-s4-day
+jobs:
+  x-revontuli-portrait-s4-day:
+    pick: 1
+    status: review
+    publication: exploration; picked by the lead 2026-11-11 (take 1); never promoted
+    lead_review: "Lead pick (the auto-pick, parent of the light edits): aurora night sky, generic isles, full cloud sea. The island sits 9 % above the anchor (take 2: 6 %); the ingest re-pastes the band at the measured offset. Revontuli's night sky-set master."
 pick: 1
-status: auto-picked
+status: review
 note: Auto-picked by QA; founder review pending. Exploration only; not promoted. Native post reports remain unchanged;
   plate harmony measured explicitly with canonical qa.check_harmony.
 manual_review:

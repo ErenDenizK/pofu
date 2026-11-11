@@ -1,7 +1,13 @@
 batch: batch-75-portrait-islands
 job: x-caglayan-portrait-0-bare
-pick: 1
-status: auto-picked
+jobs:
+  x-caglayan-portrait-0-bare:
+    pick: null
+    status: superseded
+    publication: exploration; superseded (ADR-0025) 2026-11-11; never promoted
+    lead_review: "Superseded: a per-cell outpaint from the first batch-75 manifest; ADR-0025 replaced per-cell outpaints with one sky set per island and light. No pick."
+pick: null
+status: superseded
 note: 'Auto-picked by QA among manually eligible takes: equal zero lock load, then higher canonical plate harmony
   (scores below). Founder and lead review pending. Exploration only; never promoted. Coordinator visual review:
   both have painted sky and rich cloud sea, preserve the dry state, and show no visible hard seam. Both shift the

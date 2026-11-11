@@ -1,7 +1,13 @@
 batch: batch-75-portrait-islands
 job: x-mehtap-sky-rain
+jobs:
+  x-mehtap-sky-rain:
+    pick: 1
+    status: review
+    publication: exploration; picked by the lead 2026-11-11 (take 1); never promoted
+    lead_review: "Lead pick: wet sheen on the stage, layered rain clouds. The moon stays bright through the overcast (parent's band content). Founder-gated."
 pick: 1
-status: auto-picked
+status: review
 note: Auto-picked by QA; founder review pending. Exploration only; not promoted. Native post reports remain unchanged;
   plate harmony measured explicitly with canonical qa.check_harmony.
 manual_review:

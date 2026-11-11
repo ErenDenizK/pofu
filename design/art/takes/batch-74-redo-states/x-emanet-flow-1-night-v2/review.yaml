@@ -3,7 +3,8 @@ manifest: tools/imagegen/manifest/batch-74-redo-states.yaml
 jobs:
   x-emanet-flow-1-night-v2:
     pick: null
-    publication: exploration; not promoted; lead review pending
+    publication: exploration; rejected by the lead 2026-11-11, redo queued; never promoted
+    lead_review: "Lead reject: the stage-floor fog is thinned again (the named failure of the first try); the heap and the floor read as clear night. Redo queued."
     note: 'Both takes fail manual review: story fog is visibly thinned across the
       stage floor, central heap and rear-house base compared with the parent. The
       stage inventory remains and the existing light states are preserved, but the
@@ -51,7 +52,7 @@ jobs:
         caveats:
         - Exact pixel registration not established; not used as an independent rejection
           reason.
-    status: skipped
+    status: rejected
     skip_reason: Both requested takes change the fog extent; the two-take phase is
       complete.
 qa_reports:

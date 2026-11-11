@@ -3,7 +3,8 @@ manifest: tools/imagegen/manifest/batch-74-redo-states.yaml
 jobs:
   x-revontuli-flow-1-day-v2:
     pick: 1
-    publication: exploration; not promoted; lead review pending
+    publication: exploration; picked by the lead 2026-11-11 (take 1); never promoted
+    lead_review: "Lead pick of the pilot: blue-violet snow shadows, warm wood, saturated tree green; no bleach. Take 2 adds a sun flare. The ice rim runs hot cyan (chroma ceiling): watch it when the pilot scales."
     note: Both takes are manually eligible. Actual QA lock_load ties at 0.0; canonical
       plate QA harmony scores break the tie, with t1 at 72.8 over t2 at 69.6. Auto-picked
       by QA; founder review pending. The bright snow and saturated wood/ice remain

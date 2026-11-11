@@ -3,7 +3,8 @@ manifest: tools/imagegen/manifest/batch-74-redo-states.yaml
 jobs:
   x-home-flow-il1-v3:
     pick: 2
-    publication: exploration; not promoted; lead review pending
+    publication: exploration; picked by the lead 2026-11-11 (take 2); never promoted
+    lead_review: "Lead pick: the root's silhouette, every door, mist only over the locked hill top and harbour islet; far islands and whale at full colour."
     note: Take 1 is manually ineligible because a conspicuous band of clustered flowers
       remains along the harbour islet edge. Take 2 is the only manually eligible candidate
       and is auto-picked by QA. Both lock_load values tie at 0.0; canonical plate

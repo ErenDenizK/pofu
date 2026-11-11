@@ -3,7 +3,8 @@ manifest: tools/imagegen/manifest/batch-74-redo-states.yaml
 jobs:
   x-home-flow-il2-night-v2:
     pick: 2
-    publication: exploration; not promoted; lead review pending
+    publication: exploration; picked by the lead 2026-11-11 (take 2); never promoted
+    lead_review: "Lead pick: no new lamps, bulbs or strings; glow only from the day plate's windows; the harbour stays in the day plate's mist."
     note: Both takes are manually eligible. The actual QA lock_load ties at 0.0; canonical
       plate QA harmony scores break the tie, with t2 at 66.3 over t1 at 65.3. Auto-picked
       by QA; founder review pending. Night-value and edit-lightness checks are warnings

@@ -3,7 +3,8 @@ manifest: tools/imagegen/manifest/batch-74-redo-states.yaml
 jobs:
   x-home-flow-night-sea:
     pick: 2
-    publication: exploration; not promoted; lead review pending
+    publication: exploration; picked by the lead 2026-11-11 (take 2); never promoted
+    lead_review: "Lead pick of the pilot: the cloud sea is moonlit blue-violet, clearly darker than by day, with soft silver tops; island and sky unchanged. The sea's billows repeat in even rows (a mild pattern): acceptable for a pilot. Scaling to other night plates is a lead decision."
     note: Both takes are manually eligible. Actual QA lock_load ties at 0.0; canonical
       plate QA harmony scores break the tie, with t2 at 50.0 over t1 at 48.7. Auto-picked
       by QA; founder review pending. Night sea values carry warnings in the pilot;

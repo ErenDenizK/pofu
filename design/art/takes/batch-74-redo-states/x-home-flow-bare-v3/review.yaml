@@ -3,13 +3,14 @@ manifest: tools/imagegen/manifest/batch-74-redo-states.yaml
 jobs:
   x-home-flow-bare-v3:
     pick: null
-    publication: exploration; not promoted; lead review pending
+    publication: exploration; rejected by the lead 2026-11-11, redo queued; never promoted
+    lead_review: "Lead reject (third try): the lawn is a puffed lime pillow whose upper contour rises over where the buildings stood, so new land appears; not the root's deep green. Redo queued as a masked region edit."
     note: 'Both takes fail manual review: the lawn is lime/yellow rather than the
       requested deep green, and the exposed upper contour is broader and smoother
       than the root. The harbour islet remains separate and the named structures appear
       removed. No eligible take; the two-take request is complete, so skip without
       regeneration.'
-    status: skipped
+    status: rejected
     skip_reason: Both requested takes fail manual eligibility review for lawn color
       and island silhouette. Batch header directs retaining both and moving on; no
       additional takes requested.

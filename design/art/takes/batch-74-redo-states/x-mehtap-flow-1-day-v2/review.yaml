@@ -3,7 +3,8 @@ manifest: tools/imagegen/manifest/batch-74-redo-states.yaml
 jobs:
   x-mehtap-flow-1-day-v2:
     pick: 1
-    publication: exploration; not promoted; lead review pending
+    publication: exploration; picked by the lead 2026-11-11 (take 1); never promoted
+    lead_review: "Lead pick: the single faint sky trail, the crescent and the stars all stay; take 1 is crisper."
     note: Both takes are manually eligible. Actual QA lock_load ties at 0.0; canonical
       plate QA harmony scores break the tie, with t1 at 73.9 over t2 at 66.7. The
       moon, stars and faint sky trail remain as explicitly required by the prompt.

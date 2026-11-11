@@ -3,7 +3,8 @@ manifest: tools/imagegen/manifest/batch-74-redo-states.yaml
 jobs:
   x-emanet-flow-2-night-v2:
     pick: 2
-    publication: exploration; not promoted; lead review pending
+    publication: exploration; picked by the lead 2026-11-11 (take 2); never promoted
+    lead_review: "Lead pick: light fog kept at the back left, lanterns unlit, warm windows only."
     note: Both takes are manually eligible. Actual QA lock_load ties at 0.0; canonical
       plate QA harmony scores break the tie, with t2 at 52.0 versus t1 at 47.4. Auto-picked
       by QA; founder review pending. Night value, contrast and edit-lightness checks

@@ -1,7 +1,13 @@
 batch: batch-75-portrait-islands
 job: x-emanet-sky-night
-pick: 1
-status: auto-picked
+jobs:
+  x-emanet-sky-night:
+    pick: 2
+    status: review
+    publication: exploration; picked by the lead 2026-11-11 (take 2); never promoted
+    lead_review: "Lead pick over the auto-pick: take 1 adds tiny lights on the bunting string; take 2 lights only the existing windows and lanterns."
+pick: 2
+status: review
 note: Auto-picked by QA among manually eligible non-failing takes, lowest lock load then higher explicit canonical
   plate harmony. Founder/lead review pending; exploration only, never promoted. Island redraws/movement are retained
   under batch header fallback. Despite header wording, current run.py ingest does not re-paste the original band;

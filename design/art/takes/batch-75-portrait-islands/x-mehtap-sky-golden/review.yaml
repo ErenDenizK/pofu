@@ -1,7 +1,13 @@
 batch: batch-75-portrait-islands
 job: x-mehtap-sky-golden
-pick: 1
-status: auto-picked
+jobs:
+  x-mehtap-sky-golden:
+    pick: 2
+    status: review
+    publication: exploration; picked by the lead 2026-11-11 (take 2); never promoted
+    lead_review: "Lead pick over the auto-pick: take 2 warms to peach near the clouds as the brief asks; take 1 stays lilac."
+pick: 2
+status: review
 note: Auto-picked by QA; founder review pending. Exploration only; not promoted. Native post reports remain unchanged;
   plate harmony measured explicitly with canonical qa.check_harmony.
 manual_review:

@@ -2,8 +2,9 @@ batch: batch-74-redo-states
 manifest: tools/imagegen/manifest/batch-74-redo-states.yaml
 jobs:
   x-caglayan-flow-0-night-v2:
-    pick: null
-    publication: exploration; not promoted; lead review pending
+    pick: 1
+    publication: exploration; picked by the lead 2026-11-11 (take 1); never promoted
+    lead_review: "Lead pick over the factory skip: the mill and wheel stay dark and the wall lamp unlit (the named failure is gone); the window glows warm but small, as on the picked stage 2 and 3 nights, and the moon sits top left as there. The window is brighter than 'faint': a local grade, not a regeneration."
     note: 'Both takes are manually ineligible: the house window glow is intense and
       saturated with a conspicuous halo, rather than faint. Both retain the mill stage
       and unlit exterior lamp, but fail the stated window-glow intent. Keep both and
@@ -45,7 +46,7 @@ jobs:
         caveats:
         - The blue sky, light cloud sea, and readable island fit the night direction.
           No specific object displacement was established visually.
-    status: skipped
+    status: review
     skip_reason: Both requested takes exceed the faint warm window glow requirement;
       two-take phase complete, no regeneration requested.
     actual_generation_calls: 2

@@ -2,13 +2,14 @@ batch: batch-74-redo-states
 manifest: tools/imagegen/manifest/batch-74-redo-states.yaml
 jobs:
   x-emanet-flow-0-night-v2:
-    pick: null
-    publication: exploration; not promoted; lead review pending
+    pick: 2
+    publication: exploration; picked by the lead 2026-11-11 (take 2); never promoted
+    lead_review: "Lead pick over the factory skip: the story fog still veils the house, shelves and post while the foreground story props stay readable, as in the day parent; the sky above the fog is the night sky, as on the picked stage 3 night. No new lit lamp. Take 2's moon top right matches stage 3 night."
     note: 'Both takes fail manual review: the authored story fog is broad, even mauve
       haze in the parent, but these candidates introduce distinct upper-sky cloud
       banks and a much thicker localized stage fog. The original inventory and existing
       warm window source remain; lanterns stay unlit. No extra takes requested.'
-    status: skipped
+    status: review
     skip_reason: Both candidates visibly change the fog pattern and extent; the two-take
       phase is complete, so skip.
     manual_review:

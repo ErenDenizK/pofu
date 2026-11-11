@@ -1,7 +1,13 @@
 batch: batch-75-portrait-islands
 job: x-emanet-portrait-s4-day
+jobs:
+  x-emanet-portrait-s4-day:
+    pick: 1
+    status: review
+    publication: exploration; picked by the lead 2026-11-11 (take 1); never promoted
+    lead_review: "Lead pick: the island at the anchor (2 % high), rich golden sky, generic distant isles, a full billowing cloud sea; no seam. Emanet's golden sky-set master."
 pick: 1
-status: auto-picked
+status: review
 note: Auto-picked by QA among manually eligible non-failing takes, lowest lock load then higher explicit canonical
   plate harmony. Founder/lead review pending; exploration only, never promoted. Island redraws/movement are retained
   under batch header fallback. Despite header wording, current run.py ingest does not re-paste the original band;

@@ -2,8 +2,9 @@ batch: batch-74-redo-states
 manifest: tools/imagegen/manifest/batch-74-redo-states.yaml
 jobs:
   x-caglayan-flow-1-night-v2:
-    pick: null
-    publication: exploration; not promoted; lead review pending
+    pick: 1
+    publication: exploration; picked by the lead 2026-11-11 (take 1); never promoted
+    lead_review: "Lead pick over the factory skip: mill dark, wheel still, wall lamp unlit; the window glow is a local grade away from 'faint'. Take 1's moon top left matches the picked stage 2 and 3 nights."
     note: 'Both takes are manually ineligible: the house window glows intensely orange-yellow
       with a strong halo rather than the requested faint warm light. The still wheel,
       dark exterior lamp and stage 1 basin/channel state remain; the explicit faint-window
@@ -49,7 +50,7 @@ jobs:
         - The scene is otherwise readable under blue-violet night light with a light
           cloud sea. No specific object displacement or basin healing was established
           visually; pixel registration was not tested.
-    status: skipped
+    status: review
     skip_reason: Both requested takes exceed the faint warm window glow requirement;
       the two-take phase is complete.
 qa_reports:
