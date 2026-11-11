@@ -39,6 +39,52 @@ public struct SkySet: Hashable, Sendable {
         public var period: Double
     }
 
+    /// Painted detail the app gives a little life of its own (`tools/plate/skyset_detail.py`), code only, from
+    /// the sprite's own pixels: a waterfall's water flows down, a canopy's inside sways, a lamp flickers.
+    /// Every amount rises from zero over `ramp` s, so time zero is the painting.
+    public struct Detail: Hashable, Sendable, Identifiable {
+        public enum Kind: String, Hashable, Sendable {
+            /// A veil of lighter and darker streaks scrolls down inside `mask`; a mist breathes at its foot.
+            case fall
+            /// `crop` (the sprite's pixels) shears under `mask`: the top moves most, the silhouette stays.
+            case sway
+            /// `asset` (the lit pixels, alpha the mask) brightens and dims a few per cent.
+            case glow
+        }
+
+        /// A faint mist at a fall's foot: an ellipse fading out, its opacity breathing 0 ... `peak`.
+        public struct Mist: Hashable, Sendable {
+            public var centre: PlatePoint
+            public var radius: PlatePoint
+            public var color: [Double]
+            public var peak: Double
+            public var period: Double
+        }
+
+        public var id: String
+        public var kind: Kind
+        /// The region's top-left and size in master pixels (the layer's own placement and bob apply).
+        public var pos: PlatePoint
+        public var size: PlatePoint
+        public var ramp: Double
+        public var mask: String?
+        public var flow: String?
+        public var crop: String?
+        public var asset: String?
+        /// A fall's streak tile height in master pixels (the scroll's period).
+        public var flowHeight: Double = 0
+        /// Reference px per second a fall's streaks move down.
+        public var speed: Double = 0
+        /// How much of the veil's alpha is drawn (0 ... 1).
+        public var strength: Double = 0
+        public var mist: Mist?
+        /// A canopy top's displacement in reference px, or a lamp's luminance fraction.
+        public var amp: Double = 0
+        /// A canopy's sway period; a lamp's two flicker periods.
+        public var period: Double = 0
+        public var periods: [Double] = []
+    }
+
     public struct Layer: Hashable, Sendable, Identifiable {
         public var id: String
         public var role: Role
@@ -53,6 +99,8 @@ public struct SkySet: Hashable, Sendable {
         public var drift: Double
         public var bob: Bob?
         public var twinkle: Twinkle?
+        /// Painted detail on a sprite or the whale.
+        public var details: [Detail] = []
     }
 
     public var light: String
@@ -112,6 +160,41 @@ public enum SkyMotion {
         guard let twinkle, twinkle.period > 0 else { return 0 }
         let s = sin(.pi * time / twinkle.period)
         return twinkle.peak * s * s
+    }
+
+    // MARK: Painted detail
+
+    /// The envelope of every detail amount: 0 at time zero, 1 from `ramp` s on (smoothstep).
+    public static func ease(time: Double, ramp: Double) -> Double {
+        guard ramp > 0 else { return 1 }
+        let x = min(max(time / ramp, 0), 1)
+        return x * x * (3 - 2 * x)
+    }
+
+    /// How far a waterfall's streak tile has scrolled down, in points, kept within one tile (`period` points).
+    public static func flowOffset(speed: Double, time: Double, period: Double, scale: Double) -> Double {
+        guard period > 0 else { return 0 }
+        return wrap(speed * scale * time, period)
+    }
+
+    /// A fall's mist opacity: `peak` breathing as `sin^2` over its period, enveloped; 0 at time zero.
+    public static func mist(_ mist: SkySet.Detail.Mist, time: Double, ease: Double) -> Double {
+        guard mist.period > 0 else { return 0 }
+        let s = sin(.pi * time / mist.period)
+        return ease * mist.peak * s * s
+    }
+
+    /// A lamp's signed luminance change, -amp ... +amp: two slow sines (0.6 and 0.4 of it), enveloped.
+    public static func flicker(_ detail: SkySet.Detail, time: Double) -> Double {
+        guard detail.periods.count == 2, detail.periods[0] > 0, detail.periods[1] > 0 else { return 0 }
+        let wave = 0.6 * sin(2 * .pi * time / detail.periods[0]) + 0.4 * sin(2 * .pi * time / detail.periods[1])
+        return ease(time: time, ramp: detail.ramp) * detail.amp * wave
+    }
+
+    /// A canopy top's horizontal displacement in points.
+    public static func sway(_ detail: SkySet.Detail, time: Double, scale: Double) -> Double {
+        guard detail.period > 0 else { return 0 }
+        return ease(time: time, ramp: detail.ramp) * detail.amp * sin(2 * .pi * time / detail.period) * scale
     }
 
     static func wrap(_ value: Double, _ length: Double) -> Double {
@@ -177,6 +260,33 @@ extension SkySetFile: Decodable {
         var period: Double
     }
 
+    private struct RawMist: Decodable {
+        var centre: [Double]
+        var radius: [Double]
+        var color: [Double]
+        var peak: Double
+        var period: Double
+    }
+
+    private struct RawDetail: Decodable {
+        var id: String
+        var kind: String
+        var pos: [Double]
+        var size: [Double]
+        var ramp: Double
+        var mask: String?
+        var flow: String?
+        var crop: String?
+        var asset: String?
+        var flowHeight: Double?
+        var speed: Double?
+        var strength: Double?
+        var mist: RawMist?
+        var amp: Double?
+        var period: Double?
+        var periods: [Double]?
+    }
+
     private struct RawLayer: Decodable {
         var id: String
         var role: String
@@ -187,6 +297,7 @@ extension SkySetFile: Decodable {
         var drift: Double?
         var bob: RawBob?
         var twinkle: RawTwinkle?
+        var details: [RawDetail]?
     }
 
     private struct RawLight: Decodable {
@@ -214,11 +325,31 @@ extension SkySetFile: Decodable {
                 guard let role = SkySet.Role(rawValue: layer.role) else {
                     throw DecodingError.dataCorrupted(.init(codingPath: [], debugDescription: "unknown sky layer role \(layer.role)"))
                 }
+                let details = try (layer.details ?? []).map { raw -> SkySet.Detail in
+                    guard let kind = SkySet.Detail.Kind(rawValue: raw.kind) else {
+                        throw DecodingError.dataCorrupted(.init(codingPath: [], debugDescription: "unknown sky detail kind \(raw.kind)"))
+                    }
+                    var detail = SkySet.Detail(
+                        id: raw.id, kind: kind, pos: try point(raw.pos), size: try point(raw.size), ramp: raw.ramp,
+                        mask: raw.mask, flow: raw.flow, crop: raw.crop, asset: raw.asset
+                    )
+                    detail.flowHeight = raw.flowHeight ?? 0
+                    detail.speed = raw.speed ?? 0
+                    detail.strength = raw.strength ?? 0
+                    detail.amp = raw.amp ?? 0
+                    detail.period = raw.period ?? 0
+                    detail.periods = raw.periods ?? []
+                    detail.mist = try raw.mist.map {
+                        SkySet.Detail.Mist(centre: try point($0.centre), radius: try point($0.radius), color: $0.color, peak: $0.peak, period: $0.period)
+                    }
+                    return detail
+                }
                 return SkySet.Layer(
                     id: layer.id, role: role, asset: layer.asset, pos: try point(layer.pos), size: try point(layer.size),
                     tileWidth: layer.tileWidth, drift: layer.drift ?? 0,
                     bob: layer.bob.map { SkySet.Bob(amp: $0.amp, period: $0.period, sign: $0.sign) },
-                    twinkle: layer.twinkle.map { SkySet.Twinkle(peak: $0.peak, period: $0.period) }
+                    twinkle: layer.twinkle.map { SkySet.Twinkle(peak: $0.peak, period: $0.period) },
+                    details: details
                 )
             }
             sets[light] = SkySet(

@@ -15,6 +15,10 @@ cannot record in CI, so the review clips come from this renderer):
   bob y        sign * amp * sin(2 pi t / period), 0 at t = 0
   whale x      glides at `drift` and wraps once fully off screen (`glide_left`)
   star light   peak * sin^2(pi t / period) of the star's own pixels, added on the sky
+  detail       (`skyset_detail.py`) on the isles and the whale, each amount rising from 0 over `ramp` s
+               (`ease`, so t = 0 is the painting): a waterfall's streak texture scrolls down inside its
+               mask (`flow_offset`) with a breathing mist at its foot (`mist_level`), a canopy's inside
+               shears (`sway_top`), a lantern or window flickers (`flicker`)
 
 `--vivid F` raises the chroma (CIELAB a, b) of the sky, star and cloud layers by F before
 compositing: an offline edit of the layer pixels, never a runtime filter. Needs numpy, OpenCV, Pillow,
@@ -69,6 +73,34 @@ def glide_left(rest_left: float, width: float, speed: float, t: float, screen_wi
 
 def twinkle(tw: dict, t: float) -> float:
     return tw["peak"] * math.sin(math.pi * t / tw["period"]) ** 2
+
+
+def ease(t: float, ramp: float) -> float:
+    """0 at t = 0, 1 from `ramp` s on (smoothstep): the detail motion's envelope."""
+    if ramp <= 0:
+        return 1.0
+    x = min(max(t / ramp, 0.0), 1.0)
+    return x * x * (3 - 2 * x)
+
+
+def flow_offset(speed: float, t: float, period: float) -> float:
+    """How far a waterfall's streak tile has scrolled down, in screen px, kept within one tile."""
+    return math.fmod(speed * t, period) if period > 0 else 0.0
+
+
+def mist_level(mist: dict, t: float, e: float) -> float:
+    return e * mist["peak"] * math.sin(math.pi * t / mist["period"]) ** 2
+
+
+def flicker(d: dict, t: float) -> float:
+    """A lamp's signed luminance change, -amp .. +amp, two slow sines (0.6 and 0.4), enveloped."""
+    p0, p1 = d["periods"]
+    return ease(t, d["ramp"]) * d["amp"] * (0.6 * math.sin(2 * math.pi * t / p0) + 0.4 * math.sin(2 * math.pi * t / p1))
+
+
+def sway_top(d: dict, t: float) -> float:
+    """The canopy top's horizontal displacement in screen px."""
+    return ease(t, d["ramp"]) * d["amp"] * math.sin(2 * math.pi * t / d["period"])
 
 
 # ---------------------------------------------------------------- layers
@@ -161,6 +193,89 @@ def _shift_tile(img: np.ndarray, shift: float) -> np.ndarray:
     return a * (1 - f) + np.roll(img, i + 1, axis=1) * f
 
 
+def _png(name: str) -> np.ndarray:
+    f = ASSETS / f"{name}.imageset" / f"{name}.png"
+    return np.asarray(Image.open(f).convert("RGBA"), np.float32) / 255
+
+
+def _detail_prep(d: dict, g: dict) -> dict:
+    """The detail's assets at screen scale (cached): its rect's top-left in screen px and the images."""
+    key = (g["sx"], g["sy"], g["ox"], g["oy"])
+    if d.get("_key") == key:
+        return d
+    sx, sy = g["sx"], g["sy"]
+    d["_x"] = d["pos"][0] * sx - g["ox"]
+    d["_y"] = (d["pos"][1] + g["top"]) * sy - g["oy"]
+    w, h = max(round(d["size"][0] * sx), 1), max(round(d["size"][1] * sy), 1)
+
+    def fit(img: np.ndarray, size: tuple[int, int]) -> np.ndarray:
+        pre = img.copy()
+        pre[..., :3] *= pre[..., 3:4]
+        return cv2.resize(pre, size, interpolation=cv2.INTER_AREA if size[0] <= img.shape[1] else cv2.INTER_LINEAR)
+
+    if d["kind"] == "fall":
+        d["_mask"] = fit(_png(d["mask"]), (w, h))[..., 3]
+        d["_flow"] = fit(_png(d["flow"]), (w, max(round(d["flowHeight"] * sy), h)))      # premultiplied
+        m = d["mist"]
+        d["_mist"] = {"c": ((m["centre"][0]) * sx - g["ox"], (m["centre"][1] + g["top"]) * sy - g["oy"]),
+                      "r": (m["radius"][0] * sx, m["radius"][1] * sy)}
+    elif d["kind"] == "sway":
+        d["_mask"] = fit(_png(d["mask"]), (w, h))[..., 3]
+        d["_crop"] = fit(_png(d["crop"]), (w, h))
+    else:
+        d["_glow"] = fit(_png(d["asset"]), (w, h))
+    d["_key"] = key
+    return d
+
+
+def _paste_detail(canvas: np.ndarray, d: dict, t: float, dx: float, dy: float, g: dict) -> None:
+    """One detail at time t, the app's formulas (`SkyMotion`), over the layer drawn at the offset (dx, dy)."""
+    d = _detail_prep(d, g)
+    e = ease(t, d["ramp"])
+    x, y = d["_x"] + dx, d["_y"] + dy
+    if d["kind"] == "fall":
+        k = d["strength"] * e
+        if k > 0.002:
+            m, tile = d["_mask"], d["_flow"]
+            period = tile.shape[0]
+            s = flow_offset(d["speed"], t, period)
+            i = math.floor(s)
+            f = s - i
+            rolled = np.roll(tile, i, axis=0) * (1 - f) + np.roll(tile, i + 1, axis=0) * f
+            body = rolled[: m.shape[0]]
+            _paste(canvas, (body * (k * m)[..., None]).astype(np.float32), x, y)
+        mist = d["mist"]
+        level = mist_level(mist, t, e)
+        if level > 0.002:
+            cx, cy = d["_mist"]["c"]
+            rx, ry = d["_mist"]["r"]
+            x0, y0 = math.floor(cx - rx), math.floor(cy - ry)
+            yy, xx = np.mgrid[y0: math.ceil(cy + ry) + 1, x0: math.ceil(cx + rx) + 1]
+            r = np.hypot((xx - cx) / rx, (yy - cy) / ry)
+            a = (level * np.interp(r, [0, 0.5, 1], [1, 0.45, 0]))[..., None].astype(np.float32)
+            col = np.float32(mist["color"])
+            _paste(canvas, np.concatenate([col * a, a], -1), x0 + dx, y0 + dy)
+    elif d["kind"] == "sway":
+        top = sway_top(d, t)
+        if abs(top) > 0.01:
+            m, crop = d["_mask"], d["_crop"]
+            h, w = m.shape
+            shear = -top / h
+            mat = np.float32([[1, shear, -shear * h], [0, 1, 0]])
+            moved = cv2.warpAffine(crop, mat, (w, h), flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_CONSTANT, borderValue=0)
+            a = m[..., None]
+            _paste(canvas, np.concatenate([moved[..., :3] * a, moved[..., 3:4] * a], -1), x, y)
+    else:
+        v = flicker(d, t)
+        glow = d["_glow"]                       # premultiplied by the mask (alpha = mask)
+        if v > 0.002:
+            rgb = glow[..., :3]
+            h, w = rgb.shape[:2]
+            _paste(canvas, np.concatenate([rgb / np.maximum(glow[..., 3:4], 1e-4), glow[..., 3:4] * v], -1).astype(np.float32), x, y, "add")
+        elif v < -0.002:
+            _paste(canvas, np.concatenate([np.zeros_like(glow[..., :3]), glow[..., 3:4] * -v], -1), x, y)
+
+
 def geometry(man: dict, fr: dict) -> dict:
     """The master's scale and the window's origin exactly as `screen_check.compose` and `master_frame`
     place them (the painting is scaled whole, then windowed), so a layer registers with its master."""
@@ -173,7 +288,7 @@ def geometry(man: dict, fr: dict) -> dict:
             "top": top, "rows": h + top + bot}
 
 
-def render(s: dict, t: float, fr: dict | None = None, upto: str | None = None, snap: bool = False) -> np.ndarray:
+def render(s: dict, t: float, fr: dict | None = None, upto: str | None = None, snap: bool = False, detail: bool = True) -> np.ndarray:
     """The sky-set frame at time t: float RGB 0..255, screen (1206 x 2622), the plate framing (`snap` is
     kept for callers; the geometry is always the master's own)."""
     fr = fr or screen_check.framing(s["manifest"])
@@ -184,6 +299,7 @@ def render(s: dict, t: float, fr: dict | None = None, upto: str | None = None, s
         xi, yi = math.floor(x), math.floor(y)
         fx, fy = x - xi, y - yi
         dy = bob_y(layer.get("bob"), t)
+        left = x
         role = layer["role"]
         if role == "tile":
             # copies repeat at the scaled tile's whole width (the app's spacing is exact and its copies
@@ -200,6 +316,9 @@ def render(s: dict, t: float, fr: dict | None = None, upto: str | None = None, s
             _paste(canvas, img * np.float32([1, 1, 1, twinkle(layer["twinkle"], t)]), x, y + dy, "add")
         else:
             _paste(canvas, img, x, y + dy)
+        if detail:
+            for d in layer.get("details", []):
+                _paste_detail(canvas, d, t, left - x, dy, g)
         if upto == layer["id"]:
             break
     return np.clip(canvas[..., :3], 0, 1) * 255
@@ -238,14 +357,15 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--fps", type=int, default=30)
     ap.add_argument("--start", type=float, default=0.0, help="the clip starts at this time (s)")
     ap.add_argument("--vivid", type=float, default=1.0)
+    ap.add_argument("--no-detail", action="store_true", help="skip the isles' and the whale's painted-detail motion")
     a = ap.parse_args(argv)
     s = load(a.island, a.light, a.vivid)
     fr = screen_check.framing(s["manifest"])
     if a.still:
-        Image.fromarray(to_uint8(render(s, a.t, fr))).save(a.still)
+        Image.fromarray(to_uint8(render(s, a.t, fr, detail=not a.no_detail))).save(a.still)
     if a.out:
         n = round(a.seconds * a.fps)
-        encode((to_uint8(render(s, a.start + i / a.fps, fr)) for i in range(n)), Path(a.out), a.fps)
+        encode((to_uint8(render(s, a.start + i / a.fps, fr, detail=not a.no_detail)) for i in range(n)), Path(a.out), a.fps)
         print(f"{a.out}: {Path(a.out).stat().st_size / 1e6:.2f} MB, {n} frames")
     return 0
 

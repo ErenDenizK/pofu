@@ -1,0 +1,257 @@
+{
+ "note": "Where the distant isles and the whale carry painted detail the app animates (tools/plate/skyset_detail.py). Boxes are in the shipped sprite's own pixels; masks are built from the sprite's colours inside them and saved to detail/<light>/ as PNGs that may be adjusted by hand (the exporter reads the PNG when it exists). kind: fall (water scrolls down inside the mask), sway (a canopy's inside shears 1-2 px), glow (a lamp or window flickers).",
+ "day": {
+  "isle_falls": [
+   {
+    "id": "fall-a",
+    "kind": "fall",
+    "box": [
+     168,
+     132,
+     185,
+     157
+    ]
+   },
+   {
+    "id": "fall-b",
+    "kind": "fall",
+    "box": [
+     256,
+     131,
+     281,
+     152
+    ]
+   },
+   {
+    "id": "fall-c",
+    "kind": "fall",
+    "box": [
+     267,
+     156,
+     305,
+     236
+    ]
+   },
+   {
+    "id": "canopy",
+    "kind": "sway",
+    "ellipse": [
+     236,
+     58,
+     52,
+     26
+    ]
+   }
+  ],
+  "whale": [
+   {
+    "id": "fall",
+    "kind": "fall",
+    "box": [
+     283,
+     124,
+     312,
+     205
+    ]
+   },
+   {
+    "id": "lantern",
+    "kind": "glow",
+    "box": [
+     313,
+     72,
+     336,
+     96
+    ]
+   },
+   {
+    "id": "canopy",
+    "kind": "sway",
+    "ellipse": [
+     238,
+     62,
+     40,
+     22
+    ]
+   }
+  ]
+ },
+ "golden": {
+  "isle_falls": [
+   {
+    "id": "fall-a",
+    "kind": "fall",
+    "box": [
+     159,
+     140,
+     177,
+     166
+    ]
+   },
+   {
+    "id": "fall-b",
+    "kind": "fall",
+    "box": [
+     247,
+     140,
+     271,
+     162
+    ]
+   },
+   {
+    "id": "fall-c",
+    "kind": "fall",
+    "box": [
+     259,
+     167,
+     296,
+     246
+    ]
+   },
+   {
+    "id": "canopy",
+    "kind": "sway",
+    "ellipse": [
+     227,
+     70,
+     52,
+     26
+    ]
+   }
+  ],
+  "whale": [
+   {
+    "id": "fall",
+    "kind": "fall",
+    "box": [
+     304,
+     150,
+     340,
+     246
+    ]
+   },
+   {
+    "id": "lantern",
+    "kind": "glow",
+    "box": [
+     337,
+     95,
+     360,
+     126
+    ]
+   },
+   {
+    "id": "canopy",
+    "kind": "sway",
+    "ellipse": [
+     265,
+     100,
+     42,
+     22
+    ]
+   }
+  ]
+ },
+ "night": {
+  "isle_falls": [
+   {
+    "id": "fall-a",
+    "kind": "fall",
+    "box": [
+     129,
+     151,
+     147,
+     176
+    ]
+   },
+   {
+    "id": "fall-b",
+    "kind": "fall",
+    "box": [
+     217,
+     149,
+     242,
+     176
+    ]
+   },
+   {
+    "id": "fall-c",
+    "kind": "fall",
+    "box": [
+     229,
+     177,
+     266,
+     256
+    ]
+   },
+   {
+    "id": "canopy",
+    "kind": "sway",
+    "ellipse": [
+     197,
+     80,
+     50,
+     25
+    ]
+   },
+   {
+    "id": "windows",
+    "kind": "glow",
+    "box": [
+     176,
+     98,
+     212,
+     122
+    ],
+    "sat": [
+     0.06,
+     0.14
+    ],
+    "warm": [
+     0.03,
+     0.12
+    ]
+   }
+  ],
+  "whale": [
+   {
+    "id": "fall",
+    "kind": "fall",
+    "box": [
+     290,
+     122,
+     323,
+     208
+    ]
+   },
+   {
+    "id": "lantern",
+    "kind": "glow",
+    "box": [
+     320,
+     68,
+     346,
+     94
+    ],
+    "sat": [
+     0.12,
+     0.3
+    ],
+    "warm": [
+     0.04,
+     0.15
+    ]
+   },
+   {
+    "id": "canopy",
+    "kind": "sway",
+    "ellipse": [
+     248,
+     58,
+     42,
+     20
+    ]
+   }
+  ]
+ }
+}
