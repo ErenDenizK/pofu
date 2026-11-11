@@ -194,6 +194,67 @@ struct SkySetTests {
         #expect(abs(box.width - home.plateBox.width) < 1e-6)
     }
 
+    // MARK: Çağlayan (landscape plates on a portrait master)
+
+    @Test func caglayansDayHasASkySetAtEveryStoryStageAndTheOtherLightsKeepTheirPlate() throws {
+        let island = try #require(HomePlate.caglayanIsland)
+        let file = try #require(SkySetFile.shipped("caglayan"), "the package ships Plates/skyset-caglayan.json")
+        let frame = try #require(file.lights["day-4"]?.plateFrame, "the plates' place on the master")
+        var islandAssets: Set<String> = []
+        for stage in 0..<5 {
+            let state = HomePlate(plate: island, light: "day", stage: stage, placement: CaglayanLayout.placement)
+            let set = try #require(state.skySet, "stage \(stage)")
+            #expect(set.light == "day")
+            #expect(set.layers.first?.role == .sky)
+            let top = try #require(set.layers.last)
+            #expect(top.role == .island && top.drift == 0 && top.bob == nil, "the island never moves")
+            islandAssets.insert(top.asset)
+            #expect(set.plateFrame == frame)
+            #expect(PlateMath.budgetOK(set), "stage \(stage): \(set.textureBytes) bytes")
+        }
+        #expect(islandAssets.count == 5, "each stage's plate cuts its own island layer")
+        // Golden, night and rain are being repainted: they keep the plate and its backdrop.
+        for (light, stage) in [("golden", 4), ("night", 2), ("night", 3), ("rain", 4)] {
+            #expect(HomePlate(plate: island, light: light, stage: stage, placement: CaglayanLayout.placement).skySet == nil, "\(light) \(stage)")
+        }
+    }
+
+    @Test func caglayansSkyKeepsHomesMotionConstants() throws {
+        let set = try #require(SkySet.shipped(island: "caglayan", light: "day", stage: 4))
+        let layers = Dictionary(uniqueKeysWithValues: set.layers.map { ($0.id, $0) })
+        #expect(["far", "mid", "sea"].compactMap { layers[$0]?.drift } == [4, 9, 14])
+        for id in ["far", "mid", "sea"] {
+            let bob = try #require(layers[id]?.bob)
+            #expect(bob.amp == 3 && bob.period == 8)
+        }
+        for sprite in set.layers where sprite.role == .sprite {
+            #expect(try #require(sprite.bob).amp == 2, "\(sprite.id)")
+        }
+        // The layers below the island are shared by every stage.
+        let first = try #require(SkySet.shipped(island: "caglayan", light: "day", stage: 0))
+        #expect(first.layers.dropLast().map(\.asset) == set.layers.dropLast().map(\.asset))
+    }
+
+    @Test func theSkySetIsPlacedByTheIslandNotByTheMasterAtThePlatesScale() throws {
+        let island = try #require(HomePlate.caglayanIsland)
+        let state = HomePlate(plate: island, light: "day", stage: 4, placement: CaglayanLayout.placement)
+        let set = try #require(state.skySet)
+        let top = try #require(set.layers.last)
+        let box = state.worldBox(
+            master: PlateRect(minX: top.pos.x, minY: top.pos.y, maxX: top.pos.x + top.size.x, maxY: top.pos.y + top.size.y),
+            of: set
+        )
+        // The island layer is the island's art plus its cloud bank: it holds the plate's island box, to a world unit.
+        let art = state.islandBox
+        #expect(box.minX <= art.minX + 1.5 && box.maxX >= art.maxX - 1.5)
+        #expect(box.minY <= art.minY + 1.5 && box.maxY >= art.maxY - 1.5)
+        #expect(abs(box.width - art.width) < 0.04 * art.width, "and is about as wide, not the master's width")
+        // The master reaches past the landscape plate above and below: the sky is taller than the plate.
+        let master = state.worldBox(master: PlateRect(minX: 0, minY: 0, maxX: set.master.x, maxY: set.master.y), of: set)
+        #expect(master.height > 2.2 * state.plateBox.height)
+        #expect(abs(master.width - state.plateBox.width) < 0.01 * master.width)
+    }
+
     // MARK: Painted detail (isles and whale)
 
     @Test func theFallsLampsAndCanopiesAreShippedOnTheSpritesOnly() throws {
