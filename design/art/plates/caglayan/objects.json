@@ -747,7 +747,7 @@
  "characterLight": {
   "saturate": true,
   "stoneMargin": {
-   "night": 3.0
+   "night": 0.0
   },
   "rim": {
    "day": 0.0,

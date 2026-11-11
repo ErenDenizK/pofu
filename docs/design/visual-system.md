@@ -97,7 +97,7 @@ stages (a pale, nearly grey lawn) would put a full-colour otter on it, louder th
 multiply cannot fix. Its hand data turns on `characterLight.saturate`: a state's `saturation` is the
 lawn's chroma over the reference plate's, to the power 0.6, at least 0.5 (omitted at 1, so Home's
 data is untouched), and the sprite keeps that share of its colour (`PlateCharacter`). Çağlayan's
-night also sets `stoneMargin` to 3 L* (Home 7): its tint was capped so far under the stones that its
+night also sets `stoneMargin` to 0 L* (Home 7; CI frame: 3 left the stage 2 otter 12.8 L* under her lawn, 0.2 outside the band): its tint was capped so far under the stones that its
 otter read darker than any day plate allows. The golden rim is 0.5 there (Home 0.40).
 
 Scale: Pofu keeps his size relative to the painted world (8.14 % of the plate width; 33 pt at the old 1.0 framing, about 38 pt at 1.15). Mochi and Findik are drawn at least 60 % of his
