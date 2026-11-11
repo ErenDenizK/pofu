@@ -94,7 +94,8 @@ struct SkySetTests {
         for light in Self.lights {
             let set = try sky(light)
             for layer in set.layers where layer.role != .sky {
-                #expect(layer.pos.x >= 0 && layer.pos.y >= 0, "\(layer.id)")
+                // The moon's halo runs on above the plate's top edge.
+                #expect(layer.pos.x >= 0 && (layer.pos.y >= 0 || layer.id == "moon"), "\(layer.id)")
                 #expect(layer.pos.x + layer.size.x <= set.master.x + 0.5, "\(layer.id)")
             }
             for layer in set.layers where layer.role == .tile {
