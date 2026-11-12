@@ -54,7 +54,7 @@ final class HomePlateScreenshotTests: XCTestCase {
     ) async throws {
         do {
             let now = Date(timeIntervalSinceReferenceDate: 815_000_000)
-            let world = IslandSamples.world(
+            var world = IslandSamples.world(
                 clock: nil,
                 tendedDays: 60,
                 levels: [.garden: 5, .teaStall: 5, .pond: 5, .windmill: 5, .workshop: 5, .bagelCart: 5, .pier: 5, .lighthouse: 5],
@@ -63,6 +63,10 @@ final class HomePlateScreenshotTests: XCTestCase {
                 islandLevel: state?.level ?? 10,
                 wellbeing: 84
             )
+            // l5-day shows the goal line; level 10 has no next level, so it shows none.
+            if state?.name == "l5-day" {
+                world.nextIslandLevel = IslandLevelRequirement(level: 6, tendedDaysLeft: 0, levelsLeft: 2)
+            }
             let island = IslandSceneModel(framing: .home)
             let home = WorldHomeModel(now: { now }, schedulesCues: false)
             let inputs = VisitInputs(now: now, world: world, lastSettled: shot == "settled" ? now.addingTimeInterval(-5 * 60) : nil, calendar: .current)

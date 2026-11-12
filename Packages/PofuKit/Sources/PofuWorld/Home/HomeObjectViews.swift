@@ -589,6 +589,7 @@ struct CheekPaws: View {
 struct HomeGlance: View {
     let today: TodaySummary
     let seedsInGlance: Int?
+    var nextGoal: String?
     let onOpen: (@MainActor () -> Void)?
 
     @Environment(\.dynamicTypeSize) private var typeSize
@@ -603,6 +604,13 @@ struct HomeGlance: View {
                     Text(verbatim: WorldStrings.seeds(seedsInGlance))
                         .font(PofuFont.footnote)
                         .foregroundStyle(PofuColor.textSecondary)
+                }
+                if let nextGoal {
+                    Text(verbatim: nextGoal)
+                        .font(PofuFont.footnote)
+                        .foregroundStyle(PofuColor.textSecondary)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.8)
                 }
             }
             if !typeSize.isAccessibilitySize {
@@ -621,7 +629,7 @@ struct HomeGlance: View {
         .fixedSize(horizontal: false, vertical: true)
         .pofuChrome(.glance)
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel(Text(verbatim: "\(WorldStrings.todayLine(today)). \(WorldStrings.guardedLabel(today))"))
+        .accessibilityLabel(Text(verbatim: "\(WorldStrings.todayLine(today)). \(WorldStrings.guardedLabel(today))\(nextGoal.map { ". \($0)" } ?? "")"))
 
         if let onOpen {
             Button(action: onOpen) { glance }
