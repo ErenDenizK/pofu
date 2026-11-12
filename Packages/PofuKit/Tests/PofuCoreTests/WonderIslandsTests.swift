@@ -229,6 +229,22 @@ struct WonderIslandsTests {
         #expect(!WonderIslands.status(game: game, day: day).giftUnlocked)
     }
 
+    /// The gift is new on the day the island healed (home labels it), and
+    /// only that day; an island not yet healed has no gift to label.
+    @Test func theGiftIsNewOnlyOnTheDayTheIslandHealed() {
+        var game = GameState()
+        for island in [WonderIslandID.koke, .caglayan] {
+            game.wonders.islands[island] = WonderIslandState(rumouredOn: day.adding(days: -6), arrivedOn: day.adding(days: -5), stage: 3, lastAdvanceDay: day.adding(days: -1))
+            #expect(!WonderIslands.status(of: island, game: game, day: day).giftIsNew)
+            game.wonders.islands[island] = WonderIslands.advance(state: game.wonders[island], day: day, resistedToday: true)
+            let today = WonderIslands.status(of: island, game: game, day: day)
+            #expect(today.giftUnlocked && today.giftIsNew, "\(island)")
+            let tomorrow = WonderIslands.status(of: island, game: game, day: day.adding(days: 1))
+            #expect(tomorrow.giftUnlocked && !tomorrow.giftIsNew, "\(island)")
+            #expect(!WonderIslands.status(of: island, game: game, day: nil).giftIsNew)
+        }
+    }
+
     @Test func aSaveWithKokeOnlyDecodesAndCaglayanIsHidden() throws {
         var state = GameState()
         state.wonders.islands[.koke] = WonderIslandState(rumouredOn: day, arrivedOn: day, stage: 1)

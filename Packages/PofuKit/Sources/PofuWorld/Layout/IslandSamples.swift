@@ -120,7 +120,10 @@ public enum IslandSamples {
             calmNights: 2,
             homeStage: stage,
             islandLevel: islandLevel,
-            nextIslandLevel: catalog.requirement(afterIslandLevel: islandLevel, tendedDays: tendedDays, growth: growth),
+            // A pinned level below what the days and levels reach has its
+            // next level already met: no goal, as the real game would show.
+            nextIslandLevel: catalog.requirement(afterIslandLevel: islandLevel, tendedDays: tendedDays, growth: growth)
+                .flatMap { $0.isMet ? nil : $0 },
             islands: islands,
             stations: stations,
             seedsPerHour: rate * calm,

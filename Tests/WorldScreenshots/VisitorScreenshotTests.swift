@@ -9,6 +9,10 @@ import XCTest
 ///
 /// - `visitor-v1-day`: the daily visitor at the front-lip spot V1 before the
 ///   harbor, with the gift parcel beside them;
+/// - `visitor-v1-greeted`: the same visitor (Sumi) just greeted, the heart
+///   over them;
+/// - `visitor-v1-help`: a help visit from another resident (Damla, the blue
+///   bird) with the kite beside her;
 /// - `visitor-h4-night` (and `visitor-h4-night-off` for comparison): the
 ///   guest room's window lit on a stay-over night;
 /// - `visitor-quiet-day`: the quiet day's letter at V1;
@@ -50,6 +54,13 @@ final class VisitorScreenshotTests: XCTestCase {
         let v1Model = IslandSceneModel(framing: .island)
         v1Model.holdPan(start: IslandFraming.panValue(lookX: VisitorSlots.v1.x))
         try write(try await render(day, model: v1Model, hour: 12, in: scene), name: "visitor-v1-day", to: folder)
+
+        // The same visit, greeted: the heart answers the tap.
+        var greeted = day
+        greeted.visitor?.state = .greeted
+        let greetedModel = IslandSceneModel(framing: .island)
+        greetedModel.holdPan(start: IslandFraming.panValue(lookX: VisitorSlots.v1.x))
+        try write(try await render(greeted, model: greetedModel, hour: 12, in: scene), name: "visitor-v1-greeted", to: folder)
 
         // A help visit: the kite that needs a tap stands beside the visitor.
         var help = world(level: 2)

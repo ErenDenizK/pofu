@@ -79,6 +79,9 @@ public final class FlowGameModel {
     public var board: FlowBoard { round.board }
     public var canUndo: Bool { phase == .playing && round.canUndo }
     public var boardNumber: Int { round.index + 1 }
+    /// Boards solved, the one pouring now included: the pips fill on solve.
+    public var boardsSolved: Int { round.boardsSolved }
+    public var isBoardSolved: Bool { round.isBoardSolved }
     public var targetsWet: Int { round.board.targets.filter(wet.contains).count }
     public var targetCount: Int { round.board.targets.count }
     /// Damla on the water island, Pofu on the others where she is not.
@@ -190,6 +193,9 @@ public final class FlowGameModel {
         solvedCount += 1
         idleTask?.cancel()
         scene.celebrate()
+        if !round.isLastBoard {
+            UIAccessibility.post(notification: .announcement, argument: FlowStrings.boardDone)
+        }
         let pause = pourPause
         pourTask = Task { [weak self] in
             try? await Task.sleep(for: pause)

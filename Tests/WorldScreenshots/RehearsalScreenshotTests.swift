@@ -43,7 +43,7 @@ final class RehearsalScreenshotTests: XCTestCase {
                     ZStack {
                         IslandScene(world: IslandSamples.dayThree(), model: IslandSceneModel(framing: .home)) {
                             SpeechBubble {
-                                Text(verbatim: "Sen yokken bahçe 12 çekirdek topladı.")
+                                Text(verbatim: "Sen yokken ada 12 çekirdek topladı.")
                             }
                         }
                         RehearsalPanel(model: model, rehearsal: rehearsal)

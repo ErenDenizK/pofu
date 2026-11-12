@@ -54,4 +54,18 @@ struct SampleGameTests {
         let again = game.collect()
         #expect(again == nil)
     }
+
+    /// A sample that pins a lower island level for its look (Home at
+    /// level 2 with every station built) shows no goal line rather than
+    /// "0 more days".
+    @Test func aPinnedLowLevelSampleHasNoMetGoal() {
+        let world = IslandSamples.world(
+            clock: nil, tendedDays: 60,
+            levels: [.garden: 5, .teaStall: 5, .pond: 5, .windmill: 5, .workshop: 5, .bagelCart: 5, .pier: 5, .lighthouse: 5],
+            jar: Energy(214), islands: [.home, .harbor], islandLevel: 2
+        )
+        #expect(world.nextIslandLevel == nil)
+        let early = IslandSamples.world(clock: nil, tendedDays: 0, levels: [.garden: 1], jar: .zero, islands: [.home])
+        #expect(early.nextIslandLevel.map { !$0.isMet } == true)
+    }
 }

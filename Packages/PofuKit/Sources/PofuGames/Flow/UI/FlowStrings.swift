@@ -9,6 +9,8 @@ enum FlowStrings {
     static var hint: String { String(localized: "Hint", bundle: .module) }
     static var done: String { String(localized: "Done", bundle: .module) }
     static var doneTitle: String { String(localized: "The water found its way home.", bundle: .module) }
+    /// A board solved, while it pours before the next one slides in.
+    static var boardDone: String { String(localized: "The water reached the pool.", bundle: .module) }
     static var boardAccessibility: String {
         String(localized: "The stream. Turn each stone until the water reaches the pool.", bundle: .module)
     }

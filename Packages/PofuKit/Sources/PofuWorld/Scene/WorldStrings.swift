@@ -90,6 +90,14 @@ enum WorldStrings {
         localized("caglayan.gift")
     }
 
+    /// The paper tag over a wonder island's gift on the day it arrives.
+    static func giftTag(_ gift: HomeGifts.Gift) -> String {
+        switch gift {
+        case .kokeMoss: kokeGift
+        case .caglayanFountain: localized("caglayan.gift.tag")
+        }
+    }
+
     /// VoiceOver for the moss Koke gave.
     static var kokeGift: String {
         localized("koke.gift")

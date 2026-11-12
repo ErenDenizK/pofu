@@ -135,6 +135,23 @@ public enum VisitorStage {
         }
     }
 
+    // MARK: - The greeting's answer
+
+    /// How far over the visitor's feet the greeting's heart floats, in the
+    /// visitor's own units (the visitor stands 30 tall).
+    public static let heartLift = 34.0
+
+    /// Where the greeting's heart floats, in world units: over a greeted
+    /// visitor who stands in the world (`parts`, from `parts(...)` or
+    /// `PlateLife.visitorParts`), drawn at `scale` (1 on the sprite
+    /// island, the plate's resident scale on the plate). `nil` before the
+    /// greeting, on a quiet day and while a stay-over guest sleeps. It
+    /// stays for the rest of the visit: the visitor has been greeted today.
+    public static func greetingHeart(parts: [Placed], visitor: VisitorSnapshot?, scale: Double = 1) -> WorldPoint? {
+        guard visitor?.state == .greeted, let feet = parts.first(where: { $0.part == .visitor })?.feet else { return nil }
+        return WorldPoint(x: feet.x, y: feet.y - heartLift * scale)
+    }
+
     /// The parts as tap targets for the one resolver.
     public static func hitTargets(visitor: VisitorSnapshot?, invitationOpen: Bool, isBedtime: Bool) -> [HitTarget] {
         parts(visitor: visitor, invitationOpen: invitationOpen, isBedtime: isBedtime).map {

@@ -14,7 +14,8 @@ import XCTest
 /// - `caglayan-plaque`: the "Akışı bağla" plaque on a day it can be played;
 /// - `caglayan-night-0` and `-4`: the tiny light in the pool, out when healed;
 /// - `caglayan-map`: the island on the Map;
-/// - `caglayan-gift-home`: the pool fountain flowing at home.
+/// - `caglayan-gift-home`: the pool fountain flowing at home on the day it
+///   arrives, with its paper tag.
 final class CaglayanScreenshotTests: XCTestCase {
     private let clock = Date(timeIntervalSinceReferenceDate: 815_000_000)
 
@@ -77,7 +78,9 @@ final class CaglayanScreenshotTests: XCTestCase {
         try write(try await render(world(caglayan: status(2)), model: map, in: scene), name: "caglayan-map", to: folder)
 
         let home = IslandSceneModel(framing: .home)
-        try write(try await render(world(caglayan: status(4, canAdvance: false)), model: home, in: scene), name: "caglayan-gift-home", to: folder)
+        var arrived = status(4, canAdvance: false)
+        arrived.giftIsNew = true
+        try write(try await render(world(caglayan: arrived), model: home, in: scene), name: "caglayan-gift-home", to: folder)
         let island = IslandSceneModel(framing: .island)
         try write(try await render(world(caglayan: status(4, canAdvance: false)), model: island, in: scene), name: "caglayan-gift-island", to: folder)
     }

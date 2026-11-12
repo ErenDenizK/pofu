@@ -9,7 +9,14 @@ public struct FlowLayout: Equatable, Sendable {
     public static let controlsHeight: CGFloat = 84
     public static let poolHeight: CGFloat = 44
     public static let lipHeight: CGFloat = 26
+    /// The clear margin between the screen's sides and anything of the
+    /// board, the pool's rim included.
     public static let gutter: CGFloat = 16
+    /// How far the pool reaches past the board on each side (the cliff lip
+    /// and the bank reach less).
+    public static let poolOverhang: CGFloat = 14
+    /// The pool's rim stroke, drawn half outside its rect.
+    static let rimAllowance: CGFloat = 2
     public static let maxCell: CGFloat = 76
     /// The smallest touch target (HIG).
     public static let minCell: CGFloat = 44
@@ -30,7 +37,7 @@ public struct FlowLayout: Equatable, Sendable {
         self.rows = max(1, rows)
         let bottom = size.height - safeBottom - Self.controlsHeight - Self.poolHeight
         let top = safeTop + Self.hudHeight + Self.lipHeight
-        let fit = min((size.width - 2 * Self.gutter) / CGFloat(self.columns), (bottom - top) / CGFloat(self.rows))
+        let fit = min((size.width - 2 * (Self.gutter + Self.poolOverhang + Self.rimAllowance)) / CGFloat(self.columns), (bottom - top) / CGFloat(self.rows))
         cell = max(Self.minCell, min(Self.maxCell, fit.rounded(.down)))
         let width = cell * CGFloat(self.columns)
         let height = cell * CGFloat(self.rows)
@@ -44,5 +51,5 @@ public struct FlowLayout: Equatable, Sendable {
     /// The cliff the spring comes out of, above the board.
     public var lip: CGRect { CGRect(x: board.minX - 10, y: board.minY - Self.lipHeight, width: board.width + 20, height: Self.lipHeight + 6) }
     /// The pool the mouths pour into, below the board.
-    public var pool: CGRect { CGRect(x: board.minX - 14, y: board.maxY - 4, width: board.width + 28, height: Self.poolHeight + 4) }
+    public var pool: CGRect { CGRect(x: board.minX - Self.poolOverhang, y: board.maxY - 4, width: board.width + 2 * Self.poolOverhang, height: Self.poolHeight + 4) }
 }

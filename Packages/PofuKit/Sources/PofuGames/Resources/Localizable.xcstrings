@@ -431,6 +431,16 @@
         }
       }
     },
+    "The water reached the pool.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Su havuza ulaştı."
+          }
+        }
+      }
+    },
     "The water found its way home.": {
       "localizations": {
         "tr": {

@@ -187,4 +187,21 @@ struct IslandLevelTests {
         #expect(snapshot.islands == [.home, .harbor])
         #expect(!snapshot.stations.contains { $0.id == "fireflies" })
     }
+
+    // MARK: - The next goal
+
+    /// The goal line never reads "0 more days": a requirement the game
+    /// reports always has something left.
+    @Test func theNextLevelsRequirementIsNeverAlreadyMet() {
+        for tendedDays in 0...120 {
+            for growth in 0...60 {
+                let level = catalog.islandLevel(tendedDays: tendedDays, growth: growth)
+                guard let next = catalog.requirement(afterIslandLevel: level, tendedDays: tendedDays, growth: growth) else { continue }
+                #expect(!next.isMet, "days \(tendedDays), growth \(growth)")
+            }
+        }
+        #expect(IslandLevelRequirement(level: 3, tendedDaysLeft: 0, levelsLeft: 0).isMet)
+        #expect(!IslandLevelRequirement(level: 3, tendedDaysLeft: 1, levelsLeft: 0).isMet)
+        #expect(!IslandLevelRequirement(level: 3, tendedDaysLeft: 0, levelsLeft: 2).isMet)
+    }
 }

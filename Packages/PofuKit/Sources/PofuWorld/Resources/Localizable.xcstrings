@@ -1445,6 +1445,22 @@
         }
       }
     },
+    "caglayan.gift.tag": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A fountain from Çağlayan"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Çağlayan'dan çeşme"
+          }
+        }
+      }
+    },
     "caglayan.rumour": {
       "localizations": {
         "en": {
