@@ -31,7 +31,8 @@
    "5": "design/art/takes/batch-72-home-night/x-home-flow-il5-night/plate__x-home-flow-il5-night--t2.webp",
    "6": "design/art/takes/batch-72-home-night/x-home-flow-il4-night/plate__x-home-flow-il4-night--t1.webp",
    "7": "design/art/takes/batch-72-home-night/x-home-flow-il3-night/plate__x-home-flow-il3-night--t2.webp",
-   "8": "design/art/takes/batch-74-redo-states/x-home-flow-il2-night-v2/plate__x-home-flow-il2-night-v2--t2.webp"
+   "8": "design/art/takes/batch-74-redo-states/x-home-flow-il2-night-v2/plate__x-home-flow-il2-night-v2--t2.webp",
+   "9": "design/art/takes/batch-80-home-il1-night/x-home-flow-il1-night/plate__x-home-flow-il1-night--t2.webp"
   }
  },
  "trace": [
@@ -1342,5 +1343,25 @@
  "residentBoosts": {
   "mochi": 1.62,
   "findik": 1.4
+ },
+ "colorFit": {
+  "night:9": {
+   "grass": {
+    "hue": [
+     105,
+     150
+    ],
+    "dh": 16,
+    "chroma": 0.78
+   },
+   "earth": {
+    "hue": [
+     25,
+     60
+    ],
+    "dh": -16,
+    "chroma": 0.9
+   }
+  }
  }
 }
