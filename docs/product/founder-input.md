@@ -3,7 +3,10 @@
 Direction the founder gives in chat or in Pofu Hub, recorded so that none of
 it is lost between sessions. The founder often says his examples are views,
 not orders: each entry records **what he meant**, the **status**, and
-**where it is handled**. Newest first. Translated from Turkish.
+**where it is handled**. New entries go at the bottom. The lead reads the
+standing decisions and the entries after the date in [now.md](../now.md).
+Translated from Turkish; he dictates, so each entry records the meaning,
+not the wording.
 
 ## Standing decisions (still in force)
 
@@ -83,7 +86,7 @@ Each point, and how it is handled:
    paper." Handled: the morning sheet covers the new work; his device
    test then sets priorities.
 3. **Keep working on every front.** Handled: three waves across app,
-   game, art and tools ([handoff](../handoff.md)).
+   game, art and tools ([handoff](../archive/handoff-2026-11.md)).
 4. **Codex did a lot and continues; keep it running nonstop, as needed.**
    Handled: four Codex PRs reviewed; queue rows 0-s to 0-x feed it
    production work tied to tonight's needs; the backlog fills gaps.
@@ -704,3 +707,37 @@ Result of the night items (b): home now draws its painted plate at level 10 day,
 
 1. Everything solid by the demo; a properly working, playable game first, ahead of the app side; app technique after 2026-11-24. Handled: the game-solid spec (`docs/design/game-solid-v1.md`, #393): six PRs in merge order, a demo run test first; app-side tracks (Door, onboarding) wait until after the game.
 2. The lead orchestrates sub-agents efficiently (model, effort, who does what), keeps its own context lean; he wants to revisit the agent system from scratch in a few days. Handled: the split stated in chat (lead decides and looks; Opus high for specs and reviews; Sonnet medium or high builds; Haiku checks; Fable rarely; at most three agents); the system review is noted for when he is free, with two proposals: a reality check before each brief and a weekly "which track did not move" report.
+
+## 2026-11-12 (later): the budget for parallel builders
+
+1. Plan the budget: with Sonnet builders, is running more of them at once sensible now, judged by total cost, time and success? Handled: answered in chat; the studio design then measured it: per token Sonnet costs about 0.6 of Opus, and what limits parallel builders is the machine's memory and the lead's attention, so three builders at once stays, with scouts and critics outside the count ([studio.md](../studio.md) §2).
+
+## 2026-11-12 (afternoon, later): let Fable 5.2 design the studio
+
+1. The quota is fine, so Fable 5.2 can be used more. He wants Fable to design the multi-agent system: Opus in control, Opus for judgement, Sonnet for plain implementation, Haiku for reading and compiling; effort is how hard a model tries, the model is how smart it is; always the newest versions. Do not bring Fable in before talking with him. Handled: the lead proposed one Fable pass and waited for his answer.
+2. Prepare the pass: Fable should know it is the most capable model of the family and that what it reads was decided below it. Should Opus extract the evidence first, or leave everything to Fable? The feedback so far must reach it in its right context. Handled: a Sonnet agent compiled an uninterpreted evidence pack (a timeline, his words verbatim, agent runs, rework, numbers); the brief tells Fable to weigh the rules, his views and the brief itself as evidence, not authority.
+
+## 2026-11-12 (afternoon, later): the Fable brief, revised three times
+
+1. His words are dictated and imperfect; the meaning is what counts. Handled: the brief says to read him for meaning; this log's header now says the same.
+2. The draft's tone and its "you" were unclear (him or Fable?). Handled: the brief opens by defining "you" (Fable), "the founder" and "the lead".
+3. Fable is part of the system, not only Opus, Sonnet and Haiku: wide evaluations, even a day's overall plan, major game decisions, work that needs exceptional creativity. Handled: [studio.md](../studio.md) §8 lists these as moments that earn Fable.
+4. It is not always "the upper agent assigns, the lower one does"; run it like an office. One agent doing a whole job without interruption is often better and about as cheap. Quality is not traded away. Handled: studio.md §4 ("keep whole"; delegating is a tool, not a chain of command).
+5. Do not limit the length of Fable's answer. Handled: the limit was removed.
+6. A wrong `CLAUDE.md` can harm the work and hold a model down; rules should raise a model's output and explain themselves; Opus and Fable read open principles best, Sonnet and Haiku like closed, exact definitions; this may apply everywhere. Handled: weighed in the design: every rule now carries its reason; `CLAUDE.md` holds only what every agent needs; the lead's manual is open on method; the role files in `.claude/agents/` give the smaller models exact procedures. One amendment by Fable: be exact about facts and acceptance for every model, and open about method.
+7. Will his own words reach Fable? Always show him the prompt. Fable must weigh everything itself. Quality and every other measure matter, and their order changes from case to case. The pass must not drag on; once reviewed, the lead or Fable applies it directly, not sub-agents. Handled: the evidence pack carried his messages verbatim; the full brief was shown to him (now a rule, studio.md §8); the fixed ranking was dropped; the extra critique round was dropped; Fable applied the design itself.
+8. The brief looks right; do not over-detail it, leave Fable room everywhere. This is a studio and an agency with many lines of work (game design and development, app engineering, art), and more may join (marketing and others). Should `CLAUDE.md` be reviewed first? Handled: the brief was cut to the goal, the fixed constraints and the material; `CLAUDE.md` was left for Fable to weigh as part of the pass.
+
+Result: the design, [research/studio-design-2026-11-12.md](../research/studio-design-2026-11-12.md). Its measured findings: the lead's context reached 898,000 tokens and the lead alone cost about 31% of the session; the large losses were unchecked premises, not weak building; hand-kept status pages went stale; fresh eyes at 1:1 were missing; he had not played a build since 2026-11-05.
+
+## 2026-11-12 (evening): the studio design approved; Fable applies it
+
+1. He approves all of it. Handled: applied in this PR and in `pofu-art`: `CLAUDE.md` for every agent, the lead's manual [studio.md](../studio.md), the status page and handoff [now.md](../now.md), five role files, three scripts (`tools/studio/pulse.py`, `tools/studio/session_cost.py`, `tools/art/check_queue.py`), the Swift build lock, `in_app` checked against the app, and the art queue split into Demand and Stock.
+2. Fable is not to be rationed: where it was used precisely it was accurate and paid for itself many times. It has a real limit, and all the use so far is perhaps 5% of Fable's meter, 2 to 3% of the week. Use it whenever the work needs it; when unsure, ask him and agree together what it will do. Handled: studio.md §8, with no allowance.
+3. He installs builds through a separate cloud session ("pull the repository and install the latest"). Measurement and data tracking come later, with a real phone build of the full app. How device testing is run is to be designed later, perhaps with Fable. Handled: noted in studio.md §7 as a fact; no procedure was written.
+4. He is not fond of a new chat for every chapter; a reset or a compaction may be enough. To be discussed. Handled: the goal (a lean lead context) and a `now.md` that is true at every pause are written; no rule about the means.
+5. The demo is his own iPhone, played hands-on, sometimes shown to friends; no TestFlight before the membership (about 2026-11-24). Handled: studio.md §7 and now.md.
+6. If the session changes, everything must be ready: finish here what must be finished. Handled: now.md holds the state and the next steps; this log is complete to this entry; the stale `in_app` cells were corrected.
+7. Fable may apply this large revision itself. Should Fable also write the other agent definitions? He wants the studio and its details to be Fable's. Handled: Fable wrote and applied all of it, the role files included; the lead reviews and merges.
+8. His five answers are views, not fixed rules. Handled: none is hard-coded; items 3 and 4 are left open in writing.
+9. Codex: once the studio and its agents are in place, the lead gives Codex its instructions and he runs it by hand when needed. That is future work, not part of this handover. Handled: the `pofu-art` queue and brief are reorganised; no restart step was written.
