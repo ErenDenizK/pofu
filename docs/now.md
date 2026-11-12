@@ -6,50 +6,47 @@ most 60 lines. How the studio runs: [studio.md](studio.md). Threads and
 history: [tracker.md](tracker.md). What changed for the player:
 `python3 -I tools/studio/pulse.py`.
 
-**Goal:** a solid, playable game on the founder's own iPhone for the demo
-(about 2026-11-24): Rehearsal mode, days 1 to 21, played hands-on, sometimes
-shown to friends ([spec](design/game-solid-v1.md)); no TestFlight before it.
+**Goal:** Trial build 1: a whole, polished build the founder judges as a
+user on his iPhone, **Monday 11-16 evening** (Rehearsal days 1 to 21).
+Device check of Home, Friday 11-13. Cut line Sunday 11-15 18:00: what is
+not accepted is hidden. Codex is stopped (plan expired 11-12).
 
-**Updated:** 2026-11-12 (late night, session 2), `main` at `1364ac01` (#402).
-**Founder last played on his phone:** 2026-11-05 (told late on 11-12 to try `main`).
+**Updated:** 2026-11-12 (late night, session 2).
+**Founder last played on his phone:** 2026-11-05.
 **Founder log read up to:** 2026-11-12 (late night).
-**Route:** Codex stopped (plan expired, 11-12 evening); Fable writes the
-route for the pause (docs/route-codex-pause), shown to the founder first.
+**Route:** [route-2026-11-12-codex-pause](research/route-2026-11-12-codex-pause.md)
+§6 (#413), accepted by the founder with both dates and the studio change.
 
 ## Decided this session
 
-- The demo is ONE painted world on days 1 to 21 (a critic ranked the
-  sprite/plate switch the path's most visible defect).
-- Rain streaks are drawn in code, never baked in a master (ADR-0025).
+- One painted world on days 1 to 21; rain streaks drawn in code.
+- While Codex is down: art edits are scripts with the take untouched; the
+  Look truth is the player-path frames (studio.md, founder approved).
 
-## In flight ([spec](design/demo-one-world-v1.md) #404; players reach IL7)
+## In flight
 
-1. #412 Home IL1 night (Sonnet): waits on CI and its 1:1 look.
-2. Fable 5.2: the route for the Codex pause (branch docs/route-codex-pause).
-Merged: #405, #407, #406, #409, #410 night tone, #408 painted sky at
-Koke and the harbor, #411 studio scripts; pofu-art #18, #23 to #27 (founder approved).
+1. #412 Home IL1 night (Sonnet): CI and its 1:1 look.
+2. Route Friday steps 1 (scout, five facts), 3 (the Map painted, Opus),
+   4 (Çağlayan full frame, Opus); step 5 (Koke clean) when #412 lands.
+Merged today: #405 to #411 (feedback, hours and weather, Home and
+Çağlayan nights, night tone, painted sky at Koke, studio scripts);
+pofu-art #13, #14, #18, #22 to #27.
 
 ## Next steps, in order
 
-1. Spec PR 6 (IL1 night; pick: batch-80 t2, warmer than IL2, cool it in
-   the fit) after the night-tone PR merges (both edit objects.json).
-2. Codex (starts with "çalış"): 0-h9 batch-82 Koke stages 0 and 2 redo
-   (+ stage 1 t1), 0-h10 batch-83 Sumi and Damla edits. Next art rows:
-   Koke stage 4's baked pale halo (bad alpha); Koke night fringe if art.
-   Then spec PR 7 (Koke at final colour) once batch-82 is picked.
-3. Ingest into the app: batch-78 parcel, moss, fountain t1, Gezgin; the
-   batch-79 dribbles and night UI. Tile junctions parked (failed twice).
-4. Port pofu-art's QA and run.py fixes into pofu's tools/imagegen before
-   any full `sync_to_art.py`.
-5. Record the Rehearsal path once one world lands (CI `beats` label).
+1. Route §6 Saturday (steps 6 to 8), Sunday (9 to 11), in order.
+2. pofu-art QUEUE.md: a "paused since 2026-11-12, rows stay READY" line
+   and the return queue of route §5.4, written and checked now.
+3. From Tuesday 11-17: route §5.3 (seeds-and-minutes check in the app
+   first; the App desk reopens).
 
 ## Desks
 
 | Desk | Where it stands | Waits on |
 |---|---|---|
-| Game | game-solid and feedback (#405) merged | follow-ups |
-| Look | Home, Çağlayan, Koke and the harbor under one painted sky | #412 |
-| Art factory | batches 76 to 81 merged; 0-h9, 0-h10 READY | "çalış" |
+| Game | game-solid and feedback merged; days 17-21 are flat | route §6 |
+| Look | Home painted at every hour; the Map, flights, Çağlayan frame, Koke 4 are not | route §6 |
+| Art factory | paused (Codex stopped); queue kept READY | Codex back |
 | App | paused until after the demo | the demo |
 | Story | lines ship with game PRs; studio in use since 11-12 | |
 

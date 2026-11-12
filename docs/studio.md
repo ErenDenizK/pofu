@@ -317,6 +317,12 @@ changed.
 
 ## 9. The art factory
 
+- **Editing art by script** (founder, 2026-11-12): the picked take is
+  never overwritten; the edit is a script in `tools/`, and
+  `plates.yaml` says the cell is edited in code, so Codex can later
+  repaint from a true record. While Codex is down, the art-reviewer's
+  eye goes to frame critique and "Codex never idles" is suspended.
+
 Codex paints in `pofu-art` from `QUEUE.md` and never idles. The slow side
 of the art line has been the lead's review, not the painting.
 
@@ -348,7 +354,7 @@ A desk is a line of work with its own truth, queue and acceptance.
 |---|---|---|
 | Game | `PofuCore` and its tests; `DemoRunTests` | tests, then a recording |
 | App | `App/`, the CI screenshots | screenshots, then the device |
-| Look | in-app frames against the approved reference; the screen checks | a critic, the lead, then the device |
+| Look | the player-path frames (1206 x 2622, plates on) against the approved reference; the screen checks | a critic, the lead, then the device |
 | Art factory | `pofu-art/QUEUE.md`, `docs/state/plates.yaml` | the lead's picks |
 | Story | `product/story-map/book-one.md`; the `pofu-story` skill | the founder reads the Turkish lines on the device |
 | Studio | this page; `tools/studio/` | the pulse, the session cost and the friction log |
