@@ -552,10 +552,14 @@ private struct SceneFrame<Bubble: View>: View {
         // generated); with it, the colour script does the whole job.
         // Without the shader library the grade pass cannot run, so the
         // time-of-day tint stands in.
-        let tint = look.grade && WorldShaders.isAvailable ? Color.white : palette.grade.color
+        // Under a painted sky (`PaintedSky`) the island's sprites are not graded or tinted either: the
+        // painting around them is the final colour, and a warm veil on them washes them out.
+        let tint = look.grade && WorldShaders.isAvailable || skyFade >= 0.5 ? Color.white : palette.grade.color
         let baseGrade = look.grade ? look.gradeOverride ?? light.grade : WorldGrade.neutral
         // At Koke the colour comes back with the stage.
-        let grade = model.island == .koke && world.koke.isArrived ? KokeLayout.graded(baseGrade, stage: world.koke.stage) : baseGrade
+        let grade = skyFade >= 0.5
+            ? WorldGrade.neutral
+            : model.island == .koke && world.koke.isArrived ? KokeLayout.graded(baseGrade, stage: world.koke.stage) : baseGrade
         let characterGrade = look.grade ? light.characterGrade : WorldGrade.neutral
         // The sky and the cloud sea are pre-graded: no shader pass of their
         // own. Their colours are final (look pipeline v2), so only the
@@ -666,7 +670,8 @@ private struct SceneFrame<Bubble: View>: View {
                     shadow: shadow,
                     pools: pools,
                     clouds: clouds,
-                    plate: plate
+                    plate: plate,
+                    paintedSky: skyFade >= 0.5
                 )
                 .frame(width: IslandLayout.canvasWidth, height: IslandLayout.canvasHeight, alignment: .topLeading)
                 .cameraTransform(pose: pose, viewportWidth: Double(size.width), offset: offset)
@@ -763,9 +768,9 @@ private struct SceneFrame<Bubble: View>: View {
                 }
 
                 if painted {
-                    // Rain over a painted island (D2): streaks and splashes above the characters, no
-                    // puddle glints; the painting is the only light there is.
-                    WeatherRain(atmosphere: atmosphere, pose: pose, offset: offset, size: size, horizon: sky.horizon, glints: false)
+                    // Rain over a painted island (D2): streaks above the characters, no puddle
+                    // glints or splash ticks; the painting is the only light there is.
+                    WeatherRain(atmosphere: atmosphere, pose: pose, offset: offset, size: size, horizon: sky.horizon, groundMarks: false)
                         .environment(\.worldAmbientPaused, ambientPaused)
                 }
 
@@ -790,7 +795,7 @@ private struct SceneFrame<Bubble: View>: View {
                     }
 
                     // Rain, splash ticks and puddle glints in front of the island.
-                    WeatherRain(atmosphere: atmosphere, pose: pose, offset: offset, size: size, horizon: sky.horizon, glints: skyFade < 0.5)
+                    WeatherRain(atmosphere: atmosphere, pose: pose, offset: offset, size: size, horizon: sky.horizon, groundMarks: skyFade < 0.5)
                         .environment(\.worldAmbientPaused, ambientPaused)
 
                     // The screen haze (the player's sky): from the harbor side.
@@ -925,6 +930,9 @@ private struct WorldCanvas: View {
     /// stations, dressing, shadows and pools are not drawn, and the
     /// residents stand on the plate (`PlateHomeLayer` draws the plate).
     var plate: HomePlate?
+    /// Home's painted sky stands behind (`PaintedSky`): Koke's code fog, fog card and light shaft, made
+    /// for the code sky, are not drawn over it.
+    var paintedSky = false
 
     var body: some View {
         ZStack(alignment: .topLeading) {
@@ -1418,7 +1426,8 @@ private struct WorldCanvas: View {
                 swellAge: model.koke.swellStart.map { clock.timeIntervalSince($0) },
                 reduceMotion: model.reduceMotion,
                 point: canvasPoint(KokeLayout.center, depth: here ? KokeLayout.focusDepth : 0),
-                bounceTime: here && life.isAmbient ? life.time : nil
+                bounceTime: here && life.isAmbient ? life.time : nil,
+                stageLight: !(here && paintedSky)
             )
             .saturation(here ? 1 : KokeLayout.saturation(stage: world.koke.stage))
             .opacity(fade)

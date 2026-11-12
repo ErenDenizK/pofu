@@ -152,9 +152,10 @@ struct WeatherRain: View {
     let size: CGSize
     /// The sky's horizon (graded): the puddles reflect it.
     let horizon: PofuRGB
-    /// Puddle glints on the lawn. Off over a painted island and a painted sky: the painting has no
-    /// puddles to catch the light (D2 of docs/design/demo-one-world-v1.md); streaks and splashes stay.
-    var glints = true
+    /// Puddle glints and splash ticks on the sprite island's lawn. Off over a painted island and a
+    /// painted sky: they sit at fixed spots of that lawn, and a painting has no puddles to catch the
+    /// light (D2 of docs/design/demo-one-world-v1.md); the streaks stay.
+    var groundMarks = true
 
     @Environment(\.worldStillFrame) private var still
     @Environment(\.worldAmbientPaused) private var ambientPaused
@@ -203,11 +204,11 @@ struct WeatherRain: View {
         TimelineView(.animation(minimumInterval: 1.0 / 30.0, paused: isPaused)) { context in
             let time = still ? 0 : FramePolicy.ambientTime(context.date.timeIntervalSinceReferenceDate)
             Canvas { gc, canvas in
-                if wet, glints {
+                if wet, groundMarks {
                     drawPuddles(&gc, projection: projection, time: time, reflection: reflection, count: raining ? 6 : 4)
                 }
                 guard raining, motion.particlesOn else { return }
-                drawSplashes(&gc, projection: projection, time: time)
+                if groundMarks { drawSplashes(&gc, projection: projection, time: time) }
                 let resolved = gc.resolve(tile)
                 for layer in Self.layers {
                     drawStreaks(gc, resolved, layer: layer, time: time, canvas: canvas)
