@@ -24,7 +24,8 @@ TestFlight before the membership. The app side follows the demo.
 ## In flight ([spec](design/demo-one-world-v1.md) #404; players reach IL7)
 
 1. PR 3 `feat/painted-sky-everywhere` (Sonnet high; the lead's look). PR 1 merged (#407).
-2. PR 2 `feat/home-nights` (Sonnet high; the lead merges after its look).
+2. Night character tone (Sonnet): one tone IL2 to IL10; harmony_check
+   nights use `--reference l10-night`. PR 2 merged (#406).
 3. PR 4 `feat/caglayan-nights` (Sonnet; the lead's look). Feedback #405
    merged (heart on greeting, gift tags, board solve caption).
 
@@ -40,7 +41,9 @@ TestFlight before the membership. The app side follows the demo.
    pofu's tools/imagegen before any full `sync_to_art.py` (it would
    overwrite them); sync `flow-tile-split-guide.webp` back to pofu.
 5. Ingest batch-77 flow pieces (bend: narrow mouth; frame caps 240/1024).
-6. #405 follow-ups: a met goal says nothing; solve caption far from the
+6. Art follow-ups from #406: the wheel's sunflower vanishes IL3 to IL6;
+   an unlit warm pool at IL5 night; no whale at IL2 night.
+   #405 follow-ups: a met goal says nothing; solve caption far from the
    board; the system check badge clashes with the drawn counter.
 7. Record the Rehearsal path once one world lands (CI `beats` label).
 Swift on Linux: /opt/swift, from download.swift.org (Docker Hub gives 429).
@@ -49,7 +52,7 @@ Swift on Linux: /opt/swift, from download.swift.org (Docker Hub gives 429).
 | Desk | Where it stands | Waits on |
 |---|---|---|
 | Game | game-solid and feedback (#405) merged | follow-ups |
-| Look | painted Home by day IL2 to IL10, IL10 golden and night; all else sprite | PR 1, 2 |
+| Look | Home painted at every hour IL1 to IL10 (IL1 night: art A1) | PR 3, 4 |
 | Art factory | four Demand rows READY; batches 76 and 77 merged | Codex start |
 | App | paused until after the demo | the demo |
 | Story | lines ship with game PRs; studio in use since 11-12 | |
