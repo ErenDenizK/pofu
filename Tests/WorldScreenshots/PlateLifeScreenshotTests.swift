@@ -58,14 +58,14 @@ final class PlateLifeScreenshotTests: XCTestCase {
         )
         switch shot {
         case .visitor:
-            world.visitor = VisitorSnapshot(resident: .sumi, reason: .gift, slot: .v1, state: .present, gift: .seeds(3), hearts: 1)
+            world.visitor = VisitorSnapshot(resident: .damla, reason: .gift, slot: .v1, state: .present, gift: .seeds(3), hearts: 1)
         case .gifts:
             world.koke = WonderStatus(phase: .arrived, stage: 4)
             world.caglayan = WonderStatus(phase: .arrived, stage: 4)
         case .build:
             break
         case .greeted:
-            world.visitor = VisitorSnapshot(resident: .sumi, reason: .gift, slot: .v1, state: .greeted, gift: .seeds(3), hearts: 1)
+            world.visitor = VisitorSnapshot(resident: .damla, reason: .gift, slot: .v1, state: .greeted, gift: .seeds(3), hearts: 1)
         case .giftsNew:
             world.koke = WonderStatus(phase: .arrived, stage: 4, giftIsNew: true)
             world.caglayan = WonderStatus(phase: .arrived, stage: 4, giftIsNew: true)

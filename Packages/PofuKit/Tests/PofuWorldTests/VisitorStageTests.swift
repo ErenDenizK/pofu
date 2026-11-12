@@ -133,8 +133,8 @@ struct VisitorStageTests {
     }
 
     @Test func theInviteSheetListsOnlyMetResidentsWhoVisit() {
-        let met: [ResidentID] = [.nane, .gezgin, .sumi, .mochi]
-        #expect(VisitorStage.inviteChoices(met: met) == [.sumi, .nane], "in story order, without Gezgin and the home residents")
+        let met: [ResidentID] = [.nane, .gezgin, .sumi, .damla, .mochi]
+        #expect(VisitorStage.inviteChoices(met: met) == [.damla], "in story order, without Gezgin, the home residents and residents with no painted art")
         #expect(VisitorStage.inviteChoices(met: []).isEmpty)
     }
 
@@ -148,26 +148,26 @@ struct VisitorStageTests {
         }
         clock.advance(&state, to: date(2, 9), applying: [GameEvent(at: date(2, 9), kind: .signOfLife)])
         state.visitors.current = nil
-        state.visitors.hearts[.sumi] = 1
+        state.visitors.hearts[.damla] = 1
         state.visitors.hearts[.nane] = 2
         state.visitors.inviteOpenSince = LocalDay(year: 2026, month: 11, day: 2)
         let letter = clock.snapshot(of: state)
         #expect(letter.invitationOpen && letter.visitor == nil)
         #expect(VisitorStage.parts(visitor: letter.visitor, invitationOpen: letter.invitationOpen, isBedtime: false).map(\.part) == [.letter])
         let choices = VisitorStage.inviteChoices(met: letter.metResidents)
-        #expect(choices == [.sumi, .nane])
-        // The player picks Sumi.
-        clock.advance(&state, to: date(2, 10), applying: [GameEvent(at: date(2, 10), kind: .invited(.sumi))])
+        #expect(choices == [.damla], "Nane has no painted art, so she is not on the letter")
+        // The player picks Damla.
+        clock.advance(&state, to: date(2, 10), applying: [GameEvent(at: date(2, 10), kind: .invited(.damla))])
         let picked = clock.snapshot(of: state)
-        #expect(picked.invited == .sumi)
+        #expect(picked.invited == .damla)
         #expect(!picked.invitationOpen, "the letter is spent")
         #expect(VisitorStage.parts(visitor: picked.visitor, invitationOpen: picked.invitationOpen, isBedtime: false).isEmpty)
         // Tomorrow she comes, invited, with the favourite-station bonus.
         clock.advance(&state, to: date(3, 9), applying: [GameEvent(at: date(3, 9), kind: .foregroundBegan)])
         let tomorrow = clock.snapshot(of: state)
-        #expect(tomorrow.visitor?.resident == .sumi)
+        #expect(tomorrow.visitor?.resident == .damla)
         #expect(tomorrow.visitor?.isInvited == true)
-        #expect(tomorrow.visitor?.bonusStation == .garden)
+        #expect(tomorrow.visitor?.bonusStation == .pond)
     }
 
     // MARK: - The arrival

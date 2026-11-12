@@ -37,7 +37,7 @@ public struct WorldClock: Sendable {
     /// Who visits and when (experience v1 §5).
     public let visitors: VisitorSchedule
 
-    public init(rules: GameRules = GameRules(), calendar: Calendar, visitors: VisitorSchedule = VisitorSchedule()) {
+    public init(rules: GameRules = GameRules(), calendar: Calendar, visitors: VisitorSchedule = .shipped) {
         self.rules = rules
         self.calendar = calendar
         self.visitors = visitors
@@ -224,7 +224,7 @@ public struct WorldClock: Sendable {
             nextBreath: state.clock.flatMap { self.breath(for: state, at: $0) },
             visitor: visitorSnapshot(of: state),
             invitationOpen: state.visitors.inviteOpenSince != nil,
-            metResidents: state.visitors.met,
+            metResidents: state.visitors.met.filter { visitors.rules.visiting?.contains($0) ?? true },
             invited: state.visitors.invitation?.resident,
             koke: asleepAtBedtime(WonderIslands.status(game: state, day: day), bedtime),
             caglayan: asleepAtBedtime(WonderIslands.status(of: .caglayan, game: state, day: day), bedtime),

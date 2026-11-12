@@ -163,9 +163,10 @@ public enum VisitorStage {
 
     /// Who the quiet day's letter lists: the residents the player has met
     /// who can visit, in story order (Gezgin's postcard and the home
-    /// residents are not on it).
+    /// residents are not on it). A resident with no painted `visitor-<id>` art is not
+    /// on it: the game shows no stand-in (route R3).
     public static func inviteChoices(met: [ResidentID]) -> [ResidentID] {
-        VisitorSchedule.standardRoster.map(\.resident).filter { met.contains($0) }
+        VisitorSchedule.standardRoster.map(\.resident).filter { met.contains($0) && WorldArt.sprite("visitor-\($0.rawValue)") != nil }
     }
 
     // MARK: - The arrival

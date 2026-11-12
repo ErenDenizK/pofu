@@ -167,6 +167,7 @@ APP_RESOURCES = os.path.join(REPO, "Packages", "PofuKit", "Sources", "PofuWorld"
 APP_CATALOG = os.path.join(APP_RESOURCES, "World.xcassets")
 APP_SWIFT = os.path.join(REPO, "Packages", "PofuKit", "Sources", "PofuWorld", "Geometry", "WorldArt+Generated.swift")
 APP_MAX_PPU = 7.5
+SWIFT_PART = 30  # sprites per literal in WorldArt+Generated.swift
 # Stations are seen at most at the build push-in (x1.95 at 3x, 5.9 px per unit); capping them lower
 # than the characters keeps the catalog small now that every level ships.
 STATION_MAX_PPU = 6.0
@@ -458,6 +459,16 @@ APP_SOURCES = {
     **{f"nazli-{part}": _blob(f"design/art/masters/nazli-{part}", 150.0, "centre", like="design/art/masters/nazli-body")
        for part in ("body", "eyes-closed", "fins", "tail", "island-patch")},
     "harbor-goat": _blob("design/art/masters/harbor-goat", 34, "feet"),
+    # The plate's living layer (batch 78, tools/art/plate_life_masters.py): the visitors, the parcel, Koke's moss
+    # and Çağlayan's fountain, each cut from its picked take by script. Feet (or the ripple's centre) on the
+    # anchor. On the plate a unit is about 1.5 px (Pofu's 64 units are 83 px, residents 1.15 times that), so Damla is about 50 px
+    # wide, the parcel 32 and the moss 70 (batch 78's reviews asked for these sizes); the whale is flatter and wider.
+    "visitor-damla": _blob("design/art/masters/visitor-damla", 34, "feet"),
+    "visitor-gezgin": _blob("design/art/masters/visitor-gezgin", 40, "feet"),
+    "guest-letter": _blob("design/art/masters/guest-letter-envelope", 24, "feet"),
+    "gift-parcel": _blob("design/art/masters/gift-parcel-closed", 21, "feet"),
+    "gift-moss": _blob("design/art/masters/material-moss-lawn", 54, "feet"),
+    "gift-fountain": _blob("design/art/masters/home-fountain", 42, "feet"),
     "simit-kitten": _blob("design/art/masters/simit-kitten", 26, "feet"),
     "simit-kitten-work": _blob("design/art/masters/simit-kitten-work", 26, "feet", like="design/art/masters/simit-kitten"),
     "simit-kitten-ears": _blob("design/art/masters/simit-kitten-ears", 26, "feet", like="design/art/masters/simit-kitten"),
@@ -950,17 +961,26 @@ def _write_swift(table, walkable, plate):
         "// (the feet or the footprint centre).",
         "",
         "extension WorldArt {",
-        "    static let generated: [String: WorldSprite] = [",
+        "    /// Every baked sprite. The table is built from parts of at most `SWIFT_PART` sprites: one literal",
+        "    /// of all of them takes the compiler more than 13 GB to type-check.",
+        "    static let generated: [String: WorldSprite] = {",
+        "        var table: [String: WorldSprite] = [:]",
     ]
-    for name in sorted(table):
-        e = table[name]
-        lines.append(f'        "{name}": WorldSprite(')
-        lines.append(f'            sharp: {box(e.get("sharp"))},')
-        lines.append(f'            soft: {box(e["soft"])},')
-        lines.append(f'            deep: {box(e["deep"])},')
-        lines.append(f'            footprint: {points(e.get("footprint", []), 12)}')
-        lines.append("        ),")
-    lines += ["    ]", ""]
+    names = sorted(table)
+    parts = [names[i:i + SWIFT_PART] for i in range(0, len(names), SWIFT_PART)]
+    lines += [f"        table.merge(generated{k}) {{ first, _ in first }}" for k in range(len(parts))]
+    lines += ["        return table", "    }()", ""]
+    for k, part in enumerate(parts):
+        lines.append(f"    private static let generated{k}: [String: WorldSprite] = [")
+        for name in part:
+            e = table[name]
+            lines.append(f'        "{name}": WorldSprite(')
+            lines.append(f'            sharp: {box(e.get("sharp"))},')
+            lines.append(f'            soft: {box(e["soft"])},')
+            lines.append(f'            deep: {box(e["deep"])},')
+            lines.append(f'            footprint: {points(e.get("footprint", []), 12)}')
+            lines.append("        ),")
+        lines += ["    ]", ""]
     lines.append("    /// Each plate's walkable polygon, in world units relative to the plate's anchor.")
     lines.append("    static let generatedWalkable: [String: [WorldPoint]] = [")
     for name in sorted(walkable):
