@@ -1586,7 +1586,7 @@ private struct PlateBuildBloom: View {
 
 /// One part of today's visit on the painted plate (`PlateLife`): drawn at the
 /// plate's resident scale in its light, like a resident is. A painted sprite
-/// (`visitor-<resident>`, `gift-parcel`, `guest-letter`, `help-kite`) stands as
+/// (`visitor-<resident>`, `gift-parcel-closed`, `guest-letter-envelope`, `help-kite`) stands as
 /// a `PlateCharacter`; a part without one is not drawn.
 private struct PlateVisitorPartView: View {
     let part: VisitorStage.Placed

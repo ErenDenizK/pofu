@@ -19,9 +19,9 @@ public enum VisitorArt {
     /// The seed that drifts the visitor down to the front-lip spot.
     public static let dandelion = "visitor-dandelion"
     /// The wrapped gift parcel.
-    public static let giftParcel = "gift-parcel"
+    public static let giftParcel = "gift-parcel-closed"
     /// The quiet day's letter.
-    public static let guestLetter = "guest-letter"
+    public static let guestLetter = "guest-letter-envelope"
 }
 
 /// How the visitor arrives on the island.

@@ -223,8 +223,8 @@ struct VisitorStageTests {
 
     @Test func theArtNamesAreTheFutureCodexJobs() {
         #expect(VisitorArt.dandelion == "visitor-dandelion")
-        #expect(VisitorArt.giftParcel == "gift-parcel")
-        #expect(VisitorArt.guestLetter == "guest-letter")
+        #expect(VisitorArt.giftParcel == "gift-parcel-closed")
+        #expect(VisitorArt.guestLetter == "guest-letter-envelope")
     }
 
     // MARK: - The H4 window

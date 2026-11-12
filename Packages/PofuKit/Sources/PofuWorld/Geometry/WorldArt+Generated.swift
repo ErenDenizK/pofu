@@ -1373,7 +1373,7 @@ extension WorldArt {
                 WorldPoint(x: -26.44, y: -5.75),
             ]
         ),
-        "gift-parcel": WorldSprite(
+        "gift-parcel-closed": WorldSprite(
             sharp: WorldBox(minX: -10.57, minY: -25.179, maxX: 10.63, maxY: 0.021),
             soft: WorldBox(minX: -14.837, minY: -29.446, maxX: 14.896, maxY: 4.288),
             deep: WorldBox(minX: -22.57, minY: -37.179, maxX: 22.63, maxY: 12.021),
@@ -1580,7 +1580,7 @@ extension WorldArt {
                 WorldPoint(x: -11.11, y: -4.96),
             ]
         ),
-        "guest-letter": WorldSprite(
+        "guest-letter-envelope": WorldSprite(
             sharp: WorldBox(minX: -12.095, minY: -16.714, maxX: 12.038, maxY: 0.086),
             soft: WorldBox(minX: -16.362, minY: -20.981, maxX: 16.305, maxY: 4.352),
             deep: WorldBox(minX: -24.095, minY: -28.714, maxX: 24.038, maxY: 12.086),

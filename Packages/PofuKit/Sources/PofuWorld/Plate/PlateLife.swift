@@ -106,10 +106,10 @@ public enum PlateLife {
         return best.map { plate.world($0.point) }
     }
 
-    /// Where Çağlayan's fountain stands: the top centre of the pond, or `nil`
-    /// when the plate has no pond.
+    /// Where Çağlayan's fountain stands: the middle of the pond's water (its
+    /// painted ripple lies on the surface), or `nil` when the plate has no pond.
     public static func fountainSpot(_ plate: HomePlate) -> WorldPoint? {
-        buildAnchor(plate, station: .pond)
+        plate.stationBox(.pond).map { WorldPoint(x: $0.midX, y: $0.midY) }
     }
 
     // MARK: - The build moment

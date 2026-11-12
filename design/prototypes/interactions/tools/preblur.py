@@ -465,8 +465,8 @@ APP_SOURCES = {
     # wide, the parcel 32 and the moss 70 (batch 78's reviews asked for these sizes); the whale is flatter and wider.
     "visitor-damla": _blob("design/art/masters/visitor-damla", 34, "feet"),
     "visitor-gezgin": _blob("design/art/masters/visitor-gezgin", 40, "feet"),
-    "guest-letter": _blob("design/art/masters/guest-letter-envelope", 24, "feet"),
-    "gift-parcel": _blob("design/art/masters/gift-parcel-closed", 21, "feet"),
+    "guest-letter-envelope": _blob("design/art/masters/guest-letter-envelope", 24, "feet"),
+    "gift-parcel-closed": _blob("design/art/masters/gift-parcel-closed", 21, "feet"),
     "gift-moss": _blob("design/art/masters/material-moss-lawn", 54, "feet"),
     "gift-fountain": _blob("design/art/masters/home-fountain", 42, "feet"),
     "simit-kitten": _blob("design/art/masters/simit-kitten", 26, "feet"),
