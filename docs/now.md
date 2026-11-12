@@ -17,39 +17,41 @@ TestFlight before the membership. The app side follows the demo.
 
 ## Decided this session
 
-- The demo is ONE painted world on days 1 to 21. A critic ranked the
-  sprite/plate switch the path's most visible defect: IL1, the harbor,
-  Koke, rain, mist, overcast, dawn, dusk and night below IL10 are sprite
-  (`HomePlate.swift:92-132`).
+- The demo is ONE painted world on days 1 to 21 (a critic ranked the
+  sprite/plate switch the path's most visible defect).
 - Rain streaks are drawn in code, never baked into a master (ADR-0025).
 
 ## In flight (agents of this session)
 
-1. Spec `docs/design/demo-one-world-v1.md` (branch spec/demo-one-world):
-   smallest set of code overlays, wiring and art jobs for one painted
-   world by about 11-22. Over 20 art jobs is a premise gate (Fable).
-2. Builder, game desk: visible feedback (visitor greeting, wonder gifts,
-   a solved board), board counters and gutter, two copy bugs.
-3. Builder, `pofu-art`: fix and merge #13 (batch-76) and #14 (batch-77,
-   picks 84507a1: tile-gate t1, no tile-split), fix QA `edit_structure`
-   for night recolours, add Demand row 0-h6 `batch-79-flow-redo`.
+Spec: [demo-one-world-v1](design/demo-one-world-v1.md) (#404), defaults
+D1 to D11 accepted. Demo players reach IL7 at most (DemoRunTests).
+1. PR 1 `feat/plate-every-hour` (Sonnet; self-merge on green).
+2. PR 2 `feat/home-nights` (Sonnet high; the lead merges after its look).
+3. `fix/rehearsal-action-feedback` (Opus): greeting, gifts, board solve,
+   board counters and gutter, two copy bugs. The lead merges after a look.
 
 ## Next steps, in order
 
-1. Read the spec; gate it; brief its PRs (at most three builders).
-2. Look at the feedback PR's frames (critic first), merge.
-3. Ingest batch-77 picks into the app (flow board pieces); Codex: 0-h5
-   (batch-78) then 0-h6. The founder starts Codex by hand.
-4. Record the Rehearsal path (spec §8) once one world lands; CI records
-   with the `beats` label, but no test drives the path yet.
-
+1. Next free builder slot: spec PR 4 (Çağlayan's early nights). Then
+   PR 3 once PR 1 merges, PR 6 and PR 7 once art A1 and A2 are picked.
+2. Every eye PR: a critic on 1:1 crops first, then the lead's one sheet.
+3. Codex queue on pofu-art main (#13, #14 and #22 merged with the
+   founder's approval): 0-h5 batch-78, 0-h7 batch-80 IL1 night, 0-h8
+   batch-81 Koke, 0-h6 batch-79 flow redo. Review each within a day.
+4. Port pofu-art's QA `edit_structure` night fix and the run.py fix into
+   pofu's tools/imagegen before any full `sync_to_art.py` (it would
+   overwrite them); sync `flow-tile-split-guide.webp` back to pofu.
+5. Ingest the batch-77 flow pieces (bend: narrow east mouth; frame:
+   9-slice caps of 240 at 1024).
+6. Record the Rehearsal path once one world lands (CI `beats` label).
+   Swift on Linux: /opt/swift from download.swift.org (Docker Hub 429).
 ## Desks
 
 | Desk | Where it stands | Waits on |
 |---|---|---|
-| Game | game-solid merged (#394 to #400); feedback gaps found by a critic | in flight 2 |
-| Look | painted Home by day IL2 to IL10, IL10 golden and night; all else sprite | in flight 1 |
-| Art factory | batch-78 READY (0-h5); #13, #14 reviewed, closing | in flight 3 |
+| Game | game-solid merged (#394 to #400); feedback gaps found by a critic | feedback PR |
+| Look | painted Home by day IL2 to IL10, IL10 golden and night; all else sprite | PR 1, 2 |
+| Art factory | four Demand rows READY; batches 76 and 77 merged | Codex start |
 | App | paused until after the demo | the demo |
 | Story | lines ship with game PRs; studio in use since 11-12 | |
 
