@@ -681,3 +681,7 @@ Result of the night items (b): home now draws its painted plate at level 10 day,
 2. The background isles must animate too (the wandering isle's waterfall and the like). Handled: a code-only micro-motion pass on the isle and whale sprites (waterfall streams flowing through a painted mask, small details), on home first, then carried to every island's sky set; Fable is consulted only if the approach is in doubt.
 3. Continue if everything is planned. Handled: next is the isle micro-motion, then Çağlayan on the sky set (plan step 4).
 4. Follow-up on item 2, shown to the founder: isle micro-motion merged (#384): waterfalls flow on the wandering isle and the whale, mist breathes at their feet, canopies sway, the lantern and night windows flicker. Shown: `docs/product/decisions-2026-11-11/home-isles-day.mp4`, `home-isles-night.mp4`, `result-isle-motion.jpg`.
+
+## 2026-11-12: Çağlayan on the living sky (shown)
+
+1. Follow-up on the 2026-11-11 plan: Çağlayan day moved onto a sky set (#387) from the picked portrait master (#386); the bottom 40% is no longer empty. Two lead review rounds stopped stamped top clouds, a sea seam, edge slivers and dark halo boxes; checks now catch each. The top ~20% is a plain painted-colour gradient (the master is shorter than the phone). Shown: `docs/product/decisions-2026-11-12/caglayan-sky-day.mp4`, `result-caglayan-sky-day.jpg`. Golden and night wait on batch-76.
