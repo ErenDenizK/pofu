@@ -89,7 +89,7 @@ struct PlateHomeLayer: View {
     private func painting(_ plate: HomePlate, start: Date) -> some View {
         ZStack(alignment: .topLeading) {
             if fade < 0.999 {
-                PlateImage(name: plate.plate.islandArt(light: plate.light, stage: plate.stage), box: plate.islandBox, pose: pose, size: size, offset: offset)
+                PlateImage(name: plate.plate.mapIslandArt(light: plate.light, stage: plate.stage), box: plate.islandBox, pose: pose, size: size, offset: offset)
             }
             if fade > 0.001 {
                 ZStack(alignment: .topLeading) {

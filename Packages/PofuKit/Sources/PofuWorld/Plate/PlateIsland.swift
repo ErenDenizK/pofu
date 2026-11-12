@@ -175,6 +175,17 @@ public struct PlateIsland: Hashable, Sendable {
         "world-\(island)-island-\(light)-\(stage)"
     }
 
+    /// The islands whose island cut has a clean Map cut (`tools/plate/map_cut.py`): every Home state
+    /// shares the level-10 matte, so below level 10 its island cut carries the lower level's sky where
+    /// level 10 paints its windmill, lighthouse, hill and islet (a pale ghost behind the island).
+    static let mapCuts: Set<String> = ["home"]
+
+    /// The island cut drawn on the Map and in a flight: Home's from its own painting without that ghost
+    /// (`world-home-mapisle-<light>-<stage>`), another island's its island cut.
+    public func mapIslandArt(light: String, stage: Int) -> String {
+        Self.mapCuts.contains(island) ? "world-\(island)-mapisle-\(light)-\(stage)" : islandArt(light: light, stage: stage)
+    }
+
     /// The plate's sky and cloud sea, extended.
     public func backdropArt(light: String, stage: Int) -> String {
         "world-\(island)-backdrop-\(light)-\(stage)"

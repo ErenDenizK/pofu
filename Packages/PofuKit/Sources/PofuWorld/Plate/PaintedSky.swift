@@ -117,6 +117,35 @@ public enum PaintedSky {
             return Sky(island: island, plate: plate, fade: fade)
         }
     }
+
+    // MARK: - The Map and the flights (R4 of docs/research/route-2026-11-12-codex-pause.md)
+
+    /// How far the Map's sky follows the camera: a far backdrop, it slides a tenth as far as the world.
+    static let mapParallax = 0.1
+
+    /// Home's painted sky behind the Map and every flight, in place of the code sky: the same sky set as
+    /// the stops' (the home plate's stage 0 of the hour's light, its island layer left out), placed as at
+    /// Home. `nil`: the look has no plates, or the plate has no sky set for the hour's light.
+    public static func mapSky(world: WorldSnapshot, look: WorldLook, calendar: Calendar = .current) -> HomePlate? {
+        guard look.homePlates, let home = HomePlate.shipped?.plate else { return nil }
+        let light = HomePlate.light(hour: hour(world: world, look: look, calendar: calendar), isBedtime: world.isBedtime)
+        let plate = HomePlate(plate: home, light: light, stage: 0)
+        return plate.skySet == nil ? nil : plate
+    }
+
+    /// The camera the Map's sky is drawn with, for the world camera `pose` on a `width` x `height`
+    /// screen: Home's own framing of the sky set at this screen (at Home it is Home's sky exactly, and the
+    /// clouds, the isles and the whale keep Home's size at every distance), its look point following the
+    /// world camera's by `mapParallax`, so the sky slides slowly under a flight and never zooms.
+    public static func mapPose(_ pose: CameraPose, sky: HomePlate, width: Double, height: Double) -> CameraPose {
+        let stop = sky.homeStop
+        return CameraPose(
+            scale: stop.scale * width / CameraRail.referenceWidth,
+            lookX: stop.look.x + (pose.lookX - stop.look.x) * mapParallax,
+            lookY: stop.look.y + (pose.lookY - stop.look.y) * mapParallax,
+            anchorY: stop.anchorY * height / CameraRail.referenceHeight
+        )
+    }
 }
 
 #if os(iOS)

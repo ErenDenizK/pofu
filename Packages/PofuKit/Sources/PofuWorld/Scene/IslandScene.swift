@@ -501,13 +501,27 @@ private struct SceneFrame<Bubble: View>: View {
         // At a stop under Home's painted sky (`PaintedSky`) the depth of field is off as on a plate.
         let skies = PaintedSky.skies(world: world, look: look, pose: pose, viewportWidth: Double(size.width))
         let skyFade = skies.map(\.fade).max() ?? 0
-        let lens = spikeDOF || painted ? Lens(focus: baseLens.focus, slab: baseLens.slab, gain: 0) : Lens(focus: baseLens.focus, slab: baseLens.slab, gain: baseLens.gain * rack * (1 - skyFade))
+        // The Map and the flights under Home's painted sky (R4 of docs/research/route-2026-11-12-codex-pause.md):
+        // in the painted world (Home is its plate) the code sky, cloud sea and fog are never drawn; Home's
+        // sky set is, at the camera's own framing of it (`PaintedSky.mapPose`), wherever no stop's
+        // painting covers the screen.
+        let mapSky = plate != nil ? PaintedSky.mapSky(world: world, look: look) : nil
+        // How much a painting stands in for the code atmosphere: all of it in the painted world.
+        let codeFade = mapSky != nil ? 1 : skyFade
+        let lens = spikeDOF || painted ? Lens(focus: baseLens.focus, slab: baseLens.slab, gain: 0) : Lens(focus: baseLens.focus, slab: baseLens.slab, gain: baseLens.gain * rack * (1 - codeFade))
         let peek = rig.peekTilt
         let device = model.deviceTilt
         let tilt = painted ? (x: 0.0, y: 0.0) : (x: min(max(peek.x + device.x, -1), 1), y: min(max(peek.y + device.y, -1), 1))
         // The plate and its backdrop at the Island stop and closer; toward
         // the Map only the island cut stays, among the other islands.
-        let plateFade = plate != nil && model.island == .home ? PlateHomeLayer.opacity(z: z) : 0
+        // Leaving Home for another island the painting fades as the camera rises off it (as Çağlayan's
+        // does), never at the flight's first frame.
+        let plateFade: Double = {
+            guard let plate else { return 0 }
+            if model.island == .home { return PlateHomeLayer.opacity(z: z) }
+            guard mapSky != nil else { return 0 }
+            return HomePlate.isleFade(pose: pose, box: plate.islandBox, closeScale: plate.islandStop.scale, viewportWidth: Double(size.width))
+        }()
         let isleFade = isle != nil && model.island == .caglayan
             ? HomePlate.caglayanFade(pose: pose, viewportWidth: Double(size.width))
             : 0
@@ -556,8 +570,12 @@ private struct SceneFrame<Bubble: View>: View {
         // painting around them is the final colour, and the day's warm veil washed them out. They take
         // the painting's own light instead (`PaintedSky.islandGrade`): neutral by day and at golden
         // hour, the plate's night light at night.
-        let paintedSky = skyFade >= 0.5 ? skies.max { $0.fade < $1.fade } : nil
-        let paintedGrade = paintedSky.map { PaintedSky.islandGrade($0.plate) } ?? WorldGrade.neutral
+        // On the Map and in a flight the sprites take the map sky's light the same way; Home's own stops
+        // keep theirs.
+        let paintedSky = skyFade >= 0.5
+            ? skies.max { $0.fade < $1.fade }?.plate
+            : model.island == .home && plateFade >= 0.5 ? nil : mapSky
+        let paintedGrade = paintedSky.map { PaintedSky.islandGrade($0) } ?? WorldGrade.neutral
         let paintedTint = Color(red: min(paintedGrade.gain.r, 1), green: min(paintedGrade.gain.g, 1), blue: min(paintedGrade.gain.b, 1))
         let tint = look.grade && WorldShaders.isAvailable ? Color.white : paintedSky != nil ? paintedTint : palette.grade.color
         let baseGrade = look.grade ? look.gradeOverride ?? light.grade : WorldGrade.neutral
@@ -633,7 +651,15 @@ private struct SceneFrame<Bubble: View>: View {
 
         ZStack(alignment: .topLeading) {
             ZStack(alignment: .topLeading) {
-                if max(plateFade, isleFade, skyFade) < 0.999 {
+                if let mapSky, max(plateFade, isleFade, skyFade) < 0.999 {
+                    PaintedSkyLayer(
+                        plate: mapSky,
+                        pose: PaintedSky.mapPose(pose, sky: mapSky, width: Double(size.width), height: Double(size.height)),
+                        size: size,
+                        offset: offset,
+                        fade: 1
+                    )
+                } else if max(plateFade, isleFade, skyFade) < 0.999 {
                     LivingSky(palette: sky, offset: offset, far: FarSky.Look(z: z, cell: light.cell, grade: grade, koke: farKoke, healed: farHealed, mist: atmosphere.mist))
                         .environment(\.worldAmbientPaused, ambientPaused)
                         .animation(animation, value: sky)
@@ -646,15 +672,15 @@ private struct SceneFrame<Bubble: View>: View {
                     PaintedSkyLayer(plate: entry.plate, pose: pose, size: size, offset: offset, fade: entry.fade)
                 }
 
-                if !painted, skyFade < 0.999 {
+                if !painted, codeFade < 0.999 {
                     // The rainbow, soft and pastel, behind the island and its fog.
                     WeatherRainbow(atmosphere: atmosphere, size: size, seaLine: fogSeaLine, offset: offset)
-                        .opacity(1 - skyFade)
+                        .opacity(1 - codeFade)
 
                     // Height fog behind the island, densest at the cloud-sea line.
                     FogCards(layer: .behind, horizon: sky.horizon, mist: atmosphere.mist, offset: offset, size: size, seaLine: fogSeaLine)
                         .environment(\.worldAmbientPaused, ambientPaused)
-                        .opacity(1 - skyFade)
+                        .opacity(1 - codeFade)
                 }
 
                 WorldCanvas(
@@ -676,7 +702,7 @@ private struct SceneFrame<Bubble: View>: View {
                     pools: pools,
                     clouds: clouds,
                     plate: plate,
-                    paintedSky: skyFade >= 0.5
+                    paintedSky: skyFade >= 0.5 || mapSky != nil
                 )
                 .frame(width: IslandLayout.canvasWidth, height: IslandLayout.canvasHeight, alignment: .topLeading)
                 .cameraTransform(pose: pose, viewportWidth: Double(size.width), offset: offset)
@@ -781,11 +807,11 @@ private struct SceneFrame<Bubble: View>: View {
 
                 if !painted {
                     // The sprite island's atmosphere: none of it lies over a plate.
-                    if skyFade < 0.999 {
+                    if codeFade < 0.999 {
                         CloudSea(colours: sea, offset: offset, rise: CloudSea.rise(z: z, pose: pose, height: Double(size.height)))
                             .environment(\.worldAmbientPaused, ambientPaused)
                             .animation(animation, value: sea)
-                            .opacity(1 - skyFade)
+                            .opacity(1 - codeFade)
                     }
 
                     // One fog card across the island's base: the foot dissolves,
@@ -793,14 +819,14 @@ private struct SceneFrame<Bubble: View>: View {
                     // Look pipeline v2: haze only on the backdrop; this card lies on
                     // the cloud sea, so it takes the sea's warm white more than the
                     // sky's horizon (the references' sea is never a lavender veil).
-                    if skyFade < 0.999 {
+                    if codeFade < 0.999 {
                         FogCards(layer: .front, horizon: sky.horizon.mixed(with: sea.light, amount: LookTuning.frontFogSeaShare), mist: atmosphere.mist, offset: offset, size: size, seaLine: fogSeaLine)
                             .environment(\.worldAmbientPaused, ambientPaused)
-                            .opacity(1 - skyFade)
+                            .opacity(1 - codeFade)
                     }
 
                     // Rain, splash ticks and puddle glints in front of the island.
-                    WeatherRain(atmosphere: atmosphere, pose: pose, offset: offset, size: size, horizon: sky.horizon, groundMarks: skyFade < 0.5)
+                    WeatherRain(atmosphere: atmosphere, pose: pose, offset: offset, size: size, horizon: sky.horizon, groundMarks: codeFade < 0.5)
                         .environment(\.worldAmbientPaused, ambientPaused)
 
                     // The screen haze (the player's sky): from the harbor side.
@@ -825,7 +851,8 @@ private struct SceneFrame<Bubble: View>: View {
                             tilt: tilt,
                             art: look.art,
                             litOverlays: look.litOverlays,
-                            harborFade: model.island == .harbor ? 1 : max(0, 1 - max(z, 0) / 0.8) * (model.focus == nil ? 1 : 0),
+                            // The harbor isle is not on the painted Map (R5), nor are its lights.
+                            harborFade: model.island == .harbor ? 1 : mapSky != nil ? 0 : max(0, 1 - max(z, 0) / 0.8) * (model.focus == nil ? 1 : 0),
                             // The night relight adds form; the field's pools and the
                             // characters' directional key stay (the spike replaces them).
                             relit: relight != nil && relight != nightRelight,
@@ -1380,7 +1407,9 @@ private struct WorldCanvas: View {
     private var otherIsles: some View {
         // Far away from Home; leave the render tree there.
         if z < 1.7 || model.island != .home {
-            ForEach(IslandLayout.isles) { isle in
+            // Under the painted sky (the Map and the flights of the painted world) a sprite isle is not
+            // drawn: Home's plate paints the harbour islet (R5); the harbor's own stop still shows it.
+            ForEach(IslandLayout.isles.filter { !paintedSky || $0.id == model.island }) { isle in
                 if let sprite = WorldArt.sprite(isle.art) {
                     let arrived = world.islands.contains(isle.id)
                     // Soft once you are on an island, sharp on the map
@@ -1432,7 +1461,7 @@ private struct WorldCanvas: View {
                 reduceMotion: model.reduceMotion,
                 point: canvasPoint(KokeLayout.center, depth: here ? KokeLayout.focusDepth : 0),
                 bounceTime: here && life.isAmbient ? life.time : nil,
-                stageLight: !(here && paintedSky)
+                stageLight: !paintedSky
             )
             .saturation(here ? 1 : KokeLayout.saturation(stage: world.koke.stage))
             .opacity(fade)
@@ -2163,8 +2192,18 @@ private struct ScreenOverlays: View {
             if labels > 0.01 {
                 mapLabel(.home, at: WorldPoint(x: 0, y: 128), arrived: true)
                     .opacity(labels)
-                ForEach(IslandLayout.isles) { isle in
+                // The painted Map has no harbor isle (R5): its label goes with it.
+                ForEach(plate == nil ? IslandLayout.isles : []) { isle in
                     mapLabel(isle.id, at: WorldPoint(x: isle.center.x, y: isle.center.y + 122), arrived: world.islands.contains(isle.id))
+                        .opacity(labels)
+                }
+                // Koke and Çağlayan, once they can be visited: their name under the island.
+                if world.koke.isArrived {
+                    mapLabel(.koke, at: Self.labelPoint(under: KokeLayout.islandBox), arrived: true)
+                        .opacity(labels)
+                }
+                if world.caglayan.isArrived {
+                    mapLabel(.caglayan, at: Self.labelPoint(under: CaglayanLayout.islandBox), arrived: true)
                         .opacity(labels)
                 }
             }
@@ -2266,6 +2305,11 @@ private struct ScreenOverlays: View {
         guard let box = IslandFraming.stationBox(station) else { return nil }
         let p = screenPoint(WorldPoint(x: box.midX, y: box.minY))
         return CGPoint(x: min(max(p.x, 70), size.width - 70), y: max(p.y, 120))
+    }
+
+    /// Where a wonder island's name sits on the Map: on the foot of its box, as Home's sits on its earth.
+    static func labelPoint(under box: WorldBox) -> WorldPoint {
+        WorldPoint(x: box.midX, y: box.maxY - 0.12 * box.height)
     }
 
     private func mapLabel(_ island: IslandID, at point: WorldPoint, arrived: Bool) -> some View {

@@ -544,6 +544,28 @@ public final class IslandSceneModel {
         revision &+= 1
     }
 
+    /// Holds the camera `progress` (0...1) of the way through the flight from Home's Island stop to
+    /// `target`'s, still (screenshots): 0.5 is over the sea, at the flight's apex.
+    public func holdFlight(to target: IslandID, progress: Double) {
+        closeSurfaces()
+        guard
+            target != .home,
+            let stop = IslandFraming.isleStop(target, width: engine.rig.rail.width, height: engine.rig.rail.height)
+        else { return }
+        island = .home
+        engine.rig.jump(to: .island)
+        engine.rig.snapToTargets()
+        let pose = CameraPose(scale: stop.scale, look: stop.look, anchorY: stop.anchorY)
+        island = target
+        framing = .island
+        projectedFraming = .island
+        engine.rig.startFlight(to: pose, landing: .pose(pose))
+        engine.rig.holdFlight(at: progress)
+        engine.isHeld = true
+        engine.lastDate = nil
+        revision &+= 1
+    }
+
     /// Holds the camera on the rail at `z`, still (screenshots).
     public func holdRail(z: Double) {
         closeSurfaces()

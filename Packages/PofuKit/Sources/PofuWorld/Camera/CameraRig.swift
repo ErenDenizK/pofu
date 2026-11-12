@@ -227,6 +227,14 @@ public struct CameraRig: Hashable, Sendable {
         flightTime = 0
     }
 
+    /// Holds the flight in progress at `progress` (0...1) of its length, still (screenshots): the pose
+    /// and the rail position are the flight's there.
+    public mutating func holdFlight(at progress: Double) {
+        guard let flight else { return }
+        flightTime = min(max(progress, 0), 1) * flight.duration
+        z.jump(to: min(max(rail.z(logScale: flight.pose(at: flightTime).logScale), 0), 2))
+    }
+
     private mutating func finishFlight() {
         flight = nil
         flightTime = 0
