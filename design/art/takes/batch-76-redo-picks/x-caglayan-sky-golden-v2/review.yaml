@@ -1,0 +1,54 @@
+batch: batch-76-redo-picks
+job: x-caglayan-sky-golden-v2
+jobs:
+  x-caglayan-sky-golden-v2:
+    pick: 1
+    status: warn
+    publication: exploration; picked by the lead 2026-11-12 (take 1); never promoted
+status: warn
+pick: 1
+lead_review: "Lead pick: an edit of pilot take 1 with the dome and crystal isles unchanged and nothing moved; brighter peach cloud sea and richer island than take 2 (which veils the earth body lilac). The island itself barely takes the low side light, so warm the sunlit faces a touch in the colour-transfer fit."
+takes:
+- n: 1
+  file: plate__x-caglayan-sky-golden-v2--t1.webp
+  qa: warn
+  lock_load: 0.0
+- n: 2
+  file: plate__x-caglayan-sky-golden-v2--t2.webp
+  qa: warn
+  lock_load: 0.0
+reason: null
+retryable: false
+retry_interval_minutes: 15
+references:
+- path: design/art/takes/batch-75-portrait-islands/x-caglayan-portrait-s4-day/plate__x-caglayan-portrait-s4-day--t1.webp
+  exists: true
+- path: design/art/takes/batch-66-home-flow/x-home-flow-golden/plate__x-home-flow-golden--t1.webp
+  exists: true
+note: 'Auto-picked t1 by QA and visual review: both takes warn and have equal zero
+  lock load; t1 keeps the golden cloud sea brighter and the island rich. No second
+  waterfall island. Founder review pending. EXPLORATION: never promote.'
+source: codex-cloud
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+visual_review:
+  duplicate_caglayan: false
+  dome_and_crystal_isles: true
+  island_shape_preserved: true
+  cloud_sea: t1 brighter than t2; preferred
+generation_prompt_note: Built-in tool received an operator paraphrase of the manifest-composed
+  prompt; the ingest sidecar stores the composed manifest prompt, not the verbatim
+  text sent to image generation. The manifest was the source of the art constraints.
+tool_fix:
+- file: tools/imagegen/run.py
+  what: Count retained WebP takes by original take number in plan without duplicating
+    an inbox take.
+  why: Avoid regenerating salvaged jobs and overcounting an already ingested take.
+- file: tools/imagegen/run.py
+  what: Re-ingest a retained canonical take under its original number and preserve
+    known generated_at.
+  why: Keep source chronology and take identity truthful.
+- file: tools/imagegen/run.py
+  what: Order provisional parent takes by QA pass, then lowest lock load, then harmony.
+  why: Match AGENTS.md auto-pick order instead of preferring the earliest take.

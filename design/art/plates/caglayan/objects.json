@@ -22,7 +22,8 @@
    "0": "design/art/takes/batch-74-redo-states/x-caglayan-flow-0-night-v2/plate__x-caglayan-flow-0-night-v2--t1.webp",
    "1": "design/art/takes/batch-74-redo-states/x-caglayan-flow-1-night-v2/plate__x-caglayan-flow-1-night-v2--t1.webp",
    "2": "design/art/takes/batch-73-islands-states/x-caglayan-flow-2-night/plate__x-caglayan-flow-2-night--t2.webp",
-   "3": "design/art/takes/batch-73-islands-states/x-caglayan-flow-3-night/plate__x-caglayan-flow-3-night--t2.webp"
+   "3": "design/art/takes/batch-73-islands-states/x-caglayan-flow-3-night/plate__x-caglayan-flow-3-night--t2.webp",
+   "4": "design/art/plates/caglayan/sky/plate-night-4.webp"
   },
   "rain": {
    "4": "design/art/takes/batch-73-islands-states/x-caglayan-flow-4-rain/plate__x-caglayan-flow-4-rain--t2.webp"
@@ -778,6 +779,40 @@
    ],
    "cc": 0.9924
   },
-  "note": "Where the landscape plates sit in the portrait master (x-caglayan-portrait-s4-day t1, 1024 x 1536): master px = scale * plate px + offset, measured by ECC on the island body (ADR-0025). The stage plates stay the truth about the island; tools/plate/portrait.py pastes them over the master at this place."
+  "note": "Where the landscape plates sit in the portrait master (x-caglayan-portrait-s4-day t1, 1024 x 1536): master px = scale * plate px + offset, measured by ECC on the island body (ADR-0025). The stage plates stay the truth about the island; tools/plate/portrait.py pastes them over the master at this place.",
+  "lights": {
+   "night": {
+    "master": "design/art/takes/batch-76-redo-picks/x-caglayan-sky-night-v2/plate__x-caglayan-sky-night-v2--t1.webp",
+    "out": "design/art/plates/caglayan/sky/master-night.heic",
+    "cut": "design/art/plates/caglayan/sky/plate-night-4.webp",
+    "edits": []
+   },
+   "golden": {
+    "master": "design/art/takes/batch-76-redo-picks/x-caglayan-sky-golden-v2/plate__x-caglayan-sky-golden-v2--t1.webp",
+    "out": "design/art/plates/caglayan/sky/master-golden.heic",
+    "edits": []
+   },
+   "rain": {
+    "master": "design/art/takes/batch-76-redo-picks/x-caglayan-sky-rain-v2/plate__x-caglayan-sky-rain-v2--t1.webp",
+    "out": "design/art/plates/caglayan/sky/master-rain.heic",
+    "edits": [
+     {
+      "op": "derain",
+      "why": "rain is drawn in code (ADR-0025); painted streaks would drift with the cloud layers",
+      "thresh": 0.005
+     },
+     {
+      "op": "lift",
+      "L": 8,
+      "p95": 85,
+      "fromY": 1150,
+      "ramp": 150,
+      "sky": 0.5,
+      "why": "lead review 2026-11-12: the cloud sea sits darker and flatter than the other rain picks (L 58, p95 73)"
+     }
+    ]
+   }
+  },
+  "lightsNote": "The other lights' sky masters (batch-76-redo-picks, take 1 each; edits of the day portrait, the same frame within 1.6 px by portrait.py register): each light's stage plates are pasted over its own master. Night has no stage-4 plate: the sky set keeps the master's island and `cut` is the landscape plate portrait.py plate cuts from it (plates.night.4). `edits` are master_edit.py steps applied to the take before the upscale; the take is untouched."
  }
 }

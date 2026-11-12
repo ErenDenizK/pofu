@@ -1,0 +1,41 @@
+batch: batch-76-redo-picks
+job: x-caglayan-sky-night-v2
+jobs:
+  x-caglayan-sky-night-v2:
+    pick: 1
+    status: warn
+    publication: exploration; picked by the lead 2026-11-12 (take 1); never promoted
+status: warn
+pick: 1
+lead_review: "Lead pick: rainbow gone, moon top left, only the mill window and wall lamp warm, no second Çağlayan; lighter cloud sea and island than take 2, closer to the home night, and take 2 adds a lit window to the distant dome isle."
+takes:
+- n: 1
+  file: plate__x-caglayan-sky-night-v2--t1.webp
+  qa: warn
+  lock_load: 0.0
+- n: 2
+  file: plate__x-caglayan-sky-night-v2--t2.webp
+  qa: warn
+  lock_load: 0.0
+reason: null
+retryable: false
+retry_interval_minutes: 15
+references:
+- path: design/art/takes/batch-75-portrait-islands/x-caglayan-portrait-s4-day/plate__x-caglayan-portrait-s4-day--t1.webp
+  exists: true
+- path: design/art/takes/batch-66-home-flow/x-home-flow-night/plate__x-home-flow-night--t1.webp
+  exists: true
+note: 'Auto-picked t1 by QA and visual review: brighter than t2; both warn for night
+  light values/contrast. Rainbow removed; moon upper left; no duplicate Çağlayan.
+  Founder review pending. EXPLORATION: never promote.'
+source: codex-cloud
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+visual_review:
+  rainbow_at_night: false
+  duplicate_caglayan: false
+  only_existing_warm_lights: true
+generation_prompt_note: Built-in tool received an operator paraphrase of the manifest-composed
+  prompt; the ingest sidecar stores the composed manifest prompt, not the verbatim
+  text sent to image generation. The manifest was the source of the art constraints.
