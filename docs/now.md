@@ -42,7 +42,7 @@ studio PR that adds this page.
 |---|---|---|
 | Game | The six game-solid PRs and one polish PR are merged (#394 to #400); the demo-run test plays days 1 to 21 | step 2 |
 | Look | Home is painted by day at IL2 to IL10 and at IL10 golden and night; every other home state draws the sprite island. The plate's visitor, moss and fountain are code-drawn stand-ins | steps 3 and 4 |
-| Art factory | `pofu-art`: #13 and #14 delivered and open; seven Stock PRs open (#6 to #12); no untaken READY row | step 3 |
+| Art factory | `pofu-art`: #13 and #14 delivered and open; seven Stock PRs open (#6 to #12; #9 redoes batch-63, which was already done); no untaken READY row | step 3 |
 | App | Paused by the founder until after the demo. Then: the Door and onboarding spec, a premise for Fable | the demo |
 | Story | Lines ship with game PRs | |
 | Studio | Applied on 2026-11-12 by Fable 5.2; why: [the design](research/studio-design-2026-11-12.md) | step 1 |
