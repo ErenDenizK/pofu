@@ -1,0 +1,98 @@
+{
+  "job": "breath-halo",
+  "batch": "batch-62-breath-room",
+  "asset": "ui__breath-halo",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-06T12:50:19+00:00",
+  "image": "design/art/ui/ui-breath-halo/ui-breath-halo.png",
+  "raw": "design/art/ui/ui-breath-halo/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "e79937c1351e8b08",
+  "prompt": "REFERENCES (attached, in this order):\n1. A finished prop of the game: match its soft airbrushed finish, matte materials, warm light and colors (do not draw the stall).\n\nA single large round bloom of warm light, centered, about nine tenths of the image across, brightest at the middle in soft cream-honey (#FFE6B0) and falling smoothly through warm gold (#FFC872) and rose-peach (#FF9F7A) to nothing before the border. The edge is slightly uneven and painterly, never a perfect digital circle.\n\nUI OBJECT: a painted object that the app places under or inside native\niOS glass controls. Never paint glass, frosted panels, buttons, frames,\nprogress bars or any interface chrome: the app draws all glass and all\ncontrols natively. The object is centered with a generous transparent\nmargin of about 10% on every side.\n\nGLOW SPRITE: a painterly additive light sprite: the app adds it on top of the scene with plus-lighter blending, so black means no light at all. Painted with the same soft airbrushed grain as the attached art. Pure black (#000000) background, not transparent, no other colors, no objects.\n\nAVOID: any object, a sun disc, a sphere, a ring or halo outline, rays or spikes, stars, lens flare, hard edges, outlines, text, letters, a border, grey or colored backgrounds, banding. Everything outside the glow is pure black (#000000).\n\nOutput: one image, opaque, full bleed, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/stations/tea-stall-5/tea-stall-5.png",
+      "role": "A finished prop of the game: match its soft airbrushed finish, matte materials, warm light and colors (do not draw the stall)."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-06T11:05:19+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "fit": null,
+  "emit_region": null,
+  "qa": {
+    "status": "pass",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "opaque, as this kind must be"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 and center-cropped to 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "glow chroma p95 57 on 60% lit pixels (additive profile)",
+        "value": 57.0067
+      },
+      {
+        "check": "additive_background",
+        "status": "pass",
+        "message": "border luma p99 0.029 (near-black, at most 0.05): the glow dies before the edge",
+        "value": 0.0288
+      },
+      {
+        "check": "additive_falloff",
+        "status": "pass",
+        "message": "0.00% of the image has a hard edge (luma step over 0.08 per px at 256 px; soft falloff, at most 0.8%)",
+        "value": 0.0
+      },
+      {
+        "check": "additive_banding",
+        "status": "pass",
+        "message": "198 of 198 luma levels used across the falloff (100%; low means banding)",
+        "value": 1.0
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 0.8 (R1 5.3)",
+        "value": 0.77
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Retained initial pair only; both hard QA and manual glow checks pass. Canonical fallback ranking selects take 1. Official locked1024 to512 delivery and original inbox1254 to627 raw remain distinct; no generation or source edits on resume.",
+  "deliver": {
+    "scale": 0.5,
+    "original_size": [
+      1024,
+      1024
+    ],
+    "delivered_size": [
+      512,
+      512
+    ]
+  }
+}

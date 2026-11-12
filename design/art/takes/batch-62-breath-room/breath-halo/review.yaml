@@ -1,0 +1,145 @@
+batch: batch-62-breath-room
+contact_sheet: design/art/takes/batch-62-breath-room/breath-halo/contact.jpg
+jobs:
+  breath-halo:
+    pick: 1
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Retained initial pair only; both
+      hard QA and manual glow checks pass. Canonical fallback ranking selects take
+      1. Official locked1024 to512 delivery and original inbox1254 to627 raw remain
+      distinct; no generation or source edits on resume.
+qa_reports:
+  1:
+    job: breath-halo
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: glow chroma p95 57 on 60% lit pixels (additive profile)
+      value: 57.0067
+    - check: additive_background
+      status: pass
+      message: 'border luma p99 0.029 (near-black, at most 0.05): the glow dies before
+        the edge'
+      value: 0.0288
+    - check: additive_falloff
+      status: pass
+      message: 0.00% of the image has a hard edge (luma step over 0.08 per px at 256
+        px; soft falloff, at most 0.8%)
+      value: 0.0
+    - check: additive_banding
+      status: pass
+      message: 198 of 198 luma levels used across the falloff (100%; low means banding)
+      value: 1.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.8 (R1 5.3)
+      value: 0.77
+    info:
+      lock_skipped: 'additive glow: black stays black'
+      metrics_raw:
+        L_p5: 0.0
+        L_p50: 39.1
+        L_p95: 88.1
+        C_p50: 38.2
+        C_p95: 56.6
+        C_p99: 57.6
+        detail: 0.77
+      metrics_locked:
+        L_p5: 0.0
+        L_p50: 39.1
+        L_p95: 88.1
+        C_p50: 38.2
+        C_p95: 56.6
+        C_p99: 57.6
+        detail: 0.77
+    fingerprint: e79937c1351e8b08
+  2:
+    job: breath-halo
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: glow chroma p95 55 on 60% lit pixels (additive profile)
+      value: 54.8827
+    - check: additive_background
+      status: pass
+      message: 'border luma p99 0.039 (near-black, at most 0.05): the glow dies before
+        the edge'
+      value: 0.0393
+    - check: additive_falloff
+      status: pass
+      message: 0.00% of the image has a hard edge (luma step over 0.08 per px at 256
+        px; soft falloff, at most 0.8%)
+      value: 0.0
+    - check: additive_banding
+      status: pass
+      message: 202 of 202 luma levels used across the falloff (100%; low means banding)
+      value: 1.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.7 (R1 5.3)
+      value: 0.74
+    info:
+      lock_skipped: 'additive glow: black stays black'
+      metrics_raw:
+        L_p5: 0.0
+        L_p50: 35.7
+        L_p95: 88.7
+        C_p50: 32.4
+        C_p95: 54.5
+        C_p99: 55.5
+        detail: 0.74
+      metrics_locked:
+        L_p5: 0.0
+        L_p50: 35.7
+        L_p95: 88.7
+        C_p50: 32.4
+        C_p95: 54.5
+        C_p99: 55.5
+        detail: 0.74
+    fingerprint: e79937c1351e8b08
+manual_review:
+  excluded_takes: []
+  note: Retained initial pair only; both hard QA and manual glow checks pass. Canonical
+    fallback ranking selects take 1. Official locked1024 to512 delivery and original
+    inbox1254 to627 raw remain distinct; no generation or source edits on resume.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-f5356015-3c03-4da7-8105-4c7388502abc.png
+  original_generated_png_sha256: 2107fe829f2addddd620c3ea2d2195f502be6125cb1732ca3f7f652ac845ff07
+  inbox_png_sha256: f28907941eb303c32925be07b1cecae31103ec38979aab316107b6afa3113b8e
+  rgba_sha256: f988cb08d7af8679ac2cc2d370e9bc24409c6b21647eb897922b2190805a158f
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: e79937c1351e8b08
+- take: 2
+  source_file: /workspace/generated_images/exec-bdf02b84-35b0-4802-9707-7452cea5d9d0.png
+  original_generated_png_sha256: fbe6f90faa6271d5a6893741244c8d2211973e086bab1aa9a8e995461ae09f3c
+  inbox_png_sha256: 0a13ee4f29d9995f2cc67fade30f8e59a2a1d105ad78089adf2eeeec215fbbac
+  rgba_sha256: ed0296a5e84acd8d62f9b4bb3e34c999e7c96e890d6eb6badd51bbe198726a08
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: e79937c1351e8b08
