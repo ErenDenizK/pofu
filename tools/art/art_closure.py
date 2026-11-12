@@ -36,6 +36,8 @@ PLAN_FALLBACK = "docs/design/art-production-plan.md"
 # AGENTS.md tells Codex to read.
 TOOL_FILES = [
     "tools/assets/process_assets.py",
+    # Codex standing work reads the plate state list.
+    "docs/state/plates.yaml",
     "tools/art/grade_take.py",
     "tools/review/sheet.py",
     # The QA harmony check (qa.check_harmony) imports harmony and its config; without them
