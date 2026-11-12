@@ -26,8 +26,8 @@ TestFlight before the membership. The app side follows the demo.
 1. PR 3 `feat/painted-sky-everywhere` (Sonnet high; the lead's look). PR 1 merged (#407).
 2. Night character tone (Sonnet): one tone IL2 to IL10; harmony_check
    nights use `--reference l10-night`. PR 2 merged (#406).
-3. PR 4 `feat/caglayan-nights` (Sonnet; the lead's look). Feedback #405
-   merged (heart on greeting, gift tags, board solve caption).
+Merged: #405 feedback, #407 hours/weather, #406 Home nights, #409
+Çağlayan nights s0/s1.
 
 ## Next steps, in order
 
@@ -40,6 +40,7 @@ TestFlight before the membership. The app side follows the demo.
    overwrite them); sync `flow-tile-split-guide.webp` back to pofu.
 5. Ingest batch-77 flow pieces (bend: narrow mouth; frame caps 240/1024).
 6. Art (#406): wheel sunflower gone IL3-6; IL5 night unlit warm pool.
+   Çağlayan nights: empty top 40%, flat lavender band below (all stages).
    #405: a met goal says nothing; solve caption far; check badge clashes.
 7. Record the Rehearsal path once one world lands (CI `beats` label).
 Swift on Linux: /opt/swift, from download.swift.org (Docker Hub gives 429).
