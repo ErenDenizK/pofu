@@ -21,9 +21,8 @@ TestFlight before the membership. The app side follows the demo.
   sprite/plate switch the path's most visible defect).
 - Rain streaks are drawn in code, never baked in a master (ADR-0025).
 
-## In flight (agents of this session)
+## In flight ([spec](design/demo-one-world-v1.md) #404; players reach IL7)
 
-[Spec](design/demo-one-world-v1.md) #404, D1-D11 accepted; players reach IL7.
 1. PR 3 `feat/painted-sky-everywhere` (Sonnet high; the lead's look). PR 1 merged (#407).
 2. PR 2 `feat/home-nights` (Sonnet high; the lead merges after its look).
 3. PR 4 `feat/caglayan-nights` (Sonnet; the lead's look). Feedback #405
@@ -40,11 +39,9 @@ TestFlight before the membership. The app side follows the demo.
 4. Port pofu-art's QA `edit_structure` night fix and the run.py fix into
    pofu's tools/imagegen before any full `sync_to_art.py` (it would
    overwrite them); sync `flow-tile-split-guide.webp` back to pofu.
-5. Ingest the batch-77 flow pieces (bend: narrow east mouth; frame:
-   9-slice caps of 240 at 1024).
-6. Small feedback follow-ups (critic on #405): a met goal shows nothing
-   (say "Ada 3 hazır"), the solve caption sits far from the board, the
-   blue check badge breaks the hand-drawn counter.
+5. Ingest batch-77 flow pieces (bend: narrow mouth; frame caps 240/1024).
+6. #405 follow-ups: a met goal says nothing; solve caption far from the
+   board; the system check badge clashes with the drawn counter.
 7. Record the Rehearsal path once one world lands (CI `beats` label).
 Swift on Linux: /opt/swift, from download.swift.org (Docker Hub gives 429).
 ## Desks
