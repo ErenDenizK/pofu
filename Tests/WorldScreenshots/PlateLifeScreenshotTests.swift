@@ -9,7 +9,9 @@ import XCTest
 ///
 /// - `plate-life-visitor-l5`: a gift visit, the visitor on the lawn and the parcel beside them;
 /// - `plate-life-gifts-l5`: Koke's moss on the lawn and Çağlayan's fountain over the pond;
-/// - `plate-life-build-l5`: the tea stall's level-up at its burst (dust, light, "Seviye N!").
+/// - `plate-life-build-l5`: the tea stall's level-up at its burst (dust, light, "Seviye N!");
+/// - `plate-life-greeted-l5`: the same visit just greeted, the heart over the visitor;
+/// - `plate-life-gifts-new-l5`: both gifts on the day they arrive, each with its paper tag.
 ///
 /// Each frame is also written as `home-plate-full-life-<name>-l5`, which CI keeps as a PNG, so
 /// `tools/plate/harmony_check.py` can measure the characters beside the new layer.
@@ -18,6 +20,11 @@ final class PlateLifeScreenshotTests: XCTestCase {
         case visitor
         case gifts
         case build
+        case greeted
+        case giftsNew = "gifts-new"
+
+        /// The shots the harmony check measures (`home-plate-full-life-*`).
+        var isMeasured: Bool { [.visitor, .gifts, .build].contains(self) }
     }
 
     @MainActor
@@ -31,7 +38,9 @@ final class PlateLifeScreenshotTests: XCTestCase {
         for shot in Shot.allCases {
             let image = try await render(shot, in: scene)
             try write(image, name: "plate-life-\(shot.rawValue)-l5", to: folder)
-            try write(image, name: "home-plate-full-life-\(shot.rawValue)-l5", to: folder, attach: false)
+            if shot.isMeasured {
+                try write(image, name: "home-plate-full-life-\(shot.rawValue)-l5", to: folder, attach: false)
+            }
         }
     }
 
@@ -55,6 +64,11 @@ final class PlateLifeScreenshotTests: XCTestCase {
             world.caglayan = WonderStatus(phase: .arrived, stage: 4)
         case .build:
             break
+        case .greeted:
+            world.visitor = VisitorSnapshot(resident: .sumi, reason: .gift, slot: .v1, state: .greeted, gift: .seeds(3), hearts: 1)
+        case .giftsNew:
+            world.koke = WonderStatus(phase: .arrived, stage: 4, giftIsNew: true)
+            world.caglayan = WonderStatus(phase: .arrived, stage: 4, giftIsNew: true)
         }
         let island = IslandSceneModel(framing: .home)
         let home = WorldHomeModel(now: { now }, schedulesCues: false)

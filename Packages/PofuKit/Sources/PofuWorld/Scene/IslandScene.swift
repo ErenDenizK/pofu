@@ -2135,11 +2135,88 @@ private struct ScreenOverlays: View {
                     .opacity(tag.opacity)
                     .position(x: top.x, y: top.y - 22)
             }
+            if showsHomeLife {
+                if let heart = greetingHeart {
+                    GreetingHeart()
+                        .position(x: heart.x, y: heart.y)
+                        .transition(reduceMotion ? .opacity : .scale(scale: 0.3, anchor: .bottom).combined(with: .opacity))
+                }
+                ForEach(giftTags) { tag in
+                    GiftTag(gift: tag.gift)
+                        .position(x: tag.point.x, y: tag.point.y)
+                }
+            }
             if case .resident(let id) = model.focus, let resident = IslandLayout.resident(id) {
                 residentCard(resident)
             }
         }
         .frame(width: size.width, height: size.height, alignment: .topLeading)
+        .animation(reduceMotion ? .easeInOut(duration: 0.2) : .spring(duration: 0.4, bounce: 0.4), value: world.visitor?.state)
+    }
+
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
+    /// Home's own life shows only on Home, close enough to see it, with no
+    /// card or sheet over it.
+    private var showsHomeLife: Bool {
+        z >= WorldHitTest.archipelagoZ && model.island == .home && model.focus == nil && !model.hasSheet
+    }
+
+    /// Screen points kept inside the 16 pt side gutter and under the top bar.
+    private func clamped(_ p: CGPoint, halfWidth: CGFloat) -> CGPoint {
+        CGPoint(x: min(max(p.x, 16 + halfWidth), size.width - 16 - halfWidth), y: max(p.y, 120))
+    }
+
+    /// The greeting's answer: a heart over a greeted visitor.
+    private var greetingHeart: CGPoint? {
+        let parts: [VisitorStage.Placed]
+        let scale: Double
+        if let plate {
+            parts = PlateLife.visitorParts(plate: plate, visitor: world.visitor, invitationOpen: world.invitationOpen, isBedtime: world.isBedtime)
+            scale = plate.residentScale
+        } else {
+            parts = VisitorStage.parts(visitor: world.visitor, invitationOpen: world.invitationOpen, isBedtime: world.isBedtime)
+            scale = 1
+        }
+        guard let point = VisitorStage.greetingHeart(parts: parts, visitor: world.visitor, scale: scale) else { return nil }
+        // The heart's foot sits at the point; its middle is 14 pt higher.
+        let p = screenPoint(point)
+        return clamped(CGPoint(x: p.x, y: p.y - 14), halfWidth: 16)
+    }
+
+    /// The paper tag over a gift on the day it arrived.
+    private struct PlacedGiftTag: Identifiable {
+        let gift: HomeGifts.Gift
+        let point: CGPoint
+        var id: HomeGifts.Gift { gift }
+    }
+
+    private var giftTags: [PlacedGiftTag] {
+        HomeGifts.tagged(in: world).compactMap { gift -> PlacedGiftTag? in
+            let foot: WorldPoint?
+            let scale: Double
+            switch gift {
+            case .kokeMoss:
+                if let plate {
+                    foot = PlateLife.mossSpot(plate)
+                } else {
+                    foot = KokeLayout.homeGift
+                }
+                scale = plate?.characterScale ?? 1
+            case .caglayanFountain:
+                if let plate {
+                    foot = PlateLife.fountainSpot(plate)
+                } else {
+                    foot = IslandLayout.stationAnchors[.pond].map {
+                        WorldPoint(x: $0.x + CaglayanLayout.homeFountainOffset.x, y: $0.y + CaglayanLayout.homeFountainOffset.y)
+                    }
+                }
+                scale = plate?.characterScale ?? 1
+            }
+            guard let foot else { return nil }
+            let top = screenPoint(WorldPoint(x: foot.x, y: foot.y - HomeGifts.tagLift(gift) * scale))
+            return PlacedGiftTag(gift: gift, point: clamped(CGPoint(x: top.x, y: top.y - 18), halfWidth: 80))
+        }
     }
 
     private func screenPoint(_ point: WorldPoint) -> CGPoint {

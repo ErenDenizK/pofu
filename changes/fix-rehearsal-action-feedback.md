@@ -1,0 +1,1 @@
+Fixed: greeting a visitor shows a small heart over them, a wonder island's gift wears a paper tag at home on the day it arrives, the water board fills its pip and says "Su havuza ulaştı." on each solve and keeps a 16 pt side gutter, and the goal line never reads "0 gün daha".

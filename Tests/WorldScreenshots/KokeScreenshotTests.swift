@@ -65,7 +65,8 @@ final class KokeScreenshotTests: XCTestCase {
 
         // Healed: the moss at home.
         let home = IslandSceneModel(framing: .home)
-        let healed = WonderStatus(phase: .arrived, stage: 4)
+        // The day Koke healed: the moss has just arrived and wears its tag.
+        let healed = WonderStatus(phase: .arrived, stage: 4, giftIsNew: true)
         try write(try await render(world(koke: healed), model: home, in: scene), name: "koke-gift-home", to: folder)
     }
 
