@@ -167,7 +167,7 @@ public struct HomePlate: Hashable, Sendable {
     }
 
     /// The sky set this state draws behind its island layer (ADR-0025), or `nil`: the painted plate and
-    /// its backdrop. Home's level-10 day, golden hour and night and Çağlayan's day (every story stage) have
+    /// its backdrop. Home's level-10 day, golden hour and night and every painted Çağlayan state have
     /// one; the other states keep the plate until they are split.
     public var skySet: SkySet? {
         SkySet.shipped(island: plate.island, light: light, stage: stage)

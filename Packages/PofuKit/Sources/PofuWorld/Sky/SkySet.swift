@@ -124,7 +124,7 @@ public struct SkySet: Hashable, Sendable {
     public var textureBytes: Int
 
     /// The sky set a state shows, when it has one: home's level-10 day, golden hour and night; Çağlayan's
-    /// day at each story stage (`day-<stage>`: the same sky, each stage plate's own island layer).
+    /// every painted state (`<light>-<stage>`: one sky per light, each stage plate's own island layer).
     public static func shipped(island: String, light: String, stage: Int) -> SkySet? {
         guard let file = SkySetFile.shipped(island) else { return nil }
         if let staged = file.lights["\(light)-\(stage)"] { return staged }

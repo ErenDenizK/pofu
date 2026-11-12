@@ -146,8 +146,8 @@ struct PlateStateTests {
         }
     }
 
-    @Test func caglayanHealedNightBorrowsGolden() throws {
+    @Test func caglayanHealedNightIsItsOwnPainting() throws {
         let island = try #require(HomePlate.caglayanIsland)
-        #expect(Self.name(HomePlate.caglayanState(in: island, stage: 4, hour: 22.5, weather: .clear, isBedtime: false)) == "golden-4")
+        #expect(Self.name(HomePlate.caglayanState(in: island, stage: 4, hour: 22.5, weather: .clear, isBedtime: false)) == "night-4")
     }
 }
