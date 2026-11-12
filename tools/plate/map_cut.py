@@ -13,7 +13,9 @@ on the Map. This tool removes it, from the shipped art alone (no new painting):
      it is reached from the matte's outside through sky-coloured pixels (a hysteresis flood: seeds within
      `SEED`, growing within `NEAR`), so a white fence or the pond, enclosed by the island, stays;
   3. the cut keeps the shipped RGB and alpha, times the remaining mask, its new edge feathered by one
-     pixel; components smaller than `SPECK` are dropped.
+     pixel; components smaller than `SPECK` are dropped;
+  4. the alpha is made whole inside (`solid`): the level-10 matte's wide feather into the cloud would
+     let the Map's sky show through the island's rim.
 
 Writes `World.xcassets/world-home-mapisle-<light>-<stage>` (HEIC q70 with alpha, as the island cut) for
 every state; level 10's day, golden and night are the matte's own shape and come out unchanged.
@@ -54,6 +56,8 @@ BODY = 0.47    # share of the plate's height: below it the matte is the island's
 ISLET = 0.79   # share of the plate's width: the harbour islet lies right of it
 NECK = 0.80    # share of the plate's width: the matte's neck between the island and the islet
 HOLE = 30      # px at plate size: enclosed clear sky this large is cut out
+NECK_FADE = 0.035  # share of the plate's width over which the cut fades out before the neck
+SOLID = (0.10, 0.50)  # shipped alpha: from the first up to the second is stretched to full (`solid`)
 
 
 def lab(rgb: np.ndarray) -> np.ndarray:
@@ -158,7 +162,12 @@ def sky_mask(light: str, stage: int) -> tuple[np.ndarray, np.ndarray]:
     fg = ndimage.binary_fill_holes(fg)
     # To cut size: the cut is the matte's box at `ingest.ISLAND_SCALE`.
     ch, cw = cut.shape[:2]
-    keep = cv2.resize(fg[y0:y1, x0:x1].astype(np.float32), (cw, ch), interpolation=cv2.INTER_AREA)
+    soft = fg.astype(np.float32)
+    if not islet_painted:
+        # The island ends in the painting's cloud before the neck: a short fade there, not a straight edge.
+        cols = np.arange(w1, dtype=np.float32) / w1
+        soft *= np.clip((NECK - cols) / NECK_FADE, 0, 1)[None, :]
+    keep = cv2.resize(soft[y0:y1, x0:x1], (cw, ch), interpolation=cv2.INTER_AREA)
     return cut, keep
 
 
@@ -173,9 +182,19 @@ def day_shape(light: str, stage: int) -> tuple[np.ndarray, np.ndarray]:
     return cut, keep
 
 
+def solid(alpha: np.ndarray) -> np.ndarray:
+    """The island's own soft edge made whole: where the level-10 matte feathered the island into the
+    painting's cloud (the rim and the tea stand at low levels), the shipped alpha falls to a half and
+    less over many pixels and the Map's sky showed through the island. Alpha from `SOLID[0]` up to
+    `SOLID[1]` is stretched to full, so the island ends in the painting's own mist, opaque; the outer
+    pixel stays feathered."""
+    lo, hi = SOLID
+    return np.clip((alpha - lo) / (hi - lo), 0, 1)
+
+
 def clean(cut: np.ndarray, keep: np.ndarray) -> np.ndarray:
     out = cut.copy()
-    out[..., 3] = cut[..., 3] * np.clip(cv2.GaussianBlur(keep, (3, 3), 0.6), 0, 1)
+    out[..., 3] = solid(cut[..., 3]) * np.clip(cv2.GaussianBlur(keep, (3, 3), 0.6), 0, 1)
     return out
 
 
