@@ -42,9 +42,7 @@ Merged: #405 feedback, #407 hours/weather, #406 Home nights, #409
    batch-79 dribbles and night UI. Tile junctions parked (failed twice).
 4. Port pofu-art's QA and run.py fixes into pofu's tools/imagegen before
    any full `sync_to_art.py`.
-5. Follow-ups: wheel sunflower gone IL3-6; IL5 night warm pool; Çağlayan
-   nights' empty top and flat band; #405's met goal, caption, badge.
-6. Record the Rehearsal path once one world lands (CI `beats` label).
+5. Record the Rehearsal path once one world lands (CI `beats` label).
 
 ## Desks
 
