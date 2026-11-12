@@ -34,13 +34,14 @@ it); no painted visitor art ships, all drawn by `LifeArt.drawVisitor`
 (step 6); the Today header is text (`TodaySheet.swift:109`) and the
 breath ring is code-drawn; no screen spends seeds for minutes; the frame
 meter has no switch or launch argument (`WorldLook.frameMeter`).
-Merged today: #403 to #411, #413; pofu-art #13, #14, #18, #22 to #27.
+Merged today: #403 to #411, #413; pofu-art #13, #14, #18, #22 to #27, #29.
 
 ## Next steps, in order
 
 1. Route §6 Saturday (steps 6 to 8), Sunday (9 to 11), in order.
-2. pofu-art QUEUE.md: a "paused since 2026-11-12, rows stay READY" line
-   and the return queue of route §5.4, written and checked now.
+2. pofu-art queue paused with a return queue (#29). Items 3-6 (visitors
+   for hidden residents, Koke phone pilot, Home continuity, Home golden)
+   need manifests before Codex returns; item 7 (breath room) is obsolete.
 3. From Tuesday 11-17: route §5.3 (seeds-and-minutes check in the app
    first; the App desk reopens).
 
