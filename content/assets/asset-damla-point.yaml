@@ -4,17 +4,16 @@ title_tr: damla-point
 title_en: damla-point (char)
 status: in-production
 horizon: now
-summary: >-
-  Edit the attached Damla into a new pose: one front paw is stretched out ahead and a little
-  down, a single soft finger-paw pointing at something in front of her (the player's board),
-  while the other paw still holds the small tea glass at her chest. Her eyes look where she
-  points, with an encouraging little smile. Everything else, the fur, face, tail, size and
-  ground line, stays exactly.
+summary: 'Edit the attached Damla into a new pose: one front paw is stretched out ahead and a little down,
+  a single soft finger-paw pointing at something in front of her (the player''s board), while the other
+  paw still holds the small tea glass at her chest. Her eyes look where she points, with an encouraging
+  little smile. Everything else, the fur, face, tail, size and ground line, stays exactly.'
 links:
   variant_of:
   - asset-damla
 art:
-  images: []
+  images:
+  - design/art/masters/damla-point/damla-point.webp
   jobs:
   - batch-64-flow-pieces:damla-point
 sources:
@@ -22,3 +21,6 @@ sources:
 kind: char
 batch: batch-64-flow-pieces
 size: 1024x1024
+notes:
+- 'Factory resume2026-11-10: pixel-identical lossless WebP master, including alpha0 RGB; canonical PNG
+  exceeds614400byte upload cap. Founder review pending.'

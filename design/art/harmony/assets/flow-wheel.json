@@ -1,0 +1,55 @@
+{
+ "after": {
+  "C_mean": 45.495,
+  "C_p50": 47.01,
+  "C_p95": 49.036,
+  "L_mean": 73.299,
+  "L_p2": 43.43,
+  "L_p98": 87.283,
+  "detail": 3.751,
+  "edge": 0.157,
+  "warmth_b": 41.891
+ },
+ "before": {
+  "C_mean": 38.209,
+  "C_p50": 39.307,
+  "C_p95": 40.94,
+  "L_mean": 69.438,
+  "L_p2": 43.429,
+  "L_p98": 82.719,
+  "detail": 3.59,
+  "edge": 0.157,
+  "warmth_b": 35.104
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.198,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 6.0
+ },
+ "guarded": false,
+ "kind": "prop",
+ "matched_to": "world",
+ "outliers_after": [
+  "L_p98",
+  "detail",
+  "edge"
+ ],
+ "outliers_before": [
+  "C_p95",
+  "L_p98",
+  "detail",
+  "edge"
+ ],
+ "ppu": 8.533,
+ "reference": false,
+ "score_after": 66.3,
+ "score_before": 50.5,
+ "shipped": false,
+ "source": "design/art/masters/flow-wheel/flow-wheel.png",
+ "source_sha": "c8d471b7d43aa0b9"
+}

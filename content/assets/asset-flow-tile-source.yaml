@@ -4,14 +4,15 @@ title_tr: flow-tile-source
 title_en: flow-tile-source (ui)
 status: in-production
 horizon: now
-summary: >-
-  A game tile for a cozy mobile puzzle, seen straight from above with a very slight tilt,
-  lit softly from the upper left. A SQUARE of carved, mossy river stone that fills the whole
-  canvas edge to edge (full bleed, no margin, no outline, no shadow around it): pale warm-grey
-  stone with a faint cream and sage tint, rounded and softly worn, a little soft green moss
-  gathered on the shoulders and corners, never on the groove…
+summary: 'A game tile for a cozy mobile puzzle, seen straight from above with a very
+  slight tilt, lit softly from the upper left. A SQUARE of carved, mossy river stone
+  that fills the whole canvas edge to edge (full bleed, no margin, no outline, no
+  shadow around it): pale warm-grey stone with a faint cream and sage tint, rounded
+  and softly worn, a little soft green moss gathered on the shoulders and corners,
+  never on the groove…'
 art:
-  images: []
+  images:
+  - design/art/ui/ui-flow-tile-source/ui-flow-tile-source.png
   jobs:
   - batch-64-flow-pieces:flow-tile-source
 sources:

@@ -1,0 +1,159 @@
+batch: batch-64-flow-pieces
+contact_sheet: design/art/takes/batch-64-flow-pieces/flow-tile-gate/contact.jpg
+jobs:
+  flow-tile-gate:
+    pick: 2
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Both initial takes pass official
+      hardQA and independent native/locked/export/manual review. Take2 ranks first
+      by eligible lock_load0.3703 versus0.4026. Centered light shallow east-west groove,
+      north/south closed stone, honeywood sluice board across groove, exactly two
+      separated pegs readable at actual70pt. The specific authored thin carvedrim
+      inside all four edges governs the generic avoid-border text; the rim does not
+      visibly close the E/W mouth against rotated approved-straight neighbors. Small
+      painted seam/shoulder/rimbrightness and corner-antialias differences are advisory;
+      no exact512segmentation or completed app integration certified. No retry with
+      eligible takes. Canonical scale0.25 delivery verified by exact downscaled RGBA/dimensions/meta
+      and preview/raw. Official Harmony measure/check on194 currentBASE sources; UI
+      outside authoritative catalog, no fabricated shard. Full22asset family prelinks
+      remain stable. All original PNGs/callbacks/references/QA/locked preserved; no
+      new generation while preparing this retained pair.
+qa_reports:
+  2:
+    job: flow-tile-gate
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 32 (R1 51)
+      value: 32.2
+    - check: value_floor
+      status: pass
+      message: lightness p5 76 (R1 59)
+      value: 75.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.8 (R1 5.3)
+      value: 0.75
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.4
+      value: 0.3703
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.8, p95 2.3, off-palette 0.0%
+      value: 0.8287
+    info:
+      metrics_raw:
+        L_p5: 75.6
+        L_p50: 87.6
+        L_p95: 93.8
+        C_p50: 12.8
+        C_p95: 32.4
+        C_p99: 38.5
+        detail: 1.06
+      metrics_locked:
+        L_p5: 75.7
+        L_p50: 87.6
+        L_p95: 93.7
+        C_p50: 12.8
+        C_p95: 32.2
+        C_p99: 38.4
+        detail: 0.75
+    fingerprint: d4aa70481a6230b3
+  1:
+    job: flow-tile-gate
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 34 (R1 51)
+      value: 34.0
+    - check: value_floor
+      status: pass
+      message: lightness p5 75 (R1 59)
+      value: 75.3
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.8 (R1 5.3)
+      value: 0.76
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.4
+      value: 0.4026
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.8, p95 2.2, off-palette 0.0%
+      value: 0.8381
+    info:
+      metrics_raw:
+        L_p5: 75.3
+        L_p50: 86.8
+        L_p95: 93.7
+        C_p50: 12.9
+        C_p95: 34.1
+        C_p99: 39.5
+        detail: 1.1
+      metrics_locked:
+        L_p5: 75.3
+        L_p50: 86.8
+        L_p95: 93.6
+        C_p50: 12.9
+        C_p95: 34.0
+        C_p99: 39.5
+        detail: 0.76
+    fingerprint: d4aa70481a6230b3
+manual_review:
+  excluded_takes: []
+  note: Both initial takes pass official hardQA and independent native/locked/export/manual
+    review. Take2 ranks first by eligible lock_load0.3703 versus0.4026. Centered light
+    shallow east-west groove, north/south closed stone, honeywood sluice board across
+    groove, exactly two separated pegs readable at actual70pt. The specific authored
+    thin carvedrim inside all four edges governs the generic avoid-border text; the
+    rim does not visibly close the E/W mouth against rotated approved-straight neighbors.
+    Small painted seam/shoulder/rimbrightness and corner-antialias differences are
+    advisory; no exact512segmentation or completed app integration certified. No retry
+    with eligible takes. Canonical scale0.25 delivery verified by exact downscaled
+    RGBA/dimensions/meta and preview/raw. Official Harmony measure/check on194 currentBASE
+    sources; UI outside authoritative catalog, no fabricated shard. Full22asset family
+    prelinks remain stable. All original PNGs/callbacks/references/QA/locked preserved;
+    no new generation while preparing this retained pair.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-dd39684f-9c15-4ece-8fb4-ffc09a8f6ea6.png
+  original_generated_png_sha256: a3d74c39179199e9c2be0087221a0d2ff20a27be058fca7e179f6497de2b4b95
+  inbox_png_sha256: 0c94eb0f2378caad7d4171001c3f21a47767e5b067a98abcb2ae53e36b4c08ab
+  rgba_sha256: 194ea2d057d7491c99d5b33e2470695c0667ca5fd4709ccdd5a00d2be86a6106
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: d4aa70481a6230b3
+- take: 2
+  source_file: /workspace/generated_images/exec-beb5ba89-df74-4cfb-aac7-601a984d9651.png
+  original_generated_png_sha256: 3dff77cee15b52a16051e158fc7b06bee54a21e93d1d93f2e3aba228bec4be8a
+  inbox_png_sha256: 94dba1d707000a6a4c55302d58e74c5867a9e5343a328e3b3d6ee1761d492efa
+  rgba_sha256: 302366b31608221a5e4a52d9ad5d88316ed261ced56ea54d3847b4a35bf9054c
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: d4aa70481a6230b3

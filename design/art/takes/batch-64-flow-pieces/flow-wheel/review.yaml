@@ -1,0 +1,210 @@
+batch: batch-64-flow-pieces
+manifest: tools/imagegen/manifest/batch-64-flow-pieces.yaml
+manifest_sha256: 65e52554e18897f16553e47cd6762b9099f270aca4efef9905e16ac3e7957c78
+jobs:
+  flow-wheel:
+    pick: 2
+    status: review
+    publication: promoted; founder review pending
+    note: Both candidates show eight rounded honey-wood paddles, centered hub and circular rim, matte
+      finish and small rim moss. Exact rotational pixel invariance is not certified; approximate84percent
+      width is advisory. Proper cream alpha composites are clean; bright raw RGB fragments are at alpha0.
+      Auto-picked by QA; founder review pending.
+    validation: Canonical Harmony measure196sources/check passed; foreign shards restored exactly. Content986nodes0errors0warnings.
+      Master lossless, raw retained, all upload files under614400bytes.
+selection:
+  method: QA non-fail and manual eligibility; lowest style-lock load, then highest measured harmony; take
+    number only breaks ties
+  scores:
+  - take: 1
+    style_lock_load: 0.5159
+    harmony: 63.5
+    eligible: true
+  - take: 2
+    style_lock_load: 0.4955
+    harmony: 60.9
+    eligible: true
+  rejected_takes: []
+qa_reports:
+- job: flow-wheel
+  take: 1
+  status: warn
+  preset: lock-light
+  checks:
+  - check: transparency
+    status: pass
+    message: source has an alpha channel
+  - check: canvas
+    status: pass
+    message: 1254x1254 scaled x0.817 into 1024x1024
+    value: 0.8166
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 42 (R1 51)
+    value: 42.2
+  - check: light_values
+    status: warn
+    message: 'day/subject: L p2 46 (at most 22), p98 81 (at least 90), spread 35 (at least 60) (warn-only
+      until the founder has seen the light pilot)'
+    value: 35.4
+  - check: light_median
+    status: pass
+    message: 'day/subject: median L 71 (band 55-90)'
+    value: 71.0
+  - check: light_haze
+    status: warn
+    message: 'day/subject: dark-channel haze 0.26 (at most 0.20; no true dark means a wash)'
+    value: 0.255
+  - check: light_contrast
+    status: warn
+    message: 'day/subject: p75 local contrast 1.5 (at least 3.5) (warn-only until the founder has seen
+      the light pilot)'
+    value: 1.5
+  - check: detail_budget
+    status: pass
+    message: detail at display size 0.8 (R1 5.3)
+    value: 0.78
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.5
+    value: 0.5159
+  - check: no_guide_magenta
+    status: pass
+    message: 0 guide-magenta pixels (per 1024^2)
+    value: 0.0
+  - check: palette_drift
+    status: pass
+    message: mean dE 1.0, p95 2.3, off-palette 0.0%
+    value: 1.0064
+  - check: harmony
+    status: warn
+    message: 'harmony score 62 against the world reference (outliers: L_p98, edge)'
+    value: 62.2
+  info:
+    metrics_raw:
+      L_p5: 50.9
+      L_p50: 71.0
+      L_p95: 79.4
+      C_p50: 40.6
+      C_p95: 42.3
+      C_p99: 42.9
+      detail: 1.24
+    metrics_locked:
+      L_p5: 50.9
+      L_p50: 71.0
+      L_p95: 79.2
+      C_p50: 40.6
+      C_p95: 42.2
+      C_p99: 42.6
+      detail: 0.78
+  fingerprint: c22e116f9a3f4ebf
+- job: flow-wheel
+  take: 2
+  status: warn
+  preset: lock-light
+  checks:
+  - check: transparency
+    status: pass
+    message: source has an alpha channel
+  - check: canvas
+    status: pass
+    message: 1254x1254 scaled x0.817 into 1024x1024
+    value: 0.8166
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 41 (R1 51)
+    value: 40.9
+  - check: light_values
+    status: warn
+    message: 'day/subject: L p2 43 (at most 22), p98 82 (at least 90), spread 38 (at least 60) (warn-only
+      until the founder has seen the light pilot)'
+    value: 38.4
+  - check: light_median
+    status: pass
+    message: 'day/subject: median L 72 (band 55-90)'
+    value: 71.8
+  - check: light_haze
+    status: warn
+    message: 'day/subject: dark-channel haze 0.25 (at most 0.20; no true dark means a wash)'
+    value: 0.247
+  - check: light_contrast
+    status: warn
+    message: 'day/subject: p75 local contrast 1.5 (at least 3.5) (warn-only until the founder has seen
+      the light pilot)'
+    value: 1.54
+  - check: detail_budget
+    status: pass
+    message: detail at display size 0.8 (R1 5.3)
+    value: 0.82
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.5
+    value: 0.4955
+  - check: no_guide_magenta
+    status: pass
+    message: 0 guide-magenta pixels (per 1024^2)
+    value: 0.0
+  - check: palette_drift
+    status: pass
+    message: mean dE 0.9, p95 1.8, off-palette 0.0%
+    value: 0.8795
+  - check: harmony
+    status: warn
+    message: 'harmony score 60 against the world reference (outliers: C_p95, L_p98, edge)'
+    value: 59.5
+  info:
+    metrics_raw:
+      L_p5: 49.3
+      L_p50: 71.8
+      L_p95: 79.6
+      C_p50: 39.3
+      C_p95: 41.1
+      C_p99: 41.6
+      detail: 1.29
+    metrics_locked:
+      L_p5: 49.3
+      L_p50: 71.8
+      L_p95: 79.3
+      C_p50: 39.3
+      C_p95: 40.9
+      C_p99: 41.3
+      detail: 0.82
+  fingerprint: c22e116f9a3f4ebf
+sources:
+- take: 1
+  source_file: /workspace/art-operator-runtime/factory/generated/flow-wheel/take-1.png
+  source_sha256: e88140f91a7ca9121a2ca9b987a6ab475cb8e7a7ae39b337129cdaeede01fdf1
+  q90_take: design/art/takes/batch-64-flow-pieces/flow-wheel/prop__flow-wheel--t1.webp
+  q90_take_sha256: 8e2fcac90be4b3b6b55fd2c0c30df524b988c6537d1861fcfbdefb7e03f2040b
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 99349e46fee855991247bade2c1496def6ec2f861e0fc22d8bbd8690ac2f9f4f
+  references:
+  - path: design/art/stations/tea-stall-5/tea-stall-5.png
+    role: 'A finished prop of the game: match its soft airbrushed finish, matte materials and warm light
+      (do not draw the stall).'
+    sha256: c9a9f018b2dc6bcb1189f497f750dd98e80c69610c10ba3c71081d8b84d157b3
+  - path: design/reference/palette-card-world-props.png
+    role: The props palette card (wood colours).
+    sha256: d31df285d7f915ff04d14ef9386940e1745a48ffb951bd041df405392a0939f2
+- take: 2
+  source_file: /workspace/art-operator-runtime/factory/generated/flow-wheel/take-2.png
+  source_sha256: 4c6900ca1520a80bacf9eeec01c374b3fc07f7e783475ee7534cb2d1acbfacfe
+  q90_take: design/art/takes/batch-64-flow-pieces/flow-wheel/prop__flow-wheel--t2.webp
+  q90_take_sha256: dcddb8124a3b4194d883547cfc5e43376538181c9a6fc924ed7de87977400b19
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 99349e46fee855991247bade2c1496def6ec2f861e0fc22d8bbd8690ac2f9f4f
+  references:
+  - path: design/art/stations/tea-stall-5/tea-stall-5.png
+    role: 'A finished prop of the game: match its soft airbrushed finish, matte materials and warm light
+      (do not draw the stall).'
+    sha256: c9a9f018b2dc6bcb1189f497f750dd98e80c69610c10ba3c71081d8b84d157b3
+  - path: design/reference/palette-card-world-props.png
+    role: The props palette card (wood colours).
+    sha256: d31df285d7f915ff04d14ef9386940e1745a48ffb951bd041df405392a0939f2
+policy:
+  never_promote: false
+  originals: source_file PNGs preserved unchanged; published takes are q90 copies

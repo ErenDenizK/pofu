@@ -2,13 +2,12 @@ id: asset-flow-dribble-4
 type: asset
 title_tr: flow-dribble-4
 title_en: flow-dribble-4 (prop)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  Edit the attached frame into FRAME 4 OF 4 of the same motion (a small harmless dribble where
-  a channel faces nothing: a thin trickle spilling over the stone lip onto the bank and soaking
-  in): the trickle thinning, the puddle softening into the grass. Keep the canvas, centre,
-  scale, colours and painting style.
+summary: 'Edit the attached frame into FRAME 4 OF 4 of the same motion (a small harmless
+  dribble where a channel faces nothing: a thin trickle spilling over the stone lip
+  onto the bank and soaking in): the trickle thinning, the puddle softening into the
+  grass. Keep the canvas, centre, scale, colours and painting style.'
 links:
   variant_of:
   - asset-flow-dribble-1
@@ -21,3 +20,9 @@ sources:
 kind: prop
 batch: batch-64-flow-pieces
 size: 512x512
+notes:
+- 'Skipped without generation: literal edit_of parent flow-dribble-1 was terminally
+  skipped after its sole unchanged retry because all four takes already showed a connected
+  falling stream to the bank/ground instead of the explicit FRAME1 thin bead at the
+  lip/start of a trickle. No additional takes, invented numerical QA failures or fabricated
+  source records.'
