@@ -26,15 +26,13 @@ not accepted is hidden. Codex is stopped (plan expired 11-12).
 ## In flight
 
 1. Step 6 painted visitors, a day early (Sonnet, `feat/painted-visitors`).
-2. Step 4 Çağlayan full frame (Opus); the Map's critic round (Opus,
-   `fix/map-painted-critic`: empty top band, night only in the sky, soft
-   clouds, small hazy isles; #416 merged as a step up from the code Map).
-   Open: the IL1 night matte keeps a sky ghost of IL10 (#416 builder).
-Scout facts (step 1): a drag pans painted Home (step 8 clamps it); no
-painted visitor art ships (step 6); the Today header is text
-(`TodaySheet.swift:109`); no screen spends seeds for minutes.
-Merged today: #403 to #413, #415, #416 (the Map painted) ("Kare ölçer" switch), #417 (Koke clean at every stage;
-left: a small pale pocket at s2 night, Koke lit too bright at night); pofu-art #13, #14, #18, #22 to #27, #29.
+2. Critic rounds (Opus): the Map (`fix/map-painted-critic`; also ONE
+   night/rain island grade for the Map, Koke and Çağlayan) and Çağlayan
+   (`fix/caglayan-critic`: top band, seam, moon, rain, belly). Open: the
+   IL1 night matte keeps a sky ghost of IL10; a pale pocket at Koke s2.
+Scout facts: a drag pans painted Home (step 8 clamps it); the Today
+header is text (`TodaySheet.swift:109`); no seeds-for-minutes screen.
+Merged today: #403 to #418 (but #414); pofu-art #13, #14, #18, #22-#29.
 
 ## Next steps, in order
 
