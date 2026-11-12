@@ -16,6 +16,8 @@ struct RehearsalPanel: View {
     @AppStorage("rehearsal.panel.bottom.y") private var restingY: Double = 0
     /// "glass" or "crafted"; empty follows the default skin.
     @AppStorage("PofuSkin") private var skinOverride = ""
+    /// The frame meter over the world, to see stutter on the phone.
+    @AppStorage(RehearsalFrameMeter.key) private var frameMeter = false
     @State private var drag: CGSize = .zero
     @State private var confirmsReset = false
     @State private var isBusy = false
@@ -112,6 +114,19 @@ struct RehearsalPanel: View {
                 Text("Skin")
             }
             .pickerStyle(.segmented)
+            Toggle(isOn: $frameMeter) {
+                Label {
+                    Text("Frame meter")
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.8)
+                } icon: {
+                    Image(systemName: "gauge.with.dots.needle.33percent")
+                        .frame(width: 22)
+                }
+                .font(PofuFont.subheadline)
+            }
+            .frame(minHeight: 36)
+            .foregroundStyle(PofuColor.textPrimary)
             Divider()
             // Rounds are earned (two a day, one per resisted reach) and
             // credited to the pouch: the same ledger the product will use.

@@ -56,6 +56,9 @@ struct RootView: View {
         .environment(\.resistSeals, sealTally)
         // Any tap skips the door stamp; the tap still reaches what it hit.
         .simultaneousGesture(TapGesture().onEnded { skipDoorStamp() })
+        // Rehearsal mode's frame meter switch, inside the tuning lab's look
+        // so it rides on top of it in debug builds too.
+        .modifier(RehearsalFrameMeter(model: model))
         #if DEBUG
         // Rehearsal mode's tuning lab panel tunes the world's look live.
         .modifier(TuningLabLook(model: model))
