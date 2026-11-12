@@ -12,7 +12,7 @@ spec's PRs ([demo-one-world-v1](demo-one-world-v1.md)) land.
 | Çağlayan nights (#409) | Every stage: the top 40% of the frame is empty and the cloud sea below turns into a flat lavender band at about y 1790 | framing |
 | Çağlayan (#409) | Greenery does not grow monotonically from stage 0 to 3 (s1 is greenest); s0's pool is full though the island is "dry" | art |
 | Koke (#408) | Stage 4 plate has a baked, blocky pale halo (bad alpha) left of and above Koke | art |
-| Koke (#408) | Possible pale fringe round the plate at night | art or code |
+| Koke (#408) | Pale lilac fringe round the island at night: the sprites' soft-alpha edge pixels are near white (art); a code edge decontamination could fix it while Codex is down. Moss a little warmer than Home's lawn at night | art, or code |
 | Harbor (#408) | The harbor isle is still the sprite (spec D9); a sliver of an island is cut at the left edge | look |
 | Home (#405) | A met goal shows no line; it should say the level is ready | game |
 | Flow board (#405) | The solve caption sits far below the board; the system check badge clashes with the drawn counter | UI |

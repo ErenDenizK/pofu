@@ -24,12 +24,10 @@ route for the pause (docs/route-codex-pause), shown to the founder first.
 
 ## In flight ([spec](design/demo-one-world-v1.md) #404; players reach IL7)
 
-1. #408 painted sky at Koke and the harbor: a fix builder grades Koke at
-   night (it was noon-lit) and saves the sky frames as PNG; one push left.
-2. Night character tone (Sonnet): one tone IL2 to IL10; harmony_check
-   nights use `--reference l10-night`.
-Merged: #405 feedback, #407 hours/weather, #406 Home nights, #409
-Çağlayan nights s0/s1; pofu-art #18, #23 to #27 (founder approved).
+1. #412 Home IL1 night (Sonnet): waits on CI and its 1:1 look.
+2. Fable 5.2: the route for the Codex pause (branch docs/route-codex-pause).
+Merged: #405, #407, #406, #409, #410 night tone, #408 painted sky at
+Koke and the harbor, #411 studio scripts; pofu-art #18, #23 to #27 (founder approved).
 
 ## Next steps, in order
 
@@ -50,7 +48,7 @@ Merged: #405 feedback, #407 hours/weather, #406 Home nights, #409
 | Desk | Where it stands | Waits on |
 |---|---|---|
 | Game | game-solid and feedback (#405) merged | follow-ups |
-| Look | Home and Çağlayan painted at every hour (IL1 night: PR 6) | #408 |
+| Look | Home, Çağlayan, Koke and the harbor under one painted sky | #412 |
 | Art factory | batches 76 to 81 merged; 0-h9, 0-h10 READY | "çalış" |
 | App | paused until after the demo | the demo |
 | Story | lines ship with game PRs; studio in use since 11-12 | |
