@@ -9,8 +9,8 @@ import PofuDesignSystem
 ///
 /// What is painted (`design/art/plates/caglayan/objects.json`, `docs/state/plates.yaml`): the
 /// day plate of every story stage (0 to 4), the night plates of stages 2 and 3, and the golden
-/// hour and rain plates of stage 4. Every other state keeps the sprite island, as Home's
-/// unpainted states do.
+/// hour and rain plates of stage 4. An unpainted light borrows another (`HomePlate.borrowed`);
+/// weather never replaces the painting.
 extension CaglayanLayout {
     /// Where the plate's island sits: the island's box, 212 units wide.
     public static var placement: HomePlate.Placement {
@@ -22,10 +22,9 @@ extension HomePlate {
     /// Çağlayan's plate data shipped in the package, if any.
     public static let caglayanIsland: PlateIsland? = PlateIsland.load("caglayan")
 
-    /// The painted state for Çağlayan's story stage, hour and weather, or `nil` for the sprite
-    /// island: the light of the hour (`lightBand`), clear skies (a rainbow's hour included: the
-    /// stage 4 painting has one) or rain by day and at golden hour, and only where that light is
-    /// painted at that stage.
+    /// The painted state for Çağlayan's story stage, hour and weather (`paintedState`): the hour's
+    /// light or what it borrows, a painted `rain` light in light rain by day and at golden hour,
+    /// `nil` only where none of those lights is painted at that stage.
     public static func caglayanState(
         in plate: PlateIsland,
         stage: Int,
@@ -33,19 +32,8 @@ extension HomePlate {
         weather: WeatherConditions,
         isBedtime: Bool
     ) -> (light: String, stage: Int)? {
-        guard let band = lightBand(hour: hour, isBedtime: isBedtime) else { return nil }
-        let light: String
-        switch weather.weather {
-        case .clear:
-            light = band
-        case .lightRain:
-            guard band != "night" else { return nil }
-            light = "rain"
-        case .overcast, .mist, .goldenHaze:
-            return nil
-        }
         let stage = min(max(stage, 0), CaglayanLayout.stages - 1)
-        return plate.paints(light: light, stage: stage) ? (light, stage) : nil
+        return paintedState(in: plate, stage: stage, hour: hour, weather: weather, isBedtime: isBedtime)
     }
 
     /// Çağlayan's plate for this world and look now, or `nil` for the sprite island.

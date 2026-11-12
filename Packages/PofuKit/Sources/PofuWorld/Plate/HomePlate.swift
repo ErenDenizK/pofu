@@ -13,11 +13,11 @@ import PofuDesignSystem
 /// bubble, the collect moment) works unchanged. Its scale makes the island
 /// `framing.homeWidths` screen widths wide at Home's scale.
 ///
-/// Home shows in clear weather: by day at island levels 2...10 (one painted
-/// plate per level), at golden hour and by night at level 10. Çağlayan
-/// (`CaglayanPlate.swift`) shows the states its data paints, by story stage. Every
-/// other hour, level, stage and weather keeps the sprite island until its painted states
-/// exist (ADR-0022 L1).
+/// Home shows at every hour and in every weather from island level 2 (one painted day plate per
+/// level); golden hour and night are painted at level 10 and borrow each other where unpainted
+/// (`borrowed`). Çağlayan (`CaglayanPlate.swift`) shows the states its data paints, by story
+/// stage. The sprite island shows only below a plate's lowest level or where none of the lights
+/// an hour may borrow is painted.
 public struct HomePlate: Hashable, Sendable {
     /// Where the plate sits in the world.
     public enum Placement: Hashable, Sendable {
@@ -75,30 +75,54 @@ public struct HomePlate: Hashable, Sendable {
 
     // MARK: - When it shows
 
-    /// The hour bands of the painted lights, local time, on the sky's own
-    /// schedule (`SkyModel.keyframes`: day 07:45-17:15, golden hour
-    /// 17:45-19:15, night from 20:45, each edge blending over 30 minutes):
-    /// the band a plate paints runs to the middle of the blend. Dawn and
-    /// dusk keep the sprite island until they are painted.
-    public static let dayHours: Range<Double> = 7.75..<17.5
-    public static let goldenHours: Range<Double> = 17.5..<19.5
-    /// Night: from 20:00 to 05:45 (`hour` wraps), and the bedtime window.
+    /// The hour bands, local time (D3 of docs/design/demo-one-world-v1.md): day from 06:00
+    /// (where bedtime ends, so "Morning" shows morning), golden from 17:30, night from 20:00
+    /// and at bedtime. Every hour has one light; there is no dawn or dusk gap.
+    public static let dayStarts = 6.0
+    public static let goldenStarts = 17.5
+    public static let nightStarts = 20.0
+
+    /// Night: from `nightStarts` to `dayStarts` (`hour` wraps).
     public static func isNightHour(_ hour: Double) -> Bool {
-        hour >= 20 || hour < 5.75
+        hour >= nightStarts || hour < dayStarts
     }
 
-    /// The painted light of an hour: `day`, `golden` or `night` (the bedtime window is night), or
-    /// `nil` at dawn and dusk, which keep the sprite island.
-    public static func lightBand(hour: Double, isBedtime: Bool) -> String? {
+    /// The light an hour wants: `night` at bedtime or a night hour, `day` before `goldenStarts`,
+    /// else `golden`.
+    public static func light(hour: Double, isBedtime: Bool) -> String {
         if isBedtime || isNightHour(hour) { return "night" }
-        if dayHours.contains(hour) { return "day" }
-        if goldenHours.contains(hour) { return "golden" }
-        return nil
+        return hour < goldenStarts ? "day" : "golden"
     }
 
-    /// The painted state for this level, hour and weather: the light and
-    /// the stage (day: one per island level; golden and night: level 10), or
-    /// `nil` for the sprite island.
+    /// What an unpainted light borrows, in order (D1, D4): golden hour borrows the night (lamps,
+    /// moon, lit doors) before the day; night borrows golden and never the day.
+    public static let borrowed: [String: [String]] = [
+        "day": ["day"],
+        "golden": ["golden", "night", "day"],
+        "night": ["night", "golden"],
+    ]
+
+    /// The painted state of a plate at a stage, hour and weather, or `nil` when none of the
+    /// lights the hour may borrow is painted at that stage. Weather never replaces the painting
+    /// (D2): light rain by day and at golden hour prefers a painted `rain` light, otherwise the
+    /// hour's painting shows (the code rain streaks draw over it); overcast, mist, golden haze
+    /// and the rainbow draw nothing over a plate.
+    public static func paintedState(
+        in plate: PlateIsland,
+        stage: Int,
+        hour: Double,
+        weather: WeatherConditions,
+        isBedtime: Bool
+    ) -> (light: String, stage: Int)? {
+        let light = light(hour: hour, isBedtime: isBedtime)
+        var wanted = borrowed[light] ?? [light]
+        if weather.weather.isRaining, light != "night" { wanted.insert("rain", at: 0) }
+        return wanted.first { plate.paints(light: $0, stage: stage) }.map { ($0, stage) }
+    }
+
+    /// The painted state for this level, hour and weather: the day stage of the level
+    /// (one plate per island level), with golden and night where the plate paints them at that
+    /// stage (`paintedState`), or `nil` below the plate's lowest level.
     public static func state(
         in plate: PlateIsland,
         islandLevel: Int,
@@ -106,13 +130,8 @@ public struct HomePlate: Hashable, Sendable {
         weather: WeatherConditions,
         isBedtime: Bool
     ) -> (light: String, stage: Int)? {
-        guard weather.weather == .clear, !weather.rainbow, let light = lightBand(hour: hour, isBedtime: isBedtime) else { return nil }
-        guard plate.lights.contains(light) else { return nil }
-        if light == "day" {
-            return plate.dayStage(islandLevel: islandLevel).map { (light, $0) }
-        }
-        // Golden and night are painted at the final level only.
-        return islandLevel >= (plate.stageLevels.max() ?? plate.minLevel) ? (light, 0) : nil
+        guard let stage = plate.dayStage(islandLevel: islandLevel) else { return nil }
+        return paintedState(in: plate, stage: stage, hour: hour, weather: weather, isBedtime: isBedtime)
     }
 
     /// The plate for this world and look now, or `nil` for the sprite
