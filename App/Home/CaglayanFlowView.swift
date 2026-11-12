@@ -4,8 +4,9 @@ import SwiftUI
 
 /// Çağlayan's flow round over Home, shown as a full-screen cover by
 /// `HomeView`: the stage's two boards, then "Done" advances the island one
-/// stage (`AppModel.finishCaglayanFlow`). Leaving mid-way keeps the round for
-/// this launch; nothing is lost and nothing expires.
+/// stage (`AppModel.finishCaglayanFlow`). Leaving mid-way keeps the round on the
+/// device (`AppModel.savedFlowRound`); nothing is lost and nothing expires.
+/// Once the island is healed the same view is free play and pays nothing.
 struct CaglayanFlowView: View {
     let model: AppModel
 

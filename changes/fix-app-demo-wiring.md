@@ -1,0 +1,1 @@
+Fixed: Çağlayan stays replayable after healing (free play, no payout, none at night), a half-played flow board survives relaunch, the Today sheet shows the jar's seeds, and the Prova panel shows the day and says when the island waits for a first reach.

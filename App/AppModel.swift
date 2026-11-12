@@ -62,10 +62,13 @@ final class AppModel {
     /// earned rounds that were on offer when it opened.
     var isPlayingGarden = false
     /// Çağlayan's flow round over Home: the stage it earns (1 to 4), and the
-    /// half-played round when the player left mid-way (kept for this launch).
+    /// half-played round when the player left mid-way. It is kept in
+    /// `UserDefaults` (one key per mode), so a relaunch resumes the board.
     var isPlayingFlow = false
     private(set) var flowStage = 1
-    var savedFlowRound: (stage: Int, round: FlowRound)?
+    var savedFlowRound: (stage: Int, round: FlowRound)? {
+        didSet { writeSavedFlowRound() }
+    }
     private(set) var gardenRounds = 0
     /// The island's camera, focus and station sheet
     /// (`FeatureFlags.islandHome`). Here rather than in the view, so Hop!
@@ -127,6 +130,7 @@ final class AppModel {
         self.ledgerFile = ledgerFile
         self.screenTimeLedger = ledgerFile?.read() ?? ScreenTimeLedger()
         self.tryOpenParentalControlsApp = UserDefaults.standard.bool(forKey: Self.openParentalControlsKey)
+        self.savedFlowRound = Self.readSavedFlowRound(forKey: Self.savedFlowRoundKey(isRehearsal: rehearsal != nil))
 
         var snapshot = PofuSnapshot()
         if let store {
@@ -377,21 +381,49 @@ final class AppModel {
         save()
     }
 
-    /// Opens Çağlayan's flow round for `stage` over Home. It only opens on a
-    /// day the island can advance (the scene checks; this guards it).
+    /// Opens Çağlayan's flow round over Home. On a day the island can
+    /// advance it plays `stage`; once healed it is free play (it pays
+    /// nothing), the boards cycling stage 1 to 4 by day. Never at night.
     func playCaglayanFlow(stage: Int) {
-        guard !isPlayingFlow, !isPlayingGarden, world.caglayan.canAdvance else { return }
-        flowStage = stage
+        guard !isPlayingFlow, !isPlayingGarden, !world.isBedtime else { return }
+        let caglayan = world.caglayan
+        if caglayan.isHealed {
+            flowStage = healedFlowStage()
+        } else if caglayan.canAdvance {
+            flowStage = stage
+        } else {
+            return
+        }
         isPlayingFlow = true
     }
 
-    /// The round was finished: the island advances one stage (earned by the
-    /// round, and only on a day with a resisted reach), then the scene
-    /// crossfades the next plate in and plays the beat line.
+    /// The healed island's board for today: days since the first day, mod 4.
+    private func healedFlowStage() -> Int {
+        guard let first = game.firstDay else { return 1 }
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = TimeZone(secondsFromGMT: 0) ?? .gmt
+        let start = calendar.date(from: DateComponents(year: first.year, month: first.month, day: first.day, hour: 12))
+        let end = calendar.date(from: DateComponents(year: today.year, month: today.month, day: today.day, hour: 12))
+        guard let start, let end else { return 1 }
+        let days = calendar.dateComponents([.day], from: start, to: end).day ?? 0
+        return ((days % 4) + 4) % 4 + 1
+    }
+
+    /// The round was finished. Before healing, the island advances one
+    /// stage (earned by the round, and only on a day with a resisted reach),
+    /// then the scene crossfades the next plate in and plays the beat line.
+    /// After healing nothing is applied: the scene only plays the swell.
     func finishCaglayanFlow() {
         isPlayingFlow = false
         savedFlowRound = nil
         let before = world.caglayan.stage
+        if before >= WonderIslands.healedStage {
+            Task { @MainActor in
+                try? await Task.sleep(for: .milliseconds(450))
+                island.caglayan.roundFinished(newStage: WonderIslands.healedStage, in: island)
+            }
+            return
+        }
         applyVisitorEvent(.tendedWonder(.caglayan))
         let after = world.caglayan.stage
         guard after > before else { return }
@@ -400,6 +432,42 @@ final class AppModel {
             try? await Task.sleep(for: .milliseconds(450))
             island.caglayan.roundFinished(newStage: after, in: island)
         }
+    }
+
+    // MARK: - Saved flow round
+
+    private struct SavedFlowRound: Codable {
+        var stage: Int
+        var round: FlowRound
+    }
+
+    private static func savedFlowRoundKey(isRehearsal: Bool) -> String {
+        isRehearsal ? "flow.savedRound.rehearsal" : "flow.savedRound.live"
+    }
+
+    /// A saved round, or `nil` (the key is removed) when it cannot be read
+    /// or holds no boards.
+    private static func readSavedFlowRound(forKey key: String) -> (stage: Int, round: FlowRound)? {
+        guard let data = UserDefaults.standard.data(forKey: key) else { return nil }
+        guard let saved = try? JSONDecoder().decode(SavedFlowRound.self, from: data),
+              !saved.round.boards.isEmpty,
+              saved.round.boards.indices.contains(saved.round.index)
+        else {
+            UserDefaults.standard.removeObject(forKey: key)
+            return nil
+        }
+        return (saved.stage, saved.round)
+    }
+
+    private func writeSavedFlowRound() {
+        let key = Self.savedFlowRoundKey(isRehearsal: rehearsal != nil)
+        guard let savedFlowRound,
+              let data = try? JSONEncoder().encode(SavedFlowRound(stage: savedFlowRound.stage, round: savedFlowRound.round))
+        else {
+            UserDefaults.standard.removeObject(forKey: key)
+            return
+        }
+        UserDefaults.standard.set(data, forKey: key)
     }
 
     /// Island-game rounds playable now: earned, within today's cap, none
@@ -1184,6 +1252,7 @@ final class AppModel {
         state.vitality = VitalityLedger(initialVitality: economy.configuration.vitality.initialVitality)
         profile = fresh.profile
         game = GameState()
+        savedFlowRound = nil
         gameClock.start(&game, at: now, lastSignal: nil)
         screenTimeLedger = ScreenTimeLedger()
         saveScreenTimeLedger()
