@@ -572,9 +572,9 @@ private struct SceneFrame<Bubble: View>: View {
         // hour, the plate's night light at night.
         // On the Map and in a flight the sprites take the map sky's light the same way; Home's own stops
         // keep theirs.
-        let paintedSky = skyFade >= 0.5
-            ? skies.max { $0.fade < $1.fade }?.plate
-            : model.island == .home && plateFade >= 0.5 ? nil : mapSky
+        let stopSky: HomePlate? = skyFade >= 0.5 ? skies.max { $0.fade < $1.fade }?.plate : nil
+        let homeOwnLight = model.island == .home && plateFade >= 0.5
+        let paintedSky: HomePlate? = stopSky ?? (homeOwnLight ? nil : mapSky)
         let paintedGrade = paintedSky.map { PaintedSky.islandGrade($0) } ?? WorldGrade.neutral
         let paintedTint = Color(red: min(paintedGrade.gain.r, 1), green: min(paintedGrade.gain.g, 1), blue: min(paintedGrade.gain.b, 1))
         let tint = look.grade && WorldShaders.isAvailable ? Color.white : paintedSky != nil ? paintedTint : palette.grade.color

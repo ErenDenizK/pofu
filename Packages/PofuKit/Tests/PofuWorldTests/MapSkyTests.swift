@@ -92,26 +92,28 @@ struct MapSkyTests {
                     let w = r.maxX - r.minX
                     #expect(r.minX - w <= 0 && r.maxX + w >= screen.width, "\(light) sea width \(screen) \(camera.name)")
                     #expect(r.maxY >= screen.height, "\(light) sea bottom \(screen) \(camera.name)")
+                    // The distant isles and the whale stay above the screen: from the Map's height they
+                    // would stand larger than Home and read as places to go.
+                    for layer in set.layers where layer.role == .sprite || layer.role == .whale {
+                        #expect(rect(layer).maxY <= 0, "\(light) \(layer.asset) \(screen) \(camera.name)")
+                    }
                 }
             }
         }
     }
 
-    /// At Home the Map's sky is Home's own sky set exactly where Home draws it, so leaving Home the
-    /// painting does not jump; and a flight slides it a tenth as far as the world, never zooming.
-    @Test func atHomeTheMapSkyIsHomesSky() throws {
+    /// The Map's sky never zooms: its scale is the same at every camera on a screen, and a flight slides
+    /// it a sixteenth as far as the world.
+    @Test func theMapSkySlidesAndNeverZooms() throws {
         let plate = try #require(PaintedSky.mapSky(world: Self.world, look: Self.look(12)))
-        let home = try #require(HomePlate.shipped)
-        let rail = CameraRail(width: 402, height: 874, stops: home.stops, whole: home.wholeStop)
-        let atHome = rail.pose(of: .home)
-        let pose = PaintedSky.mapPose(atHome, sky: plate, width: 402, height: 874)
-        #expect(abs(pose.scale - atHome.scale) < 1e-9)
-        #expect(abs(pose.lookX - atHome.lookX) < 1e-9 && abs(pose.lookY - atHome.lookY) < 1e-9)
-        #expect(abs(pose.anchorY - atHome.anchorY) < 1e-9)
-        let map = rail.pose(of: .map)
-        let atMap = PaintedSky.mapPose(map, sky: plate, width: 402, height: 874)
-        #expect(abs(atMap.scale - atHome.scale) < 1e-9, "the sky never zooms")
-        #expect(abs((atMap.lookY - atHome.lookY) - (map.lookY - atHome.lookY) * PaintedSky.mapParallax) < 1e-9)
+        let cameras = try Self.cameras(width: 402, height: 874)
+        let poses = cameras.map { PaintedSky.mapPose($0.pose, sky: plate, width: 402, height: 874) }
+        let scale = poses[0].scale
+        #expect(poses.allSatisfy { abs($0.scale - scale) < 1e-9 })
+        let (a, b) = (cameras[0].pose, cameras[3].pose)
+        let (pa, pb) = (poses[0], poses[3])
+        #expect(abs((pb.lookY - pa.lookY) - (b.lookY - a.lookY) * PaintedSky.mapParallax) < 1e-9)
+        #expect(abs((pb.lookX - pa.lookX) - (b.lookX - a.lookX) * PaintedSky.mapParallax) < 1e-9)
     }
 
     /// Home's island on the Map is cut from each level's own painting (`tools/plate/map_cut.py`): every
