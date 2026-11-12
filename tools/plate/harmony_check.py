@@ -250,7 +250,8 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--overlay", help="write each frame with the measured regions drawn to this folder")
     ap.add_argument("--island", default="home", help="the plate island the frames show (Resources/Plates/plate-<island>.json)")
     ap.add_argument("--reference", help="a substring of the frame that is the island's own root (Çağlayan: -s4-day): "
-                    "its (dL*, dC*) is the band's anchor instead of Home's calibrated REF, and golden hue follows it")
+                    "its (dL*, dC*) is the band's anchor instead of Home's calibrated REF, and golden hue follows it "
+                    "(Home's night frames default to `l10-night` when it is among the frames; `--reference l10-night` for all)")
     ap.add_argument("--plate-json")
     args = ap.parse_args(argv)
     data = json.loads(Path(args.plate_json or PLATES / f"plate-{args.island}.json").read_text())
@@ -266,8 +267,12 @@ def main(argv: list[str] | None = None) -> int:
     anchor = args.reference or ("l10-day" if args.island == "home" else None)
     day = next((r for s, r in results.items() if anchor and anchor in s), None)
     ref = {n: (r["dL"], r["dC"]) for n, r in day.items()} if day is not None and args.reference else None
+    # Home's nights are measured against the level-10 night frame's own differences (a night lawn is
+    # nearly grey and the day's calibration cannot hold it): `l10-night`, when it is among the frames.
+    night = next((r for s, r in results.items() if "l10-night" in s), None) if args.island == "home" and not args.reference else None
+    night_ref = {n: (r["dL"], r["dC"]) for n, r in night.items()} if night is not None else None
     for stem, r in results.items():
-        band = in_band(r, ref)
+        band = in_band(r, night_ref if "night" in stem and night_ref else ref)
         rep = {"characters": r, "inBand": band}
         ok &= all(band.values())
         if "night" in stem:

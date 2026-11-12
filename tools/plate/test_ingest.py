@@ -399,9 +399,32 @@ class HarmonyTests(unittest.TestCase):
         lawns = {"d.png": self._plate([0.4, 0.7, 0.3]), "n.png": self._plate([0.45, 0.6, 0.45])}
         with mock.patch.object(ingest, "load_rgb", side_effect=lambda path: lawns[Path(path).name]):
             plain = ingest.harmony_all(hand, {})["night"][0]["scale"]["mochi"]
-            hand["characterLight"] = {"scaleTrim": {"night:0": {"mochi": 0.5}}}
-            trimmed = ingest.harmony_all(hand, {})["night"][0]["scale"]
-        self.assertAlmostEqual(trimmed["mochi"], round(plain * 0.5, 3), places=3)
+            hand["characterLight"] = {"scaleTrim": {"night:0": {"mochi": 0.5}}, "saturationTrim": {"night:0": 0.8}}
+            trimmed = ingest.harmony_all(hand, {})["night"][0]
+            untrimmed = ingest.harmony_all({**hand, "characterLight": {}}, {})["night"][0]
+        self.assertAlmostEqual(trimmed["scale"]["mochi"], round(plain * 0.5, 3), places=3)
+        self.assertEqual(trimmed["saturation"], 0.8)
+        self.assertNotIn("saturation", untrimmed)
+
+    def test_cast_from_gives_every_state_of_a_light_the_root_states_colour_at_its_own_lightness(self):
+        import unittest.mock as mock
+
+        hand = {**self._hand(), "lamps": [[20, 80], [80, 80]],
+                "plates": {"day": {"0": "d.png"}, "night": {"0": "n0.png", "1": "n1.png"}}}
+        lawns = {"d.png": self._plate([0.4, 0.7, 0.3]), "n0.png": self._plate([0.32, 0.4, 0.5]),
+                 "n1.png": self._plate([0.36, 0.30, 0.12])}  # darker, and a warm cast where the root's is blue
+
+        def tints(hand):
+            with mock.patch.object(ingest, "load_rgb", side_effect=lambda path: lawns[Path(path).name]):
+                return ingest.harmony_all(hand, {})["night"]
+
+        own = tints(hand)
+        shared = tints({**hand, "characterLight": {"castFrom": {"night": 0}}})
+        self.assertEqual(shared[0]["tint"], own[0]["tint"])  # the root is itself
+        self.assertGreater(own[1]["tint"][0], own[1]["tint"][2])  # its own cast is warm ...
+        self.assertGreater(shared[1]["tint"][2], shared[1]["tint"][0])  # ... the shared one is the root's blue
+        self.assertEqual(shared[1]["key"], shared[0]["key"])
+        self.assertLess(sum(shared[1]["tint"]), sum(shared[0]["tint"]))  # at its own, darker, lightness
 
     def test_at_night_a_sprites_top_stays_under_the_brightest_stone_around_it(self):
         hand = self._hand()

@@ -124,6 +124,24 @@ class Measure(unittest.TestCase):
         self.assertFalse(hc.in_band({"damla": {"dL": -14.0, "dC": -5.0}}, ref)["damla"])
         self.assertFalse(hc.in_band({"damla": {"dL": -3.0, "dC": 12.0}}, ref)["damla"])
 
+    def test_homes_nights_default_to_the_level_10_night_frame_as_their_anchor(self):
+        import contextlib
+        import io
+        import tempfile
+
+        from PIL import Image
+
+        grey = frame(0.5, 0.46)
+        with tempfile.TemporaryDirectory() as tmp:
+            paths = []
+            for name in ("home-plate-full-l10-night", "home-plate-full-l3-night"):
+                path = Path(tmp) / f"{name}.png"
+                Image.fromarray(np.uint8(grey * 255 + 0.5)).save(path)
+                paths.append(str(path))
+            with contextlib.redirect_stdout(io.StringIO()):
+                self.assertEqual(hc.main(paths), 0)  # against the day's REF (dC* -38) a grey night would fail
+                self.assertEqual(hc.main(paths + ["--reference", "l10-night"]), 0)
+
     def test_the_story_stage_is_read_from_a_frames_name(self):
         self.assertEqual(hc.stage_of("caglayan-plate-full-s4-golden"), 4)
         self.assertEqual(hc.stage_of("caglayan-plate-full-s0-day"), 0)

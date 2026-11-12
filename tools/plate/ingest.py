@@ -642,7 +642,19 @@ def lstar_to_srgb(lstar: float) -> float:
     return float(linear_to_srgb(np.array(y)))
 
 
-def harmony_state(rgb: np.ndarray, hand: dict, ref: dict | None, light: str = "day", stage: int = 0) -> dict:
+def lawn_ratio(rgb: np.ndarray, hand: dict, ref: dict) -> np.ndarray:
+    """A plate's lawn light over the reference's, per channel (linear), clipped to 0.25...1: the
+    tint before its cast is set (`harmony_state`)."""
+    walk = poly_mask(rgb.shape[:2], pct_to_px(hand["walkable"]))
+    s = lawn_samples(rgb, walk, list(pct_to_px_pts(hand)), hand["pofuWidth"] * SIZE[0] / 100 * 0.9)
+    return np.clip(np.sqrt(s["ambient"] * s["contact"]) / np.maximum(ref["_a"], 1e-4), 0.25, 1.0)
+
+
+LUMA = np.array([0.2126, 0.7152, 0.0722])
+
+
+def harmony_state(rgb: np.ndarray, hand: dict, ref: dict | None, light: str = "day", stage: int = 0,
+                  cast_from: dict | None = None) -> dict:
     """The character harmony rule (docs/design/visual-system.md "Characters"): per state one
     ambient multiply tint, one contact-shadow strength and the key light, read from the plate.
 
@@ -668,12 +680,17 @@ def harmony_state(rgb: np.ndarray, hand: dict, ref: dict | None, light: str = "d
     chroma = lawn_chroma(rgb, walk)
     if ref is None:
         return {"tint": [1.0, 1.0, 1.0], "contact": 1.0, "bounce": cl["bounce"], "_a": a, "_depth": s["depth"], "_chroma": chroma}
-    y = np.array([0.2126, 0.7152, 0.0722])
     ratio = np.clip(a / np.maximum(ref["_a"], 1e-4), 0.25, 1.0)
-    luma = float(ratio @ y)
+    luma = float(ratio @ LUMA)
     cast = TINT_CAST.get(light, 0.5)
     # The lawn's light sets the lightness in full and the colour cast by TINT_CAST.
     ratio = np.clip(luma + (ratio - luma) * cast, 0.25, 1.0)
+    if cast_from is not None:
+        # One cast for the whole light (`characterLight.castFrom`): the lightness is this plate's
+        # own (a lawn's cast moves from level to level; the characters' colour must not), the
+        # colour is the root state's, `castOwn` of this plate's kept; the key light's colour too.
+        own = cl.get("castOwn", 0.0)
+        ratio = np.clip(luma * (cast_from["tint"] + (ratio / luma - cast_from["tint"]) * own), 0.25, 1.0)
     tint = linear_to_srgb(ratio)
     scales: dict[str, float] = {}
     margins = {**STONE_MARGIN, **cl.get("stoneMargin", {})}
@@ -696,7 +713,7 @@ def harmony_state(rgb: np.ndarray, hand: dict, ref: dict | None, light: str = "d
             out["saturation"] = round(sat, 3)
     rim = cl["rim"].get(light, 0.0)
     if rim > 0:
-        out["key"] = key_colour(rgb, hand, walk, light)
+        out["key"] = cast_from["key"] if cast_from is not None else key_colour(rgb, hand, walk, light)
         out["rim"] = rim
         out["fill"] = cl["fill"].get(light, 0.0)
     pool = cl["pool"].get(light, 0.0)
@@ -739,6 +756,22 @@ def painted_stages(hand: dict) -> dict:
     return {l: sorted(int(s) for s in st) for l, st in sorted(hand["plates"].items())}
 
 
+def cast_roots(hand: dict, ref: dict) -> dict:
+    """`characterLight.castFrom` `{light: stage}`: per light the root state whose tint colour (its
+    lawn ratio over the reference's, at the luma of 1) and key colour every state of the light
+    keeps, so that a character's colour does not change from one level's night to the next (the
+    lamps' glow is read from a plate where they are not lit, too: a blue, unlit one)."""
+    out = {}
+    for light, stage in hand.get("characterLight", {}).get("castFrom", {}).items():
+        rgb = load_rgb(REPO / hand["plates"][light][str(stage)])
+        r = lawn_ratio(rgb, hand, ref)
+        luma = float(r @ LUMA)
+        r = np.clip(luma + (r - luma) * TINT_CAST.get(light, 0.5), 0.25, 1.0)
+        walk = poly_mask(rgb.shape[:2], pct_to_px(hand["walkable"]))
+        out[light] = {"tint": r / float(r @ LUMA), "key": key_colour(rgb, hand, walk, light)}
+    return out
+
+
 def harmony_all(hand: dict, mattes: dict) -> dict:
     """`{light: [{tint, contact}, ...]}` per painted state, against the reference plate's lawn
     (`referenceState` in the hand data, else the first plate: the island's picked root), by stage."""
@@ -747,15 +780,21 @@ def harmony_all(hand: dict, mattes: dict) -> dict:
         light, stage = hand["referenceState"]
         ref = harmony_state(load_rgb(REPO / hand["plates"][light][str(stage)]), hand, None, light)
     out: dict[str, dict[int, dict]] = {}
+    casts = None
     for light, stage, path in plates(hand):
-        h = harmony_state(load_rgb(path), hand, ref, light, stage)
+        if ref is not None and casts is None:  # the island's root state is the first plate: its lawn is `ref`
+            casts = cast_roots(hand, ref)
+        h = harmony_state(load_rgb(path), hand, ref, light, stage, (casts or {}).get(light))
         if ref is None:
             ref = h
         h = {k: v for k, v in h.items() if not k.startswith("_")}
         # A trim measured in the app frame (`harmony_check.py`) where the plate's own stone reading
-        # and the frame's ring disagree: `characterLight.scaleTrim["<light>:<stage>"][<character>]`.
-        for name, trim in hand.get("characterLight", {}).get("scaleTrim", {}).get(f"{light}:{stage}", {}).items():
+        # and the frame's ring disagree: `characterLight.scaleTrim["<light>:<stage>"][<character>]` and `characterLight.saturationTrim["<light>:<stage>"]`.
+        trims = hand.get("characterLight", {})
+        for name, trim in trims.get("scaleTrim", {}).get(f"{light}:{stage}", {}).items():
             h["scale"][name] = round(h["scale"][name] * trim, 3)
+        if f"{light}:{stage}" in trims.get("saturationTrim", {}):
+            h["saturation"] = round(h.get("saturation", 1.0) * trims["saturationTrim"][f"{light}:{stage}"], 3)
         out.setdefault(light, {})[stage] = h
     return {l: [st.get(i, dict(UNPAINTED_HARMONY)) for i in range(stage_count(hand, l))] for l, st in out.items()}
 
