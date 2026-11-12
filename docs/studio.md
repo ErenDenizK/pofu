@@ -341,8 +341,8 @@ of the art line has been the lead's review, not the painting.
   critic looks; you look once.
 - **Pulse:** when you start or resume, read the open PRs in `pofu-art`
   and when each was last pushed; the first line of each PR body is its
-  pulse line. The founder starts Codex by hand. How the line is restarted
-  after this reorganisation is future work and is not designed here.
+  pulse line. The founder starts Codex by hand with one word, "çalış";
+  `QUEUE.md` ("How to work it") carries the whole loop (pofu-art #26).
 - **A new method starts with a pilot of two to five jobs** judged in the
   app. More than twenty jobs on a new method is a premise gate.
 - Briefs and rows for Codex never say stop, wait or ask. They give an
