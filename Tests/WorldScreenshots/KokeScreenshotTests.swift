@@ -7,8 +7,8 @@ import XCTest
 /// Koke, the first wonder island (docs/design/koke-prototype.md), with the
 /// code placeholders the Codex art will replace by name:
 ///
-/// - `koke-rumour-harbor`: the snoring hump on the harbor's far sky, with
-///   Pofu's line;
+/// - `koke-rumour-harbor`: the harbor stop under Home's painted sky (the code
+///   hump on the far sky is gone with the code sky), with Pofu's line;
 /// - `koke-stage-0` to `koke-stage-4`: the island at the same camera, the
 ///   colour coming back (`koke-stages` lays them side by side);
 /// - `koke-beat-3`: the stage 3 beat, Mochi reading the carved stone;

@@ -144,6 +144,9 @@ struct KokeIsleView: View {
     /// Reduce Motion, the Map). Unused while the plates carry Koke; kept for
     /// a close-up sprite moment.
     var bounceTime: Double?
+    /// Whether stages 0 to 2 get their code fog, fog card and light shaft (`KokeStageLook`). Off under
+    /// Home's painted sky, where the code horizon's colour and a hard-edged shaft do not belong.
+    var stageLight = true
     /// The sky's horizon colour: the depth fog's (sky and weather v1 §2.4).
     @Environment(\.worldHorizon) private var horizon
 
@@ -162,7 +165,7 @@ struct KokeIsleView: View {
             plate(stage: s, green: g)
                 .modifier(KokeShadeGrade(look: look, plate: AnyView(plate(stage: s, green: g))))
                 .overlay {
-                    if look.fog > 0.005 {
+                    if stageLight, look.fog > 0.005 {
                         FogModel.colour(horizon: horizon).color
                             .opacity(look.fog)
                             .mask { plate(stage: s, green: g) }
@@ -181,7 +184,7 @@ struct KokeIsleView: View {
             if !KokeArt.has(KokeLayout.plateArt(stage: s)) {
                 Canvas { context, _ in Self.drawKoke(&context, stage: s, green: g) }
             }
-            if look.isActive {
+            if look.isActive, stageLight {
                 KokeStageLight(look: look, horizon: horizon, origin: Self.origin)
             }
             Canvas { context, _ in
