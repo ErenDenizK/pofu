@@ -543,7 +543,7 @@ private struct LookScene: View {
         // The scene carries the one place control itself (PlaceControl).
         IslandScene(world: world, model: model, home: home) {
             SpeechBubble {
-                Text(verbatim: "Sen yokken bahçe 12 çekirdek topladı.")
+                Text(verbatim: "Sen yokken ada 12 çekirdek topladı.")
             }
         }
         .environment(\.worldStillFrame, still)

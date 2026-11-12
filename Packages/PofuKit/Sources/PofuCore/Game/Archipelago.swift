@@ -211,6 +211,11 @@ public struct IslandLevelRequirement: Hashable, Sendable {
         self.tendedDaysLeft = tendedDaysLeft
         self.levelsLeft = levelsLeft
     }
+
+    /// Nothing is left: the level is reached, so there is no goal to
+    /// show. The real game never reports one (the level would have risen);
+    /// a sample that pins a lower level for its look can.
+    public var isMet: Bool { tendedDaysLeft == 0 && levelsLeft == 0 }
 }
 
 public struct IslandSpec: Hashable, Sendable, Codable, Identifiable {
