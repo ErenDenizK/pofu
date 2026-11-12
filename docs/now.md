@@ -43,7 +43,6 @@ Merged: #405 feedback, #407 hours/weather, #406 Home nights, #409
    Çağlayan nights: empty top 40%, flat lavender band below (all stages).
    #405: a met goal says nothing; solve caption far; check badge clashes.
 7. Record the Rehearsal path once one world lands (CI `beats` label).
-Swift on Linux: /opt/swift, from download.swift.org (Docker Hub gives 429).
 
 ## Desks
 
