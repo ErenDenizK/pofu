@@ -370,9 +370,9 @@ struct DemoRunTests {
         }
     }
 
-    // MARK: - Spec checks that wait for PR 2 (island arrival and sleep)
+    // MARK: - Island arrival without Koke and the islands asleep (PR 2)
 
-    @Test(.disabled("needs PR 2"))
+    @Test
     func caglayanComesAtTendedDayTwelveWhenKokeIsIgnored() throws {
         // D4: Koke is never tapped, a reach is resisted every day.
         let outcome = GameScenarioTests.play(
@@ -386,7 +386,7 @@ struct DemoRunTests {
         #expect(log.allSatisfy { $0.kokeStage == 0 }, "Koke moved although nobody tapped it")
     }
 
-    @Test(.disabled("needs PR 2"))
+    @Test
     func theIslandsSleepAtBedtime() {
         // D7: a tap on a wonder island at night changes nothing.
         let run = Self.tester(days: 7) { _ in 1 }
@@ -399,6 +399,8 @@ struct DemoRunTests {
         world.advance(to: night)
         #expect(world.clock.isBedtime(night))
         let before = world.state.wonders
+        #expect(world.snapshot.koke.isAsleep)
+        #expect(world.snapshot.caglayan.isAsleep)
         #expect(!world.snapshot.koke.canAdvance)
         #expect(!world.snapshot.caglayan.canAdvance)
         world.advance(to: night, GameEvent(at: night, kind: .tendedWonder(.koke)), GameEvent(at: night, kind: .tendedWonder(.caglayan)))
