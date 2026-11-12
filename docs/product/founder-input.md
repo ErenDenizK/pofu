@@ -690,3 +690,7 @@ Result of the night items (b): home now draws its painted plate at level 10 day,
 
 1. Codex chats drop and new ones will not load; asks for a status report. Handled: status given; the likely cause is the main repo's size (713 MB checkout, 2.7 GB history, 538 MB of art).
 2. The founder created pofu-art and left the technical side to the lead. Handled: ADR-0026; the factory moved to pofu-art with sync and ingest scripts; a new Codex start message.
+3. Paste a long start command? Model and effort for Codex? Handled: one line is enough ("read AGENTS.md and QUEUE.md, work the queue"), since AGENTS.md carries the rules and setup; the strongest general Codex model at medium effort (effort does not change the image model).
+4. Run setup.sh for him. Handled: the lead cannot reach Codex settings; AGENTS.md already makes Codex run it, so the setup box can stay empty.
+5. Codex's first-run report (CLI 401, pytest vs -I, tool defects), and a supervisor/worker multi-agent setup. Handled: generation always used the chat's built-in image tool, so the 401 is not a blocker (pofu-art #3: venv setup, tool-fix list, plates.yaml, sub-agents on a lighter model reviewed by the main chat); blocker-only PR #1 closed.
+6. Status report asked. Handled: the moved queue still showed delivered batches as READY, so Codex began redoing batch-74; pofu-art #4 marks them done (only batch-76 READY) and #2 was closed.
