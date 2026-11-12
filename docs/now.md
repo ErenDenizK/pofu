@@ -19,12 +19,11 @@ TestFlight before the membership. The app side follows the demo.
 
 - The demo is ONE painted world on days 1 to 21 (a critic ranked the
   sprite/plate switch the path's most visible defect).
-- Rain streaks are drawn in code, never baked into a master (ADR-0025).
+- Rain streaks are drawn in code, never baked in a master (ADR-0025).
 
 ## In flight (agents of this session)
 
-Spec: [demo-one-world-v1](design/demo-one-world-v1.md) (#404), defaults
-D1 to D11 accepted. Demo players reach IL7 at most (DemoRunTests).
+[Spec](design/demo-one-world-v1.md) #404, D1-D11 accepted; players reach IL7.
 1. PR 1 `feat/plate-every-hour` (Sonnet; self-merge on green).
 2. PR 2 `feat/home-nights` (Sonnet high; the lead merges after its look).
 3. `fix/rehearsal-action-feedback` (Opus): greeting, gifts, board solve,
@@ -44,7 +43,7 @@ D1 to D11 accepted. Demo players reach IL7 at most (DemoRunTests).
 5. Ingest the batch-77 flow pieces (bend: narrow east mouth; frame:
    9-slice caps of 240 at 1024).
 6. Record the Rehearsal path once one world lands (CI `beats` label).
-   Swift on Linux: /opt/swift from download.swift.org (Docker Hub 429).
+Swift on Linux: /opt/swift, from download.swift.org (Docker Hub gives 429).
 ## Desks
 
 | Desk | Where it stands | Waits on |
@@ -57,6 +56,5 @@ D1 to D11 accepted. Demo players reach IL7 at most (DemoRunTests).
 
 ## Open with the founder (no question pending)
 
-- How device testing is run; which means keep the lead's context lean;
-  restarting the art line (he runs Codex by hand).
+- Device testing; keeping the lead lean; restarting Codex by hand.
 - Known stale: roadmap.md (11-07), tracker.md thread statuses.
