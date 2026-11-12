@@ -45,6 +45,10 @@ public struct FlowRound: Hashable, Sendable, Codable {
     /// is the current one and it is solved.
     public var isComplete: Bool { isLastBoard && isBoardSolved }
 
+    /// Boards solved so far, the current one included once it is solved:
+    /// what the HUD's pips fill.
+    public var boardsSolved: Int { index + (isBoardSolved ? 1 : 0) }
+
     public var targetsWet: Int { board.targets.filter(wet.contains).count }
     public var targetCount: Int { board.targets.count }
 

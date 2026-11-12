@@ -167,7 +167,7 @@ public struct FlowGameView: View {
             HStack(spacing: 4) {
                 ForEach(0..<total, id: \.self) { index in
                     Circle()
-                        .fill(index < model.boardNumber - 1 ? GardenInk.ink.opacity(0.75) : .clear)
+                        .fill(index < model.boardsSolved ? GardenInk.ink.opacity(0.75) : .clear)
                         .overlay {
                             Circle().strokeBorder(GardenInk.ink.opacity(index == model.boardNumber - 1 ? 0.9 : 0.35), lineWidth: index == model.boardNumber - 1 ? 2 : 1.2)
                         }
@@ -186,9 +186,11 @@ public struct FlowGameView: View {
 
     private var targetsPlate: some View {
         HStack(spacing: 6) {
-            Image(systemName: "drop.fill")
+            // The drop turns into a check once every target is wet.
+            Image(systemName: model.isBoardSolved ? "checkmark.circle.fill" : "drop.fill")
                 .font(.system(size: 15, weight: .bold))
                 .foregroundStyle(Color(red: 0.25, green: 0.58, blue: 0.86))
+                .contentTransition(.symbolEffect(.replace))
             Text(verbatim: "\(model.targetsWet)/\(model.targetCount)")
                 .font(.system(size: 17, weight: .heavy, design: .rounded))
                 .monospacedDigit()
@@ -225,14 +227,11 @@ public struct FlowGameView: View {
                 HStack(alignment: .center) {
                     roundButton(symbol: "arrow.uturn.backward", label: FlowStrings.undo, enabled: model.canUndo) { model.undo() }
                     Spacer(minLength: 8)
-                    if model.hint != nil {
-                        Text(verbatim: FlowStrings.hintCaption(helper: model.helperName))
-                            .font(.system(size: 14, weight: .bold, design: .rounded))
-                            .foregroundStyle(GardenInk.ink)
-                            .padding(.horizontal, 12)
-                            .padding(.vertical, 6)
-                            .background(PaperSurface(shape: Capsule(style: .continuous), stitchInset: 3))
-                            .transition(.opacity)
+                    if model.phase == .pouring {
+                        // The solve, said once and small while the water pours.
+                        caption(model.round.isLastBoard ? FlowStrings.doneTitle : FlowStrings.boardDone)
+                    } else if model.hint != nil {
+                        caption(FlowStrings.hintCaption(helper: model.helperName))
                     }
                     Spacer(minLength: 8)
                     roundButton(symbol: "lightbulb.fill", label: FlowStrings.hint, enabled: model.phase == .playing) { model.requestHint() }
@@ -241,6 +240,16 @@ public struct FlowGameView: View {
                 .frame(height: FlowLayout.controlsHeight)
             }
         }
+    }
+
+    private func caption(_ text: String) -> some View {
+        Text(verbatim: text)
+            .font(.system(size: 14, weight: .bold, design: .rounded))
+            .foregroundStyle(GardenInk.ink)
+            .padding(.horizontal, 12)
+            .padding(.vertical, 6)
+            .background(PaperSurface(shape: Capsule(style: .continuous), stitchInset: 3))
+            .transition(.opacity)
     }
 
     private func roundButton(symbol: String, label: String, enabled: Bool, action: @escaping () -> Void) -> some View {

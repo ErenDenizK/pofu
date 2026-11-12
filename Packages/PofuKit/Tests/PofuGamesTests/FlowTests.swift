@@ -273,6 +273,53 @@ struct FlowTests {
         }
     }
 
+    /// The HUD's pips count the board just solved at once, not only after
+    /// the next board slides in (rehearsal feedback).
+    @Test func theSolvedCountIncludesTheBoardJustSolved() throws {
+        var round = try firstRound()
+        #expect(round.boardsSolved == 0)
+        while !round.isBoardSolved {
+            round.tap(at: try #require(round.hint).cell)
+        }
+        #expect(round.boardsSolved == 1)
+        round.advance()
+        #expect(round.boardsSolved == 1)
+        while !round.isBoardSolved {
+            round.tap(at: try #require(round.hint).cell)
+        }
+        #expect(round.boardsSolved == round.boardCount)
+    }
+
+    /// The HUD's drop counter: each board counts its own targets, the
+    /// pool's mouths and the wheels (stage 3's wheel board has one of each,
+    /// stage 4's last board two mouths and a wheel).
+    @Test func theTargetCountIsTheBoardsMouthsAndWheels() throws {
+        let stage3 = try #require(FlowLibrary.boards(island: FlowLibrary.caglayan, stage: 3).last?.board)
+        let stage4 = try #require(FlowLibrary.boards(island: FlowLibrary.caglayan, stage: 4).last?.board)
+        #expect(stage3.targets.count == 2)
+        #expect(stage4.targets.count == 3)
+    }
+
+    /// Every shipped board, pool rim included, keeps the 16 pt side gutter
+    /// on the smallest and the largest supported phones.
+    @Test func everyBoardKeepsTheSideGutter() throws {
+        for width in [375.0, 402.0, 440.0] {
+            for record in FlowLibrary.records {
+                let board = try #require(record.board)
+                let layout = FlowLayout(
+                    size: CGSize(width: width, height: 874), safeTop: 62, safeBottom: 34,
+                    columns: board.columns, rows: board.rows
+                )
+                let outer = [layout.pool, layout.lip, layout.board.insetBy(dx: -6, dy: -6)]
+                for rect in outer {
+                    #expect(rect.minX - 1.5 >= FlowLayout.gutter, "\(record.id) at \(width): \(rect.minX)")
+                    #expect(width - rect.maxX - 1.5 >= FlowLayout.gutter, "\(record.id) at \(width): \(rect.maxX)")
+                }
+                #expect(layout.cell >= FlowLayout.minCell)
+            }
+        }
+    }
+
     @Test func aRoundSurvivesCodable() throws {
         var round = try firstRound()
         round.tap(at: FlowCell(row: 1, column: 0))
