@@ -26,8 +26,10 @@ public enum CaglayanLineKind: Hashable, Sendable {
     case stage(Int)
     /// Seen from the harbor: the water noise stopped somewhere.
     case rumour
-    /// A tap on a day that cannot advance: the water waits for a quiet day.
+    /// A tap on a day that cannot advance: skip one reach today, then come back.
     case rest
+    /// A tap at bedtime: the water rests, come in the morning.
+    case night
 }
 
 /// One bubble: a new `id` for every line said.
@@ -44,7 +46,7 @@ public struct CaglayanLine: Hashable, Sendable, Identifiable {
         switch kind {
         case .stage(let stage): CaglayanLayout.speaker(stage: stage)
         case .rumour: .pofu
-        case .rest: .damla
+        case .rest, .night: .damla
         }
     }
 }
@@ -212,6 +214,7 @@ public enum CaglayanLayout {
         case .stage(let stage): "caglayan.line.\(clamped(stage))"
         case .rumour: "caglayan.rumour"
         case .rest: "caglayan.rest"
+        case .night: "caglayan.night"
         }
     }
 
