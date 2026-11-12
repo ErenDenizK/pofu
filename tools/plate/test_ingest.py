@@ -392,6 +392,17 @@ class HarmonyTests(unittest.TestCase):
         self.assertGreater(night({k: v for k, v in hand.items() if k != "lampsFromLevel"}, 4)["pool"], 0)
         self.assertGreater(night(hand, 3)["rim"], 0)  # the key light stays
 
+    def test_a_scale_trim_from_the_app_frame_multiplies_one_states_character_scale(self):
+        import unittest.mock as mock
+
+        hand = {**self._hand(), "plates": {"day": {"0": "d.png"}, "night": {"0": "n.png"}}}
+        lawns = {"d.png": self._plate([0.4, 0.7, 0.3]), "n.png": self._plate([0.45, 0.6, 0.45])}
+        with mock.patch.object(ingest, "load_rgb", side_effect=lambda path: lawns[Path(path).name]):
+            plain = ingest.harmony_all(hand, {})["night"][0]["scale"]["mochi"]
+            hand["characterLight"] = {"scaleTrim": {"night:0": {"mochi": 0.5}}}
+            trimmed = ingest.harmony_all(hand, {})["night"][0]["scale"]
+        self.assertAlmostEqual(trimmed["mochi"], round(plain * 0.5, 3), places=3)
+
     def test_at_night_a_sprites_top_stays_under_the_brightest_stone_around_it(self):
         hand = self._hand()
         ref = ingest.harmony_state(self._plate([0.4, 0.7, 0.3]), hand, None)

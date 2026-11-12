@@ -751,7 +751,12 @@ def harmony_all(hand: dict, mattes: dict) -> dict:
         h = harmony_state(load_rgb(path), hand, ref, light, stage)
         if ref is None:
             ref = h
-        out.setdefault(light, {})[stage] = {k: v for k, v in h.items() if not k.startswith("_")}
+        h = {k: v for k, v in h.items() if not k.startswith("_")}
+        # A trim measured in the app frame (`harmony_check.py`) where the plate's own stone reading
+        # and the frame's ring disagree: `characterLight.scaleTrim["<light>:<stage>"][<character>]`.
+        for name, trim in hand.get("characterLight", {}).get("scaleTrim", {}).get(f"{light}:{stage}", {}).items():
+            h["scale"][name] = round(h["scale"][name] * trim, 3)
+        out.setdefault(light, {})[stage] = h
     return {l: [st.get(i, dict(UNPAINTED_HARMONY)) for i in range(stage_count(hand, l))] for l, st in out.items()}
 
 

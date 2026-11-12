@@ -13,7 +13,9 @@ import XCTest
 /// - `home-plate-full-l2-night`, `-l4-night`, `-l7-night`: the painted night of the level;
 /// - `home-plate-full-l5-golden`: 18:00 at level 5, which has no painted golden hour and borrows
 ///   the night (`HomePlate.borrowed`);
-/// - `home-plate-full-l5-dawn`: 06:00 at level 5, the day ("Morning" in the Rehearsal panel).
+/// - `home-plate-full-l5-dawn`: 06:00 at level 5, the day ("Morning" in the Rehearsal panel);
+/// - `home-plate-full-l3-night`, `-l5-`, `-l6-`, `-l8-`, `-l9-night`: the other painted nights, for
+///   `harmony_check.py`.
 final class HomeNightScreenshotTests: XCTestCase {
     @MainActor
     func testRenderTheHomeNights() async throws {
@@ -30,7 +32,7 @@ final class HomeNightScreenshotTests: XCTestCase {
             State(name: "l7-night", level: 7, hour: 22.5, light: "night"),
             State(name: "l5-golden", level: 5, hour: 18, light: "night"),
             State(name: "l5-dawn", level: 5, hour: 6, light: "day"),
-        ]
+        ] + [3, 5, 6, 8, 9].map { State(name: "l\($0)-night", level: $0, hour: 22.5, light: "night") }
         for state in states {
             try await render(state: state, scene: scene, folder: folder)
         }

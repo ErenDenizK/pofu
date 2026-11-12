@@ -1294,6 +1294,13 @@
   1
  ],
  "lampsFromLevel": 6,
+ "characterLight": {
+  "scaleTrim": {
+   "night:6": {
+    "mochi": 0.95
+   }
+  }
+ },
  "lamps": [
   [
    28.42,
