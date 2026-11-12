@@ -139,7 +139,7 @@ public enum VisitorStage {
 
     /// How far over the visitor's feet the greeting's heart floats, in the
     /// visitor's own units (the visitor stands 30 tall).
-    public static let heartLift = 38.0
+    public static let heartLift = 34.0
 
     /// Where the greeting's heart floats, in world units: over a greeted
     /// visitor who stands in the world (`parts`, from `parts(...)` or

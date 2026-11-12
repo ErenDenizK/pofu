@@ -2137,13 +2137,10 @@ private struct ScreenOverlays: View {
             }
             if showsHomeLife {
                 if let heart = greetingHeart {
-                    GreetingHeart()
-                        .position(x: heart.x, y: heart.y)
-                        .transition(reduceMotion ? .opacity : .scale(scale: 0.3, anchor: .bottom).combined(with: .opacity))
+                    GreetingHeart(tip: heart, screenWidth: size.width)
                 }
                 ForEach(giftTags) { tag in
-                    GiftTag(gift: tag.gift)
-                        .position(x: tag.point.x, y: tag.point.y)
+                    GiftTag(gift: tag.gift, tip: tag.point, screenWidth: size.width)
                 }
             }
             if case .resident(let id) = model.focus, let resident = IslandLayout.resident(id) {
@@ -2151,10 +2148,7 @@ private struct ScreenOverlays: View {
             }
         }
         .frame(width: size.width, height: size.height, alignment: .topLeading)
-        .animation(reduceMotion ? .easeInOut(duration: 0.2) : .spring(duration: 0.4, bounce: 0.4), value: world.visitor?.state)
     }
-
-    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     /// Home's own life shows only on Home, close enough to see it, with no
     /// card or sheet over it.
@@ -2162,9 +2156,11 @@ private struct ScreenOverlays: View {
         z >= WorldHitTest.archipelagoZ && model.island == .home && model.focus == nil && !model.hasSheet
     }
 
-    /// Screen points kept inside the 16 pt side gutter and under the top bar.
-    private func clamped(_ p: CGPoint, halfWidth: CGFloat) -> CGPoint {
-        CGPoint(x: min(max(p.x, 16 + halfWidth), size.width - 16 - halfWidth), y: max(p.y, 120))
+    /// A bubble's tail tip: kept under the top bar (the bubble keeps itself
+    /// inside the side gutter).
+    private func tip(_ point: WorldPoint) -> CGPoint {
+        let p = screenPoint(point)
+        return CGPoint(x: p.x, y: max(p.y, 120))
     }
 
     /// The greeting's answer: a heart over a greeted visitor.
@@ -2179,9 +2175,7 @@ private struct ScreenOverlays: View {
             scale = 1
         }
         guard let point = VisitorStage.greetingHeart(parts: parts, visitor: world.visitor, scale: scale) else { return nil }
-        // The heart's foot sits at the point; its middle is 14 pt higher.
-        let p = screenPoint(point)
-        return clamped(CGPoint(x: p.x, y: p.y - 14), halfWidth: 16)
+        return tip(point)
     }
 
     /// The paper tag over a gift on the day it arrived.
@@ -2214,8 +2208,7 @@ private struct ScreenOverlays: View {
                 scale = plate?.characterScale ?? 1
             }
             guard let foot else { return nil }
-            let top = screenPoint(WorldPoint(x: foot.x, y: foot.y - HomeGifts.tagLift(gift) * scale))
-            return PlacedGiftTag(gift: gift, point: clamped(CGPoint(x: top.x, y: top.y - 18), halfWidth: 80))
+            return PlacedGiftTag(gift: gift, point: tip(WorldPoint(x: foot.x, y: foot.y - HomeGifts.tagLift(gift) * scale)))
         }
     }
 

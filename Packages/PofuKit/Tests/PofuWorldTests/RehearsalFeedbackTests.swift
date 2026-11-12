@@ -62,6 +62,20 @@ struct RehearsalFeedbackTests {
         #expect(!HomeGifts.tagged(in: world).contains(.caglayanFountain))
     }
 
+    /// A tag near the screen's edge stays inside the 16 pt gutter and its
+    /// tail still points at the gift.
+    @Test func aBubbleKeepsTheGutterAndPointsAtItsThing() {
+        let middle = TailedBubblePlacement.place(tipX: 200, width: 150, screenWidth: 402)
+        #expect(middle.centreX == 200 && middle.tailOffset == 0)
+        let left = TailedBubblePlacement.place(tipX: 60, width: 150, screenWidth: 402)
+        #expect(left.centreX - 75 == 16)
+        #expect(left.centreX + left.tailOffset == 60)
+        let right = TailedBubblePlacement.place(tipX: 395, width: 150, screenWidth: 402)
+        #expect(right.centreX + 75 == 402 - 16)
+        // Past the bubble's corner the tail stops at the corner.
+        #expect(right.tailOffset == 75 - 13 - 5)
+    }
+
     // MARK: - Copy
 
     private var root: URL {

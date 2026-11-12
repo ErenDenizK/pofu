@@ -44,3 +44,21 @@ public enum HomeGifts {
         }
     }
 }
+
+/// Where a small tailed bubble (the greeting's heart, a gift's tag) sits
+/// on screen: centred over the thing it points at, kept inside the side
+/// gutter, its tail moved along its bottom edge to keep pointing at it.
+public enum TailedBubblePlacement {
+    /// - Returns: the bubble's centre x and its tail's offset from that
+    ///   centre, in points.
+    public static func place(
+        tipX: Double, width: Double, screenWidth: Double,
+        gutter: Double = 16, corner: Double = 13, tailWidth: Double = 10
+    ) -> (centreX: Double, tailOffset: Double) {
+        let half = width / 2
+        let low = gutter + half, high = screenWidth - gutter - half
+        let centre = low <= high ? min(max(tipX, low), high) : screenWidth / 2
+        let limit = max(half - corner - tailWidth / 2, 0)
+        return (centre, min(max(tipX - centre, -limit), limit))
+    }
+}
