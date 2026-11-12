@@ -498,7 +498,10 @@ private struct SceneFrame<Bubble: View>: View {
         let spikeDOF = spike.depthOfField && WorldShaders.isAvailable
         // Focus follows the camera: no depth of field while it moves, then
         // a rack focus once it settles.
-        let lens = spikeDOF || painted ? Lens(focus: baseLens.focus, slab: baseLens.slab, gain: 0) : Lens(focus: baseLens.focus, slab: baseLens.slab, gain: baseLens.gain * rack)
+        // At a stop under Home's painted sky (`PaintedSky`) the depth of field is off as on a plate.
+        let skies = PaintedSky.skies(world: world, look: look, pose: pose, viewportWidth: Double(size.width))
+        let skyFade = skies.map(\.fade).max() ?? 0
+        let lens = spikeDOF || painted ? Lens(focus: baseLens.focus, slab: baseLens.slab, gain: 0) : Lens(focus: baseLens.focus, slab: baseLens.slab, gain: baseLens.gain * rack * (1 - skyFade))
         let peek = rig.peekTilt
         let device = model.deviceTilt
         let tilt = painted ? (x: 0.0, y: 0.0) : (x: min(max(peek.x + device.x, -1), 1), y: min(max(peek.y + device.y, -1), 1))
@@ -621,19 +624,28 @@ private struct SceneFrame<Bubble: View>: View {
 
         ZStack(alignment: .topLeading) {
             ZStack(alignment: .topLeading) {
-                if max(plateFade, isleFade) < 0.999 {
+                if max(plateFade, isleFade, skyFade) < 0.999 {
                     LivingSky(palette: sky, offset: offset, far: FarSky.Look(z: z, cell: light.cell, grade: grade, koke: farKoke, healed: farHealed, mist: atmosphere.mist))
                         .environment(\.worldAmbientPaused, ambientPaused)
                         .animation(animation, value: sky)
                 }
 
-                if !painted {
+                // Koke's stop and the harbor's under Home's painted sky (D7): the sky set of the hour's
+                // light, its island layer left out, ungraded, in place of the code sky; the code cloud
+                // sea and fog below give way to it as it fades in.
+                ForEach(skies, id: \.island) { entry in
+                    PaintedSkyLayer(plate: entry.plate, pose: pose, size: size, offset: offset, fade: entry.fade)
+                }
+
+                if !painted, skyFade < 0.999 {
                     // The rainbow, soft and pastel, behind the island and its fog.
                     WeatherRainbow(atmosphere: atmosphere, size: size, seaLine: fogSeaLine, offset: offset)
+                        .opacity(1 - skyFade)
 
                     // Height fog behind the island, densest at the cloud-sea line.
                     FogCards(layer: .behind, horizon: sky.horizon, mist: atmosphere.mist, offset: offset, size: size, seaLine: fogSeaLine)
                         .environment(\.worldAmbientPaused, ambientPaused)
+                        .opacity(1 - skyFade)
                 }
 
                 WorldCanvas(
@@ -750,22 +762,35 @@ private struct SceneFrame<Bubble: View>: View {
                     props.world(WorldPropsFrame(pose: pose, size: size, offset: offset, z: z, isFocused: model.focus != nil || model.hasSheet, model: model))
                 }
 
+                if painted {
+                    // Rain over a painted island (D2): streaks and splashes above the characters, no
+                    // puddle glints; the painting is the only light there is.
+                    WeatherRain(atmosphere: atmosphere, pose: pose, offset: offset, size: size, horizon: sky.horizon, glints: false)
+                        .environment(\.worldAmbientPaused, ambientPaused)
+                }
+
                 if !painted {
                     // The sprite island's atmosphere: none of it lies over a plate.
-                    CloudSea(colours: sea, offset: offset, rise: CloudSea.rise(z: z, pose: pose, height: Double(size.height)))
-                        .environment(\.worldAmbientPaused, ambientPaused)
-                        .animation(animation, value: sea)
+                    if skyFade < 0.999 {
+                        CloudSea(colours: sea, offset: offset, rise: CloudSea.rise(z: z, pose: pose, height: Double(size.height)))
+                            .environment(\.worldAmbientPaused, ambientPaused)
+                            .animation(animation, value: sea)
+                            .opacity(1 - skyFade)
+                    }
 
                     // One fog card across the island's base: the foot dissolves,
                     // the top stays clear.
                     // Look pipeline v2: haze only on the backdrop; this card lies on
                     // the cloud sea, so it takes the sea's warm white more than the
                     // sky's horizon (the references' sea is never a lavender veil).
-                    FogCards(layer: .front, horizon: sky.horizon.mixed(with: sea.light, amount: LookTuning.frontFogSeaShare), mist: atmosphere.mist, offset: offset, size: size, seaLine: fogSeaLine)
-                        .environment(\.worldAmbientPaused, ambientPaused)
+                    if skyFade < 0.999 {
+                        FogCards(layer: .front, horizon: sky.horizon.mixed(with: sea.light, amount: LookTuning.frontFogSeaShare), mist: atmosphere.mist, offset: offset, size: size, seaLine: fogSeaLine)
+                            .environment(\.worldAmbientPaused, ambientPaused)
+                            .opacity(1 - skyFade)
+                    }
 
                     // Rain, splash ticks and puddle glints in front of the island.
-                    WeatherRain(atmosphere: atmosphere, pose: pose, offset: offset, size: size, horizon: sky.horizon)
+                    WeatherRain(atmosphere: atmosphere, pose: pose, offset: offset, size: size, horizon: sky.horizon, glints: skyFade < 0.5)
                         .environment(\.worldAmbientPaused, ambientPaused)
 
                     // The screen haze (the player's sky): from the harbor side.

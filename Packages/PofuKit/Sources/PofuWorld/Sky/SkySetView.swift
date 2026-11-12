@@ -23,6 +23,9 @@ struct SkySetLayers: View {
     /// When this painting appeared: the motion's time zero (a crossfade's incoming sky starts at the
     /// painting).
     let start: Date
+    /// Whether the island layer (and with it the cloud bank cut with the island) is drawn. A painted sky
+    /// behind another island (`PaintedSky`) leaves it out: the sea, the clouds and the isles remain.
+    var drawsIsland = true
 
     @Environment(\.worldStillFrame) private var still
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
@@ -48,7 +51,7 @@ struct SkySetLayers: View {
     private func canvas(time: Double) -> some View {
         let scale = SkyMotion.scale(width: Double(size.width), referenceWidth: sky.referenceWidth)
         return Canvas(opaque: false, colorMode: .nonLinear, rendersAsynchronously: false) { context, _ in
-            for layer in sky.layers {
+            for layer in sky.layers where drawsIsland || layer.role != .island {
                 draw(layer, in: &context, time: time, scale: scale)
             }
         }

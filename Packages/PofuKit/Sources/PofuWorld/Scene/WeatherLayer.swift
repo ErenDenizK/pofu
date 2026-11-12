@@ -152,6 +152,9 @@ struct WeatherRain: View {
     let size: CGSize
     /// The sky's horizon (graded): the puddles reflect it.
     let horizon: PofuRGB
+    /// Puddle glints on the lawn. Off over a painted island and a painted sky: the painting has no
+    /// puddles to catch the light (D2 of docs/design/demo-one-world-v1.md); streaks and splashes stay.
+    var glints = true
 
     @Environment(\.worldStillFrame) private var still
     @Environment(\.worldAmbientPaused) private var ambientPaused
@@ -200,7 +203,7 @@ struct WeatherRain: View {
         TimelineView(.animation(minimumInterval: 1.0 / 30.0, paused: isPaused)) { context in
             let time = still ? 0 : FramePolicy.ambientTime(context.date.timeIntervalSinceReferenceDate)
             Canvas { gc, canvas in
-                if wet {
+                if wet, glints {
                     drawPuddles(&gc, projection: projection, time: time, reflection: reflection, count: raining ? 6 : 4)
                 }
                 guard raining, motion.particlesOn else { return }
