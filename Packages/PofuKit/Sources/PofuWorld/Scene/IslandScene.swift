@@ -989,7 +989,7 @@ private struct WorldCanvas: View {
             case plateMoss
             case plateFountain
             /// A build moment's dust, light and sparkles around the station's painted object.
-            case plateBuild(BuildFrame)
+            case plateBuild(BuildFrame, lift: Double)
         }
 
         var id: String
@@ -1086,8 +1086,10 @@ private struct WorldCanvas: View {
                let spot = PlateLife.fountainSpot(plate) {
                 objects.append(Object(id: "gift-fountain", kind: .plateFountain, anchor: spot, depth: IslandLayout.depth(ofY: spot.y) + 0.001))
             }
-            if let build, let foot = PlateLife.buildFoot(plate, station: build.moment.station) {
-                objects.append(Object(id: "build-moment", kind: .plateBuild(build), anchor: foot, depth: Self.plateEffectsDepth))
+            if let build, let foot = PlateLife.buildFoot(plate, station: build.moment.station),
+               let box = plate.stationBox(build.moment.station) {
+                // The soft light blooms from the middle of the painted object, not its foot.
+                objects.append(Object(id: "build-moment", kind: .plateBuild(build, lift: 0.4 * box.height), anchor: foot, depth: Self.plateEffectsDepth))
             }
         }
         var behind: [String: PlateIsland.Object] = [:]
@@ -1207,14 +1209,13 @@ private struct WorldCanvas: View {
             }
         case .plateFountain:
             if let plate {
-                // Its jet is drawn for the sprite pond; the painted pond is wider, so the jet is larger.
-                HomeFountainView(point: point, time: life.isAmbient ? life.time : nil)
-                    .scaleEffect(CGFloat(plate.characterScale * 2), anchor: UnitPoint(x: point.x / IslandLayout.canvasWidth, y: point.y / IslandLayout.canvasHeight))
+                PlateFountainView(point: point, time: life.isAmbient ? life.time : nil)
+                    .scaleEffect(CGFloat(plate.characterScale * PlateFountainView.scale), anchor: UnitPoint(x: point.x / IslandLayout.canvasWidth, y: point.y / IslandLayout.canvasHeight))
             }
-        case .plateBuild(let frame):
+        case .plateBuild(let frame, let lift):
             ZStack(alignment: .topLeading) {
                 BuildParticles(moment: frame.moment, time: frame.time, point: point)
-                LevelUpBloom(moment: frame.moment, time: frame.time, point: point)
+                PlateBuildBloom(moment: frame.moment, time: frame.time, point: CGPoint(x: point.x, y: point.y - CGFloat(lift)))
             }
         case .plateOccluder(let occluder):
             if let plate {
@@ -1488,6 +1489,128 @@ private struct WorldCanvas: View {
         let py = (depth - lens.focus) * tilt.y * 0.06 / s
         let m = DepthMotion.shift(point: point, depth: depth, focus: lens.focus, look: look, motion: motion)
         return CGPoint(x: origin.x + point.x + px + m.x, y: origin.y + point.y + py + m.y)
+    }
+}
+
+/// A level-up's light over a painted station: one soft warm bloom that swells and fades with the
+/// moment's burst, a fraction of the sprite island's (which would swallow a painted stall and the
+/// bridge beside it), with a feathered radial falloff and no lamp flares (their points are the
+/// sprite island's). The painted object stays readable through the whole moment.
+private struct PlateBuildBloom: View {
+    let moment: BuildMoment
+    let time: Double
+    /// The bloom's centre on the canvas.
+    let point: CGPoint
+
+    /// How much of the sprite island's burst radius and opacity the plate keeps.
+    static let share = 0.4
+
+    var body: some View {
+        if let burst = moment.burst(at: time) {
+            let radius = burst.radius * Self.share
+            let opacity = burst.opacity * Self.share
+            let warm = Color(red: 1.0, green: 0.82, blue: 0.52)
+            Circle()
+                .fill(
+                    RadialGradient(
+                        stops: [
+                            .init(color: warm.opacity(opacity), location: 0),
+                            .init(color: warm.opacity(opacity * 0.55), location: 0.35),
+                            .init(color: warm.opacity(opacity * 0.16), location: 0.7),
+                            .init(color: warm.opacity(0), location: 1),
+                        ],
+                        center: .center,
+                        startRadius: 0,
+                        endRadius: CGFloat(radius)
+                    )
+                )
+                .frame(width: CGFloat(radius * 2), height: CGFloat(radius * 2))
+                .position(x: point.x, y: point.y)
+                .allowsHitTesting(false)
+                .accessibilityHidden(true)
+        }
+    }
+}
+
+/// Çağlayan's fountain over the painted pond: soft, translucent water in the painting's style, not
+/// strokes. Each of three arcs is a wide faint feathered band under a narrower one and a white-cyan
+/// core, all blurred; a few soft droplets fall beside them and a faint ripple rests at the base.
+/// Drawn in the sprite island's units and scaled by `scale` times the plate's character scale.
+private struct PlateFountainView: View {
+    /// Where the fountain's base lands on the canvas.
+    let point: CGPoint
+    /// Seconds, while the frame is ambient; `nil` holds a still frame.
+    var time: Double?
+
+    /// The jet's size against the plate's character scale.
+    static let scale = 1.3
+
+    var body: some View {
+        Canvas { context, size in
+            let base = CGPoint(x: size.width / 2, y: size.height - 10)
+            let t = time ?? 0
+            let cyan = Color(red: 0.68, green: 0.90, blue: 1.0)
+            let core = Color(red: 0.93, green: 0.99, blue: 1.0)
+            // The jet itself: three arcs leaving the spout and falling back.
+            context.drawLayer { layer in
+                layer.addFilter(.blur(radius: 2.2))
+                for k in 0..<3 {
+                    let spread = Double(k - 1) * 8
+                    var arc = Path()
+                    arc.move(to: CGPoint(x: base.x, y: base.y - 20))
+                    arc.addQuadCurve(
+                        to: CGPoint(x: base.x + spread * 1.7, y: base.y),
+                        control: CGPoint(x: base.x + spread * 0.6, y: base.y - 46 - 2.5 * sin(t * 3 + Double(k)))
+                    )
+                    layer.stroke(arc, with: .color(cyan.opacity(0.22)), style: StrokeStyle(lineWidth: 9, lineCap: .round))
+                    layer.stroke(arc, with: .color(cyan.opacity(0.32)), style: StrokeStyle(lineWidth: 5, lineCap: .round))
+                }
+            }
+            context.drawLayer { layer in
+                layer.addFilter(.blur(radius: 0.9))
+                for k in 0..<3 {
+                    let spread = Double(k - 1) * 8
+                    var arc = Path()
+                    arc.move(to: CGPoint(x: base.x, y: base.y - 20))
+                    arc.addQuadCurve(
+                        to: CGPoint(x: base.x + spread * 1.7, y: base.y),
+                        control: CGPoint(x: base.x + spread * 0.6, y: base.y - 46 - 2.5 * sin(t * 3 + Double(k)))
+                    )
+                    layer.stroke(arc, with: .color(core.opacity(0.55)), style: StrokeStyle(lineWidth: 1.8, lineCap: .round))
+                }
+            }
+            // A few soft droplets drifting out and down from the arcs' tops.
+            context.drawLayer { layer in
+                layer.addFilter(.blur(radius: 0.7))
+                for i in 0..<7 {
+                    let phase = time.map { ($0 * 0.7 + Double(i) * 0.143).truncatingRemainder(dividingBy: 1) } ?? (0.15 + Double(i) * 0.12)
+                    let side = i % 2 == 0 ? -1.0 : 1.0
+                    let reach = 6 + 12 * Double(i % 3)
+                    let x = base.x + side * reach * (0.4 + phase)
+                    let y = base.y - 38 + 40 * phase * phase
+                    let r = 1.3 + 0.6 * Double(i % 2)
+                    layer.fill(
+                        Path(ellipseIn: CGRect(x: x - r, y: y - r, width: r * 2, height: r * 2)),
+                        with: .color(core.opacity(0.7 * (1 - phase)))
+                    )
+                }
+            }
+            // The ripple at the base.
+            context.drawLayer { layer in
+                layer.addFilter(.blur(radius: 0.8))
+                let grow = time.map { ($0 * 0.6).truncatingRemainder(dividingBy: 1) } ?? 0.4
+                let r = 7 + 11 * grow
+                layer.stroke(
+                    Path(ellipseIn: CGRect(x: base.x - r, y: base.y - r * 0.35, width: r * 2, height: r * 0.7)),
+                    with: .color(core.opacity(0.5 * (1 - grow))), lineWidth: 1.2
+                )
+            }
+        }
+        .frame(width: 90, height: 90)
+        .position(x: point.x, y: point.y - 35)
+        .allowsHitTesting(false)
+        .accessibilityElement()
+        .accessibilityLabel(Text(verbatim: WorldStrings.caglayanGift))
     }
 }
 

@@ -59,9 +59,9 @@ final class PlateLifeScreenshotTests: XCTestCase {
         let island = IslandSceneModel(framing: .home)
         let home = WorldHomeModel(now: { now }, schedulesCues: false)
         if shot == .build {
-            // The tea stall's fifth level; the burst of light is still blooming 0.85 s in, with the tag fully in.
+            // The tea stall's fifth level; the burst of light is blooming 0.72 s in, the tag just in.
             home.buildStation(.teaStall, maxLevel: 5) { _ in BuildReceipt(station: .teaStall, level: 5, cost: Energy(80)) }
-            home.freeze(at: 0.85)
+            home.freeze(at: 0.72)
         }
         var look = WorldLook(hourOverride: 12)
         look.weatherOverride = .clear
