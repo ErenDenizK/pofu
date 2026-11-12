@@ -32,7 +32,6 @@ TestFlight before the membership. The app side follows the demo.
 ## Next steps, in order
 
 1. Spec PR 6 and PR 7 once art A1 and A2 are picked.
-2. Every eye PR: a critic on 1:1 crops first, then the lead's one sheet.
 3. Codex queue on pofu-art main (#13, #14 and #22 merged with the
    founder's approval): 0-h5 batch-78, 0-h7 batch-80 IL1 night, 0-h8
    batch-81 Koke, 0-h6 batch-79 flow redo. Review each within a day.
