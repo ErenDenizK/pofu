@@ -25,16 +25,16 @@ not accepted is hidden. Codex is stopped (plan expired 11-12).
 
 ## In flight
 
-1. #412 Home IL1 night (Sonnet): CI and its 1:1 look.
+1. Step 5 Koke clean (Opus, `fix/koke-clean-matte`); the "Kare ölçer"
+   switch (Sonnet, `feat/rehearsal-frame-meter`).
 2. Route Friday steps 3 (the Map painted, Opus), 4 (Çağlayan full frame,
-   Opus). When #412 lands: a "Kare ölçer" switch in the Rehearsal panel
-   (promised to the founder for Friday), then step 5 (Koke clean).
+   Opus).
 Scout facts (step 1): dragging pans Home even when painted (step 8 clamps
 it); no painted visitor art ships, all drawn by `LifeArt.drawVisitor`
 (step 6); the Today header is text (`TodaySheet.swift:109`) and the
 breath ring is code-drawn; no screen spends seeds for minutes; the frame
 meter has no switch or launch argument (`WorldLook.frameMeter`).
-Merged today: #403 to #411, #413; pofu-art #13, #14, #18, #22 to #27, #29.
+Merged today: #403 to #413; pofu-art #13, #14, #18, #22 to #27, #29.
 
 ## Next steps, in order
 
