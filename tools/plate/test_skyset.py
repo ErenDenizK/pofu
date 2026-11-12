@@ -323,7 +323,8 @@ class CaglayanSkyTests(unittest.TestCase):
         self.assertGreater(over_top, 0)
         self.assertGreater(over_bottom, 0)
         self.assertLessEqual(layers["sky"]["pos"][1], -over_top, "the gradient reaches the top of the screen")
-        self.assertGreaterEqual(layers["far"]["pos"][1], 0, "no cloud is drawn above the master: the far layer is the painting's own")
+        # the far layer's own clouds run on up to the top of the screen (`skyset_extend.top_clouds`): no plain band
+        self.assertLessEqual(layers["far"]["pos"][1], -over_top, "the far clouds reach the top of the screen")
         for lid in ("sky", "sea"):
             self.assertGreaterEqual(layers[lid]["pos"][1] + layers[lid]["size"][1], self.DATA["master"][1] + over_bottom, f"{lid} reaches the bottom")
         self.assertLessEqual(layers["sky"]["pos"][0], -(fr["x0"] * -1 if fr["x0"] < 0 else 0))
