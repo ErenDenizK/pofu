@@ -13,7 +13,8 @@ shown to friends ([spec](design/game-solid-v1.md)); no TestFlight before it.
 **Updated:** 2026-11-12 (late night, session 2), `main` at `1364ac01` (#402).
 **Founder last played on his phone:** 2026-11-05 (told late on 11-12 to try `main`).
 **Founder log read up to:** 2026-11-12 (late night).
-**Route:** none yet.
+**Route:** Codex stopped (plan expired, 11-12 evening); Fable writes the
+route for the pause (docs/route-codex-pause), shown to the founder first.
 
 ## Decided this session
 
