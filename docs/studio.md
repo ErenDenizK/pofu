@@ -371,17 +371,11 @@ consider a second lead.
   (`git worktree list`), pull requests open more than two days,
   friction rows not handled, rule files over their caps, the date of
   the last route. It never changes a rule and never needs the founder.
-- **Planned, not built.** Four tools would do the above for you:
-  `recall.py` (the exact words of a message a compaction dropped),
-  `friction.py` (collects the `Friction:` lines), `session_cost.py
-  --now` (context and turns since the last compaction, in one line),
-  and a "Leftovers" block in the pulse (the hygiene list). Their
-  builder brief is part C11 of
-  [the proposal](research/studio-context-2026-11-12.md), not yet sent;
-  send it with this page's caps, not the ones written there. Until it
-  merges, do those steps by hand as described, and ignore the "under
-  150k" target `session_cost.py` still prints. When it merges, replace
-  this bullet with the commands.
+- **The commands** (#411): `python3 -I tools/studio/session_cost.py
+  --now` (context and turns since the last compaction, in one line);
+  `recall.py "<regex>"` (the exact words of a message a compaction
+  dropped); `friction.py` (collects the `Friction:` lines); and the
+  pulse's "Leftovers" block (the hygiene list above).
 - **The route.** At the day's start (the first founder message after
   six hours or more) and whenever the board empties (no next step in
   `now.md` can start), spawn Fable with `studio/route-brief.md`, word
