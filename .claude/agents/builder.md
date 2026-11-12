@@ -43,8 +43,15 @@ the work is accepted by an eye.
 10. Push when your local checks pass. Open the PR with the template. At
     most three pushes per PR: a CI run takes 30 to 60 minutes and macOS
     minutes are costly, so never push to learn what you can learn here.
-11. Wait for CI with one background command that returns when the checks
-    finish (for example `gh pr checks <number> --watch`). Never poll.
+11. Wait for CI with one background command that returns when the run
+    finishes; never poll with your own turns. GraphQL commands such as
+    `gh pr checks` do not work in this environment; the REST API does:
+
+    ```sh
+    R=ErenDenizK/pofu; SHA=$(git rev-parse HEAD)
+    until gh api "repos/$R/actions/runs?head_sha=$SHA" --jq '(.workflow_runs | length) > 0 and (.workflow_runs | all(.status == "completed"))' | grep -q true; do sleep 60; done
+    gh api "repos/$R/actions/runs?head_sha=$SHA" --jq '.workflow_runs[] | "\(.name): \(.conclusion)"'
+    ```
 12. If the brief says "Merge: self on green" and CI is green, merge with
     a merge commit. Otherwise leave the PR open for the lead.
 13. After about 120 tool calls, stop at the next clean point, push, and
