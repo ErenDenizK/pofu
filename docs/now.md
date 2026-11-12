@@ -56,5 +56,5 @@ Merged: #405 feedback, #407 hours/weather, #406 Home nights, #409
 
 ## Open with the founder (no question pending)
 
-- Device testing; studio.md at 405 lines over its own 330 cap.
+- Device testing.
 - Known stale: roadmap.md (11-07), tracker.md thread statuses.

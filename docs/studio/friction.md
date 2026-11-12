@@ -1,8 +1,8 @@
 # Friction log
 
 Every agent's hand-back ends with one `Friction:` line: what slowed it
-down, or which rule misled it. `tools/studio/friction.py` collects them;
-the lead adds those that are not "none" here, with a kind (`tool`,
+down, or which rule misled it. The lead collects them by hand (`tools/studio/friction.py` is planned, not built)
+and adds those that are not "none" here, with a kind (`tool`,
 `brief`, `rule`, `platform`), and handles each within a day. For the
 lead's own slips, "Who" carries its context size and the turns since the
 last compaction (`lead, 310k, 140 turns`), so that in two weeks this
