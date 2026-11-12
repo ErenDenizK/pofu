@@ -254,7 +254,8 @@ public final class IslandSceneModel {
         guard island == .home, framing != .map, focus == nil, sheet == nil, engine.rig.pinchStart == nil else { return true }
         // The establishing shot gives way to the arrival.
         establishTask?.cancel()
-        let feet = VisitorStage.feet(of: visitor)
+        // On the plate the visitor stands at the plate's spot, not the sprite island's slot.
+        let feet = homePlate.map(PlateLife.visitorSpot) ?? VisitorStage.feet(of: visitor)
         let from = engine.rig.rail.pose(z: Double(WorldFraming.island.rawValue))
         let pose = CameraPose(logScale: from.logScale, lookX: feet.x, lookY: from.lookY, anchorY: from.anchorY)
         travel { $0.focus(pose: pose, lens: .island, camera: WorldSprings.residentFocus) }
@@ -807,6 +808,7 @@ public final class IslandSceneModel {
             : homePlate.map { plate in
                 WorldHitTest.plateTargets(
                     plate, stations: stations, z: rig.railPosition,
+                    visitor: visitor, invitationOpen: invitationOpen, isBedtime: isBedtime,
                     koke: wonder.isArrived ? .arrived : .none,
                     caglayan: flowIsland.isArrived ? .arrived : .none
                 )

@@ -1,0 +1,1 @@
+Added: on the painted home, by day, the daily visitor now stands on the lawn and can be greeted (the parcel and the help target beside them), Koke's moss and Çağlayan's fountain appear once they are healed, and building a level shows dust, a burst of light and "Seviye N!" over the station.
