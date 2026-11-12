@@ -31,8 +31,7 @@ TestFlight before the membership. The app side follows the demo.
 
 ## Next steps, in order
 
-1. Next free builder slot: spec PR 4 (Çağlayan's early nights). Then
-   PR 6 and PR 7 once art A1 and A2 are picked.
+1. Spec PR 6 and PR 7 once art A1 and A2 are picked.
 2. Every eye PR: a critic on 1:1 crops first, then the lead's one sheet.
 3. Codex queue on pofu-art main (#13, #14 and #22 merged with the
    founder's approval): 0-h5 batch-78, 0-h7 batch-80 IL1 night, 0-h8
@@ -41,12 +40,11 @@ TestFlight before the membership. The app side follows the demo.
    pofu's tools/imagegen before any full `sync_to_art.py` (it would
    overwrite them); sync `flow-tile-split-guide.webp` back to pofu.
 5. Ingest batch-77 flow pieces (bend: narrow mouth; frame caps 240/1024).
-6. Art follow-ups from #406: the wheel's sunflower vanishes IL3 to IL6;
-   an unlit warm pool at IL5 night; no whale at IL2 night.
-   #405 follow-ups: a met goal says nothing; solve caption far from the
-   board; the system check badge clashes with the drawn counter.
+6. Art (#406): wheel sunflower gone IL3-6; IL5 night unlit warm pool.
+   #405: a met goal says nothing; solve caption far; check badge clashes.
 7. Record the Rehearsal path once one world lands (CI `beats` label).
 Swift on Linux: /opt/swift, from download.swift.org (Docker Hub gives 429).
+
 ## Desks
 
 | Desk | Where it stands | Waits on |
