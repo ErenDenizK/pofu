@@ -1,0 +1,1 @@
+Fixed: Koke and Çağlayan now tell a waiting player to skip one app today and come back, say good night at bedtime (the islands sleep), Koke's last stage is silent and no longer bounces, Çağlayan's mill-stone line reads the spilled-tea writing, and a healed Çağlayan can be played again.

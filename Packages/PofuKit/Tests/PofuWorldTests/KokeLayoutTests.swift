@@ -24,13 +24,17 @@ struct KokeLayoutTests {
         #expect([KokeLayout.Pose.asleep, .oneEye, .stretch].allSatisfy { $0.fallback == nil })
     }
 
-    @Test func theBounceIsGentleStageFourOnlyAndStillWithoutATime() {
+    @Test func stageFourIsStill() {
+        for time in [0, 0.6, 1.2] as [Double] {
+            #expect((0...4).allSatisfy { KokeLayout.bounce(stage: $0, time: time) == 0 })
+        }
         #expect(KokeLayout.bounce(stage: 4, time: nil) == 0)
-        #expect(KokeLayout.bounce(stage: 3, time: 0.6) == 0)
-        #expect(KokeLayout.bounce(stage: 4, time: 0) == 0)
-        let peak = KokeLayout.bounce(stage: 4, time: KokeLayout.bouncePeriod / 2)
-        #expect(abs(peak - KokeLayout.bounceHeight) < 1e-9)
-        #expect((0..<50).allSatisfy { 0...KokeLayout.bounceHeight ~= KokeLayout.bounce(stage: 4, time: Double($0) * 0.37) })
+    }
+
+    @Test func nightLineKey() {
+        #expect(KokeLayout.lineKey(.night) == "koke.night")
+        #expect(KokeLine(id: 1, kind: .night).speaker == .pofu)
+        #expect(KokeLine(id: 1, kind: .rest).speaker == .pofu)
     }
 
     @Test func theFirstWarmLightComesAtStageTwo() {
@@ -58,8 +62,8 @@ struct KokeLayoutTests {
             .appendingPathComponent("Sources/PofuWorld/Resources/Localizable.xcstrings")
         let object = try JSONSerialization.jsonObject(with: Data(contentsOf: path))
         let strings = try #require((object as? [String: Any])?["strings"] as? [String: Any])
-        var kinds: [KokeLineKind] = (0..<5).map { .stage($0) }
-        kinds += [.rumour, .rest]
+        var kinds: [KokeLineKind] = (0..<4).map { .stage($0) }
+        kinds += [.rumour, .rest, .night]
         for key in kinds.map(KokeLayout.lineKey) + ["koke.name", "koke.speaker.pofu", "koke.speaker.mochi", "koke.gift"] {
             let entry = try #require(strings[key] as? [String: Any], "missing \(key)")
             let localizations = try #require(entry["localizations"] as? [String: Any])

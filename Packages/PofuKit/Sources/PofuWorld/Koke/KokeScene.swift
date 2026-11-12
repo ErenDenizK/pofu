@@ -58,19 +58,23 @@ public final class KokeBeatState {
         swellStart = date
     }
 
-    /// A tap on Koke: on a day it can advance, the next stage's line, the
-    /// swell, the haptic and the game event; otherwise a snore and the line
-    /// that says to come back after a quiet day.
+    /// A tap on Koke: at bedtime the island sleeps and says good night; on a
+    /// day it can advance, the next stage's line (stage 4 is silent), the
+    /// swell, the haptic and the game event; healed, only the swell;
+    /// otherwise the line that says to skip one reach today.
     func tapped(in model: IslandSceneModel, now: Date = Date()) {
-        if status.canAdvance {
-            say(.stage(min(status.stage + 1, WonderIslands.healedStage)))
+        if status.isAsleep {
+            say(.night)
+        } else if status.canAdvance {
+            let next = min(status.stage + 1, WonderIslands.healedStage)
+            if next < WonderIslands.healedStage { say(.stage(next)) }
             swellStart = now
             beats += 1
             model.holdMoment(seconds: BuildMoment.Ceremony.burstLength + 0.3, from: now)
             PofuHaptics.shared.play(.growth)
             model.onVisitorEvent?(.tendedWonder(.koke))
         } else if status.stage >= WonderIslands.healedStage {
-            say(.stage(WonderIslands.healedStage))
+            swellStart = now
         } else {
             say(.rest)
         }

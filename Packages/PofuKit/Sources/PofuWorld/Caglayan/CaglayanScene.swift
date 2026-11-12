@@ -58,14 +58,17 @@ public final class CaglayanBeatState {
         status.isArrived && status.canAdvance
     }
 
-    /// A tap on the island: on a day it can advance, the stage's flow round
-    /// opens; otherwise Damla's line (the water waits for a quiet day, or the
-    /// healed island's last line).
+    /// A tap on the island: at bedtime Damla says good night; on a day it can
+    /// advance, the stage's flow round opens; healed, the island keeps its
+    /// game (free play at the last stage); otherwise Damla's line that says
+    /// to skip one reach today.
     func tapped(in model: IslandSceneModel) {
-        if status.canAdvance {
+        if status.isAsleep {
+            say(.night)
+        } else if status.canAdvance {
             model.onPlayFlow?(min(status.stage + 1, WonderIslands.healedStage))
         } else if status.stage >= WonderIslands.healedStage {
-            say(.stage(WonderIslands.healedStage))
+            model.onPlayFlow?(WonderIslands.healedStage)
         } else {
             say(.rest)
         }

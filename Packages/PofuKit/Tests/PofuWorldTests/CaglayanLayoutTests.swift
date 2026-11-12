@@ -60,6 +60,11 @@ struct CaglayanLayoutTests {
         #expect(CaglayanLine(id: 1, kind: .rumour).speaker == .pofu)
     }
 
+    @Test func nightLineKey() {
+        #expect(CaglayanLayout.lineKey(.night) == "caglayan.night")
+        #expect(CaglayanLine(id: 1, kind: .night).speaker == .damla)
+    }
+
     @Test func tappingTheIslandOnItsOwnAnswersWithTheFlowTarget() {
         let targets = WorldHitTest.islandTargets(koke: false, caglayan: true)
         #expect(targets.contains { $0.kind == .island(.caglayan) })

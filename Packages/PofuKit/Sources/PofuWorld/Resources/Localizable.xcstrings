@@ -1333,22 +1333,6 @@
         }
       }
     },
-    "koke.line.4": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mmmh."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mmmh."
-          }
-        }
-      }
-    },
     "koke.rumour": {
       "localizations": {
         "en": {
@@ -1370,13 +1354,13 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Still deep asleep. Come back after a quiet day, we'll see."
+            "value": "Still deep asleep. Say \"Skip it\" once today, then come back; we'll nudge it together."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Uykusu derin. Sessiz bir günün ardından gel, bakarız."
+            "value": "Uykusu derin. Bugün bir kez \"Boş ver\" de, sonra gel; birlikte dürteriz."
           }
         }
       }
@@ -1482,13 +1466,13 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "The water isn't in a hurry. Come back after a quiet day."
+            "value": "The water isn't in a hurry. Skip one app today, then come back."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Su acele etmez. Sessiz bir günden sonra gel."
+            "value": "Su acele etmez. Bugün bir kez boş ver, sonra gel."
           }
         }
       }
@@ -1546,13 +1530,13 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "I'm pouring tea. The wall says: \"Whoever puts out the light for someone's sleep is the night's keeper.\""
+            "value": "I spilled a little tea on the mill stone. Wet, it shows writing: \"Whoever puts out the light for someone's sleep is the night's keeper.\""
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Çay koyuyorum. Duvarda yazıyor: \"Birinin uykusu için ışığı söndüren, o gece bekçidir.\""
+            "value": "Değirmen taşına biraz çay döktüm. Islanınca yazı çıktı: \"Birinin uykusu için ışığı söndüren, o gece bekçidir.\""
           }
         }
       }
@@ -1569,6 +1553,38 @@
           "stringUnit": {
             "state": "translated",
             "value": "Doldu. Bardağım doldu. Kayarak iniyorum, kimse bakmasın."
+          }
+        }
+      }
+    },
+    "koke.night": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "It's night; the hill is asleep, and so are we. Come in the morning."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gece oldu; tepe uyuyor, biz de. Sabah gel."
+          }
+        }
+      }
+    },
+    "caglayan.night": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "At night the water rests too. Come in the morning."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gece su da dinlenir. Sabah gel."
           }
         }
       }

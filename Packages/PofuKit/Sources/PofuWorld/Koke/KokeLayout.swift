@@ -26,8 +26,10 @@ public enum KokeLineKind: Hashable, Sendable {
     case stage(Int)
     /// Seen from the harbor, before the island can be visited.
     case rumour
-    /// A tap on a day that cannot advance: come back after a quiet day.
+    /// A tap on a day that cannot advance: skip one reach today, then come back.
     case rest
+    /// A tap at bedtime: the island sleeps, come in the morning.
+    case night
 }
 
 /// One bubble: a new `id` for every line said.
@@ -43,7 +45,7 @@ public struct KokeLine: Hashable, Sendable, Identifiable {
     public var speaker: KokeSpeaker {
         switch kind {
         case .stage(let stage): KokeLayout.speaker(stage: stage)
-        case .rumour, .rest: .pofu
+        case .rumour, .rest, .night: .pofu
         }
     }
 }
@@ -174,15 +176,10 @@ public enum KokeLayout {
         [Pose.asleep, .asleep, .oneEye, .stretch, .standing][clamped(stage)]
     }
 
-    /// Koke's gentle bounce at stage 4, in world units up (0 to `bounceHeight`
-    /// and back every `bouncePeriod` seconds); still when `time` is `nil`.
-    public static let bounceHeight = 2.5
-    public static let bouncePeriod = 2.4
-
+    /// Koke never bounces: the healed hill stays still (story decision S12,
+    /// the bounce would give away Book Two's breathing hill).
     public static func bounce(stage: Int, time: Double?) -> Double {
-        guard clamped(stage) == stages - 1, let time, time.isFinite else { return 0 }
-        let phase = time.truncatingRemainder(dividingBy: bouncePeriod) / bouncePeriod
-        return bounceHeight * abs(sin(phase * .pi))
+        0
     }
 
     // MARK: - The lines
@@ -199,6 +196,7 @@ public enum KokeLayout {
         case .stage(let stage): "koke.line.\(clamped(stage))"
         case .rumour: "koke.rumour"
         case .rest: "koke.rest"
+        case .night: "koke.night"
         }
     }
 
