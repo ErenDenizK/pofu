@@ -7,11 +7,11 @@ with `python3 -I tools/docs/check_links.py`.
 
 ## Start here
 
-- **Rules:** `CLAUDE.md` (lead and sub-agents), `AGENTS.md` (pointer to the Codex brief in `pofu-art`), `CONTRIBUTING.md` (commits, branches, PRs).
-- **Status and next steps:** `docs/tracker.md` and [roadmap.md](roadmap.md) (parallel tracks, no dated phases).
+- **Rules:** `CLAUDE.md` (every agent), [studio.md](studio.md) (the lead), `.claude/agents/` (scout, spec, builder, critic, art-reviewer), `AGENTS.md` (pointer to the Codex brief in `pofu-art`), `CONTRIBUTING.md` (commits, branches, PRs).
+- **Now:** [now.md](now.md) (the one status page kept by hand, under 60 lines; it is also the handoff). What changed for the player: `python3 -I tools/studio/pulse.py`. Threads: `docs/tracker.md`. Long horizon: [roadmap.md](roadmap.md) (parallel tracks, no dated phases).
 - **What is decided:** [product/decisions.md](product/decisions.md) (the register: founder-confirmed, lead, open, and corrections; wins over any doc until that doc is fixed).
 - **Founder:** [product/founder-input.md](product/founder-input.md) (every message and how it was handled; standing decisions at the top).
-- **Last sessions:** [handoff.md](handoff.md). **Decisions:** [adr/](adr/README.md) (immutable; status per ADR).
+- **Decisions:** [adr/](adr/README.md) (immutable; status per ADR).
 - **Pofu Hub:** frozen since 2026-11-03; chat is the channel for questions and status. Source `design/hub/index.html`.
 
 ## By topic

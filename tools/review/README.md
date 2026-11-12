@@ -4,9 +4,11 @@
 **single small JPEG** (long side at most 1400 px, quality 80), so a review
 costs one image read instead of dozens.
 
-**The rule.** The lead reviews **one sheet per review**, never full-size
-frames. **Numbers first** (harmony, `frame_metrics`, rig seam scores), pixels
-second: look at the sheet only to judge what the numbers cannot.
+**The rule.** Pixels first, by fresh eyes: a critic
+(`.claude/agents/critic.md`) looks at 1:1 crops and lists defects. Then
+the lead reviews **one sheet per review** with that list, never piles of
+full-size frames. Numbers (harmony, `frame_metrics`, the screen checks)
+guard against regressions and never clear a frame by themselves.
 
 ```sh
 # a labeled contact sheet of many images
