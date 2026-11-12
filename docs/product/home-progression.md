@@ -48,7 +48,7 @@ feel empty: "belki arasında git gel yapabilir" (16:24).
   another station is optional and opens at island level 4. This is the
   lead's design for station work; it is not what "taşınma" meant.
 - The concept art for all of this is queued as backlog rows B-A to B-F in
-  the [art plan](../design/art-production-plan.md#the-backlog).
+  the [art plan](https://github.com/ErenDenizK/pofu-art/blob/main/QUEUE.md#the-backlog).
 
 ## 1. What we take, what we refuse
 

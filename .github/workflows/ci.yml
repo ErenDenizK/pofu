@@ -108,6 +108,10 @@ jobs:
       - name: Test the image pipeline
         run: python3 -I -m pytest -q tools/imagegen/tests
 
+      # The art factory (ADR-0026): closure, sync to pofu-art, ingest of picks.
+      - name: Test the art-factory scripts
+        run: python3 -I -m unittest discover -s tools/art -p "test_*.py"
+
       # Every master measured against the reference; fails when a master,
       # the config or a correction changed without re-running harmony.py
       # measure (and preblur.py app, which bakes the corrections).
