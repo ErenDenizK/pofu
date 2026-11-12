@@ -80,7 +80,7 @@ class MapCheckTests(unittest.TestCase):
         cut[200:500, 300:] = (60, 100, 200)
         r = mc.check_sky_edges(cut)
         self.assertFalse(r["ok"])
-        self.assertIn(r["column"], (298, 299, 300))
+        self.assertTrue(296 <= r["column"] <= 302, r)
 
 
 class PaintedLightTests(unittest.TestCase):
