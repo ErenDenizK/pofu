@@ -59,7 +59,7 @@ struct PlateLifeTests {
         #expect(visitorBox.minX < spot.x && spot.x < visitorBox.maxX)
         #expect(visitorBox.minY < spot.y && spot.y <= visitorBox.maxY)
         let parcelBox = try #require(targets.first { $0.kind == .visitor(.gift) }).worldBox
-        #expect(parcelBox.midX < spot.x)
+        #expect(parcelBox.midX != spot.x)
         // A quiet day's letter stands at the same spot.
         let quiet = WorldHitTest.plateTargets(home, stations: world.stations, z: 2, invitationOpen: true)
         #expect(quiet.contains { $0.kind == .visitor(.letter) })
@@ -99,15 +99,33 @@ struct PlateLifeTests {
         #expect(!parts.contains(.visitor(.gift)))
     }
 
-    @Test func partsKeepTheirOffsetsFromTheVisitor() throws {
+    @Test func theParcelLiesBesideTheVisitorAwayFromPofu() throws {
         let home = try plate()
         let parts = PlateLife.visitorParts(plate: home, visitor: gift(), invitationOpen: false, isBedtime: false)
         let visitor = try #require(parts.first { $0.part == .visitor })
         let parcel = try #require(parts.first { $0.part == .gift })
         let spot = PlateLife.visitorSpot(home)
         #expect(abs(visitor.feet.x - spot.x) < 1e-9 && abs(visitor.feet.y - spot.y) < 1e-9)
-        #expect(abs(parcel.feet.x - visitor.feet.x - VisitorStage.giftOffset.x) < 1e-9)
+        #expect(abs(abs(parcel.feet.x - visitor.feet.x) - PlateLife.giftReach) < 1e-9)
         #expect(abs(parcel.feet.y - visitor.feet.y - VisitorStage.giftOffset.y) < 1e-9)
+        // Pofu is on the other side, and the parcel lies clear of every character.
+        let pofu = try #require(home.plate.characters["pofu"])
+        let parcelIsRight = home.plate(parcel.feet).x > home.plate(visitor.feet).x
+        let pofuIsRight = pofu.x > home.plate(visitor.feet).x
+        #expect(parcelIsRight != pofuIsRight)
+        for (name, character) in home.plate.characters {
+            #expect(distance(home.plate(parcel.feet), character) >= 40, "\(name)")
+        }
+    }
+
+    @Test func theHelpTargetKeepsItsOffsetFromTheVisitor() throws {
+        let home = try plate()
+        let help = VisitorSnapshot(resident: .damla, reason: .help, slot: .v1, state: .present)
+        let parts = PlateLife.visitorParts(plate: home, visitor: help, invitationOpen: false, isBedtime: false)
+        let visitor = try #require(parts.first { $0.part == .visitor })
+        let kite = try #require(parts.first { $0.part == .help })
+        #expect(abs(kite.feet.x - visitor.feet.x - VisitorStage.helpOffset.x) < 1e-9)
+        #expect(abs(kite.feet.y - visitor.feet.y - VisitorStage.helpOffset.y) < 1e-9)
     }
 
     @Test func giftSpotsLieOnTheLawn() throws {

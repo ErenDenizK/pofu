@@ -1207,8 +1207,9 @@ private struct WorldCanvas: View {
             }
         case .plateFountain:
             if let plate {
+                // Its jet is drawn for the sprite pond; the painted pond is wider, so the jet is larger.
                 HomeFountainView(point: point, time: life.isAmbient ? life.time : nil)
-                    .scaleEffect(CGFloat(plate.characterScale), anchor: UnitPoint(x: point.x / IslandLayout.canvasWidth, y: point.y / IslandLayout.canvasHeight))
+                    .scaleEffect(CGFloat(plate.characterScale * 2), anchor: UnitPoint(x: point.x / IslandLayout.canvasWidth, y: point.y / IslandLayout.canvasHeight))
             }
         case .plateBuild(let frame):
             ZStack(alignment: .topLeading) {

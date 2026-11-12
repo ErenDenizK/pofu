@@ -14,6 +14,9 @@ import PofuCore
 public enum PlateLife {
     /// The lawn is sampled every this many plate pixels.
     public static let gridStep = 10.0
+    /// How far from the visitor the parcel lies, in world units: the sprite island's
+    /// 20 pulled in so it clears Fındık, who stands on the visitor's other side.
+    public static let giftReach = 16.0
     /// How far (plate pixels) the moss lies from every character and from the
     /// visitor.
     public static let mossClearance = 30.0
@@ -42,9 +45,11 @@ public enum PlateLife {
         return plate.world(PlatePoint(x: (box.minX + box.maxX) / 2, y: (box.minY + box.maxY) / 2))
     }
 
-    /// The parts of today's visit (`VisitorStage.parts`), each moved from the
-    /// sprite island's slot to the plate's visitor spot. The parcel and the
-    /// help target keep their offsets from the visitor.
+    /// The parts of today's visit (`VisitorStage.parts`), moved from the
+    /// sprite island's slot to the plate's visitor spot. The help target keeps
+    /// its offset from the visitor; the parcel lies `giftReach` away on
+    /// the side away from Pofu (on the sprite island it lies to the left, which
+    /// here is under Pofu).
     public static func visitorParts(
         plate: HomePlate,
         visitor: VisitorSnapshot?,
@@ -56,8 +61,16 @@ public enum PlateLife {
         let from = visitor.map(VisitorStage.feet(of:)) ?? VisitorStage.letterSpot
         let to = visitorSpot(plate)
         let dx = to.x - from.x, dy = to.y - from.y
+        let pofu = plate.plate.characters["pofu"]
+        let spot = plate.plate(to)
+        // Right of the visitor unless Pofu stands to the right of them.
+        let giftSide = pofu.map { $0.x > spot.x ? -1.0 : 1.0 } ?? 1.0
         return VisitorStage.parts(visitor: visitor, invitationOpen: invitationOpen, isBedtime: isBedtime).map {
-            VisitorStage.Placed(part: $0.part, feet: WorldPoint(x: $0.feet.x + dx, y: $0.feet.y + dy))
+            if $0.part == .gift {
+                let reach = giftReach
+                return VisitorStage.Placed(part: .gift, feet: WorldPoint(x: to.x + giftSide * reach, y: $0.feet.y + dy))
+            }
+            return VisitorStage.Placed(part: $0.part, feet: WorldPoint(x: $0.feet.x + dx, y: $0.feet.y + dy))
         }
     }
 
