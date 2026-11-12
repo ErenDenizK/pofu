@@ -440,10 +440,12 @@ APP_SOURCES = {
     # base pose's scale and feet and stay registered. Keys match the harmony manifest.
     "harbor-island-s": _blob("design/art/masters/harbor-island-s", 268, "centre"),
     # Koke (batch 39): the plates were delivered at half scale (768 x 512 for 1536 x 1024), drawn 250 units
-    # wide with their centre on the island's centre, cut from their own sky (`matte`). The poses share one
+    # wide with their centre on the island's centre, cut from their own sky by each stage's committed matte
+    # (tools/assets/koke_matte.py; the colour rule `matte` let warm sky and petals in). The poses share one
     # scale and one baseline (feet on the anchor); Koke is 114 units wide on the lawn.
     **{f"koke-island-{n}": {"src": _master(f"design/art/masters/koke-island-{n}"), "ppu": 768 / KOKE_PLATE_UNITS,
-                            "anchor": (384, 256), "matte": True} for n in KOKE_PLATES},
+                            "anchor": (384, 256), "matte_file": f"design/art/masters/koke-island-{n}/koke-matte.png"}
+       for n in KOKE_PLATES},
     **{f"koke-{pose}": _blob(f"design/art/masters/koke-{pose}", KOKE_WIDTH, "feet", like="design/art/masters/koke-asleep")
        for pose in ("asleep", "one-eye", "stretch")},
     **{f"caglayan-island-{n}": {"src": _master(f"design/art/masters/caglayan-island-{n}"), "ppu": 768 / CAGLAYAN_PLATE_UNITS,

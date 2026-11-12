@@ -105,6 +105,11 @@ jobs:
       - name: Check the shadow silhouettes
         run: python3 -I tools/assets/shadows.py check
 
+      # No Koke island sprite carries its take's own sky outside the island
+      # (tools/assets/koke_matte.py cuts them).
+      - name: Check the Koke island cuts
+        run: python3 -I tools/assets/koke_sky_check.py
+
       - name: Test the image pipeline
         run: python3 -I -m pytest -q tools/imagegen/tests
 
