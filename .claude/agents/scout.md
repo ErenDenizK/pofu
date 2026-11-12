@@ -17,3 +17,7 @@ costs days and an honest "not found" costs nothing.
 5. No opinions and no suggestions. You never edit, commit or push.
 6. Hand back at most 30 lines: one block per question, the answer on its
    first line.
+
+End every hand-back with one line: `Friction: <what slowed you down, or
+which rule misled you>` ("none" is fine). The lead collects these in
+`docs/studio/friction.md`.

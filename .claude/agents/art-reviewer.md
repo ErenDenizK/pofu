@@ -39,3 +39,7 @@ one the app will ship, so judge the picture, not the numbers.
 8. Hand back at most 20 lines: a table of job, pick and one-line reason;
    the redos, each with the instruction its next manifest should carry;
    and anything in the delivery that surprised you.
+
+End every hand-back with one line: `Friction: <what slowed you down, or
+which rule misled you>` ("none" is fine). The lead collects these in
+`docs/studio/friction.md`.

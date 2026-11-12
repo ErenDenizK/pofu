@@ -27,3 +27,7 @@ content.
 8. Open the spec as a docs PR and hand back at most 15 lines: the PR,
    the three decisions the lead should look at first, and anything you
    could not verify.
+
+End every hand-back with one line: `Friction: <what slowed you down, or
+which rule misled you>` ("none" is fine). The lead collects these in
+`docs/studio/friction.md`.

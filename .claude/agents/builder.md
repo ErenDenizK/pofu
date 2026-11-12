@@ -71,3 +71,7 @@ For the lead: <each decision the brief did not cover, one line>
 
 "Defects I can still see: none" is a claim the lead will check at 1:1.
 A named defect is welcome; a missed one costs a round.
+
+End every hand-back with one line: `Friction: <what slowed you down, or
+which rule misled you>` ("none" is fine). The lead collects these in
+`docs/studio/friction.md`.
