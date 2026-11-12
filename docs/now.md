@@ -30,11 +30,9 @@ not accepted is hidden. Codex is stopped (plan expired 11-12).
    `fix/map-painted-critic`: empty top band, night only in the sky, soft
    clouds, small hazy isles; #416 merged as a step up from the code Map).
    Open: the IL1 night matte keeps a sky ghost of IL10 (#416 builder).
-Scout facts (step 1): dragging pans Home even when painted (step 8 clamps
-it); no painted visitor art ships, all drawn by `LifeArt.drawVisitor`
-(step 6); the Today header is text (`TodaySheet.swift:109`) and the
-breath ring is code-drawn; no screen spends seeds for minutes; the frame
-meter has no switch or launch argument (`WorldLook.frameMeter`).
+Scout facts (step 1): a drag pans painted Home (step 8 clamps it); no
+painted visitor art ships (step 6); the Today header is text
+(`TodaySheet.swift:109`); no screen spends seeds for minutes.
 Merged today: #403 to #413, #415, #416 (the Map painted) ("Kare ölçer" switch), #417 (Koke clean at every stage;
 left: a small pale pocket at s2 night, Koke lit too bright at night); pofu-art #13, #14, #18, #22 to #27, #29.
 
