@@ -35,6 +35,12 @@ links:
   - asset-gate-postcard-night
   - asset-gate-postcard-rain
   - asset-gate-postcard-mist
+  - asset-gate-door-scene
+  - asset-gate-door-bank
+  - asset-gate-door-interior
+  - asset-gate-door-leaf
+  - asset-gate-door-plaques
+  - asset-gate-door-grass
 sources:
 - doc: docs/product/ux/gate-v2.md
   anchor: '#61-the-landing'

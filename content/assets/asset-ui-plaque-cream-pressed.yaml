@@ -4,14 +4,15 @@ title_tr: ui-plaque-cream-pressed
 title_en: plaque-cream-pressed (ui)
 status: in-production
 horizon: now
-summary: >-
-  Show the cream plaque pressed down: the linen about 6 percent darker, the top bevel softer,
-  the lip flatter and the shadow tucked tight under it. The outline, size and position stay.
+summary: 'Show the cream plaque pressed down: the linen about 6 percent darker, the
+  top bevel softer, the lip flatter and the shadow tucked tight under it. The outline,
+  size and position stay.'
 links:
   variant_of:
   - asset-ui-plaque-cream
 art:
-  images: []
+  images:
+  - design/art/ui/ui-plaque-cream-pressed/ui-plaque-cream-pressed.webp
   jobs:
   - batch-61-ui-kit-v3:ui-plaque-cream-pressed
 sources:

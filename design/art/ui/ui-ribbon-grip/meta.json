@@ -1,0 +1,91 @@
+{
+  "job": "ui-ribbon-grip",
+  "batch": "batch-61-ui-kit-v3",
+  "asset": "ui__ribbon-grip",
+  "take": 2,
+  "takes_considered": 2,
+  "approved_at": "2026-11-06T17:42:36+00:00",
+  "image": "design/art/ui/ui-ribbon-grip/ui-ribbon-grip.png",
+  "raw": "design/art/ui/ui-ribbon-grip/raw.webp",
+  "raw_encoding": "webp q95",
+  "fingerprint": "52986bbc91410be4",
+  "prompt": "REFERENCES (attached, in this order):\n1. The round door gate scene (take 1, the lead's pick; batch-58 repaints it as layers and does not block this batch): the material, light and finish of the honey wood plaques hanging on the rope at the bottom (and its warm paper-and-wood look). Take the material only; do not draw the door, the burrow, the rope or the scene.\n2. The palette card for props: use only these colors (and mixes of them).\n\nOne short, plump ribbon tab seen straight on, about four times as wide as it is tall, centered: honey-gold satin ribbon (#F2C77A) with a thin cream stripe along the middle and softly rounded ends, a gentle crease at each end and a small soft shadow beneath.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: text, letters, numbers, symbols, icons, glass, frosted or transparent parts, a drop shadow or cast shadow on the ground, an outline, a border around the canvas, a background, gloss or specular glints, texture that varies along the width, pure black, neon or saturated colors, a 3D render look\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/takes/batch-48-gate-scenes/x-gate-round-door/ui__x-gate-round-door--t1.webp",
+      "role": "The round door gate scene (take 1, the lead's pick; batch-58 repaints it as layers and does not block this batch): the material, light and finish of the honey wood plaques hanging on the rope at the bottom (and its warm paper-and-wood look). Take the material only; do not draw the door, the burrow, the rope or the scene."
+    },
+    {
+      "path": "design/reference/palette-card-world-props.png",
+      "role": "The palette card for props: use only these colors (and mixes of them)."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-06T17:08:28+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "fit": null,
+  "emit_region": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "warn",
+        "message": "2172x724 scaled x0.471 into 1024x1024 (aspect off by 200%, padded); source smaller than the canvas (upscaled)",
+        "value": 0.4715
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 54 (R1 51)",
+        "value": 54.2
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 71 (R1 59)",
+        "value": 71.0
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 0.8 (R1 5.3)",
+        "value": 0.76
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 0.6",
+        "value": 0.5764
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.5, p95 3.4, off-palette 0.0%",
+        "value": 1.5195
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Both initial takes pass all hard automated and manual proper-alpha checks; normal lowest style-lock load selects take2 (0.5764 vs0.7124). Plump honey-gold satin grip with thin cream central stripe, gentle end creases and small soft shadow allowed by the authored positive brief; no text/icons/visible background. Colored raw fragments are hiddenRGB underalpha0 and disappear in correct composites. Selected take2 retains canonical canvas0.4715 advisory (native2172x724 normalized to declared1024x1024); selected locked lossless PNG171024B. All originals/callbacks/orderedrefs/INITIAL2 QA+locked seal preserved. Slice metadata unchanged, no claim of cap approval or completed app integration. Real complete172source canonical Harmony measure/check and byte-exact foreign restoration; UIexcluded/no fabricated shard. This normal first fresh H also verifies the reviewed exact134 unusedBASEraw numerical-cache omission, with rollback capacity held until proof. No retry, force, QA/profile or pixel edits. auto-picked by QA; founder review pending."
+}

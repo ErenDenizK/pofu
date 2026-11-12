@@ -11,7 +11,8 @@ summary: >-
   45 degrees), a plain wooden rim joining their tips, honey-stained matte wood (no grain)
   with a slightly darker cocoa hub and a tiny touch of gree…
 art:
-  images: []
+  images:
+  - design/art/masters/flow-wheel/flow-wheel.png
   jobs:
   - batch-64-flow-pieces:flow-wheel
 sources:

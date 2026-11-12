@@ -1,0 +1,342 @@
+batch: batch-58-gate-round-door
+contact_sheet: design/art/takes/gate-door-repost-2026-11-06/gate-door-plaques/contact.jpg
+jobs:
+  gate-door-plaques:
+    pick: 3
+    status: lead-picked
+    publication: "picked by the lead 2026-11-12 (take 3); promote from the retained take, no generation (batch-77)"
+    lead_review: "Lead pick: take 3, three blank honey plaques on the rope, registered. Same false edit_stability fail. Promote with --force citing batch-77."
+    note: 'Sole unchanged retry exhausted. All four takes fail canonical edit_stability:
+      0.0610, 0.0606, 0.0602 and 0.0612. Takes1-3 also hard-fail palette_drift; take4
+      is exactly WARN3.8546, not a hard palette failure. Proper-alpha source and official
+      locked review confirms the three blank plaques and rope inventory; apparent
+      amber RGB outside the plaques has alpha0 and disappears on cream/night composites.
+      Initial source/QA/locked seals remain unchanged, with all four original PNGs
+      and processing history retained. The authored layer extraction is checked against
+      the full opaque parent; no child QA exception or force is authorized. No master
+      is promoted and no further plaques generation is allowed; founder review pending.
+      Automated failures: t1 palette_drift: mean dE 8.4, p95 13.2, off-palette 6.3%
+      (top: #CC7733 (2.0%), #BB6622 (1.6%)), edit_stability: 6% of the parent level
+      unchanged; t2 palette_drift: mean dE 6.1, p95 9.0, off-palette 0.2% (top: #AA6622
+      (0.1%), #995522 (0.1%)), edit_stability: 6% of the parent level unchanged; t3
+      palette_drift: mean dE 6.5, p95 10.1, off-palette 3.1% (top: #BB7733 (0.7%),
+      #CC7733 (0.7%)), edit_stability: 6% of the parent level unchanged; t4 edit_stability:
+      6% of the parent level unchanged.'
+qa_reports:
+  1:
+    job: gate-door-plaques
+    take: 1
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 61 (R1 51)
+      value: 61.1
+    - check: value_floor
+      status: pass
+      message: lightness p5 59 (R1 59)
+      value: 59.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.9 (R1 5.3)
+      value: 1.87
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.5
+      value: 1.5314
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 8.4, p95 13.2, off-palette 6.3% (top: #CC7733 (2.0%), #BB6622
+        (1.6%))'
+      value: 8.3888
+    - check: edit_stability
+      status: fail
+      message: 6% of the parent level unchanged
+      value: 0.061
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.07 of the parent level (drift compounds along a chain)
+      value: 1.0667
+    info:
+      parent_canvas:
+        source:
+        - 512
+        - 768
+        target:
+        - 1024
+        - 1536
+      metrics_raw:
+        L_p5: 56.7
+        L_p50: 74.5
+        L_p95: 82.1
+        C_p50: 60.1
+        C_p95: 63.7
+        C_p99: 64.7
+        detail: 2.74
+      metrics_locked:
+        L_p5: 59.2
+        L_p50: 74.7
+        L_p95: 80.8
+        C_p50: 59.4
+        C_p95: 61.1
+        C_p99: 61.5
+        detail: 1.87
+    fingerprint: 4f12e48f2d5f8d5c
+  2:
+    job: gate-door-plaques
+    take: 2
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 59 (R1 51)
+      value: 59.0
+    - check: value_floor
+      status: pass
+      message: lightness p5 58 (R1 59)
+      value: 58.3
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.9 (R1 5.3)
+      value: 1.93
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 1.031
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 6.1, p95 9.0, off-palette 0.2% (top: #AA6622 (0.1%), #995522
+        (0.1%))'
+      value: 6.1129
+    - check: edit_stability
+      status: fail
+      message: 6% of the parent level unchanged
+      value: 0.0606
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.02 of the parent level (drift compounds along a chain)
+      value: 1.0226
+    info:
+      parent_canvas:
+        source:
+        - 512
+        - 768
+        target:
+        - 1024
+        - 1536
+      metrics_raw:
+        L_p5: 55.9
+        L_p50: 76.3
+        L_p95: 83.3
+        C_p50: 56.8
+        C_p95: 60.3
+        C_p99: 61.5
+        detail: 2.79
+      metrics_locked:
+        L_p5: 58.3
+        L_p50: 76.4
+        L_p95: 82.2
+        C_p50: 56.9
+        C_p95: 59.0
+        C_p99: 59.6
+        detail: 1.93
+    fingerprint: 4f12e48f2d5f8d5c
+  3:
+    job: gate-door-plaques
+    take: 3
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 59 (R1 51)
+      value: 59.4
+    - check: value_floor
+      status: pass
+      message: lightness p5 62 (R1 59)
+      value: 61.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.1 (R1 5.3)
+      value: 2.12
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.2
+      value: 1.157
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 6.5, p95 10.1, off-palette 3.1% (top: #BB7733 (0.7%), #CC7733
+        (0.7%))'
+      value: 6.5378
+    - check: edit_stability
+      status: fail
+      message: 6% of the parent level unchanged
+      value: 0.0602
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.03 of the parent level (drift compounds along a chain)
+      value: 1.0261
+    info:
+      parent_canvas:
+        source:
+        - 512
+        - 768
+        target:
+        - 1024
+        - 1536
+      metrics_raw:
+        L_p5: 58.7
+        L_p50: 76.3
+        L_p95: 83.6
+        C_p50: 57.2
+        C_p95: 60.9
+        C_p99: 62.0
+        detail: 3.08
+      metrics_locked:
+        L_p5: 61.6
+        L_p50: 76.3
+        L_p95: 82.2
+        C_p50: 57.1
+        C_p95: 59.4
+        C_p99: 59.9
+        detail: 2.12
+    fingerprint: 4f12e48f2d5f8d5c
+  4:
+    job: gate-door-plaques
+    take: 4
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 55 (R1 51)
+      value: 54.7
+    - check: value_floor
+      status: pass
+      message: lightness p5 62 (R1 59)
+      value: 61.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.8 (R1 5.3)
+      value: 1.84
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.8875
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.9, p95 6.7, off-palette 0.1% (top: #AA6622 (0.1%), #BB6622
+        (0.0%))'
+      value: 3.8546
+    - check: edit_stability
+      status: fail
+      message: 6% of the parent level unchanged
+      value: 0.0612
+    - check: edit_chroma
+      status: pass
+      message: chroma x0.95 of the parent level (drift compounds along a chain)
+      value: 0.9475
+    info:
+      parent_canvas:
+        source:
+        - 512
+        - 768
+        target:
+        - 1024
+        - 1536
+      metrics_raw:
+        L_p5: 59.0
+        L_p50: 76.5
+        L_p95: 83.4
+        C_p50: 52.8
+        C_p95: 55.2
+        C_p99: 55.9
+        detail: 2.71
+      metrics_locked:
+        L_p5: 61.7
+        L_p50: 76.7
+        L_p95: 82.2
+        C_p50: 52.8
+        C_p95: 54.7
+        C_p99: 55.2
+        detail: 1.84
+    fingerprint: 4f12e48f2d5f8d5c
+manual_review:
+  excluded_takes: []
+  note: 'Sole unchanged retry exhausted. All four takes fail canonical edit_stability:
+    0.0610, 0.0606, 0.0602 and 0.0612. Takes1-3 also hard-fail palette_drift; take4
+    is exactly WARN3.8546, not a hard palette failure. Proper-alpha source and official
+    locked review confirms the three blank plaques and rope inventory; apparent amber
+    RGB outside the plaques has alpha0 and disappears on cream/night composites. Initial
+    source/QA/locked seals remain unchanged, with all four original PNGs and processing
+    history retained. The authored layer extraction is checked against the full opaque
+    parent; no child QA exception or force is authorized. No master is promoted and
+    no further plaques generation is allowed; founder review pending.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-b5695b07-e7b4-4d70-9c2d-46892af40086.png
+  original_generated_png_sha256: 3e4ca9b4bc8d47db9172f28bb4b85d84d977e9db66f092eec9aca4468c9235f0
+  inbox_png_sha256: 1b08f9e8c29356fa9c8496834be043d0afedbea54d39ff1c0319163c5be943ba
+  rgba_sha256: 0ad13c9c6d230a2dcca841c13005537eba8ee7c98c885140fc63761c02877ff6
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 4f12e48f2d5f8d5c
+- take: 2
+  source_file: /workspace/generated_images/exec-99566985-def4-42bc-be24-9605827c6cd2.png
+  original_generated_png_sha256: bfe0ef5dee0ed61dd660026cedbcfa00d2b75404974045395f3f87696377915c
+  inbox_png_sha256: 8658c6ca420bbb6983058486217fe391c1a2cc9dda9f60d45fd37a1d53980768
+  rgba_sha256: 5c16e3ba718da4bdd20264d426e3cc05a10c5b45ede63eb32b6b6d889f5e5602
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 4f12e48f2d5f8d5c
+- take: 3
+  source_file: /workspace/generated_images/exec-d80803c8-962e-49cb-a082-3826b031686e.png
+  original_generated_png_sha256: bb7f832d05846e403617f5bb3b61f04e726fd6b021f9803a6f44dfc349d8a65a
+  inbox_png_sha256: c55c4ff26e1eee6979b74796db14b3efe9e5a40defef5d88f37a021620ad554c
+  rgba_sha256: f936bb9d3b1ce45aa20eaacfa4e8e1a460917616dc0aa86b5f190275c081dc36
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 4f12e48f2d5f8d5c
+- take: 4
+  source_file: /workspace/generated_images/exec-3c51aaff-fca5-4a0e-b3cf-34d01f355297.png
+  original_generated_png_sha256: 4fa057a8f75f78c58e2394983e116a793e047875670cd98de132bef26cabfd46
+  inbox_png_sha256: 1bbdc345489ab6d0f2a571024239be7dc4dfa03d5e464ec7f4cb0b00c87cecdb
+  rgba_sha256: 96636b44be0201890d45f5e132972bf9877a0372f292c2928cc1d1cfa1f9e4c4
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 4f12e48f2d5f8d5c
+operation: gate-door-repost-2026-11-06

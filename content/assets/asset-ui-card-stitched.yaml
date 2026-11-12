@@ -4,14 +4,14 @@ title_tr: ui-card-stitched
 title_en: card-stitched (ui)
 status: in-production
 horizon: now
-summary: >-
-  A square card of cream paper (#FBF1DE) seen straight on, filling about 94 percent of the
-  canvas and centered, softly rounded corners, a thin lifted lighter rim, and just inside
-  it a single row of small even warm-brown stitches all the way round. A soft shadow tucked
-  under the lower edge. The middle is plain, flat, even paper. No hole, no string, no pin,
-  nothing on it.
+summary: A square card of cream paper (#FBF1DE) seen straight on, filling about 94
+  percent of the canvas and centered, softly rounded corners, a thin lifted lighter
+  rim, and just inside it a single row of small even warm-brown stitches all the way
+  round. A soft shadow tucked under the lower edge. The middle is plain, flat, even
+  paper. No hole, no string, no pin, nothing on it.
 art:
-  images: []
+  images:
+  - design/art/ui/ui-card-stitched/ui-card-stitched.webp
   jobs:
   - batch-61-ui-kit-v3:ui-card-stitched
 sources:

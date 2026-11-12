@@ -1,0 +1,230 @@
+batch: batch-64-flow-pieces
+manifest: tools/imagegen/manifest/batch-64-flow-pieces.yaml
+manifest_sha256: 65e52554e18897f16553e47cd6762b9099f270aca4efef9905e16ac3e7957c78
+jobs:
+  damla-point:
+    pick: 1
+    publication: "promoted; picked by the lead 2026-11-12 (take 1); founder review pending"
+    lead_review: "Lead pick: Damla points ahead with one paw and holds the tea glass; on the lookdev sheet she sits in the same light as damla."
+    status: review
+    note: Auto-picked by actual canonical normalized-to-locked mean DeltaE (char QA omits that check);
+      unchanged canonical QA replay exactly matches original checks. Both candidates preserve pointing
+      paw, glass and Damla identity. Exact registration/app rig not certified. Founder review pending.
+    validation: Canonical Harmony measure196sources/check passed; foreign shards restored exactly. Content986nodes0errors0warnings.
+      Master lossless, raw retained, all upload files under614400bytes.
+selection:
+  method: QA non-fail and manual eligibility; lowest style-lock load, then highest measured harmony; take
+    number only breaks ties
+  scores:
+  - take: 1
+    style_lock_load: 0.002572
+    harmony: 84.6
+    eligible: true
+  - take: 2
+    style_lock_load: 0.510271
+    harmony: 81.4
+    eligible: true
+  rejected_takes: []
+qa_reports:
+- job: damla-point
+  take: 1
+  status: warn
+  preset: char-guard
+  checks:
+  - check: transparency
+    status: pass
+    message: source has an alpha channel
+  - check: canvas
+    status: pass
+    message: 1254x1254 scaled x0.817 into 1024x1024
+    value: 0.8166
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 41 (R1 51)
+    value: 41.0
+  - check: light_values
+    status: warn
+    message: 'day/subject: L p2 25 (at most 22), p98 94 (at least 90), spread 69 (at least 60)'
+    value: 68.9
+  - check: light_median
+    status: pass
+    message: 'day/subject: median L 62 (band 55-90)'
+    value: 62.5
+  - check: light_haze
+    status: pass
+    message: 'day/subject: dark-channel haze 0.12 (at most 0.20; no true dark means a wash)'
+    value: 0.122
+  - check: light_contrast
+    status: pass
+    message: 'day/subject: p75 local contrast 5.4 (at least 3.5)'
+    value: 5.37
+  - check: detail_budget
+    status: pass
+    message: detail at display size 6.6 (R1 5.3)
+    value: 6.62
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 3.2, p95 8.9, off-palette 1.4% (top: #441100 (0.2%), #773322 (0.1%))'
+    value: 3.2461
+  - check: ground_line
+    status: pass
+    message: feet at 88.3% of the height (contract 88%)
+    value: 0.8828
+  - check: no_ground_shadow
+    status: warn
+    message: a ground shadow seems painted in
+  - check: harmony
+    status: pass
+    message: 'harmony score 83 against the char reference (outliers: detail)'
+    value: 83.3
+  - check: edit_silhouette
+    status: pass
+    message: 94% of the parent's shape kept
+    value: 0.9444
+  - check: edit_stability
+    status: pass
+    message: 77% of the parent level unchanged
+    value: 0.7651
+  - check: edit_chroma
+    status: pass
+    message: chroma x1.03 of the parent level (drift compounds along a chain)
+    value: 1.0269
+  info:
+    metrics_raw:
+      L_p5: 37.4
+      L_p50: 62.5
+      L_p95: 91.7
+      C_p50: 34.6
+      C_p95: 41.0
+      C_p99: 44.8
+      detail: 6.62
+    metrics_locked:
+      L_p5: 37.4
+      L_p50: 62.5
+      L_p95: 91.7
+      C_p50: 34.6
+      C_p95: 41.0
+      C_p99: 44.8
+      detail: 6.62
+  fingerprint: defc7c4e214779df
+- job: damla-point
+  take: 2
+  status: warn
+  preset: char-guard
+  checks:
+  - check: transparency
+    status: pass
+    message: source has an alpha channel
+  - check: canvas
+    status: pass
+    message: 1254x1254 scaled x0.817 into 1024x1024
+    value: 0.8166
+  - check: edit_alignment
+    status: pass
+    message: the edit rescaled the object x0.992 and moved it; aligned back to the parent
+    value: 1.0082
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 39 (R1 51)
+    value: 39.4
+  - check: light_values
+    status: pass
+    message: 'day/subject: L p2 22 (at most 22), p98 93 (at least 90), spread 71 (at least 60)'
+    value: 71.1
+  - check: light_median
+    status: pass
+    message: 'day/subject: median L 63 (band 55-90)'
+    value: 63.1
+  - check: light_haze
+    status: pass
+    message: 'day/subject: dark-channel haze 0.12 (at most 0.20; no true dark means a wash)'
+    value: 0.125
+  - check: light_contrast
+    status: pass
+    message: 'day/subject: p75 local contrast 5.2 (at least 3.5)'
+    value: 5.17
+  - check: detail_budget
+    status: pass
+    message: detail at display size 6.3 (R1 5.3)
+    value: 6.32
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 2.9, p95 8.0, off-palette 1.0% (top: #662211 (0.1%), #773322 (0.1%))'
+    value: 2.9065
+  - check: ground_line
+    status: pass
+    message: feet at 88.0% of the height (contract 88%)
+    value: 0.8799
+  - check: no_ground_shadow
+    status: warn
+    message: a ground shadow seems painted in
+  - check: harmony
+    status: pass
+    message: 'harmony score 82 against the char reference (outliers: detail, tint_a)'
+    value: 81.5
+  - check: edit_silhouette
+    status: pass
+    message: 94% of the parent's shape kept
+    value: 0.9446
+  - check: edit_stability
+    status: pass
+    message: 70% of the parent level unchanged
+    value: 0.6961
+  - check: edit_chroma
+    status: pass
+    message: chroma x0.97 of the parent level (drift compounds along a chain)
+    value: 0.9746
+  info:
+    alignment:
+      scale: 1.0082
+      cx: 542.0
+      cy: 903.0
+      dx: 1
+      dy: -2
+    metrics_raw:
+      L_p5: 36.2
+      L_p50: 63.0
+      L_p95: 90.4
+      C_p50: 32.6
+      C_p95: 39.7
+      C_p99: 43.7
+      detail: 6.32
+    metrics_locked:
+      L_p5: 36.4
+      L_p50: 63.1
+      L_p95: 90.7
+      C_p50: 32.5
+      C_p95: 39.4
+      C_p99: 43.6
+      detail: 6.32
+  fingerprint: defc7c4e214779df
+sources:
+- take: 1
+  source_file: /workspace/art-operator-runtime/factory/generated/damla-point/take-1.png
+  source_sha256: 82d4299a49ae4ef1f9b7f9f4f961b4304bcfe43336fc76f5c7f8e19d74f2deb0
+  q90_take: design/art/takes/batch-64-flow-pieces/damla-point/char__damla-point--t1.webp
+  q90_take_sha256: 5b598eceed3bc38baabf5211bf6f1493223a279ebd06a2333a33bea214d30d4c
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: cb2d9554a8df01be7f5cc6722b12be14a2fdf3e74eca04c27516badc83a4af47
+  references:
+  - path: design/art/masters/damla/damla.png
+    role: The image to edit (the approved previous level). Edit it; do not redraw it.
+    sha256: 9c1824cba7b5ac851a9ce2ade1a6dbb14be44c395b6bb6e47bad041baf01972c
+- take: 2
+  source_file: /workspace/art-operator-runtime/factory/generated/damla-point/take-2.png
+  source_sha256: cf57a1c8d90f1016e3f8f0b38e08b1a9f14a57f033bed729ce2ef0b473259724
+  q90_take: design/art/takes/batch-64-flow-pieces/damla-point/char__damla-point--t2.webp
+  q90_take_sha256: 2f31190015650fcde55b9a8f933bb7e853b99bd67d8c5cdcc84fdfc94b48edc5
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: cb2d9554a8df01be7f5cc6722b12be14a2fdf3e74eca04c27516badc83a4af47
+  references:
+  - path: design/art/masters/damla/damla.png
+    role: The image to edit (the approved previous level). Edit it; do not redraw it.
+    sha256: 9c1824cba7b5ac851a9ce2ade1a6dbb14be44c395b6bb6e47bad041baf01972c
+policy:
+  never_promote: false
+  originals: source_file PNGs preserved unchanged; published takes are q90 copies

@@ -1,0 +1,337 @@
+batch: batch-61-ui-kit-v3
+contact_sheet: design/art/takes/batch-61-ui-kit-v3/ui-face-disc-v2-night/contact.jpg
+jobs:
+  ui-face-disc-v2-night:
+    pick: null
+    status: rejected
+    publication: "rejected by the lead 2026-11-12"
+    lead_review: "Lead reject: every take is a diagonal amber-corner to indigo gradient, so the middle is not even (it cannot be 9- or 3-sliced) and the night reads purple-indigo, not warm (tracker: Settings night rows warm, not purple-indigo). Redo in batch-77: flat warm cocoa lamplit paper, amber only along the top edge."
+    note: 'Skipped after initial2 plus sole unchanged retry2: allfour actual officialQA
+      reports hardfail value_floor, palette_drift, edit_structure and edit_lightness.
+      p5lightness22.5/22.3/22.5/22.4, palette_drift5.0697/5.4146/5.8406/6.2502, lightstructure0.4009/0.3772/0.417/0.4101,
+      lightnessmove57.1043/58.0369/57.9878/57.7992. The authored NIGHT recolor requests
+      deepplum/inkblue and amberlight but omits acceptance.profile night, retaining
+      ordinary keep structure/lightness; no localprofile/prompt/QA waiver or force.
+      All4 originalPNG/RGBA/account/orderedrefs/dispatchordinals retained. Initial2
+      fullprocessing/sourcepacket evidence copied before retry, and first2 QA+locked
+      hashes remain byteidentical after final4post; INITIAL2/FINAL4 seals and root-disc-night-final-review.json
+      preserved. No thirdround; no true dependents toskip. Unrelatedjobs continue.
+      Automated failures: t1 value_floor: lightness p5 22 (R1 59), palette_drift:
+      mean dE 5.1, p95 9.4, off-palette 0.0%, edit_structure: light structure matches
+      the parent (r 0.40), edit_lightness: mean lightness moved by 57.1 L (the same
+      lightness was asked); t2 value_floor: lightness p5 22 (R1 59), palette_drift:
+      mean dE 5.4, p95 9.7, off-palette 0.0%, edit_structure: light structure matches
+      the parent (r 0.38), edit_lightness: mean lightness moved by 58.0 L (the same
+      lightness was asked); t3 value_floor: lightness p5 22 (R1 59), palette_drift:
+      mean dE 5.8, p95 9.6, off-palette 0.0%, edit_structure: light structure matches
+      the parent (r 0.42), edit_lightness: mean lightness moved by 58.0 L (the same
+      lightness was asked); t4 value_floor: lightness p5 22 (R1 59), palette_drift:
+      mean dE 6.3, p95 9.7, off-palette 0.0%, edit_structure: light structure matches
+      the parent (r 0.41), edit_lightness: mean lightness moved by 57.8 L (the same
+      lightness was asked).'
+qa_reports:
+  4:
+    job: ui-face-disc-v2-night
+    take: 4
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 43 (R1 51)
+      value: 43.0
+    - check: value_floor
+      status: fail
+      message: lightness p5 22 (R1 59)
+      value: 22.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.4 (R1 5.3)
+      value: 0.37
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.8
+      value: 2.8067
+    - check: palette_drift
+      status: fail
+      message: mean dE 6.3, p95 9.7, off-palette 0.0%
+      value: 6.2502
+    - check: edit_silhouette
+      status: pass
+      message: 99% of the parent's shape kept
+      value: 0.9924
+    - check: edit_structure
+      status: fail
+      message: light structure matches the parent (r 0.41)
+      value: 0.4101
+    - check: edit_lightness
+      status: fail
+      message: mean lightness moved by 57.8 L (the same lightness was asked)
+      value: 57.7992
+    info:
+      metrics_raw:
+        L_p5: 15.6
+        L_p50: 25.4
+        L_p95: 57.6
+        C_p50: 21.3
+        C_p95: 43.3
+        C_p99: 52.5
+        detail: 0.64
+      metrics_locked:
+        L_p5: 22.4
+        L_p50: 26.4
+        L_p95: 57.3
+        C_p50: 21.3
+        C_p95: 43.0
+        C_p99: 52.3
+        detail: 0.37
+    fingerprint: b9ded8a17338ad92
+  3:
+    job: ui-face-disc-v2-night
+    take: 3
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 41 (R1 51)
+      value: 40.8
+    - check: value_floor
+      status: fail
+      message: lightness p5 22 (R1 59)
+      value: 22.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.4 (R1 5.3)
+      value: 0.37
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.7
+      value: 2.679
+    - check: palette_drift
+      status: fail
+      message: mean dE 5.8, p95 9.6, off-palette 0.0%
+      value: 5.8406
+    - check: edit_silhouette
+      status: pass
+      message: 99% of the parent's shape kept
+      value: 0.991
+    - check: edit_structure
+      status: fail
+      message: light structure matches the parent (r 0.42)
+      value: 0.417
+    - check: edit_lightness
+      status: fail
+      message: mean lightness moved by 58.0 L (the same lightness was asked)
+      value: 57.9878
+    info:
+      metrics_raw:
+        L_p5: 15.7
+        L_p50: 26.1
+        L_p95: 53.4
+        C_p50: 20.7
+        C_p95: 41.0
+        C_p99: 53.5
+        detail: 0.62
+      metrics_locked:
+        L_p5: 22.5
+        L_p50: 26.9
+        L_p95: 53.2
+        C_p50: 20.7
+        C_p95: 40.8
+        C_p99: 53.3
+        detail: 0.37
+    fingerprint: b9ded8a17338ad92
+  1:
+    job: ui-face-disc-v2-night
+    take: 1
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 39 (R1 51)
+      value: 39.2
+    - check: value_floor
+      status: fail
+      message: lightness p5 22 (R1 59)
+      value: 22.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.4 (R1 5.3)
+      value: 0.39
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.7
+      value: 2.6662
+    - check: palette_drift
+      status: fail
+      message: mean dE 5.1, p95 9.4, off-palette 0.0%
+      value: 5.0697
+    - check: edit_silhouette
+      status: pass
+      message: 99% of the parent's shape kept
+      value: 0.9942
+    - check: edit_structure
+      status: fail
+      message: light structure matches the parent (r 0.40)
+      value: 0.4009
+    - check: edit_lightness
+      status: fail
+      message: mean lightness moved by 57.1 L (the same lightness was asked)
+      value: 57.1043
+    info:
+      metrics_raw:
+        L_p5: 15.9
+        L_p50: 26.3
+        L_p95: 57.0
+        C_p50: 21.5
+        C_p95: 39.4
+        C_p99: 51.3
+        detail: 0.63
+      metrics_locked:
+        L_p5: 22.5
+        L_p50: 27.0
+        L_p95: 56.8
+        C_p50: 21.5
+        C_p95: 39.2
+        C_p99: 51.1
+        detail: 0.39
+    fingerprint: b9ded8a17338ad92
+  2:
+    job: ui-face-disc-v2-night
+    take: 2
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 40.0
+    - check: value_floor
+      status: fail
+      message: lightness p5 22 (R1 59)
+      value: 22.3
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.4 (R1 5.3)
+      value: 0.37
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 3.1
+      value: 3.14
+    - check: palette_drift
+      status: fail
+      message: mean dE 5.4, p95 9.7, off-palette 0.0%
+      value: 5.4146
+    - check: edit_silhouette
+      status: pass
+      message: 99% of the parent's shape kept
+      value: 0.9911
+    - check: edit_structure
+      status: fail
+      message: light structure matches the parent (r 0.38)
+      value: 0.3772
+    - check: edit_lightness
+      status: fail
+      message: mean lightness moved by 58.0 L (the same lightness was asked)
+      value: 58.0369
+    info:
+      metrics_raw:
+        L_p5: 15.3
+        L_p50: 24.7
+        L_p95: 54.3
+        C_p50: 21.4
+        C_p95: 40.2
+        C_p99: 52.9
+        detail: 0.62
+      metrics_locked:
+        L_p5: 22.3
+        L_p50: 26.0
+        L_p95: 54.1
+        C_p50: 21.3
+        C_p95: 40.0
+        C_p99: 52.7
+        detail: 0.37
+    fingerprint: b9ded8a17338ad92
+manual_review:
+  excluded_takes: []
+  note: 'Skipped after initial2 plus sole unchanged retry2: allfour actual officialQA
+    reports hardfail value_floor, palette_drift, edit_structure and edit_lightness.
+    p5lightness22.5/22.3/22.5/22.4, palette_drift5.0697/5.4146/5.8406/6.2502, lightstructure0.4009/0.3772/0.417/0.4101,
+    lightnessmove57.1043/58.0369/57.9878/57.7992. The authored NIGHT recolor requests
+    deepplum/inkblue and amberlight but omits acceptance.profile night, retaining
+    ordinary keep structure/lightness; no localprofile/prompt/QA waiver or force.
+    All4 originalPNG/RGBA/account/orderedrefs/dispatchordinals retained. Initial2
+    fullprocessing/sourcepacket evidence copied before retry, and first2 QA+locked
+    hashes remain byteidentical after final4post; INITIAL2/FINAL4 seals and root-disc-night-final-review.json
+    preserved. No thirdround; no true dependents toskip. Unrelatedjobs continue.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-5201f74b-8f09-445d-aa8d-069fcb6b48e5.png
+  original_generated_png_sha256: 8fff1fd7c1098ab264527a68e5d307af50bae7c5f6e8833b908680481dfb2ca8
+  inbox_png_sha256: 253b58dca4b9bb9cef0a7dc423eb4ebdbcb85b56376e88ca319907a2b41873e9
+  rgba_sha256: 939ebfc9191825fb5f1ac3f9164d3f978d4353f08a1c7e33f8936a4a927a9f27
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: b9ded8a17338ad92
+- take: 2
+  source_file: /workspace/generated_images/exec-98804db2-4791-40e3-a9b1-5bc4cf1ee000.png
+  original_generated_png_sha256: ff8b9a645fe27bb15503461f02f51753e5b338c299b90671cad492b237127969
+  inbox_png_sha256: 8cb23f894ae07a5067fafc6cf364f29630bd47330b9f36af3ec59e71d008080e
+  rgba_sha256: 11ad89bb7ddc6f742870cd4b92453a61bc37f581cc3b16c04fd17f4bd43a7c1e
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: b9ded8a17338ad92
+- take: 3
+  source_file: /workspace/generated_images/exec-e67d92e0-a31e-45fc-931a-84a434952655.png
+  original_generated_png_sha256: 8a6bc1d74b749898c30d18e187e7b2871589240658b4f7efeff862c1fe78af5b
+  inbox_png_sha256: 024352477dcece8bcb097aa069cd4012ca1e2a20d7984d15cf76a4e3d0beef9c
+  rgba_sha256: 05c90dfa9e857e387e0f34bc73fe57c60908d569e7cc5cc7c3f28180f2ee42db
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: b9ded8a17338ad92
+- take: 4
+  source_file: /workspace/generated_images/exec-bd524ff7-f61b-4e69-b016-9cce1baa3e28.png
+  original_generated_png_sha256: d76f94e220f0cf8a151dbde0f0fba16ac32b60114449dfd7046ba8434a4ac75d
+  inbox_png_sha256: 80640c10ce1ad058e36422841c87133bd1a6378a7524dc1c27edf176af951f5c
+  rgba_sha256: 6ed54f071ea58a58da967e136a789ab12281a69fc73a5d7b2097ddce0b682f8b
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: b9ded8a17338ad92

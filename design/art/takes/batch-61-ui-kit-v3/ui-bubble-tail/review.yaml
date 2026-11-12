@@ -1,0 +1,178 @@
+batch: batch-61-ui-kit-v3
+contact_sheet: design/art/takes/batch-61-ui-kit-v3/ui-bubble-tail/contact.jpg
+jobs:
+  ui-bubble-tail:
+    pick: 2
+    publication: "promoted; picked by the lead 2026-11-12 (take 2); founder review pending"
+    lead_review: "Lead pick: three tails with open, edgeless tops and cocoa sides only."
+    note: Both initial takes pass official QA. Proper-alpha cream and dark composites
+      show no broad halo or painted background; the apparent raw-view glow is hidden
+      RGB at alpha zero, with only a tiny soft edge shadow. Three cream-paper tails
+      have open flat top edges and lean left/down/right. Take 2 wins on official lock
+      load 0.3167 versus 0.3508.
+qa_reports:
+  1:
+    job: ui-bubble-tail
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 25 (R1 51)
+      value: 25.4
+    - check: value_floor
+      status: pass
+      message: lightness p5 64 (R1 59)
+      value: 63.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.56
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.4
+      value: 0.3508
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.8, p95 1.4, off-palette 0.0%
+      value: 0.7716
+    info:
+      metrics_raw:
+        L_p5: 61.1
+        L_p50: 93.3
+        L_p95: 95.9
+        C_p50: 15.2
+        C_p95: 26.0
+        C_p99: 26.9
+        detail: 1.91
+      metrics_locked:
+        L_p5: 63.5
+        L_p50: 93.3
+        L_p95: 95.8
+        C_p50: 15.1
+        C_p95: 25.4
+        C_p99: 26.3
+        detail: 1.56
+    fingerprint: f915fdd978fe5411
+  2:
+    job: ui-bubble-tail
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 23 (R1 51)
+      value: 22.6
+    - check: value_floor
+      status: pass
+      message: lightness p5 67 (R1 59)
+      value: 67.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.9 (R1 5.3)
+      value: 0.93
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.3
+      value: 0.3167
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.4, p95 1.0, off-palette 0.0%
+      value: 0.3872
+    info:
+      metrics_raw:
+        L_p5: 64.4
+        L_p50: 93.6
+        L_p95: 95.7
+        C_p50: 11.6
+        C_p95: 23.2
+        C_p99: 24.4
+        detail: 1.13
+      metrics_locked:
+        L_p5: 67.1
+        L_p50: 93.6
+        L_p95: 95.6
+        C_p50: 11.6
+        C_p95: 22.6
+        C_p99: 23.8
+        detail: 0.93
+    fingerprint: f915fdd978fe5411
+manual_review:
+  excluded_takes: []
+  note: Both initial takes pass official QA. Proper-alpha cream and dark composites
+    show no broad halo or painted background; the apparent raw-view glow is hidden
+    RGB at alpha zero, with only a tiny soft edge shadow. Three cream-paper tails
+    have open flat top edges and lean left/down/right. Take 2 wins on official lock
+    load 0.3167 versus 0.3508.
+sources:
+- take: 1
+  round: 1
+  dispatch_ordinal: 1
+  source_file: /workspace/generated_images/exec-d44cc0a8-c1fe-4a34-a34e-5f7c7c242a92.png
+  original_generated_png_sha256: e717ce6caff74657a32bc00e2aa8b8a620d07a5ce1dcfc8bba65539877f638e4
+  inbox_png_sha256: 78c4f2b3120670d8f48239f3e286bcbc6f5a33259f875906644864a6bd9fa759
+  rgba_sha256: eb2d3a3f774aef0cd5b6747a40e38b52c8d5cbac0ef78ffe5e4c29743f74d13a
+  dimensions:
+  - 1536
+  - 1024
+  bytes: 1108048
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  returned_at: '2026-11-09T21:46:59.225Z'
+  prompt_sha256: 53ef799e128224a1b2a4338591673c987ab82a73c1c9e9c5a7ded8538d8132d3
+  fingerprint: f915fdd978fe5411
+  reference_paths:
+  - /workspace/art-20261106-ui-kit-v3/design/art/ui/ui-bubble-paper/ui-bubble-paper.png
+  - /workspace/art-20261106-ui-kit-v3/design/reference/palette-card-world-props.png
+  reference_sha256:
+    /workspace/art-20261106-ui-kit-v3/design/art/ui/ui-bubble-paper/ui-bubble-paper.png: 1120149963234b3add5fc3cd5ef258a5c6c5d821110f4128511e42bbe3acad1f
+    /workspace/art-20261106-ui-kit-v3/design/reference/palette-card-world-props.png: d31df285d7f915ff04d14ef9386940e1745a48ffb951bd041df405392a0939f2
+  source_rgba_matches_inbox: true
+- take: 2
+  round: 1
+  dispatch_ordinal: 2
+  source_file: /workspace/generated_images/exec-24a16697-6f12-4342-956c-8075efa1d165.png
+  original_generated_png_sha256: e9f89df0d82a6ba9125c27cf1aeee863bc96d1ed416a7d1b31100452053f8fec
+  inbox_png_sha256: 2491ae05406321fcb85f69cc81e29f1150f5e60bf94555801e42bc15ea13bc13
+  rgba_sha256: 02fbe1ba168f05dcb986e023ba82e7c993671124693f49e544b4608e068b8d92
+  dimensions:
+  - 1536
+  - 1024
+  bytes: 1177669
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  returned_at: '2026-11-09T21:46:24.306Z'
+  prompt_sha256: 53ef799e128224a1b2a4338591673c987ab82a73c1c9e9c5a7ded8538d8132d3
+  fingerprint: f915fdd978fe5411
+  reference_paths:
+  - /workspace/art-20261106-ui-kit-v3/design/art/ui/ui-bubble-paper/ui-bubble-paper.png
+  - /workspace/art-20261106-ui-kit-v3/design/reference/palette-card-world-props.png
+  reference_sha256:
+    /workspace/art-20261106-ui-kit-v3/design/art/ui/ui-bubble-paper/ui-bubble-paper.png: 1120149963234b3add5fc3cd5ef258a5c6c5d821110f4128511e42bbe3acad1f
+    /workspace/art-20261106-ui-kit-v3/design/reference/palette-card-world-props.png: d31df285d7f915ff04d14ef9386940e1745a48ffb951bd041df405392a0939f2
+  source_rgba_matches_inbox: true
+harmony:
+  canonical_measure: passed
+  canonical_check: passed
+  catalog_count: 172
+  ui_cataloged: false
+  own_asset_shard: null
+  note: One complete canonical measurement-worktree measure/check was run for the
+    retained UI batch; the catalog excludes UI assets. The known tea-stall-1 ULP write
+    from measure was restored byte-exactly to the pinned base after check.

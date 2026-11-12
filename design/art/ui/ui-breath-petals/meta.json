@@ -1,0 +1,101 @@
+{
+  "job": "breath-petals",
+  "batch": "batch-62-breath-room",
+  "asset": "ui__breath-petals",
+  "take": 2,
+  "takes_considered": 2,
+  "approved_at": "2026-11-10T17:00:00+00:00",
+  "image": "design/art/ui/ui-breath-petals/ui-breath-petals.webp",
+  "raw": "design/art/ui/ui-breath-petals/raw.webp",
+  "raw_encoding": "webp q95",
+  "fingerprint": "f47520487463ed33",
+  "prompt": "REFERENCES (attached, in this order):\n1. A finished prop of the game: match its soft airbrushed finish, matte materials, warm light and colors (do not draw the stall).\n\nA sheet of six single flower petals on a transparent background, in a 3 by 2 grid with wide empty space between them, each petal separate and a little curled, seen straight on, at different angles: two soft sakura-pink, two cream, one honey-gold, one pale lilac. Soft, plump, simple shapes with a slightly lighter edge on one side and a very soft shadow, nothing attached.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: stems, whole flowers, leaves, text, letters, outlines, glints, a background, pieces touching\n\nOutput: one image, transparent background PNG, landscape 1536 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/stations/tea-stall-5/tea-stall-5.png",
+      "role": "A finished prop of the game: match its soft airbrushed finish, matte materials, warm light and colors (do not draw the stall)."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud-replacement-round",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-10T16:57:44+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "fit": null,
+  "emit_region": null,
+  "qa": {
+    "status": "pass",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1536x1024"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 31 (R1 51)",
+        "value": 31.1
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 80 (R1 59)",
+        "value": 80.3
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 0.8 (R1 5.3)",
+        "value": 0.83
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 0.4",
+        "value": 0.4459
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.7, p95 5.6, off-palette 0.0%",
+        "value": 1.7022
+      }
+    ]
+  },
+  "note": "Fresh authorized replacement/retry pair after historical partial source loss. Local takes 1 and 2 are new 2026-11-10 ordinals, not the lost historical bound take1 or the historical unassigned PNG. No authentic prior petals PNG/q90 was recoverable; SHA e404002d2da8a54d6103d00389eb4d6985c6b8ac9d2ff92230be1788c7336d1c is never assigned. Both new sheets have six separated single curled petals in3x2: two sakura pink,two cream,one honey,one lilac, no stems/leaves/wholeflowers/text. Proper cream/night composites clean; broad source gradients are hiddenRGB under alpha0. Official QA allPASS; lowest official dElockload selects localtake2. Single replacementpair only,no additionalround. Auto-picked by QA; founder review pending.",
+  "source_replacement": {
+    "authorized_on": "2026-11-10",
+    "reason": "Previous broken-session original sources unavailable; no authentic retained petals PNG or q90 review copy recovered.",
+    "historical_partial_take": "A historical take1 binding is described in PR299 but its source PNG and callback records are unavailable in this runtime.",
+    "historical_unassigned_png_sha256": "e404002d2da8a54d6103d00389eb4d6985c6b8ac9d2ff92230be1788c7336d1c",
+    "historical_unassigned_png_assigned": false,
+    "local_ordinals": "1 and2 identify only the freshly generated replacementpair; no historical ordinal reassignment.",
+    "round_budget": "Single authorized replacement/retry pair; no additional generation round."
+  },
+  "master_encoding": {
+    "format": "WEBP",
+    "lossless": true,
+    "exact": true,
+    "proof": "Original selected locked PNG and decoded WebP have identical full RGBA bytes, including RGB under alpha zero."
+  }
+}

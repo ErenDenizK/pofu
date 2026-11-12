@@ -1,0 +1,94 @@
+{
+  "job": "ui-seals",
+  "batch": "batch-61-ui-kit-v3",
+  "asset": "ui__seals",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-06T12:55:53+00:00",
+  "image": "design/art/ui/ui-seals/ui-seals.png",
+  "raw": "design/art/ui/ui-seals/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "e4cbc0442c1c2474",
+  "prompt": "REFERENCES (attached, in this order):\n1. The round door gate scene (take 1, the lead's pick; batch-58 repaints it as layers and does not block this batch): the material, light and finish of the honey wood plaques hanging on the rope at the bottom (and its warm paper-and-wood look). Take the material only; do not draw the door, the burrow, the rope or the scene.\n2. A finished prop of the game: match its soft airbrushed finish, matte materials, warm light and colors (do not draw the stall).\n3. The palette card for props: use only these colors (and mixes of them).\n\nA sheet of three round wax seals on a transparent background, in a row with wide empty space between them. Each is a plump, slightly irregular blob of matte wax with a raised soft rim and a gently embossed emblem in the middle, lit from the upper left. First, moss green wax with a small rounded shield bearing one leaf. Second, soft rose wax with a small bow. Third, honey-gold wax with a small rising sun above one leaf. No letters, no numbers, no ribbon, no text ring.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: text, letters, numbers, symbols, icons, glass, frosted or transparent parts, a drop shadow or cast shadow on the ground, an outline, a border around the canvas, a background, gloss or specular glints, texture that varies along the width, pure black, neon or saturated colors, a 3D render look\n\nOutput: one image, transparent background PNG, landscape 1536 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/takes/batch-48-gate-scenes/x-gate-round-door/ui__x-gate-round-door--t1.webp",
+      "role": "The round door gate scene (take 1, the lead's pick; batch-58 repaints it as layers and does not block this batch): the material, light and finish of the honey wood plaques hanging on the rope at the bottom (and its warm paper-and-wood look). Take the material only; do not draw the door, the burrow, the rope or the scene."
+    },
+    {
+      "path": "design/art/stations/tea-stall-5/tea-stall-5.png",
+      "role": "A finished prop of the game: match its soft airbrushed finish, matte materials, warm light and colors (do not draw the stall)."
+    },
+    {
+      "path": "design/reference/palette-card-world-props.png",
+      "role": "The palette card for props: use only these colors (and mixes of them)."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-06T10:37:32+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "fit": null,
+  "emit_region": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1536x1024"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "warn",
+        "message": "chroma p95 58 (R1 51)",
+        "value": 57.5
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 59 (R1 59)",
+        "value": 58.8
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 2.0 (R1 5.3)",
+        "value": 2.03
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 2.3",
+        "value": 2.2978
+      },
+      {
+        "check": "palette_drift",
+        "status": "warn",
+        "message": "mean dE 3.9, p95 11.0, off-palette 3.9% (top: #888844 (1.9%), #999955 (0.8%))",
+        "value": 3.8986
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Retained initial take1 passes hard QA and literal native/locked/proper-alpha review, independent sealed review993389a2. Exactly3 separated matte plump waxseals: green shield with one leaf, rose single bow, honey rising sun above ONE continuous broad folded leaf. Take2 is manually excluded for TWO distinct opposing leaf bodies under the sun where ONE is specified, not for style metrics. Actual QA is WARN/nohardfail for both; loads2.2978/2.4134 and one eligible take select1. Raw-view glow is hiddenRGB under alpha0; proper cream/night composites are clean. Specific named emblems govern generic no-symbols wording. No writing/text ring/trailing ribbons. Native losslessPNG588638B fits614400B, retain raw and exactoriginals. Required real complete172source canonical Harmony measure/check and foreignmetadata exactrestoration; canonical UI exclusion meansno fabricated shard. No regeneration, force, newcountgate, thresholdchange or additional retry. auto-picked by QA; founder review pending."
+}

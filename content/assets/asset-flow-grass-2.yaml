@@ -2,14 +2,13 @@ id: asset-flow-grass-2
 type: asset
 title_tr: flow-grass-2
 title_en: flow-grass-2 (ui)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  A game tile for a cozy mobile puzzle, seen straight from above with a very slight tilt,
-  lit softly from the upper left, filling the canvas edge to edge (full bleed): a quiet bank
-  of short soft green grass in two close greens with two or three tiny cream and pale-yellow
-  wildflowers and one small pebble. Even enough at the edges to sit beside other tiles. No
-  groove, no water.
+summary: 'A game tile for a cozy mobile puzzle, seen straight from above with a very
+  slight tilt, lit softly from the upper left, filling the canvas edge to edge (full
+  bleed): a quiet bank of short soft green grass in two close greens with two or three
+  tiny cream and pale-yellow wildflowers and one small pebble. Even enough at the
+  edges to sit beside other tiles. No groove, no water.'
 art:
   images: []
   jobs:
@@ -19,3 +18,15 @@ sources:
 kind: ui
 batch: batch-64-flow-pieces
 size: 1024x1024
+notes:
+- 'batch-64-flow-pieces skipped after four takes: Skipped after the sole unchanged
+  retry: all4 actual numericQA reports PASS, but every native, locked and canonical256
+  export/70pt tile encloses its lawn in a broad pale rounded stone/card rim. The requested
+  full-bleed grassy bank and exact AVOID forbid this border/frame; unlike gate, no
+  specific rim exception exists. All4 otherwise have3flowers and1pebble. This is material
+  composition failure, not tiny corner antialias noise or an invented pixel/width
+  threshold. No third round, local crop/repair, QA waiver or failed master/Harmony
+  shard. Initial processing seal timing and rejected activation are preserved truthfully;
+  peer-reviewed narrow operational recovery validates exact pre-retry hashes and unchanged
+  full4 context. Keep all originals/callbacks/ref-prompt hashes/QA/locked/delivery
+  and q90 rejected takes/contact; independent work continues.'

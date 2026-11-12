@@ -1,0 +1,156 @@
+batch: batch-64-flow-pieces
+contact_sheet: design/art/takes/batch-64-flow-pieces/flow-grass/contact.jpg
+jobs:
+  flow-grass:
+    pick: 1
+    publication: "promoted; picked by the lead 2026-11-12 (take 1); founder review pending"
+    lead_review: "Lead pick: an even bank of soft grass, full bleed; one variant is enough (code rotates and flips it)."
+    note: auto-picked by QA; founder review pending. Take1 is the sole hardQA/manual
+      eligible candidate. Its palette_drift WARN4.3948 stays advisory; take2 actual
+      palette_drift FAIL5.4329 is excluded by unchanged QA. Both inventories show
+      full-bleed short grass in close greens and a few tiny pale clover leaves, no
+      stone, groove, water, outline or frame. Owner reviewed native originals, actual
+      official locked256 delivery and70pt repeated tiles; minor handpainted gradient/texture
+      seams remain advisory, exact seamless app integration is not certified. No invented
+      leaf count, species-petal anatomy or footprint gate, and no retry when take1
+      is eligible. Canonical scale.25 lossless delivery/raw/preview verified; official
+      Harmony measure/check on194 actualBASE sources. UI is outside authoritative
+      catalog, no fabricated shard. Existing22 family consumer links remain byte-stable;
+      all originals/callbacks/refs/reports preserved.
+qa_reports:
+  2:
+    job: flow-grass
+    take: 2
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 48 (R1 51)
+      value: 47.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 79 (R1 59)
+      value: 79.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.7 (R1 5.3)
+      value: 0.67
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.2
+      value: 1.2323
+    - check: palette_drift
+      status: fail
+      message: mean dE 5.4, p95 9.2, off-palette 0.0%
+      value: 5.4329
+    info:
+      metrics_raw:
+        L_p5: 79.3
+        L_p50: 84.3
+        L_p95: 90.8
+        C_p50: 44.3
+        C_p95: 48.7
+        C_p99: 50.6
+        detail: 0.96
+      metrics_locked:
+        L_p5: 79.4
+        L_p50: 84.3
+        L_p95: 90.7
+        C_p50: 43.0
+        C_p95: 47.5
+        C_p99: 49.3
+        detail: 0.67
+    fingerprint: 6aa859ddc5685aea
+  1:
+    job: flow-grass
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 47 (R1 51)
+      value: 46.9
+    - check: value_floor
+      status: pass
+      message: lightness p5 78 (R1 59)
+      value: 78.3
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.7 (R1 5.3)
+      value: 0.66
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.8911
+    - check: palette_drift
+      status: warn
+      message: mean dE 4.4, p95 8.1, off-palette 0.0%
+      value: 4.3948
+    info:
+      metrics_raw:
+        L_p5: 78.2
+        L_p50: 83.8
+        L_p95: 90.7
+        C_p50: 42.9
+        C_p95: 47.9
+        C_p99: 49.4
+        detail: 0.94
+      metrics_locked:
+        L_p5: 78.3
+        L_p50: 83.8
+        L_p95: 90.6
+        C_p50: 42.0
+        C_p95: 46.9
+        C_p99: 48.4
+        detail: 0.66
+    fingerprint: 6aa859ddc5685aea
+manual_review:
+  excluded_takes: []
+  note: Take1 is the sole hardQA/manual eligible candidate. Its palette_drift WARN4.3948
+    stays advisory; take2 actual palette_drift FAIL5.4329 is excluded by unchanged
+    QA. Both inventories show full-bleed short grass in close greens and a few tiny
+    pale clover leaves, no stone, groove, water, outline or frame. Owner reviewed
+    native originals, actual official locked256 delivery and70pt repeated tiles; minor
+    handpainted gradient/texture seams remain advisory, exact seamless app integration
+    is not certified. No invented leaf count, species-petal anatomy or footprint gate,
+    and no retry when take1 is eligible. Canonical scale.25 lossless delivery/raw/preview
+    verified; official Harmony measure/check on194 actualBASE sources. UI is outside
+    authoritative catalog, no fabricated shard. Existing22 family consumer links remain
+    byte-stable; all originals/callbacks/refs/reports preserved.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-f246aba0-3181-4b81-b913-a5f28596159b.png
+  original_generated_png_sha256: 3590507ba11eb46a686d807797e56b4c7be44b6b1caac6c8f7fd5eb0c5d57c58
+  inbox_png_sha256: 7264d22751f8ec97d921b8ecce5e52f960c91c479f3b6e8aa80fd2890f193ccc
+  rgba_sha256: f2550a4a65b7ae5fee16b5973b5c3dbf6bf6563f8c828dd6d16edb1175533491
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 6aa859ddc5685aea
+- take: 2
+  source_file: /workspace/generated_images/exec-e194467b-8bf4-4e0d-8a52-6ab1b892dd06.png
+  original_generated_png_sha256: 7f6a4ffa4a96a7b459f7c1e90bb0ecb0df5c2b4aca4bbdb24362ce7c13312a43
+  inbox_png_sha256: 3b096b20ee95d4382c54ede9ab434b1bc24363d6536715a59719df2c4c35d516
+  rgba_sha256: aeeee60395087148f8b43404116e16d4cda01aa4b23fe6bba4f6ae62118f36e0
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 6aa859ddc5685aea

@@ -1,0 +1,190 @@
+batch: batch-63-empty-states
+manifest: tools/imagegen/manifest/batch-63-empty-states.yaml
+manifest_sha256: 16e2f6cf9233a81573226e366bc5ef6b93e66724b5c90f66dc096e5a9502d160
+contact_sheet: design/art/takes/batch-63-empty-states/x-empty-today/contact.jpg
+jobs:
+  x-empty-today:
+    pick: 1
+    publication: "promoted; picked by the lead 2026-11-12 (take 1); founder review pending"
+    lead_review: "Lead pick: Pofu at a set table with an empty cup and a blank notebook; an invitation, one idea."
+    note: auto-picked by QA; founder review pending. Both initial takes pass all hard
+      QA and manual content review. Native sources, full official locked outputs and
+      proper cream/night alpha composites viewed. One R1 Pofu with curl sits at a
+      small wooden table, empty cream teacup, open blank notebook, pencil beside and
+      potted sprout on table; patient hopeful smile, no writing or other character.
+      Soft rug/grass ground patch fades, clear transparent exterior with no card/frame/full
+      sky. Approximate70percent is scene composition rather than an invented exact
+      one-axis raw bbox gate; full group remains within canvas with negative space,
+      alpha diagnostics recorded without zero-alpha gate. Large close vignette is
+      disclosed for lead layout review, not certified exact 70percent width. Both
+      read at220pt; take1 selected by lowest official lock_load1.8296 versus1.8916.
+      Generic style-anchor-v1 is authored unchanged; UI has no LIGHT block. Style
+      warnings advisory, hard checks unchanged. Originals/callbacks/source/QA/locked
+      and reference hashes retained. Exploration only; never promoted, no production
+      or Harmony changes.
+qa_reports:
+  1:
+    job: x-empty-today
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 49 (R1 51)
+      value: 48.6
+    - check: value_floor
+      status: pass
+      message: lightness p5 55 (R1 59)
+      value: 54.8
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.7 (R1 5.3)
+      value: 2.74
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.8
+      value: 1.8296
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.5, p95 9.1, off-palette 1.3% (top: #888866 (0.2%), #998866
+        (0.1%))'
+      value: 2.46
+    info:
+      metrics_raw:
+        L_p5: 54.5
+        L_p50: 77.2
+        L_p95: 92.4
+        C_p50: 28.5
+        C_p95: 49.5
+        C_p99: 57.8
+        detail: 3.91
+      metrics_locked:
+        L_p5: 54.8
+        L_p50: 77.2
+        L_p95: 92.1
+        C_p50: 28.5
+        C_p95: 48.6
+        C_p99: 54.3
+        detail: 2.74
+    fingerprint: c34802dcc59594e3
+  2:
+    job: x-empty-today
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 52 (R1 51)
+      value: 52.4
+    - check: value_floor
+      status: pass
+      message: lightness p5 53 (R1 59)
+      value: 52.8
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.1 (R1 5.3)
+      value: 3.12
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.9
+      value: 1.8916
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.0, p95 10.7, off-palette 3.4% (top: #888866 (0.3%), #CC7733
+        (0.2%))'
+      value: 2.9597
+    info:
+      metrics_raw:
+        L_p5: 52.5
+        L_p50: 78.1
+        L_p95: 92.9
+        C_p50: 29.8
+        C_p95: 53.7
+        C_p99: 59.8
+        detail: 4.4
+      metrics_locked:
+        L_p5: 52.8
+        L_p50: 78.1
+        L_p95: 92.5
+        C_p50: 29.7
+        C_p95: 52.4
+        C_p99: 57.5
+        detail: 3.12
+    fingerprint: c34802dcc59594e3
+manual_review:
+  observed_note: Both initial takes pass all hard QA and manual content review. Native
+    sources, full official locked outputs and proper cream/night alpha composites
+    viewed. One R1 Pofu with curl sits at a small wooden table, empty cream teacup,
+    open blank notebook, pencil beside and potted sprout on table; patient hopeful
+    smile, no writing or other character. Soft rug/grass ground patch fades, clear
+    transparent exterior with no card/frame/full sky. Approximate70percent is scene
+    composition rather than an invented exact one-axis raw bbox gate; full group remains
+    within canvas with negative space, alpha diagnostics recorded without zero-alpha
+    gate. Large close vignette is disclosed for lead layout review, not certified
+    exact 70percent width. Both read at220pt; take1 selected by lowest official lock_load1.8296
+    versus1.8916. Generic style-anchor-v1 is authored unchanged; UI has no LIGHT block.
+    Style warnings advisory, hard checks unchanged. Originals/callbacks/source/QA/locked
+    and reference hashes retained. Exploration only; never promoted, no production
+    or Harmony changes.
+  excluded_takes: []
+sources:
+- batch: batch-63-empty-states
+  job: x-empty-today
+  take: 1
+  round: 1
+  logical_run: 20261106-b63-empty-states
+  source_file: /workspace/generated_images/exec-780d5e5c-eb4e-434a-acd7-676020734f87.png
+  returned_at: '2026-11-06T11:08:22.704Z'
+  prompt_sha256: d356cbd1bde515e94b296d2a9cbe5eaa408d5fc9b15771581bb1d06eb36dcf3f
+  fingerprint: c34802dcc59594e3
+  saved_at: '2026-11-06T11:08:23.209854+00:00'
+  original_generated_png_sha256: 1470a7cb1c10208a23700ac47630698ab964176da7abbfc4d74f40c2c03b797d
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: b16b52e971277dd20a8eaae31d119c2428aac47d794fa04228bf0798213f9bb8
+  inbox_png_sha256: 07680703eebec21011e7f5383701d37cae2ca7c95c808ff6c7ea137114227beb
+  qa_sha256: 23b03a5f95c69b27804cd23f8de70721ed89c9d9a163696ca0ed65c37f37a30e
+- batch: batch-63-empty-states
+  job: x-empty-today
+  take: 2
+  round: 1
+  logical_run: 20261106-b63-empty-states
+  source_file: /workspace/generated_images/exec-2a9e45f8-fefe-4329-a9d4-eb3a86a43e46.png
+  returned_at: '2026-11-06T11:09:24.159Z'
+  prompt_sha256: d356cbd1bde515e94b296d2a9cbe5eaa408d5fc9b15771581bb1d06eb36dcf3f
+  fingerprint: c34802dcc59594e3
+  saved_at: '2026-11-06T11:09:24.475684+00:00'
+  original_generated_png_sha256: f2292f05bcd7a2b4a68bc25f0e832bb3ffa8e1e8c3e96276032e91112ff24fbe
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: e8b4137e1b000bb4a8c967b53f8d709d608daeee561f5ed4150730d58a5be451
+  inbox_png_sha256: 46d2cb93afe4220241587220624de4ff4ff39d537948d5b5c4827cbb305ad63b
+  qa_sha256: 354dfcfe5b9e80b6cf78900104b06c2b52887628724909c961832c68ca506f39
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published

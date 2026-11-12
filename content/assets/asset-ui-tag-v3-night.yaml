@@ -2,14 +2,13 @@ id: asset-ui-tag-v3-night
 type: asset
 title_tr: ui-tag-v3-night
 title_en: tag-v3-night (ui)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  NIGHT VERSION of the attached day piece: the identical shape, size and position, every edge
-  in the same pixels; only the light and color change. It is now lit by a warm lantern from
-  the upper left at night: the material turns a deep warm plum-brown and ink-blue shade, the
-  highlight along the top edge becomes a soft amber, shadows are deeper warm indigo-brown
-  (never black), the whole piece stays readable as the same o…
+summary: 'NIGHT VERSION of the attached day piece: the identical shape, size and position, every edge
+  in the same pixels; only the light and color change. It is now lit by a warm lantern from the upper
+  left at night: the material turns a deep warm plum-brown and ink-blue shade, the highlight along the
+  top edge becomes a soft amber, shadows are deeper warm indigo-brown (never black), the whole piece stays
+  readable as the same o…'
 links:
   variant_of:
   - asset-ui-tag-v3
@@ -22,3 +21,6 @@ sources:
 kind: ui
 batch: batch-61-ui-kit-v3
 size: 1536x1024
+notes:
+- 'Factory takeover: two initial takes retained in design/art/takes/batch-61-ui-kit-v3/ui-tag-v3-night/;
+  both fail hard QA, no promotion or threshold waiver. Current two-take cap exhausted.'

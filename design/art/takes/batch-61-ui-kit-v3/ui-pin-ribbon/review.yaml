@@ -1,0 +1,157 @@
+batch: batch-61-ui-kit-v3
+contact_sheet: design/art/takes/batch-61-ui-kit-v3/ui-pin-ribbon/contact.jpg
+jobs:
+  ui-pin-ribbon:
+    pick: 2
+    publication: "promoted; picked by the lead 2026-11-12 (take 2); founder review pending"
+    lead_review: "Lead pick: a plump rose bow with a clean edge (take 1 has a pale fringe under the tails)."
+    note: auto-picked by QA; founder review pending. Both initial takes PASS all automatedQA
+      and manual fullnative/officiallocked properalpha cream/dark review. Normal lowest
+      style-lock load selects take2 (3.8694 vs4.0794). One centered plump simple rose
+      satin bow, exactly2 short hanging notched tails, thin creamedge and softunderneathshadow
+      aspositivebrief; no card/backdrop/extraobjects/text/icons. Positive creamedge/shadow
+      wording governs generic nooutline/groundshadow. Officiallock warms rose toward
+      peach, observed in propercomposites; original/sourcecolors remainretained, noexactoriginalRGB
+      orappintegration certification. All originalPNG/RGBA/account/orderedrefs/callbacks/INITIAL2QA+lockedseal
+      retained. Master stayslossless with exactWebPtwin if needed; rawalwaysretained.
+      Actual172source canonical Harmony measure/check and exactforeignrestoration,
+      UIexcluded/no fabricatedshard, reviewed134unusedBASEraw numericalcacheomission
+      unchanged. No retry, force or QA/profile/pixel edits. auto-picked by QA; founder
+      review pending.
+qa_reports:
+  2:
+    job: ui-pin-ribbon
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 36 (R1 51)
+      value: 35.6
+    - check: value_floor
+      status: pass
+      message: lightness p5 62 (R1 59)
+      value: 61.9
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.9 (R1 5.3)
+      value: 0.89
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 3.9
+      value: 3.8694
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.4, p95 3.1, off-palette 0.0%
+      value: 1.3582
+    info:
+      metrics_raw:
+        L_p5: 61.9
+        L_p50: 75.4
+        L_p95: 89.3
+        C_p50: 28.7
+        C_p95: 35.7
+        C_p99: 37.0
+        detail: 1.32
+      metrics_locked:
+        L_p5: 61.9
+        L_p50: 75.4
+        L_p95: 89.0
+        C_p50: 28.6
+        C_p95: 35.6
+        C_p99: 36.8
+        detail: 0.89
+    fingerprint: a9571fecd0daeb4f
+  1:
+    job: ui-pin-ribbon
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 36 (R1 51)
+      value: 35.7
+    - check: value_floor
+      status: pass
+      message: lightness p5 64 (R1 59)
+      value: 64.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.0 (R1 5.3)
+      value: 0.98
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 4.1
+      value: 4.0794
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.1, p95 2.3, off-palette 0.0%
+      value: 1.1332
+    info:
+      metrics_raw:
+        L_p5: 63.9
+        L_p50: 75.7
+        L_p95: 89.3
+        C_p50: 29.7
+        C_p95: 35.9
+        C_p99: 37.9
+        detail: 1.45
+      metrics_locked:
+        L_p5: 64.0
+        L_p50: 75.7
+        L_p95: 89.1
+        C_p50: 29.6
+        C_p95: 35.7
+        C_p99: 37.7
+        detail: 0.98
+    fingerprint: a9571fecd0daeb4f
+manual_review:
+  excluded_takes: []
+  note: Both initial takes PASS all automatedQA and manual fullnative/officiallocked
+    properalpha cream/dark review. Normal lowest style-lock load selects take2 (3.8694
+    vs4.0794). One centered plump simple rose satin bow, exactly2 short hanging notched
+    tails, thin creamedge and softunderneathshadow aspositivebrief; no card/backdrop/extraobjects/text/icons.
+    Positive creamedge/shadow wording governs generic nooutline/groundshadow. Officiallock
+    warms rose toward peach, observed in propercomposites; original/sourcecolors remainretained,
+    noexactoriginalRGB orappintegration certification. All originalPNG/RGBA/account/orderedrefs/callbacks/INITIAL2QA+lockedseal
+    retained. Master stayslossless with exactWebPtwin if needed; rawalwaysretained.
+    Actual172source canonical Harmony measure/check and exactforeignrestoration, UIexcluded/no
+    fabricatedshard, reviewed134unusedBASEraw numericalcacheomission unchanged. No
+    retry, force or QA/profile/pixel edits. auto-picked by QA; founder review pending.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-6629b924-49d6-49f5-95e0-feef62a0ea20.png
+  original_generated_png_sha256: 69a2e4b86391ad6199689c2bfda0c5122ef35e4ae8e298e9362467b1c737b8a5
+  inbox_png_sha256: 443e48f6bb3737defc2c1077970a6abe54785c69ffb51594ceef44e938898301
+  rgba_sha256: e672332435572604e39a0046b22a3754da776d76c0c1ec0cedb08b7925aa3c85
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: a9571fecd0daeb4f
+- take: 2
+  source_file: /workspace/generated_images/exec-4b8f4a6f-861b-431c-bd7a-cb8a1d83ec05.png
+  original_generated_png_sha256: 56fdb3b586c3035bdff541c5ba3fb95d20b2e3574b650beb1550e65ac9f3d078
+  inbox_png_sha256: 6b7e9d2590d2bb7a356031378e97875efffd2679307db142a0ae5efe8e398c37
+  rgba_sha256: b64015aa24ac0e51d1e84205f2a8fae5903da96c0e412eab2e0aa4ea5118e735
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: a9571fecd0daeb4f

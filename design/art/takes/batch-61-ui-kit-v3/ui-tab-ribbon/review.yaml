@@ -1,0 +1,223 @@
+batch: batch-61-ui-kit-v3
+manifest: tools/imagegen/manifest/batch-61-ui-kit-v3.yaml
+manifest_sha256: 1afc74db28c48c60630bdde906957d1b30ac1021d539f0322f263619e3450ddc
+jobs:
+  ui-tab-ribbon:
+    pick: 3
+    status: lead-picked
+    publication: "picked by the lead 2026-11-12 (take 3); promote from the retained take, no generation (batch-77)"
+    lead_review: "Lead pick: take 3, five identical notched ribbons, only the colour differs. Held only because the lossless master is over the upload cap: promote it from the retained take with a smaller delivery (batch-77 row, no generation)."
+    note: Authorized single unchanged retry after broken-session takeover. New source PNGs are takes3/4;
+      historical1/2 q90 are review-only and categorically ineligible for production. Five blank matching
+      notched ribbons reviewed on proper alpha composite. No crop, rescale, prompt, profile or QA waiver.
+selection:
+  method: QA non-fail and manual eligibility; lowest style-lock load, then highest measured harmony; take
+    number only breaks ties
+  scores:
+  - take: 3
+    style_lock_load: 0.809
+    harmony: 73.3
+    eligible: true
+  - take: 4
+    style_lock_load: 1.0109
+    harmony: 78.5
+    eligible: true
+  rejected_takes: []
+qa_reports:
+- job: ui-tab-ribbon
+  take: 3
+  status: pass
+  preset: lock-light
+  checks:
+  - check: transparency
+    status: pass
+    message: source has an alpha channel
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 38 (R1 51)
+    value: 37.9
+  - check: value_floor
+    status: pass
+    message: lightness p5 68 (R1 59)
+    value: 68.5
+  - check: detail_budget
+    status: pass
+    message: detail at display size 0.8 (R1 5.3)
+    value: 0.81
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.8
+    value: 0.809
+  - check: palette_drift
+    status: pass
+    message: 'mean dE 2.4, p95 6.1, off-palette 0.5% (top: #AA88AA (0.3%), #AA99AA (0.2%))'
+    value: 2.4163
+  info:
+    metrics_raw:
+      L_p5: 67.2
+      L_p50: 81.7
+      L_p95: 88.7
+      C_p50: 17.5
+      C_p95: 38.0
+      C_p99: 40.4
+      detail: 1.02
+    metrics_locked:
+      L_p5: 68.5
+      L_p50: 81.7
+      L_p95: 88.1
+      C_p50: 17.6
+      C_p95: 37.9
+      C_p99: 40.2
+      detail: 0.81
+  fingerprint: e09ea5a2dc52eae0
+- job: ui-tab-ribbon
+  take: 4
+  status: warn
+  preset: lock-light
+  checks:
+  - check: transparency
+    status: pass
+    message: source has an alpha channel
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 41 (R1 51)
+    value: 40.9
+  - check: value_floor
+    status: pass
+    message: lightness p5 67 (R1 59)
+    value: 67.1
+  - check: detail_budget
+    status: pass
+    message: detail at display size 0.9 (R1 5.3)
+    value: 0.92
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 1.0
+    value: 1.0109
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 3.0, p95 7.0, off-palette 0.8% (top: #AA8899 (0.4%), #AA99AA (0.3%))'
+    value: 2.9536
+  info:
+    metrics_raw:
+      L_p5: 66.0
+      L_p50: 80.2
+      L_p95: 89.4
+      C_p50: 17.4
+      C_p95: 41.0
+      C_p99: 43.7
+      detail: 1.22
+    metrics_locked:
+      L_p5: 67.1
+      L_p50: 80.2
+      L_p95: 88.8
+      C_p50: 17.4
+      C_p95: 40.9
+      C_p99: 43.5
+      detail: 0.92
+  fingerprint: e09ea5a2dc52eae0
+sources:
+- take: 3
+  source_file: /workspace/art-operator-runtime/factory/generated/ui-tab-ribbon/take-3.png
+  source_sha256: c2b5e3a6fad703df9c9ee5aa10a505e336f49813ad24a7f736b59206d289171e
+  q90_take: design/art/takes/batch-61-ui-kit-v3/ui-tab-ribbon/ui__tab-ribbon--t3.webp
+  q90_take_sha256: 5237b00f6c91534f9d54f611956dfb8307d311011a1886c083d31479d880e7dc
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: eb2c32036721e41ec10ebf0ede6081dedbc09b6732b2e09725348d77762fd089
+  references:
+  - path: design/art/ui/ui-bubble-paper/ui-bubble-paper.png
+    role: 'The bubble the tab sits on: match the light, softness and warmth.'
+    sha256: 1120149963234b3add5fc3cd5ef258a5c6c5d821110f4128511e42bbe3acad1f
+  - path: design/reference/palette-card-world-props.png
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+    sha256: d31df285d7f915ff04d14ef9386940e1745a48ffb951bd041df405392a0939f2
+- take: 4
+  source_file: /workspace/art-operator-runtime/factory/generated/ui-tab-ribbon/take-4.png
+  source_sha256: a8b6723223e6c3a9a472a9f34ac4a9f9ef30b9afceda2cabf6390dfd5fa93078
+  q90_take: design/art/takes/batch-61-ui-kit-v3/ui-tab-ribbon/ui__tab-ribbon--t4.webp
+  q90_take_sha256: d61dc67614375d7b97976ce37aa0d1d4f8ed962389f47f5ce3e7a0890e7a90a1
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: eb2c32036721e41ec10ebf0ede6081dedbc09b6732b2e09725348d77762fd089
+  references:
+  - path: design/art/ui/ui-bubble-paper/ui-bubble-paper.png
+    role: 'The bubble the tab sits on: match the light, softness and warmth.'
+    sha256: 1120149963234b3add5fc3cd5ef258a5c6c5d821110f4128511e42bbe3acad1f
+  - path: design/reference/palette-card-world-props.png
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+    sha256: d31df285d7f915ff04d14ef9386940e1745a48ffb951bd041df405392a0939f2
+policy:
+  never_promote: false
+  originals: source_file PNGs preserved unchanged; published takes are q90 copies
+history:
+  review_file: historical-review.yaml
+  review_sha256: 014b48870b760f27d667b32448b200bef3c170916a508bb6ee73362eb6bbae9b
+  old_published_takes:
+  - take: 1
+    path: ui__tab-ribbon--t1.webp
+    sha256: 3a56da4338d631d09725204761a6bf02419cec37a3f1bb8cb4a6ba3e447d297c
+    source_encoding: authentic retained lossy WebP q90; original PNG unavailable in current workspace
+    promotion_eligible: false
+    runtime_recovery: decoded review-only copies occupy canonical inbox ordinals1/2; not regenerated originals
+  - take: 2
+    path: ui__tab-ribbon--t2.webp
+    sha256: 7649f8786b131fd66d1e31e0a00699d6e4f7c4404496e14bebd5cb6225fbc84a
+    source_encoding: authentic retained lossy WebP q90; original PNG unavailable in current workspace
+    promotion_eligible: false
+    runtime_recovery: decoded review-only copies occupy canonical inbox ordinals1/2; not regenerated originals
+  budget: Historical initial1/2 preserved; authorized single unchanged retry3/4 now exhausted; exactly
+    two new image calls.
+delivery:
+  cap_bytes: 614400
+  take3:
+    png_bytes: 915878
+    lossless_exact_rgba_webp_bytes: 641298
+    best_lossless_exact_rgba_webp_bytes: 634032
+  take4:
+    png_bytes: 1056696
+    lossless_exact_rgba_webp_bytes: 745054
+  pixels: No crop, rescale, quantization or lossy production encoding used. Exact decoded RGBA equality
+    verified for lossless trials.
+  lossless_trials:
+  - method: 6
+    quality: 0
+    bytes: 734064
+  - method: 6
+    quality: 25
+    bytes: 736184
+  - method: 6
+    quality: 50
+    bytes: 648930
+  - method: 6
+    quality: 75
+    bytes: 649046
+  - method: 6
+    quality: 90
+    bytes: 642110
+  - method: 4
+    quality: 100
+    bytes: 634032
+  - method: 0
+    quality: 100
+    bytes: 981706
+  - method: 1
+    quality: 100
+    bytes: 649248
+  - method: 2
+    quality: 100
+    bytes: 634032
+  - method: 3
+    quality: 100
+    bytes: 634032
+  - method: 5
+    quality: 100
+    bytes: 641298

@@ -2,13 +2,11 @@ id: asset-ui-fill-honey
 type: asset
 title_tr: ui-fill-honey
 title_en: fill-honey (ui)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  One slim bar of poured honey, blank, a long capsule about nine times as wide as it is tall,
-  filling the canvas width and centered: warm honey (#F6C453 at the top, #E9A93B at the bottom),
-  a single soft lighter highlight along the top, rounded ends, a flat and even middle, no
-  bubbles.
+summary: 'One slim bar of poured honey, blank, a long capsule about nine times as wide as it is tall,
+  filling the canvas width and centered: warm honey (#F6C453 at the top, #E9A93B at the bottom), a single
+  soft lighter highlight along the top, rounded ends, a flat and even middle, no bubbles.'
 art:
   images: []
   jobs:
@@ -18,3 +16,6 @@ sources:
 kind: ui
 batch: batch-61-ui-kit-v3
 size: 1536x1024
+notes:
+- 'Factory takeover: two initial takes retained in design/art/takes/batch-61-ui-kit-v3/ui-fill-honey/;
+  both fail hard QA, no promotion or threshold waiver. Current two-take cap exhausted.'

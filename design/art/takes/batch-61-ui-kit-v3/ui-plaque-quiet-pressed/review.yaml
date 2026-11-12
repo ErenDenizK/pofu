@@ -1,0 +1,208 @@
+batch: batch-61-ui-kit-v3
+contact_sheet: design/art/takes/batch-61-ui-kit-v3/ui-plaque-quiet-pressed/contact.jpg
+jobs:
+  ui-plaque-quiet-pressed:
+    pick: 1
+    publication: "promoted; picked by the lead 2026-11-12 (take 1); founder review pending"
+    lead_review: "Lead pick: pressed felt, shadow gone, same outline."
+    note: 'auto-picked by QA; founder review pending. Both initial takes pass every
+      hard check under the authored region acceptance and are manually eligible as
+      sealed in root-pressed-final-manual-review.json; normal lowest style-lock load
+      selects take1 (0.6186 vs0.6632). Flat slightly darker sand felt, raised rim
+      removed and almost no underneath shadow, inset stitches and blank even face,
+      no text/icons/holes/glass/painted backdrop. Native and official locked selecteds
+      personally compared against parent on proper cream/dark alpha composites. Canonical
+      edit_alignment advisories1.0464/1.0337 are retained: pipeline aligned rescaled
+      sources back, visible soft-bound differences require founder UI preview; no
+      claimed pixelperfect registration, lead nine-slice cap approval or completed
+      app integration, and no invented manual numeric threshold or QA waiver. Selected
+      native lossless PNG585665B fits cap; original PNG/RGBA, raw, source ordinals/orderedreference,
+      QA and INITIAL2seal preserved. Required real canonical complete172source Harmony
+      measure/check restores all foreign bytes exactly; UI is canonically excluded,
+      no fabricated own shard. No retry, force, manifest or profile edit. auto-picked
+      by QA; founder review pending.'
+qa_reports:
+  1:
+    job: ui-plaque-quiet-pressed
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: edit_alignment
+      status: warn
+      message: the edit rescaled the object x0.956 and moved it; aligned back to the
+        parent
+      value: 1.0464
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 14 (R1 51)
+      value: 14.1
+    - check: value_floor
+      status: pass
+      message: lightness p5 85 (R1 59)
+      value: 84.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.0 (R1 5.3)
+      value: 1.02
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.6186
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.2, p95 1.7, off-palette 0.0%
+      value: 1.1618
+    - check: edit_silhouette
+      status: pass
+      message: 97% of the parent's shape kept
+      value: 0.9654
+    - check: edit_stability
+      status: pass
+      message: 98% of the parent level unchanged
+      value: 0.9757
+    - check: edit_chroma
+      status: pass
+      message: chroma x0.96 of the parent level (drift compounds along a chain)
+      value: 0.9563
+    info:
+      alignment:
+        scale: 1.0464
+        cx: 764.5
+        cy: 773.0
+        dx: -3
+        dy: 6
+      metrics_raw:
+        L_p5: 84.3
+        L_p50: 85.9
+        L_p95: 86.7
+        C_p50: 12.5
+        C_p95: 13.7
+        C_p99: 20.5
+        detail: 1.48
+      metrics_locked:
+        L_p5: 84.6
+        L_p50: 86.2
+        L_p95: 86.7
+        C_p50: 12.5
+        C_p95: 14.1
+        C_p99: 19.2
+        detail: 1.02
+    fingerprint: 97fb12fefa32b9e7
+  2:
+    job: ui-plaque-quiet-pressed
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: edit_alignment
+      status: warn
+      message: the edit rescaled the object x0.967 and moved it; aligned back to the
+        parent
+      value: 1.0337
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 16 (R1 51)
+      value: 16.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 85 (R1 59)
+      value: 84.8
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.2 (R1 5.3)
+      value: 1.17
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.6632
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.5, p95 0.9, off-palette 0.0%
+      value: 0.5011
+    - check: edit_silhouette
+      status: pass
+      message: 97% of the parent's shape kept
+      value: 0.9671
+    - check: edit_stability
+      status: pass
+      message: 100% of the parent level unchanged
+      value: 0.9973
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.11 of the parent level (drift compounds along a chain)
+      value: 1.1076
+    info:
+      alignment:
+        scale: 1.0337
+        cx: 765.0
+        cy: 773.0
+        dx: 4
+        dy: 6
+      metrics_raw:
+        L_p5: 84.6
+        L_p50: 86.1
+        L_p95: 86.8
+        C_p50: 14.5
+        C_p95: 16.1
+        C_p99: 24.1
+        detail: 1.66
+      metrics_locked:
+        L_p5: 84.8
+        L_p50: 86.4
+        L_p95: 87.0
+        C_p50: 14.5
+        C_p95: 16.3
+        C_p99: 22.7
+        detail: 1.17
+    fingerprint: 97fb12fefa32b9e7
+manual_review:
+  excluded_takes: []
+  note: 'Both initial takes pass every hard check under the authored region acceptance
+    and are manually eligible as sealed in root-pressed-final-manual-review.json;
+    normal lowest style-lock load selects take1 (0.6186 vs0.6632). Flat slightly darker
+    sand felt, raised rim removed and almost no underneath shadow, inset stitches
+    and blank even face, no text/icons/holes/glass/painted backdrop. Native and official
+    locked selecteds personally compared against parent on proper cream/dark alpha
+    composites. Canonical edit_alignment advisories1.0464/1.0337 are retained: pipeline
+    aligned rescaled sources back, visible soft-bound differences require founder
+    UI preview; no claimed pixelperfect registration, lead nine-slice cap approval
+    or completed app integration, and no invented manual numeric threshold or QA waiver.
+    Selected native lossless PNG585665B fits cap; original PNG/RGBA, raw, source ordinals/orderedreference,
+    QA and INITIAL2seal preserved. Required real canonical complete172source Harmony
+    measure/check restores all foreign bytes exactly; UI is canonically excluded,
+    no fabricated own shard. No retry, force, manifest or profile edit. auto-picked
+    by QA; founder review pending.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-b6b8985e-3053-4418-86fb-4b9ecdd8e6df.png
+  original_generated_png_sha256: 918f3b5d77abf67917009bc96b8aae46361c0b8e3d72c7b68b02f14af4f23d48
+  inbox_png_sha256: 5ad15166eb38da11eaddf2fdef1ed5d45b5070f1713d965a4f718a50470f945f
+  rgba_sha256: eb5aa199665ceb938b6c00d380482aa282ff8b69aec2ffa572841a48ec3a39f7
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 97fb12fefa32b9e7
+- take: 2
+  source_file: /workspace/generated_images/exec-6ecb6f3d-8b1a-4df0-a156-0cf2a07391f0.png
+  original_generated_png_sha256: 5b5845d1296799fb4e5c7a68f90478c94618092a83e345b737d05744d77b60c4
+  inbox_png_sha256: 41c0b9f872e160a3edd8338f3ae3f3cb58b834da5afc3b49a1269a47303552e8
+  rgba_sha256: d6133d9bb2f49a081c7dd1ce44455e718d9c881f4ef13027fb0df5c83b744688
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 97fb12fefa32b9e7

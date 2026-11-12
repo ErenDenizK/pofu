@@ -1,0 +1,175 @@
+batch: batch-62-breath-room
+manifest: tools/imagegen/manifest/batch-62-breath-room.yaml
+manifest_sha256: 4930eba1ec0b879e25a0725d56884d86aacb3ce18e215c7464fe33a758f250e2
+jobs:
+  breath-petals:
+    pick: 2
+    publication: "picked by the lead 2026-11-12 (take 2)"
+    lead_review: "Lead pick: six plump petals in the asked colours; the done moment of the Breath state."
+    status: promoted
+    note: 'Fresh authorized replacement/retry pair after historical partial source loss. Local takes 1
+      and 2 are new 2026-11-10 ordinals, not the lost historical bound take1 or the historical unassigned
+      PNG. No authentic prior petals PNG/q90 was recoverable; SHA e404002d2da8a54d6103d00389eb4d6985c6b8ac9d2ff92230be1788c7336d1c
+      is never assigned. Both new sheets have six separated single curled petals in3x2: two sakura pink,two
+      cream,one honey,one lilac, no stems/leaves/wholeflowers/text. Proper cream/night composites clean;
+      broad source gradients are hiddenRGB under alpha0. Official QA allPASS; lowest official dElockload
+      selects localtake2. Single replacementpair only,no additionalround. Auto-picked by QA; founder review
+      pending.'
+selection:
+  method: QA non-fail and manual eligibility; lowest style-lock load, then highest measured harmony; take
+    number only breaks ties
+  scores:
+  - take: 1
+    style_lock_load: 0.5021
+    harmony: 61.4
+    eligible: true
+  - take: 2
+    style_lock_load: 0.4459
+    harmony: 54.7
+    eligible: true
+  rejected_takes: []
+qa_reports:
+- job: breath-petals
+  take: 1
+  status: pass
+  preset: lock-light
+  checks:
+  - check: transparency
+    status: pass
+    message: source has an alpha channel
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 34 (R1 51)
+    value: 34.5
+  - check: value_floor
+    status: pass
+    message: lightness p5 77 (R1 59)
+    value: 77.3
+  - check: detail_budget
+    status: pass
+    message: detail at display size 0.9 (R1 5.3)
+    value: 0.9
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.5
+    value: 0.5021
+  - check: palette_drift
+    status: pass
+    message: mean dE 1.7, p95 4.7, off-palette 0.0%
+    value: 1.726
+  info:
+    metrics_raw:
+      L_p5: 76.6
+      L_p50: 85.6
+      L_p95: 91.6
+      C_p50: 17.1
+      C_p95: 34.5
+      C_p99: 37.7
+      detail: 1.19
+    metrics_locked:
+      L_p5: 77.3
+      L_p50: 85.6
+      L_p95: 91.5
+      C_p50: 17.0
+      C_p95: 34.5
+      C_p99: 37.5
+      detail: 0.9
+  fingerprint: f47520487463ed33
+- job: breath-petals
+  take: 2
+  status: pass
+  preset: lock-light
+  checks:
+  - check: transparency
+    status: pass
+    message: source has an alpha channel
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 31 (R1 51)
+    value: 31.1
+  - check: value_floor
+    status: pass
+    message: lightness p5 80 (R1 59)
+    value: 80.3
+  - check: detail_budget
+    status: pass
+    message: detail at display size 0.8 (R1 5.3)
+    value: 0.83
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.4
+    value: 0.4459
+  - check: palette_drift
+    status: pass
+    message: mean dE 1.7, p95 5.6, off-palette 0.0%
+    value: 1.7022
+  info:
+    metrics_raw:
+      L_p5: 80.0
+      L_p50: 86.9
+      L_p95: 92.3
+      C_p50: 16.1
+      C_p95: 31.1
+      C_p99: 33.9
+      detail: 1.05
+    metrics_locked:
+      L_p5: 80.3
+      L_p50: 86.9
+      L_p95: 92.1
+      C_p50: 16.1
+      C_p95: 31.1
+      C_p99: 33.6
+      detail: 0.83
+  fingerprint: f47520487463ed33
+sources:
+- take: 1
+  source_file: /workspace/art-operator-runtime/factory/generated/breath-petals/replacement-round/take-1.png
+  source_sha256: 6540493ea00f93f0b0c39575199106e78a08d46b5b4fc085ba61055c79cd1819
+  q90_take: design/art/takes/batch-62-breath-room/breath-petals/ui__breath-petals--t1.webp
+  q90_take_sha256: 0aace95f99d167676b142f0372f62d905220108f10c7203c765030514d6dc5f7
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 0c929a98e9106f4c8a68eb01bb7bd033be131e48254be900746e10fde24710f7
+  references:
+  - path: design/art/stations/tea-stall-5/tea-stall-5.png
+    role: 'A finished prop of the game: match its soft airbrushed finish, matte materials, warm light
+      and colors (do not draw the stall).'
+    sha256: c9a9f018b2dc6bcb1189f497f750dd98e80c69610c10ba3c71081d8b84d157b3
+  generation_round: authorized replacement/retry pair, 2026-11-10
+  ordinal_namespace: fresh replacement local takes; not historical take ordinals
+- take: 2
+  source_file: /workspace/art-operator-runtime/factory/generated/breath-petals/replacement-round/take-2.png
+  source_sha256: 3e2163b8bfc2f272baae3473e2bc2875bb7ab1386326635033de5e98702abae8
+  q90_take: design/art/takes/batch-62-breath-room/breath-petals/ui__breath-petals--t2.webp
+  q90_take_sha256: 65892a5e522df21f7497ceeed94f8dc7486d5d7d170892acb59b3de94bfe715b
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 0c929a98e9106f4c8a68eb01bb7bd033be131e48254be900746e10fde24710f7
+  references:
+  - path: design/art/stations/tea-stall-5/tea-stall-5.png
+    role: 'A finished prop of the game: match its soft airbrushed finish, matte materials, warm light
+      and colors (do not draw the stall).'
+    sha256: c9a9f018b2dc6bcb1189f497f750dd98e80c69610c10ba3c71081d8b84d157b3
+  generation_round: authorized replacement/retry pair, 2026-11-10
+  ordinal_namespace: fresh replacement local takes; not historical take ordinals
+policy:
+  never_promote: false
+  originals: source_file PNGs preserved unchanged; published takes are q90 copies
+source_replacement:
+  authorized_on: '2026-11-10'
+  reason: Previous broken-session original sources unavailable; no authentic retained petals PNG or q90
+    review copy recovered.
+  historical_partial_take: A historical take1 binding is described in PR299 but its source PNG and callback
+    records are unavailable in this runtime.
+  historical_unassigned_png_sha256: e404002d2da8a54d6103d00389eb4d6985c6b8ac9d2ff92230be1788c7336d1c
+  historical_unassigned_png_assigned: false
+  local_ordinals: 1 and2 identify only the freshly generated replacementpair; no historical ordinal reassignment.
+  round_budget: Single authorized replacement/retry pair; no additional generation round.

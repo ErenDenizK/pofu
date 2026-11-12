@@ -1,0 +1,156 @@
+batch: batch-64-flow-pieces
+contact_sheet: design/art/takes/batch-64-flow-pieces/flow-rock-2/contact.jpg
+jobs:
+  flow-rock-2:
+    pick: 2
+    publication: "promoted; picked by the lead 2026-11-12 (take 2); founder review pending"
+    lead_review: "Lead pick: a mossy boulder and a pebble on the bank grass, same stone as the tiles; the rock cell."
+    note: auto-picked by QA; founder review pending. Both initial takes pass hardQA
+      and owner native, actual locked, canonical256 export and70pt review. Exactly
+      one off-center rounded pale mossy boulder plus one smaller stone, full-bleed
+      short grass and soft contact shade; no groove, water, external frame or text.
+      Distinct irregular two-stone outline from retained single-rock studies; no registered
+      upgrade claim because the independent first rock has no approved master. This
+      job has no70percent size requirement and none is imported. T1 palette_drift
+      WARN remains advisory. Take2 wins normal load.4946 versus.7186, no retry. Canonical
+      scale.25 lossless delivery, raw and preview verified. Official Harmony measure/check
+      against194 actualBASE sources; UI is outside authoritative catalog, no fabricated
+      shard. Existing22 family consumer links remain byte-stable. All originals, callbacks
+      and exact prompts/references/reports retained.
+qa_reports:
+  2:
+    job: flow-rock-2
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 46 (R1 51)
+      value: 45.7
+    - check: value_floor
+      status: pass
+      message: lightness p5 74 (R1 59)
+      value: 73.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.7 (R1 5.3)
+      value: 0.69
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.5
+      value: 0.4946
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.4, p95 6.9, off-palette 0.0%
+      value: 2.4381
+    info:
+      metrics_raw:
+        L_p5: 73.5
+        L_p50: 83.4
+        L_p95: 93.8
+        C_p50: 39.9
+        C_p95: 46.1
+        C_p99: 48.6
+        detail: 0.98
+      metrics_locked:
+        L_p5: 73.6
+        L_p50: 83.5
+        L_p95: 93.7
+        C_p50: 39.6
+        C_p95: 45.7
+        C_p99: 48.3
+        detail: 0.69
+    fingerprint: f3467ea381e685c1
+  1:
+    job: flow-rock-2
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 47 (R1 51)
+      value: 47.0
+    - check: value_floor
+      status: pass
+      message: lightness p5 74 (R1 59)
+      value: 73.8
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.8 (R1 5.3)
+      value: 0.78
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.7186
+    - check: palette_drift
+      status: warn
+      message: mean dE 2.9, p95 8.6, off-palette 0.0%
+      value: 2.858
+    info:
+      metrics_raw:
+        L_p5: 73.8
+        L_p50: 82.7
+        L_p95: 93.9
+        C_p50: 42.2
+        C_p95: 47.8
+        C_p99: 50.0
+        detail: 1.15
+      metrics_locked:
+        L_p5: 73.8
+        L_p50: 82.7
+        L_p95: 93.8
+        C_p50: 41.5
+        C_p95: 47.0
+        C_p99: 49.1
+        detail: 0.78
+    fingerprint: f3467ea381e685c1
+manual_review:
+  excluded_takes: []
+  note: Both initial takes pass hardQA and owner native, actual locked, canonical256
+    export and70pt review. Exactly one off-center rounded pale mossy boulder plus
+    one smaller stone, full-bleed short grass and soft contact shade; no groove, water,
+    external frame or text. Distinct irregular two-stone outline from retained single-rock
+    studies; no registered upgrade claim because the independent first rock has no
+    approved master. This job has no70percent size requirement and none is imported.
+    T1 palette_drift WARN remains advisory. Take2 wins normal load.4946 versus.7186,
+    no retry. Canonical scale.25 lossless delivery, raw and preview verified. Official
+    Harmony measure/check against194 actualBASE sources; UI is outside authoritative
+    catalog, no fabricated shard. Existing22 family consumer links remain byte-stable.
+    All originals, callbacks and exact prompts/references/reports retained.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-02938fe1-affd-4524-870b-2240a1d75ffd.png
+  original_generated_png_sha256: e0dc6c200a4feaea3d1af61535108d208e909882b484feb27fe431a228d60976
+  inbox_png_sha256: 9bfe0f110cb7edc3917af08f753e71b40b484af571326af34b299a6c0536231e
+  rgba_sha256: 674554e3f293db0f14182ad4cefe1b8c17f56ffb6fa2b9dc08350e71f4ccd685
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: f3467ea381e685c1
+- take: 2
+  source_file: /workspace/generated_images/exec-518da55b-fb23-4eea-bd8d-7388c157cc45.png
+  original_generated_png_sha256: a16c353ac1b70055b17b0f4ff9735536cc09fea98b5caa15f97053a3bc31ea38
+  inbox_png_sha256: 908ae852e7e3e49512a48481aca10add1cdf05492ae92eedfaddd06422b46fad
+  rgba_sha256: 9798700543236519714470727359792f97d64fa4ea3be2de6c318e5434a5cc8b
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: f3467ea381e685c1

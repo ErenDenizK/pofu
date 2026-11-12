@@ -1,0 +1,156 @@
+batch: batch-61-ui-kit-v3
+contact_sheet: design/art/takes/batch-61-ui-kit-v3/ui-card-linen/contact.jpg
+jobs:
+  ui-card-linen:
+    pick: 1
+    publication: "promoted; picked by the lead 2026-11-12 (take 1); founder review pending"
+    lead_review: "Lead pick: oatmeal linen with a bound edge, quieter than the stitched card."
+    note: auto-picked by QA; founder review pending. Both initial takes PASS every
+      automated check and manual full-native/officiallocked proper-alpha cream/dark
+      review. Normal lowest style-lock load selects take1 (0.2502 vs0.2589). Blank
+      softly rounded oatmeal square, narrow deeper-oatmeal bound edge without stitches,
+      smooth calm center and small tucked edge shadow as authored. No text/icons/painted
+      background; raw colored/white exterior fragments are hiddenRGB underalpha0 and
+      vanish in proper composites. All originalPNG/RGBA/callbacks/orderedrefs/INITIAL2processingseal
+      preserved. Slice metadata unchanged, noleadcap approval or completedappintegration
+      claim. Required actual172source canonical Harmony measure/check and exact foreign
+      restoration through reviewed thin134raw-cache route; UIexcluded/no fabricated
+      shard. No retry, force or QA/profile/pixel edits. auto-picked by QA; founder
+      review pending.
+qa_reports:
+  1:
+    job: ui-card-linen
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 15 (R1 51)
+      value: 15.2
+    - check: value_floor
+      status: pass
+      message: lightness p5 86 (R1 59)
+      value: 85.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.6 (R1 5.3)
+      value: 0.57
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.3
+      value: 0.2502
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.6, p95 0.9, off-palette 0.0%
+      value: 0.6391
+    info:
+      metrics_raw:
+        L_p5: 85.4
+        L_p50: 90.2
+        L_p95: 90.6
+        C_p50: 7.8
+        C_p95: 15.3
+        C_p99: 19.1
+        detail: 0.71
+      metrics_locked:
+        L_p5: 85.5
+        L_p50: 90.2
+        L_p95: 90.5
+        C_p50: 7.8
+        C_p95: 15.2
+        C_p99: 18.4
+        detail: 0.57
+    fingerprint: e39fc86cff52de36
+  2:
+    job: ui-card-linen
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 16 (R1 51)
+      value: 15.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 85 (R1 59)
+      value: 84.8
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.6 (R1 5.3)
+      value: 0.58
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.3
+      value: 0.2589
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.4, p95 0.8, off-palette 0.0%
+      value: 0.4401
+    info:
+      metrics_raw:
+        L_p5: 84.8
+        L_p50: 90.1
+        L_p95: 90.6
+        C_p50: 8.7
+        C_p95: 15.6
+        C_p99: 18.1
+        detail: 0.71
+      metrics_locked:
+        L_p5: 84.8
+        L_p50: 90.1
+        L_p95: 90.6
+        C_p50: 8.7
+        C_p95: 15.5
+        C_p99: 17.2
+        detail: 0.58
+    fingerprint: e39fc86cff52de36
+manual_review:
+  excluded_takes: []
+  note: Both initial takes PASS every automated check and manual full-native/officiallocked
+    proper-alpha cream/dark review. Normal lowest style-lock load selects take1 (0.2502
+    vs0.2589). Blank softly rounded oatmeal square, narrow deeper-oatmeal bound edge
+    without stitches, smooth calm center and small tucked edge shadow as authored.
+    No text/icons/painted background; raw colored/white exterior fragments are hiddenRGB
+    underalpha0 and vanish in proper composites. All originalPNG/RGBA/callbacks/orderedrefs/INITIAL2processingseal
+    preserved. Slice metadata unchanged, noleadcap approval or completedappintegration
+    claim. Required actual172source canonical Harmony measure/check and exact foreign
+    restoration through reviewed thin134raw-cache route; UIexcluded/no fabricated
+    shard. No retry, force or QA/profile/pixel edits. auto-picked by QA; founder review
+    pending.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-aa6c3e84-acc0-47b3-beb7-62a0d8dedffc.png
+  original_generated_png_sha256: 66505ed9ce1cee6ba89652110ecfffdf6a09152b4d58962e3977ba6b9dfca706
+  inbox_png_sha256: 05e7311b02276a1a2cde70fec6c132bc17ae20509a7859954480bd7b12bf1305
+  rgba_sha256: 493b6b6244825f93923b6ed141426da18344f85b93d6ac8afee26c91181dfd34
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: e39fc86cff52de36
+- take: 2
+  source_file: /workspace/generated_images/exec-a8613505-7673-4ecb-84ab-429c85b123c2.png
+  original_generated_png_sha256: 4999e4c9d45b03085ec404675c4386c1590331ca8942746a260576c2192f7c81
+  inbox_png_sha256: a01c3420e719fe5a8e84e6b65a97eccf35ed5e90c4c94e9d6c313d9861feb267
+  rgba_sha256: 23d2f2c048f45fb739f730be6016fbcfbe9deb8809e682c44ff930d5368f6b9d
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: e39fc86cff52de36

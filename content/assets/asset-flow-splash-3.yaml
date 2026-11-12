@@ -2,13 +2,12 @@ id: asset-flow-splash-3
 type: asset
 title_tr: flow-splash-3
 title_en: flow-splash-3 (prop)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  Edit the attached frame into FRAME 3 OF 4 of the same motion (a small splash where the stream
-  meets the pool: the droplets rise, crown, then fall and settle into a ripple): the droplets
-  falling, the crown lower and wider. Keep the canvas, centre, scale, colours and painting
-  style.
+summary: 'Edit the attached frame into FRAME 3 OF 4 of the same motion (a small splash
+  where the stream meets the pool: the droplets rise, crown, then fall and settle
+  into a ripple): the droplets falling, the crown lower and wider. Keep the canvas,
+  centre, scale, colours and painting style.'
 links:
   variant_of:
   - asset-flow-splash-1
@@ -21,3 +20,8 @@ sources:
 kind: prop
 batch: batch-64-flow-pieces
 size: 512x512
+notes:
+- 'Skipped without generation: literal edit_of parent flow-splash-1 was terminally
+  skipped after its sole unchanged retry because all four whole water bodies materially
+  exceeded the authored approximate60percent width. No additional takes, numerical
+  QA failures or fabricated source records.'

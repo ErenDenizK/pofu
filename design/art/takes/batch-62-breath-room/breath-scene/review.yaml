@@ -1,0 +1,273 @@
+batch: batch-62-breath-room
+contact_sheet: design/art/takes/batch-62-breath-room/breath-scene/contact.jpg
+jobs:
+  breath-scene:
+    pick: null
+    status: obsolete
+    publication: "obsolete 2026-11-12; no pick, no redo"
+    lead_review: "Obsolete, no redo: the Door (docs/design/the-door.md) retires the separate breath room into the Door scene's Breath state (a ring of light round the doorway), so the isle-and-clouds scene is no longer planned."
+    note: 'Skipped after one allowed paired retry: all four official takes fail production
+      palette_drift. Lilac/rose sunset colors requested by the source fall outside
+      its default UI palettes; no profile/palette/threshold edits and no force. Exact
+      source prompts/references, original PNGs, all four q90 takes and official QA
+      are retained. Visual scene is empty of Pofu, ring and text; no shipping geometry
+      approval is claimed. Automated failures: t1 palette_drift: mean dE 12.5, p95
+      20.0, off-palette 65.9% (top: #DD88AA (21.8%), #AA77BB (6.7%)); t2 palette_drift:
+      mean dE 12.4, p95 20.3, off-palette 63.6% (top: #DD88AA (19.0%), #AA77BB (6.6%));
+      t3 palette_drift: mean dE 11.9, p95 21.5, off-palette 59.9% (top: #DD88AA (7.9%),
+      #EE8899 (6.6%)); t4 palette_drift: mean dE 11.7, p95 20.7, off-palette 62.4%
+      (top: #EE99AA (12.9%), #DD88AA (12.3%)).'
+qa_reports:
+  1:
+    job: breath-scene
+    take: 1
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 47 (R1 51)
+      value: 47.2
+    - check: value_floor
+      status: pass
+      message: lightness p5 52 (R1 59)
+      value: 52.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.7 (R1 5.3)
+      value: 0.74
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.8957
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 12.5, p95 20.0, off-palette 65.9% (top: #DD88AA (21.8%), #AA77BB
+        (6.7%))'
+      value: 12.5264
+    info:
+      metrics_raw:
+        L_p5: 52.1
+        L_p50: 67.7
+        L_p95: 87.6
+        C_p50: 35.8
+        C_p95: 47.5
+        C_p99: 66.6
+        detail: 0.92
+      metrics_locked:
+        L_p5: 52.1
+        L_p50: 67.7
+        L_p95: 87.5
+        C_p50: 35.8
+        C_p95: 47.2
+        C_p99: 62.5
+        detail: 0.74
+    fingerprint: ea317b9661740e1d
+  3:
+    job: breath-scene
+    take: 3
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 46 (R1 51)
+      value: 46.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 51 (R1 59)
+      value: 51.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.7 (R1 5.3)
+      value: 0.73
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.9443
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 11.9, p95 21.5, off-palette 59.9% (top: #DD88AA (7.9%), #EE8899
+        (6.6%))'
+      value: 11.8521
+    info:
+      metrics_raw:
+        L_p5: 51.0
+        L_p50: 68.2
+        L_p95: 88.7
+        C_p50: 36.1
+        C_p95: 46.7
+        C_p99: 66.8
+        detail: 0.92
+      metrics_locked:
+        L_p5: 51.1
+        L_p50: 68.2
+        L_p95: 88.5
+        C_p50: 36.1
+        C_p95: 46.3
+        C_p99: 62.7
+        detail: 0.73
+    fingerprint: ea317b9661740e1d
+  2:
+    job: breath-scene
+    take: 2
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 48 (R1 51)
+      value: 48.4
+    - check: value_floor
+      status: pass
+      message: lightness p5 52 (R1 59)
+      value: 52.3
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.8 (R1 5.3)
+      value: 0.77
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.8735
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 12.4, p95 20.3, off-palette 63.6% (top: #DD88AA (19.0%), #AA77BB
+        (6.6%))'
+      value: 12.3581
+    info:
+      metrics_raw:
+        L_p5: 52.2
+        L_p50: 67.8
+        L_p95: 87.4
+        C_p50: 35.7
+        C_p95: 48.8
+        C_p99: 66.4
+        detail: 0.98
+      metrics_locked:
+        L_p5: 52.3
+        L_p50: 67.8
+        L_p95: 87.2
+        C_p50: 35.7
+        C_p95: 48.4
+        C_p99: 62.5
+        detail: 0.77
+    fingerprint: ea317b9661740e1d
+  4:
+    job: breath-scene
+    take: 4
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 47 (R1 51)
+      value: 46.9
+    - check: value_floor
+      status: pass
+      message: lightness p5 53 (R1 59)
+      value: 52.8
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.8 (R1 5.3)
+      value: 0.75
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 0.9693
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 11.7, p95 20.7, off-palette 62.4% (top: #EE99AA (12.9%), #DD88AA
+        (12.3%))'
+      value: 11.6672
+    info:
+      metrics_raw:
+        L_p5: 52.8
+        L_p50: 69.6
+        L_p95: 87.5
+        C_p50: 34.7
+        C_p95: 47.4
+        C_p99: 68.2
+        detail: 0.95
+      metrics_locked:
+        L_p5: 52.8
+        L_p50: 69.6
+        L_p95: 87.3
+        C_p50: 34.7
+        C_p95: 46.9
+        C_p99: 63.1
+        detail: 0.75
+    fingerprint: ea317b9661740e1d
+manual_review:
+  excluded_takes: []
+  note: 'Skipped after one allowed paired retry: all four official takes fail production
+    palette_drift. Lilac/rose sunset colors requested by the source fall outside its
+    default UI palettes; no profile/palette/threshold edits and no force. Exact source
+    prompts/references, original PNGs, all four q90 takes and official QA are retained.
+    Visual scene is empty of Pofu, ring and text; no shipping geometry approval is
+    claimed.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-172dd680-1be7-448a-af14-2d0f66ba4d2d.png
+  original_generated_png_sha256: 16b3859a21ee1101662bd70662559e7ca5dd8fef54358652ccd18e9fedd80343
+  inbox_png_sha256: 6d15d35fe97f8a8bbafb34c049986cdc4fc619358ffff80e65dce7ac174e7943
+  rgba_sha256: e2619f99ae432c78b1021af21e87df19c1e9b2d98c81291a7a6cf03f5a931d88
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: ea317b9661740e1d
+- take: 2
+  source_file: /workspace/generated_images/exec-ef0918dc-9f88-4c30-9094-c4f7f57a3f93.png
+  original_generated_png_sha256: e2bf39ae96c33463d50037c2507801dbb3e37218d4187df915b22d964ee2cbb2
+  inbox_png_sha256: a5f9d6dba9c0665c6192f3b6e1dc580c86923dda9c89d5ae1a79c6a30965083c
+  rgba_sha256: 2ac8a50d0947c059b6da24eb9c80a4cb89adc0ba962906b2ed54cf5496cbdfa1
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: ea317b9661740e1d
+- take: 3
+  source_file: /workspace/generated_images/exec-cd26e487-afba-4bff-8e2a-9195d7dbef46.png
+  original_generated_png_sha256: d451198969a336c6e911d0ae3a567d95ecd36658af5ac1620138cabbbaee34ad
+  inbox_png_sha256: 63d3a21ab54699db7a0b5eddb59c31d4a56d845b839570b5403b1953371eef64
+  rgba_sha256: 358af9413a5c307ee897ccc28fa1766ba330ad92ca7c91fef6bbea98bdcf61ce
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: ea317b9661740e1d
+- take: 4
+  source_file: /workspace/generated_images/exec-75b24116-3c15-4b8f-9126-1dda4686f851.png
+  original_generated_png_sha256: 6700dc5a94a20eae838164af6f93e86f5058c1e4309a3c282073edabc9b34fd6
+  inbox_png_sha256: 74adc06beb68046a696c175c54ccb601d3c4bdbf031738ff82a7fdc822abcc6c
+  rgba_sha256: 806e36ae2b515143a25ddd973aa3597b2119a272fda389e5080104162eb18b0b
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: ea317b9661740e1d
