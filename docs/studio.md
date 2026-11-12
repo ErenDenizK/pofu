@@ -78,20 +78,26 @@ the pulse (section 6) shows which desk has gone quiet.
 |---|---|---|---|
 | A fact about the repository | scout, Haiku | low | About a fifth of Opus's price per token; an exact question needs no judgement |
 | A digest of long material (logs, QA numbers of a delivery) | scout, Haiku | medium | The same, and it keeps the material out of your context |
-| A spec | spec, Opus | high; max when more than a week of work hangs on it | The spec carries the judgement, so builders need none |
-| A build accepted by named tests | builder, Sonnet | high | A precise spec makes Sonnet's result equal to Opus's at 0.6 of the price |
+| A spec | spec, Opus | high (xhigh only when more than a week of work hangs on it) | The spec carries the judgement, so builders need none |
+| A build accepted by named tests | builder, Sonnet | medium; high for tricky engine logic | A precise spec makes Sonnet's result equal to Opus's at 0.6 of the price |
 | A build accepted by an eye, first of its kind | builder, Opus | high | "Looks right" cannot be written down; one owner renders, looks and fixes |
-| The same kind again, with the first as its recipe | builder, Sonnet | high | Pilot with judgement, scale with a recipe |
+| The same kind again, with the first as its recipe | builder, Sonnet | medium | Pilot with judgement, scale with a recipe |
 | A look review | critic, Opus | medium | Taste; a fresh context costs little |
 | A review of a spec or a diff | critic, Sonnet or Opus | medium | |
 | Picks from an art delivery | art-reviewer, Opus | high | Taste at scale; its picks go into `review.yaml` |
-| Dialogue and story beats | Opus with the `pofu-story` skill | high | |
+| Dialogue and story beats | Opus with the `pofu-story` skill | medium; high for a key scene | |
 | A premise, a second failure, a milestone look, the studio itself | Fable 5.2 | high | Section 8 |
 
-- **Effort is cheap, context is not.** The words a model writes are about
-  a seventh of what an agent costs. Use high for anything that will be
-  merged. Not smart enough: a bigger model. Not careful enough: more
-  effort.
+- **Effort: medium by default, high when the work earns it** (founder,
+  2026-11-12). Medium is the models' standard setting; the step from
+  medium to high buys the most quality per extra token, and above high
+  the returns fall while the cost keeps rising. Use high for a first of
+  its kind, a spec, taste at scale, tricky logic, or anything costly to
+  redo; low for exact facts and mechanical work; xhigh or max only when
+  a wrong answer would cost repeated rounds. Effort is how hard a model
+  works; the model is how smart it is: not smart enough, a bigger model;
+  not careful enough, more effort. This project's own cost data is too
+  thin to settle the exact split, so revisit it when measured.
 - **Split** when acceptance is a test and the files are separate. **Keep
   whole** when acceptance is an eye, when the files overlap, or when
   handing the work down would lose more than it saves: one capable owner
