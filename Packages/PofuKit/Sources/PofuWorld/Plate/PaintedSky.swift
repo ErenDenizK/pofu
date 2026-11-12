@@ -117,6 +117,49 @@ public enum PaintedSky {
             return Sky(island: island, plate: plate, fade: fade)
         }
     }
+
+    // MARK: - The Map and the flights (R4 of docs/research/route-2026-11-12-codex-pause.md)
+
+    /// How far the Map's sky follows the camera: a far backdrop, it slides a sixteenth as far as the world.
+    static let mapParallax = 0.06
+    /// The room below the screen's foot, as a share of its height, that the cloud sea reaches past it at
+    /// rest: what the parallax slides into.
+    static let mapMargin = 0.1
+    /// Master pixels left between the distant isles' and the whale's feet and the screen's top.
+    static let mapClearance = 40.0
+
+    /// Home's painted sky behind the Map and every flight, in place of the code sky: the same sky set as
+    /// the stops' (the home plate's stage 0 of the hour's light, its island layer left out), placed as at
+    /// Home. `nil`: the look has no plates, or the plate has no sky set for the hour's light.
+    public static func mapSky(world: WorldSnapshot, look: WorldLook, calendar: Calendar = .current) -> HomePlate? {
+        guard look.homePlates, let home = HomePlate.shipped?.plate else { return nil }
+        let light = HomePlate.light(hour: hour(world: world, look: look, calendar: calendar), isBedtime: world.isBedtime)
+        let plate = HomePlate(plate: home, light: light, stage: 0)
+        return plate.skySet == nil ? nil : plate
+    }
+
+    /// The camera the Map's sky is drawn with, for the world camera `pose` on a `width` x `height`
+    /// screen. Seen from the Map's height Home's sky is its clouds: the screen's top sits just under the
+    /// distant isles and the whale (painted at Home's scale, they would stand larger than Home itself and
+    /// read as places to go), and the clouds and the cloud sea fill it down to `mapMargin` above the sea's
+    /// foot. It is centred on the sky set when the camera looks where Home's does; its look point follows
+    /// the world camera's by `mapParallax`, so the sky slides slowly under a flight and never zooms.
+    public static func mapPose(_ pose: CameraPose, sky: HomePlate, width: Double, height: Double) -> CameraPose {
+        guard
+            let set = sky.skySet,
+            let sea = set.layers.first(where: { $0.role == .tile && $0.asset.contains("-sea-") })
+        else { return pose }
+        let isles = set.layers.filter { $0.role == .sprite || $0.role == .whale }.map { $0.pos.y + $0.size.y }.max() ?? 0
+        let top = isles + mapClearance
+        let band = sky.worldBox(master: PlateRect(minX: 0, minY: top, maxX: set.master.x, maxY: sea.pos.y + sea.size.y), of: set)
+        let home = sky.homeStop.look
+        return CameraPose(
+            logScale: log(height * (1 + mapMargin) / max(band.height, 1e-6)),
+            lookX: band.midX + (pose.lookX - home.x) * mapParallax,
+            lookY: band.minY + (pose.lookY - home.y) * mapParallax,
+            anchorY: 0
+        )
+    }
 }
 
 #if os(iOS)
@@ -132,6 +175,8 @@ struct PaintedSkyLayer: View {
     let size: CGSize
     let offset: CGSize
     let fade: Double
+    /// The Map's and the flights' sky (`PaintedSky.mapPose`): its mid clouds are left out.
+    var isMap = false
 
     @State private var shown: HomePlate
     @State private var incoming: HomePlate?
@@ -139,12 +184,13 @@ struct PaintedSkyLayer: View {
     @State private var shownStart = Date()
     @State private var incomingStart = Date()
 
-    init(plate: HomePlate, pose: CameraPose, size: CGSize, offset: CGSize, fade: Double) {
+    init(plate: HomePlate, pose: CameraPose, size: CGSize, offset: CGSize, fade: Double, isMap: Bool = false) {
         self.plate = plate
         self.pose = pose
         self.size = size
         self.offset = offset
         self.fade = fade
+        self.isMap = isMap
         _shown = State(initialValue: plate)
     }
 
@@ -186,7 +232,7 @@ struct PaintedSkyLayer: View {
     @ViewBuilder
     private func sky(_ plate: HomePlate, start: Date) -> some View {
         if let set = plate.skySet {
-            SkySetLayers(sky: set, plate: plate, pose: pose, size: size, offset: offset, start: start, drawsIsland: false)
+            SkySetLayers(sky: set, plate: plate, pose: pose, size: size, offset: offset, start: start, drawsIsland: false, drawsMidClouds: !isMap)
         }
     }
 }

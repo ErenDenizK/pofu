@@ -473,10 +473,14 @@ def export_light(island: str, light: str, hand: dict) -> dict:
 
 def state_bytes(island: str, light: str, sky_pixels: int, stage: int = 0) -> int:
     """The sky-set state's textures: the set, the island cut for the Map and the occluders (the
-    plate and its backdrop are not loaded while a sky set draws)."""
+    plate and its backdrop are not loaded while a sky set draws). Where a clean Map cut ships
+    (`map_cut.py`, `world-<island>-mapisle-*`) the Map draws it in place of the island cut."""
     total = sky_pixels
+    mapisle = (ASSETS / f"world-{island}-mapisle-{light}-{stage}.imageset").exists()
     for folder in ASSETS.glob(f"world-{island}-*-{light}-{stage}.imageset"):
         if re.match(rf"world-{island}-(plate|backdrop|sky-)", folder.name):
+            continue
+        if mapisle and folder.name.startswith(f"world-{island}-island-"):
             continue
         for f in folder.iterdir():
             if f.suffix == heic.SUFFIX:

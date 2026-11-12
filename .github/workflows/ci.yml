@@ -371,9 +371,9 @@ jobs:
               sys.exit("no screenshots in the artifact")
           thumbs = []
           for png in pngs:
-              # Full device resolution, kept as written (the Home plate resolution A/B, and the painted
-              # sky's stops, whose island edge against the sky is judged at 1:1).
-              if png.stem.startswith(("home-plate-full-", "caglayan-plate-full-", "koke-sky-", "harbor-sky-")):
+              # Full device resolution, kept as written (the Home plate resolution A/B, the painted
+              # sky's stops, whose island edge against the sky is judged at 1:1, and the painted Map and flight).
+              if png.stem.startswith(("home-plate-full-", "caglayan-plate-full-", "koke-sky-", "harbor-sky-", "map-plate-", "flight-")):
                   shutil.copy(png, out / png.name)
                   continue
               im = Image.open(png).convert("RGB")
