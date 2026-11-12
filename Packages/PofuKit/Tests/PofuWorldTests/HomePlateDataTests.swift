@@ -4,19 +4,19 @@ import PofuCore
 import Testing
 
 /// What the shipped `plate-home.json` paints (docs/design/demo-one-world-v1.md, PR 2): the night
-/// of every island level from 2 and the day of every level from 1, and that the Rehearsal
+/// and the day of every level from 1, and that the Rehearsal
 /// tester's twenty-one days find a painting at every hour the panel lands on.
 struct HomePlateDataTests {
     var plate: PlateIsland {
         get throws { try #require(HomePlate.shipped, "the package ships Plates/plate-home.json").plate }
     }
 
-    @Test func paintsTheNightOfEveryLevelFromTwo() throws {
+    @Test func paintsTheNightOfEveryLevel() throws {
         let plate = try plate
-        #expect(plate.painted["night"] == Array(0...8))
+        #expect(plate.painted["night"] == Array(0...9))
         // The night stage is the level's own: stage s is `stageLevels[s]` for every light.
-        #expect(plate.stageLevels.prefix(9) == [10, 9, 8, 7, 6, 5, 4, 3, 2])
-        for level in 2...10 {
+        #expect(plate.stageLevels == [10, 9, 8, 7, 6, 5, 4, 3, 2, 1])
+        for level in 1...10 {
             let stage = try #require(plate.dayStage(islandLevel: level))
             #expect(plate.paints(light: "night", stage: stage), "the night of level \(level)")
         }
@@ -35,7 +35,7 @@ struct HomePlateDataTests {
         let plate = try plate
         // The lamps open at level 6 (`HomeFixtures.lampsOpenAtLevel`): below it no lamp is lit, so
         // the night plate gives a character no lamp pool.
-        for level in 2...5 {
+        for level in 1...5 {
             let stage = try #require(plate.dayStage(islandLevel: level))
             #expect(plate.harmony(light: "night", stage: stage).pool == 0, "level \(level)")
         }
@@ -75,22 +75,21 @@ struct HomePlateDataTests {
             for (hour, bedtime) in Self.hours {
                 for weather in Self.weathers {
                     let state = HomePlate.state(in: plate, islandLevel: level, hour: hour, weather: weather, isBedtime: bedtime)
-                    // IL1's evening has no painted night yet (art job A1, `batch-79-home-il1-night`).
-                    if level == 1 && (hour >= 18 || bedtime) { continue }
                     #expect(state != nil, "day \(day + 1), level \(level), \(hour) h, \(weather.weather), rainbow \(weather.rainbow)")
                 }
             }
         }
     }
 
-    @Test func theTestersFirstEveningWaitsForItsNight() throws {
+    @Test func theTestersFirstEveningIsPainted() throws {
         let plate = try plate
-        // The known gap, kept visible: day 1's 18:00, 19:45 and 23:00 until A1's night is shipped.
-        withKnownIssue("A1: IL1 night not painted yet", isIntermittent: true) {
-            for (hour, bedtime) in Self.hours where hour >= 18 || bedtime {
-                let state = HomePlate.state(in: plate, islandLevel: 1, hour: hour, weather: .clear, isBedtime: bedtime)
-                #expect(state != nil, "IL1 at \(hour) h")
-            }
+        // Day 1's 18:00, 19:45 and 23:00 are the painted night of level 1 (art job A1).
+        for (hour, bedtime) in Self.hours where hour >= 18 || bedtime {
+            let state = HomePlate.state(in: plate, islandLevel: 1, hour: hour, weather: .clear, isBedtime: bedtime)
+            #expect(state != nil, "IL1 at \(hour) h")
         }
+        let night = HomePlate(plate: plate, light: "night", stage: 9)
+        #expect(night.objects.contains { $0.id == "garden" })
+        #expect(!night.objects.contains { $0.id == "teaStall" })
     }
 }

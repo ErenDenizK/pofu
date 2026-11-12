@@ -1,0 +1,40 @@
+batch: batch-80-home-il1-night
+job: x-home-flow-il1-night
+classification: exploration
+provisional_pick: t2
+pick: 2
+lead_review: "Lead pick, same as the auto-pick: take 2 keeps every door, the rope bridge, the harbour islet, the silhouette and the whale's lamp post in place with warm light only from existing windows and lamps, and its island matches the IL2 night in brightness; take 1 drops the lamp post off the cloud-whale and paints a doubled pebble with a stray green sprout on the left earth. Take 2 stays warmer than IL2 (yellow-green grass, peach earth), so in the colour-transfer fit cool the grass toward IL2's mid green and pull the earth band toward its mauve."
+pick_reason: >-
+  Auto-picked by QA; founder review pending. Both takes have lock_load 0 and pass the silhouette check.
+  T2 passes edit_structure while t1 warns, so t2 wins among the otherwise tied QA takes. Harmony is not
+  scored by this image pipeline.
+visual_review:
+  t1: >-
+    Compared with the day parent: the island outline, four main-island doors, rope bridge, flower wheel,
+    sunflower patch and detached harbour islet remain in place. The night treatment is clear and readable.
+  t2: >-
+    Compared with the day parent: the island outline, four main-island doors, rope bridge, flower wheel,
+    sunflower patch and detached harbour islet remain in place. The sky is clear and the island remains
+    rich and bright; this brighter-than-IL2 island is a visual caveat for founder review.
+qa:
+  t1: warn
+  t2: warn
+  t1_notes: chroma_ceiling, light_values, light_median, palette_drift, edit_structure, edit_lightness
+  t2_notes: chroma_ceiling, light_values, light_median, palette_drift, edit_lightness
+sources:
+  generation_account: "Founder's uncle's ChatGPT plan, used by the founder with permission"
+  generation_backend: codex-cloud
+  generation_prompt_note: >-
+    The built-in image tool request was a concise edit instruction based on the printed manifest prompt,
+    rather than a verbatim paste of the full composed prompt. References were attached in manifest order.
+  t1_png_sha256: bd3431bf45340ae36665ff06c61a750509bf7196cf2d2e0cac012893fe268a55
+  t2_png_sha256: 5087760ea8ec8f68887a2eb8b68274c8d3448849d7dfc8595f6c120d2bd7ba89
+references:
+  - design/art/takes/batch-74-redo-states/x-home-flow-il1-v3/plate__x-home-flow-il1-v3--t2.webp
+  - design/art/takes/batch-74-redo-states/x-home-flow-il2-night-v2/plate__x-home-flow-il2-night-v2--t2.webp
+  - design/art/takes/batch-66-home-flow/x-home-flow-night/plate__x-home-flow-night--t1.webp
+promotion: never; exploration
+jobs:
+  x-home-flow-il1-night:
+    pick: 2
+    publication: exploration; picked by the lead 2026-11-12 (take 2); never promoted

@@ -28,7 +28,7 @@ islands:
           clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
           rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
         night:
-          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          clear: {painted: "design/art/takes/batch-80-home-il1-night/x-home-flow-il1-night/plate__x-home-flow-il1-night--t2.webp", lead_pick: 2, in_app: true, founder_ok: null}
           rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
       il2:
         day:
