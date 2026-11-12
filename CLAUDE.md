@@ -69,3 +69,11 @@ to report, not a thing to work around. Map of the docs: `docs/README.md`.
   loaded. Send long output to a file and read its tail, read sections
   rather than whole docs, and look at crops and one sheet rather than
   piles of frames.
+
+## Compact instructions
+
+When this conversation is summarised, keep word for word: the founder's
+messages that are not yet in `docs/product/founder-input.md`; every agent
+in flight with its id, branch and pull request; decisions made but not
+yet in `docs/now.md`; the paths of files not yet committed. The rest is
+in the repository.

@@ -11,7 +11,8 @@ reasons and do not fix anything.
 **Any artifact**
 
 1. Answer the question in the brief first, in one line: ship, fix or
-   redo.
+   redo. If it is the wrong question to ask of this artifact, say so in
+   one more line and answer the right one too.
 2. List defects by what the player or the founder would feel, worst
    first. For each: where (crop coordinates, timestamp, or file and
    line), what, and how sure you are.

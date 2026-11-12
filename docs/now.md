@@ -7,13 +7,13 @@ history: [tracker.md](tracker.md). What changed for the player:
 `python3 -I tools/studio/pulse.py`.
 
 **Goal:** a solid, playable game on the founder's own iPhone for the demo
-(about 2026-11-24): Rehearsal mode, days 1 to 21, played hands-on and
-sometimes shown to friends ([spec](design/game-solid-v1.md)). No
-TestFlight before the membership. The app side follows the demo.
+(about 2026-11-24): Rehearsal mode, days 1 to 21, played hands-on, sometimes
+shown to friends ([spec](design/game-solid-v1.md)); no TestFlight before it.
 
 **Updated:** 2026-11-12 (late night, session 2), `main` at `1364ac01` (#402).
 **Founder last played on his phone:** 2026-11-05 (told late on 11-12 to try `main`).
 **Founder log read up to:** 2026-11-12 (late night).
+**Route:** none yet.
 
 ## Decided this session
 
@@ -56,5 +56,5 @@ Merged: #405 feedback, #407 hours/weather, #406 Home nights, #409
 
 ## Open with the founder (no question pending)
 
-- Device testing; keeping the lead lean; restarting Codex by hand.
+- Device testing; restarting Codex by hand.
 - Known stale: roadmap.md (11-07), tracker.md thread statuses.

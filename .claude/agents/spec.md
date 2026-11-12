@@ -8,6 +8,11 @@ You write the spec that lets builders work without judgement calls. The
 house standard is `docs/design/game-solid-v1.md`; read its shape, not its
 content.
 
+You were given a goal, not an order. If the code shows that the goal is
+the wrong one, or that a cheaper goal gives the player the same thing,
+say so in the spec's first lines and set the better one beside it. The
+lead chooses.
+
 1. Read the code, not the docs about it. Every claim about what exists
    carries `path:line` at the base commit named in your brief. Where a
    doc is wrong, list it under "Corrections" so the lead can fix it.
