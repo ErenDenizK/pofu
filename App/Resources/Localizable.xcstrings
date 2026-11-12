@@ -2872,6 +2872,16 @@
         }
       }
     },
+    "Frame meter" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kare ölçer"
+          }
+        }
+      }
+    },
     "Skin" : {
       "localizations" : {
         "tr" : {

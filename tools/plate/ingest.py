@@ -101,14 +101,61 @@ def load_hand(island: str) -> dict:
     global SIZE
     hand = json.loads((PLATES / island / "objects.json").read_text())
     SIZE = tuple(hand.get("size", DEFAULT_SIZE))
+    COLOR_FIT.clear()
+    for key, fit in hand.get("colorFit", {}).items():
+        light, stage = key.split(":")
+        COLOR_FIT[(REPO / hand["plates"][light][stage]).resolve()] = fit
     return hand
+
+
+#: Plate path -> its `colorFit` (hand data, `{"<light>:<stage>": {band: {hue, dh, chroma}}}`), filled by `load_hand`.
+COLOR_FIT: dict[Path, dict] = {}
+
+
+def _lab(rgb: np.ndarray) -> np.ndarray:
+    return heic._lab(rgb * 255.0)
+
+
+def _from_lab(lab: np.ndarray) -> np.ndarray:
+    fy = (lab[..., 0] + 16) / 116
+    f = np.stack([fy + lab[..., 1] / 500, fy, fy - lab[..., 2] / 200], -1)
+    xyz = np.where(f ** 3 > 216 / 24389, f ** 3, (116 * f - 16) * 27 / 24389) * np.array([0.95047, 1.0, 1.08883])
+    lin = xyz @ np.linalg.inv(np.array([[0.4124564, 0.2126729, 0.0193339],
+                                        [0.3575761, 0.7151522, 0.1191920],
+                                        [0.1804375, 0.0721750, 0.9503041]]))
+    lin = np.clip(lin, 0, 1)
+    return np.where(lin <= 0.0031308, lin * 12.92, 1.055 * lin ** (1 / 2.4) - 0.055)
+
+
+def color_fit(rgb: np.ndarray, fit: dict) -> np.ndarray:
+    """Moves a take's colour bands toward the series without repainting it: per band, the pixels
+    whose CIELAB hue lies in `hue` [lo, hi] (soft 15 degree edges, and a chroma gate so greys stay)
+    turn by `dh` degrees and take `chroma` times their chroma; lightness and detail are kept."""
+    lab = _lab(rgb)
+    a, b = lab[..., 1], lab[..., 2]
+    c, h = np.hypot(a, b), np.degrees(np.arctan2(b, a)) % 360
+    gate = smooth(4, 10, c)
+    for band in fit.values():
+        lo, hi = band["hue"]
+        w = smooth(lo - 15, lo, h) * (1 - smooth(hi, hi + 15, h)) * gate
+        hn = np.radians(h + w * band.get("dh", 0))
+        cn = c * (1 + w * (band.get("chroma", 1) - 1))
+        a, b = cn * np.cos(hn), cn * np.sin(hn)
+        c, h = cn, np.degrees(hn) % 360
+    out = _from_lab(np.stack([lab[..., 0], a, b], -1))
+    return np.clip(out, 0, 1)
+
+
+def fitted(rgb: np.ndarray, path: Path) -> np.ndarray:
+    fit = COLOR_FIT.get(Path(path).resolve())
+    return color_fit(rgb, fit) if fit else rgb
 
 
 def load_rgb(path: Path) -> np.ndarray:
     im = Image.open(path).convert("RGB")
     if im.size != SIZE:
         raise SystemExit(f"{path}: the plate is {im.size[0]} x {im.size[1]}, not {SIZE[0]} x {SIZE[1]}")
-    return np.asarray(im, np.float64) / 255
+    return fitted(np.asarray(im, np.float64) / 255, path)
 
 
 def upscaled_plate(path: Path, scale: int = UPSCALE, mix: float = MIX) -> np.ndarray:
@@ -131,7 +178,7 @@ def upscaled_plate(path: Path, scale: int = UPSCALE, mix: float = MIX) -> np.nda
                 "model (tools/plate/README.md), or pass --no-upscale to ship the original on purpose")
         cached.parent.mkdir(parents=True, exist_ok=True)
         big.save(cached)
-    return np.asarray(Image.open(cached).convert("RGB"), np.float64) / 255
+    return fitted(np.asarray(Image.open(cached).convert("RGB"), np.float64) / 255, path)
 
 
 def source_plate(path: Path) -> tuple[np.ndarray, int]:

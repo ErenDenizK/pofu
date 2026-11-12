@@ -10,6 +10,7 @@ import XCTest
 /// the level's own sprites. `tools/plate/harmony_check.py` measures the nights.
 ///
 /// - `home-plate-full-l1-day`: day 1, the painted IL1;
+/// - `home-plate-full-l1-night`: day 1 at night, the painted IL1 night;
 /// - `home-plate-full-l2-night`, `-l4-night`, `-l7-night`: the painted night of the level;
 /// - `home-plate-full-l5-golden`: 18:00 at level 5, which has no painted golden hour and borrows
 ///   the night (`HomePlate.borrowed`);
@@ -28,6 +29,7 @@ final class HomeNightScreenshotTests: XCTestCase {
         let states: [State] = [
             State(name: "l1-day", level: 1, hour: 12, light: "day"),
             State(name: "l2-night", level: 2, hour: 22.5, light: "night"),
+            State(name: "l1-night", level: 1, hour: 22.5, light: "night"),
             State(name: "l4-night", level: 4, hour: 22.5, light: "night"),
             State(name: "l7-night", level: 7, hour: 22.5, light: "night"),
             State(name: "l5-golden", level: 5, hour: 18, light: "night"),

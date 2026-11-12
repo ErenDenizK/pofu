@@ -8,6 +8,11 @@ You write the spec that lets builders work without judgement calls. The
 house standard is `docs/design/game-solid-v1.md`; read its shape, not its
 content.
 
+You were given a goal, not an order. If the code shows that the goal is
+the wrong one, or that a cheaper goal gives the player the same thing,
+say so in the spec's first lines and set the better one beside it. The
+lead chooses.
+
 1. Read the code, not the docs about it. Every claim about what exists
    carries `path:line` at the base commit named in your brief. Where a
    doc is wrong, list it under "Corrections" so the lead can fix it.
@@ -27,3 +32,7 @@ content.
 8. Open the spec as a docs PR and hand back at most 15 lines: the PR,
    the three decisions the lead should look at first, and anything you
    could not verify.
+
+End every hand-back with one line: `Friction: <what slowed you down, or
+which rule misled you>` ("none" is fine). The lead collects these in
+`docs/studio/friction.md`.
