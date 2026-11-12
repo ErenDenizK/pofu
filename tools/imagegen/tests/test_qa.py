@@ -382,7 +382,10 @@ class HarmonyCheckTests(unittest.TestCase):
     """The promote-time harmony score (tools/assets/harmony.py)."""
 
     def test_the_approved_tea_stall_scores_well_and_a_flat_stall_scores_low(self):
-        tea_stall = sl.load_rgba(HERE.parents[2] / "design" / "art" / "stations" / "tea-stall-1" / "tea-stall-1--lock-light.png")
+        path = HERE.parents[2] / "design" / "art" / "stations" / "tea-stall-1" / "tea-stall-1--lock-light.png"
+        if not path.exists():
+            self.skipTest("approved tea stall not in this checkout (pofu-art)")
+        tea_stall = sl.load_rgba(path)
         lim = qa.limits_for("station")
         good = qa.check_harmony(tea_stall, "station", lim)
         self.assertIsNotNone(good)

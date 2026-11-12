@@ -7,7 +7,7 @@ with `python3 -I tools/docs/check_links.py`.
 
 ## Start here
 
-- **Rules:** `CLAUDE.md` (lead and sub-agents), `AGENTS.md` (Codex), `CONTRIBUTING.md` (commits, branches, PRs).
+- **Rules:** `CLAUDE.md` (lead and sub-agents), `AGENTS.md` (pointer to the Codex brief in `pofu-art`), `CONTRIBUTING.md` (commits, branches, PRs).
 - **Status and next steps:** `docs/tracker.md` and [roadmap.md](roadmap.md) (parallel tracks, no dated phases).
 - **What is decided:** [product/decisions.md](product/decisions.md) (the register: founder-confirmed, lead, open, and corrections; wins over any doc until that doc is fixed).
 - **Founder:** [product/founder-input.md](product/founder-input.md) (every message and how it was handled; standing decisions at the top).
@@ -29,7 +29,7 @@ with `python3 -I tools/docs/check_links.py`.
 | Experience, camera, menus | [design/experience-v1.md](design/experience-v1.md) | [interaction-spec.md](design/interaction-spec.md), [companion-motion.md](design/companion-motion.md), [ui-audit-2026-11-06.md](design/ui-audit-2026-11-06.md) |
 | UI layers and skin | [design/ui-v3.md](design/ui-v3.md) (proposal), [design/ui-system-v2.md](archive/ui-system-v2.md) | [design-language.md](archive/design-language.md), [sound-identity.md](design/sound-identity.md) |
 | Light, colour, sky | [design/colour-script.md](design/colour-script.md) | [light-and-shadow-v2.md](design/light-and-shadow-v2.md), [sky-and-weather-v1.md](design/sky-and-weather-v1.md), [look-dev.md](design/look-dev.md), [research/night-lighting-2d.md](research/night-lighting-2d.md), [research/look-lab.md](research/look-lab.md) (techniques tested against the concepts) |
-| Art queue (Codex) | [design/art-production-plan.md](design/art-production-plan.md) | `AGENTS.md`, [art-pipeline.md](design/art-pipeline.md), [concept-inventory.md](design/concept-inventory.md) |
+| Art queue (Codex) | `pofu-art/QUEUE.md` (private repo; [ADR-0026](adr/0026-art-factory-in-its-own-repo.md)) | `pofu-art/AGENTS.md`, [art-production-plan.md](design/art-production-plan.md) (lessons and ladders), [art-pipeline.md](design/art-pipeline.md), [concept-inventory.md](design/concept-inventory.md); scripts `tools/art/sync_to_art.py`, `ingest.py`, `check_closure.py` |
 | Art rules | [design/art-bible.md](design/art-bible.md) | [art-direction-study.md](design/art-direction-study.md), [light-standard.md](design/light-standard.md), [sprite-vividness.md](design/sprite-vividness.md), [prompt-library.md](design/prompt-library.md) (v1 prompts; new prompts live in manifests) |
 | Art in the app | [design/visual-system.md](design/visual-system.md) (how a Pofu screen is made; ADR-0023) | [asset-integration.md](design/asset-integration.md), [koke-prototype.md](design/koke-prototype.md) (first wonder island), [plate-islands.md](design/plate-islands.md) (plate-first spec, ADR-0022), [research/pale-assets.md](research/pale-assets.md) (why the game reads pale) |
 | Brand and voice | [brand/pofu-voice.md](brand/pofu-voice.md) | [brand/character.md](brand/character.md) (personality; look superseded) |

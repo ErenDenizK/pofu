@@ -262,6 +262,10 @@ class PromptTests(unittest.TestCase):
             self.assertRegex(text, r"no\s+glass|never\s+paint\s+glass", name)
 
 
+# pofu-art (the art factory) carries a SYNCED_FROM.txt and only part of the art tree.
+FACTORY = (pl.REPO_ROOT / "SYNCED_FROM.txt").exists()
+
+
 class ShippedManifestTests(unittest.TestCase):
     def test_shipped_manifests_parse_and_resolve(self):
         config = pl.load_config()
@@ -274,6 +278,8 @@ class ShippedManifestTests(unittest.TestCase):
                         target = pl.resolve_ref(a.ref, m)
                         if a.ref.startswith(("approved:", "outpaint-")) or "masters/island" in str(target) or "stations/" in str(target):
                             continue  # produced by an earlier round
+                        if FACTORY:
+                            continue  # pofu-art holds only the queue's reference closure (tools/art/check_closure.py checks it)
                         self.assertTrue(target.exists(), f"{job.id}: {a.ref} -> {target}")
 
     def test_batch_02_is_about_twelve_images(self):

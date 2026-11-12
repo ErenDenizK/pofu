@@ -685,3 +685,8 @@ Result of the night items (b): home now draws its painted plate at level 10 day,
 ## 2026-11-12: Çağlayan on the living sky (shown)
 
 1. Follow-up on the 2026-11-11 plan: Çağlayan day moved onto a sky set (#387) from the picked portrait master (#386); the bottom 40% is no longer empty. Two lead review rounds stopped stamped top clouds, a sea seam, edge slivers and dark halo boxes; checks now catch each. The top ~20% is a plain painted-colour gradient (the master is shorter than the phone). Shown: `docs/product/decisions-2026-11-12/caglayan-sky-day.mp4`, `result-caglayan-sky-day.jpg`. Golden and night wait on batch-76.
+
+## 2026-11-12: Codex keeps failing to load; the art repo
+
+1. Codex chats drop and new ones will not load; asks for a status report. Handled: status given; the likely cause is the main repo's size (713 MB checkout, 2.7 GB history, 538 MB of art).
+2. The founder created pofu-art and left the technical side to the lead. Handled: ADR-0026; the factory moved to pofu-art with sync and ingest scripts; a new Codex start message.

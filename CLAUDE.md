@@ -11,7 +11,7 @@ Loaded every turn: keep it short. Map of the docs: `docs/README.md`.
   direction changes, with radically different options and trade-offs.
 - **Lead (this cloud session):** product, design and engineering. Plans
   before building, critiques its own work harshly, says no to a bad idea.
-- **Codex in the cloud** generates art under `AGENTS.md`.
+- **Codex in the cloud** generates art in the private repo `ErenDenizK/pofu-art` under its `AGENTS.md` (ADR-0026); `AGENTS.md` here only points there.
 
 ## Non-negotiables
 
