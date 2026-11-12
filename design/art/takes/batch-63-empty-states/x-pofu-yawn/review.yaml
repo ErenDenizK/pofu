@@ -1,0 +1,164 @@
+batch: batch-63-empty-states
+manifest: tools/imagegen/manifest/batch-63-empty-states.yaml
+manifest_sha256: 16e2f6cf9233a81573226e366bc5ef6b93e66724b5c90f66dc096e5a9502d160
+jobs:
+  x-pofu-yawn:
+    pick: 1
+    status: review
+    publication: exploration; never promoted
+    note: 'Four frames in 2x2 read sleepy half-open eyes and resting cheek, inhale with squeezed eyes,
+      wide soft oval yawn with one lifted paw, then open-eyed content smile. R1 curl and cream cloud family
+      retained. Proper cream/night composites inspected: background gradients are hidden RGB beneath alpha0,
+      not painted backing. Cloud silhouette and face placement vary slightly across cells; animation crossfade
+      not certified. Specific one-paw prompt governs plural note. No text/grid/extra figures. Auto-pick
+      uses official QA mean-dE lock_load then measured harmony. Exploration, never promoted.'
+selection:
+  method: QA non-fail and manual eligibility; lowest style-lock load, then highest measured harmony; take
+    number only breaks ties
+  scores:
+  - take: 1
+    style_lock_load: 1.2843
+    harmony: 80.6
+    eligible: true
+  - take: 2
+    style_lock_load: 1.3151
+    harmony: 76.8
+    eligible: true
+  rejected_takes: []
+qa_reports:
+- job: x-pofu-yawn
+  take: 1
+  status: pass
+  preset: lock-light
+  checks:
+  - check: transparency
+    status: pass
+    message: source has an alpha channel
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 40 (R1 51)
+    value: 39.5
+  - check: value_floor
+    status: pass
+    message: lightness p5 76 (R1 59)
+    value: 75.7
+  - check: detail_budget
+    status: pass
+    message: detail at display size 2.8 (R1 5.3)
+    value: 2.81
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 1.3
+    value: 1.2843
+  - check: palette_drift
+    status: pass
+    message: 'mean dE 0.8, p95 2.4, off-palette 0.4% (top: #AA5533 (0.1%), #BB5533 (0.1%))'
+    value: 0.7897
+  info:
+    metrics_raw:
+      L_p5: 74.9
+      L_p50: 88.8
+      L_p95: 95.3
+      C_p50: 14.5
+      C_p95: 41.2
+      C_p99: 50.6
+      detail: 3.71
+    metrics_locked:
+      L_p5: 75.7
+      L_p50: 88.8
+      L_p95: 95.0
+      C_p50: 14.6
+      C_p95: 39.5
+      C_p99: 47.8
+      detail: 2.81
+  fingerprint: 513eb79dadd9791a
+- job: x-pofu-yawn
+  take: 2
+  status: pass
+  preset: lock-light
+  checks:
+  - check: transparency
+    status: pass
+    message: source has an alpha channel
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 42 (R1 51)
+    value: 41.9
+  - check: value_floor
+    status: pass
+    message: lightness p5 75 (R1 59)
+    value: 74.6
+  - check: detail_budget
+    status: pass
+    message: detail at display size 2.9 (R1 5.3)
+    value: 2.88
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 1.3
+    value: 1.3151
+  - check: palette_drift
+    status: pass
+    message: 'mean dE 1.0, p95 2.8, off-palette 0.9% (top: #AA5533 (0.1%), #663311 (0.1%))'
+    value: 0.9592
+  info:
+    metrics_raw:
+      L_p5: 73.8
+      L_p50: 88.2
+      L_p95: 95.5
+      C_p50: 15.1
+      C_p95: 43.5
+      C_p99: 54.1
+      detail: 3.77
+    metrics_locked:
+      L_p5: 74.6
+      L_p50: 88.1
+      L_p95: 95.2
+      C_p50: 15.1
+      C_p95: 41.9
+      C_p99: 50.4
+      detail: 2.88
+  fingerprint: 513eb79dadd9791a
+sources:
+- take: 1
+  source_file: /workspace/art-operator-runtime/factory/generated/x-pofu-yawn/take-1.png
+  source_sha256: c28965c08846a54cc026a205efbcaa7152461043c6d2243acc30ee106bd11382
+  q90_take: design/art/takes/batch-63-empty-states/x-pofu-yawn/ui__x-pofu-yawn--t1.webp
+  q90_take_sha256: ad0e790c0af1fc4c38aabc7e24e058f1a4efca7430cb142bf5343d52086a1e13
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 28e4f34570f3f99310f62c5ab6aa4b058932ba863e6a507f6ceb7afd0b4afcb2
+  references:
+  - path: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+    role: 'Pofu, the hamster: match his art style, fur and finish exactly.'
+    sha256: d4f0ce88dc0541053dd515845c1f2bbb2a4ebe101c5ce4a6080d340a5c872454
+  - path: design/art/stations/tea-stall-5/tea-stall-5.png
+    role: 'A finished prop of the game: match its soft airbrushed finish, matte materials, warm light
+      and colors (do not draw the stall).'
+    sha256: c9a9f018b2dc6bcb1189f497f750dd98e80c69610c10ba3c71081d8b84d157b3
+- take: 2
+  source_file: /workspace/art-operator-runtime/factory/generated/x-pofu-yawn/take-2.png
+  source_sha256: 5f689a70236e2af81045494cafbb3f4d4ccfcae7351544bcbdc11d16a84db77e
+  q90_take: design/art/takes/batch-63-empty-states/x-pofu-yawn/ui__x-pofu-yawn--t2.webp
+  q90_take_sha256: b4d61c09b5386a6a6ed558f9f3a1920e3c83df272a3534962d5e448725542ee9
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 28e4f34570f3f99310f62c5ab6aa4b058932ba863e6a507f6ceb7afd0b4afcb2
+  references:
+  - path: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+    role: 'Pofu, the hamster: match his art style, fur and finish exactly.'
+    sha256: d4f0ce88dc0541053dd515845c1f2bbb2a4ebe101c5ce4a6080d340a5c872454
+  - path: design/art/stations/tea-stall-5/tea-stall-5.png
+    role: 'A finished prop of the game: match its soft airbrushed finish, matte materials, warm light
+      and colors (do not draw the stall).'
+    sha256: c9a9f018b2dc6bcb1189f497f750dd98e80c69610c10ba3c71081d8b84d157b3
+policy:
+  never_promote: true
+  originals: source_file PNGs preserved unchanged; published takes are q90 copies

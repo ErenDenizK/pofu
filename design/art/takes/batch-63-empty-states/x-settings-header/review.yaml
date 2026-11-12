@@ -1,0 +1,166 @@
+batch: batch-63-empty-states
+manifest: tools/imagegen/manifest/batch-63-empty-states.yaml
+manifest_sha256: 16e2f6cf9233a81573226e366bc5ef6b93e66724b5c90f66dc096e5a9502d160
+jobs:
+  x-settings-header:
+    pick: 1
+    status: review
+    publication: exploration; never promoted
+    note: Both takes contain glowing lamp, potted sprout, tiny wooden radio, tool roll/pouch, teacup and
+      exactly two stacked books, round blue-sky window and cream plaster. No character or writing. Bottom
+      region fades to calm warm cream; shelf bracket/shadow transition enters the top edge of the lower
+      third before becoming clear, disclosed rather than claiming a pixel-exact blank 30 percent. Specific
+      opaque full-bleed banner contract governs generic avoid-full-background text. Auto-pick official
+      QA dE lock load, then measured harmony; no promotion.
+selection:
+  method: QA non-fail and manual eligibility; lowest style-lock load, then highest measured harmony; take
+    number only breaks ties
+  scores:
+  - take: 1
+    style_lock_load: 0.8526
+    harmony: 76.9
+    eligible: true
+  - take: 2
+    style_lock_load: 0.9432
+    harmony: 75.8
+    eligible: true
+  rejected_takes: []
+qa_reports:
+- job: x-settings-header
+  take: 1
+  status: warn
+  preset: lock-light
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: warn
+    message: chroma p95 59 (R1 51)
+    value: 59.0
+  - check: value_floor
+    status: pass
+    message: lightness p5 59 (R1 59)
+    value: 59.4
+  - check: detail_budget
+    status: pass
+    message: detail at display size 1.8 (R1 5.3)
+    value: 1.81
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.9
+    value: 0.8526
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 3.6, p95 12.1, off-palette 5.1% (top: #CC7733 (1.0%), #DD8844 (0.8%))'
+    value: 3.6279
+  info:
+    metrics_raw:
+      L_p5: 59.1
+      L_p50: 77.9
+      L_p95: 93.3
+      C_p50: 42.4
+      C_p95: 60.1
+      C_p99: 63.9
+      detail: 2.43
+    metrics_locked:
+      L_p5: 59.4
+      L_p50: 77.9
+      L_p95: 93.3
+      C_p50: 42.4
+      C_p95: 59.0
+      C_p99: 61.0
+      detail: 1.81
+  fingerprint: 61e83246e63a7976
+- job: x-settings-header
+  take: 2
+  status: warn
+  preset: lock-light
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: warn
+    message: chroma p95 59 (R1 51)
+    value: 59.2
+  - check: value_floor
+    status: pass
+    message: lightness p5 56 (R1 59)
+    value: 56.3
+  - check: detail_budget
+    status: pass
+    message: detail at display size 2.0 (R1 5.3)
+    value: 1.98
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.9
+    value: 0.9432
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 3.5, p95 11.7, off-palette 4.5% (top: #CC7733 (0.5%), #DD7733 (0.5%))'
+    value: 3.5447
+  info:
+    metrics_raw:
+      L_p5: 55.9
+      L_p50: 77.2
+      L_p95: 93.0
+      C_p50: 41.3
+      C_p95: 60.4
+      C_p99: 65.8
+      detail: 2.65
+    metrics_locked:
+      L_p5: 56.3
+      L_p50: 77.1
+      L_p95: 92.9
+      C_p50: 41.3
+      C_p95: 59.2
+      C_p99: 62.2
+      detail: 1.98
+  fingerprint: 61e83246e63a7976
+sources:
+- take: 1
+  source_file: /workspace/art-operator-runtime/factory/generated/x-settings-header/take-1.png
+  source_sha256: af50c3eeb56e19ddddd0c930616581aeafb331a84bf532f61adf46ecf00a0da7
+  q90_take: design/art/takes/batch-63-empty-states/x-settings-header/ui__x-settings-header--t1.webp
+  q90_take_sha256: ad9f32211deb9fb568dee61ac38afec29227955f07a4d95da2b5faf8322f32cd
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: cdbd22fdfb6a977ea09517f3c204ed9089f3ad250f88150f0e17f64fcaed28fb
+  references:
+  - path: design/art/stations/tea-stall-5/tea-stall-5.png
+    role: 'A finished prop of the game: match its soft airbrushed finish, matte materials, warm light
+      and colors (do not draw the stall).'
+    sha256: c9a9f018b2dc6bcb1189f497f750dd98e80c69610c10ba3c71081d8b84d157b3
+  - path: design/art/takes/batch-48-gate-scenes/x-gate-round-door/ui__x-gate-round-door--t1.webp
+    role: 'The round door gate (take 1): the world''s warmth, the paper-and-wood materials and the lamplight.
+      Take the mood and the light only.'
+    sha256: d1bd16645914933d267a9b08e1513bb6fdad3dfefc6458bb16d86b4b216877ef
+- take: 2
+  source_file: /workspace/art-operator-runtime/factory/generated/x-settings-header/take-2.png
+  source_sha256: 6577a3d44cd235d6b840146b5fe105de06eed2d1b7f877e973f6fd26162c1f88
+  q90_take: design/art/takes/batch-63-empty-states/x-settings-header/ui__x-settings-header--t2.webp
+  q90_take_sha256: 040b8b6d00a958fb1e872d9f6cf748c024248605aae975a3f1f24f49c7f1dd13
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: cdbd22fdfb6a977ea09517f3c204ed9089f3ad250f88150f0e17f64fcaed28fb
+  references:
+  - path: design/art/stations/tea-stall-5/tea-stall-5.png
+    role: 'A finished prop of the game: match its soft airbrushed finish, matte materials, warm light
+      and colors (do not draw the stall).'
+    sha256: c9a9f018b2dc6bcb1189f497f750dd98e80c69610c10ba3c71081d8b84d157b3
+  - path: design/art/takes/batch-48-gate-scenes/x-gate-round-door/ui__x-gate-round-door--t1.webp
+    role: 'The round door gate (take 1): the world''s warmth, the paper-and-wood materials and the lamplight.
+      Take the mood and the light only.'
+    sha256: d1bd16645914933d267a9b08e1513bb6fdad3dfefc6458bb16d86b4b216877ef
+policy:
+  never_promote: true
+  originals: source_file PNGs preserved unchanged; published takes are q90 copies

@@ -1,0 +1,187 @@
+batch: batch-63-empty-states
+manifest: tools/imagegen/manifest/batch-63-empty-states.yaml
+manifest_sha256: 16e2f6cf9233a81573226e366bc5ef6b93e66724b5c90f66dc096e5a9502d160
+contact_sheet: design/art/takes/batch-63-empty-states/x-empty-friends/contact.jpg
+jobs:
+  x-empty-friends:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both initial takes pass hard
+      QA and literal invitation review. Native/official locked and proper cream/night
+      composites viewed. One R1 curl Pofu sits on first stool, waves one paw; TWO
+      stools, round wooden door, lit paper lantern on post and flowerpot. Both paint
+      ONE visible empty guest cup on second stool, no additional first Pofu cup. Reasonable
+      interpretation of second empty teacup is the offered guest place because prompt
+      never separately requests a first cup and notes prioritize a clearly set empty
+      second place. This disclosed ambiguity is NOT a claim of two visible cups or
+      exact cup-count compliance; no guest is drawn. Second stool is unoccupied by
+      a character, with cup as place setting. Warm evening lamplight, local rug/grass
+      vignette fading, no fullcanvas/card/frame/writing. Take2 lowest lock_load1.4476
+      versus1.4812. Style warnings advisory; no invented raw footprint/zero-alpha
+      thresholds. All immutable originals/callbacks/QA/locked/reference proofs retained.
+      Exploration only; never promoted.
+qa_reports:
+  1:
+    job: x-empty-friends
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 54 (R1 51)
+      value: 54.2
+    - check: value_floor
+      status: pass
+      message: lightness p5 52 (R1 59)
+      value: 52.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.2 (R1 5.3)
+      value: 3.25
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.5
+      value: 1.4812
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 4.2, p95 12.9, off-palette 6.7% (top: #888855 (0.7%), #998855
+        (0.7%))'
+      value: 4.1586
+    info:
+      metrics_raw:
+        L_p5: 51.7
+        L_p50: 71.3
+        L_p95: 91.7
+        C_p50: 33.6
+        C_p95: 55.4
+        C_p99: 63.7
+        detail: 4.53
+      metrics_locked:
+        L_p5: 52.2
+        L_p50: 71.2
+        L_p95: 91.4
+        C_p50: 33.6
+        C_p95: 54.2
+        C_p99: 60.8
+        detail: 3.25
+    fingerprint: 051bea9157fd1e83
+  2:
+    job: x-empty-friends
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 57 (R1 51)
+      value: 56.9
+    - check: value_floor
+      status: pass
+      message: lightness p5 54 (R1 59)
+      value: 54.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.5 (R1 5.3)
+      value: 3.53
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.4
+      value: 1.4476
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.9, p95 11.0, off-palette 2.5% (top: #AA9966 (0.4%), #998855
+        (0.3%))'
+      value: 3.9007
+    info:
+      metrics_raw:
+        L_p5: 53.9
+        L_p50: 73.0
+        L_p95: 91.0
+        C_p50: 35.1
+        C_p95: 57.8
+        C_p99: 63.0
+        detail: 4.86
+      metrics_locked:
+        L_p5: 54.4
+        L_p50: 73.0
+        L_p95: 90.5
+        C_p50: 35.1
+        C_p95: 56.9
+        C_p99: 60.3
+        detail: 3.53
+    fingerprint: 051bea9157fd1e83
+manual_review:
+  observed_note: Both initial takes pass hard QA and literal invitation review. Native/official
+    locked and proper cream/night composites viewed. One R1 curl Pofu sits on first
+    stool, waves one paw; TWO stools, round wooden door, lit paper lantern on post
+    and flowerpot. Both paint ONE visible empty guest cup on second stool, no additional
+    first Pofu cup. Reasonable interpretation of second empty teacup is the offered
+    guest place because prompt never separately requests a first cup and notes prioritize
+    a clearly set empty second place. This disclosed ambiguity is NOT a claim of two
+    visible cups or exact cup-count compliance; no guest is drawn. Second stool is
+    unoccupied by a character, with cup as place setting. Warm evening lamplight,
+    local rug/grass vignette fading, no fullcanvas/card/frame/writing. Take2 lowest
+    lock_load1.4476 versus1.4812. Style warnings advisory; no invented raw footprint/zero-alpha
+    thresholds. All immutable originals/callbacks/QA/locked/reference proofs retained.
+    Exploration only; never promoted.
+  excluded_takes: []
+sources:
+- batch: batch-63-empty-states
+  job: x-empty-friends
+  take: 1
+  round: 1
+  logical_run: 20261106-b63-empty-states
+  source_file: /workspace/generated_images/exec-f3634c0c-0f97-4e53-8d83-f25f54b16c14.png
+  returned_at: '2026-11-06T11:14:39.351Z'
+  prompt_sha256: 85b5f056c31cc6c4072fe001bd0dba67074c77dfca4c5c08dbc9538b281ee716
+  fingerprint: 051bea9157fd1e83
+  saved_at: '2026-11-06T11:14:39.727165+00:00'
+  original_generated_png_sha256: 5d3e690e8ab46384c894af285a1d5e742391ded116786804e8cb6bb504b86f5c
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: dd75533a585b6fbcaf84660521e3fbda143be9769ede6dbea32db9f5a556ebf5
+  inbox_png_sha256: 179c16a9653baf4df2034bdeac77d7b28da33b7868d8f3cf7ab6174349de06f0
+  qa_sha256: 612619accc1501016f8a82911c694dd1193db58def85bd15a447b86bcff9fa89
+- batch: batch-63-empty-states
+  job: x-empty-friends
+  take: 2
+  round: 1
+  logical_run: 20261106-b63-empty-states
+  source_file: /workspace/generated_images/exec-317bbf75-2131-47f9-b07f-5027ad90859d.png
+  returned_at: '2026-11-06T11:13:35.864Z'
+  prompt_sha256: 85b5f056c31cc6c4072fe001bd0dba67074c77dfca4c5c08dbc9538b281ee716
+  fingerprint: 051bea9157fd1e83
+  saved_at: '2026-11-06T11:13:36.305824+00:00'
+  original_generated_png_sha256: ba733a357eb0f953888c4b3d67dc1bf563fec0a3b14b7fee5328f1406847e67f
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: c43c433acb2a48b52f9b6e14e46518f753c49587ecd129234b7e975a0673595b
+  inbox_png_sha256: faaafcc95da4cc86b59236fc3a4974f71c897190c9e3118e00fc1bd285e8c220
+  qa_sha256: 077711e3abe26adb16a77b0d3166504eed87250ac023caf7b28ff12a2224215b
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
