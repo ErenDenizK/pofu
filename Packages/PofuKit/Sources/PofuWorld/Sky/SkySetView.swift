@@ -26,6 +26,10 @@ struct SkySetLayers: View {
     /// Whether the island layer (and with it the cloud bank cut with the island) is drawn. A painted sky
     /// behind another island (`PaintedSky`) leaves it out: the sea, the clouds and the isles remain.
     var drawsIsland = true
+    /// Whether the mid clouds are drawn. The Map's sky leaves them out (`PaintedSky.mapPose` frames the
+    /// sky set under its isles): where Home's island hides it, the split left faint cut residue in that
+    /// tile, and from the Map's height that part of it is on screen.
+    var drawsMidClouds = true
 
     @Environment(\.worldStillFrame) private var still
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
@@ -51,7 +55,7 @@ struct SkySetLayers: View {
     private func canvas(time: Double) -> some View {
         let scale = SkyMotion.scale(width: Double(size.width), referenceWidth: sky.referenceWidth)
         return Canvas(opaque: false, colorMode: .nonLinear, rendersAsynchronously: false) { context, _ in
-            for layer in sky.layers where drawsIsland || layer.role != .island {
+            for layer in sky.layers where (drawsIsland || layer.role != .island) && (drawsMidClouds || !SkySet.isMidClouds(layer)) {
                 draw(layer, in: &context, time: time, scale: scale)
             }
         }

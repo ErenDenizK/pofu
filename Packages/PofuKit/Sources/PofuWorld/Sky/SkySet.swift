@@ -85,6 +85,11 @@ public struct SkySet: Hashable, Sendable {
         public var periods: [Double] = []
     }
 
+    /// The mid clouds' drift tile (`<island>-sky-mid-<light>`).
+    public static func isMidClouds(_ layer: Layer) -> Bool {
+        layer.role == .tile && layer.asset.contains("-sky-mid-")
+    }
+
     public struct Layer: Hashable, Sendable, Identifiable {
         public var id: String
         public var role: Role

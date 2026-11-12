@@ -175,6 +175,8 @@ struct PaintedSkyLayer: View {
     let size: CGSize
     let offset: CGSize
     let fade: Double
+    /// The Map's and the flights' sky (`PaintedSky.mapPose`): its mid clouds are left out.
+    var isMap = false
 
     @State private var shown: HomePlate
     @State private var incoming: HomePlate?
@@ -182,12 +184,13 @@ struct PaintedSkyLayer: View {
     @State private var shownStart = Date()
     @State private var incomingStart = Date()
 
-    init(plate: HomePlate, pose: CameraPose, size: CGSize, offset: CGSize, fade: Double) {
+    init(plate: HomePlate, pose: CameraPose, size: CGSize, offset: CGSize, fade: Double, isMap: Bool = false) {
         self.plate = plate
         self.pose = pose
         self.size = size
         self.offset = offset
         self.fade = fade
+        self.isMap = isMap
         _shown = State(initialValue: plate)
     }
 
@@ -229,7 +232,7 @@ struct PaintedSkyLayer: View {
     @ViewBuilder
     private func sky(_ plate: HomePlate, start: Date) -> some View {
         if let set = plate.skySet {
-            SkySetLayers(sky: set, plate: plate, pose: pose, size: size, offset: offset, start: start, drawsIsland: false)
+            SkySetLayers(sky: set, plate: plate, pose: pose, size: size, offset: offset, start: start, drawsIsland: false, drawsMidClouds: !isMap)
         }
     }
 }

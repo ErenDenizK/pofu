@@ -136,6 +136,13 @@ struct MapSkyTests {
         #expect(count >= 20)
     }
 
+    @Test func theMidCloudsAreOneTileOfEachLight() throws {
+        for (hour, light) in [(12.0, "day"), (18.0, "golden"), (23.0, "night")] {
+            let set = try #require(PaintedSky.mapSky(world: Self.world, look: Self.look(hour))?.skySet)
+            #expect(set.layers.filter(SkySet.isMidClouds).map(\.asset) == ["world-home-sky-mid-\(light)-0"])
+        }
+    }
+
     @Test func anotherIslandKeepsItsIslandCut() throws {
         let caglayan = try #require(HomePlate.caglayanIsland)
         #expect(caglayan.mapIslandArt(light: "day", stage: 2) == caglayan.islandArt(light: "day", stage: 2))

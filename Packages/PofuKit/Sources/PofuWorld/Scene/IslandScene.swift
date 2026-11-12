@@ -657,7 +657,8 @@ private struct SceneFrame<Bubble: View>: View {
                         pose: PaintedSky.mapPose(pose, sky: mapSky, width: Double(size.width), height: Double(size.height)),
                         size: size,
                         offset: offset,
-                        fade: 1
+                        fade: 1,
+                        isMap: true
                     )
                 } else if max(plateFade, isleFade, skyFade) < 0.999 {
                     LivingSky(palette: sky, offset: offset, far: FarSky.Look(z: z, cell: light.cell, grade: grade, koke: farKoke, healed: farHealed, mist: atmosphere.mist))

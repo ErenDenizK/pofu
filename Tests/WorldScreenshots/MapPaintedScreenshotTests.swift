@@ -54,7 +54,11 @@ final class MapPaintedScreenshotTests: XCTestCase {
         )
         try write(try await render(l7, model: IslandSceneModel(framing: .map), hour: 23, in: scene), name: "map-plate-l7-night", to: folder)
 
+        // The plate first: its arrival would otherwise redraw from the held flight and let it land.
+        var noon = WorldLook(hourOverride: 12)
+        noon.weatherOverride = .clear
         let flight = IslandSceneModel(framing: .island)
+        flight.setHomePlate(HomePlate.resolve(world: l5, look: noon))
         flight.holdFlight(to: .koke, progress: 0.5)
         try write(try await render(l5, model: flight, hour: 12, in: scene), name: "flight-home-koke-mid", to: folder)
     }
