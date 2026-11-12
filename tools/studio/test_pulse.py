@@ -67,7 +67,7 @@ class Pulse(unittest.TestCase):
     def test_a_window_with_no_player_change_says_so(self):
         out = io.StringIO()
         argv = sys.argv
-        sys.argv = ["pulse.py", "--ref", "main", "--days", "1", "--today", "2026-11-11"]
+        sys.argv = ["pulse.py", "--ref", "main", "--days", "1", "--today", "2026-11-11", "--no-network"]
         try:
             with contextlib.redirect_stdout(out):
                 pulse.main()
@@ -75,6 +75,31 @@ class Pulse(unittest.TestCase):
             sys.argv = argv
         self.assertIn("nothing: no user-visible change merged in this window", out.getvalue())
         self.assertIn("2026-11-10  docs 1", out.getvalue())
+
+    def test_leftovers_name_caps_open_friction_and_the_route(self):
+        (self.repo / "CLAUDE.md").write_text("line\n" * 81)
+        (self.repo / "docs" / "studio").mkdir(parents=True)
+        (self.repo / "docs" / "studio.md").write_text("word " * 4501)
+        (self.repo / "docs" / "now.md").write_text("intro\n**Route:** build, then look\n")
+        (self.repo / "docs" / "studio" / "friction.md").write_text(
+            "| Date | Friction | Fix |\n|---|---|---|\n| 11-10 | slow queue | |\n| 11-11 | bad brief | done |\n")
+        self.assertEqual(pulse.caps(str(self.repo)), ["CLAUDE.md: 81 lines, cap 80", "docs/studio.md: 4501 words, cap 4,500"])
+        self.assertEqual(pulse.open_friction(str(self.repo / "docs/studio/friction.md")), ["11-10 | slow queue"])
+        self.assertEqual(pulse.route(str(self.repo)), "**Route:** build, then look")
+        out = io.StringIO()
+        with contextlib.redirect_stdout(out):
+            pulse.leftovers("main", str(self.repo), network=False)
+        self.assertIn("**Route:** build, then look", out.getvalue())
+
+    def test_a_merged_worktree_is_a_leftover_and_an_unmerged_one_is_not(self):
+        wt = self.repo.parent / (self.repo.name + "-wt")
+        git(self.repo, "worktree", "add", "-q", str(wt), "-b", "feat/old-thing-copy")      # same commit as main: merged
+        try:
+            rows = pulse.worktrees_merged("main")
+            self.assertEqual(len(rows), 1)
+            self.assertIn("feat/old-thing-copy", rows[0])
+        finally:
+            git(self.repo, "worktree", "remove", "--force", str(wt))
 
 
 if __name__ == "__main__":

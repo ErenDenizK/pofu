@@ -65,6 +65,36 @@ class SessionCost(unittest.TestCase):
         self.assertIn("sonnet    1 agents", text)
         self.assertIn("Build the thing", text)
 
+    def test_one_hour_write_costs_two_and_five_minute_write_one_and_a_quarter(self):
+        self.assertAlmostEqual(session_cost.dollars("opus", 0, 1_000_000, 0, 1_000_000), 5.0)
+        self.assertAlmostEqual(session_cost.dollars("opus", 0, 1_000_000, 0, 400_000), 0.6 * 3.125 + 0.4 * 5.0)
+
+    def test_now_line_counts_since_the_last_compaction_and_today(self):
+        p = Path(self.tmp.name) / "n.jsonl"
+        one_hour = json.loads(turn("z", "claude-opus-5-5", "2026-11-12", 0, 500_000, 0))
+        one_hour["message"]["usage"]["cache_creation"] = {"ephemeral_1h_input_tokens": 500_000}
+        p.write_text("\n".join([
+            turn("a", "claude-opus-5-5", "2026-11-11", 300_000, 0, 0),
+            json.dumps({"type": "system", "subtype": "compact_boundary"}),
+            turn("b", "claude-opus-5-5", "2026-11-12", 450_000, 0, 0),
+            json.dumps(one_hour),
+        ]) + "\n")
+        line = session_cost.now(str(p), "2026-11-12")
+        self.assertEqual(line, "now: context 500k, 2 turns since last compact; today 2 turns $"
+                         f"{450_000 * 0.1 * 2.5 / 1e6 + 500_000 * 2.0 * 2.5 / 1e6:.2f}, 2 above 400k")
+        self.assertNotIn("target", self.report())
+
+    def report(self) -> str:
+        out = io.StringIO()
+        argv = sys.argv
+        sys.argv = ["session_cost.py", str(self.session)]
+        try:
+            with contextlib.redirect_stdout(out):
+                session_cost.main()
+        finally:
+            sys.argv = argv
+        return out.getvalue()
+
 
 if __name__ == "__main__":
     unittest.main()
