@@ -12,9 +12,11 @@ import XCTest
 ///
 /// - `caglayan-plate-full-s0-day` to `-s4-day`: the five story stages by day, each its plate's island over the one portrait
 ///   sky set (ADR-0025; the sky at time zero, `worldStillFrame`; `tools/plate/screen_check.py caglayan ci` reads them);
-/// - `caglayan-plate-full-s2-night` and `-s3-night`: the painted nights;
-/// - `caglayan-plate-full-s4-golden` and `-s4-rain`: the healed island at golden hour and in rain;
-/// - `caglayan-plate-sprite-s4-night`: a state no plate paints, still the sprite island.
+/// - `caglayan-plate-full-s2-night` to `-s4-night`: the painted nights, over the night's own sky set (stages 0 and 1 are
+///   `CaglayanNightScreenshotTests`);
+/// - `caglayan-plate-full-s4-golden` and `-s4-rain`: the healed island at golden hour and in rain, each over its own set.
+///
+/// Every frame is painted from the top of the screen to the bottom: `tools/plate/screen_check.py caglayan flat` reads them.
 final class CaglayanPlateScreenshotTests: XCTestCase {
     private let clock = Date(timeIntervalSinceReferenceDate: 815_000_000)
 
@@ -41,7 +43,7 @@ final class CaglayanPlateScreenshotTests: XCTestCase {
         let states: [(name: String, stage: Int, hour: Double, weather: WeatherConditions, light: String?)] = [
             ("s0-day", 0, 12, .clear, "day"), ("s1-day", 1, 12, .clear, "day"), ("s2-day", 2, 12, .clear, "day"),
             ("s3-day", 3, 12, .clear, "day"), ("s4-day", 4, 12, .clear, "day"),
-            ("s2-night", 2, 22.5, .clear, "night"), ("s3-night", 3, 22.5, .clear, "night"),
+            ("s2-night", 2, 22.5, .clear, "night"), ("s3-night", 3, 22.5, .clear, "night"), ("s4-night", 4, 22.5, .clear, "night"),
             ("s4-golden", 4, 18, .clear, "golden"), ("s4-rain", 4, 12, rain, "rain"),
         ]
         for state in states {
@@ -50,11 +52,6 @@ final class CaglayanPlateScreenshotTests: XCTestCase {
                 name: "caglayan-plate-full-\(state.name)", to: folder
             )
         }
-        // No plate paints the healed island at night: the night borrows the golden painting.
-        try write(
-            try await render(stage: 4, hour: 22.5, weather: .clear, expecting: "golden", in: scene),
-            name: "caglayan-plate-borrowed-s4-night", to: folder
-        )
     }
 
     @MainActor
@@ -75,8 +72,8 @@ final class CaglayanPlateScreenshotTests: XCTestCase {
         XCTAssertEqual(model.caglayanPlate?.light, light, "stage \(stage) at \(hour): the painted state")
         if light != nil {
             XCTAssertEqual(model.caglayanPlate?.stage, stage)
-            // The day is an island plate over a sky set; golden, night and rain keep the landscape plate for now.
-            XCTAssertEqual(model.caglayanPlate?.skySet != nil, light == "day", "the sky set follows the light")
+            // Every painted state is an island layer over a sky set of its own light, never the landscape plate alone.
+            XCTAssertEqual(model.caglayanPlate?.skySet?.light, light, "the sky set follows the light")
         }
         let format = UIGraphicsImageRendererFormat()
         format.scale = window.traitCollection.displayScale

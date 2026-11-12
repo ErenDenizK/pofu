@@ -1,6 +1,6 @@
 {
  "island": "caglayan",
- "note": "Hand data for tools/plate/split.py, Çağlayan's sky set (ADR-0025). Pixels are master pixels at x2 (2048 x 3072: the portrait master of x-caglayan-portrait-s4-day t1 at 1024 x 1536, upscaled, with the island of the picked stage plates pasted over it by tools/plate/portrait.py). One day master; every stage plate's island is cut over the same sky. The island matte is the landscape plates' committed matte-day-0.png, placed by `matteFrame`. The two distant isles' mattes (mattes/*.png) come from tools/plate/sprite_matte.py and may be adjusted by hand. `export` holds what the Home sets do not need: the picture runs past the master at the Island stop (the screen shows about 1.03 master widths and 1.5 master heights). `beam` is the chimney's smoke: it belongs to the island layer, which never drifts.",
+ "note": "Hand data for tools/plate/split.py, Çağlayan's sky set (ADR-0025). Pixels are master pixels at x2 (2048 x 3072: the portrait master of x-caglayan-portrait-s4-day t1 at 1024 x 1536, upscaled, with the island of the picked stage plates pasted over it by tools/plate/portrait.py). One day master; every stage plate's island is cut over the same sky. The island matte is the landscape plates' committed matte-day-0.png, placed by `matteFrame`. The two distant isles' mattes (mattes/*.png) come from tools/plate/sprite_matte.py and may be adjusted by hand. `export` holds what the Home sets do not need: the picture runs past the master at the Island stop (the screen shows about 1.03 master widths and 1.5 master heights). `beam` is the chimney's smoke: it belongs to the island layer, which never drifts. Night, golden and rain each split their own master (portrait.py master caglayan <light>: the batch-76 take, edited by master_edit.py where objects.json lists `edits`, the light's stage-4 plate pasted over it where one is painted); a light's `stages` are the other stage plates of that light cut over its one sky (night: 0 to 3; the night's stage 4 is the master's own island). `fixedSky` holds the night's moon and its halo still.",
  "size": [
   2048,
   3072
@@ -88,6 +88,64 @@
  "lights": {
   "day": {
    "plate": "design/art/plates/caglayan/sky/master-day.heic"
+  },
+  "night": {
+   "plate": "design/art/plates/caglayan/sky/master-night.heic",
+   "fixedSky": [
+    [
+     176,
+     62,
+     356,
+     242
+    ]
+   ],
+   "moonGlow": {
+    "search": [
+     0,
+     0,
+     760,
+     520
+    ],
+    "rIn": 80,
+    "rOut": 340
+   },
+   "stars": 900,
+   "stages": [
+    "0",
+    "1",
+    "2",
+    "3"
+   ],
+   "starFree": [
+    [
+     120,
+     0,
+     400,
+     300
+    ],
+    [
+     0,
+     0,
+     24,
+     800
+    ]
+   ],
+   "darkPassMax": 0.35,
+   "edgeBank": 200,
+   "islandAdd": true
+  },
+  "golden": {
+   "plate": "design/art/plates/caglayan/sky/master-golden.heic",
+   "stages": [],
+   "edgeBank": 200,
+   "islandAdd": true
+  },
+  "rain": {
+   "plate": "design/art/plates/caglayan/sky/master-rain.heic",
+   "stages": [],
+   "skyTopFlat": 320,
+   "edgeBank": 200,
+   "islandAdd": true
   }
  },
  "baseStage": "4",
@@ -96,5 +154,15 @@
  "alphaFloor": 0.08,
  "edgeFeather": 24,
  "skyDarkPass": true,
- "cloudsLighten": true
+ "cloudsLighten": true,
+ "islandAdd": {
+  "box": [
+   1690,
+   1440,
+   2048,
+   2140
+  ],
+  "matte": "mattes/island_add.png",
+  "note": "The committed landscape matte stops up to 60 px short of the painted right belly and root; this union of the matte and the island's own pixels (red over blue in the de-rained rain master, closed and filled) is added to the island matte by the lights that set `islandAdd` (night, golden, rain); the day's warm island tests already take the belly back."
+ }
 }

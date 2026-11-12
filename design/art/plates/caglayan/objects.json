@@ -1,6 +1,6 @@
 {
  "island": "caglayan",
- "note": "Çağlayan (batch 67's x-caglayan-flow-N t1 day plates, 1536 x 1024 landscape; batch 73's picked night, golden and rain cells). Points are percent of the plate. Day stages 0..4 are the story's stages (not island levels); night is painted at stages 2 and 3, golden and rain at stage 4 (`plates`), every other state keeps the sprite island. One tap polygon (the whole island opens the flow round). Damla is the only resident drawn on the plate: one spot on the front lawn, in every stage; Pofu and Mochi speak from the bubble and are not drawn. `referenceState` (the harmony reference) is its picked root, the stage 4 day. Framing: the island is 0.949 screens wide (212 world units at the Island stop's 1.8 scale, `CaglayanLayout`), its box centred at 54 % of the screen height; the backdrop below and above the landscape plate is a calm continuation, never a repeated cloud band (`backdrop`: calm).",
+ "note": "Çağlayan (batch 67's x-caglayan-flow-N t1 day plates, 1536 x 1024 landscape; the picked night cells of stages 0 to 3; stage 4's night, golden and rain cut from batch 76's sky masters, `portraitFrame.lights`). Points are percent of the plate. Day stages 0..4 are the story's stages (not island levels); night is painted at every stage, golden and rain at stage 4 (`plates`); each is drawn over its light's sky set. One tap polygon (the whole island opens the flow round). Damla is the only resident drawn on the plate: one spot on the front lawn, in every stage; Pofu and Mochi speak from the bubble and are not drawn. `referenceState` (the harmony reference) is its picked root, the stage 4 day. Framing: the island is 0.949 screens wide (212 world units at the Island stop's 1.8 scale, `CaglayanLayout`), its box centred at 54 % of the screen height; the backdrop below and above the landscape plate is a calm continuation, never a repeated cloud band (`backdrop`: calm).",
  "minLevel": 0,
  "backdrop": "calm",
  "referenceState": [
@@ -16,16 +16,17 @@
    "4": "design/art/takes/batch-67-caglayan-flow/x-caglayan-flow-4/plate__x-caglayan-flow-4--t1.webp"
   },
   "golden": {
-   "4": "design/art/takes/batch-73-islands-states/x-caglayan-flow-4-golden/plate__x-caglayan-flow-4-golden--t2.webp"
+   "4": "design/art/plates/caglayan/sky/plate-golden-4.webp"
   },
   "night": {
    "0": "design/art/takes/batch-74-redo-states/x-caglayan-flow-0-night-v2/plate__x-caglayan-flow-0-night-v2--t1.webp",
    "1": "design/art/takes/batch-74-redo-states/x-caglayan-flow-1-night-v2/plate__x-caglayan-flow-1-night-v2--t1.webp",
    "2": "design/art/takes/batch-73-islands-states/x-caglayan-flow-2-night/plate__x-caglayan-flow-2-night--t2.webp",
-   "3": "design/art/takes/batch-73-islands-states/x-caglayan-flow-3-night/plate__x-caglayan-flow-3-night--t2.webp"
+   "3": "design/art/takes/batch-73-islands-states/x-caglayan-flow-3-night/plate__x-caglayan-flow-3-night--t2.webp",
+   "4": "design/art/plates/caglayan/sky/plate-night-4.webp"
   },
   "rain": {
-   "4": "design/art/takes/batch-73-islands-states/x-caglayan-flow-4-rain/plate__x-caglayan-flow-4-rain--t2.webp"
+   "4": "design/art/plates/caglayan/sky/plate-rain-4.webp"
   }
  },
  "trace": [
@@ -778,6 +779,51 @@
    ],
    "cc": 0.9924
   },
-  "note": "Where the landscape plates sit in the portrait master (x-caglayan-portrait-s4-day t1, 1024 x 1536): master px = scale * plate px + offset, measured by ECC on the island body (ADR-0025). The stage plates stay the truth about the island; tools/plate/portrait.py pastes them over the master at this place."
+  "note": "Where the landscape plates sit in the portrait master (x-caglayan-portrait-s4-day t1, 1024 x 1536): master px = scale * plate px + offset, measured by ECC on the island body (ADR-0025). The stage plates stay the truth about the island; tools/plate/portrait.py pastes them over the master at this place.",
+  "lights": {
+   "night": {
+    "master": "design/art/takes/batch-76-redo-picks/x-caglayan-sky-night-v2/plate__x-caglayan-sky-night-v2--t1.webp",
+    "out": "design/art/plates/caglayan/sky/master-night.heic",
+    "cut": "design/art/plates/caglayan/sky/plate-night-4.webp",
+    "edits": []
+   },
+   "golden": {
+    "master": "design/art/takes/batch-76-redo-picks/x-caglayan-sky-golden-v2/plate__x-caglayan-sky-golden-v2--t1.webp",
+    "out": "design/art/plates/caglayan/sky/master-golden.heic",
+    "edits": [
+     {
+      "op": "warm",
+      "a": 3,
+      "b": 3,
+      "lo": 65,
+      "hi": 85,
+      "why": "lead review 2026-11-12: the island barely takes the low side light; warm its sunlit faces a touch"
+     }
+    ],
+    "cut": "design/art/plates/caglayan/sky/plate-golden-4.webp"
+   },
+   "rain": {
+    "master": "design/art/takes/batch-76-redo-picks/x-caglayan-sky-rain-v2/plate__x-caglayan-sky-rain-v2--t1.webp",
+    "out": "design/art/plates/caglayan/sky/master-rain.heic",
+    "edits": [
+     {
+      "op": "derain",
+      "why": "rain is drawn in code (ADR-0025); painted streaks would drift with the cloud layers",
+      "thresh": 0.0035
+     },
+     {
+      "op": "lift",
+      "L": 8,
+      "p95": 85,
+      "fromY": 1150,
+      "ramp": 150,
+      "sky": 0.5,
+      "why": "lead review 2026-11-12: the cloud sea sits darker and flatter than the other rain picks (L 58, p95 73)"
+     }
+    ],
+    "cut": "design/art/plates/caglayan/sky/plate-rain-4.webp"
+   }
+  },
+  "lightsNote": "The other lights' sky masters (batch-76-redo-picks, take 1 each; edits of the day portrait, the same frame within 1.6 px by portrait.py register). Night pastes its stage 0 to 3 plates over its master (their sky matched round the edge). Stage 4 at night, golden and rain is the master's own island: `cut` is the landscape plate portrait.py plate cuts from the master (plates.<light>.4), so the plate, its occluders and the sky set's island are the same pixels; the batch-73 golden and rain cells (a rainbow in the rain) are no longer shipped. `edits` are master_edit.py steps applied to the take before the upscale; the take is untouched."
  }
 }

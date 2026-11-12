@@ -167,6 +167,20 @@ def island_matte(hand: dict, p: np.ndarray) -> np.ndarray:
     return out
 
 
+def island_add(hand: dict, shape: tuple[int, int]) -> np.ndarray:
+    """Hand data added to the island matte (`islandAdd`: a box in master px and a matte PNG of its size): where the
+    committed landscape matte stops short of the painted island (Çağlayan's right belly and root, which the day's warm
+    island tests take back but a night or rain belly does not)."""
+    spec = hand["islandAdd"]
+    x0, y0, x1, y1 = spec["box"]
+    crop = np.asarray(Image.open(PLATES / hand["island"] / "sky" / spec["matte"]).convert("L"), np.float32) / 255
+    if crop.shape != (y1 - y0, x1 - x0):
+        raise SystemExit(f"islandAdd: matte {crop.shape[::-1]} does not fit its box {(x1 - x0, y1 - y0)}")
+    m = np.zeros(shape, np.float32)
+    m[y0:y1, x0:x1] = crop
+    return m
+
+
 def sprite_mattes(hand: dict, shape: tuple[int, int]) -> dict[str, np.ndarray]:
     out = {}
     for name, s in hand["sprites"].items():
@@ -188,10 +202,13 @@ def _basis(x, y, w, h):
     return np.stack([np.ones_like(x), x, x * x, y, y * y, y ** 3, y ** 4, x * y, x * x * y, x * y * y], -1)
 
 
-def fit_sky(p: np.ndarray, objs: np.ndarray, sea_top: int, residual: bool = True, dark_pass: bool = False) -> tuple[np.ndarray, float]:
+def fit_sky(p: np.ndarray, objs: np.ndarray, sea_top: int, residual: bool = True, dark_pass: bool = False,
+            glow: dict | None = None, dark_max: float = 0.15, log=print) -> tuple[np.ndarray, float]:
     """The smooth sky: a polynomial in x, y fitted with iterative rejection of clouds and objects,
     plus the smooth residual of the pixels that still look like sky (a sunset glow is not a
-    polynomial). Frozen below the sea top: there the sky is only seen through thin cloud."""
+    polynomial). Frozen below the sea top: there the sky is only seen through thin cloud. `dark_max` is how far below
+    the field a pixel may be and still count as sky in the dark pass (a polynomial overshooting into a corner). `glow`
+    ({search, rIn, rOut}) adds the moon's glow as a radial term before the residual pass (`moon_glow`)."""
     h, w = p.shape[:2]
     yy, xx = np.mgrid[0:h, 0:w].astype(np.float32)
     free = (objs < 0.01) & (yy < sea_top)
@@ -207,6 +224,12 @@ def fit_sky(p: np.ndarray, objs: np.ndarray, sea_top: int, residual: bool = True
         r = np.linalg.norm(p - s, axis=-1)
         sel = free & (r < t) & sub
     resid_p95 = float(np.percentile(r[sel], 95))
+    if glow:
+        # the moon's glow belongs to the still sky (Çağlayan's night: it reaches 200 px past the disc, past any box)
+        centre = moon_centre(p, tuple(glow["search"]))
+        s = moon_glow(p, s.astype(np.float32), objs, centre, glow["rIn"], glow["rOut"])
+        r = np.linalg.norm(p - s, axis=-1)
+        log(f"moon at ({centre[0]:.0f}, {centre[1]:.0f}): its glow is in the sky to r {glow['rOut']}")
     if not residual:
         s[sea_top:] = s[sea_top - 1]
         return s.clip(0, 1).astype(np.float32), resid_p95
@@ -223,7 +246,7 @@ def fit_sky(p: np.ndarray, objs: np.ndarray, sea_top: int, residual: bool = True
         # Clouds only ever lighten a sky. Where the painting is deeper blue than the field (the pockets between clouds) it is
         # sky, not a dark cloud: a second smooth correction from the pixels that are no lighter than the field
         r2 = np.linalg.norm(p - s, axis=-1)
-        sky_like = free & (lum(p) <= lum(s) + 0.004) & (r2 < 0.15)
+        sky_like = free & (lum(p) <= lum(s) + 0.004) & (r2 < dark_max)
         w2 = cv2.resize(sky_like.astype(np.float32), (w // k, h // k), interpolation=cv2.INTER_AREA)
         d2 = cv2.resize(np.where(sky_like[..., None], p - s, 0).astype(np.float32), (w // k, h // k), interpolation=cv2.INTER_AREA)
         num2, den2 = cv2.GaussianBlur(d2, (0, 0), 3), cv2.GaussianBlur(w2, (0, 0), 3)
@@ -231,6 +254,45 @@ def fit_sky(p: np.ndarray, objs: np.ndarray, sea_top: int, residual: bool = True
         s = s + cv2.resize(corr2, (w, h), interpolation=cv2.INTER_CUBIC)
     s[sea_top:] = s[sea_top - 1]
     return s.clip(0, 1).astype(np.float32), resid_p95
+
+
+def moon_centre(p: np.ndarray, box: tuple[int, int, int, int]) -> tuple[float, float]:
+    """(x, y) of the brightest disc inside `box` (x0, y0, x1, y1): the moon."""
+    x0, y0, x1, y1 = box
+    sub = p[y0:y1, x0:x1].max(-1)
+    lab, n = ndimage.label(sub > 0.97 * sub.max())
+    sizes = ndimage.sum(np.ones_like(sub), lab, range(1, n + 1))
+    cy, cx = ndimage.center_of_mass(lab == (1 + int(np.argmax(sizes))))
+    return float(cx + x0), float(cy + y0)
+
+
+def moon_glow(p: np.ndarray, s: np.ndarray, objs: np.ndarray, centre: tuple[float, float], r_in: float, r_out: float,
+              q: float = 50.0) -> np.ndarray:
+    """The moon's glow as a radial term of the sky: per radius, the `q`th percentile (the median) over angle of the
+    painting above the fitted sky (so the clouds and the stars drop out; the residual pass after it takes what is not round), smoothed, from `r_in`
+    (inside it the disc, held at its value there) easing to 0 at `r_out`. Added to the fitted sky, the glow stands
+    still with the sky instead of riding a drifting cloud layer, and a fixed box round the disc has no edge."""
+    h, w = p.shape[:2]
+    cx, cy = centre
+    y0, y1 = max(int(cy - r_out), 0), min(int(cy + r_out) + 1, h)
+    x0, x1 = max(int(cx - r_out), 0), min(int(cx + r_out) + 1, w)
+    yy, xx = np.mgrid[y0:y1, x0:x1].astype(np.float32)
+    r = np.hypot(xx - cx, yy - cy)
+    resid = p[y0:y1, x0:x1] - s[y0:y1, x0:x1]
+    use = objs[y0:y1, x0:x1] < 0.01
+    n = int(r_out) + 1
+    bins = np.clip(r.astype(int), 0, n - 1)
+    prof = np.zeros((n, 3), np.float32)
+    for b in range(int(r_in), n):
+        sel = (bins == b) & use
+        if sel.sum() > 8:
+            prof[b] = np.percentile(resid[sel], q, axis=0)
+    prof[: int(r_in)] = prof[int(r_in)]
+    prof = cv2.GaussianBlur(prof.reshape(-1, 1, 3), (0, 0), 6).reshape(-1, 3)
+    prof = np.maximum(prof, 0) * (1 - smoothstep(0.6 * r_out, r_out, np.arange(n, dtype=np.float32)))[:, None]
+    out = s.copy()
+    out[y0:y1, x0:x1] += prof[bins] * (r < r_out)[..., None]
+    return out.clip(0, 1).astype(np.float32)
 
 
 def cloud_scale(p: np.ndarray, s: np.ndarray, objs: np.ndarray, sea_top: int) -> float:
@@ -357,12 +419,21 @@ def split_plate(p: np.ndarray, hand: dict, mattes: dict | None = None, log=print
     yy, xx = np.mgrid[0:h, 0:w].astype(np.float32)
     mattes = mattes or {}
     isl_m = mattes["island"] if "island" in mattes else island_matte(hand, p)
+    if (light_cfg or {}).get("islandAdd") and hand.get("islandAdd") and "island" not in mattes:
+        isl_m = np.maximum(isl_m, island_add(hand, (h, w)))
     spr_m = mattes["sprites"] if "sprites" in mattes else sprite_mattes(hand, (h, w))
     zero = np.zeros((h, w), np.float32)
     objs = np.maximum.reduce([isl_m, zero] + list(spr_m.values()))
 
     # -- the sky, and how much each pixel is cloud
-    s, resid = fit_sky(p, objs, sea_top, hand.get("skyResidual", True), hand.get("skyDarkPass", False))
+    s, resid = fit_sky(p, objs, sea_top, hand.get("skyResidual", True), hand.get("skyDarkPass", False),
+                       glow=(light_cfg or {}).get("moonGlow"), dark_max=(light_cfg or {}).get("darkPassMax", 0.15), log=log)
+    flat_top = (light_cfg or {}).get("skyTopFlat")
+    if flat_top:
+        # an overcast top (Çağlayan's rain): the field's dark pockets between the clouds would be left bare where the far
+        # layer fades in (`farTopFade`) and read as a smudge at the master's top edge; there the field eases to its row mean
+        wt = (1 - smoothstep(0, flat_top, yy))[..., None]
+        s = (s * (1 - wt) + s.mean(1, keepdims=True) * wt).astype(np.float32)
     k = hand.get("cloudScale") or cloud_scale(p, s, objs, sea_top)
     log(f"sky fit residual p95 {resid:.4f}, cloud scale K {k:.3f}")
     d = np.linalg.norm(p - s, axis=-1)
@@ -478,6 +549,19 @@ def split_plate(p: np.ndarray, hand: dict, mattes: dict | None = None, log=print
         # beside the island's belly would come out grey), the island layer takes the pixel: only inside its own soft edge
         need = needed_alpha(p, bg)
         isl = np.where(isl > 0.02, np.maximum(isl, np.where(need > isl + 0.02, need, 0)), isl).astype(np.float32)
+    eb = (light_cfg or {}).get("edgeBank")
+    if eb:
+        # a master whose sky is not one colour across (golden's warm left, rain's pasted plate): what the island layer
+        # holds beyond its matte (bank, warm sky the island tests took, pixels the gamut step took back) eases out over
+        # the `eb` columns at the master's sides, then the edge feather again, so the island layer never ends in a
+        # vertical edge at the master's side where the tiles' bridge runs on past it
+        fb = split_smooth(np.clip(np.arange(w, dtype=np.float32) / eb, 0, 1))
+        fb = np.minimum(fb, fb[::-1])[None]
+        isl = np.minimum(isl, isl_m + np.maximum(isl - isl_m, 0) * fb)
+        if ef:
+            fade = split_smooth(np.clip(np.arange(w, dtype=np.float32) / ef, 0, 1))
+            isl = isl * np.minimum(fade, fade[::-1])[None]
+        isl = isl.astype(np.float32)
     layers["island"] = {"rgb": unmix(p, bg, isl), "a": isl, "pos": (0, 0), "kind": "island"}
     info = {"hole_px": int(hole.sum()), "K": k, "sky_resid_p95": resid}
     return {"layers": layers, "bg": bg, "bg_far": bg_nosea, "p_bg": p_bg, "hole": hole, "sil": sil, "info": info}
@@ -556,7 +640,7 @@ def write_set(res: dict, hand: dict, light: str, out: Path, plate_rel: str, seed
         names.append(lid)
     sil = _bbox(res["sil"], 0.5)
     staged = {}
-    if stage_islands:
+    if stage_islands is not None:
         # the same island layer cut from each stage's own plate (same alpha, same box): over the one sky set
         isl = layers["island"]
         ex_, ey_ = entries["island"]["pos"]
@@ -596,14 +680,17 @@ def build(island: str, light: str, plate: Path | None = None, out: Path | None =
     de = delta_e2000(rc * 255, p * 255)
     log(f"  rest composite before saving: mean dE {de.mean():.3f}, p99 {np.percentile(de, 99):.2f}")
     stage_islands = None
-    if hand.get("stages"):
-        # staged islands (Çağlayan): every stage plate's island, unmixed against the one background
+    stages = hand["lights"][light].get("stages", hand.get("stages"))
+    if stages is not None and hand.get("baseStage"):
+        # staged islands (Çağlayan): every stage plate's island, unmixed against the one background; a light's own
+        # `stages` (night: 0 to 3) override the island's (the day's); [] ships the base stage alone, as `<light>-<base>`
         import portrait
-        paths = portrait.stage_plate_paths(island)
-        base = portrait.master_base(portrait.load_frame(island))
+        paths = portrait.stage_plate_paths(island, light)
+        frame = portrait.load_frame(island)
+        base = portrait.master_base(frame) if light == "day" else portrait.master_base(frame, light, island)
         stage_islands = {}
-        for stage in hand["stages"]:
-            pm = portrait.stage_master(island, paths[int(stage)], base).astype(np.float32)
+        for stage in stages:
+            pm = portrait.stage_master(island, paths[int(stage)], base, match_edge=light != "day").astype(np.float32)
             a = res["layers"]["island"]["a"]
             stage_islands[stage] = unmix(pm, res["bg"], a)
             log(f"  stage {stage}: island layer from {paths[int(stage)].name}")

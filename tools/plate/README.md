@@ -10,9 +10,10 @@ numpy, Pillow, scipy, pillow-heif (`pip install -r tools/plate/requirements.txt`
 | `character_strip.py` | the three characters' crops (1:1, 150 px cells) from several Home frames side by side, one column per frame, for judging whether their colour steps from one level to the next: `python3 -I tools/plate/character_strip.py OUT FRAME...` |
 | `portrait.py` | the portrait master of an island whose stage plates are landscape (Çağlayan, ADR-0025): `register` measures where a landscape plate sits in Codex's portrait outpaint (ECC on the island's body; `portraitFrame` in `objects.json` stores it: scale 2/3 at (0, 425) of the 1024 x 1536 master), `master` cuts the island out of the master by the committed matte and pastes the picked stage plate's island and a feathered margin over it at that place (so the island is the stage plate's, pixel for pixel before the resample), `stage_master` does the same for each stage; `python3 tools/plate/test_portrait.py` |
 | `sprite_matte.py` | mattes for a sky set's distant isles from the master's own pixels (where the painting leaves the fitted sky), written to `sky/mattes/` as hand data; Home's were BiRefNet-lite's |
+| `master_edit.py` | scripted edits of a sky master before it is split (`derain`, `lift`), hand data in `objects.json` (`portraitFrame.lights.<light>.edits`); the take is never overwritten; `python3 -I tools/plate/test_master_edit.py` |
 | `split.py` | the plate-first sky split: one painted master per light cut into an island plate (alpha matte unmixed from what is behind it, the cloud bank at its base kept so the seam falls in soft cloud) over a sky set (gradient, far and mid clouds, distant isles and the whale as sprites, a cloud sea whose area behind the island is quilted from the visible sea, drift tiles that wrap), HEIC q70 plus `manifest.json` under `design/art/plates/<island>/sky/<light>/`; hand data `sky/sky.json` |
 | `inpaint.py` | exemplar fills for it: `quilt` (masked-SSD block quilting by FFT correlation, no smear: the cloud-sea fill and the wrap seams) and a small multi-scale PatchMatch `inpaint` |
-| `screen_check.py` | six checks on composited frames at the Home framing (1206 x 2622): frame-zero identity, seam under drift (t = 0, 30, 120 s), colour drift, dead composition, life, resolution; the same functions read a CI screenshot (`check_frame`); thresholds and what Home measured: `design/art/plates/home/sky/calibration.json` |
+| `screen_check.py` | the flat-band rule (`check_flat_band`: no plain fill past what a sky runs plain at the top, none under the island; `flat --frames DIR` on the CI frames) and six checks on composited frames at the Home framing (1206 x 2622): frame-zero identity, seam under drift (t = 0, 30, 120 s), colour drift, dead composition, life, resolution; the same functions read a CI screenshot (`check_frame`); thresholds and what Home measured: `design/art/plates/home/sky/calibration.json` |
 | `skyset_export.py` | ships a sky set to the app: the layers as HEIC imagesets `world-<island>-sky-<layer>-<light>-0` (the soft cloud layers smaller than the master to fit the 9 MB state budget, the island byte for byte, the gradient and the sea padded past the plate, the night's stars as their own light in three groups) and `Plates/skyset-<island>.json`, the one source of the motion constants and the state's texture bytes; `PofuWorld/Sky/SkySet.swift` reads it |
 | `skyset_detail.py` | gives the isles and the whale painted-detail motion from their own pixels, code only (run by `skyset_export.py`): a waterfall's water flows down inside a mask with a breathing mist at its foot, a canopy's inside sways 1 to 2 px, a lamp or window flickers a few per cent; boxes in `design/art/plates/home/sky/detail.json`, hand-adjustable PNG masks in `design/art/plates/home/sky/detail/`, assets `world-<island>-sky-fx-*`, constants (`DETAIL_MOTION`) in `skyset-<island>.json`; nothing is drawn at t = 0 |
 | `skyset_render.py` | renders the shipped sky set offline with the app's motion formulas (`SkyMotion`): a still or an H.264 clip at 1206 x 2622, with `--vivid` for an offline chroma raise of the sky and cloud layers; the review clips come from it because the simulator cannot record in CI |
@@ -60,8 +61,24 @@ master, `design/art/plates/caglayan/sky/master-day.heic` (x-caglayan-portrait-s4
 pasted over it); the five stages share its sky and each cuts its own island layer (`island-s<stage>.heic`,
 `world-caglayan-sky-island-day-<stage>`), so the app's `SkySet.shipped(island:light:stage:)` looks up `day-<stage>`.
 The plates themselves, the characters, objects, tap polygon and light maps stay in the landscape plates' coordinates;
-only the sky set's picture is placed by `plateFrame` in `Plates/skyset-caglayan.json`. Golden, night and rain keep the
-landscape plate and its calm backdrop (`backdrop: calm` is still used by them) until their portrait masters exist.
+only the sky set's picture is placed by `plateFrame` in `Plates/skyset-caglayan.json`. Night, golden and rain each have
+their own master (`portraitFrame.lights` in `objects.json`: batch-76's `x-caglayan-sky-<light>-v2` t1), so every painted
+state is drawn full frame (`<light>-<stage>` in the sky set file); the landscape plates' calm backdrop is no longer drawn
+at the Island stop. `master_edit.py` makes the edits a lead review asks of a take, as hand data (`edits`), never by
+overwriting it: rain's painted streaks out (`derain`; rain is code) and its cloud sea lifted (`lift`), golden's lit
+island faces warmed (`warm`). Night's stage 0 to 3 plates are pasted over its master with their sky matched round the
+island (`edge_match`, a tight paste: the committed matte keeps shards of the day's cloud bank under the belly). Stage 4
+at night, golden and rain is the master's own island: `portrait.py plate` cuts the landscape stage-4 plate from the
+master for the ingest, so the plate, its occluders and the sky set's island are one picture. The night's moon glow is a
+radial term of the still sky (`moonGlow` in `sky.json`), not a cloud; `edgeBank` eases what the island layer holds
+past its matte out at the master's sides.
+
+    python3 tools/plate/portrait.py master caglayan night      # golden, rain the same; rain runs master_edit's edits first
+    python3 tools/plate/portrait.py plate caglayan night       # the landscape stage-4 plate (golden, rain too), then ingest.py all caglayan
+    python3 tools/plate/split.py caglayan --light night        # night: stages 0 to 3 cut over the one night sky
+    SKYSET_CACHE=/tmp/q python3 tools/plate/skyset_export.py caglayan --light night
+    python3 tools/plate/screen_check.py caglayan flat --frames shots   # the CI frames: no flat band, top to bottom
+    python3 tools/plate/test_master_edit.py
 
     python3 tools/plate/portrait.py register caglayan      # measure; compare with portraitFrame
     python3 tools/plate/portrait.py master caglayan        # the day master

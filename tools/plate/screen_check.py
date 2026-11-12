@@ -20,6 +20,10 @@ function on frames so the same code can read a CI screenshot later (`check_frame
   5 life       two seconds of drift change the sky and leave the island untouched
   6 resolution source pixels per screen pixel on the island
 
+`flat --frames DIR` runs the flat-band rule (`check_flat_band`) alone on every `<island>-plate-full-*.png` there: no
+flat fill above the painting past what a sky runs plain, none below the island, so no hard horizontal edge where the
+painting stops; `sky` and `ci` run it too.
+
 `sky` renders the shipped sky set (`skyset_render.py`, the app's layers and motion) and runs three more: no mirror
 image in the rows past the plate, no stripe or box edge in the sky layer, no doubled star (a star's ghost left in a
 drifting layer). `ci` reads the app's own frames instead: `--frames DIR` holds `home-plate-full-l10-<light>.png` from the
@@ -63,6 +67,11 @@ SKY_THRESHOLDS = {
     "speckle": {"floor": 0.02, "max_area": 250, "max_alpha": 0.30, "max_pieces": 0},
     "dark_halo": {"lo": 0.08, "hi": 0.9, "dark": 0.02, "max_px": 30000, "rows": 1700},
     "sea_line": {"window": 14, "ratio_max": 2.2, "excess_max": 1.2},
+    # a flat fill where the painting should run (Çağlayan's landscape nights, 2026-11: the top 40 % one plain colour,
+    # a plain lavender slab from y 1790 of 2622 down): the longest run of flat rows, and any flat run in the lower part
+    # of the screen, where the cloud sea is painted to the bottom. Calibrated on the CI frames of `screenshots/main`:
+    # the painted day 0.215 (the sky runs on plain above the master), Home 0.19; the landscape nights 0.40 and 0.32
+    "flat_band": {"floor": 0.5, "blocks": 16, "smooth": 9, "max_share": 0.25, "below": 0.55, "max_below_share": 0.04},
 }
 
 # starting guesses, calibrated on Home day, golden and night (see calibration.json)
@@ -613,6 +622,49 @@ def check_dark_halo_set(s: dict, th: dict) -> dict:
     return check_dark_halo(canvas, placed, th)
 
 
+def row_texture(frame: np.ndarray, blocks: int = 16, smooth: int = 9) -> np.ndarray:
+    """Per row: how much the picture varies along it, in grey levels (sRGB-like 0..255). The luminance less its own
+    65 px horizontal mean, mean absolute value per column block, median over the `blocks` blocks (so a button or a
+    lone star does not make a plain row look painted), then a `smooth`-row running mean."""
+    y = np.clip(luminance(frame) ** (1 / 2.2), 0, 1).astype(np.float32) * 255
+    y = cv2.GaussianBlur(y, (0, 0), 1.5)
+    hp = np.abs(y - cv2.blur(y, (65, 1)))
+    w = hp.shape[1] // blocks * blocks
+    t = np.median(hp[:, :w].reshape(hp.shape[0], blocks, -1).mean(2), 1).astype(np.float32)
+    return cv2.blur(t.reshape(-1, 1), (1, smooth)).ravel() if smooth > 1 else t
+
+
+def flat_runs(flat: np.ndarray, min_rows: int = 1) -> list[tuple[int, int]]:
+    """(first, past-last) row of every run of True at least `min_rows` long."""
+    edges = np.diff(np.r_[0, flat.astype(np.int8), 0])
+    starts, ends = np.flatnonzero(edges == 1), np.flatnonzero(edges == -1)
+    return [(int(a), int(b)) for a, b in zip(starts, ends) if b - a >= min_rows]
+
+
+def check_flat_band(frame: np.ndarray, th: dict = SKY_THRESHOLDS["flat_band"]) -> dict:
+    """No flat band: the painting reaches from the top of the screen to the bottom. A row is flat when its texture
+    (`row_texture`) is under `floor` grey levels; the longest flat run may be at most `max_share` of the height (a
+    painted sky does run on plain above the master), and no flat run of more than `max_below_share` may start below
+    `below` of the height (under the island the cloud sea is painted; a plain slab there ends the painting in a hard
+    horizontal edge, its first row `edge`)."""
+    h = frame.shape[0]
+    t = row_texture(frame, th["blocks"], th["smooth"])
+    runs = flat_runs(t < th["floor"], max(int(0.01 * h), 1))
+    longest = max((b - a for a, b in runs), default=0) / h
+    low = [(a, b) for a, b in runs if a >= th["below"] * h or b > th["below"] * h + th["max_below_share"] * h]
+    low = [(max(a, int(th["below"] * h)), b) for a, b in low]
+    worst_low = max(low, key=lambda r: r[1] - r[0], default=None)
+    below_share = (worst_low[1] - worst_low[0]) / h if worst_low else 0.0
+    return {"runs": [[a, b] for a, b in runs], "longest_share": round(longest, 3), "below_share": round(below_share, 3),
+            "edge": worst_low[0] if worst_low and below_share > th["max_below_share"] else None,
+            "ok": bool(longest <= th["max_share"] and below_share <= th["max_below_share"])}
+
+
+def run_flat(frames_dir: Path, pattern: str, th: dict = SKY_THRESHOLDS["flat_band"]) -> dict:
+    """`check_flat_band` on every frame in `frames_dir` matching `pattern` (the CI's `<island>-plate-full-*.png`)."""
+    return {f.stem: check_flat_band(_read(f), th) for f in sorted(frames_dir.glob(pattern))}
+
+
 def run_sky(island: str, light: str, th: dict = SKY_THRESHOLDS) -> dict:
     """The three checks on the shipped sky set rendered by `skyset_render` (the app's layers and motion):
     the rows past the plate at t = 0 and 3 s, the sky layer alone, and the stars' ghosts at t = 0 and 60 s."""
@@ -643,9 +695,10 @@ def run_sky(island: str, light: str, th: dict = SKY_THRESHOLDS) -> dict:
     sea_top = int(round((s["manifest"]["islandBox"][3] - fr["y0"]) / fr["k"])) + 40    # below the island's lowest root
     out["sea_line"] = {t: check_horizontal_line(rd.render(s, t, fr), (sea_top, SCREEN[1] - 4), th["sea_line"]) for t in (0, 3)}
     out["sea_line"]["ok"] = all(v["ok"] for v in out["sea_line"].values())
+    out["flat_band"] = check_flat_band(rd.render(s, 0, fr), th["flat_band"])
     # speckle is enforced where the hand data sets an `alphaFloor` (Çağlayan); Home's sets are older and only reported
     hand_sky = json.loads((PLATES / island / "sky" / "sky.json").read_text())
-    keys = ["mirror", "mirror_top", "sky_edges", "ghosts", "sea_line"] + (["speckle", "dark_halo"] if hand_sky.get("alphaFloor") else [])
+    keys = ["mirror", "mirror_top", "sky_edges", "ghosts", "sea_line", "flat_band"] + (["speckle", "dark_halo"] if hand_sky.get("alphaFloor") else [])
     out["ok"] = all(out[k]["ok"] for k in keys if k in out)
     return out
 
@@ -653,8 +706,8 @@ def run_sky(island: str, light: str, th: dict = SKY_THRESHOLDS) -> dict:
 # ---------------------------------------------------------------- CI frames
 
 def set_lights(island: str) -> list[str]:
-    """The lights an island has a split sky set for (Home: day, golden, night; Çağlayan: day)."""
-    return [l for l in ("day", "golden", "night") if (PLATES / island / "sky" / l / "manifest.json").exists()]
+    """The lights an island has a split sky set for (Home: day, golden, night; Çağlayan: those and rain)."""
+    return [l for l in ("day", "golden", "night", "rain") if (PLATES / island / "sky" / l / "manifest.json").exists()]
 
 
 def ci_states(island: str) -> list[tuple[str, str]]:
@@ -722,7 +775,8 @@ def check_ci(island: str, light: str, frame: np.ndarray, before: np.ndarray, th:
     out["resolution"] = check_resolution(fr, th["resolution"])
     bottom = int(round((man["size"][1] - fr["y0"]) / fr["k"]))
     out["mirror"] = check_mirror(frame, bottom, SKY_THRESHOLDS["mirror"], limit=frame.shape[0])
-    keys = ["colour", "dead", "resolution", "mirror"]
+    out["flat_band"] = check_flat_band(frame, SKY_THRESHOLDS["flat_band"])
+    keys = ["colour", "dead", "resolution", "mirror", "flat_band"]
     if hand.get("portraitFrame"):
         # the build before drew a different picture past the plate: judge the island and the plate's rows
         ip = th["identity_plate"]
@@ -810,6 +864,12 @@ def main(argv: list[str] | None = None) -> int:
         if a.json:
             Path(a.json).write_text(json.dumps({"thresholds": SKY_THRESHOLDS, "sky": res}, indent=1) + "\n")
         return 0 if all(r["ok"] for r in res.values()) else 1
+    if a.light == "flat":
+        if not a.frames:
+            ap.error("flat needs --frames")
+        res = run_flat(Path(a.frames), f"{a.island}-plate-full-*.png")
+        print(json.dumps(res, indent=1))
+        return 0 if res and all(r["ok"] for r in res.values()) else 1
     if a.light == "ci":
         if not (a.frames and a.before):
             ap.error("ci needs --frames and --before")

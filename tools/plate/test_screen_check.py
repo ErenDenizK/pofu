@@ -143,6 +143,31 @@ class MeasureTests(unittest.TestCase):
         r = sc.check_dark_halo(field, [(bad, (0, 0))], th)
         self.assertFalse(r["ok"], r)
 
+    def test_a_flat_band_is_caught_and_a_painting_top_to_bottom_is_not(self):
+        rng = np.random.default_rng(3)
+        h, w = 1000, 400
+        painted = np.repeat(np.linspace(60, 200, h)[:, None, None], w, 1).repeat(3, 2)
+        painted = painted + cv2.GaussianBlur(rng.normal(0, 14, (h, w)).astype(np.float32), (0, 0), 2)[..., None]
+        ok = sc.check_flat_band(painted)
+        self.assertTrue(ok["ok"], ok)
+        # a sky that runs on plain above the painting, as a fifth of the screen: allowed
+        sky = painted.copy()
+        sky[:200] = np.linspace(40, 60, 200)[:, None, None]
+        self.assertTrue(sc.check_flat_band(sky)["ok"])
+        # the landscape night: the top 40 % one plain colour
+        top = painted.copy()
+        top[:400] = 50.0
+        res = sc.check_flat_band(top)
+        self.assertFalse(res["ok"])
+        self.assertAlmostEqual(res["longest_share"], 0.4, delta=0.02)
+        # a plain slab under the island, with a button on it: the hard edge is its first row
+        slab = painted.copy()
+        slab[700:] = 180.0
+        slab[900:950, 330:380] = rng.uniform(0, 255, (50, 50, 1))
+        res = sc.check_flat_band(slab)
+        self.assertFalse(res["ok"])
+        self.assertLessEqual(abs(res["edge"] - 700), 8)
+
     def test_resolution(self):
         th = sc.THRESHOLDS["resolution"]
         self.assertTrue(sc.check_resolution({"k": 1.4}, th)["ok"])

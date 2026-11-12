@@ -187,6 +187,9 @@ def _star_blobs(sky: np.ndarray, hand: dict, light: str) -> list[np.ndarray]:
     k = 8
     for x0, y0, x1, y1 in hand["lights"][light].get("fixedSky", []):
         peak[y0 // k: y1 // k + 2, x0 // k: x1 // k + 2] = 0
+    for x0, y0, x1, y1 in hand["lights"][light].get("starFree", []):
+        # hand data: where a peak is the edge of the moon's glow or of the master, not a painted star
+        peak[y0 // k: y1 // k + 1, x0 // k: x1 // k + 1] = 0
     peak[STAR_ROWS:] = 0
     lab, n = ndimage.label(peak > 0.03)
     return [lab == i for i in range(1, n + 1) if (lab == i).sum() <= STAR_MAX_AREA]
@@ -201,7 +204,10 @@ def continue_sea(arr: np.ndarray, seed: int = 0, light: str = "", pad: int | Non
     pad = SEA_PAD if pad is None else pad
     q = {"block": 72, "overlap": 24, "topk": 10, "band": SEA_BAND, "window": 350, **(quilt or {})}
     cache = os.environ.get("SKYSET_CACHE")             # the quilt takes minutes: a work folder can keep it
-    cached = Path(cache) / f"sea-{light}.npy" if cache and light else None
+    # keyed by the sea's own pixels too: a re-split that changes the sea must never read the old quilt
+    import hashlib
+    key = hashlib.sha1(np.ascontiguousarray(arr).tobytes() + json.dumps(q, sort_keys=True).encode()).hexdigest()[:12]
+    cached = Path(cache) / f"sea-{light}-{key}.npy" if cache and light else None
     if cached is not None and cached.exists():
         return np.load(cached)
     h, w, _ = arr.shape
