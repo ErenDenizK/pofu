@@ -32,7 +32,7 @@ not accepted is hidden. Codex is stopped (plan expired 11-12).
    IL1 night matte keeps a sky ghost of IL10; a pale pocket at Koke s2.
 Scout facts: a drag pans painted Home (step 8 clamps it); the Today
 header is text (`TodaySheet.swift:109`); no seeds-for-minutes screen.
-Merged today: #403 to #418 (but #414); pofu-art #13, #14, #18, #22-#29.
+Merged today: #403 to #418 (but #414); pofu-art #13, #14, #18, #22 to #27, #29.
 
 ## Next steps, in order
 
