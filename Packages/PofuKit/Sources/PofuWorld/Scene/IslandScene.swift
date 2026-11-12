@@ -826,7 +826,7 @@ private struct SceneFrame<Bubble: View>: View {
                 plate: plate
             )
 
-            ScreenOverlays(world: world, pose: pose, z: z, size: size, offset: offset, build: build, model: model)
+            ScreenOverlays(world: world, pose: pose, z: z, size: size, offset: offset, build: build, model: model, plate: plate)
 
             if let props, plate == nil {
                 props.screen(WorldPropsFrame(pose: pose, size: size, offset: offset, z: z, isFocused: model.focus != nil || model.hasSheet, model: model))
@@ -983,6 +983,13 @@ private struct WorldCanvas: View {
             case growth(GrowthPiece)
             /// A painted plate object drawn again over a resident behind it.
             case plateOccluder(PlateIsland.Object)
+            /// A part of today's visit on the painted plate (`PlateLife`).
+            case plateVisitor(VisitorStage.Placed)
+            /// Koke's moss and Çağlayan's fountain on the painted plate.
+            case plateMoss
+            case plateFountain
+            /// A build moment's dust, light and sparkles around the station's painted object.
+            case plateBuild(BuildFrame)
         }
 
         var id: String
@@ -1056,12 +1063,33 @@ private struct WorldCanvas: View {
         return objects.sorted { $0.depth < $1.depth }
     }
 
-    /// On the plate: only the residents, where they stand on it, and the
-    /// painted objects they stand behind, back to front. The sprite island's
-    /// critters and today's visit are not drawn on the plate yet.
+    /// Above every character: the build moment's effects.
+    private static let plateEffectsDepth = 10_000.0
+
+    /// On the plate: the residents, where they stand on it, and the painted
+    /// objects they stand behind; today's visit on the lawn, Koke's moss and
+    /// Çağlayan's fountain, and a build moment's dust and light
+    /// (`PlateLife`), back to front. The sprite island's critters are not
+    /// drawn on the plate.
     private func plateObjects(_ plate: HomePlate) -> [Object] {
         guard layer == .characters else { return [] }
         var objects: [Object] = []
+        // Nothing of the game's layer shows on the Map (as on the sprite island).
+        if z >= WorldHitTest.archipelagoZ {
+            for part in PlateLife.visitorParts(plate: plate, visitor: life.visitor, invitationOpen: life.invitationOpen, isBedtime: life.isBedtime) {
+                objects.append(Object(id: "visitor-\(part.id)", kind: .plateVisitor(part), anchor: part.feet, depth: part.depth))
+            }
+            if world.koke.giftUnlocked, let spot = PlateLife.mossSpot(plate) {
+                objects.append(Object(id: "gift-moss", kind: .plateMoss, anchor: spot, depth: IslandLayout.depth(ofY: spot.y)))
+            }
+            if world.caglayan.giftUnlocked, (world.stations.first { $0.id == .pond }?.level ?? 0) > 0,
+               let spot = PlateLife.fountainSpot(plate) {
+                objects.append(Object(id: "gift-fountain", kind: .plateFountain, anchor: spot, depth: IslandLayout.depth(ofY: spot.y) + 0.001))
+            }
+            if let build, let foot = PlateLife.buildFoot(plate, station: build.moment.station) {
+                objects.append(Object(id: "build-moment", kind: .plateBuild(build), anchor: foot, depth: Self.plateEffectsDepth))
+            }
+        }
         var behind: [String: PlateIsland.Object] = [:]
         for resident in IslandLayout.residents {
             guard let station = world.stations.first(where: { $0.id == resident.station }), station.level > 0,
@@ -1143,6 +1171,49 @@ private struct WorldCanvas: View {
                         activate: { model.focusResident(resident.id) }
                     )
                 }
+            }
+        case .plateVisitor(let placed):
+            if let plate {
+                let style = life.visitor.map { VisitorStage.arrivalStyle(for: $0.slot) } ?? .dandelion
+                let beat = life.visitor == nil ? nil : life.arrival.map { VisitorStage.arrival(style: style, elapsed: $0) }
+                let words = WorldStrings.visitorPart(placed.part, visitor: life.visitor)
+                PlateVisitorPartView(
+                    part: placed,
+                    visitor: life.visitor,
+                    point: point,
+                    plate: plate,
+                    arrival: beat,
+                    bob: VisitorStage.idleBob(at: life.time, isAmbient: life.isAmbient),
+                    pulse: model.pulses["visitor-\(placed.part.rawValue)", default: 0]
+                )
+                .overlay {
+                    hitArea(
+                        box: VisitorStage.hitBox(of: placed.part),
+                        at: point,
+                        label: words.label,
+                        value: words.hint,
+                        activate: { model.visitorTapped(placed.part, visitor: life.visitor) }
+                    )
+                }
+            }
+        case .plateMoss:
+            if let plate {
+                // The moss takes the plate's light like a character does.
+                let light = plate.characterLight(at: object.anchor, width: 46 * plate.characterScale, height: 34 * plate.characterScale, id: "moss")
+                MossGiftView(point: point)
+                    .saturation(light.saturation)
+                    .colorMultiply(Color(red: light.paint.red, green: light.paint.green, blue: light.paint.blue))
+                    .scaleEffect(CGFloat(plate.characterScale), anchor: UnitPoint(x: point.x / IslandLayout.canvasWidth, y: point.y / IslandLayout.canvasHeight))
+            }
+        case .plateFountain:
+            if let plate {
+                HomeFountainView(point: point, time: life.isAmbient ? life.time : nil)
+                    .scaleEffect(CGFloat(plate.characterScale), anchor: UnitPoint(x: point.x / IslandLayout.canvasWidth, y: point.y / IslandLayout.canvasHeight))
+            }
+        case .plateBuild(let frame):
+            ZStack(alignment: .topLeading) {
+                BuildParticles(moment: frame.moment, time: frame.time, point: point)
+                LevelUpBloom(moment: frame.moment, time: frame.time, point: point)
             }
         case .plateOccluder(let occluder):
             if let plate {
@@ -1416,6 +1487,122 @@ private struct WorldCanvas: View {
         let py = (depth - lens.focus) * tilt.y * 0.06 / s
         let m = DepthMotion.shift(point: point, depth: depth, focus: lens.focus, look: look, motion: motion)
         return CGPoint(x: origin.x + point.x + px + m.x, y: origin.y + point.y + py + m.y)
+    }
+}
+
+/// One part of today's visit on the painted plate (`PlateLife`): drawn at the
+/// plate's resident scale in its light, like a resident is. A painted sprite
+/// (`visitor-<resident>`, `gift-parcel`, `guest-letter`, `help-kite`) stands as
+/// a `PlateCharacter` once Codex has made it; until then the code-drawn
+/// stand-in takes the same ambient multiply, saturation and contact shadow.
+private struct PlateVisitorPartView: View {
+    let part: VisitorStage.Placed
+    let visitor: VisitorSnapshot?
+    /// Its feet on the canvas.
+    let point: CGPoint
+    let plate: HomePlate
+    /// The arrival beat, while it runs.
+    var arrival: VisitorArrivalFrame?
+    /// The idle bob, in world units (Ambient only).
+    var bob = 0.0
+    var pulse = 0
+
+    private var scale: Double { plate.residentScale }
+
+    var body: some View {
+        let isVisitor = part.part == .visitor
+        let beat = isVisitor ? arrival : nil
+        // The arrival's drift is drawn in the plate's units.
+        let at = CGPoint(
+            x: point.x + CGFloat((beat?.dx ?? 0) * scale),
+            y: point.y + CGFloat(((beat?.dy ?? 0) + (isVisitor ? bob : 0)) * scale)
+        )
+        // Nothing of the visit is there before the camera has panned.
+        let opacity = arrival?.opacity ?? 1
+        ZStack(alignment: .topLeading) {
+            switch part.part {
+            case .visitor:
+                visitorBody(at: at)
+                if let seed = beat?.seed, seed > 0.01 {
+                    dandelion(above: at)
+                        .opacity(seed)
+                }
+            case .gift:
+                piece(VisitorArt.giftParcel, size: LifeArt.parcelSize, at: at) { context, size in
+                    LifeArt.drawParcel(in: &context, size: size)
+                }
+            case .help:
+                piece("help-kite", size: LifeArt.kiteSize, at: at, shadow: false) { context, size in
+                    LifeArt.drawKite(in: &context, size: size)
+                }
+            case .letter:
+                piece(VisitorArt.guestLetter, size: LifeArt.letterSize, at: at) { context, size in
+                    LifeArt.drawLetter(in: &context, size: size)
+                }
+            }
+        }
+        .opacity(opacity)
+        .modifier(TapSquish(
+            trigger: pulse,
+            anchor: UnitPoint(x: point.x / IslandLayout.canvasWidth, y: point.y / IslandLayout.canvasHeight)
+        ))
+        .allowsHitTesting(false)
+    }
+
+    private func light(size: CGSize) -> HomePlate.CharacterLight {
+        plate.characterLight(
+            at: part.feet,
+            width: size.width * scale,
+            height: size.height * scale,
+            id: "visitor"
+        )
+    }
+
+    @ViewBuilder
+    private func visitorBody(at: CGPoint) -> some View {
+        let resident = visitor?.resident ?? ResidentID(rawValue: "")
+        piece("visitor-\(resident.rawValue)", size: LifeArt.visitorSize, at: at) { context, size in
+            LifeArt.drawVisitor(resident, in: &context, size: size)
+        }
+    }
+
+    @ViewBuilder
+    private func dandelion(above at: CGPoint) -> some View {
+        let top = CGPoint(x: at.x, y: at.y - (LifeArt.visitorSize.height - 6) * scale)
+        piece(VisitorArt.dandelion, size: LifeArt.dandelionSize, at: top, shadow: false) { context, size in
+            LifeArt.drawDandelion(in: &context, size: size)
+        }
+    }
+
+    /// A part's painted sprite by name, or its stand-in, in the plate's light.
+    @ViewBuilder
+    private func piece(
+        _ name: String,
+        size: CGSize,
+        at: CGPoint,
+        shadow: Bool = true,
+        draw: @escaping @Sendable (inout GraphicsContext, CGSize) -> Void
+    ) -> some View {
+        let lit = light(size: size)
+        if WorldArt.sprite(name)?.sharp != nil {
+            PlateCharacter(art: name, point: at, scale: scale, light: lit)
+        } else {
+            ZStack(alignment: .topLeading) {
+                if shadow {
+                    ContactPad(width: size.width * scale, light: lit)
+                        .position(x: at.x, y: at.y - CGFloat(0.5 * scale))
+                }
+                Canvas { context, canvasSize in
+                    draw(&context, canvasSize)
+                }
+                .frame(width: size.width, height: size.height)
+                .saturation(lit.saturation)
+                .colorMultiply(Color(red: lit.paint.red, green: lit.paint.green, blue: lit.paint.blue))
+                .scaleEffect(CGFloat(scale), anchor: .bottom)
+                .position(x: at.x, y: at.y - size.height / 2)
+            }
+            .allowsHitTesting(false)
+        }
     }
 }
 
@@ -1804,6 +1991,8 @@ private struct ScreenOverlays: View {
     let offset: CGSize
     let build: BuildFrame?
     let model: IslandSceneModel
+    /// The painted home plate, when it shows: the tag stands over its painted object.
+    var plate: HomePlate?
 
     var body: some View {
         let labels = 1 - min(max((z - 0.2) / 0.25, 0), 1)
@@ -1836,6 +2025,11 @@ private struct ScreenOverlays: View {
 
     /// Just above a station's vignette, kept on screen.
     private func tagPoint(_ station: StationID) -> CGPoint? {
+        if let plate {
+            guard let anchor = PlateLife.buildAnchor(plate, station: station) else { return nil }
+            let p = screenPoint(anchor)
+            return CGPoint(x: min(max(p.x, 70), size.width - 70), y: max(p.y, 120))
+        }
         guard let box = IslandFraming.stationBox(station) else { return nil }
         let p = screenPoint(WorldPoint(x: box.midX, y: box.minY))
         return CGPoint(x: min(max(p.x, 70), size.width - 70), y: max(p.y, 120))
