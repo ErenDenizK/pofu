@@ -118,20 +118,23 @@ struct PaintedSkyTests {
 
     static func luminance(_ c: GradeRGB) -> Double { 0.2126 * c.r + 0.7152 * c.g + 0.0722 * c.b }
 
-    @Test func theIslandGradeIsNeutralByDayAndAtGoldenHour() throws {
-        for hour in [12.0, 6.0, 18.0] {
+    @Test func theIslandGradeIsNeutralByDayAndFallsWithTheGoldenSky() throws {
+        for hour in [12.0, 6.0] {
             let sky = try #require(PaintedSky.sky(for: .koke, world: Self.world, look: Self.look(hour)))
             #expect(PaintedSky.islandGrade(sky) == .neutral, "hour \(hour)")
         }
+        // At golden hour the sky is a little darker than by day, and the island with it (IslandGradeTests).
+        let golden = try #require(PaintedSky.sky(for: .koke, world: Self.world, look: Self.look(18)))
+        let g = PaintedSky.islandGrade(golden).gain
+        #expect(g.r < 1 && g.r > 0.85 && g.r == g.g && g.g == g.b)
     }
 
     @Test func theNightIslandIsCoolDarkerAndOnTheNightSkysScale() throws {
         let sky = try #require(PaintedSky.sky(for: .koke, world: Self.world, look: Self.look(23)))
         let grade = PaintedSky.islandGrade(sky)
         let tint = sky.harmony.tint
-        // It is the plate's own night light, not a new number: the harmony tint, the day's value kept.
-        #expect(abs(grade.gain.r - tint.red * PaintedSky.nightKeep) < 1e-9)
-        #expect(abs(grade.gain.b - tint.blue * PaintedSky.nightKeep) < 1e-9)
+        // The plate's own night hue (the harmony tint), its value set by the night sky's fall.
+        #expect(abs(grade.gain.r / grade.gain.b - tint.red / tint.blue) < 1e-9)
         #expect(grade.gain.b > grade.gain.r, "the night light is cool")
         #expect(grade.lift.b > grade.lift.r, "the shadows are cool")
         for (stage, mean) in Self.kokeIslandMeans.enumerated() {
