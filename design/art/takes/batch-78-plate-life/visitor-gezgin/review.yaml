@@ -1,0 +1,63 @@
+batch: batch-78-plate-life
+job: visitor-gezgin
+status: skipped
+pick: 1
+lead_review: "t1 is a round plush whale puff in Nazli's blue-cream with big warm eyes, a blank postcard with a cloud stamp and a cloud cushion, no Nazli patch, scar or lantern, and reads clearly at about 60 px on the lawn; the palette_drift fail is the gate (Nazli's blue is not in the character palette), not the picture, and the warm edge Codex called a halo is painted rim light inside the silhouette; t2 is fine too but wider and flatter."
+source: codex-cloud
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+takes:
+- take: 1
+  file: char__visitor-gezgin--t1.webp
+  qa: fail
+  warnings:
+  - check: light_contrast
+    status: warn
+    message: 'day/subject: p75 local contrast 1.6 (band 2.5-6.5; above it reads too
+      contrasty) (warn-only until the founder has seen the light pilot)'
+  - check: palette_drift
+    status: fail
+    message: 'mean dE 5.4, p95 13.5, off-palette 15.9% (top: #BBBBDD (3.6%), #AAAACC
+      (3.4%))'
+  - check: harmony
+    status: warn
+    message: 'harmony score 54 against the char reference (outliers: C_p95, L_p2,
+      tint_b)'
+  source_file: /workspace/generated_images/exec-a09c1036-304d-4393-a3f3-756d584e9c82.png
+  source_sha256: 3c84cec8b0c2cbe1be9f6bf5658e3f130b6edbd7aaea3aefd8e410a89aa5ffa6
+  source_dimensions:
+  - 1254
+  - 1254
+- take: 2
+  file: char__visitor-gezgin--t2.webp
+  qa: fail
+  warnings:
+  - check: light_contrast
+    status: warn
+    message: 'day/subject: p75 local contrast 1.0 (band 2.5-6.5; above it reads too
+      contrasty) (warn-only until the founder has seen the light pilot)'
+  - check: palette_drift
+    status: fail
+    message: 'mean dE 4.7, p95 14.0, off-palette 14.0% (top: #BBBBDD (6.9%), #AABBCC
+      (3.3%))'
+  - check: harmony
+    status: warn
+    message: 'harmony score 50 against the char reference (outliers: C_p95, L_p2,
+      tint_b)'
+  source_file: /workspace/generated_images/exec-0ade477b-47aa-4a53-99c9-3dec25bf8032.png
+  source_sha256: 551c04db00a9ea3adc01a379c5f94a1bf119f99e24fdd27f4e7c37c181af6432
+  source_dimensions:
+  - 1254
+  - 1254
+note: Both takes fail palette_drift because Nazli-family pale blue lies outside the
+  character palette. t1 has a visible colored edge halo; t2 is cleaner but larger
+  and still fails. The batch header forbids a third take. No master promoted; lead
+  must resolve palette/acceptance and choose a next step.
+generation_prompt_note: Built-in image tool received operator adaptation of the manifest
+  prompt. Ingest sidecars contain the composed manifest prompt, not verbatim submitted
+  text.
+rule_note: QUEUE.md Demand row 0-h5 calls this production with auto-pick and promote.
+  Manifest header contains a contradictory EXPLORATION RULES comment. This delivery
+  conservatively retains warning/failing takes without promotion; lead should reconcile
+  header.

@@ -1,0 +1,50 @@
+{
+ "after": {
+  "C_mean": 38.947,
+  "C_p50": 40.924,
+  "C_p95": 45.17,
+  "L_mean": 73.051,
+  "L_p2": 56.211,
+  "L_p98": 91.947,
+  "detail": 1.896,
+  "edge": 0.718,
+  "warmth_b": 37.91
+ },
+ "before": {
+  "C_mean": 38.947,
+  "C_p50": 40.924,
+  "C_p95": 45.17,
+  "L_mean": 73.051,
+  "L_p2": 56.211,
+  "L_p98": 91.947,
+  "detail": 1.896,
+  "edge": 0.718,
+  "warmth_b": 37.91
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "station",
+ "matched_to": "world",
+ "outliers_after": [
+  "edge"
+ ],
+ "outliers_before": [
+  "edge"
+ ],
+ "ppu": 8.2222,
+ "reference": false,
+ "score_after": 93.2,
+ "score_before": 93.2,
+ "shipped": true,
+ "source": "design/art/masters/material-moss-lawn/material-moss-lawn.webp",
+ "source_sha": "e46da9df28031634"
+}

@@ -1266,17 +1266,30 @@ private struct WorldCanvas: View {
             }
         case .plateMoss:
             if let plate {
-                // The moss takes the plate's light like a character does.
-                let light = plate.characterLight(at: object.anchor, width: 46 * plate.characterScale, height: 34 * plate.characterScale, id: "moss")
-                MossGiftView(point: point)
-                    .saturation(light.saturation)
-                    .colorMultiply(Color(red: light.paint.red, green: light.paint.green, blue: light.paint.blue))
-                    .scaleEffect(CGFloat(plate.characterScale), anchor: UnitPoint(x: point.x / IslandLayout.canvasWidth, y: point.y / IslandLayout.canvasHeight))
+                // The painted moss takes the plate's light like a character does; with no painted
+                // sprite nothing is drawn (route R3).
+                PlateCharacter(
+                    art: "gift-moss",
+                    point: point,
+                    scale: plate.characterScale,
+                    light: plate.characterLight(at: object.anchor, width: 46 * plate.characterScale, height: 18 * plate.characterScale, id: "moss")
+                )
+                .accessibilityElement()
+                .accessibilityLabel(Text(verbatim: WorldStrings.kokeGift))
             }
         case .plateFountain:
             if let plate {
-                PlateFountainView(point: point, time: life.isAmbient ? life.time : nil)
-                    .scaleEffect(CGFloat(plate.characterScale * PlateFountainView.scale), anchor: UnitPoint(x: point.x / IslandLayout.canvasWidth, y: point.y / IslandLayout.canvasHeight))
+                // The painted jet stands in the pond: its ripple is part of the painting, so it
+                // casts no contact shadow and takes no lamp pool.
+                PlateCharacter(
+                    art: "gift-fountain",
+                    point: point,
+                    scale: plate.characterScale,
+                    light: plate.characterLight(at: object.anchor, width: 40 * plate.characterScale, height: 54 * plate.characterScale, id: "fountain"),
+                    onLawn: false
+                )
+                .accessibilityElement()
+                .accessibilityLabel(Text(verbatim: WorldStrings.caglayanGift))
             }
         case .plateBuild(let frame, let lift):
             ZStack(alignment: .topLeading) {
@@ -1601,93 +1614,10 @@ private struct PlateBuildBloom: View {
     }
 }
 
-/// Çağlayan's fountain over the painted pond: soft, translucent water in the painting's style, not
-/// strokes. Each of three arcs is a wide faint feathered band under a narrower one and a white-cyan
-/// core, all blurred; a few soft droplets fall beside them and a faint ripple rests at the base.
-/// Drawn in the sprite island's units and scaled by `scale` times the plate's character scale.
-private struct PlateFountainView: View {
-    /// Where the fountain's base lands on the canvas.
-    let point: CGPoint
-    /// Seconds, while the frame is ambient; `nil` holds a still frame.
-    var time: Double?
-
-    /// The jet's size against the plate's character scale.
-    static let scale = 1.3
-
-    var body: some View {
-        Canvas { context, size in
-            let base = CGPoint(x: size.width / 2, y: size.height - 10)
-            let t = time ?? 0
-            let cyan = Color(red: 0.68, green: 0.90, blue: 1.0)
-            let core = Color(red: 0.93, green: 0.99, blue: 1.0)
-            // The jet itself: three arcs leaving the spout and falling back.
-            context.drawLayer { layer in
-                layer.addFilter(.blur(radius: 2.2))
-                for k in 0..<3 {
-                    let spread = Double(k - 1) * 8
-                    var arc = Path()
-                    arc.move(to: CGPoint(x: base.x, y: base.y - 20))
-                    arc.addQuadCurve(
-                        to: CGPoint(x: base.x + spread * 1.7, y: base.y),
-                        control: CGPoint(x: base.x + spread * 0.6, y: base.y - 46 - 2.5 * sin(t * 3 + Double(k)))
-                    )
-                    layer.stroke(arc, with: .color(cyan.opacity(0.22)), style: StrokeStyle(lineWidth: 9, lineCap: .round))
-                    layer.stroke(arc, with: .color(cyan.opacity(0.32)), style: StrokeStyle(lineWidth: 5, lineCap: .round))
-                }
-            }
-            context.drawLayer { layer in
-                layer.addFilter(.blur(radius: 0.9))
-                for k in 0..<3 {
-                    let spread = Double(k - 1) * 8
-                    var arc = Path()
-                    arc.move(to: CGPoint(x: base.x, y: base.y - 20))
-                    arc.addQuadCurve(
-                        to: CGPoint(x: base.x + spread * 1.7, y: base.y),
-                        control: CGPoint(x: base.x + spread * 0.6, y: base.y - 46 - 2.5 * sin(t * 3 + Double(k)))
-                    )
-                    layer.stroke(arc, with: .color(core.opacity(0.55)), style: StrokeStyle(lineWidth: 1.8, lineCap: .round))
-                }
-            }
-            // A few soft droplets drifting out and down from the arcs' tops.
-            context.drawLayer { layer in
-                layer.addFilter(.blur(radius: 0.7))
-                for i in 0..<7 {
-                    let phase = time.map { ($0 * 0.7 + Double(i) * 0.143).truncatingRemainder(dividingBy: 1) } ?? (0.15 + Double(i) * 0.12)
-                    let side = i % 2 == 0 ? -1.0 : 1.0
-                    let reach = 6 + 12 * Double(i % 3)
-                    let x = base.x + side * reach * (0.4 + phase)
-                    let y = base.y - 38 + 40 * phase * phase
-                    let r = 1.3 + 0.6 * Double(i % 2)
-                    layer.fill(
-                        Path(ellipseIn: CGRect(x: x - r, y: y - r, width: r * 2, height: r * 2)),
-                        with: .color(core.opacity(0.7 * (1 - phase)))
-                    )
-                }
-            }
-            // The ripple at the base.
-            context.drawLayer { layer in
-                layer.addFilter(.blur(radius: 0.8))
-                let grow = time.map { ($0 * 0.6).truncatingRemainder(dividingBy: 1) } ?? 0.4
-                let r = 7 + 11 * grow
-                layer.stroke(
-                    Path(ellipseIn: CGRect(x: base.x - r, y: base.y - r * 0.35, width: r * 2, height: r * 0.7)),
-                    with: .color(core.opacity(0.5 * (1 - grow))), lineWidth: 1.2
-                )
-            }
-        }
-        .frame(width: 90, height: 90)
-        .position(x: point.x, y: point.y - 35)
-        .allowsHitTesting(false)
-        .accessibilityElement()
-        .accessibilityLabel(Text(verbatim: WorldStrings.caglayanGift))
-    }
-}
-
 /// One part of today's visit on the painted plate (`PlateLife`): drawn at the
 /// plate's resident scale in its light, like a resident is. A painted sprite
-/// (`visitor-<resident>`, `gift-parcel`, `guest-letter`, `help-kite`) stands as
-/// a `PlateCharacter` once Codex has made it; until then the code-drawn
-/// stand-in takes the same ambient multiply, saturation and contact shadow.
+/// (`visitor-<resident>`, `gift-parcel-closed`, `guest-letter-envelope`, `help-kite`) stands as
+/// a `PlateCharacter`; a part without one is not drawn.
 private struct PlateVisitorPartView: View {
     let part: VisitorStage.Placed
     let visitor: VisitorSnapshot?
@@ -1721,17 +1651,11 @@ private struct PlateVisitorPartView: View {
                         .opacity(seed)
                 }
             case .gift:
-                piece(VisitorArt.giftParcel, size: LifeArt.parcelSize, at: at) { context, size in
-                    LifeArt.drawParcel(in: &context, size: size)
-                }
+                piece(VisitorArt.giftParcel, size: LifeArt.parcelSize, at: at)
             case .help:
-                piece("help-kite", size: LifeArt.kiteSize, at: at, shadow: false) { context, size in
-                    LifeArt.drawKite(in: &context, size: size)
-                }
+                piece("help-kite", size: LifeArt.kiteSize, at: at)
             case .letter:
-                piece(VisitorArt.guestLetter, size: LifeArt.letterSize, at: at) { context, size in
-                    LifeArt.drawLetter(in: &context, size: size)
-                }
+                piece(VisitorArt.guestLetter, size: LifeArt.letterSize, at: at)
             }
         }
         .opacity(opacity)
@@ -1754,47 +1678,22 @@ private struct PlateVisitorPartView: View {
     @ViewBuilder
     private func visitorBody(at: CGPoint) -> some View {
         let resident = visitor?.resident ?? ResidentID(rawValue: "")
-        piece("visitor-\(resident.rawValue)", size: LifeArt.visitorSize, at: at) { context, size in
-            LifeArt.drawVisitor(resident, in: &context, size: size)
-        }
+        piece("visitor-\(resident.rawValue)", size: LifeArt.visitorSize, at: at)
     }
 
     @ViewBuilder
     private func dandelion(above at: CGPoint) -> some View {
         let top = CGPoint(x: at.x, y: at.y - (LifeArt.visitorSize.height - 6) * scale)
-        piece(VisitorArt.dandelion, size: LifeArt.dandelionSize, at: top, shadow: false) { context, size in
-            LifeArt.drawDandelion(in: &context, size: size)
-        }
+        piece(VisitorArt.dandelion, size: LifeArt.dandelionSize, at: top, shadow: false)
     }
 
-    /// A part's painted sprite by name, or its stand-in, in the plate's light.
+    /// A part's painted sprite by name, in the plate's light. A part with no painted
+    /// sprite draws nothing: the plate shows no code-drawn stand-in (route R3), and the
+    /// schedule does not bring a visitor whose art is missing (`VisitorRules.visiting`).
     @ViewBuilder
-    private func piece(
-        _ name: String,
-        size: CGSize,
-        at: CGPoint,
-        shadow: Bool = true,
-        draw: @escaping @Sendable (inout GraphicsContext, CGSize) -> Void
-    ) -> some View {
-        let lit = light(size: size)
+    private func piece(_ name: String, size: CGSize, at: CGPoint, shadow: Bool = true) -> some View {
         if WorldArt.sprite(name)?.sharp != nil {
-            PlateCharacter(art: name, point: at, scale: scale, light: lit)
-        } else {
-            ZStack(alignment: .topLeading) {
-                if shadow {
-                    ContactPad(width: size.width * scale, light: lit)
-                        .position(x: at.x, y: at.y - CGFloat(0.5 * scale))
-                }
-                Canvas { context, canvasSize in
-                    draw(&context, canvasSize)
-                }
-                .frame(width: size.width, height: size.height)
-                .saturation(lit.saturation)
-                .colorMultiply(Color(red: lit.paint.red, green: lit.paint.green, blue: lit.paint.blue))
-                .scaleEffect(CGFloat(scale), anchor: .bottom)
-                .position(x: at.x, y: at.y - size.height / 2)
-            }
-            .allowsHitTesting(false)
+            PlateCharacter(art: name, point: at, scale: scale, light: light(size: size), onLawn: shadow)
         }
     }
 }

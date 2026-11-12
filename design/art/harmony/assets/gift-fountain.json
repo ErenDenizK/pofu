@@ -1,0 +1,60 @@
+{
+ "after": {
+  "C_mean": 11.251,
+  "C_p50": 11.266,
+  "C_p95": 19.059,
+  "L_mean": 83.169,
+  "L_p2": 67.979,
+  "L_p98": 93.066,
+  "detail": 3.646,
+  "edge": 1.992,
+  "tint_a": -6.728,
+  "tint_b": -5.909,
+  "warmth_b": -7.545
+ },
+ "before": {
+  "C_mean": 7.759,
+  "C_p50": 7.77,
+  "C_p95": 13.144,
+  "L_mean": 92.091,
+  "L_p2": 83.978,
+  "L_p98": 97.377,
+  "detail": 2.125,
+  "edge": 1.992,
+  "tint_a": -5.498,
+  "tint_b": -5.069,
+  "warmth_b": -5.203
+ },
+ "chain": null,
+ "correction": {
+  "black": -16.0,
+  "ceiling": 0.0,
+  "chroma": 1.45,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": -4.31
+ },
+ "guarded": false,
+ "kind": "station",
+ "matched_to": "world",
+ "outliers_after": [
+  "C_p95",
+  "L_p2",
+  "detail",
+  "edge"
+ ],
+ "outliers_before": [
+  "C_p95",
+  "L_p2",
+  "L_p98",
+  "edge"
+ ],
+ "ppu": 14.2857,
+ "reference": false,
+ "score_after": 49.7,
+ "score_before": 34.8,
+ "shipped": true,
+ "source": "design/art/masters/home-fountain/home-fountain.webp",
+ "source_sha": "aff59860906fdc9d"
+}

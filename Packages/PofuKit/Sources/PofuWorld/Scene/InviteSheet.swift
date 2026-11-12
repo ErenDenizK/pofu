@@ -35,10 +35,11 @@ struct InviteSheet: View {
                     onPick(resident)
                 } label: {
                     HStack(spacing: PofuSpacing.m) {
-                        Canvas { context, size in
-                            LifeArt.drawVisitor(resident, in: &context, size: size)
-                        }
-                        .frame(width: LifeArt.visitorSize.width, height: LifeArt.visitorSize.height)
+                        // `inviteChoices` lists only residents with painted art.
+                        Image(WorldArt.assetName("visitor-\(resident.rawValue)", variant: .sharp), bundle: .module)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: LifeArt.visitorSize.width, height: LifeArt.visitorSize.height)
                         .accessibilityHidden(true)
                         Text(verbatim: WorldStrings.residentName(resident))
                             .font(PofuFont.headline)

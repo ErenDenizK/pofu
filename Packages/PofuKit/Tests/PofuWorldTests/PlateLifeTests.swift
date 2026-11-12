@@ -137,11 +137,11 @@ struct PlateLifeTests {
             #expect(distance(moss, character) >= PlateLife.mossClearance, "\(name)")
         }
         #expect(distance(moss, visitor) >= PlateLife.mossClearance)
-        // The fountain stands at the top centre of the pond.
+        // The painted jet stands in the pond's water: centred, halfway down the pond.
         let fountain = try #require(PlateLife.fountainSpot(home))
         let pond = try #require(home.stationBox(.pond))
         #expect(fountain.x == pond.midX)
-        #expect(fountain.y == pond.minY)
+        #expect(abs(fountain.y - (pond.minY + pond.maxY) / 2) < 1e-9)
     }
 
     @Test func everyHomeStationOnThePlateHasABuildAnchor() throws {
