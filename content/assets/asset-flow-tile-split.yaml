@@ -11,7 +11,8 @@ summary: 'A game tile for a cozy mobile puzzle, seen straight from above with a 
   and softly worn, a little soft green moss gathered on the shoulders and corners,
   never on the groove…'
 art:
-  images: []
+  images:
+  - design/art/ui/ui-flow-tile-split/ui-flow-tile-split.png
   jobs:
   - batch-64-flow-pieces:flow-tile-split
 sources:
@@ -19,5 +20,3 @@ sources:
 kind: ui
 batch: batch-64-flow-pieces
 size: 1024x1024
-notes:
-- 'Lead review 2026-11-12: master withdrawn; the groove is narrower than the straight tile''s and steps at the joins. Redo in batch-77 (pofu-art) as an edit of the picked straight.'
