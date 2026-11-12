@@ -36,3 +36,20 @@ notes:
   off-palette 19.5% (top: #5577BB (3.5%), #6688CC (1.7%)); t4 palette_drift: mean
   dE 6.9, p95 20.7, off-palette 20.9% (top: #5577CC (1.9%), #5577BB (1.7%)).'
 - "lead-picks-2026-11-06-gate: Skipped without generation in lead-picks-2026-11-06-gate: the true edit_of parent gate-door-scene retained lead pick take 2 cannot be delivered losslessly under the upload cap. The palette exception does not waive delivery. No child call, child QA result or placeholder take is claimed. The historical parent-reference-only contact/review remains unchanged."
+- 'batch-58-gate-round-door skipped after four takes: Skipped after exactly two initial
+  takes and the sole unchanged two-take retry. Every actual canonical report fails
+  palette_drift and edit_stability; t2/t4 also fail edit_alignment3.289/3.3109 and
+  their official locked outputs crop kept upper-leaf/window content. Original isolated-leaf
+  scope is sound and hidden RGB at alpha zero is not painted fog. Independent source/locked
+  review bound in b40-leaf-all-source-locked.json; no manual rescue, no child force
+  or third round. Preserve all originals, truthful reports and seals; no master/Harmony
+  claimed. Automated failures: t1 palette_drift: mean dE 8.8, p95 15.8, off-palette
+  14.0% (top: #BB6622 (2.0%), #CC7733 (1.8%)), edit_stability: 9% of the parent level
+  unchanged; t2 edit_alignment: the edit rescaled the object x0.304 and moved it;
+  aligned back to the parent, palette_drift: mean dE 8.6, p95 14.2, off-palette 8.0%
+  (top: #CC7733 (2.1%), #BB6622 (1.8%)), edit_stability: 10% of the parent level unchanged;
+  t3 palette_drift: mean dE 9.3, p95 16.8, off-palette 16.3% (top: #AA5522 (3.4%),
+  #BB6622 (1.9%)), edit_stability: 9% of the parent level unchanged; t4 edit_alignment:
+  the edit rescaled the object x0.302 and moved it; aligned back to the parent, palette_drift:
+  mean dE 9.0, p95 15.1, off-palette 9.1% (top: #BB6622 (2.2%), #CC7733 (2.1%)), edit_stability:
+  10% of the parent level unchanged.'
