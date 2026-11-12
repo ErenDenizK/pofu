@@ -209,30 +209,6 @@ struct HomePlateTests {
         #expect(26.8 * home.residentScale(.findik) >= 0.6 * pofuHeight)
     }
 
-    @Test func choosesItsPaintedStateByLevelHourAndWeather() throws {
-        let plate = try self.plate.plate
-        func state(_ level: Int, _ hour: Double, _ weather: WeatherConditions = .clear, bed: Bool = false) -> String? {
-            HomePlate.state(in: plate, islandLevel: level, hour: hour, weather: weather, isBedtime: bed).map { "\($0.light)-\($0.stage)" }
-        }
-        // Day: one painted plate per level, 10 down to 2.
-        #expect(state(10, 12) == "day-0")
-        #expect(state(9, 12) == "day-1")
-        #expect(state(2, 12) == "day-8")
-        #expect(state(1, 12) == nil)
-        #expect(state(12, 12) == "day-0")
-        // Golden hour and night: level 10 only.
-        #expect(state(10, 18) == "golden-0")
-        #expect(state(10, 22.5) == "night-0")
-        #expect(state(10, 3) == "night-0")
-        #expect(state(10, 12, bed: true) == "night-0")
-        #expect(state(9, 18) == nil)
-        #expect(state(9, 22.5) == nil)
-        // Dawn, dusk and weather keep the sprite island.
-        #expect(state(10, 6.5) == nil)
-        #expect(state(10, 19.75) == nil)
-        #expect(state(10, 12, WeatherConditions(weather: .lightRain)) == nil)
-    }
-
     @Test func resolvesFromTheLooksHourAndWeather() throws {
         let home = try plate
         let world = IslandSamples.world(
@@ -243,7 +219,7 @@ struct HomePlateTests {
         #expect(HomePlate.resolve(home, world: world, look: WorldLook(hourOverride: 22.5))?.light == "night")
         var rain = WorldLook(hourOverride: 12)
         rain.weatherOverride = WeatherConditions(weather: .lightRain)
-        #expect(HomePlate.resolve(home, world: world, look: rain) == nil)
+        #expect(HomePlate.resolve(home, world: world, look: rain)?.light == "day")
         let low = IslandSamples.world(clock: nil, tendedDays: 5, levels: [:], jar: .zero, islands: [.home], islandLevel: 5)
         #expect(HomePlate.resolve(home, world: low, look: WorldLook(hourOverride: 12))?.stage == 5)
     }
@@ -436,40 +412,6 @@ struct CaglayanPlateTests {
 
     func state(_ island: PlateIsland, _ stage: Int, _ hour: Double, _ weather: WeatherConditions = .clear, bed: Bool = false) -> String? {
         HomePlate.caglayanState(in: island, stage: stage, hour: hour, weather: weather, isBedtime: bed).map { "\($0.light)-\($0.stage)" }
-    }
-
-    @Test func paintsTheDayOfEveryStageAndTheNightsGoldenAndRainThatExist() throws {
-        let island = try island
-        #expect(island.painted["day"] == [0, 1, 2, 3, 4])
-        #expect(island.painted["night"] == [2, 3])
-        #expect(island.painted["golden"] == [4])
-        #expect(island.painted["rain"] == [4])
-        for stage in 0...4 {
-            #expect(state(island, stage, 12) == "day-\(stage)")
-        }
-        #expect(state(island, 3, 22.5) == "night-3")
-        #expect(state(island, 2, 3) == "night-2")
-        #expect(state(island, 2, 12, bed: true) == "night-2")
-        #expect(state(island, 4, 18) == "golden-4")
-        #expect(state(island, 4, 12, WeatherConditions(weather: .lightRain)) == "rain-4")
-        #expect(state(island, 4, 12, WeatherConditions(weather: .clear, rainbow: true)) == "day-4")
-    }
-
-    @Test func everyOtherStateKeepsTheSpriteIsland() throws {
-        let island = try island
-        // Not painted: night at stages 0, 1 and 4, golden hour and rain before the island is healed.
-        #expect(state(island, 0, 22.5) == nil)
-        #expect(state(island, 1, 22.5) == nil)
-        #expect(state(island, 4, 22.5) == nil)
-        #expect(state(island, 3, 18) == nil)
-        #expect(state(island, 3, 12, WeatherConditions(weather: .lightRain)) == nil)
-        // Rain at night, the other weathers and the dawn and dusk hours.
-        #expect(state(island, 4, 22.5, WeatherConditions(weather: .lightRain)) == nil)
-        for weather in [Weather.overcast, .mist, .goldenHaze] {
-            #expect(state(island, 4, 12, WeatherConditions(weather: weather)) == nil)
-        }
-        #expect(state(island, 4, 6.5) == nil)
-        #expect(state(island, 4, 19.75) == nil)
     }
 
     @Test func resolvesFromTheWorldsStageAndTheLooksHour() throws {

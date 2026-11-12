@@ -50,10 +50,10 @@ final class CaglayanPlateScreenshotTests: XCTestCase {
                 name: "caglayan-plate-full-\(state.name)", to: folder
             )
         }
-        // No plate paints the healed island at night: the sprite island stays.
+        // No plate paints the healed island at night: the night borrows the golden painting.
         try write(
-            try await render(stage: 4, hour: 22.5, weather: .clear, expecting: nil, in: scene),
-            name: "caglayan-plate-sprite-s4-night", to: folder
+            try await render(stage: 4, hour: 22.5, weather: .clear, expecting: "golden", in: scene),
+            name: "caglayan-plate-borrowed-s4-night", to: folder
         )
     }
 
