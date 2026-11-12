@@ -18,3 +18,5 @@ the change; "no change" is a valid outcome. Agreed with the founder
 | 2026-11-12 | lead | now.md said main's CI frames were never produced; they existed on `screenshots/main` | corrected |
 | 2026-11-12 | previous lead session | read sub-agents' transcript events as the lead's own tool calls | explained; transcript readers should tell sub-agent events apart |
 | 2026-11-12 | PR 1 builder | spec slip: RehearsalTime takes `SpendingRules().bedtime`, not `EconomyConfiguration().bedtime` | fixed in #407 |
+| 2026-11-12 | critic | nine of ten frames on `screenshots/*` are 460 x 1000 JPEGs, so 1:1 checks of new bubbles were not possible; `git fetch origin screenshots/...` hit a stale ref lock | fetched by SHA; full-size PNGs are only in the CI artifact |
+| 2026-11-12 | lead | three of four defects in the feedback brief came from fixtures, not the game (a critic judged CI test frames) | the builder checked each premise first and said so; briefs from frames should say "fixture or game?" |

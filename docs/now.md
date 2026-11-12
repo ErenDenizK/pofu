@@ -26,8 +26,8 @@ TestFlight before the membership. The app side follows the demo.
 [Spec](design/demo-one-world-v1.md) #404, D1-D11 accepted; players reach IL7.
 1. PR 3 `feat/painted-sky-everywhere` (Sonnet high; the lead's look). PR 1 merged (#407).
 2. PR 2 `feat/home-nights` (Sonnet high; the lead merges after its look).
-3. `fix/rehearsal-action-feedback` (Opus): greeting, gifts, board solve,
-   board counters and gutter, two copy bugs. The lead merges after a look.
+3. PR 4 `feat/caglayan-nights` (Sonnet; the lead's look). Feedback #405
+   merged (heart on greeting, gift tags, board solve caption).
 
 ## Next steps, in order
 
@@ -42,13 +42,16 @@ TestFlight before the membership. The app side follows the demo.
    overwrite them); sync `flow-tile-split-guide.webp` back to pofu.
 5. Ingest the batch-77 flow pieces (bend: narrow east mouth; frame:
    9-slice caps of 240 at 1024).
-6. Record the Rehearsal path once one world lands (CI `beats` label).
+6. Small feedback follow-ups (critic on #405): a met goal shows nothing
+   (say "Ada 3 hazır"), the solve caption sits far from the board, the
+   blue check badge breaks the hand-drawn counter.
+7. Record the Rehearsal path once one world lands (CI `beats` label).
 Swift on Linux: /opt/swift, from download.swift.org (Docker Hub gives 429).
 ## Desks
 
 | Desk | Where it stands | Waits on |
 |---|---|---|
-| Game | game-solid merged (#394 to #400); feedback gaps found by a critic | feedback PR |
+| Game | game-solid and feedback (#405) merged | follow-ups |
 | Look | painted Home by day IL2 to IL10, IL10 golden and night; all else sprite | PR 1, 2 |
 | Art factory | four Demand rows READY; batches 76 and 77 merged | Codex start |
 | App | paused until after the demo | the demo |
