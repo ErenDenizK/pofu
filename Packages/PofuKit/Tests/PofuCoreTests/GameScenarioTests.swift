@@ -111,7 +111,7 @@ struct GameScenarioTests {
 
     /// What the world showed at the end of one simulated day (the flow
     /// audit reads these; the other tests ignore them).
-    struct DayLog: Sendable {
+    struct DayLog: Sendable, Equatable {
         var day: Int
         var tendedDays: Int
         var levels: Int
@@ -127,6 +127,21 @@ struct GameScenarioTests {
         var seeds: Int
         var resisted: Int
         var wellbeing: Double
+        /// Seeds in the jar at the end of the day.
+        var jarEnd: Int
+        /// Seeds the day's visits moved from the pouch into the jar.
+        var collected: Int
+        /// Seeds the day's builds took out of the jar.
+        var spent: Int
+        /// The price of the cheapest level a player could build next (open
+        /// and under the cap) at the end of the day; nil when none.
+        var cheapestNextCost: Int?
+        /// What the next island level still asks, at the end of the day;
+        /// nil at the top level.
+        var nextLevelsLeft: Int?
+        var nextDaysLeft: Int?
+        /// Pofu's lowest wellbeing in any sample of the day.
+        var lowestWellbeing: Double
     }
 
     struct Outcome: Sendable {
@@ -170,6 +185,9 @@ struct GameScenarioTests {
         /// The price of the cheapest level a player could build next (open
         /// and under the cap) at the end of each day; nil when none.
         var cheapestNextCostByDay: [Int?] = []
+        /// Visits whose `GameState` did not survive an encode and decode
+        /// unchanged (`play` with `relaunch: true`); always 0 otherwise.
+        var relaunchMismatches = 0
 
         func weeksWithoutABuild(weeks: Int) -> Int {
             (0..<weeks).filter { week in !buildDays.contains { $0 / 7 == week } }.count
@@ -218,15 +236,25 @@ struct GameScenarioTests {
 
     // MARK: - The behavior model (tools/sim/island_economy.py)
 
-    /// - Parameter roundsPerVisit: rounds played at each of the day's three
-    ///   visits (as many as are banked), each paying `roundYield` seeds.
+    /// - Parameters:
+    ///   - roundsPerVisit: rounds played at each of the day's three visits
+    ///     (as many as are banked), each paying `roundYield` seeds.
+    ///   - relaunch: at each visit the game is saved and loaded again (a
+    ///     `JSONEncoder` with sorted keys, then a `JSONDecoder`), counted in
+    ///     `Outcome.relaunchMismatches` when the copy differs, and the play
+    ///     goes on with the loaded copy, as after a real relaunch.
+    ///   - horizon: stop after this many days.
+    ///   - tapsKoke: whether the evening visit calls on Koke.
     static func play(
         _ archetype: Archetype,
         seed: UInt64,
         measurement: GuardedMeasurement = .softGate,
         roundsPerVisit: [Int] = [0, 0, 0],
         roundYield: Int = 3,
-        greetsVisitors: Bool = false
+        greetsVisitors: Bool = false,
+        relaunch: Bool = false,
+        horizon: Int = days,
+        tapsKoke: Bool = true
     ) -> Outcome {
         var world = World(rules: GameRules(measurement: measurement))
         var rng = SplitMix64(seed: seed)
@@ -236,6 +264,9 @@ struct GameScenarioTests {
         var lastAttempt = -10_000
         var rung = 0
         let homeStations = world.rules.catalog.stations(on: world.rules.catalog.home).map(\.id)
+        var dayLowest = 100.0
+        var collectedToday = 0
+        var spentToday = 0
 
         func at(_ minute: Int) -> Date {
             start.addingTimeInterval(Double(minute) * 60)
@@ -251,11 +282,29 @@ struct GameScenarioTests {
                 outcome.arrivalDay[island] = day
             }
             outcome.lowestWellbeing = min(outcome.lowestWellbeing, world.state.care.wellbeing)
+            dayLowest = min(dayLowest, world.state.care.wellbeing)
+        }
+        /// The game as a relaunch would find it: saved, loaded again.
+        func relaunched() {
+            do {
+                let encoder = JSONEncoder()
+                encoder.outputFormatting = [.sortedKeys]
+                let loaded = try JSONDecoder().decode(GameState.self, from: encoder.encode(world.state))
+                if loaded != world.state {
+                    outcome.relaunchMismatches += 1
+                }
+                world.state = loaded
+            } catch {
+                Issue.record("Relaunch failed to save or load the game: \(error)")
+            }
         }
 
         let visitMinutes = [120, 420, 870]
         world.advance(to: start, .signOfLife(at: start))
-        for day in 0..<days {
+        for day in 0..<min(days, horizon) {
+            dayLowest = 100
+            collectedToday = 0
+            spentToday = 0
             let reachChance = archetype.reachesPerHour(day) / 60
             let resist = archetype.resist(day)
             let nightSession = Double.random(in: 0..<1, using: &rng) < archetype.nightSession(day)
@@ -280,6 +329,9 @@ struct GameScenarioTests {
 
                 // Three short visits: collect, build, leave.
                 if visitMinutes.contains(minuteOfDay), !busy {
+                    if relaunch {
+                        relaunched()
+                    }
                     record(world.advance(to: now, .foregroundBegan(at: now)), day: day)
                     if let visit = visitMinutes.firstIndex(of: minuteOfDay), roundsPerVisit.indices.contains(visit) {
                         for _ in 0..<roundsPerVisit[visit] {
@@ -287,10 +339,14 @@ struct GameScenarioTests {
                             outcome.roundSeedsByDay[day] += paid.units
                         }
                     }
-                    _ = world.collect(at: now)
+                    if let pouch = world.collect(at: now) {
+                        collectedToday += pouch.total.units
+                    }
                     if minuteOfDay == 870 {
                         // The evening visit also calls on Koke, once it is there.
-                        world.advance(to: now, GameEvent(at: now, kind: .tendedWonder(.koke)))
+                        if tapsKoke {
+                            world.advance(to: now, GameEvent(at: now, kind: .tendedWonder(.koke)))
+                        }
                         // ... and finishes Çağlayan's flow round, once that is there.
                         world.advance(to: now, GameEvent(at: now, kind: .tendedWonder(.caglayan)))
                         if greetsVisitors {
@@ -306,7 +362,8 @@ struct GameScenarioTests {
                         let options = world.snapshot.stations.filter { $0.isOpen && $0.nextCost != nil && !$0.isCapped }
                         guard let cheapest = options.min(by: { ($0.nextCost ?? 0) < ($1.nextCost ?? 0) }), cheapest.canAfford else { break }
                         do {
-                            try world.build(cheapest.id, at: now)
+                            let receipt = try world.build(cheapest.id, at: now)
+                            spentToday += receipt.cost.units
                         } catch {
                             Issue.record("Build failed: \(error)")
                             break
@@ -406,7 +463,14 @@ struct GameScenarioTests {
                 built: outcome.buildDays.contains(day) ? 1 : 0,
                 seeds: outcome.seedsByDay[day],
                 resisted: outcome.resistedByDay[day],
-                wellbeing: world.state.care.wellbeing
+                wellbeing: world.state.care.wellbeing,
+                jarEnd: world.state.stations.jar.units,
+                collected: collectedToday,
+                spent: spentToday,
+                cheapestNextCost: world.snapshot.stations.filter { $0.isOpen && !$0.isCapped }.compactMap { $0.nextCost?.units }.min(),
+                nextLevelsLeft: world.snapshot.nextIslandLevel?.levelsLeft,
+                nextDaysLeft: world.snapshot.nextIslandLevel?.tendedDaysLeft,
+                lowestWellbeing: dayLowest
             ))
             outcome.levelsByDay.append(world.state.stations.levels.values.reduce(0, +))
             outcome.islandLevelByDay.append(world.snapshot.islandLevel)
