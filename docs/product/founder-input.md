@@ -690,8 +690,17 @@ Result of the night items (b): home now draws its painted plate at level 10 day,
 
 1. Codex chats drop and new ones will not load; asks for a status report. Handled: status given; the likely cause is the main repo's size (713 MB checkout, 2.7 GB history, 538 MB of art).
 2. The founder created pofu-art and left the technical side to the lead. Handled: ADR-0026; the factory moved to pofu-art with sync and ingest scripts; a new Codex start message.
+3. Paste a long start command? Model and effort for Codex? Handled: one line is enough ("read AGENTS.md and QUEUE.md, work the queue"), since AGENTS.md carries the rules and setup; the strongest general Codex model at medium effort (effort does not change the image model).
+4. Run setup.sh for him. Handled: the lead cannot reach Codex settings; AGENTS.md already makes Codex run it, so the setup box can stay empty.
+5. Codex's first-run report (CLI 401, pytest vs -I, tool defects), and a supervisor/worker multi-agent setup. Handled: generation always used the chat's built-in image tool, so the 401 is not a blocker (pofu-art #3: venv setup, tool-fix list, plates.yaml, sub-agents on a lighter model reviewed by the main chat); blocker-only PR #1 closed.
+6. Status report asked. Handled: the moved queue still showed delivered batches as READY, so Codex began redoing batch-74; pofu-art #4 marks them done (only batch-76 READY) and #2 was closed.
 
 ## 2026-11-12 (afternoon): a full state analysis first; Fable 5.2 if earned
 
 1. Analyse the whole state before doing more work. Handled: the tracker's "Current (2026-11-12)" section: 68 PRs since 11-07, every feature look or plate work; the Door, onboarding, UI v3 wave 3, icons and the flow audit did not move though Q-1 to Q-15 were answered; no device test since 11-05. Rebalance: game and app tracks to the foreground, the art factory in the background, no new plate or sky engineering for now.
 2. Use Fable 5.2 only if a task truly needs it, briefed properly; add 5.2 to the agent model guide. Handled: not used for the analysis (the facts were clear); one Fable pass is planned for the Door and onboarding spec (checkpoint 3); playbook §3.1 says how to brief it.
+
+## 2026-11-12 (evening): the game first, solid by the demo; orchestration
+
+1. Everything solid by the demo; a properly working, playable game first, ahead of the app side; app technique after 2026-11-24. Handled: the game-solid spec (`docs/design/game-solid-v1.md`, #393): six PRs in merge order, a demo run test first; app-side tracks (Door, onboarding) wait until after the game.
+2. The lead orchestrates sub-agents efficiently (model, effort, who does what), keeps its own context lean; he wants to revisit the agent system from scratch in a few days. Handled: the split stated in chat (lead decides and looks; Opus high for specs and reviews; Sonnet medium or high builds; Haiku checks; Fable rarely; at most three agents); the system review is noted for when he is free, with two proposals: a reality check before each brief and a weekly "which track did not move" report.
