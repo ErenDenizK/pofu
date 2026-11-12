@@ -25,15 +25,17 @@ not accepted is hidden. Codex is stopped (plan expired 11-12).
 
 ## In flight
 
-1. Step 6 painted visitors, started a day early (Sonnet, `feat/painted-visitors`).
-2. Route Friday steps 3 (the Map painted, Opus), 4 (Çağlayan full frame,
-   Opus).
+1. Step 6 painted visitors, a day early (Sonnet, `feat/painted-visitors`).
+2. Step 4 Çağlayan full frame (Opus); the Map's critic round (Opus,
+   `fix/map-painted-critic`: empty top band, night only in the sky, soft
+   clouds, small hazy isles; #416 merged as a step up from the code Map).
+   Open: the IL1 night matte keeps a sky ghost of IL10 (#416 builder).
 Scout facts (step 1): dragging pans Home even when painted (step 8 clamps
 it); no painted visitor art ships, all drawn by `LifeArt.drawVisitor`
 (step 6); the Today header is text (`TodaySheet.swift:109`) and the
 breath ring is code-drawn; no screen spends seeds for minutes; the frame
 meter has no switch or launch argument (`WorldLook.frameMeter`).
-Merged today: #403 to #413, #415 ("Kare ölçer" switch), #417 (Koke clean at every stage;
+Merged today: #403 to #413, #415, #416 (the Map painted) ("Kare ölçer" switch), #417 (Koke clean at every stage;
 left: a small pale pocket at s2 night, Koke lit too bright at night); pofu-art #13, #14, #18, #22 to #27, #29.
 
 ## Next steps, in order
