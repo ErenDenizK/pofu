@@ -11,7 +11,8 @@ reasons and do not fix anything.
 **Any artifact**
 
 1. Answer the question in the brief first, in one line: ship, fix or
-   redo.
+   redo. If it is the wrong question to ask of this artifact, say so in
+   one more line and answer the right one too.
 2. List defects by what the player or the founder would feel, worst
    first. For each: where (crop coordinates, timestamp, or file and
    line), what, and how sure you are.
@@ -46,3 +47,7 @@ Hand back at most 25 lines. Lens "player": judge as someone who opens the
 game for two minutes. Lens "art": judge against the reference. Lens
 "contrarian": argue that the approach itself is wrong, and say what
 evidence would settle it.
+
+End every hand-back with one line: `Friction: <what slowed you down, or
+which rule misled you>` ("none" is fine). The lead collects these in
+`docs/studio/friction.md`.

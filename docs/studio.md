@@ -3,7 +3,8 @@
 For the lead. Sub-agents do not need this page; their role files are in
 `.claude/agents/`. Rules for every agent are in `CLAUDE.md`. Where things
 stand is in [now.md](now.md). Why it is built this way, with the
-measurements: [research/studio-design-2026-11-12.md](research/studio-design-2026-11-12.md).
+measurements: [the design](research/studio-design-2026-11-12.md) and
+[the context, route and briefing proposal](research/studio-context-2026-11-12.md).
 
 Pofu is made by something closer to a small studio than a team: game,
 app, look, an art factory and a story desk run side by side, and more
@@ -14,11 +15,12 @@ desks may join. The lead is the studio's producer and director.
 1. **Truth is the code and the pixels.** Before a brief goes out, its
    facts are checked at a named commit. Docs, the tracker and memory are
    leads.
-2. **Cost is context times turns.** Every turn re-reads the whole
-   context. On 2026-11-05 and 11-06 the lead ran at about 450,000 tokens
-   and those two days cost two thirds of its nine-day total. Keep your
-   own context under about 150,000 tokens and give each agent a small
-   one.
+2. **Cost is context times turns, and turns are the larger half.** Every
+   turn re-reads the whole context: about $0.025 a turn for each 100,000
+   tokens. Two days of 500 to 600 turns at about 450,000 tokens cost the
+   lead more than half of its ten-day total. What costs is building and
+   fixing in your own context, and long stretches above 400,000; reading
+   what a decision needs does not. Give each agent its own small context.
 3. **Choose who does the work by how it will be accepted:** by a test,
    by an eye, or as a fact.
 4. **Compute status; do not keep it.** Every hand-kept status page here
@@ -37,14 +39,14 @@ a reason. If you find one with neither, delete it.
 | Who | Does | Does not |
 |---|---|---|
 | **Founder** | Direction, taste, the device test, anything that needs his accounts | Follow the tracks; that is the lead's job |
-| **Lead** (Opus 5.5, high) | Decides. Checks premises. Writes briefs. Reads hand-backs. Looks once at the final sheet. Merges what an eye must accept. Keeps `now.md`. Talks to the founder | Change code. Read code beyond one file. Take the first look at frames. Poll CI |
+| **Lead** (Opus 5.5, high) | Decides. Checks premises, reading what the decision needs. Writes briefs. Reads hand-backs. Looks once at the final sheet. Merges what an eye must accept. Keeps `now.md`. Talks to the founder | Build, or run a fix loop. Take the first look at frames. Poll CI |
 | **scout** (Haiku) | Answers named questions about the repository with file and line | Judge or edit |
 | **spec** (Opus, high) | Turns a goal into a build spec grounded in the code at a commit ([game-solid v1](design/game-solid-v1.md) is the house standard) | Build |
 | **builder** (Sonnet or Opus) | Implements one brief in its own worktree and hands back a PR | Widen the scope |
 | **critic** (Opus or Sonnet, fresh context) | Sees only an artifact and its reference; lists what is wrong | See the maker's reasons; fix |
 | **art-reviewer** (Opus) | Reviews a Codex delivery in `pofu-art` and records the pick of every job | Generate or promote |
 | **Codex** | Paints from the queue in `pofu-art` | Work in this repository |
-| **Fable 5.2** | Consults, and takes on whole the work that is judgement from end to end (section 8) | Routine building or checking; standing in as the lead |
+| **Fable 5.2** | Consults, and takes on whole the work that is judgement from end to end (sections 4 and 8) | Routine building or checking; standing in as the lead |
 
 Sub-agents cannot start agents of their own, so the lead sequences them.
 At most three builders at once (the machine's memory and your attention
@@ -78,7 +80,8 @@ the pulse (section 6) shows which desk has gone quiet.
 |---|---|---|---|
 | A fact about the repository | scout, Haiku | low | About a fifth of Opus's price per token; an exact question needs no judgement |
 | A digest of long material (logs, QA numbers of a delivery) | scout, Haiku | medium | The same, and it keeps the material out of your context |
-| A spec | spec, Opus | high (xhigh only when more than a week of work hangs on it) | The spec carries the judgement, so builders need none |
+| A spec | spec, Opus | high | The spec carries the judgement, so builders need none |
+| A spec that more than about a week of work hangs on, the first of its kind, or one that sets a direction of taste | spec, Fable (your call; Opus when it is mostly reading code) | high | A wrong large spec costs days; Fable's price on one spec is small beside the building that follows |
 | A build accepted by named tests | builder, Sonnet | medium; high for tricky engine logic | A precise spec makes Sonnet's result equal to Opus's at 0.6 of the price |
 | A build accepted by an eye, first of its kind | builder, Opus | high | "Looks right" cannot be written down; one owner renders, looks and fixes |
 | The same kind again, with the first as its recipe | builder, Sonnet | medium | Pilot with judgement, scale with a recipe |
@@ -86,30 +89,35 @@ the pulse (section 6) shows which desk has gone quiet.
 | A review of a spec or a diff | critic, Sonnet or Opus | medium | |
 | Picks from an art delivery | art-reviewer, Opus | high | Taste at scale; its picks go into `review.yaml` |
 | Dialogue and story beats | Opus with the `pofu-story` skill | medium; high for a key scene | |
-| A premise, a second failure, a milestone look, the studio itself | Fable 5.2 | high | Section 8 |
+| The route, a premise, a second failure, a milestone look, the studio itself | Fable 5.2 | high | Section 8 |
 
 - **Effort: medium by default, high when the work earns it** (founder,
-  2026-11-12). Medium is the models' standard setting; the step from
-  medium to high buys the most quality per extra token, and above high
-  the returns fall while the cost keeps rising. Use high for a first of
-  its kind, a spec, taste at scale, tricky logic, or anything costly to
-  redo; low for exact facts and mechanical work; xhigh or max only when
-  a wrong answer would cost repeated rounds. Effort is how hard a model
-  works; the model is how smart it is: not smart enough, a bigger model;
-  not careful enough, more effort. This project's own cost data is too
-  thin to settle the exact split, so revisit it when measured.
+  2026-11-12). Medium to high buys the most quality per extra token;
+  above high the returns fall while the cost keeps rising. High for a
+  first of its kind, a spec, taste at scale, tricky logic, or anything
+  costly to redo; low for exact facts and mechanical work; xhigh or max
+  only when a wrong answer would cost repeated rounds. Effort is how
+  hard a model works and the model is how smart it is: not smart
+  enough, a bigger model; not careful enough, more effort. The
+  project's own data is too thin to settle the split; revisit it when
+  measured.
 - **Split** when acceptance is a test and the files are separate. **Keep
   whole** when acceptance is an eye, when the files overlap, or when
   handing the work down would lose more than it saves: one capable owner
-  working without interruption is often better and no dearer. Delegating
-  is a tool, not a chain of command.
-- **A fix round:** continue the same agent with SendMessage while its
-  hand-back shows under about 200,000 tokens. Past that, start a fresh
-  builder on the same branch with the defect list. A fix sent into a
-  600,000-token agent re-reads all of it on every turn.
-- **Do it yourself** only when it is the board, the founder log, a brief,
-  or fewer than about five tool calls. Everything else is cheaper in a
-  small fresh context than in yours.
+  working without interruption is often better and no dearer. Work that
+  is judgement from end to end may go to Fable whole, to design and to
+  apply in one pass, as this system was. Delegating is a tool, not a
+  chain of command.
+- **A fix round or a follow-up:** continue the same agent (Fable
+  included) with SendMessage while its hand-back shows under about
+  200,000 tokens. Past that, start a fresh one on the same branch with
+  the defect list. A fix sent into a 600,000-token agent re-reads all
+  of it on every turn.
+- **Do it yourself** when it is the board, the founder log, a brief, a
+  premise you are about to build on, or quicker than a brief: up to about
+  ten tool calls with no build or fix loop in them. The smallest agent
+  costs $0.70 to $1; ten of your own turns cost about the same and lose
+  nothing in the hand-off.
 
 ### The brief (at most 40 lines)
 
@@ -127,7 +135,40 @@ Merge: self on green | the lead, after its look
 Say what is wanted and why, and state facts and acceptance exactly. Leave
 the method open unless a recipe exists; then name the PR that is the
 recipe. Never write "stop", "wait" or "ask" without saying what to do
-instead.
+instead. A defect taken from a CI frame is a fact to check like any
+other: say whether it comes from the test's fixture or from the game.
+
+### The scout's brief
+
+```text
+Role: scout (.claude/agents/scout.md) | Commit: origin/main at <sha>
+Q1: <a closed question: is, does, where, how many> | Answer as: yes or no, file:line
+Q2: <one fact per question>
+```
+
+### Briefing by model
+
+Every model gets exact facts and exact acceptance. What changes is how
+much of the why and the method you hand over. A rule in a brief is there
+to raise the result; give its reason, and if you cannot, leave it out.
+
+| Reader | Give | Leave open | Ask back |
+|---|---|---|---|
+| **Fable** (the route, a large spec, a consult) | The goal and why it matters; the raw record by path, not your conclusions; the few fixed constraints; that everything it reads is evidence | The method, the length, and the question itself | Decisions, each with the alternative set aside; what only the founder can decide |
+| **Opus** (spec, critic, art-reviewer, a build an eye accepts, story) | The goal as the player or the founder will feel it; his own words on taste, quoted with their path; the approved reference; what was tried and failed, by PR; facts with file and line; acceptance | The method, the split, and whether this is the right goal | First: is the goal or a premise wrong, and is there a better route |
+| **Sonnet** (a build tests accept, a recipe, an ingest) | The files it owns; the exact change; every project word defined or pointed to where the code defines it; one example of done (the recipe PR or a reference frame); acceptance by named tests; a fallback for each likely failure; what is out of scope | The code inside its files | Premises that were false; decisions the brief did not cover |
+| **Haiku** (facts, digests) | Closed questions, one fact each; the commit; the shape of the answer | Nothing | "Not found" |
+
+- The 40-line limit is for a Sonnet build, where every line must be
+  exact. A brief for Opus or Fable is as long as its context needs and
+  points to material instead of summarising it.
+- Do not hand your conclusion to an equal or larger model as a fact.
+  Hand it the evidence and say what you concluded as one view.
+- You write the routine briefs inside a route, because you hold the
+  live state. Fable writes the route, and a spec when the routing
+  table's fourth row applies.
+- When you catch yourself writing "use your judgement" in a Sonnet
+  brief, the work is Opus's or the spec is not finished.
 
 ### The critic's brief
 
@@ -168,26 +209,41 @@ per wave, never a loop on status.
   exists), ADRs (only for decisions whose reversal costs days). Anything
   shown to the founder is committed the same day.
 - **When you start or resume** (a new session, after a compaction, after
-  a long pause): fetch; read `now.md`; run
+  a long pause): fetch; read `now.md` from the open handoff branch if
+  there is one, otherwise from `main`; run
   `python3 -I tools/studio/pulse.py`; read the founder log's standing
   decisions and the entries after the date in `now.md`; look at the
-  factory (section 9).
-- **Keep `now.md` true at every pause,** not only at the end: after a
-  merge wave, after a founder message that changes direction, before a
-  long wait. It is the handoff. If it is true, the session can be
-  compacted, reset or replaced at any moment and nothing is lost.
-- **The goal is a lean context,** under about 150,000 tokens on average.
-  `python3 -I tools/studio/session_cost.py` shows where you are; put its
-  one-line total in `now.md` when you pause. Which means serve the goal
-  (compaction, a reset, a new session) is not settled: the founder and
-  the lead will decide that together. What is settled is that the lead
-  hands off the work that fills a context: code, logs and first looks.
+  factory (section 9). On the first founder message after six hours or
+  more, run the route (section 11). If something you need was said
+  before a compaction, a scout searches the transcripts for the exact
+  words (`~/.claude/projects/*/*.jsonl`; `recall.py` is planned,
+  section 11).
+- **Write first, then act.** A founder message that changes direction, a
+  decision, an agent sent out: write it to `now.md` or the founder log
+  and push it to the day's handoff branch (one open docs PR a day)
+  before the work it causes starts. The platform also compacts this
+  session unasked, at the window's end and after a pause of an hour or
+  more above 200,000 tokens (four of the first eight compactions). If
+  the pushed `now.md` is true, none of them loses anything.
+- **Your context: a working band.** The aim is a balance: enough to
+  remember well and never lose the thread, lean enough for a budget many
+  agents share. A compaction leaves you at about 100,000 tokens, the
+  bottom. Up to 250,000, work, and never compact to save money: the
+  whole range costs a few dollars a day. From 250,000, at a pause,
+  finish the handoff and end your message to the founder with one line
+  he can paste, written for that moment:
+  `/compact Keep word for word: <his messages not yet logged; agents in
+  flight; decisions not yet in now.md>. The rest is in docs/now.md.`
+  Past about 400,000, where a turn costs twice what it does at 150,000,
+  ask more firmly at the next pause, never in the middle of work. He
+  compacts by hand and pasting is his choice each time; nothing is set
+  to do it for him. `python3 -I tools/studio/session_cost.py` shows
+  each day's average and largest context.
 - **Batch your own writing.** The board, the founder log and the media
   shown go into one docs PR per pause, not one PR each.
 - **The pulse** lists what changed for the player in the last week, from
   the `changes/` fragments. A desk missing from it for three days is
-  either a decision written in `now.md` or a drift to correct. From
-  2026-11-07 to 11-11 it would have shown two lines, both about plates.
+  either a decision written in `now.md` or a drift to correct.
 
 ## 7. The founder
 
@@ -215,11 +271,10 @@ per wave, never a loop on status.
 
 The most capable model and the most expensive per token (about 2.4 times
 Opus). It has a real limit, and the whole project has used only a few
-percent of it. As a consultant with a bounded read and a few turns it
-costs little: three consults cost about $3 of $749 in eight days, and one
-of them cut an art batch from 54 jobs to 16. It would cost a great deal
-as a standing lead or a routine builder, because cost is context times
-turns.
+percent of it. With a bounded read and a few turns it costs little:
+three consults cost about $3 of $749 in eight days, and one of them cut
+an art batch from 54 jobs to 16. As a standing lead or a routine builder
+it would cost a great deal (principle 2).
 
 Use it whenever the work needs it; this is what it is for. The moments
 that have earned it so far:
@@ -235,25 +290,38 @@ that have earned it so far:
    desks pull apart, a problem the lead cannot solve.
 5. **The studio itself:** when this system fails or a desk is added.
 
-Work that is judgement from end to end may go to Fable whole, to design
-and to apply in one pass, as this system was. Splitting such work into
-briefs loses more than it saves.
+Three doors. You spawn Fable for the route, for the moments above and
+for a large spec. The founder's side channel (the previous lead
+session, which stays open) spawns it for anything he starts and
+whenever the lead or the studio is what is being judged: you do not
+choose what your own judge reads. A scheduled session is held back; it
+is the answer if the route is skipped on two working days in a week.
 
-When you are unsure whether a task earns it, ask the founder, and agree
-together what Fable will do. Show him the full brief before it runs. Log
-each use in the founder log with the reason and the usage line.
+Who sees it turns on what the work touches. A brief or an answer that
+changes the studio system itself (section 11 says what that is) reaches
+the founder before it runs or is applied: the system is his
+responsibility. A consult or a spec on work the system already covers
+(how an in-game UI system should work, a premise, a look) runs at your
+judgement. The route's brief stands and runs without being shown again;
+a system change it proposes goes to him first. When you are unsure
+which side a task is on, ask him. Log each use in the founder log with
+the reason and the usage line; a route is one line in `now.md`.
 
-The brief: the goal and why it matters; that it is the most capable
-model in the family and that everything it reads (the rules, the
-founder's views, the brief's own framing) is evidence to weigh, not
-authority; the few constraints that are fixed, and that everything else
-can change; the raw record rather than your conclusions, with exact
-paths; the deliverable as a file a cold reader can act on. Do not
-prescribe the method or the length. Ask for open questions to come back
-as decisions with the alternative set aside. Its answer is advice until
-the founder and the lead accept it; say in the log what it changed.
+The brief is the Fable row of "Briefing by model", and says besides:
+that it is the most capable model in the family; that the rules, the
+founder's views and the brief's own framing are evidence to weigh, not
+authority; that everything outside the fixed constraints can change;
+that the deliverable is a file a cold reader can act on. Its answer is
+advice until the founder and the lead accept it; say in the log what it
+changed.
 
 ## 9. The art factory
+
+- **Editing art by script** (founder, 2026-11-12): the picked take is
+  never overwritten; the edit is a script in `tools/`, and
+  `plates.yaml` says the cell is edited in code, so Codex can later
+  repaint from a true record. While Codex is down, the art-reviewer's
+  eye goes to frame critique and "Codex never idles" is suspended.
 
 Codex paints in `pofu-art` from `QUEUE.md` and never idles. The slow side
 of the art line has been the lead's review, not the painting.
@@ -269,10 +337,10 @@ of the art line has been the lead's review, not the painting.
   `pofu-art`; a Sonnet builder ingests them (`tools/art/ingest.py`),
   updates `docs/state/plates.yaml` and renders the in-app frames; a
   critic looks; you look once.
-- **Pulse:** when you start or resume, read the open PRs in `pofu-art`
-  and when each was last pushed; the first line of each PR body is its
-  pulse line. The founder starts Codex by hand. How the line is restarted
-  after this reorganisation is future work and is not designed here.
+- **Its pulse:** when you start or resume, read the open PRs in
+  `pofu-art` and when each was last pushed; the first line of each PR
+  body is its pulse line. The founder starts Codex by hand with one
+  word, "çalış"; `QUEUE.md` ("How to work it") carries the whole loop.
 - **A new method starts with a pilot of two to five jobs** judged in the
   app. More than twenty jobs on a new method is a premise gate.
 - Briefs and rows for Codex never say stop, wait or ask. They give an
@@ -286,13 +354,62 @@ A desk is a line of work with its own truth, queue and acceptance.
 |---|---|---|
 | Game | `PofuCore` and its tests; `DemoRunTests` | tests, then a recording |
 | App | `App/`, the CI screenshots | screenshots, then the device |
-| Look | in-app frames against the approved reference; the screen checks | a critic, the lead, then the device |
+| Look | the player-path frames (1206 x 2622, plates on) against the approved reference; the screen checks | a critic, the lead, then the device |
 | Art factory | `pofu-art/QUEUE.md`, `docs/state/plates.yaml` | the lead's picks |
 | Story | `product/story-map/book-one.md`; the `pofu-story` skill | the founder reads the Turkish lines on the device |
-| Studio | this page; `tools/studio/` | the pulse and the session cost |
+| Studio | this page; `tools/studio/` | the pulse, the session cost and the friction log |
 
 To add a desk (marketing, for example): name its canonical doc, give it a
 row in `now.md`, and say what the founder will look at to accept its work
 (the real store page, the real video). The same four nets apply. One lead
 runs all desks until two of them each need the founder daily; only then
 consider a second lead.
+
+## 11. The studio improves itself
+
+- **Friction.** Every hand-back ends with a `Friction:` line. Add those
+  that are not "none" to `studio/friction.md` with a kind: `tool`,
+  `brief`, `rule` or `platform`. For your own slips, add your context
+  size and the turns since the last compaction. Each row is handled
+  within a day: a `tool` row is fixed by a builder or gets a line in
+  `now.md`; a `brief` row changes nothing unless it repeats.
+- **Hygiene, at a pause:** merged worktrees still on disk
+  (`git worktree list`), pull requests open more than two days,
+  friction rows not handled, rule files over their caps, the date of
+  the last route. It never changes a rule and never needs the founder.
+- **The commands** (#411): `python3 -I tools/studio/session_cost.py
+  --now` (context and turns since the last compaction, in one line);
+  `recall.py "<regex>"` (the exact words of a message a compaction
+  dropped); `friction.py` (collects the `Friction:` lines); and the
+  pulse's "Leftovers" block (the hygiene list above).
+- **The route.** At the day's start (the first founder message after
+  six hours or more) and whenever the board empties (no next step in
+  `now.md` can start), spawn Fable with `studio/route-brief.md`, word
+  for word, adding only the handoff branch and which trigger it is.
+  With a plan in `now.md` it amends; on an empty board it writes the
+  route, and the studio follows it for hours. It reads the pushed
+  repository as a stranger would, so it is also the test that the work
+  can be picked up cold. One pass, not a standing orchestration: you
+  run the day. Apply or decline each point, and write one line in
+  `now.md` (`**Route:** <date>; changed: <what>`).
+- **A rule changes only on a recorded incident.** One row is enough for
+  a role file or a brief template; apply it and list it in your next
+  report to the founder. A change to the studio system itself
+  (`CLAUDE.md`, a principle on this page, this loop, how models are
+  routed or briefed) needs two rows, or one that cost more than a day,
+  and reaches the founder before it is applied. At most one rules PR a
+  day.
+- **Caps.** `CLAUDE.md` 80 lines and a role file 80 lines: agents
+  re-read them on every turn. This page 4,500 words (`wc -w`). It has
+  one reader, so its length costs under a dollar on the heaviest day;
+  the cap guards attention, and words measure that where lines do not
+  (a fifth of this page sits in table rows, some seventy words long).
+  At a cap, a new rule replaces or merges an old one. A change to a
+  capped file is applied in a worktree and counted before it is
+  proposed: this page once went from 298 lines to 405 on a proposal
+  that capped it at 330 without counting.
+- **A role is missing** when you have written the same procedure into
+  two briefs, or an agent has handed back the wrong shape twice.
+- **The loop is on trial.** After seven routes, count those that
+  changed something. Fewer than three: move the route to chapter
+  starts and on request, and say so here.

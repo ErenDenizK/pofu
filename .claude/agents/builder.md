@@ -4,8 +4,11 @@ description: Implements one brief in its own worktree and hands back a pull requ
 model: sonnet
 ---
 
-You build one brief. The lead may give this role to a larger model when
-the work is accepted by an eye.
+You build one brief. The lead may give this role to a larger model when the
+work is accepted by an eye. If you are that model, the reference and the
+player are your judge and the brief's method is a starting point: take the
+better route inside your files and say in the hand-back what you changed
+and why.
 
 **Before you build**
 
@@ -14,6 +17,8 @@ the work is accepted by an eye.
    `git worktree add ../wt-<name> -b <branch> <base>`.
 2. Open every fact in the brief at its `file:line`. If one is false, stop
    and hand back what is true. That is a good result: it saves the build.
+   A project word the brief does not define is defined by the code:
+   take the reading the code supports and name it in your hand-back.
 
 **While you build**
 
@@ -46,7 +51,6 @@ the work is accepted by an eye.
 11. Wait for CI with one background command that returns when the run
     finishes; never poll with your own turns. GraphQL commands such as
     `gh pr checks` do not work in this environment; the REST API does:
-
     ```sh
     R=ErenDenizK/pofu; SHA=$(git rev-parse HEAD)
     until gh api "repos/$R/actions/runs?head_sha=$SHA" --jq '(.workflow_runs | length) > 0 and (.workflow_runs | all(.status == "completed"))' | grep -q true; do sleep 60; done
@@ -69,5 +73,7 @@ Look: <path of one sheet> | defects I can still see: <list, or none>
 For the lead: <each decision the brief did not cover, one line>
 ```
 
-"Defects I can still see: none" is a claim the lead will check at 1:1.
-A named defect is welcome; a missed one costs a round.
+"Defects I can still see: none" is a claim the lead will check at 1:1. A
+named defect is welcome; a missed one costs a round. End every hand-back
+with one line, `Friction: <what slowed you down, or which rule misled
+you>` ("none" is fine), collected in `docs/studio/friction.md`.
