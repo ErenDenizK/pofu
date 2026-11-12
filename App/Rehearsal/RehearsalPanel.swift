@@ -79,6 +79,12 @@ struct RehearsalPanel: View {
                     model.rehearsalReach(for: app)
                 }
             }
+            if model.isAwaitingSignOfLife {
+                Text("Reach once to wake the island")
+                    .font(PofuFont.caption)
+                    .foregroundStyle(PofuColor.textSecondary)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
             Divider()
             control(Text("+15 min of use"), symbol: "hourglass.badge.plus") {
                 isBusy = true
@@ -135,6 +141,11 @@ struct RehearsalPanel: View {
                 .accessibilityHidden(true)
             Text("Rehearsal")
                 .font(PofuFont.headline)
+            Text("Day \(model.world.tendedDays + 1)")
+                .font(PofuFont.caption)
+                .lineLimit(1)
+                .minimumScaleFactor(0.8)
+                .foregroundStyle(PofuColor.textSecondary)
             Spacer(minLength: PofuSpacing.xs)
             TimelineView(.everyMinute) { _ in
                 Text(verbatim: clockText)

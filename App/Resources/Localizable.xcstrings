@@ -2931,6 +2931,54 @@
           }
         }
       }
+    },
+    "%lld seeds in the jar" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld seed in the jar"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld seeds in the jar"
+                }
+              }
+            }
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kavanozda %lld tohum"
+          }
+        }
+      }
+    },
+    "Day %lld" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gün %lld"
+          }
+        }
+      }
+    },
+    "Reach once to wake the island" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adayı uyandırmak için bir kez uzan"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

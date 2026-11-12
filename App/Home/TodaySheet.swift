@@ -126,7 +126,7 @@ private struct DayCard: View {
                 Divider().overlay(palette.stitch.opacity(0.5))
                 HStack(spacing: PofuSpacing.s) {
                     SeedIcon(size: 26)
-                    Text("\(model.balance.units) seeds in my cheeks")
+                    Text("\(model.world.jar.units) seeds in the jar")
                         .font(PofuFont.headline.monospacedDigit())
                         .foregroundStyle(palette.onPaper)
                         .fixedSize(horizontal: false, vertical: true)
