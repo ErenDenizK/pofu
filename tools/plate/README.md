@@ -28,12 +28,13 @@ The home plate (batch 66's `x-home-flow-final-rich` t1, a 1024 x 1536 portrait: 
 `design/art/plates/home/objects.json`; swapping a plate is a data change there):
 
     python3 -I tools/plate/ingest.py matte home   # once per plate, needs OpenCV; writes matte-day-0.png
+    python3 -I tools/plate/ingest.py matte home --state day:9   # one state's matte only (IL1 has its own: its islet stands apart)
     python3 -I tools/plate/ingest.py all home     # deliver, objects, json, check; plates ship upscaled x2
                                                    # (0.8 model / 0.2 Lanczos); the first run takes a few minutes
     python3 -I tools/plate/ingest.py all home --no-upscale   # only when the model is unavailable: ships the original
 
 
-States: `objects.json` lists the painted states (`plates`: `day` stages 0..8 are island levels 10..2, `stageLevels`; `golden` and `night` at level 10) and, per object, the day `stages` where it is painted (absent: all). Derive them by diffing each plate's object polygon against the level-10 plate (a high-pass normalised correlation separates a changed object from the edit's global drift), then check the crops by eye: `ingest.py` cuts an occluder only for the stages that paint it and `check` wants no more. The generated `Plates/plate-home.json` carries each state's character `harmony` (tint, contact).
+States: `objects.json` lists the painted states (`plates`: `day` stages 0..9 are island levels 10..1, `stageLevels`; `night` stages 0..8 are levels 10..2, the same stage is the same level; `golden` at level 10 only; `lampsFromLevel` is the level the lamps are lit at, so a night plate below it has no lamp pool) and, per object, the `stages` where it is painted, for every light (absent: all). Derive them by diffing each plate's object polygon against the level-10 plate (a high-pass normalised correlation separates a changed object from the edit's global drift), then check the crops by eye: `ingest.py` cuts an occluder only for the stages that paint it and `check` wants no more. The generated `Plates/plate-home.json` carries each state's character `harmony` (tint, contact).
 
 The CI frames come from the look-pipeline-v2 screenshots branch:
 
