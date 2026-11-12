@@ -1,0 +1,164 @@
+batch: batch-64-flow-pieces
+contact_sheet: design/art/takes/batch-64-flow-pieces/flow-tile-source/contact.jpg
+jobs:
+  flow-tile-source:
+    pick: 1
+    publication: "promoted; picked by the lead 2026-11-12 (take 1); founder review pending"
+    lead_review: "Lead pick: the spring at the top, the south opening joins the straight without a step."
+    note: auto-picked by QA; founder review pending. Both initial takes pass hard
+      QA and owner native, actual locked/exported and 70 pt mixed-parent review. Take
+      1 ranks first with lock_load 0.3464 versus 0.3662. One small mossy spring in
+      the upper half, rounded stone lip, expressly authored soft blue-green water
+      and diffuse pale ripples; the pale shallow groove continues to the centered
+      south edge. North, east and west remain closed stone. The actual straight-below
+      join is visually continuous. No spray, sharp glints, text or unrelated objects.
+      Water in the spring is required, so no blanket no-water exclusion was imported.
+      Soft painted shoulder and seam differences are advisory; exact512 segmentation
+      and completed app integration are not certified. No retry with eligible takes.
+      No peer final acceptance is claimed; the owner reviewed actual final outputs.
+      Canonical scale0.25 delivery is checked against exact downscaled RGBA, dimensions
+      and metadata, preview and raw. Official Harmony measure/check runs on194 current
+      BASE sources; UI is outside the authoritative catalog, so no fabricated own
+      shard. Existing22 game-family asset links remain byte-stable. All original PNGs,
+      callbacks, reference roles and reports are retained.
+qa_reports:
+  1:
+    job: flow-tile-source
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 27 (R1 51)
+      value: 27.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 77 (R1 59)
+      value: 76.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.7 (R1 5.3)
+      value: 0.7
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.3
+      value: 0.3464
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.9, p95 2.4, off-palette 0.0%
+      value: 0.9171
+    info:
+      metrics_raw:
+        L_p5: 76.6
+        L_p50: 86.7
+        L_p95: 94.3
+        C_p50: 11.2
+        C_p95: 27.4
+        C_p99: 33.3
+        detail: 0.99
+      metrics_locked:
+        L_p5: 76.7
+        L_p50: 86.7
+        L_p95: 94.2
+        C_p50: 11.2
+        C_p95: 27.3
+        C_p99: 33.1
+        detail: 0.7
+    fingerprint: 7eef77450b6ad06f
+  2:
+    job: flow-tile-source
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 32 (R1 51)
+      value: 31.7
+    - check: value_floor
+      status: pass
+      message: lightness p5 76 (R1 59)
+      value: 76.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.7 (R1 5.3)
+      value: 0.72
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.4
+      value: 0.3662
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.9, p95 2.4, off-palette 0.0%
+      value: 0.9072
+    info:
+      metrics_raw:
+        L_p5: 76.1
+        L_p50: 85.8
+        L_p95: 94.0
+        C_p50: 12.2
+        C_p95: 31.9
+        C_p99: 37.1
+        detail: 1.02
+      metrics_locked:
+        L_p5: 76.2
+        L_p50: 85.8
+        L_p95: 93.8
+        C_p50: 12.2
+        C_p95: 31.7
+        C_p99: 36.9
+        detail: 0.72
+    fingerprint: 7eef77450b6ad06f
+manual_review:
+  excluded_takes: []
+  note: Both initial takes pass hard QA and owner native, actual locked/exported and
+    70 pt mixed-parent review. Take 1 ranks first with lock_load 0.3464 versus 0.3662.
+    One small mossy spring in the upper half, rounded stone lip, expressly authored
+    soft blue-green water and diffuse pale ripples; the pale shallow groove continues
+    to the centered south edge. North, east and west remain closed stone. The actual
+    straight-below join is visually continuous. No spray, sharp glints, text or unrelated
+    objects. Water in the spring is required, so no blanket no-water exclusion was
+    imported. Soft painted shoulder and seam differences are advisory; exact512 segmentation
+    and completed app integration are not certified. No retry with eligible takes.
+    No peer final acceptance is claimed; the owner reviewed actual final outputs.
+    Canonical scale0.25 delivery is checked against exact downscaled RGBA, dimensions
+    and metadata, preview and raw. Official Harmony measure/check runs on194 current
+    BASE sources; UI is outside the authoritative catalog, so no fabricated own shard.
+    Existing22 game-family asset links remain byte-stable. All original PNGs, callbacks,
+    reference roles and reports are retained.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-0194e801-3e6b-41c7-8412-8470747376cb.png
+  original_generated_png_sha256: 56fa5244cbfd240d57a45596ff40bae4925a4ad5d3e1cf7b34741ab79dd68d5c
+  inbox_png_sha256: a28bd33d4a7e0b72fadd14433406fdd4b11a9d5a969733ba09f682ceb776140e
+  rgba_sha256: 61ebd7535836548949bcbc77f393bb5d19ac73f0e0ad2fcd27d4b5970b35096e
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 7eef77450b6ad06f
+- take: 2
+  source_file: /workspace/generated_images/exec-8a30b03a-4525-4b1a-bfe3-8ed5c94f1431.png
+  original_generated_png_sha256: 48d814eec323c63132b0de47482eb9ecc62b2bd2c28eb18c3628973e658ceb76
+  inbox_png_sha256: b2b1a16f20baa49ccfa090fa7beb62839a7b10c4254b23b85f9c7e9c4e588baf
+  rgba_sha256: 53d5a932eff2c69134bc84c2c832351b02248ffaffd5db8922c243ffc0ea6d38
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 7eef77450b6ad06f

@@ -1,0 +1,54 @@
+{
+ "after": {
+  "C_mean": 29.173,
+  "C_p50": 34.534,
+  "C_p95": 40.965,
+  "L_mean": 65.318,
+  "L_p2": 24.529,
+  "L_p98": 93.667,
+  "detail": 10.884,
+  "edge": 0.168,
+  "tint_a": 5.394,
+  "tint_b": 9.083,
+  "warmth_b": 22.59
+ },
+ "before": {
+  "C_mean": 29.173,
+  "C_p50": 34.534,
+  "C_p95": 40.965,
+  "L_mean": 65.318,
+  "L_p2": 24.529,
+  "L_p98": 93.667,
+  "detail": 10.884,
+  "edge": 0.168,
+  "tint_a": 5.394,
+  "tint_b": 9.083,
+  "warmth_b": 22.59
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "char",
+ "matched_to": "char",
+ "outliers_after": [
+  "detail"
+ ],
+ "outliers_before": [
+  "detail"
+ ],
+ "ppu": 29.0,
+ "reference": false,
+ "score_after": 83.3,
+ "score_before": 83.3,
+ "shipped": false,
+ "source": "design/art/masters/damla-point/damla-point.webp",
+ "source_sha": "d1ad6a4ee8236a38"
+}

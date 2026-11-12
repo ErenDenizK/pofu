@@ -11,7 +11,8 @@ summary: >-
   river stone with a little soft green moss and two tiny tufts of grass. About 80 percent
   of the canvas wide, centred. Even and calm in the middle.
 art:
-  images: []
+  images:
+  - design/art/ui/ui-flow-pool/ui-flow-pool.png
   jobs:
   - batch-64-flow-pieces:flow-pool
 sources:

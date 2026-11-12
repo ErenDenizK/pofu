@@ -1,0 +1,161 @@
+batch: batch-61-ui-kit-v3
+manifest: tools/imagegen/manifest/batch-61-ui-kit-v3.yaml
+manifest_sha256: 1afc74db28c48c60630bdde906957d1b30ac1021d539f0322f263619e3450ddc
+jobs:
+  ui-fill-honey:
+    pick: null
+    status: obsolete
+    publication: "obsolete 2026-11-12; no pick, no redo"
+    lead_review: "No pick, no redo: the optional painted fill; the spec draws the groove's fill in code (ui-v3 section 5)."
+    note: Both initial takes fail hard palette drift (mean dE 4.8). Transparent honey capsules retained;
+      no QA threshold waiver and no retry under current two-take cap. No master promoted.
+selection:
+  method: QA non-fail and manual eligibility; lowest style-lock load, then highest measured harmony; take
+    number only breaks ties
+  scores:
+  - take: 1
+    style_lock_load: 1.1316
+    harmony: 61.6
+    eligible: false
+  - take: 2
+    style_lock_load: 0.8883
+    harmony: 64.9
+    eligible: false
+  rejected_takes: []
+qa_reports:
+- job: ui-fill-honey
+  take: 1
+  status: fail
+  preset: lock-light
+  checks:
+  - check: transparency
+    status: pass
+    message: source has an alpha channel
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: warn
+    message: chroma p95 61 (R1 51)
+    value: 61.0
+  - check: value_floor
+    status: pass
+    message: lightness p5 67 (R1 59)
+    value: 67.1
+  - check: detail_budget
+    status: pass
+    message: detail at display size 0.8 (R1 5.3)
+    value: 0.75
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 1.1
+    value: 1.1316
+  - check: palette_drift
+    status: fail
+    message: mean dE 4.8, p95 10.7, off-palette 0.0%
+    value: 4.8278
+  info:
+    metrics_raw:
+      L_p5: 66.9
+      L_p50: 77.5
+      L_p95: 87.6
+      C_p50: 60.7
+      C_p95: 63.1
+      C_p99: 63.5
+      detail: 0.84
+    metrics_locked:
+      L_p5: 67.1
+      L_p50: 77.5
+      L_p95: 87.5
+      C_p50: 59.7
+      C_p95: 61.0
+      C_p99: 61.1
+      detail: 0.75
+  fingerprint: 508d1a861171bb6a
+- job: ui-fill-honey
+  take: 2
+  status: fail
+  preset: lock-light
+  checks:
+  - check: transparency
+    status: pass
+    message: source has an alpha channel
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: warn
+    message: chroma p95 60 (R1 51)
+    value: 59.7
+  - check: value_floor
+    status: pass
+    message: lightness p5 67 (R1 59)
+    value: 66.9
+  - check: detail_budget
+    status: pass
+    message: detail at display size 0.8 (R1 5.3)
+    value: 0.81
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.9
+    value: 0.8883
+  - check: palette_drift
+    status: fail
+    message: mean dE 4.8, p95 9.1, off-palette 0.0%
+    value: 4.7683
+  info:
+    metrics_raw:
+      L_p5: 66.7
+      L_p50: 76.2
+      L_p95: 87.9
+      C_p50: 60.0
+      C_p95: 60.8
+      C_p99: 61.1
+      detail: 0.91
+    metrics_locked:
+      L_p5: 66.9
+      L_p50: 76.2
+      L_p95: 87.4
+      C_p50: 59.3
+      C_p95: 59.7
+      C_p99: 59.9
+      detail: 0.81
+  fingerprint: 508d1a861171bb6a
+sources:
+- take: 1
+  source_file: /workspace/art-operator-runtime/factory/generated/ui-fill-honey/take-1.png
+  source_sha256: 16c80c9c76f70b6a18928e524f4d5de6f28725525de6b2fd35d96b720cd23583
+  q90_take: design/art/takes/batch-61-ui-kit-v3/ui-fill-honey/ui__fill-honey--t1.webp
+  q90_take_sha256: 02e74f72465d39f59a6294432cf777440e08780fb950b51765dd9a762dd12740
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 7e77bb8b4f6dc23fc5f40c65b89453ba29ee2d665a89e487fe28cd27fc4b30e5
+  references:
+  - path: design/art/ui/ui-groove-wood/ui-groove-wood.png
+    role: 'The groove this fill sits in: the same length, end shapes and light; the fill is slimmer and
+      sits centered.'
+    sha256: 00a2d7780c7d92ef2f9b79c4b825b5b46a6c0c06ef21956eab8c18c6b0f36939
+  - path: design/reference/palette-card-world-props.png
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+    sha256: d31df285d7f915ff04d14ef9386940e1745a48ffb951bd041df405392a0939f2
+- take: 2
+  source_file: /workspace/art-operator-runtime/factory/generated/ui-fill-honey/take-2.png
+  source_sha256: 61ddd15063cfc1a2c8a540ebbe6673c733471b2254e3606b4fcf80dfc4fa7aa1
+  q90_take: design/art/takes/batch-61-ui-kit-v3/ui-fill-honey/ui__fill-honey--t2.webp
+  q90_take_sha256: 71df62e7f7bc16fde14b95d65f3c249474694f936a5c876c8b73329c78739399
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: 7e77bb8b4f6dc23fc5f40c65b89453ba29ee2d665a89e487fe28cd27fc4b30e5
+  references:
+  - path: design/art/ui/ui-groove-wood/ui-groove-wood.png
+    role: 'The groove this fill sits in: the same length, end shapes and light; the fill is slimmer and
+      sits centered.'
+    sha256: 00a2d7780c7d92ef2f9b79c4b825b5b46a6c0c06ef21956eab8c18c6b0f36939
+  - path: design/reference/palette-card-world-props.png
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+    sha256: d31df285d7f915ff04d14ef9386940e1745a48ffb951bd041df405392a0939f2
+policy:
+  never_promote: false
+  originals: source_file PNGs preserved unchanged; published takes are q90 copies

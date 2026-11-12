@@ -2,14 +2,14 @@ id: asset-ui-stamps
 type: asset
 title_tr: ui-stamps
 title_en: stamps (ui)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  A sheet of four round ink-stamp imprints on a transparent background, in a 2 by 2 grid with
-  wide empty space between them. Each is a single-color rubber-stamp print: a thin circular
-  ring, a simple emblem inside, the ink slightly uneven and soft, with a faint second strike
-  offset by a hair, no texture of paper. Top left, dawn: a half sun rising on a horizon line,
-  peach-rose ink. Top right, day: a full sun with short r…
+summary: 'A sheet of four round ink-stamp imprints on a transparent background, in
+  a 2 by 2 grid with wide empty space between them. Each is a single-color rubber-stamp
+  print: a thin circular ring, a simple emblem inside, the ink slightly uneven and
+  soft, with a faint second strike offset by a hair, no texture of paper. Top left,
+  dawn: a half sun rising on a horizon line, peach-rose ink. Top right, day: a full
+  sun with short r…'
 art:
   images: []
   jobs:
@@ -19,3 +19,18 @@ sources:
 kind: ui
 batch: batch-61-ui-kit-v3
 size: 1536x1024
+notes:
+- 'batch-61-ui-kit-v3 skipped after four takes: Manual skip after initial2 plus sole
+  unchanged retry2; preserve truthful canonical QA statuses pass/pass/warn/pass. Full
+  native and locked, proper-alpha source/locked sheet review is sealed at root-stamps-sole-retry-final-manual-review.json
+  SHA94ffff707cde180b06c51943a915958feb0d26ba4d6ed5cbc9feedcfada30857 plus initial
+  peer1d50898a. Every sheet has the correct2x2 inventory of4emblems/no writing, but
+  the golden cloud is painted as a distinct dimensional cream/multi-ink cloud rather
+  than the required single amber ink impression. Initial2 and retry3 also have actual
+  gray paper; retry4 contains actual painted checkerboard inside the impressions.
+  Initial1 clean transparency does not rescue its multi-ink cloud. Allowed grain/ring
+  irregularity/double strike are not failures; no invented flatcolorcount or pixeluniform
+  gate. Four sourcePNG/RGBA and official initial/retry QA/locked histories retained
+  unchanged, including processing-history/stamps-initial/PRESERVATION.json. No force,
+  new thresholds, third round, source repainting or fake harmony. No true dependents;
+  unrelated jobs continue.'

@@ -10,7 +10,8 @@ summary: >-
   inside a deeper warm brown (#C99A5A to #A87B44) with a soft inner shadow along the top edge,
   a thin lighter wood lip along the bottom edge, rounded ends. The middle is flat and even.
 art:
-  images: []
+  images:
+  - design/art/ui/ui-groove-wood/ui-groove-wood.png
   jobs:
   - batch-61-ui-kit-v3:ui-groove-wood
 sources:

@@ -1,0 +1,325 @@
+batch: batch-61-ui-kit-v3
+contact_sheet: design/art/takes/batch-61-ui-kit-v3/ui-card-linen-night/contact.jpg
+jobs:
+  ui-card-linen-night:
+    pick: null
+    status: rejected
+    publication: "rejected by the lead 2026-11-12"
+    lead_review: "Lead reject: every take is a diagonal amber-corner to indigo gradient, so the middle is not even (it cannot be 9- or 3-sliced) and the night reads purple-indigo, not warm (tracker: Settings night rows warm, not purple-indigo). Redo in batch-77: flat warm cocoa lamplit paper, amber only along the top edge."
+    note: 'Sole unchanged retry exhausted. All four takes fail official value_floor,
+      edit_structure and edit_lightness. The authored night job omits acceptance.profile:
+      night; the frozen manifest, prompt and QA remain unchanged. Initial-pair QA
+      and locked hashes are unchanged after final posting; original processing logs
+      and all four original PNGs remain preserved. No failed master is promoted; founder
+      review pending. Automated failures: t1 value_floor: lightness p5 22 (R1 59),
+      edit_structure: light structure matches the parent (r -0.10), edit_lightness:
+      mean lightness moved by 60.4 L (the same lightness was asked); t2 value_floor:
+      lightness p5 23 (R1 59), edit_structure: light structure matches the parent
+      (r -0.11), edit_lightness: mean lightness moved by 59.1 L (the same lightness
+      was asked); t3 value_floor: lightness p5 22 (R1 59), edit_structure: light structure
+      matches the parent (r -0.06), edit_lightness: mean lightness moved by 60.6 L
+      (the same lightness was asked); t4 value_floor: lightness p5 23 (R1 59), edit_structure:
+      light structure matches the parent (r -0.09), edit_lightness: mean lightness
+      moved by 58.8 L (the same lightness was asked).'
+qa_reports:
+  2:
+    job: ui-card-linen-night
+    take: 2
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 35 (R1 51)
+      value: 34.6
+    - check: value_floor
+      status: fail
+      message: lightness p5 23 (R1 59)
+      value: 23.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.4 (R1 5.3)
+      value: 0.43
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.1
+      value: 2.0633
+    - check: palette_drift
+      status: warn
+      message: mean dE 3.0, p95 5.4, off-palette 0.0%
+      value: 2.9967
+    - check: edit_silhouette
+      status: pass
+      message: 99% of the parent's shape kept
+      value: 0.9923
+    - check: edit_structure
+      status: fail
+      message: light structure matches the parent (r -0.11)
+      value: -0.1086
+    - check: edit_lightness
+      status: fail
+      message: mean lightness moved by 59.1 L (the same lightness was asked)
+      value: 59.1355
+    info:
+      metrics_raw:
+        L_p5: 18.2
+        L_p50: 26.3
+        L_p95: 51.0
+        C_p50: 17.9
+        C_p95: 34.8
+        C_p99: 48.3
+        detail: 0.67
+      metrics_locked:
+        L_p5: 23.2
+        L_p50: 27.0
+        L_p95: 50.7
+        C_p50: 17.9
+        C_p95: 34.6
+        C_p99: 48.1
+        detail: 0.43
+    fingerprint: b195ec07e53600a9
+  4:
+    job: ui-card-linen-night
+    take: 4
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 38 (R1 51)
+      value: 38.3
+    - check: value_floor
+      status: fail
+      message: lightness p5 23 (R1 59)
+      value: 22.9
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.5 (R1 5.3)
+      value: 0.45
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.3
+      value: 2.3007
+    - check: palette_drift
+      status: warn
+      message: mean dE 3.4, p95 6.4, off-palette 0.0%
+      value: 3.4456
+    - check: edit_silhouette
+      status: pass
+      message: 99% of the parent's shape kept
+      value: 0.9887
+    - check: edit_structure
+      status: fail
+      message: light structure matches the parent (r -0.09)
+      value: -0.0872
+    - check: edit_lightness
+      status: fail
+      message: mean lightness moved by 58.8 L (the same lightness was asked)
+      value: 58.8002
+    info:
+      metrics_raw:
+        L_p5: 17.2
+        L_p50: 26.2
+        L_p95: 53.9
+        C_p50: 18.1
+        C_p95: 38.5
+        C_p99: 54.3
+        detail: 0.71
+      metrics_locked:
+        L_p5: 22.9
+        L_p50: 26.9
+        L_p95: 53.6
+        C_p50: 18.1
+        C_p95: 38.3
+        C_p99: 54.0
+        detail: 0.45
+    fingerprint: b195ec07e53600a9
+  1:
+    job: ui-card-linen-night
+    take: 1
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 36 (R1 51)
+      value: 36.0
+    - check: value_floor
+      status: fail
+      message: lightness p5 22 (R1 59)
+      value: 22.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.4 (R1 5.3)
+      value: 0.4
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.9
+      value: 2.8593
+    - check: palette_drift
+      status: warn
+      message: mean dE 3.9, p95 6.2, off-palette 0.0%
+      value: 3.9209
+    - check: edit_silhouette
+      status: pass
+      message: 99% of the parent's shape kept
+      value: 0.9929
+    - check: edit_structure
+      status: fail
+      message: light structure matches the parent (r -0.10)
+      value: -0.0996
+    - check: edit_lightness
+      status: fail
+      message: mean lightness moved by 60.4 L (the same lightness was asked)
+      value: 60.4425
+    info:
+      metrics_raw:
+        L_p5: 15.9
+        L_p50: 24.1
+        L_p95: 50.3
+        C_p50: 17.1
+        C_p95: 36.2
+        C_p99: 50.7
+        detail: 0.7
+      metrics_locked:
+        L_p5: 22.5
+        L_p50: 25.7
+        L_p95: 50.1
+        C_p50: 17.1
+        C_p95: 36.0
+        C_p99: 50.4
+        detail: 0.4
+    fingerprint: b195ec07e53600a9
+  3:
+    job: ui-card-linen-night
+    take: 3
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 39 (R1 51)
+      value: 39.3
+    - check: value_floor
+      status: fail
+      message: lightness p5 22 (R1 59)
+      value: 22.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.4 (R1 5.3)
+      value: 0.39
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 3.3
+      value: 3.342
+    - check: palette_drift
+      status: warn
+      message: mean dE 4.3, p95 8.6, off-palette 0.0%
+      value: 4.3184
+    - check: edit_silhouette
+      status: pass
+      message: 99% of the parent's shape kept
+      value: 0.9915
+    - check: edit_structure
+      status: fail
+      message: light structure matches the parent (r -0.06)
+      value: -0.0591
+    - check: edit_lightness
+      status: fail
+      message: mean lightness moved by 60.6 L (the same lightness was asked)
+      value: 60.5903
+    info:
+      metrics_raw:
+        L_p5: 14.2
+        L_p50: 23.5
+        L_p95: 50.7
+        C_p50: 20.4
+        C_p95: 39.5
+        C_p99: 51.5
+        detail: 0.68
+      metrics_locked:
+        L_p5: 22.1
+        L_p50: 25.4
+        L_p95: 50.5
+        C_p50: 20.4
+        C_p95: 39.3
+        C_p99: 51.4
+        detail: 0.39
+    fingerprint: b195ec07e53600a9
+manual_review:
+  excluded_takes: []
+  note: 'Sole unchanged retry exhausted. All four takes fail official value_floor,
+    edit_structure and edit_lightness. The authored night job omits acceptance.profile:
+    night; the frozen manifest, prompt and QA remain unchanged. Initial-pair QA and
+    locked hashes are unchanged after final posting; original processing logs and
+    all four original PNGs remain preserved. No failed master is promoted; founder
+    review pending.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-921297cc-2ca0-467e-a1b1-79685c24518e.png
+  original_generated_png_sha256: 68db6b8884dddb2db71450d80e17fd067d07e27759d18ec64b57a3b5df0ec6fc
+  inbox_png_sha256: a2bce4261c3bddb3c521bfbb6bfa9490443b28a915b20f5e9957e41432ca8061
+  rgba_sha256: 2265ea4bc90bd309d8cd2e9535fd06b837cc412503534a8f4af6df4747774948
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: b195ec07e53600a9
+- take: 2
+  source_file: /workspace/generated_images/exec-979770b8-dfd3-4c40-a629-e62ba566bbfc.png
+  original_generated_png_sha256: 956f94c6119e8f8e7f4bf4cce46a3d5f7aca29a56d71bf08cb5d3d41ca4cc858
+  inbox_png_sha256: 8c5221681dfbcb30670d62d092abe5b238536849fb67f13ac88d999bced41292
+  rgba_sha256: 76ba3b19be1fe58b8f6d8f590ff92821baed6a85ad22163a65cf50e17652e9c6
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: b195ec07e53600a9
+- take: 3
+  source_file: /workspace/generated_images/exec-42789d2f-c0c9-41d2-83df-7bea2697fb73.png
+  original_generated_png_sha256: d6fc4da6d7c1ccd88c270bd98da9ec8fd68352b88a10e6399314ffd814af093a
+  inbox_png_sha256: 3b0077f4942644da1ada07741a18d15f084be4ad71e08172745f0834c282ce88
+  rgba_sha256: 90b23780d0aa83be3464334bd6dea7ee459862bde53aa8c42edf4d8a0a9fb8c2
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: b195ec07e53600a9
+- take: 4
+  source_file: /workspace/generated_images/exec-35c4aefb-9f1f-417b-8405-a7909dcc75cb.png
+  original_generated_png_sha256: 3e5ab893d34c2d9c1410761a020ebcd499d72feaa4b92b4ad57af96795d35431
+  inbox_png_sha256: 32e192ea1e6dcd39115c6653909d940e741f2b92a3ec52e3a05ade0315982c72
+  rgba_sha256: 3e82d6562f3a012d88817327a51b9fd7bdbc3416b777d40ec60bbd72f86a6361
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: b195ec07e53600a9

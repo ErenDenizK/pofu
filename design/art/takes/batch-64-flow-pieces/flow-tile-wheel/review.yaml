@@ -1,0 +1,162 @@
+batch: batch-64-flow-pieces
+contact_sheet: design/art/takes/batch-64-flow-pieces/flow-tile-wheel/contact.jpg
+jobs:
+  flow-tile-wheel:
+    pick: null
+    status: rejected
+    publication: "rejected by the lead 2026-11-12"
+    lead_review: "Lead reject (master withdrawn): the east and west openings are narrower than the straight's (about 18 against 26 percent), a step at the joins. Redo in batch-77 as an edit of the straight."
+    note: auto-picked by QA; founder review pending. Both initial takes pass all hardQA.
+      Independent native review plus owner fresh full1024locked/official256export/actual70pt
+      mixed-straight-join review confirm EMPTY calm shallow roundstone seat with soft
+      raisedring aroundtheauthoredapprox70percent centralshare; centered pale E/Wgroove,
+      closedN/Sstone and shoulder moss, no wheel/paddles/axle/objects/text/waterglints.
+      Broadsoftwalls count as partofthechannel, no inventedfloorpixelwidth or exact512diameter
+      threshold. Slight ring-size/profile and seam differences advisory. Take2 wins
+      eligiblelock_load0.3485 versus0.3507, no retry. Optional final peerfollowup
+      was unavailable due technicalagentthreadcapacity; owner performed truthful actualfinalreview,
+      no fabricated peeracceptance or globalstop. Canonical scale0.25 master checked
+      against exact downscaleRGBA/dimensions/meta, preview andraw. Official Harmony
+      measure/check on194 currentBASE sources; UI excluded by authoritativecatalog,
+      no fabricatedshard. Existing22asset family consumer remains byte-stable; all
+      original PNGs/callbacks/refroles/reports retained. No newgeneration in this
+      preparation.
+qa_reports:
+  1:
+    job: flow-tile-wheel
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 27 (R1 51)
+      value: 26.6
+    - check: value_floor
+      status: pass
+      message: lightness p5 77 (R1 59)
+      value: 77.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.7 (R1 5.3)
+      value: 0.69
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.4
+      value: 0.3507
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.8, p95 1.6, off-palette 0.0%
+      value: 0.8155
+    info:
+      metrics_raw:
+        L_p5: 77.1
+        L_p50: 86.3
+        L_p95: 94.7
+        C_p50: 10.8
+        C_p95: 26.8
+        C_p99: 33.0
+        detail: 0.98
+      metrics_locked:
+        L_p5: 77.2
+        L_p50: 86.3
+        L_p95: 94.7
+        C_p50: 10.8
+        C_p95: 26.6
+        C_p99: 32.9
+        detail: 0.69
+    fingerprint: 88773cb811f942c3
+  2:
+    job: flow-tile-wheel
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 29 (R1 51)
+      value: 28.6
+    - check: value_floor
+      status: pass
+      message: lightness p5 76 (R1 59)
+      value: 76.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.7 (R1 5.3)
+      value: 0.7
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.3
+      value: 0.3485
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.8, p95 1.8, off-palette 0.0%
+      value: 0.8371
+    info:
+      metrics_raw:
+        L_p5: 76.4
+        L_p50: 86.2
+        L_p95: 94.7
+        C_p50: 11.3
+        C_p95: 28.7
+        C_p99: 34.1
+        detail: 1.0
+      metrics_locked:
+        L_p5: 76.4
+        L_p50: 86.2
+        L_p95: 94.6
+        C_p50: 11.3
+        C_p95: 28.6
+        C_p99: 34.0
+        detail: 0.7
+    fingerprint: 88773cb811f942c3
+manual_review:
+  excluded_takes: []
+  note: Both initial takes pass all hardQA. Independent native review plus owner fresh
+    full1024locked/official256export/actual70pt mixed-straight-join review confirm
+    EMPTY calm shallow roundstone seat with soft raisedring aroundtheauthoredapprox70percent
+    centralshare; centered pale E/Wgroove, closedN/Sstone and shoulder moss, no wheel/paddles/axle/objects/text/waterglints.
+    Broadsoftwalls count as partofthechannel, no inventedfloorpixelwidth or exact512diameter
+    threshold. Slight ring-size/profile and seam differences advisory. Take2 wins
+    eligiblelock_load0.3485 versus0.3507, no retry. Optional final peerfollowup was
+    unavailable due technicalagentthreadcapacity; owner performed truthful actualfinalreview,
+    no fabricated peeracceptance or globalstop. Canonical scale0.25 master checked
+    against exact downscaleRGBA/dimensions/meta, preview andraw. Official Harmony
+    measure/check on194 currentBASE sources; UI excluded by authoritativecatalog,
+    no fabricatedshard. Existing22asset family consumer remains byte-stable; all original
+    PNGs/callbacks/refroles/reports retained. No newgeneration in this preparation.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-a4d35dfb-a09a-443a-b77f-029714d52944.png
+  original_generated_png_sha256: 9b0666fcdc3c764a0359fb870790d1cc260654f71a5f8dceb4911a67cf5772e3
+  inbox_png_sha256: 781d5906d181531568daba774753c267d5da7d9314df3bb5e9590e8dd0f0b0ad
+  rgba_sha256: 20cf485fa29086dd215b1a5aa5447398d453149c1a20875b58ddaa297685599d
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 88773cb811f942c3
+- take: 2
+  source_file: /workspace/generated_images/exec-a2f2b02e-fa67-43a7-905a-234bca627907.png
+  original_generated_png_sha256: f97a015aff22a66c97cc38f6fd2e8c5a03e27f54006f63d3fb376c4d866b804d
+  inbox_png_sha256: 3c6e0ae0237616555f0d8942e5d5f952a3acd0f2aaf662d986ae1932c223ba63
+  rgba_sha256: ab33457c989271041cdfd8eb5ffd68fa54cadf4d8cc1034aed6da079b40461b4
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 88773cb811f942c3

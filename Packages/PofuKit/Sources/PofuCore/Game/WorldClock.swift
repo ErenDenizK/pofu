@@ -226,10 +226,19 @@ public struct WorldClock: Sendable {
             invitationOpen: state.visitors.inviteOpenSince != nil,
             metResidents: state.visitors.met,
             invited: state.visitors.invitation?.resident,
-            koke: WonderIslands.status(game: state, day: day),
-            caglayan: WonderIslands.status(of: .caglayan, game: state, day: day),
+            koke: asleepAtBedtime(WonderIslands.status(game: state, day: day), bedtime),
+            caglayan: asleepAtBedtime(WonderIslands.status(of: .caglayan, game: state, day: day), bedtime),
             firstDay: state.firstDay
         )
+    }
+
+    /// Both wonder islands sleep at bedtime: no advance, however the day went.
+    private func asleepAtBedtime(_ status: WonderStatus, _ bedtime: Bool) -> WonderStatus {
+        guard bedtime else { return status }
+        var asleep = status
+        asleep.isAsleep = true
+        asleep.canAdvance = false
+        return asleep
     }
 
     private func visitorSnapshot(of state: GameState) -> VisitorSnapshot? {
@@ -451,6 +460,8 @@ public struct WorldClock: Sendable {
         case .invited(let resident):
             state.visitors.invite(resident, on: frame.day)
         case .tendedWonder(let wonder):
+            // The islands sleep at night: a visit at bedtime changes nothing.
+            guard !isBedtime(at) else { return }
             let resisted = (state.today?.day == frame.day ? state.today?.resistedReaches : nil) ?? 0
             state.wonders.islands[wonder] = WonderIslands.advance(state: state.wonders[wonder], day: frame.day, resistedToday: resisted > 0)
         case .usageMeasured(let minutes):

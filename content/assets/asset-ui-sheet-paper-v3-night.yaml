@@ -2,14 +2,14 @@ id: asset-ui-sheet-paper-v3-night
 type: asset
 title_tr: ui-sheet-paper-v3-night
 title_en: sheet-paper-v3-night (ui)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  NIGHT VERSION of the attached day piece: the identical shape, size and position, every edge
-  in the same pixels; only the light and color change. It is now lit by a warm lantern from
-  the upper left at night: the material turns a deep warm plum-brown and ink-blue shade, the
-  highlight along the top edge becomes a soft amber, shadows are deeper warm indigo-brown
-  (never black), the whole piece stays readable as the same o…
+summary: 'NIGHT VERSION of the attached day piece: the identical shape, size and position,
+  every edge in the same pixels; only the light and color change. It is now lit by
+  a warm lantern from the upper left at night: the material turns a deep warm plum-brown
+  and ink-blue shade, the highlight along the top edge becomes a soft amber, shadows
+  are deeper warm indigo-brown (never black), the whole piece stays readable as the
+  same o…'
 links:
   variant_of:
   - asset-ui-sheet-paper-v3
@@ -22,3 +22,29 @@ sources:
 kind: ui
 batch: batch-61-ui-kit-v3
 size: 1024x1024
+notes:
+- 'batch-61-ui-kit-v3 skipped after four takes: Skip after initial2 plus sole unchanged
+  retry2: all4 official takes hard-fail value_floor, palette_drift, edit_structure
+  and edit_lightness. Exact results and original sourcePNG/RGBA/QA/locked hashes retained,
+  first-pair QA AND locked PNG bytes are identical before/after finalpost as sealed.
+  See processing-history/paper-night-initial/PRESERVATION.json, created before retrydispatch.
+  This authored night recolor lacks acceptance.profile:night, retains ordinary valuefloor/lightness
+  and actual palette/structure checks; proposal only for lead to review suitable explicit
+  night palette/profile and recolor structure, never waive or edit thresholds locally.
+  No force is authorized, no further pair, no sourcepaint/resize or capworkaround.
+  Declared dependency graph has no true child for this nightvariant, so day sheet/deckle/ribbon
+  and other independent UI continue. Four exact CLI prompts/ordered attachment hashes/account/sourcecallbacks
+  preserved. No generated image was regenerated under an existing ordinal. Automated
+  failures: t1 value_floor: lightness p5 23 (R1 59), palette_drift: mean dE 5.4, p95
+  8.0, off-palette 0.1% (top: #774422 (0.0%), #994422 (0.0%)), edit_structure: light
+  structure matches the parent (r -0.09), edit_lightness: mean lightness moved by
+  62.6 L (the same lightness was asked); t2 value_floor: lightness p5 23 (R1 59),
+  palette_drift: mean dE 6.2, p95 8.8, off-palette 0.5% (top: #CC7733 (0.2%), #BB6633
+  (0.1%)), edit_structure: light structure matches the parent (r -0.03), edit_lightness:
+  mean lightness moved by 60.9 L (the same lightness was asked); t3 value_floor: lightness
+  p5 23 (R1 59), palette_drift: mean dE 4.6, p95 7.4, off-palette 0.0%, edit_structure:
+  light structure matches the parent (r -0.07), edit_lightness: mean lightness moved
+  by 60.9 L (the same lightness was asked); t4 value_floor: lightness p5 23 (R1 59),
+  palette_drift: mean dE 5.5, p95 8.1, off-palette 0.5% (top: #BB6633 (0.1%), #CC7733
+  (0.1%)), edit_structure: light structure matches the parent (r -0.03), edit_lightness:
+  mean lightness moved by 60.7 L (the same lightness was asked).'

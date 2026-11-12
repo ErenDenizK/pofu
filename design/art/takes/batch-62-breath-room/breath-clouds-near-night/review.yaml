@@ -1,0 +1,22 @@
+batch: batch-62-breath-room
+jobs:
+  breath-clouds-near-night:
+    pick: null
+    status: obsolete
+    publication: "obsolete 2026-11-12; no pick, no redo"
+    lead_review: "Obsolete, no redo: the Door (docs/design/the-door.md) retires the separate breath room into the Door scene's Breath state (a ring of light round the doorway), so the isle-and-clouds scene is no longer planned."
+    note: 'Skipped without generation: true dependency breath-clouds-near was already
+      skipped because root breath-scene failed. Skipped without generation: true dependency
+      breath-scene failed after its one allowed retry. Skipped after one allowed paired
+      retry: all four official takes fail production palette_drift. Lilac/rose sunset
+      colors requested by the source fall outside its default UI palettes; no profile/palette/threshold
+      edits and no force. Exact source prompts/references, original PNGs, all four
+      q90 takes and official QA are retained. Visual scene is empty of Pofu, ring
+      and text; no shipping geometry approval is claimed. Automated failures: t1 palette_drift:
+      mean dE 12.5, p95 20.0, off-palette 65.9% (top: #DD88AA (21.8%), #AA77BB (6.7%));
+      t2 palette_drift: mean dE 12.4, p95 20.3, off-palette 63.6% (top: #DD88AA (19.0%),
+      #AA77BB (6.6%)); t3 palette_drift: mean dE 11.9, p95 21.5, off-palette 59.9%
+      (top: #DD88AA (7.9%), #EE8899 (6.6%)); t4 palette_drift: mean dE 11.7, p95 20.7,
+      off-palette 62.4% (top: #EE99AA (12.9%), #DD88AA (12.3%)).'
+generated_takes: 0
+failed_dependency: breath-clouds-near

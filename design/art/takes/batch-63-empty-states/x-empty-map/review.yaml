@@ -1,0 +1,187 @@
+batch: batch-63-empty-states
+manifest: tools/imagegen/manifest/batch-63-empty-states.yaml
+manifest_sha256: 16e2f6cf9233a81573226e366bc5ef6b93e66724b5c90f66dc096e5a9502d160
+contact_sheet: design/art/takes/batch-63-empty-states/x-empty-map/contact.jpg
+jobs:
+  x-empty-map:
+    pick: 1
+    publication: "promoted; picked by the lead 2026-11-12 (take 1); founder review pending"
+    lead_review: "Lead pick: blank map, spyglass, three faint far islands; clean alpha (the blocky look in the contact sheet is the checkerboard)."
+    note: 'auto-picked by QA; founder review pending. Take1 passes all hard QA and
+      literal manual review: one R1 Pofu with curl, blank partly unfolded map in one
+      paw and brass spyglass in other, grassy tuft, exactly THREE faint distant island
+      silhouettes in local lilac-peach mist. Native and full official locked outputs
+      plus proper cream/night composites viewed; no full-canvas sky, writing, other
+      characters or card/frame. The mist is explicitly authored, not rejected as generic
+      alpha backing. Exclude take2 despite lower lock_load1.5178: it visibly paints
+      FOUR distinct distant island silhouettes (front-left, middle/back-left, back-right,
+      larger front-right), violating literal three. Take1 load1.8019 is lowest among
+      eligible, so no extra retry. Clean negative space; no invented raw-width or
+      zero-alpha threshold. UI no LIGHT and authored style-anchor-v1 unchanged; style
+      warnings advisory. Both original PNGs/callbacks and all QA/locked/reference
+      hashes preserved. Exploration only, never promoted.'
+qa_reports:
+  1:
+    job: x-empty-map
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 52 (R1 51)
+      value: 51.7
+    - check: value_floor
+      status: pass
+      message: lightness p5 57 (R1 59)
+      value: 56.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.5 (R1 5.3)
+      value: 3.48
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.8
+      value: 1.8019
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.3, p95 11.0, off-palette 3.6% (top: #998855 (0.3%), #888855
+        (0.3%))'
+      value: 3.2662
+    info:
+      metrics_raw:
+        L_p5: 56.4
+        L_p50: 80.4
+        L_p95: 92.8
+        C_p50: 26.8
+        C_p95: 53.6
+        C_p99: 62.1
+        detail: 4.9
+      metrics_locked:
+        L_p5: 56.6
+        L_p50: 80.4
+        L_p95: 92.5
+        C_p50: 26.8
+        C_p95: 51.7
+        C_p99: 57.7
+        detail: 3.48
+    fingerprint: 9e52c1dda3eebed6
+  2:
+    job: x-empty-map
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 50 (R1 51)
+      value: 49.9
+    - check: value_floor
+      status: pass
+      message: lightness p5 59 (R1 59)
+      value: 58.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.1 (R1 5.3)
+      value: 3.14
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.5
+      value: 1.5178
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.8, p95 9.4, off-palette 0.8% (top: #663311 (0.1%), #DD8833
+        (0.1%))'
+      value: 2.8003
+    info:
+      metrics_raw:
+        L_p5: 58.1
+        L_p50: 81.3
+        L_p95: 92.6
+        C_p50: 24.9
+        C_p95: 51.2
+        C_p99: 58.9
+        detail: 4.41
+      metrics_locked:
+        L_p5: 58.6
+        L_p50: 81.2
+        L_p95: 92.2
+        C_p50: 25.0
+        C_p95: 49.9
+        C_p99: 55.9
+        detail: 3.14
+    fingerprint: 9e52c1dda3eebed6
+manual_review:
+  observed_note: 'Take1 passes all hard QA and literal manual review: one R1 Pofu
+    with curl, blank partly unfolded map in one paw and brass spyglass in other, grassy
+    tuft, exactly THREE faint distant island silhouettes in local lilac-peach mist.
+    Native and full official locked outputs plus proper cream/night composites viewed;
+    no full-canvas sky, writing, other characters or card/frame. The mist is explicitly
+    authored, not rejected as generic alpha backing. Exclude take2 despite lower lock_load1.5178:
+    it visibly paints FOUR distinct distant island silhouettes (front-left, middle/back-left,
+    back-right, larger front-right), violating literal three. Take1 load1.8019 is
+    lowest among eligible, so no extra retry. Clean negative space; no invented raw-width
+    or zero-alpha threshold. UI no LIGHT and authored style-anchor-v1 unchanged; style
+    warnings advisory. Both original PNGs/callbacks and all QA/locked/reference hashes
+    preserved. Exploration only, never promoted.'
+  excluded_takes:
+  - 2
+sources:
+- batch: batch-63-empty-states
+  job: x-empty-map
+  take: 1
+  round: 1
+  logical_run: 20261106-b63-empty-states
+  source_file: /workspace/generated_images/exec-efa7ae32-0b24-47b7-bace-5106a29500aa.png
+  returned_at: '2026-11-06T11:11:59.755Z'
+  prompt_sha256: 143388b7e6c49f932b8b8a3fe19b4131bb55313c6c27b75f1e86624bf999d0c7
+  fingerprint: 9e52c1dda3eebed6
+  saved_at: '2026-11-06T11:12:00.066894+00:00'
+  original_generated_png_sha256: cea7f6e3cdb8ac7df7e228a8bbced65ffa53f30b5c6362be918da6c0088fa72e
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 455f5169c697ddcb8823dde5c5ec9b43e6854a93c4960ce1d7ad0087fe269a88
+  inbox_png_sha256: b4e1252203f57eebf0bf8b3b28e15dbe91287546e84b87b842759d55d8eefa5d
+  qa_sha256: bb2ce9e1ecc37b60692fecfbe9461c599267479af9c25eae228203ef1d235108
+- batch: batch-63-empty-states
+  job: x-empty-map
+  take: 2
+  round: 1
+  logical_run: 20261106-b63-empty-states
+  source_file: /workspace/generated_images/exec-f4b158a1-58a8-4b96-b3ce-7470baf438f7.png
+  returned_at: '2026-11-06T11:11:02.171Z'
+  prompt_sha256: 143388b7e6c49f932b8b8a3fe19b4131bb55313c6c27b75f1e86624bf999d0c7
+  fingerprint: 9e52c1dda3eebed6
+  saved_at: '2026-11-06T11:11:02.603235+00:00'
+  original_generated_png_sha256: bbc091fd0cac06842cef274f3a146df359d7cb3006d823b384d0a1dce24b2a0e
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 3cadd65449481f9349aad70e918448711c185cfa9e7b2dabc4fa6e9f12c96797
+  inbox_png_sha256: a8d24f0863dd6243617611f68d21388fb448e912a9a22f00a9ca13b1784e9a52
+  qa_sha256: 4064b9df58e6b03ee30e25fcb638dfe19f0f072c919395be41bc7d3919eab1b6
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published

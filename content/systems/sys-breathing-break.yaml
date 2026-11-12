@@ -4,31 +4,39 @@ title_tr: Nefes molası
 title_en: The breathing break
 status: in-production
 horizon: now
-summary: >-
-  The hard limit (ADR-0015). Past the daily hour, every open waits for one short breath with
-  Pofu, started by the user's tap: 5 s (in 2, out 3), 10 s from the 4th over-limit open, never
-  more than 10 s. "Not now" is always there and counts as a skip.
+summary: 'The hard limit (ADR-0015). Past the daily hour, every open waits for one
+  short breath with Pofu, started by the user''s tap: 5 s (in 2, out 3), 10 s from
+  the 4th over-limit open, never more than 10 s. "Not now" is always there and counts
+  as a skip.'
 notes:
-- >-
-  Copy never says "limit", "blocked" or "penalty": "We've had our hour today. Breathe with
-  me first?"
-- >-
-  A soft lavender room, Pofu inside a calm orb; one word at a time, no numbers, no countdown.
-- >-
-  Never costs or earns seeds, never locks out, never applies to the emergency pass (A13, A14).
-- >-
-  BreathRules implemented in PofuCore; the shield and Hop! still read ScreenTimeGateRules.
-- >-
-  Simulation: the heavy scroller meets 17 breaks a day in week 1 (159 s of breathing), almost
-  none by week 13. The breath's effect (20 % of over-limit opens end after it) is an assumption.
-- >-
-  Risk: a 5-second tap-through that becomes muscle memory. Watch the share of over-limit opens
-  ending in "I'm good, skip it" by week 2.
+- 'Copy never says "limit", "blocked" or "penalty": "We''ve had our hour today. Breathe
+  with me first?"'
+- A soft lavender room, Pofu inside a calm orb; one word at a time, no numbers, no
+  countdown.
+- Never costs or earns seeds, never locks out, never applies to the emergency pass
+  (A13, A14).
+- BreathRules implemented in PofuCore; the shield and Hop! still read ScreenTimeGateRules.
+- 'Simulation: the heavy scroller meets 17 breaks a day in week 1 (159 s of breathing),
+  almost none by week 13. The breath''s effect (20 % of over-limit opens end after
+  it) is an assumption.'
+- 'Risk: a 5-second tap-through that becomes muscle memory. Watch the share of over-limit
+  opens ending in "I''m good, skip it" by week 2.'
 links:
   requires:
   - sys-daily-hour
   feeds:
   - sys-skip-gift
+  uses_asset:
+  - asset-breath-scene
+  - asset-breath-isle
+  - asset-breath-isle-night
+  - asset-breath-clouds-far
+  - asset-breath-clouds-near
+  - asset-breath-clouds-far-night
+  - asset-breath-clouds-near-night
+  - asset-breath-halo
+  - asset-breath-ring-spark
+  - asset-breath-petals
 sources:
 - doc: docs/product/game-design.md
   anchor: '#the-breathing-break-the-hard-limit'

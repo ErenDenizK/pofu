@@ -143,6 +143,31 @@ struct VisitorScheduleTests {
         #expect(others.allSatisfy { $0.gift == nil })
     }
 
+    @Test func giftParcelsHoldSeedsWhileDecorIsOff() {
+        #expect(!schedule.rules.decorGifts)
+        let visits = simulate(days: 3_000, context: allHealed).compactMap(\.1).filter { $0.reason == .gift }
+        #expect(!visits.isEmpty)
+        for visit in visits {
+            guard case .seeds(let n)? = visit.gift else {
+                Issue.record("a gift that is not seeds: \(String(describing: visit.gift))")
+                continue
+            }
+            #expect(schedule.rules.giftSeeds.contains(n))
+        }
+        // Switched on, decor parcels exist again.
+        var rules = VisitorRules()
+        rules.decorGifts = true
+        let withDecor = VisitorSchedule(rules: rules)
+        var ledger = VisitorLedger(seed: 7)
+        var sawDecor = false
+        for offset in 0..<3_000 {
+            withDecor.roll(&ledger, to: monday.adding(days: offset), context: allHealed)
+            if case .decor? = ledger.current?.gift { sawDecor = true }
+            ledger.noteSeen()
+        }
+        #expect(sawDecor)
+    }
+
     // MARK: - Postcard
 
     @Test func gezginsPostcardComesBeforeAnyIslandIsHealed() {

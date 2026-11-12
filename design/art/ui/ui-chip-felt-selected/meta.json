@@ -1,0 +1,125 @@
+{
+  "job": "ui-chip-felt-selected",
+  "batch": "batch-61-ui-kit-v3",
+  "asset": "ui__chip-felt-selected",
+  "take": 2,
+  "takes_considered": 2,
+  "approved_at": "2026-11-10T16:42:16+00:00",
+  "image": "design/art/ui/ui-chip-felt-selected/ui-chip-felt-selected.png",
+  "raw": "design/art/ui/ui-chip-felt-selected/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "9b72c83e90a46bf4",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nThe same chip, selected: the felt a shade darker and warmer (#E3C79A) and the stitches just inside the rim now bold honey-gold thread (#E9A93B), slightly larger. The outline, size and position stay.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nOutput: one image, transparent background PNG, landscape 1536 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/ui/ui-chip-felt/ui-chip-felt.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-10T16:41:09+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": {
+    "scale": 0.9986,
+    "cx": 767.5,
+    "cy": 780.0,
+    "dx": 0,
+    "dy": 1
+  },
+  "fit": null,
+  "emit_region": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1536x1024"
+      },
+      {
+        "check": "edit_alignment",
+        "status": "pass",
+        "message": "the edit rescaled the object x1.001 and moved it; aligned back to the parent",
+        "value": 0.9986
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 40 (R1 51)",
+        "value": 39.9
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 73 (R1 59)",
+        "value": 72.8
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 1.7 (R1 5.3)",
+        "value": 1.7
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 1.1",
+        "value": 1.1474
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 2.3, p95 4.1, off-palette 1.3% (top: #CC8822 (0.4%), #DD9933 (0.2%))",
+        "value": 2.2508
+      },
+      {
+        "check": "edit_silhouette",
+        "status": "pass",
+        "message": "100% of the parent's shape kept",
+        "value": 0.9971
+      },
+      {
+        "check": "edit_structure",
+        "status": "warn",
+        "message": "light structure matches the parent (r 0.70)",
+        "value": 0.7017
+      },
+      {
+        "check": "edit_lightness",
+        "status": "pass",
+        "message": "mean lightness moved by 8.2 L (the same lightness was asked)",
+        "value": 8.2131
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Take 2 clears every hard check; edit_structure warns. Existing parent aspect ratio inherited; slicing not certified.",
+  "slice": {
+    "caps": [
+      0.0,
+      18.0,
+      0.0,
+      18.0
+    ],
+    "ship_height": 36.0
+  }
+}

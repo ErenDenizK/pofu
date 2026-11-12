@@ -34,6 +34,40 @@ links:
   - asset-icon-rumour
   - asset-icon-decor
   - asset-ui-menu-paper
+  - asset-ui-plaque-honey
+  - asset-ui-plaque-honey-pressed
+  - asset-ui-plaque-bare
+  - asset-ui-plaque-cream
+  - asset-ui-plaque-cream-pressed
+  - asset-ui-plaque-quiet
+  - asset-ui-plaque-quiet-pressed
+  - asset-ui-swash
+  - asset-ui-face-disc-v2
+  - asset-ui-face-disc-v2-night
+  - asset-ui-sheet-paper-v3
+  - asset-ui-sheet-paper-v3-night
+  - asset-ui-sheet-deckle
+  - asset-ui-ribbon-grip
+  - asset-ui-card-stitched
+  - asset-ui-card-stitched-night
+  - asset-ui-card-linen
+  - asset-ui-card-linen-night
+  - asset-ui-pin-ribbon
+  - asset-ui-bubble-paper
+  - asset-ui-bubble-paper-night
+  - asset-ui-bubble-tail
+  - asset-ui-tab-ribbon
+  - asset-ui-chip-felt
+  - asset-ui-chip-felt-selected
+  - asset-ui-tag-v3
+  - asset-ui-tag-v3-night
+  - asset-ui-toast-strip
+  - asset-ui-toast-strip-night
+  - asset-ui-groove-wood
+  - asset-ui-fill-honey
+  - asset-ui-pip-pot
+  - asset-ui-seals
+  - asset-ui-stamps
 sources:
 - doc: docs/archive/ui-system-v2.md
   anchor: '#2-the-principle-three-layers-and-a-switch'

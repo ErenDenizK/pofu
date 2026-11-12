@@ -105,11 +105,14 @@ public struct WonderStatus: Hashable, Sendable {
     /// A visit today would advance the stage: a day with a resisted reach,
     /// not advanced yet today.
     public var canAdvance: Bool
+    /// Bedtime: the island sleeps and a visit changes nothing.
+    public var isAsleep: Bool
 
-    public init(phase: Phase = .hidden, stage: Int = 0, canAdvance: Bool = false) {
+    public init(phase: Phase = .hidden, stage: Int = 0, canAdvance: Bool = false, isAsleep: Bool = false) {
         self.phase = phase
         self.stage = stage
         self.canAdvance = canAdvance
+        self.isAsleep = isAsleep
     }
 
     public var isArrived: Bool {
@@ -137,14 +140,17 @@ public enum WonderIslands {
     /// Tended days before Çağlayan's rumour (the water noise stops somewhere,
     /// game plan day 8), and only once Koke is healed.
     public static let caglayanRumourTendedDays = 8
+    /// Tended days after which Çağlayan's rumour comes even if Koke is not
+    /// healed (a filler island never blocks the main road).
+    public static let caglayanFallbackTendedDays = 12
     /// Days from Çağlayan's rumour to its arrival (a rumour two days before
     /// each island, game plan §3).
     public static let caglayanArrivalDays = 2
 
     /// Starts `day`: Koke's rumour on the first tended day from the fifth
     /// with the harbor open and its arrival on the next day; Çağlayan's
-    /// rumour once Koke is healed from the eighth tended day, its arrival
-    /// two days later. Each island moves at most one step a day.
+    /// rumour from the eighth tended day once Koke is healed, or from the
+    /// twelfth tended day whatever Koke's state, its arrival two days later. Each island moves at most one step a day.
     static func roll(_ ledger: inout WonderLedger, to day: LocalDay, tendedDays: Int, harborOpen: Bool) {
         var koke = ledger[.koke]
         if koke.rumouredOn == nil {
@@ -158,7 +164,9 @@ public enum WonderIslands {
         }
         var caglayan = ledger[.caglayan]
         if caglayan.rumouredOn == nil {
-            if tendedDays >= caglayanRumourTendedDays, harborOpen, koke.arrivedOn != nil, koke.stage >= healedStage {
+            if tendedDays >= caglayanRumourTendedDays, harborOpen,
+                (koke.arrivedOn != nil && koke.stage >= healedStage) || tendedDays >= caglayanFallbackTendedDays
+            {
                 caglayan.rumouredOn = day
                 ledger.islands[.caglayan] = caglayan
             }

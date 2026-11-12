@@ -36,3 +36,19 @@ notes:
   off-palette 19.5% (top: #5577BB (3.5%), #6688CC (1.7%)); t4 palette_drift: mean
   dE 6.9, p95 20.7, off-palette 20.9% (top: #5577CC (1.9%), #5577BB (1.7%)).'
 - "lead-picks-2026-11-06-gate: Skipped without generation in lead-picks-2026-11-06-gate: the true edit_of parent gate-door-scene retained lead pick take 2 cannot be delivered losslessly under the upload cap. The palette exception does not waive delivery. No child call, child QA result or placeholder take is claimed. The historical parent-reference-only contact/review remains unchanged."
+- 'batch-58-gate-round-door skipped after four takes: Sole unchanged retry exhausted.
+  All four official reports fail palette_drift13.67/15.7626/15.2944/14.9713 and edit_stability0.1367/0.1058/0.1082/0.0992.
+  Proper-alpha source and official locked review also excludes takes1 and4 for retaining
+  path stones although ONLY foreground grass and flowers are requested; takes2 and3
+  remove the stones but still hard-fail QA. Apparent raw RGB glow disappears on proper
+  cream/night alpha composites. Initial source, QA and locked seals and processing
+  history remain unchanged; all four original PNGs are retained. Full-parent extraction
+  checks receive no child exception or force. No master is promoted and no further
+  grass generation is allowed; founder review pending. Automated failures: t1 palette_drift:
+  mean dE 13.7, p95 23.2, off-palette 73.7% (top: #777733 (8.3%), #888833 (7.9%)),
+  edit_stability: 14% of the parent level unchanged; t2 palette_drift: mean dE 15.8,
+  p95 21.9, off-palette 86.7% (top: #888833 (11.7%), #999933 (10.5%)), edit_stability:
+  11% of the parent level unchanged; t3 palette_drift: mean dE 15.3, p95 21.6, off-palette
+  86.8% (top: #999944 (11.2%), #BBAA44 (10.6%)), edit_stability: 11% of the parent
+  level unchanged; t4 palette_drift: mean dE 15.0, p95 22.8, off-palette 78.2% (top:
+  #888833 (9.7%), #AAAA44 (9.1%)), edit_stability: 10% of the parent level unchanged.'

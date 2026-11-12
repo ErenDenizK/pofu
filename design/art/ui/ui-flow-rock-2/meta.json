@@ -1,0 +1,106 @@
+{
+  "job": "flow-rock-2",
+  "batch": "batch-64-flow-pieces",
+  "asset": "ui__flow-rock-2",
+  "take": 2,
+  "takes_considered": 2,
+  "approved_at": "2026-11-06T17:58:02+00:00",
+  "image": "design/art/ui/ui-flow-rock-2/ui-flow-rock-2.png",
+  "raw": "design/art/ui/ui-flow-rock-2/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "f3467ea381e685c1",
+  "prompt": "REFERENCES (attached, in this order):\n1. Çağlayan's concept plate: take ONLY the look of its pale rounded cliff stone, its soft moss and grass, its soft painted water and its light. Do not draw the island, the cliff, the mill or the pool as a scene.\n2. A finished prop of the game: match its soft airbrushed finish, matte materials and warm light (do not draw the stall).\n3. The straight tile: the same bank stone, light and soft finish (do not copy its groove).\n\nA game tile for a cozy mobile puzzle, seen straight from above with a very slight tilt, lit softly from the upper left, filling the canvas edge to edge (full bleed): short soft green bank grass all over, and one rounded boulder of pale warm-grey stone slightly off the middle, with a smaller stone beside it, moss on top, soft ambient shade where they meet the grass. A different outline from the first boulder. No groove, no water.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: text, letters, numbers, symbols, arrows, icons, an outline, a border or margin around the tile, a drop shadow outside the tile, dark brown or black grooves, bars or slots, deep holes, harsh contrast, gloss or specular glints, glass, pure black, neon or saturated colors, a 3D render look, photorealism\n\nOutput: one image, opaque, full bleed, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/takes/batch-17-islands-v2/x2-caglayan-b/plate__x2-caglayan-b--t1.webp",
+      "role": "Çağlayan's concept plate: take ONLY the look of its pale rounded cliff stone, its soft moss and grass, its soft painted water and its light. Do not draw the island, the cliff, the mill or the pool as a scene."
+    },
+    {
+      "path": "design/art/stations/tea-stall-5/tea-stall-5.png",
+      "role": "A finished prop of the game: match its soft airbrushed finish, matte materials and warm light (do not draw the stall)."
+    },
+    {
+      "path": "design/art/ui/ui-flow-tile-straight/ui-flow-tile-straight.png",
+      "role": "The straight tile: the same bank stone, light and soft finish (do not copy its groove)."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-06T17:53:00+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "fit": null,
+  "emit_region": null,
+  "qa": {
+    "status": "pass",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "opaque, as this kind must be"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 and center-cropped to 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 46 (R1 51)",
+        "value": 45.7
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 74 (R1 59)",
+        "value": 73.6
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 0.7 (R1 5.3)",
+        "value": 0.69
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 0.5",
+        "value": 0.4946
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 2.4, p95 6.9, off-palette 0.0%",
+        "value": 2.4381
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Both initial takes pass hardQA and owner native, actual locked, canonical256 export and70pt review. Exactly one off-center rounded pale mossy boulder plus one smaller stone, full-bleed short grass and soft contact shade; no groove, water, external frame or text. Distinct irregular two-stone outline from retained single-rock studies; no registered upgrade claim because the independent first rock has no approved master. This job has no70percent size requirement and none is imported. T1 palette_drift WARN remains advisory. Take2 wins normal load.4946 versus.7186, no retry. Canonical scale.25 lossless delivery, raw and preview verified. Official Harmony measure/check against194 actualBASE sources; UI is outside authoritative catalog, no fabricated shard. Existing22 family consumer links remain byte-stable. All originals, callbacks and exact prompts/references/reports retained.",
+  "deliver": {
+    "scale": 0.25,
+    "original_size": [
+      1024,
+      1024
+    ],
+    "delivered_size": [
+      256,
+      256
+    ]
+  }
+}

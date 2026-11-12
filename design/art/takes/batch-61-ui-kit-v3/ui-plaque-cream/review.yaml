@@ -1,0 +1,205 @@
+batch: batch-61-ui-kit-v3
+contact_sheet: design/art/takes/batch-61-ui-kit-v3/ui-plaque-cream/contact.jpg
+jobs:
+  ui-plaque-cream:
+    pick: 2
+    publication: "promoted; picked by the lead 2026-11-12 (take 2); founder review pending"
+    lead_review: "Lead pick: cream linen in a thin honey rim; ranks clearly below honey."
+    note: 'auto-picked by QA; founder review pending. Both retained initials are hard-QA/manual
+      eligible as sealed in root-cream-bare-final-manual-review.json and native-cap
+      preflight; canonical lowest lockload selects take2 (0.7848 vs0.7923). Blank
+      cream linen face inside a thin honey-wood rim, weave onlynear edges and a quiet
+      smooth even center; no text/holes/pins/glass. Proper cream/night alpha composites
+      are clean: source-view glow is hiddenRGB underalpha0, not a painted backdrop.
+      Authored cloth-face changes govern same-piece KEEP; no invented pixeluniformity
+      or material-countgate. Native671240PNG delivered through exactlosslessWebP preflight489358B;
+      raw and originalPNG/RGBA retained. Authored slice metadata/source/QA/consumer
+      unchanged, no claimedleadcapapproval/appintegration. Required real complete172source
+      canonical Harmony measure/check and byte-exact foreign restoration; no fakeUIshard.
+      Same-owner immutableBASEstorage optimization changes no bytes/modes; originalgeneratedimages
+      and ownoutputs neverlinked. No regeneration/force/newretry/profileedit. auto-picked
+      by QA; founder review pending.'
+qa_reports:
+  1:
+    job: ui-plaque-cream
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: edit_alignment
+      status: pass
+      message: the edit rescaled the object x1.028 and moved it; aligned back to the
+        parent
+      value: 0.9727
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 45 (R1 51)
+      value: 45.1
+    - check: value_floor
+      status: pass
+      message: lightness p5 74 (R1 59)
+      value: 74.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.4 (R1 5.3)
+      value: 1.44
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.7923
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 0.7, p95 1.9, off-palette 0.0% (top: #AA6622 (0.0%))'
+      value: 0.696
+    - check: edit_silhouette
+      status: pass
+      message: 95% of the parent's shape kept
+      value: 0.9496
+    - check: edit_structure
+      status: warn
+      message: light structure matches the parent (r 0.64)
+      value: 0.6396
+    - check: edit_lightness
+      status: warn
+      message: mean lightness moved by 11.4 L (the same lightness was asked)
+      value: 11.3866
+    info:
+      alignment:
+        scale: 0.9727
+        cx: 766.0
+        cy: 778.0
+        dx: 0
+        dy: -3
+      metrics_raw:
+        L_p5: 72.9
+        L_p50: 93.3
+        L_p95: 94.0
+        C_p50: 9.5
+        C_p95: 48.1
+        C_p99: 52.2
+        detail: 1.89
+      metrics_locked:
+        L_p5: 74.0
+        L_p50: 93.6
+        L_p95: 94.3
+        C_p50: 9.5
+        C_p95: 45.1
+        C_p99: 51.0
+        detail: 1.44
+    fingerprint: 6b5ffb30943f90e4
+  2:
+    job: ui-plaque-cream
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: edit_alignment
+      status: pass
+      message: the edit rescaled the object x1.030 and moved it; aligned back to the
+        parent
+      value: 0.9707
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 50 (R1 51)
+      value: 50.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 76 (R1 59)
+      value: 75.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.5 (R1 5.3)
+      value: 1.47
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.7848
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 0.9, p95 1.7, off-palette 0.4% (top: #AA6622 (0.2%), #996622
+        (0.1%))'
+      value: 0.9108
+    - check: edit_silhouette
+      status: pass
+      message: 95% of the parent's shape kept
+      value: 0.9466
+    - check: edit_structure
+      status: warn
+      message: light structure matches the parent (r 0.67)
+      value: 0.6719
+    - check: edit_lightness
+      status: warn
+      message: mean lightness moved by 12.4 L (the same lightness was asked)
+      value: 12.3568
+    info:
+      alignment:
+        scale: 0.9707
+        cx: 765.5
+        cy: 777.0
+        dx: 0
+        dy: -2
+      metrics_raw:
+        L_p5: 74.8
+        L_p50: 94.2
+        L_p95: 94.6
+        C_p50: 11.2
+        C_p95: 52.9
+        C_p99: 55.7
+        detail: 1.8
+      metrics_locked:
+        L_p5: 75.7
+        L_p50: 94.5
+        L_p95: 94.9
+        C_p50: 11.3
+        C_p95: 50.5
+        C_p99: 55.1
+        detail: 1.47
+    fingerprint: 6b5ffb30943f90e4
+manual_review:
+  excluded_takes: []
+  note: 'Both retained initials are hard-QA/manual eligible as sealed in root-cream-bare-final-manual-review.json
+    and native-cap preflight; canonical lowest lockload selects take2 (0.7848 vs0.7923).
+    Blank cream linen face inside a thin honey-wood rim, weave onlynear edges and
+    a quiet smooth even center; no text/holes/pins/glass. Proper cream/night alpha
+    composites are clean: source-view glow is hiddenRGB underalpha0, not a painted
+    backdrop. Authored cloth-face changes govern same-piece KEEP; no invented pixeluniformity
+    or material-countgate. Native671240PNG delivered through exactlosslessWebP preflight489358B;
+    raw and originalPNG/RGBA retained. Authored slice metadata/source/QA/consumer
+    unchanged, no claimedleadcapapproval/appintegration. Required real complete172source
+    canonical Harmony measure/check and byte-exact foreign restoration; no fakeUIshard.
+    Same-owner immutableBASEstorage optimization changes no bytes/modes; originalgeneratedimages
+    and ownoutputs neverlinked. No regeneration/force/newretry/profileedit. auto-picked
+    by QA; founder review pending.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-d77329c5-4dc4-4bf9-9a7f-378518fe92dc.png
+  original_generated_png_sha256: 14890bd1ef4b6670025885d9c92f19f2c0d678e9b93e901e304452a5313844f3
+  inbox_png_sha256: 1040b866f57c4a28a03dbe228483a3c55273e0e5bc16a57ca5cb5c016ded1a8b
+  rgba_sha256: f26d5936d3d6841cd0743fc7bada5f375c6ae810f85fc25d2882dc58b0ae606a
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 6b5ffb30943f90e4
+- take: 2
+  source_file: /workspace/generated_images/exec-8b0ed8be-2f68-4e9a-b5ff-f7b23f8f8cd6.png
+  original_generated_png_sha256: 8bc6f8adde4d01b1839898280f3db7980309b0c6e64a8f1f56c325b848768130
+  inbox_png_sha256: b656d167db8df1bdbee6f07aa11493d58367b2624492ce18d6394eadd2659f24
+  rgba_sha256: 35cd21a67726d5e08f66458552adbfa68eaf762a9ee08b40d00bca261d662668
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 6b5ffb30943f90e4

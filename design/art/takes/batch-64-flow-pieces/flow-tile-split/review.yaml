@@ -1,0 +1,159 @@
+batch: batch-64-flow-pieces
+contact_sheet: design/art/takes/batch-64-flow-pieces/flow-tile-split/contact.jpg
+jobs:
+  flow-tile-split:
+    pick: null
+    status: rejected
+    publication: "rejected by the lead 2026-11-12"
+    lead_review: "Lead reject (master withdrawn): all three openings are about 18 percent wide against the straight's 26, a visible step at every join on a test board. Redo in batch-77 as an edit of the straight."
+    note: auto-picked by QA; founder review pending. Both initial takes pass hard
+      QA and independent native/locked/manual review. Take2 ranks first by eligible
+      lock_load0.3069 versus0.3302. Light shallow rounded north/east/west T channel,
+      visually centered north opening and side openings around midpoints, south closed
+      stone, moss on banks only, full bleed and no text. Actual70pt mixed approved-straight
+      joins remain continuous. Small shoulder/seam and width differences against the
+      textured straight are advisory, no certified exact512px segmentation or completed
+      app integration. No retry with eligible takes. Canonical scale0.25 delivery
+      is bound by exact downscaled RGBA, dimensions and metadata, with preview/raw
+      proof. Official Harmony measure/check runs against194 currentBASE sources; this
+      UI master is outside authoritative catalog and has no fabricated shard. Original
+      sources/callbacks/ordered refs and all reports retained. Existing22asset game-consumer
+      family prelinks remain byte-stable from first promotion.
+qa_reports:
+  1:
+    job: flow-tile-split
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 31 (R1 51)
+      value: 30.9
+    - check: value_floor
+      status: pass
+      message: lightness p5 78 (R1 59)
+      value: 78.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.7 (R1 5.3)
+      value: 0.67
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.3
+      value: 0.3302
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.9, p95 2.1, off-palette 0.0%
+      value: 0.8619
+    info:
+      metrics_raw:
+        L_p5: 77.9
+        L_p50: 87.2
+        L_p95: 94.0
+        C_p50: 11.3
+        C_p95: 31.1
+        C_p99: 35.7
+        detail: 0.94
+      metrics_locked:
+        L_p5: 78.0
+        L_p50: 87.2
+        L_p95: 93.9
+        C_p50: 11.3
+        C_p95: 30.9
+        C_p99: 35.5
+        detail: 0.67
+    fingerprint: 75c9813aa01e0bfa
+  2:
+    job: flow-tile-split
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 28 (R1 51)
+      value: 28.2
+    - check: value_floor
+      status: pass
+      message: lightness p5 78 (R1 59)
+      value: 77.9
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.6 (R1 5.3)
+      value: 0.64
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.3
+      value: 0.3069
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 0.8, p95 1.8, off-palette 0.0% (top: #224422 (0.0%))'
+      value: 0.8016
+    info:
+      metrics_raw:
+        L_p5: 77.9
+        L_p50: 87.2
+        L_p95: 93.8
+        C_p50: 11.4
+        C_p95: 28.3
+        C_p99: 33.1
+        detail: 0.87
+      metrics_locked:
+        L_p5: 77.9
+        L_p50: 87.2
+        L_p95: 93.7
+        C_p50: 11.4
+        C_p95: 28.2
+        C_p99: 33.0
+        detail: 0.64
+    fingerprint: 75c9813aa01e0bfa
+manual_review:
+  excluded_takes: []
+  note: Both initial takes pass hard QA and independent native/locked/manual review.
+    Take2 ranks first by eligible lock_load0.3069 versus0.3302. Light shallow rounded
+    north/east/west T channel, visually centered north opening and side openings around
+    midpoints, south closed stone, moss on banks only, full bleed and no text. Actual70pt
+    mixed approved-straight joins remain continuous. Small shoulder/seam and width
+    differences against the textured straight are advisory, no certified exact512px
+    segmentation or completed app integration. No retry with eligible takes. Canonical
+    scale0.25 delivery is bound by exact downscaled RGBA, dimensions and metadata,
+    with preview/raw proof. Official Harmony measure/check runs against194 currentBASE
+    sources; this UI master is outside authoritative catalog and has no fabricated
+    shard. Original sources/callbacks/ordered refs and all reports retained. Existing22asset
+    game-consumer family prelinks remain byte-stable from first promotion.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-792c0b37-46c5-4b0c-8b11-e0dd5c4b18d7.png
+  original_generated_png_sha256: 0ee7b00eabc490d2a2e809b1d5a000dcec0ff331a95f21a23df79a4074097115
+  inbox_png_sha256: 20f12624bde3d28197783832d65a2aa6b9a11c3b5392ebfdce0d36e17c0f4ded
+  rgba_sha256: 6162444bd71610d7151e925b0702100e93cbe52f4c3f55aaacd9d8add9118d41
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 75c9813aa01e0bfa
+- take: 2
+  source_file: /workspace/generated_images/exec-3d6f4a8d-0908-4efe-9145-39c9998611f6.png
+  original_generated_png_sha256: 80948e989b54db9042a35b3de76bbecd7cf030ba77ea73ab218fcc3e0497bb55
+  inbox_png_sha256: 8c7b4f22428dd57da4a60885605668829c2d851be0139d6b1ea80c40ea65c93b
+  rgba_sha256: e4e3bb38b737798c3401086777892fef764df703b2855b72daca01c2b2de0bcf
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 75c9813aa01e0bfa

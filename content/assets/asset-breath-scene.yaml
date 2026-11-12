@@ -2,14 +2,14 @@ id: asset-breath-scene
 type: asset
 title_tr: breath-scene
 title_en: breath-scene (ui)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  A full portrait phone screen for a cozy mobile game, painted, no text. A calm dusk: a soft
-  lilac-to-rose sky with a few long, flat, soft cloud bands. In the middle of the screen,
-  low on the vertical centre line, a small floating isle seen from the front: a mossy green
-  lawn top about 560 px wide and flat enough for a small round hamster to sit on it (empty,
-  no character), a few tiny pebbles and clover at its edge, and…
+summary: 'A full portrait phone screen for a cozy mobile game, painted, no text. A
+  calm dusk: a soft lilac-to-rose sky with a few long, flat, soft cloud bands. In
+  the middle of the screen, low on the vertical centre line, a small floating isle
+  seen from the front: a mossy green lawn top about 560 px wide and flat enough for
+  a small round hamster to sit on it (empty, no character), a few tiny pebbles and
+  clover at its edge, and…'
 art:
   images: []
   jobs:
@@ -19,3 +19,15 @@ sources:
 kind: ui
 batch: batch-62-breath-room
 size: 1024x1536
+notes:
+- 'batch-62-breath-room skipped after four takes: Skipped after one allowed paired
+  retry: all four official takes fail production palette_drift. Lilac/rose sunset
+  colors requested by the source fall outside its default UI palettes; no profile/palette/threshold
+  edits and no force. Exact source prompts/references, original PNGs, all four q90
+  takes and official QA are retained. Visual scene is empty of Pofu, ring and text;
+  no shipping geometry approval is claimed. Automated failures: t1 palette_drift:
+  mean dE 12.5, p95 20.0, off-palette 65.9% (top: #DD88AA (21.8%), #AA77BB (6.7%));
+  t2 palette_drift: mean dE 12.4, p95 20.3, off-palette 63.6% (top: #DD88AA (19.0%),
+  #AA77BB (6.6%)); t3 palette_drift: mean dE 11.9, p95 21.5, off-palette 59.9% (top:
+  #DD88AA (7.9%), #EE8899 (6.6%)); t4 palette_drift: mean dE 11.7, p95 20.7, off-palette
+  62.4% (top: #EE99AA (12.9%), #DD88AA (12.3%)).'

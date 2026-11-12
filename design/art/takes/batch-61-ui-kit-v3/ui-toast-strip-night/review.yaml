@@ -1,0 +1,177 @@
+batch: batch-61-ui-kit-v3
+manifest: tools/imagegen/manifest/batch-61-ui-kit-v3.yaml
+manifest_sha256: 1afc74db28c48c60630bdde906957d1b30ac1021d539f0322f263619e3450ddc
+jobs:
+  ui-toast-strip-night:
+    pick: null
+    status: rejected
+    publication: "rejected by the lead 2026-11-12"
+    lead_review: "Lead reject: every take is a diagonal amber-corner to indigo gradient, so the middle is not even (it cannot be 9- or 3-sliced) and the night reads purple-indigo, not warm (tracker: Settings night rows warm, not purple-indigo). Redo in batch-77: flat warm cocoa lamplit paper, amber only along the top edge."
+    note: 'Both initial takes fail hard QA (value floor, palette drift, structure and lightness). No profile
+      waiver and no retry: current Factory cap is two. Originals retained; no master promoted.'
+selection:
+  method: QA non-fail and manual eligibility; lowest style-lock load, then highest measured harmony; take
+    number only breaks ties
+  scores:
+  - take: 1
+    style_lock_load: 2.6192
+    harmony: 40.2
+    eligible: false
+  - take: 2
+    style_lock_load: 3.0159
+    harmony: 35.9
+    eligible: false
+  rejected_takes: []
+qa_reports:
+- job: ui-toast-strip-night
+  take: 1
+  status: fail
+  preset: lock-light
+  checks:
+  - check: transparency
+    status: pass
+    message: source has an alpha channel
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 47 (R1 51)
+    value: 47.4
+  - check: value_floor
+    status: fail
+    message: lightness p5 23 (R1 59)
+    value: 22.9
+  - check: detail_budget
+    status: pass
+    message: detail at display size 2.0 (R1 5.3)
+    value: 1.97
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 2.6
+    value: 2.6192
+  - check: palette_drift
+    status: fail
+    message: 'mean dE 4.8, p95 9.0, off-palette 0.3% (top: #CC7733 (0.1%), #BB6633 (0.1%))'
+    value: 4.8157
+  - check: edit_silhouette
+    status: pass
+    message: 99% of the parent's shape kept
+    value: 0.9895
+  - check: edit_structure
+    status: fail
+    message: light structure matches the parent (r -0.16)
+    value: -0.1581
+  - check: edit_lightness
+    status: fail
+    message: mean lightness moved by 62.0 L (the same lightness was asked)
+    value: 62.001
+  info:
+    metrics_raw:
+      L_p5: 17.0
+      L_p50: 26.9
+      L_p95: 57.1
+      C_p50: 21.1
+      C_p95: 48.2
+      C_p99: 57.5
+      detail: 2.52
+    metrics_locked:
+      L_p5: 22.9
+      L_p50: 27.5
+      L_p95: 56.3
+      C_p50: 21.0
+      C_p95: 47.4
+      C_p99: 57.2
+      detail: 1.97
+  fingerprint: 1f4c7c50f331de9d
+- job: ui-toast-strip-night
+  take: 2
+  status: fail
+  preset: lock-light
+  checks:
+  - check: transparency
+    status: pass
+    message: source has an alpha channel
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 41 (R1 51)
+    value: 40.7
+  - check: value_floor
+    status: fail
+    message: lightness p5 23 (R1 59)
+    value: 22.8
+  - check: detail_budget
+    status: pass
+    message: detail at display size 1.4 (R1 5.3)
+    value: 1.37
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 3.0
+    value: 3.0159
+  - check: palette_drift
+    status: fail
+    message: 'mean dE 5.3, p95 8.8, off-palette 0.1% (top: #995522 (0.0%), #AA5533 (0.0%))'
+    value: 5.2643
+  - check: edit_silhouette
+    status: pass
+    message: 99% of the parent's shape kept
+    value: 0.99
+  - check: edit_structure
+    status: fail
+    message: light structure matches the parent (r -0.08)
+    value: -0.0753
+  - check: edit_lightness
+    status: fail
+    message: mean lightness moved by 63.6 L (the same lightness was asked)
+    value: 63.6122
+  info:
+    metrics_raw:
+      L_p5: 16.3
+      L_p50: 25.2
+      L_p95: 51.8
+      C_p50: 19.0
+      C_p95: 41.4
+      C_p99: 50.8
+      detail: 1.99
+    metrics_locked:
+      L_p5: 22.8
+      L_p50: 26.3
+      L_p95: 51.0
+      C_p50: 19.0
+      C_p95: 40.7
+      C_p99: 50.2
+      detail: 1.37
+  fingerprint: 1f4c7c50f331de9d
+sources:
+- take: 1
+  source_file: /workspace/art-operator-runtime/factory/generated/ui-toast-strip-night/take-1.png
+  source_sha256: 85aeca7878300afb567935fd93706d644f294a76f5e0e29972d14649d6ca939a
+  q90_take: design/art/takes/batch-61-ui-kit-v3/ui-toast-strip-night/ui__toast-strip-night--t1.webp
+  q90_take_sha256: abadb34bef1f7cb34834da7c6bcd2af3a8008a8ff8649377dbfadbb1547b63f5
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: a0249d50adc32d98fcbe615000901b1eda515e50abd4b00f91c5dc0344baaf19
+  references:
+  - path: design/art/ui/ui-toast-strip/ui-toast-strip.png
+    role: The image to edit (the approved previous level). Edit it; do not redraw it.
+    sha256: b9a63215561bd4ee200ac374ac247595a3dc2abc9863b1d879e6ae7fd70dc98b
+- take: 2
+  source_file: /workspace/art-operator-runtime/factory/generated/ui-toast-strip-night/take-2.png
+  source_sha256: b719f987ab200269a2d4fc05f23d13d018fd541cf7090b5dd0b5103d50452021
+  q90_take: design/art/takes/batch-61-ui-kit-v3/ui-toast-strip-night/ui__toast-strip-night--t2.webp
+  q90_take_sha256: 41bc8671b13fb0e82aa948b2e0d2671a047a0b0532c31a280e19caa54a3db5c1
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: a0249d50adc32d98fcbe615000901b1eda515e50abd4b00f91c5dc0344baaf19
+  references:
+  - path: design/art/ui/ui-toast-strip/ui-toast-strip.png
+    role: The image to edit (the approved previous level). Edit it; do not redraw it.
+    sha256: b9a63215561bd4ee200ac374ac247595a3dc2abc9863b1d879e6ae7fd70dc98b
+policy:
+  never_promote: false
+  originals: source_file PNGs preserved unchanged; published takes are q90 copies

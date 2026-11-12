@@ -2,14 +2,14 @@ id: asset-flow-tile-bend
 type: asset
 title_tr: flow-tile-bend
 title_en: flow-tile-bend (ui)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  A game tile for a cozy mobile puzzle, seen straight from above with a very slight tilt,
-  lit softly from the upper left. A SQUARE of carved, mossy river stone that fills the whole
-  canvas edge to edge (full bleed, no margin, no outline, no shadow around it): pale warm-grey
-  stone with a faint cream and sage tint, rounded and softly worn, a little soft green moss
-  gathered on the shoulders and corners, never on the groove…
+summary: 'A game tile for a cozy mobile puzzle, seen straight from above with a very
+  slight tilt, lit softly from the upper left. A SQUARE of carved, mossy river stone
+  that fills the whole canvas edge to edge (full bleed, no margin, no outline, no
+  shadow around it): pale warm-grey stone with a faint cream and sage tint, rounded
+  and softly worn, a little soft green moss gathered on the shoulders and corners,
+  never on the groove…'
 art:
   images: []
   jobs:
@@ -19,3 +19,14 @@ sources:
 kind: ui
 batch: batch-64-flow-pieces
 size: 1024x1024
+notes:
+- 'batch-64-flow-pieces skipped after four takes: Skipped after one unchanged retry
+  pair: all four official numeric reports PASS, but all four native and official locked/delivered
+  bends place the north opening visibly LEFT of the authored midpoint, creating a
+  conspicuous sideways step against the approved straight at actual70pt joins. Independent
+  initial and fresh retry reviews confirm literal centered-geometry failure. Tiny
+  corner antialias artifacts remain advisory, no invented zero-pixel or exact512segmentation
+  threshold. Sole retry3/4 exhausted; no third round, no local pixel edits, no QA
+  waiver. Preserve all four original PNGs/callbacks/source hashes/references/QA/locked/delivery
+  and q90 rejected takes/contact. No master or Harmony shard is published for a failed
+  job. No other job depends on this bend, so all independent work continues.'

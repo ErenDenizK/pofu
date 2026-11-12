@@ -1,0 +1,91 @@
+{
+  "job": "ui-pin-ribbon",
+  "batch": "batch-61-ui-kit-v3",
+  "asset": "ui__pin-ribbon",
+  "take": 2,
+  "takes_considered": 2,
+  "approved_at": "2026-11-06T18:10:35+00:00",
+  "image": "design/art/ui/ui-pin-ribbon/ui-pin-ribbon.png",
+  "raw": "design/art/ui/ui-pin-ribbon/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "a9571fecd0daeb4f",
+  "prompt": "REFERENCES (attached, in this order):\n1. The card this bow is pinned to: match its warm paper colors and light.\n2. The palette card for props: use only these colors (and mixes of them).\n\nOne small satin ribbon bow with two short tails hanging down, seen straight on and centered: rose-pink ribbon (#E8A5A0) with a thin cream edge, a plump simple knot, a soft shadow beneath. Chunky and simple.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: text, letters, numbers, symbols, icons, glass, frosted or transparent parts, a drop shadow or cast shadow on the ground, an outline, a border around the canvas, a background, gloss or specular glints, texture that varies along the width, pure black, neon or saturated colors, a 3D render look\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/ui/ui-card-stitched/ui-card-stitched.png",
+      "role": "The card this bow is pinned to: match its warm paper colors and light."
+    },
+    {
+      "path": "design/reference/palette-card-world-props.png",
+      "role": "The palette card for props: use only these colors (and mixes of them)."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-06T18:05:06+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "fit": null,
+  "emit_region": null,
+  "qa": {
+    "status": "pass",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 36 (R1 51)",
+        "value": 35.6
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 62 (R1 59)",
+        "value": 61.9
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 0.9 (R1 5.3)",
+        "value": 0.89
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 3.9",
+        "value": 3.8694
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.4, p95 3.1, off-palette 0.0%",
+        "value": 1.3582
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Both initial takes PASS all automatedQA and manual fullnative/officiallocked properalpha cream/dark review. Normal lowest style-lock load selects take2 (3.8694 vs4.0794). One centered plump simple rose satin bow, exactly2 short hanging notched tails, thin creamedge and softunderneathshadow aspositivebrief; no card/backdrop/extraobjects/text/icons. Positive creamedge/shadow wording governs generic nooutline/groundshadow. Officiallock warms rose toward peach, observed in propercomposites; original/sourcecolors remainretained, noexactoriginalRGB orappintegration certification. All originalPNG/RGBA/account/orderedrefs/callbacks/INITIAL2QA+lockedseal retained. Master stayslossless with exactWebPtwin if needed; rawalwaysretained. Actual172source canonical Harmony measure/check and exactforeignrestoration, UIexcluded/no fabricatedshard, reviewed134unusedBASEraw numericalcacheomission unchanged. No retry, force or QA/profile/pixel edits. auto-picked by QA; founder review pending."
+}

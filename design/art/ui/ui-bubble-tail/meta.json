@@ -1,0 +1,90 @@
+{
+  "job": "ui-bubble-tail",
+  "batch": "batch-61-ui-kit-v3",
+  "asset": "ui__bubble-tail",
+  "take": 2,
+  "takes_considered": 2,
+  "approved_at": "2026-11-09T21:58:46+00:00",
+  "image": "design/art/ui/ui-bubble-tail/ui-bubble-tail.png",
+  "raw": "design/art/ui/ui-bubble-tail/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "f915fdd978fe5411",
+  "prompt": "REFERENCES (attached, in this order):\n1. The bubble body the tails attach to: the same paper color, cocoa edge and light.\n2. The palette card for props: use only these colors (and mixes of them).\n\nA sheet of three small speech-bubble tails on a transparent background, in a row of three with wide empty space between them, each centered in its third: warm cream paper (#FFF7E8) with a thin soft cocoa-brown edge on the two long sides only, the flat top edge open and edgeless so it can join a bubble. The first tail leans to the lower left, the second points straight down, the third leans to the lower right. Soft curved wedge shapes, a little shadow beneath each.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: text, letters, numbers, symbols, icons, glass, frosted or transparent parts, a drop shadow or cast shadow on the ground, an outline, a border around the canvas, a background, gloss or specular glints, texture that varies along the width, pure black, neon or saturated colors, a 3D render look\n\nOutput: one image, transparent background PNG, landscape 1536 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/ui/ui-bubble-paper/ui-bubble-paper.png",
+      "role": "The bubble body the tails attach to: the same paper color, cocoa edge and light."
+    },
+    {
+      "path": "design/reference/palette-card-world-props.png",
+      "role": "The palette card for props: use only these colors (and mixes of them)."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-09T21:49:50+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "fit": null,
+  "emit_region": null,
+  "qa": {
+    "status": "pass",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1536x1024"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 23 (R1 51)",
+        "value": 22.6
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 67 (R1 59)",
+        "value": 67.1
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 0.9 (R1 5.3)",
+        "value": 0.93
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 0.3",
+        "value": 0.3167
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 0.4, p95 1.0, off-palette 0.0%",
+        "value": 0.3872
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Both initial takes pass all hard checks. Proper-alpha cream and dark composites show no broad halo or painted background; the apparent raw-view glow is hidden RGB at alpha 0, with only a tiny soft edge shadow. Three cream-paper tails have open flat top edges and lean left/down/right. Take 2 wins on normal lowest lock load (0.3167 versus 0.3508). Source pixels, prompt, ordered references, and authored manifest remain unchanged; app integration and exact slice fit are not claimed."
+}

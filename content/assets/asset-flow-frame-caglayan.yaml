@@ -2,14 +2,13 @@ id: asset-flow-frame-caglayan
 type: asset
 title_tr: flow-frame-caglayan
 title_en: flow-frame-caglayan (ui)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  A square picture-frame ring seen straight from above, as a game surround on a transparent
-  background, filling about 96 percent of the canvas, with a completely EMPTY transparent
-  middle (no fill, no shadow inside). The ring is about 96 px thick all round: a rounded border
-  of pale warm-grey cliff stone, the same stone as a river-side cliff, with soft rounded corners.
-  Along the top a fringe of short green grass and a fe…
+summary: 'A square picture-frame ring seen straight from above, as a game surround on a transparent background,
+  filling about 96 percent of the canvas, with a completely EMPTY transparent middle (no fill, no shadow
+  inside). The ring is about 96 px thick all round: a rounded border of pale warm-grey cliff stone, the
+  same stone as a river-side cliff, with soft rounded corners. Along the top a fringe of short green grass
+  and a fe…'
 art:
   images: []
   jobs:
@@ -19,3 +18,9 @@ sources:
 kind: ui
 batch: batch-64-flow-pieces
 size: 1024x1024
+notes:
+- 'Factory resume2026-11-10: Skipped: both numeric-QA-pass locked candidates have empty transparent middles
+  but painted top foliage/stone and side rim extend beyond authored96px slice caps into the stretch center.
+  Guide overlay on unchanged1024px locked canvases confirms this. No new QA threshold, crop or source
+  edit; both q90 candidates and original PNGs retained. No promotion. Exactly2 authored takes in this
+  resume; no retry-budget reset.'

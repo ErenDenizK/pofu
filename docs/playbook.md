@@ -43,6 +43,29 @@ built by a lead model, sub-agents and an image tool). Written 2026-11-10.
 - Use the top model only where judgement decides quality: the visual
   system, the first screen, architecture, hard bugs.
 
+### 3.1 Briefing the consultant model (Fable 5.2)
+
+The most capable and most expensive model; its use draws on a shared weekly
+limit. Use it where the lead's own judgement is the bottleneck: the four
+checkpoints in `docs/state/README.md`, a design that must be a masterpiece,
+an architecture that is costly to reverse. Not for building, checking or
+anything a brief can make routine.
+
+- **Brief the goal, not the steps.** Say what outcome is wanted, why it
+  matters, the constraints that are decided (link them), and what "done"
+  looks like. Do not prescribe method; it plans better than a checklist.
+- **Give ownership.** It owns the answer and should finish the whole task
+  in one pass, not stop to ask; open questions go in its report.
+- **Point, don't paste.** Name the exact files and sections to read and the
+  ones to skip; it reads them itself.
+- **Ask for a report a cold reader can use:** the recommendation first,
+  the reasons, the risks, what it would cut; short.
+- **Say what it costs.** It may start sub-agents only if a task truly
+  needs them; prefer reading itself.
+- **Effort:** high by default; max only when the user asks.
+- **One pass, then the lead decides.** Its view is advice; the lead keeps
+  the context and the decision. Log what it changed in the founder log.
+
 ## 4. Briefs
 
 - Name exact files, sections and decisions; say what is out of scope;

@@ -4,14 +4,15 @@ title_tr: ui-plaque-honey
 title_en: plaque-honey (ui)
 status: in-production
 horizon: now
-summary: >-
-  One wide wooden plaque, blank, like a small hanging shop sign laid flat and seen straight
-  on: a rounded capsule about four times as wide as it is tall, filling the width of the canvas
-  and centered, honey-stained wood in warm #F6C453 gold-amber, a soft carved bevel just inside
-  the edge, a slightly darker honey lip along the bottom, a faint lighter rim along the top
-  edge. Lit from straight above. The middle third is pe…
+summary: 'One wide wooden plaque, blank, like a small hanging shop sign laid flat
+  and seen straight on: a rounded capsule about four times as wide as it is tall,
+  filling the width of the canvas and centered, honey-stained wood in warm #F6C453
+  gold-amber, a soft carved bevel just inside the edge, a slightly darker honey lip
+  along the bottom, a faint lighter rim along the top edge. Lit from straight above.
+  The middle third is pe…'
 art:
-  images: []
+  images:
+  - design/art/ui/ui-plaque-honey/ui-plaque-honey.png
   jobs:
   - batch-61-ui-kit-v3:ui-plaque-honey
 sources:

@@ -1,0 +1,182 @@
+batch: batch-61-ui-kit-v3
+contact_sheet: design/art/takes/batch-61-ui-kit-v3/ui-tab-ribbon/contact.jpg
+jobs:
+  ui-tab-ribbon:
+    pick: 2
+    publication: delivery-blocked-retained; not promoted remotely
+    note: 'Candidate retained; no master is approved or uploaded. Selected take 2
+      passes official QA with palette_drift warning and official lock load 0.8493
+      (take 1: 0.9980). Exact 1536x1024 PNG master is 1,114,931 bytes; exact RGBA
+      lossless WebP optimization at quality 100/method 6 remains 800,122 bytes, above
+      the 614,400-byte cap. Cropping, scaling, quantization and lossy conversion were
+      not used. Two unchanged retry slots remain unused; further image calls are held
+      by the session output limit. Reviewable takes, full QA and sources are preserved
+      under design/art/takes/batch-61-ui-kit-v3/ui-tab-ribbon/.'
+qa_reports:
+  1:
+    job: ui-tab-ribbon
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 38 (R1 51)
+      value: 37.7
+    - check: value_floor
+      status: pass
+      message: lightness p5 72 (R1 59)
+      value: 72.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.8 (R1 5.3)
+      value: 0.79
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 0.998
+    - check: palette_drift
+      status: warn
+      message: mean dE 2.6, p95 6.4, off-palette 0.0%
+      value: 2.6095
+    info:
+      metrics_raw:
+        L_p5: 71.5
+        L_p50: 82.0
+        L_p95: 90.9
+        C_p50: 19.5
+        C_p95: 37.8
+        C_p99: 39.5
+        detail: 1.08
+      metrics_locked:
+        L_p5: 72.2
+        L_p50: 82.0
+        L_p95: 90.3
+        C_p50: 19.7
+        C_p95: 37.7
+        C_p99: 39.2
+        detail: 0.79
+    fingerprint: e09ea5a2dc52eae0
+  2:
+    job: ui-tab-ribbon
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 38 (R1 51)
+      value: 37.6
+    - check: value_floor
+      status: pass
+      message: lightness p5 68 (R1 59)
+      value: 68.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.9 (R1 5.3)
+      value: 0.93
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.8493
+    - check: palette_drift
+      status: warn
+      message: mean dE 3.3, p95 7.2, off-palette 0.0%
+      value: 3.2975
+    info:
+      metrics_raw:
+        L_p5: 66.8
+        L_p50: 78.8
+        L_p95: 89.4
+        C_p50: 19.2
+        C_p95: 37.7
+        C_p99: 39.4
+        detail: 1.29
+      metrics_locked:
+        L_p5: 68.0
+        L_p50: 78.8
+        L_p95: 88.4
+        C_p50: 19.4
+        C_p95: 37.6
+        C_p99: 39.3
+        detail: 0.93
+    fingerprint: e09ea5a2dc52eae0
+manual_review:
+  excluded_takes: []
+  note: 'Candidate retained; no master is approved or uploaded. Selected take 2 passes
+    official QA with palette_drift warning and official lock load 0.8493 (take 1:
+    0.9980). Exact 1536x1024 PNG master is 1,114,931 bytes; exact RGBA lossless WebP
+    optimization at quality 100/method 6 remains 800,122 bytes, above the 614,400-byte
+    cap. Cropping, scaling, quantization and lossy conversion were not used. Two unchanged
+    retry slots remain unused; further image calls are held by the session output
+    limit. Reviewable takes, full QA and sources are preserved under design/art/takes/batch-61-ui-kit-v3/ui-tab-ribbon/.'
+sources:
+- take: 1
+  round: 1
+  dispatch_ordinal: 1
+  source_file: /workspace/generated_images/exec-8fadc8c8-d5fe-46b9-b70f-0b75a19e0fab.png
+  original_generated_png_sha256: 97aa2f7b4b737d0e40ae6a81e626db53960db0acc7ee7b6b8594c167f45aa88a
+  inbox_png_sha256: 28261473b171887abe98437993cc72ac170769845e6389bf37cbe5ec02d4ac46
+  rgba_sha256: b3c3358860585d9463dc6f5c1513634cc5fc95acc42f57ad4b88515dade87062
+  dimensions:
+  - 1536
+  - 1024
+  bytes: 1650386
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  returned_at: '2026-11-09T21:52:02.477Z'
+  prompt_sha256: eb2c32036721e41ec10ebf0ede6081dedbc09b6732b2e09725348d77762fd089
+  fingerprint: e09ea5a2dc52eae0
+  reference_paths:
+  - /tmp/pofu-b61-resume-20261109/design/art/ui/ui-bubble-paper/ui-bubble-paper.png
+  - /tmp/pofu-b61-resume-20261109/design/reference/palette-card-world-props.png
+  reference_sha256:
+    /tmp/pofu-b61-resume-20261109/design/art/ui/ui-bubble-paper/ui-bubble-paper.png: 1120149963234b3add5fc3cd5ef258a5c6c5d821110f4128511e42bbe3acad1f
+    /tmp/pofu-b61-resume-20261109/design/reference/palette-card-world-props.png: d31df285d7f915ff04d14ef9386940e1745a48ffb951bd041df405392a0939f2
+  source_rgba_matches_inbox: true
+- take: 2
+  round: 1
+  dispatch_ordinal: 2
+  source_file: /workspace/generated_images/exec-b0018877-56bb-4663-9877-2bcf41d8951e.png
+  original_generated_png_sha256: 73353ef1bba6384b71be0bf9abd21c344add4aaa210f4b12eb29f39acbfb21b4
+  inbox_png_sha256: 112f987e832e2d9bf4670658db633521405c7947d48b57d29d667da56b428062
+  rgba_sha256: 6030d033edb1daeab34a1ee12b18f9c188531888693613929d10106f0850af92
+  dimensions:
+  - 1536
+  - 1024
+  bytes: 1792668
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  returned_at: '2026-11-09T21:52:38.304Z'
+  prompt_sha256: eb2c32036721e41ec10ebf0ede6081dedbc09b6732b2e09725348d77762fd089
+  fingerprint: e09ea5a2dc52eae0
+  reference_paths:
+  - /tmp/pofu-b61-resume-20261109/design/art/ui/ui-bubble-paper/ui-bubble-paper.png
+  - /tmp/pofu-b61-resume-20261109/design/reference/palette-card-world-props.png
+  reference_sha256:
+    /tmp/pofu-b61-resume-20261109/design/art/ui/ui-bubble-paper/ui-bubble-paper.png: 1120149963234b3add5fc3cd5ef258a5c6c5d821110f4128511e42bbe3acad1f
+    /tmp/pofu-b61-resume-20261109/design/reference/palette-card-world-props.png: d31df285d7f915ff04d14ef9386940e1745a48ffb951bd041df405392a0939f2
+  source_rgba_matches_inbox: true
+harmony:
+  canonical_measure: passed
+  canonical_check: passed
+  catalog_count: 172
+  ui_cataloged: false
+  own_asset_shard: null
+  note: One complete canonical measurement-worktree measure/check was run for the
+    retained UI batch; the catalog excludes UI assets. The known tea-stall-1 ULP write
+    from measure was restored byte-exactly to the pinned base after check.

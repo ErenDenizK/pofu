@@ -70,7 +70,6 @@ struct FlowAuditTests {
         }
         if now.caglayanStage > (before?.caglayanStage ?? 0) { found.append("Çağlayan stage \(now.caglayanStage)") }
         if now.hearts > (before?.hearts ?? 0) { found.append("heart \(now.hearts)") }
-        if now.decor > (before?.decor ?? 0) { found.append("decor \(now.decor)") }
         return found
     }
 

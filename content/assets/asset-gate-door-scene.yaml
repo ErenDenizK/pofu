@@ -2,7 +2,7 @@ id: asset-gate-door-scene
 type: asset
 title_tr: gate-door-scene
 title_en: gate-door-scene (ui)
-status: cut
+status: in-production
 horizon: now
 summary: 'A full portrait phone screen for a cozy mobile game, painted, no text: we
   stand right in front of a little round wooden door set in a warm earth bank under
@@ -11,7 +11,8 @@ summary: 'A full portrait phone screen for a cozy mobile game, painted, no text:
   cozy burrow inside (a tiny lamp, a teacup on a small table, a rug, a shelf with
   a plant), a place where…'
 art:
-  images: []
+  images:
+  - design/art/ui/ui-gate-door-scene/ui-gate-door-scene.png
   jobs:
   - batch-58-gate-round-door:gate-door-scene
 sources:
