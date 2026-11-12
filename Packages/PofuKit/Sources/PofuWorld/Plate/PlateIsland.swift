@@ -56,13 +56,13 @@ public struct PlateIsland: Hashable, Sendable {
         public var occluder: Bool
         /// The occluder cut-out's box, in plate pixels.
         public var box: PlateRect?
-        /// The day stages that paint it; `nil`: all (golden and night are level 10, where
-        /// everything is painted). A lower level never has a tap polygon or an occluder on
+        /// The stages that paint it, for every light (a night stage is the same island level as the
+        /// day stage); `nil`: all. A lower level never has a tap polygon or an occluder on
         /// something that is not painted.
         public var stages: [Int]?
 
         public func isPresent(light: String, stage: Int) -> Bool {
-            light != "day" || stages?.contains(stage) ?? true
+            stages?.contains(stage) ?? true
         }
     }
 

@@ -258,8 +258,57 @@ class IngestTests(unittest.TestCase):
         windmill = {"id": "windmill", "stages": [0, 1, 2]}
         self.assertTrue(ingest.present(windmill, "day", 2))
         self.assertFalse(ingest.present(windmill, "day", 3))
-        self.assertTrue(ingest.present(windmill, "night", 0))  # golden and night paint everything
         self.assertTrue(ingest.present({"id": "door"}, "day", 8))
+
+    def test_present_honours_stages_for_every_light(self):
+        """A night stage is the day stage's island level: Home's night IL2 to IL9 paints that
+        level's buildings, so `stages` applies to every light, and `check` agrees."""
+        windmill = {"id": "windmill", "stages": [0, 1, 2]}
+        for light in ("day", "golden", "night", "rain"):
+            self.assertTrue(ingest.present(windmill, light, 2))
+            self.assertFalse(ingest.present(windmill, light, 3))
+        obj = {"id": "windmill", "polygon": [[40, 40], [60, 40], [60, 60]], "occluder": True, "stages": [0]}
+        data = self._data(objects=[obj], stages=2, lightStages={"night": 2}, lights=["night"])
+        assets = {f"world-test-{k}-night-{s}" for k in ("plate", "island", "backdrop") for s in (0, 1)} | {"world-test-occ-windmill-night-0"}
+        self.assertEqual(ingest.problems(data, np.ones((100, 100)), assets), [])
+        self.assertIn("missing asset world-test-occ-windmill-night-0",
+                      "\n".join(ingest.problems(data, np.ones((100, 100)), assets - {"world-test-occ-windmill-night-0"})))
+
+    def test_texture_bytes_leave_out_the_sky_sets_layers(self):
+        import tempfile
+        import unittest.mock as mock
+
+        from PIL import Image
+
+        hand = {"plates": {"day": {"0": "a.png"}}}
+        with tempfile.TemporaryDirectory() as d:
+            for name, size in (("world-t-plate-day-0", (10, 10)), ("world-t-occ-mill-day-0", (4, 5)), ("world-t-sky-far-day-0", (50, 50))):
+                folder = Path(d) / f"{name}.imageset"
+                folder.mkdir()
+                Image.new("RGB", size).save(folder / f"{name}.png")
+            with mock.patch.object(ingest, "ASSETS", Path(d)):
+                self.assertEqual(ingest.texture_bytes("t", hand), 10 * 10 + 4 * 5)
+
+    def test_matte_writes_only_the_named_state(self):
+        import tempfile
+        import unittest.mock as mock
+
+        from PIL import Image
+
+        size = ingest.SIZE
+        self.addCleanup(setattr, ingest, "SIZE", size)  # load_hand sets the module's plate size
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            (root / "t").mkdir()
+            hand = {"size": [20, 30], "plates": {"day": {"0": "a.png", "9": "b.png"}, "night": {"9": "c.png"}},
+                    "trace": [[10, 10]], "objects": []}
+            (root / "t" / "objects.json").write_text(__import__("json").dumps(hand))
+            with mock.patch.object(ingest, "PLATES", root), mock.patch.object(ingest, "REPO", root), \
+                    mock.patch.object(ingest, "load_rgb", return_value=np.zeros((30, 20, 3))), \
+                    mock.patch.object(ingest, "matte", return_value=np.ones((30, 20))):
+                ingest.cmd_matte("t", "day:9")
+            self.assertEqual(sorted(p.name for p in (root / "t").glob("matte-*.png")), ["matte-day-9.png"])
+            self.assertEqual(Image.open(root / "t" / "matte-day-9.png").size, (20, 30))
 
     def test_check_wants_assets_per_painted_state_only(self):
         a = np.ones((100, 100))
@@ -330,6 +379,29 @@ class HarmonyTests(unittest.TestCase):
         night = ingest.harmony_state(self._plate([0.5, 0.5, 0.4]), hand, ref, "night")
         self.assertGreater(night["pool"], 0)
         self.assertEqual(set(night["scale"]), {"pofu", "mochi", "findik"})
+
+    def test_pool_starts_at_the_lamp_level(self):
+        """The lamps are lit from `lampsFromLevel` (Home: 6): a night plate below it has no lamp
+        pool under a character; at and above it does, and a hand without the key keeps the pool."""
+        hand = {**self._hand(), "lamps": [[20, 80], [80, 80]], "stageLevels": [10, 9, 6, 5, 2], "lampsFromLevel": 6}
+        ref = ingest.harmony_state(self._plate([0.4, 0.7, 0.3]), hand, None)
+        night = lambda h, stage: ingest.harmony_state(self._plate([0.5, 0.5, 0.4]), h, ref, "night", stage)
+        self.assertGreater(night(hand, 2)["pool"], 0)  # level 6
+        self.assertNotIn("pool", night(hand, 3))  # level 5
+        self.assertNotIn("pool", night(hand, 4))  # level 2
+        self.assertGreater(night({k: v for k, v in hand.items() if k != "lampsFromLevel"}, 4)["pool"], 0)
+        self.assertGreater(night(hand, 3)["rim"], 0)  # the key light stays
+
+    def test_a_scale_trim_from_the_app_frame_multiplies_one_states_character_scale(self):
+        import unittest.mock as mock
+
+        hand = {**self._hand(), "plates": {"day": {"0": "d.png"}, "night": {"0": "n.png"}}}
+        lawns = {"d.png": self._plate([0.4, 0.7, 0.3]), "n.png": self._plate([0.45, 0.6, 0.45])}
+        with mock.patch.object(ingest, "load_rgb", side_effect=lambda path: lawns[Path(path).name]):
+            plain = ingest.harmony_all(hand, {})["night"][0]["scale"]["mochi"]
+            hand["characterLight"] = {"scaleTrim": {"night:0": {"mochi": 0.5}}}
+            trimmed = ingest.harmony_all(hand, {})["night"][0]["scale"]
+        self.assertAlmostEqual(trimmed["mochi"], round(plain * 0.5, 3), places=3)
 
     def test_at_night_a_sprites_top_stays_under_the_brightest_stone_around_it(self):
         hand = self._hand()

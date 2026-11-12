@@ -199,9 +199,10 @@ def plates(hand: dict):
 
 
 def present(obj: dict, light: str, stage: int) -> bool:
-    """Whether the object is painted in the state: `stages` lists the day stages that show it
-    (absent: all); golden and night exist at level 10 only, where everything is painted."""
-    return light != "day" or "stages" not in obj or stage in obj["stages"]
+    """Whether the object is painted in the state: `stages` lists the stages that show it (absent:
+    all), for every light: a night stage is the day stage's island level (Home's night IL2 to IL9
+    paints the level's own buildings, not the level-10 set)."""
+    return "stages" not in obj or stage in obj["stages"]
 
 
 def asset_name(island: str, kind: str, light: str, stage: int, oid: str | None = None) -> str:
@@ -276,9 +277,13 @@ def load_matte(island: str, light: str, stage: int) -> np.ndarray:
     return np.asarray(Image.open(path).convert("L"), np.float64) / 255
 
 
-def cmd_matte(island: str) -> None:
+def cmd_matte(island: str, state: str | None = None) -> None:
+    """Writes the mattes of every plate, or of the one `--state <light>:<stage>` only (the other
+    mattes are committed and stay as they are)."""
     hand = load_hand(island)
     for light, stage, path in plates(hand):
+        if state is not None and f"{light}:{stage}" != state:
+            continue
         water = [pct_to_px(o["points"]) for o in hand["objects"] if o.get("water")]
         a = matte(load_rgb(path), pct_to_px(hand["trace"]), water)
         Image.fromarray(np.uint8(np.clip(a, 0, 1) * 255 + 0.5)).save(matte_path(island, light, stage))
@@ -637,7 +642,7 @@ def lstar_to_srgb(lstar: float) -> float:
     return float(linear_to_srgb(np.array(y)))
 
 
-def harmony_state(rgb: np.ndarray, hand: dict, ref: dict | None, light: str = "day") -> dict:
+def harmony_state(rgb: np.ndarray, hand: dict, ref: dict | None, light: str = "day", stage: int = 0) -> dict:
     """The character harmony rule (docs/design/visual-system.md "Characters"): per state one
     ambient multiply tint, one contact-shadow strength and the key light, read from the plate.
 
@@ -651,7 +656,9 @@ def harmony_state(rgb: np.ndarray, hand: dict, ref: dict | None, light: str = "d
             character's own `scale` of it where its stones are darker
       contact  the lawn's shadow depth around the contact points over the day's, 0.5...1.2
       key   the key light's colour (`key_colour`), `rim` its strength on the lit side, `pool` the
-            night lamp pool's strength, `bounce` the lawn-colour bounce on the lower third
+            night lamp pool's strength (only where the stage's level, `stageLevels[stage]`, is at
+            least `lampsFromLevel`: the lamps are not lit below it), `bounce` the lawn-colour
+            bounce on the lower third
     """
     walk = poly_mask(rgb.shape[:2], pct_to_px(hand["walkable"]))
     spots = list(pct_to_px_pts(hand))
@@ -693,12 +700,19 @@ def harmony_state(rgb: np.ndarray, hand: dict, ref: dict | None, light: str = "d
         out["rim"] = rim
         out["fill"] = cl["fill"].get(light, 0.0)
     pool = cl["pool"].get(light, 0.0)
-    if pool > 0 and hand.get("lamps"):
+    if pool > 0 and hand.get("lamps") and lamps_lit(hand, stage):
         out["pool"] = pool
     out["bounce"] = cl["bounce"]
     if scales:
         out["scale"] = scales
     return out
+
+
+def lamps_lit(hand: dict, stage: int) -> bool:
+    """Whether the stage's level has its lamps lit (`lampsFromLevel`; absent: every stage does)."""
+    first = hand.get("lampsFromLevel")
+    levels = hand.get("stageLevels")
+    return first is None or not levels or levels[stage] >= first
 
 
 def pct_to_px_pts(hand: dict):
@@ -734,10 +748,15 @@ def harmony_all(hand: dict, mattes: dict) -> dict:
         ref = harmony_state(load_rgb(REPO / hand["plates"][light][str(stage)]), hand, None, light)
     out: dict[str, dict[int, dict]] = {}
     for light, stage, path in plates(hand):
-        h = harmony_state(load_rgb(path), hand, ref, light) if ref is not None else harmony_state(load_rgb(path), hand, None, light)
+        h = harmony_state(load_rgb(path), hand, ref, light, stage)
         if ref is None:
             ref = h
-        out.setdefault(light, {})[stage] = {k: v for k, v in h.items() if not k.startswith("_")}
+        h = {k: v for k, v in h.items() if not k.startswith("_")}
+        # A trim measured in the app frame (`harmony_check.py`) where the plate's own stone reading
+        # and the frame's ring disagree: `characterLight.scaleTrim["<light>:<stage>"][<character>]`.
+        for name, trim in hand.get("characterLight", {}).get("scaleTrim", {}).get(f"{light}:{stage}", {}).items():
+            h["scale"][name] = round(h["scale"][name] * trim, 3)
+        out.setdefault(light, {})[stage] = h
     return {l: [st.get(i, dict(UNPAINTED_HARMONY)) for i in range(stage_count(hand, l))] for l, st in out.items()}
 
 
@@ -750,6 +769,10 @@ def texture_bytes(island: str, hand: dict) -> int:
     for light, stage, _ in plates(hand):
         total = 0
         for folder in ASSETS.glob(f"world-{island}-*-{light}-{stage}.imageset"):
+            # Only this tool's layers: a sky set's layers (`world-<island>-sky-*`) are the sky set's
+            # own budget (skyset-<island>.json), and the plate and its backdrop are not loaded while it draws.
+            if not folder.name.startswith(tuple(f"world-{island}-{kind}-" for kind in ("plate", "island", "backdrop", "occ"))):
+                continue
             for f in folder.iterdir():
                 if f.suffix in (".png", ".jpg", heic.SUFFIX):
                     with heic.open_image(f) as im:
@@ -864,7 +887,7 @@ def problems(data: dict, a: np.ndarray, assets: set[str], tolerance: float = 32.
                 if asset_name(island, kind, light, stage) not in assets:
                     out.append(f"missing asset {asset_name(island, kind, light, stage)}")
             for obj in data["objects"]:
-                if light == "day" and "stages" in obj and stage not in obj["stages"]:
+                if "stages" in obj and stage not in obj["stages"]:
                     continue
                 if obj["occluder"] and asset_name(island, "occ", light, stage, obj["id"]) not in assets:
                     out.append(f"missing asset {asset_name(island, 'occ', light, stage, obj['id'])}")
@@ -887,6 +910,8 @@ def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("command", choices=["matte", "deliver", "objects", "json", "check", "all"])
     ap.add_argument("island")
+    ap.add_argument("--state", metavar="LIGHT:STAGE",
+                    help="matte only: write the matte of this state only (e.g. day:9)")
     ap.add_argument("--no-upscale", action="store_true",
                     help="ship the original take (only when the model is unavailable; loud on purpose)")
     args = ap.parse_args(argv)
@@ -894,7 +919,7 @@ def main(argv: list[str] | None = None) -> int:
     global SCALE_UP
     SCALE_UP = not args.no_upscale
     if args.command == "matte":
-        cmd_matte(args.island)
+        cmd_matte(args.island, args.state)
     elif args.command == "deliver":
         cmd_deliver(args.island)
     elif args.command == "objects":
