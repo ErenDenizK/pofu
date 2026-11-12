@@ -11,50 +11,50 @@ history: [tracker.md](tracker.md). What changed for the player:
 sometimes shown to friends ([spec](design/game-solid-v1.md)). No
 TestFlight before the membership. The app side follows the demo.
 
-**Updated:** 2026-11-12 (evening), `main` at `3d053570` (#400) plus the
-studio PR that adds this page.
-**Founder last played on his phone:** 2026-11-05.
-**Founder log read up to:** 2026-11-12 (evening), the studio design approved.
-**Lead session cost:** 2026-11-03 to 11-12: 1,999 turns, median context
-317k, about $223 of $749. Aim: an average under 150k.
+**Updated:** 2026-11-12 (late night, session 2), `main` at `1364ac01` (#402).
+**Founder last played on his phone:** 2026-11-05 (told late on 11-12 to try `main`).
+**Founder log read up to:** 2026-11-12 (late night).
+
+## Decided this session
+
+- The demo is ONE painted world on days 1 to 21. A critic ranked the
+  sprite/plate switch the path's most visible defect: IL1, the harbor,
+  Koke, rain, mist, overcast, dawn, dusk and night below IL10 are sprite
+  (`HomePlate.swift:92-132`).
+- Rain streaks are drawn in code, never baked into a master (ADR-0025).
+
+## In flight (agents of this session)
+
+1. Spec `docs/design/demo-one-world-v1.md` (branch spec/demo-one-world):
+   smallest set of code overlays, wiring and art jobs for one painted
+   world by about 11-22. Over 20 art jobs is a premise gate (Fable).
+2. Builder, game desk: visible feedback (visitor greeting, wonder gifts,
+   a solved board), board counters and gutter, two copy bugs.
+3. Builder, `pofu-art`: fix and merge #13 (batch-76) and #14 (batch-77,
+   picks 84507a1: tile-gate t1, no tile-split), fix QA `edit_structure`
+   for night recolours, add Demand row 0-h6 `batch-79-flow-redo`.
 
 ## Next steps, in order
 
-1. Merge the studio PR here and the queue PR in `pofu-art`. On the next
-   real brief, try one scout and one builder from `.claude/agents/`, and
-   note here whether the session loads agent types from that folder.
-2. Game: send the founder the Rehearsal path (spec §8) as a recording or
-   frames, and say what on `main` is worth trying on his phone. The
-   screenshots of #399 (`koke-stage-4`, `caglayan-beat-3`) were not
-   produced in CI and nobody has seen them.
-3. Art: run an art-reviewer on `pofu-art` #13 (batch-76) and #14
-   (batch-77), both delivered on 2026-11-12. Then give Demand new rows.
-   A draft manifest for the painted visitor, parcel, moss and fountain
-   (batch-78) exists only in the lead's scratchpad
-   (`batch-78-draft.yaml`): commit it or it is lost with the container.
-4. Look: a scout lists which states of days 1 to 21 still draw the sprite
-   island and renders one sheet of them; then decide whether the demo
-   gets painted night at IL2 to IL9 (painted and picked, not in the app).
+1. Read the spec; gate it; brief its PRs (at most three builders).
+2. Look at the feedback PR's frames (critic first), merge.
+3. Ingest batch-77 picks into the app (flow board pieces); Codex: 0-h5
+   (batch-78) then 0-h6. The founder starts Codex by hand.
+4. Record the Rehearsal path (spec §8) once one world lands; CI records
+   with the `beats` label, but no test drives the path yet.
 
 ## Desks
 
-| Desk | Where it stands, checked at the commit above | Waits on |
+| Desk | Where it stands | Waits on |
 |---|---|---|
-| Game | The six game-solid PRs and one polish PR are merged (#394 to #400); the demo-run test plays days 1 to 21 | step 2 |
-| Look | Home is painted by day at IL2 to IL10 and at IL10 golden and night; every other home state draws the sprite island. The plate's visitor, moss and fountain are code-drawn stand-ins | steps 3 and 4 |
-| Art factory | `pofu-art`: #13 and #14 delivered and open; seven Stock PRs open (#6 to #12; #9 redoes batch-63, which was already done); no untaken READY row | step 3 |
-| App | Paused by the founder until after the demo. Then: the Door and onboarding spec, a premise for Fable | the demo |
-| Story | Lines ship with game PRs | |
-| Studio | Applied on 2026-11-12 by Fable 5.2; why: [the design](research/studio-design-2026-11-12.md) | step 1 |
+| Game | game-solid merged (#394 to #400); feedback gaps found by a critic | in flight 2 |
+| Look | painted Home by day IL2 to IL10, IL10 golden and night; all else sprite | in flight 1 |
+| Art factory | batch-78 READY (0-h5); #13, #14 reviewed, closing | in flight 3 |
+| App | paused until after the demo | the demo |
+| Story | lines ship with game PRs; studio in use since 11-12 | |
 
-## Open with the founder (to design together, no question pending)
+## Open with the founder (no question pending)
 
-- How device testing is run. He installs through a separate cloud session.
-- Which means keep the lead's context lean: compaction, a reset, a new session.
-- Restarting the art line once the studio is in place; he runs Codex by
-  hand.
-
-## Known stale
-
-- [roadmap.md](roadmap.md): its status block is dated 2026-11-07.
-- [tracker.md](tracker.md): a thread's status may be older than the code.
+- How device testing is run; which means keep the lead's context lean;
+  restarting the art line (he runs Codex by hand).
+- Known stale: roadmap.md (11-07), tracker.md thread statuses.
