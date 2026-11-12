@@ -24,7 +24,7 @@ TestFlight before the membership. The app side follows the demo.
 ## In flight (agents of this session)
 
 [Spec](design/demo-one-world-v1.md) #404, D1-D11 accepted; players reach IL7.
-1. PR 1 `feat/plate-every-hour` (Sonnet; self-merge on green).
+1. PR 3 `feat/painted-sky-everywhere` (Sonnet high; the lead's look). PR 1 merged (#407).
 2. PR 2 `feat/home-nights` (Sonnet high; the lead merges after its look).
 3. `fix/rehearsal-action-feedback` (Opus): greeting, gifts, board solve,
    board counters and gutter, two copy bugs. The lead merges after a look.
@@ -32,7 +32,7 @@ TestFlight before the membership. The app side follows the demo.
 ## Next steps, in order
 
 1. Next free builder slot: spec PR 4 (Çağlayan's early nights). Then
-   PR 3 once PR 1 merges, PR 6 and PR 7 once art A1 and A2 are picked.
+   PR 6 and PR 7 once art A1 and A2 are picked.
 2. Every eye PR: a critic on 1:1 crops first, then the lead's one sheet.
 3. Codex queue on pofu-art main (#13, #14 and #22 merged with the
    founder's approval): 0-h5 batch-78, 0-h7 batch-80 IL1 night, 0-h8
