@@ -54,6 +54,31 @@ public enum PaintedSky {
         return plate.skySet == nil ? nil : plate
     }
 
+    /// How much of the day's value the island keeps at night: the harmony tint (the plate's lawn light
+    /// against the level-10 day's, `PlateIsland.Harmony`) is the multiply a character takes, and a
+    /// character stands in a lamp's pool; a whole island sprite keeps a little more than that, as
+    /// Home's painted night island does (its mean luminance is 1.22 times the night sky's, ADR-0021:
+    /// night is a hue change, not a value drop).
+    static let nightKeep = 1.12
+    /// The cool lift in the island's shadows at night: its soil and moss go lavender in the dark
+    /// instead of staying warm, as Home's painted night does.
+    static let nightLift = GradeRGB(0.02, 0.04, 0.14)
+    static let nightSaturation = 0.9
+
+    /// The grade of the island sprites at a painted stop, from the plate's own light (never a new
+    /// colour script): neutral by day and at golden hour (the frames the critic accepted), and at
+    /// night the plate's night harmony tint (cool, darker) with a cool lift in the shadows. The lamps
+    /// and windows stay warm because the light field's pools and the glows are drawn over the grade.
+    public static func islandGrade(_ plate: HomePlate) -> WorldGrade {
+        guard plate.light == "night" else { return .neutral }
+        let t = plate.harmony.tint
+        return WorldGrade(
+            lift: nightLift,
+            gain: GradeRGB(t.red * nightKeep, t.green * nightKeep, t.blue * nightKeep),
+            saturation: nightSaturation
+        )
+    }
+
     /// The island's box the camera frames at its stop, and the stop's scale at the reference width.
     static func frame(of island: IslandID) -> (box: WorldBox, closeScale: Double)? {
         switch island {

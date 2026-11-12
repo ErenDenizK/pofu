@@ -552,13 +552,18 @@ private struct SceneFrame<Bubble: View>: View {
         // generated); with it, the colour script does the whole job.
         // Without the shader library the grade pass cannot run, so the
         // time-of-day tint stands in.
-        // Under a painted sky (`PaintedSky`) the island's sprites are not graded or tinted either: the
-        // painting around them is the final colour, and a warm veil on them washes them out.
-        let tint = look.grade && WorldShaders.isAvailable || skyFade >= 0.5 ? Color.white : palette.grade.color
+        // Under a painted sky (`PaintedSky`) the world grade does not touch the island's sprites: the
+        // painting around them is the final colour, and the day's warm veil washed them out. They take
+        // the painting's own light instead (`PaintedSky.islandGrade`): neutral by day and at golden
+        // hour, the plate's night light at night.
+        let paintedSky = skyFade >= 0.5 ? skies.max { $0.fade < $1.fade } : nil
+        let paintedGrade = paintedSky.map { PaintedSky.islandGrade($0.plate) } ?? WorldGrade.neutral
+        let paintedTint = Color(red: min(paintedGrade.gain.r, 1), green: min(paintedGrade.gain.g, 1), blue: min(paintedGrade.gain.b, 1))
+        let tint = look.grade && WorldShaders.isAvailable ? Color.white : paintedSky != nil ? paintedTint : palette.grade.color
         let baseGrade = look.grade ? look.gradeOverride ?? light.grade : WorldGrade.neutral
         // At Koke the colour comes back with the stage.
-        let grade = skyFade >= 0.5
-            ? WorldGrade.neutral
+        let grade = paintedSky != nil
+            ? paintedGrade
             : model.island == .koke && world.koke.isArrived ? KokeLayout.graded(baseGrade, stage: world.koke.stage) : baseGrade
         let characterGrade = look.grade ? light.characterGrade : WorldGrade.neutral
         // The sky and the cloud sea are pre-graded: no shader pass of their

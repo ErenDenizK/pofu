@@ -103,4 +103,46 @@ struct PaintedSkyTests {
         #expect(PaintedSky.sky(for: .koke, world: Self.world, look: look) == nil)
         #expect(PaintedSky.sky(for: .harbor, world: Self.world, look: look) == nil)
     }
+
+    // MARK: - The island under the painted night
+
+    /// Koke's island sprite per stage (`world-koke-island-0...4`): the mean sRGB of the pixels over half
+    /// alpha, measured from the shipped art. The painted night sky behind it (`world-home-sky-sky-night-0`)
+    /// has mean sRGB (0.391, 0.457, 0.722), luminance 0.4625; Home's own painted night island sits at
+    /// 1.22 times that (`world-home-island-night-0`, luminance 0.567).
+    static let kokeIslandMeans: [GradeRGB] = [
+        GradeRGB(0.792, 0.727, 0.646), GradeRGB(0.719, 0.686, 0.591), GradeRGB(0.721, 0.651, 0.417),
+        GradeRGB(0.693, 0.650, 0.383), GradeRGB(0.761, 0.673, 0.446),
+    ]
+    static let nightSkyLuminance = 0.4625
+
+    static func luminance(_ c: GradeRGB) -> Double { 0.2126 * c.r + 0.7152 * c.g + 0.0722 * c.b }
+
+    @Test func theIslandGradeIsNeutralByDayAndAtGoldenHour() throws {
+        for hour in [12.0, 6.0, 18.0] {
+            let sky = try #require(PaintedSky.sky(for: .koke, world: Self.world, look: Self.look(hour)))
+            #expect(PaintedSky.islandGrade(sky) == .neutral, "hour \(hour)")
+        }
+    }
+
+    @Test func theNightIslandIsCoolDarkerAndOnTheNightSkysScale() throws {
+        let sky = try #require(PaintedSky.sky(for: .koke, world: Self.world, look: Self.look(23)))
+        let grade = PaintedSky.islandGrade(sky)
+        let tint = sky.harmony.tint
+        // It is the plate's own night light, not a new number: the harmony tint, the day's value kept.
+        #expect(abs(grade.gain.r - tint.red * PaintedSky.nightKeep) < 1e-9)
+        #expect(abs(grade.gain.b - tint.blue * PaintedSky.nightKeep) < 1e-9)
+        #expect(grade.gain.b > grade.gain.r, "the night light is cool")
+        #expect(grade.lift.b > grade.lift.r, "the shadows are cool")
+        for (stage, mean) in Self.kokeIslandMeans.enumerated() {
+            let day = Self.luminance(mean) / Self.nightSkyLuminance
+            let night = Self.luminance(grade.apply(mean)) / Self.nightSkyLuminance
+            // Ungraded, the island is a noon sticker under the night sky (1.4 to 1.6 times it); graded, it sits
+            // where Home's painted night island does (1.22), within a band of the sky behind it.
+            #expect(day > 1.35, "stage \(stage) ungraded \(day)")
+            #expect((1.0...1.35).contains(night), "stage \(stage) graded \(night)")
+            let graded = grade.apply(mean)
+            #expect(graded.b / graded.r > mean.b / mean.r, "stage \(stage) is cooler")
+        }
+    }
 }

@@ -1,1 +1,1 @@
-Koke's stop and the harbor now stand under Home's painted sky of the hour's light, and rain falls over a painted island, instead of the code sky and cloud sea.
+Koke's island under the painted night sky is graded by Home's night light (cool, darker), not left at noon colours; the Koke and harbor sky frames are saved at full size.
