@@ -95,8 +95,8 @@ def sync(source: Path, art: Path, dry_run: bool = False, prune: bool = False, ou
         out(f"stale    {f} (not in pofu; --prune removes it)")
     for ref, names in sorted(closure.missing.items()):
         out(f"MISSING  {ref} (used by {', '.join(sorted(names))}; not in pofu either)")
-    for ref, names in sorted(closure.pending.items()):
-        out(f"pending  {ref} (made by {', '.join(sorted(names))} itself; fine)")
+    if closure.pending:
+        out(f"{len(closure.pending)} refs are parents a queue manifest makes itself (fine, not copied)")
     for name in closure.unmanifested:
         out(f"no manifest yet for queue row {name}")
     out(f"{len(files)} files, {ac.size_mb(source, files):.1f} MB, for {len(closure.manifests)} queue manifests; "

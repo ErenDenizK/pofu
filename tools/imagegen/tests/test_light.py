@@ -201,6 +201,8 @@ class StandardTests(unittest.TestCase):
         import style_lock as sl
         band = (HERE.parents[2] / "Packages/PofuKit/Sources/PofuWorld/Resources/World.xcassets"
                 / "world-island-main-band2.imageset/world-island-main-band2.png")
+        if not band.exists():
+            self.skipTest("app resource not in this checkout (pofu-art)")
         self.assertEqual(self.statuses(sl.load_rgba(band), "day")["light_values"], "fail")
 
     def test_a_crushed_night_frame_fails(self):

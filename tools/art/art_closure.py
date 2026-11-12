@@ -11,6 +11,7 @@ Pure Python, no network. Needs PyYAML, Pillow and numpy (`pipeline` imports `lig
 """
 from __future__ import annotations
 
+import json
 import re
 import sys
 from dataclasses import dataclass, field
@@ -35,6 +36,15 @@ PLAN_FALLBACK = "docs/design/art-production-plan.md"
 # AGENTS.md tells Codex to read.
 TOOL_FILES = [
     "tools/assets/process_assets.py",
+    "tools/art/grade_take.py",
+    "tools/review/sheet.py",
+    # The QA harmony check (qa.check_harmony) imports harmony and its config; without them
+    # the check is skipped, so the auto-pick would lose its tie-break.
+    "tools/assets/harmony.py",
+    "tools/assets/vivid.py",
+    "tools/assets/vivid.json",
+    "design/art/materials.json",
+    "docs/design/art-bible.md",
     "tools/assets/requirements.txt",
     "design/tokens/pofu-tokens.json",
     "design/art/light-standard.json",
@@ -47,7 +57,7 @@ TOOL_FILES = [
     "docs/design/light-standard.md",
     "docs/design/visual-system.md",
 ]
-TOOL_DIRS = ["tools/imagegen"]
+TOOL_DIRS = ["tools/imagegen", "design/art/harmony"]
 # Never copied: caches and the git-ignored run folders.
 SKIP_PARTS = {"__pycache__", ".pytest_cache", ".venv", "inbox"}
 
@@ -58,12 +68,14 @@ class Closure:
     pending: dict[str, set[str]] = field(default_factory=dict)  # ref -> manifests: made by an earlier job, not on disk yet
     missing: dict[str, set[str]] = field(default_factory=dict)  # ref -> manifests: should exist but does not
     manifests: list[str] = field(default_factory=list)  # the manifests the closure was computed for
+    errors: list[str] = field(default_factory=list)  # manifests that do not load in `root` (a block or alias is missing)
     unmanifested: list[str] = field(default_factory=list)  # queue rows whose manifest is not written yet
 
 
 def _set_root(root: Path) -> None:
     pl.REPO_ROOT = root
     pl.ART_ROOT = root / "design" / "art"
+    pl.BLOCKS_DIR = root / "tools" / "imagegen" / "blocks"
 
 
 def _rel(root: Path, p: Path) -> str:
@@ -147,6 +159,27 @@ def manifest_refs(root: Path, path: Path) -> list[tuple[str, Path, str]]:
     return out
 
 
+def standard_references(root: Path) -> list[str]:
+    """The liked takes the light standard measures against (`reference` in light-standard.json)."""
+    f = root / "design/art/light-standard.json"
+    if not f.is_file():
+        return []
+    refs = json.loads(f.read_text(encoding="utf-8")).get("reference", {})
+    return [f"design/art/takes/{r}" for rels in refs.values() if isinstance(rels, list) for r in rels]
+
+
+def prompt_errors(root: Path, path: Path) -> list[str]:
+    """Jobs whose prompt cannot be composed in `root` (a style or prompt block is missing)."""
+    m = load(root, path)
+    out = []
+    for job in m.jobs:
+        try:
+            pl.compose_prompt(job)
+        except (OSError, KeyError, ValueError) as e:
+            out.append(f"{path.name}: {job.id}: {e}")
+    return out
+
+
 def static_files(root: Path) -> set[str]:
     """tools/imagegen with its tests and every manifest, plus the files its code reads."""
     out: set[str] = set()
@@ -155,6 +188,7 @@ def static_files(root: Path) -> set[str]:
             if p.is_file() and not SKIP_PARTS & set(p.relative_to(root).parts):
                 out.add(_rel(root, p))
     out.update(f for f in TOOL_FILES if (root / f).is_file())
+    out.update(f for f in standard_references(root) if (root / f).is_file())
     return out
 
 
@@ -176,7 +210,12 @@ def compute(root: Path, batches: list[str] | None = None, source: Path | None = 
             c.unmanifested.append(name)  # a backlog row the lead has not written a manifest for yet
             continue
         c.manifests.append(name)
-        for ref, p, kind in manifest_refs(root, path):
+        try:
+            refs = manifest_refs(root, path)
+        except (pl.ManifestError, KeyError, OSError, yaml.YAMLError) as e:
+            c.errors.append(f"{name}: {e}")
+            continue
+        for ref, p, kind in refs:
             q = p if p.exists() else _twin(p)
             if q is not None and q.exists():
                 c.files.add(_rel(root, q))
