@@ -20,7 +20,7 @@ with `python3 -I tools/docs/check_links.py`.
 |---|---|---|
 | Vision | [product/vision.md](product/vision.md) | |
 | Book One story (islands, order, residents, Söz, finale) | [product/story-map/book-one.md](product/story-map/book-one.md) | [design/book-one-islands.md](design/book-one-islands.md) (layouts, stages, art) |
-| Game: loop, days, games, screens | [product/game-plan.md](product/game-plan.md) | [game-design.md](product/game-design.md) (pillars, anti-addiction rules A1–A14; partly superseded), [minigames.md](product/minigames.md) (mechanics research) |
+| Game: loop, days, games, screens | [product/game-plan.md](product/game-plan.md) | [game-design.md](product/game-design.md) (pillars, anti-addiction rules A1–A14; partly superseded), [minigames.md](product/minigames.md) (mechanics research), [design/game-solid-v1.md](design/game-solid-v1.md) (the playable demo, days 1–21) |
 | Home growth | [product/home-progression.md](product/home-progression.md) | [home-layout.md](product/home-layout.md) (every slot), [design/island-healing-arc.md](design/island-healing-arc.md) |
 | Economy (mirrors `PofuCore`) | [product/economy.md](product/economy.md) | |
 | App vs game line | [product/app-game-boundary.md](product/app-game-boundary.md) | |

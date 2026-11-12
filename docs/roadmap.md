@@ -138,7 +138,7 @@ The lead keeps this list current: each track names its next step only.
 | **Icons** | The two-tone take replaces the place control's glyph and menu symbols, once he picks the style (Q-15) | his Q-15 |
 | **Koke** | Integrate row 0-k's takes; one Koke on screen; stage 0-2 plates repainted under the beautiful-wound rule (code grading of the pale, high-key plates stops short: #256's sheet), after the `x-koke-stage0-mist` concept | 0-k, batch-45 |
 | **Çağlayan and flow** | Built (#297, #315). Next: the plates and water source (Q-1, Q-2), a one-day water spike | his answers |
-| **Game flow** | The flow audit: a `PofuCore` test that plays days 1-21 for a typical player and for a heavy scroller; no dead day | nothing |
+| **Game flow** | The flow audit is built (`FlowAuditTests`). Next: the demo-solid spec, six PRs ([game solid v1](design/game-solid-v1.md)) | nothing |
 | **The roots** (island undersides) | Concepts (batch-49), then `UndersideLayout` and the first pieces by island level; the keepsakes arrive with each healed island ([the roots](design/island-undersides.md)) | the concepts |
 | **Home growth** | A screenshot sheet of IL1 to IL10; every level adds something seen and something moving; IL1's decor | nothing |
 | **Residents** | Wave 3: ten resident-to-resident scenes (`pofu-story`), daily visits | nothing |
