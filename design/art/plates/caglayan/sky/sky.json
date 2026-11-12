@@ -76,7 +76,8 @@
    "window": 500,
    "step": 96,
    "source": 700
-  }
+  },
+  "splitSky": true
  },
  "stages": [
   "0",
@@ -93,5 +94,7 @@
  "tileBridge": 192,
  "gamutAlpha": true,
  "alphaFloor": 0.08,
- "edgeFeather": 24
+ "edgeFeather": 24,
+ "skyDarkPass": true,
+ "cloudsLighten": true
 }

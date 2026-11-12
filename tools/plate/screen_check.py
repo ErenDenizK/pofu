@@ -61,6 +61,7 @@ SKY_THRESHOLDS = {
     "sky_edges": {"col_hp": 0.4, "row_hp": 1.0, "band": 0.42},
     "ghosts": {"max_points": 0, "radius": 24, "min_area": 6, "max_area": 150},
     "speckle": {"floor": 0.02, "max_area": 250, "max_alpha": 0.30, "max_pieces": 0},
+    "dark_halo": {"lo": 0.08, "hi": 0.9, "dark": 0.02, "max_px": 30000, "rows": 1700},
     "sea_line": {"window": 14, "ratio_max": 2.2, "excess_max": 1.2},
 }
 
@@ -294,7 +295,7 @@ def block_pixels(frame: np.ndarray, region: np.ndarray, de: float, run: int) -> 
     return ((vx > 0) | (hy > 0)) & region
 
 
-def check_blocks(frames: dict[int, np.ndarray], island_alpha: np.ndarray, th: dict) -> dict:
+def check_blocks(frames: dict[int, np.ndarray], island_alpha: np.ndarray, th: dict, covered: np.ndarray | None = None) -> dict:
     """Straight block edges in the cloud sea round the island (the filled hole drifting out), beyond
     what frame zero has."""
     k = th["near_px"]
@@ -302,6 +303,8 @@ def check_blocks(frames: dict[int, np.ndarray], island_alpha: np.ndarray, th: di
     near = (cv2.dilate(solid.astype(np.uint8), np.ones((2 * k + 1, 2 * k + 1), np.uint8)) > 0) & ~solid
     ys = np.nonzero(solid.any(1))[0]
     near[: (ys[0] + ys[-1]) // 2] = False              # the cloud sea round the island's lower half
+    if covered is not None:
+        near &= covered.any(0)[None, :]                # not the screen's margin beyond the master (the split's own frame leaves it bare)
     base = block_pixels(frames[0], near, th["block_de"], th["block_run"])
     base = cv2.dilate(base.astype(np.uint8), np.ones((5, 5), np.uint8)) > 0
     res, ok = {}, True
@@ -546,6 +549,28 @@ def check_speckle(layers: dict, th: dict) -> dict:
     return {"pieces": res, "total": total, "ok": total <= th["max_pieces"]}
 
 
+def check_dark_halo(sky_rgb: np.ndarray, layers: list[tuple[np.ndarray, tuple[int, int]]], th: dict) -> dict:
+    """Boxes behind clouds: a cloud layer's soft edge is its colour over the sky field it was unmixed against, so its
+    straight colour is never darker than that field. Where the layer was cut against a different sky (a hole-filled or
+    locally adapted one), the halo carries the other sky's colour and shows as a faint darker-blue patch once the cloud
+    drifts off it. Counts pixels with alpha in (`lo`, `hi`) whose luminance is below the field's by `dark`.
+    `sky_rgb` is the sky field on the master's pixels (0..1); `layers` are (straight RGBA at master size, top-left)."""
+    bad = 0
+    for rgba, (x, y) in layers:
+        h, w = rgba.shape[:2]
+        ys0, xs0 = max(-y, 0), max(-x, 0)
+        sub = rgba[ys0: ys0 + max(min(h, sky_rgb.shape[0] - y) - ys0, 0), xs0: xs0 + max(min(w, sky_rgb.shape[1] - x) - xs0, 0)]
+        if sub.size == 0:
+            continue
+        sk = sky_rgb[y + ys0: y + ys0 + sub.shape[0], x + xs0: x + xs0 + sub.shape[1]]
+        a = sub[..., 3]
+        mask = (a > th["lo"]) & (a < th["hi"]) & (sky_rgb.shape[0] > 0)
+        # only above the cloud sea: there the field is the whole story
+        dark = (luminance(sub[..., :3] * 255) < luminance(sk * 255) - th["dark"]) & mask
+        bad += int(dark.sum())
+    return {"px": bad, "ok": bad <= th["max_px"]}
+
+
 def check_horizontal_line(frame: np.ndarray, rows: tuple[int, int], th: dict) -> dict:
     """A straight horizontal line across the cloud sea: the mean absolute luminance step between a row and the next,
     over the whole width, against the median of the rows around it. Clouds have steps that vary along a row and
@@ -563,6 +588,29 @@ def check_horizontal_line(frame: np.ndarray, rows: tuple[int, int], th: dict) ->
             worst, at, exc = ratio, r, float(d[r] - base)
     return {"row": int(at), "ratio": round(worst, 2), "excess": round(exc, 2),
             "ok": not (worst > th["ratio_max"] and exc > th["excess_max"])}
+
+
+def check_dark_halo_set(s: dict, th: dict) -> dict:
+    """`check_dark_halo` on a loaded shipped set (`skyset_render.load`): the sky layer stretched to its size, the far and mid
+    layers at theirs (not the isles, whose greenery is darker than any sky), above `rows` master rows."""
+    master_w, master_h = s["master"]
+    sky = next(l for l in s["layers"] if l["role"] == "sky")
+    ox, oy = (int(round(v)) for v in sky["pos"])
+    field = cv2.resize(sky["rgba"][..., :3], (int(round(sky["size"][0])), int(round(sky["size"][1]))), interpolation=cv2.INTER_LINEAR)
+    canvas = np.zeros((master_h, master_w, 3), np.float32)
+    ys0, xs0 = max(-oy, 0), max(-ox, 0)
+    part = field[ys0: ys0 + master_h - max(oy, 0), xs0: xs0 + master_w - max(ox, 0)]
+    canvas[max(oy, 0): max(oy, 0) + part.shape[0], max(ox, 0): max(ox, 0) + part.shape[1]] = part
+    placed = []
+    for l in s["layers"]:
+        if l["role"] != "tile" or l["id"] == "sea":
+            continue
+        w, h = int(round(l["size"][0])), int(round(l["size"][1]))
+        big = cv2.resize(l["rgba"], (w, h), interpolation=cv2.INTER_LINEAR)
+        top = int(round(l["pos"][1]))
+        keep = max(min(h, th["rows"] - top), 0)
+        placed.append((big[:keep, :master_w], (int(round(l["pos"][0])), top)))
+    return check_dark_halo(canvas, placed, th)
 
 
 def run_sky(island: str, light: str, th: dict = SKY_THRESHOLDS) -> dict:
@@ -591,12 +639,13 @@ def run_sky(island: str, light: str, th: dict = SKY_THRESHOLDS) -> dict:
     out["ghosts"] = {**{str(t): v for t, v in ghosts.items()}, "ok": all(v["ok"] for v in ghosts.values())}
     cloud = {l["id"]: l["rgba"] for l in s["layers"] if l["role"] in ("tile", "sprite", "whale")}
     out["speckle"] = check_speckle(cloud, th["speckle"])
+    out["dark_halo"] = check_dark_halo_set(s, th["dark_halo"])
     sea_top = int(round((s["manifest"]["islandBox"][3] - fr["y0"]) / fr["k"])) + 40    # below the island's lowest root
     out["sea_line"] = {t: check_horizontal_line(rd.render(s, t, fr), (sea_top, SCREEN[1] - 4), th["sea_line"]) for t in (0, 3)}
     out["sea_line"]["ok"] = all(v["ok"] for v in out["sea_line"].values())
     # speckle is enforced where the hand data sets an `alphaFloor` (Çağlayan); Home's sets are older and only reported
     hand_sky = json.loads((PLATES / island / "sky" / "sky.json").read_text())
-    keys = ["mirror", "mirror_top", "sky_edges", "ghosts", "sea_line"] + (["speckle"] if hand_sky.get("alphaFloor") else [])
+    keys = ["mirror", "mirror_top", "sky_edges", "ghosts", "sea_line"] + (["speckle", "dark_halo"] if hand_sky.get("alphaFloor") else [])
     out["ok"] = all(out[k]["ok"] for k in keys if k in out)
     return out
 
@@ -723,7 +772,7 @@ def run(island: str, light: str, set_dir: Path | None = None, plate: np.ndarray 
     out = {"light": light, "frame": {"k": round(fr["k"], 4), "x0": round(fr["x0"], 1), "y0": round(fr["y0"], 1)}}
     out["identity"] = check_identity(f0["rgb"], master, f0["covered"], th["identity_portrait" if hand.get("portraitFrame") else "identity"])
     out["seam"] = check_seam({t: comps[t]["rgb"] for t in TIMES}, f0["island_alpha"], th["seam"])
-    out["blocks"] = check_blocks({t: comps[t]["rgb"] for t in TIMES}, f0["island_alpha"], th["seam"])
+    out["blocks"] = check_blocks({t: comps[t]["rgb"] for t in TIMES}, f0["island_alpha"], th["seam"], f0["covered"])
     out["leak"] = check_leaks(s, th["leak"])
     out["colour"] = check_colour({t: comps[t]["rgb"] for t in TIMES}, master, f0["covered"], masks, th["colour"])
     if hand.get("portraitFrame"):

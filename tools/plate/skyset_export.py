@@ -241,7 +241,7 @@ def continue_sea(arr: np.ndarray, seed: int = 0, light: str = "", pad: int | Non
     return res
 
 
-def extend_sky_up(sky: np.ndarray, rows: int, fit_rows: int = 40, tau_rows: float = 6.0, flat_rows: float = 25.0) -> np.ndarray:
+def extend_sky_up(sky: np.ndarray, rows: int, fit_rows: int = 40, tau_rows: float = 6.0, flat_rows: float = 8.0) -> np.ndarray:
     """The gradient (H, W, 3 at 1/8 size) continued `rows` rows upward by a smooth fitted field, so the picture
     runs on past the master's top edge with no band and no seam: the first row is the gradient's own (smoothed
     along x), and each row above it moves on by the vertical slope fitted to the top `fit_rows` rows, the slope
@@ -365,7 +365,7 @@ def export_light(island: str, light: str, hand: dict) -> dict:
         cy, cx = ndimage.center_of_mass(lab == (1 + int(np.argmax(sizes))))
         yy, xx = np.mgrid[0:sky0.shape[0], 0:sky0.shape[1]]
         exclude |= np.hypot(yy * k + k / 2 - cy, xx * k + k / 2 - cx) < MOON_R_HALO + 24
-    field = fit_field(sky0, exclude)
+    field = sky0 if cfg.get("splitSky") else fit_field(sky0, exclude)   # Çağlayan: the one smooth field the clouds were unmixed against
     sky_arr = field.copy()
     if stars_on:                                              # the painted stars, put back
         for blob in blobs:

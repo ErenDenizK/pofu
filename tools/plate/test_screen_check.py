@@ -129,6 +129,20 @@ class MeasureTests(unittest.TestCase):
         self.assertFalse(r["ok"], r)
         self.assertAlmostEqual(r["row"], 149, delta=2)
 
+    def test_a_halo_cut_against_another_sky_is_caught_and_one_cut_against_the_field_is_not(self):
+        th = {"lo": 0.08, "hi": 0.9, "dark": 0.006, "max_px": 20, "rows": 1700}
+        field = np.dstack([np.full((120, 160), 0.55, np.float32), np.full((120, 160), 0.75, np.float32), np.full((120, 160), 0.98, np.float32)])
+        yy, xx = np.mgrid[0:120, 0:160]
+        a = np.clip(1.6 - np.hypot(xx - 80, yy - 60) / 25, 0, 1).astype(np.float32)
+        # a cloud whose edge was unmixed against the same field: its colour is the cloud's (lighter than the field)
+        good = np.dstack([np.full((120, 160, 3), 0.95, np.float32), a])
+        self.assertTrue(sc.check_dark_halo(field, [(good, (0, 0))], th)["ok"])
+        # one unmixed against a lighter local sky: its halo comes out darker than the field everywhere the alpha is soft
+        bad = good.copy()
+        bad[..., :3] = np.where(((a > 0.08) & (a < 0.9))[..., None], np.float32([0.45, 0.70, 0.97]), bad[..., :3])
+        r = sc.check_dark_halo(field, [(bad, (0, 0))], th)
+        self.assertFalse(r["ok"], r)
+
     def test_resolution(self):
         th = sc.THRESHOLDS["resolution"]
         self.assertTrue(sc.check_resolution({"k": 1.4}, th)["ok"])

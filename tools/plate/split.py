@@ -188,7 +188,7 @@ def _basis(x, y, w, h):
     return np.stack([np.ones_like(x), x, x * x, y, y * y, y ** 3, y ** 4, x * y, x * x * y, x * y * y], -1)
 
 
-def fit_sky(p: np.ndarray, objs: np.ndarray, sea_top: int) -> tuple[np.ndarray, float]:
+def fit_sky(p: np.ndarray, objs: np.ndarray, sea_top: int, residual: bool = True, dark_pass: bool = False) -> tuple[np.ndarray, float]:
     """The smooth sky: a polynomial in x, y fitted with iterative rejection of clouds and objects,
     plus the smooth residual of the pixels that still look like sky (a sunset glow is not a
     polynomial). Frozen below the sea top: there the sky is only seen through thin cloud."""
@@ -207,6 +207,9 @@ def fit_sky(p: np.ndarray, objs: np.ndarray, sea_top: int) -> tuple[np.ndarray, 
         r = np.linalg.norm(p - s, axis=-1)
         sel = free & (r < t) & sub
     resid_p95 = float(np.percentile(r[sel], 95))
+    if not residual:
+        s[sea_top:] = s[sea_top - 1]
+        return s.clip(0, 1).astype(np.float32), resid_p95
     # smooth residual at 1/8 size
     k = SKY_SCALE
     sm_w = cv2.resize((free & (r < 0.02)).astype(np.float32), (w // k, h // k), interpolation=cv2.INTER_AREA)
@@ -216,6 +219,16 @@ def fit_sky(p: np.ndarray, objs: np.ndarray, sea_top: int) -> tuple[np.ndarray, 
     den = cv2.GaussianBlur(sm_w, (0, 0), 6)
     corr = num / np.maximum(den, 1e-3)[..., None] * np.clip(den / 0.15, 0, 1)[..., None]
     s = s + cv2.resize(corr, (w, h), interpolation=cv2.INTER_CUBIC)
+    if dark_pass:
+        # Clouds only ever lighten a sky. Where the painting is deeper blue than the field (the pockets between clouds) it is
+        # sky, not a dark cloud: a second smooth correction from the pixels that are no lighter than the field
+        r2 = np.linalg.norm(p - s, axis=-1)
+        sky_like = free & (lum(p) <= lum(s) + 0.004) & (r2 < 0.15)
+        w2 = cv2.resize(sky_like.astype(np.float32), (w // k, h // k), interpolation=cv2.INTER_AREA)
+        d2 = cv2.resize(np.where(sky_like[..., None], p - s, 0).astype(np.float32), (w // k, h // k), interpolation=cv2.INTER_AREA)
+        num2, den2 = cv2.GaussianBlur(d2, (0, 0), 3), cv2.GaussianBlur(w2, (0, 0), 3)
+        corr2 = num2 / np.maximum(den2, 1e-3)[..., None] * np.clip(den2 / 0.2, 0, 1)[..., None]
+        s = s + cv2.resize(corr2, (w, h), interpolation=cv2.INTER_CUBIC)
     s[sea_top:] = s[sea_top - 1]
     return s.clip(0, 1).astype(np.float32), resid_p95
 
@@ -318,17 +331,18 @@ def bridge_wrap(rgb: np.ndarray, a: np.ndarray, extra: int, seed: int = 0) -> tu
     if not (a > 0.003).any():
         return np.concatenate([rgb, rgb[:, :extra]], 1), np.concatenate([a, a[:, :extra]], 1)
     fill = inpaint.quilt(canvas, hole, periodic_x=True, y_window=300, block=96, overlap=32, topk=3, seed=seed)
-    # a quilt matches its blocks to the known edge but leaves a small step, and a vertical line where its end meets the
-    # painting's other edge. So the bridge's two ends are the painting's own edge columns repeated (continuous by construction, and no mirrored cloud shapes,
-    # and only a few screen px of them show at rest, where the screen is wider than the master) and the quilt sits
-    # between them, crossfaded in over `m` columns on each side; the painting's columns are never touched.
-    m = min(56, extra // 2 - 8)
-    ramp = split_smooth(np.arange(m, dtype=np.float32) / max(m - 1, 1))[None, :, None]
-    soft = lambda col: cv2.GaussianBlur(col, (0, 0), sigmaX=0.01, sigmaY=8)       # no hard-edged boxes along the screen's edge
-    left = np.repeat(soft(pre[:, w - 1: w]), m, 1)                    # col w continues col w - 1
-    right = np.repeat(soft(pre[:, :1]), m, 1)                         # the last col continues col 0 (the wrap)
-    fill[:, w: w + m] = left * (1 - ramp) + fill[:, w: w + m] * ramp
-    fill[:, w + extra - m: w + extra] = fill[:, w + extra - m: w + extra] * (1 - ramp) + right * ramp
+    # a quilt matches its blocks to the known edge but leaves a small step (a straight line where its end meets the
+    # painting's other edge): carry each end's difference, per row and smoothed along y, off smoothly over the bridge's
+    # first and last `m` columns, so the painting's edge runs into the bridge and the bridge into the other edge with no
+    # line and no repeated or stretched column; the painting's own columns are never touched
+    m = min(96, extra // 2)
+    ramp = split_smooth(np.arange(m, dtype=np.float32) / max(m - 1, 1))
+    soft = lambda col: cv2.GaussianBlur(col, (0, 0), sigmaX=0.01, sigmaY=6)
+    d_start = soft((pre[:, w - 1] - fill[:, w])[:, None, :])
+    d_end = soft((pre[:, 0] - fill[:, w + extra - 1])[:, None, :])
+    fill[:, w: w + m] += d_start * (1 - ramp)[None, :, None]
+    fill[:, w + extra - m: w + extra] += d_end * ramp[None, :, None]
+    fill = fill.clip(0, 1)
     fa = fill[..., 3].clip(0, 1)
     frgb = np.where(fa[..., None] > 1e-3, fill[..., :3] / np.maximum(fa, 1e-3)[..., None], 0).clip(0, 1)
     return frgb.astype(np.float32), fa.astype(np.float32)
@@ -348,7 +362,7 @@ def split_plate(p: np.ndarray, hand: dict, mattes: dict | None = None, log=print
     objs = np.maximum.reduce([isl_m, zero] + list(spr_m.values()))
 
     # -- the sky, and how much each pixel is cloud
-    s, resid = fit_sky(p, objs, sea_top)
+    s, resid = fit_sky(p, objs, sea_top, hand.get("skyResidual", True), hand.get("skyDarkPass", False))
     k = hand.get("cloudScale") or cloud_scale(p, s, objs, sea_top)
     log(f"sky fit residual p95 {resid:.4f}, cloud scale K {k:.3f}")
     d = np.linalg.norm(p - s, axis=-1)
@@ -403,6 +417,10 @@ def split_plate(p: np.ndarray, hand: dict, mattes: dict | None = None, log=print
     ca2 = cv2.GaussianBlur(((d2 - 0.012) / k).clip(0, 1), (0, 0), 1.0)
     ca2 = np.where(ca2 < 0.04, 0, (ca2 - 0.04) / 0.96)       # no faint haze rims round the holes
     ca2 = np.maximum(ca2, ramp)
+    if hand.get("cloudsLighten"):
+        # a cloud only ever lightens a sky: where the painting is darker than the field it is sky (a deeper blue pocket the
+        # smooth field could not follow), never a dark cloud that would drift off as a bluish box
+        ca2 = np.where((lum(p_bg) < lum(s) - 0.004) & (yy < sea_top - 150), 0, ca2).astype(np.float32)
     if hand.get("gamutAlpha"):
         # a cloud over a light sky (Çağlayan's cumulus on pale blue) can need more alpha than its colour distance gives:
         # past a layer colour of 1 the unmix clips and the composite loses the pink of the cloud (0.04 of red or more)
