@@ -1,0 +1,1 @@
+Fixed: Çağlayan's rumour now comes at the twelfth tended day even if Koke was never healed, both wonder islands sleep at bedtime (no advance, `isAsleep` in the snapshot), and gift parcels hold seeds only until decor can be placed.

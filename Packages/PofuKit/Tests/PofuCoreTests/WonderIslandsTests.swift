@@ -76,13 +76,87 @@ struct WonderIslandsTests {
         var ledger = WonderLedger()
         // Koke asleep: no rumour, however many days.
         ledger.islands[.koke] = WonderIslandState(rumouredOn: day.adding(days: -9), arrivedOn: day.adding(days: -8), stage: 3)
-        WonderIslands.roll(&ledger, to: day, tendedDays: 12, harborOpen: true)
+        WonderIslands.roll(&ledger, to: day, tendedDays: WonderIslands.caglayanFallbackTendedDays - 1, harborOpen: true)
         #expect(ledger[.caglayan].rumouredOn == nil)
         healedKoke(&ledger, on: day)
         WonderIslands.roll(&ledger, to: day, tendedDays: 7, harborOpen: true)
         #expect(ledger[.caglayan].rumouredOn == nil)
         WonderIslands.roll(&ledger, to: day, tendedDays: 8, harborOpen: true)
         #expect(ledger[.caglayan].rumouredOn == day)
+    }
+
+    // MARK: Fillers never block the main road, and the islands sleep
+
+    @Test func caglayanComesAtTendedDayTwelveWhenKokeIsIgnored() {
+        var world = World()
+        let start = Date(timeIntervalSinceReferenceDate: 800_000_000)
+        world.advance(to: start, .signOfLife(at: start))
+        // The harbor is open from the start: this test is about Koke, not the quay.
+        world.state.stations.arrivals[.harbor] = 0
+        world.state.stations.arrivalOrder.append(.harbor)
+        var rumouredAtTendedDays: Int?
+        var arrival: (rumoured: LocalDay, arrived: LocalDay)?
+        for day in 0..<30 {
+            // A resisted reach every day; Koke is never visited.
+            let morning = start.addingTimeInterval(Double(day) * 86_400 + 3_600)
+            world.advance(to: morning, .resisted(at: morning))
+            let noon = morning.addingTimeInterval(3 * 3_600)
+            world.advance(to: noon, .signOfLife(at: noon))
+            let state = world.state.wonders[.caglayan]
+            if rumouredAtTendedDays == nil, state.rumouredOn != nil {
+                rumouredAtTendedDays = world.state.tendedDays
+            }
+            if let rumoured = state.rumouredOn, let arrived = state.arrivedOn {
+                arrival = (rumoured, arrived)
+                break
+            }
+        }
+        #expect(world.state.wonders[.koke].stage == 0)
+        #expect(rumouredAtTendedDays == WonderIslands.caglayanFallbackTendedDays)
+        #expect(arrival != nil)
+        if let arrival {
+            #expect(arrival.arrived == arrival.rumoured.adding(days: WonderIslands.caglayanArrivalDays))
+        }
+    }
+
+    @Test func kokeStillGatesCaglayanBeforeDayTwelve() {
+        var ledger = WonderLedger()
+        ledger.islands[.koke] = WonderIslandState(rumouredOn: day.adding(days: -9), arrivedOn: day.adding(days: -8), stage: 2)
+        for tended in 0..<WonderIslands.caglayanFallbackTendedDays {
+            WonderIslands.roll(&ledger, to: day, tendedDays: tended, harborOpen: true)
+            #expect(ledger[.caglayan].rumouredOn == nil, "rumour at tended day \(tended)")
+        }
+        // Even at the fallback day the harbor must be open.
+        WonderIslands.roll(&ledger, to: day, tendedDays: WonderIslands.caglayanFallbackTendedDays, harborOpen: false)
+        #expect(ledger[.caglayan].rumouredOn == nil)
+        WonderIslands.roll(&ledger, to: day, tendedDays: WonderIslands.caglayanFallbackTendedDays, harborOpen: true)
+        #expect(ledger[.caglayan].rumouredOn == day)
+    }
+
+    @Test func wondersSleepAtBedtime() {
+        var world = World()
+        let start = Date(timeIntervalSinceReferenceDate: 800_000_000)
+        world.advance(to: start, .signOfLife(at: start))
+        let today = LocalDay(containing: start, in: .istanbul)
+        world.state.wonders.islands[.koke] = WonderIslandState(rumouredOn: today.adding(days: -2), arrivedOn: today.adding(days: -1))
+        world.state.wonders.islands[.caglayan] = WonderIslandState(rumouredOn: today.adding(days: -2), arrivedOn: today.adding(days: -1))
+        let reach = start.addingTimeInterval(60)
+        world.advance(to: reach, .resisted(at: reach))
+        #expect(world.snapshot.koke.canAdvance && !world.snapshot.koke.isAsleep)
+        #expect(world.snapshot.caglayan.canAdvance && !world.snapshot.caglayan.isAsleep)
+        // 23:30 the same day.
+        var parts = Calendar.istanbul.dateComponents([.year, .month, .day], from: start)
+        parts.hour = 23
+        parts.minute = 30
+        let night = Calendar.istanbul.date(from: parts)!
+        world.advance(to: night, .resisted(at: night))
+        #expect(world.snapshot.isBedtime)
+        #expect(world.snapshot.koke.isAsleep && !world.snapshot.koke.canAdvance)
+        #expect(world.snapshot.caglayan.isAsleep && !world.snapshot.caglayan.canAdvance)
+        world.advance(to: night, GameEvent(at: night, kind: .tendedWonder(.koke)))
+        world.advance(to: night, GameEvent(at: night, kind: .tendedWonder(.caglayan)))
+        #expect(world.state.wonders[.koke].stage == 0)
+        #expect(world.state.wonders[.caglayan].stage == 0)
     }
 
     @Test func caglayanArrivesTwoDaysAfterItsRumour() {

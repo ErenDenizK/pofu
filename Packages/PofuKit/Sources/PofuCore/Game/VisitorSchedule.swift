@@ -44,6 +44,9 @@ public struct VisitorRules: Hashable, Sendable {
     /// A seed gift holds this many seeds (ADR-0015: seeds are world
     /// material and never buy screen time).
     public var giftSeeds = 2...5
+    /// Whether a gift parcel can hold a decor piece. Off while nothing in
+    /// the world can place decor: a parcel then holds seeds only.
+    public var decorGifts = false
     /// Island level from which the guest stall (G1), the guest room (H4)
     /// and festivals exist.
     public var guestLevel = 3
@@ -259,7 +262,7 @@ public struct VisitorSchedule: Sendable {
     private func gift(day: LocalDay, ledger: VisitorLedger, seedsOnly: Bool) -> VisitGift {
         let h = Self.hash(ledger.seed, day, salt: 4)
         let unowned = Self.giftDecor.filter { !ledger.decor.contains($0) }
-        if !seedsOnly, !unowned.isEmpty, h % 5 < 2 {
+        if rules.decorGifts, !seedsOnly, !unowned.isEmpty, h % 5 < 2 {
             return .decor(unowned[Int((h >> 8) % UInt64(unowned.count))])
         }
         let span = rules.giftSeeds.upperBound - rules.giftSeeds.lowerBound + 1
