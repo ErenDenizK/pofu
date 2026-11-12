@@ -112,6 +112,11 @@ jobs:
       - name: Test the art-factory scripts
         run: python3 -I -m unittest discover -s tools/art -p "test_*.py"
 
+      # The studio's own instruments (docs/studio.md): what changed for the player, and where a
+      # session's budget went.
+      - name: Test the studio tools
+        run: python3 -I -m unittest discover -s tools/studio -p "test_*.py"
+
       # Every master measured against the reference; fails when a master,
       # the config or a correction changed without re-running harmony.py
       # measure (and preblur.py app, which bakes the corrections).
