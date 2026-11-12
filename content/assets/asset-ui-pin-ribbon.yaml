@@ -4,12 +4,12 @@ title_tr: ui-pin-ribbon
 title_en: pin-ribbon (ui)
 status: in-production
 horizon: now
-summary: >-
-  One small satin ribbon bow with two short tails hanging down, seen straight on and centered:
-  rose-pink ribbon (#E8A5A0) with a thin cream edge, a plump simple knot, a soft shadow beneath.
-  Chunky and simple.
+summary: 'One small satin ribbon bow with two short tails hanging down, seen straight
+  on and centered: rose-pink ribbon (#E8A5A0) with a thin cream edge, a plump simple
+  knot, a soft shadow beneath. Chunky and simple.'
 art:
-  images: []
+  images:
+  - design/art/ui/ui-pin-ribbon/ui-pin-ribbon.png
   jobs:
   - batch-61-ui-kit-v3:ui-pin-ribbon
 sources:

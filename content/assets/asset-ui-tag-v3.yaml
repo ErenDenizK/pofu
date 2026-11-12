@@ -11,7 +11,8 @@ summary: >-
   loop of brown string, the right end with two clipped corners, a thin darker paper edge and
   a soft shadow beneath. The middle is flat and even.
 art:
-  images: []
+  images:
+  - design/art/ui/ui-tag-v3/ui-tag-v3.png
   jobs:
   - batch-61-ui-kit-v3:ui-tag-v3
 sources:

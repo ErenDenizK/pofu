@@ -12,7 +12,8 @@ links:
   variant_of:
   - asset-ui-chip-felt
 art:
-  images: []
+  images:
+  - design/art/ui/ui-chip-felt-selected/ui-chip-felt-selected.png
   jobs:
   - batch-61-ui-kit-v3:ui-chip-felt-selected
 sources:

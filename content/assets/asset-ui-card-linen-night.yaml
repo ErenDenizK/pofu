@@ -2,14 +2,14 @@ id: asset-ui-card-linen-night
 type: asset
 title_tr: ui-card-linen-night
 title_en: card-linen-night (ui)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  NIGHT VERSION of the attached day piece: the identical shape, size and position, every edge
-  in the same pixels; only the light and color change. It is now lit by a warm lantern from
-  the upper left at night: the material turns a deep warm plum-brown and ink-blue shade, the
-  highlight along the top edge becomes a soft amber, shadows are deeper warm indigo-brown
-  (never black), the whole piece stays readable as the same o…
+summary: 'NIGHT VERSION of the attached day piece: the identical shape, size and position,
+  every edge in the same pixels; only the light and color change. It is now lit by
+  a warm lantern from the upper left at night: the material turns a deep warm plum-brown
+  and ink-blue shade, the highlight along the top edge becomes a soft amber, shadows
+  are deeper warm indigo-brown (never black), the whole piece stays readable as the
+  same o…'
 links:
   variant_of:
   - asset-ui-card-linen
@@ -22,3 +22,19 @@ sources:
 kind: ui
 batch: batch-61-ui-kit-v3
 size: 1024x1024
+notes:
+- 'batch-61-ui-kit-v3 skipped after four takes: Sole unchanged retry exhausted. All
+  four takes fail official value_floor, edit_structure and edit_lightness. The authored
+  night job omits acceptance.profile: night; the frozen manifest, prompt and QA remain
+  unchanged. Initial-pair QA and locked hashes are unchanged after final posting;
+  original processing logs and all four original PNGs remain preserved. No failed
+  master is promoted; founder review pending. Automated failures: t1 value_floor:
+  lightness p5 22 (R1 59), edit_structure: light structure matches the parent (r -0.10),
+  edit_lightness: mean lightness moved by 60.4 L (the same lightness was asked); t2
+  value_floor: lightness p5 23 (R1 59), edit_structure: light structure matches the
+  parent (r -0.11), edit_lightness: mean lightness moved by 59.1 L (the same lightness
+  was asked); t3 value_floor: lightness p5 22 (R1 59), edit_structure: light structure
+  matches the parent (r -0.06), edit_lightness: mean lightness moved by 60.6 L (the
+  same lightness was asked); t4 value_floor: lightness p5 23 (R1 59), edit_structure:
+  light structure matches the parent (r -0.09), edit_lightness: mean lightness moved
+  by 58.8 L (the same lightness was asked).'

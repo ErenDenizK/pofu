@@ -2,13 +2,12 @@ id: asset-ui-plaque-honey-pressed
 type: asset
 title_tr: ui-plaque-honey-pressed
 title_en: plaque-honey-pressed (ui)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  Show the plaque pressed down into the table: the whole wood about 6 percent darker and a
-  touch more orange-brown, the bevel along the top edge softer, the lighter rim gone, the
-  lip along the bottom flatter and the shadow tucked tight under it. The outline, size and
-  position stay.
+summary: 'Show the plaque pressed down into the table: the whole wood about 6 percent
+  darker and a touch more orange-brown, the bevel along the top edge softer, the lighter
+  rim gone, the lip along the bottom flatter and the shadow tucked tight under it.
+  The outline, size and position stay.'
 links:
   variant_of:
   - asset-ui-plaque-honey
@@ -21,3 +20,24 @@ sources:
 kind: ui
 batch: batch-61-ui-kit-v3
 size: 1536x1024
+notes:
+- 'batch-61-ui-kit-v3 skipped after four takes: Skip after initial2 plus sole unchanged
+  retry2: all four official takes hard-fail edit_stability (kept0.0630/0.0744/0.0595/0.0542);
+  takes1-3 also hard-fail palette_drift (7.1381/5.7055/6.3562), take4 palette passes.
+  No force authorization applies. All source PNG/RGBA/account/prompt/orderedreferences
+  and unchanged official QA are retained; no third round or threshold/profile edit.
+  The authored pressed recoloring and changed bevel affect the whole face but the
+  manifest retains ordinary keep acceptance; propose explicit author review of region/recolor
+  profile, do not waive it. First-pair initial bookkeeping seal was reconstructed
+  after retry post because an inline pre-copy script failed before writes and the
+  POSTED marker advanced before corrected capture. Both first-pair QA hashes exactly
+  match their recorded pre-retry values and original source identities remain unchanged;
+  current deterministic locked hashes are recorded honestly without claiming an earlier
+  seal or extra repair post. See processing-history/pressed-initial/RECOVERY.json.
+  No true dependents are declared; unrelated UI work continues. Automated failures:
+  t1 palette_drift: mean dE 7.1, p95 10.5, off-palette 3.6% (top: #BB7722 (1.3%),
+  #CC7733 (0.7%)), edit_stability: 6% of the parent level unchanged; t2 palette_drift:
+  mean dE 5.7, p95 8.0, off-palette 0.3% (top: #885522 (0.2%), #995522 (0.1%)), edit_stability:
+  7% of the parent level unchanged; t3 palette_drift: mean dE 6.4, p95 8.7, off-palette
+  2.2% (top: #AA6622 (0.9%), #BB6622 (0.5%)), edit_stability: 6% of the parent level
+  unchanged; t4 edit_stability: 5% of the parent level unchanged.'

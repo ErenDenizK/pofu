@@ -4,14 +4,14 @@ title_tr: ui-plaque-quiet-pressed
 title_en: plaque-quiet-pressed (ui)
 status: in-production
 horizon: now
-summary: >-
-  Show the strip pressed: the felt a touch darker and flatter, the raised edge gone, the shadow
-  underneath almost gone. The outline, size and position stay.
+summary: 'Show the strip pressed: the felt a touch darker and flatter, the raised
+  edge gone, the shadow underneath almost gone. The outline, size and position stay.'
 links:
   variant_of:
   - asset-ui-plaque-quiet
 art:
-  images: []
+  images:
+  - design/art/ui/ui-plaque-quiet-pressed/ui-plaque-quiet-pressed.png
   jobs:
   - batch-61-ui-kit-v3:ui-plaque-quiet-pressed
 sources:

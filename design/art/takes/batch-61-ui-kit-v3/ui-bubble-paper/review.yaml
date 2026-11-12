@@ -1,0 +1,146 @@
+batch: batch-61-ui-kit-v3
+contact_sheet: design/art/takes/batch-61-ui-kit-v3/ui-bubble-paper/contact.jpg
+jobs:
+  ui-bubble-paper:
+    pick: 2
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Both initial takes pass official
+      QA and independent native/proper-alpha visual review. Rounded cream paper body,
+      thin soft cocoa rim and calm plain center; no stitches, tail, text or painted
+      background. The specifically requested soft painted rim governs generic no-outline
+      wording. Lowest official lock load selects take2 (0.2208 versus0.2262). Authored
+      slice caps remain unchanged; app cap/stretch approval and17pt text readability
+      are not certified. All original PNGs and exact source/processing seals are retained.
+qa_reports:
+  2:
+    job: ui-bubble-paper
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 16 (R1 51)
+      value: 15.9
+    - check: value_floor
+      status: pass
+      message: lightness p5 89 (R1 59)
+      value: 89.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.8 (R1 5.3)
+      value: 0.8
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.2
+      value: 0.2208
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.5, p95 0.8, off-palette 0.0%
+      value: 0.5236
+    info:
+      metrics_raw:
+        L_p5: 88.8
+        L_p50: 95.5
+        L_p95: 95.9
+        C_p50: 7.1
+        C_p95: 16.3
+        C_p99: 25.9
+        detail: 0.9
+      metrics_locked:
+        L_p5: 89.2
+        L_p50: 95.6
+        L_p95: 95.8
+        C_p50: 7.1
+        C_p95: 15.9
+        C_p99: 25.3
+        detail: 0.8
+    fingerprint: 5c0d18fd874f8719
+  1:
+    job: ui-bubble-paper
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 14 (R1 51)
+      value: 14.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 90 (R1 59)
+      value: 89.8
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.6 (R1 5.3)
+      value: 0.57
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.2
+      value: 0.2262
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.6, p95 0.9, off-palette 0.0%
+      value: 0.6424
+    info:
+      metrics_raw:
+        L_p5: 89.4
+        L_p50: 95.5
+        L_p95: 95.8
+        C_p50: 7.4
+        C_p95: 14.8
+        C_p99: 26.9
+        detail: 0.7
+      metrics_locked:
+        L_p5: 89.8
+        L_p50: 95.5
+        L_p95: 95.7
+        C_p50: 7.3
+        C_p95: 14.3
+        C_p99: 25.4
+        detail: 0.57
+    fingerprint: 5c0d18fd874f8719
+manual_review:
+  excluded_takes: []
+  note: Both initial takes pass official QA and independent native/proper-alpha visual
+    review. Rounded cream paper body, thin soft cocoa rim and calm plain center; no
+    stitches, tail, text or painted background. The specifically requested soft painted
+    rim governs generic no-outline wording. Lowest official lock load selects take2
+    (0.2208 versus0.2262). Authored slice caps remain unchanged; app cap/stretch approval
+    and17pt text readability are not certified. All original PNGs and exact source/processing
+    seals are retained.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-4825fd0b-d825-4f4d-b5f1-f3db91399ace.png
+  original_generated_png_sha256: 9ba13c0db3dce1942c86800968596a1af1a2cceee63d05cc6c7ee1b887addc7e
+  inbox_png_sha256: 2e0dccec1492298a18d1f965570fc7243cb2ac967418a7d47d1b5311ea7aa88d
+  rgba_sha256: 73f5176386dbce70d33d3304e26f1655c98196a9426686f656101ceade13bcd0
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 5c0d18fd874f8719
+- take: 2
+  source_file: /workspace/generated_images/exec-f782c8b9-57cf-497b-a830-f663eacff6b3.png
+  original_generated_png_sha256: de8ce0c0d9dc31878674b91d2e1c24214b32cc783392447ebabadc44d982fb1b
+  inbox_png_sha256: d5f283a08599cd0585a980400a5252992e01184655aa5b1c2bb24fa35c3f694e
+  rgba_sha256: 92199af4f9144f4ea6f3db65db2fde1ae652753daeabce0fdf640a26495ed91e
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 5c0d18fd874f8719

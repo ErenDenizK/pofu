@@ -1,0 +1,357 @@
+batch: batch-61-ui-kit-v3
+contact_sheet: design/art/takes/batch-61-ui-kit-v3/ui-bubble-paper-night/contact.jpg
+jobs:
+  ui-bubble-paper-night:
+    pick: none
+    publication: skipped after one allowed retry
+    note: All four takes fail hard value_floor, edit_structure, and edit_lightness.
+      The initial pair and sole unchanged retry were both posted and preserved; retry
+      budget is exhausted. No master promoted.
+qa_reports:
+  1:
+    job: ui-bubble-paper-night
+    take: 1
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 42 (R1 51)
+      value: 42.5
+    - check: value_floor
+      status: fail
+      message: lightness p5 22 (R1 59)
+      value: 22.3
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.4 (R1 5.3)
+      value: 0.44
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 3.0
+      value: 3.0479
+    - check: palette_drift
+      status: warn
+      message: mean dE 4.5, p95 7.3, off-palette 0.0%
+      value: 4.4975
+    - check: edit_silhouette
+      status: pass
+      message: 99% of the parent's shape kept
+      value: 0.9903
+    - check: edit_structure
+      status: fail
+      message: light structure matches the parent (r -0.03)
+      value: -0.027
+    - check: edit_lightness
+      status: fail
+      message: mean lightness moved by 64.4 L (the same lightness was asked)
+      value: 64.4082
+    info:
+      metrics_raw:
+        L_p5: 15.2
+        L_p50: 24.5
+        L_p95: 53.5
+        C_p50: 18.2
+        C_p95: 42.6
+        C_p99: 54.9
+        detail: 0.68
+      metrics_locked:
+        L_p5: 22.3
+        L_p50: 26.0
+        L_p95: 53.5
+        C_p50: 18.1
+        C_p95: 42.5
+        C_p99: 54.8
+        detail: 0.44
+    fingerprint: fc7a185e0be02127
+  2:
+    job: ui-bubble-paper-night
+    take: 2
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 38 (R1 51)
+      value: 37.8
+    - check: value_floor
+      status: fail
+      message: lightness p5 23 (R1 59)
+      value: 22.9
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.4 (R1 5.3)
+      value: 0.43
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.4
+      value: 2.4004
+    - check: palette_drift
+      status: warn
+      message: mean dE 4.2, p95 6.3, off-palette 0.0%
+      value: 4.2299
+    - check: edit_silhouette
+      status: pass
+      message: 99% of the parent's shape kept
+      value: 0.9885
+    - check: edit_structure
+      status: fail
+      message: light structure matches the parent (r -0.03)
+      value: -0.0298
+    - check: edit_lightness
+      status: fail
+      message: mean lightness moved by 64.1 L (the same lightness was asked)
+      value: 64.1191
+    info:
+      metrics_raw:
+        L_p5: 17.3
+        L_p50: 26.3
+        L_p95: 50.6
+        C_p50: 16.6
+        C_p95: 37.8
+        C_p99: 49.6
+        detail: 0.69
+      metrics_locked:
+        L_p5: 22.9
+        L_p50: 27.0
+        L_p95: 50.6
+        C_p50: 16.6
+        C_p95: 37.8
+        C_p99: 49.6
+        detail: 0.43
+    fingerprint: fc7a185e0be02127
+  3:
+    job: ui-bubble-paper-night
+    take: 3
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 41 (R1 51)
+      value: 40.8
+    - check: value_floor
+      status: fail
+      message: lightness p5 23 (R1 59)
+      value: 22.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.4 (R1 5.3)
+      value: 0.43
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.9
+      value: 2.9391
+    - check: palette_drift
+      status: fail
+      message: mean dE 4.5, p95 6.8, off-palette 0.0%
+      value: 4.5145
+    - check: edit_silhouette
+      status: pass
+      message: 99% of the parent's shape kept
+      value: 0.9876
+    - check: edit_structure
+      status: fail
+      message: light structure matches the parent (r -0.04)
+      value: -0.0365
+    - check: edit_lightness
+      status: fail
+      message: mean lightness moved by 64.9 L (the same lightness was asked)
+      value: 64.8589
+    info:
+      metrics_raw:
+        L_p5: 16.3
+        L_p50: 24.8
+        L_p95: 49.4
+        C_p50: 17.6
+        C_p95: 40.9
+        C_p99: 52.7
+        detail: 0.69
+      metrics_locked:
+        L_p5: 22.6
+        L_p50: 26.1
+        L_p95: 49.4
+        C_p50: 17.5
+        C_p95: 40.8
+        C_p99: 52.6
+        detail: 0.43
+    fingerprint: fc7a185e0be02127
+  4:
+    job: ui-bubble-paper-night
+    take: 4
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 35 (R1 51)
+      value: 35.4
+    - check: value_floor
+      status: fail
+      message: lightness p5 23 (R1 59)
+      value: 22.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.5 (R1 5.3)
+      value: 0.46
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.6
+      value: 2.5848
+    - check: palette_drift
+      status: warn
+      message: mean dE 4.4, p95 7.4, off-palette 0.0%
+      value: 4.3819
+    - check: edit_silhouette
+      status: pass
+      message: 99% of the parent's shape kept
+      value: 0.9896
+    - check: edit_structure
+      status: fail
+      message: light structure matches the parent (r -0.04)
+      value: -0.0371
+    - check: edit_lightness
+      status: fail
+      message: mean lightness moved by 64.8 L (the same lightness was asked)
+      value: 64.7939
+    info:
+      metrics_raw:
+        L_p5: 16.5
+        L_p50: 25.2
+        L_p95: 48.8
+        C_p50: 18.1
+        C_p95: 35.4
+        C_p99: 48.3
+        detail: 0.71
+      metrics_locked:
+        L_p5: 22.7
+        L_p50: 26.3
+        L_p95: 48.8
+        C_p50: 18.1
+        C_p95: 35.4
+        C_p99: 48.0
+        detail: 0.46
+    fingerprint: fc7a185e0be02127
+manual_review:
+  excluded_takes: []
+  note: All four takes fail hard value_floor, edit_structure, and edit_lightness.
+    The initial pair and sole unchanged retry were both posted and preserved; retry
+    budget is exhausted. No master promoted.
+sources:
+- take: 1
+  round: 1
+  dispatch_ordinal: 1
+  source_file: /workspace/generated_images/exec-290e3f86-3ea6-4ded-95cd-b40cf4200a59.png
+  original_generated_png_sha256: edf3c4c4cfc150306036965f98e826c34810d2c13bc554535ec6e1d1eb77b546
+  inbox_png_sha256: 28f790b06e2a49feabd4faad98cb40689d60f94abdf155ae0b3369061f12d03e
+  rgba_sha256: 0818c4f13bf36eae10e3784776ac6e44eaa16db1142ad94048dc5ab9a9b2acbd
+  dimensions:
+  - 1254
+  - 1254
+  bytes: 1724570
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  returned_at: '2026-11-09T21:47:43.423Z'
+  prompt_sha256: 5c8701fdac7ddad2f0125807218c7a28c439ee55c51588e3328422ddf14ae348
+  fingerprint: fc7a185e0be02127
+  reference_paths:
+  - /workspace/art-20261106-ui-kit-v3/design/art/ui/ui-bubble-paper/ui-bubble-paper.png
+  source_rgba_matches_inbox: true
+- take: 2
+  round: 1
+  dispatch_ordinal: 2
+  source_file: /workspace/generated_images/exec-23931777-8b07-48b0-979d-4b2be581ae8a.png
+  original_generated_png_sha256: eb2bb0a982babfec1eac4ce1558f06ba6d5b40d3082509fac89f7a6e293a453f
+  inbox_png_sha256: c749fb238848179758957949c7953f01d4f61474e3ee22ed492db839487b476a
+  rgba_sha256: 3b07bf076b35e324604d8040c85a871d51046a24feb2b5a36c0cfdb2928f1ba7
+  dimensions:
+  - 1254
+  - 1254
+  bytes: 1729321
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  returned_at: '2026-11-09T21:45:51.123Z'
+  prompt_sha256: 5c8701fdac7ddad2f0125807218c7a28c439ee55c51588e3328422ddf14ae348
+  fingerprint: fc7a185e0be02127
+  reference_paths:
+  - /workspace/art-20261106-ui-kit-v3/design/art/ui/ui-bubble-paper/ui-bubble-paper.png
+  source_rgba_matches_inbox: true
+- take: 3
+  round: 2
+  dispatch_ordinal: 3
+  source_file: /workspace/generated_images/exec-965f07ea-e62e-4e3d-8c85-e5ec0f9023c0.png
+  original_generated_png_sha256: 762c6f8eb8432f799575ed97b08050c40112945f2b765be9d1d9b54db56081f3
+  inbox_png_sha256: 4fccc02979cba63f2d60eddfb10d1ea5d5477becff9153f4406e6b606c856b71
+  rgba_sha256: 58bd9ae3f6d6d5e66021b13a67c2867be6ac42dac7a2696424f80a8a887d4e6c
+  dimensions:
+  - 1254
+  - 1254
+  bytes: 1704075
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  returned_at: '2026-11-09T21:55:12.170Z'
+  prompt_sha256: 5c8701fdac7ddad2f0125807218c7a28c439ee55c51588e3328422ddf14ae348
+  fingerprint: fc7a185e0be02127
+  reference_paths:
+  - /workspace/art-20261106-ui-kit-v3/design/art/ui/ui-bubble-paper/ui-bubble-paper.png
+  source_rgba_matches_inbox: true
+- take: 4
+  round: 2
+  dispatch_ordinal: 4
+  source_file: /workspace/generated_images/exec-41bf9381-d9a0-4060-ba98-86223a24d9d5.png
+  original_generated_png_sha256: 345ef0bad8f2b7b6b4a1771466d6c6053108932f4c4ac89a140b47887e6cf383
+  inbox_png_sha256: 6c3efd3c2621d63b806e6de1ca9f5c090129af0cb5cf2809549c1d2e1c2cecca
+  rgba_sha256: 2c3e824cd0d3b381c3c9fc4848cb70d27d6f9baae7285a62b5cfe9e31d5c1a5b
+  dimensions:
+  - 1254
+  - 1254
+  bytes: 1708277
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  returned_at: '2026-11-09T21:54:31.760Z'
+  prompt_sha256: 5c8701fdac7ddad2f0125807218c7a28c439ee55c51588e3328422ddf14ae348
+  fingerprint: fc7a185e0be02127
+  reference_paths:
+  - /workspace/art-20261106-ui-kit-v3/design/art/ui/ui-bubble-paper/ui-bubble-paper.png
+  source_rgba_matches_inbox: true
+harmony:
+  canonical_measure: passed
+  canonical_check: passed
+  catalog_count: 172
+  ui_cataloged: false
+  own_asset_shard: null
+  note: One complete canonical measurement-worktree measure/check was run for the
+    retained UI batch; the catalog excludes UI assets. The known tea-stall-1 ULP write
+    from measure was restored byte-exactly to the pinned base after check.

@@ -1,0 +1,282 @@
+batch: batch-61-ui-kit-v3
+contact_sheet: design/art/takes/batch-61-ui-kit-v3/ui-stamps/contact.jpg
+jobs:
+  ui-stamps:
+    pick: none
+    publication: skipped after one allowed retry
+    note: Manual skip after initial2 plus sole unchanged retry2; preserve truthful
+      canonical QA statuses pass/pass/warn/pass. Full native and locked, proper-alpha
+      source/locked sheet review is sealed at root-stamps-sole-retry-final-manual-review.json
+      SHA94ffff707cde180b06c51943a915958feb0d26ba4d6ed5cbc9feedcfada30857 plus initial
+      peer1d50898a. Every sheet has the correct2x2 inventory of4emblems/no writing,
+      but the golden cloud is painted as a distinct dimensional cream/multi-ink cloud
+      rather than the required single amber ink impression. Initial2 and retry3 also
+      have actual gray paper; retry4 contains actual painted checkerboard inside the
+      impressions. Initial1 clean transparency does not rescue its multi-ink cloud.
+      Allowed grain/ring irregularity/double strike are not failures; no invented
+      flatcolorcount or pixeluniform gate. Four sourcePNG/RGBA and official initial/retry
+      QA/locked histories retained unchanged, including processing-history/stamps-initial/PRESERVATION.json.
+      No force, new thresholds, third round, source repainting or fake harmony. No
+      true dependents; unrelated jobs continue.
+qa_reports:
+  3:
+    job: ui-stamps
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 50 (R1 51)
+      value: 50.2
+    - check: value_floor
+      status: pass
+      message: lightness p5 62 (R1 59)
+      value: 61.9
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.7 (R1 5.3)
+      value: 1.74
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.4
+      value: 1.4018
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.1, p95 9.2, off-palette 0.3% (top: #8888AA (0.1%), #998899
+        (0.1%))'
+      value: 3.0845
+    info:
+      metrics_raw:
+        L_p5: 61.3
+        L_p50: 75.1
+        L_p95: 87.7
+        C_p50: 32.9
+        C_p95: 50.0
+        C_p99: 54.8
+        detail: 2.91
+      metrics_locked:
+        L_p5: 61.9
+        L_p50: 75.7
+        L_p95: 87.7
+        C_p50: 32.4
+        C_p95: 50.2
+        C_p99: 54.2
+        detail: 1.74
+    fingerprint: 2a94ed549c4a1d68
+  4:
+    job: ui-stamps
+    take: 4
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 44 (R1 51)
+      value: 44.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 64 (R1 59)
+      value: 64.3
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.58
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.4
+      value: 1.4031
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.7, p95 3.7, off-palette 0.0%
+      value: 1.6775
+    info:
+      metrics_raw:
+        L_p5: 63.6
+        L_p50: 74.5
+        L_p95: 85.6
+        C_p50: 30.0
+        C_p95: 45.1
+        C_p99: 46.6
+        detail: 2.54
+      metrics_locked:
+        L_p5: 64.3
+        L_p50: 74.9
+        L_p95: 85.6
+        C_p50: 29.9
+        C_p95: 44.3
+        C_p99: 46.2
+        detail: 1.58
+    fingerprint: 2a94ed549c4a1d68
+  2:
+    job: ui-stamps
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 47 (R1 51)
+      value: 47.1
+    - check: value_floor
+      status: pass
+      message: lightness p5 63 (R1 59)
+      value: 63.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.8 (R1 5.3)
+      value: 1.82
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.5
+      value: 1.5214
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.8, p95 5.0, off-palette 0.0%
+      value: 1.7835
+    info:
+      metrics_raw:
+        L_p5: 62.3
+        L_p50: 75.4
+        L_p95: 89.2
+        C_p50: 29.7
+        C_p95: 48.5
+        C_p99: 55.0
+        detail: 2.9
+      metrics_locked:
+        L_p5: 63.1
+        L_p50: 75.9
+        L_p95: 89.2
+        C_p50: 29.1
+        C_p95: 47.1
+        C_p99: 54.1
+        detail: 1.82
+    fingerprint: 2a94ed549c4a1d68
+  1:
+    job: ui-stamps
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 49 (R1 51)
+      value: 48.6
+    - check: value_floor
+      status: pass
+      message: lightness p5 62 (R1 59)
+      value: 61.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.9 (R1 5.3)
+      value: 1.87
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.6
+      value: 1.5873
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.2, p95 6.4, off-palette 0.0%
+      value: 2.1999
+    info:
+      metrics_raw:
+        L_p5: 61.2
+        L_p50: 72.5
+        L_p95: 85.7
+        C_p50: 32.5
+        C_p95: 49.1
+        C_p99: 51.0
+        detail: 3.23
+      metrics_locked:
+        L_p5: 61.7
+        L_p50: 72.8
+        L_p95: 85.8
+        C_p50: 32.1
+        C_p95: 48.6
+        C_p99: 50.1
+        detail: 1.87
+    fingerprint: 2a94ed549c4a1d68
+manual_review:
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+  note: Manual skip after initial2 plus sole unchanged retry2; preserve truthful canonical
+    QA statuses pass/pass/warn/pass. Full native and locked, proper-alpha source/locked
+    sheet review is sealed at root-stamps-sole-retry-final-manual-review.json SHA94ffff707cde180b06c51943a915958feb0d26ba4d6ed5cbc9feedcfada30857
+    plus initial peer1d50898a. Every sheet has the correct2x2 inventory of4emblems/no
+    writing, but the golden cloud is painted as a distinct dimensional cream/multi-ink
+    cloud rather than the required single amber ink impression. Initial2 and retry3
+    also have actual gray paper; retry4 contains actual painted checkerboard inside
+    the impressions. Initial1 clean transparency does not rescue its multi-ink cloud.
+    Allowed grain/ring irregularity/double strike are not failures; no invented flatcolorcount
+    or pixeluniform gate. Four sourcePNG/RGBA and official initial/retry QA/locked
+    histories retained unchanged, including processing-history/stamps-initial/PRESERVATION.json.
+    No force, new thresholds, third round, source repainting or fake harmony. No true
+    dependents; unrelated jobs continue.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-7555b00a-4002-43f1-9b35-0d4050d8c50c.png
+  original_generated_png_sha256: 3cbc270e3232091b435cdc3c654234378bcce5f75c20ddb40e3dae8054744336
+  inbox_png_sha256: 2e930328c47b83bc1c4cd84153d4be46908f2e67dbdf2f269f676fa7edf01ba7
+  rgba_sha256: 38f163faca51f075cd4848488784da87a402fe6550d4af69f548f42dcbaf6037
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 2a94ed549c4a1d68
+- take: 2
+  source_file: /workspace/generated_images/exec-49ae70af-6864-4b75-ae1a-dfaa1375530b.png
+  original_generated_png_sha256: 47a46ae8e6a6fa2edb15edf878c9650ac7d1ef8d3b5f09aa6accd1e1c4689c8d
+  inbox_png_sha256: ece63bd2d3bdef06d7a88d78de09b8d07c476d9a0d74527e5835dee503917ab8
+  rgba_sha256: 6c7e2013839af077a721bb77cf822edea22d0a96824930e7e2bf2938879b882a
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 2a94ed549c4a1d68
+- take: 3
+  source_file: /workspace/generated_images/exec-24d86b3f-fecf-4d6f-bdad-1200dadcf743.png
+  original_generated_png_sha256: 4391c1dfafdef417b53fe75bc42c0943663829232c7673d4659d355168c614b9
+  inbox_png_sha256: 5fd4d8198092508f8da0d3a75d10e6e7bae597a5c5c543db64a99448021160e3
+  rgba_sha256: 523d876f7309078346d7b9b2edd841758d6fbefcd70885611727aeead5f9e8b0
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 2a94ed549c4a1d68
+- take: 4
+  source_file: /workspace/generated_images/exec-b7bc453a-ee59-41cf-b48a-9ba17deeb2ee.png
+  original_generated_png_sha256: ad6168acdb9c8cf5c91f764ed1d2229f202ce160848a08f5a93067ec2ec9eaf6
+  inbox_png_sha256: 4d6bde2f85624d268f840fa5eb4f31d750b972704cdabc5554bf486d1fd4e7f9
+  rgba_sha256: a4da2ff04bebdfab0a74f2a542ecdf68cf58c002681802b258b87cd0acec87cd
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 2a94ed549c4a1d68

@@ -2,14 +2,14 @@ id: asset-ui-card-stitched-night
 type: asset
 title_tr: ui-card-stitched-night
 title_en: card-stitched-night (ui)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  NIGHT VERSION of the attached day piece: the identical shape, size and position, every edge
-  in the same pixels; only the light and color change. It is now lit by a warm lantern from
-  the upper left at night: the material turns a deep warm plum-brown and ink-blue shade, the
-  highlight along the top edge becomes a soft amber, shadows are deeper warm indigo-brown
-  (never black), the whole piece stays readable as the same o…
+summary: 'NIGHT VERSION of the attached day piece: the identical shape, size and position,
+  every edge in the same pixels; only the light and color change. It is now lit by
+  a warm lantern from the upper left at night: the material turns a deep warm plum-brown
+  and ink-blue shade, the highlight along the top edge becomes a soft amber, shadows
+  are deeper warm indigo-brown (never black), the whole piece stays readable as the
+  same o…'
 links:
   variant_of:
   - asset-ui-card-stitched
@@ -22,3 +22,26 @@ sources:
 kind: ui
 batch: batch-61-ui-kit-v3
 size: 1024x1024
+notes:
+- 'batch-61-ui-kit-v3 skipped after four takes: Skipped after initial2 plus sole unchanged
+  retry2: allfour officialQA reports hardfail value_floor, palette_drift, edit_structure
+  and edit_lightness. Exact checks/values retained in review.yaml and root-stitched-night-final-review.json.
+  Authored NIGHT recolor requests deepplum/inkblue and amberlight but omits acceptance.profile
+  night, leaving ordinary keep lightness/structure requirements; no localQA/profile/prompt
+  edit, waiver orforce. All4 originalPNG/RGBA/account/orderedrefs/dispatchordinals
+  retained; INITIAL2fullprocessing/source evidence copied before retry and initial2
+  QA+locked hashes verified byteidentical after final4post. INITIAL2/FINAL4seals preserved.
+  No thirdround, no true dependents; unrelatedjobscontinue. Automated failures: t1
+  value_floor: lightness p5 22 (R1 59), palette_drift: mean dE 5.9, p95 9.3, off-palette
+  0.2% (top: #CC7733 (0.1%), #BB6633 (0.0%)), edit_structure: light structure matches
+  the parent (r 0.01), edit_lightness: mean lightness moved by 62.4 L (the same lightness
+  was asked); t2 value_floor: lightness p5 22 (R1 59), palette_drift: mean dE 5.8,
+  p95 8.3, off-palette 0.3% (top: #CC7733 (0.1%), #DD7733 (0.0%)), edit_structure:
+  light structure matches the parent (r 0.08), edit_lightness: mean lightness moved
+  by 62.0 L (the same lightness was asked); t3 value_floor: lightness p5 22 (R1 59),
+  palette_drift: mean dE 5.4, p95 8.4, off-palette 0.5% (top: #CC7733 (0.2%), #CC7744
+  (0.1%)), edit_structure: light structure matches the parent (r 0.00), edit_lightness:
+  mean lightness moved by 62.1 L (the same lightness was asked); t4 value_floor: lightness
+  p5 23 (R1 59), palette_drift: mean dE 5.2, p95 8.4, off-palette 0.1% (top: #773311
+  (0.0%), #995522 (0.0%)), edit_structure: light structure matches the parent (r 0.05),
+  edit_lightness: mean lightness moved by 61.6 L (the same lightness was asked).'

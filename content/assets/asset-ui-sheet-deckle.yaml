@@ -4,14 +4,14 @@ title_tr: ui-sheet-deckle
 title_en: sheet-deckle (ui)
 status: in-production
 horizon: now
-summary: >-
-  A single horizontal strip about twelve times as wide as it is tall, centered on a transparent
-  background and spanning the full canvas width: the top edge of a sheet of cream paper. The
-  upper edge is a soft, irregular deckled edge with a thin lighter lifted lip, the lower half
-  is solid flat cream paper. The strip repeats seamlessly: the left and right ends are the
-  same edge at the same height.
+summary: 'A single horizontal strip about twelve times as wide as it is tall, centered
+  on a transparent background and spanning the full canvas width: the top edge of
+  a sheet of cream paper. The upper edge is a soft, irregular deckled edge with a
+  thin lighter lifted lip, the lower half is solid flat cream paper. The strip repeats
+  seamlessly: the left and right ends are the same edge at the same height.'
 art:
-  images: []
+  images:
+  - design/art/ui/ui-sheet-deckle/ui-sheet-deckle.png
   jobs:
   - batch-61-ui-kit-v3:ui-sheet-deckle
 sources:

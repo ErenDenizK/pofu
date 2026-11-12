@@ -2,7 +2,7 @@ id: asset-ui-bubble-paper-night
 type: asset
 title_tr: ui-bubble-paper-night
 title_en: bubble-paper-night (ui)
-status: in-production
+status: cut
 horizon: now
 summary: >-
   NIGHT VERSION of the attached day piece: the identical shape, size and position, every edge
@@ -22,3 +22,9 @@ sources:
 kind: ui
 batch: batch-61-ui-kit-v3
 size: 1024x1024
+notes:
+- >-
+  batch-61-ui-kit-v3 skipped after four takes; the sole unchanged retry is exhausted. All
+  four takes hard-fail value_floor, edit_structure and edit_lightness. Initial QA/locked hashes
+  remain sealed; exact originals and full QA are retained under design/art/takes/batch-61-ui-kit-v3/ui-bubble-paper-night/.
+  No failed master is promoted.

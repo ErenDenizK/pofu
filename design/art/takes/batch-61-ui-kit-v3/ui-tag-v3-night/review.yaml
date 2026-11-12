@@ -1,0 +1,198 @@
+batch: batch-61-ui-kit-v3
+manifest: tools/imagegen/manifest/batch-61-ui-kit-v3.yaml
+manifest_sha256: 1afc74db28c48c60630bdde906957d1b30ac1021d539f0322f263619e3450ddc
+jobs:
+  ui-tag-v3-night:
+    pick: null
+    status: skipped
+    publication: 'skipped: both initial takes fail hard QA; no master promoted'
+    note: Both initial takes follow the authored dark lamplit tag appearance but fail actual value_floor,
+      edit_structure and edit_lightness. Palette drift only warns. The authored recolor acceptance has
+      no night profile; no QA or profile change is made. Skip after the current two-take cap, retain originals
+      and truthful QA; no promotion.
+selection:
+  method: QA non-fail and manual eligibility; lowest style-lock load, then highest measured harmony; take
+    number only breaks ties
+  scores:
+  - take: 1
+    style_lock_load: 2.8952
+    harmony: 39.5
+    eligible: false
+  - take: 2
+    style_lock_load: 2.3942
+    harmony: 38.4
+    eligible: false
+  rejected_takes: []
+qa_reports:
+- job: ui-tag-v3-night
+  take: 1
+  status: fail
+  preset: lock-light
+  checks:
+  - check: transparency
+    status: pass
+    message: source has an alpha channel
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: edit_alignment
+    status: pass
+    message: the edit rescaled the object x1.004 and moved it; aligned back to the parent
+    value: 0.9964
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 45 (R1 51)
+    value: 44.9
+  - check: value_floor
+    status: fail
+    message: lightness p5 22 (R1 59)
+    value: 22.1
+  - check: detail_budget
+    status: pass
+    message: detail at display size 0.8 (R1 5.3)
+    value: 0.82
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 2.9
+    value: 2.8952
+  - check: palette_drift
+    status: warn
+    message: mean dE 4.2, p95 7.8, off-palette 0.0%
+    value: 4.222
+  - check: edit_silhouette
+    status: pass
+    message: 98% of the parent's shape kept
+    value: 0.9767
+  - check: edit_structure
+    status: fail
+    message: light structure matches the parent (r -0.18)
+    value: -0.1813
+  - check: edit_lightness
+    status: fail
+    message: mean lightness moved by 60.1 L (the same lightness was asked)
+    value: 60.0807
+  info:
+    alignment:
+      scale: 0.9964
+      cx: 816.0
+      cy: 698.0
+      dx: -4
+      dy: 2
+    metrics_raw:
+      L_p5: 14.7
+      L_p50: 26.8
+      L_p95: 56.0
+      C_p50: 18.5
+      C_p95: 45.6
+      C_p99: 56.8
+      detail: 1.07
+    metrics_locked:
+      L_p5: 22.1
+      L_p50: 27.4
+      L_p95: 55.7
+      C_p50: 19.0
+      C_p95: 44.9
+      C_p99: 56.2
+      detail: 0.82
+  fingerprint: 3d04ec0b84360ad4
+- job: ui-tag-v3-night
+  take: 2
+  status: fail
+  preset: lock-light
+  checks:
+  - check: transparency
+    status: pass
+    message: source has an alpha channel
+  - check: canvas
+    status: pass
+    message: 1536x1024
+  - check: edit_alignment
+    status: pass
+    message: the edit rescaled the object x1.018 and moved it; aligned back to the parent
+    value: 0.9822
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 44 (R1 51)
+    value: 43.5
+  - check: value_floor
+    status: fail
+    message: lightness p5 23 (R1 59)
+    value: 23.3
+  - check: detail_budget
+    status: pass
+    message: detail at display size 0.8 (R1 5.3)
+    value: 0.84
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 2.4
+    value: 2.3942
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 4.2, p95 7.4, off-palette 0.1% (top: #884422 (0.0%), #663311 (0.0%))'
+    value: 4.2362
+  - check: edit_silhouette
+    status: pass
+    message: 98% of the parent's shape kept
+    value: 0.9768
+  - check: edit_structure
+    status: fail
+    message: light structure matches the parent (r -0.18)
+    value: -0.1848
+  - check: edit_lightness
+    status: fail
+    message: mean lightness moved by 60.0 L (the same lightness was asked)
+    value: 59.969
+  info:
+    alignment:
+      scale: 0.9822
+      cx: 816.5
+      cy: 699.0
+      dx: -5
+      dy: -3
+    metrics_raw:
+      L_p5: 18.5
+      L_p50: 28.2
+      L_p95: 53.7
+      C_p50: 18.2
+      C_p95: 44.3
+      C_p99: 56.7
+      detail: 1.08
+    metrics_locked:
+      L_p5: 23.3
+      L_p50: 28.4
+      L_p95: 53.3
+      C_p50: 18.7
+      C_p95: 43.5
+      C_p99: 56.1
+      detail: 0.84
+  fingerprint: 3d04ec0b84360ad4
+sources:
+- take: 1
+  source_file: /workspace/art-operator-runtime/factory/generated/ui-tag-v3-night/take-1.png
+  source_sha256: cc5735a876eed13c1876e9f975ffe7c9ffc1baf4290081309f45f4cb57be8b3f
+  q90_take: design/art/takes/batch-61-ui-kit-v3/ui-tag-v3-night/ui__tag-v3-night--t1.webp
+  q90_take_sha256: 8f9fc3426a861dd94f17e7eed772b936a95a22eb9aad5a47a85571da10d1f39d
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: a0249d50adc32d98fcbe615000901b1eda515e50abd4b00f91c5dc0344baaf19
+  references:
+  - path: design/art/ui/ui-tag-v3/ui-tag-v3.png
+    role: The image to edit (the approved previous level). Edit it; do not redraw it.
+    sha256: 688ab7008410b3738cf36b4ab7e9351d07620a259847133c751e5214a3863a48
+- take: 2
+  source_file: /workspace/art-operator-runtime/factory/generated/ui-tag-v3-night/take-2.png
+  source_sha256: 4ad74b55ace94a362e3e8d2737a662f70f1cf73d8658ae061f961fc1673fcb77
+  q90_take: design/art/takes/batch-61-ui-kit-v3/ui-tag-v3-night/ui__tag-v3-night--t2.webp
+  q90_take_sha256: 690fc31f0bfd1c555faea6267ad737d879724d7bd7aec46be85e735ab78cf1be
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  prompt_sha256: a0249d50adc32d98fcbe615000901b1eda515e50abd4b00f91c5dc0344baaf19
+  references:
+  - path: design/art/ui/ui-tag-v3/ui-tag-v3.png
+    role: The image to edit (the approved previous level). Edit it; do not redraw it.
+    sha256: 688ab7008410b3738cf36b4ab7e9351d07620a259847133c751e5214a3863a48
+policy:
+  never_promote: false
+  originals: source_file PNGs preserved unchanged; published takes are q90 copies
