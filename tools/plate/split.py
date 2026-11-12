@@ -94,6 +94,14 @@ def unmix(p: np.ndarray, bg: np.ndarray, a: np.ndarray) -> np.ndarray:
     return f.clip(0, 1)
 
 
+def needed_alpha(p: np.ndarray, bg: np.ndarray) -> np.ndarray:
+    """The least alpha with which a layer of colours inside [0, 1] over `bg` can still make `p`: per channel
+    (p - bg) / (1 - bg) where p is brighter than bg, (bg - p) / bg where it is darker, the largest of the three. Where an
+    island layer's soft alpha is below it, `unmix` has to clip and the composite comes out greyer than the painting."""
+    up = np.where(p > bg, (p - bg) / np.maximum(1 - bg, 1e-3), (bg - p) / np.maximum(bg, 1e-3))
+    return up.max(-1).clip(0, 1)
+
+
 def over(dst: np.ndarray, rgb: np.ndarray, a: np.ndarray) -> np.ndarray:
     return rgb * a[..., None] + dst * (1 - a[..., None])
 
@@ -134,7 +142,19 @@ def island_matte(hand: dict, p: np.ndarray) -> np.ndarray:
     """The silhouette: ingest's committed matte, upscaled and snapped to the painting's edges."""
     h, w = p.shape[:2]
     m = np.asarray(Image.open(PLATES / hand["island"] / "matte-day-0.png").convert("L"), np.float32) / 255
-    a0 = cv2.resize(m, (w, h), interpolation=cv2.INTER_CUBIC).clip(0, 1)
+    frame = hand.get("matteFrame")
+    if frame:
+        # the matte is a landscape plate's (Çağlayan): placed on the portrait master at the measured place
+        sc = frame["scale"]
+        mw, mh = round(m.shape[1] * sc), round(m.shape[0] * sc)
+        ox, oy = round(frame["offset"][0]), round(frame["offset"][1])
+        a0 = np.zeros((h, w), np.float32)
+        small = cv2.resize(m, (mw, mh), interpolation=cv2.INTER_CUBIC)
+        y1, x1 = min(oy + mh, h), min(ox + mw, w)
+        a0[oy:y1, ox:x1] = small[: y1 - oy, : x1 - ox]
+        a0 = a0.clip(0, 1)
+    else:
+        a0 = cv2.resize(m, (w, h), interpolation=cv2.INTER_CUBIC).clip(0, 1)
     ys, xs = np.nonzero(a0 > 0.01)
     y0, y1, x0, x1 = max(ys.min() - 40, 0), min(ys.max() + 41, h), max(xs.min() - 40, 0), min(xs.max() + 41, w)
     out = np.zeros((h, w), np.float32)
@@ -168,7 +188,7 @@ def _basis(x, y, w, h):
     return np.stack([np.ones_like(x), x, x * x, y, y * y, y ** 3, y ** 4, x * y, x * x * y, x * y * y], -1)
 
 
-def fit_sky(p: np.ndarray, objs: np.ndarray, sea_top: int) -> tuple[np.ndarray, float]:
+def fit_sky(p: np.ndarray, objs: np.ndarray, sea_top: int, residual: bool = True, dark_pass: bool = False) -> tuple[np.ndarray, float]:
     """The smooth sky: a polynomial in x, y fitted with iterative rejection of clouds and objects,
     plus the smooth residual of the pixels that still look like sky (a sunset glow is not a
     polynomial). Frozen below the sea top: there the sky is only seen through thin cloud."""
@@ -187,6 +207,9 @@ def fit_sky(p: np.ndarray, objs: np.ndarray, sea_top: int) -> tuple[np.ndarray, 
         r = np.linalg.norm(p - s, axis=-1)
         sel = free & (r < t) & sub
     resid_p95 = float(np.percentile(r[sel], 95))
+    if not residual:
+        s[sea_top:] = s[sea_top - 1]
+        return s.clip(0, 1).astype(np.float32), resid_p95
     # smooth residual at 1/8 size
     k = SKY_SCALE
     sm_w = cv2.resize((free & (r < 0.02)).astype(np.float32), (w // k, h // k), interpolation=cv2.INTER_AREA)
@@ -196,6 +219,16 @@ def fit_sky(p: np.ndarray, objs: np.ndarray, sea_top: int) -> tuple[np.ndarray, 
     den = cv2.GaussianBlur(sm_w, (0, 0), 6)
     corr = num / np.maximum(den, 1e-3)[..., None] * np.clip(den / 0.15, 0, 1)[..., None]
     s = s + cv2.resize(corr, (w, h), interpolation=cv2.INTER_CUBIC)
+    if dark_pass:
+        # Clouds only ever lighten a sky. Where the painting is deeper blue than the field (the pockets between clouds) it is
+        # sky, not a dark cloud: a second smooth correction from the pixels that are no lighter than the field
+        r2 = np.linalg.norm(p - s, axis=-1)
+        sky_like = free & (lum(p) <= lum(s) + 0.004) & (r2 < 0.15)
+        w2 = cv2.resize(sky_like.astype(np.float32), (w // k, h // k), interpolation=cv2.INTER_AREA)
+        d2 = cv2.resize(np.where(sky_like[..., None], p - s, 0).astype(np.float32), (w // k, h // k), interpolation=cv2.INTER_AREA)
+        num2, den2 = cv2.GaussianBlur(d2, (0, 0), 3), cv2.GaussianBlur(w2, (0, 0), 3)
+        corr2 = num2 / np.maximum(den2, 1e-3)[..., None] * np.clip(den2 / 0.2, 0, 1)[..., None]
+        s = s + cv2.resize(corr2, (w, h), interpolation=cv2.INTER_CUBIC)
     s[sea_top:] = s[sea_top - 1]
     return s.clip(0, 1).astype(np.float32), resid_p95
 
@@ -266,6 +299,55 @@ def close_wrap(rgb: np.ndarray, a: np.ndarray, seam: int, seed: int = 0) -> tupl
     return np.where(cols[None, :, None], nrgb, rgb), np.where(cols[None, :], na, a)
 
 
+def clean_alpha(a: np.ndarray, floor: float, max_area: int = 250, max_alpha: float = 0.30) -> np.ndarray:
+    """Alpha with the noise taken out: under `floor` is zero, and a connected piece (alpha over `floor`) no larger than
+    `max_area` px that never reaches `max_alpha` is crumbs, not cloud, and goes too (`screen_check.check_speckle` counts them)."""
+    a = np.where(a < floor, 0, a).astype(np.float32)
+    lab, n = ndimage.label(a > 0)
+    if n:
+        area = np.bincount(lab.ravel(), minlength=n + 1)[1:]
+        peak = np.asarray(ndimage.maximum(a, lab, range(1, n + 1)))
+        bad = np.zeros(n + 1, bool)
+        bad[1:] = (area <= max_area) & (peak < max_alpha)
+        a[bad[lab]] = 0
+    return a
+
+
+def split_smooth(x: np.ndarray) -> np.ndarray:
+    return x * x * (3 - 2 * x)
+
+
+def bridge_wrap(rgb: np.ndarray, a: np.ndarray, extra: int, seed: int = 0) -> tuple[np.ndarray, np.ndarray]:
+    """Make a layer wrap in x without touching a pixel of the painting: `extra` columns are added to the right, a
+    bridge painted by quilting real cloud blocks of the layer itself (`inpaint.quilt`, periodic) so that the right edge
+    runs on through it into the left edge. The tile is `w + extra` wide; at rest the screen shows the painting, and
+    the bridge only slides in as the clouds drift. `close_wrap` instead blends the last columns toward a mirror of the
+    first, which is fine where the framing crops them (Home) and wrong where the whole width is on screen (Çağlayan)."""
+    h, w = a.shape
+    pre = np.dstack([rgb * a[..., None], a]).astype(np.float32)
+    canvas = np.concatenate([pre, np.zeros((h, extra, 4), np.float32)], 1)
+    hole = np.zeros(canvas.shape[:2], bool)
+    hole[:, w:] = True
+    if not (a > 0.003).any():
+        return np.concatenate([rgb, rgb[:, :extra]], 1), np.concatenate([a, a[:, :extra]], 1)
+    fill = inpaint.quilt(canvas, hole, periodic_x=True, y_window=300, block=96, overlap=32, topk=3, seed=seed)
+    # a quilt matches its blocks to the known edge but leaves a small step (a straight line where its end meets the
+    # painting's other edge): carry each end's difference, per row and smoothed along y, off smoothly over the bridge's
+    # first and last `m` columns, so the painting's edge runs into the bridge and the bridge into the other edge with no
+    # line and no repeated or stretched column; the painting's own columns are never touched
+    m = min(96, extra // 2)
+    ramp = split_smooth(np.arange(m, dtype=np.float32) / max(m - 1, 1))
+    soft = lambda col: cv2.GaussianBlur(col, (0, 0), sigmaX=0.01, sigmaY=6)
+    d_start = soft((pre[:, w - 1] - fill[:, w])[:, None, :])
+    d_end = soft((pre[:, 0] - fill[:, w + extra - 1])[:, None, :])
+    fill[:, w: w + m] += d_start * (1 - ramp)[None, :, None]
+    fill[:, w + extra - m: w + extra] += d_end * ramp[None, :, None]
+    fill = fill.clip(0, 1)
+    fa = fill[..., 3].clip(0, 1)
+    frgb = np.where(fa[..., None] > 1e-3, fill[..., :3] / np.maximum(fa, 1e-3)[..., None], 0).clip(0, 1)
+    return frgb.astype(np.float32), fa.astype(np.float32)
+
+
 def split_plate(p: np.ndarray, hand: dict, mattes: dict | None = None, log=print, seed: int = 0,
                 light_cfg: dict | None = None) -> dict:
     """Cut the master `p` (H, W, 3 floats) into layers. Returns {"layers": {...}, "bg": ..., "info": ...}
@@ -280,7 +362,7 @@ def split_plate(p: np.ndarray, hand: dict, mattes: dict | None = None, log=print
     objs = np.maximum.reduce([isl_m, zero] + list(spr_m.values()))
 
     # -- the sky, and how much each pixel is cloud
-    s, resid = fit_sky(p, objs, sea_top)
+    s, resid = fit_sky(p, objs, sea_top, hand.get("skyResidual", True), hand.get("skyDarkPass", False))
     k = hand.get("cloudScale") or cloud_scale(p, s, objs, sea_top)
     log(f"sky fit residual p95 {resid:.4f}, cloud scale K {k:.3f}")
     d = np.linalg.norm(p - s, axis=-1)
@@ -318,6 +400,8 @@ def split_plate(p: np.ndarray, hand: dict, mattes: dict | None = None, log=print
         wgt = cv2.GaussianBlur(nearm, (0, 0), 14) * (yy < sea_top - 200)
         take = ca * wgt
         spr[name] = np.maximum(m, take)
+        if hand.get("alphaFloor"):
+            spr[name] = clean_alpha(spr[name], hand["alphaFloor"])
 
     # -- paint the background behind the island and the sprites
     core = cv2.dilate((np.maximum.reduce([sil, zero] + list(spr_m.values())) > 0.003).astype(np.uint8), np.ones((15, 15), np.uint8)) > 0
@@ -333,6 +417,16 @@ def split_plate(p: np.ndarray, hand: dict, mattes: dict | None = None, log=print
     ca2 = cv2.GaussianBlur(((d2 - 0.012) / k).clip(0, 1), (0, 0), 1.0)
     ca2 = np.where(ca2 < 0.04, 0, (ca2 - 0.04) / 0.96)       # no faint haze rims round the holes
     ca2 = np.maximum(ca2, ramp)
+    if hand.get("cloudsLighten"):
+        # a cloud only ever lightens a sky: where the painting is darker than the field it is sky (a deeper blue pocket the
+        # smooth field could not follow), never a dark cloud that would drift off as a bluish box
+        ca2 = np.where((lum(p_bg) < lum(s) - 0.004) & (yy < sea_top - 150), 0, ca2).astype(np.float32)
+    if hand.get("gamutAlpha"):
+        # a cloud over a light sky (Çağlayan's cumulus on pale blue) can need more alpha than its colour distance gives:
+        # past a layer colour of 1 the unmix clips and the composite loses the pink of the cloud (0.04 of red or more)
+        # (only on pixels that are already cloud: the faint haze and the painting's own noise round a cloud stay as they are)
+        need = needed_alpha(p_bg, s)
+        ca2 = np.where(ca2 > 0.10, np.maximum(ca2, need), ca2)
     # the moon and the stars belong to the sky, not to a drifting cloud layer
     fixed = np.zeros((h, w), bool)
     for fx0, fy0, fx1, fy1 in (light_cfg or {}).get("fixedSky", []):
@@ -348,10 +442,16 @@ def split_plate(p: np.ndarray, hand: dict, mattes: dict | None = None, log=print
     sky_full = s + (p_bg - s) * fixed_soft[..., None]
     g = _group_clouds(ca2, sea_top, hand["farMaxY"])
     a_far, a_mid, a_sea = (ca2 * _soft(g == i) for i in (1, 2, 3))
-    a_far = a_far * smoothstep(0, 60, yy)          # a layer must not start with a hard top edge
+    top_fade = hand.get("farTopFade", 60)
+    if top_fade:
+        a_far = a_far * smoothstep(0, top_fade, yy)    # a layer must not start with a hard top edge (unless it runs on above)
     a_sea = np.maximum(a_sea, ramp)
     ex = np.maximum(a_far + a_mid + a_sea - np.maximum(ca2, a_sea), 0)  # overlaps of the soft split: off the sea
     a_sea = (a_sea - ex).clip(0, 1)
+    floor = hand.get("alphaFloor", 0.0)
+    if floor:
+        # alpha under the floor is noise (crumbs and dots round a cloud), not matte: gone from every cloud layer
+        a_far, a_mid, a_sea = (clean_alpha(a, floor) for a in (a_far, a_mid, a_sea))
     cloud = unmix(p_bg, sky_full, np.maximum(ca2, 1e-6))
     cloud = np.where(ca2[..., None] > 0.01, cloud, p_bg)
 
@@ -367,6 +467,17 @@ def split_plate(p: np.ndarray, hand: dict, mattes: dict | None = None, log=print
         layers[name] = {"rgb": f, "a": a, "pos": (0, 0), "kind": "sprite", "bg": bg_far}
     layers["mid"] = {"rgb": cloud, "a": a_mid, "pos": (0, 0), "kind": "tile"}
     layers["sea"] = {"rgb": cloud, "a": a_sea, "pos": (0, 0), "kind": "tile"}
+    ef = hand.get("edgeFeather", 0)
+    if ef:
+        # the screen is wider than the master: a cloud bank cut by the master's own edge would show as a sliver beside the
+        # tile layers' bridge, so the island layer's alpha eases to nothing over the last `ef` columns
+        fade = split_smooth(np.clip(np.arange(w, dtype=np.float32) / ef, 0, 1))
+        isl = (isl * np.minimum(fade, fade[::-1])[None]).astype(np.float32)
+    if hand.get("gamutAlpha"):
+        # where the bank's soft alpha cannot make the painting over the filled background without clipping (the cloud
+        # beside the island's belly would come out grey), the island layer takes the pixel: only inside its own soft edge
+        need = needed_alpha(p, bg)
+        isl = np.where(isl > 0.02, np.maximum(isl, np.where(need > isl + 0.02, need, 0)), isl).astype(np.float32)
     layers["island"] = {"rgb": unmix(p, bg, isl), "a": isl, "pos": (0, 0), "kind": "island"}
     info = {"hole_px": int(hole.sum()), "K": k, "sky_resid_p95": resid}
     return {"layers": layers, "bg": bg, "bg_far": bg_nosea, "p_bg": p_bg, "hole": hole, "sil": sil, "info": info}
@@ -394,16 +505,23 @@ def _save(rgb: np.ndarray, a: np.ndarray, path: Path) -> int:
     return path.stat().st_size
 
 
-def write_set(res: dict, hand: dict, light: str, out: Path, plate_rel: str, seed: int = 0) -> dict:
+def write_set(res: dict, hand: dict, light: str, out: Path, plate_rel: str, seed: int = 0,
+              stage_islands: dict[str, np.ndarray] | None = None) -> dict:
     """Close the drift tiles, crop every layer, save HEIC q70 and `manifest.json`."""
     out.mkdir(parents=True, exist_ok=True)
     layers = res["layers"]
     h, w = layers["sky"]["a"].shape
     seam = hand["tileSeamPx"]
     entries, sizes = {}, {}
+    bridge = hand.get("tileBridge", 0)
     for lid in ("far", "mid", "sea"):
         lay = layers[lid]
-        lay["rgb"], lay["a"] = close_wrap(lay["rgb"], lay["a"], seam, seed)
+        if bridge:
+            lay["rgb"], lay["a"] = bridge_wrap(lay["rgb"], lay["a"], bridge, seed)
+            if hand.get("alphaFloor"):
+                lay["a"] = clean_alpha(lay["a"], hand["alphaFloor"])
+        else:
+            lay["rgb"], lay["a"] = close_wrap(lay["rgb"], lay["a"], seam, seed)
     # sky: small
     sky = cv2.resize(layers["sky"]["rgb"], (w // SKY_SCALE, h // SKY_SCALE), interpolation=cv2.INTER_AREA)
     sizes["sky"] = _save(sky, np.ones(sky.shape[:2], np.float32), out / "sky.heic")
@@ -421,14 +539,14 @@ def write_set(res: dict, hand: dict, light: str, out: Path, plate_rel: str, seed
             box_ = (max(x0 - pad, 0), max(y0 - pad, 0), min(x1 + pad, w), min(y1 + pad, h))
         elif lid in ("far", "mid", "sea"):
             _, ya, _, yb = _bbox(lay["a"])
-            box_ = (0, max(ya - 2, 0), w, min(yb + 2, h))
+            box_ = (0, max(ya - 2, 0), lay["a"].shape[1], min(yb + 2, h))
         else:
             box_ = _bbox(lay["a"])
         x0, y0, x1, y1 = box_
         sizes[lid] = _save(lay["rgb"][y0:y1, x0:x1], lay["a"][y0:y1, x0:x1], out / f"{lid}.heic")
         e = {"id": lid, "file": f"{lid}.heic", "pos": [x0, y0], "size": [x1 - x0, y1 - y0], "kind": lay["kind"]}
         if lay["kind"] == "tile":
-            e["tileWidth"] = w
+            e["tileWidth"] = lay["a"].shape[1]
             e["parallax"] = {"pxPerSecond": hand["parallax"]["pxPerSecond"][lid], "unit": "screen px at referenceScreen",
                              "direction": "+x"}
         if lay["kind"] == "sprite":
@@ -437,6 +555,19 @@ def write_set(res: dict, hand: dict, light: str, out: Path, plate_rel: str, seed
         entries[lid] = e
         names.append(lid)
     sil = _bbox(res["sil"], 0.5)
+    staged = {}
+    if stage_islands:
+        # the same island layer cut from each stage's own plate (same alpha, same box): over the one sky set
+        isl = layers["island"]
+        ex_, ey_ = entries["island"]["pos"]
+        ew_, eh_ = entries["island"]["size"]
+        x0, y0, x1, y1 = ex_, ey_, ex_ + ew_, ey_ + eh_
+        for stage, rgb in stage_islands.items():
+            name = f"island-s{stage}.heic"
+            sizes[f"island-s{stage}"] = _save(rgb[y0:y1, x0:x1], isl["a"][y0:y1, x0:x1], out / name)
+            staged[stage] = name
+        if hand.get("baseStage"):
+            staged[hand["baseStage"]] = "island.heic"
     manifest = {
         "island": hand["island"], "light": light, "version": 1, "size": [w, h],
         "source": {"plate": plate_rel},
@@ -445,6 +576,7 @@ def write_set(res: dict, hand: dict, light: str, out: Path, plate_rel: str, seed
         "islandBox": list(sil), "seaTop": hand["seaTop"], "seaSolid": hand["seaSolid"],
         "referenceScreen": hand["parallax"]["referenceScreen"], "tileSeamPx": seam,
         "spritePxPerSecond": {n: s["pxPerSecond"] for n, s in hand["sprites"].items()},
+        **({"stageIslands": staged} if staged else {}),
         "bytes": {**sizes, "total": int(sum(sizes.values()))},
         "info": {k: (round(v, 4) if isinstance(v, float) else v) for k, v in res["info"].items()},
     }
@@ -463,7 +595,19 @@ def build(island: str, light: str, plate: Path | None = None, out: Path | None =
     from heic import delta_e2000
     de = delta_e2000(rc * 255, p * 255)
     log(f"  rest composite before saving: mean dE {de.mean():.3f}, p99 {np.percentile(de, 99):.2f}")
-    man = write_set(res, hand, light, out or PLATES / island / "sky" / light, rel)
+    stage_islands = None
+    if hand.get("stages"):
+        # staged islands (Çağlayan): every stage plate's island, unmixed against the one background
+        import portrait
+        paths = portrait.stage_plate_paths(island)
+        base = portrait.master_base(portrait.load_frame(island))
+        stage_islands = {}
+        for stage in hand["stages"]:
+            pm = portrait.stage_master(island, paths[int(stage)], base).astype(np.float32)
+            a = res["layers"]["island"]["a"]
+            stage_islands[stage] = unmix(pm, res["bg"], a)
+            log(f"  stage {stage}: island layer from {paths[int(stage)].name}")
+    man = write_set(res, hand, light, out or PLATES / island / "sky" / light, rel, stage_islands=stage_islands)
     log(f"  wrote {man['bytes']['total'] / 1e6:.2f} MB: " + ", ".join(f"{k} {v / 1e3:.0f}k" for k, v in man["bytes"].items() if k != "total"))
     return man
 

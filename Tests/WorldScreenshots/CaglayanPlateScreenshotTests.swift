@@ -10,7 +10,8 @@ import XCTest
 /// written, `caglayan-plate-full-` in the publish job; `tools/plate/harmony_check.py --island
 /// caglayan` measures Damla in them):
 ///
-/// - `caglayan-plate-full-s0-day` to `-s4-day`: the five story stages by day;
+/// - `caglayan-plate-full-s0-day` to `-s4-day`: the five story stages by day, each its plate's island over the one portrait
+///   sky set (ADR-0025; the sky at time zero, `worldStillFrame`; `tools/plate/screen_check.py caglayan ci` reads them);
 /// - `caglayan-plate-full-s2-night` and `-s3-night`: the painted nights;
 /// - `caglayan-plate-full-s4-golden` and `-s4-rain`: the healed island at golden hour and in rain;
 /// - `caglayan-plate-sprite-s4-night`: a state no plate paints, still the sprite island.
@@ -74,6 +75,8 @@ final class CaglayanPlateScreenshotTests: XCTestCase {
         XCTAssertEqual(model.caglayanPlate?.light, light, "stage \(stage) at \(hour): the painted state")
         if light != nil {
             XCTAssertEqual(model.caglayanPlate?.stage, stage)
+            // The day is an island plate over a sky set; golden, night and rain keep the landscape plate for now.
+            XCTAssertEqual(model.caglayanPlate?.skySet != nil, light == "day", "the sky set follows the light")
         }
         let format = UIGraphicsImageRendererFormat()
         format.scale = window.traitCollection.displayScale

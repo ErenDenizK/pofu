@@ -148,11 +148,14 @@ def _scaled(layer: dict, g: dict, master: tuple[int, int]) -> tuple[np.ndarray, 
         x, y = px * g["sx"] - g["ox"], (py + top) * g["sy"] - g["oy"]
     else:
         pre = cv2.resize(pre, (round(dw), round(dh)), interpolation=cv2.INTER_LINEAR if round(dw) > pre.shape[1] else cv2.INTER_AREA)
-        canvas = np.zeros((rows, w, 4), np.float32)
+        wc = round(dw) if layer["role"] == "tile" else w          # a drift tile may be wider than the master (its bridge)
+        canvas = np.zeros((rows, wc, 4), np.float32)
         x0, y0 = round(px), round(py) + top
-        part = pre[: max(rows - y0, 0), : max(w - x0, 0)]
+        cut_y, cut_x = max(-y0, 0), max(-x0, 0)         # a layer that runs on past the rows the window needs (Çağlayan's clouds above the master)
+        y0, x0 = max(y0, 0), max(x0, 0)
+        part = pre[cut_y: cut_y + max(rows - y0, 0), cut_x: cut_x + max(wc - x0, 0)]
         canvas[y0: y0 + part.shape[0], x0: x0 + part.shape[1]] = part
-        full = cv2.resize(canvas, (round(w * g["sx"]), round(rows * g["sy"])), interpolation=cv2.INTER_AREA)
+        full = cv2.resize(canvas, (round(wc * g["sx"]), round(rows * g["sy"])), interpolation=cv2.INTER_AREA)
         c0, r0 = max(math.floor(x0 * g["sx"]) - 2, 0), max(math.floor(y0 * g["sy"]) - 2, 0)
         c1, r1 = min(math.ceil((x0 + part.shape[1]) * g["sx"]) + 2, full.shape[1]), min(math.ceil((y0 + part.shape[0]) * g["sy"]) + 2, full.shape[0])
         if layer["role"] == "tile":

@@ -1,0 +1,100 @@
+{
+ "island": "caglayan",
+ "note": "Hand data for tools/plate/split.py, Çağlayan's sky set (ADR-0025). Pixels are master pixels at x2 (2048 x 3072: the portrait master of x-caglayan-portrait-s4-day t1 at 1024 x 1536, upscaled, with the island of the picked stage plates pasted over it by tools/plate/portrait.py). One day master; every stage plate's island is cut over the same sky. The island matte is the landscape plates' committed matte-day-0.png, placed by `matteFrame`. The two distant isles' mattes (mattes/*.png) come from tools/plate/sprite_matte.py and may be adjusted by hand. `export` holds what the Home sets do not need: the picture runs past the master at the Island stop (the screen shows about 1.03 master widths and 1.5 master heights). `beam` is the chimney's smoke: it belongs to the island layer, which never drifts.",
+ "size": [
+  2048,
+  3072
+ ],
+ "matteFrame": {
+  "scale": 1.333333,
+  "offset": [
+   0,
+   850
+  ]
+ },
+ "seaTop": 1750,
+ "seaSolid": 2350,
+ "farMaxY": 1100,
+ "beam": [
+  330,
+  800,
+  490,
+  1010
+ ],
+ "bankPx": 120,
+ "bankGateY": [
+  -2,
+  -1
+ ],
+ "tileSeamPx": 120,
+ "spritePad": 40,
+ "farTopFade": 140,
+ "sprites": {
+  "isle_dome": {
+   "box": [
+    470,
+    395,
+    700,
+    540
+   ],
+   "matte": "mattes/isle_dome.png",
+   "pxPerSecond": 3.0
+  },
+  "isle_crystal": {
+   "box": [
+    1420,
+    205,
+    1620,
+    360
+   ],
+   "matte": "mattes/isle_crystal.png",
+   "pxPerSecond": 2.0
+  }
+ },
+ "parallax": {
+  "referenceScreen": [
+   1206,
+   2622
+  ],
+  "pxPerSecond": {
+   "far": 4,
+   "mid": 9,
+   "sea": 14
+  },
+  "note": "Home's constants; the sky gradient and the island stand still. Layers marked tile wrap in x."
+ },
+ "export": {
+  "skyPadTop": 1200,
+  "skyPadBottom": 700,
+  "skyPadSide": 128,
+  "seaPad": 760,
+  "seaQuilt": {
+   "block": 128,
+   "overlap": 40,
+   "topk": 5,
+   "band": 48,
+   "window": 500,
+   "step": 96,
+   "source": 700
+  },
+  "splitSky": true
+ },
+ "stages": [
+  "0",
+  "1",
+  "2",
+  "3"
+ ],
+ "lights": {
+  "day": {
+   "plate": "design/art/plates/caglayan/sky/master-day.heic"
+  }
+ },
+ "baseStage": "4",
+ "tileBridge": 192,
+ "gamutAlpha": true,
+ "alphaFloor": 0.08,
+ "edgeFeather": 24,
+ "skyDarkPass": true,
+ "cloudsLighten": true
+}

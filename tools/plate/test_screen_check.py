@@ -6,6 +6,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
+import cv2
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -69,6 +70,78 @@ class MeasureTests(unittest.TestCase):
         self.assertTrue(sc.check_leaks(s, {"max_px": 5})["ok"])
         s["layers"]["far"]["rgba"][5:15, 5:15, :3] = (0.3, 0.7, 0.2)   # a green lawn bit
         self.assertFalse(sc.check_leaks(s, {"max_px": 5})["ok"])
+
+    def test_a_green_aurora_is_not_a_leak_but_the_lawn_is(self):
+        """Revontuli's aurora is green: the check keys on the island matte's own colours, not on every green."""
+        island = np.zeros((40, 40, 4), np.float32)
+        island[..., :3] = (0.30, 0.62, 0.20)
+        island[..., :3] += np.random.default_rng(1).normal(0, 0.01, island[..., :3].shape).astype(np.float32)
+        island[..., 3] = 1
+        far = np.zeros((30, 30, 4), np.float32)
+        far[..., :3] = 0.95
+        far[..., 3] = 1
+        far[5:25, 5:25, :3] = (0.45, 0.90, 0.40)                       # an aurora curtain: green, light, vivid
+        th = {"max_px": 5, "palette_de": 12.0, "palette_k": 4}
+        s = {"layers": {"island": {"rgba": island}, "far": {"rgba": far.copy()}}}
+        self.assertTrue(sc.check_leaks(s, th)["ok"], sc.check_leaks(s, th))
+        # without the island layer the old hue test still flags it (the false positive this replaces)
+        self.assertFalse(sc.check_leaks({"layers": {"far": {"rgba": far.copy()}}}, th)["ok"])
+        # a bit of the lawn itself in a cloud layer is flagged either way
+        s["layers"]["far"]["rgba"][5:25, 5:25, :3] = (0.30, 0.62, 0.20)
+        self.assertFalse(sc.check_leaks(s, th)["ok"])
+
+    def test_the_plate_rows_of_a_landscape_plate_on_a_portrait_master(self):
+        hand = {"portraitFrame": {"size": [1024, 1536], "scale": 2 / 3, "offset": [0, 425]}, "size": [1536, 1024]}
+        man = {"size": [2048, 3072]}
+        fr = {"y0": -937.0, "k": 1.746}
+        r0, r1 = sc.plate_rows(man, hand, fr, 2622)
+        self.assertAlmostEqual(r0, (850 + 937) / 1.746, delta=1)
+        self.assertAlmostEqual(r1, (850 + 1365.3 + 937) / 1.746, delta=1)
+        # Home's plate is the master itself
+        self.assertEqual(sc.plate_rows({"size": [100, 200]}, {}, {"y0": -10.0, "k": 1.0}, 150), (10, 150))
+        to_master = sc.plate_to_master(hand, (2048, 3072))
+        mx, my = to_master(50, 50)
+        self.assertAlmostEqual(mx, 1024.0, places=3)
+        self.assertAlmostEqual(my, 850 + 0.5 * 1365.3333, places=2)
+
+    def test_speckle_pieces_are_counted_and_soft_clouds_are_not(self):
+        th = {"floor": 0.02, "max_area": 250, "max_alpha": 0.30, "max_pieces": 0}
+        yy, xx = np.mgrid[0:200, 0:200]
+        cloud = np.clip(1.5 - np.hypot(xx - 100, yy - 100) / 40, 0, 1).astype(np.float32)   # one big soft cloud
+        layer = np.dstack([np.ones((200, 200, 3), np.float32), cloud])
+        self.assertTrue(sc.check_speckle({"far": layer}, th)["ok"])
+        for y, x in ((10, 10), (20, 170), (180, 30)):                                       # crumbs: faint, small, apart
+            layer[y: y + 3, x: x + 3, 3] = 0.12
+        r = sc.check_speckle({"far": layer}, th)
+        self.assertEqual(r["total"], 3)
+        self.assertFalse(r["ok"])
+        layer[10:13, 10:13, 3] = 0.9                                                         # a small solid piece is a sprite
+        self.assertEqual(sc.check_speckle({"far": layer}, th)["total"], 2)
+
+    def test_a_straight_horizontal_line_in_the_sea_is_caught_and_clouds_are_not(self):
+        th = {"window": 14, "ratio_max": 2.2, "excess_max": 1.2}
+        rng = np.random.default_rng(2)
+        clouds = cv2.GaussianBlur(rng.random((300, 400, 3)).astype(np.float32), (0, 0), 6) * 80 + 150
+        self.assertTrue(sc.check_horizontal_line(clouds, (20, 280), th)["ok"])
+        seam = clouds.copy()
+        seam[150:] += 14                                                                     # two pictures meeting
+        r = sc.check_horizontal_line(seam, (20, 280), th)
+        self.assertFalse(r["ok"], r)
+        self.assertAlmostEqual(r["row"], 149, delta=2)
+
+    def test_a_halo_cut_against_another_sky_is_caught_and_one_cut_against_the_field_is_not(self):
+        th = {"lo": 0.08, "hi": 0.9, "dark": 0.006, "max_px": 20, "rows": 1700}
+        field = np.dstack([np.full((120, 160), 0.55, np.float32), np.full((120, 160), 0.75, np.float32), np.full((120, 160), 0.98, np.float32)])
+        yy, xx = np.mgrid[0:120, 0:160]
+        a = np.clip(1.6 - np.hypot(xx - 80, yy - 60) / 25, 0, 1).astype(np.float32)
+        # a cloud whose edge was unmixed against the same field: its colour is the cloud's (lighter than the field)
+        good = np.dstack([np.full((120, 160, 3), 0.95, np.float32), a])
+        self.assertTrue(sc.check_dark_halo(field, [(good, (0, 0))], th)["ok"])
+        # one unmixed against a lighter local sky: its halo comes out darker than the field everywhere the alpha is soft
+        bad = good.copy()
+        bad[..., :3] = np.where(((a > 0.08) & (a < 0.9))[..., None], np.float32([0.45, 0.70, 0.97]), bad[..., :3])
+        r = sc.check_dark_halo(field, [(bad, (0, 0))], th)
+        self.assertFalse(r["ok"], r)
 
     def test_resolution(self):
         th = sc.THRESHOLDS["resolution"]

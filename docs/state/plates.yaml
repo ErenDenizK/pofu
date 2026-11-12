@@ -219,7 +219,7 @@ islands:
           clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
           rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
     sky_sets:
-      day: {painted: "design/art/takes/batch-75-portrait-islands/x-caglayan-portrait-s4-day/plate__x-caglayan-portrait-s4-day--t1.webp", lead_pick: 1, in_app: false, founder_ok: null}
+      day: {painted: "design/art/takes/batch-75-portrait-islands/x-caglayan-portrait-s4-day/plate__x-caglayan-portrait-s4-day--t1.webp", lead_pick: 1, in_app: true, founder_ok: null}
       golden: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
       night: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
       rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}

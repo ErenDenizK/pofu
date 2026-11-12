@@ -103,20 +103,32 @@ public struct SkySet: Hashable, Sendable {
         public var details: [Detail] = []
     }
 
+    /// A plate's place on the master (`tools/plate/portrait.py`, `portraitFrame` in the island's `objects.json`).
+    public struct PlateFrame: Hashable, Sendable {
+        public var scale: Double
+        public var offset: PlatePoint
+    }
+
     public var light: String
     /// The master's size in pixels.
     public var master: PlatePoint
     /// The screen width the motion constants are given at.
     public var referenceWidth: Double
     public var layers: [Layer]
+    /// Where the island plate's own pixels sit on the master, when the plate is not the master scaled
+    /// (Çağlayan: a landscape plate on a portrait master): master px = plate px x `scale` + `offset`.
+    /// `nil`: the plate is the master at its own scale (Home).
+    public var plateFrame: PlateFrame?
     /// The state's textures in ASTC bytes (one a pixel): the set, the island cut for the Map and the
     /// occluders; the plate and its backdrop are not loaded while a sky set draws.
     public var textureBytes: Int
 
-    /// The sky set a state shows, when it has one: home's level-10 day, golden hour and night.
+    /// The sky set a state shows, when it has one: home's level-10 day, golden hour and night; Çağlayan's
+    /// day at each story stage (`day-<stage>`: the same sky, each stage plate's own island layer).
     public static func shipped(island: String, light: String, stage: Int) -> SkySet? {
-        guard stage == 0 else { return nil }
-        return SkySetFile.shipped(island)?.lights[light]
+        guard let file = SkySetFile.shipped(island) else { return nil }
+        if let staged = file.lights["\(light)-\(stage)"] { return staged }
+        return stage == 0 ? file.lights[light] : nil
     }
 }
 
@@ -246,7 +258,12 @@ private final class SkySetCache: @unchecked Sendable {
 
 extension SkySetFile: Decodable {
     private enum Keys: String, CodingKey {
-        case island, master, referenceWidth, lights
+        case island, master, referenceWidth, lights, plateFrame
+    }
+
+    private struct RawFrame: Decodable {
+        var scale: Double
+        var offset: [Double]
     }
 
     private struct RawBob: Decodable {
@@ -312,6 +329,7 @@ extension SkySetFile: Decodable {
         let master = try c.decode([Double].self, forKey: .master)
         let reference = try c.decodeIfPresent(Double.self, forKey: .referenceWidth) ?? 1206
         let raw = try c.decode([String: RawLight].self, forKey: .lights)
+        let frame = try c.decodeIfPresent(RawFrame.self, forKey: .plateFrame)
         guard master.count == 2 else {
             throw DecodingError.dataCorrupted(.init(codingPath: [], debugDescription: "the master has a width and a height"))
         }
@@ -352,8 +370,11 @@ extension SkySetFile: Decodable {
                     details: details
                 )
             }
+            let placed = try frame.map { SkySet.PlateFrame(scale: $0.scale, offset: try point($0.offset)) }
+            // A staged set is keyed `<light>-<stage>`; its light is the name before the dash.
             sets[light] = SkySet(
-                light: light, master: try point(master), referenceWidth: reference, layers: layers, textureBytes: value.textureBytes
+                light: String(light.split(separator: "-").first ?? Substring(light)), master: try point(master),
+                referenceWidth: reference, layers: layers, plateFrame: placed, textureBytes: value.textureBytes
             )
         }
         lights = sets

@@ -148,15 +148,21 @@ public struct HomePlate: Hashable, Sendable {
     }
 
     /// The sky set this state draws behind its island layer (ADR-0025), or `nil`: the painted plate and
-    /// its backdrop. Home's level-10 day, golden hour and night have one; the other states keep the
-    /// plate until they are split.
+    /// its backdrop. Home's level-10 day, golden hour and night and Çağlayan's day (every story stage) have
+    /// one; the other states keep the plate until they are split.
     public var skySet: SkySet? {
-        guard case .home = placement else { return nil }
-        return SkySet.shipped(island: plate.island, light: light, stage: stage)
+        SkySet.shipped(island: plate.island, light: light, stage: stage)
     }
 
-    /// A rectangle in the sky set's master pixels, in world units.
+    /// A rectangle in the sky set's master pixels, in world units. The master is the plate at its own
+    /// scale (Home), or the plate sits on it at `sky.plateFrame` (Çağlayan's landscape plates on a
+    /// portrait master): the island is placed by the plate, so the sky set's picture is placed by the island.
     public func worldBox(master r: PlateRect, of sky: SkySet) -> WorldBox {
+        if let frame = sky.plateFrame, frame.scale > 0 {
+            func plateX(_ x: Double) -> Double { (x - frame.offset.x) / frame.scale }
+            func plateY(_ y: Double) -> Double { (y - frame.offset.y) / frame.scale }
+            return worldBox(PlateRect(minX: plateX(r.minX), minY: plateY(r.minY), maxX: plateX(r.maxX), maxY: plateY(r.maxY)))
+        }
         let u = sky.master.x > 0 ? plate.plateSize.width / sky.master.x : 1
         return worldBox(PlateRect(minX: r.minX * u, minY: r.minY * u, maxX: r.maxX * u, maxY: r.maxY * u))
     }

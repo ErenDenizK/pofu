@@ -754,5 +754,28 @@
    "golden": 0.5,
    "night": 0.4
   }
+ },
+ "portraitFrame": {
+  "master": "design/art/takes/batch-75-portrait-islands/x-caglayan-portrait-s4-day/plate__x-caglayan-portrait-s4-day--t1.webp",
+  "size": [
+   1024,
+   1536
+  ],
+  "scale": 0.666667,
+  "offset": [
+   0.0,
+   425.0
+  ],
+  "out": "design/art/plates/caglayan/sky/master-day.heic",
+  "measured": {
+   "tool": "tools/plate/portrait.py register",
+   "scale": 0.6672,
+   "offset": [
+    -0.7,
+    424.8
+   ],
+   "cc": 0.9924
+  },
+  "note": "Where the landscape plates sit in the portrait master (x-caglayan-portrait-s4-day t1, 1024 x 1536): master px = scale * plate px + offset, measured by ECC on the island body (ADR-0025). The stage plates stay the truth about the island; tools/plate/portrait.py pastes them over the master at this place."
  }
 }
