@@ -1,11 +1,11 @@
 {
  "island": "home",
- "note": "The founder's pick: batch 66's x-home-flow-final-rich t1 (1024 x 1536 portrait, painted at final colour), level 10, day. Points are percent of the plate (`size`). Taps map to the existing stations only (beehive, hamster wheel, hilltop and the other round doors have no action, so no polygon). Day stages 0..8 are island levels 10..2 (`stageLevels`); golden and night exist at level 10 only. An object's `stages` lists the day stages where it is painted (diff against the level-10 plate, checked by eye: tools/plate/README.md); absent means all. `lamps` are the three painted lamp posts' ground points (percent of the plate; the lantern glow sits `LAMP_HEIGHT` above), `residentBoosts` size Mochi and Findik at 62 % and 52 %+ of Pofu's painted height (docs/design/visual-system.md, Characters). Home framing: the island is 1.15 screens wide (was 1.0) with its mass centred at 54 % of the screen height and the screen centred at 47 % of its width, Pofu keeping his share of the painted world (8.14 % of the plate width), so he grows with the zoom to about 38 pt.",
+ "note": "The founder's pick: batch 66's x-home-flow-final-rich t1 (1024 x 1536 portrait, painted at final colour), level 10, day. Points are percent of the plate (`size`). Taps map to the existing stations only (beehive, hamster wheel, hilltop and the other round doors have no action, so no polygon). Day stages 0..9 are island levels 10..1 (`stageLevels`) and night stages 0..8 are levels 10..2 (the same stage is the same level); golden exists at level 10 only (an unpainted light borrows another's, `HomePlate.borrowed`). `lampsFromLevel` is the level where the lamps are lit and a night plate's lamp pool starts (`HomeFixtures.lampsOpenAtLevel`). An object's `stages` lists the stages (every light) where it is painted (diff against the level-10 plate, checked by eye: tools/plate/README.md); absent means all. `lamps` are the three painted lamp posts' ground points (percent of the plate; the lantern glow sits `LAMP_HEIGHT` above), `residentBoosts` size Mochi and Findik at 62 % and 52 %+ of Pofu's painted height (docs/design/visual-system.md, Characters). Home framing: the island is 1.15 screens wide (was 1.0) with its mass centred at 54 % of the screen height and the screen centred at 47 % of its width, Pofu keeping his share of the painted world (8.14 % of the plate width), so he grows with the zoom to about 38 pt.",
  "size": [
   1024,
   1536
  ],
- "minLevel": 2,
+ "minLevel": 1,
  "plates": {
   "day": {
    "0": "design/art/takes/batch-66-home-flow/x-home-flow-final-rich/plate__x-home-flow-final-rich--t1.webp",
@@ -16,13 +16,22 @@
    "5": "design/art/takes/batch-66-home-flow/x-home-flow-il5/plate__x-home-flow-il5--t1.webp",
    "6": "design/art/takes/batch-66-home-flow/x-home-flow-il4/plate__x-home-flow-il4--t2.webp",
    "7": "design/art/takes/batch-66-home-flow/x-home-flow-il3/plate__x-home-flow-il3--t1.webp",
-   "8": "design/art/takes/batch-66-home-flow/x-home-flow-il2/plate__x-home-flow-il2--t1.webp"
+   "8": "design/art/takes/batch-66-home-flow/x-home-flow-il2/plate__x-home-flow-il2--t1.webp",
+   "9": "design/art/takes/batch-74-redo-states/x-home-flow-il1-v3/plate__x-home-flow-il1-v3--t2.webp"
   },
   "golden": {
    "0": "design/art/takes/batch-66-home-flow/x-home-flow-golden/plate__x-home-flow-golden--t1.webp"
   },
   "night": {
-   "0": "design/art/takes/batch-66-home-flow/x-home-flow-night/plate__x-home-flow-night--t1.webp"
+   "0": "design/art/takes/batch-66-home-flow/x-home-flow-night/plate__x-home-flow-night--t1.webp",
+   "1": "design/art/takes/batch-72-home-night/x-home-flow-il9-night/plate__x-home-flow-il9-night--t1.webp",
+   "2": "design/art/takes/batch-72-home-night/x-home-flow-il8-night/plate__x-home-flow-il8-night--t2.webp",
+   "3": "design/art/takes/batch-72-home-night/x-home-flow-il7-night/plate__x-home-flow-il7-night--t1.webp",
+   "4": "design/art/takes/batch-72-home-night/x-home-flow-il6-night/plate__x-home-flow-il6-night--t1.webp",
+   "5": "design/art/takes/batch-72-home-night/x-home-flow-il5-night/plate__x-home-flow-il5-night--t2.webp",
+   "6": "design/art/takes/batch-72-home-night/x-home-flow-il4-night/plate__x-home-flow-il4-night--t1.webp",
+   "7": "design/art/takes/batch-72-home-night/x-home-flow-il3-night/plate__x-home-flow-il3-night--t2.webp",
+   "8": "design/art/takes/batch-74-redo-states/x-home-flow-il2-night-v2/plate__x-home-flow-il2-night-v2--t2.webp"
   }
  },
  "trace": [
@@ -439,6 +448,17 @@
      62.5,
      50.13
     ]
+   ],
+   "stages": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
    ]
   },
   {
@@ -642,7 +662,8 @@
     4,
     5,
     6,
-    8
+    8,
+    9
    ]
   },
   {
@@ -989,6 +1010,17 @@
      45.9,
      62.5
     ]
+   ],
+   "stages": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
    ]
   },
   {
@@ -1258,8 +1290,10 @@
   5,
   4,
   3,
-  2
+  2,
+  1
  ],
+ "lampsFromLevel": 6,
  "lamps": [
   [
    28.42,
