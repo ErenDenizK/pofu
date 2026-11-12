@@ -3,7 +3,8 @@ contact_sheet: design/art/takes/batch-64-flow-pieces/flow-grass/contact.jpg
 jobs:
   flow-grass:
     pick: 1
-    publication: promoted; founder review pending
+    publication: "promoted; picked by the lead 2026-11-12 (take 1); founder review pending"
+    lead_review: "Lead pick: an even bank of soft grass, full bleed; one variant is enough (code rotates and flips it)."
     note: auto-picked by QA; founder review pending. Take1 is the sole hardQA/manual
       eligible candidate. Its palette_drift WARN4.3948 stays advisory; take2 actual
       palette_drift FAIL5.4329 is excluded by unchanged QA. Both inventories show

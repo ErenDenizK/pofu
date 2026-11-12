@@ -2,8 +2,10 @@ batch: batch-61-ui-kit-v3
 contact_sheet: design/art/takes/batch-61-ui-kit-v3/ui-stamps/contact.jpg
 jobs:
   ui-stamps:
-    pick: none
-    publication: skipped after one allowed retry
+    pick: 1
+    status: lead-picked
+    publication: "picked by the lead 2026-11-12 (take 1); promote from the retained take, no generation (batch-77)"
+    lead_review: "Lead pick: take 1, clean alpha and four clear emblems at 56 pt; the two-tone golden cloud is accepted. Takes 2 to 4 carry grey paper or painted checkerboard. Promote take 1 with --force citing batch-77 (no generation)."
     note: Manual skip after initial2 plus sole unchanged retry2; preserve truthful
       canonical QA statuses pass/pass/warn/pass. Full native and locked, proper-alpha
       source/locked sheet review is sealed at root-stamps-sole-retry-final-manual-review.json

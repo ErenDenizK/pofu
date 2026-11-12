@@ -3,7 +3,8 @@ contact_sheet: design/art/takes/gate-door-repost-2026-11-06/gate-door-scene/cont
 jobs:
   gate-door-scene:
     pick: 2
-    publication: promoted; founder review pending
+    publication: "promoted; picked by the lead 2026-11-12 (take 2); founder review pending"
+    lead_review: "Lead pick (row 0-r): the round door scene, half-size lossless delivery."
     note: retained take 2; author-authorized palette_drift-only force; full native
       QA remains fail. Lead-selected retained original take 2. Queue row 0-r authorizes
       palette_drift only; row 0-q authors deliver.scale=0.5 after PR308 native-cap

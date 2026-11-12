@@ -3,7 +3,8 @@ contact_sheet: design/art/takes/batch-62-breath-room/breath-ring-spark/contact.j
 jobs:
   breath-ring-spark:
     pick: 1
-    publication: promoted; founder review pending
+    publication: "promoted; picked by the lead 2026-11-12 (take 1); founder review pending"
+    lead_review: "Lead pick: a small cream spark with a short tail to the left; rides the Door's breath ring."
     note: auto-picked by QA; founder review pending. Retained initial pair only; both
       pass hard QA and manual round-head/soft-left-tail checks including14px review.
       Canonical fallback ranking selects take1. Native512 master and original1254

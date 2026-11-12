@@ -5,7 +5,8 @@ contact_sheet: design/art/takes/batch-63-empty-states/x-empty-today/contact.jpg
 jobs:
   x-empty-today:
     pick: 1
-    publication: selected exploration; never promoted
+    publication: "promoted; picked by the lead 2026-11-12 (take 1); founder review pending"
+    lead_review: "Lead pick: Pofu at a set table with an empty cup and a blank notebook; an invitation, one idea."
     note: auto-picked by QA; founder review pending. Both initial takes pass all hard
       QA and manual content review. Native sources, full official locked outputs and
       proper cream/night alpha composites viewed. One R1 Pofu with curl sits at a

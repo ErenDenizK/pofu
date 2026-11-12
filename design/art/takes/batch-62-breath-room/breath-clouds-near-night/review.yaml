@@ -1,8 +1,10 @@
 batch: batch-62-breath-room
 jobs:
   breath-clouds-near-night:
-    pick: none
-    publication: dependent-skip
+    pick: null
+    status: obsolete
+    publication: "obsolete 2026-11-12; no pick, no redo"
+    lead_review: "Obsolete, no redo: the Door (docs/design/the-door.md) retires the separate breath room into the Door scene's Breath state (a ring of light round the doorway), so the isle-and-clouds scene is no longer planned."
     note: 'Skipped without generation: true dependency breath-clouds-near was already
       skipped because root breath-scene failed. Skipped without generation: true dependency
       breath-scene failed after its one allowed retry. Skipped after one allowed paired

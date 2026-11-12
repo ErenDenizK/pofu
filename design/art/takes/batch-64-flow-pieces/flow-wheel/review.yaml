@@ -4,8 +4,9 @@ manifest_sha256: 65e52554e18897f16553e47cd6762b9099f270aca4efef9905e16ac3e7957c7
 jobs:
   flow-wheel:
     pick: 2
+    publication: "promoted; picked by the lead 2026-11-12 (take 2); founder review pending"
+    lead_review: "Lead pick: round, centred, eight paddles round a hub; reads as a turning wheel in the seat."
     status: review
-    publication: promoted; founder review pending
     note: Both candidates show eight rounded honey-wood paddles, centered hub and circular rim, matte
       finish and small rim moss. Exact rotational pixel invariance is not certified; approximate84percent
       width is advisory. Proper cream alpha composites are clean; bright raw RGB fragments are at alpha0.

@@ -3,7 +3,8 @@ contact_sheet: design/art/takes/batch-61-ui-kit-v3/ui-ribbon-grip/contact.jpg
 jobs:
   ui-ribbon-grip:
     pick: 2
-    publication: promoted; founder review pending
+    publication: "promoted; picked by the lead 2026-11-12 (take 2); founder review pending"
+    lead_review: "Lead pick: a plump honey ribbon with a cream stripe, reads as a grabber."
     note: auto-picked by QA; founder review pending. Both initial takes pass all hard
       automated and manual proper-alpha checks; normal lowest style-lock load selects
       take2 (0.5764 vs0.7124). Plump honey-gold satin grip with thin cream central

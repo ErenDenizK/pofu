@@ -1,8 +1,10 @@
 batch: batch-64-flow-pieces
 jobs:
   flow-dribble-3:
-    pick: none
-    publication: dependent-skip
+    pick: null
+    status: rejected
+    publication: "rejected by the lead 2026-11-12"
+    lead_review: "Not generated (dependency skip). Runs in batch-77 after the new dribble frame 1."
     note: 'Skipped without generation: literal edit_of parent flow-dribble-1 was terminally
       skipped after its sole unchanged retry because all four takes already showed
       a connected falling stream to the bank/ground instead of the explicit FRAME1

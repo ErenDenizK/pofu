@@ -4,8 +4,9 @@ manifest_sha256: 16e2f6cf9233a81573226e366bc5ef6b93e66724b5c90f66dc096e5a9502d16
 jobs:
   x-pofu-yawn:
     pick: 1
+    publication: "promoted; picked by the lead 2026-11-12 (take 1); founder review pending"
+    lead_review: "Lead pick: sleepy, inhale, yawn with a paw up, awake; one pose family, same place in every cell."
     status: review
-    publication: exploration; never promoted
     note: 'Four frames in 2x2 read sleepy half-open eyes and resting cheek, inhale with squeezed eyes,
       wide soft oval yawn with one lifted paw, then open-eyed content smile. R1 curl and cream cloud family
       retained. Proper cream/night composites inspected: background gradients are hidden RGB beneath alpha0,

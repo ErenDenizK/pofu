@@ -4,9 +4,9 @@ manifest_sha256: 1afc74db28c48c60630bdde906957d1b30ac1021d539f0322f263619e3450dd
 jobs:
   ui-chip-felt-selected:
     pick: 2
+    publication: "promoted; picked by the lead 2026-11-12 (take 2); founder review pending"
+    lead_review: "Lead pick: darker felt and bold honey stitches, same outline; unmistakably selected."
     status: promoted
-    publication: take 2 promoted to lossless PNG with raw.webp; canonical harmony measure/check and content
-      validation passed
     note: Take 1 fails edit_structure after alignment. Take 2 is QA warn only for edit_structure and preserves
       the blank capsule with darker warm felt and honey-gold stitches; cream and night alpha composites
       show no opaque background. Auto-picked by QA; founder review pending. Parent aspect ratio remains

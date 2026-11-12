@@ -4,8 +4,9 @@ manifest_sha256: 1afc74db28c48c60630bdde906957d1b30ac1021d539f0322f263619e3450dd
 jobs:
   ui-fill-honey:
     pick: null
-    status: skipped
-    publication: 'skipped: both initial takes fail hard QA; no master promoted'
+    status: obsolete
+    publication: "obsolete 2026-11-12; no pick, no redo"
+    lead_review: "No pick, no redo: the optional painted fill; the spec draws the groove's fill in code (ui-v3 section 5)."
     note: Both initial takes fail hard palette drift (mean dE 4.8). Transparent honey capsules retained;
       no QA threshold waiver and no retry under current two-take cap. No master promoted.
 selection:

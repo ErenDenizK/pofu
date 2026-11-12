@@ -5,7 +5,8 @@ contact_sheet: design/art/takes/batch-63-empty-states/x-permission-key/contact.j
 jobs:
   x-permission-key:
     pick: 2
-    publication: selected exploration; never promoted
+    publication: "promoted; picked by the lead 2026-11-12 (take 2); founder review pending"
+    lead_review: "Lead pick: a brass key nearly his size before the round door's keyhole; friendly, not legal."
     note: 'auto-picked by QA; founder review pending. Retained initial pair after
       account resume: no regeneration and no retry-budget reset. Both native source/full
       official locked/proper cream-night composites already reviewed and hashbound

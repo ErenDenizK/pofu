@@ -3,7 +3,8 @@ contact_sheet: design/art/takes/batch-61-ui-kit-v3/ui-tag-v3/contact.jpg
 jobs:
   ui-tag-v3:
     pick: 1
-    publication: promoted; founder review pending
+    publication: "promoted; picked by the lead 2026-11-12 (take 1); founder review pending"
+    lead_review: "Lead pick: cream luggage tag with a reinforced hole and string; the left cap holds the string."
     note: Take 1 is QA warn only for canvas; take 2 passes automated QA but is manually
       excluded because its left hole reads filled and its extra stitches conflict
       with the requested inventory. Take 1 visually has the blank tag, punched left

@@ -4,8 +4,9 @@ manifest_sha256: 1afc74db28c48c60630bdde906957d1b30ac1021d539f0322f263619e3450dd
 jobs:
   ui-toast-strip-night:
     pick: null
-    status: skipped
-    publication: 'skipped: both initial takes fail hard QA; no master promoted'
+    status: rejected
+    publication: "rejected by the lead 2026-11-12"
+    lead_review: "Lead reject: every take is a diagonal amber-corner to indigo gradient, so the middle is not even (it cannot be 9- or 3-sliced) and the night reads purple-indigo, not warm (tracker: Settings night rows warm, not purple-indigo). Redo in batch-77: flat warm cocoa lamplit paper, amber only along the top edge."
     note: 'Both initial takes fail hard QA (value floor, palette drift, structure and lightness). No profile
       waiver and no retry: current Factory cap is two. Originals retained; no master promoted.'
 selection:

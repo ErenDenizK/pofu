@@ -4,8 +4,9 @@ manifest_sha256: 65e52554e18897f16553e47cd6762b9099f270aca4efef9905e16ac3e7957c7
 jobs:
   flow-frame-caglayan:
     pick: null
-    status: skipped
-    publication: production candidate; promotion requires all delivery and metadata checks
+    status: rejected
+    publication: "rejected by the lead 2026-11-12"
+    lead_review: "Lead reject (agrees with the skip): grass and moss run along the whole top edge, into the 9-slice stretch. Redo in batch-77: foliage only inside the four corner caps."
     note: 'Skipped: both numeric-QA-pass locked candidates have empty transparent middles but painted
       top foliage/stone and side rim extend beyond authored96px slice caps into the stretch center. Guide
       overlay on unchanged1024px locked canvases confirms this. No new QA threshold, crop or source edit;

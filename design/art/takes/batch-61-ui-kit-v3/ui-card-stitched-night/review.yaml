@@ -2,8 +2,10 @@ batch: batch-61-ui-kit-v3
 contact_sheet: design/art/takes/batch-61-ui-kit-v3/ui-card-stitched-night/contact.jpg
 jobs:
   ui-card-stitched-night:
-    pick: none
-    publication: skipped after one allowed retry
+    pick: null
+    status: rejected
+    publication: "rejected by the lead 2026-11-12"
+    lead_review: "Lead reject: every take is a diagonal amber-corner to indigo gradient, so the middle is not even (it cannot be 9- or 3-sliced) and the night reads purple-indigo, not warm (tracker: Settings night rows warm, not purple-indigo). Redo in batch-77: flat warm cocoa lamplit paper, amber only along the top edge."
     note: 'Skipped after initial2 plus sole unchanged retry2: allfour officialQA reports
       hardfail value_floor, palette_drift, edit_structure and edit_lightness. Exact
       checks/values retained in review.yaml and root-stitched-night-final-review.json.

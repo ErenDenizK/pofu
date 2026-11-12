@@ -5,7 +5,8 @@ contact_sheet: design/art/takes/batch-63-empty-states/x-empty-letters/contact.jp
 jobs:
   x-empty-letters:
     pick: 2
-    publication: selected exploration; never promoted
+    publication: "promoted; picked by the lead 2026-11-12 (take 2); founder review pending"
+    lead_review: "Lead pick: empty open mailbox, flag down, a feather; hopeful."
     note: auto-picked by QA; founder review pending. Both initial takes pass hard
       QA and manual review after independent root full proper-alpha review. One hopeful
       R1 curl Pofu on tiptoe peers into small roundtopped wooden mailbox on post,

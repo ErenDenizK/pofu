@@ -4,9 +4,9 @@ manifest_sha256: 1afc74db28c48c60630bdde906957d1b30ac1021d539f0322f263619e3450dd
 jobs:
   ui-tab-ribbon:
     pick: 3
-    status: delivery-held
-    publication: Actual retry3/4 retained; exact lossless master encodings exceed614400 bytes, no master
-      promoted.
+    status: lead-picked
+    publication: "picked by the lead 2026-11-12 (take 3); promote from the retained take, no generation (batch-77)"
+    lead_review: "Lead pick: take 3, five identical notched ribbons, only the colour differs. Held only because the lossless master is over the upload cap: promote it from the retained take with a smaller delivery (batch-77 row, no generation)."
     note: Authorized single unchanged retry after broken-session takeover. New source PNGs are takes3/4;
       historical1/2 q90 are review-only and categorically ineligible for production. Five blank matching
       notched ribbons reviewed on proper alpha composite. No crop, rescale, prompt, profile or QA waiver.

@@ -3,7 +3,8 @@ contact_sheet: design/art/takes/batch-61-ui-kit-v3/ui-plaque-quiet/contact.jpg
 jobs:
   ui-plaque-quiet:
     pick: 2
-    publication: promoted; founder review pending
+    publication: "promoted; picked by the lead 2026-11-12 (take 2); founder review pending"
+    lead_review: "Lead pick: flat sand felt with a faint stitch; clearly the quietest control."
     note: auto-picked by QA; founder review pending. Both initial takes pass every
       automated check and manual proper-alpha review; canonical lowest style-lock
       load selects take2 (0.3372 vs0.3388). Blank sand felt face, faint inset stitches,

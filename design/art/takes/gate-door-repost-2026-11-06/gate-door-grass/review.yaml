@@ -2,8 +2,10 @@ batch: batch-58-gate-round-door
 contact_sheet: design/art/takes/gate-door-repost-2026-11-06/gate-door-grass/contact.jpg
 jobs:
   gate-door-grass:
-    pick: none
-    publication: skipped after one allowed retry
+    pick: 3
+    status: lead-picked
+    publication: "picked by the lead 2026-11-12 (take 3); promote from the retained take, no generation (batch-77)"
+    lead_review: "Lead pick: take 3, the foreground grass, registered. Same false edit_stability fail. Promote with --force citing batch-77."
     note: 'Sole unchanged retry exhausted. All four official reports fail palette_drift13.67/15.7626/15.2944/14.9713
       and edit_stability0.1367/0.1058/0.1082/0.0992. Proper-alpha source and official
       locked review also excludes takes1 and4 for retaining path stones although ONLY

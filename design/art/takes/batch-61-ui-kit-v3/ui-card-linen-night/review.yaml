@@ -2,8 +2,10 @@ batch: batch-61-ui-kit-v3
 contact_sheet: design/art/takes/batch-61-ui-kit-v3/ui-card-linen-night/contact.jpg
 jobs:
   ui-card-linen-night:
-    pick: none
-    publication: skipped after one allowed retry
+    pick: null
+    status: rejected
+    publication: "rejected by the lead 2026-11-12"
+    lead_review: "Lead reject: every take is a diagonal amber-corner to indigo gradient, so the middle is not even (it cannot be 9- or 3-sliced) and the night reads purple-indigo, not warm (tracker: Settings night rows warm, not purple-indigo). Redo in batch-77: flat warm cocoa lamplit paper, amber only along the top edge."
     note: 'Sole unchanged retry exhausted. All four takes fail official value_floor,
       edit_structure and edit_lightness. The authored night job omits acceptance.profile:
       night; the frozen manifest, prompt and QA remain unchanged. Initial-pair QA

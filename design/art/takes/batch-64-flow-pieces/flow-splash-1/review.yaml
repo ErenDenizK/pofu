@@ -2,8 +2,10 @@ batch: batch-64-flow-pieces
 contact_sheet: design/art/takes/batch-64-flow-pieces/flow-splash-1/contact.jpg
 jobs:
   flow-splash-1:
-    pick: none
-    publication: skipped after one allowed retry
+    pick: 1
+    status: lead-picked
+    publication: "picked by the lead 2026-11-12 (take 1); promote from the retained take, no generation (batch-77)"
+    lead_review: "Lead pick: take 1, a flat ripple and two droplets; it is wider than the asked 60 percent, which the app's sprite size absorbs (a fit, not a repaint). Promote take 1 with --force citing batch-77; its frames 2 to 4 run in batch-77."
     note: 'Manual review excludes all four takes: the entire visible water body is
       materially wider than the authored about60percent sprite, not merely a faint
       peripheral wash. Retry3 is roughly three quarters wide and retry4 nearly nine

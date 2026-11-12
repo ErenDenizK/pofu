@@ -2,8 +2,10 @@ batch: batch-64-flow-pieces
 contact_sheet: design/art/takes/batch-64-flow-pieces/flow-tile-split/contact.jpg
 jobs:
   flow-tile-split:
-    pick: 2
-    publication: promoted; founder review pending
+    pick: null
+    status: rejected
+    publication: "rejected by the lead 2026-11-12"
+    lead_review: "Lead reject (master withdrawn): all three openings are about 18 percent wide against the straight's 26, a visible step at every join on a test board. Redo in batch-77 as an edit of the straight."
     note: auto-picked by QA; founder review pending. Both initial takes pass hard
       QA and independent native/locked/manual review. Take2 ranks first by eligible
       lock_load0.3069 versus0.3302. Light shallow rounded north/east/west T channel,

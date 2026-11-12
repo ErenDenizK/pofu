@@ -2,8 +2,10 @@ batch: batch-58-gate-round-door
 contact_sheet: design/art/takes/gate-door-repost-2026-11-06/gate-door-plaques/contact.jpg
 jobs:
   gate-door-plaques:
-    pick: none
-    publication: skipped after one allowed retry
+    pick: 3
+    status: lead-picked
+    publication: "picked by the lead 2026-11-12 (take 3); promote from the retained take, no generation (batch-77)"
+    lead_review: "Lead pick: take 3, three blank honey plaques on the rope, registered. Same false edit_stability fail. Promote with --force citing batch-77."
     note: 'Sole unchanged retry exhausted. All four takes fail canonical edit_stability:
       0.0610, 0.0606, 0.0602 and 0.0612. Takes1-3 also hard-fail palette_drift; take4
       is exactly WARN3.8546, not a hard palette failure. Proper-alpha source and official

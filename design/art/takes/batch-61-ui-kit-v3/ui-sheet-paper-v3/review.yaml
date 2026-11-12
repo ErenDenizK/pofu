@@ -3,7 +3,8 @@ contact_sheet: design/art/takes/batch-61-ui-kit-v3/ui-sheet-paper-v3/contact.jpg
 jobs:
   ui-sheet-paper-v3:
     pick: 1
-    publication: promoted; founder review pending
+    publication: "promoted; picked by the lead 2026-11-12 (take 1); founder review pending"
+    lead_review: "Lead pick: cream sheet, soft deckle, even stitched middle; the cleaner 9-slice of the two."
     note: 'auto-picked by QA; founder review pending. Both initial takes pass hardQA
       and root/independent native+locked/proper-alpha literal review34ad19fd; take1
       wins normal lowest load0.2846 versus0.2973. The tall blank warmcream paper has

@@ -2,8 +2,10 @@ batch: batch-62-breath-room
 contact_sheet: design/art/takes/batch-62-breath-room/breath-scene/contact.jpg
 jobs:
   breath-scene:
-    pick: none
-    publication: skipped after one allowed retry
+    pick: null
+    status: obsolete
+    publication: "obsolete 2026-11-12; no pick, no redo"
+    lead_review: "Obsolete, no redo: the Door (docs/design/the-door.md) retires the separate breath room into the Door scene's Breath state (a ring of light round the doorway), so the isle-and-clouds scene is no longer planned."
     note: 'Skipped after one allowed paired retry: all four official takes fail production
       palette_drift. Lilac/rose sunset colors requested by the source fall outside
       its default UI palettes; no profile/palette/threshold edits and no force. Exact

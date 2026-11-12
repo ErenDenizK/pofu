@@ -3,7 +3,8 @@ contact_sheet: design/art/takes/batch-62-breath-room/breath-halo/contact.jpg
 jobs:
   breath-halo:
     pick: 1
-    publication: promoted; founder review pending
+    publication: "promoted; picked by the lead 2026-11-12 (take 1); founder review pending"
+    lead_review: "Lead pick: one soft honey bloom that falls to black before the border (edge rows measured 0 to 1); kept for the Door's Breath state."
     note: auto-picked by QA; founder review pending. Retained initial pair only; both
       hard QA and manual glow checks pass. Canonical fallback ranking selects take
       1. Official locked1024 to512 delivery and original inbox1254 to627 raw remain

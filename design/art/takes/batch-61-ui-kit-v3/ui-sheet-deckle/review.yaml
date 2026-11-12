@@ -3,7 +3,8 @@ contact_sheet: design/art/takes/batch-61-ui-kit-v3/ui-sheet-deckle/contact.jpg
 jobs:
   ui-sheet-deckle:
     pick: 2
-    publication: promoted; founder review pending
+    publication: "promoted; picked by the lead 2026-11-12 (take 2); founder review pending"
+    lead_review: "Lead pick: the deckle tiles seamlessly (checked end to end) with a lifted lighter lip."
     note: 'auto-picked by QA; founder review pending. Both initial takes pass every
       hard automated check and manual proper-alpha/two-tile junction review; normal
       lowest style-lock load selects take2 (0.4319 vs0.4545). Full-width blank cream

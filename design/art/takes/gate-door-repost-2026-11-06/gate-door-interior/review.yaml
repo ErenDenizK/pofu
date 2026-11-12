@@ -2,8 +2,10 @@ batch: batch-58-gate-round-door
 contact_sheet: design/art/takes/gate-door-repost-2026-11-06/gate-door-interior/contact.jpg
 jobs:
   gate-door-interior:
-    pick: none
-    publication: skipped after one allowed retry
+    pick: 3
+    status: lead-picked
+    publication: "picked by the lead 2026-11-12 (take 3); promote from the retained take, no generation (batch-77)"
+    lead_review: "Lead pick: take 3, closest to the scene (mean diff 11 against 14 to 17). Same false edit_stability fail. Promote with --force citing batch-77."
     note: 'Skipped after exactly two initial takes and the sole unchanged two-take
       retry. All four actual canonical reports fail palette_drift and edit_stability;
       takes1,2,4 also fail chroma_ceiling. No layer force authorization and no third

@@ -4,8 +4,9 @@ manifest_sha256: 1afc74db28c48c60630bdde906957d1b30ac1021d539f0322f263619e3450dd
 jobs:
   ui-tag-v3-night:
     pick: null
-    status: skipped
-    publication: 'skipped: both initial takes fail hard QA; no master promoted'
+    status: rejected
+    publication: "rejected by the lead 2026-11-12"
+    lead_review: "Lead reject: every take is a diagonal amber-corner to indigo gradient, so the middle is not even (it cannot be 9- or 3-sliced) and the night reads purple-indigo, not warm (tracker: Settings night rows warm, not purple-indigo). Redo in batch-77: flat warm cocoa lamplit paper, amber only along the top edge."
     note: Both initial takes follow the authored dark lamplit tag appearance but fail actual value_floor,
       edit_structure and edit_lightness. Palette drift only warns. The authored recolor acceptance has
       no night profile; no QA or profile change is made. Skip after the current two-take cap, retain originals

@@ -3,7 +3,8 @@ contact_sheet: design/art/takes/batch-64-flow-pieces/flow-tile-straight/contact.
 jobs:
   flow-tile-straight:
     pick: 1
-    publication: promoted; founder review pending
+    publication: "promoted; picked by the lead 2026-11-12 (take 1); founder review pending"
+    lead_review: "Lead pick: the board's geometry and look reference: groove centred at x 0.49, about 26 percent wide, full bleed (take 2 has rounded bottom corners)."
     note: 'auto-picked by QA; founder review pending. Take 1 passes all hard QA and
       independent manual review, with the lowest eligible style-lock load 0.3843.
       One visually square full-bleed pale carved stone field, soft light shallow centered

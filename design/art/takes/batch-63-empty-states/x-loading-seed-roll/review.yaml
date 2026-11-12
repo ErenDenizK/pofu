@@ -5,7 +5,8 @@ contact_sheet: design/art/takes/batch-63-empty-states/x-loading-seed-roll/contac
 jobs:
   x-loading-seed-roll:
     pick: 1
-    publication: selected exploration; never promoted
+    publication: "promoted; picked by the lead 2026-11-12 (take 1); founder review pending"
+    lead_review: "Lead pick: six frames, the seed's stripes turn and the feet step; a loop."
     note: 'auto-picked by QA; founder review pending. Retained initial pair only;
       official post after authorized allowance reset, no regeneration/retry reset.
       Full native1536x1024/official locked/proper cream-night composites reviewed.

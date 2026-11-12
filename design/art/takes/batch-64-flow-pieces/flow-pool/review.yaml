@@ -4,8 +4,9 @@ manifest_sha256: 65e52554e18897f16553e47cd6762b9099f270aca4efef9905e16ac3e7957c7
 jobs:
   flow-pool:
     pick: 2
+    publication: "promoted; picked by the lead 2026-11-12 (take 2); founder review pending"
+    lead_review: "Lead pick: calm blue-green pool in a pale stone rim with a little moss."
     status: review
-    publication: promoted; founder review pending
     note: Both candidates show calm clear water, light rounded stone rim, moss and two grass tufts, faint
       ripples. Pool is somewhat wider than the approximate80percent brief; app framing not certified.
       Proper alpha composites clean; raw exterior glow is hidden RGB. Auto-picked by QA; founder review

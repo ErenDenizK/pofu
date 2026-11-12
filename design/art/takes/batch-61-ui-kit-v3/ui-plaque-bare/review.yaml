@@ -3,7 +3,8 @@ contact_sheet: design/art/takes/batch-61-ui-kit-v3/ui-plaque-bare/contact.jpg
 jobs:
   ui-plaque-bare:
     pick: 1
-    publication: promoted; founder review pending
+    publication: "promoted; picked by the lead 2026-11-12 (take 1); founder review pending"
+    lead_review: "Lead pick: pale unstained pine in the honey plaque's shape; the smoother middle stretches better than take 2."
     note: auto-picked by QA; founder review pending. Both retained initials pass hard
       QA and manual review; canonical lowest style-lock load selects take1 (0.2931
       vs0.3578). Pale cream-tan matte bare pine, same recognizable lobed plaque/button

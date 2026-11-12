@@ -4,8 +4,9 @@ manifest_sha256: 16e2f6cf9233a81573226e366bc5ef6b93e66724b5c90f66dc096e5a9502d16
 jobs:
   x-shield-icons-night:
     pick: 1
+    publication: "promoted; picked by the lead 2026-11-12 (take 1); founder review pending"
+    lead_review: "Lead pick: the six moods of x-shield-icons take 1 in the same drawing, a lamp and an indigo sky patch in each; reads at 60 pt. Night reads mostly from the sky patch, accepted because Pofu's colours never change in source art."
     status: review
-    publication: exploration; never promoted
     note: 'Six round medallions in 3x2 retain day-set mood order: curious tilt, proud chest, jealous crossed
       paws/huff, calm eyes-closed breathing, excited paws-up smile, sleepy nightcap/candle. Warm burrow
       lamps and thin amber rims separate the indigo interiors from the proper #1E1A3C night composite;

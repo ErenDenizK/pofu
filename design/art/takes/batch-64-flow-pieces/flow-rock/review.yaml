@@ -2,8 +2,10 @@ batch: batch-64-flow-pieces
 contact_sheet: design/art/takes/batch-64-flow-pieces/flow-rock/contact.jpg
 jobs:
   flow-rock:
-    pick: none
-    publication: skipped after one allowed retry
+    pick: null
+    status: rejected
+    publication: "rejected by the lead 2026-11-12"
+    lead_review: "Lead reject (agrees with the skip): the boulder fills the whole tile. No redo: flow-rock-2 take 2 is the blocked-rock cell; the app maps .rock to it (a fit, not a repaint)."
     note: 'Skipped after the sole unchanged retry: all4 official numeric reports PASS,
       but all4 boulders dominate nearly the entire tile width with a narrow grass
       margin versus the authored about70percent composition. Native, official locked,

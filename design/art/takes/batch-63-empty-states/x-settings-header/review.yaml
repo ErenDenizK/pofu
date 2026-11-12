@@ -4,8 +4,9 @@ manifest_sha256: 16e2f6cf9233a81573226e366bc5ef6b93e66724b5c90f66dc096e5a9502d16
 jobs:
   x-settings-header:
     pick: 1
+    publication: "promoted; picked by the lead 2026-11-12 (take 1); founder review pending"
+    lead_review: "Lead pick: the burrow shelf with lamp, sprout, radio, tool roll, cup and books; the lower third fades to cream."
     status: review
-    publication: exploration; never promoted
     note: Both takes contain glowing lamp, potted sprout, tiny wooden radio, tool roll/pouch, teacup and
       exactly two stacked books, round blue-sky window and cream plaster. No character or writing. Bottom
       region fades to calm warm cream; shelf bracket/shadow transition enters the top edge of the lower

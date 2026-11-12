@@ -2,8 +2,10 @@ batch: batch-64-flow-pieces
 contact_sheet: design/art/takes/batch-64-flow-pieces/flow-tile-wheel/contact.jpg
 jobs:
   flow-tile-wheel:
-    pick: 2
-    publication: promoted; founder review pending
+    pick: null
+    status: rejected
+    publication: "rejected by the lead 2026-11-12"
+    lead_review: "Lead reject (master withdrawn): the east and west openings are narrower than the straight's (about 18 against 26 percent), a step at the joins. Redo in batch-77 as an edit of the straight."
     note: auto-picked by QA; founder review pending. Both initial takes pass all hardQA.
       Independent native review plus owner fresh full1024locked/official256export/actual70pt
       mixed-straight-join review confirm EMPTY calm shallow roundstone seat with soft

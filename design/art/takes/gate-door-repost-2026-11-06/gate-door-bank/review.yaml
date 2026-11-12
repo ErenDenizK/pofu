@@ -2,8 +2,10 @@ batch: batch-58-gate-round-door
 contact_sheet: design/art/takes/gate-door-repost-2026-11-06/gate-door-bank/contact.jpg
 jobs:
   gate-door-bank:
-    pick: none
-    publication: skipped after one allowed retry
+    pick: 3
+    status: lead-picked
+    publication: "picked by the lead 2026-11-12 (take 3); promote from the retained take, no generation (batch-77)"
+    lead_review: "Lead pick: take 3. The skip is a false fail: edit_stability counts the removed alpha as change. Stacked with the other picks it rebuilds the scene; take 3 reaches the grass and keeps the sill. Promote with --force citing batch-77 (no generation)."
     note: 'Skipped after the sole unchanged retry: all four real takes fail canonical
       edit_stability (0.1851,0.2159,0.2437,0.2065; fail floor0.55); takes1-3 also
       fail palette_drift, while take4 passes palette. No child force exception or

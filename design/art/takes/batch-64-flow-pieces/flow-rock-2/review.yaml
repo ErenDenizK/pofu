@@ -3,7 +3,8 @@ contact_sheet: design/art/takes/batch-64-flow-pieces/flow-rock-2/contact.jpg
 jobs:
   flow-rock-2:
     pick: 2
-    publication: promoted; founder review pending
+    publication: "promoted; picked by the lead 2026-11-12 (take 2); founder review pending"
+    lead_review: "Lead pick: a mossy boulder and a pebble on the bank grass, same stone as the tiles; the rock cell."
     note: auto-picked by QA; founder review pending. Both initial takes pass hardQA
       and owner native, actual locked, canonical256 export and70pt review. Exactly
       one off-center rounded pale mossy boulder plus one smaller stone, full-bleed

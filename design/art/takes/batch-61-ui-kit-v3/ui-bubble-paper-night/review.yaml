@@ -2,8 +2,10 @@ batch: batch-61-ui-kit-v3
 contact_sheet: design/art/takes/batch-61-ui-kit-v3/ui-bubble-paper-night/contact.jpg
 jobs:
   ui-bubble-paper-night:
-    pick: none
-    publication: skipped after one allowed retry
+    pick: null
+    status: rejected
+    publication: "rejected by the lead 2026-11-12"
+    lead_review: "Lead reject: every take is a diagonal amber-corner to indigo gradient, so the middle is not even (it cannot be 9- or 3-sliced) and the night reads purple-indigo, not warm (tracker: Settings night rows warm, not purple-indigo). Redo in batch-77: flat warm cocoa lamplit paper, amber only along the top edge."
     note: All four takes fail hard value_floor, edit_structure, and edit_lightness.
       The initial pair and sole unchanged retry were both posted and preserved; retry
       budget is exhausted. No master promoted.

@@ -3,7 +3,8 @@ contact_sheet: design/art/takes/batch-61-ui-kit-v3/ui-card-stitched/contact.jpg
 jobs:
   ui-card-stitched:
     pick: 1
-    publication: promoted; founder review pending
+    publication: "promoted; picked by the lead 2026-11-12 (take 1); founder review pending"
+    lead_review: "Lead pick: cream card with an even stitched rim; matches the sheet."
     note: auto-picked by QA; founder review pending. Both initial takes pass hardQA
       and root plus independent fullnative/officiallocked/proper-alpha material review0efed513.
       Take1 wins normal lowestload0.2811 versus0.3043; no force or retry. A complete

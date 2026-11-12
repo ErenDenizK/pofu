@@ -3,7 +3,8 @@ contact_sheet: design/art/takes/batch-61-ui-kit-v3/ui-pip-pot/contact.jpg
 jobs:
   ui-pip-pot:
     pick: 2
-    publication: promoted; founder review pending
+    publication: "promoted; picked by the lead 2026-11-12 (take 2); founder review pending"
+    lead_review: "Lead pick: one terracotta pot, empty, bud and bloom, same size; reads as three steps."
     note: auto-picked by QA; founder review pending. Both retained initial takes pass
       hard QA and literal full-native/official-locked/proper-alpha review in root-disc-pip-initial-manual-review.json
       SHA01cb7139caa552497027a3b9715b3a919c9cf4029b8ee958002be3d435a47fda. Ordinary

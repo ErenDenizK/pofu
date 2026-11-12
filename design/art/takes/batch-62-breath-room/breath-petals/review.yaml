@@ -4,8 +4,9 @@ manifest_sha256: 4930eba1ec0b879e25a0725d56884d86aacb3ce18e215c7464fe33a758f250e
 jobs:
   breath-petals:
     pick: 2
+    publication: "picked by the lead 2026-11-12 (take 2)"
+    lead_review: "Lead pick: six plump petals in the asked colours; the done moment of the Breath state."
     status: promoted
-    publication: production master; auto-picked by QA; founder review pending
     note: 'Fresh authorized replacement/retry pair after historical partial source loss. Local takes 1
       and 2 are new 2026-11-10 ordinals, not the lost historical bound take1 or the historical unassigned
       PNG. No authentic prior petals PNG/q90 was recoverable; SHA e404002d2da8a54d6103d00389eb4d6985c6b8ac9d2ff92230be1788c7336d1c
