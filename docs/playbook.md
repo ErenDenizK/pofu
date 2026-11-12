@@ -35,36 +35,27 @@ built by a lead model, sub-agents and an image tool). Written 2026-11-10.
   Keeps its own context lean: reads sheets and short reports, never logs.
 - **Builders (mid model):** implement one brief each, in their own
   git worktree and branch; at most three at once.
-- **Checkers (small model):** mechanical checks (floating objects, UI
-  overlap, metrics in band) returning pass/fail lists.
+- **Scouts (small model):** exact questions about the repository,
+  answered with file and line, before anything is built on a claim.
+- **Critics (fresh context):** see only the artifact and its reference
+  and list what is wrong. Taste needs a strong model; a small one checks
+  only what has an exact definition.
 - **Image tool (Codex here, Higgsfield next):** runs a manifest of jobs
   with fixed prompt blocks; its own model can be the cheap one, because
   the brief does the thinking and the image model does the painting.
 - Use the top model only where judgement decides quality: the visual
   system, the first screen, architecture, hard bugs.
 
-### 3.1 Briefing the consultant model (Fable 5.2)
+### 3.1 The consultant model
 
-The most capable and most expensive model; its use draws on a shared weekly
-limit. Use it where the lead's own judgement is the bottleneck: the four
-checkpoints in `docs/state/README.md`, a design that must be a masterpiece,
-an architecture that is costly to reverse. Not for building, checking or
-anything a brief can make routine.
-
-- **Brief the goal, not the steps.** Say what outcome is wanted, why it
-  matters, the constraints that are decided (link them), and what "done"
-  looks like. Do not prescribe method; it plans better than a checklist.
-- **Give ownership.** It owns the answer and should finish the whole task
-  in one pass, not stop to ask; open questions go in its report.
-- **Point, don't paste.** Name the exact files and sections to read and the
-  ones to skip; it reads them itself.
-- **Ask for a report a cold reader can use:** the recommendation first,
-  the reasons, the risks, what it would cut; short.
-- **Say what it costs.** It may start sub-agents only if a task truly
-  needs them; prefer reading itself.
-- **Effort:** high by default; max only when the user asks.
-- **One pass, then the lead decides.** Its view is advice; the lead keeps
-  the context and the decision. Log what it changed in the founder log.
+Use the most capable model as a consultant with a bounded read, or give
+it whole a job that is judgement from end to end. Do not make it the
+standing lead or a routine builder: cost is context times turns. Use it where a premise is set that much work will stand on,
+when the same failure survives two fixes, on the real thing before a
+milestone, and for the studio's own design. Brief the goal and the fixed
+constraints, hand over the raw record rather than conclusions, and ask
+for decisions with the alternative set aside. Pofu's version:
+[studio.md](studio.md) §8.
 
 ## 4. Briefs
 
@@ -86,7 +77,9 @@ anything a brief can make routine.
 
 - Every change through a PR; one logical change per commit; merge only on
   green CI. Commit and push early (cloud containers restart).
-- CI without polling: wait once, check once, fix at most twice.
+- Learn locally, push to confirm: iterate on the machine without limit,
+  push at most three times per PR, wait for CI with one command that
+  returns when it finishes.
 - Pilot one item end to end before scaling a batch; never regenerate what
   a fit can fix, never fit what should be regenerated.
 - The image tool never idles: queue its next batch before reviewing the
@@ -101,3 +94,9 @@ anything a brief can make routine.
   three small "safe" choices that together made everything pale.
 - Screenshot fixtures with seeded weather: measure the clean state.
 - Reporting a cause before verifying it.
+- Building on a claim from a status page instead of the code.
+- "Numbers first, pixels second": the numbers were in band while the game
+  looked like mud.
+- One long lead session: at 450,000 tokens of context, two days cost two
+  thirds of nine.
+- Keeping status by hand where a script can compute it.

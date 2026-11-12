@@ -97,7 +97,7 @@ grow, and each week ends with a screenshot sheet or a short video for him.
 - **Codex never idles** ([AGENTS.md](../AGENTS.md)): `READY` rows, then the
   backlog, then fresh `-v2` variations. The lead reviews its PRs in its own
   rounds; pilot, then scale; a grade or a fit before a regeneration.
-- **Batch order** ([the queue](https://github.com/ErenDenizK/pofu-art/blob/main/QUEUE.md#the-queue)):
+- **Batch order** ([the queue](https://github.com/ErenDenizK/pofu-art/blob/main/QUEUE.md#demand)):
   the experience art (batch-35, its pilot merged in #202), the home
   showcase (batch-33), the hive and moss retries, the workshop retry, the
   islands in the game camera; then the Gezgin rig parts, residents at

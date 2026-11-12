@@ -211,7 +211,11 @@ Any new plate state runs the check on its CI frame before the founder sees it.
    mist, night) are meant to be calmer and get their own bands from their
    first picked plate of that island.
 2. A real in-app screenshot from CI (not a mock-up or a bare file).
-3. The lead looks at it. Metrics do not replace eyes.
+3. A critic with a fresh context looks at 1:1 crops against the picked
+   root and lists defects ([studio.md](../studio.md) §5).
+4. The lead looks at one sheet and the critic's list. Metrics do not
+   replace eyes. Every defect an eye catches becomes a check in
+   `tools/plate/screen_check.py`.
 
 ## The ladder (result, 2026-11-10)
 
