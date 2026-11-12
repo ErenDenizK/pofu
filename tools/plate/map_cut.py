@@ -162,6 +162,17 @@ def sky_mask(light: str, stage: int) -> tuple[np.ndarray, np.ndarray]:
     return cut, keep
 
 
+def day_shape(light: str, stage: int) -> tuple[np.ndarray, np.ndarray]:
+    """The shipped cut of `light` and, as its mask, the day plate's own matte over the cut's box."""
+    cut = load(ingest.asset_name("home", "island", light, stage))
+    a1 = ingest.load_matte("home", light, stage)
+    day = ingest.load_matte("home", "day", stage)
+    x0, y0, x1, y1 = ingest.bbox(a1, 0.02)
+    ch, cw = cut.shape[:2]
+    keep = cv2.resize(day[y0:y1, x0:x1].astype(np.float32), (cw, ch), interpolation=cv2.INTER_AREA)
+    return cut, keep
+
+
 def clean(cut: np.ndarray, keep: np.ndarray) -> np.ndarray:
     out = cut.copy()
     out[..., 3] = cut[..., 3] * np.clip(cv2.GaussianBlur(keep, (3, 3), 0.6), 0, 1)
@@ -174,10 +185,15 @@ def main() -> int:
     ap.add_argument("--dry", action="store_true", help="do not write the assets")
     args = ap.parse_args()
     for light, stage, _ in states():
-        if stage == 0:
-            # Level 10 is the matte's own shape: its cut ships as it is.
+        day_own = stage != 0 and ingest.matte_path("home", "day", stage).exists()
+        if stage == 0 or (light == "day" and day_own):
+            # Level 10, and a level whose day plate has its own matte (IL1): the cut is the painting's
+            # own shape and ships as it is.
             cut = load(ingest.asset_name("home", "island", light, stage))
             keep = np.ones(cut.shape[:2], np.float32)
+        elif day_own:
+            # Another light of such a level is the same painting relit: it takes the day's own shape.
+            cut, keep = day_shape(light, stage)
         else:
             cut, keep = sky_mask(light, stage)
         out = clean(cut, keep)
