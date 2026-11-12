@@ -130,16 +130,22 @@
      800
     ]
    ],
-   "darkPassMax": 0.35
+   "darkPassMax": 0.35,
+   "edgeBank": 200,
+   "islandAdd": true
   },
   "golden": {
    "plate": "design/art/plates/caglayan/sky/master-golden.heic",
-   "stages": []
+   "stages": [],
+   "edgeBank": 200,
+   "islandAdd": true
   },
   "rain": {
    "plate": "design/art/plates/caglayan/sky/master-rain.heic",
    "stages": [],
-   "skyTopFlat": 320
+   "skyTopFlat": 320,
+   "edgeBank": 200,
+   "islandAdd": true
   }
  },
  "baseStage": "4",
@@ -148,5 +154,15 @@
  "alphaFloor": 0.08,
  "edgeFeather": 24,
  "skyDarkPass": true,
- "cloudsLighten": true
+ "cloudsLighten": true,
+ "islandAdd": {
+  "box": [
+   1690,
+   1440,
+   2048,
+   2140
+  ],
+  "matte": "mattes/island_add.png",
+  "note": "The committed landscape matte stops up to 60 px short of the painted right belly and root; this union of the matte and the island's own pixels (red over blue in the de-rained rain master, closed and filled) is added to the island matte by the lights that set `islandAdd` (night, golden, rain); the day's warm island tests already take the belly back."
+ }
 }

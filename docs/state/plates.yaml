@@ -191,12 +191,13 @@ islands:
       4:
         day:
           clear: {painted: "design/art/takes/batch-67-caglayan-flow/x-caglayan-flow-4/plate__x-caglayan-flow-4--t1.webp", lead_pick: 1, in_app: true, founder_ok: null}
-          rain: {painted: "design/art/takes/batch-73-islands-states/x-caglayan-flow-4-rain/plate__x-caglayan-flow-4-rain--t2.webp", lead_pick: 2, in_app: true, founder_ok: null}
+          # golden, rain and night at stage 4: cut from each light's sky master by script (tools/plate/portrait.py plate caglayan <light>), the takes untouched; the batch-73 golden and rain picks are no longer shipped
+          rain: {painted: "design/art/takes/batch-76-redo-picks/x-caglayan-sky-rain-v2/plate__x-caglayan-sky-rain-v2--t1.webp", lead_pick: 1, in_app: true, founder_ok: null, edit: "master_edit.py derain + lift, then portrait.py plate (design/art/plates/caglayan/sky/plate-rain-4.webp)"}
         golden:
-          clear: {painted: "design/art/takes/batch-73-islands-states/x-caglayan-flow-4-golden/plate__x-caglayan-flow-4-golden--t2.webp", lead_pick: 2, in_app: true, founder_ok: null}
+          clear: {painted: "design/art/takes/batch-76-redo-picks/x-caglayan-sky-golden-v2/plate__x-caglayan-sky-golden-v2--t1.webp", lead_pick: 1, in_app: true, founder_ok: null, edit: "master_edit.py warm (the island's sunlit faces), then portrait.py plate (design/art/plates/caglayan/sky/plate-golden-4.webp)"}
           rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
         night:
-          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          clear: {painted: "design/art/takes/batch-76-redo-picks/x-caglayan-sky-night-v2/plate__x-caglayan-sky-night-v2--t1.webp", lead_pick: 1, in_app: true, founder_ok: null, edit: "portrait.py plate: the landscape stage-4 plate is the master's own island (design/art/plates/caglayan/sky/plate-night-4.webp)"}
           rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
       4-life:
         day:
@@ -220,9 +221,10 @@ islands:
           rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
     sky_sets:
       day: {painted: "design/art/takes/batch-75-portrait-islands/x-caglayan-portrait-s4-day/plate__x-caglayan-portrait-s4-day--t1.webp", lead_pick: 1, in_app: true, founder_ok: null}
-      golden: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
-      night: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
-      rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+      # night, golden, rain: each light's own master (tools/plate/portrait.py master caglayan <light>); night's stage 0 to 3 plates are pasted over it
+      golden: {painted: "design/art/takes/batch-76-redo-picks/x-caglayan-sky-golden-v2/plate__x-caglayan-sky-golden-v2--t1.webp", lead_pick: 1, in_app: true, founder_ok: null, edit: "master_edit.py warm: a +3, b +3 on the island's sunlit faces (lead review 2026-11-12)"}
+      night: {painted: "design/art/takes/batch-76-redo-picks/x-caglayan-sky-night-v2/plate__x-caglayan-sky-night-v2--t1.webp", lead_pick: 1, in_app: true, founder_ok: null, edit: "none to the pixels; split.py takes the moon's glow into the still sky (sky.json moonGlow)"}
+      rain: {painted: "design/art/takes/batch-76-redo-picks/x-caglayan-sky-rain-v2/plate__x-caglayan-sky-rain-v2--t1.webp", lead_pick: 1, in_app: true, founder_ok: null, edit: "tools/plate/master_edit.py: derain (painted streaks out; rain is code, ADR-0025), lift (cloud sea +8 L, p95 74 -> 85; lead review 2026-11-12); objects.json portraitFrame.lights.rain.edits"}
   revontuli:
     root_time: night
     stages:
