@@ -117,6 +117,18 @@ data is untouched), and the sprite keeps that share of its colour (`PlateCharact
 night also sets `stoneMargin` to 0 L* (Home 7; CI frame: 3 left the stage 2 otter 12.8 L* under her lawn, 0.2 outside the band): its tint was capped so far under the stones that its
 otter read darker than any day plate allows. The golden rim is 0.5 there (Home 0.40).
 
+**One colour across a light's levels.** A character's tint and key colour are read from each plate, and
+a night lawn's cast moves from level to level (blue at levels 2 to 4, warm toward 10; the lamps are
+unlit below level 6 so their "glow" is read from an unlit lantern): with each plate's own cast the
+three characters stepped from lavender-grey at levels 2 to 4 to cream at level 5 and up (CI frames:
+Pofu's body a* 4 and b* -14 at level 2, 9 and -1 at level 10). Home's hand data sets
+`characterLight.castFrom: {"night": 0}`: every night state keeps the level-10 night's tint colour and
+key colour at its own lightness (`castOwn`, default 0, would keep that share of its own cast), so only
+the lightness follows the lawn. `scaleTrim` (per state and character) then holds a character's top
+under the stones around it where the plate's own stone reading and the app frame disagree.
+Night frames are measured against the level-10 night frame (`harmony_check.py` does so by default
+when `l10-night` is among the frames; `--reference l10-night` for all of them).
+
 Scale: Pofu keeps his size relative to the painted world (8.14 % of the plate width; 33 pt at the old 1.0 framing, about 38 pt at 1.15). Mochi and Findik are drawn at least 60 % of his
 painted height (`residentBoosts`: Mochi 1.62, Findik 1.40 of his proportion;
 62 % and 52 % +, measured on the sprites' boxes, 23.3 and 26.8 units against

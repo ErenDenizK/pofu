@@ -1295,9 +1295,33 @@
  ],
  "lampsFromLevel": 6,
  "characterLight": {
+  "castFrom": {
+   "night": 0
+  },
   "scaleTrim": {
+   "night:1": {
+    "mochi": 0.97
+   },
+   "night:2": {
+    "mochi": 1.01
+   },
+   "night:3": {
+    "mochi": 1.01
+   },
+   "night:4": {
+    "mochi": 1.055
+   },
+   "night:5": {
+    "mochi": 0.81
+   },
    "night:6": {
-    "mochi": 0.95
+    "mochi": 0.865
+   },
+   "night:7": {
+    "mochi": 1.04
+   },
+   "night:8": {
+    "mochi": 0.99
    }
   }
  },

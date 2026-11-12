@@ -1,0 +1,1 @@
+Fixed: Pofu, Mochi and Findik keep one colour on Home's painted nights: the same tint colour and lamp-glow rim from level 10 down to level 2, only their lightness follows the lawn, so they no longer turn lavender-grey from level 4 down.
