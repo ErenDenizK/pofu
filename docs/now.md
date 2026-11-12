@@ -25,14 +25,15 @@ not accepted is hidden. Codex is stopped (plan expired 11-12).
 
 ## In flight
 
-1. Step 6 painted visitors, a day early (Sonnet, `feat/painted-visitors`).
+1. Step 7 player-path frames (Sonnet, `test/player-path-frames`).
 2. Critic rounds (Opus): the Map (`fix/map-painted-critic`; also ONE
    night/rain island grade for the Map, Koke and Çağlayan) and Çağlayan
    (`fix/caglayan-critic`: top band, seam, moon, rain, belly). Open: the
    IL1 night matte keeps a sky ghost of IL10; a pale pocket at Koke s2.
 Scout facts: a drag pans painted Home (step 8 clamps it); the Today
 header is text (`TodaySheet.swift:109`); no seeds-for-minutes screen.
-Merged today: #403 to #418 (but #414); pofu-art #13, #14, #18, #22 to #27, #29.
+Merged today: #403 to #419 (but #414; #419 painted visitors: only Damla
+and the Gezgin postcard visit, Sumi hidden until batch 83); pofu-art #13, #14, #18, #22 to #27, #29.
 
 ## Next steps, in order
 
