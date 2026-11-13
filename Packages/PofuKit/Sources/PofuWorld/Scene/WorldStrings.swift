@@ -268,16 +268,16 @@ enum WorldStrings {
     /// Pofu's line when no beat waits (`HomeDailyLine`).
     static func dailyLine(_ line: HomeDailyLine) -> String {
         switch line {
-        case .night(0): String(localized: "The island's asleep. Seeds pile up by morning.", bundle: .module)
+        case .night(variant: 0): String(localized: "The island's asleep. Seeds pile up by morning.", bundle: .module)
         case .night: String(localized: "The neighbours turned in. See you at breakfast.", bundle: .module)
         case .giftArrived: String(localized: "A gift reached the island today. Spot it?", bundle: .module)
         case .letGo(let count): String(localized: "We let \(count) go today. Mostly your doing.", bundle: .module)
         case .guest: String(localized: "We've got a guest. Say hi?", bundle: .module)
-        case .morning(0): String(localized: "Morning. Tea's brewing, the island's up.", bundle: .module)
+        case .morning(variant: 0): String(localized: "Morning. Tea's brewing, the island's up.", bundle: .module)
         case .morning: String(localized: "Buried a seed. Forgot where. Classic hamster.", bundle: .module)
-        case .midday(0): String(localized: "The sunflowers watch the sun. I watch you.", bundle: .module)
+        case .midday(variant: 0): String(localized: "The sunflowers watch the sun. I watch you.", bundle: .module)
         case .midday: String(localized: "Yawned twice today. Very productive.", bundle: .module)
-        case .evening(0): String(localized: "Evening. The island went orange. No filter.", bundle: .module)
+        case .evening(variant: 0): String(localized: "Evening. The island went orange. No filter.", bundle: .module)
         case .evening: String(localized: "Evening tea's on me. You sit.", bundle: .module)
         }
     }

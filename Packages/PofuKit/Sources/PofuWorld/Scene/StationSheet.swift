@@ -254,25 +254,25 @@ public struct StationSheet: View {
                         .pofuKitCard(.linen)
                         .accessibilityIdentifier("station-missing-seeds")
                 } else {
-                Button {
-                    PofuHaptics.shared.play(.tap)
-                    onBuild?(station)
-                } label: {
-                    if missing > 0 {
-                        Text("\(missing) more seeds", bundle: .module)
-                    } else {
-                        HStack(spacing: PofuSpacing.s) {
-                            Text("Build · \(cost.units)", bundle: .module)
-                            SeedGlyph()
-                                .fill(PofuKitPalette.day.ink)
-                                .frame(width: 9, height: 14)
-                                .rotationEffect(.degrees(18))
-                                .accessibilityHidden(true)
+                    Button {
+                        PofuHaptics.shared.play(.tap)
+                        onBuild?(station)
+                    } label: {
+                        if missing > 0 {
+                            Text("\(missing) more seeds", bundle: .module)
+                        } else {
+                            HStack(spacing: PofuSpacing.s) {
+                                Text("Build · \(cost.units)", bundle: .module)
+                                SeedGlyph()
+                                    .fill(PofuKitPalette.day.ink)
+                                    .frame(width: 9, height: 14)
+                                    .rotationEffect(.degrees(18))
+                                    .accessibilityHidden(true)
+                            }
                         }
                     }
-                }
-                .buttonStyle(PofuPlaqueStyle(.primary, haptic: nil))
-                .disabled(missing > 0 || onBuild == nil)
+                    .buttonStyle(PofuPlaqueStyle(.primary, haptic: nil))
+                    .disabled(missing > 0 || onBuild == nil)
                 }
                 // The reason lives under the plaque: never a dead state.
                 if onBuild == nil {
