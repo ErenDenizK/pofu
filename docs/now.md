@@ -26,12 +26,11 @@ first; gates are only his device check, the cut line and Monday.
 
 ## In flight
 
-Step 9 done (critics: Home held the bar; the rest did not). Step 10:
-#429 look (Çağlayan sky, Map isles 1.5x, Koke floor) and #428 UI (build
-shows its cost, Pofu's daily lines, bubbles avoid each other, picker
-shows 3 apps, stop hints, one word per idea) merged. In flight:
-`fix/koke-2x-scoped-preblur` (Koke 2.1x upscaled; preblur scoped) and
-`fix/ui-polish` (stray close mark, Settings app list, tag placement).
+1. The lift "Ada büyüdü" + morning voice (Sonnet, `feat/island-grows`;
+   lines by Fable in the PR). #430 Koke 2x and #431 UI polish: CI.
+2. Next (route step 7): the tester reaches IL7 d16 and never IL8; on
+   d20-21 it holds 44-54 seeds and builds nothing (growth 24 of 26). Find
+   why (stations capped at IL7?) and make the smallest change.
 Known and kept: the flow minigame's vector board (no art in hand).
 Merged: #403-#429 but #414 (only Damla and Gezgin visit; Sumi waits
 for batch 83); pofu-art #13-#14, #18, #22-#27, #29.
