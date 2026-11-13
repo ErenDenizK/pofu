@@ -125,23 +125,12 @@ struct SkySetLayers: View {
         case .tile:
             let shift = SkyMotion.drift(rate: layer.drift, time: time, tileWidth: r.width, scale: scale)
             // As many copies as cover the screen at any shift (three for a tile the master's width, more
-            // for the Map's smaller rows of cloud sea); each overlaps the next by a point, so no hairline
-            // shows where two meet at a fractional position.
-            for n in SkyMotion.copies(left: r.minX + shift + offset.width, width: r.width, screen: Double(size.width)) {
-                if layer.window != nil {
-                    // A band of the Map's cloud sea: its copies meet on the pixel grid, edge to edge, so the
-                    // faded band shows no seam (an overlap there drew a light hairline at every join).
-                    let px: Double = max(Double(displayScale), 1)
-                    let left: Double = Double(r.minX) + shift + Double(offset.width)
-                    let w: Double = Double(r.width)
-                    let a: Double = ((left + Double(n) * w) * px).rounded() / px
-                    let b: Double = ((left + Double(n + 1) * w) * px).rounded() / px
-                    let top: Double = Double(r.minY) + dy + Double(offset.height)
-                    let image = context.resolve(Image(layer.asset, bundle: .module).interpolation(.high))
-                    context.draw(image, in: CGRect(x: a, y: top, width: b - a, height: Double(r.height)))
-                } else {
-                    piece(layer.asset, r, dx: shift + Double(n) * r.width, dy: dy, overlap: 1, in: &context)
-                }
+            // for the Map's smaller rows of cloud sea). Their edges are snapped to device pixels and shared
+            // (`SkyTiling`), so they meet exactly: a hairline shows both where a gap is left and where a
+            // column is drawn twice.
+            let copies = SkyMotion.copies(left: r.minX + shift + offset.width, width: r.width, screen: Double(size.width))
+            for span in SkyTiling.spans(left: r.minX + offset.width, width: r.width, shift: shift, pixelsPerPoint: displayScale, copies: copies) {
+                pieceSpan(layer.asset, span, y: r.minY + dy + offset.height, height: r.height, in: &context)
             }
         case .whale:
             let left = SkyMotion.glideLeft(
@@ -249,12 +238,15 @@ struct SkySetLayers: View {
         }
     }
 
-    private func piece(_ name: String, _ r: CGRect, dx: Double, dy: Double, overlap: Double = 0, in context: inout GraphicsContext) {
+    private func piece(_ name: String, _ r: CGRect, dx: Double, dy: Double, in context: inout GraphicsContext) {
         let image = context.resolve(Image(name, bundle: .module).interpolation(.high))
-        let target = CGRect(
-            x: r.minX + dx + offset.width, y: r.minY + dy + offset.height, width: r.width + overlap, height: r.height
-        )
+        let target = CGRect(x: r.minX + dx + offset.width, y: r.minY + dy + offset.height, width: r.width, height: r.height)
         context.draw(image, in: target)
+    }
+
+    private func pieceSpan(_ name: String, _ span: SkyTiling.Span, y: Double, height: Double, in context: inout GraphicsContext) {
+        let image = context.resolve(Image(name, bundle: .module).interpolation(.high))
+        context.draw(image, in: CGRect(x: span.x, y: y, width: span.width, height: height))
     }
 }
 #endif
