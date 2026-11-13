@@ -115,10 +115,10 @@ public enum HomeBubbleLayout {
     /// A bubble over (or under) `tip`, kept inside the side gutter.
     public static func bubble(
         tipX: Double, tipY: Double, width: Double, height: Double, tail: Double,
-        screenWidth: Double, below: Bool = false, shift: Double = 0, corner: Double = 13, tailWidth: Double = 10
+        screenWidth: Double, below: Bool = false, shift: Double = 0, gutter: Double = 16, corner: Double = 13, tailWidth: Double = 10
     ) -> Placement {
         // The body moves by `shift`; the tail keeps pointing at the tip.
-        let place = TailedBubblePlacement.place(tipX: tipX + shift, width: width, screenWidth: screenWidth, corner: corner, tailWidth: tailWidth)
+        let place = TailedBubblePlacement.place(tipX: tipX + shift, width: width, screenWidth: screenWidth, gutter: gutter, corner: corner, tailWidth: tailWidth)
         let limit = max(width / 2 - corner - tailWidth / 2, 0)
         let top = below ? tipY + tail : tipY - tail - height
         return Placement(
@@ -145,6 +145,10 @@ public enum HomeBubbleLayout {
     /// Clear air kept around painted art: a tag that only touches a rim
     /// still reads as sitting on it.
     static let artMargin = 4.0
+    /// Covering art costs this many times its area: clearing it beats a longer stem.
+    static let artWeight = 3.0
+    /// A tag may come this close to the screen's side (a bubble's own gutter is wider).
+    static let tagGutter = 8.0
 
     /// A gift tag's spot: `over` is just above the gift, `under` just below
     /// its foot; `placed` are the bubbles already standing (the heart, the
@@ -160,12 +164,12 @@ public enum HomeBubbleLayout {
         for shift in shifts {
             let moved = abs(shift) * shiftCost
             for stem in stems {
-                let p = bubble(tipX: over.x, tipY: over.y, width: width, height: height, tail: tail + stem, screenWidth: screenWidth, shift: shift)
+                let p = bubble(tipX: over.x, tipY: over.y, width: width, height: height, tail: tail + stem, screenWidth: screenWidth, shift: shift, gutter: tagGutter)
                 candidates.append((p, stem * stemCost + moved))
             }
             for stem in belowStems {
-                let hanging = bubble(tipX: under.x, tipY: under.y, width: width, height: height, tail: tail + stem, screenWidth: screenWidth, below: true, shift: shift)
-                candidates.append((hanging, belowCost + stem * stemCost + moved))
+                let hanging = bubble(tipX: under.x, tipY: under.y, width: width, height: height, tail: tail + stem, screenWidth: screenWidth, below: true, shift: shift, gutter: tagGutter)
+                candidates.append((hanging, belowCost + stem * 6 + moved))
             }
         }
         var best: (Placement, Double)?
@@ -173,7 +177,7 @@ public enum HomeBubbleLayout {
             let frame = p.frame
             var cost = base
             cost += placed.reduce(0) { $0 + bubbleWeight * frame.overlap($1) }
-            cost += art.reduce(0) { $0 + frame.overlap($1) }
+            cost += art.reduce(0) { $0 + artWeight * frame.overlap($1) }
             // Under the top bar a bubble is lost.
             if p.body.minY < topLimit { cost += (topLimit - p.body.minY) * width * bubbleWeight }
             if best == nil || cost < best!.1 { best = (p, cost) }
