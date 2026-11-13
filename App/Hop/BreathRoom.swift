@@ -35,7 +35,12 @@ struct BreathRoom: View {
     let session: HopSession
     let plan: BreathPlan
     var frozen: BreathFreeze?
+    /// Pins the postcard (screenshots); otherwise the hour decides.
+    var hour: GateHour?
+    /// False when the gate already draws the postcard behind the room.
+    var drawsPostcard = true
 
+    @Environment(\.dynamicTypeSize) private var typeSize
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var phase: BreathPhase
     @State private var lift: Double
@@ -53,62 +58,127 @@ struct BreathRoom: View {
 
     private var isNight: Bool { session.isNight }
 
+    /// The gate's postcard under the breath: the hour's own painted lawn,
+    /// the night one at bedtime. The ring and Pofu stand on its ground.
+    private var postcard: GateHour {
+        hour ?? GateHour(date: model.now, isBedtime: isNight, mist: model.isMistMorning)
+    }
+
+    private var ringScene: some View {
+        BreathScene(
+            inhale: plan.inhale,
+            exhale: plan.exhale,
+            start: started,
+            frozenRing: frozen?.ring,
+            onPhase: handle,
+            lift: lift,
+            isNight: isNight,
+            reduceMotion: reduceMotion,
+            pofu: CompanionView(vitality: model.vitality, energy: PofuBreathing.cheekEnergy(base: model.cheekFill, lift: lift))
+                .accessibilityLabel(Text(verbatim: model.profile.companionName))
+        )
+        .frame(maxWidth: 320)
+    }
+
+    private var lineText: some View {
+        Text(line)
+            .font(PofuFont.title3)
+            .foregroundStyle(postcard.ink)
+            .multilineTextAlignment(.center)
+            .fixedSize(horizontal: false, vertical: true)
+            .contentTransition(.opacity)
+    }
+
+    private var titleText: some View {
+        Text(title)
+            .font(PofuFont.title2)
+            .foregroundStyle(postcard.ink)
+            .multilineTextAlignment(.center)
+            .fixedSize(horizontal: false, vertical: true)
+            .accessibilityAddTraits(.isHeader)
+    }
+
+    private var footnote: some View {
+        Text("Past \(plan.dailyHourMinutes) minutes a day, every open starts with a breath. Change it in Settings.")
+            .font(PofuFont.footnote)
+            .foregroundStyle(postcard.inkSoft)
+            .multilineTextAlignment(.center)
+            .fixedSize(horizontal: false, vertical: true)
+    }
+
     var body: some View {
         GeometryReader { proxy in
-            ScrollView {
-                VStack(spacing: PofuSpacing.l) {
-                    HopAppChip(app: session.app, reachOrdinal: session.reachOrdinal)
-                        .padding(.top, PofuSpacing.s)
-                    Text(title)
-                        .font(PofuFont.title2)
-                        .foregroundStyle(BreathPalette.ink(night: isNight))
-                        .multilineTextAlignment(.center)
-                        .fixedSize(horizontal: false, vertical: true)
-                        .accessibilityAddTraits(.isHeader)
-                    Spacer(minLength: 0)
-                    BreathScene(
-                        inhale: plan.inhale,
-                        exhale: plan.exhale,
-                        start: started,
-                        frozenRing: frozen?.ring,
-                        onPhase: handle,
-                        lift: lift,
-                        isNight: isNight,
-                        reduceMotion: reduceMotion,
-                        pofu: CompanionView(vitality: model.vitality, energy: PofuBreathing.cheekEnergy(base: model.cheekFill, lift: lift))
-                            .accessibilityLabel(Text(verbatim: model.profile.companionName))
-                    )
-                    .frame(maxWidth: 320)
-                    Text(line)
-                        .font(PofuFont.title3)
-                        .foregroundStyle(BreathPalette.inkSoft(night: isNight))
-                        .multilineTextAlignment(.center)
-                        .fixedSize(horizontal: false, vertical: true)
-                        .contentTransition(.opacity)
-                    Spacer(minLength: 0)
-                    actions
-                    if plan.explains && phase == .waiting {
-                        Text("Past \(plan.dailyHourMinutes) minutes a day, every open starts with a breath. Change it in Settings.")
-                            .font(PofuFont.footnote)
-                            .foregroundStyle(BreathPalette.inkSoft(night: isNight))
-                            .multilineTextAlignment(.center)
-                            .fixedSize(horizontal: false, vertical: true)
-                    }
-                }
-                .padding(.horizontal, PofuSpacing.screen)
-                .padding(.bottom, PofuSpacing.xs)
-                .frame(minHeight: proxy.size.height)
+            if typeSize.isAccessibilitySize {
+                flowing(minHeight: proxy.size.height)
+            } else {
+                standing(in: proxy.size)
             }
-            .scrollBounceBehavior(.basedOnSize)
         }
         .background {
-            BreathSky(isNight: isNight, lift: lift, reduceMotion: reduceMotion, animatesPetals: frozen == nil)
-                .ignoresSafeArea()
+            ZStack {
+                if drawsPostcard {
+                    GatePostcard(hour: postcard)
+                    GateScrim(hour: postcard)
+                }
+                BreathSky(isNight: isNight, lift: lift, reduceMotion: reduceMotion, animatesPetals: frozen == nil, showsSky: false)
+            }
+            .ignoresSafeArea()
         }
         .pofuNight(isNight)
         .sensoryFeedback(.impact(flexibility: .soft, intensity: 0.5), trigger: started)
         .sensoryFeedback(.success, trigger: finished)
         .onDisappear { BreathHaptics.shared.cancel() }
+    }
+
+    /// The ring and Pofu are placed on the painted ground: his feet land a
+    /// little below the postcard's ground line, the ring around him, the
+    /// line under it. The text sits on the scrims above and below.
+    private func standing(in size: CGSize) -> some View {
+        let side = min(320, size.width - 2 * PofuSpacing.screen)
+        let feet = size.height * (postcard.groundLine + 0.04)
+        let sceneBottom = feet + BreathScene<EmptyView>.feetInset
+        return ZStack(alignment: .top) {
+            ringScene
+                .frame(width: side, height: side)
+                .position(x: size.width / 2, y: sceneBottom - side / 2)
+            lineText
+                .padding(.horizontal, PofuSpacing.screen)
+                .frame(width: size.width)
+                .position(x: size.width / 2, y: sceneBottom + 30)
+            VStack(spacing: PofuSpacing.l) {
+                HopAppChip(app: session.app, reachOrdinal: session.reachOrdinal)
+                    .padding(.top, PofuSpacing.s)
+                titleText
+                Spacer(minLength: 0)
+                actions
+                if plan.explains && phase == .waiting {
+                    footnote
+                }
+            }
+            .padding(.horizontal, PofuSpacing.screen)
+            .padding(.bottom, PofuSpacing.xs)
+        }
+    }
+
+    /// Accessibility sizes: everything flows and scrolls.
+    private func flowing(minHeight: CGFloat) -> some View {
+        ScrollView {
+            VStack(spacing: PofuSpacing.l) {
+                HopAppChip(app: session.app, reachOrdinal: session.reachOrdinal)
+                    .padding(.top, PofuSpacing.s)
+                titleText
+                ringScene
+                lineText
+                actions
+                if plan.explains && phase == .waiting {
+                    footnote
+                }
+            }
+            .padding(.horizontal, PofuSpacing.screen)
+            .padding(.bottom, PofuSpacing.xs)
+            .frame(minHeight: minHeight)
+        }
+        .scrollBounceBehavior(.basedOnSize)
     }
 
     private var title: LocalizedStringKey {

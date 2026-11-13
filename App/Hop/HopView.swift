@@ -49,14 +49,14 @@ private struct HopContent: View {
         ZStack {
             GatePostcard(hour: hour)
             GateScrim(hour: hour)
-            if !(session.phase == .deciding && !session.isBreathing) {
+            if session.phase != .deciding {
                 // Screens that are all text sit on the hour's sky, wholly.
                 hour.scrim.opacity(0.82).ignoresSafeArea()
             }
             switch session.phase {
             case .deciding:
                 if session.isBreathing, let plan = session.breath {
-                    BreathRoom(model: model, session: session, plan: plan)
+                    BreathRoom(model: model, session: session, plan: plan, hour: hour, drawsPostcard: false)
                         .transition(.opacity)
                 } else {
                     HopDecision(model: model, session: session, hour: hour)

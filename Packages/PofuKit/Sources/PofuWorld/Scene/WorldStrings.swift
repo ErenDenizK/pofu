@@ -46,6 +46,16 @@ enum WorldStrings {
         }
     }
 
+    /// A wonder island's state under its name: asleep, healing (stage out of
+    /// four) or healed.
+    static func wonderState(stage: Int) -> String {
+        switch WonderState(stage: stage) {
+        case .asleep: String(localized: "Asleep", bundle: .module)
+        case .healed: String(localized: "Healed", bundle: .module)
+        case .healing(let stage): String(localized: "Healing \(stage) of \(WonderIslands.healedStage)", bundle: .module)
+        }
+    }
+
     // MARK: Koke (the first wonder island)
 
     /// A catalog string looked up by a computed key.
@@ -186,11 +196,16 @@ enum WorldStrings {
 
     /// The next island level's short line, never a timer: "Ada 6 için: 2
     /// seviye daha", or the days still to pass when the levels are built.
+    /// Once nothing is left, the line says the level is ready.
     static func nextIslandLevel(_ requirement: IslandLevelRequirement) -> String {
-        if requirement.levelsLeft > 0 {
-            return String(localized: "For island \(requirement.level): \(requirement.levelsLeft) more levels", bundle: .module)
+        switch GoalLine(requirement) {
+        case .ready(let island):
+            String(localized: "Island \(island) is ready", bundle: .module)
+        case .levels(let island, let left):
+            String(localized: "For island \(island): \(left) more levels", bundle: .module)
+        case .days(let island, let left):
+            String(localized: "For island \(island): \(left) more days", bundle: .module)
         }
-        return String(localized: "For island \(requirement.level): \(requirement.tendedDaysLeft) more days", bundle: .module)
     }
 
     /// The build's one exclamation (interaction spec §6.3).

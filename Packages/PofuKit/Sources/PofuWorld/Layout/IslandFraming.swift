@@ -205,6 +205,16 @@ public enum IslandFraming {
         min(max(lookX, lookRange.lowerBound), lookRange.upperBound) - islandLookX
     }
 
+    /// The pan's range at the actual `scale` and screen `width`: the visible
+    /// rect, `width / scale` world units wide, never leaves the plate. A
+    /// screen wider than the plate has no pan at all.
+    public static func panRange(scale: Double, width: Double) -> ClosedRange<Double> {
+        let half = width / 2 / max(scale, 1e-3)
+        let lo = plateBox.minX + half, hi = plateBox.maxX - half
+        guard lo <= hi else { return (plateBox.midX - islandLookX)...(plateBox.midX - islandLookX) }
+        return (lo - islandLookX)...(hi - islandLookX)
+    }
+
     /// The pan's range: tip to tip.
     public static var panRange: ClosedRange<Double> {
         (lookRange.lowerBound - islandLookX)...(lookRange.upperBound - islandLookX)
@@ -214,8 +224,13 @@ public enum IslandFraming {
     /// as the ends allow) and on Pofu.
     public static var panSnaps: [Double] {
         let xs = IslandLayout.stationAnchors.values.map(\.x) + [IslandLayout.pofu.x]
-        let snaps = Set(xs.map { (panValue(lookX: $0) * 100).rounded() / 100 })
-        return snaps.sorted()
+        // Rounded only to merge near-equal snaps; each keeps its exact value, so none lies past the range.
+        var byKey: [Int: Double] = [:]
+        for x in xs {
+            let value = panValue(lookX: x)
+            byKey[Int((value * 100).rounded())] = byKey[Int((value * 100).rounded())] ?? value
+        }
+        return byKey.values.sorted()
     }
 
     /// How much of the band's height the island box fills at `scale`.

@@ -241,6 +241,46 @@
         }
       }
     },
+    "Island %lld is ready": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ada %lld hazır"
+          }
+        }
+      }
+    },
+    "Asleep": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uykuda"
+          }
+        }
+      }
+    },
+    "Healed": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İyileşti"
+          }
+        }
+      }
+    },
+    "Healing %lld of %lld": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İyileşiyor · %1$lld/%2$lld"
+          }
+        }
+      }
+    },
     "Fix": {
       "localizations": {
         "tr": {

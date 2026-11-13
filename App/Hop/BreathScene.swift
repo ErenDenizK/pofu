@@ -4,7 +4,7 @@ import SwiftUI
 /// The breathing room's world (UI v3 section 4), drawn in code until the
 /// batch-62 art lands: sky by day or night tinted toward lavender, two cloud
 /// bands that part on the in-breath, drifting petals (fireflies at night),
-/// a halo, the breath ring and a mossy isle that rises 6 pt. Every layer
+/// a halo and the breath ring; over the gate's postcard only the petals and the ring are drawn. Every layer
 /// is a plain gradient or shape: nothing is blurred per frame.
 enum BreathPalette {
     static func rgb(_ hex: UInt32) -> Color { PofuKitPalette.rgb(hex) }
@@ -26,17 +26,21 @@ struct BreathSky: View {
     let lift: Double
     let reduceMotion: Bool
     var animatesPetals = true
+    /// False over the gate's painted postcard: only the petals drift.
+    var showsSky = true
 
     var body: some View {
         ZStack {
-            LinearGradient(colors: BreathPalette.skyColors(night: isNight), startPoint: .top, endPoint: .bottom)
-            GeometryReader { proxy in
-                let width = proxy.size.width
-                let height = proxy.size.height
-                clouds(width: width, near: false)
-                    .offset(x: reduceMotion ? 0 : -10 * lift, y: height * 0.16)
-                clouds(width: width, near: true)
-                    .offset(x: reduceMotion ? 0 : 14 * lift, y: height * 0.78)
+            if showsSky {
+                LinearGradient(colors: BreathPalette.skyColors(night: isNight), startPoint: .top, endPoint: .bottom)
+                GeometryReader { proxy in
+                    let width = proxy.size.width
+                    let height = proxy.size.height
+                    clouds(width: width, near: false)
+                        .offset(x: reduceMotion ? 0 : -10 * lift, y: height * 0.16)
+                    clouds(width: width, near: true)
+                        .offset(x: reduceMotion ? 0 : 14 * lift, y: height * 0.78)
+                }
             }
             if !reduceMotion && animatesPetals {
                 TimelineView(.animation(minimumInterval: 1.0 / 30)) { timeline in
@@ -90,7 +94,7 @@ private struct PetalCanvas: View {
     }
 }
 
-/// The ring, the halo, the isle and Pofu on it.
+/// The ring and the halo around Pofu, who stands on the postcard's lawn.
 struct BreathScene<Pofu: View>: View {
     let inhale: Double
     let exhale: Double
@@ -98,7 +102,7 @@ struct BreathScene<Pofu: View>: View {
     /// Pins the ring (screenshots).
     var frozenRing: Double?
     let onPhase: (BreathRingPhase) -> Void
-    /// 0 (out) ... 1 (in): drives the isle, the halo and the swell.
+    /// 0 (out) ... 1 (in): drives the halo and the swell.
     let lift: Double
     let isNight: Bool
     let reduceMotion: Bool
@@ -127,38 +131,24 @@ struct BreathScene<Pofu: View>: View {
             VStack(spacing: 0) {
                 Spacer(minLength: 0)
                 ZStack(alignment: .bottom) {
-                    isle
+                    // Pofu stands on the postcard's lawn: a contact shadow,
+                    // no drawn ground.
+                    Ellipse()
+                        .fill(Color(red: 0.165, green: 0.122, blue: 0.176).opacity(isNight ? 0.5 : 0.28))
+                        .frame(width: 130, height: 22)
+                        .blur(radius: 7)
+                        .offset(y: 8)
                     pofu
                         .frame(maxWidth: 132)
                         .pofuBreathing(lift: lift)
-                        .padding(.bottom, 26)
                 }
                 .offset(y: reduceMotion ? 0 : -6 * lift)
-                .padding(.bottom, 26)
+                .padding(.bottom, Self.feetInset)
             }
         }
         .aspectRatio(1, contentMode: .fit)
     }
 
-    private var isle: some View {
-        let moss = [BreathPalette.rgb(0x9CBF7F), BreathPalette.rgb(0x7FA36B)]
-        let earth = [BreathPalette.rgb(0xA7805C), BreathPalette.rgb(0x7B5A40)]
-        return ZStack(alignment: .top) {
-            Ellipse()
-                .fill(LinearGradient(colors: earth, startPoint: .top, endPoint: .bottom))
-                .frame(width: 170, height: 50)
-                .offset(y: 16)
-            Ellipse()
-                .fill(LinearGradient(colors: moss, startPoint: .top, endPoint: .bottom))
-                .frame(width: 190, height: 46)
-            if isNight {
-                // The lamp.
-                Circle()
-                    .fill(RadialGradient(colors: [BreathPalette.rgb(0xFFD27A), BreathPalette.rgb(0xFFD27A).opacity(0)], center: .center, startRadius: 0, endRadius: 22))
-                    .frame(width: 44, height: 44)
-                    .offset(x: 70, y: -22)
-            }
-        }
-        .frame(width: 190, height: 70)
-    }
+    /// Pofu's feet stand this far above the scene's bottom edge.
+    static var feetInset: CGFloat { 56 }
 }
