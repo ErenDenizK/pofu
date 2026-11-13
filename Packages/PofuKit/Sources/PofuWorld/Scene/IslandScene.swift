@@ -2158,21 +2158,22 @@ private struct ScreenOverlays: View {
             // At a wonder island's own stop the same pill names it and says how
             // it is: asleep, healing (n of 4) or healed.
             if labels < 0.99, let wonder = wonderStop {
-                mapLabel(wonder.id, at: Self.labelPoint(under: wonder.box), arrived: true, drop: Self.labelDrop, state: wonder.state)
+                mapLabel(wonder.id, at: Self.labelPoint(under: wonder.box), arrived: true, drop: Self.labelDrop, state: wonder.state, today: wonder.today)
                     .opacity(1 - labels)
             }
             if let build, let tag = build.moment.tag(at: build.time), let top = tagPoint(build.moment.station) {
-                BuildTag(level: build.moment.toLevel)
+                BuildTag(level: build.moment.toLevel, cost: build.moment.cost)
                     .scaleEffect(CGFloat(tag.scale), anchor: .bottom)
                     .opacity(tag.opacity)
-                    .position(x: top.x, y: top.y - 22)
+                    .position(x: top.x, y: top.y - (build.moment.cost == nil ? 22 : 32))
             }
             if showsHomeLife {
-                if let heart = greetingHeart {
+                let bubbles = homeBubbles
+                if let heart = bubbles.heart {
                     GreetingHeart(tip: heart, screenWidth: size.width)
                 }
-                ForEach(giftTags) { tag in
-                    GiftTag(gift: tag.gift, tip: tag.point, screenWidth: size.width)
+                ForEach(bubbles.tags) { tag in
+                    GiftTag(gift: tag.gift, placement: tag.placement, tipX: tag.tipX)
                 }
             }
             if case .resident(let id) = model.focus, let resident = IslandLayout.resident(id) {
@@ -2213,12 +2214,64 @@ private struct ScreenOverlays: View {
     /// The paper tag over a gift on the day it arrived.
     private struct PlacedGiftTag: Identifiable {
         let gift: HomeGifts.Gift
-        let point: CGPoint
+        let placement: HomeBubbleLayout.Placement
+        let tipX: CGFloat
         var id: HomeGifts.Gift { gift }
     }
 
-    private var giftTags: [PlacedGiftTag] {
-        HomeGifts.tagged(in: world).compactMap { gift -> PlacedGiftTag? in
+    /// The heart first, over its visitor; then each gift's tag where it
+    /// covers neither the heart, another tag nor, as far as it can, a
+    /// station's art (`HomeBubbleLayout`).
+    private var homeBubbles: (heart: CGPoint?, tags: [PlacedGiftTag]) {
+        let heart = greetingHeart
+        var placed: [HomeBubbleLayout.Rect] = []
+        if let heart {
+            let size = Double(GreetingHeart.size)
+            placed.append(HomeBubbleLayout.bubble(
+                tipX: Double(heart.x), tipY: Double(heart.y), width: size, height: size,
+                tail: Double(GreetingHeart.tail), screenWidth: Double(self.size.width)
+            ).frame)
+        }
+        var tags: [PlacedGiftTag] = []
+        for spot in giftSpots {
+            let width = HomeBubbleLayout.tagWidth(characters: WorldStrings.giftTag(spot.gift).count)
+            let placement = HomeBubbleLayout.tag(
+                over: (Double(spot.over.x), Double(spot.over.y)),
+                under: (Double(spot.under.x), Double(spot.under.y)),
+                width: width, height: Double(GiftTag.height), tail: Double(GiftTag.tail),
+                screenWidth: Double(self.size.width),
+                placed: placed,
+                stations: stationRects(except: spot.gift == .caglayanFountain ? .pond : nil)
+            )
+            placed.append(placement.frame)
+            tags.append(PlacedGiftTag(gift: spot.gift, placement: placement, tipX: placement.isBelow ? spot.under.x : spot.over.x))
+        }
+        return (heart, tags)
+    }
+
+    /// The art a bubble keeps clear of, on screen: on the plate every painted
+    /// object but the bushes (the stations, Pofu's wheel, the door, the
+    /// mailbox), on the sprite island the built stations.
+    private func stationRects(except own: StationID?) -> [HomeBubbleLayout.Rect] {
+        let boxes: [WorldBox]
+        if let plate {
+            boxes = plate.objects
+                .filter { !$0.id.hasSuffix("Bush") && ($0.station == nil || $0.station != own) }
+                .map { plate.worldBox(PlateMath.bounds($0.polygon)) }
+        } else {
+            boxes = world.stations.compactMap { status in
+                status.level > 0 && status.id != own ? IslandFraming.stationBox(status.id) : nil
+            }
+        }
+        return boxes.map { box in
+            let a = screenPoint(WorldPoint(x: box.minX, y: box.minY)), b = screenPoint(WorldPoint(x: box.maxX, y: box.maxY))
+            return HomeBubbleLayout.Rect(minX: Double(a.x), minY: Double(a.y), maxX: Double(b.x), maxY: Double(b.y))
+        }
+    }
+
+    /// Just over each tagged gift, and just under its foot.
+    private var giftSpots: [(gift: HomeGifts.Gift, over: CGPoint, under: CGPoint)] {
+        HomeGifts.tagged(in: world).compactMap { gift -> (gift: HomeGifts.Gift, over: CGPoint, under: CGPoint)? in
             let foot: WorldPoint?
             let scale: Double
             switch gift {
@@ -2240,7 +2293,8 @@ private struct ScreenOverlays: View {
                 scale = plate?.characterScale ?? 1
             }
             guard let foot else { return nil }
-            return PlacedGiftTag(gift: gift, point: tip(WorldPoint(x: foot.x, y: foot.y - HomeGifts.tagLift(gift) * scale)))
+            let under = screenPoint(WorldPoint(x: foot.x, y: foot.y))
+            return (gift, tip(WorldPoint(x: foot.x, y: foot.y - HomeGifts.tagLift(gift) * scale)), CGPoint(x: under.x, y: under.y + 4))
         }
     }
 
@@ -2271,50 +2325,61 @@ private struct ScreenOverlays: View {
     static let labelDrop: CGFloat = 18
 
     /// The wonder island the camera is on, with its box and its state line.
-    private var wonderStop: (id: IslandID, box: WorldBox, state: String)? {
+    private var wonderStop: (id: IslandID, box: WorldBox, state: String, today: String?)? {
         if model.island == .koke, world.koke.isArrived {
-            return (IslandID.koke, KokeLayout.islandBox, WorldStrings.wonderState(stage: world.koke.stage))
+            return (IslandID.koke, KokeLayout.islandBox, WorldStrings.wonderState(stage: world.koke.stage),
+                    WonderToday(world.koke).map(WorldStrings.wonderToday))
         }
         if model.island == .caglayan, world.caglayan.isArrived {
-            return (IslandID.caglayan, CaglayanLayout.islandBox, WorldStrings.wonderState(stage: world.caglayan.stage))
+            return (IslandID.caglayan, CaglayanLayout.islandBox, WorldStrings.wonderState(stage: world.caglayan.stage),
+                    WonderToday(world.caglayan).map(WorldStrings.wonderToday))
         }
         return nil
     }
 
-    private func mapLabel(_ island: IslandID, at point: WorldPoint, arrived: Bool, drop: CGFloat = 0, paw: Bool = false, state: String? = nil) -> some View {
+    private func mapLabel(_ island: IslandID, at point: WorldPoint, arrived: Bool, drop: CGFloat = 0, paw: Bool = false, state: String? = nil, today: String? = nil) -> some View {
         let p = screenPoint(point)
-        return HStack(spacing: 4) {
-            if paw {
-                // Pofu is here: the Map's pin, on Home's name.
-                Image(systemName: "pawprint.fill")
-                    .font(.system(size: 10, weight: .bold))
-                    .foregroundStyle(PofuKitPalette.day.ink)
-                    .frame(width: 18, height: 18)
-                    .background(PofuKitPalette.day.honey, in: Circle())
-                    .accessibilityHidden(true)
-            }
-            if !arrived {
-                Image(systemName: "lock.fill")
-                    .font(.system(size: 10, weight: .semibold))
-            }
-            Text(verbatim: WorldStrings.islandName(island))
-                .font(PofuFont.caption)
-            if let state {
-                Text(verbatim: "·")
+        return VStack(spacing: 2) {
+            HStack(spacing: 4) {
+                if paw {
+                    // Pofu is here: the Map's pin, on Home's name.
+                    Image(systemName: "pawprint.fill")
+                        .font(.system(size: 10, weight: .bold))
+                        .foregroundStyle(PofuKitPalette.day.ink)
+                        .frame(width: 18, height: 18)
+                        .background(PofuKitPalette.day.honey, in: Circle())
+                        .accessibilityHidden(true)
+                }
+                if !arrived {
+                    Image(systemName: "lock.fill")
+                        .font(.system(size: 10, weight: .semibold))
+                }
+                Text(verbatim: WorldStrings.islandName(island))
                     .font(PofuFont.caption)
-                    .foregroundStyle(PofuColor.textSecondary)
-                Text(verbatim: state)
-                    .font(PofuFont.caption)
+                if let state {
+                    Text(verbatim: "·")
+                        .font(PofuFont.caption)
+                        .foregroundStyle(PofuColor.textSecondary)
+                    Text(verbatim: state)
+                        .font(PofuFont.caption)
+                        .foregroundStyle(PofuColor.textSecondary)
+                }
+            }
+            // What a tap does today, under the state (or why not today).
+            if let today {
+                Text(verbatim: today)
+                    .font(PofuFont.footnote)
                     .foregroundStyle(PofuColor.textSecondary)
             }
         }
         .foregroundStyle(PofuColor.textPrimary)
-        .padding(.horizontal, 10)
-        .frame(height: 26)
-        .glassEffect(.regular, in: Capsule(style: .continuous))
+        .padding(.horizontal, today == nil ? 10 : 14)
+        .padding(.vertical, today == nil ? 0 : 6)
+        .frame(minHeight: 26)
+        .glassEffect(.regular, in: RoundedRectangle(cornerRadius: 13, style: .continuous))
         .fixedSize()
         // At a wonder stop the pill stays clear of the bottom band.
-        .position(x: min(max(p.x, 90), size.width - 90), y: state == nil ? p.y + drop : min(p.y + drop, size.height - 210))
+        .position(x: min(max(p.x, today == nil ? 90 : 130), size.width - (today == nil ? 90 : 130)), y: state == nil ? p.y + drop : min(p.y + drop + (today == nil ? 0 : 10), size.height - 220))
         .allowsHitTesting(false)
         .accessibilityElement(children: .combine)
     }

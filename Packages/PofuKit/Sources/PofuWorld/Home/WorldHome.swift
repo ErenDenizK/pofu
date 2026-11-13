@@ -266,12 +266,15 @@ public struct WorldHome: View {
                 .transition(.opacity)
             }
         } else {
-            Text(verbatim: WorldStrings.settled)
+            Text(verbatim: WorldStrings.dailyLine(HomeDailyLine.choose(world: world, skipsToday: today.skips)))
                 .font(PofuFont.subheadline)
-                .foregroundStyle(PofuColor.textSecondary)
+                .foregroundStyle(PofuColor.textPrimary)
+                .multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
                 .padding(.horizontal, PofuSpacing.l)
+                .padding(.vertical, 7)
                 .frame(minHeight: 34)
-                .background(PofuColor.card.opacity(0.82), in: Capsule(style: .continuous))
+                .background(PofuColor.card.opacity(0.86), in: RoundedRectangle(cornerRadius: 17, style: .continuous))
                 .frame(maxWidth: .infinity)
                 .transition(.opacity)
         }

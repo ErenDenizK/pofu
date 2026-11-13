@@ -146,8 +146,9 @@ public struct StationSheet: View {
             }
             Spacer(minLength: 0)
             Button(action: onClose) {
-                PofuDuoIcon(.duoClose, size: 24, fallback: "xmark")
-                    .font(.system(size: 15, weight: .semibold))
+                // A plain glyph: the duotone close art carried a stray mark above its cross.
+                Image(systemName: "xmark")
+                    .font(.system(size: 15, weight: .bold))
                     .foregroundStyle(PofuKitPalette.day.ink)
                     .frame(width: PofuSize.minimumTouch, height: PofuSize.minimumTouch)
                     .background { Circle().fill(palette.isNight ? palette.honey : palette.felt) }
@@ -177,7 +178,7 @@ public struct StationSheet: View {
                 Text("\(next) seeds a day once built", bundle: .module)
                     .font(PofuFont.title3.monospacedDigit())
             } else if let next {
-                Text("\(now) → \(next) seeds a day", bundle: .module)
+                Text("\(now) seeds a day · \(next) once built", bundle: .module)
                     .font(PofuFont.title3.monospacedDigit())
             } else {
                 Text("\(now) seeds a day", bundle: .module)
@@ -244,25 +245,35 @@ public struct StationSheet: View {
         } else if let cost = status.nextCost {
             let missing = max(cost.units - jar.units, 0)
             VStack(spacing: PofuSpacing.xs) {
-                Button {
-                    PofuHaptics.shared.play(.tap)
-                    onBuild?(station)
-                } label: {
-                    if missing > 0 {
-                        Text("\(missing) more seeds", bundle: .module)
-                    } else {
-                        HStack(spacing: PofuSpacing.s) {
-                            Text("Build · \(cost.units)", bundle: .module)
-                            SeedGlyph()
-                                .fill(PofuKitPalette.day.ink)
-                                .frame(width: 9, height: 14)
-                                .rotationEffect(.degrees(18))
-                                .accessibilityHidden(true)
+                if missing > 0, onBuild != nil {
+                    // Not enough seeds yet: a readable note on linen, not a greyed plaque.
+                    Text("\(missing) more seeds", bundle: .module)
+                        .font(PofuFont.headline.monospacedDigit())
+                        .foregroundStyle(palette.onPaper)
+                        .frame(maxWidth: .infinity, minHeight: PofuSize.minimumTouch - 8)
+                        .pofuKitCard(.linen)
+                        .accessibilityIdentifier("station-missing-seeds")
+                } else {
+                    Button {
+                        PofuHaptics.shared.play(.tap)
+                        onBuild?(station)
+                    } label: {
+                        if missing > 0 {
+                            Text("\(missing) more seeds", bundle: .module)
+                        } else {
+                            HStack(spacing: PofuSpacing.s) {
+                                Text("Build · \(cost.units)", bundle: .module)
+                                SeedGlyph()
+                                    .fill(PofuKitPalette.day.ink)
+                                    .frame(width: 9, height: 14)
+                                    .rotationEffect(.degrees(18))
+                                    .accessibilityHidden(true)
+                            }
                         }
                     }
+                    .buttonStyle(PofuPlaqueStyle(.primary, haptic: nil))
+                    .disabled(missing > 0 || onBuild == nil)
                 }
-                .buttonStyle(PofuPlaqueStyle(.primary, haptic: nil))
-                .disabled(missing > 0 || onBuild == nil)
                 // The reason lives under the plaque: never a dead state.
                 if onBuild == nil {
                     reasonLine { Text("Building opens soon.", bundle: .module) }

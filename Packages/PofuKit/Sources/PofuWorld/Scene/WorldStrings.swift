@@ -19,9 +19,9 @@ enum WorldStrings {
     /// Who keeps the station.
     static func stationKeeper(_ id: StationID) -> String? {
         switch id {
-        case .garden: String(localized: "Pofu's", bundle: .module)
-        case .teaStall: String(localized: "Mochi's", bundle: .module)
-        case .workshop: String(localized: "Fındık's", bundle: .module)
+        case .garden: String(localized: "Pofu waters it", bundle: .module)
+        case .teaStall: String(localized: "Mochi's, our bunny neighbour", bundle: .module)
+        case .workshop: String(localized: "Fındık's, our hedgehog neighbour", bundle: .module)
         default: nil
         }
     }
@@ -265,6 +265,38 @@ enum WorldStrings {
         }
     }
 
+    /// Pofu's line when no beat waits (`HomeDailyLine`).
+    static func dailyLine(_ line: HomeDailyLine) -> String {
+        switch line {
+        case .night(variant: 0): String(localized: "The island's asleep. Seeds pile up by morning.", bundle: .module)
+        case .night: String(localized: "The neighbours turned in. See you at breakfast.", bundle: .module)
+        case .giftArrived: String(localized: "A gift reached the island today. Spot it?", bundle: .module)
+        case .letGo(let count): String(localized: "We let \(count) go today. Mostly your doing.", bundle: .module)
+        case .guest: String(localized: "We've got a guest. Say hi?", bundle: .module)
+        case .morning(variant: 0): String(localized: "Morning. Tea's brewing, the island's up.", bundle: .module)
+        case .morning: String(localized: "Buried a seed. Forgot where. Classic hamster.", bundle: .module)
+        case .midday(variant: 0): String(localized: "The sunflowers watch the sun. I watch you.", bundle: .module)
+        case .midday: String(localized: "Yawned twice today. Very productive.", bundle: .module)
+        case .evening(variant: 0): String(localized: "Evening. The island went orange. No filter.", bundle: .module)
+        case .evening: String(localized: "Evening tea's on me. You sit.", bundle: .module)
+        }
+    }
+
+    /// The seeds a build took, under its "Level n!".
+    static func buildSpent(_ seeds: Int) -> String {
+        String(localized: "−\(seeds) seeds", bundle: .module)
+    }
+
+    /// A wonder island's stop: what a tap does today.
+    static func wonderToday(_ today: WonderToday) -> String {
+        switch today {
+        case .tapHelps: String(localized: "A tap helps it today", bundle: .module)
+        case .doneForToday: String(localized: "Done for today. Back tomorrow", bundle: .module)
+        case .needsSkip: String(localized: "Skip one reach today first", bundle: .module)
+        case .sleeping: String(localized: "Asleep for the night. Come in the morning", bundle: .module)
+        }
+    }
+
     static var settled: String {
         String(localized: "The island works without you.", bundle: .module)
     }
@@ -299,7 +331,7 @@ enum WorldStrings {
 
     static func todayLine(_ today: TodaySummary) -> String {
         if today.reaches == 0 {
-            return String(localized: "No reaches yet today.", bundle: .module)
+            return String(localized: "The door's been quiet today.", bundle: .module)
         }
         return String(localized: "Skipped \(today.skips) of \(today.reaches) today", bundle: .module)
     }
@@ -365,7 +397,7 @@ enum WorldStrings {
     /// The glance: "Today 3/4 · 15 min".
     static func glance(_ today: TodaySummary) -> String {
         if today.reaches == 0 {
-            return String(localized: "Today · no reaches yet · \(today.guardedAtLeast) min", bundle: .module)
+            return String(localized: "Today · all quiet · \(today.guardedAtLeast) min", bundle: .module)
         }
         return String(localized: "Today \(today.skips)/\(today.reaches) · \(today.guardedAtLeast) min", bundle: .module)
     }

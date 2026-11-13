@@ -156,6 +156,11 @@ public struct FlowGameView: View {
         }
         .padding(.horizontal, 16)
         .frame(height: FlowLayout.hudHeight)
+        // The goal in one line, under the plates.
+        .overlay(alignment: .bottom) {
+            GoalLine(text: FlowStrings.goal)
+                .offset(y: 22)
+        }
     }
 
     private var boardPlate: some View {

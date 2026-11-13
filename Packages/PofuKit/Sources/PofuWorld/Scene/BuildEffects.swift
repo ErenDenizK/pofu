@@ -93,20 +93,33 @@ struct LevelBadge: View {
 /// above the station.
 struct BuildTag: View {
     let level: Int
+    /// The seeds the level took, said under the exclamation.
+    var cost: Int?
 
     var body: some View {
-        Text(WorldStrings.levelUp(level))
-            .font(PofuFont.headline)
-            .foregroundStyle(Color.paperInk)
-            .padding(.horizontal, PofuSpacing.m + 4)
-            .frame(minHeight: 36)
-            // Celebration is painted, system UI is glass (look-dev C).
-            .paintedPaper(cornerSeed: 5)
-            .fixedSize()
-            .allowsHitTesting(false)
-            .accessibilityElement()
-            .accessibilityLabel(Text(WorldStrings.levelUp(level)))
-            .accessibilityAddTraits(.updatesFrequently)
+        VStack(spacing: 0) {
+            Text(WorldStrings.levelUp(level))
+                .font(PofuFont.headline)
+            if let cost {
+                HStack(spacing: 4) {
+                    SeedIcon(size: 12)
+                    Text(verbatim: WorldStrings.buildSpent(cost))
+                        .font(PofuFont.footnote.weight(.semibold).monospacedDigit())
+                }
+                .opacity(0.82)
+            }
+        }
+        .foregroundStyle(Color.paperInk)
+        .padding(.horizontal, PofuSpacing.m + 4)
+        .padding(.vertical, cost == nil ? 0 : 5)
+        .frame(minHeight: 36)
+        // Celebration is painted, system UI is glass (look-dev C).
+        .paintedPaper(cornerSeed: 5)
+        .fixedSize()
+        .allowsHitTesting(false)
+        .accessibilityElement()
+        .accessibilityLabel(Text(verbatim: cost.map { WorldStrings.levelUp(level) + " " + WorldStrings.buildSpent($0) } ?? WorldStrings.levelUp(level)))
+        .accessibilityAddTraits(.updatesFrequently)
     }
 }
 // MARK: - The level-up ceremony of light

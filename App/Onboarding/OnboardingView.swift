@@ -194,7 +194,7 @@ struct OnboardingView: View {
                 .foregroundStyle(PofuColor.textPrimary)
                 .multilineTextAlignment(.center)
                 .accessibilityAddTraits(.isHeader)
-            Text("Say **I need it** at the door and I'll answer with a notification. That's the only time I write, never to pull you back.")
+            Text("Tap **I need it** at the door and I'll answer with a notification. That's the only time I write. Never to pull you back.")
                 .font(PofuFont.body)
                 .foregroundStyle(PofuColor.textSecondary)
                 .multilineTextAlignment(.center)
@@ -313,7 +313,8 @@ struct OnboardingView: View {
                 .padding(.top, PofuSpacing.xl)
             ScrollView {
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: PofuSpacing.s) {
-                    ForEach(ProtectedApp.allCases) { app in
+                    // Only the apps the product targets (Instagram, YouTube, TikTok).
+                    ForEach(ProtectedApp.offered) { app in
                         let isChosen = chosen.contains(app)
                         Button {
                             if isChosen {
@@ -371,7 +372,7 @@ struct OnboardingView: View {
             Spacer()
             CompanionView(vitality: 0.8, energy: 0.3)
                 .frame(maxWidth: 220)
-            Text("What would you like to call me?")
+            Text("What will you call me?")
                 .font(PofuFont.largeTitle)
                 .foregroundStyle(PofuColor.textPrimary)
                 .multilineTextAlignment(.center)

@@ -560,6 +560,26 @@
           }
         }
       }
+    },
+    "Fill a row or a column and it blooms.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bir sırayı ya da sütunu doldur, çiçek açsın."
+          }
+        }
+      }
+    },
+    "Tap a tile to turn it. Lead the water to the pool.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Taşlara dokunup çevir, suyu havuza ulaştır."
+          }
+        }
+      }
     }
   },
   "version": "1.0"
