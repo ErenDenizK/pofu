@@ -25,8 +25,9 @@ not accepted is hidden. Codex is stopped (plan expired 11-12).
 
 ## In flight
 
-1. Step 8 one voice (Sonnet, `feat/one-voice`). Player-path frames are
-   on main (#422): a `screens` label renders them on a PR.
+1. #424 one voice waits on the path-frames job, red on main too
+   (`PlayerPath` not in scope; `ci/fix-path-frames-job`). Sunday: breath's
+   "Şimdi değil" is dark on the night lawn.
 2. Open look defects for Sunday's critics: the Map's cut-edged clouds
    (#420); the sea tile's mirrored pockets; a Çağlayan re-split (s0-3
    night rim); the IL1 night matte's IL10 ghost; a pale pocket at Koke s2.
