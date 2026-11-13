@@ -29,8 +29,7 @@ first; gates are only his device check, the cut line and Monday.
 1. Days 17-21: #437 spec and #438 merged (Pofu's notes come back one more
    a day; the bell plays on d21; lines out to the founder). PR 2, the
    warm light among the stars (Sonnet, `feat/bell-sky`).
-2. #439 merged: IL1 is a composite of registered takes, so IL2 loses
-   nothing. Now: pofu-art return-queue manifests (Sonnet, pofu-art PR).
+2. #439 merged (IL1 composite: IL2 loses nothing). Now: pofu-art manifests.
 Merged today: #430-#435 ("Ada büyüdü", milestone fixes). #436 (his
 line edits) merges from the side channel. Note: two "Boş ver" a day
 reach IL8 on d21.
