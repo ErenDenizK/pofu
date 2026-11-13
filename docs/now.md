@@ -26,15 +26,16 @@ first; gates are only his device check, the cut line and Monday.
 
 ## In flight
 
-1. The lift "Ada büyüdü" + morning voice (Sonnet, `feat/island-grows`).
+1. #433 merged: "Ada büyüdü" (build and overnight) and the morning voice.
+   Next: Fable's milestone look on main's path frames (step 9), then
+   one fix round. Çağlayan edge crumbs (Sonnet, `fix/caglayan-edge-crumbs`).
 2. Step 7 closed, no change: at one reach a day the tester is 2 levels
    short of IL8 on d21 (income vs 60-seed tail prices); IL8 growth 24
    breaks the no-stall test. The trial note says: two "Boş ver" a day
    reach IL8 on d21, three on d20.
-Merged today: #430 (Koke at 1:1; preblur `--only`), #431 (UI polish),
-#432 (the day's route).
+Merged today: #430 (Koke 1:1), #431 (polish), #432 (route), #433.
 Known and kept: the flow minigame's vector board (no art in hand).
-Merged: #403-#432 but #414 (only Damla and Gezgin visit; Sumi waits
+Merged: #403-#433 but #414 (only Damla and Gezgin visit; Sumi waits
 for batch 83); pofu-art #13-#14, #18, #22-#27, #29.
 
 ## Next steps, in order
