@@ -30,8 +30,10 @@ not accepted is hidden. Codex is stopped (plan expired 11-12).
 2. #423 sky tile hairline: rebasing after #420. Open: the sea tile's
    mirrored dark pockets (skyset_export); Çağlayan s0-3 night rim and
    golden tint need a re-split; the IL1 night matte keeps an IL10 ghost.
-3. Path frames say: days 17-21 look the same (IL7, nothing new): step 10
-   needs the closing beat or a reason to come back; the Map is dead space.
+3. Days 17-21 look the same: IL8 is painted but needs tended day 24
+   (`Archipelago.swift:333`), so the typical player sits at IL7 from d15.
+   Next free builder: pace IL8 into d19-20 (game-solid §1 permitting)
+   plus a day-21 closing beat (step 10).
 Merged: #403 to #421 but #414 (#419: only Damla and the Gezgin postcard
 visit; Sumi hidden until batch 83); pofu-art #13-#14, #18, #22-#27, #29.
 
