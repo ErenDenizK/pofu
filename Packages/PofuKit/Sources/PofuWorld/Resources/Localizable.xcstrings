@@ -1836,6 +1836,136 @@
           }
         }
       }
+    },
+    "Island %lld": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ada %lld"
+          }
+        }
+      }
+    },
+    "The island grew": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ada büyüdü"
+          }
+        }
+      }
+    },
+    "Tea's on, simit's here. Now it's an island.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Çay demlendi, simit geldi. Ada oldu bu iş."
+          }
+        }
+      }
+    },
+    "The mist cleared off the bridge. I watered the sprouts. (A bit.)": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sis dağıldı, köprü göründü. Filizleri ben suladım. (Biraz.)"
+          }
+        }
+      }
+    },
+    "We've got a pond. I dipped a toe. Cold. Dipped it again.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Göletimiz oldu. Ayağımı soktum, soğukmuş. Bir daha soktum."
+          }
+        }
+      }
+    },
+    "A ferry's at the pier. It thinks the bunting's for it. I let it.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İskeleye vapur yanaştı. Flamaları ona astık sanıyor. Bozmadım."
+          }
+        }
+      }
+    },
+    "We have a lighthouse now. No sea. Never mind, we have clouds.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deniz fenerimiz var artık. Deniz yok. Olsun, bulut var."
+          }
+        }
+      }
+    },
+    "Flowers everywhere. I tried the bench. My feet don't reach.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Her yan çiçek oldu. Banka oturdum, ayaklarım yere değmedi."
+          }
+        }
+      }
+    },
+    "We built a windmill. Let it do the spinning. I quit the wheel.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yel değirmeni kurduk. O dönsün. Ben çarkı bıraktım."
+          }
+        }
+      }
+    },
+    "Can't talk. Mouth's full. (And yet.)": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Konuşamıyorum. Ağzım dolu. (Konuştum bile.)"
+          }
+        }
+      }
+    },
+    "Tried to yawn. No room. Cheeks are full.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esneyemedim. Yanaklar dolu, yer yok."
+          }
+        }
+      }
+    },
+    "Barely fit through the door with these cheeks.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu yanaklarla kapıdan zor geçtim."
+          }
+        }
+      }
+    },
+    "One cheek's heavier. I'm walking in a slant.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bir yanağım daha ağır. Yan yan yürüyorum."
+          }
+        }
+      }
     }
   },
   "version": "1.0"

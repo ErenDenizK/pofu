@@ -213,6 +213,32 @@ enum WorldStrings {
         String(localized: "Level \(level)!", bundle: .module)
     }
 
+    // MARK: - Ada büyüdü
+
+    /// The island's growth card: its kicker and its title.
+    static var islandGrewKicker: String {
+        String(localized: "The island grew", bundle: .module)
+    }
+
+    static func islandTitle(_ level: Int) -> String {
+        String(localized: "Island \(level)", bundle: .module)
+    }
+
+    /// Pofu's line for an island level, naming what the painting gained;
+    /// `nil` for a level without one (the first, and any past the eighth).
+    static func islandGrowLine(_ level: Int) -> String? {
+        switch level {
+        case 2: String(localized: "Tea's on, simit's here. Now it's an island.", bundle: .module)
+        case 3: String(localized: "The mist cleared off the bridge. I watered the sprouts. (A bit.)", bundle: .module)
+        case 4: String(localized: "We've got a pond. I dipped a toe. Cold. Dipped it again.", bundle: .module)
+        case 5: String(localized: "A ferry's at the pier. It thinks the bunting's for it. I let it.", bundle: .module)
+        case 6: String(localized: "We have a lighthouse now. No sea. Never mind, we have clouds.", bundle: .module)
+        case 7: String(localized: "Flowers everywhere. I tried the bench. My feet don't reach.", bundle: .module)
+        case 8: String(localized: "We built a windmill. Let it do the spinning. I quit the wheel.", bundle: .module)
+        default: nil
+        }
+    }
+
     // MARK: - Home
 
     /// Calm as the chips show it: one decimal, in the user's locale.
@@ -350,9 +376,16 @@ enum WorldStrings {
 
     // MARK: - The Living Diorama
 
-    /// Pofu's one exclamation when his cheeks are huge (once a day).
-    static var cheeksHuge: String {
-        String(localized: "My cheeks are huge!", bundle: .module)
+    /// Pofu's one line when his cheeks are huge (once a day): five of them,
+    /// turned by the day (`CheekLine`). The first is the exclamation.
+    static func cheeksHuge(variant: Int) -> String {
+        switch variant {
+        case 1: String(localized: "Can't talk. Mouth's full. (And yet.)", bundle: .module)
+        case 2: String(localized: "Tried to yawn. No room. Cheeks are full.", bundle: .module)
+        case 3: String(localized: "Barely fit through the door with these cheeks.", bundle: .module)
+        case 4: String(localized: "One cheek's heavier. I'm walking in a slant.", bundle: .module)
+        default: String(localized: "My cheeks are huge!", bundle: .module)
+        }
     }
 
     static func collectAction(_ seeds: Int) -> String {

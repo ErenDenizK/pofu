@@ -20,6 +20,12 @@ import XCTest
 /// - `path-dNN-koke-0907`, `path-dNN-caglayan-0907`: the wonder island's stop on the
 ///   days the run visits it (its arrival and each stage), after the visit;
 /// - `path-sheet-today`, `path-sheet-station`: the sheets over the painted Home (day 5);
+/// - `path-d04-grow-0000`, `-1500`, `-2400`: "Ada büyüdü" by a build, at 0.0, 1.5 and 2.4 s of its moment
+///   (the old painting whole and held, mid cross-fade with the bloom, the new painting with the "Ada n" card);
+/// - `path-d03-grew-0900`: the overnight landing on the old painting, Pofu's news line and its button;
+///   `path-d03-grew-live-1800`: the same morning, 1.8 s after the button, through the live timers;
+/// - `path-d04-build-focus`, `path-d04-build-burst`: a build's camera through the real `focusStation`
+///   and the station's burst, over the held old painting;
 /// - `path-game-garden-midround`, `path-game-flow-stage1`: the minigames;
 /// - `path-onboarding-welcome`, `-apps`, `-name`, `-notifications`.
 ///
@@ -56,11 +62,14 @@ class PlayerPathFrameCase: XCTestCase {
     }
 
     @MainActor
-    func homeView(_ world: WorldSnapshot, hour: Double, island: IslandSceneModel, beads: [Bool] = [], settled: Bool = false, beats: [VisitBeat]? = nil) -> some View {
+    func homeView(
+        _ world: WorldSnapshot, hour: Double, island: IslandSceneModel, beads: [Bool] = [], settled: Bool = false,
+        beats: [VisitBeat]? = nil, model: WorldHomeModel? = nil
+    ) -> some View {
         let look = WorldLook.playerPath(hour: hour)
         XCTAssertTrue(look.homePlates, "a path frame is never the sprite island")
         let now = world.clock ?? Date()
-        let home = WorldHomeModel(now: { now }, schedulesCues: false)
+        let home = model ?? WorldHomeModel(now: { now }, schedulesCues: false)
         if let beats {
             // A beat frame: the visit stands on `beats`, as the player meets it.
             home.beginVisit(VisitPlan(landing: .visit, showsRepairBanner: false, beats: beats))
@@ -121,7 +130,7 @@ class PlayerPathFrameCase: XCTestCase {
     @MainActor
     func capture(
         _ view: AnyView, name: String, scene: UIWindowScene, folder: URL, settle: Int = 900,
-        style: UIUserInterfaceStyle = .light, check: () -> Void = {}
+        style: UIUserInterfaceStyle = .light, flip: PathFlip? = nil, check: () -> Void = {}
     ) async throws {
         let window = UIWindow(windowScene: scene)
         window.overrideUserInterfaceStyle = style
@@ -129,6 +138,11 @@ class PlayerPathFrameCase: XCTestCase {
         window.windowLevel = .alert + 6
         window.makeKeyAndVisible()
         try await Task.sleep(for: .milliseconds(settle))
+        // Something changes after the first paint (a painting begins its cross-fade) and the frame waits for it.
+        if let flip {
+            flip.action()
+            try await Task.sleep(for: .milliseconds(flip.milliseconds))
+        }
         check()
         let image = snapshot(window)
         window.isHidden = true
@@ -215,6 +229,124 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
         }
     }
 
+    // MARK: Ada büyüdü
+
+    /// The painting of the island at `level`, as Home resolves it for a world that has already risen.
+    @MainActor
+    private func paintedAs(_ world: WorldSnapshot, level: Int, hour: Double) -> HomePlate? {
+        var shown = world
+        shown.islandLevel = level
+        return HomePlate.resolve(world: shown, look: WorldLook.playerPath(hour: hour))
+    }
+
+    /// The island growing by a build on day 4 (level 3 to 4): the moment's own time, frozen, through the real
+    /// `IslandSceneModel` and `WorldHome`.
+    @MainActor
+    func testRenderTheIslandGrowing() async throws {
+        let scene = try windowScene()
+        let folder = try outputFolder()
+        let day = Self.path[3]
+        let from = day.morning.islandLevel, to = day.visit.islandLevel
+        XCTAssertEqual(to, from + 1, "day 4 is a level-up by a build")
+        for (name, ms) in [("0000", 0), ("1500", 1500), ("2400", 2400)] {
+            let seconds = Double(ms) / 1000
+            let island = IslandSceneModel(framing: .home)
+            // The camera and the painting of the moment's start; the cross-fade frame then flips the level.
+            let first = ms == 1500 ? 0.79 : seconds
+            let level = first >= IslandGrowMoment.crossFadeAt ? to : from
+            island.setHomePlate(paintedAs(day.visit, level: level, hour: 9))
+            island.holdIslandGrow(from: from, to: to, at: first)
+            let view = homeView(day.visit, hour: 9, island: island, settled: true)
+            var flip: PathFlip?
+            if ms == 1500 {
+                flip = PathFlip(waiting: 700) { island.holdIslandGrow(from: from, to: to, at: seconds) }
+            }
+            try await capture(AnyView(view), name: "path-d04-grow-\(name)", scene: scene, folder: folder, settle: 2100, flip: flip) {
+                XCTAssertNotNil(island.homePlate, "path-d04-grow-\(name): the island is its painting")
+                XCTAssertTrue(island.isGrowing)
+                XCTAssertEqual(island.levelStage.shown(worldLevel: to), seconds >= IslandGrowMoment.crossFadeAt ? to : from)
+            }
+        }
+    }
+
+    /// The overnight rise (day 3, level 2 to 3): the app lands on the old painting with the news beat; then the
+    /// button, through the live timers, 1.8 s in.
+    @MainActor
+    func testRenderTheOvernightGrowth() async throws {
+        let scene = try windowScene()
+        let folder = try outputFolder()
+        let day = Self.path[2]
+        let to = day.morning.islandLevel
+        XCTAssertEqual(to, 3, "day 3 opens on a level reached overnight")
+        let beats: [VisitBeat] = [.news(.stageGrew(to))]
+        let island = IslandSceneModel(framing: .home)
+        island.setHomePlate(paintedAs(day.morning, level: to - 1, hour: 9))
+        island.holdPresentedLevel(to - 1)
+        let view = homeView(day.morning, hour: 9, island: island, beats: beats)
+        try await capture(AnyView(view), name: "path-d03-grew-0900", scene: scene, folder: folder, settle: 2100) {
+            XCTAssertNotNil(island.homePlate)
+            XCTAssertFalse(island.isGrowing, "the news waits for its button")
+            XCTAssertEqual(island.levelStage.shown(worldLevel: to), to - 1, "the app lands on the old painting")
+        }
+
+        // The button: the news beat is taken and the moment plays from the live timers.
+        let live = IslandSceneModel(framing: .home)
+        live.setHomePlate(paintedAs(day.morning, level: to - 1, hour: 9))
+        live.holdPresentedLevel(to - 1)
+        let now = day.morning.clock ?? Date()
+        let home = WorldHomeModel(now: { now }, schedulesCues: false)
+        let liveView = homeView(day.morning, hour: 9, island: live, beats: beats, model: home)
+        var taken = false
+        let button = PathFlip(waiting: 1800) {
+            home.acknowledgeCurrentBeat()
+            taken = true
+        }
+        try await capture(AnyView(liveView), name: "path-d03-grew-live-1800", scene: scene, folder: folder, settle: 2100, flip: button) {
+            XCTAssertTrue(taken)
+            XCTAssertTrue(live.isGrowing, "the button starts the moment")
+            XCTAssertEqual(live.levelStage.shown(worldLevel: to), to, "the cross-fade has begun")
+        }
+        try await Task.sleep(for: .milliseconds(3500))
+        XCTAssertFalse(live.isGrowing, "the moment ends by itself")
+    }
+
+    /// A build's camera through the real `focusStation` (the painted station centred above the sheet), and
+    /// the station's burst at 0.6 s, over the held old painting (day 4: the island rises to level 4).
+    @MainActor
+    func testRenderTheBuildFocusAndBurst() async throws {
+        let scene = try windowScene()
+        let folder = try outputFolder()
+        let day = Self.path[3]
+        let from = day.morning.islandLevel
+        let built = zip(day.morning.stations, day.visit.stations).first { $0.1.level > $0.0.level }?.1
+        let station = try XCTUnwrap(built, "day 4 builds a station")
+
+        // The focus: the morning's world, the station focused as a tap does.
+        let focused = IslandSceneModel(framing: .home)
+        focused.setHomePlate(paintedAs(day.morning, level: from, hour: 9))
+        focused.focusStation(station.id, animated: false)
+        XCTAssertEqual(focused.focus, .station(station.id))
+        try await capture(AnyView(homeView(day.morning, hour: 9, island: focused)), name: "path-d04-build-focus", scene: scene, folder: folder, settle: 2100) {
+            XCTAssertNotNil(focused.homePlate)
+        }
+
+        // The burst: the build committed, the painting held at the old level while the station's ceremony plays.
+        let island = IslandSceneModel(framing: .home)
+        island.setHomePlate(paintedAs(day.visit, level: from, hour: 9))
+        island.holdPresentedLevel(from)
+        island.focusStation(station.id, animated: false)
+        let now = day.visit.clock ?? Date()
+        let home = WorldHomeModel(now: { now }, schedulesCues: false)
+        home.camera = island
+        let receipt = BuildReceipt(station: station.id, level: station.level, cost: Energy(10))
+        home.buildStation(station.id, maxLevel: station.maxLevel) { _ in receipt }
+        home.freeze(at: 0.6)
+        let view = homeView(day.visit, hour: 9, island: island, settled: true, model: home)
+        try await capture(AnyView(view), name: "path-d04-build-burst", scene: scene, folder: folder, settle: 2100) {
+            XCTAssertEqual(island.levelStage.shown(worldLevel: day.visit.islandLevel), from, "the old painting is held during the burst")
+        }
+    }
+
     @MainActor
     func testRenderTheGames() async throws {
         let scene = try windowScene()
@@ -270,6 +402,18 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
                 name: "path-onboarding-\(name)", scene: scene, folder: folder, settle: 1000
             )
         }
+    }
+}
+
+/// Something that changes after a frame's first paint (a painting begins its cross-fade, the news button is
+/// taken) and the frame waits `milliseconds` for it before it is taken.
+struct PathFlip {
+    let milliseconds: Int
+    let action: () -> Void
+
+    init(waiting milliseconds: Int, _ action: @escaping () -> Void) {
+        self.milliseconds = milliseconds
+        self.action = action
     }
 }
 

@@ -9,7 +9,6 @@ import PofuWorld
 /// world and calls them.
 @MainActor
 enum WorldSound {
-    private static var lastIslandLevel: Int?
     private static let kettleKey = "pofu.sound.kettleDay"
 
     /// Once at launch: the breath room's phases drive the pad.
@@ -40,12 +39,6 @@ enum WorldSound {
         UserDefaults.standard.set(day, forKey: kettleKey)
         SoundEngine.shared.play(.kettle)
     }
-
-    static func islandLevelRose(to level: Int) {
-        let rose = WorldMoments.islandLevelRose(from: lastIslandLevel, to: level)
-        lastIslandLevel = level
-        if rose { SoundEngine.shared.play(.levelUp) }
-    }
 }
 
 extension AppModel {
@@ -53,6 +46,9 @@ extension AppModel {
     /// appears, when the scene phase changes and on the 30-second tick.
     func updateWorldSound(active: Bool) {
         island.onVisitorArrived = { SoundEngine.shared.play(.doorKnock) }
+        // The island's growth plays the level-up cue at its bloom ("Ada büyüdü"),
+        // not when the level is derived.
+        island.onIslandGrew = { SoundEngine.shared.play(.levelUp) }
         guard active else {
             AmbienceConductor.shared.update(scene: nil, isActive: false)
             return
@@ -72,7 +68,6 @@ extension AppModel {
             scene: AmbienceScene(hour: hour, weather: AmbienceWeather(weatherName: weather.rawValue), islandLevel: snapshot.islandLevel),
             isActive: true
         )
-        WorldSound.islandLevelRose(to: snapshot.islandLevel)
         let tea = snapshot.stations.first { $0.id == .teaStall }?.level ?? 0
         WorldSound.whistleKettleIfOwed(hour: hour, teaStallLevel: tea, now: date, calendar: calendar)
     }

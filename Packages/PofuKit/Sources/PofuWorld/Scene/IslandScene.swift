@@ -142,6 +142,17 @@ public struct IslandScene<Bubble: View>: View {
                         .allowsHitTesting(false)
                         .accessibilityHidden(true)
                     }
+                    if let grow = model.grow {
+                        // "Ada büyüdü": the bloom and the card over the whole island.
+                        IslandGrowOverlay(
+                            grow: grow,
+                            time: grow.time(at: context.date),
+                            centre: growCentre(in: rig, size: size),
+                            size: size,
+                            safeTop: safeTop,
+                            onTap: { model.dismissGrowCard() }
+                        )
+                    }
                 }
             }
             // A sheet or cover freezes then flattens the world (§3.1).
@@ -249,7 +260,9 @@ public struct IslandScene<Bubble: View>: View {
         }
         // The painted home plate (ADR-0022): at its level, by day, in clear
         // weather; otherwise the sprite island.
-        .onChange(of: HomePlate.resolve(world: world, look: look), initial: true) { _, plate in
+        // The painting's level trails the world's until the island's growth
+        // moment starts the cross-fade ("Ada büyüdü", `IslandGrowMoment`).
+        .onChange(of: HomePlate.resolve(world: model.presenting(world), look: look), initial: true) { _, plate in
             model.setHomePlate(plate)
         }
         // Çağlayan's painted plates (ADR-0022): by story stage, hour and weather where painted.
@@ -314,6 +327,14 @@ public struct IslandScene<Bubble: View>: View {
             .presentationDetents([.medium, .large])
             .pofuSheetBackground()
         }
+    }
+
+    /// The island's centre on screen: where the growth's bloom rises.
+    private func growCentre(in rig: CameraRig, size: CGSize) -> CGPoint {
+        let box = model.homePlate?.islandBox
+        let point = WorldPoint(x: box?.midX ?? 0, y: box?.midY ?? 0)
+        let p = rig.pose.project(point, width: Double(size.width))
+        return CGPoint(x: p.x + rig.offsetX.value, y: p.y + rig.offsetY.value)
     }
 
     /// The islands the player has arrived at, home first.

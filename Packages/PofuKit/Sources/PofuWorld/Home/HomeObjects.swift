@@ -65,6 +65,18 @@ public struct CheekLineGate: Sendable {
     }
 }
 
+/// Which of the huge-cheeks lines Pofu says on a day (`WorldStrings.cheeksHuge(variant:)`):
+/// five, turned by the day like `HomeDailyLine`'s, so two days in a row never
+/// share one.
+public enum CheekLine {
+    public static let variants = 5
+
+    /// - Parameter dayIndex: Any day count; consecutive days differ.
+    public static func variant(dayIndex: Int) -> Int {
+        ((dayIndex % variants) + variants) % variants
+    }
+}
+
 // MARK: - Jar
 
 /// The seed jar's fill: a code mask over the painted jar's window.
