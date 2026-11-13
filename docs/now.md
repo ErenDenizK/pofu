@@ -12,7 +12,7 @@ Device check of Home, Friday 11-13. Cut line Sunday 11-15 18:00: what is
 not accepted is hidden. Codex is stopped (plan expired 11-12).
 
 **Updated:** 2026-11-12 (late night, session 2).
-**Founder last played on his phone:** 2026-11-05.
+**Founder last played on his phone:** 2026-11-05 (device check due 11-13).
 **Founder log read up to:** 2026-11-12 (late night).
 **Route:** [route-2026-11-12-codex-pause](research/route-2026-11-12-codex-pause.md)
 §6 (#413), accepted by the founder with both dates and the studio change.
@@ -27,9 +27,8 @@ not accepted is hidden. Codex is stopped (plan expired 11-12).
 
 1. Step 8 one voice (Sonnet, `feat/one-voice`). Player-path frames are
    on main (#422): a `screens` label renders them on a PR.
-2. #423 sky tile hairline: rebasing after #420. Open: the sea tile's
-   mirrored dark pockets (skyset_export); Çağlayan s0-3 night rim and
-   golden tint need a re-split; the IL1 night matte keeps an IL10 ghost.
+2. #423 sky tile hairline (CI). Open: sea tile's mirrored pockets; a
+   Çağlayan re-split (s0-3 night rim); the IL1 night matte's IL10 ghost.
 3. Days 17-21 look the same: IL8 is painted but needs tended day 24
    (`Archipelago.swift:333`), so the typical player sits at IL7 from d15.
    In flight: pace IL8 into d19-20 (Opus, `feat/pace-il8`); then a
@@ -56,6 +55,6 @@ visit; Sumi hidden until batch 83); pofu-art #13-#14, #18, #22-#27, #29.
 | App | paused until after the demo | the demo |
 | Story | lines ship with game PRs; studio in use since 11-12 | |
 
-## Open with the founder (no question pending)
+## Open with the founder
 
-- Device testing. Known stale: roadmap.md, tracker.md statuses.
+- Device check steps sent 11-13; five answers pending. Stale: roadmap.md, tracker.md.
