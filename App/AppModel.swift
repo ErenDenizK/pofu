@@ -73,7 +73,7 @@ final class AppModel {
     /// The island's camera, focus and station sheet
     /// (`FeatureFlags.islandHome`). Here rather than in the view, so Hop!
     /// can close a station sheet before its cover.
-    let island = IslandSceneModel()
+    let island = IslandSceneModel(levelDefaults: .standard)
     /// Home's visit and its collect and build moments
     /// (`FeatureFlags.worldHome`).
     let worldHome = WorldHomeModel(cheekLineDefaults: .standard)
@@ -342,11 +342,15 @@ final class AppModel {
         if let settled = worldHome.settledAt {
             lastVisitSettled = settled
         }
+        let snapshot = world
+        // The island that grew while the app was closed: the visit carries
+        // the news, and Home lands on the painting the player last saw.
         let inputs = VisitInputs(
             now: now,
-            world: world,
+            world: snapshot,
             isGuardBroken: needsSetupOrRepair,
             lastSettled: lastVisitSettled,
+            news: island.levelMemory.news(worldLevel: snapshot.islandLevel),
             calendar: economy.calendar
         )
         worldHome.beginVisit(VisitQueue.plan(inputs))

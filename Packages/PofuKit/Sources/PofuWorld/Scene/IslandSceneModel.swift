@@ -203,6 +203,38 @@ public final class IslandSceneModel {
     private(set) var reactions = ResidentReactions()
     /// The island level the scene last saw; dressing leaves when it rises.
     @ObservationIgnored private var lastIslandLevel: Int?
+
+    // MARK: "Ada büyüdü" state
+
+    /// The level of the painting the scene draws: it trails the world's until
+    /// the moment's cross-fade begins (`presenting(_:)`).
+    public private(set) var levelStage: IslandLevelStage
+    /// The island's growth in progress: the old painting held, the camera
+    /// pulled back, the bloom, the cross-fade and the "Ada n" card.
+    public private(set) var grow: ActiveIslandGrow?
+    /// Bumped when the bloom's cue plays: Home answers with the growth haptic.
+    public private(set) var growBlooms = 0
+    /// The level the player last saw painted, kept across launches.
+    @ObservationIgnored public let levelMemory: IslandLevelMemory
+    /// The bloom's cue plays (the app plays the level-up sound).
+    @ObservationIgnored public var onIslandGrew: (@MainActor () -> Void)?
+    /// Whether the visit's news has not spoken yet: Home sets it. While it is
+    /// true an overnight rise waits for the news beat's button.
+    @ObservationIgnored public var newsHolds: (@MainActor () -> Bool)?
+    /// The level the island is about to grow to, once something lets it.
+    @ObservationIgnored private var growTarget: Int?
+    @ObservationIgnored private var growGate: GrowGate?
+    @ObservationIgnored private var growTask: Task<Void, Never>?
+    /// The news beat's button began the moment: the camera ends on the Island stop.
+    @ObservationIgnored private var growSettlesAtIsland = false
+
+    /// What an island rise waits for before the moment begins.
+    private enum GrowGate {
+        /// A build's ceremony: the moment begins at its `sheetBack` cue.
+        case build
+        /// The visit's news beat: its button begins the moment.
+        case news
+    }
     @ObservationIgnored private var leavingDressing: [(piece: DressingPiece, start: Date)] = []
 
     /// The island level the dressing is drawn at.
@@ -290,15 +322,34 @@ public final class IslandSceneModel {
     }
 
     /// The scene saw the island level. When it rises, the dressing that
-    /// waited on a slot that has opened leaves in the reveal's puff.
+    /// waited on a slot that has opened leaves in the reveal's puff, and the
+    /// island grows (`beginGrow`): at once, after a build's ceremony, or
+    /// after the visit's news.
     func noteIslandLevel(_ level: Int, at now: Date) {
-        defer { lastIslandLevel = level }
-        guard let last = lastIslandLevel, level > last, !reduceMotion else { return }
-        pullBackForLevelUp()
-        let gone = IslandDressing.leaving(fromLevel: last, toLevel: level)
-        guard !gone.isEmpty else { return }
-        leavingDressing = gone.map { (piece: $0, start: now) }
-        holdMoment(seconds: DressingReveal.puffSeconds + 0.05, from: now)
+        let last = lastIslandLevel
+        lastIslandLevel = level
+        guard let last else {
+            seeFirstLevel(level, at: now)
+            return
+        }
+        guard level != last else { return }
+        guard level > last else {
+            // The world went back (a reset): the painting follows at once.
+            endGrow()
+            growTarget = nil
+            growGate = nil
+            presentLevel(level)
+            return
+        }
+        if !reduceMotion {
+            let gone = IslandDressing.leaving(fromLevel: last, toLevel: level)
+            if !gone.isEmpty {
+                leavingDressing = gone.map { (piece: $0, start: now) }
+                holdMoment(seconds: DressingReveal.puffSeconds + 0.05, from: now)
+            }
+        }
+        growTarget = level
+        scheduleGrow(at: now)
     }
 
     /// The dressing mid-puff at `date`, with the seconds since it began.
@@ -377,10 +428,17 @@ public final class IslandSceneModel {
     /// lasts (interaction spec §1.8).
     public nonisolated static let crossFade = 0.2
 
-    public init(framing: WorldFraming = .home) {
+    /// - Parameter levelDefaults: Where the last presented island level is
+    ///   remembered across launches; `nil` keeps it in memory (tests,
+    ///   screenshots).
+    public init(framing: WorldFraming = .home, levelDefaults: UserDefaults? = nil) {
+        let memory = IslandLevelMemory(defaults: levelDefaults)
         self.framing = framing
         self.projectedFraming = framing
         self.engine = SceneEngine(rig: CameraRig(framing: framing))
+        self.levelMemory = memory
+        // A launch lands on the painting the player last saw.
+        self.levelStage = IslandLevelStage(presented: memory.lastPresented)
     }
 
     /// The plate shows or leaves: the rail takes its stops (the camera
@@ -701,11 +759,11 @@ public final class IslandSceneModel {
 
     /// On the plate, a station's painted object centred between the top
     /// band and the sheet, filling at most 80 % of either side.
-    private func plateFocusPose(_ id: StationID) -> CameraPose? {
+    private func plateFocusPose(_ id: StationID, sheetFraction: Double = 0.42) -> CameraPose? {
         guard let box = homePlate?.stationBox(id) else { return nil }
         let width = engine.rig.rail.width, height = engine.rig.rail.height
         let top = engine.safeTop + 100
-        let bottom = height * (1 - 0.42)
+        let bottom = height * (1 - sheetFraction)
         let scale = min(2.6 * width / CameraRail.referenceWidth, max(bottom - top, 1) * 0.8 / max(box.height, 1), width * 0.8 / max(box.width, 1))
         return CameraPose(scale: scale, look: WorldPoint(x: box.midX, y: box.midY), anchorY: (top + bottom) / 2)
     }
@@ -1089,22 +1147,6 @@ public final class IslandSceneModel {
 
     private var establishTask: Task<Void, Never>?
 
-    /// The island-level ceremony (LS-3): the camera pulls back to the whole
-    /// island so every new thing is in frame, holds a beat, then settles
-    /// back where it was. Only from the resting framings with nothing open.
-    func pullBackForLevelUp(hold seconds: Double = 2.4) {
-        guard !reduceMotion, island == .home, framing != .map, focus == nil, sheet == nil, engine.rig.pinchStart == nil else { return }
-        engine.rig.focus(pose: engine.rig.rail.wholeIslandPose, lens: .island)
-        kick()
-        establishTask?.cancel()
-        establishTask = Task { @MainActor [weak self] in
-            try? await Task.sleep(for: .seconds(seconds))
-            guard let self, !Task.isCancelled, self.focus == nil else { return }
-            self.engine.rig.releaseFocus()
-            self.kick()
-        }
-    }
-
     // MARK: - The timeline
 
     /// Advances the springs to `date` and returns the rig to draw. Called
@@ -1224,18 +1266,237 @@ final class SceneEngine {
     }
 }
 
+// MARK: - Ada büyüdü
+
+/// The island's growth at one instant of its moment: when it began, or the
+/// time a screenshot froze it at.
+public struct ActiveIslandGrow: Hashable, Sendable {
+    public let moment: IslandGrowMoment
+    public let start: Date
+    /// A screenshot's moment time; the clock stops.
+    public let frozen: Double?
+    /// When a tap sent the card away, in moment seconds.
+    var leavesAt: Double?
+    /// Cues up to this time have played.
+    var played = -1.0
+
+    init(moment: IslandGrowMoment, start: Date, frozen: Double? = nil) {
+        self.moment = moment
+        self.start = start
+        self.frozen = frozen
+    }
+
+    /// The moment's time at `date`.
+    public func time(at date: Date) -> Double {
+        frozen ?? date.timeIntervalSince(start)
+    }
+}
+
+extension IslandSceneModel {
+    /// The world as the painting shows it: its island level trails the true
+    /// one until the moment's cross-fade begins, and never runs ahead of it.
+    func presenting(_ world: WorldSnapshot) -> WorldSnapshot {
+        let level = levelStage.shown(worldLevel: world.islandLevel)
+        guard level != world.islandLevel else { return world }
+        var shown = world
+        shown.islandLevel = level
+        return shown
+    }
+
+    /// The island's growth is playing: Home's chrome steps aside.
+    public var isGrowing: Bool {
+        grow != nil
+    }
+
+    /// The scene presents `level` and remembers it: the player has seen it.
+    fileprivate func presentLevel(_ level: Int) {
+        levelStage.present(level)
+        levelMemory.record(level)
+    }
+
+    /// A first look at the world: a launch lands on the painting the player
+    /// last saw, and the island grows once the news has spoken; a first
+    /// launch, or a level that has not moved, presents the true level.
+    fileprivate func seeFirstLevel(_ level: Int, at now: Date) {
+        guard let held = levelStage.presented, held < level else {
+            presentLevel(level)
+            return
+        }
+        growTarget = level
+        scheduleGrow(at: now)
+    }
+
+    /// Decides what the rise waits for: a build's ceremony, the visit's news,
+    /// or nothing.
+    fileprivate func scheduleGrow(at now: Date) {
+        if buildFraming != nil {
+            growGate = .build
+        } else if newsHolds?() == true {
+            growGate = .news
+        } else {
+            beginGrow(at: now)
+        }
+    }
+
+    /// The build's ceremony is over: the island answers.
+    fileprivate func releaseGrowAfterBuild() {
+        guard growGate == .build else { return }
+        growGate = nil
+        scheduleGrow(at: Date())
+    }
+
+    /// The visit's news has spoken (its button, or a visit without any):
+    /// the island grows now.
+    public func newsHasSpoken() {
+        guard growGate == .news else { return }
+        growGate = nil
+        beginGrow(at: Date(), settlesAtIsland: true)
+    }
+
+    /// "Ada büyüdü": any sheet closes, the station focus lets go and the
+    /// camera travels to the whole island with the old painting still on
+    /// screen; the cues of `IslandGrowMoment` follow. Only the last level
+    /// plays, never several.
+    fileprivate func beginGrow(at now: Date, settlesAtIsland: Bool = false) {
+        growGate = nil
+        guard let target = growTarget else { return }
+        growTarget = nil
+        guard let from = levelStage.presented, from < target else {
+            presentLevel(target)
+            return
+        }
+        growTask?.cancel()
+        growSettlesAtIsland = settlesAtIsland
+        // From here the player has seen it begin: no news for this level.
+        levelMemory.record(target)
+        let moment = IslandGrowMoment(fromLevel: from, toLevel: target, reduceMotion: reduceMotion, lowPower: Self.growIsLowPower)
+        grow = ActiveIslandGrow(moment: moment, start: now)
+        closeSurfaces()
+        if moment.time(of: .pullBack) != nil, island == .home, framing != .map, engine.rig.pinchStart == nil {
+            engine.rig.focus(pose: engine.rig.rail.wholeIslandPose, lens: .island)
+        }
+        holdMoment(seconds: moment.duration + 0.3, from: now)
+        kick()
+        let times = IslandGrowMoment.Cue.allCases.compactMap { moment.time(of: $0) }.filter { $0 > 0 }.sorted()
+        growTask = Task { @MainActor [weak self] in
+            for time in times {
+                let wait = now.addingTimeInterval(time).timeIntervalSinceNow
+                if wait > 0 {
+                    try? await Task.sleep(for: .seconds(wait))
+                }
+                guard !Task.isCancelled, let self, self.grow?.start == now else { return }
+                self.advanceGrow(to: time)
+            }
+        }
+    }
+
+    private static var growIsLowPower: Bool {
+        ProcessInfo.processInfo.isLowPowerModeEnabled
+    }
+
+    /// Plays every cue due by `time`, once.
+    fileprivate func advanceGrow(to time: Double) {
+        guard var active = grow else { return }
+        let cues = active.moment.cues(after: active.played, through: time)
+        active.played = max(active.played, time)
+        grow = active
+        for cue in cues {
+            switch cue {
+            case .bloom:
+                growBlooms += 1
+                onIslandGrew?()
+            case .crossFade:
+                presentLevel(active.moment.toLevel)
+                kick()
+            case .end:
+                endGrow()
+            case .pullBack, .card:
+                break
+            }
+        }
+    }
+
+    /// The moment is over (or a tap sent the card away): the painting is the
+    /// world's and the camera settles.
+    fileprivate func endGrow() {
+        growTask?.cancel()
+        growTask = nil
+        guard let active = grow else { return }
+        grow = nil
+        presentLevel(active.moment.toLevel)
+        let settlesAtIsland = growSettlesAtIsland
+        growSettlesAtIsland = false
+        guard focus == nil, sheet == nil, engine.rig.pinchStart == nil else {
+            kick()
+            return
+        }
+        if settlesAtIsland, island == .home {
+            go(to: .island)
+        } else if active.moment.time(of: .pullBack) != nil, engine.rig.isFocused {
+            engine.rig.releaseFocus()
+            kick()
+        } else {
+            kick()
+        }
+    }
+
+    /// A tap on the card: it leaves now and the camera settles.
+    public func dismissGrowCard(at now: Date = Date()) {
+        guard var active = grow, active.frozen == nil, active.leavesAt == nil else { return }
+        let t = now.timeIntervalSince(active.start)
+        guard active.moment.card(at: t) != nil else { return }
+        active.leavesAt = t + IslandGrowMoment.cardLeave
+        grow = active
+        growTask?.cancel()
+        let start = active.start
+        growTask = Task { @MainActor [weak self] in
+            try? await Task.sleep(for: .seconds(IslandGrowMoment.cardLeave))
+            guard !Task.isCancelled, let self, self.grow?.start == start else { return }
+            self.endGrow()
+        }
+    }
+
+    /// Holds the painting at `level`, behind the world (screenshots, tests):
+    /// the island that has grown while the app was closed.
+    public func holdPresentedLevel(_ level: Int) {
+        levelStage.present(level)
+    }
+
+    /// Holds the island's growth `seconds` into its moment, still and with
+    /// the camera on the whole island (screenshots, tests). The painting is
+    /// the old one before the cross-fade cue and the new one from it; any
+    /// interaction lets go of the hold.
+    public func holdIslandGrow(from: Int, to: Int, at seconds: Double) {
+        let moment = IslandGrowMoment(fromLevel: from, toLevel: to, reduceMotion: reduceMotion)
+        // The scene has seen the true level: its first look starts no moment of its own.
+        lastIslandLevel = to
+        levelStage.present(moment.presentedLevel(at: seconds))
+        grow = ActiveIslandGrow(moment: moment, start: Date(), frozen: seconds)
+        closeSurfaces()
+        engine.rig.focus(pose: engine.rig.rail.wholeIslandPose, lens: .island)
+        engine.rig.snapToTargets()
+        engine.isHeld = true
+        engine.lastDate = nil
+        revision &+= 1
+    }
+}
+
 extension IslandSceneModel: WorldCamera {
     /// The build moment pushes in (§2.4): the sheet drops to compact and
     /// the camera comes in to ×1.95 on spring(0.6, 0.1).
     public func beginBuildFraming(_ station: StationID) {
+        // On the painting the camera pushes in on the painted station, as
+        // `focusStation` does; the sprite island has its own layout.
+        let plateAnchor = homePlate?.stationBox(station).map { WorldPoint(x: $0.midX, y: $0.maxY) }
         guard
-            let anchor = IslandLayout.stationAnchors[station],
-            let pose = IslandLayout.buildFocusPose(
-                station,
-                width: engine.rig.rail.width,
-                height: engine.rig.rail.height,
-                safeTop: engine.safeTop
-            )
+            let anchor = plateAnchor ?? IslandLayout.stationAnchors[station],
+            let pose = plateFocusPose(station, sheetFraction: IslandLayout.compactSheetHeight / max(engine.rig.rail.height, 1))
+                ?? IslandLayout.buildFocusPose(
+                    station,
+                    width: engine.rig.rail.width,
+                    height: engine.rig.rail.height,
+                    safeTop: engine.safeTop
+                )
         else { return }
         buildFraming = station
         sheetDetent = .compact
@@ -1248,20 +1509,25 @@ extension IslandSceneModel: WorldCamera {
     /// The sheet returns to medium and the camera settles back to the
     /// station's focus, unless the user already closed the sheet.
     public func endBuildFraming(_ station: StationID) {
+        // The island answers the build once its ceremony is over, whatever
+        // the sheet did meanwhile.
+        defer { releaseGrowAfterBuild() }
         guard buildFraming == station else { return }
         buildFraming = nil
         // The ceremony is over: the station's resident is proud of it for a while.
         react(.ceremonyDone, for: ResidentReactions.cast(of: station))
         guard sheet?.station == station else { return }
         sheetDetent = .medium
+        let plateAnchor = homePlate?.stationBox(station).map { WorldPoint(x: $0.midX, y: $0.maxY) }
         guard
-            let anchor = IslandLayout.stationAnchors[station],
-            let pose = IslandLayout.stationFocusPose(
-                station,
-                width: engine.rig.rail.width,
-                height: engine.rig.rail.height,
-                safeTop: engine.safeTop
-            )
+            let anchor = plateAnchor ?? IslandLayout.stationAnchors[station],
+            let pose = plateFocusPose(station)
+                ?? IslandLayout.stationFocusPose(
+                    station,
+                    width: engine.rig.rail.width,
+                    height: engine.rig.rail.height,
+                    safeTop: engine.safeTop
+                )
         else { return }
         let lens = Lens.station(depth: IslandLayout.depth(ofY: anchor.y))
         travel { $0.focus(pose: pose, lens: lens, camera: WorldSprings.refocus) }

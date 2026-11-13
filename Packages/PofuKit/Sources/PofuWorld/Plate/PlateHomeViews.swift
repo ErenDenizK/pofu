@@ -28,7 +28,7 @@ struct PlateHomeLayer: View {
     /// A stage, a level or an hour change is a crossfade between two whole
     /// paintings (the plain form of the spec's diff-mask reveal: every pixel
     /// still comes from a painting).
-    static let crossfade = 1.4
+    static let crossfade = IslandGrowMoment.crossFadeLength
 
     /// The painting on screen, and the one fading in over it.
     @State private var shown: HomePlate

@@ -81,6 +81,8 @@ public struct WorldHome: View {
         // every pass so it never holds a stale world.
         let _ = scene.onPropTap = { prop in propTapped(prop) }
         let _ = scene.onPlateTap = { id in plateTapped(id) }
+        // An island that grew overnight waits for the news beat's button.
+        let _ = scene.newsHolds = { home.holdsIslandGrowForNews }
         ZStack {
             IslandScene(
                 world: world,
@@ -120,6 +122,15 @@ public struct WorldHome: View {
             PofuHaptics.shared.play(.growth)
         }
         .sensoryFeedback(.success, trigger: home.buildSettles)
+        // "Ada büyüdü": the bloom's cue plays the growth pattern (the app plays
+        // the sound), and VoiceOver hears what the island became.
+        .onChange(of: scene.growBlooms) { _, _ in
+            PofuHaptics.shared.play(.growth)
+            if let moment = scene.grow?.moment {
+                let line = WorldStrings.islandGrowLine(moment.toLevel)
+                AccessibilityNotification.Announcement([WorldStrings.islandTitle(moment.toLevel), line].compactMap { $0 }.joined(separator: ". ")).post()
+            }
+        }
         // TODO(haptics): the last level's three-transient celebration
         // (design language §11) needs Core Haptics; `.success` until then.
         .sensoryFeedback(.success, trigger: home.finalBuilds)
@@ -133,7 +144,7 @@ public struct WorldHome: View {
         if let beat = home.currentBeat {
             // At the top cheek step, once a day, Pofu says the one line.
             if case .collect = beat, home.saysCheeksHuge {
-                return WorldStrings.cheeksHuge
+                return WorldStrings.cheeksHuge(variant: home.cheeksHugeVariant)
             }
             return WorldStrings.beatLine(beat)
         }
@@ -161,7 +172,7 @@ public struct WorldHome: View {
     }
 
     private var showsHomeChrome: Bool {
-        scene.projectedFraming == .home && scene.focus == nil && !scene.hasSheet
+        scene.projectedFraming == .home && scene.focus == nil && !scene.hasSheet && !scene.isGrowing
     }
 
     private var showsIslandName: Bool {
@@ -423,9 +434,13 @@ public struct WorldHome: View {
             collect()
         case .care:
             home.acknowledgeCurrentBeat()
-        case .news:
+        case .news(let news):
+            // The island's growth plays from the button itself (the camera
+            // pulls back and ends on the Island stop); a new island goes there.
             home.acknowledgeCurrentBeat()
-            scene.go(to: .island)
+            if case .islandArrived = news {
+                scene.go(to: .island)
+            }
         case .build(let station, _):
             home.acknowledgeCurrentBeat()
             scene.focusStation(station)
