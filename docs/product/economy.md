@@ -647,8 +647,8 @@ the sum of built station levels, the garden's free first level included.
 | 5 | 6 | 10 | 4 | pier |
 | 6 | 10 | 15 | 4 | workshop, lighthouse |
 | 7 | 14 | 20 | 5 | (decor spots, later) |
-| 8 | 24 | 28 | 5 | windmill |
-| 9 | 36 | 34 | 5 | (the hill gate and the hive, later) |
+| 8 | 20 | 26 | 5 | windmill |
+| 9 | 30 | 34 | 5 | (the hill gate and the hive, later) |
 | 10 | 36 | 40 | 5 | Tam Çiçek: all eight stations at level 5 |
 
 - **Station cap.** No station can be built above the cap
@@ -674,7 +674,7 @@ the sum of built station levels, the garden's free first level included.
   later changes and hang off `IslandLevelRule` and `StationSpec.opensAt`.
 
 The typical user (`GameScenarioTests`, 90 days, no rounds) reaches island
-level 3 on day 3, 4 by day 7, 6 by day 14, 7 to 8 around day 30, and Tam
+level 3 on day 3, 4 by day 7, 6 by day 14, 7 around day 20, 8 around day 30, and Tam
 Çiçek on day 63 (day 43 with a five-round set a day, before decor and the
 hive soak up seeds, which the model leaves out); the test band is day 55 to
 70 without rounds.

@@ -330,8 +330,8 @@ public struct ArchipelagoCatalog: Hashable, Sendable, Codable {
             IslandLevelRule(level: 5, tendedDayFloor: 6, growth: 10, stationCap: 4),
             IslandLevelRule(level: 6, tendedDayFloor: 10, growth: 15, stationCap: 4),
             IslandLevelRule(level: 7, tendedDayFloor: 14, growth: 20, stationCap: 5),
-            IslandLevelRule(level: 8, tendedDayFloor: 24, growth: 28, stationCap: 5),
-            IslandLevelRule(level: 9, tendedDayFloor: 36, growth: 34, stationCap: 5),
+            IslandLevelRule(level: 8, tendedDayFloor: 20, growth: 26, stationCap: 5),
+            IslandLevelRule(level: 9, tendedDayFloor: 30, growth: 34, stationCap: 5),
             // Tam Çiçek: every one of the eight stations at level 5.
             IslandLevelRule(level: 10, tendedDayFloor: 36, growth: 40, stationCap: 5),
         ],

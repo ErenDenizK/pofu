@@ -1,0 +1,1 @@
+Changed: island level 8 (the windmill slot and its painting) now comes around day 19 instead of day 24, and level 9 at tended day 30 instead of 36, so the last days of the three-week trial bring a new Home.
