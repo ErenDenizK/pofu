@@ -34,15 +34,14 @@ not accepted is hidden. Codex is stopped (plan expired 11-12).
    (`Archipelago.swift:333`), so the typical player sits at IL7 from d15.
    In flight: pace IL8 into d19-20 (Opus, `feat/pace-il8`); then a
    day-21 closing beat (step 10).
-Merged: #403 to #423 but #414 (#419: only Damla and the Gezgin postcard
-visit; Sumi hidden until batch 83); pofu-art #13-#14, #18, #22-#27, #29.
+Merged: #403-#423 but #414 (only Damla and Gezgin visit; Sumi waits
+for batch 83); pofu-art #13-#14, #18, #22-#27, #29.
 
 ## Next steps, in order
 
-1. Route §6 Saturday (steps 6 to 8), Sunday (9 to 11), in order.
-2. pofu-art queue paused with a return queue (#29). Items 3-6 (visitors
-   for hidden residents, Koke phone pilot, Home continuity, Home golden)
-   need manifests before Codex returns; item 7 (breath room) is obsolete.
+1. Route §6 Sunday (steps 9 to 11) once step 8 and the pacing land.
+2. pofu-art return queue (#29): items 3-6 need manifests before Codex
+   returns; item 7 (breath room) is obsolete.
 3. From Tuesday 11-17: route §5.3 (seeds-and-minutes check in the app
    first; the App desk reopens).
 
@@ -50,8 +49,8 @@ visit; Sumi hidden until batch 83); pofu-art #13-#14, #18, #22-#27, #29.
 
 | Desk | Where it stands | Waits on |
 |---|---|---|
-| Game | game-solid and feedback merged; days 17-21 are flat | route §6 |
-| Look | Home painted at every hour; the Map, flights, Çağlayan frame, Koke 4 are not | route §6 |
+| Game | days 17-21 flat; IL8 pacing in flight | route §6 |
+| Look | one painted world: Home, the Map, flights, Koke, Çağlayan, visitors | critics, Sunday |
 | Art factory | paused (Codex stopped); queue kept READY | Codex back |
 | App | paused until after the demo | the demo |
 | Story | lines ship with game PRs; studio in use since 11-12 | |
