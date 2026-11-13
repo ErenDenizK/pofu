@@ -47,6 +47,8 @@ public struct GameEvent: Hashable, Sendable, Codable {
         /// The player visited a wonder island: it advances one stage on a
         /// day with a resisted reach, at most once a day.
         case tendedWonder(WonderIslandID)
+        /// The player answered Pofu's line about the far bell: it is heard.
+        case heardBell
     }
 
     public var at: Date

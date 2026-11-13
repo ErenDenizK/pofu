@@ -235,6 +235,12 @@ enum WorldStrings {
             String(localized: "\(stationName(station)) → level \(level) · Ready", bundle: .module)
         case .weeklyRecap:
             String(localized: "Our week is ready.", bundle: .module)
+        case .bell:
+            String(
+                localized: "bell.line",
+                defaultValue: "Koke's awake and Çağlayan's flowing. A bell far off just played my song. It had one note too many.",
+                bundle: .module
+            )
         }
     }
 
@@ -246,6 +252,7 @@ enum WorldStrings {
         case .news: String(localized: "See the island", bundle: .module)
         case .build: String(localized: "Build", bundle: .module)
         case .weeklyRecap: String(localized: "Take a look", bundle: .module)
+        case .bell: String(localized: "bell.action", defaultValue: "I heard it too", bundle: .module)
         }
     }
 

@@ -18,6 +18,9 @@ public enum VisitBeat: Hashable, Sendable {
     case collect(SeedPouch)
     /// One piece of news a visit.
     case news(VisitNews)
+    /// The far bell rang (`FarBell`): Pofu tells it until the player
+    /// answers. Book One's first stretch closes on it.
+    case bell
     /// One build a visit, only when the seeds cover it.
     case build(StationID, level: Int)
     /// The weekly recap, first visit after Sunday 18:00.
@@ -125,6 +128,10 @@ public enum VisitQueue {
         }
         if let news = inputs.news {
             beats.append(.news(news))
+        }
+        // A story beat: before the build, so three beats never crowd it out.
+        if world.bell == .ringing {
+            beats.append(.bell)
         }
         // The collect beat comes first, so its seeds count toward the build.
         let seeds = world.jar + (collects ? world.pending.total : .zero)

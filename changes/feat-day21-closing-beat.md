@@ -1,0 +1,1 @@
+Added: the far bell, Book One's first closing beat: on the 21st tended day, once Koke and Çağlayan are healed, Pofu tells you a bell far off played his song with one note too many ("Köke uyandı, Çağlayan akıyor. Uzakta bir çan benim şarkımı çaldı. Bir notası fazlaydı."), and you answer "Ben de duydum"; it waits until heard, in Rehearsal and in the real game.

@@ -221,6 +221,9 @@ struct DemoRunTests {
         var kokeStage: Int
         var caglayanStage: Int
         var jar: Int
+        /// The far bell was ringing when the day's visit began.
+        var bellRang: Bool = false
+        var bell: FarBellStatus = .silent
     }
 
     /// The Prova panel's moves, one day at a time, with no behaviour model.
@@ -244,6 +247,7 @@ struct DemoRunTests {
         var next = start
         for day in 1...days {
             world.advance(to: start, applying: arrival)
+            let bellRang = world.snapshot.bell == .ringing
             var events: [GameEvent] = []
             for reach in 0..<reaches(day) {
                 let at = start.adding(minutes: Double(1 + 2 * reach))
@@ -282,6 +286,7 @@ struct DemoRunTests {
                 GameEvent(at: tendAt, kind: .greetedVisitor),
                 GameEvent(at: tendAt, kind: .openedGift),
                 GameEvent(at: tendAt, kind: .helped),
+                GameEvent(at: tendAt, kind: .heardBell),
             ])
             let leave = start.adding(minutes: 10)
             world.advance(to: leave)
@@ -293,7 +298,9 @@ struct DemoRunTests {
                 islandLevel: world.snapshot.islandLevel,
                 kokeStage: world.state.wonders[.koke].stage,
                 caglayanStage: world.state.wonders[.caglayan].stage,
-                jar: world.state.stations.jar.units
+                jar: world.state.stations.jar.units,
+                bellRang: bellRang,
+                bell: world.snapshot.bell
             ))
             next = time.destination(of: .nextDay, from: leave)
             arrival = RehearsalTime.awayEvents(leaving: leave, returning: next)
@@ -314,6 +321,7 @@ struct DemoRunTests {
                     + " jar \(String(format: "%3d", visit.jar)) levels \(String(format: "%2d", visit.levels))"
                     + " IL\(String(format: "%2d", visit.islandLevel)) harbor \(visit.harborOpen)"
                     + " koke \(visit.kokeStage) caglayan \(visit.caglayanStage)"
+                    + (visit.bellRang ? "  BEAT: the far bell rings (bell.line), heard \(visit.bell == .heard)" : "")
             )
         }
         print(lines.joined(separator: "\n"))
@@ -343,6 +351,51 @@ struct DemoRunTests {
     @Test func testerHealsCaglayanByDaySixteen() {
         let visits = Self.testerVisits
         #expect(visits[15].caglayanStage >= WonderIslands.healedStage, "Çağlayan is at stage \(visits[15].caglayanStage) at day 16's visit")
+    }
+
+    /// The closing beat (route §6 step 10): the far bell rings on the
+    /// tester's 21st day, not before, and the visit hears it.
+    @Test func testerHearsTheFarBellOnDayTwentyOne() {
+        let visits = Self.testerVisits
+        let rang = visits.filter(\.bellRang).map(\.day)
+        #expect(rang == [21], "the far bell rang on days \(rang)")
+        #expect(visits[19].bell == .silent)
+        #expect(visits[20].bell == .heard)
+        #expect(visits[20].tendedDays == FarBell.tendedDays)
+    }
+
+    @Test func theFarBellWaitsForBothIslandsAndNeverExpires() throws {
+        // Twenty tended days, Çağlayan not yet healed: silent.
+        var state = FarBellState()
+        var wonders = WonderLedger()
+        let day = LocalDay(year: 2026, month: 11, day: 22)
+        wonders.islands[.koke] = WonderIslandState(arrivedOn: day, stage: WonderIslands.healedStage)
+        wonders.islands[.caglayan] = WonderIslandState(arrivedOn: day, stage: 3)
+        FarBell.roll(&state, to: day, tendedDays: 25, wonders: wonders)
+        #expect(FarBell.status(of: state) == .silent)
+        // Healed, but too early: silent.
+        wonders.islands[.caglayan]?.stage = WonderIslands.healedStage
+        FarBell.roll(&state, to: day, tendedDays: FarBell.tendedDays - 1, wonders: wonders)
+        #expect(FarBell.status(of: state) == .silent)
+        // Hearing a silent bell does nothing.
+        FarBell.hear(&state, on: day)
+        #expect(state.heardOn == nil)
+        // Both healed and the day comes: it rings, and keeps ringing on
+        // later days until heard (nothing expires, ADR-0017).
+        FarBell.roll(&state, to: day, tendedDays: FarBell.tendedDays, wonders: wonders)
+        #expect(FarBell.status(of: state) == .ringing)
+        let later = day.adding(days: 3)
+        FarBell.roll(&state, to: later, tendedDays: FarBell.tendedDays + 3, wonders: wonders)
+        #expect(state.rangOn == day)
+        #expect(FarBell.status(of: state) == .ringing)
+        FarBell.hear(&state, on: later)
+        #expect(FarBell.status(of: state) == .heard)
+        // It survives a save; an old save without it loads silent.
+        var game = GameState()
+        game.bell = state
+        let data = try JSONEncoder().encode(game)
+        #expect(try JSONDecoder().decode(GameState.self, from: data).bell == state)
+        #expect(try JSONDecoder().decode(GameState.self, from: Data("{}".utf8)).bell == FarBellState())
     }
 
     @Test func testerTendsEveryDay() {
@@ -423,6 +476,7 @@ struct PlayerPathTests {
             #expect(day.visit.caglayan.stage == visit.caglayanStage, "day \(day.day) Çağlayan")
             #expect(day.visit.tendedDays == visit.tendedDays, "day \(day.day) tended days")
             #expect(day.visit.islands.contains(.harbor) == visit.harborOpen, "day \(day.day) harbor")
+            #expect((day.morning.bell == .ringing) == visit.bellRang, "day \(day.day) far bell")
         }
     }
 

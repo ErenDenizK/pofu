@@ -429,6 +429,9 @@ public struct WorldHome: View {
         case .weeklyRecap:
             home.acknowledgeCurrentBeat()
             actions.openToday?()
+        case .bell:
+            home.acknowledgeCurrentBeat()
+            actions.visitor?(.heardBell)
         }
     }
 

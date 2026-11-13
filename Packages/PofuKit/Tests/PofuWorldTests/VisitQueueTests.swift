@@ -124,6 +124,24 @@ struct VisitQueueTests {
         #expect(!VisitQueue.recapDue(now: monday, lastSeen: nil, calendar: calendar))
     }
 
+    @Test func theFarBellIsABeatUntilHeard() {
+        // 6 + 12 seeds: collect, then the bell, then the build.
+        var ringing = world(jar: 6)
+        ringing.bell = .ringing
+        let plan = VisitQueue.plan(inputs(ringing))
+        #expect(plan.beats == [.collect(IslandSamples.cheeks), .bell, .build(.garden, level: 3)])
+        // Low wellbeing fills the three: the bell still comes before the build.
+        var low = world(jar: 6, wellbeing: 20)
+        low.bell = .ringing
+        #expect(VisitQueue.plan(inputs(low)).beats == [.care, .collect(IslandSamples.cheeks), .bell])
+        var heard = world(jar: 6)
+        heard.bell = .heard
+        #expect(!VisitQueue.plan(inputs(heard)).beats.contains(.bell))
+        var night = ringing
+        night.isBedtime = true
+        #expect(VisitQueue.plan(inputs(night)).beats.isEmpty)
+    }
+
     @Test func theSamePlanForTheSameInputs() {
         let a = VisitQueue.plan(inputs(world(jar: 120)) { $0.news = .stageGrew(3) })
         let b = VisitQueue.plan(inputs(world(jar: 120)) { $0.news = .stageGrew(3) })
