@@ -51,6 +51,19 @@ class KokeSkyCheckTests(unittest.TestCase):
         self.assertLessEqual(x0, 25)
         self.assertGreaterEqual(x1, 55)
 
+    def test_a_take_twice_the_master_is_found_and_judged_in_master_pixels(self):
+        rgb, island = take()
+        big = np.repeat(np.repeat(rgb, 2, axis=0), 2, axis=1)
+        keep = np.repeat(np.repeat(island, 2, axis=0), 2, axis=1)
+        # A take large enough for the coarse-to-fine search.
+        big = np.pad(big, ((0, 160), (0, 160), (0, 0)), mode="edge")
+        keep = np.pad(keep, ((0, 160), (0, 160)))
+        f = ksc.find(big, sprite(big, keep, box=(40, 60, 280, 220)), scale=2.0)
+        self.assertEqual(f.offset, (40, 60))
+        self.assertEqual(f.max_block, 4 * ksc.MAX_BLOCK)
+        self.assertTrue(f.ok)
+        self.assertEqual(f.block, 0)
+
     def test_pale_paint_inside_the_island_is_not_sky(self):
         rgb, island = take()
         rgb[65:75, 70:90] = rgb[5, 5]  # a sky-coloured stone in the lawn, not joined to the outside

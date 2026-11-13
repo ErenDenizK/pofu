@@ -166,6 +166,7 @@ REPO = os.path.abspath(os.path.join(HERE, "..", "..", "..", ".."))
 APP_RESOURCES = os.path.join(REPO, "Packages", "PofuKit", "Sources", "PofuWorld", "Resources")
 APP_CATALOG = os.path.join(APP_RESOURCES, "World.xcassets")
 APP_SWIFT = os.path.join(REPO, "Packages", "PofuKit", "Sources", "PofuWorld", "Geometry", "WorldArt+Generated.swift")
+APP_SHADOWS = os.path.join(REPO, "tools", "assets", "shadows.json")  # tools/assets/shadows.py's manifest
 APP_MAX_PPU = 7.5
 SWIFT_PART = 30  # sprites per literal in WorldArt+Generated.swift
 # Stations are seen at most at the build push-in (x1.95 at 3x, 5.9 px per unit); capping them lower
@@ -397,6 +398,17 @@ KOKE_WIDTH = 114.0
 # the image is drawn wider (226 units) to put the island itself 212 units across, as Koke's is. The island
 # is cut with a shared hand-traced matte (tools/assets/caglayan_matte.py), not the colour rule: its lilac cliff
 # and pale underside sit too close to the sky. Damla is 38 units wide, feet on the anchor.
+# Each Koke plate's full-size take (the master is its half-size delivery, locked with `lock-light`).
+KOKE_TAKES = os.path.join(ART, "takes", "koke-repost-2026-11-06")
+
+
+def _koke_take(n):
+    """The 1536 x 1024 take that design/art/masters/koke-island-N was delivered from (its meta.json `take`)."""
+    with open(os.path.join(REPO, ART, "masters", f"koke-island-{n}", "meta.json")) as f:
+        take = json.load(f)["take"]
+    return os.path.join(KOKE_TAKES, f"koke-island-{n}", f"plate__koke-island-{n}--t{take}.webp")
+
+
 CAGLAYAN_PLATES = (0, 1, 2, 3, 4)
 CAGLAYAN_PLATE_UNITS = 768 * 212 / 720
 CAGLAYAN_MATTE = "design/art/masters/caglayan-island-0/caglayan-matte.png"
@@ -444,8 +456,11 @@ APP_SOURCES = {
     # wide with their centre on the island's centre, cut from their own sky by each stage's committed matte
     # (tools/assets/koke_matte.py; the colour rule `matte` let warm sky and petals in). The poses share one
     # scale and one baseline (feet on the anchor); Koke is 114 units wide on the lawn.
+    # The 768 px master drawn 250 units wide is a 2.1x upscale on the phone, so the sprite is baked from the
+    # master's own 1536 px take (`bake_src`, see _bake_source): harmony still measures the master (`src`).
     **{f"koke-island-{n}": {"src": _master(f"design/art/masters/koke-island-{n}"), "ppu": 768 / KOKE_PLATE_UNITS,
-                            "anchor": (384, 256), "matte_file": f"design/art/masters/koke-island-{n}/koke-matte.png"}
+                            "anchor": (384, 256), "matte_file": f"design/art/masters/koke-island-{n}/koke-matte.png",
+                            "bake_src": _koke_take(n)}
        for n in KOKE_PLATES},
     **{f"koke-{pose}": _blob(f"design/art/masters/koke-{pose}", KOKE_WIDTH, "feet", like="design/art/masters/koke-asleep")
        for pose in ("asleep", "one-eye", "stretch")},
@@ -745,9 +760,108 @@ def _harmony():
 FX_KEEP = ("world-fog-card-", "world-rain-tile", "world-rainbow-arc", "world-puddle-glint", "world-light-shaft")
 
 
-def app_main():
+APP_HELP = """Bake the app's world art (PofuWorld's World.xcassets and WorldArt+Generated.swift).
+
+Without --only, every world-* imageset this script owns is deleted and rebuilt, and the Swift table is
+written whole; the other generators' imagesets (FX, normals, ui-*) stay. With --only, only the named
+sources are baked: their own imagesets (sharp, __soft, __deep, bands) are replaced, their rows in
+WorldArt+Generated.swift are rewritten and every other row is kept byte for byte, their shadows are
+rebuilt (tools/assets/shadows.py, the same sources only), and nothing else in the catalog is touched.
+A scoped run is byte-stable: run twice, the second changes nothing.
+
+Order of the follow-up steps:
+  1. A changed master or design/art/harmony/config.json: run `python3 -I tools/assets/harmony.py measure`
+     FIRST (this bake reads its corrections). A scoped run refuses a source whose master changed since.
+  2. This bake (scoped or whole).
+  3. Shadows: a scoped run rebuilds its sources' shadows itself; after a whole run, run
+     `python3 -I tools/assets/shadows.py run`.
+  4. Koke's plates (world-koke-island-*): `python3 -I tools/plate/painted_light.py` (their measured light).
+  5. Checks: `harmony.py check`, `shadows.py check`, `koke_sky_check.py` (Koke plates),
+     `painted_light.py --check`.
+
+  python3 -I design/prototypes/interactions/tools/preblur.py app
+  python3 -I design/prototypes/interactions/tools/preblur.py app --only 'world-koke-island-*'
+"""
+
+
+def _app_args(argv):
+    import argparse
+
+    ap = argparse.ArgumentParser(prog="preblur.py app", description=APP_HELP, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--only", nargs="+", metavar="GLOB",
+                    help="bake only these imagesets: globs on the sharp imageset's name (world-koke-island-*) or the "
+                         "source's name (koke-island-*); quote them so the shell does not expand them")
+    ap.add_argument("--no-shadows", action="store_true", help="with --only: do not rebuild the sources' shadows")
+    return ap.parse_args(argv)
+
+
+def _job_selected(name, alt, only):
+    import fnmatch
+
+    return only is None or any(fnmatch.fnmatchcase(n, g) for g in only for n in (f"world-{name}{alt}", f"{name}{alt}"))
+
+
+def _job_imagesets(name, alt):
+    """A job's own imagesets in the catalog: the sharp image, its blur variants and its depth bands."""
+    import re
+
+    pattern = re.compile(rf"^world-{re.escape(name)}(-band\d+)?{re.escape(alt)}(__soft|__deep)?\.imageset$")
+    if not os.path.isdir(APP_CATALOG):
+        return []
+    return sorted(e for e in os.listdir(APP_CATALOG) if pattern.match(e))
+
+
+def _bake_source(spec, src):
+    """The image a source is baked from, and its spec in that image's pixels. A source with `bake_src` (a Koke
+    plate) is baked from the full-size take its master was delivered from at half size: the take gets the
+    master's own style lock (`lock-light`, tools/imagegen/style_lock.py, its sizes scale with the canvas), so
+    it is the master at the take's size; ppu, anchor and matte scale with it. The take file is never written."""
+    if not spec.get("bake_src"):
+        return spec, src
+    sys.path.insert(0, os.path.join(REPO, "tools", "imagegen"))
+    import style_lock
+
+    take = np.asarray(Image.open(os.path.join(REPO, spec["bake_src"])).convert("RGBA"), dtype=np.float64) / 255.0
+    locked = style_lock.apply_lock(take, style_lock.load_presets()["lock-light"])
+    hi = Image.fromarray(np.uint8(np.clip(locked * 255 + 0.5, 0, 255)), "RGBA")
+    k = hi.width / src.width
+    if abs(hi.height / src.height - k) > 1e-6:
+        raise ValueError(f"{spec['bake_src']}: not the master's aspect")
+    # The take must be this master's source: locked and resampled to the master's size, it matches it.
+    back = np.asarray(hi.convert("RGB").resize(src.size, Image.LANCZOS), dtype=np.float32)
+    drift = float(np.abs(back - np.asarray(src.convert("RGB"), dtype=np.float32)).mean())
+    if drift > 2.5:
+        raise ValueError(f"{spec['bake_src']}: differs from {spec['src']} by {drift:.2f} levels; not its take")
+    return {**spec, "ppu": spec["ppu"] * k, "anchor": (spec["anchor"][0] * k, spec["anchor"][1] * k)}, hi
+
+
+def _upscale_matte(matte, size):
+    """A feathered matte drawn at the master's size, for its take's size: resampled smoothly and its ramp
+    tightened (smoothstep over 0.2 to 0.8), so the edge follows the matte's contour without the master's
+    pixel steps and is as crisp at the larger size as the master's edge was at its own."""
+    a = np.asarray(matte.resize(size, Image.BICUBIC), dtype=np.float32) / 255.0
+    t = np.clip((a - 0.2) / 0.6, 0.0, 1.0)
+    return Image.fromarray(np.uint8(t * t * (3 - 2 * t) * 255 + 0.5), "L")
+
+
+def _harmony_current(harmony, manifest, names):
+    """The names whose master changed since harmony.py measure (their correction would be stale)."""
+    stale = []
+    for name in names:
+        entry = manifest["assets"].get(name)
+        spec = APP_SOURCES.get(name, {})
+        if entry is None or spec.get("harmony") is False:
+            continue
+        if entry["source"] == spec.get("src") and entry["source_sha"] != harmony.sha(harmony.REPO / entry["source"]):
+            stale.append(name)
+    return stale
+
+
+def app_main(argv=()):
     import shutil
 
+    args = _app_args(list(argv))
+    only = args.only
     harmony, manifest, harmony_cfg = _harmony()
     sys.path.insert(0, os.path.join(REPO, "tools", "assets"))
     import vivid
@@ -756,18 +870,20 @@ def app_main():
         entry = manifest["assets"].get(name)
         return entry is not None and not harmony.is_identity(entry["correction"])
 
-    # Rebuild only what this script writes (world-*); the normal maps (tools/assets/normals.py) and the
-    # hand-placed ui-* imagesets in the same catalog stay.
-    if os.path.isdir(APP_CATALOG):
-        for entry in os.listdir(APP_CATALOG):
-            if entry.startswith("world-") and entry.endswith(".imageset") and "--normal" not in entry and not entry.startswith(FX_KEEP):
-                shutil.rmtree(os.path.join(APP_CATALOG, entry))
-    os.makedirs(APP_CATALOG, exist_ok=True)
-    with open(os.path.join(APP_CATALOG, "Contents.json"), "w") as f:
-        json.dump({"info": {"author": "xcode", "version": 1}}, f, indent=2)
-        f.write("\n")
+    if only is None:
+        # Rebuild only what this script writes (world-*); the normal maps (tools/assets/normals.py) and the
+        # hand-placed ui-* imagesets in the same catalog stay.
+        if os.path.isdir(APP_CATALOG):
+            for entry in os.listdir(APP_CATALOG):
+                if entry.startswith("world-") and entry.endswith(".imageset") and "--normal" not in entry and not entry.startswith(FX_KEEP):
+                    shutil.rmtree(os.path.join(APP_CATALOG, entry))
+        os.makedirs(APP_CATALOG, exist_ok=True)
+        with open(os.path.join(APP_CATALOG, "Contents.json"), "w") as f:
+            json.dump({"info": {"author": "xcode", "version": 1}}, f, indent=2)
+            f.write("\n")
     table = {}
     walkable = {}
+    plate = None
     jobs = []
     for name, spec in APP_SOURCES.items():
         jobs.append((name, "", spec))
@@ -783,6 +899,19 @@ def app_main():
             for alt, key in PLATE_COMPARE.items():
                 if key != APP_PLATE_MASTER:
                     jobs.append((name, alt, _plate(key)))
+    if only is not None:
+        jobs = [job for job in jobs if _job_selected(job[0], job[1], only)]
+        if not jobs:
+            print("--only matched no source", file=sys.stderr)
+            return 2
+        stale = _harmony_current(harmony, manifest, sorted({name for name, _, _ in jobs}))
+        if stale:
+            print("the master changed since harmony.py measure: " + ", ".join(stale)
+                  + "\nrun python3 -I tools/assets/harmony.py measure first", file=sys.stderr)
+            return 1
+        for name, alt, _ in jobs:
+            for entry in _job_imagesets(name, alt):
+                shutil.rmtree(os.path.join(APP_CATALOG, entry))
     for name, alt, spec in jobs:
         path = os.path.join(REPO, spec["src"])
         # A graded copy (tools/art/grade_take.py) is what the app draws; harmony still measures the master.
@@ -793,10 +922,14 @@ def app_main():
             print("missing", path, file=sys.stderr)
             return 1
         src = Image.open(path).convert("RGBA")
+        spec, src = _bake_source(spec, src)
         if spec.get("matte"):
             src = _island_cutout(src)
         elif spec.get("matte_file"):
-            src.putalpha(Image.open(os.path.join(REPO, spec["matte_file"])).convert("L").filter(ImageFilter.GaussianBlur(1.0)))
+            matte = Image.open(os.path.join(REPO, spec["matte_file"])).convert("L").filter(ImageFilter.GaussianBlur(1.0))
+            if matte.size != src.size:
+                matte = _upscale_matte(matte, src.size)
+            src.putalpha(matte)
         harmony_key = spec.get("harmony_as", name)
         if alt in ("", "--round2") and corrected(harmony_key):
             src = harmony.correct_image(harmony_key, src, manifest, harmony_cfg)
@@ -889,7 +1022,17 @@ def app_main():
         entry["footprint"] = _footprint(img, ppu, anchor)
         table[name + alt] = entry
         print(f"{name}{alt}: {img.width}x{img.height}, {ppu:.2f} px/unit, box {entry.get('sharp', entry['soft'])}")
-    _write_swift(table, walkable, plate)
+    if only is None:
+        _write_swift(table, walkable, plate)
+        return 0
+    _merge_swift(table)
+    if not args.no_shadows:
+        import shadows
+
+        stems = {f"world-{n}" for n in table} | {f"world-{n}-band{k}" for n in table for k in range(8)}
+        from pathlib import Path
+
+        print(f"shadows: wrote {shadows.run(Path(APP_CATALOG), Path(APP_SHADOWS), only=stems)}")
     return 0
 
 
@@ -944,17 +1087,31 @@ def _round2_copper(harmony, cfg, name, img):
     return Image.fromarray(np.uint8(np.clip(out * 255 + 0.5, 0, 255)), "RGBA")
 
 
-def _write_swift(table, walkable, plate):
-    def box(b):
-        return f"WorldBox(minX: {b[0]}, minY: {b[1]}, maxX: {b[2]}, maxY: {b[3]})" if b else "nil"
+def _swift_box(b):
+    return f"WorldBox(minX: {b[0]}, minY: {b[1]}, maxX: {b[2]}, maxY: {b[3]})" if b else "nil"
 
-    def points(ps, indent):
-        if not ps:
-            return "[]"
-        pad = " " * indent
-        body = "".join(f"\n{pad}    WorldPoint(x: {x}, y: {y})," for x, y in ps)
-        return f"[{body}\n{pad}]"
 
+def _swift_points(ps, indent):
+    if not ps:
+        return "[]"
+    pad = " " * indent
+    body = "".join(f"\n{pad}    WorldPoint(x: {x}, y: {y})," for x, y in ps)
+    return f"[{body}\n{pad}]"
+
+
+def _sprite_rows(name, e):
+    return [
+        f'        "{name}": WorldSprite(',
+        f'            sharp: {_swift_box(e.get("sharp"))},',
+        f'            soft: {_swift_box(e["soft"])},',
+        f'            deep: {_swift_box(e["deep"])},',
+        f'            footprint: {_swift_points(e.get("footprint", []), 12)}',
+        "        ),",
+    ]
+
+
+def _swift_text(rows, tail):
+    """The generated file from each sprite's rows (name -> lines) and the text after the sprite parts."""
     lines = [
         "// Generated by design/prototypes/interactions/tools/preblur.py (app mode). Do not edit.",
         "// Boxes, footprints and walkable polygons are in world units, relative to each image's anchor",
@@ -966,39 +1123,73 @@ def _write_swift(table, walkable, plate):
         "    static let generated: [String: WorldSprite] = {",
         "        var table: [String: WorldSprite] = [:]",
     ]
-    names = sorted(table)
+    names = sorted(rows)
     parts = [names[i:i + SWIFT_PART] for i in range(0, len(names), SWIFT_PART)]
     lines += [f"        table.merge(generated{k}) {{ first, _ in first }}" for k in range(len(parts))]
     lines += ["        return table", "    }()", ""]
     for k, part in enumerate(parts):
         lines.append(f"    private static let generated{k}: [String: WorldSprite] = [")
         for name in part:
-            e = table[name]
-            lines.append(f'        "{name}": WorldSprite(')
-            lines.append(f'            sharp: {box(e.get("sharp"))},')
-            lines.append(f'            soft: {box(e["soft"])},')
-            lines.append(f'            deep: {box(e["deep"])},')
-            lines.append(f'            footprint: {points(e.get("footprint", []), 12)}')
-            lines.append("        ),")
+            lines += rows[name]
         lines += ["    ]", ""]
-    lines.append("    /// Each plate's walkable polygon, in world units relative to the plate's anchor.")
-    lines.append("    static let generatedWalkable: [String: [WorldPoint]] = [")
+    return "\n".join(lines) + "\n" + tail
+
+
+SWIFT_TAIL = "    /// Each plate's walkable polygon"
+
+
+def _write_swift(table, walkable, plate):
+    tail = [SWIFT_TAIL + ", in world units relative to the plate's anchor."]
+    tail.append("    static let generatedWalkable: [String: [WorldPoint]] = [")
     for name in sorted(walkable):
-        lines.append(f'        "{name}": {points(walkable[name], 8)},')
-    lines += ["    ]", ""]
-    lines.append(f"    /// The home plate (`{plate['master']}`): its lawn's radii, its depth bands' centres and the door's")
-    lines.append("    /// round window, in world units.")
-    lines.append("    static let generatedPlate = WorldPlate(")
-    lines.append(f'        master: "{plate["master"]}",')
-    lines.append(f"        lawnRadiusX: {plate['lawn'][0]},")
-    lines.append(f"        lawnRadiusY: {plate['lawn'][1]},")
-    lines.append(f"        bandDepthY: [{', '.join(str(b) for b in plate['bands'])}],")
-    lines.append(f"        window: WorldPoint(x: {plate['window'][0]}, y: {plate['window'][1]})")
-    lines.append("    )")
-    lines += ["}", ""]
+        tail.append(f'        "{name}": {_swift_points(walkable[name], 8)},')
+    tail += ["    ]", ""]
+    tail.append(f"    /// The home plate (`{plate['master']}`): its lawn's radii, its depth bands' centres and the door's")
+    tail.append("    /// round window, in world units.")
+    tail.append("    static let generatedPlate = WorldPlate(")
+    tail.append(f'        master: "{plate["master"]}",')
+    tail.append(f"        lawnRadiusX: {plate['lawn'][0]},")
+    tail.append(f"        lawnRadiusY: {plate['lawn'][1]},")
+    tail.append(f"        bandDepthY: [{', '.join(str(b) for b in plate['bands'])}],")
+    tail.append(f"        window: WorldPoint(x: {plate['window'][0]}, y: {plate['window'][1]})")
+    tail.append("    )")
+    tail += ["}", ""]
+    rows = {name: _sprite_rows(name, e) for name, e in table.items()}
     with open(APP_SWIFT, "w") as f:
-        f.write("\n".join(lines))
+        f.write(_swift_text(rows, "\n".join(tail)))
+
+
+def _read_swift(text):
+    """The committed table's rows (name -> lines) and its tail (walkable polygons and plate), as written."""
+    import re
+
+    head, sep, tail = text.partition(SWIFT_TAIL)
+    if not sep:
+        raise ValueError("WorldArt+Generated.swift: no walkable section")
+    rows, current = {}, None
+    for line in head.split("\n"):
+        m = re.match(r'^        "([^"]+)": WorldSprite\($', line)
+        if m:
+            current = rows.setdefault(m.group(1), [])
+        if current is not None:
+            current.append(line)
+            if line == "        ),":
+                current = None
+    return rows, sep + tail
+
+
+def _merge_swift(table):
+    """A scoped bake: the baked sprites' rows replaced, every other row and the tail kept as they are."""
+    with open(APP_SWIFT) as f:
+        text = f.read()
+    rows, tail = _read_swift(text)
+    for name, e in table.items():
+        rows[name] = _sprite_rows(name, e)
+    out = _swift_text(rows, tail)
+    if out != text:
+        with open(APP_SWIFT, "w") as f:
+            f.write(out)
 
 
 if __name__ == "__main__":
-    sys.exit(app_main() if sys.argv[1:] == ["app"] else main())
+    sys.exit(app_main(sys.argv[2:]) if sys.argv[1:2] == ["app"] else main())

@@ -52,6 +52,18 @@ class ShadowsTests(unittest.TestCase):
             self.assertGreater(out.getpixel((8, 6))[3], 200)
             self.assertLess(out.getpixel((0, 0))[3], 40)
 
+    def test_run_with_only_leaves_every_other_shadow_and_entry_alone(self):
+        catalog = make_catalog(self.root, ["world-mochi", "world-findik"])
+        shadows.run(catalog, self.manifest)
+        findik = (catalog / "world-findik-shadow.imageset" / "world-findik-shadow.png").read_bytes()
+        manifest = self.manifest.read_text()
+        (catalog / "world-mochi-shadow.imageset" / "world-mochi-shadow.png").unlink()
+        (catalog / "world-findik-shadow.imageset" / "world-findik-shadow.png").write_bytes(b"stale")
+        self.assertEqual(shadows.run(catalog, self.manifest, only={"world-mochi"}), 1)
+        self.assertEqual((catalog / "world-findik-shadow.imageset" / "world-findik-shadow.png").read_bytes(), b"stale")
+        self.assertEqual(self.manifest.read_text(), manifest)
+        self.assertNotEqual(findik, b"stale")
+
     def test_run_is_deterministic_and_idempotent(self):
         catalog = make_catalog(self.root, ["world-mochi", "world-findik"])
         self.assertEqual(shadows.run(catalog, self.manifest), 2)
