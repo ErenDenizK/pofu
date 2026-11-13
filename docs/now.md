@@ -28,8 +28,7 @@ first; gates are only his device check, the cut line and Monday.
 
 1. Days 17-21: #437 spec and #438 merged (Pofu's notes come back one more
    a day; the bell plays on d21; lines out to the founder). PR 2, the
-   warm light among the stars (Sonnet, `feat/bell-sky`). Open: night 19's
-   line wraps to two rows.
+   warm light among the stars (Sonnet, `feat/bell-sky`).
 2. IL1 composite (Sonnet, `fix/il1-continuity`): IL2 loses nothing.
 Merged today: #430-#435 ("Ada büyüdü", milestone fixes). #436 (his
 line edits) merges from the side channel. Note: two "Boş ver" a day
