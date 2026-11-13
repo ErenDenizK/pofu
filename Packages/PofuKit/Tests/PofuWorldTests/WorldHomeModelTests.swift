@@ -251,7 +251,7 @@ struct WorldHomeModelTests {
         #expect(!home.pawsPressed)
     }
 
-    @Test func theHugeCheeksLineIsSaidOncePerDayAtTheTopStep() {
+    @Test func theHugeCheeksLineIsRareAndOnlyAtTheTopStep() {
         let home = model()
         let small = SeedPouch(stations: Energy(5))
         home.beginVisit(visit([.collect(small)]))
@@ -262,7 +262,13 @@ struct WorldHomeModelTests {
         clock.advance(3600)
         home.beginVisit(visit([.collect(pouch)]))
         #expect(!home.saysCheeksHuge)
-        // The next day it may come back.
+        // The next two days it stays quiet; the third it may come back.
+        clock.advance(86_400)
+        home.beginVisit(visit([.collect(pouch)]))
+        #expect(!home.saysCheeksHuge)
+        clock.advance(86_400)
+        home.beginVisit(visit([.collect(pouch)]))
+        #expect(!home.saysCheeksHuge)
         clock.advance(86_400)
         home.beginVisit(visit([.collect(pouch)]))
         #expect(home.saysCheeksHuge)

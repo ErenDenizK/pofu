@@ -26,6 +26,10 @@ struct SkySetLayers: View {
     /// Whether the island layer (and with it the cloud bank cut with the island) is drawn. A painted sky
     /// behind another island (`PaintedSky`) leaves it out: the sea, the clouds and the isles remain.
     var drawsIsland = true
+    /// The look the distant isles take when they are not yet reachable (`FarSkyLayout.MarkLook.stuck`):
+    /// the painting of every later level has them grey and hazy, so level one's sprite isles do too and
+    /// growth never reads as a loss. `nil` keeps their painted colour (the Map and the wonder stops).
+    var farIsleLook: FarSkyLayout.MarkLook?
 
     @Environment(\.displayScale) private var displayScale
     @Environment(\.worldStillFrame) private var still
@@ -111,8 +115,12 @@ struct SkySetLayers: View {
         case .sky, .island:
             piece(layer.asset, r, dx: 0, dy: dy, in: &context)
         case .sprite:
-            piece(layer.asset, r, dx: 0, dy: dy, in: &context)
-            drawDetails(of: layer, dx: 0, dy: dy, in: &context, time: time, scale: scale)
+            if let look = farIsleLook, layer.asset.contains("-isle-") {
+                drawStuck(layer, look: look, r: r, dy: dy, in: &context, time: time, scale: scale)
+            } else {
+                piece(layer.asset, r, dx: 0, dy: dy, in: &context)
+                drawDetails(of: layer, dx: 0, dy: dy, in: &context, time: time, scale: scale)
+            }
         case .stars:
             let light = SkyMotion.twinkle(layer.twinkle, time: time)
             if light > 0.004 {
@@ -138,6 +146,28 @@ struct SkySetLayers: View {
             )
             piece(layer.asset, r, dx: left - r.minX, dy: dy, in: &context)
             drawDetails(of: layer, dx: left - r.minX, dy: dy, in: &context, time: time, scale: scale)
+        }
+    }
+
+    /// A distant isle in the stuck look: desaturated, lifted, softly blurred, with the sky's haze mixed
+    /// over its silhouette (the same numbers `FarSky` uses), details included.
+    private func drawStuck(_ layer: SkySet.Layer, look: FarSkyLayout.MarkLook, r: CGRect, dy: Double, in context: inout GraphicsContext, time: Double, scale: Double) {
+        let haze = look.extraHaze
+        let tone: (Double, Double, Double) = layer.asset.contains("-night-")
+            ? (0.30, 0.32, 0.60) : layer.asset.contains("-golden-") ? (0.93, 0.82, 0.78) : (0.74, 0.84, 0.98)
+        context.drawLayer { outer in
+            outer.opacity = 1 - 0.45 * haze
+            outer.drawLayer { inner in
+                inner.drawLayer { art in
+                    art.addFilter(.saturation(look.saturation))
+                    if look.lift > 0 { art.addFilter(.brightness(look.lift)) }
+                    if look.blur > 0 { art.addFilter(.blur(radius: look.blur)) }
+                    piece(layer.asset, r, dx: 0, dy: dy, in: &art)
+                    drawDetails(of: layer, dx: 0, dy: dy, in: &art, time: time, scale: scale)
+                }
+                inner.blendMode = .sourceAtop
+                inner.fill(Path(r.insetBy(dx: -r.width, dy: -r.height).offsetBy(dx: offset.width, dy: offset.height + dy)), with: .color(Color(red: tone.0, green: tone.1, blue: tone.2).opacity(haze)))
+            }
         }
     }
 
