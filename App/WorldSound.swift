@@ -83,7 +83,17 @@ extension AppModel {
     /// The far bell's road for the ears: a step's button hums and the far
     /// notes answer; the bell's card plays its song when it comes up.
     func farBellVisitChanged(from old: VisitProgress, to new: VisitProgress) {
-        switch FarBellCues.cue(from: old, to: new) {
+        perform(farBellCueGuard.cue(from: old, to: new))
+    }
+
+    /// Home appeared: a cold launch straight onto the bell card begins the
+    /// visit before the change observer exists, so the song is cued here.
+    func farBellHomeAppeared() {
+        perform(farBellCueGuard.cueOnAppear(worldHome.visit))
+    }
+
+    private func perform(_ cue: FarBellCue?) {
+        switch cue {
         case .prelude(let step):
             WorldSound.notePreludeHeard(step)
             FarBellStage.shared.play(FarBellTune.prelude(step: step))

@@ -24,6 +24,33 @@ public enum FarBellCues {
     }
 }
 
+/// Remembers which visit state the bell's song was cued for, so the cue
+/// may fire from two places (the visit's change and the Home view's
+/// appearing, for a cold launch straight onto the bell card) and never
+/// plays twice for the same card.
+public struct FarBellCueGuard: Sendable {
+    private var cued: VisitProgress?
+
+    public init() {}
+
+    /// The visit changed: the usual cue, recorded when it is the bell.
+    public mutating func cue(from old: VisitProgress, to new: VisitProgress) -> FarBellCue? {
+        let cue = FarBellCues.cue(from: old, to: new)
+        if cue == .bell {
+            cued = new
+        }
+        return cue
+    }
+
+    /// Home appeared on `visit`: the bell, if its card is up and its song
+    /// has not been cued for this very state.
+    public mutating func cueOnAppear(_ visit: VisitProgress) -> FarBellCue? {
+        guard visit.current == .bell, cued != visit else { return nil }
+        cued = visit
+        return .bell
+    }
+}
+
 /// The tune that plays now (or is held for a frame), so the sky can draw
 /// the notes the ears hear (`docs/design/days-17-21-v1.md`, PR 2).
 @MainActor
