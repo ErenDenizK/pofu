@@ -26,9 +26,11 @@ first; gates are only his device check, the cut line and Monday.
 
 ## In flight
 
-1. Days 17-21 spec (Fable, `spec/days-17-21`), then its builds.
-2. IL1 to IL2 continuity: Fable judges whether an existing IL1 take reads
-   as IL2's earlier self, or a script edit, or a note.
+1. Days 17-21 (spec #437, Fable): Pofu's four notes come back one more a
+   day, the bell plays on d21. PR 1 building (Sonnet, `feat/bell-road`);
+   lines out to the founder via the side channel. PR 2 (sky light) later.
+2. IL1 composite (Sonnet, `fix/il1-continuity`): IL1 from registered
+   takes so IL2 loses nothing (Fable's mock).
 Merged today: #430-#435 (Koke 1:1, polish, route, "Ada büyüdü", crumbs,
 milestone fixes: cheek line rarer, sheet text, bell bubble, grow 0.8 s).
 #436 (founder's line edits) merges from the side channel. Note: two
