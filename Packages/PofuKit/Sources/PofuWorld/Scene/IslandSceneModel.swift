@@ -1478,6 +1478,10 @@ extension IslandSceneModel {
         engine.isHeld = true
         engine.lastDate = nil
         revision &+= 1
+        // Frames keep coming while a painting cross-fades at its own pace.
+        if levelStage.presented == to {
+            holdMoment(seconds: IslandGrowMoment.crossFadeLength + 0.3)
+        }
     }
 }
 

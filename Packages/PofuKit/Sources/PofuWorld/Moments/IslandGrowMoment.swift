@@ -60,7 +60,7 @@ public struct IslandGrowMoment: Hashable, Sendable {
     /// The bloom rises to its peak, holds the peak's instant, then falls.
     public static let bloomRise = 0.6
     public static let bloomFall = 1.5
-    public static let bloomPeak = 0.5
+    public static let bloomPeak = 0.38
 
     /// When `cue` plays, or `nil` when it does not (Reduce Motion has no camera move).
     public func time(of cue: Cue) -> Double? {
