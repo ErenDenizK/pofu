@@ -86,11 +86,13 @@ def cloud_pieces(arr: np.ndarray, paint_w: int, top_clear: int, min_area: int = 
 
 def top_clouds(arr: np.ndarray, pos: tuple[int, int], top_y: int, paint_w: int, top_clear: int, seed: int = 7,
                cover: float = 0.20, avoid: list[tuple[float, float, float]] | None = None,
-               scale: tuple[float, float] = (1.0, 1.35), extra: list[np.ndarray] | None = None) -> tuple[np.ndarray, tuple[int, int]]:
+               scale: tuple[float, float] = (1.0, 1.35), extra: list[np.ndarray] | None = None,
+               clear_top: int = 0) -> tuple[np.ndarray, tuple[int, int]]:
     """The far tile `arr` (straight RGBA at `pos`) run on up to master row `top_y`: whole clouds of its own
     (`cloud_pieces`), each scaled by a factor in `scale` and flipped at random, scattered (periodic in x) without
     touching each other or the layer's own clouds (`extra`: more whole clouds, the mid layer's) until their alpha covers `cover` of the new rows; `avoid` lists
-    discs (x, y, r) in master px a cloud must not cover at rest (the moon). Returns the taller tile and its pos."""
+    discs (x, y, r) in master px a cloud must not cover at rest (the moon). The first `clear_top` new rows stay
+    open sky (as Home's sky is above its isles: clouds thin out towards the zenith). Returns the taller tile and its pos."""
     h, w = arr.shape[:2]
     x0, y0 = pos
     add = y0 - top_y
@@ -122,7 +124,7 @@ def top_clouds(arr: np.ndarray, pos: tuple[int, int], top_y: int, paint_w: int, 
             q = q[:, ::-1]
         ph, pw = q.shape[:2]
         # the piece's bottom stays above the old layer's faded top rows plus a little, its top below top_y
-        y = int(rng.integers(0, max(add + top_clear // 2 - ph, 1)))
+        y = int(rng.integers(clear_top, max(add + top_clear // 2 - ph, clear_top + 1)))
         x = int(rng.integers(0, w))
         cols = (x + np.arange(pw)) % w
         rows = slice(y, y + ph)

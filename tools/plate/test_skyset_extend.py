@@ -63,6 +63,10 @@ class TopClouds(unittest.TestCase):
         self.assertEqual(out.shape[0], 300 + 400)
         self.assertGreater(out[:400, :, 3].sum(), 0.04 * 400 * 600)
         np.testing.assert_allclose(out[400:, :, 3], arr[..., 3], atol=1e-5)
+        # `clear_top` keeps the first new rows open sky, as Home's is above its isles
+        open_, _ = se.top_clouds(arr, (0, 20), -380, 600, top_clear=40, cover=0.03, scale=(1.0, 1.0), clear_top=150)
+        self.assertEqual(float(open_[:150, :, 3].max()), 0.0)
+        self.assertGreater(open_[150:400, :, 3].sum(), 0.02 * 400 * 600)
 
     def test_extend_rows_never_repeats_a_row_unflipped(self):
         f = np.zeros((10, 16, 1), np.float32)

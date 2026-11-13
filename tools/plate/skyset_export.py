@@ -248,22 +248,35 @@ def continue_sea(arr: np.ndarray, seed: int = 0, light: str = "", pad: int | Non
     return res
 
 
-def extend_sky_up(sky: np.ndarray, rows: int, fit_rows: int = 40, tau_rows: float = 6.0, flat_rows: float = 8.0) -> np.ndarray:
+def extend_sky_up(sky: np.ndarray, rows: int, fit_rows: int = 40, tau_rows: float = 6.0, flat_rows: float = 8.0,
+                  target: np.ndarray | None = None, ease_rows: float = 0.0) -> np.ndarray:
     """The gradient (H, W, 3 at 1/8 size) continued `rows` rows upward by a smooth fitted field, so the picture
     runs on past the master's top edge with no band and no seam: the first row is the gradient's own (smoothed
     along x), and each row above it moves on by the vertical slope fitted to the top `fit_rows` rows, the slope
     easing off exponentially (`tau_rows`) so the zenith deepens and settles instead of running away, and the
     colour's variation along x (a tint at one corner) dying away over `flat_rows`. The join is continuous in
-    value and in slope; only the drifting cloud layers cross it."""
+    value and in slope; only the drifting cloud layers cross it.
+
+    With `target` (an RGB: the zenith of another painted sky of the same light, Home's), the row's colour eases
+    from the gradient's own top row to `target` over `ease_rows` (smoothstep, so the join keeps its value and
+    its slope) instead of following the fitted slope: the sky above the master is that sky's colour."""
     h, w, _ = sky.shape
     base = cv2.GaussianBlur(sky[:1], (0, 0), sigmaX=6, sigmaY=0.01)[0]                 # the first row, smoothed along x only
+    up = np.arange(1, rows + 1, dtype=np.float64)[:, None]
+    mean = base.mean(0)
+    keep = np.exp(-up / flat_rows)[:, :, None]                            # how much of the row's own variation is left
+    if target is not None:
+        e = np.clip(up / max(ease_rows, 1.0), 0, 1)
+        e = e * e * (3 - 2 * e)                                           # (rows, 1)
+        # each column eases from its own top colour; what is left of the x-variation is `keep`
+        col = base[None, :, :] * keep + mean[None, None, :] * (1 - keep)  # (rows, W, 3)
+        ext = col + (np.asarray(target, np.float64)[None, None, :] - col) * e[:, :, None]
+        ext = np.clip(ext, 0, 1)[::-1]
+        return np.concatenate([ext.astype(np.float32), sky], 0)
     prof = sky[:fit_rows].mean(1)                                         # (fit_rows, 3)
     t = np.arange(fit_rows, dtype=np.float64)
     slope = np.array([np.polyfit(t, prof[:, c], 1)[0] for c in range(3)])  # per row, downward
-    up = np.arange(1, rows + 1, dtype=np.float64)[:, None]
     shift = -slope[None, :] * tau_rows * (1 - np.exp(-up / tau_rows))     # (rows, 3): moving up darkens/deepens
-    mean = base.mean(0)
-    keep = np.exp(-up / flat_rows)[:, :, None]                            # how much of the row's own variation is left
     rowbase = mean[None, None, :] + (base[None, :, :] - mean[None, None, :]) * keep
     ext = np.clip(rowbase + shift[:, None, :], 0, 1)[::-1]                # farthest first
     return np.concatenate([ext.astype(np.float32), sky], 0)
@@ -434,7 +447,16 @@ def export_light(island: str, light: str, hand: dict) -> dict:
         if lay["kind"] == "gradient":
             if cfg:
                 top, bottom, side = cfg["skyPadTop"] // k, cfg["skyPadBottom"] // k, cfg["skyPadSide"] // k
-                up = extend_sky_up(sky_arr, top)
+                above = cfg.get("skyAbove")
+                if above and light in above.get("lights", []):
+                    # the sky above the master is the other island's own painted sky of this light (Home's zenith),
+                    # eased in from the master's top row
+                    other = np.asarray(heic.open_image(PLATES / above["island"] / "sky" / light / "sky.heic").convert("RGB"),
+                                       np.float32) / 255
+                    up = extend_sky_up(sky_arr, top, flat_rows=above.get("flatRows", 8.0), target=other[0].mean(0),
+                                       ease_rows=above.get("easeRows", top))
+                else:
+                    up = extend_sky_up(sky_arr, top)
                 if stars_on and cfg.get("topClouds"):
                     # the painted stars run on up into the sky above the master (flipped, then shifted)
                     up[:top] = np.clip(up[:top] + skyset_extend.extend_rows(find_stars(sky0, hand, light).sum(0), top), 0, 1)
@@ -503,7 +525,8 @@ def export_light(island: str, light: str, hand: dict) -> dict:
                 forbid[:hh, :w] = cv2.dilate((hidden[my: my + hh] > 0.05).astype(np.uint8), np.ones((41, 41), np.uint8)) > 0
                 extra = skyset_extend.cloud_pieces(mid_raw, w, 0, forbid=forbid, max_w=tc.get("maxW", 760))
             arr, (x, y) = skyset_extend.top_clouds(arr, (x, y), tc["top"], w, hand.get("farTopFade", 60), tc.get("seed", 7),
-                                                   tc.get("cover", 0.08), avoid, extra=extra)
+                                                   tc.get("cover", 0.08), avoid, scale=tuple(tc.get("scale", (1.0, 1.35))),
+                                                   extra=extra, clear_top=tc.get("clearTop", 0))
             dh = arr.shape[0]
         small = _premult_resize(arr, (round(arr.shape[1] * scale), round(arr.shape[0] * scale)))
         if hand.get("alphaFloor"):                     # the resample and the codec leave faint crumbs again: clean the stored layer
