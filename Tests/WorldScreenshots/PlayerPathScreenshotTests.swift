@@ -273,8 +273,8 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
             let view = homeView(day.visit, hour: 9, island: island, settled: true)
             var flip: PathFlip?
             if ms == 1500 {
-                // The fade is 0.8 s and the first paint lags the flip by about 0.6 s: 1000 ms lands mid-fade.
-                flip = PathFlip(waiting: 1000) { island.holdIslandGrow(from: from, to: to, at: seconds) }
+                // The fade is 0.8 s from the flip: 400 ms lands mid-fade (1000 ms showed it finished).
+                flip = PathFlip(waiting: 400) { island.holdIslandGrow(from: from, to: to, at: seconds) }
             }
             try await capture(AnyView(view), name: "path-d04-grow-\(name)", scene: scene, folder: folder, settle: 2100, flip: flip) {
                 XCTAssertNotNil(island.homePlate, "path-d04-grow-\(name): the island is its painting")
