@@ -680,7 +680,7 @@ private struct SceneFrame<Bubble: View>: View {
                 // light, its island layer left out, ungraded, in place of the code sky; the code cloud
                 // sea and fog below give way to it as it fades in.
                 ForEach(skies, id: \.island) { entry in
-                    PaintedSkyLayer(plate: entry.plate, pose: pose, size: size, offset: offset, fade: entry.fade)
+                    PaintedSkyLayer(plate: entry.plate, pose: pose, size: size, offset: offset, fade: entry.fade, cleanSea: entry.island == .koke)
                 }
 
                 if !painted, codeFade < 0.999 {
@@ -985,7 +985,9 @@ private struct WorldCanvas: View {
             }
             if layer == .environment {
                 otherIsles
+                isleShadow(under: KokeLayout.islandBox, arrived: world.koke.isArrived, here: model.island == .koke)
                 kokeIsle
+                isleShadow(under: CaglayanLayout.islandBox, arrived: world.caglayan.isArrived, here: model.island == .caglayan)
                 caglayanIsle
             }
             if layer == .environment, plate == nil {
@@ -1470,6 +1472,33 @@ private struct WorldCanvas: View {
                     }
                 }
             }
+        }
+    }
+
+    /// A wonder island's soft shadow on the painted Map's cloud sea (`PaintedSky.isleShadow`), under the
+    /// island and with its fade; not at the island's own stop, which has its own painted sky.
+    @ViewBuilder
+    private func isleShadow(under box: WorldBox, arrived: Bool, here: Bool) -> some View {
+        if paintedSky, arrived, !here, z < 1.7 || model.island != .home {
+            let shadow = PaintedSky.isleShadow(under: box)
+            let rgb = PaintedSky.isleShadowRGB
+            let colour = Color(red: rgb.r, green: rgb.g, blue: rgb.b)
+            let point = canvasPoint(shadow.centre, depth: 0)
+            Ellipse()
+                .fill(
+                    RadialGradient(
+                        colors: [colour.opacity(shadow.opacity), colour.opacity(shadow.opacity * 0.45), colour.opacity(0)],
+                        center: .center,
+                        startRadius: 0,
+                        endRadius: shadow.width / 2
+                    )
+                )
+                .frame(width: shadow.width, height: shadow.width)
+                .scaleEffect(x: 1, y: shadow.height / shadow.width)
+                .position(x: point.x, y: point.y)
+                .opacity(max(0, 1 - max(z, 0) / 0.8) * (model.focus == nil ? 1 : 0))
+                .allowsHitTesting(false)
+                .accessibilityHidden(true)
         }
     }
 

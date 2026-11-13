@@ -145,6 +145,61 @@ struct MapSkyTests {
         }
     }
 
+    /// The painted Map frames what it draws: the painted Home, Koke and Çağlayan fill the band between the
+    /// chrome (the harbor isle, which the painted Map does not draw, is not framed), each island whole on
+    /// screen and drawn larger than the sprite world's Map draws them.
+    @Test func thePaintedMapFramesItsThreeIslands() throws {
+        let home = try #require(HomePlate.shipped)
+        let stop = home.mapStop
+        #expect(stop.scale > CameraRail.referenceStops[0].scale * 1.4)
+        let pose = CameraPose(scale: stop.scale, look: stop.look, anchorY: stop.anchorY)
+        let w = CameraRail.referenceWidth, h = CameraRail.referenceHeight
+        var lowest = 0.0, highest = h
+        for box in [home.islandBox, KokeLayout.islandBox, CaglayanLayout.islandBox] {
+            let a = pose.project(WorldPoint(x: box.minX, y: box.minY), width: w)
+            let b = pose.project(WorldPoint(x: box.maxX, y: box.maxY), width: w)
+            #expect(a.x >= 0 && b.x <= w, "\(box) across")
+            #expect(a.y >= IslandFraming.topBand && b.y <= h - IslandFraming.bottomBand, "\(box) between the bands")
+            lowest = max(lowest, b.y)
+            highest = min(highest, a.y)
+        }
+        // The islands use the band's height, not its top half.
+        #expect(lowest - highest > 0.8 * IslandFraming.bandHeight(height: h))
+        #expect(home.stops.first == stop)
+    }
+
+    /// Koke's and Çağlayan's soft shadow on the Map's cloud sea: under the island's middle, a little above
+    /// its foot (half behind the belly), not wider than the island, faint.
+    @Test func theWonderIslesCastASoftShadowOnTheSea() {
+        for box in [KokeLayout.islandBox, CaglayanLayout.islandBox] {
+            let s = PaintedSky.isleShadow(under: box)
+            #expect(abs(s.centre.x - box.midX) < 1e-9)
+            #expect(s.centre.y > box.midY && s.centre.y < box.maxY)
+            #expect(s.centre.y + s.height / 2 > box.maxY)
+            #expect(s.width <= box.width && s.height < s.width / 2)
+            #expect(s.opacity > 0 && s.opacity < 0.5)
+        }
+    }
+
+    /// Koke's stop draws Home's sky set without what Home's island hid there, as the Map does (the mid
+    /// clouds above their residue, the cloud sea as its clean band under its receding stack); its distant
+    /// isles and whale stay as painted.
+    @Test func aWonderStopsSkyIsTheSetWithoutHomesHiddenFill() throws {
+        for (hour, light) in [(12.0, "day"), (18.0, "golden"), (23.0, "night")] {
+            let source = try #require(PaintedSky.sky(for: .koke, world: Self.world, look: Self.look(hour))?.skySet)
+            let set = PaintedSky.stopSet(source)
+            let map = PaintedSky.mapSet(source)
+            #expect(!set.layers.contains { $0.role == .island }, "\(light)")
+            for layer in set.layers where layer.role == .whale || layer.asset.contains("-isle-") {
+                #expect(source.layers.contains(layer), "\(light) \(layer.id) as painted")
+            }
+            #expect(set.layers.first(where: SkySet.isMidClouds)?.window != nil, "\(light)")
+            let sea = set.layers.filter { $0.asset.contains("-sea-") }
+            #expect(sea == map.layers.filter { $0.asset.contains("-sea-") }, "\(light)")
+            #expect(sea.count == PaintedSky.mapSeaStack.count + 1)
+        }
+    }
+
     @Test func aWindowFadesInAndOut() {
         let w = SkySet.Window(top: 0.2, bottom: 0.8, topFade: 0.1, bottomFade: 0.2)
         #expect(w.opacity(at: 0.1) == 0)
