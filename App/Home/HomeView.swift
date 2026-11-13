@@ -197,6 +197,9 @@ struct HomeView: View {
             }
             model.updateWorldSound(active: phase == .active)
         }
+        .onChange(of: model.worldHome.visit) { old, new in
+            model.farBellVisitChanged(from: old, to: new)
+        }
     }
 
     /// The Today card and the actions belong to the Home framing.

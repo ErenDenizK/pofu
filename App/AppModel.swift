@@ -351,6 +351,7 @@ final class AppModel {
             isGuardBroken: needsSetupOrRepair,
             lastSettled: lastVisitSettled,
             news: island.levelMemory.news(worldLevel: snapshot.islandLevel),
+            preludeHeard: WorldSound.preludeHeard,
             calendar: economy.calendar
         )
         worldHome.beginVisit(VisitQueue.plan(inputs))
@@ -1257,6 +1258,7 @@ final class AppModel {
         profile = fresh.profile
         game = GameState()
         savedFlowRound = nil
+        WorldSound.forgetPrelude()
         gameClock.start(&game, at: now, lastSignal: nil)
         screenTimeLedger = ScreenTimeLedger()
         saveScreenTimeLedger()

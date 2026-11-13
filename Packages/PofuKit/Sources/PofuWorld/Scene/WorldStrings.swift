@@ -257,6 +257,8 @@ enum WorldStrings {
             String(localized: "Look: the island grew overnight!", bundle: .module)
         case .news(.islandArrived):
             String(localized: "Look: a new island drifted close overnight!", bundle: .module)
+        case .news(.farNotes(let step)):
+            preludeLine(step)
         case .build(let station, let level):
             String(localized: "\(stationName(station)) → level \(level) · Ready", bundle: .module)
         case .weeklyRecap:
@@ -275,10 +277,41 @@ enum WorldStrings {
         switch beat {
         case .care: String(localized: "Okay", bundle: .module)
         case .collect: String(localized: "Collect", bundle: .module)
+        case .news(.farNotes(let step)):
+            step == 1
+                ? String(localized: "prelude.action.hum", defaultValue: "Hum it", bundle: .module)
+                : String(localized: "prelude.action.listen", defaultValue: "Listen", bundle: .module)
         case .news: String(localized: "See the island", bundle: .module)
         case .build: String(localized: "Build", bundle: .module)
         case .weeklyRecap: String(localized: "Take a look", bundle: .module)
         case .bell: String(localized: "bell.action", defaultValue: "I heard it too", bundle: .module)
+        }
+    }
+
+    /// The far bell's road, day by day (docs/design/days-17-21-v1.md §5).
+    private static func preludeLine(_ step: Int) -> String {
+        switch step {
+        case 2:
+            String(localized: "prelude.line.2", defaultValue: "A note came back from the fog. (Not an echo. Echoes are prompt.)", bundle: .module)
+        case 3:
+            String(localized: "prelude.line.3", defaultValue: "Two notes today. Mochi's tea shivered. Nobody touched the table.", bundle: .module)
+        case 4:
+            String(localized: "prelude.line.4", defaultValue: "It played all four. One wrong. I yelled the right one. Nothing.", bundle: .module)
+        default:
+            String(localized: "prelude.line.1", defaultValue: "Koke quit snoring. My humming made it off the island for once.", bundle: .module)
+        }
+    }
+
+    private static func listeningLine(_ step: Int) -> String {
+        switch step {
+        case 2:
+            String(localized: "night.listening.2", defaultValue: "One ear toward the fog. You sleep, I'll listen.", bundle: .module)
+        case 3:
+            String(localized: "night.listening.3", defaultValue: "Mochi's tea is on the windowsill. It'll tell us.", bundle: .module)
+        case 4:
+            String(localized: "night.listening.4", defaultValue: "That wrong note. Maybe the wrong one's mine.", bundle: .module)
+        default:
+            String(localized: "night.listening.1", defaultValue: "Hummed my four notes. No fifth. Again.", bundle: .module)
         }
     }
 
@@ -296,6 +329,9 @@ enum WorldStrings {
         switch line {
         case .night(variant: 0): String(localized: "The island's asleep. Seeds pile up by morning.", bundle: .module)
         case .night: String(localized: "The neighbours turned in. See you at breakfast.", bundle: .module)
+        case .listening(let step): listeningLine(step)
+        case .bellNight:
+            String(localized: "night.bell", defaultValue: "Five notes. I know the fifth by heart. Good night.", bundle: .module)
         case .giftArrived: String(localized: "A gift reached the island today. Spot it?", bundle: .module)
         case .letGo(let count): String(localized: "We let \(count) go today. Mostly your doing.", bundle: .module)
         case .guest: String(localized: "We've got a guest. Say hi?", bundle: .module)

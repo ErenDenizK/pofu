@@ -66,6 +66,10 @@ public enum WonderToday: Hashable, Sendable {
 /// morning brings.
 public enum HomeDailyLine: Hashable, Sendable {
     case night(variant: Int)
+    /// The far bell's road at bedtime: Pofu listens (step 1 to 4).
+    case listening(step: Int)
+    /// The night after the bell was heard.
+    case bellNight
     case giftArrived
     case letGo(count: Int)
     case guest
@@ -85,10 +89,18 @@ public enum HomeDailyLine: Hashable, Sendable {
         skipsToday: Int,
         giftIsNew: Bool,
         guestWaiting: Bool,
-        dayIndex: Int
+        dayIndex: Int,
+        prelude: Int? = nil,
+        bellHeardToday: Bool = false
     ) -> HomeDailyLine {
         let variant = ((dayIndex % variants) + variants) % variants
         if isBedtime || hour >= 22 || hour < 5 {
+            // The evening side only: after midnight the day has rolled and
+            // the next step's card has not been met.
+            if hour >= 12 {
+                if let prelude { return .listening(step: prelude) }
+                if bellHeardToday { return .bellNight }
+            }
             return .night(variant: variant)
         }
         if giftIsNew {
@@ -119,7 +131,9 @@ public enum HomeDailyLine: Hashable, Sendable {
             skipsToday: skipsToday,
             giftIsNew: world.koke.giftIsNew || world.caglayan.giftIsNew,
             guestWaiting: guest,
-            dayIndex: day
+            dayIndex: day,
+            prelude: FarBellPrelude.step(in: world),
+            bellHeardToday: FarBellPrelude.isBellDay(in: world) && world.bell == .heard
         )
     }
 }
