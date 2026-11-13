@@ -73,6 +73,8 @@ import Testing
         let fit = HomePlateCrop.fill(plateWidth: 1000, plateHeight: 1500, in: CGSize(width: 300, height: 140))
         #expect(fit.image.width >= 300 && fit.image.height >= 140)
         #expect(fit.y <= 0 && fit.y + fit.image.height >= 140)
+        // The painting's feathered side edges stay outside the frame.
+        #expect((fit.image.width - 300) / 2 >= fit.image.width * 0.045)
     }
 }
 

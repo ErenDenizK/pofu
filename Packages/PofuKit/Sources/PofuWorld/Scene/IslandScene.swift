@@ -2253,11 +2253,15 @@ private struct ScreenOverlays: View {
     /// object but the bushes (the stations, Pofu's wheel, the door, the
     /// mailbox), on the sprite island the built stations.
     private func stationRects(except own: StationID?) -> [HomeBubbleLayout.Rect] {
-        let boxes: [WorldBox]
+        var boxes: [WorldBox]
         if let plate {
             boxes = plate.objects
                 .filter { !$0.id.hasSuffix("Bush") && ($0.station == nil || $0.station != own) }
                 .map { plate.worldBox(PlateMath.bounds($0.polygon)) }
+            // The rope bridge between the tea stall and the pier is no object of its own.
+            if let stall = plate.stationBox(.teaStall), let pier = plate.stationBox(.pier), stall.maxX < pier.minX {
+                boxes.append(WorldBox(minX: stall.maxX, minY: pier.minY - 20, maxX: pier.minX, maxY: pier.maxY))
+            }
         } else {
             boxes = world.stations.compactMap { status in
                 status.level > 0 && status.id != own ? IslandFraming.stationBox(status.id) : nil
@@ -2294,7 +2298,7 @@ private struct ScreenOverlays: View {
             }
             guard let foot else { return nil }
             let under = screenPoint(WorldPoint(x: foot.x, y: foot.y))
-            return (gift, tip(WorldPoint(x: foot.x, y: foot.y - HomeGifts.tagLift(gift) * scale)), CGPoint(x: under.x, y: under.y + 4))
+            return (gift, tip(WorldPoint(x: foot.x, y: foot.y - HomeGifts.tagLift(gift) * scale)), CGPoint(x: under.x, y: under.y + (gift == .caglayanFountain ? -10 : 4)))
         }
     }
 

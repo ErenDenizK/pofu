@@ -102,6 +102,17 @@ import Testing
         #expect(tag.isBelow)
     }
 
+    @Test func aTagThatOnlyTouchesArtMovesAwayFromIt() {
+        // Art ends exactly where the tag's side would start: the tag slides
+        // off the rim rather than touch it, the tail still on the gift.
+        let rim = HomeBubbleLayout.Rect(minX: 0, minY: 360, maxX: 130, maxY: 440)
+        let tag = HomeBubbleLayout.tag(
+            over: (200, 400), under: (200, 430), width: 140, height: 26, tail: 6,
+            screenWidth: screen, placed: [], stations: [rim]
+        )
+        #expect(tag.body.minX >= rim.maxX + HomeBubbleLayout.artMargin)
+    }
+
     @Test func aTagStaysUnderTheTopBar() {
         let tag = HomeBubbleLayout.tag(
             over: (200, 125), under: (200, 160), width: 140, height: 26, tail: 6,

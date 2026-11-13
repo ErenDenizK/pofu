@@ -41,7 +41,7 @@ struct SettingsView: View {
                 }
 
                 Section {
-                    ForEach(ProtectedApp.allCases) { app in
+                    ForEach(ProtectedApp.offered) { app in
                         GuardedAppRow(model: model, app: app)
                     }
                     NavigationLink {
