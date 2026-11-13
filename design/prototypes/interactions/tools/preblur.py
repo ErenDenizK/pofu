@@ -398,6 +398,17 @@ KOKE_WIDTH = 114.0
 # the image is drawn wider (226 units) to put the island itself 212 units across, as Koke's is. The island
 # is cut with a shared hand-traced matte (tools/assets/caglayan_matte.py), not the colour rule: its lilac cliff
 # and pale underside sit too close to the sky. Damla is 38 units wide, feet on the anchor.
+# Each Koke plate's full-size take (the master is its half-size delivery, locked with `lock-light`).
+KOKE_TAKES = os.path.join(ART, "takes", "koke-repost-2026-11-06")
+
+
+def _koke_take(n):
+    """The 1536 x 1024 take that design/art/masters/koke-island-N was delivered from (its meta.json `take`)."""
+    with open(os.path.join(REPO, ART, "masters", f"koke-island-{n}", "meta.json")) as f:
+        take = json.load(f)["take"]
+    return os.path.join(KOKE_TAKES, f"koke-island-{n}", f"plate__koke-island-{n}--t{take}.webp")
+
+
 CAGLAYAN_PLATES = (0, 1, 2, 3, 4)
 CAGLAYAN_PLATE_UNITS = 768 * 212 / 720
 CAGLAYAN_MATTE = "design/art/masters/caglayan-island-0/caglayan-matte.png"
@@ -445,8 +456,11 @@ APP_SOURCES = {
     # wide with their centre on the island's centre, cut from their own sky by each stage's committed matte
     # (tools/assets/koke_matte.py; the colour rule `matte` let warm sky and petals in). The poses share one
     # scale and one baseline (feet on the anchor); Koke is 114 units wide on the lawn.
+    # The 768 px master drawn 250 units wide is a 2.1x upscale on the phone, so the sprite is baked from the
+    # master's own 1536 px take (`bake_src`, see _bake_source): harmony still measures the master (`src`).
     **{f"koke-island-{n}": {"src": _master(f"design/art/masters/koke-island-{n}"), "ppu": 768 / KOKE_PLATE_UNITS,
-                            "anchor": (384, 256), "matte_file": f"design/art/masters/koke-island-{n}/koke-matte.png"}
+                            "anchor": (384, 256), "matte_file": f"design/art/masters/koke-island-{n}/koke-matte.png",
+                            "bake_src": _koke_take(n)}
        for n in KOKE_PLATES},
     **{f"koke-{pose}": _blob(f"design/art/masters/koke-{pose}", KOKE_WIDTH, "feet", like="design/art/masters/koke-asleep")
        for pose in ("asleep", "one-eye", "stretch")},
@@ -795,6 +809,39 @@ def _job_imagesets(name, alt):
     return sorted(e for e in os.listdir(APP_CATALOG) if pattern.match(e))
 
 
+def _bake_source(spec, src):
+    """The image a source is baked from, and its spec in that image's pixels. A source with `bake_src` (a Koke
+    plate) is baked from the full-size take its master was delivered from at half size: the take gets the
+    master's own style lock (`lock-light`, tools/imagegen/style_lock.py, its sizes scale with the canvas), so
+    it is the master at the take's size; ppu, anchor and matte scale with it. The take file is never written."""
+    if not spec.get("bake_src"):
+        return spec, src
+    sys.path.insert(0, os.path.join(REPO, "tools", "imagegen"))
+    import style_lock
+
+    take = np.asarray(Image.open(os.path.join(REPO, spec["bake_src"])).convert("RGBA"), dtype=np.float64) / 255.0
+    locked = style_lock.apply_lock(take, style_lock.load_presets()["lock-light"])
+    hi = Image.fromarray(np.uint8(np.clip(locked * 255 + 0.5, 0, 255)), "RGBA")
+    k = hi.width / src.width
+    if abs(hi.height / src.height - k) > 1e-6:
+        raise ValueError(f"{spec['bake_src']}: not the master's aspect")
+    # The take must be this master's source: locked and resampled to the master's size, it matches it.
+    back = np.asarray(hi.convert("RGB").resize(src.size, Image.LANCZOS), dtype=np.float32)
+    drift = float(np.abs(back - np.asarray(src.convert("RGB"), dtype=np.float32)).mean())
+    if drift > 2.5:
+        raise ValueError(f"{spec['bake_src']}: differs from {spec['src']} by {drift:.2f} levels; not its take")
+    return {**spec, "ppu": spec["ppu"] * k, "anchor": (spec["anchor"][0] * k, spec["anchor"][1] * k)}, hi
+
+
+def _upscale_matte(matte, size):
+    """A feathered matte drawn at the master's size, for its take's size: resampled smoothly and its ramp
+    tightened (smoothstep over 0.2 to 0.8), so the edge follows the matte's contour without the master's
+    pixel steps and is as crisp at the larger size as the master's edge was at its own."""
+    a = np.asarray(matte.resize(size, Image.BICUBIC), dtype=np.float32) / 255.0
+    t = np.clip((a - 0.2) / 0.6, 0.0, 1.0)
+    return Image.fromarray(np.uint8(t * t * (3 - 2 * t) * 255 + 0.5), "L")
+
+
 def _harmony_current(harmony, manifest, names):
     """The names whose master changed since harmony.py measure (their correction would be stale)."""
     stale = []
@@ -873,10 +920,14 @@ def app_main(argv=()):
             print("missing", path, file=sys.stderr)
             return 1
         src = Image.open(path).convert("RGBA")
+        spec, src = _bake_source(spec, src)
         if spec.get("matte"):
             src = _island_cutout(src)
         elif spec.get("matte_file"):
-            src.putalpha(Image.open(os.path.join(REPO, spec["matte_file"])).convert("L").filter(ImageFilter.GaussianBlur(1.0)))
+            matte = Image.open(os.path.join(REPO, spec["matte_file"])).convert("L").filter(ImageFilter.GaussianBlur(1.0))
+            if matte.size != src.size:
+                matte = _upscale_matte(matte, src.size)
+            src.putalpha(matte)
         harmony_key = spec.get("harmony_as", name)
         if alt in ("", "--round2") and corrected(harmony_key):
             src = harmony.correct_image(harmony_key, src, manifest, harmony_cfg)
