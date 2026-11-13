@@ -26,10 +26,9 @@ first; gates are only his device check, the cut line and Monday.
 
 ## In flight
 
-1. Days 17-21: #437 spec and #438 merged (Pofu's notes come back one more
-   a day; the bell plays on d21; lines out to the founder). PR 2, the
-   warm light among the stars, #440 merged. Now: does the bell's song
-   play on a cold launch (Sonnet, `fix/bell-cold-launch`)?
+1. Days 17-21 merged (#437, #438, #440: the notes come back, the bell
+   plays, a light among the stars). Now: does the bell play on a cold
+   launch (Sonnet, `fix/bell-cold-launch`)?
 2. #439 merged (IL1 composite). pofu-art #30: return-queue manifests merged.
 Merged today: #430-#435 ("Ada büyüdü", milestone fixes). #436 (his
 line edits) merges from the side channel. Note: two "Boş ver" a day
