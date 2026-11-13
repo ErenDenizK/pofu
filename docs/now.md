@@ -28,13 +28,14 @@ first; gates are only his device check, the cut line and Monday.
 
 1. Days 17-21: #437 spec and #438 merged (Pofu's notes come back one more
    a day; the bell plays on d21; lines out to the founder). PR 2, the
-   warm light among the stars (Sonnet, `feat/bell-sky`).
+   warm light among the stars, #440 merged. Now: does the bell's song
+   play on a cold launch (Sonnet, `fix/bell-cold-launch`)?
 2. #439 merged (IL1 composite). pofu-art #30: return-queue manifests merged.
 Merged today: #430-#435 ("Ada büyüdü", milestone fixes). #436 (his
 line edits) merges from the side channel. Note: two "Boş ver" a day
 reach IL8 on d21.
 Known and kept: the flow minigame's vector board (no art in hand).
-Merged: #403-#439 but #414, #436 (only Damla and Gezgin visit; Sumi waits
+Merged: #403-#440 but #414, #436 (only Damla and Gezgin visit; Sumi waits
 for batch 83); pofu-art #13-#14, #18, #22-#27, #29, #30.
 
 ## Next steps, in order
