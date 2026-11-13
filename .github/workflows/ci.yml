@@ -365,9 +365,11 @@ jobs:
             Packages/PofuKit/.build
             ~/Library/Developer/Xcode/DerivedData
           key: xcode-path-${{ runner.os }}-${{ hashFiles('Packages/PofuKit/Package.swift', 'project.yml') }}-${{ github.sha }}
+          # Only the render job's own caches: the test job's DerivedData
+          # (xcode-*) once restored a stale PofuCore module, and the
+          # screenshot target failed with "cannot find 'PlayerPath'".
           restore-keys: |
             xcode-path-${{ runner.os }}-${{ hashFiles('Packages/PofuKit/Package.swift', 'project.yml') }}-
-            xcode-${{ runner.os }}-${{ hashFiles('Packages/PofuKit/Package.swift', 'project.yml') }}-
 
       - name: Install XcodeGen
         run: brew install xcodegen
