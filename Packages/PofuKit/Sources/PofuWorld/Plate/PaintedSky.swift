@@ -173,6 +173,8 @@ public enum PaintedSky {
     /// The master row the isles' and the whale's lowest foot is raised to on the Map (the screen's top
     /// sixth): they keep their places among themselves and clear Home's island box, at every level.
     static let mapIsleFloor = 300.0
+    /// That floor as a share of the Map's screen height (`mapPose` shows rows `mapTop` to `mapFoot`).
+    static var mapIsleFloorShare: Double { (mapIsleFloor - mapTop) / (mapFoot - mapTop) }
     /// The mid clouds' rows kept (master px, fading over `mapFade`): below them the tile carries the cut
     /// residue of Home's island, hidden at Home and drifting into view on the Map.
     static let mapMidBottom = 1100.0
@@ -207,6 +209,20 @@ public enum PaintedSky {
     /// rows from its clean band down, under a receding stack of that band (`mapSeaStack`) up to a soft
     /// horizon just under Home. Pure.
     public static func mapSet(_ set: SkySet) -> SkySet {
+        cleanSet(set, isleScale: mapIsleScale)
+    }
+
+    /// The sky set at a wonder stop (Koke's): Home's island is not drawn there, so what it hid at Home
+    /// (the split's fill behind it in the mid clouds and the cloud sea, a hazy veil ending in a straight
+    /// edge under Koke's island) is cleared as on the Map: the mid clouds above their residue and the
+    /// cloud sea as its clean band under its receding stack, whose horizon lies behind the stop's
+    /// island. The distant isles and the whale keep their painted size and place. Pure.
+    public static func stopSet(_ set: SkySet) -> SkySet {
+        cleanSet(set, isleScale: nil)
+    }
+
+    /// `mapSet` and `stopSet`: the isles at `isleScale` and raised to `mapIsleFloor`, or (nil) as painted.
+    private static func cleanSet(_ set: SkySet, isleScale: Double?) -> SkySet {
         var out = set
         out.layers = []
         var isles: [Int] = []
@@ -215,7 +231,11 @@ public enum PaintedSky {
             case .island:
                 continue
             case .sprite where layer.asset.contains("-isle-"), .whale:
-                out.layers.append(scaled(layer, by: mapIsleScale))
+                guard let isleScale else {
+                    out.layers.append(layer)
+                    continue
+                }
+                out.layers.append(scaled(layer, by: isleScale))
                 isles.append(out.layers.count - 1)
             case .tile where SkySet.isMidClouds(layer):
                 var mid = layer
@@ -319,6 +339,22 @@ public enum PaintedSky {
         return rows
     }
 
+    /// A wonder island's soft shadow on the Map's cloud sea (Koke and Çağlayan float over it as cut-outs;
+    /// Home's painting grounds its island with the darker cloud under its belly): an ellipse in world
+    /// units, centred a little above the box's foot so its top half sits behind the belly and its lower
+    /// half lies on the cloud below the roots, fading out radially from `opacity`.
+    public static func isleShadow(under box: WorldBox) -> (centre: WorldPoint, width: Double, height: Double, opacity: Double) {
+        let width = box.width * isleShadowWidth
+        return (WorldPoint(x: box.midX, y: box.maxY - box.height * 0.12), width, width * isleShadowAspect, isleShadowOpacity)
+    }
+
+    /// The shadow's width over the island box's, its height over its width, its strongest opacity, and
+    /// its colour (the cool shade of the sea's own hollows).
+    public static let isleShadowWidth = 0.96
+    public static let isleShadowAspect = 0.26
+    public static let isleShadowOpacity = 0.34
+    public static let isleShadowRGB = (r: 0.33, g: 0.35, b: 0.52)
+
     /// The camera the Map's sky is drawn with, for the world camera `pose` on a `width` x `height`
     /// screen: rows `mapTop` to `mapFoot` of the sky set fill the screen's height when the camera is on
     /// the Map, centred across; its look point follows the world camera's by `mapParallax`, so the sky
@@ -399,6 +435,8 @@ struct PaintedSkyLayer: View {
     let fade: Double
     /// The Map's and the flights' sky (`PaintedSky.mapPose`), drawn as `PaintedSky.mapSet`.
     var isMap = false
+    /// A wonder stop's sky (Koke's): drawn as `PaintedSky.stopSet`, without what Home's island hid.
+    var cleanSea = false
 
     @State private var shown: HomePlate
     @State private var incoming: HomePlate?
@@ -406,13 +444,14 @@ struct PaintedSkyLayer: View {
     @State private var shownStart = Date()
     @State private var incomingStart = Date()
 
-    init(plate: HomePlate, pose: CameraPose, size: CGSize, offset: CGSize, fade: Double, isMap: Bool = false) {
+    init(plate: HomePlate, pose: CameraPose, size: CGSize, offset: CGSize, fade: Double, isMap: Bool = false, cleanSea: Bool = false) {
         self.plate = plate
         self.pose = pose
         self.size = size
         self.offset = offset
         self.fade = fade
         self.isMap = isMap
+        self.cleanSea = cleanSea
         _shown = State(initialValue: plate)
     }
 
@@ -454,7 +493,7 @@ struct PaintedSkyLayer: View {
     @ViewBuilder
     private func sky(_ plate: HomePlate, start: Date) -> some View {
         if let set = plate.skySet {
-            SkySetLayers(sky: isMap ? PaintedSky.mapSet(set) : set, plate: plate, pose: pose, size: size, offset: offset, start: start, drawsIsland: false)
+            SkySetLayers(sky: isMap ? PaintedSky.mapSet(set) : cleanSea ? PaintedSky.stopSet(set) : set, plate: plate, pose: pose, size: size, offset: offset, start: start, drawsIsland: false)
         }
     }
 }

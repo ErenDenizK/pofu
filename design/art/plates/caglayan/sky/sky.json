@@ -84,15 +84,29 @@
   "topClouds": {
    "top": -1150,
    "seed": 7,
-   "cover": 0.08,
+   "cover": 0.025,
    "midPieces": true,
    "lights": {
     "rain": {
-     "cover": 0.05
+     "cover": 0.02
     }
-   }
+   },
+   "clearTop": 500,
+   "scale": [
+    1.1,
+    1.4
+   ]
   },
-  "note": "Hand data for skyset_export.py's edits past the master (tools/plate/skyset_extend.py): bridgeMirror, the cross-fade columns of the drift tiles' mirrored bridge; calmHidden, the sea behind the island takes the cumulus below it and the mid clouds behind it fade out; moonZone, the night's moon box cloud goes back to the far layer; topClouds, the far layer's own whole clouds scattered up to master row `top` (alpha `cover` of the new rows, per-light overrides under `lights`)."
+  "skyAbove": {
+   "island": "home",
+   "lights": [
+    "day",
+    "golden"
+   ],
+   "flatRows": 30,
+   "easeRows": 124
+  },
+  "note": "Hand data for skyset_export.py's edits past the master (tools/plate/skyset_extend.py): bridgeMirror, the cross-fade columns of the drift tiles' mirrored bridge; calmHidden, the sea behind the island takes the cumulus below it and the mid clouds behind it fade out; moonZone, the night's moon box cloud goes back to the far layer; topClouds, the far layer's own whole clouds scattered up to master row `top` (alpha `cover` of the new rows, per-light overrides under `lights`). skyAbove: the gradient above the master eases from its top row to the named island's own zenith of the same light over `easeRows` gradient rows (the corner tint dying over `flatRows`), so the sky above Çağlayan is Home's sky (not at night: the moon's glow in the top row would rise as a column, and the two night zeniths already match); topClouds `clearTop` keeps the first new rows open sky, as Home's is above its isles, and `scale` sizes the scattered clouds."
  },
  "stages": [
   "0",
