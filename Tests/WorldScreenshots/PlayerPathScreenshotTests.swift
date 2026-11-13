@@ -36,10 +36,12 @@ class PlayerPathFrameCase: XCTestCase {
         let folder = try outputFolder()
         for day in Self.path where days.contains(day.day) {
             let nn = String(format: "%02d", day.day)
-            try await home(day.morning, hour: 9, name: "path-d\(nn)-0900", scene: scene, folder: folder)
-            try await home(day.night, hour: 23, name: "path-d\(nn)-2300", scene: scene, folder: folder)
+            // 09:00 opens before the day's first reach, with the morning's beats waiting; 23:00
+            // is bedtime, after the day's reach and its guarded minutes.
+            try await home(day.morning, hour: 9, beads: [], name: "path-d\(nn)-0900", scene: scene, folder: folder)
+            try await home(day.night, hour: 23, beads: day.beads, name: "path-d\(nn)-2300", scene: scene, folder: folder)
             if day.morning.bell == .ringing {
-                try await home(day.morning, hour: 9, name: "path-d\(nn)-bell-0900", scene: scene, folder: folder, beats: [.bell])
+                try await home(day.morning, hour: 9, beads: [], name: "path-d\(nn)-bell-0900", scene: scene, folder: folder, beats: [.bell])
             }
             if day.mapChanged || day.day == 1 {
                 try await map(day.morning, hour: 9, name: "path-d\(nn)-map-0900", scene: scene, folder: folder)
@@ -54,7 +56,7 @@ class PlayerPathFrameCase: XCTestCase {
     }
 
     @MainActor
-    func homeView(_ world: WorldSnapshot, hour: Double, island: IslandSceneModel, beats: [VisitBeat]? = nil) -> some View {
+    func homeView(_ world: WorldSnapshot, hour: Double, island: IslandSceneModel, beads: [Bool] = [], settled: Bool = false, beats: [VisitBeat]? = nil) -> some View {
         let look = WorldLook.playerPath(hour: hour)
         XCTAssertTrue(look.homePlates, "a path frame is never the sprite island")
         let now = world.clock ?? Date()
@@ -63,13 +65,15 @@ class PlayerPathFrameCase: XCTestCase {
             // A beat frame: the visit stands on `beats`, as the player meets it.
             home.beginVisit(VisitPlan(landing: .visit, showsRepairBanner: false, beats: beats))
         } else {
-            let inputs = VisitInputs(now: now, world: world, lastSettled: now.addingTimeInterval(-5 * 60), calendar: .current)
+            // The phone's landing: the last visit settled yesterday, so the morning's beats wait
+            // (a frame under a sheet keeps the settled Home it was judged on).
+            let inputs = VisitInputs(now: now, world: world, lastSettled: settled ? now.addingTimeInterval(-5 * 60) : nil, calendar: .current)
             home.beginVisit(VisitQueue.plan(inputs))
-            home.acknowledgeCurrentBeat()
+            if settled { home.acknowledgeCurrentBeat() }
         }
         return WorldHome(
             world: world,
-            today: TodaySummary(beads: [true], guardedMinutes: world.guardedMinutesToday, dailyHourMinutes: world.dailyHourMinutes),
+            today: TodaySummary(beads: beads, guardedMinutes: world.guardedMinutesToday, dailyHourMinutes: world.dailyHourMinutes),
             scene: island,
             home: home,
             actions: WorldHome.Actions(collect: { nil }, build: { _ in nil }, openSettings: {}, repair: {}, openToday: {})
@@ -79,9 +83,9 @@ class PlayerPathFrameCase: XCTestCase {
     }
 
     @MainActor
-    func home(_ world: WorldSnapshot, hour: Double, name: String, scene: UIWindowScene, folder: URL, beats: [VisitBeat]? = nil) async throws {
+    func home(_ world: WorldSnapshot, hour: Double, beads: [Bool], name: String, scene: UIWindowScene, folder: URL, beats: [VisitBeat]? = nil) async throws {
         let island = IslandSceneModel(framing: .home)
-        let view = homeView(world, hour: hour, island: island, beats: beats)
+        let view = homeView(world, hour: hour, island: island, beads: beads, beats: beats)
         try await capture(AnyView(view), name: name, scene: scene, folder: folder, settle: 2100) {
             XCTAssertNotNil(island.homePlate, "\(name): Home is its painting (IL\(world.islandLevel), hour \(hour))")
         }
@@ -196,7 +200,7 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
         let status = day.morning.stations.first { $0.id == .teaStall }
         for (name, fraction) in [("path-sheet-today", 0.9), ("path-sheet-station", 0.5)] {
             let island = IslandSceneModel(framing: .home)
-            let back = homeView(day.morning, hour: 11, island: island)
+            let back = homeView(day.morning, hour: 11, island: island, settled: true)
             let view: AnyView
             if name == "path-sheet-today" {
                 view = AnyView(PathSheetFrame(fraction: fraction, back: AnyView(back)) { TodaySheet(model: model, hourOverride: 11) })

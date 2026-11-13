@@ -102,6 +102,12 @@ public struct GardenGameView: View {
         }
         .padding(.horizontal, 16)
         .frame(height: GardenLayout.hudHeight)
+        // The goal in one line, under the plates (it overhangs the HUD's
+        // height, so the bed's layout does not move).
+        .overlay(alignment: .bottom) {
+            GoalLine(text: GardenStrings.goal)
+                .offset(y: 22)
+        }
         .opacity(model.phase == .playing || model.phase == .paused ? 1 : 0)
     }
 

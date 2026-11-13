@@ -75,3 +75,28 @@ import Testing
         #expect(fit.y <= 0 && fit.y + fit.image.height >= 140)
     }
 }
+
+/// One Turkish word for each game idea the trial shows: a reach is the door
+/// knocking ("kapı çaldı"), never "açma isteği" or "uzanma"; letting one go
+/// is "Boş ver", never "atlamak".
+@Suite struct OneWordPerIdeaTests {
+    @Test func aReachAndASkipHaveOneTurkishWordEach() throws {
+        let root = URL(fileURLWithPath: #filePath)
+            .deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
+            .deletingLastPathComponent().deletingLastPathComponent()
+        let paths = [
+            "App/Resources/Localizable.xcstrings",
+            "Packages/PofuKit/Sources/PofuWorld/Resources/Localizable.xcstrings",
+            "Packages/PofuKit/Sources/PofuGames/Resources/Localizable.xcstrings",
+        ]
+        let banned = ["açma isteği", "uzanma", "uzanış", "atlayış", "atlamak"]
+        var stray: [String] = []
+        for path in paths {
+            let text = try String(contentsOf: root.appendingPathComponent(path), encoding: .utf8).lowercased()
+            for word in banned where text.contains(word) {
+                stray.append("\(path): \(word)")
+            }
+        }
+        #expect(stray.isEmpty, "\(stray)")
+    }
+}

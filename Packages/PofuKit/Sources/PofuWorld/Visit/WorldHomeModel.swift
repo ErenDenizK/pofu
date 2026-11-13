@@ -261,7 +261,8 @@ public final class WorldHomeModel {
             toLevel: receipt.level,
             maxLevel: maxLevel,
             reduceMotion: reduceMotion,
-            lowPower: Self.isLowPowerMode
+            lowPower: Self.isLowPowerMode,
+            cost: receipt.cost.units
         )
         // Celebrations never stack: a new build replaces the last one's
         // tag and adds no second burst.

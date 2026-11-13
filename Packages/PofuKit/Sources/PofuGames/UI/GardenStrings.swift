@@ -29,6 +29,8 @@ enum GardenStrings {
         String(localized: "One more set · \(rounds) rounds ready", bundle: .module)
     }
 
+    /// The round's goal, under the HUD.
+    static var goal: String { String(localized: "Fill a row or a column and it blooms.", bundle: .module) }
     static var pause: String { String(localized: "Pause", bundle: .module) }
     static var paused: String { String(localized: "Taking a breather", bundle: .module) }
     static var resume: String { String(localized: "Keep planting", bundle: .module) }

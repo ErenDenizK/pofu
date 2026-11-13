@@ -25,6 +25,9 @@ public enum PlayerPath {
         public var visitedCaglayan: Bool
         /// A new island appeared today: the Map is worth a frame.
         public var mapChanged: Bool
+        /// Today's reaches by the visit, in order, `true` when let go, as
+        /// the gate logs them (the morning's 09:00 comes before any).
+        public var beads: [Bool]
         /// The first local day's 09:00, plus `day - 1` days.
         public var morningAt: Date
         public var visitAt: Date
@@ -32,6 +35,9 @@ public enum PlayerPath {
     }
 
     public static let horizon = 21
+    /// The guarded use the tester adds after the visit, as the Prova
+    /// panel's "+15 dk" does: the evening frames show real minutes.
+    public static let usageMinutes = 15
 
     /// Day 1 starts at 09:00 local on 2 November 2026, as the Prova panel
     /// does in `DemoRunTests`.
@@ -78,7 +84,7 @@ public enum PlayerPath {
             ])
             let visit = clock.snapshot(of: state)
             let leave = start.addingTimeInterval(10 * 60)
-            clock.advance(&state, to: leave)
+            clock.advance(&state, to: leave, applying: [GameEvent(at: leave, kind: .usageMeasured(minutes: usageMinutes))])
 
             // Bedtime: a copy of the game, so the path itself is untouched.
             let nightAt = date(2026, 11, 1 + day, 23, 0, in: calendar)
@@ -94,6 +100,7 @@ public enum PlayerPath {
                 visitedKoke: morning.koke.phase == .arrived && (visit.koke.stage > morning.koke.stage || previous.koke.phase != .arrived),
                 visitedCaglayan: morning.caglayan.phase == .arrived && (visit.caglayan.stage > morning.caglayan.stage || previous.caglayan.phase != .arrived),
                 mapChanged: morning.islands != previous.islands || morning.koke.phase != previous.koke.phase || morning.caglayan.phase != previous.caglayan.phase,
+                beads: [true],
                 morningAt: start,
                 visitAt: tendAt,
                 nightAt: nightAt

@@ -110,13 +110,16 @@ public struct WonderStatus: Hashable, Sendable {
     /// The island healed today: its gift reached home today, and home
     /// labels it until the day ends.
     public var giftIsNew: Bool
+    /// Today's visit already moved the island on a stage.
+    public var tendedToday: Bool
 
-    public init(phase: Phase = .hidden, stage: Int = 0, canAdvance: Bool = false, isAsleep: Bool = false, giftIsNew: Bool = false) {
+    public init(phase: Phase = .hidden, stage: Int = 0, canAdvance: Bool = false, isAsleep: Bool = false, giftIsNew: Bool = false, tendedToday: Bool = false) {
         self.phase = phase
         self.stage = stage
         self.canAdvance = canAdvance
         self.isAsleep = isAsleep
         self.giftIsNew = giftIsNew
+        self.tendedToday = tendedToday
     }
 
     public var isArrived: Bool {
@@ -211,6 +214,7 @@ public enum WonderIslands {
         let can = day.map { canAdvance(state, day: $0, resistedToday: resisted) } ?? false
         // The healing visit was today's advance: the gift arrived today.
         let giftIsNew = phase == .arrived && state.stage >= healedStage && day != nil && state.lastAdvanceDay == day
-        return WonderStatus(phase: phase, stage: state.stage, canAdvance: can, giftIsNew: giftIsNew)
+        let tended = day != nil && state.lastAdvanceDay == day
+        return WonderStatus(phase: phase, stage: state.stage, canAdvance: can, giftIsNew: giftIsNew, tendedToday: tended)
     }
 }

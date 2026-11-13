@@ -405,7 +405,7 @@ private struct TodayCard: View {
                 QuietStreak(model: model)
             }
             if metrics.attempts == 0 {
-                Text("No reaches yet today.")
+                Text("The door's been quiet today.")
                     .font(PofuFont.title3)
                     .foregroundStyle(PofuColor.textPrimary)
             } else {
