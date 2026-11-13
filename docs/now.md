@@ -26,15 +26,15 @@ first; gates are only his device check, the cut line and Monday.
 
 ## In flight
 
-1. #433 merged: "Ada büyüdü" (build and overnight) and the morning voice.
-   Milestone look (Fable, step 9): "the founder can judge it as a user";
-   fix round in flight (Sonnet, `fix/milestone-round`: cheek line repeats,
-   build sheet text overlap, bell bubble over doors, pale grow dissolve,
-   day-1 far isles). #434 Çağlayan crumbs merged. Trial note names: IL1 to
-   IL2 loses the whale town, hill and doors (art); the bell is text only.
-2. Step 7 closed, no change. Note: two "Boş ver" a day reach IL8 on d21.
+1. Days 17-21 spec (Fable, `spec/days-17-21`), then its builds.
+2. IL1 to IL2 continuity: Fable judges whether an existing IL1 take reads
+   as IL2's earlier self, or a script edit, or a note.
+Merged today: #430-#435 (Koke 1:1, polish, route, "Ada büyüdü", crumbs,
+milestone fixes: cheek line rarer, sheet text, bell bubble, grow 0.8 s).
+#436 (founder's line edits) merges from the side channel. Note: two
+"Boş ver" a day reach IL8 on d21; day 1's far isles are painted in.
 Known and kept: the flow minigame's vector board (no art in hand).
-Merged: #403-#434 but #414 (only Damla and Gezgin visit; Sumi waits
+Merged: #403-#435 but #414 (only Damla and Gezgin visit; Sumi waits
 for batch 83); pofu-art #13-#14, #18, #22-#27, #29.
 
 ## Next steps, in order
