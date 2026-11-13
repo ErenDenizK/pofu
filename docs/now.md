@@ -28,9 +28,8 @@ not accepted is hidden. Codex is stopped (plan expired 11-12).
 1. #424 one voice waits on the path-frames job, red on main too
    (`PlayerPath` not in scope; `ci/fix-path-frames-job`). Sunday: breath's
    "Şimdi değil" is dark on the night lawn.
-2. Open look defects for Sunday's critics: the Map's cut-edged clouds
-   (#420); the sea tile's mirrored pockets; a Çağlayan re-split (s0-3
-   night rim); the IL1 night matte's IL10 ghost; a pale pocket at Koke s2.
+2. Open look defects for Sunday: the Map's cut-edged clouds, the sea's
+   mirrored pockets, Çağlayan s0-3 night rim, IL1 night's IL10 ghost.
 3. Days 17-21 look the same: IL8 is painted but needs tended day 24
    (`Archipelago.swift:333`), so the typical player sits at IL7 from d15.
    In flight: pace IL8 into d19-20 (Opus, `feat/pace-il8`); then a
