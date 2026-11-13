@@ -27,8 +27,11 @@ first; gates are only his device check, the cut line and Monday.
 ## In flight
 
 1. #433 merged: "Ada büyüdü" (build and overnight) and the morning voice.
-   Next: Fable's milestone look on main's path frames (step 9), then
-   one fix round. Çağlayan edge crumbs (Sonnet, `fix/caglayan-edge-crumbs`).
+   Milestone look (Fable, step 9): "the founder can judge it as a user";
+   fix round in flight (Sonnet, `fix/milestone-round`: cheek line repeats,
+   build sheet text overlap, bell bubble over doors, pale grow dissolve,
+   day-1 far isles). #434 Çağlayan crumbs: CI. Trial note names: IL1 to
+   IL2 loses the whale town, hill and doors (art); the bell is text only.
 2. Step 7 closed, no change (IL8 growth 24 breaks the no-stall test).
    Trial note: two "Boş ver" a day reach IL8 on d21, three on d20.
 Known and kept: the flow minigame's vector board (no art in hand).
