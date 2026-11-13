@@ -209,7 +209,7 @@ final class LookScreenshotTests: XCTestCase {
     }
 
     /// Light and shadow v2 (LS-3): a çay ocağı level-up at 12:00 and at
-    /// 22:30 frozen at 0, 300, 600 and 900 ms (`levelup-<ms>ms-<hour>`; the
+    /// 22:30 frozen at 0, 300, 600 and 900 ms (`sprite-levelup-<ms>ms-<hour>`, the sprite station pose and not the game's; the
     /// ceremony of light starts with the art swap at 420 ms), and the noon
     /// island with its cloud shadows (`clouds-1200`).
     @MainActor
@@ -236,7 +236,7 @@ final class LookScreenshotTests: XCTestCase {
                 home.buildStation(.teaStall, maxLevel: 5) { _ in BuildReceipt(station: .teaStall, level: 2, cost: Energy(10)) }
                 home.freeze(at: Double(ms) / 1000)
                 let view = LookScene(world: after, model: model, home: home).environment(\.worldLook, WorldLook(hourOverride: hour))
-                try write(try await render(AnyView(view), in: scene, settle: 1400), name: "levelup-\(ms)ms-\(id)", to: folder)
+                try write(try await render(AnyView(view), in: scene, settle: 1400), name: "sprite-levelup-\(ms)ms-\(id)", to: folder)
             }
         }
         let model = IslandSceneModel(framing: .island)
