@@ -44,6 +44,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import heic  # noqa: E402
 import inpaint  # noqa: E402
 import split  # noqa: E402
+import skyset_extend  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[2]
 PLATES = ROOT / "design" / "art" / "plates"
@@ -377,14 +378,31 @@ def export_light(island: str, light: str, hand: dict) -> dict:
         for blob in blobs:
             ring = ndimage.binary_dilation(blob, iterations=1)
             sky_arr[ring] = np.maximum(field[ring], sky0[ring])
-        moon, moon_pos = moon_sprite(plate, cv2.resize(field, (w, h), interpolation=cv2.INTER_LINEAR))
+        if cfg.get("moonZone"):
+            # the moon box's cloud is not still sky (`skyset_extend.moon_far`): the gradient inside the box is filled
+            # from round it, and the moon sprite and the far layer are measured against that clean sky
+            m = np.zeros(sky_arr.shape[:2], np.uint8)
+            for bx0, by0, bx1, by1 in hand["lights"][light].get("fixedSky", []):
+                m[0: by1 // k + 3, max(bx0 // k - 2, 0): bx1 // k + 3] = 1        # up to the top: no row edge in the glow
+            filled = cv2.inpaint(np.uint8(sky_arr * 255 + 0.5), m, 6, cv2.INPAINT_TELEA).astype(np.float32) / 255
+            soft = cv2.GaussianBlur(cv2.dilate(m, np.ones((3, 3), np.uint8)).astype(np.float32), (0, 0), 1.5)[..., None]
+            sky_arr = sky_arr * (1 - soft) + cv2.GaussianBlur(filled, (0, 0), 2.5) * soft
+        moon, moon_pos = moon_sprite(plate, cv2.resize(sky_arr if cfg.get("moonZone") else field, (w, h), interpolation=cv2.INTER_LINEAR))
 
     # the far layer without the stars' residue, then each sprite rebuilt against sky + stars + far
     raw = {lay["id"]: np.asarray(heic.open_image(src / lay["file"]).convert("RGBA"), np.float32) / 255 for lay in man["layers"]}
     far_arr = raw.get("far")
+    fpos0 = next((tuple(l["pos"]) for l in man["layers"] if l["id"] == "far"), (0, 0))
+    if far_arr is not None and moon is not None and cfg.get("moonZone"):
+        still = over_rgb(cv2.resize(sky_arr, (w, h), interpolation=cv2.INTER_LINEAR), moon, moon_pos)
+        centre = (moon_pos[0] + MOON_R_HALO, moon_pos[1] + MOON_R_HALO)
+        box = (hand["lights"][light].get("fixedSky") or [None])[0]
+        far_arr = skyset_extend.moon_far(plate, still, far_arr, fpos0, centre, MOON_R_DISC, MOON_R_HALO + 40,
+                                         man["info"]["K"], box)
     if far_arr is not None and stars_on:
         # the night's far layer keeps no faint haze (streaks at the moon box's edge): below 8 % alpha it is sky
-        far_arr[..., 3] = np.where(far_arr[..., 3] < 0.08, 0, far_arr[..., 3])
+        # (eased off, not cut: a cut leaves a stepped edge in the haze beside the moon)
+        far_arr[..., 3] = far_arr[..., 3] * split.smoothstep(0.04, 0.10, far_arr[..., 3])
     if far_arr is not None and centres:
         fy, fx = far_arr.shape[:2]
         fpos = next(l["pos"] for l in man["layers"] if l["id"] == "far")
@@ -398,6 +416,12 @@ def export_light(island: str, light: str, hand: dict) -> dict:
         bg = over_rgb(bg, far_arr, tuple(next(l["pos"] for l in man["layers"] if l["id"] == "far")))
     sprite_in = {l["id"]: (raw[l["id"]], tuple(l["pos"])) for l in man["layers"] if l["kind"] == "sprite"}
     rebuilt = rebuild_sprites(sprite_in, plate, bg, man["info"]["K"], hand.get("alphaFloor", 0.0))
+    hidden = np.zeros((h, w), np.float32)                    # the island at rest: what the drift tiles hide behind it
+    isl_l = next((l for l in man["layers"] if l["kind"] == "island"), None)
+    if isl_l is not None:
+        ix, iy = isl_l["pos"]
+        ia = raw[isl_l["id"]][..., 3]
+        hidden[iy: iy + ia.shape[0], ix: ix + ia.shape[1]] = ia[: h - iy, : w - ix]
 
     for lay in man["layers"]:
         lid = lay["id"]
@@ -410,7 +434,11 @@ def export_light(island: str, light: str, hand: dict) -> dict:
         if lay["kind"] == "gradient":
             if cfg:
                 top, bottom, side = cfg["skyPadTop"] // k, cfg["skyPadBottom"] // k, cfg["skyPadSide"] // k
-                padded = np.pad(extend_sky_up(sky_arr, top), ((0, bottom), (side, side), (0, 0)), mode="edge")
+                up = extend_sky_up(sky_arr, top)
+                if stars_on and cfg.get("topClouds"):
+                    # the painted stars run on up into the sky above the master (flipped, then shifted)
+                    up[:top] = np.clip(up[:top] + skyset_extend.extend_rows(find_stars(sky0, hand, light).sum(0), top), 0, 1)
+                padded = np.pad(up, ((0, bottom), (side, side), (0, 0)), mode="edge")
                 origin = [-side * k, -top * k]
             else:
                 padded = np.pad(sky_arr, ((SKY_PAD, SKY_PAD), (SKY_PAD, SKY_PAD), (0, 0)), mode="edge")
@@ -424,11 +452,13 @@ def export_light(island: str, light: str, hand: dict) -> dict:
                 add({"id": "moon", "role": "sprite", "asset": mname, "pos": [moon_pos[0], moon_pos[1]], "size": [mw, mh]},
                     _write(moon, src, mname))
                 stars = find_stars(sky0, hand, light)
+                srows = top if cfg and cfg.get("topClouds") else 0
                 for g in range(STAR_GROUPS):
                     sname = asset_name(island, f"stars{g}", light)
-                    rgba = np.concatenate([stars[g], np.ones(stars[g].shape[:2] + (1,), np.float32)], -1)
-                    s_entry = {"id": f"stars{g}", "role": "stars", "asset": sname, "pos": [0, 0],
-                               "size": [sky0.shape[1] * k, STAR_ROWS * k], "twinkle": TWINKLE[g]}
+                    sg = np.concatenate([skyset_extend.extend_rows(stars[g], srows), stars[g]], 0) if srows else stars[g]
+                    rgba = np.concatenate([sg, np.ones(sg.shape[:2] + (1,), np.float32)], -1)
+                    s_entry = {"id": f"stars{g}", "role": "stars", "asset": sname, "pos": [0, -srows * k],
+                               "size": [sky0.shape[1] * k, sg.shape[0] * k], "twinkle": TWINKLE[g]}
                     add(s_entry, _write(rgba, src, sname))
             continue
         like = hand["sprites"].get(lid, {}).get("motionLike") if lay["kind"] == "sprite" else None
@@ -453,6 +483,28 @@ def export_light(island: str, light: str, hand: dict) -> dict:
             sea_pad = cfg.get("seaPad", SEA_PAD)
             arr = continue_sea(arr, light=tag, pad=sea_pad, quilt=cfg.get("seaQuilt"))
             dh += sea_pad
+        if lay["kind"] == "tile" and cfg.get("bridgeMirror"):
+            arr = skyset_extend.mirror_bridge(arr, w, cfg["bridgeMirror"])
+        if lid == "sea" and cfg.get("calmHidden"):
+            arr = skyset_extend.fill_hidden(arr, (x, y), hidden)
+        if lid == "mid" and cfg.get("calmHidden"):
+            arr = skyset_extend.clear_hidden(arr, (x, y), hidden)
+        if lid == "far" and cfg.get("topClouds"):
+            tc = cfg["topClouds"]
+            tc = {**tc, **tc.get("lights", {}).get(light, {})}
+            avoid = [(moon_pos[0] + MOON_R_HALO, moon_pos[1] + MOON_R_HALO, MOON_R_DISC + 40)] if moon is not None else None
+            extra = []
+            mid_l = next((l for l in man["layers"] if l["id"] == "mid"), None)
+            if tc.get("midPieces") and mid_l is not None:
+                mx, my = mid_l["pos"]
+                mid_raw = raw["mid"]
+                forbid = np.zeros(mid_raw.shape[:2], bool)
+                hh = min(mid_raw.shape[0], h - my)
+                forbid[:hh, :w] = cv2.dilate((hidden[my: my + hh] > 0.05).astype(np.uint8), np.ones((41, 41), np.uint8)) > 0
+                extra = skyset_extend.cloud_pieces(mid_raw, w, 0, forbid=forbid, max_w=tc.get("maxW", 760))
+            arr, (x, y) = skyset_extend.top_clouds(arr, (x, y), tc["top"], w, hand.get("farTopFade", 60), tc.get("seed", 7),
+                                                   tc.get("cover", 0.08), avoid, extra=extra)
+            dh = arr.shape[0]
         small = _premult_resize(arr, (round(arr.shape[1] * scale), round(arr.shape[0] * scale)))
         if hand.get("alphaFloor"):                     # the resample and the codec leave faint crumbs again: clean the stored layer
             small[..., 3] = split.clean_alpha(small[..., 3], hand["alphaFloor"] + 0.015, 250, 0.32)

@@ -77,7 +77,22 @@
    "step": 96,
    "source": 700
   },
-  "splitSky": true
+  "splitSky": true,
+  "bridgeMirror": 48,
+  "calmHidden": true,
+  "moonZone": true,
+  "topClouds": {
+   "top": -1150,
+   "seed": 7,
+   "cover": 0.08,
+   "midPieces": true,
+   "lights": {
+    "rain": {
+     "cover": 0.05
+    }
+   }
+  },
+  "note": "Hand data for skyset_export.py's edits past the master (tools/plate/skyset_extend.py): bridgeMirror, the cross-fade columns of the drift tiles' mirrored bridge; calmHidden, the sea behind the island takes the cumulus below it and the mid clouds behind it fade out; moonZone, the night's moon box cloud goes back to the far layer; topClouds, the far layer's own whole clouds scattered up to master row `top` (alpha `cover` of the new rows, per-light overrides under `lights`)."
  },
  "stages": [
   "0",

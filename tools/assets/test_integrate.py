@@ -237,6 +237,27 @@ def test_rain_tile_wraps_without_a_seam():
     assert alpha[0].mean() < 20  # and the tile's own edges stay faint (the seam is blended away)
 
 
+def test_rain_tile_has_no_dark_streaks():
+    """The wrap blend runs through premultiplied colour: a streak blended straight with the clear pixels' black came
+    out as a dark half-alpha twin, the dark smeared streaks beside the clean ones in Çağlayan's rain (2026-11)."""
+    import numpy as np
+
+    entry = next(e for e in DATA["entries"] if e["name"] == "world-rain-tile")
+    rgba = np.asarray(Image.open(integrate.output_path(entry, DATA["targets"])).convert("RGBA"), dtype=float)
+    seen = rgba[..., 3] > 24
+    assert np.percentile(rgba[..., :3].mean(-1)[seen], 1) > 150
+
+
+def test_seamless_blends_premultiplied():
+    import numpy as np
+
+    a = np.zeros((8, 8, 4), np.uint8)
+    a[2, 2] = (230, 240, 255, 200)          # one light pixel; the clear rest is black
+    out = np.asarray(integrate._seamless(Image.fromarray(a, "RGBA")), dtype=float)
+    lit = out[..., 3] > 0
+    assert (out[..., :3][lit].min(-1) > 200).all()
+
+
 def test_two_tone_icons_are_nine_square_pngs_from_the_take():
     entries = [e for e in DATA["entries"] if e["target"] == "icons-duo"]
     assert [e["name"] for e in entries] == [f"paint-duo-{n}" for n in (
