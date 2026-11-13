@@ -110,8 +110,7 @@ struct FarBellSkyLayer: View {
     }
 
     private func rings(age: Double?, k: Double, stage: FarBellStage) -> some View {
-        let night = plate.light == "night"
-        let colour = night ? Self.halo : Color.white
+        let colour = Self.halo
         let hum = PlatePoint(
             x: (plate.plate.characters["pofu"]?.x ?? FarBellSky.light.x),
             y: (plate.plate.characters["pofu"]?.y ?? FarBellSky.light.y) - FarBellSky.humLift
@@ -122,24 +121,20 @@ struct FarBellSkyLayer: View {
                 guard let ring = FarBellSky.ring(note: note, age: age, reduceMotion: reduceMotion) else { continue }
                 let c = point(note.isFar ? FarBellSky.light : hum)
                 let r = ring.radius * k
-                // A soft band of light, never a drawn line: clear inside, a
-                // peak toward the edge, clear at the rim.
-                let peak = colour.opacity(ring.opacity * 0.5)
+                // A warm breath of light, never a drawn line: no inner edge
+                // (it rises from the centre on a smooth curve), a wide peak
+                // toward the rim, then gone.
+                let peak = ring.opacity * 0.30
+                let stops: [Gradient.Stop] = [0.0, 0.2, 0.4, 0.55, 0.7, 0.82, 0.92, 1.0].map { t in
+                    let up = t < 0.75 ? MomentCurves.smoothstep(t / 0.75) : 1 - MomentCurves.smoothstep((t - 0.75) / 0.25)
+                    return .init(color: colour.opacity(peak * up), location: t)
+                }
                 context.fill(
                     Path(ellipseIn: CGRect(x: c.x - r, y: c.y - r, width: r * 2, height: r * 2)),
-                    with: .radialGradient(
-                        Gradient(stops: [
-                            .init(color: colour.opacity(0), location: 0),
-                            .init(color: colour.opacity(0), location: 0.5),
-                            .init(color: peak, location: 0.82),
-                            .init(color: colour.opacity(0), location: 1),
-                        ]),
-                        center: c, startRadius: 0, endRadius: r
-                    )
+                    with: .radialGradient(Gradient(stops: stops), center: c, startRadius: 0, endRadius: r)
                 )
             }
         }
-        .blendMode(.plusLighter)
         .allowsHitTesting(false)
     }
 }
