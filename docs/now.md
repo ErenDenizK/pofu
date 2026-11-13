@@ -30,9 +30,10 @@ three builders: `fix/trial-look` (Çağlayan's sticker sky, the empty Map,
 Koke's soft floor, Home's right-edge crop); `fix/trial-ui` (a build is
 invisible on the painted Home, the frozen settled caption, bubble
 overlaps, onboarding lists 8 apps, stop hints, stiff Turkish, path
-fixtures); `feat/day21-closing-beat` (and resists/day for IL8).
+fixtures). #427 merged: the far bell rings on day 21 (Çanlar's first
+rumour). Prova reaches IL8 on d21 with 2 resists a day, d20 with 3.
 Known and kept: the flow minigame's vector board (no art in hand).
-Merged: #403-#426 but #414 (only Damla and Gezgin visit; Sumi waits
+Merged: #403-#427 but #414 (only Damla and Gezgin visit; Sumi waits
 for batch 83); pofu-art #13-#14, #18, #22-#27, #29.
 
 ## Next steps, in order
