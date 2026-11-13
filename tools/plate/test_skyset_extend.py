@@ -89,3 +89,14 @@ def test_clear_crumbs_drops_only_the_pieces_a_box_touches():
     assert out[..., 3][5:15, 0:20].max() == 0
     assert out[..., 3][25:35, 40:60].min() == 1.0
     assert se.clear_crumbs(arr, []) is arr
+
+
+def test_fade_island_edge_keeps_the_body_and_fades_the_edge_cloud():
+    img = np.zeros((200, 600, 4), np.float32)
+    img[..., :3] = (0.3, 0.6, 0.2)
+    img[60:140, 200:400, 3] = 1.0                      # the island body
+    img[90:120, 0:60, :3] = 0.95                       # a pale cloud lump on the layer's left edge
+    img[90:120, 0:60, 3] = 1.0
+    out = se.fade_island_edge(img, edge=140)
+    assert out[100, 300, 3] == 1.0
+    assert out[100, 0:3, 3].max() < 0.05
