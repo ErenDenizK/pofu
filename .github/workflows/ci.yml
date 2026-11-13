@@ -110,6 +110,11 @@ jobs:
           python3 -I -m unittest discover -s tools/state -p "test_*.py"
           python3 -I tools/state/check_plates.py
 
+      # Home's IL1 plates are edited by script from the picked takes (tools/plate/il1_composite.py);
+      # the committed derived plates must be what the script makes.
+      - name: Check Home's derived IL1 plates
+        run: python3 -I tools/plate/il1_composite.py check
+
       # Every caster has a current pre-blurred shadow silhouette
       # (light and shadow v2); `shadows.py run` regenerates them.
       - name: Check the shadow silhouettes

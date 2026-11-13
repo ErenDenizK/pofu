@@ -4,6 +4,8 @@
 # until the founder approves. Validated by tools/state/check_plates.py. See docs/state/README.md.
 # sky_sets (ADR-0025): per island and light, the painted portrait master the sky set is split from;
 # same cell keys as a stage cell (a null cell is not painted yet; rain is a founder-gated pilot).
+# edited (optional): a derived plate the app ships instead of the pick, made by a committed script from
+# the pick and other takes (docs/studio.md section 9; Home's IL1: tools/plate/il1_composite.py); the take stays untouched.
 # root_time: the time of day the island's picked root is painted at; its stage plates fill that column.
 version: 1
 islands:
@@ -22,13 +24,13 @@ islands:
           rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
       il1:
         day:
-          clear: {painted: "design/art/takes/batch-74-redo-states/x-home-flow-il1-v3/plate__x-home-flow-il1-v3--t2.webp", lead_pick: 2, in_app: true, founder_ok: null}
+          clear: {painted: "design/art/takes/batch-74-redo-states/x-home-flow-il1-v3/plate__x-home-flow-il1-v3--t2.webp", lead_pick: 2, in_app: true, founder_ok: null, edited: "design/art/plates/home/derived/plate-il1-day.webp"}
           rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
         golden:
           clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
           rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
         night:
-          clear: {painted: "design/art/takes/batch-80-home-il1-night/x-home-flow-il1-night/plate__x-home-flow-il1-night--t2.webp", lead_pick: 2, in_app: true, founder_ok: null}
+          clear: {painted: "design/art/takes/batch-80-home-il1-night/x-home-flow-il1-night/plate__x-home-flow-il1-night--t2.webp", lead_pick: 2, in_app: true, founder_ok: null, edited: "design/art/plates/home/derived/plate-il1-night.webp"}
           rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
       il2:
         day:
