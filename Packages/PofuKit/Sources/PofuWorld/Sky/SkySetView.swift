@@ -27,6 +27,7 @@ struct SkySetLayers: View {
     /// behind another island (`PaintedSky`) leaves it out: the sea, the clouds and the isles remain.
     var drawsIsland = true
 
+    @Environment(\.displayScale) private var displayScale
     @Environment(\.worldStillFrame) private var still
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.scenePhase) private var scenePhase
@@ -127,7 +128,20 @@ struct SkySetLayers: View {
             // for the Map's smaller rows of cloud sea); each overlaps the next by a point, so no hairline
             // shows where two meet at a fractional position.
             for n in SkyMotion.copies(left: r.minX + shift + offset.width, width: r.width, screen: Double(size.width)) {
-                piece(layer.asset, r, dx: shift + Double(n) * r.width, dy: dy, overlap: 1, in: &context)
+                if layer.window != nil {
+                    // A band of the Map's cloud sea: its copies meet on the pixel grid, edge to edge, so the
+                    // faded band shows no seam (an overlap there drew a light hairline at every join).
+                    let px: Double = max(Double(displayScale), 1)
+                    let left: Double = Double(r.minX) + shift + Double(offset.width)
+                    let w: Double = Double(r.width)
+                    let a: Double = ((left + Double(n) * w) * px).rounded() / px
+                    let b: Double = ((left + Double(n + 1) * w) * px).rounded() / px
+                    let top: Double = Double(r.minY) + dy + Double(offset.height)
+                    let image = context.resolve(Image(layer.asset, bundle: .module).interpolation(.high))
+                    context.draw(image, in: CGRect(x: a, y: top, width: b - a, height: Double(r.height)))
+                } else {
+                    piece(layer.asset, r, dx: shift + Double(n) * r.width, dy: dy, overlap: 1, in: &context)
+                }
             }
         case .whale:
             let left = SkyMotion.glideLeft(
