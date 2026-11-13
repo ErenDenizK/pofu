@@ -367,7 +367,6 @@ jobs:
           key: xcode-path-${{ runner.os }}-${{ hashFiles('Packages/PofuKit/Package.swift', 'project.yml') }}-${{ github.sha }}
           restore-keys: |
             xcode-path-${{ runner.os }}-${{ hashFiles('Packages/PofuKit/Package.swift', 'project.yml') }}-
-            xcode-${{ runner.os }}-${{ hashFiles('Packages/PofuKit/Package.swift', 'project.yml') }}-
 
       - name: Install XcodeGen
         run: brew install xcodegen
@@ -430,7 +429,7 @@ jobs:
     if: >-
       !cancelled() &&
       needs.build-and-test.result == 'success' &&
-      (needs.path-frames.result == 'success' || needs.path-frames.result == 'skipped') &&
+      (needs.path-frames.result != 'cancelled') &&
       needs.changes.outputs.screens == 'true' &&
       (github.event_name != 'pull_request' ||
        github.event.pull_request.head.repo.full_name == github.repository)
