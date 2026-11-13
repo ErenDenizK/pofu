@@ -2917,7 +2917,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Boş verdin. Bir tohum."
+            "value" : "Boş verdin. Bir çekirdek."
           }
         }
       }
@@ -2965,7 +2965,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kavanozda %lld tohum"
+            "value" : "Kavanozda %lld çekirdek"
           }
         }
       }

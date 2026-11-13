@@ -226,7 +226,7 @@ public struct WorldHome: View {
                 HomeGlance(
                     today: today,
                     seedsInGlance: showsJarTag ? nil : world.jar.units,
-                    nextGoal: world.nextIslandLevel.flatMap { $0.isMet ? nil : WorldStrings.nextIslandLevel($0) },
+                    nextGoal: world.nextIslandLevel.map(WorldStrings.nextIslandLevel),
                     onOpen: actions.openToday
                 )
                 .frame(maxWidth: typeSize.isAccessibilitySize ? CGFloat.infinity : 280, alignment: .leading)

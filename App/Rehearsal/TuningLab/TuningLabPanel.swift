@@ -277,9 +277,9 @@ struct TuningLabPanel: View {
 
     private var seeds: some View {
         VStack(alignment: .leading, spacing: PofuSpacing.s) {
-            note("Tohum verimi oyun kurallarında (PofuCore) durur; burada yalnızca okunur. Saatte tohum, sakinlikten önce, seviye 1–5.")
+            note("Çekirdek verimi oyun kurallarında (PofuCore) durur; burada yalnızca okunur. Saatte çekirdek, sakinlikten önce, seviye 1–5.")
             let rules = SeedRules()
-            Text(verbatim: "Direnilen her uzanma: +\(rules.skipGift.units) tohum, günde \(rules.giftedSkipsPerDay) kez")
+            Text(verbatim: "Direnilen her uzanma: +\(rules.skipGift.units) çekirdek, günde \(rules.giftedSkipsPerDay) kez")
                 .font(PofuFont.subheadline)
             ForEach(ArchipelagoCatalog.standard.stations(on: .home)) { station in
                 VStack(alignment: .leading, spacing: 2) {
@@ -506,7 +506,7 @@ enum TuningLabLabels {
         case .pofu: "Pofu"
         case .haptics: "Dokunuş"
         case .sound: "Ses"
-        case .seeds: "Tohum"
+        case .seeds: "Çekirdek"
         case .garden: "Bahçe"
         case .home: "Ada"
         }
@@ -571,7 +571,7 @@ enum TuningLabLabels {
         case "hopAppearNight": return "Hop! gece"
         case "breathStart": return "Nefes başlangıcı"
         case "master": return "Genel ses"
-        case "seeds": return "Tohum sesleri"
+        case "seeds": return "Çekirdek sesleri"
         case "pieces": return "Parça sesleri"
         case "pofu": return "Pofu sesleri"
         case "trayScale": return "Tepsideki fide boyu"

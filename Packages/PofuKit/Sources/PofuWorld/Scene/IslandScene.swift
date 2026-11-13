@@ -2126,6 +2126,12 @@ private struct ScreenOverlays: View {
                         .opacity(labels)
                 }
             }
+            // At a wonder island's own stop the same pill names it and says how
+            // it is: asleep, healing (n of 4) or healed.
+            if labels < 0.99, let wonder = wonderStop {
+                mapLabel(wonder.id, at: Self.labelPoint(under: wonder.box), arrived: true, drop: Self.labelDrop, state: wonder.state)
+                    .opacity(1 - labels)
+            }
             if let build, let tag = build.moment.tag(at: build.time), let top = tagPoint(build.moment.station) {
                 BuildTag(level: build.moment.toLevel)
                     .scaleEffect(CGFloat(tag.scale), anchor: .bottom)
@@ -2235,7 +2241,18 @@ private struct ScreenOverlays: View {
     /// Points from an island box's foot to its name pill's middle: half the pill and a small gap.
     static let labelDrop: CGFloat = 18
 
-    private func mapLabel(_ island: IslandID, at point: WorldPoint, arrived: Bool, drop: CGFloat = 0, paw: Bool = false) -> some View {
+    /// The wonder island the camera is on, with its box and its state line.
+    private var wonderStop: (id: IslandID, box: WorldBox, state: String)? {
+        if model.island == .koke, world.koke.isArrived {
+            return (IslandID.koke, KokeLayout.islandBox, WorldStrings.wonderState(stage: world.koke.stage))
+        }
+        if model.island == .caglayan, world.caglayan.isArrived {
+            return (IslandID.caglayan, CaglayanLayout.islandBox, WorldStrings.wonderState(stage: world.caglayan.stage))
+        }
+        return nil
+    }
+
+    private func mapLabel(_ island: IslandID, at point: WorldPoint, arrived: Bool, drop: CGFloat = 0, paw: Bool = false, state: String? = nil) -> some View {
         let p = screenPoint(point)
         return HStack(spacing: 4) {
             if paw {
@@ -2253,13 +2270,22 @@ private struct ScreenOverlays: View {
             }
             Text(verbatim: WorldStrings.islandName(island))
                 .font(PofuFont.caption)
+            if let state {
+                Text(verbatim: "·")
+                    .font(PofuFont.caption)
+                    .foregroundStyle(PofuColor.textSecondary)
+                Text(verbatim: state)
+                    .font(PofuFont.caption)
+                    .foregroundStyle(PofuColor.textSecondary)
+            }
         }
         .foregroundStyle(PofuColor.textPrimary)
         .padding(.horizontal, 10)
         .frame(height: 26)
         .glassEffect(.regular, in: Capsule(style: .continuous))
         .fixedSize()
-        .position(x: p.x, y: p.y + drop)
+        // At a wonder stop the pill stays clear of the bottom band.
+        .position(x: min(max(p.x, 90), size.width - 90), y: state == nil ? p.y + drop : min(p.y + drop, size.height - 210))
         .allowsHitTesting(false)
         .accessibilityElement(children: .combine)
     }

@@ -58,6 +58,7 @@ public struct FlowGameView: View {
                 tileLayer(safeTop: proxy.safeAreaInsets.top, safeBottom: proxy.safeAreaInsets.bottom)
                     .ignoresSafeArea()
                 hud
+                captionLayer(safeTop: proxy.safeAreaInsets.top, safeBottom: proxy.safeAreaInsets.bottom)
                 controls
             }
             .onAppear {
@@ -227,19 +228,37 @@ public struct FlowGameView: View {
                 HStack(alignment: .center) {
                     roundButton(symbol: "arrow.uturn.backward", label: FlowStrings.undo, enabled: model.canUndo) { model.undo() }
                     Spacer(minLength: 8)
-                    if model.phase == .pouring {
-                        // The solve, said once and small while the water pours.
-                        caption(model.round.isLastBoard ? FlowStrings.doneTitle : FlowStrings.boardDone)
-                    } else if model.hint != nil {
-                        caption(FlowStrings.hintCaption(helper: model.helperName))
-                    }
-                    Spacer(minLength: 8)
                     roundButton(symbol: "lightbulb.fill", label: FlowStrings.hint, enabled: model.phase == .playing) { model.requestHint() }
                 }
                 .padding(.horizontal, 16)
                 .frame(height: FlowLayout.controlsHeight)
             }
         }
+    }
+
+    /// What the round says, once and small: the solve while the water pours,
+    /// or the hint. It sits in the clear band between the HUD and the
+    /// spring's lip, above the board, so it never covers the play area.
+    private func captionLayer(safeTop: CGFloat, safeBottom: CGFloat) -> some View {
+        GeometryReader { geo in
+            let layout = FlowLayout(size: geo.size, safeTop: safeTop, safeBottom: safeBottom, columns: model.board.columns, rows: model.board.rows)
+            let text: String? = model.phase == .pouring
+                ? (model.round.isLastBoard ? FlowStrings.doneTitle : FlowStrings.boardDone)
+                : (model.hint != nil ? FlowStrings.hintCaption(helper: model.helperName) : nil)
+            let bandTop = safeTop + FlowLayout.hudHeight
+            let bandBottom = layout.lip.minY
+            // A board that fills the height leaves no band: the caption then
+            // keeps the controls row, below the pool.
+            let fits = bandBottom - bandTop >= 40
+            let y = fits ? bandBottom - 22 : geo.size.height - safeBottom - FlowLayout.controlsHeight / 2
+            if let text {
+                caption(text)
+                    .frame(maxWidth: .infinity)
+                    .position(x: geo.size.width / 2, y: y)
+                    .allowsHitTesting(false)
+            }
+        }
+        .ignoresSafeArea()
     }
 
     private func caption(_ text: String) -> some View {
