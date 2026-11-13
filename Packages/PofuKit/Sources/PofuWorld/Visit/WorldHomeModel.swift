@@ -116,7 +116,7 @@ public final class WorldHomeModel {
         self.calendar = calendar
         self.visit = VisitProgress(plan: VisitPlan(landing: .settled, showsRepairBanner: false, beats: []))
         if let stored = cheekLineDefaults?.array(forKey: Self.cheekLineKey) as? [Int] {
-            cheekLineHistory = CheekLineHistory(stored: stored)
+            self.cheekLineHistory = CheekLineHistory(stored: stored)
         }
     }
 
