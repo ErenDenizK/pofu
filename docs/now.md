@@ -14,8 +14,9 @@ not accepted is hidden. Codex is stopped (plan expired 11-12).
 **Updated:** 2026-11-12 (late night, session 2).
 **Founder last played on his phone:** 2026-11-05 (device check due 11-13).
 **Founder log read up to:** 2026-11-12 (late night).
-**Route:** [route-2026-11-12-codex-pause](research/route-2026-11-12-codex-pause.md)
-§6 (#413), accepted by the founder with both dates and the studio change.
+**Route:** [route-2026-11-13-day](research/route-2026-11-13-day.md) §3
+(#432, Fable), one ordered queue (founder 11-13): the lift "Ada büyüdü"
+first; gates are only his device check, the cut line and Monday.
 
 ## Decided this session
 
