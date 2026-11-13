@@ -79,3 +79,13 @@ class TopClouds(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+def test_clear_crumbs_drops_only_the_pieces_a_box_touches():
+    arr = np.zeros((40, 100, 4), np.float32)
+    arr[5:15, 0:20, 3] = 1.0          # a piece cut by the left edge
+    arr[25:35, 40:60, 3] = 1.0        # a cloud beside it
+    out = se.clear_crumbs(arr, [[0, 4, 8, 10]])
+    assert out[..., 3][5:15, 0:20].max() == 0
+    assert out[..., 3][25:35, 40:60].min() == 1.0
+    assert se.clear_crumbs(arr, []) is arr

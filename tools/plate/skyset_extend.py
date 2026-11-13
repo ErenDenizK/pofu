@@ -250,3 +250,22 @@ def clear_hidden(arr: np.ndarray, pos: tuple[int, int], hidden: np.ndarray, lo: 
     out = arr.copy()
     out[..., 3] *= 1 - wgt
     return out
+
+
+def clear_crumbs(arr: np.ndarray, boxes: list, min_alpha: float = 0.003) -> np.ndarray:
+    """Delete whole cloud pieces from a tile layer: every connected piece of alpha (above `min_alpha`) that touches one
+    of `boxes` ([x0, x1, y0, y1] in the layer's own pixels) goes. A box is a probe, not a mask: it names a piece by a
+    few pixels inside it. This takes out the leftovers of the old island cut-out that the screen's edges still show,
+    the mid layer's clouds cut by the plate's edge (a straight edge at the paint width, or a hole where the island was),
+    without touching the clouds beside them."""
+    if not boxes:
+        return arr
+    n, lab = cv2.connectedComponents((arr[..., 3] > min_alpha).astype(np.uint8), connectivity=8)
+    drop = np.zeros(n, bool)
+    for x0, x1, y0, y1 in boxes:
+        drop[np.unique(lab[max(y0, 0): y1, max(x0, 0): x1])] = True
+    drop[0] = False
+    out = arr.copy()
+    gone = drop[lab]
+    out[gone] = 0
+    return out

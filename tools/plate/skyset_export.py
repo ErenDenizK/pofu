@@ -511,6 +511,9 @@ def export_light(island: str, light: str, hand: dict) -> dict:
             arr = skyset_extend.fill_hidden(arr, (x, y), hidden)
         if lid == "mid" and cfg.get("calmHidden"):
             arr = skyset_extend.clear_hidden(arr, (x, y), hidden)
+        if lid == "mid" and cfg.get("crumbs", {}).get(light):
+            # boxes are master px; the layer's own px start at its pos
+            arr = skyset_extend.clear_crumbs(arr, [[a - x, b - x, c - y, d - y] for a, b, c, d in cfg["crumbs"][light]])
         if lid == "far" and cfg.get("topClouds"):
             tc = cfg["topClouds"]
             tc = {**tc, **tc.get("lights", {}).get(light, {})}
