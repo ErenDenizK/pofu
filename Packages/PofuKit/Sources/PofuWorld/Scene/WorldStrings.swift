@@ -20,8 +20,8 @@ enum WorldStrings {
     static func stationKeeper(_ id: StationID) -> String? {
         switch id {
         case .garden: String(localized: "Pofu waters it", bundle: .module)
-        case .teaStall: String(localized: "Mochi, our bunny neighbour, brews here", bundle: .module)
-        case .workshop: String(localized: "Fındık, our hedgehog neighbour, mends here", bundle: .module)
+        case .teaStall: String(localized: "Mochi's, our bunny neighbour", bundle: .module)
+        case .workshop: String(localized: "Fındık's, our hedgehog neighbour", bundle: .module)
         default: nil
         }
     }
@@ -397,7 +397,7 @@ enum WorldStrings {
     /// The glance: "Today 3/4 · 15 min".
     static func glance(_ today: TodaySummary) -> String {
         if today.reaches == 0 {
-            return String(localized: "Today · the door's quiet · \(today.guardedAtLeast) min", bundle: .module)
+            return String(localized: "Today · all quiet · \(today.guardedAtLeast) min", bundle: .module)
         }
         return String(localized: "Today \(today.skips)/\(today.reaches) · \(today.guardedAtLeast) min", bundle: .module)
     }

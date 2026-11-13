@@ -115,13 +115,15 @@ public enum HomeBubbleLayout {
     /// A bubble over (or under) `tip`, kept inside the side gutter.
     public static func bubble(
         tipX: Double, tipY: Double, width: Double, height: Double, tail: Double,
-        screenWidth: Double, below: Bool = false, corner: Double = 13, tailWidth: Double = 10
+        screenWidth: Double, below: Bool = false, shift: Double = 0, corner: Double = 13, tailWidth: Double = 10
     ) -> Placement {
-        let place = TailedBubblePlacement.place(tipX: tipX, width: width, screenWidth: screenWidth, corner: corner, tailWidth: tailWidth)
+        // The body moves by `shift`; the tail keeps pointing at the tip.
+        let place = TailedBubblePlacement.place(tipX: tipX + shift, width: width, screenWidth: screenWidth, corner: corner, tailWidth: tailWidth)
+        let limit = max(width / 2 - corner - tailWidth / 2, 0)
         let top = below ? tipY + tail : tipY - tail - height
         return Placement(
             body: Rect(minX: place.centreX - width / 2, minY: top, maxX: place.centreX + width / 2, maxY: top + height),
-            tailOffset: place.tailOffset,
+            tailOffset: min(max(tipX - place.centreX, -limit), limit),
             isBelow: below,
             tail: tail
         )
@@ -134,6 +136,10 @@ public enum HomeBubbleLayout {
     /// What a longer stem and a hanging tag cost, in square points of art.
     static let stemCost = 14.0
     static let belowCost = 260.0
+    /// A tag may slide sideways by this share of its width, its tail still
+    /// on the gift, at this cost per point.
+    static let shiftFraction = 0.3
+    static let shiftCost = 8.0
 
     /// A gift tag's spot: `over` is just above the gift, `under` just below
     /// its foot; `placed` are the bubbles already standing (the heart, the
@@ -144,12 +150,15 @@ public enum HomeBubbleLayout {
         placed: [Rect], stations: [Rect], topLimit: Double = 120
     ) -> Placement {
         var candidates: [(Placement, Double)] = []
-        for stem in stems {
-            let p = bubble(tipX: over.x, tipY: over.y, width: width, height: height, tail: tail + stem, screenWidth: screenWidth)
-            candidates.append((p, stem * stemCost))
+        for shift in [0, shiftFraction * width, -shiftFraction * width] {
+            let moved = abs(shift) * shiftCost
+            for stem in stems {
+                let p = bubble(tipX: over.x, tipY: over.y, width: width, height: height, tail: tail + stem, screenWidth: screenWidth, shift: shift)
+                candidates.append((p, stem * stemCost + moved))
+            }
+            let hanging = bubble(tipX: under.x, tipY: under.y, width: width, height: height, tail: tail, screenWidth: screenWidth, below: true, shift: shift)
+            candidates.append((hanging, belowCost + moved))
         }
-        let hanging = bubble(tipX: under.x, tipY: under.y, width: width, height: height, tail: tail, screenWidth: screenWidth, below: true)
-        candidates.append((hanging, belowCost))
         var best: (Placement, Double)?
         for (p, base) in candidates {
             let frame = p.frame

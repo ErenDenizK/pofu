@@ -49,16 +49,11 @@ struct TodaySheet: View {
         let bubble = PofuPaperBubble(speaker: LocalizedStringKey(model.profile.companionName), tailPosition: 0.12) {
             Text("Each skip is a small win.")
         }
-        if typeSize.isAccessibilitySize {
-            VStack(alignment: .leading, spacing: PofuSpacing.s) {
-                bubble
-                sticker
-            }
-        } else {
-            HStack(alignment: .bottom, spacing: PofuSpacing.s) {
-                sticker
-                bubble
-            }
+        // Pofu stands under the bubble's tail, so the line comes from his mouth.
+        VStack(alignment: .leading, spacing: 2) {
+            bubble
+            sticker
+                .padding(.leading, typeSize.isAccessibilitySize ? 0 : 12)
         }
     }
 }

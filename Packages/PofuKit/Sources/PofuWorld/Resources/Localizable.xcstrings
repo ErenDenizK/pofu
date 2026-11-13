@@ -1627,16 +1627,6 @@
         }
       }
     },
-    "Today · the door's quiet · %lld min": {
-      "localizations": {
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bugün · kapı sessiz · %lld dk"
-          }
-        }
-      }
-    },
     "%@ seeds a day · %@ once built": {
       "localizations": {
         "tr": {
@@ -1653,26 +1643,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Pofu suluyor"
-          }
-        }
-      }
-    },
-    "Mochi, our bunny neighbour, brews here": {
-      "localizations": {
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tavşan komşumuz Mochi burada çay demler"
-          }
-        }
-      }
-    },
-    "Fındık, our hedgehog neighbour, mends here": {
-      "localizations": {
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kirpi komşumuz Fındık burada tamir eder"
           }
         }
       }
@@ -1822,7 +1792,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Önce bugün bir kez \"Boş ver\" de"
+            "value": "Önce bugün bir kez “Boş ver” de"
           }
         }
       }
@@ -1833,6 +1803,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Gece uyuyor. Sabah gel"
+          }
+        }
+      }
+    },
+    "Today · all quiet · %lld min": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bugün sessiz · %lld dk"
+          }
+        }
+      }
+    },
+    "Mochi's, our bunny neighbour": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tavşan komşumuz Mochi'nin"
+          }
+        }
+      }
+    },
+    "Fındık's, our hedgehog neighbour": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kirpi komşumuz Fındık'ın"
           }
         }
       }

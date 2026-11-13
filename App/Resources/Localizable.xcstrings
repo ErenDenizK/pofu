@@ -2867,7 +2867,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Her \"Boş ver\" küçük bir zafer."
+            "value" : "Her “Boş ver” küçük bir zafer."
           }
         }
       }
@@ -2877,7 +2877,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hedef: refleks açılışların yarısına \"Boş ver\" demek."
+            "value" : "Hedef: refleks açılışların yarısına “Boş ver” demek."
           }
         }
       }

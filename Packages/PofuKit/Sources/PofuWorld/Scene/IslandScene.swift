@@ -2220,12 +2220,21 @@ private struct ScreenOverlays: View {
         return (heart, tags)
     }
 
-    /// The built stations' art on screen.
+    /// The art a bubble keeps clear of, on screen: on the plate every painted
+    /// object but the bushes (the stations, Pofu's wheel, the door, the
+    /// mailbox), on the sprite island the built stations.
     private func stationRects(except own: StationID?) -> [HomeBubbleLayout.Rect] {
-        world.stations.compactMap { status -> HomeBubbleLayout.Rect? in
-            guard status.level > 0, status.id != own else { return nil }
-            let box = plate.flatMap { $0.stationBox(status.id) } ?? (plate == nil ? IslandFraming.stationBox(status.id) : nil)
-            guard let box else { return nil }
+        let boxes: [WorldBox]
+        if let plate {
+            boxes = plate.objects
+                .filter { !$0.id.hasSuffix("Bush") && ($0.station == nil || $0.station != own) }
+                .map { plate.worldBox(PlateMath.bounds($0.polygon)) }
+        } else {
+            boxes = world.stations.compactMap { status in
+                status.level > 0 && status.id != own ? IslandFraming.stationBox(status.id) : nil
+            }
+        }
+        return boxes.map { box in
             let a = screenPoint(WorldPoint(x: box.minX, y: box.minY)), b = screenPoint(WorldPoint(x: box.maxX, y: box.maxY))
             return HomeBubbleLayout.Rect(minX: Double(a.x), minY: Double(a.y), maxX: Double(b.x), maxY: Double(b.y))
         }
