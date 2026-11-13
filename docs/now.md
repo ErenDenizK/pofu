@@ -29,19 +29,19 @@ first; gates are only his device check, the cut line and Monday.
 1. Days 17-21: #437 spec and #438 merged (Pofu's notes come back one more
    a day; the bell plays on d21; lines out to the founder). PR 2, the
    warm light among the stars (Sonnet, `feat/bell-sky`).
-2. #439 merged (IL1 composite: IL2 loses nothing). Now: pofu-art manifests.
+2. #439 merged (IL1 composite). pofu-art #30: return-queue manifests merged.
 Merged today: #430-#435 ("Ada büyüdü", milestone fixes). #436 (his
 line edits) merges from the side channel. Note: two "Boş ver" a day
 reach IL8 on d21.
 Known and kept: the flow minigame's vector board (no art in hand).
 Merged: #403-#439 but #414, #436 (only Damla and Gezgin visit; Sumi waits
-for batch 83); pofu-art #13-#14, #18, #22-#27, #29.
+for batch 83); pofu-art #13-#14, #18, #22-#27, #29, #30.
 
 ## Next steps, in order
 
 1. Route §6 Sunday (steps 9 to 11), a day early where it can be.
-2. pofu-art return queue (#29): items 3-6 need manifests before Codex
-   returns; item 7 (breath room) is obsolete.
+2. pofu-art: sync batch-72 night takes before batch-86's night jobs run;
+   drop `.keeper` from VisitorSchedule.standardRoster (no visitor art).
 3. From Tuesday 11-17: route §5.3 (seeds-and-minutes check in the app
    first; the App desk reopens).
 
