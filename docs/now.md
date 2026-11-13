@@ -26,13 +26,14 @@ first; gates are only his device check, the cut line and Monday.
 
 ## In flight
 
-1. The lift "Ada büyüdü" + morning voice (Sonnet, `feat/island-grows`;
-   lines by Fable in the PR). #430 Koke 2x and #431 UI polish: CI.
-2. Next (route step 7): the tester reaches IL7 d16 and never IL8; on
-   d20-21 it holds 44-54 seeds and builds nothing (growth 24 of 26). Find
-   why (stations capped at IL7?) and make the smallest change.
+1. The lift "Ada büyüdü" + morning voice (Sonnet, `feat/island-grows`).
+2. Route step 7: the tester never reaches IL8 and builds nothing on d20-21
+   with 44-54 seeds (Sonnet, `feat/tester-reaches-il8`: cause, then the
+   smallest fix true for every player).
+Merged today: #430 (Koke at 1:1; preblur `--only`), #431 (UI polish),
+#432 (the day's route).
 Known and kept: the flow minigame's vector board (no art in hand).
-Merged: #403-#429 but #414 (only Damla and Gezgin visit; Sumi waits
+Merged: #403-#432 but #414 (only Damla and Gezgin visit; Sumi waits
 for batch 83); pofu-art #13-#14, #18, #22-#27, #29.
 
 ## Next steps, in order
