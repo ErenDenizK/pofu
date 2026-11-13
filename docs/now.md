@@ -27,9 +27,10 @@ first; gates are only his device check, the cut line and Monday.
 ## In flight
 
 1. The lift "Ada büyüdü" + morning voice (Sonnet, `feat/island-grows`).
-2. Route step 7: the tester never reaches IL8 and builds nothing on d20-21
-   with 44-54 seeds (Sonnet, `feat/tester-reaches-il8`: cause, then the
-   smallest fix true for every player).
+2. Step 7 closed, no change: at one reach a day the tester is 2 levels
+   short of IL8 on d21 (income vs 60-seed tail prices); IL8 growth 24
+   breaks the no-stall test. The trial note says: two "Boş ver" a day
+   reach IL8 on d21, three on d20.
 Merged today: #430 (Koke at 1:1; preblur `--only`), #431 (UI polish),
 #432 (the day's route).
 Known and kept: the flow minigame's vector board (no art in hand).
