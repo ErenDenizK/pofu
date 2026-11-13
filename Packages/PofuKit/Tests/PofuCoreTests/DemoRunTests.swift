@@ -407,3 +407,43 @@ struct DemoRunTests {
         #expect(world.state.wonders == before, "a wonder island moved at night")
     }
 }
+
+/// The player-path frames draw from `PlayerPath`; it must be the tester's
+/// own run, not a second one that drifts.
+@Suite("Player path")
+struct PlayerPathTests {
+    @Test func matchesTheTestersRun() {
+        let path = PlayerPath.tester()
+        let visits = DemoRunTests.testerVisits
+        #expect(path.count == DemoRunTests.horizon)
+        for (day, visit) in zip(path, visits) {
+            // `visit` is the world as left at 09:10, after the visit.
+            #expect(day.visit.islandLevel == visit.islandLevel, "day \(day.day) island level")
+            #expect(day.visit.koke.stage == visit.kokeStage, "day \(day.day) Koke")
+            #expect(day.visit.caglayan.stage == visit.caglayanStage, "day \(day.day) Çağlayan")
+            #expect(day.visit.tendedDays == visit.tendedDays, "day \(day.day) tended days")
+            #expect(day.visit.islands.contains(.harbor) == visit.harborOpen, "day \(day.day) harbor")
+        }
+    }
+
+    @Test func printsTheDays() {
+        var lines = ["PLAYER PATH"]
+        for day in PlayerPath.tester() {
+            lines.append(
+                "  d\(String(format: "%02d", day.day)) IL\(day.morning.islandLevel)->\(day.visit.islandLevel)"
+                    + " islands \(day.morning.islands.count) koke \(day.morning.koke.phase)/\(day.visit.koke.stage)"
+                    + " caglayan \(day.morning.caglayan.phase)/\(day.visit.caglayan.stage)"
+                    + " visitor \(day.morning.visitor != nil) night \(day.night.isBedtime)"
+                    + (day.visitedKoke ? " [koke]" : "") + (day.visitedCaglayan ? " [caglayan]" : "") + (day.mapChanged ? " [map]" : "")
+            )
+        }
+        print(lines.joined(separator: "\n"))
+    }
+
+    @Test func nightIsBedtimeEveryDay() {
+        for day in PlayerPath.tester() {
+            #expect(day.night.isBedtime, "day \(day.day) at 23:00")
+            #expect(!day.morning.isBedtime, "day \(day.day) at 09:00")
+        }
+    }
+}

@@ -86,6 +86,15 @@ public struct WorldLook: Hashable, Sendable {
         return look
     }
 
+    /// A player-path frame (`path-dNN-*`): the shipped painted world at a
+    /// fixed hour, with the date's own seeded weather. The paintings are
+    /// always on; the screenshot tests assert it.
+    public static func playerPath(hour: Double) -> WorldLook {
+        var look = WorldLook(hourOverride: hour)
+        look.homePlates = true
+        return look
+    }
+
     public init(
         art: ArtSet = .lockLight,
         grade: Bool = true,
