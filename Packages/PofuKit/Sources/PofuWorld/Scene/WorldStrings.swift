@@ -238,7 +238,7 @@ enum WorldStrings {
         case .bell:
             String(
                 localized: "bell.line",
-                defaultValue: "Koke's awake and Çağlayan's flowing. A bell far off just played my song. It had one note too many.",
+                defaultValue: "Koke's awake, Çağlayan's flowing. A bell far off played my song. One note too many.",
                 bundle: .module
             )
         }
