@@ -1644,6 +1644,38 @@
           }
         }
       }
+    },
+    "bell.line": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Koke's awake, Çağlayan's flowing. A bell far off played my song. One note too many."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Köke uyandı, Çağlayan akıyor. Uzakta bir çan benim şarkımı çaldı. Bir notası fazlaydı."
+          }
+        }
+      }
+    },
+    "bell.action": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I heard it too"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ben de duydum"
+          }
+        }
+      }
     }
   },
   "version": "1.0"

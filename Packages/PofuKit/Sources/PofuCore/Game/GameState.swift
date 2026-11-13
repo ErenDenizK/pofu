@@ -112,6 +112,9 @@ public struct GameState: Hashable, Sendable {
     /// The wonder islands: rumour, arrival and healing. Saves from before
     /// them load with none.
     public internal(set) var wonders: WonderLedger
+    /// The far bell that closes Book One's first stretch. Saves from before
+    /// it load silent.
+    public internal(set) var bell: FarBellState
 
     public init(rules: GameRules = GameRules()) {
         self.clock = nil
@@ -132,6 +135,7 @@ public struct GameState: Hashable, Sendable {
         self.rounds = RoundLedger()
         self.visitors = VisitorLedger()
         self.wonders = WonderLedger()
+        self.bell = FarBellState()
     }
 
     /// Whether a guarded app is open at the clock.
@@ -152,7 +156,7 @@ extension GameState: Codable {
 
     private enum CodingKeys: String, CodingKey {
         case version, clock, lastSignalAt, awaitingReturn, guarded, foregroundSince, recentOpens, today
-        case calmNightCandidate, firstDay, tendedDays, calmNights, quietRunMinutes, care, calm, stations, rounds, visitors, wonders
+        case calmNightCandidate, firstDay, tendedDays, calmNights, quietRunMinutes, care, calm, stations, rounds, visitors, wonders, bell
     }
 
     /// A state from a newer build fails with `unsupportedVersion`; any
@@ -182,6 +186,7 @@ extension GameState: Codable {
         rounds = try container.decodeIfPresent(RoundLedger.self, forKey: .rounds) ?? rounds
         visitors = try container.decodeIfPresent(VisitorLedger.self, forKey: .visitors) ?? visitors
         wonders = try container.decodeIfPresent(WonderLedger.self, forKey: .wonders) ?? wonders
+        bell = try container.decodeIfPresent(FarBellState.self, forKey: .bell) ?? bell
     }
 
     public func encode(to encoder: any Encoder) throws {
@@ -205,6 +210,7 @@ extension GameState: Codable {
         try container.encode(rounds, forKey: .rounds)
         try container.encode(visitors, forKey: .visitors)
         try container.encode(wonders, forKey: .wonders)
+        try container.encode(bell, forKey: .bell)
     }
 }
 
@@ -423,6 +429,8 @@ public struct WorldSnapshot: Hashable, Sendable {
     /// Çağlayan, the second wonder island: each stage is earned by finishing
     /// that stage's flow round.
     public var caglayan: WonderStatus
+    /// The far bell: ringing until the player has heard Pofu tell it.
+    public var bell: FarBellStatus
 
     /// Every field, for previews, screenshots and tests; the app reads
     /// snapshots from `WorldClock.snapshot(of:)`.
@@ -456,7 +464,8 @@ public struct WorldSnapshot: Hashable, Sendable {
         invited: ResidentID? = nil,
         koke: WonderStatus = WonderStatus(),
         caglayan: WonderStatus = WonderStatus(),
-        firstDay: LocalDay? = nil
+        firstDay: LocalDay? = nil,
+        bell: FarBellStatus = .silent
     ) {
         self.clock = clock
         self.activity = activity
@@ -488,5 +497,6 @@ public struct WorldSnapshot: Hashable, Sendable {
         self.koke = koke
         self.caglayan = caglayan
         self.firstDay = firstDay
+        self.bell = bell
     }
 }

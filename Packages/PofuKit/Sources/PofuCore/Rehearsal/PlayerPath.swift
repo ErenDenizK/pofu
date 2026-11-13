@@ -3,7 +3,8 @@ import Foundation
 /// The tester's 21 days as the player meets them: the Prova panel's own
 /// path (one resisted reach a day, collect, build the cheapest levels, play
 /// the banked garden rounds, tend the wonders and the visitor, "Next day"),
-/// played through the real `WorldClock`. The player-path screenshots
+/// played through the real `WorldClock`. On day 21 the far bell rings
+/// (`FarBell`): the morning shows it, the visit hears it. The player-path screenshots
 /// (`path-dNN-*`) and the tests that guard them draw from this one run, so
 /// no frame is a hand-picked world. `DemoRunTests` checks it against its
 /// own copy of the same path.
@@ -73,6 +74,7 @@ public enum PlayerPath {
                 GameEvent(at: tendAt, kind: .greetedVisitor),
                 GameEvent(at: tendAt, kind: .openedGift),
                 GameEvent(at: tendAt, kind: .helped),
+                GameEvent(at: tendAt, kind: .heardBell),
             ])
             let visit = clock.snapshot(of: state)
             let leave = start.addingTimeInterval(10 * 60)

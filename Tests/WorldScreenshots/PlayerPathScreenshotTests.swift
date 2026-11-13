@@ -13,6 +13,8 @@ import XCTest
 /// device resolution (1206 x 2622), never reduced:
 ///
 /// - `path-dNN-0900`, `path-dNN-2300`: Home that day at 09:00 and 23:00;
+/// - `path-d21-bell-0900`: Home on the morning the far bell rings, with
+///   Pofu's line and its answer (the closing beat);
 /// - `path-dNN-map-0900`: the Map on day 1 and on every day a new island
 ///   appeared (the harbor, the rumour, Koke, Çağlayan);
 /// - `path-dNN-koke-0907`, `path-dNN-caglayan-0907`: the wonder island's stop on the
@@ -36,6 +38,9 @@ class PlayerPathFrameCase: XCTestCase {
             let nn = String(format: "%02d", day.day)
             try await home(day.morning, hour: 9, name: "path-d\(nn)-0900", scene: scene, folder: folder)
             try await home(day.night, hour: 23, name: "path-d\(nn)-2300", scene: scene, folder: folder)
+            if day.morning.bell == .ringing {
+                try await home(day.morning, hour: 9, name: "path-d\(nn)-bell-0900", scene: scene, folder: folder, beats: [.bell])
+            }
             if day.mapChanged || day.day == 1 {
                 try await map(day.morning, hour: 9, name: "path-d\(nn)-map-0900", scene: scene, folder: folder)
             }
@@ -49,14 +54,19 @@ class PlayerPathFrameCase: XCTestCase {
     }
 
     @MainActor
-    func homeView(_ world: WorldSnapshot, hour: Double, island: IslandSceneModel) -> some View {
+    func homeView(_ world: WorldSnapshot, hour: Double, island: IslandSceneModel, beats: [VisitBeat]? = nil) -> some View {
         let look = WorldLook.playerPath(hour: hour)
         XCTAssertTrue(look.homePlates, "a path frame is never the sprite island")
         let now = world.clock ?? Date()
         let home = WorldHomeModel(now: { now }, schedulesCues: false)
-        let inputs = VisitInputs(now: now, world: world, lastSettled: now.addingTimeInterval(-5 * 60), calendar: .current)
-        home.beginVisit(VisitQueue.plan(inputs))
-        home.acknowledgeCurrentBeat()
+        if let beats {
+            // A beat frame: the visit stands on `beats`, as the player meets it.
+            home.beginVisit(VisitPlan(landing: .visit, showsRepairBanner: false, beats: beats))
+        } else {
+            let inputs = VisitInputs(now: now, world: world, lastSettled: now.addingTimeInterval(-5 * 60), calendar: .current)
+            home.beginVisit(VisitQueue.plan(inputs))
+            home.acknowledgeCurrentBeat()
+        }
         return WorldHome(
             world: world,
             today: TodaySummary(beads: [true], guardedMinutes: world.guardedMinutesToday, dailyHourMinutes: world.dailyHourMinutes),
@@ -69,9 +79,9 @@ class PlayerPathFrameCase: XCTestCase {
     }
 
     @MainActor
-    func home(_ world: WorldSnapshot, hour: Double, name: String, scene: UIWindowScene, folder: URL) async throws {
+    func home(_ world: WorldSnapshot, hour: Double, name: String, scene: UIWindowScene, folder: URL, beats: [VisitBeat]? = nil) async throws {
         let island = IslandSceneModel(framing: .home)
-        let view = homeView(world, hour: hour, island: island)
+        let view = homeView(world, hour: hour, island: island, beats: beats)
         try await capture(AnyView(view), name: name, scene: scene, folder: folder, settle: 2100) {
             XCTAssertNotNil(island.homePlate, "\(name): Home is its painting (IL\(world.islandLevel), hour \(hour))")
         }
