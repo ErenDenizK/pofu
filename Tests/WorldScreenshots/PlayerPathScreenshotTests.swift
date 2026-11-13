@@ -130,7 +130,7 @@ class PlayerPathFrameCase: XCTestCase {
     @MainActor
     func capture(
         _ view: AnyView, name: String, scene: UIWindowScene, folder: URL, settle: Int = 900,
-        style: UIUserInterfaceStyle = .light, during: (() -> Void)? = nil, duringMs: Int = 0, check: () -> Void = {}
+        style: UIUserInterfaceStyle = .light, flip: PathFlip? = nil, check: () -> Void = {}
     ) async throws {
         let window = UIWindow(windowScene: scene)
         window.overrideUserInterfaceStyle = style
@@ -139,9 +139,9 @@ class PlayerPathFrameCase: XCTestCase {
         window.makeKeyAndVisible()
         try await Task.sleep(for: .milliseconds(settle))
         // Something changes after the first paint (a painting begins its cross-fade) and the frame waits for it.
-        if let during {
-            during()
-            try await Task.sleep(for: .milliseconds(duringMs))
+        if let flip {
+            flip.action()
+            try await Task.sleep(for: .milliseconds(flip.milliseconds))
         }
         check()
         let image = snapshot(window)
@@ -257,11 +257,11 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
             island.setHomePlate(paintedAs(day.visit, level: level, hour: 9))
             island.holdIslandGrow(from: from, to: to, at: first)
             let view = homeView(day.visit, hour: 9, island: island, settled: true)
-            var during: (() -> Void)?
+            var flip: PathFlip?
             if ms == 1500 {
-                during = { island.holdIslandGrow(from: from, to: to, at: seconds) }
+                flip = PathFlip(waiting: 700) { island.holdIslandGrow(from: from, to: to, at: seconds) }
             }
-            try await capture(AnyView(view), name: "path-d04-grow-\(name)", scene: scene, folder: folder, settle: 2100, during: during, duringMs: 700) {
+            try await capture(AnyView(view), name: "path-d04-grow-\(name)", scene: scene, folder: folder, settle: 2100, flip: flip) {
                 XCTAssertNotNil(island.homePlate, "path-d04-grow-\(name): the island is its painting")
                 XCTAssertTrue(island.isGrowing)
                 XCTAssertEqual(island.levelStage.shown(worldLevel: to), seconds >= IslandGrowMoment.crossFadeAt ? to : from)
@@ -297,14 +297,11 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
         let home = WorldHomeModel(now: { now }, schedulesCues: false)
         let liveView = homeView(day.morning, hour: 9, island: live, beats: beats, model: home)
         var taken = false
-        try await capture(
-            AnyView(liveView), name: "path-d03-grew-live-1800", scene: scene, folder: folder, settle: 2100,
-            during: {
-                home.acknowledgeCurrentBeat()
-                taken = true
-            },
-            duringMs: 1800
-        ) {
+        let button = PathFlip(waiting: 1800) {
+            home.acknowledgeCurrentBeat()
+            taken = true
+        }
+        try await capture(AnyView(liveView), name: "path-d03-grew-live-1800", scene: scene, folder: folder, settle: 2100, flip: button) {
             XCTAssertTrue(taken)
             XCTAssertTrue(live.isGrowing, "the button starts the moment")
             XCTAssertEqual(live.levelStage.shown(worldLevel: to), to, "the cross-fade has begun")
@@ -405,6 +402,18 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
                 name: "path-onboarding-\(name)", scene: scene, folder: folder, settle: 1000
             )
         }
+    }
+}
+
+/// Something that changes after a frame's first paint (a painting begins its cross-fade, the news button is
+/// taken) and the frame waits `milliseconds` for it before it is taken.
+struct PathFlip {
+    let milliseconds: Int
+    let action: () -> Void
+
+    init(waiting milliseconds: Int, _ action: @escaping () -> Void) {
+        self.milliseconds = milliseconds
+        self.action = action
     }
 }
 
