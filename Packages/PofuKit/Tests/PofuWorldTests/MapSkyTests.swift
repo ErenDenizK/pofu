@@ -65,16 +65,19 @@ struct MapSkyTests {
         return poses
     }
 
-    /// At every one of those cameras, on every phone and in every light, the sky set covers the whole
-    /// screen: its gradient sky everywhere, its cloud sea across the width (a drift tile's three copies)
-    /// and down to the bottom edge. No code sky shows at a seam.
+    /// At every one of those cameras, on every phone and in every light, the Map's sky set covers the
+    /// whole screen: its gradient sky everywhere, its tiles across the width at any drift, and its painted
+    /// cloud sea down to the bottom edge. On the Map the distant isles and the whale stand above Home's
+    /// island and the cloud sea's horizon lies behind it. No code sky shows at a seam.
     @Test func theMapSkyCoversTheScreenAtEveryCamera() throws {
+        let home = try #require(HomePlate.shipped)
         for light in ["day", "golden", "night"] {
             let hour = ["day": 12.0, "golden": 18.0, "night": 23.0][light]!
             let plate = try #require(PaintedSky.mapSky(world: Self.world, look: Self.look(hour)))
-            let set = try #require(plate.skySet)
+            let set = PaintedSky.mapSet(try #require(plate.skySet))
             let sky = try #require(set.layers.first { $0.role == .sky })
-            let sea = try #require(set.layers.first { $0.role == .tile && $0.asset.contains("-sea-") })
+            let near = try #require(set.layers.first { $0.asset.contains("-sea-") && !$0.id.contains("-map") })
+            let horizon = try #require(set.layers.first { $0.asset.contains("-sea-") })
             for screen in Self.screens {
                 for camera in try Self.cameras(width: screen.width, height: screen.height) {
                     let pose = PaintedSky.mapPose(camera.pose, sky: plate, width: screen.width, height: screen.height)
@@ -88,17 +91,74 @@ struct MapSkyTests {
                     }
                     let s = rect(sky)
                     #expect(s.minX <= 0 && s.minY <= 0 && s.maxX >= screen.width && s.maxY >= screen.height, "\(light) sky \(screen) \(camera.name)")
-                    let r = rect(sea)
-                    let w = r.maxX - r.minX
-                    #expect(r.minX - w <= 0 && r.maxX + w >= screen.width, "\(light) sea width \(screen) \(camera.name)")
-                    #expect(r.maxY >= screen.height, "\(light) sea bottom \(screen) \(camera.name)")
-                    // The distant isles and the whale stay above the screen: from the Map's height they
-                    // would stand larger than Home and read as places to go.
-                    for layer in set.layers where layer.role == .sprite || layer.role == .whale {
-                        #expect(rect(layer).maxY <= 0, "\(light) \(layer.asset) \(screen) \(camera.name)")
+                    for layer in set.layers where layer.role == .tile {
+                        let r = rect(layer)
+                        let w = r.maxX - r.minX
+                        let n = SkyMotion.copies(left: r.minX, width: w, screen: screen.width)
+                        #expect(r.minX + Double(n.lowerBound) * w <= 0 && r.minX + Double(n.upperBound + 1) * w >= screen.width, "\(light) \(layer.id) width \(screen) \(camera.name)")
                     }
+                    let r = rect(near)
+                    #expect(r.maxY >= screen.height, "\(light) sea bottom \(screen) \(camera.name)")
+                    guard camera.name == "map" else { continue }
+                    let box = home.islandBox
+                    let top = camera.pose.project(WorldPoint(x: box.minX, y: box.minY), width: screen.width).y
+                    let foot = camera.pose.project(WorldPoint(x: box.minX, y: box.maxY), width: screen.width).y
+                    for layer in set.layers where layer.role == .whale || layer.asset.contains("-isle-") {
+                        #expect(rect(layer).maxY <= top + 0.02 * screen.height, "\(light) \(layer.asset) above Home \(screen)")
+                    }
+                    let h = rect(horizon)
+                    let window = try #require(horizon.window)
+                    let line = h.minY + window.top * (h.maxY - h.minY)
+                    #expect(line > top && line < foot + 0.08 * screen.height, "\(light) horizon \(line) behind Home \(top)...\(foot) \(screen)")
                 }
             }
+        }
+    }
+
+    /// The Map's sky set is the sky set's own layers: the island left out, the isles and the whale smaller
+    /// about their middles, the mid clouds above their residue, and the cloud sea a stack of its clean band
+    /// with no gap from the horizon down to its painted rows.
+    @Test func theMapSetIsTheSkySetRearranged() throws {
+        for (hour, light) in [(12.0, "day"), (18.0, "golden"), (23.0, "night")] {
+            let source = try #require(PaintedSky.mapSky(world: Self.world, look: Self.look(hour))?.skySet)
+            let set = PaintedSky.mapSet(source)
+            #expect(!set.layers.contains { $0.role == .island }, "\(light)")
+            for layer in set.layers where layer.role == .whale || layer.asset.contains("-isle-") {
+                let painted = try #require(source.layers.first { $0.id == layer.id })
+                #expect(abs(layer.size.x - painted.size.x * PaintedSky.mapIsleScale) < 1e-9)
+                #expect(abs((layer.pos.x + layer.size.x / 2) - (painted.pos.x + painted.size.x / 2)) < 1e-9)
+            }
+            let mid = try #require(set.layers.first(where: SkySet.isMidClouds))
+            #expect(mid.window != nil)
+            let sea = set.layers.filter { $0.asset.contains("-sea-") }
+            #expect(sea.count == PaintedSky.mapSeaStack.count + 1)
+            // Farthest first; under each band's fading top the band behind it is still whole.
+            func band(_ l: SkySet.Layer) throws -> (top: Double, opaqueTop: Double, opaqueBottom: Double) {
+                let w = try #require(l.window)
+                return (l.pos.y + w.top * l.size.y, l.pos.y + (w.top + w.topFade) * l.size.y, l.pos.y + (w.bottom - w.bottomFade) * l.size.y)
+            }
+            for (far, nearer) in zip(sea, sea.dropFirst()) {
+                let a = try band(far), b = try band(nearer)
+                #expect(b.top >= a.top, "\(light) \(nearer.id) lies under \(far.id)")
+                #expect(a.opaqueBottom >= b.opaqueTop - 1e-6, "\(light) no gap above \(nearer.id)")
+            }
+        }
+    }
+
+    @Test func aWindowFadesInAndOut() {
+        let w = SkySet.Window(top: 0.2, bottom: 0.8, topFade: 0.1, bottomFade: 0.2)
+        #expect(w.opacity(at: 0.1) == 0)
+        #expect(abs(w.opacity(at: 0.25) - 0.5) < 1e-9)
+        #expect(w.opacity(at: 0.5) == 1)
+        #expect(abs(w.opacity(at: 0.7) - 0.5) < 1e-9)
+        #expect(w.opacity(at: 0.9) == 0)
+    }
+
+    @Test func tileCopiesCoverTheScreen() {
+        for (left, width) in [(-300.0, 2000.0), (-50.0, 120.0), (380.0, 90.0), (-1000.0, 333.0)] {
+            let n = SkyMotion.copies(left: left, width: width, screen: 402)
+            #expect(left + Double(n.lowerBound) * width <= 0)
+            #expect(left + Double(n.upperBound + 1) * width >= 402)
         }
     }
 

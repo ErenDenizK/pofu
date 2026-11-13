@@ -472,6 +472,13 @@ private struct SceneFrame<Bubble: View>: View {
         )
     }
 
+    static func isleGrade(_ isle: HomePlate?, at island: IslandID, mapSky: HomePlate?) -> WorldGrade {
+        guard let isle else { return .neutral }
+        if island == .caglayan { return PaintedSky.islandGrade(painted: isle, under: nil) }
+        guard let mapSky else { return .neutral }
+        return PaintedSky.islandGrade(painted: isle, under: mapSky)
+    }
+
     var body: some View {
         let pose = rig.pose
         let z = rig.railPosition
@@ -525,6 +532,9 @@ private struct SceneFrame<Bubble: View>: View {
         let isleFade = isle != nil && model.island == .caglayan
             ? HomePlate.caglayanFade(pose: pose, viewportWidth: Double(size.width))
             : 0
+        // Çağlayan's painted island in the hour's light under the sky behind it: its own at its stop,
+        // Home's on the Map and in a flight (`PaintedSky.islandGrade(painted:under:)`).
+        let isleGrade: WorldGrade = Self.isleGrade(isle, at: model.island, mapSky: mapSky)
         let offset = CGSize(width: rig.offsetX.value, height: rig.offsetY.value)
         // Stations answer taps in every framing: on the Map and at Home a
         // tap flies to the island and opens the sheet in one gesture.
@@ -728,10 +738,11 @@ private struct SceneFrame<Bubble: View>: View {
                 }
 
                 if let isle, z < 1.7 || model.island != .home {
-                    // Çağlayan's painted plate, never graded: its backdrop and plate at the Island
-                    // stop, the island cut alone among the others toward the Map and in a flight
-                    // (the sprite island is not drawn while its state is painted).
-                    PlateHomeLayer(plate: isle, pose: pose, size: size, offset: offset, fade: isleFade)
+                    // Çağlayan's painted plate: its backdrop and plate at the Island stop, the island cut
+                    // alone among the others toward the Map and in a flight (the sprite island is not
+                    // drawn while its state is painted). Its sky is never graded; its island takes the
+                    // hour's light under the sky behind it (its own at its stop, Home's on the Map).
+                    PlateHomeLayer(plate: isle, pose: pose, size: size, offset: offset, fade: isleFade, islandGrade: isleGrade)
                         .opacity(model.island == .caglayan ? 1 : max(0, 1 - max(z, 0) / 0.8) * (model.focus == nil ? 1 : 0))
                 }
 
@@ -1952,7 +1963,8 @@ private struct PofuLayer<Bubble: View>: View {
                     }
                 }
             }
-            if part == .overlay, painted < 0.99 {
+            // On the painted Map the pin rides on Home's name instead (`ScreenOverlays.mapLabel`).
+            if part == .overlay, painted < 0.99, plate == nil {
                 PofuPin()
                     .opacity(1 - painted)
                     .position(x: feet.x, y: feet.y - 15)
@@ -2090,8 +2102,15 @@ private struct ScreenOverlays: View {
         let labels = 1 - min(max((z - 0.2) / 0.25, 0), 1)
         ZStack(alignment: .topLeading) {
             if labels > 0.01 {
-                mapLabel(.home, at: WorldPoint(x: 0, y: 128), arrived: true)
-                    .opacity(labels)
+                // On the painted Map every name hangs under its island's painting, clear of its rim, and
+                // Home's carries Pofu's paw (the pin no longer stands on the painted lawn).
+                if let plate {
+                    mapLabel(.home, at: Self.labelPoint(under: plate.islandBox), arrived: true, drop: Self.labelDrop, paw: true)
+                        .opacity(labels)
+                } else {
+                    mapLabel(.home, at: WorldPoint(x: 0, y: 128), arrived: true)
+                        .opacity(labels)
+                }
                 // The painted Map has no harbor isle (R5): its label goes with it.
                 ForEach(plate == nil ? IslandLayout.isles : []) { isle in
                     mapLabel(isle.id, at: WorldPoint(x: isle.center.x, y: isle.center.y + 122), arrived: world.islands.contains(isle.id))
@@ -2099,11 +2118,11 @@ private struct ScreenOverlays: View {
                 }
                 // Koke and Çağlayan, once they can be visited: their name under the island.
                 if world.koke.isArrived {
-                    mapLabel(.koke, at: Self.labelPoint(under: KokeLayout.islandBox), arrived: true)
+                    mapLabel(.koke, at: Self.labelPoint(under: KokeLayout.islandBox), arrived: true, drop: Self.labelDrop)
                         .opacity(labels)
                 }
                 if world.caglayan.isArrived {
-                    mapLabel(.caglayan, at: Self.labelPoint(under: CaglayanLayout.islandBox), arrived: true)
+                    mapLabel(.caglayan, at: Self.labelPoint(under: CaglayanLayout.islandBox), arrived: true, drop: Self.labelDrop)
                         .opacity(labels)
                 }
             }
@@ -2207,14 +2226,27 @@ private struct ScreenOverlays: View {
         return CGPoint(x: min(max(p.x, 70), size.width - 70), y: max(p.y, 120))
     }
 
-    /// Where a wonder island's name sits on the Map: on the foot of its box, as Home's sits on its earth.
+    /// Where an island's name hangs on the painted Map: under the middle of its box's foot, `labelDrop`
+    /// points lower, so the pill sits beside the painting and never over its rim.
     static func labelPoint(under box: WorldBox) -> WorldPoint {
-        WorldPoint(x: box.midX, y: box.maxY - 0.12 * box.height)
+        WorldPoint(x: box.midX, y: box.maxY)
     }
 
-    private func mapLabel(_ island: IslandID, at point: WorldPoint, arrived: Bool) -> some View {
+    /// Points from an island box's foot to its name pill's middle: half the pill and a small gap.
+    static let labelDrop: CGFloat = 18
+
+    private func mapLabel(_ island: IslandID, at point: WorldPoint, arrived: Bool, drop: CGFloat = 0, paw: Bool = false) -> some View {
         let p = screenPoint(point)
         return HStack(spacing: 4) {
+            if paw {
+                // Pofu is here: the Map's pin, on Home's name.
+                Image(systemName: "pawprint.fill")
+                    .font(.system(size: 10, weight: .bold))
+                    .foregroundStyle(PofuKitPalette.day.ink)
+                    .frame(width: 18, height: 18)
+                    .background(PofuKitPalette.day.honey, in: Circle())
+                    .accessibilityHidden(true)
+            }
             if !arrived {
                 Image(systemName: "lock.fill")
                     .font(.system(size: 10, weight: .semibold))
@@ -2227,7 +2259,7 @@ private struct ScreenOverlays: View {
         .frame(height: 26)
         .glassEffect(.regular, in: Capsule(style: .continuous))
         .fixedSize()
-        .position(x: p.x, y: p.y)
+        .position(x: p.x, y: p.y + drop)
         .allowsHitTesting(false)
         .accessibilityElement(children: .combine)
     }

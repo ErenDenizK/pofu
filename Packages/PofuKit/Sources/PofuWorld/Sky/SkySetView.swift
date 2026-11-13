@@ -26,11 +26,8 @@ struct SkySetLayers: View {
     /// Whether the island layer (and with it the cloud bank cut with the island) is drawn. A painted sky
     /// behind another island (`PaintedSky`) leaves it out: the sea, the clouds and the isles remain.
     var drawsIsland = true
-    /// Whether the mid clouds are drawn. The Map's sky leaves them out (`PaintedSky.mapPose` frames the
-    /// sky set under its isles): where Home's island hides it, the split left faint cut residue in that
-    /// tile, and from the Map's height that part of it is on screen.
-    var drawsMidClouds = true
 
+    @Environment(\.displayScale) private var displayScale
     @Environment(\.worldStillFrame) private var still
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.scenePhase) private var scenePhase
@@ -55,11 +52,41 @@ struct SkySetLayers: View {
     private func canvas(time: Double) -> some View {
         let scale = SkyMotion.scale(width: Double(size.width), referenceWidth: sky.referenceWidth)
         return Canvas(opaque: false, colorMode: .nonLinear, rendersAsynchronously: false) { context, _ in
-            for layer in sky.layers where (drawsIsland || layer.role != .island) && (drawsMidClouds || !SkySet.isMidClouds(layer)) {
-                draw(layer, in: &context, time: time, scale: scale)
+            for layer in sky.layers where drawsIsland || layer.role != .island {
+                if let window = layer.window {
+                    // A band of the layer (the Map's sky, `PaintedSky.mapSet`): drawn through a mask that
+                    // fades in and out across the band's rows.
+                    var band = context
+                    let r = rect(of: layer)
+                    let dy = SkyMotion.bob(layer.bob, time: time, scale: scale) + offset.height
+                    band.clipToLayer { mask in
+                        Self.fill(window, in: r.offsetBy(dx: 0, dy: dy), width: size.width, into: &mask)
+                    }
+                    draw(layer, in: &band, time: time, scale: scale)
+                } else {
+                    draw(layer, in: &context, time: time, scale: scale)
+                }
             }
         }
         .frame(width: size.width, height: size.height, alignment: .topLeading)
+    }
+
+    /// The window's band across the screen, opaque where the band shows and fading at its edges.
+    private static func fill(_ window: SkySet.Window, in r: CGRect, width: CGFloat, into mask: inout GraphicsContext) {
+        let top = r.minY + window.top * r.height, bottom = r.minY + window.bottom * r.height
+        guard bottom > top else { return }
+        let h = bottom - top
+        let a = min(max(window.topFade * r.height / h, 0), 1), b = min(max(window.bottomFade * r.height / h, 0), 1)
+        let stops: [Gradient.Stop] = [
+            .init(color: .black.opacity(a > 0 ? 0 : 1), location: 0),
+            .init(color: .black, location: min(a, 1 - b)),
+            .init(color: .black, location: max(1 - b, a)),
+            .init(color: .black.opacity(b > 0 ? 0 : 1), location: 1),
+        ]
+        mask.fill(
+            Path(CGRect(x: 0, y: top, width: width, height: h)),
+            with: .linearGradient(Gradient(stops: stops), startPoint: CGPoint(x: 0, y: top), endPoint: CGPoint(x: 0, y: bottom))
+        )
     }
 
     /// The layer's place on screen in points (before the peek's offset): its master box through the
@@ -97,10 +124,24 @@ struct SkySetLayers: View {
             }
         case .tile:
             let shift = SkyMotion.drift(rate: layer.drift, time: time, tileWidth: r.width, scale: scale)
-            // Three copies cover the screen at any shift; each overlaps the next by a point, so no
-            // hairline shows where two meet at a fractional position.
-            for n in [-1.0, 0.0, 1.0] {
-                piece(layer.asset, r, dx: shift + n * r.width, dy: dy, overlap: 1, in: &context)
+            // As many copies as cover the screen at any shift (three for a tile the master's width, more
+            // for the Map's smaller rows of cloud sea); each overlaps the next by a point, so no hairline
+            // shows where two meet at a fractional position.
+            for n in SkyMotion.copies(left: r.minX + shift + offset.width, width: r.width, screen: Double(size.width)) {
+                if layer.window != nil {
+                    // A band of the Map's cloud sea: its copies meet on the pixel grid, edge to edge, so the
+                    // faded band shows no seam (an overlap there drew a light hairline at every join).
+                    let px: Double = max(Double(displayScale), 1)
+                    let left: Double = Double(r.minX) + shift + Double(offset.width)
+                    let w: Double = Double(r.width)
+                    let a: Double = ((left + Double(n) * w) * px).rounded() / px
+                    let b: Double = ((left + Double(n + 1) * w) * px).rounded() / px
+                    let top: Double = Double(r.minY) + dy + Double(offset.height)
+                    let image = context.resolve(Image(layer.asset, bundle: .module).interpolation(.high))
+                    context.draw(image, in: CGRect(x: a, y: top, width: b - a, height: Double(r.height)))
+                } else {
+                    piece(layer.asset, r, dx: shift + Double(n) * r.width, dy: dy, overlap: 1, in: &context)
+                }
             }
         case .whale:
             let left = SkyMotion.glideLeft(
