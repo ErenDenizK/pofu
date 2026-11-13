@@ -25,16 +25,15 @@ not accepted is hidden. Codex is stopped (plan expired 11-12).
 
 ## In flight
 
-1. Step 7 player-path frames (Sonnet, `test/player-path-frames`).
-2. The Map's critic round (Opus, #420; also ONE night/rain island grade
-   for the Map, Koke and Çağlayan, and the pale belly). The sky tile
-   hairline at x≈22 (Sonnet, `fix/sky-tile-hairline`). Open: Çağlayan's
-   s0-3 night rim and golden bank tint need a re-split; the IL1 night
-   matte keeps a sky ghost of IL10; a pale pocket at Koke s2.
-Scout facts: a drag pans painted Home (step 8 clamps it); the Today
-header is text (`TodaySheet.swift:109`); no seeds-for-minutes screen.
-Merged: #403 to #419, #421 (but #414; #419 painted visitors: only Damla
-and the Gezgin postcard visit, Sumi hidden until batch 83); pofu-art #13, #14, #18, #22 to #27, #29.
+1. Step 8 one voice (Sonnet, `feat/one-voice`). #422 player-path frames:
+   moving them to a `screens`-label CI job (+11 macOS min per PR).
+2. #423 sky tile hairline: rebasing after #420. Open: the sea tile's
+   mirrored dark pockets (skyset_export); Çağlayan s0-3 night rim and
+   golden tint need a re-split; the IL1 night matte keeps an IL10 ghost.
+3. Path frames say: days 17-21 look the same (IL7, nothing new): step 10
+   needs the closing beat or a reason to come back; the Map is dead space.
+Merged: #403 to #421 but #414 (#419: only Damla and the Gezgin postcard
+visit; Sumi hidden until batch 83); pofu-art #13-#14, #18, #22-#27, #29.
 
 ## Next steps, in order
 
