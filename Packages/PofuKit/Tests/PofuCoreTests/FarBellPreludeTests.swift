@@ -72,7 +72,7 @@ struct FarBellPreludeTests {
     @Test func theBellPlaysTheSongAndOneNoteMore() {
         let bell = FarBellTune.bell()
         #expect(bell.map(\.step) == [0, 2, 3, 4, 5])
-        #expect(bell.allSatisfy(\.isFar))
+        #expect(bell.allSatisfy { $0.isFar })
         #expect(bell.first?.at == FarBellTune.bellLead)
         #expect(FarBellTune.length(of: bell) == FarBellTune.bellLead + 4 * FarBellTune.farGap)
     }
