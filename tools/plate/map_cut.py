@@ -57,6 +57,11 @@ ISLET = 0.79   # share of the plate's width: the harbour islet lies right of it
 NECK = 0.80    # share of the plate's width: the matte's neck between the island and the islet
 HOLE = 30      # px at plate size: enclosed clear sky this large is cut out
 NECK_FADE = 0.035  # share of the plate's width over which the cut fades out before the neck
+#: Stages whose day plate has its own matte *and* a silhouette that is the painting's own (no ghost sky
+#: in it): their cut ships as the matte made it. IL1 (stage 9) was one while its islet stood apart; its
+#: plates are now IL2's earlier self (`il1_composite.py`), the matte keeps ghost sky like the shared one,
+#: and the cut comes from the sky mask below.
+OWN_SHAPE: set[int] = set()
 SOLID = (0.10, 0.50)  # shipped alpha: from the first up to the second is stretched to full (`solid`)
 
 
@@ -204,7 +209,7 @@ def main() -> int:
     ap.add_argument("--dry", action="store_true", help="do not write the assets")
     args = ap.parse_args()
     for light, stage, _ in states():
-        day_own = stage != 0 and ingest.matte_path("home", "day", stage).exists()
+        day_own = stage in OWN_SHAPE and ingest.matte_path("home", "day", stage).exists()
         if stage == 0 or (light == "day" and day_own):
             # Level 10, and a level whose day plate has its own matte (IL1): the cut is the painting's
             # own shape and ships as it is.

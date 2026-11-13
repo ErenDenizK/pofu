@@ -37,6 +37,12 @@ class CheckPlates(unittest.TestCase):
         cell = '{painted: "t/job/plate__job--t1.webp", lead_pick: 1, in_app: false, founder_ok: null}'
         self.assertEqual(self.run_table(cell), [])
 
+    def test_edited_plate_must_exist(self):
+        cell = '{painted: "t/job/plate__job--t1.webp", lead_pick: 1, in_app: false, founder_ok: null, edited: "t/none.webp"}'
+        self.assertTrue(any("edited plate not found" in e for e in self.run_table(cell)))
+        ok = '{painted: "t/job/plate__job--t1.webp", lead_pick: 1, in_app: false, founder_ok: null, edited: "t/job/plate__job--t1.webp"}'
+        self.assertEqual(self.run_table(ok), [])
+
     def test_missing_path(self):
         cell = '{painted: "t/job/plate__job--t2.webp", lead_pick: 2, in_app: false, founder_ok: null}'
         self.assertIn("not found", self.run_table(cell)[0])
