@@ -84,7 +84,7 @@ yol." Read together: a keeper's work, and the way home.
 
 ### 1.3 Hiç değişmez (never changes)
 
-"Tohum ekran süresi satın almaz. Pofu asla ölmez. Uçurum yok: kitap 'iyi
+"Çekirdek ekran süresi satın almaz. Pofu asla ölmez. Uçurum yok: kitap 'iyi
 geceler' ile biter." Seeds never buy screen time; Pofu never dies; no
 cliffhanger, the book ends on "good night" (ADR-0015, ADR-0017).
 

@@ -110,10 +110,16 @@ private struct DayCard: View {
                 IslandStrip(sky: sky, palette: palette)
             }
             LinearGradient(
-                colors: [palette.paperTop.opacity(0), palette.paperTop.opacity(0.85), palette.paperTop],
+                stops: [
+                    .init(color: palette.paperTop.opacity(0), location: 0),
+                    .init(color: palette.paperTop.opacity(0.18), location: 0.3),
+                    .init(color: palette.paperTop.opacity(0.55), location: 0.6),
+                    .init(color: palette.paperTop.opacity(0.88), location: 0.85),
+                    .init(color: palette.paperTop, location: 1),
+                ],
                 startPoint: .top, endPoint: .bottom
             )
-            .frame(height: 76)
+            .frame(height: 100)
             .allowsHitTesting(false)
             Text("Today")
                 .font(PofuFont.title2)
