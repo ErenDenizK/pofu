@@ -30,11 +30,11 @@ first; gates are only his device check, the cut line and Monday.
    Milestone look (Fable, step 9): "the founder can judge it as a user";
    fix round in flight (Sonnet, `fix/milestone-round`: cheek line repeats,
    build sheet text overlap, bell bubble over doors, pale grow dissolve,
-   day-1 far isles). #434 Çağlayan crumbs: CI. Trial note names: IL1 to
+   day-1 far isles). #434 Çağlayan crumbs merged. Trial note names: IL1 to
    IL2 loses the whale town, hill and doors (art); the bell is text only.
 2. Step 7 closed, no change. Note: two "Boş ver" a day reach IL8 on d21.
 Known and kept: the flow minigame's vector board (no art in hand).
-Merged: #403-#433 but #414 (only Damla and Gezgin visit; Sumi waits
+Merged: #403-#434 but #414 (only Damla and Gezgin visit; Sumi waits
 for batch 83); pofu-art #13-#14, #18, #22-#27, #29.
 
 ## Next steps, in order
