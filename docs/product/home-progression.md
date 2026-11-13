@@ -100,8 +100,8 @@ five home stages (`homeStageTendedDays`), which only counted days.
 | 5 | 6 | 10 | pier slot | 4 | stepping stones; fireflies on calm nights (code) |
 | 6 | 10 | 15 | workshop and lighthouse slots (the back terrace) | 4 | the back terrace rises; path lamps light at dusk (warm pools, code) |
 | 7 | 14 | 20 | the four decor spots, set 1 | 5 | flower borders along every path; the island's own short melody on arrival |
-| 8 | 24 | 28 | windmill slot (left terrace) | 5 | birds circle the windmill; evening lanterns along the terraces |
-| 9 | 36 | 34 | the hill path to a closed gate; the hive slot (with Arı) | 5 | a gate on the hill with a sunflower carved in it, a soft glow behind |
+| 8 | 20 | 26 | windmill slot (left terrace) | 5 | birds circle the windmill; evening lanterns along the terraces |
+| 9 | 30 | 34 | the hill path to a closed gate; the hive slot (with Arı) | 5 | a gate on the hill with a sunflower carved in it, a soft glow behind |
 | 10 | — | 40 levels: all eight stations at L5 | **Tam Çiçek** (full bloom), section 5 | 5, then +1 a season | the hilltop terrace opens |
 
 **The rules that keep it gentle (tested):**
@@ -110,7 +110,7 @@ five home stages (`homeStageTendedDays`), which only counted days.
    without materials not yet available: the open stations times the cap,
    minus material-gated levels, is at least the next threshold
    (IL5 needs 10, max at cap 3 is 12; IL6 needs 15, max 19; IL7 needs 20,
-   max 26; IL8 needs 28, max 33; IL9 needs 34, max 37).
+   max 26; IL8 needs 26, max 33; IL9 needs 34, max 37).
 2. **The next goal is always visible and near.** The cheapest open thing
    (a level under the cap or a decor piece) costs at most **two days** of
    the typical user's current income, and three days at the very most;

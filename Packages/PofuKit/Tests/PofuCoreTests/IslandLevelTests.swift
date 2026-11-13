@@ -18,8 +18,8 @@ struct IslandLevelTests {
 
     @Test func theTableMatchesHomeProgression() {
         #expect(catalog.islandLevels.map(\.level) == Array(1...10))
-        #expect(catalog.islandLevels.map(\.tendedDayFloor) == [1, 2, 3, 4, 6, 10, 14, 24, 36, 36])
-        #expect(catalog.islandLevels.map(\.growth) == [0, 2, 3, 6, 10, 15, 20, 28, 34, 40])
+        #expect(catalog.islandLevels.map(\.tendedDayFloor) == [1, 2, 3, 4, 6, 10, 14, 20, 30, 36])
+        #expect(catalog.islandLevels.map(\.growth) == [0, 2, 3, 6, 10, 15, 20, 26, 34, 40])
         #expect(catalog.islandLevels.map(\.stationCap) == [2, 2, 3, 3, 4, 4, 5, 5, 5, 5])
         // Floors and growth only rise, and so do the caps: nothing falls.
         for (a, b) in zip(catalog.islandLevels, catalog.islandLevels.dropFirst()) {
@@ -38,11 +38,15 @@ struct IslandLevelTests {
         #expect(catalog.islandLevel(tendedDays: 2, growth: 3) == 3)
         #expect(catalog.islandLevel(tendedDays: 2, growth: 5) == 3)
         #expect(catalog.islandLevel(tendedDays: 3, growth: 6) == 4)
-        #expect(catalog.islandLevel(tendedDays: 23, growth: 27) == 7)
-        #expect(catalog.islandLevel(tendedDays: 23, growth: 28) == 8)
+        #expect(catalog.islandLevel(tendedDays: 19, growth: 25) == 7)
+        #expect(catalog.islandLevel(tendedDays: 18, growth: 33) == 7)
+        #expect(catalog.islandLevel(tendedDays: 19, growth: 26) == 8)
+        #expect(catalog.islandLevel(tendedDays: 28, growth: 40) == 8)
+        #expect(catalog.islandLevel(tendedDays: 29, growth: 33) == 8)
+        #expect(catalog.islandLevel(tendedDays: 29, growth: 34) == 9)
         #expect(catalog.islandLevel(tendedDays: 35, growth: 39) == 9)
         #expect(catalog.islandLevel(tendedDays: 35, growth: 40) == 10)
-        #expect(catalog.islandLevel(tendedDays: 34, growth: 40) == 8)
+        #expect(catalog.islandLevel(tendedDays: 34, growth: 40) == 9)
     }
 
     @Test func theLevelIsMonotonicInDaysAndGrowth() {

@@ -51,8 +51,11 @@ sprite island there until the art lands).
   `PofuWorld`). CI on `main` is green.
 - **The flow audit already exists and passes:** `FlowAuditTests` plays days
   1–21 for typical, heavy and perfect players through `WorldClock`. Typical:
-  harbor day 3, Koke healed day 10, Çağlayan healed day 17, IL7 by day 19.
-  Heavy: Koke day 11, Çağlayan day 19, IL6 by day 20, wellbeing never under
+  harbor day 3, Koke healed day 10, Çağlayan healed day 17, IL7 by day 20.
+  `DemoRunTests`' typical player (five garden rounds a day) reaches IL7 on
+  day 13 and IL8 (the windmill slot) on day 19 since the ladder retune of
+  2026-11-13 (IL8 at tended day 20 and growth 26, IL9 at tended day 30).
+  Heavy: Koke day 11, Çağlayan day 19, IL6 by day 19, wellbeing never under
   22. The roadmap's "Game flow" row is done; what it counts as "visible" is
   not all on screen (gap G1, G8).
 - **Corrections to the tracker:** Koke stages 3–4 are in the app since
