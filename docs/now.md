@@ -25,16 +25,14 @@ not accepted is hidden. Codex is stopped (plan expired 11-12).
 
 ## In flight
 
-Step 9 done (critics: Home holds the bar; the rest does not). Step 10:
-#429 merged (Çağlayan's sky calmer, Map isles 1.5x, Koke's floor clean;
-Home's islet stays cut: whole would shrink Pofu 10%). In flight:
-`fix/koke-2x-scoped-preblur` (Koke drawn 2.1x upscaled); `fix/trial-ui` (a build is
-invisible on the painted Home, the frozen settled caption, bubble
-overlaps, onboarding lists 8 apps, stop hints, stiff Turkish, path
-fixtures). #427 merged: the far bell rings on day 21 (Çanlar's first
-rumour). Prova reaches IL8 on d21 with 2 resists a day, d20 with 3.
+Step 9 done (critics: Home held the bar; the rest did not). Step 10:
+#429 look (Çağlayan sky, Map isles 1.5x, Koke floor) and #428 UI (build
+shows its cost, Pofu's daily lines, bubbles avoid each other, picker
+shows 3 apps, stop hints, one word per idea) merged. In flight:
+`fix/koke-2x-scoped-preblur` (Koke 2.1x upscaled; preblur scoped) and
+`fix/ui-polish` (stray close mark, Settings app list, tag placement).
 Known and kept: the flow minigame's vector board (no art in hand).
-Merged: #403-#429 but #414, #428 (only Damla and Gezgin visit; Sumi waits
+Merged: #403-#429 but #414 (only Damla and Gezgin visit; Sumi waits
 for batch 83); pofu-art #13-#14, #18, #22-#27, #29.
 
 ## Next steps, in order
