@@ -22,15 +22,43 @@ struct HomeObjectsTests {
         #expect(CheekStep.empty.lowered == .empty)
     }
 
-    @Test func theHugeLineIsSaidOnceADay() {
-        let calendar = Calendar(identifier: .gregorian)
-        let morning = Date(timeIntervalSince1970: 1_793_000_000)
-        var gate = CheekLineGate()
-        #expect(gate.allows(step: .huge, now: morning, calendar: calendar))
-        #expect(!gate.allows(step: .full, now: morning, calendar: calendar))
-        gate.markSpoken(at: morning)
-        #expect(!gate.allows(step: .huge, now: morning.addingTimeInterval(60), calendar: calendar))
-        #expect(gate.allows(step: .huge, now: morning.addingTimeInterval(86_400 * 2), calendar: calendar))
+    @Test func theHugeLineWaitsTwoQuietDaysAndOnlyComesAtTheTopStep() {
+        var history = CheekLineHistory()
+        #expect(history.allows(step: .huge, dayIndex: 100))
+        #expect(!history.allows(step: .full, dayIndex: 100))
+        history.record(dayIndex: 100, variant: 2)
+        #expect(!history.allows(step: .huge, dayIndex: 100), "once a day")
+        #expect(!history.allows(step: .huge, dayIndex: 101))
+        #expect(!history.allows(step: .huge, dayIndex: 102))
+        #expect(history.allows(step: .huge, dayIndex: 103))
+    }
+
+    @Test func noLineRepeatsWithinSevenDaysAndTheOrderIsNotAFixedRotation() {
+        for start in [0, 1, 2, 19_000, 739_000] {
+            var history = CheekLineHistory()
+            var said: [(day: Int, variant: Int)] = []
+            for day in start..<(start + 400) where history.allows(step: .huge, dayIndex: day) {
+                let variant = history.variant(dayIndex: day)
+                #expect((0..<CheekLineHistory.variants).contains(variant))
+                history.record(dayIndex: day, variant: variant)
+                said.append((day, variant))
+            }
+            #expect(said.count >= 100, "every third morning at most: \(said.count)")
+            for (i, a) in said.enumerated() {
+                for b in said[(i + 1)...] where b.day - a.day < 7 {
+                    #expect(a.variant != b.variant, "day \(a.day) and \(b.day) share a line")
+                }
+            }
+            let order = said.prefix(15).map(\.variant)
+            #expect(Array(order[0..<5]) != Array(order[5..<10]) || Array(order[5..<10]) != Array(order[10..<15]), "not a strict rotation")
+        }
+    }
+
+    @Test func theHistorySurvivesStorage() {
+        var history = CheekLineHistory()
+        history.record(dayIndex: 10, variant: 3)
+        history.record(dayIndex: 13, variant: 1)
+        #expect(CheekLineHistory(stored: history.stored) == history)
     }
 
     @Test func theJarFillIsMonotonicAndBounded() {

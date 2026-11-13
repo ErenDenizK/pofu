@@ -61,6 +61,20 @@ class PlayerPathFrameCase: XCTestCase {
         }
     }
 
+    /// The cheek lines Pofu said on the mornings before `world`'s day, replayed through the same
+    /// rule the phone applies (a frame's model is fresh, so it would otherwise say it every morning).
+    @MainActor
+    func cheekHistory(before world: WorldSnapshot) -> CheekLineHistory {
+        guard let clock = world.clock else { return CheekLineHistory() }
+        var history = CheekLineHistory()
+        for day in Self.path where Calendar.current.startOfDay(for: day.morningAt) < Calendar.current.startOfDay(for: clock) {
+            let home = WorldHomeModel(now: { day.morningAt }, schedulesCues: false, cheekLineHistory: history)
+            home.beginVisit(VisitQueue.plan(VisitInputs(now: day.morningAt, world: day.morning, calendar: .current)))
+            history = home.cheekLineHistory
+        }
+        return history
+    }
+
     @MainActor
     func homeView(
         _ world: WorldSnapshot, hour: Double, island: IslandSceneModel, beads: [Bool] = [], settled: Bool = false,
@@ -69,7 +83,7 @@ class PlayerPathFrameCase: XCTestCase {
         let look = WorldLook.playerPath(hour: hour)
         XCTAssertTrue(look.homePlates, "a path frame is never the sprite island")
         let now = world.clock ?? Date()
-        let home = model ?? WorldHomeModel(now: { now }, schedulesCues: false)
+        let home = model ?? WorldHomeModel(now: { now }, schedulesCues: false, cheekLineHistory: cheekHistory(before: world))
         if let beats {
             // A beat frame: the visit stands on `beats`, as the player meets it.
             home.beginVisit(VisitPlan(landing: .visit, showsRepairBanner: false, beats: beats))
@@ -259,7 +273,8 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
             let view = homeView(day.visit, hour: 9, island: island, settled: true)
             var flip: PathFlip?
             if ms == 1500 {
-                flip = PathFlip(waiting: 700) { island.holdIslandGrow(from: from, to: to, at: seconds) }
+                // The fade is 0.8 s from the flip: 400 ms lands mid-fade (1000 ms showed it finished).
+                flip = PathFlip(waiting: 400) { island.holdIslandGrow(from: from, to: to, at: seconds) }
             }
             try await capture(AnyView(view), name: "path-d04-grow-\(name)", scene: scene, folder: folder, settle: 2100, flip: flip) {
                 XCTAssertNotNil(island.homePlate, "path-d04-grow-\(name): the island is its painting")

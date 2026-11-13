@@ -23,21 +23,21 @@ struct IslandGrowMomentTests {
     @Test func theCuesPlayInOrderAtTheBriefsTimes() {
         let cues = moment.cues(after: -1, through: moment.duration)
         #expect(cues == [.pullBack, .bloom, .crossFade, .card, .end])
-        #expect(cues.map { moment.time(of: $0) } == [0, 0.7, 0.8, 1.6, 4.6])
+        #expect(cues.map { moment.time(of: $0) } == [0, 0.6, 0.9, 1.7, 4.6])
         // Each cue plays once: a later window never repeats an earlier cue.
-        #expect(moment.cues(after: 0, through: 0.8) == [.bloom, .crossFade])
-        #expect(moment.cues(after: 0.8, through: 4.6) == [.card, .end])
+        #expect(moment.cues(after: 0, through: 0.9) == [.bloom, .crossFade])
+        #expect(moment.cues(after: 0.9, through: 4.6) == [.card, .end])
     }
 
     @Test func theOldPaintingStaysUntilTheCrossFadeBegins() {
         #expect(moment.presentedLevel(at: 0) == 3)
-        #expect(moment.presentedLevel(at: 0.79) == 3)
+        #expect(moment.presentedLevel(at: 0.89) == 3)
         #expect(moment.presentedLevel(at: IslandGrowMoment.crossFadeAt) == 4)
         #expect(moment.presentedLevel(at: moment.duration) == 4)
-        // The cross-fade is the plate layer's own 1.4 s, in full view (0.8 to 2.2).
-        #expect(moment.newPainting(at: 0.8) == 0)
-        #expect(moment.newPainting(at: 1.5) > 0.4 && moment.newPainting(at: 1.5) < 0.6)
-        #expect(moment.newPainting(at: 2.2) == 1)
+        // The cross-fade is the plate layer's own 0.8 s, in full view (0.9 to 1.7).
+        #expect(moment.newPainting(at: 0.9) == 0)
+        #expect(moment.newPainting(at: 1.3) > 0.4 && moment.newPainting(at: 1.3) < 0.6)
+        #expect(moment.newPainting(at: 1.7) == 1)
     }
 
     @Test func thePresentedLevelNeverRunsAheadOfTheTrueOneAndEndsEqual() {
@@ -60,15 +60,15 @@ struct IslandGrowMomentTests {
     }
 
     @Test func theBloomRisesFromTheSoundsCueAndFadesBeforeTheCardLeaves() {
-        #expect(moment.bloom(at: 0.69) == 0)
-        #expect(moment.bloom(at: 1.3) > 0.99)
-        #expect(moment.bloom(at: 1.5) > 0.5)
-        #expect(moment.bloom(at: 3.0) < 0.001)
+        #expect(moment.bloom(at: 0.59) == 0)
+        #expect(moment.bloom(at: 1.1) > 0.99)
+        #expect(moment.bloom(at: 1.4) > 0.5)
+        #expect(moment.bloom(at: 2.3) < 0.001)
     }
 
     @Test func theCardRisesAtTheCueAndLeavesAtTheEndOrOnATap() throws {
-        #expect(moment.card(at: 1.59) == nil)
-        let rising = try #require(moment.card(at: 1.62))
+        #expect(moment.card(at: 1.69) == nil)
+        let rising = try #require(moment.card(at: 1.72))
         #expect(rising.opacity < 0.5 && rising.rise > 0.5)
         let settled = try #require(moment.card(at: 2.4))
         #expect(settled.opacity == 1 && settled.rise == 0)
@@ -177,27 +177,19 @@ struct MorningVoiceTests {
         VisitPlan(landing: .visit, showsRepairBanner: false, beats: beats)
     }
 
-    @Test func noTwoConsecutiveDaysShareTheCheeksLine() {
-        #expect(CheekLine.variants == 5)
-        for day in -10...400 {
-            #expect(CheekLine.variant(dayIndex: day) != CheekLine.variant(dayIndex: day + 1), "day \(day)")
-            #expect((0..<CheekLine.variants).contains(CheekLine.variant(dayIndex: day)))
-        }
-        #expect(Set((0..<5).map { CheekLine.variant(dayIndex: $0) }).count == 5, "all five lines turn within five days")
-    }
-
-    @Test func theSavedMorningsOfDayFiveAndSixSayDifferentLines() {
-        let path = PlayerPath.tester(days: 6)
-        var variants: [Int] = []
-        for day in [path[4], path[5]] {
+    @Test func thePathMorningsSayTheCheeksLineRarelyAndNeverTwiceInAWeek() {
+        let path = PlayerPath.tester(days: 21)
+        var history = CheekLineHistory()
+        var spoken: [(day: Int, variant: Int)] = []
+        for day in path {
             let now = day.morningAt
-            let home = WorldHomeModel(now: { now }, schedulesCues: false, calendar: calendar)
-            let plan = VisitQueue.plan(VisitInputs(now: now, world: day.morning, calendar: calendar))
-            home.beginVisit(plan)
-            #expect(home.saysCheeksHuge, "day \(day.day) morning: the cheeks are huge")
-            variants.append(home.cheeksHugeVariant)
+            let home = WorldHomeModel(now: { now }, schedulesCues: false, calendar: calendar, cheekLineHistory: history)
+            home.beginVisit(VisitQueue.plan(VisitInputs(now: now, world: day.morning, calendar: calendar)))
+            history = home.cheekLineHistory
+            if home.saysCheeksHuge { spoken.append((day.day, home.cheeksHugeVariant)) }
         }
-        #expect(variants.count == 2 && variants[0] != variants[1])
+        #expect(spoken.count <= 8, "rare: \(spoken.map(\.day))")
+        for (a, b) in zip(spoken, spoken.dropFirst()) { #expect(b.day - a.day >= 3) }
     }
 
     @Test func aMorningWithNewsLetsTheNewsSpeakFirst() {

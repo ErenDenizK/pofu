@@ -562,23 +562,34 @@ struct GuardedSteps: View {
 struct PlateLine: View {
     let line: String
 
+    /// A line this long wraps to three lines at the phone's width. The card then drops its name
+    /// row and steps its type down a size, so its top stays below the painted door row
+    /// (the bottom band holds two short lines; a third would climb over the island).
+    static let longLine = 64
+
+    var isLong: Bool { line.count > Self.longLine }
+
     var body: some View {
         VStack(alignment: .leading, spacing: 2) {
-            Text(verbatim: "Pofu")
-                .font(PofuFont.caption)
-                .foregroundStyle(PofuColor.textSecondary)
+            if !isLong {
+                Text(verbatim: "Pofu")
+                    .font(PofuFont.caption)
+                    .foregroundStyle(PofuColor.textSecondary)
+            }
             Text(verbatim: line)
-                .font(PofuFont.headline)
+                .font(isLong ? PofuFont.callout : PofuFont.headline)
                 .foregroundStyle(PofuColor.textPrimary)
                 .lineLimit(3)
                 .fixedSize(horizontal: false, vertical: true)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.horizontal, PofuSpacing.l)
-        .padding(.vertical, PofuSpacing.m)
+        .padding(.vertical, isLong ? PofuSpacing.s : PofuSpacing.m)
         .background(PofuColor.raised, in: RoundedRectangle(cornerRadius: PofuRadius.large, style: .continuous))
         .shadow(color: PofuColor.shadow.opacity(0.1), radius: 12, y: 6)
-        .accessibilityElement(children: .combine)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(Text(verbatim: "Pofu"))
+        .accessibilityValue(Text(verbatim: line))
     }
 }
 

@@ -45,35 +45,70 @@ public enum CheekStep: Int, CaseIterable, Comparable, Hashable, Sendable {
     }
 }
 
-/// "Yanaklarım kocaman oldu!": at most once a day, only at the top step.
-/// Home alone asks; the shield, notifications and widgets never do.
-public struct CheekLineGate: Sendable {
-    public var lastSpoken: Date?
+/// "Yanaklarım kocaman oldu!": rare. Only at the top step, and only when it
+/// was not said on either of the two days before (so at most every third
+/// morning), and no line repeats within seven days. Home alone asks; the
+/// shield, notifications and widgets never do.
+public struct CheekLineHistory: Sendable, Equatable {
+    public struct Entry: Sendable, Equatable {
+        public var day: Int
+        public var variant: Int
 
-    public init(lastSpoken: Date? = nil) {
-        self.lastSpoken = lastSpoken
+        public init(day: Int, variant: Int) {
+            self.day = day
+            self.variant = variant
+        }
     }
 
-    public func allows(step: CheekStep, now: Date, calendar: Calendar) -> Bool {
-        guard step == .huge else { return false }
-        guard let lastSpoken else { return true }
-        return !calendar.isDate(lastSpoken, inSameDayAs: now)
-    }
+    /// The lines said in the last week, oldest first.
+    public private(set) var entries: [Entry]
 
-    public mutating func markSpoken(at now: Date) {
-        lastSpoken = now
-    }
-}
-
-/// Which of the huge-cheeks lines Pofu says on a day (`WorldStrings.cheeksHuge(variant:)`):
-/// five, turned by the day like `HomeDailyLine`'s, so two days in a row never
-/// share one.
-public enum CheekLine {
     public static let variants = 5
+    /// A line does not come back within this many days.
+    public static let variantWindow = 7
+    /// A quiet stretch after a line, in days.
+    public static let quietDays = 2
 
-    /// - Parameter dayIndex: Any day count; consecutive days differ.
-    public static func variant(dayIndex: Int) -> Int {
-        ((dayIndex % variants) + variants) % variants
+    public init(entries: [Entry] = []) {
+        self.entries = entries
+    }
+
+    /// Whether he may say a line on `dayIndex` (any day count, one per day).
+    public func allows(step: CheekStep, dayIndex: Int) -> Bool {
+        guard step == .huge else { return false }
+        return !entries.contains { dayIndex - $0.day <= Self.quietDays && $0.day <= dayIndex }
+    }
+
+    /// The line for `dayIndex`: one not said in the last seven days, turned
+    /// by the day so the order is not a fixed rotation.
+    public func variant(dayIndex: Int) -> Int {
+        let recent = entries.filter { dayIndex - $0.day < Self.variantWindow && $0.day <= dayIndex }
+        let used = Set(recent.map(\.variant))
+        let free = (0..<Self.variants).filter { !used.contains($0) }
+        if free.isEmpty {
+            // Unreachable with the quiet stretch; the oldest line is the fallback.
+            return recent.first?.variant ?? 0
+        }
+        let turn = ((dayIndex * 7 + 3) % free.count + free.count) % free.count
+        return free[turn]
+    }
+
+    public mutating func record(dayIndex: Int, variant: Int) {
+        entries.append(Entry(day: dayIndex, variant: variant))
+        entries = entries.filter { dayIndex - $0.day < Self.variantWindow }
+    }
+
+    /// Flat storage: day, variant, day, variant, ...
+    public var stored: [Int] { entries.flatMap { [$0.day, $0.variant] } }
+
+    public init(stored: [Int]) {
+        var entries: [Entry] = []
+        var index = 0
+        while index + 1 < stored.count {
+            entries.append(Entry(day: stored[index], variant: stored[index + 1]))
+            index += 2
+        }
+        self.entries = entries
     }
 }
 

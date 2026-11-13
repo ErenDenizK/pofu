@@ -11,9 +11,9 @@ import Foundation
 /// | t (s) | Cue | What happens |
 /// |---|---|---|
 /// | 0 | `pullBack` | Any sheet closes, the station focus lets go and the camera travels to the whole island. The old painting is still on screen |
-/// | 0.7 | `bloom` | The level-up sound and the growth haptic; a warm bloom rises from the island's centre |
-/// | 0.8 | `crossFade` | The existing 1.4 s cross-fade to the new painting begins, in full view (it ends at 2.2) |
-/// | 1.6 | `card` | The "Ada n" card rises above the island, Pofu's line under it |
+/// | 0.6 | `bloom` | The level-up sound and the growth haptic; a warm bloom rises from the island's centre, peaking at 1.1 |
+/// | 0.9 | `crossFade` | A short 0.8 s cross-fade to the new painting begins under the bloom's peak (it ends at 1.7), so no double image lingers |
+/// | 1.7 | `card` | The "Ada n" card rises above the island, Pofu's line under it |
 /// | 4.6 | `end` | The card has left; the camera settles |
 ///
 /// With Reduce Motion there is no camera move and no bloom: the cross-fade
@@ -49,18 +49,18 @@ public struct IslandGrowMoment: Hashable, Sendable {
     // MARK: - Timeline
 
     /// The painting's own cross-fade (`PlateHomeLayer.crossfade` takes it from here).
-    public static let crossFadeLength = 1.4
-    public static let bloomAt = 0.7
-    public static let crossFadeAt = 0.8
-    public static let cardAt = 1.6
+    public static let crossFadeLength = 0.8
+    public static let bloomAt = 0.6
+    public static let crossFadeAt = 0.9
+    public static let cardAt = 1.7
     public static let endAt = 4.6
     /// The card fades in and out over this long.
     public static let cardFade = 0.35
     public static let cardLeave = 0.4
     /// The bloom rises to its peak, holds the peak's instant, then falls.
-    public static let bloomRise = 0.6
-    public static let bloomFall = 1.5
-    public static let bloomPeak = 0.38
+    public static let bloomRise = 0.5
+    public static let bloomFall = 1.1
+    public static let bloomPeak = 0.22
 
     /// When `cue` plays, or `nil` when it does not (Reduce Motion has no camera move).
     public func time(of cue: Cue) -> Double? {

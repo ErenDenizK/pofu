@@ -106,15 +106,17 @@ public final class WorldHomeModel {
         now: @escaping @MainActor () -> Date = { Date() },
         schedulesCues: Bool = true,
         cheekLineDefaults: UserDefaults? = nil,
-        calendar: Calendar = .current
+        calendar: Calendar = .current,
+        cheekLineHistory: CheekLineHistory = CheekLineHistory()
     ) {
+        self.cheekLineHistory = cheekLineHistory
         self.now = now
         self.schedulesCues = schedulesCues
         self.cheekLineDefaults = cheekLineDefaults
         self.calendar = calendar
         self.visit = VisitProgress(plan: VisitPlan(landing: .settled, showsRepairBanner: false, beats: []))
-        if let seconds = cheekLineDefaults?.object(forKey: Self.cheekLineKey) as? Double {
-            cheekLineGate = CheekLineGate(lastSpoken: Date(timeIntervalSince1970: seconds))
+        if let stored = cheekLineDefaults?.array(forKey: Self.cheekLineKey) as? [Int] {
+            self.cheekLineHistory = CheekLineHistory(stored: stored)
         }
     }
 
@@ -130,13 +132,14 @@ public final class WorldHomeModel {
     public private(set) var pawsPressed = false
     /// This visit's first beat is Pofu saying his cheeks are huge.
     public private(set) var saysCheeksHuge = false
-    /// Which of his lines (`CheekLine`), turned by the day.
+    /// Which of his lines (`CheekLineHistory.variant`).
     public private(set) var cheeksHugeVariant = 0
 
-    @ObservationIgnored private var cheekLineGate = CheekLineGate()
+    /// The lines he has said this week (screenshots replay it across days).
+    @ObservationIgnored public private(set) var cheekLineHistory: CheekLineHistory
     @ObservationIgnored private let cheekLineDefaults: UserDefaults?
     @ObservationIgnored private let calendar: Calendar
-    nonisolated static let cheekLineKey = "pofu.home.cheeksHuge.lastSpoken"
+    nonisolated static let cheekLineKey = "pofu.home.cheeksHuge.history"
 
     /// The cheek fill for the companion: the pre-collect step until the
     /// paws have pressed, then empty; otherwise from the seeds waiting.
@@ -159,10 +162,11 @@ public final class WorldHomeModel {
         guard !hasNews else { return }
         let step = CheekStep(uncollected: pouch.total.units)
         let date = now()
-        guard cheekLineGate.allows(step: step, now: date, calendar: calendar) else { return }
-        cheekLineGate.markSpoken(at: date)
-        cheekLineDefaults?.set(date.timeIntervalSince1970, forKey: Self.cheekLineKey)
-        cheeksHugeVariant = CheekLine.variant(dayIndex: calendar.ordinality(of: .day, in: .era, for: date) ?? 0)
+        let dayIndex = calendar.ordinality(of: .day, in: .era, for: date) ?? 0
+        guard cheekLineHistory.allows(step: step, dayIndex: dayIndex) else { return }
+        cheeksHugeVariant = cheekLineHistory.variant(dayIndex: dayIndex)
+        cheekLineHistory.record(dayIndex: dayIndex, variant: cheeksHugeVariant)
+        cheekLineDefaults?.set(cheekLineHistory.stored, forKey: Self.cheekLineKey)
         saysCheeksHuge = true
     }
 
