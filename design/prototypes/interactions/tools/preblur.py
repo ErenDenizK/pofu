@@ -775,7 +775,9 @@ Order of the follow-up steps:
   2. This bake (scoped or whole).
   3. Shadows: a scoped run rebuilds its sources' shadows itself; after a whole run, run
      `python3 -I tools/assets/shadows.py run`.
-  4. Checks: `harmony.py check`, `shadows.py check`, `koke_sky_check.py` (Koke plates).
+  4. Koke's plates (world-koke-island-*): `python3 -I tools/plate/painted_light.py` (their measured light).
+  5. Checks: `harmony.py check`, `shadows.py check`, `koke_sky_check.py` (Koke plates),
+     `painted_light.py --check`.
 
   python3 -I design/prototypes/interactions/tools/preblur.py app
   python3 -I design/prototypes/interactions/tools/preblur.py app --only 'world-koke-island-*'
