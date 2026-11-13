@@ -138,8 +138,13 @@ public enum HomeBubbleLayout {
     static let belowCost = 260.0
     /// A tag may slide sideways by this share of its width, its tail still
     /// on the gift, at this cost per point.
-    static let shiftFraction = 0.3
-    static let shiftCost = 8.0
+    static let shiftFractions: [Double] = [0, 0.15, 0.3, 0.45]
+    static let shiftCost = 4.0
+    /// A hanging tag may also sit lower, on a longer stem, to clear art.
+    static let belowStems: [Double] = [0, 12, 24]
+    /// Clear air kept around painted art: a tag that only touches a rim
+    /// still reads as sitting on it.
+    static let artMargin = 4.0
 
     /// A gift tag's spot: `over` is just above the gift, `under` just below
     /// its foot; `placed` are the bubbles already standing (the heart, the
@@ -150,21 +155,25 @@ public enum HomeBubbleLayout {
         placed: [Rect], stations: [Rect], topLimit: Double = 120
     ) -> Placement {
         var candidates: [(Placement, Double)] = []
-        for shift in [0, shiftFraction * width, -shiftFraction * width] {
+        let shifts = shiftFractions.flatMap { $0 == 0 ? [0.0] : [$0 * width, -$0 * width] }
+        let art = stations.map { Rect(minX: $0.minX - artMargin, minY: $0.minY - artMargin, maxX: $0.maxX + artMargin, maxY: $0.maxY + artMargin) }
+        for shift in shifts {
             let moved = abs(shift) * shiftCost
             for stem in stems {
                 let p = bubble(tipX: over.x, tipY: over.y, width: width, height: height, tail: tail + stem, screenWidth: screenWidth, shift: shift)
                 candidates.append((p, stem * stemCost + moved))
             }
-            let hanging = bubble(tipX: under.x, tipY: under.y, width: width, height: height, tail: tail, screenWidth: screenWidth, below: true, shift: shift)
-            candidates.append((hanging, belowCost + moved))
+            for stem in belowStems {
+                let hanging = bubble(tipX: under.x, tipY: under.y, width: width, height: height, tail: tail + stem, screenWidth: screenWidth, below: true, shift: shift)
+                candidates.append((hanging, belowCost + stem * stemCost + moved))
+            }
         }
         var best: (Placement, Double)?
         for (p, base) in candidates {
             let frame = p.frame
             var cost = base
             cost += placed.reduce(0) { $0 + bubbleWeight * frame.overlap($1) }
-            cost += stations.reduce(0) { $0 + frame.overlap($1) }
+            cost += art.reduce(0) { $0 + frame.overlap($1) }
             // Under the top bar a bubble is lost.
             if p.body.minY < topLimit { cost += (topLimit - p.body.minY) * width * bubbleWeight }
             if best == nil || cost < best!.1 { best = (p, cost) }

@@ -34,10 +34,14 @@ public struct HomePlateCrop {
     /// upper half, above the water's edge.
     public static let focusY = 0.42
 
+    /// The share of the plate's width cut off each side: the painting fades out over its
+    /// outermost ~4.5% on both edges, and a header must never show that feather.
+    public static let edgeTrim = 0.05
+
     /// The image's size when it fills a frame of `size`, and its offset so that `focusY` of the
     /// plate sits at the frame's middle (never past an edge).
     static func fill(plateWidth: Double, plateHeight: Double, in size: CGSize) -> (image: CGSize, y: CGFloat) {
-        let k = max(Double(size.width) / max(plateWidth, 1), Double(size.height) / max(plateHeight, 1))
+        let k = max(Double(size.width) / max(plateWidth * (1 - 2 * edgeTrim), 1), Double(size.height) / max(plateHeight, 1))
         let image = CGSize(width: plateWidth * k, height: plateHeight * k)
         let wanted = Double(size.height) / 2 - focusY * image.height
         let y = min(0, max(wanted, Double(size.height) - image.height))

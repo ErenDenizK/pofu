@@ -312,8 +312,9 @@ struct OnboardingView: View {
                 .foregroundStyle(PofuColor.textPrimary)
                 .padding(.top, PofuSpacing.xl)
             ScrollView {
-                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: PofuSpacing.s) {
-                    // Only the apps the product targets (Instagram, YouTube, TikTok).
+                LazyVGrid(columns: [GridItem(.flexible())], spacing: PofuSpacing.s) {
+                    // Only the apps the product targets (Instagram, YouTube, TikTok), in one
+                    // column so three apps read as one balanced group.
                     ForEach(ProtectedApp.offered) { app in
                         let isChosen = chosen.contains(app)
                         Button {
