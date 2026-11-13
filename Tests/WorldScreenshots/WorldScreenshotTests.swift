@@ -67,7 +67,7 @@ final class WorldScreenshotTests: XCTestCase {
 
         let runs = Shot.allCases.map { ($0, UIUserInterfaceStyle.light) } + Shot.dark.map { ($0, UIUserInterfaceStyle.dark) }
         for (shot, style) in runs {
-            let name = "\(shot.rawValue)-\(style == .dark ? "dark" : "light")"
+            let name = "sprite-\(shot.rawValue)-\(style == .dark ? "dark" : "light")"
             let world = ScreenshotWorld(game: IslandSamples.playedWeek())
             let island = IslandSceneModel(framing: shot.framing)
             let home = WorldHomeModel(now: { world.game.now })

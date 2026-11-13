@@ -373,7 +373,7 @@ jobs:
           for png in pngs:
               # Full device resolution, kept as written (the Home plate resolution A/B, the painted
               # sky's stops, whose island edge against the sky is judged at 1:1, and the painted Map and flight).
-              if png.stem.startswith(("home-plate-full-", "caglayan-plate-full-", "koke-sky-", "harbor-sky-", "map-plate-", "flight-")):
+              if png.stem.startswith(("home-plate-full-", "caglayan-plate-full-", "koke-sky-", "harbor-sky-", "map-plate-", "flight-", "path-")):
                   shutil.copy(png, out / png.name)
                   continue
               im = Image.open(png).convert("RGB")
@@ -399,6 +399,20 @@ jobs:
           sheet.save(out / "contact.jpg", "JPEG", quality=85, optimize=True)
           PY
           cp shots/*.txt shots/*.json out/ 2>/dev/null || true
+          # The player-path week sheets (R10): days 1 to 7, 8 to 14 and 15 to 21 as the tester meets them,
+          # one montage each (tools/review/sheet.py), published beside the 1206x2622 frames.
+          for week in 1 2 3; do
+            first=$(( (week - 1) * 7 + 1 ))
+            files=()
+            for day in $(seq "$first" $(( first + 6 ))); do
+              for f in $(printf 'shots/path-d%02d-*.png' "$day"); do
+                [ -e "$f" ] && files+=("$f")
+              done
+            done
+            if [ "${#files[@]}" -gt 0 ]; then
+              python3 -I repo/tools/review/sheet.py montage "${files[@]}" --cols 6 --max 4000 -o "out/path-week${week}.jpg"
+            fi
+          done
           # The asset-harmony contact sheet: every master before and after its correction.
           python3 -I repo/tools/assets/harmony.py measure --dry-run --sheet out/harmony.jpg > out/harmony.txt
           # Measured numbers for every grade frame (tools/assets/frame_metrics.py).

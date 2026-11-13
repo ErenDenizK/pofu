@@ -43,6 +43,13 @@ struct OnboardingView: View {
     @State private var missedShield = false
     @State private var caughtCount = 0
 
+    /// Starts at step `index` (0 is the welcome); the player-path screenshots
+    /// open each step this way. The app itself always starts at the welcome.
+    init(model: AppModel, startingAtStep index: Int = 0) {
+        self.model = model
+        _step = State(initialValue: Step.allCases.first { $0.rawValue == index } ?? .welcome)
+    }
+
     /// Whether onboarding ends in the Shortcuts setup guide.
     private var usesShortcuts: Bool {
         !model.screenTime.isAvailable || choseShortcuts

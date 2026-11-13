@@ -29,3 +29,18 @@ struct PlayerPathPlateTests {
         }
     }
 }
+
+extension PlayerPathPlateTests {
+    /// No path frame may switch the paintings off: the file that renders
+    /// them never mentions `homePlates = false`, and every frame goes
+    /// through `WorldLook.playerPath`.
+    @Test func thePathScreenshotsNeverTurnThePaintingsOff() throws {
+        var url = URL(fileURLWithPath: #filePath)
+        for _ in 0..<5 { url.deleteLastPathComponent() }
+        let file = url.appendingPathComponent("Tests/WorldScreenshots/PlayerPathScreenshotTests.swift")
+        let source = try String(contentsOf: file, encoding: .utf8)
+        #expect(!source.contains("homePlates = false"), "a path frame renders with homePlates off")
+        #expect(!source.contains("WorldLook(") , "a path frame builds its own look instead of WorldLook.playerPath")
+        #expect(source.contains("WorldLook.playerPath("))
+    }
+}

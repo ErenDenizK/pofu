@@ -1,0 +1,1 @@
+Changed: the studio reviews the tester's 21 days as the player meets them (path-d01-0900 to path-d21-2300, the Map, Koke and Çağlayan stops, sheets, games and onboarding, with three week sheets), and the sprite-island frames are now named sprite-*.
