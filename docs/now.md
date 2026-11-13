@@ -25,14 +25,13 @@ not accepted is hidden. Codex is stopped (plan expired 11-12).
 
 ## In flight
 
-1. Route steps 1-8 done. Next: step 9, three blind critics on main's
-   path frames once main's CI renders them. Known for the fix round:
-   breath's "Şimdi değil" dark on the night lawn; Today header fade edge.
-2. Open look defects for Sunday: the Map's cut-edged clouds, the sea's
-   mirrored pockets, Çağlayan s0-3 night rim, IL1 night's IL10 ghost.
-3. #425: IL8 now at tended day 20, growth 26: the typical player sees it
-   on d19. The Prova path (one reach a day) still ends d21 at IL7: the
-   trial note says how to reach it; then a day-21 closing beat (step 10).
+Step 9 done (critics: Home holds the bar; the rest does not). Step 10,
+three builders: `fix/trial-look` (Çağlayan's sticker sky, the empty Map,
+Koke's soft floor, Home's right-edge crop); `fix/trial-ui` (a build is
+invisible on the painted Home, the frozen settled caption, bubble
+overlaps, onboarding lists 8 apps, stop hints, stiff Turkish, path
+fixtures); `feat/day21-closing-beat` (and resists/day for IL8).
+Known and kept: the flow minigame's vector board (no art in hand).
 Merged: #403-#426 but #414 (only Damla and Gezgin visit; Sumi waits
 for batch 83); pofu-art #13-#14, #18, #22-#27, #29.
 
