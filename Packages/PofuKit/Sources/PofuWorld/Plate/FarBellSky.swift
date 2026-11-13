@@ -53,7 +53,7 @@ struct FarBellSkyLayer: View {
     @Environment(\.worldStillFrame) private var still
 
     private static let halo = Color(red: 1, green: 0.82, blue: 0.5)
-    private static let core = Color(red: 1, green: 0.90, blue: 0.70)
+    private static let core = Color(red: 1, green: 0.84, blue: 0.59)
 
     private func point(_ p: PlatePoint) -> CGPoint {
         let a = pose.project(plate.world(p), width: Double(size.width))
@@ -67,13 +67,16 @@ struct FarBellSkyLayer: View {
             if plate.light == "night", let glow = FarBellSky.glow(in: world) {
                 let c = point(FarBellSky.light)
                 let r = 8 * k
+                // Source-over, not additive: added to the blue sky amber turns white.
                 Canvas { context, _ in
                     context.fill(
                         Path(ellipseIn: CGRect(x: c.x - r, y: c.y - r, width: r * 2, height: r * 2)),
                         with: .radialGradient(
                             Gradient(stops: [
-                                .init(color: Self.halo.opacity(0.45 * glow), location: 0),
-                                .init(color: Self.halo.opacity(0.18 * glow), location: 0.4),
+                                .init(color: Self.halo.opacity(0.30 * glow), location: 0),
+                                .init(color: Self.halo.opacity(0.14 * glow), location: 0.25),
+                                .init(color: Self.halo.opacity(0.065 * glow), location: 0.5),
+                                .init(color: Self.halo.opacity(0.017 * glow), location: 0.75),
                                 .init(color: Self.halo.opacity(0), location: 1),
                             ]),
                             center: c, startRadius: 0, endRadius: r
@@ -83,12 +86,17 @@ struct FarBellSkyLayer: View {
                     context.fill(
                         Path(ellipseIn: CGRect(x: c.x - cr, y: c.y - cr, width: cr * 2, height: cr * 2)),
                         with: .radialGradient(
-                            Gradient(colors: [Self.core.opacity(glow), Self.core.opacity(0.55 * glow), Self.core.opacity(0)]),
+                            Gradient(stops: [
+                                .init(color: Self.core.opacity(glow), location: 0),
+                                .init(color: Self.core.opacity(0.71 * glow), location: 0.25),
+                                .init(color: Self.core.opacity(0.43 * glow), location: 0.5),
+                                .init(color: Self.core.opacity(0.19 * glow), location: 0.75),
+                                .init(color: Self.core.opacity(0), location: 1),
+                            ]),
                             center: c, startRadius: 0, endRadius: cr
                         )
                     )
                 }
-                .blendMode(.plusLighter)
                 .allowsHitTesting(false)
             }
             if stage.age(at: Date()) != nil {
@@ -114,11 +122,20 @@ struct FarBellSkyLayer: View {
                 guard let ring = FarBellSky.ring(note: note, age: age, reduceMotion: reduceMotion) else { continue }
                 let c = point(note.isFar ? FarBellSky.light : hum)
                 let r = ring.radius * k
-                var layer = context
-                layer.addFilter(.blur(radius: 1.2 * k))
-                layer.stroke(
+                // A soft band of light, never a drawn line: clear inside, a
+                // peak toward the edge, clear at the rim.
+                let peak = colour.opacity(ring.opacity * 0.5)
+                context.fill(
                     Path(ellipseIn: CGRect(x: c.x - r, y: c.y - r, width: r * 2, height: r * 2)),
-                    with: .color(colour.opacity(ring.opacity)), lineWidth: 1.5 * k
+                    with: .radialGradient(
+                        Gradient(stops: [
+                            .init(color: colour.opacity(0), location: 0),
+                            .init(color: colour.opacity(0), location: 0.5),
+                            .init(color: peak, location: 0.82),
+                            .init(color: colour.opacity(0), location: 1),
+                        ]),
+                        center: c, startRadius: 0, endRadius: r
+                    )
                 )
             }
         }
