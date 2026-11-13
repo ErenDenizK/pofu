@@ -47,11 +47,13 @@ struct BreathRoom: View {
     @State private var started = 0
     @State private var finished = 0
 
-    init(model: AppModel, session: HopSession, plan: BreathPlan, frozen: BreathFreeze? = nil) {
+    init(model: AppModel, session: HopSession, plan: BreathPlan, frozen: BreathFreeze? = nil, hour: GateHour? = nil, drawsPostcard: Bool = true) {
         self.model = model
         self.session = session
         self.plan = plan
         self.frozen = frozen
+        self.hour = hour
+        self.drawsPostcard = drawsPostcard
         _phase = State(initialValue: frozen?.phase ?? .waiting)
         _lift = State(initialValue: frozen?.lift ?? 0)
     }
