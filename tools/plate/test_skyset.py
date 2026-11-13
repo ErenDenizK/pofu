@@ -279,7 +279,11 @@ class CaglayanSkyTests(unittest.TestCase):
             assets.add(layers[-1]["asset"])
             src = ex.PLATES / "caglayan" / "sky" / "day" / ("island.heic" if n == 4 else f"island-s{n}.heic")
             dst = ex.ASSETS / f"{layers[-1]['asset']}.imageset" / f"{layers[-1]['asset']}.heic"
-            self.assertEqual(src.read_bytes(), dst.read_bytes(), f"stage {n}'s island is its plate's, copied untouched")
+            # the plate's own island with only its straight left and right edges eased (`islandEdgeFade`): the same picture
+            want = ex.skyset_extend.fade_island_edge(np.asarray(ex.heic.open_image(src).convert("RGBA"), np.float32) / 255, self.HAND["export"]["islandEdgeFade"])
+            got = np.asarray(ex.heic.open_image(dst).convert("RGBA"), np.float32) / 255
+            self.assertEqual(want.shape, got.shape, f"stage {n}'s island keeps its plate's size")
+            self.assertLess(float(np.abs(want - got).mean()), 0.01, f"stage {n}'s island is its plate's, edges eased")
             self.assertFalse({"drift", "bob", "twinkle"} & set(layers[-1]), "the island never moves")
         self.assertEqual(len(assets), 5)
 

@@ -104,14 +104,17 @@ def _premult_resize(rgba: np.ndarray, size: tuple[int, int]) -> np.ndarray:
     return out.clip(0, 1)
 
 
-def _write(arr: np.ndarray, folder: Path, name: str, *, copy: Path | None = None) -> int:
+def _write(arr: np.ndarray, folder: Path, name: str, *, copy: Path | None = None, island_edge: int = 0) -> int:
     """One imageset with a HEIC; returns its pixel count (the texture budget's unit)."""
     d = ASSETS / f"{name}.imageset"
     if d.exists():
         shutil.rmtree(d)
     d.mkdir(parents=True)
     dst = d / f"{name}.heic"
-    if copy is not None:
+    if copy is not None and island_edge:      # an island layer's straight left and right edges carry the matte's cloud
+        img = np.asarray(heic.open_image(copy).convert("RGBA"), np.float32) / 255
+        heic.save(Image.fromarray(np.uint8(skyset_extend.fade_island_edge(img, island_edge) * 255 + 0.5), "RGBA"), dst)
+    elif copy is not None:
         shutil.copyfile(copy, dst)
     else:
         heic.save(Image.fromarray(np.uint8(arr * 255 + 0.5), "RGBA"), dst)
@@ -489,7 +492,7 @@ def export_light(island: str, light: str, hand: dict) -> dict:
             if base_stage:
                 name = entry["asset"] = asset_name(island, "island", light, int(base_stage))
             entry.update(pos=[x, y], size=[dw, dh])
-            add(entry, _write(arr, src, name, copy=src / lay["file"]))
+            add(entry, _write(arr, src, name, copy=src / lay["file"], island_edge=cfg.get("islandEdgeFade", 0)))
             continue
         if lid == "far":
             arr = far_arr
@@ -511,6 +514,9 @@ def export_light(island: str, light: str, hand: dict) -> dict:
             arr = skyset_extend.fill_hidden(arr, (x, y), hidden)
         if lid == "mid" and cfg.get("calmHidden"):
             arr = skyset_extend.clear_hidden(arr, (x, y), hidden)
+        if lid == "mid" and cfg.get("crumbs", {}).get(light):
+            # boxes are master px; the layer's own px start at its pos
+            arr = skyset_extend.clear_crumbs(arr, [[a - x, b - x, c - y, d - y] for a, b, c, d in cfg["crumbs"][light]])
         if lid == "far" and cfg.get("topClouds"):
             tc = cfg["topClouds"]
             tc = {**tc, **tc.get("lights", {}).get(light, {})}
@@ -546,7 +552,7 @@ def export_light(island: str, light: str, hand: dict) -> dict:
         for stage, fname in man["stageIslands"].items():
             name = asset_name(island, "island", light, int(stage))
             if stage != base_stage:
-                _write(None, src, name, copy=src / fname)
+                _write(None, src, name, copy=src / fname, island_edge=cfg.get("islandEdgeFade", 0))
             stages[stage] = name
         out["stageIslands"] = stages
     return out

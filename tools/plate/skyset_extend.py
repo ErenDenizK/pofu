@@ -250,3 +250,49 @@ def clear_hidden(arr: np.ndarray, pos: tuple[int, int], hidden: np.ndarray, lo: 
     out = arr.copy()
     out[..., 3] *= 1 - wgt
     return out
+
+
+def clear_crumbs(arr: np.ndarray, boxes: list, min_alpha: float = 0.003) -> np.ndarray:
+    """Delete whole cloud pieces from a tile layer: every connected piece of alpha (above `min_alpha`) that touches one
+    of `boxes` ([x0, x1, y0, y1] in the layer's own pixels) goes. A box is a probe, not a mask: it names a piece by a
+    few pixels inside it. This takes out the leftovers of the old island cut-out that the screen's edges still show,
+    the mid layer's clouds cut by the plate's edge (a straight edge at the paint width, or a hole where the island was),
+    without touching the clouds beside them."""
+    if not boxes:
+        return arr
+    n, lab = cv2.connectedComponents((arr[..., 3] > min_alpha).astype(np.uint8), connectivity=8)
+    drop = np.zeros(n, bool)
+    for x0, x1, y0, y1 in boxes:
+        drop[np.unique(lab[max(y0, 0): y1, max(x0, 0): x1])] = True
+    drop[0] = False
+    out = arr.copy()
+    gone = drop[lab]
+    out[gone] = 0
+    return out
+
+
+def fade_island_edge(rgba: np.ndarray, edge: int = 140, grow: int = 9) -> np.ndarray:
+    """The island layer is a rectangle: the cloud the matte took in round the island ends in a straight edge at its
+    left and right columns, a pale crumb on the sky. Alpha that is not part of the island's own body (the biggest solid
+    piece, grown by `grow` px) eases to nothing over the last `edge` columns, and a pale piece that reaches the edge goes
+    from there inwards over 50 to 90 px. The body (leaves, flowers, even a white daisy) keeps its alpha. `rgba` straight 0..1."""
+    h, w = rgba.shape[:2]
+    rgb, al = rgba[..., :3], rgba[..., 3]
+    pale = ((rgb.max(2) - rgb.min(2)) < 0.22) & (rgb.mean(2) > 0.6)
+    solid = cv2.erode((al > 0.92).astype(np.uint8), np.ones((3, 3), np.uint8))
+    n, lab, st, _ = cv2.connectedComponentsWithStats(solid, connectivity=8)
+    if n < 2:
+        return rgba
+    body = (lab == 1 + int(np.argmax(st[1:, 4]))).astype(np.uint8)
+    keep = cv2.dilate(body, np.ones((grow, grow), np.uint8)).astype(bool) & (al > 0.5)
+    d = np.minimum(np.arange(w), w - 1 - np.arange(w)).astype(np.float32)
+    t = np.clip(d / edge, 0, 1)
+    t = t * t * (3 - 2 * t)
+    n2, lab2 = cv2.connectedComponents((pale & (al > 0.03)).astype(np.uint8), connectivity=8)
+    touch = np.unique(np.concatenate([lab2[:, :3].ravel(), lab2[:, -3:].ravel()]))
+    reach = np.isin(lab2, touch[touch > 0]).astype(np.float32)
+    reach = cv2.GaussianBlur(cv2.dilate(reach, np.ones((3, 3), np.uint8)), (0, 0), 1)
+    reach *= 1 - np.clip((d[None, :] - 50) / 40, 0, 1)
+    out = rgba.copy()
+    out[..., 3] = np.where(keep, al, al * t[None, :]) * (1 - reach)
+    return out
