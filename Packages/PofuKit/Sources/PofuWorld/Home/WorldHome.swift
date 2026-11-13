@@ -101,6 +101,10 @@ public struct WorldHome: View {
         }
         .onAppear {
             home.camera = scene
+            // A visit planned before the camera was set has already said its news.
+            if !home.holdsIslandGrowForNews {
+                scene.newsHasSpoken()
+            }
         }
         .onChange(of: actions.playableRounds, initial: true) { _, rounds in
             scene.playableRounds = rounds

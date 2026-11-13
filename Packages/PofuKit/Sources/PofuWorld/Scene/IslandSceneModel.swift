@@ -1430,7 +1430,7 @@ extension IslandSceneModel {
             kick()
             return
         }
-        if settlesAtIsland, island == .home {
+        if settlesAtIsland, island == .home, framing == .home {
             go(to: .island)
         } else if active.moment.time(of: .pullBack) != nil, engine.rig.isFocused {
             engine.rig.releaseFocus()
