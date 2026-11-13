@@ -31,10 +31,9 @@ first; gates are only his device check, the cut line and Monday.
    lines out to the founder via the side channel. PR 2 (sky light) later.
 2. IL1 composite (Sonnet, `fix/il1-continuity`): IL1 from registered
    takes so IL2 loses nothing (Fable's mock).
-Merged today: #430-#435 (Koke 1:1, polish, route, "Ada büyüdü", crumbs,
-milestone fixes: cheek line rarer, sheet text, bell bubble, grow 0.8 s).
-#436 (founder's line edits) merges from the side channel. Note: two
-"Boş ver" a day reach IL8 on d21; day 1's far isles are painted in.
+Merged today: #430-#435 ("Ada büyüdü", milestone fixes). #436 (his
+line edits) merges from the side channel. Note: two "Boş ver" a day
+reach IL8 on d21.
 Known and kept: the flow minigame's vector board (no art in hand).
 Merged: #403-#435 but #414 (only Damla and Gezgin visit; Sumi waits
 for batch 83); pofu-art #13-#14, #18, #22-#27, #29.
