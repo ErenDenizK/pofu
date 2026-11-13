@@ -107,6 +107,7 @@ struct HomeView: View {
         }
         .onAppear {
             model.island.onPlayFlow = { stage in model.playCaglayanFlow(stage: stage) }
+            model.farBellHomeAppeared()
         }
         .sheet(item: $model.homeSheet) { sheet in
             switch sheet {

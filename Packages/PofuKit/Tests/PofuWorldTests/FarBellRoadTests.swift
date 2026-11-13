@@ -140,4 +140,31 @@ struct FarBellRoadTests {
         stage.clear()
         #expect(stage.age(at: Date()) == nil)
     }
+
+    private static func atTheBell(_ plan: VisitPlan) -> VisitProgress {
+        var visit = VisitProgress(plan: plan)
+        while visit.current != nil, visit.current != .bell {
+            visit.skip()
+        }
+        return visit
+    }
+
+    @Test func coldLaunchOnTheBellCardCuesOnceOnAppear() throws {
+        let bellDay = try #require(Self.path.first { $0.day == 21 })
+        let visit = Self.atTheBell(plan(bellDay.morning))
+        #expect(visit.current == .bell)
+        var guardian = FarBellCueGuard()
+        #expect(guardian.cueOnAppear(visit) == .bell)
+        #expect(guardian.cueOnAppear(visit) == nil, "never twice for the same card")
+        let empty = VisitProgress(plan: VisitPlan(landing: .settled, showsRepairBanner: false, beats: []))
+        #expect(guardian.cueOnAppear(empty) == nil)
+    }
+
+    @Test func theChangeObserverAndAppearingShareOneCue() throws {
+        let bellDay = try #require(Self.path.first { $0.day == 21 })
+        let visit = Self.atTheBell(plan(bellDay.morning))
+        var guardian = FarBellCueGuard()
+        #expect(guardian.cue(from: VisitProgress(plan: VisitPlan(landing: .settled, showsRepairBanner: false, beats: [])), to: visit) == .bell)
+        #expect(guardian.cueOnAppear(visit) == nil)
+    }
 }

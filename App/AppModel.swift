@@ -79,6 +79,8 @@ final class AppModel {
     let worldHome = WorldHomeModel(cheekLineDefaults: .standard)
     /// When the last visit settled, for the 15-minute reopen rule (A15).
     private var lastVisitSettled: Date?
+    /// Keeps the bell's song from sounding twice for one card (`WorldSound.swift`).
+    @ObservationIgnored var farBellCueGuard = FarBellCueGuard()
     /// Set when the last save failed, so a broken disk is never silent.
     private(set) var persistenceProblem = false
     /// Whether Pofu is on screen. Being here is a sign the user left the
