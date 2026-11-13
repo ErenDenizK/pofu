@@ -1,5 +1,6 @@
 import Foundation
 import PofuCore
+import PofuDesignSystem
 import PofuSound
 import PofuWorld
 
@@ -10,9 +11,46 @@ import PofuWorld
 @MainActor
 enum WorldSound {
     private static let kettleKey = "pofu.sound.kettleDay"
+    /// The last step of the far bell's road Pofu told (0 for none): "told
+    /// once" without a saved game state (docs/design/days-17-21-v1.md, D5).
+    private static let preludeKey = "pofu.farBell.preludeHeard"
+    private static var farBellTask: Task<Void, Never>?
+
+    static var preludeHeard: Int {
+        UserDefaults.standard.integer(forKey: preludeKey)
+    }
+
+    static func notePreludeHeard(_ step: Int) {
+        UserDefaults.standard.set(step, forKey: preludeKey)
+    }
+
+    /// Rehearsal's reset: the road is told again.
+    static func forgetPrelude() {
+        UserDefaults.standard.removeObject(forKey: preludeKey)
+    }
+
+    /// Plays the far bell's notes as single ladder notes at their times: the
+    /// hum a tap in the hand, the far notes a heavier one. A new tune cuts
+    /// the old one.
+    static func play(_ notes: [FarBellTune.Note]) {
+        farBellTask?.cancel()
+        farBellTask = Task { @MainActor in
+            let begin = ContinuousClock.now
+            for note in notes.sorted(by: { $0.at < $1.at }) {
+                do {
+                    try await Task.sleep(until: begin + .seconds(note.at), clock: .continuous)
+                } catch {
+                    return
+                }
+                SoundEngine.shared.play(.bloom(step: note.step))
+                PofuHaptics.shared.play(note.isFar ? .land : .tap)
+            }
+        }
+    }
 
     /// Once at launch: the breath room's phases drive the pad.
     static func install() {
+        FarBellStage.shared.onPlay = { WorldSound.play($0) }
         BreathSound.handler = { cue in
             let phase: BreathPhaseCue = switch cue {
             case .airOpens: .opens
@@ -42,6 +80,20 @@ enum WorldSound {
 }
 
 extension AppModel {
+    /// The far bell's road for the ears: a step's button hums and the far
+    /// notes answer; the bell's card plays its song when it comes up.
+    func farBellVisitChanged(from old: VisitProgress, to new: VisitProgress) {
+        switch FarBellCues.cue(from: old, to: new) {
+        case .prelude(let step):
+            WorldSound.notePreludeHeard(step)
+            FarBellStage.shared.play(FarBellTune.prelude(step: step))
+        case .bell:
+            FarBellStage.shared.play(FarBellTune.bell())
+        case nil:
+            break
+        }
+    }
+
     /// Tells the sound pass what the world is now. Cheap; called when Home
     /// appears, when the scene phase changes and on the 30-second tick.
     func updateWorldSound(active: Bool) {
