@@ -5,6 +5,8 @@ import Foundation
 /// catalog. Short and warm; no score, no timer, no "wrong".
 enum FlowStrings {
     static var leave: String { String(localized: "Leave the water for later", bundle: .module) }
+    /// The round's goal, under the HUD.
+    static var goal: String { String(localized: "Tap a tile to turn it. Lead the water to the pool.", bundle: .module) }
     static var undo: String { String(localized: "Undo", bundle: .module) }
     static var hint: String { String(localized: "Hint", bundle: .module) }
     static var done: String { String(localized: "Done", bundle: .module) }

@@ -279,7 +279,11 @@ class CaglayanSkyTests(unittest.TestCase):
             assets.add(layers[-1]["asset"])
             src = ex.PLATES / "caglayan" / "sky" / "day" / ("island.heic" if n == 4 else f"island-s{n}.heic")
             dst = ex.ASSETS / f"{layers[-1]['asset']}.imageset" / f"{layers[-1]['asset']}.heic"
-            self.assertEqual(src.read_bytes(), dst.read_bytes(), f"stage {n}'s island is its plate's, copied untouched")
+            # the plate's own island with only its straight left and right edges eased (`islandEdgeFade`): the same picture
+            want = ex.skyset_extend.fade_island_edge(np.asarray(ex.heic.open_image(src).convert("RGBA"), np.float32) / 255, self.HAND["export"]["islandEdgeFade"])
+            got = np.asarray(ex.heic.open_image(dst).convert("RGBA"), np.float32) / 255
+            self.assertEqual(want.shape, got.shape, f"stage {n}'s island keeps its plate's size")
+            self.assertLess(float(np.abs(want - got).mean()), 0.01, f"stage {n}'s island is its plate's, edges eased")
             self.assertFalse({"drift", "bob", "twinkle"} & set(layers[-1]), "the island never moves")
         self.assertEqual(len(assets), 5)
 
@@ -323,7 +327,8 @@ class CaglayanSkyTests(unittest.TestCase):
         self.assertGreater(over_top, 0)
         self.assertGreater(over_bottom, 0)
         self.assertLessEqual(layers["sky"]["pos"][1], -over_top, "the gradient reaches the top of the screen")
-        self.assertGreaterEqual(layers["far"]["pos"][1], 0, "no cloud is drawn above the master: the far layer is the painting's own")
+        # the far layer's own clouds run on up to the top of the screen (`skyset_extend.top_clouds`): no plain band
+        self.assertLessEqual(layers["far"]["pos"][1], -over_top, "the far clouds reach the top of the screen")
         for lid in ("sky", "sea"):
             self.assertGreaterEqual(layers[lid]["pos"][1] + layers[lid]["size"][1], self.DATA["master"][1] + over_bottom, f"{lid} reaches the bottom")
         self.assertLessEqual(layers["sky"]["pos"][0], -(fr["x0"] * -1 if fr["x0"] < 0 else 0))
@@ -345,9 +350,11 @@ class CaglayanSkyTests(unittest.TestCase):
         edge = sky[top_rows: top_rows + 2].mean((0, 1))
         above = sky[top_rows - 2: top_rows].mean((0, 1))
         self.assertLess(float(np.abs(edge - above).max()), 0.02, "no step at the join")
-        # it deepens toward the zenith and never runs off
-        self.assertLess(float(sky[0].mean(0)[0]), float(edge[0]) + 1e-3)
-        self.assertGreater(float(sky[0].mean()), 0.2)
+        # above the master it eases to Home's own zenith of the same light (`skyAbove`): the same blue
+        home = np.asarray(heic.open_image(ex.PLATES / "home" / "sky" / "day" / "sky.heic").convert("RGB"), np.float32) / 255
+        self.assertLess(float(np.abs(sky[0].mean(0) - home[0].mean(0)).max()), 0.02)
+        rows = sky[:top_rows + 1].mean(1)
+        self.assertLess(float(np.abs(np.diff(rows, axis=0)).max()), 0.01, "no band on the way up")
 
 
 class ExtensionTests(unittest.TestCase):
@@ -366,6 +373,17 @@ class ExtensionTests(unittest.TestCase):
         d = np.abs(np.diff(out[:101, 0, 0]))
         self.assertLess(float(d[:10].mean()), float(d[-10:].mean()) + 1e-6)  # the change dies away upward
         self.assertTrue(np.isfinite(out).all() and out.min() >= 0 and out.max() <= 1)
+
+    def test_extend_sky_up_eases_to_another_skys_zenith_without_a_step(self):
+        sky = np.full((50, 40, 3), 0.5, np.float32)
+        sky[:, :10, 0] = 0.7                                               # a tint at the left
+        target = np.array([0.4, 0.6, 0.9], np.float32)
+        out = ex.extend_sky_up(sky, 120, flat_rows=30, target=target, ease_rows=100)
+        np.testing.assert_array_equal(out[120:], sky)
+        np.testing.assert_allclose(out[0].mean(0), target, atol=1e-3)     # Home's zenith above
+        rows = out[:121].mean(1)
+        self.assertLess(float(np.abs(rows[119] - rows[120]).max()), 0.01)  # no step at the join
+        self.assertLess(float(np.abs(np.diff(rows, axis=0)).max()), 0.01)
 
     def test_extend_sky_up_flattens_a_corner_tint_with_height(self):
         sky = np.full((50, 40, 3), 0.6, np.float32)

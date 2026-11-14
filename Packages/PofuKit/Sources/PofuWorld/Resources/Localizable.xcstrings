@@ -241,22 +241,52 @@
         }
       }
     },
+    "Island %lld is ready": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ada %lld hazır"
+          }
+        }
+      }
+    },
+    "Asleep": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uykuda"
+          }
+        }
+      }
+    },
+    "Healed": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İyileşti"
+          }
+        }
+      }
+    },
+    "Healing %lld of %lld": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İyileşiyor · %1$lld/%2$lld"
+          }
+        }
+      }
+    },
     "Fix": {
       "localizations": {
         "tr": {
           "stringUnit": {
             "state": "translated",
             "value": "Onar"
-          }
-        }
-      }
-    },
-    "Fındık's": {
-      "localizations": {
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fındık'ın"
           }
         }
       }
@@ -346,7 +376,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bak hele: gece yeni bir ada yanaştı!"
+            "value": "İnanılmaz! Gece yeni bir ada yanaşmış."
           }
         }
       }
@@ -356,7 +386,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bak hele: ada gece büyüdü!"
+            "value": "Vay canına! Biz uyurken ada büyümüş."
           }
         }
       }
@@ -367,16 +397,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Harita"
-          }
-        }
-      }
-    },
-    "Mochi's": {
-      "localizations": {
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mochi'nin"
           }
         }
       }
@@ -397,16 +417,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Vida mı lazım? Bende bin tane var."
-          }
-        }
-      }
-    },
-    "No reaches yet today.": {
-      "localizations": {
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bugün henüz uzanma yok."
           }
         }
       }
@@ -457,16 +467,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Haftamız hazır."
-          }
-        }
-      }
-    },
-    "Pofu's": {
-      "localizations": {
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pofu'nun"
           }
         }
       }
@@ -761,16 +761,6 @@
         }
       }
     },
-    "Today · no reaches yet · %lld min": {
-      "localizations": {
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bugün · henüz uzanış yok · %lld dk"
-          }
-        }
-      }
-    },
     "%lld seeds in the jar": {
       "localizations": {
         "tr": {
@@ -877,16 +867,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Hep bir şey onarılıyor."
-          }
-        }
-      }
-    },
-    "%@ → %@ seeds a day": {
-      "localizations": {
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Günde %1$@ → %2$@ çekirdek"
           }
         }
       }
@@ -1601,6 +1581,554 @@
           "stringUnit": {
             "state": "translated",
             "value": "Gece su da dinlenir. Sabah gel."
+          }
+        }
+      }
+    },
+    "bell.line": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Koke's awake, Çağlayan's flowing. A bell far off played my song. One note too many."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Köke uyandı, Çağlayan akıyor. Uzakta bir çan benim şarkımı çaldı. Bir notası fazlaydı."
+          }
+        }
+      }
+    },
+    "bell.action": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I heard it too"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ben de duydum"
+          }
+        }
+      }
+    },
+    "prelude.line.1": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Koke quit snoring. My humming made it off the island for once."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Köke horlamayı kesti. Mırıltım ilk kez adadan dışarı çıktı."
+          }
+        }
+      }
+    },
+    "prelude.line.2": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A note came back from the fog. (Not an echo. Echoes are prompt.)"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sisten bir nota geri geldi. (Yankı değil. Yankı daha dakik.)"
+          }
+        }
+      }
+    },
+    "prelude.line.3": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Two notes today. Mochi's tea shivered. Nobody touched the table."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bugün iki nota. Mochi'nin çayı kıpırdadı, masaya değen yok."
+          }
+        }
+      }
+    },
+    "prelude.line.4": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "It played all four. One wrong. I yelled the right one. Nothing."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dördünü de çaldı. Biri yanlış. Bağırarak düzelttim. Duymadı."
+          }
+        }
+      }
+    },
+    "prelude.action.hum": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hum it"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mırıldan"
+          }
+        }
+      }
+    },
+    "prelude.action.listen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Listen"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dinle"
+          }
+        }
+      }
+    },
+    "night.listening.1": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hummed my four notes. No fifth. Again."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dört nota mırıldandım. Beşincisi yine gelmedi."
+          }
+        }
+      }
+    },
+    "night.listening.2": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "One ear toward the fog. You sleep, I'll listen."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kulağım sisin tarafında. Sen uyu, ben duyarım."
+          }
+        }
+      }
+    },
+    "night.listening.3": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mochi's tea is on the windowsill. It'll tell us."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mochi çayını pencereye koydu. Kıpırdarsa duyarız."
+          }
+        }
+      }
+    },
+    "night.listening.4": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "That wrong note. Maybe the wrong one's mine."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yanlış nota aklımda. Belki yanlış olan benimkidir."
+          }
+        }
+      }
+    },
+    "night.bell": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Five notes. I know the fifth by heart. Good night."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beş nota. Beşincisini ezberledim. İyi geceler."
+          }
+        }
+      }
+    },
+    "The door's been quiet today.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bugün kapı sessiz."
+          }
+        }
+      }
+    },
+    "%@ seeds a day · %@ once built": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Günde %1$@ çekirdek · inşa edince %2$@"
+          }
+        }
+      }
+    },
+    "Pofu waters it": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pofu suluyor"
+          }
+        }
+      }
+    },
+    "The island's asleep. Seeds pile up by morning.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ada uyuyor. Sabaha kadar çekirdeklerin birikir."
+          }
+        }
+      }
+    },
+    "The neighbours turned in. See you at breakfast.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Işıklar söndü, yatma vakti. Kahvaltıda görüşürüz."
+          }
+        }
+      }
+    },
+    "A gift reached the island today. Spot it?": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bugün adaya bir hediye geldi. Bulabildin mi?"
+          }
+        }
+      }
+    },
+    "We let %lld go today. Mostly your doing.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bugün %lld kez boş verdik. Çoğu senin eserin."
+          }
+        }
+      }
+    },
+    "We've got a guest. Say hi?": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bir misafirimiz var. Selam verelim mi?"
+          }
+        }
+      }
+    },
+    "Morning. Tea's brewing, the island's up.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Günaydın. Çay demledim, içer misin?"
+          }
+        }
+      }
+    },
+    "Buried a seed. Forgot where. Classic hamster.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bir çekirdek gömdüm. Yerini unuttum. İlahi ben."
+          }
+        }
+      }
+    },
+    "The sunflowers watch the sun. I watch you.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ayçiçekleri güneşe bakıyor. Ben sana."
+          }
+        }
+      }
+    },
+    "Yawned twice today. Very productive.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bugün iki kez esnedim. Çok verimliyim. Aferin bana."
+          }
+        }
+      }
+    },
+    "Evening tea's on me. You sit.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Akşam çayı benden. Sen otur, keyfine bak."
+          }
+        }
+      }
+    },
+    "−%lld seeds": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "−%lld çekirdek"
+          }
+        }
+      }
+    },
+    "A tap helps it today": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bugün bir dokunuş iyi gelir"
+          }
+        }
+      }
+    },
+    "Done for today. Back tomorrow": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bugünlük tamam. Yarın yine gel"
+          }
+        }
+      }
+    },
+    "Skip one reach today first": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Önce bugün bir kez “Boş ver” de"
+          }
+        }
+      }
+    },
+    "Asleep for the night. Come in the morning": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gece uyuyor. Sabah gel"
+          }
+        }
+      }
+    },
+    "Today · all quiet · %lld min": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bugün sessiz · %lld dk"
+          }
+        }
+      }
+    },
+    "Mochi's, our bunny neighbour": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tavşan komşumuz Mochi'nin"
+          }
+        }
+      }
+    },
+    "Fındık's, our hedgehog neighbour": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kirpi komşumuz Fındık'ın"
+          }
+        }
+      }
+    },
+    "Island %lld": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ada %lld"
+          }
+        }
+      }
+    },
+    "The island grew": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ada büyüdü"
+          }
+        }
+      }
+    },
+    "Tea's on, simit's here. Now it's an island.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Çay demlendi, simit geldi. Ada oldu bu iş."
+          }
+        }
+      }
+    },
+    "The mist cleared off the bridge. I watered the sprouts. (A bit.)": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sis dağıldı, köprü göründü. Filizleri ben suladım. (Biraz.)"
+          }
+        }
+      }
+    },
+    "We've got a pond. I dipped a toe. Cold. Dipped it again.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Göletimiz oldu. Ayağımı soktum, soğukmuş. Bir daha soktum."
+          }
+        }
+      }
+    },
+    "A ferry's at the pier. It thinks the bunting's for it. I let it.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İskeleye vapur yanaştı. Flamaları ona astık sanıyor. Bozmadım."
+          }
+        }
+      }
+    },
+    "We have a lighthouse now. No sea. Never mind, we have clouds.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deniz fenerimiz var artık. Deniz yok ama bulut var. Adı bulut feneri olsun o zaman."
+          }
+        }
+      }
+    },
+    "Flowers everywhere. I tried the bench. My feet don't reach.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Her yan çiçek oldu. Banka oturdum, ayaklarım yere değmedi."
+          }
+        }
+      }
+    },
+    "We built a windmill. Let it do the spinning. I quit the wheel.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yel değirmeni kurduk. Artık benim yerime o dönüyor. İşsiz kaldım."
+          }
+        }
+      }
+    },
+    "Can't talk. Mouth's full. (And yet.)": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Konuşamıyorum. Ağzım dolu. (Konuştum bile.)"
+          }
+        }
+      }
+    },
+    "Tried to yawn. No room. Cheeks are full.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esneyemedim. Yanaklar dolu, yer yok."
+          }
+        }
+      }
+    },
+    "Barely fit through the door with these cheeks.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu yanaklarla kapıdan zor geçtim."
+          }
+        }
+      }
+    },
+    "One cheek's heavier. I'm walking in a slant.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bir yanağım daha ağır. Yan yan yürüyorum."
           }
         }
       }

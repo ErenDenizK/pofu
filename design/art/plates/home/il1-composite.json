@@ -1,0 +1,410 @@
+{
+ "note": "Hand data of tools/plate/il1_composite.py, in plate pixels (1024 x 1536). Regions are donor polygons feathered by `feather` (Gaussian sigma, px); `exclude` cuts polygons out of a region; `fills` remove a donor prop by inpainting; `doors` are ellipses patched with IL2's earth.",
+ "day": {
+  "base": "design/art/takes/batch-74-redo-states/x-home-flow-il1-v3/plate__x-home-flow-il1-v3--t2.webp",
+  "donor": "design/art/takes/batch-71-home-redo/x-home-flow-il1-v2/plate__x-home-flow-il1-v2--t1.webp",
+  "earth": "design/art/takes/batch-66-home-flow/x-home-flow-il2/plate__x-home-flow-il2--t1.webp",
+  "regions": [
+   {
+    "name": "sky",
+    "poly": [
+     [
+      -30,
+      -30
+     ],
+     [
+      1060,
+      -30
+     ],
+     [
+      1060,
+      450
+     ],
+     [
+      -30,
+      450
+     ]
+    ],
+    "feather": 14
+   },
+   {
+    "name": "hillCloud",
+    "poly": [
+     [
+      -30,
+      420
+     ],
+     [
+      345,
+      420
+     ],
+     [
+      350,
+      520
+     ],
+     [
+      335,
+      620
+     ],
+     [
+      315,
+      660
+     ],
+     [
+      200,
+      672
+     ],
+     [
+      100,
+      672
+     ],
+     [
+      30,
+      660
+     ],
+     [
+      -30,
+      650
+     ]
+    ],
+    "feather": 12
+   },
+   {
+    "name": "fog",
+    "poly": [
+     [
+      1060,
+      540
+     ],
+     [
+      720,
+      540
+     ],
+     [
+      700,
+      640
+     ],
+     [
+      748,
+      720
+     ],
+     [
+      750,
+      790
+     ],
+     [
+      705,
+      808
+     ],
+     [
+      645,
+      832
+     ],
+     [
+      625,
+      862
+     ],
+     [
+      655,
+      895
+     ],
+     [
+      720,
+      935
+     ],
+     [
+      790,
+      1000
+     ],
+     [
+      800,
+      1040
+     ],
+     [
+      1060,
+      1040
+     ]
+    ],
+    "feather": 26
+   }
+  ],
+  "doors": [
+   {
+    "name": "blue",
+    "cx": 392,
+    "cy": 1077,
+    "rx": 50,
+    "ry": 50
+   },
+   {
+    "name": "green",
+    "cx": 648,
+    "cy": 1058,
+    "rx": 46,
+    "ry": 56
+   }
+  ]
+ },
+ "night": {
+  "base": "design/art/takes/batch-80-home-il1-night/x-home-flow-il1-night/plate__x-home-flow-il1-night--t2.webp",
+  "donor": "design/art/takes/batch-74-redo-states/x-home-flow-il2-night-v2/plate__x-home-flow-il2-night-v2--t2.webp",
+  "earth": "design/art/takes/batch-74-redo-states/x-home-flow-il2-night-v2/plate__x-home-flow-il2-night-v2--t2.webp",
+  "regions": [
+   {
+    "name": "sky",
+    "poly": [
+     [
+      -30,
+      -30
+     ],
+     [
+      1060,
+      -30
+     ],
+     [
+      1060,
+      450
+     ],
+     [
+      -30,
+      450
+     ]
+    ],
+    "feather": 14
+   },
+   {
+    "name": "hillCloud",
+    "poly": [
+     [
+      -30,
+      420
+     ],
+     [
+      345,
+      420
+     ],
+     [
+      350,
+      520
+     ],
+     [
+      335,
+      620
+     ],
+     [
+      315,
+      660
+     ],
+     [
+      200,
+      672
+     ],
+     [
+      100,
+      672
+     ],
+     [
+      30,
+      660
+     ],
+     [
+      -30,
+      650
+     ]
+    ],
+    "feather": 12
+   },
+   {
+    "name": "fog",
+    "poly": [
+     [
+      1060,
+      540
+     ],
+     [
+      720,
+      540
+     ],
+     [
+      700,
+      640
+     ],
+     [
+      748,
+      720
+     ],
+     [
+      750,
+      790
+     ],
+     [
+      705,
+      808
+     ],
+     [
+      645,
+      832
+     ],
+     [
+      625,
+      862
+     ],
+     [
+      655,
+      895
+     ],
+     [
+      720,
+      935
+     ],
+     [
+      790,
+      1000
+     ],
+     [
+      800,
+      1040
+     ],
+     [
+      1060,
+      1040
+     ]
+    ],
+    "feather": 26,
+    "exclude": [
+     {
+      "name": "teaStallBarrel",
+      "poly": [
+       [
+        600,
+        772
+       ],
+       [
+        760,
+        772
+       ],
+       [
+        760,
+        842
+       ],
+       [
+        716,
+        842
+       ],
+       [
+        716,
+        895
+       ],
+       [
+        600,
+        895
+       ]
+      ],
+      "feather": 6
+     }
+    ]
+   }
+  ],
+  "fills": [
+   {
+    "name": "teaStallRoof",
+    "kind": "sky",
+    "poly": [
+     [
+      625,
+      662
+     ],
+     [
+      775,
+      662
+     ],
+     [
+      775,
+      778
+     ],
+     [
+      625,
+      778
+     ]
+    ],
+    "feather": 10,
+    "samples": [
+     [
+      600,
+      590,
+      800,
+      655
+     ],
+     [
+      570,
+      662,
+      622,
+      760
+     ]
+    ]
+   },
+   {
+    "name": "veiledLawn",
+    "poly": [
+     [
+      758,
+      745
+     ],
+     [
+      818,
+      745
+     ],
+     [
+      818,
+      830
+     ],
+     [
+      758,
+      830
+     ]
+    ],
+    "radius": 14,
+    "blur": 9
+   },
+   {
+    "name": "bagelCart",
+    "poly": [
+     [
+      755,
+      710
+     ],
+     [
+      870,
+      710
+     ],
+     [
+      870,
+      790
+     ],
+     [
+      755,
+      790
+     ]
+    ],
+    "radius": 9,
+    "blur": 6
+   }
+  ],
+  "doors": [
+   {
+    "name": "blue",
+    "cx": 392,
+    "cy": 1077,
+    "rx": 50,
+    "ry": 50
+   },
+   {
+    "name": "green",
+    "cx": 648,
+    "cy": 1058,
+    "rx": 46,
+    "ry": 56
+   }
+  ]
+ }
+}

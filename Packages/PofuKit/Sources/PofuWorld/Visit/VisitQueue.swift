@@ -7,6 +7,9 @@ public enum VisitNews: Hashable, Sendable {
     case stageGrew(Int)
     /// A new island drifted close.
     case islandArrived(IslandID)
+    /// The far bell's road: step 1 to 4 of Pofu's four notes coming back
+    /// (`FarBellPrelude`, days 17 to 20 of the tester's path).
+    case farNotes(Int)
 }
 
 /// One beat of a visit, in the queue's priority order (§6.2).
@@ -18,6 +21,9 @@ public enum VisitBeat: Hashable, Sendable {
     case collect(SeedPouch)
     /// One piece of news a visit.
     case news(VisitNews)
+    /// The far bell rang (`FarBell`): Pofu tells it until the player
+    /// answers. Book One's first stretch closes on it.
+    case bell
     /// One build a visit, only when the seeds cover it.
     case build(StationID, level: Int)
     /// The weekly recap, first visit after Sunday 18:00.
@@ -53,6 +59,8 @@ public struct VisitInputs: Sendable {
     /// user's first week has nothing to recap).
     public var lastRecapSeen: Date?
     public var news: VisitNews?
+    /// The last step of the far bell's road already told (0 for none).
+    public var preludeHeard: Int
     public var calendar: Calendar
 
     public init(
@@ -64,6 +72,7 @@ public struct VisitInputs: Sendable {
         lastCareBeat: Date? = nil,
         lastRecapSeen: Date? = nil,
         news: VisitNews? = nil,
+        preludeHeard: Int = 0,
         calendar: Calendar
     ) {
         self.now = now
@@ -74,6 +83,7 @@ public struct VisitInputs: Sendable {
         self.lastCareBeat = lastCareBeat
         self.lastRecapSeen = lastRecapSeen
         self.news = news
+        self.preludeHeard = preludeHeard
         self.calendar = calendar
     }
 }
@@ -125,6 +135,14 @@ public enum VisitQueue {
         }
         if let news = inputs.news {
             beats.append(.news(news))
+        }
+        // The far bell's road: a step is told once, the day it is due.
+        if let step = FarBellPrelude.step(in: world), step != inputs.preludeHeard {
+            beats.append(.news(.farNotes(step)))
+        }
+        // A story beat: before the build, so three beats never crowd it out.
+        if world.bell == .ringing {
+            beats.append(.bell)
         }
         // The collect beat comes first, so its seeds count toward the build.
         let seeds = world.jar + (collects ? world.pending.total : .zero)

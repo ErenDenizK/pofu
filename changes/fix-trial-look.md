@@ -1,0 +1,1 @@
+Changed: Çağlayan's sky above its island is Home's soft sky with a few clouds instead of a wallpaper of small ones; the Map frames Home, Köke and Çağlayan large across the screen with a soft shadow under the two wonder islands on the cloud sea; and at Köke's stop the cloud sea under the island is the painted sea, without the hazy veil and its straight edge.

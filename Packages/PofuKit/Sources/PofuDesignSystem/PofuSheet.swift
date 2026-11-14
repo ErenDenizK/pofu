@@ -192,7 +192,8 @@ public struct PofuHeaderPlate: View {
             Spacer(minLength: 0)
             if let onClose {
                 Button(action: onClose) {
-                    PofuDuoIcon(.duoClose, size: 24, fallback: "xmark")
+                    // A plain glyph: the duotone close art carried a stray mark above its cross.
+                    Image(systemName: "xmark")
                         .font(.system(size: 15, weight: .semibold))
                         .foregroundStyle(Color(red: 0.24, green: 0.18, blue: 0.14))
                         .frame(width: PofuSize.minimumTouch, height: PofuSize.minimumTouch)

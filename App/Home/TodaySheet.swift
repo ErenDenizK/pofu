@@ -1,5 +1,7 @@
+import PofuCompanion
 import PofuCore
 import PofuDesignSystem
+import PofuWorld
 import SwiftUI
 
 /// The Today sheet as a day card (UI v3 section 2): the hour's island strip
@@ -23,7 +25,7 @@ struct TodaySheet: View {
         let palette: PofuKitPalette = sky.isNight ? .night : .day
         ScrollView {
             VStack(alignment: .leading, spacing: PofuSpacing.l) {
-                DayCard(model: model, sky: sky, palette: palette)
+                DayCard(model: model, sky: sky, palette: palette, hour: hour, bedtime: hourOverride == nil && model.world.isBedtime)
                 pofuLine(palette)
             }
             .padding(.horizontal, PofuSpacing.screen)
@@ -39,23 +41,19 @@ struct TodaySheet: View {
     /// One line from Pofu, in a bubble that grows from its mouth.
     @ViewBuilder
     private func pofuLine(_ palette: PofuKitPalette) -> some View {
-        let sticker = StickerView(
-            Sticker.dayMood(skipped: model.impulsesToday.resisted, reaches: model.impulsesToday.attempts),
-            size: 64
-        )
+        // Pofu himself speaks the line (the sticker art is not shipped, and
+        // its stand-in was a teacup).
+        let sticker = CompanionView(vitality: model.vitality, energy: model.cheekFill)
+            .frame(width: 64, height: 64)
+            .accessibilityHidden(true)
         let bubble = PofuPaperBubble(speaker: LocalizedStringKey(model.profile.companionName), tailPosition: 0.12) {
             Text("Each skip is a small win.")
         }
-        if typeSize.isAccessibilitySize {
-            VStack(alignment: .leading, spacing: PofuSpacing.s) {
-                bubble
-                sticker
-            }
-        } else {
-            HStack(alignment: .bottom, spacing: PofuSpacing.s) {
-                sticker
-                bubble
-            }
+        // Pofu stands under the bubble's tail, so the line comes from his mouth.
+        VStack(alignment: .leading, spacing: 2) {
+            bubble
+            sticker
+                .padding(.leading, typeSize.isAccessibilitySize ? 0 : 12)
         }
     }
 }
@@ -94,21 +92,56 @@ private struct DayCard: View {
     let model: AppModel
     let sky: DaySky
     let palette: PofuKitPalette
+    let hour: Int
+    let bedtime: Bool
+
+    /// The header: a live crop of the island's painting for this hour and level, with the title
+    /// over a paper fade at its foot. Below the painting's lowest level the code-drawn strip stays.
+    private var header: some View {
+        let islandLevel = model.world.islandLevel
+        let painted = HomePlateCrop.artName(islandLevel: islandLevel, hour: hour, isBedtime: bedtime) != nil
+        return ZStack(alignment: .bottomLeading) {
+            Group {
+                if painted {
+                    HomePlateCrop(islandLevel: islandLevel, hour: hour, isBedtime: bedtime)
+                } else {
+                    IslandStrip(sky: sky, palette: palette)
+                }
+            }
+            // The painting fades into the card's paper at its foot, never ending on a hard edge.
+            .mask {
+                LinearGradient(
+                    stops: [.init(color: .black, location: 0), .init(color: .black, location: 0.5), .init(color: .clear, location: 1)],
+                    startPoint: .top, endPoint: .bottom
+                )
+            }
+            Text("Today")
+                .font(PofuFont.title2)
+                .foregroundStyle(palette.onPaper)
+                .padding(.horizontal, PofuSpacing.l - Self.headerInset)
+                .padding(.bottom, PofuSpacing.s)
+                .accessibilityAddTraits(.isHeader)
+        }
+        .frame(height: 140 - Self.headerInset)
+        // The painting sits inside the card's stitching.
+        .clipShape(UnevenRoundedRectangle(
+            topLeadingRadius: PofuRadius.large - Self.headerInset,
+            topTrailingRadius: PofuRadius.large - Self.headerInset,
+            style: .continuous
+        ))
+        .padding([.top, .horizontal], Self.headerInset)
+    }
+
+    /// The header's inset from the card's edge: inside the stitched border.
+    static let headerInset: CGFloat = 10
 
     var body: some View {
         let metrics = model.impulsesToday
         VStack(alignment: .leading, spacing: 0) {
-            IslandStrip(sky: sky, palette: palette)
-                .frame(height: 112)
-                .clipShape(UnevenRoundedRectangle(topLeadingRadius: PofuRadius.large, topTrailingRadius: PofuRadius.large, style: .continuous))
-                .accessibilityHidden(true)
+            header
             VStack(alignment: .leading, spacing: PofuSpacing.m) {
-                Text("Today")
-                    .font(PofuFont.title2)
-                    .foregroundStyle(palette.onPaper)
-                    .accessibilityAddTraits(.isHeader)
                 if metrics.attempts == 0 {
-                    Text("No reaches yet today.")
+                    Text("The door's been quiet today.")
                         .font(PofuFont.callout)
                         .foregroundStyle(inkSoft)
                 } else {

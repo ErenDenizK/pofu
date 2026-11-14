@@ -20,11 +20,15 @@ struct PlateHomeLayer: View {
     let offset: CGSize
     /// 1 at the Island stop and closer, 0 toward the Map.
     let fade: Double
+    /// The island's grade in the hour (`PaintedSky.islandGrade(painted:under:)`): the island cut takes it
+    /// toward the Map, and over the whole painting the cut is drawn again in it, so the island darkens with
+    /// its sky and the sky keeps its own pixels. Neutral for Home, whose painting is the reference.
+    var islandGrade: WorldGrade = .neutral
 
     /// A stage, a level or an hour change is a crossfade between two whole
     /// paintings (the plain form of the spec's diff-mask reveal: every pixel
     /// still comes from a painting).
-    static let crossfade = 1.4
+    static let crossfade = IslandGrowMoment.crossFadeLength
 
     /// The painting on screen, and the one fading in over it.
     @State private var shown: HomePlate
@@ -34,12 +38,13 @@ struct PlateHomeLayer: View {
     @State private var shownStart = Date()
     @State private var incomingStart = Date()
 
-    init(plate: HomePlate, pose: CameraPose, size: CGSize, offset: CGSize, fade: Double) {
+    init(plate: HomePlate, pose: CameraPose, size: CGSize, offset: CGSize, fade: Double, islandGrade: WorldGrade = .neutral) {
         self.plate = plate
         self.pose = pose
         self.size = size
         self.offset = offset
         self.fade = fade
+        self.islandGrade = islandGrade
         _shown = State(initialValue: plate)
     }
 
@@ -89,7 +94,8 @@ struct PlateHomeLayer: View {
     private func painting(_ plate: HomePlate, start: Date) -> some View {
         ZStack(alignment: .topLeading) {
             if fade < 0.999 {
-                PlateImage(name: plate.plate.islandArt(light: plate.light, stage: plate.stage), box: plate.islandBox, pose: pose, size: size, offset: offset)
+                PlateImage(name: plate.plate.mapIslandArt(light: plate.light, stage: plate.stage), box: plate.islandBox, pose: pose, size: size, offset: offset)
+                    .islandGraded(islandGrade)
             }
             if fade > 0.001 {
                 ZStack(alignment: .topLeading) {
@@ -99,9 +105,28 @@ struct PlateHomeLayer: View {
                         PlateImage(name: plate.plate.backdropArt(light: plate.light, stage: plate.stage), box: plate.backdropBox, pose: pose, size: size, offset: offset)
                         PlateImage(name: plate.plate.plateArt(light: plate.light, stage: plate.stage), box: plate.plateBox, pose: pose, size: size, offset: offset)
                     }
+                    if !islandGrade.isNeutral {
+                        PlateImage(name: plate.plate.islandArt(light: plate.light, stage: plate.stage), box: plate.islandBox, pose: pose, size: size, offset: offset)
+                            .islandGraded(islandGrade)
+                    }
                 }
                 .fading(fade)
             }
+        }
+    }
+}
+
+extension View {
+    /// An island picture in its grade under a painted sky (`PaintedSky.islandGrade`): the grade shader, or
+    /// without it the gain as a multiply.
+    @ViewBuilder
+    func islandGraded(_ grade: WorldGrade) -> some View {
+        if grade.isNeutral {
+            self
+        } else if WorldShaders.isAvailable {
+            modifier(GradeEffect(grade: grade, isEnabled: true))
+        } else {
+            colorMultiply(Color(red: min(grade.gain.r, 1), green: min(grade.gain.g, 1), blue: min(grade.gain.b, 1)))
         }
     }
 }
@@ -177,6 +202,9 @@ struct PlateCharacter: View {
     /// World units off the ground (a hop), already scaled.
     var lift: Double = 0
     let light: HomePlate.CharacterLight
+    /// Whether it stands on the lawn: a contact shadow and, at night, a lamp's pool under it.
+    /// A painted fountain carries its own ripple and sets this to `false`.
+    var onLawn = true
     var pulse = 0
 
     @Environment(\.worldLook.art) private var lookArt
@@ -186,10 +214,12 @@ struct PlateCharacter: View {
         ZStack(alignment: .topLeading) {
             if let sprite = WorldArt.sprite(art), let box = sprite.sharp {
                 let width = box.width * scale
-                LampPool(width: width, light: light)
-                    .position(x: point.x, y: point.y - CGFloat(0.5 * scale))
-                ContactPad(width: width, light: light, strength: 1 - min(lift / max(box.height * scale, 1), 0.5))
-                    .position(x: point.x, y: point.y - CGFloat(0.5 * scale))
+                if onLawn {
+                    LampPool(width: width, light: light)
+                        .position(x: point.x, y: point.y - CGFloat(0.5 * scale))
+                    ContactPad(width: width, light: light, strength: 1 - min(lift / max(box.height * scale, 1), 0.5))
+                        .position(x: point.x, y: point.y - CGFloat(0.5 * scale))
+                }
                 let grounded = CGPoint(x: point.x, y: point.y - CGFloat(lift))
                 DepthImage(name: art, sprite: sprite, level: 0, anchor: grounded, scale: CGFloat(scale))
                     .saturation(light.saturation)

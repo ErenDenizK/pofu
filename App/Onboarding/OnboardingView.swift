@@ -43,6 +43,13 @@ struct OnboardingView: View {
     @State private var missedShield = false
     @State private var caughtCount = 0
 
+    /// Starts at step `index` (0 is the welcome); the player-path screenshots
+    /// open each step this way. The app itself always starts at the welcome.
+    init(model: AppModel, startingAtStep index: Int = 0) {
+        self.model = model
+        _step = State(initialValue: Step.allCases.first { $0.rawValue == index } ?? .welcome)
+    }
+
     /// Whether onboarding ends in the Shortcuts setup guide.
     private var usesShortcuts: Bool {
         !model.screenTime.isAvailable || choseShortcuts
@@ -187,7 +194,7 @@ struct OnboardingView: View {
                 .foregroundStyle(PofuColor.textPrimary)
                 .multilineTextAlignment(.center)
                 .accessibilityAddTraits(.isHeader)
-            Text("Say **I need it** at the door and I'll answer with a notification. That's the only time I write, never to pull you back.")
+            Text("Tap **I need it** at the door and I'll answer with a notification. That's the only time I write. Never to pull you back.")
                 .font(PofuFont.body)
                 .foregroundStyle(PofuColor.textSecondary)
                 .multilineTextAlignment(.center)
@@ -305,8 +312,10 @@ struct OnboardingView: View {
                 .foregroundStyle(PofuColor.textPrimary)
                 .padding(.top, PofuSpacing.xl)
             ScrollView {
-                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: PofuSpacing.s) {
-                    ForEach(ProtectedApp.allCases) { app in
+                LazyVGrid(columns: [GridItem(.flexible())], spacing: PofuSpacing.s) {
+                    // Only the apps the product targets (Instagram, YouTube, TikTok), in one
+                    // column so three apps read as one balanced group.
+                    ForEach(ProtectedApp.offered) { app in
                         let isChosen = chosen.contains(app)
                         Button {
                             if isChosen {
@@ -364,7 +373,7 @@ struct OnboardingView: View {
             Spacer()
             CompanionView(vitality: 0.8, energy: 0.3)
                 .frame(maxWidth: 220)
-            Text("What would you like to call me?")
+            Text("What will you call me?")
                 .font(PofuFont.largeTitle)
                 .foregroundStyle(PofuColor.textPrimary)
                 .multilineTextAlignment(.center)

@@ -9,8 +9,18 @@ struct TailedBubble: Shape {
     var tailOffset: CGFloat = 0
     var tailWidth: CGFloat = 10
     var tailHeight: CGFloat = 6
+    /// The tail points up from the body's top edge (a bubble hanging under
+    /// what it names).
+    var tailOnTop = false
 
     func path(in rect: CGRect) -> Path {
+        let path = bottomTailed(in: rect)
+        guard tailOnTop else { return path }
+        // The body is symmetric: mirror the whole shape top to bottom.
+        return path.applying(CGAffineTransform(a: 1, b: 0, c: 0, d: -1, tx: 0, ty: rect.minY + rect.maxY))
+    }
+
+    private func bottomTailed(in rect: CGRect) -> Path {
         let body = CGRect(x: rect.minX, y: rect.minY, width: rect.width, height: rect.height - tailHeight)
         let r = min(radius, body.height / 2, body.width / 2)
         let tip = min(max(body.midX + tailOffset, body.minX + r + tailWidth / 2), body.maxX - r - tailWidth / 2)
@@ -75,19 +85,22 @@ struct GreetingHeart: View {
 }
 
 /// The small tag over a wonder island's gift on the day it reaches home:
-/// who it is from, its tail pointing at the gift.
+/// who it is from, its tail pointing at the gift. `HomeBubbleLayout` picks
+/// its spot (over the gift, on a longer stem, or hanging under it).
 struct GiftTag: View {
     let gift: HomeGifts.Gift
-    /// Where the tail's tip points, just over the gift.
-    let tip: CGPoint
-    let screenWidth: CGFloat
-    @State private var width: CGFloat = 150
+    let placement: HomeBubbleLayout.Placement
+    /// Where the tail's tip points.
+    let tipX: CGFloat
 
     static let height: CGFloat = 26
     static let tail: CGFloat = 6
 
     var body: some View {
-        let place = TailedBubblePlacement.place(tipX: Double(tip.x), width: Double(width), screenWidth: Double(screenWidth))
+        let width = CGFloat(placement.body.maxX - placement.body.minX)
+        let tail = CGFloat(placement.tail)
+        let limit = max(width / 2 - Self.height / 2 - 5, 0)
+        let offset = min(max(tipX - CGFloat(placement.centreX), -limit), limit)
         HStack(spacing: 5) {
             Image(systemName: gift == .kokeMoss ? "leaf.fill" : "drop.fill")
                 .font(.system(size: 10, weight: .bold))
@@ -96,14 +109,12 @@ struct GiftTag: View {
                 .font(.system(size: 13, weight: .semibold, design: .rounded))
                 .foregroundStyle(Color.paperInk)
                 .lineLimit(1)
+                .minimumScaleFactor(0.8)
         }
-        .padding(.horizontal, 10)
-        .frame(height: Self.height)
-        .padding(.bottom, Self.tail)
-        .bubblePaper(TailedBubble(radius: Self.height / 2, tailOffset: CGFloat(place.tailOffset), tailHeight: Self.tail))
-        .fixedSize()
-        .onGeometryChange(for: CGFloat.self) { $0.size.width } action: { width = $0 }
-        .position(x: CGFloat(place.centreX), y: tip.y - (Self.height + Self.tail) / 2)
+        .frame(width: width, height: Self.height)
+        .padding(placement.isBelow ? .top : .bottom, tail)
+        .bubblePaper(TailedBubble(radius: Self.height / 2, tailOffset: offset, tailHeight: tail, tailOnTop: placement.isBelow))
+        .position(x: CGFloat(placement.centreX), y: CGFloat((placement.frame.minY + placement.frame.maxY) / 2))
         .allowsHitTesting(false)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(Text(verbatim: WorldStrings.giftTag(gift)))

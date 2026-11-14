@@ -1,0 +1,59 @@
+{
+ "after": {
+  "C_mean": 28.404,
+  "C_p50": 33.9,
+  "C_p95": 41.03,
+  "L_mean": 71.791,
+  "L_p2": 37.051,
+  "L_p98": 93.834,
+  "detail": 6.51,
+  "edge": 0.339,
+  "tint_a": 5.096,
+  "tint_b": 9.517,
+  "warmth_b": 22.133
+ },
+ "before": {
+  "C_mean": 28.454,
+  "C_p50": 33.946,
+  "C_p95": 41.054,
+  "L_mean": 65.599,
+  "L_p2": 21.051,
+  "L_p98": 93.834,
+  "detail": 8.138,
+  "edge": 0.339,
+  "tint_a": 5.096,
+  "tint_b": 9.518,
+  "warmth_b": 22.156
+ },
+ "chain": null,
+ "correction": {
+  "black": 16.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "station",
+ "matched_to": "world",
+ "outliers_after": [
+  "C_p95",
+  "L_p2",
+  "detail",
+  "edge"
+ ],
+ "outliers_before": [
+  "L_p2",
+  "detail",
+  "edge"
+ ],
+ "ppu": 18.7353,
+ "reference": false,
+ "score_after": 61.8,
+ "score_before": 50.0,
+ "shipped": true,
+ "source": "design/art/masters/visitor-damla/visitor-damla.webp",
+ "source_sha": "82349aa9a5c670a6"
+}

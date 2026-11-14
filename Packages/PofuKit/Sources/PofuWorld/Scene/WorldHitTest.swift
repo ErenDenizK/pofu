@@ -109,15 +109,18 @@ public enum WorldHitTest {
 
     /// The islands as targets on the Archipelago: the home plate and every
     /// other island's art.
-    public static func islandTargets(koke: Bool = false, caglayan: Bool = false) -> [HitTarget] {
-        var targets = [HitTarget(kind: .island(.home), worldBox: IslandFraming.plateBox, depth: 0)]
+    /// With Home's painted plate (`plate`), Home answers over its painted island and the sprite isles
+    /// (the harbor's) are not on the Map: the plate paints the harbour islet itself (R5 of
+    /// docs/research/route-2026-11-12-codex-pause.md); the harbor stays one tap away in the place menu.
+    public static func islandTargets(koke: Bool = false, caglayan: Bool = false, plate: HomePlate? = nil) -> [HitTarget] {
+        var targets = [HitTarget(kind: .island(.home), worldBox: plate?.islandBox ?? IslandFraming.plateBox, depth: 0)]
         if koke {
             targets.append(HitTarget(kind: .island(.koke), worldBox: KokeLayout.islandBox, depth: 0))
         }
         if caglayan {
             targets.append(HitTarget(kind: .island(.caglayan), worldBox: CaglayanLayout.islandBox, depth: 0))
         }
-        for isle in IslandLayout.isles {
+        for isle in IslandLayout.isles where plate == nil {
             if let box = WorldArt.sprite(isle.art)?.sharp {
                 targets.append(HitTarget(kind: .island(isle.id), worldBox: IslandFraming.placed(box, at: isle.center), depth: 0))
             }
@@ -141,7 +144,7 @@ public enum WorldHitTest {
         koke: KokeReach = .none,
         caglayan: KokeReach = .none
     ) -> [HitTarget] {
-        guard z >= archipelagoZ else { return islandTargets(koke: koke != .none, caglayan: caglayan != .none) }
+        guard z >= archipelagoZ else { return islandTargets(koke: koke != .none, caglayan: caglayan != .none, plate: plate) }
         var targets: [HitTarget] = []
         for object in plate.objects where object.tap {
             if let station = object.station {

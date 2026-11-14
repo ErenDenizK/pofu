@@ -1,0 +1,58 @@
+{
+ "after": {
+  "C_mean": 16.061,
+  "C_p50": 14.201,
+  "C_p95": 29.082,
+  "L_mean": 82.111,
+  "L_p2": 48.269,
+  "L_p98": 97.003,
+  "detail": 4.091,
+  "edge": 0.253,
+  "tint_a": 7.334,
+  "tint_b": 0.125,
+  "warmth_b": 0.92
+ },
+ "before": {
+  "C_mean": 11.162,
+  "C_p50": 9.808,
+  "C_p95": 20.424,
+  "L_mean": 82.153,
+  "L_p2": 48.269,
+  "L_p98": 97.043,
+  "detail": 4.125,
+  "edge": 0.253,
+  "tint_a": 4.912,
+  "tint_b": 0.747,
+  "warmth_b": 0.68
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.45,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "station",
+ "matched_to": "world",
+ "outliers_after": [
+  "C_p95",
+  "detail",
+  "edge"
+ ],
+ "outliers_before": [
+  "C_p95",
+  "detail",
+  "edge"
+ ],
+ "ppu": 18.85,
+ "reference": false,
+ "score_after": 53.7,
+ "score_before": 50.0,
+ "shipped": true,
+ "source": "design/art/masters/visitor-gezgin/visitor-gezgin.webp",
+ "source_sha": "f89782c054f6987c"
+}

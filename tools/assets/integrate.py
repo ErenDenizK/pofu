@@ -216,15 +216,24 @@ def _luminance_alpha(image: Image.Image, colour: bool) -> Image.Image:
 
 def _seamless(image: Image.Image) -> Image.Image:
     """Makes a tile wrap: the tile blended with itself rolled by half in both axes, weighted so the seams
-    show only the rolled copy (whose own edges are the tile's continuous middle)."""
+    show only the rolled copy (whose own edges are the tile's continuous middle). An RGBA tile is blended
+    through premultiplied colour: blended straight, a streak met the black colour of the clear pixels and came
+    out as a dark half-alpha twin (the rain's dark smeared streaks, 2026-11)."""
     import numpy as np
 
     a = np.asarray(image, dtype=np.float64)
     h, w = a.shape[:2]
     ramp = lambda n: np.sin(np.pi * (np.arange(n) + 0.5) / n) ** 2
     weight = (ramp(h)[:, None] * ramp(w)[None, :])[..., None]
+    alpha = image.mode == "RGBA"
+    if alpha:
+        a = np.concatenate([a[..., :3] * a[..., 3:] / 255.0, a[..., 3:]], -1)
     rolled = np.roll(a, (h // 2, w // 2), axis=(0, 1))
-    return Image.fromarray((a * weight + rolled * (1 - weight)).round().astype("uint8"), image.mode)
+    out = a * weight + rolled * (1 - weight)
+    if alpha:
+        al = out[..., 3:]
+        out = np.concatenate([np.where(al > 0.5, out[..., :3] * 255.0 / np.maximum(al, 0.5), 0), al], -1)
+    return Image.fromarray(np.clip(out, 0, 255).round().astype("uint8"), image.mode)
 
 
 def bake_fx(entry: dict, out: Path) -> None:

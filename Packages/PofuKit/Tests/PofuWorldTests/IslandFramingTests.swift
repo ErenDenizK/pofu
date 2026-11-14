@@ -74,15 +74,42 @@ struct IslandFramingTests {
         }
     }
 
-    @Test func aDragFollowsTheFingerAndBandsPastTheEnds() {
+    @Test func aDragFollowsTheFingerAndStopsHardAtTheTips() {
         var rig = CameraRig(framing: .island)
         let s = rig.pose.scale
         rig.panDrag(dx: -15)
         #expect(abs(rig.pan.value - 15 / s) < 1e-9)
-        // Far past the end, the band never reaches the panBand.
+        // Far past either end the pan stays on the range: the painting's
+        // edge never shows.
         rig.panDrag(dx: -4000)
-        let over = rig.pan.value - IslandFraming.panRange.upperBound
-        #expect(over > 0 && over < CameraRig.panBand / s)
+        #expect(rig.pan.value == rig.panRange.upperBound)
+        rig.panDrag(dx: 4000)
+        #expect(rig.pan.value == rig.panRange.lowerBound)
+        let right = span(IslandFraming.plateBox, rig.pose, width: 402)
+        #expect(right.lo >= -0.5)
+    }
+
+    /// At any screen size the visible rect stays inside the plate, at
+    /// either end of a drag and after a glide to a far station.
+    @Test(arguments: [(402.0, 874.0), (440.0, 956.0), (320.0, 568.0), (820.0, 1180.0)])
+    func theVisibleRectNeverLeavesThePlate(size: (Double, Double)) {
+        var rig = CameraRig(framing: .island)
+        rig.resize(width: size.0, height: size.1)
+        rig.jump(to: .island)
+        let plate = IslandFraming.plateBox
+        for dx in [-5000.0, 5000.0] {
+            rig.panDrag(dx: dx)
+            let sp = span(plate, rig.pose, width: size.0)
+            // The plate covers the screen, or (a screen wider than the
+            // plate) is centred; never a gap on one side only.
+            if plate.width * rig.pose.scale >= size.0 {
+                #expect(sp.lo <= 0.5 && sp.hi >= size.0 - 0.5)
+            }
+            rig.endPan(velocity: 0)
+        }
+        rig.panTo(1e6)
+        for _ in 0..<600 { rig.advance(1.0 / 120) }
+        #expect(rig.pan.value <= rig.panRange.upperBound + 1e-6)
     }
 
     @Test func aFlickCoastsAndSnapsToAStation() {
@@ -103,8 +130,9 @@ struct IslandFramingTests {
         rig.panDrag(dx: 4000)
         let target = rig.endPan(velocity: 0)
         #expect(abs(target - IslandFraming.panSnaps[0]) < 1e-9)
-        // It comes back from past the left end and never swings beyond it.
-        #expect(rig.pan.value < target)
+        // The drag stopped hard at the left tip: nothing to come back from,
+        // and it never swings beyond the tip.
+        #expect(rig.pan.value >= target - 1e-9)
         var highest = rig.pan.value
         for _ in 0..<600 {
             rig.advance(1.0 / 120)

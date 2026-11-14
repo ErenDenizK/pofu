@@ -37,7 +37,7 @@ public struct WorldClock: Sendable {
     /// Who visits and when (experience v1 §5).
     public let visitors: VisitorSchedule
 
-    public init(rules: GameRules = GameRules(), calendar: Calendar, visitors: VisitorSchedule = VisitorSchedule()) {
+    public init(rules: GameRules = GameRules(), calendar: Calendar, visitors: VisitorSchedule = .shipped) {
         self.rules = rules
         self.calendar = calendar
         self.visitors = visitors
@@ -224,11 +224,12 @@ public struct WorldClock: Sendable {
             nextBreath: state.clock.flatMap { self.breath(for: state, at: $0) },
             visitor: visitorSnapshot(of: state),
             invitationOpen: state.visitors.inviteOpenSince != nil,
-            metResidents: state.visitors.met,
+            metResidents: state.visitors.met.filter { visitors.rules.visiting?.contains($0) ?? true },
             invited: state.visitors.invitation?.resident,
             koke: asleepAtBedtime(WonderIslands.status(game: state, day: day), bedtime),
             caglayan: asleepAtBedtime(WonderIslands.status(of: .caglayan, game: state, day: day), bedtime),
-            firstDay: state.firstDay
+            firstDay: state.firstDay,
+            bell: FarBell.status(of: state.bell)
         )
     }
 
@@ -410,6 +411,7 @@ public struct WorldClock: Sendable {
             catalog: rules.catalog
         )
         WonderIslands.roll(&state.wonders, to: day, tendedDays: state.tendedDays, harborOpen: state.stations.arrivalOrder.contains(.harbor))
+        FarBell.roll(&state.bell, to: day, tendedDays: state.tendedDays, wonders: state.wonders)
         visitors.roll(&state.visitors, to: day, context: VisitorSchedule.context(of: state, catalog: rules.catalog, roster: visitors.roster))
     }
 
@@ -464,6 +466,8 @@ public struct WorldClock: Sendable {
             guard !isBedtime(at) else { return }
             let resisted = (state.today?.day == frame.day ? state.today?.resistedReaches : nil) ?? 0
             state.wonders.islands[wonder] = WonderIslands.advance(state: state.wonders[wonder], day: frame.day, resistedToday: resisted > 0)
+        case .heardBell:
+            FarBell.hear(&state.bell, on: frame.day)
         case .usageMeasured(let minutes):
             if let today = state.today, today.day == frame.day {
                 state.today?.measuredGuardedMinutes = max(today.measuredGuardedMinutes, minutes)

@@ -8,9 +8,10 @@ import PofuDesignSystem
 /// the Map keep their geometry whether the plate or the sprite island is drawn.
 ///
 /// What is painted (`design/art/plates/caglayan/objects.json`, `docs/state/plates.yaml`): the
-/// day plate of every story stage (0 to 4), the night plates of stages 2 and 3, and the golden
-/// hour and rain plates of stage 4. An unpainted light borrows another (`HomePlate.borrowed`);
-/// weather never replaces the painting.
+/// day and night of every story stage (0 to 4), and the golden hour and rain of stage 4. Each is
+/// drawn full frame, its island over a sky set of its own light split from that light's portrait
+/// master (ADR-0025), from the top of the screen to the bottom. An unpainted light borrows another
+/// (`HomePlate.borrowed`); weather never replaces the painting.
 extension CaglayanLayout {
     /// Where the plate's island sits: the island's box, 212 units wide.
     public static var placement: HomePlate.Placement {

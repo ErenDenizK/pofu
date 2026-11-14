@@ -81,6 +81,8 @@ public struct WorldHome: View {
         // every pass so it never holds a stale world.
         let _ = scene.onPropTap = { prop in propTapped(prop) }
         let _ = scene.onPlateTap = { id in plateTapped(id) }
+        // An island that grew overnight waits for the news beat's button.
+        let _ = scene.newsHolds = { home.holdsIslandGrowForNews }
         ZStack {
             IslandScene(
                 world: world,
@@ -99,6 +101,10 @@ public struct WorldHome: View {
         }
         .onAppear {
             home.camera = scene
+            // A visit planned before the camera was set has already said its news.
+            if !home.holdsIslandGrowForNews {
+                scene.newsHasSpoken()
+            }
         }
         .onChange(of: actions.playableRounds, initial: true) { _, rounds in
             scene.playableRounds = rounds
@@ -120,6 +126,15 @@ public struct WorldHome: View {
             PofuHaptics.shared.play(.growth)
         }
         .sensoryFeedback(.success, trigger: home.buildSettles)
+        // "Ada büyüdü": the bloom's cue plays the growth pattern (the app plays
+        // the sound), and VoiceOver hears what the island became.
+        .onChange(of: scene.growBlooms) { _, _ in
+            PofuHaptics.shared.play(.growth)
+            if let moment = scene.grow?.moment {
+                let line = WorldStrings.islandGrowLine(moment.toLevel)
+                AccessibilityNotification.Announcement([WorldStrings.islandTitle(moment.toLevel), line].compactMap { $0 }.joined(separator: ". ")).post()
+            }
+        }
         // TODO(haptics): the last level's three-transient celebration
         // (design language §11) needs Core Haptics; `.success` until then.
         .sensoryFeedback(.success, trigger: home.finalBuilds)
@@ -133,7 +148,7 @@ public struct WorldHome: View {
         if let beat = home.currentBeat {
             // At the top cheek step, once a day, Pofu says the one line.
             if case .collect = beat, home.saysCheeksHuge {
-                return WorldStrings.cheeksHuge
+                return WorldStrings.cheeksHuge(variant: home.cheeksHugeVariant)
             }
             return WorldStrings.beatLine(beat)
         }
@@ -161,7 +176,7 @@ public struct WorldHome: View {
     }
 
     private var showsHomeChrome: Bool {
-        scene.projectedFraming == .home && scene.focus == nil && !scene.hasSheet
+        scene.projectedFraming == .home && scene.focus == nil && !scene.hasSheet && !scene.isGrowing
     }
 
     private var showsIslandName: Bool {
@@ -226,7 +241,7 @@ public struct WorldHome: View {
                 HomeGlance(
                     today: today,
                     seedsInGlance: showsJarTag ? nil : world.jar.units,
-                    nextGoal: world.nextIslandLevel.flatMap { $0.isMet ? nil : WorldStrings.nextIslandLevel($0) },
+                    nextGoal: world.nextIslandLevel.map(WorldStrings.nextIslandLevel),
                     onOpen: actions.openToday
                 )
                 .frame(maxWidth: typeSize.isAccessibilitySize ? CGFloat.infinity : 280, alignment: .leading)
@@ -266,12 +281,15 @@ public struct WorldHome: View {
                 .transition(.opacity)
             }
         } else {
-            Text(verbatim: WorldStrings.settled)
+            Text(verbatim: WorldStrings.dailyLine(HomeDailyLine.choose(world: world, skipsToday: today.skips)))
                 .font(PofuFont.subheadline)
-                .foregroundStyle(PofuColor.textSecondary)
+                .foregroundStyle(PofuColor.textPrimary)
+                .multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
                 .padding(.horizontal, PofuSpacing.l)
+                .padding(.vertical, 7)
                 .frame(minHeight: 34)
-                .background(PofuColor.card.opacity(0.82), in: Capsule(style: .continuous))
+                .background(PofuColor.card.opacity(0.86), in: RoundedRectangle(cornerRadius: 17, style: .continuous))
                 .frame(maxWidth: .infinity)
                 .transition(.opacity)
         }
@@ -420,15 +438,22 @@ public struct WorldHome: View {
             collect()
         case .care:
             home.acknowledgeCurrentBeat()
-        case .news:
+        case .news(let news):
+            // The island's growth plays from the button itself (the camera
+            // pulls back and ends on the Island stop); a new island goes there.
             home.acknowledgeCurrentBeat()
-            scene.go(to: .island)
+            if case .islandArrived = news {
+                scene.go(to: .island)
+            }
         case .build(let station, _):
             home.acknowledgeCurrentBeat()
             scene.focusStation(station)
         case .weeklyRecap:
             home.acknowledgeCurrentBeat()
             actions.openToday?()
+        case .bell:
+            home.acknowledgeCurrentBeat()
+            actions.visitor?(.heardBell)
         }
     }
 
@@ -537,23 +562,34 @@ struct GuardedSteps: View {
 struct PlateLine: View {
     let line: String
 
+    /// A line this long wraps to three lines at the phone's width. The card then drops its name
+    /// row and steps its type down a size, so its top stays below the painted door row
+    /// (the bottom band holds two short lines; a third would climb over the island).
+    static let longLine = 64
+
+    var isLong: Bool { line.count > Self.longLine }
+
     var body: some View {
         VStack(alignment: .leading, spacing: 2) {
-            Text(verbatim: "Pofu")
-                .font(PofuFont.caption)
-                .foregroundStyle(PofuColor.textSecondary)
+            if !isLong {
+                Text(verbatim: "Pofu")
+                    .font(PofuFont.caption)
+                    .foregroundStyle(PofuColor.textSecondary)
+            }
             Text(verbatim: line)
-                .font(PofuFont.headline)
+                .font(isLong ? PofuFont.callout : PofuFont.headline)
                 .foregroundStyle(PofuColor.textPrimary)
                 .lineLimit(3)
                 .fixedSize(horizontal: false, vertical: true)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.horizontal, PofuSpacing.l)
-        .padding(.vertical, PofuSpacing.m)
+        .padding(.vertical, isLong ? PofuSpacing.s : PofuSpacing.m)
         .background(PofuColor.raised, in: RoundedRectangle(cornerRadius: PofuRadius.large, style: .continuous))
         .shadow(color: PofuColor.shadow.opacity(0.1), radius: 12, y: 6)
-        .accessibilityElement(children: .combine)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(Text(verbatim: "Pofu"))
+        .accessibilityValue(Text(verbatim: line))
     }
 }
 

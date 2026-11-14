@@ -1,0 +1,55 @@
+{
+ "after": {
+  "C_mean": 39.612,
+  "C_p50": 43.125,
+  "C_p95": 49.025,
+  "L_mean": 75.62,
+  "L_p2": 58.645,
+  "L_p98": 92.946,
+  "detail": 4.939,
+  "edge": 0.127,
+  "warmth_b": 36.284
+ },
+ "before": {
+  "C_mean": 32.305,
+  "C_p50": 35.146,
+  "C_p95": 39.955,
+  "L_mean": 75.63,
+  "L_p2": 58.645,
+  "L_p98": 92.946,
+  "detail": 4.924,
+  "edge": 0.127,
+  "tint_a": 2.895,
+  "tint_b": 12.163,
+  "warmth_b": 29.583
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.227,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "station",
+ "matched_to": "world",
+ "outliers_after": [
+  "detail",
+  "edge"
+ ],
+ "outliers_before": [
+  "C_p95",
+  "detail",
+  "edge"
+ ],
+ "ppu": 28.4762,
+ "reference": false,
+ "score_after": 77.5,
+ "score_before": 69.8,
+ "shipped": true,
+ "source": "design/art/masters/gift-parcel-closed/gift-parcel-closed.webp",
+ "source_sha": "8a7cbae19c707fde"
+}

@@ -1,0 +1,40 @@
+batch: batch-76-redo-picks
+job: x-caglayan-sky-rain-v2
+jobs:
+  x-caglayan-sky-rain-v2:
+    pick: 1
+    status: warn
+    publication: exploration; picked by the lead 2026-11-12 (take 1); never promoted
+status: warn
+pick: 1
+lead_review: "Lead pick over the auto-pick: take 1 is the only one that rains (fine streaks, wet sheen on the waterfall stone) with the island's colours kept, while take 2 is a dry overcast day; its cloud sea sits darker and flatter than the Emanet and Revontuli rain picks (L 58, p95 73), so lift it about 8 L and restore pearl highlights to p95 near 85 in the colour-transfer fit. Founder-gated."
+takes:
+- n: 1
+  file: plate__x-caglayan-sky-rain-v2--t1.webp
+  qa: warn
+  lock_load: 0.0
+- n: 2
+  file: plate__x-caglayan-sky-rain-v2--t2.webp
+  qa: warn
+  lock_load: 0.0
+reason: null
+retryable: false
+retry_interval_minutes: 15
+references:
+- path: design/art/takes/batch-75-portrait-islands/x-caglayan-portrait-s4-day/plate__x-caglayan-portrait-s4-day--t1.webp
+  exists: true
+note: 'Auto-picked t2 by QA and visual review: brighter, softer summer shower than
+  t1. T1 is too dark/stormy; t2 rain streaks are faint. No rainbow or second waterfall
+  island. Founder review pending. EXPLORATION: never promote.'
+source: codex-cloud
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+visual_review:
+  sun_or_rainbow: false
+  duplicate_caglayan: false
+  t1_issue: dark stormy cloud sea
+  t2_issue: rain barely visible
+generation_prompt_note: Built-in tool received an operator paraphrase of the manifest-composed
+  prompt; the ingest sidecar stores the composed manifest prompt, not the verbatim
+  text sent to image generation. The manifest was the source of the art constraints.

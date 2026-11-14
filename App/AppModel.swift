@@ -73,12 +73,14 @@ final class AppModel {
     /// The island's camera, focus and station sheet
     /// (`FeatureFlags.islandHome`). Here rather than in the view, so Hop!
     /// can close a station sheet before its cover.
-    let island = IslandSceneModel()
+    let island = IslandSceneModel(levelDefaults: .standard)
     /// Home's visit and its collect and build moments
     /// (`FeatureFlags.worldHome`).
     let worldHome = WorldHomeModel(cheekLineDefaults: .standard)
     /// When the last visit settled, for the 15-minute reopen rule (A15).
     private var lastVisitSettled: Date?
+    /// Keeps the bell's song from sounding twice for one card (`WorldSound.swift`).
+    @ObservationIgnored var farBellCueGuard = FarBellCueGuard()
     /// Set when the last save failed, so a broken disk is never silent.
     private(set) var persistenceProblem = false
     /// Whether Pofu is on screen. Being here is a sign the user left the
@@ -342,11 +344,16 @@ final class AppModel {
         if let settled = worldHome.settledAt {
             lastVisitSettled = settled
         }
+        let snapshot = world
+        // The island that grew while the app was closed: the visit carries
+        // the news, and Home lands on the painting the player last saw.
         let inputs = VisitInputs(
             now: now,
-            world: world,
+            world: snapshot,
             isGuardBroken: needsSetupOrRepair,
             lastSettled: lastVisitSettled,
+            news: island.levelMemory.news(worldLevel: snapshot.islandLevel),
+            preludeHeard: WorldSound.preludeHeard,
             calendar: economy.calendar
         )
         worldHome.beginVisit(VisitQueue.plan(inputs))
@@ -1253,6 +1260,7 @@ final class AppModel {
         profile = fresh.profile
         game = GameState()
         savedFlowRound = nil
+        WorldSound.forgetPrelude()
         gameClock.start(&game, at: now, lastSignal: nil)
         screenTimeLedger = ScreenTimeLedger()
         saveScreenTimeLedger()

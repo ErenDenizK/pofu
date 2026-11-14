@@ -6,7 +6,7 @@ import UIKit
 import XCTest
 
 /// Çağlayan's first two nights, painted (`caglayan-plate-full-s0-night`, `-s1-night`): the island
-/// the day it arrives, lit, at the Island stop. `tools/plate/harmony_check.py --island caglayan
+/// the day it arrives, lit, at the Island stop, over the night's sky set from the top of the screen to the bottom. `tools/plate/harmony_check.py --island caglayan
 /// --reference s4-day` measures Damla in them.
 final class CaglayanNightScreenshotTests: XCTestCase {
     private let clock = Date(timeIntervalSinceReferenceDate: 815_000_000)
@@ -55,6 +55,7 @@ final class CaglayanNightScreenshotTests: XCTestCase {
         XCTAssertEqual(model.caglayanPlate?.light, light, "stage \(stage) at \(hour): the painted state")
         if light != nil {
             XCTAssertEqual(model.caglayanPlate?.stage, stage)
+            XCTAssertEqual(model.caglayanPlate?.skySet?.light, light, "drawn full frame over the night's sky set")
         }
         let format = UIGraphicsImageRendererFormat()
         format.scale = window.traitCollection.displayScale

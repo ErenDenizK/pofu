@@ -9,8 +9,8 @@ import XCTest
 /// stand under Home's painted sky of the hour's light (its sky set, the island layer left out), and rain
 /// falls over a painted Home. All frames at the simulator's full device resolution, never reduced:
 ///
-/// - `koke-sky-s0-day`, `koke-sky-s2-night`, `koke-sky-s4-golden`: Koke at three stages and three hours,
-///   compare their sky with `home-plate-full-l10-day`, `-golden`, `-night`;
+/// - `koke-sky-s0-day`, `koke-sky-s2-night`, `koke-sky-s4-golden`, `koke-sky-s4-night`: Koke at three
+///   stages and three hours, compare their sky with `home-plate-full-l10-day`, `-golden`, `-night`;
 /// - `harbor-sky-rumour-day`: the harbor stop on the rumour day;
 /// - `home-plate-full-l5-rain` and `-overcast`: Home at level 5 in light rain (streaks and splashes over
 ///   the day painting, no puddle glints) and overcast (the day painting, nothing over it): the second
@@ -38,6 +38,7 @@ final class PaintedSkyScreenshotTests: XCTestCase {
 
         let koke: [(name: String, stage: Int, hour: Double, bedtime: Bool)] = [
             ("koke-sky-s0-day", 0, 12, false), ("koke-sky-s2-night", 2, 23, true), ("koke-sky-s4-golden", 4, 18, false),
+            ("koke-sky-s4-night", 4, 23, true),
         ]
         for shot in koke {
             let model = IslandSceneModel(framing: .island)

@@ -51,8 +51,26 @@ public struct VisitorRules: Hashable, Sendable {
     /// and festivals exist.
     public var guestLevel = 3
     public var historyLimit = 60
+    /// Who may visit: `nil` is every resident of the roster. A resident
+    /// outside the set never visits, is never drawn for an invitation and
+    /// is not on the letter, because the game shows no stand-in for a
+    /// visitor it has no painted art for (route R3).
+    public var visiting: Set<ResidentID>?
 
     public init() {}
+
+    /// The rules the game ships with: the residents whose painted
+    /// `visitor-<id>` sprite exists, and no `help` visit while the kite has
+    /// no painted art. `VisitorArtTests` (PofuWorld) holds `visiting` to the
+    /// art that is baked, so a resident is added here only with their art.
+    public static let shipped: VisitorRules = {
+        var rules = VisitorRules()
+        // Damla (batch 78, the erase by script) and Gezgin's postcard. Sumi
+        // waits for batch 83: her take reads as Damla's twin.
+        rules.visiting = [.damla, .gezgin]
+        rules.reasonWeights[.help] = 0
+        return rules
+    }()
 }
 
 /// Who visits on a day: deterministic from the ledger's seed and the day,
@@ -83,6 +101,15 @@ public struct VisitorSchedule: Sendable {
     public init(roster: [VisitorProfile] = standardRoster, rules: VisitorRules = VisitorRules()) {
         self.roster = roster
         self.rules = rules
+    }
+
+    /// The schedule the game ships with (`VisitorRules.shipped`).
+    public static let shipped = VisitorSchedule(rules: .shipped)
+
+    /// The roster's residents who may visit (`VisitorRules.visiting`).
+    var eligible: [VisitorProfile] {
+        guard let visiting = rules.visiting else { return roster }
+        return roster.filter { visiting.contains($0.resident) }
     }
 
     /// What the draw needs to know about the island.
@@ -159,7 +186,7 @@ public struct VisitorSchedule: Sendable {
         if invitable, ledger.nextQuietDay == nil {
             ledger.nextQuietDay = day.adding(days: quietGap(after: day, seed: ledger.seed))
         }
-        if let invitation = ledger.invitation, let profile = roster.first(where: { $0.resident == invitation.resident }) {
+        if let invitation = ledger.invitation, let profile = eligible.first(where: { $0.resident == invitation.resident }) {
             ledger.settle(visit(of: profile, reason: .festival, day: day, invited: true, context: context, ledger: ledger))
             return
         }
@@ -169,7 +196,7 @@ public struct VisitorSchedule: Sendable {
             ledger.nextQuietDay = day.adding(days: quietGap(after: day, seed: ledger.seed))
             return
         }
-        let candidates = roster.filter { context.healed.contains($0.island) }
+        let candidates = eligible.filter { context.healed.contains($0.island) }
         guard !candidates.isEmpty else {
             ledger.settle(postcard(day: day, context: context, ledger: ledger))
             return

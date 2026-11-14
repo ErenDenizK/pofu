@@ -167,7 +167,7 @@ public struct HomePlate: Hashable, Sendable {
     }
 
     /// The sky set this state draws behind its island layer (ADR-0025), or `nil`: the painted plate and
-    /// its backdrop. Home's level-10 day, golden hour and night and Çağlayan's day (every story stage) have
+    /// its backdrop. Home's level-10 day, golden hour and night and every painted Çağlayan state have
     /// one; the other states keep the plate until they are split.
     public var skySet: SkySet? {
         SkySet.shipped(island: plate.island, light: light, stage: stage)
@@ -438,9 +438,34 @@ public struct HomePlate: Hashable, Sendable {
     public var islandStop: CameraRail.Stop { centredStop(widths: plate.framing.islandWidths) }
     public var wholeStop: CameraRail.Stop { centredStop(widths: plate.framing.wholeWidths) }
 
-    /// The rail's stops while the plate shows: the Map as ever, the plate's
+    /// The Map while the plate shows: the painted Home, Koke's and Çağlayan's islands fitted between
+    /// the bands, as `IslandFraming.mapStop` fits the sprite world. The harbor isle is not on the
+    /// painted Map (R5: Home paints the islet), so it is not framed either: framing it left the right
+    /// third of the screen empty and the islands small in the top half. The islands stand on the band's
+    /// foot: Home's foot meets the painted sea's horizon (`PaintedSky.mapPose`), and on a short phone,
+    /// where the rail scales the anchor with the height but the scale with the width, Home stays below
+    /// the distant isles.
+    public var mapStop: CameraRail.Stop {
+        let all = IslandFraming.union([islandBox, KokeLayout.islandBox, CaglayanLayout.islandBox]) ?? islandBox
+        let margin = 10.0
+        let height = CameraRail.referenceHeight
+        let band = IslandFraming.bandHeight(height: height)
+        let foot = height - IslandFraming.bottomBand - margin
+        // The shortest phone (375 x 667) squeezes the anchor more than the scale: the islands' top still
+        // clears the isles' floor there (`top = A - r * half * s >= clear`, A the anchor, r its aspect).
+        let r = (375 / CameraRail.referenceWidth) / (667 / CameraRail.referenceHeight)
+        let clear = PaintedSky.mapIsleFloorShare * height
+        let scale = min(
+            (CameraRail.referenceWidth - 2 * margin) / max(all.width, 1),
+            (band - 2 * margin) / max(all.height, 1),
+            (foot - clear) / max(all.height / 2 * (1 + r), 1)
+        )
+        return CameraRail.Stop(scale: scale, look: WorldPoint(x: all.midX, y: all.midY), anchorY: foot - all.height * scale / 2)
+    }
+
+    /// The rail's stops while the plate shows: the painted Map, the plate's
     /// Island and Home.
     public var stops: [CameraRail.Stop] {
-        [CameraRail.referenceStops[0], islandStop, homeStop]
+        [mapStop, islandStop, homeStop]
     }
 }

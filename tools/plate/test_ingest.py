@@ -472,5 +472,17 @@ class HarmonyTests(unittest.TestCase):
         self.assertNotIn("saturation", ingest.harmony_state(pale, plain, ref))
 
 
+class ColorFitTests(unittest.TestCase):
+    def test_a_band_is_cooled_and_the_rest_kept(self):
+        grass = np.full((4, 4, 3), (0.45, 0.62, 0.25))
+        sky = np.full((4, 4, 3), (0.25, 0.28, 0.6))
+        fit = {"grass": {"hue": [105, 150], "dh": 16, "chroma": 0.7}}
+        out = ingest.color_fit(grass, fit)
+        lab_in, lab_out = ingest._lab(grass), ingest._lab(out)
+        self.assertLess(np.hypot(lab_out[..., 1], lab_out[..., 2]).mean(), 0.8 * np.hypot(lab_in[..., 1], lab_in[..., 2]).mean())
+        self.assertAlmostEqual(float(lab_out[..., 0].mean()), float(lab_in[..., 0].mean()), delta=1.5)
+        np.testing.assert_allclose(ingest.color_fit(sky, fit), sky, atol=0.01)
+
+
 if __name__ == "__main__":
     unittest.main()

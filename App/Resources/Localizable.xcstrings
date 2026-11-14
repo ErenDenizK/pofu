@@ -86,7 +86,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%2$lld açma isteği, %1$lld boş verme"
+            "value" : "%2$lld kez kapı çaldı, %1$lld kez boş verdik"
           }
         }
       }
@@ -456,7 +456,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Her açma isteği yeni bir şans. Sıradaki bizim."
+            "value" : "Kapı her çaldığında yeni bir şans. Sıradaki bizim."
           }
         }
       }
@@ -847,16 +847,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Açık izin yok. Bütün uygulamalar korumada."
-          }
-        }
-      }
-    },
-    "No reaches yet today." : {
-      "localizations" : {
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Henüz açma isteği yok."
           }
         }
       }
@@ -1403,16 +1393,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ne yapıyoruz?"
-          }
-        }
-      }
-    },
-    "What would you like to call me?" : {
-      "localizations" : {
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bana ne diyelim?"
           }
         }
       }
@@ -2282,16 +2262,6 @@
         }
       }
     },
-    "Say **I need it** at the door and I'll answer with a notification. That's the only time I write, never to pull you back." : {
-      "localizations" : {
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kapıda **Açmam lazım** dersen sana bir bildirimle cevap veririm. Sadece bunun için yazarım; seni geri çekmek için asla."
-          }
-        }
-      }
-    },
     "Allow notifications" : {
       "localizations" : {
         "tr" : {
@@ -2872,6 +2842,16 @@
         }
       }
     },
+    "Frame meter" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kare ölçer"
+          }
+        }
+      }
+    },
     "Skin" : {
       "localizations" : {
         "tr" : {
@@ -2887,7 +2867,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Her atlayış küçük bir zafer."
+            "value" : "Her “Boş ver” küçük bir zafer."
           }
         }
       }
@@ -2897,7 +2877,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hedef: refleks açılışların yarısını atlamak."
+            "value" : "Hedef: refleks açılışların yarısına “Boş ver” demek."
           }
         }
       }
@@ -2907,7 +2887,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Boş verdin. Bir tohum."
+            "value" : "Boş verdin. Bir çekirdek."
           }
         }
       }
@@ -2955,7 +2935,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kavanozda %lld tohum"
+            "value" : "Kavanozda %lld çekirdek"
           }
         }
       }
@@ -2976,6 +2956,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Adayı uyandırmak için bir kez uzan"
+          }
+        }
+      }
+    },
+    "The door's been quiet today." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bugün kapı sessiz."
+          }
+        }
+      }
+    },
+    "What will you call me?" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bana ne diye seslenirsin?"
+          }
+        }
+      }
+    },
+    "Tap **I need it** at the door and I'll answer with a notification. That's the only time I write. Never to pull you back." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kapıda **Açmam lazım**'a dokunursan cevabımı bildirimle yollarım. Sana sadece bunun için yazarım; seni geri çağırmak için asla."
           }
         }
       }

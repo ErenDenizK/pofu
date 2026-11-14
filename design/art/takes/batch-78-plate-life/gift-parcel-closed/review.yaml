@@ -1,0 +1,37 @@
+batch: batch-78-plate-life
+job: gift-parcel-closed
+status: pass
+pick: 1
+lead_review: "t1 is the batch-35 closed parcel redrawn alone (same kraft wrap, cream twine bow, berry sprig), clean edges and no ground, and reads as a gift at about 32 px on the plate lawn; t2 is the same parcel taller and boxier, so keep t1 (the promoted master already equals t1)."
+takes:
+- n: 1
+  file: prop__gift-parcel-closed--t1.webp
+  qa: pass
+  size_bytes: 34276
+  lock_load: 0.5605
+  warnings: []
+  source_file: /workspace/generated_images/exec-87538933-ca95-4a32-a6d1-19c4d327e0ba.png
+  source_sha256: f2479cb804bcd4823525962450ea3c164922bf67849a9f9e2c94b03d13d3e19f
+- n: 2
+  file: prop__gift-parcel-closed--t2.webp
+  qa: warn
+  size_bytes: 40462
+  lock_load: 0.5243
+  warnings:
+  - check: light_contrast
+    status: warn
+    message: 'day/subject: p75 local contrast 2.3 (band 2.5-6.5; above it reads too
+      contrasty)'
+  source_file: /workspace/generated_images/exec-06d275a5-ccf2-4187-9b75-1b2dd6e2f230.png
+  source_sha256: 1b5cc27b0c4e0442cdc262b658c68c39e77215ede9bde98538e50767ae706ba2
+note: Demand row 0-h5 production pick. t1 passes QA; t2 warns light_contrast. Closed
+  shape, bow and sprig match batch-35 retained sheet. Manifest exploration comment
+  conflicts with Demand production classification; queue takes precedence. Auto-picked
+  by QA; founder review pending.
+source: codex-cloud
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+generation_prompt_note: Built-in image tool received operator adaptations of the manifest
+  prompt. Ingest sidecars contain the composed manifest prompt, not the verbatim submitted
+  text.

@@ -196,7 +196,7 @@ struct SkySetTests {
 
     // MARK: Çağlayan (landscape plates on a portrait master)
 
-    @Test func caglayansDayHasASkySetAtEveryStoryStageAndTheOtherLightsKeepTheirPlate() throws {
+    @Test func caglayansDayHasASkySetAtEveryStoryStage() throws {
         let island = try #require(HomePlate.caglayanIsland)
         let file = try #require(SkySetFile.shipped("caglayan"), "the package ships Plates/skyset-caglayan.json")
         let frame = try #require(file.lights["day-4"]?.plateFrame, "the plates' place on the master")
@@ -213,9 +213,9 @@ struct SkySetTests {
             #expect(PlateMath.budgetOK(set), "stage \(stage): \(set.textureBytes) bytes")
         }
         #expect(islandAssets.count == 5, "each stage's plate cuts its own island layer")
-        // Golden, night and rain are being repainted: they keep the plate and its backdrop.
-        for (light, stage) in [("golden", 4), ("night", 2), ("night", 3), ("rain", 4)] {
-            #expect(HomePlate(plate: island, light: light, stage: stage, placement: CaglayanLayout.placement).skySet == nil, "\(light) \(stage)")
+        // Golden, night and rain have their own sets too (`CaglayanPlateDataTests`).
+        for (light, stage) in [("golden", 4), ("night", 0), ("night", 4), ("rain", 4)] {
+            #expect(HomePlate(plate: island, light: light, stage: stage, placement: CaglayanLayout.placement).skySet?.light == light, "\(light) \(stage)")
         }
     }
 

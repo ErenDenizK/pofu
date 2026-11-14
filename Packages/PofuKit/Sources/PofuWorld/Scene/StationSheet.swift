@@ -63,62 +63,92 @@ public struct StationSheet: View {
     /// accessibility sizes where it joins the scroll (a pinned block
     /// would eat the sheet).
     public var body: some View {
-        Group {
-            if typeSize.isAccessibilitySize {
-                ScrollView {
-                    VStack(alignment: .leading, spacing: PofuSpacing.l) {
-                        content
-                        footer
+        GeometryReader { proxy in
+            let height = proxy.size.height
+            let compact = height < Self.compactBelow
+            let short = height < Self.shortBelow
+            Group {
+                if typeSize.isAccessibilitySize {
+                    ScrollView {
+                        VStack(alignment: .leading, spacing: PofuSpacing.l) {
+                            content(compact: compact, short: short)
+                            footer(compact: compact)
+                        }
+                        .padding(PofuSpacing.screen)
                     }
-                    .padding(PofuSpacing.screen)
-                }
-            } else {
-                ScrollView {
-                    content.padding(PofuSpacing.screen)
-                }
-                .safeAreaInset(edge: .bottom, spacing: 0) {
-                    footer
-                        .padding(.horizontal, PofuSpacing.screen)
-                        .padding(.top, PofuSpacing.s)
-                        .padding(.bottom, PofuSpacing.m)
+                    .scrollBounceBehavior(.basedOnSize)
+                } else {
+                    // The footer is its own row under the scroll, never over it: the
+                    // content ends where the row starts, so no two texts share a line.
+                    VStack(spacing: 0) {
+                        ScrollView {
+                            content(compact: compact, short: short).padding(PofuSpacing.screen)
+                        }
+                        .scrollBounceBehavior(.basedOnSize)
+                        if !(compact && isBuilding) {
+                            footer(compact: compact)
+                                .padding(.horizontal, PofuSpacing.screen)
+                                .padding(.top, PofuSpacing.s)
+                                .padding(.bottom, PofuSpacing.m)
+                        }
+                    }
                 }
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         }
-        .scrollBounceBehavior(.basedOnSize)
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         .animation(.spring(duration: 0.25, bounce: 0), value: isBuilding)
         #if os(iOS)
         .presentationDragIndicator(.visible)
         #endif
     }
 
-    private var content: some View {
+    /// Below this the sheet is the build's compact detent: the status sits in the pots' row.
+    static let compactBelow: CGFloat = 240
+    /// Below this the flavour line leaves: the facts and the plaque fill the sheet.
+    static let shortBelow: CGFloat = 460
+
+    private func content(compact: Bool, short: Bool) -> some View {
         VStack(alignment: .leading, spacing: PofuSpacing.l) {
             header
             if let status {
-                pots(status)
-                rate(status)
-                    .accessibilityElement(children: .combine)
+                if compact && isBuilding {
+                    HStack(alignment: .bottom, spacing: PofuSpacing.m) {
+                        pots(status)
+                        buildingStatus
+                    }
+                } else {
+                    pots(status)
+                    if !compact {
+                        rate(status)
+                            .accessibilityElement(children: .combine)
+                    }
+                }
             } else {
                 Text("Not open yet", bundle: .module)
                     .font(PofuFont.body)
                     .foregroundStyle(inkSoft)
             }
-            flavour
+            if !short { flavour }
         }
         .padding(.top, PofuSpacing.s)
+    }
+
+    private var buildingStatus: some View {
+        Text("Building…", bundle: .module)
+            .font(PofuFont.headline)
+            .foregroundStyle(inkSoft)
+            .accessibilityIdentifier("station-building")
     }
 
     /// The pinned part: the build plaque with its cost and reason, then
     /// the garden's door.
     @ViewBuilder
-    private var footer: some View {
+    private func footer(compact: Bool) -> some View {
         if isBuilding {
-            Text("Building…", bundle: .module)
-                .font(PofuFont.headline)
-                .foregroundStyle(inkSoft)
-                .frame(maxWidth: .infinity)
-                .accessibilityIdentifier("station-building")
+            // At the compact detent the status already sits in the pots' row.
+            if !compact {
+                buildingStatus.frame(maxWidth: .infinity)
+            }
         } else if let status {
             VStack(spacing: PofuSpacing.s) {
                 buildButton(status)
@@ -146,8 +176,9 @@ public struct StationSheet: View {
             }
             Spacer(minLength: 0)
             Button(action: onClose) {
-                PofuDuoIcon(.duoClose, size: 24, fallback: "xmark")
-                    .font(.system(size: 15, weight: .semibold))
+                // A plain glyph: the duotone close art carried a stray mark above its cross.
+                Image(systemName: "xmark")
+                    .font(.system(size: 15, weight: .bold))
                     .foregroundStyle(PofuKitPalette.day.ink)
                     .frame(width: PofuSize.minimumTouch, height: PofuSize.minimumTouch)
                     .background { Circle().fill(palette.isNight ? palette.honey : palette.felt) }
@@ -177,7 +208,7 @@ public struct StationSheet: View {
                 Text("\(next) seeds a day once built", bundle: .module)
                     .font(PofuFont.title3.monospacedDigit())
             } else if let next {
-                Text("\(now) → \(next) seeds a day", bundle: .module)
+                Text("\(now) seeds a day · \(next) once built", bundle: .module)
                     .font(PofuFont.title3.monospacedDigit())
             } else {
                 Text("\(now) seeds a day", bundle: .module)
@@ -244,25 +275,35 @@ public struct StationSheet: View {
         } else if let cost = status.nextCost {
             let missing = max(cost.units - jar.units, 0)
             VStack(spacing: PofuSpacing.xs) {
-                Button {
-                    PofuHaptics.shared.play(.tap)
-                    onBuild?(station)
-                } label: {
-                    if missing > 0 {
-                        Text("\(missing) more seeds", bundle: .module)
-                    } else {
-                        HStack(spacing: PofuSpacing.s) {
-                            Text("Build · \(cost.units)", bundle: .module)
-                            SeedGlyph()
-                                .fill(PofuKitPalette.day.ink)
-                                .frame(width: 9, height: 14)
-                                .rotationEffect(.degrees(18))
-                                .accessibilityHidden(true)
+                if missing > 0, onBuild != nil {
+                    // Not enough seeds yet: a readable note on linen, not a greyed plaque.
+                    Text("\(missing) more seeds", bundle: .module)
+                        .font(PofuFont.headline.monospacedDigit())
+                        .foregroundStyle(palette.onPaper)
+                        .frame(maxWidth: .infinity, minHeight: PofuSize.minimumTouch - 8)
+                        .pofuKitCard(.linen)
+                        .accessibilityIdentifier("station-missing-seeds")
+                } else {
+                    Button {
+                        PofuHaptics.shared.play(.tap)
+                        onBuild?(station)
+                    } label: {
+                        if missing > 0 {
+                            Text("\(missing) more seeds", bundle: .module)
+                        } else {
+                            HStack(spacing: PofuSpacing.s) {
+                                Text("Build · \(cost.units)", bundle: .module)
+                                SeedGlyph()
+                                    .fill(PofuKitPalette.day.ink)
+                                    .frame(width: 9, height: 14)
+                                    .rotationEffect(.degrees(18))
+                                    .accessibilityHidden(true)
+                            }
                         }
                     }
+                    .buttonStyle(PofuPlaqueStyle(.primary, haptic: nil))
+                    .disabled(missing > 0 || onBuild == nil)
                 }
-                .buttonStyle(PofuPlaqueStyle(.primary, haptic: nil))
-                .disabled(missing > 0 || onBuild == nil)
                 // The reason lives under the plaque: never a dead state.
                 if onBuild == nil {
                     reasonLine { Text("Building opens soon.", bundle: .module) }

@@ -1,0 +1,193 @@
+{
+ "island": "caglayan",
+ "light": "night",
+ "version": 1,
+ "size": [
+  2048,
+  3072
+ ],
+ "source": {
+  "plate": "design/art/plates/caglayan/sky/master-night.heic"
+ },
+ "order": [
+  "sky",
+  "far",
+  "isle_dome",
+  "isle_crystal",
+  "mid",
+  "sea",
+  "island"
+ ],
+ "orderNote": "bottom to top",
+ "layers": [
+  {
+   "id": "sky",
+   "file": "sky.heic",
+   "pos": [
+    0,
+    0
+   ],
+   "size": [
+    256,
+    384
+   ],
+   "kind": "gradient",
+   "stretchTo": [
+    2048,
+    3072
+   ],
+   "note": "stretch over the plate; stands still"
+  },
+  {
+   "id": "far",
+   "file": "far.heic",
+   "pos": [
+    0,
+    23
+   ],
+   "size": [
+    2240,
+    1036
+   ],
+   "kind": "tile",
+   "tileWidth": 2240,
+   "parallax": {
+    "pxPerSecond": 4,
+    "unit": "screen px at referenceScreen",
+    "direction": "+x"
+   }
+  },
+  {
+   "id": "isle_dome",
+   "file": "isle_dome.heic",
+   "pos": [
+    430,
+    355
+   ],
+   "size": [
+    310,
+    225
+   ],
+   "kind": "sprite",
+   "parallax": {
+    "pxPerSecond": 3.0,
+    "unit": "screen px at referenceScreen",
+    "direction": "+x",
+    "wraps": false
+   }
+  },
+  {
+   "id": "isle_crystal",
+   "file": "isle_crystal.heic",
+   "pos": [
+    1380,
+    165
+   ],
+   "size": [
+    280,
+    235
+   ],
+   "kind": "sprite",
+   "parallax": {
+    "pxPerSecond": 2.0,
+    "unit": "screen px at referenceScreen",
+    "direction": "+x",
+    "wraps": false
+   }
+  },
+  {
+   "id": "mid",
+   "file": "mid.heic",
+   "pos": [
+    0,
+    1026
+   ],
+   "size": [
+    2240,
+    789
+   ],
+   "kind": "tile",
+   "tileWidth": 2240,
+   "parallax": {
+    "pxPerSecond": 9,
+    "unit": "screen px at referenceScreen",
+    "direction": "+x"
+   }
+  },
+  {
+   "id": "sea",
+   "file": "sea.heic",
+   "pos": [
+    0,
+    1541
+   ],
+   "size": [
+    2240,
+    1531
+   ],
+   "kind": "tile",
+   "tileWidth": 2240,
+   "parallax": {
+    "pxPerSecond": 14,
+    "unit": "screen px at referenceScreen",
+    "direction": "+x"
+   }
+  },
+  {
+   "id": "island",
+   "file": "island.heic",
+   "pos": [
+    13,
+    727
+   ],
+   "size": [
+    2021,
+    1571
+   ],
+   "kind": "island"
+  }
+ ],
+ "islandBox": [
+  20,
+  839,
+  2026,
+  2180
+ ],
+ "seaTop": 1750,
+ "seaSolid": 2350,
+ "referenceScreen": [
+  1206,
+  2622
+ ],
+ "tileSeamPx": 120,
+ "spritePxPerSecond": {
+  "isle_dome": 3.0,
+  "isle_crystal": 2.0
+ },
+ "stageIslands": {
+  "0": "island-s0.heic",
+  "1": "island-s1.heic",
+  "2": "island-s2.heic",
+  "3": "island-s3.heic",
+  "4": "island.heic"
+ },
+ "bytes": {
+  "sky": 4291,
+  "far": 358215,
+  "isle_dome": 18020,
+  "isle_crystal": 16131,
+  "mid": 121159,
+  "sea": 657460,
+  "island": 619616,
+  "island-s0": 736559,
+  "island-s1": 790135,
+  "island-s2": 727768,
+  "island-s3": 799188,
+  "total": 4848542
+ },
+ "info": {
+  "hole_px": 1989999,
+  "K": 0.4897,
+  "sky_resid_p95": 0.0182
+ }
+}

@@ -1,0 +1,69 @@
+batch: batch-78-plate-life
+job: visitor-damla
+status: provisional
+pick: 1
+lead_review: "t1 keeps Damla's face, fur, glass and size with the paw raised in a wave and soft droplets, and its fringe matches the root (t2 carries a wide pale alpha halo), but erase the two pairs of drawn motion strokes beside the raised paw and the tail before baking."
+source: codex-cloud
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+takes:
+- take: 1
+  file: char__visitor-damla--t1.webp
+  qa: warn
+  warnings:
+  - check: light_values
+    status: warn
+    message: 'day/subject: L p5 36 (at least 50: darks stay a light mid-tone), p98
+      94 (at least 90) (warn-only until the founder has seen the light pilot)'
+  - check: light_median
+    status: warn
+    message: 'day/subject: median L 64 (band 74-92) (warn-only until the founder has
+      seen the light pilot)'
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 3.4, p95 9.9, off-palette 1.7% (top: #884422 (0.3%), #994433
+      (0.2%))'
+  - check: no_ground_shadow
+    status: warn
+    message: a ground shadow seems painted in
+  source_file: /workspace/generated_images/exec-80e7405c-c445-436a-afe2-6278cd567bb3.png
+  source_sha256: 9b2ca22798468f38ad5f8c8ae0075c3d12163e91debcf4efbef7340e919c08af
+  source_dimensions:
+  - 1254
+  - 1254
+- take: 2
+  file: char__visitor-damla--t2.webp
+  qa: warn
+  warnings:
+  - check: light_values
+    status: warn
+    message: 'day/subject: L p5 36 (at least 50: darks stay a light mid-tone), p98
+      93 (at least 90) (warn-only until the founder has seen the light pilot)'
+  - check: light_median
+    status: warn
+    message: 'day/subject: median L 62 (band 74-92) (warn-only until the founder has
+      seen the light pilot)'
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 3.3, p95 8.8, off-palette 1.0% (top: #994433 (0.1%), #441100
+      (0.1%))'
+  - check: no_ground_shadow
+    status: warn
+    message: a ground shadow seems painted in
+  source_file: /workspace/generated_images/exec-13e69829-80a2-43e7-879a-ddba21134d49.png
+  source_sha256: 9a026ce226d95ea6e3c8d9d10cec94d90cd112ff796a5279b60089b08ba17d33
+  source_dimensions:
+  - 1254
+  - 1254
+note: t1 has the requested wave and tea glass, but QA warns light values, light median,
+  palette drift and a possible ground shadow. t2 has a conspicuous colored alpha halo.
+  Both materially redraw the parent, so the exact edit-keep request is not achieved.
+  No master promoted pending lead review.
+generation_prompt_note: Built-in image tool received operator adaptation of the manifest
+  prompt. Ingest sidecars contain the composed manifest prompt, not verbatim submitted
+  text.
+rule_note: QUEUE.md Demand row 0-h5 calls this production with auto-pick and promote.
+  Manifest header contains a contradictory EXPLORATION RULES comment. This delivery
+  conservatively retains warning/failing takes without promotion; lead should reconcile
+  header.

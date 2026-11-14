@@ -6,9 +6,31 @@ import Testing
 
 @Suite("Çağlayan plate data")
 struct CaglayanPlateDataTests {
-    @Test func paintsTheNightOfEveryStageBeforeHealing() throws {
+    @Test func paintsTheNightOfEveryStage() throws {
         let plate = try #require(HomePlate.caglayanIsland)
-        #expect(plate.painted["night"] == [0, 1, 2, 3])
+        #expect(plate.painted["night"] == [0, 1, 2, 3, 4])
+    }
+
+    /// Every painted state is drawn full frame: its island layer over a sky set of its own light (ADR-0025), so no
+    /// state shows the landscape plate as a band between flat fills.
+    @Test func everyPaintedStateHasASkySetOfItsOwnLight() throws {
+        let plate = try #require(HomePlate.caglayanIsland)
+        let frame = try #require(SkySetFile.shipped("caglayan")?.lights["day-4"]?.plateFrame)
+        var islands: Set<String> = []
+        for (light, stages) in plate.painted {
+            for stage in stages {
+                let state = HomePlate(plate: plate, light: light, stage: stage, placement: CaglayanLayout.placement)
+                let set = try #require(state.skySet, "\(light) \(stage)")
+                #expect(set.light == light, "\(light) \(stage)")
+                #expect(set.plateFrame == frame, "\(light) \(stage): placed by the island")
+                #expect(PlateMath.budgetOK(set), "\(light) \(stage): \(set.textureBytes) bytes")
+                let top = try #require(set.layers.last)
+                #expect(top.role == .island, "\(light) \(stage)")
+                islands.insert(top.asset)
+            }
+        }
+        #expect(islands.count == plate.painted.values.map(\.count).reduce(0, +), "each state cuts its own island layer")
+        #expect(SkySet.shipped(island: "caglayan", light: "night", stage: 4)?.layers.contains { $0.role == .stars } == true)
     }
 
     @Test func everyCaglayanFrameOfTheDemoIsPainted() throws {

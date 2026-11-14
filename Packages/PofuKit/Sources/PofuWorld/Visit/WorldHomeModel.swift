@@ -9,6 +9,13 @@ public protocol WorldCamera: AnyObject {
     func beginBuildFraming(_ station: StationID)
     /// The sheet returns to medium and the camera settles back (t 1.75 s).
     func endBuildFraming(_ station: StationID)
+    /// The visit's news has spoken (its button was taken, or the visit has
+    /// none): an island that grew waits no longer and grows now.
+    func newsHasSpoken()
+}
+
+extension WorldCamera {
+    public func newsHasSpoken() {}
 }
 
 /// A moment in progress: what it is and when it started.
@@ -39,7 +46,16 @@ public struct ActiveMoment<Moment: Hashable & Sendable>: Hashable, Sendable {
 public final class WorldHomeModel {
     // MARK: State
 
-    public private(set) var visit: VisitProgress
+    public private(set) var visit: VisitProgress {
+        didSet {
+            if !holdsIslandGrowForNews {
+                camera?.newsHasSpoken()
+            }
+        }
+    }
+    /// A visit has begun since the app started: before that, the news the
+    /// plan will carry is not known yet.
+    @ObservationIgnored public private(set) var hasBegunVisit = false
     public private(set) var collect: ActiveMoment<CollectMoment>?
     public private(set) var build: ActiveMoment<BuildMoment>?
     /// The station whose build is still in its compact phase: its sheet
@@ -90,15 +106,17 @@ public final class WorldHomeModel {
         now: @escaping @MainActor () -> Date = { Date() },
         schedulesCues: Bool = true,
         cheekLineDefaults: UserDefaults? = nil,
-        calendar: Calendar = .current
+        calendar: Calendar = .current,
+        cheekLineHistory: CheekLineHistory = CheekLineHistory()
     ) {
+        self.cheekLineHistory = cheekLineHistory
         self.now = now
         self.schedulesCues = schedulesCues
         self.cheekLineDefaults = cheekLineDefaults
         self.calendar = calendar
         self.visit = VisitProgress(plan: VisitPlan(landing: .settled, showsRepairBanner: false, beats: []))
-        if let seconds = cheekLineDefaults?.object(forKey: Self.cheekLineKey) as? Double {
-            cheekLineGate = CheekLineGate(lastSpoken: Date(timeIntervalSince1970: seconds))
+        if let stored = cheekLineDefaults?.array(forKey: Self.cheekLineKey) as? [Int] {
+            self.cheekLineHistory = CheekLineHistory(stored: stored)
         }
     }
 
@@ -114,11 +132,14 @@ public final class WorldHomeModel {
     public private(set) var pawsPressed = false
     /// This visit's first beat is Pofu saying his cheeks are huge.
     public private(set) var saysCheeksHuge = false
+    /// Which of his lines (`CheekLineHistory.variant`).
+    public private(set) var cheeksHugeVariant = 0
 
-    @ObservationIgnored private var cheekLineGate = CheekLineGate()
+    /// The lines he has said this week (screenshots replay it across days).
+    @ObservationIgnored public private(set) var cheekLineHistory: CheekLineHistory
     @ObservationIgnored private let cheekLineDefaults: UserDefaults?
     @ObservationIgnored private let calendar: Calendar
-    nonisolated static let cheekLineKey = "pofu.home.cheeksHuge.lastSpoken"
+    nonisolated static let cheekLineKey = "pofu.home.cheeksHuge.history"
 
     /// The cheek fill for the companion: the pre-collect step until the
     /// paws have pressed, then empty; otherwise from the seeds waiting.
@@ -132,11 +153,20 @@ public final class WorldHomeModel {
     private func decideCheekLine(for plan: VisitPlan) {
         saysCheeksHuge = false
         guard case .collect(let pouch)? = plan.beats.first else { return }
+        // A morning with news: the news speaks first, and the cheeks keep
+        // their line for another morning.
+        let hasNews = plan.beats.contains { beat in
+            if case .news = beat { return true }
+            return false
+        }
+        guard !hasNews else { return }
         let step = CheekStep(uncollected: pouch.total.units)
         let date = now()
-        guard cheekLineGate.allows(step: step, now: date, calendar: calendar) else { return }
-        cheekLineGate.markSpoken(at: date)
-        cheekLineDefaults?.set(date.timeIntervalSince1970, forKey: Self.cheekLineKey)
+        let dayIndex = calendar.ordinality(of: .day, in: .era, for: date) ?? 0
+        guard cheekLineHistory.allows(step: step, dayIndex: dayIndex) else { return }
+        cheeksHugeVariant = cheekLineHistory.variant(dayIndex: dayIndex)
+        cheekLineHistory.record(dayIndex: dayIndex, variant: cheeksHugeVariant)
+        cheekLineDefaults?.set(cheekLineHistory.stored, forKey: Self.cheekLineKey)
         saysCheeksHuge = true
     }
 
@@ -144,6 +174,7 @@ public final class WorldHomeModel {
 
     /// Starts a visit with `plan` (an app landing).
     public func beginVisit(_ plan: VisitPlan) {
+        hasBegunVisit = true
         visit = VisitProgress(plan: plan)
         decideCheekLine(for: plan)
         settledLine = nil
@@ -153,6 +184,21 @@ public final class WorldHomeModel {
     /// The beat whose primary action shows, if any.
     public var currentBeat: VisitBeat? {
         visit.current
+    }
+
+    /// The island's growth has news for this visit and it has not been
+    /// taken yet.
+    public var hasStageNewsWaiting: Bool {
+        visit.plan.beats.dropFirst(visit.played).contains { beat in
+            if case .news(.stageGrew) = beat { return true }
+            return false
+        }
+    }
+
+    /// An island that grew while the app was closed waits for the news beat's
+    /// button: until the visit's plan is known, and while the beat waits.
+    public var holdsIslandGrowForNews: Bool {
+        !hasBegunVisit || hasStageNewsWaiting
     }
 
     /// Settled: no bubble, no primary; "Ada sensiz de çalışıyor."
@@ -261,7 +307,8 @@ public final class WorldHomeModel {
             toLevel: receipt.level,
             maxLevel: maxLevel,
             reduceMotion: reduceMotion,
-            lowPower: Self.isLowPowerMode
+            lowPower: Self.isLowPowerMode,
+            cost: receipt.cost.units
         )
         // Celebrations never stack: a new build replaces the last one's
         // tag and adds no second burst.

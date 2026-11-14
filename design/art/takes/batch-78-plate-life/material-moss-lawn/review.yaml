@@ -1,0 +1,48 @@
+batch: batch-78-plate-life
+job: material-moss-lawn
+status: warn
+pick: 2
+lead_review: "t2 is a low feathered moss cushion with small cream star flowers and the curled root, true to the batch-33 moss and reading as moss not a bush at plate size; it is only small on its canvas, which the in-app fit solves by scaling its sharp box to about 70 px wide, while t1's flowers are oversized; keep t2 (the promoted master already equals t2)."
+source: codex-cloud
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+takes:
+- take: 1
+  file: prop__material-moss-lawn--t1.webp
+  qa: fail
+  checks:
+  - check: chroma_ceiling
+    status: warn
+    value: 52.2
+    message: chroma p95 52 (R1 51)
+  - check: light_median
+    status: warn
+    value: 70.7
+    message: 'day/subject: median L 71 (band 74-92)'
+  - check: light_contrast
+    status: warn
+    value: 2.07
+    message: 'day/subject: p75 local contrast 2.1 (band 2.5-6.5; above it reads too
+      contrasty)'
+  - check: palette_drift
+    status: fail
+    value: 5.5861
+    message: mean dE 5.6, p95 8.1, off-palette 0.0%
+  source_file: /workspace/generated_images/exec-77f78de6-60dc-4985-a700-28756a726012.png
+  source_sha256: 4b93ef467c4da88f8ad9ae6490691af43ba73e23cda3b7a6d6a0f5931cb84dae
+- take: 2
+  file: prop__material-moss-lawn--t2.webp
+  qa: warn
+  checks:
+  - check: light_median
+    status: warn
+    value: 72.3
+    message: 'day/subject: median L 72 (band 74-92)'
+  source_file: /workspace/generated_images/exec-eb0f2629-85b1-4f85-8e82-a3c6ba03d8d8.png
+  source_sha256: e54276538994317c8182e327c7f9966472f398cf39bac3cd16efc112618dce04
+note: 'Production auto-picked t2: QA warning only for light_median; t1 fails palette_drift.
+  T2 is a low lawn patch with three cream flowers and curled root. Its visible width is about half of t1 and may read too small beside Mochi at game scale; this needs lead size review. T1 fills the canvas better but fails palette_drift, so it was not promoted. Founder
+  review pending. QUEUE.md Demand row 0-h5 says production and promote; manifest header
+  has stale EXPLORATION copy. The queue governs. The built-in image tool received
+  operator adaptations of the composed prompt, and source PNGs remain in /workspace/generated_images.'

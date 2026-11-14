@@ -85,6 +85,11 @@ public struct SkySet: Hashable, Sendable {
         public var periods: [Double] = []
     }
 
+    /// The mid clouds' drift tile (`<island>-sky-mid-<light>`).
+    public static func isMidClouds(_ layer: Layer) -> Bool {
+        layer.role == .tile && layer.asset.contains("-sky-mid-")
+    }
+
     public struct Layer: Hashable, Sendable, Identifiable {
         public var id: String
         public var role: Role
@@ -101,6 +106,40 @@ public struct SkySet: Hashable, Sendable {
         public var twinkle: Twinkle?
         /// Painted detail on a sprite or the whale.
         public var details: [Detail] = []
+        /// The band of the layer's own picture that is drawn, or `nil`: all of it (the Map's sky,
+        /// `PaintedSky.mapSet`). Never in a shipped set.
+        public var window: Window?
+    }
+
+    /// A horizontal band of a layer's picture: `top` and `bottom` are shares of the layer's height, and
+    /// each edge fades in over its own share (`topFade`, `bottomFade`), so a band cut from a cloud tile
+    /// has no straight edge.
+    public struct Window: Hashable, Sendable {
+        public var top: Double
+        public var bottom: Double
+        public var topFade: Double
+        public var bottomFade: Double
+
+        public init(top: Double, bottom: Double, topFade: Double, bottomFade: Double) {
+            self.top = top
+            self.bottom = bottom
+            self.topFade = topFade
+            self.bottomFade = bottomFade
+        }
+
+        /// How much of the picture shows at `y`, a share of the layer's height (0...1).
+        public func opacity(at y: Double) -> Double {
+            var rise: Double = y >= top ? 1.0 : 0.0
+            if topFade > 0 {
+                rise = (y - top) / topFade
+            }
+            var fall: Double = y <= bottom ? 1.0 : 0.0
+            if bottomFade > 0 {
+                fall = (bottom - y) / bottomFade
+            }
+            let shown: Double = min(rise, fall)
+            return min(max(shown, 0.0), 1.0)
+        }
     }
 
     /// A plate's place on the master (`tools/plate/portrait.py`, `portraitFrame` in the island's `objects.json`).
@@ -124,7 +163,7 @@ public struct SkySet: Hashable, Sendable {
     public var textureBytes: Int
 
     /// The sky set a state shows, when it has one: home's level-10 day, golden hour and night; Çağlayan's
-    /// day at each story stage (`day-<stage>`: the same sky, each stage plate's own island layer).
+    /// every painted state (`<light>-<stage>`: one sky per light, each stage plate's own island layer).
     public static func shipped(island: String, light: String, stage: Int) -> SkySet? {
         guard let file = SkySetFile.shipped(island) else { return nil }
         if let staged = file.lights["\(light)-\(stage)"] { return staged }
@@ -149,6 +188,14 @@ public enum SkyMotion {
     public static func bob(_ bob: SkySet.Bob?, time: Double, scale: Double) -> Double {
         guard let bob, bob.period > 0 else { return 0 }
         return bob.sign * bob.amp * sin(2 * .pi * time / bob.period) * scale
+    }
+
+    /// The copies `n` of a tile whose copy 0 starts at `left` (points) that reach the screen.
+    public static func copies(left: Double, width: Double, screen: Double) -> ClosedRange<Int> {
+        guard width > 1 else { return 0...0 }
+        let first = Int((-left / width).rounded(.down)) - 1
+        let last = Int(((screen - left) / width).rounded(.up))
+        return first...max(first, min(last, first + 64))
     }
 
     /// How far a drift tile has moved right, in points, kept within one tile (`tileWidth` points).

@@ -1,0 +1,1 @@
+Changed: One voice: the seed is "çekirdek" everywhere, the Today header is a live crop of the island's painting, a met goal says the level is ready, Köke and Çağlayan show name and state at their stops, the flow caption sits above the board, the breath stands on the gate's painted lawn, and the Home pan stops at the painting's tips.

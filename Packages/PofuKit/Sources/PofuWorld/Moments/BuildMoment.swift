@@ -51,9 +51,13 @@ public struct BuildMoment: Hashable, Sendable {
     public let reduceMotion: Bool
     /// Low Power Mode: a shorter ceremony of light and no particles.
     public let lowPower: Bool
+    /// The seeds the level took from the jar: the tag says so, so seeds
+    /// never leave the counter without a reason on screen.
+    public let cost: Int?
 
-    public init(station: StationID, fromLevel: Int, toLevel: Int, maxLevel: Int, reduceMotion: Bool, lowPower: Bool = false) {
+    public init(station: StationID, fromLevel: Int, toLevel: Int, maxLevel: Int, reduceMotion: Bool, lowPower: Bool = false, cost: Int? = nil) {
         self.lowPower = lowPower
+        self.cost = cost
         self.station = station
         self.fromLevel = fromLevel
         self.toLevel = toLevel

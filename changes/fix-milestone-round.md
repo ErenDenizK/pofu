@@ -1,0 +1,1 @@
+Changed: Pofu says his huge-cheeks line only now and then (never two days running, no line twice in a week); the first build sheet keeps its status on its own row, the island-grows moment fades faster without a double image, long bubbles clear the door row.

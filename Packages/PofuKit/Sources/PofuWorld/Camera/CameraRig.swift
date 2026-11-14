@@ -227,6 +227,14 @@ public struct CameraRig: Hashable, Sendable {
         flightTime = 0
     }
 
+    /// Holds the flight in progress at `progress` (0...1) of its length, still (screenshots): the pose
+    /// and the rail position are the flight's there.
+    public mutating func holdFlight(at progress: Double) {
+        guard let flight else { return }
+        flightTime = min(max(progress, 0), 1) * flight.duration
+        z.jump(to: min(max(rail.z(logScale: flight.pose(at: flightTime).logScale), 0), 2))
+    }
+
     private mutating func finishFlight() {
         flight = nil
         flightTime = 0
@@ -395,29 +403,23 @@ public struct CameraRig: Hashable, Sendable {
         return 2 - z
     }
 
-    /// The pan's band past either end, in points.
-    public static let panBand = 60.0
+    /// The pan's range at this rig's size: the visible rect stays on the
+    /// painted plate.
+    public var panRange: ClosedRange<Double> {
+        IslandFraming.panRange(scale: max(rail.pose(of: .island).scale, 1e-3), width: rail.width)
+    }
 
     /// A horizontal drag at the Island framing: the island follows the
-    /// finger (`dx` points since the drag began) and rubber-bands past its
-    /// ends.
+    /// finger (`dx` points since the drag began) and stops hard at the
+    /// plate's tips, so the painting's edge never shows.
     public mutating func panDrag(dx: Double) {
         if panStart == nil {
             panStart = pan.value
         }
         let s = max(rail.pose(of: .island).scale, 1e-3)
         let raw = (panStart ?? 0) - dx / s
-        let range = IslandFraming.panRange
-        let band = Self.panBand / s
-        let banded: Double
-        if raw > range.upperBound {
-            banded = range.upperBound + CameraRail.rubberBand(raw - range.upperBound, limit: band)
-        } else if raw < range.lowerBound {
-            banded = range.lowerBound - CameraRail.rubberBand(range.lowerBound - raw, limit: band)
-        } else {
-            banded = raw
-        }
-        pan.jump(to: banded)
+        let range = panRange
+        pan.jump(to: min(max(raw, range.lowerBound), range.upperBound))
     }
 
     /// The finger lifted at `velocity` points per second: the pan coasts
@@ -427,15 +429,16 @@ public struct CameraRig: Hashable, Sendable {
     public mutating func endPan(velocity: Double) -> Double {
         panStart = nil
         let s = max(rail.pose(of: .island).scale, 1e-3)
-        let range = IslandFraming.panRange
+        let range = panRange
         let v = -velocity / s
         let inside = range.contains(pan.value)
         // UIScrollView's normal deceleration coasts about a third of a
         // second's worth of the release velocity.
         let projected = min(max(pan.value + (inside ? v * 0.33 : 0), range.lowerBound), range.upperBound)
-        let target = IslandFraming.panSnaps.min { abs($0 - projected) < abs($1 - projected) } ?? projected
+        let target = min(max(IslandFraming.panSnaps.min { abs($0 - projected) < abs($1 - projected) } ?? projected, range.lowerBound), range.upperBound)
         let spring = reduceMotion ? WorldSprings.reduced : springs.release.token
-        pan.retarget(target, duration: spring.duration, bounce: inside ? spring.bounce : 0)
+        let atEnd = target <= range.lowerBound || target >= range.upperBound
+        pan.retarget(target, duration: spring.duration, bounce: inside && !atEnd ? spring.bounce : 0)
         pan.velocity = inside ? v : 0
         return target
     }
@@ -444,7 +447,8 @@ public struct CameraRig: Hashable, Sendable {
     public mutating func panTo(_ target: Double) {
         panStart = nil
         let spring = reduceMotion ? WorldSprings.reduced : springs.release.token
-        pan.retarget(target, duration: spring.duration, bounce: 0)
+        let range = panRange
+        pan.retarget(min(max(target, range.lowerBound), range.upperBound), duration: spring.duration, bounce: 0)
     }
 
     /// Puts the pan at `value`, at rest (screenshots, tests).

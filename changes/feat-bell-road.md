@@ -1,0 +1,1 @@
+Added: days 17 to 20 now lead to the far bell. Pofu hums his four notes and one more comes back from far off each day ("Mırıldan", then "Dinle"), his bedtime line listens, and the bell on day 21 plays its song aloud.

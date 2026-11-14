@@ -1,0 +1,1 @@
+The Map and the flights between stops stand under Home's painted sky of the hour: Home is cut from its level's own painting (no ghost), Koke and Çağlayan carry their names, and the old code sky and the sprite harbor isle are gone from the painted world.

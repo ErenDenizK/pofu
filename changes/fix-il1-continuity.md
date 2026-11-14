@@ -1,0 +1,1 @@
+Changed: Home's first growth no longer reads as a loss: the first level now shows the island as the second level's earlier self, with the whale, the far isles in colour, the hilltop tree, the bridge islet and the blue and green doors gone into the same soft sky, cloud and fog the second level has.

@@ -127,12 +127,18 @@ def problems(catalog: Path = CATALOG, manifest_path: Path = MANIFEST) -> list[st
     return found
 
 
-def run(catalog: Path = CATALOG, manifest_path: Path = MANIFEST) -> int:
-    """Writes every missing or stale shadow and removes orphans; returns how many it wrote."""
+def run(catalog: Path = CATALOG, manifest_path: Path = MANIFEST, only: set[str] | None = None) -> int:
+    """Writes every missing or stale shadow and removes orphans; returns how many it wrote. With `only`
+    (imageset stems, as `preblur.py app --only` passes), just those casters' shadows: every other shadow
+    and its manifest entry stay as they are."""
     manifest = load_manifest(manifest_path)
     written = 0
     kept: dict[str, str] = {}
+    if only is not None:
+        kept = {stem: digest for stem, digest in manifest.items() if stem not in only}
     for stem in casters(catalog):
+        if only is not None and stem not in only:
+            continue
         src = source_png(stem, catalog)
         if src is None:
             continue
@@ -149,7 +155,7 @@ def run(catalog: Path = CATALOG, manifest_path: Path = MANIFEST) -> int:
         written += 1
     for entry in sorted(catalog.glob(f"*{SUFFIX}.imageset")):
         stem = entry.name[: -len(SUFFIX + ".imageset")]
-        if stem not in kept:
+        if stem not in kept and (only is None or stem in only):
             for child in entry.iterdir():
                 child.unlink()
             entry.rmdir()

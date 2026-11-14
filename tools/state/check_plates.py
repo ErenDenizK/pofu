@@ -126,6 +126,9 @@ def _cell(where: str, c: dict, root: Path) -> list[str]:
         return [f"{where}: not a take file name: {painted}"]
     if pick != int(m["n"]):
         return [f"{where}: lead_pick {pick} does not match take t{m['n']}"]
+    edited = c.get("edited")
+    if edited is not None and not (root / edited).is_file():
+        return [f"{where}: edited plate not found: {edited}"]
     review = path.parent / "review.yaml"
     if not review.is_file():
         return [f"{where}: no review.yaml beside {painted}"]

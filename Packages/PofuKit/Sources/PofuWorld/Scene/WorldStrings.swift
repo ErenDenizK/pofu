@@ -19,9 +19,9 @@ enum WorldStrings {
     /// Who keeps the station.
     static func stationKeeper(_ id: StationID) -> String? {
         switch id {
-        case .garden: String(localized: "Pofu's", bundle: .module)
-        case .teaStall: String(localized: "Mochi's", bundle: .module)
-        case .workshop: String(localized: "Fındık's", bundle: .module)
+        case .garden: String(localized: "Pofu waters it", bundle: .module)
+        case .teaStall: String(localized: "Mochi's, our bunny neighbour", bundle: .module)
+        case .workshop: String(localized: "Fındık's, our hedgehog neighbour", bundle: .module)
         default: nil
         }
     }
@@ -43,6 +43,16 @@ enum WorldStrings {
         case .koke: localized("koke.name")
         case .caglayan: localized("caglayan.name")
         default: id.rawValue.capitalized
+        }
+    }
+
+    /// A wonder island's state under its name: asleep, healing (stage out of
+    /// four) or healed.
+    static func wonderState(stage: Int) -> String {
+        switch WonderState(stage: stage) {
+        case .asleep: String(localized: "Asleep", bundle: .module)
+        case .healed: String(localized: "Healed", bundle: .module)
+        case .healing(let stage): String(localized: "Healing \(stage) of \(WonderIslands.healedStage)", bundle: .module)
         }
     }
 
@@ -186,16 +196,47 @@ enum WorldStrings {
 
     /// The next island level's short line, never a timer: "Ada 6 için: 2
     /// seviye daha", or the days still to pass when the levels are built.
+    /// Once nothing is left, the line says the level is ready.
     static func nextIslandLevel(_ requirement: IslandLevelRequirement) -> String {
-        if requirement.levelsLeft > 0 {
-            return String(localized: "For island \(requirement.level): \(requirement.levelsLeft) more levels", bundle: .module)
+        switch GoalLine(requirement) {
+        case .ready(let island):
+            String(localized: "Island \(island) is ready", bundle: .module)
+        case .levels(let island, let left):
+            String(localized: "For island \(island): \(left) more levels", bundle: .module)
+        case .days(let island, let left):
+            String(localized: "For island \(island): \(left) more days", bundle: .module)
         }
-        return String(localized: "For island \(requirement.level): \(requirement.tendedDaysLeft) more days", bundle: .module)
     }
 
     /// The build's one exclamation (interaction spec §6.3).
     static func levelUp(_ level: Int) -> String {
         String(localized: "Level \(level)!", bundle: .module)
+    }
+
+    // MARK: - Ada büyüdü
+
+    /// The island's growth card: its kicker and its title.
+    static var islandGrewKicker: String {
+        String(localized: "The island grew", bundle: .module)
+    }
+
+    static func islandTitle(_ level: Int) -> String {
+        String(localized: "Island \(level)", bundle: .module)
+    }
+
+    /// Pofu's line for an island level, naming what the painting gained;
+    /// `nil` for a level without one (the first, and any past the eighth).
+    static func islandGrowLine(_ level: Int) -> String? {
+        switch level {
+        case 2: String(localized: "Tea's on, simit's here. Now it's an island.", bundle: .module)
+        case 3: String(localized: "The mist cleared off the bridge. I watered the sprouts. (A bit.)", bundle: .module)
+        case 4: String(localized: "We've got a pond. I dipped a toe. Cold. Dipped it again.", bundle: .module)
+        case 5: String(localized: "A ferry's at the pier. It thinks the bunting's for it. I let it.", bundle: .module)
+        case 6: String(localized: "We have a lighthouse now. No sea. Never mind, we have clouds.", bundle: .module)
+        case 7: String(localized: "Flowers everywhere. I tried the bench. My feet don't reach.", bundle: .module)
+        case 8: String(localized: "We built a windmill. Let it do the spinning. I quit the wheel.", bundle: .module)
+        default: nil
+        }
     }
 
     // MARK: - Home
@@ -216,10 +257,18 @@ enum WorldStrings {
             String(localized: "Look: the island grew overnight!", bundle: .module)
         case .news(.islandArrived):
             String(localized: "Look: a new island drifted close overnight!", bundle: .module)
+        case .news(.farNotes(let step)):
+            preludeLine(step)
         case .build(let station, let level):
             String(localized: "\(stationName(station)) → level \(level) · Ready", bundle: .module)
         case .weeklyRecap:
             String(localized: "Our week is ready.", bundle: .module)
+        case .bell:
+            String(
+                localized: "bell.line",
+                defaultValue: "Koke's awake, Çağlayan's flowing. A bell far off played my song. One note too many.",
+                bundle: .module
+            )
         }
     }
 
@@ -228,9 +277,41 @@ enum WorldStrings {
         switch beat {
         case .care: String(localized: "Okay", bundle: .module)
         case .collect: String(localized: "Collect", bundle: .module)
+        case .news(.farNotes(let step)):
+            step == 1
+                ? String(localized: "prelude.action.hum", defaultValue: "Hum it", bundle: .module)
+                : String(localized: "prelude.action.listen", defaultValue: "Listen", bundle: .module)
         case .news: String(localized: "See the island", bundle: .module)
         case .build: String(localized: "Build", bundle: .module)
         case .weeklyRecap: String(localized: "Take a look", bundle: .module)
+        case .bell: String(localized: "bell.action", defaultValue: "I heard it too", bundle: .module)
+        }
+    }
+
+    /// The far bell's road, day by day (docs/design/days-17-21-v1.md §5).
+    private static func preludeLine(_ step: Int) -> String {
+        switch step {
+        case 2:
+            String(localized: "prelude.line.2", defaultValue: "A note came back from the fog. (Not an echo. Echoes are prompt.)", bundle: .module)
+        case 3:
+            String(localized: "prelude.line.3", defaultValue: "Two notes today. Mochi's tea shivered. Nobody touched the table.", bundle: .module)
+        case 4:
+            String(localized: "prelude.line.4", defaultValue: "It played all four. One wrong. I yelled the right one. Nothing.", bundle: .module)
+        default:
+            String(localized: "prelude.line.1", defaultValue: "Koke quit snoring. My humming made it off the island for once.", bundle: .module)
+        }
+    }
+
+    private static func listeningLine(_ step: Int) -> String {
+        switch step {
+        case 2:
+            String(localized: "night.listening.2", defaultValue: "One ear toward the fog. You sleep, I'll listen.", bundle: .module)
+        case 3:
+            String(localized: "night.listening.3", defaultValue: "Mochi's tea is on the windowsill. It'll tell us.", bundle: .module)
+        case 4:
+            String(localized: "night.listening.4", defaultValue: "That wrong note. Maybe the wrong one's mine.", bundle: .module)
+        default:
+            String(localized: "night.listening.1", defaultValue: "Hummed my four notes. No fifth. Again.", bundle: .module)
         }
     }
 
@@ -240,6 +321,40 @@ enum WorldStrings {
         case 0: String(localized: "Watering the sunflowers.", bundle: .module)
         case 1: String(localized: "Mochi's tea is on.", bundle: .module)
         default: String(localized: "The island hums along.", bundle: .module)
+        }
+    }
+
+    /// Pofu's line when no beat waits (`HomeDailyLine`).
+    static func dailyLine(_ line: HomeDailyLine) -> String {
+        switch line {
+        case .night(variant: 0): String(localized: "The island's asleep. Seeds pile up by morning.", bundle: .module)
+        case .night: String(localized: "The neighbours turned in. See you at breakfast.", bundle: .module)
+        case .listening(let step): listeningLine(step)
+        case .bellNight:
+            String(localized: "night.bell", defaultValue: "Five notes. I know the fifth by heart. Good night.", bundle: .module)
+        case .giftArrived: String(localized: "A gift reached the island today. Spot it?", bundle: .module)
+        case .letGo(let count): String(localized: "We let \(count) go today. Mostly your doing.", bundle: .module)
+        case .guest: String(localized: "We've got a guest. Say hi?", bundle: .module)
+        case .morning(variant: 0): String(localized: "Morning. Tea's brewing, the island's up.", bundle: .module)
+        case .morning: String(localized: "Buried a seed. Forgot where. Classic hamster.", bundle: .module)
+        case .midday(variant: 0): String(localized: "The sunflowers watch the sun. I watch you.", bundle: .module)
+        case .midday: String(localized: "Yawned twice today. Very productive.", bundle: .module)
+        case .evening: String(localized: "Evening tea's on me. You sit.", bundle: .module)
+        }
+    }
+
+    /// The seeds a build took, under its "Level n!".
+    static func buildSpent(_ seeds: Int) -> String {
+        String(localized: "−\(seeds) seeds", bundle: .module)
+    }
+
+    /// A wonder island's stop: what a tap does today.
+    static func wonderToday(_ today: WonderToday) -> String {
+        switch today {
+        case .tapHelps: String(localized: "A tap helps it today", bundle: .module)
+        case .doneForToday: String(localized: "Done for today. Back tomorrow", bundle: .module)
+        case .needsSkip: String(localized: "Skip one reach today first", bundle: .module)
+        case .sleeping: String(localized: "Asleep for the night. Come in the morning", bundle: .module)
         }
     }
 
@@ -277,7 +392,7 @@ enum WorldStrings {
 
     static func todayLine(_ today: TodaySummary) -> String {
         if today.reaches == 0 {
-            return String(localized: "No reaches yet today.", bundle: .module)
+            return String(localized: "The door's been quiet today.", bundle: .module)
         }
         return String(localized: "Skipped \(today.skips) of \(today.reaches) today", bundle: .module)
     }
@@ -296,9 +411,16 @@ enum WorldStrings {
 
     // MARK: - The Living Diorama
 
-    /// Pofu's one exclamation when his cheeks are huge (once a day).
-    static var cheeksHuge: String {
-        String(localized: "My cheeks are huge!", bundle: .module)
+    /// Pofu's one line when his cheeks are huge (once a day): five of them,
+    /// turned by the day (`CheekLine`). The first is the exclamation.
+    static func cheeksHuge(variant: Int) -> String {
+        switch variant {
+        case 1: String(localized: "Can't talk. Mouth's full. (And yet.)", bundle: .module)
+        case 2: String(localized: "Tried to yawn. No room. Cheeks are full.", bundle: .module)
+        case 3: String(localized: "Barely fit through the door with these cheeks.", bundle: .module)
+        case 4: String(localized: "One cheek's heavier. I'm walking in a slant.", bundle: .module)
+        default: String(localized: "My cheeks are huge!", bundle: .module)
+        }
     }
 
     static func collectAction(_ seeds: Int) -> String {
@@ -343,7 +465,7 @@ enum WorldStrings {
     /// The glance: "Today 3/4 · 15 min".
     static func glance(_ today: TodaySummary) -> String {
         if today.reaches == 0 {
-            return String(localized: "Today · no reaches yet · \(today.guardedAtLeast) min", bundle: .module)
+            return String(localized: "Today · all quiet · \(today.guardedAtLeast) min", bundle: .module)
         }
         return String(localized: "Today \(today.skips)/\(today.reaches) · \(today.guardedAtLeast) min", bundle: .module)
     }

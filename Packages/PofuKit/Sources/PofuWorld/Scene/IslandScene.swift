@@ -142,6 +142,17 @@ public struct IslandScene<Bubble: View>: View {
                         .allowsHitTesting(false)
                         .accessibilityHidden(true)
                     }
+                    if let grow = model.grow {
+                        // "Ada büyüdü": the bloom and the card over the whole island.
+                        IslandGrowOverlay(
+                            grow: grow,
+                            time: grow.time(at: context.date),
+                            centre: growCentre(in: rig, size: size),
+                            size: size,
+                            safeTop: safeTop,
+                            onTap: { model.dismissGrowCard() }
+                        )
+                    }
                 }
             }
             // A sheet or cover freezes then flattens the world (§3.1).
@@ -249,7 +260,9 @@ public struct IslandScene<Bubble: View>: View {
         }
         // The painted home plate (ADR-0022): at its level, by day, in clear
         // weather; otherwise the sprite island.
-        .onChange(of: HomePlate.resolve(world: world, look: look), initial: true) { _, plate in
+        // The painting's level trails the world's until the island's growth
+        // moment starts the cross-fade ("Ada büyüdü", `IslandGrowMoment`).
+        .onChange(of: HomePlate.resolve(world: model.presenting(world), look: look), initial: true) { _, plate in
             model.setHomePlate(plate)
         }
         // Çağlayan's painted plates (ADR-0022): by story stage, hour and weather where painted.
@@ -314,6 +327,14 @@ public struct IslandScene<Bubble: View>: View {
             .presentationDetents([.medium, .large])
             .pofuSheetBackground()
         }
+    }
+
+    /// The island's centre on screen: where the growth's bloom rises.
+    private func growCentre(in rig: CameraRig, size: CGSize) -> CGPoint {
+        let box = model.homePlate?.islandBox
+        let point = WorldPoint(x: box?.midX ?? 0, y: box?.midY ?? 0)
+        let p = rig.pose.project(point, width: Double(size.width))
+        return CGPoint(x: p.x + rig.offsetX.value, y: p.y + rig.offsetY.value)
     }
 
     /// The islands the player has arrived at, home first.
@@ -472,6 +493,13 @@ private struct SceneFrame<Bubble: View>: View {
         )
     }
 
+    static func isleGrade(_ isle: HomePlate?, at island: IslandID, mapSky: HomePlate?) -> WorldGrade {
+        guard let isle else { return .neutral }
+        if island == .caglayan { return PaintedSky.islandGrade(painted: isle, under: nil) }
+        guard let mapSky else { return .neutral }
+        return PaintedSky.islandGrade(painted: isle, under: mapSky)
+    }
+
     var body: some View {
         let pose = rig.pose
         let z = rig.railPosition
@@ -501,16 +529,33 @@ private struct SceneFrame<Bubble: View>: View {
         // At a stop under Home's painted sky (`PaintedSky`) the depth of field is off as on a plate.
         let skies = PaintedSky.skies(world: world, look: look, pose: pose, viewportWidth: Double(size.width))
         let skyFade = skies.map(\.fade).max() ?? 0
-        let lens = spikeDOF || painted ? Lens(focus: baseLens.focus, slab: baseLens.slab, gain: 0) : Lens(focus: baseLens.focus, slab: baseLens.slab, gain: baseLens.gain * rack * (1 - skyFade))
+        // The Map and the flights under Home's painted sky (R4 of docs/research/route-2026-11-12-codex-pause.md):
+        // in the painted world (Home is its plate) the code sky, cloud sea and fog are never drawn; Home's
+        // sky set is, at the camera's own framing of it (`PaintedSky.mapPose`), wherever no stop's
+        // painting covers the screen.
+        let mapSky = plate != nil ? PaintedSky.mapSky(world: world, look: look) : nil
+        // How much a painting stands in for the code atmosphere: all of it in the painted world.
+        let codeFade = mapSky != nil ? 1 : skyFade
+        let lens = spikeDOF || painted ? Lens(focus: baseLens.focus, slab: baseLens.slab, gain: 0) : Lens(focus: baseLens.focus, slab: baseLens.slab, gain: baseLens.gain * rack * (1 - codeFade))
         let peek = rig.peekTilt
         let device = model.deviceTilt
         let tilt = painted ? (x: 0.0, y: 0.0) : (x: min(max(peek.x + device.x, -1), 1), y: min(max(peek.y + device.y, -1), 1))
         // The plate and its backdrop at the Island stop and closer; toward
         // the Map only the island cut stays, among the other islands.
-        let plateFade = plate != nil && model.island == .home ? PlateHomeLayer.opacity(z: z) : 0
+        // Leaving Home for another island the painting fades as the camera rises off it (as Çağlayan's
+        // does), never at the flight's first frame.
+        let plateFade: Double = {
+            guard let plate else { return 0 }
+            if model.island == .home { return PlateHomeLayer.opacity(z: z) }
+            guard mapSky != nil else { return 0 }
+            return HomePlate.isleFade(pose: pose, box: plate.islandBox, closeScale: plate.islandStop.scale, viewportWidth: Double(size.width))
+        }()
         let isleFade = isle != nil && model.island == .caglayan
             ? HomePlate.caglayanFade(pose: pose, viewportWidth: Double(size.width))
             : 0
+        // Çağlayan's painted island in the hour's light under the sky behind it: its own at its stop,
+        // Home's on the Map and in a flight (`PaintedSky.islandGrade(painted:under:)`).
+        let isleGrade: WorldGrade = Self.isleGrade(isle, at: model.island, mapSky: mapSky)
         let offset = CGSize(width: rig.offsetX.value, height: rig.offsetY.value)
         // Stations answer taps in every framing: on the Map and at Home a
         // tap flies to the island and opens the sheet in one gesture.
@@ -556,8 +601,12 @@ private struct SceneFrame<Bubble: View>: View {
         // painting around them is the final colour, and the day's warm veil washed them out. They take
         // the painting's own light instead (`PaintedSky.islandGrade`): neutral by day and at golden
         // hour, the plate's night light at night.
-        let paintedSky = skyFade >= 0.5 ? skies.max { $0.fade < $1.fade } : nil
-        let paintedGrade = paintedSky.map { PaintedSky.islandGrade($0.plate) } ?? WorldGrade.neutral
+        // On the Map and in a flight the sprites take the map sky's light the same way; Home's own stops
+        // keep theirs.
+        let stopSky: HomePlate? = skyFade >= 0.5 ? skies.max { $0.fade < $1.fade }?.plate : nil
+        let homeOwnLight = model.island == .home && plateFade >= 0.5
+        let paintedSky: HomePlate? = stopSky ?? (homeOwnLight ? nil : mapSky)
+        let paintedGrade = paintedSky.map { PaintedSky.islandGrade($0) } ?? WorldGrade.neutral
         let paintedTint = Color(red: min(paintedGrade.gain.r, 1), green: min(paintedGrade.gain.g, 1), blue: min(paintedGrade.gain.b, 1))
         let tint = look.grade && WorldShaders.isAvailable ? Color.white : paintedSky != nil ? paintedTint : palette.grade.color
         let baseGrade = look.grade ? look.gradeOverride ?? light.grade : WorldGrade.neutral
@@ -633,7 +682,16 @@ private struct SceneFrame<Bubble: View>: View {
 
         ZStack(alignment: .topLeading) {
             ZStack(alignment: .topLeading) {
-                if max(plateFade, isleFade, skyFade) < 0.999 {
+                if let mapSky, max(plateFade, isleFade, skyFade) < 0.999 {
+                    PaintedSkyLayer(
+                        plate: mapSky,
+                        pose: PaintedSky.mapPose(pose, sky: mapSky, width: Double(size.width), height: Double(size.height)),
+                        size: size,
+                        offset: offset,
+                        fade: 1,
+                        isMap: true
+                    )
+                } else if max(plateFade, isleFade, skyFade) < 0.999 {
                     LivingSky(palette: sky, offset: offset, far: FarSky.Look(z: z, cell: light.cell, grade: grade, koke: farKoke, healed: farHealed, mist: atmosphere.mist))
                         .environment(\.worldAmbientPaused, ambientPaused)
                         .animation(animation, value: sky)
@@ -643,18 +701,18 @@ private struct SceneFrame<Bubble: View>: View {
                 // light, its island layer left out, ungraded, in place of the code sky; the code cloud
                 // sea and fog below give way to it as it fades in.
                 ForEach(skies, id: \.island) { entry in
-                    PaintedSkyLayer(plate: entry.plate, pose: pose, size: size, offset: offset, fade: entry.fade)
+                    PaintedSkyLayer(plate: entry.plate, pose: pose, size: size, offset: offset, fade: entry.fade, cleanSea: entry.island == .koke)
                 }
 
-                if !painted, skyFade < 0.999 {
+                if !painted, codeFade < 0.999 {
                     // The rainbow, soft and pastel, behind the island and its fog.
                     WeatherRainbow(atmosphere: atmosphere, size: size, seaLine: fogSeaLine, offset: offset)
-                        .opacity(1 - skyFade)
+                        .opacity(1 - codeFade)
 
                     // Height fog behind the island, densest at the cloud-sea line.
                     FogCards(layer: .behind, horizon: sky.horizon, mist: atmosphere.mist, offset: offset, size: size, seaLine: fogSeaLine)
                         .environment(\.worldAmbientPaused, ambientPaused)
-                        .opacity(1 - skyFade)
+                        .opacity(1 - codeFade)
                 }
 
                 WorldCanvas(
@@ -676,7 +734,7 @@ private struct SceneFrame<Bubble: View>: View {
                     pools: pools,
                     clouds: clouds,
                     plate: plate,
-                    paintedSky: skyFade >= 0.5
+                    paintedSky: skyFade >= 0.5 || mapSky != nil
                 )
                 .frame(width: IslandLayout.canvasWidth, height: IslandLayout.canvasHeight, alignment: .topLeading)
                 .cameraTransform(pose: pose, viewportWidth: Double(size.width), offset: offset)
@@ -692,6 +750,7 @@ private struct SceneFrame<Bubble: View>: View {
                     // The painted plate, never graded: its backdrop, the
                     // plate and, toward the Map, the island cut alone.
                     PlateHomeLayer(plate: plate, pose: pose, size: size, offset: offset, fade: plateFade)
+                    FarBellSkyLayer(plate: plate, world: world, pose: pose, size: size, offset: offset).opacity(plateFade)
                 } else {
                     // Today's resist seals on the earth beside Pofu's door: an
                     // earth detail, graded with the world, still at rest.
@@ -701,10 +760,11 @@ private struct SceneFrame<Bubble: View>: View {
                 }
 
                 if let isle, z < 1.7 || model.island != .home {
-                    // Çağlayan's painted plate, never graded: its backdrop and plate at the Island
-                    // stop, the island cut alone among the others toward the Map and in a flight
-                    // (the sprite island is not drawn while its state is painted).
-                    PlateHomeLayer(plate: isle, pose: pose, size: size, offset: offset, fade: isleFade)
+                    // Çağlayan's painted plate: its backdrop and plate at the Island stop, the island cut
+                    // alone among the others toward the Map and in a flight (the sprite island is not
+                    // drawn while its state is painted). Its sky is never graded; its island takes the
+                    // hour's light under the sky behind it (its own at its stop, Home's on the Map).
+                    PlateHomeLayer(plate: isle, pose: pose, size: size, offset: offset, fade: isleFade, islandGrade: isleGrade)
                         .opacity(model.island == .caglayan ? 1 : max(0, 1 - max(z, 0) / 0.8) * (model.focus == nil ? 1 : 0))
                 }
 
@@ -781,11 +841,11 @@ private struct SceneFrame<Bubble: View>: View {
 
                 if !painted {
                     // The sprite island's atmosphere: none of it lies over a plate.
-                    if skyFade < 0.999 {
+                    if codeFade < 0.999 {
                         CloudSea(colours: sea, offset: offset, rise: CloudSea.rise(z: z, pose: pose, height: Double(size.height)))
                             .environment(\.worldAmbientPaused, ambientPaused)
                             .animation(animation, value: sea)
-                            .opacity(1 - skyFade)
+                            .opacity(1 - codeFade)
                     }
 
                     // One fog card across the island's base: the foot dissolves,
@@ -793,14 +853,14 @@ private struct SceneFrame<Bubble: View>: View {
                     // Look pipeline v2: haze only on the backdrop; this card lies on
                     // the cloud sea, so it takes the sea's warm white more than the
                     // sky's horizon (the references' sea is never a lavender veil).
-                    if skyFade < 0.999 {
+                    if codeFade < 0.999 {
                         FogCards(layer: .front, horizon: sky.horizon.mixed(with: sea.light, amount: LookTuning.frontFogSeaShare), mist: atmosphere.mist, offset: offset, size: size, seaLine: fogSeaLine)
                             .environment(\.worldAmbientPaused, ambientPaused)
-                            .opacity(1 - skyFade)
+                            .opacity(1 - codeFade)
                     }
 
                     // Rain, splash ticks and puddle glints in front of the island.
-                    WeatherRain(atmosphere: atmosphere, pose: pose, offset: offset, size: size, horizon: sky.horizon, groundMarks: skyFade < 0.5)
+                    WeatherRain(atmosphere: atmosphere, pose: pose, offset: offset, size: size, horizon: sky.horizon, groundMarks: codeFade < 0.5)
                         .environment(\.worldAmbientPaused, ambientPaused)
 
                     // The screen haze (the player's sky): from the harbor side.
@@ -825,7 +885,8 @@ private struct SceneFrame<Bubble: View>: View {
                             tilt: tilt,
                             art: look.art,
                             litOverlays: look.litOverlays,
-                            harborFade: model.island == .harbor ? 1 : max(0, 1 - max(z, 0) / 0.8) * (model.focus == nil ? 1 : 0),
+                            // The harbor isle is not on the painted Map (R5), nor are its lights.
+                            harborFade: model.island == .harbor ? 1 : mapSky != nil ? 0 : max(0, 1 - max(z, 0) / 0.8) * (model.focus == nil ? 1 : 0),
                             // The night relight adds form; the field's pools and the
                             // characters' directional key stay (the spike replaces them).
                             relit: relight != nil && relight != nightRelight,
@@ -946,7 +1007,9 @@ private struct WorldCanvas: View {
             }
             if layer == .environment {
                 otherIsles
+                isleShadow(under: KokeLayout.islandBox, arrived: world.koke.isArrived, here: model.island == .koke)
                 kokeIsle
+                isleShadow(under: CaglayanLayout.islandBox, arrived: world.caglayan.isArrived, here: model.island == .caglayan)
                 caglayanIsle
             }
             if layer == .environment, plate == nil {
@@ -1238,17 +1301,30 @@ private struct WorldCanvas: View {
             }
         case .plateMoss:
             if let plate {
-                // The moss takes the plate's light like a character does.
-                let light = plate.characterLight(at: object.anchor, width: 46 * plate.characterScale, height: 34 * plate.characterScale, id: "moss")
-                MossGiftView(point: point)
-                    .saturation(light.saturation)
-                    .colorMultiply(Color(red: light.paint.red, green: light.paint.green, blue: light.paint.blue))
-                    .scaleEffect(CGFloat(plate.characterScale), anchor: UnitPoint(x: point.x / IslandLayout.canvasWidth, y: point.y / IslandLayout.canvasHeight))
+                // The painted moss takes the plate's light like a character does; with no painted
+                // sprite nothing is drawn (route R3).
+                PlateCharacter(
+                    art: "gift-moss",
+                    point: point,
+                    scale: plate.characterScale,
+                    light: plate.characterLight(at: object.anchor, width: 46 * plate.characterScale, height: 18 * plate.characterScale, id: "moss")
+                )
+                .accessibilityElement()
+                .accessibilityLabel(Text(verbatim: WorldStrings.kokeGift))
             }
         case .plateFountain:
             if let plate {
-                PlateFountainView(point: point, time: life.isAmbient ? life.time : nil)
-                    .scaleEffect(CGFloat(plate.characterScale * PlateFountainView.scale), anchor: UnitPoint(x: point.x / IslandLayout.canvasWidth, y: point.y / IslandLayout.canvasHeight))
+                // The painted jet stands in the pond: its ripple is part of the painting, so it
+                // casts no contact shadow and takes no lamp pool.
+                PlateCharacter(
+                    art: "gift-fountain",
+                    point: point,
+                    scale: plate.characterScale,
+                    light: plate.characterLight(at: object.anchor, width: 40 * plate.characterScale, height: 54 * plate.characterScale, id: "fountain"),
+                    onLawn: false
+                )
+                .accessibilityElement()
+                .accessibilityLabel(Text(verbatim: WorldStrings.caglayanGift))
             }
         case .plateBuild(let frame, let lift):
             ZStack(alignment: .topLeading) {
@@ -1380,7 +1456,9 @@ private struct WorldCanvas: View {
     private var otherIsles: some View {
         // Far away from Home; leave the render tree there.
         if z < 1.7 || model.island != .home {
-            ForEach(IslandLayout.isles) { isle in
+            // Under the painted sky (the Map and the flights of the painted world) a sprite isle is not
+            // drawn: Home's plate paints the harbour islet (R5); the harbor's own stop still shows it.
+            ForEach(IslandLayout.isles.filter { !paintedSky || $0.id == model.island }) { isle in
                 if let sprite = WorldArt.sprite(isle.art) {
                     let arrived = world.islands.contains(isle.id)
                     // Soft once you are on an island, sharp on the map
@@ -1419,6 +1497,33 @@ private struct WorldCanvas: View {
         }
     }
 
+    /// A wonder island's soft shadow on the painted Map's cloud sea (`PaintedSky.isleShadow`), under the
+    /// island and with its fade; not at the island's own stop, which has its own painted sky.
+    @ViewBuilder
+    private func isleShadow(under box: WorldBox, arrived: Bool, here: Bool) -> some View {
+        if paintedSky, arrived, !here, z < 1.7 || model.island != .home {
+            let shadow = PaintedSky.isleShadow(under: box)
+            let rgb = PaintedSky.isleShadowRGB
+            let colour = Color(red: rgb.r, green: rgb.g, blue: rgb.b)
+            let point = canvasPoint(shadow.centre, depth: 0)
+            Ellipse()
+                .fill(
+                    RadialGradient(
+                        colors: [colour.opacity(shadow.opacity), colour.opacity(shadow.opacity * 0.45), colour.opacity(0)],
+                        center: .center,
+                        startRadius: 0,
+                        endRadius: shadow.width / 2
+                    )
+                )
+                .frame(width: shadow.width, height: shadow.width)
+                .scaleEffect(x: 1, y: shadow.height / shadow.width)
+                .position(x: point.x, y: point.y)
+                .opacity(max(0, 1 - max(z, 0) / 0.8) * (model.focus == nil ? 1 : 0))
+                .allowsHitTesting(false)
+                .accessibilityHidden(true)
+        }
+    }
+
     /// Koke's island, once it can be visited: the same fade as the other
     /// isles, desaturated on the Map by how healed it is.
     @ViewBuilder
@@ -1432,7 +1537,7 @@ private struct WorldCanvas: View {
                 reduceMotion: model.reduceMotion,
                 point: canvasPoint(KokeLayout.center, depth: here ? KokeLayout.focusDepth : 0),
                 bounceTime: here && life.isAmbient ? life.time : nil,
-                stageLight: !(here && paintedSky)
+                stageLight: !paintedSky
             )
             .saturation(here ? 1 : KokeLayout.saturation(stage: world.koke.stage))
             .opacity(fade)
@@ -1571,93 +1676,10 @@ private struct PlateBuildBloom: View {
     }
 }
 
-/// Çağlayan's fountain over the painted pond: soft, translucent water in the painting's style, not
-/// strokes. Each of three arcs is a wide faint feathered band under a narrower one and a white-cyan
-/// core, all blurred; a few soft droplets fall beside them and a faint ripple rests at the base.
-/// Drawn in the sprite island's units and scaled by `scale` times the plate's character scale.
-private struct PlateFountainView: View {
-    /// Where the fountain's base lands on the canvas.
-    let point: CGPoint
-    /// Seconds, while the frame is ambient; `nil` holds a still frame.
-    var time: Double?
-
-    /// The jet's size against the plate's character scale.
-    static let scale = 1.3
-
-    var body: some View {
-        Canvas { context, size in
-            let base = CGPoint(x: size.width / 2, y: size.height - 10)
-            let t = time ?? 0
-            let cyan = Color(red: 0.68, green: 0.90, blue: 1.0)
-            let core = Color(red: 0.93, green: 0.99, blue: 1.0)
-            // The jet itself: three arcs leaving the spout and falling back.
-            context.drawLayer { layer in
-                layer.addFilter(.blur(radius: 2.2))
-                for k in 0..<3 {
-                    let spread = Double(k - 1) * 8
-                    var arc = Path()
-                    arc.move(to: CGPoint(x: base.x, y: base.y - 20))
-                    arc.addQuadCurve(
-                        to: CGPoint(x: base.x + spread * 1.7, y: base.y),
-                        control: CGPoint(x: base.x + spread * 0.6, y: base.y - 46 - 2.5 * sin(t * 3 + Double(k)))
-                    )
-                    layer.stroke(arc, with: .color(cyan.opacity(0.22)), style: StrokeStyle(lineWidth: 9, lineCap: .round))
-                    layer.stroke(arc, with: .color(cyan.opacity(0.32)), style: StrokeStyle(lineWidth: 5, lineCap: .round))
-                }
-            }
-            context.drawLayer { layer in
-                layer.addFilter(.blur(radius: 0.9))
-                for k in 0..<3 {
-                    let spread = Double(k - 1) * 8
-                    var arc = Path()
-                    arc.move(to: CGPoint(x: base.x, y: base.y - 20))
-                    arc.addQuadCurve(
-                        to: CGPoint(x: base.x + spread * 1.7, y: base.y),
-                        control: CGPoint(x: base.x + spread * 0.6, y: base.y - 46 - 2.5 * sin(t * 3 + Double(k)))
-                    )
-                    layer.stroke(arc, with: .color(core.opacity(0.55)), style: StrokeStyle(lineWidth: 1.8, lineCap: .round))
-                }
-            }
-            // A few soft droplets drifting out and down from the arcs' tops.
-            context.drawLayer { layer in
-                layer.addFilter(.blur(radius: 0.7))
-                for i in 0..<7 {
-                    let phase = time.map { ($0 * 0.7 + Double(i) * 0.143).truncatingRemainder(dividingBy: 1) } ?? (0.15 + Double(i) * 0.12)
-                    let side = i % 2 == 0 ? -1.0 : 1.0
-                    let reach = 6 + 12 * Double(i % 3)
-                    let x = base.x + side * reach * (0.4 + phase)
-                    let y = base.y - 38 + 40 * phase * phase
-                    let r = 1.3 + 0.6 * Double(i % 2)
-                    layer.fill(
-                        Path(ellipseIn: CGRect(x: x - r, y: y - r, width: r * 2, height: r * 2)),
-                        with: .color(core.opacity(0.7 * (1 - phase)))
-                    )
-                }
-            }
-            // The ripple at the base.
-            context.drawLayer { layer in
-                layer.addFilter(.blur(radius: 0.8))
-                let grow = time.map { ($0 * 0.6).truncatingRemainder(dividingBy: 1) } ?? 0.4
-                let r = 7 + 11 * grow
-                layer.stroke(
-                    Path(ellipseIn: CGRect(x: base.x - r, y: base.y - r * 0.35, width: r * 2, height: r * 0.7)),
-                    with: .color(core.opacity(0.5 * (1 - grow))), lineWidth: 1.2
-                )
-            }
-        }
-        .frame(width: 90, height: 90)
-        .position(x: point.x, y: point.y - 35)
-        .allowsHitTesting(false)
-        .accessibilityElement()
-        .accessibilityLabel(Text(verbatim: WorldStrings.caglayanGift))
-    }
-}
-
 /// One part of today's visit on the painted plate (`PlateLife`): drawn at the
 /// plate's resident scale in its light, like a resident is. A painted sprite
-/// (`visitor-<resident>`, `gift-parcel`, `guest-letter`, `help-kite`) stands as
-/// a `PlateCharacter` once Codex has made it; until then the code-drawn
-/// stand-in takes the same ambient multiply, saturation and contact shadow.
+/// (`visitor-<resident>`, `gift-parcel-closed`, `guest-letter-envelope`, `help-kite`) stands as
+/// a `PlateCharacter`; a part without one is not drawn.
 private struct PlateVisitorPartView: View {
     let part: VisitorStage.Placed
     let visitor: VisitorSnapshot?
@@ -1691,17 +1713,11 @@ private struct PlateVisitorPartView: View {
                         .opacity(seed)
                 }
             case .gift:
-                piece(VisitorArt.giftParcel, size: LifeArt.parcelSize, at: at) { context, size in
-                    LifeArt.drawParcel(in: &context, size: size)
-                }
+                piece(VisitorArt.giftParcel, size: LifeArt.parcelSize, at: at)
             case .help:
-                piece("help-kite", size: LifeArt.kiteSize, at: at, shadow: false) { context, size in
-                    LifeArt.drawKite(in: &context, size: size)
-                }
+                piece("help-kite", size: LifeArt.kiteSize, at: at)
             case .letter:
-                piece(VisitorArt.guestLetter, size: LifeArt.letterSize, at: at) { context, size in
-                    LifeArt.drawLetter(in: &context, size: size)
-                }
+                piece(VisitorArt.guestLetter, size: LifeArt.letterSize, at: at)
             }
         }
         .opacity(opacity)
@@ -1724,47 +1740,22 @@ private struct PlateVisitorPartView: View {
     @ViewBuilder
     private func visitorBody(at: CGPoint) -> some View {
         let resident = visitor?.resident ?? ResidentID(rawValue: "")
-        piece("visitor-\(resident.rawValue)", size: LifeArt.visitorSize, at: at) { context, size in
-            LifeArt.drawVisitor(resident, in: &context, size: size)
-        }
+        piece("visitor-\(resident.rawValue)", size: LifeArt.visitorSize, at: at)
     }
 
     @ViewBuilder
     private func dandelion(above at: CGPoint) -> some View {
         let top = CGPoint(x: at.x, y: at.y - (LifeArt.visitorSize.height - 6) * scale)
-        piece(VisitorArt.dandelion, size: LifeArt.dandelionSize, at: top, shadow: false) { context, size in
-            LifeArt.drawDandelion(in: &context, size: size)
-        }
+        piece(VisitorArt.dandelion, size: LifeArt.dandelionSize, at: top, shadow: false)
     }
 
-    /// A part's painted sprite by name, or its stand-in, in the plate's light.
+    /// A part's painted sprite by name, in the plate's light. A part with no painted
+    /// sprite draws nothing: the plate shows no code-drawn stand-in (route R3), and the
+    /// schedule does not bring a visitor whose art is missing (`VisitorRules.visiting`).
     @ViewBuilder
-    private func piece(
-        _ name: String,
-        size: CGSize,
-        at: CGPoint,
-        shadow: Bool = true,
-        draw: @escaping @Sendable (inout GraphicsContext, CGSize) -> Void
-    ) -> some View {
-        let lit = light(size: size)
+    private func piece(_ name: String, size: CGSize, at: CGPoint, shadow: Bool = true) -> some View {
         if WorldArt.sprite(name)?.sharp != nil {
-            PlateCharacter(art: name, point: at, scale: scale, light: lit)
-        } else {
-            ZStack(alignment: .topLeading) {
-                if shadow {
-                    ContactPad(width: size.width * scale, light: lit)
-                        .position(x: at.x, y: at.y - CGFloat(0.5 * scale))
-                }
-                Canvas { context, canvasSize in
-                    draw(&context, canvasSize)
-                }
-                .frame(width: size.width, height: size.height)
-                .saturation(lit.saturation)
-                .colorMultiply(Color(red: lit.paint.red, green: lit.paint.green, blue: lit.paint.blue))
-                .scaleEffect(CGFloat(scale), anchor: .bottom)
-                .position(x: at.x, y: at.y - size.height / 2)
-            }
-            .allowsHitTesting(false)
+            PlateCharacter(art: name, point: at, scale: scale, light: light(size: size), onLawn: shadow)
         }
     }
 }
@@ -2023,7 +2014,8 @@ private struct PofuLayer<Bubble: View>: View {
                     }
                 }
             }
-            if part == .overlay, painted < 0.99 {
+            // On the painted Map the pin rides on Home's name instead (`ScreenOverlays.mapLabel`).
+            if part == .overlay, painted < 0.99, plate == nil {
                 PofuPin()
                     .opacity(1 - painted)
                     .position(x: feet.x, y: feet.y - 15)
@@ -2161,25 +2153,49 @@ private struct ScreenOverlays: View {
         let labels = 1 - min(max((z - 0.2) / 0.25, 0), 1)
         ZStack(alignment: .topLeading) {
             if labels > 0.01 {
-                mapLabel(.home, at: WorldPoint(x: 0, y: 128), arrived: true)
-                    .opacity(labels)
-                ForEach(IslandLayout.isles) { isle in
+                // On the painted Map every name hangs under its island's painting, clear of its rim, and
+                // Home's carries Pofu's paw (the pin no longer stands on the painted lawn).
+                if let plate {
+                    mapLabel(.home, at: Self.labelPoint(under: plate.islandBox), arrived: true, drop: Self.labelDrop, paw: true)
+                        .opacity(labels)
+                } else {
+                    mapLabel(.home, at: WorldPoint(x: 0, y: 128), arrived: true)
+                        .opacity(labels)
+                }
+                // The painted Map has no harbor isle (R5): its label goes with it.
+                ForEach(plate == nil ? IslandLayout.isles : []) { isle in
                     mapLabel(isle.id, at: WorldPoint(x: isle.center.x, y: isle.center.y + 122), arrived: world.islands.contains(isle.id))
                         .opacity(labels)
                 }
+                // Koke and Çağlayan, once they can be visited: their name under the island.
+                if world.koke.isArrived {
+                    mapLabel(.koke, at: Self.labelPoint(under: KokeLayout.islandBox), arrived: true, drop: Self.labelDrop)
+                        .opacity(labels)
+                }
+                if world.caglayan.isArrived {
+                    mapLabel(.caglayan, at: Self.labelPoint(under: CaglayanLayout.islandBox), arrived: true, drop: Self.labelDrop)
+                        .opacity(labels)
+                }
+            }
+            // At a wonder island's own stop the same pill names it and says how
+            // it is: asleep, healing (n of 4) or healed.
+            if labels < 0.99, let wonder = wonderStop {
+                mapLabel(wonder.id, at: Self.labelPoint(under: wonder.box), arrived: true, drop: Self.labelDrop, state: wonder.state, today: wonder.today)
+                    .opacity(1 - labels)
             }
             if let build, let tag = build.moment.tag(at: build.time), let top = tagPoint(build.moment.station) {
-                BuildTag(level: build.moment.toLevel)
+                BuildTag(level: build.moment.toLevel, cost: build.moment.cost)
                     .scaleEffect(CGFloat(tag.scale), anchor: .bottom)
                     .opacity(tag.opacity)
-                    .position(x: top.x, y: top.y - 22)
+                    .position(x: top.x, y: top.y - (build.moment.cost == nil ? 22 : 32))
             }
             if showsHomeLife {
-                if let heart = greetingHeart {
+                let bubbles = homeBubbles
+                if let heart = bubbles.heart {
                     GreetingHeart(tip: heart, screenWidth: size.width)
                 }
-                ForEach(giftTags) { tag in
-                    GiftTag(gift: tag.gift, tip: tag.point, screenWidth: size.width)
+                ForEach(bubbles.tags) { tag in
+                    GiftTag(gift: tag.gift, placement: tag.placement, tipX: tag.tipX)
                 }
             }
             if case .resident(let id) = model.focus, let resident = IslandLayout.resident(id) {
@@ -2220,12 +2236,68 @@ private struct ScreenOverlays: View {
     /// The paper tag over a gift on the day it arrived.
     private struct PlacedGiftTag: Identifiable {
         let gift: HomeGifts.Gift
-        let point: CGPoint
+        let placement: HomeBubbleLayout.Placement
+        let tipX: CGFloat
         var id: HomeGifts.Gift { gift }
     }
 
-    private var giftTags: [PlacedGiftTag] {
-        HomeGifts.tagged(in: world).compactMap { gift -> PlacedGiftTag? in
+    /// The heart first, over its visitor; then each gift's tag where it
+    /// covers neither the heart, another tag nor, as far as it can, a
+    /// station's art (`HomeBubbleLayout`).
+    private var homeBubbles: (heart: CGPoint?, tags: [PlacedGiftTag]) {
+        let heart = greetingHeart
+        var placed: [HomeBubbleLayout.Rect] = []
+        if let heart {
+            let size = Double(GreetingHeart.size)
+            placed.append(HomeBubbleLayout.bubble(
+                tipX: Double(heart.x), tipY: Double(heart.y), width: size, height: size,
+                tail: Double(GreetingHeart.tail), screenWidth: Double(self.size.width)
+            ).frame)
+        }
+        var tags: [PlacedGiftTag] = []
+        for spot in giftSpots {
+            let width = HomeBubbleLayout.tagWidth(characters: WorldStrings.giftTag(spot.gift).count)
+            let placement = HomeBubbleLayout.tag(
+                over: (Double(spot.over.x), Double(spot.over.y)),
+                under: (Double(spot.under.x), Double(spot.under.y)),
+                width: width, height: Double(GiftTag.height), tail: Double(GiftTag.tail),
+                screenWidth: Double(self.size.width),
+                placed: placed,
+                stations: stationRects(except: spot.gift == .caglayanFountain ? .pond : nil)
+            )
+            placed.append(placement.frame)
+            tags.append(PlacedGiftTag(gift: spot.gift, placement: placement, tipX: placement.isBelow ? spot.under.x : spot.over.x))
+        }
+        return (heart, tags)
+    }
+
+    /// The art a bubble keeps clear of, on screen: on the plate every painted
+    /// object but the bushes (the stations, Pofu's wheel, the door, the
+    /// mailbox), on the sprite island the built stations.
+    private func stationRects(except own: StationID?) -> [HomeBubbleLayout.Rect] {
+        var boxes: [WorldBox]
+        if let plate {
+            boxes = plate.objects
+                .filter { !$0.id.hasSuffix("Bush") && ($0.station == nil || $0.station != own) }
+                .map { plate.worldBox(PlateMath.bounds($0.polygon)) }
+            // The rope bridge between the tea stall and the pier is no object of its own.
+            if let stall = plate.stationBox(.teaStall), let pier = plate.stationBox(.pier), stall.maxX < pier.minX {
+                boxes.append(WorldBox(minX: stall.maxX, minY: pier.minY - 20, maxX: pier.minX, maxY: pier.maxY))
+            }
+        } else {
+            boxes = world.stations.compactMap { status in
+                status.level > 0 && status.id != own ? IslandFraming.stationBox(status.id) : nil
+            }
+        }
+        return boxes.map { box in
+            let a = screenPoint(WorldPoint(x: box.minX, y: box.minY)), b = screenPoint(WorldPoint(x: box.maxX, y: box.maxY))
+            return HomeBubbleLayout.Rect(minX: Double(a.x), minY: Double(a.y), maxX: Double(b.x), maxY: Double(b.y))
+        }
+    }
+
+    /// Just over each tagged gift, and just under its foot.
+    private var giftSpots: [(gift: HomeGifts.Gift, over: CGPoint, under: CGPoint)] {
+        HomeGifts.tagged(in: world).compactMap { gift -> (gift: HomeGifts.Gift, over: CGPoint, under: CGPoint)? in
             let foot: WorldPoint?
             let scale: Double
             switch gift {
@@ -2247,7 +2319,8 @@ private struct ScreenOverlays: View {
                 scale = plate?.characterScale ?? 1
             }
             guard let foot else { return nil }
-            return PlacedGiftTag(gift: gift, point: tip(WorldPoint(x: foot.x, y: foot.y - HomeGifts.tagLift(gift) * scale)))
+            let under = screenPoint(WorldPoint(x: foot.x, y: foot.y))
+            return (gift, tip(WorldPoint(x: foot.x, y: foot.y - HomeGifts.tagLift(gift) * scale)), CGPoint(x: under.x, y: under.y + (gift == .caglayanFountain ? -10 : 4)))
         }
     }
 
@@ -2268,22 +2341,71 @@ private struct ScreenOverlays: View {
         return CGPoint(x: min(max(p.x, 70), size.width - 70), y: max(p.y, 120))
     }
 
-    private func mapLabel(_ island: IslandID, at point: WorldPoint, arrived: Bool) -> some View {
+    /// Where an island's name hangs on the painted Map: under the middle of its box's foot, `labelDrop`
+    /// points lower, so the pill sits beside the painting and never over its rim.
+    static func labelPoint(under box: WorldBox) -> WorldPoint {
+        WorldPoint(x: box.midX, y: box.maxY)
+    }
+
+    /// Points from an island box's foot to its name pill's middle: half the pill and a small gap.
+    static let labelDrop: CGFloat = 18
+
+    /// The wonder island the camera is on, with its box and its state line.
+    private var wonderStop: (id: IslandID, box: WorldBox, state: String, today: String?)? {
+        if model.island == .koke, world.koke.isArrived {
+            return (IslandID.koke, KokeLayout.islandBox, WorldStrings.wonderState(stage: world.koke.stage),
+                    WonderToday(world.koke).map(WorldStrings.wonderToday))
+        }
+        if model.island == .caglayan, world.caglayan.isArrived {
+            return (IslandID.caglayan, CaglayanLayout.islandBox, WorldStrings.wonderState(stage: world.caglayan.stage),
+                    WonderToday(world.caglayan).map(WorldStrings.wonderToday))
+        }
+        return nil
+    }
+
+    private func mapLabel(_ island: IslandID, at point: WorldPoint, arrived: Bool, drop: CGFloat = 0, paw: Bool = false, state: String? = nil, today: String? = nil) -> some View {
         let p = screenPoint(point)
-        return HStack(spacing: 4) {
-            if !arrived {
-                Image(systemName: "lock.fill")
-                    .font(.system(size: 10, weight: .semibold))
+        return VStack(spacing: 2) {
+            HStack(spacing: 4) {
+                if paw {
+                    // Pofu is here: the Map's pin, on Home's name.
+                    Image(systemName: "pawprint.fill")
+                        .font(.system(size: 10, weight: .bold))
+                        .foregroundStyle(PofuKitPalette.day.ink)
+                        .frame(width: 18, height: 18)
+                        .background(PofuKitPalette.day.honey, in: Circle())
+                        .accessibilityHidden(true)
+                }
+                if !arrived {
+                    Image(systemName: "lock.fill")
+                        .font(.system(size: 10, weight: .semibold))
+                }
+                Text(verbatim: WorldStrings.islandName(island))
+                    .font(PofuFont.caption)
+                if let state {
+                    Text(verbatim: "·")
+                        .font(PofuFont.caption)
+                        .foregroundStyle(PofuColor.textSecondary)
+                    Text(verbatim: state)
+                        .font(PofuFont.caption)
+                        .foregroundStyle(PofuColor.textSecondary)
+                }
             }
-            Text(verbatim: WorldStrings.islandName(island))
-                .font(PofuFont.caption)
+            // What a tap does today, under the state (or why not today).
+            if let today {
+                Text(verbatim: today)
+                    .font(PofuFont.footnote)
+                    .foregroundStyle(PofuColor.textSecondary)
+            }
         }
         .foregroundStyle(PofuColor.textPrimary)
-        .padding(.horizontal, 10)
-        .frame(height: 26)
-        .glassEffect(.regular, in: Capsule(style: .continuous))
+        .padding(.horizontal, today == nil ? 10 : 14)
+        .padding(.vertical, today == nil ? 0 : 6)
+        .frame(minHeight: 26)
+        .glassEffect(.regular, in: RoundedRectangle(cornerRadius: 13, style: .continuous))
         .fixedSize()
-        .position(x: p.x, y: p.y)
+        // At a wonder stop the pill stays clear of the bottom band.
+        .position(x: min(max(p.x, today == nil ? 90 : 130), size.width - (today == nil ? 90 : 130)), y: state == nil ? p.y + drop : min(p.y + drop + (today == nil ? 0 : 10), size.height - 220))
         .allowsHitTesting(false)
         .accessibilityElement(children: .combine)
     }

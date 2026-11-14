@@ -107,6 +107,7 @@ struct HomeView: View {
         }
         .onAppear {
             model.island.onPlayFlow = { stage in model.playCaglayanFlow(stage: stage) }
+            model.farBellHomeAppeared()
         }
         .sheet(item: $model.homeSheet) { sheet in
             switch sheet {
@@ -196,6 +197,9 @@ struct HomeView: View {
                 AmbienceConductor.shared.beginVisit()
             }
             model.updateWorldSound(active: phase == .active)
+        }
+        .onChange(of: model.worldHome.visit) { old, new in
+            model.farBellVisitChanged(from: old, to: new)
         }
     }
 
@@ -405,7 +409,7 @@ private struct TodayCard: View {
                 QuietStreak(model: model)
             }
             if metrics.attempts == 0 {
-                Text("No reaches yet today.")
+                Text("The door's been quiet today.")
                     .font(PofuFont.title3)
                     .foregroundStyle(PofuColor.textPrimary)
             } else {

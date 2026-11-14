@@ -1,0 +1,52 @@
+batch: batch-78-plate-life
+job: home-fountain
+status: warn
+pick: 1
+lead_review: "Pick t1, not the promoted t2: t1 is a white-cyan jet with two symmetric falling arcs and a ripple ring that reads as a fountain at plate size, while t2's plume is a peach-tinted brushy feather leaning right that reads as smoke; before baking, soften t1's five hard teardrop droplets into soft spray dots, and re-promote the master from t1."
+source: codex-cloud
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+takes:
+- take: 1
+  file: prop__home-fountain--t1.webp
+  qa: warn
+  checks:
+  - check: light_median
+    status: warn
+    value: 93.2
+    message: 'day/subject: median L 93 (band 74-92)'
+  - check: light_contrast
+    status: warn
+    value: 2.45
+    message: 'day/subject: p75 local contrast 2.5 (band 2.5-6.5; above it reads too
+      contrasty)'
+  - check: harmony
+    status: warn
+    value: 35.0
+    message: 'harmony score 35 against the world reference (outliers: C_p95, L_p2,
+      L_p98, edge)'
+  source_file: /workspace/generated_images/exec-482ee05b-73a3-4e23-be70-d5685a561cbc.png
+  source_sha256: fba923236d5dc5936ac4b43586221db904340d09e283426e4219141881dead2e
+- take: 2
+  file: prop__home-fountain--t2.webp
+  qa: warn
+  checks:
+  - check: light_contrast
+    status: warn
+    value: 2.19
+    message: 'day/subject: p75 local contrast 2.2 (band 2.5-6.5; above it reads too
+      contrasty)'
+  - check: harmony
+    status: warn
+    value: 51.7
+    message: 'harmony score 52 against the world reference (outliers: C_p95, L_p2)'
+  source_file: /workspace/generated_images/exec-66eb2ab3-0f24-4ae0-989d-03e677ee76c7.png
+  source_sha256: 3ee94677f3e6410327289459e3166b922f4a0cab8e146b1167a8b3ed9af692b7
+note: 'Production auto-picked t2: both QA warn; t2 has lower lock load (0.8647 versus
+  0.8908) and higher harmony (51.7 versus 35). Three softly painted arcs and a small
+  ripple, with no basin. Its broad pale halo and low local contrast may weaken readability
+  over the pond; lead should check in scene. Founder review pending. QUEUE.md Demand
+  row 0-h5 says production and promote; manifest header has stale EXPLORATION copy.
+  The queue governs. The built-in image tool received operator adaptations of the
+  composed prompt, and source PNGs remain in /workspace/generated_images.'

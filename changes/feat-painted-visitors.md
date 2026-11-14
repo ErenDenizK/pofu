@@ -1,0 +1,1 @@
+Home's visitors and gifts are now painted: Damla and Gezgin visit in their own art, the parcel, the quiet day's envelope, Koke's moss and Çağlayan's fountain are painted too, and a resident without painted art (Sumi, for now) does not visit.
