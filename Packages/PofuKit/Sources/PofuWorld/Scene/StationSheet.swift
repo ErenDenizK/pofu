@@ -82,14 +82,17 @@ public struct StationSheet: View {
                     // content ends where the row starts, so no two texts share a line.
                     VStack(spacing: 0) {
                         ScrollView {
-                            content(compact: compact, short: short).padding(PofuSpacing.screen)
+                            content(compact: compact, short: short)
+                                .padding(.horizontal, PofuSpacing.screen)
+                                .padding(.top, short ? PofuSpacing.m : PofuSpacing.screen)
+                                .padding(.bottom, short ? PofuSpacing.s : PofuSpacing.screen)
                         }
                         .scrollBounceBehavior(.basedOnSize)
                         if !(compact && isBuilding) {
                             footer(compact: compact)
                                 .padding(.horizontal, PofuSpacing.screen)
-                                .padding(.top, PofuSpacing.s)
-                                .padding(.bottom, PofuSpacing.m)
+                                .padding(.top, short ? PofuSpacing.xs : PofuSpacing.s)
+                                .padding(.bottom, short ? PofuSpacing.s : PofuSpacing.m)
                         }
                     }
                 }
@@ -108,7 +111,7 @@ public struct StationSheet: View {
     static let shortBelow: CGFloat = 460
 
     private func content(compact: Bool, short: Bool) -> some View {
-        VStack(alignment: .leading, spacing: PofuSpacing.l) {
+        VStack(alignment: .leading, spacing: short ? PofuSpacing.s : PofuSpacing.l) {
             header
             if let status {
                 if compact && isBuilding {
@@ -117,9 +120,9 @@ public struct StationSheet: View {
                         buildingStatus
                     }
                 } else {
-                    pots(status)
+                    pots(status, showsLevel: short && !compact)
                     if !compact {
-                        rate(status)
+                        rate(status, showsLevel: !short)
                             .accessibilityElement(children: .combine)
                     }
                 }
@@ -130,7 +133,7 @@ public struct StationSheet: View {
             }
             if !short { flavour }
         }
-        .padding(.top, PofuSpacing.s)
+        .padding(.top, short ? 0 : PofuSpacing.s)
     }
 
     private var buildingStatus: some View {
@@ -189,10 +192,17 @@ public struct StationSheet: View {
         }
     }
 
-    private func pots(_ status: StationStatus) -> some View {
+    /// `showsLevel` puts "Level n / m" beside the pots, for the medium
+    /// detent where the rate card has no room for its own footnote.
+    private func pots(_ status: StationStatus, showsLevel: Bool = false) -> some View {
         HStack(alignment: .bottom, spacing: PofuSpacing.m) {
             PotPips(level: status.level, maxLevel: status.maxLevel, palette: palette)
             Spacer(minLength: 0)
+            if showsLevel, status.level > 0 {
+                Text(verbatim: WorldStrings.level(status.level, of: status.maxLevel))
+                    .font(PofuFont.footnote.monospacedDigit())
+                    .foregroundStyle(inkSoft)
+            }
         }
     }
 
@@ -200,7 +210,7 @@ public struct StationSheet: View {
 
     /// Seeds a day now, and at the next level: live numbers with
     /// monospaced digits on one paper card.
-    private func rate(_ status: StationStatus) -> some View {
+    private func rate(_ status: StationStatus, showsLevel: Bool = true) -> some View {
         let now = Self.format(status.seedsPerHour * 24)
         let next = status.nextCost == nil ? nil : catalog.station(station).map { Self.format($0.seedsPerHour(at: status.level + 1) * 24) }
         return VStack(alignment: .leading, spacing: PofuSpacing.xs) {
@@ -214,7 +224,9 @@ public struct StationSheet: View {
                 Text("\(now) seeds a day", bundle: .module)
                     .font(PofuFont.title3.monospacedDigit())
             }
-            if status.level == 0 {
+            if !showsLevel && status.level > 0 {
+                EmptyView()
+            } else if status.level == 0 {
                 Text("Build spot", bundle: .module)
                     .font(PofuFont.footnote)
                     .foregroundStyle(inkSoft)
