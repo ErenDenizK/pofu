@@ -179,9 +179,16 @@ public struct StationSheet: View {
                 // A plain glyph: the duotone close art carried a stray mark above its cross.
                 Image(systemName: "xmark")
                     .font(.system(size: 15, weight: .bold))
-                    .foregroundStyle(PofuKitPalette.day.ink)
+                    .foregroundStyle(PofuKitArt.discClay.isPainted ? palette.onPaper : PofuKitPalette.day.ink)
                     .frame(width: PofuSize.minimumTouch, height: PofuSize.minimumTouch)
-                    .background { Circle().fill(palette.isNight ? palette.honey : palette.felt) }
+                    .background {
+                        // The one round button: the clay disc (asset system v1 section 2.3).
+                        if PofuKitArt.discClay.isPainted {
+                            PofuClayDisc()
+                        } else {
+                            Circle().fill(palette.isNight ? palette.honey : palette.felt)
+                        }
+                    }
                     .contentShape(Circle())
             }
             .buttonStyle(.plain)
@@ -344,8 +351,10 @@ public struct StationSheet: View {
     }
 }
 
-/// A resident's small card (§12.2): their name, station and level, one
-/// line said once a visit, and "Go to the stall".
+/// A resident's small card (§12.2): their name on the speaker tab, their
+/// station and level, one line said once a visit, and "Go to the stall".
+/// The one bubble (asset system v1 section 2.3), hung below the resident
+/// with its tail pointing up at them.
 struct ResidentCard: View {
     let resident: IslandLayout.Resident
     let status: StationStatus?
@@ -354,58 +363,47 @@ struct ResidentCard: View {
     let tailOffset: CGFloat
     let onGoToStall: @MainActor () -> Void
 
+    /// The card's width, the span the tail can slide along (the bubble keeps a corner's width clear).
+    static let width: CGFloat = 232
+
+    private var tailPosition: CGFloat {
+        let span = Self.width - PofuRadius.large * 2
+        return min(max(0.5 + tailOffset / span, 0.06), 0.94)
+    }
+
     var body: some View {
-        VStack(alignment: .leading, spacing: PofuSpacing.s) {
-            HStack(alignment: .center, spacing: PofuSpacing.s) {
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(verbatim: WorldStrings.residentName(resident.id))
-                        .font(PofuFont.headline)
-                        .foregroundStyle(PofuColor.textPrimary)
+        PofuPaperBubble(
+            speakerText: Text(verbatim: WorldStrings.residentName(resident.id)),
+            tailPosition: tailPosition,
+            tailEdge: .top
+        ) {
+            VStack(alignment: .leading, spacing: PofuSpacing.s) {
+                HStack(alignment: .center, spacing: PofuSpacing.s) {
                     Text(verbatim: WorldStrings.stationAndLevel(WorldStrings.stationName(resident.station), level: status?.level ?? 0))
                         .font(PofuFont.footnote)
-                        .foregroundStyle(PofuColor.textSecondary)
+                        .opacity(0.8)
+                        .fixedSize(horizontal: false, vertical: true)
+                    Spacer(minLength: 0)
+                    // The resident's reaction sticker, when they have one.
+                    if let sticker = Sticker.reaction(forResident: resident.id.rawValue) {
+                        StickerView(sticker, size: 44)
+                    }
                 }
-                Spacer(minLength: 0)
-                // The resident's reaction sticker, when they have one.
-                if let sticker = Sticker.reaction(forResident: resident.id.rawValue) {
-                    StickerView(sticker, size: 44)
+                if let line {
+                    Text(verbatim: line)
+                        .font(PofuFont.callout)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
+                Button(action: onGoToStall) {
+                    Text("Go to the stall", bundle: .module)
+                        .font(PofuFont.headline)
+                        .frame(maxWidth: .infinity, minHeight: PofuSize.minimumTouch)
+                }
+                .buttonStyle(PofuPlaqueStyle(.secondary, haptic: nil))
             }
-            if let line {
-                Text(verbatim: line)
-                    .font(PofuFont.callout)
-                    .foregroundStyle(PofuColor.textPrimary)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
-            Button(action: onGoToStall) {
-                Text("Go to the stall", bundle: .module)
-                    .font(PofuFont.headline)
-                    .frame(maxWidth: .infinity, minHeight: PofuSize.minimumTouch)
-            }
-            .pofuActionStyle(.secondary)
         }
-        .padding(PofuSpacing.l)
-        .background(PofuColor.card.opacity(0.95), in: RoundedRectangle(cornerRadius: 22, style: .continuous))
-        .glassEffect(.regular, in: RoundedRectangle(cornerRadius: 22, style: .continuous))
-        .overlay(alignment: .top) {
-            CardTail()
-                .fill(PofuColor.card.opacity(0.95))
-                .frame(width: 18, height: 9)
-                .offset(x: tailOffset, y: -8)
-                .accessibilityHidden(true)
-        }
+        .holdingControls()
         .accessibilityElement(children: .contain)
-    }
-}
-
-private struct CardTail: Shape {
-    func path(in rect: CGRect) -> Path {
-        var path = Path()
-        path.move(to: CGPoint(x: rect.minX, y: rect.maxY))
-        path.addQuadCurve(to: CGPoint(x: rect.midX, y: rect.minY), control: CGPoint(x: rect.midX - rect.width * 0.18, y: rect.maxY))
-        path.addQuadCurve(to: CGPoint(x: rect.maxX, y: rect.maxY), control: CGPoint(x: rect.midX + rect.width * 0.18, y: rect.maxY))
-        path.closeSubpath()
-        return path
     }
 }
 #endif

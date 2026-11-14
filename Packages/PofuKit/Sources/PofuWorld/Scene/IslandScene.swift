@@ -2412,7 +2412,7 @@ private struct ScreenOverlays: View {
 
     private func residentCard(_ resident: IslandLayout.Resident) -> some View {
         let feet = screenPoint(resident.feet)
-        let width: CGFloat = 232
+        let width = ResidentCard.width
         let x = min(max(feet.x, 12 + width / 2), size.width - 12 - width / 2)
         let status = world.stations.first { $0.id == resident.station }
         return ResidentCard(

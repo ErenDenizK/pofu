@@ -2,8 +2,8 @@
 import PofuDesignSystem
 import SwiftUI
 
-/// A small clay pot, drawn in code until the batch-61 `ui-pip-pot` art
-/// lands (UI v3 section 5, Progress). Three states: empty (a bare pot),
+/// A small clay pot: the painted `ui-pip-pot` pots, drawn in code only while they are
+/// unbaked (UI v3 section 5, Progress). Three states: empty (a bare pot),
 /// bud (the level the player is working toward, a sprout) and bloom (a
 /// built level, a small flower).
 struct PotShape: Shape {
@@ -33,7 +33,27 @@ struct PotPip: View {
     private static let moss = PofuKitPalette.rgb(0x7FA36B)
     private static let clay = PofuKitPalette.rgb(0xC9805A)
 
+    private var art: PofuKitArt {
+        switch state {
+        case .empty: .pipPotEmpty
+        case .bud: .pipPotBud
+        case .bloom: .pipPotBloom
+        }
+    }
+
     var body: some View {
+        if art.isPainted {
+            // The painted pots share one canvas, bottom-aligned, so the sprout and the flower rise
+            // above the rim on their own and every pot stands on the same line.
+            PofuKitArtImage(art)
+                .frame(width: size, height: size * 1.6)
+                .frame(width: size, height: size * 1.25, alignment: .bottom)
+        } else {
+            drawn
+        }
+    }
+
+    private var drawn: some View {
         ZStack(alignment: .bottom) {
             // The plant, behind the pot.
             switch state {

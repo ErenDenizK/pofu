@@ -60,7 +60,11 @@ public struct PofuPaperSurface: View {
                 shape.fill(kind == .wood ? palette.woodTop : palette.paperTop)
                 shape.strokeBorder(palette.onPaper, lineWidth: 2)
             } else {
-                PofuKitFace(art(palette)) {
+                if let art = art(palette) {
+                    PofuKitFace(art) {
+                        drawn(shape, palette).clipShape(shape)
+                    }
+                } else {
                     drawn(shape, palette).clipShape(shape)
                 }
             }
@@ -68,11 +72,12 @@ public struct PofuPaperSurface: View {
         .shadow(color: palette.edge.opacity(palette.isNight ? 0.5 : 0.12), radius: 10, y: 4)
     }
 
-    private func art(_ palette: PofuKitPalette) -> PofuKitArt {
+    /// The painted face; `nil` for wood, whose painted plaque is scalloped and cannot be a card.
+    private func art(_ palette: PofuKitPalette) -> PofuKitArt? {
         switch kind {
-        case .stitched: palette.isNight ? .sheetPaperNight : .cardStitched
+        case .stitched: palette.isNight ? .cardStitchedNight : .cardStitched
         case .linen: palette.isNight ? .cardLinenNight : .cardLinen
-        case .wood: .plaqueBare
+        case .wood: nil
         }
     }
 
