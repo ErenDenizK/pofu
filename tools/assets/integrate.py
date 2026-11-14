@@ -26,7 +26,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import vivid  # noqa: E402
 
 REPO = Path(__file__).resolve().parents[2]
-FLAT = ("games", "ui", "glow", "sprite", "shield", "shield-icons", "app", "postcard", "fx", "icons-duo")  # flat PNGs baked here, not through preblur
+FLAT = ("games", "ui", "glow", "sprite", "shield", "shield-icons", "app", "postcard", "fx", "icons-duo", "kit")  # flat PNGs baked here, not through preblur
 MAP = Path(__file__).resolve().parent / "integration_map.json"
 PREBLUR = REPO / "design/prototypes/interactions/tools/preblur.py"
 
@@ -280,7 +280,39 @@ def bake_icon_duo(entry: dict, out: Path) -> None:
     canvas.save(out, "PNG", optimize=True)
 
 
+def _recolour(image: Image.Image, pair: list[str]) -> Image.Image:
+    """Night as a recolour of the picked day piece (asset system v1 section 2.1): each channel's
+    mean and spread over the opaque pixels are moved from the day master of `pair` to its night
+    master. Used only where a night twin was never painted (the bubble's tail)."""
+    import numpy as np
+
+    def stats(path: Path):
+        px = np.asarray(Image.open(path).convert("RGBA"), dtype=np.float64).reshape(-1, 4)
+        px = px[px[:, 3] > 200][:, :3]
+        return px.mean(axis=0), px.std(axis=0)
+
+    (dm, ds), (nm, ns) = (stats(master_file(folder)) for folder in pair)
+    a = np.asarray(image, dtype=np.float64)
+    a[..., :3] = np.clip((a[..., :3] - dm) / np.maximum(ds, 1e-6) * ns + nm, 0, 255)
+    return Image.fromarray(np.rint(a).astype(np.uint8), "RGBA")
+
+
+def bake_kit(entry: dict, out: Path) -> None:
+    """A kit face under its `PofuKitArt` hook name: the sheet's cell (when the master is a sheet),
+    trimmed to the painted silhouette and fitted inside `points` at 3x. The Swift side slices it
+    (`PofuKitArt.slicing`), so the bake never pads or crops into the paint."""
+    image = _cut(Image.open(master_file(entry["master"])).convert("RGBA"), entry)
+    image = trim(image)
+    image = _fit(image, entry)
+    if "recolour" in entry:
+        image = _recolour(image, entry["recolour"])
+    out.parent.mkdir(parents=True, exist_ok=True)
+    image.save(out, "PNG", optimize=True)
+
+
 def bake_games(entry: dict, out: Path) -> None:
+    if entry["target"] == "kit":
+        return bake_kit(entry, out)
     if entry["target"] == "fx":
         return bake_fx(entry, out)
     if entry["target"] == "icons-duo":

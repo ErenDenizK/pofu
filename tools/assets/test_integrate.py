@@ -280,3 +280,17 @@ def test_the_earth_face_plates_share_the_main_plates_outline():
     for name in ("island-main-face-il2", "island-main-face-il6"):
         mask = alpha(name) > 128
         assert (mask & ref).sum() / (mask | ref).sum() > 0.98, name  # the same silhouette (0.5-1 % of edge pixels re-rendered)
+
+
+def test_kit_faces_are_baked_under_their_hook_names():
+    # A `kit` entry bakes a `PofuKitArt` face (Kit/KitArt.swift) and nothing else.
+    import re
+
+    swift = (REPO / "Packages/PofuKit/Sources/PofuDesignSystem/Kit/KitArt.swift").read_text(encoding="utf-8")
+    hooks = set(re.findall(r'case \w+ = "([\w-]+)"', swift))
+    kit = [e for e in DATA["entries"] if e["target"] == "kit"]
+    assert kit
+    for e in kit:
+        assert e["name"] in hooks, e["name"]
+        out = integrate.output_path(e, DATA["targets"])
+        assert Image.open(out).mode == "RGBA"
