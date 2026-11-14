@@ -6,13 +6,12 @@ most 60 lines. How the studio runs: [studio.md](studio.md). Threads and
 history: [tracker.md](tracker.md). What changed for the player:
 `python3 -I tools/studio/pulse.py`.
 
-**Goal:** Trial build 1: a whole, polished build the founder judges as a
-user on his iPhone, **Monday 11-16 evening** (Rehearsal days 1 to 21).
-Cut line Sunday 11-15 18:00: what is not accepted is hidden. Codex is back
-(11-14); art cut-off: delivery by Sunday 10:00, ingest looked at by 15:00.
+**Goal:** a whole, polished build the founder judges as a user when he
+chooses to (Rehearsal days 1-21); no dates or cut line (founder 11-14).
+Next large job: the asset system (inventory, then Fable's plan).
 
 **Updated:** 2026-11-14 (morning).
-**Founder last played on his phone:** 2026-11-05 (device check due 11-13).
+**Founder last played on his phone:** 2026-11-05 (device check steps sent).
 **Founder log read up to:** 2026-11-12 (late night).
 **Route:** [route-2026-11-14-day](research/route-2026-11-14-day.md)
 (#442, Fable): art lane, game lane, scout lane; up to three agents.
