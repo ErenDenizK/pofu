@@ -48,10 +48,8 @@ Running: bell glow (Sonnet, holds a Swift slot); Wave 0 Home (Opus, on CI, holds
 
 ## 3. Budget levers
 
-- **Model per role:** as `studio.md` section 4. Wave 0's rest is Sonnet, medium, with the Home PR as recipe.
-  Opus only for a first of its kind. Fable for the route, the gates and the drop-in pass (about 30,000 tokens read).
-- **Prompt size:** briefs point to paths. Hand-backs are at most 20 lines; frames and logs go to a file whose
-  path is handed back, and the lead opens one sheet. The lead's context is the dear one.
+- **Model per role:** as `studio.md` section 4: Sonnet with a recipe, Opus for a first of its kind, Fable for bounded reads.
+- **Prompt size:** briefs point to paths; hand-backs are 20 lines, with frames and logs as file paths, not content.
 - **Resume or fresh:** resume only an agent that is mid-task, under 200,000 tokens, and repeat its "Done when"
   in the message (a resumed builder had lost its brief, friction 11-12). Start fresh for a new task, after a
   hand-back, and for a fix that arrives after a long CI wait when the agent is over about 100,000: an idle
@@ -105,11 +103,9 @@ The lead relays this to the founder in Turkish, applies or declines each point, 
 
 ## 6. Changes to the studio system: show the founder before applying
 
-1. `studio.md` section 2: replace "at most three builders at once" with section 1's caps, and say that a
-   builder waiting on CI holds nothing.
+1. `studio.md` section 2: "at most three builders at once" becomes section 1's caps; a builder on CI holds nothing.
 2. `studio.md` section 4: the resume rule gains "mid-task only, repeat the Done-when, fresh after a long idle".
-3. `CLAUDE.md`: "Learn locally, push to confirm" gains "pushes before the PR opens are free"; a line that
-   frames are never fetched into the main checkout. At the 80-line cap, so each replaces or merges a line.
+3. `CLAUDE.md` (at its cap, so merged into existing lines): pushes before the PR are free; frames never enter the main `.git`.
 4. `studio.md` section 11 and the new `docs/studio/dropin-brief.md`: the drop-in pass as a standing loop.
 
 Not system changes (apply and list): the `builder.md` and `critic.md` steps in fixes 1 and 6, every script
@@ -120,6 +116,5 @@ and workflow change in section 4, and the lead's own calls in sections 2 and 3.
 - Whether $437.56 for the lead's session includes its sub-agents, what a Sonnet or an Opus build costs, and
   the founder's ceiling per day. With them, "go down" gets a money line; log the usage line of each hand-back.
 - The wall time of a clean and of an incremental `test-linux.sh` run, and how long builders wait on the lock.
-- Whether macOS minutes are billed at all: `CLAUDE.md` calls the repository public, and standard runners are
-  free on public repositories. If so, the push rule guards waiting time, not money.
+- Whether macOS minutes are billed: standard runners are free on a public repository, so the push rule may guard only time.
 - Whether the 28-31 minute macOS job restores a build cache; if not, that is the largest CI saving left.
