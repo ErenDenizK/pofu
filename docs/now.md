@@ -38,8 +38,8 @@ for batch 83); pofu-art #13-#14, #18, #22-#27, #29, #30.
 
 1. Asset Wave 0 slice 3: the flow board after Codex's flow-stone pilot;
    then duo sheet and stickers in the app (§4.2).
-2. pofu-art: sync batch-72 night takes before batch-86's night jobs run;
-   drop `.keeper` from VisitorSchedule.standardRoster (no visitor art).
+2. Studio: one side-by-side state pass, Fable vs Opus (studio.md §8.6).
+   Merged: #446 Home chrome, #449 scaling, #451 tools, #452 no keeper.
 3. Bell polish (#444 merged): day ring grey-yellow, make it warm gold;
    pale side strips at the whole-island pose are backdrop art: art or crop.
 4. Route §5.3 (seeds-and-minutes check in the app; App desk reopens).
