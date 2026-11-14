@@ -156,19 +156,27 @@ struct PofuPaperBubbleShape: Shape {
     }
 }
 
-/// A speech bubble made of paper: a speaker tab in the resident's colour,
-/// live text, and a tail toward the mouth. Grows from the mouth.
+/// A speech bubble made of paper: a speaker tab, live text, and a tail
+/// toward the mouth. The one bubble (asset system v1 section 2.3): the
+/// painted paper, tail and ribbon tab when they are baked, code-drawn
+/// otherwise. Grows from the mouth.
 public struct PofuPaperBubble<Content: View>: View {
     let speaker: LocalizedStringKey?
     let tint: Color
-    let tailPosition: CGFloat
+    /// 0...1 along the bottom edge; `nil` draws no tail (a line in the
+    /// bottom band, below its speaker).
+    let tailPosition: CGFloat?
     let content: Content
 
     @Environment(\.pofuNight) private var night
     @Environment(\.colorScheme) private var scheme
     @Environment(\.colorSchemeContrast) private var contrast
 
-    public init(speaker: LocalizedStringKey? = nil, tint: Color = PofuKitPalette.rgb(0xE8946B), tailPosition: CGFloat = 0.5, @ViewBuilder content: () -> Content) {
+    /// The painted tail's size; its flat top overlaps the paper's lip.
+    static var paintedTail: CGSize { CGSize(width: 22, height: 17) }
+    static var tailOverlap: CGFloat { paintedTail.height - PofuPaperBubbleShape.tailHeight }
+
+    public init(speaker: LocalizedStringKey? = nil, tint: Color = PofuKitPalette.rgb(0xE8946B), tailPosition: CGFloat? = 0.5, @ViewBuilder content: () -> Content) {
         self.speaker = speaker
         self.tint = tint
         self.tailPosition = tailPosition
@@ -183,15 +191,24 @@ public struct PofuPaperBubble<Content: View>: View {
     public var body: some View {
         let resolver = PofuKitStyleResolver(night: night, scheme: scheme, contrast: contrast)
         let palette = resolver.palette
-        let shape = PofuPaperBubbleShape(tailPosition: tailPosition)
+        let tail = tailPosition.map { PofuPaperBubbleShape(tailPosition: $0) }
         VStack(alignment: .leading, spacing: PofuSpacing.xs) {
             if let speaker {
                 Text(speaker)
                     .font(PofuFont.caption.weight(.bold))
                     .foregroundStyle(PofuKitPalette.day.ink)
-                    .padding(.horizontal, PofuSpacing.s + 2)
+                    .padding(.leading, PofuSpacing.s + 4)
+                    .padding(.trailing, PofuSpacing.s + 2)
                     .padding(.vertical, PofuSpacing.xxs + 1)
-                    .background(tint, in: Capsule(style: .continuous))
+                    .background {
+                        if resolver.isHighContrast {
+                            Capsule(style: .continuous).fill(tint)
+                        } else {
+                            PofuKitFace(.tabRibbon) {
+                                Capsule(style: .continuous).fill(tint)
+                            }
+                        }
+                    }
                     .accessibilityAddTraits(.isHeader)
             }
             content
@@ -201,25 +218,52 @@ public struct PofuPaperBubble<Content: View>: View {
         }
         .padding(.horizontal, PofuSpacing.l)
         .padding(.top, PofuSpacing.m)
-        .padding(.bottom, PofuSpacing.m + PofuPaperBubbleShape.tailHeight)
+        .padding(.bottom, PofuSpacing.m + (tail == nil ? 0 : PofuPaperBubbleShape.tailHeight))
         .background {
             ZStack {
                 if resolver.isHighContrast {
-                    shape.fill(palette.paperTop)
-                    shape.stroke(palette.onPaper, lineWidth: 2)
+                    outline(tail).fill(palette.paperTop)
+                    outline(tail).stroke(palette.onPaper, lineWidth: 2)
                 } else {
-                    PofuKitFace(.bubblePaper) {
-                        ZStack {
-                            shape.fill(LinearGradient(colors: [palette.paperTop, palette.paperBottom], startPoint: .top, endPoint: .bottom))
-                            PofuGrainOverlay(opacity: 0.06).clipShape(shape)
-                            shape.stroke(palette.edge.opacity(palette.isNight ? 0.6 : 0.22), lineWidth: 1.2)
-                        }
-                    }
+                    face(palette, tail: tail)
                 }
             }
             .shadow(color: palette.edge.opacity(palette.isNight ? 0.5 : 0.14), radius: 8, y: 4)
         }
         .accessibilityElement(children: .combine)
+    }
+
+    private func outline(_ tail: PofuPaperBubbleShape?) -> AnyShape {
+        tail.map { AnyShape($0) } ?? AnyShape(RoundedRectangle(cornerRadius: PofuRadius.medium, style: .continuous))
+    }
+
+    @ViewBuilder
+    private func face(_ palette: PofuKitPalette, tail: PofuPaperBubbleShape?) -> some View {
+        let paper: PofuKitArt = palette.isNight ? .bubblePaperNight : .bubblePaper
+        let tailArt: PofuKitArt = palette.isNight ? .bubbleTailNight : .bubbleTail
+        if paper.isPainted, tail == nil || tailArt.isPainted {
+            GeometryReader { proxy in
+                let paperHeight = proxy.size.height - (tail == nil ? 0 : PofuPaperBubbleShape.tailHeight)
+                ZStack(alignment: .topLeading) {
+                    PofuKitFace(paper) { EmptyView() }
+                        .frame(width: proxy.size.width, height: paperHeight)
+                    if let tailPosition {
+                        let size = Self.paintedTail
+                        let x = PofuRadius.large + (proxy.size.width - PofuRadius.large * 2) * tailPosition
+                        PofuKitFace(tailArt) { EmptyView() }
+                            .frame(width: size.width, height: size.height)
+                            .position(x: x + 1, y: paperHeight - Self.tailOverlap + size.height / 2)
+                    }
+                }
+            }
+        } else {
+            let shape = outline(tail)
+            ZStack {
+                shape.fill(LinearGradient(colors: [palette.paperTop, palette.paperBottom], startPoint: .top, endPoint: .bottom))
+                PofuGrainOverlay(opacity: 0.06).clipShape(shape)
+                shape.stroke(palette.edge.opacity(palette.isNight ? 0.6 : 0.22), lineWidth: 1.2)
+            }
+        }
     }
 }
 

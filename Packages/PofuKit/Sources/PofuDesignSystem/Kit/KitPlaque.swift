@@ -112,7 +112,8 @@ struct PofuPlaqueBody: View {
     }
 }
 
-/// The plaque's face. Code-drawn until `ui-plaque-*` lands.
+/// The plaque's face: the painted plaque when it is baked (a pressed face
+/// falls back to the rest face, darkened), code-drawn otherwise.
 struct PofuPlaqueFace: View {
     let kind: PofuPlaqueKind
     let palette: PofuKitPalette
@@ -138,7 +139,8 @@ struct PofuPlaqueFace: View {
                     .shadow(color: palette.glow.opacity(0.8), radius: 6)
             }
         }
-        .clipShape(shape)
+        // Only the drawn face is clipped to a capsule: the painted plaque
+        // keeps its own scalloped silhouette.
         .brightness(pressed ? -0.06 : 0)
         .compositingGroup()
     }
@@ -183,6 +185,7 @@ struct PofuPlaqueFace: View {
                 lineWidth: 1.5
             )
         }
+        .clipShape(shape)
     }
 }
 

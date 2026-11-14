@@ -11,7 +11,8 @@
     "postcard": "App/Resources/Assets.xcassets",
     "shield-icons": "Packages/PofuKit/Sources/PofuCompanion/Resources",
     "fx": "Packages/PofuKit/Sources/PofuWorld/Resources/World.xcassets",
-    "icons-duo": "Packages/PofuKit/Sources/PofuDesignSystem/Resources"
+    "icons-duo": "Packages/PofuKit/Sources/PofuDesignSystem/Resources",
+    "kit": "Packages/PofuKit/Sources/PofuDesignSystem/Resources"
   },
   "entries": [
     {
@@ -1436,6 +1437,128 @@
       "target": "world",
       "name": "simit-step-b",
       "master": "design/art/masters/simit-step-b"
+    },
+    {
+      "target": "kit",
+      "name": "ui-plaque-honey",
+      "master": "design/art/ui/ui-plaque-honey",
+      "points": [
+        250,
+        80
+      ],
+      "scale": 3
+    },
+    {
+      "target": "kit",
+      "name": "ui-bubble-paper",
+      "master": "design/art/ui/ui-bubble-paper",
+      "points": [
+        150,
+        150
+      ],
+      "scale": 3
+    },
+    {
+      "target": "kit",
+      "name": "ui-bubble-paper-night",
+      "master": "design/art/ui/ui-bubble-paper-night",
+      "points": [
+        150,
+        150
+      ],
+      "scale": 3
+    },
+    {
+      "target": "kit",
+      "name": "ui-bubble-tail",
+      "master": "design/art/ui/ui-bubble-tail",
+      "cell": [
+        520,
+        320,
+        1020,
+        680
+      ],
+      "points": [
+        32,
+        26
+      ],
+      "scale": 3
+    },
+    {
+      "target": "kit",
+      "name": "ui-bubble-tail-night",
+      "master": "design/art/ui/ui-bubble-tail",
+      "cell": [
+        520,
+        320,
+        1020,
+        680
+      ],
+      "points": [
+        32,
+        26
+      ],
+      "recolour": [
+        "design/art/ui/ui-bubble-paper",
+        "design/art/ui/ui-bubble-paper-night"
+      ],
+      "scale": 3
+    },
+    {
+      "target": "kit",
+      "name": "ui-card-linen",
+      "master": "design/art/ui/ui-card-linen",
+      "points": [
+        120,
+        120
+      ],
+      "scale": 3
+    },
+    {
+      "target": "kit",
+      "name": "ui-card-linen-night",
+      "master": "design/art/ui/ui-card-linen-night",
+      "points": [
+        120,
+        120
+      ],
+      "scale": 3
+    },
+    {
+      "target": "kit",
+      "name": "ui-face-disc-v2",
+      "master": "design/art/ui/ui-face-disc-v2",
+      "points": [
+        60,
+        60
+      ],
+      "scale": 3
+    },
+    {
+      "target": "kit",
+      "name": "ui-face-disc-v2-night",
+      "master": "design/art/ui/ui-face-disc-v2-night",
+      "points": [
+        60,
+        60
+      ],
+      "scale": 3
+    },
+    {
+      "target": "kit",
+      "name": "ui-tab-ribbon",
+      "master": "design/art/ui/ui-tab-ribbon",
+      "cell": [
+        40,
+        30,
+        1120,
+        186
+      ],
+      "points": [
+        200,
+        24
+      ],
+      "scale": 3
     }
   ]
 }

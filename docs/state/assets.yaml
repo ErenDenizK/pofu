@@ -1,0 +1,75 @@
+# Asset state table (asset system v1 section 2.4 and 4.4): one row per hook name the code asks
+# for. state is the furthest of unpainted < painted < picked < in_repo < in_bundle < in_frame;
+# master is the master folder (or the take a sheet is cut from) in this repository (null before in_repo). A row short of in_frame
+# says why in note. Validated by tools/state/check_assets.py, which derives the bundle: a hook
+# whose file is in the bundle must read in_bundle or in_frame, and one whose file is not must not.
+# in_frame is set by the lead after a 1:1 crop of a device-size frame on screenshots/main.
+version: 1
+kit:  # PofuKitArt, Packages/PofuKit/Sources/PofuDesignSystem/Kit/KitArt.swift
+  ui-plaque-honey: {state: in_bundle, master: "design/art/ui/ui-plaque-honey", note: "Home chrome slice; in_frame once the lead crops path-d05 at 1:1"}
+  ui-plaque-honey-pressed: {state: unpainted, master: null, note: "never painted; the rest face stands in, darkened in code (wave 2)"}
+  ui-plaque-bare: {state: in_repo, master: "design/art/ui/ui-plaque-bare", note: "baked in a later wave 0 slice"}
+  ui-plaque-cream: {state: in_repo, master: "design/art/ui/ui-plaque-cream", note: "baked in a later wave 0 slice"}
+  ui-plaque-cream-pressed: {state: in_repo, master: "design/art/ui/ui-plaque-cream-pressed", note: "baked in a later wave 0 slice"}
+  ui-sheet-paper-v3: {state: in_repo, master: "design/art/ui/ui-sheet-paper-v3", note: "baked in a later wave 0 slice"}
+  ui-sheet-paper-v3-night: {state: picked, master: null, note: "batch 77 pick, still in pofu-art only (wave 0, a later slice)"}
+  ui-card-stitched: {state: in_repo, master: "design/art/ui/ui-card-stitched", note: "baked in a later wave 0 slice"}
+  ui-card-linen: {state: in_bundle, master: "design/art/ui/ui-card-linen", note: "Home chrome slice; in_frame once the lead crops path-d05 at 1:1"}
+  ui-card-linen-night: {state: in_bundle, master: "design/art/ui/ui-card-linen-night", note: "Home chrome slice; in_frame once the lead crops path-d05 at 1:1"}
+  ui-bubble-paper: {state: in_bundle, master: "design/art/ui/ui-bubble-paper", note: "Home chrome slice; in_frame once the lead crops path-d05 at 1:1"}
+  ui-bubble-paper-night: {state: in_bundle, master: "design/art/ui/ui-bubble-paper-night", note: "Home chrome slice; in_frame once the lead crops path-d05 at 1:1"}
+  ui-bubble-tail: {state: in_bundle, master: "design/art/ui/ui-bubble-tail", note: "Home chrome slice; in_frame once the lead crops path-d05 at 1:1"}
+  ui-bubble-tail-night: {state: in_bundle, master: "design/art/ui/ui-bubble-tail", note: "Home chrome slice; in_frame once the lead crops path-d05 at 1:1"}
+  ui-tab-ribbon: {state: in_bundle, master: "design/art/ui/ui-tab-ribbon", note: "Home chrome slice; in_frame once the lead crops path-d05 at 1:1"}
+  ui-face-disc-v2: {state: in_bundle, master: "design/art/ui/ui-face-disc-v2", note: "Home chrome slice; in_frame once the lead crops path-d05 at 1:1"}
+  ui-face-disc-v2-night: {state: in_bundle, master: "design/art/ui/ui-face-disc-v2-night", note: "Home chrome slice; in_frame once the lead crops path-d05 at 1:1"}
+  ui-chip-felt: {state: in_repo, master: "design/art/ui/ui-chip-felt", note: "baked in a later wave 0 slice"}
+  ui-chip-felt-selected: {state: in_repo, master: "design/art/ui/ui-chip-felt-selected", note: "baked in a later wave 0 slice"}
+  ui-toast-strip: {state: in_repo, master: "design/art/ui/ui-toast-strip", note: "baked in a later wave 0 slice"}
+  ui-groove-wood: {state: in_repo, master: "design/art/ui/ui-groove-wood", note: "baked in a later wave 0 slice"}
+  seal-resist: {state: in_repo, master: "design/art/ui/ui-seals", note: "one sheet of three seals, not sliced yet (wave 0, a later slice)"}
+paint:  # PofuPaint, Packages/PofuKit/Sources/PofuDesignSystem/PofuPaint.swift
+  paint-jar-full: {state: in_bundle, master: "design/art/ui/ui-jar-full", note: "shipped before this table; in_frame not yet checked"}
+  paint-lantern-on: {state: in_bundle, master: "design/art/ui/ui-lantern-on", note: "shipped before this table; in_frame not yet checked"}
+  paint-pot-bloom: {state: in_bundle, master: "design/art/ui/ui-pot-bloom", note: "shipped before this table; in_frame not yet checked"}
+  paint-pot-bud: {state: in_bundle, master: "design/art/ui/ui-pot-bud", note: "shipped before this table; in_frame not yet checked"}
+  paint-face-primary: {state: in_bundle, master: "design/art/ui/ui-face-primary", note: "shipped before this table; in_frame not yet checked"}
+  paint-face-secondary: {state: in_bundle, master: "design/art/ui/ui-face-secondary", note: "shipped before this table; in_frame not yet checked"}
+  paint-face-disc: {state: in_bundle, master: "design/art/ui/ui-face-disc", note: "shipped before this table; in_frame not yet checked"}
+  paint-tag-paper: {state: in_bundle, master: "design/art/ui/ui-tag-paper", note: "shipped before this table; in_frame not yet checked"}
+  paint-panel-paper: {state: in_bundle, master: "design/art/ui/ui-panel-paper", note: "shipped before this table; in_frame not yet checked"}
+  paint-icon-seed: {state: in_bundle, master: "design/art/ui/icon-seed", note: "shipped before this table; in_frame not yet checked"}
+  paint-icon-calm: {state: in_bundle, master: "design/art/ui/icon-calm", note: "shipped before this table; in_frame not yet checked"}
+  paint-icon-island: {state: in_bundle, master: "design/art/ui/icon-island", note: "shipped before this table; in_frame not yet checked"}
+  paint-icon-friend: {state: in_bundle, master: "design/art/ui/icon-friend", note: "shipped before this table; in_frame not yet checked"}
+  paint-icon-mood-content: {state: in_bundle, master: "design/art/ui/icon-mood-content", note: "shipped before this table; in_frame not yet checked"}
+  paint-icon-skip: {state: in_bundle, master: "design/art/ui/icon-skip", note: "shipped before this table; in_frame not yet checked"}
+  paint-icon-round: {state: in_bundle, master: "design/art/ui/icon-round", note: "shipped before this table; in_frame not yet checked"}
+  paint-icon-breath: {state: in_bundle, master: "design/art/ui/icon-breath", note: "shipped before this table; in_frame not yet checked"}
+  paint-icon-rumour: {state: in_bundle, master: "design/art/ui/icon-rumour", note: "shipped before this table; in_frame not yet checked"}
+  paint-icon-decor: {state: in_bundle, master: "design/art/ui/icon-decor", note: "shipped before this table; in_frame not yet checked"}
+  paint-icon-plus: {state: in_bundle, master: "design/art/ui/icon-plus", note: "shipped before this table; in_frame not yet checked"}
+  paint-icon-tea: {state: in_bundle, master: "design/art/ui/icon-station-tea-stall", note: "shipped before this table; in_frame not yet checked"}
+  paint-duo-home: {state: in_bundle, master: "design/art/takes/batch-46-flat-icons/x-icons-flat-duo/ui__x-icons-flat-duo--t2.webp", note: "shipped before this table; in_frame not yet checked"}
+  paint-duo-island: {state: in_bundle, master: "design/art/takes/batch-46-flat-icons/x-icons-flat-duo/ui__x-icons-flat-duo--t2.webp", note: "shipped before this table; in_frame not yet checked"}
+  paint-duo-map: {state: in_bundle, master: "design/art/takes/batch-46-flat-icons/x-icons-flat-duo/ui__x-icons-flat-duo--t2.webp", note: "shipped before this table; in_frame not yet checked"}
+  paint-duo-settings: {state: in_bundle, master: "design/art/takes/batch-46-flat-icons/x-icons-flat-duo/ui__x-icons-flat-duo--t2.webp", note: "shipped before this table; in_frame not yet checked"}
+  paint-duo-close: {state: in_bundle, master: "design/art/takes/batch-46-flat-icons/x-icons-flat-duo/ui__x-icons-flat-duo--t2.webp", note: "shipped before this table; in_frame not yet checked"}
+  paint-duo-add: {state: in_bundle, master: "design/art/takes/batch-46-flat-icons/x-icons-flat-duo/ui__x-icons-flat-duo--t2.webp", note: "shipped before this table; in_frame not yet checked"}
+  paint-duo-letter: {state: in_bundle, master: "design/art/takes/batch-46-flat-icons/x-icons-flat-duo/ui__x-icons-flat-duo--t2.webp", note: "shipped before this table; in_frame not yet checked"}
+  paint-duo-shield: {state: in_bundle, master: "design/art/takes/batch-46-flat-icons/x-icons-flat-duo/ui__x-icons-flat-duo--t2.webp", note: "shipped before this table; in_frame not yet checked"}
+  paint-duo-gift: {state: in_bundle, master: "design/art/takes/batch-46-flat-icons/x-icons-flat-duo/ui__x-icons-flat-duo--t2.webp", note: "shipped before this table; in_frame not yet checked"}
+sticker:  # Sticker, Packages/PofuKit/Sources/PofuDesignSystem/Sticker.swift
+  sticker-pofu-happy: {state: in_repo, master: "design/art/masters/sticker-pofu-happy", note: "not bundled yet (wave 0, a later slice)"}
+  sticker-pofu-sleepy: {state: in_repo, master: "design/art/masters/sticker-pofu-sleepy", note: "not bundled yet (wave 0, a later slice)"}
+  sticker-pofu-surprised: {state: in_repo, master: "design/art/masters/sticker-pofu-surprised", note: "not bundled yet (wave 0, a later slice)"}
+  sticker-pofu-proud: {state: in_repo, master: "design/art/masters/sticker-pofu-proud", note: "not bundled yet (wave 0, a later slice)"}
+  sticker-pofu-waving: {state: in_repo, master: "design/art/masters/sticker-pofu-waving", note: "not bundled yet (wave 0, a later slice)"}
+  sticker-pofu-tea: {state: in_repo, master: "design/art/masters/sticker-pofu-tea", note: "not bundled yet (wave 0, a later slice)"}
+  sticker-mochi-happy: {state: in_repo, master: "design/art/masters/sticker-mochi-happy", note: "not bundled yet (wave 0, a later slice)"}
+  sticker-mochi-thinking: {state: in_repo, master: "design/art/masters/sticker-mochi-thinking", note: "not bundled yet (wave 0, a later slice)"}
+  sticker-mochi-sulky: {state: in_repo, master: "design/art/masters/sticker-mochi-sulky", note: "not bundled yet (wave 0, a later slice)"}
+  sticker-simit-happy: {state: unpainted, master: null, note: "batch 42 skipped it; stickers-redo manifest"}
+  sticker-findik-happy: {state: unpainted, master: null, note: "batch 42 skipped it; stickers-redo manifest"}
+  sticker-goat-indignant: {state: in_repo, master: "design/art/masters/sticker-goat-indignant", note: "not bundled yet (wave 0, a later slice)"}
+  sticker-duo-tea: {state: in_repo, master: "design/art/masters/sticker-duo-tea", note: "not bundled yet (wave 0, a later slice)"}

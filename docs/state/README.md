@@ -10,6 +10,13 @@ re-read the chat. Plate-first (ADR-0022): one painted picture per island state.
   [the queue](https://github.com/ErenDenizK/pofu-art/blob/main/QUEUE.md#how-to-work-it)).
 - Checked by `python3 -I tools/state/check_plates.py` (paths and picks exist; each island also has a `sky_sets:` row per light, ADR-0025);
   it runs in the Python CI job.
+- `assets.yaml`: every asset hook the code asks for (`PofuKitArt`,
+  `PofuPaint`, `Sticker`) with its state, `unpainted` < `painted` <
+  `picked` < `in_repo` < `in_bundle` < `in_frame` ([asset system v1](../design/asset-system-v1.md)
+  section 2.4), its master and why it is not in a frame yet. Checked by
+  `python3 -I tools/state/check_assets.py`: a hook without a row fails, and
+  `in_bundle` is derived from the bundle. The lead sets `in_frame` after a
+  1:1 crop of a device-size frame.
 
 ## Who updates
 

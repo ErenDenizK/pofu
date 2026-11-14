@@ -99,6 +99,9 @@ public struct WorldHome: View {
 
             CollectFlight(home: home)
         }
+        // Night is a light (asset system v1 section 2.3): the kit's faces
+        // turn lamplit at the hour the world does, whatever the system says.
+        .pofuNight(isNight)
         .onAppear {
             home.camera = scene
             // A visit planned before the camera was set has already said its news.
@@ -158,9 +161,12 @@ public struct WorldHome: View {
     @ViewBuilder
     private var bubble: some View {
         if let line {
-            SpeechBubble {
+            PofuPaperBubble {
                 Text(verbatim: line)
+                    .multilineTextAlignment(.center)
+                    .lineLimit(3)
             }
+            .frame(maxWidth: 320)
             .id(line)
             .transition(.scale(scale: 0.92, anchor: .bottom).combined(with: .opacity))
         }
@@ -205,6 +211,8 @@ public struct WorldHome: View {
             .opacity(showsIslandName ? 1 : 0)
             .allowsHitTesting(false)
         }
+        // The chrome's live text follows the world's light, not the system's.
+        .environment(\.colorScheme, isNight ? .dark : .light)
         .animation(PofuMotion.respecting(reduceMotion, PofuMotion.snappy), value: showsHomeChrome)
         .animation(PofuMotion.respecting(reduceMotion, PofuMotion.snappy), value: showsIslandName)
         .animation(PofuMotion.respecting(reduceMotion, PofuMotion.settle), value: home.currentBeat)
@@ -277,7 +285,9 @@ public struct WorldHome: View {
                         .font(PofuFont.headline)
                         .frame(maxWidth: .infinity, minHeight: PofuSize.minimumTouch)
                 }
-                .pofuActionStyle(.primary)
+                // The one verb: the honey plaque.
+                .buttonStyle(PofuPlaqueStyle(.primary, haptic: nil))
+                .frame(maxWidth: typeSize.isAccessibilitySize ? .infinity : CollectAction.width)
                 .transition(.opacity)
             }
         } else {
@@ -287,9 +297,9 @@ public struct WorldHome: View {
                 .multilineTextAlignment(.center)
                 .fixedSize(horizontal: false, vertical: true)
                 .padding(.horizontal, PofuSpacing.l)
-                .padding(.vertical, 7)
-                .frame(minHeight: 34)
-                .background(PofuColor.card.opacity(0.86), in: RoundedRectangle(cornerRadius: 17, style: .continuous))
+                .padding(.vertical, PofuSpacing.s + 1)
+                .frame(minHeight: 40)
+                .background { PofuPaperSurface(kind: .linen) }
                 .frame(maxWidth: .infinity)
                 .transition(.opacity)
         }
@@ -556,9 +566,9 @@ struct GuardedSteps: View {
     }
 }
 
-/// Pofu's line on the painted plate: a card in the bottom band with his
-/// name, so no bubble covers the island (the plate has no sky to spare
-/// above him).
+/// Pofu's line on the painted plate: the paper bubble in the bottom band
+/// with his name on its tab, so nothing covers the island (the plate has
+/// no sky to spare above him).
 struct PlateLine: View {
     let line: String
 
@@ -570,23 +580,14 @@ struct PlateLine: View {
     var isLong: Bool { line.count > Self.longLine }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 2) {
-            if !isLong {
-                Text(verbatim: "Pofu")
-                    .font(PofuFont.caption)
-                    .foregroundStyle(PofuColor.textSecondary)
-            }
+        // The one bubble, its speaker on the ribbon tab; no tail, since
+        // Pofu stands on the plate above the band.
+        PofuPaperBubble(speaker: isLong ? nil : LocalizedStringKey("Pofu"), tailPosition: nil) {
             Text(verbatim: line)
                 .font(isLong ? PofuFont.callout : PofuFont.headline)
-                .foregroundStyle(PofuColor.textPrimary)
                 .lineLimit(3)
-                .fixedSize(horizontal: false, vertical: true)
+                .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(.horizontal, PofuSpacing.l)
-        .padding(.vertical, isLong ? PofuSpacing.s : PofuSpacing.m)
-        .background(PofuColor.raised, in: RoundedRectangle(cornerRadius: PofuRadius.large, style: .continuous))
-        .shadow(color: PofuColor.shadow.opacity(0.1), radius: 12, y: 6)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(Text(verbatim: "Pofu"))
         .accessibilityValue(Text(verbatim: line))

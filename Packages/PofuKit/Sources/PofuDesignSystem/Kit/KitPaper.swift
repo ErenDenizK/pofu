@@ -60,19 +60,18 @@ public struct PofuPaperSurface: View {
                 shape.fill(kind == .wood ? palette.woodTop : palette.paperTop)
                 shape.strokeBorder(palette.onPaper, lineWidth: 2)
             } else {
-                PofuKitFace(art(palette), caps: EdgeInsets(top: cornerRadius, leading: cornerRadius, bottom: cornerRadius, trailing: cornerRadius)) {
-                    drawn(shape, palette)
+                PofuKitFace(art(palette)) {
+                    drawn(shape, palette).clipShape(shape)
                 }
             }
         }
-        .clipShape(shape)
         .shadow(color: palette.edge.opacity(palette.isNight ? 0.5 : 0.12), radius: 10, y: 4)
     }
 
     private func art(_ palette: PofuKitPalette) -> PofuKitArt {
         switch kind {
         case .stitched: palette.isNight ? .sheetPaperNight : .cardStitched
-        case .linen: .cardLinen
+        case .linen: palette.isNight ? .cardLinenNight : .cardLinen
         case .wood: .plaqueBare
         }
     }
