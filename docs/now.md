@@ -27,7 +27,7 @@ Next large job: the asset system (inventory, then Fable's plan).
 1. Art: pofu-art #31 merged (queue 83, 82, 86, 84, 85, 87); Codex runs
    on "çalış"; each delivery: art-reviewer picks, founder approves,
    Sonnet ingests. No new visitor can arrive by d21 except Sumi (d11+).
-2. Game: the day-21 bell seen as well as heard (Sonnet, `feat/bell-seen`).
+2. Studio scaling (item 22): facts agent, then Fable's view.
 3. Asset system: #445 (plan) and pofu-art #34 (5 pilots) merged. Wave 0
    ships what is already painted: Home chrome first (Opus,
    `feat/asset-wave0-home`); then Station sheet, cards, flow board.
@@ -42,13 +42,16 @@ for batch 83); pofu-art #13-#14, #18, #22-#27, #29, #30.
    flow board (one builder each, disjoint files); §7 facts in #447.
 2. pofu-art: sync batch-72 night takes before batch-86's night jobs run;
    drop `.keeper` from VisitorSchedule.standardRoster (no visitor art).
-3. Route §5.3 (seeds-and-minutes check in the app; App desk reopens).
+3. Bell polish (#444 merged): the day ring reads grey-yellow on blue;
+   make it warm gold (additive blend, softer centre). The pale strip on
+   the island's sides is backdrop art at the whole-island pose: art or crop.
+4. Route §5.3 (seeds-and-minutes check in the app; App desk reopens).
 
 ## Desks
 
 | Desk | Where it stands | Waits on |
 |---|---|---|
-| Game | days 17-21 flat; IL8 pacing in flight | bell seen |
+| Game | days 17-21 flat; IL8 pacing in flight | bell polish |
 | Look | one painted world: Home, the Map, flights, Koke, Çağlayan, visitors | Wave 0 |
 | Art factory | Codex back 11-14; return queue READY | deliveries |
 | App | paused until after the demo | the demo |
