@@ -1,0 +1,103 @@
+{
+  "job": "ui-tab-ribbon",
+  "batch": "batch-61-ui-kit-v3",
+  "asset": "ui__tab-ribbon",
+  "take": 3,
+  "takes_considered": 4,
+  "approved_at": "2026-11-12T11:35:52+00:00",
+  "image": "design/art/ui/ui-tab-ribbon/ui-tab-ribbon.png",
+  "raw": "design/art/ui/ui-tab-ribbon/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "e09ea5a2dc52eae0",
+  "prompt": "REFERENCES (attached, in this order):\n1. The bubble the tab sits on: match the light, softness and warmth.\n2. The palette card for props: use only these colors (and mixes of them).\n\nA sheet of five identical satin ribbon tabs on a transparent background, stacked in five rows with wide empty space between them, each a wide strip about seven times as wide as it is tall, with a small V notch cut into the left end and a softly rounded right end, a thin lighter edge on top and a soft shadow beneath. The five differ only in color, top to bottom: honey gold, rose pink, sage green, sky blue, soft lilac. The middle of each is perfectly flat and even.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: text, letters, numbers, symbols, icons, glass, frosted or transparent parts, a drop shadow or cast shadow on the ground, an outline, a border around the canvas, a background, gloss or specular glints, texture that varies along the width, pure black, neon or saturated colors, a 3D render look\n\nOutput: one image, transparent background PNG, landscape 1536 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/ui/ui-bubble-paper/ui-bubble-paper.png",
+      "role": "The bubble the tab sits on: match the light, softness and warmth."
+    },
+    {
+      "path": "design/reference/palette-card-world-props.png",
+      "role": "The palette card for props: use only these colors (and mixes of them)."
+    }
+  ],
+  "generation": {
+    "backend": "retained-lead-pick",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": null,
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "fit": null,
+  "emit_region": null,
+  "qa": {
+    "status": "pass",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1536x1024"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 38 (R1 51)",
+        "value": 37.8
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 68 (R1 59)",
+        "value": 68.5
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 0.7 (R1 5.3)",
+        "value": 0.74
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 0.8",
+        "value": 0.812
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 2.4, p95 6.1, off-palette 0.5% (top: #AA88AA (0.3%), #AA99AA (0.2%))",
+        "value": 2.351
+      }
+    ]
+  },
+  "note": "Lead picked retained take 3 in QUEUE.md row 0-h4 / batch-77; promote --force authorized. Original PNG unavailable; decoded retained q90 WebP. Auto-picked by QA; founder review pending.",
+  "reingested_takes_in_this_worktree": 1,
+  "deliver": {
+    "scale": 0.75,
+    "original_size": [
+      1536,
+      1024
+    ],
+    "delivered_size": [
+      1152,
+      768
+    ]
+  },
+  "delivery_note": "QUEUE.md row 0-h4 requires 0.75 scale for ribbon; retained q90 source decoded and re-locked, no regeneration."
+}
