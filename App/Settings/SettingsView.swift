@@ -40,39 +40,44 @@ struct SettingsView: View {
                     ScreenTimeSettingsSection(model: model)
                 }
 
-                Section {
-                    ForEach(ProtectedApp.offered) { app in
-                        GuardedAppRow(model: model, app: app)
+                // The Shortcuts path is for the live build; Rehearsal has no doors to guard.
+                if !model.screenTime.isRehearsal {
+                    Section {
+                        ForEach(ProtectedApp.offered) { app in
+                            GuardedAppRow(model: model, app: app)
+                        }
+                        NavigationLink {
+                            SetupGuideView(model: model)
+                        } label: {
+                            SettingsLabel("Set up automations", systemName: "wand.and.stars", tone: .moss)
+                        }
+                    } header: {
+                        // With the shield, the Shortcuts gate is the optional,
+                        // animated layer on top (ADR-0013).
+                        if model.screenTime.isAvailable {
+                            Text("Live Pofu (optional)")
+                                .pofuSectionHeader()
+                        } else {
+                            Text("Guarded apps")
+                                .pofuSectionHeader()
+                        }
+                    } footer: {
+                        if model.screenTime.isAvailable {
+                            Text("With a Shortcuts automation, I hop in with the full animation before the app opens. The shield stays as the safety net.")
+                        } else {
+                            Text("Turning an app off here doesn't remove its automation. Delete it in Shortcuts if you want me gone from that door.")
+                        }
                     }
-                    NavigationLink {
-                        SetupGuideView(model: model)
-                    } label: {
-                        SettingsLabel("Set up automations", systemName: "wand.and.stars", tone: .moss)
-                    }
-                } header: {
-                    // With the shield, the Shortcuts gate is the optional,
-                    // animated layer on top (ADR-0013).
-                    if model.screenTime.isAvailable {
-                        Text("Live Pofu (optional)")
-                            .pofuSectionHeader()
-                    } else {
-                        Text("Guarded apps")
-                            .pofuSectionHeader()
-                    }
-                } footer: {
-                    if model.screenTime.isAvailable {
-                        Text("With a Shortcuts automation, I hop in with the full animation before the app opens. The shield stays as the safety net.")
-                    } else {
-                        Text("Turning an app off here doesn't remove its automation. Delete it in Shortcuts if you want me gone from that door.")
-                    }
+                    .settingsRow()
                 }
-                .settingsRow()
 
                 SoundSettingsSection()
 
                 BreathSettingsSection()
 
-                RehearsalSettingsSection()
+                if DeveloperFlag.isOn {
+                    RehearsalSettingsSection()
+                }
 
                 Section {
                     SettingsLabel("Everything stays on this iPhone.", systemName: "lock.fill", tone: .cocoa)

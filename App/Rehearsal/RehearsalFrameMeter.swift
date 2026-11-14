@@ -13,7 +13,7 @@ struct RehearsalFrameMeter: ViewModifier {
     @AppStorage(RehearsalFrameMeter.key) private var isOn = false
 
     func body(content: Content) -> some View {
-        let show = isOn && model.rehearsal != nil
+        let show = isOn && model.rehearsal != nil && DeveloperFlag.isOn
         content.transformEnvironment(\.worldLook) { look in
             look.frameMeter = show
         }

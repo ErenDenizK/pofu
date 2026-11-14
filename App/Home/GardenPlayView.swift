@@ -21,7 +21,7 @@ struct GardenPlayView: View {
                 onFinish: { _ in model.isPlayingGarden = false }
             )
             #if DEBUG
-            if model.rehearsal != nil {
+            if model.rehearsal != nil, DeveloperFlag.isOn {
                 gardenTuningLab
             }
             #endif
