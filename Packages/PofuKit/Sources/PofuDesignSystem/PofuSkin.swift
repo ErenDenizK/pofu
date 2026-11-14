@@ -74,3 +74,34 @@ public struct PofuSkinPolicy: Hashable, Sendable {
         rawValue.flatMap { PofuSkin(rawValue: $0.lowercased()) }
     }
 }
+
+/// The roles asset wave 0 painted on Home and in the shared kit.
+public enum PofuPaintedRole: CaseIterable, Sendable {
+    /// The round button (gear, place control): clay disc.
+    case disc
+    /// The glance and the daily line: linen card.
+    case linen
+    /// The speech bubble's paper, its painted tail and its ribbon tab.
+    case bubble
+    /// The honey plaque of the one verb.
+    case plaque
+    /// The chrome following the world's night instead of the system.
+    case worldLight
+}
+
+/// What a painted role is made of under a skin.
+public enum PofuRoleFace: Sendable {
+    /// The glass skin: native glass where the role had it, otherwise the
+    /// code-drawn face the role had before asset wave 0.
+    case glass
+    /// The baked painted face.
+    case painted
+}
+
+extension PofuSkinPolicy {
+    /// The face of a wave-0 role. Painted faces belong to the crafted skin
+    /// (Reduce Transparency included); the glass skin is unchanged.
+    public static func face(for role: PofuPaintedRole, skin: PofuSkin, reduceTransparency: Bool) -> PofuRoleFace {
+        effective(skin, reduceTransparency: reduceTransparency) == .glass ? .glass : .painted
+    }
+}

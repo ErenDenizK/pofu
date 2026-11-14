@@ -244,6 +244,10 @@ struct PofuKitFace<Fallback: View>: View {
     let caps: EdgeInsets?
     let fallback: Fallback
 
+    /// Painted faces are drawn in the crafted skin only; the glass skin
+    /// draws the code-drawn fallback it drew before the faces were baked.
+    @Environment(\.pofuPaintedChrome) private var paintsChrome
+
     init(_ art: PofuKitArt, caps: EdgeInsets? = nil, @ViewBuilder fallback: () -> Fallback) {
         self.art = art
         self.caps = caps
@@ -252,7 +256,7 @@ struct PofuKitFace<Fallback: View>: View {
 
     var body: some View {
         #if canImport(UIKit)
-        if let painted = art.painted {
+        if paintsChrome, let painted = art.painted {
             if let caps {
                 Image(uiImage: painted.image).resizable(capInsets: caps, resizingMode: .stretch)
             } else {

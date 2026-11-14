@@ -171,6 +171,9 @@ public struct PofuPaperBubble<Content: View>: View {
     @Environment(\.pofuNight) private var night
     @Environment(\.colorScheme) private var scheme
     @Environment(\.colorSchemeContrast) private var contrast
+    /// The painted paper, tail and tab are the crafted skin's; the glass
+    /// skin draws the code-drawn bubble it drew before asset wave 0.
+    @Environment(\.pofuPaintedChrome) private var paintsChrome
 
     /// The painted tail's size; its flat top overlaps the paper's lip.
     static var paintedTail: CGSize { CGSize(width: 22, height: 17) }
@@ -197,11 +200,11 @@ public struct PofuPaperBubble<Content: View>: View {
                 Text(speaker)
                     .font(PofuFont.caption.weight(.bold))
                     .foregroundStyle(PofuKitPalette.day.ink)
-                    .padding(.leading, PofuSpacing.s + 4)
+                    .padding(.leading, paintsChrome ? PofuSpacing.s + 4 : PofuSpacing.s + 2)
                     .padding(.trailing, PofuSpacing.s + 2)
                     .padding(.vertical, PofuSpacing.xxs + 1)
                     .background {
-                        if resolver.isHighContrast {
+                        if resolver.isHighContrast || !paintsChrome {
                             Capsule(style: .continuous).fill(tint)
                         } else {
                             PofuKitFace(.tabRibbon) {
@@ -241,7 +244,7 @@ public struct PofuPaperBubble<Content: View>: View {
     private func face(_ palette: PofuKitPalette, tail: PofuPaperBubbleShape?) -> some View {
         let paper: PofuKitArt = palette.isNight ? .bubblePaperNight : .bubblePaper
         let tailArt: PofuKitArt = palette.isNight ? .bubbleTailNight : .bubbleTail
-        if paper.isPainted, tail == nil || tailArt.isPainted {
+        if paintsChrome, paper.isPainted, tail == nil || tailArt.isPainted {
             GeometryReader { proxy in
                 let paperHeight = proxy.size.height - (tail == nil ? 0 : PofuPaperBubbleShape.tailHeight)
                 ZStack(alignment: .topLeading) {

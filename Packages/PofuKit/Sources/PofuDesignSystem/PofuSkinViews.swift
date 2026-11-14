@@ -9,20 +9,6 @@ import SwiftUI
 
 // MARK: - Environment
 
-private struct PofuSkinKey: EnvironmentKey {
-    static let defaultValue: PofuSkin = .glass
-}
-
-extension EnvironmentValues {
-    /// The skin of the over-world chrome. Set once at the root from
-    /// `PofuSkinPolicy`; views never read the policy themselves. Reduce
-    /// Transparency overrides it where the faces are drawn.
-    public var pofuSkin: PofuSkin {
-        get { self[PofuSkinKey.self] }
-        set { self[PofuSkinKey.self] = newValue }
-    }
-}
-
 /// The crafted faces that have a painted master. One switch per asset: an
 /// asset stays a vector stand-in until the pipeline slices its master into
 /// the catalog and it is listed here.
@@ -228,16 +214,18 @@ struct PofuChromeSurface: ViewModifier {
     let role: PofuChromeRole
 
     @Environment(\.pofuSkin) private var skin
+    @Environment(\.pofuPaintedChrome) private var paintsChrome
     @Environment(\.accessibilityReduceTransparency) private var reduceTransparency
 
     @ViewBuilder
     func body(content: Content) -> some View {
-        if role == .iconButton, PofuKitArt.discClay.isPainted {
-            // One round button (asset system v1 section 2.3): the clay disc
-            // in either skin, never a glass circle.
+        if paintsChrome, role == .iconButton, PofuKitArt.discClay.isPainted {
+            // One round button (asset system v1 section 2.3): the painted
+            // clay disc in the crafted skin. The glass skin keeps its glass
+            // circle until the founder has compared the two.
             content.background { PofuClayDisc() }
-        } else if role == .glance, PofuKitArt.cardLinen.isPainted {
-            // The glance is a stat: the linen card, in either skin.
+        } else if paintsChrome, role == .glance, PofuKitArt.cardLinen.isPainted {
+            // The glance is a stat: the linen card, in the crafted skin.
             content.background { PofuPaperSurface(kind: .linen) }
         } else if PofuSkinPolicy.effective(skin, reduceTransparency: reduceTransparency) == .glass {
             switch role {

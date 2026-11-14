@@ -33,4 +33,18 @@ struct PofuSkinTests {
         #expect(PofuSkinPolicy.override(from: "wood") == nil)
         #expect(PofuSkinPolicy.override(from: nil) == nil)
     }
+
+    @Test func glassSkinKeepsEveryWaveZeroRoleOnItsGlassFace() {
+        let policy = PofuSkinPolicy()
+        for role in PofuPaintedRole.allCases {
+            #expect(PofuSkinPolicy.face(for: role, skin: policy.skin, reduceTransparency: false) == .glass, "\(role)")
+        }
+    }
+
+    @Test func craftedSkinAndReduceTransparencyPaintEveryWaveZeroRole() {
+        for role in PofuPaintedRole.allCases {
+            #expect(PofuSkinPolicy.face(for: role, skin: .crafted, reduceTransparency: false) == .painted, "\(role)")
+            #expect(PofuSkinPolicy.face(for: role, skin: .glass, reduceTransparency: true) == .painted, "\(role)")
+        }
+    }
 }
