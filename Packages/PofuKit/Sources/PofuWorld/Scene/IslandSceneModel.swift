@@ -178,6 +178,12 @@ public final class IslandSceneModel {
     @ObservationIgnored public var onVisitorEvent: (@MainActor (GameEvent.Kind) -> Void)?
     /// Today's visitor reached the lawn (the app plays the door knock).
     @ObservationIgnored public var onVisitorArrived: (@MainActor () -> Void)?
+    /// A hop the ears should hear: an idle hop on the painted Home (`quiet`
+    /// is the sound's level, 0...1) or a tapped resident's (1). The app maps
+    /// it to `SoundCue.pofuHop` and its settings; the sound engine rate-limits.
+    @ObservationIgnored public var onHop: (@MainActor (_ level: Double) -> Void)?
+    /// The last idle-hop slot that sounded, so each hop sounds once.
+    @ObservationIgnored private var lastHopSlot: Int?
     /// A quiet day's invitation sheet is up.
     public var isInviting = false
     /// Koke's bubble, swell and haptic (the first wonder island).
@@ -240,6 +246,15 @@ public final class IslandSceneModel {
     /// The island level the dressing is drawn at.
     var shownIslandLevel: Int {
         lastIslandLevel ?? 1
+    }
+
+    /// The scene saw this idle-hop slot (`nil` when none is going on): the
+    /// first sighting of a slot plays the hop's quiet sound.
+    func noteIdleHop(slot: Int?) {
+        guard let slot else { return }
+        guard slot != lastHopSlot else { return }
+        lastHopSlot = slot
+        onHop?(PlateHops.soundLevel)
     }
 
     /// `event` shows on `ids` now.
@@ -794,6 +809,7 @@ public final class IslandSceneModel {
             holdMoment(seconds: ResidentEvent.firstTapOfDay.seconds + 0.1)
         } else {
             react(.tapped, for: [id.rawValue])
+            onHop?(1)
         }
         let lines = WorldStrings.residentLines(id)
         let said = linesSaid[id, default: 0]

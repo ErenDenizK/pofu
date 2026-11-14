@@ -34,7 +34,7 @@ struct LaunchCurtain: View {
 
     var body: some View {
         if phase != .done {
-            TimelineView(.animation(minimumInterval: phase == .loading ? 1.0 / 30.0 : nil)) { context in
+            PofuTimeline(hz: phase == .loading ? PofuFrameRate.event : PofuFrameRate.direct, kind: .essential) { context in
                 let elapsed = context.date.timeIntervalSince(start)
                 let progress = revealProgress(at: context.date)
                 let kind = revealKind

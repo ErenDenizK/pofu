@@ -59,8 +59,8 @@ public final class SoundEngine {
         self.clock = clock
     }
 
-    public func play(_ cue: SoundCue) {
-        guard let decision = policy.decide(cue, at: clock()) else { return }
+    public func play(_ cue: SoundCue, level: Double = 1) {
+        guard let decision = policy.decide(cue, at: clock(), level: level) else { return }
         guard startIfNeeded(), let buffer = buffer(named: decision.assetName) else { return }
         let player = players[nextPlayer]
         nextPlayer = (nextPlayer + 1) % players.count

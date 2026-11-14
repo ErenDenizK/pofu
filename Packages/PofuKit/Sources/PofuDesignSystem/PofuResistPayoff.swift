@@ -179,7 +179,7 @@ public struct ResistPayoffOverlay: View {
     }
 
     public var body: some View {
-        TimelineView(.animation(paused: false)) { context in
+        PofuTimeline(hz: PofuFrameRate.event, kind: .essential) { context in
             let time = min(run.time(at: context.date), ResistPayoff.duration)
             GeometryReader { proxy in
                 let size = proxy.size

@@ -88,7 +88,7 @@ public struct IslandScene<Bubble: View>: View {
             // Direct, Moment, Ambient, Settled, Covered.
             let moment = home?.build != nil || home?.collect != nil
             let policy = model.directive(moment: moment)
-            TimelineView(.animation(minimumInterval: policy.timelineInterval, paused: !model.needsFrames && !moment)) { context in
+            PofuTimeline(hz: policy.hz > 0 ? policy.hz : PofuFrameRate.event, paused: !model.needsFrames && !moment, kind: .essential) { context in
                 let _ = model.revision
                 let rig = model.frame(
                     at: context.date,
@@ -417,6 +417,8 @@ struct LifeFrame {
     var isAmbient = false
     /// The residents' frames now, by id (empty at rest): `ResidentLife`.
     var residents: [String: ResidentLife.Step] = [:]
+    /// The painted Home's idle hop now (`PlateHops`), if one is going on.
+    var plateHop: PlateHops.Hop?
     /// The frame's time, quantised to the policy's rate; 0 in a still frame.
     var time = 0.0
     /// Dressing mid-puff, with the seconds since it began.
@@ -491,6 +493,22 @@ private struct SceneFrame<Bubble: View>: View {
             avoid: [IslandLayout.pofu],
             isAmbient: true
         )
+    }
+
+    /// The painted Home's idle hop: one resident at a time, only while the
+    /// Ambient state runs, Reduce Motion is off and no frame is pinned or
+    /// still. The first frame of each hop tells the app to play its sound.
+    private func plateHop(directive: FrameDirective) -> PlateHops.Hop? {
+        guard model.homePlate != nil, !world.isBedtime, residentPin == nil, build == nil,
+              PlateHops.runs(isAmbient: CritterMotion.moves(under: directive), reduceMotion: model.reduceMotion, isStill: still)
+        else { return nil }
+        let ids = IslandLayout.residents
+            .filter { resident in (world.stations.first { $0.id == resident.station }?.level ?? 0) > 0 }
+            .map(\.id.rawValue)
+        let elapsed = clock.timeIntervalSince(model.visitBegan ?? clock)
+        let hop = PlateHops.hop(day: ResidentLife.day(of: clock), elapsed: elapsed, ids: ids)
+        model.noteIdleHop(slot: hop?.slot)
+        return hop
     }
 
     static func isleGrade(_ isle: HomePlate?, at island: IslandID, mapSky: HomePlate?) -> WorldGrade {
@@ -666,6 +684,7 @@ private struct SceneFrame<Bubble: View>: View {
             arrival: model.arrivalElapsed(at: clock),
             isAmbient: !still && CritterMotion.moves(under: directive),
             residents: residentSteps(directive: directive),
+            plateHop: plateHop(directive: directive),
             time: still ? 0 : FramePolicy.ambientTime(time),
             leaving: model.dressingLeaving(at: clock)
         )
@@ -1248,6 +1267,7 @@ private struct WorldCanvas: View {
                 let reaction = model.reactions.age(of: resident.id.rawValue, at: clock).flatMap { ResidentLife.reaction(age: $0) }
                 let lift = (build.map { $0.moment.station == resident.station ? $0.moment.residentLift(at: $0.time) : 0 } ?? 0)
                     + (reaction?.hop ?? 0)
+                    + (life.plateHop?.id == resident.id.rawValue ? life.plateHop?.lift ?? 0 : 0)
                 let focused = model.focus == .resident(resident.id) || model.focus == .station(resident.station)
                 let pose = build.flatMap { $0.moment.station == resident.station ? $0.moment.residentPose(at: $0.time) : nil }
                     ?? resident.idlePose(isBedtime: world.isBedtime, isFocused: focused,
@@ -1830,7 +1850,7 @@ private struct FocusLife: ViewModifier {
 
     func body(content: Content) -> some View {
         let live = isActive && !reduceMotion && !still && !ProcessInfo.processInfo.isLowPowerModeEnabled
-        TimelineView(.animation(minimumInterval: 1.0 / 30.0, paused: !live)) { context in
+        PofuTimeline(hz: PofuFrameRate.idle, paused: !live) { context in
             let t = context.date.timeIntervalSinceReferenceDate
             let sway = live ? sin(t * 1.7) * 0.6 : 0
             let breath = live ? 1 + sin(t * 2.4 + 1) * 0.006 : 1

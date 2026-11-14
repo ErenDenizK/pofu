@@ -57,7 +57,7 @@ public struct CompanionView: View {
     public var body: some View {
         Group {
             if let art {
-                TimelineView(.animation(minimumInterval: 1.0 / 30.0)) { context in
+                PofuTimeline(hz: PofuFrameRate.idle, kind: .essential) { context in
                     CompanionStage(
                         art: art,
                         mood: mood,

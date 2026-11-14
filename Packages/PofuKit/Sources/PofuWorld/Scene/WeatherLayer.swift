@@ -201,7 +201,7 @@ struct WeatherRain: View {
         let tile = Image(uiImage: WeatherArt.rainTile())
         let projection = WeatherProjection(pose: pose, offset: offset, size: size)
         let reflection = horizon.mixed(with: PofuRGB(red: 1, green: 1, blue: 1), amount: 0.35)
-        TimelineView(.animation(minimumInterval: 1.0 / 30.0, paused: isPaused)) { context in
+        PofuTimeline(hz: PofuFrameRate.event, paused: isPaused) { context in
             let time = still ? 0 : FramePolicy.ambientTime(context.date.timeIntervalSinceReferenceDate)
             Canvas { gc, canvas in
                 if wet, groundMarks {
@@ -364,7 +364,7 @@ struct ScreenHazeLayer: View {
     var body: some View {
         let lilac = ScreenHaze.colour.color
         let screen = Double(size.width)
-        TimelineView(.animation(minimumInterval: 1.0 / 30.0, paused: isPaused)) { context in
+        PofuTimeline(hz: PofuFrameRate.event, paused: isPaused) { context in
             let time = still ? 0 : FramePolicy.ambientTime(context.date.timeIntervalSinceReferenceDate)
             let parting = clearing?.parting(at: context.date) ?? 0
             let amount = ScreenHaze.parted(haze, parting: parting)

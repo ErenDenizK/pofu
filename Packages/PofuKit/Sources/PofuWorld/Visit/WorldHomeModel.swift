@@ -70,6 +70,9 @@ public final class WorldHomeModel {
     public private(set) var celebrations = 0
 
     // Haptic triggers (interaction spec §6.1). Each counts its events.
+    /// A sound the moments call for (the app plays it, under its settings).
+    public enum Sound: Sendable { case gulp, hop }
+    @ObservationIgnored public var onSound: (@MainActor (Sound) -> Void)?
     public private(set) var collectTaps = 0
     public private(set) var collectTicks = 0
     public private(set) var collectSuccesses = 0
@@ -374,6 +377,7 @@ public final class WorldHomeModel {
             collectTicks += 1
         case .success:
             collectSuccesses += 1
+            onSound?(.gulp)
         case .end:
             collect = nil
             pawsPressed = false
@@ -394,6 +398,9 @@ public final class WorldHomeModel {
             buildSwaps += 1
         case .pofuHop:
             celebrations += 1
+            onSound?(.hop)
+        case .residentHop:
+            onSound?(.hop)
         case .settle:
             if moment.isFinalLevel {
                 finalBuilds += 1
@@ -405,7 +412,7 @@ public final class WorldHomeModel {
             camera?.endBuildFraming(moment.station)
         case .end:
             build = nil
-        case .anticipation, .sparkles, .tag, .residentHop:
+        case .anticipation, .sparkles, .tag:
             break
         }
     }
