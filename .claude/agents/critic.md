@@ -20,7 +20,8 @@ reasons and do not fix anything.
 
 **Frames and video**
 
-4. Look at 1:1 crops, at most 1000 pixels on the long side. A whole frame
+4. Fetch frames with `tools/review/fetch_frames.sh <sha> '<glob>' <dir>`,
+   never `git fetch` a screenshots ref into the repo. Look at 1:1 crops, at most 1000 pixels on the long side. A whole frame
    reaches you shrunk and hides thin defects. For a video, take frames at
    the start, the middle and the end.
 5. Hold each frame against the reference. Would the founder call this
