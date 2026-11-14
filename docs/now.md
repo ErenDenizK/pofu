@@ -23,10 +23,9 @@ Large job now: the asset system (#445), Wave 0 first.
 
 ## In flight
 
-**Priority (founder-input 24):** main phone-ready within hours. Main CI
-was cancelled 4 runs (detect job timeout): #455. Builders: glass skin on
-Home chrome, hide dev UI (`fix/phone-ready-hide-dev`), flow board and
-station clip, bell warm. Audit crops: scratchpad/phone-audit.
+**Phone build (founder-input 24):** all merged (#450 bell gold, #454
+glass skin, #455 CI detect, #456 dev UI hidden, #457 flow and station);
+main CI on 7f4e99c0 running; then tell the founder what to try.
 Paused: Wave 0 app-layer glass to painted (#453 draft: commits 1, 4, 6
 reusable) until the founder compares glass and painted side by side.
 Next: the comparison frames; Fable UI grammar (brief shown, waits).
