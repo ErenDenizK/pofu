@@ -75,13 +75,20 @@ struct VisitorScheduleTests {
             weekdaysSeen[visit.resident, default: []].insert(weekday)
         }
         let share = Double(own) / Double(total)
-        // 6 : 1 against six others is about one in two; unweighted it
-        // would be one in seven.
+        // 6 : 1 against five others is about 0.55; unweighted it
+        // would be one in six.
         #expect(share > 0.40 && share < 0.60, "own-day share \(share)")
         // Any healed island's resident may come on any day.
         for profile in schedule.roster {
             #expect(weekdaysSeen[profile.resident]?.count == 7, "\(profile.resident) skipped a weekday")
         }
+    }
+
+    @Test func theRosterHoldsOnlyPaintedVisitors() {
+        // The keeper of Arı has no painted sprite yet (pofu-art #30).
+        let residents = VisitorSchedule.standardRoster.map(\.resident)
+        #expect(!residents.contains(.keeper))
+        #expect(residents == [.sumi, .damla, .boncuk, .yosun, .tuli, .nane])
     }
 
     @Test func heartsNudgeTheWeightGently() {
