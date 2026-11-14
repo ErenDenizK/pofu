@@ -121,7 +121,9 @@ public struct SoundPolicy: Sendable {
         self.volumes = volumes
     }
 
-    public mutating func decide(_ cue: SoundCue, at now: TimeInterval) -> PlaybackDecision? {
+    /// - Parameter level: a further gain multiplier (0...1) for a cue played
+    ///   quieter than its tuned volume, such as an idle hop.
+    public mutating func decide(_ cue: SoundCue, at now: TimeInterval, level: Double = 1) -> PlaybackDecision? {
         guard !settings.isMuted, volumes.master > 0 else { return nil }
         let group: Double
         switch cue.group {
@@ -130,7 +132,7 @@ public struct SoundPolicy: Sendable {
         case .pofu: group = volumes.pofu
         }
         guard group > 0, let run = limiter.admit(cue, at: now) else { return nil }
-        let gain = min(max(volumes.master * group * run, 0), 1)
+        let gain = min(max(volumes.master * group * run * min(max(level, 0), 1), 0), 1)
         return PlaybackDecision(assetName: cue.assetName, gain: Float(gain))
     }
 }
