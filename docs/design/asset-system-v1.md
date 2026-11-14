@@ -200,12 +200,13 @@ Rows 4 and 5:
 
 ![Flow board](assets/asset-system-v1/flow-board.jpg)
 
-**Weak, and not a painting problem.** The round-door layers are stored at
+**Weak, and not a painting problem.** The promoted round-door layers are
 512 x 768 (batch 58 delivered at half scale to fit the upload cap). On a
-1206 x 2622 screen that is a threefold enlargement. Before the Door is
-built, its layers must be re-delivered at full size from the retained takes;
-no new generation is needed if the originals are kept (a scout checks,
-section 7).
+1206 x 2622 screen that is a threefold enlargement. The takes are retained
+at 1024 x 1536 as WebP q90 in `pofu-art`
+(`design/art/takes/gate-door-repost-2026-11-06/`), so the Door's layers can
+be re-delivered at full size without generating; the Door pilot already
+edits the full-size take.
 
 **Not ranked, on purpose.** Earn sheet icons: the inventory found no way to
 reach the Earn sheet from `WorldHome`. The old Home chrome: flag off. The
@@ -300,7 +301,10 @@ again.
 **First of their kind (written, in `pofu-art` on `chore/asset-system-pilots`):**
 `batch-88-duo-icons-pilot`, `batch-89-emoji-pilot`,
 `batch-90-flow-stone-pilot`, `batch-91-door-pilot`,
-`batch-92-widget-pilot`. Queue rows sit after the return queue, READY.
+`batch-92-widget-pilot`: 10 jobs. Queue rows 0-a1 to 0-a5 sit after the
+return queue, READY, in the order icons, flow stone, emoji, the Door, widget.
+Each passes the pipeline's `plan`; the lead ports them to this repository's
+`tools/imagegen/manifest/` when it next syncs.
 
 **Routine, for the lead's builders to write after the pilots are picked:**
 
@@ -353,8 +357,8 @@ Everything else in this document is the lead's to accept, change or drop.
 2. Whether the code growth pieces (`GrowthArt`), the dandelion visitor, the
    help item, and the frog and ladybug stand-ins still draw on the plate
    Home, or are dead since ADR-0022. If dead, wave 4 is empty.
-3. Whether batch 58's five door layers are retained at 1024 x 1536, and
-   where.
+3. Whether lossless originals of batch 58's door layers survive anywhere
+   (the retained 1024 x 1536 takes are WebP q90).
 4. Why the live Pofu in the Today sheet (`path-sheet-today`, lower left)
    looks duller than the base master: a grade, a scale, or the frame.
 5. Whether the Hop chip and the passes rows hold an application token (so
