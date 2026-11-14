@@ -376,7 +376,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bak hele: gece yeni bir ada yanaştı!"
+            "value": "İnanılmaz! Gece yeni bir ada yanaşmış."
           }
         }
       }
@@ -386,7 +386,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bak hele: ada gece büyüdü!"
+            "value": "Vay canına! Biz uyurken ada büyümüş."
           }
         }
       }
@@ -1828,7 +1828,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ada uyudu. Sabaha çekirdekler birikir."
+            "value": "Ada uyuyor. Sabaha kadar çekirdeklerin birikir."
           }
         }
       }
@@ -1838,7 +1838,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Komşular ışığı söndürdü. Kahvaltıda görüşürüz."
+            "value": "Işıklar söndü, yatma vakti. Kahvaltıda görüşürüz."
           }
         }
       }
@@ -1878,7 +1878,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Günaydın. Çay demleniyor, ada uyandı."
+            "value": "Günaydın. Çay demledim, içer misin?"
           }
         }
       }
@@ -1888,7 +1888,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bir çekirdek gömdüm. Yerini unuttum. Klasik hamster."
+            "value": "Bir çekirdek gömdüm. Yerini unuttum. İlahi ben."
           }
         }
       }
@@ -1908,17 +1908,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bugün iki kez esnedim. Çok verimliyim."
-          }
-        }
-      }
-    },
-    "Evening. The island went orange. No filter.": {
-      "localizations": {
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Akşam oldu. Ada turuncu. Filtresiz."
+            "value": "Bugün iki kez esnedim. Çok verimliyim. Aferin bana."
           }
         }
       }
@@ -1928,7 +1918,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Akşam çayı benden. Sen otur."
+            "value": "Akşam çayı benden. Sen otur, keyfine bak."
           }
         }
       }
@@ -2078,7 +2068,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Deniz fenerimiz var artık. Deniz yok. Olsun, bulut var."
+            "value": "Deniz fenerimiz var artık. Deniz yok ama bulut var. Adı bulut feneri olsun o zaman."
           }
         }
       }
@@ -2098,7 +2088,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Yel değirmeni kurduk. O dönsün. Ben çarkı bıraktım."
+            "value": "Yel değirmeni kurduk. Artık benim yerime o dönüyor. İşsiz kaldım."
           }
         }
       }

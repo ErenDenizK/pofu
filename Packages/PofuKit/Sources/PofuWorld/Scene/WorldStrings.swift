@@ -339,7 +339,6 @@ enum WorldStrings {
         case .morning: String(localized: "Buried a seed. Forgot where. Classic hamster.", bundle: .module)
         case .midday(variant: 0): String(localized: "The sunflowers watch the sun. I watch you.", bundle: .module)
         case .midday: String(localized: "Yawned twice today. Very productive.", bundle: .module)
-        case .evening(variant: 0): String(localized: "Evening. The island went orange. No filter.", bundle: .module)
         case .evening: String(localized: "Evening tea's on me. You sit.", bundle: .module)
         }
     }
