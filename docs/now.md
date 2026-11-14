@@ -8,9 +8,9 @@ history: [tracker.md](tracker.md). What changed for the player:
 
 **Goal:** a whole, polished build the founder judges as a user when he
 chooses to (Rehearsal days 1-21); no dates or cut line (founder 11-14).
-Next large job: the asset system (inventory, then Fable's plan).
+Large job now: the asset system (#445), Wave 0 first.
 
-**Updated:** 2026-11-14 (morning).
+**Updated:** 2026-11-14 (afternoon).
 **Founder last played on his phone:** 2026-11-05 (device check steps sent).
 **Founder log read up to:** 2026-11-12 (late night).
 **Route:** [route-2026-11-14-day](research/route-2026-11-14-day.md)
@@ -19,8 +19,7 @@ Next large job: the asset system (inventory, then Fable's plan).
 ## Decided this session
 
 - One painted world on days 1 to 21; rain streaks drawn in code.
-- While Codex is down: art edits are scripts with the take untouched; the
-  Look truth is the player-path frames (studio.md, founder approved).
+- Look truth is the player-path frames (studio.md, founder approved).
 
 ## In flight
 
