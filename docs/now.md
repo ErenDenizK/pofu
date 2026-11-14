@@ -28,8 +28,9 @@ Next large job: the asset system (inventory, then Fable's plan).
    on "çalış"; each delivery: art-reviewer picks, founder approves,
    Sonnet ingests. No new visitor can arrive by d21 except Sumi (d11+).
 2. Game: the day-21 bell seen as well as heard (Sonnet, `feat/bell-seen`).
-3. Asset system: inventory #443 (245 rows); Fable's plan running
-   (`design/asset-system` + pilots in pofu-art), brief approved.
+3. Asset system: #445 (plan) and pofu-art #34 (5 pilots) merged. Wave 0
+   ships what is already painted: Home chrome first (Opus,
+   `feat/asset-wave0-home`); then Station sheet, cards, flow board.
 Known and kept: the flow minigame's vector board (no art in hand).
 Merged: #403-#441 but #414, #436 (only Damla and Gezgin visit; Sumi waits
 for batch 83); pofu-art #13-#14, #18, #22-#27, #29, #30.
