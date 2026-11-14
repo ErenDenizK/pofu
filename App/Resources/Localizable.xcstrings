@@ -2862,6 +2862,22 @@
         }
       }
     },
+    "Next day" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next day"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sonraki gün"
+          }
+        }
+      }
+    },
     "Each skip is a small win." : {
       "localizations" : {
         "tr" : {

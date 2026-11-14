@@ -11,9 +11,9 @@ struct RehearsalPanel: View {
     let rehearsal: RehearsalStage
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
-    /// Where the user left the panel, from its resting place.
-    @AppStorage("rehearsal.panel.bottom.x") private var restingX: Double = 0
-    @AppStorage("rehearsal.panel.bottom.y") private var restingY: Double = 0
+    /// Where the user left the panel, from its resting place (top leading).
+    @AppStorage("rehearsal.panel.top.x") private var restingX: Double = 0
+    @AppStorage("rehearsal.panel.top.y") private var restingY: Double = 0
     /// "glass" or "crafted"; empty follows the default skin.
     @AppStorage("PofuSkin") private var skinOverride = ""
     /// The frame meter over the world, to see stutter on the phone.
@@ -26,9 +26,12 @@ struct RehearsalPanel: View {
         GeometryReader { proxy in
             content
                 .offset(clamped(in: proxy.size))
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
-                .padding(.bottom, PofuSpacing.s)
-                .padding(.leading, PofuSpacing.s)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                // Rests top leading, on the gear's line (Home's top band pads
+                // `PofuSpacing.s` under the status bar, `PofuSpacing.screen` in).
+                // Home's top band holds only the gear, at the trailing edge.
+                .padding(.top, PofuSpacing.s)
+                .padding(.leading, PofuSpacing.screen)
         }
         .animation(PofuMotion.respecting(reduceMotion, PofuMotion.snappy), value: rehearsal.isPanelExpanded)
         .confirmationDialog(Text("Reset the rehearsal?"), isPresented: $confirmsReset, titleVisibility: .visible) {
@@ -45,7 +48,7 @@ struct RehearsalPanel: View {
             expanded
                 .frame(width: 228)
                 .glassEffect(.regular, in: RoundedRectangle(cornerRadius: 22, style: .continuous))
-                .transition(.opacity.combined(with: .scale(scale: 0.9, anchor: .bottomLeading)))
+                .transition(.opacity.combined(with: .scale(scale: 0.9, anchor: .topLeading)))
         } else {
             collapsed
                 .glassEffect(.regular.interactive(), in: Capsule(style: .continuous))
@@ -102,7 +105,7 @@ struct RehearsalPanel: View {
             nightOrMorning
             // The day skip (vertical slice): straight to the next morning, whatever the hour, to see
             // days 1 to 3 unfold in minutes.
-            control(Text(verbatim: "Next day"), symbol: "forward.end.fill") {
+            control(Text("Next day"), symbol: "forward.end.fill") {
                 model.rehearsalJump(.nextDay)
             }
             Divider()
@@ -114,19 +117,21 @@ struct RehearsalPanel: View {
                 Text("Skin")
             }
             .pickerStyle(.segmented)
-            Toggle(isOn: $frameMeter) {
-                Label {
-                    Text("Frame meter")
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.8)
-                } icon: {
-                    Image(systemName: "gauge.with.dots.needle.33percent")
-                        .frame(width: 22)
+            if DeveloperFlag.isOn {
+                Toggle(isOn: $frameMeter) {
+                    Label {
+                        Text("Frame meter")
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.8)
+                    } icon: {
+                        Image(systemName: "gauge.with.dots.needle.33percent")
+                            .frame(width: 22)
+                    }
+                    .font(PofuFont.subheadline)
                 }
-                .font(PofuFont.subheadline)
+                .frame(minHeight: 36)
+                .foregroundStyle(PofuColor.textPrimary)
             }
-            .frame(minHeight: 36)
-            .foregroundStyle(PofuColor.textPrimary)
             Divider()
             // Rounds are earned (two a day, one per resisted reach) and
             // credited to the pouch: the same ledger the product will use.
@@ -138,9 +143,11 @@ struct RehearsalPanel: View {
             .disabled(rounds == 0)
             Divider()
             #if DEBUG
-            // tuning lab: the live tuning panel (debug builds only).
-            control(Text(verbatim: "Ayar"), symbol: "slider.horizontal.3") {
-                TuningLab.session.isOpen = true
+            // tuning lab: the live tuning panel (debug builds with the developer flag).
+            if DeveloperFlag.isOn {
+                control(Text(verbatim: "Ayar"), symbol: "slider.horizontal.3") {
+                    TuningLab.session.isOpen = true
+                }
             }
             #endif
             control(Text("Reset"), symbol: "arrow.counterclockwise", role: .destructive) {
@@ -249,14 +256,14 @@ struct RehearsalPanel: View {
             }
     }
 
-    /// The offset from the bottom-leading corner (above the safe area),
-    /// kept on screen and below the top bar: dragging up is negative.
+    /// The offset from the top-leading corner (under the status bar), kept
+    /// on screen: dragging down is positive.
     private func clamped(in size: CGSize) -> CGSize {
         let width: CGFloat = rehearsal.isPanelExpanded ? 228 : 120
         let wantedX = CGFloat(restingX) + drag.width
         let wantedY = CGFloat(restingY) + drag.height
         let x = max(0, min(size.width - width - PofuSpacing.l, wantedX))
-        let y = min(0, max(-max(0, size.height - 440), wantedY))
+        let y = max(0, min(max(0, size.height - 440), wantedY))
         return CGSize(width: x, height: y)
     }
 }

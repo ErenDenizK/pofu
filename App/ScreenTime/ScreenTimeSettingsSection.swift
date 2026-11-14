@@ -65,10 +65,12 @@ struct ScreenTimeSettingsSection: View {
                     }
                 }
                 notificationRow
-                NavigationLink {
-                    DeveloperReadout(model: model)
-                } label: {
-                    Label("Readout", systemImage: "list.number")
+                if DeveloperFlag.isOn {
+                    NavigationLink {
+                        DeveloperReadout(model: model)
+                    } label: {
+                        Label("Readout", systemImage: "list.number")
+                    }
                 }
             } else {
                 AllowScreenTimeRow(model: model)
