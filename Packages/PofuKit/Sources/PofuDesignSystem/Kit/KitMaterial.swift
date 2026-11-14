@@ -12,27 +12,6 @@ import UIKit
 // package resources, the same view draws the painted 3-slice or 9-slice
 // instead, with no API change.
 
-/// The one asset-name hook per material. A file named `<rawValue>.png`
-/// (3x pixels) in the package resources replaces the code-drawn face.
-public enum PofuKitArt: String, CaseIterable, Sendable {
-    case plaqueHoney = "ui-plaque-honey"
-    case plaqueHoneyPressed = "ui-plaque-honey-pressed"
-    case plaqueBare = "ui-plaque-bare"
-    case plaqueCream = "ui-plaque-cream"
-    case plaqueCreamPressed = "ui-plaque-cream-pressed"
-    case sheetPaper = "ui-sheet-paper-v3"
-    case sheetPaperNight = "ui-sheet-paper-v3-night"
-    case cardStitched = "ui-card-stitched"
-    case cardLinen = "ui-card-linen"
-    case bubblePaper = "ui-bubble-paper"
-    case chipFelt = "ui-chip-felt"
-    case chipFeltSelected = "ui-chip-felt-selected"
-    case toastStrip = "ui-toast-strip"
-    case grooveWood = "ui-groove-wood"
-    /// The wax seal of a resisted reach (batch-61 `seals-and-stamps`).
-    case sealResist = "seal-resist"
-}
-
 /// The kit's palette, day and night. Warm only: no grey, no system tint.
 public struct PofuKitPalette: Sendable {
     public var ink: Color
@@ -180,6 +159,62 @@ extension PofuKitArt {
         Self.cache.setObject(image, forKey: key)
         return image
     }
+
+    /// The face to draw: this one, or its stand-in while it is unpainted.
+    @MainActor
+    var painted: (art: PofuKitArt, image: UIImage)? {
+        if let image { return (self, image) }
+        if let standIn, let image = standIn.image { return (standIn, image) }
+        return nil
+    }
+
+    /// Whether a painted face (its own or its stand-in) is in the bundle.
+    @MainActor
+    public var isPainted: Bool { painted != nil }
+}
+
+/// A painted face stretched by its slicing.
+struct PofuKitSlices: View {
+    let image: UIImage
+    let slicing: PofuKitSlicing
+
+    var body: some View {
+        switch slicing {
+        case let .nine(top, leading, bottom, trailing):
+            Image(uiImage: image)
+                .resizable(
+                    capInsets: EdgeInsets(top: CGFloat(top), leading: CGFloat(leading), bottom: CGFloat(bottom), trailing: CGFloat(trailing)),
+                    resizingMode: .stretch
+                )
+        case let .ends(leading, trailing):
+            GeometryReader { proxy in
+                let height = max(proxy.size.height, 1)
+                if let cg = image.cgImage {
+                    // Drawn at the frame's height, so the ends keep their shape
+                    // and only the flat middle stretches. A frame narrower than
+                    // both ends shares it between them.
+                    let ends = CGFloat(leading + trailing) * height
+                    let fit: CGFloat = ends > proxy.size.width ? proxy.size.width / ends : 1
+                    Image(uiImage: UIImage(cgImage: cg, scale: CGFloat(cg.height) / height, orientation: .up))
+                        .resizable(
+                            capInsets: EdgeInsets(top: 0, leading: CGFloat(leading) * height * fit, bottom: 0, trailing: CGFloat(trailing) * height * fit),
+                            resizingMode: .stretch
+                        )
+                }
+            }
+        case .whole:
+            Image(uiImage: image).resizable()
+        case .halfHeight:
+            let half = image.size.height / 2
+            Image(uiImage: image)
+                .resizable(capInsets: EdgeInsets(top: half, leading: half, bottom: half, trailing: half), resizingMode: .stretch)
+        }
+    }
+}
+#else
+extension PofuKitArt {
+    /// No painted faces without UIKit.
+    public var isPainted: Bool { false }
 }
 #endif
 
@@ -201,8 +236,9 @@ struct PofuGrainOverlay: View {
     }
 }
 
-/// A painted face: the batch-61 image as a nine-slice when it exists, the
-/// code-drawn `fallback` otherwise.
+/// A painted face: the baked image, sliced by its `PofuKitArt.slicing`
+/// (or by explicit `caps`), when it exists; the code-drawn `fallback`
+/// otherwise.
 struct PofuKitFace<Fallback: View>: View {
     let art: PofuKitArt
     let caps: EdgeInsets?
@@ -216,12 +252,12 @@ struct PofuKitFace<Fallback: View>: View {
 
     var body: some View {
         #if canImport(UIKit)
-        if let image = art.image {
-            let cap = caps ?? EdgeInsets(
-                top: image.size.height / 2, leading: image.size.height / 2,
-                bottom: image.size.height / 2, trailing: image.size.height / 2
-            )
-            Image(uiImage: image).resizable(capInsets: cap, resizingMode: .stretch)
+        if let painted = art.painted {
+            if let caps {
+                Image(uiImage: painted.image).resizable(capInsets: caps, resizingMode: .stretch)
+            } else {
+                PofuKitSlices(image: painted.image, slicing: painted.art.slicing)
+            }
         } else {
             fallback
         }

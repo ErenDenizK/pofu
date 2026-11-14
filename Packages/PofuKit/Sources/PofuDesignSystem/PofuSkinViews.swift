@@ -232,7 +232,14 @@ struct PofuChromeSurface: ViewModifier {
 
     @ViewBuilder
     func body(content: Content) -> some View {
-        if PofuSkinPolicy.effective(skin, reduceTransparency: reduceTransparency) == .glass {
+        if role == .iconButton, PofuKitArt.discClay.isPainted {
+            // One round button (asset system v1 section 2.3): the clay disc
+            // in either skin, never a glass circle.
+            content.background { PofuClayDisc() }
+        } else if role == .glance, PofuKitArt.cardLinen.isPainted {
+            // The glance is a stat: the linen card, in either skin.
+            content.background { PofuPaperSurface(kind: .linen) }
+        } else if PofuSkinPolicy.effective(skin, reduceTransparency: reduceTransparency) == .glass {
             switch role {
             case .iconButton:
                 content.glassEffect(.regular.interactive(), in: Circle())
@@ -271,6 +278,37 @@ struct PofuChromeSurface: ViewModifier {
             case .primaryAction, .secondaryAction:
                 content
             }
+        }
+    }
+}
+
+/// The one round button's face: the painted clay disc, day or night
+/// (`pofuNight`), under a duo glyph. Increase Contrast gets a flat disc
+/// with a solid edge; without the painted disc, the code-drawn clay.
+public struct PofuClayDisc: View {
+    @Environment(\.pofuNight) private var night
+    @Environment(\.colorScheme) private var scheme
+    @Environment(\.colorSchemeContrast) private var contrast
+
+    public init() {}
+
+    public var body: some View {
+        let resolver = PofuKitStyleResolver(night: night, scheme: scheme, contrast: contrast)
+        let palette = resolver.palette
+        if resolver.isHighContrast {
+            Circle()
+                .fill(palette.cream)
+                .overlay { Circle().strokeBorder(palette.onPaper, lineWidth: 2) }
+        } else {
+            PofuKitFace(resolver.isNight ? .discClayNight : .discClay) {
+                PofuClayFace(
+                    shape: Circle(),
+                    top: PofuCraftedPalette.clayTop,
+                    bottom: PofuCraftedPalette.clayBottom,
+                    lip: PofuCraftedPalette.clayLip
+                )
+            }
+            .shadow(color: palette.edge.opacity(palette.isNight ? 0.45 : 0.16), radius: 5, y: 3)
         }
     }
 }
