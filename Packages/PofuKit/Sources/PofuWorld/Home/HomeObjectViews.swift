@@ -270,22 +270,37 @@ struct CollectAction: View {
     let seeds: Int
     let action: @MainActor () -> Void
 
+    /// The plaque's width below the accessibility sizes: the verb, not a bar.
+    static let width: CGFloat = 250
+
+    @Environment(\.dynamicTypeSize) private var typeSize
+
     var body: some View {
         Button(action: action) {
             HStack(spacing: PofuSpacing.s) {
-                SeedGlyph()
-                    .frame(width: 10, height: 16)
-                    .rotationEffect(.degrees(18))
+                seed
                     .accessibilityHidden(true)
                 Text(verbatim: WorldStrings.collectAction(seeds))
                     .font(PofuFont.headline.monospacedDigit())
             }
-            .foregroundStyle(PofuKitPalette.day.ink)
             .frame(minHeight: PofuSize.minimumTouch)
-            .padding(.horizontal, PofuSpacing.xs)
         }
-        .pofuActionStyle(.primary)
+        // The one verb: the honey plaque with the painted seed. The home's
+        // own collect haptics play, so the plaque plays none.
+        .buttonStyle(PofuPlaqueStyle(.primary, haptic: nil))
+        .frame(maxWidth: typeSize.isAccessibilitySize ? .infinity : Self.width)
         .accessibilityLabel(Text(verbatim: WorldStrings.collectLabel(seeds)))
+    }
+
+    @ViewBuilder
+    private var seed: some View {
+        if PofuPaint.iconSeed.isAvailable {
+            PofuPaintedIcon(.iconSeed, size: 22)
+        } else {
+            SeedGlyph()
+                .frame(width: 10, height: 16)
+                .rotationEffect(.degrees(18))
+        }
     }
 }
 

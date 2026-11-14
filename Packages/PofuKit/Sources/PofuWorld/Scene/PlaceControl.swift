@@ -4,7 +4,7 @@ import PofuCore
 import PofuDesignSystem
 import SwiftUI
 
-/// The one control (experience v1 §1.2): a 52 pt glass circle, bottom
+/// The one control (experience v1 §1.2): a 52 pt clay disc, bottom
 /// trailing, at the same spot in every framing. Its glyph shows where a tap
 /// goes next (an island outline at Close, waves at the Island, Pofu's face
 /// on the Archipelago) and morphs as a pinch crosses halfway. A tap goes
@@ -19,6 +19,7 @@ struct PlaceControl: View {
     static let size: CGFloat = 52
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.pofuNight) private var night
     @State private var identity = UUID()
 
     var body: some View {
@@ -49,9 +50,9 @@ struct PlaceControl: View {
                 PlaceGlyphView(glyph: .pofu).opacity(glyph == .pofu ? 1 : 0)
             }
             .animation(reduceMotion ? nil : .easeInOut(duration: 0.25), value: glyph)
-            .foregroundStyle(PofuColor.textPrimary)
+            .foregroundStyle(PofuKitArt.discClay.isPainted ? (night == true ? PofuKitPalette.night : PofuKitPalette.day).onPaper : PofuColor.textPrimary)
             .frame(width: Self.size, height: Self.size)
-            .glassEffect(.regular.interactive(), in: Circle())
+            .modifier(PlaceControlFace())
             .contentShape(Circle())
         } primaryAction: {
             model.placeControlTapped()
@@ -65,6 +66,19 @@ struct PlaceControl: View {
             model.reportPlaceControl(id: identity, frame: frame)
         }
         .onDisappear { model.reportPlaceControl(id: identity, frame: nil) }
+    }
+}
+
+/// The control's face: the one round button, a clay disc (asset system v1
+/// section 2.3); glass only while the disc is unpainted.
+private struct PlaceControlFace: ViewModifier {
+    @ViewBuilder
+    func body(content: Content) -> some View {
+        if PofuKitArt.discClay.isPainted {
+            content.background { PofuClayDisc() }
+        } else {
+            content.glassEffect(.regular.interactive(), in: Circle())
+        }
     }
 }
 
