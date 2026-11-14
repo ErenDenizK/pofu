@@ -18,6 +18,9 @@ public enum PofuFrameRate {
     public static let event = 30.0
     /// A gesture or a camera move the finger drives.
     public static let direct = 60.0
+    /// The Direct tier under a finger (a pinch, a drag, the camera spring it
+    /// started): the only rate above `direct`, and only `FramePolicy` asks.
+    public static let touch = 120.0
 }
 
 /// Whether and how fast a timeline runs. Pure, so tests pin it.
@@ -37,9 +40,10 @@ public enum PofuFrameRule {
         }
     }
 
-    /// The `TimelineView` interval for a rate: never above `PofuFrameRate.direct`.
-    public static func interval(hz: Double) -> Double {
-        1 / min(max(hz, 1), PofuFrameRate.direct)
+    /// The `TimelineView` interval for a rate: never above `PofuFrameRate.direct`,
+    /// unless the timeline is `underFinger`, where `PofuFrameRate.touch` is the cap.
+    public static func interval(hz: Double, underFinger: Bool = false) -> Double {
+        1 / min(max(hz, 1), underFinger ? PofuFrameRate.touch : PofuFrameRate.direct)
     }
 }
 
@@ -49,6 +53,7 @@ import SwiftUI
 /// A continuous timeline at a chosen rate that pauses by `PofuFrameRule`.
 public struct PofuTimeline<Content: View>: View {
     private let hz: Double
+    private let underFinger: Bool
     private let paused: Bool
     private let kind: PofuFrameRule.Kind
     private let content: (TimelineViewDefaultContext) -> Content
@@ -58,11 +63,13 @@ public struct PofuTimeline<Content: View>: View {
 
     public init(
         hz: Double,
+        underFinger: Bool = false,
         paused: Bool = false,
         kind: PofuFrameRule.Kind = .ambient,
         @ViewBuilder content: @escaping (TimelineViewDefaultContext) -> Content
     ) {
         self.hz = hz
+        self.underFinger = underFinger
         self.paused = paused
         self.kind = kind
         self.content = content
@@ -76,7 +83,7 @@ public struct PofuTimeline<Content: View>: View {
             reduceMotion: reduceMotion,
             lowPower: ProcessInfo.processInfo.isLowPowerModeEnabled
         )
-        TimelineView(.animation(minimumInterval: PofuFrameRule.interval(hz: hz), paused: stopped), content: content)
+        TimelineView(.animation(minimumInterval: PofuFrameRule.interval(hz: hz, underFinger: underFinger), paused: stopped), content: content)
     }
 }
 #endif

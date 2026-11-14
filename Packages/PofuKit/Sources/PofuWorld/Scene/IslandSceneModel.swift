@@ -133,15 +133,48 @@ public final class IslandSceneModel {
     /// The frame-rate policy's inputs: Low Power Mode, the held thermal
     /// state and Reduce Motion (experience v1 §4).
     public let power = WorldPower()
+    /// Holds the Direct tier (up to 120 Hz) under a finger and while its spring settles.
+    @ObservationIgnored private var touchLease = TouchLease()
+    @ObservationIgnored private var touchTierTask: Task<Void, Never>?
+    /// The Direct tier is held (read by the timeline, so it re-renders when
+    /// it flips). Set only from gestures and the settle timer, never from a
+    /// frame, so no view update writes it.
+    private(set) var isTouchTier = false
+
+    private func isFingerDown(at date: Date) -> Bool {
+        engine.rig.isFingerDown || engine.thumb.isZooming || isBrushing(at: date)
+    }
+
+    /// Feeds the lease; while it holds, looks again every 0.1 s so the tier
+    /// drops within about half a second of the finger lifting.
+    private func refreshTouchTier() {
+        let now = Date()
+        let held = touchLease.observe(
+            fingerDown: isFingerDown(at: now), springMoving: engine.rig.isMoving,
+            at: now.timeIntervalSinceReferenceDate
+        )
+        if held != isTouchTier { isTouchTier = held }
+        guard held, touchTierTask == nil else { return }
+        touchTierTask = Task { @MainActor [weak self] in
+            while !Task.isCancelled {
+                try? await Task.sleep(for: .milliseconds(100))
+                guard let self else { return }
+                self.refreshTouchTier()
+                if !self.isTouchTier { break }
+            }
+            self?.touchTierTask = nil
+        }
+    }
 
     /// What the world is asking for now, as the policy's demand. Direct is
     /// a finger, a pinch, momentum, a flight or a brush; Moment is a build,
     /// a collect or the rack focus; Ambient is the visit window.
     func demand(moment: Bool, at date: Date = Date()) -> FrameDemand {
-        let direct = engine.rig.isMoving || engine.thumb.isZooming || isBrushing(at: date)
+        let direct = engine.rig.isMoving || isFingerDown(at: date)
         return FrameDemand(
             isCovered: isCovered || isInviting,
             isDirect: direct,
+            isUnderFinger: isTouchTier,
             isMoment: moment || isMoment || (isAnimating && !direct),
             isVisiting: isVisiting || (isDeviceTiltEnabled && !reduceMotion)
         )
@@ -150,7 +183,8 @@ public final class IslandSceneModel {
     /// The policy's directive for the timeline's interval and pause, and
     /// for the effects that run (§4.1).
     func directive(moment: Bool, at date: Date = Date()) -> FrameDirective {
-        power.policy.directive(for: demand(moment: moment, at: date), conditions: power.conditions)
+        let demand = demand(moment: moment, at: date)
+        return power.policy.directive(for: demand, conditions: power.conditions)
     }
 
     /// Whether the timeline must run: springs moving, or the visit window
@@ -1224,6 +1258,7 @@ public final class IslandSceneModel {
     }
 
     private func kick() {
+        refreshTouchTier()
         engine.isHeld = false
         if !isAnimating {
             engine.lastDate = nil

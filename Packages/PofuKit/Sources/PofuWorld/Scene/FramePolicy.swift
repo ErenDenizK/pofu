@@ -40,6 +40,9 @@ public struct FrameDemand: Hashable, Sendable {
     public var isMinigame = false
     /// Finger down, pinch, momentum, flight, brush impulses.
     public var isDirect = false
+    /// A finger is down on the world, or a spring it started is settling:
+    /// the Direct tier may run above 60 Hz. Implies `isDirect`.
+    public var isUnderFinger = false
     /// Build, collect, reward payoff, rack focus.
     public var isMoment = false
     /// Inside the visit window after an arrival or a touch.
@@ -50,13 +53,15 @@ public struct FrameDemand: Hashable, Sendable {
         isCovered: Bool = false,
         isMinigame: Bool = false,
         isDirect: Bool = false,
+        isUnderFinger: Bool = false,
         isMoment: Bool = false,
         isVisiting: Bool = false
     ) {
         self.isActive = isActive
         self.isCovered = isCovered
         self.isMinigame = isMinigame
-        self.isDirect = isDirect
+        self.isDirect = isDirect || isUnderFinger
+        self.isUnderFinger = isUnderFinger
         self.isMoment = isMoment
         self.isVisiting = isVisiting
     }
@@ -122,6 +127,10 @@ public struct FrameDirective: Hashable, Sendable {
 /// to 120 after measurement (§4.1).
 public struct FramePolicy: Hashable, Sendable {
     public var directRate = 60.0
+    /// The Direct tier's rate while a finger is down on the world, or a camera
+    /// spring a gesture started is still settling (`TouchLease`). Only this
+    /// path may ask for more than 60 Hz.
+    public var touchRate = 120.0
     public var momentRate = 60.0
     public var ambientRate = 30.0
     public var minigameRate = 60.0
@@ -148,7 +157,7 @@ public struct FramePolicy: Hashable, Sendable {
     }
 
     /// What to do in `state` under `conditions`: the tables of §4.1.
-    public func directive(for state: FrameState, conditions: FrameConditions = .nominal) -> FrameDirective {
+    public func directive(for state: FrameState, conditions: FrameConditions = .nominal, underFinger: Bool = false) -> FrameDirective {
         let lowPower = conditions.lowPower
         let thermal = conditions.thermal
         let serious = thermal >= .serious
@@ -158,7 +167,7 @@ public struct FramePolicy: Hashable, Sendable {
         var hz: Double
         switch state {
         case .direct:
-            hz = directRate
+            hz = underFinger ? max(directRate, touchRate) : directRate
             if lowPower || thermal >= .fair { hz = min(hz, 60) }
             if critical { hz = min(hz, 30) }
         case .moment:
@@ -197,7 +206,7 @@ public struct FramePolicy: Hashable, Sendable {
 
     /// The directive for a demand in one step.
     public func directive(for demand: FrameDemand, conditions: FrameConditions = .nominal) -> FrameDirective {
-        directive(for: state(for: demand), conditions: conditions)
+        directive(for: state(for: demand), conditions: conditions, underFinger: demand.isUnderFinger)
     }
 
     private func range(hz: Double, state: FrameState) -> FrameRateRange {
@@ -214,6 +223,30 @@ public struct FramePolicy: Hashable, Sendable {
     public static func ambientTime(_ t: Double) -> Double {
         guard t.isFinite else { return 0 }
         return (t * 30).rounded(.down) / 30
+    }
+}
+
+/// The Direct tier's lease: a finger down holds it, and a camera spring the
+/// finger started keeps it until the spring settles, but never longer than
+/// `hold` seconds after the finger lifted, so the rate drops back within
+/// about half a second. A spring nobody touched (a flight) never leases it.
+public struct TouchLease: Hashable, Sendable {
+    public var hold: Double
+    private var lastFinger: Double?
+
+    public init(hold: Double = 0.5) { self.hold = hold }
+
+    /// Feeds one frame; returns whether the Direct tier is held now.
+    public mutating func observe(fingerDown: Bool, springMoving: Bool, at time: Double) -> Bool {
+        if fingerDown {
+            lastFinger = time
+            return true
+        }
+        guard springMoving, let last = lastFinger, time - last < hold else {
+            if !springMoving { lastFinger = nil }
+            return false
+        }
+        return true
     }
 }
 

@@ -124,6 +124,9 @@ public struct CameraRig: Hashable, Sendable {
     /// spring that has not come to rest. Depth of field is off while this
     /// holds and racks in once it ends (§1.2); the lens springs are the
     /// rack itself, so they do not count.
+    /// A pan or pinch is in progress: a finger is down on the rail.
+    public var isFingerDown: Bool { pinchStart != nil || panStart != nil }
+
     public var isMoving: Bool {
         if flight != nil || pinchStart != nil || panStart != nil { return true }
         let motion = [z, focusAmount, focusLogScale, focusLookX, focusLookY, focusAnchorY, offsetX, offsetY, pan]
