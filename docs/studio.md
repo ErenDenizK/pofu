@@ -49,8 +49,11 @@ a reason. If you find one with neither, delete it.
 | **Fable 5.2** | Consults, and takes on whole the work that is judgement from end to end (sections 4 and 8) | Routine building or checking; standing in as the lead |
 
 Sub-agents cannot start agents of their own, so the lead sequences them.
-At most three builders at once (the machine's memory and your attention
-are the limits). Scouts and critics do not count.
+How many run at once is the lead's call, per job: order, disjoint
+files, cost, time, and what the lead can still look at. Signals, not
+caps (research/studio-scaling-2026-11-14.md §1): a PR only on CI holds
+no slot; hold back under 8 GB free, after an OOM kill, or with two PRs
+on one file.
 
 ## 3. A chapter
 
@@ -108,11 +111,10 @@ the pulse (section 6) shows which desk has gone quiet.
   is judgement from end to end may go to Fable whole, to design and to
   apply in one pass, as this system was. Delegating is a tool, not a
   chain of command.
-- **A fix round or a follow-up:** continue the same agent (Fable
-  included) with SendMessage while its hand-back shows under about
-  200,000 tokens. Past that, start a fresh one on the same branch with
-  the defect list. A fix sent into a 600,000-token agent re-reads all
-  of it on every turn.
+- **A fix round or a follow-up:** continue or start fresh, case by
+  case. Continuing keeps what the agent learned; a fresh agent with the
+  defect list is cheaper past about 200,000 tokens or after a long idle,
+  but loses what the brief does not say.
 - **Do it yourself** when it is the board, the founder log, a brief, a
   premise you are about to build on, or quicker than a brief: up to about
   ten tool calls with no build or fix loop in them. The smallest agent
@@ -289,6 +291,10 @@ that have earned it so far:
 4. **A wide judgement:** a major game decision, an overall plan when the
    desks pull apart, a problem the lead cannot solve.
 5. **The studio itself:** when this system fails or a desk is added.
+6. **A state assessment:** when the founder asks for a general look,
+   and at a large job's start (`studio/state-brief.md`: fixed inputs, 20
+   lines back). Routine checks stay with the lead. Open: whether Opus,
+   given Fable's past passes, can match them; try once side by side.
 
 Three doors. You spawn Fable for the route, for the moments above and
 for a large spec. The founder's side channel (the previous lead
