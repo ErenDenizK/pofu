@@ -37,7 +37,8 @@ and why.
 7. Render the real frames. Run the checks the brief names. Then look at
    1:1 crops, at most 1000 pixels on the long side, of every region that
    can go wrong: the plate's edges, the sky above it, the sea below it,
-   around each character, behind the UI. A whole frame is shown to you
+   around each character, behind the UI. Get frames with
+   `tools/review/fetch_frames.sh` (never `git fetch` screenshots). A whole frame is shown to you
    shrunk and hides seams.
 8. Compare with the reference image in the brief. Fix what you can see.
    There is no limit on local fix rounds. The founder will see this.

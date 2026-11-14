@@ -10,6 +10,21 @@ TAG="${1:-${SWIFT_TAG:-6.2.1}}-noble"
 SWIFT_ROOT="${SWIFT_ROOT:-/opt/swift}"
 REG=https://registry-1.docker.io/v2/library/swift
 
+# Swap turns an out-of-memory kill of a PofuWorld compile into a slow one.
+# Best effort and idempotent: skipped when swap exists, when less than 12 GB
+# is free, or when the kernel refuses swapon (then nothing is left behind).
+ensure_swap() {
+  [ "$(id -u)" = 0 ] || return 0
+  [ -z "$(swapon --show --noheadings 2>/dev/null)" ] || return 0
+  [ "$(df -BG --output=avail /home 2>/dev/null | tail -1 | tr -dc 0-9)" -ge 12 ] 2>/dev/null || return 0
+  if fallocate -l 8G /swapfile && chmod 600 /swapfile && mkswap /swapfile >/dev/null && swapon /swapfile; then
+    echo "swap: 8 GB /swapfile on"
+  else
+    rm -f /swapfile; echo "swap: not available here, skipped"
+  fi
+}
+ensure_swap || true
+
 if [ -x "$SWIFT_ROOT/usr/bin/swift" ] && [ -f "$SWIFT_ROOT/.tag" ] \
    && [ "$(cat "$SWIFT_ROOT/.tag")" = "$TAG" ]; then
   echo "swift $TAG already installed in $SWIFT_ROOT"

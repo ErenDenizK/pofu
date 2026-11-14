@@ -16,6 +16,7 @@ import collections
 import glob
 import json
 import os
+import shutil
 import subprocess
 from datetime import date, datetime, timedelta, timezone
 
@@ -138,8 +139,27 @@ def route(base: str) -> str:
     return ""
 
 
+def disk(base: str, ref: str, low_gb: float = 8.0) -> str:
+    """One line: GB free on /home, size of the main .git, merged worktrees still on disk; LOW under `low_gb`."""
+    try:
+        free = shutil.disk_usage("/home").free / 1e9
+    except OSError:
+        return "Disk: unknown"
+    try:
+        common = git("rev-parse", "--path-format=absolute", "--git-common-dir").strip()
+        total = sum(os.path.getsize(os.path.join(d, f)) for d, _, fs in os.walk(common) for f in fs
+                    if os.path.isfile(os.path.join(d, f)))
+        size = f"{total / 1e9:.1f} GB"
+    except (subprocess.CalledProcessError, OSError):
+        size = "unknown"
+    n = len(worktrees_merged(ref))
+    flag = f"LOW (under {low_gb:g} GB)" if free < low_gb else "ok"
+    return f"Disk: {free:.1f} GB free on /home [{flag}], main .git {size}, {n} merged worktree(s) still on disk"
+
+
 def leftovers(ref: str, base: str, network: bool = True) -> None:
     print("Leftovers:")
+    print("  " + disk(base, ref))
     for title, rows in (("Worktrees merged into " + ref, worktrees_merged(ref)),
                         ("Open pull requests older than 48 hours", old_prs() if network else []),
                         ("Friction rows with no outcome", open_friction(os.path.join(base, "docs/studio/friction.md"))),
