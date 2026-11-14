@@ -28,17 +28,16 @@ Large job now: the asset system (#445), Wave 0 first.
    Sonnet ingests. No new visitor can arrive by d21 except Sumi (d11+).
 2. Studio scaling (item 22): facts agent, then Fable's view.
 3. Asset system: #445 (plan) and pofu-art #34 (5 pilots) merged. Wave 0
-   ships what is already painted: Home chrome first (Opus,
-   `feat/asset-wave0-home`); then Station sheet, cards, flow board.
-   Scout answers the plan's §7 facts (`docs/asset-s7-facts`).
+   ships what is painted: Home chrome merged (#446); slice 2 Station
+   sheet and cards (Sonnet, `feat/asset-wave0-station-cards`).
 Known and kept: the flow minigame's vector board (no art in hand).
 Merged: #403-#441 but #414, #436 (only Damla and Gezgin visit; Sumi waits
 for batch 83); pofu-art #13-#14, #18, #22-#27, #29, #30.
 
 ## Next steps, in order
 
-1. Asset Wave 0, rest: Station sheet, resident card, celebration card,
-   flow board (one builder each, disjoint files); §7 facts in #447.
+1. Asset Wave 0 slice 3: the flow board after Codex's flow-stone pilot;
+   then duo sheet and stickers in the app (§4.2).
 2. pofu-art: sync batch-72 night takes before batch-86's night jobs run;
    drop `.keeper` from VisitorSchedule.standardRoster (no visitor art).
 3. Bell polish (#444 merged): day ring grey-yellow, make it warm gold;
