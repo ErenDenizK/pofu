@@ -299,6 +299,9 @@ public struct WorldHome: View {
                 .padding(.horizontal, PofuSpacing.l)
                 .padding(.vertical, PofuSpacing.s + 1)
                 .frame(minHeight: 40)
+                // A line, not a banner: the linen hugs a 320 pt column instead of the screen's
+                // width (accessibility sizes keep the whole width for the text).
+                .frame(maxWidth: typeSize.isAccessibilitySize ? .infinity : 320)
                 .background { PofuPaperSurface(kind: .linen) }
                 .frame(maxWidth: .infinity)
                 .transition(.opacity)
