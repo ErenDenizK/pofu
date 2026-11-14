@@ -294,3 +294,41 @@ def test_kit_faces_are_baked_under_their_hook_names():
         assert e["name"] in hooks, e["name"]
         out = integrate.output_path(e, DATA["targets"])
         assert Image.open(out).mode == "RGBA"
+
+
+def test_a_target_run_never_runs_preblur_or_touches_the_world_catalog(monkeypatch):
+    # `run --target kit` is a kit bake only: no preblur, no world imageset written or deleted.
+    calls = []
+    monkeypatch.setattr(integrate.subprocess, "run", lambda *a, **k: calls.append(a))
+    narrowed = integrate.select(DATA, ["kit"])
+    assert narrowed["entries"] and {e["target"] for e in narrowed["entries"]} == {"kit"}
+    assert integrate.run(narrowed) == 0
+    assert calls == []
+    # Without a target the world entries still bring preblur in.
+    monkeypatch.setattr(integrate, "bake_games", lambda *a, **k: None)
+    monkeypatch.setattr(integrate, "check", lambda data: 0)
+    integrate.run(DATA)
+    assert len(calls) == 1
+
+
+def test_an_unknown_target_is_refused():
+    import pytest
+
+    with pytest.raises(SystemExit):
+        integrate.select(DATA, ["kitt"])
+
+
+def test_the_night_linen_is_lifted_and_keeps_its_alpha():
+    import numpy as np
+
+    entries = {e["name"]: e for e in DATA["entries"] if e["target"] == "kit"}
+    assert "lift" in entries["ui-card-linen-night"] and "lift" not in entries["ui-card-linen"]
+    out = np.asarray(Image.open(integrate.output_path(entries["ui-card-linen-night"], DATA["targets"])).convert("RGBA"), dtype=float)
+    sol = out[out[..., 3] > 200][:, :3].mean()
+    assert sol > 80  # the unlifted master's mean is 70, the bubble's night paper 67
+
+
+def test_the_pip_pots_share_one_canvas():
+    sizes = {Image.open(integrate.output_path(e, DATA["targets"])).size
+             for e in DATA["entries"] if e["name"].startswith("ui-pip-pot-")}
+    assert len(sizes) == 1
