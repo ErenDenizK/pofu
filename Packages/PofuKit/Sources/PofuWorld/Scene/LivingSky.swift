@@ -48,7 +48,7 @@ struct LivingSky: View {
                 )
                 SunGlow(palette: palette, size: size)
                     .offset(x: offset.width * 0.15, y: offset.height * 0.15)
-                TimelineView(.animation(minimumInterval: 1.0 / 30.0, paused: isPaused)) { context in
+                PofuTimeline(hz: PofuFrameRate.idle, paused: isPaused) { context in
                     let time = still ? 0 : FramePolicy.ambientTime(context.date.timeIntervalSinceReferenceDate)
                     ZStack(alignment: .topLeading) {
                         if palette.stars > 0.01 {
@@ -237,7 +237,7 @@ struct CloudSea: View {
     var body: some View {
         GeometryReader { proxy in
             let size = proxy.size
-            TimelineView(.animation(minimumInterval: 1.0 / 20.0, paused: still || ambientPaused || reduceMotion || ProcessInfo.processInfo.isLowPowerModeEnabled)) { context in
+            PofuTimeline(hz: PofuFrameRate.drift, paused: still || ambientPaused) { context in
                 let time = still ? 0 : context.date.timeIntervalSinceReferenceDate
                 let drift = (time * Self.speed).truncatingRemainder(dividingBy: Self.period)
                 let backDrift = (time * Self.speed * 0.6 + Self.period / 2).truncatingRemainder(dividingBy: Self.period)

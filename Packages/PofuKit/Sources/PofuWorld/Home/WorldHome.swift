@@ -703,7 +703,7 @@ struct JarOverlay: View {
     }
 
     private var content: some View {
-        TimelineView(.animation(minimumInterval: nil, paused: home.collect == nil || home.frozenOffset != nil)) { context in
+        PofuTimeline(hz: PofuFrameRate.direct, paused: home.collect == nil || home.frozenOffset != nil, kind: .essential) { context in
             let moment = home.collect?.moment
             let time = home.collectTime(at: context.date) ?? 0
             let count = moment?.counter(at: time) ?? jar
@@ -730,7 +730,7 @@ struct CollectFlight: View {
     let home: WorldHomeModel
 
     var body: some View {
-        TimelineView(.animation(minimumInterval: nil, paused: home.collect == nil || home.frozenOffset != nil)) { context in
+        PofuTimeline(hz: PofuFrameRate.direct, paused: home.collect == nil || home.frozenOffset != nil, kind: .essential) { context in
             if let moment = home.collect?.moment, let time = home.collectTime(at: context.date) {
                 ZStack(alignment: .topLeading) {
                     ForEach(0..<moment.seedCount, id: \.self) { index in

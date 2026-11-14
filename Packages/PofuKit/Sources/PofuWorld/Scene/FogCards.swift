@@ -83,7 +83,7 @@ struct FogCards: View {
         let colour = FogModel.colour(horizon: horizon).color
         let peak = FogModel.cardOpacity(mist: mist)
         let screen = Double(size.width)
-        TimelineView(.animation(minimumInterval: 1.0 / 30.0, paused: isPaused)) { context in
+        PofuTimeline(hz: PofuFrameRate.drift, paused: isPaused) { context in
             let time = still ? 0 : FramePolicy.ambientTime(context.date.timeIntervalSinceReferenceDate)
             ZStack(alignment: .topLeading) {
                 ForEach(cards) { card in

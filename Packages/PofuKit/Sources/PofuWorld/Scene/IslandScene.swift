@@ -88,7 +88,7 @@ public struct IslandScene<Bubble: View>: View {
             // Direct, Moment, Ambient, Settled, Covered.
             let moment = home?.build != nil || home?.collect != nil
             let policy = model.directive(moment: moment)
-            TimelineView(.animation(minimumInterval: policy.timelineInterval, paused: !model.needsFrames && !moment)) { context in
+            PofuTimeline(hz: policy.hz > 0 ? policy.hz : PofuFrameRate.event, paused: !model.needsFrames && !moment, kind: .essential) { context in
                 let _ = model.revision
                 let rig = model.frame(
                     at: context.date,
@@ -1830,7 +1830,7 @@ private struct FocusLife: ViewModifier {
 
     func body(content: Content) -> some View {
         let live = isActive && !reduceMotion && !still && !ProcessInfo.processInfo.isLowPowerModeEnabled
-        TimelineView(.animation(minimumInterval: 1.0 / 30.0, paused: !live)) { context in
+        PofuTimeline(hz: PofuFrameRate.idle, paused: !live) { context in
             let t = context.date.timeIntervalSinceReferenceDate
             let sway = live ? sin(t * 1.7) * 0.6 : 0
             let breath = live ? 1 + sin(t * 2.4 + 1) * 0.006 : 1
