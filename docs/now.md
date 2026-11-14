@@ -24,11 +24,12 @@ Next large job: the asset system (inventory, then Fable's plan).
 
 ## In flight
 
-1. Art lane: pofu-art #28 closed; prep PR (batch 72 night parents copied,
-   queue 83, 82, 86, 84, 85, 87, access errors are not refusals); then
-   each delivery: art-reviewer picks, founder approves, Sonnet ingests.
-2. Game lane: the day-21 bell seen as well as heard (Sonnet, `feat/bell-seen`).
-3. Scout: can Boncuk, Yosun, Tuli, Nane or Sumi visit within d1-21?
+1. Art: pofu-art #31 merged (queue 83, 82, 86, 84, 85, 87); Codex runs
+   on "çalış"; each delivery: art-reviewer picks, founder approves,
+   Sonnet ingests. No new visitor can arrive by d21 except Sumi (d11+).
+2. Game: the day-21 bell seen as well as heard (Sonnet, `feat/bell-seen`).
+3. Asset system: inventory #443 (245 rows); Fable's plan running
+   (`design/asset-system` + pilots in pofu-art), brief approved.
 Known and kept: the flow minigame's vector board (no art in hand).
 Merged: #403-#441 but #414, #436 (only Damla and Gezgin visit; Sumi waits
 for batch 83); pofu-art #13-#14, #18, #22-#27, #29, #30.
