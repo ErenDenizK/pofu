@@ -50,6 +50,7 @@ public enum FarBellSky {
 }
 
 #if os(iOS)
+import PofuDesignSystem
 import SwiftUI
 
 /// The light and the rings over the painted plate. Drops out cleanly: with no
@@ -77,7 +78,7 @@ struct FarBellSkyLayer: View {
         let stage = FarBellStage.shared
         ZStack(alignment: .topLeading) {
             if plate.light == "night", let glow = FarBellSky.glow(in: world) {
-                TimelineView(.animation(paused: reduceMotion || still)) { timeline in
+                PofuTimeline(hz: PofuFrameRate.idle, paused: still) { timeline in
                     let pulse = FarBellSky.pulse(
                         at: timeline.date.timeIntervalSinceReferenceDate, reduceMotion: reduceMotion || still)
                     nightLight(glow: glow * pulse, size: FarBellSky.haloRadius(glow: glow) * k, k: k)
@@ -85,7 +86,7 @@ struct FarBellSkyLayer: View {
                 .allowsHitTesting(false)
             }
             if stage.age(at: Date()) != nil {
-                TimelineView(.animation(paused: stage.frozenAge != nil || still)) { timeline in
+                PofuTimeline(hz: PofuFrameRate.event, paused: stage.frozenAge != nil || still, kind: .essential) { timeline in
                     rings(age: stage.age(at: timeline.date), k: k, stage: stage)
                 }
             }

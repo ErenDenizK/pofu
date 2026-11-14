@@ -117,7 +117,7 @@ struct ResistSealsLayer: View {
 
     var body: some View {
         let animating = tally.isAnimating(at: Date())
-        TimelineView(.animation(paused: !animating)) { context in
+        PofuTimeline(hz: PofuFrameRate.event, paused: !animating, kind: .essential) { context in
             ZStack {
                 ForEach(0..<tally.shown, id: \.self) { index in
                     seal(index, at: context.date)

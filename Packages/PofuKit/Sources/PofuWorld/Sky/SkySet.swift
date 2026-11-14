@@ -1,4 +1,5 @@
 import Foundation
+import PofuDesignSystem
 
 /// A sky set (ADR-0025): the layers a world screen draws behind its island plate, split from the same
 /// painted master (`tools/plate/split.py`) and shipped by `tools/plate/skyset_export.py`, which writes the
@@ -175,8 +176,9 @@ public struct SkySet: Hashable, Sendable {
 /// points. `scale` is the screen width over the reference width (402 pt over 1206 px is a third), so a
 /// reference px is `scale` points. `tools/plate/skyset_render.py` implements the same formulas.
 public enum SkyMotion {
-    /// The timeline's lowest smooth rate: the clouds move under 5 pt a second, a sixth of a point a frame.
-    public static let frameInterval = 1.0 / 30.0
+    /// The timeline's rate: the clouds move under 5 pt a second and the falls under 7, a third of a point
+    /// a frame at 15 Hz. The timeline stops when the screen is still, under Reduce Motion and Low Power.
+    public static let frameRate = PofuFrameRate.drift
     /// The whale stays this far past an edge, in reference px, before it wraps.
     public static let glideMargin = 40.0
 

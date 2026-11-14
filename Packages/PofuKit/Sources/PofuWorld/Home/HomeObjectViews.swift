@@ -207,7 +207,7 @@ struct HomeJar: View {
     @State private var actionWidth = 140.0
 
     var body: some View {
-        TimelineView(.animation(minimumInterval: nil, paused: home.collect == nil || home.frozenOffset != nil)) { context in
+        PofuTimeline(hz: PofuFrameRate.direct, paused: home.collect == nil || home.frozenOffset != nil, kind: .essential) { context in
             let moment = home.collect?.moment
             let time = home.collectTime(at: context.date) ?? 0
             let count = moment?.counter(at: time) ?? jar
@@ -490,7 +490,7 @@ private struct PayoffBloom: ViewModifier {
     @ViewBuilder
     func body(content: Content) -> some View {
         if let run, let order {
-            TimelineView(.animation(paused: run.isOver(at: Date()))) { context in
+            PofuTimeline(hz: PofuFrameRate.event, paused: run.isOver(at: Date()), kind: .essential) { context in
                 let progress = run.payoff.bloomProgress(of: order, at: run.time(at: context.date))
                 let pulse = sin(progress * .pi)
                 content

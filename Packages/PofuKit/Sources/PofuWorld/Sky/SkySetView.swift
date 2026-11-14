@@ -1,4 +1,5 @@
 #if os(iOS)
+import PofuDesignSystem
 import SwiftUI
 import UIKit
 
@@ -30,7 +31,6 @@ struct SkySetLayers: View {
     @Environment(\.displayScale) private var displayScale
     @Environment(\.worldStillFrame) private var still
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
-    @Environment(\.scenePhase) private var scenePhase
 
     private var isStatic: Bool {
         still || reduceMotion || ProcessInfo.processInfo.isLowPowerModeEnabled
@@ -40,7 +40,7 @@ struct SkySetLayers: View {
         if isStatic {
             canvas(time: 0)
         } else {
-            TimelineView(.animation(minimumInterval: SkyMotion.frameInterval, paused: scenePhase != .active)) { context in
+            PofuTimeline(hz: SkyMotion.frameRate) { context in
                 canvas(time: max(context.date.timeIntervalSince(start), 0))
             }
         }
