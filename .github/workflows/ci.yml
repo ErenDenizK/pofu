@@ -105,10 +105,11 @@ jobs:
         run: python3 -I -m unittest discover -s tools/plate -p "test_*.py"
 
       # docs/state/plates.yaml: painted paths and lead picks exist.
-      - name: Check the plate state table
+      - name: Check the plate and asset state tables
         run: |
           python3 -I -m unittest discover -s tools/state -p "test_*.py"
           python3 -I tools/state/check_plates.py
+          python3 -I tools/state/check_assets.py
 
       # Home's IL1 plates are edited by script from the picked takes (tools/plate/il1_composite.py);
       # the committed derived plates must be what the script makes.
