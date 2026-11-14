@@ -1,0 +1,1 @@
+Changed: Home's chrome is painted: Pofu speaks from the paper bubble with his name on a ribbon tab, "Topla" is the honey wood plaque with the painted seed, the day glance sits on a linen card, and the gear and the place control are clay discs, each turning lamplit at night.
