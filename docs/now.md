@@ -8,15 +8,14 @@ history: [tracker.md](tracker.md). What changed for the player:
 
 **Goal:** Trial build 1: a whole, polished build the founder judges as a
 user on his iPhone, **Monday 11-16 evening** (Rehearsal days 1 to 21).
-Device check of Home, Friday 11-13. Cut line Sunday 11-15 18:00: what is
-not accepted is hidden. Codex is stopped (plan expired 11-12).
+Cut line Sunday 11-15 18:00: what is not accepted is hidden. Codex is back
+(11-14); art cut-off: delivery by Sunday 10:00, ingest looked at by 15:00.
 
-**Updated:** 2026-11-12 (late night, session 2).
+**Updated:** 2026-11-14 (morning).
 **Founder last played on his phone:** 2026-11-05 (device check due 11-13).
 **Founder log read up to:** 2026-11-12 (late night).
-**Route:** [route-2026-11-13-day](research/route-2026-11-13-day.md) §3
-(#432, Fable), one ordered queue (founder 11-13): the lift "Ada büyüdü"
-first; gates are only his device check, the cut line and Monday.
+**Route:** [route-2026-11-14-day](research/route-2026-11-14-day.md)
+(#442, Fable): art lane, game lane, scout lane; up to three agents.
 
 ## Decided this session
 
@@ -26,15 +25,13 @@ first; gates are only his device check, the cut line and Monday.
 
 ## In flight
 
-1. Days 17-21 merged (#437, #438, #440: the notes come back, the bell
-   plays, a light among the stars). Now: does the bell play on a cold
-   launch (Sonnet, `fix/bell-cold-launch`)?
-2. #439 merged (IL1 composite). pofu-art #30: return-queue manifests merged.
-Merged today: #430-#435 ("Ada büyüdü", milestone fixes). #436 (his
-line edits) merges from the side channel. Note: two "Boş ver" a day
-reach IL8 on d21.
+1. Art lane: pofu-art #28 closed; prep PR (batch 72 night parents copied,
+   queue 83, 82, 86, 84, 85, 87, access errors are not refusals); then
+   each delivery: art-reviewer picks, founder approves, Sonnet ingests.
+2. Game lane: the day-21 bell seen as well as heard (Sonnet, `feat/bell-seen`).
+3. Scout: can Boncuk, Yosun, Tuli, Nane or Sumi visit within d1-21?
 Known and kept: the flow minigame's vector board (no art in hand).
-Merged: #403-#440 but #414, #436 (only Damla and Gezgin visit; Sumi waits
+Merged: #403-#441 but #414, #436 (only Damla and Gezgin visit; Sumi waits
 for batch 83); pofu-art #13-#14, #18, #22-#27, #29, #30.
 
 ## Next steps, in order
@@ -51,7 +48,7 @@ for batch 83); pofu-art #13-#14, #18, #22-#27, #29, #30.
 |---|---|---|
 | Game | days 17-21 flat; IL8 pacing in flight | route §6 |
 | Look | one painted world: Home, the Map, flights, Koke, Çağlayan, visitors | critics, Sunday |
-| Art factory | paused (Codex stopped); queue kept READY | Codex back |
+| Art factory | Codex back 11-14; return queue READY | deliveries |
 | App | paused until after the demo | the demo |
 | Story | lines ship with game PRs; studio in use since 11-12 | |
 
