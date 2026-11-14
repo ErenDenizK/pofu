@@ -32,8 +32,20 @@ public enum FarBellSky {
     public static func ring(note: FarBellTune.Note, age: Double, reduceMotion: Bool) -> (radius: Double, opacity: Double)? {
         guard !reduceMotion, age >= note.at, age <= note.at + ringLife else { return nil }
         let p = (age - note.at) / ringLife
-        let (from, to) = note.isFar ? (5.0, 34.0) : (4.0, 16.0)
+        let (from, to) = note.isFar ? (8.0, 96.0) : (6.0, 30.0)
         return (from + (to - from) * MomentCurves.easeOut(p), 0.6 * (1 - MomentCurves.smoothstep(p)))
+    }
+
+    /// The night light's halo radius in points at the reference width: wide
+    /// enough to read as a lamp, not a star, and wider as the road rises.
+    public static func haloRadius(glow: Double) -> Double { 16 + 22 * glow }
+
+    /// The slow pulse of the night light: 1 at rest, easing down by 0.22 and
+    /// back over `pulsePeriod` seconds. Constant 1 under Reduce Motion.
+    public static let pulsePeriod = 5.0
+    public static func pulse(at t: Double, reduceMotion: Bool) -> Double {
+        guard !reduceMotion else { return 1 }
+        return 1 - 0.22 * (0.5 - 0.5 * cos(2 * Double.pi * t / pulsePeriod))
     }
 }
 
@@ -65,37 +77,10 @@ struct FarBellSkyLayer: View {
         let stage = FarBellStage.shared
         ZStack(alignment: .topLeading) {
             if plate.light == "night", let glow = FarBellSky.glow(in: world) {
-                let c = point(FarBellSky.light)
-                let r = 8 * k
-                // Source-over, not additive: added to the blue sky amber turns white.
-                Canvas { context, _ in
-                    context.fill(
-                        Path(ellipseIn: CGRect(x: c.x - r, y: c.y - r, width: r * 2, height: r * 2)),
-                        with: .radialGradient(
-                            Gradient(stops: [
-                                .init(color: Self.halo.opacity(0.30 * glow), location: 0),
-                                .init(color: Self.halo.opacity(0.14 * glow), location: 0.25),
-                                .init(color: Self.halo.opacity(0.065 * glow), location: 0.5),
-                                .init(color: Self.halo.opacity(0.017 * glow), location: 0.75),
-                                .init(color: Self.halo.opacity(0), location: 1),
-                            ]),
-                            center: c, startRadius: 0, endRadius: r
-                        )
-                    )
-                    let cr = 1.6 * k
-                    context.fill(
-                        Path(ellipseIn: CGRect(x: c.x - cr, y: c.y - cr, width: cr * 2, height: cr * 2)),
-                        with: .radialGradient(
-                            Gradient(stops: [
-                                .init(color: Self.core.opacity(glow), location: 0),
-                                .init(color: Self.core.opacity(0.71 * glow), location: 0.25),
-                                .init(color: Self.core.opacity(0.43 * glow), location: 0.5),
-                                .init(color: Self.core.opacity(0.19 * glow), location: 0.75),
-                                .init(color: Self.core.opacity(0), location: 1),
-                            ]),
-                            center: c, startRadius: 0, endRadius: cr
-                        )
-                    )
+                TimelineView(.animation(paused: reduceMotion || still)) { timeline in
+                    let pulse = FarBellSky.pulse(
+                        at: timeline.date.timeIntervalSinceReferenceDate, reduceMotion: reduceMotion || still)
+                    nightLight(glow: glow * pulse, size: FarBellSky.haloRadius(glow: glow) * k, k: k)
                 }
                 .allowsHitTesting(false)
             }
@@ -107,6 +92,39 @@ struct FarBellSkyLayer: View {
         }
         .frame(width: size.width, height: size.height, alignment: .topLeading)
         .allowsHitTesting(false)
+    }
+
+    /// Source-over, not additive: added to the blue sky amber turns white.
+    private func nightLight(glow: Double, size r: Double, k: Double) -> some View {
+        let c = point(FarBellSky.light)
+        return Canvas { context, _ in
+            context.fill(
+                Path(ellipseIn: CGRect(x: c.x - r, y: c.y - r, width: r * 2, height: r * 2)),
+                with: .radialGradient(
+                    Gradient(stops: [
+                        .init(color: Self.halo.opacity(0.55 * glow), location: 0),
+                        .init(color: Self.halo.opacity(0.34 * glow), location: 0.15),
+                        .init(color: Self.halo.opacity(0.18 * glow), location: 0.35),
+                        .init(color: Self.halo.opacity(0.07 * glow), location: 0.6),
+                        .init(color: Self.halo.opacity(0.02 * glow), location: 0.85),
+                        .init(color: Self.halo.opacity(0), location: 1),
+                    ]),
+                    center: c, startRadius: 0, endRadius: r
+                )
+            )
+            let cr = 2.4 * k
+            context.fill(
+                Path(ellipseIn: CGRect(x: c.x - cr, y: c.y - cr, width: cr * 2, height: cr * 2)),
+                with: .radialGradient(
+                    Gradient(stops: [
+                        .init(color: Self.core.opacity(min(1, glow * 1.1)), location: 0),
+                        .init(color: Self.core.opacity(0.6 * glow), location: 0.4),
+                        .init(color: Self.core.opacity(0), location: 1),
+                    ]),
+                    center: c, startRadius: 0, endRadius: cr
+                )
+            )
+        }
     }
 
     private func rings(age: Double?, k: Double, stage: FarBellStage) -> some View {
@@ -124,7 +142,7 @@ struct FarBellSkyLayer: View {
                 // A warm breath of light, never a drawn line: no inner edge
                 // (it rises from the centre on a smooth curve), a wide peak
                 // toward the rim, then gone.
-                let peak = ring.opacity * 0.30
+                let peak = ring.opacity * (note.isFar ? 0.62 : 0.40)
                 let stops: [Gradient.Stop] = [0.0, 0.2, 0.4, 0.55, 0.7, 0.82, 0.92, 1.0].map { t in
                     let up = t < 0.75 ? MomentCurves.smoothstep(t / 0.75) : 1 - MomentCurves.smoothstep((t - 0.75) / 0.25)
                     return .init(color: colour.opacity(peak * up), location: t)
