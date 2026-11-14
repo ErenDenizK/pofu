@@ -31,6 +31,7 @@ Next large job: the asset system (inventory, then Fable's plan).
 3. Asset system: #445 (plan) and pofu-art #34 (5 pilots) merged. Wave 0
    ships what is already painted: Home chrome first (Opus,
    `feat/asset-wave0-home`); then Station sheet, cards, flow board.
+   Scout answers the plan's §7 facts (`docs/asset-s7-facts`).
 Known and kept: the flow minigame's vector board (no art in hand).
 Merged: #403-#441 but #414, #436 (only Damla and Gezgin visit; Sumi waits
 for batch 83); pofu-art #13-#14, #18, #22-#27, #29, #30.
