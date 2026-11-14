@@ -38,18 +38,18 @@ for batch 83); pofu-art #13-#14, #18, #22-#27, #29, #30.
 
 ## Next steps, in order
 
-1. Route §6 Sunday (steps 9 to 11), a day early where it can be.
+1. Asset Wave 0, rest: Station sheet, resident card, celebration card,
+   flow board (one builder each, disjoint files); §7 facts in #447.
 2. pofu-art: sync batch-72 night takes before batch-86's night jobs run;
    drop `.keeper` from VisitorSchedule.standardRoster (no visitor art).
-3. From Tuesday 11-17: route §5.3 (seeds-and-minutes check in the app
-   first; the App desk reopens).
+3. Route §5.3 (seeds-and-minutes check in the app; App desk reopens).
 
 ## Desks
 
 | Desk | Where it stands | Waits on |
 |---|---|---|
-| Game | days 17-21 flat; IL8 pacing in flight | route §6 |
-| Look | one painted world: Home, the Map, flights, Koke, Çağlayan, visitors | critics, Sunday |
+| Game | days 17-21 flat; IL8 pacing in flight | bell seen |
+| Look | one painted world: Home, the Map, flights, Koke, Çağlayan, visitors | Wave 0 |
 | Art factory | Codex back 11-14; return queue READY | deliveries |
 | App | paused until after the demo | the demo |
 | Story | lines ship with game PRs; studio in use since 11-12 | |
