@@ -23,14 +23,16 @@ Large job now: the asset system (#445), Wave 0 first.
 
 ## In flight
 
-1. Main 0cf03ca1 green: phone build plus heat fix (#460); founder
-   reinstalling. Glass skin decided (founder-input 26).
-2. Fable's feel-and-world plan: #461 (draft), sent to the founder with
-   crops; waits on his go for proofs 1-4 and decisions (a)-(e).
-3. Quick wins: resident hops and hop/gulp sounds on the plate
-   (`feat/plate-hops-sounds`); sunflower waits on which one he meant.
-Paused: Wave 0 app-layer glass to painted (#453 draft; commits 1, 4, 6
-reusable). UI grammar runs after #461's choices (brief approved).
+1. Feel and world (#461, founder answers in founder-input 28): proof 1
+   station looks, proof 2 near and mid (Sonnet, scripts); the 120 Hz
+   direct tier (Opus, `feat/direct-tier-120`). Next: proofs 3, 4; the
+   sunflower (skip pots); the flow board's painted bed.
+2. Art: 32 pofu-art PRs await review; pilots #40-44 under review (flow
+   stone #41 first). Queue step 6 paused (#64). Codex waits for new
+   Demand rows: flow pieces after the stone pick, near-dressing pilot
+   after proof 2. Music: not started (founder, later).
+Paused: Wave 0 app-layer glass to painted (#453 draft). UI grammar runs
+after #461's choices (brief approved).
 
 ## Next steps, in order
 
