@@ -23,7 +23,7 @@ jobs:
   changes:
     name: Detect what changed
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     outputs:
       swift: ${{ steps.diff.outputs.swift }}
       tools: ${{ steps.diff.outputs.tools }}
@@ -31,10 +31,25 @@ jobs:
       beats: ${{ steps.diff.outputs.beats }}
       pathframes: ${{ steps.diff.outputs.pathframes }}
     steps:
+      # Only names are diffed, so blobs are never needed; and the full
+      # history of every branch (each screenshots/* branch is ~0.5 GB of
+      # frames) no longer fits the job's timeout (main cancelled 11-14).
       - name: Check out
         uses: actions/checkout@v5
         with:
-          fetch-depth: 0
+          fetch-depth: 1
+          filter: blob:none
+
+      - name: Fetch the base and head commits, trees only
+        env:
+          BASE: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
+          HEAD: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+        run: |
+          set -uo pipefail
+          for sha in "$BASE" "$HEAD"; do
+            case "$sha" in ''|0000000000000000000000000000000000000000) continue ;; esac
+            git fetch --no-tags --depth=500 origin "$sha" || true
+          done
 
       - name: Classify the changed files
         id: diff
