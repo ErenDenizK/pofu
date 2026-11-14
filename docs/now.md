@@ -42,9 +42,8 @@ for batch 83); pofu-art #13-#14, #18, #22-#27, #29, #30.
    flow board (one builder each, disjoint files); §7 facts in #447.
 2. pofu-art: sync batch-72 night takes before batch-86's night jobs run;
    drop `.keeper` from VisitorSchedule.standardRoster (no visitor art).
-3. Bell polish (#444 merged): the day ring reads grey-yellow on blue;
-   make it warm gold (additive blend, softer centre). The pale strip on
-   the island's sides is backdrop art at the whole-island pose: art or crop.
+3. Bell polish (#444 merged): day ring grey-yellow, make it warm gold;
+   pale side strips at the whole-island pose are backdrop art: art or crop.
 4. Route §5.3 (seeds-and-minutes check in the app; App desk reopens).
 
 ## Desks
