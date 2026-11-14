@@ -1,0 +1,1 @@
+- The far bell's day ring is now a warm gold glow, filled to the centre.
