@@ -73,24 +73,41 @@ public struct PofuPaintedIcon: View {
     let paint: PofuPaint
     let base: CGFloat
     let scales: Bool
+    let outline: Color?
     @ScaledMetric private var scaled: CGFloat
 
-    /// `scales: false` when the caller's size already follows Dynamic Type.
-    public init(_ paint: PofuPaint, size: CGFloat = 28, scales: Bool = true) {
+    /// `scales: false` when the caller's size already follows Dynamic Type. `outline`: a line
+    /// weight added round the glyph, so its cream fill stands off a cream disc.
+    public init(_ paint: PofuPaint, size: CGFloat = 28, scales: Bool = true, outline: Color? = nil) {
         self.paint = paint
         base = size
         self.scales = scales
+        self.outline = outline
         _scaled = ScaledMetric(wrappedValue: size, relativeTo: .body)
     }
 
     public var body: some View {
         if let image = paint.image {
             let side = scales ? scaled : base
-            Image(uiImage: image)
-                .resizable()
-                .scaledToFit()
-                .frame(width: side, height: side)
-                .accessibilityHidden(true)
+            ZStack {
+                if let outline {
+                    // The glyph's own silhouette in the line colour, pushed out in eight directions.
+                    ForEach(0..<8, id: \.self) { step in
+                        let angle = Double(step) * .pi / 4
+                        Image(uiImage: image)
+                            .renderingMode(.template)
+                            .resizable()
+                            .scaledToFit()
+                            .foregroundStyle(outline)
+                            .offset(x: CGFloat(cos(angle)) * 0.9, y: CGFloat(sin(angle)) * 0.9)
+                    }
+                }
+                Image(uiImage: image)
+                    .resizable()
+                    .scaledToFit()
+            }
+            .frame(width: side, height: side)
+            .accessibilityHidden(true)
         }
     }
 }

@@ -11,6 +11,11 @@ import SwiftUI
 /// there; a long press opens a native menu: Pofu, each arrived island, the
 /// Archipelago.
 struct PlaceControl: View {
+    /// Day: the cream glyph on the cream disc gets a cocoa line weight.
+    private var glyphOutline: Color? {
+        PofuKitArt.discClay.isPainted && night != true ? PofuKitPalette.day.onPaper : nil
+    }
+
     let model: IslandSceneModel
     /// The islands the player has arrived at, in story order.
     let islands: [IslandID]
@@ -45,9 +50,9 @@ struct PlaceControl: View {
             }
         } label: {
             ZStack {
-                PlaceGlyphView(glyph: .island).opacity(glyph == .island ? 1 : 0)
-                PlaceGlyphView(glyph: .archipelago).opacity(glyph == .archipelago ? 1 : 0)
-                PlaceGlyphView(glyph: .pofu).opacity(glyph == .pofu ? 1 : 0)
+                PlaceGlyphView(glyph: .island, outline: glyphOutline).opacity(glyph == .island ? 1 : 0)
+                PlaceGlyphView(glyph: .archipelago, outline: glyphOutline).opacity(glyph == .archipelago ? 1 : 0)
+                PlaceGlyphView(glyph: .pofu, outline: glyphOutline).opacity(glyph == .pofu ? 1 : 0)
             }
             .animation(reduceMotion ? nil : .easeInOut(duration: 0.25), value: glyph)
             .foregroundStyle(PofuKitArt.discClay.isPainted ? (night == true ? PofuKitPalette.night : PofuKitPalette.day).onPaper : PofuColor.textPrimary)
@@ -85,25 +90,27 @@ private struct PlaceControlFace: ViewModifier {
 /// One glyph of the place control, in the control's 52 pt circle.
 private struct PlaceGlyphView: View {
     let glyph: PlaceGlyph
+    /// A line weight for the cream glyph on the day disc (`nil` at night).
+    var outline: Color?
 
     var body: some View {
         switch glyph {
         case .island:
             if PofuPaint.duoIsland.isAvailable {
-                PofuPaintedIcon(.duoIsland, size: 34, scales: false)
+                PofuPaintedIcon(.duoIsland, size: 34, scales: false, outline: outline)
             } else {
                 IslandSilhouette().frame(width: 30, height: 26)
             }
         case .archipelago:
             if PofuPaint.duoMap.isAvailable {
-                PofuPaintedIcon(.duoMap, size: 34, scales: false)
+                PofuPaintedIcon(.duoMap, size: 34, scales: false, outline: outline)
             } else {
                 ArchipelagoGlyph().frame(width: 30, height: 26)
             }
         case .pofu:
             // Pofu's face: home.
             if PofuPaint.duoHome.isAvailable {
-                PofuPaintedIcon(.duoHome, size: 34, scales: false)
+                PofuPaintedIcon(.duoHome, size: 34, scales: false, outline: outline)
             } else {
                 PofuFaceGlyph()
             }
