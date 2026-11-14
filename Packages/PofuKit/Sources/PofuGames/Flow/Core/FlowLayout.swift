@@ -2,8 +2,8 @@ import Foundation
 
 /// Where the board sits on a portrait phone, in view points with y down:
 /// a cliff lip at the top, the pool at the bottom, cells of 44 pt or more
-/// (about 70 pt at 5 columns), the board in the lower two thirds so one
-/// thumb reaches it, and undo and hint in the bottom corners.
+/// (about 70 pt at 5 columns), the block centred between the HUD and the
+/// controls, and undo and hint in the bottom corners.
 public struct FlowLayout: Equatable, Sendable {
     public static let hudHeight: CGFloat = 56
     public static let controlsHeight: CGFloat = 84
@@ -17,7 +17,7 @@ public struct FlowLayout: Equatable, Sendable {
     public static let poolOverhang: CGFloat = 14
     /// The pool's rim stroke, drawn half outside its rect.
     static let rimAllowance: CGFloat = 2
-    public static let maxCell: CGFloat = 76
+    public static let maxCell: CGFloat = 88
     /// The smallest touch target (HIG).
     public static let minCell: CGFloat = 44
 
@@ -41,7 +41,14 @@ public struct FlowLayout: Equatable, Sendable {
         cell = max(Self.minCell, min(Self.maxCell, fit.rounded(.down)))
         let width = cell * CGFloat(self.columns)
         let height = cell * CGFloat(self.rows)
-        board = CGRect(x: ((size.width - width) / 2).rounded(), y: bottom - height, width: width, height: height)
+        // The cliff, board and pool sit as one block, centred in the clear
+        // space between the HUD and the controls, so the frame has no empty
+        // top. A tall board that fills the space lands where it always did.
+        let spaceTop = safeTop + Self.hudHeight
+        let spaceBottom = size.height - safeBottom - Self.controlsHeight
+        let block = Self.lipHeight + height + Self.poolHeight
+        let blockTop = spaceTop + max(0, (spaceBottom - spaceTop - block) / 2)
+        board = CGRect(x: ((size.width - width) / 2).rounded(), y: (blockTop + Self.lipHeight).rounded(), width: width, height: height)
     }
 
     public func rect(of cell: FlowCell) -> CGRect {

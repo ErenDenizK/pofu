@@ -288,11 +288,6 @@ final class FlowTextures {
         let middle = CGPoint(x: cell / 2, y: cell / 2)
         context.setLineCap(.round)
         context.setLineJoin(.round)
-        // The stone darkens where it is wet.
-        context.addPath(path)
-        context.setStrokeColor(FlowPalette.waterDeep.withAlphaComponent(0.16).cgColor)
-        context.setLineWidth(grooveWidth * 1.9)
-        context.strokePath()
         context.addPath(path)
         context.setStrokeColor(FlowPalette.water.cgColor)
         context.setLineWidth(grooveWidth * 0.92)
