@@ -8,12 +8,12 @@ version: 1
 kit:  # PofuKitArt, Packages/PofuKit/Sources/PofuDesignSystem/Kit/KitArt.swift
   ui-plaque-honey: {state: in_bundle, master: "design/art/ui/ui-plaque-honey", note: "Home chrome slice; in_frame once the lead crops path-d05 at 1:1"}
   ui-plaque-honey-pressed: {state: unpainted, master: null, note: "never painted; the rest face stands in, darkened in code (wave 2)"}
-  ui-plaque-bare: {state: in_repo, master: "design/art/ui/ui-plaque-bare", note: "baked in a later wave 0 slice"}
-  ui-plaque-cream: {state: in_repo, master: "design/art/ui/ui-plaque-cream", note: "baked in a later wave 0 slice"}
-  ui-plaque-cream-pressed: {state: in_repo, master: "design/art/ui/ui-plaque-cream-pressed", note: "baked in a later wave 0 slice"}
-  ui-sheet-paper-v3: {state: in_repo, master: "design/art/ui/ui-sheet-paper-v3", note: "baked in a later wave 0 slice"}
-  ui-sheet-paper-v3-night: {state: picked, master: null, note: "batch 77 pick, still in pofu-art only (wave 0, a later slice)"}
-  ui-card-stitched: {state: in_repo, master: "design/art/ui/ui-card-stitched", note: "baked in a later wave 0 slice"}
+  ui-plaque-bare: {state: in_bundle, master: "design/art/ui/ui-plaque-bare", note: "Station slice; in_frame once seen at 1:1 in a device-size frame"}
+  ui-plaque-cream: {state: in_bundle, master: "design/art/ui/ui-plaque-cream", note: "Station slice; in_frame once seen at 1:1 in a device-size frame"}
+  ui-plaque-cream-pressed: {state: in_bundle, master: "design/art/ui/ui-plaque-cream-pressed", note: "Station slice; in_frame once seen at 1:1 in a device-size frame"}
+  ui-sheet-paper-v3: {state: in_bundle, master: "design/art/ui/ui-sheet-paper-v3", note: "Station slice; in_frame once seen at 1:1 in a device-size frame"}
+  ui-sheet-paper-v3-night: {state: in_bundle, master: "design/art/ui/ui-sheet-paper-v3-night", note: "Station slice; in_frame once seen at 1:1 in a device-size frame"}
+  ui-card-stitched: {state: in_bundle, master: "design/art/ui/ui-card-stitched", note: "Station slice; in_frame once seen at 1:1 in a device-size frame"}
   ui-card-linen: {state: in_bundle, master: "design/art/ui/ui-card-linen", note: "Home chrome slice; in_frame once the lead crops path-d05 at 1:1"}
   ui-card-linen-night: {state: in_bundle, master: "design/art/ui/ui-card-linen-night", note: "Home chrome slice; in_frame once the lead crops path-d05 at 1:1"}
   ui-bubble-paper: {state: in_bundle, master: "design/art/ui/ui-bubble-paper", note: "Home chrome slice; in_frame once the lead crops path-d05 at 1:1"}
@@ -23,11 +23,16 @@ kit:  # PofuKitArt, Packages/PofuKit/Sources/PofuDesignSystem/Kit/KitArt.swift
   ui-tab-ribbon: {state: in_bundle, master: "design/art/ui/ui-tab-ribbon", note: "Home chrome slice; in_frame once the lead crops path-d05 at 1:1"}
   ui-face-disc-v2: {state: in_bundle, master: "design/art/ui/ui-face-disc-v2", note: "Home chrome slice; in_frame once the lead crops path-d05 at 1:1"}
   ui-face-disc-v2-night: {state: in_bundle, master: "design/art/ui/ui-face-disc-v2-night", note: "Home chrome slice; in_frame once the lead crops path-d05 at 1:1"}
-  ui-chip-felt: {state: in_repo, master: "design/art/ui/ui-chip-felt", note: "baked in a later wave 0 slice"}
-  ui-chip-felt-selected: {state: in_repo, master: "design/art/ui/ui-chip-felt-selected", note: "baked in a later wave 0 slice"}
-  ui-toast-strip: {state: in_repo, master: "design/art/ui/ui-toast-strip", note: "baked in a later wave 0 slice"}
-  ui-groove-wood: {state: in_repo, master: "design/art/ui/ui-groove-wood", note: "baked in a later wave 0 slice"}
-  seal-resist: {state: in_repo, master: "design/art/ui/ui-seals", note: "one sheet of three seals, not sliced yet (wave 0, a later slice)"}
+  ui-chip-felt: {state: in_bundle, master: "design/art/ui/ui-chip-felt", note: "Station slice; in_frame once seen at 1:1 in a device-size frame"}
+  ui-chip-felt-selected: {state: in_bundle, master: "design/art/ui/ui-chip-felt-selected", note: "Station slice; in_frame once seen at 1:1 in a device-size frame"}
+  ui-toast-strip: {state: in_bundle, master: "design/art/ui/ui-toast-strip", note: "Station slice; in_frame once seen at 1:1 in a device-size frame"}
+  ui-groove-wood: {state: in_bundle, master: "design/art/ui/ui-groove-wood", note: "Station slice; in_frame once seen at 1:1 in a device-size frame"}
+  seal-resist: {state: in_bundle, master: "design/art/ui/ui-seals", note: "Station slice; in_frame once seen at 1:1 in a device-size frame"}
+  ui-card-stitched-night: {state: in_bundle, master: "design/art/ui/ui-card-stitched-night", note: "Station slice; in_frame once seen at 1:1 in a device-size frame"}
+  ui-toast-strip-night: {state: in_bundle, master: "design/art/ui/ui-toast-strip-night", note: "Station slice; in_frame once seen at 1:1 in a device-size frame"}
+  ui-pip-pot-empty: {state: in_bundle, master: "design/art/ui/ui-pip-pot", note: "Station slice (the pots row); in_frame once seen at 1:1 in a device-size frame"}
+  ui-pip-pot-bud: {state: in_bundle, master: "design/art/ui/ui-pip-pot", note: "Station slice (the pots row); in_frame once seen at 1:1 in a device-size frame"}
+  ui-pip-pot-bloom: {state: in_bundle, master: "design/art/ui/ui-pip-pot", note: "Station slice (the pots row); in_frame once seen at 1:1 in a device-size frame"}
 paint:  # PofuPaint, Packages/PofuKit/Sources/PofuDesignSystem/PofuPaint.swift
   paint-jar-full: {state: in_bundle, master: "design/art/ui/ui-jar-full", note: "shipped before this table; in_frame not yet checked"}
   paint-lantern-on: {state: in_bundle, master: "design/art/ui/ui-lantern-on", note: "shipped before this table; in_frame not yet checked"}

@@ -31,6 +31,23 @@ struct KitArtTests {
         #expect(home.isSubset(of: baked))
     }
 
+    @Test("The sheet, card, chip, toast, groove, seal and pip faces are baked, day and night where painted")
+    func stationSliceIsBaked() {
+        let baked = Set(PofuKitArt.allCases.filter { Self.pixelSize($0) != nil })
+        let station: Set<PofuKitArt> = [
+            .sheetPaper, .sheetPaperNight, .cardStitched, .cardStitchedNight, .plaqueBare, .plaqueCream,
+            .plaqueCreamPressed, .chipFelt, .chipFeltSelected, .toastStrip, .toastStripNight, .grooveWood,
+            .sealResist, .pipPotEmpty, .pipPotBud, .pipPotBloom,
+        ]
+        #expect(station.isSubset(of: baked))
+    }
+
+    @Test("The three pip pots share one canvas, so they stand on one line")
+    func pipPotsShareACanvas() throws {
+        let sizes = try [PofuKitArt.pipPotEmpty, .pipPotBud, .pipPotBloom].map { try #require(Self.pixelSize($0)) }
+        #expect(Set(sizes.map { "\($0.width)x\($0.height)" }).count == 1)
+    }
+
     @Test("Every baked face has caps that fit inside it")
     func capsFit() throws {
         for art in PofuKitArt.allCases {
