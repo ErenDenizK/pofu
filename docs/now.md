@@ -23,13 +23,12 @@ Large job now: the asset system (#445), Wave 0 first.
 
 ## In flight
 
-1. Art: pofu-art #31 merged (queue 83, 82, 86, 84, 85, 87); Codex runs
-   on "çalış"; each delivery: art-reviewer picks, founder approves,
-   Sonnet ingests. No new visitor can arrive by d21 except Sumi (d11+).
-2. Studio scaling (item 22): facts agent, then Fable's view.
-3. Asset system: #445 (plan) and pofu-art #34 (5 pilots) merged. Wave 0
-   ships what is painted: Home chrome merged (#446); slice 2 Station
-   sheet and cards (Sonnet, `feat/asset-wave0-station-cards`).
+**Priority (founder-input 24):** main phone-ready within hours: glass
+skin restored on Home chrome (`fix/glass-skin-home`), phone-ready critic
+on main, bell warm (`feat/bell-warm`); then finish or hide its list.
+Paused: Wave 0 app-layer glass to painted (#453 draft: commits 1, 4, 6
+reusable) until the founder compares glass and painted side by side.
+Next: the comparison frames; Fable UI grammar (brief shown, waits).
 Known and kept: the flow minigame's vector board (no art in hand).
 Merged: #403-#441 but #414, #436 (only Damla and Gezgin visit; Sumi waits
 for batch 83); pofu-art #13-#14, #18, #22-#27, #29, #30.
