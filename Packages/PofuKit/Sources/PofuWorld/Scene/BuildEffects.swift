@@ -92,6 +92,8 @@ struct LevelBadge: View {
 /// "Seviye n!": the build's one exclamation (§6.3), crisp in screen space
 /// above the station.
 struct BuildTag: View {
+    @Environment(\.pofuNight) private var night
+    @Environment(\.colorScheme) private var scheme
     let level: Int
     /// The seeds the level took, said under the exclamation.
     var cost: Int?
@@ -109,12 +111,12 @@ struct BuildTag: View {
                 .opacity(0.82)
             }
         }
-        .foregroundStyle(Color.paperInk)
+        .foregroundStyle((night ?? (scheme == .dark)) ? PofuKitPalette.night.onPaper : PofuKitPalette.day.onPaper)
         .padding(.horizontal, PofuSpacing.m + 4)
         .padding(.vertical, cost == nil ? 0 : 5)
         .frame(minHeight: 36)
         // Celebration is painted, system UI is glass (look-dev C).
-        .paintedPaper(cornerSeed: 5)
+        .paintedPaper()
         .fixedSize()
         .allowsHitTesting(false)
         .accessibilityElement()

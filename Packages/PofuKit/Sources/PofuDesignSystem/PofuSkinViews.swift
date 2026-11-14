@@ -175,6 +175,8 @@ public struct PofuIconButton: View {
     public let action: @MainActor () -> Void
 
     @Environment(\.pofuSkin) private var skin
+    @Environment(\.pofuNight) private var night
+    @Environment(\.colorScheme) private var scheme
     @Environment(\.accessibilityReduceTransparency) private var reduceTransparency
     @ScaledMetric(relativeTo: .body) private var diameter: CGFloat = PofuSize.minimumTouch
 
@@ -201,7 +203,9 @@ public struct PofuIconButton: View {
     private var symbol: some View {
         #if canImport(UIKit)
         if let paint, paint.isAvailable {
-            PofuPaintedIcon(paint, size: 30)
+            // Day: the glyph's cream fill sits on a cream disc, so it gets a heavier cocoa line.
+            let palette = PofuKitStyleResolver(night: night, scheme: scheme, contrast: .standard).palette
+            PofuPaintedIcon(paint, size: 30, outline: PofuKitArt.discClay.isPainted && !palette.isNight ? palette.onPaper : nil)
         } else {
             symbolImage
         }

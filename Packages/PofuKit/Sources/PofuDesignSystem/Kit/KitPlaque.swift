@@ -65,7 +65,7 @@ struct PofuPlaqueBody: View {
         configuration.label
             .font(PofuFont.headline)
             .multilineTextAlignment(.center)
-            .foregroundStyle(labelColor(palette))
+            .foregroundStyle(labelColor(palette, onPaintedFace: !resolver.isHighContrast && kind != .quiet && PofuPlaqueFace.art(kind: kind, enabled: isEnabled, pressed: pressed).isPainted))
             .padding(.horizontal, PofuSpacing.xl)
             .padding(.vertical, PofuSpacing.s)
             .frame(maxWidth: .infinity, minHeight: kind == .primary ? PofuSize.buttonHeight : PofuSize.minimumTouch + 4)
@@ -106,8 +106,9 @@ struct PofuPlaqueBody: View {
             }
     }
 
-    private func labelColor(_ palette: PofuKitPalette) -> Color {
-        let color: Color = kind == .quiet || kind == .secondary ? palette.onPaper : palette.ink
+    /// The painted plaques are all light (honey, cream, bare wood), so their label is ink at night too.
+    private func labelColor(_ palette: PofuKitPalette, onPaintedFace: Bool) -> Color {
+        let color: Color = onPaintedFace ? palette.ink : (kind == .quiet || kind == .secondary ? palette.onPaper : palette.ink)
         return isEnabled ? color : color.opacity(0.6)
     }
 }
@@ -126,6 +127,11 @@ struct PofuPlaqueFace: View {
     var body: some View {
         let shape = Capsule(style: .continuous)
         ZStack {
+            if focused, !highContrast, art.isPainted {
+                // The ring follows the painted silhouette: its white shape, tinted and pushed out
+                // in eight directions, under the face.
+                focusRing
+            }
             if highContrast {
                 shape.fill(solid)
                 shape.strokeBorder(palette.onPaper, lineWidth: 2)
@@ -134,7 +140,7 @@ struct PofuPlaqueFace: View {
                     drawn(shape)
                 }
             }
-            if focused {
+            if focused, highContrast || !art.isPainted {
                 shape.strokeBorder(palette.focus, lineWidth: 2)
                     .shadow(color: palette.glow.opacity(0.8), radius: 6)
             }
@@ -145,12 +151,29 @@ struct PofuPlaqueFace: View {
         .compositingGroup()
     }
 
-    private var art: PofuKitArt {
+    private var art: PofuKitArt { Self.art(kind: kind, enabled: enabled, pressed: pressed) }
+
+    static func art(kind: PofuPlaqueKind, enabled: Bool, pressed: Bool) -> PofuKitArt {
         guard enabled else { return .plaqueBare }
         switch kind {
         case .primary: return pressed ? .plaqueHoneyPressed : .plaqueHoney
         case .secondary, .quiet: return pressed ? .plaqueCreamPressed : .plaqueCream
         }
+    }
+
+    /// A 2.5 pt ring that follows the painted plaque, with a warm glow.
+    private var focusRing: some View {
+        ZStack {
+            ForEach(0..<8, id: \.self) { step in
+                let angle = Double(step) * .pi / 4
+                PofuKitFace(art) { EmptyView() }
+                    .brightness(1)
+                    .colorMultiply(palette.focus)
+                    .offset(x: CGFloat(cos(angle)) * 2.5, y: CGFloat(sin(angle)) * 2.5)
+            }
+        }
+        .shadow(color: palette.glow.opacity(0.8), radius: 6)
+        .allowsHitTesting(false)
     }
 
     private var solid: Color {

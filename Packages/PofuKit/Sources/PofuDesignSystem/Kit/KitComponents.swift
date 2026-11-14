@@ -26,28 +26,16 @@ public struct PofuChipStyle: ButtonStyle {
         let palette = resolver.palette
         let shape = Capsule(style: .continuous)
         let pressed = configuration.isPressed
+        // The felt chips are light at night too (no night twin was painted), so their label is ink.
+        let painted = (isSelected ? PofuKitArt.chipFeltSelected : PofuKitArt.chipFelt).isPainted
         configuration.label
             .font(PofuFont.subheadline)
-            .foregroundStyle(isSelected && palette.isNight ? palette.ink : palette.onPaper)
+            .foregroundStyle(isSelected && palette.isNight || (painted && !resolver.isHighContrast) ? palette.ink : palette.onPaper)
             .padding(.horizontal, PofuSpacing.m + 2)
             .padding(.vertical, PofuSpacing.xs + 2)
             .frame(minHeight: PofuSize.chipHeight)
             .background {
-                PofuKitFace(isSelected ? .chipFeltSelected : .chipFelt) {
-                    ZStack {
-                        shape.fill(isSelected ? palette.feltSelected : palette.felt)
-                        PofuGrainOverlay(opacity: 0.12)
-                        shape.pofuInnerShadow(palette.edge.opacity(0.12), width: 3, blur: 2, y: 1)
-                        if isSelected {
-                            shape.inset(by: 3)
-                                .stroke(palette.ink.opacity(0.55), style: StrokeStyle(lineWidth: 1.2, lineCap: .round, dash: [4, 3]))
-                        }
-                        if resolver.isHighContrast {
-                            shape.strokeBorder(palette.onPaper, lineWidth: 2)
-                        }
-                    }
-                    .clipShape(shape)
-                }
+                chipFace(palette: palette, resolver: resolver, shape: shape)
                 .brightness(pressed ? -0.06 : 0)
             }
             .frame(minHeight: PofuSize.minimumTouch)
@@ -56,6 +44,35 @@ public struct PofuChipStyle: ButtonStyle {
             .scaleEffect(pressed && !reduceMotion ? 0.96 : 1)
             .animation(reduceMotion ? PofuMotion.reduced : PofuMotion.squish, value: pressed)
             .accessibilityAddTraits(isSelected ? .isSelected : [])
+    }
+
+    /// The painted felt chip; the drawn felt under Increase Contrast (which needs its own edge) or
+    /// while unbaked.
+    @ViewBuilder
+    private func chipFace(palette: PofuKitPalette, resolver: PofuKitStyleResolver, shape: Capsule) -> some View {
+        if resolver.isHighContrast {
+            drawnChip(palette: palette, resolver: resolver, shape: shape)
+        } else {
+            PofuKitFace(isSelected ? .chipFeltSelected : .chipFelt) {
+                drawnChip(palette: palette, resolver: resolver, shape: shape)
+            }
+        }
+    }
+
+    private func drawnChip(palette: PofuKitPalette, resolver: PofuKitStyleResolver, shape: Capsule) -> some View {
+        ZStack {
+            shape.fill(isSelected ? palette.feltSelected : palette.felt)
+            PofuGrainOverlay(opacity: 0.12)
+            shape.pofuInnerShadow(palette.edge.opacity(0.12), width: 3, blur: 2, y: 1)
+            if isSelected {
+                shape.inset(by: 3)
+                    .stroke(palette.ink.opacity(0.55), style: StrokeStyle(lineWidth: 1.2, lineCap: .round, dash: [4, 3]))
+            }
+            if resolver.isHighContrast {
+                shape.strokeBorder(palette.onPaper, lineWidth: 2)
+            }
+        }
+        .clipShape(shape)
     }
 }
 
@@ -93,10 +110,31 @@ public struct PofuToast: View {
         .padding(.horizontal, PofuSpacing.l)
         .padding(.vertical, PofuSpacing.m)
         .frame(minHeight: PofuSize.minimumTouch)
-        .background { PofuPaperSurface(cornerRadius: PofuRadius.medium, kind: .stitched) }
+        .background { PofuStripSurface() }
         .rotationEffect(.degrees(-1))
         .accessibilityElement(children: .combine)
         .accessibilityAddTraits(.isStaticText)
+    }
+}
+
+/// The toast's paper strip: the painted stitched strip (day or night twin), the stitched paper
+/// surface under Increase Contrast or while the strip is unbaked. For short lines of one or two rows.
+public struct PofuStripSurface: View {
+    @Environment(\.pofuNight) private var night
+    @Environment(\.colorScheme) private var scheme
+    @Environment(\.colorSchemeContrast) private var contrast
+
+    public init() {}
+
+    public var body: some View {
+        let palette = PofuKitStyleResolver(night: night, scheme: scheme, contrast: contrast).palette
+        let strip: PofuKitArt = palette.isNight ? .toastStripNight : .toastStrip
+        if contrast != .increased, strip.isPainted {
+            PofuKitFace(strip) { EmptyView() }
+                .shadow(color: palette.edge.opacity(palette.isNight ? 0.5 : 0.12), radius: 10, y: 4)
+        } else {
+            PofuPaperSurface(cornerRadius: PofuRadius.medium, kind: .stitched)
+        }
     }
 }
 
@@ -136,15 +174,56 @@ extension View {
     }
 }
 
+/// The speaker's tab: the painted ribbon with a short label on it (a name, a kicker), a
+/// code-drawn capsule while the ribbon is unbaked or under Increase Contrast.
+public struct PofuSpeakerTab: View {
+    let label: Text
+    let tint: Color
+
+    @Environment(\.colorSchemeContrast) private var contrast
+
+    public init(_ label: Text, tint: Color = PofuKitPalette.rgb(0xE8946B)) {
+        self.label = label
+        self.tint = tint
+    }
+
+    public var body: some View {
+        label
+            .font(PofuFont.caption.weight(.bold))
+            .foregroundStyle(PofuKitPalette.day.ink)
+            .padding(.leading, PofuSpacing.s + 4)
+            .padding(.trailing, PofuSpacing.s + 2)
+            .padding(.vertical, PofuSpacing.xxs + 1)
+            .background {
+                if contrast == .increased {
+                    Capsule(style: .continuous).fill(tint)
+                } else {
+                    PofuKitFace(.tabRibbon) {
+                        Capsule(style: .continuous).fill(tint)
+                    }
+                }
+            }
+            .accessibilityAddTraits(.isHeader)
+    }
+}
+
 // MARK: - Speech bubble
 
 /// Paper with a cut tail below and a soft cocoa edge.
 struct PofuPaperBubbleShape: Shape {
     static let tailHeight: CGFloat = 12
-    /// 0...1 along the bottom edge.
+    /// 0...1 along the tail's edge.
     var tailPosition: CGFloat = 0.5
+    /// The edge the tail leaves: `.top` mirrors the bubble, for a card below its speaker.
+    var tailEdge: VerticalEdge = .bottom
 
     func path(in rect: CGRect) -> Path {
+        let path = bottomTailPath(in: rect)
+        guard tailEdge == .top else { return path }
+        return path.applying(CGAffineTransform(scaleX: 1, y: -1).translatedBy(x: 0, y: -(rect.minY + rect.maxY)))
+    }
+
+    private func bottomTailPath(in rect: CGRect) -> Path {
         let body = CGRect(x: rect.minX, y: rect.minY, width: rect.width, height: max(rect.height - Self.tailHeight, 0))
         var path = Path(roundedRect: body, cornerRadius: PofuRadius.medium, style: .continuous)
         let x = rect.minX + PofuRadius.large + (rect.width - PofuRadius.large * 2) * tailPosition
@@ -161,12 +240,15 @@ struct PofuPaperBubbleShape: Shape {
 /// painted paper, tail and ribbon tab when they are baked, code-drawn
 /// otherwise. Grows from the mouth.
 public struct PofuPaperBubble<Content: View>: View {
-    let speaker: LocalizedStringKey?
+    let speaker: Text?
     let tint: Color
-    /// 0...1 along the bottom edge; `nil` draws no tail (a line in the
+    /// 0...1 along the tail's edge; `nil` draws no tail (a line in the
     /// bottom band, below its speaker).
     let tailPosition: CGFloat?
+    /// The edge the tail leaves: `.bottom` toward a mouth above, `.top` for a card hung below its speaker.
+    let tailEdge: VerticalEdge
     let content: Content
+    var combinesAccessibility = true
 
     @Environment(\.pofuNight) private var night
     @Environment(\.colorScheme) private var scheme
@@ -176,11 +258,25 @@ public struct PofuPaperBubble<Content: View>: View {
     static var paintedTail: CGSize { CGSize(width: 22, height: 17) }
     static var tailOverlap: CGFloat { paintedTail.height - PofuPaperBubbleShape.tailHeight }
 
-    public init(speaker: LocalizedStringKey? = nil, tint: Color = PofuKitPalette.rgb(0xE8946B), tailPosition: CGFloat? = 0.5, @ViewBuilder content: () -> Content) {
-        self.speaker = speaker
+    public init(speaker: LocalizedStringKey? = nil, tint: Color = PofuKitPalette.rgb(0xE8946B), tailPosition: CGFloat? = 0.5, tailEdge: VerticalEdge = .bottom, @ViewBuilder content: () -> Content) {
+        self.init(speakerText: speaker.map { Text($0) }, tint: tint, tailPosition: tailPosition, tailEdge: tailEdge, content: content)
+    }
+
+    /// The speaker as a verbatim `Text` (a resident's name is data, not a string key).
+    public init(speakerText: Text?, tint: Color = PofuKitPalette.rgb(0xE8946B), tailPosition: CGFloat? = 0.5, tailEdge: VerticalEdge = .bottom, @ViewBuilder content: () -> Content) {
+        self.speaker = speakerText
         self.tint = tint
         self.tailPosition = tailPosition
+        self.tailEdge = tailEdge
         self.content = content()
+    }
+
+    /// A bubble that holds a control (a button) keeps its children separate for VoiceOver
+    /// instead of reading as one line.
+    public func holdingControls() -> Self {
+        var copy = self
+        copy.combinesAccessibility = false
+        return copy
     }
 
     /// Grows from the mouth, 0.25 s.
@@ -191,25 +287,10 @@ public struct PofuPaperBubble<Content: View>: View {
     public var body: some View {
         let resolver = PofuKitStyleResolver(night: night, scheme: scheme, contrast: contrast)
         let palette = resolver.palette
-        let tail = tailPosition.map { PofuPaperBubbleShape(tailPosition: $0) }
+        let tail = tailPosition.map { PofuPaperBubbleShape(tailPosition: $0, tailEdge: tailEdge) }
         VStack(alignment: .leading, spacing: PofuSpacing.xs) {
             if let speaker {
-                Text(speaker)
-                    .font(PofuFont.caption.weight(.bold))
-                    .foregroundStyle(PofuKitPalette.day.ink)
-                    .padding(.leading, PofuSpacing.s + 4)
-                    .padding(.trailing, PofuSpacing.s + 2)
-                    .padding(.vertical, PofuSpacing.xxs + 1)
-                    .background {
-                        if resolver.isHighContrast {
-                            Capsule(style: .continuous).fill(tint)
-                        } else {
-                            PofuKitFace(.tabRibbon) {
-                                Capsule(style: .continuous).fill(tint)
-                            }
-                        }
-                    }
-                    .accessibilityAddTraits(.isHeader)
+                PofuSpeakerTab(speaker, tint: tint)
             }
             content
                 .font(PofuFont.headline)
@@ -217,8 +298,8 @@ public struct PofuPaperBubble<Content: View>: View {
                 .fixedSize(horizontal: false, vertical: true)
         }
         .padding(.horizontal, PofuSpacing.l)
-        .padding(.top, PofuSpacing.m)
-        .padding(.bottom, PofuSpacing.m + (tail == nil ? 0 : PofuPaperBubbleShape.tailHeight))
+        .padding(.top, PofuSpacing.m + (tail != nil && tailEdge == .top ? PofuPaperBubbleShape.tailHeight : 0))
+        .padding(.bottom, PofuSpacing.m + (tail != nil && tailEdge == .bottom ? PofuPaperBubbleShape.tailHeight : 0))
         .background {
             ZStack {
                 if resolver.isHighContrast {
@@ -230,7 +311,7 @@ public struct PofuPaperBubble<Content: View>: View {
             }
             .shadow(color: palette.edge.opacity(palette.isNight ? 0.5 : 0.14), radius: 8, y: 4)
         }
-        .accessibilityElement(children: .combine)
+        .accessibilityElement(children: combinesAccessibility ? .combine : .contain)
     }
 
     private func outline(_ tail: PofuPaperBubbleShape?) -> AnyShape {
@@ -243,16 +324,20 @@ public struct PofuPaperBubble<Content: View>: View {
         let tailArt: PofuKitArt = palette.isNight ? .bubbleTailNight : .bubbleTail
         if paper.isPainted, tail == nil || tailArt.isPainted {
             GeometryReader { proxy in
-                let paperHeight = proxy.size.height - (tail == nil ? 0 : PofuPaperBubbleShape.tailHeight)
+                let tailHeight = tail == nil ? 0 : PofuPaperBubbleShape.tailHeight
+                let paperHeight = proxy.size.height - tailHeight
+                let onTop = tailEdge == .top
                 ZStack(alignment: .topLeading) {
                     PofuKitFace(paper) { EmptyView() }
                         .frame(width: proxy.size.width, height: paperHeight)
+                        .offset(y: onTop ? tailHeight : 0)
                     if let tailPosition {
                         let size = Self.paintedTail
                         let x = PofuRadius.large + (proxy.size.width - PofuRadius.large * 2) * tailPosition
                         PofuKitFace(tailArt) { EmptyView() }
                             .frame(width: size.width, height: size.height)
-                            .position(x: x + 1, y: paperHeight - Self.tailOverlap + size.height / 2)
+                            .rotationEffect(.degrees(onTop ? 180 : 0))
+                            .position(x: x + 1, y: onTop ? tailHeight + Self.tailOverlap - size.height / 2 : paperHeight - Self.tailOverlap + size.height / 2)
                     }
                 }
             }
@@ -293,8 +378,12 @@ public struct PofuGroove: View {
         let resolver = PofuKitStyleResolver(night: night, scheme: scheme, contrast: contrast)
         let palette = resolver.palette
         let shape = Capsule(style: .continuous)
+        let painted = PofuKitArt.grooveWood.isPainted && !resolver.isHighContrast
         GeometryReader { proxy in
             let width = proxy.size.width
+            // The painted groove has a honey rim; the fill sits inside it.
+            let inset = painted ? height * 0.16 : 0
+            let inner = width - inset * 2
             ZStack(alignment: .leading) {
                 PofuKitFace(.grooveWood) {
                     ZStack {
@@ -314,14 +403,15 @@ public struct PofuGroove: View {
                                 .transition(.opacity)
                         }
                     }
-                    .frame(width: max(height, width * clamped))
+                    .frame(width: max(height - inset * 2, inner * clamped), height: height - inset * 2)
+                    .padding(.leading, inset)
                     .opacity(clamped > 0 ? 1 : 0)
                     .animation(reduceMotion ? PofuMotion.reduced : PofuMotion.settle, value: clamped)
                 ForEach(0..<max(pips - 1, 0), id: \.self) { index in
                     Circle()
                         .fill(palette.edge.opacity(0.35))
                         .frame(width: 3, height: 3)
-                        .offset(x: width * CGFloat(index + 1) / CGFloat(pips) - 1.5)
+                        .offset(x: inset + inner * CGFloat(index + 1) / CGFloat(pips) - 1.5)
                 }
                 if resolver.isHighContrast {
                     shape.strokeBorder(palette.onPaper, lineWidth: 2)

@@ -13,6 +13,7 @@ public enum PofuKitArt: String, CaseIterable, Sendable {
     case sheetPaper = "ui-sheet-paper-v3"
     case sheetPaperNight = "ui-sheet-paper-v3-night"
     case cardStitched = "ui-card-stitched"
+    case cardStitchedNight = "ui-card-stitched-night"
     case cardLinen = "ui-card-linen"
     case cardLinenNight = "ui-card-linen-night"
     case bubblePaper = "ui-bubble-paper"
@@ -30,7 +31,12 @@ public enum PofuKitArt: String, CaseIterable, Sendable {
     case chipFelt = "ui-chip-felt"
     case chipFeltSelected = "ui-chip-felt-selected"
     case toastStrip = "ui-toast-strip"
+    case toastStripNight = "ui-toast-strip-night"
     case grooveWood = "ui-groove-wood"
+    /// The level pips' pots, one canvas for the three (bottom-aligned): a bare pot, a sprout, a flower.
+    case pipPotEmpty = "ui-pip-pot-empty"
+    case pipPotBud = "ui-pip-pot-bud"
+    case pipPotBloom = "ui-pip-pot-bloom"
     /// The wax seal of a resisted reach (batch-61 `seals-and-stamps`).
     case sealResist = "seal-resist"
 
@@ -41,8 +47,9 @@ public enum PofuKitArt: String, CaseIterable, Sendable {
     /// `integration_map.json`; `KitArtTests` holds them to the files.
     public var slicing: PofuKitSlicing {
         switch self {
-        case .plaqueHoney, .plaqueHoneyPressed, .plaqueCream, .plaqueCreamPressed:
+        case .plaqueHoney, .plaqueHoneyPressed, .plaqueBare, .plaqueCream, .plaqueCreamPressed, .chipFelt, .chipFeltSelected:
             // The scalloped ends end at 0.57 of the height; the rest is flat wood.
+            // The chips share the scallop.
             .ends(leading: 0.62, trailing: 0.62)
         case .tabRibbon:
             .ends(leading: 0.6, trailing: 0.6)
@@ -51,11 +58,17 @@ public enum PofuKitArt: String, CaseIterable, Sendable {
         case .cardLinen, .cardLinenNight:
             // The bottom cap holds the lip's soft shadow.
             .nine(top: 16, leading: 16, bottom: 18, trailing: 16)
-        case .bubbleTail, .bubbleTailNight, .discClay, .discClayNight:
+        case .cardStitched, .cardStitchedNight:
+            .nine(top: 24, leading: 24, bottom: 24, trailing: 24)
+        case .sheetPaper, .sheetPaperNight:
+            // The deckled top edge sits inside the top cap.
+            .nine(top: 32, leading: 32, bottom: 32, trailing: 32)
+        case .toastStrip, .toastStripNight, .grooveWood:
+            // A stadium: the ends are half the height.
+            .ends(leading: 0.5, trailing: 0.5)
+        case .bubbleTail, .bubbleTailNight, .discClay, .discClayNight, .sealResist,
+             .pipPotEmpty, .pipPotBud, .pipPotBloom:
             .whole
-        case .plaqueBare, .sheetPaper, .sheetPaperNight, .cardStitched, .chipFelt, .chipFeltSelected,
-             .toastStrip, .grooveWood, .sealResist:
-            .halfHeight
         }
     }
 

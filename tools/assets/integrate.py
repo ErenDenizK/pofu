@@ -3,6 +3,8 @@
 
     python3 -I tools/assets/integrate.py run      # bake every mapped image
     python3 -I tools/assets/integrate.py check    # every entry has a master and an output
+    python3 -I tools/assets/integrate.py run --target kit   # one target only: never runs preblur or
+                                                            # touches World.xcassets unless `world` is named
 
 The map is tools/assets/integration_map.json (master folder -> imageset name and
 target). `games` entries are copied, trimmed and resized here (Pillow only, deterministic:
@@ -297,15 +299,29 @@ def _recolour(image: Image.Image, pair: list[str]) -> Image.Image:
     return Image.fromarray(np.rint(a).astype(np.uint8), "RGBA")
 
 
+def _lift(image: Image.Image, lift: dict) -> Image.Image:
+    """Lighten a face toward a warm tone: every colour moves `by` of the way to `toward`; alpha is
+    untouched. The night linen was a heavy slab under Home's daily line (a lighter slab, same grain)."""
+    import numpy as np
+
+    a = np.asarray(image, dtype=np.float64).copy()
+    target = np.array(lift["toward"], dtype=np.float64)
+    a[..., :3] += (target - a[..., :3]) * float(lift["by"])
+    return Image.fromarray(np.rint(np.clip(a, 0, 255)).astype(np.uint8), "RGBA")
+
+
 def bake_kit(entry: dict, out: Path) -> None:
     """A kit face under its `PofuKitArt` hook name: the sheet's cell (when the master is a sheet),
     trimmed to the painted silhouette and fitted inside `points` at 3x. The Swift side slices it
     (`PofuKitArt.slicing`), so the bake never pads or crops into the paint."""
     image = _cut(Image.open(master_file(entry["master"])).convert("RGBA"), entry)
-    image = trim(image)
+    if entry.get("trim", True):  # a set that must share one canvas (the pip pots) keeps it
+        image = trim(image)
     image = _fit(image, entry)
     if "recolour" in entry:
         image = _recolour(image, entry["recolour"])
+    if "lift" in entry:
+        image = _lift(image, entry["lift"])
     out.parent.mkdir(parents=True, exist_ok=True)
     image.save(out, "PNG", optimize=True)
 
@@ -372,6 +388,16 @@ def problems(data: dict) -> list[str]:
     return found
 
 
+def select(data: dict, targets: list[str] | None) -> dict:
+    """The map narrowed to the named targets (`None`: all). A kit bake never touches the world assets."""
+    if not targets:
+        return data
+    unknown = [t for t in targets if t not in data["targets"]]
+    if unknown:
+        raise SystemExit(f"unknown target {', '.join(unknown)}; known: {', '.join(data['targets'])}")
+    return {**data, "entries": [e for e in data["entries"] if e["target"] in targets]}
+
+
 def check(data: dict) -> int:
     found = problems(data)
     for line in found:
@@ -392,9 +418,11 @@ def run(data: dict) -> int:
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("command", choices=["run", "check"])
-    cmd = ap.parse_args().command
-    data = load_map()
-    return run(data) if cmd == "run" else check(data)
+    ap.add_argument("--target", action="append", metavar="NAME",
+                    help="only this target's entries (repeatable); preblur runs only when `world` is among them")
+    args = ap.parse_args()
+    data = select(load_map(), args.target)
+    return run(data) if args.command == "run" else check(data)
 
 
 if __name__ == "__main__":

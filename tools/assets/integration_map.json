@@ -1522,7 +1522,15 @@
         120,
         120
       ],
-      "scale": 3
+      "scale": 3,
+      "lift": {
+        "toward": [
+          168,
+          130,
+          108
+        ],
+        "by": 0.3
+      }
     },
     {
       "target": "kit",
@@ -1558,6 +1566,193 @@
         200,
         24
       ],
+      "scale": 3
+    },
+    {
+      "target": "kit",
+      "name": "ui-plaque-bare",
+      "master": "design/art/ui/ui-plaque-bare",
+      "points": [
+        250,
+        80
+      ],
+      "scale": 3
+    },
+    {
+      "target": "kit",
+      "name": "ui-plaque-cream",
+      "master": "design/art/ui/ui-plaque-cream",
+      "points": [
+        250,
+        80
+      ],
+      "scale": 3
+    },
+    {
+      "target": "kit",
+      "name": "ui-plaque-cream-pressed",
+      "master": "design/art/ui/ui-plaque-cream-pressed",
+      "points": [
+        250,
+        80
+      ],
+      "scale": 3
+    },
+    {
+      "target": "kit",
+      "name": "ui-sheet-paper-v3",
+      "master": "design/art/ui/ui-sheet-paper-v3",
+      "points": [
+        341,
+        341
+      ],
+      "scale": 3
+    },
+    {
+      "target": "kit",
+      "name": "ui-sheet-paper-v3-night",
+      "master": "design/art/ui/ui-sheet-paper-v3-night",
+      "points": [
+        341,
+        341
+      ],
+      "scale": 3
+    },
+    {
+      "target": "kit",
+      "name": "ui-card-stitched",
+      "master": "design/art/ui/ui-card-stitched",
+      "points": [
+        160,
+        160
+      ],
+      "scale": 3
+    },
+    {
+      "target": "kit",
+      "name": "ui-card-stitched-night",
+      "master": "design/art/ui/ui-card-stitched-night",
+      "points": [
+        160,
+        160
+      ],
+      "scale": 3
+    },
+    {
+      "target": "kit",
+      "name": "ui-chip-felt",
+      "master": "design/art/ui/ui-chip-felt",
+      "points": [
+        120,
+        36
+      ],
+      "scale": 3
+    },
+    {
+      "target": "kit",
+      "name": "ui-chip-felt-selected",
+      "master": "design/art/ui/ui-chip-felt-selected",
+      "points": [
+        120,
+        36
+      ],
+      "scale": 3
+    },
+    {
+      "target": "kit",
+      "name": "ui-toast-strip",
+      "master": "design/art/ui/ui-toast-strip",
+      "points": [
+        256,
+        64
+      ],
+      "scale": 3
+    },
+    {
+      "target": "kit",
+      "name": "ui-toast-strip-night",
+      "master": "design/art/ui/ui-toast-strip-night",
+      "points": [
+        256,
+        64
+      ],
+      "scale": 3
+    },
+    {
+      "target": "kit",
+      "name": "ui-groove-wood",
+      "master": "design/art/ui/ui-groove-wood",
+      "points": [
+        160,
+        20
+      ],
+      "scale": 3
+    },
+    {
+      "target": "kit",
+      "name": "seal-resist",
+      "master": "design/art/ui/ui-seals",
+      "points": [
+        64,
+        64
+      ],
+      "cell": [
+        30,
+        262,
+        516,
+        776
+      ],
+      "scale": 3
+    },
+    {
+      "target": "kit",
+      "name": "ui-pip-pot-empty",
+      "master": "design/art/ui/ui-pip-pot",
+      "points": [
+        36,
+        58
+      ],
+      "cell": [
+        82,
+        250,
+        418,
+        790
+      ],
+      "trim": false,
+      "scale": 3
+    },
+    {
+      "target": "kit",
+      "name": "ui-pip-pot-bud",
+      "master": "design/art/ui/ui-pip-pot",
+      "points": [
+        36,
+        58
+      ],
+      "cell": [
+        588,
+        250,
+        924,
+        790
+      ],
+      "trim": false,
+      "scale": 3
+    },
+    {
+      "target": "kit",
+      "name": "ui-pip-pot-bloom",
+      "master": "design/art/ui/ui-pip-pot",
+      "points": [
+        36,
+        58
+      ],
+      "cell": [
+        1100,
+        250,
+        1436,
+        790
+      ],
+      "trim": false,
       "scale": 3
     }
   ]

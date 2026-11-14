@@ -267,6 +267,24 @@ struct PofuKitFace<Fallback: View>: View {
     }
 }
 
+/// A painted face drawn whole, scaled to fit (a pot, a seal): nothing when it is not baked, so the
+/// caller keeps its own drawing.
+public struct PofuKitArtImage: View {
+    let art: PofuKitArt
+
+    public init(_ art: PofuKitArt) {
+        self.art = art
+    }
+
+    public var body: some View {
+        #if canImport(UIKit)
+        if let painted = art.painted {
+            Image(uiImage: painted.image).resizable().scaledToFit()
+        }
+        #endif
+    }
+}
+
 extension InsettableShape {
     /// An inner shadow: a soft rim pushed down, clipped to the shape.
     func pofuInnerShadow(_ color: Color, width: CGFloat = 4, blur: CGFloat = 2.5, y: CGFloat = 2) -> some View {
