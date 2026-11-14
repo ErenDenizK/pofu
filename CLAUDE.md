@@ -57,9 +57,10 @@ to report, not a thing to work around. Map of the docs: `docs/README.md`.
   memory. iOS-only code compiles only in CI, where warnings are errors.
 - **Learn locally, push to confirm.** A CI run takes 30 to 60 minutes and
   macOS minutes cost ten times Linux ones. Iterate on your machine as
-  often as you need. Push at most three times per PR, and wait for CI
-  with one background command that returns when the checks finish, never
-  a polling loop.
+  often as you need; pushes before the PR opens start no CI. Push at most
+  three times per open PR, and wait for CI with one background command,
+  never a polling loop. Fetch frames with `tools/review/fetch_frames.sh`,
+  never into the main `.git` (it filled the disk three times).
 - **Look before you say it looks right.** Visual output is judged on real
   in-app frames at device size (1206 x 2622), in crops small enough to
   see at 1:1. A whole frame reaches you shrunk, and seams, halos and
