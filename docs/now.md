@@ -23,15 +23,14 @@ Large job now: the asset system (#445), Wave 0 first.
 
 ## In flight
 
-**Phone build (founder-input 24):** all merged (#450 bell gold, #454
-glass skin, #455 CI detect, #456 dev UI hidden, #457 flow and station);
-main CI on 7f4e99c0 running; then tell the founder what to try.
-Paused: Wave 0 app-layer glass to painted (#453 draft: commits 1, 4, 6
-reusable) until the founder compares glass and painted side by side.
-Next: the comparison frames; Fable UI grammar (brief shown, waits).
-Known and kept: the flow minigame's vector board (no art in hand).
-Merged: #403-#441 but #414, #436 (only Damla and Gezgin visit; Sumi waits
-for batch 83); pofu-art #13-#14, #18, #22-#27, #29, #30.
+1. Main 0cf03ca1 green: phone build plus heat fix (#460); founder
+   reinstalling. Glass skin decided (founder-input 26).
+2. Fable's feel-and-world plan: #461 (draft), sent to the founder with
+   crops; waits on his go for proofs 1-4 and decisions (a)-(e).
+3. Quick wins: resident hops and hop/gulp sounds on the plate
+   (`feat/plate-hops-sounds`); sunflower waits on which one he meant.
+Paused: Wave 0 app-layer glass to painted (#453 draft; commits 1, 4, 6
+reusable). UI grammar runs after #461's choices (brief approved).
 
 ## Next steps, in order
 
