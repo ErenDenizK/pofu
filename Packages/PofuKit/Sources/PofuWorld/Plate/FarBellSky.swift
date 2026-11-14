@@ -128,22 +128,22 @@ struct FarBellSkyLayer: View {
     }
 
     private func rings(age: Double?, k: Double, stage: FarBellStage) -> some View {
-        let colour = Color(red: 1, green: 0.66, blue: 0.2)
+        let colour = Color(red: 1, green: 0.84, blue: 0.5)
         let hum = PlatePoint(
             x: (plate.plate.characters["pofu"]?.x ?? FarBellSky.light.x),
             y: (plate.plate.characters["pofu"]?.y ?? FarBellSky.light.y) - FarBellSky.humLift
         )
         return Canvas { context, _ in
             guard let age else { return }
-            context.blendMode = .screen
+            context.blendMode = .plusLighter
             for note in stage.notes {
                 guard let ring = FarBellSky.ring(note: note, age: age, reduceMotion: reduceMotion) else { continue }
                 let c = point(note.isFar ? FarBellSky.light : hum)
                 let r = ring.radius * k
                 // A warm glow, never a drawn line: it fills toward the centre (a
                 // floor, no hole), swells to a wide peak toward the rim, then is
-                // gone. Screen blend keeps the amber saturated over the blue sky.
-                let peak = ring.opacity * (note.isFar ? 0.8 : 0.45)
+                // gone. Additive light keeps the amber saturated over the blue sky.
+                let peak = ring.opacity * (note.isFar ? 0.7 : 0.4)
                 let stops: [Gradient.Stop] = [0.0, 0.2, 0.4, 0.55, 0.7, 0.82, 0.92, 1.0].map { t in
                     let up = t < 0.75 ? 0.4 + 0.6 * MomentCurves.smoothstep(t / 0.75) : 1 - MomentCurves.smoothstep((t - 0.75) / 0.25)
                     return .init(color: colour.opacity(peak * up), location: t)
