@@ -86,7 +86,8 @@ public struct VisitorSchedule: Sendable {
         "decor-woven-mat", "decor-seed-jar", "decor-pebble-stack", "decor-paper-kite",
     ]
 
-    /// The seven main islands in story order, one per weekday (home layout
+    /// The six painted visitors in story order, one per weekday (Saturday is
+    /// free until the keeper of Arı is painted; home layout
     /// §5).
     public static let standardRoster: [VisitorProfile] = [
         VisitorProfile(resident: .sumi, island: "koke", weekday: 0, favourite: .garden),
@@ -94,7 +95,6 @@ public struct VisitorSchedule: Sendable {
         VisitorProfile(resident: .boncuk, island: "emanet", weekday: 2, favourite: .workshop),
         VisitorProfile(resident: .yosun, island: "gezgin", weekday: 3, favourite: .pier),
         VisitorProfile(resident: .tuli, island: "revontuli", weekday: 4, favourite: .lighthouse),
-        VisitorProfile(resident: .keeper, island: "ari", weekday: 5, favourite: "hive"),
         VisitorProfile(resident: .nane, island: "mehtap", weekday: 6, favourite: .windmill),
     ]
 
