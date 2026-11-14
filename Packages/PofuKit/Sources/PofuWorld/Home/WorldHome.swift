@@ -67,6 +67,9 @@ public struct WorldHome: View {
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.dynamicTypeSize) private var typeSize
+    /// The crafted skin paints the chrome; the glass skin draws it as it did
+    /// before asset wave 0 (see `PofuSkinPolicy.face`).
+    @Environment(\.pofuPaintedChrome) private var paintsChrome
 
     public init(world: WorldSnapshot, today: TodaySummary, scene: IslandSceneModel, home: WorldHomeModel, actions: Actions) {
         self.world = world
@@ -101,7 +104,7 @@ public struct WorldHome: View {
         }
         // Night is a light (asset system v1 section 2.3): the kit's faces
         // turn lamplit at the hour the world does, whatever the system says.
-        .pofuNight(isNight)
+        .pofuNight(paintsChrome ? isNight : nil)
         .onAppear {
             home.camera = scene
             // A visit planned before the camera was set has already said its news.
@@ -161,12 +164,20 @@ public struct WorldHome: View {
     @ViewBuilder
     private var bubble: some View {
         if let line {
-            PofuPaperBubble {
-                Text(verbatim: line)
-                    .multilineTextAlignment(.center)
-                    .lineLimit(3)
+            Group {
+                if paintsChrome {
+                    PofuPaperBubble {
+                        Text(verbatim: line)
+                            .multilineTextAlignment(.center)
+                            .lineLimit(3)
+                    }
+                    .frame(maxWidth: 320)
+                } else {
+                    SpeechBubble {
+                        Text(verbatim: line)
+                    }
+                }
             }
-            .frame(maxWidth: 320)
             .id(line)
             .transition(.scale(scale: 0.92, anchor: .bottom).combined(with: .opacity))
         }
@@ -212,7 +223,7 @@ public struct WorldHome: View {
             .allowsHitTesting(false)
         }
         // The chrome's live text follows the world's light, not the system's.
-        .environment(\.colorScheme, isNight ? .dark : .light)
+        .modifier(WorldChromeLight(painted: paintsChrome, isNight: isNight))
         .animation(PofuMotion.respecting(reduceMotion, PofuMotion.snappy), value: showsHomeChrome)
         .animation(PofuMotion.respecting(reduceMotion, PofuMotion.snappy), value: showsIslandName)
         .animation(PofuMotion.respecting(reduceMotion, PofuMotion.settle), value: home.currentBeat)
@@ -285,9 +296,9 @@ public struct WorldHome: View {
                         .font(PofuFont.headline)
                         .frame(maxWidth: .infinity, minHeight: PofuSize.minimumTouch)
                 }
-                // The one verb: the honey plaque.
-                .buttonStyle(PofuPlaqueStyle(.primary, haptic: nil))
-                .frame(maxWidth: typeSize.isAccessibilitySize ? .infinity : CollectAction.width)
+                // The one verb: the honey plaque (crafted), the skin's action
+                // style (glass).
+                .modifier(CollectVerbStyle(painted: paintsChrome, wide: typeSize.isAccessibilitySize))
                 .transition(.opacity)
             }
         } else {
@@ -297,9 +308,9 @@ public struct WorldHome: View {
                 .multilineTextAlignment(.center)
                 .fixedSize(horizontal: false, vertical: true)
                 .padding(.horizontal, PofuSpacing.l)
-                .padding(.vertical, PofuSpacing.s + 1)
-                .frame(minHeight: 40)
-                .background { PofuPaperSurface(kind: .linen) }
+                .padding(.vertical, paintsChrome ? PofuSpacing.s + 1 : 7)
+                .frame(minHeight: paintsChrome ? 40 : 34)
+                .modifier(DailyLineSurface(painted: paintsChrome))
                 .frame(maxWidth: .infinity)
                 .transition(.opacity)
         }
@@ -566,6 +577,37 @@ struct GuardedSteps: View {
     }
 }
 
+/// The chrome's live text follows the world's light, not the system's, in
+/// the crafted skin; the glass skin follows the system as it did.
+private struct WorldChromeLight: ViewModifier {
+    let painted: Bool
+    let isNight: Bool
+
+    @ViewBuilder
+    func body(content: Content) -> some View {
+        if painted {
+            content.environment(\.colorScheme, isNight ? .dark : .light)
+        } else {
+            content
+        }
+    }
+}
+
+/// The daily line's surface: the linen card (crafted), the soft card the
+/// glass skin always had.
+private struct DailyLineSurface: ViewModifier {
+    let painted: Bool
+
+    @ViewBuilder
+    func body(content: Content) -> some View {
+        if painted {
+            content.background { PofuPaperSurface(kind: .linen) }
+        } else {
+            content.background(PofuColor.card.opacity(0.86), in: RoundedRectangle(cornerRadius: 17, style: .continuous))
+        }
+    }
+}
+
 /// Pofu's line on the painted plate: the paper bubble in the bottom band
 /// with his name on its tab, so nothing covers the island (the plate has
 /// no sky to spare above him).
@@ -579,14 +621,43 @@ struct PlateLine: View {
 
     var isLong: Bool { line.count > Self.longLine }
 
+    @Environment(\.pofuPaintedChrome) private var paintsChrome
+
+    /// The glass skin's card, as it was before the paper bubble.
+    private var card: some View {
+        VStack(alignment: .leading, spacing: 2) {
+            if !isLong {
+                Text(verbatim: "Pofu")
+                    .font(PofuFont.caption)
+                    .foregroundStyle(PofuColor.textSecondary)
+            }
+            Text(verbatim: line)
+                .font(isLong ? PofuFont.callout : PofuFont.headline)
+                .foregroundStyle(PofuColor.textPrimary)
+                .lineLimit(3)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.horizontal, PofuSpacing.l)
+        .padding(.vertical, isLong ? PofuSpacing.s : PofuSpacing.m)
+        .background(PofuColor.raised, in: RoundedRectangle(cornerRadius: PofuRadius.large, style: .continuous))
+        .shadow(color: PofuColor.shadow.opacity(0.1), radius: 12, y: 6)
+    }
+
     var body: some View {
         // The one bubble, its speaker on the ribbon tab; no tail, since
         // Pofu stands on the plate above the band.
-        PofuPaperBubble(speaker: isLong ? nil : LocalizedStringKey("Pofu"), tailPosition: nil) {
-            Text(verbatim: line)
-                .font(isLong ? PofuFont.callout : PofuFont.headline)
-                .lineLimit(3)
-                .frame(maxWidth: .infinity, alignment: .leading)
+        Group {
+            if paintsChrome {
+                PofuPaperBubble(speaker: isLong ? nil : LocalizedStringKey("Pofu"), tailPosition: nil) {
+                    Text(verbatim: line)
+                        .font(isLong ? PofuFont.callout : PofuFont.headline)
+                        .lineLimit(3)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+            } else {
+                card
+            }
         }
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(Text(verbatim: "Pofu"))

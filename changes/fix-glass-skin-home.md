@@ -1,0 +1,1 @@
+Changed: the default glass skin draws Home's chrome as it did before the painted pass (glass gear and place control, plain bubble, card and action); the painted faces belong to the crafted skin until the two are compared.

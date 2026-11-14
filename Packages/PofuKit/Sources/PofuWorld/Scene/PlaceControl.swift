@@ -20,6 +20,7 @@ struct PlaceControl: View {
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.pofuNight) private var night
+    @Environment(\.pofuPaintedChrome) private var paintsChrome
     @State private var identity = UUID()
 
     var body: some View {
@@ -50,9 +51,9 @@ struct PlaceControl: View {
                 PlaceGlyphView(glyph: .pofu).opacity(glyph == .pofu ? 1 : 0)
             }
             .animation(reduceMotion ? nil : .easeInOut(duration: 0.25), value: glyph)
-            .foregroundStyle(PofuKitArt.discClay.isPainted ? (night == true ? PofuKitPalette.night : PofuKitPalette.day).onPaper : PofuColor.textPrimary)
+            .foregroundStyle(paintsChrome && PofuKitArt.discClay.isPainted ? (night == true ? PofuKitPalette.night : PofuKitPalette.day).onPaper : PofuColor.textPrimary)
             .frame(width: Self.size, height: Self.size)
-            .modifier(PlaceControlFace())
+            .modifier(PlaceControlFace(painted: paintsChrome))
             .contentShape(Circle())
         } primaryAction: {
             model.placeControlTapped()
@@ -69,12 +70,16 @@ struct PlaceControl: View {
     }
 }
 
-/// The control's face: the one round button, a clay disc (asset system v1
-/// section 2.3); glass only while the disc is unpainted.
+/// The control's face: the one round button, a clay disc in the crafted skin (asset
+/// system v1 section 2.3); glass in the glass skin, or while the disc is
+/// unpainted.
 private struct PlaceControlFace: ViewModifier {
+    /// The crafted skin paints the disc; the glass skin keeps its glass.
+    let painted: Bool
+
     @ViewBuilder
     func body(content: Content) -> some View {
-        if PofuKitArt.discClay.isPainted {
+        if painted, PofuKitArt.discClay.isPainted {
             content.background { PofuClayDisc() }
         } else {
             content.glassEffect(.regular.interactive(), in: Circle())

@@ -274,6 +274,7 @@ struct CollectAction: View {
     static let width: CGFloat = 250
 
     @Environment(\.dynamicTypeSize) private var typeSize
+    @Environment(\.pofuPaintedChrome) private var paintsChrome
 
     var body: some View {
         Button(action: action) {
@@ -283,23 +284,59 @@ struct CollectAction: View {
                 Text(verbatim: WorldStrings.collectAction(seeds))
                     .font(PofuFont.headline.monospacedDigit())
             }
-            .frame(minHeight: PofuSize.minimumTouch)
+            .modifier(CollectLabelFrame(painted: paintsChrome))
         }
-        // The one verb: the honey plaque with the painted seed. The home's
-        // own collect haptics play, so the plaque plays none.
-        .buttonStyle(PofuPlaqueStyle(.primary, haptic: nil))
-        .frame(maxWidth: typeSize.isAccessibilitySize ? .infinity : Self.width)
+        .modifier(CollectVerbStyle(painted: paintsChrome, wide: typeSize.isAccessibilitySize))
         .accessibilityLabel(Text(verbatim: WorldStrings.collectLabel(seeds)))
     }
 
     @ViewBuilder
     private var seed: some View {
-        if PofuPaint.iconSeed.isAvailable {
+        if paintsChrome, PofuPaint.iconSeed.isAvailable {
             PofuPaintedIcon(.iconSeed, size: 22)
         } else {
             SeedGlyph()
                 .frame(width: 10, height: 16)
                 .rotationEffect(.degrees(18))
+        }
+    }
+}
+
+/// The label frame of the collect verb: the painted plaque (crafted skin)
+/// takes the label as it is; the glass skin keeps the ink and the padding it
+/// had before asset wave 0.
+private struct CollectLabelFrame: ViewModifier {
+    let painted: Bool
+
+    @ViewBuilder
+    func body(content: Content) -> some View {
+        if painted {
+            content.frame(minHeight: PofuSize.minimumTouch)
+        } else {
+            content
+                .foregroundStyle(PofuKitPalette.day.ink)
+                .frame(minHeight: PofuSize.minimumTouch)
+                .padding(.horizontal, PofuSpacing.xs)
+        }
+    }
+}
+
+/// The one verb's style: the honey plaque in the crafted skin (the home's
+/// own collect haptics play, so the plaque plays none), the skin's action
+/// style (glass) otherwise.
+struct CollectVerbStyle: ViewModifier {
+    let painted: Bool
+    /// An accessibility size: the plaque spans the width.
+    let wide: Bool
+
+    @ViewBuilder
+    func body(content: Content) -> some View {
+        if painted {
+            content
+                .buttonStyle(PofuPlaqueStyle(.primary, haptic: nil))
+                .frame(maxWidth: wide ? .infinity : CollectAction.width)
+        } else {
+            content.pofuActionStyle(.primary)
         }
     }
 }
