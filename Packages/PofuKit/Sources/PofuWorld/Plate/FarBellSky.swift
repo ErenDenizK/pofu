@@ -38,7 +38,7 @@ public enum FarBellSky {
 
     /// The night light's halo radius in points at the reference width: wide
     /// enough to read as a lamp, not a star, and wider as the road rises.
-    public static func haloRadius(glow: Double) -> Double { 16 + 22 * glow }
+    public static func haloRadius(glow: Double) -> Double { 18 + 26 * glow }
 
     /// The slow pulse of the night light: 1 at rest, easing down by 0.22 and
     /// back over `pulsePeriod` seconds. Constant 1 under Reduce Motion.
@@ -64,7 +64,7 @@ struct FarBellSkyLayer: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.worldStillFrame) private var still
 
-    private static let halo = Color(red: 1, green: 0.82, blue: 0.5)
+    private static let halo = Color(red: 1, green: 0.76, blue: 0.38)
     private static let core = Color(red: 1, green: 0.84, blue: 0.59)
 
     private func point(_ p: PlatePoint) -> CGPoint {
@@ -102,10 +102,10 @@ struct FarBellSkyLayer: View {
                 Path(ellipseIn: CGRect(x: c.x - r, y: c.y - r, width: r * 2, height: r * 2)),
                 with: .radialGradient(
                     Gradient(stops: [
-                        .init(color: Self.halo.opacity(0.55 * glow), location: 0),
-                        .init(color: Self.halo.opacity(0.34 * glow), location: 0.15),
-                        .init(color: Self.halo.opacity(0.18 * glow), location: 0.35),
-                        .init(color: Self.halo.opacity(0.07 * glow), location: 0.6),
+                        .init(color: Self.halo.opacity(0.72 * glow), location: 0),
+                        .init(color: Self.halo.opacity(0.46 * glow), location: 0.15),
+                        .init(color: Self.halo.opacity(0.25 * glow), location: 0.35),
+                        .init(color: Self.halo.opacity(0.10 * glow), location: 0.6),
                         .init(color: Self.halo.opacity(0.02 * glow), location: 0.85),
                         .init(color: Self.halo.opacity(0), location: 1),
                     ]),
@@ -142,7 +142,7 @@ struct FarBellSkyLayer: View {
                 // A warm breath of light, never a drawn line: no inner edge
                 // (it rises from the centre on a smooth curve), a wide peak
                 // toward the rim, then gone.
-                let peak = ring.opacity * (note.isFar ? 0.62 : 0.40)
+                let peak = ring.opacity * (note.isFar ? 0.85 : 0.45)
                 let stops: [Gradient.Stop] = [0.0, 0.2, 0.4, 0.55, 0.7, 0.82, 0.92, 1.0].map { t in
                     let up = t < 0.75 ? MomentCurves.smoothstep(t / 0.75) : 1 - MomentCurves.smoothstep((t - 0.75) / 0.25)
                     return .init(color: colour.opacity(peak * up), location: t)
