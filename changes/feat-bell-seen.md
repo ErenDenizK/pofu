@@ -1,0 +1,1 @@
+- The far bell is now seen as well as heard: bigger, warmer rings by day, a soft pulsing halo for the night light.

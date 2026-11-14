@@ -42,3 +42,22 @@ struct FarBellSkyTests {
         #expect(FarBellSky.ring(note: note, age: 0.5, reduceMotion: true) == nil)
     }
 }
+
+@Suite("Far bell sky, seen")
+struct FarBellSkySeenTests {
+    @Test func theFarRingIsBigAndTheLightIsAHalo() throws {
+        let note = FarBellTune.Note(step: 0, at: 0, isFar: true)
+        let end = try #require(FarBellSky.ring(note: note, age: FarBellSky.ringLife * 0.99, reduceMotion: false))
+        #expect(end.radius > 80)
+        #expect(FarBellSky.haloRadius(glow: 0.35) > 20)
+        #expect(FarBellSky.haloRadius(glow: 0.35) < FarBellSky.haloRadius(glow: 1.0))
+    }
+
+    @Test func thePulseIsSlowAndStillUnderReduceMotion() {
+        for t in stride(from: 0.0, to: 10.0, by: 0.37) {
+            #expect(FarBellSky.pulse(at: t, reduceMotion: true) == 1)
+            let p = FarBellSky.pulse(at: t, reduceMotion: false)
+            #expect(p >= 0.78 - 1e-9 && p <= 1 + 1e-9)
+        }
+    }
+}
