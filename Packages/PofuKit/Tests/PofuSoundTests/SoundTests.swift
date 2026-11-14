@@ -95,6 +95,22 @@ struct SoundPolicyTests {
         #expect(decision.assetName == "pofu-hop")
     }
 
+    @Test func hopAndGulpPlayAndHonourSettingsAndLevel() throws {
+        var policy = SoundPolicy()
+        let first = policy.decide(.pofuHop, at: 0)
+        let loud = try #require(first)
+        let second = policy.decide(.pofuHop, at: 5, level: 0.45)
+        let quiet = try #require(second)
+        #expect(abs(Double(quiet.gain) - Double(loud.gain) * 0.45) < 1e-6)
+        let gulp = policy.decide(.gulp, at: 0)
+        #expect(gulp?.assetName == "gulp")
+        // Hops stacked within a second collapse to one; a muted player hears none.
+        #expect(policy.decide(.pofuHop, at: 5.5) == nil)
+        var muted = SoundPolicy(settings: SoundSettings(isMuted: true))
+        #expect(muted.decide(.pofuHop, at: 0) == nil)
+        #expect(muted.decide(.gulp, at: 0) == nil)
+    }
+
     @Test func rateLimitDropsTooCloseRepeats() {
         var policy = SoundPolicy()
         #expect(policy.decide(.skipChime, at: 10) != nil)

@@ -111,6 +111,14 @@ extension AppModel {
         // The island's growth plays the level-up cue at its bloom ("Ada büyüdü"),
         // not when the level is derived.
         island.onIslandGrew = { SoundEngine.shared.play(.levelUp) }
+        // Hops (idle on the painted Home, a tap) are quiet and rate-limited by the engine.
+        island.onHop = { level in SoundEngine.shared.play(.pofuHop, level: level) }
+        worldHome.onSound = { sound in
+            switch sound {
+            case .gulp: SoundEngine.shared.play(.gulp)
+            case .hop: SoundEngine.shared.play(.pofuHop)
+            }
+        }
         guard active else {
             AmbienceConductor.shared.update(scene: nil, isActive: false)
             return
