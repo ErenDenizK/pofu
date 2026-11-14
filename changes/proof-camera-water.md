@@ -1,0 +1,1 @@
+Offline proof scripts for the feel-and-world plan: a Home-to-Map pull-out drawn two ways (today's cross-fades and the one-camera depth function) and three Çağlayan water loops (still, `fall` detail, region shader).

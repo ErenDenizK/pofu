@@ -1,0 +1,310 @@
+{
+ "note": "Water bodies of Caglayan's plate (plate-caglayan.json space, 1536 x 1024). `gate` is a rough polygon around a body; the mask inside it is the plate's own water colour. `flow` is the direction polyline (water moves along it, first to last). `mag` is island-layer px of displacement per `cycle` seconds (cycle divides 6). Authored for proof 4; the shipped form would live in plate-caglayan.json.",
+ "colour": {
+  "hue": [
+   165,
+   205
+  ],
+  "sat": 70,
+  "val": 140
+ },
+ "minArea": 150,
+ "feather": 1.2,
+ "bodies": [
+  {
+   "id": "fall",
+   "kind": "fall",
+   "gate": [
+    [
+     693.0,
+     87.0
+    ],
+    [
+     900.0,
+     87.0
+    ],
+    [
+     900.0,
+     354.0
+    ],
+    [
+     693.0,
+     354.0
+    ]
+   ],
+   "close": 9,
+   "erode": 1,
+   "flow": [
+    [
+     795.0,
+     90.0
+    ],
+    [
+     795.0,
+     352.5
+    ]
+   ],
+   "cycle": 3,
+   "mag": 110
+  },
+  {
+   "id": "pool",
+   "kind": "flow",
+   "gate": [
+    [
+     558.0,
+     348.0
+    ],
+    [
+     1107.0,
+     348.0
+    ],
+    [
+     1107.0,
+     543.0
+    ],
+    [
+     558.0,
+     543.0
+    ]
+   ],
+   "close": 5,
+   "erode": 1,
+   "flow": [
+    [
+     795.0,
+     363.0
+    ],
+    [
+     705.0,
+     450.0
+    ],
+    [
+     585.0,
+     465.0
+    ]
+   ],
+   "cycle": 6,
+   "mag": 40,
+   "ripple": 1.5,
+   "ripplePeriod": 3
+  },
+  {
+   "id": "chute",
+   "kind": "flow",
+   "gate": [
+    [
+     382.5,
+     285.0
+    ],
+    [
+     588.0,
+     285.0
+    ],
+    [
+     588.0,
+     502.5
+    ],
+    [
+     382.5,
+     502.5
+    ]
+   ],
+   "close": 5,
+   "erode": 1,
+   "flow": [
+    [
+     502.5,
+     300.0
+    ],
+    [
+     450.0,
+     450.0
+    ],
+    [
+     427.5,
+     502.5
+    ]
+   ],
+   "cycle": 3,
+   "mag": 70
+  },
+  {
+   "id": "channel",
+   "kind": "flow",
+   "gate": [
+    [
+     382.5,
+     495.0
+    ],
+    [
+     738.0,
+     495.0
+    ],
+    [
+     738.0,
+     702.0
+    ],
+    [
+     382.5,
+     702.0
+    ]
+   ],
+   "close": 5,
+   "erode": 1,
+   "flow": [
+    [
+     427.5,
+     510.0
+    ],
+    [
+     465.0,
+     562.5
+    ],
+    [
+     540.0,
+     592.5
+    ],
+    [
+     630.0,
+     615.0
+    ],
+    [
+     667.5,
+     648.0
+    ]
+   ],
+   "cycle": 3,
+   "mag": 70,
+   "ripple": 1.0,
+   "ripplePeriod": 3
+  },
+  {
+   "id": "fountain1",
+   "kind": "ripple",
+   "gate": [
+    [
+     1170.0,
+     262.5
+    ],
+    [
+     1372.5,
+     262.5
+    ],
+    [
+     1372.5,
+     342.0
+    ],
+    [
+     1170.0,
+     342.0
+    ]
+   ],
+   "close": 3,
+   "erode": 1,
+   "flow": [
+    [
+     1200.0,
+     300.0
+    ],
+    [
+     1350.0,
+     300.0
+    ]
+   ],
+   "cycle": 6,
+   "mag": 0,
+   "ripple": 1.2,
+   "ripplePeriod": 3
+  },
+  {
+   "id": "fountain2",
+   "kind": "ripple",
+   "gate": [
+    [
+     1192.5,
+     352.5
+    ],
+    [
+     1417.5,
+     352.5
+    ],
+    [
+     1417.5,
+     438.0
+    ],
+    [
+     1192.5,
+     438.0
+    ]
+   ],
+   "close": 3,
+   "erode": 1,
+   "flow": [
+    [
+     1200.0,
+     390.0
+    ],
+    [
+     1350.0,
+     390.0
+    ]
+   ],
+   "cycle": 6,
+   "mag": 0,
+   "ripple": 1.2,
+   "ripplePeriod": 3
+  },
+  {
+   "id": "fountain3",
+   "kind": "ripple",
+   "gate": [
+    [
+     1117.5,
+     450.0
+    ],
+    [
+     1410.0,
+     450.0
+    ],
+    [
+     1410.0,
+     573.0
+    ],
+    [
+     1117.5,
+     573.0
+    ]
+   ],
+   "close": 3,
+   "erode": 1,
+   "flow": [
+    [
+     1140.0,
+     510.0
+    ],
+    [
+     1350.0,
+     510.0
+    ]
+   ],
+   "cycle": 6,
+   "mag": 0,
+   "ripple": 1.2,
+   "ripplePeriod": 3
+  }
+ ],
+ "fallDetail": {
+  "flowTile": "world-home-sky-fx-isle-falls-fall-c-flow-day-0",
+  "speed": 20,
+  "strength": 0.7,
+  "mistPeak": 0.14,
+  "mistPeriod": 3.0,
+  "mistRadius": 0.6,
+  "mistColor": [
+   0.8794,
+   0.9283,
+   0.9912
+  ]
+ }
+}
