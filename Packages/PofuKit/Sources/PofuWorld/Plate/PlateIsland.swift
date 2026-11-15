@@ -162,6 +162,14 @@ public struct PlateIsland: Hashable, Sendable {
     /// Per light, per stage: 20 rows of 32 shadow colours.
     public var shadowMap: [String: [[[String]]]]
     public var textureBytes: Int
+    /// Per stage: the island's contact shadow on the cloud below it, drawn by code from the matte (the plate has none of
+    /// its own). Empty for a plate whose ingest wrote none.
+    public var shadows: [PlateShadow]
+
+    /// The contact shadow of a stage, if the data has one.
+    public func shadow(stage: Int) -> PlateShadow? {
+        shadows.indices.contains(stage) ? shadows[stage] : nil
+    }
 
     // MARK: Asset names (docs/design/plate-islands.md §0)
 
@@ -250,12 +258,36 @@ public struct PlateIsland: Hashable, Sendable {
     }
 }
 
+/// An island's contact shadow: an ellipse (`centre`, `radii`, plate pixels) softened by `blur` and drawn at `opacity`
+/// in a dark sky tone (`island_shadow` in tools/proof/island_matte.py).
+public struct PlateShadow: Decodable, Hashable, Sendable {
+    public var centre: PlatePoint
+    public var radii: PlatePoint
+    public var blur: Double
+    public var opacity: Double
+
+    private enum Keys: String, CodingKey { case centre, radii, blur, opacity }
+
+    public init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: Keys.self)
+        let centre = try c.decode([Double].self, forKey: .centre)
+        let radii = try c.decode([Double].self, forKey: .radii)
+        guard centre.count == 2, radii.count == 2 else {
+            throw DecodingError.dataCorruptedError(forKey: .centre, in: c, debugDescription: "centre and radii take two numbers")
+        }
+        self.centre = PlatePoint(x: centre[0], y: centre[1])
+        self.radii = PlatePoint(x: radii[0], y: radii[1])
+        blur = try c.decodeIfPresent(Double.self, forKey: .blur) ?? 0
+        opacity = try c.decode(Double.self, forKey: .opacity)
+    }
+}
+
 // MARK: - Decoding
 
 extension PlateIsland: Decodable {
     private enum Keys: String, CodingKey {
         case island, version, standIn, minLevel, plateSize, stages, lights, lightStages, painted, stageLevels, harmony, islandBox, backdropBox, objects
-        case walkable, characters, pofuWidth, residentBoost, residentBoosts, lamps, lampHeight, framing, lightDirection, lightMap, shadowMap, textureBytes
+        case walkable, characters, pofuWidth, residentBoost, residentBoosts, lamps, lampHeight, framing, lightDirection, lightMap, shadowMap, textureBytes, shadow
     }
 
     public init(from decoder: Decoder) throws {
@@ -304,6 +336,7 @@ extension PlateIsland: Decodable {
         lightMap = try c.decodeIfPresent([String: [[[String]]]].self, forKey: .lightMap) ?? [:]
         shadowMap = try c.decodeIfPresent([String: [[[String]]]].self, forKey: .shadowMap) ?? [:]
         textureBytes = try c.decodeIfPresent(Int.self, forKey: .textureBytes) ?? 0
+        shadows = try c.decodeIfPresent([PlateShadow].self, forKey: .shadow) ?? []
     }
 
     private struct RawHarmony: Decodable {

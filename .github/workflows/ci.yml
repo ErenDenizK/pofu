@@ -119,6 +119,9 @@ jobs:
       - name: Test the plate tools
         run: python3 -I -m unittest discover -s tools/plate -p "test_*.py"
 
+      - name: Gate the shipped Home plates (mattes M1 to M6 and M11, texture budget)
+        run: python3 -I tools/plate/plate_gate.py home
+
       # docs/state/plates.yaml: painted paths and lead picks exist.
       - name: Check the plate and asset state tables
         run: |

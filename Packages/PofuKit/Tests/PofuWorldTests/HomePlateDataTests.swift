@@ -22,6 +22,20 @@ struct HomePlateDataTests {
         }
     }
 
+    @Test func shadowDecodesForEveryStage() throws {
+        let plate = try plate
+        #expect(plate.shadows.count == plate.stages)
+        for stage in 0..<plate.stages {
+            let shadow = try #require(plate.shadow(stage: stage), "stage \(stage)")
+            // An ellipse wider than it is tall, under the island, inside the plate's width.
+            #expect(shadow.radii.x > shadow.radii.y && shadow.radii.y > 0, "stage \(stage)")
+            #expect(shadow.centre.x > 0 && shadow.centre.x < plate.plateSize.maxX, "stage \(stage)")
+            #expect(shadow.centre.y > (plate.islandBox.minY + plate.islandBox.maxY) / 2, "stage \(stage)")
+            #expect(shadow.opacity > 0 && shadow.opacity <= 1, "stage \(stage)")
+        }
+        #expect(plate.shadow(stage: plate.stages) == nil)
+    }
+
     @Test func paintsTheDayOfEveryLevelFromOne() throws {
         let plate = try plate
         #expect(plate.painted["day"] == Array(0...9))

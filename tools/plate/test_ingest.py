@@ -1,4 +1,4 @@
-"""Tests for ingest.py on synthetic images only (no art files, no OpenCV)."""
+"""Tests for ingest.py: synthetic images, and the committed Home plates and mattes where a test says so."""
 from __future__ import annotations
 
 import sys
@@ -191,6 +191,63 @@ class IngestTests(unittest.TestCase):
         self.assertLess(np.abs(out[y, x] - rgb[500, 768]).max(), 0.03)
         # Far above: sky, deeper than the plate's top.
         self.assertGreater(out[2, x, 2], out[2, x, 0])
+
+    def test_backdrop_inside_the_matte_is_not_the_plate(self):
+        """With `hole` the backdrop holds no copy of the island: inside the matte grown it is sky and cloud, far from the
+        island's own colours (mean Delta E above 10)."""
+        import cv2
+
+        rng = np.random.default_rng(5)
+        w, h = ingest.SIZE
+        rgb = np.zeros((h, w, 3))
+        rgb[:] = (0.6, 0.75, 0.95)
+        rgb[int(h * 0.7):] = (0.95, 0.93, 0.9)
+        a = disc(rgb.shape[:2], 512, 700, 250)
+        rgb[a > 0.5] = (0.25, 0.45, 0.15) + rng.uniform(-0.03, 0.03, 3)
+        grown = cv2.dilate((a > 0.02).astype(np.uint8), cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (49, 49))) > 0
+        box = (0, 0, w, h)
+        scale = 0.25
+        with_hole = ingest.backdrop(rgb, np.zeros_like(a), box, scale=scale, hole=grown)
+        small_mask = cv2.resize(grown.astype(np.float32), (with_hole.shape[1], with_hole.shape[0]), interpolation=cv2.INTER_AREA) > 0.99
+        island = np.asarray(rgb[a > 0.5].mean(0))
+        de = ingest.heic._lab(with_hole[small_mask] * 255.0) - ingest.heic._lab(island[None] * 255.0)
+        self.assertGreater(float(np.linalg.norm(de, axis=1).mean()), 10.0)
+
+    def test_plate_alpha_is_the_states_matte(self):
+        """The shipped Home plate's alpha is the state's own matte (feather 0), within the codec's error."""
+        from PIL import Image
+        for light, stage in (("day", 0), ("day", 5), ("night", 5), ("golden", 0)):
+            name = ingest.asset_name("home", "plate", light, stage)
+            f = next((ingest.ASSETS / f"{name}.imageset").glob(f"{name}.*"))
+            alpha = np.asarray(ingest.heic.open_image(f).convert("RGBA"), np.float64)[..., 3] / 255
+            matte = ingest.load_matte_full("home", light, stage)
+            self.assertEqual(alpha.shape, matte.shape)
+            self.assertLess(float(np.abs(alpha - matte).mean()), 0.004, f"{light}:{stage}")
+            self.assertEqual(float(alpha[0].max()), 0.0)  # no rectangle: the border is clear
+
+    def test_no_state_reads_level_10s_matte(self):
+        import unittest.mock as mock
+        hand = ingest.load_hand("home")
+        masters = [ingest.matte_path("home", light, stage) for light, stage, _ in ingest.plates(hand)]
+        self.assertEqual(len(masters), 21)
+        self.assertTrue(all(p.exists() for p in masters))
+        # every state that is not listed as legacy has its own solve (the three lights of a stage are one drawing)
+        own = {m.name for m, (light, stage, _) in zip(masters, ingest.plates(hand)) if not ingest.is_legacy(hand, light, stage)}
+        self.assertEqual(len(own), 15)
+        self.assertFalse(np.array_equal(ingest.load_matte_full("home", "day", 5), ingest.load_matte_full("home", "day", 0)))
+        # a state without its own matte is an error, not the level-10 one
+        with mock.patch.object(ingest, "matte_path", return_value=Path("/nonexistent/matte.png")):
+            with self.assertRaises(FileNotFoundError):
+                ingest.load_matte_full("home", "day", 5)
+
+    def test_shadow_is_an_ellipse_under_the_island(self):
+        a = np.zeros((3072, 2048))
+        a[400:2000, 200:1800] = 1
+        s = ingest.shadow_params(a)
+        self.assertEqual(s["opacity"], 0.34)
+        self.assertAlmostEqual(s["centre"][0], 500.0, delta=1)  # plate points: x 200..1800 of 2048 px -> centre 500 of 1024
+        self.assertGreater(s["centre"][1], 1000)                 # below the foot (y 2000 px = 1000 points)
+        self.assertGreater(s["radii"][0], s["radii"][1])
 
     def test_home_frame_puts_the_island_at_its_widths(self):
         a = np.zeros((ingest.SIZE[1], ingest.SIZE[0]))
