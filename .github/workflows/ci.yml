@@ -148,6 +148,11 @@ jobs:
       - name: Test the art-factory scripts
         run: python3 -I -m unittest discover -s tools/art -p "test_*.py"
 
+      # The world-presentation proof tools (matte checks, composition rules, frame match). The matte maker
+      # needs onnxruntime (tools/proof/requirements.txt); CI does not install it and no test imports it.
+      - name: Test the proof tools
+        run: python3 -I -m unittest discover -s tools/proof -p "test_*.py"
+
       # The studio's own instruments (docs/studio.md): what changed for the player, and where a
       # session's budget went.
       - name: Test the studio tools
@@ -491,6 +496,32 @@ jobs:
         uses: actions/setup-python@v6
         with:
           python-version: "3.12"
+
+      # The app's world frames against the founder's picked targets (tools/proof/frame_match.py): the band
+      # luminance and saturation tables go to the job summary. A frame that is not there is skipped silently.
+      - name: Match the world frames to their targets
+        run: |
+          set -uo pipefail
+          for d in map mid near; do
+            frame=""
+            for ext in png jpg; do
+              [ -e "shots/world-target-${d}-1200.${ext}" ] && frame="shots/world-target-${d}-1200.${ext}" && break
+            done
+            [ -n "$frame" ] || continue
+            if [ ! -e "repo/docs/design/assets/world-concepts/target-${d}.jpg" ]; then continue; fi
+            if ! python3 -c "import cv2, numpy, PIL" 2>/dev/null; then
+              pip install --quiet "Pillow>=10.1" "numpy>=1.26" "opencv-python-headless>=4.8"
+            fi
+            mkdir -p frame-match
+            {
+              echo '### Frame match: '"$d"
+              echo '```'
+              python3 -I repo/tools/proof/frame_match.py --app "$frame" \
+                --target "repo/docs/design/assets/world-concepts/target-${d}.jpg" \
+                --distance "$d" --out frame-match
+              echo '```'
+            } >> "$GITHUB_STEP_SUMMARY" || true
+          done
 
       - name: Convert to JPEG and draw a contact sheet
         run: |
