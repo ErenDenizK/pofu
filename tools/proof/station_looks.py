@@ -30,6 +30,7 @@ SCREEN = (1206, 2622)
 UNIT = 999.4  # device px of the plate's width per pt-per-unit (Pofu 83.4 of 1024 px is 27 units wide)
 SCALES = {"far": 0.76, "mid": 0.9 * 1206 / UNIT, "near": 2.7}  # Map; island 0.9 screen widths; near cap
 FEATHER = 2.5
+SKY_ROWS = 200  # ROI rows above which the sky lies round a stall (tea: the roof and its sky)
 
 # station -> stage -> polygon (2048 x 3072 plate px). Looks are the stages named in LOOKS.
 POLYS = {
@@ -178,16 +179,25 @@ def composite(station: str, light: str, host: int, look: int, cache: dict):
     if host == look:
         return full, {"hole": 0.0}
     mh, ml = look_matte(station, light, host, cache), look_matte(station, light, look, cache)
-    hole = np.clip(grow(mh, 5) - ml, 0, 1)
+    # the host's whole hand polygon, not only its sky-cut matte: the cut spares an awning's pale tips, which then ghost
+    mraw = poly_matte(station, host, P(host).shape[:2])[sl]
+    mm = np.maximum(mh, mraw)
+    # a wide halo in the sky above the stall (the old awning's pale tips), a narrow one on the ground beside it
+    up = np.clip((SKY_ROWS - np.arange(mm.shape[0], dtype=np.float32)) / 20 + 0.5, 0, 1)[:, None]
+    hole = np.clip(grow(mm, 14) * up + grow(mm, 6) * (1 - up) - ml, 0, 1)
+    inner = grow(np.maximum(mh, mraw), 4)         # donors fill the stall's own place only; the halo round it is inpainted
     hole = np.clip(cv2.GaussianBlur(grow(hole, 4), (0, 0), 2.5) * 1.2, 0, 1)
     ring = np.clip(grow(mh, 40) - grow(mh, 12), 0, 1) * (1 - grow(ml, 12))
     excl = np.maximum(grow(mh, 10), grow(ml, 10))
-    fill, filled = hostp.copy(), np.zeros(hostp.shape[:2], np.float32)
+    # The fill is the donors' pixels where they are free of their own look, weighted: a hole pixel only part covered
+    # by a donor used to keep the rest of its host's stall (a ghost of the awning at the roof's edge). Now the
+    # weighted donor colour is normalised, and what no donor covers is inpainted from sky and ground outside the hole.
+    acc, filled = np.zeros_like(hostp), np.zeros(hostp.shape[:2], np.float32)
     for d in DONORS[station]:
         if d == host:
             continue
-        free = 1 - grow(look_matte(station, light, d, cache), 3)
-        take = np.clip(free - filled, 0, 1) * (hole > 0.02)
+        free = 1 - grow(np.maximum(look_matte(station, light, d, cache), poly_matte(station, d, P(d).shape[:2])[sl]), 10)
+        take = np.clip(free - filled, 0, 1) * (hole > 0.02) * np.clip(inner * 2, 0, 1)
         if take.sum() < 1:
             continue
         dp = P(d)[sl]
@@ -196,12 +206,18 @@ def composite(station: str, light: str, host: int, look: int, cache: dict):
             dsky = ((dp[..., 2] - (dp[..., 0] + dp[..., 1]) / 2) > 0.1).astype(np.float32)
             dsky = cv2.GaussianBlur(dsky, (0, 0), 2)[..., None]
             dp = dp + sky_offset(hostp, dp, excl) * dsky
-        fill = fill * (1 - take[..., None]) + dp * take[..., None]
+        acc += dp * take[..., None]
         filled = np.clip(filled + take, 0, 1)
-    rest = ((hole > 0.02) & (filled < 0.5)).astype(np.uint8) * 255
+    fill = np.where(filled[..., None] > 0.05, acc / np.maximum(filled, 0.05)[..., None], hostp)
+    need = (hole > 0.02) & (filled < 0.9)
+    rest = need.astype(np.uint8) * 255
     if rest.any():
-        f8 = (np.clip(fill, 0, 1) * 255).astype(np.uint8)
-        fill = cv2.inpaint(f8, rest, 6, cv2.INPAINT_TELEA).astype(np.float32) / 255.0
+        # inpaint from outside the whole hole, never from the host's stall pixels it half covers, and with the look's
+        # own place left unknown too (it is overwritten below): the host's post under it must not bleed into the halo
+        unknown = (need | (ml > 0.02)).astype(np.uint8) * 255
+        f8 = (np.clip(np.where(unknown[..., None] > 0, 0, fill), 0, 1) * 255).astype(np.uint8)
+        filled8 = cv2.inpaint(f8, unknown, 6, cv2.INPAINT_TELEA).astype(np.float32) / 255.0
+        fill = np.where(need[..., None], filled8, fill)
     out = hostp * (1 - hole[..., None]) + fill * hole[..., None]
     lp = P(look)[sl]
     gain = ring_gain(lp, hostp, ring)
