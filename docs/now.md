@@ -29,9 +29,9 @@ Large job now: the asset system (#445), Wave 0 first.
    (Opus, `feat/world-depth-function`), WP3 composition model (Opus,
    `feat/world-composition-model`). Decisions taken: D4 rail map/mid/near
    (ADR-0027 in WP7), D7 budget 14 MB, D8 props early with fallback.
-   Defaults on concepts: Map A, near locked t2 (founder-input 34).
-2. Art: Codex queue 118-120 (match gaps) after 114-117; 114-117 review
-   running. Close stacked proof PRs after WP1.
+   Concepts: Map A, near locked t2 (founder-input 34).
+2. Art: Codex 118-120 queued; 114-117 in review. Close stacked proof
+   PRs after WP1.
 Disk 6.6 GB (/swapfile, rm blocked). Paused: #453; UI grammar after.
 
 ## Next steps, in order
