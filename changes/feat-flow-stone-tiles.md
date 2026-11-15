@@ -1,0 +1,1 @@
+- The flow board's stone cells are painted stone now (grass and boulder cells too), with the channel carved in and the banks shaded.

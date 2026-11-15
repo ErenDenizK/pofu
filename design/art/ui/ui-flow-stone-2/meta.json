@@ -1,0 +1,27 @@
+{
+  "job": "x-flow-stone-c",
+  "batch": "batch-114-flow-stone-v2",
+  "asset": "ui__ui-flow-stone-2",
+  "take": 2,
+  "takes_considered": 2,
+  "image": "design/art/ui/ui-flow-stone-2/ui-flow-stone-2.png",
+  "source_take": "design/art/takes/batch-114-flow-stone-v2/x-flow-stone-c/ui__x-flow-stone-c--t2.webp (pofu-art PR #81, branch art/batch-114-flow-stone-v2)",
+  "source_sha256": "77510703697f140af80a5c17fdf51fc03bd77572aa40d26571396303d3cec1ba",
+  "delivered_size": [
+    1024,
+    1024
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "edit_of": "x-flow-stone-blank-t1"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "qa": {
+    "status": "pass",
+    "note": "automated QA pass; both takes fail the manual wrap-step threshold, but the lead's board check (4x3 at 246 px cell, channels, random turns) shows no seam, rim, gradient or cut moss"
+  },
+  "note": "Lead pick (review.yaml, x-flow-stone-c): take 2, tiles as cleanly; mixed with take 1 for a hand-laid board. About 20 percent less chromatic than the straight tile, so the app tints it warmer."
+}

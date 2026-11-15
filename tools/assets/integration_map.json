@@ -1589,6 +1589,26 @@
         56
       ],
       "scale": 3
+    },
+    {
+      "target": "games",
+      "name": "flow-stone",
+      "master": "design/art/ui/ui-flow-stone",
+      "points": [
+        84,
+        84
+      ],
+      "scale": 3
+    },
+    {
+      "target": "games",
+      "name": "flow-stone-2",
+      "master": "design/art/ui/ui-flow-stone-2",
+      "points": [
+        84,
+        84
+      ],
+      "scale": 3
     }
   ]
 }
