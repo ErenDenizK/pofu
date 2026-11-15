@@ -49,6 +49,7 @@ import skyset_extend  # noqa: E402
 TEX = 2                                     # plate texture px per plate point
 BEAM_X = (1870, 1985)                       # texture px: the beam fades out between these columns
 BEAM_LEAD = 110                             # px the beam's rect reaches left of where it fades from, into the lamp room
+BEAM_TOP, BEAM_TOP_X = 1226, 1900                # texture px: left of this column the beam starts at this row (above it is the dome's pale glow, not the beam)
 BEAM_Y = (1130, 1340)                       # texture rows of the beam band (the lamp is near 1200)
 GUIDE_R, GUIDE_EPS = 6, 2e-3                # guided filter on the keep mask: radius px, regularisation
 ML = os.environ.get("POFU_MATTE_ML", "1") == "1"                 # the island/sky decision comes from the matting network
@@ -389,6 +390,8 @@ def _beam(plate: np.ndarray, rgb: np.ndarray, box: tuple[int, int, int, int]) ->
     fb = 1 - fb * fb * (3 - 2 * fb)
     rows = np.arange(yb - ya, dtype=np.float32)
     fb = fb[None, :] * np.clip(np.minimum(rows[:, None] / 30, (yb - ya - 1 - rows[:, None]) / 30), 0, 1)
+    gy = (np.arange(yb - ya, dtype=np.float32) + ya + by)[:, None]
+    t_ = np.where((gx[None, :] < BEAM_TOP_X) & (gy < BEAM_TOP), 0.0, t_)
     return (t_ * fb).astype(np.float32), (xa - BEAM_LEAD, ya, rgb.shape[1], yb)
 
 
@@ -431,6 +434,121 @@ def ml_probability(rgb: np.ndarray) -> np.ndarray:
     x = ((x - np.float32([0.485, 0.456, 0.406])) / np.float32([0.229, 0.224, 0.225])).transpose(2, 0, 1)[None].astype(np.float32)
     out = sess.run(None, {sess.get_inputs()[0].name: x})[0][0, 0]
     return cv2.resize((1 / (1 + np.exp(-out))).astype(np.float32), (w, h), interpolation=cv2.INTER_CUBIC)
+
+
+# ---------------------------------------------------------------- round 3b: thin structures, declared edge repairs
+
+THIN_DARK, THIN_MIN, THIN_REACH = 0.14, 24, 6   # luma below the sky's that makes a pixel a candidate; least size of a line; px it may start from the matte
+THIN_LO, THIN_HI = 0.04, 0.30                   # the colour line's alpha ramp over the darkness
+#: Declared regions, texture px of the day layer. x0, y0, x1, y1.
+STRING_BOX = (770, 380, 990, 472)               # the string-light run between the windmill and the workshop (the same place on levels 10, 9 and 8)
+DOME_BOX = (1700, 352, 1840, 480)               # the lamp room's dome and rim (under the finial's ball, which a blur would eat): a stepped edge, smoothed
+DOME_SIGMA, DOME_IN = 3.0, 1.5                  # sigma of the smoothing, and px the contour moves in (the plate's pale glow fringe is not the dome)
+STALL_BOX = (1290, 603, 1560, 635)              # the stall's string under its awning on level 6
+ARM_BOX = (1590, 560, 1720, 720)                # the donut stand's thin arm on level 7
+THIN_BOXES = {0: [STRING_BOX], 1: [STRING_BOX], 2: [STRING_BOX], 3: [ARM_BOX], 4: [STALL_BOX]}          # the string-light cord and the bulbs' caps between the windmill and the workshop
+CHIP_BOXES = [(335, 105, 380, 150)]             # pale out-of-focus blossom pieces beside the tree, below 64 px
+
+
+def thin_structures(rgb: np.ndarray, a: np.ndarray, boxes: list[tuple[int, int, int, int]]) -> np.ndarray:
+    """Alpha of the thin dark lines the network drops (a string-light cord, a bulb's cap and stem) cut by a colour line:
+    pixels outside the matte that are darker than the sky round them, in a connected piece of THIN_MIN px or more that
+    starts within THIN_REACH px of the matte. The alpha is the darkness towards the line's own colour, 0 elsewhere. Run on
+    the day plate, whose sky is plain and bright, and only inside the declared `boxes`: an outline's own dark rim, or the
+    painted shadow of a lawn's edge, is darker than the sky too and is not a line."""
+    out_ = a < 0.01
+    luma = _luma(rgb)
+    dark0 = luma < (_luma(_nconv(rgb, out_, 8.0)[0]) - THIN_DARK)
+    known = out_ & ~cv2.dilate(dark0.astype(np.uint8), np.ones((5, 5), np.uint8)).astype(bool)
+    sky, w = _nconv(rgb, known, 6.0)
+    d_l = _luma(sky) - luma
+    cand = (d_l > THIN_DARK) & (a < 0.5) & (w > 0.05)
+    cand = cv2.morphologyEx(cand.astype(np.uint8), cv2.MORPH_CLOSE, np.ones((3, 3), np.uint8))
+    n, lab, st, _ = cv2.connectedComponentsWithStats(cand, connectivity=8)
+    near = cv2.dilate((a >= 0.5).astype(np.uint8), cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2 * THIN_REACH + 1, 2 * THIN_REACH + 1))).astype(bool)
+    keep = np.zeros(n, bool)
+    for i in range(1, n):
+        x, y, bw, bh, ar = st[i]
+        if ar >= THIN_MIN and max(bw, bh) >= 20 and near[lab == i].any():
+            keep[i] = True
+    inbox = np.zeros(a.shape, bool)
+    for bx0, by0, bx1, by1 in boxes:
+        inbox[by0:by1, bx0:bx1] = True
+    sel = inbox & cv2.dilate(keep[lab].astype(np.uint8), cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5))).astype(bool) & (a < 0.5)
+    t = np.clip((d_l - THIN_LO) / (THIN_HI - THIN_LO), 0, 1)
+    return np.where(sel, t, 0.0).astype(np.float32)
+
+
+def _luma(rgb: np.ndarray) -> np.ndarray:
+    return rgb @ np.float32([0.2126, 0.7152, 0.0722])
+
+
+def smooth_region(a: np.ndarray, rgb: np.ndarray, box: tuple[int, int, int, int], sigma: float, inward: float = 0.0) -> np.ndarray:
+    """The alpha inside `box` with its contour smoothed (a blur of the alpha, the 0.5 contour drawn again as an
+    anti-aliased ramp), faded in over about 6 px at the box's edge."""
+    x0, y0, x1, y1 = box
+    y1, x1 = min(y1, a.shape[0]), min(x1, a.shape[1])
+    sub = a[y0:y1, x0:x1]
+    re = render_aa(cv2.GaussianBlur(sub, (0, 0), sigma), rgb[y0:y1, x0:x1], shift=SHIFT + inward)
+    m = np.zeros(a.shape, np.float32)
+    m[y0:y1, x0:x1] = 1
+    m = cv2.GaussianBlur(cv2.erode(m, np.ones((7, 7), np.uint8)), (0, 0), 2)[y0:y1, x0:x1]
+    out = a.copy()
+    out[y0:y1, x0:x1] = sub * (1 - m) + re * m
+    return out
+
+
+BULB_BOXES = {0: [STRING_BOX], 1: [STRING_BOX], 2: [STRING_BOX], 4: [STALL_BOX]}   # the bulbs: pale halo wedges beside their caps are the sky's glow, not the bulb
+BULB_MIN = 40
+
+
+def clean_bulbs(a: np.ndarray, rgb: np.ndarray, box: tuple[int, int, int, int]) -> np.ndarray:
+    """Inside `box`: alpha on a pixel that is not warm (blue above red by 0.05, or within 0.02 of it beside such a pixel: the glow's pale
+    wedge or the sky's mix) goes; every warm piece of BULB_MIN px or more (the sky is blue, a bulb is cream, yellow or amber: a bulb the
+    network cut in half, or a crescent, is whole again) becomes opaque; then the contour is smoothed (sigma 1.0) and drawn
+    again anti-aliased."""
+    x0, y0, x1, y1 = box
+    sub, c = a[y0:y1, x0:x1], rgb[y0:y1, x0:x1]
+    cold = (c[..., 2] > c[..., 0] + 0.05)
+    cold = cv2.dilate(cold.astype(np.uint8), np.ones((3, 3), np.uint8)).astype(bool) & (c[..., 2] > c[..., 0] - 0.02)
+    warm = (c[..., 0] - c[..., 2] > 0.04) & ~cold
+    warm = cv2.morphologyEx(warm.astype(np.uint8), cv2.MORPH_CLOSE, np.ones((5, 5), np.uint8))
+    n, lab, st, _ = cv2.connectedComponentsWithStats(warm, connectivity=8)
+    ok = np.zeros(n, bool)
+    ok[1:] = st[1:, 4] >= BULB_MIN
+    out = a.copy()
+    out[y0:y1, x0:x1] = np.where(ok[lab], 1.0, np.where(cold, 0.0, sub))
+    return smooth_region(out, rgb, box, 1.0)
+
+
+GLASS_BOX = (1745, 395, 1835, 445)             # the lamp's glass: warm pixels the network left part-transparent (the rim's colour smears into them)
+
+
+def fill_glass(a: np.ndarray, rgb: np.ndarray, box: tuple[int, int, int, int]) -> np.ndarray:
+    x0, y0, x1, y1 = box
+    sub, c = a[y0:y1, x0:x1], rgb[y0:y1, x0:x1]
+    solid = cv2.morphologyEx((sub > 0.5).astype(np.uint8), cv2.MORPH_CLOSE, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (15, 15))).astype(bool)
+    warm = (c[..., 0] - c[..., 2] > 0.2) & (c[..., 0] > 0.8)
+    out = a.copy()
+    out[y0:y1, x0:x1] = np.where(solid & warm, 1.0, sub)
+    return out
+
+
+def drop_chips(a: np.ndarray, box: tuple[int, int, int, int], area: int = 400) -> np.ndarray:
+    """Inside `box`: pieces of the matte that a 7 px opening takes away, and that are smaller than `area` px (400: Fable's 64 px counted a fragment, the chips are 100 to 200 px joined by a neck), go."""
+    x0, y0, x1, y1 = box
+    sub = a[y0:y1, x0:x1]
+    firm = (sub > 0.15).astype(np.uint8)
+    core = cv2.dilate(cv2.morphologyEx(firm, cv2.MORPH_OPEN, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (7, 7))), cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5)))
+    rest = (firm > 0) & (core == 0)
+    n, lab, st, _ = cv2.connectedComponentsWithStats(rest.astype(np.uint8), connectivity=8)
+    gone = np.zeros(n, bool)
+    for i in range(1, n):
+        gone[i] = st[i, 4] < area
+    g = cv2.dilate(gone[lab].astype(np.uint8), np.ones((3, 3), np.uint8)).astype(bool) & (core == 0)
+    out = a.copy()
+    out[y0:y1, x0:x1] = np.where(g, 0.0, sub)
+    return out
 
 
 LIGHTS = ("day", "golden", "night")
@@ -504,7 +622,29 @@ def shared_alpha(stage: int) -> np.ndarray:
     firm = cv2.morphologyEx((a > 0.3).astype(np.uint8), cv2.MORPH_OPEN, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (3, 3)))
     a = np.where(cv2.dilate(firm, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5))) > 0, a, 0.0)
     a = np.ascontiguousarray(a, dtype=np.float32)
+    # round 3b: declared repairs
+    if stage == 0:
+        for box in CHIP_BOXES:
+            a = drop_chips(a, box)
+        a = smooth_region(a, rgb, DOME_BOX, DOME_SIGMA, DOME_IN)
+        a = fill_glass(a, rgb, GLASS_BOX)
+    for box in BULB_BOXES.get(stage, []):
+        a = clean_bulbs(a, rgb, box)
+    thin = np.zeros_like(a)
+    for box in THIN_BOXES.get(stage, []):
+        t = thin_structures(rgb, a, [box])
+        thin = np.maximum(thin, np.where(t > a, t, 0.0))
+    a = np.maximum(a, thin)
+    # what the repairs leave apart from the island: a piece of cloud the plate paints where level 10 has its hill goes (the
+    # main piece is the island with its bridge, its islet and its strings); a pinhole closes
+    n, lab, st, _ = cv2.connectedComponentsWithStats((a > 0.02).astype(np.uint8), connectivity=8)
+    if n > 2:
+        keep = np.zeros(n, bool)
+        keep[1 + int(np.argmax(st[1:, 4]))] = True
+        a = np.where(keep[lab], a, 0.0).astype(np.float32)
+    a = np.where(_fill_small(a >= 0.99, MIN_PIECE) & ~(a >= 0.99), 1.0, a).astype(np.float32)
     a[:1], a[-1:], a[:, :1], a[:, -1:] = 0, 0, 0, 0
+    np.save(CACHE / f"thin-{stage}.npy", thin.astype(np.float32))
     np.save(f, a)
     return a
 
@@ -523,6 +663,14 @@ def island_layer(light: str = "day", stage: int = 0) -> tuple[np.ndarray, tuple[
     far = ~cv2.dilate((a > 0.02).astype(np.uint8), cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2 * BAND + 1, 2 * BAND + 1))).astype(bool)
     col = edge_colour(rgb, a, _estimate(rgb, far))
     a[:1], a[-1:], a[:, :1], a[:, -1:] = 0, 0, 0, 0
+    tf = CACHE / f"thin-{stage}.npy"
+    if tf.exists():                                          # a thin line's colour is its own, unmixed from this light's sky
+        thin = np.load(tf)
+        on = thin > 0.02
+        if on.any():
+            sky = _estimate(rgb, far)
+            own = np.clip((rgb - (1 - thin)[..., None] * sky) / np.maximum(thin, 0.3)[..., None], 0, 1)
+            col = np.where(on[..., None], own, col)
     rgba = np.dstack([col, a])
     if has_beam(stage):
         dplate = load_rgba(f"world-home-plate-day-{stage}")[..., :3]               # the beam's shape is the day's, for every light

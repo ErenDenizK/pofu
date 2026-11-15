@@ -4,7 +4,8 @@
 Run it on every matte (an island, a prop, a station look) at texture resolution. Lengths are texture px.
 
   M1  border       alpha along the four borders is 0 (no rectangle), unless `full_bleed`
-  M2  width        0.05 to 0.95 alpha band along the edge normal, 95th percentile at most 3 (islands) / 2 (looks, props)
+  M2  width        0.05 to 0.95 alpha band along the edge normal, 95th percentile at most 3 (islands) / 2 (looks, props),
+                   5th percentile at least 0.7 (a one-bit stepped edge fails)
   M3  contamination  edge pixels: how far the layer's colour is pulled from the nearest opaque colour toward the
                    source's sky at that spot (0 to 1), 95th percentile at most 0.15
   M4  specks, holes  alpha above 0.02 outside the main shape, or below 0.99 enclosed in it, in patches under 64 px: none
@@ -16,8 +17,12 @@ Run it on every matte (an island, a prop, a station look) at texture resolution.
   M9  ghost        correlation of the erased base's fine detail with the look's fine detail, inside the look: at most 0.25
   M10 registration named anchor points across stages and lights: within 1 px
   M11 haze         (added in round 3) opaque pixels that are the source's own sky or haze: the colour of the sky
-                   just outside, within 150 px of the outside, not in a patch of 16 px or more. Catches the blue-grey band
-                   under Home's earth body, which is opaque plate pixels, not feather
+                   just outside, within 150 px of the outside, in a connected patch of HAZE_PATCH (32) px or more that
+                   reaches to within HAZE_TOUCH px of the outside. Any such patch fails. Catches the blue-grey band
+                   under Home's earth body, which is opaque plate pixels, not feather. Smaller patches and patches
+                   buried inside the shape are not tested (a painted highlight or a window is the same colour as the sky
+                   and is not haze); a haze patch that small is still a defect and is for the eye. The test sees only
+                   sky-coloured haze: pink cloud mist needs the eye too.
 
 M7 to M10 compare two pictures and are functions here (`m7_locality`, ...); `check_matte` runs M1 to M6 on one layer
 and reports M7 to M10 as not applicable. A region meant to be soft (steam, a fall's foot, a beam) is a polygon in
@@ -36,7 +41,7 @@ from pathlib import Path
 import cv2
 import numpy as np
 
-LIMITS = {"M1": 0.004, "M2": {"island": 3.0, "look": 2.0, "prop": 2.0}, "M3": 0.15, "M5": 2 / 255, "M6": 0.08,
+LIMITS = {"M1": 0.004, "M2": {"island": 3.0, "look": 2.0, "prop": 2.0}, "M2_MIN": 0.7, "M3": 0.15, "M5": 2 / 255, "M6": 0.08,
           "M7": 1 / 255, "M8": 2 / 255, "M9": 0.25, "M10": 1.0}
 SPECK = 64
 DEVICE_SCALE = 0.68             # Home's plate at mid: texture px to device px (1.15 screens of 1206 px over 2048 px)
@@ -93,8 +98,10 @@ def m2_width(a: np.ndarray, soft: np.ndarray, kind: str) -> tuple[dict, np.ndarr
     w, at = width_map(a)
     at &= ~soft
     p95 = float(np.percentile(w[at], 95)) if at.any() else 0.0
+    p05 = float(np.percentile(w[at], 5)) if at.any() else LIMITS["M2_MIN"]
     lim = LIMITS["M2"][kind]
-    return {"value": p95, "median": float(np.median(w[at])) if at.any() else 0.0, "limit": lim, "pass": p95 <= lim}, w, at
+    return {"value": p95, "p05": p05, "median": float(np.median(w[at])) if at.any() else 0.0, "limit": lim, "limit_min": LIMITS["M2_MIN"],
+            "pass": p95 <= lim and p05 >= LIMITS["M2_MIN"]}, w, at
 
 
 def contamination_map(rgb: np.ndarray, a: np.ndarray, source: np.ndarray, edge: np.ndarray) -> np.ndarray:
@@ -386,6 +393,8 @@ def one_line(r: dict) -> str:
         if k in ("M4", "M11"):
             return f"{k} {v['value']}{'' if v['pass'] else ' FAIL'}"
         s = {"M1": "%.4f", "M5": "%.4f"}.get(k, "%.2f") % v["value"]
+        if k == "M2":
+            s += " (p05 %.2f)" % v["p05"]
         return f"{k} {s}{'' if v['pass'] else ' FAIL'}"
     return f"{r['name']}: " + "  ".join(f(k) for k in ("M1", "M2", "M3", "M4", "M5", "M6", "M11") if k in r)
 

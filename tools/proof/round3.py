@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Proof round 3 (docs/design/world-presentation-v2.md section 10), scripts only.
 
-    python3 tools/proof/round3.py edges --out DIR     R3: M1 to M10 on the level 4 and 10 plates (day, night), the
+    python3 tools/proof/round3.py edges --out DIR [--all]   R3: M1 to M10 on the level 4 and 10 plates (day, night), the
                                                        worst-edge sheets, and the edge tour (four stills at 2.7 zoom)
     python3 tools/proof/round3.py props --out DIR     R5: jar, pots and lantern at their section 6.3 slots, island
                                                        levels 2, 6 and 10, mid and near, sprite art as a placeholder
@@ -75,9 +75,14 @@ def layer_dest(light: str, rgba: np.ndarray, x0: int, y0: int) -> np.ndarray:
 
 # ---------------------------------------------------------------- R3: M1 to M10
 
-def run_checks(out: Path) -> list[dict]:
+def all_specs() -> list[tuple[str, int]]:
+    """Every Home plate there is: stages 0 to 9 (levels 10 to 1), each in the lights it has (day and night, golden at level 10)."""
+    return [(light, stage) for stage in range(10) for light in im.lights_at(stage)]
+
+
+def run_checks(out: Path, specs: list[tuple[str, int]] | None = None) -> list[dict]:
     reports, layers, anchors = [], {}, {}
-    for light, stage in LAYER_SPECS:
+    for light, stage in specs or LAYER_SPECS:
         rgba, (x0, y0) = im.island_layer(light, stage)
         dests = {k: layer_dest(k, rgba, x0, y0) for k in ("day", "golden", "night")}
         r = mc.check_matte(rgba, source=im.source_crop(light, stage), soft=im.soft_edges(light, stage, rgba.shape[:2]),
@@ -88,7 +93,7 @@ def run_checks(out: Path) -> list[dict]:
             anchors.setdefault(f"{k}@L{10 - stage}", {})[light] = p
         print(mc.one_line(r))
     m10 = mc.m10_registration(anchors)
-    print("M10 registration day vs night (level 4 and 10 anchors: the shape's centroid, left, right and lower third): %.2f px at %s" % (m10["value"], m10["anchor"]))
+    print("M10 registration across the lights (anchors: the shape's centroid, left, right and lower third): %.2f px at %s" % (m10["value"], m10["anchor"]))
     (out / "checks" / "M10.json").write_text(json.dumps(m10, indent=1))
     (out / "checks" / "summary.txt").write_text("\n".join(mc.one_line(r) for r in reports) + "\nM7 M8 M9: n/a (no erased base, no looks yet)\nM10 %.2f px (%s)\n" % (m10["value"], m10["anchor"]))
     return reports
@@ -153,6 +158,60 @@ def run_tour(out: Path) -> list[Path]:
     return paths
 
 
+# ---------------------------------------------------------------- R3: the 4x sheet of the worst edges
+
+SHEET_TILES = [  # name, stage (10 - level), x, y in layer px (160 px square, shown at 4x)
+    ("L10 tree and blossom", 0, 270, 70), ("L10 string lights and cord", 0, 800, 380), ("L10 hydrangea", 0, 1735, 540),
+    ("L10 lamp room, dome and beam", 0, 1710, 345), ("L10 tendril", 0, None, None), ("L6 hill horizon", 4, None, None),
+    ("L9 string lights", 1, 790, 380), ("L6 stall string under the awning", 4, 1330, 560),
+]
+
+
+def sheet_spot(name: str, stage: int) -> tuple[int, int]:
+    rgba, _ = im.island_layer("day", stage)
+    a = rgba[..., 3] > 0.5
+    ys, xs = np.nonzero(a)
+    if "tendril" in name:                                     # the lowest tip of the underside
+        i = ys.argmax()
+        return int(np.clip(xs[i] - 80, 0, a.shape[1] - 160)), int(ys[i] - 130)
+    top = np.full(a.shape[1], a.shape[0])                     # the hill's skyline: the stretch of the top edge nearest the left
+    for x in range(a.shape[1]):
+        c = np.nonzero(a[:, x])[0]
+        if len(c):
+            top[x] = c[0]
+    x = int(np.argmin(top[: a.shape[1] // 2]) )
+    return int(np.clip(x - 40, 0, a.shape[1] - 160)), int(top[x] - 40)
+
+
+def run_sheet(out: Path) -> Path:
+    zoom, T = 4, 160
+    names = ("day", "night")
+    cells = []
+    for name, stage, x, y in SHEET_TILES:
+        if x is None:
+            x, y = sheet_spot(name, stage)
+        row = []
+        for light in names:
+            rgba, (x0, y0) = im.island_layer(light, stage)
+            dest = layer_dest(light, rgba, x0, y0)
+            c = mc.composite(rgba[y:y + T, x:x + T], dest[y:y + T, x:x + T])
+            row.append(Image.fromarray((np.clip(c, 0, 1) * 255 + 0.5).astype(np.uint8)).resize((T * zoom, T * zoom), Image.NEAREST))
+        cells.append((name, stage, x, y, row))
+    cols, cw, ch = 2, T * zoom * 2, T * zoom
+    rows = (len(cells) + cols - 1) // cols
+    sheet = Image.new("RGB", (cols * (cw + 8) + 8, rows * (ch + 22) + 30), (24, 24, 24))
+    d = ImageDraw.Draw(sheet)
+    d.text((8, 8), "R3b: worst edges at 4x, day then night, over the real sky (each tile 160 px of the 2 px per pt layer)", fill=(255, 255, 255))
+    for i, (name, stage, x, y, row) in enumerate(cells):
+        ox, oy = 8 + (i % cols) * (cw + 8), 30 + (i // cols) * (ch + 22)
+        d.text((ox, oy + 2), f"{name}   level {10 - stage}   at {x},{y}", fill=(255, 255, 255))
+        for j, im_ in enumerate(row):
+            sheet.paste(im_, (ox + j * ch, oy + 18))
+    path = out / "sheet-worst-edges-4x.jpg"
+    sheet.save(path, quality=90)
+    return path
+
+
 # ---------------------------------------------------------------- R5: the props
 
 #: Section 6.3: default slots in plate pts (1024 x 1536 space) on the front lip. The jar is front centre just right of
@@ -188,22 +247,39 @@ def lip_profile(light: str, stage: int):
     return lip, clean
 
 
-def slot_for(prop: str, lip, clean) -> tuple[float, float]:
-    """The free lip span nearest the default: a window of the prop's width where the rim above is lawn."""
+#: Section 6.3 rule: a slot keeps CLEAR pt from any painted object's foot. Painted feet that stand on the lip, plate pts
+#: (measured on the plates at 3 px per pt): the water wheel's two legs at every level, the mailbox at level 10.
+CLEAR = 12.0
+FEET = {"wheel": (466.0, 597.0), "mailbox": (268.0, 335.0)}
+
+
+def feet_at(level: int) -> dict[str, tuple[float, float]]:
+    return {k: v for k, v in FEET.items() if k != "mailbox" or level == 10}
+
+
+def slot_for(prop: str, lip, clean, obstacles: dict[str, tuple[float, float, float]] | None = None) -> tuple[float, float]:
+    """The free lip span nearest the default: a window of the prop's width where the rim above is lawn and CLEAR pt from
+    every obstacle (a, b, gap): painted feet at CLEAR, props already placed at 3. The rim's lawn test relaxes (0.9, 0.75, 0.6) only if no span passes."""
     xs = sorted(lip)
     half = SPAN[prop] / 2
+    obs = obstacles or {}
     best, best_cost = None, 1e9
-    for cx in range(int(DEFAULTS[prop] - 200), int(DEFAULTS[prop] + 200), 5):
-        span = [x for x in xs if cx - half <= x <= cx + half]
-        if len(span) < SPAN[prop] * 0.9:
-            continue
-        free = float(np.mean([clean[x] for x in span]))
-        bumpy = float(np.ptp([lip[x] for x in span]))
-        if free < 0.9 or bumpy > 14:
-            continue
-        cost = abs(cx - DEFAULTS[prop])
-        if cost < best_cost:
-            best, best_cost = cx, cost
+    for need in (0.9, 0.75, 0.6):
+        for cx in range(int(DEFAULTS[prop] - 300), int(DEFAULTS[prop] + 300), 5):
+            if any(cx + half + g > a and cx - half - g < b for a, b, g in obs.values()):
+                continue
+            span = [x for x in xs if cx - half <= x <= cx + half]
+            if len(span) < SPAN[prop] * 0.9:
+                continue
+            free = float(np.mean([clean[x] for x in span]))
+            bumpy = float(np.ptp([lip[x] for x in span]))
+            if free < need or bumpy > 14:
+                continue
+            cost = abs(cx - DEFAULTS[prop])
+            if cost < best_cost:
+                best, best_cost = cx, cost
+        if best is not None:
+            break
     if best is None:
         best = int(DEFAULTS[prop])
     # flowers and hanging wisteria run below the lawn's rim: the foot stands on the rim the span's higher columns show
@@ -236,7 +312,11 @@ def props_frame(level: int, view: str, light: str = "day") -> tuple[np.ndarray, 
     stage = 10 - level
     plate = load_rgba(f"world-home-plate-{light}-{stage}")[..., :3]
     lip, clean = lip_profile(light, stage)
-    slots = {p: slot_for(p, lip, clean) for p in DEFAULTS}
+    obs = {k: (a, b, CLEAR) for k, (a, b) in feet_at(level).items()}
+    slots = {}
+    for p in ("lantern", "pots", "jar"):                     # the tightest first; each placed prop is an obstacle, 3 pt apart
+        slots[p] = slot_for(p, lip, clean, obs)
+        obs[p] = (slots[p][0] - SPAN[p] / 2, slots[p][0] + SPAN[p] / 2, 3.0)
     if view == "mid":
         S, cx, cy, sx, sy = MID["S"], MID["cx"], MID["top"], MID["sx"], MID["sy"]
         M = np.float32([[S * 2 * 0.5 * 0 + S, 0, sx - cx * S], [0, S, sy - cy * S]])      # plate pts to px
@@ -280,13 +360,17 @@ def run_props(out: Path) -> list[Path]:
 
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
-    ap.add_argument("what", choices=["edges", "props"])
+    ap.add_argument("what", choices=["edges", "props", "sheet"])
     ap.add_argument("--out", type=Path, required=True)
+    ap.add_argument("--all", action="store_true", help="edges: all 20 Home plates (day and night, levels 1 to 10) plus golden")
     args = ap.parse_args(argv)
     args.out.mkdir(parents=True, exist_ok=True)
     if args.what == "edges":
-        run_checks(args.out)
-        run_tour(args.out)
+        run_checks(args.out, all_specs() if args.all else None)
+        if not args.all:
+            run_tour(args.out)
+    elif args.what == "sheet":
+        print(run_sheet(args.out))
     else:
         run_props(args.out)
     return 0
