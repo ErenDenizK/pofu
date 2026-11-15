@@ -81,8 +81,8 @@ phones scale by width and keep the bands' pt heights. One Swift type,
 
 | Band | y | Holds |
 |---|---|---|
-| Top safe | 0 to 62 *(scout)* | Sky only. No tappable pixel, no label |
-| Top row | 62 to 118 | The gear at mid (right 56 pt). Sky, far isles, whale |
+| Top safe | 0 to 59 (the scene's default top inset; scout fact 1) | Sky only. No tappable pixel, no label |
+| Top row | 59 to 118 | The gear at mid (right 56 pt). Sky, far isles, whale |
 | Stage | 118 to the bottom chrome | The subject |
 | Bottom chrome, mid | 628 to 840 | Line card, the one action, the glance (measured on the frames; the code constant says 676) |
 | Bottom chrome, Map and near | corner only: x 314 to 386, y 766 to 840 | The place control (Map), the back control (near, mirrored left) |
@@ -95,11 +95,14 @@ chip; characters at near) and the layer list:
 
 | # | Rule | Map | Mid | Near |
 |---|---|---|---|---|
-| C1 | Hero centre (Home at Map, the island at mid, the focused character at near), as a share of the height | 0.66 to 0.72 | 0.42 to 0.46 with chrome | feet at 0.58 to 0.62 |
-| C2 | Tallest full-width run with no subject and no chrome, as a share of the height | at most 0.18 | at most 0.14 | at most 0.30 (sky) |
+| C1 | Hero placement as a share of the height. Map: Home's foot (island box, no chip); if he picks Home on top, Home's box centre at 0.30 to 0.36 instead. Mid: the island's box centre. Near: the focused character's feet | foot at 0.79 to 0.81 | 0.42 to 0.46 with chrome | feet at 0.58 to 0.62 |
+| C2 | Tallest full-width run with no subject and no chrome, as a share of the height | at most 0.18; 0.21 for the one run that holds the horizon | at most 0.15 | at most 0.30 (sky) |
 | C3 | Each third of the screen holds a subject, chrome or a named backdrop feature (far isle, whale, cloud tower, lip) | all three | all three | top third may be sky |
 | C4 | No island box is cut by a screen edge; nothing tappable inside the safe bands or the corner keep-out | yes | yes | characters whole or fully out |
 | C5 | Smallest tappable island | at least 88 pt wide | n/a | n/a |
+| C6 | At rest, no backdrop feature's box (far isle, whale, puff over 40 pt) comes within 24 pt of a subject, a slot or a chrome box | yes | yes | n/a |
+
+_Round 3 corrected C1 and C2 and added C6: `world-presentation-round3-look.md`._
 
 Plus one rule for time: **the frame may change only when a tier is
 announced** (1.3). An unlock changes what a slot holds, never where
@@ -143,7 +146,9 @@ across a cloud sea. The horizon runs between Home and the first tier.
 
 - **Backdrop at the Map:** horizon at 0.53 of the height (it falls in
   the gap between the first tier's chips and Home's top); far isles and
-  the whale in y 62 to 200; the foreground cloud lip from y 740 down,
+  the whale in the widest sky band that no slot owns (tier 1, journey
+  order: y 350 to 450, in front of the horizon; C6), never y 62 to 200,
+  where they sat on the slots in round 3; the foreground cloud lip from y 740 down,
   under the place control. Bottom run without a subject: 16 %.
 
 ![Layout wireframes: the tier-1 frame at stages 1, 2 and 3, the tier-2 frame, mid with chrome, near at rest](assets/world-presentation-v2/layout-wireframes.jpg)
@@ -162,7 +167,7 @@ confirms no story text needs the neighbours below Home (section 11).
 - **Fit to the island's box**, not to a constant: the level 10 box (with
   the harbor islet) is 378 pt wide (0.94 of the width), scale 1.145, box
   centre at y 383, so the island spans y 236 to 530. Sky with the whale
-  above (118 pt), the cloud lip from y 600 as the bed the chrome sits on.
+  above (118 pt; its rest pose left of x 290, clear of the gear), the cloud lip from y 600 as the bed the chrome sits on.
 - **The frame does not chase growth.** Every island level uses the level
   10 box, so the island visibly grows into its frame. Exception: if a
   young island would be under 0.72 of the width, fit to that *(scout:
@@ -224,9 +229,9 @@ app frame. The region shaders keep v1's limit (5 % of the pixels, 30 Hz).
 
 | Layer | Motion *(start)* | Tier |
 |---|---|---|
-| Horizon band | drift 2 pt/s | Ambient |
-| Floor middle, near, lip | drift 5, 9, 16 pt/s; swell up and down 3, 5, 8 pt over 11, 17, 23 s | Ambient |
-| Cloud puffs | each its own drift, 5 to 10 pt/s; breathe 1.5 % over 14 to 20 s | Ambient |
+| Horizon band | drift 0.5 pt/s | Ambient |
+| Floor middle, near, lip | drift 1.5, 3, 5 pt/s; swell up and down 3, 5, 8 pt over 11, 17, 23 s | Ambient |
+| Cloud puffs | each its own drift, 2 to 5 pt/s; breathe 1.5 % over 14 to 20 s | Ambient |
 | Far isles | bob 2 pt over 9 to 13 s, phases apart | Ambient |
 | Whale | glide 5 pt/s, bob 4 pt, roll 1.5 degrees | Ambient |
 | Birds | 3 to 5 marks cross every 45 to 120 s | Ambient |
@@ -239,15 +244,21 @@ app frame. The region shaders keep v1's limit (5 % of the pixels, 30 Hz).
 | Hour change | cross-fade over 20 s | Ambient |
 
 **Limits.** At most 24 moving layers at the Map, 18 at mid, 10 at near.
-Nothing ambient faster than 20 pt/s or with a period under 5 s: Pofu is a
+Nothing ambient but the birds faster than 8 pt/s, no full-width layer
+faster than 5, and no period under 5 s: Pofu is a
 calm place. Periods are chosen not to share a multiple, so the picture
 never visibly loops. In the Still tier every layer eases to its rest
 phase in 2 s.
 
-**Check (`tools/proof/life_meter.py`, on a 12 s clip at 30 Hz):** the
-share of pixels that change by more than 4/255 between frames one second
-apart is 12 to 30 % at the Map and 8 to 20 % at mid; each third of the
-screen has at least 4 %; a Still clip has 0. In the app, the Rehearsal
+**Check (`tools/proof/life_meter.py`, on a 12 s clip at 30 Hz).** Round 3
+showed that the share of changed pixels measures how much textured area
+moves, not how fast: a floor sliding at 16 pt/s and one at 3 score the
+same. So: (1) speeds are checked on the layer list against the limits
+above, not on pixels; (2) each third of the screen changes by at least
+4 % of its pixels (more than 4/255, one second apart) and a Still clip by
+0; (3) the meter prints the mean absolute change between adjacent frames,
+which gates nothing until the founder has judged the round-3 clips and
+his verdict gives it a range. In the app, the Rehearsal
 log counts app-rendered frames per 10 s at ambient: only the region
 shaders' ticks may appear.
 
@@ -282,15 +293,16 @@ texture pixels.
 | # | Test | Pass |
 |---|---|---|
 | M1 | Border: alpha along the image's four borders | 0 everywhere (no rectangle), unless `fullBleed` |
-| M2 | Width of the 0.05 to 0.95 alpha band along the edge normal | 95th percentile at most 3 (islands), 2 (looks, props) |
+| M2 | Width of the 0.05 to 0.95 alpha band along the edge normal | 95th percentile at most 3 (islands), 2 (looks, props); 5th percentile at least 0.7, so a stepped one-bit edge fails |
 | M3 | Contamination: for edge pixels, how far the recovered colour is pulled from the nearest opaque colour toward the source's sky at that row (0 to 1) | 95th percentile at most 0.15 |
 | M4 | Specks and holes: alpha above 0.02 outside the main shape, or below 0.99 enclosed in it, in patches under 64 px | none |
-| M5 | Halo in use: composited over the day, golden and night destinations at device scale; a 6 px ring outside the shape against the destination alone | mean difference at most 2/255 |
+| M5 | Halo in use: composited over the day, golden and night destinations at device scale; a 6 px ring outside the shape, starting one device px out (the first holds the edge's own anti-aliasing; M2 and M3 guard it), against the destination alone | mean difference at most 2/255 |
 | M6 | Rim: a 4 px ring inside the shape against the next 8 px inward, in luminance | within 8 % |
 | M7 | Look locality: base plus look, outside the look's matte grown by 2 | equal to the base, at most 1/255 |
 | M8 | Look wholeness: inside the matte shrunk by 2, against the painting it was cut from | at most 2/255 |
 | M9 | Ghost: correlation of the erased base's fine detail with each look's fine detail, inside that look's matte | at most 0.25 |
 | M10 | Registration: named anchor points across stages and lights | within 1 px |
+| M11 | Haze: opaque pixels near the outside that are the source's own sky colour, in a connected patch of 16 px or more | none |
 
 The script writes a JSON report and one sheet of the eight worst edge
 spans at 4x. Numbers gate; the sheet is what I and then the founder look
@@ -308,7 +320,10 @@ is from that plane, and on the shot.
 - **Depth of a point** is its distance behind (+) or in front (-) of the
   focal plane. On the island: `delta = (rowFocus - row) * unitsPerPixel *
   cos(e) / sin(e)`, where `row` is the plate row of the point's foot and
-  `e` the painting's camera elevation (20 degrees *(scout)*). Ground
+  `e` the painting's camera elevation (10.5 degrees for Home, from the
+  lawn ellipse, scout fact 5; the code comment's 17 does not fit the
+  ellipse; the depth per row is twice what 20 gave, so R4 retunes the
+  aperture). Ground
   pixels use their own row. A standing thing (station, character, prop)
   uses its `footY` for all its pixels, so it is sharp or soft as one
   object. The earth face uses the lip's row.
@@ -385,7 +400,7 @@ band edge is visible at 1:1 and the Direct tier stays at 120 Hz.
 
 Added to today's keys (which stay):
 
-    "camera":   { "elevationDeg": 20, "midBox": [x0, y0, x1, y1], "minWidthShare": 0.72 }
+    "camera":   { "elevationDeg": 10.5, "midBox": [x0, y0, x1, y1], "minWidthShare": 0.72 }
     "base":     "world-home-base-<light>-<stage>"          // stations erased
     "matte":    "world-home-matte-<stage>"                 // full size, one per stage
     "mask":     "world-home-mask-<stage>"                  // R water, G sway, B emissive, A depth row
@@ -532,7 +547,7 @@ real chrome for its distance**, cut from shipped frames.
 | R4 | Note 4 | `dof.py`: per-pixel blur from the model, and the same frames through the four-level blend, to show the app's version and not only the ideal. Six stills: mid; station focus; Pofu at rest with Mochi (two in frame); Pofu at the limit; the tea stall on his row sharp beside him; proof 2's one-radius macro as the control. One 4 s rack from Pofu to the stall | The patch job and the dressing pilot; the upscaled stall | The control beside the two-in-frame still; the rack clip |
 | R5 | The props | Jar, pots and lantern at their slots at levels 2, 6 and 10, mid and near | `world-home-props`, or the sprite art marked as placeholder for position only | Whether he can find his pots at mid without being told |
 
-Pass for the round: C1 to C5 and M1 to M10 green, the life check in
+Pass for the round: C1 to C6 and M1 to M11 green, the life check in
 range, and no still I would not show. Cost: about 5 agent-days of Sonnet
 and 9 Codex jobs (2 erase, 3 dressing, 1 patch, 2 cloud, 1 props sheet).
 
