@@ -163,7 +163,7 @@ final class FlowTextures {
         if cutOut {
             // A cut-out piece lying on the lawn, with a soft contact shadow.
             context.setShadow(offset: CGSize(width: 0, height: 2), blur: 3, color: FlowPalette.ink.withAlphaComponent(0.3).cgColor)
-            placed(bounds.insetBy(dx: cell * 0.04, dy: cell * 0.04))
+            placed(bounds.insetBy(dx: cell * 0.08, dy: cell * 0.08))
             return
         }
         if !keycap {
