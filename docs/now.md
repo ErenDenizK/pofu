@@ -24,12 +24,13 @@ Large job now: the asset system (#445), Wave 0 first.
 
 ## In flight
 
-1. World presentation (#461): round-3 fix pass done (R1/R2 #471, R3/R5
-   #470; M checks green L3-L10; L1/L2 plates paint mist: key-colour pilot
-   queued). Concept frames (founder-input 33): pofu-art #75, batch 112,
-   first in Codex's queue; `concept_fit.py` (#472) ready for review.
-   Founder sees the concepts per distance after Fable's review.
-2. Art: Codex working 104-111 (art/ branches up). Music later.
+1. World presentation (#461): concept frames reviewed by Fable (batch
+   112; picks in pofu-art #78) and sent to the founder (scratchpad
+   concepts/show). His choices: Map A (journey, Fable) or B; near =
+   locked t2 (buildable) or free t1 (needs a near plate). Defaults A and
+   locked. Key-colour pilot failed (#79): network matte stays; next, a
+   mist-clear edit of the real il1/il2. World pilots 107-111 in review.
+2. Art: Codex delivered 105-113; flow stone v2 renumbered 114 (#80).
 Disk tight (5.8 GB; /swapfile 8 GB, rm blocked): fewer agents.
 Paused: #453 (glass to painted). UI grammar after the world choices.
 
