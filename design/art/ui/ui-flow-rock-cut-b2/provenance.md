@@ -1,7 +1,6 @@
-# ui__ui-flow-rock-cut-b2
+# ui__ui-flow-rock-cut-b2 (not shipped)
 
-- **Source:** pofu-art batch `batch-121-flow-banks-ab`, job `x-flow-rock-piece-b2`, take 1 (pofu-art branch `art/batch-121-flow-banks-ab`). Exploration take, not promoted.
+- **Source:** pofu-art batch `batch-121-flow-banks-ab`, job `x-flow-rock-piece-b2`, take 1.
 - **Generating account:** Founder's uncle's ChatGPT plan, used by the founder with permission (chatgpt-plan).
 - **Tool:** codex-cloud.
-- **Shipped as:** `Packages/PofuKit/Sources/PofuGames/Resources/flow-rock-cut-2.png`, 512x512 PNG with an alpha matte made here.
-- **Pick:** take 1, same baked checkerboard and same keying as b1.
+- **Not shipped:** the take is RGB with a baked grey checkerboard (also under the painted contact shade), not transparency. Keying it out leaves a checker fringe under the rocks (seen in `path-game-flow-stage1-method-b`). It needs a real alpha take.
