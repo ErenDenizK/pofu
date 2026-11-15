@@ -58,3 +58,30 @@ edge standard, the far picture as a snapshot of mid (in the storyboard guide the
 
 **Limits.** No image exists yet. If the model redraws the islands in a paint-over (the first job tests
 it), the locked jobs fall back to painting only the backdrop behind masked islands. Day only for now.
+
+## Round 1 result (2026-11-15)
+Codex delivered all 8 jobs (pofu-art PR #78). `concept_fit.py` ran on the 14 distance takes; picks and a
+buildability ledger per job are in each `review.yaml` on that branch.
+
+| Job | Fit | Shown | What the picture adds, and how it is built |
+|---|---|---|---|
+| Map, journey order, locked | both within 1 px | t1, as order A | No horizon line; cloud rows that shrink with distance; a bank and shadow under each station; hazed far isles. Grade, cloud kit, shader. All buildable |
+| Map, Home first, locked | both within 1 px | t2, as order B | The same. t1 invents far isles. Home is largest in the palest air: the order fights the depth cues |
+| Mid, locked | both within 1 px | t1 | Cloud bank round the foot, cast shadow on the cloud, cloud forms behind the controls. Cloud kit, shader. All buildable |
+| Near, locked | t2 locked; t1 moved a control 34 px | t2 | Focal plane, contact shadow: shader. Sharp lawn, daisies, a soft foreground that hides the rim: new art. Re-laid stones and a lower windmill: not buildable |
+| Near, free | free | t1 | Pofu 2.3 times larger, ground seen from near eye level: a painted near plate, not the 10.5 degree plate |
+| Map and mid, free | cut by the crop | none | Composed for the whole 1024 px canvas, not the middle 706. Both free Maps chose order A; the free mid, refit, is the locked mid |
+| Storyboard | judged by eye | t1 | Not a paint-over: beat 1 has no stations, beats 4 and 5 drop the camera to the ground. Shown as the mood of the move |
+
+- **Recommendation:** Map order A (journey), mid locked t1, near locked t2 as the buildable target.
+- **The paint-over held.** The model did not redraw islands in the Map and mid jobs; the fallback was not needed.
+- **Near is the open question.** Every near picture the painter made (locked, free, storyboard 4 and 5) hides the
+  rim, sharpens the lawn and lowers the camera. A zoom into the mid plate cannot give that. v2 1.5 and 5 need a
+  decision: a near-resolution lawn and one soft foreground layer over the plate, or a painted near plate.
+- **Tool:** the horizon reading sits at the search limit (180 px) on every take, because the line is gone, not
+  moved. It should read `dissolved`, not `WARN`. A free job's guide needs the phone frame drawn as a border.
+- **Key pilot (pofu-art PR #79):** no pick. The job was painted on il9, which is level 9, not level 1. On that
+  plate the key fails its acceptance (the field is about 10 off #00FF00, edges p95 14 to 41 px from the source,
+  the beam blended into the green) and the network matte passes M1 to M6 and M11. Key-colour masters do not go
+  ahead. The edit did clear the hill mist cleanly: the next pilot is a mist-clear edit of the real il1 and il2,
+  cut by the network matte.
