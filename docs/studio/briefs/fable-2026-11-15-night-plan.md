@@ -51,7 +51,8 @@ Three areas, as he named them:
 ## What you read
 
 Raw facts, gathered tonight by cheap agents. Facts, not judgements;
-check what matters:
+check what matters. They and founder-input 32 to 35 are on the lead's
+branch `origin/claude/exciting-cori-1t8br2` until its docs PR merges:
 - `docs/research/night-2026-11-15-code-drawn.md`: every code-drawn visual.
 - `docs/research/night-2026-11-15-codex-history.md`: every batch since
   about 60, its verdict, what shipped, what worked.
