@@ -13,8 +13,7 @@ Large job now: the asset system (#445), Wave 0 first.
 **Updated:** 2026-11-15.
 **Founder last played on his phone:** 2026-11-05 (device check steps sent).
 **Founder log read up to:** 2026-11-12 (late night).
-**Route:** [route-2026-11-14-day](research/route-2026-11-14-day.md)
-(#442, Fable): art lane, game lane, scout lane; up to three agents.
+**Route:** route-2026-11-14 (#442, Fable, not merged; superseded by feel-and-world #461): art lane, game lane, scout lane; up to three agents.
 
 ## Decided this session
 
