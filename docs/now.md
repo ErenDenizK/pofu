@@ -8,37 +8,37 @@ history: [tracker.md](tracker.md). What changed for the player:
 
 **Goal:** a whole, polished build the founder judges as a user when he
 chooses to (Rehearsal days 1-21); no dates or cut line (founder 11-14).
-Large job now: the asset system (#445), Wave 0 first.
+Large job now: world presentation (spec #474); glass UI stays.
 
 **Updated:** 2026-11-15.
-**Founder last played on his phone:** 2026-11-05 (device check steps sent).
-**Founder log read up to:** 2026-11-12 (late night).
-**Route:** route-2026-11-14 (#442, Fable, not merged; superseded by feel-and-world #461): art lane, game lane, scout lane; up to three agents.
+**Founder last played on his phone:** 2026-11-14 (main 0cf03ca1).
+**Route:** Fable feel-and-world (#461) and world-presentation v2.
 
 ## Decided this session
 
 - Merges that carry out a plan he approved (pofu-art queue PRs too) need
   no question; merge on review, tell him after (founder-input 31).
-
-- One painted world on days 1 to 21; rain streaks drawn in code.
 - Look truth is the player-path frames (studio.md, founder approved).
 
 ## In flight
 
-1. Feel and world (#461): proofs 1-4 made (#463, #465, #466; outputs in
-   scratchpad/proofs); Fable looks at them before the founder. 120 Hz
-   direct tier merged (#464). Quick wins: sunflower and flow bed
-   (`feat/quick-wins-bloom-flowbed`). #465/#466 Python tools CI fails.
-2. Art: pilots #40-44 reviewed; pofu-art #65 queued batches 104-106
-   (flow stone v2, emoji, duo icons); founder may say "çalış". Step 6
-   paused (#64). Near-dressing pilot after proof 2. Music: later.
-Paused: Wave 0 app-layer glass to painted (#453 draft). UI grammar after
-#461's choices.
+1. World presentation build (spec #474, 13 PRs). Wave 1 merged: WP1
+   tools #475, WP2 depth #478 (Map sea fill is a stopgap until WP9), WP3
+   composition #477. Wave 2: WP4 mattes (Sonnet, `feat/plate-mattes`),
+   WP6 Map journey (Opus, `feat/map-journey`); WP5 props after WP4 (shared
+   files). Decisions: D4 rail (ADR-0027 in WP7), D7 14 MB, D8 props early;
+   Map A, near locked t2 (founder-input 34).
+2. Art: 114-117 reviewed: flow stone merged (#476; banks still code),
+   tower 115 t1, mist clear 116 t1 (ship take's island), erase 117: 17
+   picks, keep the rope bridge, redo L1/L2 day on 116. 118-120 queued.
+Disk 9.1 GB; no new builders under 8 GB (/swapfile, rm blocked). Paused: #453; UI grammar after.
 
 ## Next steps, in order
 
-1. Asset Wave 0 slice 3: the flow board after Codex's flow-stone pilot;
-   then duo sheet and stickers in the app (§4.2).
+0. Painted Home hides skip pots, jar, lantern (IslandScene.swift:848):
+   Fable pass 2 decides how they return.
+1. Asset Wave 0 slice 3: flow board stone done (#476); grass and rock
+   banks need art; then duo sheet and stickers in the app (§4.2).
 2. Studio: one side-by-side state pass, Fable vs Opus (studio.md §8.6).
    Merged: #446 Home chrome, #449 scaling, #451 tools, #452 no keeper.
 3. Bell polish (#444 merged): day ring grey-yellow, make it warm gold;
