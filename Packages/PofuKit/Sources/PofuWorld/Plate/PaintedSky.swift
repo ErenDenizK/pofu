@@ -205,7 +205,8 @@ public enum PaintedSky {
     public static func mapSky(world: WorldSnapshot, look: WorldLook, calendar: Calendar = .current) -> HomePlate? {
         guard look.homePlates, let home = HomePlate.shipped?.plate else { return nil }
         let light = HomePlate.light(hour: hour(world: world, look: look, calendar: calendar), isBedtime: world.isBedtime)
-        let plate = HomePlate(plate: home, light: light, stage: 0)
+        var plate = HomePlate(plate: home, light: light, stage: 0)
+        plate.mapTier = MapSlots.tier(caglayan: world.caglayan)
         return plate.skySet == nil ? nil : plate
     }
 
@@ -516,7 +517,7 @@ struct PaintedSkyLayer: View {
     @ViewBuilder
     private func sky(_ plate: HomePlate, start: Date) -> some View {
         if let set = plate.skySet {
-            SkySetLayers(sky: isMap ? PaintedSky.mapSet(set) : cleanSea ? PaintedSky.stopSet(set) : set, plate: plate, pose: pose, reference: reference, size: size, offset: offset, start: start, drawsIsland: false)
+            SkySetLayers(sky: isMap ? MapSlots.sky(set, plate: plate) : cleanSea ? PaintedSky.stopSet(set) : set, plate: plate, pose: pose, reference: reference, size: size, offset: offset, start: start, drawsIsland: false)
         }
     }
 }

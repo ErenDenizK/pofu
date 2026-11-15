@@ -25,6 +25,18 @@ struct CompositionRulesTests {
         expectAllPass(.map(stage: stage, tier: 1, map: map))
     }
 
+    /// C1 to C6 on the Map the player meets: the real stop (`HomePlate.mapStop`), the painted islands'
+    /// boxes, the towers and the far isles and the whale where Home's sky set of each light puts them.
+    @Test(arguments: [1, 2, 3])
+    func theRealMapStopPasses(stage: Int) throws {
+        let home = try #require(HomePlate.shipped)
+        for light in ["day", "golden", "night"] {
+            let frame = try #require(MapSlots.frame(stage: stage, plate: home, light: light))
+            #expect(frame.features.count == 6, "the five far features and the lip in \(light)")
+            expectAllPass(frame)
+        }
+    }
+
     @Test(arguments: [1, 4, 10])
     func midPasses(level: Int) {
         expectAllPass(.mid(level: level, map: map, plate: plate))

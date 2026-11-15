@@ -43,6 +43,8 @@ public struct HomePlate: Hashable, Sendable {
     /// that puts a sprite in the plate's light and the contact shadow's
     /// strength (`tools/plate/ingest.py`, docs/design/visual-system.md).
     public let harmony: PlateIsland.Harmony
+    /// The tier the Map frames (`MapSlots.tier`): 1 until Çağlayan blooms, then 2.
+    public var mapTier = 1
 
     /// Pofu's art is 64 units wide (`PofuLayer.artWidth`).
     public static let pofuArtWidth = 64.0
@@ -148,7 +150,9 @@ public struct HomePlate: Hashable, Sendable {
         let weather = look.weatherOverride
             ?? WeatherForecast.conditions(clock: world.clock, firstDay: world.firstDay, hour: minute / 60, calendar: calendar)
         guard let state = state(in: plate.plate, islandLevel: world.islandLevel, hour: minute / 60, weather: weather, isBedtime: world.isBedtime) else { return nil }
-        return HomePlate(plate: plate.plate, light: state.light, stage: state.stage)
+        var resolved = HomePlate(plate: plate.plate, light: state.light, stage: state.stage)
+        resolved.mapTier = MapSlots.tier(caglayan: world.caglayan)
+        return resolved
     }
 
     // MARK: - Plate and world
@@ -452,29 +456,22 @@ public struct HomePlate: Hashable, Sendable {
     public var islandStop: CameraRail.Stop { centredStop(widths: plate.framing.islandWidths) }
     public var wholeStop: CameraRail.Stop { centredStop(widths: plate.framing.wholeWidths) }
 
-    /// The Map while the plate shows: the painted Home, Koke's and Çağlayan's islands fitted between
-    /// the bands, as `IslandFraming.mapStop` fits the sprite world. The harbor isle is not on the
-    /// painted Map (R5: Home paints the islet), so it is not framed either: framing it left the right
-    /// third of the screen empty and the islands small in the top half. The islands stand on the band's
-    /// foot: Home's foot meets the painted sea's horizon, and on a short phone,
-    /// where the rail scales the anchor with the height but the scale with the width, Home stays below
-    /// the distant isles.
+    /// The Map while the plate shows: the tier's frame of `world-map.json` (`WorldMap.tierFrame`, Map
+    /// order A) about this plate's island box. Home low and in front, its foot at 0.80 of the height, and
+    /// Koke and Çağlayan rising behind it up to the band under the status bar; the tier-1 frame from day
+    /// 1 until Çağlayan blooms (`mapTier`). The harbor isle is not on the painted Map (R5: Home paints the
+    /// islet), so it is not framed. The fit is the old one when the package has no map.
     public var mapStop: CameraRail.Stop {
-        let all = IslandFraming.union([islandBox, KokeLayout.islandBox, CaglayanLayout.islandBox]) ?? islandBox
+        let box = islandBox
+        if let stop = MapSlots.frame(tier: mapTier, homeCentre: WorldPoint(x: box.midX, y: box.midY)) { return stop }
+        let all = IslandFraming.union([box, KokeLayout.islandBox, CaglayanLayout.islandBox]) ?? box
         let margin = 10.0
         let height = CameraRail.referenceHeight
-        let band = IslandFraming.bandHeight(height: height)
-        let foot = height - IslandFraming.bottomBand - margin
-        // The shortest phone (375 x 667) squeezes the anchor more than the scale: the islands' top still
-        // clears the isles' floor there (`top = A - r * half * s >= clear`, A the anchor, r its aspect).
-        let r = (375 / CameraRail.referenceWidth) / (667 / CameraRail.referenceHeight)
-        let clear = PaintedSky.mapIsleFloorShare * height
         let scale = min(
             (CameraRail.referenceWidth - 2 * margin) / max(all.width, 1),
-            (band - 2 * margin) / max(all.height, 1),
-            (foot - clear) / max(all.height / 2 * (1 + r), 1)
+            (IslandFraming.bandHeight(height: height) - 2 * margin) / max(all.height, 1)
         )
-        return CameraRail.Stop(scale: scale, look: WorldPoint(x: all.midX, y: all.midY), anchorY: foot - all.height * scale / 2)
+        return CameraRail.Stop(scale: scale, look: WorldPoint(x: all.midX, y: all.midY), anchorY: IslandFraming.bandMid(height: height))
     }
 
     /// The rail's stops while the plate shows: the painted Map, the plate's

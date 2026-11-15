@@ -68,13 +68,16 @@ struct MapSkyTests {
     /// At every one of those cameras, on every phone and in every light, the Map's sky set covers the
     /// whole screen: its gradient sky everywhere, its tiles across the width at any drift, and its painted
     /// cloud sea down to the bottom edge. On the Map the distant isles and the whale stand above Home's
-    /// island and the cloud sea's horizon lies behind it. No code sky shows at a seam.
+    /// island, in the lane between the wonder islands and Home on the reference phone (the crystal isle up
+    /// in the empty sky), and the cloud sea's horizon lies on the Map's horizon row, under the lane and
+    /// above Home's foot. No code sky shows at a seam.
     @Test func theMapSkyCoversTheScreenAtEveryCamera() throws {
         let home = try #require(HomePlate.shipped)
+        let map = try #require(WorldMap.shipped)
         for light in ["day", "golden", "night"] {
             let hour = ["day": 12.0, "golden": 18.0, "night": 23.0][light]!
             let plate = try #require(PaintedSky.mapSky(world: Self.world, look: Self.look(hour)))
-            let set = PaintedSky.mapSet(try #require(plate.skySet))
+            let set = MapSlots.sky(try #require(plate.skySet), plate: plate)
             let sky = try #require(set.layers.first { $0.role == .sky })
             let near = try #require(set.layers.last { $0.asset.contains("-sea-") })
             let horizon = try #require(set.layers.first { $0.asset.contains("-sea-") })
@@ -110,13 +113,22 @@ struct MapSkyTests {
                     let box = home.islandBox
                     let top = camera.pose.project(WorldPoint(x: box.minX, y: box.minY), width: screen.width).y
                     let foot = camera.pose.project(WorldPoint(x: box.minX, y: box.maxY), width: screen.width).y
+                    let isReference = screen.width == 402 && screen.height == 874
                     for layer in set.layers where layer.role == .whale || layer.asset.contains("-isle-") {
-                        #expect(rect(layer).maxY <= top + 0.04 * screen.height, "\(light) \(layer.asset) above Home \(screen)")
+                        let r = rect(layer)
+                        #expect(r.maxY <= top, "\(light) \(layer.asset) above Home \(screen)")
+                        guard isReference else { continue }
+                        if layer.id == MapSlots.featureLayers["isle-top"] {
+                            #expect(r.maxY < 150, "\(light) \(layer.id) up in the empty sky")
+                        } else {
+                            #expect(r.minY >= map.backdropLane.lowerBound - 0.5 && r.maxY <= map.backdropLane.upperBound + 0.5, "\(light) \(layer.id) in the lane: \(r.minY)...\(r.maxY)")
+                        }
                     }
                     let h = rect(horizon)
                     let window = try #require(horizon.window)
                     let line = h.minY + window.top * (h.maxY - h.minY)
-                    #expect(line > top - 0.025 * screen.height && line < foot + 0.08 * screen.height, "\(light) horizon \(line) behind Home \(top)...\(foot) \(screen)")
+                    #expect(line > map.backdropLane.upperBound / 874 * screen.height - 0.03 * screen.height && line < foot, "\(light) horizon \(line) under the lane, above Home's foot \(foot) \(screen)")
+                    if isReference { #expect(abs(line - map.horizon * screen.height) < 0.5, "\(light) horizon on the Map's row") }
                 }
             }
         }
@@ -152,27 +164,84 @@ struct MapSkyTests {
         }
     }
 
-    /// The painted Map frames what it draws: the painted Home, Koke and Çağlayan fill the band between the
-    /// chrome (the harbor isle, which the painted Map does not draw, is not framed), each island whole on
-    /// screen and drawn larger than the sprite world's Map draws them.
-    @Test func thePaintedMapFramesItsThreeIslands() throws {
+    /// The painted Map is the tier-1 frame in journey order (Map order A): Home low and in front, its
+    /// foot at 0.80 of the height and 230 pt wide; Koke and Çağlayan rising behind it, whole on screen,
+    /// below the status bar's band and above Home. Tier 2 takes over once Çağlayan blooms.
+    @Test func thePaintedMapIsTheTierOneFrameInJourneyOrder() throws {
         let home = try #require(HomePlate.shipped)
         let stop = home.mapStop
-        #expect(stop.scale > CameraRail.referenceStops[0].scale * 1.4)
+        #expect(home.stops.first == stop)
         let pose = CameraPose(scale: stop.scale, look: stop.look, anchorY: stop.anchorY)
         let w = CameraRail.referenceWidth, h = CameraRail.referenceHeight
-        var lowest = 0.0, highest = h
-        for box in [home.islandBox, KokeLayout.islandBox, CaglayanLayout.islandBox] {
+        func screen(_ box: WorldBox) -> ScreenBox {
             let a = pose.project(WorldPoint(x: box.minX, y: box.minY), width: w)
             let b = pose.project(WorldPoint(x: box.maxX, y: box.maxY), width: w)
-            #expect(a.x >= 0 && b.x <= w, "\(box) across")
-            #expect(a.y >= IslandFraming.topBand && b.y <= h - IslandFraming.bottomBand, "\(box) between the bands")
-            lowest = max(lowest, b.y)
-            highest = min(highest, a.y)
+            return ScreenBox(minX: a.x, minY: a.y, maxX: b.x, maxY: b.y)
         }
-        // The islands use the band's height, not its top half.
-        #expect(lowest - highest > 0.8 * IslandFraming.bandHeight(height: h))
-        #expect(home.stops.first == stop)
+        let homeBox = screen(home.islandBox)
+        #expect(abs(homeBox.maxY / h - 0.80) < 0.002)
+        #expect(abs(homeBox.width - 230) < 2)
+        for box in [KokeLayout.islandBox, CaglayanLayout.islandBox].map(screen) {
+            #expect(box.minX >= 0 && box.maxX <= w, "\(box) across")
+            #expect(box.minY >= 84 - 0.5, "\(box) below the status bar's band")
+            #expect(box.maxY < homeBox.minY - 100, "\(box) behind and above Home")
+        }
+        var bloomed = home
+        bloomed.mapTier = 2
+        #expect(bloomed.mapStop.scale < stop.scale)
+        var world = Self.world
+        world.caglayan = WonderStatus(phase: .arrived, stage: 4)
+        #expect(HomePlate.resolve(world: world, look: Self.look(12))?.mapTier == 2)
+        #expect(HomePlate.resolve(world: Self.world, look: Self.look(12))?.mapTier == 1)
+    }
+
+    /// What each slot holds follows the player: day 1 Koke's slot is veiled and Çağlayan's a cloud tower;
+    /// once Koke can be visited it is the island and Çağlayan's is veiled; then both are islands.
+    @Test func theSlotsFollowTheJourney() {
+        let hidden = WonderStatus(), rumoured = WonderStatus(phase: .rumoured), arrived = WonderStatus(phase: .arrived, stage: 1)
+        #expect(MapSlots.stage(koke: hidden, caglayan: hidden) == 1)
+        #expect(MapSlots.stage(koke: rumoured, caglayan: hidden) == 1)
+        #expect(MapSlots.stage(koke: arrived, caglayan: hidden) == 2)
+        #expect(MapSlots.stage(koke: arrived, caglayan: rumoured) == 2)
+        #expect(MapSlots.stage(koke: arrived, caglayan: arrived) == 3)
+        #expect(MapSlots.tier(caglayan: arrived) == 1)
+        #expect(MapSlots.tier(caglayan: WonderStatus(phase: .arrived, stage: WonderIslands.healedStage)) == 2)
+        let states = { (stage: Int) in Dictionary(uniqueKeysWithValues: MapSlots.slots(stage: stage, tier: 1).map { ($0.id, $0.state) }) }
+        #expect(states(1) == ["koke": .veiled, "caglayan": .cloud])
+        #expect(states(2) == ["koke": .island, "caglayan": .veiled])
+        #expect(states(3) == ["koke": .island, "caglayan": .island])
+        #expect(MapSlots.slots(stage: 3, tier: 2).count == 5)
+        for slot in MapSlots.slots(stage: 1, tier: 1) {
+            // The tower stands on the slot's foot, centred on it; a veiled slot's island shows inside.
+            #expect(abs(slot.tower.maxY - slot.box.maxY) < 1e-9 && abs(slot.tower.midX - slot.box.midX) < 1e-9)
+            if slot.state == .veiled {
+                let veil = MapSlots.veilBox(of: slot)
+                #expect(veil.map { $0.minX >= slot.tower.minX && $0.maxX <= slot.tower.maxX && $0.minY >= slot.tower.minY && $0.maxY <= slot.tower.maxY } == true)
+                #expect(MapSlots.veilArt(slot.id) == "world-koke-island-0__deep")
+            }
+        }
+        let assets = URL(fileURLWithPath: #filePath)
+            .deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
+            .appendingPathComponent("Sources/PofuWorld/Resources/World.xcassets")
+        for name in [MapSlots.towerArt, "world-koke-island-0__deep", "world-caglayan-island-0__deep"] {
+            #expect(FileManager.default.fileExists(atPath: assets.appendingPathComponent("\(name).imageset/Contents.json").path), "\(name)")
+        }
+    }
+
+    /// The islands bob 2 pt top to bottom, each over its own 6 to 9 s, at the Map only: none at rest and
+    /// none from a quarter of the way to the Island stop in.
+    @Test func theIslandsBobAtTheMapOnly() {
+        for id in ["home", "koke", "caglayan", "tier2-a"] {
+            #expect((6.0 ... 9.0).contains(MapSlots.bobPeriod(id)), "\(id)")
+            let samples = stride(from: 0.0, to: 20, by: 0.05).map { MapSlots.bob(id, time: $0, z: 0) }
+            #expect(abs(samples.max()! - samples.min()! - MapSlots.bobTravel) < 0.01, "\(id) travels 2 pt")
+            #expect(MapSlots.bob(id, time: nil, z: 0) == 0)
+            for z in [0.25, 0.5, 1, 2] {
+                #expect(stride(from: 0.0, to: 20, by: 0.5).allSatisfy { MapSlots.bob(id, time: $0, z: z) == 0 }, "\(id) still at z \(z)")
+            }
+            #expect(abs(MapSlots.bob(id, time: 3, z: 0.1)) <= abs(MapSlots.bob(id, time: 3, z: 0)) + 1e-12)
+        }
+        #expect(Set(["home", "koke", "caglayan"].map(MapSlots.bobPeriod)).count == 3, "they never move together")
     }
 
     /// Koke's and Çağlayan's soft shadow on the Map's cloud sea: under the island's middle, a little above
