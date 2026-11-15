@@ -18,7 +18,6 @@ Large job now: world presentation (spec #474); glass UI stays.
 
 - Merges that carry out a plan he approved (pofu-art queue PRs too) need
   no question; merge on review, tell him after (founder-input 31).
-- One painted world on days 1 to 21; rain streaks drawn in code.
 - Look truth is the player-path frames (studio.md, founder approved).
 
 ## In flight
