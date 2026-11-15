@@ -295,6 +295,17 @@ public enum MapSlots {
         return hazePeak * c * c * (3 - 2 * c)
     }
 
+    /// The haze as gradient stops over its band (`location` 0 at its top, 1 at its foot): rows down to the
+    /// horizon, then under it, so the gradient peaks on the horizon row itself.
+    public static func hazeStops(horizon: Double, height: Double) -> [(location: Double, opacity: Double)] {
+        let band = haze(horizon: horizon, height: height)
+        let span = max(band.bottom - band.top, 1e-6)
+        var rows: [Double] = []
+        for i in 0...8 { rows.append(band.top + Double(i) / 8 * (horizon - band.top)) }
+        for i in 1...4 { rows.append(horizon + Double(i) / 4 * (band.bottom - horizon)) }
+        return rows.map { y in ((y - band.top) / span, hazeOpacity(atRow: y, horizon: horizon, height: height)) }
+    }
+
     /// The cloud sea's horizon row on the screen at `camera` (the Map's sky set as `sky` places it, the
     /// farthest row's top), on a `width` x `height` screen. `nil` without a sky set.
     public static func horizonRow(plate: HomePlate, camera: CameraPose, width: Double, height: Double) -> Double? {
@@ -399,11 +410,8 @@ struct MapHazeLayer: View {
         let band = MapSlots.haze(horizon: horizon, height: h)
         let rgb = MapSlots.hazeRGB
         let colour = Color(red: rgb.r, green: rgb.g, blue: rgb.b)
-        // Rows down to the horizon, then under it, so the gradient peaks on the horizon row itself.
-        let rows = (0...8).map { band.top + Double($0) / 8 * (horizon - band.top) }
-            + (1...4).map { horizon + Double($0) / 4 * (band.bottom - horizon) }
-        let stops = rows.map { y in
-            Gradient.Stop(color: colour.opacity(MapSlots.hazeOpacity(atRow: y, horizon: horizon, height: h)), location: CGFloat((y - band.top) / (band.bottom - band.top)))
+        let stops: [Gradient.Stop] = MapSlots.hazeStops(horizon: horizon, height: h).map { stop in
+            Gradient.Stop(color: colour.opacity(stop.opacity), location: CGFloat(stop.location))
         }
         return LinearGradient(stops: stops, startPoint: .top, endPoint: .bottom)
             .frame(width: size.width, height: CGFloat(band.bottom - band.top))

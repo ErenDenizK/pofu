@@ -242,6 +242,9 @@ struct MapSkyTests {
             #expect(o >= last)
             last = o
         }
+        let stops = MapSlots.hazeStops(horizon: horizon, height: h)
+        #expect(stops.first?.location == 0 && abs((stops.last?.location ?? 0) - 1) < 1e-9)
+        #expect(abs((stops.map(\.opacity).max() ?? 0) - MapSlots.hazePeak) < 1e-9, "the gradient peaks on the horizon row")
         // The wonder islands' feet stand in it (Koke's foot on the tier-1 Map).
         let home = try #require(HomePlate.shipped)
         let stop = home.mapStop
