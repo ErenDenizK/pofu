@@ -31,6 +31,8 @@ import cv2
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import cloud_floor  # noqa: E402
+import island_matte  # noqa: E402
 from _common import (ASSETS, FPS, H, RESOURCES, W, Encoder, Sprite, contact_sheet, ease_z, load_rgba,  # noqa: E402
                      smoothstep, window_rows)
 
@@ -156,36 +158,34 @@ class SkyLayer:
         return self.role
 
 
-def extend_sea(L: SkyLayer, more_master_rows: float = 3200.0) -> None:
-    """The painted cloud sea ends in a hazy foot just under Home's screen. A pull-out shows what lies
-    below it, so both clips extend the sea offline: past its last row, a mirror of the foot blended into
-    mirror-repeats of the sea's clean band (master rows `MAP_SEA_BAND`). Home's frame is unchanged."""
-    img = L.sprite.mips[0]
-    k = img.shape[0] / L.size[1]                               # src rows per master row
-    b0, b1 = round((MAP_SEA_BAND[0] - L.pos[1]) * k), round((MAP_SEA_BAND[1] - L.pos[1]) * k)
-    band = img[b0:b1]
-    tiles, n, flip = [], 0, True
-    while n < more_master_rows * k:
-        tiles.append(band[::-1] if flip else band)
-        n += band.shape[0]
-        flip = not flip
-    ext = np.concatenate(tiles)
-    fade = min(round(300 * k), ext.shape[0])
-    foot = img[-fade:][::-1]                                    # the foot mirrored: the haze fades back out
-    a = np.linspace(0, 1, fade, dtype=np.float32)[:, None, None]
-    ext = ext.copy()
-    ext[:fade] = foot * (1 - a) + ext[:fade] * a
-    L.sprite = Sprite.__new__(Sprite)
-    L.sprite.mips = [np.concatenate([img, ext])]
-    L.size[1] = L.sprite.mips[0].shape[0] / k
+def tall_sea(L: SkyLayer) -> None:
+    """The painted cloud sea ends in a hazy foot just under Home's screen. A pull-out shows what lies below it, so
+    both clips replace the tile by one tall seamless cloud floor (`cloud_floor.floor`: the painting itself down to the
+    foot of its clean cumulus, then new rows quilted from those clouds, wrapped in x for the drift). The first version
+    mirrored the clean band, which drew a horizontal band every 520 rows. Home's frame is unchanged."""
+    k = L.sprite.h / L.size[1]                                 # src rows per master row
+    fl = cloud_floor.floor()
+    L.sprite = Sprite(fl)
+    L.size[1] = fl.shape[0] / k
 
 
-def load_set(light: str = LIGHT) -> list[SkyLayer]:
+def matte_island(L: SkyLayer, light: str = LIGHT, stage: int = 0) -> None:
+    """The sky set's island layer, replaced by the island cut clean from the full-size plate (`island_matte`): the
+    island, its underside and the harbour islet with their own feathered edge, no painted sky, a beam that fades."""
+    rgba, (x0, y0) = island_matte.island_layer(light, stage)
+    L.sprite = Sprite(rgba)
+    L.pos = [x0 * 2.0, y0 * 2.0]                               # plate points to master px
+    L.size = [float(rgba.shape[1]), float(rgba.shape[0])]
+
+
+def load_set(light: str = LIGHT, floor: bool = True) -> list[SkyLayer]:
     data = json.loads((RESOURCES / "Plates" / "skyset-home.json").read_text())
     layers = [SkyLayer(e) for e in data["lights"][light]["layers"]]
     for L in layers:
-        if L.kind == "sea":
-            extend_sea(L)
+        if L.kind == "sea" and floor:
+            tall_sea(L)
+        elif L.role == "island" and floor:
+            matte_island(L, light)
     return layers
 
 
@@ -334,7 +334,8 @@ class Scene:
         self.cag = Island("world-caglayan-island-day-4", CAG_CENTRE, CAG_PLATE[0],
                           (CAG_CENTRE[0] - CAG_PLATE[0] / 2, CAG_CENTRE[1] - CAG_PLATE[1] / 2,
                            CAG_CENTRE[0] + CAG_PLATE[0] / 2, CAG_CENTRE[1] + CAG_PLATE[1] / 2))
-        self.map_layers = map_set(self.layers)
+        # the Map's form of the set (today's look) keeps the painted sea tile: its bands lie inside the painting
+        self.map_layers = map_set(load_set(floor=False))
 
     # -- (a) today's look
     def frame_a(self, z: float, t: float) -> np.ndarray:
@@ -382,11 +383,12 @@ def main(argv=None) -> int:
     ap.add_argument("--seconds", type=float, default=6.0)
     ap.add_argument("--stills", type=Path, help="also write the six sheet frames here as PNG (1:1, for looking)")
     ap.add_argument("--no-video", action="store_true")
+    ap.add_argument("--suffix", default="", help="appended to every output name, e.g. -v2")
     args = ap.parse_args(argv)
     sc = Scene()
     n = round(args.seconds * FPS)
     picks = [round(i * (n - 1) / 5) for i in range(6)]
-    names = {"a": "pullout-a-today", "b": "pullout-b-depth"}
+    names = {"a": "pullout-a-today" + args.suffix, "b": "pullout-b-depth" + args.suffix}
     for which in args.which:
         enc = None if args.no_video else Encoder(args.out / f"{names[which]}.mp4")
         kept: list[np.ndarray] = []
