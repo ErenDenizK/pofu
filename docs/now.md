@@ -33,8 +33,8 @@ Paused: #453 (glass to painted). UI grammar after #461's choices.
 
 ## Next steps, in order
 
-0. Path frames miss Home's world-prop layer (jar, lantern, pots):
-   render it (friction 11-15).
+0. Painted Home hides skip pots, jar, lantern (IslandScene.swift:848):
+   Fable pass 2 decides how they return.
 1. Asset Wave 0 slice 3: the flow board after Codex's flow-stone pilot;
    then duo sheet and stickers in the app (§4.2).
 2. Studio: one side-by-side state pass, Fable vs Opus (studio.md §8.6).
