@@ -250,6 +250,7 @@ def lip_profile(light: str, stage: int):
 #: Section 6.3 rule: a slot keeps CLEAR pt from any painted object's foot. Painted feet that stand on the lip, plate pts
 #: (measured on the plates at 3 px per pt): the water wheel's two legs at every level, the mailbox at level 10.
 CLEAR = 12.0
+REACH = {"lantern": 160.0, "pots": 220.0, "jar": 330.0}      # pt each way of the default that a slot may be moved
 FEET = {"wheel": (466.0, 597.0), "mailbox": (268.0, 335.0)}
 
 
@@ -257,15 +258,21 @@ def feet_at(level: int) -> dict[str, tuple[float, float]]:
     return {k: v for k, v in FEET.items() if k != "mailbox" or level == 10}
 
 
-def slot_for(prop: str, lip, clean, obstacles: dict[str, tuple[float, float, float]] | None = None) -> tuple[float, float]:
+#: Where the lip is flowers and the free stretch between painted feet is short, the search finds nothing clean: those slots are
+#: declared (plate pts), each checked by hand against FEET: pots (150 wide) cannot sit between the mailbox and the wheel at level 10, so
+#: they go left of the mailbox; the jar (70 wide) sits in the gap between the two feet. Levels 2 and 6: pots and jar left of the wheel.
+DECLARED = {2: {"pots": 300.0, "jar": 415.0}, 6: {"pots": 300.0, "jar": 415.0}, 10: {"pots": 180.0, "jar": 400.0}}
+
+
+def slot_for(prop: str, lip, clean, obstacles: dict[str, tuple[float, float, float]] | None = None, fixed: float | None = None) -> tuple[float, float]:
     """The free lip span nearest the default: a window of the prop's width where the rim above is lawn and CLEAR pt from
-    every obstacle (a, b, gap): painted feet at CLEAR, props already placed at 3. The rim's lawn test relaxes (0.9, 0.75, 0.6) only if no span passes."""
+    every obstacle (a, b, gap): painted feet at CLEAR, props already placed at 3. The rim's lawn test relaxes (0.9 down to 0) only if no span passes; the window is REACH pt each way of the default."""
     xs = sorted(lip)
     half = SPAN[prop] / 2
     obs = obstacles or {}
     best, best_cost = None, 1e9
-    for need in (0.9, 0.75, 0.6):
-        for cx in range(int(DEFAULTS[prop] - 300), int(DEFAULTS[prop] + 300), 5):
+    for need in (0.9, 0.75, 0.6, 0.3, 0.0):               # the last two: the rim is flowers (level 10), the prop stands among them
+        for cx in range(int(DEFAULTS[prop] - REACH[prop]), int(DEFAULTS[prop] + REACH[prop]), 5):
             if any(cx + half + g > a and cx - half - g < b for a, b, g in obs.values()):
                 continue
             span = [x for x in xs if cx - half <= x <= cx + half]
@@ -273,13 +280,15 @@ def slot_for(prop: str, lip, clean, obstacles: dict[str, tuple[float, float, flo
                 continue
             free = float(np.mean([clean[x] for x in span]))
             bumpy = float(np.ptp([lip[x] for x in span]))
-            if free < need or bumpy > 14:
+            if free < need or bumpy > (14 if need > 0.3 else 40):
                 continue
             cost = abs(cx - DEFAULTS[prop])
             if cost < best_cost:
                 best, best_cost = cx, cost
         if best is not None:
             break
+    if fixed is not None:
+        best = int(fixed)
     if best is None:
         best = int(DEFAULTS[prop])
     # flowers and hanging wisteria run below the lawn's rim: the foot stands on the rim the span's higher columns show
@@ -315,7 +324,7 @@ def props_frame(level: int, view: str, light: str = "day") -> tuple[np.ndarray, 
     obs = {k: (a, b, CLEAR) for k, (a, b) in feet_at(level).items()}
     slots = {}
     for p in ("lantern", "pots", "jar"):                     # the tightest first; each placed prop is an obstacle, 3 pt apart
-        slots[p] = slot_for(p, lip, clean, obs)
+        slots[p] = slot_for(p, lip, clean, obs, DECLARED.get(level, {}).get(p))
         obs[p] = (slots[p][0] - SPAN[p] / 2, slots[p][0] + SPAN[p] / 2, 3.0)
     if view == "mid":
         S, cx, cy, sx, sy = MID["S"], MID["cx"], MID["top"], MID["sx"], MID["sy"]

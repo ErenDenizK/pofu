@@ -447,7 +447,7 @@ DOME_SIGMA, DOME_IN = 3.0, 1.5                  # sigma of the smoothing, and px
 STALL_BOX = (1290, 603, 1560, 635)              # the stall's string under its awning on level 6
 ARM_BOX = (1590, 560, 1720, 720)                # the donut stand's thin arm on level 7
 THIN_BOXES = {0: [STRING_BOX], 1: [STRING_BOX], 2: [STRING_BOX], 3: [ARM_BOX], 4: [STALL_BOX]}          # the string-light cord and the bulbs' caps between the windmill and the workshop
-CHIP_BOXES = [(335, 105, 380, 150)]             # pale out-of-focus blossom pieces beside the tree, below 64 px
+CHIP_BOXES = [(346, 106, 376, 127)]             # pale out-of-focus blossom pieces beside the tree, below 64 px
 
 
 def thin_structures(rgb: np.ndarray, a: np.ndarray, boxes: list[tuple[int, int, int, int]]) -> np.ndarray:
@@ -499,25 +499,30 @@ def smooth_region(a: np.ndarray, rgb: np.ndarray, box: tuple[int, int, int, int]
 
 
 BULB_BOXES = {0: [STRING_BOX], 1: [STRING_BOX], 2: [STRING_BOX], 4: [STALL_BOX]}   # the bulbs: pale halo wedges beside their caps are the sky's glow, not the bulb
-BULB_MIN = 40
+BULB_MIN, BULB_MAX = 25, 1500
 
 
 def clean_bulbs(a: np.ndarray, rgb: np.ndarray, box: tuple[int, int, int, int]) -> np.ndarray:
-    """Inside `box`: alpha on a pixel that is not warm (blue above red by 0.05, or within 0.02 of it beside such a pixel: the glow's pale
-    wedge or the sky's mix) goes; every warm piece of BULB_MIN px or more (the sky is blue, a bulb is cream, yellow or amber: a bulb the
-    network cut in half, or a crescent, is whole again) becomes opaque; then the contour is smoothed (sigma 1.0) and drawn
+    """Inside `box`: alpha on a pixel that is not warm (blue above red by 0.04, or within 0.02 of it beside such a pixel: the glow's pale wedge or the sky's mix, except
+    inside a solid mass of 31 px or more) goes; every yellow or amber piece of BULB_MIN to BULB_MAX px is made whole (its convex hull is opaque: a bulb
+    the network cut in half, or a crescent, is a bulb again); then the contour is smoothed (sigma 1.0) and drawn
     again anti-aliased."""
     x0, y0, x1, y1 = box
     sub, c = a[y0:y1, x0:x1], rgb[y0:y1, x0:x1]
-    cold = (c[..., 2] > c[..., 0] + 0.05)
+    cold = (c[..., 2] > c[..., 0] + 0.04)                   # bluer than red: not a bulb's white-hot centre (blue about equal to red)
     cold = cv2.dilate(cold.astype(np.uint8), np.ones((3, 3), np.uint8)).astype(bool) & (c[..., 2] > c[..., 0] - 0.02)
-    warm = (c[..., 0] - c[..., 2] > 0.04) & ~cold
-    warm = cv2.morphologyEx(warm.astype(np.uint8), cv2.MORPH_CLOSE, np.ones((5, 5), np.uint8))
+    mass = cv2.morphologyEx((sub > 0.99).astype(np.uint8), cv2.MORPH_OPEN, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (31, 31))).astype(bool)
+    cold &= ~mass                                           # a sail's, an awning's or a teapot's own pale shading is the island
+    warm = (c[..., 0] - c[..., 2] > 0.15) & ~cold            # a bulb's yellow or amber (the glow round it is paler: red less blue under 0.1)
+    warm = cv2.morphologyEx(warm.astype(np.uint8), cv2.MORPH_CLOSE, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (9, 9)))
     n, lab, st, _ = cv2.connectedComponentsWithStats(warm, connectivity=8)
-    ok = np.zeros(n, bool)
-    ok[1:] = st[1:, 4] >= BULB_MIN
+    whole = np.zeros(warm.shape, np.uint8)
+    for i in range(1, n):
+        if BULB_MIN <= st[i, 4] <= BULB_MAX:                # a bulb is convex: the hull makes a halved one or a crescent whole (a roof is far larger)
+            pts = cv2.findNonZero((lab == i).astype(np.uint8))
+            cv2.fillConvexPoly(whole, cv2.convexHull(pts), 1)
     out = a.copy()
-    out[y0:y1, x0:x1] = np.where(ok[lab], 1.0, np.where(cold, 0.0, sub))
+    out[y0:y1, x0:x1] = np.where(whole > 0, 1.0, np.where(cold, 0.0, sub))
     return smooth_region(out, rgb, box, 1.0)
 
 
@@ -534,7 +539,7 @@ def fill_glass(a: np.ndarray, rgb: np.ndarray, box: tuple[int, int, int, int]) -
     return out
 
 
-def drop_chips(a: np.ndarray, box: tuple[int, int, int, int], area: int = 400) -> np.ndarray:
+def drop_chips(a: np.ndarray, rgb: np.ndarray, box: tuple[int, int, int, int], area: int = 400) -> np.ndarray:
     """Inside `box`: pieces of the matte that a 7 px opening takes away, and that are smaller than `area` px (400: Fable's 64 px counted a fragment, the chips are 100 to 200 px joined by a neck), go."""
     x0, y0, x1, y1 = box
     sub = a[y0:y1, x0:x1]
@@ -546,6 +551,9 @@ def drop_chips(a: np.ndarray, box: tuple[int, int, int, int], area: int = 400) -
     for i in range(1, n):
         gone[i] = st[i, 4] < area
     g = cv2.dilate(gone[lab].astype(np.uint8), np.ones((3, 3), np.uint8)).astype(bool) & (core == 0)
+    c = rgb[y0:y1, x0:x1]
+    pale = (c[..., 0] - c[..., 1] > -0.02) & (_luma(c) > 0.7)       # the chips are pink-white, the leaf is green and the blossom is whole
+    g = g | cv2.dilate(pale.astype(np.uint8), np.ones((3, 3), np.uint8)).astype(bool)
     out = a.copy()
     out[y0:y1, x0:x1] = np.where(g, 0.0, sub)
     return out
@@ -625,7 +633,7 @@ def shared_alpha(stage: int) -> np.ndarray:
     # round 3b: declared repairs
     if stage == 0:
         for box in CHIP_BOXES:
-            a = drop_chips(a, box)
+            a = drop_chips(a, rgb, box)
         a = smooth_region(a, rgb, DOME_BOX, DOME_SIGMA, DOME_IN)
         a = fill_glass(a, rgb, GLASS_BOX)
     for box in BULB_BOXES.get(stage, []):

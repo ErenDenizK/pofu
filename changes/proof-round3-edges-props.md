@@ -1,1 +1,1 @@
-Proof tools, round 3: a v2 island matte (sharp, no plate haze, code shadow), the matte_check.py M1 to M11 acceptance check, an edge tour and the props-at-slots stills (scripts only).
+Proof tools, round 3b: the string-light cord and bulbs, the lamp-room dome, the blossom chips, an M2 floor of 0.7 px, all 20 Home plates through matte_check and the R5 slots clear of painted feet (scripts only).
