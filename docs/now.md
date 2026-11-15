@@ -24,14 +24,14 @@ Large job now: the asset system (#445), Wave 0 first.
 
 ## In flight
 
-1. World presentation (#461): concept frames reviewed by Fable (batch
-   112; picks in pofu-art #78) and sent to the founder (scratchpad
-   concepts/show). His choices: Map A (journey, Fable) or B; near =
-   locked t2 (buildable) or free t1 (needs a near plate). Defaults A and
-   locked. Key-colour pilot failed (#79): network matte stays; next, a
-   mist-clear edit of the real il1/il2. World pilots 107-111 in review.
-2. Art: Codex delivered 105-113; flow stone v2 renumbered 114 (#80).
-Disk 5.8 GB (/swapfile, rm blocked). Paused: #453; UI grammar after.
+1. World presentation (#461): concepts shown; defaults taken (Map A,
+   near locked t2; founder-input 34). Match proof (script to the locked
+   picks; Sonnet, `proof/match`), then the spec for Swift W1-W10.
+   Key-colour pilot failed (#79): network matte stays.
+2. Art: Codex delivered 105-117; 107-111 reviewed (tower redone as 115,
+   erase by paste-back); 114-117 under review. Near-dressing volume
+   waits on the match proof.
+Disk 5.6 GB (/swapfile, rm blocked). Paused: #453; UI grammar after.
 
 ## Next steps, in order
 
