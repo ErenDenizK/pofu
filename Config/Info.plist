@@ -21,6 +21,15 @@
 		<key>UIImageName</key>
 		<string>launch-sky</string>
 	</dict>
+	<!--
+	  Lets SwiftUI and Core Animation run above 60 Hz on a ProMotion iPhone.
+	  `FramePolicy` (the Direct tier, a finger down and the camera spring it
+	  started) is the only thing allowed to ask for more than 60; every other
+	  timeline goes through `PofuTimeline`, which caps at 60.
+	  `PofuFrameRuleTests` scans the sources for any other request.
+	-->
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>instagram</string>

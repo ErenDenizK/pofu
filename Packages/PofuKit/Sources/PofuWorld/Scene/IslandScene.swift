@@ -88,7 +88,7 @@ public struct IslandScene<Bubble: View>: View {
             // Direct, Moment, Ambient, Settled, Covered.
             let moment = home?.build != nil || home?.collect != nil
             let policy = model.directive(moment: moment)
-            PofuTimeline(hz: policy.hz > 0 ? policy.hz : PofuFrameRate.event, paused: !model.needsFrames && !moment, kind: .essential) { context in
+            PofuTimeline(hz: policy.hz > 0 ? policy.hz : PofuFrameRate.event, underFinger: policy.hz > PofuFrameRate.direct, paused: !model.needsFrames && !moment, kind: .essential) { context in
                 let _ = model.revision
                 let rig = model.frame(
                     at: context.date,

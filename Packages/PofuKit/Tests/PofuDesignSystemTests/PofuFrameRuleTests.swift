@@ -52,13 +52,56 @@ struct PofuFrameRuleTests {
         #expect(offenders.isEmpty, "use PofuTimeline: \(offenders)")
     }
 
-    /// Nothing asks for 120 Hz, so the plist key that unlocks it stays out.
-    @Test func infoPlistDoesNotUnlockProMotion() throws {
+    @Test func touchIntervalReaches120OnlyUnderFinger() {
+        #expect(PofuFrameRule.interval(hz: 120, underFinger: true) == 1.0 / 120.0)
+        #expect(PofuFrameRule.interval(hz: 200, underFinger: true) == 1.0 / 120.0)
+        #expect(PofuFrameRule.interval(hz: 60, underFinger: true) == 1.0 / 60.0)
+        #expect(PofuFrameRule.interval(hz: 120, underFinger: false) == 1.0 / 60.0)
+    }
+
+    private func swiftSources() throws -> [(name: String, lines: [String])] {
+        let sources = URL(fileURLWithPath: #filePath)
+            .deletingLastPathComponent().deletingLastPathComponent()
+            .deletingLastPathComponent().appendingPathComponent("Sources")
+        var out: [(String, [String])] = []
+        let files = try #require(FileManager.default.enumerator(at: sources, includingPropertiesForKeys: nil))
+        for case let url as URL in files where url.pathExtension == "swift" {
+            let text = try String(contentsOf: url, encoding: .utf8)
+            out.append((url.lastPathComponent, text.split(separator: "\n", omittingEmptySubsequences: false).map(String.init)))
+        }
+        return out
+    }
+
+    /// Only the Direct tier asks for more than 60 Hz: `underFinger:` is passed by the island's timeline alone,
+    /// `PofuFrameRate.touch` is read only by the rule, the SpriteKit games ask for 30 and 60, and the measurement tool asks for 120.
+    @Test func onlyTheDirectTierAsksFor120() throws {
+        var underFinger: [String] = []
+        var touch: [String] = []
+        var ranges: [String] = []
+        for (name, lines) in try swiftSources() {
+            for (n, raw) in lines.enumerated() {
+                let line = raw.trimmingCharacters(in: .whitespaces)
+                if line.hasPrefix("//") { continue }
+                let at = "\(name):\(n + 1)"
+                if line.contains("underFinger: policy.hz") { underFinger.append(at) }
+                if line.contains("PofuFrameRate.touch") { touch.append(at) }
+                if line.contains("preferredFrameRateRange") || line.contains("preferredFramesPerSecond") { ranges.append(name) }
+            }
+        }
+        #expect(underFinger.count == 1 && underFinger[0].hasPrefix("IslandScene.swift"), "\(underFinger)")
+        #expect(touch.allSatisfy { $0.hasPrefix("PofuTimeline.swift") }, "\(touch)")
+        // The two SpriteKit games ask for 30 and 60 (never more).
+        #expect(Set(ranges) == ["FrameMeter.swift", "FlowGameView.swift", "GardenGameView.swift"], "\(ranges)")
+    }
+
+    /// The plist key that unlocks 120 Hz is present, and says who may use it.
+    @Test func infoPlistUnlocksProMotionForFramePolicy() throws {
         let plist = URL(fileURLWithPath: #filePath)
             .deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
             .deletingLastPathComponent().deletingLastPathComponent()
             .appendingPathComponent("Config/Info.plist")
         let text = try String(contentsOf: plist, encoding: .utf8)
-        #expect(!text.contains("CADisableMinimumFrameDurationOnPhone"))
+        #expect(text.contains("CADisableMinimumFrameDurationOnPhone"))
+        #expect(text.contains("FramePolicy"))
     }
 }

@@ -248,4 +248,43 @@ struct FramePolicyTests {
         #expect(FramePolicy.ambientTime(.nan) == 0)
         #expect(abs(FramePolicy.ambientTime(10.01) - 10.0) < 1e-9)
     }
+
+    @Test func touchTierRunsAt120AndFallsBack() {
+        let d = policy.directive(for: FrameDemand(isUnderFinger: true))
+        #expect(d.state == .direct)
+        #expect(d.hz == 120)
+        #expect(!d.depthOfField)
+        // A flight (no finger) stays at the Direct rate.
+        #expect(policy.directive(for: FrameDemand(isDirect: true)).hz == 60)
+        // Heat and Low Power cap the tier.
+        #expect(policy.directive(for: FrameDemand(isUnderFinger: true), conditions: FrameConditions(thermal: .fair)).hz == 60)
+        #expect(policy.directive(for: FrameDemand(isUnderFinger: true), conditions: FrameConditions(lowPower: true)).hz == 60)
+        // A sheet over the world beats the finger.
+        #expect(policy.directive(for: FrameDemand(isCovered: true, isUnderFinger: true)).hz == 0)
+        // Ambient never asks for more than 30.
+        #expect(policy.directive(for: FrameDemand(isVisiting: true)).hz == 30)
+    }
+
+    @Test func touchLeaseHoldsUnderFingerAndDropsWithin500ms() {
+        var lease = TouchLease()
+        func look(_ down: Bool, _ moving: Bool, _ t: Double) -> Bool {
+            lease.observe(fingerDown: down, springMoving: moving, at: t)
+        }
+        let samples = [
+            look(false, false, 0),
+            look(true, true, 1),
+            // Lifted: the spring's tail keeps it for under half a second.
+            look(false, true, 1.3),
+            look(false, true, 1.5),
+            // Settled: still.
+            look(false, false, 1.6),
+        ]
+        #expect(samples == [false, true, true, false, false])
+    }
+
+    @Test func aFlightNeverLeasesTheTouchTier() {
+        var lease = TouchLease()
+        let held = lease.observe(fingerDown: false, springMoving: true, at: 5)
+        #expect(!held)
+    }
 }
