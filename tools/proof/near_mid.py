@@ -23,6 +23,9 @@ from PIL import Image
 from scipy.ndimage import gaussian_filter
 
 pillow_heif.register_heif_opener()
+import sys as _sys
+_sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import skyset_still  # noqa: E402  (the sky set at rest, the island as a clean alpha layer)
 
 W, H = 1206, 2622
 UPP = 0.3253                      # world units per plate point (facts doc)
@@ -205,12 +208,34 @@ def mid(widths, light="day"):
     return g.convert("RGB")
 
 
+def mid_fit(light="day", stage=0, margin=0.03, cy_frac=0.42):
+    """Mid fitted to the island's own box (`islandBox`, harbour islet included): the box fills the width less a
+    margin on each side. The sky is the sky set's own layers (`skyset_still`: gradient, far clouds, far isles, whale,
+    mid clouds, the tall cloud floor) and the island is the clean cut of this level's plate (`island_matte`), so no
+    painted sky rectangle comes with it. Master px = 2 plate points."""
+    box = ISLAND
+    s_pt = W * (1 - 2 * margin) / (box[2] - box[0])            # device px per plate point
+    cx, cy = (box[0] + box[2]) / 2, (box[1] + box[3]) / 2
+    arr = skyset_still.draw_set(s_pt / 2, (cx * 2, cy * 2), (W / 2, cy_frac * H), light, stage)
+    g = Image.fromarray(np.uint8(np.clip(arr[..., :3] + (1 - arr[..., 3:]) * 0, 0, 1) * 255 + 0.5), "RGB").convert("RGBA")
+    ox, oy = W / 2 - cx * s_pt, cy_frac * H - cy * s_pt         # plate point (0, 0) on the screen
+    for feet, art, w in ((MOCHI_FEET, MOCHI, MOCHI_W), (POFU_FEET, POFU, POFU_W)):
+        fx, fy = ox + feet[0] * s_pt, oy + feet[1] * s_pt
+        stand(g, art, fx, fy, w * s_pt, light, 0, 0.35)
+    return g.convert("RGB")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", required=True)
-    o = pathlib.Path(ap.parse_args().out)
+    ap.add_argument("--only-fit", action="store_true", help="write only the mid fitted to the island's box")
+    args = ap.parse_args()
+    o = pathlib.Path(args.out)
     o.mkdir(parents=True, exist_ok=True)
     def save(name, im): im.save(o / f"{name}.png"); print(name)
+    if args.only_fit:
+        save("mid_day_fit-v2", mid_fit("day"))
+        return
     for who in ("pofu", "mochi"):
         save(f"near_{who}_a_plate_cap2.7", near(who, "day", 2.7, "raw", fixed=True))
         save(f"near_{who}_a_plate_raw_full", near(who, "day", 7.4, "raw"))
@@ -221,6 +246,7 @@ def main():
     save("near_pofu_b_macro_4.5", near("pofu", "day", 4.5, "macro"))
     save("mid_day_0.90", mid(0.90))
     save("mid_day_1.15", mid(1.15))
+    save("mid_day_fit-v2", mid_fit("day"))
 
 
 if __name__ == "__main__":
