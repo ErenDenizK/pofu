@@ -559,31 +559,19 @@ private enum PofuCraftedBadge {
     static var fill: Color { PofuPrimitive.cream100.rgb.color.opacity(0.92) }
 }
 
-/// A sunflower bloom: eight honey petals round a brown heart on a stem. At
-/// night the head folds down.
+/// A painted sunflower bloom (the garden game's small bloom, baked into the
+/// world catalog as `ui-pot-bloom`). At night the head folds down. The
+/// painted pot (36 pt) hides the stem tip, so the head alone is placed.
 private struct Bloom: View {
     let folded: Bool
 
     var body: some View {
-        VStack(spacing: -2) {
-            ZStack {
-                ForEach(0..<8, id: \.self) { index in
-                    Capsule()
-                        .fill(PofuPrimitive.honey400.rgb.color)
-                        .frame(width: 5, height: 9)
-                        .offset(y: -6)
-                        .rotationEffect(.degrees(Double(index) * 45))
-                }
-                Circle()
-                    .fill(PofuPrimitive.peach800.rgb.color)
-                    .frame(width: 8, height: 8)
-            }
-            .frame(width: 20, height: 20)
+        Image("ui-pot-bloom", bundle: .module)
+            .resizable()
+            .scaledToFit()
+            .frame(width: 24, height: 24)
             .rotationEffect(.degrees(folded ? 70 : 0), anchor: .bottom)
-            Capsule()
-                .fill(PofuPrimitive.meadow400.rgb.color)
-                .frame(width: 3, height: 7)
-        }
+            .accessibilityHidden(true)
     }
 }
 

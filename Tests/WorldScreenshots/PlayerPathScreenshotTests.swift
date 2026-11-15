@@ -46,6 +46,10 @@ class PlayerPathFrameCase: XCTestCase {
             // is bedtime, after the day's reach and its guarded minutes.
             try await home(day.morning, hour: 9, beads: [], name: "path-d\(nn)-0900", scene: scene, folder: folder)
             try await home(day.night, hour: 23, beads: day.beads, name: "path-d\(nn)-2300", scene: scene, folder: folder)
+            if day.day == 16 {
+                // The skip pots by day: four skips (blooms) and one open (a bud), for the painted bloom.
+                try await home(day.morning, hour: 15, beads: [true, true, false, true, true], name: "path-d\(nn)-pots-1500", scene: scene, folder: folder)
+            }
             if day.morning.bell == .ringing {
                 try await home(day.morning, hour: 9, beads: [], name: "path-d\(nn)-bell-0900", scene: scene, folder: folder, beats: [.bell])
             }
