@@ -24,11 +24,12 @@ Large job now: world presentation (spec #474); glass UI stays.
 
 ## In flight
 
-1. WP4 mattes #480 (Sonnet): CI frames confirm a smeary fill and a ghost
-   under the rim at l5; round 2 drops the fill, keeps the mattes, waits
-   for A1 one sky (Opus, `feat/home-one-sky`): levels 1-9 draw the sky set.
-2. WP6 Map journey #479 (Opus): last round: no veil, one tower, Home
-   alone and large before Koke, soft horizon.
+1. WP4 mattes #480 round 2 pushed (no fill; 17/21 r3b; day L1/L2 from
+   116). A1 one sky (Opus, `feat/home-one-sky`) stacks on it, PR into
+   #480: sky set behind matted states, plates cropped to the island band.
+2. WP6 Map journey merged (#479): Home alone and large until Koke opens,
+   one tower, horizon haze. Follow-up: faint blue smudge under the d01
+   tower (old isle shadow?); stale `WorldMap.swift` comment.
 3. N4 flow painted board (Sonnet, `feat/flow-painted-board`): slots,
    textured channel, method B switch; A/B frames for the founder.
 4. Codex: queue #92 (121-128 Demand, 129 station looks standing); he
