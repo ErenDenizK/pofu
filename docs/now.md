@@ -19,21 +19,17 @@ Large job now: the asset system (#445), Wave 0 first.
 
 - Merges that carry out a plan he approved (pofu-art queue PRs too) need
   no question; merge on review, tell him after (founder-input 31).
-
 - One painted world on days 1 to 21; rain streaks drawn in code.
 - Look truth is the player-path frames (studio.md, founder approved).
 
 ## In flight
 
-1. Feel and world (#461): proofs 1-4 made (#463, #465, #466; outputs in
-   scratchpad/proofs); Fable looks at them before the founder. 120 Hz
-   direct tier merged (#464). Quick wins: sunflower and flow bed
-   (`feat/quick-wins-bloom-flowbed`). #465/#466 Python tools CI fails.
-2. Art: pilots #40-44 reviewed; pofu-art #65 queued batches 104-106
-   (flow stone v2, emoji, duo icons); founder may say "çalış". Step 6
-   paused (#64). Near-dressing pilot after proof 2. Music: later.
-Paused: Wave 0 app-layer glass to painted (#453 draft). UI grammar after
-#461's choices.
+1. Feel and world (#461): proofs 1-4 shown to the founder (v2 with the
+   island matte); his picks pending (defaults: near B, water c, one
+   camera b). Merged: #464 120 Hz direct tier, #467 pool and bloom.
+2. Art: pofu-art #65, #67 queued 104-108 (flow stone v2, emoji, icons,
+   near dressing, station erase); founder says "çalış". Music: later.
+Paused: #453 (glass to painted). UI grammar after #461's choices.
 
 ## Next steps, in order
 
