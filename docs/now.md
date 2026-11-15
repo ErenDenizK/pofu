@@ -24,14 +24,15 @@ Large job now: the asset system (#445), Wave 0 first.
 
 ## In flight
 
-1. World presentation (#461): concepts shown; defaults taken (Map A,
-   near locked t2; founder-input 34). Match proof (script to the locked
-   picks; Sonnet, `proof/match`), then the spec for Swift W1-W10.
-   Key-colour pilot failed (#79): network matte stays.
-2. Art: Codex delivered 105-117; 107-111 reviewed (tower redone as 115,
-   erase by paste-back); 114-117 under review. Near-dressing volume
-   waits on the match proof.
-Disk 5.6 GB (/swapfile, rm blocked). Paused: #453; UI grammar after.
+1. World presentation build: spec merged (#474, 13 PRs in waves). Wave
+   1: WP1 proof tools (Sonnet, `chore/proof-tools`), WP2 depth function
+   (Opus, `feat/world-depth-function`), WP3 composition model (Opus,
+   `feat/world-composition-model`). Decisions taken: D4 rail map/mid/near
+   (ADR-0027 in WP7), D7 budget 14 MB, D8 props early with fallback.
+   Defaults on concepts: Map A, near locked t2 (founder-input 34).
+2. Art: Codex queue 118-120 (match gaps) after 114-117; 114-117 review
+   running. Close stacked proof PRs after WP1.
+Disk 6.6 GB (/swapfile, rm blocked). Paused: #453; UI grammar after.
 
 ## Next steps, in order
 
