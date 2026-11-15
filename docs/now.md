@@ -13,7 +13,7 @@ Large job now: world presentation (spec #474); glass UI stays.
 **Updated:** 2026-11-15.
 **Founder last played on his phone:** 2026-11-14 (main 0cf03ca1).
 **Route:** Fable's night plan (`docs/design/night-plan-2026-11-15.md`,
-#482): steps N0-N11 now, A1-A10 after; the world spec #474 inside it.
+#482 merged): steps N0-N11 now, A1-A10 after; the world spec #474 inside it.
 
 ## Decided this session
 
@@ -24,9 +24,9 @@ Large job now: world presentation (spec #474); glass UI stays.
 
 ## In flight
 
-1. WP4 mattes #480 (Sonnet): waits on CI frames; the fill under the
-   rim was smeary offline. Fable: ship mattes, old matte where paint is
-   cut; the fill retires with A1 (one sky at every level).
+1. WP4 mattes #480 (Sonnet): CI frames confirm a smeary fill and a ghost
+   under the rim at l5; round 2 drops the fill, keeps the mattes, waits
+   for A1 one sky (Opus, `feat/home-one-sky`): levels 1-9 draw the sky set.
 2. WP6 Map journey #479 (Opus): last round: no veil, one tower, Home
    alone and large before Koke, soft horizon.
 3. N4 flow painted board (Sonnet, `feat/flow-painted-board`): slots,
