@@ -283,6 +283,24 @@ def fit_take(take: Image.Image, still: Image.Image, side: dict, name: str, dista
     return paste_chrome(frame, still, side.get("chrome", [])), rep
 
 
+def compare_frames(guide: Image.Image, frame: Image.Image, side: dict, distance: str, name: str) -> "TakeReport":
+    """Drift of any 1206 x 2622 `frame` from any other `guide` on the sidecar's boxes (tools/proof/match.py: the
+    re-rendered match against the picked concept). Same measure as `fit_take`, without the crop and the chrome paste."""
+    ge, te = edge_map(guide.convert("RGB")), edge_map(frame.convert("RGB"))
+    rep = TakeReport(name, distance, "free")
+    boxes = [("subject:" + s["type"], s["id"], s["box"]) for s in side.get("subjects", [])]
+    boxes += [("chrome", c["id"], c["box"]) for c in side.get("chrome", [])]
+    boxes += [("feature", f["id"], f["box"]) for f in side.get("features", [])]
+    for k, ident, box in boxes:
+        rep.drifts.append(measure_box(ge, te, box, ident, k))
+    meas = [d for d in rep.drifts if (d.kind.startswith("subject") or d.kind == "chrome") and d.dx is not None and not d.uncertain]
+    if meas:
+        rep.global_shift = (float(np.median([d.dx for d in meas])), float(np.median([d.dy for d in meas])))
+    rep.uncertain = [d.id for d in rep.drifts if d.uncertain]
+    rep.verdict = "compared (not judged)"
+    return rep
+
+
 def format_report(rep: TakeReport) -> str:
     L = [f"{rep.name}  [{rep.distance}, {rep.kind}]  ->  {rep.verdict}",
          f"  global shift (median of subjects and chrome): dx {rep.global_shift[0]:+.1f}  dy {rep.global_shift[1]:+.1f} px"]

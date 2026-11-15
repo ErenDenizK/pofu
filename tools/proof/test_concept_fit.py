@@ -173,3 +173,13 @@ def test_run_writes_report_and_one_sheet_per_distance(tmp_path):
     sheet = Image.open(out / "sheet-mid.jpg")
     assert sheet.width > 3 * 400            # three columns
     assert cf.main([str(takes), "--refs", str(refs), "--out", str(out)]) == 0
+
+
+def test_compare_frames_reports_a_shift_and_none_for_identical():
+    still = make_still()
+    side = {"subjects": [{"id": "island", "type": "island", "box": BOXES["island"]}], "chrome": [], "features": []}
+    same = cf.compare_frames(still, still, side, "mid", "same")
+    assert same.drifts[0].drift < 1.0
+    shifted = Image.fromarray(np.roll(np.asarray(still), 30, axis=0))
+    moved = cf.compare_frames(still, shifted, side, "mid", "moved")
+    assert 25 < moved.drifts[0].dy < 35
