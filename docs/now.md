@@ -24,12 +24,13 @@ Large job now: the asset system (#445), Wave 0 first.
 
 ## In flight
 
-1. World presentation v2 (Fable pass 2, #461 `world-presentation-v2.md`,
-   founder notes 32): proof round 3 running: R1 composition + R2 life,
-   R3 edges + R5 props (Sonnet); §11 facts (Haiku); round-3 Codex
-   manifests (pofu-art). R4 depth waits on Codex patch and dressing.
-   Founder's one choice: Map order (journey rising vs Home on top).
-2. Art: pofu-art queue 104-108 READY; founder says "çalış". Music later.
+1. World presentation v2 (#461): proof round 3 made: R1 composition, R2
+   life (#471), R3 edges with a matting network, R5 props (#470, draft);
+   §11 facts merged (#469). Fable looks at round 3 before the founder.
+   R4 depth waits on Codex (110 patch, 107 dressing). Founder's choice:
+   Map order (journey rising vs Home on top).
+2. Art: pofu-art queue 104-111 READY (#65, #67, #68); founder says
+   "çalış". Music later.
 Paused: #453 (glass to painted). UI grammar after the world choices.
 
 ## Next steps, in order
