@@ -100,7 +100,7 @@ struct PlateHomeLayer: View {
             if fade > 0.001 {
                 ZStack(alignment: .topLeading) {
                     if let sky = plate.skySet {
-                        SkySetLayers(sky: sky, plate: plate, pose: pose, size: size, offset: offset, start: start)
+                        SkySetLayers(sky: sky, plate: plate, pose: pose, reference: plate.skyReference(width: Double(size.width), height: Double(size.height)), size: size, offset: offset, start: start)
                     } else {
                         PlateImage(name: plate.plate.backdropArt(light: plate.light, stage: plate.stage), box: plate.backdropBox, pose: pose, size: size, offset: offset)
                         PlateImage(name: plate.plate.plateArt(light: plate.light, stage: plate.stage), box: plate.plateBox, pose: pose, size: size, offset: offset)

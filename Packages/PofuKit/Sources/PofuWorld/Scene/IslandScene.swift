@@ -549,7 +549,7 @@ private struct SceneFrame<Bubble: View>: View {
         let skyFade = skies.map(\.fade).max() ?? 0
         // The Map and the flights under Home's painted sky (R4 of docs/research/route-2026-11-12-codex-pause.md):
         // in the painted world (Home is its plate) the code sky, cloud sea and fog are never drawn; Home's
-        // sky set is, at the camera's own framing of it (`PaintedSky.mapPose`), wherever no stop's
+        // sky set is, through the depth function from Home's stop (`DepthLayer`), wherever no stop's
         // painting covers the screen.
         let mapSky = plate != nil ? PaintedSky.mapSky(world: world, look: look) : nil
         // How much a painting stands in for the code atmosphere: all of it in the painted world.
@@ -704,7 +704,8 @@ private struct SceneFrame<Bubble: View>: View {
                 if let mapSky, max(plateFade, isleFade, skyFade) < 0.999 {
                     PaintedSkyLayer(
                         plate: mapSky,
-                        pose: PaintedSky.mapPose(pose, sky: mapSky, width: Double(size.width), height: Double(size.height)),
+                        pose: pose,
+                        reference: mapSky.skyReference(width: Double(size.width), height: Double(size.height)),
                         size: size,
                         offset: offset,
                         fade: 1,
@@ -720,7 +721,7 @@ private struct SceneFrame<Bubble: View>: View {
                 // light, its island layer left out, ungraded, in place of the code sky; the code cloud
                 // sea and fog below give way to it as it fades in.
                 ForEach(skies, id: \.island) { entry in
-                    PaintedSkyLayer(plate: entry.plate, pose: pose, size: size, offset: offset, fade: entry.fade, cleanSea: entry.island == .koke)
+                    PaintedSkyLayer(plate: entry.plate, pose: pose, reference: PaintedSky.reference(for: entry.island, width: Double(size.width), height: Double(size.height)) ?? entry.plate.skyReference(width: Double(size.width), height: Double(size.height)), size: size, offset: offset, fade: entry.fade, cleanSea: entry.island == .koke)
                 }
 
                 if !painted, codeFade < 0.999 {

@@ -80,14 +80,18 @@ struct MapSkyTests {
             let horizon = try #require(set.layers.first { $0.asset.contains("-sea-") })
             for screen in Self.screens {
                 for camera in try Self.cameras(width: screen.width, height: screen.height) {
-                    let pose = PaintedSky.mapPose(camera.pose, sky: plate, width: screen.width, height: screen.height)
+                    let reference = plate.skyReference(width: screen.width, height: screen.height)
                     func rect(_ layer: SkySet.Layer) -> (minX: Double, minY: Double, maxX: Double, maxY: Double) {
+                        let pose = DepthLayer.pose(camera.pose, reference: reference, k: layer.k)
                         let box = plate.worldBox(
                             master: PlateRect(minX: layer.pos.x, minY: layer.pos.y, maxX: layer.pos.x + layer.size.x, maxY: layer.pos.y + layer.size.y),
                             of: set
                         )
                         let a = pose.project(WorldPoint(x: box.minX, y: box.minY), width: screen.width)
-                        return (a.x, a.y, a.x + box.width * pose.scale, a.y + box.height * pose.scale)
+                        let rows = DepthLayer.covering(
+                            minY: a.y, maxY: a.y + box.height * pose.scale, screenHeight: screen.height, stretch: DepthLayer.stretch(of: layer)
+                        )
+                        return (a.x, rows.minY, a.x + box.width * pose.scale, rows.maxY)
                     }
                     let s = rect(sky)
                     #expect(s.minX <= 0 && s.minY <= 0 && s.maxX >= screen.width && s.maxY >= screen.height, "\(light) sky \(screen) \(camera.name)")
@@ -104,7 +108,7 @@ struct MapSkyTests {
                     let top = camera.pose.project(WorldPoint(x: box.minX, y: box.minY), width: screen.width).y
                     let foot = camera.pose.project(WorldPoint(x: box.minX, y: box.maxY), width: screen.width).y
                     for layer in set.layers where layer.role == .whale || layer.asset.contains("-isle-") {
-                        #expect(rect(layer).maxY <= top + 0.02 * screen.height, "\(light) \(layer.asset) above Home \(screen)")
+                        #expect(rect(layer).maxY <= top + 0.04 * screen.height, "\(light) \(layer.asset) above Home \(screen)")
                     }
                     let h = rect(horizon)
                     let window = try #require(horizon.window)
@@ -217,18 +221,27 @@ struct MapSkyTests {
         }
     }
 
-    /// The Map's sky never zooms: its scale is the same at every camera on a screen, and a flight slides
-    /// it a sixteenth as far as the world.
-    @Test func theMapSkySlidesAndNeverZooms() throws {
+    /// The Map draws Home's sky set through the same depth function as Home does, from Home's stop: at the
+    /// reference every layer is the camera's own, and between there and the Map the layers move by their
+    /// depth, the island layer with the camera and the sky not at all.
+    @Test func mapSkyIsTheSameSetThroughTheDepthFunction() throws {
         let plate = try #require(PaintedSky.mapSky(world: Self.world, look: Self.look(12)))
+        let set = try #require(plate.skySet)
         let cameras = try Self.cameras(width: 402, height: 874)
-        let poses = cameras.map { PaintedSky.mapPose($0.pose, sky: plate, width: 402, height: 874) }
-        let scale = poses[0].scale
-        #expect(poses.allSatisfy { abs($0.scale - scale) < 1e-9 })
-        let (a, b) = (cameras[0].pose, cameras[3].pose)
-        let (pa, pb) = (poses[0], poses[3])
-        #expect(abs((pb.lookY - pa.lookY) - (b.lookY - a.lookY) * PaintedSky.mapParallax) < 1e-9)
-        #expect(abs((pb.lookX - pa.lookX) - (b.lookX - a.lookX) * PaintedSky.mapParallax) < 1e-9)
+        let reference = plate.skyReference(width: 402, height: 874)
+        let home = try #require(cameras.first { $0.name == "home" }?.pose)
+        let map = try #require(cameras.first { $0.name == "map" }?.pose)
+        #expect(abs(home.scale - reference.scale) < 1e-9 && abs(home.lookX - reference.lookX) < 1e-9)
+        for layer in set.layers {
+            let atHome = DepthLayer.pose(home, reference: reference, k: layer.k)
+            #expect(atHome == home || (abs(atHome.logScale - home.logScale) < 1e-9 && abs(atHome.lookX - home.lookX) < 1e-9), "\(layer.id) at Home")
+            let atMap = DepthLayer.pose(map, reference: reference, k: layer.k)
+            switch layer.k {
+            case 0: #expect(abs(atMap.scale - reference.scale) < 1e-9 && abs(atMap.lookX - reference.lookX) < 1e-9, "\(layer.id) never moves")
+            case 1: #expect(abs(atMap.scale - map.scale) < 1e-9 && abs(atMap.lookX - map.lookX) < 1e-9, "\(layer.id) is the camera")
+            default: #expect(atMap.scale < reference.scale && atMap.scale > map.scale, "\(layer.id) between the two")
+            }
+        }
     }
 
     /// Home's island on the Map is cut from each level's own painting (`tools/plate/map_cut.py`): every

@@ -24,6 +24,17 @@ public struct SkySet: Hashable, Sendable {
         case island
         /// A star group's own light, added over the sky and brightened in beats.
         case stars
+
+        /// The depth exponent a layer of this role has when its file states none (v2 section 2).
+        public var defaultDepth: Double {
+            switch self {
+            case .sky, .stars: 0
+            case .tile: 0.45
+            case .sprite: 0.25
+            case .whale: 0.35
+            case .island: 1
+            }
+        }
     }
 
     /// A vertical sine of `amp` reference px over `period` s, `sign` its direction. It starts at zero, so
@@ -105,6 +116,9 @@ public struct SkySet: Hashable, Sendable {
         public var drift: Double
         public var bob: Bob?
         public var twinkle: Twinkle?
+        /// The layer's depth exponent (`DepthLayer`): 1 moves with the camera as the island does, 0 never
+        /// moves. A set's file may state it; otherwise the role's (`Role.defaultDepth`).
+        public var k: Double
         /// Painted detail on a sprite or the whale.
         public var details: [Detail] = []
         /// The band of the layer's own picture that is drawn, or `nil`: all of it (the Map's sky,
@@ -363,6 +377,7 @@ extension SkySetFile: Decodable {
         var drift: Double?
         var bob: RawBob?
         var twinkle: RawTwinkle?
+        var k: Double?
         var details: [RawDetail]?
     }
 
@@ -416,6 +431,7 @@ extension SkySetFile: Decodable {
                     tileWidth: layer.tileWidth, drift: layer.drift ?? 0,
                     bob: layer.bob.map { SkySet.Bob(amp: $0.amp, period: $0.period, sign: $0.sign) },
                     twinkle: layer.twinkle.map { SkySet.Twinkle(peak: $0.peak, period: $0.period) },
+                    k: layer.k ?? role.defaultDepth,
                     details: details
                 )
             }
