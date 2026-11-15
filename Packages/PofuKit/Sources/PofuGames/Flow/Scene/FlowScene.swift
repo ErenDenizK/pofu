@@ -225,24 +225,14 @@ final class FlowScene: SKScene {
         bank.zPosition = 0.5
         container.addChild(bank)
 
-        let pool = SKShapeNode(rect: sceneRect(layout.pool), cornerRadius: 18)
-        pool.fillColor = FlowPalette.rgb(0.58, 0.82, 0.95)
-        pool.strokeColor = FlowPalette.cliffDark
-        pool.lineWidth = 3
-        pool.zPosition = 0.6
-        let ripples = CGMutablePath()
         let poolRect = sceneRect(layout.pool)
-        for index in 0..<3 {
-            let x = poolRect.minX + poolRect.width * (0.2 + 0.3 * CGFloat(index))
-            let y = poolRect.midY - 4 + CGFloat(index % 2) * 8
-            ripples.move(to: CGPoint(x: x - 14, y: y))
-            ripples.addQuadCurve(to: CGPoint(x: x + 14, y: y), control: CGPoint(x: x, y: y - 6))
+        let pool: SKNode
+        if let slices = textures.poolSlices() {
+            pool = paintedPool(slices, in: poolRect)
+        } else {
+            pool = drawnPool(in: poolRect)
         }
-        let ripple = SKShapeNode(path: ripples)
-        ripple.strokeColor = UIColor.white.withAlphaComponent(0.7)
-        ripple.lineWidth = 1.6
-        ripple.lineCap = .round
-        pool.addChild(ripple)
+        pool.zPosition = 0.6
         container.addChild(pool)
         poolNode = pool
 
@@ -260,6 +250,45 @@ final class FlowScene: SKScene {
         wetCells = Set(flow.keys)
         refreshSpills(for: board, wet: wetCells, delays: [:], animated: false)
         return container
+    }
+
+    /// The painted pool: the caps keep the picture's proportions, the middle slice stretches between them.
+    private func paintedPool(_ slices: (left: SKTexture, middle: SKTexture, right: SKTexture, aspect: CGFloat), in rect: CGRect) -> SKNode {
+        let node = SKNode()
+        let height = rect.height + 8
+        let capWidth = min(height * slices.aspect * 0.4, rect.width / 2)
+        let y = rect.midY - 2
+        let left = SKSpriteNode(texture: slices.left, size: CGSize(width: capWidth, height: height))
+        left.position = CGPoint(x: rect.minX + capWidth / 2, y: y)
+        let right = SKSpriteNode(texture: slices.right, size: CGSize(width: capWidth, height: height))
+        right.position = CGPoint(x: rect.maxX - capWidth / 2, y: y)
+        let middle = SKSpriteNode(texture: slices.middle, size: CGSize(width: rect.width - 2 * capWidth + 2, height: height))
+        middle.position = CGPoint(x: rect.midX, y: y)
+        node.addChild(middle)
+        node.addChild(left)
+        node.addChild(right)
+        return node
+    }
+
+    /// The drawn pool, the fallback while the painted art is missing.
+    private func drawnPool(in poolRect: CGRect) -> SKNode {
+        let pool = SKShapeNode(rect: poolRect, cornerRadius: 18)
+        pool.fillColor = FlowPalette.rgb(0.58, 0.82, 0.95)
+        pool.strokeColor = FlowPalette.cliffDark
+        pool.lineWidth = 3
+        let ripples = CGMutablePath()
+        for index in 0..<3 {
+            let x = poolRect.minX + poolRect.width * (0.2 + 0.3 * CGFloat(index))
+            let y = poolRect.midY - 4 + CGFloat(index % 2) * 8
+            ripples.move(to: CGPoint(x: x - 14, y: y))
+            ripples.addQuadCurve(to: CGPoint(x: x + 14, y: y), control: CGPoint(x: x, y: y - 6))
+        }
+        let ripple = SKShapeNode(path: ripples)
+        ripple.strokeColor = UIColor.white.withAlphaComponent(0.7)
+        ripple.lineWidth = 1.6
+        ripple.lineCap = .round
+        pool.addChild(ripple)
+        return pool
     }
 
     private func makeTile(_ cell: FlowCell, _ tile: FlowTile) -> FlowTileNode {

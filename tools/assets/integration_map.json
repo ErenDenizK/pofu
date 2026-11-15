@@ -1559,6 +1559,36 @@
         24
       ],
       "scale": 3
+    },
+    {
+      "target": "games",
+      "name": "flow-grass",
+      "master": "design/art/ui/ui-flow-grass",
+      "points": [
+        64,
+        64
+      ],
+      "scale": 3
+    },
+    {
+      "target": "games",
+      "name": "flow-rock",
+      "master": "design/art/ui/ui-flow-rock-2",
+      "points": [
+        64,
+        64
+      ],
+      "scale": 3
+    },
+    {
+      "target": "games",
+      "name": "flow-pool",
+      "master": "design/art/ui/ui-flow-pool",
+      "points": [
+        84,
+        56
+      ],
+      "scale": 3
     }
   ]
 }

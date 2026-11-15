@@ -88,6 +88,8 @@ final class FlowTextures {
 
     func stone(_ kind: FlowTileKind, _ openings: FlowDirection) -> SKTexture {
         if kind == .wheel, let art = painted(Self.wheelTileArt) { return art }
+        // The painted bank tiles (batch 64): grass and the boulder in the grass. The rest stays drawn.
+        if kind == .grass || kind == .rock, let name = Self.artName(kind), let art = painted(name) { return art }
         return cached("stone-\(kind.rawValue)-\(openings.rawValue)") { context in
             switch kind {
             case .rock: self.drawRock(context)
@@ -95,6 +97,21 @@ final class FlowTextures {
             default: self.drawStone(context, kind: kind, openings: openings)
             }
         }
+    }
+
+    /// The painted pool as three slices of one picture (left cap, a middle that is stretched, right cap),
+    /// so a rim of river stones can run the width of the board. `nil` until the art is in the bundle.
+    static let poolArt = "flow-pool"
+
+    func poolSlices() -> (left: SKTexture, middle: SKTexture, right: SKTexture, aspect: CGFloat)? {
+        guard let whole = painted(Self.poolArt) else { return nil }
+        let size = whole.size()
+        func slice(_ from: CGFloat, _ to: CGFloat) -> SKTexture {
+            let part = SKTexture(rect: CGRect(x: from, y: 0, width: to - from, height: 1), in: whole)
+            part.filteringMode = .linear
+            return part
+        }
+        return (slice(0, 0.4), slice(0.4, 0.6), slice(0.6, 1), size.width / size.height)
     }
 
     func water(_ kind: FlowTileKind, _ openings: FlowDirection) -> SKTexture {
