@@ -724,11 +724,20 @@ private struct SceneFrame<Bubble: View>: View {
                     PaintedSkyLayer(plate: entry.plate, pose: pose, reference: PaintedSky.reference(for: entry.island, width: Double(size.width), height: Double(size.height)) ?? entry.plate.skyReference(width: Double(size.width), height: Double(size.height)), size: size, offset: offset, fade: entry.fade, cleanSea: entry.island == .koke)
                 }
 
-                // The Map's slots that hold no island yet: a cloud tower, veiled for the next to open
-                // (`MapSlots`, Map order A), gone as the camera leaves the Map as the wonder islands are.
+                // Over the cloud sea's horizon on the Map, a soft haze until WP9's cloud beds: no ruler
+                // edge, and the wonder islands' feet stand in it.
+                if let mapSky, z < 0.8, let horizon = MapSlots.horizonRow(plate: mapSky, camera: pose, width: Double(size.width), height: Double(size.height)) {
+                    MapHazeLayer(horizon: horizon, size: size, offset: offset)
+                        .tinted(tint, isEnabled: !(look.grade && WorldShaders.isAvailable))
+                        .modifier(GradeEffect(grade: grade.withoutVignette, isEnabled: look.grade))
+                        .opacity(max(0, 1 - max(z, 0) / 0.8))
+                }
+
+                // The next island's slot: a cloud tower (`MapSlots`, Map order A), gone as
+                // the camera leaves the Map as the wonder islands are. The next-to-open slot's reveal is WP12's.
                 if z < 0.8, model.focus == nil {
                     MapSlotsLayer(
-                        slots: MapSlots.slots(stage: MapSlots.stage(koke: world.koke, caglayan: world.caglayan), tier: plate?.mapTier ?? MapSlots.tier(caglayan: world.caglayan)),
+                        slots: MapSlots.slots(stage: MapSlots.stage(koke: world.koke, caglayan: world.caglayan), tier: plate?.mapTier ?? MapSlots.tier(koke: world.koke, caglayan: world.caglayan)),
                         pose: pose,
                         size: size,
                         offset: offset,

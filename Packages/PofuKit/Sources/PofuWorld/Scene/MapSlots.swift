@@ -5,10 +5,11 @@ import SwiftUI
 #endif
 
 /// The Map in journey order (Map order A; WP6 of docs/design/world-presentation-build-spec.md): Home
-/// low and in front, Koke and Çağlayan rising behind it, each slot holding a cloud tower (not yet
-/// announced), a veiled tower (next to open) or the island. Where the slots are, the tier pitch and
-/// the frame are `world-map.json` (`WorldMap`), relative to Home's box centre; this places them on the
-/// world canvas, says what each holds for the player's progress and how the islands bob. Pure.
+/// low and in front, Koke and Çağlayan rising behind it. A slot holds the island once it is open, a
+/// cloud tower while it is the next to open (its reveal is WP12's), and nothing while it is not yet
+/// announced. Where the slots are, the tier pitch and the frame are `world-map.json` (`WorldMap`), relative
+/// to Home's box centre; this places them on the world canvas, says what each holds for the player's
+/// progress, frames each unlock, places the far picture and the horizon's haze, and bobs the islands. Pure.
 public enum MapSlots {
     /// The Map's composition data shipped in the package.
     public static let map: WorldMap? = WorldMap.shipped
@@ -39,18 +40,39 @@ public enum MapSlots {
         return koke.isArrived ? 2 : 1
     }
 
-    /// The tier the Map frames: tier 1 from day 1 until Çağlayan blooms (heals), then tier 2. It
-    /// changes only there, when the next tier is announced.
-    public static func tier(caglayan: WonderStatus) -> Int {
-        caglayan.isHealed ? 2 : 1
+    /// The frame the Map shows, by the player's progress: 0 (Home's own frame) from day 1 until Koke can
+    /// be visited, then the tier-1 frame until Çağlayan blooms (heals), then tier 2. Each unlock
+    /// re-balances the Map; it changes only there.
+    public static func tier(koke: WonderStatus, caglayan: WonderStatus) -> Int {
+        if caglayan.isHealed { return 2 }
+        return koke.isArrived ? 1 : 0
     }
 
+    /// Before the first wonder island opens Home is framed alone, large: its box this share of the
+    /// screen's width (founder input 32.1, a balanced layout per unlock), its foot where the tier frames
+    /// put it, and the next island's tower beside it whole.
+    public static let homeAloneWidth = 0.70
+
     /// The Map's stop at `tier` in reference points (402 x 874) on the world canvas: `WorldMap.tierFrame`
-    /// moved to Home's box centre. `nil` when the package has no map.
+    /// moved to Home's box centre; tier 0 is Home's own frame (`homeAloneWidth`). `nil` when the package
+    /// has no map.
     public static func frame(tier: Int, homeCentre: WorldPoint = homeCentre) -> CameraRail.Stop? {
         guard let map else { return nil }
-        let stop = map.tierFrame(tier: tier)
-        return CameraRail.Stop(scale: stop.scale, look: world(stop.look, homeCentre: homeCentre), anchorY: stop.anchorY)
+        guard tier == 0 else {
+            let stop = map.tierFrame(tier: tier)
+            return CameraRail.Stop(scale: stop.scale, look: world(stop.look, homeCentre: homeCentre), anchorY: stop.anchorY)
+        }
+        let w = CameraRail.referenceWidth, h = CameraRail.referenceHeight
+        let home = map.home
+        // Home and the tower that stands on the screen with it, across the fit's width.
+        let towers = slots(stage: 1, tier: 0, homeCentre: WorldPoint(x: 0, y: 0)).filter(\.showsTower).map(\.tower)
+        let minX = ([-home.width / 2] + towers.map(\.minX)).min() ?? -home.width / 2
+        let maxX = ([home.width / 2] + towers.map(\.maxX)).max() ?? home.width / 2
+        let scale = min(homeAloneWidth * w / home.width, (map.fitMaxX - map.fitMinX) / max(maxX - minX, 1))
+        let footWY = home.height / 2
+        let anchorY = h / 2
+        let look = WorldPoint(x: (minX + maxX) / 2, y: footWY - (map.footFraction * h - anchorY) / scale)
+        return CameraRail.Stop(scale: scale, look: world(look, homeCentre: homeCentre), anchorY: anchorY)
     }
 
     // MARK: - Slots
@@ -64,6 +86,11 @@ public enum MapSlots {
         public var box: WorldBox
         /// The cloud tower standing on the box's foot, `towerWidth` by `towerHeight` of it.
         public var tower: WorldBox
+
+        /// Only the next island to open shows its tower (the veiled slot); a slot not yet announced is
+        /// left empty, so the Map never shows one picture twice side by side, and the next island's
+        /// reveal is WP12's.
+        public var showsTower: Bool { state == .veiled }
     }
 
     /// Every slot but Home's at `stage` and `tier`, back to front (the farthest, highest first). Home is
@@ -87,32 +114,6 @@ public enum MapSlots {
 
     /// The cloud tower's painting (pofu-art batch 115, take 1).
     public static let towerArt = "world-cloud-tower-1"
-
-    /// A veiled tower shows its island inside: the silhouette of the island's first painting,
-    /// pre-blurred (`__deep`), `veilWidth` of the tower's width, its middle `veilCentre` of the way down
-    /// the tower, in the tower's cool shade at `veilOpacity`.
-    public static let veilWidth = 0.72
-    public static let veilCentre = 0.62
-    public static let veilOpacity = 0.7
-
-    /// The blurred painting a veiled slot shows, or `nil` for a slot with no island art.
-    public static func veilArt(_ id: String) -> String? {
-        switch id {
-        case IslandID.koke.rawValue: KokeLayout.islandArt(stage: 0) + "__deep"
-        case IslandID.caglayan.rawValue: CaglayanLayout.islandArt(stage: 0) + "__deep"
-        default: nil
-        }
-    }
-
-    /// Where a veiled slot's island shows inside its tower, keeping the painting's aspect.
-    public static func veilBox(of slot: Slot) -> WorldBox? {
-        guard let art = islandArt(slot.id)?.drawn, art.width > 0 else { return nil }
-        let width = slot.tower.width * veilWidth
-        let height = width * art.height / art.width
-        let cy = slot.tower.minY + slot.tower.height * veilCentre
-        let cx = slot.tower.midX
-        return WorldBox(minX: cx - width / 2, minY: cy - height / 2, maxX: cx + width / 2, maxY: cy + height / 2)
-    }
 
     // MARK: - The far picture
 
@@ -229,9 +230,9 @@ public enum MapSlots {
                     box: chipped(drawn, under: island, chip: map.slot(slot.id)?.chip?.height ?? map.chipHeight),
                     island: island, art: drawn, tappable: true
                 ))
-            } else {
+            } else if slot.showsTower {
                 subjects.append(CompositionFrame.Subject(
-                    id: slot.id, type: slot.state == .veiled ? .veil : .tower, box: project(slot.tower),
+                    id: slot.id, type: .tower, box: project(slot.tower),
                     island: nil, art: nil, tappable: false
                 ))
             }
@@ -270,6 +271,40 @@ public enum MapSlots {
         }
     }
 
+    // MARK: - The horizon's haze
+
+    /// Until WP9's cloud beds: a soft haze over the cloud sea's horizon on the Map, so the horizon is no
+    /// ruler edge and the wonder islands' feet stand in it. It rises from nothing `hazeAbove` of the
+    /// screen's height above the horizon row to `hazePeak` on the row, and is gone `hazeBelow` under it.
+    public static let hazeAbove = 0.2
+    public static let hazeBelow = 0.07
+    public static let hazePeak = 0.7
+    /// Its colour by day (the light of the sea's tops); the hour's grade takes it to dusk and night.
+    public static let hazeRGB = (r: 0.93, g: 0.93, b: 0.985)
+
+    /// The haze's rows on a screen `height` tall, with the horizon on row `horizon`.
+    public static func haze(horizon: Double, height: Double) -> (top: Double, bottom: Double) {
+        (horizon - hazeAbove * height, horizon + hazeBelow * height)
+    }
+
+    /// The haze's opacity at screen row `y`: eased up to `hazePeak` on the horizon row and down below it.
+    public static func hazeOpacity(atRow y: Double, horizon: Double, height: Double) -> Double {
+        let band = haze(horizon: horizon, height: height)
+        let t = y <= horizon ? (y - band.top) / max(horizon - band.top, 1e-6) : (band.bottom - y) / max(band.bottom - horizon, 1e-6)
+        let c = min(max(t, 0), 1)
+        return hazePeak * c * c * (3 - 2 * c)
+    }
+
+    /// The cloud sea's horizon row on the screen at `camera` (the Map's sky set as `sky` places it, the
+    /// farthest row's top), on a `width` x `height` screen. `nil` without a sky set.
+    public static func horizonRow(plate: HomePlate, camera: CameraPose, width: Double, height: Double) -> Double? {
+        guard let source = plate.skySet else { return nil }
+        let set = sky(source, plate: plate)
+        guard let far = set.layers.first(where: { $0.asset.contains("-sea-") }), let window = far.window else { return nil }
+        let r = screenRect(of: far, in: set, plate: plate, camera: camera, reference: plate.skyReference(width: width, height: height), width: width)
+        return r.minY + window.top * (r.maxY - r.minY)
+    }
+
     // MARK: - The bob
 
     /// Each island rises and sinks `bobTravel` points, top to bottom, at the Map only.
@@ -299,9 +334,9 @@ public enum MapSlots {
 }
 
 #if os(iOS)
-/// The Map's slots that hold no island yet (`MapSlots`): a cloud tower, its foot dissolving into the
-/// sky, and inside a veiled one the island's blurred silhouette in the tower's cool shade. Drawn behind
-/// the islands, bobbing with them, and gone as the camera leaves the Map as the wonder islands are.
+/// The next island's slot on the Map (`MapSlots`, `Slot.showsTower`): a plain cloud tower, its foot
+/// dissolving into the sky (its reveal is WP12's); a slot not yet announced stays empty. Drawn behind the
+/// islands, bobbing with them, and gone as the camera leaves the Map as the wonder islands are.
 struct MapSlotsLayer: View {
     let slots: [MapSlots.Slot]
     let pose: CameraPose
@@ -311,8 +346,6 @@ struct MapSlotsLayer: View {
     let time: Double?
     let z: Double
 
-    /// The silhouette's colour: the lavender of the tower's own folds.
-    static let veilColour = Color(red: 166 / 255, green: 170 / 255, blue: 222 / 255)
     /// The share of the tower's height, from its top, that is drawn whole before the foot dissolves into
     /// the sky (eased: about half gone at `footHalf`), so it rises out of mist rather than ending flat.
     static let footFade = 0.6
@@ -320,15 +353,9 @@ struct MapSlotsLayer: View {
 
     var body: some View {
         ZStack(alignment: .topLeading) {
-            ForEach(slots.filter { $0.state != .island }, id: \.id) { slot in
-                ZStack(alignment: .topLeading) {
-                    art(MapSlots.towerArt, box: slot.tower, fadesFoot: true)
-                    if slot.state == .veiled, let box = MapSlots.veilBox(of: slot), let name = MapSlots.veilArt(slot.id) {
-                        art(name, box: box, fadesFoot: false, template: true)
-                            .opacity(MapSlots.veilOpacity)
-                    }
-                }
-                .offset(y: CGFloat(MapSlots.bob(slot.id, time: time, z: z)))
+            ForEach(slots.filter(\.showsTower), id: \.id) { slot in
+                tower(slot.tower)
+                    .offset(y: CGFloat(MapSlots.bob(slot.id, time: time, z: z)))
             }
         }
         .frame(width: size.width, height: size.height, alignment: .topLeading)
@@ -336,30 +363,54 @@ struct MapSlotsLayer: View {
         .accessibilityHidden(true)
     }
 
-    private func art(_ name: String, box: WorldBox, fadesFoot: Bool, template: Bool = false) -> some View {
+    private func tower(_ box: WorldBox) -> some View {
         let s = pose.scale
         let a = pose.project(WorldPoint(x: box.minX, y: box.minY), width: Double(size.width))
         let w = box.width * s, h = box.height * s
-        let foot = fadesFoot ? Self.footFade : 1
-        return Image(name, bundle: .module)
-            .renderingMode(template ? Image.TemplateRenderingMode.template : .original)
+        return Image(MapSlots.towerArt, bundle: .module)
             .resizable()
             .interpolation(.high)
-            .foregroundStyle(Self.veilColour)
             .frame(width: CGFloat(w), height: CGFloat(h))
             .mask {
                 LinearGradient(
                     stops: [
                         .init(color: .black, location: 0),
-                        .init(color: .black, location: foot),
-                        .init(color: .black.opacity(fadesFoot ? 0.45 : 1), location: fadesFoot ? Self.footHalf : 1),
-                        .init(color: .black.opacity(fadesFoot ? 0 : 1), location: 1),
+                        .init(color: .black, location: Self.footFade),
+                        .init(color: .black.opacity(0.45), location: Self.footHalf),
+                        .init(color: .clear, location: 1),
                     ],
                     startPoint: .top,
                     endPoint: .bottom
                 )
             }
             .position(x: CGFloat(a.x + w / 2) + offset.width, y: CGFloat(a.y + h / 2) + offset.height)
+    }
+}
+
+/// The Map's haze over the cloud sea's horizon (`MapSlots.hazeOpacity`), across the screen, behind the
+/// islands.
+struct MapHazeLayer: View {
+    let horizon: Double
+    let size: CGSize
+    let offset: CGSize
+
+    var body: some View {
+        let h = Double(size.height)
+        let band = MapSlots.haze(horizon: horizon, height: h)
+        let rgb = MapSlots.hazeRGB
+        let colour = Color(red: rgb.r, green: rgb.g, blue: rgb.b)
+        // Rows down to the horizon, then under it, so the gradient peaks on the horizon row itself.
+        let rows = (0...8).map { band.top + Double($0) / 8 * (horizon - band.top) }
+            + (1...4).map { horizon + Double($0) / 4 * (band.bottom - horizon) }
+        let stops = rows.map { y in
+            Gradient.Stop(color: colour.opacity(MapSlots.hazeOpacity(atRow: y, horizon: horizon, height: h)), location: CGFloat((y - band.top) / (band.bottom - band.top)))
+        }
+        return LinearGradient(stops: stops, startPoint: .top, endPoint: .bottom)
+            .frame(width: size.width, height: CGFloat(band.bottom - band.top))
+            .position(x: size.width / 2 + offset.width, y: CGFloat((band.top + band.bottom) / 2) + offset.height)
+            .frame(width: size.width, height: size.height, alignment: .topLeading)
+            .allowsHitTesting(false)
+            .accessibilityHidden(true)
     }
 }
 #endif

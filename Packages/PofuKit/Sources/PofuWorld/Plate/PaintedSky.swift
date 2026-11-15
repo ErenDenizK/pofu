@@ -206,7 +206,7 @@ public enum PaintedSky {
         guard look.homePlates, let home = HomePlate.shipped?.plate else { return nil }
         let light = HomePlate.light(hour: hour(world: world, look: look, calendar: calendar), isBedtime: world.isBedtime)
         var plate = HomePlate(plate: home, light: light, stage: 0)
-        plate.mapTier = MapSlots.tier(caglayan: world.caglayan)
+        plate.mapTier = MapSlots.tier(koke: world.koke, caglayan: world.caglayan)
         return plate.skySet == nil ? nil : plate
     }
 

@@ -43,7 +43,8 @@ public struct HomePlate: Hashable, Sendable {
     /// that puts a sprite in the plate's light and the contact shadow's
     /// strength (`tools/plate/ingest.py`, docs/design/visual-system.md).
     public let harmony: PlateIsland.Harmony
-    /// The tier the Map frames (`MapSlots.tier`): 1 until Çağlayan blooms, then 2.
+    /// The frame the Map shows (`MapSlots.tier`): 0, Home alone, until Koke opens; 1 until Çağlayan
+    /// blooms; then 2.
     public var mapTier = 1
 
     /// Pofu's art is 64 units wide (`PofuLayer.artWidth`).
@@ -151,7 +152,7 @@ public struct HomePlate: Hashable, Sendable {
             ?? WeatherForecast.conditions(clock: world.clock, firstDay: world.firstDay, hour: minute / 60, calendar: calendar)
         guard let state = state(in: plate.plate, islandLevel: world.islandLevel, hour: minute / 60, weather: weather, isBedtime: world.isBedtime) else { return nil }
         var resolved = HomePlate(plate: plate.plate, light: state.light, stage: state.stage)
-        resolved.mapTier = MapSlots.tier(caglayan: world.caglayan)
+        resolved.mapTier = MapSlots.tier(koke: world.koke, caglayan: world.caglayan)
         return resolved
     }
 
@@ -456,10 +457,10 @@ public struct HomePlate: Hashable, Sendable {
     public var islandStop: CameraRail.Stop { centredStop(widths: plate.framing.islandWidths) }
     public var wholeStop: CameraRail.Stop { centredStop(widths: plate.framing.wholeWidths) }
 
-    /// The Map while the plate shows: the tier's frame of `world-map.json` (`WorldMap.tierFrame`, Map
-    /// order A) about this plate's island box. Home low and in front, its foot at 0.80 of the height, and
-    /// Koke and Çağlayan rising behind it up to the band under the status bar; the tier-1 frame from day
-    /// 1 until Çağlayan blooms (`mapTier`). The harbor isle is not on the painted Map (R5: Home paints the
+    /// The Map while the plate shows: the frame of `mapTier` (`MapSlots.frame`, Map order A) about this
+    /// plate's island box. Home low and in front, its foot at 0.80 of the height: alone and large (with
+    /// the next island's tower) until Koke opens, then the tier-1 frame of `world-map.json` with Koke and
+    /// Çağlayan rising behind it up to the band under the status bar, until Çağlayan blooms. The harbor isle is not on the painted Map (R5: Home paints the
     /// islet), so it is not framed. The fit is the old one when the package has no map.
     public var mapStop: CameraRail.Stop {
         let box = islandBox
