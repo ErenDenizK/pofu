@@ -25,6 +25,31 @@ struct SkySetTests {
         #expect(HomePlate(plate: plate.plate, light: "day", stage: 8).skySet == nil)
     }
 
+    /// The file's `k` per layer, and a role's default when a file states none (v2 section 2).
+    @Test func kDecodesWithRoleDefaults() throws {
+        let expected: [String: Double] = [
+            "sky": 0, "moon": 0, "stars0": 0, "stars1": 0, "stars2": 0, "far": 0.05, "isle_falls": 0.25, "isle_house": 0.25,
+            "isle_dome": 0.25, "isle_crystal": 0.25, "whale": 0.35, "mid": 0.45, "sea": 0.85, "island": 1,
+        ]
+        for light in Self.lights {
+            for layer in try sky(light).layers {
+                #expect(layer.k == expected[layer.id], "\(light) \(layer.id)")
+            }
+        }
+        let bare = Data(#"""
+        {"island":"x","master":[10,10],"lights":{"day":{"textureBytes":0,"layers":[
+        {"id":"a","role":"tile","asset":"a","pos":[0,0],"size":[1,1]},
+        {"id":"b","role":"sprite","asset":"b","pos":[0,0],"size":[1,1]},
+        {"id":"c","role":"whale","asset":"c","pos":[0,0],"size":[1,1]},
+        {"id":"d","role":"sky","asset":"d","pos":[0,0],"size":[1,1]},
+        {"id":"e","role":"stars","asset":"e","pos":[0,0],"size":[1,1]},
+        {"id":"f","role":"island","asset":"f","pos":[0,0],"size":[1,1]},
+        {"id":"g","role":"tile","asset":"g","pos":[0,0],"size":[1,1],"k":0.7}]}}}
+        """#.utf8)
+        let layers = try #require(SkySetFile.decode(bare).lights["day"]).layers
+        #expect(layers.map(\.k) == [0.45, 0.25, 0.35, 0, 0, 1, 0.7])
+    }
+
     @Test func layersRunBottomToTopEndingInTheIslandAndTheSkyIsFirst() throws {
         for light in Self.lights {
             let set = try sky(light)
