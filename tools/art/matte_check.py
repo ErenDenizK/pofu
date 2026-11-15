@@ -8,8 +8,8 @@ Run it on every matte (an island, a prop, a station look) at texture resolution.
   M3  contamination  edge pixels: how far the layer's colour is pulled from the nearest opaque colour toward the
                    source's sky at that spot (0 to 1), 95th percentile at most 0.15
   M4  specks, holes  alpha above 0.02 outside the main shape, or below 0.99 enclosed in it, in patches under 64 px: none
-  M5  halo in use  composited over the destinations at device scale; a 6 px ring outside the shape against the
-                   destination alone: mean difference at most 2/255
+  M5  halo in use  composited over the destinations at device scale; a 6 px ring outside the shape and one
+                   device px clear of it, against the destination alone: mean difference at most 2/255
   M6  rim          a 4 px ring inside the shape against the next 8 px inward, in luminance: within 8 %
   M7  look locality  base plus look, outside the look's matte grown by 2: equal to the base, at most 1/255
   M8  look wholeness inside the matte shrunk by 2, against the painting it was cut from: at most 2/255
@@ -123,24 +123,31 @@ def m3_contamination(rgb, a, source, soft) -> tuple[dict, np.ndarray]:
     return {"value": p95, "limit": LIMITS["M3"], "pass": p95 <= LIMITS["M3"]}, t
 
 
-HAZE_PATCH = 16
+HAZE_PATCH = 32                 # px: a smaller kept patch is a painted highlight or nothing the eye can find
+HAZE_GAP = 12                   # px: the sky colour is taken from outside this far from the shape
+HAZE_TOUCH = 8                  # px: a kept patch farther than this from the outside (a painted gem, a window) is not haze; the outside is also each hole
 
 
 def m11_haze(rgba: np.ndarray, source: np.ndarray, soft: np.ndarray) -> tuple[dict, np.ndarray]:
     """Opaque (alpha above 0.5) pixels within 40 px of the outside that are the sky's colour there (same chromaticity,
     sky blue-ish) or within 0.05 of it: haze the matte kept. Fails on any connected patch of HAZE_PATCH px or more."""
     a = rgba[..., 3]
-    sky, w = _nconv(source, a < 0.01, 10.0)
+    # the sky is read from at least HAZE_GAP px out: a lawn or a hill that fades into the sky always matches the sky just
+    # beside it, and is not haze
+    far = (a < 0.01) & (_inside_dist(a < 0.01) >= HAZE_GAP)
+    sky, w = _nconv(source, far, 10.0)
     chroma = lambda c: c / np.maximum(c.sum(2, keepdims=True), 1e-3)
     blue = (sky[..., 2] - sky[..., 0]) > 0.08
     same = ((np.linalg.norm(chroma(source) - chroma(sky), axis=2) < 0.03) & blue & (source.mean(2) > 0.35)) | \
            (np.linalg.norm(source - sky, axis=2) < 0.05)
     near = _inside_dist(~(a < 0.01)) <= 150
+    close = _inside_dist(~(a < 0.01)) <= HAZE_TOUCH
     bad = same & (a > 0.5) & near & (w > 0.02) & ~soft
     bad = cv2.morphologyEx(bad.astype(np.uint8), cv2.MORPH_OPEN, np.ones((3, 3), np.uint8))
     n, lab, st, cen = cv2.connectedComponentsWithStats(bad, connectivity=8)
-    big = [(int(st[i, 4]), (float(cen[i][0]), float(cen[i][1]))) for i in range(1, n) if st[i, 4] >= HAZE_PATCH]
-    mask = np.isin(lab, [i for i in range(1, n) if st[i, 4] >= HAZE_PATCH])
+    keep = [i for i in range(1, n) if st[i, 4] >= HAZE_PATCH and close[lab == i].any()]
+    big = [(int(st[i, 4]), (float(cen[i][0]), float(cen[i][1]))) for i in keep]
+    mask = np.isin(lab, keep)
     return {"value": len(big), "pixels": int(sum(b[0] for b in big)), "limit": 0, "pass": not big, "found": big[:12]}, mask
 
 
@@ -178,7 +185,7 @@ def m5_halo(rgba: np.ndarray, dests: dict[str, np.ndarray], soft: np.ndarray, sc
     sm = cv2.resize(soft.astype(np.uint8), sz, interpolation=cv2.INTER_NEAREST).astype(bool)
     shape = small[..., 3] > 0.5
     d_out = _inside_dist(~shape)
-    ring = (d_out > 0) & (d_out <= 6) & ~sm
+    ring = (d_out > 1) & (d_out <= 7) & ~sm              # from the second device px out: the first holds the edge's own anti-aliasing, which any edge has
     out, maps = {}, {}
     for name, dest in dests.items():
         dst = cv2.resize(dest.astype(np.float32), sz, interpolation=cv2.INTER_AREA)
