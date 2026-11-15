@@ -61,6 +61,9 @@ final class FlowTextures {
     static let wheelTileArt = "flow-tile-wheel"
     static let wheelArt = "flow-wheel"
 
+    /// Flip with the painted stone tiles (batch 104): grass and rock cells then load their art.
+    static let paintsBankTiles = false
+
     /// A painted texture by its art id, or nil until the batch is integrated.
     private func painted(_ name: String) -> SKTexture? {
         guard let image = UIImage(named: name, in: .module, compatibleWith: nil) else { return nil }
@@ -88,8 +91,9 @@ final class FlowTextures {
 
     func stone(_ kind: FlowTileKind, _ openings: FlowDirection) -> SKTexture {
         if kind == .wheel, let art = painted(Self.wheelTileArt) { return art }
-        // The painted bank tiles (batch 64): grass and the boulder in the grass. The rest stays drawn.
-        if kind == .grass || kind == .rock, let name = Self.artName(kind), let art = painted(name) { return art }
+        // The painted bank tiles (batch 64: grass, the boulder) sit beside code-drawn stone and read
+        // patchy, so they stay off until the stone tiles land (batch 104) and every cell is painted at once.
+        if Self.paintsBankTiles, kind == .grass || kind == .rock, let name = Self.artName(kind), let art = painted(name) { return art }
         return cached("stone-\(kind.rawValue)-\(openings.rawValue)") { context in
             switch kind {
             case .rock: self.drawRock(context)
