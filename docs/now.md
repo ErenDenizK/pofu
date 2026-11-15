@@ -10,28 +10,30 @@ history: [tracker.md](tracker.md). What changed for the player:
 chooses to (Rehearsal days 1-21); no dates or cut line (founder 11-14).
 Large job now: the asset system (#445), Wave 0 first.
 
-**Updated:** 2026-11-14 (afternoon).
+**Updated:** 2026-11-15.
 **Founder last played on his phone:** 2026-11-05 (device check steps sent).
 **Founder log read up to:** 2026-11-12 (late night).
-**Route:** [route-2026-11-14-day](research/route-2026-11-14-day.md)
-(#442, Fable): art lane, game lane, scout lane; up to three agents.
+**Route:** route-2026-11-14 (#442, Fable, not merged; superseded by feel-and-world #461): art lane, game lane, scout lane; up to three agents.
 
 ## Decided this session
+
+- Merges that carry out a plan he approved (pofu-art queue PRs too) need
+  no question; merge on review, tell him after (founder-input 31).
 
 - One painted world on days 1 to 21; rain streaks drawn in code.
 - Look truth is the player-path frames (studio.md, founder approved).
 
 ## In flight
 
-**Phone build (founder-input 24):** all merged (#450 bell gold, #454
-glass skin, #455 CI detect, #456 dev UI hidden, #457 flow and station);
-main CI on 7f4e99c0 running; then tell the founder what to try.
-Paused: Wave 0 app-layer glass to painted (#453 draft: commits 1, 4, 6
-reusable) until the founder compares glass and painted side by side.
-Next: the comparison frames; Fable UI grammar (brief shown, waits).
-Known and kept: the flow minigame's vector board (no art in hand).
-Merged: #403-#441 but #414, #436 (only Damla and Gezgin visit; Sumi waits
-for batch 83); pofu-art #13-#14, #18, #22-#27, #29, #30.
+1. Feel and world (#461): proofs 1-4 made (#463, #465, #466; outputs in
+   scratchpad/proofs); Fable looks at them before the founder. 120 Hz
+   direct tier merged (#464). Quick wins: sunflower and flow bed
+   (`feat/quick-wins-bloom-flowbed`). #465/#466 Python tools CI fails.
+2. Art: pilots #40-44 reviewed; pofu-art #65 queued batches 104-106
+   (flow stone v2, emoji, duo icons); founder may say "çalış". Step 6
+   paused (#64). Near-dressing pilot after proof 2. Music: later.
+Paused: Wave 0 app-layer glass to painted (#453 draft). UI grammar after
+#461's choices.
 
 ## Next steps, in order
 
