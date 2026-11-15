@@ -61,9 +61,10 @@ final class FlowTextures {
     static let wheelTileArt = "flow-tile-wheel"
     static let wheelArt = "flow-wheel"
 
-    /// The painted bank tiles (grass, boulder). On now: the painted stone (batch 114) covers every other
-    /// cell, so the whole board is painted at once.
-    static let paintsBankTiles = true
+    /// The painted bank tiles (grass, boulder). Off: the one boulder repeats on a board and the grass
+    /// squares are harder-edged and more saturated than the stone, so the code-drawn banks stay until
+    /// new bank art lands.
+    static let paintsBankTiles = false
 
     /// The painted blank stone (batch 114, `x-flow-stone-c` takes 1 and 2), full bleed and even, so cells
     /// sit edge to edge without a seam. The code carves the channel into it.
@@ -319,6 +320,22 @@ final class FlowTextures {
         let hash = kind.rawValue.unicodeScalars.reduce(7) { ($0 &* 31 &+ Int($1.value)) & 0xFFFF } &+ Int(openings.rawValue) &* 13
         guard let image = UIImage(named: Self.stoneArt[hash % Self.stoneArt.count], in: .module, compatibleWith: nil) else { return false }
         let bounds = CGRect(x: 0, y: 0, width: cell, height: cell)
+        // A turnable cell is its own laid stone: inset, rounded, with a soft drop shadow and a rim, so the
+        // gap between cells shows which pieces turn. Fixed cells (source, mouth) stay flush.
+        let rect = kind.isTurnable ? bounds.insetBy(dx: 2.5, dy: 2.5) : bounds
+        let radius = kind.isTurnable ? cell * 0.15 : 0
+        let body = UIBezierPath(roundedRect: rect, cornerRadius: radius).cgPath
+        if kind.isTurnable {
+            context.saveGState()
+            context.setShadow(offset: CGSize(width: 0, height: 2), blur: 3, color: FlowPalette.ink.withAlphaComponent(0.34).cgColor)
+            context.setFillColor(FlowPalette.stoneShade.cgColor)
+            context.addPath(body)
+            context.fillPath()
+            context.restoreGState()
+        }
+        context.saveGState()
+        context.addPath(body)
+        context.clip()
         context.saveGState()
         context.translateBy(x: cell / 2, y: cell / 2)
         context.rotate(by: CGFloat((hash / 2) % 4) * .pi / 2)
@@ -338,26 +355,39 @@ final class FlowTextures {
             context.strokePath()
             context.setLineDash(phase: 0, lengths: [])
         }
-        // The carved channel: a soft shade around the bank, a dark lip, the recessed floor.
+        // The carved channel: a soft shade around the bank, a light lip on the lower edge, a dark lip,
+        // then the recessed floor with an inner shadow under its upper and left wall.
         let path = channelPath(openings)
         context.setLineCap(.round)
         context.setLineJoin(.round)
         context.addPath(path)
-        context.setStrokeColor(FlowPalette.ink.withAlphaComponent(0.16).cgColor)
+        context.setStrokeColor(FlowPalette.ink.withAlphaComponent(0.14).cgColor)
         context.setLineWidth(grooveWidth + 9)
         context.strokePath()
+        context.saveGState()
+        context.translateBy(x: 1.6, y: 1.8)
         context.addPath(path)
-        context.setStrokeColor(FlowPalette.ink.withAlphaComponent(0.22).cgColor)
-        context.setLineWidth(grooveWidth + 5)
+        context.setStrokeColor(UIColor.white.withAlphaComponent(0.6).cgColor)
+        context.setLineWidth(grooveWidth + 3)
         context.strokePath()
+        context.restoreGState()
         context.addPath(path)
         context.setStrokeColor(FlowPalette.grooveDark.cgColor)
         context.setLineWidth(grooveWidth + 3)
         context.strokePath()
+        context.saveGState()
+        context.addPath(path)
+        context.setLineWidth(grooveWidth)
+        context.replacePathWithStrokedPath()
+        context.clip()
+        context.setFillColor(FlowPalette.grooveDark.cgColor)
+        context.fill(bounds)
+        context.translateBy(x: 2.4, y: 2.4)
         context.addPath(path)
         context.setStrokeColor(FlowPalette.groove.cgColor)
         context.setLineWidth(grooveWidth)
         context.strokePath()
+        context.restoreGState()
         if kind == .source || kind == .mouth {
             let middle = CGPoint(x: cell / 2, y: cell / 2)
             let ring = grooveWidth * (kind == .source ? 1.2 : 1.1)
@@ -369,6 +399,17 @@ final class FlowTextures {
             context.setFillColor(FlowPalette.groove.cgColor)
             let floor = grooveWidth * 0.8
             context.fillEllipse(in: CGRect(x: middle.x - floor, y: middle.y - floor, width: floor * 2, height: floor * 2))
+        }
+        context.restoreGState()
+        if kind.isTurnable {
+            context.setStrokeColor(FlowPalette.stoneEdge.withAlphaComponent(0.85).cgColor)
+            context.setLineWidth(1.2)
+            context.addPath(body)
+            context.strokePath()
+            context.setStrokeColor(UIColor.white.withAlphaComponent(0.5).cgColor)
+            context.setLineWidth(1.2)
+            context.addPath(UIBezierPath(roundedRect: rect.insetBy(dx: 1.6, dy: 1.6), cornerRadius: max(0, radius - 1.6)).cgPath)
+            context.strokePath()
         }
         return true
     }
