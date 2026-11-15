@@ -24,13 +24,14 @@ Large job now: the asset system (#445), Wave 0 first.
 
 ## In flight
 
-1. World presentation v2 (#461): proof round 3 made: R1 composition, R2
-   life (#471), R3 edges with a matting network, R5 props (#470, draft);
-   §11 facts merged (#469). Fable looks at round 3 before the founder.
-   R4 depth waits on Codex (110 patch, 107 dressing). Founder's choice:
-   Map order (journey rising vs Home on top). R4 elevation ~10.5 deg
-   (table 9.7, Çağlayan 12.3; pond 20 is not a circle; code's 17 wrong).
-2. Art: pofu-art 104-111 READY; founder says "çalış". Music later.
+1. World presentation (#461): round-3 fix pass done (R1/R2 #471, R3/R5
+   #470; M checks green L3-L10; L1/L2 plates paint mist: key-colour pilot
+   queued). Concept frames (founder-input 33): pofu-art #75, batch 112,
+   first in Codex's queue; `concept_fit.py` (#472) ready for review.
+   Founder sees the concepts per distance after Fable's review.
+2. Art: Codex working 104-111 (art/ branches up). Music later.
+Disk tight (5.8 GB; /swapfile 8 GB blocked by the safety check): fewer
+agents, delete worktrees on hand-back.
 Paused: #453 (glass to painted). UI grammar after the world choices.
 
 ## Next steps, in order
