@@ -93,7 +93,7 @@ public enum MapSlots {
     /// the tower, in the tower's cool shade at `veilOpacity`.
     public static let veilWidth = 0.72
     public static let veilCentre = 0.62
-    public static let veilOpacity = 0.45
+    public static let veilOpacity = 0.7
 
     /// The blurred painting a veiled slot shows, or `nil` for a slot with no island art.
     public static func veilArt(_ id: String) -> String? {
@@ -313,8 +313,10 @@ struct MapSlotsLayer: View {
 
     /// The silhouette's colour: the lavender of the tower's own folds.
     static let veilColour = Color(red: 166 / 255, green: 170 / 255, blue: 222 / 255)
-    /// The share of the tower's height, from its top, that is drawn whole before the foot dissolves.
-    static let footFade = 0.8
+    /// The share of the tower's height, from its top, that is drawn whole before the foot dissolves into
+    /// the sky (eased: about half gone at `footHalf`), so it rises out of mist rather than ending flat.
+    static let footFade = 0.6
+    static let footHalf = 0.8
 
     var body: some View {
         ZStack(alignment: .topLeading) {
@@ -347,7 +349,12 @@ struct MapSlotsLayer: View {
             .frame(width: CGFloat(w), height: CGFloat(h))
             .mask {
                 LinearGradient(
-                    stops: [.init(color: .black, location: 0), .init(color: .black, location: foot), .init(color: .black.opacity(fadesFoot ? 0 : 1), location: 1)],
+                    stops: [
+                        .init(color: .black, location: 0),
+                        .init(color: .black, location: foot),
+                        .init(color: .black.opacity(fadesFoot ? 0.45 : 1), location: fadesFoot ? Self.footHalf : 1),
+                        .init(color: .black.opacity(fadesFoot ? 0 : 1), location: 1),
+                    ],
                     startPoint: .top,
                     endPoint: .bottom
                 )
