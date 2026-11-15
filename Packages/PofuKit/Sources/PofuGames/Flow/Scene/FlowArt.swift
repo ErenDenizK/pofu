@@ -70,7 +70,7 @@ final class FlowTextures {
     static let stoneArt = ["flow-stone", "flow-stone-2"]
 
     /// A warm multiply over the stone: the art is about 20 percent less chromatic than the straight tile.
-    static let stoneTint = FlowPalette.rgb(1.0, 0.90, 0.76)
+    static let stoneTint = FlowPalette.rgb(1.0, 0.96, 0.89)
 
     /// A painted texture by its art id, or nil until the batch is integrated.
     private func painted(_ name: String) -> SKTexture? {
