@@ -18,7 +18,10 @@ import UIKit
 struct SkySetLayers: View {
     let sky: SkySet
     let plate: HomePlate
+    /// The world camera, and the mid stop's camera the layers' depth is measured from (`DepthLayer`):
+    /// at the reference every layer is exactly the painting.
     let pose: CameraPose
+    let reference: CameraPose
     let size: CGSize
     let offset: CGSize
     /// When this painting appeared: the motion's time zero (a crossfade's incoming sky starts at the
@@ -92,16 +95,28 @@ struct SkySetLayers: View {
     /// The layer's place on screen in points (before the peek's offset): its master box through the
     /// plate's placement and the camera.
     private func rect(of layer: SkySet.Layer) -> CGRect {
-        rect(pos: layer.pos, size: layer.size)
+        covered(rect(pos: layer.pos, size: layer.size, k: layer.k), of: layer)
     }
 
-    private func rect(pos: PlatePoint, size extent: PlatePoint) -> CGRect {
+    /// A master-pixel rectangle on screen through the camera of depth `k` (`DepthLayer`).
+    private func rect(pos: PlatePoint, size extent: PlatePoint, k: Double) -> CGRect {
+        let layerPose = DepthLayer.pose(pose, reference: reference, k: k)
         let box = plate.worldBox(
             master: PlateRect(minX: pos.x, minY: pos.y, maxX: pos.x + extent.x, maxY: pos.y + extent.y),
             of: sky
         )
-        let a = pose.project(WorldPoint(x: box.minX, y: box.minY), width: Double(size.width))
-        return CGRect(x: a.x, y: a.y, width: box.width * pose.scale, height: box.height * pose.scale)
+        let a = layerPose.project(WorldPoint(x: box.minX, y: box.minY), width: Double(size.width))
+        return CGRect(x: a.x, y: a.y, width: box.width * layerPose.scale, height: box.height * layerPose.scale)
+    }
+
+    /// A layer's rectangle where the depth function leaves it short of a screen edge: the sky extended to
+    /// both edges (the cloud sea's rows reach the foot by themselves, `PaintedSky.mapSeaBelow`).
+    private func covered(_ r: CGRect, of layer: SkySet.Layer) -> CGRect {
+        if layer.role == .sky {
+            let rows = DepthLayer.coveringSky(minY: r.minY, maxY: r.maxY, screenHeight: Double(size.height))
+            return CGRect(x: r.minX, y: rows.minY, width: r.width, height: rows.maxY - rows.minY)
+        }
+        return r
     }
 
     private func draw(_ layer: SkySet.Layer, in context: inout GraphicsContext, time: Double, scale: Double) {
@@ -144,10 +159,11 @@ struct SkySetLayers: View {
     // MARK: Painted detail
 
     private func drawDetails(of layer: SkySet.Layer, dx: Double, dy: Double, in context: inout GraphicsContext, time: Double, scale: Double) {
+        let k = layer.k
         for detail in layer.details {
-            let r = rect(pos: detail.pos, size: detail.size).offsetBy(dx: dx + offset.width, dy: dy + offset.height)
+            let r = rect(pos: detail.pos, size: detail.size, k: k).offsetBy(dx: dx + offset.width, dy: dy + offset.height)
             switch detail.kind {
-            case .fall: drawFall(detail, in: r, context: &context, time: time, scale: scale)
+            case .fall: drawFall(detail, k: k, in: r, context: &context, time: time, scale: scale)
             case .sway: drawSway(detail, in: r, context: &context, time: time, scale: scale)
             case .glow: drawGlow(detail, in: r, context: &context, time: time)
             }
@@ -161,11 +177,11 @@ struct SkySetLayers: View {
 
     /// A waterfall: a veil of lighter and darker streaks (the painted fall's own detail) scrolls down inside
     /// the fall's mask, then a faint mist breathes at its foot. Nothing is drawn at time zero.
-    private func drawFall(_ d: SkySet.Detail, in r: CGRect, context: inout GraphicsContext, time: Double, scale: Double) {
+    private func drawFall(_ d: SkySet.Detail, k: Double, in r: CGRect, context: inout GraphicsContext, time: Double, scale: Double) {
         let e = SkyMotion.ease(time: time, ramp: d.ramp)
         let opacity = d.strength * e
         if opacity > 0.002, let mask = image(d.mask, in: &context), let flow = image(d.flow, in: &context) {
-            let tile = rect(pos: d.pos, size: PlatePoint(x: d.size.x, y: d.flowHeight)).height
+            let tile = rect(pos: d.pos, size: PlatePoint(x: d.size.x, y: d.flowHeight), k: k).height
             let shift = SkyMotion.flowOffset(speed: d.speed, time: time, period: tile, scale: scale)
             var veil = context
             veil.clipToLayer { layer in
@@ -180,10 +196,10 @@ struct SkySetLayers: View {
         if let mist = d.mist {
             let level = SkyMotion.mist(mist, time: time, ease: e)
             if level > 0.002, mist.color.count == 3 {
-                let home = rect(pos: d.pos, size: d.size)
-                let c = rect(pos: mist.centre, size: PlatePoint(x: 0, y: 0)).origin
-                let rx = rect(pos: mist.centre, size: PlatePoint(x: mist.radius.x, y: 0)).width
-                let ry = rect(pos: mist.centre, size: PlatePoint(x: 0, y: mist.radius.y)).height
+                let home = rect(pos: d.pos, size: d.size, k: k)
+                let c = rect(pos: mist.centre, size: PlatePoint(x: 0, y: 0), k: k).origin
+                let rx = rect(pos: mist.centre, size: PlatePoint(x: mist.radius.x, y: 0), k: k).width
+                let ry = rect(pos: mist.centre, size: PlatePoint(x: 0, y: mist.radius.y), k: k).height
                 var puff = context
                 puff.opacity = level
                 puff.translateBy(x: c.x + r.minX - home.minX, y: c.y + r.minY - home.minY)

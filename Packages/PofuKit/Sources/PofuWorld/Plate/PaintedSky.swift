@@ -159,8 +159,6 @@ public enum PaintedSky {
 
     // MARK: - The Map and the flights (R4 of docs/research/route-2026-11-12-codex-pause.md)
 
-    /// How far the Map's sky follows the camera: a far backdrop, it slides a sixteenth as far as the world.
-    static let mapParallax = 0.06
     /// The rows of Home's sky set (master px) the Map's screen shows at rest, top to foot: the sky set at
     /// about Home's own scale (its textures at their resolution, as crisp as at Home), the distant isles
     /// and the whale in the screen's top third, above Home, and the cloud sea under the islands down to
@@ -173,7 +171,7 @@ public enum PaintedSky {
     /// The master row the isles' and the whale's lowest foot is raised to on the Map (the screen's top
     /// sixth): they keep their places among themselves and clear Home's island box, at every level.
     static let mapIsleFloor = 300.0
-    /// That floor as a share of the Map's screen height (`mapPose` shows rows `mapTop` to `mapFoot`).
+    /// That floor as a share of the Map's screen height (rows `mapTop` to `mapFoot` of the sky set).
     static var mapIsleFloorShare: Double { (mapIsleFloor - mapTop) / (mapFoot - mapTop) }
     /// The mid clouds' rows kept (master px, fading over `mapFade`): below them the tile carries the cut
     /// residue of Home's island, hidden at Home and drifting into view on the Map.
@@ -191,6 +189,14 @@ public enum PaintedSky {
         (0.9, 0.37), (0.72, 0.71), (0.57, 0.13), (0.45, 0.55), (0.35, 0.29), (0.27, 0.83), (0.21, 0.47),
     ]
     static let mapSeaOverlap = 60.0
+    /// The cloud sea below the near band on the Map: the painting's hazy foot is cropped off and copies of
+    /// the clean band lie under it instead, each nearer and larger (`scale`, at most 1.45: the sea texture is 0.6 of the master, so at the Map that is one texture
+    /// pixel per device pixel), slid along the tile (`slide`) so no two rows repeat, each
+    /// overlapping the one above by `mapSeaOverlap` of its own rows. They run well past the screen's foot
+    /// at every camera.
+    static let mapSeaBelow: [(scale: Double, slide: Double)] = [
+        (1.0, 0.31), (1.1, 0.64), (1.2, 0.09), (1.3, 0.52), (1.4, 0.77), (1.45, 0.22), (1.45, 0.43), (1.45, 0.88), (1.45, 0.16), (1.45, 0.59),
+    ]
     static let mapHorizonFade = 450.0
 
     /// Home's painted sky behind the Map and every flight, in place of the code sky: the same sky set as
@@ -203,7 +209,7 @@ public enum PaintedSky {
         return plate.skySet == nil ? nil : plate
     }
 
-    /// The sky set as the Map draws it (`mapPose` frames it), from the set's own layers and pixels: the
+    /// The sky set as the Map draws it from the set's own layers and pixels: the
     /// island left out; the distant isles and the whale at `mapIsleScale` about their middles, their
     /// painted detail with them; the mid clouds above their residue; and the cloud sea as its painted
     /// rows from its clean band down, under a receding stack of that band (`mapSeaStack`) up to a soft
@@ -242,7 +248,7 @@ public enum PaintedSky {
                 mid.window = window(layer, from: nil, to: mapMidBottom, topFade: 0, bottomFade: mapFade)
                 out.layers.append(mid)
             case .tile where layer.asset.contains("-sky-sea-"):
-                out.layers += seaStack(layer)
+                out.layers += seaStack(layer, below: isleScale != nil)
             default:
                 out.layers.append(layer)
             }
@@ -309,9 +315,9 @@ public enum PaintedSky {
 
     /// The cloud sea: its painted rows from `mapSeaTop` down, and above them the stack of its clean band,
     /// farthest first (drawn first, so a nearer row lies over a farther one's foot).
-    private static func seaStack(_ sea: SkySet.Layer) -> [SkySet.Layer] {
+    private static func seaStack(_ sea: SkySet.Layer, below: Bool) -> [SkySet.Layer] {
         var near = sea
-        near.window = window(sea, from: mapSeaTop, to: nil, topFade: mapFade, bottomFade: 0)
+        near.window = window(sea, from: mapSeaTop, to: below ? mapSeaBand.bottom : nil, topFade: mapFade, bottomFade: below ? mapFade : 0)
         var rows = [near]
         var bottom = mapSeaTop + mapFade + mapSeaOverlap
         let band = mapSeaBand
@@ -336,6 +342,28 @@ public enum PaintedSky {
             rows.insert(copy, at: 0)
             bottom = y + (band.top - sea.pos.y) * f + (mapFade + mapSeaOverlap) * f
         }
+        guard below else { return rows }
+        var edge = band.bottom
+        for (n, step) in mapSeaBelow.enumerated() {
+            let f = step.scale
+            var copy = sea
+            copy.id = "\(sea.id)-map-below\(n)"
+            // The copy's band top lies `mapFade + mapSeaOverlap` of its rows above the row above's foot.
+            let top = edge - (mapFade + mapSeaOverlap) * f
+            copy.pos = PlatePoint(x: sea.pos.x - step.slide * sea.size.x * f, y: top - (band.top - sea.pos.y) * f)
+            copy.size = PlatePoint(x: sea.size.x * f, y: sea.size.y * f)
+            copy.tileWidth = sea.tileWidth.map { $0 * f }
+            copy.drift = sea.drift * f
+            copy.bob = nil
+            copy.window = SkySet.Window(
+                top: (band.top - sea.pos.y) / sea.size.y,
+                bottom: (band.bottom - sea.pos.y) / sea.size.y,
+                topFade: mapFade / sea.size.y,
+                bottomFade: mapFade / sea.size.y
+            )
+            rows.append(copy)
+            edge = top + (band.bottom - band.top) * f
+        }
         return rows
     }
 
@@ -355,20 +383,12 @@ public enum PaintedSky {
     public static let isleShadowOpacity = 0.34
     public static let isleShadowRGB = (r: 0.33, g: 0.35, b: 0.52)
 
-    /// The camera the Map's sky is drawn with, for the world camera `pose` on a `width` x `height`
-    /// screen: rows `mapTop` to `mapFoot` of the sky set fill the screen's height when the camera is on
-    /// the Map, centred across; its look point follows the world camera's by `mapParallax`, so the sky
-    /// slides slowly under a flight and never zooms.
-    public static func mapPose(_ pose: CameraPose, sky: HomePlate, width: Double, height: Double) -> CameraPose {
-        guard let set = sky.skySet else { return pose }
-        let band = sky.worldBox(master: PlateRect(minX: 0, minY: mapTop, maxX: set.master.x, maxY: mapFoot), of: set)
-        let map = CameraRail(width: width, height: height, stops: sky.stops, whole: sky.wholeStop).pose(of: .map)
-        return CameraPose(
-            logScale: log(height / max(band.height, 1e-6)),
-            lookX: band.midX + (pose.lookX - map.lookX) * mapParallax,
-            lookY: band.minY + (pose.lookY - map.lookY) * mapParallax,
-            anchorY: 0
-        )
+    /// The camera the sky set's depth is measured from (`DepthLayer`) at a stop's sky: the stop's own
+    /// camera on a `width` x `height` screen, where every layer is exactly the painting. The Map and the
+    /// flights draw Home's sky set from Home's stop, the same function and reference as at Home.
+    public static func reference(for island: IslandID, width: Double, height: Double) -> CameraPose? {
+        guard let stop = IslandFraming.isleStop(island, width: width, height: height) else { return nil }
+        return CameraPose(scale: stop.scale, look: stop.look, anchorY: stop.anchorY)
     }
 }
 
@@ -430,10 +450,12 @@ import SwiftUI
 struct PaintedSkyLayer: View {
     let plate: HomePlate
     let pose: CameraPose
+    /// The camera the layers' depth is measured from (`DepthLayer`, `PaintedSky.reference`).
+    let reference: CameraPose
     let size: CGSize
     let offset: CGSize
     let fade: Double
-    /// The Map's and the flights' sky (`PaintedSky.mapPose`), drawn as `PaintedSky.mapSet`.
+    /// The Map's and the flights' sky, drawn as `PaintedSky.mapSet` through the same depth function.
     var isMap = false
     /// A wonder stop's sky (Koke's): drawn as `PaintedSky.stopSet`, without what Home's island hid.
     var cleanSea = false
@@ -444,9 +466,10 @@ struct PaintedSkyLayer: View {
     @State private var shownStart = Date()
     @State private var incomingStart = Date()
 
-    init(plate: HomePlate, pose: CameraPose, size: CGSize, offset: CGSize, fade: Double, isMap: Bool = false, cleanSea: Bool = false) {
+    init(plate: HomePlate, pose: CameraPose, reference: CameraPose, size: CGSize, offset: CGSize, fade: Double, isMap: Bool = false, cleanSea: Bool = false) {
         self.plate = plate
         self.pose = pose
+        self.reference = reference
         self.size = size
         self.offset = offset
         self.fade = fade
@@ -493,7 +516,7 @@ struct PaintedSkyLayer: View {
     @ViewBuilder
     private func sky(_ plate: HomePlate, start: Date) -> some View {
         if let set = plate.skySet {
-            SkySetLayers(sky: isMap ? PaintedSky.mapSet(set) : cleanSea ? PaintedSky.stopSet(set) : set, plate: plate, pose: pose, size: size, offset: offset, start: start, drawsIsland: false)
+            SkySetLayers(sky: isMap ? PaintedSky.mapSet(set) : cleanSea ? PaintedSky.stopSet(set) : set, plate: plate, pose: pose, reference: reference, size: size, offset: offset, start: start, drawsIsland: false)
         }
     }
 }

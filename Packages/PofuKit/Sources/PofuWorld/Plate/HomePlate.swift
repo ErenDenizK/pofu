@@ -423,6 +423,20 @@ public struct HomePlate: Hashable, Sendable {
         return CameraRail.Stop(scale: IslandFraming.homeScale, look: look, anchorY: plate.framing.homeTopY)
     }
 
+    /// The camera this plate's sky layers measure their depth from (`DepthLayer`): Home's stop for Home's
+    /// plate, the island's own stop for another's (Çağlayan's), on a `width` x `height` screen.
+    public func skyReference(width: Double, height: Double) -> CameraPose {
+        if plate.island == "caglayan", let reference = PaintedSky.reference(for: .caglayan, width: width, height: height) {
+            return reference
+        }
+        let stop = homeStop
+        return CameraPose(
+            scale: stop.scale * width / CameraRail.referenceWidth,
+            look: stop.look,
+            anchorY: stop.anchorY * height / CameraRail.referenceHeight
+        )
+    }
+
     /// The island whole, `widths` wide, centred in the band between the
     /// chrome.
     public func centredStop(widths: Double) -> CameraRail.Stop {
@@ -442,7 +456,7 @@ public struct HomePlate: Hashable, Sendable {
     /// the bands, as `IslandFraming.mapStop` fits the sprite world. The harbor isle is not on the
     /// painted Map (R5: Home paints the islet), so it is not framed either: framing it left the right
     /// third of the screen empty and the islands small in the top half. The islands stand on the band's
-    /// foot: Home's foot meets the painted sea's horizon (`PaintedSky.mapPose`), and on a short phone,
+    /// foot: Home's foot meets the painted sea's horizon, and on a short phone,
     /// where the rail scales the anchor with the height but the scale with the width, Home stays below
     /// the distant isles.
     public var mapStop: CameraRail.Stop {
