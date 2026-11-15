@@ -24,14 +24,14 @@ Large job now: world presentation (spec #474); glass UI stays.
 
 1. World presentation build: spec merged (#474, 13 PRs in waves). Wave
    1: WP1 proof tools merged (#475; stacked #463-#473 closed), WP2 depth function
-   (Opus, `feat/world-depth-function`), WP3 composition model (Opus,
-   `feat/world-composition-model`). Decisions taken: D4 rail map/mid/near
+   (Opus, `feat/world-depth-function`), WP3 composition model merged
+   (#477; no screen change yet). Decisions taken: D4 rail map/mid/near
    (ADR-0027 in WP7), D7 budget 14 MB, D8 props early with fallback.
    Concepts: Map A, near locked t2 (founder-input 34).
-2. Art: 114-117 reviewed: flow stone ready (`feat/flow-stone-tiles`),
+2. Art: 114-117 reviewed: flow stone #476 round 2 (tile edges, banks off),
    tower 115 t1, mist clear 116 t1 (ship take's island), erase 117: 17
    picks, keep the rope bridge, redo L1/L2 day on 116. 118-120 queued.
-Disk 6.6 GB (/swapfile, rm blocked). Paused: #453; UI grammar after.
+Disk 6.7 GB; no new builders under 8 GB (/swapfile, rm blocked). Paused: #453; UI grammar after.
 
 ## Next steps, in order
 
