@@ -1,0 +1,45 @@
+batch: batch-116-home-mist-clear
+job: x-home-l2-day-clear
+status: warn
+pick: 1
+lead_review: "Lead pick, accepted: the network matte passes M1 to M6 and M11 (M2 2.12, p05 1.75, M11 0, against the parent's two M11 patches), where take 2 still fails M11 with a 40 px haze patch beside the bagel cart and adds a brown fleck there; hill puff and bridge-end mist are gone with a crisp rim and every object within 0.3 px, the rope bridge now ending as a short rope fence at the rim; the lawn is hotter than the parent and than level 3 (median blue 50 against 121 and 82), so grade it toward level 3 in the colour fit."
+note: "Exploration only; both takes retained and not promoted. The mist is cleared from the lawn areas. QA edit_silhouette, edit_stability and edit_chroma pass; chroma_ceiling and palette_drift warn. The queue also calls for external network matte checks M2 and M11; no matte_check utility is present in this repository, so those acceptance checks were not run here."
+source: codex-cloud
+account:
+  owner: "Founder's uncle's ChatGPT plan, used by the founder with permission"
+  kind: chatgpt-plan
+takes:
+- n: 1
+  file: plate__x-home-l2-day-clear--t1.webp
+  qa: warn
+  size_bytes: 121798
+  dimensions: 1024x1536
+  lock_load: 0.0
+  warnings:
+  - check: chroma_ceiling
+    status: warn
+    message: "chroma p95 75 (R1 51) (advisory in an exploration)"
+  - check: palette_drift
+    status: warn
+    message: "mean dE 7.4, p95 25.3, off-palette 19.3% (top: #88BBFF (4.6%), #99BBFF (2.4%)) (advisory in an exploration)"
+  source_file: /workspace/generated_images/exec-2b32af75-923d-44c9-a5b4-0861acc0a157.png
+  source_sha256: 75b7c707ab78cb8745bb7f1ac727792abb0b1aea62598f86270bc9aecb3e25cc
+  generated_at: 2026-11-15T15:18:31+00:00
+- n: 2
+  file: plate__x-home-l2-day-clear--t2.webp
+  qa: warn
+  size_bytes: 110338
+  dimensions: 1024x1536
+  lock_load: 0.0
+  warnings:
+  - check: chroma_ceiling
+    status: warn
+    message: "chroma p95 71 (R1 51) (advisory in an exploration)"
+  - check: palette_drift
+    status: warn
+    message: "mean dE 6.1, p95 21.8, off-palette 11.5% (top: #CCCC33 (2.1%), #DDDD44 (1.6%)) (advisory in an exploration)"
+  source_file: /workspace/generated_images/exec-92e2c83e-8067-45e8-aaa6-fb5c0f8faf89.png
+  source_sha256: 1977941290c57192332cc72e7b178f54b751fcdb75be4f3df04467d0b8a9ada1
+  generated_at: 2026-11-15T15:18:32+00:00
+references:
+- design/art/takes/batch-66-home-flow/x-home-flow-il2/plate__x-home-flow-il2--t1.webp

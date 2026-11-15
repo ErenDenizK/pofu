@@ -192,27 +192,6 @@ class IngestTests(unittest.TestCase):
         # Far above: sky, deeper than the plate's top.
         self.assertGreater(out[2, x, 2], out[2, x, 0])
 
-    def test_backdrop_inside_the_matte_is_not_the_plate(self):
-        """With `hole` the backdrop holds no copy of the island: inside the matte grown it is sky and cloud, far from the
-        island's own colours (mean Delta E above 10)."""
-        import cv2
-
-        rng = np.random.default_rng(5)
-        w, h = ingest.SIZE
-        rgb = np.zeros((h, w, 3))
-        rgb[:] = (0.6, 0.75, 0.95)
-        rgb[int(h * 0.7):] = (0.95, 0.93, 0.9)
-        a = disc(rgb.shape[:2], 512, 700, 250)
-        rgb[a > 0.5] = (0.25, 0.45, 0.15) + rng.uniform(-0.03, 0.03, 3)
-        grown = cv2.dilate((a > 0.02).astype(np.uint8), cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (49, 49))) > 0
-        box = (0, 0, w, h)
-        scale = 0.25
-        with_hole = ingest.backdrop(rgb, np.zeros_like(a), box, scale=scale, hole=grown)
-        small_mask = cv2.resize(grown.astype(np.float32), (with_hole.shape[1], with_hole.shape[0]), interpolation=cv2.INTER_AREA) > 0.99
-        island = np.asarray(rgb[a > 0.5].mean(0))
-        de = ingest.heic._lab(with_hole[small_mask] * 255.0) - ingest.heic._lab(island[None] * 255.0)
-        self.assertGreater(float(np.linalg.norm(de, axis=1).mean()), 10.0)
-
     def test_plate_alpha_is_the_states_matte(self):
         """The shipped Home plate's alpha is the state's own matte (feather 0), within the codec's error."""
         from PIL import Image
@@ -233,7 +212,7 @@ class IngestTests(unittest.TestCase):
         self.assertTrue(all(p.exists() for p in masters))
         # every state that is not listed as legacy has its own solve (the three lights of a stage are one drawing)
         own = {m.name for m, (light, stage, _) in zip(masters, ingest.plates(hand)) if not ingest.is_legacy(hand, light, stage)}
-        self.assertEqual(len(own), 15)
+        self.assertEqual(len(own), 17)
         self.assertFalse(np.array_equal(ingest.load_matte_full("home", "day", 5), ingest.load_matte_full("home", "day", 0)))
         # a state without its own matte is an error, not the level-10 one
         with mock.patch.object(ingest, "matte_path", return_value=Path("/nonexistent/matte.png")):

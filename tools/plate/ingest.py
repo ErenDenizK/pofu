@@ -97,8 +97,6 @@ FEATHER = 48
 #: error, never the level-10 matte (which put the level-10 sky behind every lower level).
 STRICT_MATTES = {"home"}
 MATTE_TEX = 2
-#: The backdrop is inpainted inside the matte grown by this many plate pixels, so no copy of the island is behind the rim.
-BACKDROP_GROW = 24
 #: The island's contact shadow (`island_shadow` in tools/proof/island_matte.py): the share of the underside it covers,
 #: how far below the foot it sits (x half the island's height), its squash and blur (x half the underside's width).
 SHADOW = {"opacity": 0.34, "drop": 0.9, "squash": 0.22, "reach": 0.92, "blur": 0.06, "underside": 0.55}
@@ -347,8 +345,10 @@ def load_matte_full(island: str, light: str, stage: int) -> np.ndarray:
 def load_matte(island: str, light: str, stage: int) -> np.ndarray:
     """The state's matte at plate size (the size the hand data's percents and every consumer here use)."""
     a = load_matte_full(island, light, stage)
-    if a.shape != (SIZE[1], SIZE[0]):
-        a = cv2.resize(a.astype(np.float32), tuple(SIZE), interpolation=cv2.INTER_AREA).astype(np.float64)
+    # the hand data's size, read here too: tools/proof/island_matte.py calls this without `load_hand`
+    w, h = json.loads((PLATES / island / "objects.json").read_text()).get("size", DEFAULT_SIZE) if island in STRICT_MATTES else SIZE
+    if a.shape != (h, w):
+        a = cv2.resize(a.astype(np.float32), (w, h), interpolation=cv2.INTER_AREA).astype(np.float64)
     return a
 
 
@@ -359,6 +359,60 @@ def master_matte(light: str, stage: int, layer: np.ndarray, origin: tuple[int, i
     h, w = layer.shape[:2]
     canvas[y0:y0 + h, x0:x0 + w] = layer[..., 3]
     return np.uint8(np.clip(canvas, 0, 1) * 255 + 0.5)
+
+
+#: What the r3b solve cuts that is painted and the old matte keeps (`repair_matte`), as boxes in plate points
+#: (x0, y0, x1, y1) per "<light>:<stage>": the bagel cart's pennant (level 10), the lighthouse lamp's glow (level 10 at
+#: golden hour), the red flowers by the tea stall (level 5). Only here: a restored piece is a hard-edged addition to
+#: the solved shape, so the gate's edge checks count every one of them.
+REPAIR_BOXES = {
+    "day:0": [(745, 730, 795, 775)], "golden:0": [(920, 500, 1024, 670)], "day:5": [(735, 745, 800, 795)],
+}
+REPAIR_CHROMA = 0.30     # a pixel this colourful (max - min of RGB) and unlike the sky is paint, not mist or cloud
+REPAIR_SKY = 0.20        # distance in RGB from the local sky colour under which a pixel is sky
+REPAIR_REACH = 14        # texture px: paint is restored this close to the solved shape
+#: Where any pixel unlike the sky (not only a colourful one) comes back: the lamp's glow is pale.
+REPAIR_PALE = {"golden:0": (920, 500, 1024, 670)}
+
+
+def legacy_matte(island: str, light: str, stage: int, shape: tuple[int, int]) -> np.ndarray:
+    """The matte this state shipped before the r3b solve (`<island>/legacy/matte-*.png`: the first plate's, and IL1's own
+    for stage 9), at `shape`."""
+    d = PLATES / island / "legacy"
+    f = d / f"matte-{light}-{stage}.png"
+    if not f.exists():
+        f = d / "matte-day-0.png"
+    a = np.asarray(Image.open(f).convert("L"), np.float32) / 255
+    return cv2.resize(a, (shape[1], shape[0]), interpolation=cv2.INTER_LINEAR)
+
+
+def repair_matte(m: np.ndarray, rgb: np.ndarray, old: np.ndarray, light: str, stage: int) -> np.ndarray:
+    """The r3b matte (8 bit) united, inside `REPAIR_BOXES` only, with the old one where the plate's pixel is painted and
+    not sky: the solve cuts a pennant, a flower, a lamp's glow that the old wide matte kept."""
+    boxes = REPAIR_BOXES.get(f"{light}:{stage}")
+    if not boxes:
+        return m
+    sys.path.insert(0, str(REPO / "tools" / "proof"))
+    import island_matte  # noqa: PLC0415
+
+    a = m.astype(np.float32) / 255
+    ell = lambda n: cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2 * n + 1, 2 * n + 1))
+    far = cv2.dilate(((a > 0.02) | (old > 0.02)).astype(np.uint8), ell(60)) == 0
+    sky = island_matte._estimate(rgb.astype(np.float32), far)
+    dist = np.linalg.norm(rgb - sky, axis=2)
+    want = (dist > REPAIR_SKY) & ((rgb.max(2) - rgb.min(2)) > REPAIR_CHROMA)
+    inside = np.zeros(a.shape, bool)
+    for x0, y0, x1, y1 in boxes:
+        inside[y0 * MATTE_TEX:y1 * MATTE_TEX, x0 * MATTE_TEX:x1 * MATTE_TEX] = True
+    pale = np.zeros(a.shape, bool)
+    if f"{light}:{stage}" in REPAIR_PALE:
+        x0, y0, x1, y1 = REPAIR_PALE[f"{light}:{stage}"]
+        pale[y0 * MATTE_TEX:y1 * MATTE_TEX, x0 * MATTE_TEX:x1 * MATTE_TEX] = True
+        want |= pale & (dist > 0.05)
+    near = cv2.dilate((a > 0.5).astype(np.uint8), ell(REPAIR_REACH)) > 0
+    add = want & inside & (old > 0.5) & near & (a < 0.98)
+    soft = cv2.GaussianBlur(add.astype(np.float32), (0, 0), 0.8)
+    return np.maximum(m, np.uint8(np.clip(soft, 0, 1) * 255 + 0.5))
 
 
 def shadow_params(a: np.ndarray) -> dict:
@@ -390,9 +444,10 @@ def cmd_matte(island: str, state: str | None = None) -> None:
         sys.path.insert(0, str(REPO / "tools" / "proof"))
         import island_matte  # noqa: PLC0415 (needs the network's weights; the other commands do not)
 
-        solved = [(light, stage, *island_matte.island_layer(light, stage)) for light, stage, _ in wanted]
-        for light, stage, layer, origin in solved:
+        solved = [(light, stage, path, *island_matte.island_layer(light, stage)) for light, stage, path in wanted]
+        for light, stage, path, layer, origin in solved:
             m = master_matte(light, stage, layer, origin)
+            m = repair_matte(m, source_plate(path)[0], legacy_matte(island, light, stage, m.shape), light, stage)
             Image.fromarray(m).save(matte_path(island, light, stage), optimize=True)
             x0, y0, x1, y1 = bbox(m / 255.0, 0.02)
             print(f"matte {light} {stage}: box {(x0 // MATTE_TEX, y0 // MATTE_TEX, x1 // MATTE_TEX, y1 // MATTE_TEX)}")
@@ -463,14 +518,11 @@ def calm_sea(rgb: np.ndarray, a: np.ndarray, width: int, px: int, pw: int, up: f
     return ndimage.gaussian_filter1d(cols, max(2, pw / 10), axis=0, mode="nearest")
 
 
-def backdrop(rgb: np.ndarray, a: np.ndarray, box: tuple[int, int, int, int], scale: float = BACKDROP_SCALE, calm: bool = False,
-             hole: np.ndarray | None = None) -> np.ndarray:
+def backdrop(rgb: np.ndarray, a: np.ndarray, box: tuple[int, int, int, int], scale: float = BACKDROP_SCALE, calm: bool = False) -> np.ndarray:
     """The plate's own sky and cloud sea continued past its edges, in `box` (plate pixels), at
     `scale` (as `pilot.painted_frame`): above, the plate's top sky deepens upward; at the sides the
     plate mirrors; below, its cloud band (the roots filled out) repeats at growing sizes, mirrored
-    and offset, so no puff repeats at one size. Inside the plate's rectangle it is the plate, with `hole` (the island's
-    matte grown, at the picture's size) painted over from the sky and cloud round it: the plate's own alpha is the matte,
-    so no copy of the island may lie behind it (a low-resolution island would show round the rim as a halo)."""
+    and offset, so no puff repeats at one size. Inside the plate's rectangle it is the plate."""
     bx0, by0, bx1, by1 = box
     W, H = round((bx1 - bx0) * scale), round((by1 - by0) * scale)
     pw, ph = round(SIZE[0] * scale), round(SIZE[1] * scale)
@@ -478,12 +530,6 @@ def backdrop(rgb: np.ndarray, a: np.ndarray, box: tuple[int, int, int, int], sca
     px, py = round(-bx0 * scale), round(-by0 * scale)
     small = resize(rgb, pw, ph)
     sa = resize(np.repeat(a[..., None], 3, 2), pw, ph)[..., 0]
-    if hole is not None:
-        import inpaint  # noqa: PLC0415
-
-        hs = cv2.resize(hole.astype(np.float32), (pw, ph), interpolation=cv2.INTER_AREA) > 0.02
-        small = np.clip(inpaint.pull_push(small.astype(np.float32), ~hs, False), 0, 1).astype(np.float64)
-        sa = np.zeros_like(sa)
     canvas = np.zeros((H, W, 3))
     # Above: the plate's top sky, column by column (mirrored past its sides, blurred), deepening
     # upward toward one zenith tone, so its own left-to-right gradient runs on with no seam.
@@ -518,8 +564,7 @@ def backdrop(rgb: np.ndarray, a: np.ndarray, box: tuple[int, int, int, int], sca
         # plate's foot down, each copy resized once from the full-resolution band.
         cut = round(rgb.shape[0] * 0.86)
         band = rgb[cut:].copy()
-        covered = a if hole is None else hole
-        band = fill_holes(band, ndimage.binary_dilation(covered[cut:] > 0.1, iterations=10))
+        band = fill_holes(band, ndimage.binary_dilation(a[cut:] > 0.1, iterations=10))
         y, i = py + ph - round(0.06 * ph), 0
         while y < H:
             k = min(1.6 * 1.4 ** i, 6.0) * scale / up
@@ -588,7 +633,9 @@ def decontaminated(rgb: np.ndarray, a: np.ndarray, light: str, stage: int) -> np
     sub = out[Y0:Y0 + h, X0:X0 + w]
     sa = a[Y0:Y0 + h, X0:X0 + w]
     lc = layer[..., :3].astype(np.float64)
-    use = (sa > 0) & ((sa < 0.98) | (np.abs(lc - sub).max(-1) > 0.08))
+    # only where the solve itself has alpha: a pixel `repair_matte` gave back keeps the painting's own colour
+    la = layer[..., 3]
+    use = (la > 0) & (sa > 0) & ((sa < 0.98) | (np.abs(lc - sub).max(-1) > 0.08))
     sub[use] = lc[use]
     return out
 
@@ -638,14 +685,12 @@ def cmd_deliver(island: str) -> None:
         if strict:
             # The state's own matte has no level-10 ghost to cut away (`map_cut.py`): the Map's cut is the island's.
             write_imageset(asset_name(island, "mapisle", light, stage), img)
-        box = backdrop_box(home_frame(hand, a1))
-        grown = None
-        if strict:
-            r = BACKDROP_GROW * k
-            grown = cv2.dilate((a > 0.02).astype(np.uint8), cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2 * r + 1, 2 * r + 1))) > 0
-            a = np.zeros_like(a)
-        write_imageset(asset_name(island, "backdrop", light, stage), to_img(backdrop(rgb, a, box, hand.get("backdropScale", BACKDROP_SCALE), calm=hand.get("backdrop") == "calm", hole=grown)), jpeg=True)
-        print(f"deliver {light} {stage} (x{k}): island box {(x0, y0, x1, y1)}, backdrop box {box}")
+        if not strict:
+            # A strict island's backdrop is not rewritten: the level-1 to -9 frames draw the sky set (see the PR), so the
+            # backdrop JPGs stay as they are and no fill is made under the island.
+            box = backdrop_box(home_frame(hand, a1))
+            write_imageset(asset_name(island, "backdrop", light, stage), to_img(backdrop(rgb, a, box, hand.get("backdropScale", BACKDROP_SCALE), calm=hand.get("backdrop") == "calm")), jpeg=True)
+        print(f"deliver {light} {stage} (x{k}): island box {(x0, y0, x1, y1)}")
 
 
 # ---------------------------------------------------------------- objects

@@ -1,0 +1,45 @@
+batch: batch-116-home-mist-clear
+job: x-home-l1-day-clear
+status: warn
+pick: 1
+lead_review: "Lead pick, accepted: the network matte (pofu PR #470 island_matte with BiRefNet, take swapped in for the stage 9 day plate) passes M1 to M6 and M11 (M2 2.15, p05 1.75, M11 0, against the parent's M11 fail), the hill puff and right-edge bank are gone with a crisp rounded rim, and the island, sunflowers, wheel and doors sit within 0.4 px of the parent; take 2 passes too, but every take re-renders the plate with a hotter lawn (median blue 69 against the parent's 113 and level 3's 82), so ship the take's island and pull the lawn about 13 blue toward level 3 in the colour fit rather than paste it into the misty parent, which leaves a box seam."
+note: "Exploration only; both takes retained and not promoted. The mist is cleared from the lawn areas. QA edit_silhouette, edit_stability and edit_chroma pass; chroma_ceiling and palette_drift warn. The queue also calls for external network matte checks M2 and M11; no matte_check utility is present in this repository, so those acceptance checks were not run here."
+source: codex-cloud
+account:
+  owner: "Founder's uncle's ChatGPT plan, used by the founder with permission"
+  kind: chatgpt-plan
+takes:
+- n: 1
+  file: plate__x-home-l1-day-clear--t1.webp
+  qa: warn
+  size_bytes: 110510
+  dimensions: 1024x1536
+  lock_load: 0.0
+  warnings:
+  - check: chroma_ceiling
+    status: warn
+    message: "chroma p95 72 (R1 51) (advisory in an exploration)"
+  - check: palette_drift
+    status: warn
+    message: "mean dE 9.8, p95 26.9, off-palette 35.5% (top: #88BBFF (8.6%), #99BBFF (6.4%)) (advisory in an exploration)"
+  source_file: /workspace/generated_images/exec-2414efa5-d242-4d24-94d0-1634ff8a4460.png
+  source_sha256: 6700a0d0fdd1e33f83a3517f917766f839f211cc200245613910d50713d40ae2
+  generated_at: 2026-11-15T15:18:30+00:00
+- n: 2
+  file: plate__x-home-l1-day-clear--t2.webp
+  qa: warn
+  size_bytes: 102364
+  dimensions: 1024x1536
+  lock_load: 0.0
+  warnings:
+  - check: chroma_ceiling
+    status: warn
+    message: "chroma p95 72 (R1 51) (advisory in an exploration)"
+  - check: palette_drift
+    status: warn
+    message: "mean dE 9.3, p95 25.0, off-palette 30.5% (top: #88BBFF (7.5%), #99BBFF (3.8%)) (advisory in an exploration)"
+  source_file: /workspace/generated_images/exec-b168dc83-e6b7-4ec7-a082-a115704c652d.png
+  source_sha256: 4939a5e311820004d6a3394c63e56f8b43303d62539706bb4107ba893a8d1881
+  generated_at: 2026-11-15T15:18:30+00:00
+references:
+- design/art/plates/home/derived/plate-il1-day.webp
