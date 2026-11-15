@@ -6,7 +6,10 @@ tap and occluder polygons, the walkable lawn, the characters' spots and the fram
 of the plate) and writes what the app draws:
 
   World.xcassets/world-<island>-plate-<light>-<stage>     the whole plate, opaque, its border
-                                                          feathered (the island and its own sky)
+                                                          feathered (the island and its own sky); a
+                                                          strict-matte island's (Home's): the island alone,
+                                                          alpha its matte, cropped to it (`plateCrop`), drawn
+                                                          over the sky set (one sky at every level)
   World.xcassets/world-<island>-island-<light>-<stage>    the island cut from its sky, half size
                                                           (the Map and the Island stop)
   World.xcassets/world-<island>-backdrop-<light>-<stage>  the plate's sky and cloud sea extended
@@ -657,6 +660,31 @@ def extended(rgb: np.ndarray, a: np.ndarray, reach: int = EXTEND) -> np.ndarray:
     return out
 
 
+#: Texture px of clear room kept round the island when a matted plate is cropped to it, and the grid the crop snaps to
+#: (ASTC's 4 x 4 blocks; a multiple of `MATTE_TEX`, so the crop is whole plate points).
+CROP_PAD = 8
+CROP_GRID = 4
+
+
+def plate_crop(a: np.ndarray) -> tuple[int, int, int, int]:
+    """The box a matted plate ships cropped to (texture px of the x`MATTE_TEX` plate, `a` its alpha): every pixel with
+    alpha, `CROP_PAD` of clear room round them, snapped out to `CROP_GRID` and kept inside the plate. Everything outside
+    is clear: the sky set behind is the picture there (one sky at every level)."""
+    ys, xs = np.nonzero(a > 0)
+    h, w = a.shape
+    snap_lo = lambda v: max((v - CROP_PAD) // CROP_GRID * CROP_GRID, 0)
+    snap_hi = lambda v, top: min(-(-(v + CROP_PAD) // CROP_GRID) * CROP_GRID, top)
+    return snap_lo(int(xs.min())), snap_lo(int(ys.min())), snap_hi(int(xs.max()) + 1, w), snap_hi(int(ys.max()) + 1, h)
+
+
+def plate_crop_points(island: str, hand: dict, light: str, stage: int) -> list[int] | None:
+    """`plateCrop` of one state in plate points (the JSON's units), or `None`: the state ships the whole plate over its
+    backdrop (a legacy matte, or an island whose mattes are not strict)."""
+    if island not in STRICT_MATTES or is_legacy(hand, light, stage):
+        return None
+    return [v // MATTE_TEX for v in plate_crop(load_matte_full(island, light, stage))]
+
+
 def cmd_deliver(island: str) -> None:
     hand = load_hand(island)
     strict = island in STRICT_MATTES
@@ -671,8 +699,11 @@ def cmd_deliver(island: str) -> None:
             if a.shape != rgb.shape[:2]:
                 a = cv2.resize(a.astype(np.float32), (rgb.shape[1], rgb.shape[0]), interpolation=cv2.INTER_AREA).astype(np.float64)
             rgb = decontaminated(rgb, a, light, stage)
-            # The plate's alpha is the matte: feather 0, the sky and the cloud sea round the island are the backdrop's.
-            write_imageset(asset_name(island, "plate", light, stage), to_img(np.dstack([extended(rgb, a), np.clip(a, 0, 1)])))
+            # The plate's alpha is the matte: feather 0, the sky and the cloud sea round the island are the sky set's.
+            # It ships cropped to the island (`plate_crop`, `plateCrop` in the JSON): the clear rows cost no texture.
+            cx0, cy0, cx1, cy1 = (v * k for v in plate_crop_points(island, hand, light, stage))
+            full = np.dstack([extended(rgb, a), np.clip(a, 0, 1)])
+            write_imageset(asset_name(island, "plate", light, stage), to_img(full[cy0:cy1, cx0:cx1]))
         else:
             a = scaled_matte(a1, k)
             write_imageset(asset_name(island, "plate", light, stage), feathered_plate(rgb, a, FEATHER * k))
@@ -686,8 +717,8 @@ def cmd_deliver(island: str) -> None:
             # The state's own matte has no level-10 ghost to cut away (`map_cut.py`): the Map's cut is the island's.
             write_imageset(asset_name(island, "mapisle", light, stage), img)
         if not strict:
-            # A strict island's backdrop is not rewritten: the level-1 to -9 frames draw the sky set (see the PR), so the
-            # backdrop JPGs stay as they are and no fill is made under the island.
+            # A strict island's backdrop is not rewritten: a matted state draws the sky set behind its plate, so the
+            # backdrop is not drawn there; the legacy states keep theirs as they are.
             box = backdrop_box(home_frame(hand, a1))
             write_imageset(asset_name(island, "backdrop", light, stage), to_img(backdrop(rgb, a, box, hand.get("backdropScale", BACKDROP_SCALE), calm=hand.get("backdrop") == "calm")), jpeg=True)
         print(f"deliver {light} {stage} (x{k}): island box {(x0, y0, x1, y1)}")
@@ -1035,23 +1066,48 @@ def harmony_all(hand: dict, mattes: dict) -> dict:
 
 # ---------------------------------------------------------------- json
 
-def texture_bytes(island: str, hand: dict) -> int:
-    """ASTC 4 x 4: one byte per pixel, the largest state's images (plate, island, backdrop,
-    occluders): the app holds one state, or two for the length of a crossfade."""
-    worst = 0
+def sky_bytes(island: str, light: str) -> int:
+    """The textures of the island's sky set for `light` without its island layer (`Plates/skyset-<island>.json`, the
+    set at stage 0): what a matted state draws behind its plate. 0 when the island has no sky set for the light."""
+    f = JSON_DIR / f"skyset-{island}.json"
+    if not f.exists():
+        return 0
+    spec = json.loads(f.read_text())["lights"].get(light)
+    if spec is None:
+        return 0
+    total = spec.get("detailPixels", 0)
+    for layer in spec["layers"]:
+        if layer["role"] == "island":
+            continue
+        with heic.open_image(ASSETS / f"{layer['asset']}.imageset" / f"{layer['asset']}{heic.SUFFIX}") as im:
+            total += im.width * im.height
+    return total
+
+
+def state_texture_bytes(island: str, hand: dict) -> dict[tuple[str, int], int]:
+    """ASTC 4 x 4, one byte per pixel, per state, of what Home holds for it: the plate, the island cut and the
+    occluders, and behind the plate either its backdrop (a state that ships the whole plate) or the sky set without
+    its island layer (a matted state, `plate_crop_points`). The app holds one state, or two for a crossfade."""
+    out = {}
     for light, stage, _ in plates(hand):
-        total = 0
+        matted = plate_crop_points(island, hand, light, stage) is not None
+        kinds = ("plate", "island", "occ") if matted else ("plate", "island", "backdrop", "occ")
+        total = sky_bytes(island, light) if matted else 0
         for folder in ASSETS.glob(f"world-{island}-*-{light}-{stage}.imageset"):
-            # Only this tool's layers: a sky set's layers (`world-<island>-sky-*`) are the sky set's
-            # own budget (skyset-<island>.json), and the plate and its backdrop are not loaded while it draws.
-            if not folder.name.startswith(tuple(f"world-{island}-{kind}-" for kind in ("plate", "island", "backdrop", "occ"))):
+            # Only this tool's layers: a sky set's own (`world-<island>-sky-*`) are counted above, by `sky_bytes`.
+            if not folder.name.startswith(tuple(f"world-{island}-{kind}-" for kind in kinds)):
                 continue
             for f in folder.iterdir():
                 if f.suffix in (".png", ".jpg", heic.SUFFIX):
                     with heic.open_image(f) as im:
                         total += im.width * im.height
-        worst = max(worst, total)
-    return worst
+        out[(light, stage)] = total
+    return out
+
+
+def texture_bytes(island: str, hand: dict) -> int:
+    """The largest state's textures (`state_texture_bytes`)."""
+    return max(state_texture_bytes(island, hand).values(), default=0)
 
 
 def build_json(island: str, hand: dict, mattes: dict, maps: dict, harmony: dict | None = None) -> dict:
@@ -1108,6 +1164,9 @@ def build_json(island: str, hand: dict, mattes: dict, maps: dict, harmony: dict 
         "textureBytes": texture_bytes(island, hand),
     }
     if island in STRICT_MATTES:
+        # Per light, per stage: the box the plate image covers (plate points), or null where the state ships the whole
+        # plate over its backdrop (a legacy matte). A matted state draws the sky set behind the cropped plate.
+        data["plateCrop"] = {l: [plate_crop_points(island, hand, l, s) for s in range(stage_count(hand, l))] for l in lights}
         # Per stage (the lights of a stage are one drawing, so one matte): the island's contact shadow, drawn by code
         # on the floor layer under the island.
         data["shadow"] = [shadow_params(load_matte_full(island, "day", s)) for s in range(data["stages"])]

@@ -87,13 +87,13 @@
  },
  "lights": {
   "day": {
-   "plate": "Packages/PofuKit/Sources/PofuWorld/Resources/World.xcassets/world-home-plate-day-0.imageset/world-home-plate-day-0.heic"
+   "plate": "design/art/plates/home/sky/day/master.heic"
   },
   "golden": {
-   "plate": "Packages/PofuKit/Sources/PofuWorld/Resources/World.xcassets/world-home-plate-golden-0.imageset/world-home-plate-golden-0.heic"
+   "plate": "design/art/plates/home/sky/golden/master.heic"
   },
   "night": {
-   "plate": "Packages/PofuKit/Sources/PofuWorld/Resources/World.xcassets/world-home-plate-night-0.imageset/world-home-plate-night-0.heic",
+   "plate": "design/art/plates/home/sky/night/master.heic",
    "fixedSky": [
     [
      120,

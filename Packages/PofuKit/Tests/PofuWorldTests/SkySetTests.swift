@@ -20,9 +20,12 @@ struct SkySetTests {
         #expect(HomePlate(plate: plate.plate, light: "day", stage: 0).skySet != nil)
         #expect(HomePlate(plate: plate.plate, light: "golden", stage: 0).skySet != nil)
         #expect(HomePlate(plate: plate.plate, light: "night", stage: 0).skySet != nil)
-        // The lower levels keep their plate until they are split.
-        #expect(HomePlate(plate: plate.plate, light: "day", stage: 1).skySet == nil)
-        #expect(HomePlate(plate: plate.plate, light: "day", stage: 8).skySet == nil)
+        // One sky at every level: a matted lower level draws the same light's set behind its plate; a state that keeps
+        // its old matte (night level 9) keeps its plate and backdrop.
+        #expect(HomePlate(plate: plate.plate, light: "day", stage: 1).skySet?.light == "day")
+        #expect(HomePlate(plate: plate.plate, light: "day", stage: 8).skySet?.light == "day")
+        #expect(HomePlate(plate: plate.plate, light: "night", stage: 5).skySet?.light == "night")
+        #expect(HomePlate(plate: plate.plate, light: "night", stage: 1).skySet == nil)
     }
 
     /// The file's `k` per layer, and a role's default when a file states none (v2 section 2).
