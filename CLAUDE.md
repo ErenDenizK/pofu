@@ -58,7 +58,8 @@ to report, not a thing to work around. Map of the docs: `docs/README.md`.
 - **Learn locally, push to confirm.** A CI run takes 30 to 60 minutes and
   macOS minutes cost ten times Linux ones. Iterate on your machine as
   often as you need; pushes before the PR opens start no CI. Push at most
-  three times per open PR, and wait for CI with one background command,
+  three times per open PR (only the lead may allow one more, for a small
+  fix), and wait for CI with one background command,
   never a polling loop. Fetch frames with `tools/review/fetch_frames.sh`,
   never into the main `.git` (it filled the disk three times).
 - **Look before you say it looks right.** Visual output is judged on real
