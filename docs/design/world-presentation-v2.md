@@ -547,6 +547,9 @@ real chrome for its distance**, cut from shipped frames.
 | R4 | Note 4 | `dof.py`: per-pixel blur from the model, and the same frames through the four-level blend, to show the app's version and not only the ideal. Six stills: mid; station focus; Pofu at rest with Mochi (two in frame); Pofu at the limit; the tea stall on his row sharp beside him; proof 2's one-radius macro as the control. One 4 s rack from Pofu to the stall | The patch job and the dressing pilot; the upscaled stall | The control beside the two-in-frame still; the rack clip |
 | R5 | The props | Jar, pots and lantern at their slots at levels 2, 6 and 10, mid and near | `world-home-props`, or the sprite art marked as placeholder for position only | Whether he can find his pots at mid without being told |
 
+Round 3 gains concept frames (`world-concepts-plan.md`): the founder picks the picture per distance
+from Codex paint-overs of these stills, and R1 and R4 are then re-rendered to match his pick.
+
 Pass for the round: C1 to C6 and M1 to M11 green, the life check in
 range, and no still I would not show. Cost: about 5 agent-days of Sonnet
 and 9 Codex jobs (2 erase, 3 dressing, 1 patch, 2 cloud, 1 props sheet).
