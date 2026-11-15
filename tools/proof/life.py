@@ -8,12 +8,13 @@
   mid    the island at level 4 at mid with the chrome (the island and the characters stay still: targets do not move)
   today  today's Map, the camera pull-out proof's frame (a) at z 0, with only today's motion (`SkyMotion`: drift, bob, glide)
   still  the Map's first frame held for 3 s (the Still tier: every layer at rest, so the meter must read 0)
-Drawn: horizon band 2 pt/s, floors 5, 9, 16 pt/s with swell 3, 5, 8 pt over 11, 17, 23 s, far isles bob 2 pt over 9 to 13 s,
-whale glide 5 pt/s with bob 4 pt and roll 1.5 degrees, towers billow 2 % over 20 s, islands at the Map bob 2 pt over 6 to 9
-s, three birds crossing at 18 pt/s, a wisp crossing Home's foot at 14 pt/s, cloud shadows drifting 8 pt/s inside the island's
-matte, sun shafts at opacity 0.25 to 0.45 over 12 s. Not drawn (region shaders, 5 % of the pixels by v1's own limit): water,
+Drawn (the speeds are `composition.SPEEDS`, section 3 as corrected in round 3): horizon band 0.5 pt/s, floors 1.5, 3, 5 pt/s
+with swell 3, 5, 8 pt over 11, 17, 23 s, far isles bob 2 pt over 9 to 13 s, whale glide 5 pt/s with bob 4 pt and roll 1.5
+degrees, towers billow 2 % over 20 s, islands at the Map bob 2 pt over 6 to 9 s, three soft bird marks crossing at 14 pt/s, a
+wisp crossing below Home's lawn line at 4 pt/s, cloud shadows drifting 8 pt/s inside the island's matte, sun shafts at
+opacity 0.25 to 0.45 over 12 s. Not drawn (region shaders, 5 % of the pixels by v1's own limit): water,
 lamps, canopy sway. Not drawn: the 20 s hour change. Stand-in: the cloud puffs are the `mid` tile band, one moving layer
-where the spec has five to seven cut-outs. Speeds are screen pt/s, never above 20; periods never under 5 s.
+where the spec has five to seven cut-outs. Speeds are screen pt/s: nothing but the birds above 8, no full-width layer above 5; periods never under 5 s (`layer_list`, which `life_meter.py` checks).
 """
 from __future__ import annotations
 
@@ -30,6 +31,7 @@ import composition as C  # noqa: E402
 from _common import FPS, H, W, Encoder, Sprite, contact_sheet  # noqa: E402
 
 PT = C.PT
+WISP_Y = 678.0   # pt: Home's earth body, under the lawn line (Home's island box is y 519 to 699 at the Map)
 
 
 def island_mask(kind: str) -> np.ndarray:
@@ -72,23 +74,39 @@ class Overlays:
         op = 0.35 + 0.10 * math.sin(2 * math.pi * t / 12.0)
         a = (self.beams * op * 0.30)[..., None]
         rgb[...] = 1 - (1 - rgb) * (1 - a * np.float32([1.0, 0.96, 0.82]))
-        # three birds, 18 pt/s, wings beating about 1.3 Hz
+        # three soft bird marks: small, thin, blurred, low opacity, wings beating about 1.3 Hz
         bl = np.zeros((H, W), np.float32)
         for i in range(3):
-            x = (-30 + 18.0 * (t - 1.0 - 0.7 * i) + 55 * i) * PT
+            x = (-30 + C.SPEEDS["birds"] * (t - 1.0 - 0.7 * i) + 55 * i) * PT
             if t < 1.0 + 0.7 * i or x > W + 60:
                 continue
             y = (170 + 22 * i + 5 * math.sin(2 * math.pi * t / 7.0 + i)) * PT
             flap = math.sin(2 * math.pi * 1.3 * t + i)
-            wing, rise = 14 * PT, (0.55 * flap - 0.1) * 12 * PT
+            wing, rise = 8 * PT, (0.45 * flap - 0.05) * 6 * PT
             pts = np.int32([[x - wing, y - rise], [x, y], [x + wing, y - rise]])
-            cv2.polylines(bl, [pts], False, 1.0, 3, cv2.LINE_AA)
-        rgb[...] = rgb * (1 - 0.6 * bl[..., None]) + np.float32([0.30, 0.32, 0.42]) * 0.6 * bl[..., None]
-        # one wisp across Home's foot (Map only), 14 pt/s
+            cv2.polylines(bl, [pts], False, 1.0, 2, cv2.LINE_AA)
+        bl = cv2.GaussianBlur(bl, (0, 0), 1.6 * PT / 3 * 1.5)
+        a = np.clip(bl * 1.6, 0, 1)[..., None] * 0.35
+        rgb[...] = rgb * (1 - a) + np.float32([0.38, 0.40, 0.52]) * a
+        # one wisp across Home's body below the lawn line (Map only)
         if self.kind == "map" and t > 1.5:
-            wx = 40 + 14.0 * (t - 1.5)
+            wx = 40 + C.SPEEDS["wisp"] * (t - 1.5) * 6.0 if False else 20 + C.SPEEDS["wisp"] * (t - 1.5) * 4.0
             for k in range(3):
-                C.shade_ellipse(out, (wx + 22 * k) * PT, (640 + 5 * k) * PT, 70 * PT, 6 * PT, 0.45, (1, 0.98, 1))
+                C.shade_ellipse(out, (wx + 22 * k) * PT, (WISP_Y + 3 * k) * PT, 70 * PT, 6 * PT, 0.30, (1, 0.98, 1))
+
+
+def layer_list(kind: str) -> list[dict]:
+    """Every moving layer of a clip with its speed in screen pt/s, whether it spans the width, and its shortest period in s.
+    The life meter checks section 3's limits on this list (the changed-pixel share cannot tell calm from busy)."""
+    S = C.SPEEDS
+    rows = [("horizon band", S["horizon"], True, 11.0), ("floor, middle", S["floor_mid"], True, 11.0), ("floor, near", S["floor_near"], True, 17.0),
+            ("lip", S["lip"], True, 23.0), ("far clouds", S["far_clouds"], True, 20.0), ("cloud puffs", S["puffs"], True, 14.0),
+            ("far isles (bob)", 0.0, False, 9.0), ("whale", S["whale"], False, 12.0), ("towers (billow)", 0.0, False, 20.0),
+            ("sun shafts (opacity)", 0.0, False, 12.0), ("cloud shadows (inside the matte)", S["cloud_shadow"], False, 30.0),
+            ("birds", S["birds"], False, 7.0)]
+    if kind == "map":
+        rows += [("islands (bob)", 0.0, False, 6.0), ("wisp", S["wisp"], False, 30.0)]
+    return [{"name": n, "speed": v, "full_width": fw, "period": p, "bird": n == "birds"} for n, v, fw, p in rows]
 
 
 def render(kind: str, t: float, ch: C.Chrome, ov: Overlays | None, mo_on: bool = True):

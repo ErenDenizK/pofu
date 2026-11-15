@@ -83,6 +83,12 @@ def ref_world(rx: float, ry: float) -> tuple[float, float]:
 import os  # noqa: E402
 DRIFT_SCALE = float(os.environ.get("POFU_DRIFT_SCALE", "1.0"))   # a what-if for the life meter: every drift speed times this
 
+# Speeds in screen pt/s, section 3 as corrected in round 3 (docs/design/world-presentation-round3-look.md): the single source
+# for the renderer and for `life_meter.py`. Nothing ambient but the birds above CAP; no full-width layer above FULL_WIDTH_CAP.
+SPEEDS = {"far_clouds": 1.0, "horizon": 0.5, "floor_mid": 1.5, "floor_near": 3.0, "lip": 5.0, "puffs": 3.0, "whale": 5.0,
+          "cloud_shadow": 8.0, "wisp": 4.0, "birds": 14.0}
+CAP, FULL_WIDTH_CAP, MIN_PERIOD = 8.0, 5.0, 5.0
+
 # ---- motion (section 3), off for stills -----------------------------------------------------------------------------
 
 class Motion:
@@ -119,11 +125,27 @@ def over(canvas: np.ndarray, part: np.ndarray, y0: int, x0: int = 0) -> None:
     dst[...] = part + dst * (1 - part[..., 3:4])
 
 
+DETILE = [(0, 0.0), (1, 0.31), (0, 0.58), (1, 0.84), (1, 0.12), (0, 0.43), (1, 0.67), (0, 0.91), (0, 0.22), (1, 0.52), (1, 0.97)]
+
+
+def _tile_x(u: np.ndarray, n: np.ndarray, tw: float) -> np.ndarray:
+    """Sample x for tile index `n` at tile-space `u`: alternate tiles are mirrored and offset (a fixed pseudo-random order)."""
+    frac = u - n * tw
+    mir = np.array([DETILE[int(i) % len(DETILE)][0] for i in range(int(n.min()) - 1, int(n.max()) + 2)])
+    off = np.array([DETILE[int(i) % len(DETILE)][1] for i in range(int(n.min()) - 1, int(n.max()) + 2)])
+    idx = (n - n.min() + 1).astype(int)
+    frac = np.where(mir[idx] == 1, tw - frac, frac)
+    return np.mod(frac + off[idx] * tw, tw)
+
+
 def draw_floor(canvas: np.ndarray, puff_px: float, top_px: float, ramp_px: float, xoff_px: float, bottom_px: float = H,
-               alpha: float = 1.0, src: Sprite | None = None) -> None:
+               alpha: float = 1.0, src: Sprite | None = None, detile: bool = False, fade_px: float = 0.0, soften: float = 0.0) -> None:
     """One floor layer: the shipped sea tile scaled so that one cumulus (TILE_PUFF tile px) is `puff_px` device px,
     repeating across the width, from `top_px` down with a soft top edge of `ramp_px`. Below the tile's last row the
-    last row continues (never reached at the sizes used: the quilted floor has 2600 rows)."""
+    last row continues (never reached at the sizes used: the quilted floor has 2600 rows).
+    `detile`: alternate tiles are mirrored and offset in a fixed irregular order and joined by a cross-fade, so one dark
+    lozenge does not come back every tile. `fade_px`: the top `fade_px` rows go from 30 % to full contrast (the horizon's
+    first two puff rows)."""
     sp = src or floor_sprite()
     f = puff_px / TILE_PUFF                                      # device px per tile px
     y0 = max(int(math.floor(top_px)), 0)
@@ -134,13 +156,45 @@ def draw_floor(canvas: np.ndarray, puff_px: float, top_px: float, ramp_px: float
     k = 2 ** level
     ys = np.arange(y0, y1, dtype=np.float64)
     my = np.clip((ys - top_px) / f / k, 0, arr.shape[0] - 1).astype(np.float32)
-    mx = np.mod((np.arange(W, dtype=np.float64) - xoff_px) / f / k, arr.shape[1]).astype(np.float32)
-    part = cv2.remap(arr, np.broadcast_to(mx, (len(ys), W)).copy(), np.broadcast_to(my[:, None], (len(ys), W)).copy(),
-                     cv2.INTER_LINEAR, borderMode=cv2.BORDER_WRAP)
+    myb = np.broadcast_to(my[:, None], (len(ys), W)).copy()
+    u = (np.arange(W, dtype=np.float64) - xoff_px) / f / k
+    if not detile:
+        mx = np.mod(u, arr.shape[1]).astype(np.float32)
+        part = cv2.remap(arr, np.broadcast_to(mx, (len(ys), W)).copy(), myb, cv2.INTER_LINEAR, borderMode=cv2.BORDER_WRAP)
+    else:
+        tw = float(arr.shape[1])
+        n = np.floor(u / tw)
+        frac = u - n * tw
+        ov = 0.10 * tw
+        wl = np.where(frac < ov, 1 - smoothstep_np(0.5 + 0.5 * frac / ov), 0.0)            # weight of tile n-1 at its right edge
+        wr = np.where(frac > tw - ov, 1 - smoothstep_np(0.5 + 0.5 * (tw - frac) / ov), 0.0)
+        part = 0
+        for dn, w in ((-1, wl), (0, 1 - wl - wr), (1, wr)):
+            if not np.any(w > 0):
+                continue
+            nn = n + dn
+            mx = _tile_x(u, nn, tw).astype(np.float32)
+            piece = cv2.remap(arr, np.broadcast_to(mx, (len(ys), W)).copy(), myb, cv2.INTER_LINEAR, borderMode=cv2.BORDER_WRAP)
+            part = part + piece * w[None, :, None].astype(np.float32)
+    if soften > 0:                                               # lift the tile's dark lozenges halfway to their surround
+        blur = cv2.GaussianBlur(part, (0, 0), 0.30 * puff_px)
+        lift = np.maximum(blur[..., :3] - part[..., :3], 0) * part[..., 3:4]
+        part = np.concatenate([part[..., :3] + soften * lift, part[..., 3:]], -1)
     ramp = np.clip((ys - top_px) / max(ramp_px, 1.0), 0, 1).astype(np.float32)
     ramp = ramp * ramp * (3 - 2 * ramp) * alpha
-    part *= ramp[:, None, None]
+    if fade_px > 0:
+        a = part[..., 3:4]
+        m = part[..., :3].sum(1, keepdims=True) / np.maximum(a.sum(1, keepdims=True), 1e-4)       # row mean of the straight colour
+        t = np.clip((ys - top_px) / fade_px, 0, 1).astype(np.float32)
+        c = (0.30 + 0.70 * t * t * (3 - 2 * t))[:, None, None]
+        part = np.concatenate([a * m * (1 - c) + part[..., :3] * c, a], -1)
+    part = part * ramp[:, None, None]
     over(canvas, part, y0)
+
+
+def smoothstep_np(x: np.ndarray) -> np.ndarray:
+    x = np.clip(x, 0, 1)
+    return x * x * (3 - 2 * x)
 
 
 def blob_mask(h: int, w: int, circles, blur: float) -> np.ndarray:
@@ -204,15 +258,37 @@ def slot_art(name: str) -> Sprite:
     return sprite("world-koke-island-4" if name == "koke" else "world-caglayan-island-day-4")
 
 
+def lane_for(boxes, top: float = 59.0, bottom: float = 740.0, margin: float = 24.0, slack: float = 4.0):
+    """The tallest band of rows (pt) that is at least `margin` from every box, between `top` and `bottom`; the backdrop's
+    far isles and whale live there (C6). `slack` keeps the bobs inside it."""
+    blocked = np.zeros(int(REF_H), bool)
+    for b in boxes:
+        blocked[max(int(math.floor(b[1] - margin)), 0):max(int(math.ceil(b[3] + margin)), 0)] = True
+    first = min(b[1] for b in boxes) - margin               # the sky above the topmost box is not the lane: the horizon's gap is
+    best, cur0, cur = (top, top), None, 0
+    for y in range(int(top), int(bottom)):
+        if not blocked[y]:
+            cur0 = y if cur0 is None else cur0
+            if y + 1 - cur0 > best[1] - best[0] and y + 1 > first + 1:
+                best = (cur0, y + 1)
+        else:
+            cur0 = None
+    return best[0] + slack, best[1] - slack
+
+
 class Backdrop:
-    """Section 2's layers, drawn through one camera. `light` is day; every number is in pt at the reference camera."""
+    """Section 2's layers, drawn through one camera. `light` is day; every number is in pt at the reference camera.
+    `keepout`: the boxes (pt) of the frame's subjects, slots and chrome; the far isles and the whale are placed in the
+    tallest band that is 24 pt clear of all of them (C6)."""
 
-    FAR_SC = 0.19                                   # pt per master px for the far picture (isles, whale)
+    FAR_SC = 0.16                                   # pt per master px for the far picture (isles, whale), at most
 
-    def __init__(self, cam: Cam, horizon_ref: float = 463.0, mo: Motion | None = None):
+    def __init__(self, cam: Cam, horizon_ref: float = 463.0, mo: Motion | None = None, keepout=(), whale_top: bool = False):
         self.cam, self.mo = cam, mo or Motion()
         self.horizon = horizon_ref
         self.features: list[dict] = []
+        self.keepout = list(keepout)
+        self.whale_top = whale_top
 
     # -- helpers
     def screen_y(self, ref_y: float, k: float) -> tuple[float, float]:
@@ -231,49 +307,58 @@ class Backdrop:
         _, y, sk = self.cam.pt(wx, wy, 0.12)
         m = sk / S0
         far = sprite("world-home-sky-far-day-0")
-        w = 2048 * self.FAR_SC * 3.0 * m * PT / 3.0
-        far.draw(out, mo.drift(2.0) * PT, y * PT, w, w * 910 / 2048, wrap_x=w)
-        # far isles, k 0.25: master x, y -> the Map's first band, 62 to 200 pt
+        w = 2048 * 0.19 * 3.0 * m * PT / 3.0
+        far.draw(out, mo.drift(SPEEDS["far_clouds"]) * PT, y * PT, w, w * 910 / 2048, wrap_x=w)
+        # far isles (k 0.25) and the whale (k 0.35), in the lane that C6 leaves
         import json as _j
         from _common import RESOURCES
         lay = {l["id"]: l for l in _j.loads((RESOURCES / "Plates" / "skyset-home.json").read_text())["lights"]["day"]["layers"]}
+        order = [("isle_falls", 2, 9.0, 0.0, 0.10), ("isle_dome", 2, 13.0, 3.1, 0.05), ("whale", 4, 12.0, 0.6, 0.60),
+                 ("isle_house", 2, 11.0, 1.7, 0.15), ("isle_crystal", 2, 10.0, 4.4, 0.00)]
+        y0, y1 = lane_for(self.keepout) if self.keepout else (100.0, 200.0)
+        whale_lane = None
+        top_ids = ("whale",) if self.whale_top else ("isle_dome", "isle_crystal")
+        if self.keepout:   # the sky above the topmost subject is a run of 0.2 of the height (C2): the whale (Home on top) or two isles go there
+            lane = (63.0, min(b[1] for b in self.keepout) - 24.0 - 4.0)
+            if lane[1] - lane[0] >= 40.0 and lane[1] <= 0.5 * REF_H:
+                whale_lane = lane
+        lane_h = y1 - y0
+        sc = min(self.FAR_SC, lane_h / max(lay[i[0]]["size"][1] for i in order) / 1.05)
+        if whale_lane:
+            order = [o for o in order if o[0] not in top_ids] + [o for o in order if o[0] in top_ids]
+
+        sizes = {i[0]: (lay[i[0]]["size"][0] * sc, lay[i[0]]["size"][1] * sc) for i in order}
+        if whale_lane and self.whale_top and sizes["whale"][1] > whale_lane[1] - whale_lane[0]:
+            whale_lane = None
+        gap = max((REF_W - sum(v[0] for v in sizes.values())) / (len(order) + 1), 0.0)
+        x = gap
         feats = []
-        for n, (iid, amp, per, ph) in enumerate([("isle_falls", 2, 9.0, 0.0), ("isle_house", 2, 11.0, 1.7), ("isle_dome", 2, 13.0, 3.1),
-                                                  ("isle_crystal", 2, 10.0, 4.4)]):
-            l = lay[iid]
-            cx = 201 + (l["pos"][0] + l["size"][0] / 2 - 1024) * self.FAR_SC
-            top = 100 + (l["pos"][1] - 259) * self.FAR_SC
-            wpt, hpt = l["size"][0] * self.FAR_SC, l["size"][1] * self.FAR_SC
-            wx, wy = ref_world(cx, top)
-            x, y, sk = self.cam.pt(wx, wy, 0.25)
-            m = sk / S0
-            x = 201 + (x - 201) if True else x
-            xs = A[0] + (cx - A[0]) * m                     # scale about the screen's middle with the layer
-            y += mo.sw(amp, per, ph)
-            sprite(l["asset"]).draw(out, (xs - wpt * m / 2) * PT, y * PT, wpt * m * PT, hpt * m * PT)
-            feats.append({"id": iid, "box": [xs - wpt * m / 2, y, xs + wpt * m / 2, y + hpt * m]})
-        l = lay["whale"]
-        cx = 201 + (l["pos"][0] + l["size"][0] / 2 - 1024) * self.FAR_SC
-        top = 125 + (l["pos"][1] - 259) * self.FAR_SC
-        wpt, hpt = l["size"][0] * self.FAR_SC, l["size"][1] * self.FAR_SC
-        wx, wy = ref_world(cx, top)
-        x, y, sk = self.cam.pt(wx, wy, 0.35)
-        m = sk / S0
-        xs = A[0] + (cx - A[0]) * m + mo.drift(5.0)
-        span = REF_W + 2 * 60 + wpt * m
-        xs = ((xs + wpt * m / 2 + 60) % span) - 60 - wpt * m / 2 if mo.on else xs
-        y += mo.sw(4, 12.0, 0.6)
-        sp = sprite(l["asset"])
-        if mo.on:
-            ang = mo.sw(1.5, 15.0, 1.1)
-            arr = sp.mips[0]
-            rot = cv2.warpAffine(arr, cv2.getRotationMatrix2D((arr.shape[1] / 2, arr.shape[0] / 2), ang, 1.0), (arr.shape[1], arr.shape[0]),
-                                 flags=cv2.INTER_LINEAR, borderValue=0)
-            Sprite(np.concatenate([rot[..., :3] / np.maximum(rot[..., 3:], 1e-4), rot[..., 3:]], -1)).draw(
-                out, (xs - wpt * m / 2) * PT, y * PT, wpt * m * PT, hpt * m * PT)
-        else:
-            sp.draw(out, (xs - wpt * m / 2) * PT, y * PT, wpt * m * PT, hpt * m * PT)
-        feats.append({"id": "whale", "box": [xs - wpt * m / 2, y, xs + wpt * m / 2, y + hpt * m]})
+        for iid, amp, per, ph, rel in order:
+            wpt, hpt = sizes[iid]
+            top = y0 + (lane_h - hpt) * rel
+            if iid in top_ids and whale_lane:
+                top = whale_lane[0] + (whale_lane[1] - whale_lane[0] - hpt) * (0.5 if iid != "isle_crystal" else 0.3)
+            xs = x + wpt / 2
+            x += wpt + gap
+            sp = sprite(lay[iid]["asset"])
+            if iid == "whale":
+                xs += mo.drift(SPEEDS["whale"])
+                span = REF_W + 2 * 60 + wpt
+                xs = ((xs + wpt / 2 + 60) % span) - 60 - wpt / 2 if mo.on else xs
+                yy = top + mo.sw(amp, per, ph)
+                if mo.on:
+                    ang = mo.sw(1.5, 15.0, 1.1)
+                    arr = sp.mips[0]
+                    rot = cv2.warpAffine(arr, cv2.getRotationMatrix2D((arr.shape[1] / 2, arr.shape[0] / 2), ang, 1.0), (arr.shape[1], arr.shape[0]),
+                                         flags=cv2.INTER_LINEAR, borderValue=0)
+                    Sprite(np.concatenate([rot[..., :3] / np.maximum(rot[..., 3:], 1e-4), rot[..., 3:]], -1)).draw(
+                        out, (xs - wpt / 2) * PT, yy * PT, wpt * PT, hpt * PT)
+                else:
+                    sp.draw(out, (xs - wpt / 2) * PT, yy * PT, wpt * PT, hpt * PT)
+            else:
+                yy = top + mo.sw(amp, per, ph)
+                sp.draw(out, (xs - wpt / 2) * PT, yy * PT, wpt * PT, hpt * PT)
+            feats.append({"id": iid, "box": [xs - wpt / 2, top, xs + wpt / 2, top + hpt]})
         self.features += feats
 
     def draw_puffs(self, out: np.ndarray) -> None:
@@ -286,22 +371,23 @@ class Backdrop:
         rows = None
         from _common import window_rows
         rows = window_rows(y * PT, y * PT + h, 50 * PT * m, 0.0)
-        mid.draw(out, mo.drift(7.0) * PT, y * PT, w, h, wrap_x=w, rows=rows)
+        mid.draw(out, mo.drift(SPEEDS["puffs"]) * PT, y * PT, w, h, wrap_x=w, rows=rows)
 
     def draw_floor_layers(self, out: np.ndarray, upto: int = 3) -> None:
         """horizon band (12 pt puffs), middle (40), near (90). The lip is `draw_lip`, in front of the islands."""
         mo = self.mo
-        specs = [(12.0, 0.05, self.horizon, 22.0, 2.0, 0.0, 11.0), (40.0, 0.45, self.horizon + 9, 16.0, 5.0, 3.0, 11.0),
-                 (90.0, 0.85, self.horizon + 60, 30.0, 9.0, 5.0, 17.0)]
-        for puff, k, top, ramp, dr, amp, per in specs[:upto]:
+        specs = [(12.0, 0.05, self.horizon, 22.0, SPEEDS["horizon"], 0.0, 11.0), (40.0, 0.45, self.horizon + 9, 16.0, SPEEDS["floor_mid"], 3.0, 11.0),
+                 (90.0, 0.85, self.horizon + 60, 30.0, SPEEDS["floor_near"], 5.0, 17.0)]
+        for i, (puff, k, top, ramp, dr, amp, per) in enumerate(specs[:upto]):
             y, m = self.screen_y(top, k)
             y += mo.sw(amp, per, per * 0.13)
-            draw_floor(out, puff * m * PT, y * PT, ramp * m * PT, mo.drift(dr) * PT)
+            draw_floor(out, puff * m * PT, y * PT, ramp * m * PT, mo.drift(dr) * PT, detile=True, fade_px=(2 * puff * m * PT if i == 0 else 0.0),
+                       soften=0.6 if i < 2 else 0.0)
 
     def draw_lip(self, out: np.ndarray, top_ref: float = 740.0) -> None:
         y, m = self.screen_y(top_ref, 1.25)
         y += self.mo.sw(8.0, 23.0, 0.9)
-        draw_floor(out, 160.0 * m * PT, y * PT, 60.0 * m * PT, self.mo.drift(16.0) * PT)
+        draw_floor(out, 160.0 * m * PT, y * PT, 60.0 * m * PT, self.mo.drift(SPEEDS["lip"]) * PT, detile=True)
         self.features.append({"id": "lip", "box": [0, y, REF_W, REF_H]})
 
 
@@ -424,7 +510,21 @@ def render_map(ch: Chrome, stage: int, tier: int, flip: bool, mo: Motion | None 
     out = np.zeros((H, W, 4), np.float32)
     home_y, _ = cam.pt(0, 0)[1], 0
     horizon = 463.0 if not flip else cam.pt(0, 0)[1] + 150.0 * 0 + 30
-    bd = Backdrop(Cam(S0, (201.0, 609.0)), horizon_ref=horizon if flip else 463.0, mo=mo)   # a Map frame is fixed: the backdrop sits at its reference
+    hs, (hx, hy, hw, hh) = home_layer(hours_home)[0], home_layer(hours_home)[1]
+    keep = []
+    for sl in slots:                                   # the boxes C6 keeps the backdrop away from, before anything is drawn
+        x, y, w, h = island_world_rect(cam, sl.centre, sl.box)
+        if sl.holds == "island":
+            keep.append([x, y, x + w, y + h + CHIP_GAP + ch.size_pt("chip_" + sl.name)[1]])
+            if sl.name == "home":
+                px, py, _s = cam.pt(hx, hy)
+                keep.append([px, py, px + hw * _s, py + hh * _s])
+        else:
+            tw, th = sl.box[0] * 0.78, sl.box[1] * 1.25
+            tx, ty, sk = cam.pt(sl.centre[0] - tw / 2, sl.centre[1] + sl.box[1] / 2 - th)
+            keep.append([tx, ty, tx + tw * sk, ty + th * sk])
+    keep.append([318.0, 769.0, 370.0, 821.0])           # the corner control
+    bd = Backdrop(Cam(S0, (201.0, 609.0)), horizon_ref=horizon if flip else 463.0, mo=mo, keepout=keep, whale_top=flip)   # a Map frame is fixed: the backdrop sits at its reference
     if flip:
         # today's order: the sea starts under Home's lower half, as the shipped Map's does
         bd.horizon = max(0.40 * REF_H, 0.0) * 1.0
@@ -433,7 +533,6 @@ def render_map(ch: Chrome, stage: int, tier: int, flip: bool, mo: Motion | None 
     bd.draw_puffs(out)
     bd.draw_floor_layers(out)
     subjects, chips = [], []
-    hs, (hx, hy, hw, hh) = home_layer(hours_home)[0], home_layer(hours_home)[1]
     for i, sl in enumerate(slots):
         x, y, w, h = island_world_rect(cam, sl.centre, sl.box)
         _, _, sk = cam.pt(0, 0)
@@ -444,6 +543,7 @@ def render_map(ch: Chrome, stage: int, tier: int, flip: bool, mo: Motion | None 
             if sl.name == "home":
                 px, py, _s = cam.pt(hx, hy)
                 hs.draw(out, px * PT, (py + bob) * PT, hw * _s * PT, hh * _s * PT)
+                art_box = [px, py, px + hw * _s, py + hh * _s]
             else:
                 art = slot_art(sl.name)
                 aw = sl.box[0] * _s_of(cam)
@@ -453,7 +553,8 @@ def render_map(ch: Chrome, stage: int, tier: int, flip: bool, mo: Motion | None 
             cy0 = y + h + CHIP_GAP
             cb = ch.put(out, chip, cxp - cw / 2, cy0)
             subjects.append({"id": sl.name, "type": "island", "box": [x, y, x + w, y + h + CHIP_GAP + chh], "island": [x, y, x + w, y + h],
-                             "chip": cb, "tappable": True, "w_pt": w})
+                             "chip": cb, "tappable": True, "w_pt": w,
+                             **({"art": art_box} if sl.name == "home" else {})})
         else:
             tw, th = sl.box[0] * 0.78, sl.box[1] * 1.25
             bottom = sl.centre[1] + sl.box[1] / 2
@@ -474,7 +575,7 @@ def render_map(ch: Chrome, stage: int, tier: int, flip: bool, mo: Motion | None 
             subjects.append({"id": sl.name, "type": sl.holds, "box": [tx, ty, tx + tw * sk, ty + th * sk], "tappable": False})
     bd.draw_lip(out)
     chrome = [{"id": "corner_map", "box": ch.put(out, "corner_map", 314.0 + 4, 766.0 + 3)}]
-    meta = {"kind": "map", "scale": cam.s, "order": "homefirst" if flip else "journey", "stage": stage, "tier": tier,
+    meta = {"kind": "map", "scale": cam.s, "order": "homefirst" if flip else "journey", "horizon": bd.horizon, "stage": stage, "tier": tier,
             "hero": next(s for s in subjects if s["id"] == "home")["box"], "subjects": subjects, "chrome": chrome, "features": bd.features}
     return out, meta
 
@@ -493,13 +594,15 @@ def render_mid(ch: Chrome, level: int, mo: Motion | None = None):
     mo = mo or Motion()
     cam = Cam(MID_SCALE, (201.0, 383.0))
     out = np.zeros((H, W, 4), np.float32)
-    bd = Backdrop(cam, mo=mo)
+    layer, (hx, hy, hw, hh) = home_layer(STAGE_OF_LEVEL[level])
+    px, py, sk = cam.pt(hx, hy)
+    keep = [[px, py, px + hw * sk, py + hh * sk]] + [[x / PT, y / PT, x / PT + ch.size_pt(k)[0], y / PT + ch.size_pt(k)[1]] for k, x, y in
+                                                      (("card", 60, 1884), ("action", 412, 2103), ("glance", 60, 2312), ("corner_home", 990, 2340), ("gear", 1014, 210))]
+    bd = Backdrop(cam, mo=mo, keepout=keep)
     bd.draw_sky(out)
     bd.draw_far(out)
     bd.draw_puffs(out)
     bd.draw_floor_layers(out)
-    layer, (hx, hy, hw, hh) = home_layer(STAGE_OF_LEVEL[level])
-    px, py, sk = cam.pt(hx, hy)
     shade_ellipse(out, 201.0 * PT, (383 + 330 * 0.78 * 0.5 * sk / MID_SCALE * 0 + 0.40 * 257 * sk) * PT, 330 * sk * 0.46 * PT, 330 * sk * 0.12 * PT, 0.30)
     layer.draw(out, px * PT, py * PT, hw * sk * PT, hh * sk * PT)
     # the characters, on the plate's own feet
@@ -518,7 +621,7 @@ def render_mid(ch: Chrome, level: int, mo: Motion | None = None):
     bd.features += lip.features
     chrome = put_home_chrome(out2, ch)
     box = [px, py, px + hw * sk, py + hh * sk]
-    meta = {"kind": "mid", "level": level, "scale": MID_SCALE, "hero": box,
+    meta = {"kind": "mid", "level": level, "scale": MID_SCALE, "hero": box, "horizon": bd.horizon,
             "subjects": [{"id": "island", "type": "island", "box": box, "tappable": True},
                          {"id": "pofu", "type": "char", "box": chars[1]}, {"id": "mochi", "type": "char", "box": chars[0]}],
             "chrome": chrome, "features": bd.features}
