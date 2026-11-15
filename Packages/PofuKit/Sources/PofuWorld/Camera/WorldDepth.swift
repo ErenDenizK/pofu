@@ -22,22 +22,30 @@ public enum DepthLayer {
         )
     }
 
-    /// Which screen edges a layer is stretched to meet when the depth function leaves them bare. Only
-    /// layers that are a ground to the picture are: the gradient sky (both edges: it moves with the
-    /// camera's anchor, never its scale) and the cloud sea's own band (the bottom edge: at the Map the
-    /// sea is drawn smaller than the screen is tall, and its painted foot lies above the screen's foot).
-    /// A stopgap until the floor layers (WP9) are tiles that reach the bottom by themselves.
-    public static func stretch(of layer: SkySet.Layer) -> (up: Bool, down: Bool) {
-        switch layer.role {
-        case .sky: (true, true)
-        case .tile where layer.asset.contains("-sky-sea-") && !layer.id.contains("-map"): (false, true)
-        default: (false, false)
-        }
+    /// Whether a layer is the cloud sea (the near band or one of the Map's receding copies of it).
+    public static func isSea(_ layer: SkySet.Layer) -> Bool {
+        layer.role == .tile && layer.asset.contains("-sky-sea-")
     }
 
-    /// A layer's rows `minY` ... `maxY` stretched to meet the edges of `stretch(of:)` on a screen
-    /// `screenHeight` tall. The layer's own picture is scaled with it; its top (or foot) stays put.
-    public static func covering(minY: Double, maxY: Double, screenHeight: Double, stretch: (up: Bool, down: Bool)) -> (minY: Double, maxY: Double) {
-        (stretch.up ? min(minY, 0) : minY, stretch.down ? max(maxY, screenHeight) : maxY)
+    /// The gradient sky moves with the camera's anchor and never with its scale, so it can leave a screen
+    /// edge bare: its rows are extended to both edges (it is a gradient, so nothing shows).
+    public static func coveringSky(minY: Double, maxY: Double, screenHeight: Double) -> (minY: Double, maxY: Double) {
+        (min(minY, 0), max(maxY, screenHeight))
+    }
+
+    /// The factor the whole cloud sea is scaled by, about its tile's top (`pivotY`) and the screen's
+    /// middle, so that its foot reaches the screen's: 1 when it already does. Every sea layer (the near
+    /// band and the Map's receding copies) is scaled by the same factor about the same point, so their
+    /// layout is untouched; the puffs grow toward the viewer. A stopgap until WP9's floor tiles reach
+    /// the bottom by themselves: at the Map the depth function draws the sea smaller than the screen is
+    /// tall.
+    public static func seaFit(top: Double, bottom: Double, screenHeight: Double) -> Double {
+        guard bottom < screenHeight, bottom > top else { return 1 }
+        return (screenHeight - top) / (bottom - top)
+    }
+
+    /// A rectangle scaled by `f` about the point (`x`, `y`).
+    public static func scaled(minX: Double, minY: Double, width: Double, height: Double, by f: Double, aboutX x: Double, y: Double) -> (minX: Double, minY: Double, width: Double, height: Double) {
+        (x + (minX - x) * f, y + (minY - y) * f, width * f, height * f)
     }
 }

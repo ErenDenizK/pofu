@@ -109,10 +109,37 @@ struct SkySetLayers: View {
         return CGRect(x: a.x, y: a.y, width: box.width * layerPose.scale, height: box.height * layerPose.scale)
     }
 
+    /// A layer's rectangle where the depth function leaves it short of a screen edge: the sky extended to
+    /// both, the cloud sea scaled about its top until its foot is the screen's (`DepthLayer.seaFit`).
+    private func covered(_ r: CGRect, of layer: SkySet.Layer) -> CGRect {
+        if layer.role == .sky {
+            let rows = DepthLayer.coveringSky(minY: r.minY, maxY: r.maxY, screenHeight: Double(size.height))
+            return CGRect(x: r.minX, y: rows.minY, width: r.width, height: rows.maxY - rows.minY)
+        }
+        guard DepthLayer.isSea(layer), let base = sky.layers.first(where: { DepthLayer.isSea($0) && !$0.id.contains("-map") }) else { return r }
+        let b = rect(pos: base.pos, size: base.size, k: base.k)
+        let f = DepthLayer.seaFit(top: b.minY, bottom: b.maxY, screenHeight: Double(size.height))
+        guard f > 1 else { return r }
+        let s = DepthLayer.scaled(minX: r.minX, minY: r.minY, width: r.width, height: r.height, by: f, aboutX: Double(size.width) / 2, y: b.minY)
+        return CGRect(x: s.minX, y: s.minY, width: s.width, height: s.height)
+    }
+
+    /// A master-pixel rectangle on screen through the camera of depth `k` (`DepthLayer`).
+    private func rect(pos: PlatePoint, size extent: PlatePoint, k: Double) -> CGRect {
+        let layerPose = DepthLayer.pose(pose, reference: reference, k: k)
+        let box = plate.worldBox(
+            master: PlateRect(minX: pos.x, minY: pos.y, maxX: pos.x + extent.x, maxY: pos.y + extent.y),
+            of: sky
+        )
+        let a = layerPose.project(WorldPoint(x: box.minX, y: box.minY), width: Double(size.width))
+        return CGRect(x: a.x, y: a.y, width: box.width * layerPose.scale, height: box.height * layerPose.scale)
+    }
+
     /// A layer's rectangle, stretched down or up to the screen's edge where the depth function leaves it
     /// short of one (`DepthLayer.stretch(of:)`).
     private func covered(_ r: CGRect, of layer: SkySet.Layer) -> CGRect {
-        let rows = DepthLayer.covering(minY: r.minY, maxY: r.maxY, screenHeight: Double(size.height), stretch: DepthLayer.stretch(of: layer))
+        let pivot = layer.window.map { r.minY + $0.top * r.height }
+        let rows = DepthLayer.covering(minY: r.minY, maxY: r.maxY, pivotY: pivot, screenHeight: Double(size.height), stretch: DepthLayer.stretch(of: layer))
         return CGRect(x: r.minX, y: rows.minY, width: r.width, height: rows.maxY - rows.minY)
     }
 

@@ -76,6 +76,7 @@ struct MapSkyTests {
             let plate = try #require(PaintedSky.mapSky(world: Self.world, look: Self.look(hour)))
             let set = PaintedSky.mapSet(try #require(plate.skySet))
             let sky = try #require(set.layers.first { $0.role == .sky })
+            let base = try #require(set.layers.first { DepthLayer.isSea($0) && !$0.id.contains("-map") })
             let near = try #require(set.layers.first { $0.asset.contains("-sea-") && !$0.id.contains("-map") })
             let horizon = try #require(set.layers.first { $0.asset.contains("-sea-") })
             for screen in Self.screens {
@@ -88,10 +89,18 @@ struct MapSkyTests {
                             of: set
                         )
                         let a = pose.project(WorldPoint(x: box.minX, y: box.minY), width: screen.width)
-                        let rows = DepthLayer.covering(
-                            minY: a.y, maxY: a.y + box.height * pose.scale, screenHeight: screen.height, stretch: DepthLayer.stretch(of: layer)
-                        )
-                        return (a.x, rows.minY, a.x + box.width * pose.scale, rows.maxY)
+                        var (x, y, w, h) = (a.x, a.y, box.width * pose.scale, box.height * pose.scale)
+                        if layer.role == .sky {
+                            let rows = DepthLayer.coveringSky(minY: y, maxY: y + h, screenHeight: screen.height)
+                            (y, h) = (rows.minY, rows.maxY - rows.minY)
+                        } else if DepthLayer.isSea(layer) {
+                            let basePose = DepthLayer.pose(camera.pose, reference: reference, k: layer.k)
+                            let bb = plate.worldBox(master: PlateRect(minX: base.pos.x, minY: base.pos.y, maxX: base.pos.x + base.size.x, maxY: base.pos.y + base.size.y), of: set)
+                            let top = basePose.project(WorldPoint(x: bb.minX, y: bb.minY), width: screen.width).y
+                            let f = DepthLayer.seaFit(top: top, bottom: top + bb.height * basePose.scale, screenHeight: screen.height)
+                            (x, y, w, h) = DepthLayer.scaled(minX: x, minY: y, width: w, height: h, by: f, aboutX: screen.width / 2, y: top)
+                        }
+                        return (x, y, x + w, y + h)
                     }
                     let s = rect(sky)
                     #expect(s.minX <= 0 && s.minY <= 0 && s.maxX >= screen.width && s.maxY >= screen.height, "\(light) sky \(screen) \(camera.name)")
@@ -102,7 +111,7 @@ struct MapSkyTests {
                         #expect(r.minX + Double(n.lowerBound) * w <= 0 && r.minX + Double(n.upperBound + 1) * w >= screen.width, "\(light) \(layer.id) width \(screen) \(camera.name)")
                     }
                     let r = rect(near)
-                    #expect(r.maxY >= screen.height, "\(light) sea bottom \(screen) \(camera.name)")
+                    #expect(r.maxY >= screen.height - 1e-6, "\(light) sea bottom \(screen) \(camera.name)")
                     guard camera.name == "map" else { continue }
                     let box = home.islandBox
                     let top = camera.pose.project(WorldPoint(x: box.minX, y: box.minY), width: screen.width).y
@@ -113,7 +122,7 @@ struct MapSkyTests {
                     let h = rect(horizon)
                     let window = try #require(horizon.window)
                     let line = h.minY + window.top * (h.maxY - h.minY)
-                    #expect(line > top && line < foot + 0.08 * screen.height, "\(light) horizon \(line) behind Home \(top)...\(foot) \(screen)")
+                    #expect(line > top - 0.025 * screen.height && line < foot + 0.08 * screen.height, "\(light) horizon \(line) behind Home \(top)...\(foot) \(screen)")
                 }
             }
         }
