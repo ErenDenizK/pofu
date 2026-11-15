@@ -24,12 +24,13 @@ Large job now: the asset system (#445), Wave 0 first.
 
 ## In flight
 
-1. Feel and world (#461): proofs 1-4 shown to the founder (v2 with the
-   island matte); his picks pending (defaults: near B, water c, one
-   camera b). Merged: #464 120 Hz direct tier, #467 pool and bloom.
-2. Art: pofu-art #65, #67 queued 104-108 (flow stone v2, emoji, icons,
-   near dressing, station erase); founder says "çalış". Music: later.
-Paused: #453 (glass to painted). UI grammar after #461's choices.
+1. World presentation v2 (Fable pass 2, #461 `world-presentation-v2.md`,
+   founder notes 32): proof round 3 running: R1 composition + R2 life,
+   R3 edges + R5 props (Sonnet); §11 facts (Haiku); round-3 Codex
+   manifests (pofu-art). R4 depth waits on Codex patch and dressing.
+   Founder's one choice: Map order (journey rising vs Home on top).
+2. Art: pofu-art queue 104-108 READY; founder says "çalış". Music later.
+Paused: #453 (glass to painted). UI grammar after the world choices.
 
 ## Next steps, in order
 
