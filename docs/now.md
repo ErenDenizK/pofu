@@ -8,12 +8,11 @@ history: [tracker.md](tracker.md). What changed for the player:
 
 **Goal:** a whole, polished build the founder judges as a user when he
 chooses to (Rehearsal days 1-21); no dates or cut line (founder 11-14).
-Large job now: the asset system (#445), Wave 0 first.
+Large job now: world presentation (spec #474); glass UI stays.
 
 **Updated:** 2026-11-15.
-**Founder last played on his phone:** 2026-11-05 (device check steps sent).
-**Founder log read up to:** 2026-11-12 (late night).
-**Route:** route-2026-11-14 (#442, Fable, not merged; superseded by feel-and-world #461): art lane, game lane, scout lane; up to three agents.
+**Founder last played on his phone:** 2026-11-14 (main 0cf03ca1).
+**Route:** Fable feel-and-world (#461) and world-presentation v2.
 
 ## Decided this session
 
