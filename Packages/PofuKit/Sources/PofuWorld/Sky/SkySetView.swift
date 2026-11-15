@@ -124,25 +124,6 @@ struct SkySetLayers: View {
         return CGRect(x: s.minX, y: s.minY, width: s.width, height: s.height)
     }
 
-    /// A master-pixel rectangle on screen through the camera of depth `k` (`DepthLayer`).
-    private func rect(pos: PlatePoint, size extent: PlatePoint, k: Double) -> CGRect {
-        let layerPose = DepthLayer.pose(pose, reference: reference, k: k)
-        let box = plate.worldBox(
-            master: PlateRect(minX: pos.x, minY: pos.y, maxX: pos.x + extent.x, maxY: pos.y + extent.y),
-            of: sky
-        )
-        let a = layerPose.project(WorldPoint(x: box.minX, y: box.minY), width: Double(size.width))
-        return CGRect(x: a.x, y: a.y, width: box.width * layerPose.scale, height: box.height * layerPose.scale)
-    }
-
-    /// A layer's rectangle, stretched down or up to the screen's edge where the depth function leaves it
-    /// short of one (`DepthLayer.stretch(of:)`).
-    private func covered(_ r: CGRect, of layer: SkySet.Layer) -> CGRect {
-        let pivot = layer.window.map { r.minY + $0.top * r.height }
-        let rows = DepthLayer.covering(minY: r.minY, maxY: r.maxY, pivotY: pivot, screenHeight: Double(size.height), stretch: DepthLayer.stretch(of: layer))
-        return CGRect(x: r.minX, y: rows.minY, width: r.width, height: rows.maxY - rows.minY)
-    }
-
     private func draw(_ layer: SkySet.Layer, in context: inout GraphicsContext, time: Double, scale: Double) {
         let r = rect(of: layer)
         let dy = SkyMotion.bob(layer.bob, time: time, scale: scale)
