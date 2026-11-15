@@ -28,9 +28,9 @@ Large job now: the asset system (#445), Wave 0 first.
    life (#471), R3 edges with a matting network, R5 props (#470, draft);
    §11 facts merged (#469). Fable looks at round 3 before the founder.
    R4 depth waits on Codex (110 patch, 107 dressing). Founder's choice:
-   Map order (journey rising vs Home on top).
-2. Art: pofu-art queue 104-111 READY (#65, #67, #68); founder says
-   "çalış". Music later.
+   Map order (journey rising vs Home on top). R4 elevation ~10.5 deg
+   (table 9.7, Çağlayan 12.3; pond 20 is not a circle; code's 17 wrong).
+2. Art: pofu-art 104-111 READY; founder says "çalış". Music later.
 Paused: #453 (glass to painted). UI grammar after the world choices.
 
 ## Next steps, in order
