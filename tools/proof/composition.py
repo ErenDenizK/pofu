@@ -80,6 +80,9 @@ def ref_world(rx: float, ry: float) -> tuple[float, float]:
     return L0[0] + (rx - A[0]) / S0, L0[1] + (ry - A[1]) / S0
 
 
+import os  # noqa: E402
+DRIFT_SCALE = float(os.environ.get("POFU_DRIFT_SCALE", "1.0"))   # a what-if for the life meter: every drift speed times this
+
 # ---- motion (section 3), off for stills -----------------------------------------------------------------------------
 
 class Motion:
@@ -90,7 +93,7 @@ class Motion:
         return amp * math.sin(2 * math.pi * self.t / period + phase) if self.on else 0.0
 
     def drift(self, speed: float) -> float:
-        return speed * self.t if self.on else 0.0
+        return speed * DRIFT_SCALE * self.t if self.on else 0.0
 
 
 # ---- layers ---------------------------------------------------------------------------------------------------------

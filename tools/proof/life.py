@@ -75,15 +75,15 @@ class Overlays:
         # three birds, 18 pt/s, wings beating about 1.3 Hz
         bl = np.zeros((H, W), np.float32)
         for i in range(3):
-            x = (-30 + 18.0 * (t - 1.0 - 0.7 * i) + 12 * i) * PT
+            x = (-30 + 18.0 * (t - 1.0 - 0.7 * i) + 55 * i) * PT
             if t < 1.0 + 0.7 * i or x > W + 60:
                 continue
             y = (170 + 22 * i + 5 * math.sin(2 * math.pi * t / 7.0 + i)) * PT
             flap = math.sin(2 * math.pi * 1.3 * t + i)
             wing, rise = 14 * PT, (0.55 * flap - 0.1) * 12 * PT
             pts = np.int32([[x - wing, y - rise], [x, y], [x + wing, y - rise]])
-            cv2.polylines(bl, [pts], False, 1.0, 4, cv2.LINE_AA)
-        rgb[...] = rgb * (1 - 0.8 * bl[..., None]) + np.float32([0.30, 0.32, 0.42]) * 0.8 * bl[..., None]
+            cv2.polylines(bl, [pts], False, 1.0, 3, cv2.LINE_AA)
+        rgb[...] = rgb * (1 - 0.6 * bl[..., None]) + np.float32([0.30, 0.32, 0.42]) * 0.6 * bl[..., None]
         # one wisp across Home's foot (Map only), 14 pt/s
         if self.kind == "map" and t > 1.5:
             wx = 40 + 14.0 * (t - 1.5)
