@@ -76,8 +76,7 @@ struct MapSkyTests {
             let plate = try #require(PaintedSky.mapSky(world: Self.world, look: Self.look(hour)))
             let set = PaintedSky.mapSet(try #require(plate.skySet))
             let sky = try #require(set.layers.first { $0.role == .sky })
-            let base = try #require(set.layers.first { DepthLayer.isSea($0) && !$0.id.contains("-map") })
-            let near = try #require(set.layers.first { $0.asset.contains("-sea-") && !$0.id.contains("-map") })
+            let near = try #require(set.layers.last { $0.asset.contains("-sea-") })
             let horizon = try #require(set.layers.first { $0.asset.contains("-sea-") })
             for screen in Self.screens {
                 for camera in try Self.cameras(width: screen.width, height: screen.height) {
@@ -89,18 +88,12 @@ struct MapSkyTests {
                             of: set
                         )
                         let a = pose.project(WorldPoint(x: box.minX, y: box.minY), width: screen.width)
-                        var (x, y, w, h) = (a.x, a.y, box.width * pose.scale, box.height * pose.scale)
+                        var (y, h) = (a.y, box.height * pose.scale)
                         if layer.role == .sky {
                             let rows = DepthLayer.coveringSky(minY: y, maxY: y + h, screenHeight: screen.height)
                             (y, h) = (rows.minY, rows.maxY - rows.minY)
-                        } else if DepthLayer.isSea(layer) {
-                            let basePose = DepthLayer.pose(camera.pose, reference: reference, k: layer.k)
-                            let bb = plate.worldBox(master: PlateRect(minX: base.pos.x, minY: base.pos.y, maxX: base.pos.x + base.size.x, maxY: base.pos.y + base.size.y), of: set)
-                            let top = basePose.project(WorldPoint(x: bb.minX, y: bb.minY), width: screen.width).y
-                            let f = DepthLayer.seaFit(top: top, bottom: top + bb.height * basePose.scale, screenHeight: screen.height)
-                            (x, y, w, h) = DepthLayer.scaled(minX: x, minY: y, width: w, height: h, by: f, aboutX: screen.width / 2, y: top)
                         }
-                        return (x, y, x + w, y + h)
+                        return (a.x, y, a.x + box.width * pose.scale, y + h)
                     }
                     let s = rect(sky)
                     #expect(s.minX <= 0 && s.minY <= 0 && s.maxX >= screen.width && s.maxY >= screen.height, "\(light) sky \(screen) \(camera.name)")
@@ -111,7 +104,8 @@ struct MapSkyTests {
                         #expect(r.minX + Double(n.lowerBound) * w <= 0 && r.minX + Double(n.upperBound + 1) * w >= screen.width, "\(light) \(layer.id) width \(screen) \(camera.name)")
                     }
                     let r = rect(near)
-                    #expect(r.maxY >= screen.height - 1e-6, "\(light) sea bottom \(screen) \(camera.name)")
+                    let seaFoot = r.minY + (try #require(near.window).bottom - (try #require(near.window)).bottomFade) * (r.maxY - r.minY)
+                    #expect(seaFoot >= screen.height, "\(light) sea bottom \(screen) \(camera.name)")
                     guard camera.name == "map" else { continue }
                     let box = home.islandBox
                     let top = camera.pose.project(WorldPoint(x: box.minX, y: box.minY), width: screen.width).y
@@ -144,7 +138,7 @@ struct MapSkyTests {
             let mid = try #require(set.layers.first(where: SkySet.isMidClouds))
             #expect(mid.window != nil)
             let sea = set.layers.filter { $0.asset.contains("-sea-") }
-            #expect(sea.count == PaintedSky.mapSeaStack.count + 1)
+            #expect(sea.count == PaintedSky.mapSeaStack.count + 1 + PaintedSky.mapSeaBelow.count)
             // Farthest first; under each band's fading top the band behind it is still whole.
             func band(_ l: SkySet.Layer) throws -> (top: Double, opaqueTop: Double, opaqueBottom: Double) {
                 let w = try #require(l.window)
@@ -208,8 +202,11 @@ struct MapSkyTests {
             }
             #expect(set.layers.first(where: SkySet.isMidClouds)?.window != nil, "\(light)")
             let sea = set.layers.filter { $0.asset.contains("-sea-") }
-            #expect(sea == map.layers.filter { $0.asset.contains("-sea-") }, "\(light)")
+            // The Map's sea is the stop's, its near band cropped above the hazy foot, and the rows below it.
+            let mapSea = map.layers.filter { $0.asset.contains("-sea-") }
+            #expect(sea.dropLast() == Array(mapSea.prefix(PaintedSky.mapSeaStack.count)), "\(light)")
             #expect(sea.count == PaintedSky.mapSeaStack.count + 1)
+            #expect(mapSea.count == PaintedSky.mapSeaStack.count + 1 + PaintedSky.mapSeaBelow.count)
         }
     }
 

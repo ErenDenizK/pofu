@@ -189,6 +189,14 @@ public enum PaintedSky {
         (0.9, 0.37), (0.72, 0.71), (0.57, 0.13), (0.45, 0.55), (0.35, 0.29), (0.27, 0.83), (0.21, 0.47),
     ]
     static let mapSeaOverlap = 60.0
+    /// The cloud sea below the near band on the Map: the painting's hazy foot is cropped off and copies of
+    /// the clean band lie under it instead, each nearer and larger (`scale`, at most 1.45: the sea texture is 0.6 of the master, so at the Map that is one texture
+    /// pixel per device pixel), slid along the tile (`slide`) so no two rows repeat, each
+    /// overlapping the one above by `mapSeaOverlap` of its own rows. They run well past the screen's foot
+    /// at every camera.
+    static let mapSeaBelow: [(scale: Double, slide: Double)] = [
+        (1.0, 0.31), (1.1, 0.64), (1.2, 0.09), (1.3, 0.52), (1.4, 0.77), (1.45, 0.22), (1.45, 0.43), (1.45, 0.88), (1.45, 0.16), (1.45, 0.59),
+    ]
     static let mapHorizonFade = 450.0
 
     /// Home's painted sky behind the Map and every flight, in place of the code sky: the same sky set as
@@ -240,7 +248,7 @@ public enum PaintedSky {
                 mid.window = window(layer, from: nil, to: mapMidBottom, topFade: 0, bottomFade: mapFade)
                 out.layers.append(mid)
             case .tile where layer.asset.contains("-sky-sea-"):
-                out.layers += seaStack(layer)
+                out.layers += seaStack(layer, below: isleScale != nil)
             default:
                 out.layers.append(layer)
             }
@@ -307,9 +315,9 @@ public enum PaintedSky {
 
     /// The cloud sea: its painted rows from `mapSeaTop` down, and above them the stack of its clean band,
     /// farthest first (drawn first, so a nearer row lies over a farther one's foot).
-    private static func seaStack(_ sea: SkySet.Layer) -> [SkySet.Layer] {
+    private static func seaStack(_ sea: SkySet.Layer, below: Bool) -> [SkySet.Layer] {
         var near = sea
-        near.window = window(sea, from: mapSeaTop, to: nil, topFade: mapFade, bottomFade: 0)
+        near.window = window(sea, from: mapSeaTop, to: below ? mapSeaBand.bottom : nil, topFade: mapFade, bottomFade: below ? mapFade : 0)
         var rows = [near]
         var bottom = mapSeaTop + mapFade + mapSeaOverlap
         let band = mapSeaBand
@@ -333,6 +341,28 @@ public enum PaintedSky {
             )
             rows.insert(copy, at: 0)
             bottom = y + (band.top - sea.pos.y) * f + (mapFade + mapSeaOverlap) * f
+        }
+        guard below else { return rows }
+        var edge = band.bottom
+        for (n, step) in mapSeaBelow.enumerated() {
+            let f = step.scale
+            var copy = sea
+            copy.id = "\(sea.id)-map-below\(n)"
+            // The copy's band top lies `mapFade + mapSeaOverlap` of its rows above the row above's foot.
+            let top = edge - (mapFade + mapSeaOverlap) * f
+            copy.pos = PlatePoint(x: sea.pos.x - step.slide * sea.size.x * f, y: top - (band.top - sea.pos.y) * f)
+            copy.size = PlatePoint(x: sea.size.x * f, y: sea.size.y * f)
+            copy.tileWidth = sea.tileWidth.map { $0 * f }
+            copy.drift = sea.drift * f
+            copy.bob = nil
+            copy.window = SkySet.Window(
+                top: (band.top - sea.pos.y) / sea.size.y,
+                bottom: (band.bottom - sea.pos.y) / sea.size.y,
+                topFade: mapFade / sea.size.y,
+                bottomFade: mapFade / sea.size.y
+            )
+            rows.append(copy)
+            edge = top + (band.bottom - band.top) * f
         }
         return rows
     }

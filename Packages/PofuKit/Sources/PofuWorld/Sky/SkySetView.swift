@@ -110,18 +110,13 @@ struct SkySetLayers: View {
     }
 
     /// A layer's rectangle where the depth function leaves it short of a screen edge: the sky extended to
-    /// both, the cloud sea scaled about its top until its foot is the screen's (`DepthLayer.seaFit`).
+    /// both edges (the cloud sea's rows reach the foot by themselves, `PaintedSky.mapSeaBelow`).
     private func covered(_ r: CGRect, of layer: SkySet.Layer) -> CGRect {
         if layer.role == .sky {
             let rows = DepthLayer.coveringSky(minY: r.minY, maxY: r.maxY, screenHeight: Double(size.height))
             return CGRect(x: r.minX, y: rows.minY, width: r.width, height: rows.maxY - rows.minY)
         }
-        guard DepthLayer.isSea(layer), let base = sky.layers.first(where: { DepthLayer.isSea($0) && !$0.id.contains("-map") }) else { return r }
-        let b = rect(pos: base.pos, size: base.size, k: base.k)
-        let f = DepthLayer.seaFit(top: b.minY, bottom: b.maxY, screenHeight: Double(size.height))
-        guard f > 1 else { return r }
-        let s = DepthLayer.scaled(minX: r.minX, minY: r.minY, width: r.width, height: r.height, by: f, aboutX: Double(size.width) / 2, y: b.minY)
-        return CGRect(x: s.minX, y: s.minY, width: s.width, height: s.height)
+        return r
     }
 
     private func draw(_ layer: SkySet.Layer, in context: inout GraphicsContext, time: Double, scale: Double) {
