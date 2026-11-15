@@ -1,0 +1,1 @@
+Changed: the Map reads as a journey: Home sits low and in front, Koke and Çağlayan rise behind it in the sky, a slot not yet open holds a cloud tower (veiled for the next island), the far isles and the whale sit in a lane above the cloud sea's horizon, and the islands bob gently on the Map.
