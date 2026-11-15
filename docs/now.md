@@ -31,8 +31,7 @@ Large job now: the asset system (#445), Wave 0 first.
    locked. Key-colour pilot failed (#79): network matte stays; next, a
    mist-clear edit of the real il1/il2. World pilots 107-111 in review.
 2. Art: Codex delivered 105-113; flow stone v2 renumbered 114 (#80).
-Disk tight (5.8 GB; /swapfile 8 GB, rm blocked): fewer agents.
-Paused: #453 (glass to painted). UI grammar after the world choices.
+Disk 5.8 GB (/swapfile, rm blocked). Paused: #453; UI grammar after.
 
 ## Next steps, in order
 
