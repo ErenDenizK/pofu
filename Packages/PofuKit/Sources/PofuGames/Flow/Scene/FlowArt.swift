@@ -82,10 +82,10 @@ final class FlowTextures {
         return found
     }
 
-    func image(_ base: String) -> UIImage? { images(base).first }
+    func art(_ base: String) -> UIImage? { images(base).first }
 
     /// The lawn of method B: the painted lawn, or the grass bank picture until the lawn is painted.
-    private var lawnImage: UIImage? { image(FlowArtSlot.lawn) ?? image(FlowArtSlot.grass) }
+    private var lawnImage: UIImage? { art(FlowArtSlot.lawn) ?? art(FlowArtSlot.grass) }
 
     /// Whether method B can lay a lawn at all.
     var hasLawn: Bool { lawnImage != nil }
@@ -519,7 +519,7 @@ final class FlowTextures {
         context.setFillColor(FlowPalette.grooveDark.cgColor)
         context.fill(bounds)
         context.translateBy(x: 2.4, y: 2.4)
-        if let bed = image(FlowArtSlot.channelBed) {
+        if let bed = art(FlowArtSlot.channelBed) {
             // The seamless channel bed fills the floor of the carved mask.
             context.addPath(path)
             context.setLineWidth(grooveWidth)
@@ -535,10 +535,10 @@ final class FlowTextures {
         context.restoreGState()
         if kind == .source || kind == .mouth {
             let middle = CGPoint(x: cell / 2, y: cell / 2)
-            if let art = image(kind == .source ? FlowArtSlot.spring : FlowArtSlot.outlet) {
+            if let spring = art(kind == .source ? FlowArtSlot.spring : FlowArtSlot.outlet) {
                 // The painted spring or outlet sits on the keycap, centred on the channel's end.
                 let side = cell * 0.9
-                art.draw(in: CGRect(x: middle.x - side / 2, y: middle.y - side / 2, width: side, height: side))
+                spring.draw(in: CGRect(x: middle.x - side / 2, y: middle.y - side / 2, width: side, height: side))
             } else {
                 let ring = grooveWidth * (kind == .source ? 1.2 : 1.1)
                 context.setFillColor((kind == .source ? FlowPalette.moss : FlowPalette.stoneEdge).cgColor)
@@ -568,10 +568,10 @@ final class FlowTextures {
     private func drawWater(_ context: CGContext, kind: FlowTileKind, openings: FlowDirection) {
         let path = channelPath(openings)
         let middle = CGPoint(x: cell / 2, y: cell / 2)
-        if let texture = image(FlowArtSlot.water) {
+        if let texture = art(FlowArtSlot.water) {
             // The painted water fills the carved channel from a seamless texture. A painted spring or outlet
             // is not covered by a drawn ball.
-            let hasBall = (kind == .source || kind == .mouth) && image(kind == .source ? FlowArtSlot.spring : FlowArtSlot.outlet) == nil
+            let hasBall = (kind == .source || kind == .mouth) && art(kind == .source ? FlowArtSlot.spring : FlowArtSlot.outlet) == nil
             let body = CGMutablePath()
             body.addPath(path.copy(strokingWithWidth: grooveWidth * 0.92, lineCap: .round, lineJoin: .round, miterLimit: 10))
             if hasBall {
