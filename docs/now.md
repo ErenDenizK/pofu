@@ -10,7 +10,7 @@ history: [tracker.md](tracker.md). What changed for the player:
 chooses to (Rehearsal days 1-21); no dates or cut line (founder 11-14).
 Large job now: the asset system (#445), Wave 0 first.
 
-**Updated:** 2026-11-14 (afternoon).
+**Updated:** 2026-11-15.
 **Founder last played on his phone:** 2026-11-05 (device check steps sent).
 **Founder log read up to:** 2026-11-12 (late night).
 **Route:** [route-2026-11-14-day](research/route-2026-11-14-day.md)
@@ -23,16 +23,15 @@ Large job now: the asset system (#445), Wave 0 first.
 
 ## In flight
 
-1. Feel and world (#461, founder answers in founder-input 28): proof 1
-   station looks, proof 2 near and mid (Sonnet, scripts); the 120 Hz
-   direct tier (Opus, `feat/direct-tier-120`). Next: proofs 3, 4; the
-   sunflower (skip pots); the flow board's painted bed.
-2. Art: 32 pofu-art PRs await review; pilots #40-44 under review (flow
-   stone #41 first). Queue step 6 paused (#64). Codex waits for new
-   Demand rows: flow pieces after the stone pick, near-dressing pilot
-   after proof 2. Music: not started (founder, later).
-Paused: Wave 0 app-layer glass to painted (#453 draft). UI grammar runs
-after #461's choices (brief approved).
+1. Feel and world (#461): proofs 1-4 made (#463, #465, #466; outputs in
+   scratchpad/proofs); Fable looks at them before the founder. 120 Hz
+   direct tier merged (#464). Quick wins: sunflower and flow bed
+   (`feat/quick-wins-bloom-flowbed`). #465/#466 Python tools CI fails.
+2. Art: pilots #40-44 reviewed; pofu-art #65 queued batches 104-106
+   (flow stone v2, emoji, duo icons); founder may say "çalış". Step 6
+   paused (#64). Near-dressing pilot after proof 2. Music: later.
+Paused: Wave 0 app-layer glass to painted (#453 draft). UI grammar after
+#461's choices.
 
 ## Next steps, in order
 
