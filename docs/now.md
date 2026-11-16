@@ -39,8 +39,8 @@ chooses to (days 1-21); no dates (11-14). Now: world presentation (#474).
    #493 N6, #494-#498 tea stall, rail, icons, beds; #501 games, #505 pond.
 4. UI grammar #490 open (docs), waits on his answers with #503.
 5. Codex: 132, 133, 135, 126 v2 merged (cloud fit: crossfade floor-mid,
-   grade the warm kit only, Koke keeps bed-round v1). Flow fit builder on
-   `feat/flow-kit-v2-fit`. Queue: 136 lawn, 137 ladder, S2 v3, S3.
+   grade the warm kit only, Koke keeps bed-round v1). Flow fit #506 green,
+   passes at 1:1 but the mouth-to-spout water seam (fix, push 2). Queue: 136 lawn, 137 ladder, S2 v3, S3.
 Merged: #475-#489, #491-#502, #505; pofu-art #81, #91-#120.
 
 ## Next (night plan)
