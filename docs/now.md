@@ -17,8 +17,7 @@ chooses to (days 1-21); no dates (11-14). Now: world presentation (#474).
 
 - Merges that carry out a plan he approved (pofu-art queue PRs too) need
   no question; merge on review, tell him after (founder-input 31).
-- Night plan and Codex queue approved in advance (founder-input 35).
-- Disk floor for a new builder: 5 GB (was 8; shared builds fit).
+- Night plan and Codex queue approved in advance (founder-input 35). Disk floor 5 GB.
 
 ## In flight
 
@@ -33,8 +32,9 @@ chooses to (days 1-21); no dates (11-14). Now: world presentation (#474).
 2. WP10 compositor merged (#500): looks sort with Pofu by footY, Map
    snapshot of the built island, 3.2 s reveal. Left: `mapisle` assets
    (night 8-9 need them), orphan `world-home-base-day-5`, reveal burst.
-   WP11 near lens merged (#502; 120 Hz pinch unmeasured, device check).
-   WP13 region shaders (water) running, `feat/region-shaders`; WP12 waits on #503.
+   WP11 near lens merged (#502; pinch at 120 Hz: device check).
+   WP13 water #504 (pond only: Home has no falls, no sway/emissive mask);
+   4th push allowed for a night lantern fringe. WP12 waits on #503.
 3. Merged 11-16: #480 one sky, #488 Hop hour, #489 flow rocks + lip, #491
    cloud floor, #492 props, #493 N6, #494 + #497 tea stall looks, #495
    rail (Home mid, free near), #496 icons, #498 beds + back, #501 games.
@@ -57,4 +57,4 @@ A9 art backlog; §8.6 pass. Sefer builders V1-V5 once he says yes.
 ## Open with the founder
 
 - Picks: #503's 6 (yes to all), flow A/B (B), 5 UI grammar Qs, N6 (yes).
-- Device check (11-13) answers pending. Stale: roadmap.md, tracker.md.
+- Device: 11-13 answers; pinch smooth? pond frame rate. Stale: roadmap, tracker.
