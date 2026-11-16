@@ -8,8 +8,8 @@ import SwiftUI
 /// The cloud floor and its life on the Map (WP9 of docs/design/world-presentation-build-spec.md, with pofu-art
 /// batch 126's cut-out forms; tools/plate/cloud_kit.py ships them): a bed of cloud under each island so it
 /// rests in the sea instead of hanging in bare sky, single puffs in the sky between the horizon and the
-/// wonder islands at a depth of their own (k 0.6, hazier), a low mound on the horizon and two wisps low on the
-/// screen (k 1.1). The pieces sit behind the islands, over the code-free painted sea. Where each stands is
+/// wonder islands at a depth of their own (k 0.6, hazier), a low mound on the horizon (the two low wisps wait for art:
+/// the kit has no form left that is not another piece's). The pieces sit behind the islands, over the code-free painted sea. Where each stands is
 /// data (`spots`, reference points at the Map's rest camera); how each moves is `motion` and `drift`: pure
 /// functions of the time, every period apart from the others, every travel inside the limits of v2 section 3
 /// (`SkyMotionLimitsTests`). Pure here; `CloudFloorLayer` draws it.
@@ -103,29 +103,31 @@ public enum CloudFloor {
         public var phase: Double
     }
 
-    /// The sky's single puffs, the horizon's mound and the front wisps. The periods are all different and
+    /// The sky's single puffs and the horizon's mound, each a different form of the kit (the kit has four
+    /// puffs and no wisp form that is not another piece's: the spec's two wisps wait for the volume jobs, so no
+    /// silhouette repeats on one screen). The periods are all different and
     /// share no small multiple; the travels follow v2 section 3 (puffs 2 to 5 pt/s breathing 1.5 % over
     /// 14 to 20 s, the floors' swells 3 to 8 pt over 11 to 23 s).
     public static let spots: [Spot] = [
-        Spot(id: "puff-1", form: "puff-big", kind: .puff, x: 0.16, y: 338, width: 74, k: 0.6, drift: 2.2, swell: 2.0, swellPeriod: 13.0, breathe: 0.015, breathePeriod: 16.4, phase: 0.10),
+        Spot(id: "puff-1", form: "puff-big", kind: .puff, x: 0.58, y: 312, width: 74, k: 0.6, drift: 2.2, swell: 2.0, swellPeriod: 13.0, breathe: 0.015, breathePeriod: 16.4, phase: 0.10),
         Spot(id: "puff-2", form: "puff-small-a", kind: .puff, x: 0.82, y: 392, width: 52, k: 0.6, drift: 3.1, swell: 2.0, swellPeriod: 15.7, breathe: 0.015, breathePeriod: 19.7, phase: 0.45),
-        Spot(id: "puff-3", form: "puff-small-b", kind: .puff, x: 0.50, y: 358, width: 44, k: 0.6, drift: 2.6, swell: 1.5, swellPeriod: 12.4, breathe: 0.012, breathePeriod: 14.9, phase: 0.72),
+        Spot(id: "puff-3", form: "puff-small-b", kind: .puff, x: 0.36, y: 368, width: 44, k: 0.6, drift: 2.6, swell: 1.5, swellPeriod: 12.4, breathe: 0.012, breathePeriod: 14.9, phase: 0.72),
         Spot(id: "puff-4", form: "puff-small-c", kind: .puff, x: 0.30, y: 430, width: 46, k: 0.6, drift: 3.8, swell: 1.5, swellPeriod: 12.1, breathe: 0.012, breathePeriod: 16.1, phase: 0.28),
-        Spot(id: "puff-5", form: "puff-small-a", kind: .puff, x: 0.70, y: 78, width: 40, k: 0.6, drift: 4.4, swell: 1.5, swellPeriod: 10.3, breathe: 0.010, breathePeriod: 18.5, phase: 0.90),
-        Spot(id: "puff-6", form: "puff-small-c", kind: .puff, x: 0.12, y: 120, width: 38, k: 0.6, drift: 2.9, swell: 1.5, swellPeriod: 8.9, breathe: 0.010, breathePeriod: 14.3, phase: 0.60),
         Spot(id: "mound", form: "tower-c", kind: .mound, x: 0.74, y: 458, width: 120, k: 0.5, drift: 0, swell: 3.0, swellPeriod: 19.3, breathe: 0.015, breathePeriod: 20.0, phase: 0.35),
-        Spot(id: "wisp-1", form: "bed-wide", kind: .wisp, x: 0.84, y: 772, width: 190, k: 1.1, drift: 4.6, swell: 5.0, swellPeriod: 15.3, breathe: 0, breathePeriod: 0, phase: 0.15),
-        Spot(id: "wisp-2", form: "bed-wide", kind: .wisp, x: 0.18, y: 842, width: 230, k: 1.1, drift: 3.4, swell: 5.0, swellPeriod: 22.7, breathe: 0, breathePeriod: 0, phase: 0.55),
     ]
 
-    /// The bed under an island: this wide over the island's box, its middle this far (a share of the box's
+    /// The cool grade every piece is drawn in (a multiply): the kit's warm whites sit on the Map's lilac sea.
+    public static let coolTint = (r: 0.93, g: 0.945, b: 1.0)
+
+    /// The bed under an island (Home's `bed-wide`, Köke's `bed-round`, the others' `hill-cap`, so no two beds
+    /// are one picture): this wide over the island's box, its middle this far (a share of the box's
     /// height) above the box's foot, so the island's belly sits in the cloud and the bed shows round it.
-    public static let bedWidth = 1.5
+    public static let bedWidth = 1.4
     public static let bedLift = 0.1
     /// Each bed's swell (points, seconds), and its phase: three different, 3 to 8 pt over 11 to 23 s.
     static let bedSwells: [(amp: Double, period: Double, phase: Double)] = [(5.0, 17.0, 0.0), (3.0, 11.0, 0.33), (8.0, 23.0, 0.66)]
 
-    /// The beds, the mound, the puffs and the wisps for the Map at the stop `stop` (the camera at rest) and
+    /// The beds, the mound and the puffs for the Map at the stop `stop` (the camera at rest) and
     /// `reference` (Home's stop, the depth's reference), both in reference points (402 x 874): Home's bed
     /// first, then those of the open islands and of the tower standing; a slot not yet announced has none.
     public static func pieces(homeBox: WorldBox, slots: [MapSlots.Slot], stop: CameraPose, reference: CameraPose) -> [Piece] {
@@ -143,7 +145,7 @@ public enum CloudFloor {
         }
         bed("home", form: "bed-wide", box: homeBox, n: 0)
         for (n, slot) in slots.enumerated() where slot.state == .island || slot.showsTower {
-            bed(slot.id, form: "bed-round", box: slot.state == .island ? slot.box : slot.tower, n: n + 1)
+            bed(slot.id, form: slot.id == IslandID.koke.rawValue ? "bed-round" : "hill-cap", box: slot.state == .island ? slot.box : slot.tower, n: n + 1)
         }
         for s in spots {
             guard forms[s.form] != nil else { continue }
@@ -230,6 +232,7 @@ struct CloudFloorLayer: View {
                 let rect = CGRect(x: left + offset.width, y: c.y - h / 2 + m.dy * unit + offset.height, width: w, height: h)
                 var layer = context
                 layer.opacity = piece.opacity
+                layer.addFilter(.colorMultiply(Color(red: CloudFloor.coolTint.r, green: CloudFloor.coolTint.g, blue: CloudFloor.coolTint.b)))
                 layer.draw(layer.resolve(Image(form.asset, bundle: .module).interpolation(.high)), in: rect)
             }
         }
