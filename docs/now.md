@@ -39,9 +39,10 @@ chooses to (days 1-21); no dates (11-14). Now: world presentation (#474).
    cloud floor, #492 props, #493 N6, #494 + #497 tea stall looks, #495
    rail (Home mid, free near), #496 icons, #498 beds + back, #501 games.
 4. UI grammar #490 open (docs), waits on his answers with #503.
-5. Codex delivered 132, 133, 134 (pilot A), 135, 126 v2: three reviewers
-   (134; 135 + 132; 133 + 126). Queue: S2 clouds, S3 visitors; 129 held.
-Merged: #475-#489, #491-#502, #505; pofu-art #81, #91-#113.
+5. Codex: 132, 133, 135, 126 v2 merged (cloud fit: crossfade floor-mid,
+   grade the warm kit only, Koke keeps bed-round v1). Flow fit builder on
+   `feat/flow-kit-v2-fit`. 134 in review. Queue: 136 lawn, S2 v3, S3; 129 held.
+Merged: #475-#489, #491-#502, #505; pofu-art #81, #91-#119.
 
 ## Next (night plan)
 A9 art backlog; §8.6 pass. Sefer V1-V5 and WP12 once he says yes.
