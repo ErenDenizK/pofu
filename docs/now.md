@@ -22,25 +22,25 @@ chooses to (days 1-21); no dates (11-14). Now: world presentation (#474).
 
 ## In flight
 
-1. #497 stall looks at stages 3,4,6,7,8 (0,1,2,5 keep the painted stall:
-   art): rebase onto WP7 and fix stage 8's visible patch, last push.
-2. Builder `fix/cloud-beds-back-control`: beds graded to the lilac sea;
-   back control bottom-left as the data says.
+1. WP10 compositor (Opus, `feat/plate-compositor`), scoped: data-driven
+   over `stations`; only the tea stall has looks (bases at stages 3,4,6,7).
+2. #498 cloud beds graded lilac; back control left at near only (data);
+   CI re-run of a flaky growth frame test, then merge.
 3. Merged today: #480 mattes + one sky (night L1/L2 legacy), #488 Hop
    hour, #489 flow rocks + lip, #491 WP9 cloud floor (Map; floor tiles,
    wisps need Codex 133), #492 WP5 props, #493 N6, #494 WP8 tea stall,
    #495 WP7 rail (Home is mid, free near; near contact shadow faint),
-   #496 icons (breath keeps old glyph).
+   #496 icons (breath keeps old glyph), #497 stall at stages 3,4,6,7
+   (0,1,2,5,8 keep the painted stall: art).
 4. UI grammar #490 open (docs): world painted, screen native glass. No app
    change until the founder has seen it.
 5. Codex queue: 132 board edge, 133 cloud floor, then S1 (129 looks, edited
    so each look steps outside the last, pofu-art #108), S2 (126 v2/v3).
-Merged: #475-#489, #491-#496; pofu-art #81, #91-#109.
+Merged: #475-#489, #491-#497; pofu-art #81, #91-#109.
 
 ## Next steps, in order (night plan)
 
-1. WP10 compositor (WP5, WP7, WP8 in); then WP12 reveals, WP11 near
-   lens, WP13 water. A9; §8.6.
+1. WP12 reveals, WP11 near lens, WP13 water (spec order). A9; §8.6.
 
 ## Desks
 
