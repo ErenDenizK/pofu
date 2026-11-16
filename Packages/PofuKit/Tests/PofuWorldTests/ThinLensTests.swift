@@ -142,4 +142,22 @@ struct ThinLensTests {
         #expect(NearLayers.groundRow(1200, lipRow: lip) == lip)
         #expect(abs(NearLayers.decode(NearLayers.encode(row: 845)) - 845) < 1e-9)
     }
+
+    @Test func featherSpreadsAnEdgeAndKeepsTheRowUnderIt() {
+        // A standing thing's share (1 in the left half) and its row times the share (0.4).
+        let w = 12, h = 5
+        var share = (0..<(w * h)).map { $0 % w < 6 ? 1.0 : 0 }
+        var rowShare = share.map { $0 * 0.4 }
+        NearLayers.feather(&share, width: w, height: h, radius: 2)
+        NearLayers.feather(&rowShare, width: w, height: h, radius: 2)
+        for y in 0..<h {
+            let line = Array(share[(y * w)..<(y * w + w)])
+            #expect(abs(line[0] - 1) < 1e-9 && abs(line[w - 1]) < 1e-9)
+            #expect(zip(line, line.dropFirst()).allSatisfy { $0 >= $1 }, "falls off monotonically")
+            #expect(line[5] > 0.5 && line[6] < 0.5 && line[3] < 1 && line[8] > 0)
+            for x in 0..<w where line[x] > 1e-6 {
+                #expect(abs(rowShare[y * w + x] / line[x] - 0.4) < 1e-9)
+            }
+        }
+    }
 }

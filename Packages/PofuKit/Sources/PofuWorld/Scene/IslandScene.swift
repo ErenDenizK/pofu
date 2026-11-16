@@ -2108,7 +2108,7 @@ private struct PofuLayer<Bubble: View>: View {
                         .position(x: feet.x, y: feet.y - CGFloat(drawn))
                         .opacity(painted)
                     // Close to him the pad spreads thin over a soft lawn: it deepens toward near's rest.
-                    ContactPad(width: Self.artWidth * drawn, light: pofuLight, strength: 1 + 0.9 * nearContact)
+                    ContactPad(width: Self.artWidth * drawn, light: pofuLight, strength: 1 + 0.9 * nearContact, near: nearContact)
                         .position(x: feet.x, y: feet.y - CGFloat(drawn))
                         .opacity(painted)
                 }

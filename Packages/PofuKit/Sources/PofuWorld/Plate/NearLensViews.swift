@@ -15,24 +15,49 @@ extension EnvironmentValues {
 /// any colour decoding of the texture (the plate's corner is sky, never sampled for the island).
 @MainActor
 enum NearDepthTexture {
-    private struct Key: Hashable {
+    struct Key: Hashable, Sendable {
         var light: String
         var stage: Int
+
+        init(_ plate: HomePlate) {
+            light = plate.light
+            stage = plate.stage
+        }
     }
 
     private static var cache: [Key: Image] = [:]
 
-    static func image(_ plate: HomePlate) -> Image? {
-        let key = Key(light: plate.light, stage: plate.stage)
+    /// The texture if it is made.
+    static func cached(_ plate: HomePlate) -> Image? {
+        cache[Key(plate)]
+    }
+
+    /// The texture, made off the main thread the first time (a state's plate shows at mid first, so it
+    /// is ready before the camera comes close).
+    static func load(_ plate: HomePlate) async -> Image? {
+        let key = Key(plate)
         if let hit = cache[key] { return hit }
-        guard let near = plate.plate.near, let cg = render(plate, lipRow: near.lipRow) else { return nil }
+        guard let near = plate.plate.near else { return nil }
+        let lip = near.lipRow
+        guard let made = await Task.detached(priority: .utility, operation: { render(plate, lipRow: lip) }).value,
+              let provider = CGDataProvider(data: Data(made.pixels) as CFData),
+              let cg = CGImage(width: made.width, height: made.height, bitsPerComponent: 8, bitsPerPixel: 32, bytesPerRow: made.width * 4,
+                               space: CGColorSpaceCreateDeviceRGB(), bitmapInfo: CGBitmapInfo(rawValue: CGImageAlphaInfo.noneSkipLast.rawValue),
+                               provider: provider, decode: nil, shouldInterpolate: true, intent: .defaultIntent)
+        else { return nil }
         let image = Image(decorative: cg, scale: 1)
         if cache.count > 4 { cache.removeAll() }
         cache[key] = image
         return image
     }
 
-    private static func render(_ plate: HomePlate, lipRow: Double) -> CGImage? {
+    private struct Pixels: Sendable {
+        var width: Int
+        var height: Int
+        var pixels: [UInt8]
+    }
+
+    private nonisolated static func render(_ plate: HomePlate, lipRow: Double) -> Pixels? {
         let k = NearLayers.textureScale
         let size = plate.plate.plateSize
         let w = Int((size.width * k).rounded()), h = Int((size.height * k).rounded())
@@ -69,12 +94,14 @@ enum NearDepthTexture {
         // The calibration texel.
         ctx.setFillColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
         ctx.fill(CGRect(x: 0, y: 0, width: step, height: step))
-        return ctx.makeImage()
+        guard let data = ctx.data else { return nil }
+        let bytes = data.bindMemory(to: UInt8.self, capacity: w * h * 4)
+        return Pixels(width: w, height: h, pixels: Array(UnsafeBufferPointer(start: bytes, count: w * h * 4)))
     }
 
     /// Two box passes each way over green (the share) and over red weighted by it (normalised), so the
     /// share falls off softly and the row under a soft edge stays the standing thing's.
-    private static func feather(_ px: UnsafeMutablePointer<UInt8>, width w: Int, height h: Int, radius: Int) {
+    private nonisolated static func feather(_ px: UnsafeMutablePointer<UInt8>, width w: Int, height h: Int, radius: Int) {
         guard radius > 0 else { return }
         let n = w * h
         var share = [Double](repeating: 0, count: n), rowShare = [Double](repeating: 0, count: n)
@@ -83,27 +110,8 @@ enum NearDepthTexture {
             share[i] = g
             rowShare[i] = Double(px[i * 4]) / 255 * g
         }
-        func box(_ v: inout [Double]) {
-            var out = [Double](repeating: 0, count: n)
-            for _ in 0..<2 {
-                for y in 0..<h {
-                    for x in 0..<w {
-                        var sum = 0.0, count = 0.0
-                        for dx in -radius...radius where (0..<w).contains(x + dx) { sum += v[y * w + x + dx]; count += 1 }
-                        out[y * w + x] = sum / count
-                    }
-                }
-                for y in 0..<h {
-                    for x in 0..<w {
-                        var sum = 0.0, count = 0.0
-                        for dy in -radius...radius where (0..<h).contains(y + dy) { sum += out[(y + dy) * w + x]; count += 1 }
-                        v[y * w + x] = sum / count
-                    }
-                }
-            }
-        }
-        box(&share)
-        box(&rowShare)
+        NearLayers.feather(&share, width: w, height: h, radius: radius)
+        NearLayers.feather(&rowShare, width: w, height: h, radius: radius)
         for i in 0..<n where share[i] > 1e-3 {
             px[i * 4] = UInt8(min(max(rowShare[i] / share[i], 0), 1) * 255)
             px[i * 4 + 1] = UInt8(min(max(share[i], 0), 1) * 255)
@@ -137,31 +145,44 @@ struct NearLensLevels: ViewModifier {
     let plate: HomePlate
     let size: CGSize
 
+    /// The state's depth rows, once made (`NearDepthTexture.load`).
+    @State private var depth: Image?
+
     /// Wider than the largest blur reaches.
     static let margin = 32.0
 
     func body(content: Content) -> some View {
-        if let frame, frame.levels != [0], WorldShaders.isAvailable, let depth = NearDepthTexture.image(plate) {
-            let m = Self.margin
-            let plateSize = CGSize(width: plate.plate.plateSize.width, height: plate.plate.plateSize.height)
-            let levels = frame.levels
-            ZStack(alignment: .topLeading) {
-                ForEach(levels, id: \.self) { level in
-                    let radius = BlurLevels.radii[level]
-                    content
-                        .offset(x: CGFloat(m), y: CGFloat(m))
-                        .frame(width: size.width + CGFloat(2 * m), height: size.height + CGFloat(2 * m), alignment: .topLeading)
-                        .blur(radius: CGFloat(radius), opaque: false)
-                        .colorEffect(WorldShaders.lensLevel(level, frame: frame, depth: depth, plateSize: plateSize, shift: m))
-                        .offset(x: CGFloat(-m), y: CGFloat(-m))
-                        .blendMode(level == levels.first ? .normal : .plusLighter)
-                }
+        Group {
+            if let frame, frame.levels != [0], WorldShaders.isAvailable, let depth = NearDepthTexture.cached(plate) ?? self.depth {
+                levels(content, frame: frame, depth: depth)
+            } else {
+                content
             }
-            .frame(width: size.width, height: size.height, alignment: .topLeading)
-            .compositingGroup()
-        } else {
-            content
         }
+        .task(id: NearDepthTexture.Key(plate)) {
+            if WorldShaders.isAvailable, plate.plate.near != nil {
+                depth = await NearDepthTexture.load(plate)
+            }
+        }
+    }
+
+    private func levels(_ content: Content, frame: NearLensFrame, depth: Image) -> some View {
+        let m = Self.margin
+        let plateSize = CGSize(width: plate.plate.plateSize.width, height: plate.plate.plateSize.height)
+        let levels = frame.levels
+        return ZStack(alignment: .topLeading) {
+            ForEach(levels, id: \.self) { level in
+                content
+                    .offset(x: CGFloat(m), y: CGFloat(m))
+                    .frame(width: size.width + CGFloat(2 * m), height: size.height + CGFloat(2 * m), alignment: .topLeading)
+                    .blur(radius: CGFloat(BlurLevels.radii[level]), opaque: false)
+                    .colorEffect(WorldShaders.lensLevel(level, frame: frame, depth: depth, plateSize: plateSize, shift: m))
+                    .offset(x: CGFloat(-m), y: CGFloat(-m))
+                    .blendMode(level == levels.first ? .normal : .plusLighter)
+            }
+        }
+        .frame(width: size.width, height: size.height, alignment: .topLeading)
+        .compositingGroup()
     }
 }
 

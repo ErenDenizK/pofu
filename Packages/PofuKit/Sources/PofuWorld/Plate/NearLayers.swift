@@ -84,6 +84,31 @@ public enum NearLayers {
     /// A standing thing's edge feathers over this many texels (4 plate pixels each) of box blur, twice:
     /// about the cap's radius at near's rest, so a blurred thing in front never shows its outline.
     public static let featherTexels = 2
+
+    /// Two box passes each way over a `width` x `height` field, in place: a sliding window, linear in
+    /// the field's size (cheap enough for the main thread in a debug build). The window is cut at the
+    /// border and averages what it covers.
+    public static func feather(_ v: inout [Double], width w: Int, height h: Int, radius: Int) {
+        guard radius > 0, w > 0, h > 0, v.count == w * h else { return }
+        var line = [Double](repeating: 0, count: max(w, h))
+        func pass(count: Int, lines: Int, index: (Int, Int) -> Int) {
+            for l in 0..<lines {
+                for i in 0..<count { line[i] = v[index(l, i)] }
+                var sum = 0.0
+                for i in 0..<min(radius, count) { sum += line[i] }
+                for i in 0..<count {
+                    if i + radius < count { sum += line[i + radius] }
+                    if i - radius - 1 >= 0 { sum -= line[i - radius - 1] }
+                    let lo = max(i - radius, 0), hi = min(i + radius, count - 1)
+                    v[index(l, i)] = sum / Double(hi - lo + 1)
+                }
+            }
+        }
+        for _ in 0..<2 {
+            pass(count: w, lines: h) { y, x in y * w + x }
+            pass(count: h, lines: w) { x, y in y * w + x }
+        }
+    }
 }
 
 /// The lens on screen for one frame of a plate (WP11): the thin lens, and how plate pixels map to

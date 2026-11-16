@@ -441,6 +441,9 @@ struct ContactPad: View {
     let width: Double
     let light: HomePlate.CharacterLight
     var strength = 1.0
+    /// How close the camera is (0 far, 1 at near's rest, WP11): a third, ground-hugging layer where the
+    /// body meets the lawn, so close up he stands on it instead of hovering over a wide, pale pad.
+    var near = 0.0
 
     var body: some View {
         let pad = Color(red: light.pad.red, green: light.pad.green, blue: light.pad.blue)
@@ -458,6 +461,15 @@ struct ContactPad: View {
                 .opacity(min(0.9 * strength * light.contact, 1))
                 .offset(y: CGFloat(-width * 0.045))
                 .blendMode(.multiply)
+            if near > 0.01 {
+                Ellipse()
+                    .fill(core)
+                    .frame(width: CGFloat(width * 0.82), height: CGFloat(width * 0.12))
+                    .blur(radius: CGFloat(max(width * 0.035, 0.5)))
+                    .opacity(min(0.7 * near * light.contact, 1))
+                    .offset(y: CGFloat(width * 0.012))
+                    .blendMode(.multiply)
+            }
         }
         .allowsHitTesting(false)
         .accessibilityHidden(true)
