@@ -10,8 +10,7 @@ history: [tracker.md](tracker.md). What changed for the player:
 chooses to (Rehearsal days 1-21); no dates or cut line (founder 11-14).
 Large job now: world presentation (spec #474); glass UI stays.
 
-**Updated:** 2026-11-15.
-**Founder last played on his phone:** 2026-11-14 (main 0cf03ca1).
+**Updated:** 2026-11-16. **Founder last played:** 11-14 (main 0cf03ca1).
 **Route:** Fable's night plan (`docs/design/night-plan-2026-11-15.md`,
 #482 merged): steps N0-N11 now, A1-A10 after; the world spec #474 inside it.
 
