@@ -35,9 +35,10 @@ chooses to (days 1-21); no dates (11-14). Now: world presentation (#474).
    change until the founder has seen it.
 4. Codex hit the image tool's usage limit (429) mid-129. 129 delivered
    19/35 (#107 merged): 8 look-1/2 picks, 7 redo-outline, 2 redo; looks
-   1 fill the canvas, so a rework reframes them to ~70% (agent,
-   `chore/batch-129-rework`). Queue: 132, 133, S1 (129 rework), S2.
-Merged: #475-#489, #491-#498; pofu-art #81, #91-#109.
+   1 filled the canvas: reworked (pofu-art #110), looks 1 reframed to 70%,
+   every step outside the outline; 429 retries per AGENTS.md. Queue: 132,
+   133, S1 (129 on `art/batch-129-home-station-looks-2`), S2.
+Merged: #475-#489, #491-#498; pofu-art #81, #91-#110.
 
 ## Next steps, in order (night plan)
 
