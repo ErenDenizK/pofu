@@ -31,6 +31,9 @@ struct PlateHomeLayer: View {
     var stationLevels: [StationID: Int] = [:]
     /// A build moment: its station's look plays the reveal (`PlateLookPiece`).
     var build: BuildFrame?
+    /// The thin lens (WP11): the sky set takes a plain blur of the sky's radius, the island its
+    /// blur levels. `nil` where nothing blurs.
+    var nearLens: NearLensFrame?
 
     /// A stage, a level or an hour change is a crossfade between two whole
     /// paintings (the plain form of the spec's diff-mask reveal: every pixel
@@ -46,8 +49,9 @@ struct PlateHomeLayer: View {
     @Environment(\.displayScale) private var displayScale
     @State private var incomingStart = Date()
 
-    init(plate: HomePlate, pose: CameraPose, size: CGSize, offset: CGSize, fade: Double, islandGrade: WorldGrade = .neutral, stationLevels: [StationID: Int] = [:], build: BuildFrame? = nil) {
+    init(plate: HomePlate, pose: CameraPose, size: CGSize, offset: CGSize, fade: Double, islandGrade: WorldGrade = .neutral, stationLevels: [StationID: Int] = [:], build: BuildFrame? = nil, nearLens: NearLensFrame? = nil) {
         self.build = build
+        self.nearLens = nearLens
         self.plate = plate
         self.pose = pose
         self.size = size
@@ -111,6 +115,7 @@ struct PlateHomeLayer: View {
                     Group {
                         if let sky = plate.skySet {
                             SkySetLayers(sky: PaintedSky.homeSet(sky), plate: plate, pose: pose, reference: plate.skyReference(width: Double(size.width), height: Double(size.height)), size: size, offset: offset, start: start, drawsIsland: false)
+                                .skyLensBlur(nearLens?.skyRadius ?? 0)
                         } else {
                             PlateImage(name: plate.plate.backdropArt(light: plate.light, stage: plate.stage), box: plate.backdropBox, pose: pose, size: size, offset: offset)
                         }
@@ -122,6 +127,7 @@ struct PlateHomeLayer: View {
                         FarPicture(compositor: compositor, pose: pose, size: size, offset: offset)
                     } else {
                         CompositeIsland(compositor: compositor, build: build, pose: pose, size: size, offset: offset)
+                            .modifier(NearLensLevels(frame: nearLens, plate: plate, size: size))
                             .task(id: compositor.snapshotKey) {
                                 // The far picture is ready before the camera rises: rendered once the state rests.
                                 try? await Task.sleep(for: .milliseconds(600))
@@ -183,6 +189,17 @@ extension View {
 }
 
 private extension View {
+    /// The sky set's plain lens blur (v2 §5.4): the sky is opaque, so its edges clamp and never
+    /// thin at the screen's border.
+    @ViewBuilder
+    func skyLensBlur(_ radius: Double) -> some View {
+        if radius >= ThinLens.skip {
+            blur(radius: CGFloat(radius), opaque: true)
+        } else {
+            self
+        }
+    }
+
     /// Opacity applied to the layers as one picture (a group), only while it is below 1: a settled
     /// sky set is never flattened into an offscreen pass.
     @ViewBuilder
@@ -240,6 +257,7 @@ struct PlateOccluders: View {
     let offset: CGSize
     var stationLevels: [StationID: Int] = [:]
     var build: BuildFrame?
+    @Environment(\.nearLens) private var nearLens
 
     private enum Entry: Identifiable {
         case painted(PlateIsland.Object)
@@ -276,8 +294,10 @@ struct PlateOccluders: View {
                         size: size,
                         offset: offset
                     )
+                    .lensBlur(nearLens?.radius(row: entry.footY) ?? 0)
                 case .look(let look):
                     PlateLookPiece(compositor: compositor, station: look.station, build: build, pose: pose, size: size, offset: offset)
+                        .lensBlur(nearLens?.radius(row: entry.footY) ?? 0)
                 }
             }
         }
@@ -305,6 +325,7 @@ struct PlateCharacter: View {
     var pulse = 0
 
     @Environment(\.worldLook.art) private var lookArt
+    @Environment(\.nearLens) private var nearLens
 
     var body: some View {
         let anchor = UnitPoint(x: point.x / IslandLayout.canvasWidth, y: point.y / IslandLayout.canvasHeight)
@@ -329,6 +350,9 @@ struct PlateCharacter: View {
                 .position(x: grounded.x + CGFloat(box.midX * scale), y: grounded.y + CGFloat(box.midY * scale))
             }
         }
+        // The lens (WP11): a character is sharp or soft as one thing, by its feet's row. The canvas
+        // is in world units, drawn `nearLens.lens.scale` points to the unit.
+        .lensBlur(nearLens?.radius(worldY: Double(point.y) - IslandLayout.canvasOrigin.y) ?? 0, localScale: nearLens?.lens.scale ?? 1)
         .modifier(TapSquish(trigger: pulse, anchor: anchor))
     }
 }

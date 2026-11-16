@@ -80,6 +80,10 @@ public enum NearLayers {
     /// The depth texture covers the whole plate at this share of its pixels (soft edges come
     /// from its linear filtering).
     public static let textureScale = 0.25
+
+    /// A standing thing's edge feathers over this many texels (4 plate pixels each) of box blur, twice:
+    /// about the cap's radius at near's rest, so a blurred thing in front never shows its outline.
+    public static let featherTexels = 2
 }
 
 /// The lens on screen for one frame of a plate (WP11): the thin lens, and how plate pixels map to

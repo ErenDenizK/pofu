@@ -96,3 +96,69 @@ inline float3 lookLUT(texture2d<half> lut, float3 c) {
     rgb *= half3(half(v), half(mix(v, 1.0, 0.06)), half(mix(v, 1.0, 0.02)));
     return half4(rgb * color.a, color.a);
 }
+
+// The thin lens's level blend (build spec WP11, D10; NearLensViews.swift). The island is drawn at
+// four blur levels (0, 2, 6, 14 pt); this colour function weights one of them per pixel by the
+// lens's radius there, so the levels add up to one picture. Self-contained: WP13's region shaders
+// live beside it.
+//
+// depth:  the state's depth rows (NearDepthTexture): r the encoded row, g a standing thing's share
+//         over the ground; texel (0, 0) is a 0.5 grey calibration texel
+// map:    (screen x, screen y of plate pixel 0,0 in this layer, points per plate pixel, unused)
+// lens:   (focus row, world depth per row, N * s, D)              ThinLens's twin
+// radii:  the four levels' radii
+// pick:   (this level, lip row, row range low, row range high)
+// limits: (plate width, plate height, skip radius, cap)
+namespace pofulens {
+
+constexpr sampler depthSampler(filter::linear, address::clamp_to_edge);
+
+inline float radius(float row, float4 lens, float cap) {
+    float delta = (lens.x - row) * lens.y;
+    float d = lens.w + delta;
+    if (d <= 1e-4) { return cap; }
+    return min(lens.z * abs(delta) / d, cap);
+}
+
+// BlurLevels.effective, then BlurLevels.weight.
+inline float weight(float r, float4 radii, int level, float skip, float cap) {
+    float x = r <= skip ? 0.0 : (r >= radii.y ? min(r, cap) : (r - skip) * radii.y / (radii.y - skip));
+    float at = radii[level];
+    if (x == at) { return 1.0; }
+    if (x < at) {
+        if (level == 0) { return 1.0; }
+        float below = radii[level - 1];
+        return saturate((x - below) / (at - below));
+    }
+    if (level == 3) { return 1.0; }
+    float above = radii[level + 1];
+    return saturate((above - x) / (above - at));
+}
+
+} // namespace pofulens
+
+[[ stitchable ]] half4 pofuLensLevel(
+    float2 position,
+    half4 color,
+    texture2d<half> depth,
+    float4 map,
+    float4 lens,
+    float4 radii,
+    float4 pick,
+    float4 limits
+) {
+    if (color.a <= 0.0h) {
+        return color;
+    }
+    float2 plate = (position - map.xy) / max(map.z, 1e-4);
+    float g = clamp(log(max(float(depth.read(uint2(0, 0)).r), 0.02)) / log(0.5), 0.6, 3.5);
+    half4 t = depth.sample(pofulens::depthSampler, plate / limits.xy);
+    float encoded = pow(max(float(t.r), 0.0), 1.0 / g);
+    float share = pow(max(float(t.g), 0.0), 1.0 / g);
+    float ground = min(plate.y, pick.y);
+    float standing = pick.z + encoded * (pick.w - pick.z);
+    float row = mix(ground, standing, saturate(share));
+    float r = pofulens::radius(row, lens, limits.w);
+    float w = pofulens::weight(r, radii, int(pick.x), limits.z, limits.w);
+    return color * half(w);
+}

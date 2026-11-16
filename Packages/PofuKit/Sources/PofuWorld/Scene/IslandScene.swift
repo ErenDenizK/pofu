@@ -520,6 +520,19 @@ private struct SceneFrame<Bubble: View>: View {
         return hop
     }
 
+    /// The lens's focal plane: the focused station's or resident's foot, else the near rest's row.
+    static func lensFocus(_ focus: SceneFocus?, plate: HomePlate) -> NearLensFrame.Focus {
+        switch focus {
+        case .station(let id)?:
+            if let foot = plate.objects.first(where: { $0.station == id })?.footY { return .subject(row: foot) }
+        case .resident(let id)?:
+            if let feet = plate.residentFeet(id) { return .subject(row: plate.plate(feet).y) }
+        case nil:
+            break
+        }
+        return .rail
+    }
+
     static func isleGrade(_ isle: HomePlate?, at island: IslandID, mapSky: HomePlate?) -> WorldGrade {
         guard let isle else { return .neutral }
         if island == .caglayan { return PaintedSky.islandGrade(painted: isle, under: nil) }
@@ -679,6 +692,11 @@ private struct SceneFrame<Bubble: View>: View {
             f.maxRadius *= rack
             return f
         }()
+        // The thin lens over Home's matted plate (WP11): nil at the Map, at mid and in a flight.
+        let nearLens: NearLensFrame? = {
+            guard let plate, model.island == .home, plateFade > 0.999, plate.isMatted else { return nil }
+            return NearLensFrame.make(plate: plate, pose: pose, width: Double(size.width), height: Double(size.height), offsetX: Double(offset.width), offsetY: Double(offset.height), focus: Self.lensFocus(model.focus, plate: plate))
+        }()
         // Weather crossfades over 8 s (6 to 10 s, section 2.2).
         let animation: Animation? = still ? nil : .easeInOut(duration: atmosphere.isClear ? 2.5 : 8)
         // Settled: the ambient layers hold still, so the frame is cached.
@@ -823,7 +841,7 @@ private struct SceneFrame<Bubble: View>: View {
                 if let plate {
                     // The painted plate, never graded: its backdrop, the
                     // plate and, toward the Map, the island cut alone.
-                    PlateHomeLayer(plate: plate, pose: pose, size: size, offset: offset, fade: plateFade, stationLevels: HomePlate.stationLevels(world), build: build)
+                    PlateHomeLayer(plate: plate, pose: pose, size: size, offset: offset, fade: plateFade, stationLevels: HomePlate.stationLevels(world), build: build, nearLens: nearLens)
                     FarBellSkyLayer(plate: plate, world: world, pose: pose, size: size, offset: offset).opacity(plateFade)
                 } else {
                     // Today's resist seals on the earth beside Pofu's door: an
@@ -896,6 +914,8 @@ private struct SceneFrame<Bubble: View>: View {
                     // at its slots (WP5), in front of Pofu, behind the painted objects
                     // that stand in front of them.
                     props.world(WorldPropsFrame(pose: pose, size: size, offset: offset, z: z, isFocused: model.focus != nil || model.hasSheet, model: model))
+                        // The lens (WP11): the props stand together in front of Pofu, soft as one by the jar's row.
+                        .lensBlur(plate.flatMap { p in p.propSlot(.jar).map { nearLens?.radius(worldY: $0.y) ?? 0 } } ?? 0)
                 }
 
                 if let plate {
@@ -979,6 +999,7 @@ private struct SceneFrame<Bubble: View>: View {
             }
             .frame(width: size.width, height: size.height, alignment: .topLeading)
             .environment(\.worldRelight, !painted ? relight : nil)
+            .environment(\.nearLens, nearLens)
             .environment(\.worldHorizon, sky.horizon)
             .environment(\.worldNight, light.night)
             .modifier(SpikeDepthOfFieldEffect(depth: depthMap, field: field, size: size, showsDepth: spike.debug == .depth))
@@ -2039,6 +2060,8 @@ private struct PofuLayer<Bubble: View>: View {
     @Environment(\.worldLook.spike.debug) private var spikeDebug
     /// A screenshot's stand for Pofu on the plate (`WorldLook.pofuStand`).
     @Environment(\.worldLook.pofuStand) private var pofuStand
+    /// The thin lens (WP11): his blur by his feet's row, and his contact shadow at near.
+    @Environment(\.nearLens) private var nearLens
 
     /// Pofu's art is 64 units wide (154 pt at Home, ADR-0018).
     static var artWidth: Double {
@@ -2084,7 +2107,8 @@ private struct PofuLayer<Bubble: View>: View {
                     LampPool(width: Self.artWidth * drawn, light: pofuLight)
                         .position(x: feet.x, y: feet.y - CGFloat(drawn))
                         .opacity(painted)
-                    ContactPad(width: Self.artWidth * drawn, light: pofuLight)
+                    // Close to him the pad spreads thin over a soft lawn: it deepens toward near's rest.
+                    ContactPad(width: Self.artWidth * drawn, light: pofuLight, strength: 1 + 0.9 * nearContact)
                         .position(x: feet.x, y: feet.y - CGFloat(drawn))
                         .opacity(painted)
                 }
@@ -2120,6 +2144,14 @@ private struct PofuLayer<Bubble: View>: View {
                     .opacity(bubbleOpacity)
             }
         }
+        .lensBlur(part == .body ? nearLens?.radius(worldY: stand.y) ?? 0 : 0)
+    }
+
+    /// How close the camera is for his contact shadow: 0 at the station shot's scale, 1 at near's
+    /// rest and past it.
+    private var nearContact: Double {
+        guard let lens = nearLens?.lens else { return 0 }
+        return min(max((lens.scale - 2.6) / (CameraRail.nearRestScale - 2.6), 0), 1)
     }
 
     /// What shows on his face: what just happened to the residents, then
