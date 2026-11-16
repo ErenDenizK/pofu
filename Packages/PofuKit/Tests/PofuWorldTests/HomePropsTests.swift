@@ -78,7 +78,7 @@ struct HomePropsTests {
             #expect(target.worldBox.minX < foot.x && foot.x < target.worldBox.maxX)
             #expect(target.worldBox.maxY == foot.y)
             // Tapping the middle of its art answers with it.
-            let pose = CameraRail().pose(of: .home)
+            let pose = CameraRail(stops: h.stops).pose(of: .mid)
             let p = pose.project(WorldPoint(x: target.worldBox.midX, y: target.worldBox.midY), width: CameraRail.referenceWidth)
             let hit = try #require(WorldHitTest.resolve(x: p.x, y: p.y, targets: targets, pose: pose, width: CameraRail.referenceWidth))
             #expect(hit.kind == .prop(prop))
@@ -89,7 +89,7 @@ struct HomePropsTests {
 
     @Test func propTargetsAreAtLeast44PtAtMid() throws {
         let h = try home(stage: 0)
-        let pose = CameraRail().pose(of: .home)
+        let pose = CameraRail(stops: h.stops).pose(of: .mid)
         for prop in HomeSlots.Prop.allCases {
             let box = try #require(h.propBox(prop))
             let target = HitTarget(kind: .prop(prop), worldBox: box, depth: 0)

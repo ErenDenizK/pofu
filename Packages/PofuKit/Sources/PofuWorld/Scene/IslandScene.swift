@@ -743,7 +743,7 @@ private struct SceneFrame<Bubble: View>: View {
                             homeBox: mapSky.islandBox,
                             slots: MapSlots.slots(stage: MapSlots.stage(koke: world.koke, caglayan: world.caglayan), tier: plate?.mapTier ?? MapSlots.tier(koke: world.koke, caglayan: world.caglayan)),
                             stop: CameraPose(scale: mapSky.mapStop.scale, look: mapSky.mapStop.look, anchorY: mapSky.mapStop.anchorY),
-                            reference: CameraPose(scale: mapSky.homeStop.scale, look: mapSky.homeStop.look, anchorY: mapSky.homeStop.anchorY)
+                            reference: mapSky.skyReference(width: CameraRail.referenceWidth, height: CameraRail.referenceHeight)
                         ),
                         pose: pose,
                         reference: mapSky.skyReference(width: Double(size.width), height: Double(size.height)),
