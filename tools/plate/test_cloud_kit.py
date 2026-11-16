@@ -37,6 +37,23 @@ class CloudKitTests(unittest.TestCase):
         self.assertTrue(cloud_kit.source_has_checkerboard(img))
         self.assertFalse(cloud_kit.source_has_checkerboard(blob()))
 
+    def test_grade_moves_the_hue_keeps_value_alpha_and_shading(self):
+        img = blob()
+        px = np.asarray(img).copy()
+        px[..., 0] = 245  # a warm form
+        px[..., 2] = 225
+        px[:100, :, 1] = 200  # shading: the top half is darker
+        img = Image.fromarray(px, "RGBA")
+        tint = np.array([-17.0, -16.0, 33.0])
+        g = cloud_kit.grade(img, tint)
+        m0, m1 = cloud_kit.mean_colour(img), cloud_kit.mean_colour(g)
+        self.assertLess(m1[0] - m1[2], m0[0] - m0[2] - 15)
+        self.assertAlmostEqual(m1.mean(), m0.mean(), delta=1.0)
+        self.assertTrue((np.asarray(g)[..., 3] == px[..., 3]).all())
+        self.assertGreater(np.asarray(g)[150, 100, 1] - np.asarray(g)[40, 100, 1], 25)
+        again = cloud_kit.mean_colour(cloud_kit.grade(g, tint))
+        self.assertTrue(np.allclose(again, m1, atol=1.0))
+
     def test_tile_wraps_without_a_seam(self):
         x = np.arange(512)
         good = np.tile(np.sin(2 * np.pi * x / 512 * 3)[None, :], (64, 1))
