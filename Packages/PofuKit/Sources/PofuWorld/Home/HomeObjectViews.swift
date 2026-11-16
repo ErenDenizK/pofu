@@ -702,9 +702,10 @@ private struct PlatePropFoot: View {
     var body: some View {
         ZStack {
             LampPool(width: width, light: light)
-            ContactPad(width: width, light: light)
+            // A small painted object needs a firmer contact than a character: wider and twice as strong.
+            ContactPad(width: width * 1.3, light: light, strength: 2)
         }
-        .offset(y: CGFloat(width * 0.1))
+        .offset(y: CGFloat(width * 0.13))
     }
 }
 

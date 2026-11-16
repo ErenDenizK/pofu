@@ -37,6 +37,8 @@ struct HomePropsTests {
             for prop in island.props {
                 let slot = try #require(prop.slot(stage: stage))
                 let half = prop.span(stage: stage) / 2
+                // Only a prop that stands on the lip, level with the painted feet, can stand on one.
+                guard slot.y > 940 else { continue }
                 for foot in feet(stage: stage) {
                     let clear = slot.x + half <= foot.lowerBound - 12 + 0.5 || slot.x - half >= foot.upperBound + 12 - 0.5
                     #expect(clear, "\(prop.id) at stage \(stage) stands on a painted foot")
@@ -48,14 +50,16 @@ struct HomePropsTests {
     @Test func propsDoNotOverlapEachOther() throws {
         let island = try plate()
         for stage in 0..<island.stages {
-            let spans = try island.props.map { prop -> ClosedRange<Double> in
+            let spans = try island.props.map { prop -> (x: ClosedRange<Double>, y: Double) in
                 let slot = try #require(prop.slot(stage: stage))
                 let half = prop.span(stage: stage) / 2
-                return (slot.x - half)...(slot.x + half)
+                return ((slot.x - half)...(slot.x + half), slot.y)
             }
             for i in spans.indices {
                 for j in spans.indices where j > i {
-                    #expect(!spans[i].overlaps(spans[j]), "stage \(stage): props \(i) and \(j) overlap")
+                    // Two props overlap when they share their width and stand within a prop's depth of each other.
+                    let level = abs(spans[i].y - spans[j].y) < 40
+                    #expect(!(level && spans[i].x.overlaps(spans[j].x)), "stage \(stage): props \(i) and \(j) overlap")
                 }
             }
         }
@@ -94,15 +98,14 @@ struct HomePropsTests {
         }
     }
 
-    @Test func aPropIsDrawnOverTheObjectsThatStandInFrontOfIt() throws {
-        // A prop behind an occluder's foot line is covered by it; one in front is not.
+    @Test func noPropStandsBehindAPaintedObject() throws {
+        // A bush or a wheel in front of a prop would hide it: at every stage nothing is drawn over a prop.
         for stage in 0..<10 {
             let h = try home(stage: stage)
             for prop in HomeSlots.Prop.allCases {
                 let foot = try #require(h.propSlot(prop)), box = try #require(h.propBox(prop))
-                for object in h.occluders(over: foot, box: box) {
-                    #expect(h.plate(foot).y < object.footY, "stage \(stage): \(object.id) is in front of \(prop)")
-                }
+                let covering = h.occluders(over: foot, box: box).map(\.id)
+                #expect(covering.isEmpty, "stage \(stage): \(covering) cover \(prop)")
             }
         }
     }

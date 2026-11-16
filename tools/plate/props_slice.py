@@ -167,13 +167,14 @@ REACH = {"lantern": 300.0, "pots": 300.0, "jar": 330.0}
 CLEAR = 12.0
 FEET = {"wheel": (466.0, 597.0), "mailbox": (268.0, 335.0)}
 #: Hand-set slots by (stage, prop), for a stage whose open lawn the search cannot read.
-#: Stages 0 to 3 (levels 10 to 7): the front lip is flowers and the open lawn is stepping stones, so the pots stand on
-#: the lawn's front edge left of the wheel and the jar and lantern among the hydrangeas right of it, each 12 pt clear of
-#: the wheel's and the mailbox's feet (checked by eye on the plate, `--overlay`).
+#: Stages 0 to 3 (levels 10 to 7): the front lip is flowers, and the east bush (x 594 to 794) and the west bush stand in
+#: front of anything on it. So the pots stand on the lawn's front edge between the mailbox and the wheel, the jar behind
+#: them on the stepping stones and the lantern on the lawn above the wheel's top, each clear of the painted feet and of
+#: every occluder's box (checked by eye on the plate, `--overlay`, and by `HomePropsTests`).
 DECLARED: dict[tuple[int, str], tuple[float, ...]] = {
     (stage, prop): value
     for stage in range(4)
-    for prop, value in (("pots", (400.0, 968.0, 80.0)), ("jar", (632.0, 985.0, 46.0)), ("lantern", (700.0, 978.0, 44.0)))
+    for prop, value in (("pots", (400.0, 968.0, 80.0)), ("jar", (392.0, 919.0, 46.0)), ("lantern", (540.0, 870.0, 44.0)))
 }
 
 
