@@ -22,7 +22,7 @@ struct HopView: View {
             if let session = model.hop {
                 let hour = hourOverride ?? GateHour(date: model.now, isBedtime: session.isNight, mist: model.isMistMorning)
                 HopContent(model: model, session: session, hour: hour)
-                    .environment(\.colorScheme, hour.isDark || session.isNight ? .dark : .light)
+                    .environment(\.colorScheme, hour.isDark ? .dark : .light)
             } else {
                 Color.clear
             }
@@ -84,6 +84,9 @@ private struct HopDecision: View {
     let session: HopSession
     let hour: GateHour
 
+    /// Bedtime, as the screen shows it: a bedtime session paints night, so the two agree on a device.
+    private var isNight: Bool { session.isNight && hour.isDark }
+
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @AccessibilityFocusState private var skipFocused: Bool
     @State private var appeared = false
@@ -120,11 +123,11 @@ private struct HopDecision: View {
         }
         // The palette's `nudge` by day; at night the check-in is softer.
         .onChange(of: appeared) {
-            if !session.isNight {
+            if !isNight {
                 PofuHaptics.shared.play(.nudge)
             }
         }
-        .sensoryFeedback(.impact(weight: .light, intensity: 0.35), trigger: appeared) { _, _ in session.isNight }
+        .sensoryFeedback(.impact(weight: .light, intensity: 0.35), trigger: appeared) { _, _ in isNight }
     }
 
     // MARK: Header and stage
@@ -145,12 +148,12 @@ private struct HopDecision: View {
     }
 
     private var question: LocalizedStringKey {
-        if session.isNight {
-            return "Shh, it's late."
-        }
-        switch session.rung {
-        case .pause: return model.isPastDailyHour ? "One breath first." : "Quick check-in."
-        case .intent: return "What's this one for?"
+        // The line follows the hour the screen shows, the one source Home and the sky share.
+        switch HopQuestion.choose(sessionIsBedtime: isNight, shownHourIsDark: hour.isDark, rung: session.rung, isPastDailyHour: model.isPastDailyHour) {
+        case .late: "Shh, it's late."
+        case .oneBreath: "One breath first."
+        case .quickCheckIn: "Quick check-in."
+        case .intent: "What's this one for?"
         }
     }
 
@@ -176,7 +179,7 @@ private struct HopDecision: View {
                 return "We're focusing. \(minutes) minutes left."
             }
         }
-        if session.isNight {
+        if isNight {
             return "The feed will still be there tomorrow. I promise."
         }
         return nil
@@ -213,7 +216,7 @@ private struct HopDecision: View {
     }
 
     private var skipLabel: LocalizedStringKey {
-        session.isNight ? "Goodnight, \(model.profile.companionName)" : "Skip it"
+        isNight ? "Goodnight, \(model.profile.companionName)" : "Skip it"
     }
 
     @ViewBuilder private var openAction: some View {
