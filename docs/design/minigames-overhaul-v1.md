@@ -26,8 +26,9 @@ t2).
 
 ![A, B today, B tuned](assets/minigames-overhaul-v1/01-ground-a-b-tuned.jpg)
 
-_Figure 1. Stage 1 at 1:1. Left: A (keycaps). Middle: B as it was.
-Right: B after this pass._
+_Figure 1. Stage 1 at 1:1, real frames. Left: A (keycaps). Middle: B as
+it was. Right: B after this pass (PR #501's first run; the rocks are a
+step warmer since)._
 
 **Pick: B, one lawn, with the stones as the only raised things.** The
 reason is not taste. In a turn-the-stones game the one thing the eye must
@@ -57,10 +58,13 @@ A stays one line away (`POFU_FLOW_GROUND=keycaps`) for comparison frames.
 painted water, graded to the pool's turquoise. The rings in the water are
 gone. The rule line sits on a glass tag and leaves at the first turn.
 
-![The water today](assets/minigames-overhaul-v1/02-water-today.jpg)
+![The water before and after](assets/minigames-overhaul-v1/02-water-before-after.jpg)
 
-_Figure 2. Stage 4 solved, before this pass: the rings at the gate and on
-the right-hand straight, and the stream's colour against the pool's._
+_Figure 2. Stage 4 solved at 1:1, real frames. Left, before: the rings at
+the gate and on the right-hand straight, the milk-blue stream. Right,
+after. The board's own small pool is still the pale picture: it wants the
+same colour from Codex (it is a painted sprite with a stone rim, so a
+grade would tint the stones)._
 
 **Garden.** Cells are 44 pt (side margin 24 to 14 pt), so the bed is 7
 percent larger and each cell is a full touch target. The tray stops at
@@ -71,6 +75,10 @@ percent larger and each cell is a full touch target. The tray stops at
 the plates, the painted seed and drop, the honey verb for "Done". With
 Reduce Transparency the same calls fall back to the crafted faces. No new
 component was needed; `PofuHUD` in the grammar's G3 can be this.
+
+![The HUD on glass](assets/minigames-overhaul-v1/03-hud.jpg)
+
+_Figure 3. The stream game's HUD at 1:1 after this pass._
 
 ## 4. What code cannot fix: art for Codex
 

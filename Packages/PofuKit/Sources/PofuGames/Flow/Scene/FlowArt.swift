@@ -87,7 +87,7 @@ final class FlowTextures {
     /// fresh grass; this brings it to a spring green (about 172, 205, 90) without touching the art file.
     static let lawnTint = FlowPalette.rgb(0.84, 0.98, 0.78)
     /// The cut-out rocks are a cold grey; a warm multiply sets them in the stone's family.
-    static let rockTint = FlowPalette.rgb(1.0, 0.96, 0.90)
+    static let rockTint = FlowPalette.rgb(1.0, 0.93, 0.82)
     /// The painted water is paler than the pool it runs to (about 185, 224, 217 against 114, 221, 218);
     /// this multiply brings the stream to the pool's turquoise.
     static let waterTint = FlowPalette.rgb(0.70, 0.96, 1.0)
