@@ -32,8 +32,10 @@ Large job now: world presentation (spec #474); glass UI stays.
    tower (old isle shadow?); stale `WorldMap.swift` comment.
 3. N4 flow painted board (Sonnet, `feat/flow-painted-board`): slots,
    textured channel, method B switch; A/B frames for the founder.
-4. Codex: queue #92 (121-128 Demand, 129 station looks standing); he
-   says "çalış". Morning review order: 121, 123, 122, 124-128.
+4. Codex ran 121-126 overnight. Reviewed: 124 picks all 8 (builder
+   `feat/flow-painted-scene` drops them in); 126 clouds 10 picks (WP9 after
+   A1); 125 skipped by Codex but usable: l1 t1, l2 t1, l8 t2, l9 t2 (paste
+   into #480 after A1). 123 in review (gates 129). Founder: flow A/B, 122.
 Merged today: #475-#479, #476, #481, #482, #484; pofu-art #81, #91, #92.
 
 ## Next steps, in order (night plan)
