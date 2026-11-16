@@ -45,9 +45,6 @@ private struct HopContent: View {
     let session: HopSession
     let hour: GateHour
 
-    /// Bedtime, as the screen shows it: a bedtime session paints night, so the two agree on a device.
-    private var isNight: Bool { session.isNight && hour.isDark }
-
     var body: some View {
         ZStack {
             GatePostcard(hour: hour)
@@ -86,6 +83,9 @@ private struct HopDecision: View {
     let model: AppModel
     let session: HopSession
     let hour: GateHour
+
+    /// Bedtime, as the screen shows it: a bedtime session paints night, so the two agree on a device.
+    private var isNight: Bool { session.isNight && hour.isDark }
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @AccessibilityFocusState private var skipFocused: Bool
