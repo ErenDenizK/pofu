@@ -689,6 +689,12 @@ final class FlowTextures {
             context.setLineWidth(1.2)
             context.addPath(body)
             context.strokePath()
+            if kind == .source || kind == .mouth, let piece = art(kind == .source ? FlowArtSlot.spring : FlowArtSlot.outlet) {
+                // The painted ring of stones goes back over the water, so the stream starts at its rim
+                // instead of running across the stones.
+                let side = cell * 0.9
+                piece.draw(in: CGRect(x: middle.x - side / 2, y: middle.y - side / 2, width: side, height: side))
+            }
             return
         }
         context.setLineCap(.round)

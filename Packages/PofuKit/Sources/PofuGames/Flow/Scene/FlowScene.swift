@@ -212,6 +212,14 @@ final class FlowScene: SKScene {
         let image = UIGraphicsImageRenderer(size: size, format: format).image { rendered in
             let context = rendered.cgContext
             FlowTextures.drawCover(art, in: CGRect(origin: .zero, size: size))
+            // A soft cream pad under the caption line (the hint or the pour line), so it reads on the water.
+            let pad = CGRect(x: size.width * 0.08, y: layout.lip.minY - 40, width: size.width * 0.84, height: 36)
+            for step in 0..<5 {
+                let grow = CGFloat(step) * 7
+                context.setFillColor(FlowPalette.skyTop.withAlphaComponent(0.2).cgColor)
+                context.addPath(UIBezierPath(roundedRect: pad.insetBy(dx: -grow, dy: -grow), cornerRadius: 18 + grow).cgPath)
+                context.fillPath()
+            }
             let veilHeight = safeTop + FlowLayout.hudHeight + 36
             let veil = [FlowPalette.skyTop.withAlphaComponent(0.88).cgColor, FlowPalette.skyTop.withAlphaComponent(0.55).cgColor, FlowPalette.skyTop.withAlphaComponent(0).cgColor] as CFArray
             if let gradient = CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: veil, locations: [0, 0.6, 1]) {
