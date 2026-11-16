@@ -1,0 +1,45 @@
+batch: batch-117-station-erase-volume
+job: x-base-erase-l10-day
+status: warn
+pick: 1
+lead_review: "Lead pick for paste-back: both takes erase all eight stations cleanly and take 1 keeps the flower clumps by the windmill and the left-rim daisies that take 2 drops; hand fixes: paste the path lanterns back from the parent (both takes erase them and leave post stubs on the path, plus the lantern by the pond near x 305, y 775), and both fill the gap to the pier islet and drop the rope bridge, so the silhouette changes there (see the lead note on whether the bridge belongs to the pier)."
+note: "Exploration only; retain both unpromoted whole-plate takes for the lead to paste back. Judge the erased region and feathered seam only; whole-frame drift is expected. Preserve the left-rim daisy border, hilltop flowers, and non-station path lantern; trim any dangling workshop light string where applicable. Station boxes are in the manifest job notes."
+source: codex-cloud
+account:
+  owner: "Founder's uncle's ChatGPT plan, used by the founder with permission"
+  kind: chatgpt-plan
+takes:
+- n: 1
+  file: plate__x-base-erase-l10-day--t1.webp
+  qa: warn
+  size_bytes: 144434
+  dimensions: 1024x1536
+  lock_load: 0.0
+  warnings:
+  - check: chroma_ceiling
+    status: warn
+    message: "chroma p95 63 (R1 51) (advisory in an exploration)"
+  - check: palette_drift
+    status: warn
+    message: "mean dE 7.4, p95 20.0, off-palette 25.4% (top: #88BBFF (6.6%), #CCCC44 (2.9%)) (advisory in an exploration)"
+  source_file: /workspace/generated_images/exec-60dd6363-85da-456f-826e-95751bc6c03c.png
+  source_sha256: fcc582c1c5fecf247aa5c5bc31562edb3584d7012e70c9111a5fd6fa9ca16631
+  generated_at: 2026-11-15T15:23:55+00:00
+- n: 2
+  file: plate__x-base-erase-l10-day--t2.webp
+  qa: warn
+  size_bytes: 138006
+  dimensions: 1024x1536
+  lock_load: 0.0
+  warnings:
+  - check: chroma_ceiling
+    status: warn
+    message: "chroma p95 65 (R1 51) (advisory in an exploration)"
+  - check: palette_drift
+    status: warn
+    message: "mean dE 7.8, p95 20.5, off-palette 26.7% (top: #88BBFF (6.6%), #CCCC44 (4.3%)) (advisory in an exploration)"
+  source_file: /workspace/generated_images/exec-8f96acf6-19c9-4cd7-b8f2-235f71766008.png
+  source_sha256: b6bcadf8c7ce61daa57c34d2f15d06f99f16afea383fd0040a03637f56bdc7b3
+  generated_at: 2026-11-15T15:23:56+00:00
+references:
+- design/art/takes/batch-66-home-flow/x-home-flow-final-rich/plate__x-home-flow-final-rich--t1.webp

@@ -1,0 +1,45 @@
+batch: batch-117-station-erase-volume
+job: x-base-erase-l03-day
+status: warn
+pick: 1
+lead_review: "Lead pick with a paste fix: stall and cart gone, but both takes also erase the rope bridge and fill the gap to the islet, leaving its far post alone in the mist, so cut the bridge and gap out of the paste mask and keep the parent's there; the garden stays because the matrix has no garden at level 3 (see the lead note)."
+note: "Exploration only; retain both unpromoted whole-plate takes for the lead to paste back. Judge the erased region and feathered seam only; whole-frame drift is expected. Preserve the left-rim daisy border, hilltop flowers, and non-station path lantern; trim any dangling workshop light string where applicable. Station boxes are in the manifest job notes."
+source: codex-cloud
+account:
+  owner: "Founder's uncle's ChatGPT plan, used by the founder with permission"
+  kind: chatgpt-plan
+takes:
+- n: 1
+  file: plate__x-base-erase-l03-day--t1.webp
+  qa: warn
+  size_bytes: 105048
+  dimensions: 1024x1536
+  lock_load: 0.0
+  warnings:
+  - check: chroma_ceiling
+    status: warn
+    message: "chroma p95 72 (R1 51) (advisory in an exploration)"
+  - check: palette_drift
+    status: warn
+    message: "mean dE 7.6, p95 24.5, off-palette 22.0% (top: #88BBFF (6.8%), #99BBFF (2.5%)) (advisory in an exploration)"
+  source_file: /workspace/generated_images/exec-08fec51e-58e7-4c9a-b417-4fde21f72bb0.png
+  source_sha256: 007061cf880ddddeb5faf4da5ee3e0ad38ddee19b10f0c1dc5b7ec704b821aba
+  generated_at: 2026-11-15T15:38:44+00:00
+- n: 2
+  file: plate__x-base-erase-l03-day--t2.webp
+  qa: warn
+  size_bytes: 101344
+  dimensions: 1024x1536
+  lock_load: 0.0
+  warnings:
+  - check: chroma_ceiling
+    status: warn
+    message: "chroma p95 74 (R1 51) (advisory in an exploration)"
+  - check: palette_drift
+    status: warn
+    message: "mean dE 7.8, p95 25.7, off-palette 22.7% (top: #88BBFF (6.7%), #77AAFF (2.5%)) (advisory in an exploration)"
+  source_file: /workspace/generated_images/exec-209182b7-6fa6-4a05-ac05-3bb4ab013106.png
+  source_sha256: 6829cb67d7dd0d752405e6f94ced0834a6016deef542be75f934833836d28230
+  generated_at: 2026-11-15T15:38:45+00:00
+references:
+- design/art/takes/batch-66-home-flow/x-home-flow-il3/plate__x-home-flow-il3--t1.webp

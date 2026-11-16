@@ -25,6 +25,9 @@ struct PlateHomeLayer: View {
     /// toward the Map, and over the whole painting the cut is drawn again in it, so the island darkens with
     /// its sky and the sky keeps its own pixels. Neutral for Home, whose painting is the reference.
     var islandGrade: WorldGrade = .neutral
+    /// The Home stations' levels: the looks drawn over a base (`StationLooksLayer`). Not part of the painting's identity,
+    /// so a station's upgrade is its own swap and never a crossfade of the whole painting.
+    var stationLevels: [StationID: Int] = [:]
 
     /// A stage, a level or an hour change is a crossfade between two whole
     /// paintings (the plain form of the spec's diff-mask reveal: every pixel
@@ -39,13 +42,14 @@ struct PlateHomeLayer: View {
     @State private var shownStart = Date()
     @State private var incomingStart = Date()
 
-    init(plate: HomePlate, pose: CameraPose, size: CGSize, offset: CGSize, fade: Double, islandGrade: WorldGrade = .neutral) {
+    init(plate: HomePlate, pose: CameraPose, size: CGSize, offset: CGSize, fade: Double, islandGrade: WorldGrade = .neutral, stationLevels: [StationID: Int] = [:]) {
         self.plate = plate
         self.pose = pose
         self.size = size
         self.offset = offset
         self.fade = fade
         self.islandGrade = islandGrade
+        self.stationLevels = stationLevels
         _shown = State(initialValue: plate)
     }
 
@@ -104,11 +108,11 @@ struct PlateHomeLayer: View {
                         // A matted plate stands on the sky set in place of the set's own island layer.
                         SkySetLayers(sky: sky, plate: plate, pose: pose, reference: plate.skyReference(width: Double(size.width), height: Double(size.height)), size: size, offset: offset, start: start, drawsIsland: !plate.isMatted)
                         if plate.isMatted {
-                            PlateImage(name: plate.plate.plateArt(light: plate.light, stage: plate.stage), box: plate.plateImageBox, pose: pose, size: size, offset: offset)
+                            PlateImage(name: plate.plate.drawnPlateArt(light: plate.light, stage: plate.stage), box: plate.plateImageBox, pose: pose, size: size, offset: offset)
                         }
                     } else {
                         PlateImage(name: plate.plate.backdropArt(light: plate.light, stage: plate.stage), box: plate.backdropBox, pose: pose, size: size, offset: offset)
-                        PlateImage(name: plate.plate.plateArt(light: plate.light, stage: plate.stage), box: plate.plateImageBox, pose: pose, size: size, offset: offset)
+                        PlateImage(name: plate.plate.drawnPlateArt(light: plate.light, stage: plate.stage), box: plate.plateImageBox, pose: pose, size: size, offset: offset)
                     }
                     if !islandGrade.isNeutral {
                         PlateImage(name: plate.plate.islandArt(light: plate.light, stage: plate.stage), box: plate.islandBox, pose: pose, size: size, offset: offset)
@@ -116,6 +120,73 @@ struct PlateHomeLayer: View {
                     }
                 }
                 .fading(fade)
+            }
+            // The stations' looks stand over the base at every distance: the Map's island cut is erased too.
+            StationLooksLayer(plate: plate, levels: stationLevels, pose: pose, size: size, offset: offset)
+        }
+    }
+}
+
+/// The looks of the stations a state has an erased base for, one per station at its level (level to look 1 to 1,
+/// nothing while unbuilt), on the plate's own transform. A level change swaps the look with a short crossfade and a
+/// pop on the station's foot; with Reduce Motion it swaps at once.
+struct StationLooksLayer: View {
+    let plate: HomePlate
+    let levels: [StationID: Int]
+    let pose: CameraPose
+    let size: CGSize
+    let offset: CGSize
+
+    var body: some View {
+        let ids = plate.plate.stationLooks(light: plate.light, stage: plate.stage).keys.sorted()
+        ZStack(alignment: .topLeading) {
+            ForEach(ids, id: \.self) { id in
+                if let frame = plate.lookFrame(id) {
+                    StationLookView(
+                        art: plate.plate.lookArt(station: id, level: levels[StationID(rawValue: id)] ?? 0, light: plate.light, stage: plate.stage),
+                        box: frame.box, foot: frame.foot, pose: pose, size: size, offset: offset
+                    )
+                }
+            }
+        }
+        .frame(width: size.width, height: size.height, alignment: .topLeading)
+        .allowsHitTesting(false)
+        .accessibilityHidden(true)
+    }
+}
+
+/// One station's look, swapping as its asset changes.
+struct StationLookView: View {
+    let art: String?
+    let box: WorldBox
+    let foot: WorldPoint
+    let pose: CameraPose
+    let size: CGSize
+    let offset: CGSize
+
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var pop = 1.0
+
+    var body: some View {
+        let anchor = pose.project(foot, width: Double(size.width))
+        ZStack(alignment: .topLeading) {
+            if let art {
+                PlateImage(name: art, box: box, pose: pose, size: size, offset: offset)
+                    .id(art)
+                    .transition(.opacity)
+            }
+        }
+        .frame(width: size.width, height: size.height, alignment: .topLeading)
+        .animation(reduceMotion ? nil : .easeInOut(duration: 0.28), value: art)
+        .scaleEffect(pop, anchor: UnitPoint(x: (anchor.x + offset.width) / max(size.width, 1), y: (anchor.y + offset.height) / max(size.height, 1)))
+        .onChange(of: art) { old, new in
+            guard !reduceMotion, old != nil, new != nil else { return }
+            withAnimation(.spring(response: 0.18, dampingFraction: 0.55)) {
+                pop = 1.05
+            } completion: {
+                withAnimation(.spring(response: 0.32, dampingFraction: 0.6)) {
+                    pop = 1
+                }
             }
         }
     }
@@ -176,17 +247,27 @@ struct PlateOccluders: View {
     let pose: CameraPose
     let size: CGSize
     let offset: CGSize
+    /// The Home stations' levels: a station standing over a base is drawn again as its look (nothing while unbuilt),
+    /// not as the painted stall the base no longer has.
+    var stationLevels: [StationID: Int] = [:]
 
     var body: some View {
         ZStack(alignment: .topLeading) {
             ForEach(objects) { object in
-                PlateImage(
-                    name: plate.plate.occluderArt(id: object.id, light: plate.light, stage: plate.stage),
-                    box: plate.occluderBox(object),
-                    pose: pose,
-                    size: size,
-                    offset: offset
-                )
+                if let station = object.station?.rawValue, plate.plate.stationLooks(light: plate.light, stage: plate.stage)[station] != nil {
+                    if let art = plate.plate.lookArt(station: station, level: object.station.flatMap { stationLevels[$0] } ?? 0, light: plate.light, stage: plate.stage),
+                       let frame = plate.lookFrame(station) {
+                        PlateImage(name: art, box: frame.box, pose: pose, size: size, offset: offset)
+                    }
+                } else {
+                    PlateImage(
+                        name: plate.plate.occluderArt(id: object.id, light: plate.light, stage: plate.stage),
+                        box: plate.occluderBox(object),
+                        pose: pose,
+                        size: size,
+                        offset: offset
+                    )
+                }
             }
         }
         .frame(width: size.width, height: size.height, alignment: .topLeading)

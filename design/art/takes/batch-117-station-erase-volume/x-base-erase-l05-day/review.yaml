@@ -1,0 +1,45 @@
+batch: batch-117-station-erase-volume
+job: x-base-erase-l05-day
+status: warn
+pick: 1
+lead_review: "Lead pick for paste-back: garden, pond, stall, cart and pier gone with a whole rim and a seam that holds at 1:1 (ring step dE p95 6 against 19 for take 2, which also leaves a sky notch where the pier gap was); both take the rope bridge with the pier."
+note: "Exploration only; retain both unpromoted whole-plate takes for the lead to paste back. Judge the erased region and feathered seam only; whole-frame drift is expected. Preserve the left-rim daisy border, hilltop flowers, and non-station path lantern; trim any dangling workshop light string where applicable. Station boxes are in the manifest job notes."
+source: codex-cloud
+account:
+  owner: "Founder's uncle's ChatGPT plan, used by the founder with permission"
+  kind: chatgpt-plan
+takes:
+- n: 1
+  file: plate__x-base-erase-l05-day--t1.webp
+  qa: warn
+  size_bytes: 97730
+  dimensions: 1024x1536
+  lock_load: 0.0
+  warnings:
+  - check: chroma_ceiling
+    status: warn
+    message: "chroma p95 66 (R1 51) (advisory in an exploration)"
+  - check: palette_drift
+    status: warn
+    message: "mean dE 7.7, p95 21.5, off-palette 25.1% (top: #88BBFF (7.1%), #CCCC55 (3.5%)) (advisory in an exploration)"
+  source_file: /workspace/generated_images/exec-815798cb-23b5-484b-b1ea-5ca2e50c2e3b.png
+  source_sha256: 55e83dbf3323481aac3b6ca3d7b744404a538d7e141710d186ecb7b961da8a8a
+  generated_at: 2026-11-15T15:33:30+00:00
+- n: 2
+  file: plate__x-base-erase-l05-day--t2.webp
+  qa: warn
+  size_bytes: 93554
+  dimensions: 1024x1536
+  lock_load: 0.0
+  warnings:
+  - check: chroma_ceiling
+    status: warn
+    message: "chroma p95 68 (R1 51) (advisory in an exploration)"
+  - check: palette_drift
+    status: warn
+    message: "mean dE 7.4, p95 23.6, off-palette 23.0% (top: #88BBFF (5.9%), #CCCC44 (2.9%)) (advisory in an exploration)"
+  source_file: /workspace/generated_images/exec-a48ea7eb-b490-490b-9898-d543549d4e37.png
+  source_sha256: df50446c38700e8ec6d112347f8cd3c099b60cbf62459cae38ecac9241ea5096
+  generated_at: 2026-11-15T15:33:31+00:00
+references:
+- design/art/takes/batch-66-home-flow/x-home-flow-il5/plate__x-home-flow-il5--t1.webp

@@ -150,4 +150,55 @@ struct HomePlateDataTests {
         #expect(night.objects.contains { $0.id == "garden" })
         #expect(!night.objects.contains { $0.id == "teaStall" })
     }
+
+    // MARK: Station looks (WP8, the tea stall first)
+
+    @Test func theTeaStallHasALookForEveryLevelOverAnErasedBase() throws {
+        let plate = try plate
+        let looks = try #require(plate.stations["teaStall"])
+        #expect(plate.version == 2)
+        #expect(looks.levels == 5)
+        #expect(looks.baseStages.contains(7))
+        #expect(looks.box.width > 0 && looks.box.height > 0)
+        // level to look 1 to 1, nothing while unbuilt, the last look past the ladder's top
+        #expect(looks.lookLevel(stationLevel: 0) == nil)
+        #expect((1...5).map { looks.lookLevel(stationLevel: $0) } == [1, 2, 3, 4, 5])
+        #expect(looks.lookLevel(stationLevel: 6) == 5)
+        for level in 1...5 {
+            let name = try #require(plate.lookArt(station: "teaStall", level: level, light: "day", stage: 7))
+            #expect(name == "world-home-look-teaStall-\(level)-day")
+        }
+    }
+
+    @Test func aStateWithoutABaseKeepsItsPaintedStall() throws {
+        let plate = try plate
+        #expect(plate.lookArt(station: "teaStall", level: 3, light: "night", stage: 7) == nil)
+        #expect(plate.lookArt(station: "teaStall", level: 3, light: "day", stage: 0) == nil)
+        #expect(plate.drawnPlateArt(light: "day", stage: 0) == plate.plateArt(light: "day", stage: 0))
+        #expect(plate.drawnPlateArt(light: "day", stage: 7) == "world-home-base-day-7")
+        // the painting other surfaces show is still the painted plate
+        #expect(plate.plateArt(light: "day", stage: 7) == "world-home-plate-day-7")
+    }
+
+    @Test func theLooksAndTheBaseAreShippedAndWithinTheBudget() throws {
+        let plate = try plate
+        #expect(PlateMath.budgetOK(plate))
+        let assets = URL(fileURLWithPath: #filePath)
+            .deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
+            .appendingPathComponent("Sources/PofuWorld/Resources/World.xcassets")
+        let fm = FileManager.default
+        var names = ["world-home-base-day-7"]
+        names += (1...5).map { "world-home-look-teaStall-\($0)-day" }
+        for name in names {
+            #expect(fm.fileExists(atPath: assets.appendingPathComponent("\(name).imageset/Contents.json").path), "\(name)")
+        }
+    }
+
+    @Test func version1StillDecodesWithoutStations() throws {
+        let json = #"{"island":"t","plateSize":[100,200],"lights":["day"],"islandBox":[0,0,100,200],"objects":[]}"#
+        let island = try PlateIsland.decode(Data(json.utf8))
+        #expect(island.version == 1)
+        #expect(island.stations.isEmpty)
+        #expect(island.drawnPlateArt(light: "day", stage: 0) == island.plateArt(light: "day", stage: 0))
+    }
 }

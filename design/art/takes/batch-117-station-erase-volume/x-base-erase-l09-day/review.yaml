@@ -1,0 +1,45 @@
+batch: batch-117-station-erase-volume
+job: x-base-erase-l09-day
+status: warn
+pick: 1
+lead_review: "Lead pick for paste-back: every station gone with a clean lawn and the left-rim flowers kept, where take 2 leaves a flower clump on the garden's spot; hand fixes: paste the pond-side path lantern back from the parent and soften the dark line in the rim where the pier gap was filled; both takes drop the rope bridge."
+note: "Exploration only; retain both unpromoted whole-plate takes for the lead to paste back. Judge the erased region and feathered seam only; whole-frame drift is expected. Preserve the left-rim daisy border, hilltop flowers, and non-station path lantern; trim any dangling workshop light string where applicable. Station boxes are in the manifest job notes."
+source: codex-cloud
+account:
+  owner: "Founder's uncle's ChatGPT plan, used by the founder with permission"
+  kind: chatgpt-plan
+takes:
+- n: 1
+  file: plate__x-base-erase-l09-day--t1.webp
+  qa: warn
+  size_bytes: 130682
+  dimensions: 1024x1536
+  lock_load: 0.0
+  warnings:
+  - check: chroma_ceiling
+    status: warn
+    message: "chroma p95 70 (R1 51) (advisory in an exploration)"
+  - check: palette_drift
+    status: warn
+    message: "mean dE 7.7, p95 25.0, off-palette 23.5% (top: #88BBFF (7.8%), #99BBFF (2.6%)) (advisory in an exploration)"
+  source_file: /workspace/generated_images/exec-7181e37d-c908-43f8-b9f4-88f1733b71e5.png
+  source_sha256: a006e1e471ac04af898cee686a31d16cb1111a64a38a3ecf6282d31860facf51
+  generated_at: 2026-11-15T15:26:45+00:00
+- n: 2
+  file: plate__x-base-erase-l09-day--t2.webp
+  qa: warn
+  size_bytes: 128982
+  dimensions: 1024x1536
+  lock_load: 0.0
+  warnings:
+  - check: chroma_ceiling
+    status: warn
+    message: "chroma p95 67 (R1 51) (advisory in an exploration)"
+  - check: palette_drift
+    status: warn
+    message: "mean dE 7.6, p95 21.6, off-palette 25.3% (top: #88BBFF (8.6%), #99BBFF (3.8%)) (advisory in an exploration)"
+  source_file: /workspace/generated_images/exec-d3c9c058-08f9-4f41-87a8-b84ce8d15599.png
+  source_sha256: 162689531d1b1ba8a4db518679e5af035de75b2012cd064bf3b3dc343b35d91f
+  generated_at: 2026-11-15T15:26:46+00:00
+references:
+- design/art/takes/batch-66-home-flow/x-home-flow-il9/plate__x-home-flow-il9--t1.webp

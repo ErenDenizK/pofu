@@ -1,0 +1,48 @@
+batch: batch-117-station-erase-volume
+job: x-base-erase-l01-day
+status: warn
+pick: 2
+lead_review: "Lead pick for the erase only: the sunflower bed is gone in both and take 2's seam is the fainter, but both lawns are yellower than this misty parent (take 1 shows a vertical step at 1:1), so paste onto the batch-116 mist-clear plate instead or grade the region first."
+note: "Exploration only; retain both unpromoted whole-plate takes for the lead to paste back. Judge the erased region and feathered seam only; whole-frame drift is expected. Preserve the left-rim daisy border, hilltop flowers, and non-station path lantern; trim any dangling workshop light string where applicable. Station boxes are in the manifest job notes."
+source: codex-cloud
+account:
+  owner: "Founder's uncle's ChatGPT plan, used by the founder with permission"
+  kind: chatgpt-plan
+takes:
+- n: 1
+  file: plate__x-base-erase-l01-day--t1.webp
+  qa: warn
+  size_bytes: 91096
+  dimensions: 1024x1536
+  lock_load: 0.0
+  warnings:
+  - check: chroma_ceiling
+    status: warn
+    message: "chroma p95 65 (R1 51) (advisory in an exploration)"
+  - check: palette_drift
+    status: warn
+    message: "mean dE 7.9, p95 21.0, off-palette 26.6% (top: #88BBFF (6.7%), #77AAFF (3.7%)) (advisory in an exploration)"
+  source_file: /workspace/generated_images/exec-ed0466bb-1543-48a7-b6fc-0fd133b1955d.png
+  source_sha256: e89badebe0f803862db409c2aaf5b25f462161dee45de8ce47934015c2b1ec92
+  generated_at: 2026-11-15T15:39:43+00:00
+- n: 2
+  file: plate__x-base-erase-l01-day--t2.webp
+  qa: warn
+  size_bytes: 85702
+  dimensions: 1024x1536
+  lock_load: 0.0
+  warnings:
+  - check: chroma_ceiling
+    status: warn
+    message: "chroma p95 58 (R1 51)"
+  - check: light_contrast
+    status: warn
+    message: "day/subject: p75 local contrast 2.5 (band 2.5-6.5; below it reads flat)"
+  - check: palette_drift
+    status: warn
+    message: "mean dE 7.1, p95 18.0, off-palette 24.6% (top: #88BBFF (6.7%), #DDDD66 (3.7%)) (advisory in an exploration)"
+  source_file: /workspace/generated_images/exec-b0668fae-b1b1-4c09-a14b-6e1eac9300b6.png
+  source_sha256: cf8da884013fdae2d29373beb1acfb1401bfc4c81a814b1fbc1893f30b6e727f
+  generated_at: 2026-11-15T15:39:44+00:00
+references:
+- design/art/plates/home/derived/plate-il1-day.webp

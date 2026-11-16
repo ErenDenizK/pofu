@@ -1,0 +1,45 @@
+batch: batch-117-station-erase-volume
+job: x-base-erase-l08-day
+status: warn
+pick:
+lead_review: "Not reviewed at 1:1 in this pass (overview and seam numbers only: both erase all eight stations and fill the pier gap like levels 9 and 10); the lead picks after a 1:1 check of the bridge, the path lanterns and the left rim."
+note: "Exploration only; retain both unpromoted whole-plate takes for the lead to paste back. Judge the erased region and feathered seam only; whole-frame drift is expected. Preserve the left-rim daisy border, hilltop flowers, and non-station path lantern; trim any dangling workshop light string where applicable. Station boxes are in the manifest job notes."
+source: codex-cloud
+account:
+  owner: "Founder's uncle's ChatGPT plan, used by the founder with permission"
+  kind: chatgpt-plan
+takes:
+- n: 1
+  file: plate__x-base-erase-l08-day--t1.webp
+  qa: warn
+  size_bytes: 129246
+  dimensions: 1024x1536
+  lock_load: 0.0
+  warnings:
+  - check: chroma_ceiling
+    status: warn
+    message: "chroma p95 67 (R1 51) (advisory in an exploration)"
+  - check: palette_drift
+    status: warn
+    message: "mean dE 7.6, p95 21.8, off-palette 25.0% (top: #88BBFF (8.2%), #99BBFF (3.5%)) (advisory in an exploration)"
+  source_file: /workspace/generated_images/exec-c69b99c2-bdbf-4f9e-a77f-9657ffa0832f.png
+  source_sha256: ab042c2ed55e8f1372b152c0acc17851b8eea514d41fe63bc337f249154b07d8
+  generated_at: 2026-11-15T15:32:05+00:00
+- n: 2
+  file: plate__x-base-erase-l08-day--t2.webp
+  qa: warn
+  size_bytes: 127644
+  dimensions: 1024x1536
+  lock_load: 0.0
+  warnings:
+  - check: chroma_ceiling
+    status: warn
+    message: "chroma p95 70 (R1 51) (advisory in an exploration)"
+  - check: palette_drift
+    status: warn
+    message: "mean dE 7.6, p95 24.8, off-palette 23.5% (top: #88BBFF (7.0%), #CCCC44 (2.8%)) (advisory in an exploration)"
+  source_file: /workspace/generated_images/exec-f54815ff-b605-4b88-a4b8-df702aa88a88.png
+  source_sha256: 61e8cf877f422a449730c9750542d730c1f1117238f11863c1b5c5d1a6bc1152
+  generated_at: 2026-11-15T15:32:05+00:00
+references:
+- design/art/takes/batch-66-home-flow/x-home-flow-il8/plate__x-home-flow-il8--t1.webp
