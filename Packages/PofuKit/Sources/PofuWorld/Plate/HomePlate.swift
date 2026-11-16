@@ -436,7 +436,10 @@ public struct HomePlate: Hashable, Sendable {
 
     /// A station's look canvas and foot, in world units, or `nil` for a station without looks.
     public func lookFrame(_ station: String) -> (box: WorldBox, foot: WorldPoint)? {
-        plate.stations[station].map { (worldBox($0.box), world($0.foot)) }
+        plate.stations[station].map { looks in
+            let place = looks.place(stage: stage)
+            return (worldBox(place.box), world(place.foot))
+        }
     }
 
     /// An occluder's cut-out box, in world units.

@@ -77,16 +77,17 @@ def test_the_shipped_looks_share_one_canvas_and_the_base_is_the_plates_size():
         assert a.size == c.size
 
 
-def test_outside_the_region_the_base_is_the_parent():
+@pytest.mark.parametrize("stage", sorted(sl.BASES))
+def test_outside_the_region_the_base_is_the_parent(stage):
     import ingest
     import heic
-    x, info = sl.build_base(7)
-    p = "world-home-plate-day-7"
+    x, info = sl.build_base(stage, sl.BASES[stage])
+    p = f"world-home-plate-day-{stage}"
     with heic.open_image(ingest.ASSETS / f"{p}.imageset" / f"{p}{heic.SUFFIX}") as im:
         plate = np.asarray(im.convert("RGBA"), np.float32) / 255
     cx = info["crop"][0] * sl.TEX
     cy = info["crop"][1] * sl.TEX
-    x0, y0, x1, y1 = sl.BASES[7]["window"]
+    x0, y0, x1, y1 = sl.BASES[stage]["window"]
     far = np.ones(plate.shape[:2], bool)
     far[max(y0 - cy - 80, 0):y1 - cy + 80, max(x0 - cx - 80, 0):x1 - cx + 80] = False
     seen = far & ((plate[..., 3] > 0.01) | (x[..., 3] > 0.01))          # a clear pixel's colour is never drawn
@@ -95,3 +96,23 @@ def test_outside_the_region_the_base_is_the_parent():
     inside = ~far
     assert np.abs(x[inside] - plate[inside]).max() > 0.2       # the stall is gone there
     assert (x[..., 3] <= plate[..., 3] + 1e-6).all()           # the alpha only shrinks
+
+
+def test_every_base_stage_has_a_place_and_the_looks_scale_about_the_foot():
+    assert set(sl.PLACE) == set(sl.BASES)
+    data = sl.stations_data()["teaStall"]
+    ref = data["box"]
+    assert sorted(data["baseStages"]) == sorted(sl.BASES)
+    for stage, place in data["stages"].items():
+        k, (fx, fy) = place["scale"], place["foot"]
+        assert place["box"][0] == pytest.approx(fx + (ref[0] - 690.0) * k, abs=0.01)
+        assert place["box"][3] == pytest.approx(fy + (ref[3] - 832.0) * k, abs=0.01)
+        assert 0.8 < k < 1.3
+
+
+def test_no_base_without_a_pick_and_the_other_stages_keep_their_stall():
+    # day level 8 (stage 2) has no pick; level 5 (stage 5) and the tile-roof stages 0 and 1 have no clean base
+    for stage in (0, 1, 2, 5, 9):
+        assert stage not in sl.BASES
+    for stage, spec in sl.BASES.items():
+        assert sl.pick_of(spec["job"]) >= 1

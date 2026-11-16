@@ -304,6 +304,14 @@ public struct StationLooks: Hashable, Sendable {
     public var foot: PlatePoint
     /// The stages of `light` whose plate has this station erased (the others keep it painted).
     public var baseStages: [Int]
+    /// Where the look stands in a stage whose plate paints the stall elsewhere or at another size: that stage's canvas
+    /// box and foot (the same canvas scaled about the foot). A stage without an entry uses `box` and `foot`.
+    public var places: [Int: StationPlace] = [:]
+
+    /// The canvas box and foot for a stage.
+    public func place(stage: Int) -> StationPlace {
+        places[stage] ?? StationPlace(box: box, foot: foot)
+    }
 
     public func hasBase(light: String, stage: Int) -> Bool {
         light == self.light && baseStages.contains(stage)
@@ -314,6 +322,12 @@ public struct StationLooks: Hashable, Sendable {
     public func lookLevel(stationLevel: Int) -> Int? {
         stationLevel >= 1 && levels >= 1 ? min(stationLevel, levels) : nil
     }
+}
+
+/// One stage's placement of a station's look: its canvas box and foot anchor, in plate points.
+public struct StationPlace: Hashable, Sendable {
+    public var box: PlateRect
+    public var foot: PlatePoint
 }
 
 /// An island's contact shadow: an ellipse (`centre`, `radii`, plate pixels) softened by `blur` and drawn at `opacity`
@@ -453,13 +467,28 @@ extension PlateIsland: Decodable {
         var box: [Double]
         var foot: [Double]
         var baseStages: [Int]
+        var stages: [String: RawPlace]?
+
+        struct RawPlace: Decodable {
+            var box: [Double]
+            var foot: [Double]
+        }
 
         var looks: StationLooks? {
             guard box.count == 4, foot.count == 2 else { return nil }
+            var places: [Int: StationPlace] = [:]
+            for (key, p) in stages ?? [:] where p.box.count == 4 && p.foot.count == 2 {
+                if let stage = Int(key) {
+                    places[stage] = StationPlace(
+                        box: PlateRect(minX: p.box[0], minY: p.box[1], maxX: p.box[2], maxY: p.box[3]),
+                        foot: PlatePoint(x: p.foot[0], y: p.foot[1])
+                    )
+                }
+            }
             return StationLooks(
                 light: light, levels: levels,
                 box: PlateRect(minX: box[0], minY: box[1], maxX: box[2], maxY: box[3]),
-                foot: PlatePoint(x: foot[0], y: foot[1]), baseStages: baseStages
+                foot: PlatePoint(x: foot[0], y: foot[1]), baseStages: baseStages, places: places
             )
         }
     }
