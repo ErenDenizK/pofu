@@ -111,8 +111,8 @@ def test_every_base_stage_has_a_place_and_the_looks_scale_about_the_foot():
 
 
 def test_no_base_without_a_pick_and_the_other_stages_keep_their_stall():
-    # day level 8 (stage 2) has no pick; level 5 (stage 5) and the tile-roof stages 0 and 1 have no clean base
-    for stage in (0, 1, 2, 5, 9):
+    # day level 8 (stage 2) has no pick; levels 5 and 2 (stages 5, 8) and the tile-roof stages 0 and 1 have no clean base
+    for stage in (0, 1, 2, 5, 8, 9):
         assert stage not in sl.BASES
     for stage, spec in sl.BASES.items():
         assert sl.pick_of(spec["job"]) >= 1

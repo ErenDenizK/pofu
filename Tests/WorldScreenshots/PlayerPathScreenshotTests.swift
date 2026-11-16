@@ -342,16 +342,16 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
     }
 
     /// The tea stall's looks on Home (WP8): the stall's level shows at every island level whose day plate has an
-    /// erased base (islands 2, 3, 4, 6, 7). Island 3 at stall levels 1, 3 and 5 (`path-stall-l<level>`), the other
+    /// erased base (islands 3, 4, 6, 7). Island 3 at stall levels 1, 3 and 5 (`path-stall-l<level>`), the other
     /// islands at levels 1 and 5 (`path-stall-i<island>-l<level>`), at noon (the stall's base is the day plate), one
     /// frame each. A level 5 stall on a young island is not a state the player reaches today; the frames are for the
-    /// looks. Island 5 keeps its painted stall (no clean base) and is shown as the control.
+    /// looks. Islands 5 and 2 keep their painted stall (no clean base) and are shown as controls.
     @MainActor
     func testRenderTheTeaStallLooks() async throws {
         let scene = try windowScene()
         let folder = try outputFolder()
         let day = try XCTUnwrap(Self.path.first { $0.morning.islandLevel == 3 }, "the path has a level 3 island")
-        let frames: [(island: Int, levels: [Int])] = [(3, [1, 3, 5]), (2, [1, 5]), (4, [1, 5]), (5, [3]), (6, [1, 5]), (7, [1, 5])]
+        let frames: [(island: Int, levels: [Int])] = [(3, [1, 3, 5]), (4, [1, 5]), (5, [3]), (6, [1, 5]), (7, [1, 5]), (2, [3])]
         for (islandLevel, levels) in frames {
             for level in levels {
                 var world = day.morning

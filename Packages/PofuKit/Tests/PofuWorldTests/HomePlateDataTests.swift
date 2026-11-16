@@ -173,7 +173,7 @@ struct HomePlateDataTests {
     @Test func theLookStandsWhereEachStagePaintsItsStallAndScalesAboutTheFoot() throws {
         let plate = try plate
         let looks = try #require(plate.stations["teaStall"])
-        #expect(looks.baseStages == [3, 4, 6, 7, 8])
+        #expect(looks.baseStages == [3, 4, 6, 7])
         for stage in looks.baseStages {
             let place = looks.place(stage: stage)
             // the foot is inside its canvas, near the bottom, and the canvas is the reference one scaled about the foot
@@ -186,7 +186,7 @@ struct HomePlateDataTests {
             #expect(plate.lookArt(station: "teaStall", level: 3, light: "day", stage: stage) == "world-home-look-teaStall-3-day")
         }
         // a stage that keeps its painted stall has no base and no look
-        for stage in [0, 1, 2, 5, 9] {
+        for stage in [0, 1, 2, 5, 8, 9] {
             #expect(plate.lookArt(station: "teaStall", level: 3, light: "day", stage: stage) == nil)
         }
         #expect(looks.place(stage: 7).foot == looks.foot)

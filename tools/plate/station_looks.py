@@ -64,11 +64,12 @@ TEA_STALL = {
 # it), have no base and keep their painted stall.
 # `exclude` rectangles (texture px) are taken out of the paste mask: the rope bridge's near post stands in front of the
 # drum at some stages and the erase takes drop the bridge, so the parent's post and rope stay.
+# Stage 8 (level 2) has a pick but no clean base: the old drum's cast shadow runs on over the lawn past the window and the
+# take paints mist where it would have to be cut, so its patch shows (a hard shadow edge, a pale wisp): it keeps its stall.
 # Day stage s is island level 10 - s; its erase job is `x-base-erase-l<level>-day`.
 JOB = "batch-117-station-erase-volume/x-base-erase-l{:02d}-day"
 BASES = {
     7: {"job": JOB.format(3), "window": (1246, 1330, 1512, 1664)},
-    8: {"job": JOB.format(2), "window": (1200, 1330, 1528, 1690)},
     6: {"job": JOB.format(4), "window": (1232, 1370, 1530, 1672)},
     4: {"job": JOB.format(6), "window": (1252, 1290, 1536, 1692),
         "exclude": [(1420, 1650, 1700, 1800)]},
@@ -80,7 +81,6 @@ BASES = {
 # counter, the scale the counter's width over stage 7's. The look stands there at that size.
 PLACE = {
     7: {"foot": (690.0, 832.0), "scale": 1.0},
-    8: {"foot": (695.0, 832.0), "scale": 0.97},
     6: {"foot": (690.0, 838.0), "scale": 0.95},
     4: {"foot": (698.0, 839.0), "scale": 1.10},
     3: {"foot": (697.0, 839.0), "scale": 1.09},
