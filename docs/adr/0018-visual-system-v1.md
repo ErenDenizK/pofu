@@ -1,6 +1,6 @@
 # 0018. Visual system v1: balanced diorama, Glass++, continuous camera
 
-- **Status:** Accepted
+- **Status:** Accepted (framing names superseded by [0027](0027-one-camera-free-near.md))
 - **Date:** 2026-11-01
 
 ## Context

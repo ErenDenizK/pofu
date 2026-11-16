@@ -1,6 +1,6 @@
 # 0019. Home cluster and wonder islands: station islands retired
 
-- **Status:** Accepted
+- **Status:** Accepted ("no free camera" superseded by [0027](0027-one-camera-free-near.md))
 - **Date:** 2026-11-05
 - **Amends:** [0016](0016-pre-planned-idle-archipelago.md) (the island list, what an island is, and the island framing)
 
