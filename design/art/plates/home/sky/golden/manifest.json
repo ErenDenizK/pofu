@@ -7,7 +7,7 @@
   3072
  ],
  "source": {
-  "plate": "Packages/PofuKit/Sources/PofuWorld/Resources/World.xcassets/world-home-plate-golden-0.imageset/world-home-plate-golden-0.heic"
+  "plate": "design/art/plates/home/sky/golden/master.heic"
  },
  "order": [
   "sky",

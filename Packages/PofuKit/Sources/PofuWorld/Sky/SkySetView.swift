@@ -30,6 +30,8 @@ struct SkySetLayers: View {
     /// Whether the island layer (and with it the cloud bank cut with the island) is drawn. A painted sky
     /// behind another island (`PaintedSky`) leaves it out: the sea, the clouds and the isles remain.
     var drawsIsland = true
+    /// Whether the bank under Home's island (`SkySet.isBank`) is drawn: at Home only, never behind another island.
+    var drawsBank = true
 
     @Environment(\.displayScale) private var displayScale
     @Environment(\.worldStillFrame) private var still
@@ -55,7 +57,7 @@ struct SkySetLayers: View {
     private func canvas(time: Double) -> some View {
         let scale = SkyMotion.scale(width: Double(size.width), referenceWidth: sky.referenceWidth)
         return Canvas(opaque: false, colorMode: .nonLinear, rendersAsynchronously: false) { context, _ in
-            for layer in sky.layers where drawsIsland || layer.role != .island {
+            for layer in sky.layers where (drawsIsland || layer.role != .island) && (drawsBank || !SkySet.isBank(layer)) {
                 if let window = layer.window {
                     // A band of the layer (the Map's sky, `PaintedSky.mapSet`): drawn through a mask that
                     // fades in and out across the band's rows.

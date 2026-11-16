@@ -36,6 +36,50 @@ struct HomePlateDataTests {
         #expect(plate.shadow(stage: plate.stages) == nil)
     }
 
+    /// One sky at every level: every state with its island matte ships its plate cropped to the island and draws
+    /// Home's sky set of its light behind it; the states that keep their old matte keep the whole plate and its backdrop.
+    @Test func mattedStatesDrawTheirLightsSkyBehindACroppedPlate() throws {
+        let plate = try plate
+        let legacy: Set<String> = ["night:8", "night:9"]
+        for light in plate.lights {
+            for stage in 0..<(plate.lightStages[light] ?? 0) {
+                let state = HomePlate(plate: plate, light: light, stage: stage)
+                if legacy.contains("\(light):\(stage)") {
+                    #expect(!state.isMatted, "\(light) \(stage)")
+                    #expect(state.skySet == nil, "\(light) \(stage)")
+                    #expect(state.plateImageBox == state.plateBox, "\(light) \(stage)")
+                    continue
+                }
+                let crop = try #require(plate.plateCrop(light: light, stage: stage), "\(light) \(stage)")
+                #expect(state.isMatted)
+                #expect(state.skySet?.light == light, "\(light) \(stage)")
+                // The crop lies inside the plate, holds the island's foot and is a band of it, not the whole plate.
+                #expect(crop.minX >= 0 && crop.minY >= 0 && crop.maxX <= plate.plateSize.maxX && crop.maxY <= plate.plateSize.maxY)
+                #expect(crop.height < plate.plateSize.height * 0.6, "\(light) \(stage)")
+                #expect(crop.minY < (plate.islandBox.minY + plate.islandBox.maxY) / 2 && crop.maxY >= plate.islandBox.maxY - 4, "\(light) \(stage)")
+                let box = state.plateImageBox, whole = state.plateBox
+                #expect(box.minY > whole.minY && box.maxY < whole.maxY, "\(light) \(stage)")
+            }
+        }
+        #expect(PlateMath.budgetOK(plate))
+    }
+
+    /// Golden hour below level 10 shows the night plate (`HomePlate.borrowed`) and with it the night sky: a plate and
+    /// its sky are always the same light.
+    @Test func aBorrowedLightTakesItsOwnSky() throws {
+        let plate = try plate
+        let stage = try #require(plate.dayStage(islandLevel: 5))
+        let golden = try #require(HomePlate.state(in: plate, islandLevel: 5, hour: 18.5, weather: WeatherConditions(), isBedtime: false))
+        #expect(HomePlate.light(hour: 18.5, isBedtime: false) == "golden")
+        #expect(golden.light == "night" && golden.stage == stage)
+        let state = HomePlate(plate: plate, light: golden.light, stage: golden.stage)
+        #expect(state.skySet?.light == "night")
+        // Level 10 paints its own golden hour, and its sky set is golden.
+        let ten = try #require(HomePlate.state(in: plate, islandLevel: 10, hour: 18.5, weather: WeatherConditions(), isBedtime: false))
+        #expect(ten.light == "golden")
+        #expect(HomePlate(plate: plate, light: ten.light, stage: ten.stage).skySet?.light == "golden")
+    }
+
     @Test func paintsTheDayOfEveryLevelFromOne() throws {
         let plate = try plate
         #expect(plate.painted["day"] == Array(0...9))

@@ -198,11 +198,16 @@ class IngestTests(unittest.TestCase):
         for light, stage in (("day", 0), ("day", 5), ("night", 5), ("golden", 0)):
             name = ingest.asset_name("home", "plate", light, stage)
             f = next((ingest.ASSETS / f"{name}.imageset").glob(f"{name}.*"))
-            alpha = np.asarray(ingest.heic.open_image(f).convert("RGBA"), np.float64)[..., 3] / 255
+            shipped = np.asarray(ingest.heic.open_image(f).convert("RGBA"), np.float64)[..., 3] / 255
             matte = ingest.load_matte_full("home", light, stage)
-            self.assertEqual(alpha.shape, matte.shape)
+            # the plate ships cropped to its island (`plateCrop`): every pixel of the matte lies inside the crop
+            x0, y0, x1, y1 = (v * ingest.MATTE_TEX for v in ingest.plate_crop_points("home", ingest.load_hand("home"), light, stage))
+            self.assertEqual(shipped.shape, (y1 - y0, x1 - x0))
+            self.assertLess(shipped.size, matte.size * 0.6)
+            alpha = np.zeros_like(matte)
+            alpha[y0:y1, x0:x1] = shipped
             self.assertLess(float(np.abs(alpha - matte).mean()), 0.004, f"{light}:{stage}")
-            self.assertEqual(float(alpha[0].max()), 0.0)  # no rectangle: the border is clear
+            self.assertEqual(float(shipped[0].max()), 0.0)  # clear room above the island
 
     def test_no_state_reads_level_10s_matte(self):
         import unittest.mock as mock
@@ -212,7 +217,7 @@ class IngestTests(unittest.TestCase):
         self.assertTrue(all(p.exists() for p in masters))
         # every state that is not listed as legacy has its own solve (the three lights of a stage are one drawing)
         own = {m.name for m, (light, stage, _) in zip(masters, ingest.plates(hand)) if not ingest.is_legacy(hand, light, stage)}
-        self.assertEqual(len(own), 17)
+        self.assertEqual(len(own), 21 - len(hand.get("legacyStates", [])))
         self.assertFalse(np.array_equal(ingest.load_matte_full("home", "day", 5), ingest.load_matte_full("home", "day", 0)))
         # a state without its own matte is an error, not the level-10 one
         with mock.patch.object(ingest, "matte_path", return_value=Path("/nonexistent/matte.png")):

@@ -46,6 +46,14 @@ import ingest  # noqa: E402
 import map_cut  # noqa: E402
 import skyset_extend  # noqa: E402
 
+
+def plate_rgb(light: str, stage: int) -> np.ndarray:
+    """The whole Home plate of a state at texture size (RGB floats): the picture `ingest.py deliver` cuts the shipped plate
+    from (the hand data's take, upscaled). The shipped plate is cropped to its island (`plateCrop`, one sky at every
+    level), and a new take has no shipped plate yet, so the solve reads the source."""
+    hand = ingest.load_hand("home")                 # sets `ingest.SIZE` to the Home plate's
+    return ingest.source_plate(ingest.REPO / hand["plates"][light][str(stage)])[0].astype(np.float32)
+
 TEX = 2                                     # plate texture px per plate point
 BEAM_X = (1870, 1985)                       # texture px: the beam fades out between these columns
 BEAM_LEAD = 110                             # px the beam's rect reaches left of where it fades from, into the lamp room
@@ -94,7 +102,7 @@ def island_layer_v1(light: str = "day", stage: int = 0) -> tuple[np.ndarray, tup
     if f.exists():
         z = np.load(f)
         return z["rgba"].astype(np.float32) / 255, (int(z["x"]), int(z["y"]))
-    plate = load_rgba(f"world-home-plate-{light}-{stage}")[..., :3]
+    plate = plate_rgb(light, stage)
     alpha, (x0, y0, x1, y1) = island_alpha(light, stage, plate)
     rgb = plate[y0 * TEX:y1 * TEX, x0 * TEX:x1 * TEX]
     rgba = np.dstack([rgb, alpha])
@@ -576,8 +584,16 @@ def lights_at(stage: int) -> list[str]:
 
 
 def _box(stage: int) -> tuple[int, int, int, int]:
-    """The layer's box in plate points: the day matte's box with PAD of room on every side (the plate's own edge where it ends)."""
-    plate = load_rgba(f"world-home-plate-day-{stage}")[..., :3]
+    """The layer's box in plate points: the day matte's box with PAD of room on every side (the plate's own edge where it ends).
+    Once the stage's day layer is solved its box is the stage's (the lights of a stage are one drawing, and the committed
+    matte the box was first read from is the solve's own output since)."""
+    day = CACHE / f"island2-day-{stage}.npz"
+    if day.exists():
+        z = np.load(day)
+        x, y = int(z["x"]), int(z["y"])
+        h, w = z["rgba"].shape[:2]
+        return x, y, x + w // TEX, y + h // TEX
+    plate = plate_rgb("day", stage)
     _, (bx0, by0, bx1, by1) = island_alpha("day", stage, plate)
     ph, pw = plate.shape[0] // TEX, plate.shape[1] // TEX
     return max(bx0 - PAD, 0), max(by0 - PAD, 0), min(bx1 + PAD, pw), min(by1 + PAD, ph)
@@ -585,7 +601,34 @@ def _box(stage: int) -> tuple[int, int, int, int]:
 
 def plate_crop(light: str, stage: int) -> np.ndarray:
     x0, y0, x1, y1 = _box(stage)
-    return load_rgba(f"world-home-plate-{light}-{stage}")[y0 * TEX:y1 * TEX, x0 * TEX:x1 * TEX, :3]
+    return plate_rgb(light, stage)[y0 * TEX:y1 * TEX, x0 * TEX:x1 * TEX]
+
+
+#: States whose own painting is solved instead of the stage's shared (day) shape: batch 125's cleared nights re-render
+#: the island's edge (the lawn runs on where the mist was), so the day's cut would take paint off them (M11).
+OWN_SOLVE = {("night", 1), ("night", 2)}
+
+
+def own_alpha(light: str, stage: int) -> np.ndarray:
+    """The alpha of this state's own painting, solved as `shared_alpha` solves the day's (network and edge solve)."""
+    f = CACHE / f"own-{light}-{stage}.npy"
+    if f.exists():
+        return np.load(f)
+    rgb = plate_crop(light, stage)
+    pf = CACHE / f"prob-{light}-{stage}.npy"
+    if pf.exists():
+        prob = np.load(pf)
+    else:
+        prob = ml_probability(rgb)
+        np.save(pf, prob)
+    a, _ = solve_edge(rgb, prob, semantic=True)
+    firm = cv2.morphologyEx((a > 0.3).astype(np.uint8), cv2.MORPH_OPEN, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (3, 3)))
+    a = np.where(cv2.dilate(firm, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5))) > 0, a, 0.0)
+    a = np.where(_drop_small(a > 0.02, MIN_PIECE), a, 0.0).astype(np.float32)
+    a = np.where(_fill_small(a >= 0.99, MIN_PIECE) & ~(a >= 0.99), 1.0, a).astype(np.float32)
+    a = np.ascontiguousarray(a, dtype=np.float32)
+    np.save(f, a)
+    return a
 
 
 def shared_alpha(stage: int) -> np.ndarray:
@@ -606,7 +649,7 @@ def shared_alpha(stage: int) -> np.ndarray:
             np.save(pf, prob)
         a, _ = solve_edge(rgb, prob, semantic=True)
     else:
-        plate = load_rgba(f"world-home-plate-day-{stage}")[..., :3]
+        plate = plate_rgb("day", stage)
         shape, (bx0, by0, bx1, by1) = island_alpha("day", stage, plate)
         x0, y0, x1, y1 = _box(stage)
         shape = np.pad(shape, (((by0 - y0) * TEX, (y1 - by1) * TEX), ((bx0 - x0) * TEX, (x1 - bx1) * TEX)))
@@ -665,9 +708,9 @@ def island_layer(light: str = "day", stage: int = 0) -> tuple[np.ndarray, tuple[
         z = np.load(f)
         return z["rgba"].astype(np.float32) / 255, (int(z["x"]), int(z["y"]))
     x0, y0, x1, y1 = _box(stage)
-    plate = load_rgba(f"world-home-plate-{light}-{stage}")[..., :3]
+    plate = plate_rgb(light, stage)
     rgb = plate[y0 * TEX:y1 * TEX, x0 * TEX:x1 * TEX]
-    a = shared_alpha(stage).copy()
+    a = (own_alpha(light, stage) if (light, stage) in OWN_SOLVE else shared_alpha(stage)).copy()
     far = ~cv2.dilate((a > 0.02).astype(np.uint8), cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2 * BAND + 1, 2 * BAND + 1))).astype(bool)
     col = edge_colour(rgb, a, _estimate(rgb, far))
     a[:1], a[-1:], a[:, :1], a[:, -1:] = 0, 0, 0, 0
@@ -681,7 +724,7 @@ def island_layer(light: str = "day", stage: int = 0) -> tuple[np.ndarray, tuple[
             col = np.where(on[..., None], own, col)
     rgba = np.dstack([col, a])
     if has_beam(stage):
-        dplate = load_rgba(f"world-home-plate-day-{stage}")[..., :3]               # the beam's shape is the day's, for every light
+        dplate = plate_rgb("day", stage)               # the beam's shape is the day's, for every light
         beam, (xa, ya, xb, yb) = _beam(dplate, dplate[y0 * TEX:y1 * TEX, x0 * TEX:x1 * TEX], (x0, y0, x1, y1))
         sub = rgba[ya:yb, xa:xb]
         use = beam > sub[..., 3]
@@ -707,7 +750,7 @@ def soft_edges(light: str, stage: int, shape: tuple[int, int]) -> list[np.ndarra
 def source_crop(light: str, stage: int) -> np.ndarray:
     """The plate pixels under the layer (what it was cut from)."""
     rgba, (x0, y0) = island_layer(light, stage)
-    plate = load_rgba(f"world-home-plate-{light}-{stage}")[..., :3]
+    plate = plate_rgb(light, stage)
     return plate[y0 * TEX:y0 * TEX + rgba.shape[0], x0 * TEX:x0 * TEX + rgba.shape[1]]
 
 

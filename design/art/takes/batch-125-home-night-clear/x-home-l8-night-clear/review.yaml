@@ -1,0 +1,481 @@
+batch: batch-125-home-night-clear
+manifest: tools/imagegen/manifest/batch-125-home-night-clear.yaml
+manifest_sha256: 40d81018637ab251c5324ce035d8d30de1bbc6e316b5b83a5a8e557ce8336c7d
+job: x-home-l8-night-clear
+contact_sheet: design/art/takes/batch-125-home-night-clear/x-home-l8-night-clear/contact.jpg
+source: codex-cloud
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+status: skipped
+selection:
+  method: manual manifest acceptance after automated QA; neither take preserves outside region and night
+    lawn
+  pick: null
+takes:
+- take: 1
+  file: plate__x-home-l8-night-clear--t1.webp
+  source_file: /workspace/generated_images/exec-0ddca620-c2e0-463d-bef6-9b2c889f5a4f.png
+  source_sha256: 0f3df3962dec31ad74ceb98002dbb6ee52b57e044d16269885673b93e45aa2ed
+  source_dimensions:
+  - 1024
+  - 1536
+  backend: codex-cloud
+  qa: warn
+  lock_load: 0.0
+  harmony: null
+  warnings:
+  - check: light_values
+    status: warn
+    message: 'night/subject: L p5 38 (at least 45: darks stay a light mid-tone), p98 93 (at least 85)'
+  - check: light_median
+    status: warn
+    message: 'night/subject: median L 61 (band 66-88)'
+  - check: light_contrast
+    status: warn
+    message: 'night/subject: p75 local contrast 9.3 (band 1.5-5.0; above it reads too contrasty) (warn-only
+      until the founder has seen the light pilot)'
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 7.7, p95 16.2, off-palette 32.3% (top: #335599 (14.8%), #4455AA (9.0%)) (advisory
+      in an exploration)'
+  prompt: 'Edit the attached night painting of a floating island. Make one change
+
+    only. There is a big pale cloud bank resting against the back of the
+
+    island at the upper left, behind the bench and beside the windmill; remove
+
+    it where it touches the island, so that only open night sky is behind the
+
+    island''s back edge there. Where the cloud or mist lay on the island, paint
+
+    the lawn clean, in the lawn''s own night colour, texture and light, exactly
+
+    as it is beside that place, running all the way to the island''s edge,
+
+    which stays a whole, rounded, crisp rim against the night sky with the
+
+    same earth below it. Where it lay beyond the island, paint the same deep
+
+    blue night sky as beside it. No haze, fog or pale veil is left over the
+
+    grass or the rim. Everything else stays exactly as it is: the island''s
+
+    shape and position, the windmill, the workshop, the stalls, the
+
+    lighthouse, the pond, the lamps and string lights, the flowers, the earth
+
+    body and its lit round doors, the night sky, the other clouds that do not
+
+    touch the island, the cloud sea below, and the night light. It stays
+
+    night: the same dark blue sky, the same dim cool lawn, the same warm
+
+    lamps. Add nothing: no new object, no bush, no flower, no stone, no moon,
+
+    no stars.
+
+
+    KEEP: everything not named above stays exactly the same as in the
+
+    attached image: every existing part, its shape, color, position and size,
+
+    the canvas, the camera, the light and the painting style. Do not zoom out
+
+    or reframe: if a new part does not fit, make the new part smaller, never
+
+    the existing ones. Outside the new parts, the result must line up with
+
+    the attached image pixel for pixel.
+
+
+    STYLE: a finished painted illustration for a premium cozy mobile game, like
+
+    a page from a beloved picture book: soft painterly 2D with gentle airbrushed
+
+    shading, rounded chunky forms, no outlines, no hard edges, matte surfaces
+
+    with at most one soft highlight per object. COLOUR: vivid, saturated and
+
+    jewel-like, as in the key art of a high-end animated film: intense grass
+
+    greens, glowing sunflower yellow, deep sky blue, warm peach earth, crisp
+
+    white petals; strong contrast between warm lit colour and cool shadow
+
+    colour; every material keeps its own true colour. VALUES: a full range, from
+
+    bright sunlit tops to deep warm shadows under eaves, inside foliage, beneath
+
+    the lawn rim and around doors, so every object separates clearly from what
+
+    is behind it and the picture reads at a glance on a small phone screen.
+
+    Shadows are coloured (warm brown, plum, deep teal), never black or grey.
+
+    Light direction and shadow hue follow the LIGHT block of this prompt.
+
+    Colourful but never neon, never HDR, never glossy. No text, no letters, no
+
+    numbers, no logos, no watermark, no border, no frame.
+
+
+    AVOID: any mist, haze, fog, pale veil or cloud left over the grass or the rim, a blurred or smudged
+    lawn, a colour step or edge round the cleared place, a brighter or daytime picture, a yellower lawn,
+    a moon, stars or any new object, a notch or a flat sky-coloured wedge in the rim, a moved, resized
+    or redrawn island, a change to any building, lamp or flower, a reframed or zoomed picture, text
+
+
+    LIGHT (hour: night, layer: subject). Safe, cozy.
+
+    Key light #B8A8B1 from the upper right; fill #2A2350; rim #FFB060 along the edge facing away from
+    the key. Shadows are tinted #2A2440 (never grey or black), short and soft, falling toward the lower
+    left; every object sits on a soft occlusion pad in that hue where it touches the ground or another
+    form.
+
+    VALUES (the reference envelope): a high-key picture inside one envelope of soft, milky air. Every
+    value sits between light mid-tone and cream-white; the darkest recesses (door holes, gaps, pond rims)
+    are a mid-value tinted with the shadow hue, never black. Form turns in small value steps. Colour lives
+    in the halftones; lights bleach to cream. No dark outlines: edges are found by value and hue. The
+    cloud sea below is the brightest large surface and lights the island''s underside with a warm bounce.
+
+    NIGHT is a hue change, not a value drop: only the sky is dark (deep indigo); the island and the clouds
+    stay light, moonlit lavender, with violet shadows and cream practicals whose glow spreads three to
+    four times the lamp''s size.
+
+    This is the SUBJECT plane: the clearest forms and the crispest edges in the picture, still inside
+    the envelope.
+
+
+    Output: one image, opaque, full bleed, portrait 1024 x 1536.
+
+
+    '
+  attachments:
+  - path: design/art/takes/batch-72-home-night/x-home-flow-il8-night/plate__x-home-flow-il8-night--t2.webp
+    role: Edit parent; approved night plate.
+    sha256: 41660e94086f6a8b6ca7b5984f89c4dfa89f02bb71eb4f4915daa8b1fef7c31b
+  review_webp_bytes: 161316
+- take: 2
+  file: plate__x-home-l8-night-clear--t2.webp
+  source_file: /workspace/generated_images/exec-0666ab41-9f6b-4484-82ae-9964d6b615c4.png
+  source_sha256: 7096d7c7cae0d7eca0811698eb3c2d64e359ea00d8272f5d37eaf33299370af2
+  source_dimensions:
+  - 1024
+  - 1536
+  backend: codex-cloud
+  qa: warn
+  lock_load: 0.0
+  harmony: null
+  warnings:
+  - check: light_values
+    status: warn
+    message: 'night/subject: L p5 35 (at least 45: darks stay a light mid-tone), p98 93 (at least 85)'
+  - check: light_median
+    status: warn
+    message: 'night/subject: median L 61 (band 66-88)'
+  - check: light_contrast
+    status: warn
+    message: 'night/subject: p75 local contrast 9.3 (band 1.5-5.0; above it reads too contrasty) (warn-only
+      until the founder has seen the light pilot)'
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 7.1, p95 14.2, off-palette 28.1% (top: #335599 (16.4%), #334499 (8.4%)) (advisory
+      in an exploration)'
+  prompt: 'Edit the attached night painting of a floating island. Make one change
+
+    only. There is a big pale cloud bank resting against the back of the
+
+    island at the upper left, behind the bench and beside the windmill; remove
+
+    it where it touches the island, so that only open night sky is behind the
+
+    island''s back edge there. Where the cloud or mist lay on the island, paint
+
+    the lawn clean, in the lawn''s own night colour, texture and light, exactly
+
+    as it is beside that place, running all the way to the island''s edge,
+
+    which stays a whole, rounded, crisp rim against the night sky with the
+
+    same earth below it. Where it lay beyond the island, paint the same deep
+
+    blue night sky as beside it. No haze, fog or pale veil is left over the
+
+    grass or the rim. Everything else stays exactly as it is: the island''s
+
+    shape and position, the windmill, the workshop, the stalls, the
+
+    lighthouse, the pond, the lamps and string lights, the flowers, the earth
+
+    body and its lit round doors, the night sky, the other clouds that do not
+
+    touch the island, the cloud sea below, and the night light. It stays
+
+    night: the same dark blue sky, the same dim cool lawn, the same warm
+
+    lamps. Add nothing: no new object, no bush, no flower, no stone, no moon,
+
+    no stars.
+
+
+    KEEP: everything not named above stays exactly the same as in the
+
+    attached image: every existing part, its shape, color, position and size,
+
+    the canvas, the camera, the light and the painting style. Do not zoom out
+
+    or reframe: if a new part does not fit, make the new part smaller, never
+
+    the existing ones. Outside the new parts, the result must line up with
+
+    the attached image pixel for pixel.
+
+
+    STYLE: a finished painted illustration for a premium cozy mobile game, like
+
+    a page from a beloved picture book: soft painterly 2D with gentle airbrushed
+
+    shading, rounded chunky forms, no outlines, no hard edges, matte surfaces
+
+    with at most one soft highlight per object. COLOUR: vivid, saturated and
+
+    jewel-like, as in the key art of a high-end animated film: intense grass
+
+    greens, glowing sunflower yellow, deep sky blue, warm peach earth, crisp
+
+    white petals; strong contrast between warm lit colour and cool shadow
+
+    colour; every material keeps its own true colour. VALUES: a full range, from
+
+    bright sunlit tops to deep warm shadows under eaves, inside foliage, beneath
+
+    the lawn rim and around doors, so every object separates clearly from what
+
+    is behind it and the picture reads at a glance on a small phone screen.
+
+    Shadows are coloured (warm brown, plum, deep teal), never black or grey.
+
+    Light direction and shadow hue follow the LIGHT block of this prompt.
+
+    Colourful but never neon, never HDR, never glossy. No text, no letters, no
+
+    numbers, no logos, no watermark, no border, no frame.
+
+
+    AVOID: any mist, haze, fog, pale veil or cloud left over the grass or the rim, a blurred or smudged
+    lawn, a colour step or edge round the cleared place, a brighter or daytime picture, a yellower lawn,
+    a moon, stars or any new object, a notch or a flat sky-coloured wedge in the rim, a moved, resized
+    or redrawn island, a change to any building, lamp or flower, a reframed or zoomed picture, text
+
+
+    LIGHT (hour: night, layer: subject). Safe, cozy.
+
+    Key light #B8A8B1 from the upper right; fill #2A2350; rim #FFB060 along the edge facing away from
+    the key. Shadows are tinted #2A2440 (never grey or black), short and soft, falling toward the lower
+    left; every object sits on a soft occlusion pad in that hue where it touches the ground or another
+    form.
+
+    VALUES (the reference envelope): a high-key picture inside one envelope of soft, milky air. Every
+    value sits between light mid-tone and cream-white; the darkest recesses (door holes, gaps, pond rims)
+    are a mid-value tinted with the shadow hue, never black. Form turns in small value steps. Colour lives
+    in the halftones; lights bleach to cream. No dark outlines: edges are found by value and hue. The
+    cloud sea below is the brightest large surface and lights the island''s underside with a warm bounce.
+
+    NIGHT is a hue change, not a value drop: only the sky is dark (deep indigo); the island and the clouds
+    stay light, moonlit lavender, with violet shadows and cream practicals whose glow spreads three to
+    four times the lamp''s size.
+
+    This is the SUBJECT plane: the clearest forms and the crispest edges in the picture, still inside
+    the envelope.
+
+
+    Output: one image, opaque, full bleed, portrait 1024 x 1536.
+
+
+    '
+  attachments:
+  - path: design/art/takes/batch-72-home-night/x-home-flow-il8-night/plate__x-home-flow-il8-night--t2.webp
+    role: Edit parent; approved night plate.
+    sha256: 41660e94086f6a8b6ca7b5984f89c4dfa89f02bb71eb4f4915daa8b1fef7c31b
+  review_webp_bytes: 159396
+qa_reports:
+- job: x-home-l8-night-clear
+  take: 1
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1024x1536
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 47 (R1 51)
+    value: 46.9
+  - check: light_values
+    status: warn
+    message: 'night/subject: L p5 38 (at least 45: darks stay a light mid-tone), p98 93 (at least 85)'
+    value: 38.2
+  - check: light_median
+    status: warn
+    message: 'night/subject: median L 61 (band 66-88)'
+    value: 61.2
+  - check: light_contrast
+    status: warn
+    message: 'night/subject: p75 local contrast 9.3 (band 1.5-5.0; above it reads too contrasty) (warn-only
+      until the founder has seen the light pilot)'
+    value: 9.32
+  - check: light_sky
+    status: pass
+    message: 'night: sky L 37 (band 24-46)'
+    value: 37.2
+  - check: light_sea
+    status: pass
+    message: 'night: cloud sea L 78 (at least 70: the sea is the reflector)'
+    value: 77.6
+  - check: light_dark
+    status: pass
+    message: 'night: 0.6 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.6
+  - check: detail_budget
+    status: pass
+    message: detail at display size 5.5 (R1 5.3)
+    value: 5.52
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 7.7, p95 16.2, off-palette 32.3% (top: #335599 (14.8%), #4455AA (9.0%)) (advisory
+      in an exploration)'
+    value: 7.7127
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_stability
+    status: pass
+    message: 96% of the parent level unchanged
+    value: 0.9619
+  - check: edit_chroma
+    status: pass
+    message: chroma x1.07 of the parent level (drift compounds along a chain)
+    value: 1.0738
+  info:
+    metrics_raw:
+      L_p5: 33.5
+      L_p50: 54.7
+      L_p95: 87.8
+      C_p50: 35.0
+      C_p95: 46.9
+      C_p99: 48.0
+      detail: 5.52
+    metrics_locked:
+      L_p5: 33.5
+      L_p50: 54.7
+      L_p95: 87.8
+      C_p50: 35.0
+      C_p95: 46.9
+      C_p99: 48.0
+      detail: 5.52
+  fingerprint: ae33767d70fe9d3e
+  webp_bytes: 161316
+- job: x-home-l8-night-clear
+  take: 2
+  status: warn
+  preset: plate-final
+  checks:
+  - check: transparency
+    status: pass
+    message: opaque, as this kind must be
+  - check: canvas
+    status: pass
+    message: 1024x1536
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 47 (R1 51)
+    value: 46.6
+  - check: light_values
+    status: warn
+    message: 'night/subject: L p5 35 (at least 45: darks stay a light mid-tone), p98 93 (at least 85)'
+    value: 35.0
+  - check: light_median
+    status: warn
+    message: 'night/subject: median L 61 (band 66-88)'
+    value: 60.8
+  - check: light_contrast
+    status: warn
+    message: 'night/subject: p75 local contrast 9.3 (band 1.5-5.0; above it reads too contrasty) (warn-only
+      until the founder has seen the light pilot)'
+    value: 9.26
+  - check: light_sky
+    status: pass
+    message: 'night: sky L 36 (band 24-46)'
+    value: 36.0
+  - check: light_sea
+    status: pass
+    message: 'night: cloud sea L 78 (at least 70: the sea is the reflector)'
+    value: 78.1
+  - check: light_dark
+    status: pass
+    message: 'night: 0.6 % below L* 30 under the sky (at most 3; only the sky is dark)'
+    value: 0.6
+  - check: detail_budget
+    status: pass
+    message: detail at display size 5.5 (R1 5.3)
+    value: 5.55
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 0.0
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 7.1, p95 14.2, off-palette 28.1% (top: #335599 (16.4%), #334499 (8.4%)) (advisory
+      in an exploration)'
+    value: 7.1464
+  - check: edit_silhouette
+    status: pass
+    message: 100% of the parent's shape kept
+    value: 1.0
+  - check: edit_stability
+    status: pass
+    message: 94% of the parent level unchanged
+    value: 0.9403
+  - check: edit_chroma
+    status: pass
+    message: chroma x1.06 of the parent level (drift compounds along a chain)
+    value: 1.061
+  info:
+    metrics_raw:
+      L_p5: 32.1
+      L_p50: 54.3
+      L_p95: 88.1
+      C_p50: 34.6
+      C_p95: 46.6
+      C_p99: 47.4
+      detail: 5.55
+    metrics_locked:
+      L_p5: 32.1
+      L_p50: 54.3
+      L_p95: 88.1
+      C_p50: 34.6
+      C_p95: 46.6
+      C_p99: 47.4
+      detail: 5.55
+  fingerprint: ae33767d70fe9d3e
+  webp_bytes: 159396
+note: 'Both candidates remove the cloud contact but redraw extensive areas outside that location: at 1:1
+  the lawn, flowers, windmill, island ornament details and surrounding sky differ noticeably from the
+  parent. Night lightness and contrast warnings are pronounced (p75 local contrast 9.3 on both), and neither
+  is suitable for a feathered-mask-only paste. Two-take limit reached; retain both and skip, with no promotion.'
+acceptance:
+  matte_M2_M11: Cloud contact removed without an obvious contour notch; not sufficient for overall acceptance.
+  outside_cleared_region: 'Fail: visible repaint beyond requested clear; parent cannot be restored by
+    pasting only the edited region.'
+  night_lawn_colour: 'Fail: automated night lightness/contrast warnings and visible lightness/saturation
+    shift.'
+overall: skipped; both takes retained per exploration rule, no promotion.

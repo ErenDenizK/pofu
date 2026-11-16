@@ -4,9 +4,10 @@
     python3 -I tools/plate/plate_gate.py [island] [--state LIGHT:STAGE] [--out DIR]
 
 For every plate of the island's hand data (`objects.json` `plates`), takes the shipped
-`world-<island>-plate-<light>-<stage>` (HEIC with its alpha, the matte), runs `tools/art/matte_check.py` M1 to M6 and M11 on
-it with the plate's take (`objects.json`, lanczos x2 to texture size) as the source and the shipped backdrop of the same
-state, placed where the app puts it, as the destination, and fails on any red. Then prints the largest state's
+`world-<island>-plate-<light>-<stage>` (HEIC with its alpha, the matte; cropped to `plateCrop`), runs
+`tools/art/matte_check.py` M1 to M6 and M11 on it with the plate's take (`objects.json`, lanczos x2 to texture size) as the
+source and what the app draws behind it as the destination (the sky set of the state's light at rest, without its island
+layer), and fails on any red. Then prints the largest state's
 `textureBytes` against `ingest.BUDGET` and fails when it is over. The lighthouse's beam (level 10) is a region meant to be
 soft: `matte_check`'s `soft` skips it, and the worst-edges sheet shows it for the eye.
 
@@ -19,6 +20,7 @@ import argparse
 import sys
 from pathlib import Path
 
+import cv2
 import numpy as np
 from PIL import Image
 
@@ -42,7 +44,9 @@ CODEC_ALPHA = 0.04
 M3_NIGHT = 0.25
 #: Checks waived for one state, each looked at on the plate over a flat sky at 1:1 (the lawn's rim there is crisp and
 #: clean; the test reads pale grass tips against the sky as haze). Day levels 1 and 2, batch 116's cleared takes.
-WAIVED = {"day-8": ("M11",), "day-9": ("M11",)}
+#: Night level 8 (batch 125's cleared night, its own solve): M4 counts the sky between the bunting's string and the tea
+#: stall's ridge, a real gap that the day of the level shows the same way.
+WAIVED = {"day-8": ("M11",), "day-9": ("M11",), "night-2": ("M4",)}
 #: Texture px per plate point of the shipped plate, and the beam's soft rect (tools/proof/island_matte.py: BEAM_X,
 #: BEAM_LEAD, BEAM_Y, in texture px of the whole plate).
 TEX = 2
@@ -70,8 +74,44 @@ def placed_backdrop(island: str, light: str, stage: int, data: dict, shape: tupl
     return out
 
 
+def placed_sky(island: str, light: str, shape: tuple[int, int], origin: tuple[int, int]) -> np.ndarray:
+    """Home's sky set for `light` at rest (time zero) without its island layer, over the crop (`shape`, top-left `origin`
+    in texture px of the plate): what the app draws behind a matted plate. Home's master is the plate at texture size, so
+    a layer's master box is its place here; the drift tiles repeat at their tile width, the star light adds."""
+    spec = __import__("json").loads((ingest.JSON_DIR / f"skyset-{island}.json").read_text())["lights"][light]
+    out = np.zeros(shape + (3,), np.float32)
+    ox, oy = origin
+    for layer in spec["layers"]:
+        if layer["role"] == "island":
+            continue
+        img = _image(layer["asset"], "RGBA")
+        (x, y), (w, h) = layer["pos"], layer["size"]
+        img = np.asarray(cv2.resize(img, (int(round(w)), int(round(h))), interpolation=cv2.INTER_AREA if img.shape[1] > w else cv2.INTER_LINEAR), np.float32)
+        step = layer.get("tileWidth") if layer["role"] == "tile" else None
+        xs = [x + n * step for n in range(-2, 3)] if step else [x]
+        for lx in xs:
+            x0, y0 = int(round(lx)) - ox, int(round(y)) - oy
+            a0, b0 = max(x0, 0), max(y0, 0)
+            a1, b1 = min(x0 + img.shape[1], shape[1]), min(y0 + img.shape[0], shape[0])
+            if a1 <= a0 or b1 <= b0:
+                continue
+            src = img[b0 - y0:b1 - y0, a0 - x0:a1 - x0]
+            dst = out[b0:b1, a0:a1]
+            if layer["role"] == "stars":
+                continue  # time zero: a star group's added light is 0 (`SkyMotion.twinkle`)
+            dst[:] = src[..., :3] * src[..., 3:] + dst * (1 - src[..., 3:])
+    return np.clip(out, 0, 1)
+
+
 def check_state(island: str, hand: dict, data: dict, light: str, stage: int, take: Path, out: Path | None) -> dict:
-    rgba = _image(ingest.asset_name(island, "plate", light, stage), "RGBA")
+    shipped = _image(ingest.asset_name(island, "plate", light, stage), "RGBA")
+    # A matted plate ships cropped (`plateCrop`, plate points): put it back on the whole plate's canvas.
+    box = data.get("plateCrop", {}).get(light, [None] * (stage + 1))[stage]
+    if box:
+        rgba = np.zeros((data["plateSize"][1] * TEX, data["plateSize"][0] * TEX, 4), np.float32)
+        rgba[box[1] * TEX:box[3] * TEX, box[0] * TEX:box[2] * TEX] = shipped
+    else:
+        rgba = shipped
     a = rgba[..., 3]
     ys, xs = np.nonzero(a > 0.004)
     m = MARGIN * TEX
@@ -87,7 +127,11 @@ def check_state(island: str, hand: dict, data: dict, light: str, stage: int, tak
     if stage == 0:
         bx0, by0, bx1, by1 = BEAM
         soft = [np.array([[bx0 - x0, by0 - y0], [bx1 - x0, by0 - y0], [bx1 - x0, by1 - y0], [bx0 - x0, by1 - y0]], np.float32)]
-    dest = placed_backdrop(island, light, stage, data, crop.shape[:2], (x0, y0))
+    # The destination is what the app draws behind the plate: the sky set for a matted state, else its backdrop.
+    if box:
+        dest = placed_sky(island, light, crop.shape[:2], (x0, y0))
+    else:
+        dest = placed_backdrop(island, light, stage, data, crop.shape[:2], (x0, y0))
     return mc.check_matte(crop, source=src, soft=soft, dests={light: dest}, name=f"{light}-{stage}", out=out)
 
 
@@ -120,7 +164,10 @@ def main(argv: list[str] | None = None) -> int:
         print(mc.one_line(r), flush=True)
         if not r["pass"]:
             red.append(r["name"])
-    size = ingest.texture_bytes(args.island, hand)
+    per_state = ingest.state_texture_bytes(args.island, hand)
+    for (light, stage), b in per_state.items():
+        print(f"  {light}-{stage}: {b:,} texture bytes")
+    size = max(per_state.values(), default=0)
     print(f"textureBytes {size:,} of {ingest.BUDGET:,}{'' if size <= ingest.BUDGET else '  OVER BUDGET'}")
     print(f"plate gate: {n} state(s) gated, {len(legacy)} legacy ({', '.join(legacy)}), {'red: ' + ', '.join(red) if red else 'all green'}")
     return 1 if red or size > ingest.BUDGET else 0

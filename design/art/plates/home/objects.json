@@ -18,8 +18,6 @@
   1230
  ],
  "legacyStates": [
-  "night:1",
-  "night:2",
   "night:8",
   "night:9"
  ],
@@ -42,8 +40,8 @@
   },
   "night": {
    "0": "design/art/takes/batch-66-home-flow/x-home-flow-night/plate__x-home-flow-night--t1.webp",
-   "1": "design/art/takes/batch-72-home-night/x-home-flow-il9-night/plate__x-home-flow-il9-night--t1.webp",
-   "2": "design/art/takes/batch-72-home-night/x-home-flow-il8-night/plate__x-home-flow-il8-night--t2.webp",
+   "1": "design/art/plates/home/derived/plate-l9-night-clear.webp",
+   "2": "design/art/plates/home/derived/plate-l8-night-clear.webp",
    "3": "design/art/takes/batch-72-home-night/x-home-flow-il7-night/plate__x-home-flow-il7-night--t1.webp",
    "4": "design/art/takes/batch-72-home-night/x-home-flow-il6-night/plate__x-home-flow-il6-night--t1.webp",
    "5": "design/art/takes/batch-72-home-night/x-home-flow-il5-night/plate__x-home-flow-il5-night--t2.webp",
