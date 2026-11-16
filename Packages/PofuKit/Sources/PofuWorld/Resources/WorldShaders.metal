@@ -231,7 +231,11 @@ inline float inside(float2 p, device const float *outline, int count, float feat
     }
     // The gate: the nearest floating thing within the water's reach takes the pixel out.
     float reach = max(gate.x * map.z, 1.0);
-    float clear = pofuwater::water(float3(here.rgb) / max(float(here.a), 1e-3));
+    float3 centre = float3(here.rgb) / max(float(here.a), 1e-3);
+    // The pixel itself must lean blue (a night boat's pale sail and stripes do not), and nothing
+    // floating may be near it.
+    float bluish = smoothstep(0.03, 0.08, centre.b - centre.r);
+    float clear = pofuwater::water(centre);
     for (int k = 0; k < 8; k++) {
         float a = float(k) * 0.7853982;
         float2 dir = float2(cos(a), sin(a));
@@ -240,7 +244,7 @@ inline float inside(float2 p, device const float *outline, int count, float feat
         clear = min(clear, pofuwater::water(float3(inner.rgb) / max(float(inner.a), 1e-3)));
         clear = min(clear, pofuwater::water(float3(outer.rgb) / max(float(outer.a), 1e-3)));
     }
-    float alpha = share * clear;
+    float alpha = share * clear * bluish;
     if (alpha <= 0.0) {
         return half4(0.0h);
     }
