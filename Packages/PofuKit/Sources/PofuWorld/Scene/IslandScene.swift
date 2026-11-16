@@ -733,6 +733,25 @@ private struct SceneFrame<Bubble: View>: View {
                         .opacity(max(0, 1 - max(z, 0) / 0.8))
                 }
 
+                // The cloud floor (WP9): a bed under each island, puffs, the horizon's mound and wisps, behind them.
+                if let mapSky, z < 0.8 {
+                    CloudFloorLayer(
+                        pieces: CloudFloor.pieces(
+                            homeBox: mapSky.islandBox,
+                            slots: MapSlots.slots(stage: MapSlots.stage(koke: world.koke, caglayan: world.caglayan), tier: plate?.mapTier ?? MapSlots.tier(koke: world.koke, caglayan: world.caglayan)),
+                            stop: CameraPose(scale: mapSky.mapStop.scale, look: mapSky.mapStop.look, anchorY: mapSky.mapStop.anchorY),
+                            reference: CameraPose(scale: mapSky.homeStop.scale, look: mapSky.homeStop.look, anchorY: mapSky.homeStop.anchorY)
+                        ),
+                        pose: pose,
+                        reference: mapSky.skyReference(width: Double(size.width), height: Double(size.height)),
+                        size: size,
+                        offset: offset
+                    )
+                    .tinted(tint, isEnabled: !(look.grade && WorldShaders.isAvailable))
+                    .modifier(GradeEffect(grade: grade.withoutVignette, isEnabled: look.grade))
+                    .opacity(max(0, 1 - max(z, 0) / 0.8))
+                }
+
                 // The next island's slot: a cloud tower (`MapSlots`, Map order A), gone as
                 // the camera leaves the Map as the wonder islands are. The next-to-open slot's reveal is WP12's.
                 if z < 0.8, model.focus == nil {
@@ -1056,7 +1075,7 @@ private struct WorldCanvas: View {
             if layer == .environment {
                 otherIsles
                 // In journey order Koke and Çağlayan float in the sky above the cloud sea's horizon: no
-                // shadow of theirs lies on it (`PaintedSky.isleShadow` waits for a cloud floor under them).
+                // shadow of theirs lies on it (the cloud floor's beds, `CloudFloor`, are what they rest in).
                 kokeIsle
                 caglayanIsle
             }
