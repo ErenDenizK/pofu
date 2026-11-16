@@ -1,0 +1,91 @@
+batch: batch-128-duo-icons-single
+manifest: tools/imagegen/manifest/batch-128-duo-icons-single.yaml
+manifest_sha256: 81c715219faae80588a55d5e884f216dfb004825abaa787a5034905db93f6dac
+job: x-icon-duo-tea
+contact_sheet: design/art/takes/batch-128-duo-icons-single/x-icon-duo-tea/contact.jpg
+source: codex-cloud
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+status: skipped
+pick: 1
+lead_review: "Lead pick: take 1 reads at once as a tea cup with a light steam curl, line 4.0 percent (in the shipped range); it carries two accents (moss tea and a honey rim band), acceptable at 22 pt, while take 2's solid cocoa steam is heavier."
+selection:
+  method: manual style and QA review
+  pick: null
+  note: Both cups use cocoa outlines substantially thicker than the attached sheet. Take 1 adds a foot, a
+    broad honey band and green tea fill; take 2 has a broad honey drip band and a green fill, while the
+    prompt asked for a small honey rim and simple cup. Automated QA warns p5 lightness 32 and 30 versus
+    R1 59. The two-take limit is reached; archive both for review and skip without promotion.
+takes:
+- take: 1
+  file: ui__x-icon-duo-tea--t1.webp
+  source_file: /workspace/generated_images/exec-84adf2e4-a11f-40e0-95ba-ae2fc39c40c5.png
+  source_sha256: d6fd2d6f379dce94d07104994d68357a72eaf0a593116b32aed56cd92ae54c24
+  source_dimensions:
+  - 1254
+  - 1254
+  backend: codex-cloud
+  qa: warn
+  lock_load: 0.0
+  harmony: null
+  warnings:
+  - check: value_floor
+    status: warn
+    message: lightness p5 32 (R1 59)
+  review_webp_bytes: 61166
+- take: 2
+  file: ui__x-icon-duo-tea--t2.webp
+  source_file: /workspace/generated_images/exec-165ec2fc-6bb6-44ba-af4e-d6f95e1a8f3c.png
+  source_sha256: 3b7cc5f96489b1ac95e629dc883d2434af4712a1892eb583bc443dab96e21061
+  source_dimensions:
+  - 1254
+  - 1254
+  backend: codex-cloud
+  qa: warn
+  lock_load: 0.0
+  harmony: null
+  warnings:
+  - check: value_floor
+    status: warn
+    message: lightness p5 30 (R1 59)
+  review_webp_bytes: 61192
+prompt: 'REFERENCES (attached, in this order):
+
+  1. The app''s existing icon sheet: the exact style to copy (line weight, corner radius, cream fill,
+  honey and moss accents). Draw none of its icons again; it shows nine icons, you draw one.
+
+
+  One app menu icon for the same set as the icons on the attached sheet,
+
+  alone and centred on a transparent background, filling about two thirds of
+
+  the square: a round tea cup with a handle and a small honey rim, with one
+
+  short curl of steam. Exactly the attached style: a soft cream fill
+
+  (#FBF1D8) inside a rounded warm cocoa line (#5B4636) of the same weight,
+
+  relative to the icon''s size, as on the attached sheet, with one small flat
+
+  accent of honey (#F2B45A) or moss green (#94B062); no gradients and no
+
+  shading. Rounded, friendly, chunky forms, simple enough to read at a tiny
+
+  size. Draw this one icon only, once.
+
+
+  AVOID: a second icon, a grid or a sheet of icons, any icon copied from the attached sheet, text, letters,
+  numbers, a brand logo, gradients, shading, 3D, glass, a shadow, thin hairlines, a line heavier than
+  the attached sheet''s, a background shape, a circle, tile or badge behind the icon, a white sticker
+  border
+
+
+  Output: one image, transparent background PNG, square 1024 x 1024.
+
+  '
+attachments:
+- path: design/art/takes/batch-46-flat-icons/x-icons-flat-duo/ui__x-icons-flat-duo--t2.webp
+  role: 'The app''s existing icon sheet: the exact style to copy (line weight, corner radius, cream fill,
+    honey and moss accents). Draw none of its icons again; it shows nine icons, you draw one.'
+  sha256: ef8c8c041048042b8aea747aa0e2b3a36330ede0266f3212ad27970695cc3e81

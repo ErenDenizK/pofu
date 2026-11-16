@@ -258,14 +258,32 @@ def test_seamless_blends_premultiplied():
     assert (out[..., :3][lit].min(-1) > 200).all()
 
 
-def test_two_tone_icons_are_nine_square_pngs_from_the_take():
+def test_two_tone_icons_are_square_pngs_from_their_take():
     entries = [e for e in DATA["entries"] if e["target"] == "icons-duo"]
-    assert [e["name"] for e in entries] == [f"paint-duo-{n}" for n in (
+    sheet = [e for e in entries if "grid" in e]
+    assert [e["name"] for e in sheet] == [f"paint-duo-{n}" for n in (
         "home", "island", "map", "settings", "close", "add", "letter", "shield", "gift")]
+    singles = [e for e in entries if "grid" not in e]
+    assert len(singles) == 18
     for e in entries:
-        assert e["source"].startswith("design/art/takes/batch-46-flat-icons/x-icons-flat-duo/")
+        assert e["source"].startswith(("design/art/takes/batch-46-flat-icons/x-icons-flat-duo/", "design/art/takes/batch-128-duo-icons-single/"))
         image = Image.open(integrate.output_path(e, DATA["targets"]))
         assert image.size == (192, 192) and image.getpixel((0, 0))[3] == 0
+
+
+def test_the_drop_has_no_puddle_and_the_star_is_honey_without_rays():
+    import numpy as np
+
+    by_name = {e["name"]: e for e in DATA["entries"] if e["target"] == "icons-duo"}
+    drop = np.asarray(Image.open(integrate.output_path(by_name["paint-duo-drop"], DATA["targets"])), dtype=int)
+    solid = drop[..., 3] > 200
+    honey = solid & (drop[..., 0] - drop[..., 2] > 70) & (drop[..., 0] > 150)
+    assert honey.sum() == 0  # the puddle's honey is gone
+    star = np.asarray(Image.open(integrate.output_path(by_name["paint-duo-star"], DATA["targets"])), dtype=int)
+    y, x = np.array(star.shape[:2]) // 2
+    assert abs(star[y, x, :3] - np.array(integrate.HONEY)).sum() < 30  # filled with honey
+    pieces = [c for c in integrate._components(star[..., 3] > 6) if c.sum() > 20]
+    assert len(pieces) == 1  # the three loose rays are gone
 
 
 def test_the_earth_face_plates_share_the_main_plates_outline():

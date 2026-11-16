@@ -1,0 +1,95 @@
+batch: batch-128-duo-icons-single
+manifest: tools/imagegen/manifest/batch-128-duo-icons-single.yaml
+manifest_sha256: 81c715219faae80588a55d5e884f216dfb004825abaa787a5034905db93f6dac
+job: x-icon-duo-key
+contact_sheet: design/art/takes/batch-128-duo-icons-single/x-icon-duo-key/contact.jpg
+source: codex-cloud
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+status: skipped
+pick: 1
+lead_review: "Lead pick: take 1 reads as a key at 22 pt (round head, honey ring, bit), line 4.0 percent; take 2 reads as a keychain with two stacked rings."
+selection:
+  method: manual style and QA review
+  pick: null
+  note: Both takes use cocoa outlines that are much heavier than the attached sheet. Take 1 turns the
+    requested small honey ring into an oversized ring around the shaft; take 2 has two large rings and an
+    awkward stepped shaft. QA warns p5 lightness 32 (and chroma p95 56) on take 1 and p5 lightness 29 on
+    take 2, versus R1 lightness 59 and chroma 51. Archive both and skip without promotion at the two-take
+    limit.
+takes:
+- take: 1
+  file: ui__x-icon-duo-key--t1.webp
+  source_file: /workspace/generated_images/exec-04228d96-38d2-4ad0-a51e-ba4c76717129.png
+  source_sha256: 55d8f2c2a0247eda111f89f1033890980439e690ba3d1b49bbb7092c1d504e94
+  source_dimensions:
+  - 1254
+  - 1254
+  backend: codex-cloud
+  qa: warn
+  lock_load: 0.0
+  harmony: null
+  warnings:
+  - check: chroma_ceiling
+    status: warn
+    message: chroma p95 56 (R1 51)
+  - check: value_floor
+    status: warn
+    message: lightness p5 32 (R1 59)
+  review_webp_bytes: 57674
+- take: 2
+  file: ui__x-icon-duo-key--t2.webp
+  source_file: /workspace/generated_images/exec-8341f059-3477-4428-96cb-28d8ab7eb632.png
+  source_sha256: a18bd845ca69d5aae2a4776eca86297ec15a0989d94dec526772c1348b8f2a3d
+  source_dimensions:
+  - 1254
+  - 1254
+  backend: codex-cloud
+  qa: warn
+  lock_load: 0.0
+  harmony: null
+  warnings:
+  - check: value_floor
+    status: warn
+    message: lightness p5 29 (R1 59)
+  review_webp_bytes: 58446
+prompt: 'REFERENCES (attached, in this order):
+
+  1. The app''s existing icon sheet: the exact style to copy (line weight, corner radius, cream fill,
+  honey and moss accents). Draw none of its icons again; it shows nine icons, you draw one.
+
+
+  One app menu icon for the same set as the icons on the attached sheet,
+
+  alone and centred on a transparent background, filling about two thirds of
+
+  the square: a chunky old-fashioned key with a round head and a honey ring.
+
+  Exactly the attached style: a soft cream fill (#FBF1D8) inside a rounded
+
+  warm cocoa line (#5B4636) of the same weight, relative to the icon''s size,
+
+  as on the attached sheet, with one small flat accent of honey (#F2B45A) or
+
+  moss green (#94B062); no gradients and no shading. Rounded, friendly,
+
+  chunky forms, simple enough to read at a tiny size. Draw this one icon
+
+  only, once.
+
+
+  AVOID: a second icon, a grid or a sheet of icons, any icon copied from the attached sheet, text, letters,
+  numbers, a brand logo, gradients, shading, 3D, glass, a shadow, thin hairlines, a line heavier than
+  the attached sheet''s, a background shape, a circle, tile or badge behind the icon, a white sticker
+  border
+
+
+  Output: one image, transparent background PNG, square 1024 x 1024.
+
+  '
+attachments:
+- path: design/art/takes/batch-46-flat-icons/x-icons-flat-duo/ui__x-icons-flat-duo--t2.webp
+  role: 'The app''s existing icon sheet: the exact style to copy (line weight, corner radius, cream fill,
+    honey and moss accents). Draw none of its icons again; it shows nine icons, you draw one.'
+  sha256: ef8c8c041048042b8aea747aa0e2b3a36330ede0266f3212ad27970695cc3e81
