@@ -185,7 +185,7 @@ namespace pofuwater {
 inline float water(float3 c) {
     float warm = smoothstep(0.05, 0.16, c.r - c.b);
     float leaf = smoothstep(-0.015, 0.04, c.g - c.b) * smoothstep(0.03, 0.09, c.g - c.r);
-    float white = smoothstep(0.72, 0.86, min(min(c.r, c.g), c.b));
+    float white = smoothstep(0.58, 0.72, min(min(c.r, c.g), c.b));
     return 1.0 - max(max(warm, leaf), white);
 }
 
