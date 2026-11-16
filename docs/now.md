@@ -23,8 +23,9 @@ Large job now: world presentation (spec #474); glass UI stays.
 
 ## In flight
 
-1. Builders: WP7 rail + ADR-0027 (Opus, `feat/rail-mid-near`); 128 duo
-   icons #496 in CI (breath stays old glyph). WP5 props merged (#492): jar,
+1. WP7 rail #495: 4th push approved with the sea reaching the screen foot
+   at mid (night seam regression). Stall looks at stages 3,4,6,7,8 #497 in
+   CI (0,1,2,5 keep painted stall: art). 128 icons merged (#496). WP5 props merged (#492): jar,
    pots, lantern on painted Home; ingest keeps props.
 2. Merged today: #480 mattes + one sky (night L1/L2 legacy); #488 Hop hour;
    #489 flow rocks + lip (edge waits on Codex 132); #493 N6 proof; #494
@@ -38,7 +39,7 @@ Large job now: world presentation (spec #474); glass UI stays.
 4. Codex: 127, 128, 130, 131 reviewed and merged; 129 edited so each look
    steps outside the last outline (pofu-art #108). Queue: 132, 133 cloud floor, then S1
    (129 looks), S2 (126 v2/v3). 128 drop and star need an edit.
-Merged: #475-#489, #491-#494; pofu-art #81, #91-#109.
+Merged: #475-#489, #491-#494, #496; pofu-art #81, #91-#109.
 
 ## Next steps, in order (night plan)
 
