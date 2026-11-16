@@ -162,6 +162,9 @@ public struct PlateIsland: Hashable, Sendable {
     /// Per light, per stage: 20 rows of 32 shadow colours.
     public var shadowMap: [String: [[[String]]]]
     public var textureBytes: Int
+    /// The jar, the pots and the lantern the app places over the plate (WP5): their painted size and, per stage,
+    /// where each stands. Empty for a plate with none.
+    public var props: [PlateProp] = []
     /// Per stage: the island's contact shadow on the cloud below it, drawn by code from the matte (the plate has none of
     /// its own). Empty for a plate whose ingest wrote none.
     public var shadows: [PlateShadow]
@@ -315,6 +318,31 @@ public struct StationLooks: Hashable, Sendable {
 
 /// An island's contact shadow: an ellipse (`centre`, `radii`, plate pixels) softened by `blur` and drawn at `opacity`
 /// in a dark sky tone (`island_shadow` in tools/proof/island_matte.py).
+/// One home prop's painted size and its slots (`tools/plate/props_slice.py`). `height` and `width` are plate pts of
+/// the art; a slot is the foot's centre, `[x, y]` in plate pts, with the row's width as a third number for the pots.
+public struct PlateProp: Decodable, Hashable, Sendable {
+    public var id: String
+    public var height: Double
+    public var width: Double
+    /// The image's states, in the asset names `world-home-prop-<prop>-<state>`.
+    public var states: [String]
+    /// The art's bytes over every state (one byte a pixel), for the texture budget.
+    public var bytes: Int
+    public var slots: [[Double]]
+
+    /// The foot's centre at `stage`, or `nil` when the plate has no slot for it.
+    public func slot(stage: Int) -> PlatePoint? {
+        guard slots.indices.contains(stage), slots[stage].count >= 2 else { return nil }
+        return PlatePoint(x: slots[stage][0], y: slots[stage][1])
+    }
+
+    /// The pots' row width at `stage`, plate pts (the prop's own width for the others).
+    public func span(stage: Int) -> Double {
+        guard slots.indices.contains(stage), slots[stage].count >= 3 else { return width }
+        return slots[stage][2]
+    }
+}
+
 public struct PlateShadow: Decodable, Hashable, Sendable {
     public var centre: PlatePoint
     public var radii: PlatePoint
@@ -342,7 +370,7 @@ public struct PlateShadow: Decodable, Hashable, Sendable {
 extension PlateIsland: Decodable {
     private enum Keys: String, CodingKey {
         case island, version, standIn, minLevel, plateSize, stages, lights, lightStages, painted, stageLevels, harmony, islandBox, backdropBox, objects
-        case walkable, characters, pofuWidth, residentBoost, residentBoosts, lamps, lampHeight, framing, lightDirection, lightMap, shadowMap, textureBytes, shadow, plateCrop, stations
+        case walkable, characters, pofuWidth, residentBoost, residentBoosts, lamps, lampHeight, framing, lightDirection, lightMap, shadowMap, textureBytes, shadow, plateCrop, props, stations
     }
 
     public init(from decoder: Decoder) throws {
@@ -392,6 +420,7 @@ extension PlateIsland: Decodable {
         shadowMap = try c.decodeIfPresent([String: [[[String]]]].self, forKey: .shadowMap) ?? [:]
         textureBytes = try c.decodeIfPresent(Int.self, forKey: .textureBytes) ?? 0
         shadows = try c.decodeIfPresent([PlateShadow].self, forKey: .shadow) ?? []
+        props = try c.decodeIfPresent([PlateProp].self, forKey: .props) ?? []
         stations = try (c.decodeIfPresent([String: RawStation].self, forKey: .stations) ?? [:]).compactMapValues(\.looks)
         plateCrops = try (c.decodeIfPresent([String: [[Double]?]].self, forKey: .plateCrop) ?? [:]).mapValues { boxes in
             try boxes.map { try $0.map(Self.rect) }

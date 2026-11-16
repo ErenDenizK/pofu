@@ -333,6 +333,81 @@ public struct WorldHome: View {
     }
 
     private func worldProps(_ frame: WorldPropsFrame) -> some View {
+        if let plate, plate.propSpec(.jar) != nil {
+            return AnyView(plateProps(frame, plate))
+        }
+        return AnyView(spriteProps(frame))
+    }
+
+    /// The painted props at the plate's slots (WP5): the jar, the pots and the lantern in the plate's own light.
+    private func plateProps(_ frame: WorldPropsFrame, _ plate: HomePlate) -> some View {
+        ZStack(alignment: .topLeading) {
+            platePlaced(.pots, frame, plate) { spec, light in
+                PlateSkipPotsView(
+                    pots: SkipPots(beads: today.beads, isAsleep: world.isBedtime),
+                    today: today,
+                    timing: home.timing,
+                    light: light,
+                    potWidth: spec.width,
+                    height: spec.height,
+                    span: spec.span(stage: plate.stage)
+                )
+            }
+            platePlaced(.lantern, frame, plate) { spec, light in
+                PlateLanternView(
+                    calm: world.calm,
+                    isGrowing: world.activity == .away && !world.calmIsFull,
+                    isFull: world.calmIsFull,
+                    isNight: isNight,
+                    timing: home.timing,
+                    light: light,
+                    width: spec.width,
+                    height: spec.height
+                )
+            }
+            platePlaced(.jar, frame, plate) { spec, light in
+                PlateJarView(jar: world.jar.units, home: home, light: light, width: spec.width, height: spec.height)
+            }
+        }
+        .frame(width: frame.size.width, height: frame.size.height, alignment: .topLeading)
+        .opacity(frame.presence)
+        .allowsHitTesting(false)
+    }
+
+    /// One painted prop standing on its slot: its content is laid out in plate pts, scaled to the screen with the
+    /// world (so it never lags the plate) and squished when tapped.
+    private func platePlaced<Content: View>(
+        _ prop: HomeSlots.Prop,
+        _ frame: WorldPropsFrame,
+        _ plate: HomePlate,
+        @ViewBuilder content: (PlateProp, HomePlate.CharacterLight) -> Content
+    ) -> some View {
+        Group {
+            if let spec = plate.propSpec(prop), let foot = plate.propSlot(prop) {
+                let p = frame.point(of: foot)
+                let k = CGFloat(frame.pose.scale * plate.unitsPerPixel)
+                let light = plate.characterLight(
+                    at: foot,
+                    width: spec.width * plate.unitsPerPixel,
+                    height: spec.height * plate.unitsPerPixel,
+                    id: prop.rawValue
+                )
+                ZStack {
+                    content(spec, light)
+                        .modifier(TapSquish(trigger: frame.pulse(of: prop), anchor: .bottom))
+                    Color.clear
+                        .frame(width: 1, height: 1)
+                        .onGeometryChange(for: CGRect.self) { $0.frame(in: .global) } action: { frame.report(prop, $0) }
+                        .allowsHitTesting(false)
+                }
+                .frame(width: CGFloat(spec.span(stage: plate.stage)), height: CGFloat(spec.height))
+                .scaleEffect(k)
+                .position(x: p.x, y: p.y - CGFloat(spec.height) * k / 2)
+            }
+        }
+    }
+
+    private func spriteProps(_ frame: WorldPropsFrame) -> some View {
         let presence = frame.presence
         return ZStack(alignment: .topLeading) {
             placed(.pots, frame) {

@@ -1290,6 +1290,9 @@ def cmd_json(island: str) -> Path:
     data = build_json(island, hand, mattes, maps, harmony_all(hand, mattes))
     JSON_DIR.mkdir(parents=True, exist_ok=True)
     out = JSON_DIR / f"plate-{island}.json"
+    # `props` is written by `tools/plate/props_slice.py`, not here: carry it over so a re-ingest keeps the props.
+    if out.exists() and "props" in (old := json.loads(out.read_text())):
+        data["props"] = old["props"]
     out.write_text(json.dumps(data, separators=(",", ":")) + "\n")
     print(f"json: {out.relative_to(REPO)} ({data['textureBytes']:,} texture bytes)")
     return out
