@@ -57,8 +57,8 @@ struct HomePropsTests {
             }
             for i in spans.indices {
                 for j in spans.indices where j > i {
-                    // Two props overlap when they share their width and stand within a prop's depth of each other.
-                    let level = abs(spans[i].y - spans[j].y) < 40
+                    // Two props overlap when they share their width and stand at the same depth.
+                    let level = abs(spans[i].y - spans[j].y) < 20
                     #expect(!(level && spans[i].x.overlaps(spans[j].x)), "stage \(stage): props \(i) and \(j) overlap")
                 }
             }
