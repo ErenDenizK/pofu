@@ -47,3 +47,4 @@ you do not need.** A status here that says "amended" or "superseded" means
 the later ADR wins on that point; the older body stays unchanged as history.
 
 - **0018** is amended by [0020](0020-painted-surfaces-native-behaviour.md): surfaces may be painted; behaviour stays native; and by [0021](0021-reference-light-targets.md): §5's style target is the reference envelope, not "never lifted blacks".
+| [0028](0028-the-far-view-is-a-voyage.md) | The far view is a voyage on Nazlı along a route, not a still map; flights become rides | Proposed (would supersede 0027's Map stop) |

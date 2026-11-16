@@ -1,0 +1,226 @@
+<title>Pofu Sefer Prototipi</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;800&display=swap">
+<style>
+/* Layout: one phone-sized stage (402 x 874 pt, the iPhone 17 reference) scaled to fit; a caption strip under it on tall screens. Single look by choice: the game's own sky. */
+:root{
+  --sky-top:#5f9df2; --sky-mid:#a9c8fb; --sky-low:#dcd9f8; --cloud:#f3effd;
+  --ink:#463a5c; --ink-soft:#6a5f80; --honey:#f4be54; --honey-ink:#5c3a0a; --page:#2b2742; --page-ink:#e9e4fb;
+  --font: ui-rounded, "SF Pro Rounded", "Nunito", system-ui, sans-serif;
+  color-scheme: dark;
+}
+html,body{height:100%}
+body{background:var(--page);color:var(--page-ink);font-family:var(--font);overflow:hidden;
+  padding-left:max(0px,env(safe-area-inset-left,0px));padding-right:max(0px,env(safe-area-inset-right,0px));
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}
+#fit{position:relative;flex:none}
+#stage{position:absolute;left:0;top:0;width:402px;height:874px;transform-origin:0 0;overflow:hidden;border-radius:28px;
+  background:linear-gradient(180deg,var(--sky-top) 0%,var(--sky-mid) 22%,var(--sky-low) 33%,var(--cloud) 52%,var(--cloud) 100%);
+  touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab}
+#stage:active{cursor:grabbing}
+#stage img{position:absolute;left:0;top:0;max-width:none;pointer-events:none;-webkit-user-drag:none}
+.sea{position:absolute;left:0;width:402px;background-repeat:repeat-x;pointer-events:none}
+#seaFar{top:232px;height:122px;-webkit-mask-image:linear-gradient(#000 55%,transparent);mask-image:linear-gradient(#000 55%,transparent);background-image:url(a/sea-far.webp);background-size:430px 122px}
+#seaMid{top:296px;height:280px;background-image:url(a/sea-mid.webp);background-size:980px 280px}
+#seaNear{top:462px;height:390px;background-image:url(a/sea-near.webp);background-size:1366px 390px}
+#seaNear2{top:700px;height:390px;background-image:url(a/sea-near.webp);background-size:1366px 390px}
+.isl{position:absolute;left:0;top:0;transform-origin:0 0;will-change:transform}
+#stage .isl img{position:static;display:block;width:100%}
+#route,#far,#fore{position:absolute;left:0;top:0;isolation:isolate}
+.hit{position:absolute;inset:8% 10% 18% 10%;border-radius:50%;pointer-events:auto;cursor:pointer}
+#whale{position:absolute;left:0;top:0;width:332px;height:199px;transform-origin:50% 60%;will-change:transform}
+#whale img{width:332px;height:199px}
+#whaleHit{position:absolute;left:30px;top:40px;width:270px;height:150px;border-radius:50%;cursor:pointer}
+.glass{position:absolute;background:rgba(255,255,255,.42);border:1px solid rgba(255,255,255,.75);
+  -webkit-backdrop-filter:blur(14px) saturate(1.3);backdrop-filter:blur(14px) saturate(1.3);
+  box-shadow:0 6px 18px rgba(70,58,110,.18);color:var(--ink)}
+#bar{left:16px;top:792px;width:370px;height:56px;border-radius:28px;display:flex;align-items:center;gap:10px;padding:0 6px 0 20px;box-sizing:border-box}
+#bar .txt{flex:1;min-width:0}
+#nm{font-weight:800;font-size:17px;line-height:20px}
+#st{font-weight:600;font-size:12px;line-height:15px;color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+button{font-family:var(--font);border:0;cursor:pointer}
+#verb{flex:none;height:44px;min-width:94px;padding:0 18px;border-radius:22px;background:var(--honey);color:var(--honey-ink);
+  font-weight:800;font-size:17px;box-shadow:0 4px 10px rgba(150,90,20,.35), inset 0 0 0 1.5px rgba(255,236,170,.9)}
+#verb:disabled{background:rgba(255,255,255,.55);color:var(--ink-soft);box-shadow:none}
+#home{left:16px;top:62px;width:44px;height:44px;border-radius:22px;font-size:20px;font-weight:800;display:grid;place-items:center}
+#cmp{right:16px;top:62px;height:44px;border-radius:22px;padding:0 14px;font-size:13px;font-weight:800}
+button:focus-visible{outline:3px solid #fff;outline-offset:2px}
+#dots{position:absolute;left:0;top:772px;width:402px;display:flex;justify-content:center;gap:8px;pointer-events:none}
+#dots i{width:6px;height:6px;border-radius:3px;background:rgba(255,255,255,.6);transition:all .25s}
+#dots i.on{width:9px;height:9px;margin-top:-1.5px;background:#fff}
+#today{position:absolute;inset:0;width:402px;height:874px;opacity:0;transition:opacity .25s;pointer-events:none}
+#today.on{opacity:1}
+#todayTag{position:absolute;left:0;right:0;top:120px;text-align:center;font-weight:800;font-size:13px;color:var(--ink);opacity:0;transition:opacity .25s;pointer-events:none}
+#todayTag.on{opacity:1}
+#hint{position:absolute;left:0;width:402px;top:748px;text-align:center;font-size:13px;font-weight:800;color:#fff;text-shadow:0 1px 6px rgba(60,50,110,.6);transition:opacity .5s;pointer-events:none}
+#cap{flex:none;max-width:402px;font-size:12px;line-height:16px;font-weight:600;opacity:.8;text-align:center;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+</style>
+
+<div id="fit">
+ <div id="stage" aria-label="Sefer ekranı prototipi">
+  <div id="seaFar" class="sea"></div>
+  <div id="far"></div>
+  <div id="seaMid" class="sea"></div>
+  <div id="route"></div>
+  <div id="seaNear" class="sea"></div>
+  <div id="whale">
+    <img src="a/n-tail.webp" id="tail" alt="">
+    <img src="a/n-body.webp" alt="">
+    <img src="a/n-blink.webp" id="blink" alt="" style="opacity:0">
+    <img src="a/n-patch.webp" alt="">
+    <img src="a/n-fin.webp" id="fin" alt="">
+    <div id="whaleHit"></div>
+  </div>
+  <div id="fore"></div>
+  <div id="seaNear2" class="sea"></div>
+  <div id="hint">← kaydır →</div>
+  <div id="dots"></div>
+  <button id="home" class="glass" aria-label="Eve dön">⌂</button>
+  <button id="cmp" class="glass" aria-pressed="false">Bugünkü harita</button>
+  <div id="bar" class="glass"><div class="txt"><div id="nm"></div><div id="st"></div></div><button id="verb">İn</button></div>
+  <img id="today" src="a/today.webp" alt="Bugünkü harita ekranı">
+  <div id="todayTag">Bugünkü harita (karşılaştırma)</div>
+ </div>
+</div>
+<div id="cap">Prototip, oyundaki mevcut resimlerden derlendi. Sürükle: Nazlı yüzer. Bir adaya ya da “İn”e dokun: iner.</div>
+
+<script>
+(function(){
+const $=id=>document.getElementById(id);
+const stage=$('stage'),fit=$('fit');
+function resize(){
+  const capH=$('cap').offsetHeight+10;
+  const vw=document.body.clientWidth, vh=document.body.clientHeight;
+  let s=Math.min(vw/402,(vh-capH)/874);
+  if(vh<760){ $('cap').hidden=true; s=Math.min(vw/402,vh/874);} else $('cap').hidden=false;
+  fit.style.width=402*s+'px'; fit.style.height=874*s+'px'; stage.style.transform='scale('+s+')';
+  scale=s;
+}
+let scale=1; addEventListener('resize',resize);
+
+// The route: fillers drift in on the left of Home, the main road runs right.
+const PITCH=235;
+const isles=[
+ {id:'koke',slot:-1,img:'a/koke0.webp',w:370,foot:.905,name:'Köke',state:'Uyuyor · bugün bir dokunuş bekliyor',land:true},
+ {id:'home',slot:0,img:'a/home.webp',w:375,foot:.90,name:'Ayçiçeği',state:'Ev · her şey yolunda',land:true,verb:'Eve in'},
+ {id:'cag',slot:1,img:'a/cag.webp',w:375,foot:.895,name:'Çağlayan',state:'İyileşti · Damla seni bekliyor',land:true},
+ {id:'veil',slot:2,img:'a/veil.webp',w:210,foot:.97,name:'Sisin içinde bir şey var',state:'Nazlı henüz oraya gitmiyor',land:false},
+];
+const minS=-1,maxS=2;
+const route=$('route');
+for(const it of isles){
+  const d=document.createElement('div'); d.className='isl'; d.style.width=it.w+'px';
+  d.innerHTML='<img src="'+it.img+'" alt=""><div class="hit" role="button" tabindex="0" aria-label="'+it.name+'"></div>';
+  route.appendChild(d); it.el=d;
+  const go=e=>{ if(moved) return; if(landed) return; if(Math.abs(it.slot-x)<.2){ if(it.land) land(); } else glide(it.slot); };
+  d.querySelector('.hit').addEventListener('click',go);
+  d.querySelector('.hit').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();moved=false;go();}});
+}
+// far lane: what else is known of the ring, small and in haze
+const far=$('far');
+[['a/far-a.webp',70,196,84,-1.6],['a/far-b.webp',300,186,70,2.2],['a/far-c.webp',196,160,48,3.4]].forEach(f=>{
+  const i=new Image(); i.src=f[0]; i.alt=''; i.style.width=f[3]+'px'; i._x=f[1]; i._y=f[2]; far.appendChild(i);
+});
+// near puffs in front of her belly
+const fore=$('fore');
+const puffs=[['a/puff-big.webp',205,690,250],['a/puff-small-a.webp',-22,702,150],['a/puff-small-c.webp',112,716,170]].map(p=>{
+  const i=new Image(); i.src=p[0]; i.alt=''; i.style.width=p[3]+'px'; i._x=p[1]; i._y=p[2]; fore.appendChild(i); return i;});
+const dots=$('dots'); isles.forEach(()=>dots.appendChild(document.createElement('i')));
+
+let x=0, target=0, vel=0, dragging=false, moved=false, facing=-1, faceS=-1;
+let landed=false, landT=0, landGoal=0;
+let px0=0,x0=0,lastPX=0,lastT=0,dragV=0;
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function glide(s){ target=Math.max(minS,Math.min(maxS,s)); $('hint').style.opacity=0; }
+function land(){ landed=true; landGoal=1; refreshBar(); }
+function leave(){ landGoal=0; landed=false; refreshBar(); }
+
+stage.addEventListener('pointerdown',e=>{
+  if(e.target.closest('button')) return;
+  if(landed) return;
+  dragging=true; moved=false; px0=lastPX=e.clientX; x0=x; lastT=performance.now(); dragV=0;
+  try{stage.setPointerCapture(e.pointerId);}catch(_){}
+});
+stage.addEventListener('pointermove',e=>{
+  if(!dragging) return;
+  const dx=(e.clientX-px0)/scale;
+  if(Math.abs(dx)>6) moved=true;
+  if(!moved) return;
+  let nx=x0-dx/PITCH;
+  if(nx<minS) nx=minS-(minS-nx)*.3; if(nx>maxS) nx=maxS+(nx-maxS)*.3;
+  const now=performance.now(), dt=Math.max(1,now-lastT);
+  dragV=-(e.clientX-lastPX)/scale/PITCH/dt*1000; lastPX=e.clientX; lastT=now;
+  x=nx; target=nx; $('hint').style.opacity=0;
+});
+function up(){
+  if(!dragging) return; dragging=false;
+  if(moved){ let t=Math.round(x+Math.max(-.45,Math.min(.45,dragV*.18))); glide(t); setTimeout(()=>moved=false,50); }
+}
+stage.addEventListener('pointerup',up); stage.addEventListener('pointercancel',up);
+stage.addEventListener('keydown',e=>{ if(landed) return; if(e.key==='ArrowLeft') glide(Math.round(target)-1); if(e.key==='ArrowRight') glide(Math.round(target)+1); });
+$('whaleHit').addEventListener('click',()=>{ if(landed&&!moved) leave(); });
+$('home').addEventListener('click',()=>{ if(landed) leave(); glide(0); });
+$('verb').addEventListener('click',()=>{ if(landed) leave(); else { const it=cur(); if(it.land&&Math.abs(it.slot-x)<.25) land(); } });
+const cmp=$('cmp');
+cmp.addEventListener('click',()=>{ const on=!$('today').classList.contains('on'); $('today').classList.toggle('on',on); $('todayTag').classList.toggle('on',on);
+  cmp.setAttribute('aria-pressed',on); cmp.textContent=on?'Öneriye dön':'Bugünkü harita'; cmp.style.zIndex=on?5:''; });
+
+function cur(){ let b=isles[0]; for(const it of isles) if(Math.abs(it.slot-x)<Math.abs(b.slot-x)) b=it; return b; }
+let shown=null;
+function refreshBar(){
+  const it=cur(); const key=it.id+landed; if(key===shown) return; shown=key;
+  $('nm').textContent=it.name; $('st').textContent=landed?'İndin · Nazlı iskelede bekliyor':it.state;
+  const v=$('verb'); v.disabled=!landed&&!it.land; v.textContent=landed?'Sefere çık':(it.land?(it.verb||'İn'):'Sis');
+  [...dots.children].forEach((d,i)=>d.classList.toggle('on',isles[i]===it));
+}
+const lerp=(a,b,t)=>a+(b-a)*t, ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
+let tPrev=performance.now(), swim=0, phase=0, blinkAt=2.5, blinkOn=0;
+function frame(now){
+  const dt=Math.min(.05,(now-tPrev)/1000); tPrev=now; const t=now/1000;
+  const xPrev=x;
+  if(!dragging){ // critically damped glide to the slot
+    const k=reduce?60:22; vel+=( (target-x)*k - vel*2*Math.sqrt(k) )*dt; x+=vel*dt;
+    if(Math.abs(target-x)<.0005&&Math.abs(vel)<.002){ x=target; vel=0; }
+  } else vel=0;
+  const sp=Math.min(1,Math.abs(x-xPrev)/Math.max(dt,.001)/2.2);
+  swim=lerp(swim,sp,1-Math.exp(-dt*6));
+  if(Math.abs(x-xPrev)>.0004) facing=(x>xPrev)?1:-1;
+  faceS=lerp(faceS,facing,1-Math.exp(-dt*9));
+  landT=lerp(landT,landGoal,1-Math.exp(-dt*(reduce?30:4.2))); const L=ease(Math.max(0,Math.min(1,landT)));
+  // route
+  for(const it of isles){
+    const d=it.slot-x, ad=Math.min(Math.abs(d),1), near=1-ad;
+    let s=1-.213*ad, cx=201+d*PITCH, foot=528-54*ad, op=1-.14*ad;
+    const z=lerp(1,1.26,L);              // landing: push in on the island ahead
+    cx=201+(cx-201)*lerp(1,1.9,L); foot=lerp(foot,486,L*near)+ (1-near)*L*40; s*=lerp(1,z,near); op*=1-L*(1-near);
+    const w=it.w*s, h=it.el.offsetHeight*s;
+    it.el.style.transform='translate3d('+(cx-w/2)+'px,'+(foot-h*it.foot)+'px,0) scale('+s+')';
+    it.el.style.opacity=op; it.el.style.zIndex=Math.round(near*10);
+  }
+  for(const i of far.children){ i.style.transform='translate3d('+(i._x-x*46)+'px,'+(i._y-L*26)+'px,0)'; i.style.opacity=1-L*.3; }
+  $('seaFar').style.backgroundPositionX=(-x*46)+'px';
+  $('seaMid').style.backgroundPositionX=(-x*120-300)+'px';
+  $('seaNear').style.backgroundPositionX=(-x*PITCH)+'px';
+  $('seaNear2').style.backgroundPositionX=(-x*330-520)+'px';
+  // Nazli: she holds her place, the world moves; moored pose after landing
+  phase+=dt*(2.0+swim*7.5);
+  const bob=reduce?0:Math.sin(t*1.25)*4;
+  const wx=lerp(facing<0?20:50,196,L), wy=lerp(563,494,L)+bob*(1-L*.5), ws=lerp(1,.59,L);
+  $('whale').style.transform='translate3d('+wx+'px,'+wy+'px,0) scale('+(ws*(faceS<0?1:-1)*Math.max(.25,Math.abs(faceS)))+','+ws+') rotate('+(reduce?0:(-swim*3+Math.sin(t*1.25+1)*1.2))+'deg)';
+  const ta=reduce?0:Math.sin(phase)*(4+swim*9), fa=reduce?0:Math.sin(phase*.5+1.1)*(5+swim*10);
+  $('tail').style.transformOrigin='278px 62px'; $('tail').style.transform='rotate('+ta+'deg)';
+  $('fin').style.transformOrigin='168px 128px'; $('fin').style.transform='rotate('+fa+'deg)';
+  if(t>blinkAt){ blinkOn=.13; blinkAt=t+3+Math.random()*3; } blinkOn-=dt; $('blink').style.opacity=blinkOn>0?1:0;
+  puffs.forEach((p,i)=>{ p.style.transform='translate3d('+(p._x+Math.sin(t*.5+i)*4+L*60)+'px,'+(p._y+Math.cos(t*.4+i)*2+L*30)+'px,0)'; p.style.opacity=1-L; });
+  $('dots').style.opacity=1-L; $('seaNear2').style.opacity=1-L*.0;
+  refreshBar();
+  requestAnimationFrame(frame);
+}
+function start(){ resize(); refreshBar(); requestAnimationFrame(frame);
+  // she noses toward the island where something waits
+  setTimeout(()=>{ if(!dragging&&target===0&&!landed) glide(-1); },1100); }
+start();
+})();
+</script>

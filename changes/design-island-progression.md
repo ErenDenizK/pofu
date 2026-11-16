@@ -1,0 +1,1 @@
+Added: a proposal for how islands, stations and Nazlı grow and how the player travels between islands (a voyage in place of the Map), with a touch prototype and a check that measures whether an upgrade is a big step.
