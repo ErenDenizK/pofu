@@ -1,0 +1,1 @@
+Home draws its island as one composite: the tea stall's look sorts with Pofu and the residents by where they stand, the Map shows the stall you built, and a level-up opens the new stall through a honey ring from its foot.

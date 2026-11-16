@@ -83,9 +83,10 @@ class PlayerPathFrameCase: XCTestCase {
     @MainActor
     func homeView(
         _ world: WorldSnapshot, hour: Double, island: IslandSceneModel, beads: [Bool] = [], settled: Bool = false,
-        beats: [VisitBeat]? = nil, model: WorldHomeModel? = nil
+        beats: [VisitBeat]? = nil, model: WorldHomeModel? = nil, pofuStand: WorldPoint? = nil
     ) -> some View {
-        let look = WorldLook.playerPath(hour: hour)
+        var look = WorldLook.playerPath(hour: hour)
+        look.pofuStand = pofuStand
         XCTAssertTrue(look.homePlates, "a path frame is never the sprite island")
         let now = world.clock ?? Date()
         let home = model ?? WorldHomeModel(now: { now }, schedulesCues: false, cheekLineHistory: cheekHistory(before: world))
@@ -405,6 +406,83 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
         let view = homeView(day.visit, hour: 9, island: island, settled: true, model: home)
         try await capture(AnyView(view), name: "path-d04-build-burst", scene: scene, folder: folder, settle: 2100) {
             XCTAssertEqual(island.levelStage.shown(worldLevel: day.visit.islandLevel), from, "the old painting is held during the burst")
+        }
+    }
+
+    /// The plate compositor (WP10): island 3 at noon, the tea stall at level 3, Pofu stood just behind the stall's
+    /// foot and just in front of it (`path-stall-pofu-behind`, `-front`: the look sorts with him by `footY`), and the
+    /// same state on the Map (`path-stall-map-l3`: the far picture, a snapshot of the composite). The snapshot's
+    /// render time is printed (`FarSnapshot:`), cold and warm.
+    @MainActor
+    func testRenderThePlateCompositor() async throws {
+        let scene = try windowScene()
+        let folder = try outputFolder()
+        let day = try XCTUnwrap(Self.path.first { $0.morning.islandLevel == 3 }, "the path has a level 3 island")
+        var world = day.morning
+        world.islandLevel = 3
+        world.stations = world.stations.map { status in
+            var status = status
+            if status.id == .teaStall { status.level = 3 }
+            return status
+        }
+        let plate = try XCTUnwrap(paintedAs(world, level: 3, hour: 12))
+        let compositor = PlateCompositor(plate: plate, levels: HomePlate.stationLevels(world))
+        let look = try XCTUnwrap(compositor.looks.first { $0.station == "teaStall" }, "island 3 has the stall's look")
+        let x = plate.plate(look.foot).x
+        for (name, dy) in [("path-stall-pofu-behind", -26.0), ("path-stall-pofu-front", 30.0)] {
+            let stand = plate.world(PlatePoint(x: x - 8, y: look.footY + dy))
+            let island = IslandSceneModel(framing: .mid)
+            let view = homeView(world, hour: 12, island: island, settled: true, pofuStand: stand)
+            try await capture(AnyView(view), name: name, scene: scene, folder: folder, settle: 2100) {
+                XCTAssertNotNil(island.homePlate, "\(name): Home is its painting")
+            }
+        }
+        let rendersBefore = FarSnapshot.renders
+        try await map(world, hour: 12, name: "path-stall-map-l3", scene: scene, folder: folder)
+        print("FarSnapshot: \(FarSnapshot.renders - rendersBefore) render(s), last \(FarSnapshot.lastRenderMilliseconds ?? -1) ms (key \(compositor.snapshotKey))")
+        // A warm render of another state (the stall one level up), timed alone.
+        var next = world
+        next.stations = next.stations.map { status in
+            var status = status
+            if status.id == .teaStall { status.level = 4 }
+            return status
+        }
+        try await map(next, hour: 12, name: "path-stall-map-l4", scene: scene, folder: folder)
+        print("FarSnapshot: warm, last \(FarSnapshot.lastRenderMilliseconds ?? -1) ms, \(FarSnapshot.renders) renders in all")
+    }
+
+    /// The tea stall's level-up reveal (v2 §9.2) from level 2 to 3 on island 3, the moment frozen at the focus
+    /// (0.45 s), the dip (0.74 s), the ring opening with its honey rim (1.0 s), the settle (1.6 s) and settled (2.4 s):
+    /// `path-stall-reveal-<ms>`.
+    @MainActor
+    func testRenderTheStallReveal() async throws {
+        let scene = try windowScene()
+        let folder = try outputFolder()
+        let day = try XCTUnwrap(Self.path.first { $0.morning.islandLevel == 3 }, "the path has a level 3 island")
+        func world(_ level: Int) -> WorldSnapshot {
+            var world = day.morning
+            world.islandLevel = 3
+            world.stations = world.stations.map { status in
+                var status = status
+                if status.id == .teaStall { status.level = level }
+                return status
+            }
+            return world
+        }
+        let after = world(3)
+        let maxLevel = after.stations.first { $0.id == .teaStall }?.maxLevel ?? 10
+        for t in [0.45, 0.74, 1.0, 1.6, 2.4] {
+            let island = IslandSceneModel(framing: .mid)
+            island.setHomePlate(paintedAs(after, level: 3, hour: 12))
+            island.focusStation(.teaStall, animated: false)
+            let now = after.clock ?? Date()
+            let home = WorldHomeModel(now: { now }, schedulesCues: false)
+            home.camera = island
+            home.buildStation(.teaStall, maxLevel: maxLevel) { _ in BuildReceipt(station: .teaStall, level: 3, cost: Energy(10)) }
+            XCTAssertTrue(home.build?.moment.reveal ?? false, "the stall's build plays the look's reveal")
+            home.freeze(at: t)
+            let view = homeView(after, hour: 12, island: island, settled: true, model: home)
+            try await capture(AnyView(view), name: "path-stall-reveal-\(Int(t * 1000))", scene: scene, folder: folder, settle: 2100) {}
         }
     }
 
