@@ -59,6 +59,25 @@ final class FlowScreenshotTests: XCTestCase {
         XCTAssertEqual(written.count, 5)
     }
 
+    /// Stage 1, board 1 in both ground methods for the founder to choose from: A gives every cell its own
+    /// keycap square, B lays one lawn under the board.
+    @MainActor
+    func testRenderTheFlowGroundMethods() async throws {
+        let scene = try XCTUnwrap(
+            UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first,
+            "the test needs the host app's window scene"
+        )
+        let folder = outputFolder()
+        try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
+        var written: [String] = []
+        defer { FlowGroundSettings.method = .keycaps }
+        for (method, name) in [(FlowGroundMethod.keycaps, "path-game-flow-stage1-method-a"), (.lawn, "path-game-flow-stage1-method-b")] {
+            FlowGroundSettings.method = method
+            try await shoot(name, in: scene, folder: folder, written: &written, stage: 1) { _ in }
+        }
+        XCTAssertEqual(written.count, 2)
+    }
+
     /// Follows the hint to the end of the current board.
     @MainActor
     private static func solveBoard(_ model: FlowGameModel) async throws {
