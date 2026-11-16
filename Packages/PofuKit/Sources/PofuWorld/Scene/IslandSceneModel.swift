@@ -184,6 +184,11 @@ public final class IslandSceneModel {
         )
     }
 
+    /// Where the water's loop stood when Ambient last ran (WP13): the water holds there outside
+    /// Ambient, so a pinch or the end of a visit never snaps it back to the painted still. `nil`
+    /// until Ambient has run once: the plate shows as painted.
+    @ObservationIgnored var waterTime: Double?
+
     /// The policy's directive for the timeline's interval and pause, and
     /// for the effects that run (§4.1).
     func directive(moment: Bool, at date: Date = Date()) -> FrameDirective {
@@ -1611,6 +1616,11 @@ extension IslandSceneModel: WorldCamera {
 
     /// The sheet returns to medium and the camera settles back to the
     /// station's focus, unless the user already closed the sheet.
+    public func revealsLook(_ station: StationID, from: Int, to: Int) -> Bool {
+        guard let homePlate else { return false }
+        return PlateCompositor(plate: homePlate, levels: [:]).reveals(station, from: from, to: to)
+    }
+
     public func endBuildFraming(_ station: StationID) {
         // The island answers the build once its ceremony is over, whatever
         // the sheet did meanwhile.

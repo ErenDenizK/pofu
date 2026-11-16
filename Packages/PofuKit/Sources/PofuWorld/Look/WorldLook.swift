@@ -53,6 +53,10 @@ public struct WorldLook: Hashable, Sendable {
     /// A fixed sky (screenshots: rain, mist, a rainbow); `nil` follows the
     /// seeded weather of the date.
     public var weatherOverride: WeatherConditions?
+    /// Where Pofu stands on the painted Home instead of his spot (screenshots: the plate compositor's sort, Pofu in
+    /// front of and behind a station); `nil` is his spot (`IslandLayout.pofu`). Only his drawn body and what stands
+    /// over him follow it.
+    public var pofuStand: WorldPoint?
     /// The frame-time counter in a corner (debug).
     public var frameMeter: Bool
     /// The feel numbers the tuning lab panel tunes live (look round 4).

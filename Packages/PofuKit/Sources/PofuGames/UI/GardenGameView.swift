@@ -1,4 +1,5 @@
 #if os(iOS)
+import PofuDesignSystem
 import PofuTuning
 import SpriteKit
 import SwiftUI
@@ -81,20 +82,13 @@ public struct GardenGameView: View {
 
     // MARK: HUD
 
+    private var showsGoal: Bool {
+        model.roundNumber == 1 && model.piecesLeft == model.piecesPerRound
+    }
+
     private var hud: some View {
         HStack(alignment: .center, spacing: 10) {
-            Button {
-                model.pause()
-            } label: {
-                Image(systemName: "pause.fill")
-                    .font(.system(size: 17, weight: .bold))
-                    .foregroundStyle(GardenInk.ink)
-                    .frame(width: 44, height: 44)
-                    .contentShape(Circle())
-            }
-            .buttonStyle(.plain)
-            .background(PaperSurface(shape: Circle(), stitchInset: 4))
-            .accessibilityLabel(Text(verbatim: GardenStrings.pause))
+            PofuIconButton(systemName: "pause.fill", label: GardenStrings.pause) { model.pause() }
             Spacer(minLength: 0)
             RoundPlate(number: model.roundNumber, total: model.gardenSet.length, planted: model.piecesPerRound - model.piecesLeft, bag: model.piecesPerRound)
             Spacer(minLength: 0)
@@ -105,9 +99,14 @@ public struct GardenGameView: View {
         // The goal in one line, under the plates (it overhangs the HUD's
         // height, so the bed's layout does not move).
         .overlay(alignment: .bottom) {
-            GoalLine(text: GardenStrings.goal)
-                .offset(y: 22)
+            // Until the first plot is planted in the set's first round.
+            if showsGoal {
+                GoalLine(text: GardenStrings.goal)
+                    .offset(y: 30)
+                    .transition(.opacity)
+            }
         }
+        .animation(.easeInOut(duration: 0.25), value: showsGoal)
         .opacity(model.phase == .playing || model.phase == .paused ? 1 : 0)
     }
 
@@ -226,7 +225,7 @@ struct RoundPlate: View {
         .padding(.horizontal, 16)
         .padding(.vertical, 8)
         .fixedSize()
-        .background(PaperSurface(shape: Capsule(style: .continuous), stitchInset: 3.5))
+        .pofuChrome(.worldTag)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(Text(verbatim: GardenStrings.round(number, of: total)))
         .accessibilityAddTraits(.isHeader)
@@ -239,8 +238,7 @@ struct SeedPlate: View {
 
     var body: some View {
         HStack(spacing: 6) {
-            SeedGlyph()
-                .frame(width: 13, height: 20)
+            PofuPaintedIcon(.iconSeed, size: 24, scales: false)
             Text(verbatim: "+\(seeds)")
                 .font(.system(size: 19, weight: .heavy, design: .rounded))
                 .monospacedDigit()
@@ -250,7 +248,7 @@ struct SeedPlate: View {
         }
         .padding(.horizontal, 14)
         .frame(height: 44)
-        .background(PaperSurface(shape: Capsule(style: .continuous), stitchInset: 3.5))
+        .pofuChrome(.worldTag)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(Text(verbatim: GardenStrings.seedsThisRound(seeds)))
     }

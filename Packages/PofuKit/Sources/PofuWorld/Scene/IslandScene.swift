@@ -473,6 +473,7 @@ private struct SceneFrame<Bubble: View>: View {
 
     @Environment(\.worldLook) private var look
     @Environment(\.worldStillFrame) private var still
+    @Environment(\.worldWaterClock) private var waterClock
     @Environment(\.screenHazeClearing) private var hazeClearing
     @Environment(\.resistSeals) private var resistSeals
 
@@ -518,6 +519,19 @@ private struct SceneFrame<Bubble: View>: View {
         let hop = PlateHops.hop(day: ResidentLife.day(of: clock), elapsed: elapsed, ids: ids)
         model.noteIdleHop(slot: hop?.slot)
         return hop
+    }
+
+    /// The lens's focal plane: the focused station's or resident's foot, else the near rest's row.
+    static func lensFocus(_ focus: SceneFocus?, plate: HomePlate) -> NearLensFrame.Focus {
+        switch focus {
+        case .station(let id)?:
+            if let foot = plate.objects.first(where: { $0.station == id })?.footY { return .subject(row: foot) }
+        case .resident(let id)?:
+            if let feet = plate.residentFeet(id) { return .subject(row: plate.plate(feet).y) }
+        case nil:
+            break
+        }
+        return .rail
     }
 
     static func isleGrade(_ isle: HomePlate?, at island: IslandID, mapSky: HomePlate?) -> WorldGrade {
@@ -679,6 +693,20 @@ private struct SceneFrame<Bubble: View>: View {
             f.maxRadius *= rack
             return f
         }()
+        // The water of Home's plate (WP13): it moves in Ambient and holds where it stood outside it.
+        let water: WaterFrame? = {
+            if let forced = waterClock { return WaterFrame(time: PlateRegionEffects.time(forced)) }
+            guard !still, plate?.isMatted == true else { return nil }
+            if PlateRegionEffects.runs(under: directive, reduceMotion: model.reduceMotion, isStill: still) {
+                model.waterTime = PlateRegionEffects.time(clock.timeIntervalSinceReferenceDate)
+            }
+            return model.waterTime.map { WaterFrame(time: $0) }
+        }()
+        // The thin lens over Home's matted plate (WP11): nil at the Map, at mid and in a flight.
+        let nearLens: NearLensFrame? = {
+            guard let plate, model.island == .home, plateFade > 0.999, plate.isMatted else { return nil }
+            return NearLensFrame.make(plate: plate, pose: pose, width: Double(size.width), height: Double(size.height), offsetX: Double(offset.width), offsetY: Double(offset.height), focus: Self.lensFocus(model.focus, plate: plate))
+        }()
         // Weather crossfades over 8 s (6 to 10 s, section 2.2).
         let animation: Animation? = still ? nil : .easeInOut(duration: atmosphere.isClear ? 2.5 : 8)
         // Settled: the ambient layers hold still, so the frame is cached.
@@ -823,7 +851,7 @@ private struct SceneFrame<Bubble: View>: View {
                 if let plate {
                     // The painted plate, never graded: its backdrop, the
                     // plate and, toward the Map, the island cut alone.
-                    PlateHomeLayer(plate: plate, pose: pose, size: size, offset: offset, fade: plateFade, stationLevels: HomePlate.stationLevels(world))
+                    PlateHomeLayer(plate: plate, pose: pose, size: size, offset: offset, fade: plateFade, stationLevels: HomePlate.stationLevels(world), build: build, nearLens: nearLens, water: water)
                     FarBellSkyLayer(plate: plate, world: world, pose: pose, size: size, offset: offset).opacity(plateFade)
                 } else {
                     // Today's resist seals on the earth beside Pofu's door: an
@@ -896,17 +924,22 @@ private struct SceneFrame<Bubble: View>: View {
                     // at its slots (WP5), in front of Pofu, behind the painted objects
                     // that stand in front of them.
                     props.world(WorldPropsFrame(pose: pose, size: size, offset: offset, z: z, isFocused: model.focus != nil || model.hasSheet, model: model))
+                        // The lens (WP11): the props stand together in front of Pofu, soft as one by the jar's row.
+                        .lensBlur(plate.flatMap { p in p.propSlot(.jar).map { nearLens?.radius(worldY: $0.y) ?? 0 } } ?? 0)
                 }
 
                 if let plate {
                     // What Pofu or a prop stands behind is drawn again over it.
+                    let stand = look.pofuStand ?? IslandLayout.pofu
                     PlateOccluders(
                         plate: plate,
-                        objects: plate.occluders(overPofuAndProps: IslandLayout.pofu, box: plate.pofuBox),
+                        feet: stand,
+                        box: plate.pofuBox(at: stand),
                         pose: pose,
                         size: size,
                         offset: offset,
-                        stationLevels: HomePlate.stationLevels(world)
+                        stationLevels: HomePlate.stationLevels(world),
+                        build: build
                     )
                 }
 
@@ -976,6 +1009,7 @@ private struct SceneFrame<Bubble: View>: View {
             }
             .frame(width: size.width, height: size.height, alignment: .topLeading)
             .environment(\.worldRelight, !painted ? relight : nil)
+            .environment(\.nearLens, nearLens)
             .environment(\.worldHorizon, sky.horizon)
             .environment(\.worldNight, light.night)
             .modifier(SpikeDepthOfFieldEffect(depth: depthMap, field: field, size: size, showsDepth: spike.debug == .depth))
@@ -1162,6 +1196,8 @@ private struct WorldCanvas: View {
             case growth(GrowthPiece)
             /// A painted plate object drawn again over a resident behind it.
             case plateOccluder(PlateIsland.Object)
+            /// A station's look on the base drawn again over a resident behind it (`PlateCompositor`).
+            case plateLook(String)
             /// A part of today's visit on the painted plate (`PlateLife`).
             case plateVisitor(VisitorStage.Placed)
             /// Koke's moss and Çağlayan's fountain on the painted plate.
@@ -1272,6 +1308,8 @@ private struct WorldCanvas: View {
             }
         }
         var behind: [String: PlateIsland.Object] = [:]
+        var behindLooks: [String: PlateCompositor.Look] = [:]
+        let compositor = PlateCompositor(plate: plate, levels: HomePlate.stationLevels(world))
         for resident in IslandLayout.residents {
             guard let station = world.stations.first(where: { $0.id == resident.station }), station.level > 0,
                   let feet = plate.residentFeet(resident.id) else { continue }
@@ -1280,6 +1318,12 @@ private struct WorldCanvas: View {
             for object in plate.occluders(over: feet, box: box) {
                 behind[object.id] = object
             }
+            for look in compositor.looks(over: feet, box: box) {
+                behindLooks[look.station] = look
+            }
+        }
+        for look in behindLooks.values {
+            objects.append(Object(id: "look-\(look.station)", kind: .plateLook(look.station), anchor: look.foot, depth: IslandLayout.depth(ofY: look.foot.y)))
         }
         for object in behind.values {
             let box = plate.occluderBox(object)
@@ -1409,6 +1453,20 @@ private struct WorldCanvas: View {
             ZStack(alignment: .topLeading) {
                 BuildParticles(moment: frame.moment, time: frame.time, point: point)
                 PlateBuildBloom(moment: frame.moment, time: frame.time, point: CGPoint(x: point.x, y: point.y - CGFloat(lift)))
+            }
+        case .plateLook(let station):
+            if let plate {
+                // In the canvas's own units: a pose that projects a world point onto its canvas point.
+                let origin = IslandLayout.canvasOrigin
+                let canvas = CGSize(width: IslandLayout.canvasWidth, height: IslandLayout.canvasHeight)
+                PlateLookPiece(
+                    compositor: PlateCompositor(plate: plate, levels: HomePlate.stationLevels(world)),
+                    station: station, build: build,
+                    pose: CameraPose(scale: 1, look: WorldPoint(x: Double(canvas.width) / 2 - origin.x, y: -origin.y), anchorY: 0),
+                    size: canvas, offset: .zero
+                )
+                .allowsHitTesting(false)
+                .accessibilityHidden(true)
             }
         case .plateOccluder(let occluder):
             if let plate {
@@ -2010,6 +2068,10 @@ private struct PofuLayer<Bubble: View>: View {
     @Environment(\.worldStillFrame) private var still
     @Environment(\.worldRelight) private var relight
     @Environment(\.worldLook.spike.debug) private var spikeDebug
+    /// A screenshot's stand for Pofu on the plate (`WorldLook.pofuStand`).
+    @Environment(\.worldLook.pofuStand) private var pofuStand
+    /// The thin lens (WP11): his blur by his feet's row, and his contact shadow at near.
+    @Environment(\.nearLens) private var nearLens
 
     /// Pofu's art is 64 units wide (154 pt at Home, ADR-0018).
     static var artWidth: Double {
@@ -2017,11 +2079,12 @@ private struct PofuLayer<Bubble: View>: View {
     }
 
     var body: some View {
-        let depth = IslandLayout.depth(ofY: IslandLayout.pofu.y)
+        let stand = plate == nil ? IslandLayout.pofu : pofuStand ?? IslandLayout.pofu
+        let depth = IslandLayout.depth(ofY: stand.y)
         let s = pose.scale
-        let projected = pose.project(IslandLayout.pofu, width: Double(size.width))
+        let projected = pose.project(stand, width: Double(size.width))
         let moving = DepthMotion.shift(
-            point: IslandLayout.pofu,
+            point: stand,
             depth: depth,
             focus: lens.focus,
             look: WorldPoint(x: pose.lookX, y: pose.lookY),
@@ -2043,7 +2106,7 @@ private struct PofuLayer<Bubble: View>: View {
         let rigArt = CompanionArt.placeholder
         let pofuLight = plate.map { p -> HomePlate.CharacterLight in
             let aspect = (rigArt?.rig ?? CompanionRig.hamster).aspectRatio
-            return p.characterLight(at: IslandLayout.pofu, width: Self.artWidth * p.characterScale, height: Self.artWidth * p.characterScale / aspect, id: "pofu")
+            return p.characterLight(at: stand, width: Self.artWidth * p.characterScale, height: Self.artWidth * p.characterScale / aspect, id: "pofu")
         }
         let paint = pofuLight.map { Color(red: $0.paint.red, green: $0.paint.green, blue: $0.paint.blue) } ?? grade
         let light = plate == nil ? characterGrade : .neutral
@@ -2054,7 +2117,8 @@ private struct PofuLayer<Bubble: View>: View {
                     LampPool(width: Self.artWidth * drawn, light: pofuLight)
                         .position(x: feet.x, y: feet.y - CGFloat(drawn))
                         .opacity(painted)
-                    ContactPad(width: Self.artWidth * drawn, light: pofuLight)
+                    // Close to him the pad spreads thin over a soft lawn: it deepens toward near's rest.
+                    ContactPad(width: Self.artWidth * drawn, light: pofuLight, strength: 1 + 0.9 * nearContact, near: nearContact)
                         .position(x: feet.x, y: feet.y - CGFloat(drawn))
                         .opacity(painted)
                 }
@@ -2090,6 +2154,14 @@ private struct PofuLayer<Bubble: View>: View {
                     .opacity(bubbleOpacity)
             }
         }
+        .lensBlur(part == .body ? nearLens?.radius(worldY: stand.y) ?? 0 : 0)
+    }
+
+    /// How close the camera is for his contact shadow: 0 at the station shot's scale, 1 at near's
+    /// rest and past it.
+    private var nearContact: Double {
+        guard let lens = nearLens?.lens else { return 0 }
+        return min(max((lens.scale - 2.6) / (CameraRail.nearRestScale - 2.6), 0), 1)
     }
 
     /// What shows on his face: what just happened to the residents, then

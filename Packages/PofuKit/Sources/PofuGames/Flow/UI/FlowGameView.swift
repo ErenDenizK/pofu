@@ -1,10 +1,12 @@
 #if os(iOS)
+import PofuDesignSystem
 import SpriteKit
 import SwiftUI
 
 /// The flow game: the SpriteKit scene full screen, a SwiftUI layer on top
 /// that reads the taps (so each tile is also a VoiceOver element), a small
-/// crafted HUD (leave, board pips, targets wet), undo and hint in the bottom
+/// HUD on the screen plane (leave, board pips, targets wet: the design
+/// system's chrome, glass by default), undo and hint in the bottom
 /// corners, and the one card at the end. Entered on purpose only (A23): the
 /// island presents it as a full-screen cover when a day can advance it.
 public struct FlowGameView: View {
@@ -137,18 +139,7 @@ public struct FlowGameView: View {
 
     private var hud: some View {
         HStack(alignment: .center, spacing: 10) {
-            Button {
-                model.leave()
-            } label: {
-                Image(systemName: "xmark")
-                    .font(.system(size: 17, weight: .bold))
-                    .foregroundStyle(GardenInk.ink)
-                    .frame(width: 44, height: 44)
-                    .contentShape(Circle())
-            }
-            .buttonStyle(.plain)
-            .background(PaperSurface(shape: Circle(), stitchInset: 4))
-            .accessibilityLabel(Text(verbatim: FlowStrings.leave))
+            PofuIconButton(systemName: "xmark", label: FlowStrings.leave, paint: .duoClose) { model.leave() }
             Spacer(minLength: 0)
             boardPlate
             Spacer(minLength: 0)
@@ -156,11 +147,20 @@ public struct FlowGameView: View {
         }
         .padding(.horizontal, 16)
         .frame(height: FlowLayout.hudHeight)
-        // The goal in one line, under the plates.
+        // The goal in one line, under the plates, until the first stone is turned.
         .overlay(alignment: .bottom) {
-            GoalLine(text: FlowStrings.goal)
-                .offset(y: 22)
+            if showsGoal {
+                GoalLine(text: FlowStrings.goal)
+                    .offset(y: 30)
+                    .transition(.opacity)
+            }
         }
+        .animation(.easeInOut(duration: 0.25), value: showsGoal)
+    }
+
+    /// The rule is shown on the round's first board while no stone has been turned.
+    private var showsGoal: Bool {
+        model.phase == .playing && model.boardNumber == 1 && model.round.taps.isEmpty
     }
 
     private var boardPlate: some View {
@@ -184,7 +184,7 @@ public struct FlowGameView: View {
         .padding(.horizontal, 16)
         .padding(.vertical, 8)
         .fixedSize()
-        .background(PaperSurface(shape: Capsule(style: .continuous), stitchInset: 3.5))
+        .pofuChrome(.worldTag)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(Text(verbatim: FlowStrings.board(model.boardNumber, of: total)))
         .accessibilityAddTraits(.isHeader)
@@ -192,11 +192,14 @@ public struct FlowGameView: View {
 
     private var targetsPlate: some View {
         HStack(spacing: 6) {
-            // The drop turns into a check once every target is wet.
-            Image(systemName: model.isBoardSolved ? "checkmark.circle.fill" : "drop.fill")
-                .font(.system(size: 15, weight: .bold))
-                .foregroundStyle(Color(red: 0.25, green: 0.58, blue: 0.86))
-                .contentTransition(.symbolEffect(.replace))
+            // The painted drop turns into a check once every target is wet.
+            if model.isBoardSolved {
+                Image(systemName: "checkmark.circle.fill")
+                    .font(.system(size: 17, weight: .bold))
+                    .foregroundStyle(Color(red: 0.25, green: 0.58, blue: 0.86))
+            } else {
+                PofuPaintedIcon(.duoDrop, size: 22, scales: false)
+            }
             Text(verbatim: "\(model.targetsWet)/\(model.targetCount)")
                 .font(.system(size: 17, weight: .heavy, design: .rounded))
                 .monospacedDigit()
@@ -205,7 +208,7 @@ public struct FlowGameView: View {
         }
         .padding(.horizontal, 14)
         .frame(height: 44)
-        .background(PaperSurface(shape: Capsule(style: .continuous), stitchInset: 3.5))
+        .pofuChrome(.worldTag)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(Text(verbatim: FlowStrings.targetsAccessibility(model.targetsWet, of: model.targetCount)))
     }
@@ -225,7 +228,9 @@ public struct FlowGameView: View {
                     } label: {
                         Text(verbatim: FlowStrings.done)
                     }
-                    .buttonStyle(ClayButtonStyle())
+                    .font(.system(.headline, design: .rounded, weight: .bold))
+                    .controlSize(.large)
+                    .pofuActionStyle(.primary)
                 }
                 .frame(height: FlowLayout.controlsHeight)
                 .transition(.opacity.combined(with: .move(edge: .bottom)))
@@ -270,25 +275,16 @@ public struct FlowGameView: View {
         Text(verbatim: text)
             .font(.system(size: 14, weight: .bold, design: .rounded))
             .foregroundStyle(GardenInk.ink)
-            .padding(.horizontal, 12)
-            .padding(.vertical, 6)
-            .background(PaperSurface(shape: Capsule(style: .continuous), stitchInset: 3))
+            .padding(.horizontal, 14)
+            .padding(.vertical, 7)
+            .pofuChrome(.worldTag)
             .transition(.opacity)
     }
 
-    private func roundButton(symbol: String, label: String, enabled: Bool, action: @escaping () -> Void) -> some View {
-        Button(action: action) {
-            Image(systemName: symbol)
-                .font(.system(size: 20, weight: .bold))
-                .foregroundStyle(GardenInk.ink)
-                .frame(width: 56, height: 56)
-                .contentShape(Circle())
-        }
-        .buttonStyle(.plain)
-        .background(PaperSurface(shape: Circle(), stitchInset: 5))
-        .opacity(enabled ? 1 : 0.4)
-        .disabled(!enabled)
-        .accessibilityLabel(Text(verbatim: label))
+    private func roundButton(symbol: String, label: String, enabled: Bool, action: @escaping @MainActor () -> Void) -> some View {
+        PofuIconButton(systemName: symbol, label: label, action: action)
+            .opacity(enabled ? 1 : 0.4)
+            .disabled(!enabled)
     }
 }
 

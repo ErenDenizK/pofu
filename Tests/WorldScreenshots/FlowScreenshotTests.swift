@@ -63,7 +63,7 @@ final class FlowScreenshotTests: XCTestCase {
     }
 
     /// Stage 1, board 1 in both ground methods for the founder to choose from: A gives every cell its own
-    /// keycap square, B lays one lawn under the board.
+    /// keycap square, B (the default) lays one lawn under the board.
     @MainActor
     func testRenderTheFlowGroundMethods() async throws {
         let scene = try XCTUnwrap(
@@ -73,7 +73,7 @@ final class FlowScreenshotTests: XCTestCase {
         let folder = outputFolder()
         try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
         var written: [String] = []
-        defer { FlowGroundSettings.method = .keycaps }
+        defer { FlowGroundSettings.method = .lawn }
         for (method, name) in [(FlowGroundMethod.keycaps, "path-game-flow-stage1-method-a"), (.lawn, "path-game-flow-stage1-method-b")] {
             FlowGroundSettings.method = method
             try await shoot(name, in: scene, folder: folder, written: &written, stage: 1) { _ in }

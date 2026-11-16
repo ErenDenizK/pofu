@@ -57,7 +57,7 @@ final class FlowScene: SKScene {
     private var textures: FlowTextures
     private var picker: FlowVariantPicker
     /// The ground method this board was built with (A: keycaps, B: one lawn).
-    private var method: FlowGroundMethod = .keycaps
+    private var method: FlowGroundMethod = .lawn
     private let haptics = FlowHaptics()
 
     private let backdrop = SKSpriteNode()
@@ -575,11 +575,15 @@ final class FlowScene: SKScene {
         default: offset = CGPoint(x: -half, y: 0)
         }
         container.position = offset
-        let puddle = SKShapeNode(ellipseOf: CGSize(width: layout.cell * 0.26, height: layout.cell * 0.17))
-        puddle.fillColor = FlowPalette.water.withAlphaComponent(0.85)
-        puddle.strokeColor = FlowPalette.waterLight
-        puddle.lineWidth = 1.2
-        container.addChild(puddle)
+        if let painted = textures.puddle() {
+            container.addChild(SKSpriteNode(texture: painted, size: cellSize))
+        } else {
+            let puddle = SKShapeNode(ellipseOf: CGSize(width: layout.cell * 0.26, height: layout.cell * 0.17))
+            puddle.fillColor = FlowPalette.water.withAlphaComponent(0.85)
+            puddle.strokeColor = FlowPalette.waterLight
+            puddle.lineWidth = 1.2
+            container.addChild(puddle)
+        }
         if !reduceMotion {
             let drip = SKShapeNode(circleOfRadius: 2.4)
             drip.fillColor = FlowPalette.water

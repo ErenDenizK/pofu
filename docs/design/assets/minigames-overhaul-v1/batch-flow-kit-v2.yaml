@@ -1,0 +1,189 @@
+# Proposed manifest (for the lead to queue in pofu-art, numbered there): the flow board's kit, v2.
+# A 5-job EXPLORATION (x- ids, never promoted). Written by Fable with pofu PR #501
+# (docs/design/minigames-overhaul-v1.md, section 4).
+#
+# WHY: the flow board now sits on one lawn (method B) and the code grades three pictures to make
+# them belong to the scene: the lawn (pale olive to spring green), the stream water (milk blue to the
+# pool's turquoise) and the cut-out rocks (cold grey to warm stone). A grade is a patch. These jobs
+# paint the pieces in the scene's own colour, and add the two pieces the board has never had: a lip
+# whose spillway can stand over the spring's column, and a spout where a channel leaves the board
+# and pours into the pool.
+# `board-scene-now` is the game screen after PR #501 (path-game-flow-stage1-method-b); the lead adds
+# it under design/art/refs/flow-board/ when queueing. `flow-backdrop` is the scene behind the board;
+# its pool and waterfall are THE colour reference for water, its grass for the lawn, its terrace
+# stones for stone.
+#
+# LIGHT AND LOOK: the backdrop's own (`plate-style-rich-v1`): soft day light from the upper left,
+# matte. No cast shadow onto transparent areas except the contact shade a job names.
+# REVIEW (the lead, in an in-app frame at 1:1): real alpha; colours within the backdrop's family
+# without a code grade; repeats and joins invisible; each piece at the size its notes give.
+# ORDER: water, lip kit, spout, rocks, lawn. 2 takes each, no third. FALLBACKS as in AGENTS.md.
+# EXPLORATION RULES: no promote; commit takes (WebP q90, WITH alpha where transparent), contact
+# sheet and review.yaml under design/art/takes/<batch>/<id>/.
+
+batch: batch-NNN-flow-kit-v2
+title: "Flow board kit v2: stream water, lip kit, mouth spout, warm rocks, spring lawn (5 jobs)"
+status: open
+
+refs:
+  board-scene-now: design/art/refs/flow-board/board-scene-after-501.webp
+  flow-backdrop: design/art/takes/batch-124-minigame-scenes-pilot/x-flow-backdrop/plate__x-flow-backdrop--t2.webp
+
+defaults:
+  variants: 2
+
+jobs:
+  - id: x-flow-water-v2
+    kind: texture
+    name: x-flow-water-v2
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: false
+    light: {cell: day, layer: subject}
+    palettes: [world-water]
+    chat: "Pofu · Flow game"
+    acceptance: {exploration: true}
+    notes: "Seamless stream water seen from straight above, in the pool's turquoise. The app cuts channels out of it; it must tile on all four sides with no paler border."
+    attach:
+      - ref: flow-backdrop
+        role: "Colour reference: the pool at the bottom and the waterfall. Match the pool's turquoise and its soft light ripples."
+      - ref: board-scene-now
+        role: "The game screen. The blue water running in the stone channels is cut from this texture: about 60 px wide on screen."
+    prompt:
+      - text: |
+          Paint a square of shallow, clear stream water seen from straight
+          above, filling the whole picture edge to edge. It is the same bright
+          turquoise as the pool in the attached scene, a little lighter where
+          soft ripples catch the light, with small pale glints scattered
+          evenly. The ripples are small and even everywhere, with no large
+          shape, no dark area and no lighter or pinker band along any edge, so
+          the square can repeat side by side without a visible join.
+      - block: plate-style-rich-v1
+      - text: "AVOID: a shore, stones, a bank, foam lines, a vignette, a paler border, a large wave, fish, leaves, text"
+
+  - id: x-flow-lip-kit
+    kind: prop
+    name: x-flow-lip-kit
+    size: 1536x512
+    canvas: 1536x512
+    transparent: true
+    light: {cell: day, layer: subject}
+    palettes: [world-foliage, world-props, world-water]
+    chat: "Pofu · Flow game"
+    acceptance: {exploration: true}
+    notes: "Four separate pieces in one row on real alpha, same height, with clear gaps: left end, plain run (tileable left to right), spillway piece with water running through it, right end. Each of the two middle pieces is exactly as wide as it is 2.9 times tall (one board cell). The app sets the spillway over the spring's column."
+    attach:
+      - ref: flow-backdrop
+        role: "Match its terrace stones, moss, water colour, light and painting style exactly."
+      - ref: board-scene-now
+        role: "The stone ledge across the board's top is what these pieces rebuild. Today its spillway is fixed in the middle and dry."
+    prompt:
+      - text: |
+          Paint four separate pieces of one low stone ledge, side by side in a
+          row with empty space between them, on a fully transparent
+          background, seen straight on and a little from above. All four are
+          the same height and built of the same warm cream, rounded terrace
+          stones as the attached scene, with a soft line of moss along the top.
+          First, a left end: two stones, the outer one rounded off. Second, a
+          plain middle run of three stones whose left and right edges are cut
+          straight so copies of it join into a longer ledge. Third, a spillway:
+          the stones dip into a smooth shallow notch, and clear turquoise
+          water, the colour of the scene's pool, runs through the notch and
+          spills a short way down the front in a soft sheet with a little white
+          at its foot. Fourth, a right end, the mirror of the first. One or
+          two tiny pale flowers on the moss, nothing hanging below the stones
+          except the spilling water.
+      - block: plate-style-rich-v1
+      - text: "TRANSPARENCY: the background is real transparency (an alpha channel), not a painted checkerboard, not white."
+      - text: "AVOID: pieces that touch each other, a pool, a tall waterfall, dark gaps between stones, a hard outline, a background, text"
+
+  - id: x-flow-mouth-spout
+    kind: prop
+    name: x-flow-mouth-spout
+    size: 1024x512
+    canvas: 1024x512
+    transparent: true
+    light: {cell: day, layer: subject}
+    palettes: [world-props, world-water]
+    chat: "Pofu · Flow game"
+    acceptance: {exploration: true}
+    notes: "Two pieces side by side on real alpha, same size and place in their halves: left DRY, right WET. A short carved stone spout seen from above, channel entering at the top edge, mouth at the bottom edge. The app sets it on the board's bottom edge over the pool."
+    attach:
+      - ref: flow-backdrop
+        role: "Match its terrace stones, water colour and light."
+      - ref: board-scene-now
+        role: "The round stone drains in the bottom row are what this replaces: the channel should end in a spout that pours into the pool below the board."
+    prompt:
+      - text: |
+          Paint the same small stone spout twice, side by side with empty space
+          between, on a fully transparent background, seen from straight above
+          and a little from the front. It is a short, chunky block of warm
+          cream terrace stone with a smooth channel carved down its middle from
+          the top edge to a rounded lip at the bottom edge, and a little moss
+          at its sides. On the left the channel is dry, its floor a soft warm
+          brown. On the right clear turquoise water, the colour of the scene's
+          pool, fills the channel and pours off the lip in a short soft sheet
+          with a few white drops at its foot.
+      - block: plate-style-rich-v1
+      - text: "TRANSPARENCY: the background is real transparency (an alpha channel), not a painted checkerboard, not white."
+      - text: "AVOID: a pool, a round drain or whirlpool, a pipe, metal, a hard outline, a background, text"
+
+  - id: x-flow-rocks-v2
+    kind: prop
+    name: x-flow-rocks-v2
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: true
+    light: {cell: day, layer: subject}
+    palettes: [world-props, world-foliage]
+    chat: "Pofu · Flow game"
+    acceptance: {exploration: true}
+    notes: "Four separate rocks in a 2 by 2 grid on real alpha, all at ONE scale, none wider than 70 percent of its quarter, each with its own soft green-brown contact shade under it. Warm stone, not grey."
+    attach:
+      - ref: flow-backdrop
+        role: "Match the warm cream and sand colour of its boulders and terrace stones, and its light."
+      - ref: board-scene-now
+        role: "The rocks lying on the lawn are what these replace. Keep their gentle shapes; make them warm like the scene's stone."
+    prompt:
+      - text: |
+          Paint four small separate river rocks arranged two by two with clear
+          empty space between them, on a fully transparent background, seen
+          from above and a little from the front. They are smooth, rounded and
+          warm: cream and soft sand, the colour of the boulders in the attached
+          scene, never grey. One is a single round boulder with a tuft of grass
+          at its foot, one a group of three pebbles with a clover, one a low
+          flat slab, one a boulder leaning on a smaller stone. Each sits on its
+          own small soft shade, a muted green-brown that fades to nothing, as
+          if lying on a lawn.
+      - block: plate-style-rich-v1
+      - text: "TRANSPARENCY: the background is real transparency (an alpha channel), not a painted checkerboard, not white."
+      - text: "AVOID: grey or blue stone, rocks that touch, a hard outline, a dark shadow, grass under the rocks beyond the small shade, a background, text"
+
+  - id: x-flow-lawn-v2
+    kind: texture
+    name: x-flow-lawn-v2
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: false
+    light: {cell: day, layer: subject}
+    palettes: [world-foliage]
+    chat: "Pofu · Flow game"
+    acceptance: {exploration: true}
+    notes: "Seamless lawn seen from straight above, in the scene's spring green. Tiles on all four sides; no large shapes; two or three tiny clovers and daisies at most."
+    attach:
+      - ref: flow-backdrop
+        role: "Colour reference: the sunlit grass. Match its fresh spring green."
+      - ref: board-scene-now
+        role: "The lawn under the stones is cut from this texture; one repeat covers two board cells."
+    prompt:
+      - text: |
+          Paint a square of short, soft lawn seen from straight above, filling
+          the whole picture edge to edge. It is the fresh spring green of the
+          sunlit grass in the attached scene, with gentle lighter and deeper
+          patches no bigger than a hand and fine short blades suggested, not
+          drawn one by one. Two or three tiny clovers or daisies, small and
+          far apart. Even everywhere, with no large shape, no path, no shadow
+          and no different band along any edge, so the square can repeat side
+          by side without a visible join.
+      - block: plate-style-rich-v1
+      - text: "AVOID: olive or yellow grass, bare earth, stones, tall grass, a vignette, a border, a path, large flowers, text"

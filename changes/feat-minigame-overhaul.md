@@ -1,0 +1,1 @@
+Changed: the stream game sits on one fresh lawn with warm rocks and turquoise water (no more rings in the stream), the garden's cells are a full 44 pt, and both games' HUDs are glass with painted icons; the rule line leaves after the first move.
