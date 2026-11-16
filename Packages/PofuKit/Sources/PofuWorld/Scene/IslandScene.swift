@@ -473,6 +473,7 @@ private struct SceneFrame<Bubble: View>: View {
 
     @Environment(\.worldLook) private var look
     @Environment(\.worldStillFrame) private var still
+    @Environment(\.worldWaterClock) private var waterClock
     @Environment(\.screenHazeClearing) private var hazeClearing
     @Environment(\.resistSeals) private var resistSeals
 
@@ -692,6 +693,15 @@ private struct SceneFrame<Bubble: View>: View {
             f.maxRadius *= rack
             return f
         }()
+        // The water of Home's plate (WP13): it moves in Ambient and holds where it stood outside it.
+        let water: WaterFrame? = {
+            if let forced = waterClock { return WaterFrame(time: PlateRegionEffects.time(forced)) }
+            guard !still, plate?.isMatted == true else { return nil }
+            if PlateRegionEffects.runs(under: directive, reduceMotion: model.reduceMotion, isStill: still) {
+                model.waterTime = PlateRegionEffects.time(clock.timeIntervalSinceReferenceDate)
+            }
+            return model.waterTime.map { WaterFrame(time: $0) }
+        }()
         // The thin lens over Home's matted plate (WP11): nil at the Map, at mid and in a flight.
         let nearLens: NearLensFrame? = {
             guard let plate, model.island == .home, plateFade > 0.999, plate.isMatted else { return nil }
@@ -841,7 +851,7 @@ private struct SceneFrame<Bubble: View>: View {
                 if let plate {
                     // The painted plate, never graded: its backdrop, the
                     // plate and, toward the Map, the island cut alone.
-                    PlateHomeLayer(plate: plate, pose: pose, size: size, offset: offset, fade: plateFade, stationLevels: HomePlate.stationLevels(world), build: build, nearLens: nearLens)
+                    PlateHomeLayer(plate: plate, pose: pose, size: size, offset: offset, fade: plateFade, stationLevels: HomePlate.stationLevels(world), build: build, nearLens: nearLens, water: water)
                     FarBellSkyLayer(plate: plate, world: world, pose: pose, size: size, offset: offset).opacity(plateFade)
                 } else {
                     // Today's resist seals on the earth beside Pofu's door: an

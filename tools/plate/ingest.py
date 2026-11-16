@@ -1290,10 +1290,10 @@ def cmd_json(island: str) -> Path:
     data = build_json(island, hand, mattes, maps, harmony_all(hand, mattes))
     JSON_DIR.mkdir(parents=True, exist_ok=True)
     out = JSON_DIR / f"plate-{island}.json"
-    # `props` is written by `tools/plate/props_slice.py`, and `camera` and `near` (the lens, WP11) by hand, not here:
+    # `props` is written by `tools/plate/props_slice.py`, and `camera` and `near` (the lens, WP11) and `water` (the region shaders, WP13) by hand, not here:
     # carry them over so a re-ingest keeps them.
     old = json.loads(out.read_text()) if out.exists() else {}
-    for key in ("props", "camera", "near"):
+    for key in ("props", "camera", "near", "water"):
         if key in old:
             data[key] = old[key]
     out.write_text(json.dumps(data, separators=(",", ":")) + "\n")

@@ -34,6 +34,8 @@ struct PlateHomeLayer: View {
     /// The thin lens (WP11): the sky set takes a plain blur of the sky's radius, the island its
     /// blur levels. `nil` where nothing blurs.
     var nearLens: NearLensFrame?
+    /// The water's moment (WP13): its time in the loop while the island is at Ambient, else `nil`.
+    var water: WaterFrame?
 
     /// A stage, a level or an hour change is a crossfade between two whole
     /// paintings (the plain form of the spec's diff-mask reveal: every pixel
@@ -49,7 +51,8 @@ struct PlateHomeLayer: View {
     @Environment(\.displayScale) private var displayScale
     @State private var incomingStart = Date()
 
-    init(plate: HomePlate, pose: CameraPose, size: CGSize, offset: CGSize, fade: Double, islandGrade: WorldGrade = .neutral, stationLevels: [StationID: Int] = [:], build: BuildFrame? = nil, nearLens: NearLensFrame? = nil) {
+    init(plate: HomePlate, pose: CameraPose, size: CGSize, offset: CGSize, fade: Double, islandGrade: WorldGrade = .neutral, stationLevels: [StationID: Int] = [:], build: BuildFrame? = nil, nearLens: NearLensFrame? = nil, water: WaterFrame? = nil) {
+        self.water = water
         self.build = build
         self.nearLens = nearLens
         self.plate = plate
@@ -126,7 +129,11 @@ struct PlateHomeLayer: View {
                     if fade < 0.999, farPictureIsSharp(plate) {
                         FarPicture(compositor: compositor, pose: pose, size: size, offset: offset)
                     } else {
-                        CompositeIsland(compositor: compositor, build: build, pose: pose, size: size, offset: offset)
+                        CompositeIsland(compositor: compositor, build: build, pose: pose, size: size, offset: offset, water: water)
+                            // The water's patch is a layer effect; the lens blurs and adds this island at several levels, and
+                            // a layer effect met inside them comes out brighter than the plate beside it (a pale band round
+                            // the things floating in the pond). Flattened first, the island is one picture to the lens.
+                            .flattened(water != nil)
                             .modifier(NearLensLevels(frame: nearLens, plate: plate, size: size))
                             .task(id: compositor.snapshotKey) {
                                 // The far picture is ready before the camera rises: rendered once the state rests.
@@ -174,6 +181,12 @@ extension PlateHomeLayer {
 }
 
 extension View {
+    /// The view drawn into one picture first (a Metal texture), or as it is.
+    @ViewBuilder
+    func flattened(_ on: Bool) -> some View {
+        if on { drawingGroup() } else { self }
+    }
+
     /// An island picture in its grade under a painted sky (`PaintedSky.islandGrade`): the grade shader, or
     /// without it the gain as a multiply.
     @ViewBuilder
