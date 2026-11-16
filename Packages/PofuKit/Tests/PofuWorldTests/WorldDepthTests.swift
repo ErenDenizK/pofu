@@ -49,7 +49,7 @@ struct WorldDepthTests {
     }
 
     /// A horizon (k 0.05) stays where it is under the camera's anchor while the camera crosses the rail
-    /// (z 0 to 2): a point 50 units above Home's look moves a few points from the anchor, where the same
+    /// (the Map to mid, z 0 to 1): a point 50 units above Home's look moves a few points from the anchor, where the same
     /// point at the island's own depth moves by hundreds.
     @Test func horizonMovesUnderAPointAcrossTheRail() throws {
         let home = try #require(HomePlate.shipped)
@@ -58,7 +58,7 @@ struct WorldDepthTests {
         let point = WorldPoint(x: reference.lookX, y: reference.lookY - 50)
         func offsets(k: Double) -> [Double] {
             (0...20).map { step in
-                let camera = rail.pose(z: 2 * Double(step) / 20)
+                let camera = rail.pose(z: Double(step) / 20)
                 return DepthLayer.pose(camera, reference: reference, k: k).project(point, width: 402).y - camera.anchorY
             }
         }
@@ -68,7 +68,7 @@ struct WorldDepthTests {
         #expect(i > 5 * h, "island moved \(i) pt")
     }
 
-    /// Along the rail (z 0 to 2, 100 samples) no layer's place under Home's look point changes its pace by
+    /// Along the rail from the Map to mid (z 0 to 1, 100 samples) no layer's place under Home's look point changes its pace by
     /// more than 3 pt between samples (the rail itself bends at its stops): no jump where the rail changes segment.
     @Test func layerPosesAreContinuousAcrossTheRail() throws {
         let home = try #require(HomePlate.shipped)
@@ -78,7 +78,7 @@ struct WorldDepthTests {
         for k in [0.05, 0.25, 0.35, 0.45, 0.85] {
             var ys: [Double] = [], xs: [Double] = []
             for step in 0...100 {
-                let p = DepthLayer.pose(rail.pose(z: 2 * Double(step) / 100), reference: reference, k: k).project(point, width: 402)
+                let p = DepthLayer.pose(rail.pose(z: Double(step) / 100), reference: reference, k: k).project(point, width: 402)
                 xs.append(p.x)
                 ys.append(p.y)
             }

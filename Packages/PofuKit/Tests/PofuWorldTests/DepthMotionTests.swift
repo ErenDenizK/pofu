@@ -6,9 +6,9 @@ import Testing
 struct DepthMotionTests {
     /// A Home → Island flight, `seconds` in.
     private func flight(at seconds: Double, reduceMotion: Bool = false) -> CameraRig {
-        var rig = CameraRig(framing: .home)
+        var rig = CameraRig(framing: .mid)
         rig.reduceMotion = reduceMotion
-        rig.fly(to: .island)
+        rig.fly(to: .map)
         var t = 0.0
         while t < seconds {
             rig.advance(1.0 / 120)
@@ -18,7 +18,7 @@ struct DepthMotionTests {
     }
 
     @Test func aRestingCameraAddsNothing() {
-        let rig = CameraRig(framing: .island)
+        let rig = CameraRig(framing: .mid)
         #expect(rig.motion == .still)
         #expect(DepthMotion.shift(point: .zero, depth: 120, focus: -10, look: .zero, motion: .still) == .zero)
         #expect(DepthMotion.lens(.island, motion: .still) == .island)

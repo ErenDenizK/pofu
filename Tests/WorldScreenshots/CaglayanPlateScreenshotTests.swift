@@ -56,7 +56,7 @@ final class CaglayanPlateScreenshotTests: XCTestCase {
 
     @MainActor
     private func render(stage: Int, hour: Double, weather: WeatherConditions, expecting light: String?, in scene: UIWindowScene) async throws -> UIImage {
-        let model = IslandSceneModel(framing: .island)
+        let model = IslandSceneModel(framing: .mid)
         model.holdIsle(.caglayan)
         var look = WorldLook(hourOverride: hour)
         look.weatherOverride = weather

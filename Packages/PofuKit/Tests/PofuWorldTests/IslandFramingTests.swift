@@ -27,133 +27,16 @@ struct IslandFramingTests {
         #expect(fill > 0.85 && fill < 0.90, "home and İskele fill \(fill) of the width")
     }
 
-    /// Growth round: Home is the 90 pt framing; the Island framing is the wide
-    /// pan view, Pofu at least 60 pt and the camera opens centred on him.
-    @Test func theIslandFramingKeepsPofuBig() {
-        let pose = CameraRail().pose(of: .island)
-        #expect(64 * pose.scale >= 60 - 1e-9)
-        let pofu = span(IslandFraming.pofuBox, pose, width: 402)
-        #expect(abs((pofu.lo + pofu.hi) / 2 - 201) < 20, "Pofu is not centred: \(pofu)")
-    }
-
+    /// Mid (ADR-0027) for the sprite island: its box is 378 pt across at the reference width,
+    /// centred on row 383, scaled with the screen.
     @Test(arguments: sizes)
-    func theIslandIsCentredBetweenTheBands(size: (Double, Double)) {
-        let pose = CameraRail(width: size.0, height: size.1).pose(of: .island)
-        let island = rows(IslandFraming.islandBox, pose)
-        let mid = IslandFraming.bandMid(height: size.1)
-        // Rows follow the height and scales the width, so other sizes land
-        // within a few points of the band's middle.
-        #expect(abs((island.top + island.bottom) / 2 - mid) < 6.0)
-        #expect(island.top >= IslandFraming.topBand)
-        #expect(island.bottom <= size.1 - IslandFraming.bottomBand)
-    }
-
-    /// The pan runs tip to tip: at either end the plate's tip meets the
-    /// screen's edge, never leaving sky between them.
-    @Test func thePanRunsTipToTip() {
-        var rig = CameraRig(framing: .island)
-        let range = IslandFraming.panRange
-        #expect(range.contains(0))
-        rig.jumpPan(to: range.lowerBound)
-        let left = span(IslandFraming.plateBox, rig.pose, width: 402)
-        #expect(abs(left.lo) < 0.5)
-        rig.jumpPan(to: range.upperBound)
-        let right = span(IslandFraming.plateBox, rig.pose, width: 402)
-        #expect(abs(right.hi - 402) < 0.5)
-    }
-
-    /// Every station has a snap point that shows it whole.
-    @Test func everyStationHasASnapThatShowsItWhole() {
-        for (station, anchor) in IslandLayout.stationAnchors {
-            var rig = CameraRig(framing: .island)
-            rig.jumpPan(to: IslandFraming.panValue(lookX: anchor.x))
-            #expect(IslandFraming.panSnaps.contains { abs($0 - IslandFraming.panValue(lookX: anchor.x)) < 0.01 })
-            guard let box = IslandFraming.stationBox(station) else { continue }
-            let s = span(box, rig.pose, width: 402)
-            #expect(s.lo >= 0 && s.hi <= 402, "\(station) is cut at its snap: \(s)")
-        }
-    }
-
-    @Test func aDragFollowsTheFingerAndStopsHardAtTheTips() {
-        var rig = CameraRig(framing: .island)
-        let s = rig.pose.scale
-        rig.panDrag(dx: -15)
-        #expect(abs(rig.pan.value - 15 / s) < 1e-9)
-        // Far past either end the pan stays on the range: the painting's
-        // edge never shows.
-        rig.panDrag(dx: -4000)
-        #expect(rig.pan.value == rig.panRange.upperBound)
-        rig.panDrag(dx: 4000)
-        #expect(rig.pan.value == rig.panRange.lowerBound)
-        let right = span(IslandFraming.plateBox, rig.pose, width: 402)
-        #expect(right.lo >= -0.5)
-    }
-
-    /// At any screen size the visible rect stays inside the plate, at
-    /// either end of a drag and after a glide to a far station.
-    @Test(arguments: [(402.0, 874.0), (440.0, 956.0), (320.0, 568.0), (820.0, 1180.0)])
-    func theVisibleRectNeverLeavesThePlate(size: (Double, Double)) {
-        var rig = CameraRig(framing: .island)
-        rig.resize(width: size.0, height: size.1)
-        rig.jump(to: .island)
-        let plate = IslandFraming.plateBox
-        for dx in [-5000.0, 5000.0] {
-            rig.panDrag(dx: dx)
-            let sp = span(plate, rig.pose, width: size.0)
-            // The plate covers the screen, or (a screen wider than the
-            // plate) is centred; never a gap on one side only.
-            if plate.width * rig.pose.scale >= size.0 {
-                #expect(sp.lo <= 0.5 && sp.hi >= size.0 - 0.5)
-            }
-            rig.endPan(velocity: 0)
-        }
-        rig.panTo(1e6)
-        for _ in 0..<600 { rig.advance(1.0 / 120) }
-        #expect(rig.pan.value <= rig.panRange.upperBound + 1e-6)
-    }
-
-    @Test func aFlickCoastsAndSnapsToAStation() {
-        var rig = CameraRig(framing: .island)
-        rig.panDrag(dx: -10)
-        let target = rig.endPan(velocity: -900)
-        #expect(IslandFraming.panSnaps.contains(target))
-        #expect(target > rig.pan.value)
-        for _ in 0..<600 {
-            rig.advance(1.0 / 120)
-        }
-        #expect(abs(rig.pan.value - target) < 1e-6)
-        #expect(rig.isSettled)
-    }
-
-    @Test func aReleasePastTheEndLandsOnTheEndWithoutBounce() {
-        var rig = CameraRig(framing: .island)
-        rig.panDrag(dx: 4000)
-        let target = rig.endPan(velocity: 0)
-        #expect(abs(target - IslandFraming.panSnaps[0]) < 1e-9)
-        // The drag stopped hard at the left tip: nothing to come back from,
-        // and it never swings beyond the tip.
-        #expect(rig.pan.value >= target - 1e-9)
-        var highest = rig.pan.value
-        for _ in 0..<600 {
-            rig.advance(1.0 / 120)
-            highest = max(highest, rig.pan.value)
-        }
-        #expect(highest <= target + 1e-6)
-    }
-
-    @Test func flyingAwayAndBackOpensOnPofu() {
-        var rig = CameraRig(framing: .island)
-        rig.jumpPan(to: IslandFraming.panRange.upperBound)
-        rig.fly(to: .home)
-        rig.fly(to: .island)
-        for _ in 0..<600 {
-            rig.advance(1.0 / 120)
-        }
-        #expect(abs(rig.pan.value) < 1e-6)
-        // The pan never shows at Home.
-        var home = CameraRig(framing: .home)
-        home.jumpPan(to: 30)
-        #expect(home.panWeight == 0)
+    func midFitsTheIslandBoxCentredOnItsRow(size: (Double, Double)) {
+        let pose = CameraRail(width: size.0, height: size.1).pose(of: .mid)
+        let island = span(IslandFraming.islandBox, pose, width: size.0)
+        #expect(abs((island.hi - island.lo) - 378 * size.0 / 402) < 1e-6)
+        #expect(abs((island.lo + island.hi) / 2 - size.0 / 2) < 1e-6)
+        let rows = rows(IslandFraming.islandBox, pose)
+        #expect(abs((rows.top + rows.bottom) / 2 - 383 * size.1 / 874) < 1e-6)
     }
 
     @Test func theMapShowsEveryIslandBetweenTheBands() {
@@ -185,7 +68,7 @@ struct IslandFramingTests {
 
     @Test(arguments: sizes)
     func homeKeepsEveryCharacterWholeOrOut(size: (Double, Double)) {
-        let pose = CameraRail(width: size.0, height: size.1).pose(of: .home)
+        let pose = CameraRail(width: size.0, height: size.1).pose(of: .mid)
         for box in IslandFraming.characterBoxes {
             let s = span(box, pose, width: size.0)
             let whole = s.lo >= -1e-6 && s.hi <= size.0 + 1e-6
@@ -267,7 +150,8 @@ struct IslandFramingTests {
     @Test func theFarSkyFillsTheBandAboveTheIsland() {
         // Something painted sits in the sky band between the top chrome and
         // the island's top at the Island framing, so it is never dead sky.
-        let pose = CameraRail().pose(of: .island)
+        let old = IslandFraming.islandStop(width: 402, height: 874)
+        let pose = CameraPose(scale: old.scale, look: old.look, anchorY: old.anchorY)
         let top = rows(IslandFraming.islandBox, pose).top / 874
         let inBand = FarSkyLayout.elements.filter { e in
             let p = e.placement(z: 1)

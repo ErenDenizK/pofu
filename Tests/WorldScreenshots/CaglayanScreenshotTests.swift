@@ -42,14 +42,14 @@ final class CaglayanScreenshotTests: XCTestCase {
         let folder = outputFolder()
         try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
 
-        let rumour = IslandSceneModel(framing: .island)
+        let rumour = IslandSceneModel(framing: .mid)
         rumour.holdIsle(.harbor)
         rumour.caglayan.show(.rumour)
         try write(try await render(world(caglayan: WonderStatus(phase: .rumoured)), model: rumour, in: scene), name: "caglayan-rumour-harbor", to: folder)
 
         var stages: [UIImage] = []
         for stage in 0...4 {
-            let model = IslandSceneModel(framing: .island)
+            let model = IslandSceneModel(framing: .mid)
             model.holdIsle(.caglayan)
             let image = try await render(world(caglayan: status(stage, canAdvance: false)), model: model, in: scene)
             try write(image, name: "caglayan-stage-\(stage)", to: folder)
@@ -58,18 +58,18 @@ final class CaglayanScreenshotTests: XCTestCase {
         try write(grid([stages], titles: [(0...4).map { "Çağlayan · stage \($0)" }]), name: "caglayan-stages", to: folder)
 
         for (stage, canAdvance) in [(0, false), (3, false)] {
-            let beat = IslandSceneModel(framing: .island)
+            let beat = IslandSceneModel(framing: .mid)
             beat.holdIsle(.caglayan)
             beat.caglayan.show(.stage(stage))
             try write(try await render(world(caglayan: status(stage, canAdvance: canAdvance)), model: beat, in: scene), name: "caglayan-beat-\(stage)", to: folder)
         }
 
-        let plaque = IslandSceneModel(framing: .island)
+        let plaque = IslandSceneModel(framing: .mid)
         plaque.holdIsle(.caglayan)
         try write(try await render(world(caglayan: status(1, canAdvance: true)), model: plaque, in: scene), name: "caglayan-plaque", to: folder)
 
         for stage in [0, 4] {
-            let night = IslandSceneModel(framing: .island)
+            let night = IslandSceneModel(framing: .mid)
             night.holdIsle(.caglayan)
             try write(try await render(world(caglayan: status(stage, canAdvance: false)), model: night, hour: 23, in: scene), name: "caglayan-night-\(stage)", to: folder)
         }
@@ -77,11 +77,11 @@ final class CaglayanScreenshotTests: XCTestCase {
         let map = IslandSceneModel(framing: .map)
         try write(try await render(world(caglayan: status(2)), model: map, in: scene), name: "caglayan-map", to: folder)
 
-        let home = IslandSceneModel(framing: .home)
+        let home = IslandSceneModel(framing: .mid)
         var arrived = status(4, canAdvance: false)
         arrived.giftIsNew = true
         try write(try await render(world(caglayan: arrived), model: home, in: scene), name: "caglayan-gift-home", to: folder)
-        let island = IslandSceneModel(framing: .island)
+        let island = IslandSceneModel(framing: .mid)
         try write(try await render(world(caglayan: status(4, canAdvance: false)), model: island, in: scene), name: "caglayan-gift-island", to: folder)
     }
 

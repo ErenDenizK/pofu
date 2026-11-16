@@ -22,21 +22,21 @@ final class IntegrationScreenshotTests: XCTestCase {
     }
 
     private let shots: [Shot] = [
-        Shot(id: "integration-island-day", framing: .island, hour: 12),
-        Shot(id: "integration-island-night", framing: .island, hour: 22, bedtime: true),
-        Shot(id: "integration-home-night", framing: .home, hour: 22, bedtime: true),
+        Shot(id: "integration-island-day", framing: .mid, hour: 12),
+        Shot(id: "integration-island-night", framing: .mid, hour: 22, bedtime: true),
+        Shot(id: "integration-home-night", framing: .mid, hour: 22, bedtime: true),
         Shot(id: "integration-map-day", framing: .map, hour: 12),
         Shot(id: "integration-map-night", framing: .map, hour: 22, bedtime: true),
-        Shot(id: "integration-windmill-5", framing: .island, hour: 12, focus: .windmill),
-        Shot(id: "integration-pond-5-night", framing: .island, hour: 22, bedtime: true, focus: .pond),
+        Shot(id: "integration-windmill-5", framing: .mid, hour: 12, focus: .windmill),
+        Shot(id: "integration-pond-5-night", framing: .mid, hour: 22, bedtime: true, focus: .pond),
         // Lit edits (batch 36): Mochi's door window and the path lamps on the home island, the harbor's
         // lighthouse lamp room on the map, awake at dusk.
-        Shot(id: "integration-lit-home-dusk", framing: .home, hour: 21),
+        Shot(id: "integration-lit-home-dusk", framing: .mid, hour: 21),
         Shot(id: "integration-lit-harbor-dusk", framing: .map, hour: 21),
         // Reactions (batch 41): proud after the ceremony, beaming for a visitor.
-        Shot(id: "integration-reaction-proud-tea-stall", framing: .island, hour: 12, focus: .teaStall,
+        Shot(id: "integration-reaction-proud-tea-stall", framing: .mid, hour: 12, focus: .teaStall,
              reaction: (.ceremonyDone, ["mochi"])),
-        Shot(id: "integration-reaction-happy-workshop", framing: .island, hour: 12, focus: .workshop,
+        Shot(id: "integration-reaction-happy-workshop", framing: .mid, hour: 12, focus: .workshop,
              reaction: (.visitorArrived, ["findik"])),
     ]
 

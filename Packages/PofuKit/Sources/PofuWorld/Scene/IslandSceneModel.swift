@@ -47,6 +47,10 @@ public final class IslandSceneModel {
     public private(set) var framing: WorldFraming
     /// Where a pinch would land if released now (the detent tick).
     public private(set) var projectedFraming: WorldFraming
+    /// Home's chrome opacity (ADR-0027): 1 at mid, falling to 0 between 1.05 and 1.25 x the mid
+    /// scale. It follows the fingers during a pinch and jumps to where the camera is heading
+    /// otherwise, so the chrome's own animation carries it.
+    public private(set) var chromeOpacity = 1.0
     public private(set) var focus: SceneFocus?
     /// The island the camera is on (§1.1). The home island has the whole
     /// rail; another island has its Island stop, reached by a flight.
@@ -337,7 +341,7 @@ public final class IslandSceneModel {
         establishTask?.cancel()
         // On the plate the visitor stands at the plate's spot, not the sprite island's slot.
         let feet = homePlate.map(PlateLife.visitorSpot) ?? VisitorStage.feet(of: visitor)
-        let from = engine.rig.rail.pose(z: Double(WorldFraming.island.rawValue))
+        let from = engine.rig.rail.pose(of: .mid)
         let pose = CameraPose(logScale: from.logScale, lookX: feet.x, lookY: from.lookY, anchorY: from.anchorY)
         travel { $0.focus(pose: pose, lens: .island, camera: WorldSprings.residentFocus) }
         kick()
@@ -480,7 +484,7 @@ public final class IslandSceneModel {
     /// - Parameter levelDefaults: Where the last presented island level is
     ///   remembered across launches; `nil` keeps it in memory (tests,
     ///   screenshots).
-    public init(framing: WorldFraming = .home, levelDefaults: UserDefaults? = nil) {
+    public init(framing: WorldFraming = .mid, levelDefaults: UserDefaults? = nil) {
         let memory = IslandLevelMemory(defaults: levelDefaults)
         self.framing = framing
         self.projectedFraming = framing
@@ -495,7 +499,7 @@ public final class IslandSceneModel {
     public func setHomePlate(_ plate: HomePlate?) {
         guard plate != homePlate else { return }
         homePlate = plate
-        engine.rig.setStops(plate?.stops ?? CameraRail.referenceStops, whole: plate?.wholeStop)
+        engine.rig.setStops(plate?.stops ?? CameraRail.referenceStops, whole: plate?.wholeStop, island: plate?.islandBox)
         kick()
     }
 
@@ -572,7 +576,7 @@ public final class IslandSceneModel {
             let from = IslandLayout.stationFocusPose(start, width: width, height: height, safeTop: engine.safeTop),
             let to = IslandLayout.stationFocusPose(target, width: width, height: height, safeTop: engine.safeTop)
         else { return }
-        engine.rig.jump(to: .island)
+        engine.rig.jump(to: .mid)
         engine.rig.focus(pose: from, lens: Lens.station(depth: IslandLayout.depth(ofY: a.y)))
         engine.rig.snapToTargets()
         engine.rig.focus(pose: to, lens: Lens.station(depth: IslandLayout.depth(ofY: b.y)))
@@ -583,19 +587,56 @@ public final class IslandSceneModel {
             t += step
         }
         focus = .station(target)
-        framing = .island
-        projectedFraming = .island
+        framing = .mid
+        projectedFraming = .mid
         engine.isHeld = true
         engine.lastDate = nil
         revision &+= 1
     }
 
-    /// One framing in (Map → Island → Home); at Home, the Island (§1.4).
+    /// One framing in (Map → mid → near at rest); at near, back to mid (ADR-0027).
     /// A double tap on a station also opens its sheet, so this waits for
     /// the surfaces to be closed.
     public func stepIn() {
         guard focus == nil, sheet == nil else { return }
-        go(to: framing.stepIn ?? .island)
+        go(to: framing.stepIn ?? .mid)
+    }
+
+    /// A double tap at screen point (`x`, `y`) (ADR-0027): on a character, near's rest on him,
+    /// his feet at 0.60 of the height and moved up to 0.12 of the width away from the side he
+    /// faces; elsewhere one framing in.
+    public func doubleTapped(x: Double, y: Double) {
+        guard focus == nil, sheet == nil, island == .home else {
+            stepIn()
+            return
+        }
+        let rig = engine.rig
+        let world = rig.pose.unproject(x: x, y: y, width: rig.rail.width)
+        guard let character = characterFeet(near: world) else {
+            stepIn()
+            return
+        }
+        closeSurfaces()
+        let shot = NearShot.rest(width: rig.rail.width, height: rig.rail.height, facesLeft: character.facesLeft)
+        travel { $0.rest(on: character.feet, screenX: shot.x, screenY: shot.y) }
+        framing = .near
+        projectedFraming = .near
+        kick()
+    }
+
+    /// The character whose body holds `world`, with his feet and facing: Pofu or a resident on
+    /// the plate (their boxes from the plate's feet and scale).
+    func characterFeet(near world: WorldPoint) -> (feet: WorldPoint, facesLeft: Bool)? {
+        var found: [(feet: WorldPoint, facesLeft: Bool, box: WorldBox)] = []
+        let pofuWidth = HomePlate.pofuArtWidth * (homePlate?.characterScale ?? 1)
+        let pofu = IslandLayout.pofu
+        found.append((pofu, false, WorldBox(minX: pofu.x - pofuWidth / 2, minY: pofu.y - pofuWidth * 66 / 64, maxX: pofu.x + pofuWidth / 2, maxY: pofu.y)))
+        for resident in IslandLayout.residents {
+            let feet = homePlate?.residentFeet(resident.id) ?? resident.feet
+            let w = 30 * (homePlate?.residentScale(resident.id) ?? 1)
+            found.append((feet, feet.x > pofu.x, WorldBox(minX: feet.x - w / 2, minY: feet.y - w * 1.3, maxX: feet.x + w / 2, maxY: feet.y)))
+        }
+        return found.first { $0.box.contains(world) }.map { ($0.feet, $0.facesLeft) }
     }
 
     // MARK: - Place
@@ -616,7 +657,7 @@ public final class IslandSceneModel {
     /// down. The home island is reached the same way from another island.
     public func fly(to target: IslandID) {
         if target == .home {
-            go(to: .island)
+            go(to: .mid)
             return
         }
         guard target != island else { return }
@@ -624,8 +665,8 @@ public final class IslandSceneModel {
         closeSurfaces()
         let pose = CameraPose(scale: stop.scale, look: stop.look, anchorY: stop.anchorY)
         island = target
-        framing = .island
-        projectedFraming = .island
+        framing = .mid
+        projectedFraming = .mid
         travel { $0.startFlight(to: pose, landing: .pose(pose)) }
         kick()
         koke.landed(on: target, model: self)
@@ -641,11 +682,11 @@ public final class IslandSceneModel {
             let stop = IslandFraming.isleStop(target, width: engine.rig.rail.width, height: engine.rig.rail.height)
         else { return }
         island = target
-        engine.rig.jump(to: .island)
+        engine.rig.jump(to: .mid)
         engine.rig.focus(pose: CameraPose(scale: stop.scale, look: stop.look, anchorY: stop.anchorY), lens: .island)
         engine.rig.snapToTargets()
-        framing = .island
-        projectedFraming = .island
+        framing = .mid
+        projectedFraming = .mid
         engine.isHeld = true
         engine.lastDate = nil
         revision &+= 1
@@ -660,12 +701,12 @@ public final class IslandSceneModel {
             let stop = IslandFraming.isleStop(target, width: engine.rig.rail.width, height: engine.rig.rail.height)
         else { return }
         island = .home
-        engine.rig.jump(to: .island)
+        engine.rig.jump(to: .mid)
         engine.rig.snapToTargets()
         let pose = CameraPose(scale: stop.scale, look: stop.look, anchorY: stop.anchorY)
         island = target
-        framing = .island
-        projectedFraming = .island
+        framing = .mid
+        projectedFraming = .mid
         engine.rig.startFlight(to: pose, landing: .pose(pose))
         engine.rig.holdFlight(at: progress)
         engine.isHeld = true
@@ -681,6 +722,7 @@ public final class IslandSceneModel {
         let nearest = WorldFraming.nearest(to: z)
         framing = nearest
         projectedFraming = nearest
+        syncChrome()
         engine.isHeld = true
         engine.lastDate = nil
         revision &+= 1
@@ -712,7 +754,7 @@ public final class IslandSceneModel {
     /// A dragging finger at screen point (`x`, `y`) touches the island
     /// (§1.3): at the Island framing and closer, with nothing focused.
     func brush(x: Double, y: Double, at time: Date) {
-        guard railPosition >= TouchField.minimumZ, focus == nil, sheet == nil, !isInviting, engine.rig.pinchStart == nil else { return }
+        guard engine.rig.layerPosition >= TouchField.minimumZ, focus == nil, sheet == nil, !isInviting, engine.rig.pinchStart == nil else { return }
         let world = engine.rig.pose.unproject(
             x: x - engine.rig.offsetX.value,
             y: y - engine.rig.offsetY.value,
@@ -827,7 +869,7 @@ public final class IslandSceneModel {
         }
         // From another resident, start from the rail's pose so the ×1.3
         // does not compound.
-        let from = engine.rig.rail.pose(z: Double(framing.rawValue))
+        let from = engine.rig.rail.pose(of: .mid)
         let plateFeet = homePlate?.residentFeet(id)
         guard let pose = plateFeet.map({ feet in
             CameraPose(
@@ -937,13 +979,13 @@ public final class IslandSceneModel {
             ? (flowIsland.isArrived ? [HitTarget(kind: .caglayan, worldBox: CaglayanLayout.tapBox, depth: 0)] : [])
             : homePlate.map { plate in
                 WorldHitTest.plateTargets(
-                    plate, stations: stations, z: rig.railPosition,
+                    plate, stations: stations, z: rig.layerPosition,
                     visitor: visitor, invitationOpen: invitationOpen, isBedtime: isBedtime,
                     koke: wonder.isArrived ? .arrived : .none,
                     caglayan: flowIsland.isArrived ? .arrived : .none
                 )
             } ?? WorldHitTest.targets(
-                stations: stations, z: rig.railPosition, visitor: visitor, invitationOpen: invitationOpen, isBedtime: isBedtime,
+                stations: stations, z: rig.layerPosition, visitor: visitor, invitationOpen: invitationOpen, isBedtime: isBedtime,
                 koke: wonder.isArrived ? .arrived : .none,
                 caglayan: flowIsland.isArrived ? .arrived : .none
             )
@@ -1004,7 +1046,7 @@ public final class IslandSceneModel {
             }
             pulse("island-\(id.rawValue)")
             if id == .home {
-                go(to: .island)
+                go(to: .mid)
             } else {
                 fly(to: id)
             }
@@ -1021,15 +1063,15 @@ public final class IslandSceneModel {
     /// travels there and opens the sheet, and closing it rests at the
     /// island.
     func stationTapped(_ id: StationID) {
-        if focus == nil, framing != .island {
-            go(to: .island)
+        if focus == nil, framing != .mid {
+            go(to: .mid)
         }
         focusStation(id)
     }
 
     func residentTapped(_ id: ResidentID) {
-        if focus == nil, framing == .home {
-            go(to: .island)
+        if focus == nil, framing == .map {
+            go(to: .mid)
             return
         }
         if focus == .resident(id) {
@@ -1046,13 +1088,14 @@ public final class IslandSceneModel {
             closeSurfaces()
             // A pinch leaves another island for the shared sea.
             island = .home
+            engine.rig.beginPinch()
             engine.pinchWorldPoint = engine.rig.pose.unproject(x: startX, y: startY, width: engine.rig.rail.width)
             engine.samples = []
         }
-        let logScale = engine.rig.pinch(magnification: magnification)
-        if let world = engine.pinchWorldPoint {
-            engine.rig.pull(toward: world, screenX: startX, screenY: startY)
-        }
+        // The world point under the fingers stays under them (ADR-0027).
+        let logScale = engine.pinchWorldPoint.map {
+            engine.rig.pinch(magnification: magnification, keeping: $0, atScreenX: startX, y: startY)
+        } ?? engine.rig.pinch(magnification: magnification)
         engine.record(logScale: logScale, at: time)
         let projected = CameraRelease.projectedFraming(
             logScale: logScale,
@@ -1076,32 +1119,25 @@ public final class IslandSceneModel {
         kick()
     }
 
-    /// Whether a one-finger drag pans the island (look round 4): at the
-    /// Island framing with nothing focused; elsewhere it peeks.
+    /// Whether a one-finger drag pans the camera (ADR-0027): at near, on Home, with nothing
+    /// focused; at the Map and mid it peeks.
     var pansIsland: Bool {
-        island == .home && framing == .island && focus == nil && sheet == nil && engine.rig.pinchStart == nil
+        island == .home && engine.rig.isNear && focus == nil && sheet == nil && engine.rig.pinchStart == nil
     }
 
     func peekChanged(dx: Double, dy: Double) {
         guard engine.rig.pinchStart == nil, !engine.thumb.isZooming else { return }
         if pansIsland {
-            if engine.rig.isFocused {
-                // A finger during the establishing shot takes over.
-                establishTask?.cancel()
-                cancelArrival(releasing: false)
-                engine.rig.releaseFocus()
-            }
-            engine.rig.panDrag(dx: dx)
-            engine.rig.peek(dx: 0, dy: dy)
+            engine.rig.freeDrag(dx: dx, dy: dy)
         } else {
             engine.rig.peek(dx: dx, dy: dy)
         }
         kick()
     }
 
-    func peekEnded(velocityX: Double = 0) {
-        if engine.rig.panStart != nil {
-            engine.rig.endPan(velocity: velocityX)
+    func peekEnded(velocityX: Double = 0, velocityY: Double = 0) {
+        if engine.rig.freeStart != nil {
+            engine.rig.endFreeDrag(vx: velocityX, vy: velocityY)
         }
         engine.rig.settleOffset()
         kick()
@@ -1126,39 +1162,44 @@ public final class IslandSceneModel {
         set { engine.rig.springs = newValue }
     }
 
-    /// The pan now, in world units off the Island stop (Pofu-centred).
+    /// Near's free offset now, in world units on x (the island pan retired with ADR-0027).
     public var panOffset: Double {
-        engine.rig.pan.value
+        engine.rig.freeX.value
     }
 
-    /// Pans to a station's snap point (or Pofu's, `nil`), with the release
-    /// spring.
+    /// The island pan retired with ADR-0027 (mid shows the whole island); kept for callers, it
+    /// returns the camera to mid's own look.
     public func pan(to station: StationID?) {
-        let x = station.flatMap { IslandLayout.stationAnchors[$0]?.x } ?? IslandLayout.pofu.x
-        let target = IslandFraming.panValue(lookX: x)
-        engine.rig.panTo(target)
+        engine.rig.fly(to: framing == .map ? .map : .mid)
         kick()
     }
 
-    /// Holds the camera at the Island framing panned to `value` (or
-    /// `seconds` into a flick from `start` at `velocity` points per
-    /// second), still: a frame of the pan for screenshots and motion beats.
+    /// Holds the camera at mid, still (the island pan retired with ADR-0027: mid shows the whole
+    /// island, so a frame of the pan is now mid's frame). `start`, `velocity` and `seconds` are
+    /// kept for callers.
     public func holdPan(start: Double = 0, velocity: Double = 0, at seconds: Double = 0) {
         closeSurfaces()
-        engine.rig.jump(to: .island)
-        engine.rig.jumpPan(to: start)
-        if velocity != 0 {
-            engine.rig.panDrag(dx: 0)
-            engine.rig.endPan(velocity: velocity)
-        }
-        let step = 1.0 / 120
-        var t = 0.0
-        while t + 1e-9 < seconds {
-            engine.rig.advance(min(step, seconds - t))
-            t += step
-        }
-        framing = .island
-        projectedFraming = .island
+        engine.rig.jump(to: .mid)
+        framing = .mid
+        projectedFraming = .mid
+        engine.isHeld = true
+        engine.lastDate = nil
+        revision &+= 1
+    }
+
+    /// Holds near's rest on Pofu, still (screenshots): his feet at 0.60 of the height, moved
+    /// 0.12 of the width away from the side he faces.
+    public func holdNearRest() {
+        closeSurfaces()
+        island = .home
+        engine.rig.jump(to: .mid)
+        let rig = engine.rig
+        let shot = NearShot.rest(width: rig.rail.width, height: rig.rail.height, facesLeft: false)
+        engine.rig.rest(on: IslandLayout.pofu, screenX: shot.x, screenY: shot.y, animated: false)
+        engine.rig.snapToTargets()
+        framing = .near
+        projectedFraming = .near
+        syncChrome()
         engine.isHeld = true
         engine.lastDate = nil
         revision &+= 1
@@ -1167,35 +1208,41 @@ public final class IslandSceneModel {
     /// Holds the establishing shot's frame, still (screenshots).
     public func holdEstablishingShot() {
         closeSurfaces()
-        engine.rig.jump(to: .island)
+        engine.rig.jump(to: .mid)
         engine.rig.focus(pose: engine.rig.rail.wholeIslandPose, lens: .island)
         engine.rig.snapToTargets()
-        framing = .island
-        projectedFraming = .island
+        framing = .mid
+        projectedFraming = .mid
         engine.isHeld = true
         engine.lastDate = nil
         revision &+= 1
     }
 
-    /// The establishing shot (look round 4): the whole island at 88 % of
-    /// the width, held a beat, then the camera settles into the pan view
-    /// centred on Pofu. On arrival at the Island; Reduce Motion skips it.
+    /// The establishing shot retired with ADR-0027: mid is the whole island on opening. Kept for
+    /// callers; it only lets go of a pending one.
     public func establish(hold seconds: Double = 0.9) {
-        guard !reduceMotion, framing == .island, focus == nil else { return }
-        let whole = engine.rig.rail.wholeIslandPose
-        engine.rig.focus(pose: whole, lens: .island)
-        engine.rig.snapToTargets()
-        kick()
         establishTask?.cancel()
-        establishTask = Task { @MainActor [weak self] in
-            try? await Task.sleep(for: .seconds(seconds))
-            guard let self, !Task.isCancelled, self.focus == nil else { return }
-            self.engine.rig.releaseFocus()
-            self.kick()
-        }
+        establishTask = nil
     }
 
     private var establishTask: Task<Void, Never>?
+
+    /// Updates `chromeOpacity` from the rig: live under the fingers, else the target's.
+    private func syncChrome() {
+        let rig = engine.rig
+        let value: Double
+        if rig.pinchStart != nil {
+            value = rig.chromeOpacity
+        } else if rig.flight != nil {
+            value = 1
+        } else {
+            value = rig.rail.chromeOpacity(logScale: rig.rail.logScale(z: rig.z.target))
+        }
+        let rounded = (value * 50).rounded() / 50
+        if rounded != chromeOpacity {
+            chromeOpacity = rounded
+        }
+    }
 
     // MARK: - The timeline
 
@@ -1259,6 +1306,7 @@ public final class IslandSceneModel {
 
     private func kick() {
         refreshTouchTier()
+        syncChrome()
         engine.isHeld = false
         if !isAnimating {
             engine.lastDate = nil
@@ -1481,8 +1529,8 @@ extension IslandSceneModel {
             kick()
             return
         }
-        if settlesAtIsland, island == .home, framing == .home {
-            go(to: .island)
+        if settlesAtIsland, island == .home, framing != .mid {
+            go(to: .mid)
         } else if active.moment.time(of: .pullBack) != nil, engine.rig.isFocused {
             engine.rig.releaseFocus()
             kick()

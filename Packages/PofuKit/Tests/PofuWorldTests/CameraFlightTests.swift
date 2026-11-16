@@ -22,7 +22,7 @@ struct CameraFlightTests {
 
     @Test func theFlightRisesTravelsAndDescends() {
         let rail = CameraRail()
-        let from = rail.pose(of: .island)
+        let from = rail.pose(of: .mid)
         let to = pose(x: 300, y: 330, scale: from.scale)
         let apex = rail.pose(z: CameraFlight.apexZ).logScale
         let flight = CameraFlight(from: from, to: to, apexLogScale: apex)
@@ -52,7 +52,7 @@ struct CameraFlightTests {
     }
 
     @Test func aRigFlightLandsOnTheTargetAndSettles() {
-        var rig = CameraRig(framing: .island)
+        var rig = CameraRig(framing: .mid)
         let target = pose(x: 395, y: 14, scale: rig.pose.scale)
         rig.startFlight(to: target, landing: .pose(target))
         #expect(rig.flight != nil)
@@ -74,7 +74,7 @@ struct CameraFlightTests {
     }
 
     @Test func aRigFlightHomeLandsOnTheRail() {
-        var rig = CameraRig(framing: .island)
+        var rig = CameraRig(framing: .mid)
         let harbor = pose(x: 395, y: 14, scale: rig.pose.scale)
         rig.startFlight(to: harbor, landing: .pose(harbor))
         for _ in 0..<400 { rig.advance(1.0 / 120) }
@@ -87,7 +87,7 @@ struct CameraFlightTests {
     }
 
     @Test func reduceMotionJumpsWithoutAFlight() {
-        var rig = CameraRig(framing: .island)
+        var rig = CameraRig(framing: .mid)
         rig.reduceMotion = true
         let target = pose(x: 395, y: 14, scale: rig.pose.scale)
         rig.startFlight(to: target, landing: .pose(target))
@@ -96,7 +96,7 @@ struct CameraFlightTests {
     }
 
     @Test func aPinchCatchesAFlight() {
-        var rig = CameraRig(framing: .island)
+        var rig = CameraRig(framing: .mid)
         let target = pose(x: 395, y: 14, scale: rig.pose.scale)
         rig.startFlight(to: target, landing: .pose(target))
         rig.advance(0.4)
@@ -105,13 +105,13 @@ struct CameraFlightTests {
     }
 
     @Test func movingFollowsTheSprings() {
-        var rig = CameraRig(framing: .home)
+        var rig = CameraRig(framing: .mid)
         #expect(!rig.isMoving)
-        rig.fly(to: .island)
+        rig.fly(to: .map)
         #expect(rig.isMoving)
         for _ in 0..<600 { rig.advance(1.0 / 120) }
         #expect(!rig.isMoving)
-        rig.panDrag(dx: 30)
+        rig.freeDrag(dx: 30, dy: 0)
         #expect(rig.isMoving)
     }
 }
@@ -127,8 +127,8 @@ struct PlaceStopTests {
     @Test func aTapGoesOutOneStopAndFromTheSeaHome() {
         #expect(PlaceStop.close.controlTarget == .island)
         #expect(PlaceStop.island.controlTarget == .archipelago)
-        #expect(PlaceStop.archipelago.controlTarget == .close)
-        #expect(PlaceStop.close.framing == .home)
+        #expect(PlaceStop.archipelago.controlTarget == .island)
+        #expect(PlaceStop.close.framing == .near)
         #expect(PlaceStop.archipelago.framing == .map)
     }
 

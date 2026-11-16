@@ -482,21 +482,23 @@ public struct HomePlate: Hashable, Sendable {
         plate.islandBox.width * unitsPerPixel
     }
 
-    /// Home: the island `homeWidths` wide at Home's scale, its top at
-    /// `homeTopY`, the screen's centre at `homeCenterX` of it.
+    /// The old Home framing (before ADR-0027): the island `homeWidths` wide at Home's scale, its
+    /// top at `homeTopY`, the screen's centre at `homeCenterX` of it. It is no longer a stop; the
+    /// plate's world scale (`unitsPerPixel`) is still defined by it.
     public var homeStop: CameraRail.Stop {
         let box = plate.islandBox
         let look = world(PlatePoint(x: box.minX + plate.framing.homeCenterX * box.width, y: box.minY))
         return CameraRail.Stop(scale: IslandFraming.homeScale, look: look, anchorY: plate.framing.homeTopY)
     }
 
-    /// The camera this plate's sky layers measure their depth from (`DepthLayer`): Home's stop for Home's
-    /// plate, the island's own stop for another's (Çağlayan's), on a `width` x `height` screen.
+    /// The camera this plate's sky layers measure their depth from (`DepthLayer`): Home's stop (mid,
+    /// ADR-0027) for Home's plate, the island's own stop for another's (Çağlayan's), on a `width` x
+    /// `height` screen. At it every layer is drawn at the camera, so the sky set composes as painted.
     public func skyReference(width: Double, height: Double) -> CameraPose {
         if plate.island == "caglayan", let reference = PaintedSky.reference(for: .caglayan, width: width, height: height) {
             return reference
         }
-        let stop = homeStop
+        let stop = midStop
         return CameraPose(
             scale: stop.scale * width / CameraRail.referenceWidth,
             look: stop.look,
@@ -537,9 +539,25 @@ public struct HomePlate: Hashable, Sendable {
         return CameraRail.Stop(scale: scale, look: WorldPoint(x: all.midX, y: all.midY), anchorY: IslandFraming.bandMid(height: height))
     }
 
-    /// The rail's stops while the plate shows: the painted Map, the plate's
-    /// Island and Home.
+    /// Mid (ADR-0027, Home's stop): the level-10 island box fitted to `CameraRail.midFitWidth`
+    /// (378 pt on iPhone 17, 1.145 pt a unit), its centre on row `CameraRail.midCentreY` (383).
+    /// A young island whose painting is narrower than 0.72 of the width at that scale is fitted
+    /// to 0.72 instead, centred on its painting.
+    public var midStop: CameraRail.Stop {
+        let box = islandBox
+        let scale = CameraRail.midFitWidth / max(box.width, 1)
+        let anchorY = CameraRail.midCentreY
+        if let crop = plate.plateCrop(light: light, stage: stage).map({ worldBox($0) }),
+           crop.width * scale < CameraRail.youngFill * CameraRail.referenceWidth {
+            let young = CameraRail.youngFill * CameraRail.referenceWidth / max(crop.width, 1)
+            return CameraRail.Stop(scale: young, look: WorldPoint(x: crop.midX, y: box.midY), anchorY: anchorY)
+        }
+        return CameraRail.Stop(scale: scale, look: WorldPoint(x: box.midX, y: box.midY), anchorY: anchorY)
+    }
+
+    /// The rail's stops while the plate shows: the painted Map (the tier frame), mid and the near limit.
     public var stops: [CameraRail.Stop] {
-        [mapStop, islandStop, homeStop]
+        let mid = midStop
+        return [mapStop, mid, CameraRail.nearStop(mid: mid)]
     }
 }

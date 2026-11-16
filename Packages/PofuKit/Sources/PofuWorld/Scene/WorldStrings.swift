@@ -174,8 +174,8 @@ enum WorldStrings {
 
     static func framingName(_ framing: WorldFraming) -> String {
         switch framing {
-        case .home: String(localized: "Home", bundle: .module)
-        case .island: String(localized: "Island", bundle: .module)
+        case .near: placePofu
+        case .mid: String(localized: "Home", bundle: .module)
         case .map: String(localized: "Map", bundle: .module)
         }
     }

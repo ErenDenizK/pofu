@@ -67,7 +67,7 @@ final class HomePlateScreenshotTests: XCTestCase {
             if state?.name == "l5-day" {
                 world.nextIslandLevel = IslandLevelRequirement(level: 6, tendedDaysLeft: 0, levelsLeft: 2)
             }
-            let island = IslandSceneModel(framing: .home)
+            let island = IslandSceneModel(framing: .mid)
             let home = WorldHomeModel(now: { now }, schedulesCues: false)
             let inputs = VisitInputs(now: now, world: world, lastSettled: shot == "settled" ? now.addingTimeInterval(-5 * 60) : nil, calendar: .current)
             home.beginVisit(VisitQueue.plan(inputs))

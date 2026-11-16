@@ -36,7 +36,7 @@ final class KokeScreenshotTests: XCTestCase {
         try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
 
         // The rumour: the hump on the harbor's horizon.
-        let rumour = IslandSceneModel(framing: .island)
+        let rumour = IslandSceneModel(framing: .mid)
         rumour.holdIsle(.harbor)
         rumour.koke.show(.rumour)
         try write(try await render(world(koke: WonderStatus(phase: .rumoured)), model: rumour, in: scene), name: "koke-rumour-harbor", to: folder)
@@ -44,7 +44,7 @@ final class KokeScreenshotTests: XCTestCase {
         // Koke at each stage, the same camera.
         var stages: [UIImage] = []
         for stage in 0...4 {
-            let model = IslandSceneModel(framing: .island)
+            let model = IslandSceneModel(framing: .mid)
             model.holdIsle(.koke)
             let status = WonderStatus(phase: .arrived, stage: stage, canAdvance: stage < 4)
             let image = try await render(world(koke: status), model: model, in: scene)
@@ -57,14 +57,14 @@ final class KokeScreenshotTests: XCTestCase {
         )
 
         // The stage 3 beat: Mochi reads the stone.
-        let beat = IslandSceneModel(framing: .island)
+        let beat = IslandSceneModel(framing: .mid)
         beat.holdIsle(.koke)
         beat.koke.show(.stage(3))
         let status = WonderStatus(phase: .arrived, stage: 3, canAdvance: true)
         try write(try await render(world(koke: status), model: beat, in: scene), name: "koke-beat-3", to: folder)
 
         // Healed: the moss at home.
-        let home = IslandSceneModel(framing: .home)
+        let home = IslandSceneModel(framing: .mid)
         // The day Koke healed: the moss has just arrived and wears its tag.
         let healed = WonderStatus(phase: .arrived, stage: 4, giftIsNew: true)
         try write(try await render(world(koke: healed), model: home, in: scene), name: "koke-gift-home", to: folder)

@@ -2,71 +2,59 @@ import Foundation
 import Testing
 @testable import PofuWorld
 
-@Suite("Detent selection")
+@Suite("Release table (ADR-0027)")
 struct CameraReleaseTests {
     let rail = CameraRail()
 
-    private func landing(z: Double, velocity: Double, idle: Double = 0) -> CameraRelease.Landing {
+    private func land(_ z: Double, velocity: Double = 0, idle: Double = 0.2) -> CameraRelease.Landing {
         CameraRelease.landing(logScale: rail.logScale(z: z), velocity: velocity, idle: idle, rail: rail)
     }
 
-    @Test func aSlowReleaseLandsOnTheNearestFraming() {
-        #expect(landing(z: 1.4, velocity: 0).framing == .island)
-        #expect(landing(z: 1.6, velocity: 0).framing == .home)
-        #expect(landing(z: 0.45, velocity: 0).framing == .map)
-        #expect(landing(z: 0.55, velocity: 0).framing == .island)
+    @Test func aSlowReleaseLandsOnTheMapMidOrStaysNear() {
+        #expect(land(0.3).framing == .map && land(0.3).z == 0)
+        #expect(land(0.6).framing == .mid && land(0.6).z == 1)
+        #expect(land(1.1).framing == .mid && land(1.1).z == 1)
+        #expect(land(1.5).framing == .near && abs(land(1.5).z - 1.5) < 1e-9)
     }
 
-    @Test func aFlickProjectsOneFramingFurther() {
-        // z 1.3 is nearer the Island, but a quick spread carries it Home.
-        #expect(landing(z: 1.3, velocity: 3).framing == .home)
-        // And a quick pinch from z 1.7 lands on the Island.
-        #expect(landing(z: 1.7, velocity: -1.5).framing == .island)
-    }
-
-    @Test func aFastFlickMaySkipAFraming() {
-        #expect(landing(z: 0.6, velocity: 6).framing == .home)
-        #expect(landing(z: 1.4, velocity: -6).framing == .map)
+    @Test func aFlickProjectsForward() {
+        // A zoom-in flick from mid's half of the rail carries into near.
+        let flick = land(1.05, velocity: 3, idle: 0)
+        #expect(flick.framing == .near)
+        #expect(flick.z > WorldFraming.nearAboveZ && flick.z <= 2)
+        // A zoom-out flick from near lands on mid.
+        #expect(land(1.2, velocity: -3, idle: 0).framing == .mid)
     }
 
     @Test func projectionUsesAFixedTimeAndAClampedVelocity() {
         let l = rail.logScale(z: 1)
-        let projected = CameraRelease.projectedZ(logScale: l, velocity: 100, idle: 0, rail: rail)
-        #expect(abs(projected - rail.z(logScale: l + 6 * 0.18)) < 1e-9)
+        let fast = CameraRelease.projectedZ(logScale: l, velocity: 100, idle: 0, rail: rail)
+        let capped = rail.z(logScale: l + CameraRelease.maxVelocity * CameraRelease.projectionTime)
+        #expect(abs(fast - capped) < 1e-9)
     }
 
     @Test func fingersThatRestedBeforeLiftingDoNotFling() {
-        #expect(landing(z: 1.3, velocity: 3, idle: 0.1).framing == .island)
-        #expect(CameraRelease.effectiveVelocity(3, idle: 0.06) == 3)
-        #expect(CameraRelease.effectiveVelocity(3, idle: 0.061) == 0)
-    }
-
-    @Test func theLandingSpringInheritsTheVelocityAlongTheRail() {
-        let result = landing(z: 1.5, velocity: 2)
-        #expect(abs(result.velocityZ - 2 * rail.zPerLogScale(at: 1.5)) < 1e-9)
-        #expect(!result.fromBand)
+        #expect(CameraRelease.effectiveVelocity(4, idle: 0.2) == 0)
+        #expect(CameraRelease.effectiveVelocity(4, idle: 0.01) == 4)
     }
 
     @Test func fromABandTheCameraLandsOnTheEndWithoutVelocity() {
-        let pastHome = landing(z: 2.2, velocity: 5)
-        #expect(pastHome.framing == .home)
-        #expect(pastHome.fromBand)
-        #expect(pastHome.velocityZ == 0)
-        let pastMap = landing(z: -0.2, velocity: -5)
-        #expect(pastMap.framing == .map)
-        #expect(pastMap.velocityZ == 0)
+        let past = land(2.2, velocity: 4, idle: 0)
+        #expect(past.fromBand && past.framing == .near && past.z == 2 && past.velocityZ == 0)
+        let under = land(-0.2, velocity: -4, idle: 0)
+        #expect(under.fromBand && under.framing == .map && under.z == 0 && under.velocityZ == 0)
     }
 
     @Test func theDetentTickFollowsTheProjection() {
-        let l = rail.logScale(z: 1.3)
-        #expect(CameraRelease.projectedFraming(logScale: l, velocity: 0, idle: 0, rail: rail) == .island)
-        #expect(CameraRelease.projectedFraming(logScale: l, velocity: 3, idle: 0, rail: rail) == .home)
+        let l = rail.logScale(z: 1.0)
+        #expect(CameraRelease.projectedFraming(logScale: l, velocity: 0, idle: 0, rail: rail) == .mid)
+        #expect(CameraRelease.projectedFraming(logScale: l, velocity: 3, idle: 0, rail: rail) == .near)
     }
 }
 
 @Suite("Camera rig")
 struct CameraRigTests {
-    private func settled(_ rig: CameraRig, seconds: Double = 4) -> CameraRig {
+    static func settled(_ rig: CameraRig, seconds: Double = 4) -> CameraRig {
         var rig = rig
         for _ in 0..<Int(seconds * 120) {
             rig.advance(1.0 / 120)
@@ -74,24 +62,24 @@ struct CameraRigTests {
         return rig
     }
 
-    @Test func aPinchScrubsTheRailAndSettlesOnADetent() {
-        var rig = CameraRig(framing: .island)
+    @Test func aPinchScrubsTheRailAndSettlesByTheTable() {
+        var rig = CameraRig(framing: .mid)
         rig.beginPinch()
-        rig.pinch(magnification: 1.3)
+        rig.pinch(magnification: 0.8)
         let during = rig.z.value
-        #expect(during > 1 && during < 2)
+        #expect(during > 0.5 && during < 1)
         rig.endPinch(velocity: 0, idle: 0.2)
-        let after = settled(rig)
+        let after = Self.settled(rig)
         #expect(after.isSettled)
-        #expect(after.z.value == WorldFraming.nearest(to: during).z)
+        #expect(after.z.value == 1)
     }
 
-    @Test func pinchingPastHomeRubberBandsAndComesBackWithoutOvershoot() {
-        var rig = CameraRig(framing: .home)
+    @Test func pinchingPastTheLimitRubberBandsAndComesBackWithoutOvershoot() {
+        var rig = CameraRig(framing: .near)
         rig.beginPinch()
         rig.pinch(magnification: 4)
         #expect(rig.z.value > 2)
-        #expect(rig.pose.scale < rig.rail.pose(of: .home).scale * 1.25)
+        #expect(rig.pose.scale < rig.rail.pose(of: .near).scale * 1.12)
         rig.endPinch(velocity: 3, idle: 0)
         var lowest = rig.z.value
         for _ in 0..<480 {
@@ -103,7 +91,7 @@ struct CameraRigTests {
     }
 
     @Test func aFocusRacksTheLensThroughIntermediateDepths() {
-        var rig = CameraRig(framing: .island)
+        var rig = CameraRig(framing: .mid)
         let target = Lens.station(depth: IslandLayout.depth(ofY: -26))
         let start = rig.lens.focus
         rig.focus(pose: CameraPose(scale: 1.7, look: WorldPoint(x: 78, y: -72), anchorY: 330), lens: target)
@@ -121,36 +109,48 @@ struct CameraRigTests {
     }
 
     @Test func releasingAFocusReturnsWhereTheUserCameFrom() {
-        var rig = CameraRig(framing: .island)
+        var rig = CameraRig(framing: .mid)
         rig.focus(pose: CameraPose(scale: 1.7, look: WorldPoint(x: 78, y: -72), anchorY: 330), lens: .station(depth: 0))
-        rig = settled(rig)
+        rig = Self.settled(rig)
         rig.releaseFocus()
-        rig = settled(rig)
-        #expect(rig.pose == rig.rail.pose(of: .island))
-        #expect(rig.lens == Lens.island)
+        rig = Self.settled(rig)
+        #expect(rig.pose == rig.rail.pose(of: .mid))
+        #expect(rig.lens == Lens.home)
     }
 
     @Test func aFlightCanBeCaughtMidway() {
-        var rig = CameraRig(framing: .home)
+        var rig = CameraRig(framing: .mid)
         rig.fly(to: .map)
         for _ in 0..<30 {
             rig.advance(1.0 / 120)
         }
-        let caught = rig.z.value
+        let caught = rig.pose
         rig.beginPinch()
         // The camera stops where it is: no jump when the fingers land.
-        #expect(abs(rig.z.value - caught) < 1e-9)
+        #expect(abs(rig.pose.scale - caught.scale) < 1e-9)
+        #expect(abs(rig.pose.lookX - caught.lookX) < 1e-9)
         #expect(rig.z.velocity == 0)
     }
 
     @Test func thePeekRubberBandsAndSpringsBack() {
-        var rig = CameraRig(framing: .island)
+        var rig = CameraRig(framing: .mid)
         rig.peek(dx: 400, dy: -400)
         #expect(rig.offsetX.value < CameraRig.peekLimit)
         #expect(rig.offsetY.value > -CameraRig.peekLimit)
         rig.settleOffset()
-        rig = settled(rig, seconds: 2)
+        rig = Self.settled(rig, seconds: 2)
         #expect(rig.offsetX.value == 0)
         #expect(rig.offsetY.value == 0)
+    }
+
+    @Test func aFocusFoldsIntoThePinchWithoutAJump() {
+        var rig = CameraRig(framing: .mid)
+        rig.focus(pose: CameraPose(scale: 2.4, look: WorldPoint(x: 60, y: -40), anchorY: 330), lens: .station(depth: 0))
+        rig = Self.settled(rig)
+        let before = rig.pose
+        rig.beginPinch()
+        let p = WorldPoint(x: 10, y: -20)
+        let a = before.project(p, width: 402), b = rig.pose.project(p, width: 402)
+        #expect(abs(a.x - b.x) < 1e-6 && abs(a.y - b.y) < 1e-6)
     }
 }

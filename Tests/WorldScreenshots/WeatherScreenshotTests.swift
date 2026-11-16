@@ -53,7 +53,7 @@ final class WeatherScreenshotTests: XCTestCase {
 
     @MainActor
     private func render(_ shot: Shot, in scene: UIWindowScene) async throws -> UIImage {
-        let model = IslandSceneModel(framing: .home)
+        let model = IslandSceneModel(framing: .mid)
         var look = WorldLook(hourOverride: shot.hour)
         look.weatherOverride = shot.weather
         let clearing = ScreenHazeClearing(partedAt: shot.parted ? Date().addingTimeInterval(-5) : nil)

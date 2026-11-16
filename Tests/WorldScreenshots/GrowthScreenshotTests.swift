@@ -81,7 +81,7 @@ final class GrowthScreenshotTests: XCTestCase {
 
     @MainActor
     private func render(_ world: WorldSnapshot, in scene: UIWindowScene, whole: Bool = false) async throws -> UIImage {
-        let model = IslandSceneModel(framing: .home)
+        let model = IslandSceneModel(framing: .mid)
         if whole { model.holdEstablishingShot() }
         let view = IslandScene(world: world, model: model)
             .environment(\.worldLook, WorldLook(hourOverride: 12))
