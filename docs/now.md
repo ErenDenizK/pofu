@@ -24,8 +24,8 @@ chooses to (days 1-21); no dates (11-14). Now: world presentation (#474).
 1. Founder-input 38: (a) island progression done: PR #503 (proposal:
    Sefer replaces the Map, Nazli moored at Home, named forms, big-step
    measure). Kept open for his 6 answers (sent 11-16); answer 1 also
-   closes #490 Q3. Pilot A (batch 134, windmill + pond in place) is
-   queued (pofu-art #112, row 0-d7); 129 held, dropped if A passes.
+   closes #490 Q3. Pilot A passed (#116: form 5s native in place); 129
+   dropped; weak lower steps redone as batch 137. Needs a real cut script.
    (b) minigame overhaul merged (#501): stream ground B default (A behind
    env), glass HUDs, garden 44 pt. Founder asked A or B (sent 11-16).
    Flow kit v2 queued (batch 135); then a small code pass.
@@ -40,8 +40,8 @@ chooses to (days 1-21); no dates (11-14). Now: world presentation (#474).
 4. UI grammar #490 open (docs), waits on his answers with #503.
 5. Codex: 132, 133, 135, 126 v2 merged (cloud fit: crossfade floor-mid,
    grade the warm kit only, Koke keeps bed-round v1). Flow fit builder on
-   `feat/flow-kit-v2-fit`. 134 in review. Queue: 136 lawn, S2 v3, S3; 129 held.
-Merged: #475-#489, #491-#502, #505; pofu-art #81, #91-#119.
+   `feat/flow-kit-v2-fit`. Queue: 136 lawn, 137 ladder, S2 v3, S3.
+Merged: #475-#489, #491-#502, #505; pofu-art #81, #91-#120.
 
 ## Next (night plan)
 A9 art backlog; §8.6 pass. Sefer V1-V5 and WP12 once he says yes.
