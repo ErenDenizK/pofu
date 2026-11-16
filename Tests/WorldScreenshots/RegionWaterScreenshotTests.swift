@@ -20,10 +20,6 @@ final class RegionWaterScreenshotTests: XCTestCase {
         var clock: Double?
         /// The camera focused on the pond (the lens blurs the rest of the island), once the plate is up.
         var focusPond = false
-        /// The shader's probe (`pofuWaterPatch`'s `gate.y`): 1 the plate's own sample, 2 the gate's alpha,
-        /// 3 the water without its gate, 4 a flat grey.
-        var debug = 0
-        var variant = 0
     }
 
     @MainActor
@@ -46,14 +42,6 @@ final class RegionWaterScreenshotTests: XCTestCase {
             for (i, clock) in [0.0, 1.5].enumerated() {
                 shots.append(Shot(name: "water-\(light)-pond-t\(i)", framing: .mid, hour: hour, clock: clock, focusPond: true))
             }
-        }
-        shots.removeAll { $0.name.hasPrefix("water-") && !$0.name.contains("-pond-") }
-        for variant in 1...5 {
-            shots.append(Shot(name: "probe-v\(variant)-night-id", framing: .mid, hour: 22.5, clock: 0, focusPond: true, debug: 1, variant: variant))
-            for (i, clock) in [0.0, 1.5].enumerated() {
-                shots.append(Shot(name: "probe-v\(variant)-night-t\(i)", framing: .mid, hour: 22.5, clock: clock, focusPond: true, variant: variant))
-            }
-            shots.append(Shot(name: "probe-v\(variant)-day-t0", framing: .mid, hour: 12, clock: 0, focusPond: true, variant: variant))
         }
         for shot in shots {
             try await render(shot, scene: scene, folder: folder)
@@ -89,8 +77,6 @@ final class RegionWaterScreenshotTests: XCTestCase {
         .environment(\.worldLook, look)
         .environment(\.worldStillFrame, true)
         .environment(\.worldWaterClock, shot.clock)
-        .environment(\.worldWaterDebug, shot.debug)
-        .environment(\.worldWaterVariant, shot.variant)
 
         let window = UIWindow(windowScene: scene)
         window.overrideUserInterfaceStyle = .light

@@ -129,21 +129,12 @@ struct PlateHomeLayer: View {
                     if fade < 0.999, farPictureIsSharp(plate) {
                         FarPicture(compositor: compositor, pose: pose, size: size, offset: offset)
                     } else {
-                        ZStack(alignment: .topLeading) {
-                            let island = CompositeIsland(compositor: compositor, build: build, pose: pose, size: size, offset: offset, water: water)
-                            switch water?.variant ?? 0 {
-                            case 1:
-                                island.drawingGroup().modifier(NearLensLevels(frame: nearLens, plate: plate, size: size))
-                            case 2:
-                                island.compositingGroup().modifier(NearLensLevels(frame: nearLens, plate: plate, size: size))
-                            default:
-                                island.modifier(NearLensLevels(frame: nearLens, plate: plate, size: size))
-                            }
-                            if let water, water.variant == 3 {
-                                WaterPatches(plate: plate, frame: water, pose: pose, size: size, offset: offset)
-                            }
-                        }
-                        .frame(width: size.width, height: size.height, alignment: .topLeading)
+                        CompositeIsland(compositor: compositor, build: build, pose: pose, size: size, offset: offset, water: water)
+                            // The water's patch is a layer effect; the lens blurs and adds this island at several levels, and
+                            // a layer effect met inside them comes out brighter than the plate beside it (a pale band round
+                            // the things floating in the pond). Flattened first, the island is one picture to the lens.
+                            .flattened(water != nil)
+                            .modifier(NearLensLevels(frame: nearLens, plate: plate, size: size))
                             .task(id: compositor.snapshotKey) {
                                 // The far picture is ready before the camera rises: rendered once the state rests.
                                 try? await Task.sleep(for: .milliseconds(600))
@@ -190,6 +181,12 @@ extension PlateHomeLayer {
 }
 
 extension View {
+    /// The view drawn into one picture first (a Metal texture), or as it is.
+    @ViewBuilder
+    func flattened(_ on: Bool) -> some View {
+        if on { drawingGroup() } else { self }
+    }
+
     /// An island picture in its grade under a painted sky (`PaintedSky.islandGrade`): the grade shader, or
     /// without it the gain as a multiply.
     @ViewBuilder

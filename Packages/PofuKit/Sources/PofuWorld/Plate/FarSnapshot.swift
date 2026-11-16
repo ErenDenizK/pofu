@@ -133,37 +133,16 @@ struct CompositeIsland: View {
         let plate = compositor.plate
         ZStack(alignment: .topLeading) {
             PlateImage(name: plate.plate.drawnPlateArt(light: plate.light, stage: plate.stage), box: plate.plateImageBox, pose: pose, size: size, offset: offset)
-            if let water, water.variant != 3 {
-                WaterPatches(plate: plate, frame: water, pose: pose, size: size, offset: offset)
+            if let water, WorldShaders.isAvailable {
+                ForEach(PlateRegionEffects.water(of: plate), id: \.id) { region in
+                    PlateWaterPatch(plate: plate, water: region, frame: water, pose: pose, size: size, offset: offset)
+                }
             }
             ForEach(compositor.stationsBackToFront, id: \.self) { station in
                 PlateLookPiece(compositor: compositor, station: station, build: build, pose: pose, size: size, offset: offset)
             }
         }
         .frame(width: size.width, height: size.height, alignment: .topLeading)
-    }
-}
-/// The patches of every body of water a state has.
-struct WaterPatches: View {
-    let plate: HomePlate
-    let frame: WaterFrame
-    let pose: CameraPose
-    let size: CGSize
-    let offset: CGSize
-
-    var body: some View {
-        if WorldShaders.isAvailable {
-            ForEach(PlateRegionEffects.water(of: plate), id: \.id) { region in
-                switch frame.variant {
-                case 4:
-                    PlateWaterPatch(plate: plate, water: region, frame: frame, pose: pose, size: size, offset: offset).drawingGroup()
-                case 5:
-                    PlateWaterPatch(plate: plate, water: region, frame: frame, pose: pose, size: size, offset: offset).compositingGroup()
-                default:
-                    PlateWaterPatch(plate: plate, water: region, frame: frame, pose: pose, size: size, offset: offset)
-                }
-            }
-        }
     }
 }
 #endif

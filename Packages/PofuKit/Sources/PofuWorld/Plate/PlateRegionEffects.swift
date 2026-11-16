@@ -142,10 +142,6 @@ extension EnvironmentValues {
     /// Forces the water to a time (seconds into its loop) whatever the frame policy says; a
     /// screenshot test sets it to show the water in motion in a still frame. `nil`: the policy.
     @Entry public var worldWaterClock: Double? = nil
-    /// A screenshot test's probe of the water shader (0: the water; see `pofuWaterPatch`'s `gate.y`).
-    @Entry public var worldWaterDebug: Int = 0
-    /// A screenshot test's probe of how the water meets the lens (0: as built).
-    @Entry public var worldWaterVariant: Int = 0
 }
 #endif
 
@@ -153,8 +149,6 @@ extension EnvironmentValues {
 /// The water's moment on screen: a time in its loop.
 struct WaterFrame: Hashable, Sendable {
     var time: Double
-    var debug: Int = 0
-    var variant: Int = 0
 }
 
 extension WorldShaders {
@@ -167,7 +161,7 @@ extension WorldShaders {
             .float4(origin.x, origin.y, pointsPerPixel, frame.time),
             .float4(dir.x, dir.y, body.speed * PlateRegionEffects.loop, PlateRegionEffects.loop),
             .float4(body.ripple, body.period, body.glint, body.feather),
-            .float4(body.reach, Double(frame.debug), 0, 0),
+            .float4(body.reach, 0, 0, 0),
             .floatArray(outline),
         ])
     }
