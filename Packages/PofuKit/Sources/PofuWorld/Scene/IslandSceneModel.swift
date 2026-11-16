@@ -722,6 +722,7 @@ public final class IslandSceneModel {
         let nearest = WorldFraming.nearest(to: z)
         framing = nearest
         projectedFraming = nearest
+        syncChrome()
         engine.isHeld = true
         engine.lastDate = nil
         revision &+= 1
@@ -1198,6 +1199,7 @@ public final class IslandSceneModel {
         engine.rig.snapToTargets()
         framing = .near
         projectedFraming = .near
+        syncChrome()
         engine.isHeld = true
         engine.lastDate = nil
         revision &+= 1
