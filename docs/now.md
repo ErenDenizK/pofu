@@ -39,8 +39,8 @@ chooses to (days 1-21); no dates (11-14). Now: world presentation (#474).
    cloud floor, #492 props, #493 N6, #494 + #497 tea stall looks, #495
    rail (Home mid, free near), #496 icons, #498 beds + back, #501 games.
 4. UI grammar #490 open (docs), waits on his answers with #503.
-5. Codex line: 132 board edge, 133 cloud floor, 134 plot pilot, 135 flow
-   kit v2, S2 clouds, S3 hidden visitors. 129 held for the pilot.
+5. Codex delivered 132, 133, 134 (pilot A), 135, 126 v2: three reviewers
+   (134; 135 + 132; 133 + 126). Queue: S2 clouds, S3 visitors; 129 held.
 Merged: #475-#489, #491-#502, #505; pofu-art #81, #91-#113.
 
 ## Next (night plan)
