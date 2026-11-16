@@ -158,11 +158,15 @@ final class FlowTextures {
         let index = picker.variant(of: at, count: pool.count)
         let key = "bank-\(kind.rawValue)-\(index)-\(turns)-\(mirrored)-\(onLawn)-\(cut.isEmpty)"
         return cached(key) { context in
-            self.drawBank(context, image: pool[index], turns: turns, mirrored: mirrored, keycap: !onLawn, cutOut: !cut.isEmpty)
+            self.drawBank(context, image: pool[index], turns: turns, mirrored: mirrored, keycap: !onLawn, cutOut: !cut.isEmpty, paintedShade: FlowArtSlot.rockCutHasPaintedShade(variant: index))
         }
     }
 
-    private func drawBank(_ context: CGContext, image: UIImage, turns: Int, mirrored: Bool, keycap: Bool, cutOut: Bool) {
+    /// The cut-out rocks are ingested with the largest's long side at 216 px, which fills 216/246 of a cell.
+    static let rockCutLongSide: CGFloat = 216
+    static let rockCutFill: CGFloat = 216.0 / 246.0
+
+    private func drawBank(_ context: CGContext, image: UIImage, turns: Int, mirrored: Bool, keycap: Bool, cutOut: Bool, paintedShade: Bool = false) {
         let bounds = CGRect(x: 0, y: 0, width: cell, height: cell)
         func placed(_ rect: CGRect) {
             context.saveGState()
@@ -174,9 +178,25 @@ final class FlowTextures {
             context.restoreGState()
         }
         if cutOut {
-            // A cut-out piece lying on the lawn, with a soft contact shadow.
-            context.setShadow(offset: CGSize(width: 0, height: 2), blur: 3, color: FlowPalette.ink.withAlphaComponent(0.3).cgColor)
-            placed(bounds.insetBy(dx: cell * 0.08, dy: cell * 0.08))
+            // A cut-out piece lying on the lawn. The picture keeps its shape (trimmed, so not square): it is
+            // drawn at one scale, centred, and sits on a soft contact shade. Rock 3 paints its own.
+            // The four pictures share one scale (the largest's long side is 216 px of a 246 px cell), so a
+            // small rock stays small.
+            let fit = cell * Self.rockCutFill / Self.rockCutLongSide
+            let size = CGSize(width: image.size.width * fit, height: image.size.height * fit)
+            let rock = CGRect(x: bounds.midX - size.width / 2, y: bounds.midY - size.height / 2, width: size.width, height: size.height)
+            if !paintedShade {
+                let shade = CGRect(x: rock.midX - rock.width * 0.46, y: rock.maxY - rock.height * 0.16, width: rock.width * 0.92, height: rock.height * 0.30)
+                context.saveGState()
+                context.translateBy(x: shade.midX, y: shade.midY)
+                context.scaleBy(x: shade.width / 2, y: shade.height / 2)
+                let stops = [FlowPalette.ink.withAlphaComponent(0.34).cgColor, FlowPalette.ink.withAlphaComponent(0).cgColor] as CFArray
+                if let gradient = CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: stops, locations: [0, 1]) {
+                    context.drawRadialGradient(gradient, startCenter: .zero, startRadius: 0, endCenter: .zero, endRadius: 1, options: [])
+                }
+                context.restoreGState()
+            }
+            placed(rock)
             return
         }
         if !keycap {
@@ -273,6 +293,11 @@ final class FlowTextures {
     /// The painted pool as three slices of one picture (left cap, a middle that is stretched, right cap),
     /// so a rim of river stones can run the width of the board. `nil` until the art is in the bundle.
     static let poolArt = "flow-pool"
+
+    /// The board's painted top lip, or nil while the slot has no art (the code drawing stays).
+    func boardLip() -> SKTexture? {
+        art(FlowArtSlot.boardLip).map(texture(of:))
+    }
 
     func poolSlices() -> (left: SKTexture, middle: SKTexture, right: SKTexture, aspect: CGFloat)? {
         guard let whole = painted(Self.poolArt) else { return nil }
