@@ -316,7 +316,7 @@ final class LookScreenshotTests: XCTestCase {
     @MainActor
     private func renderPlates(in scene: UIWindowScene, folder: URL) async throws {
         let shots: [(String, WorldFraming?, Double)] = [
-            ("establishing", nil, 12), ("Island", .island, 12), ("Home", .home, 12), ("Island · night", .island, 22),
+            ("establishing", nil, 12), ("Island", .mid, 12), ("Home", .mid, 12), ("Island · night", .mid, 22),
         ]
         var rows: [[UIImage]] = []
         var titles: [[String]] = []

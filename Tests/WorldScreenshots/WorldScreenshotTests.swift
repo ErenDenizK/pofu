@@ -37,15 +37,15 @@ final class WorldScreenshotTests: XCTestCase {
         case collectPaws = "11-collect-paws"
         /// The collect beat as the seeds arc into the jar.
         case collectFlight = "12-collect-flight"
-        /// The camera at z 1.9: the jar, the lantern and the pots sit on
+        /// The camera at z 1.05 (just in from mid): the jar, the lantern and the pots sit on
         /// their projected world anchors (experience v1 §1.4).
         case propsZoom = "13-props-z19"
 
         var framing: WorldFraming {
             switch self {
-            case .homeVisit, .homeSettled, .homeCrafted, .homeAX3, .collectPaws, .collectFlight, .propsZoom: .home
+            case .homeVisit, .homeSettled, .homeCrafted, .homeAX3, .collectPaws, .collectFlight, .propsZoom: .mid
             case .map: .map
-            case .island, .stationBuild, .buildPop, .buildAfter, .residentCard: .island
+            case .island, .stationBuild, .buildPop, .buildAfter, .residentCard: .mid
             }
         }
 
