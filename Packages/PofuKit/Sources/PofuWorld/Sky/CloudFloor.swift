@@ -133,7 +133,7 @@ public enum CloudFloor {
     public static func pieces(homeBox: WorldBox, slots: [MapSlots.Slot], stop: CameraPose, reference: CameraPose) -> [Piece] {
         var out: [Piece] = []
         func bed(_ id: String, form: String, box: WorldBox, n: Int) {
-            guard let f = forms[form] else { return }
+            guard forms[form] != nil else { return }
             let swell = bedSwells[n % bedSwells.count]
             let w = box.width * bedWidth
             out.append(Piece(
@@ -233,7 +233,8 @@ struct CloudFloorLayer: View {
                 var layer = context
                 layer.opacity = piece.opacity
                 layer.addFilter(.colorMultiply(Color(red: CloudFloor.coolTint.r, green: CloudFloor.coolTint.g, blue: CloudFloor.coolTint.b)))
-                layer.draw(layer.resolve(Image(form.asset, bundle: .module).interpolation(.high)), in: rect)
+                let image = context.resolve(Image(form.asset, bundle: .module).interpolation(.high))
+                layer.draw(image, in: rect)
             }
         }
     }
