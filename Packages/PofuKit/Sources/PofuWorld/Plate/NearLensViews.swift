@@ -39,7 +39,21 @@ enum NearDepthTexture {
         if let hit = cache[key] { return hit }
         guard let near = plate.plate.near else { return nil }
         let lip = near.lipRow
-        guard let made = await Task.detached(priority: .utility, operation: { render(plate, lipRow: lip) }).value,
+        return store(await Task.detached(priority: .utility, operation: { render(plate, lipRow: lip) }).value, key: key)
+    }
+
+    /// The texture now, on the main thread: when the camera is already close and the warm-up at mid
+    /// never ran (a cold start at near). A few milliseconds in a release build.
+    static func make(_ plate: HomePlate) -> Image? {
+        let key = Key(plate)
+        if let hit = cache[key] { return hit }
+        guard let near = plate.plate.near else { return nil }
+        return store(render(plate, lipRow: near.lipRow), key: key)
+    }
+
+    private static func store(_ made: Pixels?, key: Key) -> Image? {
+        if let hit = cache[key] { return hit }
+        guard let made,
               let provider = CGDataProvider(data: Data(made.pixels) as CFData),
               let cg = CGImage(width: made.width, height: made.height, bitsPerComponent: 8, bitsPerPixel: 32, bytesPerRow: made.width * 4,
                                space: CGColorSpaceCreateDeviceRGB(), bitmapInfo: CGBitmapInfo(rawValue: CGImageAlphaInfo.noneSkipLast.rawValue),
@@ -153,7 +167,7 @@ struct NearLensLevels: ViewModifier {
 
     func body(content: Content) -> some View {
         Group {
-            if let frame, frame.levels != [0], WorldShaders.isAvailable, let depth = NearDepthTexture.cached(plate) ?? self.depth {
+            if let frame, frame.levels != [0], WorldShaders.isAvailable, let depth = self.depth ?? NearDepthTexture.make(plate) {
                 levels(content, frame: frame, depth: depth)
             } else if WorldShaders.isAvailable, let depth = self.depth {
                 // Before the camera comes close the level shader runs once on a few transparent points, so
