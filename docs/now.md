@@ -38,7 +38,6 @@ Large job now: world presentation (spec #474); glass UI stays.
 4. Codex: 127, 128, 130, 131 reviewed and merged; 129 edited so each look
    steps outside the last outline (pofu-art #108). Queue: 132, 133 cloud floor, then S1
    (129 looks), S2 (126 v2/v3). 128 drop and star need an edit.
-5. Founder picks owed: 5 UI grammar questions, flow A/B (B), N6 recipe (yes).
 Merged: #475-#489, #491, #493, #494; pofu-art #81, #91-#109.
 
 ## Next steps, in order (night plan)
@@ -58,4 +57,5 @@ Merged: #475-#489, #491, #493, #494; pofu-art #81, #91-#109.
 
 ## Open with the founder
 
-- Device check steps sent 11-13; five answers pending. Stale: roadmap.md, tracker.md.
+- Picks: 5 UI grammar questions, flow A/B (B), N6 recipe (yes).
+- Device check (11-13) answers pending. Stale: roadmap.md, tracker.md.
