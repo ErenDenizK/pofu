@@ -112,7 +112,7 @@ class PlayerPathFrameCase: XCTestCase {
 
     @MainActor
     func home(_ world: WorldSnapshot, hour: Double, beads: [Bool], name: String, scene: UIWindowScene, folder: URL, beats: [VisitBeat]? = nil) async throws {
-        let island = IslandSceneModel(framing: .home)
+        let island = IslandSceneModel(framing: .mid)
         let view = homeView(world, hour: hour, island: island, beads: beads, beats: beats)
         try await capture(AnyView(view), name: name, scene: scene, folder: folder, settle: 2100) {
             XCTAssertNotNil(island.homePlate, "\(name): Home is its painting (IL\(world.islandLevel), hour \(hour))")
@@ -136,7 +136,7 @@ class PlayerPathFrameCase: XCTestCase {
     func stop(_ isle: IslandID, world: WorldSnapshot, name: String, scene: UIWindowScene, folder: URL) async throws {
         let look = WorldLook.playerPath(hour: 9.12)
         XCTAssertTrue(look.homePlates, "a path frame is never the sprite island")
-        let island = IslandSceneModel(framing: .island)
+        let island = IslandSceneModel(framing: .mid)
         island.holdIsle(isle)
         let view = IslandScene(world: world, model: island)
             .environment(\.worldLook, look)
@@ -232,7 +232,7 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
         let model = AppModel.shared
         let status = day.morning.stations.first { $0.id == .teaStall }
         for (name, fraction) in [("path-sheet-today", 0.9), ("path-sheet-station", 0.5)] {
-            let island = IslandSceneModel(framing: .home)
+            let island = IslandSceneModel(framing: .mid)
             let back = homeView(day.morning, hour: 11, island: island, settled: true)
             let view: AnyView
             if name == "path-sheet-today" {
@@ -280,7 +280,7 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
         XCTAssertEqual(to, from + 1, "day 4 is a level-up by a build")
         for (name, ms) in [("0000", 0), ("1500", 1500), ("2400", 2400)] {
             let seconds = Double(ms) / 1000
-            let island = IslandSceneModel(framing: .home)
+            let island = IslandSceneModel(framing: .mid)
             // The camera and the painting of the moment's start; the cross-fade frame then flips the level.
             let first = ms == 1500 ? 0.79 : seconds
             let level = first >= IslandGrowMoment.crossFadeAt ? to : from
@@ -310,7 +310,7 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
         let to = day.morning.islandLevel
         XCTAssertEqual(to, 3, "day 3 opens on a level reached overnight")
         let beats: [VisitBeat] = [.news(.stageGrew(to))]
-        let island = IslandSceneModel(framing: .home)
+        let island = IslandSceneModel(framing: .mid)
         island.setHomePlate(paintedAs(day.morning, level: to - 1, hour: 9))
         island.holdPresentedLevel(to - 1)
         let view = homeView(day.morning, hour: 9, island: island, beats: beats)
@@ -321,7 +321,7 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
         }
 
         // The button: the news beat is taken and the moment plays from the live timers.
-        let live = IslandSceneModel(framing: .home)
+        let live = IslandSceneModel(framing: .mid)
         live.setHomePlate(paintedAs(day.morning, level: to - 1, hour: 9))
         live.holdPresentedLevel(to - 1)
         let now = day.morning.clock ?? Date()
@@ -361,7 +361,7 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
                     if status.id == .teaStall { status.level = level }
                     return status
                 }
-                let island = IslandSceneModel(framing: .home)
+                let island = IslandSceneModel(framing: .mid)
                 let view = homeView(world, hour: 12, island: island, settled: true)
                 let name = islandLevel == 3 ? "path-stall-l\(level)" : "path-stall-i\(islandLevel)-l\(level)"
                 try await capture(AnyView(view), name: name, scene: scene, folder: folder, settle: 2100) {
@@ -383,7 +383,7 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
         let station = try XCTUnwrap(built, "day 4 builds a station")
 
         // The focus: the morning's world, the station focused as a tap does.
-        let focused = IslandSceneModel(framing: .home)
+        let focused = IslandSceneModel(framing: .mid)
         focused.setHomePlate(paintedAs(day.morning, level: from, hour: 9))
         focused.focusStation(station.id, animated: false)
         XCTAssertEqual(focused.focus, .station(station.id))
@@ -392,7 +392,7 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
         }
 
         // The burst: the build committed, the painting held at the old level while the station's ceremony plays.
-        let island = IslandSceneModel(framing: .home)
+        let island = IslandSceneModel(framing: .mid)
         island.setHomePlate(paintedAs(day.visit, level: from, hour: 9))
         island.holdPresentedLevel(from)
         island.focusStation(station.id, animated: false)

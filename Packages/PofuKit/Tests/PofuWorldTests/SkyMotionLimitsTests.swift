@@ -12,7 +12,7 @@ struct SkyMotionLimitsTests {
         return (0 ... 2).map { tier in
             var p = plate
             p.mapTier = tier
-            let stop = p.mapStop, home = p.homeStop
+            let stop = p.mapStop, home = p.midStop
             return CloudFloor.pieces(
                 homeBox: p.islandBox,
                 slots: MapSlots.slots(stage: tier + 1, tier: tier, homeCentre: WorldPoint(x: p.islandBox.midX, y: p.islandBox.midY)),
@@ -81,7 +81,7 @@ struct SkyMotionLimitsTests {
 
     @Test func aBedRestsUnderEachOpenIslandAndNoneUnderAnEmptySlot() {
         guard let plate = HomePlate.shipped.map({ HomePlate(plate: $0.plate, light: "day", stage: 0) }) else { return }
-        let stop = plate.mapStop, home = plate.homeStop
+        let stop = plate.mapStop, home = plate.midStop
         let c = WorldPoint(x: plate.islandBox.midX, y: plate.islandBox.midY)
         func beds(stage: Int, tier: Int) -> Set<String> {
             Set(CloudFloor.pieces(

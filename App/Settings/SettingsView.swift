@@ -49,7 +49,7 @@ struct SettingsView: View {
                         NavigationLink {
                             SetupGuideView(model: model)
                         } label: {
-                            SettingsLabel("Set up automations", systemName: "wand.and.stars", tone: .moss)
+                            SettingsLabel("Set up automations", systemName: "wand.and.stars", tone: .moss, paint: .duoWand)
                         }
                     } header: {
                         // With the shield, the Shortcuts gate is the optional,
@@ -118,7 +118,7 @@ private struct SoundSettingsSection: View {
                     SoundEngine.shared.settings = settings
                 }
             )) {
-                SettingsLabel("Pofu's sounds", systemName: "speaker.wave.2.fill", tone: .honey)
+                SettingsLabel("Pofu's sounds", systemName: "speaker.wave.2.fill", tone: .honey, paint: .duoSound)
             }
             Toggle(isOn: Binding(
                 get: { ambience },
@@ -129,7 +129,7 @@ private struct SoundSettingsSection: View {
                     SoundEngine.shared.settings = settings
                 }
             )) {
-                SettingsLabel("Island ambience", systemName: "wind", tone: .honey)
+                SettingsLabel("Island ambience", systemName: "wind", tone: .honey, paint: .duoWind)
             }
         } header: {
             Text("Sounds")

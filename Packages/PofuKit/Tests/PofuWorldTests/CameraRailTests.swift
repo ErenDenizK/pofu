@@ -2,7 +2,7 @@ import Foundation
 import Testing
 @testable import PofuWorld
 
-@Suite("Camera rail")
+@Suite("Camera rail (ADR-0027)")
 struct CameraRailTests {
     let rail = CameraRail()
 
@@ -13,67 +13,81 @@ struct CameraRailTests {
             #expect(abs(pose.scale - stop.scale) < 1e-9)
             #expect(pose.lookX == stop.look.x)
             #expect(pose.lookY == stop.look.y)
-            #expect(pose.anchorY == stop.anchorY)
+            #expect(abs(pose.anchorY - stop.anchorY) < 1e-9)
         }
     }
 
-    @Test func pofuIsAbout90PointsAtHome() {
-        let width = 64 * rail.pose(of: .home).scale
-        #expect(abs(width - 89.6) < 0.01)
-        #expect(width >= 89)
-        // His feet sit at the Home framing's anchor row, at most a quarter
-        // of the width off centre (nudged so no resident is cut).
-        let feet = rail.pose(of: .home).project(IslandLayout.pofu, width: CameraRail.referenceWidth)
-        #expect(abs(feet.x - 201) <= CameraRail.referenceWidth * 0.25 + 1e-9)
-        #expect(abs(feet.y - IslandFraming.homeFeetY) < 1e-9)
+    @Test func theNearLimitIs7_4PointsAUnitAnchoredMidScreen() {
+        let near = rail.pose(of: .near)
+        #expect(abs(near.scale - 7.4) < 1e-9)
+        #expect(near.anchorY == 437)
+        #expect(near.lookX == rail.pose(of: .mid).lookX)
     }
 
     @Test func scaleInterpolatesInLogSpace() {
-        let map = CameraRail.referenceStops[0].scale
-        let island = CameraRail.referenceStops[1].scale
-        let mid = rail.pose(z: 1.5).scale
-        #expect(abs(mid - (island * IslandFraming.homeScale).squareRoot()) < 1e-9)
-        let quarter = rail.pose(z: 0.25).scale
-        #expect(abs(quarter - exp(log(map) * 0.75 + log(island) * 0.25)) < 1e-9)
+        let map = rail.pose(of: .map).scale
+        let mid = rail.pose(of: .mid).scale
+        #expect(abs(rail.pose(z: 0.5).scale - (map * mid).squareRoot()) < 1e-9)
+        let near = rail.pose(of: .near).scale
+        #expect(abs(rail.pose(z: 1.5).scale - (mid * near).squareRoot()) < 1e-9)
     }
 
-    @Test func positionInterpolatesLinearlyWithTheSameFraction() {
-        let island = CameraRail.referenceStops[1]
-        let pose = rail.pose(z: 1.25)
-        let home = IslandLayout.pofu.y
-        #expect(abs(pose.lookY - (island.look.y + (home - island.look.y) * 0.25)) < 1e-9)
-        #expect(abs(pose.anchorY - (island.anchorY + (IslandFraming.homeFeetY - island.anchorY) * 0.25)) < 1e-9)
+    @Test func positionInterpolatesLinearlyFromTheMapToMid() {
+        let a = rail.pose(of: .map), b = rail.pose(of: .mid)
+        let p = rail.pose(z: 0.25)
+        #expect(abs(p.lookX - (a.lookX + (b.lookX - a.lookX) * 0.25)) < 1e-9)
+        #expect(abs(p.lookY - (a.lookY + (b.lookY - a.lookY) * 0.25)) < 1e-9)
+        #expect(abs(p.anchorY - (a.anchorY + (b.anchorY - a.anchorY) * 0.25)) < 1e-9)
+    }
+
+    @Test func pastMidTheLookStaysAndTheAnchorEasesWithTheChrome() {
+        let mid = rail.pose(of: .mid)
+        for z in stride(from: 1.0, through: 2.0, by: 0.05) {
+            let p = rail.pose(z: z)
+            #expect(p.lookX == mid.lookX && p.lookY == mid.lookY)
+            let t = 1 - rail.chromeOpacity(logScale: p.logScale)
+            #expect(abs(p.anchorY - (383 + 54 * t)) < 1e-9)
+        }
+        #expect(abs(rail.pose(z: 1.5).anchorY - 437) < 1e-9)
     }
 
     @Test func zAndLogScaleAreInverses() {
-        for z in stride(from: -0.4, through: 2.4, by: 0.1) {
-            let back = rail.z(logScale: rail.logScale(z: z))
-            #expect(abs(back - z) < 1e-9)
+        for z in stride(from: -0.3, through: 2.3, by: 0.1) {
+            #expect(abs(rail.z(logScale: rail.logScale(z: z)) - z) < 1e-9)
         }
     }
 
     @Test func pastTheEndsTheRailKeepsItsLookPoint() {
-        let past = rail.pose(z: 2.3)
-        let home = rail.pose(of: .home)
-        #expect(past.lookX == home.lookX)
-        #expect(past.anchorY == home.anchorY)
-        #expect(past.scale > home.scale)
+        let map = rail.pose(of: .map), mid = rail.pose(of: .mid)
+        #expect(rail.pose(z: -0.2).lookX == map.lookX)
+        #expect(rail.pose(z: -0.2).scale < map.scale)
+        #expect(rail.pose(z: 2.2).lookX == mid.lookX)
+        #expect(rail.pose(z: 2.2).scale > rail.pose(of: .near).scale)
     }
 
     @Test func scalesFollowTheWidthAndRowsTheHeight() {
-        let wide = CameraRail(width: 440, height: 956)
-        let home = wide.pose(of: .home)
-        #expect(abs(home.scale - IslandFraming.homeScale * 440 / 402) < 1e-9)
-        #expect(abs(home.anchorY - IslandFraming.homeFeetY * 956 / 874) < 1e-9)
+        let big = CameraRail(width: 804, height: 1748)
+        #expect(abs(big.pose(of: .mid).scale - 2 * rail.pose(of: .mid).scale) < 1e-9)
+        #expect(abs(big.pose(of: .mid).anchorY - 2 * rail.pose(of: .mid).anchorY) < 1e-9)
     }
 
     @Test func projectAndUnprojectAreInverses() {
         let pose = rail.pose(z: 1.3)
-        let point = WorldPoint(x: 37, y: -12)
-        let screen = pose.project(point, width: 402)
-        let back = pose.unproject(x: screen.x, y: screen.y, width: 402)
-        #expect(abs(back.x - point.x) < 1e-9)
-        #expect(abs(back.y - point.y) < 1e-9)
+        let p = WorldPoint(x: 37, y: -12)
+        let s = pose.project(p, width: 402)
+        let back = pose.unproject(x: s.x, y: s.y, width: 402)
+        #expect(abs(back.x - p.x) < 1e-9 && abs(back.y - p.y) < 1e-9)
+    }
+
+    @Test func theFramingOfAPositionFollowsTheReleaseTable() {
+        #expect(WorldFraming.nearest(to: 0.49) == .map)
+        #expect(WorldFraming.nearest(to: 0.5) == .mid)
+        #expect(WorldFraming.nearest(to: 1.12) == .mid)
+        #expect(WorldFraming.nearest(to: 1.13) == .near)
+        #expect(WorldFraming.map.stepIn == .mid)
+        #expect(WorldFraming.mid.stepIn == .near)
+        #expect(WorldFraming.near.stepIn == nil)
+        #expect(WorldFraming.near.stepOut == .mid)
     }
 }
 
@@ -83,36 +97,33 @@ struct RubberBandTests {
 
     @Test func theBandStartsAtZeroAndTracksAtFiftyFivePercent() {
         #expect(CameraRail.rubberBand(0, limit: 1) == 0)
-        let tiny = CameraRail.rubberBand(1e-6, limit: 1)
-        #expect(abs(tiny / 1e-6 - 0.55) < 1e-3)
+        let small = CameraRail.rubberBand(0.001, limit: 1)
+        #expect(abs(small / 0.001 - 0.55) < 0.01)
     }
 
     @Test func theBandGrowsButNeverReachesItsLimit() {
-        var previous = 0.0
-        for x in stride(from: 0.1, through: 50, by: 0.1) {
-            let banded = CameraRail.rubberBand(x, limit: 0.2)
-            #expect(banded > previous)
-            #expect(banded < 0.2)
-            previous = banded
+        var last = 0.0
+        for x in stride(from: 0.1, through: 50, by: 0.5) {
+            let b = CameraRail.rubberBand(x, limit: 1)
+            #expect(b > last && b < 1)
+            last = b
         }
     }
 
     @Test func insideTheRailThereIsNoBand() {
-        let l = rail.logScale(z: 1.3)
+        let l = rail.logScale(z: 1.4)
         #expect(rail.bandedLogScale(raw: l) == l)
     }
 
-    @Test func pastHomeTheCameraBandsUpToAQuarterMore() {
-        let home = rail.pose(of: .home).logScale
-        let banded = rail.bandedLogScale(raw: home + 5)
-        #expect(banded > home)
-        #expect(exp(banded - home) < 1.25)
+    @Test func pastTheNearLimitTheCameraBandsUpTo1_12() {
+        let hi = rail.pose(of: .near).logScale
+        let banded = rail.bandedLogScale(raw: hi + 10)
+        #expect(banded > hi && exp(banded - hi) < 1.12)
     }
 
-    @Test func pastTheMapTheCameraBandsDownToEightyPercent() {
-        let map = rail.pose(of: .map).logScale
-        let banded = rail.bandedLogScale(raw: map - 5)
-        #expect(banded < map)
-        #expect(exp(banded - map) > 0.8)
+    @Test func pastTheMapTheCameraBandsDownTo0_85() {
+        let lo = rail.pose(of: .map).logScale
+        let banded = rail.bandedLogScale(raw: lo - 10)
+        #expect(banded < lo && exp(banded - lo) > 0.85)
     }
 }

@@ -37,15 +37,15 @@ final class WorldScreenshotTests: XCTestCase {
         case collectPaws = "11-collect-paws"
         /// The collect beat as the seeds arc into the jar.
         case collectFlight = "12-collect-flight"
-        /// The camera at z 1.9: the jar, the lantern and the pots sit on
+        /// The camera at z 1.05 (just in from mid): the jar, the lantern and the pots sit on
         /// their projected world anchors (experience v1 §1.4).
         case propsZoom = "13-props-z19"
 
         var framing: WorldFraming {
             switch self {
-            case .homeVisit, .homeSettled, .homeCrafted, .homeAX3, .collectPaws, .collectFlight, .propsZoom: .home
+            case .homeVisit, .homeSettled, .homeCrafted, .homeAX3, .collectPaws, .collectFlight, .propsZoom: .mid
             case .map: .map
-            case .island, .stationBuild, .buildPop, .buildAfter, .residentCard: .island
+            case .island, .stationBuild, .buildPop, .buildAfter, .residentCard: .mid
             }
         }
 
@@ -104,12 +104,12 @@ final class WorldScreenshotTests: XCTestCase {
             case .homeVisit, .homeSettled, .homeCrafted, .homeAX3, .island, .map:
                 try await Task.sleep(for: .milliseconds(500))
             case .propsZoom:
-                island.holdRail(z: 1.9)
+                island.holdRail(z: 1.05)
                 try await Task.sleep(for: .milliseconds(900))
                 for prop in HomeSlots.Prop.allCases {
                     let anchor = island.screenPoint(of: prop.slot)
                     let frame = try XCTUnwrap(island.propFrames[prop], "\(prop) was not drawn")
-                    XCTAssertEqual(Double(frame.midX), anchor.x, accuracy: 1, "\(prop) x at z 1.9")
+                    XCTAssertEqual(Double(frame.midX), anchor.x, accuracy: 1, "\(prop) x at z 1.05")
                     XCTAssertEqual(Double(frame.midY), anchor.y, accuracy: 1, "\(prop) y at z 1.9")
                 }
             case .collectPaws, .collectFlight:

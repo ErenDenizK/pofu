@@ -45,7 +45,7 @@ final class MenuScreenshotTests: XCTestCase {
         PofuWorldFreeze.shared.isFrozen = true
         defer { PofuWorldFreeze.shared.isFrozen = false }
         for (name, detent) in [("17-sheet-station-medium-glass", StationSheetDetent.medium), ("18-sheet-station-large-paper", .large)] {
-            let island = IslandSceneModel(framing: .island)
+            let island = IslandSceneModel(framing: .mid)
             let window = try makeWindow(
                 AnyView(IslandScene(world: IslandSamples.dayThree(), model: island) { EmptyView() }),
                 style: .light

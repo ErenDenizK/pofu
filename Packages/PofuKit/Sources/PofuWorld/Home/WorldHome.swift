@@ -192,12 +192,16 @@ public struct WorldHome: View {
         scene.homePlate
     }
 
+    /// Home's chrome belongs to mid on Home (ADR-0027); its opacity fades with the scale toward
+    /// near (`chromeOpacity`), so it is gone before near begins.
     private var showsHomeChrome: Bool {
-        scene.projectedFraming == .home && scene.focus == nil && !scene.hasSheet && !scene.isGrowing
+        scene.island == .home && scene.projectedFraming != .map && scene.chromeOpacity > 0
+            && scene.focus == nil && !scene.hasSheet && !scene.isGrowing
     }
 
+    /// Another island's name at its stop (Home's stop carries the chrome instead).
     private var showsIslandName: Bool {
-        scene.projectedFraming == .island && scene.focus == nil
+        scene.projectedFraming == .mid && scene.island != .home && scene.focus == nil
     }
 
     private var chrome: some View {
@@ -209,12 +213,12 @@ public struct WorldHome: View {
             }
             .padding(.horizontal, PofuSpacing.screen)
             .padding(.bottom, PofuSpacing.s)
-            .opacity(showsHomeChrome ? 1 : 0)
-            .allowsHitTesting(showsHomeChrome)
+            .opacity(showsHomeChrome ? scene.chromeOpacity : 0)
+            .allowsHitTesting(showsHomeChrome && scene.chromeOpacity > 0.5)
 
             VStack {
                 Spacer(minLength: 0)
-                if scene.projectedFraming == .island {
+                if showsIslandName {
                     IslandNameChip(island: scene.island)
                         .padding(.bottom, PofuSpacing.l)
                 }
@@ -225,6 +229,7 @@ public struct WorldHome: View {
         // The chrome's live text follows the world's light, not the system's.
         .modifier(WorldChromeLight(painted: paintsChrome, isNight: isNight))
         .animation(PofuMotion.respecting(reduceMotion, PofuMotion.snappy), value: showsHomeChrome)
+        .animation(PofuMotion.respecting(reduceMotion, PofuMotion.snappy), value: scene.chromeOpacity)
         .animation(PofuMotion.respecting(reduceMotion, PofuMotion.snappy), value: showsIslandName)
         .animation(PofuMotion.respecting(reduceMotion, PofuMotion.settle), value: home.currentBeat)
         .animation(PofuMotion.respecting(reduceMotion, PofuMotion.snappy), value: home.collect == nil)
@@ -539,7 +544,7 @@ public struct WorldHome: View {
             // pulls back and ends on the Island stop); a new island goes there.
             home.acknowledgeCurrentBeat()
             if case .islandArrived = news {
-                scene.go(to: .island)
+                scene.go(to: .mid)
             }
         case .build(let station, _):
             home.acknowledgeCurrentBeat()

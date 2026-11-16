@@ -30,7 +30,7 @@ final class PayoffScreenshotTests: XCTestCase {
 
     @MainActor
     private func render(hour: Double, tally: ResistSealTally, in scene: UIWindowScene) async throws -> UIImage {
-        let model = IslandSceneModel(framing: .home)
+        let model = IslandSceneModel(framing: .mid)
         var look = WorldLook(hourOverride: hour)
         look.weatherOverride = .clear
         let view = IslandScene(world: IslandSamples.grownIsland(wellbeing: 78), model: model)

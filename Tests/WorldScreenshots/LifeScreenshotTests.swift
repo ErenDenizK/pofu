@@ -59,7 +59,7 @@ final class LifeScreenshotTests: XCTestCase {
         var frames: [UIImage] = []
         let times = [0.0, 1.6, 3.2, 4.8, 6.4]
         for t in times {
-            let model = IslandSceneModel(framing: .island)
+            let model = IslandSceneModel(framing: .mid)
             model.holdPan(start: IslandFraming.panValue(lookX: 92))
             let view = IslandScene(world: world, model: model)
                 .environment(\.worldLook, WorldLook(hourOverride: 12))
@@ -72,7 +72,7 @@ final class LifeScreenshotTests: XCTestCase {
         try write(grid(frames, titles: times.map { String(format: "%.1f s", $0) }), name: "life-residents-walk", to: folder)
 
         // Home framing at IL6, settled: Pofu's own door (H1) is on screen on the left.
-        let settled = IslandScene(world: world, model: IslandSceneModel(framing: .home))
+        let settled = IslandScene(world: world, model: IslandSceneModel(framing: .mid))
             .environment(\.worldLook, WorldLook(hourOverride: 12))
             .environment(\.worldStillFrame, true)
         try write(try await render(AnyView(settled), in: scene), name: "life-home-il6-settled", to: folder)
@@ -93,7 +93,7 @@ final class LifeScreenshotTests: XCTestCase {
         let gaitTimes = (0..<4).map { start + 1.0 + Double($0) / ResidentLife.walkFPS }
         for t in gaitTimes {
             let step = ResidentLife.step(of: plan, at: t)
-            let model = IslandSceneModel(framing: .home)
+            let model = IslandSceneModel(framing: .mid)
             let view = IslandScene(world: world, model: model)
                 .environment(\.worldLook, WorldLook(hourOverride: 12))
                 .environment(\.worldStillFrame, true)

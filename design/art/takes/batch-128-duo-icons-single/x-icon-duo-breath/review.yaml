@@ -1,0 +1,92 @@
+batch: batch-128-duo-icons-single
+manifest: tools/imagegen/manifest/batch-128-duo-icons-single.yaml
+manifest_sha256: 0edf4752a8ed3cff37f1eefcfe4b7e5a9d84d4464f57049a088bbe3c34087c66
+job: x-icon-duo-breath
+contact_sheet: design/art/takes/batch-128-duo-icons-single/x-icon-duo-breath/contact.jpg
+source: codex-cloud
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+status: skipped
+pick: 2
+lead_review: "Lead pick with a premise note: take 2 is the asked tile, wave and moss dot with the larger wave, line 5.0 percent (a touch heavier than the shipped 4.5 at most, under 1 px at 22 pt), but a tile with a wave and a dot reads as a photo or image icon, so check the meaning in the Settings row before shipping."
+selection:
+  method: manual icon-style review after automated QA
+  pick: null
+  note: Both takes show the requested single cream rounded tile with one cocoa wave and one moss dot on
+    a transparent canvas. Both trigger the same value_floor warning (p5 lightness 32 versus R1 59), and
+    the cocoa outline reads visibly heavier than the shipped sheet at small size, against the manifest’s
+    same-weight/not-heavier review criterion. Keep both exploration takes, mark the job skipped under
+    the QA/style fallback, and do not promote; the two-take cap is reached.
+takes:
+- take: 1
+  file: ui__x-icon-duo-breath--t1.webp
+  source_file: /workspace/generated_images/exec-3cbe58d1-ab92-4e7c-a413-c504453cbad7.png
+  source_sha256: 7bc94e5c142512db968dc1d973c7859b6bcc2be79ac4ce70aa535c9b37da9b35
+  source_dimensions:
+  - 1254
+  - 1254
+  backend: codex-cloud
+  qa: warn
+  lock_load: 0.0
+  harmony: null
+  warnings:
+  - check: value_floor
+    status: warn
+    message: lightness p5 32 (R1 59)
+  review_webp_bytes: 35910
+- take: 2
+  file: ui__x-icon-duo-breath--t2.webp
+  source_file: /workspace/generated_images/exec-e904267a-ef04-4018-8a9d-205d4f2b6e5a.png
+  source_sha256: d18482741eda1d55a9ea8e1300561cd020171e502ad493f499a4427edca099f0
+  source_dimensions:
+  - 1254
+  - 1254
+  backend: codex-cloud
+  qa: warn
+  lock_load: 0.0
+  harmony: null
+  warnings:
+  - check: value_floor
+    status: warn
+    message: lightness p5 32 (R1 59)
+  review_webp_bytes: 36382
+prompt: 'REFERENCES (attached, in this order):
+
+  1. The app''s existing icon sheet: the exact style to copy (line weight, corner radius, cream fill,
+  honey and moss accents). Draw none of its icons again; it shows nine icons, you draw one.
+
+
+  One app menu icon for the same set as the icons on the attached sheet,
+
+  alone and centred on a transparent background, filling about two thirds of
+
+  the square: a rounded tile holding one gentle wave line, a breath, with a
+
+  small moss dot. Exactly the attached style: a soft cream fill (#FBF1D8)
+
+  inside a rounded warm cocoa line (#5B4636) of the same weight, relative to
+
+  the icon''s size, as on the attached sheet, with one small flat accent of
+
+  honey (#F2B45A) or moss green (#94B062); no gradients and no shading.
+
+  Rounded, friendly, chunky forms, simple enough to read at a tiny size.
+
+  Draw this one icon only, once.
+
+
+  AVOID: a second icon, a grid or a sheet of icons, any icon copied from the attached sheet, text, letters,
+  numbers, a brand logo, gradients, shading, 3D, glass, a shadow, thin hairlines, a line heavier than
+  the attached sheet''s, a background shape, a circle, tile or badge behind the icon, a white sticker
+  border
+
+
+  Output: one image, transparent background PNG, square 1024 x 1024.
+
+  '
+attachments:
+- path: design/art/takes/batch-46-flat-icons/x-icons-flat-duo/ui__x-icons-flat-duo--t2.webp
+  role: 'The app''s existing icon sheet: the exact style to copy (line weight, corner radius, cream fill,
+    honey and moss accents). Draw none of its icons again; it shows nine icons, you draw one.'
+  sha256: ef8c8c041048042b8aea747aa0e2b3a36330ede0266f3212ad27970695cc3e81

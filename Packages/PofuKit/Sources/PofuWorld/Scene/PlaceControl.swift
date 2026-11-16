@@ -28,7 +28,7 @@ struct PlaceControl: View {
         let glyph = stop.controlGlyph
         Menu {
             Button {
-                model.go(to: .home)
+                model.go(to: .mid)
             } label: {
                 Text(verbatim: WorldStrings.placePofu)
             }

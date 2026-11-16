@@ -37,6 +37,25 @@ public enum PofuPaint: String, CaseIterable, Sendable {
     case duoLetter = "paint-duo-letter"
     case duoShield = "paint-duo-shield"
     case duoGift = "paint-duo-gift"
+    /// Batch 128, one icon per take (`icons-duo`): the Settings set and the world set.
+    case duoSound = "paint-duo-sound"
+    case duoWind = "paint-duo-wind"
+    case duoSprout = "paint-duo-sprout"
+    case duoTea = "paint-duo-tea"
+    case duoKey = "paint-duo-key"
+    case duoList = "paint-duo-list"
+    case duoCloud = "paint-duo-cloud"
+    case duoStar = "paint-duo-star"
+    case duoBreath = "paint-duo-breath"
+    case duoWand = "paint-duo-wand"
+    case duoHourglass = "paint-duo-hourglass"
+    case duoMoon = "paint-duo-moon"
+    case duoHand = "paint-duo-hand"
+    case duoGrid = "paint-duo-grid"
+    case duoSun = "paint-duo-sun"
+    case duoLantern = "paint-duo-lantern"
+    case duoCalendar = "paint-duo-calendar"
+    case duoDrop = "paint-duo-drop"
 
     /// The pixels-per-point the file was baked at.
     var scale: Double { 3 }

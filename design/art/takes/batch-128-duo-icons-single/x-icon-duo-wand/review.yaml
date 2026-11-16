@@ -1,0 +1,95 @@
+batch: batch-128-duo-icons-single
+manifest: tools/imagegen/manifest/batch-128-duo-icons-single.yaml
+manifest_sha256: 81c715219faae80588a55d5e884f216dfb004825abaa787a5034905db93f6dac
+job: x-icon-duo-wand
+contact_sheet: design/art/takes/batch-128-duo-icons-single/x-icon-duo-wand/contact.jpg
+source: codex-cloud
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+status: skipped
+pick: 2
+lead_review: "Lead pick: take 2 has the chunkier cream stick and a clear honey star with three short sparks, reads at 22 pt; line 5.2 percent, slightly heavier than the shipped sheet but under 1 px at device size."
+selection:
+  method: manual icon-style review after automated QA
+  pick: null
+  note: Both takes depict one cocoa-outlined wand with a honey star and transparent background, but both
+    trigger value_floor (p5 lightness 32–33 vs R1 59); take 1 also warns on palette_drift. At small size
+    the cocoa outline reads heavier than the shipped icon sheet, against the manifest’s same-weight/not-heavier
+    review criterion. Keep both exploration takes, mark skipped under the QA/style fallback, and do not
+    promote; the two-take cap is reached.
+takes:
+- take: 1
+  file: ui__x-icon-duo-wand--t1.webp
+  source_file: /workspace/generated_images/exec-ba185c69-3faf-4d31-834b-ca36a8690048.png
+  source_sha256: c394bba8b273423eec4124bf9c1c73df35984f4c392036928753b02647c071d5
+  source_dimensions:
+  - 1254
+  - 1254
+  backend: codex-cloud
+  qa: warn
+  lock_load: 0.0
+  harmony: null
+  warnings:
+  - check: value_floor
+    status: warn
+    message: lightness p5 32 (R1 59)
+  - check: palette_drift
+    status: warn
+    message: mean dE 2.8, p95 3.7, off-palette 0.0%
+  review_webp_bytes: 51544
+- take: 2
+  file: ui__x-icon-duo-wand--t2.webp
+  source_file: /workspace/generated_images/exec-28b54b34-bd2d-4832-b680-09e31e3eb132.png
+  source_sha256: d5da2744fb457a197140952c03cac9f016ee1ba9b99543f294197c3fd8419b7c
+  source_dimensions:
+  - 1254
+  - 1254
+  backend: codex-cloud
+  qa: warn
+  lock_load: 0.0
+  harmony: null
+  warnings:
+  - check: value_floor
+    status: warn
+    message: lightness p5 33 (R1 59)
+  review_webp_bytes: 48558
+prompt: 'REFERENCES (attached, in this order):
+
+  1. The app''s existing icon sheet: the exact style to copy (line weight, corner radius, cream fill,
+  honey and moss accents). Draw none of its icons again; it shows nine icons, you draw one.
+
+
+  One app menu icon for the same set as the icons on the attached sheet,
+
+  alone and centred on a transparent background, filling about two thirds of
+
+  the square: a rounded magic wand with a small honey star at its tip.
+
+  Exactly the attached style: a soft cream fill (#FBF1D8) inside a rounded
+
+  warm cocoa line (#5B4636) of the same weight, relative to the icon''s size,
+
+  as on the attached sheet, with one small flat accent of honey (#F2B45A) or
+
+  moss green (#94B062); no gradients and no shading. Rounded, friendly,
+
+  chunky forms, simple enough to read at a tiny size. Draw this one icon
+
+  only, once.
+
+
+  AVOID: a second icon, a grid or a sheet of icons, any icon copied from the attached sheet, text, letters,
+  numbers, a brand logo, gradients, shading, 3D, glass, a shadow, thin hairlines, a line heavier than
+  the attached sheet''s, a background shape, a circle, tile or badge behind the icon, a white sticker
+  border
+
+
+  Output: one image, transparent background PNG, square 1024 x 1024.
+
+  '
+attachments:
+- path: design/art/takes/batch-46-flat-icons/x-icons-flat-duo/ui__x-icons-flat-duo--t2.webp
+  role: 'The app''s existing icon sheet: the exact style to copy (line weight, corner radius, cream fill,
+    honey and moss accents). Draw none of its icons again; it shows nine icons, you draw one.'
+  sha256: ef8c8c041048042b8aea747aa0e2b3a36330ede0266f3212ad27970695cc3e81

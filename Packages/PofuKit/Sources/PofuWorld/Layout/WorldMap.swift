@@ -60,6 +60,10 @@ public struct WorldMap: Sendable {
     public let nearLimitScale: Double
     public let nearFeetY: Double
     public let nearFeetX: Double
+    /// Chrome opacity falls from 1 to 0 between these multiples of the mid scale (ADR-0027).
+    public var chromeFadeScale: ClosedRange<Double> = 1.05 ... 1.25
+    /// Near begins at this multiple of the mid scale (ADR-0027).
+    public var nearMidMultiple = 1.25
     public let midChrome: [Piece]
     public let mapCorner: Piece
     public let nearBack: Piece
@@ -148,8 +152,8 @@ extension WorldMap {
         struct Frame: Decodable { var footFraction: Double; var minX: Double; var maxX: Double; var minY: Double; var minScale: Double }
         struct PieceFile: Decodable { var id: String; var box: [Double] }
         struct Backdrop: Decodable { var lane: [Double]; var lipTop: Double; var map: [PieceFile]; var mid: [PieceFile]; var midLipTop: Double }
-        struct Mid: Decodable { var fitWidth: Double; var centerY: Double }
-        struct Near: Decodable { var restScale: Double; var limitScale: Double; var feetY: Double; var feetX: Double }
+        struct Mid: Decodable { var fitWidth: Double; var centerY: Double; var chromeFadeScale: [Double]? }
+        struct Near: Decodable { var restScale: Double; var limitScale: Double; var feetY: Double; var feetX: Double; var midMultiple: Double? }
         struct Chrome: Decodable { var mid: [PieceFile]; var mapCorner: PieceFile; var nearBack: PieceFile }
         var unitsPerPlatePoint: Double
         var home: Home
@@ -189,7 +193,7 @@ extension WorldMap {
             ))
         }
         let stages = Dictionary(uniqueKeysWithValues: f.stages.compactMap { key, value in Int(key).map { ($0, value) } })
-        return WorldMap(
+        var map = WorldMap(
             unitsPerPlatePoint: f.unitsPerPlatePoint, slots: slots, tierPitch: f.tierPitch,
             towerWidth: f.slotArt.towerWidth, towerHeight: f.slotArt.towerHeight,
             chipHeight: f.chip.height, chipGap: f.chip.gap,
@@ -202,5 +206,8 @@ extension WorldMap {
             midChrome: f.chrome.mid.map(piece), mapCorner: piece(f.chrome.mapCorner), nearBack: piece(f.chrome.nearBack),
             stages: stages, tier2States: f.tier2States
         )
+        if let fade = f.mid.chromeFadeScale, fade.count == 2, fade[0] < fade[1] { map.chromeFadeScale = fade[0] ... fade[1] }
+        if let multiple = f.near.midMultiple { map.nearMidMultiple = multiple }
+        return map
     }
 }

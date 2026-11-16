@@ -70,7 +70,7 @@ final class PlateLifeScreenshotTests: XCTestCase {
             world.koke = WonderStatus(phase: .arrived, stage: 4, giftIsNew: true)
             world.caglayan = WonderStatus(phase: .arrived, stage: 4, giftIsNew: true)
         }
-        let island = IslandSceneModel(framing: .home)
+        let island = IslandSceneModel(framing: .mid)
         let home = WorldHomeModel(now: { now }, schedulesCues: false)
         if shot == .build {
             // The tea stall's fifth level; the burst of light is blooming 0.72 s in, the tag just in.

@@ -43,7 +43,7 @@ final class ConceptMatchScreenshotTests: XCTestCase {
 
     @MainActor
     private func render(hour: Double, weather: WeatherConditions, whole: Bool, in scene: UIWindowScene) async throws -> UIImage {
-        let model = IslandSceneModel(framing: .home)
+        let model = IslandSceneModel(framing: .mid)
         if whole { model.holdEstablishingShot() }
         var look = WorldLook(hourOverride: hour)
         look.weatherOverride = weather

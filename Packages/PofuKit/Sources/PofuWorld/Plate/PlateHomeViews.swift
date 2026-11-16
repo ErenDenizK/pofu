@@ -106,8 +106,9 @@ struct PlateHomeLayer: View {
             if fade > 0.001 {
                 ZStack(alignment: .topLeading) {
                     if let sky = plate.skySet {
-                        // A matted plate stands on the sky set in place of the set's own island layer.
-                        SkySetLayers(sky: sky, plate: plate, pose: pose, reference: plate.skyReference(width: Double(size.width), height: Double(size.height)), size: size, offset: offset, start: start, drawsIsland: !plate.isMatted)
+                        // A matted plate stands on the sky set in place of the set's own island layer; the sea
+                        // runs on below the painting's foot (`homeSet`, a stopgap until WP9's floor).
+                        SkySetLayers(sky: PaintedSky.homeSet(sky), plate: plate, pose: pose, reference: plate.skyReference(width: Double(size.width), height: Double(size.height)), size: size, offset: offset, start: start, drawsIsland: !plate.isMatted)
                         if plate.isMatted {
                             PlateImage(name: plate.plate.drawnPlateArt(light: plate.light, stage: plate.stage), box: plate.plateImageBox, pose: pose, size: size, offset: offset)
                         }

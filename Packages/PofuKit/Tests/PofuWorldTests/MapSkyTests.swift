@@ -47,13 +47,13 @@ struct MapSkyTests {
         let rail = CameraRail(width: width, height: height, stops: home.stops, whole: home.wholeStop)
         var poses: [(String, CameraPose)] = [
             ("map", rail.pose(of: .map)), ("apex", rail.pose(z: CameraFlight.apexZ)), ("past the map", rail.pose(z: -0.3)),
-            ("island", rail.pose(of: .island)), ("home", rail.pose(of: .home)),
+            ("mid", rail.pose(of: .mid)), ("near rest", rail.pose(z: rail.restZ)),
         ]
         for island in [IslandID.koke, .caglayan, .harbor] {
             let stop = try #require(IslandFraming.isleStop(island, width: width, height: height))
             let at = CameraPose(scale: stop.scale, look: stop.look, anchorY: stop.anchorY)
             poses.append(("\(island) stop", at))
-            for from in [rail.pose(of: .island), rail.pose(of: .home)] {
+            for from in [rail.pose(of: .mid)] {
                 for (a, b) in [(from, at), (at, from)] {
                     let flight = CameraFlight(from: a, to: b, apexLogScale: rail.pose(z: CameraFlight.apexZ).logScale)
                     for step in 0...20 {
@@ -368,7 +368,7 @@ struct MapSkyTests {
         let set = try #require(plate.skySet)
         let cameras = try Self.cameras(width: 402, height: 874)
         let reference = plate.skyReference(width: 402, height: 874)
-        let home = try #require(cameras.first { $0.name == "home" }?.pose)
+        let home = try #require(cameras.first { $0.name == "mid" }?.pose)
         let map = try #require(cameras.first { $0.name == "map" }?.pose)
         #expect(abs(home.scale - reference.scale) < 1e-9 && abs(home.lookX - reference.lookX) < 1e-9)
         for layer in set.layers {

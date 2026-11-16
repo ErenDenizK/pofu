@@ -25,7 +25,7 @@ struct WorldHitTestTests {
     }
 
     @Test func theFrontmostTargetWins() {
-        let pose = rail.pose(of: .home)
+        let pose = rail.pose(of: .mid)
         let spot = WorldPoint(x: 0, y: 0)
         let behind = target(.station(.windmill), at: spot, half: 30, depth: 10)
         let front = target(.resident(.mochi), at: spot, half: 30, depth: 40)
@@ -37,7 +37,7 @@ struct WorldHitTestTests {
     }
 
     @Test func aTieGoesToTheNearestCentre() {
-        let pose = rail.pose(of: .home)
+        let pose = rail.pose(of: .mid)
         let a = target(.station(.windmill), at: WorldPoint(x: 0, y: 0), half: 20, depth: 5)
         let b = target(.station(.workshop), at: WorldPoint(x: 12, y: 0), half: 20, depth: 5)
         let nearB = pose.project(WorldPoint(x: 9, y: 0), width: width)
@@ -59,14 +59,14 @@ struct WorldHitTestTests {
     }
 
     @Test func aBigTargetKeepsItsOwnSize() {
-        let pose = rail.pose(of: .home)
+        let pose = rail.pose(of: .mid)
         let big = target(.station(.windmill), at: WorldPoint(x: 0, y: 0), half: 60, depth: 0)
         let rect = WorldHitTest.screenRect(of: big, pose: pose, width: width)
         #expect(abs((rect.maxX - rect.minX) - 120 * pose.scale) < 1e-6)
     }
 
     @Test func theViewOffsetMovesTheTargets() {
-        let pose = rail.pose(of: .home)
+        let pose = rail.pose(of: .mid)
         let t = target(.station(.windmill), at: WorldPoint(x: 0, y: 0), half: 20, depth: 0)
         let centre = pose.project(WorldPoint(x: 0, y: 0), width: width)
         #expect(WorldHitTest.resolve(x: centre.x + 20, y: centre.y, targets: [t], pose: pose, width: width, offset: (20, 0)) == t)
@@ -74,13 +74,15 @@ struct WorldHitTestTests {
     }
 
     @Test func emptyGroundResolvesToNothing() {
-        let pose = rail.pose(of: .home)
+        let pose = rail.pose(of: .mid)
         let targets = WorldHitTest.targets(stations: IslandSamples.playedWeek().snapshot.stations, z: 2)
         #expect(WorldHitTest.resolve(x: 5, y: 5, targets: targets, pose: pose, width: width) == nil)
     }
 
     @Test func atHomeThePropsAnswerOnTheirSlots() throws {
-        let pose = rail.pose(of: .home)
+        // The old Home framing (×1.40): at mid's ×1.145 Mochi's sprite covers the lantern's slot.
+        let stop = IslandFraming.homeStop(width: width)
+        let pose = CameraPose(scale: stop.scale, look: stop.look, anchorY: stop.anchorY)
         let targets = WorldHitTest.targets(stations: IslandSamples.playedWeek().snapshot.stations, z: 2)
         for prop in HomeSlots.Prop.allCases {
             let p = pose.project(prop.slot, width: width)
@@ -90,7 +92,7 @@ struct WorldHitTestTests {
     }
 
     @Test func thePropsAreTappableAtTheIslandFramingToo() throws {
-        let pose = rail.pose(of: .island)
+        let pose = rail.pose(of: .mid)
         let targets = WorldHitTest.targets(stations: IslandSamples.playedWeek().snapshot.stations, z: 1)
         let p = pose.project(HomeSlots.jar, width: width)
         let hit = try #require(WorldHitTest.resolve(x: p.x, y: p.y, targets: targets, pose: pose, width: width))
@@ -121,7 +123,7 @@ struct WorldHitTestTests {
     }
 
     @Test func aBuiltStationAnswersAtTheIslandFraming() throws {
-        let pose = rail.pose(of: .island)
+        let pose = rail.pose(of: .mid)
         let status = station(.windmill)
         let targets = WorldHitTest.targets(stations: [status], z: 1)
         let anchor = try #require(IslandLayout.stationAnchors[.windmill])

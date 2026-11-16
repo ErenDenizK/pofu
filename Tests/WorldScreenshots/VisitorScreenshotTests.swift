@@ -51,21 +51,21 @@ final class VisitorScreenshotTests: XCTestCase {
         day.visitor = VisitorSnapshot(
             resident: .sumi, reason: .gift, slot: .v1, state: .present, gift: .seeds(3), hearts: 1
         )
-        let v1Model = IslandSceneModel(framing: .island)
+        let v1Model = IslandSceneModel(framing: .mid)
         v1Model.holdPan(start: IslandFraming.panValue(lookX: VisitorSlots.v1.x))
         try write(try await render(day, model: v1Model, hour: 12, in: scene), name: "visitor-v1-day", to: folder)
 
         // The same visit, greeted: the heart answers the tap.
         var greeted = day
         greeted.visitor?.state = .greeted
-        let greetedModel = IslandSceneModel(framing: .island)
+        let greetedModel = IslandSceneModel(framing: .mid)
         greetedModel.holdPan(start: IslandFraming.panValue(lookX: VisitorSlots.v1.x))
         try write(try await render(greeted, model: greetedModel, hour: 12, in: scene), name: "visitor-v1-greeted", to: folder)
 
         // A help visit: the kite that needs a tap stands beside the visitor.
         var help = world(level: 2)
         help.visitor = VisitorSnapshot(resident: .damla, reason: .help, slot: .v1, state: .present)
-        let helpModel = IslandSceneModel(framing: .island)
+        let helpModel = IslandSceneModel(framing: .mid)
         helpModel.holdPan(start: IslandFraming.panValue(lookX: VisitorSlots.v1.x))
         try write(try await render(help, model: helpModel, hour: 12, in: scene), name: "visitor-v1-help", to: folder)
 
@@ -73,25 +73,25 @@ final class VisitorScreenshotTests: XCTestCase {
         var quiet = world(level: 5)
         quiet.invitationOpen = true
         quiet.metResidents = [.sumi, .damla]
-        let quietModel = IslandSceneModel(framing: .island)
+        let quietModel = IslandSceneModel(framing: .mid)
         quietModel.holdPan(start: IslandFraming.panValue(lookX: VisitorSlots.v1.x))
         try write(try await render(quiet, model: quietModel, hour: 12, in: scene), name: "visitor-quiet-day", to: folder)
 
         // H4 lit at night when somebody stays over; dark otherwise.
         var night = world(level: 5, bedtime: true)
         night.visitor = VisitorSnapshot(resident: .boncuk, reason: .stayOver, slot: .h4, state: .present)
-        let lit = try await render(night, model: IslandSceneModel(framing: .home), hour: 22, in: scene)
+        let lit = try await render(night, model: IslandSceneModel(framing: .mid), hour: 22, in: scene)
         var dark = world(level: 5, bedtime: true)
         dark.visitor = nil
-        let off = try await render(dark, model: IslandSceneModel(framing: .home), hour: 22, in: scene)
+        let off = try await render(dark, model: IslandSceneModel(framing: .mid), hour: 22, in: scene)
         try write(lit, name: "visitor-h4-night", to: folder)
         try write(off, name: "visitor-h4-night-off", to: folder)
 
         // The dressing and the critters at IL1 and IL6.
         for level in [1, 6] {
             let w = world(level: level)
-            let home = try await render(w, model: IslandSceneModel(framing: .home), hour: 12, in: scene)
-            let islandModel = IslandSceneModel(framing: .island)
+            let home = try await render(w, model: IslandSceneModel(framing: .mid), hour: 12, in: scene)
+            let islandModel = IslandSceneModel(framing: .mid)
             islandModel.holdEstablishingShot()
             let island = try await render(w, model: islandModel, hour: 12, in: scene)
             try write(home, name: "dressing-il\(level)-home", to: folder)

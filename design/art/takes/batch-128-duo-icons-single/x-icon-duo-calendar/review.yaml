@@ -1,0 +1,91 @@
+batch: batch-128-duo-icons-single
+manifest: tools/imagegen/manifest/batch-128-duo-icons-single.yaml
+manifest_sha256: 81c715219faae80588a55d5e884f216dfb004825abaa787a5034905db93f6dac
+job: x-icon-duo-calendar
+contact_sheet: design/art/takes/batch-128-duo-icons-single/x-icon-duo-calendar/contact.jpg
+source: codex-cloud
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+status: skipped
+pick: 2
+lead_review: "Lead pick: take 2 is the asked cream page, two rings and one honey dot (take 1 adds a moss header as a second accent); line 5.4 percent, slightly heavier than the shipped sheet but under 1 px at 22 pt."
+selection:
+  method: manual style and QA review
+  pick: null
+  note: Both candidates depict a calendar with two rings, but the cocoa outline and top rings are much
+    heavier than the attached icon sheet. The honey dot is oversized relative to the requested small accent;
+    take 1 also adds a large moss header. QA warns p5 lightness 30 and 32 versus R1 59. Two-take limit is
+    reached; archive both and skip without promotion.
+takes:
+- take: 1
+  file: ui__x-icon-duo-calendar--t1.webp
+  source_file: /workspace/generated_images/exec-52cb847a-f584-42b9-be11-1fceb726729a.png
+  source_sha256: 0f8b9c5ee155587d2971deb599f9ede7e3823c6db10dd40f57cd933f1c1da5e2
+  source_dimensions:
+  - 1254
+  - 1254
+  backend: codex-cloud
+  qa: warn
+  lock_load: 0.0
+  harmony: null
+  warnings:
+  - check: value_floor
+    status: warn
+    message: lightness p5 30 (R1 59)
+  review_webp_bytes: 38626
+- take: 2
+  file: ui__x-icon-duo-calendar--t2.webp
+  source_file: /workspace/generated_images/exec-ad108fc5-e69d-497e-bc9a-62e98a6a3a4a.png
+  source_sha256: 338f53d9c31734c1e2f779952ce2587f951260c3386d8ee4bd245bd7372f3352
+  source_dimensions:
+  - 1254
+  - 1254
+  backend: codex-cloud
+  qa: warn
+  lock_load: 0.0
+  harmony: null
+  warnings:
+  - check: value_floor
+    status: warn
+    message: lightness p5 32 (R1 59)
+  review_webp_bytes: 39608
+prompt: 'REFERENCES (attached, in this order):
+
+  1. The app''s existing icon sheet: the exact style to copy (line weight, corner radius, cream fill,
+  honey and moss accents). Draw none of its icons again; it shows nine icons, you draw one.
+
+
+  One app menu icon for the same set as the icons on the attached sheet,
+
+  alone and centred on a transparent background, filling about two thirds of
+
+  the square: a rounded calendar page with two small rings on top and a
+
+  honey dot on the page. Exactly the attached style: a soft cream fill
+
+  (#FBF1D8) inside a rounded warm cocoa line (#5B4636) of the same weight,
+
+  relative to the icon''s size, as on the attached sheet, with one small flat
+
+  accent of honey (#F2B45A) or moss green (#94B062); no gradients and no
+
+  shading. Rounded, friendly, chunky forms, simple enough to read at a tiny
+
+  size. Draw this one icon only, once.
+
+
+  AVOID: a second icon, a grid or a sheet of icons, any icon copied from the attached sheet, text, letters,
+  numbers, a brand logo, gradients, shading, 3D, glass, a shadow, thin hairlines, a line heavier than
+  the attached sheet''s, a background shape, a circle, tile or badge behind the icon, a white sticker
+  border
+
+
+  Output: one image, transparent background PNG, square 1024 x 1024.
+
+  '
+attachments:
+- path: design/art/takes/batch-46-flat-icons/x-icons-flat-duo/ui__x-icons-flat-duo--t2.webp
+  role: 'The app''s existing icon sheet: the exact style to copy (line weight, corner radius, cream fill,
+    honey and moss accents). Draw none of its icons again; it shows nine icons, you draw one.'
+  sha256: ef8c8c041048042b8aea747aa0e2b3a36330ede0266f3212ad27970695cc3e81

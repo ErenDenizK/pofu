@@ -279,6 +279,116 @@ def bake_icon_duo(entry: dict, out: Path) -> None:
     out.parent.mkdir(parents=True, exist_ok=True)
     canvas.save(out, "PNG", optimize=True)
 
+CREAM = (251, 241, 216)  # #FBF1D8, the icon sheet's fill
+COCOA = (91, 70, 54)  # #5B4636, its line
+HONEY = (242, 180, 90)  # #F2B45A, its accent
+
+
+def _components(mask):
+    """4-connected components of a boolean array, largest first, as boolean arrays (numpy only)."""
+    import numpy as np
+    from collections import deque
+
+    h, w = mask.shape
+    flat = mask.ravel()
+    seen = np.zeros(flat.shape, dtype=bool)
+    found = []
+    for start in np.flatnonzero(flat):
+        if seen[start]:
+            continue
+        seen[start] = True
+        queue, members = deque([start]), [start]
+        while queue:
+            i = queue.popleft()
+            x = i % w
+            for j, ok in ((i - w, i >= w), (i + w, i < flat.size - w), (i - 1, x > 0), (i + 1, x < w - 1)):
+                if ok and flat[j] and not seen[j]:
+                    seen[j] = True
+                    queue.append(j)
+                    members.append(j)
+        found.append(members)
+    found.sort(key=len, reverse=True)
+    out = []
+    for members in found:
+        part = np.zeros(flat.shape, dtype=bool)
+        part[members] = True
+        out.append(part.reshape(h, w))
+    return out
+
+
+def _grow(mask, radius: int):
+    """`mask` grown by about `radius` px (an octagon: alternating square and cross steps)."""
+    import numpy as np
+
+    m = mask.copy()
+    for step in range(radius):
+        g = m.copy()
+        g[1:] |= m[:-1]
+        g[:-1] |= m[1:]
+        g[:, 1:] |= m[:, :-1]
+        g[:, :-1] |= m[:, 1:]
+        if step % 2 == 0:
+            g[1:, 1:] |= m[:-1, :-1]
+            g[1:, :-1] |= m[:-1, 1:]
+            g[:-1, 1:] |= m[1:, :-1]
+            g[:-1, :-1] |= m[1:, 1:]
+        m = g
+    return m
+
+
+def edit_duo(image: Image.Image, edit: str) -> Image.Image:
+    """The two reproducible plate edits of batch 128 (the lead's picks). `puddle` (drop, take 2): the
+    honey puddle round the drop's foot is cut away, keeping the closed cocoa outline and what it holds.
+    `star-honey` (star, take 1): the cream star is filled with honey and its three loose rays deleted."""
+    import numpy as np
+
+    px = np.asarray(image.convert("RGBA"), dtype=np.float64)
+    rgb, a = px[..., :3], px[..., 3]
+    solid = a > 200
+    cream = solid & (np.abs(rgb - CREAM).sum(axis=2) < 60)
+    inside = _components(cream)[0]  # the drop's or the star's own fill: the largest cream area
+    if edit == "puddle":
+        # the outline is a constant-width line round the fill: grow the fill by that width and keep it
+        ys, xs = np.nonzero(inside)
+        x = int(xs.mean())
+        # the outline's width: the dark run above the fill on the centre column, under the drop's tip
+        dark = (a[:, x] > 200) & (rgb[:, x].sum(axis=1) < 3 * 150)
+        ring = int(dark[: ys.min()].sum())
+        keep = _grow(inside, ring + 1)
+        # the drop holds no honey: any honey left at its foot is the puddle's rim, and goes too
+        honey = (np.abs(rgb - HONEY).sum(axis=2) < 120) | ((rgb[..., 0] - rgb[..., 2] > 70) & (rgb[..., 0] > 150))
+        out = px.copy()
+        out[..., 3] = np.where(keep & ~honey, a, 0)
+        return Image.fromarray(out.round().astype("uint8"), "RGBA")
+    if edit == "star-honey":
+        body = _components(a > 6)[0]  # the star; the loose rays are the other, smaller pieces
+        zone = _grow(inside, 3) & body
+        # each pixel's cream-to-cocoa blend, so the antialiased line keeps its softness over the new fill
+        d = np.array(COCOA, dtype=np.float64) - np.array(CREAM, dtype=np.float64)
+        t = np.clip(((rgb - CREAM) * d).sum(axis=2) / (d * d).sum(), 0, 1)[..., None]
+        honey = np.array(HONEY) * (1 - t) + np.array(COCOA) * t
+        out = px.copy()
+        out[..., :3] = np.where(zone[..., None], honey, rgb)
+        out[..., 3] = np.where(body, a, 0)
+        return Image.fromarray(out.round().astype("uint8"), "RGBA")
+    raise ValueError(f"unknown edit {edit}")
+
+
+def bake_icon_duo_single(entry: dict, out: Path) -> None:
+    """One two-tone icon from its own single-icon take (batch 128, `source`): the optional plate `edit`,
+    trimmed, fitted into 94 % of a square canvas of `points` x `scale` px (the sheet icons' margin), centred."""
+    image = Image.open(source_file(entry)).convert("RGBA")
+    if "edit" in entry:
+        image = edit_duo(image, entry["edit"])
+    image = trim(image)
+    side = entry["points"][0] * entry.get("scale", 3)
+    f = side * 0.94 / max(image.size)
+    image = image.resize((max(1, round(image.width * f)), max(1, round(image.height * f))), Image.LANCZOS)
+    canvas = Image.new("RGBA", (side, side), (0, 0, 0, 0))
+    canvas.alpha_composite(image, ((side - image.width) // 2, (side - image.height) // 2))
+    out.parent.mkdir(parents=True, exist_ok=True)
+    canvas.save(out, "PNG", optimize=True)
+
 
 def _recolour(image: Image.Image, pair: list[str]) -> Image.Image:
     """Night as a recolour of the picked day piece (asset system v1 section 2.1): each channel's
@@ -316,7 +426,7 @@ def bake_games(entry: dict, out: Path) -> None:
     if entry["target"] == "fx":
         return bake_fx(entry, out)
     if entry["target"] == "icons-duo":
-        return bake_icon_duo(entry, out)
+        return bake_icon_duo(entry, out) if "grid" in entry else bake_icon_duo_single(entry, out)
     if entry["target"] == "postcard":
         return bake_postcard(entry, out)
     if entry["target"] == "app":

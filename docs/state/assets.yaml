@@ -59,6 +59,24 @@ paint:  # PofuPaint, Packages/PofuKit/Sources/PofuDesignSystem/PofuPaint.swift
   paint-duo-letter: {state: in_bundle, master: "design/art/takes/batch-46-flat-icons/x-icons-flat-duo/ui__x-icons-flat-duo--t2.webp", note: "shipped before this table; in_frame not yet checked"}
   paint-duo-shield: {state: in_bundle, master: "design/art/takes/batch-46-flat-icons/x-icons-flat-duo/ui__x-icons-flat-duo--t2.webp", note: "shipped before this table; in_frame not yet checked"}
   paint-duo-gift: {state: in_bundle, master: "design/art/takes/batch-46-flat-icons/x-icons-flat-duo/ui__x-icons-flat-duo--t2.webp", note: "shipped before this table; in_frame not yet checked"}
+  paint-duo-sound: {state: in_bundle, master: "design/art/takes/batch-128-duo-icons-single/x-icon-duo-sound/ui__x-icon-duo-sound--t1.webp", note: "baked, wired in Settings or Screen Time rows; in_frame not yet checked"}
+  paint-duo-wind: {state: in_bundle, master: "design/art/takes/batch-128-duo-icons-single/x-icon-duo-wind/ui__x-icon-duo-wind--t1.webp", note: "baked, wired in Settings or Screen Time rows; in_frame not yet checked"}
+  paint-duo-sprout: {state: in_bundle, master: "design/art/takes/batch-128-duo-icons-single/x-icon-duo-sprout/ui__x-icon-duo-sprout--t1.webp", note: "baked, not wired: no place asks for it yet"}
+  paint-duo-tea: {state: in_bundle, master: "design/art/takes/batch-128-duo-icons-single/x-icon-duo-tea/ui__x-icon-duo-tea--t1.webp", note: "baked, not wired: no place asks for it yet"}
+  paint-duo-key: {state: in_bundle, master: "design/art/takes/batch-128-duo-icons-single/x-icon-duo-key/ui__x-icon-duo-key--t1.webp", note: "baked, not wired: no place asks for it yet"}
+  paint-duo-list: {state: in_bundle, master: "design/art/takes/batch-128-duo-icons-single/x-icon-duo-list/ui__x-icon-duo-list--t1.webp", note: "baked, wired in Settings or Screen Time rows; in_frame not yet checked"}
+  paint-duo-cloud: {state: in_bundle, master: "design/art/takes/batch-128-duo-icons-single/x-icon-duo-cloud/ui__x-icon-duo-cloud--t1.webp", note: "baked, not wired: no place asks for it yet"}
+  paint-duo-star: {state: in_bundle, master: "design/art/takes/batch-128-duo-icons-single/x-icon-duo-star/ui__x-icon-duo-star--t1.webp", note: "baked, not wired: no place asks for it yet"}
+  paint-duo-breath: {state: in_bundle, master: "design/art/takes/batch-128-duo-icons-single/x-icon-duo-breath/ui__x-icon-duo-breath--t2.webp", note: "baked, not wired: the tile with a wave and a dot reads as a photo icon, the old glyph stays"}
+  paint-duo-wand: {state: in_bundle, master: "design/art/takes/batch-128-duo-icons-single/x-icon-duo-wand/ui__x-icon-duo-wand--t2.webp", note: "baked, wired in Settings or Screen Time rows; in_frame not yet checked"}
+  paint-duo-hourglass: {state: in_bundle, master: "design/art/takes/batch-128-duo-icons-single/x-icon-duo-hourglass/ui__x-icon-duo-hourglass--t2.webp", note: "baked, wired in Settings or Screen Time rows; in_frame not yet checked"}
+  paint-duo-moon: {state: in_bundle, master: "design/art/takes/batch-128-duo-icons-single/x-icon-duo-moon/ui__x-icon-duo-moon--t2.webp", note: "baked, wired in Settings or Screen Time rows; in_frame not yet checked"}
+  paint-duo-hand: {state: in_bundle, master: "design/art/takes/batch-128-duo-icons-single/x-icon-duo-hand/ui__x-icon-duo-hand--t2.webp", note: "baked, wired in Settings or Screen Time rows; in_frame not yet checked"}
+  paint-duo-grid: {state: in_bundle, master: "design/art/takes/batch-128-duo-icons-single/x-icon-duo-grid/ui__x-icon-duo-grid--t2.webp", note: "baked, wired in Settings or Screen Time rows; in_frame not yet checked"}
+  paint-duo-sun: {state: in_bundle, master: "design/art/takes/batch-128-duo-icons-single/x-icon-duo-sun/ui__x-icon-duo-sun--t2.webp", note: "baked, not wired: no place asks for it yet"}
+  paint-duo-lantern: {state: in_bundle, master: "design/art/takes/batch-128-duo-icons-single/x-icon-duo-lantern/ui__x-icon-duo-lantern--t2.webp", note: "baked, not wired: no place asks for it yet"}
+  paint-duo-calendar: {state: in_bundle, master: "design/art/takes/batch-128-duo-icons-single/x-icon-duo-calendar/ui__x-icon-duo-calendar--t2.webp", note: "baked, not wired: no place asks for it yet"}
+  paint-duo-drop: {state: in_bundle, master: "design/art/takes/batch-128-duo-icons-single/x-icon-duo-drop/ui__x-icon-duo-drop--t2.webp", note: "baked, not wired: no place asks for it yet"}
 sticker:  # Sticker, Packages/PofuKit/Sources/PofuDesignSystem/Sticker.swift
   sticker-pofu-happy: {state: in_repo, master: "design/art/masters/sticker-pofu-happy", note: "not bundled yet (wave 0, a later slice)"}
   sticker-pofu-sleepy: {state: in_repo, master: "design/art/masters/sticker-pofu-sleepy", note: "not bundled yet (wave 0, a later slice)"}

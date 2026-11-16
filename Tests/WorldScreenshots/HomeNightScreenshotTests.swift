@@ -61,7 +61,7 @@ final class HomeNightScreenshotTests: XCTestCase {
                 islandLevel: state.level,
                 wellbeing: 84
             )
-            let island = IslandSceneModel(framing: .home)
+            let island = IslandSceneModel(framing: .mid)
             let home = WorldHomeModel(now: { now }, schedulesCues: false)
             let inputs = VisitInputs(now: now, world: world, lastSettled: now.addingTimeInterval(-5 * 60), calendar: .current)
             home.beginVisit(VisitQueue.plan(inputs))

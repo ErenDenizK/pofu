@@ -41,22 +41,22 @@ final class SkyScreenshotTests: XCTestCase {
         var rows: [[UIImage]] = [[], [], []]
         var titles: [[String]] = [[], [], []]
         for (id, hour, title) in hours {
-            let home = try await render(IslandSamples.grownIsland(wellbeing: 78), framing: .home, hour: hour, in: scene)
+            let home = try await render(IslandSamples.grownIsland(wellbeing: 78), framing: .mid, hour: hour, in: scene)
             try write(home, name: "sky-home-\(id)", to: folder)
             rows[0].append(home)
             titles[0].append("Home \(title)")
 
-            let island = try await render(IslandSamples.grownIsland(wellbeing: 78), framing: .island, hour: hour, in: scene)
+            let island = try await render(IslandSamples.grownIsland(wellbeing: 78), framing: .mid, hour: hour, in: scene)
             try write(island, name: "sky-island-\(id)", to: folder)
             rows[1].append(island)
             titles[1].append("Island \(title)")
 
-            let koke = try await render(kokeWorld(stage: 0), framing: .island, hour: hour, isle: .koke, in: scene)
+            let koke = try await render(kokeWorld(stage: 0), framing: .mid, hour: hour, isle: .koke, in: scene)
             try write(koke, name: "koke-stage0-\(id)", to: folder)
             rows[2].append(koke)
             titles[2].append("Koke stage 0 \(title)")
         }
-        try write(try await render(kokeWorld(stage: 2), framing: .island, hour: 12, isle: .koke, in: scene), name: "koke-stage2-1200", to: folder)
+        try write(try await render(kokeWorld(stage: 2), framing: .mid, hour: 12, isle: .koke, in: scene), name: "koke-stage2-1200", to: folder)
         try write(grid(rows, titles: titles), name: "sky-fog-sheet", to: folder)
     }
 

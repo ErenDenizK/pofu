@@ -66,11 +66,11 @@ final class LookScreenshotTests: XCTestCase {
         var shots: [String: UIImage] = [:]
         var regions: [String: Any] = [:]
         for shot in grades + script {
-            for framing in [WorldFraming.home, .island] {
+            for framing in [WorldFraming.mid, .near] {
                 let model = IslandSceneModel(framing: framing)
                 let view = LookScene(world: world(wellbeing: shot.wellbeing), model: model).environment(\.worldLook, shot.look)
                 let image = try await render(AnyView(view), in: scene, settle: 1400)
-                let name = "\(shot.id)-\(framing == .home ? "home" : "island")"
+                let name = "\(shot.id)-\(framing == .mid ? "home" : "near")"
                 if shot.id.hasPrefix("grade-") {
                     try write(image, name: name, to: folder)
                     regions[name] = frameRegions(framing: framing, size: image.size)
@@ -78,15 +78,15 @@ final class LookScreenshotTests: XCTestCase {
                 shots[name] = image
             }
         }
-        let rows = ["home", "island"]
+        let rows = ["home", "near"]
         try write(
             grid(rows.map { r in grades.map { shots["\($0.id)-\(r)"]! } },
-                 titles: rows.map { r in grades.map { "\($0.title) · \(r == "home" ? "Home" : "Island")" } }),
+                 titles: rows.map { r in grades.map { "\($0.title) · \(r == "home" ? "Home" : "Near")" } }),
             name: "look-compare", to: folder
         )
         try write(
             grid(rows.map { r in script.map { shots["\($0.id)-\(r)"]! } },
-                 titles: rows.map { r in script.map { "\($0.title) · \(r == "home" ? "Home" : "Island")" } }),
+                 titles: rows.map { r in script.map { "\($0.title) · \(r == "home" ? "Home" : "Near")" } }),
             name: "look-script", to: folder
         )
         let json = try JSONSerialization.data(withJSONObject: regions, options: [.prettyPrinted, .sortedKeys])
@@ -100,7 +100,7 @@ final class LookScreenshotTests: XCTestCase {
         // The painted celebration card over the world (system UI is glass,
         // celebration is painted).
         let card = ZStack {
-            LookScene(world: world(wellbeing: 78), model: IslandSceneModel(framing: .island))
+            LookScene(world: world(wellbeing: 78), model: IslandSceneModel(framing: .mid))
                 .environment(\.worldLook, WorldLook(hourOverride: 12))
             CelebrationCard(kicker: "Yeni seviye", title: "Çay ocağı 3", detail: "Mochi bir tabure daha getirdi.")
         }
@@ -130,18 +130,18 @@ final class LookScreenshotTests: XCTestCase {
             return try await render(AnyView(view), in: scene, settle: 1400)
         }
 
-        let nightHome = try await shot(.home, hour: 22)
-        let nightIsland = try await shot(.island, hour: 22)
+        let nightHome = try await shot(.mid, hour: 22)
+        let nightIsland = try await shot(.mid, hour: 22)
         try write(nightHome, name: "light-night-home", to: folder)
         try write(nightIsland, name: "light-night-island", to: folder)
-        let dim = try await shot(.home, hour: 22, calm: 1.0)
-        let bright = try await shot(.home, hour: 22, calm: 2.0)
+        let dim = try await shot(.mid, hour: 22, calm: 1.0)
+        let bright = try await shot(.mid, hour: 22, calm: 2.0)
         try write(
             grid([[dim, bright]], titles: [["Calm x1.0", "Calm x2.0"]]),
             name: "light-calm-compare", to: folder
         )
-        let duskHome = try await shot(.home, hour: 20)
-        let duskIsland = try await shot(.island, hour: 20)
+        let duskHome = try await shot(.mid, hour: 20)
+        let duskIsland = try await shot(.mid, hour: 20)
         try write(
             grid([[duskHome, duskIsland, nightHome, nightIsland]], titles: [["Dusk · Home", "Dusk · Island", "Night · Home", "Night · Island"]],
                  cell: CGSize(width: 201, height: 437)),
@@ -170,7 +170,7 @@ final class LookScreenshotTests: XCTestCase {
         let times: [(String, Double, String)] = [("0700", 7, "07:00"), ("1200", 12, "12:00"), ("1830", 18.5, "18:30"), ("2230", 22.5, "22:30")]
         var homes: [UIImage] = []
         for (id, hour, _) in times {
-            let image = try await shot(.home, hour: hour)
+            let image = try await shot(.mid, hour: hour)
             try write(image, name: "shadow-home-\(id)", to: folder)
             homes.append(image)
         }
@@ -179,12 +179,12 @@ final class LookScreenshotTests: XCTestCase {
             name: "shadow-times", to: folder
         )
         for (id, hour) in [("1200", 12.0), ("1830", 18.5)] {
-            try write(try await shot(.island, hour: hour), name: "shadow-pofu-\(id)", to: folder)
+            try write(try await shot(.mid, hour: hour), name: "shadow-pofu-\(id)", to: folder)
         }
         // The wide shot: the establishing frame, the whole island, so every
         // station and the shadow under it (and at night its light) is in view.
         func wide(hour: Double, debug: Bool = false) async throws -> UIImage {
-            let model = IslandSceneModel(framing: .island)
+            let model = IslandSceneModel(framing: .mid)
             model.holdEstablishingShot()
             var look = WorldLook(hourOverride: hour)
             look.shadowDebug = debug
@@ -230,7 +230,7 @@ final class LookScreenshotTests: XCTestCase {
         )
         for (id, hour) in [("1200", 12.0), ("2230", 22.5)] {
             for ms in [0, 300, 600, 900] {
-                let model = IslandSceneModel(framing: .island)
+                let model = IslandSceneModel(framing: .mid)
                 model.holdStationPan(from: .teaStall, to: .teaStall, at: 0)
                 let home = WorldHomeModel(now: { Date() })
                 home.buildStation(.teaStall, maxLevel: 5) { _ in BuildReceipt(station: .teaStall, level: 2, cost: Energy(10)) }
@@ -239,7 +239,7 @@ final class LookScreenshotTests: XCTestCase {
                 try write(try await render(AnyView(view), in: scene, settle: 1400), name: "sprite-levelup-\(ms)ms-\(id)", to: folder)
             }
         }
-        let model = IslandSceneModel(framing: .island)
+        let model = IslandSceneModel(framing: .mid)
         model.holdEstablishingShot()
         let view = LookScene(world: world(wellbeing: 78), model: model).environment(\.worldLook, WorldLook(hourOverride: 12))
         try write(try await render(AnyView(view), in: scene, settle: 1400), name: "clouds-1200", to: folder)
@@ -251,7 +251,7 @@ final class LookScreenshotTests: XCTestCase {
     /// coordinates (x0, y0, x1, y1), for `frame_metrics.py`.
     private func frameRegions(framing: WorldFraming, size: CGSize) -> [String: Any] {
         let rail = CameraRail(width: Double(size.width), height: Double(size.height))
-        let pose = rail.pose(of: framing)
+        let pose = rail.pose(z: rail.z(of: framing))
         func unit(_ box: WorldBox) -> [Double] {
             let a = pose.project(WorldPoint(x: box.minX, y: box.minY), width: rail.width)
             let b = pose.project(WorldPoint(x: box.maxX, y: box.maxY), width: rail.width)
@@ -291,7 +291,7 @@ final class LookScreenshotTests: XCTestCase {
             var row: [UIImage] = []
             var rowTitles: [String] = []
             for (title, lit, flame) in variants {
-                let model = IslandSceneModel(framing: .island)
+                let model = IslandSceneModel(framing: .mid)
                 model.holdStationPan(from: .teaStall, to: .teaStall, at: 0)
                 var look = WorldLook(hd2d: lit, depthMotion: false, hourOverride: hour)
                 look.litOverlays = flame
@@ -316,7 +316,7 @@ final class LookScreenshotTests: XCTestCase {
     @MainActor
     private func renderPlates(in scene: UIWindowScene, folder: URL) async throws {
         let shots: [(String, WorldFraming?, Double)] = [
-            ("establishing", nil, 12), ("Island", .island, 12), ("Home", .home, 12), ("Island · night", .island, 22),
+            ("establishing", nil, 12), ("Island", .mid, 12), ("Home", .mid, 12), ("Island · night", .mid, 22),
         ]
         var rows: [[UIImage]] = []
         var titles: [[String]] = []
@@ -324,7 +324,7 @@ final class LookScreenshotTests: XCTestCase {
             var row: [UIImage] = []
             var rowTitles: [String] = []
             for (title, framing, hour) in shots {
-                let model = IslandSceneModel(framing: framing ?? .island)
+                let model = IslandSceneModel(framing: framing ?? .mid)
                 if framing == nil {
                     model.holdEstablishingShot()
                 }
@@ -356,13 +356,13 @@ final class LookScreenshotTests: XCTestCase {
             var row: [UIImage] = []
             var rowTitles: [String] = []
             for t in times {
-                let model = IslandSceneModel(framing: .home)
-                model.holdFlight(from: .home, to: .island, at: t)
+                let model = IslandSceneModel(framing: .mid)
+                model.holdFlight(from: .mid, to: .map, at: t)
                 let look = WorldLook(depthMotion: depth, hourOverride: 12)
                 let image = try await render(AnyView(LookScene(world: world(wellbeing: 78), model: model).environment(\.worldLook, look)), in: scene, settle: 1200)
                 row.append(image)
-                var rig = CameraRig(framing: .home)
-                rig.fly(to: .island)
+                var rig = CameraRig(framing: .mid)
+                rig.fly(to: .map)
                 var elapsed = 0.0
                 while elapsed + 1e-9 < t {
                     rig.advance(1.0 / 120)
@@ -392,7 +392,7 @@ final class LookScreenshotTests: XCTestCase {
             var row: [UIImage] = []
             var rowTitles: [String] = []
             for t in times {
-                let model = IslandSceneModel(framing: .island)
+                let model = IslandSceneModel(framing: .mid)
                 model.holdPan(start: 0, velocity: -1100, at: t)
                 let look = WorldLook(depthMotion: depth, hourOverride: 12)
                 let image = try await render(AnyView(LookScene(world: world(wellbeing: 78), model: model).environment(\.worldLook, look)), in: scene, settle: 1200)
@@ -424,14 +424,14 @@ final class LookScreenshotTests: XCTestCase {
             ("look on (grade + HD-2D lite + depth in motion), golden hour", WorldLook(hourOverride: 18.5)),
         ]
         for (label, look) in looks {
-            let model = IslandSceneModel(framing: .island)
+            let model = IslandSceneModel(framing: .mid)
             let view = LookScene(world: IslandSamples.grownIsland(), model: model, still: false).environment(\.worldLook, look)
             let window = host(AnyView(view), in: scene)
             try await Task.sleep(for: .milliseconds(800))
 
             let meter = FrameMeter()
             meter.start()
-            for target in [WorldFraming.home, .map, .island, .home, .island] {
+            for target in [WorldFraming.mid, .map, .near, .mid, .near] {
                 model.go(to: target)
                 try await Task.sleep(for: .milliseconds(700))
             }

@@ -1,0 +1,91 @@
+batch: batch-128-duo-icons-single
+manifest: tools/imagegen/manifest/batch-128-duo-icons-single.yaml
+manifest_sha256: 0edf4752a8ed3cff37f1eefcfe4b7e5a9d84d4464f57049a088bbe3c34087c66
+job: x-icon-duo-sound
+contact_sheet: design/art/takes/batch-128-duo-icons-single/x-icon-duo-sound/contact.jpg
+source: codex-cloud
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+status: skipped
+pick: 1
+lead_review: "Lead pick: at 22 pt beside the shipped plus, home, map and shield take 1 reads at once as a speaker with an inner cocoa and outer honey wave, line at 4.5 percent of the icon (shipped 3.1-4.5), clean alpha; cut with the alpha>6 trim."
+selection:
+  method: manual icon-style review after automated QA
+  pick: null
+  note: Both candidates depict one loudspeaker and two curved waves, including the requested honey accent,
+    with true transparency. Both are QA warn on value_floor (p5 lightness 31–32 vs R1 59); their cocoa
+    outlines also appear heavier than the shipped sheet at small icon size. The manifest permits exactly
+    two takes and no third. Keep both for exploration review, skip under the QA fallback, and do not promote.
+takes:
+- take: 1
+  file: ui__x-icon-duo-sound--t1.webp
+  source_file: /workspace/generated_images/exec-78f2341f-a109-419a-bf44-d63b2a084886.png
+  source_sha256: aae80fc1f7e41791a275c1807288776149ffb91ed11519adfa083d0d73b7ac9e
+  source_dimensions:
+  - 1254
+  - 1254
+  backend: codex-cloud
+  qa: warn
+  lock_load: 0.0
+  harmony: null
+  warnings:
+  - check: value_floor
+    status: warn
+    message: lightness p5 32 (R1 59)
+  review_webp_bytes: 59128
+- take: 2
+  file: ui__x-icon-duo-sound--t2.webp
+  source_file: /workspace/generated_images/exec-379d6842-5e02-471c-a47c-2ebe53e511b4.png
+  source_sha256: e61d81f1478abe519f796b73850c7131b83459dbfe5f93b156bbc8bb51c9aff8
+  source_dimensions:
+  - 1254
+  - 1254
+  backend: codex-cloud
+  qa: warn
+  lock_load: 0.0
+  harmony: null
+  warnings:
+  - check: value_floor
+    status: warn
+    message: lightness p5 31 (R1 59)
+  review_webp_bytes: 60426
+prompt: 'REFERENCES (attached, in this order):
+
+  1. The app''s existing icon sheet: the exact style to copy (line weight, corner radius, cream fill,
+  honey and moss accents). Draw none of its icons again; it shows nine icons, you draw one.
+
+
+  One app menu icon for the same set as the icons on the attached sheet,
+
+  alone and centred on a transparent background, filling about two thirds of
+
+  the square: a round loudspeaker with two curved sound waves, one of the
+
+  waves in honey. Exactly the attached style: a soft cream fill (#FBF1D8)
+
+  inside a rounded warm cocoa line (#5B4636) of the same weight, relative to
+
+  the icon''s size, as on the attached sheet, with one small flat accent of
+
+  honey (#F2B45A) or moss green (#94B062); no gradients and no shading.
+
+  Rounded, friendly, chunky forms, simple enough to read at a tiny size.
+
+  Draw this one icon only, once.
+
+
+  AVOID: a second icon, a grid or a sheet of icons, any icon copied from the attached sheet, text, letters,
+  numbers, a brand logo, gradients, shading, 3D, glass, a shadow, thin hairlines, a line heavier than
+  the attached sheet''s, a background shape, a circle, tile or badge behind the icon, a white sticker
+  border
+
+
+  Output: one image, transparent background PNG, square 1024 x 1024.
+
+  '
+attachments:
+- path: design/art/takes/batch-46-flat-icons/x-icons-flat-duo/ui__x-icons-flat-duo--t2.webp
+  role: 'The app''s existing icon sheet: the exact style to copy (line weight, corner radius, cream fill,
+    honey and moss accents). Draw none of its icons again; it shows nine icons, you draw one.'
+  sha256: ef8c8c041048042b8aea747aa0e2b3a36330ede0266f3212ad27970695cc3e81

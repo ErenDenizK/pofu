@@ -1,0 +1,92 @@
+batch: batch-128-duo-icons-single
+manifest: tools/imagegen/manifest/batch-128-duo-icons-single.yaml
+manifest_sha256: 81c715219faae80588a55d5e884f216dfb004825abaa787a5034905db93f6dac
+job: x-icon-duo-list
+contact_sheet: design/art/takes/batch-128-duo-icons-single/x-icon-duo-list/contact.jpg
+source: codex-cloud
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+status: skipped
+pick: 1
+lead_review: "Lead pick: take 1 reads as a list at 22 pt with the honey dot on the first row, line 5.0 percent against take 2's 5.3; the solid cocoa bars make it darker than the shipped icons, acceptable for a Settings row."
+selection:
+  method: manual icon-style review after automated QA
+  pick: null
+  note: Both takes show the requested three dot-and-line rows on a cream rounded tile with one honey accent
+    and true transparency. Both trigger value_floor (p5 lightness 32 vs R1 59); their cocoa border and
+    row marks are visibly heavier than the shipped sheet at small size, against the manifest’s same-weight/not-heavier
+    criterion. Keep both exploration takes, mark skipped under the QA/style fallback, and do not promote;
+    the two-take cap is reached.
+takes:
+- take: 1
+  file: ui__x-icon-duo-list--t1.webp
+  source_file: /workspace/generated_images/exec-6b516e58-edf7-4e9f-a8dd-2a551445b616.png
+  source_sha256: 1bd73a8888c34991a50808a208bba65cfbbc9ba9d3bdc8871ae7c207ec600b43
+  source_dimensions:
+  - 1254
+  - 1254
+  backend: codex-cloud
+  qa: warn
+  lock_load: 0.0
+  harmony: null
+  warnings:
+  - check: value_floor
+    status: warn
+    message: lightness p5 32 (R1 59)
+  review_webp_bytes: 38844
+- take: 2
+  file: ui__x-icon-duo-list--t2.webp
+  source_file: /workspace/generated_images/exec-fee7bc05-c163-49f6-bacc-56574c45ff00.png
+  source_sha256: 463035dd67003ec0bd69a4df7462646d0b79c9e90c25cf699a42e09db7454949
+  source_dimensions:
+  - 1254
+  - 1254
+  backend: codex-cloud
+  qa: warn
+  lock_load: 0.0
+  harmony: null
+  warnings:
+  - check: value_floor
+    status: warn
+    message: lightness p5 32 (R1 59)
+  review_webp_bytes: 36438
+prompt: 'REFERENCES (attached, in this order):
+
+  1. The app''s existing icon sheet: the exact style to copy (line weight, corner radius, cream fill,
+  honey and moss accents). Draw none of its icons again; it shows nine icons, you draw one.
+
+
+  One app menu icon for the same set as the icons on the attached sheet,
+
+  alone and centred on a transparent background, filling about two thirds of
+
+  the square: a rounded tile with three short rows, each row a round dot and
+
+  a line, one dot in honey. Exactly the attached style: a soft cream fill
+
+  (#FBF1D8) inside a rounded warm cocoa line (#5B4636) of the same weight,
+
+  relative to the icon''s size, as on the attached sheet, with one small flat
+
+  accent of honey (#F2B45A) or moss green (#94B062); no gradients and no
+
+  shading. Rounded, friendly, chunky forms, simple enough to read at a tiny
+
+  size. Draw this one icon only, once.
+
+
+  AVOID: a second icon, a grid or a sheet of icons, any icon copied from the attached sheet, text, letters,
+  numbers, a brand logo, gradients, shading, 3D, glass, a shadow, thin hairlines, a line heavier than
+  the attached sheet''s, a background shape, a circle, tile or badge behind the icon, a white sticker
+  border
+
+
+  Output: one image, transparent background PNG, square 1024 x 1024.
+
+  '
+attachments:
+- path: design/art/takes/batch-46-flat-icons/x-icons-flat-duo/ui__x-icons-flat-duo--t2.webp
+  role: 'The app''s existing icon sheet: the exact style to copy (line weight, corner radius, cream fill,
+    honey and moss accents). Draw none of its icons again; it shows nine icons, you draw one.'
+  sha256: ef8c8c041048042b8aea747aa0e2b3a36330ede0266f3212ad27970695cc3e81

@@ -1404,6 +1404,188 @@
       "scale": 3
     },
     {
+      "target": "icons-duo",
+      "name": "paint-duo-sound",
+      "source": "design/art/takes/batch-128-duo-icons-single/x-icon-duo-sound/ui__x-icon-duo-sound--t1.webp",
+      "points": [
+        64,
+        64
+      ],
+      "scale": 3
+    },
+    {
+      "target": "icons-duo",
+      "name": "paint-duo-wind",
+      "source": "design/art/takes/batch-128-duo-icons-single/x-icon-duo-wind/ui__x-icon-duo-wind--t1.webp",
+      "points": [
+        64,
+        64
+      ],
+      "scale": 3
+    },
+    {
+      "target": "icons-duo",
+      "name": "paint-duo-sprout",
+      "source": "design/art/takes/batch-128-duo-icons-single/x-icon-duo-sprout/ui__x-icon-duo-sprout--t1.webp",
+      "points": [
+        64,
+        64
+      ],
+      "scale": 3
+    },
+    {
+      "target": "icons-duo",
+      "name": "paint-duo-tea",
+      "source": "design/art/takes/batch-128-duo-icons-single/x-icon-duo-tea/ui__x-icon-duo-tea--t1.webp",
+      "points": [
+        64,
+        64
+      ],
+      "scale": 3
+    },
+    {
+      "target": "icons-duo",
+      "name": "paint-duo-key",
+      "source": "design/art/takes/batch-128-duo-icons-single/x-icon-duo-key/ui__x-icon-duo-key--t1.webp",
+      "points": [
+        64,
+        64
+      ],
+      "scale": 3
+    },
+    {
+      "target": "icons-duo",
+      "name": "paint-duo-list",
+      "source": "design/art/takes/batch-128-duo-icons-single/x-icon-duo-list/ui__x-icon-duo-list--t1.webp",
+      "points": [
+        64,
+        64
+      ],
+      "scale": 3
+    },
+    {
+      "target": "icons-duo",
+      "name": "paint-duo-cloud",
+      "source": "design/art/takes/batch-128-duo-icons-single/x-icon-duo-cloud/ui__x-icon-duo-cloud--t1.webp",
+      "points": [
+        64,
+        64
+      ],
+      "scale": 3
+    },
+    {
+      "target": "icons-duo",
+      "name": "paint-duo-star",
+      "source": "design/art/takes/batch-128-duo-icons-single/x-icon-duo-star/ui__x-icon-duo-star--t1.webp",
+      "edit": "star-honey",
+      "points": [
+        64,
+        64
+      ],
+      "scale": 3
+    },
+    {
+      "target": "icons-duo",
+      "name": "paint-duo-breath",
+      "source": "design/art/takes/batch-128-duo-icons-single/x-icon-duo-breath/ui__x-icon-duo-breath--t2.webp",
+      "points": [
+        64,
+        64
+      ],
+      "scale": 3
+    },
+    {
+      "target": "icons-duo",
+      "name": "paint-duo-wand",
+      "source": "design/art/takes/batch-128-duo-icons-single/x-icon-duo-wand/ui__x-icon-duo-wand--t2.webp",
+      "points": [
+        64,
+        64
+      ],
+      "scale": 3
+    },
+    {
+      "target": "icons-duo",
+      "name": "paint-duo-hourglass",
+      "source": "design/art/takes/batch-128-duo-icons-single/x-icon-duo-hourglass/ui__x-icon-duo-hourglass--t2.webp",
+      "points": [
+        64,
+        64
+      ],
+      "scale": 3
+    },
+    {
+      "target": "icons-duo",
+      "name": "paint-duo-moon",
+      "source": "design/art/takes/batch-128-duo-icons-single/x-icon-duo-moon/ui__x-icon-duo-moon--t2.webp",
+      "points": [
+        64,
+        64
+      ],
+      "scale": 3
+    },
+    {
+      "target": "icons-duo",
+      "name": "paint-duo-hand",
+      "source": "design/art/takes/batch-128-duo-icons-single/x-icon-duo-hand/ui__x-icon-duo-hand--t2.webp",
+      "points": [
+        64,
+        64
+      ],
+      "scale": 3
+    },
+    {
+      "target": "icons-duo",
+      "name": "paint-duo-grid",
+      "source": "design/art/takes/batch-128-duo-icons-single/x-icon-duo-grid/ui__x-icon-duo-grid--t2.webp",
+      "points": [
+        64,
+        64
+      ],
+      "scale": 3
+    },
+    {
+      "target": "icons-duo",
+      "name": "paint-duo-sun",
+      "source": "design/art/takes/batch-128-duo-icons-single/x-icon-duo-sun/ui__x-icon-duo-sun--t2.webp",
+      "points": [
+        64,
+        64
+      ],
+      "scale": 3
+    },
+    {
+      "target": "icons-duo",
+      "name": "paint-duo-lantern",
+      "source": "design/art/takes/batch-128-duo-icons-single/x-icon-duo-lantern/ui__x-icon-duo-lantern--t2.webp",
+      "points": [
+        64,
+        64
+      ],
+      "scale": 3
+    },
+    {
+      "target": "icons-duo",
+      "name": "paint-duo-calendar",
+      "source": "design/art/takes/batch-128-duo-icons-single/x-icon-duo-calendar/ui__x-icon-duo-calendar--t2.webp",
+      "points": [
+        64,
+        64
+      ],
+      "scale": 3
+    },
+    {
+      "target": "icons-duo",
+      "name": "paint-duo-drop",
+      "source": "design/art/takes/batch-128-duo-icons-single/x-icon-duo-drop/ui__x-icon-duo-drop--t2.webp",
+      "edit": "puddle",
+      "points": [
+        64,
+        64
+      ],
+      "scale": 3
+    },
+    {
       "target": "world",
       "name": "mochi-step-a",
       "master": "design/art/masters/mochi-step-a"
