@@ -1,4 +1,5 @@
 #if os(iOS)
+import PofuCore
 import PofuDesignSystem
 import SwiftUI
 import UIKit

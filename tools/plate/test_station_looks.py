@@ -8,6 +8,18 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import station_looks as sl  # noqa: E402
+import ingest as _ingest  # noqa: E402
+import pytest  # noqa: E402
+
+
+@pytest.fixture(autouse=True)
+def _keep_ingest_size():
+    """`ingest.load_hand` sets the module's SIZE and COLOR_FIT to the island's; other tests expect their own."""
+    size, fit = _ingest.SIZE, dict(_ingest.COLOR_FIT)
+    yield
+    _ingest.SIZE = size
+    _ingest.COLOR_FIT.clear()
+    _ingest.COLOR_FIT.update(fit)
 
 
 def test_alpha_is_normalised():
