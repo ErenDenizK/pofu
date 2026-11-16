@@ -25,8 +25,8 @@ chooses to (days 1-21); no dates (11-14). Now: world presentation (#474).
 1. Founder-input 38: (a) island progression done: PR #503 (proposal:
    Sefer replaces the Map, Nazli moored at Home, named forms, big-step
    measure). Kept open for his 6 answers (sent 11-16); answer 1 also
-   closes #490 Q3. Pilot A (batch 134, windmill + pond in place) being
-   queued by a builder; 129 stays held, dropped if A passes.
+   closes #490 Q3. Pilot A (batch 134, windmill + pond in place) is
+   queued (pofu-art #112, row 0-d7); 129 held, dropped if A passes.
    (b) Fable minigame overhaul (block + stream, A/B by prototype):
    running, brief `docs/studio/briefs/fable-2026-11-16-minigame-overhaul.md`.
 2. WP10 compositor merged (#500): looks sort with Pofu by footY, Map
@@ -40,7 +40,7 @@ chooses to (days 1-21); no dates (11-14). Now: world presentation (#474).
 5. Codex: station looks held for (a) (pofu-art #111). Line: 132 board
    edge, 133 cloud floor, S2 clouds, S3 hidden visitors. 129 reworked
    (#110) and waiting. Codex hit the image tool's quota mid-129.
-Merged: #475-#489, #491-#500; pofu-art #81, #91-#111.
+Merged: #475-#489, #491-#500; pofu-art #81, #91-#112.
 
 ## Next steps, in order (night plan)
 
