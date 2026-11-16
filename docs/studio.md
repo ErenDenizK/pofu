@@ -38,7 +38,7 @@ a reason. If you find one with neither, delete it.
 
 | Who | Does | Does not |
 |---|---|---|
-| **Founder** | Direction, taste, the device test, anything that needs his accounts | Follow the tracks; that is the lead's job |
+| **Founder** | Direction, taste, the device test, anything that needs his accounts | Follow the tracks; that is the lead's job. Get asked about process calls (an extra push, a merge under an approved plan, a cleanup): the lead decides those, does them and tells him after (founder-input 31, 37) |
 | **Lead** (Opus 5.5, high) | Decides. Checks premises, reading what the decision needs. Writes briefs. Reads hand-backs. Looks once at the final sheet. Merges what an eye must accept. Keeps `now.md`. Talks to the founder | Build, or run a fix loop. Take the first look at frames. Poll CI |
 | **scout** (Haiku) | Answers named questions about the repository with file and line | Judge or edit |
 | **spec** (Opus, high) | Turns a goal into a build spec grounded in the code at a commit ([game-solid v1](design/game-solid-v1.md) is the house standard) | Build |
