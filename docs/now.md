@@ -22,10 +22,9 @@ chooses to (days 1-21); no dates (11-14). Now: world presentation (#474).
 
 ## In flight
 
-1. Founder-input 38: (a) Fable island progression (islands + stations as
-   one, the world between islands, the Gezgin): three gatherers running
-   (internal history, art + frames, outside refs) into
-   `scratchpad/research-ip/`; then the Fable brief with his words.
+1. Founder-input 38: (a) Fable island progression running (brief
+   `docs/studio/briefs/fable-2026-11-16-island-progression.md`, material
+   `docs/research/island-progression-2026-11-16/`).
    (b) Fable minigame overhaul (block + stream, A/B by prototype):
    running, brief `docs/studio/briefs/fable-2026-11-16-minigame-overhaul.md`.
 2. WP10 compositor merged (#500): looks sort with Pofu by footY, Map
