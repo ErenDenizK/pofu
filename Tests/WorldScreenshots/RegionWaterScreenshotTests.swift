@@ -20,6 +20,9 @@ final class RegionWaterScreenshotTests: XCTestCase {
         var clock: Double?
         /// The camera focused on the pond (the lens blurs the rest of the island), once the plate is up.
         var focusPond = false
+        /// The shader's probe (`pofuWaterPatch`'s `gate.y`): 1 the plate's own sample, 2 the gate's alpha,
+        /// 3 the water without its gate, 4 a flat grey.
+        var debug = 0
     }
 
     @MainActor
@@ -42,6 +45,9 @@ final class RegionWaterScreenshotTests: XCTestCase {
             for (i, clock) in [0.0, 1.5].enumerated() {
                 shots.append(Shot(name: "water-\(light)-pond-t\(i)", framing: .mid, hour: hour, clock: clock, focusPond: true))
             }
+        }
+        for (name, light, hour, debug) in [("id", "night", 22.5, 1), ("gate", "night", 22.5, 2), ("nogate", "night", 22.5, 3), ("grey", "night", 22.5, 4), ("id", "day", 12.0, 1)] {
+            shots.append(Shot(name: "probe-\(light)-\(name)", framing: .mid, hour: hour, clock: 0, focusPond: true, debug: debug))
         }
         for shot in shots {
             try await render(shot, scene: scene, folder: folder)
@@ -77,6 +83,7 @@ final class RegionWaterScreenshotTests: XCTestCase {
         .environment(\.worldLook, look)
         .environment(\.worldStillFrame, true)
         .environment(\.worldWaterClock, shot.clock)
+        .environment(\.worldWaterDebug, shot.debug)
 
         let window = UIWindow(windowScene: scene)
         window.overrideUserInterfaceStyle = .light

@@ -229,6 +229,15 @@ inline float inside(float2 p, device const float *outline, int count, float feat
     if (here.a <= 0.0h) {
         return half4(0.0h);
     }
+    int mode = int(gate.y + 0.5);
+    if (mode == 1) {
+        // Probe: the plate's own sample, premultiplied by the water's share.
+        return here * half(share);
+    }
+    if (mode == 4) {
+        // Probe: a flat mid grey over the water.
+        return half4(half3(0.5h) * half(share), half(share));
+    }
     // The gate: the nearest floating thing within the water's reach takes the pixel out.
     float reach = max(gate.x * map.z, 1.0);
     float3 centre = float3(here.rgb) / max(float(here.a), 1e-3);
@@ -245,6 +254,13 @@ inline float inside(float2 p, device const float *outline, int count, float feat
         clear = min(clear, pofuwater::water(float3(outer.rgb) / max(float(outer.a), 1e-3)));
     }
     float alpha = share * clear * bluish;
+    if (mode == 2) {
+        // Probe: the gate's alpha as an opaque grey.
+        return half4(half3(half(alpha)), 1.0h);
+    }
+    if (mode == 3) {
+        alpha = share;
+    }
     if (alpha <= 0.0) {
         return half4(0.0h);
     }
