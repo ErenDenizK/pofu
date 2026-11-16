@@ -38,6 +38,8 @@ enum FlowPalette {
     static let hint = rgb(1.00, 0.80, 0.24)
     static let cliff = rgb(0.78, 0.66, 0.55)
     static let cliffDark = rgb(0.60, 0.48, 0.40)
+    /// The lawn's own shade, for the soft dip along its edge.
+    static let lawnShade = rgb(0.36, 0.50, 0.22)
 }
 
 /// Draws and caches every texture of one cell size. `artName` carries the
@@ -80,6 +82,15 @@ final class FlowTextures {
 
     /// A warm multiply over a bank picture, so it sits in the stone's colour family.
     static let bankTint = FlowPalette.rgb(1.0, 0.97, 0.90)
+
+    /// The lawn's multiply. The painted lawn is a pale olive (about 205, 209, 116) beside a backdrop of
+    /// fresh grass; this brings it to a spring green (about 172, 205, 90) without touching the art file.
+    static let lawnTint = FlowPalette.rgb(0.84, 0.98, 0.78)
+    /// The cut-out rocks are a cold grey; a warm multiply sets them in the stone's family.
+    static let rockTint = FlowPalette.rgb(1.0, 0.96, 0.90)
+    /// The painted water is paler than the pool it runs to (about 185, 224, 217 against 114, 221, 218);
+    /// this multiply brings the stream to the pool's turquoise.
+    static let waterTint = FlowPalette.rgb(0.70, 0.96, 1.0)
 
     private var imageCache: [String: [UIImage]] = [:]
 
@@ -129,12 +140,15 @@ final class FlowTextures {
                 }
             }
             context.setBlendMode(.multiply)
-            context.setFillColor(Self.bankTint.cgColor)
+            context.setFillColor(Self.lawnTint.cgColor)
             context.fill(rect)
             context.setBlendMode(.normal)
-            context.setStrokeColor(FlowPalette.cliffDark.withAlphaComponent(0.45).cgColor)
-            context.setLineWidth(2)
-            context.addPath(UIBezierPath(roundedRect: rect.insetBy(dx: 1, dy: 1), cornerRadius: radius).cgPath)
+            // No drawn outline: the lawn dips softly into shade along its edge. The stroke itself lies
+            // outside the clip, so only its blurred shadow falls on the grass.
+            context.setShadow(offset: .zero, blur: self.cell * 0.16, color: FlowPalette.lawnShade.withAlphaComponent(0.6).cgColor)
+            context.setStrokeColor(FlowPalette.lawnShade.cgColor)
+            context.setLineWidth(12)
+            context.addPath(UIBezierPath(roundedRect: rect.insetBy(dx: -6, dy: -6), cornerRadius: radius + 6).cgPath)
             context.strokePath()
         }
         let texture = SKTexture(image: picture)
@@ -158,13 +172,37 @@ final class FlowTextures {
         let index = picker.variant(of: at, count: pool.count)
         let key = "bank-\(kind.rawValue)-\(index)-\(turns)-\(mirrored)-\(onLawn)-\(cut.isEmpty)"
         return cached(key) { context in
-            self.drawBank(context, image: pool[index], turns: turns, mirrored: mirrored, keycap: !onLawn, cutOut: !cut.isEmpty, paintedShade: FlowArtSlot.rockCutHasPaintedShade(variant: index))
+            let picture = cut.isEmpty ? pool[index] : self.tinted(pool[index], Self.rockTint, key: "rock-cut-\(index)")
+            self.drawBank(context, image: picture, turns: turns, mirrored: mirrored, keycap: !onLawn, cutOut: !cut.isEmpty, paintedShade: FlowArtSlot.rockCutHasPaintedShade(variant: index))
         }
     }
 
-    /// The cut-out rocks are ingested with the largest's long side at 216 px, which fills 216/246 of a cell.
+    /// The cut-out rocks are ingested with the largest's long side at 216 px. The largest fills 72 percent
+    /// of a cell: at 88 percent a boulder was bigger than the stones beside it and read as the subject.
     static let rockCutLongSide: CGFloat = 216
-    static let rockCutFill: CGFloat = 216.0 / 246.0
+    static let rockCutFill: CGFloat = 0.72
+
+    private var tintCache: [String: UIImage] = [:]
+
+    /// A cut-out picture multiplied by `tint` inside its own alpha (the art file is not recoloured).
+    func tinted(_ image: UIImage, _ tint: UIColor, key: String) -> UIImage {
+        if let hit = tintCache[key] { return hit }
+        let format = UIGraphicsImageRendererFormat()
+        format.scale = image.scale
+        format.opaque = false
+        let rect = CGRect(origin: .zero, size: image.size)
+        let result = UIGraphicsImageRenderer(size: rect.size, format: format).image { rendered in
+            let context = rendered.cgContext
+            image.draw(in: rect)
+            context.setBlendMode(.multiply)
+            context.setFillColor(tint.cgColor)
+            context.fill(rect)
+            // The multiply also filled the clear pixels: keep only what lies inside the picture.
+            image.draw(in: rect, blendMode: .destinationIn, alpha: 1)
+        }
+        tintCache[key] = result
+        return result
+    }
 
     private func drawBank(_ context: CGContext, image: UIImage, turns: Int, mirrored: Bool, keycap: Bool, cutOut: Bool, paintedShade: Bool = false) {
         let bounds = CGRect(x: 0, y: 0, width: cell, height: cell)
@@ -313,6 +351,27 @@ final class FlowTextures {
     func water(_ kind: FlowTileKind, _ openings: FlowDirection, flip: Int = 0) -> SKTexture {
         cached("water-\(kind.rawValue)-\(openings.rawValue)-\(flip)") { context in
             self.drawWater(context, kind: kind, openings: openings, flip: flip)
+        }
+    }
+
+    /// A dribble's puddle on the bank: the painted water in a small oval with a light rim, in the stream's
+    /// colour. Nil while the water slot has no art (the drawn puddle stays).
+    func puddle() -> SKTexture? {
+        guard let water = art(FlowArtSlot.water) else { return nil }
+        return cached("puddle") { context in
+            let oval = CGRect(x: self.cell * 0.37, y: self.cell * 0.415, width: self.cell * 0.26, height: self.cell * 0.17)
+            context.saveGState()
+            context.addEllipse(in: oval)
+            context.clip()
+            self.drawSeamless(water, crop: Self.waterCrop, flip: 0, in: CGRect(x: 0, y: 0, width: self.cell, height: self.cell), context)
+            context.setBlendMode(.multiply)
+            context.setFillColor(Self.waterTint.cgColor)
+            context.fill(oval)
+            context.setBlendMode(.normal)
+            context.restoreGState()
+            context.setStrokeColor(UIColor.white.withAlphaComponent(0.7).cgColor)
+            context.setLineWidth(1.2)
+            context.strokeEllipse(in: oval.insetBy(dx: 0.6, dy: 0.6))
         }
     }
 
@@ -705,15 +764,32 @@ final class FlowTextures {
                 let radius = grooveWidth * (kind == .source ? 0.95 : 1.0)
                 body.addEllipse(in: CGRect(x: middle.x - radius, y: middle.y - radius, width: radius * 2, height: radius * 2))
             }
+            // The stream's dark edge goes down first, as one stroke of the centreline a little wider than
+            // the water, and the water covers its middle. Stroking the outline of `body` instead drew the
+            // round end of every arm, which showed as a ring in the water at the centre of each straight
+            // and split.
+            context.saveGState()
+            context.setLineCap(.round)
+            context.setLineJoin(.round)
+            context.setStrokeColor(FlowPalette.waterDeep.withAlphaComponent(0.35).cgColor)
+            context.setLineWidth(grooveWidth * 0.92 + 2.4)
+            context.addPath(path)
+            context.strokePath()
+            if hasBall {
+                let radius = grooveWidth * (kind == .source ? 0.95 : 1.0) + 1.2
+                context.setFillColor(FlowPalette.waterDeep.withAlphaComponent(0.35).cgColor)
+                context.fillEllipse(in: CGRect(x: middle.x - radius, y: middle.y - radius, width: radius * 2, height: radius * 2))
+            }
+            context.restoreGState()
             context.saveGState()
             context.addPath(body)
             context.clip()
             drawSeamless(texture, crop: Self.waterCrop, flip: flip, in: CGRect(x: 0, y: 0, width: cell, height: cell).insetBy(dx: -3, dy: -3), context)
+            context.setBlendMode(.multiply)
+            context.setFillColor(Self.waterTint.cgColor)
+            context.fill(CGRect(x: 0, y: 0, width: cell, height: cell))
+            context.setBlendMode(.normal)
             context.restoreGState()
-            context.setStrokeColor(FlowPalette.waterDeep.withAlphaComponent(0.35).cgColor)
-            context.setLineWidth(1.2)
-            context.addPath(body)
-            context.strokePath()
             if kind == .source || kind == .mouth, let piece = art(kind == .source ? FlowArtSlot.spring : FlowArtSlot.outlet) {
                 // The painted ring of stones goes back over the water, so the stream starts at its rim
                 // instead of running across the stones.
