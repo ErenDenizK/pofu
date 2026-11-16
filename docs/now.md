@@ -29,14 +29,14 @@ Large job now: world presentation (spec #474); glass UI stays.
 2. WP6 Map journey merged (#479): Home alone and large until Koke opens,
    one tower, horizon haze. Follow-up: faint blue smudge under the d01
    tower (old isle shadow?); stale `WorldMap.swift` comment.
-3. N4 flow painted board (Sonnet, `feat/flow-painted-board`): slots,
-   textured channel, method B switch; A/B frames for the founder.
+3. Flow and garden scenes merged (#483, #486): painted slots, 124 art,
+   backdrops. Left in code: board lip and edge (Codex 131 queued).
 4. Codex ran 121-126 overnight. Reviewed: 124 picks all 8 (builder
    `feat/flow-painted-scene` drops them in); 126 clouds 10 picks (WP9 after
    A1); 125 skipped by Codex but usable: l1 t1, l2 t1, l8 t2, l9 t2 (paste
    into #480 after A1). 123 PASS w/ notes, 129 runs on (ingest: chroma x0.65
    L+5%, alpha<12 to 0; app: contact shade). Founder: flow A/B, 122.
-Merged: #475-#484, #487; pofu-art #81, #91, #92, #99.
+Merged: #475-#487; pofu-art #81, #91-#99, #102.
 
 ## Next steps, in order (night plan)
 
