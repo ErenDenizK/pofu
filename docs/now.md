@@ -29,7 +29,7 @@ chooses to (days 1-21); no dates (11-14). Now: world presentation (#474).
    queued (pofu-art #112, row 0-d7); 129 held, dropped if A passes.
    (b) minigame overhaul merged (#501): stream ground B default (A behind
    env), glass HUDs, garden 44 pt. Founder asked A or B (sent 11-16).
-   Flow kit v2 art being queued by a builder; then a small code pass.
+   Flow kit v2 queued (batch 135); then a small code pass.
 2. WP10 compositor merged (#500): looks sort with Pofu by footY, Map
    snapshot of the built island, 3.2 s reveal. Left: `mapisle` assets
    (night 8-9 need them), orphan `world-home-base-day-5`, reveal burst.
@@ -38,9 +38,9 @@ chooses to (days 1-21); no dates (11-14). Now: world presentation (#474).
    cloud floor, #492 props, #493 N6, #494 + #497 tea stall looks, #495
    rail (Home mid, free near), #496 icons, #498 beds + back, #501 games.
 4. UI grammar #490 open (docs), waits on his answers with #503.
-5. Codex line: 132 board edge, 133 cloud floor, 134 plot pilot, flow kit
-   v2 (queuing), S2 clouds, S3 hidden visitors. 129 held for the pilot.
-Merged: #475-#489, #491-#501; pofu-art #81, #91-#112.
+5. Codex line: 132 board edge, 133 cloud floor, 134 plot pilot, 135 flow
+   kit v2, S2 clouds, S3 hidden visitors. 129 held for the pilot.
+Merged: #475-#489, #491-#501; pofu-art #81, #91-#113.
 
 ## Next steps, in order (night plan)
 
