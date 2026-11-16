@@ -339,10 +339,77 @@ final class FlowTextures {
     static let spoutChannel: CGFloat = 72.5
     static let spoutRimRows: CGFloat = 40
 
+    /// The channel's still water in the painted spout, in stored px: rows with the left and right edge of the
+    /// water. The board's own water is drawn over it down to row `spoutWaterFadeEnd` so the stream is one
+    /// water from the mouth tile into the chute; the painted waterfall below keeps its own look.
+    private static let spoutChannelRows: [(y: CGFloat, left: CGFloat, right: CGFloat)] = [
+        (40, 140, 210), (126, 136, 214), (150, 134, 217), (174, 128, 220), (198, 122, 228), (206, 122, 228),
+    ]
+    private static let spoutWaterFadeStart: CGFloat = 150
+    private static let spoutWaterFadeEnd: CGFloat = 205
+
+    private var spoutWaterCache: [Int: SKTexture] = [:]
+
     func spout(wet: Bool) -> (texture: SKTexture, size: CGSize, rimDrop: CGFloat)? {
         guard let image = art(wet ? FlowArtSlot.spoutWet : FlowArtSlot.spoutDry) else { return nil }
         let scale = grooveWidth * 0.92 / Self.spoutChannel
         return (texture(of: image), CGSize(width: image.size.width * scale, height: image.size.height * scale), Self.spoutRimRows * scale)
+    }
+
+    /// The board's water carried on into the wet chute, on the spout's canvas (same size and anchor), to lie
+    /// over the painted spout. `flip` is the mouth tile's water flip: below the cell's bottom edge the texture
+    /// is the mirror image of the tile's about that edge, so it has the same scale, colour and phase on both
+    /// sides of the join. The water thins out into the painted waterfall.
+    func spoutWater(flip: Int) -> SKTexture? {
+        guard let water = art(FlowArtSlot.water), let base = spout(wet: true) else { return nil }
+        if let hit = spoutWaterCache[flip] { return hit }
+        let size = base.size
+        let rimDrop = base.rimDrop
+        let scale = grooveWidth * 0.92 / Self.spoutChannel
+        let format = UIGraphicsImageRendererFormat()
+        format.scale = 3
+        format.opaque = false
+        let composed = UIGraphicsImageRenderer(size: size, format: format).image { rendered in
+            let context = rendered.cgContext
+            // The tile's cell in the canvas: its bottom edge is at `rimDrop`, its middle on the canvas's.
+            let x0 = size.width / 2 - cell / 2
+            let y0 = rimDrop - cell
+            let rows = Self.spoutChannelRows
+            func channel(inset: CGFloat) -> CGPath {
+                let path = CGMutablePath()
+                path.move(to: CGPoint(x: rows[0].left * scale + inset, y: rows[0].y * scale))
+                for row in rows.dropFirst() { path.addLine(to: CGPoint(x: row.left * scale + inset, y: row.y * scale)) }
+                for row in rows.reversed() { path.addLine(to: CGPoint(x: row.right * scale - inset, y: row.y * scale)) }
+                path.closeSubpath()
+                return path
+            }
+            let board = CGRect(x: x0 - 3, y: y0 - 3, width: cell + 6, height: cell + 6)
+            let mirror = CGRect(x: x0 - 3, y: rimDrop - 3, width: cell + 6, height: cell + 6)
+            context.beginTransparencyLayer(auxiliaryInfo: nil)
+            // Three passes, narrower and more opaque, feather the water into the painted walls.
+            for (inset, alpha) in [(CGFloat(1.5), CGFloat(0.4)), (3, 0.6), (5, 1)] {
+                context.saveGState()
+                context.setAlpha(alpha)
+                context.addPath(channel(inset: inset))
+                context.clip()
+                context.saveGState()
+                context.clip(to: CGRect(x: 0, y: 0, width: size.width, height: rimDrop))
+                self.drawSeamless(water, crop: Self.waterCrop, flip: flip, in: board, context)
+                context.restoreGState()
+                context.clip(to: CGRect(x: 0, y: rimDrop, width: size.width, height: size.height - rimDrop))
+                self.drawSeamless(water, crop: Self.waterCrop, flip: flip ^ 2, in: mirror, context)
+                context.restoreGState()
+            }
+            context.setBlendMode(.destinationIn)
+            let colors = [UIColor.white.cgColor, UIColor.white.withAlphaComponent(0).cgColor] as CFArray
+            if let gradient = CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: colors, locations: [0, 1]) {
+                context.drawLinearGradient(gradient, start: CGPoint(x: 0, y: Self.spoutWaterFadeStart * scale), end: CGPoint(x: 0, y: Self.spoutWaterFadeEnd * scale), options: [.drawsBeforeStartLocation, .drawsAfterEndLocation])
+            }
+            context.endTransparencyLayer()
+        }
+        let result = texture(of: composed)
+        spoutWaterCache[flip] = result
+        return result
     }
 
     /// The board's stone edge as one picture of `size` points: a 9-slice of the painted frame. The corners

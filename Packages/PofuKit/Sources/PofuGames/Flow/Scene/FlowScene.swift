@@ -13,6 +13,8 @@ final class FlowTileNode: SKNode {
     var overlay: SKSpriteNode?
     /// The painted spout under a last-row mouth: dry until the water arrives.
     var spout: SKSpriteNode?
+    /// The board's water carried on over the wet spout's chute.
+    var spoutWater: SKSpriteNode?
 
     init(cell: FlowCell, tile: FlowTile) {
         self.cell = cell
@@ -393,6 +395,15 @@ final class FlowScene: SKScene {
             sprite.zPosition = 0.5
             node.addChild(sprite)
             node.spout = sprite
+            if let water = textures.spoutWater(flip: FlowTextures.flip(of: cell)) {
+                let overlay = SKSpriteNode(texture: water, size: dry.size)
+                overlay.anchorPoint = sprite.anchorPoint
+                overlay.position = sprite.position
+                overlay.zPosition = 0.6
+                overlay.isHidden = true
+                node.addChild(overlay)
+                node.spoutWater = overlay
+            }
         }
         switch tile.kind {
         case .gate:
@@ -422,12 +433,16 @@ final class FlowScene: SKScene {
     private func setSpout(_ node: FlowTileNode, wet: Bool, after delay: TimeInterval) {
         guard let sprite = node.spout, let state = textures.spout(wet: wet) else { return }
         sprite.removeAction(forKey: "spout")
+        node.spoutWater?.removeAction(forKey: "spout")
         guard delay > 0 else {
             sprite.texture = state.texture
+            node.spoutWater?.isHidden = !wet
             return
         }
         let texture = state.texture
         sprite.run(.sequence([.wait(forDuration: delay), .setTexture(texture)]), withKey: "spout")
+        let toggle: SKAction = wet ? .unhide() : .hide()
+        node.spoutWater?.run(.sequence([.wait(forDuration: delay), toggle]), withKey: "spout")
     }
 
     // MARK: Water
