@@ -62,8 +62,28 @@ TEA_STALL = {
 # window is the old stall and its teapot; the cart, the rope bridge and the rim stay the parent's. Stages whose job has
 # no pick, and the stages whose stall is another painting (a tile roof, a workshop and a beehive beside it, erased with
 # it), have no base and keep their painted stall.
+# `exclude` rectangles (texture px) are taken out of the paste mask: the rope bridge's near post stands in front of the
+# drum at some stages and the erase takes drop the bridge, so the parent's post and rope stay.
+# Stage 8 (level 2) has a pick but no clean base: the old drum's cast shadow runs on over the lawn past the window and the
+# take paints mist where it would have to be cut, so its patch shows (a hard shadow edge, a pale wisp): it keeps its stall.
+# Day stage s is island level 10 - s; its erase job is `x-base-erase-l<level>-day`.
+JOB = "batch-117-station-erase-volume/x-base-erase-l{:02d}-day"
 BASES = {
-    7: {"job": "batch-117-station-erase-volume/x-base-erase-l03-day", "window": (1246, 1330, 1512, 1664)},
+    7: {"job": JOB.format(3), "window": (1246, 1330, 1512, 1664)},
+    6: {"job": JOB.format(4), "window": (1232, 1370, 1530, 1672)},
+    4: {"job": JOB.format(6), "window": (1252, 1290, 1536, 1692),
+        "exclude": [(1420, 1650, 1700, 1800)]},
+    3: {"job": JOB.format(7), "window": (1252, 1290, 1536, 1692),
+        "exclude": [(1420, 1650, 1700, 1800)]},
+}
+
+# Where each stage paints its stall (plate points) and its size against stage 7's: the foot is the bottom centre of the
+# counter, the scale the counter's width over stage 7's. The look stands there at that size.
+PLACE = {
+    7: {"foot": (690.0, 832.0), "scale": 1.0},
+    6: {"foot": (690.0, 838.0), "scale": 0.95},
+    4: {"foot": (698.0, 839.0), "scale": 1.10},
+    3: {"foot": (697.0, 839.0), "scale": 1.09},
 }
 
 
@@ -245,12 +265,43 @@ def match_to_parent(take_rgb: np.ndarray, parent_rgb: np.ndarray, parent_alpha: 
     ring = near & ~close & (parent_alpha > 0.95) & (parent_rgb[..., 1] > parent_rgb[..., 2] + 0.05)
     if ring.sum() < 200:
         return take_rgb
+    lab_ring = srgb_lab(parent_rgb)[..., 0]
+    ring &= lab_ring >= np.median(lab_ring[ring])           # lighter half: the lawn in light, not in a building's shade
     lp, lt = srgb_lab(parent_rgb), srgb_lab(take_rgb)
     delta = lp[ring].mean(0) - lt[ring].mean(0)
     return lab_srgb(lt + delta)
 
 
-def build_base(stage: int, spec: dict = BASES[7]) -> tuple[np.ndarray, dict]:
+def first_row(a: np.ndarray, x: int, y0: int, y1: int) -> float:
+    """The first row of column `x` (from `y0`) whose alpha is over a half; `y1` if none."""
+    y0 = max(y0, 0)
+    col = a[y0:y1, x] > 0.5
+    return float(y0 + np.argmax(col)) if col.any() else float(y1)
+
+
+def hill_ceiling(alpha: np.ndarray, p_a: np.ndarray, t_a: np.ndarray, window: tuple, crop_tex: tuple) -> np.ndarray:
+    """The island's top edge across the window: the take's hill line, moved so that it meets the parent's edge at both
+    sides of the window (the parent's edge beside the old stall), so no vertical cut or stub is left where the old stall
+    ended; everything above it is sky. Only ever clears alpha."""
+    x0, y0, x1, y1 = window
+    cx, cy = crop_tex
+    X0, X1, Y0, Y1 = x0 - cx, x1 - cx, y0 - cy, y1 - cy
+    h, w = alpha.shape
+    X0, X1 = max(X0, 6), min(X1, w - 6)
+    yl, yr = first_row(p_a, X0 - 4, Y0 - 120, Y1), first_row(p_a, X1 + 4, Y0 - 120, Y1)
+    xs = np.arange(X0, X1)
+    take_line = np.array([first_row(t_a, int(x), Y0 - 120, Y1) for x in xs])
+    take_line = cv2.GaussianBlur(take_line.reshape(1, -1).astype(np.float32), (0, 0), 3.0, borderType=cv2.BORDER_REPLICATE)[0]
+    u = (xs - X0) / max(X1 - 1 - X0, 1)
+    line = take_line + (yl - take_line[0]) * (1 - u) + (yr - take_line[-1]) * u
+    out = alpha.copy()
+    rows = np.arange(h, dtype=np.float32)[:, None]
+    sky = np.clip((line[None, :] - rows) / 2.0 + 0.5, 0, 1)         # 1 above the line, a 2 px ramp
+    out[:, X0:X1] = np.where(rows < Y1, alpha[:, X0:X1] * (1 - sky), alpha[:, X0:X1])
+    return out
+
+
+def build_base(stage: int, spec: dict) -> tuple[np.ndarray, dict]:
     """The shipped plate of a day stage with the station erased: RGBA floats, the plate's crop."""
     light = "day"
     hand = ingest.load_hand(ISLAND)
@@ -264,6 +315,8 @@ def build_base(stage: int, spec: dict = BASES[7]) -> tuple[np.ndarray, dict]:
     job = ingest.REPO / "design" / "art" / "takes" / spec["job"]
     take = np.asarray(Image.open(take_path(spec["job"])).convert("RGB").resize((parent.shape[1], parent.shape[0]), Image.LANCZOS), np.float32) / 255
     hard_full = paste_masks(parent, take, spec["window"])
+    for ex0, ey0, ex1, ey1 in spec.get("exclude", []):
+        hard_full[ey0:ey1, ex0:ex1] = 0
     sl = (slice(cy, cy + h), slice(cx, cx + w))
     hard = hard_full[sl]
     p_rgb, p_a = plate[..., :3], plate[..., 3]
@@ -277,15 +330,45 @@ def build_base(stage: int, spec: dict = BASES[7]) -> tuple[np.ndarray, dict]:
     m_alpha = cv2.GaussianBlur(cv2.dilate(hard, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (9, 9))).astype(np.float32), (0, 0), 3.0)
     m_rgb = cv2.GaussianBlur(cv2.dilate(hard, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (25, 25))).astype(np.float32), (0, 0), FEATHER_TEX / 3)
     # the plate's alpha only shrinks in the region (the old counter hung over the sky); never grows
-    new_a = p_a * (1 - m_alpha) + np.minimum(p_a, t_a) * m_alpha
+    # and only where the old stall (not lawn) stood: the take's hill line is not the parent's, so the parent's own grass
+    # keeps its alpha, and the grass colour there is the take's nearest lawn
+    pr = parent[sl]
+    grass = ((pr[..., 1] > pr[..., 0] + 0.03) & (pr[..., 1] > pr[..., 2] + 0.10)).astype(np.float32)
+    grass = cv2.GaussianBlur(cv2.erode(grass, np.ones((3, 3), np.uint8)), (0, 0), 1.5)
+    m_shrink = m_alpha * (1 - grass)
+    new_a = p_a * (1 - m_shrink) + np.minimum(p_a, t_a) * m_shrink
     new_rgb = p_rgb * (1 - m_rgb[..., None]) + t_rgb * m_rgb[..., None]
+    new_a = hill_ceiling(new_a, p_a, t_a, spec["window"], (cx, cy))
     rgb = ingest.extended(np.where(new_a[..., None] > 0, new_rgb, p_rgb), new_a)
     out = np.dstack([rgb, new_a])
-    info = {"crop": crop, "changed": float(m_rgb.max())}
+    info = {"crop": crop, "changed": float(m_rgb.max()), "hard_full": hard_full}
     return out, info
 
 
 SIZE_TEX = (2048, 3072)
+
+
+def clear_occluders(stage: int, hard_full: np.ndarray) -> None:
+    """Another object's occluder cut-out that reaches into the erased stall (the workshop's polygon runs on to the stall's
+    left pole) would draw the old stall again over the base: its alpha is cleared inside the erased region."""
+    hand = ingest.load_hand(ISLAND)
+    rgb, k = ingest.source_plate(ingest.REPO / hand["plates"]["day"][str(stage)])
+    a1 = ingest.load_matte(ISLAND, "day", stage)
+    region = cv2.GaussianBlur(cv2.dilate(hard_full, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (13, 13))).astype(np.float32), (0, 0), 2.0)
+    for obj in hand["objects"]:
+        if not obj.get("occluder") or not ingest.present(obj, "day", stage) or obj["id"] == TEA_STALL["id"]:
+            continue
+        _, box = ingest.occluder_cut(np.zeros(a1.shape + (3,)), a1, ingest.pct_to_px(obj["points"]))
+        x0, y0, x1, y1 = (v * k for v in box)
+        part = region[y0:y1, x0:x1]
+        if part.max() <= 0.01:
+            continue
+        name = ingest.asset_name(ISLAND, "occ", "day", stage, obj["id"])
+        with heic.open_image(ASSETS / f"{name}.imageset" / f"{name}{heic.SUFFIX}") as im:
+            old = np.asarray(im.convert("RGBA"), np.float32) / 255
+        old[..., 3] *= 1 - part[: old.shape[0], : old.shape[1]]
+        ingest.write_imageset(name, to_img(old))
+        print(f"  occluder {obj['id']} {stage}: cleared {int((part > 0.5).sum())} px of the erased stall")
 
 
 def cmd_bases() -> dict:
@@ -309,6 +392,7 @@ def cmd_bases() -> dict:
             rgb = np.where(a > 1e-4, cut[..., :3] / np.maximum(a, 1e-4), old[..., :3])
             alpha = np.minimum(old[..., 3:], a) if kind == "mapisle" else a
             ingest.write_imageset(name, to_img(np.dstack([rgb, alpha])))
+        clear_occluders(stage, info["hard_full"])
         out[stage] = x.shape[:2]
         print(f"base day {stage}: {x.shape[1]} x {x.shape[0]} px")
     return out
@@ -333,10 +417,20 @@ def stations_data(spec: dict = TEA_STALL) -> dict:
             "foot": built["foot"],
             "density": DENSITY,
             "baseStages": sorted(BASES),
+            "stages": {str(st): stage_place(st, built["box"]) for st in sorted(BASES)},
             "lookBytes": [asset_pixels(look_name(spec["id"], n, spec["light"])) for n in levels],
             "baseBytes": {str(s): asset_pixels(base_name(spec["light"], s)) for s in sorted(BASES)},
         }
     }
+
+
+def stage_place(stage: int, ref_box: list[float]) -> dict:
+    """One stage's transform: the look canvas's box scaled about the foot, and the foot (plate points)."""
+    fx, fy = PLACE[stage]["foot"]
+    k = PLACE[stage]["scale"]
+    rx, ry = TEA_STALL["foot"]
+    box = [fx + (ref_box[0] - rx) * k, fy + (ref_box[1] - ry) * k, fx + (ref_box[2] - rx) * k, fy + (ref_box[3] - ry) * k]
+    return {"foot": [fx, fy], "scale": k, "box": [round(v, 2) for v in box]}
 
 
 def cmd_json() -> None:

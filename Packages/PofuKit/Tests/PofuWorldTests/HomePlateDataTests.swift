@@ -170,6 +170,28 @@ struct HomePlateDataTests {
         }
     }
 
+    @Test func theLookStandsWhereEachStagePaintsItsStallAndScalesAboutTheFoot() throws {
+        let plate = try plate
+        let looks = try #require(plate.stations["teaStall"])
+        #expect(looks.baseStages == [3, 4, 6, 7])
+        for stage in looks.baseStages {
+            let place = looks.place(stage: stage)
+            // the foot is inside its canvas, near the bottom, and the canvas is the reference one scaled about the foot
+            #expect(place.box.minX < place.foot.x && place.foot.x < place.box.maxX)
+            #expect(place.box.maxY > place.foot.y && place.foot.y > place.box.minY)
+            let k = place.box.width / looks.box.width
+            #expect(k > 0.8 && k < 1.3)
+            #expect(abs(place.box.height / looks.box.height - k) < 0.01)
+            #expect(plate.drawnPlateArt(light: "day", stage: stage) == "world-home-base-day-\(stage)")
+            #expect(plate.lookArt(station: "teaStall", level: 3, light: "day", stage: stage) == "world-home-look-teaStall-3-day")
+        }
+        // a stage that keeps its painted stall has no base and no look
+        for stage in [0, 1, 2, 5, 8, 9] {
+            #expect(plate.lookArt(station: "teaStall", level: 3, light: "day", stage: stage) == nil)
+        }
+        #expect(looks.place(stage: 7).foot == looks.foot)
+    }
+
     @Test func aStateWithoutABaseKeepsItsPaintedStall() throws {
         let plate = try plate
         #expect(plate.lookArt(station: "teaStall", level: 3, light: "night", stage: 7) == nil)

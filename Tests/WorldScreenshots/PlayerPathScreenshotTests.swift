@@ -341,31 +341,38 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
         XCTAssertFalse(live.isGrowing, "the moment ends by itself")
     }
 
-    /// A build's camera through the real `focusStation` (the painted station centred above the sheet), and
-    /// the station's burst at 0.6 s, over the held old painting (day 4: the island rises to level 4).
-    /// The tea stall's looks on Home (WP8): the same level 3 morning with the stall at levels 1, 3 and 5, at noon (the
-    /// stall's base is the day plate), one frame each. A level 5 stall on a level 3 island is not a state the player
-    /// reaches today; the frames are for the looks.
+    /// The tea stall's looks on Home (WP8): the stall's level shows at every island level whose day plate has an
+    /// erased base (islands 3, 4, 6, 7). Island 3 at stall levels 1, 3 and 5 (`path-stall-l<level>`), the other
+    /// islands at levels 1 and 5 (`path-stall-i<island>-l<level>`), at noon (the stall's base is the day plate), one
+    /// frame each. A level 5 stall on a young island is not a state the player reaches today; the frames are for the
+    /// looks. Islands 5 and 2 keep their painted stall (no clean base) and are shown as controls.
     @MainActor
     func testRenderTheTeaStallLooks() async throws {
         let scene = try windowScene()
         let folder = try outputFolder()
         let day = try XCTUnwrap(Self.path.first { $0.morning.islandLevel == 3 }, "the path has a level 3 island")
-        for level in [1, 3, 5] {
-            var world = day.morning
-            world.stations = world.stations.map { status in
-                var status = status
-                if status.id == .teaStall { status.level = level }
-                return status
-            }
-            let island = IslandSceneModel(framing: .mid)
-            let view = homeView(world, hour: 12, island: island, settled: true)
-            try await capture(AnyView(view), name: "path-stall-l\(level)", scene: scene, folder: folder, settle: 2100) {
-                XCTAssertNotNil(island.homePlate, "path-stall-l\(level): Home is its painting")
+        let frames: [(island: Int, levels: [Int])] = [(3, [1, 3, 5]), (4, [1, 5]), (5, [3]), (6, [1, 5]), (7, [1, 5]), (2, [3])]
+        for (islandLevel, levels) in frames {
+            for level in levels {
+                var world = day.morning
+                world.islandLevel = islandLevel
+                world.stations = world.stations.map { status in
+                    var status = status
+                    if status.id == .teaStall { status.level = level }
+                    return status
+                }
+                let island = IslandSceneModel(framing: .mid)
+                let view = homeView(world, hour: 12, island: island, settled: true)
+                let name = islandLevel == 3 ? "path-stall-l\(level)" : "path-stall-i\(islandLevel)-l\(level)"
+                try await capture(AnyView(view), name: name, scene: scene, folder: folder, settle: 2100) {
+                    XCTAssertNotNil(island.homePlate, "\(name): Home is its painting")
+                }
             }
         }
     }
 
+    /// A build's camera through the real `focusStation` (the painted station centred above the sheet), and
+    /// the station's burst at 0.6 s, over the held old painting (day 4: the island rises to level 4).
     @MainActor
     func testRenderTheBuildFocusAndBurst() async throws {
         let scene = try windowScene()
