@@ -26,8 +26,16 @@ public enum FlowArtSlot {
     public static let rock = "flow-rock"
     /// Method B: the rock as a cut-out piece (transparent around it).
     public static let rockCut = "flow-rock-cut"
-    /// The board's top lip with the spillway notch (batch 131), a sprite over the backdrop's cascade.
-    public static let boardLip = "flow-board-lip"
+    /// The top lip kit (batch 135): two ends, a run stone and the spillway, set over the backdrop's cascade.
+    public static let lipEndLeft = "flow-lip-end-left"
+    public static let lipRun = "flow-lip-run"
+    public static let lipSpill = "flow-lip-spill"
+    public static let lipEndRight = "flow-lip-end-right"
+    /// The stone chute under a last-row mouth, dry and wet (batch 135).
+    public static let spoutDry = "flow-spout-dry"
+    public static let spoutWet = "flow-spout-wet"
+    /// The board's stone edge, a 9-slice (batch 132).
+    public static let edge = "flow-board-edge"
     /// Method B: one seamless lawn.
     public static let lawn = "flow-lawn"
     public static let spring = "flow-spring"
@@ -41,10 +49,8 @@ public enum FlowArtSlot {
     public static let backdrop = "flow-backdrop"
     public static let maxVariants = 6
 
-    /// The cut-out rocks that carry their own painted contact shade (batch 130 rock 3, variant index 2).
-    /// The others get a soft shade from the code. Rock 3's warm shade glows over dark ground, so it is only
-    /// ever laid on the lawn.
-    public static func rockCutHasPaintedShade(variant index: Int) -> Bool { index == 2 }
+    /// The cut-out rocks (batch 135) all paint their own contact shade, so the code adds none.
+    public static func rockCutHasPaintedShade(variant index: Int) -> Bool { true }
 
     public static func variantName(_ base: String, _ index: Int) -> String {
         index == 0 ? base : "\(base)-\(index + 1)"

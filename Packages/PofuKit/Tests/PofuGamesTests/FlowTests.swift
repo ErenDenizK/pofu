@@ -310,7 +310,7 @@ struct FlowTests {
                     size: CGSize(width: width, height: 874), safeTop: 62, safeBottom: 34,
                     columns: board.columns, rows: board.rows
                 )
-                let outer = [layout.pool, layout.lip, layout.board.insetBy(dx: -6, dy: -6)]
+                let outer = [layout.pool, layout.lip, layout.edge, layout.board.insetBy(dx: -6, dy: -6)]
                 for rect in outer {
                     #expect(rect.minX - 1.5 >= FlowLayout.gutter, "\(record.id) at \(width): \(rect.minX)")
                     #expect(width - rect.maxX - 1.5 >= FlowLayout.gutter, "\(record.id) at \(width): \(rect.maxX)")

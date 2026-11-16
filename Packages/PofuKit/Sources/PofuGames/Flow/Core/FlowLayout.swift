@@ -58,6 +58,8 @@ public struct FlowLayout: Equatable, Sendable {
 
     /// The cliff the spring comes out of, above the board.
     public var lip: CGRect { CGRect(x: board.minX - 10, y: board.minY - Self.lipHeight, width: board.width + 20, height: Self.lipHeight + 6) }
+    /// The stone edge round the bank (batch 132): it reaches as far out as the pool did, so the gutter holds.
+    public var edge: CGRect { board.insetBy(dx: -Self.poolOverhang, dy: -Self.poolOverhang) }
     /// The pool the mouths pour into, below the board.
     public var pool: CGRect { CGRect(x: board.minX - Self.poolOverhang, y: board.maxY - 4, width: board.width + 2 * Self.poolOverhang, height: Self.poolHeight + 4) }
 }
