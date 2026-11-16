@@ -59,6 +59,19 @@ final class FlowTextures {
     /// The stone under the mill wheel (batch 64, `flow-tile-wheel`) and the wheel itself, one frame
     /// that code rotates (`flow-wheel`). Both hooks load by name; the drawings below stay as the fallback.
     static let wheelTileArt = "flow-tile-wheel"
+
+    /// The painted gate and wheel's size against the cell. The gate plank spans 86 percent of its tile and
+    /// the wheel 84 percent, which would touch the cell's edges.
+    static let gateScale: CGFloat = 0.74
+    static let wheelScale: CGFloat = 0.92
+
+    /// Aspect-fills `image` into `rect`, centred (UIKit drawing).
+    static func drawCover(_ image: UIImage, in rect: CGRect) {
+        let scale = max(rect.width / image.size.width, rect.height / image.size.height)
+        let width = image.size.width * scale
+        let height = image.size.height * scale
+        image.draw(in: CGRect(x: rect.midX - width / 2, y: rect.midY - height / 2, width: width, height: height))
+    }
     static let wheelArt = "flow-wheel"
 
     /// The painted bank tiles (grass, rock), read from the named slots in `FlowArtSlot`. A slot with no
@@ -210,6 +223,12 @@ final class FlowTextures {
     /// A warm multiply over the stone: the art is about 20 percent less chromatic than the straight tile.
     static let stoneTint = FlowPalette.rgb(1.0, 0.96, 0.89)
 
+    private func texture(of image: UIImage) -> SKTexture {
+        let texture = SKTexture(image: image)
+        texture.filteringMode = .linear
+        return texture
+    }
+
     /// A painted texture by its art id, or nil until the batch is integrated.
     private func painted(_ name: String) -> SKTexture? {
         guard let image = UIImage(named: name, in: .module, compatibleWith: nil) else { return nil }
@@ -235,13 +254,18 @@ final class FlowTextures {
 
     // MARK: Cached textures
 
-    func stone(_ kind: FlowTileKind, _ openings: FlowDirection) -> SKTexture {
+    /// Which way a cell mirrors the seamless materials (bed and water): bit 0 mirrors left to right on odd
+    /// columns, bit 1 top to bottom on odd rows. Two neighbours then meet on a mirrored edge, which is
+    /// continuous by construction, so no wrap seam of the tile can fall on a cell boundary.
+    static func flip(of cell: FlowCell) -> Int { (cell.column & 1) | ((cell.row & 1) << 1) }
+
+    func stone(_ kind: FlowTileKind, _ openings: FlowDirection, flip: Int = 0) -> SKTexture {
         if kind == .wheel, let art = painted(Self.wheelTileArt) { return art }
-        return cached("stone-\(kind.rawValue)-\(openings.rawValue)") { context in
+        return cached("stone-\(kind.rawValue)-\(openings.rawValue)-\(flip)") { context in
             switch kind {
             case .rock: self.drawRock(context)
             case .grass: self.drawGrass(context)
-            default: self.drawStone(context, kind: kind, openings: openings)
+            default: self.drawStone(context, kind: kind, openings: openings, flip: flip)
             }
         }
     }
@@ -261,9 +285,9 @@ final class FlowTextures {
         return (slice(0, 0.4), slice(0.4, 0.6), slice(0.6, 1), size.width / size.height)
     }
 
-    func water(_ kind: FlowTileKind, _ openings: FlowDirection) -> SKTexture {
-        cached("water-\(kind.rawValue)-\(openings.rawValue)") { context in
-            self.drawWater(context, kind: kind, openings: openings)
+    func water(_ kind: FlowTileKind, _ openings: FlowDirection, flip: Int = 0) -> SKTexture {
+        cached("water-\(kind.rawValue)-\(openings.rawValue)-\(flip)") { context in
+            self.drawWater(context, kind: kind, openings: openings, flip: flip)
         }
     }
 
@@ -296,7 +320,23 @@ final class FlowTextures {
 
     func wheel(blurred: Bool) -> SKTexture {
         // The painted wheel is one sharp frame; while it is "blurred" (settled) the drawn ghost stays.
-        if !blurred, let art = painted(Self.wheelArt) { return art }
+        if let art = wood(Self.wheelArt) {
+            if !blurred { return texture(of: art) }
+            // Settled: the same painted wheel smeared over one eighth turn, which for eight spokes is a
+            // still, soft disc of a turning wheel.
+            return cached("wheel-painted-blur") { context in
+                let bounds = CGRect(x: 0, y: 0, width: self.cell, height: self.cell)
+                let steps = 8
+                for index in 0..<steps {
+                    context.saveGState()
+                    context.translateBy(x: self.cell / 2, y: self.cell / 2)
+                    context.rotate(by: CGFloat(index) * (.pi / 4) / CGFloat(steps))
+                    context.translateBy(x: -self.cell / 2, y: -self.cell / 2)
+                    art.draw(in: bounds, blendMode: .normal, alpha: 1 / CGFloat(index + 1))
+                    context.restoreGState()
+                }
+            }
+        }
         return cached("wheel-\(blurred)") { context in
             let center = CGPoint(x: self.cell / 2, y: self.cell / 2)
             let radius = self.cell * 0.42
@@ -320,7 +360,7 @@ final class FlowTextures {
     }
 
     func gateBoard() -> SKTexture {
-        if let art = painted(FlowArtSlot.gate) { return art }
+        if let art = wood(FlowArtSlot.gate) { return texture(of: art) }
         return cached("gate") { context in
             let center = CGPoint(x: self.cell / 2, y: self.cell / 2)
             let width = self.grooveWidth * 2.0
@@ -340,6 +380,67 @@ final class FlowTextures {
                 context.fillEllipse(in: CGRect(x: x - 2.2, y: center.y - 2.2, width: 4.4, height: 4.4))
             }
         }
+    }
+
+    /// The part of each seamless tile that is used, as fractions of the picture. The water tile is paler and
+    /// pinker along its left and right edges and its wrap step is 8 to 12 times the interior's, so only its
+    /// even middle is used; the bed tile is used without its outer fifth.
+    static let waterCrop = CGRect(x: 0.29, y: 0.29, width: 0.42, height: 0.42)
+    static let bedCrop = CGRect(x: 0.2, y: 0.2, width: 0.6, height: 0.6)
+
+    private var cropCache: [String: UIImage] = [:]
+
+    /// Draws the middle of a seamless picture into `rect`, mirrored by the cell's `flip` bits.
+    private func drawSeamless(_ image: UIImage, crop: CGRect, flip: Int, in rect: CGRect, _ context: CGContext) {
+        let key = "\(crop.minX)-\(crop.width)-\(image.size.width)"
+        var piece = cropCache[key]
+        if piece == nil, let cg = image.cgImage {
+            let pixels = CGRect(x: crop.minX * CGFloat(cg.width), y: crop.minY * CGFloat(cg.height), width: crop.width * CGFloat(cg.width), height: crop.height * CGFloat(cg.height)).integral
+            if let part = cg.cropping(to: pixels) { piece = UIImage(cgImage: part) }
+            if let piece { cropCache[key] = piece }
+        }
+        context.saveGState()
+        context.translateBy(x: rect.midX, y: rect.midY)
+        context.scaleBy(x: flip & 1 == 1 ? -1 : 1, y: flip & 2 == 2 ? -1 : 1)
+        context.translateBy(x: -rect.midX, y: -rect.midY)
+        (piece ?? image).draw(in: rect)
+        context.restoreGState()
+    }
+
+    /// The warm family of the stone, for the painted wood: part of the saturation is taken out, then a warm
+    /// multiply, so wheel and gate sit beside the cream stone. The art file itself is not recoloured.
+    static let woodTint = FlowPalette.rgb(0.99, 0.96, 0.91)
+    static let woodDesaturate: CGFloat = 0.30
+
+    private var woodCache: [String: UIImage] = [:]
+
+    /// A painted prop (wheel, gate) at 512 px, with the wood tint applied inside its own alpha.
+    func wood(_ name: String) -> UIImage? {
+        if let hit = woodCache[name] { return hit }
+        guard let image = UIImage(named: name, in: .module, compatibleWith: nil), let mask = image.cgImage else { return nil }
+        let side: CGFloat = 512
+        let format = UIGraphicsImageRendererFormat()
+        format.scale = 1
+        format.opaque = false
+        let rect = CGRect(x: 0, y: 0, width: side, height: side)
+        let result = UIGraphicsImageRenderer(size: rect.size, format: format).image { rendered in
+            let context = rendered.cgContext
+            image.draw(in: rect)
+            context.saveGState()
+            // `clip(to:mask:)` reads the mask upright in the native (y up) space.
+            context.translateBy(x: 0, y: side)
+            context.scaleBy(x: 1, y: -1)
+            context.clip(to: rect, mask: mask)
+            context.setBlendMode(.saturation)
+            context.setFillColor(UIColor(white: 0.5, alpha: Self.woodDesaturate).cgColor)
+            context.fill(rect)
+            context.setBlendMode(.multiply)
+            context.setFillColor(Self.woodTint.cgColor)
+            context.fill(rect)
+            context.restoreGState()
+        }
+        woodCache[name] = result
+        return result
     }
 
     // MARK: Drawing
@@ -385,8 +486,8 @@ final class FlowTextures {
         return path
     }
 
-    private func drawStone(_ context: CGContext, kind: FlowTileKind, openings: FlowDirection) {
-        if paintedStone(context, kind: kind, openings: openings) { return }
+    private func drawStone(_ context: CGContext, kind: FlowTileKind, openings: FlowDirection, flip: Int) {
+        if paintedStone(context, kind: kind, openings: openings, flip: flip) { return }
         let bounds = CGRect(x: 0, y: 0, width: cell, height: cell)
         let rect = bounds.insetBy(dx: 2, dy: 2)
         let radius = cell * 0.17
@@ -452,7 +553,7 @@ final class FlowTextures {
     /// The painted stone with the channel carved in by code. The variant (which take, which quarter turn,
     /// mirrored or not) comes from the tile's kind and openings, so a board reads hand-laid while the same
     /// tile always looks the same. Returns false until the art is in the bundle.
-    private func paintedStone(_ context: CGContext, kind: FlowTileKind, openings: FlowDirection) -> Bool {
+    private func paintedStone(_ context: CGContext, kind: FlowTileKind, openings: FlowDirection, flip: Int) -> Bool {
         let hash = kind.rawValue.unicodeScalars.reduce(7) { ($0 &* 31 &+ Int($1.value)) & 0xFFFF } &+ Int(openings.rawValue) &* 13
         guard let image = UIImage(named: Self.stoneArt[hash % Self.stoneArt.count], in: .module, compatibleWith: nil) else { return false }
         let bounds = CGRect(x: 0, y: 0, width: cell, height: cell)
@@ -525,7 +626,8 @@ final class FlowTextures {
             context.setLineWidth(grooveWidth)
             context.replacePathWithStrokedPath()
             context.clip()
-            bed.draw(in: bounds.insetBy(dx: -3, dy: -3))
+            // The bed is placed in cell space, not in the shifted frame, so a mirrored neighbour meets it exactly.
+            drawSeamless(bed, crop: Self.bedCrop, flip: flip, in: bounds.insetBy(dx: -3, dy: -3).offsetBy(dx: -2.4, dy: -2.4), context)
         } else {
             context.addPath(path)
             context.setStrokeColor(FlowPalette.groove.cgColor)
@@ -565,7 +667,7 @@ final class FlowTextures {
         return true
     }
 
-    private func drawWater(_ context: CGContext, kind: FlowTileKind, openings: FlowDirection) {
+    private func drawWater(_ context: CGContext, kind: FlowTileKind, openings: FlowDirection, flip: Int) {
         let path = channelPath(openings)
         let middle = CGPoint(x: cell / 2, y: cell / 2)
         if let texture = art(FlowArtSlot.water) {
@@ -581,12 +683,18 @@ final class FlowTextures {
             context.saveGState()
             context.addPath(body)
             context.clip()
-            texture.draw(in: CGRect(x: 0, y: 0, width: cell, height: cell).insetBy(dx: -3, dy: -3))
+            drawSeamless(texture, crop: Self.waterCrop, flip: flip, in: CGRect(x: 0, y: 0, width: cell, height: cell).insetBy(dx: -3, dy: -3), context)
             context.restoreGState()
             context.setStrokeColor(FlowPalette.waterDeep.withAlphaComponent(0.35).cgColor)
             context.setLineWidth(1.2)
             context.addPath(body)
             context.strokePath()
+            if kind == .source || kind == .mouth, let piece = art(kind == .source ? FlowArtSlot.spring : FlowArtSlot.outlet) {
+                // The painted ring of stones goes back over the water, so the stream starts at its rim
+                // instead of running across the stones.
+                let side = cell * 0.9
+                piece.draw(in: CGRect(x: middle.x - side / 2, y: middle.y - side / 2, width: side, height: side))
+            }
             return
         }
         context.setLineCap(.round)

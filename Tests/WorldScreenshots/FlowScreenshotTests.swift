@@ -25,7 +25,7 @@ final class FlowScreenshotTests: XCTestCase {
 
         // Mid-way: one of the two remaining bends turned, the water running
         // on, and Damla's hint on the next stone.
-        try await shoot("41-flow-stage1-mid", in: scene, folder: folder, written: &written, stage: 1) { model in
+        try await shoot("path-game-flow-stage1-mid", in: scene, folder: folder, written: &written, stage: 1) { model in
             model.playSuggestedTap()
             try await Task.sleep(for: .milliseconds(900))
             await model.showHintNow()
@@ -33,19 +33,22 @@ final class FlowScreenshotTests: XCTestCase {
         }
 
         // Solved: the last tap, the pour. Held on the solved board.
-        try await shoot("42-flow-stage1-solved", in: scene, folder: folder, written: &written, stage: 1) { model in
+        try await shoot("path-game-flow-stage1-solved", in: scene, folder: folder, written: &written, stage: 1) { model in
             while model.phase == .playing, model.playSuggestedTap() {
                 try await Task.sleep(for: .milliseconds(350))
             }
             try await Task.sleep(for: .milliseconds(1100))
         }
 
+        // Stage 2's first board: the gate, full resolution for the art review.
+        try await shoot("path-game-flow-stage2-gate", in: scene, folder: folder, written: &written, stage: 2) { _ in }
+
         // Stage 3's second board: the wheel, before any tap (the round's first
         // board is solved by hand to get there).
         try await shoot("43-flow-stage3-wheel-start", in: scene, folder: folder, written: &written, stage: 3) { _ in }
 
         // Stage 4's last board, solved: two mouths and a turning wheel.
-        try await shoot("44-flow-stage4-solved", in: scene, folder: folder, written: &written, stage: 4) { model in
+        try await shoot("path-game-flow-stage4-solved", in: scene, folder: folder, written: &written, stage: 4) { model in
             try await Self.solveBoard(model)
             model.continueNow()
             try await Task.sleep(for: .milliseconds(900))
@@ -56,7 +59,7 @@ final class FlowScreenshotTests: XCTestCase {
         let summary = written.joined(separator: "\n")
         try summary.write(to: folder.appendingPathComponent("README-flow.txt"), atomically: true, encoding: .utf8)
         print("Flow screenshots in \(folder.path):\n\(summary)")
-        XCTAssertEqual(written.count, 5)
+        XCTAssertEqual(written.count, 6)
     }
 
     /// Stage 1, board 1 in both ground methods for the founder to choose from: A gives every cell its own
