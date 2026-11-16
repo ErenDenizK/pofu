@@ -33,8 +33,8 @@ chooses to (days 1-21); no dates (11-14). Now: world presentation (#474).
    snapshot of the built island, 3.2 s reveal. Left: `mapisle` assets
    (night 8-9 need them), orphan `world-home-base-day-5`, reveal burst.
    WP11 near lens merged (#502; pinch at 120 Hz: device check).
-   WP13 water #504 (pond only: Home has no falls, no sway/emissive mask);
-   4th push allowed for a night lantern fringe. WP12 waits on #503.
+   WP13 water #504 (pond only; no falls, no sway mask): night lantern ring
+   survived 4 pushes; `feat/region-shaders-v2` finds the cause, supersedes it.
 3. Merged 11-16: #480 one sky, #488 Hop hour, #489 flow rocks + lip, #491
    cloud floor, #492 props, #493 N6, #494 + #497 tea stall looks, #495
    rail (Home mid, free near), #496 icons, #498 beds + back, #501 games.
@@ -44,7 +44,7 @@ chooses to (days 1-21); no dates (11-14). Now: world presentation (#474).
 Merged: #475-#489, #491-#502; pofu-art #81, #91-#113.
 
 ## Next (night plan)
-A9 art backlog; §8.6 pass. Sefer builders V1-V5 once he says yes.
+A9 art backlog; §8.6 pass. Sefer V1-V5 and WP12 once he says yes.
 
 ## Desks
 
