@@ -23,22 +23,23 @@ Large job now: world presentation (spec #474); glass UI stays.
 
 ## In flight
 
-1. Builders: WP7 rail + ADR-0027 (Opus, `feat/rail-mid-near`). WP5 props
-   #492: lead merged main in + ingest keeps props; 4th push, then merge.
+1. Builders: WP7 rail + ADR-0027 (Opus, `feat/rail-mid-near`); 128 duo
+   icons (Sonnet, `feat/duo-icons-128`). WP5 props #492: lead merged main
+   in + ingest keeps props; 4th push in CI, then merge.
 2. Merged today: #480 mattes + one sky (night L1/L2 legacy); #488 Hop hour;
    #489 flow rocks + lip (edge waits on Codex 132); #493 N6 proof; #494
    tea stall looks, day stage 7 only. Follow-up: other stages paint a
    different stall (tile roof 0-4, moved 5-8): per-stage bases (117 day
    L8 has no pick) or new art. #491 WP9 cloud floor on the Map: beds,
    puffs, tower-b. Left: floor tiles, wisps, mid/stop floor (need art);
-   hill-cap reused as Çağlayan's bed (WP12 needs another); render-server.
+   art queued as Codex 133; beds read peach: grade in `cloud_kit.py`.
 3. UI grammar #490 open (docs): world painted, screen native glass. No app
    change until the founder has seen it.
 4. Codex: 127, 128, 130, 131 reviewed and merged; 129 edited so each look
-   steps outside the last outline (pofu-art #108). Queue: 132, then S1
+   steps outside the last outline (pofu-art #108). Queue: 132, 133 cloud floor, then S1
    (129 looks), S2 (126 v2/v3). 128 drop and star need an edit.
 5. Founder picks owed: 5 UI grammar questions, flow A/B (B), N6 recipe (yes).
-Merged: #475-#489, #491, #493, #494; pofu-art #81, #91-#108.
+Merged: #475-#489, #491, #493, #494; pofu-art #81, #91-#109.
 
 ## Next steps, in order (night plan)
 
