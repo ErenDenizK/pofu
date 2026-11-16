@@ -36,11 +36,10 @@ chooses to (days 1-21); no dates (11-14). Now: world presentation (#474).
    WP11 near lens (`feat/near-lens`) in CI; WP13 after; WP12 waits on #503.
 3. Merged 11-16: #480 one sky, #488 Hop hour, #489 flow rocks + lip, #491
    cloud floor, #492 props, #493 N6, #494 + #497 tea stall looks, #495
-   rail (Home is mid, free near), #496 icons, #498 beds + back control.
-4. UI grammar #490 open (docs); no app change until the founder sees it.
-5. Codex: station looks held for (a) (pofu-art #111). Line: 132 board
-   edge, 133 cloud floor, S2 clouds, S3 hidden visitors. 129 reworked
-   (#110) and waiting. Codex hit the image tool's quota mid-129.
+   rail (Home mid, free near), #496 icons, #498 beds + back, #501 games.
+4. UI grammar #490 open (docs), waits on his answers with #503.
+5. Codex line: 132 board edge, 133 cloud floor, 134 plot pilot, flow kit
+   v2 (queuing), S2 clouds, S3 hidden visitors. 129 held for the pilot.
 Merged: #475-#489, #491-#501; pofu-art #81, #91-#112.
 
 ## Next steps, in order (night plan)
