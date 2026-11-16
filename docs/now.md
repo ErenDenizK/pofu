@@ -34,12 +34,11 @@ Large job now: world presentation (spec #474); glass UI stays.
    textured channel, method B switch; A/B frames for the founder.
 4. Codex: queue #92 (121-128 Demand, 129 station looks standing); he
    says "çalış". Morning review order: 121, 123, 122, 124-128.
-Merged today: #475-#478, #476, #481; pofu-art #81, #91, #92.
+Merged today: #475-#479, #476, #481, #482, #484; pofu-art #81, #91, #92.
 
 ## Next steps, in order (night plan)
 
-1. Merged #484: painted seed in glass Topla, Door frame `path-hop-*`.
-   Bug: Hop copy says "geç oldu" at a .day hour (HopView clock?).
+1. Bug: Hop copy says "geç oldu" at a .day hour (HopView clock?).
 2. N6 upgrade proof on 123's picks; Fable judges; gates 129.
 3. N8 WP5 props back after WP4; then A1 one sky, A2 WP7 rail.
 4. Founder picks as frames: flow A/B, far camera UI, sheets glass or
