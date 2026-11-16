@@ -8,7 +8,8 @@ import XCTest
 /// The region shaders' water (build spec WP13): Home's pond at level 10 by day and at night, at
 /// mid and at near, each at two instants of the water's loop (`worldWaterClock`: a still frame
 /// holds the loop's time), so the motion can be shown from stills. `water-<light>-<framing>-t<n>`
-/// where t0 is 0 s and t1 is 1.5 s into the loop; `water-day-mid-off` is the same frame with
+/// where t0 is 0 s and t1 is 1.5 s into the loop (`pond`: the camera focused on the pond, the lens
+/// blurring the rest of the island); `water-day-mid-off` is the same frame with
 /// the water as painted (a still frame without the clock).
 final class RegionWaterScreenshotTests: XCTestCase {
     private struct Shot {
@@ -17,6 +18,8 @@ final class RegionWaterScreenshotTests: XCTestCase {
         var hour: Double
         /// `nil`: the water as painted.
         var clock: Double?
+        /// The camera focused on the pond (the lens blurs the rest of the island), once the plate is up.
+        var focusPond = false
     }
 
     @MainActor
@@ -33,6 +36,11 @@ final class RegionWaterScreenshotTests: XCTestCase {
                 for (i, clock) in [0.0, 1.5].enumerated() {
                     shots.append(Shot(name: "water-\(light)-\(label)-t\(i)", framing: framing, hour: hour, clock: clock))
                 }
+            }
+        }
+        for (light, hour) in [("day", 12.0), ("night", 22.5)] {
+            for (i, clock) in [0.0, 1.5].enumerated() {
+                shots.append(Shot(name: "water-\(light)-pond-t\(i)", framing: .mid, hour: hour, clock: clock, focusPond: true))
             }
         }
         for shot in shots {
@@ -76,6 +84,10 @@ final class RegionWaterScreenshotTests: XCTestCase {
         window.windowLevel = .alert + 4
         window.makeKeyAndVisible()
         try await Task.sleep(for: .milliseconds(1600))
+        if shot.focusPond {
+            island.focusStation(.pond, animated: false)
+            try await Task.sleep(for: .milliseconds(1400))
+        }
         XCTAssertEqual(island.homePlate?.stage, 0, "level 10 paints stage 0, the big pond")
         let format = UIGraphicsImageRendererFormat()
         format.scale = window.traitCollection.displayScale
