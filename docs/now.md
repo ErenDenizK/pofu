@@ -33,18 +33,18 @@ chooses to (days 1-21); no dates (11-14). Now: world presentation (#474).
 2. WP10 compositor merged (#500): looks sort with Pofu by footY, Map
    snapshot of the built island, 3.2 s reveal. Left: `mapisle` assets
    (night 8-9 need them), orphan `world-home-base-day-5`, reveal burst.
-   WP11 near lens #502: 4th push allowed (depth sync, front cap 6 pt, chrome
-   at near-1200); WP13 after; WP12 waits on #503.
+   WP11 near lens merged (#502; 120 Hz pinch unmeasured, device check).
+   WP13 region shaders (water) running, `feat/region-shaders`; WP12 waits on #503.
 3. Merged 11-16: #480 one sky, #488 Hop hour, #489 flow rocks + lip, #491
    cloud floor, #492 props, #493 N6, #494 + #497 tea stall looks, #495
    rail (Home mid, free near), #496 icons, #498 beds + back, #501 games.
 4. UI grammar #490 open (docs), waits on his answers with #503.
 5. Codex line: 132 board edge, 133 cloud floor, 134 plot pilot, 135 flow
    kit v2, S2 clouds, S3 hidden visitors. 129 held for the pilot.
-Merged: #475-#489, #491-#501; pofu-art #81, #91-#113.
+Merged: #475-#489, #491-#502; pofu-art #81, #91-#113.
 
 ## Next (night plan)
-WP13 region shaders after WP11; A9 art backlog; §8.6 pass. Sefer builders V1-V5 once he says yes.
+A9 art backlog; §8.6 pass. Sefer builders V1-V5 once he says yes.
 
 ## Desks
 
