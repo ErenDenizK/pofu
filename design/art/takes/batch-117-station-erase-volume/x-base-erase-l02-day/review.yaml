@@ -1,0 +1,48 @@
+batch: batch-117-station-erase-volume
+job: x-base-erase-l02-day
+status: warn
+pick: 1
+lead_review: "Lead pick for the erase only: stall and garden gone and take 2 leaves a brown fleck on the path, but both lawns are yellower than this misty parent and the paste shows a box seam at 1:1, so run the paste on the batch-116 mist-clear plate instead (or grade the region to the parent's lawn first); the bagel cart stays because the matrix has no cart at level 2."
+note: "Exploration only; retain both unpromoted whole-plate takes for the lead to paste back. Judge the erased region and feathered seam only; whole-frame drift is expected. Preserve the left-rim daisy border, hilltop flowers, and non-station path lantern; trim any dangling workshop light string where applicable. Station boxes are in the manifest job notes."
+source: codex-cloud
+account:
+  owner: "Founder's uncle's ChatGPT plan, used by the founder with permission"
+  kind: chatgpt-plan
+takes:
+- n: 1
+  file: plate__x-base-erase-l02-day--t1.webp
+  qa: warn
+  size_bytes: 86628
+  dimensions: 1024x1536
+  lock_load: 0.0
+  warnings:
+  - check: chroma_ceiling
+    status: warn
+    message: "chroma p95 64 (R1 51) (advisory in an exploration)"
+  - check: light_contrast
+    status: warn
+    message: "day/subject: p75 local contrast 2.4 (band 2.5-6.5; below it reads flat)"
+  - check: palette_drift
+    status: warn
+    message: "mean dE 5.2, p95 16.2, off-palette 9.7% (top: #DDCC55 (2.7%), #EEDD55 (2.0%)) (advisory in an exploration)"
+  source_file: /workspace/generated_images/exec-77fc4dc4-8737-477c-9db4-0da6e58206d5.png
+  source_sha256: 9156cd080ade3bcb3b644322835aa07b8d58ccb4f173ac06031d582d043bd946
+  generated_at: 2026-11-15T15:39:13+00:00
+- n: 2
+  file: plate__x-base-erase-l02-day--t2.webp
+  qa: warn
+  size_bytes: 91800
+  dimensions: 1024x1536
+  lock_load: 0.0
+  warnings:
+  - check: chroma_ceiling
+    status: warn
+    message: "chroma p95 65 (R1 51) (advisory in an exploration)"
+  - check: palette_drift
+    status: warn
+    message: "mean dE 5.2, p95 13.9, off-palette 10.0% (top: #DDCC44 (3.1%), #99BBFF (1.4%)) (advisory in an exploration)"
+  source_file: /workspace/generated_images/exec-e21e2107-66d5-47ea-8cfa-810c6be4c850.png
+  source_sha256: ed0a0695adf996d9400fbd0ad337aa58a4b237547946e80e81ead9b7abb191fb
+  generated_at: 2026-11-15T15:39:14+00:00
+references:
+- design/art/takes/batch-66-home-flow/x-home-flow-il2/plate__x-home-flow-il2--t1.webp

@@ -795,7 +795,7 @@ private struct SceneFrame<Bubble: View>: View {
                 if let plate {
                     // The painted plate, never graded: its backdrop, the
                     // plate and, toward the Map, the island cut alone.
-                    PlateHomeLayer(plate: plate, pose: pose, size: size, offset: offset, fade: plateFade)
+                    PlateHomeLayer(plate: plate, pose: pose, size: size, offset: offset, fade: plateFade, stationLevels: HomePlate.stationLevels(world))
                     FarBellSkyLayer(plate: plate, world: world, pose: pose, size: size, offset: offset).opacity(plateFade)
                 } else {
                     // Today's resist seals on the earth beside Pofu's door: an
@@ -869,7 +869,8 @@ private struct SceneFrame<Bubble: View>: View {
                         objects: plate.occluders(over: IslandLayout.pofu, box: plate.pofuBox),
                         pose: pose,
                         size: size,
-                        offset: offset
+                        offset: offset,
+                        stationLevels: HomePlate.stationLevels(world)
                     )
                 }
 

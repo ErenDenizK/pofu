@@ -1,0 +1,45 @@
+batch: batch-117-station-erase-volume
+job: x-base-erase-l07-day
+status: warn
+pick: 1
+lead_review: "Lead pick for paste-back: all six stations gone, the rope bridge and its islet kept, and take 1 keeps the whole hydrangea clump at the lighthouse foot where take 2 leaves a gap; hand fixes: paste back the path lantern by the pond (x 305, y 775) and the daisy border on the left rim below the old fence, which both takes wipe."
+note: "Exploration only; retain both unpromoted whole-plate takes for the lead to paste back. Judge the erased region and feathered seam only; whole-frame drift is expected. Preserve the left-rim daisy border, hilltop flowers, and non-station path lantern; trim any dangling workshop light string where applicable. Station boxes are in the manifest job notes."
+source: codex-cloud
+account:
+  owner: "Founder's uncle's ChatGPT plan, used by the founder with permission"
+  kind: chatgpt-plan
+takes:
+- n: 1
+  file: plate__x-base-erase-l07-day--t1.webp
+  qa: warn
+  size_bytes: 132484
+  dimensions: 1024x1536
+  lock_load: 0.0
+  warnings:
+  - check: chroma_ceiling
+    status: warn
+    message: "chroma p95 68 (R1 51) (advisory in an exploration)"
+  - check: palette_drift
+    status: warn
+    message: "mean dE 7.5, p95 23.6, off-palette 24.0% (top: #88BBFF (9.0%), #77AAFF (2.9%)) (advisory in an exploration)"
+  source_file: /workspace/generated_images/exec-aaed2cf6-7619-4c16-8641-bc7bd67ed966.png
+  source_sha256: f31cee914f3d8a48fc8a77b57297999b6e859ef5589425c30603346bfa37ec47
+  generated_at: 2026-11-15T15:32:33+00:00
+- n: 2
+  file: plate__x-base-erase-l07-day--t2.webp
+  qa: warn
+  size_bytes: 131912
+  dimensions: 1024x1536
+  lock_load: 0.0
+  warnings:
+  - check: chroma_ceiling
+    status: warn
+    message: "chroma p95 67 (R1 51) (advisory in an exploration)"
+  - check: palette_drift
+    status: warn
+    message: "mean dE 6.6, p95 23.1, off-palette 17.3% (top: #88BBFF (6.4%), #99BBFF (2.3%)) (advisory in an exploration)"
+  source_file: /workspace/generated_images/exec-d4753310-8c1f-40c4-ab2a-346ddc21843f.png
+  source_sha256: 2b4ff0468bf93107a74f558317a85a820e63c8ebfef0d4e5247c6d8574e02cbb
+  generated_at: 2026-11-15T15:32:34+00:00
+references:
+- design/art/takes/batch-66-home-flow/x-home-flow-il7/plate__x-home-flow-il7--t1.webp

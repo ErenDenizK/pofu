@@ -4,6 +4,10 @@
 Cuts a station's painted look (tea stall, garden) out of one Home plate and composites it into another,
 in both directions (richer look on an early plate, humbler look on a later one), day and night, then
 renders stills at 1206 x 2622 at the Map distance, the island fit and a 2.7 pt per unit near cap.
+STALE: it reads the 2048 x 3072 plates whole, and since #480 the shipped plate HEICs are cropped to the island band
+(`plateCrop`), so its offsets are wrong; the shipped path is `tools/plate/station_looks.py` (looks and erased bases).
+Kept as the record of proof 1.
+
 Script only: the shipped plates (2048 x 3072 HEIC, `World.xcassets`) are read and nothing is written to
 the repository. Needs pillow-heif (tools/plate/requirements.txt), numpy, scipy and opencv.
 

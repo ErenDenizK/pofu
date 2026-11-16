@@ -1,0 +1,45 @@
+batch: batch-117-station-erase-volume
+job: x-base-erase-l04-day
+status: warn
+pick: 2
+lead_review: "Lead pick for paste-back: both erase the four stations cleanly and keep the bridge; take 2 has the smaller colour step at the mask edge (ring dE p95 5.5, worst 5.8 against 8.4)."
+note: "Exploration only; retain both unpromoted whole-plate takes for the lead to paste back. Judge the erased region and feathered seam only; whole-frame drift is expected. Preserve the left-rim daisy border, hilltop flowers, and non-station path lantern; trim any dangling workshop light string where applicable. Station boxes are in the manifest job notes."
+source: codex-cloud
+account:
+  owner: "Founder's uncle's ChatGPT plan, used by the founder with permission"
+  kind: chatgpt-plan
+takes:
+- n: 1
+  file: plate__x-base-erase-l04-day--t1.webp
+  qa: warn
+  size_bytes: 92598
+  dimensions: 1024x1536
+  lock_load: 0.0
+  warnings:
+  - check: chroma_ceiling
+    status: warn
+    message: "chroma p95 75 (R1 51) (advisory in an exploration)"
+  - check: palette_drift
+    status: warn
+    message: "mean dE 9.2, p95 30.6, off-palette 28.3% (top: #88BBFF (7.3%), #CCDD44 (5.3%)) (advisory in an exploration)"
+  source_file: /workspace/generated_images/exec-16d80bd1-312b-4b68-b7d9-5a984665ec03.png
+  source_sha256: b52af21c3e261348ea4715d89fbe7aed531e1cbbc68ca8fd332a050ab6fb8934
+  generated_at: 2026-11-15T15:38:14+00:00
+- n: 2
+  file: plate__x-base-erase-l04-day--t2.webp
+  qa: warn
+  size_bytes: 88102
+  dimensions: 1024x1536
+  lock_load: 0.0
+  warnings:
+  - check: chroma_ceiling
+    status: warn
+    message: "chroma p95 72 (R1 51) (advisory in an exploration)"
+  - check: palette_drift
+    status: warn
+    message: "mean dE 8.7, p95 28.4, off-palette 26.9% (top: #88BBFF (6.8%), #CCDD44 (5.9%)) (advisory in an exploration)"
+  source_file: /workspace/generated_images/exec-ff5d2a53-72a3-4210-a5d6-775b1afa7981.png
+  source_sha256: f60c91ec491db261995178a1027288bbf7acd3c4d9443a8c7ccede9f28cc3de8
+  generated_at: 2026-11-15T15:38:15+00:00
+references:
+- design/art/takes/batch-66-home-flow/x-home-flow-il4/plate__x-home-flow-il4--t2.webp

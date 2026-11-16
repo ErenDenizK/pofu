@@ -1,0 +1,446 @@
+batch: batch-123-tea-stall-ladder-pilot
+manifest: tools/imagegen/manifest/batch-123-tea-stall-ladder-pilot.yaml
+manifest_sha256: de555ce332fe679b133b9dd80c70758f7045f3a7c9fbd8225d54b0e0a9725560
+job: x-look-tea-stall-5
+pick: 1
+lead_review: "Pick 1: it adds the tray of stacked glasses, a small striped awning hung on a bracket from the right post and lilac and white flowers at the foot, and keeps look 4's glass on its saucer, while take 2 drops that glass (a removed part) and stands its awning on two poles on the table; the bulbs grew about 1.5x since look 4, fine at mid. It does not converge on the finished plate's stall (tile roof, the teapot on a burner, cloth over the counter): that is the manifest's premise, reported to the lead, not a defect of this take. Grade note for all five looks: in place they are about 55 percent more saturated than the plate's own stall (staves chroma 50 against 32, awning 42 against 22), so ship them through one shared grade (chroma x0.65, lightness +5 percent, tested in place) and draw a soft contact shadow under the foot in the app."
+contact_sheet: design/art/takes/batch-123-tea-stall-ladder-pilot/x-look-tea-stall-5/contact.jpg
+source: codex-cloud
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+status: retained
+selection:
+  method: lowest style-lock load among non-failing QA takes, then highest harmony; pick follows that order
+  pick: 1
+note: 'Look 5: both candidates add a second striped awning above the table, a tray of tea glasses and small white/lilac
+  flowers at the counter foot, following the finished-station reference while keeping the previous pieces. Both
+  have edit_silhouette advisories (91% parent shape kept), plus chroma/light/palette warnings; automated QA has
+  no failures. Retain both for the pilot.'
+takes:
+- take: 1
+  file: prop__x-look-tea-stall-5--t1.webp
+  source_file: /workspace/generated_images/exec-8307a39c-498c-4f9a-aa1b-3f249f22d918.png
+  source_sha256: df60ca4d59f7a4701e4da7b583bc0809101b7e21d919b0f4d21894bb07a4f5a8
+  source_dimensions:
+  - 1254
+  - 1254
+  encoding: lossy WebP q90
+  generated_at: '2026-11-15T23:09:29+00:00'
+  backend: codex-cloud
+  qa: warn
+  lock_load: 1.6998
+  harmony: 71.5
+  warnings:
+  - chroma p95 62 (R1 51) (advisory in an exploration)
+  - 'day/subject: L p5 50 (at least 50: darks stay a light mid-tone), p98 94 (at least 90)'
+  - 'mean dE 5.3, p95 14.5, off-palette 10.2% (top: #CC7733 (1.7%), #BB6622 (0.9%)) (advisory in an exploration)'
+  - 91% of the parent's shape kept
+  prompt: 'REFERENCES (attached, in this order):
+
+    1. The image to edit (the approved previous level). Edit it; do not redraw it.
+
+    2. Where this object ends up on the finished island: a guide to its richest version, for mood and detail only.
+    Do not copy its surroundings and do not redraw the object from it: edit the first attached image.
+
+
+    Edit the attached cut-out of a small island building. It has been improved
+
+    a little. Make this change only: add a tray with a neat stack of tea
+
+    glasses on the table, a second small striped awning over the table, and a
+
+    few small white and lilac flowers at the foot of the counter. The new
+
+    parts are painted in exactly the same style, light and colours as the rest
+
+    and sit naturally on it. Everything that is already there stays exactly
+
+    where it is, at the same size, with the same shapes and colours. The
+
+    background stays fully transparent: no ground, no shadow on the ground;
+
+    the fringe of grass at its foot stays.
+
+
+    KEEP: everything not named above stays exactly the same as in the
+
+    attached image: every existing part, its shape, color, position and size,
+
+    the canvas, the camera, the light and the painting style. Do not zoom out
+
+    or reframe: if a new part does not fit, make the new part smaller, never
+
+    the existing ones. Outside the new parts, the result must line up with
+
+    the attached image pixel for pixel.
+
+
+    STYLE: a finished painted illustration for a premium cozy mobile game, like
+
+    a page from a beloved picture book: soft painterly 2D with gentle airbrushed
+
+    shading, rounded chunky forms, no outlines, no hard edges, matte surfaces
+
+    with at most one soft highlight per object. COLOUR: vivid, saturated and
+
+    jewel-like, as in the key art of a high-end animated film: intense grass
+
+    greens, glowing sunflower yellow, deep sky blue, warm peach earth, crisp
+
+    white petals; strong contrast between warm lit colour and cool shadow
+
+    colour; every material keeps its own true colour. VALUES: a full range, from
+
+    bright sunlit tops to deep warm shadows under eaves, inside foliage, beneath
+
+    the lawn rim and around doors, so every object separates clearly from what
+
+    is behind it and the picture reads at a glance on a small phone screen.
+
+    Shadows are coloured (warm brown, plum, deep teal), never black or grey.
+
+    Light direction and shadow hue follow the LIGHT block of this prompt.
+
+    Colourful but never neon, never HDR, never glossy. No text, no letters, no
+
+    numbers, no logos, no watermark, no border, no frame.
+
+
+    AVOID: glossy or metallic shine, specular glints, reflections, hammered
+
+    or dimpled metal, wood grain, fine surface texture, photorealism, a 3D
+
+    render look, plastic or vinyl, high contrast, black or near-black
+
+    shadows, saturated or neon colors, outlines, cel shading, text, letters,
+
+    numbers, logos, watermarks, characters or animals, a floor, a background,
+
+    a ground shadow.
+
+
+    AVOID: a ground, a lawn patch, a disc or platform under it, a cast shadow on the ground, a flat straight-cut
+    foot, a background or sky colour, a white sticker border, an outline, a pale fringe or halo, a second building,
+    a character or animal, a path, a fence that is not named, a different camera, a front-on or top-down view, text,
+    letters, a moved, resized or redrawn object, a removed part, a zoomed or reframed picture
+
+
+    LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+    Paint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint
+    rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral
+    and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where
+    forms touch.
+
+    VALUES (the reference envelope): a high-key picture inside one envelope of soft, milky air. Every value sits
+    between light mid-tone and cream-white; the darkest recesses (door holes, gaps, pond rims) are a mid-value tinted
+    with the shadow hue, never black. Form turns in small value steps. Colour lives in the halftones; lights bleach
+    to cream. No dark outlines: edges are found by value and hue. The cloud sea below is the brightest large surface
+    and lights the island''s underside with a warm bounce.
+
+    This is the SUBJECT plane: the clearest forms and the crispest edges in the picture, still inside the envelope.
+
+
+    Output: one image, transparent background PNG, square 1024 x 1024.
+
+    '
+  attachments:
+  - path: build/imagegen/batch-123-tea-stall-ladder-pilot/locked/prop__x-look-tea-stall-4--t1.png
+    role: The image to edit (the approved previous level). Edit it; do not redraw it.
+  - path: design/art/refs/station-looks/tea-stall-final.webp
+    role: 'Where this object ends up on the finished island: a guide to its richest version, for mood and detail
+      only. Do not copy its surroundings and do not redraw the object from it: edit the first attached image.'
+  review_webp_bytes: 198608
+- take: 2
+  file: prop__x-look-tea-stall-5--t2.webp
+  source_file: /workspace/generated_images/exec-9294c31d-efc3-474d-a4b8-05b46356e371.png
+  source_sha256: bd413cb6d24e382acc0ae658285996f4d4f20910ad15b8ed165526fd3497a706
+  source_dimensions:
+  - 1254
+  - 1254
+  encoding: lossy WebP q90
+  generated_at: '2026-11-15T23:09:30+00:00'
+  backend: codex-cloud
+  qa: warn
+  lock_load: 2.3384
+  harmony: 70.7
+  warnings:
+  - chroma p95 64 (R1 51) (advisory in an exploration)
+  - 'day/subject: L p5 50 (at least 50: darks stay a light mid-tone), p98 93 (at least 90)'
+  - 'mean dE 5.6, p95 15.4, off-palette 11.1% (top: #CC7733 (1.9%), #AA5522 (0.9%)) (advisory in an exploration)'
+  - 91% of the parent's shape kept
+  prompt: 'REFERENCES (attached, in this order):
+
+    1. The image to edit (the approved previous level). Edit it; do not redraw it.
+
+    2. Where this object ends up on the finished island: a guide to its richest version, for mood and detail only.
+    Do not copy its surroundings and do not redraw the object from it: edit the first attached image.
+
+
+    Edit the attached cut-out of a small island building. It has been improved
+
+    a little. Make this change only: add a tray with a neat stack of tea
+
+    glasses on the table, a second small striped awning over the table, and a
+
+    few small white and lilac flowers at the foot of the counter. The new
+
+    parts are painted in exactly the same style, light and colours as the rest
+
+    and sit naturally on it. Everything that is already there stays exactly
+
+    where it is, at the same size, with the same shapes and colours. The
+
+    background stays fully transparent: no ground, no shadow on the ground;
+
+    the fringe of grass at its foot stays.
+
+
+    KEEP: everything not named above stays exactly the same as in the
+
+    attached image: every existing part, its shape, color, position and size,
+
+    the canvas, the camera, the light and the painting style. Do not zoom out
+
+    or reframe: if a new part does not fit, make the new part smaller, never
+
+    the existing ones. Outside the new parts, the result must line up with
+
+    the attached image pixel for pixel.
+
+
+    STYLE: a finished painted illustration for a premium cozy mobile game, like
+
+    a page from a beloved picture book: soft painterly 2D with gentle airbrushed
+
+    shading, rounded chunky forms, no outlines, no hard edges, matte surfaces
+
+    with at most one soft highlight per object. COLOUR: vivid, saturated and
+
+    jewel-like, as in the key art of a high-end animated film: intense grass
+
+    greens, glowing sunflower yellow, deep sky blue, warm peach earth, crisp
+
+    white petals; strong contrast between warm lit colour and cool shadow
+
+    colour; every material keeps its own true colour. VALUES: a full range, from
+
+    bright sunlit tops to deep warm shadows under eaves, inside foliage, beneath
+
+    the lawn rim and around doors, so every object separates clearly from what
+
+    is behind it and the picture reads at a glance on a small phone screen.
+
+    Shadows are coloured (warm brown, plum, deep teal), never black or grey.
+
+    Light direction and shadow hue follow the LIGHT block of this prompt.
+
+    Colourful but never neon, never HDR, never glossy. No text, no letters, no
+
+    numbers, no logos, no watermark, no border, no frame.
+
+
+    AVOID: glossy or metallic shine, specular glints, reflections, hammered
+
+    or dimpled metal, wood grain, fine surface texture, photorealism, a 3D
+
+    render look, plastic or vinyl, high contrast, black or near-black
+
+    shadows, saturated or neon colors, outlines, cel shading, text, letters,
+
+    numbers, logos, watermarks, characters or animals, a floor, a background,
+
+    a ground shadow.
+
+
+    AVOID: a ground, a lawn patch, a disc or platform under it, a cast shadow on the ground, a flat straight-cut
+    foot, a background or sky colour, a white sticker border, an outline, a pale fringe or halo, a second building,
+    a character or animal, a path, a fence that is not named, a different camera, a front-on or top-down view, text,
+    letters, a moved, resized or redrawn object, a removed part, a zoomed or reframed picture
+
+
+    LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+    Paint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint
+    rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral
+    and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where
+    forms touch.
+
+    VALUES (the reference envelope): a high-key picture inside one envelope of soft, milky air. Every value sits
+    between light mid-tone and cream-white; the darkest recesses (door holes, gaps, pond rims) are a mid-value tinted
+    with the shadow hue, never black. Form turns in small value steps. Colour lives in the halftones; lights bleach
+    to cream. No dark outlines: edges are found by value and hue. The cloud sea below is the brightest large surface
+    and lights the island''s underside with a warm bounce.
+
+    This is the SUBJECT plane: the clearest forms and the crispest edges in the picture, still inside the envelope.
+
+
+    Output: one image, transparent background PNG, square 1024 x 1024.
+
+    '
+  attachments:
+  - path: build/imagegen/batch-123-tea-stall-ladder-pilot/locked/prop__x-look-tea-stall-4--t1.png
+    role: The image to edit (the approved previous level). Edit it; do not redraw it.
+  - path: design/art/refs/station-looks/tea-stall-final.webp
+    role: 'Where this object ends up on the finished island: a guide to its richest version, for mood and detail
+      only. Do not copy its surroundings and do not redraw the object from it: edit the first attached image.'
+  review_webp_bytes: 195500
+qa_reports:
+- job: x-look-tea-stall-5
+  take: 1
+  status: warn
+  preset: lock-light
+  checks:
+  - check: transparency
+    status: pass
+    message: source has an alpha channel
+  - check: canvas
+    status: pass
+    message: 1254x1254 scaled x0.817 into 1024x1024
+    value: 0.8166
+  - check: chroma_ceiling
+    status: warn
+    message: chroma p95 62 (R1 51) (advisory in an exploration)
+    value: 62.2
+  - check: light_values
+    status: warn
+    message: 'day/subject: L p5 50 (at least 50: darks stay a light mid-tone), p98 94 (at least 90)'
+    value: 49.5
+  - check: light_median
+    status: pass
+    message: 'day/subject: median L 79 (band 74-92)'
+    value: 78.8
+  - check: light_contrast
+    status: pass
+    message: 'day/subject: p75 local contrast 4.2 (band 2.5-6.5; inside the band)'
+    value: 4.21
+  - check: detail_budget
+    status: pass
+    message: detail at display size 2.5 (R1 5.3)
+    value: 2.54
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 1.7
+    value: 1.6998
+  - check: no_guide_magenta
+    status: pass
+    message: 0 guide-magenta pixels (per 1024^2)
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 5.3, p95 14.5, off-palette 10.2% (top: #CC7733 (1.7%), #BB6622 (0.9%)) (advisory in an exploration)'
+    value: 5.3269
+  - check: harmony
+    status: pass
+    message: 'harmony score 72 against the world reference (outliers: C_p95, edge)'
+    value: 71.5
+  - check: edit_silhouette
+    status: warn
+    message: 91% of the parent's shape kept
+    value: 0.9125
+  - check: edit_stability
+    status: pass
+    message: 94% of the parent level unchanged
+    value: 0.9377
+  - check: edit_chroma
+    status: pass
+    message: chroma x1.03 of the parent level (drift compounds along a chain)
+    value: 1.0336
+  info:
+    metrics_raw:
+      L_p5: 49.2
+      L_p50: 78.9
+      L_p95: 92.3
+      C_p50: 52.7
+      C_p95: 66.2
+      C_p99: 69.1
+      detail: 3.18
+    metrics_locked:
+      L_p5: 49.5
+      L_p50: 78.8
+      L_p95: 92.1
+      C_p50: 52.1
+      C_p95: 62.2
+      C_p99: 63.4
+      detail: 2.54
+  fingerprint: 7da8bddf4b5e21d4
+- job: x-look-tea-stall-5
+  take: 2
+  status: warn
+  preset: lock-light
+  checks:
+  - check: transparency
+    status: pass
+    message: source has an alpha channel
+  - check: canvas
+    status: pass
+    message: 1254x1254 scaled x0.817 into 1024x1024
+    value: 0.8166
+  - check: chroma_ceiling
+    status: warn
+    message: chroma p95 64 (R1 51) (advisory in an exploration)
+    value: 63.5
+  - check: light_values
+    status: warn
+    message: 'day/subject: L p5 50 (at least 50: darks stay a light mid-tone), p98 93 (at least 90)'
+    value: 49.9
+  - check: light_median
+    status: pass
+    message: 'day/subject: median L 77 (band 74-92)'
+    value: 77.2
+  - check: light_contrast
+    status: pass
+    message: 'day/subject: p75 local contrast 4.1 (band 2.5-6.5; inside the band)'
+    value: 4.09
+  - check: detail_budget
+    status: pass
+    message: detail at display size 2.5 (R1 5.3)
+    value: 2.53
+  - check: lock_load
+    status: pass
+    message: the lock moved colors by mean dE 2.3
+    value: 2.3384
+  - check: no_guide_magenta
+    status: pass
+    message: 0 guide-magenta pixels (per 1024^2)
+    value: 0.0
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 5.6, p95 15.4, off-palette 11.1% (top: #CC7733 (1.9%), #AA5522 (0.9%)) (advisory in an exploration)'
+    value: 5.6124
+  - check: harmony
+    status: pass
+    message: 'harmony score 71 against the world reference (outliers: C_p95, edge)'
+    value: 70.7
+  - check: edit_silhouette
+    status: warn
+    message: 91% of the parent's shape kept
+    value: 0.9075
+  - check: edit_stability
+    status: pass
+    message: 95% of the parent level unchanged
+    value: 0.948
+  - check: edit_chroma
+    status: pass
+    message: chroma x1.03 of the parent level (drift compounds along a chain)
+    value: 1.0288
+  info:
+    metrics_raw:
+      L_p5: 49.6
+      L_p50: 77.4
+      L_p95: 92.1
+      C_p50: 53.0
+      C_p95: 69.7
+      C_p99: 72.9
+      detail: 3.24
+    metrics_locked:
+      L_p5: 49.9
+      L_p50: 77.3
+      L_p95: 91.8
+      C_p50: 52.0
+      C_p95: 63.5
+      C_p99: 64.5
+      detail: 2.53
+  fingerprint: 7da8bddf4b5e21d4
+provisional_parent: x-look-tea-stall-4 t1 (auto-pick, lead review pending)

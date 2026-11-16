@@ -343,6 +343,29 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
 
     /// A build's camera through the real `focusStation` (the painted station centred above the sheet), and
     /// the station's burst at 0.6 s, over the held old painting (day 4: the island rises to level 4).
+    /// The tea stall's looks on Home (WP8): the same level 3 morning with the stall at levels 1, 3 and 5, at noon (the
+    /// stall's base is the day plate), one frame each. A level 5 stall on a level 3 island is not a state the player
+    /// reaches today; the frames are for the looks.
+    @MainActor
+    func testRenderTheTeaStallLooks() async throws {
+        let scene = try windowScene()
+        let folder = try outputFolder()
+        let day = try XCTUnwrap(Self.path.first { $0.morning.islandLevel == 3 }, "the path has a level 3 island")
+        for level in [1, 3, 5] {
+            var world = day.morning
+            world.stations = world.stations.map { status in
+                var status = status
+                if status.id == .teaStall { status.level = level }
+                return status
+            }
+            let island = IslandSceneModel(framing: .home)
+            let view = homeView(world, hour: 12, island: island, settled: true)
+            try await capture(AnyView(view), name: "path-stall-l\(level)", scene: scene, folder: folder, settle: 2100) {
+                XCTAssertNotNil(island.homePlate, "path-stall-l\(level): Home is its painting")
+            }
+        }
+    }
+
     @MainActor
     func testRenderTheBuildFocusAndBurst() async throws {
         let scene = try windowScene()
