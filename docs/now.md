@@ -7,8 +7,7 @@ history: [tracker.md](tracker.md). What changed for the player:
 `python3 -I tools/studio/pulse.py`.
 
 **Goal:** a whole, polished build the founder judges as a user when he
-chooses to (Rehearsal days 1-21); no dates or cut line (founder 11-14).
-Large job now: world presentation (spec #474); glass UI stays.
+chooses to (days 1-21); no dates (11-14). Now: world presentation (#474).
 
 **Updated:** 2026-11-16. **Founder last played:** 11-14 (main 0cf03ca1).
 **Route:** Fable's night plan (`docs/design/night-plan-2026-11-15.md`,
