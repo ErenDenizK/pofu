@@ -24,19 +24,18 @@ chooses to (days 1-21); no dates (11-14). Now: world presentation (#474).
 
 1. WP10 compositor (Opus, `feat/plate-compositor`), scoped: data-driven
    over `stations`; only the tea stall has looks (bases at stages 3,4,6,7).
-2. #498 cloud beds graded lilac; back control left at near only (data);
-   CI re-run of a flaky growth frame test, then merge.
-3. Merged today: #480 mattes + one sky (night L1/L2 legacy), #488 Hop
+2. Merged today: #480 mattes + one sky (night L1/L2 legacy), #488 Hop
    hour, #489 flow rocks + lip, #491 WP9 cloud floor (Map; floor tiles,
    wisps need Codex 133), #492 WP5 props, #493 N6, #494 WP8 tea stall,
    #495 WP7 rail (Home is mid, free near; near contact shadow faint),
    #496 icons (breath keeps old glyph), #497 stall at stages 3,4,6,7
-   (0,1,2,5,8 keep the painted stall: art).
-4. UI grammar #490 open (docs): world painted, screen native glass. No app
+   (0,1,2,5,8 keep the painted stall: art), #498 cloud beds lilac, back
+   control left at near.
+3. UI grammar #490 open (docs): world painted, screen native glass. No app
    change until the founder has seen it.
-5. Codex queue: 132 board edge, 133 cloud floor, then S1 (129 looks, edited
+4. Codex queue: 132 board edge, 133 cloud floor, then S1 (129 looks, edited
    so each look steps outside the last, pofu-art #108), S2 (126 v2/v3).
-Merged: #475-#489, #491-#497; pofu-art #81, #91-#109.
+Merged: #475-#489, #491-#498; pofu-art #81, #91-#109.
 
 ## Next steps, in order (night plan)
 
