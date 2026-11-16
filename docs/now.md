@@ -25,18 +25,17 @@ Large job now: world presentation (spec #474); glass UI stays.
 
 1. WP4 + A1 merged (#480): r3b mattes, one sky, bank. Night L1/L2 legacy.
    WP5 props back (builder Sonnet, `feat/home-props-back`) now.
-2. Flow rocks + lip (builder Sonnet, `feat/flow-rocks-lip`): 130's four
-   rocks as `flow-rock-cut` variants, 131's lip as a sprite, notch meets
-   the cascade. Board edge stays code until batch 132 (edge redo, queued).
+2. Flow rocks + lip merged (#489): 4 cut-out rocks (B), painted lip, notch
+   widened to the cascade. Edge stays code until batch 132. A/B sent again.
 3. UI grammar N10 done: #490 open (docs). Two planes: world painted,
    screen native glass. Founder sent 5 picks + flow A/B; no app change
    until he has seen it. Hop outcomes follow the shown hour (#488 merged).
-5. WP9 cloud floor + life (builder Sonnet, `feat/cloud-floor-life`), 126 forms.
 4. Codex: 127 (targets, sent to founder), 128 (18 icons; drop and star
    need an edit), 130, 131 reviewed and merged (pofu-art #100-#106).
    Queue now: 132, then Standing S1 (129 looks), S2 (126 v2/v3).
    Founder picks owed: flow A/B, 122 far camera.
-Merged: #475-#488, #480; pofu-art #81, #91-#106.
+5. WP9 cloud floor + life (builder Sonnet, `feat/cloud-floor-life`), 126 forms.
+Merged: #475-#489; pofu-art #81, #91-#106.
 
 ## Next steps, in order (night plan)
 
