@@ -33,8 +33,8 @@ chooses to (days 1-21); no dates (11-14). Now: world presentation (#474).
    snapshot of the built island, 3.2 s reveal. Left: `mapisle` assets
    (night 8-9 need them), orphan `world-home-base-day-5`, reveal burst.
    WP11 near lens merged (#502; pinch at 120 Hz: device check).
-   WP13 water #504 (pond only; no falls, no sway mask): night lantern ring
-   survived 4 pushes; `feat/region-shaders-v2` finds the cause, supersedes it.
+   WP13 water: #505 supersedes #504 (ring cause: a layer effect inside the
+   lens levels; island flattened first). Night clean at 1:1; CI, day check.
 3. Merged 11-16: #480 one sky, #488 Hop hour, #489 flow rocks + lip, #491
    cloud floor, #492 props, #493 N6, #494 + #497 tea stall looks, #495
    rail (Home mid, free near), #496 icons, #498 beds + back, #501 games.
