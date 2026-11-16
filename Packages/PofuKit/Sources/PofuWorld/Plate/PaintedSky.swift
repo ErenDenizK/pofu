@@ -228,6 +228,23 @@ public enum PaintedSky {
         cleanSet(set, isleScale: nil)
     }
 
+    /// Home's sky set at its stops (mid and near, ADR-0027): the painting as is, but the cloud sea's hazy
+    /// foot is cut at its clean band's bottom and the Map's copies of that band (`mapSeaBelow`) run on under
+    /// it past the screen's foot. Mid shows about 150 pt more below the island than the old Home framing,
+    /// where the painting's foot ends in stretched rows and a seam. A stopgap: WP9's cloud floor replaces it.
+    /// Pure.
+    public static func homeSet(_ set: SkySet) -> SkySet {
+        var out = set
+        out.layers = set.layers.flatMap { layer -> [SkySet.Layer] in
+            // Home's sea only: the band's rows are measured on Home's master.
+            guard layer.role == .tile, layer.asset.hasPrefix("world-home-sky-sea-") else { return [layer] }
+            var sea = layer
+            sea.window = window(layer, from: nil, to: mapSeaBand.bottom, topFade: 0, bottomFade: mapFade)
+            return [sea] + seaBelow(layer)
+        }
+        return out
+    }
+
     /// `mapSet` and `stopSet`: the isles at `isleScale` and raised to `mapIsleFloor`, or (nil) as painted.
     private static func cleanSet(_ set: SkySet, isleScale: Double?) -> SkySet {
         var out = set
@@ -346,6 +363,13 @@ public enum PaintedSky {
             bottom = y + (band.top - sea.pos.y) * f + (mapFade + mapSeaOverlap) * f
         }
         guard below else { return rows }
+        return rows + seaBelow(sea)
+    }
+
+    /// The copies of the cloud sea's clean band under its foot (`mapSeaBelow`), each nearer and larger.
+    private static func seaBelow(_ sea: SkySet.Layer) -> [SkySet.Layer] {
+        let band = mapSeaBand
+        var rows: [SkySet.Layer] = []
         var edge = band.bottom
         for (n, step) in mapSeaBelow.enumerated() {
             let f = step.scale
@@ -519,7 +543,7 @@ struct PaintedSkyLayer: View {
     @ViewBuilder
     private func sky(_ plate: HomePlate, start: Date) -> some View {
         if let set = plate.skySet {
-            SkySetLayers(sky: isMap ? MapSlots.sky(set, plate: plate) : cleanSea ? PaintedSky.stopSet(set) : set, plate: plate, pose: pose, reference: reference, size: size, offset: offset, start: start, drawsIsland: false, drawsBank: false)
+            SkySetLayers(sky: isMap ? MapSlots.sky(set, plate: plate) : cleanSea ? PaintedSky.stopSet(set) : PaintedSky.homeSet(set), plate: plate, pose: pose, reference: reference, size: size, offset: offset, start: start, drawsIsland: false, drawsBank: false)
         }
     }
 }

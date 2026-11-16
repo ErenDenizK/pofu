@@ -146,6 +146,45 @@ struct RailV2Tests {
         #expect(c1.passed, "\(c1.detail)")
     }
 
+    /// The sky set's cloud sea reaches the screen's foot at mid and near (the stopgap `PaintedSky.homeSet`):
+    /// the painting's sea is cut at its clean band, and its copies below lie in an unbroken run of opaque
+    /// rows down past the foot, at every light and level, at mid, at near's rest and panned to the bottom.
+    @Test(arguments: ["day", "golden", "night"])
+    func theSeaReachesTheFootAtMidAndNear(light: String) throws {
+        for stage in 0..<plate.plate.stages {
+            let home = HomePlate(plate: plate.plate, light: light, stage: stage)
+            guard let source = home.skySet else { continue }
+            let set = PaintedSky.homeSet(source)
+            let rail = CameraRail(width: 402, height: 874, stops: home.stops, whole: home.wholeStop, island: home.islandBox)
+            var near = CameraRig(framing: .near, rail: rail)
+            near.snapToTargets()
+            var low = near
+            if let range = rail.freeRange(z: low.z.value) { low.jumpFree(x: 0, y: range.y.upperBound) }
+            let reference = home.skyReference(width: 402, height: 874)
+            let seas = set.layers.filter { $0.role == .tile && $0.asset.contains("-sky-sea-") }
+            #expect(seas.count == 1 + PaintedSky.mapSeaBelow.count)
+            let cut = try #require(seas.first?.window)
+            #expect(seas[0].pos.y + cut.bottom * seas[0].size.y <= PaintedSky.mapSeaBand.bottom + 1e-6)
+            for (name, camera) in [("mid", rail.pose(of: .mid)), ("near", near.pose), ("near low", low.pose)] {
+                var covered: Double?
+                for sea in seas {
+                    let p = DepthLayer.pose(camera, reference: reference, k: sea.k)
+                    let window = try #require(sea.window)
+                    let top = sea.pos.y + (window.top + window.topFade) * sea.size.y
+                    let bottom = sea.pos.y + (window.bottom - window.bottomFade) * sea.size.y
+                    let box = home.worldBox(master: PlateRect(minX: sea.pos.x, minY: top, maxX: sea.pos.x + sea.size.x, maxY: bottom), of: set)
+                    let a = p.project(WorldPoint(x: box.minX, y: box.minY), width: 402).y
+                    let b = p.project(WorldPoint(x: box.maxX, y: box.maxY), width: 402).y
+                    if let c = covered {
+                        #expect(a <= c + 0.5, "\(light) stage \(stage) \(name): a gap above \(sea.id) (\(c) to \(a))")
+                    }
+                    covered = max(covered ?? b, b)
+                }
+                #expect((covered ?? 0) >= 874, "\(light) stage \(stage) \(name): the sea ends at \(covered ?? 0) pt")
+            }
+        }
+    }
+
     @Test func nearBeginsAt1_25TimesMid() {
         let start = rail.z(logScale: rail.pose(of: .mid).logScale + log(1.25))
         #expect(abs(start - WorldFraming.nearAboveZ) < 0.002)
