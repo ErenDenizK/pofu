@@ -26,6 +26,24 @@ import PofuCore
 ///
 /// With Reduce Motion there is no squash, no particle and no hop: the art
 /// cross-fades in 200 ms and the tag fades in.
+///
+/// A station that stands as a look over an erased base (`PlateCompositor`) plays the
+/// v2 §9.2 reveal instead (`reveal`, `StationReveal`), at most 3.2 s:
+///
+/// | t (s) | Cue | What happens |
+/// |---|---|---|
+/// | 0 | `pushIn` | The sheet drops; the camera goes to the station's focus shot (0.5 s) |
+/// | 0.50 | `anticipation` | The old look dips 4 % at its foot (0.25 s) |
+/// | 0.75 | `swap` | The new look opens through a ring from the foot (0.7 s, honey rim); `level-up`; dust |
+/// | 0.78 | `sparkles` | Sparkles |
+/// | 1.45 | `tag` | The look settles from 1.06 to 1 (0.35 s); "Seviye n!" and the seeds, for 1.75 s |
+/// | 1.55 | `pofuHop` | Pofu hops |
+/// | 1.65 | `residentHop` | The resident hops, 0.9 s after the ring starts |
+/// | 1.80 | `settle` | `.success` |
+/// | 2.20 | `sheetBack` | Camera and focus return |
+/// | 3.20 | `end` | |
+///
+/// With Reduce Motion the reveal is a 0.4 s cross-fade, nothing else moves.
 public struct BuildMoment: Hashable, Sendable {
     public enum Cue: Int, Hashable, Sendable, CaseIterable, Comparable {
         case pushIn
@@ -54,8 +72,11 @@ public struct BuildMoment: Hashable, Sendable {
     /// The seeds the level took from the jar: the tag says so, so seeds
     /// never leave the counter without a reason on screen.
     public let cost: Int?
+    /// The station stands as a look over a base: the v2 §9.2 reveal's timeline (`StationReveal`).
+    public let reveal: Bool
 
-    public init(station: StationID, fromLevel: Int, toLevel: Int, maxLevel: Int, reduceMotion: Bool, lowPower: Bool = false, cost: Int? = nil) {
+    public init(station: StationID, fromLevel: Int, toLevel: Int, maxLevel: Int, reduceMotion: Bool, lowPower: Bool = false, cost: Int? = nil, reveal: Bool = false) {
+        self.reveal = reveal
         self.lowPower = lowPower
         self.cost = cost
         self.station = station
@@ -76,6 +97,8 @@ public struct BuildMoment: Hashable, Sendable {
     public static let crossFade = 0.12
     public static let reducedCrossFade = 0.2
     public static let tagLife = 2.6
+    /// The reveal's whole length (v2 §9.2: at most 3.2 s, Moment tier).
+    public static let revealLength = 3.2
     public static let sparkleCount = 7
     public static let sparkleLife = 0.8
     public static let sparkleStagger = 0.03
@@ -99,6 +122,20 @@ public struct BuildMoment: Hashable, Sendable {
             case .anticipation, .sparkles, .pofuHop, .residentHop: return nil
             }
         }
+        if reveal {
+            switch cue {
+            case .pushIn: return 0
+            case .anticipation: return StationReveal.focusLength
+            case .swap: return StationReveal.focusLength + StationReveal.dipLength
+            case .sparkles: return StationReveal.focusLength + StationReveal.dipLength + 0.03
+            case .tag: return StationReveal.focusLength + StationReveal.dipLength + StationReveal.ringLength
+            case .pofuHop: return 1.55
+            case .residentHop: return StationReveal.focusLength + StationReveal.dipLength + StationReveal.residentHopDelay
+            case .settle: return StationReveal.focusLength + StationReveal.dipLength + StationReveal.ringLength + StationReveal.settleLength
+            case .sheetBack: return 2.2
+            case .end: return Self.revealLength
+            }
+        }
         switch cue {
         case .pushIn: return 0
         case .anticipation: return 0.30
@@ -117,6 +154,12 @@ public struct BuildMoment: Hashable, Sendable {
         time(of: .end) ?? 0
     }
 
+    /// How long the tag lives: it ends with the moment.
+    public var tagLength: Double {
+        guard reveal, !reduceMotion, let start = time(of: .tag) else { return Self.tagLife }
+        return Self.revealLength - start
+    }
+
     /// The cues in `(after, through]`, in time order.
     public func cues(after start: Double, through end: Double) -> [Cue] {
         Cue.allCases.filter { cue in
@@ -131,7 +174,8 @@ public struct BuildMoment: Hashable, Sendable {
     /// The station's scale around its footprint at `t`: the anticipation
     /// squash, then a `pop` spring back through a small stretch.
     public func stationScale(at t: Double) -> (x: Double, y: Double) {
-        guard !reduceMotion, let squash = time(of: .anticipation), let swap = time(of: .swap) else { return (1, 1) }
+        // A look's reveal dips the old look itself (`StationReveal`), never squashes.
+        guard !reduceMotion, !reveal, let squash = time(of: .anticipation), let swap = time(of: .swap) else { return (1, 1) }
         let depth = Self.squashDepth
         if t < squash {
             return (1, 1)
@@ -147,6 +191,11 @@ public struct BuildMoment: Hashable, Sendable {
     /// How far the new level's art has faded in, 0…1.
     public func newArt(at t: Double) -> Double {
         guard let swap = time(of: .swap) else { return 1 }
+        if reveal {
+            return reduceMotion
+                ? MomentCurves.progress(t, from: swap, length: StationReveal.reducedFade)
+                : StationReveal.ringCurve(MomentCurves.progress(t, from: swap, length: StationReveal.ringLength))
+        }
         let length = reduceMotion ? Self.reducedCrossFade : Self.crossFade
         return MomentCurves.progress(t, from: swap, length: length)
     }
@@ -209,9 +258,10 @@ public struct BuildMoment: Hashable, Sendable {
     public func tag(at t: Double) -> (scale: Double, opacity: Double)? {
         guard let start = time(of: .tag) else { return nil }
         let age = t - start
-        guard age >= 0, age < Self.tagLife else { return nil }
+        let life = tagLength
+        guard age >= 0, age < life else { return nil }
         let fadeIn = reduceMotion ? MomentCurves.progress(age, from: 0, length: 0.2) : MomentCurves.progress(age, from: 0, length: 0.12)
-        let fadeOut = MomentCurves.progress(age, from: Self.tagLife - 0.3, length: 0.3)
+        let fadeOut = MomentCurves.progress(age, from: life - 0.3, length: 0.3)
         let scale = reduceMotion ? 1 : 1 - 0.4 * MomentCurves.springRemaining(age, duration: 0.55, bounce: 0.5)
         return (scale, fadeIn * (1 - fadeOut))
     }

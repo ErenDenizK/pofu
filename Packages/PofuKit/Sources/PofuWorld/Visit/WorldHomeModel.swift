@@ -12,10 +12,14 @@ public protocol WorldCamera: AnyObject {
     /// The visit's news has spoken (its button was taken, or the visit has
     /// none): an island that grew waits no longer and grows now.
     func newsHasSpoken()
+    /// Whether a build of `station` from `from` to `to` changes its look over the painting on screen: the moment then
+    /// plays the look's reveal (v2 §9.2, `StationReveal`).
+    func revealsLook(_ station: StationID, from: Int, to: Int) -> Bool
 }
 
 extension WorldCamera {
     public func newsHasSpoken() {}
+    public func revealsLook(_ station: StationID, from: Int, to: Int) -> Bool { false }
 }
 
 /// A moment in progress: what it is and when it started.
@@ -311,7 +315,8 @@ public final class WorldHomeModel {
             maxLevel: maxLevel,
             reduceMotion: reduceMotion,
             lowPower: Self.isLowPowerMode,
-            cost: receipt.cost.units
+            cost: receipt.cost.units,
+            reveal: camera?.revealsLook(station, from: receipt.level - 1, to: receipt.level) ?? false
         )
         // Celebrations never stack: a new build replaces the last one's
         // tag and adds no second burst.
