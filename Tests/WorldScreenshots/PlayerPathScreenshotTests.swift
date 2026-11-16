@@ -27,6 +27,7 @@ import XCTest
 /// - `path-d04-build-focus`, `path-d04-build-burst`: a build's camera through the real `focusStation`
 ///   and the station's burst, over the held old painting;
 /// - `path-game-garden-midround`, `path-game-flow-stage1`: the minigames;
+/// - `path-hop-instagram-1200`: the Door, the midday reach for Instagram (the Hop screen the player meets);
 /// - `path-onboarding-welcome`, `-apps`, `-name`, `-notifications`.
 ///
 /// Every Home and Map frame asserts that its look has `homePlates` on and that the island
@@ -245,6 +246,17 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
                 XCTAssertNotNil(island.homePlate, "\(name): the sheet sits over the painted Home")
             }
         }
+    }
+
+    /// The Door (Hop): the reach for Instagram at midday, the screen a player meets right after the shield.
+    @MainActor
+    func testRenderTheDoor() async throws {
+        let scene = try windowScene()
+        let folder = try outputFolder()
+        let model = AppModel.shared
+        model.startHop(for: .instagram)
+        defer { model.dismissHop() }
+        try await capture(AnyView(HopView(model: model, hourOverride: .day)), name: "path-hop-instagram-1200", scene: scene, folder: folder, settle: 1200)
     }
 
     // MARK: Ada büyüdü

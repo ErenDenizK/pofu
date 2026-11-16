@@ -292,7 +292,7 @@ struct CollectAction: View {
 
     @ViewBuilder
     private var seed: some View {
-        if paintsChrome, PofuPaint.iconSeed.isAvailable {
+        if PofuPaint.iconSeed.isAvailable {
             PofuPaintedIcon(.iconSeed, size: 22)
         } else {
             SeedGlyph()
