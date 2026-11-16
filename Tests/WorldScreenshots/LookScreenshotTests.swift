@@ -78,15 +78,15 @@ final class LookScreenshotTests: XCTestCase {
                 shots[name] = image
             }
         }
-        let rows = ["home", "island"]
+        let rows = ["home", "near"]
         try write(
             grid(rows.map { r in grades.map { shots["\($0.id)-\(r)"]! } },
-                 titles: rows.map { r in grades.map { "\($0.title) · \(r == "home" ? "Home" : "Island")" } }),
+                 titles: rows.map { r in grades.map { "\($0.title) · \(r == "home" ? "Home" : "Near")" } }),
             name: "look-compare", to: folder
         )
         try write(
             grid(rows.map { r in script.map { shots["\($0.id)-\(r)"]! } },
-                 titles: rows.map { r in script.map { "\($0.title) · \(r == "home" ? "Home" : "Island")" } }),
+                 titles: rows.map { r in script.map { "\($0.title) · \(r == "home" ? "Home" : "Near")" } }),
             name: "look-script", to: folder
         )
         let json = try JSONSerialization.data(withJSONObject: regions, options: [.prettyPrinted, .sortedKeys])
