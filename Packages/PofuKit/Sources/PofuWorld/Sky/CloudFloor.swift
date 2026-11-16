@@ -112,12 +112,12 @@ public enum CloudFloor {
         Spot(id: "puff-1", form: "puff-big", kind: .puff, x: 0.58, y: 312, width: 74, k: 0.6, drift: 2.2, swell: 2.0, swellPeriod: 13.0, breathe: 0.015, breathePeriod: 16.4, phase: 0.10),
         Spot(id: "puff-2", form: "puff-small-a", kind: .puff, x: 0.82, y: 392, width: 52, k: 0.6, drift: 3.1, swell: 2.0, swellPeriod: 15.7, breathe: 0.015, breathePeriod: 19.7, phase: 0.45),
         Spot(id: "puff-3", form: "puff-small-b", kind: .puff, x: 0.36, y: 368, width: 44, k: 0.6, drift: 2.6, swell: 1.5, swellPeriod: 12.4, breathe: 0.012, breathePeriod: 14.9, phase: 0.72),
-        Spot(id: "puff-4", form: "puff-small-c", kind: .puff, x: 0.30, y: 430, width: 46, k: 0.6, drift: 3.8, swell: 1.5, swellPeriod: 12.1, breathe: 0.012, breathePeriod: 16.1, phase: 0.28),
+        Spot(id: "puff-4", form: "puff-small-c", kind: .puff, x: 0.23, y: 405, width: 46, k: 0.6, drift: 3.8, swell: 1.5, swellPeriod: 12.1, breathe: 0.012, breathePeriod: 16.1, phase: 0.28),
         Spot(id: "mound", form: "tower-c", kind: .mound, x: 0.74, y: 458, width: 120, k: 0.5, drift: 0, swell: 3.0, swellPeriod: 19.3, breathe: 0.015, breathePeriod: 20.0, phase: 0.35),
     ]
 
     /// The cool grade every piece is drawn in (a multiply): the kit's warm whites sit on the Map's lilac sea.
-    public static let coolTint = (r: 0.93, g: 0.945, b: 1.0)
+    public static let coolTint = (r: 0.92, g: 0.935, b: 1.0)
 
     /// The bed under an island (Home's `bed-wide`, Köke's `bed-round`, the others' `hill-cap`, so no two beds
     /// are one picture): this wide over the island's box, its middle this far (a share of the box's
