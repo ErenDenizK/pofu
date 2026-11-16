@@ -287,8 +287,10 @@ public enum IslandFraming {
         )
     }
 
-    /// The Map: the home plate, every other island of the X and the wonder
-    /// islands whole, with a margin, centred in the band.
+    /// The sprite world's Map: the home plate, every other island of the X and the wonder islands whole
+    /// (Koke and Çağlayan at their tier-1 slots behind Home, `MapSlots`), with a margin, centred in the
+    /// band. The painted Map, the one the player meets, is the tier frame (`HomePlate.mapStop`); the
+    /// sprite world keeps its fit because its other isles have no slot in `world-map.json`.
     public static func mapStop(width: Double, height: Double) -> CameraRail.Stop {
         let isles = IslandLayout.isles.compactMap { isle in WorldArt.sprite(isle.art)?.sharp.map { placed($0, at: isle.center) } }
         let all = union(isles + [plateBox, KokeLayout.islandBox, CaglayanLayout.islandBox]) ?? WorldBox(minX: -400, minY: -380, maxX: 400, maxY: 420)

@@ -59,12 +59,162 @@ final class FlowTextures {
     /// The stone under the mill wheel (batch 64, `flow-tile-wheel`) and the wheel itself, one frame
     /// that code rotates (`flow-wheel`). Both hooks load by name; the drawings below stay as the fallback.
     static let wheelTileArt = "flow-tile-wheel"
+
+    /// The painted gate and wheel's size against the cell. The gate plank spans 86 percent of its tile and
+    /// the wheel 84 percent, which would touch the cell's edges.
+    static let gateScale: CGFloat = 0.74
+    static let wheelScale: CGFloat = 0.92
+
+    /// Aspect-fills `image` into `rect`, centred (UIKit drawing).
+    static func drawCover(_ image: UIImage, in rect: CGRect) {
+        let scale = max(rect.width / image.size.width, rect.height / image.size.height)
+        let width = image.size.width * scale
+        let height = image.size.height * scale
+        image.draw(in: CGRect(x: rect.midX - width / 2, y: rect.midY - height / 2, width: width, height: height))
+    }
     static let wheelArt = "flow-wheel"
 
-    /// The painted bank tiles (grass, boulder). Off: the one boulder repeats on a board and the grass
-    /// squares are harder-edged and more saturated than the stone, so the code-drawn banks stay until
-    /// new bank art lands.
-    static let paintsBankTiles = false
+    /// The painted bank tiles (grass, rock), read from the named slots in `FlowArtSlot`. A slot with no
+    /// art in the bundle keeps the code drawing, so this stays on.
+    static let paintsBankTiles = true
+
+    /// A warm multiply over a bank picture, so it sits in the stone's colour family.
+    static let bankTint = FlowPalette.rgb(1.0, 0.97, 0.90)
+
+    private var imageCache: [String: [UIImage]] = [:]
+
+    /// Every picture of a slot: `name`, `name-2`, ... while the files exist.
+    func images(_ base: String) -> [UIImage] {
+        if let hit = imageCache[base] { return hit }
+        var found: [UIImage] = []
+        for index in 0..<FlowArtSlot.maxVariants {
+            guard let image = UIImage(named: FlowArtSlot.variantName(base, index), in: .module, compatibleWith: nil) else { break }
+            found.append(image)
+        }
+        imageCache[base] = found
+        return found
+    }
+
+    func art(_ base: String) -> UIImage? { images(base).first }
+
+    /// The lawn of method B: the painted lawn, or the grass bank picture until the lawn is painted.
+    private var lawnImage: UIImage? { art(FlowArtSlot.lawn) ?? art(FlowArtSlot.grass) }
+
+    /// Whether method B can lay a lawn at all.
+    var hasLawn: Bool { lawnImage != nil }
+
+    /// One seamless lawn for the whole board, made in board space: the picture is tiled two cells wide,
+    /// every other tile mirrored so the joins cannot show, then cut to a rounded rect.
+    func lawn(size: CGSize) -> SKTexture? {
+        guard let image = lawnImage else { return nil }
+        let format = UIGraphicsImageRendererFormat()
+        format.scale = 2
+        format.opaque = false
+        let rect = CGRect(origin: .zero, size: size)
+        let side = cell * 2
+        let radius = cell * 0.22
+        let picture = UIGraphicsImageRenderer(size: size, format: format).image { rendered in
+            let context = rendered.cgContext
+            context.addPath(UIBezierPath(roundedRect: rect, cornerRadius: radius).cgPath)
+            context.clip()
+            for column in 0..<Int((size.width / side).rounded(.up)) {
+                for row in 0..<Int((size.height / side).rounded(.up)) {
+                    context.saveGState()
+                    let flipX = column % 2 == 1
+                    let flipY = row % 2 == 1
+                    context.translateBy(x: CGFloat(column) * side + (flipX ? side : 0), y: CGFloat(row) * side + (flipY ? side : 0))
+                    context.scaleBy(x: flipX ? -1 : 1, y: flipY ? -1 : 1)
+                    image.draw(in: CGRect(x: 0, y: 0, width: side, height: side))
+                    context.restoreGState()
+                }
+            }
+            context.setBlendMode(.multiply)
+            context.setFillColor(Self.bankTint.cgColor)
+            context.fill(rect)
+            context.setBlendMode(.normal)
+            context.setStrokeColor(FlowPalette.cliffDark.withAlphaComponent(0.45).cgColor)
+            context.setLineWidth(2)
+            context.addPath(UIBezierPath(roundedRect: rect.insetBy(dx: 1, dy: 1), cornerRadius: radius).cgPath)
+            context.strokePath()
+        }
+        let texture = SKTexture(image: picture)
+        texture.filteringMode = .linear
+        return texture
+    }
+
+    /// A bank cell's picture, picked by the board's variant picker. Method A: a keycap square per cell.
+    /// Method B: grass is the lawn itself (a clear cell) and a rock is a cut-out piece. Nil while the
+    /// slot has no art, so the code drawing stays.
+    func bank(_ kind: FlowTileKind, cell at: FlowCell, picker: FlowVariantPicker, method: FlowGroundMethod) -> SKTexture? {
+        guard Self.paintsBankTiles, kind == .rock || kind == .grass else { return nil }
+        let onLawn = method == .lawn && hasLawn
+        let turns = kind == .grass ? picker.quarterTurns(of: at) : 0
+        let mirrored = picker.mirrored(at)
+        if onLawn, kind == .grass { return cached("bank-clear") { _ in } }
+        let slot = kind == .rock ? FlowArtSlot.rock : FlowArtSlot.grass
+        let cut = onLawn && kind == .rock ? images(FlowArtSlot.rockCut) : []
+        let pool = cut.isEmpty ? images(slot) : cut
+        guard !pool.isEmpty else { return nil }
+        let index = picker.variant(of: at, count: pool.count)
+        let key = "bank-\(kind.rawValue)-\(index)-\(turns)-\(mirrored)-\(onLawn)-\(cut.isEmpty)"
+        return cached(key) { context in
+            self.drawBank(context, image: pool[index], turns: turns, mirrored: mirrored, keycap: !onLawn, cutOut: !cut.isEmpty)
+        }
+    }
+
+    private func drawBank(_ context: CGContext, image: UIImage, turns: Int, mirrored: Bool, keycap: Bool, cutOut: Bool) {
+        let bounds = CGRect(x: 0, y: 0, width: cell, height: cell)
+        func placed(_ rect: CGRect) {
+            context.saveGState()
+            context.translateBy(x: cell / 2, y: cell / 2)
+            context.rotate(by: CGFloat(turns) * .pi / 2)
+            context.scaleBy(x: mirrored ? -1 : 1, y: 1)
+            context.translateBy(x: -cell / 2, y: -cell / 2)
+            image.draw(in: rect)
+            context.restoreGState()
+        }
+        if cutOut {
+            // A cut-out piece lying on the lawn, with a soft contact shadow.
+            context.setShadow(offset: CGSize(width: 0, height: 2), blur: 3, color: FlowPalette.ink.withAlphaComponent(0.3).cgColor)
+            placed(bounds.insetBy(dx: cell * 0.08, dy: cell * 0.08))
+            return
+        }
+        if !keycap {
+            // Method B without a cut-out: the picture's own rock, lifted off its grass by a soft oval.
+            context.setShadow(offset: CGSize(width: 0, height: 2), blur: 3, color: FlowPalette.ink.withAlphaComponent(0.3).cgColor)
+            context.saveGState()
+            context.addPath(CGPath(ellipseIn: bounds.insetBy(dx: cell * 0.03, dy: cell * 0.12), transform: nil))
+            context.clip()
+            placed(bounds)
+            context.restoreGState()
+            return
+        }
+        let rect = bounds.insetBy(dx: 2.5, dy: 2.5)
+        let radius = cell * 0.15
+        let body = UIBezierPath(roundedRect: rect, cornerRadius: radius).cgPath
+        context.saveGState()
+        context.setShadow(offset: CGSize(width: 0, height: 2), blur: 3, color: FlowPalette.ink.withAlphaComponent(0.34).cgColor)
+        context.setFillColor(FlowPalette.grassDark.cgColor)
+        context.addPath(body)
+        context.fillPath()
+        context.restoreGState()
+        context.saveGState()
+        context.addPath(body)
+        context.clip()
+        placed(bounds)
+        context.setBlendMode(.multiply)
+        context.setFillColor(Self.bankTint.cgColor)
+        context.fill(bounds)
+        context.setBlendMode(.normal)
+        context.restoreGState()
+        context.setStrokeColor(FlowPalette.grassDark.withAlphaComponent(0.75).cgColor)
+        context.setLineWidth(1.2)
+        context.addPath(body)
+        context.strokePath()
+        context.setStrokeColor(UIColor.white.withAlphaComponent(0.4).cgColor)
+        context.addPath(UIBezierPath(roundedRect: rect.insetBy(dx: 1.6, dy: 1.6), cornerRadius: max(0, radius - 1.6)).cgPath)
+        context.strokePath()
+    }
 
     /// The painted blank stone (batch 114, `x-flow-stone-c` takes 1 and 2), full bleed and even, so cells
     /// sit edge to edge without a seam. The code carves the channel into it.
@@ -72,6 +222,12 @@ final class FlowTextures {
 
     /// A warm multiply over the stone: the art is about 20 percent less chromatic than the straight tile.
     static let stoneTint = FlowPalette.rgb(1.0, 0.96, 0.89)
+
+    private func texture(of image: UIImage) -> SKTexture {
+        let texture = SKTexture(image: image)
+        texture.filteringMode = .linear
+        return texture
+    }
 
     /// A painted texture by its art id, or nil until the batch is integrated.
     private func painted(_ name: String) -> SKTexture? {
@@ -98,15 +254,18 @@ final class FlowTextures {
 
     // MARK: Cached textures
 
-    func stone(_ kind: FlowTileKind, _ openings: FlowDirection) -> SKTexture {
+    /// Which way a cell mirrors the seamless materials (bed and water): bit 0 mirrors left to right on odd
+    /// columns, bit 1 top to bottom on odd rows. Two neighbours then meet on a mirrored edge, which is
+    /// continuous by construction, so no wrap seam of the tile can fall on a cell boundary.
+    static func flip(of cell: FlowCell) -> Int { (cell.column & 1) | ((cell.row & 1) << 1) }
+
+    func stone(_ kind: FlowTileKind, _ openings: FlowDirection, flip: Int = 0) -> SKTexture {
         if kind == .wheel, let art = painted(Self.wheelTileArt) { return art }
-        // The painted bank tiles (batch 64: grass, the boulder) sit beside the painted stone (batch 114).
-        if Self.paintsBankTiles, kind == .grass || kind == .rock, let name = Self.artName(kind), let art = painted(name) { return art }
-        return cached("stone-\(kind.rawValue)-\(openings.rawValue)") { context in
+        return cached("stone-\(kind.rawValue)-\(openings.rawValue)-\(flip)") { context in
             switch kind {
             case .rock: self.drawRock(context)
             case .grass: self.drawGrass(context)
-            default: self.drawStone(context, kind: kind, openings: openings)
+            default: self.drawStone(context, kind: kind, openings: openings, flip: flip)
             }
         }
     }
@@ -126,9 +285,9 @@ final class FlowTextures {
         return (slice(0, 0.4), slice(0.4, 0.6), slice(0.6, 1), size.width / size.height)
     }
 
-    func water(_ kind: FlowTileKind, _ openings: FlowDirection) -> SKTexture {
-        cached("water-\(kind.rawValue)-\(openings.rawValue)") { context in
-            self.drawWater(context, kind: kind, openings: openings)
+    func water(_ kind: FlowTileKind, _ openings: FlowDirection, flip: Int = 0) -> SKTexture {
+        cached("water-\(kind.rawValue)-\(openings.rawValue)-\(flip)") { context in
+            self.drawWater(context, kind: kind, openings: openings, flip: flip)
         }
     }
 
@@ -161,7 +320,23 @@ final class FlowTextures {
 
     func wheel(blurred: Bool) -> SKTexture {
         // The painted wheel is one sharp frame; while it is "blurred" (settled) the drawn ghost stays.
-        if !blurred, let art = painted(Self.wheelArt) { return art }
+        if let art = wood(Self.wheelArt) {
+            if !blurred { return texture(of: art) }
+            // Settled: the same painted wheel smeared over one eighth turn, which for eight spokes is a
+            // still, soft disc of a turning wheel.
+            return cached("wheel-painted-blur") { context in
+                let bounds = CGRect(x: 0, y: 0, width: self.cell, height: self.cell)
+                let steps = 8
+                for index in 0..<steps {
+                    context.saveGState()
+                    context.translateBy(x: self.cell / 2, y: self.cell / 2)
+                    context.rotate(by: CGFloat(index) * (.pi / 4) / CGFloat(steps))
+                    context.translateBy(x: -self.cell / 2, y: -self.cell / 2)
+                    art.draw(in: bounds, blendMode: .normal, alpha: 1 / CGFloat(index + 1))
+                    context.restoreGState()
+                }
+            }
+        }
         return cached("wheel-\(blurred)") { context in
             let center = CGPoint(x: self.cell / 2, y: self.cell / 2)
             let radius = self.cell * 0.42
@@ -185,7 +360,8 @@ final class FlowTextures {
     }
 
     func gateBoard() -> SKTexture {
-        cached("gate") { context in
+        if let art = wood(FlowArtSlot.gate) { return texture(of: art) }
+        return cached("gate") { context in
             let center = CGPoint(x: self.cell / 2, y: self.cell / 2)
             let width = self.grooveWidth * 2.0
             let height = self.cell * 0.14
@@ -204,6 +380,67 @@ final class FlowTextures {
                 context.fillEllipse(in: CGRect(x: x - 2.2, y: center.y - 2.2, width: 4.4, height: 4.4))
             }
         }
+    }
+
+    /// The part of each seamless tile that is used, as fractions of the picture. The water tile is paler and
+    /// pinker along its left and right edges and its wrap step is 8 to 12 times the interior's, so only its
+    /// even middle is used; the bed tile is used without its outer fifth.
+    static let waterCrop = CGRect(x: 0.29, y: 0.29, width: 0.42, height: 0.42)
+    static let bedCrop = CGRect(x: 0.2, y: 0.2, width: 0.6, height: 0.6)
+
+    private var cropCache: [String: UIImage] = [:]
+
+    /// Draws the middle of a seamless picture into `rect`, mirrored by the cell's `flip` bits.
+    private func drawSeamless(_ image: UIImage, crop: CGRect, flip: Int, in rect: CGRect, _ context: CGContext) {
+        let key = "\(crop.minX)-\(crop.width)-\(image.size.width)"
+        var piece = cropCache[key]
+        if piece == nil, let cg = image.cgImage {
+            let pixels = CGRect(x: crop.minX * CGFloat(cg.width), y: crop.minY * CGFloat(cg.height), width: crop.width * CGFloat(cg.width), height: crop.height * CGFloat(cg.height)).integral
+            if let part = cg.cropping(to: pixels) { piece = UIImage(cgImage: part) }
+            if let piece { cropCache[key] = piece }
+        }
+        context.saveGState()
+        context.translateBy(x: rect.midX, y: rect.midY)
+        context.scaleBy(x: flip & 1 == 1 ? -1 : 1, y: flip & 2 == 2 ? -1 : 1)
+        context.translateBy(x: -rect.midX, y: -rect.midY)
+        (piece ?? image).draw(in: rect)
+        context.restoreGState()
+    }
+
+    /// The warm family of the stone, for the painted wood: part of the saturation is taken out, then a warm
+    /// multiply, so wheel and gate sit beside the cream stone. The art file itself is not recoloured.
+    static let woodTint = FlowPalette.rgb(0.99, 0.96, 0.91)
+    static let woodDesaturate: CGFloat = 0.30
+
+    private var woodCache: [String: UIImage] = [:]
+
+    /// A painted prop (wheel, gate) at 512 px, with the wood tint applied inside its own alpha.
+    func wood(_ name: String) -> UIImage? {
+        if let hit = woodCache[name] { return hit }
+        guard let image = UIImage(named: name, in: .module, compatibleWith: nil), let mask = image.cgImage else { return nil }
+        let side: CGFloat = 512
+        let format = UIGraphicsImageRendererFormat()
+        format.scale = 1
+        format.opaque = false
+        let rect = CGRect(x: 0, y: 0, width: side, height: side)
+        let result = UIGraphicsImageRenderer(size: rect.size, format: format).image { rendered in
+            let context = rendered.cgContext
+            image.draw(in: rect)
+            context.saveGState()
+            // `clip(to:mask:)` reads the mask upright in the native (y up) space.
+            context.translateBy(x: 0, y: side)
+            context.scaleBy(x: 1, y: -1)
+            context.clip(to: rect, mask: mask)
+            context.setBlendMode(.saturation)
+            context.setFillColor(UIColor(white: 0.5, alpha: Self.woodDesaturate).cgColor)
+            context.fill(rect)
+            context.setBlendMode(.multiply)
+            context.setFillColor(Self.woodTint.cgColor)
+            context.fill(rect)
+            context.restoreGState()
+        }
+        woodCache[name] = result
+        return result
     }
 
     // MARK: Drawing
@@ -249,8 +486,8 @@ final class FlowTextures {
         return path
     }
 
-    private func drawStone(_ context: CGContext, kind: FlowTileKind, openings: FlowDirection) {
-        if paintedStone(context, kind: kind, openings: openings) { return }
+    private func drawStone(_ context: CGContext, kind: FlowTileKind, openings: FlowDirection, flip: Int) {
+        if paintedStone(context, kind: kind, openings: openings, flip: flip) { return }
         let bounds = CGRect(x: 0, y: 0, width: cell, height: cell)
         let rect = bounds.insetBy(dx: 2, dy: 2)
         let radius = cell * 0.17
@@ -316,16 +553,16 @@ final class FlowTextures {
     /// The painted stone with the channel carved in by code. The variant (which take, which quarter turn,
     /// mirrored or not) comes from the tile's kind and openings, so a board reads hand-laid while the same
     /// tile always looks the same. Returns false until the art is in the bundle.
-    private func paintedStone(_ context: CGContext, kind: FlowTileKind, openings: FlowDirection) -> Bool {
+    private func paintedStone(_ context: CGContext, kind: FlowTileKind, openings: FlowDirection, flip: Int) -> Bool {
         let hash = kind.rawValue.unicodeScalars.reduce(7) { ($0 &* 31 &+ Int($1.value)) & 0xFFFF } &+ Int(openings.rawValue) &* 13
         guard let image = UIImage(named: Self.stoneArt[hash % Self.stoneArt.count], in: .module, compatibleWith: nil) else { return false }
         let bounds = CGRect(x: 0, y: 0, width: cell, height: cell)
-        // A turnable cell is its own laid stone: inset, rounded, with a soft drop shadow and a rim, so the
-        // gap between cells shows which pieces turn. Fixed cells (source, mouth) stay flush.
-        let rect = kind.isTurnable ? bounds.insetBy(dx: 2.5, dy: 2.5) : bounds
-        let radius = kind.isTurnable ? cell * 0.15 : 0
+        // Every cell is its own laid stone: inset, rounded, with a soft drop shadow and a rim. The source and
+        // the mouth are keycaps too; their faint carved rim, not a flush square, says they do not turn.
+        let rect = bounds.insetBy(dx: 2.5, dy: 2.5)
+        let radius = cell * 0.15
         let body = UIBezierPath(roundedRect: rect, cornerRadius: radius).cgPath
-        if kind.isTurnable {
+        do {
             context.saveGState()
             context.setShadow(offset: CGSize(width: 0, height: 2), blur: 3, color: FlowPalette.ink.withAlphaComponent(0.34).cgColor)
             context.setFillColor(FlowPalette.stoneShade.cgColor)
@@ -351,7 +588,7 @@ final class FlowTextures {
             context.setStrokeColor(FlowPalette.stoneEdge.withAlphaComponent(0.5).cgColor)
             context.setLineWidth(1.6)
             context.setLineDash(phase: 0, lengths: [5, 3])
-            context.addPath(UIBezierPath(roundedRect: bounds.insetBy(dx: 8, dy: 8), cornerRadius: cell * 0.13).cgPath)
+            context.addPath(UIBezierPath(roundedRect: bounds.insetBy(dx: 9, dy: 9), cornerRadius: cell * 0.13).cgPath)
             context.strokePath()
             context.setLineDash(phase: 0, lengths: [])
         }
@@ -383,25 +620,41 @@ final class FlowTextures {
         context.setFillColor(FlowPalette.grooveDark.cgColor)
         context.fill(bounds)
         context.translateBy(x: 2.4, y: 2.4)
-        context.addPath(path)
-        context.setStrokeColor(FlowPalette.groove.cgColor)
-        context.setLineWidth(grooveWidth)
-        context.strokePath()
+        if let bed = art(FlowArtSlot.channelBed) {
+            // The seamless channel bed fills the floor of the carved mask.
+            context.addPath(path)
+            context.setLineWidth(grooveWidth)
+            context.replacePathWithStrokedPath()
+            context.clip()
+            // The bed is placed in cell space, not in the shifted frame, so a mirrored neighbour meets it exactly.
+            drawSeamless(bed, crop: Self.bedCrop, flip: flip, in: bounds.insetBy(dx: -3, dy: -3).offsetBy(dx: -2.4, dy: -2.4), context)
+        } else {
+            context.addPath(path)
+            context.setStrokeColor(FlowPalette.groove.cgColor)
+            context.setLineWidth(grooveWidth)
+            context.strokePath()
+        }
         context.restoreGState()
         if kind == .source || kind == .mouth {
             let middle = CGPoint(x: cell / 2, y: cell / 2)
-            let ring = grooveWidth * (kind == .source ? 1.2 : 1.1)
-            context.setFillColor((kind == .source ? FlowPalette.moss : FlowPalette.stoneEdge).cgColor)
-            context.fillEllipse(in: CGRect(x: middle.x - ring, y: middle.y - ring, width: ring * 2, height: ring * 2))
-            context.setFillColor(FlowPalette.grooveDark.cgColor)
-            let inner = grooveWidth * 0.95
-            context.fillEllipse(in: CGRect(x: middle.x - inner, y: middle.y - inner, width: inner * 2, height: inner * 2))
-            context.setFillColor(FlowPalette.groove.cgColor)
-            let floor = grooveWidth * 0.8
-            context.fillEllipse(in: CGRect(x: middle.x - floor, y: middle.y - floor, width: floor * 2, height: floor * 2))
+            if let spring = art(kind == .source ? FlowArtSlot.spring : FlowArtSlot.outlet) {
+                // The painted spring or outlet sits on the keycap, centred on the channel's end.
+                let side = cell * 0.9
+                spring.draw(in: CGRect(x: middle.x - side / 2, y: middle.y - side / 2, width: side, height: side))
+            } else {
+                let ring = grooveWidth * (kind == .source ? 1.2 : 1.1)
+                context.setFillColor((kind == .source ? FlowPalette.moss : FlowPalette.stoneEdge).cgColor)
+                context.fillEllipse(in: CGRect(x: middle.x - ring, y: middle.y - ring, width: ring * 2, height: ring * 2))
+                context.setFillColor(FlowPalette.grooveDark.cgColor)
+                let inner = grooveWidth * 0.95
+                context.fillEllipse(in: CGRect(x: middle.x - inner, y: middle.y - inner, width: inner * 2, height: inner * 2))
+                context.setFillColor(FlowPalette.groove.cgColor)
+                let floor = grooveWidth * 0.8
+                context.fillEllipse(in: CGRect(x: middle.x - floor, y: middle.y - floor, width: floor * 2, height: floor * 2))
+            }
         }
         context.restoreGState()
-        if kind.isTurnable {
+        do {
             context.setStrokeColor(FlowPalette.stoneEdge.withAlphaComponent(0.85).cgColor)
             context.setLineWidth(1.2)
             context.addPath(body)
@@ -414,9 +667,36 @@ final class FlowTextures {
         return true
     }
 
-    private func drawWater(_ context: CGContext, kind: FlowTileKind, openings: FlowDirection) {
+    private func drawWater(_ context: CGContext, kind: FlowTileKind, openings: FlowDirection, flip: Int) {
         let path = channelPath(openings)
         let middle = CGPoint(x: cell / 2, y: cell / 2)
+        if let texture = art(FlowArtSlot.water) {
+            // The painted water fills the carved channel from a seamless texture. A painted spring or outlet
+            // is not covered by a drawn ball.
+            let hasBall = (kind == .source || kind == .mouth) && art(kind == .source ? FlowArtSlot.spring : FlowArtSlot.outlet) == nil
+            let body = CGMutablePath()
+            body.addPath(path.copy(strokingWithWidth: grooveWidth * 0.92, lineCap: .round, lineJoin: .round, miterLimit: 10))
+            if hasBall {
+                let radius = grooveWidth * (kind == .source ? 0.95 : 1.0)
+                body.addEllipse(in: CGRect(x: middle.x - radius, y: middle.y - radius, width: radius * 2, height: radius * 2))
+            }
+            context.saveGState()
+            context.addPath(body)
+            context.clip()
+            drawSeamless(texture, crop: Self.waterCrop, flip: flip, in: CGRect(x: 0, y: 0, width: cell, height: cell).insetBy(dx: -3, dy: -3), context)
+            context.restoreGState()
+            context.setStrokeColor(FlowPalette.waterDeep.withAlphaComponent(0.35).cgColor)
+            context.setLineWidth(1.2)
+            context.addPath(body)
+            context.strokePath()
+            if kind == .source || kind == .mouth, let piece = art(kind == .source ? FlowArtSlot.spring : FlowArtSlot.outlet) {
+                // The painted ring of stones goes back over the water, so the stream starts at its rim
+                // instead of running across the stones.
+                let side = cell * 0.9
+                piece.draw(in: CGRect(x: middle.x - side / 2, y: middle.y - side / 2, width: side, height: side))
+            }
+            return
+        }
         context.setLineCap(.round)
         context.setLineJoin(.round)
         context.addPath(path)

@@ -58,9 +58,10 @@ public struct CaglayanLine: Hashable, Sendable, Identifiable {
 /// mill's wall, the waterfall's fall off the underside is the stage 4
 /// signature, and the home gift is the pool fountain at home.
 public enum CaglayanLayout {
-    /// The island's centre on the world canvas: below the harbor and right
-    /// of Koke, out of the home plate's frame (`closeScale`).
-    public static let center = WorldPoint(x: 150, y: 440)
+    /// The island's centre on the world canvas: its tier-1 slot on the Map, up and to the right behind
+    /// Home and a little higher than Koke (`world-map.json`, Map order A), out of the home plate's frame
+    /// (`closeScale`).
+    public static let center = MapSlots.center(of: .caglayan, fallback: WorldPoint(x: 150, y: -540))
     /// The depth of the island's lawn: the focus plane at Çağlayan.
     public static var focusDepth: Double {
         IslandLayout.depth(ofY: center.y)

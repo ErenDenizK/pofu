@@ -16,9 +16,27 @@ struct CaglayanLayoutTests {
 
     @Test func theIslandSitsClearOfHomeKokeAndTheHarborsWater() {
         let box = CaglayanLayout.islandBox
-        #expect(box.minY > IslandFraming.plateBox.maxY)
+        #expect(box.maxY < IslandFraming.plateBox.minY)
         #expect(box.minX > KokeLayout.islandBox.maxX)
         #expect(abs(box.width - CaglayanLayout.plateSize.width) < 1e-9)
+    }
+
+    /// Map order A, the journey: Çağlayan rises behind Home, up and to the right of Koke and a little
+    /// higher, at its tier-1 slot of `world-map.json`.
+    @Test func caglayanIsAboveHomeAndRightOfKoke() throws {
+        let home = try #require(HomePlate.shipped)
+        let map = try #require(WorldMap.shipped)
+        let slot = try #require(map.center(of: .caglayan))
+        let centre = WorldPoint(x: home.islandBox.midX, y: home.islandBox.midY)
+        #expect(abs(CaglayanLayout.center.x - (centre.x + slot.x)) < 1e-9 && abs(CaglayanLayout.center.y - (centre.y + slot.y)) < 1e-9)
+        #expect(CaglayanLayout.islandBox.maxY < home.islandBox.minY, "Çağlayan's foot is above Home's top")
+        #expect(CaglayanLayout.islandBox.minX > KokeLayout.islandBox.maxX, "right of Koke")
+        #expect(CaglayanLayout.center.y < KokeLayout.center.y, "and a little higher")
+        // Its own stop leaves Home under the bottom edge.
+        for (width, height) in [(402.0, 874.0), (440.0, 956.0), (375.0, 812.0)] {
+            let stop = try #require(IslandFraming.isleStop(.caglayan, width: width, height: height))
+            #expect(stop.anchorY + (home.islandBox.minY - stop.look.y) * stop.scale >= height)
+        }
     }
 
     @Test func theBakedPlateIsAboutTheSizeOfTheLayoutBox() throws {

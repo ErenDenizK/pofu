@@ -55,11 +55,10 @@ public struct KokeLine: Hashable, Sendable, Identifiable {
 /// (`world-koke-island-N`); the view keeps a code placeholder only for a
 /// bundle that lacks one.
 public enum KokeLayout {
-    /// The island's centre on the world canvas: left of the harbor, below
-    /// the home plate and far enough below it that the home island is out of
-    /// the frame when the camera is here (`closeScale`). The Map frames it
-    /// (`IslandFraming.mapStop` takes its box in).
-    public static let center = WorldPoint(x: -100, y: 410)
+    /// The island's centre on the world canvas: its tier-1 slot on the Map, up and to the left behind
+    /// Home (`world-map.json`, Map order A), a tier pitch above it, so Home is below the bottom edge
+    /// when the camera is here (`closeScale`). The Map frames it (`MapSlots.frame`).
+    public static let center = MapSlots.center(of: .koke, fallback: WorldPoint(x: -150, y: -470))
     /// The depth of Koke's lawn: the focus plane at Koke (`Lens`, the depth
     /// of field), where the home island's lawn is the focus at home.
     public static var focusDepth: Double {
@@ -73,8 +72,8 @@ public enum KokeLayout {
     public static let artWidth = 250.0
     /// Points per world unit at the Koke stop, at the reference width: the
     /// painted island fills about 95 % of the width, as the home plate's
-    /// lawn does at its own framing, and the home island (187 units above
-    /// the plate's roots) is above the top edge.
+    /// lawn does at its own framing, and the home island, a tier pitch
+    /// (470 units) below, is under the bottom edge.
     public static let closeScale = 1.8
 
     /// The island's box, absolute.

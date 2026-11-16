@@ -91,6 +91,8 @@ final class GardenTextures {
         case tileLilac = "garden-tile-lilac"
         case tileMint = "garden-tile-mint"
         case tileRose = "garden-tile-rose"
+        /// The painted scene behind the board (batch 124 `x-garden-backdrop`).
+        case backdrop = "garden-backdrop"
         case soil = "garden-soil"
         case tray = "garden-tray"
         case bloomFront = "garden-bloom-front"
@@ -352,7 +354,23 @@ final class GardenTextures {
     /// Pofu, and a faint vignette.
     func sky(size: CGSize, sunAt sun: CGPoint) -> SKTexture {
         cached("sky.\(size.width)x\(size.height)") {
-            SKTexture(image: Self.render(size, scale: 2) { context, rect in
+            if let art = Self.image(.backdrop) {
+                // The painted garden scene, aspect-filled, with a cream veil over the HUD so its ink stays readable.
+                return SKTexture(image: Self.render(size, scale: 2) { context, rect in
+                    let scale = max(rect.width / art.size.width, rect.height / art.size.height)
+                    let width = art.size.width * scale
+                    let height = art.size.height * scale
+                    art.draw(in: CGRect(x: rect.midX - width / 2, y: rect.midY - height / 2, width: width, height: height))
+                    let veil = min(rect.height * 0.2, 160)
+                    Self.linearGradient(
+                        context,
+                        colors: [GardenPalette.skyTop.withAlphaComponent(0.88), GardenPalette.skyTop.withAlphaComponent(0.55), GardenPalette.skyTop.withAlphaComponent(0)],
+                        from: CGPoint(x: rect.midX, y: rect.minY),
+                        to: CGPoint(x: rect.midX, y: rect.minY + veil)
+                    )
+                })
+            }
+            return SKTexture(image: Self.render(size, scale: 2) { context, rect in
                 Self.linearGradient(
                     context,
                     colors: [GardenPalette.skyTop, GardenPalette.skyBottom],

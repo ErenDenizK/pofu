@@ -724,6 +724,32 @@ private struct SceneFrame<Bubble: View>: View {
                     PaintedSkyLayer(plate: entry.plate, pose: pose, reference: PaintedSky.reference(for: entry.island, width: Double(size.width), height: Double(size.height)) ?? entry.plate.skyReference(width: Double(size.width), height: Double(size.height)), size: size, offset: offset, fade: entry.fade, cleanSea: entry.island == .koke)
                 }
 
+                // Over the cloud sea's horizon on the Map, a soft haze until WP9's cloud beds: no ruler
+                // edge, and the wonder islands' feet stand in it.
+                if let mapSky, z < 0.8, let horizon = MapSlots.horizonRow(plate: mapSky, camera: pose, width: Double(size.width), height: Double(size.height)) {
+                    MapHazeLayer(horizon: horizon, size: size, offset: offset)
+                        .tinted(tint, isEnabled: !(look.grade && WorldShaders.isAvailable))
+                        .modifier(GradeEffect(grade: grade.withoutVignette, isEnabled: look.grade))
+                        .opacity(max(0, 1 - max(z, 0) / 0.8))
+                }
+
+                // The next island's slot: a cloud tower (`MapSlots`, Map order A), gone as
+                // the camera leaves the Map as the wonder islands are. The next-to-open slot's reveal is WP12's.
+                if z < 0.8, model.focus == nil {
+                    MapSlotsLayer(
+                        slots: MapSlots.slots(stage: MapSlots.stage(koke: world.koke, caglayan: world.caglayan), tier: plate?.mapTier ?? MapSlots.tier(koke: world.koke, caglayan: world.caglayan)),
+                        pose: pose,
+                        size: size,
+                        offset: offset,
+                        time: life.isAmbient ? life.time : nil,
+                        z: z
+                    )
+                    // In the hour's light, as the wonder islands beside them are.
+                    .tinted(tint, isEnabled: !(look.grade && WorldShaders.isAvailable))
+                    .modifier(GradeEffect(grade: grade.withoutVignette, isEnabled: look.grade))
+                    .opacity(max(0, 1 - max(z, 0) / 0.8))
+                }
+
                 if !painted, codeFade < 0.999 {
                     // The rainbow, soft and pastel, behind the island and its fog.
                     WeatherRainbow(atmosphere: atmosphere, size: size, seaLine: fogSeaLine, offset: offset)
@@ -786,6 +812,7 @@ private struct SceneFrame<Bubble: View>: View {
                     // hour's light under the sky behind it (its own at its stop, Home's on the Map).
                     PlateHomeLayer(plate: isle, pose: pose, size: size, offset: offset, fade: isleFade, islandGrade: isleGrade)
                         .opacity(model.island == .caglayan ? 1 : max(0, 1 - max(z, 0) / 0.8) * (model.focus == nil ? 1 : 0))
+                        .offset(y: model.island == .caglayan ? 0 : CGFloat(MapSlots.bob(IslandID.caglayan.rawValue, time: life.isAmbient ? life.time : nil, z: z)))
                 }
 
                 // The characters keep their warmth: the colour script's
@@ -1027,9 +1054,9 @@ private struct WorldCanvas: View {
             }
             if layer == .environment {
                 otherIsles
-                isleShadow(under: KokeLayout.islandBox, arrived: world.koke.isArrived, here: model.island == .koke)
+                // In journey order Koke and Çağlayan float in the sky above the cloud sea's horizon: no
+                // shadow of theirs lies on it (`PaintedSky.isleShadow` waits for a cloud floor under them).
                 kokeIsle
-                isleShadow(under: CaglayanLayout.islandBox, arrived: world.caglayan.isArrived, here: model.island == .caglayan)
                 caglayanIsle
             }
             if layer == .environment, plate == nil {
@@ -1518,33 +1545,6 @@ private struct WorldCanvas: View {
         }
     }
 
-    /// A wonder island's soft shadow on the painted Map's cloud sea (`PaintedSky.isleShadow`), under the
-    /// island and with its fade; not at the island's own stop, which has its own painted sky.
-    @ViewBuilder
-    private func isleShadow(under box: WorldBox, arrived: Bool, here: Bool) -> some View {
-        if paintedSky, arrived, !here, z < 1.7 || model.island != .home {
-            let shadow = PaintedSky.isleShadow(under: box)
-            let rgb = PaintedSky.isleShadowRGB
-            let colour = Color(red: rgb.r, green: rgb.g, blue: rgb.b)
-            let point = canvasPoint(shadow.centre, depth: 0)
-            Ellipse()
-                .fill(
-                    RadialGradient(
-                        colors: [colour.opacity(shadow.opacity), colour.opacity(shadow.opacity * 0.45), colour.opacity(0)],
-                        center: .center,
-                        startRadius: 0,
-                        endRadius: shadow.width / 2
-                    )
-                )
-                .frame(width: shadow.width, height: shadow.width)
-                .scaleEffect(x: 1, y: shadow.height / shadow.width)
-                .position(x: point.x, y: point.y)
-                .opacity(max(0, 1 - max(z, 0) / 0.8) * (model.focus == nil ? 1 : 0))
-                .allowsHitTesting(false)
-                .accessibilityHidden(true)
-        }
-    }
-
     /// Koke's island, once it can be visited: the same fade as the other
     /// isles, desaturated on the Map by how healed it is.
     @ViewBuilder
@@ -1562,7 +1562,13 @@ private struct WorldCanvas: View {
             )
             .saturation(here ? 1 : KokeLayout.saturation(stage: world.koke.stage))
             .opacity(fade)
+            .offset(y: here ? 0 : CGFloat(mapBob(.koke)))
         }
+    }
+
+    /// A wonder island's bob on the Map (`MapSlots.bob`), in canvas units.
+    private func mapBob(_ island: IslandID) -> Double {
+        MapSlots.bob(island.rawValue, time: life.isAmbient ? life.time : nil, z: z) / max(scale, 1e-6)
     }
 
     /// Çağlayan's island, once it can be visited: like Koke's, faded out on the
@@ -1581,6 +1587,7 @@ private struct WorldCanvas: View {
                 time: here && life.isAmbient ? life.time : nil
             )
             .opacity(fade)
+            .offset(y: here ? 0 : CGFloat(mapBob(.caglayan)))
         }
     }
 
@@ -1605,6 +1612,7 @@ private struct WorldCanvas: View {
                     pulse: model.pulses["caglayan", default: 0]
                 )
                 .opacity(fade)
+                .offset(y: here ? 0 : CGFloat(mapBob(.caglayan)))
             } else {
                 CaglayanDamlaView(
                     stage: world.caglayan.stage,
@@ -1612,6 +1620,7 @@ private struct WorldCanvas: View {
                     characterGrade: characterGrade
                 )
                 .opacity(fade)
+                .offset(y: here ? 0 : CGFloat(mapBob(.caglayan)))
             }
         }
     }

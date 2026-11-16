@@ -9,7 +9,10 @@ struct GoalLine: View {
     var body: some View {
         Text(verbatim: text)
             .font(.system(.footnote, design: .rounded, weight: .semibold))
-            .foregroundStyle(GardenInk.ink.opacity(0.78))
+            .foregroundStyle(GardenInk.ink.opacity(0.9))
+            // A soft cream halo, so the line reads over a painted scene as well as over plain ground.
+            .shadow(color: GardenInk.paperTop.opacity(0.95), radius: 3)
+            .shadow(color: GardenInk.paperTop.opacity(0.9), radius: 6)
             .multilineTextAlignment(.center)
             .lineLimit(2)
             .minimumScaleFactor(0.85)

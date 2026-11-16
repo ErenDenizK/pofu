@@ -55,6 +55,9 @@ final class FlowScene: SKScene {
     private(set) var board: FlowBoard
     private(set) var layout: FlowLayout
     private var textures: FlowTextures
+    private var picker: FlowVariantPicker
+    /// The ground method this board was built with (A: keycaps, B: one lawn).
+    private var method: FlowGroundMethod = .keycaps
     private let haptics = FlowHaptics()
 
     private let backdrop = SKSpriteNode()
@@ -81,6 +84,7 @@ final class FlowScene: SKScene {
         let initial = FlowLayout(size: size, safeTop: 62, safeBottom: 34, columns: board.columns, rows: board.rows)
         layout = initial
         textures = FlowTextures(cell: initial.cell)
+        picker = FlowVariantPicker(board: board)
         super.init(size: size)
         scaleMode = .resizeFill
         anchorPoint = .zero
@@ -166,6 +170,8 @@ final class FlowScene: SKScene {
         guard isBuilt else { return }
         layout = FlowLayout(size: size, safeTop: safeTop, safeBottom: safeBottom, columns: board.columns, rows: board.rows)
         textures = FlowTextures(cell: layout.cell)
+        picker = FlowVariantPicker(board: board)
+        method = FlowGroundSettings.method
         backdrop.texture = backdropTexture()
         backdrop.size = size
         boardLayer.removeFromParent()
@@ -176,6 +182,7 @@ final class FlowScene: SKScene {
     }
 
     private func backdropTexture() -> SKTexture {
+        if let art = textures.art(FlowArtSlot.backdrop) { return paintedBackdrop(art) }
         let format = UIGraphicsImageRendererFormat()
         format.scale = 2
         format.opaque = true
@@ -193,6 +200,27 @@ final class FlowScene: SKScene {
             }
         }
         return SKTexture(image: image)
+    }
+
+    /// The painted scene behind the board (batch 124), aspect-filled to the screen and centred, with a soft
+    /// cream veil over the HUD so its ink stays readable on the painted water and flowers. The picture's
+    /// second, small cascade lies behind the board.
+    private func paintedBackdrop(_ art: UIImage) -> SKTexture {
+        let format = UIGraphicsImageRendererFormat()
+        format.scale = 2
+        format.opaque = true
+        let image = UIGraphicsImageRenderer(size: size, format: format).image { rendered in
+            let context = rendered.cgContext
+            FlowTextures.drawCover(art, in: CGRect(origin: .zero, size: size))
+            let veilHeight = safeTop + FlowLayout.hudHeight + 36
+            let veil = [FlowPalette.skyTop.withAlphaComponent(0.88).cgColor, FlowPalette.skyTop.withAlphaComponent(0.55).cgColor, FlowPalette.skyTop.withAlphaComponent(0).cgColor] as CFArray
+            if let gradient = CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: veil, locations: [0, 0.6, 1]) {
+                context.drawLinearGradient(gradient, start: .zero, end: CGPoint(x: 0, y: veilHeight), options: [])
+            }
+        }
+        let texture = SKTexture(image: image)
+        texture.filteringMode = .linear
+        return texture
     }
 
     /// The board's container: the cliff lip, the bank, the pool and the tiles.
@@ -218,12 +246,21 @@ final class FlowScene: SKScene {
         moss.zPosition = 1.1
         container.addChild(moss)
 
-        let bank = SKShapeNode(rect: sceneRect(layout.board).insetBy(dx: -6, dy: -6), cornerRadius: 18)
-        bank.fillColor = FlowPalette.cliff.withAlphaComponent(0.5)
-        bank.strokeColor = FlowPalette.cliffDark.withAlphaComponent(0.35)
-        bank.lineWidth = 1.2
-        bank.zPosition = 0.5
-        container.addChild(bank)
+        let bankRect = sceneRect(layout.board).insetBy(dx: -6, dy: -6)
+        if method == .lawn, let lawn = textures.lawn(size: bankRect.size) {
+            // Method B: one seamless lawn under the whole board.
+            let sprite = SKSpriteNode(texture: lawn, size: bankRect.size)
+            sprite.position = CGPoint(x: bankRect.midX, y: bankRect.midY)
+            sprite.zPosition = 0.5
+            container.addChild(sprite)
+        } else {
+            let bank = SKShapeNode(rect: bankRect, cornerRadius: 18)
+            bank.fillColor = FlowPalette.cliff.withAlphaComponent(0.5)
+            bank.strokeColor = FlowPalette.cliffDark.withAlphaComponent(0.35)
+            bank.lineWidth = 1.2
+            bank.zPosition = 0.5
+            container.addChild(bank)
+        }
 
         let poolRect = sceneRect(layout.pool)
         let pool: SKNode
@@ -294,18 +331,20 @@ final class FlowScene: SKScene {
     private func makeTile(_ cell: FlowCell, _ tile: FlowTile) -> FlowTileNode {
         let node = FlowTileNode(cell: cell, tile: tile)
         node.position = point(of: cell)
-        node.stone.texture = textures.stone(tile.kind, tile.openings)
+        node.stone.texture = textures.bank(tile.kind, cell: cell, picker: picker, method: method) ?? textures.stone(tile.kind, tile.openings, flip: FlowTextures.flip(of: cell))
         node.stone.size = cellSize
         node.stone.zPosition = 1
         node.addChild(node.stone)
         switch tile.kind {
         case .gate:
-            let board = SKSpriteNode(texture: textures.gateBoard(), size: cellSize)
+            // The painted plank is 86 percent of its tile wide: scaled so it sits inside the cell, a little
+            // wider than the channel it shuts.
+            let board = SKSpriteNode(texture: textures.gateBoard(), size: CGSize(width: cellSize.width * FlowTextures.gateScale, height: cellSize.height * FlowTextures.gateScale))
             board.zPosition = 3
             node.addChild(board)
             node.overlay = board
         case .wheel:
-            let wheel = SKSpriteNode(texture: textures.wheel(blurred: false), size: cellSize)
+            let wheel = SKSpriteNode(texture: textures.wheel(blurred: false), size: CGSize(width: cellSize.width * FlowTextures.wheelScale, height: cellSize.height * FlowTextures.wheelScale))
             wheel.zPosition = 3
             node.addChild(wheel)
             node.overlay = wheel
@@ -322,7 +361,7 @@ final class FlowScene: SKScene {
         let crop = SKCropNode()
         crop.zPosition = 2
         let tile = node.shown
-        crop.addChild(SKSpriteNode(texture: textures.water(tile.kind, tile.openings), size: cellSize))
+        crop.addChild(SKSpriteNode(texture: textures.water(tile.kind, tile.openings, flip: FlowTextures.flip(of: node.cell)), size: cellSize))
         let mask = SKSpriteNode(color: .white, size: cellSize)
         crop.maskNode = mask
         node.addChild(crop)
@@ -457,9 +496,9 @@ final class FlowScene: SKScene {
         // Land any turn still in flight, then start the next.
         node.stone.removeAction(forKey: "turn")
         node.stone.zRotation = 0
-        node.stone.texture = textures.stone(node.shown.kind, node.shown.openings)
+        node.stone.texture = textures.stone(node.shown.kind, node.shown.openings, flip: FlowTextures.flip(of: node.cell))
         node.shown = tile
-        let texture = textures.stone(tile.kind, tile.openings)
+        let texture = textures.stone(tile.kind, tile.openings, flip: FlowTextures.flip(of: node.cell))
         let angle: CGFloat = reverse ? .pi / 2 : -.pi / 2
         if reduceMotion {
             node.stone.texture = texture
@@ -589,6 +628,8 @@ final class FlowScene: SKScene {
         currentHint = nil
         layout = FlowLayout(size: size, safeTop: safeTop, safeBottom: safeBottom, columns: newBoard.columns, rows: newBoard.rows)
         textures = FlowTextures(cell: layout.cell)
+        picker = FlowVariantPicker(board: newBoard)
+        method = FlowGroundSettings.method
         boardLayer = makeBoardLayer(newBoard)
         stage.addChild(boardLayer)
         wake(for: animated ? 1.0 : 0.3)

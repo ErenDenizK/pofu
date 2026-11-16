@@ -95,7 +95,25 @@ struct KokeLayoutTests {
         let half_h = 874.0 / 2 / map.scale
         #expect(box.minY >= map.look.y - half_h && box.maxY <= map.look.y + half_h)
         // And clear of the home plate.
-        #expect(box.minY > IslandFraming.plateBox.maxY || box.maxX < IslandFraming.plateBox.minX)
+        #expect(box.maxY < IslandFraming.plateBox.minY || box.maxX < IslandFraming.plateBox.minX)
+    }
+
+    /// Map order A, the journey: Koke rises behind Home, up and to the left, at its tier-1 slot of
+    /// `world-map.json`, a tier pitch above Home's box centre.
+    @Test func kokeIsAboveHome() throws {
+        let home = try #require(HomePlate.shipped)
+        let map = try #require(WorldMap.shipped)
+        let slot = try #require(map.center(of: .koke))
+        let centre = WorldPoint(x: home.islandBox.midX, y: home.islandBox.midY)
+        #expect(abs(KokeLayout.center.x - (centre.x + slot.x)) < 1e-9 && abs(KokeLayout.center.y - (centre.y + slot.y)) < 1e-9)
+        #expect(KokeLayout.islandBox.maxY < home.islandBox.minY, "Koke's foot is above Home's top")
+        #expect(KokeLayout.center.x < centre.x, "Koke is left of Home's middle")
+        // On the Map, Koke is drawn above Home and wholly on screen.
+        let stop = home.mapStop
+        let pose = CameraPose(scale: stop.scale, look: stop.look, anchorY: stop.anchorY)
+        let koke = pose.project(WorldPoint(x: KokeLayout.islandBox.minX, y: KokeLayout.islandBox.maxY), width: 402)
+        let top = pose.project(WorldPoint(x: home.islandBox.minX, y: home.islandBox.minY), width: 402)
+        #expect(koke.y < top.y && koke.x >= 0)
     }
 
     @Test func itsIslandStopCentresOnIt() throws {
@@ -104,17 +122,21 @@ struct KokeLayoutTests {
         #expect(stop.scale == KokeLayout.closeScale)
     }
 
-    @Test func theHomeIslandIsAboveTheKokeFrame() throws {
+    @Test func theHomeIslandIsBelowTheKokeFrame() throws {
+        let home = try #require(HomePlate.shipped)
         for (width, height) in [(402.0, 874.0), (440.0, 956.0), (375.0, 812.0)] {
             let stop = try #require(IslandFraming.isleStop(.koke, width: width, height: height))
-            let homeBottom = stop.anchorY + (IslandFraming.plateBox.maxY - stop.look.y) * stop.scale
-            #expect(homeBottom <= 0, "home hangs into the \(width) x \(height) frame")
+            for top in [IslandFraming.plateBox.minY, home.islandBox.minY] {
+                let homeTop = stop.anchorY + (top - stop.look.y) * stop.scale
+                #expect(homeTop >= height, "home rises into the \(width) x \(height) frame")
+            }
         }
     }
 
     @Test func theFocusPlaneIsKokesLawn() {
         #expect(KokeLayout.focusDepth == IslandLayout.depth(ofY: KokeLayout.center.y))
-        #expect(KokeLayout.focusDepth > IslandLayout.depth(ofY: IslandLayout.pofu.y))
+        // Koke stands behind Home in journey order: its lawn is farther than Pofu's.
+        #expect(KokeLayout.focusDepth < IslandLayout.depth(ofY: IslandLayout.pofu.y))
     }
 
     @Test func onlyAnArrivedKokeAnswersTaps() {

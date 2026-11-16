@@ -1,0 +1,1 @@
+- Flow board: every part takes painted art (grass, rock, spring, outlet, wheel, gate, channel, water) with today's drawing as fallback; the source is a keycap; method B (one lawn) is a debug switch.

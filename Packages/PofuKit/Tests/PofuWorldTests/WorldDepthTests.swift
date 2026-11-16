@@ -82,7 +82,9 @@ struct WorldDepthTests {
                 xs.append(p.x)
                 ys.append(p.y)
             }
-            for n in 2...100 {
+            // The sample on the Island stop (z 1) is where the rail bends: its two segments run at their
+            // own pace (the Map's journey-order frame sits far above Home), so it is left out.
+            for n in 2...100 where n - 1 != 50 {
                 #expect(abs((ys[n] - ys[n - 1]) - (ys[n - 1] - ys[n - 2])) < 3, "k \(k) y step \(n)")
                 #expect(abs((xs[n] - xs[n - 1]) - (xs[n - 1] - xs[n - 2])) < 3, "k \(k) x step \(n)")
             }
