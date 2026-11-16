@@ -8,7 +8,8 @@ public struct FlowLayout: Equatable, Sendable {
     public static let hudHeight: CGFloat = 56
     public static let controlsHeight: CGFloat = 84
     public static let poolHeight: CGFloat = 44
-    public static let lipHeight: CGFloat = 26
+    /// The painted lip (batch 131) is about 9.7 times as wide as tall; its moss rises above the stone.
+    public static let lipHeight: CGFloat = 30
     /// The clear margin between the screen's sides and anything of the
     /// board, the pool's rim included.
     public static let gutter: CGFloat = 16
