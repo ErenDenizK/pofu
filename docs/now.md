@@ -30,18 +30,18 @@ Large job now: world presentation (spec #474); glass UI stays.
    the cascade. Board edge stays code until batch 132 (edge redo, queued).
 3. UI grammar N10 done: #490 open (docs). Two planes: world painted,
    screen native glass. Founder sent 5 picks + flow A/B; no app change
-   until he has seen it. Hop outcomes fix (builder, `fix/hop-outcomes-hour`).
+   until he has seen it. Hop outcomes follow the shown hour (#488 merged).
+5. WP9 cloud floor + life (builder Sonnet, `feat/cloud-floor-life`), 126 forms.
 4. Codex: 127 (targets, sent to founder), 128 (18 icons; drop and star
    need an edit), 130, 131 reviewed and merged (pofu-art #100-#106).
    Queue now: 132, then Standing S1 (129 looks), S2 (126 v2/v3).
    Founder picks owed: flow A/B, 122 far camera.
-Merged: #475-#487, #480; pofu-art #81, #91-#106.
+Merged: #475-#488, #480; pofu-art #81, #91-#106.
 
 ## Next steps, in order (night plan)
 
-1. Hop copy fixed (#487); `HopOutcomes` still reads `session.isNight`.
 2. WP8 looks data from 123's picks (grade at ingest); stall in front of cart.
-3. WP9 clouds (next slot); WP8 after N6 proof; A2 WP7 rail.
+3. WP8 after the N6 upgrade proof; A2 WP7 rail.
 4. Open: sheets glass/paper, first screens; A9 art backlog; §8.6 pass.
 
 ## Desks
