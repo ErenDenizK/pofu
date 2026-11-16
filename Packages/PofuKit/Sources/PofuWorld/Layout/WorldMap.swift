@@ -3,7 +3,8 @@ import PofuCore
 
 /// What a slot on the Map holds, in order of the player's progress (v2 section 1.3): a
 /// plain cloud tower (not yet announced), a veiled tower with the island's silhouette
-/// inside (next to open), the island. A slot is never empty.
+/// inside (next to open), the island. The Map draws a tower only for the slot next to open and
+/// nothing for one not yet announced (`MapSlots.Slot.showsTower`).
 public enum SlotState: String, Codable, Hashable, Sendable {
     case cloud
     case veiled

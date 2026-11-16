@@ -112,8 +112,14 @@ public enum MapSlots {
             }
     }
 
-    /// The cloud tower's painting (pofu-art batch 115, take 1).
+    /// The cloud tower's painting (pofu-art batch 115, take 1): Çağlayan's.
     public static let towerArt = "world-cloud-tower-1"
+
+    /// The tower a slot shows: each island's own form, so no two towers are the same picture (Koke's is
+    /// batch 126's `tower-b`, take 2; Çağlayan's the first).
+    public static func towerArt(for slot: String) -> String {
+        slot == IslandID.koke.rawValue ? "world-cloud-tower-b" : towerArt
+    }
 
     // MARK: - The far picture
 
@@ -273,7 +279,7 @@ public enum MapSlots {
 
     // MARK: - The horizon's haze
 
-    /// Until WP9's cloud beds: a soft haze over the cloud sea's horizon on the Map, so the horizon is no
+    /// With WP9's cloud beds (`CloudFloor`) under the islands, a soft haze over the cloud sea's horizon on the Map, so the horizon is no
     /// ruler edge and the wonder islands' feet stand in it. It rises from nothing `hazeAbove` of the
     /// screen's height above the horizon row to `hazePeak` on the row, and is gone `hazeBelow` under it.
     public static let hazeAbove = 0.2
@@ -365,7 +371,7 @@ struct MapSlotsLayer: View {
     var body: some View {
         ZStack(alignment: .topLeading) {
             ForEach(slots.filter(\.showsTower), id: \.id) { slot in
-                tower(slot.tower)
+                tower(slot.tower, art: MapSlots.towerArt(for: slot.id))
                     .offset(y: CGFloat(MapSlots.bob(slot.id, time: time, z: z)))
             }
         }
@@ -374,14 +380,15 @@ struct MapSlotsLayer: View {
         .accessibilityHidden(true)
     }
 
-    private func tower(_ box: WorldBox) -> some View {
+    private func tower(_ box: WorldBox, art: String) -> some View {
         let s = pose.scale
         let a = pose.project(WorldPoint(x: box.minX, y: box.minY), width: Double(size.width))
         let w = box.width * s, h = box.height * s
-        return Image(MapSlots.towerArt, bundle: .module)
+        return Image(art, bundle: .module)
             .resizable()
             .interpolation(.high)
-            .frame(width: CGFloat(w), height: CGFloat(h))
+            .scaledToFit()
+            .frame(width: CGFloat(w), height: CGFloat(h), alignment: .bottom)
             .mask {
                 LinearGradient(
                     stops: [

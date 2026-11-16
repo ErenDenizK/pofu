@@ -1,0 +1,58 @@
+{
+  "forms": {
+    "bed-round": {
+      "aspect": 0.3936,
+      "asset": "world-cloud-bed-round",
+      "height": 403,
+      "width": 1024
+    },
+    "bed-wide": {
+      "aspect": 0.2594,
+      "asset": "world-cloud-bed-wide",
+      "height": 332,
+      "width": 1280
+    },
+    "hill-cap": {
+      "aspect": 0.4365,
+      "asset": "world-cloud-hill-cap",
+      "height": 447,
+      "width": 1024
+    },
+    "puff-big": {
+      "aspect": 0.4891,
+      "asset": "world-cloud-puff-big",
+      "height": 313,
+      "width": 640
+    },
+    "puff-small-a": {
+      "aspect": 0.5898,
+      "asset": "world-cloud-puff-small-a",
+      "height": 302,
+      "width": 512
+    },
+    "puff-small-b": {
+      "aspect": 0.5586,
+      "asset": "world-cloud-puff-small-b",
+      "height": 286,
+      "width": 512
+    },
+    "puff-small-c": {
+      "aspect": 0.6523,
+      "asset": "world-cloud-puff-small-c",
+      "height": 334,
+      "width": 512
+    },
+    "tower-b": {
+      "aspect": 0.8672,
+      "asset": "world-cloud-tower-b",
+      "height": 555,
+      "width": 640
+    },
+    "tower-c": {
+      "aspect": 0.425,
+      "asset": "world-cloud-tower-c",
+      "height": 272,
+      "width": 640
+    }
+  }
+}
