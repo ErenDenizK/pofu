@@ -28,8 +28,9 @@ chooses to (days 1-21); no dates (11-14). Now: world presentation (#474).
    `scratchpad/research-ip/`; then the Fable brief with his words.
    (b) Fable minigame overhaul (block + stream, A/B by prototype):
    running, brief `docs/studio/briefs/fable-2026-11-16-minigame-overhaul.md`.
-2. WP10 compositor (Opus, `feat/plate-compositor`), data-driven over
-   `stations`; only the tea stall has looks (bases at stages 3,4,6,7).
+2. WP10 compositor merged (#500): looks sort with Pofu by footY, Map
+   snapshot of the built island, 3.2 s reveal. Left: `mapisle` assets
+   (night 8-9 need them), orphan `world-home-base-day-5`, reveal burst.
 3. Merged 11-16: #480 one sky, #488 Hop hour, #489 flow rocks + lip, #491
    cloud floor, #492 props, #493 N6, #494 + #497 tea stall looks, #495
    rail (Home is mid, free near), #496 icons, #498 beds + back control.
@@ -37,7 +38,7 @@ chooses to (days 1-21); no dates (11-14). Now: world presentation (#474).
 5. Codex: station looks held for (a) (pofu-art #111). Line: 132 board
    edge, 133 cloud floor, S2 clouds, S3 hidden visitors. 129 reworked
    (#110) and waiting. Codex hit the image tool's quota mid-129.
-Merged: #475-#489, #491-#499; pofu-art #81, #91-#111.
+Merged: #475-#489, #491-#500; pofu-art #81, #91-#111.
 
 ## Next steps, in order (night plan)
 
