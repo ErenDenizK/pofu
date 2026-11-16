@@ -22,24 +22,19 @@ chooses to (days 1-21); no dates (11-14). Now: world presentation (#474).
 
 ## In flight
 
-1. WP7 rail merged (#495): Home is mid, pinch to a free near, ADR-0027;
-   sea runs to the foot (stopgap `homeSet`). Back control still bottom-
-   right (data says left); near contact shadow faint. Stall looks at stages 3,4,6,7,8 #497:
-   rebase onto WP7 + stage 8 patch shows (darker blotch, wisp); last push.
-   Cloud bed grade + back control left (Sonnet, `fix/cloud-beds-back-control`). WP5 props merged (#492): jar,
-   pots, lantern on painted Home; ingest keeps props.
-2. Merged today: #480 mattes + one sky (night L1/L2 legacy); #488 Hop hour;
-   #489 flow rocks + lip (edge waits on Codex 132); #493 N6 proof; #494
-   tea stall looks, day stage 7 only. Follow-up: other stages paint a
-   different stall (tile roof 0-4, moved 5-8): per-stage bases (117 day
-   L8 has no pick) or new art. #491 WP9 cloud floor on the Map: beds,
-   puffs, tower-b. Left: floor tiles, wisps, mid/stop floor (need art);
-   art queued as Codex 133; beds read peach: grade in `cloud_kit.py`.
-3. UI grammar #490 open (docs): world painted, screen native glass. No app
+1. #497 stall looks at stages 3,4,6,7,8 (0,1,2,5 keep the painted stall:
+   art): rebase onto WP7 and fix stage 8's visible patch, last push.
+2. Builder `fix/cloud-beds-back-control`: beds graded to the lilac sea;
+   back control bottom-left as the data says.
+3. Merged today: #480 mattes + one sky (night L1/L2 legacy), #488 Hop
+   hour, #489 flow rocks + lip, #491 WP9 cloud floor (Map; floor tiles,
+   wisps need Codex 133), #492 WP5 props, #493 N6, #494 WP8 tea stall,
+   #495 WP7 rail (Home is mid, free near; near contact shadow faint),
+   #496 icons (breath keeps old glyph).
+4. UI grammar #490 open (docs): world painted, screen native glass. No app
    change until the founder has seen it.
-4. Codex: 127, 128, 130, 131 reviewed and merged; 129 edited so each look
-   steps outside the last outline (pofu-art #108). Queue: 132, 133 cloud floor, then S1
-   (129 looks), S2 (126 v2/v3). 128 drop and star need an edit.
+5. Codex queue: 132 board edge, 133 cloud floor, then S1 (129 looks, edited
+   so each look steps outside the last, pofu-art #108), S2 (126 v2/v3).
 Merged: #475-#489, #491-#496; pofu-art #81, #91-#109.
 
 ## Next steps, in order (night plan)
