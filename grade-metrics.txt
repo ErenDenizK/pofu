@@ -1,0 +1,18 @@
+frame                      grade   band     mean     p2    p98  range  local chroma  empty    run  sky_L  sky_C  sky_b pofu_h pofu_C pofu_L
+grade-day-home             day     home    78.00  48.60  96.20  47.60   7.71  26.40   0.01   0.00  76.60  30.00 -27.90  76.80  33.90  69.60
+grade-day-near             day     frame   72.40  44.90  95.40  50.50   6.58  36.60   0.00   0.00      -      -      -  68.30  36.20  68.20
+grade-golden-home          golden  home    61.50  35.60  91.50  55.90   8.65  22.20   0.00   0.00  40.60  35.30 -33.40 345.70  15.50  56.00
+grade-golden-near          golden  frame   55.60  30.80  89.90  59.10   7.16  18.10   0.00   0.00      -      -      -  17.40  18.40  55.90
+grade-night-home           night   home    61.50  35.60  91.50  55.90   8.65  22.20   0.00   0.00  40.60  35.30 -33.40 345.70  15.50  56.00
+grade-night-near           night   frame   55.60  30.80  89.00  58.20   7.15  18.10   0.00   0.00      -      -      -  17.40  18.40  55.90
+grade-unwell-home          unwell  home    78.00  48.60  96.20  47.50   7.70  26.30   0.01   0.00  76.60  30.00 -27.90  76.80  33.90  69.60
+grade-unwell-near          unwell  frame   72.30  44.90  95.00  50.00   6.59  36.40   0.00   0.00      -      -      -  68.30  36.20  68.20
+
+ok   grade-day-home: within targets
+ok   grade-day-near: within targets
+MISS grade-golden-home: pofu_h +91.1 vs day outside [None, 25]
+MISS grade-golden-near: pofu_h +50.9 vs day outside [None, 25]
+MISS grade-night-home: p2 35.6 outside [None, 10]; mean 61.5 outside [15, 40]; pofu_C 0.46x day outside [0.6, None]; pofu_h +91.1 vs day outside [None, 20]
+MISS grade-night-near: p2 30.8 outside [None, 10]; mean 55.6 outside [15, 40]; pofu_C 0.51x day outside [0.6, None]; pofu_h +50.9 vs day outside [None, 20]
+MISS grade-unwell-home: chroma 1.00x day outside [0.35, 0.8]; sky_L 1.00x day outside [0.8, 0.94]; pofu_C 1.00x day outside [0.25, 0.8]; sky_b +0.0 vs day outside [None, -2.0]
+MISS grade-unwell-near: chroma 0.99x day outside [0.35, 0.8]; pofu_C 1.00x day outside [0.25, 0.8]
