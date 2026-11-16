@@ -244,8 +244,12 @@ public struct HomePlate: Hashable, Sendable {
 
     /// Pofu's box on the plate (his soft art's box, scaled).
     public var pofuBox: WorldBox {
+        pofuBox(at: IslandLayout.pofu)
+    }
+
+    /// Pofu's box with his feet at `f`.
+    public func pofuBox(at f: WorldPoint) -> WorldBox {
         let s = characterScale
-        let f = IslandLayout.pofu
         return WorldBox(minX: f.x - 32 * s, minY: f.y - 64 * s, maxX: f.x + 32 * s, maxY: f.y + 2 * s)
     }
 
@@ -419,14 +423,17 @@ public struct HomePlate: Hashable, Sendable {
 
     // MARK: - Occlusion
 
-    /// The occluders that draw over a character standing at `feet` with
-    /// `box` (world units): those it stands behind and overlaps.
+    /// The painted occluders that draw over a character standing at `feet` with
+    /// `box` (world units): those it stands behind and overlaps. A station standing
+    /// on this state's erased base has no painted occluder (D7): its look stands over
+    /// the character instead (`PlateCompositor.looks(over:box:)`).
     public func occluders(over feet: WorldPoint, box: WorldBox) -> [PlateIsland.Object] {
         let a = plate(WorldPoint(x: box.minX, y: box.minY)), b = plate(WorldPoint(x: box.maxX, y: box.maxY))
+        let onBase = plate.stationLooks(light: light, stage: stage)
         return PlateMath.occluders(
             over: (footY: plate(feet).y, box: PlateRect(minX: a.x, minY: a.y, maxX: b.x, maxY: b.y)),
             in: plate, light: light, stage: stage
-        )
+        ).filter { object in object.station.map { onBase[$0.rawValue] == nil } ?? true }
     }
 
     /// The levels of the Home island's stations in a world, what the looks are drawn from.

@@ -26,9 +26,11 @@ struct PlateHomeLayer: View {
     /// toward the Map, and over the whole painting the cut is drawn again in it, so the island darkens with
     /// its sky and the sky keeps its own pixels. Neutral for Home, whose painting is the reference.
     var islandGrade: WorldGrade = .neutral
-    /// The Home stations' levels: the looks drawn over a base (`StationLooksLayer`). Not part of the painting's identity,
+    /// The Home stations' levels: the looks drawn over a base (`PlateCompositor`). Not part of the painting's identity,
     /// so a station's upgrade is its own swap and never a crossfade of the whole painting.
     var stationLevels: [StationID: Int] = [:]
+    /// A build moment: its station's look plays the reveal (`PlateLookPiece`).
+    var build: BuildFrame?
 
     /// A stage, a level or an hour change is a crossfade between two whole
     /// paintings (the plain form of the spec's diff-mask reveal: every pixel
@@ -41,9 +43,11 @@ struct PlateHomeLayer: View {
     @State private var incomingOpacity = 0.0
     /// When each painting appeared: the sky set's time zero (`SkySetLayers`).
     @State private var shownStart = Date()
+    @Environment(\.displayScale) private var displayScale
     @State private var incomingStart = Date()
 
-    init(plate: HomePlate, pose: CameraPose, size: CGSize, offset: CGSize, fade: Double, islandGrade: WorldGrade = .neutral, stationLevels: [StationID: Int] = [:]) {
+    init(plate: HomePlate, pose: CameraPose, size: CGSize, offset: CGSize, fade: Double, islandGrade: WorldGrade = .neutral, stationLevels: [StationID: Int] = [:], build: BuildFrame? = nil) {
+        self.build = build
         self.plate = plate
         self.pose = pose
         self.size = size
@@ -98,99 +102,68 @@ struct PlateHomeLayer: View {
     }
 
     private func painting(_ plate: HomePlate, start: Date) -> some View {
-        ZStack(alignment: .topLeading) {
-            if fade < 0.999 {
-                PlateImage(name: plate.plate.mapIslandArt(light: plate.light, stage: plate.stage), box: plate.islandBox, pose: pose, size: size, offset: offset)
-                    .islandGraded(islandGrade)
-            }
-            if fade > 0.001 {
-                ZStack(alignment: .topLeading) {
-                    if let sky = plate.skySet {
-                        // A matted plate stands on the sky set in place of the set's own island layer; the sea
-                        // runs on below the painting's foot (`homeSet`, a stopgap until WP9's floor).
-                        SkySetLayers(sky: PaintedSky.homeSet(sky), plate: plate, pose: pose, reference: plate.skyReference(width: Double(size.width), height: Double(size.height)), size: size, offset: offset, start: start, drawsIsland: !plate.isMatted)
-                        if plate.isMatted {
-                            PlateImage(name: plate.plate.drawnPlateArt(light: plate.light, stage: plate.stage), box: plate.plateImageBox, pose: pose, size: size, offset: offset)
+        let compositor = PlateCompositor(plate: plate, levels: stationLevels)
+        return ZStack(alignment: .topLeading) {
+            if plate.isMatted {
+                // A matted state (v2 §6.2): the sky set fades toward the Map, and the island is one picture at every
+                // distance, the live composite at mid and closer and its snapshot beyond (`FarPicture`): no swap.
+                if fade > 0.001 {
+                    Group {
+                        if let sky = plate.skySet {
+                            SkySetLayers(sky: PaintedSky.homeSet(sky), plate: plate, pose: pose, reference: plate.skyReference(width: Double(size.width), height: Double(size.height)), size: size, offset: offset, start: start, drawsIsland: false)
+                        } else {
+                            PlateImage(name: plate.plate.backdropArt(light: plate.light, stage: plate.stage), box: plate.backdropBox, pose: pose, size: size, offset: offset)
                         }
+                    }
+                    .fading(fade)
+                }
+                Group {
+                    if fade < 0.999, farPictureIsSharp(plate) {
+                        FarPicture(compositor: compositor, pose: pose, size: size, offset: offset)
                     } else {
-                        PlateImage(name: plate.plate.backdropArt(light: plate.light, stage: plate.stage), box: plate.backdropBox, pose: pose, size: size, offset: offset)
-                        PlateImage(name: plate.plate.drawnPlateArt(light: plate.light, stage: plate.stage), box: plate.plateImageBox, pose: pose, size: size, offset: offset)
-                    }
-                    if !islandGrade.isNeutral {
-                        PlateImage(name: plate.plate.islandArt(light: plate.light, stage: plate.stage), box: plate.islandBox, pose: pose, size: size, offset: offset)
-                            .islandGraded(islandGrade)
+                        CompositeIsland(compositor: compositor, build: build, pose: pose, size: size, offset: offset)
+                            .task(id: compositor.snapshotKey) {
+                                // The far picture is ready before the camera rises: rendered once the state rests.
+                                try? await Task.sleep(for: .milliseconds(600))
+                                if !Task.isCancelled { FarSnapshotCache.shared.render(compositor) }
+                            }
                     }
                 }
-                .fading(fade)
+                .islandGraded(islandGrade)
+            } else {
+                // A state that keeps the whole painting (its old matte, or another island): its island cut toward the
+                // Map, the painting over its backdrop fading in.
+                if fade < 0.999 {
+                    PlateImage(name: plate.plate.mapIslandArt(light: plate.light, stage: plate.stage), box: plate.islandBox, pose: pose, size: size, offset: offset)
+                        .islandGraded(islandGrade)
+                }
+                if fade > 0.001 {
+                    ZStack(alignment: .topLeading) {
+                        if let sky = plate.skySet {
+                            SkySetLayers(sky: PaintedSky.homeSet(sky), plate: plate, pose: pose, reference: plate.skyReference(width: Double(size.width), height: Double(size.height)), size: size, offset: offset, start: start, drawsIsland: true)
+                        } else {
+                            PlateImage(name: plate.plate.backdropArt(light: plate.light, stage: plate.stage), box: plate.backdropBox, pose: pose, size: size, offset: offset)
+                            CompositeIsland(compositor: compositor, build: build, pose: pose, size: size, offset: offset)
+                        }
+                        if !islandGrade.isNeutral {
+                            PlateImage(name: plate.plate.islandArt(light: plate.light, stage: plate.stage), box: plate.islandBox, pose: pose, size: size, offset: offset)
+                                .islandGraded(islandGrade)
+                        }
+                    }
+                    .fading(fade)
+                }
             }
-            // The stations' looks stand over the base at every distance: the Map's island cut is erased too.
-            StationLooksLayer(plate: plate, levels: stationLevels, pose: pose, size: size, offset: offset)
         }
     }
 }
 
-/// The looks of the stations a state has an erased base for, one per station at its level (level to look 1 to 1,
-/// nothing while unbuilt), on the plate's own transform. A level change swaps the look with a short crossfade and a
-/// pop on the station's foot; with Reduce Motion it swaps at once.
-struct StationLooksLayer: View {
-    let plate: HomePlate
-    let levels: [StationID: Int]
-    let pose: CameraPose
-    let size: CGSize
-    let offset: CGSize
-
-    var body: some View {
-        let ids = plate.plate.stationLooks(light: plate.light, stage: plate.stage).keys.sorted()
-        ZStack(alignment: .topLeading) {
-            ForEach(ids, id: \.self) { id in
-                if let frame = plate.lookFrame(id) {
-                    StationLookView(
-                        art: plate.plate.lookArt(station: id, level: levels[StationID(rawValue: id)] ?? 0, light: plate.light, stage: plate.stage),
-                        box: frame.box, foot: frame.foot, pose: pose, size: size, offset: offset
-                    )
-                }
-            }
-        }
-        .frame(width: size.width, height: size.height, alignment: .topLeading)
-        .allowsHitTesting(false)
-        .accessibilityHidden(true)
-    }
-}
-
-/// One station's look, swapping as its asset changes.
-struct StationLookView: View {
-    let art: String?
-    let box: WorldBox
-    let foot: WorldPoint
-    let pose: CameraPose
-    let size: CGSize
-    let offset: CGSize
-
-    @Environment(\.accessibilityReduceMotion) private var reduceMotion
-    @State private var pop = 1.0
-
-    var body: some View {
-        let anchor = pose.project(foot, width: Double(size.width))
-        ZStack(alignment: .topLeading) {
-            if let art {
-                PlateImage(name: art, box: box, pose: pose, size: size, offset: offset)
-                    .id(art)
-                    .transition(.opacity)
-            }
-        }
-        .frame(width: size.width, height: size.height, alignment: .topLeading)
-        .animation(reduceMotion ? nil : .easeInOut(duration: 0.28), value: art)
-        .scaleEffect(pop, anchor: UnitPoint(x: (anchor.x + offset.width) / max(size.width, 1), y: (anchor.y + offset.height) / max(size.height, 1)))
-        .onChange(of: art) { old, new in
-            guard !reduceMotion, old != nil, new != nil else { return }
-            withAnimation(.spring(response: 0.18, dampingFraction: 0.55)) {
-                pop = 1.05
-            } completion: {
-                withAnimation(.spring(response: 0.32, dampingFraction: 0.6)) {
-                    pop = 1
-                }
-            }
-        }
+extension PlateHomeLayer {
+    /// Whether the far picture has at least a pixel for every screen pixel the island covers: from there toward the Map
+    /// it stands in for the live composite (the same picture, cheaper); closer, the composite draws.
+    func farPictureIsSharp(_ plate: HomePlate) -> Bool {
+        guard let crop = plate.plate.plateCrop(light: plate.light, stage: plate.stage) else { return false }
+        let screenPixels = plate.plateImageBox.width * pose.scale * Double(displayScale)
+        return screenPixels <= crop.width * FarSnapshot.pixelsPerPlatePixel
     }
 }
 
@@ -231,37 +204,71 @@ struct PlateImage: View {
     let pose: CameraPose
     let size: CGSize
     let offset: CGSize
+    /// Drawn as its silhouette in one colour (a reveal's rim).
+    var template: Color?
 
     var body: some View {
         let s = pose.scale
         let a = pose.project(WorldPoint(x: box.minX, y: box.minY), width: Double(size.width))
         let w = box.width * s, h = box.height * s
-        Image(name, bundle: .module).resizable().interpolation(.high)
+        image
             .frame(width: CGFloat(w), height: CGFloat(h))
             .position(x: CGFloat(a.x + w / 2) + offset.width, y: CGFloat(a.y + h / 2) + offset.height)
     }
 }
 
-/// Painted objects drawn again over a character standing behind them.
+extension PlateImage {
+    @ViewBuilder
+    fileprivate var image: some View {
+        if let template {
+            Image(name, bundle: .module).resizable().renderingMode(.template).interpolation(.high).foregroundStyle(template)
+        } else {
+            Image(name, bundle: .module).resizable().interpolation(.high)
+        }
+    }
+}
+
+/// What Pofu and the props stand behind, drawn again over them back to front by foot (v2 §6.2 step 3): the painted
+/// decor occluders, and the looks of the stations on this state's base (their painted occluders retire, D7).
 struct PlateOccluders: View {
     let plate: HomePlate
-    let objects: [PlateIsland.Object]
+    /// Pofu's feet and box (world units).
+    let feet: WorldPoint
+    let box: WorldBox
     let pose: CameraPose
     let size: CGSize
     let offset: CGSize
-    /// The Home stations' levels: a station standing over a base is drawn again as its look (nothing while unbuilt),
-    /// not as the painted stall the base no longer has.
     var stationLevels: [StationID: Int] = [:]
+    var build: BuildFrame?
+
+    private enum Entry: Identifiable {
+        case painted(PlateIsland.Object)
+        case look(PlateCompositor.Look)
+
+        var id: String {
+            switch self {
+            case .painted(let object): "painted-\(object.id)"
+            case .look(let look): "look-\(look.station)"
+            }
+        }
+
+        var footY: Double {
+            switch self {
+            case .painted(let object): object.footY
+            case .look(let look): look.footY
+            }
+        }
+    }
 
     var body: some View {
+        let compositor = PlateCompositor(plate: plate, levels: stationLevels)
+        let entries = (plate.occluders(overPofuAndProps: feet, box: box).map(Entry.painted)
+            + compositor.looks(overPofuAndProps: feet, box: box).map(Entry.look))
+            .sorted { ($0.footY, $0.id) < ($1.footY, $1.id) }
         ZStack(alignment: .topLeading) {
-            ForEach(objects) { object in
-                if let station = object.station?.rawValue, plate.plate.stationLooks(light: plate.light, stage: plate.stage)[station] != nil {
-                    if let art = plate.plate.lookArt(station: station, level: object.station.flatMap { stationLevels[$0] } ?? 0, light: plate.light, stage: plate.stage),
-                       let frame = plate.lookFrame(station) {
-                        PlateImage(name: art, box: frame.box, pose: pose, size: size, offset: offset)
-                    }
-                } else {
+            ForEach(entries) { entry in
+                switch entry {
+                case .painted(let object):
                     PlateImage(
                         name: plate.plate.occluderArt(id: object.id, light: plate.light, stage: plate.stage),
                         box: plate.occluderBox(object),
@@ -269,6 +276,8 @@ struct PlateOccluders: View {
                         size: size,
                         offset: offset
                     )
+                case .look(let look):
+                    PlateLookPiece(compositor: compositor, station: look.station, build: build, pose: pose, size: size, offset: offset)
                 }
             }
         }
