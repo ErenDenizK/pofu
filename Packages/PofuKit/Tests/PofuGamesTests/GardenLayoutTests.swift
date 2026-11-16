@@ -14,10 +14,11 @@ struct GardenLayoutTests {
         (CGSize(width: 440, height: 956), 62, 34),
     ]
 
-    @Test func theIPhone17GetsFortyOnePointCells() {
+    /// 44 pt is the smallest touch target: a cell is what the thumb aims at.
+    @Test func theIPhone17GetsFortyFourPointCells() {
         let layout = GardenLayout(size: CGSize(width: 402, height: 874), safeTop: 62, safeBottom: 34)
-        #expect(layout.cell == 41)
-        #expect(layout.grid.width == 328)
+        #expect(layout.cell == 44)
+        #expect(layout.grid.width == 352)
     }
 
     @Test func nothingOverlapsOnAnyPhone() {
@@ -43,8 +44,8 @@ struct GardenLayoutTests {
             #expect(abs(fractional.column - Double(origin.column)) < 1e-9)
         }
         let topLeft = layout.center(of: GardenCell(row: 0, column: 0))
-        #expect(topLeft.x == layout.grid.minX + 20.5)
-        #expect(topLeft.y == layout.grid.maxY - 20.5)
+        #expect(topLeft.x == layout.grid.minX + 22)
+        #expect(topLeft.y == layout.grid.maxY - 22)
     }
 
     @Test func theTraySitsRightUnderTheBedWithNoDeadBand() {

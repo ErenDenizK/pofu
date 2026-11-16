@@ -9,19 +9,19 @@ import CoreGraphics
 /// Top to bottom: the HUD strip (SwiftUI, below the safe area), Pofu with
 /// Mochi and Fındık peeking over the bed's back rim, the 8 × 8 bed, and
 /// the wooden tray of three plots above the home indicator. Cells are as
-/// large as the width allows (41 pt on a 402 pt iPhone 17), never above
-/// 46 pt, so the thumb covers about one cell. The tray grows into any
-/// spare height (up to `maximumTrayHeight`) and sits right under the bed,
-/// so there is no dead band between them; what is left goes to the sky
-/// above Pofu.
+/// large as the width allows (44 pt on a 402 pt iPhone 17, the smallest
+/// touch target), never above 46 pt, so the thumb covers about one cell.
+/// The tray grows into any spare height (up to `maximumTrayHeight`, kept
+/// near the tallest plot it shows so it is not an empty slab) and sits
+/// right under the bed; what is left goes to the sky above Pofu.
 public struct GardenLayout: Equatable, Sendable {
     public static let hudHeight: CGFloat = 56
     public static let trayHeight: CGFloat = 132
-    public static let maximumTrayHeight: CGFloat = 190
+    public static let maximumTrayHeight: CGFloat = 164
     public static let trayGap: CGFloat = 16
     public static let charactersHeight: CGFloat = 100
     public static let bedPadding: CGFloat = 10
-    public static let sideGutter: CGFloat = 24
+    public static let sideGutter: CGFloat = 14
     public static let maximumCell: CGFloat = 46
 
     public let size: CGSize

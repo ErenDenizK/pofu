@@ -1,19 +1,20 @@
 import Foundation
 
-/// How the flow board's banks are laid. Method A, the default, gives every
-/// bank cell its own inset keycap square. Method B lays one seamless lawn
-/// under the whole board, with the turnable stones as keycaps on it and the
-/// rocks as cut-out pieces. B is a debug switch until the founder picks.
+/// How the flow board's banks are laid. Method B, the default, lays one
+/// seamless lawn under the whole board, with the stones as keycaps on it and
+/// the rocks as cut-out pieces: only what the player can touch is raised, so
+/// the ground reads as ground. Method A gives every bank cell its own inset
+/// keycap square; it stays as a switch for comparison frames.
 public enum FlowGroundMethod: String, Sendable, CaseIterable {
     case keycaps
     case lawn
 }
 
-/// The switch itself. `POFU_FLOW_GROUND=lawn` in the launch environment
-/// selects method B; a screenshot test sets `method` directly.
+/// The switch itself. `POFU_FLOW_GROUND=keycaps` in the launch environment
+/// selects method A; a screenshot test sets `method` directly.
 public enum FlowGroundSettings {
     @MainActor public static var method: FlowGroundMethod = {
-        ProcessInfo.processInfo.environment["POFU_FLOW_GROUND"].flatMap(FlowGroundMethod.init(rawValue:)) ?? .keycaps
+        ProcessInfo.processInfo.environment["POFU_FLOW_GROUND"].flatMap(FlowGroundMethod.init(rawValue:)) ?? .lawn
     }()
 }
 
