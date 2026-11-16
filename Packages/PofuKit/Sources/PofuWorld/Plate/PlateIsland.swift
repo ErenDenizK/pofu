@@ -182,6 +182,8 @@ public struct PlateIsland: Hashable, Sendable {
     public var elevationDeg: Double?
     /// The near layers and the lens's shots (`near`, WP11), or `nil` for a plate with none.
     public var near: PlateNear?
+    /// The bodies of water the region shaders move (`water`, WP13); empty for a plate with none.
+    public var water: [PlateWater] = []
 
     /// The cropped plate's box for a state, or `nil` where the state ships the whole plate (see `plateCrops`).
     public func plateCrop(light: String, stage: Int) -> PlateRect? {
@@ -389,7 +391,7 @@ public struct PlateShadow: Decodable, Hashable, Sendable {
 extension PlateIsland: Decodable {
     private enum Keys: String, CodingKey {
         case island, version, standIn, minLevel, plateSize, stages, lights, lightStages, painted, stageLevels, harmony, islandBox, backdropBox, objects
-        case walkable, characters, pofuWidth, residentBoost, residentBoosts, lamps, lampHeight, framing, lightDirection, lightMap, shadowMap, textureBytes, shadow, plateCrop, props, stations, camera, near
+        case walkable, characters, pofuWidth, residentBoost, residentBoosts, lamps, lampHeight, framing, lightDirection, lightMap, shadowMap, textureBytes, shadow, plateCrop, props, stations, camera, near, water
     }
 
     public init(from decoder: Decoder) throws {
@@ -442,6 +444,7 @@ extension PlateIsland: Decodable {
         props = try c.decodeIfPresent([PlateProp].self, forKey: .props) ?? []
         elevationDeg = try c.decodeIfPresent(PlateCamera.self, forKey: .camera)?.elevationDeg
         near = try c.decodeIfPresent(PlateNear.self, forKey: .near)
+        water = try c.decodeIfPresent([PlateWater].self, forKey: .water) ?? []
         stations = try (c.decodeIfPresent([String: RawStation].self, forKey: .stations) ?? [:]).compactMapValues(\.looks)
         plateCrops = try (c.decodeIfPresent([String: [[Double]?]].self, forKey: .plateCrop) ?? [:]).mapValues { boxes in
             try boxes.map { try $0.map(Self.rect) }

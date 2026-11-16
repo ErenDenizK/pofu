@@ -126,11 +126,18 @@ struct CompositeIsland: View {
     let pose: CameraPose
     let size: CGSize
     let offset: CGSize
+    /// The water's moment (WP13), or `nil`: the plate's water stays as painted.
+    var water: WaterFrame?
 
     var body: some View {
         let plate = compositor.plate
         ZStack(alignment: .topLeading) {
             PlateImage(name: plate.plate.drawnPlateArt(light: plate.light, stage: plate.stage), box: plate.plateImageBox, pose: pose, size: size, offset: offset)
+            if let water, WorldShaders.isAvailable {
+                ForEach(PlateRegionEffects.water(of: plate), id: \.id) { region in
+                    PlateWaterPatch(plate: plate, water: region, frame: water, pose: pose, size: size, offset: offset)
+                }
+            }
             ForEach(compositor.stationsBackToFront, id: \.self) { station in
                 PlateLookPiece(compositor: compositor, station: station, build: build, pose: pose, size: size, offset: offset)
             }
