@@ -237,6 +237,8 @@ public enum PaintedSky {
             switch layer.role {
             case .island:
                 continue
+            case .sprite where SkySet.isBank(layer):
+                continue
             case .sprite where layer.asset.contains("-isle-"), .whale:
                 guard let isleScale else {
                     out.layers.append(layer)
@@ -517,7 +519,7 @@ struct PaintedSkyLayer: View {
     @ViewBuilder
     private func sky(_ plate: HomePlate, start: Date) -> some View {
         if let set = plate.skySet {
-            SkySetLayers(sky: isMap ? MapSlots.sky(set, plate: plate) : cleanSea ? PaintedSky.stopSet(set) : set, plate: plate, pose: pose, reference: reference, size: size, offset: offset, start: start, drawsIsland: false)
+            SkySetLayers(sky: isMap ? MapSlots.sky(set, plate: plate) : cleanSea ? PaintedSky.stopSet(set) : set, plate: plate, pose: pose, reference: reference, size: size, offset: offset, start: start, drawsIsland: false, drawsBank: false)
         }
     }
 }

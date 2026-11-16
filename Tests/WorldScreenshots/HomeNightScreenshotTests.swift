@@ -85,8 +85,12 @@ final class HomeNightScreenshotTests: XCTestCase {
             window.makeKeyAndVisible()
             try await Task.sleep(for: .milliseconds(1200))
             XCTAssertEqual(island.homePlate?.light, state.light, "the plate shows its \(state.name) state")
-            // Only level 10's states draw a sky set (ADR-0025); these draw the plate and its backdrop.
-            XCTAssertNil(island.homePlate?.skySet, "\(state.name) has no sky set")
+            // One sky at every level: a matted state draws the sky set of its plate's light behind it; a state that
+            // keeps its old matte (night levels 1 and 2) draws its whole plate over its backdrop.
+            XCTAssertEqual(island.homePlate?.skySet != nil, island.homePlate?.isMatted == true, "\(state.name): the sky set follows the matte")
+            if let plate = island.homePlate, plate.skySet != nil {
+                XCTAssertEqual(plate.skySet?.light, plate.light, "\(state.name): the sky is the plate's light")
+            }
             try await Task.sleep(for: .milliseconds(900))
             let format = UIGraphicsImageRendererFormat()
             format.scale = window.traitCollection.displayScale

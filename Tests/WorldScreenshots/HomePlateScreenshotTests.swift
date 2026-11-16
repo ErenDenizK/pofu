@@ -93,9 +93,10 @@ final class HomePlateScreenshotTests: XCTestCase {
             window.makeKeyAndVisible()
             try await Task.sleep(for: .milliseconds(1200))
             XCTAssertEqual(island.homePlate?.light, state?.light ?? "day", "the plate shows its \(state?.name ?? "l10-day") state")
-            // Level 10's day, golden hour and night draw a sky set (ADR-0025), frozen at time zero by
-            // `worldStillFrame`, so the frame is the painting and every run draws the same one.
-            XCTAssertEqual(island.homePlate?.skySet != nil, (state?.name ?? "l10-day").hasPrefix("l10"), "the sky set follows the state")
+            // Every matted state draws Home's sky set (ADR-0025, one sky at every level) behind its plate, frozen
+            // at time zero by `worldStillFrame`, so the frame is the painting and every run draws the same one.
+            XCTAssertEqual(island.homePlate?.isMatted, true, "\(state?.name ?? "l10-day") is matted")
+            XCTAssertNotNil(island.homePlate?.skySet, "the sky set follows the state")
             if shot == "whole" {
                 island.holdEstablishingShot()
             }

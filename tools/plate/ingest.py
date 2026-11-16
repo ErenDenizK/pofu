@@ -6,7 +6,10 @@ tap and occluder polygons, the walkable lawn, the characters' spots and the fram
 of the plate) and writes what the app draws:
 
   World.xcassets/world-<island>-plate-<light>-<stage>     the whole plate, opaque, its border
-                                                          feathered (the island and its own sky)
+                                                          feathered (the island and its own sky); a
+                                                          strict-matte island's (Home's): the island alone,
+                                                          alpha its matte, cropped to it (`plateCrop`), drawn
+                                                          over the sky set (one sky at every level)
   World.xcassets/world-<island>-island-<light>-<stage>    the island cut from its sky, half size
                                                           (the Map and the Island stop)
   World.xcassets/world-<island>-backdrop-<light>-<stage>  the plate's sky and cloud sea extended
@@ -41,6 +44,7 @@ import json
 import sys
 from pathlib import Path
 
+import cv2
 import numpy as np
 from PIL import Image
 from scipy import ndimage
@@ -91,6 +95,14 @@ BACKDROP_SPAN = (1.6, 1.9)
 BACKDROP_SCALE = 0.38
 ISLAND_SCALE = 0.5
 FEATHER = 48
+#: Islands whose every state has its own full-size matte (`matte-<light>-<stage>.png`, plate size x `MATTE_TEX`, made by
+#: `tools/proof/island_matte.py`, the r3b solve). Their plate's alpha *is* that matte (feather 0); a missing master is an
+#: error, never the level-10 matte (which put the level-10 sky behind every lower level).
+STRICT_MATTES = {"home"}
+MATTE_TEX = 2
+#: The island's contact shadow (`island_shadow` in tools/proof/island_matte.py): the share of the underside it covers,
+#: how far below the foot it sits (x half the island's height), its squash and blur (x half the underside's width).
+SHADOW = {"opacity": 0.34, "drop": 0.9, "squash": 0.22, "reach": 0.92, "blur": 0.06, "underside": 0.55}
 
 
 # ---------------------------------------------------------------- basics
@@ -315,22 +327,209 @@ def matte_path(island: str, light: str, stage: int) -> Path:
     return PLATES / island / f"matte-{light}-{stage}.png"
 
 
-def load_matte(island: str, light: str, stage: int) -> np.ndarray:
-    """The state's matte; a state without its own (golden, night, the lower island levels share
-    the level-10 day geometry, checked pixel for pixel) takes the first plate's."""
+def is_legacy(hand: dict, light: str, stage: int) -> bool:
+    """A state that keeps its pre-r3b assets and matte (hand data `legacyStates`, "<light>:<stage>"): the cut cannot be
+    solved there yet. `matte`, `deliver` and `objects` leave it as it is."""
+    return f"{light}:{stage}" in hand.get("legacyStates", [])
+
+
+def load_matte_full(island: str, light: str, stage: int) -> np.ndarray:
+    """The state's matte at its own size (a Home master is plate size x `MATTE_TEX`). Islands in `STRICT_MATTES` must have
+    one per state; the others share the first plate's where a state has none (golden, night and the lower levels were
+    checked pixel for pixel against it)."""
     path = matte_path(island, light, stage)
     if not path.exists():
+        if island in STRICT_MATTES:
+            raise FileNotFoundError(f"{path}: {island} has no matte for {light}:{stage} (run `ingest.py matte {island}`)")
         path = matte_path(island, "day", 0)
     return np.asarray(Image.open(path).convert("L"), np.float64) / 255
 
 
+def load_matte(island: str, light: str, stage: int) -> np.ndarray:
+    """The state's matte at plate size (the size the hand data's percents and every consumer here use)."""
+    a = load_matte_full(island, light, stage)
+    # the hand data's size, read here too: tools/proof/island_matte.py calls this without `load_hand`
+    w, h = json.loads((PLATES / island / "objects.json").read_text()).get("size", DEFAULT_SIZE) if island in STRICT_MATTES else SIZE
+    if a.shape != (h, w):
+        a = cv2.resize(a.astype(np.float32), (w, h), interpolation=cv2.INTER_AREA).astype(np.float64)
+    return a
+
+
+def master_matte(light: str, stage: int, layer: np.ndarray, origin: tuple[int, int]) -> np.ndarray:
+    """The r3b layer's alpha (over its box, texture px) pasted into a canvas of the whole plate, 8 bits."""
+    canvas = np.zeros((SIZE[1] * MATTE_TEX, SIZE[0] * MATTE_TEX), np.float32)
+    x0, y0 = origin[0] * MATTE_TEX, origin[1] * MATTE_TEX
+    h, w = layer.shape[:2]
+    canvas[y0:y0 + h, x0:x0 + w] = layer[..., 3]
+    return np.uint8(np.clip(canvas, 0, 1) * 255 + 0.5)
+
+
+#: What the r3b solve cuts that is painted and the old matte keeps (`repair_matte`), as boxes in plate points
+#: (x0, y0, x1, y1) per "<light>:<stage>": the bagel cart's pennant (level 10), the lighthouse lamp's glow (level 10 at
+#: golden hour), the red flowers by the tea stall (level 5). Only here: a restored piece is a hard-edged addition to
+#: the solved shape, so the gate's edge checks count every one of them.
+REPAIR_BOXES = {
+    "day:0": [(745, 730, 795, 775)], "golden:0": [(920, 500, 1024, 670)], "day:5": [(735, 745, 800, 795)],
+}
+REPAIR_CHROMA = 0.30     # a pixel this colourful (max - min of RGB) and unlike the sky is paint, not mist or cloud
+REPAIR_SKY = 0.20        # distance in RGB from the local sky colour under which a pixel is sky
+REPAIR_REACH = 14        # texture px: paint is restored this close to the solved shape
+#: Where any pixel unlike the sky (not only a colourful one) comes back: the lamp's glow is pale.
+REPAIR_PALE = {"golden:0": (920, 500, 1024, 670)}
+
+
+#: Where the r3b solve bites into the island's own paint (pale soil at the rim, a lawn's edge, grass seen through haze),
+#: as boxes in plate points per "<light>:<stage>": inside a box every pixel warmer or greener than it is blue (soil,
+#: grass: `FILL_WARM`, the excess of red or green over blue) and joined to the island comes back (`fill_matte`); the
+#: blue sky and the white clouds stay out. Found by the sweep in the one-sky PR (#485): the soil under the lawn's right
+#: end at level 2, the lawn's right edge at level 1, the lawn between the workshop and the lighthouse at level 6.
+FILL_BOXES = {
+    "day:8": [(690, 740, 930, 1100)], "day:9": [(725, 835, 805, 985)], "day:4": [(585, 712, 650, 782)],
+}
+#: The excess of red or green over blue below which a pixel is sky or cloud and above which it is paint (by day).
+FILL_WARM = {"day": (0.03, 0.10)}
+FILL_CORE = 0.9
+FILL_PINHOLE = 400   # texture px
+FILL_RIM = 4         # texture px
+
+
+def fill_matte(m: np.ndarray, rgb: np.ndarray, light: str, stage: int) -> np.ndarray:
+    """The r3b matte (8 bit) with its bites into the paint closed inside `FILL_BOXES` (see there)."""
+    boxes = FILL_BOXES.get(f"{light}:{stage}")
+    if not boxes:
+        return m
+    a = m.astype(np.float32) / 255
+    warm = np.maximum(rgb[..., 0] - rgb[..., 2], rgb[..., 1] - rgb[..., 2])
+    lo, hi = FILL_WARM[light]
+    paint = smooth(lo, hi, warm).astype(np.float32)
+    inside = np.zeros(a.shape, np.float32)
+    for x0, y0, x1, y1 in boxes:
+        inside[y0 * MATTE_TEX:y1 * MATTE_TEX, x0 * MATTE_TEX:x1 * MATTE_TEX] = 1
+    add = paint * inside
+    # only paint joined to the island: a warm speck in the sky stays out
+    lab, _ = ndimage.label((add > 0.5) | (a > 0.5))
+    joined = np.isin(lab, np.unique(lab[a > 0.5]))
+    add = np.where(cv2.dilate(joined.astype(np.uint8), np.ones((3, 3), np.uint8)) > 0, add, 0)
+    # the restored edge as a smooth curve: the union's outline closed and eased, a pixel soft (a ragged threshold line
+    # through a translucent rim would read as a frayed edge)
+    # The edge is set where the paint is nearly pure (`FILL_CORE`), so its pixels carry no sky, and it is as firm as
+    # the solve's own (a pixel soft).
+    union = ((a > 0.5) | (add > FILL_CORE)).astype(np.uint8)
+    union = cv2.morphologyEx(union, cv2.MORPH_CLOSE, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (21, 21)))
+    union = (cv2.GaussianBlur(union.astype(np.float32), (0, 0), 3) > 0.5).astype(np.float32)
+    add = cv2.GaussianBlur(union, (0, 0), 0.8) * (inside > 0.5)
+    out = np.maximum(a, add)
+    # a pinhole the solve left beside a restored edge closes with it
+    solid = out > 0.96
+    near = cv2.dilate((inside > 0.5).astype(np.uint8), np.ones((61, 61), np.uint8)) > 0
+    holes = ndimage.binary_fill_holes(solid) & ~solid & near
+    lab, n = ndimage.label(holes)
+    if n:
+        size = ndimage.sum(holes, lab, range(1, n + 1))
+        out = np.where(np.isin(lab, 1 + np.flatnonzero(size <= FILL_PINHOLE)), 1.0, out)
+    return np.maximum(m, np.uint8(np.clip(out, 0, 1) * 255 + 0.5))
+
+
+def fill_colours(rgb: np.ndarray, a: np.ndarray, light: str, stage: int) -> np.ndarray:
+    """The plate's colours with the rim of every `FILL_BOXES` region given the colour of the paint `FILL_RIM` texture px
+    inside it: a restored edge runs through pixels the painting blended with its sky (a grass tip, a pale cart handle),
+    and the sky behind is the sky set's, so the blend would show as a pale fringe. The solve's own rim is decontaminated
+    the same way (`decontaminated`)."""
+    boxes = FILL_BOXES.get(f"{light}:{stage}")
+    if not boxes:
+        return rgb
+    inside = np.zeros(a.shape, bool)
+    for x0, y0, x1, y1 in boxes:
+        inside[y0 * MATTE_TEX:y1 * MATTE_TEX, x0 * MATTE_TEX:x1 * MATTE_TEX] = True
+    depth = ndimage.distance_transform_edt(a > 0.5)
+    deep = depth >= FILL_RIM
+    _, (iy, ix) = ndimage.distance_transform_edt(~deep, return_indices=True)
+    rim = inside & (a > 0.004) & ~deep
+    out = rgb.copy()
+    out[rim] = rgb[iy[rim], ix[rim]]
+    return out
+
+
+def legacy_matte(island: str, light: str, stage: int, shape: tuple[int, int]) -> np.ndarray:
+    """The matte this state shipped before the r3b solve (`<island>/legacy/matte-*.png`: the first plate's, and IL1's own
+    for stage 9), at `shape`."""
+    d = PLATES / island / "legacy"
+    f = d / f"matte-{light}-{stage}.png"
+    if not f.exists():
+        f = d / "matte-day-0.png"
+    a = np.asarray(Image.open(f).convert("L"), np.float32) / 255
+    return cv2.resize(a, (shape[1], shape[0]), interpolation=cv2.INTER_LINEAR)
+
+
+def repair_matte(m: np.ndarray, rgb: np.ndarray, old: np.ndarray, light: str, stage: int) -> np.ndarray:
+    """The r3b matte (8 bit) united, inside `REPAIR_BOXES` only, with the old one where the plate's pixel is painted and
+    not sky: the solve cuts a pennant, a flower, a lamp's glow that the old wide matte kept."""
+    boxes = REPAIR_BOXES.get(f"{light}:{stage}")
+    if not boxes:
+        return m
+    sys.path.insert(0, str(REPO / "tools" / "proof"))
+    import island_matte  # noqa: PLC0415
+
+    a = m.astype(np.float32) / 255
+    ell = lambda n: cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2 * n + 1, 2 * n + 1))
+    far = cv2.dilate(((a > 0.02) | (old > 0.02)).astype(np.uint8), ell(60)) == 0
+    sky = island_matte._estimate(rgb.astype(np.float32), far)
+    dist = np.linalg.norm(rgb - sky, axis=2)
+    want = (dist > REPAIR_SKY) & ((rgb.max(2) - rgb.min(2)) > REPAIR_CHROMA)
+    inside = np.zeros(a.shape, bool)
+    for x0, y0, x1, y1 in boxes:
+        inside[y0 * MATTE_TEX:y1 * MATTE_TEX, x0 * MATTE_TEX:x1 * MATTE_TEX] = True
+    pale = np.zeros(a.shape, bool)
+    if f"{light}:{stage}" in REPAIR_PALE:
+        x0, y0, x1, y1 = REPAIR_PALE[f"{light}:{stage}"]
+        pale[y0 * MATTE_TEX:y1 * MATTE_TEX, x0 * MATTE_TEX:x1 * MATTE_TEX] = True
+        want |= pale & (dist > 0.05)
+    near = cv2.dilate((a > 0.5).astype(np.uint8), ell(REPAIR_REACH)) > 0
+    add = want & inside & (old > 0.5) & near & (a < 0.98)
+    soft = cv2.GaussianBlur(add.astype(np.float32), (0, 0), 0.8)
+    return np.maximum(m, np.uint8(np.clip(soft, 0, 1) * 255 + 0.5))
+
+
+def shadow_params(a: np.ndarray) -> dict:
+    """The island's contact shadow as data (`plate-<island>.json` `shadow`): `island_shadow` of island_matte.py, as the
+    ellipse it draws. `a` is the matte at any size; the result is in plate pixels (the hand data's units)."""
+    k = a.shape[1] / SIZE[0]
+    ys = np.where(a.max(1) > 0.5)[0]
+    top, bot = int(ys[0]), int(ys[-1])
+    prof = a[top + int((bot - top) * SHADOW["underside"]):bot].max(0)
+    xs = np.where(prof > 0.5)[0]
+    cx, hw = (xs[0] + xs[-1]) / 2, (xs[-1] - xs[0]) / 2
+    cy = bot + (bot - top) * SHADOW["drop"] * 0.5
+    return {"centre": [round(cx / k, 1), round(cy / k, 1)],
+            "radii": [round(hw * SHADOW["reach"] / k, 1), round(hw * SHADOW["squash"] / k, 1)],
+            "blur": round(hw * SHADOW["blur"] / k, 1), "opacity": SHADOW["opacity"]}
+
+
 def cmd_matte(island: str, state: str | None = None) -> None:
     """Writes the mattes of every plate, or of the one `--state <light>:<stage>` only (the other
-    mattes are committed and stay as they are)."""
+    mattes are committed and stay as they are).
+
+    A `STRICT_MATTES` island's masters are the r3b solve (`tools/proof/island_matte.py`: the BiRefNet-lite network,
+    `POFU_BIREFNET`, and its edge solve), one per state at plate size x `MATTE_TEX`. It reads the plates as shipped, so
+    run it before `deliver` rewrites them; every state is solved before the first master is written."""
     hand = load_hand(island)
-    for light, stage, path in plates(hand):
-        if state is not None and f"{light}:{stage}" != state:
-            continue
+    wanted = [(light, stage, path) for light, stage, path in plates(hand) if state is None or f"{light}:{stage}" == state]
+    if island in STRICT_MATTES:
+        wanted = [w for w in wanted if not is_legacy(hand, w[0], w[1])]
+        sys.path.insert(0, str(REPO / "tools" / "proof"))
+        import island_matte  # noqa: PLC0415 (needs the network's weights; the other commands do not)
+
+        solved = [(light, stage, path, *island_matte.island_layer(light, stage)) for light, stage, path in wanted]
+        for light, stage, path, layer, origin in solved:
+            m = master_matte(light, stage, layer, origin)
+            rgb = source_plate(path)[0]
+            m = repair_matte(m, rgb, legacy_matte(island, light, stage, m.shape), light, stage)
+            m = fill_matte(m, rgb, light, stage)
+            Image.fromarray(m).save(matte_path(island, light, stage), optimize=True)
+            x0, y0, x1, y1 = bbox(m / 255.0, 0.02)
+            print(f"matte {light} {stage}: box {(x0 // MATTE_TEX, y0 // MATTE_TEX, x1 // MATTE_TEX, y1 // MATTE_TEX)}")
+        return
+    for light, stage, path in wanted:
         water = [pct_to_px(o["points"]) for o in hand["objects"] if o.get("water")]
         a = matte(load_rgb(path), pct_to_px(hand["trace"]), water)
         Image.fromarray(np.uint8(np.clip(a, 0, 1) * 255 + 0.5)).save(matte_path(island, light, stage))
@@ -343,7 +542,7 @@ def home_frame(hand: dict, a: np.ndarray) -> dict:
     """The Home frame in plate pixels: the island `homeWidths` screen widths wide, its x centre at
     `homeCenterX` of the island, its top `homeTopY` points below the screen's top."""
     f = hand["framing"]
-    x0, y0, x1, y1 = bbox(a)
+    x0, y0, x1, y1 = hand.get("frameBox") or bbox(a)
     ws = (x1 - x0) / f["homeWidths"]
     k = ws / SCREEN[0]  # plate px per point
     hs = SCREEN[1] * k
@@ -493,22 +692,110 @@ def feathered_plate(rgb: np.ndarray, a: np.ndarray, feather: int = FEATHER) -> I
     return to_img(np.dstack([rgb, alpha]))
 
 
+def decontaminated(rgb: np.ndarray, a: np.ndarray, light: str, stage: int) -> np.ndarray:
+    """The plate's colours with the edge pixels of the r3b layer (`island_matte.island_layer`): a half-transparent pixel
+    carries the island's colour, not the sky's, so nothing pale is left to show round the rim. Pixels the solve left
+    alone are the plate's own. Needs the layer (the matting network's weights, or its cache from `matte`)."""
+    sys.path.insert(0, str(REPO / "tools" / "proof"))
+    import island_matte  # noqa: PLC0415
+
+    layer, (x0, y0) = island_matte.island_layer(light, stage)
+    k = rgb.shape[1] // SIZE[0]
+    if k != MATTE_TEX:
+        print(f"WARNING: the plate is x{k}, the r3b layer x{MATTE_TEX}: its edge colours are not applied")
+        return rgb
+    X0, Y0 = x0 * k, y0 * k
+    h, w = layer.shape[:2]
+    out = rgb.copy()
+    sub = out[Y0:Y0 + h, X0:X0 + w]
+    sa = a[Y0:Y0 + h, X0:X0 + w]
+    lc = layer[..., :3].astype(np.float64)
+    # only where the solve itself has alpha: a pixel `repair_matte` gave back keeps the painting's own colour
+    la = layer[..., 3]
+    use = (la > 0) & (sa > 0) & ((sa < 0.98) | (np.abs(lc - sub).max(-1) > 0.08))
+    sub[use] = lc[use]
+    return out
+
+
+#: Plate px round the island where a clear pixel's colour is the island's (see `extended`).
+EXTEND = 2
+
+
+def extended(rgb: np.ndarray, a: np.ndarray, reach: int = EXTEND) -> np.ndarray:
+    """The plate's colours with every clear pixel (alpha 0) within `reach` px of the island given the colour of the nearest
+    pixel that is not. The picture is stored in a lossy codec (HEIC q70, chroma at half resolution), which mixes a clear
+    pixel's colour into the opaque ones beside it: the sky's colour there would tint the rim, the island's own cannot. A
+    clear pixel is never drawn, so the change is invisible."""
+    clear = a < 0.004
+    dist, (iy, ix) = ndimage.distance_transform_edt(clear, return_indices=True)
+    near = clear & (dist <= reach)
+    out = rgb.copy()
+    out[near] = rgb[iy[near], ix[near]]
+    return out
+
+
+#: Texture px of clear room kept round the island when a matted plate is cropped to it, and the grid the crop snaps to
+#: (ASTC's 4 x 4 blocks; a multiple of `MATTE_TEX`, so the crop is whole plate points).
+CROP_PAD = 8
+CROP_GRID = 4
+
+
+def plate_crop(a: np.ndarray) -> tuple[int, int, int, int]:
+    """The box a matted plate ships cropped to (texture px of the x`MATTE_TEX` plate, `a` its alpha): every pixel with
+    alpha, `CROP_PAD` of clear room round them, snapped out to `CROP_GRID` and kept inside the plate. Everything outside
+    is clear: the sky set behind is the picture there (one sky at every level)."""
+    ys, xs = np.nonzero(a > 0)
+    h, w = a.shape
+    snap_lo = lambda v: max((v - CROP_PAD) // CROP_GRID * CROP_GRID, 0)
+    snap_hi = lambda v, top: min(-(-(v + CROP_PAD) // CROP_GRID) * CROP_GRID, top)
+    return snap_lo(int(xs.min())), snap_lo(int(ys.min())), snap_hi(int(xs.max()) + 1, w), snap_hi(int(ys.max()) + 1, h)
+
+
+def plate_crop_points(island: str, hand: dict, light: str, stage: int) -> list[int] | None:
+    """`plateCrop` of one state in plate points (the JSON's units), or `None`: the state ships the whole plate over its
+    backdrop (a legacy matte, or an island whose mattes are not strict)."""
+    if island not in STRICT_MATTES or is_legacy(hand, light, stage):
+        return None
+    return [v // MATTE_TEX for v in plate_crop(load_matte_full(island, light, stage))]
+
+
 def cmd_deliver(island: str) -> None:
     hand = load_hand(island)
+    strict = island in STRICT_MATTES
     for light, stage, path in plates(hand):
+        if strict and is_legacy(hand, light, stage):
+            print(f"deliver {light} {stage}: legacy matte, assets left as they are")
+            continue
         rgb, k = source_plate(path)
         a1 = load_matte(island, light, stage)
-        a = scaled_matte(a1, k)
-        write_imageset(asset_name(island, "plate", light, stage), feathered_plate(rgb, a, FEATHER * k))
+        if strict:
+            a = load_matte_full(island, light, stage)
+            if a.shape != rgb.shape[:2]:
+                a = cv2.resize(a.astype(np.float32), (rgb.shape[1], rgb.shape[0]), interpolation=cv2.INTER_AREA).astype(np.float64)
+            rgb = fill_colours(decontaminated(rgb, a, light, stage), a, light, stage)
+            # The plate's alpha is the matte: feather 0, the sky and the cloud sea round the island are the sky set's.
+            # It ships cropped to the island (`plate_crop`, `plateCrop` in the JSON): the clear rows cost no texture.
+            cx0, cy0, cx1, cy1 = (v * k for v in plate_crop_points(island, hand, light, stage))
+            full = np.dstack([extended(rgb, a), np.clip(a, 0, 1)])
+            write_imageset(asset_name(island, "plate", light, stage), to_img(full[cy0:cy1, cx0:cx1]))
+        else:
+            a = scaled_matte(a1, k)
+            write_imageset(asset_name(island, "plate", light, stage), feathered_plate(rgb, a, FEATHER * k))
         x0, y0, x1, y1 = bbox(a1, 0.02)
-        cut = np.dstack([rgb, np.clip(a, 0, 1)])[y0 * k:y1 * k, x0 * k:x1 * k]
+        cut = np.dstack([extended(rgb, a) if strict else rgb, np.clip(a, 0, 1)])[y0 * k:y1 * k, x0 * k:x1 * k]
         img = to_img(cut)
         # The Map's island stays at its size in original-plate pixels (it is drawn small).
         img = img.resize((round((x1 - x0) * ISLAND_SCALE), round((y1 - y0) * ISLAND_SCALE)), Image.Resampling.LANCZOS)
         write_imageset(asset_name(island, "island", light, stage), img)
-        box = backdrop_box(home_frame(hand, a1))
-        write_imageset(asset_name(island, "backdrop", light, stage), to_img(backdrop(rgb, a, box, hand.get("backdropScale", BACKDROP_SCALE), calm=hand.get("backdrop") == "calm")), jpeg=True)
-        print(f"deliver {light} {stage} (x{k}): island box {(x0, y0, x1, y1)}, backdrop box {box}")
+        if strict:
+            # The state's own matte has no level-10 ghost to cut away (`map_cut.py`): the Map's cut is the island's.
+            write_imageset(asset_name(island, "mapisle", light, stage), img)
+        if not strict:
+            # A strict island's backdrop is not rewritten: a matted state draws the sky set behind its plate, so the
+            # backdrop is not drawn there; the legacy states keep theirs as they are.
+            box = backdrop_box(home_frame(hand, a1))
+            write_imageset(asset_name(island, "backdrop", light, stage), to_img(backdrop(rgb, a, box, hand.get("backdropScale", BACKDROP_SCALE), calm=hand.get("backdrop") == "calm")), jpeg=True)
+        print(f"deliver {light} {stage} (x{k}): island box {(x0, y0, x1, y1)}")
 
 
 # ---------------------------------------------------------------- objects
@@ -533,9 +820,14 @@ def _occluder_cut(rgb, a, pts_px, pad, box=None):
 def cmd_objects(island: str) -> None:
     hand = load_hand(island)
     for light, stage, path in plates(hand):
+        if island in STRICT_MATTES and is_legacy(hand, light, stage):
+            continue
         rgb, k = source_plate(path)
         a1 = load_matte(island, light, stage)
         a = scaled_matte(a1, k)
+        if island in STRICT_MATTES:
+            a = cv2.resize(load_matte_full(island, light, stage).astype(np.float32), (rgb.shape[1], rgb.shape[0]), interpolation=cv2.INTER_AREA).astype(np.float64)
+            rgb = decontaminated(rgb, a, light, stage)
         for obj in hand["objects"]:
             if not obj.get("occluder") or not present(obj, light, stage):
                 continue
@@ -848,23 +1140,48 @@ def harmony_all(hand: dict, mattes: dict) -> dict:
 
 # ---------------------------------------------------------------- json
 
-def texture_bytes(island: str, hand: dict) -> int:
-    """ASTC 4 x 4: one byte per pixel, the largest state's images (plate, island, backdrop,
-    occluders): the app holds one state, or two for the length of a crossfade."""
-    worst = 0
+def sky_bytes(island: str, light: str) -> int:
+    """The textures of the island's sky set for `light` without its island layer (`Plates/skyset-<island>.json`, the
+    set at stage 0): what a matted state draws behind its plate. 0 when the island has no sky set for the light."""
+    f = JSON_DIR / f"skyset-{island}.json"
+    if not f.exists():
+        return 0
+    spec = json.loads(f.read_text())["lights"].get(light)
+    if spec is None:
+        return 0
+    total = spec.get("detailPixels", 0)
+    for layer in spec["layers"]:
+        if layer["role"] == "island":
+            continue
+        with heic.open_image(ASSETS / f"{layer['asset']}.imageset" / f"{layer['asset']}{heic.SUFFIX}") as im:
+            total += im.width * im.height
+    return total
+
+
+def state_texture_bytes(island: str, hand: dict) -> dict[tuple[str, int], int]:
+    """ASTC 4 x 4, one byte per pixel, per state, of what Home holds for it: the plate, the island cut and the
+    occluders, and behind the plate either its backdrop (a state that ships the whole plate) or the sky set without
+    its island layer (a matted state, `plate_crop_points`). The app holds one state, or two for a crossfade."""
+    out = {}
     for light, stage, _ in plates(hand):
-        total = 0
+        matted = plate_crop_points(island, hand, light, stage) is not None
+        kinds = ("plate", "island", "occ") if matted else ("plate", "island", "backdrop", "occ")
+        total = sky_bytes(island, light) if matted else 0
         for folder in ASSETS.glob(f"world-{island}-*-{light}-{stage}.imageset"):
-            # Only this tool's layers: a sky set's layers (`world-<island>-sky-*`) are the sky set's
-            # own budget (skyset-<island>.json), and the plate and its backdrop are not loaded while it draws.
-            if not folder.name.startswith(tuple(f"world-{island}-{kind}-" for kind in ("plate", "island", "backdrop", "occ"))):
+            # Only this tool's layers: a sky set's own (`world-<island>-sky-*`) are counted above, by `sky_bytes`.
+            if not folder.name.startswith(tuple(f"world-{island}-{kind}-" for kind in kinds)):
                 continue
             for f in folder.iterdir():
                 if f.suffix in (".png", ".jpg", heic.SUFFIX):
                     with heic.open_image(f) as im:
                         total += im.width * im.height
-        worst = max(worst, total)
-    return worst
+        out[(light, stage)] = total
+    return out
+
+
+def texture_bytes(island: str, hand: dict) -> int:
+    """The largest state's textures (`state_texture_bytes`)."""
+    return max(state_texture_bytes(island, hand).values(), default=0)
 
 
 def build_json(island: str, hand: dict, mattes: dict, maps: dict, harmony: dict | None = None) -> dict:
@@ -903,9 +1220,9 @@ def build_json(island: str, hand: dict, mattes: dict, maps: dict, harmony: dict 
         "lightStages": {l: stage_count(hand, l) for l in lights},
         "stageLevels": hand.get("stageLevels", [hand.get("minLevel", 1)]),
         "harmony": harmony or {},
-        "islandBox": list(bbox(a, 0.02)),
+        "islandBox": list(hand.get("islandBox") or bbox(a, 0.02)),
         "backdropBox": list(backdrop_box(home_frame(hand, a))),
-        "feather": FEATHER,
+        "feather": 0 if island in STRICT_MATTES else FEATHER,
         "objects": objects,
         "walkable": pct_to_px(hand["walkable"]),
         "characters": {k: pct_to_px([v])[0] for k, v in sorted(hand["characters"].items())},
@@ -920,6 +1237,13 @@ def build_json(island: str, hand: dict, mattes: dict, maps: dict, harmony: dict 
         "shadowMap": {l: [maps[(l, s)][1] if (l, s) in maps else [] for s in range(stage_count(hand, l))] for l in lights},
         "textureBytes": texture_bytes(island, hand),
     }
+    if island in STRICT_MATTES:
+        # Per light, per stage: the box the plate image covers (plate points), or null where the state ships the whole
+        # plate over its backdrop (a legacy matte). A matted state draws the sky set behind the cropped plate.
+        data["plateCrop"] = {l: [plate_crop_points(island, hand, l, s) for s in range(stage_count(hand, l))] for l in lights}
+        # Per stage (the lights of a stage are one drawing, so one matte): the island's contact shadow, drawn by code
+        # on the floor layer under the island.
+        data["shadow"] = [shadow_params(load_matte_full(island, "day", s)) for s in range(data["stages"])]
     if is_sparse(hand):
         data["painted"] = painted_stages(hand)
     if hand.get("backdrop"):

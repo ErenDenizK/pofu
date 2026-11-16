@@ -162,10 +162,29 @@ public struct PlateIsland: Hashable, Sendable {
     /// Per light, per stage: 20 rows of 32 shadow colours.
     public var shadowMap: [String: [[[String]]]]
     public var textureBytes: Int
+    /// Per stage: the island's contact shadow on the cloud below it, drawn by code from the matte (the plate has none of
+    /// its own). Empty for a plate whose ingest wrote none.
+    public var shadows: [PlateShadow]
+
+    /// Per light, per stage: the box the shipped plate image covers (plate pixels) when the plate is matted to its island
+    /// and cropped to it (`tools/plate/ingest.py` `plate_crop`), or `nil`: the image is the whole plate over its backdrop
+    /// (a legacy matte, or an island whose plates are not matted).
+    public var plateCrops: [String: [PlateRect?]] = [:]
+
+    /// The cropped plate's box for a state, or `nil` where the state ships the whole plate (see `plateCrops`).
+    public func plateCrop(light: String, stage: Int) -> PlateRect? {
+        guard let crops = plateCrops[light], crops.indices.contains(stage) else { return nil }
+        return crops[stage]
+    }
+
+    /// The contact shadow of a stage, if the data has one.
+    public func shadow(stage: Int) -> PlateShadow? {
+        shadows.indices.contains(stage) ? shadows[stage] : nil
+    }
 
     // MARK: Asset names (docs/design/plate-islands.md §0)
 
-    /// The whole plate, its border feathered.
+    /// The whole plate, its border feathered; a matted plate is its island alone, cropped (`plateCrop`).
     public func plateArt(light: String, stage: Int) -> String {
         "world-\(island)-plate-\(light)-\(stage)"
     }
@@ -250,12 +269,36 @@ public struct PlateIsland: Hashable, Sendable {
     }
 }
 
+/// An island's contact shadow: an ellipse (`centre`, `radii`, plate pixels) softened by `blur` and drawn at `opacity`
+/// in a dark sky tone (`island_shadow` in tools/proof/island_matte.py).
+public struct PlateShadow: Decodable, Hashable, Sendable {
+    public var centre: PlatePoint
+    public var radii: PlatePoint
+    public var blur: Double
+    public var opacity: Double
+
+    private enum Keys: String, CodingKey { case centre, radii, blur, opacity }
+
+    public init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: Keys.self)
+        let centre = try c.decode([Double].self, forKey: .centre)
+        let radii = try c.decode([Double].self, forKey: .radii)
+        guard centre.count == 2, radii.count == 2 else {
+            throw DecodingError.dataCorruptedError(forKey: .centre, in: c, debugDescription: "centre and radii take two numbers")
+        }
+        self.centre = PlatePoint(x: centre[0], y: centre[1])
+        self.radii = PlatePoint(x: radii[0], y: radii[1])
+        blur = try c.decodeIfPresent(Double.self, forKey: .blur) ?? 0
+        opacity = try c.decode(Double.self, forKey: .opacity)
+    }
+}
+
 // MARK: - Decoding
 
 extension PlateIsland: Decodable {
     private enum Keys: String, CodingKey {
         case island, version, standIn, minLevel, plateSize, stages, lights, lightStages, painted, stageLevels, harmony, islandBox, backdropBox, objects
-        case walkable, characters, pofuWidth, residentBoost, residentBoosts, lamps, lampHeight, framing, lightDirection, lightMap, shadowMap, textureBytes
+        case walkable, characters, pofuWidth, residentBoost, residentBoosts, lamps, lampHeight, framing, lightDirection, lightMap, shadowMap, textureBytes, shadow, plateCrop
     }
 
     public init(from decoder: Decoder) throws {
@@ -304,6 +347,10 @@ extension PlateIsland: Decodable {
         lightMap = try c.decodeIfPresent([String: [[[String]]]].self, forKey: .lightMap) ?? [:]
         shadowMap = try c.decodeIfPresent([String: [[[String]]]].self, forKey: .shadowMap) ?? [:]
         textureBytes = try c.decodeIfPresent(Int.self, forKey: .textureBytes) ?? 0
+        shadows = try c.decodeIfPresent([PlateShadow].self, forKey: .shadow) ?? []
+        plateCrops = try (c.decodeIfPresent([String: [[Double]?]].self, forKey: .plateCrop) ?? [:]).mapValues { boxes in
+            try boxes.map { try $0.map(Self.rect) }
+        }
     }
 
     private struct RawHarmony: Decodable {

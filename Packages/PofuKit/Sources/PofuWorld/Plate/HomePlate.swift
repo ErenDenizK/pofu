@@ -171,11 +171,27 @@ public struct HomePlate: Hashable, Sendable {
         return WorldBox(minX: a.x, minY: a.y, maxX: b.x, maxY: b.y)
     }
 
-    /// The sky set this state draws behind its island layer (ADR-0025), or `nil`: the painted plate and
-    /// its backdrop. Home's level-10 day, golden hour and night and every painted Çağlayan state have
-    /// one; the other states keep the plate until they are split.
+    /// The sky set this state draws behind its island (ADR-0025), or `nil`: the painted plate and its
+    /// backdrop. Every painted Çağlayan state has its own (each stage's island layer with it). Home has one
+    /// sky per light, split from the level-10 painting: every matted state (`isMatted`) draws it, its island
+    /// layer left out, behind the state's own plate, so the sky is the same at every level. A light a level
+    /// does not paint borrows another's plate (`borrowed`: golden hour below level 10 shows the night plate)
+    /// and takes that light's sky with it, so plate and sky are always one painting's pair. The states that
+    /// keep their old matte (the whole plate, its painted sky included) draw it over its backdrop.
     public var skySet: SkySet? {
-        SkySet.shipped(island: plate.island, light: light, stage: stage)
+        if let own = SkySet.shipped(island: plate.island, light: light, stage: stage) { return own }
+        return isMatted ? SkySet.shipped(island: plate.island, light: light, stage: 0) : nil
+    }
+
+    /// Whether this state's plate is matted to its island and shipped cropped to it (`PlateIsland.plateCrop`):
+    /// the sky set draws behind it without its own island layer, and no backdrop is drawn.
+    public var isMatted: Bool {
+        plate.plateCrop(light: light, stage: stage) != nil
+    }
+
+    /// The box the plate's image covers, in world units: its crop for a matted state, else the whole plate.
+    public var plateImageBox: WorldBox {
+        plate.plateCrop(light: light, stage: stage).map { worldBox($0) } ?? plateBox
     }
 
     /// A rectangle in the sky set's master pixels, in world units. The master is the plate at its own

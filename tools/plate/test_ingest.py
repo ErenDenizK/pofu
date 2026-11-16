@@ -1,4 +1,4 @@
-"""Tests for ingest.py on synthetic images only (no art files, no OpenCV)."""
+"""Tests for ingest.py: synthetic images, and the committed Home plates and mattes where a test says so."""
 from __future__ import annotations
 
 import sys
@@ -191,6 +191,47 @@ class IngestTests(unittest.TestCase):
         self.assertLess(np.abs(out[y, x] - rgb[500, 768]).max(), 0.03)
         # Far above: sky, deeper than the plate's top.
         self.assertGreater(out[2, x, 2], out[2, x, 0])
+
+    def test_plate_alpha_is_the_states_matte(self):
+        """The shipped Home plate's alpha is the state's own matte (feather 0), within the codec's error."""
+        from PIL import Image
+        for light, stage in (("day", 0), ("day", 5), ("night", 5), ("golden", 0)):
+            name = ingest.asset_name("home", "plate", light, stage)
+            f = next((ingest.ASSETS / f"{name}.imageset").glob(f"{name}.*"))
+            shipped = np.asarray(ingest.heic.open_image(f).convert("RGBA"), np.float64)[..., 3] / 255
+            matte = ingest.load_matte_full("home", light, stage)
+            # the plate ships cropped to its island (`plateCrop`): every pixel of the matte lies inside the crop
+            x0, y0, x1, y1 = (v * ingest.MATTE_TEX for v in ingest.plate_crop_points("home", ingest.load_hand("home"), light, stage))
+            self.assertEqual(shipped.shape, (y1 - y0, x1 - x0))
+            self.assertLess(shipped.size, matte.size * 0.6)
+            alpha = np.zeros_like(matte)
+            alpha[y0:y1, x0:x1] = shipped
+            self.assertLess(float(np.abs(alpha - matte).mean()), 0.004, f"{light}:{stage}")
+            self.assertEqual(float(shipped[0].max()), 0.0)  # clear room above the island
+
+    def test_no_state_reads_level_10s_matte(self):
+        import unittest.mock as mock
+        hand = ingest.load_hand("home")
+        masters = [ingest.matte_path("home", light, stage) for light, stage, _ in ingest.plates(hand)]
+        self.assertEqual(len(masters), 21)
+        self.assertTrue(all(p.exists() for p in masters))
+        # every state that is not listed as legacy has its own solve (the three lights of a stage are one drawing)
+        own = {m.name for m, (light, stage, _) in zip(masters, ingest.plates(hand)) if not ingest.is_legacy(hand, light, stage)}
+        self.assertEqual(len(own), 21 - len(hand.get("legacyStates", [])))
+        self.assertFalse(np.array_equal(ingest.load_matte_full("home", "day", 5), ingest.load_matte_full("home", "day", 0)))
+        # a state without its own matte is an error, not the level-10 one
+        with mock.patch.object(ingest, "matte_path", return_value=Path("/nonexistent/matte.png")):
+            with self.assertRaises(FileNotFoundError):
+                ingest.load_matte_full("home", "day", 5)
+
+    def test_shadow_is_an_ellipse_under_the_island(self):
+        a = np.zeros((3072, 2048))
+        a[400:2000, 200:1800] = 1
+        s = ingest.shadow_params(a)
+        self.assertEqual(s["opacity"], 0.34)
+        self.assertAlmostEqual(s["centre"][0], 500.0, delta=1)  # plate points: x 200..1800 of 2048 px -> centre 500 of 1024
+        self.assertGreater(s["centre"][1], 1000)                 # below the foot (y 2000 px = 1000 points)
+        self.assertGreater(s["radii"][0], s["radii"][1])
 
     def test_home_frame_puts_the_island_at_its_widths(self):
         a = np.zeros((ingest.SIZE[1], ingest.SIZE[0]))

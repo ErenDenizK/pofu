@@ -8,11 +8,12 @@ import UIKit
 /// whole plate over it (its border feathered into the backdrop), and,
 /// toward the Map where the backdrop fades, the island cut from its sky.
 /// Nothing grades, fogs or hazes it: the plate is the final picture. Where a
-/// state has a sky set (ADR-0025: home's level-10 day, golden hour and night)
-/// the sky, the far and mid clouds, the distant isles and the cloud sea are
-/// its layers (`SkySetLayers`: they drift, bob and glide, the island never
-/// moves) and the plate and backdrop are not drawn; every other state is
-/// static, so a settled Home costs no frames.
+/// state has a sky set (ADR-0025: every matted Home state, one sky per light
+/// at every level, and every painted Çağlayan state) the sky, the far and mid
+/// clouds, the distant isles and the cloud sea are its layers (`SkySetLayers`:
+/// they drift, bob and glide, the island never moves) and no backdrop is
+/// drawn: a matted Home plate stands on them, cropped to its island. The
+/// states that keep their old matte are static, so they cost no frames.
 struct PlateHomeLayer: View {
     let plate: HomePlate
     let pose: CameraPose
@@ -100,10 +101,14 @@ struct PlateHomeLayer: View {
             if fade > 0.001 {
                 ZStack(alignment: .topLeading) {
                     if let sky = plate.skySet {
-                        SkySetLayers(sky: sky, plate: plate, pose: pose, reference: plate.skyReference(width: Double(size.width), height: Double(size.height)), size: size, offset: offset, start: start)
+                        // A matted plate stands on the sky set in place of the set's own island layer.
+                        SkySetLayers(sky: sky, plate: plate, pose: pose, reference: plate.skyReference(width: Double(size.width), height: Double(size.height)), size: size, offset: offset, start: start, drawsIsland: !plate.isMatted)
+                        if plate.isMatted {
+                            PlateImage(name: plate.plate.plateArt(light: plate.light, stage: plate.stage), box: plate.plateImageBox, pose: pose, size: size, offset: offset)
+                        }
                     } else {
                         PlateImage(name: plate.plate.backdropArt(light: plate.light, stage: plate.stage), box: plate.backdropBox, pose: pose, size: size, offset: offset)
-                        PlateImage(name: plate.plate.plateArt(light: plate.light, stage: plate.stage), box: plate.plateBox, pose: pose, size: size, offset: offset)
+                        PlateImage(name: plate.plate.plateArt(light: plate.light, stage: plate.stage), box: plate.plateImageBox, pose: pose, size: size, offset: offset)
                     }
                     if !islandGrade.isNeutral {
                         PlateImage(name: plate.plate.islandArt(light: plate.light, stage: plate.stage), box: plate.islandBox, pose: pose, size: size, offset: offset)

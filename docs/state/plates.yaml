@@ -100,7 +100,7 @@ islands:
           clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
           rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
         night:
-          clear: {painted: "design/art/takes/batch-72-home-night/x-home-flow-il8-night/plate__x-home-flow-il8-night--t2.webp", lead_pick: 2, in_app: true, founder_ok: null}
+          clear: {painted: "design/art/takes/batch-72-home-night/x-home-flow-il8-night/plate__x-home-flow-il8-night--t2.webp", lead_pick: 2, in_app: true, founder_ok: null, edited: "design/art/plates/home/derived/plate-l8-night-clear.webp"}
           rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
       il9:
         day:
@@ -110,7 +110,7 @@ islands:
           clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
           rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
         night:
-          clear: {painted: "design/art/takes/batch-72-home-night/x-home-flow-il9-night/plate__x-home-flow-il9-night--t1.webp", lead_pick: 1, in_app: true, founder_ok: null}
+          clear: {painted: "design/art/takes/batch-72-home-night/x-home-flow-il9-night/plate__x-home-flow-il9-night--t1.webp", lead_pick: 1, in_app: true, founder_ok: null, edited: "design/art/plates/home/derived/plate-l9-night-clear.webp"}
           rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
       final:
         day:

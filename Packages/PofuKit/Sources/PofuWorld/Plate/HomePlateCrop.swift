@@ -30,6 +30,15 @@ public struct HomePlateCrop {
         return plate.plate.plateArt(light: state.light, stage: state.stage)
     }
 
+    /// The box the painting's image covers on the plate (`PlateIsland.plateCrop`: a matted plate ships cropped to
+    /// its island), or the whole plate.
+    static func imageBox(islandLevel: Int, hour: Int, isBedtime: Bool = false, plate: HomePlate) -> PlateRect {
+        guard let state = HomePlate.state(
+            in: plate.plate, islandLevel: islandLevel, hour: Double(hour), weather: WeatherConditions(), isBedtime: isBedtime
+        ) else { return plate.plate.plateSize }
+        return plate.plate.plateCrop(light: state.light, stage: state.stage) ?? plate.plate.plateSize
+    }
+
     /// Where the crop is centred vertically, as a fraction of the plate's height: the island's
     /// upper half, above the water's edge.
     public static let focusY = 0.42
@@ -55,12 +64,20 @@ extension HomePlateCrop: View {
         if let plate = HomePlate.shipped,
            let name = Self.artName(islandLevel: islandLevel, hour: hour, isBedtime: isBedtime, plate: plate) {
             GeometryReader { proxy in
-                let fit = Self.fill(plateWidth: plate.plate.plateSize.width, plateHeight: plate.plate.plateSize.height, in: proxy.size)
+                let full = plate.plate.plateSize
+                let fit = Self.fill(plateWidth: full.width, plateHeight: full.height, in: proxy.size)
+                // The image covers `box` of the plate (a matted plate is cropped to its island): placed there.
+                let box = Self.imageBox(islandLevel: islandLevel, hour: hour, isBedtime: isBedtime, plate: plate)
+                let k = fit.image.width / CGFloat(full.width)
+                let left = (proxy.size.width - fit.image.width) / 2
                 Image(name, bundle: .module)
                     .resizable()
                     .interpolation(.high)
-                    .frame(width: fit.image.width, height: fit.image.height)
-                    .position(x: proxy.size.width / 2, y: fit.y + fit.image.height / 2)
+                    .frame(width: CGFloat(box.width) * k, height: CGFloat(box.height) * k)
+                    .position(
+                        x: left + CGFloat(box.minX + box.width / 2) * k,
+                        y: fit.y + CGFloat(box.minY + box.height / 2) * k
+                    )
                     .frame(width: proxy.size.width, height: proxy.size.height)
                     .clipped()
             }

@@ -97,6 +97,12 @@ public struct SkySet: Hashable, Sendable {
         public var periods: [Double] = []
     }
 
+    /// The still bank of air and cloud under Home's island (`tools/plate/skyset_mend.py`): drawn behind a matted plate
+    /// at Home, never on the Map or behind another island, where Home's island is not.
+    public static func isBank(_ layer: Layer) -> Bool {
+        layer.id == "bank"
+    }
+
     /// The mid clouds' drift tile (`<island>-sky-mid-<light>`).
     public static func isMidClouds(_ layer: Layer) -> Bool {
         layer.role == .tile && layer.asset.contains("-sky-mid-")
