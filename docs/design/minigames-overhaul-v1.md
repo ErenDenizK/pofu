@@ -74,9 +74,11 @@ component was needed; `PofuHUD` in the grammar's G3 can be this.
 
 ## 4. What code cannot fix: art for Codex
 
-One manifest row each; the lead queues them. All are painted in the vivid
-envelope of the backdrops (the pool and the fall are the colour
-reference), top-left key light.
+The lead queues them. Rows 1 to 5 are written out as one ready manifest,
+[batch-flow-kit-v2.yaml](assets/minigames-overhaul-v1/batch-flow-kit-v2.yaml)
+(it needs only its batch number and the after-#501 frame as a reference).
+All are painted in the vivid envelope of the backdrops (the pool and the
+fall are the colour reference), top-left key light.
 
 1. **Lip kit** (replaces `flow-board-lip`): a tileable run of lip stones
    one cell wide, a notch piece one cell wide with water spilling through
