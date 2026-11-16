@@ -33,8 +33,10 @@ chooses to (days 1-21); no dates (11-14). Now: world presentation (#474).
    control left at near.
 3. UI grammar #490 open (docs): world painted, screen native glass. No app
    change until the founder has seen it.
-4. Codex queue: 132 board edge, 133 cloud floor, then S1 (129 looks, edited
-   so each look steps outside the last, pofu-art #108), S2 (126 v2/v3).
+4. Codex hit the image tool's usage limit (429) mid-129. 129 delivered
+   19/35 (#107 merged): 8 look-1/2 picks, 7 redo-outline, 2 redo; looks
+   1 fill the canvas, so a rework reframes them to ~70% (agent,
+   `chore/batch-129-rework`). Queue: 132, 133, S1 (129 rework), S2.
 Merged: #475-#489, #491-#498; pofu-art #81, #91-#109.
 
 ## Next steps, in order (night plan)
