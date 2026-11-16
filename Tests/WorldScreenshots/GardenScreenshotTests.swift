@@ -86,6 +86,16 @@ final class GardenScreenshotTests: XCTestCase {
             try await Self.wait(until: { model.phase != .playing }, timeout: 8)
         }
 
+        // Two frames at full device resolution (the `path-` prefix keeps the PNG), for the 1:1 review of
+        // the HUD and the bed: the round's first moment, with the rule on its tag and a full tray, and a bloom.
+        try await shoot("path-game-garden-start", in: scene, folder: folder, written: &written, model: GardenGameModel(seed: 2026)) { _ in
+            try await Task.sleep(for: .milliseconds(900))
+        }
+        try await shoot("path-game-garden-bloom", in: scene, folder: folder, written: &written, model: GardenGameModel(seed: 7)) { model in
+            model.playBloom()
+            try await Task.sleep(for: .milliseconds(330))
+        }
+
         // A bloom in slow motion, eight frames, cropped to the garden.
         let sequence = try await frames(in: scene, model: GardenGameModel(seed: 7))
         let strip = Self.contactStrip(sequence, columns: 4)
@@ -96,7 +106,7 @@ final class GardenScreenshotTests: XCTestCase {
         let summary = written.joined(separator: "\n")
         try summary.write(to: folder.appendingPathComponent("README-garden.txt"), atomically: true, encoding: .utf8)
         print("Garden screenshots in \(folder.path):\n\(summary)")
-        XCTAssertEqual(written.count, 8)
+        XCTAssertEqual(written.count, 10)
     }
 
     /// Polls `condition` every 50 ms, up to `timeout` seconds.
