@@ -32,8 +32,7 @@ chooses to (days 1-21); no dates (11-14). Now: world presentation (#474).
 2. WP10 compositor merged (#500): looks sort with Pofu by footY, Map
    snapshot of the built island, 3.2 s reveal. Left: `mapisle` assets
    (night 8-9 need them), orphan `world-home-base-day-5`, reveal burst.
-   WP11 near lens (Opus, `feat/near-lens`) now; WP13 after (shaders);
-   WP12 reveals wait on the island-progression run.
+   WP11 near lens (`feat/near-lens`) in CI; WP13 after; WP12 waits on #503.
 3. Merged 11-16: #480 one sky, #488 Hop hour, #489 flow rocks + lip, #491
    cloud floor, #492 props, #493 N6, #494 + #497 tea stall looks, #495
    rail (Home is mid, free near), #496 icons, #498 beds + back control.
