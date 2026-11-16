@@ -141,7 +141,7 @@ extension WorldShaders {
         let lens = frame.lens
         return Shader(function: ShaderFunction(library: library, name: "pofuLensLevel"), arguments: [
             .image(depth),
-            .float4(frame.originX + shift, frame.originY + shift, frame.pointsPerPixel, 0),
+            .float4(frame.originX + shift, frame.originY + shift, frame.pointsPerPixel, ThinLens.frontCap),
             .float4(lens.focusRow, lens.depthPerRow, lens.aperture * lens.scale, lens.distance),
             .float4(r[0], r[1], r[2], r[3]),
             .float4(Double(level), frame.lipRow, NearLayers.rowRange.lowerBound, NearLayers.rowRange.upperBound),

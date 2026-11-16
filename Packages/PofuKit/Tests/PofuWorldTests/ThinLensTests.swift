@@ -86,12 +86,29 @@ struct ThinLensTests {
 
     @Test func blurIsCappedAt14() throws {
         let rest = try lens(s: 4.5, N: 1.6)
-        #expect(rest.radius(delta: -300) == ThinLens.cap)
-        #expect(rest.radius(delta: -1000) == ThinLens.cap)
         #expect(try lens(s: 7.4, N: 40).skyRadius == ThinLens.cap)
+        #expect(try lens(s: 7.4, N: 40).radius(delta: 3000) == ThinLens.cap)
+        #expect(try lens(s: 4.5, N: 4).radius(delta: 2000) > ThinLens.frontCap)
         for row in stride(from: 300.0, through: 1600, by: 10) {
             #expect(rest.radius(row: row) <= ThinLens.cap)
         }
+    }
+
+    @Test func frontIsCappedAt6() throws {
+        let plate = try home
+        let pofu = try #require(plate.plate.characters["pofu"])
+        let rest = try lens(s: 4.5, N: 1.6)
+        // The wheel's foot (row 1000) and everything nearer: the 6 pt level at most, never 14.
+        #expect(rest.radius(row: 1000) == ThinLens.frontCap)
+        #expect(rest.radius(delta: -300) == ThinLens.frontCap)
+        #expect(rest.radius(delta: -1000) == ThinLens.frontCap)
+        for row in stride(from: pofu.y, through: 1600, by: 2) {
+            #expect(rest.radius(row: row) <= ThinLens.frontCap, "row \(row)")
+        }
+        // It still grows smoothly up to the cap: a stone 20 rows in front is soft, not capped.
+        #expect(rest.radius(row: pofu.y + 20) > ThinLens.sharp && rest.radius(row: pofu.y + 20) < ThinLens.frontCap)
+        // Behind, the back keeps the 14 pt level.
+        #expect(try lens(s: 7.4, N: 3).radius(delta: 5000) > ThinLens.frontCap)
     }
 
     @Test func skippingNeverSteps() {
@@ -120,14 +137,15 @@ struct ThinLensTests {
         #expect(BlurLevels.weight(level: 3, radius: 9) == 0.375)
     }
 
-    @Test func midNeedsNoLevelAndNearNeedsThemAll() throws {
+    @Test func midNeedsNoLevelAndNearRestNeedsThreeLevels() throws {
         let plate = try home
         let pofu = plate.world(try #require(plate.plate.characters["pofu"]))
         let midScale = 1.145
         let mid = NearLensFrame.make(plate: plate, pose: CameraPose(scale: midScale, look: pofu, anchorY: 437), width: 402, height: 874, focus: .rail)
         #expect(mid == nil || mid?.levels == [0])
         let near = try #require(NearLensFrame.make(plate: plate, pose: CameraPose(scale: 4.5, look: pofu, anchorY: 0.6 * 874), width: 402, height: 874, focus: .rail))
-        #expect(near.levels == [0, 1, 2, 3])
+        // The back at rest stays under 6 pt and the front stops at 6: the 14 pt level is not drawn.
+        #expect(near.levels == [0, 1, 2])
         #expect(abs(near.lens.focusRow - (plate.plate.characters["pofu"]?.y ?? 0)) < 1e-6)
         #expect(abs(near.skyRadius - 7.2) < 1e-9)
     }

@@ -104,7 +104,7 @@ inline float3 lookLUT(texture2d<half> lut, float3 c) {
 //
 // depth:  the state's depth rows (NearDepthTexture): r the encoded row, g a standing thing's share
 //         over the ground; texel (0, 0) is a 0.5 grey calibration texel
-// map:    (screen x, screen y of plate pixel 0,0 in this layer, points per plate pixel, unused)
+// map:    (screen x, screen y of plate pixel 0,0 in this layer, points per plate pixel, front cap)
 // lens:   (focus row, world depth per row, N * s, D)              ThinLens's twin
 // radii:  the four levels' radii
 // pick:   (this level, lip row, row range low, row range high)
@@ -113,11 +113,13 @@ namespace pofulens {
 
 constexpr sampler depthSampler(filter::linear, address::clamp_to_edge);
 
-inline float radius(float row, float4 lens, float cap) {
+// ThinLens.radius: capped at `cap` behind the focal plane, at `frontCap` in front of it.
+inline float radius(float row, float4 lens, float cap, float frontCap) {
     float delta = (lens.x - row) * lens.y;
+    float limit = delta < 0.0 ? frontCap : cap;
     float d = lens.w + delta;
-    if (d <= 1e-4) { return cap; }
-    return min(lens.z * abs(delta) / d, cap);
+    if (d <= 1e-4) { return limit; }
+    return min(lens.z * abs(delta) / d, limit);
 }
 
 // BlurLevels.effective, then BlurLevels.weight.
@@ -158,7 +160,7 @@ inline float weight(float r, float4 radii, int level, float skip, float cap) {
     float ground = min(plate.y, pick.y);
     float standing = pick.z + encoded * (pick.w - pick.z);
     float row = mix(ground, standing, saturate(share));
-    float r = pofulens::radius(row, lens, limits.w);
+    float r = pofulens::radius(row, lens, limits.w, map.w);
     float w = pofulens::weight(r, radii, int(pick.x), limits.z, limits.w);
     return color * half(w);
 }

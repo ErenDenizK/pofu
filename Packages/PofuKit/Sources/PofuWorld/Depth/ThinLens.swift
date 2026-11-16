@@ -26,6 +26,10 @@ public struct ThinLens: Hashable, Sendable {
 
     /// Blur never grows past this, in points.
     public static let cap = 14.0
+    /// In front of the focal plane blur stops at the 6 pt level: a tilt-shift wants a soft front,
+    /// not a smear (the thin lens alone puts everything about 115 rows in front of Pofu at 14 pt,
+    /// and a wheel there read as a grey blob). The 14 pt level is the back's and the sky's.
+    public static let frontCap = 6.0
     /// At or under this radius a thing reads as sharp.
     public static let sharp = 0.5
     /// Under this radius a layer skips its blur altogether.
@@ -58,15 +62,16 @@ public struct ThinLens: Hashable, Sendable {
     }
 
     /// The blur radius, in points, of a thing `delta` world units behind the focal plane
-    /// (`.infinity` for the sky): the circle of confusion, capped. A thing at or in front of the
-    /// camera takes the cap.
+    /// (`.infinity` for the sky): the circle of confusion, capped at `cap` behind and at
+    /// `frontCap` in front. A thing at or in front of the camera takes the front cap.
     public func radius(delta: Double) -> Double {
         guard aperture > 0, scale > 0, !delta.isNaN else { return 0 }
         let base = aperture * scale
         if delta == .infinity { return min(base, Self.cap) }
+        let limit = delta < 0 ? Self.frontCap : Self.cap
         let d = distance + delta
-        guard d > 1e-6 else { return Self.cap }
-        return min(base * abs(delta) / d, Self.cap)
+        guard d > 1e-6 else { return limit }
+        return min(base * abs(delta) / d, limit)
     }
 
     /// The blur radius, in points, of a plate row.
