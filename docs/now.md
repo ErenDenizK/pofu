@@ -24,8 +24,9 @@ chooses to (days 1-21); no dates (11-14). Now: world presentation (#474).
 
 1. WP7 rail merged (#495): Home is mid, pinch to a free near, ADR-0027;
    sea runs to the foot (stopgap `homeSet`). Back control still bottom-
-   right (data says left); near contact shadow faint. Stall looks at stages 3,4,6,7,8 #497 in
-   CI (0,1,2,5 keep painted stall: art). 128 icons merged (#496). WP5 props merged (#492): jar,
+   right (data says left); near contact shadow faint. Stall looks at stages 3,4,6,7,8 #497:
+   rebase onto WP7 + stage 8 patch shows (darker blotch, wisp); last push.
+   Cloud bed grade + back control left (Sonnet, `fix/cloud-beds-back-control`). WP5 props merged (#492): jar,
    pots, lantern on painted Home; ingest keeps props.
 2. Merged today: #480 mattes + one sky (night L1/L2 legacy); #488 Hop hour;
    #489 flow rocks + lip (edge waits on Codex 132); #493 N6 proof; #494
@@ -44,7 +45,7 @@ Merged: #475-#489, #491-#496; pofu-art #81, #91-#109.
 ## Next steps, in order (night plan)
 
 1. WP10 compositor (WP5, WP7, WP8 in); then WP12 reveals, WP11 near
-   lens, WP13 water. Cloud bed grade; back control left. A9; §8.6.
+   lens, WP13 water. A9; §8.6.
 
 ## Desks
 
