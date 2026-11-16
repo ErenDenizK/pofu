@@ -27,8 +27,9 @@ chooses to (days 1-21); no dates (11-14). Now: world presentation (#474).
    measure). Kept open for his 6 answers (sent 11-16); answer 1 also
    closes #490 Q3. Pilot A (batch 134, windmill + pond in place) is
    queued (pofu-art #112, row 0-d7); 129 held, dropped if A passes.
-   (b) Fable minigame overhaul (block + stream, A/B by prototype):
-   running, brief `docs/studio/briefs/fable-2026-11-16-minigame-overhaul.md`.
+   (b) minigame overhaul merged (#501): stream ground B default (A behind
+   env), glass HUDs, garden 44 pt. Founder asked A or B (sent 11-16).
+   Flow kit v2 art being queued by a builder; then a small code pass.
 2. WP10 compositor merged (#500): looks sort with Pofu by footY, Map
    snapshot of the built island, 3.2 s reveal. Left: `mapisle` assets
    (night 8-9 need them), orphan `world-home-base-day-5`, reveal burst.
@@ -40,7 +41,7 @@ chooses to (days 1-21); no dates (11-14). Now: world presentation (#474).
 5. Codex: station looks held for (a) (pofu-art #111). Line: 132 board
    edge, 133 cloud floor, S2 clouds, S3 hidden visitors. 129 reworked
    (#110) and waiting. Codex hit the image tool's quota mid-129.
-Merged: #475-#489, #491-#500; pofu-art #81, #91-#112.
+Merged: #475-#489, #491-#501; pofu-art #81, #91-#112.
 
 ## Next steps, in order (night plan)
 
@@ -56,5 +57,5 @@ Merged: #475-#489, #491-#500; pofu-art #81, #91-#112.
 
 ## Open with the founder
 
-- Picks: 5 UI grammar questions, flow A/B (B), N6 recipe (yes).
+- Picks: #503's 6 (yes to all), flow A/B (B), 5 UI grammar Qs, N6 (yes).
 - Device check (11-13) answers pending. Stale: roadmap.md, tracker.md.
