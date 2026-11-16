@@ -53,6 +53,7 @@ final class RegionWaterScreenshotTests: XCTestCase {
             for (i, clock) in [0.0, 1.5].enumerated() {
                 shots.append(Shot(name: "probe-v\(variant)-night-t\(i)", framing: .mid, hour: 22.5, clock: clock, focusPond: true, variant: variant))
             }
+            shots.append(Shot(name: "probe-v\(variant)-day-t0", framing: .mid, hour: 12, clock: 0, focusPond: true, variant: variant))
         }
         for shot in shots {
             try await render(shot, scene: scene, folder: folder)

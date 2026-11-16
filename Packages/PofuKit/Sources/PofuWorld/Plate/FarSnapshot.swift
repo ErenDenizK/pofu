@@ -143,8 +143,6 @@ struct CompositeIsland: View {
         .frame(width: size.width, height: size.height, alignment: .topLeading)
     }
 }
-#endif
-
 /// The patches of every body of water a state has.
 struct WaterPatches: View {
     let plate: HomePlate
@@ -168,3 +166,4 @@ struct WaterPatches: View {
         }
     }
 }
+#endif
