@@ -11,6 +11,7 @@ import SwiftUI
 struct HopSkipped: View {
     let model: AppModel
     let session: HopSession
+    let hour: GateHour
     let skipsToday: Int
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
@@ -41,7 +42,7 @@ struct HopSkipped: View {
 
             VStack(spacing: PofuSpacing.s) {
                 SpeechBubble {
-                    Text(session.isNight ? "Goodnight. See you in the morning." : PofuLines.skipped(skipsToday))
+                    Text(isNight ? "Goodnight. See you in the morning." : PofuLines.skipped(skipsToday))
                 }
                 CompanionView(vitality: model.vitality, energy: model.cheekFill, celebrations: celebrations)
                     .frame(maxWidth: 240)
@@ -73,14 +74,14 @@ struct HopSkipped: View {
         }
         .task {
             // Night skips only smile; daytime skips hop (user flows).
-            if !session.isNight {
+            if !isNight {
                 celebrations += 1
             }
             ResistPayoffStore().markSeen(resisted: model.reachesToday.resisted)
             let run = ResistPayoffRun(payoff: ResistPayoff(resists: 1))
             payoffRun = run
             try? await Task.sleep(for: .seconds(ResistPayoff.feelAt))
-            if !session.isNight {
+            if !isNight {
                 PofuHaptics.shared.play(.resist)
                 SoundEngine.shared.play(.skipChime)
             }
@@ -94,6 +95,9 @@ struct HopSkipped: View {
             showsBeads = true
         }
     }
+
+    /// The hour the Hop shows decides, as on the decision screen.
+    private var isNight: Bool { HopQuestion.isNight(sessionIsBedtime: session.isNight, shownHourIsDark: hour.isDark) }
 
     /// Today's beads; the newest one drops in after a beat.
     private var visibleBeads: [ImpulseBead] {

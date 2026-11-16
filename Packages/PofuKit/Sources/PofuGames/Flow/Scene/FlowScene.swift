@@ -231,20 +231,30 @@ final class FlowScene: SKScene {
         spills = [:]
         hintNodes = []
 
-        let lip = SKShapeNode(rect: sceneRect(layout.lip), cornerRadius: 12)
-        lip.fillColor = FlowPalette.cliff
-        lip.strokeColor = FlowPalette.cliffDark
-        lip.lineWidth = 1.5
-        lip.zPosition = 1
-        container.addChild(lip)
-        var mossRect = sceneRect(layout.lip)
-        mossRect.origin.y += mossRect.height - 9
-        mossRect.size.height = 9
-        let moss = SKShapeNode(rect: mossRect.insetBy(dx: 6, dy: 0), cornerRadius: 4)
-        moss.fillColor = FlowPalette.moss
-        moss.strokeColor = .clear
-        moss.zPosition = 1.1
-        container.addChild(moss)
+        let lipRect = sceneRect(layout.lip)
+        if let lipTexture = textures.boardLip() {
+            // The painted lip (batch 131), stretched to the lip rect, whose spillway notch the backdrop's
+            // cascade pours through. Both ground methods.
+            let sprite = SKSpriteNode(texture: lipTexture, size: lipRect.size)
+            sprite.position = CGPoint(x: lipRect.midX, y: lipRect.midY)
+            sprite.zPosition = 1
+            container.addChild(sprite)
+        } else {
+            let lip = SKShapeNode(rect: lipRect, cornerRadius: 12)
+            lip.fillColor = FlowPalette.cliff
+            lip.strokeColor = FlowPalette.cliffDark
+            lip.lineWidth = 1.5
+            lip.zPosition = 1
+            container.addChild(lip)
+            var mossRect = lipRect
+            mossRect.origin.y += mossRect.height - 9
+            mossRect.size.height = 9
+            let moss = SKShapeNode(rect: mossRect.insetBy(dx: 6, dy: 0), cornerRadius: 4)
+            moss.fillColor = FlowPalette.moss
+            moss.strokeColor = .clear
+            moss.zPosition = 1.1
+            container.addChild(moss)
+        }
 
         let bankRect = sceneRect(layout.board).insetBy(dx: -6, dy: -6)
         if method == .lawn, let lawn = textures.lawn(size: bankRect.size) {

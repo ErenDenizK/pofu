@@ -1158,6 +1158,27 @@ def sky_bytes(island: str, light: str) -> int:
     return total
 
 
+def stations_data(island: str) -> dict:
+    """The `stations` block `tools/plate/station_looks.py json` wrote (looks and erased bases), or empty."""
+    f = PLATES / island / "stations.json"
+    return json.loads(f.read_text()).get("stations", {}) if f.exists() else {}
+
+
+def base_states(island: str) -> set[tuple[str, int]]:
+    return {(st["light"], s) for st in stations_data(island).values() for s in st.get("baseStages", [])}
+
+
+def station_bytes(island: str, light: str, stage: int) -> int:
+    """Texture px of a state's station layers: the erased base (it replaces the plate) and the two largest looks (the
+    one drawn and the one fading out of it when a level changes)."""
+    total = 0
+    for st in stations_data(island).values():
+        if st["light"] != light or stage not in st.get("baseStages", []):
+            continue
+        total += st.get("baseBytes", {}).get(str(stage), 0) + sum(sorted(st.get("lookBytes", []))[-2:])
+    return total
+
+
 def state_texture_bytes(island: str, hand: dict) -> dict[tuple[str, int], int]:
     """ASTC 4 x 4, one byte per pixel, per state, of what Home holds for it: the plate, the island cut and the
     occluders, and behind the plate either its backdrop (a state that ships the whole plate) or the sky set without
@@ -1167,6 +1188,9 @@ def state_texture_bytes(island: str, hand: dict) -> dict[tuple[str, int], int]:
         matted = plate_crop_points(island, hand, light, stage) is not None
         kinds = ("plate", "island", "occ") if matted else ("plate", "island", "backdrop", "occ")
         total = sky_bytes(island, light) if matted else 0
+        total += station_bytes(island, light, stage)
+        if (light, stage) in base_states(island):
+            kinds = tuple(k for k in kinds if k != "plate")      # the base is the plate there (`station_bytes` counts it)
         for folder in ASSETS.glob(f"world-{island}-*-{light}-{stage}.imageset"):
             # Only this tool's layers: a sky set's own (`world-<island>-sky-*`) are counted above, by `sky_bytes`.
             if not folder.name.startswith(tuple(f"world-{island}-{kind}-" for kind in kinds)):
@@ -1237,6 +1261,11 @@ def build_json(island: str, hand: dict, mattes: dict, maps: dict, harmony: dict 
         "shadowMap": {l: [maps[(l, s)][1] if (l, s) in maps else [] for s in range(stage_count(hand, l))] for l in lights},
         "textureBytes": texture_bytes(island, hand),
     }
+    stations = stations_data(island)
+    if stations:
+        # Looks and erased bases of the stations (`tools/plate/station_looks.py`): version 2.
+        data["version"] = 2
+        data["stations"] = stations
     if island in STRICT_MATTES:
         # Per light, per stage: the box the plate image covers (plate points), or null where the state ships the whole
         # plate over its backdrop (a legacy matte). A matted state draws the sky set behind the cropped plate.

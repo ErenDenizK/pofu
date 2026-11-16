@@ -174,6 +174,10 @@ public struct PlateIsland: Hashable, Sendable {
     /// (a legacy matte, or an island whose plates are not matted).
     public var plateCrops: [String: [PlateRect?]] = [:]
 
+    /// A station's painted looks, one per level, over an erased base (`tools/plate/station_looks.py`), by station id.
+    /// Empty for a plate whose data has none: its stations stay painted into the plate.
+    public var stations: [String: StationLooks] = [:]
+
     /// The cropped plate's box for a state, or `nil` where the state ships the whole plate (see `plateCrops`).
     public func plateCrop(light: String, stage: Int) -> PlateRect? {
         guard let crops = plateCrops[light], crops.indices.contains(stage) else { return nil }
@@ -211,6 +215,23 @@ public struct PlateIsland: Hashable, Sendable {
     /// The plate's sky and cloud sea, extended.
     public func backdropArt(light: String, stage: Int) -> String {
         "world-\(island)-backdrop-\(light)-\(stage)"
+    }
+
+    /// What the plate draws as its picture in a state: the base (the plate with its stations erased) where a station's
+    /// looks stand over one, else the plate. The painted plate itself (`plateArt`) stays the painting other surfaces show.
+    public func drawnPlateArt(light: String, stage: Int) -> String {
+        stationLooks(light: light, stage: stage).isEmpty ? plateArt(light: light, stage: stage) : "world-\(island)-base-\(light)-\(stage)"
+    }
+
+    /// The looks that stand over this state's base: empty where the state keeps its painted stations.
+    public func stationLooks(light: String, stage: Int) -> [String: StationLooks] {
+        stations.filter { $0.value.hasBase(light: light, stage: stage) }
+    }
+
+    /// A station's look asset for its level (`StationLooks.lookLevel`), or `nil`: unbuilt, or no base in this state.
+    public func lookArt(station: String, level: Int, light: String, stage: Int) -> String? {
+        guard let looks = stations[station], looks.hasBase(light: light, stage: stage), let n = looks.lookLevel(stationLevel: level) else { return nil }
+        return "world-\(island)-look-\(station)-\(n)-\(looks.light)"
     }
 
     public func occluderArt(id: String, light: String, stage: Int) -> String {
@@ -272,6 +293,29 @@ public struct PlateIsland: Hashable, Sendable {
     }
 }
 
+/// One station's looks (`tools/plate/station_looks.py`): level 1 to `levels`, one asset each, every look on one canvas
+/// (`box`, plate points) with one foot anchor, over the erased base the `baseStages` of its light have.
+public struct StationLooks: Hashable, Sendable {
+    public var light: String
+    public var levels: Int
+    /// The look canvas, in plate points; the same for every look and every base stage.
+    public var box: PlateRect
+    /// The point of the plate the look's foot stands on (the canvas is placed by it).
+    public var foot: PlatePoint
+    /// The stages of `light` whose plate has this station erased (the others keep it painted).
+    public var baseStages: [Int]
+
+    public func hasBase(light: String, stage: Int) -> Bool {
+        light == self.light && baseStages.contains(stage)
+    }
+
+    /// The look a station level draws: level to look 1 to 1, `nil` while unbuilt (level 0), a level above the
+    /// last look keeps the last.
+    public func lookLevel(stationLevel: Int) -> Int? {
+        stationLevel >= 1 && levels >= 1 ? min(stationLevel, levels) : nil
+    }
+}
+
 /// An island's contact shadow: an ellipse (`centre`, `radii`, plate pixels) softened by `blur` and drawn at `opacity`
 /// in a dark sky tone (`island_shadow` in tools/proof/island_matte.py).
 /// One home prop's painted size and its slots (`tools/plate/props_slice.py`). `height` and `width` are plate pts of
@@ -326,7 +370,7 @@ public struct PlateShadow: Decodable, Hashable, Sendable {
 extension PlateIsland: Decodable {
     private enum Keys: String, CodingKey {
         case island, version, standIn, minLevel, plateSize, stages, lights, lightStages, painted, stageLevels, harmony, islandBox, backdropBox, objects
-        case walkable, characters, pofuWidth, residentBoost, residentBoosts, lamps, lampHeight, framing, lightDirection, lightMap, shadowMap, textureBytes, shadow, plateCrop, props
+        case walkable, characters, pofuWidth, residentBoost, residentBoosts, lamps, lampHeight, framing, lightDirection, lightMap, shadowMap, textureBytes, shadow, plateCrop, props, stations
     }
 
     public init(from decoder: Decoder) throws {
@@ -377,6 +421,7 @@ extension PlateIsland: Decodable {
         textureBytes = try c.decodeIfPresent(Int.self, forKey: .textureBytes) ?? 0
         shadows = try c.decodeIfPresent([PlateShadow].self, forKey: .shadow) ?? []
         props = try c.decodeIfPresent([PlateProp].self, forKey: .props) ?? []
+        stations = try (c.decodeIfPresent([String: RawStation].self, forKey: .stations) ?? [:]).compactMapValues(\.looks)
         plateCrops = try (c.decodeIfPresent([String: [[Double]?]].self, forKey: .plateCrop) ?? [:]).mapValues { boxes in
             try boxes.map { try $0.map(Self.rect) }
         }
@@ -399,6 +444,23 @@ extension PlateIsland: Decodable {
                 return PofuRGB(red: v[0], green: v[1], blue: v[2])
             }
             return Harmony(tint: rgb(tint), contact: contact, key: rgb(key), rim: rim ?? 0, fill: fill ?? 0, pool: pool ?? 0, bounce: bounce ?? 0, scale: scale ?? [:], saturation: saturation ?? 1)
+        }
+    }
+
+    private struct RawStation: Decodable {
+        var light: String
+        var levels: Int
+        var box: [Double]
+        var foot: [Double]
+        var baseStages: [Int]
+
+        var looks: StationLooks? {
+            guard box.count == 4, foot.count == 2 else { return nil }
+            return StationLooks(
+                light: light, levels: levels,
+                box: PlateRect(minX: box[0], minY: box[1], maxX: box[2], maxY: box[3]),
+                foot: PlatePoint(x: foot[0], y: foot[1]), baseStages: baseStages
+            )
         }
     }
 

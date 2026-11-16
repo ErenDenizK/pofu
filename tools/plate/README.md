@@ -140,3 +140,16 @@ onnxruntime` (CPU, no torch). Weights (5 MB) download on first run to `~/.cache/
 Licence: Real-ESRGAN is BSD-3-Clause (code and weights, commercial use allowed); ONNX exports are
 third-party Hugging Face re-hosts of the same weights (see the research note for the caveat). Time: ~18 s
 for a 1536 x 1024 plate to 3072 x 2048 on 4 CPU cores (anime6b, not recommended: outlines, ~98 s).
+
+## Station looks and erased bases (`station_looks.py`)
+
+A station's level shows on Home because a state with an erased *base* (`world-home-base-<light>-<stage>`, the shipped
+plate with the stall painted out) draws the station's *look* for its level over it (`world-home-look-<station>-<level>-<light>`,
+level to look 1 to 1, one canvas and one foot anchor). `python3 tools/plate/station_looks.py all` rebuilds the looks from
+the lead's picks in each job's `review.yaml` (batch 123), the base from batch 117's pick, `design/art/plates/home/stations.json`
+(read by `ingest.py json`, which writes `stations` and `version` 2 into `plate-home.json`) and counts both in the texture
+budget. It also rewrites the stage's island cut and Map cut (`world-home-island-day-7`, `world-home-mapisle-day-7`) from
+the base: **do not run `map_cut.py` over day stage 7 afterwards** without `station_looks.py bases` after it.
+Only day stage 7 (island level 3) has a base so far: other stages paint a different stall (position, size, a tile roof
+at levels 6 to 10), their erase takes also remove the workshop, the beehive and the garden, and level 8's job has no pick.
+Those states keep their painted stall; night and golden have no looks yet.

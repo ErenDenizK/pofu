@@ -8,6 +8,12 @@ public enum HopQuestion: Equatable, Sendable {
     case quickCheckIn
     case intent
 
+    /// Whether the Hop shows night: a bedtime session on a dark screen. Every Hop surface (the line,
+    /// the skip outcome, the breath) reads this one rule, never the raw bedtime flag.
+    public static func isNight(sessionIsBedtime: Bool, shownHourIsDark: Bool) -> Bool {
+        sessionIsBedtime && shownHourIsDark
+    }
+
     /// - Parameters:
     ///   - sessionIsBedtime: the Hop session was opened inside the bedtime window.
     ///   - shownHourIsDark: the hour the screen is painted for is night. Bedtime always paints night, so
@@ -18,7 +24,7 @@ public enum HopQuestion: Equatable, Sendable {
         rung: FrictionRung,
         isPastDailyHour: Bool
     ) -> HopQuestion {
-        if sessionIsBedtime && shownHourIsDark { return .late }
+        if isNight(sessionIsBedtime: sessionIsBedtime, shownHourIsDark: shownHourIsDark) { return .late }
         switch rung {
         case .pause: return isPastDailyHour ? .oneBreath : .quickCheckIn
         case .intent: return .intent

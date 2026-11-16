@@ -429,6 +429,16 @@ public struct HomePlate: Hashable, Sendable {
         )
     }
 
+    /// The levels of the Home island's stations in a world, what the looks are drawn from.
+    public static func stationLevels(_ world: WorldSnapshot) -> [StationID: Int] {
+        Dictionary(world.stations.filter { $0.island == .home }.map { ($0.id, $0.level) }, uniquingKeysWith: max)
+    }
+
+    /// A station's look canvas and foot, in world units, or `nil` for a station without looks.
+    public func lookFrame(_ station: String) -> (box: WorldBox, foot: WorldPoint)? {
+        plate.stations[station].map { (worldBox($0.box), world($0.foot)) }
+    }
+
     /// An occluder's cut-out box, in world units.
     public func occluderBox(_ object: PlateIsland.Object) -> WorldBox {
         worldBox(object.box ?? PlateMath.bounds(object.polygon))
