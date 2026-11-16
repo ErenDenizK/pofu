@@ -58,12 +58,13 @@ struct BreathRoom: View {
         _lift = State(initialValue: frozen?.lift ?? 0)
     }
 
-    private var isNight: Bool { session.isNight }
+    /// The hour the Hop shows decides, as on the decision screen.
+    private var isNight: Bool { HopQuestion.isNight(sessionIsBedtime: session.isNight, shownHourIsDark: postcard.isDark) }
 
     /// The gate's postcard under the breath: the hour's own painted lawn,
     /// the night one at bedtime. The ring and Pofu stand on its ground.
     private var postcard: GateHour {
-        hour ?? GateHour(date: model.now, isBedtime: isNight, mist: model.isMistMorning)
+        hour ?? GateHour(date: model.now, isBedtime: session.isNight, mist: model.isMistMorning)
     }
 
     private var ringScene: some View {

@@ -63,7 +63,7 @@ private struct HopContent: View {
                         .transition(.opacity)
                 }
             case .skipped(let skipsToday):
-                HopSkipped(model: model, session: session, skipsToday: skipsToday)
+                HopSkipped(model: model, session: session, hour: hour, skipsToday: skipsToday)
                     .transition(.opacity)
             case .handoff(let pass):
                 HopHandoff(model: model, session: session, pass: pass)
@@ -85,7 +85,7 @@ private struct HopDecision: View {
     let hour: GateHour
 
     /// Bedtime, as the screen shows it: a bedtime session paints night, so the two agree on a device.
-    private var isNight: Bool { session.isNight && hour.isDark }
+    private var isNight: Bool { HopQuestion.isNight(sessionIsBedtime: session.isNight, shownHourIsDark: hour.isDark) }
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @AccessibilityFocusState private var skipFocused: Bool

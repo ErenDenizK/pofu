@@ -18,4 +18,10 @@ struct HopQuestionTests {
     @Test func bedtimeOnANightScreenIsLate() {
         #expect(HopQuestion.choose(sessionIsBedtime: true, shownHourIsDark: true, rung: .pause, isPastDailyHour: false) == .late)
     }
+
+    @Test func shownNightNeedsBothBedtimeAndADarkScreen() {
+        #expect(HopQuestion.isNight(sessionIsBedtime: true, shownHourIsDark: true))
+        #expect(!HopQuestion.isNight(sessionIsBedtime: true, shownHourIsDark: false))
+        #expect(!HopQuestion.isNight(sessionIsBedtime: false, shownHourIsDark: true))
+    }
 }
