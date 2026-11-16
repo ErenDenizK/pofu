@@ -176,7 +176,10 @@ public struct IslandScene<Bubble: View>: View {
                 }
             )
             .simultaneousGesture(
-                TapGesture(count: 2).onEnded { model.stepIn() }
+                // A double tap on a character rests near on him; elsewhere one framing in (ADR-0027).
+                SpatialTapGesture(count: 2).onEnded { value in
+                    model.doubleTapped(x: Double(value.location.x), y: Double(value.location.y))
+                }
             )
             .simultaneousGesture(
                 MagnifyGesture(minimumScaleDelta: 0.01)
@@ -217,7 +220,7 @@ public struct IslandScene<Bubble: View>: View {
                         touching = false
                         model.touchEnded(x: Double(value.location.x), y: Double(value.location.y), at: now)
                         if dragging {
-                            model.peekEnded(velocityX: Double(value.velocity.width))
+                            model.peekEnded(velocityX: Double(value.velocity.width), velocityY: Double(value.velocity.height))
                             model.endBrush()
                         }
                         dragging = false
@@ -520,7 +523,7 @@ private struct SceneFrame<Bubble: View>: View {
 
     var body: some View {
         let pose = rig.pose
-        let z = rig.railPosition
+        let z = rig.layerPosition
         // Depth in motion (HD-2D): while the camera moves, layers parallax
         // by depth and the depth of field strengthens; both settle to zero.
         // The painted home plate (ADR-0022) is the final picture: no grade,

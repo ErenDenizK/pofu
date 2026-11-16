@@ -13,7 +13,7 @@ import XCTest
 ///
 /// - `world-target-map-1200`: the Map framing;
 /// - `world-target-mid-1200`: the Home framing with its chrome;
-/// - `world-target-near-1200`: Home at the pinch limit (the rail's band past Home).
+/// - `world-target-near-1200`: near at rest on Pofu (ADR-0027).
 final class WorldTargetScreenshotTests: XCTestCase {
     private let clock = Date(timeIntervalSinceReferenceDate: 815_000_000)
 
@@ -56,14 +56,12 @@ final class WorldTargetScreenshotTests: XCTestCase {
         try write(try await render(AnyView(mapView), scene: scene, settle: 1400, before: { XCTAssertNotNil(map.homePlate) }), name: "world-target-map-1200", to: folder)
 
         // Mid: Home with the real chrome.
-        let mid = IslandSceneModel(framing: .home)
+        let mid = IslandSceneModel(framing: .mid)
         try write(try await render(homeView(snapshot, mid), scene: scene, settle: 2100, before: {}), name: "world-target-mid-1200", to: folder)
 
-        // Near: the pinch limit, one rail band past Home.
-        let near = IslandSceneModel(framing: .home)
-        let rail = CameraRail()
-        let z = rail.z(logScale: rail.pose(of: .home).logScale + CameraRail.bandIn)
-        try write(try await render(homeView(snapshot, near), scene: scene, settle: 2100, before: { near.holdRail(z: z) }), name: "world-target-near-1200", to: folder)
+        // Near: rest on Pofu (ADR-0027), his feet at 0.60 of the height; the back control alone.
+        let near = IslandSceneModel(framing: .mid)
+        try write(try await render(homeView(snapshot, near), scene: scene, settle: 2100, before: { near.holdNearRest() }), name: "world-target-near-1200", to: folder)
     }
 
     @MainActor

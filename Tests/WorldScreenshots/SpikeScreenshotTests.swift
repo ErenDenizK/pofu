@@ -54,7 +54,7 @@ final class SpikeScreenshotTests: XCTestCase {
         // the stall, Mochi and Pofu share the frame.
         let pan = shots.filter { !$0.0.hasPrefix("spike-debug") }.map { ($0.0 + "-pan", $0.1) }
         for (name, look) in shots + pan {
-            let model = IslandSceneModel(framing: name.hasSuffix("-pan") ? .island : .home)
+            let model = IslandSceneModel(framing: .mid)
             if name.hasSuffix("-pan") {
                 model.holdPan(start: 0, velocity: -1100, at: 2.0)
             }

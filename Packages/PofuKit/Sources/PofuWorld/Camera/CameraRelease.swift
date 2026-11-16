@@ -1,8 +1,9 @@
 import Foundation
 
-/// Where a pinch lands when the fingers lift (interaction spec §1.3):
-/// project the scale forward by its velocity, pick the nearest framing,
-/// and hand the velocity to the landing spring, like a sheet's detents.
+/// Where a pinch lands when the fingers lift (ADR-0027): project the scale forward by its
+/// velocity; below z 0.5 it lands on the Map, from 0.5 to 1.12 on mid, and above 1.12 it
+/// stays in near's free range (at the projected position, inside the limit). The velocity
+/// goes to the landing spring, like a sheet's detents.
 public enum CameraRelease {
     /// Seconds of travel the release projects forward.
     public static let projectionTime = 0.18
@@ -14,6 +15,8 @@ public enum CameraRelease {
     public struct Landing: Hashable, Sendable {
         /// The framing the camera springs to.
         public var framing: WorldFraming
+        /// The rail position it springs to: the framing's stop, or where near stays.
+        public var z: Double
         /// The projected rail position the framing was picked from.
         public var projectedZ: Double
         /// The spring's starting velocity along the rail (z per second).
@@ -43,18 +46,21 @@ public enum CameraRelease {
 
     public static func landing(logScale: Double, velocity: Double, idle: TimeInterval, rail: CameraRail) -> Landing {
         let z = rail.z(logScale: logScale)
-        // In a band: the end framing, with the velocity zeroed so the
-        // camera never bounces back past a hard end.
-        if z > WorldFraming.home.z {
-            return Landing(framing: .home, projectedZ: z, velocityZ: 0, fromBand: true)
+        // In a band: the end, with the velocity zeroed so the camera never
+        // bounces back past a hard end.
+        if z > WorldFraming.near.z {
+            return Landing(framing: .near, z: WorldFraming.near.z, projectedZ: z, velocityZ: 0, fromBand: true)
         }
         if z < WorldFraming.map.z {
-            return Landing(framing: .map, projectedZ: z, velocityZ: 0, fromBand: true)
+            return Landing(framing: .map, z: WorldFraming.map.z, projectedZ: z, velocityZ: 0, fromBand: true)
         }
         let v = effectiveVelocity(velocity, idle: idle)
         let projected = projectedZ(logScale: logScale, velocity: velocity, idle: idle, rail: rail)
+        let framing = WorldFraming.nearest(to: projected)
+        let target = framing == .near ? min(max(projected, WorldFraming.nearAboveZ), WorldFraming.near.z) : framing.z
         return Landing(
-            framing: WorldFraming.nearest(to: projected),
+            framing: framing,
+            z: target,
             projectedZ: projected,
             velocityZ: v * rail.zPerLogScale(at: z),
             fromBand: false

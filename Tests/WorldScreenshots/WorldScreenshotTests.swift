@@ -104,12 +104,12 @@ final class WorldScreenshotTests: XCTestCase {
             case .homeVisit, .homeSettled, .homeCrafted, .homeAX3, .island, .map:
                 try await Task.sleep(for: .milliseconds(500))
             case .propsZoom:
-                island.holdRail(z: 1.9)
+                island.holdRail(z: 1.05)
                 try await Task.sleep(for: .milliseconds(900))
                 for prop in HomeSlots.Prop.allCases {
                     let anchor = island.screenPoint(of: prop.slot)
                     let frame = try XCTUnwrap(island.propFrames[prop], "\(prop) was not drawn")
-                    XCTAssertEqual(Double(frame.midX), anchor.x, accuracy: 1, "\(prop) x at z 1.9")
+                    XCTAssertEqual(Double(frame.midX), anchor.x, accuracy: 1, "\(prop) x at z 1.05")
                     XCTAssertEqual(Double(frame.midY), anchor.y, accuracy: 1, "\(prop) y at z 1.9")
                 }
             case .collectPaws, .collectFlight:

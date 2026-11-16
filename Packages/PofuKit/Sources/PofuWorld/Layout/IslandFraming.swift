@@ -248,6 +248,17 @@ public enum IslandFraming {
         IslandLayout.residents.map(residentBox)
     }
 
+    /// Mid (ADR-0027) for the sprite island: its box fitted to `CameraRail.midFitWidth`, the box
+    /// centre on row `CameraRail.midCentreY`, both scaled to the screen.
+    public static func midStop(width: Double, height: Double) -> CameraRail.Stop {
+        let box = islandBox
+        return CameraRail.Stop(
+            scale: CameraRail.midFitWidth / max(box.width, 1),
+            look: WorldPoint(x: box.midX, y: box.midY),
+            anchorY: CameraRail.midCentreY
+        )
+    }
+
     /// Home: Pofu at ×2.4 with his feet at `homeFeetY`, nudged sideways at
     /// most a quarter of the width so no resident is cut by an edge.
     public static func homeStop(width: Double = CameraRail.referenceWidth) -> CameraRail.Stop {

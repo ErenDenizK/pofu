@@ -62,25 +62,25 @@ final class MotionBeatTests: XCTestCase {
     private func beats() -> [Beat] {
         [
             Beat(name: "01-home-idle", title: "Home idle, 5 s") {
-                let stage = BeatWorld(framing: .home, settled: true)
+                let stage = BeatWorld(framing: .mid, settled: true)
                 let script: Script = {
                     try await Task.sleep(for: .seconds(5))
                 }
                 return (AnyView(stage.view), script)
             },
             Beat(name: "02-home-to-island", title: "Home to Island and back") {
-                let stage = BeatWorld(framing: .home, settled: true)
+                let stage = BeatWorld(framing: .mid, settled: true)
                 let script: Script = {
                     try await Task.sleep(for: .milliseconds(600))
-                    stage.island.go(to: .island)
+                    stage.island.go(to: .near)
                     try await Task.sleep(for: .milliseconds(3000))
-                    stage.island.go(to: .home)
+                    stage.island.go(to: .mid)
                     try await Task.sleep(for: .milliseconds(2800))
                 }
                 return (AnyView(stage.view), script)
             },
             Beat(name: "03-collect", title: "Collect the seeds") {
-                let stage = BeatWorld(framing: .home, settled: false)
+                let stage = BeatWorld(framing: .mid, settled: false)
                 let script: Script = {
                     try await Task.sleep(for: .milliseconds(700))
                     stage.collect()
@@ -89,7 +89,7 @@ final class MotionBeatTests: XCTestCase {
                 return (AnyView(stage.view), script)
             },
             Beat(name: "04-build", title: "Build a level") {
-                let stage = BeatWorld(framing: .island, settled: false, collected: true)
+                let stage = BeatWorld(framing: .mid, settled: false, collected: true)
                 let script: Script = {
                     try await Task.sleep(for: .milliseconds(500))
                     let station = stage.world.buildableStation ?? .teaStall
@@ -101,7 +101,7 @@ final class MotionBeatTests: XCTestCase {
                 return (AnyView(stage.view), script)
             },
             Beat(name: "06-island-pan", title: "Arrive at the island, pan, flick, snap") {
-                let stage = BeatWorld(framing: .island, settled: true)
+                let stage = BeatWorld(framing: .mid, settled: true)
                 let island = stage.island
                 // A finger dragging `distance` points over `seconds`, then
                 // lifting at `velocity` points a second.

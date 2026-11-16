@@ -41,14 +41,14 @@ final class PaintedSkyScreenshotTests: XCTestCase {
             ("koke-sky-s4-night", 4, 23, true),
         ]
         for shot in koke {
-            let model = IslandSceneModel(framing: .island)
+            let model = IslandSceneModel(framing: .mid)
             model.holdIsle(.koke)
             let status = WonderStatus(phase: .arrived, stage: shot.stage, canAdvance: shot.stage < 4)
             let image = try await render(IslandScene(world: world(koke: status, bedtime: shot.bedtime), model: model), look: look(shot.hour), in: scene)
             try write(image, name: shot.name, to: folder)
         }
 
-        let rumour = IslandSceneModel(framing: .island)
+        let rumour = IslandSceneModel(framing: .mid)
         rumour.holdIsle(.harbor)
         rumour.koke.show(.rumour)
         try write(
@@ -79,7 +79,7 @@ final class PaintedSkyScreenshotTests: XCTestCase {
             wellbeing: 84
         )
         world.nextIslandLevel = IslandLevelRequirement(level: 6, tendedDaysLeft: 0, levelsLeft: 2)
-        let island = IslandSceneModel(framing: .home)
+        let island = IslandSceneModel(framing: .mid)
         let home = WorldHomeModel(now: { now }, schedulesCues: false)
         let inputs = VisitInputs(now: now, world: world, lastSettled: now.addingTimeInterval(-5 * 60), calendar: .current)
         home.beginVisit(VisitQueue.plan(inputs))

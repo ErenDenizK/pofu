@@ -41,7 +41,7 @@ final class RehearsalScreenshotTests: XCTestCase {
                 "07-prova-panel-light",
                 AnyView(
                     ZStack {
-                        IslandScene(world: IslandSamples.dayThree(), model: IslandSceneModel(framing: .home)) {
+                        IslandScene(world: IslandSamples.dayThree(), model: IslandSceneModel(framing: .mid)) {
                             SpeechBubble {
                                 Text(verbatim: "Sen yokken ada 12 çekirdek topladı.")
                             }
@@ -54,7 +54,7 @@ final class RehearsalScreenshotTests: XCTestCase {
                 "08-tuning-lab-panel-light",
                 AnyView(
                     ZStack {
-                        IslandScene(world: IslandSamples.dayThree(), model: IslandSceneModel(framing: .home)) {
+                        IslandScene(world: IslandSamples.dayThree(), model: IslandSceneModel(framing: .mid)) {
                             EmptyView()
                         }
                         TuningLabPanel(model: model, store: TuningLab.store, session: TuningLab.session)

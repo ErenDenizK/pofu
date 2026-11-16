@@ -205,7 +205,7 @@ struct HomeView: View {
 
     /// The Today card and the actions belong to the Home framing.
     private var showsHomeChrome: Bool {
-        !FeatureFlags.islandHome || (model.island.framing == .home && model.island.focus == nil)
+        !FeatureFlags.islandHome || (model.island.framing == .mid && model.island.island == .home && model.island.focus == nil)
     }
 
     private var topBar: some View {

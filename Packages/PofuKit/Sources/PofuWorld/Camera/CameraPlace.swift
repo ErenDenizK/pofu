@@ -20,8 +20,8 @@ public struct CameraPlace: Hashable, Sendable {
 }
 
 /// The three stops of the one camera, named for the player (§1.1). They
-/// map one to one onto `WorldFraming`: Close is Home, Archipelago is the
-/// Map.
+/// map one to one onto `WorldFraming` (ADR-0027): Archipelago is the Map,
+/// Island is mid (Home's stop, the whole island), Close is near.
 public enum PlaceStop: Int, CaseIterable, Hashable, Sendable {
     case archipelago = 0
     case island = 1
@@ -32,7 +32,7 @@ public enum PlaceStop: Int, CaseIterable, Hashable, Sendable {
     }
 
     public var framing: WorldFraming {
-        WorldFraming(rawValue: rawValue) ?? .island
+        WorldFraming(rawValue: rawValue) ?? .mid
     }
 
     /// What the one control shows at this stop: where a tap goes next.
@@ -45,12 +45,12 @@ public enum PlaceStop: Int, CaseIterable, Hashable, Sendable {
     }
 
     /// Where a tap on the one control goes: out one stop, and from the
-    /// Archipelago home to Pofu.
+    /// Archipelago home (mid, ADR-0027).
     public var controlTarget: PlaceStop {
         switch self {
         case .close: .island
         case .island: .archipelago
-        case .archipelago: .close
+        case .archipelago: .island
         }
     }
 }
