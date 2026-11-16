@@ -21,18 +21,19 @@ struct SkySetTests {
         #expect(HomePlate(plate: plate.plate, light: "golden", stage: 0).skySet != nil)
         #expect(HomePlate(plate: plate.plate, light: "night", stage: 0).skySet != nil)
         // One sky at every level: a matted lower level draws the same light's set behind its plate; a state that keeps
-        // its old matte (night level 9) keeps its plate and backdrop.
+        // its old matte (night level 2) keeps its plate and backdrop.
         #expect(HomePlate(plate: plate.plate, light: "day", stage: 1).skySet?.light == "day")
         #expect(HomePlate(plate: plate.plate, light: "day", stage: 8).skySet?.light == "day")
         #expect(HomePlate(plate: plate.plate, light: "night", stage: 5).skySet?.light == "night")
-        #expect(HomePlate(plate: plate.plate, light: "night", stage: 1).skySet == nil)
+        #expect(HomePlate(plate: plate.plate, light: "night", stage: 1).skySet?.light == "night")
+        #expect(HomePlate(plate: plate.plate, light: "night", stage: 8).skySet == nil)
     }
 
     /// The file's `k` per layer, and a role's default when a file states none (v2 section 2).
     @Test func kDecodesWithRoleDefaults() throws {
         let expected: [String: Double] = [
             "sky": 0, "moon": 0, "stars0": 0, "stars1": 0, "stars2": 0, "far": 0.05, "isle_falls": 0.25, "isle_house": 0.25,
-            "isle_dome": 0.25, "isle_crystal": 0.25, "whale": 0.35, "mid": 0.45, "sea": 0.85, "island": 1,
+            "isle_dome": 0.25, "isle_crystal": 0.25, "whale": 0.35, "mid": 0.45, "sea": 0.85, "bank": 1, "island": 1,
         ]
         for light in Self.lights {
             for layer in try sky(light).layers {
