@@ -35,13 +35,15 @@ Large job now: world presentation (spec #474); glass UI stays.
    Queue now: 132, then Standing S1 (129 looks), S2 (126 v2/v3).
    Founder picks owed: flow A/B, 122 far camera.
 5. WP9 cloud floor + life (builder Sonnet, `feat/cloud-floor-life`), 126 forms.
-Merged: #475-#489; pofu-art #81, #91-#106.
+6. N6 upgrade proof #493: passes at near and mid, not the Map (Fable).
+   129's six unrun jobs step outside the outline (pofu-art #108). WP8
+   looks data (builder Sonnet, `feat/station-looks-data`), tea stall first.
+Merged: #475-#489; pofu-art #81, #91-#108.
 
 ## Next steps, in order (night plan)
 
-2. WP8 looks data from 123's picks (grade at ingest); stall in front of cart.
-3. WP8 after the N6 upgrade proof; A2 WP7 rail.
-4. Open: sheets glass/paper, first screens; A9 art backlog; §8.6 pass.
+1. A2 WP7 rail; then WP10 compositor (needs WP5, WP7, WP8).
+2. Open: sheets glass/paper, first screens; A9 art backlog; §8.6 pass.
 
 ## Desks
 
