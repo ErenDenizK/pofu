@@ -464,10 +464,11 @@ struct ContactPad: View {
             if near > 0.01 {
                 Ellipse()
                     .fill(core)
-                    .frame(width: CGFloat(width * 0.82), height: CGFloat(width * 0.12))
-                    .blur(radius: CGFloat(max(width * 0.035, 0.5)))
-                    .opacity(min(0.7 * near * light.contact, 1))
-                    .offset(y: CGFloat(width * 0.012))
+                    .frame(width: CGFloat(width * 0.8), height: CGFloat(width * 0.14))
+                    .blur(radius: CGFloat(max(width * 0.03, 0.5)))
+                    .opacity(min(0.85 * near * max(light.contact, 0.8), 1))
+                    // Centred on the feet's line (the pad stands one unit above it), so its lower half shows.
+                    .offset(y: CGFloat(width * 0.036))
                     .blendMode(.multiply)
             }
         }

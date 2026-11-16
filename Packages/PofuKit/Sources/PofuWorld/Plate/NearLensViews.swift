@@ -155,6 +155,20 @@ struct NearLensLevels: ViewModifier {
         Group {
             if let frame, frame.levels != [0], WorldShaders.isAvailable, let depth = NearDepthTexture.cached(plate) ?? self.depth {
                 levels(content, frame: frame, depth: depth)
+            } else if WorldShaders.isAvailable, let depth = self.depth {
+                // Before the camera comes close the level shader runs once on a few transparent points, so
+                // its pipeline is built at mid and the first near frame does not stall on it.
+                content.overlay(alignment: .topLeading) {
+                    ZStack {
+                        Color.white
+                        Color.white.blendMode(.plusLighter)
+                    }
+                    .frame(width: 4, height: 4)
+                    .blur(radius: 2)
+                    .colorEffect(WorldShaders.lensLevel(1, frame: .warmUp, depth: depth, plateSize: CGSize(width: 4, height: 4), shift: 0))
+                    .allowsHitTesting(false)
+                    .accessibilityHidden(true)
+                }
             } else {
                 content
             }
@@ -184,6 +198,15 @@ struct NearLensLevels: ViewModifier {
         .frame(width: size.width, height: size.height, alignment: .topLeading)
         .compositingGroup()
     }
+}
+
+extension NearLensFrame {
+    /// A lens that blurs nothing (every level-1 weight is 0): the shader's warm-up.
+    static let warmUp = NearLensFrame(
+        lens: ThinLens(scale: 1, aperture: 0, focusRow: 0, unitsPerPixel: 1),
+        originX: 0, originY: 0, pointsPerPixel: 1, lipRow: 0, range: 0...0,
+        plateOrigin: PlatePoint(x: 0, y: 0), unitsPerPixel: 1
+    )
 }
 
 extension View {
