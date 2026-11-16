@@ -24,8 +24,8 @@ Large job now: world presentation (spec #474); glass UI stays.
 ## In flight
 
 1. Builders: WP7 rail + ADR-0027 (Opus, `feat/rail-mid-near`); 128 duo
-   icons (Sonnet, `feat/duo-icons-128`). WP5 props #492: lead merged main
-   in + ingest keeps props; 4th push in CI, then merge.
+   icons #496 in CI (breath stays old glyph). WP5 props merged (#492): jar,
+   pots, lantern on painted Home; ingest keeps props.
 2. Merged today: #480 mattes + one sky (night L1/L2 legacy); #488 Hop hour;
    #489 flow rocks + lip (edge waits on Codex 132); #493 N6 proof; #494
    tea stall looks, day stage 7 only. Follow-up: other stages paint a
@@ -38,7 +38,7 @@ Large job now: world presentation (spec #474); glass UI stays.
 4. Codex: 127, 128, 130, 131 reviewed and merged; 129 edited so each look
    steps outside the last outline (pofu-art #108). Queue: 132, 133 cloud floor, then S1
    (129 looks), S2 (126 v2/v3). 128 drop and star need an edit.
-Merged: #475-#489, #491, #493, #494; pofu-art #81, #91-#109.
+Merged: #475-#489, #491-#494; pofu-art #81, #91-#109.
 
 ## Next steps, in order (night plan)
 
@@ -49,7 +49,7 @@ Merged: #475-#489, #491, #493, #494; pofu-art #81, #91-#109.
 
 | Desk | Where it stands | Waits on |
 |---|---|---|
-| Game | tea stall levels show (stage 7); props back in #492 | WP8 stages |
+| Game | tea stall levels show (stage 7); props back (#492) | WP8 stages |
 | Look | one painted world: Home, the Map, flights, Koke, Çağlayan, visitors | Wave 0 |
 | Art factory | 132, 133, then S1 looks, S2 clouds | reviews |
 | App | paused until after the demo | the demo |
