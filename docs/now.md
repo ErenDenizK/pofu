@@ -35,9 +35,8 @@ chooses to (days 1-21); no dates (11-14). Now: world presentation (#474).
    WP11 near lens merged (#502; pinch at 120 Hz: device check).
    WP13 water merged (#505; #504 closed): the pond moves at Ambient, island
    flattened before the lens. Left: falls, sway mask; device frame time.
-3. Merged 11-16: #480 one sky, #488 Hop hour, #489 flow rocks + lip, #491
-   cloud floor, #492 props, #493 N6, #494 + #497 tea stall looks, #495
-   rail (Home mid, free near), #496 icons, #498 beds + back, #501 games.
+3. Merged 11-16: #480 sky, #488, #489 flow, #491 cloud floor, #492 props,
+   #493 N6, #494-#498 tea stall, rail, icons, beds; #501 games, #505 pond.
 4. UI grammar #490 open (docs), waits on his answers with #503.
 5. Codex: 132, 133, 135, 126 v2 merged (cloud fit: crossfade floor-mid,
    grade the warm kit only, Koke keeps bed-round v1). Flow fit builder on
