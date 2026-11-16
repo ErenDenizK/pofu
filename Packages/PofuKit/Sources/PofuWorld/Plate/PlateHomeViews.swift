@@ -129,8 +129,21 @@ struct PlateHomeLayer: View {
                     if fade < 0.999, farPictureIsSharp(plate) {
                         FarPicture(compositor: compositor, pose: pose, size: size, offset: offset)
                     } else {
-                        CompositeIsland(compositor: compositor, build: build, pose: pose, size: size, offset: offset, water: water)
-                            .modifier(NearLensLevels(frame: nearLens, plate: plate, size: size))
+                        ZStack(alignment: .topLeading) {
+                            let island = CompositeIsland(compositor: compositor, build: build, pose: pose, size: size, offset: offset, water: water)
+                            switch water?.variant ?? 0 {
+                            case 1:
+                                island.drawingGroup().modifier(NearLensLevels(frame: nearLens, plate: plate, size: size))
+                            case 2:
+                                island.compositingGroup().modifier(NearLensLevels(frame: nearLens, plate: plate, size: size))
+                            default:
+                                island.modifier(NearLensLevels(frame: nearLens, plate: plate, size: size))
+                            }
+                            if let water, water.variant == 3 {
+                                WaterPatches(plate: plate, frame: water, pose: pose, size: size, offset: offset)
+                            }
+                        }
+                        .frame(width: size.width, height: size.height, alignment: .topLeading)
                             .task(id: compositor.snapshotKey) {
                                 // The far picture is ready before the camera rises: rendered once the state rests.
                                 try? await Task.sleep(for: .milliseconds(600))

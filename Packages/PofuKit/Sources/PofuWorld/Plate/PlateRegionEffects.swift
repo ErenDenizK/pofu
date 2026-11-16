@@ -144,6 +144,8 @@ extension EnvironmentValues {
     @Entry public var worldWaterClock: Double? = nil
     /// A screenshot test's probe of the water shader (0: the water; see `pofuWaterPatch`'s `gate.y`).
     @Entry public var worldWaterDebug: Int = 0
+    /// A screenshot test's probe of how the water meets the lens (0: as built).
+    @Entry public var worldWaterVariant: Int = 0
 }
 #endif
 
@@ -152,6 +154,7 @@ extension EnvironmentValues {
 struct WaterFrame: Hashable, Sendable {
     var time: Double
     var debug: Int = 0
+    var variant: Int = 0
 }
 
 extension WorldShaders {
