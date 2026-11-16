@@ -178,6 +178,11 @@ public struct PlateIsland: Hashable, Sendable {
     /// Empty for a plate whose data has none: its stations stay painted into the plate.
     public var stations: [String: StationLooks] = [:]
 
+    /// The painting's camera elevation in degrees (`camera.elevationDeg`, v2 §5.1), or `nil`: no lens.
+    public var elevationDeg: Double?
+    /// The near layers and the lens's shots (`near`, WP11), or `nil` for a plate with none.
+    public var near: PlateNear?
+
     /// The cropped plate's box for a state, or `nil` where the state ships the whole plate (see `plateCrops`).
     public func plateCrop(light: String, stage: Int) -> PlateRect? {
         guard let crops = plateCrops[light], crops.indices.contains(stage) else { return nil }
@@ -384,7 +389,7 @@ public struct PlateShadow: Decodable, Hashable, Sendable {
 extension PlateIsland: Decodable {
     private enum Keys: String, CodingKey {
         case island, version, standIn, minLevel, plateSize, stages, lights, lightStages, painted, stageLevels, harmony, islandBox, backdropBox, objects
-        case walkable, characters, pofuWidth, residentBoost, residentBoosts, lamps, lampHeight, framing, lightDirection, lightMap, shadowMap, textureBytes, shadow, plateCrop, props, stations
+        case walkable, characters, pofuWidth, residentBoost, residentBoosts, lamps, lampHeight, framing, lightDirection, lightMap, shadowMap, textureBytes, shadow, plateCrop, props, stations, camera, near
     }
 
     public init(from decoder: Decoder) throws {
@@ -435,6 +440,8 @@ extension PlateIsland: Decodable {
         textureBytes = try c.decodeIfPresent(Int.self, forKey: .textureBytes) ?? 0
         shadows = try c.decodeIfPresent([PlateShadow].self, forKey: .shadow) ?? []
         props = try c.decodeIfPresent([PlateProp].self, forKey: .props) ?? []
+        elevationDeg = try c.decodeIfPresent(PlateCamera.self, forKey: .camera)?.elevationDeg
+        near = try c.decodeIfPresent(PlateNear.self, forKey: .near)
         stations = try (c.decodeIfPresent([String: RawStation].self, forKey: .stations) ?? [:]).compactMapValues(\.looks)
         plateCrops = try (c.decodeIfPresent([String: [[Double]?]].self, forKey: .plateCrop) ?? [:]).mapValues { boxes in
             try boxes.map { try $0.map(Self.rect) }

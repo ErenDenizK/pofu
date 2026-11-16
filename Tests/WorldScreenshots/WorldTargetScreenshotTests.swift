@@ -61,7 +61,7 @@ final class WorldTargetScreenshotTests: XCTestCase {
 
         // Near: rest on Pofu (ADR-0027), his feet at 0.60 of the height; the back control alone.
         let near = IslandSceneModel(framing: .mid)
-        try write(try await render(homeView(snapshot, near), scene: scene, settle: 2100, before: { near.holdNearRest() }), name: "world-target-near-1200", to: folder)
+        try write(try await render(homeView(snapshot, near), scene: scene, settle: 2100, after: 2100, before: { near.holdNearRest() }), name: "world-target-near-1200", to: folder)
     }
 
     @MainActor
@@ -87,7 +87,10 @@ final class WorldTargetScreenshotTests: XCTestCase {
     /// Draws `view` in a window of the host app, waits `settle` ms (the last 900 after `before`,
     /// which holds the camera), and returns the frame at the device's own resolution.
     @MainActor
-    private func render(_ view: AnyView, scene: UIWindowScene, settle: Int, before: () -> Void) async throws -> UIImage {
+    /// `after`: the wait from `before` to the capture. The near frame waits as long as the other near frames
+    /// settle (2.1 s): its first frames at near draw the lens's blur levels, slow on CI's GPU-less simulator, and at
+    /// 0.9 s the chrome's fade had not run yet (the zoom is the same as main's: s 4.5, chrome opacity 0).
+    private func render(_ view: AnyView, scene: UIWindowScene, settle: Int, after: Int = 900, before: () -> Void) async throws -> UIImage {
         let window = UIWindow(windowScene: scene)
         window.overrideUserInterfaceStyle = .light
         window.rootViewController = UIHostingController(rootView: view)
@@ -95,7 +98,7 @@ final class WorldTargetScreenshotTests: XCTestCase {
         window.makeKeyAndVisible()
         try await Task.sleep(for: .milliseconds(max(settle - 900, 600)))
         before()
-        try await Task.sleep(for: .milliseconds(900))
+        try await Task.sleep(for: .milliseconds(after))
         let format = UIGraphicsImageRendererFormat()
         format.scale = window.traitCollection.displayScale
         format.opaque = true

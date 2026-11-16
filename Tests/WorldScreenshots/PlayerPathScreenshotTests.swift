@@ -26,6 +26,7 @@ import XCTest
 ///   `path-d03-grew-live-1800`: the same morning, 1.8 s after the button, through the live timers;
 /// - `path-d04-build-focus`, `path-d04-build-burst`: a build's camera through the real `focusStation`
 ///   and the station's burst, over the held old painting;
+/// - `path-d04-near-rest`: near at rest on Pofu, full size (the thin lens, WP11);
 /// - `path-game-garden-midround`, `path-game-flow-stage1`: the minigames;
 /// - `path-hop-instagram-1200`: the Door, the midday reach for Instagram (the Hop screen the player meets);
 /// - `path-onboarding-welcome`, `-apps`, `-name`, `-notifications`.
@@ -390,6 +391,14 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
         XCTAssertEqual(focused.focus, .station(station.id))
         try await capture(AnyView(homeView(day.morning, hour: 9, island: focused)), name: "path-d04-build-focus", scene: scene, folder: folder, settle: 2100) {
             XCTAssertNotNil(focused.homePlate)
+        }
+
+        // Near at rest on Pofu, full size (WP11's lens: the band edges and his feet at 1:1).
+        let near = IslandSceneModel(framing: .mid)
+        near.setHomePlate(paintedAs(day.morning, level: from, hour: 9))
+        near.holdNearRest()
+        try await capture(AnyView(homeView(day.morning, hour: 9, island: near)), name: "path-d04-near-rest", scene: scene, folder: folder, settle: 2100) {
+            XCTAssertNotNil(near.homePlate)
         }
 
         // The burst: the build committed, the painting held at the old level while the station's ceremony plays.
