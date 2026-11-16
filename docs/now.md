@@ -38,7 +38,8 @@ Merged today: #475-#478, #476, #481; pofu-art #81, #91, #92.
 
 ## Next steps, in order (night plan)
 
-1. N5 glass painted glyphs (+ N9 Door frame) when a slot frees.
+1. Merged #484: painted seed in glass Topla, Door frame `path-hop-*`.
+   Bug: Hop copy says "geç oldu" at a .day hour (HopView clock?).
 2. N6 upgrade proof on 123's picks; Fable judges; gates 129.
 3. N8 WP5 props back after WP4; then A1 one sky, A2 WP7 rail.
 4. Founder picks as frames: flow A/B, far camera UI, sheets glass or
