@@ -22,9 +22,11 @@ chooses to (days 1-21); no dates (11-14). Now: world presentation (#474).
 
 ## In flight
 
-1. Founder-input 38: (a) Fable island progression running (brief
-   `docs/studio/briefs/fable-2026-11-16-island-progression.md`, material
-   `docs/research/island-progression-2026-11-16/`).
+1. Founder-input 38: (a) island progression done: PR #503 (proposal:
+   Sefer replaces the Map, Nazli moored at Home, named forms, big-step
+   measure). Kept open for his 6 answers (sent 11-16); answer 1 also
+   closes #490 Q3. Pilot A (batch 134, windmill + pond in place) being
+   queued by a builder; 129 stays held, dropped if A passes.
    (b) Fable minigame overhaul (block + stream, A/B by prototype):
    running, brief `docs/studio/briefs/fable-2026-11-16-minigame-overhaul.md`.
 2. WP10 compositor merged (#500): looks sort with Pofu by footY, Map
