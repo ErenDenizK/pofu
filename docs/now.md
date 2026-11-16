@@ -22,23 +22,22 @@ chooses to (days 1-21); no dates (11-14). Now: world presentation (#474).
 
 ## In flight
 
-1. WP10 compositor (Opus, `feat/plate-compositor`), scoped: data-driven
-   over `stations`; only the tea stall has looks (bases at stages 3,4,6,7).
-2. Merged today: #480 mattes + one sky (night L1/L2 legacy), #488 Hop
-   hour, #489 flow rocks + lip, #491 WP9 cloud floor (Map; floor tiles,
-   wisps need Codex 133), #492 WP5 props, #493 N6, #494 WP8 tea stall,
-   #495 WP7 rail (Home is mid, free near; near contact shadow faint),
-   #496 icons (breath keeps old glyph), #497 stall at stages 3,4,6,7
-   (0,1,2,5,8 keep the painted stall: art), #498 cloud beds lilac, back
-   control left at near.
-3. UI grammar #490 open (docs): world painted, screen native glass. No app
-   change until the founder has seen it.
-4. Codex hit the image tool's usage limit (429) mid-129. 129 delivered
-   19/35 (#107 merged): 8 look-1/2 picks, 7 redo-outline, 2 redo; looks
-   1 filled the canvas: reworked (pofu-art #110), looks 1 reframed to 70%,
-   every step outside the outline; 429 retries per AGENTS.md. Queue: 132,
-   133, S1 (129 on `art/batch-129-home-station-looks-2`), S2.
-Merged: #475-#489, #491-#498; pofu-art #81, #91-#110.
+1. Founder-input 38: (a) Fable island progression (islands + stations as
+   one, the world between islands, the Gezgin): three gatherers running
+   (internal history, art + frames, outside refs) into
+   `scratchpad/research-ip/`; then the Fable brief with his words.
+   (b) Fable minigame overhaul (block + stream, A/B by prototype):
+   running, brief `docs/studio/briefs/fable-2026-11-16-minigame-overhaul.md`.
+2. WP10 compositor (Opus, `feat/plate-compositor`), data-driven over
+   `stations`; only the tea stall has looks (bases at stages 3,4,6,7).
+3. Merged 11-16: #480 one sky, #488 Hop hour, #489 flow rocks + lip, #491
+   cloud floor, #492 props, #493 N6, #494 + #497 tea stall looks, #495
+   rail (Home is mid, free near), #496 icons, #498 beds + back control.
+4. UI grammar #490 open (docs); no app change until the founder sees it.
+5. Codex: station looks held for (a) (pofu-art #111). Line: 132 board
+   edge, 133 cloud floor, S2 clouds, S3 hidden visitors. 129 reworked
+   (#110) and waiting. Codex hit the image tool's quota mid-129.
+Merged: #475-#489, #491-#499; pofu-art #81, #91-#111.
 
 ## Next steps, in order (night plan)
 
