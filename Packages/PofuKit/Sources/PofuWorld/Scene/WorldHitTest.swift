@@ -146,7 +146,20 @@ public enum WorldHitTest {
     ) -> [HitTarget] {
         guard z >= archipelagoZ else { return islandTargets(koke: koke != .none, caglayan: caglayan != .none, plate: plate) }
         var targets: [HitTarget] = []
-        for object in plate.objects where object.tap {
+        // A built station standing as a look on this state's base answers over its look (presence = built), wherever
+        // the plate painted it; unbuilt, over its painted plot.
+        let levels = Dictionary(stations.filter { $0.island == .home }.map { ($0.id, $0.level) }, uniquingKeysWith: max)
+        var looked = Set<String>()
+        for look in PlateCompositor(plate: plate, levels: levels).looks {
+            let id = look.stationID
+            guard stations.contains(where: { $0.id == id && $0.island == .home && $0.isOpen }),
+                  let object = plate.plate.objects.first(where: { $0.station == id && $0.tap }) else { continue }
+            let b = look.box
+            let polygon = [WorldPoint(x: b.minX, y: b.minY), WorldPoint(x: b.maxX, y: b.minY), WorldPoint(x: b.maxX, y: b.maxY), WorldPoint(x: b.minX, y: b.maxY)]
+            targets.append(HitTarget(kind: .plateObject(object.id), worldBox: b, depth: IslandLayout.depth(ofY: look.foot.y), polygon: polygon))
+            looked.insert(object.id)
+        }
+        for object in plate.objects where object.tap && !looked.contains(object.id) {
             if let station = object.station {
                 guard stations.contains(where: { $0.id == station && $0.island == .home && $0.isOpen }) else { continue }
             }

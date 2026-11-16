@@ -817,7 +817,7 @@ private struct SceneFrame<Bubble: View>: View {
                 if let plate {
                     // The painted plate, never graded: its backdrop, the
                     // plate and, toward the Map, the island cut alone.
-                    PlateHomeLayer(plate: plate, pose: pose, size: size, offset: offset, fade: plateFade, stationLevels: HomePlate.stationLevels(world))
+                    PlateHomeLayer(plate: plate, pose: pose, size: size, offset: offset, fade: plateFade, stationLevels: HomePlate.stationLevels(world), build: build)
                     FarBellSkyLayer(plate: plate, world: world, pose: pose, size: size, offset: offset).opacity(plateFade)
                 } else {
                     // Today's resist seals on the earth beside Pofu's door: an
@@ -894,13 +894,16 @@ private struct SceneFrame<Bubble: View>: View {
 
                 if let plate {
                     // What Pofu or a prop stands behind is drawn again over it.
+                    let stand = look.pofuStand ?? IslandLayout.pofu
                     PlateOccluders(
                         plate: plate,
-                        objects: plate.occluders(overPofuAndProps: IslandLayout.pofu, box: plate.pofuBox),
+                        feet: stand,
+                        box: plate.pofuBox(at: stand),
                         pose: pose,
                         size: size,
                         offset: offset,
-                        stationLevels: HomePlate.stationLevels(world)
+                        stationLevels: HomePlate.stationLevels(world),
+                        build: build
                     )
                 }
 
@@ -1156,6 +1159,8 @@ private struct WorldCanvas: View {
             case growth(GrowthPiece)
             /// A painted plate object drawn again over a resident behind it.
             case plateOccluder(PlateIsland.Object)
+            /// A station's look on the base drawn again over a resident behind it (`PlateCompositor`).
+            case plateLook(String)
             /// A part of today's visit on the painted plate (`PlateLife`).
             case plateVisitor(VisitorStage.Placed)
             /// Koke's moss and Çağlayan's fountain on the painted plate.
@@ -1266,6 +1271,8 @@ private struct WorldCanvas: View {
             }
         }
         var behind: [String: PlateIsland.Object] = [:]
+        var behindLooks: [String: PlateCompositor.Look] = [:]
+        let compositor = PlateCompositor(plate: plate, levels: HomePlate.stationLevels(world))
         for resident in IslandLayout.residents {
             guard let station = world.stations.first(where: { $0.id == resident.station }), station.level > 0,
                   let feet = plate.residentFeet(resident.id) else { continue }
@@ -1274,6 +1281,12 @@ private struct WorldCanvas: View {
             for object in plate.occluders(over: feet, box: box) {
                 behind[object.id] = object
             }
+            for look in compositor.looks(over: feet, box: box) {
+                behindLooks[look.station] = look
+            }
+        }
+        for look in behindLooks.values {
+            objects.append(Object(id: "look-\(look.station)", kind: .plateLook(look.station), anchor: look.foot, depth: IslandLayout.depth(ofY: look.foot.y)))
         }
         for object in behind.values {
             let box = plate.occluderBox(object)
@@ -1403,6 +1416,20 @@ private struct WorldCanvas: View {
             ZStack(alignment: .topLeading) {
                 BuildParticles(moment: frame.moment, time: frame.time, point: point)
                 PlateBuildBloom(moment: frame.moment, time: frame.time, point: CGPoint(x: point.x, y: point.y - CGFloat(lift)))
+            }
+        case .plateLook(let station):
+            if let plate {
+                // In the canvas's own units: a pose that projects a world point onto its canvas point.
+                let origin = IslandLayout.canvasOrigin
+                let canvas = CGSize(width: IslandLayout.canvasWidth, height: IslandLayout.canvasHeight)
+                PlateLookPiece(
+                    compositor: PlateCompositor(plate: plate, levels: HomePlate.stationLevels(world)),
+                    station: station, build: build,
+                    pose: CameraPose(scale: 1, look: WorldPoint(x: Double(canvas.width) / 2 - origin.x, y: -origin.y), anchorY: 0),
+                    size: canvas, offset: .zero
+                )
+                .allowsHitTesting(false)
+                .accessibilityHidden(true)
             }
         case .plateOccluder(let occluder):
             if let plate {
@@ -2004,6 +2031,8 @@ private struct PofuLayer<Bubble: View>: View {
     @Environment(\.worldStillFrame) private var still
     @Environment(\.worldRelight) private var relight
     @Environment(\.worldLook.spike.debug) private var spikeDebug
+    /// A screenshot's stand for Pofu on the plate (`WorldLook.pofuStand`).
+    @Environment(\.worldLook.pofuStand) private var pofuStand
 
     /// Pofu's art is 64 units wide (154 pt at Home, ADR-0018).
     static var artWidth: Double {
@@ -2011,11 +2040,12 @@ private struct PofuLayer<Bubble: View>: View {
     }
 
     var body: some View {
-        let depth = IslandLayout.depth(ofY: IslandLayout.pofu.y)
+        let stand = plate == nil ? IslandLayout.pofu : pofuStand ?? IslandLayout.pofu
+        let depth = IslandLayout.depth(ofY: stand.y)
         let s = pose.scale
-        let projected = pose.project(IslandLayout.pofu, width: Double(size.width))
+        let projected = pose.project(stand, width: Double(size.width))
         let moving = DepthMotion.shift(
-            point: IslandLayout.pofu,
+            point: stand,
             depth: depth,
             focus: lens.focus,
             look: WorldPoint(x: pose.lookX, y: pose.lookY),
@@ -2037,7 +2067,7 @@ private struct PofuLayer<Bubble: View>: View {
         let rigArt = CompanionArt.placeholder
         let pofuLight = plate.map { p -> HomePlate.CharacterLight in
             let aspect = (rigArt?.rig ?? CompanionRig.hamster).aspectRatio
-            return p.characterLight(at: IslandLayout.pofu, width: Self.artWidth * p.characterScale, height: Self.artWidth * p.characterScale / aspect, id: "pofu")
+            return p.characterLight(at: stand, width: Self.artWidth * p.characterScale, height: Self.artWidth * p.characterScale / aspect, id: "pofu")
         }
         let paint = pofuLight.map { Color(red: $0.paint.red, green: $0.paint.green, blue: $0.paint.blue) } ?? grade
         let light = plate == nil ? characterGrade : .neutral
