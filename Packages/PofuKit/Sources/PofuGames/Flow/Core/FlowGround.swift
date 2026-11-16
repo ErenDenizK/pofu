@@ -34,6 +34,8 @@ public enum FlowArtSlot {
     /// Seamless materials the code fills the carved channel and the water with.
     public static let channelBed = "flow-channel"
     public static let water = "flow-water"
+    /// The painted scene behind the board (batch 124 `x-flow-backdrop`).
+    public static let backdrop = "flow-backdrop"
     public static let maxVariants = 6
 
     public static func variantName(_ base: String, _ index: Int) -> String {
