@@ -36,11 +36,11 @@ Large job now: world presentation (spec #474); glass UI stays.
    A1); 125 skipped by Codex but usable: l1 t1, l2 t1, l8 t2, l9 t2 (paste
    into #480 after A1). 123 PASS w/ notes, 129 runs on (ingest: chroma x0.65
    L+5%, alpha<12 to 0; app: contact shade). Founder: flow A/B, 122.
-Merged: #475-#484; pofu-art #81, #91, #92, #99.
+Merged: #475-#484, #487; pofu-art #81, #91, #92, #99.
 
 ## Next steps, in order (night plan)
 
-1. Bug: Hop says "geç oldu" at a .day hour (HopView clock?).
+1. Hop copy fixed (#487); `HopOutcomes` still reads `session.isNight`.
 2. WP8 looks data from 123's picks (grade at ingest); stall in front of cart.
 3. N8 WP5 props after #480; WP9 clouds after A1; A2 WP7 rail.
 4. Open: sheets glass/paper, first screens; A9 art backlog; §8.6 pass.
