@@ -53,7 +53,6 @@ Merged: #475-#489, #491-#494, #496; pofu-art #81, #91-#109.
 | Game | tea stall levels show (stage 7); props back (#492) | WP8 stages |
 | Look | one painted world: Home, the Map, flights, Koke, Çağlayan, visitors | Wave 0 |
 | Art factory | 132, 133, then S1 looks, S2 clouds | reviews |
-| App | paused until after the demo | the demo |
 
 ## Open with the founder
 
