@@ -680,4 +680,191 @@ struct HomeGlance: View {
         }
     }
 }
+// MARK: - Painted props on the plate
+
+/// The grade that puts a painted prop in the plate's light where it stands: the state's ambient multiply and
+/// saturation (the same rule as the characters), with its contact shadow and, at night, a lamp's pool.
+private struct PlatePropGrade: ViewModifier {
+    let light: HomePlate.CharacterLight
+
+    func body(content: Content) -> some View {
+        content
+            .saturation(light.saturation)
+            .colorMultiply(Color(red: light.paint.red, green: light.paint.green, blue: light.paint.blue))
+    }
+}
+
+/// A prop's foot: the contact shadow in the lawn's own hue, centred on the foot line, and the lamp's pool.
+private struct PlatePropFoot: View {
+    let width: Double
+    let light: HomePlate.CharacterLight
+
+    var body: some View {
+        ZStack {
+            LampPool(width: width, light: light)
+            ContactPad(width: width, light: light)
+        }
+        .offset(y: CGFloat(width * 0.1))
+    }
+}
+
+/// The painted jar: the nearest third of `SeedJarFill`'s fraction, counting up with the collect moment.
+struct PlateJarView: View {
+    let jar: Int
+    let home: WorldHomeModel
+    let light: HomePlate.CharacterLight
+    let width: Double
+    let height: Double
+
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
+    static let states = ["empty", "third", "twothirds", "full"]
+
+    /// The painted state for `seeds`: empty only when the jar is, otherwise at least a third.
+    static func state(seeds: Int, capacity: Int) -> Int {
+        let fraction = SeedJarFill.fraction(seeds: seeds, capacity: capacity)
+        guard fraction > 0 else { return 0 }
+        return max(1, Int((fraction * 3).rounded()))
+    }
+
+    var body: some View {
+        PofuTimeline(hz: PofuFrameRate.direct, paused: home.collect == nil || home.frozenOffset != nil, kind: .essential) { context in
+            let moment = home.collect?.moment
+            let time = home.collectTime(at: context.date) ?? 0
+            let count = moment?.counter(at: time) ?? jar
+            let pop = moment?.pillScale(at: time) ?? 1
+            let state = Self.state(seeds: count, capacity: Int(home.timing.jarCapacity))
+            ZStack(alignment: .bottom) {
+                PlatePropFoot(width: width, light: light)
+                ZStack {
+                    Image("world-home-prop-jar-\(Self.states[state])", bundle: .module)
+                        .resizable()
+                        .scaledToFit()
+                        .id(state)
+                        .transition(.opacity)
+                }
+                .modifier(PlatePropGrade(light: light))
+                .animation(PofuMotion.respecting(reduceMotion, .smooth(duration: home.timing.jarFill)), value: state)
+                .scaleEffect(CGFloat(pop), anchor: .bottom)
+            }
+            .frame(width: CGFloat(width), height: CGFloat(height), alignment: .bottom)
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel(Text(verbatim: WorldStrings.jarLabel))
+            .accessibilityValue(Text(verbatim: WorldStrings.jarValue(count)))
+        }
+    }
+}
+
+/// The painted lantern: the unlit paper with the lit one over it at the glow's strength, and at night the
+/// pool of light on the grass.
+struct PlateLanternView: View {
+    let calm: Double
+    let isGrowing: Bool
+    let isFull: Bool
+    let isNight: Bool
+    let timing: HomeTiming
+    let light: HomePlate.CharacterLight
+    let width: Double
+    let height: Double
+
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
+    var body: some View {
+        let glow = CalmLantern.glow(calm: calm)
+        ZStack(alignment: .bottom) {
+            PlatePropFoot(width: width, light: light)
+            if isNight {
+                Ellipse()
+                    .fill(EllipticalGradient(colors: [PofuPrimitive.honey300.rgb.color.opacity(0.5 * glow), PofuPrimitive.honey300.rgb.color.opacity(0)]))
+                    .frame(width: CGFloat(width * 3.2), height: CGFloat(width * 1.1))
+                    .blendMode(.screen)
+                    .offset(y: CGFloat(width * 0.2))
+                    .allowsHitTesting(false)
+            }
+            ZStack {
+                Image("world-home-prop-lantern-unlit", bundle: .module)
+                    .resizable()
+                    .scaledToFit()
+                Image("world-home-prop-lantern-lit", bundle: .module)
+                    .resizable()
+                    .scaledToFit()
+                    .opacity(glow)
+            }
+            .modifier(PlatePropGrade(light: light))
+        }
+        .frame(width: CGFloat(width), height: CGFloat(height), alignment: .bottom)
+        .animation(PofuMotion.respecting(reduceMotion, .easeInOut(duration: timing.lanternGlow)), value: glow)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(Text(verbatim: WorldStrings.lanternLabel))
+        .accessibilityValue(Text(verbatim: WorldStrings.calmLabel(calm, growing: isGrowing, full: isFull)))
+    }
+}
+
+/// Today's pots in a row on the plate's lip: a painted pot per reach (a bloom for a skip, a sprout for an open
+/// one, a resting curl for a bed asleep), side by side across `span` plate pts, each a little behind the next.
+struct PlateSkipPotsView: View {
+    let pots: SkipPots
+    let today: TodaySummary
+    let timing: HomeTiming
+    let light: HomePlate.CharacterLight
+    let potWidth: Double
+    let height: Double
+    let span: Double
+
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.resistPayoff) private var payoff
+
+    /// The painted state of a pot.
+    static func state(of pot: SkipPots.Pot, asleep: Bool) -> String {
+        if pot.blooms > 0 { return asleep ? "resting" : "bloom" }
+        return pot.buds > 0 ? "sprout" : "empty"
+    }
+
+    /// The distance between pot centres: their natural gap, closing up to fit `span`.
+    static func step(count: Int, potWidth: Double, span: Double) -> Double {
+        guard count > 1 else { return 0 }
+        return min(potWidth * 1.08, max((span - potWidth) / Double(count - 1), potWidth * 0.5))
+    }
+
+    var body: some View {
+        let count = pots.pots.count
+        let step = Self.step(count: count, potWidth: potWidth, span: span)
+        ZStack(alignment: .bottom) {
+            ForEach(pots.pots.indices, id: \.self) { index in
+                ZStack(alignment: .bottom) {
+                    PlatePropFoot(width: potWidth * 0.95, light: light)
+                    Image("world-home-prop-pot-\(Self.state(of: pots.pots[index], asleep: pots.isAsleep))", bundle: .module)
+                        .resizable()
+                        .scaledToFit()
+                        .modifier(PlatePropGrade(light: light))
+                    if pots.isClustered {
+                        Text(pots.pots[index].reaches, format: .number)
+                            .font(.system(size: 9, weight: .heavy, design: .rounded).monospacedDigit())
+                            .foregroundStyle(PofuPrimitive.ink900.rgb.color)
+                            .padding(.horizontal, 3)
+                            .background(PofuPrimitive.cream100.rgb.color.opacity(0.92), in: Capsule())
+                            .offset(y: 3)
+                    }
+                }
+                .frame(width: CGFloat(potWidth), height: CGFloat(height), alignment: .bottom)
+                .modifier(PayoffBloom(run: payoff, order: bloomOrder(of: index), reduceMotion: reduceMotion))
+                .offset(x: CGFloat((Double(index) - Double(count - 1) / 2) * step))
+                .transition(.scale(scale: 0.3, anchor: .bottom).combined(with: .opacity))
+            }
+        }
+        .frame(width: CGFloat(span), height: CGFloat(height), alignment: .bottom)
+        .animation(PofuMotion.respecting(reduceMotion, .spring(duration: timing.potBloom, bounce: 0.35)), value: pots)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(Text(verbatim: WorldStrings.potsLabel))
+        .accessibilityValue(Text(verbatim: WorldStrings.todayLine(today)))
+    }
+
+    /// The place of pot `index` in the payoff's cascade (as `SkipPotsView`).
+    private func bloomOrder(of index: Int) -> Int? {
+        guard let payoff else { return nil }
+        let count = min(payoff.payoff.potCount, pots.pots.count)
+        let first = pots.pots.count - count
+        return index >= first ? index - first : nil
+    }
+}
 #endif

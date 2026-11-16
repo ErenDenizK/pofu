@@ -862,21 +862,23 @@ private struct SceneFrame<Bubble: View>: View {
                     plate: plate
                 )
 
+                if let props, plate == nil || plate?.propSpec(.jar) != nil {
+                    // The jar, the lantern and the pots share the island's
+                    // transform: they never lag or bob (§1.4). On a plate they stand
+                    // at its slots (WP5), in front of Pofu, behind the painted objects
+                    // that stand in front of them.
+                    props.world(WorldPropsFrame(pose: pose, size: size, offset: offset, z: z, isFocused: model.focus != nil || model.hasSheet, model: model))
+                }
+
                 if let plate {
-                    // What Pofu stands behind is drawn again over him.
+                    // What Pofu or a prop stands behind is drawn again over it.
                     PlateOccluders(
                         plate: plate,
-                        objects: plate.occluders(over: IslandLayout.pofu, box: plate.pofuBox),
+                        objects: plate.occluders(overPofuAndProps: IslandLayout.pofu, box: plate.pofuBox),
                         pose: pose,
                         size: size,
                         offset: offset
                     )
-                }
-
-                if let props, plate == nil {
-                    // The jar, the lantern and the pots share the island's
-                    // transform: they never lag or bob (§1.4).
-                    props.world(WorldPropsFrame(pose: pose, size: size, offset: offset, z: z, isFocused: model.focus != nil || model.hasSheet, model: model))
                 }
 
                 if painted {

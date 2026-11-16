@@ -381,6 +381,42 @@ public struct HomePlate: Hashable, Sendable {
         )
     }
 
+    // MARK: - Props
+
+    /// The plate's data for a home prop, or `nil` when the plate has none (the sprite props then draw).
+    public func propSpec(_ prop: HomeSlots.Prop) -> PlateProp? {
+        plate.props.first { $0.id == prop.rawValue }
+    }
+
+    /// Where a prop's foot stands on this state's plate, in world units.
+    public func propSlot(_ prop: HomeSlots.Prop) -> WorldPoint? {
+        propSpec(prop)?.slot(stage: stage).map(world)
+    }
+
+    /// A prop's footprint on the plate, in world units: its art's width (the pots' row's span) above its foot.
+    public func propBox(_ prop: HomeSlots.Prop) -> WorldBox? {
+        guard let spec = propSpec(prop), let foot = propSlot(prop) else { return nil }
+        let w = spec.span(stage: stage) * unitsPerPixel, h = spec.height * unitsPerPixel
+        return WorldBox(minX: foot.x - w / 2, minY: foot.y - h, maxX: foot.x + w / 2, maxY: foot.y)
+    }
+
+    /// The painted objects drawn again over Pofu at `feet` and over every prop that has a slot, once each.
+    public func occluders(overPofuAndProps feet: WorldPoint, box: WorldBox) -> [PlateIsland.Object] {
+        var seen = Set<String>(), result: [PlateIsland.Object] = []
+        func add(_ objects: [PlateIsland.Object]) {
+            for object in objects where seen.insert(object.id).inserted {
+                result.append(object)
+            }
+        }
+        add(occluders(over: feet, box: box))
+        for prop in HomeSlots.Prop.allCases {
+            if let foot = propSlot(prop), let propBox = propBox(prop) {
+                add(occluders(over: foot, box: propBox))
+            }
+        }
+        return result
+    }
+
     // MARK: - Occlusion
 
     /// The occluders that draw over a character standing at `feet` with

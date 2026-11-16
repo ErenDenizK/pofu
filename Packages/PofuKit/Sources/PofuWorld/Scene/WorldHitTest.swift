@@ -131,9 +131,9 @@ public enum WorldHitTest {
     /// Everything tappable on a plate-first home at rail position `z`
     /// (only the islands on the Archipelago): its painted tap objects (a
     /// station's only once its slot is open), and the residents where they
-    /// stand on the plate, and today's visit where it stands on the lawn
-    /// (`PlateLife`). The sprite home's objects (the jar, the lantern, the
-    /// pots) are not drawn on the plate.
+    /// stand on the plate, today's visit where it stands on the lawn
+    /// (`PlateLife`), and the jar, the lantern and the pots where the plate
+    /// places them (`props`).
     public static func plateTargets(
         _ plate: HomePlate,
         stations: [StationStatus],
@@ -159,6 +159,10 @@ public enum WorldHitTest {
                   let feet = plate.residentFeet(resident.id) else { continue }
             let box = plate.residentBox(art: WorldArt.sprite(resident.art)?.sharp ?? IslandLayout.residentHitBox, at: feet)
             targets.append(HitTarget(kind: .resident(resident.id), worldBox: box, depth: IslandLayout.depth(ofY: feet.y) + 0.001))
+        }
+        for prop in HomeSlots.Prop.allCases {
+            guard let box = plate.propBox(prop), let foot = plate.propSlot(prop) else { continue }
+            targets.append(HitTarget(kind: .prop(prop), worldBox: box, depth: IslandLayout.depth(ofY: foot.y)))
         }
         targets += PlateLife.visitorTargets(plate: plate, visitor: visitor, invitationOpen: invitationOpen, isBedtime: isBedtime)
         return targets

@@ -378,7 +378,10 @@ struct PlateHitTests {
         }
         #expect(kinds.contains(.resident(.mochi)))
         #expect(kinds.contains(.resident(.findik)))
-        #expect(!kinds.contains { if case .prop = $0 { true } else { false } })
+        // The jar, the lantern and the pots stand where the plate places them (WP5).
+        for prop in HomeSlots.Prop.allCases {
+            #expect(kinds.contains(.prop(prop)), "\(prop)")
+        }
         // On the Archipelago only the islands answer.
         #expect(WorldHitTest.plateTargets(home, stations: world.stations, z: 0.2).allSatisfy {
             if case .island = $0.kind { true } else { false }
