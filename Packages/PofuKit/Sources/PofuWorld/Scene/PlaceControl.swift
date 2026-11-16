@@ -5,7 +5,7 @@ import PofuDesignSystem
 import SwiftUI
 
 /// The one control (experience v1 §1.2): a 52 pt clay disc, bottom
-/// trailing, at the same spot in every framing. Its glyph shows where a tap
+/// trailing (leading at near, per the composition data). Its glyph shows where a tap
 /// goes next (an island outline at Close, waves at the Island, Pofu's face
 /// on the Archipelago) and morphs as a pinch crosses halfway. A tap goes
 /// there; a long press opens a native menu: Pofu, each arrived island, the

@@ -283,14 +283,20 @@ public struct IslandScene<Bubble: View>: View {
         .overlay { KokeBubbleOverlay(state: model.koke) }
         .overlay { CaglayanBubbleOverlay(state: model.caglayan) }
         .overlay { CaglayanPlaque(model: model, state: model.caglayan) }
-        .overlay(alignment: .bottomTrailing) {
-            // The one control: the same spot in every framing, thumb zone.
+        .overlay(alignment: .bottom) {
+            // The one control: bottom trailing at the Map and mid, bottom leading at near, where the
+            // composition data mirrors the corner (`world-map.json` `chrome.nearBack`; the Today glance
+            // has faded by then, so the left corner is free). Thumb zone.
+            let atNear = model.projectedFraming == .near
+            let showsControl = model.focus == nil && !model.hasSheet
             PlaceControl(model: model, islands: arrivedIslands)
-                .padding(.trailing, PofuSpacing.screen)
+                .padding(atNear ? .leading : .trailing, atNear ? CGFloat(WorldMap.shipped?.nearBack.box.minX ?? Double(PofuSpacing.screen)) : PofuSpacing.screen)
                 .padding(.bottom, PofuSpacing.s)
-                .opacity(model.focus == nil && !model.hasSheet ? 1 : 0)
-                .allowsHitTesting(model.focus == nil && !model.hasSheet)
-                .animation(PofuMotion.respecting(reduceMotion, PofuMotion.snappy), value: model.focus == nil && !model.hasSheet)
+                .frame(maxWidth: .infinity, alignment: atNear ? .leading : .trailing)
+                .opacity(showsControl ? 1 : 0)
+                .allowsHitTesting(showsControl)
+                .animation(PofuMotion.respecting(reduceMotion, PofuMotion.snappy), value: showsControl)
+                .animation(PofuMotion.respecting(reduceMotion, PofuMotion.snappy), value: atNear)
         }
         .sensoryFeedback(.selection, trigger: model.projectedFraming)
         .sensoryFeedback(.impact(weight: .light, intensity: 0.7), trigger: model.tapCount)

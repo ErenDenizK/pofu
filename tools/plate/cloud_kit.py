@@ -9,6 +9,10 @@ Each form is trimmed to its alpha box (plus a soft margin), its alpha is checked
 have come with painted checkerboards: a real matte has a clear border, a clear majority of the canvas
 clear, and a soft edge), then scaled to its shipped width and written as a PNG imageset. The data file
 records each form's pixel size and aspect, the one source the Swift side (`CloudFloor`) reads.
+Grade: the forms come out of Codex warm (mean R-B +1 to +8) and read peach on the lilac sea, so each is
+graded toward the sea's colour (`grade`): one gain per channel from the form's mean colour to the
+target, luma and alpha kept, so the painted shading is not flattened. It is idempotent, so
+`--grade-only` re-grades the shipped PNGs when the takes (a private repository) are not at hand.
 `tile_seam` is the wrap check for a drift tile (none ship yet: the kit is forms).
 """
 from __future__ import annotations
@@ -36,6 +40,41 @@ FORMS = {
 MARGIN = 6          # clear pixels kept around the trimmed form
 EDGE_ALPHA = 20     # a trimmed form's border must be at most this opaque (0-255): a soft foot dissolves to this
 BOX_ALPHA = 12      # alpha above this counts as the form when trimming
+
+
+SEA_ASSET = "world-home-sky-sea-day-0"   # the shipped sky set's day sea sheet: the colour the forms sit on
+SEA_FIRST_ROW = 0.5      # the sheet's top half is sky and haze; the sea is below
+SEA_STRENGTH = 0.5       # how much of the sheet's chroma the forms take: in the frames the sea reads about
+                         # half as blue as its raw sheet (R-B -16 against -32), and the forms sit in that light
+
+
+def sea_tint(sea: Image.Image) -> np.ndarray:
+    """The sea's mean chroma offset per channel (RGB, 0-255 scale): its mean colour minus its mean grey, over
+    the opaque pixels of the sheet's lower half."""
+    a = np.asarray(sea.convert("RGBA")).astype(np.float64)
+    a = a[int(a.shape[0] * SEA_FIRST_ROW):]
+    rgb = a[..., :3][a[..., 3] > 250]
+    if len(rgb) == 0:
+        raise ValueError("the sea sheet has no opaque pixel")
+    m = rgb.mean(axis=0)
+    return m - m.mean()
+
+
+def mean_colour(img: Image.Image) -> np.ndarray:
+    a = np.asarray(img.convert("RGBA")).astype(np.float64)
+    return a[..., :3][a[..., 3] > 200].mean(axis=0)
+
+
+def grade(img: Image.Image, tint: np.ndarray, strength: float = SEA_STRENGTH) -> Image.Image:
+    """Move the form's mean hue to the sea's: one gain per channel (the same for every pixel, so shading
+    and edges stay), normalised to keep the form's mean value. Alpha is untouched. Idempotent."""
+    rgba = np.asarray(img.convert("RGBA")).astype(np.float64)
+    m = mean_colour(img)
+    target = m.mean() + tint * strength
+    gain = target / np.maximum(m, 1.0)
+    gain *= m.mean() / (m * gain).mean()
+    rgba[..., :3] = np.clip(rgba[..., :3] * gain, 0, 255)
+    return Image.fromarray(np.round(rgba).astype(np.uint8), "RGBA")
 
 
 def trim(img: Image.Image) -> Image.Image:
@@ -89,7 +128,7 @@ def tile_seam(tile: np.ndarray) -> float:
     return float(wrap / inner)
 
 
-def ship(takes: Path, assets: Path, data: Path) -> dict:
+def ship(takes: Path, assets: Path, data: Path, tint: np.ndarray | None = None) -> dict:
     forms = {}
     for form_id, (stem, width) in FORMS.items():
         src = Image.open(takes / f"{stem}.webp")
@@ -98,6 +137,8 @@ def ship(takes: Path, assets: Path, data: Path) -> dict:
         img = trim(src)
         height = round(img.height * width / img.width)
         img = img.resize((width, height), Image.LANCZOS)
+        if tint is not None:
+            img = grade(img, tint)
         problems = check_alpha(img)
         if problems:
             raise SystemExit(f"{form_id}: " + "; ".join(problems))
@@ -114,13 +155,32 @@ def ship(takes: Path, assets: Path, data: Path) -> dict:
     return forms
 
 
+def grade_shipped(assets: Path, tint: np.ndarray) -> None:
+    """Grade the shipped PNGs in place (no takes needed)."""
+    for form_id in FORMS:
+        png = assets / f"world-cloud-{form_id}.imageset" / f"world-cloud-{form_id}.png"
+        img = grade(Image.open(png), tint)
+        img.save(png, optimize=True)
+        m = mean_colour(img)
+        print(f"{form_id}: mean R-B {m[0] - m[2]:+.1f}")
+
+
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument("--takes", type=Path, required=True)
+    p.add_argument("--takes", type=Path)
     p.add_argument("--assets", type=Path, required=True)
-    p.add_argument("--data", type=Path, required=True)
+    p.add_argument("--data", type=Path)
+    p.add_argument("--grade-only", action="store_true", help="re-grade the shipped PNGs in place")
     args = p.parse_args(argv)
-    forms = ship(args.takes, args.assets, args.data)
+    sea_path = args.assets / f"{SEA_ASSET}.imageset" / f"{SEA_ASSET}.heic"
+    import heic
+    tint = sea_tint(heic.open_image(sea_path))
+    if args.grade_only:
+        grade_shipped(args.assets, tint)
+        return 0
+    if args.takes is None or args.data is None:
+        p.error("--takes and --data are required unless --grade-only")
+    forms = ship(args.takes, args.assets, args.data, tint)
     for k, v in forms.items():
         print(f"{k}: {v['width']}x{v['height']}")
     return 0
