@@ -23,20 +23,18 @@ Large job now: world presentation (spec #474); glass UI stays.
 
 ## In flight
 
-1. WP4 mattes #480 round 2 pushed (no fill; 17/21 r3b; day L1/L2 from
-   116). A1 one sky (Opus, `feat/home-one-sky`) stacks on it, PR into
-   #480: sky set behind matted states, plates cropped to the island band.
-2. WP6 Map journey merged (#479): Home alone and large until Koke opens,
-   one tower, horizon haze. Follow-up: faint blue smudge under the d01
-   tower (old isle shadow?); stale `WorldMap.swift` comment.
-3. Flow and garden scenes merged (#483, #486): painted slots, 124 art,
-   backdrops. Left in code: board lip and edge (Codex 131 queued).
-4. Codex ran 121-126 overnight. Reviewed: 124 picks all 8 (builder
-   `feat/flow-painted-scene` drops them in); 126 clouds 10 picks (WP9 after
-   A1); 125 skipped by Codex but usable: l1 t1, l2 t1, l8 t2, l9 t2 (paste
-   into #480 after A1). 123 PASS w/ notes, 129 runs on (ingest: chroma x0.65
-   L+5%, alpha<12 to 0; app: contact shade). Founder: flow A/B, 122.
-Merged: #475-#487; pofu-art #81, #91-#99, #102.
+1. WP4 mattes + A1 one sky (#480): main merged in (one-line conflict in
+   `PaintedSky`), Linux green, CI running on f16c7491; merge on green.
+   Night L1/L2 stay legacy (matte cannot follow the soil fade).
+2. Flow rocks + lip (builder Sonnet, `feat/flow-rocks-lip`): 130's four
+   rocks as `flow-rock-cut` variants, 131's lip as a sprite, notch meets
+   the cascade. Board edge stays code until batch 132 (edge redo, queued).
+3. UI grammar N10 (Fable, `design/ui-grammar-v1`): inputs 122, 127, 128.
+4. Codex: 127 (targets, sent to founder), 128 (18 icons; drop and star
+   need an edit), 130, 131 reviewed and merged (pofu-art #100-#106).
+   Queue now: 132, then Standing S1 (129 looks), S2 (126 v2/v3).
+   Founder picks owed: flow A/B, 122 far camera.
+Merged: #475-#487; pofu-art #81, #91-#106.
 
 ## Next steps, in order (night plan)
 
@@ -51,7 +49,7 @@ Merged: #475-#487; pofu-art #81, #91-#99, #102.
 |---|---|---|
 | Game | upgrades invisible, props gone (night plan ranks 1-2) | N6, WP5 |
 | Look | one painted world: Home, the Map, flights, Koke, Çağlayan, visitors | Wave 0 |
-| Art factory | queue 121-129 (#92), ~16 h of work | "çalış" |
+| Art factory | 132, then S1 looks, S2 clouds | reviews |
 | App | paused until after the demo | the demo |
 | Story | lines ship with game PRs; studio in use since 11-12 | |
 
