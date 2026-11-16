@@ -1,0 +1,91 @@
+batch: batch-128-duo-icons-single
+manifest: tools/imagegen/manifest/batch-128-duo-icons-single.yaml
+manifest_sha256: 81c715219faae80588a55d5e884f216dfb004825abaa787a5034905db93f6dac
+job: x-icon-duo-cloud
+contact_sheet: design/art/takes/batch-128-duo-icons-single/x-icon-duo-cloud/contact.jpg
+source: codex-cloud
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+status: skipped
+pick: 1
+lead_review: "Lead pick: take 1 is a clear three-bump cloud with a small honey accent, line 4.7 percent; the accent is three short ticks rather than one underside curve, which reads fine at 22 pt (take 2's accent is moss)."
+selection:
+  method: manual style and QA review
+  pick: null
+  note: Both candidates show a three-bump cream cloud, but substitute three short accent strokes for the
+    requested single curved underside accent. Their cocoa outlines are also heavier than the attached
+    icon sheet. Automated QA warns p5 lightness 33 versus R1 59 on both takes. The two-take limit is
+    reached; archive both for review and skip without promotion.
+takes:
+- take: 1
+  file: ui__x-icon-duo-cloud--t1.webp
+  source_file: /workspace/generated_images/exec-a12ee9e8-11c0-44a7-9f57-6631dcf74dc1.png
+  source_sha256: 9d177fdceee1d00e70acf7062aa4653088c42fa6bc4d728cbec32c2b6da7aa14
+  source_dimensions:
+  - 1254
+  - 1254
+  backend: codex-cloud
+  qa: warn
+  lock_load: 0.0
+  harmony: null
+  warnings:
+  - check: value_floor
+    status: warn
+    message: lightness p5 33 (R1 59)
+  review_webp_bytes: 41640
+- take: 2
+  file: ui__x-icon-duo-cloud--t2.webp
+  source_file: /workspace/generated_images/exec-4e617d27-75fe-4219-8b74-0914df6bae6c.png
+  source_sha256: 29755f7a36ca5f751e980154a63c84d3bf75d97ed3133ba8cfd28a47c0ac52fc
+  source_dimensions:
+  - 1254
+  - 1254
+  backend: codex-cloud
+  qa: warn
+  lock_load: 0.0
+  harmony: null
+  warnings:
+  - check: value_floor
+    status: warn
+    message: lightness p5 33 (R1 59)
+  review_webp_bytes: 41538
+prompt: 'REFERENCES (attached, in this order):
+
+  1. The app''s existing icon sheet: the exact style to copy (line weight, corner radius, cream fill,
+  honey and moss accents). Draw none of its icons again; it shows nine icons, you draw one.
+
+
+  One app menu icon for the same set as the icons on the attached sheet,
+
+  alone and centred on a transparent background, filling about two thirds of
+
+  the square: a soft round cloud of three bumps with one honey curve along
+
+  its underside. Exactly the attached style: a soft cream fill (#FBF1D8)
+
+  inside a rounded warm cocoa line (#5B4636) of the same weight, relative to
+
+  the icon''s size, as on the attached sheet, with one small flat accent of
+
+  honey (#F2B45A) or moss green (#94B062); no gradients and no shading.
+
+  Rounded, friendly, chunky forms, simple enough to read at a tiny size.
+
+  Draw this one icon only, once.
+
+
+  AVOID: a second icon, a grid or a sheet of icons, any icon copied from the attached sheet, text, letters,
+  numbers, a brand logo, gradients, shading, 3D, glass, a shadow, thin hairlines, a line heavier than
+  the attached sheet''s, a background shape, a circle, tile or badge behind the icon, a white sticker
+  border
+
+
+  Output: one image, transparent background PNG, square 1024 x 1024.
+
+  '
+attachments:
+- path: design/art/takes/batch-46-flat-icons/x-icons-flat-duo/ui__x-icons-flat-duo--t2.webp
+  role: 'The app''s existing icon sheet: the exact style to copy (line weight, corner radius, cream fill,
+    honey and moss accents). Draw none of its icons again; it shows nine icons, you draw one.'
+  sha256: ef8c8c041048042b8aea747aa0e2b3a36330ede0266f3212ad27970695cc3e81

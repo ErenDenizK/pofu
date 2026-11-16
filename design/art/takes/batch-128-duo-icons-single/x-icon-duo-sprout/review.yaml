@@ -1,0 +1,98 @@
+batch: batch-128-duo-icons-single
+manifest: tools/imagegen/manifest/batch-128-duo-icons-single.yaml
+manifest_sha256: 81c715219faae80588a55d5e884f216dfb004825abaa787a5034905db93f6dac
+job: x-icon-duo-sprout
+contact_sheet: design/art/takes/batch-128-duo-icons-single/x-icon-duo-sprout/contact.jpg
+source: codex-cloud
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+status: skipped
+pick: 1
+lead_review: "Lead pick: take 1's two moss leaves are even and read at 22 pt; line 5.5 percent, the heaviest pick but under 1 px heavier than the shipped sheet at device size (take 2 is 6.2)."
+selection:
+  method: manual icon-style review after automated QA
+  pick: null
+  note: Both takes depict a two-leaf moss sprout on a short cream stem with true transparency. Both trigger
+    value_floor (p5 lightness 31 vs R1 59) and palette_drift (mean dE 3.0–3.2, with small off-palette
+    portions); the cocoa outline also reads heavier than the shipped sheet at small size. Retain both
+    exploration takes, mark skipped under the QA/style fallback, and do not promote; the two-take cap
+    is reached.
+takes:
+- take: 1
+  file: ui__x-icon-duo-sprout--t1.webp
+  source_file: /workspace/generated_images/exec-d43c8188-6f79-4bc0-9be0-f9567d2115d0.png
+  source_sha256: cf0d1b4221689f1191ca3d8fe5589480168db934c22086b4fff87ceece641992
+  source_dimensions:
+  - 1254
+  - 1254
+  backend: codex-cloud
+  qa: warn
+  lock_load: 0.0
+  harmony: null
+  warnings:
+  - check: value_floor
+    status: warn
+    message: lightness p5 31 (R1 59)
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 3.2, p95 4.0, off-palette 0.4% (top: #888855 (0.1%), #776644 (0.1%))'
+  review_webp_bytes: 41090
+- take: 2
+  file: ui__x-icon-duo-sprout--t2.webp
+  source_file: /workspace/generated_images/exec-6af1de53-2067-4511-8261-9b04cf3a59c3.png
+  source_sha256: 03d121b28566588668e048c9316e808fed13f76b89684750ed6b4ed1f05e6511
+  source_dimensions:
+  - 1254
+  - 1254
+  backend: codex-cloud
+  qa: warn
+  lock_load: 0.0
+  harmony: null
+  warnings:
+  - check: value_floor
+    status: warn
+    message: lightness p5 31 (R1 59)
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 3.0, p95 4.3, off-palette 0.5% (top: #888855 (0.2%), #777755 (0.1%))'
+  review_webp_bytes: 35572
+prompt: 'REFERENCES (attached, in this order):
+
+  1. The app''s existing icon sheet: the exact style to copy (line weight, corner radius, cream fill,
+  honey and moss accents). Draw none of its icons again; it shows nine icons, you draw one.
+
+
+  One app menu icon for the same set as the icons on the attached sheet,
+
+  alone and centred on a transparent background, filling about two thirds of
+
+  the square: a young sprout of two round leaves on a short stem, the leaves
+
+  in moss. Exactly the attached style: a soft cream fill (#FBF1D8) inside a
+
+  rounded warm cocoa line (#5B4636) of the same weight, relative to the
+
+  icon''s size, as on the attached sheet, with one small flat accent of honey
+
+  (#F2B45A) or moss green (#94B062); no gradients and no shading. Rounded,
+
+  friendly, chunky forms, simple enough to read at a tiny size. Draw this
+
+  one icon only, once.
+
+
+  AVOID: a second icon, a grid or a sheet of icons, any icon copied from the attached sheet, text, letters,
+  numbers, a brand logo, gradients, shading, 3D, glass, a shadow, thin hairlines, a line heavier than
+  the attached sheet''s, a background shape, a circle, tile or badge behind the icon, a white sticker
+  border
+
+
+  Output: one image, transparent background PNG, square 1024 x 1024.
+
+  '
+attachments:
+- path: design/art/takes/batch-46-flat-icons/x-icons-flat-duo/ui__x-icons-flat-duo--t2.webp
+  role: 'The app''s existing icon sheet: the exact style to copy (line weight, corner radius, cream fill,
+    honey and moss accents). Draw none of its icons again; it shows nine icons, you draw one.'
+  sha256: ef8c8c041048042b8aea747aa0e2b3a36330ede0266f3212ad27970695cc3e81

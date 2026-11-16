@@ -21,6 +21,8 @@ enum SettingsTone {
 struct SettingsIcon: View {
     let systemName: String
     let tone: SettingsTone
+    /// The painted duo icon for the same meaning; the symbol stands in when the bundle lacks it.
+    var paint: PofuPaint?
     @Environment(\.colorScheme) private var scheme
     @ScaledMetric(relativeTo: .body) private var side: CGFloat = 30
 
@@ -31,10 +33,14 @@ struct SettingsIcon: View {
             .fill(tone.fill(palette).opacity(palette.isNight ? 0.28 : 0.3))
             .frame(width: side, height: side)
             .overlay {
-                Image(systemName: systemName)
-                    .symbolRenderingMode(.palette)
-                    .foregroundStyle(ink, tone.fill(palette))
-                    .font(.system(size: side * 0.5, weight: .semibold))
+                if let paint, paint.isAvailable {
+                    PofuPaintedIcon(paint, size: side * 0.87, scales: false)
+                } else {
+                    Image(systemName: systemName)
+                        .symbolRenderingMode(.palette)
+                        .foregroundStyle(ink, tone.fill(palette))
+                        .font(.system(size: side * 0.5, weight: .semibold))
+                }
             }
             .accessibilityHidden(true)
     }
@@ -44,18 +50,20 @@ struct SettingsLabel: View {
     let title: LocalizedStringKey
     let systemName: String
     var tone: SettingsTone = .honey
+    var paint: PofuPaint?
 
-    init(_ title: LocalizedStringKey, systemName: String, tone: SettingsTone = .honey) {
+    init(_ title: LocalizedStringKey, systemName: String, tone: SettingsTone = .honey, paint: PofuPaint? = nil) {
         self.title = title
         self.systemName = systemName
         self.tone = tone
+        self.paint = paint
     }
 
     var body: some View {
         Label {
             Text(title)
         } icon: {
-            SettingsIcon(systemName: systemName, tone: tone)
+            SettingsIcon(systemName: systemName, tone: tone, paint: paint)
         }
     }
 }

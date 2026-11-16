@@ -48,7 +48,11 @@ struct ScreenTimeSettingsSection: View {
                 LabeledContent {
                     Text(usageText)
                 } label: {
-                    Label("Guarded time today", systemImage: "hourglass")
+                    Label {
+                        Text("Guarded time today")
+                    } icon: {
+                        PofuDuoIcon(.duoHourglass, size: 26, fallback: "hourglass")
+                    }
                 }
                 Stepper(
                     value: Binding(
@@ -61,7 +65,11 @@ struct ScreenTimeSettingsSection: View {
                     LabeledContent {
                         Text("\(model.gateRules.dailyHourMinutes) min")
                     } label: {
-                        Label("Daily hour", systemImage: "wind")
+                        Label {
+                            Text("Daily hour")
+                        } icon: {
+                            PofuDuoIcon(.duoWind, size: 26, fallback: "wind")
+                        }
                     }
                 }
                 notificationRow
@@ -69,7 +77,11 @@ struct ScreenTimeSettingsSection: View {
                     NavigationLink {
                         DeveloperReadout(model: model)
                     } label: {
-                        Label("Readout", systemImage: "list.number")
+                        Label {
+                            Text("Readout")
+                        } icon: {
+                            PofuDuoIcon(.duoList, size: 26, fallback: "list.number")
+                        }
                     }
                 }
             } else {
@@ -106,7 +118,11 @@ struct ScreenTimeSettingsSection: View {
             }
         case .focusMayHide:
             VStack(alignment: .leading, spacing: PofuSpacing.xs) {
-                Label("With Focus on, my notification may not arrive.", systemImage: "moon")
+                Label {
+                    Text("With Focus on, my notification may not arrive.")
+                } icon: {
+                    PofuDuoIcon(.duoMoon, size: 26, fallback: "moon")
+                }
                 Button("Open Settings") { openSettings() }
                     .buttonStyle(PofuTextButtonStyle())
             }
@@ -166,7 +182,11 @@ private struct ChooseAppsRow: View {
             LabeledContent {
                 Text(verbatim: "\(gate.selectionCount)")
             } label: {
-                Label("Choose apps", systemImage: "square.grid.2x2")
+                Label {
+                    Text("Choose apps")
+                } icon: {
+                    PofuDuoIcon(.duoGrid, size: 26, fallback: "square.grid.2x2")
+                }
             }
         }
         .familyActivityPicker(isPresented: $isPickerPresented, selection: $picked)
@@ -200,7 +220,11 @@ private struct AllowScreenTimeRow: View {
         Button {
             isSettingUp = true
         } label: {
-            Label("Allow Screen Time", systemImage: "hand.raised")
+            Label {
+                Text("Allow Screen Time")
+            } icon: {
+                PofuDuoIcon(.duoHand, size: 26, fallback: "hand.raised")
+            }
         }
         .sheet(isPresented: $isSettingUp) {
             ZStack {
