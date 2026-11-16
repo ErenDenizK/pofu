@@ -44,7 +44,9 @@ CODEC_ALPHA = 0.04
 M3_NIGHT = 0.25
 #: Checks waived for one state, each looked at on the plate over a flat sky at 1:1 (the lawn's rim there is crisp and
 #: clean; the test reads pale grass tips against the sky as haze). Day levels 1 and 2, batch 116's cleared takes.
-WAIVED = {"day-8": ("M11",), "day-9": ("M11",)}
+#: Night level 8 (batch 125's cleared night, its own solve): M4 counts the sky between the bunting's string and the tea
+#: stall's ridge, a real gap that the day of the level shows the same way.
+WAIVED = {"day-8": ("M11",), "day-9": ("M11",), "night-2": ("M4",)}
 #: Texture px per plate point of the shipped plate, and the beam's soft rect (tools/proof/island_matte.py: BEAM_X,
 #: BEAM_LEAD, BEAM_Y, in texture px of the whole plate).
 TEX = 2

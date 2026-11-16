@@ -217,7 +217,7 @@ class IngestTests(unittest.TestCase):
         self.assertTrue(all(p.exists() for p in masters))
         # every state that is not listed as legacy has its own solve (the three lights of a stage are one drawing)
         own = {m.name for m, (light, stage, _) in zip(masters, ingest.plates(hand)) if not ingest.is_legacy(hand, light, stage)}
-        self.assertEqual(len(own), 17)
+        self.assertEqual(len(own), 21 - len(hand.get("legacyStates", [])))
         self.assertFalse(np.array_equal(ingest.load_matte_full("home", "day", 5), ingest.load_matte_full("home", "day", 0)))
         # a state without its own matte is an error, not the level-10 one
         with mock.patch.object(ingest, "matte_path", return_value=Path("/nonexistent/matte.png")):

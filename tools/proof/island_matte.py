@@ -48,13 +48,10 @@ import skyset_extend  # noqa: E402
 
 
 def plate_rgb(light: str, stage: int) -> np.ndarray:
-    """The whole Home plate of a state at texture size (RGB floats): the shipped plate, or, where it ships cropped to its
-    island (`plateCrop`, one sky at every level), the picture `ingest.py deliver` cut it from (the upscaled take), so
-    the solve still sees the sky round the island."""
+    """The whole Home plate of a state at texture size (RGB floats): the picture `ingest.py deliver` cuts the shipped plate
+    from (the hand data's take, upscaled). The shipped plate is cropped to its island (`plateCrop`, one sky at every
+    level), and a new take has no shipped plate yet, so the solve reads the source."""
     hand = ingest.load_hand("home")                 # sets `ingest.SIZE` to the Home plate's
-    rgba = load_rgba(f"world-home-plate-{light}-{stage}")
-    if rgba.shape[:2] == (ingest.SIZE[1] * TEX, ingest.SIZE[0] * TEX):
-        return rgba[..., :3]
     return ingest.source_plate(ingest.REPO / hand["plates"][light][str(stage)])[0].astype(np.float32)
 
 TEX = 2                                     # plate texture px per plate point
@@ -587,7 +584,15 @@ def lights_at(stage: int) -> list[str]:
 
 
 def _box(stage: int) -> tuple[int, int, int, int]:
-    """The layer's box in plate points: the day matte's box with PAD of room on every side (the plate's own edge where it ends)."""
+    """The layer's box in plate points: the day matte's box with PAD of room on every side (the plate's own edge where it ends).
+    Once the stage's day layer is solved its box is the stage's (the lights of a stage are one drawing, and the committed
+    matte the box was first read from is the solve's own output since)."""
+    day = CACHE / f"island2-day-{stage}.npz"
+    if day.exists():
+        z = np.load(day)
+        x, y = int(z["x"]), int(z["y"])
+        h, w = z["rgba"].shape[:2]
+        return x, y, x + w // TEX, y + h // TEX
     plate = plate_rgb("day", stage)
     _, (bx0, by0, bx1, by1) = island_alpha("day", stage, plate)
     ph, pw = plate.shape[0] // TEX, plate.shape[1] // TEX
@@ -597,6 +602,33 @@ def _box(stage: int) -> tuple[int, int, int, int]:
 def plate_crop(light: str, stage: int) -> np.ndarray:
     x0, y0, x1, y1 = _box(stage)
     return plate_rgb(light, stage)[y0 * TEX:y1 * TEX, x0 * TEX:x1 * TEX]
+
+
+#: States whose own painting is solved instead of the stage's shared (day) shape: batch 125's cleared nights re-render
+#: the island's edge (the lawn runs on where the mist was), so the day's cut would take paint off them (M11).
+OWN_SOLVE = {("night", 1), ("night", 2)}
+
+
+def own_alpha(light: str, stage: int) -> np.ndarray:
+    """The alpha of this state's own painting, solved as `shared_alpha` solves the day's (network and edge solve)."""
+    f = CACHE / f"own-{light}-{stage}.npy"
+    if f.exists():
+        return np.load(f)
+    rgb = plate_crop(light, stage)
+    pf = CACHE / f"prob-{light}-{stage}.npy"
+    if pf.exists():
+        prob = np.load(pf)
+    else:
+        prob = ml_probability(rgb)
+        np.save(pf, prob)
+    a, _ = solve_edge(rgb, prob, semantic=True)
+    firm = cv2.morphologyEx((a > 0.3).astype(np.uint8), cv2.MORPH_OPEN, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (3, 3)))
+    a = np.where(cv2.dilate(firm, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5))) > 0, a, 0.0)
+    a = np.where(_drop_small(a > 0.02, MIN_PIECE), a, 0.0).astype(np.float32)
+    a = np.where(_fill_small(a >= 0.99, MIN_PIECE) & ~(a >= 0.99), 1.0, a).astype(np.float32)
+    a = np.ascontiguousarray(a, dtype=np.float32)
+    np.save(f, a)
+    return a
 
 
 def shared_alpha(stage: int) -> np.ndarray:
@@ -678,7 +710,7 @@ def island_layer(light: str = "day", stage: int = 0) -> tuple[np.ndarray, tuple[
     x0, y0, x1, y1 = _box(stage)
     plate = plate_rgb(light, stage)
     rgb = plate[y0 * TEX:y1 * TEX, x0 * TEX:x1 * TEX]
-    a = shared_alpha(stage).copy()
+    a = (own_alpha(light, stage) if (light, stage) in OWN_SOLVE else shared_alpha(stage)).copy()
     far = ~cv2.dilate((a > 0.02).astype(np.uint8), cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2 * BAND + 1, 2 * BAND + 1))).astype(bool)
     col = edge_colour(rgb, a, _estimate(rgb, far))
     a[:1], a[-1:], a[:, :1], a[:, -1:] = 0, 0, 0, 0

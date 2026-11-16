@@ -138,6 +138,10 @@ jobs:
       - name: Check Home's derived IL1 plates
         run: python3 -I tools/plate/il1_composite.py check
 
+      # Night levels 8 and 9 paste batch 125's cleared region over their parents (tools/plate/night_clear.py).
+      - name: Check Home's cleared night plates
+        run: python3 -I tools/plate/night_clear.py check
+
       # Every caster has a current pre-blurred shadow silhouette
       # (light and shadow v2); `shadows.py run` regenerates them.
       - name: Check the shadow silhouettes

@@ -40,7 +40,7 @@ struct HomePlateDataTests {
     /// Home's sky set of its light behind it; the states that keep their old matte keep the whole plate and its backdrop.
     @Test func mattedStatesDrawTheirLightsSkyBehindACroppedPlate() throws {
         let plate = try plate
-        let legacy: Set<String> = ["night:1", "night:2", "night:8", "night:9"]
+        let legacy: Set<String> = ["night:8", "night:9"]
         for light in plate.lights {
             for stage in 0..<(plate.lightStages[light] ?? 0) {
                 let state = HomePlate(plate: plate, light: light, stage: stage)
