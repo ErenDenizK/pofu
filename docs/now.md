@@ -36,12 +36,12 @@ chooses to (days 1-21); no dates (11-14). Now: world presentation (#474).
    WP13 water merged (#505; #504 closed): the pond moves at Ambient, island
    flattened before the lens. Left: falls, sway mask; device frame time.
 3. Merged 11-16: #480 sky, #488, #489 flow, #491 cloud floor, #492 props,
-   #493 N6, #494-#498 tea stall, rail, icons, beds; #501 games, #505 pond.
+   #493 N6, #494-#498 tea stall, rail, icons, beds; #501 games, #505 pond, #506 flow kit.
 4. UI grammar #490 open (docs), waits on his answers with #503.
 5. Codex: 132, 133, 135, 126 v2 merged (cloud fit: crossfade floor-mid,
-   grade the warm kit only, Koke keeps bed-round v1). Flow fit #506 green,
-   passes at 1:1 but the mouth-to-spout water seam (fix, push 2). Queue: 136 lawn, 137 ladder, S2 v3, S3.
-Merged: #475-#489, #491-#502, #505; pofu-art #81, #91-#120.
+   grade the warm kit only, Koke keeps bed-round v1). Flow kit v2 merged
+   (#506: frame, spillway, spouts, warm rocks; lawn waits on batch 136). Queue: 136 lawn, 137 ladder, S2 v3, S3.
+Merged: #475-#489, #491-#502, #505, #506; pofu-art #81, #91-#120.
 
 ## Next (night plan)
 A9 art backlog; §8.6 pass. Sefer V1-V5 and WP12 once he says yes.
