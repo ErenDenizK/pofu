@@ -28,8 +28,8 @@ chooses to (days 1-21); no dates (11-14). Now: world presentation (#474).
    measure). Kept open for his 6 answers (sent 11-16); answer 1 also
    closes #490 Q3. His answers came (fi 39): Sefer prototype published to
    him; pilot A passed (#116), 129 dropped, lower steps redone as 137.
-   (b) #501 + #506 merged. Fable round 2 (fi 39) running: the board as
-   raised grass-topped blocks + the upgrade sheet from scratch; 136 held.
+   (b) #501 + #506 merged. Fable round 2 done: #507 (open, his picks):
+   board as a tray of grass-topped blocks, sheet = next form + 5 medallions.
    Flow kit v2 queued (batch 135); then a small code pass.
 2. WP10 compositor merged (#500): looks sort with Pofu by footY, Map
    snapshot of the built island, 3.2 s reveal. Left: `mapisle` assets
@@ -56,5 +56,5 @@ A9 art backlog; §8.6 pass. Sefer V1-V5 and WP12 once he says yes.
 
 ## Open with the founder
 
-- Picks: Sefer (prototype sent 11-17), 5 UI grammar Qs, N6 (yes).
+- Picks: Sefer; #507 dial or key, the sheet (all sent 11-17); #490 Qs; N6.
 - Device: 11-13 answers; pinch smooth? pond frame rate. Stale: roadmap, tracker.
