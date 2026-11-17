@@ -18,7 +18,7 @@ chooses to (days 1-21); no dates (11-14). Now: world presentation (#474).
 - Merges that carry out a plan he approved (pofu-art queue PRs too) need
   no question; merge on review, tell him after (founder-input 31).
 - Night plan and Codex queue approved in advance (founder-input 35). Disk floor 5 GB.
-- Tempo (fi 39-40): at most 2-3 agents, cheap; concept first, no HTML.
+- Tempo (fi 39-41): Claude 2-3 agents, lean; Codex unlimited, never idle; concept first.
 
 ## In flight
 
