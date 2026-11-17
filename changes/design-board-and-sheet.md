@@ -1,0 +1,1 @@
+Design: the stream board as a tabletop toy (raised grass blocks on a tray, turning dials) and a new station sheet (the next form's picture, the station's own forms as the level gauge), each as a playable web prototype; nothing in the app changes yet.
