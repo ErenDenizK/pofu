@@ -11,6 +11,10 @@ final class FlowTileNode: SKNode {
     let stone = SKSpriteNode()
     var crop: SKCropNode?
     var overlay: SKSpriteNode?
+    /// The painted spout under a last-row mouth: dry until the water arrives.
+    var spout: SKSpriteNode?
+    /// The board's water carried on over the wet spout's chute.
+    var spoutWater: SKSpriteNode?
 
     init(cell: FlowCell, tile: FlowTile) {
         self.cell = cell
@@ -232,13 +236,8 @@ final class FlowScene: SKScene {
         hintNodes = []
 
         let lipRect = sceneRect(layout.lip)
-        if let lipTexture = textures.boardLip() {
-            // The painted lip (batch 131), stretched to the lip rect, whose spillway notch the backdrop's
-            // cascade pours through. Both ground methods.
-            let sprite = SKSpriteNode(texture: lipTexture, size: lipRect.size)
-            sprite.position = CGPoint(x: lipRect.midX, y: lipRect.midY)
-            sprite.zPosition = 1
-            container.addChild(sprite)
+        if let kit = textures.lipKit() {
+            addLip(kit, to: container)
         } else {
             let lip = SKShapeNode(rect: lipRect, cornerRadius: 12)
             lip.fillColor = FlowPalette.cliff
@@ -261,27 +260,41 @@ final class FlowScene: SKScene {
             // Method B: one seamless lawn under the whole board.
             let sprite = SKSpriteNode(texture: lawn, size: bankRect.size)
             sprite.position = CGPoint(x: bankRect.midX, y: bankRect.midY)
-            sprite.zPosition = 0.5
+            sprite.zPosition = 0.3
             container.addChild(sprite)
         } else {
             let bank = SKShapeNode(rect: bankRect, cornerRadius: 18)
             bank.fillColor = FlowPalette.cliff.withAlphaComponent(0.5)
             bank.strokeColor = FlowPalette.cliffDark.withAlphaComponent(0.35)
             bank.lineWidth = 1.2
-            bank.zPosition = 0.5
+            bank.zPosition = 0.3
             container.addChild(bank)
         }
 
-        let poolRect = sceneRect(layout.pool)
-        let pool: SKNode
-        if let slices = textures.poolSlices() {
-            pool = paintedPool(slices, in: poolRect)
-        } else {
-            pool = drawnPool(in: poolRect)
+        let edgeRect = sceneRect(layout.edge)
+        if let frame = textures.edgeFrame(size: edgeRect.size) {
+            // The stone edge lies over the lawn's rim and under the tiles, the lip's ends and the spouts.
+            let sprite = SKSpriteNode(texture: frame, size: edgeRect.size)
+            sprite.position = CGPoint(x: edgeRect.midX, y: edgeRect.midY)
+            sprite.zPosition = 0.35
+            container.addChild(sprite)
         }
-        pool.zPosition = 0.6
-        container.addChild(pool)
-        poolNode = pool
+
+        // The backdrop's own pool lies right under the board and takes the spouts' water, so the code's
+        // pool strip is only drawn while there is no spout art.
+        poolNode = nil
+        if textures.spout(wet: false) == nil {
+            let poolRect = sceneRect(layout.pool)
+            let pool: SKNode
+            if let slices = textures.poolSlices() {
+                pool = paintedPool(slices, in: poolRect)
+            } else {
+                pool = drawnPool(in: poolRect)
+            }
+            pool.zPosition = 0.6
+            container.addChild(pool)
+            poolNode = pool
+        }
 
         let flow = FlowSolver.flow(board)
         for cell in board.allCells {
@@ -297,6 +310,34 @@ final class FlowScene: SKScene {
         wetCells = Set(flow.keys)
         refreshSpills(for: board, wet: wetCells, delays: [:], animated: false)
         return container
+    }
+
+    /// The lip kit over the board's top edge: the spillway on the spring's column, a run stone on every other
+    /// column (squeezed to one cell), and an end over each top corner knob of the edge. One scale for all,
+    /// the spillway being one cell wide; the stone's bottom sits on the edge's inner side, and the water sheet
+    /// hangs over the spring cell.
+    private func addLip(_ kit: FlowTextures.LipKit, to container: SKNode) {
+        let k = textures.lipScale(kit)
+        let rect = sceneRect(layout.board)
+        let stoneBottom = rect.maxY - 6
+        let springColumn = board.allCells.sorted().first { board[$0]?.kind == .source }?.column ?? board.columns / 2
+        func place(_ image: UIImage, centreX: CGFloat, width: CGFloat, z: CGFloat) {
+            let height = image.size.height * k
+            let sprite = SKSpriteNode(texture: SKTexture(image: image), size: CGSize(width: width, height: height))
+            sprite.texture?.filteringMode = .linear
+            sprite.anchorPoint = CGPoint(x: 0.5, y: 0)
+            sprite.position = CGPoint(x: centreX, y: stoneBottom - (image.size.height - FlowTextures.lipStoneBottomRow) * k)
+            sprite.zPosition = z
+            container.addChild(sprite)
+        }
+        for column in 0..<board.columns {
+            let image = column == springColumn ? kit.spill : kit.run
+            place(image, centreX: rect.minX + (CGFloat(column) + 0.5) * layout.cell, width: layout.cell, z: 3)
+        }
+        let knob = FlowTextures.edgeCorner * 0.46
+        let edge = sceneRect(layout.edge)
+        place(kit.leftEnd, centreX: edge.minX + knob, width: kit.leftEnd.size.width * k, z: 3.1)
+        place(kit.rightEnd, centreX: edge.maxX - knob, width: kit.rightEnd.size.width * k, z: 3.1)
     }
 
     /// The painted pool: the caps keep the picture's proportions, the middle slice stretches between them.
@@ -341,10 +382,29 @@ final class FlowScene: SKScene {
     private func makeTile(_ cell: FlowCell, _ tile: FlowTile) -> FlowTileNode {
         let node = FlowTileNode(cell: cell, tile: tile)
         node.position = point(of: cell)
-        node.stone.texture = textures.bank(tile.kind, cell: cell, picker: picker, method: method) ?? textures.stone(tile.kind, tile.openings, flip: FlowTextures.flip(of: cell))
+        let drain = drains(cell, tile)
+        node.stone.texture = textures.bank(tile.kind, cell: cell, picker: picker, method: method) ?? textures.stone(tile.kind, tile.openings, flip: FlowTextures.flip(of: cell), drain: drain)
         node.stone.size = cellSize
         node.stone.zPosition = 1
         node.addChild(node.stone)
+        if drain, let dry = textures.spout(wet: false) {
+            // Under the mouth tile (z 1) and the neighbours', over the edge and the backdrop's pool.
+            let sprite = SKSpriteNode(texture: dry.texture, size: dry.size)
+            sprite.anchorPoint = CGPoint(x: 0.5, y: 1)
+            sprite.position = CGPoint(x: 0, y: -layout.cell / 2 + dry.rimDrop)
+            sprite.zPosition = 0.5
+            node.addChild(sprite)
+            node.spout = sprite
+            if let water = textures.spoutWater(flip: FlowTextures.flip(of: cell)) {
+                let overlay = SKSpriteNode(texture: water, size: dry.size)
+                overlay.anchorPoint = sprite.anchorPoint
+                overlay.position = sprite.position
+                overlay.zPosition = 0.6
+                overlay.isHidden = true
+                node.addChild(overlay)
+                node.spoutWater = overlay
+            }
+        }
         switch tile.kind {
         case .gate:
             // The painted plank is 86 percent of its tile wide: scaled so it sits inside the cell, a little
@@ -364,6 +424,27 @@ final class FlowScene: SKScene {
         return node
     }
 
+    /// Whether a tile is a mouth in the board's last row whose stream runs on into a painted spout.
+    private func drains(_ cell: FlowCell, _ tile: FlowTile) -> Bool {
+        tile.kind == .mouth && cell.row == board.rows - 1 && textures.spout(wet: false) != nil
+    }
+
+    /// Swaps a spout between dry and wet, once the water has reached its mouth.
+    private func setSpout(_ node: FlowTileNode, wet: Bool, after delay: TimeInterval) {
+        guard let sprite = node.spout, let state = textures.spout(wet: wet) else { return }
+        sprite.removeAction(forKey: "spout")
+        node.spoutWater?.removeAction(forKey: "spout")
+        guard delay > 0 else {
+            sprite.texture = state.texture
+            node.spoutWater?.isHidden = !wet
+            return
+        }
+        let texture = state.texture
+        sprite.run(.sequence([.wait(forDuration: delay), .setTexture(texture)]), withKey: "spout")
+        let toggle: SKAction = wet ? .unhide() : .hide()
+        node.spoutWater?.run(.sequence([.wait(forDuration: delay), toggle]), withKey: "spout")
+    }
+
     // MARK: Water
 
     private func showWater(on node: FlowTileNode, entered: FlowDirection?, delay: TimeInterval, animated: Bool) {
@@ -371,11 +452,12 @@ final class FlowScene: SKScene {
         let crop = SKCropNode()
         crop.zPosition = 2
         let tile = node.shown
-        crop.addChild(SKSpriteNode(texture: textures.water(tile.kind, tile.openings, flip: FlowTextures.flip(of: node.cell)), size: cellSize))
+        crop.addChild(SKSpriteNode(texture: textures.water(tile.kind, tile.openings, flip: FlowTextures.flip(of: node.cell), drain: node.spout != nil), size: cellSize))
         let mask = SKSpriteNode(color: .white, size: cellSize)
         crop.maskNode = mask
         node.addChild(crop)
         node.crop = crop
+        setSpout(node, wet: true, after: animated ? delay + Self.tileDelay : 0)
         guard animated else { return }
         guard let entered, !reduceMotion else {
             crop.alpha = 0
@@ -412,6 +494,7 @@ final class FlowScene: SKScene {
     private func hideWater(on node: FlowTileNode) {
         guard let crop = node.crop else { return }
         node.crop = nil
+        setSpout(node, wet: false, after: 0)
         crop.run(.sequence([.fadeOut(withDuration: 0.15), .removeFromParent()]))
         if node.shown.kind == .wheel, let wheel = node.overlay {
             wheel.removeAction(forKey: "spin")
@@ -506,9 +589,10 @@ final class FlowScene: SKScene {
         // Land any turn still in flight, then start the next.
         node.stone.removeAction(forKey: "turn")
         node.stone.zRotation = 0
-        node.stone.texture = textures.stone(node.shown.kind, node.shown.openings, flip: FlowTextures.flip(of: node.cell))
+        let drain = node.spout != nil
+        node.stone.texture = textures.stone(node.shown.kind, node.shown.openings, flip: FlowTextures.flip(of: node.cell), drain: drain)
         node.shown = tile
-        let texture = textures.stone(tile.kind, tile.openings, flip: FlowTextures.flip(of: node.cell))
+        let texture = textures.stone(tile.kind, tile.openings, flip: FlowTextures.flip(of: node.cell), drain: drain)
         let angle: CGFloat = reverse ? .pi / 2 : -.pi / 2
         if reduceMotion {
             node.stone.texture = texture
@@ -620,7 +704,7 @@ final class FlowScene: SKScene {
                 drop.strokeColor = FlowPalette.water
                 drop.lineWidth = 0.8
                 drop.zPosition = 6
-                drop.position = CGPoint(x: 0, y: layout.cell * 0.1)
+                drop.position = CGPoint(x: 0, y: node.spout == nil ? layout.cell * 0.1 : -layout.cell * 0.9)
                 node.addChild(drop)
                 let angle = CGFloat(index) / 6 * .pi * 0.9 + 0.1
                 let rise = SKAction.moveBy(x: cos(angle) * layout.cell * 0.4, y: sin(angle) * layout.cell * 0.55, duration: 0.45)

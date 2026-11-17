@@ -86,11 +86,6 @@ final class FlowTextures {
     /// The lawn's multiply. The painted lawn is a pale olive (about 205, 209, 116) beside a backdrop of
     /// fresh grass; this brings it to a spring green (about 172, 205, 90) without touching the art file.
     static let lawnTint = FlowPalette.rgb(0.84, 0.98, 0.78)
-    /// The cut-out rocks are a cold grey; a warm multiply sets them in the stone's family.
-    static let rockTint = FlowPalette.rgb(1.0, 0.93, 0.82)
-    /// The painted water is paler than the pool it runs to (about 185, 224, 217 against 114, 221, 218);
-    /// this multiply brings the stream to the pool's turquoise.
-    static let waterTint = FlowPalette.rgb(0.70, 0.96, 1.0)
 
     private var imageCache: [String: [UIImage]] = [:]
 
@@ -172,37 +167,14 @@ final class FlowTextures {
         let index = picker.variant(of: at, count: pool.count)
         let key = "bank-\(kind.rawValue)-\(index)-\(turns)-\(mirrored)-\(onLawn)-\(cut.isEmpty)"
         return cached(key) { context in
-            let picture = cut.isEmpty ? pool[index] : self.tinted(pool[index], Self.rockTint, key: "rock-cut-\(index)")
-            self.drawBank(context, image: picture, turns: turns, mirrored: mirrored, keycap: !onLawn, cutOut: !cut.isEmpty, paintedShade: FlowArtSlot.rockCutHasPaintedShade(variant: index))
+            self.drawBank(context, image: pool[index], turns: turns, mirrored: mirrored, keycap: !onLawn, cutOut: !cut.isEmpty, paintedShade: FlowArtSlot.rockCutHasPaintedShade(variant: index))
         }
     }
 
-    /// The cut-out rocks are ingested with the largest's long side at 216 px. The largest fills 72 percent
-    /// of a cell: at 88 percent a boulder was bigger than the stones beside it and read as the subject.
+    /// The cut-out rocks (batch 135) are ingested with the largest's long side at 216 px, and the largest
+    /// fills 62 percent of a cell: all four are large, and at more a boulder out-sizes the stones beside it.
     static let rockCutLongSide: CGFloat = 216
-    static let rockCutFill: CGFloat = 0.72
-
-    private var tintCache: [String: UIImage] = [:]
-
-    /// A cut-out picture multiplied by `tint` inside its own alpha (the art file is not recoloured).
-    func tinted(_ image: UIImage, _ tint: UIColor, key: String) -> UIImage {
-        if let hit = tintCache[key] { return hit }
-        let format = UIGraphicsImageRendererFormat()
-        format.scale = image.scale
-        format.opaque = false
-        let rect = CGRect(origin: .zero, size: image.size)
-        let result = UIGraphicsImageRenderer(size: rect.size, format: format).image { rendered in
-            let context = rendered.cgContext
-            image.draw(in: rect)
-            context.setBlendMode(.multiply)
-            context.setFillColor(tint.cgColor)
-            context.fill(rect)
-            // The multiply also filled the clear pixels: keep only what lies inside the picture.
-            image.draw(in: rect, blendMode: .destinationIn, alpha: 1)
-        }
-        tintCache[key] = result
-        return result
-    }
+    static let rockCutFill: CGFloat = 0.62
 
     private func drawBank(_ context: CGContext, image: UIImage, turns: Int, mirrored: Bool, keycap: Bool, cutOut: Bool, paintedShade: Bool = false) {
         let bounds = CGRect(x: 0, y: 0, width: cell, height: cell)
@@ -317,24 +289,162 @@ final class FlowTextures {
     /// continuous by construction, so no wrap seam of the tile can fall on a cell boundary.
     static func flip(of cell: FlowCell) -> Int { (cell.column & 1) | ((cell.row & 1) << 1) }
 
-    func stone(_ kind: FlowTileKind, _ openings: FlowDirection, flip: Int = 0) -> SKTexture {
+    /// `drain` marks a mouth in the board's last row: its channel runs on out of the cell's bottom edge into
+    /// the painted spout, so the outlet ring is not drawn.
+    func stone(_ kind: FlowTileKind, _ openings: FlowDirection, flip: Int = 0, drain: Bool = false) -> SKTexture {
         if kind == .wheel, let art = painted(Self.wheelTileArt) { return art }
-        return cached("stone-\(kind.rawValue)-\(openings.rawValue)-\(flip)") { context in
+        return cached("stone-\(kind.rawValue)-\(openings.rawValue)-\(flip)-\(drain)") { context in
             switch kind {
             case .rock: self.drawRock(context)
             case .grass: self.drawGrass(context)
-            default: self.drawStone(context, kind: kind, openings: openings, flip: flip)
+            default: self.drawStone(context, kind: kind, openings: openings, flip: flip, drain: drain)
             }
         }
+    }
+
+    /// What a mouth draws as its channel: with a drain, the channel also leaves through the bottom edge.
+    private func shown(_ openings: FlowDirection, drain: Bool) -> FlowDirection {
+        drain ? openings.union(.south) : openings
     }
 
     /// The painted pool as three slices of one picture (left cap, a middle that is stretched, right cap),
     /// so a rim of river stones can run the width of the board. `nil` until the art is in the bundle.
     static let poolArt = "flow-pool"
 
-    /// The board's painted top lip, or nil while the slot has no art (the code drawing stays).
-    func boardLip() -> SKTexture? {
-        art(FlowArtSlot.boardLip).map(texture(of:))
+    // MARK: Kit v2 (batch 135 lip kit and spout, batch 132 edge)
+
+    /// The painted lip's four pieces (all cut from the same rows, so one baseline), or nil while any is missing.
+    struct LipKit {
+        let leftEnd: UIImage
+        let run: UIImage
+        let spill: UIImage
+        let rightEnd: UIImage
+    }
+
+    /// The row of the stone's bottom, counted from the pieces' top (source y 467, minus the crop's 255, halved).
+    static let lipStoneBottomRow: CGFloat = 106
+
+    func lipKit() -> LipKit? {
+        guard let leftEnd = art(FlowArtSlot.lipEndLeft), let run = art(FlowArtSlot.lipRun), let spill = art(FlowArtSlot.lipSpill), let rightEnd = art(FlowArtSlot.lipEndRight) else { return nil }
+        return LipKit(leftEnd: leftEnd, run: run, spill: spill, rightEnd: rightEnd)
+    }
+
+    /// One scale for the whole lip: the spillway is one cell wide.
+    func lipScale(_ kit: LipKit) -> CGFloat { cell / kit.spill.size.width }
+
+    /// The painted spout (a stone chute from a mouth into the pool), dry or wet, drawn at the scale where its
+    /// channel (72.5 stored px) is as wide as the stream (0.92 of the groove). Both states are on a canvas
+    /// centred on their own channel, so the sprite is centred on its cell. The closed top rim is the canvas's
+    /// first 40 rows: it goes under the mouth tile, so row 40 sits on the cell's bottom edge.
+    static let spoutChannel: CGFloat = 72.5
+    static let spoutRimRows: CGFloat = 40
+
+    /// The channel's still water in the painted spout, in stored px: rows with the left and right edge of the
+    /// water. The board's own water is drawn over it down to row `spoutWaterFadeEnd` so the stream is one
+    /// water from the mouth tile into the chute; the painted waterfall below keeps its own look.
+    private static let spoutChannelRows: [(y: CGFloat, left: CGFloat, right: CGFloat)] = [
+        (40, 140, 210), (126, 136, 214), (150, 134, 217), (174, 128, 220), (198, 122, 228), (206, 122, 228),
+    ]
+    private static let spoutWaterFadeStart: CGFloat = 150
+    private static let spoutWaterFadeEnd: CGFloat = 205
+
+    private var spoutWaterCache: [Int: SKTexture] = [:]
+
+    func spout(wet: Bool) -> (texture: SKTexture, size: CGSize, rimDrop: CGFloat)? {
+        guard let image = art(wet ? FlowArtSlot.spoutWet : FlowArtSlot.spoutDry) else { return nil }
+        let scale = grooveWidth * 0.92 / Self.spoutChannel
+        return (texture(of: image), CGSize(width: image.size.width * scale, height: image.size.height * scale), Self.spoutRimRows * scale)
+    }
+
+    /// The board's water carried on into the wet chute, on the spout's canvas (same size and anchor), to lie
+    /// over the painted spout. `flip` is the mouth tile's water flip: below the cell's bottom edge the texture
+    /// is the mirror image of the tile's about that edge, so it has the same scale, colour and phase on both
+    /// sides of the join. The water thins out into the painted waterfall.
+    func spoutWater(flip: Int) -> SKTexture? {
+        guard let water = art(FlowArtSlot.water), let base = spout(wet: true) else { return nil }
+        if let hit = spoutWaterCache[flip] { return hit }
+        let size = base.size
+        let rimDrop = base.rimDrop
+        let scale = grooveWidth * 0.92 / Self.spoutChannel
+        let format = UIGraphicsImageRendererFormat()
+        format.scale = 3
+        format.opaque = false
+        let composed = UIGraphicsImageRenderer(size: size, format: format).image { rendered in
+            let context = rendered.cgContext
+            // The tile's cell in the canvas: its bottom edge is at `rimDrop`, its middle on the canvas's.
+            let x0 = size.width / 2 - cell / 2
+            let y0 = rimDrop - cell
+            let rows = Self.spoutChannelRows
+            func channel(inset: CGFloat) -> CGPath {
+                let path = CGMutablePath()
+                path.move(to: CGPoint(x: rows[0].left * scale + inset, y: rows[0].y * scale))
+                for row in rows.dropFirst() { path.addLine(to: CGPoint(x: row.left * scale + inset, y: row.y * scale)) }
+                for row in rows.reversed() { path.addLine(to: CGPoint(x: row.right * scale - inset, y: row.y * scale)) }
+                path.closeSubpath()
+                return path
+            }
+            let board = CGRect(x: x0 - 3, y: y0 - 3, width: cell + 6, height: cell + 6)
+            let mirror = CGRect(x: x0 - 3, y: rimDrop - 3, width: cell + 6, height: cell + 6)
+            context.beginTransparencyLayer(auxiliaryInfo: nil)
+            // Three passes, narrower and more opaque, feather the water into the painted walls.
+            for (inset, alpha) in [(CGFloat(1.5), CGFloat(0.4)), (3, 0.6), (5, 1)] {
+                context.saveGState()
+                context.setAlpha(alpha)
+                context.addPath(channel(inset: inset))
+                context.clip()
+                context.saveGState()
+                context.clip(to: CGRect(x: 0, y: 0, width: size.width, height: rimDrop))
+                self.drawSeamless(water, crop: Self.waterCrop, flip: flip, in: board, context)
+                context.restoreGState()
+                context.clip(to: CGRect(x: 0, y: rimDrop, width: size.width, height: size.height - rimDrop))
+                self.drawSeamless(water, crop: Self.waterCrop, flip: flip ^ 2, in: mirror, context)
+                context.restoreGState()
+            }
+            context.setBlendMode(.destinationIn)
+            let colors = [UIColor.white.cgColor, UIColor.white.withAlphaComponent(0).cgColor] as CFArray
+            if let gradient = CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: colors, locations: [0, 1]) {
+                context.drawLinearGradient(gradient, start: CGPoint(x: 0, y: Self.spoutWaterFadeStart * scale), end: CGPoint(x: 0, y: Self.spoutWaterFadeEnd * scale), options: [.drawsBeforeStartLocation, .drawsAfterEndLocation])
+            }
+            context.endTransparencyLayer()
+        }
+        let result = texture(of: composed)
+        spoutWaterCache[flip] = result
+        return result
+    }
+
+    /// The board's stone edge as one picture of `size` points: a 9-slice of the painted frame. The corners
+    /// (190 source px of 1254, 114 stored px) are drawn at 1 stored px per device px, the sides are stretched
+    /// and never tiled. Nil while the art is not in the bundle.
+    static let edgeSlice: CGFloat = 114
+    /// The corner's size in points (device scale 3).
+    static let edgeCorner: CGFloat = edgeSlice / 3
+
+    func edgeFrame(size: CGSize) -> SKTexture? {
+        guard let cg = art(FlowArtSlot.edge)?.cgImage else { return nil }
+        let width = CGFloat(cg.width)
+        let height = CGFloat(cg.height)
+        let slice = Self.edgeSlice
+        let corner = Self.edgeCorner
+        let sourceX = [0, slice, width - slice, width]
+        let sourceY = [0, slice, height - slice, height]
+        let destX = [0, corner, size.width - corner, size.width]
+        let destY = [0, corner, size.height - corner, size.height]
+        let format = UIGraphicsImageRendererFormat()
+        format.scale = 3
+        format.opaque = false
+        let picture = UIGraphicsImageRenderer(size: size, format: format).image { rendered in
+            let context = rendered.cgContext
+            context.interpolationQuality = .high
+            for row in 0..<3 {
+                for column in 0..<3 where !(row == 1 && column == 1) {
+                    let source = CGRect(x: sourceX[column], y: sourceY[row], width: sourceX[column + 1] - sourceX[column], height: sourceY[row + 1] - sourceY[row])
+                    guard let part = cg.cropping(to: source) else { continue }
+                    let target = CGRect(x: destX[column], y: destY[row], width: destX[column + 1] - destX[column], height: destY[row + 1] - destY[row])
+                    UIImage(cgImage: part).draw(in: target)
+                }
+            }
+        }
+        return texture(of: picture)
     }
 
     func poolSlices() -> (left: SKTexture, middle: SKTexture, right: SKTexture, aspect: CGFloat)? {
@@ -348,9 +458,9 @@ final class FlowTextures {
         return (slice(0, 0.4), slice(0.4, 0.6), slice(0.6, 1), size.width / size.height)
     }
 
-    func water(_ kind: FlowTileKind, _ openings: FlowDirection, flip: Int = 0) -> SKTexture {
-        cached("water-\(kind.rawValue)-\(openings.rawValue)-\(flip)") { context in
-            self.drawWater(context, kind: kind, openings: openings, flip: flip)
+    func water(_ kind: FlowTileKind, _ openings: FlowDirection, flip: Int = 0, drain: Bool = false) -> SKTexture {
+        cached("water-\(kind.rawValue)-\(openings.rawValue)-\(flip)-\(drain)") { context in
+            self.drawWater(context, kind: kind, openings: openings, flip: flip, drain: drain)
         }
     }
 
@@ -364,10 +474,6 @@ final class FlowTextures {
             context.addEllipse(in: oval)
             context.clip()
             self.drawSeamless(water, crop: Self.waterCrop, flip: 0, in: CGRect(x: 0, y: 0, width: self.cell, height: self.cell), context)
-            context.setBlendMode(.multiply)
-            context.setFillColor(Self.waterTint.cgColor)
-            context.fill(oval)
-            context.setBlendMode(.normal)
             context.restoreGState()
             context.setStrokeColor(UIColor.white.withAlphaComponent(0.7).cgColor)
             context.setLineWidth(1.2)
@@ -466,10 +572,10 @@ final class FlowTextures {
         }
     }
 
-    /// The part of each seamless tile that is used, as fractions of the picture. The water tile is paler and
-    /// pinker along its left and right edges and its wrap step is 8 to 12 times the interior's, so only its
-    /// even middle is used; the bed tile is used without its outer fifth.
-    static let waterCrop = CGRect(x: 0.29, y: 0.29, width: 0.42, height: 0.42)
+    /// The part of each seamless tile that is used, as fractions of the picture. The water (batch 135) is
+    /// mirrored per cell, so its wrap seam never shows; its middle 30 percent has the pool's ripple size at
+    /// the cell's scale. The bed tile is used without its outer fifth.
+    static let waterCrop = CGRect(x: 0.35, y: 0.35, width: 0.30, height: 0.30)
     static let bedCrop = CGRect(x: 0.2, y: 0.2, width: 0.6, height: 0.6)
 
     private var cropCache: [String: UIImage] = [:]
@@ -570,8 +676,8 @@ final class FlowTextures {
         return path
     }
 
-    private func drawStone(_ context: CGContext, kind: FlowTileKind, openings: FlowDirection, flip: Int) {
-        if paintedStone(context, kind: kind, openings: openings, flip: flip) { return }
+    private func drawStone(_ context: CGContext, kind: FlowTileKind, openings: FlowDirection, flip: Int, drain: Bool) {
+        if paintedStone(context, kind: kind, openings: openings, flip: flip, drain: drain) { return }
         let bounds = CGRect(x: 0, y: 0, width: cell, height: cell)
         let rect = bounds.insetBy(dx: 2, dy: 2)
         let radius = cell * 0.17
@@ -609,7 +715,7 @@ final class FlowTextures {
             context.setLineDash(phase: 0, lengths: [])
         }
         // The groove: a dark lip, then the recessed floor.
-        let path = channelPath(openings)
+        let path = channelPath(shown(openings, drain: drain))
         context.setLineCap(.round)
         context.setLineJoin(.round)
         context.addPath(path)
@@ -620,7 +726,7 @@ final class FlowTextures {
         context.setStrokeColor(FlowPalette.groove.cgColor)
         context.setLineWidth(grooveWidth)
         context.strokePath()
-        if kind == .source || kind == .mouth {
+        if kind == .source || (kind == .mouth && !drain) {
             let middle = CGPoint(x: cell / 2, y: cell / 2)
             let ring = grooveWidth * (kind == .source ? 1.2 : 1.1)
             context.setFillColor((kind == .source ? FlowPalette.moss : FlowPalette.stoneEdge).cgColor)
@@ -637,7 +743,7 @@ final class FlowTextures {
     /// The painted stone with the channel carved in by code. The variant (which take, which quarter turn,
     /// mirrored or not) comes from the tile's kind and openings, so a board reads hand-laid while the same
     /// tile always looks the same. Returns false until the art is in the bundle.
-    private func paintedStone(_ context: CGContext, kind: FlowTileKind, openings: FlowDirection, flip: Int) -> Bool {
+    private func paintedStone(_ context: CGContext, kind: FlowTileKind, openings: FlowDirection, flip: Int, drain: Bool) -> Bool {
         let hash = kind.rawValue.unicodeScalars.reduce(7) { ($0 &* 31 &+ Int($1.value)) & 0xFFFF } &+ Int(openings.rawValue) &* 13
         guard let image = UIImage(named: Self.stoneArt[hash % Self.stoneArt.count], in: .module, compatibleWith: nil) else { return false }
         let bounds = CGRect(x: 0, y: 0, width: cell, height: cell)
@@ -678,7 +784,7 @@ final class FlowTextures {
         }
         // The carved channel: a soft shade around the bank, a light lip on the lower edge, a dark lip,
         // then the recessed floor with an inner shadow under its upper and left wall.
-        let path = channelPath(openings)
+        let path = channelPath(shown(openings, drain: drain))
         context.setLineCap(.round)
         context.setLineJoin(.round)
         context.addPath(path)
@@ -719,7 +825,7 @@ final class FlowTextures {
             context.strokePath()
         }
         context.restoreGState()
-        if kind == .source || kind == .mouth {
+        if kind == .source || (kind == .mouth && !drain) {
             let middle = CGPoint(x: cell / 2, y: cell / 2)
             if let spring = art(kind == .source ? FlowArtSlot.spring : FlowArtSlot.outlet) {
                 // The painted spring or outlet sits on the keycap, centred on the channel's end.
@@ -751,13 +857,15 @@ final class FlowTextures {
         return true
     }
 
-    private func drawWater(_ context: CGContext, kind: FlowTileKind, openings: FlowDirection, flip: Int) {
-        let path = channelPath(openings)
+    private func drawWater(_ context: CGContext, kind: FlowTileKind, openings: FlowDirection, flip: Int, drain: Bool) {
+        let path = channelPath(shown(openings, drain: drain))
+        // A drained mouth has no ring or ball: its stream runs on into the spout.
+        let hasRing = kind == .source || (kind == .mouth && !drain)
         let middle = CGPoint(x: cell / 2, y: cell / 2)
         if let texture = art(FlowArtSlot.water) {
             // The painted water fills the carved channel from a seamless texture. A painted spring or outlet
             // is not covered by a drawn ball.
-            let hasBall = (kind == .source || kind == .mouth) && art(kind == .source ? FlowArtSlot.spring : FlowArtSlot.outlet) == nil
+            let hasBall = hasRing && art(kind == .source ? FlowArtSlot.spring : FlowArtSlot.outlet) == nil
             let body = CGMutablePath()
             body.addPath(path.copy(strokingWithWidth: grooveWidth * 0.92, lineCap: .round, lineJoin: .round, miterLimit: 10))
             if hasBall {
@@ -785,12 +893,8 @@ final class FlowTextures {
             context.addPath(body)
             context.clip()
             drawSeamless(texture, crop: Self.waterCrop, flip: flip, in: CGRect(x: 0, y: 0, width: cell, height: cell).insetBy(dx: -3, dy: -3), context)
-            context.setBlendMode(.multiply)
-            context.setFillColor(Self.waterTint.cgColor)
-            context.fill(CGRect(x: 0, y: 0, width: cell, height: cell))
-            context.setBlendMode(.normal)
             context.restoreGState()
-            if kind == .source || kind == .mouth, let piece = art(kind == .source ? FlowArtSlot.spring : FlowArtSlot.outlet) {
+            if hasRing, let piece = art(kind == .source ? FlowArtSlot.spring : FlowArtSlot.outlet) {
                 // The painted ring of stones goes back over the water, so the stream starts at its rim
                 // instead of running across the stones.
                 let side = cell * 0.9
@@ -812,7 +916,7 @@ final class FlowTextures {
         context.setLineDash(phase: 0, lengths: [cell * 0.22, cell * 0.10])
         context.strokePath()
         context.restoreGState()
-        if kind == .source || kind == .mouth {
+        if hasRing {
             let radius = grooveWidth * (kind == .source ? 0.95 : 1.0)
             context.setFillColor(FlowPalette.water.cgColor)
             context.fillEllipse(in: CGRect(x: middle.x - radius, y: middle.y - radius, width: radius * 2, height: radius * 2))
