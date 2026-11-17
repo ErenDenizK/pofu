@@ -28,7 +28,7 @@ chooses to (days 1-21); no dates (11-14). Now: world presentation (#474).
    closes #490 Q3. His answers came (fi 39): Sefer prototype published to
    him; pilot A passed (#116), 129 dropped, lower steps redone as 137.
    (b) #501 + #506 merged; #507 evidence only. Fable round 3 done: 8
-   concept batches 138-145 queued (pofu-art #123, 88 jobs); #508 the doc.
+   concept batches 138-145 queued (pofu-art #123, 88 jobs); doc #508 merged.
    Next: one sheet per topic to him; no code before his pick.
    Flow kit v2 queued (batch 135); then a small code pass.
 2. WP10 compositor merged (#500): looks sort with Pofu by footY, Map
@@ -41,7 +41,7 @@ chooses to (days 1-21); no dates (11-14). Now: world presentation (#474).
    pond, #506 flow kit. UI grammar #490 open (docs), waits with #503.
 4. Codex: 132, 133, 135, 126 v2 merged (cloud fit: crossfade floor-mid,
    warm kit only, Koke keeps bed-round v1). Queue: D1-D8 concepts, S2 v3, S3; 136 + 137 held.
-Merged: #475-#489, #491-#502, #505, #506; pofu-art #81, #91-#123.
+Merged: #475-#489, #491-#502, #505, #506, #508; pofu-art #81, #91-#123.
 
 ## Next (night plan)
 A9 art backlog; §8.6 pass. Sefer V1-V5 and WP12 once he says yes.
