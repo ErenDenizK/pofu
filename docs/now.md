@@ -28,8 +28,9 @@ chooses to (days 1-21); no dates (11-14). Now: world presentation (#474).
    measure). Kept open for his 6 answers (sent 11-16); answer 1 also
    closes #490 Q3. His answers came (fi 39): Sefer prototype published to
    him; pilot A passed (#116), 129 dropped, lower steps redone as 137.
-   (b) #501 + #506 merged. Fable round 2 done: #507 (open, his picks):
-   board as a tray of grass-topped blocks, sheet = next form + 5 medallions.
+   (b) #501 + #506 merged. #507 (web prototypes) is evidence only: fi 40
+   says concept first. Fable round 3: Codex concepts for board, panel,
+   island choice + Gezgin, station levels; no code before his pick.
    Flow kit v2 queued (batch 135); then a small code pass.
 2. WP10 compositor merged (#500): looks sort with Pofu by footY, Map
    snapshot of the built island, 3.2 s reveal. Left: `mapisle` assets
@@ -40,7 +41,7 @@ chooses to (days 1-21); no dates (11-14). Now: world presentation (#474).
 3. Merged 11-16/17: #480 sky, #488, #489, #491-#498, #501 games, #505
    pond, #506 flow kit. UI grammar #490 open (docs), waits with #503.
 4. Codex: 132, 133, 135, 126 v2 merged (cloud fit: crossfade floor-mid,
-   warm kit only, Koke keeps bed-round v1). Queue: 137, S2 v3, S3; 136 held.
+   warm kit only, Koke keeps bed-round v1). Queue: S2 v3, S3; 136 + 137 held.
 Merged: #475-#489, #491-#502, #505, #506; pofu-art #81, #91-#120.
 
 ## Next (night plan)
@@ -56,5 +57,5 @@ A9 art backlog; §8.6 pass. Sefer V1-V5 and WP12 once he says yes.
 
 ## Open with the founder
 
-- Picks: Sefer; #507 dial or key, the sheet (all sent 11-17); #490 Qs; N6.
+- Picks: concept frames of the 4 topics (after round 3); #490 Qs; N6.
 - Device: 11-13 answers; pinch smooth? pond frame rate. Stale: roadmap, tracker.
