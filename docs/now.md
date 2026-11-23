@@ -32,7 +32,7 @@ Now: whole-project assessment, two Fable rounds; Apple kits open soon.
 0. Fi 43 assessment: 2 Sonnet gatherers -> raw files in
    `docs/research/assessment-2026-11-23/`; then Fable round 1
    (brief `fable-2026-11-23-assessment-round1.md`) -> his answers -> round 2.
-   Safe Codex round 3 (batches 154+) being written (brief codex-2026-11-23).
+   Codex round 3 queued (#143: D17-D19 + D14 rerun); Fable round 1 running.
 2. WP10 compositor merged (#500): looks sort with Pofu by footY, Map
    snapshot of the built island, 3.2 s reveal. Left: `mapisle` assets
    (night 8-9 need them), orphan `world-home-base-day-5`, reveal burst.
@@ -40,8 +40,8 @@ Now: whole-project assessment, two Fable rounds; Apple kits open soon.
    WP13 water merged (#505; #504 closed): the pond moves at Ambient, island
    flattened before the lens. Left: falls, sway mask; device frame time.
 4. Codex: 132, 133, 135, 126 v2 merged (cloud fit: crossfade floor-mid,
-   warm kit only, Koke keeps bed-round v1). Queue: round 3 coming; 152 rerun; 126 v3 (#132) to review; 136 + 137 held.
-Merged: #475-#489, #491-#502, #505, #506, #508; pofu-art #81, #91-#139, #141, #142.
+   warm kit only, Koke keeps bed-round v1). Queue: D17-D19, D14 rerun; 126 v3 (#132) to review; 136 + 137 held.
+Merged: #475-#489, #491-#502, #505, #506, #508; pofu-art #81, #91-#139, #141-#143.
 
 ## Next (night plan)
 A9 art backlog; §8.6 pass. Sefer V1-V5 and WP12 once he says yes.
