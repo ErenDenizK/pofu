@@ -29,10 +29,10 @@ Now: whole-project assessment, two Fable rounds; Apple kits open soon.
    and merged (pofu-art #124-#131); 4 topic sheets sent 11-18 (#133). Round
    2 delivered, merged 11-23 (#135-#139, #141, #142; 152 got nothing on
    quota). His round-1 verdict (fi 43): too flashy, simpler concept art.
-0. Fi 43 assessment: 2 Sonnet gatherers -> raw files in
-   `docs/research/assessment-2026-11-23/`; then Fable round 1
-   (brief `fable-2026-11-23-assessment-round1.md`) -> his answers -> round 2.
-   Codex round 3 queued (#143: D17-D19 + D14 rerun); Fable round 1 running.
+0. Fi 43 assessment: raw files `docs/research/assessment-2026-11-23/`;
+   Fable round 1 (brief `fable-2026-11-23-assessment-round1.md`).
+   Round 1 done: pofu #509 (tr page sent, 10 Qs). Codex round 3 queued
+   (#143, #144: D17, D14 rerun, D18, D19 one job). Waits: his answers.
 2. WP10 compositor merged (#500): looks sort with Pofu by footY, Map
    snapshot of the built island, 3.2 s reveal. Left: `mapisle` assets
    (night 8-9 need them), orphan `world-home-base-day-5`, reveal burst.
@@ -41,7 +41,7 @@ Now: whole-project assessment, two Fable rounds; Apple kits open soon.
    flattened before the lens. Left: falls, sway mask; device frame time.
 4. Codex: 132, 133, 135, 126 v2 merged (cloud fit: crossfade floor-mid,
    warm kit only, Koke keeps bed-round v1). Queue: D17-D19, D14 rerun; 126 v3 (#132) to review; 136 + 137 held.
-Merged: #475-#489, #491-#502, #505, #506, #508; pofu-art #81, #91-#139, #141-#143.
+Merged: #475-#489, #491-#502, #505, #506, #508; pofu-art #81, #91-#139, #141-#144.
 
 ## Next (night plan)
 A9 art backlog; §8.6 pass. Sefer V1-V5 and WP12 once he says yes.
@@ -56,5 +56,5 @@ A9 art backlog; §8.6 pass. Sefer V1-V5 and WP12 once he says yes.
 
 ## Open with the founder
 
-- Fable round-1 questions (coming); #490 Qs; N6.
+- Fable round-1 10 questions (#509, sent 11-23); #490 Qs; N6.
 - Device: 11-13 answers; pinch smooth? pond frame rate. Stale: roadmap, tracker.
