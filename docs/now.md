@@ -7,9 +7,10 @@ history: [tracker.md](tracker.md). What changed for the player:
 `python3 -I tools/studio/pulse.py`.
 
 **Goal:** a whole, polished build the founder judges as a user when he
-chooses to (days 1-21); no dates (11-14). Now: world presentation (#474).
+chooses to; "Önce uygulamanın mükemmel olduğundan emin olalım" (fi 43).
+Now: whole-project assessment, two Fable rounds; Apple kits open soon.
 
-**Updated:** 2026-11-17. **Founder last played:** 11-14 (main 0cf03ca1).
+**Updated:** 2026-11-23. **Founder last played:** 11-14 (main 0cf03ca1).
 **Route:** Fable's night plan (`docs/design/night-plan-2026-11-15.md`,
 #482 merged): steps N0-N11 now, A1-A10 after; the world spec #474 inside it.
 
@@ -22,26 +23,25 @@ chooses to (days 1-21); no dates (11-14). Now: world presentation (#474).
 
 ## In flight
 
-1. Founder-input 38: (a) island progression done: PR #503 (proposal:
-   Sefer replaces the Map, Nazli moored at Home, named forms, big-step
-   measure). Kept open for his 6 answers (sent 11-16); answer 1 also
-   closes #490 Q3. His answers came (fi 39): Sefer prototype published to
-   him; pilot A passed (#116), 129 dropped, lower steps redone as 137.
+1. Fi 38: (a) #503 island progression open (answers fi 39; 137 redoes
+   the lower steps; #490 docs waits with it).
    (b) #501 + #506 merged; #507 evidence only. Concepts 138-145 delivered
    and merged (pofu-art #124-#131); 4 topic sheets sent 11-18 (#133). Round
-   2 queued (#134, D9-D16, 102 jobs; "çalış hazır" sent); no code yet.
-   Flow kit v2 queued (batch 135); then a small code pass.
+   2 delivered, merged 11-23 (#135-#139, #141, #142; 152 got nothing on
+   quota). His round-1 verdict (fi 43): too flashy, simpler concept art.
+0. Fi 43 assessment: 2 Sonnet gatherers -> raw files in
+   `docs/research/assessment-2026-11-23/`; then Fable round 1
+   (brief `fable-2026-11-23-assessment-round1.md`) -> his answers -> round 2.
+   Safe Codex round 3 (batches 154+) being written (brief codex-2026-11-23).
 2. WP10 compositor merged (#500): looks sort with Pofu by footY, Map
    snapshot of the built island, 3.2 s reveal. Left: `mapisle` assets
    (night 8-9 need them), orphan `world-home-base-day-5`, reveal burst.
    WP11 near lens merged (#502; pinch at 120 Hz: device check).
    WP13 water merged (#505; #504 closed): the pond moves at Ambient, island
    flattened before the lens. Left: falls, sway mask; device frame time.
-3. Merged 11-16/17: #480 sky, #488, #489, #491-#498, #501 games, #505
-   pond, #506 flow kit. UI grammar #490 open (docs), waits with #503.
 4. Codex: 132, 133, 135, 126 v2 merged (cloud fit: crossfade floor-mid,
-   warm kit only, Koke keeps bed-round v1). Queue: D9-D16 round 2; 126 v3 (#132) to review; 136 + 137 held.
-Merged: #475-#489, #491-#502, #505, #506, #508; pofu-art #81, #91-#131, #133, #134.
+   warm kit only, Koke keeps bed-round v1). Queue: round 3 coming; 152 rerun; 126 v3 (#132) to review; 136 + 137 held.
+Merged: #475-#489, #491-#502, #505, #506, #508; pofu-art #81, #91-#139, #141, #142.
 
 ## Next (night plan)
 A9 art backlog; §8.6 pass. Sefer V1-V5 and WP12 once he says yes.
@@ -56,5 +56,5 @@ A9 art backlog; §8.6 pass. Sefer V1-V5 and WP12 once he says yes.
 
 ## Open with the founder
 
-- Picks: concept frames of the 4 topics (after round 3); #490 Qs; N6.
+- Fable round-1 questions (coming); #490 Qs; N6.
 - Device: 11-13 answers; pinch smooth? pond frame rate. Stale: roadmap, tracker.
