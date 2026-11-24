@@ -2,4 +2,4 @@ Pillow>=10.0
 numpy>=1.26
 scipy>=1.11
 pillow-heif>=0.18
-opencv-python-headless>=4.8
+opencv-python-headless>=4.8,<5  # 5.x moved the plate register test (2026-11-24)
