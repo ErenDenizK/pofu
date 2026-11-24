@@ -224,7 +224,8 @@ Little, as round 1 is answered.
 
 1. **The card.** On his phone: Etiket or Hap. *Pick: Etiket.*
 2. **The level mark.** One page of three small marks from batch 159
-   (a sprouting pot, a sunflower seed, a leaf). *Pick: the seed, because
-   seeds are what he spends to raise a level.*
+   (a sprouting pot, a leaf, a small flower). *Pick: the leaf, the
+   simplest shape at the size it has on the card. Not a seed: a seed
+   already means the price.*
 3. **The day.** The first day the membership is active, one to two
    hours at the Mac. No answer needed until it is active.
