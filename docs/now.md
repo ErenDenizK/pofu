@@ -29,10 +29,10 @@ Now: whole-project assessment, two Fable rounds; Apple kits open soon.
    and merged (pofu-art #124-#131); 4 topic sheets sent 11-18 (#133). Round
    2 delivered, merged 11-23 (#135-#139, #141, #142; 152 got nothing on
    quota). His round-1 verdict (fi 43): too flashy, simpler concept art.
-0. Fi 43/44 assessment: round 1 merged (#509); he approved all picks (fi 44).
-   Stage 0 builder on `feat/day1-pass-pill` (pill, honor cut, day-1 script);
-   scout on sprite fallback; Fable round 2 next (brief 11-24). Round 3 +
-   152 merged (pofu-art #145-#149, sheets sent). Codex queue empty.
+0. Assessment done: path `docs/design/assessment-2026-11-24-path.md` (#511),
+   briefs `docs/studio/briefs/2026-11-24-{0..5}-*.md`. Stage 0 = pofu #510
+   (CI; judge `path-home-pass-pill` 1:1, then merge), then briefs 1 + 2 at
+   once. Codex D20-D23 (pofu-art #150, "çalış hazır" sent 11-24).
 2. WP10 compositor merged (#500): looks sort with Pofu by footY, Map
    snapshot of the built island, 3.2 s reveal. Left: `mapisle` assets
    (night 8-9 need them), orphan `world-home-base-day-5`, reveal burst.
@@ -40,8 +40,8 @@ Now: whole-project assessment, two Fable rounds; Apple kits open soon.
    WP13 water merged (#505; #504 closed): the pond moves at Ambient, island
    flattened before the lens. Left: falls, sway mask; device frame time.
 4. Codex: 132, 133, 135, 126 v2 merged (cloud fit: crossfade floor-mid,
-   warm kit only, Koke keeps bed-round v1). Queue: empty (round 3 done); 126 v3 (#132) to review; 136 + 137 held.
-Merged: #475-#489, #491-#502, #505, #506, #508; pofu-art #81, #91-#139, #141-#149.
+   warm kit only, Koke keeps bed-round v1). Queue: D20-D23 (157-160); 126 v3 (#132) to review; 136 + 137 held.
+Merged: #475-#489, #491-#502, #505, #506, #508; pofu-art #81, #91-#139, #141-#150.
 
 ## Next (night plan)
 A9 art backlog; §8.6 pass. Sefer V1-V5 and WP12 once he says yes.
