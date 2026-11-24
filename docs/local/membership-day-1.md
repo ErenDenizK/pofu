@@ -35,20 +35,26 @@ the team ID, profiles, or certificates.
    | Device activity monitor | `com.erendenizk.pofu.DeviceActivityMonitor` |
 
    App Group: `group.com.erendenizk.pofu`.
-4. **Request Family Controls (Distribution)** at
+4. **File the Family Controls (Distribution) request the same day you
+   enroll**, before you build anything. Use
    [developer.apple.com/contact/request/family-controls-distribution](https://developer.apple.com/contact/request/family-controls-distribution)
-   for **every** identifier in the table. If the form is per account rather
-   than per identifier (decision audit, U7), say in the request that the
-   app has three extensions and list all four identifiers. Record the date
-   and the exact wording of any confirmation. This does not block anything
-   below; it only blocks TestFlight, and it reportedly takes weeks.
+   once for **each of the four bundle identifiers** in the table (the
+   project has exactly these four that carry the entitlement: the app and
+   its three Screen Time extensions; the screenshot test target does not).
+   If the form is per account rather than per identifier (decision audit,
+   U7), say in the request that the app has three extensions and list all
+   four identifiers. Record the date and the exact wording of any
+   confirmation. It does not block anything below; it only blocks
+   TestFlight and the App Store, and it reportedly takes weeks, so every
+   day it waits is a day lost.
 5. **Capabilities.** Xcode's automatic signing registers the identifiers,
    the App Group, and Family Controls (Development) the first time it
    signs `PofuLive` (Part 2). If it reports that a profile lacks
    `com.apple.developer.family-controls`, open Certificates, Identifiers &
    Profiles, Identifiers, and enable **Family Controls** and **App Groups**
    (with `group.com.erendenizk.pofu`) on each of the four identifiers by
-   hand, then let Xcode try again. Gate v2 also needs **Time Sensitive
+   hand, then let Xcode try again. Enable only those two; Pofu uses no
+   HealthKit and no Associated Domains. Gate v2 also needs **Time Sensitive
    Notifications** on the app and the three extensions (the "Pofu'yla aç"
    notification breaks through Focus); enable it the same way if Xcode
    does not.
@@ -68,9 +74,12 @@ the team ID, profiles, or certificates.
    on, and no red errors. Family Controls and App Groups appear as
    capabilities on all four.
 5. Run (⌘R). Record any signing error verbatim.
-6. **Data note.** The free build was `com.erendenizk.pofu.dev`, a different
-   app with its own data. The live build starts fresh, and the existing
-   Shortcuts automations still run the old app's **Hop in**. Delete the old
+6. **Data note.** The live build is a different app from the one on the
+   phone now (the free build is `com.erendenizk.pofu.dev`; the live one is
+   `com.erendenizk.pofu`). It has its own data, so **the island starts
+   again from the beginning**: no seeds, no stations, no progress carry
+   over. The existing Shortcuts automations still run the old app's
+   **Hop in**. Delete the old
    app once the live one works; re-adding automations is optional (Live
    Pofu, case 12).
 7. Console: filter by subsystem `com.erendenizk.pofu`, categories
@@ -92,7 +101,7 @@ Use the iPhone in Turkish, as daily. Expected copy is given in Turkish.
 | 7b | Only if case 7 showed "Başka uygulama". | Hop! still works; after a pass it says to open the app yourself. Record this: it means the shield configuration extension cannot write to the App Group on this iOS version. |
 | 8 | In Hop!, choose to continue (free pass). | The hand-off opens Instagram, with **no shield**. Console: `Shield lifted for 5 min`. |
 | 9 | Stay in Instagram past the pass (5 minutes). | The shield returns over Instagram within about a minute after the pass ends, even with Pofu closed. Record the exact delay. |
-| 10 | Get a pass again (case 6 to 8), go to Pofu, end the pass early (Passes sheet). | Opening Instagram shows the shield again immediately. |
+| 10 | Get a pass again (case 6 to 8), go to Pofu. On Home, top left, level with the gear, a small glass pill shows "Instagram · N dk". Tap it, then **Şimdi bitir** in the question "Instagram iznini bitirelim mi?". | The pill disappears. Opening Instagram shows the shield again immediately. (A free pass refunds nothing; a paid one shows "Şimdi bitir · +N".) |
 | 11 | Get a pass, then force-quit Pofu from the app switcher. | The shield still returns at the pass's end (the monitor extension does it). Record the delay. |
 | 12 | Optional Live Pofu: Settings, "Canlı Pofu (isteğe bağlı)", set up one automation for YouTube. Open YouTube. | Hop! appears through Shortcuts **and** the shield is there too. Note which comes first and whether it feels doubled; ADR-0013 says the automation should take over (not built yet). |
 | 13 | Use the guarded apps (with passes) for more than 15 minutes in total today, then open Pofu, Settings. | "Ekran Süresi" section: Kalkan **Açık**, "Bugün korunan süre: en az 15 dk". Repeat at 30, 45, 60 if the day allows. |
