@@ -121,7 +121,7 @@ public struct CameraRail: Hashable, Sendable {
     public static let midFitWidth = numbers?.midFitWidth ?? 378
     public static let midCentreY = numbers?.midCenterY ?? 383
     /// A young island narrower than this share of the width at mid is fitted to it.
-    public static let youngFill = 0.72
+    public static let youngFill = numbers?.youngFill ?? 0.82
     /// Near rests here and stops at the limit, in points per unit at the reference width.
     public static let nearRestScale = numbers?.nearRestScale ?? 4.5
     public static let nearLimitScale = numbers?.nearLimitScale ?? 7.4

@@ -4,7 +4,7 @@
   "unitsPerPlatePoint": 0.3253,
   "home": { "box": [330, 257], "chip": [90.3, 26] },
   "islands": {
-    "koke": { "tier": 1, "center": [-150, -470], "box": [250, 166], "chip": [48.3, 26] },
+    "koke": { "tier": 1, "center": [-150, -478], "box": [250, 166], "chip": [48.3, 26] },
     "caglayan": { "tier": 1, "center": [150, -540], "box": [212, 150], "chip": [73.3, 26] }
   },
   "tier2": [
@@ -12,7 +12,7 @@
     { "id": "tier2-b", "center": [20, -1100], "box": [230, 150] },
     { "id": "tier2-c", "center": [200, -950], "box": [230, 150] }
   ],
-  "tierPitch": 470,
+  "tierPitch": 478,
   "slotStates": ["cloud", "veiled", "island"],
   "slotArt": { "towerWidth": 0.78, "towerHeight": 1.25 },
   "stages": {
@@ -35,11 +35,11 @@
       { "id": "isle-lane-3", "box": [316, 376, 342, 392] }
     ],
     "mid": [
-      { "id": "whale", "box": [70, 140, 190, 192] }
+      { "id": "whale", "box": [70, 173, 190, 225] }
     ],
     "midLipTop": 600
   },
-  "mid": { "fitWidth": 378, "centerY": 383, "chromeFadeScale": [1.05, 1.25] },
+  "mid": { "fitWidth": 378, "centerY": 416, "youngFill": 0.82, "chromeFadeScale": [1.05, 1.25] },
   "near": { "restScale": 4.5, "limitScale": 7.4, "feetY": 0.60, "feetX": 0.50, "midMultiple": 1.25 },
   "chrome": {
     "mid": [

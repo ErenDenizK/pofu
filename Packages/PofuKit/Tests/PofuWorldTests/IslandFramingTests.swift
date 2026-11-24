@@ -28,7 +28,7 @@ struct IslandFramingTests {
     }
 
     /// Mid (ADR-0027) for the sprite island: its box is 378 pt across at the reference width,
-    /// centred on row 383, scaled with the screen.
+    /// centred on row 416 (moved down from 383 so the island sits in the middle of the screen, brief 2026-11-24-2), scaled with the screen.
     @Test(arguments: sizes)
     func midFitsTheIslandBoxCentredOnItsRow(size: (Double, Double)) {
         let pose = CameraRail(width: size.0, height: size.1).pose(of: .mid)
@@ -36,7 +36,7 @@ struct IslandFramingTests {
         #expect(abs((island.hi - island.lo) - 378 * size.0 / 402) < 1e-6)
         #expect(abs((island.lo + island.hi) / 2 - size.0 / 2) < 1e-6)
         let rows = rows(IslandFraming.islandBox, pose)
-        #expect(abs((rows.top + rows.bottom) / 2 - 383 * size.1 / 874) < 1e-6)
+        #expect(abs((rows.top + rows.bottom) / 2 - 416 * size.1 / 874) < 1e-6)
     }
 
     @Test func theMapShowsEveryIslandBetweenTheBands() {
