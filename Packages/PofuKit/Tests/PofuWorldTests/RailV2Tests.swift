@@ -26,14 +26,14 @@ struct RailV2Tests {
         let lo = mid.project(WorldPoint(x: box.minX, y: box.minY), width: 402)
         let hi = mid.project(WorldPoint(x: box.maxX, y: box.maxY), width: 402)
         #expect(abs((hi.x - lo.x) - 378) < 1e-6)
-        #expect(abs((lo.y + hi.y) / 2 - 383) < 1e-6)
+        #expect(abs((lo.y + hi.y) / 2 - 416) < 1e-6)
     }
 
-    @Test func aYoungIslandFillsAtLeast72PercentOfTheWidth() {
+    @Test func aYoungIslandFillsAtLeast82PercentOfTheWidth() {
         for stage in 0..<plate.plate.stages {
             let young = HomePlate(plate: plate.plate, light: "day", stage: stage)
             let mid = young.midStop
-            #expect(young.plateImageBox.width * mid.scale >= 0.72 * 402 - 1e-6, "stage \(stage)")
+            #expect(young.plateImageBox.width * mid.scale >= 0.82 * 402 - 1e-6, "stage \(stage)")
             #expect(mid.scale >= 378 / plate.islandBox.width - 1e-9)
         }
     }
@@ -105,8 +105,8 @@ struct RailV2Tests {
         #expect(rail.chromeOpacity(logScale: l + log(1.05)) == 1)
         #expect(abs(rail.chromeOpacity(logScale: l + log(1.15)) - 0.5) < 1e-9)
         #expect(rail.chromeOpacity(logScale: l + log(1.25)) == 0)
-        // The anchor eases with it, from row 383 to 437.
-        #expect(abs(rail.pose(z: rail.z(logScale: l + log(1.15))).anchorY - 410) < 1e-9)
+        // The anchor eases with it, from row 416 to 437.
+        #expect(abs(rail.pose(z: rail.z(logScale: l + log(1.15))).anchorY - 426.5) < 1e-9)
         #expect(abs(rail.pose(z: rail.z(logScale: l + log(1.25))).anchorY - 437) < 1e-9)
     }
 

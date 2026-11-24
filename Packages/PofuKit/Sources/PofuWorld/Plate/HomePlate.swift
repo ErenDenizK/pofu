@@ -550,9 +550,9 @@ public struct HomePlate: Hashable, Sendable {
     }
 
     /// Mid (ADR-0027, Home's stop): the level-10 island box fitted to `CameraRail.midFitWidth`
-    /// (378 pt on iPhone 17, 1.145 pt a unit), its centre on row `CameraRail.midCentreY` (383).
-    /// A young island whose painting is narrower than 0.72 of the width at that scale is fitted
-    /// to 0.72 instead, centred on its painting.
+    /// (378 pt on iPhone 17, 1.145 pt a unit), its centre on row `CameraRail.midCentreY` (416).
+    /// A young island whose painting is narrower than 0.82 of the width at that scale is fitted
+    /// to 0.82 instead, centred on its painting.
     public var midStop: CameraRail.Stop {
         let box = islandBox
         let scale = CameraRail.midFitWidth / max(box.width, 1)
