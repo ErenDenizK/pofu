@@ -173,12 +173,6 @@ private struct HopDecision: View {
         if let reason = session.reason, session.rung == .intent {
             return PofuLines.answer(to: reason)
         }
-        if let running = model.activeSession {
-            let minutes = Int((running.remaining(at: model.now) / 60).rounded(.up))
-            if minutes > 0 {
-                return "We're focusing. \(minutes) minutes left."
-            }
-        }
         if isNight {
             return "The feed will still be there tomorrow. I promise."
         }
