@@ -146,23 +146,38 @@ def bed_mask(arr: np.ndarray) -> np.ndarray:
     return labels == 1 + int(np.argmax(sizes))
 
 
+EDGE_WIDTH = 28  # the channel's width at the cell edge, in canvas pixels, the same for every piece
+
+
 def extend(mask: np.ndarray, sides: str) -> np.ndarray:
-    """Runs the channel out to the canvas edge on each open side, at the width it has just inside."""
+    """Runs the channel out to the canvas edge on each open side. Across the rim stones the band moves to the
+    cell's axis and to EDGE_WIDTH, so the channels of two neighbours meet at the edge at one place and one width
+    (the painted arms sit a few pixels off the axis and differ in width)."""
     mask = mask.copy()
+    mid = mask.shape[0] // 2
     turns = {"N": 0, "E": 1, "S": 2, "W": 3}  # rot90 is counter-clockwise: east to north is one turn
     for side in sides:
         k = turns[side]
-        m = np.rot90(mask, k)
-        rows = np.where(m.any(axis=1))[0]
-        y0 = rows.min()
-        probe = m[min(y0 + 14, m.shape[0] - 1)]
-        m[: y0 + 14, :] |= probe[None, :]
+        m = np.rot90(mask, k).copy()
+        rows = np.where(m[:, mid - 45:mid + 45].any(axis=1))[0]
+        y0 = int(rows.min())
+        probe = m[min(y0 + 10, m.shape[0] - 1)]
+        labels, count = ndi.label(probe)
+        centres = [(np.where(labels == i)[0].min() + np.where(labels == i)[0].max()) / 2 for i in range(1, count + 1)]
+        i = 1 + int(np.argmin([abs(c - mid) for c in centres]))
+        xs = np.where(labels == i)[0]
+        centre, half = (xs.min() + xs.max()) / 2, (xs.max() - xs.min()) / 2
+        for r in range(0, y0):
+            t = 1 - r / max(y0, 1)  # 1 at the edge, 0 where the painted arm begins
+            c = centre + (mid - centre) * t
+            h = half + (EDGE_WIDTH / 2 - half) * t
+            m[r, int(round(c - h)):int(round(c + h)) + 1] = True
         mask = np.rot90(m, -k)
     return mask
 
 
 def softened(mask: np.ndarray) -> np.ndarray:
-    eroded = ndi.binary_erosion(mask, iterations=ERODE)
+    eroded = ndi.binary_erosion(mask, iterations=ERODE, border_value=1)
     return np.clip(ndi.gaussian_filter(eroded.astype(np.float32), 0.9), 0, 1)
 
 
@@ -187,6 +202,12 @@ def piece(art_repo: Path, slot: str, source) -> None:
         m8 = Image.fromarray((mask_full[y0:y0 + round(h / scale), x0:x0 + round(w / scale)] * 255).astype(np.uint8))
         m8 = np.asarray(m8.resize((w, h), Image.LANCZOS)) > 127
         m[oy:oy + h, ox:ox + w] = m8
+        if slot == "wheel":
+            # The hub and the arms are lit and shaded unevenly, so colour finds only parts of them: the wheel's
+            # bed is its straight east-west band and the hub disc, which the painting keeps on the axis.
+            yy, xx = np.mgrid[0:CANVAS, 0:CANVAS]
+            m = (np.abs(yy - CANVAS / 2) < 0.05 * CANVAS) | (np.hypot(yy - CANVAS / 2, xx - CANVAS / 2) < 0.16 * CANVAS)
+            m &= (np.abs(xx - CANVAS / 2) < 0.5 * CANVAS * BODY)
         m = extend(m, sides)
         alpha = (softened(m) * 255).astype(np.uint8)
         rgba = np.dstack([np.full_like(alpha, 255)] * 3 + [alpha])
