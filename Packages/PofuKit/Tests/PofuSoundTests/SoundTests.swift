@@ -36,11 +36,12 @@ struct SoundCueTests {
     @Test func assetNamesAreUniqueAndCoverEveryCue() {
         let names = SoundCue.allAssetNames
         #expect(Set(names).count == names.count)
-        #expect(names.count == 36)
+        #expect(names.count == 41)
         let samples: [SoundCue] = [
             .seedPop(pitchIndex: 2), .bloom(step: 7), .comboRise(level: 3), .piecePickup, .pieceSnap,
             .pieceDrop, .piecePutBack, .deal, .cheek, .roundEnd, .collect, .skipChime, .pofuHop, .gulp,
             .levelUp, .doorKnock, .kettle, .waterWheel, .waterSplash, .waterPour,
+            .pofuPoke, .pofuGiggle, .pofuChew, .pofuSleepySigh, .pofuSniff,
         ]
         for cue in samples { #expect(names.contains(cue.assetName), "\(cue.assetName)") }
         #expect(SoundCue.bloom(step: 3).assetName == "bloom-03")
@@ -212,9 +213,10 @@ struct AmbienceTests {
         #expect(AmbienceDucking.factor(secondsSinceCue: 10) == 1)
     }
 
-    @Test func offByDefaultAndWhenMutedBackgroundedIdleOrSharing() {
-        // Ambience is optional: a fresh install is silent.
-        #expect(!AmbiencePolicy().mayPlay)
+    @Test func onByDefaultButNotWhenMutedBackgroundedIdleOrSharing() {
+        // A fresh install hears ambience (founder input 44); the player's "off" wins.
+        #expect(AmbiencePolicy().mayPlay)
+        #expect(!AmbiencePolicy(settings: SoundSettings(isMuted: false, isAmbienceOn: false)).mayPlay)
         let on = SoundSettings(isMuted: false, isAmbienceOn: true)
         #expect(AmbiencePolicy(settings: on).mayPlay)
         #expect(!AmbiencePolicy(settings: SoundSettings(isMuted: true, isAmbienceOn: true)).mayPlay)
@@ -235,14 +237,14 @@ struct AmbienceTests {
         #expect(ducked < plain)
         let voiceOver = AmbiencePolicy(settings: on, voiceOverRunning: true).gain(level: 1, secondsSinceCue: nil)
         #expect(abs(voiceOver / plain - Float(AmbienceLevels.voiceOverFactor)) < 0.001)
-        #expect(AmbiencePolicy(settings: SoundSettings()).gain(level: 1, secondsSinceCue: nil) == 0)
+        #expect(AmbiencePolicy(settings: SoundSettings(isMuted: false, isAmbienceOn: false)).gain(level: 1, secondsSinceCue: nil) == 0)
     }
 
-    @Test func ambienceSettingIsRememberedAndDefaultsOff() throws {
+    @Test func ambienceSettingIsRememberedAndDefaultsOn() throws {
         let suite = try #require(UserDefaults(suiteName: "pofu.sound.tests.\(UUID().uuidString)"))
-        #expect(SoundSettings.load(from: suite).isAmbienceOn == false)
-        SoundSettings(isMuted: false, isAmbienceOn: true).save(to: suite)
         #expect(SoundSettings.load(from: suite).isAmbienceOn == true)
+        SoundSettings(isMuted: false, isAmbienceOn: false).save(to: suite)
+        #expect(SoundSettings.load(from: suite).isAmbienceOn == false)
     }
 }
 
@@ -290,5 +292,65 @@ struct WorldMomentTests {
         #expect(policy.decide(.levelUp, at: 0.5) == nil)
         policy.settings.isMuted = true
         #expect(policy.decide(.doorKnock, at: 10) == nil)
+    }
+}
+
+@Suite("Sound on by default, Pofu's voice")
+struct SoundOnTests {
+    private func store(_ name: String) -> UserDefaults {
+        let defaults = UserDefaults(suiteName: "pofu.soundon.\(name)")!
+        defaults.removePersistentDomain(forName: "pofu.soundon.\(name)")
+        return defaults
+    }
+
+    @Test func aFreshStoreHearsAmbienceAndAStoredOffStaysOff() {
+        #expect(SoundSettings.load(from: store("fresh")).isAmbienceOn)
+        #expect(SoundSettings().isAmbienceOn)
+        let off = store("off")
+        off.set(false, forKey: SoundSettings.ambienceKey)
+        #expect(!SoundSettings.load(from: off).isAmbienceOn)
+        let on = store("on")
+        on.set(true, forKey: SoundSettings.ambienceKey)
+        #expect(SoundSettings.load(from: on).isAmbienceOn)
+    }
+
+    @Test func theMuteStillSilencesTheVoice() {
+        var policy = SoundPolicy(settings: SoundSettings(isMuted: true))
+        #expect(policy.decide(.pofuPoke, at: 0) == nil)
+    }
+
+    @Test func eachVoiceResolvesToABundledFile() {
+        let voices: [SoundCue] = [.pofuPoke, .pofuGiggle, .pofuChew, .pofuSleepySigh, .pofuSniff]
+        for cue in voices {
+            #expect(cue.isVoice)
+            #expect(SoundCue.allAssetNames.contains(cue.assetName))
+            let size = SoundAssets.url(for: cue.assetName)
+                .flatMap { try? FileManager.default.attributesOfItem(atPath: $0.path)[.size] as? Int } ?? 0
+            #expect(size > 0 && size < 100_000, "\(cue.assetName)")
+        }
+        #expect(!SoundCue.pofuHop.isVoice)
+    }
+
+    @Test func noTwoVoicesOverlap() {
+        var policy = SoundPolicy()
+        #expect(policy.decide(.pofuSleepySigh, at: 10) != nil)
+        // Every other voice inside its 0.75 s is dropped; after it, they play.
+        for cue in [SoundCue.pofuPoke, .pofuGiggle, .pofuChew, .pofuSniff] {
+            #expect(policy.decide(cue, at: 10.5) == nil)
+        }
+        #expect(policy.decide(.pofuChew, at: 10.8) != nil)
+        // Fast taps never stack the same voice.
+        #expect(policy.decide(.pofuPoke, at: 20) != nil)
+        #expect(policy.decide(.pofuPoke, at: 20.1) == nil)
+        // Non-voice cues are unaffected.
+        #expect(policy.decide(.gulp, at: 20.1) != nil)
+    }
+
+    @Test func aTapPokesThenGigglesThenSighsAtBedtime() {
+        var voice = PofuVoice()
+        #expect(voice.tap(at: 0, isBedtime: false) == .pofuPoke)
+        #expect(voice.tap(at: 1, isBedtime: false) == .pofuGiggle)
+        #expect(voice.tap(at: 10, isBedtime: false) == .pofuPoke)
+        #expect(voice.tap(at: 11, isBedtime: true) == .pofuSleepySigh)
     }
 }

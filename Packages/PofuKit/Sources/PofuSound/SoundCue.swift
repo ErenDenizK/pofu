@@ -37,6 +37,17 @@ public enum SoundCue: Hashable, Sendable {
     /// Flow: the last connection, the full pour.
     case waterPour
 
+    /// Pofu's voice (design/sound/proof): a tap on him.
+    case pofuPoke
+    /// A second tap soon after the first, in place of the poke.
+    case pofuGiggle
+    /// He chews what was collected, after the gulp.
+    case pofuChew
+    /// A tap on him at bedtime, in place of the poke.
+    case pofuSleepySigh
+    /// A visitor arrives.
+    case pofuSniff
+
     /// Which tuned volume the cue follows (`TuningValues.Sound`).
     public enum Group: Sendable { case seeds, pieces, pofu }
 
@@ -45,7 +56,28 @@ public enum SoundCue: Hashable, Sendable {
         case .seedPop, .bloom, .comboRise: .seeds
         case .piecePickup, .pieceSnap, .pieceDrop, .piecePutBack, .deal: .pieces
         case .cheek, .roundEnd, .collect, .skipChime, .pofuHop, .gulp,
-             .levelUp, .doorKnock, .kettle, .waterWheel, .waterSplash, .waterPour: .pofu
+             .levelUp, .doorKnock, .kettle, .waterWheel, .waterSplash, .waterPour,
+             .pofuPoke, .pofuGiggle, .pofuChew, .pofuSleepySigh, .pofuSniff: .pofu
+        }
+    }
+
+    /// Pofu's own voice: no two play at once (`SoundPolicy`).
+    public var isVoice: Bool {
+        switch self {
+        case .pofuPoke, .pofuGiggle, .pofuChew, .pofuSleepySigh, .pofuSniff: true
+        default: false
+        }
+    }
+
+    /// The length of the file, which a voice holds the floor for.
+    var voiceSeconds: TimeInterval {
+        switch self {
+        case .pofuPoke: 0.24
+        case .pofuGiggle: 0.5
+        case .pofuChew: 0.62
+        case .pofuSleepySigh: 0.75
+        case .pofuSniff: 0.42
+        default: 0
         }
     }
 
@@ -72,6 +104,11 @@ public enum SoundCue: Hashable, Sendable {
         case .waterWheel: "water-wheel"
         case .waterSplash: "water-splash"
         case .waterPour: "water-pour"
+        case .pofuPoke: "pofu-poke"
+        case .pofuGiggle: "pofu-giggle"
+        case .pofuChew: "pofu-chew"
+        case .pofuSleepySigh: "pofu-sleepy-sigh"
+        case .pofuSniff: "pofu-sniff"
         }
     }
 
@@ -81,9 +118,9 @@ public enum SoundCue: Hashable, Sendable {
         names += (0...SoundPitch.maxBloomStep).map { SoundCue.bloom(step: $0).assetName }
         names += (0..<SoundPitch.comboCount).map { SoundCue.comboRise(level: $0 + 2).assetName }
         let rest: [SoundCue] = [.piecePickup, .pieceSnap, .pieceDrop, .piecePutBack, .deal, .cheek,
-                                
                                 .roundEnd, .collect, .skipChime, .pofuHop, .gulp, .levelUp, .doorKnock,
-                                .kettle, .waterWheel, .waterSplash, .waterPour]
+                                .kettle, .waterWheel, .waterSplash, .waterPour,
+                                .pofuPoke, .pofuGiggle, .pofuChew, .pofuSleepySigh, .pofuSniff]
         return names + rest.map(\.assetName)
     }()
 }

@@ -2149,6 +2149,7 @@ private struct PofuLayer<Bubble: View>: View {
                 if model.focus != nil || model.card != nil {
                     model.dismissFocus()
                 } else {
+                    model.onPofuPoke?()
                     onPofuTap?()
                 }
             }

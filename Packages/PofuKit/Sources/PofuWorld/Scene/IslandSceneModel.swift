@@ -215,6 +215,8 @@ public final class IslandSceneModel {
     /// is the sound's level, 0...1) or a tapped resident's (1). The app maps
     /// it to `SoundCue.pofuHop` and its settings; the sound engine rate-limits.
     @ObservationIgnored public var onHop: (@MainActor (_ level: Double) -> Void)?
+    /// Pofu was tapped with nothing open (the app plays his voice).
+    @ObservationIgnored public var onPofuPoke: (@MainActor () -> Void)?
     /// The last idle-hop slot that sounded, so each hop sounds once.
     @ObservationIgnored private var lastHopSlot: Int?
     /// A quiet day's invitation sheet is up.
