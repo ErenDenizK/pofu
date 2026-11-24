@@ -7,63 +7,70 @@ import Testing
 struct FlowGroundTests {
     private let board = FlowBoard(rows: ["S # . #", ". . # .", "└ ┘ . P"])!
 
-    @Test func rocksOfOneBoardTakeDistinctVariants() {
-        let picker = FlowVariantPicker(board: board)
-        let rocks = board.allCells.filter { board[$0]?.kind == .rock }
-        #expect(rocks.count == 3)
-        let used = Set(rocks.map { picker.variant(of: $0, count: 4) })
-        #expect(used.count == rocks.count)
-    }
-
-    @Test func variantsAreStableAndInRange() {
-        let a = FlowVariantPicker(board: board)
-        let b = FlowVariantPicker(board: board)
-        for cell in board.allCells {
-            #expect(a.variant(of: cell, count: 3) == b.variant(of: cell, count: 3))
-            #expect((0..<3).contains(a.variant(of: cell, count: 3)))
-            #expect((0..<4).contains(a.quarterTurns(of: cell)))
-        }
-        #expect(a.variant(of: FlowCell(row: 0, column: 0), count: 1) == 0)
-    }
-
-    @Test func variantNamesFollowTheSlotConvention() {
-        #expect(FlowArtSlot.variantName("flow-rock", 0) == "flow-rock")
-        #expect(FlowArtSlot.variantName("flow-rock", 2) == "flow-rock-3")
-    }
-
     private func shipped(_ name: String) -> Bool {
         Bundle.module.url(forResource: name, withExtension: "png") != nil
     }
 
-    /// Batch 135 ships four cut-out rocks, `flow-rock-cut` and `-2` to `-4`, and no fifth.
-    @Test func fourCutOutRocksShip() {
-        for index in 0..<4 { #expect(shipped(FlowArtSlot.variantName(FlowArtSlot.rockCut, index))) }
-        #expect(!shipped(FlowArtSlot.variantName(FlowArtSlot.rockCut, 4)))
+    /// A missing art file is a failure here, not a drawing in its place.
+    @Test func everyPaintedPieceShips() {
+        for name in FlowArtSlot.required { #expect(shipped(name), "\(name)") }
     }
 
-    /// All four rocks paint their own contact shade; the code adds none.
-    @Test func everyRockCarriesItsOwnShade() {
-        #expect((0..<4).allSatisfy { FlowArtSlot.rockCutHasPaintedShade(variant: $0) })
-    }
-
-    /// The kit v2 pieces ship: lip (two ends, run, spillway), spout (dry, wet) and the board edge.
-    @Test func theKitV2ArtShips() {
-        for name in [FlowArtSlot.lipEndLeft, FlowArtSlot.lipRun, FlowArtSlot.lipSpill, FlowArtSlot.lipEndRight, FlowArtSlot.spoutDry, FlowArtSlot.spoutWet, FlowArtSlot.edge] {
-            #expect(shipped(name), "\(name)")
+    @Test func everyKindHasABlockAndTheTurnableOnesADial() {
+        for kind in FlowTileKind.allCases {
+            #expect(FlowArtSlot.required.contains(FlowArtSlot.blockName(of: kind)), "\(kind)")
+            #expect((FlowArtSlot.dialName(of: kind) != nil) == kind.isTurnable, "\(kind)")
+            if let bed = FlowArtSlot.bedName(of: kind) { #expect(FlowArtSlot.required.contains(bed), "\(kind)") }
         }
+        // Only a piece with a channel has water; rock and grass have none.
+        #expect(FlowArtSlot.bedName(of: .rock) == nil)
+        #expect(FlowArtSlot.bedName(of: .grass) == nil)
+        #expect(FlowArtSlot.bedName(of: .wheel) != nil)
     }
 
-    @Test func theLipRectHoldsAndTheEdgeKeepsTheGutter() {
+    /// The ingest tool's numbers are shipped and sane, and the plate lies inside the picture.
+    @Test func theKitNumbersLoad() {
+        let kit = FlowKit.shared
+        #expect(kit.canvas > 0)
+        #expect(kit.body > 0.9 && kit.body <= 1 && kit.disc > 0.9 && kit.disc <= 1)
+        #expect(kit.plate.x > 0 && kit.plate.y > 0)
+        #expect(kit.plate.x + kit.plate.width < 1 && kit.plate.y + kit.plate.height < 1)
+    }
+
+    @Test func flowersAreAnAccentOnGrassOnly() {
+        let picker = FlowVariantPicker(board: board)
+        let again = FlowVariantPicker(board: board)
+        var flowered = 0
+        for row in 0..<40 {
+            for column in 0..<40 {
+                let cell = FlowCell(row: row, column: column)
+                #expect(picker.flowered(cell) == again.flowered(cell))
+                guard picker.flowered(cell) else { continue }
+                flowered += 1
+                #expect(!picker.flowered(FlowCell(row: row, column: column + 1)))
+                #expect(!picker.flowered(FlowCell(row: row + 1, column: column)))
+            }
+        }
+        // About one in five seeds, fewer where neighbours would meet: an accent.
+        #expect(flowered > 0 && flowered < 1600 / 5)
+    }
+
+    /// The board lies on the backdrop's plate, centred, in cells of 44 pt or more, with the side gutter kept clear of cells.
+    @Test func theBoardLiesOnThePlate() {
         for width in [375.0, 402.0, 440.0] {
-            let layout = FlowLayout(size: CGSize(width: width, height: 874), safeTop: 62, safeBottom: 34, columns: 5, rows: 4)
-            // The drawn fallback lip's rect sits above the board, overlapping it by 6 pt at most, and is wider than tall.
-            #expect(layout.lip.maxY == layout.board.minY + 6)
-            #expect(layout.lip.height == FlowLayout.lipHeight + 6)
-            #expect(layout.lip.width / layout.lip.height > 6)
-            #expect(layout.lip.minY >= 62 + FlowLayout.hudHeight)
-            // The stone edge reaches as far as the pool did, so the side gutter holds.
-            #expect(layout.edge.minX >= FlowLayout.gutter)
-            #expect(width - layout.edge.maxX >= FlowLayout.gutter)
+            let height = width * 874 / 402
+            for (columns, rows) in [(3, 4), (5, 6), (4, 5)] {
+                let layout = FlowLayout(size: CGSize(width: width, height: height), safeTop: 62, safeBottom: 34, columns: columns, rows: rows)
+                #expect(layout.cell >= FlowLayout.minCell)
+                // The board's origin is rounded to a point, so it may pass the plate by under one.
+                #expect(layout.board.minX >= layout.plate.minX - 1 && layout.board.maxX <= layout.plate.maxX + 1, "\(columns)x\(rows) at \(width)")
+                #expect(layout.board.minY >= layout.plate.minY - 1 && layout.board.maxY <= layout.plate.maxY + 1, "\(columns)x\(rows) at \(width)")
+                #expect(abs(layout.board.midX - layout.plate.midX) <= 1)
+                #expect(layout.board.minX >= FlowLayout.gutter)
+                #expect(width - layout.board.maxX >= FlowLayout.gutter)
+                #expect(layout.plate.minY >= 62 + FlowLayout.hudHeight)
+                #expect(layout.plate.maxY <= height - 34 - FlowLayout.controlsHeight)
+            }
         }
     }
 }

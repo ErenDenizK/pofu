@@ -283,6 +283,15 @@ public final class FlowGameModel {
         return true
     }
 
+    /// Taps the hint's dial and holds it a `fraction` of the way through its turn (the screenshot of a turn).
+    @discardableResult
+    public func holdSuggestedTurn(fraction: Double) -> Bool {
+        guard phase == .playing, let hint = FlowHint.next(round.board), round.board[hint.cell]?.kind.isTurnable == true else { return false }
+        tap(hint.cell)
+        scene.holdTurn(at: hint.cell, fraction: CGFloat(fraction))
+        return true
+    }
+
     /// Shows the hint for the current board now, without the idle wait.
     public func showHintNow() async {
         await showHint()
