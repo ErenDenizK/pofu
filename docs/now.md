@@ -31,8 +31,9 @@ Now: whole-project assessment, two Fable rounds; Apple kits open soon.
    quota). His round-1 verdict (fi 43): too flashy, simpler concept art.
 0. Assessment done: path `docs/design/assessment-2026-11-24-path.md` (#511),
    briefs `docs/studio/briefs/2026-11-24-{0..5}-*.md`. Stage 0 merged (#510,
-   pill seen 1:1). Brief 1 station card = #512 (CI, `screens` label; judge
-   `path-card-*`). Brief 2 Home composition builder running. Codex D20-D23.
+   pill seen 1:1). Station card merged (#512, Etiket/Hap in Settings, seen).
+   Brief 2 Home composition builder in CI. Codex: D20-D23 delivered
+   (#151-#153, #155); night rows D24-D28 (#154, 42 jobs). Morning: summary.
 2. WP10 compositor merged (#500): looks sort with Pofu by footY, Map
    snapshot of the built island, 3.2 s reveal. Left: `mapisle` assets
    (night 8-9 need them), orphan `world-home-base-day-5`, reveal burst.
@@ -40,7 +41,7 @@ Now: whole-project assessment, two Fable rounds; Apple kits open soon.
    WP13 water merged (#505; #504 closed): the pond moves at Ambient, island
    flattened before the lens. Left: falls, sway mask; device frame time.
 4. Codex: 132, 133, 135, 126 v2 merged (cloud fit: crossfade floor-mid,
-   warm kit only, Koke keeps bed-round v1). Queue: D20-D23 (157-160); 126 v3 (#132) to review; 136 + 137 held.
+   warm kit only, Koke keeps bed-round v1). Queue: D24-D28 (161-165); 126 v3 (#132) to review; 136 + 137 held.
 Merged: #475-#489, #491-#502, #505, #506, #508; pofu-art #81, #91-#139, #141-#150.
 
 ## Next (night plan)
