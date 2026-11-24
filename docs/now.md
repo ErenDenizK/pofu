@@ -51,7 +51,6 @@ A9 art backlog; §8.6 pass. Sefer V1-V5 and WP12 once he says yes.
 
 | Desk | Where it stands | Waits on |
 |---|---|---|
-| Game | tea stall levels show (stage 7); props back (#492) | WP8 stages |
 | Look | one painted world: Home, the Map, flights, Koke, Çağlayan, visitors | Wave 0 |
 | Art factory | 137 ladder, S2 v3 clouds, S3 visitors | reviews |
 
