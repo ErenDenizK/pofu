@@ -30,9 +30,9 @@ Now: whole-project assessment, two Fable rounds; Apple kits open soon.
    2 delivered, merged 11-23 (#135-#139, #141, #142; 152 got nothing on
    quota). His round-1 verdict (fi 43): too flashy, simpler concept art.
 0. Assessment done: path `docs/design/assessment-2026-11-24-path.md` (#511),
-   briefs `docs/studio/briefs/2026-11-24-{0..5}-*.md`. Stage 0 = pofu #510
-   (CI; judge `path-home-pass-pill` 1:1, then merge), then briefs 1 + 2 at
-   once. Codex D20-D23 (pofu-art #150, "çalış hazır" sent 11-24).
+   briefs `docs/studio/briefs/2026-11-24-{0..5}-*.md`. Stage 0 merged (#510,
+   pill seen 1:1). Brief 1 station card = #512 (CI, `screens` label; judge
+   `path-card-*`). Brief 2 Home composition builder running. Codex D20-D23.
 2. WP10 compositor merged (#500): looks sort with Pofu by footY, Map
    snapshot of the built island, 3.2 s reveal. Left: `mapisle` assets
    (night 8-9 need them), orphan `world-home-base-day-5`, reveal burst.
