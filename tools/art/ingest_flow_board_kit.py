@@ -69,7 +69,11 @@ OPENINGS = {
 DIALS = {"dial-bend", "dial-straight", "dial-split"}
 CANVAS = 288
 BODY = 0.96
-DISC = 0.96
+# A dial is its grass and channel only: its own stone rim is cut away, so the block's rim is the one ring
+# (a dial that kept its rim drew a second arc beside the socket's at every corner). DISC is the grass
+# disc's width against the cell, the socket's inner width.
+DISC = 0.85
+DIAL_RIM = 0.095  # the rim's thickness against the disc's radius, with a little shade
 ERODE = 3
 SOLID, GONE = 220, 24
 
@@ -101,6 +105,19 @@ def clean(img: Image.Image) -> np.ndarray:
     rgb = arr[..., :3][iy, ix]
     rgb[alpha == 0] = 0
     out = np.dstack([rgb, np.round(alpha).astype(np.uint8)])
+    return out
+
+
+def cut_rim(arr: np.ndarray) -> np.ndarray:
+    """Keeps the inside of a dial's disc, leaving out its stone rim, with a one pixel soft edge."""
+    ys, xs = np.where(arr[..., 3] > 200)
+    cx, cy = (xs.min() + xs.max()) / 2, (ys.min() + ys.max()) / 2
+    radius = (xs.max() - xs.min()) / 2 * (1 - DIAL_RIM)
+    yy, xx = np.mgrid[0:arr.shape[0], 0:arr.shape[1]]
+    inside = np.clip(radius - np.hypot(xx - cx, yy - cy) + 0.5, 0, 1)
+    out = arr.copy()
+    out[..., 3] = np.round(arr[..., 3] * inside).astype(np.uint8)
+    out[out[..., 3] == 0, :3] = 0
     return out
 
 
@@ -189,6 +206,8 @@ def save_rgba(arr: np.ndarray, name: str) -> None:
 def piece(art_repo: Path, slot: str, source) -> None:
     img = source if isinstance(source, Image.Image) else read_take(art_repo, *source)
     arr = clean(img)
+    if slot in DIALS:
+        arr = cut_rim(arr)
     sides, quarter = OPENINGS.get(slot, ("", 0))
     if quarter:
         arr = np.rot90(arr, quarter).copy()

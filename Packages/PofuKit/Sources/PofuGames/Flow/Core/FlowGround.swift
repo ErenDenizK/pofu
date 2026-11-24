@@ -86,7 +86,7 @@ public struct FlowKit: Decodable, Sendable, Equatable {
     public let aspect: Double
     /// A piece's square canvas in pixels: one cell.
     public let canvas: Int
-    /// A block's body and a dial's disc, as fractions of the cell.
+    /// A block's body and a dial's rimless grass disc, as fractions of the cell.
     public let body: Double
     public let disc: Double
 
