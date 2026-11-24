@@ -508,7 +508,9 @@ public struct HomePlate: Hashable, Sendable {
         if plate.island == "caglayan", let reference = PaintedSky.reference(for: .caglayan, width: width, height: height) {
             return reference
         }
-        let stop = midStop
+        // The level-10 framing, not the young one: a young island is drawn larger (youngFill), but
+        // the sky is painted for the island's own box, so it must not grow or slide with it.
+        let stop = fullMidStop
         return CameraPose(
             scale: stop.scale * width / CameraRail.referenceWidth,
             look: stop.look,
@@ -563,6 +565,12 @@ public struct HomePlate: Hashable, Sendable {
             return CameraRail.Stop(scale: young, look: WorldPoint(x: crop.midX, y: box.midY), anchorY: anchorY)
         }
         return CameraRail.Stop(scale: scale, look: WorldPoint(x: box.midX, y: box.midY), anchorY: anchorY)
+    }
+
+    /// Mid as for the full level-10 island, whatever the stage: the sky's reference.
+    var fullMidStop: CameraRail.Stop {
+        let box = islandBox
+        return CameraRail.Stop(scale: CameraRail.midFitWidth / max(box.width, 1), look: WorldPoint(x: box.midX, y: box.midY), anchorY: CameraRail.midCentreY)
     }
 
     /// The rail's stops while the plate shows: the painted Map (the tier frame), mid and the near limit.
