@@ -62,6 +62,8 @@ public struct WorldMap: Sendable {
     public let nearFeetX: Double
     /// Chrome opacity falls from 1 to 0 between these multiples of the mid scale (ADR-0027).
     public var chromeFadeScale: ClosedRange<Double> = 1.05 ... 1.25
+    /// A young island narrower than this share of the width at mid is fitted to it.
+    public var youngFill = 0.82
     /// Near begins at this multiple of the mid scale (ADR-0027).
     public var nearMidMultiple = 1.25
     public let midChrome: [Piece]
@@ -152,7 +154,7 @@ extension WorldMap {
         struct Frame: Decodable { var footFraction: Double; var minX: Double; var maxX: Double; var minY: Double; var minScale: Double }
         struct PieceFile: Decodable { var id: String; var box: [Double] }
         struct Backdrop: Decodable { var lane: [Double]; var lipTop: Double; var map: [PieceFile]; var mid: [PieceFile]; var midLipTop: Double }
-        struct Mid: Decodable { var fitWidth: Double; var centerY: Double; var chromeFadeScale: [Double]? }
+        struct Mid: Decodable { var fitWidth: Double; var centerY: Double; var youngFill: Double?; var chromeFadeScale: [Double]? }
         struct Near: Decodable { var restScale: Double; var limitScale: Double; var feetY: Double; var feetX: Double; var midMultiple: Double? }
         struct Chrome: Decodable { var mid: [PieceFile]; var mapCorner: PieceFile; var nearBack: PieceFile }
         var unitsPerPlatePoint: Double
@@ -207,6 +209,7 @@ extension WorldMap {
             stages: stages, tier2States: f.tier2States
         )
         if let fade = f.mid.chromeFadeScale, fade.count == 2, fade[0] < fade[1] { map.chromeFadeScale = fade[0] ... fade[1] }
+        if let fill = f.mid.youngFill { map.youngFill = fill }
         if let multiple = f.near.midMultiple { map.nearMidMultiple = multiple }
         return map
     }

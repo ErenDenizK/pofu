@@ -46,7 +46,7 @@ struct CameraRailTests {
             let p = rail.pose(z: z)
             #expect(p.lookX == mid.lookX && p.lookY == mid.lookY)
             let t = 1 - rail.chromeOpacity(logScale: p.logScale)
-            #expect(abs(p.anchorY - (383 + 54 * t)) < 1e-9)
+            #expect(abs(p.anchorY - (416 + 21 * t)) < 1e-9)
         }
         #expect(abs(rail.pose(z: 1.5).anchorY - 437) < 1e-9)
     }

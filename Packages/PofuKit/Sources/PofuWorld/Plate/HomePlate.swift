@@ -508,7 +508,9 @@ public struct HomePlate: Hashable, Sendable {
         if plate.island == "caglayan", let reference = PaintedSky.reference(for: .caglayan, width: width, height: height) {
             return reference
         }
-        let stop = midStop
+        // The level-10 framing, not the young one: a young island is drawn larger (youngFill), but
+        // the sky is painted for the island's own box, so it must not grow or slide with it.
+        let stop = fullMidStop
         return CameraPose(
             scale: stop.scale * width / CameraRail.referenceWidth,
             look: stop.look,
@@ -550,9 +552,9 @@ public struct HomePlate: Hashable, Sendable {
     }
 
     /// Mid (ADR-0027, Home's stop): the level-10 island box fitted to `CameraRail.midFitWidth`
-    /// (378 pt on iPhone 17, 1.145 pt a unit), its centre on row `CameraRail.midCentreY` (383).
-    /// A young island whose painting is narrower than 0.72 of the width at that scale is fitted
-    /// to 0.72 instead, centred on its painting.
+    /// (378 pt on iPhone 17, 1.145 pt a unit), its centre on row `CameraRail.midCentreY` (416).
+    /// A young island whose painting is narrower than 0.82 of the width at that scale is fitted
+    /// to 0.82 instead, centred on its painting.
     public var midStop: CameraRail.Stop {
         let box = islandBox
         let scale = CameraRail.midFitWidth / max(box.width, 1)
@@ -563,6 +565,12 @@ public struct HomePlate: Hashable, Sendable {
             return CameraRail.Stop(scale: young, look: WorldPoint(x: crop.midX, y: box.midY), anchorY: anchorY)
         }
         return CameraRail.Stop(scale: scale, look: WorldPoint(x: box.midX, y: box.midY), anchorY: anchorY)
+    }
+
+    /// Mid as for the full level-10 island, whatever the stage: the sky's reference.
+    var fullMidStop: CameraRail.Stop {
+        let box = islandBox
+        return CameraRail.Stop(scale: CameraRail.midFitWidth / max(box.width, 1), look: WorldPoint(x: box.midX, y: box.midY), anchorY: CameraRail.midCentreY)
     }
 
     /// The rail's stops while the plate shows: the painted Map (the tier frame), mid and the near limit.
