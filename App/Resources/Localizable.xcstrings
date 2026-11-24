@@ -3005,6 +3005,46 @@
           }
         }
       }
+    },
+    "Station card" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İstasyon kartı"
+          }
+        }
+      }
+    },
+    "Tag" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Etiket"
+          }
+        }
+      }
+    },
+    "Pill" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hap"
+          }
+        }
+      }
+    },
+    "Tag shows everything at once. Pill is a small name that opens when you tap it." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Etiket her şeyi bir arada gösterir. Hap, dokununca açılan küçük bir isimdir."
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

@@ -19,7 +19,9 @@ import XCTest
 ///   appeared (the harbor, the rumour, Koke, Çağlayan);
 /// - `path-dNN-koke-0907`, `path-dNN-caglayan-0907`: the wonder island's stop on the
 ///   days the run visits it (its arrival and each stage), after the visit;
-/// - `path-sheet-today`, `path-sheet-station`: the sheets over the painted Home (day 5);
+/// - `path-sheet-today`: the sheet over the painted Home (day 5);
+/// - `path-card-station-a`, `-b`, `-b-open`, `-a-edge-left`, `-a-edge-right`, `-a-refused`, `-a-night`, `path-card-garden-a`:
+///   the station card by the tea stall (day 5), in both variants and its edge cases;
 /// - `path-d04-grow-0000`, `-1500`, `-2400`: "Ada büyüdü" by a build, at 0.0, 1.5 and 2.4 s of its moment
 ///   (the old painting whole and held, mid cross-fade with the bloom, the new painting with the "Ada n" card);
 /// - `path-d03-grew-0900`: the overnight landing on the old painting, Pofu's news line and its button;
@@ -232,20 +234,55 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
         let folder = try outputFolder()
         let day = Self.path[4]
         let model = AppModel.shared
-        let status = day.morning.stations.first { $0.id == .teaStall }
-        for (name, fraction) in [("path-sheet-today", 0.9), ("path-sheet-station", 0.5)] {
+        for (name, fraction) in [("path-sheet-today", 0.9)] {
             let island = IslandSceneModel(framing: .mid)
             let back = homeView(day.morning, hour: 11, island: island, settled: true)
-            let view: AnyView
-            if name == "path-sheet-today" {
-                view = AnyView(PathSheetFrame(fraction: fraction, back: AnyView(back)) { TodaySheet(model: model, hourOverride: 11) })
-            } else {
-                view = AnyView(PathSheetFrame(fraction: fraction, back: AnyView(back)) {
-                    StationSheet(station: .teaStall, status: status, jar: day.morning.jar, onBuild: { _ in }, onClose: {})
-                })
-            }
+            let view = AnyView(PathSheetFrame(fraction: fraction, back: AnyView(back)) { TodaySheet(model: model, hourOverride: 11) })
             try await capture(view, name: name, scene: scene, folder: folder, settle: 2100) {
                 XCTAssertNotNil(island.homePlate, "\(name): the sheet sits over the painted Home")
+            }
+        }
+    }
+
+    /// The station card, in its two variants, as the player meets it on day 5: the tea stall, Hap opened, the
+    /// leftmost and rightmost stations, a refused build, the night plate and the garden's play.
+    @MainActor
+    func testRenderTheStationCards() async throws {
+        let scene = try windowScene()
+        let folder = try outputFolder()
+        let day = Self.path[4]
+        let defaults = UserDefaults.standard
+        defer { defaults.removeObject(forKey: StationCardVariant.storageKey) }
+        let plate = paintedAs(day.morning, level: day.morning.islandLevel, hour: 11)
+        let built = day.morning.stations.filter { $0.level > 0 && plate?.stationBox($0.id) != nil }
+        let byX = built.sorted { (plate?.stationBox($0.id)?.midX ?? 0) < (plate?.stationBox($1.id)?.midX ?? 0) }
+        guard let left = byX.first?.id, let right = byX.last?.id else { return XCTFail("no built stations on the plate") }
+        var poor = day.morning
+        poor.jar = Energy(1)
+        XCTAssertNotNil(poor.stations.first { $0.id == .teaStall }?.nextCost, "the tea stall has a next level to be refused")
+        let frames: [(name: String, variant: StationCardVariant, station: StationID, world: WorldSnapshot, hour: Double, open: Bool)] = [
+            ("path-card-station-a", .tag, .teaStall, day.morning, 11, false),
+            ("path-card-station-b", .pill, .teaStall, day.morning, 11, false),
+            ("path-card-station-b-open", .pill, .teaStall, day.morning, 11, true),
+            ("path-card-station-a-edge-left", .tag, left, day.morning, 11, false),
+            ("path-card-station-a-edge-right", .tag, right, day.morning, 11, false),
+            ("path-card-station-a-refused", .tag, .teaStall, poor, 11, false),
+            ("path-card-station-a-night", .tag, .teaStall, day.morning, 22, false),
+            ("path-card-garden-a", .tag, .garden, day.morning, 11, false),
+        ]
+        for frame in frames {
+            defaults.set(frame.variant.rawValue, forKey: StationCardVariant.storageKey)
+            let island = IslandSceneModel(framing: .mid)
+            let view = homeView(frame.world, hour: frame.hour, island: island, settled: true)
+            let focus = PathFlip(waiting: 1500) {
+                // Home sets these from its actions on appear; the frame wants the garden's door open.
+                island.playableRounds = 2
+                island.onPlay = {}
+                island.focusStation(frame.station, animated: false)
+                island.cardExpanded = frame.open
+            }
+            try await capture(AnyView(view), name: frame.name, scene: scene, folder: folder, settle: 2100, flip: focus) {
+                XCTAssertEqual(island.card?.station, frame.station, "\(frame.name): the card hangs by its station")
             }
         }
     }

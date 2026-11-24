@@ -1,6 +1,7 @@
 import PofuCore
 import PofuDesignSystem
 import PofuSound
+import PofuWorld
 import SwiftUI
 
 /// Settings: Pofu's name, the guarded apps and whether each automation
@@ -74,6 +75,8 @@ struct SettingsView: View {
                 SoundSettingsSection()
 
                 BreathSettingsSection()
+
+                StationCardSettingsSection()
 
                 if DeveloperFlag.isOn {
                     RehearsalSettingsSection()
@@ -153,6 +156,29 @@ private struct BreathSettingsSection: View {
         } header: {
             Text("Breath")
                 .pofuSectionHeader()
+        }
+        .settingsRow()
+    }
+}
+
+/// Which station card the founder is trying: Etiket or Hap. Goes when he has picked.
+private struct StationCardSettingsSection: View {
+    @AppStorage(StationCardVariant.storageKey) private var variant = StationCardVariant.standard.rawValue
+
+    var body: some View {
+        Section {
+            Picker(selection: $variant) {
+                Text("Tag").tag(StationCardVariant.tag.rawValue)
+                Text("Pill").tag(StationCardVariant.pill.rawValue)
+            } label: {
+                SettingsLabel("Station card", systemName: "rectangle.on.rectangle", tone: .moss)
+            }
+            .pickerStyle(.menu)
+        } header: {
+            Text("Station card")
+                .pofuSectionHeader()
+        } footer: {
+            Text("Tag shows everything at once. Pill is a small name that opens when you tap it.")
         }
         .settingsRow()
     }
