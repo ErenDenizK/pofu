@@ -10,7 +10,7 @@ history: [tracker.md](tracker.md). What changed for the player:
 chooses to; "Önce uygulamanın mükemmel olduğundan emin olalım" (fi 43).
 Now: whole-project assessment, two Fable rounds; Apple kits open soon.
 
-**Updated:** 2026-11-23. **Founder last played:** 11-14 (main 0cf03ca1).
+**Updated:** 2026-11-24. **Founder last played:** 11-14 (main 0cf03ca1).
 **Route:** Fable's night plan (`docs/design/night-plan-2026-11-15.md`,
 #482 merged): steps N0-N11 now, A1-A10 after; the world spec #474 inside it.
 
@@ -29,10 +29,10 @@ Now: whole-project assessment, two Fable rounds; Apple kits open soon.
    and merged (pofu-art #124-#131); 4 topic sheets sent 11-18 (#133). Round
    2 delivered, merged 11-23 (#135-#139, #141, #142; 152 got nothing on
    quota). His round-1 verdict (fi 43): too flashy, simpler concept art.
-0. Fi 43 assessment: raw files `docs/research/assessment-2026-11-23/`;
-   Fable round 1 (brief `fable-2026-11-23-assessment-round1.md`).
-   Round 1 done: pofu #509 (tr page sent, 10 Qs). Codex round 3 queued
-   (#143, #144: D17, D14 rerun, D18, D19 one job). Waits: his answers.
+0. Fi 43/44 assessment: round 1 merged (#509); he approved all picks (fi 44).
+   Stage 0 builder on `feat/day1-pass-pill` (pill, honor cut, day-1 script);
+   scout on sprite fallback; Fable round 2 next (brief 11-24). Round 3 +
+   152 merged (pofu-art #145-#149, sheets sent). Codex queue empty.
 2. WP10 compositor merged (#500): looks sort with Pofu by footY, Map
    snapshot of the built island, 3.2 s reveal. Left: `mapisle` assets
    (night 8-9 need them), orphan `world-home-base-day-5`, reveal burst.
@@ -40,8 +40,8 @@ Now: whole-project assessment, two Fable rounds; Apple kits open soon.
    WP13 water merged (#505; #504 closed): the pond moves at Ambient, island
    flattened before the lens. Left: falls, sway mask; device frame time.
 4. Codex: 132, 133, 135, 126 v2 merged (cloud fit: crossfade floor-mid,
-   warm kit only, Koke keeps bed-round v1). Queue: D17-D19, D14 rerun; 126 v3 (#132) to review; 136 + 137 held.
-Merged: #475-#489, #491-#502, #505, #506, #508; pofu-art #81, #91-#139, #141-#144.
+   warm kit only, Koke keeps bed-round v1). Queue: empty (round 3 done); 126 v3 (#132) to review; 136 + 137 held.
+Merged: #475-#489, #491-#502, #505, #506, #508; pofu-art #81, #91-#139, #141-#149.
 
 ## Next (night plan)
 A9 art backlog; §8.6 pass. Sefer V1-V5 and WP12 once he says yes.
@@ -56,5 +56,5 @@ A9 art backlog; §8.6 pass. Sefer V1-V5 and WP12 once he says yes.
 
 ## Open with the founder
 
-- Fable round-1 10 questions (#509, sent 11-23); #490 Qs; N6.
+- Membership ~11-27: Mac 1-2 h, Distribution request same day; #490; N6.
 - Device: 11-13 answers; pinch smooth? pond frame rate. Stale: roadmap, tracker.
