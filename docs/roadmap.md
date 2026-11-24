@@ -159,8 +159,8 @@ A checklist; these steps have long lead times.
 2. Finalize bundle identifiers for the app and every extension.
 3. Request the **Family Controls (Distribution)** entitlement for **each**
    bundle identifier.
-4. Enable App Groups, Family Controls (Development), HealthKit, and
-   Associated Domains.
+4. Enable App Groups and Family Controls (Development). Nothing uses
+   HealthKit or Associated Domains.
 
 ## Later
 

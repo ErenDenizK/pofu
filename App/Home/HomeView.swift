@@ -37,7 +37,23 @@ struct HomeView: View {
                 PofuColor.dayWash.ignoresSafeArea()
             }
 
-            if !FeatureFlags.worldHome {
+            if FeatureFlags.worldHome {
+                // A running pass: the pill sits top leading, level with the
+                // gear, and steps aside with the rest of Home's chrome (or
+                // below the repair banner, which takes the whole top row).
+                VStack {
+                    HStack {
+                        HomePassPill(model: model)
+                        Spacer(minLength: 0)
+                    }
+                    .padding(.top, model.worldHome.visit.plan.showsRepairBanner ? 64 : PofuSpacing.s)
+                    Spacer(minLength: 0)
+                }
+                .padding(.horizontal, PofuSpacing.screen)
+                .opacity(showsWorldChrome ? model.island.chromeOpacity : 0)
+                .allowsHitTesting(showsWorldChrome && model.island.chromeOpacity > 0.5)
+                .animation(PofuMotion.respecting(reduceMotion, PofuMotion.snappy), value: showsWorldChrome)
+            } else {
                 VStack(spacing: PofuSpacing.l) {
                     topBar
                         .opacity(model.island.focus == nil ? 1 : 0)
@@ -60,11 +76,6 @@ struct HomeView: View {
                 .animation(PofuMotion.respecting(reduceMotion, PofuMotion.settle), value: model.island.focus == nil)
             }
 
-            if model.activeSession != nil || model.earningResult != nil {
-                FocusSessionView(model: model)
-                    .transition(.opacity)
-                    .zIndex(1)
-            }
         }
         // The skin of the over-world chrome, once at the root: the
         // developer override (Prova panel or `-PofuSkin crafted`), else the
@@ -82,7 +93,6 @@ struct HomeView: View {
             model.worldHome.timing = timing
         }
         #endif
-        .animation(PofuMotion.respecting(reduceMotion, PofuMotion.settle), value: model.activeSession != nil || model.earningResult != nil)
         .animation(PofuMotion.respecting(reduceMotion, PofuMotion.settle), value: model.canCollectQuietSeeds)
         .sensoryFeedback(.success, trigger: model.quietCollections)
         .onChange(of: scenePhase) { _, phase in
@@ -111,12 +121,6 @@ struct HomeView: View {
         }
         .sheet(item: $model.homeSheet) { sheet in
             switch sheet {
-            case .earn:
-                // Tall enough for the activities, the lengths, and Start
-                // together, with Pofu's room still showing above.
-                EarnSheet(model: model)
-                    .presentationDetents([.fraction(0.68), .large])
-                    .pofuSheetBackground()
             case .passes:
                 PassesSheet(model: model)
                     .presentationDetents([.medium, .large])
@@ -201,6 +205,13 @@ struct HomeView: View {
         .onChange(of: model.worldHome.visit) { old, new in
             model.farBellVisitChanged(from: old, to: new)
         }
+    }
+
+    /// Whether the world Home's chrome is up (the same rule as its own).
+    private var showsWorldChrome: Bool {
+        let scene = model.island
+        return scene.island == .home && scene.projectedFraming != .map && scene.chromeOpacity > 0
+            && scene.focus == nil && !scene.hasSheet && !scene.isGrowing
     }
 
     /// The Today card and the actions belong to the Home framing.
@@ -379,13 +390,6 @@ struct HomeView: View {
 
     private var bottomActions: some View {
         HStack(spacing: PofuSpacing.m) {
-            Button {
-                model.homeSheet = .earn
-            } label: {
-                Text("Fill my cheeks")
-            }
-            .buttonStyle(PofuPrimaryButtonStyle())
-
             PofuIconButton(systemName: "ticket", label: String(localized: "Passes")) {
                 model.homeSheet = .passes
             }

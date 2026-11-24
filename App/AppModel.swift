@@ -24,15 +24,10 @@ final class AppModel {
     /// Where a resisted reach parts the screen haze (screen haze v1); the
     /// root hands it to the world.
     let hazeClearing = ScreenHazeClearing()
-    /// The running honor session, if any.
-    private(set) var activeSession: ActiveSession?
     /// The game model (game design v2), fed by the gate's event log and
     /// Pofu's foreground time. Only calm is shown so far (the shield and
     /// Hop!); the developer readout shows the rest through `world`.
     private(set) var game: GameState
-    /// The result of the session that just ended, until Pofu has shown the
-    /// cheeks-fill moment.
-    private(set) var earningResult: EarningResult?
     /// The instant the model last refreshed, so derived values are stable
     /// within one render.
     private(set) var now: Date
@@ -151,7 +146,6 @@ final class AppModel {
         }
         self.state = snapshot.state
         self.profile = snapshot.profile
-        self.activeSession = snapshot.activeSession
         self.game = snapshot.game ?? GameState()
         if snapshot.state.vitality.settledThrough == nil {
             state.vitality = VitalityLedger(initialVitality: configuration.vitality.initialVitality)
@@ -1010,43 +1004,6 @@ final class AppModel {
         }
     }
 
-    // MARK: - Earning
-
-    /// What a session of `minutes` would earn on the honor system, before
-    /// the daily cap.
-    func preview(minutes: Int) -> Energy {
-        let start = now
-        let session = ActivitySession(
-            kind: .focus,
-            verification: .honor,
-            startedAt: start,
-            endedAt: start.addingTimeInterval(TimeInterval(minutes) * 60)
-        )
-        return economy.grossEnergy(for: session)
-    }
-
-    func startSession(kind: ActivityKind, minutes: Int) {
-        now = clock.now
-        activeSession = ActiveSession(kind: kind, startedAt: now, plannedMinutes: minutes)
-        Log.economy.info("Honor session started: \(minutes, privacy: .public) min")
-        save()
-    }
-
-    /// Ends the running session at `min(now, planned end)` and credits it.
-    @discardableResult
-    func finishSession() -> EarningResult? {
-        guard let running = activeSession else { return nil }
-        now = clock.now
-        let session = running.completed(at: now)
-        let result = economy.earn(session, into: &state.wallet)
-        Log.economy.info("Honor session credited: \(result.earned.units, privacy: .private) seeds, \(result.forfeitedToCap.units, privacy: .private) over the cap")
-        log(.activityCredited(session, earned: result.earned, forfeited: result.forfeitedToCap))
-        activeSession = nil
-        earningResult = result
-        save()
-        return result
-    }
-
     /// Moves the quiet seeds in Pofu's cheeks to the balance.
     ///
     /// - Returns: What was collected, or `nil` when there was nothing to
@@ -1062,18 +1019,9 @@ final class AppModel {
         return collection
     }
 
-    func dismissEarningResult() {
-        earningResult = nil
-    }
-
     /// The current time from the model's clock, for views that tick.
     func currentTime() -> Date {
         clock.now
-    }
-
-    func cancelSession() {
-        activeSession = nil
-        save()
     }
 
     // MARK: - Profile
@@ -1247,8 +1195,6 @@ final class AppModel {
         rehearsal.screen = nil
         hop = nil
         homeSheet = nil
-        activeSession = nil
-        earningResult = nil
         quietCollections = 0
         rehearsal.system.reset()
         rehearsal.clock.reset()
@@ -1296,7 +1242,7 @@ final class AppModel {
     private func save() {
         guard let store else { return }
         do {
-            try store.save(PofuSnapshot(state: state, profile: profile, activeSession: activeSession, game: game))
+            try store.save(PofuSnapshot(state: state, profile: profile, game: game))
             persistenceProblem = false
         } catch {
             Log.persistence.error("Saving the snapshot failed: \(error.localizedDescription, privacy: .public)")
@@ -1321,7 +1267,6 @@ final class AppModel {
 /// The sheets presented over Home (information architecture: one home,
 /// tasks as sheets).
 enum HomeSheet: String, Identifiable {
-    case earn
     case passes
     case settings
     case setup

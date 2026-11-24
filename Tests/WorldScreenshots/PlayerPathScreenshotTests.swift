@@ -30,6 +30,7 @@ import XCTest
 ///   and the station's burst, over the held old painting;
 /// - `path-d04-near-rest`: near at rest on Pofu, full size (the thin lens, WP11);
 /// - `path-game-garden-midround`, `path-game-flow-stage1`: the minigames;
+/// - `path-home-pass-pill`: Home with a running pass, the glass pill top leading;
 /// - `path-hop-instagram-1200`: the Door, the midday reach for Instagram (the Hop screen the player meets);
 /// - `path-onboarding-welcome`, `-apps`, `-name`, `-notifications`.
 ///
@@ -284,6 +285,32 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
             try await capture(AnyView(view), name: frame.name, scene: scene, folder: folder, settle: 2100, flip: focus) {
                 XCTAssertEqual(island.card?.station, frame.station, "\(frame.name): the card hangs by its station")
             }
+        }
+    }
+
+    /// A running pass on the painted Home: the glass pill top leading, level with the gear
+    /// (`HomeView` places the same view the same way).
+    @MainActor
+    func testRenderThePassPill() async throws {
+        let scene = try windowScene()
+        let folder = try outputFolder()
+        let day = Self.path[4]
+        let island = IslandSceneModel(framing: .mid)
+        let back = homeView(day.morning, hour: 11, island: island, settled: true)
+        let view = ZStack {
+            back
+            VStack {
+                HStack {
+                    PassPill(app: .instagram, fallbackName: "instagram", minutesLeft: 4, refund: Energy(3), onEnd: {})
+                    Spacer(minLength: 0)
+                }
+                .padding(.top, PofuSpacing.s)
+                Spacer(minLength: 0)
+            }
+            .padding(.horizontal, PofuSpacing.screen)
+        }
+        try await capture(AnyView(view), name: "path-home-pass-pill", scene: scene, folder: folder, settle: 2100) {
+            XCTAssertNotNil(island.homePlate, "the pill sits over the painted Home")
         }
     }
 
