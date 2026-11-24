@@ -32,7 +32,8 @@ Now: whole-project assessment, two Fable rounds; Apple kits open soon.
 0. Assessment done: path `docs/design/assessment-2026-11-24-path.md` (#511),
    briefs `docs/studio/briefs/2026-11-24-{0..5}-*.md`. Stage 0 merged (#510,
    pill seen 1:1). Station card merged (#512, Etiket/Hap in Settings, seen).
-   Brief 2 Home composition builder in CI. Codex: D20-D23 delivered
+   Home composition merged (#513: island +33 pt, young fill 0.82). Brief 3
+   board (`feat/flow-dial-board`, 158 picks given) and brief 4 sound running. Codex: D20-D23 delivered
    (#151-#153, #155); night rows D24-D28 (#154, 42 jobs). Morning: summary.
 2. WP10 compositor merged (#500): looks sort with Pofu by footY, Map
    snapshot of the built island, 3.2 s reveal. Left: `mapisle` assets
@@ -51,7 +52,6 @@ A9 art backlog; §8.6 pass. Sefer V1-V5 and WP12 once he says yes.
 
 | Desk | Where it stands | Waits on |
 |---|---|---|
-| Look | one painted world: Home, the Map, flights, Koke, Çağlayan, visitors | Wave 0 |
 | Art factory | 137 ladder, S2 v3 clouds, S3 visitors | reviews |
 
 ## Open with the founder
