@@ -19,8 +19,8 @@ import SwiftUI
 ///
 /// Gestures: a pinch scrubs the rail between the framings and settles on
 /// the nearest with a spring; a double tap steps in; a one-finger drag
-/// peeks. A tap on a station focuses it and raises its sheet; a tap on a
-/// resident shows their card. With a `WorldHomeModel`, the station sheet
+/// peeks. A tap on a station focuses it and raises its card; a tap on a
+/// resident shows their card. With a `WorldHomeModel`, the station card
 /// builds and the build moment plays in the world.
 public struct IslandScene<Bubble: View>: View {
     let world: WorldSnapshot
@@ -45,10 +45,10 @@ public struct IslandScene<Bubble: View>: View {
 
     /// - Parameters:
     ///   - world: The world to draw.
-    ///   - model: The scene's camera, focus and sheet state.
+    ///   - model: The scene's camera, focus and station card state.
     ///   - home: The visit and its moments; the build moment plays from it.
     ///   - onPofuTap: Called after Pofu's own squish when he is tapped.
-    ///   - onBuild: Builds a station's next level; `nil` shows the sheet's
+    ///   - onBuild: Builds a station's next level; `nil` shows the card's
     ///     button as unavailable.
     ///   - props: The home objects drawn in the world (jar, lantern, pots).
     ///   - onVisitor: Sends the game event of a tap on today's visitor, the
@@ -308,24 +308,7 @@ public struct IslandScene<Bubble: View>: View {
                 model.stepOut()
             }
         }
-        .sheet(item: $model.sheet) { item in
-            StationSheet(
-                station: item.station,
-                status: world.stations.first { $0.id == item.station },
-                jar: world.jar,
-                isBuilding: home?.buildingStation == item.station,
-                playableRounds: model.playableRounds,
-                onPlay: model.onPlay,
-                onBuild: onBuild,
-                onClose: { model.dismissFocus() }
-            )
-            .id(item.station)
-            .transition(.opacity)
-            .presentationDetents(detents, selection: detentSelection)
-            .pofuPaperSheet()
-            .presentationBackgroundInteraction(.enabled(upThrough: .fraction(0.42)))
-            .presentationContentInteraction(.resizes)
-        }
+        .onAppear { model.onBuild = onBuild }
         // A quiet day's letter: pick who comes tomorrow.
         .sheet(isPresented: $model.isInviting) {
             InviteSheet(
@@ -359,40 +342,6 @@ public struct IslandScene<Bubble: View>: View {
             ids.append(.caglayan)
         }
         return ids
-    }
-
-    // MARK: Sheet detents
-
-    private static var compactDetent: PresentationDetent {
-        .height(CGFloat(IslandLayout.compactSheetHeight))
-    }
-
-    /// Compact exists only while a build has the sheet down (§2.3).
-    private var detents: Set<PresentationDetent> {
-        model.sheetDetent == .compact || model.buildFraming != nil
-            ? [Self.compactDetent, .fraction(0.42), .large]
-            : [.fraction(0.42), .large]
-    }
-
-    private var detentSelection: Binding<PresentationDetent> {
-        Binding(
-            get: {
-                switch model.sheetDetent {
-                case .compact: Self.compactDetent
-                case .medium: .fraction(0.42)
-                case .large: .large
-                }
-            },
-            set: { detent in
-                if detent == .large {
-                    model.sheetDetent = .large
-                } else if detent == Self.compactDetent {
-                    model.sheetDetent = .compact
-                } else {
-                    model.sheetDetent = .medium
-                }
-            }
-        )
     }
 }
 
@@ -2197,7 +2146,7 @@ private struct PofuLayer<Bubble: View>: View {
             celebrations: celebrations,
             art: art,
             onTap: {
-                if model.focus != nil || model.sheet != nil {
+                if model.focus != nil || model.card != nil {
                     model.dismissFocus()
                 } else {
                     onPofuTap?()
@@ -2282,6 +2231,8 @@ private struct ScreenOverlays: View {
     /// The painted home plate, when it shows: the tag stands over its painted object.
     var plate: HomePlate?
 
+    @AppStorage(StationCardVariant.storageKey) private var variantRaw = StationCardVariant.standard.rawValue
+
     var body: some View {
         let labels = 1 - min(max((z - 0.2) / 0.25, 0), 1)
         ZStack(alignment: .topLeading) {
@@ -2334,8 +2285,35 @@ private struct ScreenOverlays: View {
             if case .resident(let id) = model.focus, let resident = IslandLayout.resident(id) {
                 residentCard(resident)
             }
+            // The station's card hangs by it; it is hidden while the build moment runs.
+            if let item = model.card, model.buildFraming == nil, model.island == .home, let rect = stationRect(item.station) {
+                StationCardPlacement(
+                    station: item.station,
+                    anchor: rect,
+                    size: size,
+                    status: world.stations.first { $0.id == item.station },
+                    jar: world.jar,
+                    playableRounds: model.playableRounds,
+                    onPlay: model.onPlay,
+                    onBuild: model.onBuild,
+                    variant: StationCardVariant(rawValue: variantRaw) ?? .standard,
+                    expanded: model.cardExpanded,
+                    onTogglePill: { model.cardExpanded.toggle() }
+                )
+                .id(item.station)
+            }
         }
         .frame(width: size.width, height: size.height, alignment: .topLeading)
+        .animation(.spring(duration: 0.25, bounce: 0), value: model.card)
+        .animation(.spring(duration: 0.25, bounce: 0), value: model.buildFraming)
+    }
+
+    /// A station's painted object on screen.
+    private func stationRect(_ station: StationID) -> CGRect? {
+        guard let box = plate?.stationBox(station) ?? IslandFraming.stationBox(station) else { return nil }
+        let a = screenPoint(WorldPoint(x: box.minX, y: box.minY))
+        let b = screenPoint(WorldPoint(x: box.maxX, y: box.maxY))
+        return CGRect(x: min(a.x, b.x), y: min(a.y, b.y), width: abs(b.x - a.x), height: abs(b.y - a.y))
     }
 
     /// Home's own life shows only on Home, close enough to see it, with no

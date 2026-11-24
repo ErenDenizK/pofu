@@ -36,34 +36,6 @@ final class MenuScreenshotTests: XCTestCase {
         }
     }
 
-    /// The station sheet over the world: at the medium detent the frozen
-    /// island glows through glass; at large nothing shows behind it and the
-    /// sheet is paper. The freeze is `isCovered`'s flatten; the test sets
-    /// the same flag the flatten sets, so the glass has a still world.
-    @MainActor
-    func testRenderTheStationSheetGlassAndPaper() async throws {
-        PofuWorldFreeze.shared.isFrozen = true
-        defer { PofuWorldFreeze.shared.isFrozen = false }
-        for (name, detent) in [("17-sheet-station-medium-glass", StationSheetDetent.medium), ("18-sheet-station-large-paper", .large)] {
-            let island = IslandSceneModel(framing: .mid)
-            let window = try makeWindow(
-                AnyView(IslandScene(world: IslandSamples.dayThree(), model: island) { EmptyView() }),
-                style: .light
-            )
-            try await Task.sleep(for: .milliseconds(900))
-            island.focusStation(.teaStall, animated: false)
-            try await Task.sleep(for: .milliseconds(1400))
-            island.sheetDetent = detent
-            try await Task.sleep(for: .milliseconds(1200))
-            try capture(window, name: name)
-            if window.rootViewController?.presentedViewController != nil {
-                window.rootViewController?.dismiss(animated: false)
-            }
-            tearDown(window)
-            try await Task.sleep(for: .milliseconds(150))
-        }
-    }
-
     /// The shield replica in the four palettes of the colour script's sky.
     @MainActor
     func testRenderTheShieldInFourPalettes() async throws {
