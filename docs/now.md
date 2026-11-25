@@ -34,7 +34,8 @@ Now: whole-project assessment, two Fable rounds; Apple kits open soon.
    pill seen 1:1). Station card merged (#512, Etiket/Hap in Settings, seen).
    Home composition (#513), sound on (#515), OpenCV<5 pin (#516) merged.
    Board merged (#514) + ring and 161 pieces (#518). Open: water ribbon from
-   ring to cell edge has no banks; his play-test decides. Life #517 push 2 in CI (day-10 test fixed).
+   ring to cell edge has no banks; his play-test decides. Life merged (#517: hops, visitor spot, no overlap;
+   moves are small, 24-30 px; Fındık's painted spot now 658,864).
    Morning summary sent 11-25 (Codex 157-165 merged, sheets #156/#162). Codex: D20-D23 delivered
    (#151-#153, #155); night rows D24-D28 (#154, 42 jobs). Morning: summary.
 2. WP10 compositor merged (#500): looks sort with Pofu by footY, Map
@@ -48,7 +49,7 @@ Now: whole-project assessment, two Fable rounds; Apple kits open soon.
 Merged: #475-#516 (not #490, #503, #504, #507); pofu-art #81-#163 (not stale #84-#90, #132).
 
 ## Next (path, #511)
-Life #517 bunching fix in CI; then device days; stage 4 (Sefer) held.
+Briefs 1-5 all merged. Device days (brief 0 on call) when membership opens; stage 4 (Sefer) held.
 
 ## Open with the founder
 
