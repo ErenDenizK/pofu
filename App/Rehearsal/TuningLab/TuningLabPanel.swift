@@ -263,8 +263,14 @@ struct TuningLabPanel: View {
             ForEach(["master", "seeds", "pieces", "pofu"], id: \.self) { name in
                 SoundRow(store: store, key: "sound.\(name)", cue: Self.sampleCue(name))
             }
+            note("Pofu'nun sesleri, tek tek.")
+            ForEach(Self.voiceCues, id: \.assetName) { cue in
+                VoiceRow(cue: cue)
+            }
         }
     }
+
+    private static let voiceCues: [SoundCue] = [.pofuPoke, .pofuGiggle, .pofuChew, .pofuSleepySigh, .pofuSniff]
 
     private static func sampleCue(_ name: String) -> SoundCue {
         switch name {
@@ -369,6 +375,28 @@ private struct SoundMuteRow: View {
         )) {
             Text(verbatim: "Pofu'nun sesleri açık")
                 .font(PofuFont.subheadline)
+        }
+    }
+}
+
+/// One of Pofu's voices with a button that plays it (the pofu volume applies).
+private struct VoiceRow: View {
+    let cue: SoundCue
+
+    var body: some View {
+        HStack {
+            Text(verbatim: cue.assetName)
+                .font(PofuFont.subheadline)
+            Spacer()
+            Button {
+                SoundEngine.shared.play(cue)
+            } label: {
+                Text(verbatim: "Dene")
+                    .font(PofuFont.subheadline)
+                    .padding(.horizontal, PofuSpacing.s)
+                    .frame(minHeight: 34)
+            }
+            .buttonStyle(.glass)
         }
     }
 }

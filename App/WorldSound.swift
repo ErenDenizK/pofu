@@ -29,6 +29,23 @@ enum WorldSound {
         UserDefaults.standard.removeObject(forKey: preludeKey)
     }
 
+    private static var voice = PofuVoice()
+
+    /// Pofu's voice for a tap on him: the poke, the giggle of a second tap,
+    /// or the sleepy sigh at bedtime, one at a time (the policy holds the floor).
+    static func pofuPoked(isBedtime: Bool) {
+        let cue = voice.tap(at: ProcessInfo.processInfo.systemUptime, isBedtime: isBedtime)
+        SoundEngine.shared.play(cue)
+    }
+
+    /// Plays `cue` after `seconds`, so it sits beside another sound, not on it.
+    static func play(_ cue: SoundCue, after seconds: Double) {
+        Task { @MainActor in
+            try? await Task.sleep(for: .seconds(seconds))
+            SoundEngine.shared.play(cue)
+        }
+    }
+
     /// Plays the far bell's notes as single ladder notes at their times: the
     /// hum a tap in the hand, the far notes a heavier one. A new tune cuts
     /// the old one.
@@ -107,7 +124,17 @@ extension AppModel {
     /// Tells the sound pass what the world is now. Cheap; called when Home
     /// appears, when the scene phase changes and on the 30-second tick.
     func updateWorldSound(active: Bool) {
-        island.onVisitorArrived = { SoundEngine.shared.play(.doorKnock) }
+        island.onVisitorArrived = {
+            SoundEngine.shared.play(.doorKnock)
+            // After the two knocks (0.64 s): he sniffs at the door.
+            WorldSound.play(.pofuSniff, after: 0.75)
+        }
+        // A tap on Pofu: the poke, the giggle or the bedtime sigh. A tap that
+        // collects plays the collect instead.
+        island.onPofuPoke = { [weak self] in
+            guard let self, !self.canCollectQuietSeeds else { return }
+            WorldSound.pofuPoked(isBedtime: self.world.isBedtime)
+        }
         // The island's growth plays the level-up cue at its bloom ("Ada büyüdü"),
         // not when the level is derived.
         island.onIslandGrew = { SoundEngine.shared.play(.levelUp) }
@@ -115,7 +142,10 @@ extension AppModel {
         island.onHop = { level in SoundEngine.shared.play(.pofuHop, level: level) }
         worldHome.onSound = { sound in
             switch sound {
-            case .gulp: SoundEngine.shared.play(.gulp)
+            case .gulp:
+                SoundEngine.shared.play(.gulp)
+                // He chews once the gulp (0.18 s) is down.
+                WorldSound.play(.pofuChew, after: 0.3)
             case .hop: SoundEngine.shared.play(.pofuHop)
             }
         }

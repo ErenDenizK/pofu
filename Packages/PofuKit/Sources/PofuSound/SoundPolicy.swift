@@ -5,11 +5,11 @@ import PofuTuning
 /// plays regardless (it is a separate target that does not link this one).
 public struct SoundSettings: Equatable, Sendable {
     public var isMuted: Bool
-    /// The world's ambience and the breath guide's pad. Off by default
-    /// (sound identity §1.4: ambience is optional, offered, never forced).
+    /// The world's ambience and the breath guide's pad. On for anyone who
+    /// never chose (founder input 44); a stored "off" stays off.
     public var isAmbienceOn: Bool
 
-    public init(isMuted: Bool = false, isAmbienceOn: Bool = false) {
+    public init(isMuted: Bool = false, isAmbienceOn: Bool = true) {
         self.isMuted = isMuted
         self.isAmbienceOn = isAmbienceOn
     }
@@ -18,7 +18,7 @@ public struct SoundSettings: Equatable, Sendable {
     public static let ambienceKey = "pofu.sound.ambience"
 
     public static func load(from defaults: UserDefaults = .standard) -> SoundSettings {
-        SoundSettings(isMuted: defaults.bool(forKey: mutedKey), isAmbienceOn: defaults.bool(forKey: ambienceKey))
+        SoundSettings(isMuted: defaults.bool(forKey: mutedKey), isAmbienceOn: (defaults.object(forKey: ambienceKey) as? Bool) ?? true)
     }
 
     public func save(to defaults: UserDefaults = .standard) {
@@ -65,6 +65,11 @@ public struct CueLimiter: Sendable {
         case .waterPour: Rule(minimumGap: 1.0)
         // Rationed: the chime and the hop wear out by day 3 (sound identity §1.3).
         case .skipChime, .roundEnd, .pofuHop: Rule(minimumGap: 1.0)
+        // Pofu's voice: the gap is longer than the file, so fast taps never stack voices.
+        case .pofuPoke, .pofuGiggle: Rule(minimumGap: 0.6)
+        case .pofuChew: Rule(minimumGap: 1.0)
+        case .pofuSleepySigh: Rule(minimumGap: 1.5)
+        case .pofuSniff: Rule(minimumGap: 2.0)
         }
     }
 
@@ -115,6 +120,8 @@ public struct SoundPolicy: Sendable {
     public var settings: SoundSettings
     public var volumes: TuningValues.Sound
     private var limiter = CueLimiter()
+    /// When the voice that is sounding now ends (`nil` for none).
+    private var voiceEnds: TimeInterval?
 
     public init(settings: SoundSettings = SoundSettings(), volumes: TuningValues.Sound = TuningValues.defaults.sound) {
         self.settings = settings
@@ -131,7 +138,10 @@ public struct SoundPolicy: Sendable {
         case .pieces: group = volumes.pieces
         case .pofu: group = volumes.pofu
         }
+        // One voice at a time: a voice cue inside another's length is dropped.
+        if cue.isVoice, let ends = voiceEnds, now < ends { return nil }
         guard group > 0, let run = limiter.admit(cue, at: now) else { return nil }
+        if cue.isVoice { voiceEnds = now + cue.voiceSeconds }
         let gain = min(max(volumes.master * group * run * min(max(level, 0), 1), 0), 1)
         return PlaybackDecision(assetName: cue.assetName, gain: Float(gain))
     }
