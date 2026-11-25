@@ -45,7 +45,7 @@ Now: whole-project assessment, two Fable rounds; Apple kits open soon.
    WP13 water merged (#505; #504 closed): the pond moves at Ambient, island
    flattened before the lens. Left: falls, sway mask; device frame time.
 4. Codex: 132, 133, 135, 126 v2 merged (cloud fit: crossfade floor-mid,
-   warm kit only, Koke keeps bed-round v1). Queue: D29-D32 (166-169 island kits); redo: 164 moor swap, 162 workshop mallet; 126 v3 (#132) to review; 136 + 137 held.
+   warm kit only, Koke keeps bed-round v1). Queue: D29-D32 (166-169 island kits); D33 redo 170 (workshop mallet; moorings kept: koke t2, caglayan t1); 126 v3 (#132) to review; 136 + 137 held.
 Merged: #475-#516 (not #490, #503, #504, #507); pofu-art #81-#163 (not stale #84-#90, #132).
 
 ## Next (path, #511)
