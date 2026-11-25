@@ -10,7 +10,7 @@ history: [tracker.md](tracker.md). What changed for the player:
 chooses to; "Önce uygulamanın mükemmel olduğundan emin olalım" (fi 43).
 Now: whole-project assessment, two Fable rounds; Apple kits open soon.
 
-**Updated:** 2026-11-24. **Founder last played:** 11-14 (main 0cf03ca1).
+**Updated:** 2026-11-25. **Founder last played:** 11-14 (main 0cf03ca1).
 **Route:** Fable's night plan (`docs/design/night-plan-2026-11-15.md`,
 #482 merged): steps N0-N11 now, A1-A10 after; the world spec #474 inside it.
 
@@ -32,8 +32,8 @@ Now: whole-project assessment, two Fable rounds; Apple kits open soon.
 0. Assessment done: path `docs/design/assessment-2026-11-24-path.md` (#511),
    briefs `docs/studio/briefs/2026-11-24-{0..5}-*.md`. Stage 0 merged (#510,
    pill seen 1:1). Station card merged (#512, Etiket/Hap in Settings, seen).
-   Home composition merged (#513: island +33 pt, young fill 0.82). Brief 3
-   board (`feat/flow-dial-board`, 158 picks given) and brief 4 sound running. Codex: D20-D23 delivered
+   Home composition (#513), sound on (#515), OpenCV<5 pin (#516) merged.
+   Board #514 push 3 in CI (one ring per dial); brief 5 life running. Codex: D20-D23 delivered
    (#151-#153, #155); night rows D24-D28 (#154, 42 jobs). Morning: summary.
 2. WP10 compositor merged (#500): looks sort with Pofu by footY, Map
    snapshot of the built island, 3.2 s reveal. Left: `mapisle` assets
