@@ -138,6 +138,7 @@ public enum WorldHitTest {
         _ plate: HomePlate,
         stations: [StationStatus],
         z: Double,
+        stands: [String: WorldPoint] = [:],
         visitor: VisitorSnapshot? = nil,
         invitationOpen: Bool = false,
         isBedtime: Bool = false,
@@ -169,7 +170,7 @@ public enum WorldHitTest {
         }
         for resident in IslandLayout.residents {
             guard let station = stations.first(where: { $0.id == resident.station }), station.level > 0,
-                  let feet = plate.residentFeet(resident.id) else { continue }
+                  let feet = stands[resident.id.rawValue] ?? plate.residentFeet(resident.id) else { continue }
             let box = plate.residentBox(art: WorldArt.sprite(resident.art)?.sharp ?? IslandLayout.residentHitBox, at: feet)
             targets.append(HitTarget(kind: .resident(resident.id), worldBox: box, depth: IslandLayout.depth(ofY: feet.y) + 0.001))
         }
