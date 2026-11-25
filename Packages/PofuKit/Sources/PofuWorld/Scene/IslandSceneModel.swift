@@ -306,6 +306,11 @@ public final class IslandSceneModel {
         lastMoveHop = hop
     }
 
+    /// Stands `id` at `feet` for a screenshot of a card opened over a character who has changed spots.
+    public func stand(_ id: String, at feet: WorldPoint) {
+        plateStands[id] = feet
+    }
+
     /// Where `id` ("pofu", "mochi", "findik") stands now: on its move's spot or in it, else its painted spot.
     func standing(_ id: String) -> WorldPoint? {
         if let stand = plateStands[id] { return stand }
