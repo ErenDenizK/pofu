@@ -1,81 +1,108 @@
 import Foundation
 
-/// How the flow board's banks are laid. Method B, the default, lays one
-/// seamless lawn under the whole board, with the stones as keycaps on it and
-/// the rocks as cut-out pieces: only what the player can touch is raised, so
-/// the ground reads as ground. Method A gives every bank cell its own inset
-/// keycap square; it stays as a switch for comparison frames.
-public enum FlowGroundMethod: String, Sendable, CaseIterable {
-    case keycaps
-    case lawn
+/// The names of the flow board's painted art, written by
+/// `tools/art/ingest_flow_board_kit.py`. Every file is required: a missing
+/// one is a test failure (`FlowGroundTests`), never a silent fallback to a
+/// drawing.
+///
+/// A piece that turns (straight, bend, split) is a round dial laid on a
+/// `socket` block; a piece that does not turn is a block with its feature
+/// painted on it. A bed is the painted channel's outline, which the code
+/// fills with water.
+public enum FlowArtSlot {
+    /// The painted scene behind the board: a rock and a fall above, the lawn plate the board sits on, a round pool below.
+    public static let backdrop = "flow-backdrop"
+    /// The seamless water the code fills the beds with.
+    public static let water = "flow-water"
+    /// The mill wheel that turns over the wheel block's hub.
+    public static let wheel = "flow-wheel"
+    /// The kit's numbers (plate, canvas), a JSON file read by `FlowKit`.
+    public static let kit = "flow-kit"
+
+    public static let blocks = ["plain", "flowers", "rock", "socket", "spring", "goal", "wheel", "gate"]
+    public static let dials = ["straight", "bend", "split"]
+    public static let beds = ["straight", "bend", "split", "spring", "goal", "wheel", "gate"]
+
+    public static func block(_ name: String) -> String { "flow-block-\(name)" }
+    public static func dial(_ name: String) -> String { "flow-dial-\(name)" }
+    public static func bed(_ name: String) -> String { "flow-bed-\(name)" }
+
+    /// The block a kind sits on: its own painted block, or the socket under a dial; grass is plain or, as an accent, flowers.
+    public static func blockName(of kind: FlowTileKind, flowered: Bool = false) -> String {
+        switch kind {
+        case .straight, .bend, .split: block("socket")
+        case .source: block("spring")
+        case .mouth: block("goal")
+        case .wheel: block("wheel")
+        case .gate: block("gate")
+        case .rock: block("rock")
+        case .grass: block(flowered ? "flowers" : "plain")
+        }
+    }
+
+    /// The dial a turnable kind wears, nil for a fixed kind.
+    public static func dialName(of kind: FlowTileKind) -> String? {
+        switch kind {
+        case .straight: dial("straight")
+        case .bend: dial("bend")
+        case .split: dial("split")
+        default: nil
+        }
+    }
+
+    /// The water's bed in a kind's painted piece, nil for a kind with no channel.
+    public static func bedName(of kind: FlowTileKind) -> String? {
+        switch kind {
+        case .straight: bed("straight")
+        case .bend: bed("bend")
+        case .split: bed("split")
+        case .source: bed("spring")
+        case .mouth: bed("goal")
+        case .wheel: bed("wheel")
+        case .gate: bed("gate")
+        case .rock, .grass: nil
+        }
+    }
+
+    /// Every PNG the board loads.
+    public static var required: [String] {
+        [backdrop, water, wheel] + blocks.map(block) + dials.map(dial) + beds.map(bed)
+    }
 }
 
-/// The switch itself. `POFU_FLOW_GROUND=keycaps` in the launch environment
-/// selects method A; a screenshot test sets `method` directly.
-public enum FlowGroundSettings {
-    @MainActor public static var method: FlowGroundMethod = {
-        ProcessInfo.processInfo.environment["POFU_FLOW_GROUND"].flatMap(FlowGroundMethod.init(rawValue:)) ?? .lawn
+/// The numbers `tools/art/ingest_flow_board_kit.py` measured on the kit, so a
+/// repainted piece or backdrop is swapped in by running the tool again.
+public struct FlowKit: Decodable, Sendable, Equatable {
+    public struct Plate: Decodable, Sendable, Equatable {
+        public let x: Double
+        public let y: Double
+        public let width: Double
+        public let height: Double
+    }
+
+    /// The backdrop's lawn plate, as fractions of the picture.
+    public let plate: Plate
+    /// The backdrop's width over its height.
+    public let aspect: Double
+    /// A piece's square canvas in pixels: one cell.
+    public let canvas: Int
+    /// A block's body and a dial's rimless grass disc, as fractions of the cell.
+    public let body: Double
+    public let disc: Double
+
+    public static let shared: FlowKit = {
+        guard let url = Bundle.module.url(forResource: FlowArtSlot.kit, withExtension: "json"),
+              let data = try? Data(contentsOf: url),
+              let kit = try? JSONDecoder().decode(FlowKit.self, from: data)
+        else { preconditionFailure("flow-kit.json is missing or unreadable") }
+        return kit
     }()
 }
 
-/// The names of the flow board's painted art slots. Each slot is looked up
-/// in the bundle; a missing file means the drawing stays. Variants of a slot
-/// are `name`, `name-2`, `name-3`, and so on.
-public enum FlowArtSlot {
-    public static let grass = "flow-grass"
-    public static let rock = "flow-rock"
-    /// Method B: the rock as a cut-out piece (transparent around it).
-    public static let rockCut = "flow-rock-cut"
-    /// The top lip kit (batch 135): two ends, a run stone and the spillway, set over the backdrop's cascade.
-    public static let lipEndLeft = "flow-lip-end-left"
-    public static let lipRun = "flow-lip-run"
-    public static let lipSpill = "flow-lip-spill"
-    public static let lipEndRight = "flow-lip-end-right"
-    /// The stone chute under a last-row mouth, dry and wet (batch 135).
-    public static let spoutDry = "flow-spout-dry"
-    public static let spoutWet = "flow-spout-wet"
-    /// The board's stone edge, a 9-slice (batch 132).
-    public static let edge = "flow-board-edge"
-    /// Method B: one seamless lawn.
-    public static let lawn = "flow-lawn"
-    public static let spring = "flow-spring"
-    public static let outlet = "flow-outlet"
-    public static let wheel = "flow-wheel"
-    public static let gate = "flow-gate"
-    /// Seamless materials the code fills the carved channel and the water with.
-    public static let channelBed = "flow-channel"
-    public static let water = "flow-water"
-    /// The painted scene behind the board (batch 124 `x-flow-backdrop`).
-    public static let backdrop = "flow-backdrop"
-    public static let maxVariants = 6
-
-    /// The cut-out rocks (batch 135) all paint their own contact shade, so the code adds none.
-    public static func rockCutHasPaintedShade(variant index: Int) -> Bool { true }
-
-    public static func variantName(_ base: String, _ index: Int) -> String {
-        index == 0 ? base : "\(base)-\(index + 1)"
-    }
-}
-
-/// Picks which picture and orientation a bank cell wears, from the cell and
-/// the board alone, so the same board always looks the same.
+/// Which grass cells wear the flowers block: an accent, never two neighbours
+/// in a row or a column, and the same on every run.
 public struct FlowVariantPicker: Sendable {
-    public let columns: Int
-    public let rows: Int
-    private let ordinals: [FlowCell: Int]
-
-    public init(board: FlowBoard) {
-        columns = board.columns
-        rows = board.rows
-        var counts: [FlowTileKind: Int] = [:]
-        var map: [FlowCell: Int] = [:]
-        for cell in board.allCells.sorted() {
-            guard let tile = board[cell], tile.kind == .rock || tile.kind == .grass else { continue }
-            map[cell] = counts[tile.kind, default: 0]
-            counts[tile.kind, default: 0] += 1
-        }
-        ordinals = map
-    }
+    public init(board: FlowBoard) {}
 
     private func hash(_ cell: FlowCell, _ salt: Int) -> Int {
         var value = (cell.row &* 73856093) ^ (cell.column &* 19349663) ^ (salt &* 83492791)
@@ -83,20 +110,11 @@ public struct FlowVariantPicker: Sendable {
         return (value ^ (value >> 16)) & 0x7FFF_FFFF
     }
 
-    /// The variant index for a cell. Cells of one kind take consecutive
-    /// variants in reading order from a start the board chooses, so no
-    /// picture repeats on a board until the variants run out, and two
-    /// neighbours in a row never match.
-    public func variant(of cell: FlowCell, count: Int) -> Int {
-        guard count > 1 else { return 0 }
-        let start = (columns &* 5 &+ rows &* 3) % count
-        return ((ordinals[cell] ?? hash(cell, 1)) &+ start) % count
+    private func seeds(_ cell: FlowCell) -> Bool { hash(cell, 4) % 5 == 0 }
+
+    public func flowered(_ cell: FlowCell) -> Bool {
+        seeds(cell)
+            && !seeds(FlowCell(row: cell.row, column: cell.column - 1))
+            && !seeds(FlowCell(row: cell.row - 1, column: cell.column))
     }
-
-    /// A quarter turn (0 to 3) for a grass cell, so a lawn picture does not
-    /// repeat with its neighbour.
-    public func quarterTurns(of cell: FlowCell) -> Int { hash(cell, 2) % 4 }
-
-    /// Whether the picture is mirrored (rocks only mirror, so the light stays on top).
-    public func mirrored(_ cell: FlowCell) -> Bool { hash(cell, 3) % 2 == 1 }
 }
