@@ -377,6 +377,8 @@ struct LifeFrame {
     var residents: [String: ResidentLife.Step] = [:]
     /// The painted Home's idle hop now (`PlateHops`), if one is going on.
     var plateHop: PlateHops.Hop?
+    /// Where Pofu and the residents stand on the painted Home now, and their move's hop (`PlateMoves`), by id.
+    var moves: [String: PlateMoves.Placement] = [:]
     /// The frame's time, quantised to the policy's rate; 0 in a still frame.
     var time = 0.0
     /// Dressing mid-puff, with the seconds since it began.
@@ -448,7 +450,9 @@ private struct SceneFrame<Bubble: View>: View {
             of: specs,
             day: day,
             elapsed: elapsed,
-            walkable: IslandFootprint.walkable,
+            // On the painted Home the characters change spots by `PlateMoves`: no walk target search, only the
+            // pose, breath and lean.
+            walkable: model.homePlate == nil ? IslandFootprint.walkable : nil,
             avoid: [IslandLayout.pofu],
             isAmbient: true
         )
@@ -457,7 +461,33 @@ private struct SceneFrame<Bubble: View>: View {
     /// The painted Home's idle hop: one resident at a time, only while the
     /// Ambient state runs, Reduce Motion is off and no frame is pinned or
     /// still. The first frame of each hop tells the app to play its sound.
-    private func plateHop(directive: FrameDirective) -> PlateHops.Hop? {
+    /// Who stands where on the painted Home now (`PlateMoves`): moves run only while the Ambient state is on,
+    /// Reduce Motion is off and no frame is still, and never during a build moment, a focus, a card or sheet,
+    /// the near lens or bedtime. A pinned screenshot replays the visit.
+    private func plateMoves(directive: FrameDirective) -> [String: PlateMoves.Placement] {
+        guard let plate = model.homePlate, model.island == .home else { return [:] }
+        let present = PlateMoves.ids.filter { id in
+            id == "pofu" || (IslandLayout.residents.first { $0.id.rawValue == id }.flatMap { r in world.stations.first { $0.id == r.station } }?.level ?? 0) > 0
+        }
+        var spots = Dictionary(uniqueKeysWithValues: PlateMoves.ids.map { id in
+            (id, plate.plate.spots[id] ?? plate.plate.characters[id].map { [$0] } ?? [])
+        })
+        spots[PlateMoves.visitorID] = plate.plate.spots[PlateMoves.visitorID]
+        let frame: [String: PlateMoves.Placement]
+        if let pinned = residentPin {
+            frame = PlateMoves.replay(day: pinned.day, elapsed: pinned.elapsed, spots: spots, present: present)
+        } else {
+            let calm = !world.isBedtime && build == nil && model.focus == nil && model.card == nil && !model.hasSheet
+                && model.framing != .near && model.projectedFraming != .near
+            let allowed = calm && PlateHops.runs(isAmbient: CritterMotion.moves(under: directive), reduceMotion: model.reduceMotion, isStill: still)
+            let elapsed = clock.timeIntervalSince(model.visitBegan ?? clock)
+            frame = model.plateMoves.advance(day: ResidentLife.day(of: clock), elapsed: elapsed, spots: spots, present: present, allowed: allowed)
+        }
+        model.notePlateMoves(frame, plate: plate)
+        return frame
+    }
+
+    private func plateHop(directive: FrameDirective, moving: Set<String> = []) -> PlateHops.Hop? {
         guard model.homePlate != nil, !world.isBedtime, residentPin == nil, build == nil,
               PlateHops.runs(isAmbient: CritterMotion.moves(under: directive), reduceMotion: model.reduceMotion, isStill: still)
         else { return nil }
@@ -465,18 +495,19 @@ private struct SceneFrame<Bubble: View>: View {
             .filter { resident in (world.stations.first { $0.id == resident.station }?.level ?? 0) > 0 }
             .map(\.id.rawValue)
         let elapsed = clock.timeIntervalSince(model.visitBegan ?? clock)
-        let hop = PlateHops.hop(day: ResidentLife.day(of: clock), elapsed: elapsed, ids: ids)
+        // Whoever is changing spots does not also hop on the spot.
+        let hop = PlateHops.hop(day: ResidentLife.day(of: clock), elapsed: elapsed, ids: ids).flatMap { moving.contains($0.id) ? nil : $0 }
         model.noteIdleHop(slot: hop?.slot)
         return hop
     }
 
     /// The lens's focal plane: the focused station's or resident's foot, else the near rest's row.
-    static func lensFocus(_ focus: SceneFocus?, plate: HomePlate) -> NearLensFrame.Focus {
+    static func lensFocus(_ focus: SceneFocus?, plate: HomePlate, stand: WorldPoint? = nil) -> NearLensFrame.Focus {
         switch focus {
         case .station(let id)?:
             if let foot = plate.objects.first(where: { $0.station == id })?.footY { return .subject(row: foot) }
         case .resident(let id)?:
-            if let feet = plate.residentFeet(id) { return .subject(row: plate.plate(feet).y) }
+            if let feet = stand ?? plate.residentFeet(id) { return .subject(row: plate.plate(feet).y) }
         case nil:
             break
         }
@@ -654,7 +685,7 @@ private struct SceneFrame<Bubble: View>: View {
         // The thin lens over Home's matted plate (WP11): nil at the Map, at mid and in a flight.
         let nearLens: NearLensFrame? = {
             guard let plate, model.island == .home, plateFade > 0.999, plate.isMatted else { return nil }
-            return NearLensFrame.make(plate: plate, pose: pose, width: Double(size.width), height: Double(size.height), offsetX: Double(offset.width), offsetY: Double(offset.height), focus: Self.lensFocus(model.focus, plate: plate))
+            return NearLensFrame.make(plate: plate, pose: pose, width: Double(size.width), height: Double(size.height), offsetX: Double(offset.width), offsetY: Double(offset.height), focus: Self.lensFocus(model.focus, plate: plate, stand: { if case .resident(let id)? = model.focus { model.standing(id.rawValue) } else { nil } }()))
         }()
         // Weather crossfades over 8 s (6 to 10 s, section 2.2).
         let animation: Animation? = still ? nil : .easeInOut(duration: atmosphere.isClear ? 2.5 : 8)
@@ -662,6 +693,8 @@ private struct SceneFrame<Bubble: View>: View {
         let ambientPaused = look.hd2d && !model.needsFrames && build == nil
         // The visit and the lawn's small life: the critters move only in the
         // Ambient state, and a still frame is the rest pose.
+        let moves = plateMoves(directive: directive)
+        let moveStand = plate.flatMap { p in moves["pofu"].map { p.world($0.feet) } }
         let life = LifeFrame(
             visitor: world.visitor,
             invitationOpen: world.invitationOpen,
@@ -670,7 +703,8 @@ private struct SceneFrame<Bubble: View>: View {
             arrival: model.arrivalElapsed(at: clock),
             isAmbient: !still && CritterMotion.moves(under: directive),
             residents: residentSteps(directive: directive),
-            plateHop: plateHop(directive: directive),
+            plateHop: plateHop(directive: directive, moving: Set(moves.filter(\.value.isMoving).keys)),
+            moves: moves,
             time: still ? 0 : FramePolicy.ambientTime(time),
             leaving: model.dressingLeaving(at: clock)
         )
@@ -864,7 +898,9 @@ private struct SceneFrame<Bubble: View>: View {
                     onPofuTap: onPofuTap,
                     part: .body,
                     bubble: bubble,
-                    plate: plate
+                    plate: plate,
+                    moveStand: moveStand,
+                    moveLift: life.moves["pofu"]?.lift ?? 0
                 )
 
                 if let props, plate == nil || plate?.propSpec(.jar) != nil {
@@ -879,7 +915,7 @@ private struct SceneFrame<Bubble: View>: View {
 
                 if let plate {
                     // What Pofu or a prop stands behind is drawn again over it.
-                    let stand = look.pofuStand ?? IslandLayout.pofu
+                    let stand = look.pofuStand ?? moveStand ?? IslandLayout.pofu
                     PlateOccluders(
                         plate: plate,
                         feet: stand,
@@ -980,7 +1016,9 @@ private struct SceneFrame<Bubble: View>: View {
                 onPofuTap: onPofuTap,
                 part: .overlay,
                 bubble: bubble,
-                plate: plate
+                plate: plate,
+                moveStand: moveStand,
+                moveLift: life.moves["pofu"]?.lift ?? 0
             )
 
             ScreenOverlays(world: world, pose: pose, z: z, size: size, offset: offset, build: build, model: model, plate: plate)
@@ -1261,7 +1299,7 @@ private struct WorldCanvas: View {
         let compositor = PlateCompositor(plate: plate, levels: HomePlate.stationLevels(world))
         for resident in IslandLayout.residents {
             guard let station = world.stations.first(where: { $0.id == resident.station }), station.level > 0,
-                  let feet = plate.residentFeet(resident.id) else { continue }
+                  let feet = life.moves[resident.id.rawValue].map({ plate.world($0.feet) }) ?? plate.residentFeet(resident.id) else { continue }
             objects.append(Object(id: "resident-\(resident.id)", kind: .resident(resident), anchor: feet, depth: IslandLayout.depth(ofY: feet.y)))
             let box = plate.residentBox(art: WorldArt.sprite(resident.art)?.sharp ?? IslandLayout.residentHitBox, at: feet, id: resident.id)
             for object in plate.occluders(over: feet, box: box) {
@@ -1320,6 +1358,7 @@ private struct WorldCanvas: View {
                 let lift = (build.map { $0.moment.station == resident.station ? $0.moment.residentLift(at: $0.time) : 0 } ?? 0)
                     + (reaction?.hop ?? 0)
                     + (life.plateHop?.id == resident.id.rawValue ? life.plateHop?.lift ?? 0 : 0)
+                    + (life.moves[resident.id.rawValue]?.lift ?? 0)
                 let focused = model.focus == .resident(resident.id) || model.focus == .station(resident.station)
                 let pose = build.flatMap { $0.moment.station == resident.station ? $0.moment.residentPose(at: $0.time) : nil }
                     ?? resident.idlePose(isBedtime: world.isBedtime, isFocused: focused,
@@ -2008,6 +2047,9 @@ private struct PofuLayer<Bubble: View>: View {
     /// The painted home plate: Pofu stands on it at its scale, lit from it,
     /// with a contact pad, and his line moves to Home's bottom band.
     var plate: HomePlate?
+    /// Where a move has put him on the plate (`PlateMoves`), and how high his hop lifts him (world units).
+    var moveStand: WorldPoint?
+    var moveLift = 0.0
 
     enum Part {
         case body
@@ -2028,7 +2070,7 @@ private struct PofuLayer<Bubble: View>: View {
     }
 
     var body: some View {
-        let stand = plate == nil ? IslandLayout.pofu : pofuStand ?? IslandLayout.pofu
+        let stand = plate == nil ? IslandLayout.pofu : pofuStand ?? moveStand ?? IslandLayout.pofu
         let depth = IslandLayout.depth(ofY: stand.y)
         let s = pose.scale
         let projected = pose.project(stand, width: Double(size.width))
@@ -2045,6 +2087,7 @@ private struct PofuLayer<Bubble: View>: View {
             x: projected.x + Double(offset.width) + parallaxX,
             y: projected.y + Double(offset.height) + parallaxY
         )
+        // His hop lifts the body; the shadow stays on the ground at `feet`.
         let level = lens.blurLevel(depth: depth)
         let weights = DepthWeights(level: level)
         // The painted body above z 0.55, the pin below 0.25 (§1.6).
@@ -2052,6 +2095,7 @@ private struct PofuLayer<Bubble: View>: View {
         let bubbleOpacity = model.focus == nil && plate == nil ? min(max((z - 1.6) / 0.3, 0), 1) : 0
         // On the plate he is drawn at its scale, in its light.
         let drawn = s * (plate?.characterScale ?? 1)
+        let airborne = CGPoint(x: feet.x, y: feet.y - CGFloat(moveLift * s))
         let rigArt = CompanionArt.placeholder
         let pofuLight = plate.map { p -> HomePlate.CharacterLight in
             let aspect = (rigArt?.rig ?? CompanionRig.hamster).aspectRatio
@@ -2072,18 +2116,18 @@ private struct PofuLayer<Bubble: View>: View {
                         .opacity(painted)
                 }
                 if let sprite = WorldArt.sprite("pofu") {
-                    DepthImage(name: "pofu", sprite: sprite, level: level, anchor: feet, scale: CGFloat(drawn), opacity: painted, skipsSharp: true, grade: light)
+                    DepthImage(name: "pofu", sprite: sprite, level: level, anchor: airborne, scale: CGFloat(drawn), opacity: painted, skipsSharp: true, grade: light)
                         .colorMultiply(paint)
                 }
                 if weights.sharp * painted > DepthWeights.visibleThreshold {
-                    companion(feet: feet, scale: drawn)
+                    companion(feet: airborne, scale: drawn)
                         .colorMultiply(paint)
                         .opacity(weights.sharp * painted)
                     if let pofuLight, let base = rigArt?.base {
                         let rig = rigArt?.rig ?? CompanionRig.hamster
                         let w = Self.artWidth * drawn, h = w / rig.aspectRatio
                         CharacterLightLayers(image: Image(decorative: base, scale: 1), size: CGSize(width: w, height: h), light: pofuLight)
-                            .position(x: feet.x - CGFloat(w * rig.ground.x) + CGFloat(w / 2), y: feet.y - CGFloat(h * rig.ground.y) + CGFloat(h / 2))
+                            .position(x: airborne.x - CGFloat(w * rig.ground.x) + CGFloat(w / 2), y: airborne.y - CGFloat(h * rig.ground.y) + CGFloat(h / 2))
                             .opacity(weights.sharp * painted)
                     }
                 }
@@ -2523,7 +2567,8 @@ private struct ScreenOverlays: View {
     }
 
     private func residentCard(_ resident: IslandLayout.Resident) -> some View {
-        let feet = screenPoint(resident.feet)
+        // The card's tail points at them where they stand now, not at their painted spot.
+        let feet = screenPoint(model.standing(resident.id.rawValue) ?? resident.feet)
         let width: CGFloat = 232
         let x = min(max(feet.x, 12 + width / 2), size.width - 12 - width / 2)
         let status = world.stations.first { $0.id == resident.station }

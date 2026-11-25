@@ -482,8 +482,8 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
         }
     }
 
-    /// The plate compositor (WP10): island 3 at noon, the tea stall at level 3, Pofu stood just behind the stall's
-    /// foot and just in front of it (`path-stall-pofu-behind`, `-front`: the look sorts with him by `footY`), and the
+    /// The plate compositor (WP10): island 3 at noon, the tea stall at level 3, Pofu stood at the nearest of his spots to the stall's
+    /// foot and just in front of it (`path-stall-pofu-nearest-spot`, `-front`: the look sorts with him by `footY`), and the
     /// same state on the Map (`path-stall-map-l3`: the far picture, a snapshot of the composite). The snapshot's
     /// render time is printed (`FarSnapshot:`), cold and warm.
     @MainActor
@@ -502,8 +502,13 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
         let compositor = PlateCompositor(plate: plate, levels: HomePlate.stationLevels(world))
         let look = try XCTUnwrap(compositor.looks.first { $0.station == "teaStall" }, "island 3 has the stall's look")
         let x = plate.plate(look.foot).x
-        for (name, dy) in [("path-stall-pofu-behind", -26.0), ("path-stall-pofu-front", 30.0)] {
-            let stand = plate.world(PlatePoint(x: x - 8, y: look.footY + dy))
+        // Pofu at the nearest of his spots to the stall's foot (whole: his spots are clear of every taller occluder),
+        // and just in front of the stall's foot.
+        let nearest = try XCTUnwrap(plate.plate.spots["pofu"]?.min { a, b in
+            hypot(a.x - x, a.y - look.footY) < hypot(b.x - x, b.y - look.footY)
+        })
+        for (name, at) in [("path-stall-pofu-nearest-spot", nearest), ("path-stall-pofu-front", PlatePoint(x: x - 8, y: look.footY + 30))] {
+            let stand = plate.world(at)
             let island = IslandSceneModel(framing: .mid)
             let view = homeView(world, hour: 12, island: island, settled: true, pofuStand: stand)
             try await capture(AnyView(view), name: name, scene: scene, folder: folder, settle: 2100) {
@@ -522,6 +527,71 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
         }
         try await map(next, hour: 12, name: "path-stall-map-l4", scene: scene, folder: folder)
         print("FarSnapshot: warm, last \(FarSnapshot.lastRenderMilliseconds ?? -1) ms, \(FarSnapshot.renders) renders in all")
+    }
+
+    /// The day-10 island's characters seen at more than one spot: `path-life-d10-1...6`, one visit pinned at six
+    /// seconds (everyone on their painted spot; one hop in the air; each of the three after their move), and
+    /// `path-card-resident-moved`, Mochi's or Fındık's card opened at a spot that is not the painted one.
+    @MainActor
+    func testRenderTheCharactersChangingSpots() async throws {
+        let scene = try windowScene()
+        let folder = try outputFolder()
+        let day = Self.path[9]
+        let world = day.morning
+        let plate = try XCTUnwrap(paintedAs(world, level: world.islandLevel, hour: 12))
+        let spots = plate.plate.spots
+        let built: (StationID) -> Bool = { station in (world.stations.first { $0.id == station }?.level ?? 0) > 0 }
+        let present = ["pofu"] + (built(.teaStall) ? ["mochi"] : []) + (built(.workshop) ? ["findik"] : [])
+        // Who stands on the day-10 plate follows the built stations; the strip shows every one of them moving.
+        let movers = present.count
+        XCTAssertGreaterThanOrEqual(movers, 2, "day 10 has Pofu and at least one resident")
+        let first = ResidentLife.day(of: world.clock ?? day.morningAt)
+        // A pinned day whose first moves are each a different character, over the first five minutes.
+        var picked: (day: Int, moves: [PlateMoves.Move])?
+        for candidate in first..<(first + 200) {
+            var state = PlateMoves.State()
+            var moves: [PlateMoves.Move] = []
+            var t = 0.0
+            while t < 300, moves.count < movers {
+                state.advance(day: candidate, elapsed: t, spots: spots, present: present, allowed: true)
+                if let move = state.active, !moves.contains(where: { $0.slot == move.slot }) { moves.append(move) }
+                t += 0.05
+            }
+            if moves.count == movers, Set(moves.map(\.id)).count == movers {
+                picked = (candidate, moves)
+                break
+            }
+        }
+        let chosen = try XCTUnwrap(picked, "a day whose first moves are each a different character")
+        let a = chosen.moves[0], b = chosen.moves[1]
+        var times = [
+            1.0,
+            a.start + PlateMoves.hopSeconds / 2,
+            a.start + a.duration + 1,
+            b.start + PlateMoves.hopSeconds / 2,
+            b.start + b.duration + 1,
+        ]
+        if let c = chosen.moves.dropFirst(2).first { times.append(c.start + c.duration + 1) }
+        for (index, t) in times.enumerated() {
+            let island = IslandSceneModel(framing: .mid)
+            let view = homeView(world, hour: 12, island: island, settled: true)
+                .environment(\.worldResidentPin, ResidentLife.Pin(day: chosen.day, elapsed: t))
+            try await capture(AnyView(view), name: "path-life-d10-\(index + 1)", scene: scene, folder: folder, settle: 2100) {
+                XCTAssertNotNil(island.homePlate, "path-life-d10-\(index + 1): Home is its painting")
+            }
+        }
+
+        // Mochi's or Fındık's card, a little after their move, over the spot they stand on now.
+        let mover = try XCTUnwrap(chosen.moves.first { $0.id != "pofu" })
+        let after = mover.start + mover.duration + 1
+        let island = IslandSceneModel(framing: .mid)
+        island.setHomePlate(plate)
+        island.stand(mover.id, at: plate.world(mover.to))
+        island.focusResident(ResidentID(rawValue: mover.id), animated: false)
+        XCTAssertEqual(island.focus, .resident(ResidentID(rawValue: mover.id)))
+        let view = homeView(world, hour: 12, island: island, settled: true)
+            .environment(\.worldResidentPin, ResidentLife.Pin(day: chosen.day, elapsed: after))
+        try await capture(AnyView(view), name: "path-card-resident-moved", scene: scene, folder: folder, settle: 2100) {}
     }
 
     /// The tea stall's level-up reveal (v2 §9.2) from level 2 to 3 on island 3, the moment frozen at the focus

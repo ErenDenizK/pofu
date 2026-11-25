@@ -145,6 +145,10 @@ public struct PlateIsland: Hashable, Sendable {
     public var walkable: [PlatePoint]
     /// Where each character stands, by id (`pofu`, `mochi`, `findik`).
     public var characters: [String: PlatePoint]
+    /// Where each character may stand and hop between (`PlateMoves`), by id: the first spot is the
+    /// painted one (the same point as `characters`), the rest are on the lawn clear of every
+    /// occluder taller than the character at every stage (`PlateMovesTests`).
+    public var spots: [String: [PlatePoint]]
     /// Pofu's width on the plate, in plate pixels.
     public var pofuWidth: Double
     /// How much larger residents are drawn than Pofu's proportion gives.
@@ -391,7 +395,7 @@ public struct PlateShadow: Decodable, Hashable, Sendable {
 extension PlateIsland: Decodable {
     private enum Keys: String, CodingKey {
         case island, version, standIn, minLevel, plateSize, stages, lights, lightStages, painted, stageLevels, harmony, islandBox, backdropBox, objects
-        case walkable, characters, pofuWidth, residentBoost, residentBoosts, lamps, lampHeight, framing, lightDirection, lightMap, shadowMap, textureBytes, shadow, plateCrop, props, stations, camera, near, water
+        case walkable, characters, spots, pofuWidth, residentBoost, residentBoosts, lamps, lampHeight, framing, lightDirection, lightMap, shadowMap, textureBytes, shadow, plateCrop, props, stations, camera, near, water
     }
 
     public init(from decoder: Decoder) throws {
@@ -423,6 +427,7 @@ extension PlateIsland: Decodable {
         objects = try c.decode([RawObject].self, forKey: .objects).map(\.object)
         walkable = try (c.decodeIfPresent([[Double]].self, forKey: .walkable) ?? []).map(Self.point)
         characters = try (c.decodeIfPresent([String: [Double]].self, forKey: .characters) ?? [:]).mapValues(Self.point)
+        spots = try (c.decodeIfPresent([String: [[Double]]].self, forKey: .spots) ?? [:]).mapValues { try $0.map(Self.point) }
         pofuWidth = try c.decodeIfPresent(Double.self, forKey: .pofuWidth) ?? 100
         residentBoost = try c.decodeIfPresent(Double.self, forKey: .residentBoost) ?? 1
         residentBoosts = try c.decodeIfPresent([String: Double].self, forKey: .residentBoosts) ?? [:]

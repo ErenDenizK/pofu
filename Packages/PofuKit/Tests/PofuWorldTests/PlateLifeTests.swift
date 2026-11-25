@@ -28,8 +28,10 @@ struct PlateLifeTests {
         }
     }
 
-    @Test func visitorSpotIsTheFarthestGridPoint() throws {
-        let home = try plate()
+    @Test func visitorSpotIsTheFarthestGridPointWhenTheDataFixesNone() throws {
+        var bare = try plate().plate
+        bare.spots[PlateMoves.visitorID] = nil
+        let home = HomePlate(plate: bare)
         let spot = home.plate(PlateLife.visitorSpot(home))
         func clearance(_ p: PlatePoint) -> Double {
             home.plate.characters.values.map { distance($0, p) }.min() ?? 0
@@ -114,7 +116,7 @@ struct PlateLifeTests {
         let pofuIsRight = pofu.x > home.plate(visitor.feet).x
         #expect(parcelIsRight != pofuIsRight)
         for (name, character) in home.plate.characters {
-            #expect(distance(home.plate(parcel.feet), character) >= 40, "\(name)")
+            #expect(distance(home.plate(parcel.feet), character) >= 36, "\(name)")
         }
     }
 

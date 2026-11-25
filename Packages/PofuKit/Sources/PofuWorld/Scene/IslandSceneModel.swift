@@ -292,6 +292,32 @@ public final class IslandSceneModel {
         onHop?(PlateHops.soundLevel)
     }
 
+    /// Who stands where on the painted Home (`PlateMoves`), advanced by the scene each frame.
+    @ObservationIgnored var plateMoves = PlateMoves.State()
+    /// Where Pofu and the residents stand now, in world units, by id; empty until the scene has drawn.
+    @ObservationIgnored private(set) var plateStands: [String: WorldPoint] = [:]
+    @ObservationIgnored private var lastMoveHop: Int?
+
+    /// The scene's frame: where everyone stands now, and the first sighting of a hop plays its quiet sound.
+    func notePlateMoves(_ frame: [String: PlateMoves.Placement], plate: HomePlate) {
+        plateStands = frame.mapValues { plate.world($0.feet) }
+        let hop = frame.values.compactMap(\.hop).first
+        if let hop, hop != lastMoveHop { onHop?(PlateMoves.soundLevel) }
+        lastMoveHop = hop
+    }
+
+    /// Stands `id` at `feet` for a screenshot of a card opened over a character who has changed spots.
+    public func stand(_ id: String, at feet: WorldPoint) {
+        plateStands[id] = feet
+    }
+
+    /// Where `id` ("pofu", "mochi", "findik") stands now: on its move's spot or in it, else its painted spot.
+    func standing(_ id: String) -> WorldPoint? {
+        if let stand = plateStands[id] { return stand }
+        if id == "pofu" { return IslandLayout.pofu }
+        return homePlate?.residentFeet(ResidentID(rawValue: id))
+    }
+
     /// `event` shows on `ids` now.
     public func react(_ event: ResidentEvent, for ids: [String], at now: Date = Date()) {
         reactions.add(event, for: ids, at: now)
@@ -627,10 +653,10 @@ public final class IslandSceneModel {
     func characterFeet(near world: WorldPoint) -> (feet: WorldPoint, facesLeft: Bool)? {
         var found: [(feet: WorldPoint, facesLeft: Bool, box: WorldBox)] = []
         let pofuWidth = HomePlate.pofuArtWidth * (homePlate?.characterScale ?? 1)
-        let pofu = IslandLayout.pofu
+        let pofu = standing("pofu") ?? IslandLayout.pofu
         found.append((pofu, false, WorldBox(minX: pofu.x - pofuWidth / 2, minY: pofu.y - pofuWidth * 66 / 64, maxX: pofu.x + pofuWidth / 2, maxY: pofu.y)))
         for resident in IslandLayout.residents {
-            let feet = homePlate?.residentFeet(resident.id) ?? resident.feet
+            let feet = standing(resident.id.rawValue) ?? resident.feet
             let w = 30 * (homePlate?.residentScale(resident.id) ?? 1)
             found.append((feet, feet.x > pofu.x, WorldBox(minX: feet.x - w / 2, minY: feet.y - w * 1.3, maxX: feet.x + w / 2, maxY: feet.y)))
         }
@@ -870,7 +896,10 @@ public final class IslandSceneModel {
         // From another resident, start from the rail's pose so the ×1.3
         // does not compound.
         let from = engine.rig.rail.pose(of: .mid)
-        let plateFeet = homePlate?.residentFeet(id)
+        // Whoever is in the air lands first, so the camera and the card meet them where they stand.
+        plateMoves.settle()
+        if let plate = homePlate, let at = plateMoves.at[id.rawValue] { plateStands[id.rawValue] = plate.world(at) }
+        let plateFeet = homePlate == nil ? nil : standing(id.rawValue)
         guard let pose = plateFeet.map({ feet in
             CameraPose(
                 logScale: from.logScale + log(1.3),
@@ -979,7 +1008,7 @@ public final class IslandSceneModel {
             ? (flowIsland.isArrived ? [HitTarget(kind: .caglayan, worldBox: CaglayanLayout.tapBox, depth: 0)] : [])
             : homePlate.map { plate in
                 WorldHitTest.plateTargets(
-                    plate, stations: stations, z: rig.layerPosition,
+                    plate, stations: stations, z: rig.layerPosition, stands: plateStands,
                     visitor: visitor, invitationOpen: invitationOpen, isBedtime: isBedtime,
                     koke: wonder.isArrived ? .arrived : .none,
                     caglayan: flowIsland.isArrived ? .arrived : .none
@@ -1200,7 +1229,7 @@ public final class IslandSceneModel {
         engine.rig.jump(to: .mid)
         let rig = engine.rig
         let shot = NearShot.rest(width: rig.rail.width, height: rig.rail.height, facesLeft: false)
-        engine.rig.rest(on: IslandLayout.pofu, screenX: shot.x, screenY: shot.y, animated: false)
+        engine.rig.rest(on: standing("pofu") ?? IslandLayout.pofu, screenX: shot.x, screenY: shot.y, animated: false)
         engine.rig.snapToTargets()
         framing = .near
         projectedFraming = .near
