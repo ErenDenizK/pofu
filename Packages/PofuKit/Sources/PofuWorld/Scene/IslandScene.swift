@@ -469,9 +469,10 @@ private struct SceneFrame<Bubble: View>: View {
         let present = PlateMoves.ids.filter { id in
             id == "pofu" || (IslandLayout.residents.first { $0.id.rawValue == id }.flatMap { r in world.stations.first { $0.id == r.station } }?.level ?? 0) > 0
         }
-        let spots = Dictionary(uniqueKeysWithValues: PlateMoves.ids.map { id in
+        var spots = Dictionary(uniqueKeysWithValues: PlateMoves.ids.map { id in
             (id, plate.plate.spots[id] ?? plate.plate.characters[id].map { [$0] } ?? [])
         })
+        spots[PlateMoves.visitorID] = plate.plate.spots[PlateMoves.visitorID]
         let frame: [String: PlateMoves.Placement]
         if let pinned = residentPin {
             frame = PlateMoves.replay(day: pinned.day, elapsed: pinned.elapsed, spots: spots, present: present)

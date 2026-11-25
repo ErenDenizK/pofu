@@ -202,14 +202,14 @@ struct PlateMovesTests {
     @Test("no two bodies touch in any combination of spots or any flight between spots")
     func bodiesNeverTouch() {
         let spots = Self.spots
-        let ids = PlateMoves.ids
+        let ids = PlateMoves.ids + [PlateMoves.visitorID]
         for a in ids { for b in ids where a < b {
             let need = PlateMoves.clearance(a, b)
             for pa in spots[a] ?? [] { for pb in spots[b] ?? [] {
                 #expect(abs(pa.x - pb.x) >= need, "\(a) \(pa) and \(b) \(pb) at rest")
             } }
             // In flight: a mover on a line between two of its spots, the other at any of its spots.
-            for (mover, other) in [(a, b), (b, a)] {
+            for (mover, other) in [(a, b), (b, a)] where PlateMoves.ids.contains(mover) {
                 for from in spots[mover] ?? [] { for to in spots[mover] ?? [] { for rest in spots[other] ?? [] {
                     for t in stride(from: 0.0, through: 1.0, by: 0.02) {
                         let x = from.x + (to.x - from.x) * t
@@ -220,11 +220,22 @@ struct PlateMovesTests {
         } }
     }
 
+    @Test("the visitor has a spot of its own, on the lawn, and it is where the plate says")
+    func visitor() {
+        let home = HomePlate.shipped!
+        let spot = try! #require(Self.spots[PlateMoves.visitorID]?.first)
+        #expect(Self.spots[PlateMoves.visitorID]?.count == 1)
+        #expect(PlateMath.contains(home.plate.walkable, spot))
+        let placed = home.plate(PlateLife.visitorSpot(home))
+        #expect(abs(placed.x - spot.x) < 1e-6 && abs(placed.y - spot.y) < 1e-6)
+        #expect(PlateMoves.visitorWidth(home.plate) > 50)
+    }
+
     @Test("each character keeps its own side: Mochi left, Pofu in the middle, Fındık right")
     func sides() {
         let s = Self.spots
         let max = { (id: String) in s[id]!.map(\.x).max()! }
         let min = { (id: String) in s[id]!.map(\.x).min()! }
-        #expect(max("mochi") < min("pofu") && max("pofu") < min("findik"))
+        #expect(max("mochi") < min("pofu") && max("pofu") < s["visitor"]![0].x && s["visitor"]![0].x < min("findik"))
     }
 }

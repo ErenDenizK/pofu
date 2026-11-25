@@ -42,10 +42,22 @@ public enum PlateMoves {
         return (box.maxX - box.minX) * perUnit * (plate.residentBoosts[id] ?? plate.residentBoost)
     }
 
+    /// The visitor's spot key in `spots`: one fixed spot on the lawn, kept clear of every other spot.
+    public static let visitorID = "visitor"
+
+    /// The widest visitor's drawn width on the plate, plate pixels: the widest painted `visitor-*` sprite
+    /// (art units), at Pofu's plate pixels per art unit and the plate's resident boost, as residents are drawn.
+    public static func visitorWidth(_ plate: PlateIsland) -> Double {
+        let widest = WorldArt.names.filter { $0.hasPrefix("visitor-") }.compactMap { WorldArt.sprite($0)?.sharp }.map { $0.maxX - $0.minX }.max() ?? 40
+        return widest * plate.pofuWidth / HomePlate.pofuArtWidth * plate.residentBoost
+    }
+
     /// Body widths on the shipped plate.
     static let widths: [String: Double] = {
-        guard let plate = HomePlate.shipped?.plate else { return [:] }
-        return Dictionary(uniqueKeysWithValues: ids.map { ($0, bodyWidth(of: $0, plate: plate)) })
+        guard let home = HomePlate.shipped else { return [:] }
+        var all = Dictionary(uniqueKeysWithValues: ids.map { ($0, bodyWidth(of: $0, plate: home.plate)) })
+        all[visitorID] = visitorWidth(home.plate)
+        return all
     }()
 
     /// How far apart (plate pixels, across the lawn) two characters' feet must stay: half of each body
@@ -211,7 +223,8 @@ public enum PlateMoves {
             let tour = PlateMoves.tour(of: id, spots: list, day: day)
             let here = at[id] ?? list[0]
             let index = tour.firstIndex { abs($0.x - here.x) < 0.5 && abs($0.y - here.y) < 0.5 } ?? 0
-            let others = present.filter { $0 != id }.compactMap { o in (at[o] ?? spots[o]?.first).map { (id: o, at: $0) } }
+            var others = present.filter { $0 != id }.compactMap { o in (at[o] ?? spots[o]?.first).map { (id: o, at: $0) } }
+            if let visitor = spots[PlateMoves.visitorID]?.first { others.append((id: PlateMoves.visitorID, at: visitor)) }
             for step in 1..<tour.count {
                 let to = tour[(index + step) % tour.count]
                 guard !others.contains(where: { PlateMoves.crowds(id, to, $0.id, $0.at) }),

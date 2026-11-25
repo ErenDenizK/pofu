@@ -15,7 +15,7 @@ public enum PlateLife {
     /// The lawn is sampled every this many plate pixels.
     public static let gridStep = 10.0
     /// How far from the visitor the parcel lies, in world units: the sprite island's
-    /// 20 pulled in so it clears Fındık, who stands on the visitor's other side.
+    /// 20 pulled in so it clears Fındık, who keeps the lawn's right end, clear of any spot of his.
     public static let giftReach = 16.0
     /// How far (plate pixels) the moss lies from every character and from the
     /// visitor.
@@ -23,10 +23,12 @@ public enum PlateLife {
 
     // MARK: - The visitor
 
-    /// Where the visitor stands: the lawn point farthest from Pofu, Mochi and
+    /// Where the visitor stands: the plate's own `visitor` spot when it has one, else the lawn point farthest from Pofu, Mochi and
     /// Findik (the grid point whose smallest distance to a character is the
     /// largest; ties go to the smaller x, then y).
     public static func visitorSpot(_ plate: HomePlate) -> WorldPoint {
+        // The plate's data may fix it: the movers' spots (`PlateMoves`) leave room for it.
+        if let fixed = plate.plate.spots[PlateMoves.visitorID]?.first { return plate.world(fixed) }
         let characters = plate.plate.characters.values.sorted { ($0.x, $0.y) < ($1.x, $1.y) }
         var best: (clearance: Double, point: PlatePoint)?
         for point in lawn(plate) {
