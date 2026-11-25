@@ -651,13 +651,49 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
         gardenWindow.rootViewController = nil
         try await Task.sleep(for: .milliseconds(150))
 
-        let round = try XCTUnwrap(FlowLibrary.round(stage: 1))
+        // The flow game on the dial board: the start, mid-way with the hint, solved, the 6 by 5 board of stage 4
+        // and a dial pinned mid-turn.
+        try await renderFlow("path-game-flow-stage1", stage: 1, scene: scene, folder: folder) { _ in }
+        try await renderFlow("path-game-flow-stage1-mid", stage: 1, scene: scene, folder: folder) { model in
+            model.playSuggestedTap()
+            try await Task.sleep(for: .milliseconds(900))
+            await model.showHintNow()
+            try await Task.sleep(for: .milliseconds(700))
+        }
+        try await renderFlow("path-game-flow-stage1-solved", stage: 1, scene: scene, folder: folder) { model in
+            while model.phase == .playing, model.playSuggestedTap() {
+                try await Task.sleep(for: .milliseconds(350))
+            }
+            try await Task.sleep(for: .milliseconds(1100))
+        }
+        // Stage 4's second board is the 6 by 5 one; the first is solved by hand to reach it.
+        try await renderFlow("path-game-flow-stage4", stage: 4, scene: scene, folder: folder) { model in
+            while model.phase == .playing, model.playSuggestedTap() {
+                try await Task.sleep(for: .milliseconds(120))
+            }
+            try await Task.sleep(for: .milliseconds(600))
+            model.continueNow()
+            try await Task.sleep(for: .milliseconds(1400))
+        }
+        try await renderFlow("path-game-flow-turning", stage: 1, scene: scene, folder: folder) { model in
+            XCTAssertTrue(model.holdSuggestedTurn(fraction: 0.45), "stage 1's first move turns a dial")
+            try await Task.sleep(for: .milliseconds(60))
+        }
+    }
+
+    @MainActor
+    private func renderFlow(
+        _ name: String, stage: Int, scene: UIWindowScene, folder: URL,
+        prepare: (FlowGameModel) async throws -> Void
+    ) async throws {
+        let round = try XCTUnwrap(FlowLibrary.round(stage: stage))
         let flow = FlowGameModel(round: round, hintDelay: .seconds(600), pourPause: .seconds(600))
         let flowWindow = gameWindow(FlowGameView(model: flow), scene: scene)
         try await Task.sleep(for: .milliseconds(900))
+        try await prepare(flow)
         flow.freeze()
         try await Task.sleep(for: .milliseconds(250))
-        try write(snapshot(flowWindow), name: "path-game-flow-stage1", to: folder)
+        try write(snapshot(flowWindow), name: name, to: folder)
         flowWindow.isHidden = true
         flowWindow.rootViewController = nil
         try await Task.sleep(for: .milliseconds(150))
