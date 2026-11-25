@@ -30,9 +30,29 @@ public enum PlateMoves {
     public static let height = 2.4
     /// The quietness of a move's hop sound, against a build or tap hop.
     public static let soundLevel = PlateHops.soundLevel
-    /// A character keeps this far (plate pixels, across and along the lawn) from the others' feet.
-    static let clearX = 44.0
-    static let clearY = 30.0
+    /// The gap kept between two bodies, plate pixels, beyond touching.
+    static let bodyGap = 14.0
+
+    /// Each character's drawn body width on the plate, in plate pixels, measured from the sprite: Pofu is
+    /// drawn `pofuWidth` wide; a resident's sprite box (`sharp`, art units) is scaled by Pofu's plate pixels
+    /// per art unit and the resident's own boost.
+    public static func bodyWidth(of id: String, plate: PlateIsland) -> Double {
+        let perUnit = plate.pofuWidth / HomePlate.pofuArtWidth
+        guard id != "pofu", let box = WorldArt.sprite(id)?.sharp else { return plate.pofuWidth }
+        return (box.maxX - box.minX) * perUnit * (plate.residentBoosts[id] ?? plate.residentBoost)
+    }
+
+    /// Body widths on the shipped plate.
+    static let widths: [String: Double] = {
+        guard let plate = HomePlate.shipped?.plate else { return [:] }
+        return Dictionary(uniqueKeysWithValues: ids.map { ($0, bodyWidth(of: $0, plate: plate)) })
+    }()
+
+    /// How far apart (plate pixels, across the lawn) two characters' feet must stay: half of each body
+    /// and a gap, so the bodies never touch whatever their depth on the lawn.
+    public static func clearance(_ a: String, _ b: String) -> Double {
+        ((widths[a] ?? 84) + (widths[b] ?? 84)) / 2 + bodyGap
+    }
 
     /// Pofu and the residents who may move, in the order draws pick from.
     public static let ids = ["pofu", "mochi", "findik"]
@@ -88,16 +108,16 @@ public enum PlateMoves {
         return min(max(Int((d / hopReach).rounded(.up)), minHops), maxHops)
     }
 
-    /// Whether `p` is too close to a character standing at `other`.
-    static func crowds(_ p: PlatePoint, _ other: PlatePoint) -> Bool {
-        abs(p.x - other.x) < clearX && abs(p.y - other.y) < clearY
+    /// Whether `id` at `p` is too close to `other` at `at`.
+    static func crowds(_ id: String, _ p: PlatePoint, _ other: String, _ at: PlatePoint) -> Bool {
+        abs(p.x - at.x) < clearance(id, other)
     }
 
-    /// Whether the straight line from `a` to `b` passes through anyone in `others`.
-    static func passes(from a: PlatePoint, to b: PlatePoint, others: [PlatePoint]) -> Bool {
+    /// Whether the straight line from `a` to `b` brings `id` too close to anyone in `others`.
+    static func passes(_ id: String, from a: PlatePoint, to b: PlatePoint, others: [(id: String, at: PlatePoint)]) -> Bool {
         stride(from: 0.0, through: 1.0, by: 0.05).contains { t in
             let p = PlatePoint(x: a.x + (b.x - a.x) * t, y: a.y + (b.y - a.y) * t)
-            return others.contains { crowds(p, $0) }
+            return others.contains { crowds(id, p, $0.id, $0.at) }
         }
     }
 
@@ -191,11 +211,11 @@ public enum PlateMoves {
             let tour = PlateMoves.tour(of: id, spots: list, day: day)
             let here = at[id] ?? list[0]
             let index = tour.firstIndex { abs($0.x - here.x) < 0.5 && abs($0.y - here.y) < 0.5 } ?? 0
-            let others = present.filter { $0 != id }.compactMap { at[$0] ?? spots[$0]?.first }
+            let others = present.filter { $0 != id }.compactMap { o in (at[o] ?? spots[o]?.first).map { (id: o, at: $0) } }
             for step in 1..<tour.count {
                 let to = tour[(index + step) % tour.count]
-                guard !others.contains(where: { PlateMoves.crowds(to, $0) }),
-                      !PlateMoves.passes(from: here, to: to, others: others) else { continue }
+                guard !others.contains(where: { PlateMoves.crowds(id, to, $0.id, $0.at) }),
+                      !PlateMoves.passes(id, from: here, to: to, others: others) else { continue }
                 active = Move(id: id, from: here, to: to, start: start, slot: slot, hops: PlateMoves.hops(from: here, to: to))
                 return
             }

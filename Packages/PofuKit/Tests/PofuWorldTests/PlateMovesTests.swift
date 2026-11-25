@@ -179,9 +179,52 @@ struct PlateMovesTests {
             let frame = state.advance(day: 9_001, elapsed: t, spots: Self.spots, present: Self.present, allowed: true)
             let all = Array(frame.values)
             for i in all.indices { for j in all.indices where i < j {
-                #expect(!PlateMoves.crowds(all[i].feet, all[j].feet), "t \(t)")
+                #expect(abs(all[i].feet.x - all[j].feet.x) > 40, "t \(t)")
             } }
             t += 0.1
         }
+    }
+
+    @Test("the body widths come from the sprites, in plate pixels")
+    func bodies() {
+        let plate = Self.plate
+        let pofu = PlateMoves.bodyWidth(of: "pofu", plate: plate)
+        let mochi = PlateMoves.bodyWidth(of: "mochi", plate: plate)
+        let findik = PlateMoves.bodyWidth(of: "findik", plate: plate)
+        #expect(abs(pofu - 83.4) < 0.1)
+        #expect(mochi > 60 && mochi < 68, "mochi \(mochi)")
+        #expect(findik > 48 && findik < 56, "findik \(findik)")
+        #expect(PlateMoves.clearance("pofu", "mochi") >= (pofu + mochi) / 2 + 10)
+    }
+
+    /// Every way the mover can choose: any spot for each character at once, and each character in flight
+    /// along any line between two of its spots (and at every point on it) against the others at any spot.
+    @Test("no two bodies touch in any combination of spots or any flight between spots")
+    func bodiesNeverTouch() {
+        let spots = Self.spots
+        let ids = PlateMoves.ids
+        for a in ids { for b in ids where a < b {
+            let need = PlateMoves.clearance(a, b)
+            for pa in spots[a] ?? [] { for pb in spots[b] ?? [] {
+                #expect(abs(pa.x - pb.x) >= need, "\(a) \(pa) and \(b) \(pb) at rest")
+            } }
+            // In flight: a mover on a line between two of its spots, the other at any of its spots.
+            for (mover, other) in [(a, b), (b, a)] {
+                for from in spots[mover] ?? [] { for to in spots[mover] ?? [] { for rest in spots[other] ?? [] {
+                    for t in stride(from: 0.0, through: 1.0, by: 0.02) {
+                        let x = from.x + (to.x - from.x) * t
+                        #expect(abs(x - rest.x) >= need, "\(mover) \(from) to \(to) at \(t) against \(other) \(rest)")
+                    }
+                } } }
+            }
+        } }
+    }
+
+    @Test("each character keeps its own side: Mochi left, Pofu in the middle, Fındık right")
+    func sides() {
+        let s = Self.spots
+        let max = { (id: String) in s[id]!.map(\.x).max()! }
+        let min = { (id: String) in s[id]!.map(\.x).min()! }
+        #expect(max("mochi") < min("pofu") && max("pofu") < min("findik"))
     }
 }
