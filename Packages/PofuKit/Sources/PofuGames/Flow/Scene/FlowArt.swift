@@ -137,7 +137,9 @@ final class FlowTextures {
     /// The hint's ring: round round a dial, a rounded square round a block.
     func ring(round: Bool) -> SKTexture {
         cached("ring-\(round)") { context in
-            let rect = CGRect(x: 0, y: 0, width: self.cell, height: self.cell).insetBy(dx: 3, dy: 3)
+            // A dial's stone ring is about 0.66 of the cell wide; the hint circle sits just outside it.
+            let inset = round ? self.cell * 0.14 : 3
+            let rect = CGRect(x: 0, y: 0, width: self.cell, height: self.cell).insetBy(dx: inset, dy: inset)
             context.setStrokeColor(FlowPalette.hint.cgColor)
             context.setLineWidth(3)
             let path = round ? UIBezierPath(ovalIn: rect) : UIBezierPath(roundedRect: rect, cornerRadius: self.cell * 0.2)

@@ -43,22 +43,23 @@ from scipy import ndimage as ndi
 
 ROOT = Path(__file__).resolve().parents[2]
 RES = ROOT / "Packages/PofuKit/Sources/PofuGames/Resources"
-KIT = "design/art/takes/batch-158-board-kit-v3"
+# A job's batch folder is named by its prefix: x4 is batch 158 (the kit), x5 is batch 161 (the clean repaint).
+KITS = {"x4": "design/art/takes/batch-158-board-kit-v3", "x5": "design/art/takes/batch-161-board-kit-clean"}
 
 # slot -> (job, take). The lead's picks for batch 158.
 PICKS = {
-    "backdrop": ("x4-kit-backdrop", 1),
+    "backdrop": ("x5-kit-backdrop", 1),
     "dial-bend": ("x4-kit-dial-bend", 1),
     "dial-straight": ("x4-kit-dial-straight", 1),
     "dial-split": ("x4-kit-dial-tee", 2),
     "plain": ("x4-kit-tile-plain", 1),
     "flowers": ("x4-kit-tile-flowers", 2),
     "gate": ("x4-kit-tile-gate", 2),
-    "goal": ("x4-kit-tile-goal", 1),
+    "goal": ("x5-kit-tile-goal", 1),
     "rock": ("x4-kit-tile-rock", 1),
-    "socket": ("x4-kit-tile-socket", 1),
+    "socket": ("x5-kit-tile-socket", 1),
     "spring": ("x4-kit-tile-spring", 1),
-    "wheel": ("x4-kit-tile-wheel", 2),
+    "wheel": ("x5-kit-tile-wheel", 2),
 }
 # Openings of the painted piece, then the quarter turns clockwise that bring it to the game's rotation 0
 # (a bend opens north and east, a split north, east and south, a straight north and south).
@@ -69,17 +70,19 @@ OPENINGS = {
 DIALS = {"dial-bend", "dial-straight", "dial-split"}
 CANVAS = 288
 BODY = 0.96
-# A dial is its grass and channel only: its own stone rim is cut away, so the block's rim is the one ring
-# (a dial that kept its rim drew a second arc beside the socket's at every corner). DISC is the grass
-# disc's width against the cell, the socket's inner width.
-DISC = 0.85
+# A dial is its grass and channel only: its own stone rim is cut away, so the socket's stone ring is the one
+# ring (a dial that kept its rim drew a second arc beside the socket's at every corner). DISC is the grass
+# disc's width against the cell: the width of the socket's round bed, measured by `measure_disc`, so the ring
+# stays fully visible round the disc. A dial that was wider than the bed covered the ring.
+DISC = 0.52
+DISC_OVERLAP = 1.015  # the disc runs a hair under the ring's inner lip so no bed shows round it
 DIAL_RIM = 0.095  # the rim's thickness against the disc's radius, with a little shade
 ERODE = 3
 SOLID, GONE = 220, 24
 
 
 def read_take(art_repo: Path, job: str, take: int) -> Image.Image:
-    path = f"{KIT}/{job}/{'plate' if 'backdrop' in job else 'prop'}__{job}--t{take}.webp"
+    path = f"{KITS[job[:2]]}/{job}/{'plate' if 'backdrop' in job else 'prop'}__{job}--t{take}.webp"
     return read_path(art_repo, path)
 
 
@@ -119,6 +122,20 @@ def cut_rim(arr: np.ndarray) -> np.ndarray:
     out[..., 3] = np.round(arr[..., 3] * inside).astype(np.uint8)
     out[out[..., 3] == 0, :3] = 0
     return out
+
+
+def measure_disc(socket: np.ndarray) -> float:
+    """The socket's round bed (the terracotta inside its stone ring) as a fraction of the cell once the block
+    is placed at BODY: the width a dial's disc must have to sit inside the ring."""
+    ys, xs = np.where(socket[..., 3] > 0)
+    block = xs.max() + 1 - xs.min()
+    r, g, b = (socket[..., i].astype(np.float32) for i in range(3))
+    hue = (g - b) / np.maximum(r - b, 1)  # the round bed sits near 0.42, its stone ring near 0.53, grass above 1
+    bed = (socket[..., 3] > 200) & (r - b >= 60) & (hue < 0.47)
+    labels, count = ndi.label(ndi.binary_opening(bed, iterations=3))
+    bed = labels == labels[socket.shape[0] // 2, socket.shape[1] // 2]
+    bx = np.where(bed.any(axis=0))[0]
+    return (bx.max() + 1 - bx.min()) / block * BODY * DISC_OVERLAP
 
 
 def resize_premultiplied(arr: np.ndarray, size) -> np.ndarray:
@@ -260,6 +277,10 @@ def main() -> None:
     for item in args.pick:
         slot, path = item.split("=", 1)
         picks[slot] = read_path(args.art_repo, path)
+    global DISC
+    socket = picks["socket"]
+    DISC = round(float(measure_disc(clean(socket if isinstance(socket, Image.Image) else read_take(args.art_repo, *socket)))), 4)
+    print("disc", DISC)
     info = backdrop(args.art_repo, picks["backdrop"])
     for slot, source in picks.items():
         if slot != "backdrop":

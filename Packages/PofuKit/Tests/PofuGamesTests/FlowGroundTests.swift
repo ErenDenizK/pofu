@@ -32,7 +32,7 @@ struct FlowGroundTests {
     @Test func theKitNumbersLoad() {
         let kit = FlowKit.shared
         #expect(kit.canvas > 0)
-        #expect(kit.body > 0.9 && kit.body <= 1 && kit.disc > 0.7 && kit.disc < kit.body)
+        #expect(kit.body > 0.9 && kit.body <= 1 && kit.disc > 0.45 && kit.disc < kit.body)
         #expect(kit.plate.x > 0 && kit.plate.y > 0)
         #expect(kit.plate.x + kit.plate.width < 1 && kit.plate.y + kit.plate.height < 1)
     }
