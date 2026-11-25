@@ -53,7 +53,6 @@ A9 art backlog; §8.6 pass. Sefer V1-V5 and WP12 once he says yes.
 
 | Desk | Where it stands | Waits on |
 |---|---|---|
-| Art factory | 137 ladder, S2 v3 clouds, S3 visitors | reviews |
 
 ## Open with the founder
 
