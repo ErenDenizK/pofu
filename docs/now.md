@@ -34,7 +34,8 @@ Now: whole-project assessment, two Fable rounds; Apple kits open soon.
    pill seen 1:1). Station card merged (#512, Etiket/Hap in Settings, seen).
    Home composition (#513), sound on (#515), OpenCV<5 pin (#516) merged.
    Board merged (#514). Follow-up: one clear round ring per dial (now faint)
-   + swap 161's clean pieces. Life #517 push 2 in CI (day-10 test fixed). Codex: D20-D23 delivered
+   + swap 161's clean pieces. Life #517 push 2 in CI (day-10 test fixed).
+   Morning summary sent 11-25 (Codex 157-165 merged, sheets #156/#162). Codex: D20-D23 delivered
    (#151-#153, #155); night rows D24-D28 (#154, 42 jobs). Morning: summary.
 2. WP10 compositor merged (#500): looks sort with Pofu by footY, Map
    snapshot of the built island, 3.2 s reveal. Left: `mapisle` assets
@@ -43,16 +44,11 @@ Now: whole-project assessment, two Fable rounds; Apple kits open soon.
    WP13 water merged (#505; #504 closed): the pond moves at Ambient, island
    flattened before the lens. Left: falls, sway mask; device frame time.
 4. Codex: 132, 133, 135, 126 v2 merged (cloud fit: crossfade floor-mid,
-   warm kit only, Koke keeps bed-round v1). Queue: D24-D28 (161-165); 126 v3 (#132) to review; 136 + 137 held.
-Merged: #475-#489, #491-#502, #505, #506, #508; pofu-art #81, #91-#139, #141-#150.
+   warm kit only, Koke keeps bed-round v1). Queue: D29-D32 (166-169 island kits); redo: 164 moor swap, 162 workshop mallet; 126 v3 (#132) to review; 136 + 137 held.
+Merged: #475-#516 (not #490, #503, #504, #507); pofu-art #81-#163 (not stale #84-#90, #132).
 
-## Next (night plan)
-A9 art backlog; §8.6 pass. Sefer V1-V5 and WP12 once he says yes.
-
-## Desks
-
-| Desk | Where it stands | Waits on |
-|---|---|---|
+## Next (path, #511)
+Board follow-up (ring + 161); then device days; stage 4 (Sefer) held.
 
 ## Open with the founder
 
