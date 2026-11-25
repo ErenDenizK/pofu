@@ -33,7 +33,8 @@ Now: whole-project assessment, two Fable rounds; Apple kits open soon.
    briefs `docs/studio/briefs/2026-11-24-{0..5}-*.md`. Stage 0 merged (#510,
    pill seen 1:1). Station card merged (#512, Etiket/Hap in Settings, seen).
    Home composition (#513), sound on (#515), OpenCV<5 pin (#516) merged.
-   Board #514 push 3 in CI (one ring per dial); brief 5 life running. Codex: D20-D23 delivered
+   Board merged (#514). Follow-up: one clear round ring per dial (now faint)
+   + swap 161's clean pieces. Life #517 push 2 in CI (day-10 test fixed). Codex: D20-D23 delivered
    (#151-#153, #155); night rows D24-D28 (#154, 42 jobs). Morning: summary.
 2. WP10 compositor merged (#500): looks sort with Pofu by footY, Map
    snapshot of the built island, 3.2 s reveal. Left: `mapisle` assets
