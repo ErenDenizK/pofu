@@ -41,6 +41,14 @@ Ne yapacağın, nasıl yapacağın, kimi çalıştıracağın ve çıktının bi
   the lead branch `claude/exciting-cori-1t8br2` (worktree
   `/home/user/wt/lead-docs`): `docs/research/studio-2026-11-26/raw-themes-motion.md`
   and `raw-music-studio.md`; earlier: `docs/research/mainflow-2026-11-26/`.
+- **A false premise the gather found:** no doc plans an in-game season
+  cycle; every season doc is the real calendar (decisions.md H10,
+  home-progression.md, game-design.md section 9), and "season" also means
+  a release cycle (game-plan.md). The founder remembers one; decide what
+  to do with that (ask him with a picture only if it is truly his).
+- **New Codex deliveries merged 11-26:** pofu-art #175-#178 (batch 182
+  step-1 redos, 172 Gezgin states, 173-174 station levels 2-3 in the
+  island); judge them if your plan leans on them.
 - **What moved since #519** (11-26): Codex queue D34-D45 on pofu-art
   main (Gezgin, station levels painted in the island, poses, tail and
   shadow, step 1 redos; theme repaints D40-D42 BLOCKED by #519's D8).
