@@ -1,63 +1,67 @@
 batch: batch-87-home-golden
-job: x-home-flow-il5-golden
-status: review
-pick: 1
-lead_review: "Pick t1: same island, pier, boat and bridge as the IL5 day plate with a soft peach light on the lawn, where t2 pushes the lawn and the cart's parasol to an acid yellow."
-pick_note: "Both takes warn on chroma and palette drift; t1 is cleaner (mean dE 3.2 vs 3.6, p95 12.7 vs 16.2, off-palette 5.8% vs 8.4%) and keeps the sunflower arch, pool, wheel and tea stalls in place. Auto-pick t1; founder review pending."
-takes:
-  - take: 1
-    file: plate__x-home-flow-il5-golden--t1.webp
-    source_png: /workspace/generated_images/exec-ef4796de-2b86-48cf-90cd-4f910a80f655.png
-    source_sha256: 506b7b91f725f3a0cabc14aa26e7f8d6e8fc6907c1473759d9d2d6e2cf10a646
-    delivery_encoding: WEBP q90
-    qa: warn
-    checks:
-      transparency: pass
-      canvas: pass
-      chroma_ceiling: warn
-      light_values: pass
-      light_median: pass
-      light_contrast: pass
-      light_sky: pass
-      light_sea: pass
-      light_dark: pass
-      detail_budget: pass
-      lock_load: pass
-      palette_drift: warn
-      edit_silhouette: pass
-      edit_structure: pass
-      edit_lightness: pass
-    lock_load: 0.0
-    palette_drift: 3.228
-  - take: 2
-    file: plate__x-home-flow-il5-golden--t2.webp
-    source_png: /workspace/generated_images/exec-1e87eabd-6334-4faa-8586-18f5b7c07cd7.png
-    source_sha256: c8aab08b32c60e493d39d181bf67a8f2498611ebf803a50cd974466956bfaf31
-    delivery_encoding: WEBP q90
-    qa: warn
-    checks:
-      transparency: pass
-      canvas: pass
-      chroma_ceiling: warn
-      light_values: pass
-      light_median: pass
-      light_contrast: pass
-      light_sky: pass
-      light_sea: pass
-      light_dark: pass
-      detail_budget: pass
-      lock_load: pass
-      palette_drift: warn
-      edit_silhouette: pass
-      edit_structure: pass
-      edit_lightness: pass
-    lock_load: 0.0
-    palette_drift: 3.6265
-references:
-  - design/art/takes/batch-66-home-flow/x-home-flow-il5/plate__x-home-flow-il5--t1.webp
-  - design/art/takes/batch-66-home-flow/x-home-flow-golden/plate__x-home-flow-golden--t1.webp
-source: codex-cloud
-account:
-  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
-  kind: chatgpt-plan
-promotion: none; exploration batch
+jobs:
+  x-home-flow-il5-golden:
+    status: review
+    pick: 1
+    lead_review: 'Pick t1: same island, pier, boat and bridge as the IL5 day plate with a soft peach light
+      on the lawn, where t2 pushes the lawn and the cart''s parasol to an acid yellow.'
+    pick_note: Both takes warn on chroma and palette drift; t1 is cleaner (mean dE 3.2 vs 3.6, p95 12.7
+      vs 16.2, off-palette 5.8% vs 8.4%) and keeps the sunflower arch, pool, wheel and tea stalls in place.
+      Auto-pick t1; founder review pending.
+    takes:
+    - take: 1
+      file: plate__x-home-flow-il5-golden--t1.webp
+      source_png: /workspace/generated_images/exec-ef4796de-2b86-48cf-90cd-4f910a80f655.png
+      source_sha256: 506b7b91f725f3a0cabc14aa26e7f8d6e8fc6907c1473759d9d2d6e2cf10a646
+      delivery_encoding: WEBP q90
+      qa: warn
+      checks:
+        transparency: pass
+        canvas: pass
+        chroma_ceiling: warn
+        light_values: pass
+        light_median: pass
+        light_contrast: pass
+        light_sky: pass
+        light_sea: pass
+        light_dark: pass
+        detail_budget: pass
+        lock_load: pass
+        palette_drift: warn
+        edit_silhouette: pass
+        edit_structure: pass
+        edit_lightness: pass
+      lock_load: 0.0
+      palette_drift: 3.228
+    - take: 2
+      file: plate__x-home-flow-il5-golden--t2.webp
+      source_png: /workspace/generated_images/exec-1e87eabd-6334-4faa-8586-18f5b7c07cd7.png
+      source_sha256: c8aab08b32c60e493d39d181bf67a8f2498611ebf803a50cd974466956bfaf31
+      delivery_encoding: WEBP q90
+      qa: warn
+      checks:
+        transparency: pass
+        canvas: pass
+        chroma_ceiling: warn
+        light_values: pass
+        light_median: pass
+        light_contrast: pass
+        light_sky: pass
+        light_sea: pass
+        light_dark: pass
+        detail_budget: pass
+        lock_load: pass
+        palette_drift: warn
+        edit_silhouette: pass
+        edit_structure: pass
+        edit_lightness: pass
+      lock_load: 0.0
+      palette_drift: 3.6265
+    references:
+    - design/art/takes/batch-66-home-flow/x-home-flow-il5/plate__x-home-flow-il5--t1.webp
+    - design/art/takes/batch-66-home-flow/x-home-flow-golden/plate__x-home-flow-golden--t1.webp
+    source: codex-cloud
+    account:
+      owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+      kind: chatgpt-plan
+    promotion: none; exploration batch

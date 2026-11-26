@@ -1,63 +1,68 @@
 batch: batch-87-home-golden
-job: x-home-flow-il4-golden
-status: review
-pick: 1
-lead_review: "Pick t1: same island, objects and bridge as the IL4 day plate under the golden light, where t2 turns the sprout under the wheel into a white-flowered plant that the day plate does not have."
-pick_note: "Both takes warn on chroma ceiling and palette drift; t2 has lower drift (mean dE 2.9 vs 4.2, p95 11.5 vs 15.8, off-palette 4.3% vs 9.0%) and visually preserves the day layout. Auto-pick t2; founder review pending."
-takes:
-  - take: 1
-    file: plate__x-home-flow-il4-golden--t1.webp
-    source_png: /workspace/generated_images/exec-83172bc9-0ab9-4e47-8464-52922f01e7eb.png
-    source_sha256: 2c8b22d6b2d45bbdf98a5305f969b3f8e21160a68ca98e2703e4fd2c3eef0d59
-    delivery_encoding: WEBP q90
-    qa: warn
-    checks:
-      transparency: pass
-      canvas: pass
-      chroma_ceiling: warn
-      light_values: pass
-      light_median: pass
-      light_contrast: pass
-      light_sky: pass
-      light_sea: pass
-      light_dark: pass
-      detail_budget: pass
-      lock_load: pass
-      palette_drift: warn
-      edit_silhouette: pass
-      edit_structure: pass
-      edit_lightness: pass
-    lock_load: 0.0
-    palette_drift: 4.1966
-  - take: 2
-    file: plate__x-home-flow-il4-golden--t2.webp
-    source_png: /workspace/generated_images/exec-c3593ac4-332a-425e-85f8-6b630ecc2de3.png
-    source_sha256: 68a6b415111cbc7846300d275f9bcb301fe799f3e2014cfbc7115767dc4a267d
-    delivery_encoding: WEBP q90
-    qa: warn
-    checks:
-      transparency: pass
-      canvas: pass
-      chroma_ceiling: warn
-      light_values: pass
-      light_median: pass
-      light_contrast: pass
-      light_sky: pass
-      light_sea: pass
-      light_dark: pass
-      detail_budget: pass
-      lock_load: pass
-      palette_drift: warn
-      edit_silhouette: pass
-      edit_structure: pass
-      edit_lightness: pass
-    lock_load: 0.0
-    palette_drift: 2.8873
-references:
-  - design/art/takes/batch-66-home-flow/x-home-flow-il4/plate__x-home-flow-il4--t2.webp
-  - design/art/takes/batch-66-home-flow/x-home-flow-golden/plate__x-home-flow-golden--t1.webp
-source: codex-cloud
-account:
-  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
-  kind: chatgpt-plan
-promotion: none; exploration batch
+jobs:
+  x-home-flow-il4-golden:
+    status: review
+    pick: 1
+    lead_review: 'Pick t1: same island, objects and bridge as the IL4 day plate under the golden light,
+      where t2 turns the sprout under the wheel into a white-flowered plant that the day plate does not
+      have.'
+    pick_note: Both takes warn on chroma ceiling and palette drift; t2 has lower drift (mean dE 2.9 vs
+      4.2, p95 11.5 vs 15.8, off-palette 4.3% vs 9.0%) and visually preserves the day layout. Auto-pick
+      t2; founder review pending.
+    takes:
+    - take: 1
+      file: plate__x-home-flow-il4-golden--t1.webp
+      source_png: /workspace/generated_images/exec-83172bc9-0ab9-4e47-8464-52922f01e7eb.png
+      source_sha256: 2c8b22d6b2d45bbdf98a5305f969b3f8e21160a68ca98e2703e4fd2c3eef0d59
+      delivery_encoding: WEBP q90
+      qa: warn
+      checks:
+        transparency: pass
+        canvas: pass
+        chroma_ceiling: warn
+        light_values: pass
+        light_median: pass
+        light_contrast: pass
+        light_sky: pass
+        light_sea: pass
+        light_dark: pass
+        detail_budget: pass
+        lock_load: pass
+        palette_drift: warn
+        edit_silhouette: pass
+        edit_structure: pass
+        edit_lightness: pass
+      lock_load: 0.0
+      palette_drift: 4.1966
+    - take: 2
+      file: plate__x-home-flow-il4-golden--t2.webp
+      source_png: /workspace/generated_images/exec-c3593ac4-332a-425e-85f8-6b630ecc2de3.png
+      source_sha256: 68a6b415111cbc7846300d275f9bcb301fe799f3e2014cfbc7115767dc4a267d
+      delivery_encoding: WEBP q90
+      qa: warn
+      checks:
+        transparency: pass
+        canvas: pass
+        chroma_ceiling: warn
+        light_values: pass
+        light_median: pass
+        light_contrast: pass
+        light_sky: pass
+        light_sea: pass
+        light_dark: pass
+        detail_budget: pass
+        lock_load: pass
+        palette_drift: warn
+        edit_silhouette: pass
+        edit_structure: pass
+        edit_lightness: pass
+      lock_load: 0.0
+      palette_drift: 2.8873
+    references:
+    - design/art/takes/batch-66-home-flow/x-home-flow-il4/plate__x-home-flow-il4--t2.webp
+    - design/art/takes/batch-66-home-flow/x-home-flow-golden/plate__x-home-flow-golden--t1.webp
+    source: codex-cloud
+    account:
+      owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+      kind: chatgpt-plan
+    promotion: none; exploration batch
