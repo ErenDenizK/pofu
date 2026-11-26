@@ -1169,14 +1169,15 @@ def base_states(island: str) -> set[tuple[str, int]]:
 
 
 def station_bytes(island: str, light: str, stage: int) -> int:
-    """Texture px of a state's station layers: the erased base (it replaces the plate) and the two largest looks (the
-    one drawn and the one fading out of it when a level changes)."""
-    total = 0
+    """Texture px of a state's station layers: the erased base (it replaces the plate; one for all the stations that
+    stand on it) and each station's two largest looks (the one drawn and the one fading out of it when a level changes)."""
+    base, looks = 0, 0
     for st in stations_data(island).values():
         if st["light"] != light or stage not in st.get("baseStages", []):
             continue
-        total += st.get("baseBytes", {}).get(str(stage), 0) + sum(sorted(st.get("lookBytes", []))[-2:])
-    return total
+        base = max(base, st.get("baseBytes", {}).get(str(stage), 0))       # stations that share a stage share its one base
+        looks += sum(sorted(st.get("lookBytes", []))[-2:])
+    return base + looks
 
 
 def state_texture_bytes(island: str, hand: dict) -> dict[tuple[str, int], int]:
