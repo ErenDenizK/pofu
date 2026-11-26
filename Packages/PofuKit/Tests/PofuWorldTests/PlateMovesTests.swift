@@ -40,7 +40,7 @@ struct PlateMovesTests {
         let plate = Self.plate
         var checked = 0
         for light in plate.lights {
-            for stage in 0..<(plate.lightStages[light] ?? 0) {
+            for stage in 0..<(plate.lightStages[light] ?? 0) where plate.paints(light: light, stage: stage) {
                 let state = HomePlate(plate: plate, light: light, stage: stage)
                 for level in [1, 2, 3, 5, 8, 10] {
                     let levels: [StationID: Int] = Dictionary(uniqueKeysWithValues: plate.objects.compactMap(\.station).map { ($0, level) })

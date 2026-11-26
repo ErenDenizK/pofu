@@ -1,0 +1,1 @@
+Home's golden hour is painted at island levels 3 to 7 (it borrowed the night plate there): a soft peach and lilac light on the same island, with levels 1, 2, 8 and 9 still borrowing until their golden plates are redone.

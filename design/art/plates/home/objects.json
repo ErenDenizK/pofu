@@ -36,7 +36,12 @@
    "9": "design/art/takes/batch-116-home-mist-clear/x-home-l1-day-clear/plate__x-home-l1-day-clear--t1.webp"
   },
   "golden": {
-   "0": "design/art/takes/batch-66-home-flow/x-home-flow-golden/plate__x-home-flow-golden--t1.webp"
+   "0": "design/art/takes/batch-66-home-flow/x-home-flow-golden/plate__x-home-flow-golden--t1.webp",
+   "3": "design/art/takes/batch-87-home-golden/x-home-flow-il7-golden/plate__x-home-flow-il7-golden--t2.webp",
+   "4": "design/art/takes/batch-87-home-golden/x-home-flow-il6-golden/plate__x-home-flow-il6-golden--t2.webp",
+   "5": "design/art/takes/batch-87-home-golden/x-home-flow-il5-golden/plate__x-home-flow-il5-golden--t1.webp",
+   "6": "design/art/takes/batch-87-home-golden/x-home-flow-il4-golden/plate__x-home-flow-il4-golden--t1.webp",
+   "7": "design/art/plates/home/derived/plate-il3-golden.webp"
   },
   "night": {
    "0": "design/art/takes/batch-66-home-flow/x-home-flow-night/plate__x-home-flow-night--t1.webp",

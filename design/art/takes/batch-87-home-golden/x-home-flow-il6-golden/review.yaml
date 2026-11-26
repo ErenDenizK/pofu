@@ -1,0 +1,68 @@
+batch: batch-87-home-golden
+jobs:
+  x-home-flow-il6-golden:
+    status: review
+    pick: 2
+    lead_review: 'Pick t2: same island, lanterns, workshop and lighthouse as the IL6 day plate, with the
+      richer lawn and lilac rim shade that sit closest to the finished island''s golden; t1 is a sound
+      second.'
+    pick_note: Both takes warn on chroma and palette drift. T2 has lower chroma and palette drift (p95
+      62 vs 64; mean dE 3.2 vs 3.3, p95 15.4 vs 15.8, off-palette 7.0% vs 8.5%) while preserving the house,
+      lighthouse, pool, wheel and stalls. Auto-pick t2; founder review pending.
+    takes:
+    - take: 1
+      file: plate__x-home-flow-il6-golden--t1.webp
+      source_png: /workspace/generated_images/exec-d56b8904-5996-433a-b5b6-6e914e56ab39.png
+      source_sha256: edb2d9a14b2110187faa65f6ce5c5957abf036d170cdcc2e68a78ce0afcb423d
+      delivery_encoding: WEBP q90
+      qa: warn
+      checks:
+        transparency: pass
+        canvas: pass
+        chroma_ceiling: warn
+        light_values: pass
+        light_median: pass
+        light_contrast: pass
+        light_sky: pass
+        light_sea: pass
+        light_dark: pass
+        detail_budget: pass
+        lock_load: pass
+        palette_drift: warn
+        edit_silhouette: pass
+        edit_structure: pass
+        edit_lightness: pass
+      lock_load: 0.0
+      palette_drift: 3.2564
+    - take: 2
+      file: plate__x-home-flow-il6-golden--t2.webp
+      source_png: /workspace/generated_images/exec-d954d147-d78a-4692-b10b-543016df7808.png
+      source_sha256: 6b29fa54eefbb4d3b121ef87860255810da8396dab1464c1c09d42512815fec4
+      delivery_encoding: WEBP q90
+      qa: warn
+      checks:
+        transparency: pass
+        canvas: pass
+        chroma_ceiling: warn
+        light_values: pass
+        light_median: pass
+        light_contrast: pass
+        light_sky: pass
+        light_sea: pass
+        light_dark: pass
+        detail_budget: pass
+        lock_load: pass
+        palette_drift: warn
+        edit_silhouette: pass
+        edit_structure: pass
+        edit_lightness: pass
+      lock_load: 0.0
+      palette_drift: 3.178
+    references:
+    - design/art/takes/batch-66-home-flow/x-home-flow-il6/plate__x-home-flow-il6--t1.webp
+    - design/art/takes/batch-66-home-flow/x-home-flow-golden/plate__x-home-flow-golden--t1.webp
+    source: codex-cloud
+    account:
+      owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+      kind: chatgpt-plan
+    promotion: none; exploration batch

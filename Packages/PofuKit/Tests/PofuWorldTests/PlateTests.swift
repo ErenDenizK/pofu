@@ -246,7 +246,7 @@ struct HomePlateTests {
         #expect(five.stationBox(.windmill) == nil)
         // Every painted state has what its objects need: occluders only where present.
         for light in plate.lights {
-            for stage in 0..<(plate.lightStages[light] ?? 1) {
+            for stage in 0..<(plate.lightStages[light] ?? 1) where plate.paints(light: light, stage: stage) {
                 let state = HomePlate(plate: plate, light: light, stage: stage)
                 #expect(state.objects.count <= plate.objects.count)
                 #expect(state.objects.contains { $0.id == "door" })
