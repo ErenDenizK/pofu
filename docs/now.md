@@ -20,23 +20,15 @@ six vertical steps, each done when he plays it on his phone.
 
 ## In flight
 
-0b. Fi 47 (answers to #519 + Fable on themes/special days, Caglayan, music,
-   studio): #523 merged (island calendar, motion vocabulary, music system,
-   ADR-0029, plan sec. 11); #524 desks DRAFT (his yes, card 3). pofu-art #179
-   merged (183-187 + 177/178). MU1 merged (#525, 3 Home tunes). Cards 1-3, 5
-   sent for morning (defaults apply); card 4 (Caglayan) when batch 185 lands.
-0a. Fi 46 plan merged (#519, squash): docs/design/mainflow-plan-2026-11-26(-tr).md,
-   docs/studio/speed-2026-11-26.md. Six steps; step 1 now. pofu-art #172 merged: D43 Gezgin tail+shadow (180), D44
-   poses (181), D40-D42 BLOCKED. Old #85 (117 erase, 18/20 picked) + #38 (87 golden
-   IL3-7) merged with picks; #61/#62 closed (half size). Redo row D45 merged (#174, batch 182, first in Demand: L1/L2 erase,
-   golden IL1/2/8/9, IL3 mist). Paste masks keep the pier bridge/gap.
-   #520 (1a) merged (stall frames pixel-identical). 1b merged (#521: windmill
-   L2-5 by day at isl. 10/9). Row D51 merged (#182: night 2-5 + L1); l08 picks exist, ingest in 1c.
-   1d merged (#522: golden IL3-7; mill/stall frames pixel-identical). C1 merged (#526; bayrams: 2027 only,
-   Diyanet). 173-176 not cuttable (whole re-renders): 1c = pond (batch 134) + l08
-   pick; plot ladders D52-D55 merged (#185, first in
-   Demand); pier D56 BLOCKED (bare crop fills the islet gap; needs a gap-keeping bare); 2a+2b (Gezgin moored) running.
-
+0c. Fi 49: cards 1/2/5 on defaults; desks approved (ST1+ST2 to land); auto-merge: yes for
+   pofu-art takes (ST4 workflow, next free agent), no for pofu code; self-wake refused
+   twice. Fable on season system (brief fable-2026-11-27-season-system).
+0b. Fi 47: #523 (calendar, motion, music, ADR-0029), MU1 #525 merged; desks #524
+   draft (approved fi 49). Card 4 (Caglayan) when batch 185 lands.
+0a. Plan #519 step 1: merged 1a #520, windmill 1b #521, golden 1d #522, C1 #526.
+   Running: 1c = pond (batch 134) + windmill l08 base; 2a+2b Gezgin moored.
+   173-176 not cuttable (whole re-renders); plot ladders D52-D55 first in Demand
+   (#185); pier D56 BLOCKED (bare crop fills the islet gap). Night: D51 (#182).
 1. Old threads: #503 (voyage ADR draft; 2a replaces it), #490, #507 docs open;
    concept rounds 1-3 done (fi 43: simpler art). Superseded by plan #519.
 0. Assessment done: path `docs/design/assessment-2026-11-24-path.md` (#511),
