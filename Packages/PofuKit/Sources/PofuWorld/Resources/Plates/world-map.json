@@ -51,5 +51,19 @@
     ],
     "mapCorner": { "id": "corner-map", "box": [318, 769, 370, 821] },
     "nearBack": { "id": "back-control", "box": [20, 769, 72, 821] }
+  },
+  "gezgin": {
+    "note": "The Gezgin (Nazli) moored at Home's pier (ADR-0028, docs/design/mainflow-plan-2026-11-26.md D6 and D7). Her level is read from the islands healed; she is a shadow on the cloud while Koke is only a hump on the horizon, and moored once Koke can be visited. Art numbers are px of the shared cut-out box (tools/art/gezgin_cutouts.py).",
+    "shadowWhen": "rumoured",
+    "mooredWhen": "arrived",
+    "island": "koke",
+    "levelAt": { "2": "koke", "3": "caglayan" },
+    "art": { "canvas": [760, 583], "body": [8, 139, 755, 577], "tailPivot": [630, 290] },
+    "bob": { "plate": 1.6, "seconds": 5.5 },
+    "sway": { "degrees": 1.2, "seconds": 4.2 },
+    "blink": { "every": 6.3, "seconds": 0.16 },
+    "awakeSeconds": 7,
+    "lineSeconds": 4.5,
+    "shadow": { "y": 1320, "seconds": 46, "opacity": 0.55 }
   }
 }

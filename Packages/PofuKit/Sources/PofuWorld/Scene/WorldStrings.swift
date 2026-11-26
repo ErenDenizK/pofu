@@ -76,6 +76,18 @@ enum WorldStrings {
         }
     }
 
+    // MARK: The Gezgin (Nazlı), moored at the pier
+
+    /// Her name above her line.
+    static var gezginName: String { localized("gezgin.name") }
+
+    /// VoiceOver for her at the pier, and what a double tap does.
+    static var gezginLabel: String { localized("gezgin.label") }
+    static var gezginHint: String { localized("gezgin.hint") }
+
+    /// One of her lines by catalog key (`Gezgin.lineKey`).
+    static func gezginLine(_ key: String) -> String { localized(key) }
+
     // MARK: Çağlayan (the second wonder island)
 
     static func caglayanLine(_ kind: CaglayanLineKind) -> String {

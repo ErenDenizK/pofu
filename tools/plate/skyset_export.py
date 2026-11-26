@@ -53,6 +53,10 @@ ASSETS = RESOURCES / "World.xcassets"
 JSON_DIR = RESOURCES / "Plates"
 BUDGET = 9_000_000
 
+#: Layers of the painted master that are not shipped: the baked whale is the Gezgin now, a character that is
+#: moored at the pier and flies (ADR-0028, `PofuWorld/Gezgin`), so the sky never paints one of its own.
+DROPPED = {"whale"}
+
 #: Stored size against the master, per layer (the island is 1).
 SCALES = {"far": 0.5, "mid": 0.6, "sea": 0.6, "isle_falls": 0.75, "isle_house": 0.75, "isle_dome": 0.75,
           "isle_crystal": 0.75, "whale": 0.75}
@@ -441,6 +445,8 @@ def export_light(island: str, light: str, hand: dict) -> dict:
 
     for lay in man["layers"]:
         lid = lay["id"]
+        if lid in DROPPED:
+            continue
         name = asset_name(island, lid, light)
         arr = raw[lid]
         x, y = lay["pos"]
