@@ -16,8 +16,8 @@ six vertical steps, each done when he plays it on his phone.
 
 - Merges that carry out a plan he approved (pofu-art queue PRs too) need
   no question; merge on review, tell him after (founder-input 31).
-- Night plan and Codex queue approved in advance (founder-input 35). Disk floor 5 GB.
-- Tempo (fi 39-41): Claude 2-3 agents, lean; Codex unlimited, never idle; concept first.
+- Fi 48: apply [now] decisions without waiting; his questions as cards with a
+  picture and a default. Tempo: Claude 2-3 agents; Codex never idle. Disk floor 5 GB.
 
 ## In flight
 
@@ -27,8 +27,7 @@ six vertical steps, each done when he plays it on his phone.
    merged (183-187 + 177/178). MU1 (feat/music-score, Fable) running. Cards 1-3
    sent for morning (defaults apply); card 4 (Caglayan) when batch 185 lands.
 0a. Fi 46 plan merged (#519, squash): docs/design/mainflow-plan-2026-11-26(-tr).md,
-   docs/studio/speed-2026-11-26.md. Six steps; step 1 now: PR 1a builder
-   (feat/looks-per-light). pofu-art #172 merged: D43 Gezgin tail+shadow (180), D44
+   docs/studio/speed-2026-11-26.md. Six steps; step 1 now. pofu-art #172 merged: D43 Gezgin tail+shadow (180), D44
    poses (181), D40-D42 BLOCKED. Old #85 (117 erase, 18/20 picked) + #38 (87 golden
    IL3-7) merged with picks; #61/#62 closed (half size). Redo row D45 merged (#174, batch 182, first in Demand: L1/L2 erase,
    golden IL1/2/8/9, IL3 mist). Paste masks keep the pier bridge/gap.
