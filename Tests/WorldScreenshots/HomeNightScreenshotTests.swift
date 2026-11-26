@@ -32,7 +32,8 @@ final class HomeNightScreenshotTests: XCTestCase {
             State(name: "l1-night", level: 1, hour: 22.5, light: "night"),
             State(name: "l4-night", level: 4, hour: 22.5, light: "night"),
             State(name: "l7-night", level: 7, hour: 22.5, light: "night"),
-            State(name: "l5-golden", level: 5, hour: 18, light: "night"),
+            State(name: "l5-golden", level: 5, hour: 18, light: "golden"),
+            State(name: "l8-golden", level: 8, hour: 18, light: "night"),
             State(name: "l5-dawn", level: 5, hour: 6, light: "day"),
         ] + [3, 5, 6, 8, 9].map { State(name: "l\($0)-night", level: $0, hour: 22.5, light: "night") }
         for state in states {
@@ -44,7 +45,7 @@ final class HomeNightScreenshotTests: XCTestCase {
         var name: String
         var level: Int
         var hour: Double
-        /// The painted light the plate must draw (golden hour at level 5 draws the night).
+        /// The painted light the plate must draw (golden hour draws its own golden plate at levels 3 to 7, and at level 8 the night).
         var light: String
     }
 
