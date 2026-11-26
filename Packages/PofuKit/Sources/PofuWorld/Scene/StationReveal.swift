@@ -135,7 +135,7 @@ private struct SettledLook: View {
     var body: some View {
         ZStack(alignment: .topLeading) {
             if let look {
-                PlateImage(name: look.art, box: look.box, pose: pose, size: size, offset: offset)
+                PlateImage(name: look.art, box: look.box, pose: pose, size: size, offset: offset, grade: look.grade)
                     .id(look.art)
                     .transition(.opacity)
             }
@@ -164,14 +164,14 @@ private struct RevealedLook: View {
         ZStack(alignment: .topLeading) {
             if let old {
                 let foot = anchor(old.foot, w: w)
-                PlateImage(name: old.art, box: old.box, pose: pose, size: size, offset: offset)
+                PlateImage(name: old.art, box: old.box, pose: pose, size: size, offset: offset, grade: old.grade)
                     .frame(width: size.width, height: size.height, alignment: .topLeading)
                     .scaleEffect(x: 1, y: reveal.oldScaleY(at: t), anchor: foot)
                     .opacity(reveal.oldOpacity(at: t))
             }
             if let new {
                 let foot = anchor(new.foot, w: w)
-                let image = PlateImage(name: new.art, box: new.box, pose: pose, size: size, offset: offset)
+                let image = PlateImage(name: new.art, box: new.box, pose: pose, size: size, offset: offset, grade: new.grade)
                     .frame(width: size.width, height: size.height, alignment: .topLeading)
                 if let p = reveal.ring(at: t) {
                     let r = radius(new, progress: p, w: w)

@@ -241,8 +241,8 @@ public struct PlateIsland: Hashable, Sendable {
 
     /// A station's look asset for its level (`StationLooks.lookLevel`), or `nil`: unbuilt, or no base in this state.
     public func lookArt(station: String, level: Int, light: String, stage: Int) -> String? {
-        guard let looks = stations[station], looks.hasBase(light: light, stage: stage), let n = looks.lookLevel(stationLevel: level) else { return nil }
-        return "world-\(island)-look-\(station)-\(n)-\(looks.light)"
+        guard let looks = stations[station], looks.hasBase(light: light, stage: stage), let n = looks.lookLevel(stationLevel: level, light: light) else { return nil }
+        return "world-\(island)-look-\(station)-\(n)-\(StationLooks.lookLight(for: light))"
     }
 
     public func occluderArt(id: String, light: String, stage: Int) -> String {
@@ -305,19 +305,37 @@ public struct PlateIsland: Hashable, Sendable {
 }
 
 /// One station's looks (`tools/plate/station_looks.py`): level 1 to `levels`, one asset each, every look on one canvas
-/// (`box`, plate points) with one foot anchor, over the erased base the `baseStages` of its light have.
+/// (`box`, plate points) with one foot anchor, over the erased base each light has at its stages (`lights`).
 public struct StationLooks: Hashable, Sendable {
-    public var light: String
     public var levels: Int
     /// The look canvas, in plate points; the same for every look and every base stage.
     public var box: PlateRect
     /// The point of the plate the look's foot stands on (the canvas is placed by it).
     public var foot: PlatePoint
-    /// The stages of `light` whose plate has this station erased (the others keep it painted).
-    public var baseStages: [Int]
+    /// Per light, the stages whose plate has this station erased (the others keep it painted). Golden has no looks of
+    /// its own: it draws the day look under its grade, over a golden base listed here.
+    public var lights: [String: [Int]]
+    /// Per light, the levels whose look is painted, where a light lacks some (a level whose cut failed is left out and
+    /// draws the nearest lower one). A light not listed has every level 1 to `levels`.
+    public var lookLevels: [String: [Int]] = [:]
     /// Where the look stands in a stage whose plate paints the stall elsewhere or at another size: that stage's canvas
     /// box and foot (the same canvas scaled about the foot). A stage without an entry uses `box` and `foot`.
     public var places: [Int: StationPlace] = [:]
+
+    /// The stages of the day light that have a base (the first light that was painted).
+    public var baseStages: [Int] { lights["day"] ?? [] }
+
+    public init(
+        levels: Int, box: PlateRect, foot: PlatePoint, lights: [String: [Int]],
+        lookLevels: [String: [Int]] = [:], places: [Int: StationPlace] = [:]
+    ) {
+        self.levels = levels
+        self.box = box
+        self.foot = foot
+        self.lights = lights
+        self.lookLevels = lookLevels
+        self.places = places
+    }
 
     /// The canvas box and foot for a stage.
     public func place(stage: Int) -> StationPlace {
@@ -325,13 +343,26 @@ public struct StationLooks: Hashable, Sendable {
     }
 
     public func hasBase(light: String, stage: Int) -> Bool {
-        light == self.light && baseStages.contains(stage)
+        lights[light]?.contains(stage) ?? false
+    }
+
+    /// The light whose looks a state in `light` draws: golden draws the day look (under its grade), the others their own.
+    public static func lookLight(for light: String) -> String {
+        light == "golden" ? "day" : light
     }
 
     /// The look a station level draws: level to look 1 to 1, `nil` while unbuilt (level 0), a level above the
     /// last look keeps the last.
     public func lookLevel(stationLevel: Int) -> Int? {
         stationLevel >= 1 && levels >= 1 ? min(stationLevel, levels) : nil
+    }
+
+    /// The look drawn for a station level in a state's light: the level's own look, else the nearest lower one that
+    /// is painted in that light's looks, or `nil` while unbuilt or when none below it exists.
+    public func lookLevel(stationLevel: Int, light: String) -> Int? {
+        guard let wanted = lookLevel(stationLevel: stationLevel) else { return nil }
+        guard let have = lookLevels[Self.lookLight(for: light)] else { return wanted }
+        return have.filter { $0 <= wanted }.max()
     }
 }
 
@@ -477,11 +508,14 @@ extension PlateIsland: Decodable {
     }
 
     private struct RawStation: Decodable {
-        var light: String
+        /// The old keys: one light and its base stages. `lights` wins where both are present.
+        var light: String?
+        var baseStages: [Int]?
+        var lights: [String: [Int]]?
+        var lookLevels: [String: [Int]]?
         var levels: Int
         var box: [Double]
         var foot: [Double]
-        var baseStages: [Int]
         var stages: [String: RawPlace]?
 
         struct RawPlace: Decodable {
@@ -500,10 +534,12 @@ extension PlateIsland: Decodable {
                     )
                 }
             }
+            let perLight = lights ?? [light ?? "day": baseStages ?? []]
             return StationLooks(
-                light: light, levels: levels,
+                levels: levels,
                 box: PlateRect(minX: box[0], minY: box[1], maxX: box[2], maxY: box[3]),
-                foot: PlatePoint(x: foot[0], y: foot[1]), baseStages: baseStages, places: places
+                foot: PlatePoint(x: foot[0], y: foot[1]), lights: perLight,
+                lookLevels: lookLevels ?? [:], places: places
             )
         }
     }

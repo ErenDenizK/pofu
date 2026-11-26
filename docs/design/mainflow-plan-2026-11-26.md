@@ -5,6 +5,9 @@ in Turkish, is [mainflow-plan-2026-11-26-tr.md](mainflow-plan-2026-11-26-tr.md);
 why the studio slowed and what to change is
 [../studio/speed-2026-11-26.md](../studio/speed-2026-11-26.md).
 
+**Amended 2026-11-26 (night)** for founder-input 47 and 48: section 11
+at the end. Rows it changes are marked "(amended, 11)".
+
 **Basis:** pofu `origin/main` 87e4745e (#517), pofu-art `origin/main`
 ee7ec96 (#169), frames on `screenshots/main` (4112443e). Raw facts by two
 scouts are on the lead branch (`docs/research/mainflow-2026-11-26/`).
@@ -121,10 +124,10 @@ Each with the alternative not taken. None needs a new ADR except D5.
 | D5 | **The far view becomes the voyage row** (ADR-0028 from #503, rewritten to his answers of fi 40, 43, 44): she is moored at the island and stays still while the player chooses; the camera pulls back to a row with one island large; a swipe changes the island; "Yola çık" brings the characters onto her back and she flies. The Map stop and its tier frames go. **ADR-0028, accepted in step 2's first PR** | *Keep the Map and add her to it:* G4 stays, and every new island needs a new balance. *#503 as written* (she carries the camera and the world slides under her): he asked that she not move during the choice |
 | D6 | **She is one cut-out per level and state, moved by code** (bob, a squash on landing, eyes by swapping the awake and asleep cut-outs, a separate tail piece that sways) | *Frame animation painted by Codex:* frames do not hold her shape from one to the next. *A skeletal rig:* days of work for a character seen at 150 pt |
 | D7 | **Her level is data:** level 1 when she arrives, 2 when the first island is healed, 3 when the first main island is healed. In `world-map.json`, retuned when islands are added | *Tie her level to seeds:* a ninth station by another name |
-| D8 | **A theme is a grade, a sky set, particles and one small painted dressing set. It never repaints the island.** With D1, a repainted theme is 21 bases and about 90 looks each | *Whole-island theme plates* (the queue brief's item 3): kept only as three target frames to grade towards |
+| D8 | (amended, 11) **A theme is a grade, a sky set, particles and one small painted dressing set. It never repaints the island.** With D1, a repainted theme is 21 bases and about 90 looks each | *Whole-island theme plates* (the queue brief's item 3): kept only as three target frames to grade towards |
 | D9 | **Characters get pose cut-outs (sit, sleep, work, cheer), not walk cycles.** Hops stay as the way they move (decided, fi 44) | *Walk cycles:* decided against |
-| D10 | **Çağlayan is frozen:** bug fixes only, no water work on its falls, no new boards, until he says what changes (Q2) | *Finish its water now:* he said not to |
-| D11 | **Mini-games are frozen.** The four delivered island kits are ingested only when step 5 brings their island | *One more board pass:* 39 % of the art line's deliveries since 11-15 already went there |
+| D10 | (amended, 11) **Çağlayan is frozen:** bug fixes only, no water work on its falls, no new boards, until he says what changes (Q2) | *Finish its water now:* he said not to |
+| D11 | (amended, 11) **Mini-games are frozen.** The four delivered island kits are ingested only when step 5 brings their island | *One more board pass:* 39 % of the art line's deliveries since 11-15 already went there |
 | D12 | **The islands he approved are read as:** Köke and Çağlayan (in the app), then the main islands Revontuli, Emanet, Mehtap (`docs/product/decisions.md` S2). Fillers without art (Çanlar, Martı Kayası and later) are out of this plan | *Ask him which:* the documents agree, and he can correct a list faster than answer a question |
 | D13 | **Verdicts are given on the phone.** Each step has one pilot of two to five jobs judged in the app, then the build; no concept round precedes code (see the speed page, change 3) | *Concept first, then native* (fi 40): three rounds, 205 jobs, two things in the app |
 
@@ -194,7 +197,7 @@ step 2 is merged and Q2 is answered, because the template is Çağlayan's.
 and plays its game. Asked: (1) the island at stages 0, 2 and 4, (2) its
 resident, (3) its board.
 
-### Step 6: seasons (about 2 days)
+### Step 6: seasons (about 2 days) (amended, 11)
 
 As D8, autumn or winter first, after his answer to Q1.
 
@@ -254,8 +257,8 @@ from; the lead writes those briefs when the step before merges.
 | 4a sheet and card style | eye | `App/Home/TodaySheet.swift`, `App/Settings/`, `PofuWorld/Scene/CelebrationCard.swift` | `15-menu-*`, `16-menu-*` regenerated; reference `path-card-station-a` |
 | 4b onboarding | eye | `App/Onboarding/` | `path-onboarding-*` for all eight steps |
 | 5a Revontuli plate and row | eye | `plate-revontuli.json`, its imagesets, route data | `revontuli-plate-full-s0..s4-day/night` |
-| 5b Revontuli arc and game | test | `PofuCore/Game/WonderIslands.swift`, `flow-boards.json`, kit ingest | `FlowAuditTests` reach and heal it; 4 boards solvable |
-| 6a seasons | eye | `PofuWorld/Look/`, `Weather.swift`, a season dressing set | `path-season-autumn-i3`, `-i10`; reference: `x-season-autumn` t2 (batch 25) |
+| 5b (amended, 11) Revontuli arc and game | test | `PofuCore/Game/WonderIslands.swift`, `flow-boards.json`, kit ingest | `FlowAuditTests` reach and heal it; 4 boards solvable |
+| 6a (amended, 11) seasons | eye | `PofuWorld/Look/`, `Weather.swift`, a season dressing set | `path-season-autumn-i3`, `-i10`; reference: `x-season-autumn` t2 (batch 25) |
 
 ## 7. Codex
 
@@ -288,9 +291,9 @@ he vetoes on his phone.
 
 | # | Question | My pick | Picture to send |
 |---|---|---|---|
-| Q1 | **What is a theme?** The season, changing by itself with the calendar for everyone, or a look the player chooses? | The season, by itself; autumn and winter first. A chosen look can come later on the same parts | pofu-art `design/art/takes/batch-25-seasons/x-season-autumn/plate__x-season-autumn--t2.webp` beside `.../x-season-snow/plate__x-season-snow--t2.webp` |
-| Q2 | **What changes on Çağlayan?** Only that island's picture, or the stream game too? The other islands' games are built from the same game | Only the picture; the game stays | `path-d16-caglayan-0907` and `path-game-flow-stage1` from `screenshots/main` |
-| Q3 | **Music now?** He set it for "with the voyage" (fi 44) and the voyage is step 2 | Yes: one calm loop for Home by day and one for night, licensed or commissioned, his choice of source; he sends two tracks he likes | none |
+| Q1 | (answered, 11) **What is a theme?** The season, changing by itself with the calendar for everyone, or a look the player chooses? | The season, by itself; autumn and winter first. A chosen look can come later on the same parts | pofu-art `design/art/takes/batch-25-seasons/x-season-autumn/plate__x-season-autumn--t2.webp` beside `.../x-season-snow/plate__x-season-snow--t2.webp` |
+| Q2 | (answered, 11) **What changes on Çağlayan?** Only that island's picture, or the stream game too? The other islands' games are built from the same game | Only the picture; the game stays | `path-d16-caglayan-0907` and `path-game-flow-stage1` from `screenshots/main` |
+| Q3 | (answered, 11) **Music now?** He set it for "with the voyage" (fi 44) and the voyage is step 2 | Yes: one calm loop for Home by day and one for night, licensed or commissioned, his choice of source; he sends two tracks he likes | none |
 
 And one request, not a question: **play `main` for five minutes after
 each step's note.** That is the plan's clock.
@@ -339,3 +342,58 @@ assign sheet; music production before Q3; TestFlight.
 - The season takes of batch 25, the near art in pofu-art #74 and #89 and
   the menu grounds of batch 165: listed, not judged.
 - The day estimates.
+
+## 11. Amendments (2026-11-26, night; founder-input 47 and 48)
+
+This plan is amended, not replaced (the speed page's change 4). Three
+specs carry the detail:
+[island-calendar-v1.md](island-calendar-v1.md),
+[motion-vocabulary.md](motion-vocabulary.md) and
+[music-system-v1.md](music-system-v1.md).
+
+**How his words answer section 8.**
+
+- **Q1** (what is a theme): neither of my two options. He wants both
+  special days on the real calendar and seasons that are the island's
+  own. No document planned such a season; it is designed now (the
+  island year: seven days a season, counted from the player's first
+  day). One confirming question remains, with a default (calendar Q-A).
+- **Q2** (what changes on Çağlayan): the island's design may change
+  from scratch; the stream game does not change and is frozen. My pick
+  ("only the picture") stands and goes further: the picture is painted
+  again, to the list of what the app can move.
+- **Q3** (music now): yes, and as a line of work of its own, not two
+  bought loops. My pick is withdrawn.
+- **The speed page's change 3** is decided in part. Founder-input 48
+  settles that no work waits for an answer: what agrees with what he
+  has said and can be built is applied, and his large questions come
+  with a picture and a recommendation. It does not settle "no concept
+  rounds": a large direction still gets a picture first (batch 185 is
+  one), and everything else is judged on his phone.
+
+**Decisions changed.**
+
+| Row | Now reads |
+|---|---|
+| D8 | Replaced by the calendar's C3 and C4. A special day is a kit of props, a sky event, a line and a tune, never a repaint. A season is the air, then dressing, then (after a pilot at level 10) the painted island in autumn and winter. A grade alone was tried on the shipped plate and does not read as a season |
+| D10 | Replaced by the motion page's M3 to M5. Çağlayan is painted again to the motion vocabulary, after step 2, as the first job of step 5. The shipped plate stays untouched until then |
+| D11 | Widened by M1 and M2. The stream game is frozen as it is; the four delivered island kits are not ingested; islands arrive without a game |
+
+**Steps changed and added.**
+
+| Step | Change |
+|---|---|
+| 5 | Begins with Çağlayan painted again, once he has chosen from batch 185; Revontuli follows that template. Row 5b loses its kit ingest and its boards |
+| 6 | Becomes the island calendar: C1 (the island year and the special days, tests only), C2 (the season's air), C3 (the New Year kit, on `main` by 20 December), C4 (the painted-season pilot), C5 (dressing). Row 6a is C4 |
+| 7, new | Music: MU1 (the score, the band and three Home tunes) starts now beside the Swift lane; MU2 to MU6 as in the music spec. G10 is closed by this step |
+| beside | V1, the rotor pilot: the Home windmill's sails turn. It answers his question about the wheel on his phone |
+
+**The Swift lane's order from here** (one build at a time): step 1's
+remaining rows; C1 (small, and C3 needs it); step 2; C3 (it has a
+date); V1; step 3; MU2 and MU3; C2; C4; step 4; step 5. MU1, the art
+ingests and every Codex row run beside it.
+
+**Out of scope, added:** board and kit work of any kind; national days;
+seasons on other islands' plates; game music; a sampler or a generator
+for music.
+

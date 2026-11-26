@@ -1,5 +1,6 @@
 import Foundation
 import PofuCore
+import PofuDesignSystem
 
 /// The plate compositor (WP10; world presentation v2 §6.2): what one painted Home state draws, and in which order.
 ///
@@ -27,6 +28,9 @@ public struct PlateCompositor: Hashable, Sendable {
         public var foot: WorldPoint
         /// The foot's plate y: what the look sorts by.
         public var footY: Double
+        /// The state's grade where the look is painted in another light (golden's day look): the harmony tint it
+        /// multiplies by. `nil` where the look is painted in the state's own light.
+        public var grade: PofuRGB?
 
         public var id: String { station }
         public var stationID: StationID { StationID(rawValue: station) }
@@ -81,9 +85,10 @@ public struct PlateCompositor: Hashable, Sendable {
     /// The look a station at `level` draws in this state, or `nil`: no base here, or unbuilt.
     public func look(_ station: String, level: Int) -> Look? {
         guard let art = plate.plate.lookArt(station: station, level: level, light: plate.light, stage: plate.stage),
-              let looks = plate.plate.stations[station], let n = looks.lookLevel(stationLevel: level),
+              let looks = plate.plate.stations[station], let n = looks.lookLevel(stationLevel: level, light: plate.light),
               let frame = plate.lookFrame(station) else { return nil }
-        return Look(station: station, look: n, art: art, box: frame.box, foot: frame.foot, footY: looks.place(stage: plate.stage).foot.y)
+        return Look(station: station, look: n, art: art, box: frame.box, foot: frame.foot, footY: looks.place(stage: plate.stage).foot.y,
+                    grade: StationLooks.lookLight(for: plate.light) == plate.light ? nil : plate.harmony.tint)
     }
 
     /// The looks standing on this state's base, back to front by `footY` (ties by station id).
