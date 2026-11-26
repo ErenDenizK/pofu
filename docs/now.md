@@ -32,7 +32,8 @@ six vertical steps, each done when he plays it on his phone.
    golden IL1/2/8/9, IL3 mist). Paste masks keep the pier bridge/gap.
    #520 (1a) merged (stall frames pixel-identical). 1b merged (#521: windmill
    L2-5 by day at isl. 10/9). Row D51 merged (#182: night 2-5 + L1); l08 picks exist, ingest in 1c.
-   1d #522 in CI; C1 feat/island-year running. Self-wake: his card 3.
+   1d #522 merged-main + pushed 4th, CI running. C1 merged (#526; bayrams: 2027 only,
+   Diyanet). 1c art/station-levels running; 2a+2b brief ready (starts after #522: disk).
 
 1. Fi 38: (a) #503 island progression open (answers fi 39; 137 redoes
    the lower steps; #490 docs waits with it).
