@@ -1,24 +1,17 @@
 import Foundation
 
-/// Where the board sits on a portrait phone, in view points with y down:
-/// a cliff lip at the top, the pool at the bottom, cells of 44 pt or more
-/// (about 70 pt at 5 columns), the block centred between the HUD and the
-/// controls, and undo and hint in the bottom corners.
+/// Where the board sits on a portrait phone, in view points with y down. The
+/// painted backdrop is aspect-filled to the screen, and the board is laid on
+/// its lawn plate (measured by the ingest tool into `flow-kit.json`): the
+/// largest cells that fit the plate, centred in it. The HUD sits over the
+/// rock and fall above, undo and hint over the sky beside the pool below.
 public struct FlowLayout: Equatable, Sendable {
     public static let hudHeight: CGFloat = 56
     public static let controlsHeight: CGFloat = 84
-    public static let poolHeight: CGFloat = 44
-    /// The painted lip (batch 131) is about 9.7 times as wide as tall; its moss rises above the stone.
-    public static let lipHeight: CGFloat = 30
-    /// The clear margin between the screen's sides and anything of the
-    /// board, the pool's rim included.
+    /// The clear margin between the screen's sides and anything of the board.
     public static let gutter: CGFloat = 16
-    /// How far the pool reaches past the board on each side (the cliff lip
-    /// and the bank reach less).
-    public static let poolOverhang: CGFloat = 14
-    /// The pool's rim stroke, drawn half outside its rect.
-    static let rimAllowance: CGFloat = 2
-    public static let maxCell: CGFloat = 88
+    /// The cell is the picture's: a piece is 288 px, which is 96 pt at 3x.
+    public static let maxCell: CGFloat = 96
     /// The smallest touch target (HIG).
     public static let minCell: CGFloat = 44
 
@@ -29,35 +22,38 @@ public struct FlowLayout: Equatable, Sendable {
     public let rows: Int
     public let cell: CGFloat
     public let board: CGRect
+    /// Where the backdrop's picture lies on the screen (aspect-filled, so it may reach past it).
+    public let backdrop: CGRect
+    /// The backdrop's lawn plate on the screen.
+    public let plate: CGRect
 
-    public init(size: CGSize, safeTop: CGFloat, safeBottom: CGFloat, columns: Int, rows: Int) {
+    public init(size: CGSize, safeTop: CGFloat, safeBottom: CGFloat, columns: Int, rows: Int, kit: FlowKit = .shared) {
         self.size = size
         self.safeTop = safeTop
         self.safeBottom = safeBottom
         self.columns = max(1, columns)
         self.rows = max(1, rows)
-        let bottom = size.height - safeBottom - Self.controlsHeight - Self.poolHeight
-        let top = safeTop + Self.hudHeight + Self.lipHeight
-        let fit = min((size.width - 2 * (Self.gutter + Self.poolOverhang + Self.rimAllowance)) / CGFloat(self.columns), (bottom - top) / CGFloat(self.rows))
+        let height = max(size.height, size.width / CGFloat(kit.aspect))
+        let width = height * CGFloat(kit.aspect)
+        // The picture slides sideways until its plate is centred on the screen, as far as it still covers it.
+        let centred = (size.width - width) / 2 + CGFloat(0.5 - (kit.plate.x + kit.plate.width / 2)) * width
+        let originX = width > size.width ? min(0, max(size.width - width, centred)) : (size.width - width) / 2
+        backdrop = CGRect(x: originX, y: (size.height - height) / 2, width: width, height: height)
+        plate = CGRect(
+            x: backdrop.minX + CGFloat(kit.plate.x) * width, y: backdrop.minY + CGFloat(kit.plate.y) * height,
+            width: CGFloat(kit.plate.width) * width, height: CGFloat(kit.plate.height) * height
+        )
+        let fit = min(plate.width / CGFloat(self.columns), plate.height / CGFloat(self.rows))
         cell = max(Self.minCell, min(Self.maxCell, fit.rounded(.down)))
-        let width = cell * CGFloat(self.columns)
-        let height = cell * CGFloat(self.rows)
-        // The cliff, board and pool sit as one block, centred in the clear
-        // space between the HUD and the controls, so the frame has no empty
-        // top. A tall board that fills the space lands where it always did.
-        let spaceTop = safeTop + Self.hudHeight
-        let spaceBottom = size.height - safeBottom - Self.controlsHeight
-        let block = Self.lipHeight + height + Self.poolHeight
-        let blockTop = spaceTop + max(0, (spaceBottom - spaceTop - block) / 2)
-        board = CGRect(x: ((size.width - width) / 2).rounded(), y: (blockTop + Self.lipHeight).rounded(), width: width, height: height)
+        let boardWidth = cell * CGFloat(self.columns)
+        let boardHeight = cell * CGFloat(self.rows)
+        board = CGRect(
+            x: (plate.midX - boardWidth / 2).rounded(), y: (plate.midY - boardHeight / 2).rounded(),
+            width: boardWidth, height: boardHeight
+        )
     }
 
     public func rect(of cell: FlowCell) -> CGRect {
         CGRect(x: board.minX + CGFloat(cell.column) * self.cell, y: board.minY + CGFloat(cell.row) * self.cell, width: self.cell, height: self.cell)
     }
-
-    /// The cliff the spring comes out of, above the board.
-    public var lip: CGRect { CGRect(x: board.minX - 10, y: board.minY - Self.lipHeight, width: board.width + 20, height: Self.lipHeight + 6) }
-    /// The pool the mouths pour into, below the board.
-    public var pool: CGRect { CGRect(x: board.minX - Self.poolOverhang, y: board.maxY - 4, width: board.width + 2 * Self.poolOverhang, height: Self.poolHeight + 4) }
 }

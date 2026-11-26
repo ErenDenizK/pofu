@@ -300,7 +300,7 @@ struct FlowTests {
         #expect(stage4.targets.count == 3)
     }
 
-    /// Every shipped board, pool rim included, keeps the 16 pt side gutter
+    /// Every shipped board, the lawn plate it sits on, keeps the 16 pt side gutter
     /// on the smallest and the largest supported phones.
     @Test func everyBoardKeepsTheSideGutter() throws {
         for width in [375.0, 402.0, 440.0] {
@@ -310,7 +310,7 @@ struct FlowTests {
                     size: CGSize(width: width, height: 874), safeTop: 62, safeBottom: 34,
                     columns: board.columns, rows: board.rows
                 )
-                let outer = [layout.pool, layout.lip, layout.board.insetBy(dx: -6, dy: -6)]
+                let outer = [layout.board]
                 for rect in outer {
                     #expect(rect.minX - 1.5 >= FlowLayout.gutter, "\(record.id) at \(width): \(rect.minX)")
                     #expect(width - rect.maxX - 1.5 >= FlowLayout.gutter, "\(record.id) at \(width): \(rect.maxX)")

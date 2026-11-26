@@ -19,8 +19,8 @@ import SwiftUI
 ///
 /// Gestures: a pinch scrubs the rail between the framings and settles on
 /// the nearest with a spring; a double tap steps in; a one-finger drag
-/// peeks. A tap on a station focuses it and raises its sheet; a tap on a
-/// resident shows their card. With a `WorldHomeModel`, the station sheet
+/// peeks. A tap on a station focuses it and raises its card; a tap on a
+/// resident shows their card. With a `WorldHomeModel`, the station card
 /// builds and the build moment plays in the world.
 public struct IslandScene<Bubble: View>: View {
     let world: WorldSnapshot
@@ -45,10 +45,10 @@ public struct IslandScene<Bubble: View>: View {
 
     /// - Parameters:
     ///   - world: The world to draw.
-    ///   - model: The scene's camera, focus and sheet state.
+    ///   - model: The scene's camera, focus and station card state.
     ///   - home: The visit and its moments; the build moment plays from it.
     ///   - onPofuTap: Called after Pofu's own squish when he is tapped.
-    ///   - onBuild: Builds a station's next level; `nil` shows the sheet's
+    ///   - onBuild: Builds a station's next level; `nil` shows the card's
     ///     button as unavailable.
     ///   - props: The home objects drawn in the world (jar, lantern, pots).
     ///   - onVisitor: Sends the game event of a tap on today's visitor, the
@@ -308,24 +308,7 @@ public struct IslandScene<Bubble: View>: View {
                 model.stepOut()
             }
         }
-        .sheet(item: $model.sheet) { item in
-            StationSheet(
-                station: item.station,
-                status: world.stations.first { $0.id == item.station },
-                jar: world.jar,
-                isBuilding: home?.buildingStation == item.station,
-                playableRounds: model.playableRounds,
-                onPlay: model.onPlay,
-                onBuild: onBuild,
-                onClose: { model.dismissFocus() }
-            )
-            .id(item.station)
-            .transition(.opacity)
-            .presentationDetents(detents, selection: detentSelection)
-            .pofuPaperSheet()
-            .presentationBackgroundInteraction(.enabled(upThrough: .fraction(0.42)))
-            .presentationContentInteraction(.resizes)
-        }
+        .onAppear { model.onBuild = onBuild }
         // A quiet day's letter: pick who comes tomorrow.
         .sheet(isPresented: $model.isInviting) {
             InviteSheet(
@@ -359,40 +342,6 @@ public struct IslandScene<Bubble: View>: View {
             ids.append(.caglayan)
         }
         return ids
-    }
-
-    // MARK: Sheet detents
-
-    private static var compactDetent: PresentationDetent {
-        .height(CGFloat(IslandLayout.compactSheetHeight))
-    }
-
-    /// Compact exists only while a build has the sheet down (§2.3).
-    private var detents: Set<PresentationDetent> {
-        model.sheetDetent == .compact || model.buildFraming != nil
-            ? [Self.compactDetent, .fraction(0.42), .large]
-            : [.fraction(0.42), .large]
-    }
-
-    private var detentSelection: Binding<PresentationDetent> {
-        Binding(
-            get: {
-                switch model.sheetDetent {
-                case .compact: Self.compactDetent
-                case .medium: .fraction(0.42)
-                case .large: .large
-                }
-            },
-            set: { detent in
-                if detent == .large {
-                    model.sheetDetent = .large
-                } else if detent == Self.compactDetent {
-                    model.sheetDetent = .compact
-                } else {
-                    model.sheetDetent = .medium
-                }
-            }
-        )
     }
 }
 
@@ -428,6 +377,8 @@ struct LifeFrame {
     var residents: [String: ResidentLife.Step] = [:]
     /// The painted Home's idle hop now (`PlateHops`), if one is going on.
     var plateHop: PlateHops.Hop?
+    /// Where Pofu and the residents stand on the painted Home now, and their move's hop (`PlateMoves`), by id.
+    var moves: [String: PlateMoves.Placement] = [:]
     /// The frame's time, quantised to the policy's rate; 0 in a still frame.
     var time = 0.0
     /// Dressing mid-puff, with the seconds since it began.
@@ -499,7 +450,9 @@ private struct SceneFrame<Bubble: View>: View {
             of: specs,
             day: day,
             elapsed: elapsed,
-            walkable: IslandFootprint.walkable,
+            // On the painted Home the characters change spots by `PlateMoves`: no walk target search, only the
+            // pose, breath and lean.
+            walkable: model.homePlate == nil ? IslandFootprint.walkable : nil,
             avoid: [IslandLayout.pofu],
             isAmbient: true
         )
@@ -508,7 +461,33 @@ private struct SceneFrame<Bubble: View>: View {
     /// The painted Home's idle hop: one resident at a time, only while the
     /// Ambient state runs, Reduce Motion is off and no frame is pinned or
     /// still. The first frame of each hop tells the app to play its sound.
-    private func plateHop(directive: FrameDirective) -> PlateHops.Hop? {
+    /// Who stands where on the painted Home now (`PlateMoves`): moves run only while the Ambient state is on,
+    /// Reduce Motion is off and no frame is still, and never during a build moment, a focus, a card or sheet,
+    /// the near lens or bedtime. A pinned screenshot replays the visit.
+    private func plateMoves(directive: FrameDirective) -> [String: PlateMoves.Placement] {
+        guard let plate = model.homePlate, model.island == .home else { return [:] }
+        let present = PlateMoves.ids.filter { id in
+            id == "pofu" || (IslandLayout.residents.first { $0.id.rawValue == id }.flatMap { r in world.stations.first { $0.id == r.station } }?.level ?? 0) > 0
+        }
+        var spots = Dictionary(uniqueKeysWithValues: PlateMoves.ids.map { id in
+            (id, plate.plate.spots[id] ?? plate.plate.characters[id].map { [$0] } ?? [])
+        })
+        spots[PlateMoves.visitorID] = plate.plate.spots[PlateMoves.visitorID]
+        let frame: [String: PlateMoves.Placement]
+        if let pinned = residentPin {
+            frame = PlateMoves.replay(day: pinned.day, elapsed: pinned.elapsed, spots: spots, present: present)
+        } else {
+            let calm = !world.isBedtime && build == nil && model.focus == nil && model.card == nil && !model.hasSheet
+                && model.framing != .near && model.projectedFraming != .near
+            let allowed = calm && PlateHops.runs(isAmbient: CritterMotion.moves(under: directive), reduceMotion: model.reduceMotion, isStill: still)
+            let elapsed = clock.timeIntervalSince(model.visitBegan ?? clock)
+            frame = model.plateMoves.advance(day: ResidentLife.day(of: clock), elapsed: elapsed, spots: spots, present: present, allowed: allowed)
+        }
+        model.notePlateMoves(frame, plate: plate)
+        return frame
+    }
+
+    private func plateHop(directive: FrameDirective, moving: Set<String> = []) -> PlateHops.Hop? {
         guard model.homePlate != nil, !world.isBedtime, residentPin == nil, build == nil,
               PlateHops.runs(isAmbient: CritterMotion.moves(under: directive), reduceMotion: model.reduceMotion, isStill: still)
         else { return nil }
@@ -516,18 +495,19 @@ private struct SceneFrame<Bubble: View>: View {
             .filter { resident in (world.stations.first { $0.id == resident.station }?.level ?? 0) > 0 }
             .map(\.id.rawValue)
         let elapsed = clock.timeIntervalSince(model.visitBegan ?? clock)
-        let hop = PlateHops.hop(day: ResidentLife.day(of: clock), elapsed: elapsed, ids: ids)
+        // Whoever is changing spots does not also hop on the spot.
+        let hop = PlateHops.hop(day: ResidentLife.day(of: clock), elapsed: elapsed, ids: ids).flatMap { moving.contains($0.id) ? nil : $0 }
         model.noteIdleHop(slot: hop?.slot)
         return hop
     }
 
     /// The lens's focal plane: the focused station's or resident's foot, else the near rest's row.
-    static func lensFocus(_ focus: SceneFocus?, plate: HomePlate) -> NearLensFrame.Focus {
+    static func lensFocus(_ focus: SceneFocus?, plate: HomePlate, stand: WorldPoint? = nil) -> NearLensFrame.Focus {
         switch focus {
         case .station(let id)?:
             if let foot = plate.objects.first(where: { $0.station == id })?.footY { return .subject(row: foot) }
         case .resident(let id)?:
-            if let feet = plate.residentFeet(id) { return .subject(row: plate.plate(feet).y) }
+            if let feet = stand ?? plate.residentFeet(id) { return .subject(row: plate.plate(feet).y) }
         case nil:
             break
         }
@@ -705,7 +685,7 @@ private struct SceneFrame<Bubble: View>: View {
         // The thin lens over Home's matted plate (WP11): nil at the Map, at mid and in a flight.
         let nearLens: NearLensFrame? = {
             guard let plate, model.island == .home, plateFade > 0.999, plate.isMatted else { return nil }
-            return NearLensFrame.make(plate: plate, pose: pose, width: Double(size.width), height: Double(size.height), offsetX: Double(offset.width), offsetY: Double(offset.height), focus: Self.lensFocus(model.focus, plate: plate))
+            return NearLensFrame.make(plate: plate, pose: pose, width: Double(size.width), height: Double(size.height), offsetX: Double(offset.width), offsetY: Double(offset.height), focus: Self.lensFocus(model.focus, plate: plate, stand: { if case .resident(let id)? = model.focus { model.standing(id.rawValue) } else { nil } }()))
         }()
         // Weather crossfades over 8 s (6 to 10 s, section 2.2).
         let animation: Animation? = still ? nil : .easeInOut(duration: atmosphere.isClear ? 2.5 : 8)
@@ -713,6 +693,8 @@ private struct SceneFrame<Bubble: View>: View {
         let ambientPaused = look.hd2d && !model.needsFrames && build == nil
         // The visit and the lawn's small life: the critters move only in the
         // Ambient state, and a still frame is the rest pose.
+        let moves = plateMoves(directive: directive)
+        let moveStand = plate.flatMap { p in moves["pofu"].map { p.world($0.feet) } }
         let life = LifeFrame(
             visitor: world.visitor,
             invitationOpen: world.invitationOpen,
@@ -721,7 +703,8 @@ private struct SceneFrame<Bubble: View>: View {
             arrival: model.arrivalElapsed(at: clock),
             isAmbient: !still && CritterMotion.moves(under: directive),
             residents: residentSteps(directive: directive),
-            plateHop: plateHop(directive: directive),
+            plateHop: plateHop(directive: directive, moving: Set(moves.filter(\.value.isMoving).keys)),
+            moves: moves,
             time: still ? 0 : FramePolicy.ambientTime(time),
             leaving: model.dressingLeaving(at: clock)
         )
@@ -915,7 +898,9 @@ private struct SceneFrame<Bubble: View>: View {
                     onPofuTap: onPofuTap,
                     part: .body,
                     bubble: bubble,
-                    plate: plate
+                    plate: plate,
+                    moveStand: moveStand,
+                    moveLift: life.moves["pofu"]?.lift ?? 0
                 )
 
                 if let props, plate == nil || plate?.propSpec(.jar) != nil {
@@ -930,7 +915,7 @@ private struct SceneFrame<Bubble: View>: View {
 
                 if let plate {
                     // What Pofu or a prop stands behind is drawn again over it.
-                    let stand = look.pofuStand ?? IslandLayout.pofu
+                    let stand = look.pofuStand ?? moveStand ?? IslandLayout.pofu
                     PlateOccluders(
                         plate: plate,
                         feet: stand,
@@ -1031,7 +1016,9 @@ private struct SceneFrame<Bubble: View>: View {
                 onPofuTap: onPofuTap,
                 part: .overlay,
                 bubble: bubble,
-                plate: plate
+                plate: plate,
+                moveStand: moveStand,
+                moveLift: life.moves["pofu"]?.lift ?? 0
             )
 
             ScreenOverlays(world: world, pose: pose, z: z, size: size, offset: offset, build: build, model: model, plate: plate)
@@ -1312,7 +1299,7 @@ private struct WorldCanvas: View {
         let compositor = PlateCompositor(plate: plate, levels: HomePlate.stationLevels(world))
         for resident in IslandLayout.residents {
             guard let station = world.stations.first(where: { $0.id == resident.station }), station.level > 0,
-                  let feet = plate.residentFeet(resident.id) else { continue }
+                  let feet = life.moves[resident.id.rawValue].map({ plate.world($0.feet) }) ?? plate.residentFeet(resident.id) else { continue }
             objects.append(Object(id: "resident-\(resident.id)", kind: .resident(resident), anchor: feet, depth: IslandLayout.depth(ofY: feet.y)))
             let box = plate.residentBox(art: WorldArt.sprite(resident.art)?.sharp ?? IslandLayout.residentHitBox, at: feet, id: resident.id)
             for object in plate.occluders(over: feet, box: box) {
@@ -1371,6 +1358,7 @@ private struct WorldCanvas: View {
                 let lift = (build.map { $0.moment.station == resident.station ? $0.moment.residentLift(at: $0.time) : 0 } ?? 0)
                     + (reaction?.hop ?? 0)
                     + (life.plateHop?.id == resident.id.rawValue ? life.plateHop?.lift ?? 0 : 0)
+                    + (life.moves[resident.id.rawValue]?.lift ?? 0)
                 let focused = model.focus == .resident(resident.id) || model.focus == .station(resident.station)
                 let pose = build.flatMap { $0.moment.station == resident.station ? $0.moment.residentPose(at: $0.time) : nil }
                     ?? resident.idlePose(isBedtime: world.isBedtime, isFocused: focused,
@@ -2059,6 +2047,9 @@ private struct PofuLayer<Bubble: View>: View {
     /// The painted home plate: Pofu stands on it at its scale, lit from it,
     /// with a contact pad, and his line moves to Home's bottom band.
     var plate: HomePlate?
+    /// Where a move has put him on the plate (`PlateMoves`), and how high his hop lifts him (world units).
+    var moveStand: WorldPoint?
+    var moveLift = 0.0
 
     enum Part {
         case body
@@ -2079,7 +2070,7 @@ private struct PofuLayer<Bubble: View>: View {
     }
 
     var body: some View {
-        let stand = plate == nil ? IslandLayout.pofu : pofuStand ?? IslandLayout.pofu
+        let stand = plate == nil ? IslandLayout.pofu : pofuStand ?? moveStand ?? IslandLayout.pofu
         let depth = IslandLayout.depth(ofY: stand.y)
         let s = pose.scale
         let projected = pose.project(stand, width: Double(size.width))
@@ -2096,6 +2087,7 @@ private struct PofuLayer<Bubble: View>: View {
             x: projected.x + Double(offset.width) + parallaxX,
             y: projected.y + Double(offset.height) + parallaxY
         )
+        // His hop lifts the body; the shadow stays on the ground at `feet`.
         let level = lens.blurLevel(depth: depth)
         let weights = DepthWeights(level: level)
         // The painted body above z 0.55, the pin below 0.25 (§1.6).
@@ -2103,6 +2095,7 @@ private struct PofuLayer<Bubble: View>: View {
         let bubbleOpacity = model.focus == nil && plate == nil ? min(max((z - 1.6) / 0.3, 0), 1) : 0
         // On the plate he is drawn at its scale, in its light.
         let drawn = s * (plate?.characterScale ?? 1)
+        let airborne = CGPoint(x: feet.x, y: feet.y - CGFloat(moveLift * s))
         let rigArt = CompanionArt.placeholder
         let pofuLight = plate.map { p -> HomePlate.CharacterLight in
             let aspect = (rigArt?.rig ?? CompanionRig.hamster).aspectRatio
@@ -2123,18 +2116,18 @@ private struct PofuLayer<Bubble: View>: View {
                         .opacity(painted)
                 }
                 if let sprite = WorldArt.sprite("pofu") {
-                    DepthImage(name: "pofu", sprite: sprite, level: level, anchor: feet, scale: CGFloat(drawn), opacity: painted, skipsSharp: true, grade: light)
+                    DepthImage(name: "pofu", sprite: sprite, level: level, anchor: airborne, scale: CGFloat(drawn), opacity: painted, skipsSharp: true, grade: light)
                         .colorMultiply(paint)
                 }
                 if weights.sharp * painted > DepthWeights.visibleThreshold {
-                    companion(feet: feet, scale: drawn)
+                    companion(feet: airborne, scale: drawn)
                         .colorMultiply(paint)
                         .opacity(weights.sharp * painted)
                     if let pofuLight, let base = rigArt?.base {
                         let rig = rigArt?.rig ?? CompanionRig.hamster
                         let w = Self.artWidth * drawn, h = w / rig.aspectRatio
                         CharacterLightLayers(image: Image(decorative: base, scale: 1), size: CGSize(width: w, height: h), light: pofuLight)
-                            .position(x: feet.x - CGFloat(w * rig.ground.x) + CGFloat(w / 2), y: feet.y - CGFloat(h * rig.ground.y) + CGFloat(h / 2))
+                            .position(x: airborne.x - CGFloat(w * rig.ground.x) + CGFloat(w / 2), y: airborne.y - CGFloat(h * rig.ground.y) + CGFloat(h / 2))
                             .opacity(weights.sharp * painted)
                     }
                 }
@@ -2197,9 +2190,10 @@ private struct PofuLayer<Bubble: View>: View {
             celebrations: celebrations,
             art: art,
             onTap: {
-                if model.focus != nil || model.sheet != nil {
+                if model.focus != nil || model.card != nil {
                     model.dismissFocus()
                 } else {
+                    model.onPofuPoke?()
                     onPofuTap?()
                 }
             }
@@ -2282,6 +2276,8 @@ private struct ScreenOverlays: View {
     /// The painted home plate, when it shows: the tag stands over its painted object.
     var plate: HomePlate?
 
+    @AppStorage(StationCardVariant.storageKey) private var variantRaw = StationCardVariant.standard.rawValue
+
     var body: some View {
         let labels = 1 - min(max((z - 0.2) / 0.25, 0), 1)
         ZStack(alignment: .topLeading) {
@@ -2334,8 +2330,35 @@ private struct ScreenOverlays: View {
             if case .resident(let id) = model.focus, let resident = IslandLayout.resident(id) {
                 residentCard(resident)
             }
+            // The station's card hangs by it; it is hidden while the build moment runs.
+            if let item = model.card, model.buildFraming == nil, model.island == .home, let rect = stationRect(item.station) {
+                StationCardPlacement(
+                    station: item.station,
+                    anchor: rect,
+                    size: size,
+                    status: world.stations.first { $0.id == item.station },
+                    jar: world.jar,
+                    playableRounds: model.playableRounds,
+                    onPlay: model.onPlay,
+                    onBuild: model.onBuild,
+                    variant: StationCardVariant(rawValue: variantRaw) ?? .standard,
+                    expanded: model.cardExpanded,
+                    onTogglePill: { model.cardExpanded.toggle() }
+                )
+                .id(item.station)
+            }
         }
         .frame(width: size.width, height: size.height, alignment: .topLeading)
+        .animation(.spring(duration: 0.25, bounce: 0), value: model.card)
+        .animation(.spring(duration: 0.25, bounce: 0), value: model.buildFraming)
+    }
+
+    /// A station's painted object on screen.
+    private func stationRect(_ station: StationID) -> CGRect? {
+        guard let box = plate?.stationBox(station) ?? IslandFraming.stationBox(station) else { return nil }
+        let a = screenPoint(WorldPoint(x: box.minX, y: box.minY))
+        let b = screenPoint(WorldPoint(x: box.maxX, y: box.maxY))
+        return CGRect(x: min(a.x, b.x), y: min(a.y, b.y), width: abs(b.x - a.x), height: abs(b.y - a.y))
     }
 
     /// Home's own life shows only on Home, close enough to see it, with no
@@ -2544,7 +2567,8 @@ private struct ScreenOverlays: View {
     }
 
     private func residentCard(_ resident: IslandLayout.Resident) -> some View {
-        let feet = screenPoint(resident.feet)
+        // The card's tail points at them where they stand now, not at their painted spot.
+        let feet = screenPoint(model.standing(resident.id.rawValue) ?? resident.feet)
         let width: CGFloat = 232
         let x = min(max(feet.x, 12 + width / 2), size.width - 12 - width / 2)
         let status = world.stations.first { $0.id == resident.station }

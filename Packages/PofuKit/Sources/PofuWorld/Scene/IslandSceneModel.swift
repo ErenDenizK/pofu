@@ -9,26 +9,13 @@ public enum SceneFocus: Hashable, Sendable {
     case resident(ResidentID)
 }
 
-/// The station sheet's detents (interaction spec §2.3): compact is used
-/// only while building.
-public enum StationSheetDetent: Hashable, Sendable {
-    case compact
-    case medium
-    case large
-}
-
-/// The station whose sheet is up. The identity is constant, so a tap on
-/// another station swaps the sheet's content in place instead of
-/// dismissing and presenting again (§2.3).
-public struct StationSheetItem: Identifiable, Hashable, Sendable {
+/// The station whose card hangs by it. A tap on another station swaps the
+/// station in place, so the card moves instead of closing and opening.
+public struct StationCardItem: Hashable, Sendable {
     public var station: StationID
 
     public init(station: StationID) {
         self.station = station
-    }
-
-    public var id: String {
-        "station"
     }
 }
 
@@ -86,12 +73,12 @@ public final class IslandSceneModel {
     func reportPlaceControl(id: UUID, frame: CGRect?) {
         placeControlFrames[id] = frame
     }
-    /// The station sheet; setting it to `nil` (a swipe down) returns the
-    /// camera.
-    public var sheet: StationSheetItem? {
+    /// The station card; setting it to `nil` (a tap on empty ground) returns
+    /// the camera.
+    public var card: StationCardItem? {
         didSet {
-            if sheet == nil {
-                sheetDetent = .medium
+            if card == nil {
+                cardExpanded = false
                 buildFraming = nil
                 if case .station = focus {
                     releaseFocus()
@@ -106,9 +93,12 @@ public final class IslandSceneModel {
     /// Starts the garden game; `nil` until Home sets it. The sheet's
     /// "Play" calls it.
     public var onPlay: (@MainActor () -> Void)?
+    /// Builds a station's next level; the scene sets it from its own `onBuild`.
+    @ObservationIgnored public var onBuild: (@MainActor (StationID) -> Void)?
 
-    /// The sheet's detent; the build moment drops it to compact.
-    public var sheetDetent: StationSheetDetent = .medium
+    /// The Hap variant's pill, opened in place into the full card. Always
+    /// false for the Etiket variant.
+    public var cardExpanded = false
 
     /// The station the build moment has the camera pushed in on.
     public private(set) var buildFraming: StationID?
@@ -225,6 +215,8 @@ public final class IslandSceneModel {
     /// is the sound's level, 0...1) or a tapped resident's (1). The app maps
     /// it to `SoundCue.pofuHop` and its settings; the sound engine rate-limits.
     @ObservationIgnored public var onHop: (@MainActor (_ level: Double) -> Void)?
+    /// Pofu was tapped with nothing open (the app plays his voice).
+    @ObservationIgnored public var onPofuPoke: (@MainActor () -> Void)?
     /// The last idle-hop slot that sounded, so each hop sounds once.
     @ObservationIgnored private var lastHopSlot: Int?
     /// A quiet day's invitation sheet is up.
@@ -300,6 +292,32 @@ public final class IslandSceneModel {
         onHop?(PlateHops.soundLevel)
     }
 
+    /// Who stands where on the painted Home (`PlateMoves`), advanced by the scene each frame.
+    @ObservationIgnored var plateMoves = PlateMoves.State()
+    /// Where Pofu and the residents stand now, in world units, by id; empty until the scene has drawn.
+    @ObservationIgnored private(set) var plateStands: [String: WorldPoint] = [:]
+    @ObservationIgnored private var lastMoveHop: Int?
+
+    /// The scene's frame: where everyone stands now, and the first sighting of a hop plays its quiet sound.
+    func notePlateMoves(_ frame: [String: PlateMoves.Placement], plate: HomePlate) {
+        plateStands = frame.mapValues { plate.world($0.feet) }
+        let hop = frame.values.compactMap(\.hop).first
+        if let hop, hop != lastMoveHop { onHop?(PlateMoves.soundLevel) }
+        lastMoveHop = hop
+    }
+
+    /// Stands `id` at `feet` for a screenshot of a card opened over a character who has changed spots.
+    public func stand(_ id: String, at feet: WorldPoint) {
+        plateStands[id] = feet
+    }
+
+    /// Where `id` ("pofu", "mochi", "findik") stands now: on its move's spot or in it, else its painted spot.
+    func standing(_ id: String) -> WorldPoint? {
+        if let stand = plateStands[id] { return stand }
+        if id == "pofu" { return IslandLayout.pofu }
+        return homePlate?.residentFeet(ResidentID(rawValue: id))
+    }
+
     /// `event` shows on `ids` now.
     public func react(_ event: ResidentEvent, for ids: [String], at now: Date = Date()) {
         reactions.add(event, for: ids, at: now)
@@ -341,7 +359,7 @@ public final class IslandSceneModel {
         arrivalStart = now
         holdMoment(seconds: VisitorStage.momentSeconds, from: now)
         // The pan: only where the camera can show the slot.
-        guard island == .home, framing != .map, focus == nil, sheet == nil, engine.rig.pinchStart == nil else { return true }
+        guard island == .home, framing != .map, focus == nil, card == nil, engine.rig.pinchStart == nil else { return true }
         // The establishing shot gives way to the arrival.
         establishTask?.cancel()
         // On the plate the visitor stands at the plate's spot, not the sprite island's slot.
@@ -353,7 +371,7 @@ public final class IslandSceneModel {
         arrivalTask?.cancel()
         arrivalTask = Task { @MainActor [weak self] in
             try? await Task.sleep(for: .seconds(VisitorStage.momentSeconds))
-            guard let self, !Task.isCancelled, self.arrivalStart != nil, self.focus == nil, self.sheet == nil else { return }
+            guard let self, !Task.isCancelled, self.arrivalStart != nil, self.focus == nil, self.card == nil else { return }
             self.arrivalStart = nil
             self.travel { $0.releaseFocus() }
             self.kick()
@@ -374,7 +392,7 @@ public final class IslandSceneModel {
         arrivalTask?.cancel()
         arrivalTask = nil
         arrivalStart = nil
-        if releasing, focus == nil, sheet == nil, engine.rig.isFocused {
+        if releasing, focus == nil, card == nil, engine.rig.isFocused {
             travel { $0.releaseFocus() }
         }
     }
@@ -516,8 +534,9 @@ public final class IslandSceneModel {
         kick()
     }
 
+    /// Whether a station card is up (the name stays: the app asks it of the scene).
     public var hasSheet: Bool {
-        sheet != nil
+        card != nil
     }
 
     /// The rail position now, clamped to the framings.
@@ -603,7 +622,7 @@ public final class IslandSceneModel {
     /// A double tap on a station also opens its sheet, so this waits for
     /// the surfaces to be closed.
     public func stepIn() {
-        guard focus == nil, sheet == nil else { return }
+        guard focus == nil, card == nil else { return }
         go(to: framing.stepIn ?? .mid)
     }
 
@@ -611,7 +630,7 @@ public final class IslandSceneModel {
     /// his feet at 0.60 of the height and moved up to 0.12 of the width away from the side he
     /// faces; elsewhere one framing in.
     public func doubleTapped(x: Double, y: Double) {
-        guard focus == nil, sheet == nil, island == .home else {
+        guard focus == nil, card == nil, island == .home else {
             stepIn()
             return
         }
@@ -634,10 +653,10 @@ public final class IslandSceneModel {
     func characterFeet(near world: WorldPoint) -> (feet: WorldPoint, facesLeft: Bool)? {
         var found: [(feet: WorldPoint, facesLeft: Bool, box: WorldBox)] = []
         let pofuWidth = HomePlate.pofuArtWidth * (homePlate?.characterScale ?? 1)
-        let pofu = IslandLayout.pofu
+        let pofu = standing("pofu") ?? IslandLayout.pofu
         found.append((pofu, false, WorldBox(minX: pofu.x - pofuWidth / 2, minY: pofu.y - pofuWidth * 66 / 64, maxX: pofu.x + pofuWidth / 2, maxY: pofu.y)))
         for resident in IslandLayout.residents {
-            let feet = homePlate?.residentFeet(resident.id) ?? resident.feet
+            let feet = standing(resident.id.rawValue) ?? resident.feet
             let w = 30 * (homePlate?.residentScale(resident.id) ?? 1)
             found.append((feet, feet.x > pofu.x, WorldBox(minX: feet.x - w / 2, minY: feet.y - w * 1.3, maxX: feet.x + w / 2, maxY: feet.y)))
         }
@@ -759,7 +778,7 @@ public final class IslandSceneModel {
     /// A dragging finger at screen point (`x`, `y`) touches the island
     /// (§1.3): at the Island framing and closer, with nothing focused.
     func brush(x: Double, y: Double, at time: Date) {
-        guard engine.rig.layerPosition >= TouchField.minimumZ, focus == nil, sheet == nil, !isInviting, engine.rig.pinchStart == nil else { return }
+        guard engine.rig.layerPosition >= TouchField.minimumZ, focus == nil, card == nil, !isInviting, engine.rig.pinchStart == nil else { return }
         let world = engine.rig.pose.unproject(
             x: x - engine.rig.offsetX.value,
             y: y - engine.rig.offsetY.value,
@@ -849,13 +868,15 @@ public final class IslandSceneModel {
             engine.rig.focus(pose: pose, lens: lens)
             engine.rig.snapToTargets()
         }
-        sheet = StationSheetItem(station: id)
+        if card?.station != id { cardExpanded = false }
+        card = StationCardItem(station: id)
         kick()
     }
 
     /// On the plate, a station's painted object centred between the top
-    /// band and the sheet, filling at most 80 % of either side.
-    private func plateFocusPose(_ id: StationID, sheetFraction: Double = 0.42) -> CameraPose? {
+    /// band and the room kept below it for its card (`cardFraction` of the
+    /// height), filling at most 80 % of either side.
+    private func plateFocusPose(_ id: StationID, sheetFraction: Double = 0.28) -> CameraPose? {
         guard let box = homePlate?.stationBox(id) else { return nil }
         let width = engine.rig.rail.width, height = engine.rig.rail.height
         let top = engine.safeTop + 100
@@ -868,14 +889,17 @@ public final class IslandSceneModel {
     /// sheet, a resident means their station.
     public func focusResident(_ id: ResidentID, animated: Bool = true) {
         guard let resident = IslandLayout.resident(id) else { return }
-        if sheet != nil {
+        if card != nil {
             focusStation(resident.station, animated: animated)
             return
         }
         // From another resident, start from the rail's pose so the ×1.3
         // does not compound.
         let from = engine.rig.rail.pose(of: .mid)
-        let plateFeet = homePlate?.residentFeet(id)
+        // Whoever is in the air lands first, so the camera and the card meet them where they stand.
+        plateMoves.settle()
+        if let plate = homePlate, let at = plateMoves.at[id.rawValue] { plateStands[id.rawValue] = plate.world(at) }
+        let plateFeet = homePlate == nil ? nil : standing(id.rawValue)
         guard let pose = plateFeet.map({ feet in
             CameraPose(
                 logScale: from.logScale + log(1.3),
@@ -908,7 +932,7 @@ public final class IslandSceneModel {
 
     /// Closes the sheet or the card and returns the camera (§2.5).
     public func dismissFocus() {
-        guard focus != nil || sheet != nil else { return }
+        guard focus != nil || card != nil else { return }
         closeSurfaces()
         kick()
     }
@@ -923,8 +947,8 @@ public final class IslandSceneModel {
         cancelArrival(releasing: false)
         focus = nil
         residentLine = nil
-        if sheet != nil {
-            sheet = nil
+        if card != nil {
+            card = nil
         }
         travel { $0.releaseFocus() }
     }
@@ -984,7 +1008,7 @@ public final class IslandSceneModel {
             ? (flowIsland.isArrived ? [HitTarget(kind: .caglayan, worldBox: CaglayanLayout.tapBox, depth: 0)] : [])
             : homePlate.map { plate in
                 WorldHitTest.plateTargets(
-                    plate, stations: stations, z: rig.layerPosition,
+                    plate, stations: stations, z: rig.layerPosition, stands: plateStands,
                     visitor: visitor, invitationOpen: invitationOpen, isBedtime: isBedtime,
                     koke: wonder.isArrived ? .arrived : .none,
                     caglayan: flowIsland.isArrived ? .arrived : .none
@@ -994,7 +1018,7 @@ public final class IslandSceneModel {
                 koke: wonder.isArrived ? .arrived : .none,
                 caglayan: flowIsland.isArrived ? .arrived : .none
             )
-        if focus != nil || sheet != nil {
+        if focus != nil || card != nil {
             // Behind a card or a sheet the home objects and the visit step aside.
             targets.removeAll {
                 switch $0.kind {
@@ -1012,7 +1036,12 @@ public final class IslandSceneModel {
             offset: (rig.offsetX.value, rig.offsetY.value)
         )
         guard let hit else {
-            if focus != nil || sheet != nil {
+            // The Hap pill, open: the first tap outside closes it back to the pill.
+            if cardExpanded {
+                cardExpanded = false
+                return
+            }
+            if focus != nil || card != nil {
                 // A tap outside a transient surface dismisses it and is
                 // consumed (§7.3).
                 dismissFocus()
@@ -1127,7 +1156,7 @@ public final class IslandSceneModel {
     /// Whether a one-finger drag pans the camera (ADR-0027): at near, on Home, with nothing
     /// focused; at the Map and mid it peeks.
     var pansIsland: Bool {
-        island == .home && engine.rig.isNear && focus == nil && sheet == nil && engine.rig.pinchStart == nil
+        island == .home && engine.rig.isNear && focus == nil && card == nil && engine.rig.pinchStart == nil
     }
 
     func peekChanged(dx: Double, dy: Double) {
@@ -1200,7 +1229,7 @@ public final class IslandSceneModel {
         engine.rig.jump(to: .mid)
         let rig = engine.rig
         let shot = NearShot.rest(width: rig.rail.width, height: rig.rail.height, facesLeft: false)
-        engine.rig.rest(on: IslandLayout.pofu, screenX: shot.x, screenY: shot.y, animated: false)
+        engine.rig.rest(on: standing("pofu") ?? IslandLayout.pofu, screenX: shot.x, screenY: shot.y, animated: false)
         engine.rig.snapToTargets()
         framing = .near
         projectedFraming = .near
@@ -1530,7 +1559,7 @@ extension IslandSceneModel {
         presentLevel(active.moment.toLevel)
         let settlesAtIsland = growSettlesAtIsland
         growSettlesAtIsland = false
-        guard focus == nil, sheet == nil, engine.rig.pinchStart == nil else {
+        guard focus == nil, card == nil, engine.rig.pinchStart == nil else {
             kick()
             return
         }
@@ -1607,7 +1636,6 @@ extension IslandSceneModel: WorldCamera {
                 )
         else { return }
         buildFraming = station
-        sheetDetent = .compact
         focus = .station(station)
         let lens = Lens.station(depth: IslandLayout.depth(ofY: anchor.y))
         travel { $0.focus(pose: pose, lens: lens, camera: $0.springs.buildPush.token) }
@@ -1629,8 +1657,7 @@ extension IslandSceneModel: WorldCamera {
         buildFraming = nil
         // The ceremony is over: the station's resident is proud of it for a while.
         react(.ceremonyDone, for: ResidentReactions.cast(of: station))
-        guard sheet?.station == station else { return }
-        sheetDetent = .medium
+        guard card?.station == station else { return }
         let plateAnchor = homePlate?.stationBox(station).map { WorldPoint(x: $0.midX, y: $0.maxY) }
         guard
             let anchor = plateAnchor ?? IslandLayout.stationAnchors[station],

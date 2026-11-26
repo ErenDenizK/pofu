@@ -1,0 +1,1 @@
+Changed: on the painted Home, Pofu, Mochi and Fındık now hop between a few spots on the lawn every now and then (never during a card, build or bedtime), and taps, cards and shadows follow where they stand.

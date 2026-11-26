@@ -19,7 +19,9 @@ import XCTest
 ///   appeared (the harbor, the rumour, Koke, Çağlayan);
 /// - `path-dNN-koke-0907`, `path-dNN-caglayan-0907`: the wonder island's stop on the
 ///   days the run visits it (its arrival and each stage), after the visit;
-/// - `path-sheet-today`, `path-sheet-station`: the sheets over the painted Home (day 5);
+/// - `path-sheet-today`: the sheet over the painted Home (day 5);
+/// - `path-card-station-a`, `-b`, `-b-open`, `-a-edge-left`, `-a-edge-right`, `-a-refused`, `-a-night`, `path-card-garden-a`:
+///   the station card by the tea stall (day 5), in both variants and its edge cases;
 /// - `path-d04-grow-0000`, `-1500`, `-2400`: "Ada büyüdü" by a build, at 0.0, 1.5 and 2.4 s of its moment
 ///   (the old painting whole and held, mid cross-fade with the bloom, the new painting with the "Ada n" card);
 /// - `path-d03-grew-0900`: the overnight landing on the old painting, Pofu's news line and its button;
@@ -28,6 +30,7 @@ import XCTest
 ///   and the station's burst, over the held old painting;
 /// - `path-d04-near-rest`: near at rest on Pofu, full size (the thin lens, WP11);
 /// - `path-game-garden-midround`, `path-game-flow-stage1`: the minigames;
+/// - `path-home-pass-pill`: Home with a running pass, the glass pill top leading;
 /// - `path-hop-instagram-1200`: the Door, the midday reach for Instagram (the Hop screen the player meets);
 /// - `path-onboarding-welcome`, `-apps`, `-name`, `-notifications`.
 ///
@@ -232,21 +235,82 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
         let folder = try outputFolder()
         let day = Self.path[4]
         let model = AppModel.shared
-        let status = day.morning.stations.first { $0.id == .teaStall }
-        for (name, fraction) in [("path-sheet-today", 0.9), ("path-sheet-station", 0.5)] {
+        for (name, fraction) in [("path-sheet-today", 0.9)] {
             let island = IslandSceneModel(framing: .mid)
             let back = homeView(day.morning, hour: 11, island: island, settled: true)
-            let view: AnyView
-            if name == "path-sheet-today" {
-                view = AnyView(PathSheetFrame(fraction: fraction, back: AnyView(back)) { TodaySheet(model: model, hourOverride: 11) })
-            } else {
-                view = AnyView(PathSheetFrame(fraction: fraction, back: AnyView(back)) {
-                    StationSheet(station: .teaStall, status: status, jar: day.morning.jar, onBuild: { _ in }, onClose: {})
-                })
-            }
+            let view = AnyView(PathSheetFrame(fraction: fraction, back: AnyView(back)) { TodaySheet(model: model, hourOverride: 11) })
             try await capture(view, name: name, scene: scene, folder: folder, settle: 2100) {
                 XCTAssertNotNil(island.homePlate, "\(name): the sheet sits over the painted Home")
             }
+        }
+    }
+
+    /// The station card, in its two variants, as the player meets it on day 5: the tea stall, Hap opened, the
+    /// leftmost and rightmost stations, a refused build, the night plate and the garden's play.
+    @MainActor
+    func testRenderTheStationCards() async throws {
+        let scene = try windowScene()
+        let folder = try outputFolder()
+        let day = Self.path[4]
+        let defaults = UserDefaults.standard
+        defer { defaults.removeObject(forKey: StationCardVariant.storageKey) }
+        let plate = paintedAs(day.morning, level: day.morning.islandLevel, hour: 11)
+        let built = day.morning.stations.filter { $0.level > 0 && plate?.stationBox($0.id) != nil }
+        let byX = built.sorted { (plate?.stationBox($0.id)?.midX ?? 0) < (plate?.stationBox($1.id)?.midX ?? 0) }
+        guard let left = byX.first?.id, let right = byX.last?.id else { return XCTFail("no built stations on the plate") }
+        var poor = day.morning
+        poor.jar = Energy(1)
+        XCTAssertNotNil(poor.stations.first { $0.id == .teaStall }?.nextCost, "the tea stall has a next level to be refused")
+        let frames: [(name: String, variant: StationCardVariant, station: StationID, world: WorldSnapshot, hour: Double, open: Bool)] = [
+            ("path-card-station-a", .tag, .teaStall, day.morning, 11, false),
+            ("path-card-station-b", .pill, .teaStall, day.morning, 11, false),
+            ("path-card-station-b-open", .pill, .teaStall, day.morning, 11, true),
+            ("path-card-station-a-edge-left", .tag, left, day.morning, 11, false),
+            ("path-card-station-a-edge-right", .tag, right, day.morning, 11, false),
+            ("path-card-station-a-refused", .tag, .teaStall, poor, 11, false),
+            ("path-card-station-a-night", .tag, .teaStall, day.morning, 22, false),
+            ("path-card-garden-a", .tag, .garden, day.morning, 11, false),
+        ]
+        for frame in frames {
+            defaults.set(frame.variant.rawValue, forKey: StationCardVariant.storageKey)
+            let island = IslandSceneModel(framing: .mid)
+            let view = homeView(frame.world, hour: frame.hour, island: island, settled: true)
+            let focus = PathFlip(waiting: 1500) {
+                // Home sets these from its actions on appear; the frame wants the garden's door open.
+                island.playableRounds = 2
+                island.onPlay = {}
+                island.focusStation(frame.station, animated: false)
+                island.cardExpanded = frame.open
+            }
+            try await capture(AnyView(view), name: frame.name, scene: scene, folder: folder, settle: 2100, flip: focus) {
+                XCTAssertEqual(island.card?.station, frame.station, "\(frame.name): the card hangs by its station")
+            }
+        }
+    }
+
+    /// A running pass on the painted Home: the glass pill top leading, level with the gear
+    /// (`HomeView` places the same view the same way).
+    @MainActor
+    func testRenderThePassPill() async throws {
+        let scene = try windowScene()
+        let folder = try outputFolder()
+        let day = Self.path[4]
+        let island = IslandSceneModel(framing: .mid)
+        let back = homeView(day.morning, hour: 11, island: island, settled: true)
+        let view = ZStack {
+            back
+            VStack {
+                HStack {
+                    PassPill(app: .instagram, fallbackName: "instagram", minutesLeft: 4, refund: Energy(3), onEnd: {})
+                    Spacer(minLength: 0)
+                }
+                .padding(.top, PofuSpacing.s)
+                Spacer(minLength: 0)
+            }
+            .padding(.horizontal, PofuSpacing.screen)
+        }
+        try await capture(AnyView(view), name: "path-home-pass-pill", scene: scene, folder: folder, settle: 2100) {
+            XCTAssertNotNil(island.homePlate, "the pill sits over the painted Home")
         }
     }
 
@@ -418,8 +482,8 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
         }
     }
 
-    /// The plate compositor (WP10): island 3 at noon, the tea stall at level 3, Pofu stood just behind the stall's
-    /// foot and just in front of it (`path-stall-pofu-behind`, `-front`: the look sorts with him by `footY`), and the
+    /// The plate compositor (WP10): island 3 at noon, the tea stall at level 3, Pofu stood at the nearest of his spots to the stall's
+    /// foot and just in front of it (`path-stall-pofu-nearest-spot`, `-front`: the look sorts with him by `footY`), and the
     /// same state on the Map (`path-stall-map-l3`: the far picture, a snapshot of the composite). The snapshot's
     /// render time is printed (`FarSnapshot:`), cold and warm.
     @MainActor
@@ -438,8 +502,13 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
         let compositor = PlateCompositor(plate: plate, levels: HomePlate.stationLevels(world))
         let look = try XCTUnwrap(compositor.looks.first { $0.station == "teaStall" }, "island 3 has the stall's look")
         let x = plate.plate(look.foot).x
-        for (name, dy) in [("path-stall-pofu-behind", -26.0), ("path-stall-pofu-front", 30.0)] {
-            let stand = plate.world(PlatePoint(x: x - 8, y: look.footY + dy))
+        // Pofu at the nearest of his spots to the stall's foot (whole: his spots are clear of every taller occluder),
+        // and just in front of the stall's foot.
+        let nearest = try XCTUnwrap(plate.plate.spots["pofu"]?.min { a, b in
+            hypot(a.x - x, a.y - look.footY) < hypot(b.x - x, b.y - look.footY)
+        })
+        for (name, at) in [("path-stall-pofu-nearest-spot", nearest), ("path-stall-pofu-front", PlatePoint(x: x - 8, y: look.footY + 30))] {
+            let stand = plate.world(at)
             let island = IslandSceneModel(framing: .mid)
             let view = homeView(world, hour: 12, island: island, settled: true, pofuStand: stand)
             try await capture(AnyView(view), name: name, scene: scene, folder: folder, settle: 2100) {
@@ -458,6 +527,71 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
         }
         try await map(next, hour: 12, name: "path-stall-map-l4", scene: scene, folder: folder)
         print("FarSnapshot: warm, last \(FarSnapshot.lastRenderMilliseconds ?? -1) ms, \(FarSnapshot.renders) renders in all")
+    }
+
+    /// The day-10 island's characters seen at more than one spot: `path-life-d10-1...6`, one visit pinned at six
+    /// seconds (everyone on their painted spot; one hop in the air; each of the three after their move), and
+    /// `path-card-resident-moved`, Mochi's or Fındık's card opened at a spot that is not the painted one.
+    @MainActor
+    func testRenderTheCharactersChangingSpots() async throws {
+        let scene = try windowScene()
+        let folder = try outputFolder()
+        let day = Self.path[9]
+        let world = day.morning
+        let plate = try XCTUnwrap(paintedAs(world, level: world.islandLevel, hour: 12))
+        let spots = plate.plate.spots
+        let built: (StationID) -> Bool = { station in (world.stations.first { $0.id == station }?.level ?? 0) > 0 }
+        let present = ["pofu"] + (built(.teaStall) ? ["mochi"] : []) + (built(.workshop) ? ["findik"] : [])
+        // Who stands on the day-10 plate follows the built stations; the strip shows every one of them moving.
+        let movers = present.count
+        XCTAssertGreaterThanOrEqual(movers, 2, "day 10 has Pofu and at least one resident")
+        let first = ResidentLife.day(of: world.clock ?? day.morningAt)
+        // A pinned day whose first moves are each a different character, over the first five minutes.
+        var picked: (day: Int, moves: [PlateMoves.Move])?
+        for candidate in first..<(first + 200) {
+            var state = PlateMoves.State()
+            var moves: [PlateMoves.Move] = []
+            var t = 0.0
+            while t < 300, moves.count < movers {
+                state.advance(day: candidate, elapsed: t, spots: spots, present: present, allowed: true)
+                if let move = state.active, !moves.contains(where: { $0.slot == move.slot }) { moves.append(move) }
+                t += 0.05
+            }
+            if moves.count == movers, Set(moves.map(\.id)).count == movers {
+                picked = (candidate, moves)
+                break
+            }
+        }
+        let chosen = try XCTUnwrap(picked, "a day whose first moves are each a different character")
+        let a = chosen.moves[0], b = chosen.moves[1]
+        var times = [
+            1.0,
+            a.start + PlateMoves.hopSeconds / 2,
+            a.start + a.duration + 1,
+            b.start + PlateMoves.hopSeconds / 2,
+            b.start + b.duration + 1,
+        ]
+        if let c = chosen.moves.dropFirst(2).first { times.append(c.start + c.duration + 1) }
+        for (index, t) in times.enumerated() {
+            let island = IslandSceneModel(framing: .mid)
+            let view = homeView(world, hour: 12, island: island, settled: true)
+                .environment(\.worldResidentPin, ResidentLife.Pin(day: chosen.day, elapsed: t))
+            try await capture(AnyView(view), name: "path-life-d10-\(index + 1)", scene: scene, folder: folder, settle: 2100) {
+                XCTAssertNotNil(island.homePlate, "path-life-d10-\(index + 1): Home is its painting")
+            }
+        }
+
+        // Mochi's or Fındık's card, a little after their move, over the spot they stand on now.
+        let mover = try XCTUnwrap(chosen.moves.first { $0.id != "pofu" })
+        let after = mover.start + mover.duration + 1
+        let island = IslandSceneModel(framing: .mid)
+        island.setHomePlate(plate)
+        island.stand(mover.id, at: plate.world(mover.to))
+        island.focusResident(ResidentID(rawValue: mover.id), animated: false)
+        XCTAssertEqual(island.focus, .resident(ResidentID(rawValue: mover.id)))
+        let view = homeView(world, hour: 12, island: island, settled: true)
+            .environment(\.worldResidentPin, ResidentLife.Pin(day: chosen.day, elapsed: after))
+        try await capture(AnyView(view), name: "path-card-resident-moved", scene: scene, folder: folder, settle: 2100) {}
     }
 
     /// The tea stall's level-up reveal (v2 §9.2) from level 2 to 3 on island 3, the moment frozen at the focus
@@ -517,13 +651,49 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
         gardenWindow.rootViewController = nil
         try await Task.sleep(for: .milliseconds(150))
 
-        let round = try XCTUnwrap(FlowLibrary.round(stage: 1))
+        // The flow game on the dial board: the start, mid-way with the hint, solved, the 6 by 5 board of stage 4
+        // and a dial pinned mid-turn.
+        try await renderFlow("path-game-flow-stage1", stage: 1, scene: scene, folder: folder) { _ in }
+        try await renderFlow("path-game-flow-stage1-mid", stage: 1, scene: scene, folder: folder) { model in
+            model.playSuggestedTap()
+            try await Task.sleep(for: .milliseconds(900))
+            await model.showHintNow()
+            try await Task.sleep(for: .milliseconds(700))
+        }
+        try await renderFlow("path-game-flow-stage1-solved", stage: 1, scene: scene, folder: folder) { model in
+            while model.phase == .playing, model.playSuggestedTap() {
+                try await Task.sleep(for: .milliseconds(350))
+            }
+            try await Task.sleep(for: .milliseconds(1100))
+        }
+        // Stage 4's second board is the 6 by 5 one; the first is solved by hand to reach it.
+        try await renderFlow("path-game-flow-stage4", stage: 4, scene: scene, folder: folder) { model in
+            while model.phase == .playing, model.playSuggestedTap() {
+                try await Task.sleep(for: .milliseconds(120))
+            }
+            try await Task.sleep(for: .milliseconds(600))
+            model.continueNow()
+            try await Task.sleep(for: .milliseconds(1400))
+        }
+        try await renderFlow("path-game-flow-turning", stage: 1, scene: scene, folder: folder) { model in
+            XCTAssertTrue(model.holdSuggestedTurn(fraction: 0.45), "stage 1's first move turns a dial")
+            try await Task.sleep(for: .milliseconds(60))
+        }
+    }
+
+    @MainActor
+    private func renderFlow(
+        _ name: String, stage: Int, scene: UIWindowScene, folder: URL,
+        prepare: (FlowGameModel) async throws -> Void
+    ) async throws {
+        let round = try XCTUnwrap(FlowLibrary.round(stage: stage))
         let flow = FlowGameModel(round: round, hintDelay: .seconds(600), pourPause: .seconds(600))
         let flowWindow = gameWindow(FlowGameView(model: flow), scene: scene)
         try await Task.sleep(for: .milliseconds(900))
+        try await prepare(flow)
         flow.freeze()
         try await Task.sleep(for: .milliseconds(250))
-        try write(snapshot(flowWindow), name: "path-game-flow-stage1", to: folder)
+        try write(snapshot(flowWindow), name: name, to: folder)
         flowWindow.isHidden = true
         flowWindow.rootViewController = nil
         try await Task.sleep(for: .milliseconds(150))

@@ -55,29 +55,3 @@ enum PofuLines {
         }
     }
 }
-
-extension ActivityKind {
-    var label: LocalizedStringKey {
-        switch self {
-        case .focus: "Focus"
-        case .study: "Study"
-        case .exercise: "Workout"
-        case .walk: "Walk"
-        case .chores: "Chores"
-        case .creative: "Creative"
-        case .custom: "Custom"
-        }
-    }
-
-    var symbolName: String {
-        switch self {
-        case .focus: "scope"
-        case .study: "book"
-        case .exercise: "dumbbell"
-        case .walk: "figure.walk"
-        case .chores: "sparkles"
-        case .creative: "pencil"
-        case .custom: "plus"
-        }
-    }
-}

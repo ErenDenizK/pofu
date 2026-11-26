@@ -40,8 +40,9 @@ struct WorldMapTests {
     @Test func kokeAndCaglayanMatchTheV2Table() throws {
         let koke = try box("koke", tier: 1), caglayan = try box("caglayan", tier: 1)
         #expect(abs(koke.width - 174) <= 2)
-        #expect(abs(koke.minY - 224) <= 2)
-        #expect(abs(koke.maxY - 340) <= 2)
+        // Koke moved 8 units up with the mid row (brief 2026-11-24-2), so its Map box sits about 5 pt higher.
+        #expect(abs(koke.minY - 219) <= 2)
+        #expect(abs(koke.maxY - 334.4) <= 2)
         #expect(abs(caglayan.width - 148) <= 2)
         #expect(abs(caglayan.minY - 181) <= 2)
         #expect(abs(caglayan.maxY - 286) <= 2)
@@ -67,7 +68,7 @@ struct WorldMapTests {
     }
 
     @Test func noNeighbourEntersTheMidFrame() throws {
-        // Mid: Home's box fills 378 pt, centred on y 383 (v2 section 1.4).
+        // Mid: Home's box fills 378 pt, centred on y 416 (v2 section 1.4).
         let scale = map.midFitWidth / map.home.width
         let pose = CameraPose(scale: scale, look: WorldPoint(x: 0, y: 0), anchorY: map.midCenterY)
         let screen = ScreenBox(minX: 0, minY: 0, maxX: 402, maxY: 874)
@@ -81,17 +82,17 @@ struct WorldMapTests {
     }
 
     @Test func theTierPitchIsTheSmallestThatKeepsThemOut() {
-        // 470: the pitch at which Koke's box and chip clear the top edge of mid.
+        // 478 (was 470 at centre row 383; mid moved to 416): the pitch at which Koke's box and chip clear the top edge of mid.
         let scale = map.midFitWidth / map.home.width
         let koke = map.slot("koke")!
         let bottom = map.midCenterY + (koke.center.y + koke.height / 2) * scale + map.chipGap + (koke.chip?.height ?? 0)
-        #expect(map.tierPitch == 470)
+        #expect(map.tierPitch == 478)
         #expect(bottom < 0 && bottom > -60, "Koke clears the screen by less than 60 pt: the pitch is not generous")
     }
 
     @Test func centresAreTheV2Table() {
         #expect(map.center(of: .home) == WorldPoint(x: 0, y: 0))
-        #expect(map.center(of: "koke") == WorldPoint(x: -150, y: -470))
+        #expect(map.center(of: "koke") == WorldPoint(x: -150, y: -478))
         #expect(map.center(of: "caglayan") == WorldPoint(x: 150, y: -540))
         #expect(map.center(of: .harbor) == nil)
         let tier2 = map.slots.filter { $0.tier == 2 }

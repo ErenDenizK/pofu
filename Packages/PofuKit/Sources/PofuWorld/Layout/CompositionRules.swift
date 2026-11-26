@@ -52,7 +52,7 @@ public struct RuleResult: Sendable {
 ///
 /// | # | Rule |
 /// |---|---|
-/// | C1 | Hero placement as a share of the height (Map: Home's foot 0.79 to 0.81; mid: the island's box centre 0.42 to 0.46; near: the character's feet 0.58 to 0.62) |
+/// | C1 | Hero placement as a share of the height (Map: Home's foot 0.79 to 0.81; mid: the island's box centre 0.46 to 0.50; near: the character's feet 0.58 to 0.62) |
 /// | C2 | Tallest full-width run with no subject, chrome or named backdrop feature (Map 0.18, 0.21 for the run that holds the horizon; mid 0.15; near 0.30) |
 /// | C3 | Each third holds a subject, chrome or a backdrop feature (near: the top third may be sky) |
 /// | C4 | No island box cut by an edge; nothing tappable in the safe bands or the corner keep-out |
@@ -84,7 +84,7 @@ public enum CompositionRules {
             return RuleResult(rule: "C1", passed: (0.79 ... 0.81).contains(foot), detail: "Home's foot \(f(foot)) (0.79 to 0.81)")
         case .mid:
             let v = frame.hero.midY / h
-            return RuleResult(rule: "C1", passed: (0.42 ... 0.46).contains(v), detail: "\(f(v)) (0.42 to 0.46)")
+            return RuleResult(rule: "C1", passed: (0.46 ... 0.50).contains(v), detail: "\(f(v)) (0.46 to 0.50)")
         case .near:
             let v = (frame.feet?.y ?? frame.hero.maxY) / h
             return RuleResult(rule: "C1", passed: (0.58 ... 0.62).contains(v), detail: "\(f(v)) (0.58 to 0.62)")
@@ -260,7 +260,7 @@ extension CompositionFrame {
         )
     }
 
-    /// Mid: the island fitted to the level-10 box (378 pt across, centred on y 383) with the
+    /// Mid: the island fitted to the level-10 box (378 pt across, centred on y 416) with the
     /// real chrome and Home's characters on the plate's own feet. Every level uses the same
     /// box (v2 section 1.4), so `level` names the frame; it moves nothing.
     public static func mid(level: Int, map: WorldMap, plate: PlateIsland) -> CompositionFrame {
