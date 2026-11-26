@@ -22,8 +22,10 @@ six vertical steps, each done when he plays it on his phone.
 ## In flight
 
 0b. Fi 47 (answers to #519 + Fable on themes/special days, Caglayan, music,
-   studio structure): gathers done (docs/research/studio-2026-11-26/); Fable running
-   (brief fable-2026-11-26-themes-music-studio). No doc has an in-game season cycle.
+   studio): #523 merged (island calendar, motion vocabulary, music system,
+   ADR-0029, plan sec. 11); #524 desks DRAFT (his yes, card 3). pofu-art #179
+   merged (183-187 + 177/178). MU1 (feat/music-score, Fable) running. Cards 1-3
+   sent for morning (defaults apply); card 4 (Caglayan) when batch 185 lands.
 0a. Fi 46 plan merged (#519, squash): docs/design/mainflow-plan-2026-11-26(-tr).md,
    docs/studio/speed-2026-11-26.md. Six steps; step 1 now: PR 1a builder
    (feat/looks-per-light). pofu-art #172 merged: D43 Gezgin tail+shadow (180), D44
