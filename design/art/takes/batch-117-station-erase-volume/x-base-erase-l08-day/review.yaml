@@ -1,7 +1,8 @@
 batch: batch-117-station-erase-volume
 job: x-base-erase-l08-day
 status: warn
-pick:
+pick: 1
+pick_note: "PR 1c, judged at 1:1 over the windmill plot against the shipped IL8 day plate: take 1 keeps the plate's path stones and bush where take 2 drops the stones and steepens the hill line; both erase the bench-side lawn cleanly. Only the windmill window (right of the bench) is pasted; the night take is not wired until the night relights (plan row C5)."
 lead_review: "Not reviewed at 1:1 in this pass (overview and seam numbers only: both erase all eight stations and fill the pier gap like levels 9 and 10); the lead picks after a 1:1 check of the bridge, the path lanterns and the left rim."
 note: "Exploration only; retain both unpromoted whole-plate takes for the lead to paste back. Judge the erased region and feathered seam only; whole-frame drift is expected. Preserve the left-rim daisy border, hilltop flowers, and non-station path lantern; trim any dangling workshop light string where applicable. Station boxes are in the manifest job notes."
 source: codex-cloud

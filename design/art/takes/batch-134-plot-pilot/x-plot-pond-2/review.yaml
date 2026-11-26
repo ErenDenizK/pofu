@@ -1,0 +1,90 @@
+batch: batch-134-plot-pilot
+job: x-plot-pond-2
+status: warn
+pick: 1
+lead_review: "Ships with a note: deck, boat and stream gone and the pond half as wide, but it is anchored on the left rim (centre moved about 190 px left on the 1536 crop) and the reeds and lawn are neon yellow-green (station chroma 1.32x, lawn ring 1.12x the base), so mute the reeds and lawn in a plate edit."
+note: 'QA auto-pick; founder review pending. Both takes passed QA as warn with lock_load
+  0.0; this plate preset emits no harmony score, so t1 wins the tie by tool order.
+  T1 edit_stability is 77.26% (t2 76.31%). Visual check: pond is about half-width,
+  tall reeds line one side, and the deck, boat and stream are removed. The image tool
+  re-rendered surrounding details outside the pond region, so the lead should judge
+  the masked in-place composite. The tool returned 1254x1254; pipeline QA scaled and
+  center-cropped to 1536x1536.'
+source: codex-cloud
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+takes:
+- n: 1
+  file: plate__x-plot-pond-2--t1.webp
+  qa: warn
+  size_bytes: 232506
+  lock_load: 0.0
+  warnings:
+  - check: canvas
+    status: warn
+    message: 1254x1254 scaled x1.225 and center-cropped to 1536x1536
+  - check: chroma_ceiling
+    status: warn
+    message: chroma p95 84 (R1 51) (advisory in an exploration)
+  - check: light_values
+    status: warn
+    message: 'day/subject: L p5 46 (at least 50: darks stay a light mid-tone), p98
+      93 (at least 90)'
+  - check: light_contrast
+    status: warn
+    message: 'day/subject: p75 local contrast 7.6 (band 2.5-6.5; above it reads too
+      contrasty) (warn-only until the founder has seen the light pilot)'
+  - check: light_sea
+    status: warn
+    message: 'day: cloud sea L 77 (at least 82: the sea is the reflector)'
+  - check: detail_budget
+    status: warn
+    message: detail at display size 6.4 (R1 5.3)
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 16.3, p95 34.3, off-palette 52.3% (top: #DDDD22 (9.3%), #CCDD22
+      (6.4%)) (advisory in an exploration)'
+  source_file: /workspace/pofu-art/.worktrees/batch134-pond/design/art/inbox/batch-134-plot-pilot/plate__x-plot-pond-2--t1.png
+  source_sha256: 4c12b0a3e9d55238482848b8bee27a9445f85e4db63d5a87d23593ed8b2adf8c
+  generated_at: '2026-11-16T16:24:01+00:00'
+  tool_output_size: 1254x1254; pipeline scaled and center-cropped to 1536x1536
+- n: 2
+  file: plate__x-plot-pond-2--t2.webp
+  qa: warn
+  size_bytes: 227002
+  lock_load: 0.0
+  warnings:
+  - check: canvas
+    status: warn
+    message: 1254x1254 scaled x1.225 and center-cropped to 1536x1536
+  - check: chroma_ceiling
+    status: warn
+    message: chroma p95 85 (R1 51) (advisory in an exploration)
+  - check: light_values
+    status: warn
+    message: 'day/subject: L p5 43 (at least 50: darks stay a light mid-tone), p98
+      93 (at least 90)'
+  - check: light_contrast
+    status: warn
+    message: 'day/subject: p75 local contrast 7.8 (band 2.5-6.5; above it reads too
+      contrasty) (warn-only until the founder has seen the light pilot)'
+  - check: light_sea
+    status: warn
+    message: 'day: cloud sea L 77 (at least 82: the sea is the reflector)'
+  - check: detail_budget
+    status: warn
+    message: detail at display size 6.1 (R1 5.3)
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 16.1, p95 33.3, off-palette 51.7% (top: #DDDD22 (10.6%), #CCDD22
+      (3.7%)) (advisory in an exploration)'
+  source_file: /workspace/pofu-art/.worktrees/batch134-pond/design/art/inbox/batch-134-plot-pilot/plate__x-plot-pond-2--t2.png
+  source_sha256: 8a1045aa8ad4f18fcf253b4c2a0a0d2b06c62d356f273c0ea3022137e1c70ad7
+  generated_at: '2026-11-16T16:24:02+00:00'
+  tool_output_size: 1254x1254; pipeline scaled and center-cropped to 1536x1536
+references:
+- design/art/takes/batch-134-plot-pilot/x-plot-pond-3/plate__x-plot-pond-3--t1.webp
+provisional_parent: x-plot-pond-3 t1 (auto-pick, lead review pending)
+generation_prompt_note: The built-in image tool received the manifest-composed prompt
+  from run.py prompt; ingest sidecars preserve the composed prompt.
