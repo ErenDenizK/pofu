@@ -14,8 +14,7 @@ six vertical steps, each done when he plays it on his phone.
 
 ## Decided this session
 
-- Merges that carry out a plan he approved (pofu-art queue PRs too) need
-  no question; merge on review, tell him after (founder-input 31).
+- Merges carrying out an approved plan (pofu-art queue too): merge on review, tell him after (fi 31).
 - Fi 48: apply [now] decisions without waiting; his questions as cards with a
   picture and a default. Tempo: Claude 2-3 agents; Codex never idle. Disk floor 5 GB.
 
