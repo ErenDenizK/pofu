@@ -1,0 +1,12 @@
+{
+  "comment": "Special days (island calendar v1, C2). yearly: MM-DD ranges that repeat; dated: explicit ranges, because the bayrams move. A kit shows from eveningBeforeMinute the evening before the first day to the end of the last. Bayram dates are from Diyanet's 2027 dini günler takvimi (announced 24 Aug 2026), as reported by milligazete.com.tr/2027-dini-gunler-takvimi-nasil-kadir-gecesi-ne-zaman-kurban-bayrami-hangi-tarihte and evrensel.net/haber/5997565. Ramazan Bayramı 9 to 11 March 2027; Kurban Bayramı 16 to 19 May 2027. 2028 and later are NOT listed: Diyanet had not published them and a date that cannot be verified stays out. SpecialDaysTests fails once the last listed bayram has passed.",
+  "eveningBeforeMinute": 1080,
+  "days": [
+    { "id": "newYear", "yearly": [{ "from": "12-31", "to": "01-01" }] },
+    { "id": "hidirellez", "yearly": [{ "from": "05-05", "to": "05-06" }] },
+    { "id": "ramazanBayrami", "dated": [{ "from": "2027-03-09", "to": "2027-03-11" }] },
+    { "id": "kurbanBayrami", "dated": [{ "from": "2027-05-16", "to": "2027-05-19" }] },
+    { "id": "halloween", "yearly": [{ "from": "10-31", "to": "10-31" }] },
+    { "id": "festivalNight", "islandClock": true }
+  ]
+}

@@ -400,6 +400,11 @@ public struct WorldSnapshot: Hashable, Sendable {
     /// The first local day the game ran: the weather's shuffled bags start
     /// here (sky and weather v1 section 2.2b); `nil` for a game not yet started.
     public var firstDay: LocalDay?
+    /// The island's season today (`IslandYear`); `nil` before the first
+    /// day or when the clock was given no island-year rules.
+    public var season: Season?
+    /// The special day on now (`SpecialDays`), if any.
+    public var specialDay: SpecialDay?
     public var homeStage: Int
     /// The island level (*Ada seviyesi*), 1 to 10.
     public var islandLevel: Int
@@ -465,6 +470,8 @@ public struct WorldSnapshot: Hashable, Sendable {
         koke: WonderStatus = WonderStatus(),
         caglayan: WonderStatus = WonderStatus(),
         firstDay: LocalDay? = nil,
+        season: Season? = nil,
+        specialDay: SpecialDay? = nil,
         bell: FarBellStatus = .silent
     ) {
         self.clock = clock
@@ -497,6 +504,8 @@ public struct WorldSnapshot: Hashable, Sendable {
         self.koke = koke
         self.caglayan = caglayan
         self.firstDay = firstDay
+        self.season = season
+        self.specialDay = specialDay
         self.bell = bell
     }
 }

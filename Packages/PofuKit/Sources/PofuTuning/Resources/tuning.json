@@ -104,5 +104,17 @@
     "pieces" : 0.7,
     "pofu" : 0.9,
     "seeds" : 0.85
+  },
+  "calendar" : {
+    "disabled" : [
+
+    ],
+    "order" : [
+      "spring",
+      "summer",
+      "autumn",
+      "winter"
+    ],
+    "seasonDays" : 7
   }
 }

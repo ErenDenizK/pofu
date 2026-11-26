@@ -129,19 +129,6 @@ struct WeatherTests {
         }
     }
 
-    // MARK: Seasons
-
-    @Test func seasonsFollowTheNorthernCalendar() {
-        let expected: [Int: Season] = [
-            12: .winter, 1: .winter, 2: .winter, 3: .spring, 4: .spring, 5: .spring,
-            6: .summer, 7: .summer, 8: .summer, 9: .autumn, 10: .autumn, 11: .autumn,
-        ]
-        for (month, season) in expected {
-            #expect(Season.of(month: month) == season)
-        }
-        #expect(Season.of(LocalDay(year: 2026, month: 11, day: 6)) == .autumn)
-    }
-
     @Test func dayNumbersCountDays() {
         #expect(WeatherForecast.dayNumber(LocalDay(year: 1970, month: 1, day: 1)) == 0)
         #expect(WeatherForecast.dayNumber(LocalDay(year: 2026, month: 3, day: 1)) - WeatherForecast.dayNumber(LocalDay(year: 2026, month: 2, day: 28)) == 1)

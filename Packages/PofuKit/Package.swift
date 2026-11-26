@@ -31,7 +31,7 @@ let package = Package(
     targets: [
         // Pure domain: economy, friction ladder, passes, metrics, vitality.
         // Foundation only, zero dependencies. Extensions may link it.
-        .target(name: "PofuCore"),
+        .target(name: "PofuCore", resources: [.process("Resources")]),
 
         // The Screen Time boundary: the protocol, the simulated
         // implementation, and the live one (iOS only), which is the only
@@ -109,7 +109,7 @@ let package = Package(
         .testTarget(name: "PofuWorldTests", dependencies: ["PofuWorld", "PofuCore"]),
         .testTarget(name: "PofuGamesTests", dependencies: ["PofuGames", "PofuTuning"]),
         .testTarget(name: "PofuSoundTests", dependencies: ["PofuSound", "PofuGames", "PofuTuning"]),
-        .testTarget(name: "PofuTuningTests", dependencies: ["PofuTuning"]),
+        .testTarget(name: "PofuTuningTests", dependencies: ["PofuTuning", "PofuCore"]),
     ],
     swiftLanguageModes: [.v6]
 )
