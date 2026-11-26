@@ -108,6 +108,14 @@ The rebuild's PRs are written when he has chosen (one eye PR for the
 plate set and its polygons, V2 for the fall, one for the sky set). Their
 reference will be the picked take of batch 185.
 
+### What is the founder's
+
+| # | Question | My pick | Picture |
+|---|---|---|---|
+| Q-B | Çağlayan için altı resimden hangisi? | None before the frames exist: the cheapest one he likes wins (an edit before a new layout) | The six takes under pofu-art `design/art/takes/batch-185-caglayan-again/` once delivered, beside the shipped plate: [assets/motion/caglayan-day-4-plate.jpg](assets/motion/caglayan-day-4-plate.jpg) |
+
+Until he chooses, nothing of M3 is built; M1, M2 and V1 do not wait.
+
 ## 5. Out of scope
 
 Any change to the stream game, its boards, tiles or kits; other islands'

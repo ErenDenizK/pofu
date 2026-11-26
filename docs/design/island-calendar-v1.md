@@ -71,7 +71,9 @@ a theme is "a grade, a sky set, particles and one small painted dressing
 set" and never a repaint. I graded the shipped level-10 day plate in
 code towards autumn (greens turned to gold) and towards winter (greens
 paled and lifted) and looked at both beside the original
-(`world-home-plate-day-0`) [seen]. Autumn reads as a dry lawn: the
+(`world-home-plate-day-0`) [seen]; the sheet is
+[assets/island-calendar/grade-test-2026-11-26.jpg](assets/island-calendar/grade-test-2026-11-26.jpg)
+(left to right: as shipped, autumn by grade, winter by grade). Autumn reads as a dry lawn: the
 flowers, the tree's blossom and the sunflower still say spring. Winter
 reads as a washed-out photograph: nothing says snow. Batch 25's frames
 [seen] show where a season lives in this art: the tree's crown, snow
