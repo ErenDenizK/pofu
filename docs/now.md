@@ -23,8 +23,7 @@ Now (fi 46): main flow only, big whole steps; Fable plans it + why the studio sl
 
 ## In flight
 
-0a. Fi 46: Codex queue writer (brief codex-2026-11-26-mainflow-queue), gathers
-   mainflow + studio-speed (docs/research/mainflow-2026-11-26/), then Fable
+0a. Fi 46: gathers done (docs/research/mainflow-2026-11-26/); Fable running
    (brief fable-2026-11-26-mainflow-and-studio). Choices to him with a screenshot.
 
 1. Fi 38: (a) #503 island progression open (answers fi 39; 137 redoes
@@ -47,7 +46,7 @@ Now (fi 46): main flow only, big whole steps; Fable plans it + why the studio sl
    WP13 water merged (#505; #504 closed): the pond moves at Ambient, island
    flattened before the lens. Left: falls, sway mask; device frame time.
 4. Codex: 132, 133, 135, 126 v2 merged (cloud fit: crossfade floor-mid,
-   warm kit only, Koke keeps bed-round v1). D29-D33 merged 11-26 (#164-#167, #169; mallet reads right). 126 v3 (#132) to review; 136 + 137 held.
+   warm kit only, Koke keeps bed-round v1). D29-D33 merged 11-26 (#164-#167, #169; mallet reads right). Queue D34-D42 merged (#170: 171-179, 60 jobs: Gezgin, station levels in the plate, seasons, weekly); "çalış hazır" sent. 126 v3 (#132) to review; 136 + 137 held.
 Merged: #475-#516 (not #490, #503, #504, #507); pofu-art #81-#163 (not stale #84-#90, #132).
 
 ## Next (path, #511)
