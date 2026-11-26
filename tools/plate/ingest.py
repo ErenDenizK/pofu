@@ -1269,7 +1269,9 @@ def build_json(island: str, hand: dict, mattes: dict, maps: dict, harmony: dict 
     if island in STRICT_MATTES:
         # Per light, per stage: the box the plate image covers (plate points), or null where the state ships the whole
         # plate over its backdrop (a legacy matte). A matted state draws the sky set behind the cropped plate.
-        data["plateCrop"] = {l: [plate_crop_points(island, hand, l, s) for s in range(stage_count(hand, l))] for l in lights}
+        # (a stage the light does not paint, in a sparse light, has no matte: null)
+        painted = painted_stages(hand)
+        data["plateCrop"] = {l: [plate_crop_points(island, hand, l, s) if s in painted[l] else None for s in range(stage_count(hand, l))] for l in lights}
         # Per stage (the lights of a stage are one drawing, so one matte): the island's contact shadow, drawn by code
         # on the floor layer under the island.
         data["shadow"] = [shadow_params(load_matte_full(island, "day", s)) for s in range(data["stages"])]
@@ -1328,7 +1330,8 @@ def problems(data: dict, a: np.ndarray, assets: set[str], tolerance: float = 32.
         out.append(f"textureBytes {data['textureBytes']:,} > {BUDGET:,}")
     for light in data["lights"]:
         for stage in data.get("painted", {}).get(light, range(data.get("lightStages", {}).get(light, data["stages"]))):
-            for kind in ("plate", "island", "backdrop"):
+            matted = (data.get("plateCrop", {}).get(light) or [None] * (stage + 1))[stage] is not None
+            for kind in ("plate", "island") if matted else ("plate", "island", "backdrop"):
                 if asset_name(island, kind, light, stage) not in assets:
                     out.append(f"missing asset {asset_name(island, kind, light, stage)}")
             for obj in data["objects"]:
