@@ -22,8 +22,8 @@ six vertical steps, each done when he plays it on his phone.
 ## In flight
 
 0b. Fi 47 (answers to #519 + Fable on themes/special days, Caglayan, music,
-   studio structure): gathers themes-motion + music-studio, then Fable (brief
-   fable-2026-11-26-themes-music-studio). D40-D42 stay blocked.
+   studio structure): gathers done (docs/research/studio-2026-11-26/); Fable running
+   (brief fable-2026-11-26-themes-music-studio). No doc has an in-game season cycle.
 0a. Fi 46 plan merged (#519, squash): docs/design/mainflow-plan-2026-11-26(-tr).md,
    docs/studio/speed-2026-11-26.md. Six steps; step 1 now: PR 1a builder
    (feat/looks-per-light). pofu-art #172 merged: D43 Gezgin tail+shadow (180), D44
@@ -49,7 +49,7 @@ six vertical steps, each done when he plays it on his phone.
    moves are small, 24-30 px; Fındık's painted spot now 658,864).
 2. WP10 compositor (#500), WP11 near lens (#502), WP13 water (#505) merged;
    their leftovers fold into the plan's steps 1-3 (device checks: pinch, pond).
-4. Codex: D29-D33 merged 11-26; queue D34-D45 (#170, #172, #174; D40-42 blocked); 126 v3 (#132) to review.
+4. Codex: D29-D33 merged 11-26; queue D34-D45 (#170, #172, #174; D40-42 blocked); delivered 182, 172-174 (#175-#178 merged); 126 v3 (#132) to review.
 Merged: #475-#520 (not #490, #503, #504, #507); pofu-art #81-#174 (not stale #84-#90, #132).
 
 ## Next (plan #519)
