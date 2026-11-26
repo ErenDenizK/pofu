@@ -8,9 +8,9 @@ history: [tracker.md](tracker.md). What changed for the player:
 
 **Goal:** a whole, polished build the founder judges as a user when he
 chooses to; "Önce uygulamanın mükemmel olduğundan emin olalım" (fi 43).
-Now: whole-project assessment, two Fable rounds; Apple kits open soon.
+Now (fi 46): main flow only, big whole steps; Fable plans it + why the studio slowed.
 
-**Updated:** 2026-11-25. **Founder last played:** 11-14 (main 0cf03ca1).
+**Updated:** 2026-11-26. **Founder last played:** 11-14 (main 0cf03ca1).
 **Route:** Fable's night plan (`docs/design/night-plan-2026-11-15.md`,
 #482 merged): steps N0-N11 now, A1-A10 after; the world spec #474 inside it.
 
@@ -22,6 +22,10 @@ Now: whole-project assessment, two Fable rounds; Apple kits open soon.
 - Tempo (fi 39-41): Claude 2-3 agents, lean; Codex unlimited, never idle; concept first.
 
 ## In flight
+
+0a. Fi 46: Codex queue writer (brief codex-2026-11-26-mainflow-queue), gathers
+   mainflow + studio-speed (docs/research/mainflow-2026-11-26/), then Fable
+   (brief fable-2026-11-26-mainflow-and-studio). Choices to him with a screenshot.
 
 1. Fi 38: (a) #503 island progression open (answers fi 39; 137 redoes
    the lower steps; #490 docs waits with it).
@@ -45,7 +49,7 @@ Now: whole-project assessment, two Fable rounds; Apple kits open soon.
    WP13 water merged (#505; #504 closed): the pond moves at Ambient, island
    flattened before the lens. Left: falls, sway mask; device frame time.
 4. Codex: 132, 133, 135, 126 v2 merged (cloud fit: crossfade floor-mid,
-   warm kit only, Koke keeps bed-round v1). Queue: D29-D32 (166-169 island kits); D33 redo 170 (workshop mallet; moorings kept: koke t2, caglayan t1); 126 v3 (#132) to review; 136 + 137 held.
+   warm kit only, Koke keeps bed-round v1). D29-D33 merged 11-26 (#164-#167, #169; mallet reads right). 126 v3 (#132) to review; 136 + 137 held.
 Merged: #475-#516 (not #490, #503, #504, #507); pofu-art #81-#163 (not stale #84-#90, #132).
 
 ## Next (path, #511)
