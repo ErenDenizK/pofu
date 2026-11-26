@@ -1,0 +1,140 @@
+{
+  "home-day-a": {
+    "score": "design/music/score/home/day-a.abc",
+    "title": "Home day A: Sunny step",
+    "key": "D ionian",
+    "meter": "4/4",
+    "bpm": 96,
+    "order": [
+      "A",
+      "A2",
+      "B",
+      "END"
+    ],
+    "seconds": 48.5,
+    "bytes": 399833,
+    "encoded_true_peak_dbtp": -5.16,
+    "cells": {
+      "A": {
+        "lufs": -20.0,
+        "true_peak_dbtp": -5.17,
+        "below_250hz": 0.16,
+        "tail_dbfs": -240.0,
+        "seconds": 12.5
+      },
+      "A2": {
+        "lufs": -20.0,
+        "true_peak_dbtp": -5.56,
+        "below_250hz": 0.138,
+        "tail_dbfs": -240.0,
+        "seconds": 12.5
+      },
+      "B": {
+        "lufs": -20.0,
+        "true_peak_dbtp": -6.21,
+        "below_250hz": 0.122,
+        "tail_dbfs": -240.0,
+        "seconds": 12.5
+      },
+      "END": {
+        "lufs": -20.0,
+        "true_peak_dbtp": -6.63,
+        "below_250hz": 0.155,
+        "tail_dbfs": -240.0,
+        "seconds": 12.5
+      }
+    }
+  },
+  "home-day-b": {
+    "score": "design/music/score/home/day-b.abc",
+    "title": "Home day B: Rocking boat",
+    "key": "D ionian",
+    "meter": "6/8",
+    "bpm": 92,
+    "order": [
+      "A",
+      "A2",
+      "B",
+      "END"
+    ],
+    "seconds": 50.24,
+    "bytes": 412303,
+    "encoded_true_peak_dbtp": -5.33,
+    "cells": {
+      "A": {
+        "lufs": -20.0,
+        "true_peak_dbtp": -6.37,
+        "below_250hz": 0.191,
+        "tail_dbfs": -240.0,
+        "seconds": 12.935
+      },
+      "A2": {
+        "lufs": -20.0,
+        "true_peak_dbtp": -6.07,
+        "below_250hz": 0.118,
+        "tail_dbfs": -240.0,
+        "seconds": 12.935
+      },
+      "B": {
+        "lufs": -20.0,
+        "true_peak_dbtp": -5.69,
+        "below_250hz": 0.12,
+        "tail_dbfs": -240.0,
+        "seconds": 12.935
+      },
+      "END": {
+        "lufs": -20.0,
+        "true_peak_dbtp": -5.24,
+        "below_250hz": 0.122,
+        "tail_dbfs": -240.0,
+        "seconds": 12.935
+      }
+    }
+  },
+  "home-day-c": {
+    "score": "design/music/score/home/day-c.abc",
+    "title": "Home day C: Petals down",
+    "key": "D ionian",
+    "meter": "4/4",
+    "bpm": 88,
+    "order": [
+      "A",
+      "A2",
+      "B",
+      "END"
+    ],
+    "seconds": 52.14,
+    "bytes": 428692,
+    "encoded_true_peak_dbtp": -5.03,
+    "cells": {
+      "A": {
+        "lufs": -20.0,
+        "true_peak_dbtp": -5.1,
+        "below_250hz": 0.268,
+        "tail_dbfs": -240.0,
+        "seconds": 13.409
+      },
+      "A2": {
+        "lufs": -20.0,
+        "true_peak_dbtp": -6.3,
+        "below_250hz": 0.203,
+        "tail_dbfs": -240.0,
+        "seconds": 13.409
+      },
+      "B": {
+        "lufs": -20.0,
+        "true_peak_dbtp": -5.12,
+        "below_250hz": 0.246,
+        "tail_dbfs": -240.0,
+        "seconds": 13.409
+      },
+      "END": {
+        "lufs": -20.0,
+        "true_peak_dbtp": -5.67,
+        "below_250hz": 0.239,
+        "tail_dbfs": -240.0,
+        "seconds": 13.409
+      }
+    }
+  }
+}

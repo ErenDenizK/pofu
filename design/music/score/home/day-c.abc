@@ -1,0 +1,38 @@
+X:3
+T:Home day C: Petals down
+M:4/4
+L:1/8
+Q:1/4=88
+V:lead instrument=kalimba
+V:bed.pad instrument=pad
+V:bed.bass instrument=bass
+V:pulse.keys instrument=felt_keys gain=-12
+K:D
+%%pofu island home
+%%pofu time day
+%%pofu order A A2 B END
+% The gentle one, a little slower. It starts from the top and falls, like
+% petals: F# D B, a turn, a breath; then lower; and the motif is the answer,
+% rising from the bottom in the third bar. The middle (B) leans on C# and
+% climbs to the highest note of the tune. The keys walk a slow broken chord
+% under it, a note a beat, and there is no tok.
+P:A
+[V:lead] f2 d2 B d z2 | A2 F2 E F z2 | D F B2 A2 F2 | E4 z4 |
+[V:bed.pad] [D,A,F]8 | [A,,E,C]8 | [G,,D,B,]8 | [A,,E,A,]8 |
+[V:bed.bass] D,,4 A,,4 | A,,4 E,,4 | G,,4 D,,4 | A,,8 |
+[V:pulse.keys] D,2 A,2 D2 A,2 | A,,2 E,2 A,2 E,2 | B,,2 D,2 G,2 D,2 | A,,2 E,2 A,4 |
+P:A2
+[V:lead] f2 d2 B d z2 | A2 F2 E F z2 | G B d2 e2 d2 | A4 z4 |
+[V:bed.pad] [D,A,F]8 | [A,,E,C]8 | [G,,D,B,]8 | [A,,E,A,]8 |
+[V:bed.bass] D,,4 A,,4 | A,,4 E,,4 | G,,4 D,,4 | A,,8 |
+[V:pulse.keys] D,2 A,2 D2 A,2 | A,,2 E,2 A,2 E,2 | B,,2 D,2 G,2 D,2 | A,,2 E,2 A,4 |
+P:B
+[V:lead] A2 d2 c B z2 | A2 e2 d c z2 | B c d e f2 a2 | f4 z4 |
+[V:bed.pad] [A,,E,C]8 | [D,A,F]8 | [B,,F,D]8 | [D,A,F]8 |
+[V:bed.bass] A,,4 E,,4 | D,,4 A,,4 | B,,4 F,,4 | D,,8 |
+[V:pulse.keys] A,,2 E,2 A,2 E,2 | D,2 A,2 D2 A,2 | B,,2 F,2 B,2 F,2 | D,2 A,2 D4 |
+P:END
+[V:lead] f2 d2 B d z2 | A2 F2 E F z2 | D F B2 A2 E2 | D4 z4 |
+[V:bed.pad] [D,A,F]8 | [A,,E,C]8 | [G,,D,B,]4 [A,,E,C]4 | [D,A,F]8 |
+[V:bed.bass] D,,4 A,,4 | A,,4 E,,4 | G,,4 A,,4 | D,,8 |
+[V:pulse.keys] D,2 A,2 D2 A,2 | A,,2 E,2 A,2 E,2 | B,,2 D,2 A,,2 E,2 | D,2 A,2 D4 |

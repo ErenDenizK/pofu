@@ -1,0 +1,43 @@
+X:2
+T:Home day B: Rocking boat
+M:6/8
+L:1/8
+Q:3/8=92
+V:lead instrument=kalimba
+V:bed.pad instrument=pad
+V:bed.bass instrument=bass
+V:pulse.keys instrument=felt_keys
+V:pulse.tok instrument=tok
+K:D
+%%pofu island home
+%%pofu time day
+%%pofu order A A2 B END
+% The lilting one, in six-eight: long-short, long-short, like a boat at its
+% mooring. Every phrase is two bars and ends on a held note and a breath. The
+% motif is the first bar. The middle (B) starts high on G and walks down
+% through C#, and ends open on B over the G chord, so the ending has
+% somewhere to come home from.
+P:A
+[V:lead] D2 F B2 A | F3 z3 | E2 F A2 B | A3 z3 | d2 B A2 F | E2 F A2 z | B2 A F2 E | E3 z3 |
+[V:bed.pad] [D,A,F]6 | [D,A,F]6 | [A,,E,C]6 | [D,A,F]6 | [B,,F,D]6 | [G,,D,B,]6 | [D,A,F]6 | [A,,E,A,]6 |
+[V:bed.bass] D,,6 | D,,3 A,,3 | A,,6 | D,,3 F,,3 | B,,6 | G,,6 | D,,6 | A,,6 |
+[V:pulse.keys] z2 [F,A,] z2 [F,A,] | z2 [F,A,] z2 [F,A,] | z2 [E,A,] z2 [E,A,] | z2 [F,A,] z2 [F,A,] | z2 [D,F,] z2 [D,F,] | z2 [D,G,] z2 [D,G,] | z2 [F,A,] z2 [F,A,] | z2 [E,A,] z3 |
+[V:pulse.tok] z3 d z2 | z6 | z3 d z2 | z6 | z3 d z2 | z6 | z3 d z2 | z6 |
+P:A2
+[V:lead] D2 F B2 A | F3 z3 | E2 F A2 B | A3 z3 | d2 e f2 e | d2 B A2 z | B2 d A2 F | A3 z3 |
+[V:bed.pad] [D,A,F]6 | [D,A,F]6 | [A,,E,C]6 | [D,A,F]6 | [D,A,F]6 | [G,,D,B,]6 | [D,A,F]6 | [A,,E,A,]6 |
+[V:bed.bass] D,,6 | D,,3 A,,3 | A,,6 | D,,3 F,,3 | D,,6 | G,,6 | D,,6 | A,,6 |
+[V:pulse.keys] z2 [F,A,] z2 [F,A,] | z2 [F,A,] z2 [F,A,] | z2 [E,A,] z2 [E,A,] | z2 [F,A,] z2 [F,A,] | z2 [F,A,] z2 [F,A,] | z2 [D,G,] z2 [D,G,] | z2 [F,A,] z2 [F,A,] | z2 [E,A,] z3 |
+[V:pulse.tok] z3 d z2 | z6 | z3 d z2 | z6 | z3 d z2 | z6 | z3 d z2 | z6 |
+P:B
+[V:lead] g2 e d2 B | e3 z3 | f2 d B2 A | d3 z3 | g2 e d2 B | c2 d e2 z | f2 e d2 c | B3 z3 |
+[V:bed.pad] [G,,D,B,]6 | [A,,E,C]6 | [D,A,F]6 | [G,,D,B,]6 | [G,,D,B,]6 | [A,,E,C]6 | [D,A,F]6 | [G,,D,B,]6 |
+[V:bed.bass] G,,6 | A,,6 | D,,3 F,,3 | G,,6 | G,,6 | A,,6 | D,,3 F,,3 | G,,6 |
+[V:pulse.keys] z2 [D,G,] z2 [D,G,] | z2 [C,E,] z2 [C,E,] | z2 [F,A,] z2 [F,A,] | z2 [D,G,] z2 [D,G,] | z2 [D,G,] z2 [D,G,] | z2 [C,E,] z2 [C,E,] | z2 [F,A,] z2 [F,A,] | z2 [D,G,] z3 |
+[V:pulse.tok] z3 d z2 | z6 | z3 d z2 | z6 | z3 d z2 | z6 | z3 d z2 | z6 |
+P:END
+[V:lead] D2 F B2 A | F3 z3 | d2 B A2 F | E3 z3 | G2 B d2 B | A2 F E2 z | B2 A F2 E | D3 z3 |
+[V:bed.pad] [D,A,F]6 | [D,A,F]6 | [B,,F,D]6 | [A,,E,C]6 | [G,,D,B,]6 | [A,,E,C]6 | [G,,D,B,]3 [A,,E,A,]3 | [D,A,F]6 |
+[V:bed.bass] D,,6 | D,,3 A,,3 | B,,6 | A,,6 | G,,6 | A,,6 | G,,3 A,,3 | D,,6 |
+[V:pulse.keys] z2 [F,A,] z2 [F,A,] | z2 [F,A,] z2 [F,A,] | z2 [D,F,] z2 [D,F,] | z2 [C,E,] z2 [C,E,] | z2 [D,G,] z2 [D,G,] | z2 [C,E,] z2 [C,E,] | z2 [D,G,] z2 [E,A,] | z2 [F,A,] z3 |
+[V:pulse.tok] z3 d z2 | z6 | z3 d z2 | z6 | z3 d z2 | z6 | z3 d z2 | z6 |
