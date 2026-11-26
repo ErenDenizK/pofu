@@ -1,0 +1,1 @@
+The windmill now grows on the island: its sails, gallery and sacks follow its level on islands 9 and 10 (levels 2 to 5; level 1 shows the empty plot and the night keeps the painted mill until their art lands).

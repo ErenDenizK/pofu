@@ -17,6 +17,11 @@ enclosed pinholes under 64 px filled), a contact shade cut from each look's own 
 Bases: the shipped plate with the stall's region taken from batch 117's erase pick, its colour matched to the parent
 lawn (mean Lab colour of a ring round the region) and feathered; the plate's alpha may only shrink there.
 Needs the plate's upscaled source (cached by `ingest.py`) and pillow-heif; no matting network.
+
+The windmill (batch 134's plot pilot) has no cut-outs: its takes are the plot's whole painting (hill, gate, stairs, sky)
+with the mill on it. Its looks are cut here from each take against level 1's take (the empty plot, the same painting
+without the mill): where a take differs from it and is not lawn, minus the bakery wing that stands where the workshop
+is (the workshop keeps its own plate), minus the paved yard; edge colours come from the mill's inside (no sky tint).
 """
 from __future__ import annotations
 
@@ -52,6 +57,7 @@ ASSETS = ingest.ASSETS
 TEA_STALL = {
     "id": "teaStall",
     "light": "day",
+    "levels": 5,
     "jobs": [f"batch-123-tea-stall-ladder-pilot/x-look-tea-stall-{n}" for n in range(1, 6)],
     "scale": 0.294,              # of the 1254 px canvas, at TEX px per point
     "foot": (690.0, 832.0),      # plate points, at stage 7
@@ -85,6 +91,47 @@ PLACE = {
     4: {"foot": (698.0, 839.0), "scale": 1.10},
     3: {"foot": (697.0, 839.0), "scale": 1.09},
 }
+TEA_STALL["bases"] = BASES
+TEA_STALL["place"] = PLACE
+
+# The windmill (batch 134's plot pilot; the plot is the island's level 10 and 9 painting, where the mill stands: stages 0
+# and 1, island levels 10 and 9; the mill opens at island level 8, stage 2, which has no clean base yet). Looks 2 to 5 are
+# the picks of the pilot's takes (level 1 has none: the lead rejected both takes, a paper pinwheel); every take is 1254 px
+# square with the plot at 0.30 plate points per px. `anchor` is the tower's bottom centre in take px (the take's tower is
+# unmoved from level to level), `foot` where the painted mill's bottom centre stands at stage 0 (plate points).
+# `grade`: per level, (chroma, lightness) factors that bring the mill's mean CIELAB colour to the painted mill's (L* 78,
+# C* 29 at stage 0; the takes are L* 71 to 76 and C* 36 to 48, level 2's sails candy orange): measured in place.
+# `wing`: the bakery wing that levels 4 and 5 paint where the workshop stands is cut away (right of x, below y, in take
+# px; below `y` only the tower's own footprint and the sacks stay: the paved yard is the plot's); `bush`: a take-px box
+# where green (the hill's bush behind level 5's left lantern) is not the mill.
+PLOT = "batch-134-plot-pilot/x-plot-windmill-{}"
+WINDMILL = {
+    "id": "windmill",
+    "light": "day",
+    "levels": 5,
+    "plot": {
+        "ref": (PLOT.format(1), 1),
+        "takes": {2: (PLOT.format(2), 2), 3: (PLOT.format(3), 1), 4: (PLOT.format(4), 1), 5: (PLOT.format(5), 1)},
+        "diff": 14,
+        "grade": {2: (0.56, 1.07), 3: (0.72, 1.02), 4: (0.71, 1.03), 5: (0.77, 1.04)},
+        "wing": {"x": 846, "y": 705, "roof_x": 895, "roof_y": 650},
+        "bush": (0, 380, 395, 620),
+    },
+    "scale": 0.60,               # of a take px, at TEX px per point (0.30 points per px)
+    "density": 2.2,              # the looks' texture px per plate point: the largest state is 9 MB (`ingest.py check`)
+    "anchor": (655.0, 988.0),
+    "foot": (345.0, 759.0),
+    "footStage": 0,
+    "bases": {
+        0: {"job": JOB.format(10), "window": (500, 1020, 892, 1560), "clean": True},
+        1: {"job": JOB.format(9), "window": (500, 1020, 892, 1560), "clean": True},
+    },
+    "place": {
+        0: {"foot": (345.0, 759.0), "scale": 1.0},
+        1: {"foot": (350.0, 759.0), "scale": 0.97},
+    },
+}
+STATIONS = [TEA_STALL, WINDMILL]
 
 
 # ---------------------------------------------------------------- looks
@@ -188,17 +235,133 @@ def over(base: np.ndarray, top: np.ndarray) -> np.ndarray:
     return np.dstack([rgb, oa])
 
 
+# ---------------------------------------------------------------- plot looks (the windmill)
+
+def _take_rgb(job_take: tuple[str, int]) -> np.ndarray:
+    job, n = job_take
+    found = sorted((TAKES / job).glob(f"*--t{n}.webp"))
+    if not found:
+        raise SystemExit(f"{job}: take {n} is not ingested")
+    return np.asarray(Image.open(found[0]).convert("RGB"), np.float32) / 255
+
+
+def _lab_soft(rgb: np.ndarray) -> np.ndarray:
+    return cv2.cvtColor(cv2.GaussianBlur(rgb, (0, 0), 1.2), cv2.COLOR_RGB2Lab)
+
+
+def _lawn(rgb: np.ndarray) -> np.ndarray:
+    return (rgb[..., 1] > rgb[..., 0] - 0.02) & (rgb[..., 1] > rgb[..., 2] + 0.15)
+
+
+def _biggest(m: np.ndarray) -> np.ndarray:
+    n, lab, stat, _ = cv2.connectedComponentsWithStats(m.astype(np.uint8), connectivity=8)
+    return lab == 1 + int(np.argmax(stat[1:, cv2.CC_STAT_AREA]))
+
+
+def _ellipse(k: int) -> np.ndarray:
+    return cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (k, k))
+
+
+def _fill_not_sky(m: np.ndarray, rgb: np.ndarray) -> np.ndarray:
+    """Holes of the mask filled, except where the take paints the sky (a gap between a sail, the gallery and the tower)."""
+    filled = ndimage.binary_fill_holes(m)
+    sky = sky_alpha(rgb) < 0.5
+    return m | (filled & ~sky)
+
+
+def plot_masks(plot: dict) -> tuple[dict, dict, dict]:
+    """({level: bool mask of the mill in the take}, {level: the take's rgb}, {level: the mask's pixels whose colour is the
+    mill's own: no wing roof}): where the take differs from level 1's (the empty
+    plot) and is not lawn, the biggest piece; notches the bush in front of the tower leaves are closed; levels 4 and 5 lose
+    the bakery wing (right of the tower's wall, its roof where it meets the sail's tip) and the paved yard."""
+    ref = _take_rgb(plot["ref"])
+    ref_lab = _lab_soft(ref)
+    rgbs = {n: _take_rgb(t) for n, t in plot["takes"].items()}
+    base = {}
+    for n, rgb in rgbs.items():
+        d = np.abs(_lab_soft(rgb) - ref_lab).max(-1)
+        m = ((d > plot["diff"]) & ~_lawn(rgb)).astype(np.uint8)
+        m = cv2.morphologyEx(m, cv2.MORPH_OPEN, np.ones((5, 5), np.uint8)) > 0
+        base[n] = _biggest(_fill_not_sky(m, rgb))
+    lowest = min(base)
+    tower = ndimage.binary_fill_holes(cv2.morphologyEx(base[lowest].astype(np.uint8), cv2.MORPH_CLOSE, _ellipse(31)) > 0)
+    h, w = tower.shape
+    yy, xx = np.mgrid[0:h, 0:w]
+    keep = cv2.dilate(tower.astype(np.uint8), _ellipse(9)) > 0                     # the tower's own footprint
+    sacks = base[lowest + 1] & ~(cv2.dilate(base[lowest].astype(np.uint8), np.ones((9, 9), np.uint8)) > 0)
+    sacks[:880] = 0
+    sacks[:, :700] = 0
+    keep |= cv2.dilate(sacks.astype(np.uint8), _ellipse(9)) > 0
+    wing, out, trust = plot["wing"], {}, {}
+    for n, rgb in rgbs.items():
+        m = base[n].copy()
+        roof = np.zeros(m.shape, bool)
+        if n >= 4:
+            # the wing's terracotta roof (a* over 20) right of the tower's cap; the tower stands in front of it, so the
+            # tower's wall below the sail is its own silhouette (level 2's) and its colour comes from the wall
+            roof = cv2.dilate(((_lab_soft(rgb)[..., 1] > 20) & (xx >= wing["x"] - 4) & (yy >= wing["roof_y"]) & (yy < 780)).astype(np.uint8), _ellipse(7)) > 0
+            m &= ~((xx >= wing["x"]) & (yy >= wing["roof_y"]) & (xx <= wing["roof_x"]) & roof)
+            m &= ~((xx > wing["roof_x"]) & (yy >= wing["roof_y"]))
+            m &= ~((yy >= wing["y"]) & ~keep)
+            m |= tower & (yy >= wing["y"]) & (xx >= wing["x"] - 40)
+            m = _biggest(m)
+        m = cv2.morphologyEx(m.astype(np.uint8), cv2.MORPH_CLOSE, _ellipse(25)) > 0
+        m = _fill_not_sky(m, rgb)
+        if n >= 4:
+            m &= ~((yy >= wing["y"]) & ~keep)
+            m &= ~((xx > wing["roof_x"]) & (yy >= wing["roof_y"]))
+        bx0, by0, bx1, by1 = plot["bush"]                                               # the hill's bush behind level 5's lantern
+        green = (rgb[..., 1] > rgb[..., 0] - 0.05) & (rgb[..., 1] > rgb[..., 2] + 0.08)
+        m &= ~((xx >= bx0) & (xx < bx1) & (yy >= by0) & (yy < by1) & green)
+        m &= sky_alpha(rgb) >= 0.5                                                     # the glow of a lantern is sky-pale
+        m = cv2.morphologyEx(m.astype(np.uint8), cv2.MORPH_OPEN, _ellipse(9)) > 0       # tendrils of the bush
+        out[n] = _biggest(m)
+        trust[n] = out[n] & ~roof
+    return out, rgbs, trust
+
+
+def plot_looks(plot: dict) -> dict:
+    """{level: straight RGBA floats at the take's size}: the mask eroded a pixel and softened for the alpha, the colour of
+    every pixel outside the mill's inside (3 px in) taken from its nearest inside pixel, so no sky or lawn tints the edge,
+    then the level's grade."""
+    masks, rgbs, trust = plot_masks(plot)
+    out = {}
+    for n, m in masks.items():
+        inside = cv2.erode(trust[n].astype(np.uint8), _ellipse(7)) > 0
+        _, (iy, ix) = ndimage.distance_transform_edt(~inside, return_indices=True)
+        rgb = np.where(inside[..., None], rgbs[n], rgbs[n][iy, ix])        # a roof pixel inside takes the wall's colour
+        alpha = cv2.GaussianBlur(cv2.erode(m.astype(np.uint8), _ellipse(3)).astype(np.float32), (0, 0), 0.9)
+        chroma, light = plot["grade"][n]
+        lab = srgb_lab(rgb)
+        lab[..., 0] = np.clip(lab[..., 0] * light, 0, 100)
+        lab[..., 1:] *= chroma
+        out[n] = np.dstack([lab_srgb(lab), alpha])
+    return out
+
+
+def source_looks(spec: dict) -> tuple[dict, tuple[float, float]]:
+    """({level: straight RGBA floats at the source's size}, the foot anchor in the resized px): a station's cut-outs
+    (the tea stall's: the bottom centre of look 1's alpha box) or the plot looks cut from the plot takes (`anchor`)."""
+    scale = spec["scale"] * spec.get("density", DENSITY) / TEX
+    if "plot" in spec:
+        raw = plot_looks(spec["plot"])
+        return raw, (spec["anchor"][0] * scale, spec["anchor"][1] * scale)
+    raw = {n: load_look(take_path(job)) for n, job in enumerate(spec["jobs"], start=1)}
+    ys, xs = np.nonzero(resize_rgba(raw[1], scale)[..., 3] > 0.5)
+    return raw, ((xs.min() + xs.max() + 1) / 2, ys.max() + 1)
+
+
 def build_looks(spec: dict = TEA_STALL) -> dict:
     """{level: RGBA floats, all one size}, plus the box of the common crop in plate points and the foot anchor in it."""
-    scale = spec["scale"] * DENSITY / TEX
+    density = spec.get("density", DENSITY)
+    scale = spec["scale"] * density / TEX
+    raw, anchor = source_looks(spec)
     full = {}
-    for n, job in enumerate(spec["jobs"], start=1):
-        look = resize_rgba(load_look(take_path(job)), scale)
-        sh = contact_shade(look[..., 3])
+    for n, src in raw.items():
+        look = resize_rgba(src, scale)
+        sh = contact_shade(look[..., 3], density)
         shade = np.dstack([np.broadcast_to(SHADE_RGB, look.shape[:2] + (3,)), sh[..., None]])
         full[n] = over(shade, look)
-    ys, xs = np.nonzero(resize_rgba(load_look(take_path(spec["jobs"][0])), scale)[..., 3] > 0.5)
-    anchor = ((xs.min() + xs.max() + 1) / 2, ys.max() + 1)          # bottom centre of look 1's alpha box
     boxes = [np.nonzero(x[..., 3] > 0.02) for x in full.values()]
     x0 = min(int(b[1].min()) for b in boxes) - 2
     y0 = min(int(b[0].min()) for b in boxes) - 2
@@ -208,7 +371,7 @@ def build_looks(spec: dict = TEA_STALL) -> dict:
     x1, y1 = -(-x1 // 4) * 4, -(-y1 // 4) * 4
     cropped = {n: x[y0:y1, x0:x1] for n, x in full.items()}
     fx, fy = spec["foot"]
-    box = [fx + (x0 - anchor[0]) / DENSITY, fy + (y0 - anchor[1]) / DENSITY, fx + (x1 - anchor[0]) / DENSITY, fy + (y1 - anchor[1]) / DENSITY]
+    box = [fx + (x0 - anchor[0]) / density, fy + (y0 - anchor[1]) / density, fx + (x1 - anchor[0]) / density, fy + (y1 - anchor[1]) / density]
     return {"looks": cropped, "box": [round(float(v), 2) for v in box], "foot": [fx, fy]}
 
 
@@ -301,6 +464,21 @@ def hill_ceiling(alpha: np.ndarray, p_a: np.ndarray, t_a: np.ndarray, window: tu
     return out
 
 
+def drop_specks(alpha: np.ndarray, window: tuple, crop_tex: tuple, margin: int = 48) -> np.ndarray:
+    """The erase leaves wisps of its own mist floating over the sky where the old station's sails were: inside the window
+    (and `margin` px round it) every piece of alpha that is not the island's body, and the fringe farther than 5 px from the
+    body, goes. Only for a station whose bases ask for it (`clean`)."""
+    core = (alpha > 0.3).astype(np.uint8)
+    n, lab, stat, _ = cv2.connectedComponentsWithStats(core, connectivity=8)
+    body = lab == 1 + int(np.argmax(stat[1:, cv2.CC_STAT_AREA]))
+    keep = cv2.dilate(body.astype(np.uint8), _ellipse(11)) > 0
+    x0, y0, x1, y1 = window
+    cx, cy = crop_tex
+    region = np.zeros(alpha.shape, bool)
+    region[max(y0 - cy - margin, 0):y1 - cy + margin, max(x0 - cx - margin, 0):x1 - cx + margin] = True
+    return np.where(region & ~keep, 0.0, alpha)
+
+
 def build_base(stage: int, spec: dict) -> tuple[np.ndarray, dict]:
     """The shipped plate of a day stage with the station erased: RGBA floats, the plate's crop."""
     light = "day"
@@ -339,6 +517,8 @@ def build_base(stage: int, spec: dict) -> tuple[np.ndarray, dict]:
     new_a = p_a * (1 - m_shrink) + np.minimum(p_a, t_a) * m_shrink
     new_rgb = p_rgb * (1 - m_rgb[..., None]) + t_rgb * m_rgb[..., None]
     new_a = hill_ceiling(new_a, p_a, t_a, spec["window"], (cx, cy))
+    if spec.get("clean"):
+        new_a = drop_specks(new_a, spec["window"], (cx, cy))
     rgb = ingest.extended(np.where(new_a[..., None] > 0, new_rgb, p_rgb), new_a)
     out = np.dstack([rgb, new_a])
     info = {"crop": crop, "changed": float(m_rgb.max()), "hard_full": hard_full}
@@ -348,7 +528,7 @@ def build_base(stage: int, spec: dict) -> tuple[np.ndarray, dict]:
 SIZE_TEX = (2048, 3072)
 
 
-def clear_occluders(stage: int, hard_full: np.ndarray) -> None:
+def clear_occluders(stage: int, hard_full: np.ndarray, station: str = TEA_STALL["id"]) -> None:
     """Another object's occluder cut-out that reaches into the erased stall (the workshop's polygon runs on to the stall's
     left pole) would draw the old stall again over the base: its alpha is cleared inside the erased region."""
     hand = ingest.load_hand(ISLAND)
@@ -356,7 +536,7 @@ def clear_occluders(stage: int, hard_full: np.ndarray) -> None:
     a1 = ingest.load_matte(ISLAND, "day", stage)
     region = cv2.GaussianBlur(cv2.dilate(hard_full, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (13, 13))).astype(np.float32), (0, 0), 2.0)
     for obj in hand["objects"]:
-        if not obj.get("occluder") or not ingest.present(obj, "day", stage) or obj["id"] == TEA_STALL["id"]:
+        if not obj.get("occluder") or not ingest.present(obj, "day", stage) or obj["id"] == station:
             continue
         _, box = ingest.occluder_cut(np.zeros(a1.shape + (3,)), a1, ingest.pct_to_px(obj["points"]))
         x0, y0, x1, y1 = (v * k for v in box)
@@ -371,9 +551,9 @@ def clear_occluders(stage: int, hard_full: np.ndarray) -> None:
         print(f"  occluder {obj['id']} {stage}: cleared {int((part > 0.5).sum())} px of the erased stall")
 
 
-def cmd_bases() -> dict:
+def cmd_bases(station: dict = TEA_STALL) -> dict:
     out = {}
-    for stage, spec in BASES.items():
+    for stage, spec in station["bases"].items():
         x, info = build_base(stage, spec)
         ingest.write_imageset(base_name("day", stage), to_img(x))
         # The Map's island cut (and the graded island layer) is the same picture: it must not paint the stall either.
@@ -392,7 +572,7 @@ def cmd_bases() -> dict:
             rgb = np.where(a > 1e-4, cut[..., :3] / np.maximum(a, 1e-4), old[..., :3])
             alpha = np.minimum(old[..., 3:], a) if kind == "mapisle" else a
             ingest.write_imageset(name, to_img(np.dstack([rgb, alpha])))
-        clear_occluders(stage, info["hard_full"])
+        clear_occluders(stage, info["hard_full"], station["id"])
         out[stage] = x.shape[:2]
         print(f"base day {stage}: {x.shape[1]} x {x.shape[0]} px")
     return out
@@ -409,44 +589,51 @@ def stations_data(spec: dict = TEA_STALL) -> dict:
     """The `stations` block of plate-home.json (read by ingest.build_json)."""
     built = build_looks(spec)
     levels = sorted(built["looks"])
-    return {
-        spec["id"]: {
-            "light": spec["light"],
-            "levels": len(levels),
-            "box": built["box"],
-            "foot": built["foot"],
-            "density": DENSITY,
-            "baseStages": sorted(BASES),
-            "stages": {str(st): stage_place(st, built["box"]) for st in sorted(BASES)},
-            "lookBytes": [asset_pixels(look_name(spec["id"], n, spec["light"])) for n in levels],
-            "baseBytes": {str(s): asset_pixels(base_name(spec["light"], s)) for s in sorted(BASES)},
-        }
+    data = {
+        "light": spec["light"],
+        "levels": spec["levels"],
+        "box": built["box"],
+        "foot": built["foot"],
+        "density": spec.get("density", DENSITY),
+        "baseStages": sorted(spec["bases"]),
+        "stages": {str(st): stage_place(st, built["box"], spec) for st in sorted(spec["bases"])},
+        "lookBytes": [asset_pixels(look_name(spec["id"], n, spec["light"])) for n in levels],
+        "baseBytes": {str(s): asset_pixels(base_name(spec["light"], s)) for s in sorted(spec["bases"])},
     }
+    if levels != list(range(1, spec["levels"] + 1)):          # a level whose look is missing draws the nearest lower one
+        data["lookLevels"] = {spec["light"]: levels}
+    return {spec["id"]: data}
 
 
-def stage_place(stage: int, ref_box: list[float]) -> dict:
+def stage_place(stage: int, ref_box: list[float], spec: dict = TEA_STALL) -> dict:
     """One stage's transform: the look canvas's box scaled about the foot, and the foot (plate points)."""
-    fx, fy = PLACE[stage]["foot"]
-    k = PLACE[stage]["scale"]
-    rx, ry = TEA_STALL["foot"]
+    fx, fy = spec["place"][stage]["foot"]
+    k = spec["place"][stage]["scale"]
+    rx, ry = spec["foot"]
     box = [fx + (ref_box[0] - rx) * k, fy + (ref_box[1] - ry) * k, fx + (ref_box[2] - rx) * k, fy + (ref_box[3] - ry) * k]
     return {"foot": [fx, fy], "scale": k, "box": [round(v, 2) for v in box]}
 
 
 def cmd_json() -> None:
-    STATIONS_JSON.write_text(json.dumps({"stations": stations_data()}, indent=1) + "\n")
+    stations = {}
+    for spec in STATIONS:
+        stations.update(stations_data(spec))
+    STATIONS_JSON.write_text(json.dumps({"stations": stations}, indent=1) + "\n")
     print(f"json: {STATIONS_JSON.relative_to(ingest.REPO)}")
 
 
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("command", choices=["looks", "bases", "json", "all"])
+    ap.add_argument("--station", choices=[sp["id"] for sp in STATIONS], help="one station (default: every station)")
     args = ap.parse_args(argv)
     heic.require()
-    if args.command in ("looks", "all"):
-        cmd_looks()
-    if args.command in ("bases", "all"):
-        cmd_bases()
+    chosen = [sp for sp in STATIONS if args.station in (None, sp["id"])]
+    for spec in chosen:
+        if args.command in ("looks", "all"):
+            cmd_looks(spec)
+        if args.command in ("bases", "all"):
+            cmd_bases(spec)
     if args.command in ("json", "all"):
         cmd_json()
     return 0
