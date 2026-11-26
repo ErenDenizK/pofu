@@ -26,8 +26,10 @@ six vertical steps, each done when he plays it on his phone.
 0a. Fi 46 plan merged (#519, squash): docs/design/mainflow-plan-2026-11-26(-tr).md,
    docs/studio/speed-2026-11-26.md. Six steps; step 1 now: PR 1a builder
    (feat/looks-per-light). pofu-art #172 merged: D43 Gezgin tail+shadow (180), D44
-   poses (181), D40-D42 BLOCKED. C1/C3 exist already: art-reviewer on old #85
-   (117 erase), #38/#61/#62 (golden); C9 = S3. His Qs sent with sheets (pofu-art #171): theme, Caglayan, music; speed
+   poses (181), D40-D42 BLOCKED. Old #85 (117 erase, 18/20 picked) + #38 (87 golden
+   IL3-7) merged with picks; #61/#62 closed (half size). Redo row (L1/L2 erase,
+   golden IL1/2/8/9, IL3 mist) being written. Paste masks keep the pier bridge/gap.
+   PR #520 (1a) CI running; then 1b windmill ingest. C9 = S3. His Qs sent with sheets (pofu-art #171): theme, Caglayan, music; speed
    change 3 his. 3-hour self-wake trigger denied by auto mode: asked him.
 
 1. Fi 38: (a) #503 island progression open (answers fi 39; 137 redoes
