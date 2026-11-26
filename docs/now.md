@@ -57,5 +57,4 @@ Step 1 PRs 1b-1e, then step 2 (2a ADR, 2b+2c together). Device days when members
 
 ## Open with the founder
 
-- Membership ~11-27: Mac 1-2 h, Distribution request same day; #490; N6.
-- Device: 11-13 answers; pinch smooth? pond frame rate. Stale: roadmap, tracker.
+- Membership ~11-27: Mac 1-2 h, Distribution request same day; #490; N6; device: pinch, pond fps.
