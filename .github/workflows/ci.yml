@@ -126,6 +126,10 @@ jobs:
       - name: Check Home's sky set for island holes
         run: python3 -I tools/plate/skyset_mend.py home --check
 
+      # The music line (ADR-0029): the ABC parser, the band, the lint, and that every committed tune passes.
+      - name: Test the music tools
+        run: python3 -I -m unittest discover -s tools/music -p "test_*.py"
+
       # docs/state/plates.yaml: painted paths and lead picks exist.
       - name: Check the plate and asset state tables
         run: |
