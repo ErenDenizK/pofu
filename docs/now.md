@@ -48,12 +48,11 @@ six vertical steps, each done when he plays it on his phone.
    moves are small, 24-30 px; Fındık's painted spot now 658,864).
 2. WP10 compositor (#500), WP11 near lens (#502), WP13 water (#505) merged;
    their leftovers fold into the plan's steps 1-3 (device checks: pinch, pond).
-4. Codex: 132, 133, 135, 126 v2 merged (cloud fit: crossfade floor-mid,
-   warm kit only, Koke keeps bed-round v1). D29-D33 merged 11-26 (#164-#167, #169; mallet reads right). Queue D34-D42 merged (#170: 171-179, 60 jobs: Gezgin, station levels in the plate, seasons, weekly); "çalış hazır" sent. 126 v3 (#132) to review; 136 + 137 held.
-Merged: #475-#516 (not #490, #503, #504, #507); pofu-art #81-#163 (not stale #84-#90, #132).
+4. Codex: D29-D33 merged 11-26; queue D34-D45 (#170, #172, #174; D40-42 blocked); 126 v3 (#132) to review.
+Merged: #475-#520 (not #490, #503, #504, #507); pofu-art #81-#174 (not stale #84-#90, #132).
 
-## Next (path, #511)
-Briefs 1-5 all merged. Device days (brief 0 on call) when membership opens; stage 4 (Sefer) held.
+## Next (plan #519)
+Step 1 PRs 1b-1e, then step 2 (2a ADR, 2b+2c together). Device days when membership opens.
 
 ## Open with the founder
 
