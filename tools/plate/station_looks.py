@@ -118,7 +118,7 @@ WINDMILL = {
         "bush": (0, 380, 395, 620),
     },
     "scale": 0.60,               # of a take px, at TEX px per point (0.30 points per px)
-    "density": 2.2,              # the looks' texture px per plate point: the largest state is 9 MB (`ingest.py check`)
+    "density": 1.7,              # the looks' texture px per plate point: Home's largest state plus its props must fit 9 MB
     "anchor": (655.0, 988.0),
     "foot": (345.0, 759.0),
     "footStage": 0,
