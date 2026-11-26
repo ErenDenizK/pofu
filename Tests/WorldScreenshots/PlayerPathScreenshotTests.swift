@@ -445,6 +445,35 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
         }
     }
 
+    /// The windmill's looks on Home (plan row 1b): its level shows at the island levels whose day plate has an erased
+    /// base (10 and 9: stages 0 and 1; level 8 keeps its painted mill, no clean base yet). Island 10 at windmill levels 1
+    /// to 5 (`path-mill-l<level>`; level 1 has no look that ships and draws the empty plot), island 9 at level 3
+    /// (`path-mill-i9-l3`), and island 8 at level 3 as the control (`path-mill-i8-l3`), at noon. A level 5 mill on island
+    /// 10 is not a state the player reaches today; the frames are for the looks.
+    @MainActor
+    func testRenderTheWindmillLooks() async throws {
+        let scene = try windowScene()
+        let folder = try outputFolder()
+        let day = try XCTUnwrap(Self.path.first { $0.morning.islandLevel == 3 }, "the path has a level 3 island")
+        let frames: [(island: Int, level: Int)] = [(10, 1), (10, 2), (10, 3), (10, 4), (10, 5), (9, 3), (8, 3)]
+        for (islandLevel, level) in frames {
+            var world = day.morning
+            world.islandLevel = islandLevel
+            XCTAssertTrue(world.stations.contains { $0.id == .windmill }, "the windmill is a station of the world")
+            world.stations = world.stations.map { status in
+                var status = status
+                if status.id == .windmill { status.level = level }
+                return status
+            }
+            let island = IslandSceneModel(framing: .mid)
+            let view = homeView(world, hour: 12, island: island, settled: true)
+            let name = islandLevel == 10 ? "path-mill-l\(level)" : "path-mill-i\(islandLevel)-l\(level)"
+            try await capture(AnyView(view), name: name, scene: scene, folder: folder, settle: 2100) {
+                XCTAssertNotNil(island.homePlate, "\(name): Home is its painting")
+            }
+        }
+    }
+
     /// A build's camera through the real `focusStation` (the painted station centred above the sheet), and
     /// the station's burst at 0.6 s, over the held old painting (day 4: the island rises to level 4).
     @MainActor

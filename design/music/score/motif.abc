@@ -1,0 +1,12 @@
+X:1
+T:The Pofu motif
+M:4/4
+L:1/8
+Q:1/4=96
+V:lead instrument=kalimba
+K:D
+% Four notes on the kalimba, inside D major pentatonic: two steps up, a reach,
+% and a step back to rest on the fifth (D F# B A). Every island's tune quotes
+% this shape once, in its own mode: up two scale steps, up three, down one.
+P:MOTIF
+[V:lead] D F B2 A4 |

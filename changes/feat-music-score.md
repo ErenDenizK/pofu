@@ -1,0 +1,1 @@
+Music has a score: tunes are written as text (ABC), played by a band of eight instruments made from numbers, linted and drawn (tools/music); the Pofu motif and three candidate Home day tunes are in design/music, each with an audition file for the founder's ear.

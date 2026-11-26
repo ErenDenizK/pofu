@@ -1,0 +1,56 @@
+batch: batch-134-plot-pilot
+job: x-plot-windmill-3
+status: warn
+pick: 1
+lead_review: "Ships with a note: the bakery is gone and the tower holds still, but the open sack store and trodden path were not painted (only the three old sacks), and lawn now fills where the bakery stood against the sky, so the cut must exclude that turf or it shows as a green ledge in place."
+note: 'Auto-picked by QA; founder review pending. Provisional parent x-plot-windmill-4 t1 (auto-pick,
+  lead review pending). Both takes are non-fail warnings with lock_load 0.0; no harmony check is emitted
+  for this plate, so t1 is the stable tie-break. Visually both remove the bakery wing and paving and replace
+  that area with lawn, while retaining the central windmill and left-side plot. The remaining bags are
+  visually ambiguous rather than a clear open sack store; lead review should check this named feature,
+  path continuity and unchanged base. Warnings on both: 1254x1254 source scaled/cropped, chroma and off-palette
+  yellow high; t1 has slightly lower drift.'
+source: codex-cloud
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+provisional_parent: x-plot-windmill-4 t1 (auto-pick, lead review pending)
+takes:
+- n: 1
+  file: plate__x-plot-windmill-3--t1.webp
+  qa: warn
+  size_bytes: 153722
+  lock_load: 0.0
+  warnings:
+  - check: canvas
+    status: warn
+    message: 1254x1254 scaled x1.225 and center-cropped to 1536x1536
+  - check: chroma_ceiling
+    status: warn
+    message: chroma p95 78 (R1 51) (advisory in an exploration)
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 10.6, p95 27.6, off-palette 29.6% (top: #DDDD33 (5.7%), #CCCC33 (4.9%)) (advisory
+      in an exploration)'
+  source_file: /workspace/generated_images/exec-f3cdc3b0-6a55-416c-b60c-f506947e2f38.png
+  source_sha256: fced9ff2352be69137e28cb21eb8a9852458ec593fafd1dd196c8e3b73248b2e
+  generated_at: '2026-11-16T16:20:59+00:00'
+- n: 2
+  file: plate__x-plot-windmill-3--t2.webp
+  qa: warn
+  size_bytes: 162676
+  lock_load: 0.0
+  warnings:
+  - check: canvas
+    status: warn
+    message: 1254x1254 scaled x1.225 and center-cropped to 1536x1536
+  - check: chroma_ceiling
+    status: warn
+    message: chroma p95 78 (R1 51) (advisory in an exploration)
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 10.7, p95 28.9, off-palette 30.7% (top: #DDDD33 (4.6%), #CCCC33 (3.1%)) (advisory
+      in an exploration)'
+  source_file: /workspace/generated_images/exec-c98992f3-ee3c-416d-a484-6034b9d4baaf.png
+  source_sha256: bd8c67e9e7657380773277a293f061223c7c77ca58ef9ff389090639db4a587a
+  generated_at: '2026-11-16T16:20:59+00:00'

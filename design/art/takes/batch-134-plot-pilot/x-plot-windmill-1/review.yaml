@@ -1,0 +1,56 @@
+batch: batch-134-plot-pilot
+job: x-plot-windmill-1
+status: warn
+pick:
+lead_review: "Neither ships: the wind wheel is a child's paper pinwheel (t2 rainbow, both about 15 pt wide at mid), not a wooden wind wheel on a post, so level 1 reads as a toy beside a stone, and the cut carries the take's own sky round it as a pale halo over the base's hill."
+note: Auto-picked by QA; founder review pending. Provisional parent x-plot-windmill-2 t1 (auto-pick, lead
+  review pending). Both takes are non-fail warnings, lock_load 0.0 tie, and no harmony check is emitted
+  for this plate; t1 is the stable tie-break. Visually both remove the tower and replace it with a small
+  freestanding wind wheel and a millstone near the original footprint. t1 is the simpler warm orange/yellow
+  wheel; t2 has rainbow-coloured blades that drift farther from the requested scene palette. Both warn
+  for 1254 square output scaled/cropped, high chroma p95 85 and palette drift (27.0%/27.3% off-palette);
+  lead review should verify exact foot placement, lawn repair and unchanged surrounding base.
+source: codex-cloud
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+provisional_parent: x-plot-windmill-2 t1 (auto-pick, lead review pending)
+takes:
+- n: 1
+  file: plate__x-plot-windmill-1--t1.webp
+  qa: warn
+  size_bytes: 131582
+  lock_load: 0.0
+  warnings:
+  - check: canvas
+    status: warn
+    message: 1254x1254 scaled x1.225 and center-cropped to 1536x1536
+  - check: chroma_ceiling
+    status: warn
+    message: chroma p95 85 (R1 51) (advisory in an exploration)
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 12.3, p95 33.9, off-palette 27.0% (top: #DDDD22 (6.2%), #EEEE22 (3.2%)) (advisory
+      in an exploration)'
+  source_file: /workspace/generated_images/exec-e164c418-6378-4e52-b116-58180d617611.png
+  source_sha256: cbcc62d33152fdf5ef1b185086fa9f3109741049a4d1a363d40186d1545e1636
+  generated_at: '2026-11-16T16:34:44+00:00'
+- n: 2
+  file: plate__x-plot-windmill-1--t2.webp
+  qa: warn
+  size_bytes: 127834
+  lock_load: 0.0
+  warnings:
+  - check: canvas
+    status: warn
+    message: 1254x1254 scaled x1.225 and center-cropped to 1536x1536
+  - check: chroma_ceiling
+    status: warn
+    message: chroma p95 85 (R1 51) (advisory in an exploration)
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 12.1, p95 33.5, off-palette 27.3% (top: #DDDD22 (5.9%), #EEEE22 (3.5%)) (advisory
+      in an exploration)'
+  source_file: /workspace/generated_images/exec-6d97eb1f-78cb-4c55-a2d0-15b7489a530b.png
+  source_sha256: cbc24e1fb8cffc345cab12b95cca4b723b507e76f64642ea72db63f45a2a921f
+  generated_at: '2026-11-16T16:34:44+00:00'

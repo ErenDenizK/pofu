@@ -1,0 +1,42 @@
+X:1
+T:Home day A: Sunny step
+M:4/4
+L:1/8
+Q:1/4=96
+V:lead instrument=kalimba
+V:bed.pad instrument=pad
+V:bed.bass instrument=bass
+V:pulse.keys instrument=felt_keys
+V:pulse.tok instrument=tok
+K:D
+%%pofu island home
+%%pofu time day
+%%pofu order A A2 B END
+% The bouncy one. Two short steps and a long note, twice, then a run that
+% climbs and comes back: the motif opens every cell but the middle, and the
+% middle (B) starts from the top on G and C#, the two notes that make the
+% scale Home's own. The keys answer on beats two and four.
+P:A
+[V:lead] D F B2 A2 z2 | F A d3 B z2 | A B d e f2 e d | B4 z4 |
+[V:bed.pad] [D,A,F]8 | [B,,F,D]8 | [D,A,F]8 | [G,,D,B,]8 |
+[V:bed.bass] D,,6 A,,2 | B,,6 F,,2 | D,,6 D,,2 | G,,8 |
+[V:pulse.keys] z2 [F,A,]2 z2 [F,A,]2 | z2 [D,F,]2 z2 [D,F,]2 | z2 [F,A,]2 z2 [F,A,]2 | z2 [D,G,]2 z2 [B,,D,]2 |
+[V:pulse.tok] z4 z3 d | z4 z3 d | z4 z3 d | z2 d2 z4 |
+P:A2
+[V:lead] D F B2 A2 z2 | F A d3 e z2 | f e d B A2 B d | A4 z4 |
+[V:bed.pad] [D,A,F]8 | [B,,F,D]8 | [D,A,F]8 | [A,,E,A,]8 |
+[V:bed.bass] D,,6 A,,2 | B,,6 F,,2 | D,,6 D,,2 | A,,8 |
+[V:pulse.keys] z2 [F,A,]2 z2 [F,A,]2 | z2 [D,F,]2 z2 [D,F,]2 | z2 [F,A,]2 z2 [F,A,]2 | z2 [E,A,]2 z2 [C,E,]2 |
+[V:pulse.tok] z4 z3 d | z4 z3 d | z4 z3 d | z2 d2 z4 |
+P:B
+[V:lead] g2 f e d2 z2 | e2 d c B2 z2 | g f e d c2 B A | e4 z4 |
+[V:bed.pad] [G,,D,B,]8 | [A,,E,C]8 | [G,,D,B,]4 [A,,E,C]4 | [A,,E,A,]8 |
+[V:bed.bass] G,,6 D,,2 | A,,6 E,,2 | G,,4 A,,4 | A,,8 |
+[V:pulse.keys] z2 [D,G,]2 z2 [D,G,]2 | z2 [C,E,]2 z2 [C,E,]2 | z2 [D,G,]2 z2 [C,E,]2 | z2 [E,A,]2 z2 [C,E,]2 |
+[V:pulse.tok] z4 z3 d | z4 z3 d | z4 z3 d | z2 d2 z4 |
+P:END
+[V:lead] D F B2 A2 z2 | d2 B A F2 z2 | E F A B A2 F E | D4 z4 |
+[V:bed.pad] [D,A,F]8 | [B,,F,D]8 | [A,,E,C]8 | [D,A,F]8 |
+[V:bed.bass] D,,6 A,,2 | B,,6 F,,2 | A,,6 A,,2 | D,,8 |
+[V:pulse.keys] z2 [F,A,]2 z2 [F,A,]2 | z2 [D,F,]2 z2 [D,F,]2 | z2 [E,A,]2 z2 [C,E,]2 | z2 [F,A,]2 z4 |
+[V:pulse.tok] z4 z3 d | z4 z3 d | z4 z3 d | z2 d2 z4 |

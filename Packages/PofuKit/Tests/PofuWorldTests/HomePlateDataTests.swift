@@ -201,10 +201,37 @@ struct HomePlateDataTests {
         let plate = try plate
         #expect(plate.lookArt(station: "teaStall", level: 3, light: "night", stage: 7) == nil)
         #expect(plate.lookArt(station: "teaStall", level: 3, light: "day", stage: 0) == nil)
-        #expect(plate.drawnPlateArt(light: "day", stage: 0) == plate.plateArt(light: "day", stage: 0))
+        // stage 2 (island level 8) has no base for any station: the plate is drawn as painted
+        #expect(plate.drawnPlateArt(light: "day", stage: 2) == plate.plateArt(light: "day", stage: 2))
         #expect(plate.drawnPlateArt(light: "day", stage: 7) == "world-home-base-day-7")
         // the painting other surfaces show is still the painted plate
         #expect(plate.plateArt(light: "day", stage: 7) == "world-home-plate-day-7")
+    }
+
+    // MARK: The windmill (plan row 1b)
+
+    @Test func theWindmillStandsOverItsErasedPlotAtIslandLevels10And9WithLooks2To5() throws {
+        let plate = try plate
+        let mill = try #require(plate.stations["windmill"])
+        #expect(mill.levels == 5)
+        #expect(mill.baseStages == [0, 1])
+        #expect(mill.lights["night"] == nil, "the night windmill stays painted until the relights (plan row C5)")
+        for stage in [0, 1] {
+            #expect(plate.drawnPlateArt(light: "day", stage: stage) == "world-home-base-day-\(stage)")
+            // level 1 has no take that ships: it draws nothing (the empty plot); the others their own look
+            #expect(plate.lookArt(station: "windmill", level: 1, light: "day", stage: stage) == nil)
+            for level in 2...5 {
+                #expect(plate.lookArt(station: "windmill", level: level, light: "day", stage: stage) == "world-home-look-windmill-\(level)-day")
+            }
+            let place = mill.place(stage: stage)
+            #expect(place.box.minX < place.foot.x && place.foot.x < place.box.maxX)
+            #expect(place.box.minY < place.foot.y && place.foot.y < place.box.maxY)
+        }
+        // island level 8 (stage 2) and the other stages keep the painted mill
+        for stage in 2...9 {
+            #expect(plate.lookArt(station: "windmill", level: 3, light: "day", stage: stage) == nil)
+        }
+        #expect(plate.lookArt(station: "windmill", level: 3, light: "night", stage: 0) == nil)
     }
 
     @Test func theLooksAndTheBaseAreShippedAndWithinTheBudget() throws {
@@ -214,8 +241,9 @@ struct HomePlateDataTests {
             .deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
             .appendingPathComponent("Sources/PofuWorld/Resources/World.xcassets")
         let fm = FileManager.default
-        var names = ["world-home-base-day-7"]
+        var names = ["world-home-base-day-7", "world-home-base-day-0", "world-home-base-day-1"]
         names += (1...5).map { "world-home-look-teaStall-\($0)-day" }
+        names += (2...5).map { "world-home-look-windmill-\($0)-day" }
         for name in names {
             #expect(fm.fileExists(atPath: assets.appendingPathComponent("\(name).imageset/Contents.json").path), "\(name)")
         }

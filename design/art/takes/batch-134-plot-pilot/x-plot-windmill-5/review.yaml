@@ -1,0 +1,67 @@
+batch: batch-134-plot-pilot
+job: x-plot-windmill-5
+status: warn
+pick: 1
+lead_review: "Ships: in place at mid it takes the island's light and grass with no edge, station chroma 1.03x the plate's, foot where the plate mill stands; it is 1.3x, not 2x, the plate mill's height, which is fine inside the plot."
+note: Auto-picked by QA; founder review pending. Both takes are non-fail warnings with lock_load 0.0;
+  no harmony check is emitted for this plate, so the stable t1 tie-break is used. Both visually place
+  the oversized windmill on the bare plot at roughly twice the reference windmill height and preserve
+  the broad crop composition. Warnings include 1254x1254 output scaled and center-cropped to 1536, elevated
+  chroma, local contrast and off-palette yellow; t1 also falls just below the cloud-sea light floor. Lead
+  review should check the station boundary and surrounding unchanged base.
+source: codex-cloud
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+takes:
+- n: 1
+  file: plate__x-plot-windmill-5--t1.webp
+  qa: warn
+  size_bytes: 181108
+  lock_load: 0.0
+  warnings:
+  - check: canvas
+    status: warn
+    message: 1254x1254 scaled x1.225 and center-cropped to 1536x1536
+  - check: chroma_ceiling
+    status: warn
+    message: chroma p95 70 (R1 51) (advisory in an exploration)
+  - check: light_contrast
+    status: warn
+    message: 'day/subject: p75 local contrast 6.8 (band 2.5-6.5; above it reads too contrasty)'
+  - check: light_sea
+    status: warn
+    message: 'day: cloud sea L 81 (at least 82: the sea is the reflector)'
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 7.2, p95 21.8, off-palette 20.6% (top: #CCCC44 (4.7%), #DDDD44 (2.1%)) (advisory
+      in an exploration)'
+  source_file: /workspace/generated_images/exec-f6c81e50-f5d1-4784-a199-cca807342982.png
+  source_sha256: 922825e7a4c2aedffb6c3bedc3d9f278b0f4553d616e775844aaeb058040ea18
+  generated_at: '2026-11-16T16:01:34+00:00'
+- n: 2
+  file: plate__x-plot-windmill-5--t2.webp
+  qa: warn
+  size_bytes: 197886
+  lock_load: 0.0
+  warnings:
+  - check: canvas
+    status: warn
+    message: 1254x1254 scaled x1.225 and center-cropped to 1536x1536
+  - check: chroma_ceiling
+    status: warn
+    message: chroma p95 74 (R1 51) (advisory in an exploration)
+  - check: light_values
+    status: warn
+    message: 'day/subject: L p5 47 (at least 50: darks stay a light mid-tone), p98 95 (at least 90)'
+  - check: light_contrast
+    status: warn
+    message: 'day/subject: p75 local contrast 7.5 (band 2.5-6.5; above it reads too contrasty) (warn-only
+      until the founder has seen the light pilot)'
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 7.7, p95 25.5, off-palette 20.3% (top: #DDDD44 (3.6%), #CCCC33 (2.7%)) (advisory
+      in an exploration)'
+  source_file: /workspace/generated_images/exec-eaa1e9ff-9e0f-42cb-80bb-18f487a7541b.png
+  source_sha256: d942afdebd9e312a1fabfbe624959261674aa38bda80f658de1bef2b4f180055
+  generated_at: '2026-11-16T16:01:35+00:00'
