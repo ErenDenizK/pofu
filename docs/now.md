@@ -25,8 +25,9 @@ six vertical steps, each done when he plays it on his phone.
 
 0a. Fi 46 plan merged (#519, squash): docs/design/mainflow-plan-2026-11-26(-tr).md,
    docs/studio/speed-2026-11-26.md. Six steps; step 1 now: PR 1a builder
-   (feat/looks-per-light); Codex rows C1/C3/C6/C7 + block D40-D42 (themes, D8/Q1)
-   builder. His Qs sent with sheets (pofu-art #171): theme, Caglayan, music; speed
+   (feat/looks-per-light). pofu-art #172 merged: D43 Gezgin tail+shadow (180), D44
+   poses (181), D40-D42 BLOCKED. C1/C3 exist already: art-reviewer on old #85
+   (117 erase), #38/#61/#62 (golden); C9 = S3. His Qs sent with sheets (pofu-art #171): theme, Caglayan, music; speed
    change 3 his. 3-hour self-wake trigger denied by auto mode: asked him.
 
 1. Fi 38: (a) #503 island progression open (answers fi 39; 137 redoes
