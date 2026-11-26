@@ -29,7 +29,8 @@ six vertical steps, each done when he plays it on his phone.
    poses (181), D40-D42 BLOCKED. Old #85 (117 erase, 18/20 picked) + #38 (87 golden
    IL3-7) merged with picks; #61/#62 closed (half size). Redo row D45 merged (#174, batch 182, first in Demand: L1/L2 erase,
    golden IL1/2/8/9, IL3 mist). Paste masks keep the pier bridge/gap.
-   PR #520 (1a) CI running; then 1b windmill ingest. C9 = S3. His Qs sent with sheets (pofu-art #171): theme, Caglayan, music; speed
+   #520 (1a) merged (stall frames pixel-identical). Builders: 1b art/windmill-levels
+   (batch 134 day looks + 117 bases), 1d art/home-golden (87 IL3-7). C9 = S3. His Qs sent with sheets (pofu-art #171): theme, Caglayan, music; speed
    change 3 his. 3-hour self-wake trigger denied by auto mode: asked him.
 
 1. Fi 38: (a) #503 island progression open (answers fi 39; 137 redoes
