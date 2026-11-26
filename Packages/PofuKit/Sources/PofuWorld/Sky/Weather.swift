@@ -35,33 +35,6 @@ public enum Weather: String, CaseIterable, Hashable, Sendable {
     }
 }
 
-/// The season of the real calendar, northern hemisphere. Cosmetic and
-/// reserved for later (leaf colours, snow); it never depends on the player.
-public enum Season: String, CaseIterable, Hashable, Sendable {
-    case winter
-    case spring
-    case summer
-    case autumn
-
-    /// The season of a calendar month (1...12).
-    public static func of(month: Int) -> Season {
-        switch month {
-        case 12, 1, 2: .winter
-        case 3, 4, 5: .spring
-        case 6, 7, 8: .summer
-        default: .autumn
-        }
-    }
-
-    public static func of(_ day: LocalDay) -> Season {
-        of(month: day.month)
-    }
-
-    public static func of(_ date: Date, calendar: Calendar) -> Season {
-        of(LocalDay(containing: date, in: calendar))
-    }
-}
-
 /// Which half of the day a weather roll covers.
 public enum WeatherHalf: Int, Hashable, Sendable {
     case morning

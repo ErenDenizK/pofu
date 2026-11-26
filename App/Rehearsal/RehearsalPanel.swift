@@ -168,6 +168,13 @@ struct RehearsalPanel: View {
                 .lineLimit(1)
                 .minimumScaleFactor(0.8)
                 .foregroundStyle(PofuColor.textSecondary)
+            if !islandYearText.isEmpty {
+                Text(verbatim: islandYearText)
+                    .font(PofuFont.caption)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.7)
+                    .foregroundStyle(PofuColor.textSecondary)
+            }
             Spacer(minLength: PofuSpacing.xs)
             TimelineView(.everyMinute) { _ in
                 Text(verbatim: clockText)
@@ -235,6 +242,17 @@ struct RehearsalPanel: View {
     }
 
     /// The rehearsed time, and how far ahead of the real one it runs.
+    /// Season, day of the season and today's special day, to see the island
+    /// year turn with "Next day". Empty before the first day.
+    private var islandYearText: String {
+        let world = model.world
+        guard let season = world.season, let first = world.firstDay, let clock = world.clock else { return "" }
+        let day = LocalDay(containing: clock, in: model.economy.calendar)
+        let position = IslandYear.position(on: day, firstDay: first, rules: AppModel.islandYearRules)
+        let special = world.specialDay.map { " · \($0.rawValue)" } ?? ""
+        return "\(season.rawValue) \(position.dayOfSeason)/\(AppModel.islandYearRules.seasonDays)\(special)"
+    }
+
     private var clockText: String {
         let now = rehearsal.clock.now
         let time = now.formatted(date: .omitted, time: .shortened)

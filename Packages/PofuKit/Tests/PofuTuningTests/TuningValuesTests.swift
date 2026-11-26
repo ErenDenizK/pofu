@@ -1,6 +1,7 @@
 import Foundation
 import Testing
 @testable import PofuTuning
+import PofuCore
 
 @Suite("Tuning values")
 struct TuningValuesTests {
@@ -166,5 +167,25 @@ struct TuningStoreTests {
         #expect(store.values.companion.breathPeriodLow == 5.2)
         #expect(defaults.dictionary(forKey: "ayar.overrides") == nil)
         #expect(defaults.dictionary(forKey: TuningStore.defaultStorageKey) != nil)
+    }
+}
+
+@Suite("Calendar tuning")
+struct CalendarTuningTests {
+    @Test func theCalendarBlockDecodesAndTurnsFourSeasonsOfSevenDays() throws {
+        let calendar = try CalendarTuning.bundled()
+        #expect(calendar.seasonDays == 7)
+        #expect(calendar.order == ["spring", "summer", "autumn", "winter"])
+        #expect(calendar.disabled.isEmpty)
+    }
+
+    @Test func theBlockIsNotATuningSlider() {
+        #expect(TuningValues.defaults.flattened().keys.allSatisfy { !$0.hasPrefix("calendar") })
+    }
+
+    @Test func theFileBecomesIslandYearRules() throws {
+        let calendar = try CalendarTuning.bundled()
+        let rules = IslandYear.Rules(seasonDays: calendar.seasonDays, order: calendar.order, disabled: calendar.disabled)
+        #expect(rules.cycle == Season.allCases)
     }
 }

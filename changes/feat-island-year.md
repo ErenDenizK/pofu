@@ -1,0 +1,1 @@
+Added: the island turns every seven days (spring, summer, autumn, winter, counted from the first day); Rehearsal's header shows the season, the day of the season and today's special day. Nothing is drawn yet.

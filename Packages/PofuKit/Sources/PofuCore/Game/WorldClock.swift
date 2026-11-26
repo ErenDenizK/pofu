@@ -171,7 +171,10 @@ public struct WorldClock: Sendable {
     }
 
     /// The world at the state's clock, for `PofuWorld` to draw.
-    public func snapshot(of state: GameState) -> WorldSnapshot {
+    ///
+    /// - Parameter islandYear: The island year's rules (from `tuning.json`);
+    ///   without them the snapshot carries no season and no festival night.
+    public func snapshot(of state: GameState, islandYear: IslandYear.Rules? = nil) -> WorldSnapshot {
         let catalog = rules.catalog
         let current = self.activity(of: state)
         let bedtime = state.clock.map { self.isBedtime($0) } ?? false
@@ -198,6 +201,16 @@ public struct WorldClock: Sendable {
         let factor = state.calm.multiplier * Double(state.care.productionTenths(rules: rules.care)) / 10
         let day = state.clock.map { LocalDay(containing: $0, in: calendar) }
         let today = day.flatMap { self.counters(of: state, on: $0) }
+        var season: Season?
+        var specialDay: SpecialDay?
+        if let day, let clock = state.clock {
+            if let islandYear, let first = state.firstDay {
+                season = IslandYear.season(on: day, firstDay: first, rules: islandYear)
+            }
+            let parts = calendar.dateComponents([.hour, .minute], from: clock)
+            specialDay = SpecialDays.shipped.current(
+                on: day, at: (parts.hour ?? 0) * 60 + (parts.minute ?? 0), firstDay: state.firstDay, rules: islandYear)
+        }
         return WorldSnapshot(
             clock: state.clock,
             activity: current,
@@ -229,6 +242,8 @@ public struct WorldClock: Sendable {
             koke: asleepAtBedtime(WonderIslands.status(game: state, day: day), bedtime),
             caglayan: asleepAtBedtime(WonderIslands.status(of: .caglayan, game: state, day: day), bedtime),
             firstDay: state.firstDay,
+            season: season,
+            specialDay: specialDay,
             bell: FarBell.status(of: state.bell)
         )
     }

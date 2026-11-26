@@ -5,6 +5,7 @@ import PofuCore
 import PofuGames
 import PofuPersistence
 import PofuScreenTime
+import PofuTuning
 import PofuWorld
 
 /// The app's state holder. It owns the domain state, persists every change,
@@ -318,9 +319,15 @@ final class AppModel {
         )
     }
 
+    /// The island year's rules, from the `calendar` block of `tuning.json`.
+    static var islandYearRules: IslandYear.Rules {
+        let calendar = CalendarTuning.defaults
+        return IslandYear.Rules(seasonDays: calendar.seasonDays, order: calendar.order, disabled: calendar.disabled)
+    }
+
     /// The world as it is at the last refresh: read-only.
     var world: WorldSnapshot {
-        gameClock.snapshot(of: game)
+        gameClock.snapshot(of: game, islandYear: Self.islandYearRules)
     }
 
     /// The calm multiplier the shield and Hop! show; `nil` until Pofu has
