@@ -236,6 +236,8 @@ struct PlateImage: View {
     let offset: CGSize
     /// Drawn as its silhouette in one colour (a reveal's rim).
     var template: Color?
+    /// A multiply over the picture: the grade of a look painted in another light (golden's day look).
+    var grade: PofuRGB?
 
     var body: some View {
         let s = pose.scale
@@ -252,6 +254,9 @@ extension PlateImage {
     fileprivate var image: some View {
         if let template {
             Image(name, bundle: .module).resizable().renderingMode(.template).interpolation(.high).foregroundStyle(template)
+        } else if let grade {
+            Image(name, bundle: .module).resizable().interpolation(.high)
+                .colorMultiply(Color(red: grade.red, green: grade.green, blue: grade.blue))
         } else {
             Image(name, bundle: .module).resizable().interpolation(.high)
         }
