@@ -40,8 +40,9 @@ Tunable values (breath seconds, thresholds, seed amounts, names) live in
 | [0024](0024-shipped-plate-layers-are-heic.md) | Shipped plate layers are HEIC q70 with alpha (plates, islands, occluders; backdrops stay JPEG) | Accepted (amends 0022 delivery) |
 | [0025](0025-sky-sets-split-from-the-painting.md) | Sky sets are split from the painting: island plate over a sky set cut from one painted portrait master, motion in code, rain/golden bake as a founder-gated pilot | Accepted (amends 0022 and 0023) |
 | [0026](0026-art-factory-in-its-own-repo.md) | The art factory lives in its own repository (`pofu-art`): tools and queue synced from here, picks ingested back | Accepted |
-| [0027](0027-one-camera-free-near.md) | One camera: the Map, mid (Home whole, with the chrome) and a free near; a pinch zooms about the fingers | Accepted (supersedes 0018's framing names and 0019's "no free camera") |
-| [0029](0029-music-is-a-score.md) | Music is a score in the repository (ABC), rendered offline by one synthesized band into short cells, played by a small director | Proposed (0028 is reserved for the voyage, main-flow plan 2a) |
+| [0027](0027-one-camera-free-near.md) | One camera: the Map, mid (Home whole, with the chrome) and a free near; a pinch zooms about the fingers | Accepted (supersedes 0018's framing names and 0019's "no free camera"; its Map stop is superseded by 0028) |
+| [0028](0028-the-far-view-is-a-voyage.md) | The far view is a voyage row: one island large, the Gezgin moored while the player chooses, "Yola çık" starts the ride | Accepted (supersedes 0027's Map stop) |
+| [0029](0029-music-is-a-score.md) | Music is a score in the repository (ABC), rendered offline by one synthesized band into short cells, played by a small director | Proposed |
 
 **Read an ADR's status line and this table first; do not load ADR bodies
 you do not need.** A status here that says "amended" or "superseded" means
