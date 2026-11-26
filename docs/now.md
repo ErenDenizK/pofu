@@ -11,8 +11,8 @@ chooses to; "Önce uygulamanın mükemmel olduğundan emin olalım" (fi 43).
 Now (fi 46): main flow only, big whole steps; Fable plans it + why the studio slowed.
 
 **Updated:** 2026-11-26. **Founder last played:** 11-14 (main 0cf03ca1).
-**Route:** Fable's night plan (`docs/design/night-plan-2026-11-15.md`,
-#482 merged): steps N0-N11 now, A1-A10 after; the world spec #474 inside it.
+**Route:** the main-flow plan (#519, `docs/design/mainflow-plan-2026-11-26.md`):
+six vertical steps, each done when he plays it on his phone.
 
 ## Decided this session
 
@@ -23,8 +23,11 @@ Now (fi 46): main flow only, big whole steps; Fable plans it + why the studio sl
 
 ## In flight
 
-0a. Fi 46: gathers done (docs/research/mainflow-2026-11-26/); Fable running
-   (brief fable-2026-11-26-mainflow-and-studio). Choices to him with a screenshot.
+0a. Fi 46 plan merged (#519, squash): docs/design/mainflow-plan-2026-11-26(-tr).md,
+   docs/studio/speed-2026-11-26.md. Six steps; step 1 now: PR 1a builder
+   (feat/looks-per-light); Codex rows C1/C3/C6/C7 + block D40-D42 (themes, D8/Q1)
+   builder. His Qs sent with sheets (pofu-art #171): theme, Caglayan, music; speed
+   change 3 his. 3-hour self-wake trigger denied by auto mode: asked him.
 
 1. Fi 38: (a) #503 island progression open (answers fi 39; 137 redoes
    the lower steps; #490 docs waits with it).
