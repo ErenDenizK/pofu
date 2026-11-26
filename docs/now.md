@@ -35,12 +35,8 @@ six vertical steps, each done when he plays it on his phone.
    1d #522 merged-main + pushed 4th, CI running. C1 merged (#526; bayrams: 2027 only,
    Diyanet). 1c art/station-levels running; 2a+2b brief ready (starts after #522: disk).
 
-1. Fi 38: (a) #503 island progression open (answers fi 39; 137 redoes
-   the lower steps; #490 docs waits with it).
-   (b) #501 + #506 merged; #507 evidence only. Concepts 138-145 delivered
-   and merged (pofu-art #124-#131); 4 topic sheets sent 11-18 (#133). Round
-   2 delivered, merged 11-23 (#135-#139, #141, #142; 152 got nothing on
-   quota). His round-1 verdict (fi 43): too flashy, simpler concept art.
+1. Old threads: #503 (voyage ADR draft; 2a replaces it), #490, #507 docs open;
+   concept rounds 1-3 done (fi 43: simpler art). Superseded by plan #519.
 0. Assessment done: path `docs/design/assessment-2026-11-24-path.md` (#511),
    briefs `docs/studio/briefs/2026-11-24-{0..5}-*.md`. Stage 0 merged (#510,
    pill seen 1:1). Station card merged (#512, Etiket/Hap in Settings, seen).
