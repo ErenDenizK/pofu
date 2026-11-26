@@ -40,8 +40,6 @@ Now (fi 46): main flow only, big whole steps; Fable plans it + why the studio sl
    Board merged (#514) + ring and 161 pieces (#518). Open: water ribbon from
    ring to cell edge has no banks; his play-test decides. Life merged (#517: hops, visitor spot, no overlap;
    moves are small, 24-30 px; Fındık's painted spot now 658,864).
-   Morning summary sent 11-25 (Codex 157-165 merged, sheets #156/#162). Codex: D20-D23 delivered
-   (#151-#153, #155); night rows D24-D28 (#154, 42 jobs). Morning: summary.
 2. WP10 compositor merged (#500): looks sort with Pofu by footY, Map
    snapshot of the built island, 3.2 s reveal. Left: `mapisle` assets
    (night 8-9 need them), orphan `world-home-base-day-5`, reveal burst.
