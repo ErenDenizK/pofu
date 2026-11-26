@@ -116,3 +116,70 @@ def test_no_base_without_a_pick_and_the_other_stages_keep_their_stall():
         assert stage not in sl.BASES
     for stage, spec in sl.BASES.items():
         assert sl.pick_of(spec["job"]) >= 1
+
+
+# ---------------------------------------------------------------- the windmill (plan row 1b)
+
+def test_the_windmill_has_looks_2_to_5_over_bases_at_stages_0_and_1():
+    data = sl.stations_data(sl.WINDMILL)["windmill"]
+    assert data["levels"] == 5
+    assert data["baseStages"] == [0, 1]
+    assert data["lookLevels"] == {"day": [2, 3, 4, 5]}      # level 1 has no pick: it draws nothing, not a made-up look
+    ref = data["box"]
+    rx, ry = sl.WINDMILL["foot"]
+    for stage, place in data["stages"].items():
+        k, (fx, fy) = place["scale"], place["foot"]
+        assert place["box"][0] == pytest.approx(fx + (ref[0] - rx) * k, abs=0.01)
+        assert place["box"][3] == pytest.approx(fy + (ref[3] - ry) * k, abs=0.01)
+        assert 0.9 < k < 1.1
+    assert data["lookBytes"] and len(data["lookBytes"]) == 4
+
+
+def test_windmill_stages_are_the_ones_the_plate_paints_it_on_and_have_a_pick():
+    for stage, spec in sl.WINDMILL["bases"].items():
+        assert sl.pick_of(spec["job"]) >= 1
+        assert stage in (0, 1, 2)                               # the plate paints the mill at island levels 10, 9, 8
+
+
+def test_a_windmill_looks_edge_carries_no_sky_and_the_levels_share_one_canvas():
+    import ingest
+    import heic
+    sizes = set()
+    for n in (2, 3, 4, 5):
+        name = sl.look_name("windmill", n, "day")
+        with heic.open_image(ingest.ASSETS / f"{name}.imageset" / f"{name}{heic.SUFFIX}") as im:
+            x = np.asarray(im.convert("RGBA"), np.float32) / 255
+        sizes.add(x.shape[:2])
+        edge = (x[..., 3] > 0.05) & (x[..., 3] < 0.9)
+        sky = sl.sky_alpha(x[..., :3]) < 0.5                     # blue where the grass is not
+        assert (edge & sky).sum() < 0.01 * edge.sum() + 20, f"look {n}: sky-coloured pixels on the edge"
+        assert max(x[0, :, 3].max(), x[-1, :, 3].max(), x[:, 0, 3].max(), x[:, -1, 3].max()) < 0.02, f"look {n}: clipped by its canvas"
+    assert len(sizes) == 1
+
+
+@pytest.mark.parametrize("stage", sorted(sl.WINDMILL["bases"]))
+def test_the_windmill_base_is_the_parent_outside_the_window_and_the_alpha_only_shrinks(stage):
+    import ingest
+    import heic
+    spec = sl.WINDMILL["bases"][stage]
+    x, info = sl.build_base(stage, spec)
+    p = f"world-home-plate-day-{stage}"
+    with heic.open_image(ingest.ASSETS / f"{p}.imageset" / f"{p}{heic.SUFFIX}") as im:
+        plate = np.asarray(im.convert("RGBA"), np.float32) / 255
+    cx, cy = info["crop"][0] * sl.TEX, info["crop"][1] * sl.TEX
+    x0, y0, x1, y1 = spec["window"]
+    far = np.ones(plate.shape[:2], bool)
+    far[max(y0 - cy - 80, 0):y1 - cy + 80, max(x0 - cx - 80, 0):x1 - cx + 80] = False
+    seen = far & ((plate[..., 3] > 0.01) | (x[..., 3] > 0.01))
+    assert np.abs(x[seen][:, 3] - plate[seen][:, 3]).max() < 1 / 255
+    assert np.abs(x[seen][:, :3] - plate[seen][:, :3]).max() < 1 / 255
+    assert (x[..., 3] <= plate[..., 3] + 1e-6).all()
+    assert np.abs(x[~far] - plate[~far]).max() > 0.2            # the mill is gone there
+
+
+def test_the_workshop_the_bakery_wing_stands_on_is_not_in_the_windmills_cut():
+    # the bakery wing of levels 4 and 5 is cut away: no look pixel stands right of the tower's wall below the sail
+    masks, _, _ = sl.plot_masks(sl.WINDMILL["plot"])
+    wing = sl.WINDMILL["plot"]["wing"]
+    for n in (4, 5):
+        assert not masks[n][wing["y"]:, wing["x"] + 45:].any(), f"level {n}: the wing is in the cut"
