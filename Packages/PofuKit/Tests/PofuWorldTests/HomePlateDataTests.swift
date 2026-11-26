@@ -196,8 +196,8 @@ struct HomePlateDataTests {
         let plate = try plate
         #expect(plate.lookArt(station: "teaStall", level: 3, light: "night", stage: 7) == nil)
         #expect(plate.lookArt(station: "teaStall", level: 3, light: "day", stage: 0) == nil)
-        // stage 2 (island level 8) has no base for any station: the plate is drawn as painted
-        #expect(plate.drawnPlateArt(light: "day", stage: 2) == plate.plateArt(light: "day", stage: 2))
+        // stage 8 (island level 2) has no base for any station: the plate is drawn as painted
+        #expect(plate.drawnPlateArt(light: "day", stage: 8) == plate.plateArt(light: "day", stage: 8))
         #expect(plate.drawnPlateArt(light: "day", stage: 7) == "world-home-base-day-7")
         // the painting other surfaces show is still the painted plate
         #expect(plate.plateArt(light: "day", stage: 7) == "world-home-plate-day-7")
@@ -205,13 +205,13 @@ struct HomePlateDataTests {
 
     // MARK: The windmill (plan row 1b)
 
-    @Test func theWindmillStandsOverItsErasedPlotAtIslandLevels10And9WithLooks2To5() throws {
+    @Test func theWindmillStandsOverItsErasedPlotAtIslandLevels10To8WithLooks2To5() throws {
         let plate = try plate
         let mill = try #require(plate.stations["windmill"])
         #expect(mill.levels == 5)
-        #expect(mill.baseStages == [0, 1])
+        #expect(mill.baseStages == [0, 1, 2])
         #expect(mill.lights["night"] == nil, "the night windmill stays painted until the relights (plan row C5)")
-        for stage in [0, 1] {
+        for stage in [0, 1, 2] {
             #expect(plate.drawnPlateArt(light: "day", stage: stage) == "world-home-base-day-\(stage)")
             // level 1 has no take that ships: it draws nothing (the empty plot); the others their own look
             #expect(plate.lookArt(station: "windmill", level: 1, light: "day", stage: stage) == nil)
@@ -222,11 +222,40 @@ struct HomePlateDataTests {
             #expect(place.box.minX < place.foot.x && place.foot.x < place.box.maxX)
             #expect(place.box.minY < place.foot.y && place.foot.y < place.box.maxY)
         }
-        // island level 8 (stage 2) and the other stages keep the painted mill
-        for stage in 2...9 {
+        // the other stages keep the painted mill
+        for stage in 3...9 {
             #expect(plate.lookArt(station: "windmill", level: 3, light: "day", stage: stage) == nil)
         }
         #expect(plate.lookArt(station: "windmill", level: 3, light: "night", stage: 0) == nil)
+    }
+
+    // MARK: The pond (plan row 1c)
+
+    @Test func thePondStandsOverTheErasedPlateAtIslandLevels10To7WithAllFiveLooksAndSharesTheBase() throws {
+        let plate = try plate
+        let pond = try #require(plate.stations["pond"])
+        #expect(pond.levels == 5)
+        #expect(pond.baseStages == [0, 1, 2, 3])
+        #expect(pond.lookLevels["day"] == nil, "every level 1 to 5 has a look")
+        for stage in pond.baseStages {
+            for level in 1...5 {
+                #expect(plate.lookArt(station: "pond", level: level, light: "day", stage: stage) == "world-home-look-pond-\(level)-day")
+            }
+            let place = pond.place(stage: stage)
+            #expect(place.box.minX < place.foot.x && place.foot.x < place.box.maxX)
+            #expect(place.box.minY < place.foot.y && place.foot.y < place.box.maxY)
+            // one base per stage: the windmill's and the pond's erased windows are in the same picture
+            #expect(plate.drawnPlateArt(light: "day", stage: stage) == "world-home-base-day-\(stage)")
+        }
+        // stage 3's base is the tea stall's too
+        #expect(try #require(plate.stations["teaStall"]).hasBase(light: "day", stage: 3))
+        #expect(plate.stationLooks(light: "day", stage: 3).keys.sorted() == ["pond", "teaStall"])
+        #expect(plate.stationLooks(light: "day", stage: 0).keys.sorted() == ["pond", "windmill"])
+        // the stages that keep the painted pond
+        for stage in 4...9 {
+            #expect(plate.lookArt(station: "pond", level: 3, light: "day", stage: stage) == nil)
+        }
+        #expect(plate.lookArt(station: "pond", level: 3, light: "night", stage: 0) == nil)
     }
 
     @Test func theLooksAndTheBaseAreShippedAndWithinTheBudget() throws {
@@ -236,9 +265,10 @@ struct HomePlateDataTests {
             .deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
             .appendingPathComponent("Sources/PofuWorld/Resources/World.xcassets")
         let fm = FileManager.default
-        var names = ["world-home-base-day-7", "world-home-base-day-0", "world-home-base-day-1"]
+        var names = ["world-home-base-day-7", "world-home-base-day-0", "world-home-base-day-1", "world-home-base-day-2", "world-home-base-day-3"]
         names += (1...5).map { "world-home-look-teaStall-\($0)-day" }
         names += (2...5).map { "world-home-look-windmill-\($0)-day" }
+        names += (1...5).map { "world-home-look-pond-\($0)-day" }
         for name in names {
             #expect(fm.fileExists(atPath: assets.appendingPathComponent("\(name).imageset/Contents.json").path), "\(name)")
         }

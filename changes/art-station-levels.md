@@ -1,0 +1,1 @@
+The pond now grows on the island: its pool, reeds, stream, bridge and pavilion follow its level on islands 10 to 7 (all five levels), and the windmill's level shows on island 8 too (day only; the night keeps the painted pond and mill until their art lands).

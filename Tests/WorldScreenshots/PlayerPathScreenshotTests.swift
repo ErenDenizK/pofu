@@ -438,9 +438,9 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
     }
 
     /// The windmill's looks on Home (plan row 1b): its level shows at the island levels whose day plate has an erased
-    /// base (10 and 9: stages 0 and 1; level 8 keeps its painted mill, no clean base yet). Island 10 at windmill levels 1
+    /// base (10 to 8: stages 0 to 2). Island 10 at windmill levels 1
     /// to 5 (`path-mill-l<level>`; level 1 has no look that ships and draws the empty plot), island 9 at level 3
-    /// (`path-mill-i9-l3`), and island 8 at level 3 as the control (`path-mill-i8-l3`), at noon. A level 5 mill on island
+    /// (`path-mill-i9-l3`), and island 8 at level 3 (`path-mill-i8-l3`, its base wired with 1c), at noon. A level 5 mill on island
     /// 10 is not a state the player reaches today; the frames are for the looks.
     @MainActor
     func testRenderTheWindmillLooks() async throws {
@@ -460,6 +460,63 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
             let island = IslandSceneModel(framing: .mid)
             let view = homeView(world, hour: 12, island: island, settled: true)
             let name = islandLevel == 10 ? "path-mill-l\(level)" : "path-mill-i\(islandLevel)-l\(level)"
+            try await capture(AnyView(view), name: name, scene: scene, folder: folder, settle: 2100) {
+                XCTAssertNotNil(island.homePlate, "\(name): Home is its painting")
+            }
+        }
+    }
+
+    /// The pond's looks on Home (plan row 1c): its level shows at the island levels whose day plate has an erased base for
+    /// it (10 to 7: stages 0 to 3). Island 10 at pond levels 1 to 5 (`path-pond-l<level>`), island 8 at level 3
+    /// (`path-pond-i8-l3`, the windmill's base is shared) and island 7 at level 3 (`path-pond-i7-l3`, the tea stall's), at
+    /// noon. A level 5 pond on island 10 is not a state the player reaches today; the frames are for the looks.
+    @MainActor
+    func testRenderThePondLooks() async throws {
+        let scene = try windowScene()
+        let folder = try outputFolder()
+        let day = try XCTUnwrap(Self.path.first { $0.morning.islandLevel == 3 }, "the path has a level 3 island")
+        let frames: [(island: Int, level: Int)] = [(10, 1), (10, 2), (10, 3), (10, 4), (10, 5), (8, 3), (7, 3)]
+        for (islandLevel, level) in frames {
+            var world = day.morning
+            world.islandLevel = islandLevel
+            XCTAssertTrue(world.stations.contains { $0.id == .pond }, "the pond is a station of the world")
+            world.stations = world.stations.map { status in
+                var status = status
+                if status.id == .pond { status.level = level }
+                return status
+            }
+            let island = IslandSceneModel(framing: .mid)
+            let view = homeView(world, hour: 12, island: island, settled: true)
+            let name = islandLevel == 10 ? "path-pond-l\(level)" : "path-pond-i\(islandLevel)-l\(level)"
+            try await capture(AnyView(view), name: name, scene: scene, folder: folder, settle: 2100) {
+                XCTAssertNotNil(island.homePlate, "\(name): Home is its painting")
+            }
+        }
+    }
+
+    /// The whole island at mixed station levels, one frame per island stage that has looks (plan row 1c,
+    /// `path-levels-i<island level>`): judged whole, no station takes over the island. Island 10: windmill 3, pond 2;
+    /// island 9: windmill 4, pond 3; island 8: windmill 2, pond 4; island 7: tea stall 3, pond 1; at noon.
+    @MainActor
+    func testRenderTheMixedLevels() async throws {
+        let scene = try windowScene()
+        let folder = try outputFolder()
+        let day = try XCTUnwrap(Self.path.first { $0.morning.islandLevel == 3 }, "the path has a level 3 island")
+        let frames: [(island: Int, levels: [StationID: Int])] = [
+            (10, [.windmill: 3, .pond: 2]), (9, [.windmill: 4, .pond: 3]),
+            (8, [.windmill: 2, .pond: 4]), (7, [.teaStall: 3, .pond: 1]),
+        ]
+        for (islandLevel, levels) in frames {
+            var world = day.morning
+            world.islandLevel = islandLevel
+            world.stations = world.stations.map { status in
+                var status = status
+                if let level = levels[status.id] { status.level = level }
+                return status
+            }
+            let island = IslandSceneModel(framing: .mid)
+            let view = homeView(world, hour: 12, island: island, settled: true)
+            let name = "path-levels-i\(islandLevel)"
             try await capture(AnyView(view), name: name, scene: scene, folder: folder, settle: 2100) {
                 XCTAssertNotNil(island.homePlate, "\(name): Home is its painting")
             }
