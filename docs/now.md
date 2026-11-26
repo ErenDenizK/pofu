@@ -6,9 +6,7 @@ most 60 lines. How the studio runs: [studio.md](studio.md). Threads and
 history: [tracker.md](tracker.md). What changed for the player:
 `python3 -I tools/studio/pulse.py`.
 
-**Goal:** a whole, polished build the founder judges as a user when he
-chooses to; "Önce uygulamanın mükemmel olduğundan emin olalım" (fi 43).
-Now (fi 46): main flow only, big whole steps; Fable plans it + why the studio slowed.
+**Goal (fi 46):** the main flow whole and flawless, in big vertical steps.
 
 **Updated:** 2026-11-26. **Founder last played:** 11-14 (main 0cf03ca1).
 **Route:** the main-flow plan (#519, `docs/design/mainflow-plan-2026-11-26.md`):
@@ -23,6 +21,9 @@ six vertical steps, each done when he plays it on his phone.
 
 ## In flight
 
+0b. Fi 47 (answers to #519 + Fable on themes/special days, Caglayan, music,
+   studio structure): gathers themes-motion + music-studio, then Fable (brief
+   fable-2026-11-26-themes-music-studio). D40-D42 stay blocked.
 0a. Fi 46 plan merged (#519, squash): docs/design/mainflow-plan-2026-11-26(-tr).md,
    docs/studio/speed-2026-11-26.md. Six steps; step 1 now: PR 1a builder
    (feat/looks-per-light). pofu-art #172 merged: D43 Gezgin tail+shadow (180), D44
