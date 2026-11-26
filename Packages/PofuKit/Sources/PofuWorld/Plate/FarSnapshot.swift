@@ -18,6 +18,7 @@ public enum FarSnapshot {
 
 #if os(iOS)
 import PofuCore
+import PofuDesignSystem
 import SwiftUI
 import UIKit
 
@@ -71,7 +72,7 @@ private struct FarComposite: View {
             ForEach(compositor.looks) { look in
                 let a = plate.plate(WorldPoint(x: look.box.minX, y: look.box.minY))
                 let b = plate.plate(WorldPoint(x: look.box.maxX, y: look.box.maxY))
-                Image(look.art, bundle: .module).resizable().interpolation(.high)
+                GradedLookImage(art: look.art, grade: look.grade)
                     .frame(width: b.x - a.x, height: b.y - a.y)
                     .offset(x: a.x - crop.minX, y: a.y - crop.minY)
             }
@@ -143,6 +144,21 @@ struct CompositeIsland: View {
             }
         }
         .frame(width: size.width, height: size.height, alignment: .topLeading)
+    }
+}
+
+/// A look's picture, multiplied by its grade where it is painted in another light; untouched otherwise.
+private struct GradedLookImage: View {
+    let art: String
+    let grade: PofuRGB?
+
+    var body: some View {
+        if let grade {
+            Image(art, bundle: .module).resizable().interpolation(.high)
+                .colorMultiply(Color(red: grade.red, green: grade.green, blue: grade.blue))
+        } else {
+            Image(art, bundle: .module).resizable().interpolation(.high)
+        }
     }
 }
 #endif

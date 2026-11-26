@@ -138,4 +138,47 @@ struct PlateCompositorTests {
         #expect(abs(m.newArt(at: start + 0.2) - 0.5) < 1e-9)
         #expect(r.end == start + 0.4)
     }
+
+    // MARK: Looks per light (PR 1a)
+
+    /// The tea stall with golden bases at its day stages and the day look at level 4 left out.
+    private func gradedPlate() throws -> PlateIsland {
+        var p = try plate
+        p.stations["teaStall"]?.lights["golden"] = [3, 4, 6, 7]
+        p.stations["teaStall"]?.lookLevels["day"] = [1, 2, 3, 5]
+        return p
+    }
+
+    @Test func goldenDrawsTheDayLookUnderItsGrade() throws {
+        let p = try gradedPlate()
+        let golden = PlateCompositor(plate: HomePlate(plate: p, light: "golden", stage: 7), levels: [.teaStall: 3])
+        let look = try #require(golden.looks.first)
+        #expect(look.art == "world-home-look-teaStall-3-day")
+        #expect(look.grade == golden.plate.harmony.tint)
+        #expect(p.drawnPlateArt(light: "golden", stage: 7) == "world-home-base-golden-7")
+        // the day state draws the same art ungraded, over its own base
+        let day = PlateCompositor(plate: HomePlate(plate: p, light: "day", stage: 7), levels: [.teaStall: 3])
+        #expect(day.looks.first?.art == look.art && day.looks.first?.grade == nil)
+        // without a golden base the state keeps its painted plate and draws no look
+        let bare = try compositor(stage: 7, teaStall: 3, light: "golden")
+        #expect(bare.looks.isEmpty)
+    }
+
+    @Test func aMissingLookDrawsTheNearestLowerOne() throws {
+        let p = try gradedPlate()
+        func art(_ level: Int, _ light: String = "day") -> String? {
+            p.lookArt(station: "teaStall", level: level, light: light, stage: 7)
+        }
+        #expect(art(4) == "world-home-look-teaStall-3-day")
+        #expect(art(5) == "world-home-look-teaStall-5-day")
+        #expect(art(0) == nil)
+        // golden follows the day looks
+        #expect(p.lookArt(station: "teaStall", level: 4, light: "golden", stage: 7) == "world-home-look-teaStall-3-day")
+        // nothing painted at or below the level: nothing drawn
+        var q = p
+        q.stations["teaStall"]?.lookLevels["day"] = [2]
+        #expect(q.lookArt(station: "teaStall", level: 1, light: "day", stage: 7) == nil)
+        let c = PlateCompositor(plate: HomePlate(plate: p, light: "day", stage: 7), levels: [.teaStall: 4])
+        #expect(c.looks.first?.look == 3)
+    }
 }

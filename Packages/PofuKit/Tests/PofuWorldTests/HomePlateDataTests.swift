@@ -223,4 +223,38 @@ struct HomePlateDataTests {
         #expect(island.stations.isEmpty)
         #expect(island.drawnPlateArt(light: "day", stage: 0) == island.plateArt(light: "day", stage: 0))
     }
+
+    // MARK: Looks per light (PR 1a)
+
+    private func decodedStation(_ patch: (inout [String: Any]) -> Void) throws -> StationLooks {
+        let url = URL(fileURLWithPath: #filePath)
+            .deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
+            .appendingPathComponent("Sources/PofuWorld/Resources/Plates/plate-home.json")
+        var root = try #require(JSONSerialization.jsonObject(with: Data(contentsOf: url)) as? [String: Any])
+        var stations = try #require(root["stations"] as? [String: Any])
+        var tea = try #require(stations["teaStall"] as? [String: Any])
+        patch(&tea)
+        stations["teaStall"] = tea
+        root["stations"] = stations
+        let data = try JSONSerialization.data(withJSONObject: root)
+        return try #require(PlateIsland.decode(data).stations["teaStall"])
+    }
+
+    @Test func theOldLightKeyStillDecodesAsOneLight() throws {
+        let old = try #require(plate.stations["teaStall"])
+        #expect(old.lights == ["day": [3, 4, 6, 7]])
+        #expect(old.baseStages == [3, 4, 6, 7])
+        #expect(old.lookLevels.isEmpty)
+    }
+
+    @Test func theNewLightsKeyDecodesAndWinsOverTheOldOnes() throws {
+        let looks = try decodedStation { tea in
+            tea["lights"] = ["day": [3, 7], "golden": [7], "night": [7]]
+            tea["lookLevels"] = ["night": [1, 2]]
+        }
+        #expect(looks.lights == ["day": [3, 7], "golden": [7], "night": [7]])
+        #expect(looks.hasBase(light: "golden", stage: 7) && !looks.hasBase(light: "golden", stage: 3))
+        #expect(looks.lookLevel(stationLevel: 5, light: "night") == 2)
+        #expect(looks.lookLevel(stationLevel: 5, light: "day") == 5)
+    }
 }
