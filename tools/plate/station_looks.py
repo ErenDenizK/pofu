@@ -115,7 +115,7 @@ WINDMILL = {
         "diff": 14,
         "grade": {2: (0.56, 1.07), 3: (0.72, 1.02), 4: (0.71, 1.03), 5: (0.77, 1.04)},
         "wing": {"x": 846, "y": 705, "roof_x": 895, "roof_y": 650},
-        "bush": (0, 380, 395, 620),
+        "bush": (0, 380, 336, 620),
     },
     "scale": 0.60,               # of a take px, at TEX px per point (0.30 points per px)
     "density": 1.7,              # the looks' texture px per plate point: Home's largest state plus its props must fit 9 MB
