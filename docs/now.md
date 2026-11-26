@@ -33,7 +33,8 @@ six vertical steps, each done when he plays it on his phone.
    #520 (1a) merged (stall frames pixel-identical). 1b merged (#521: windmill
    L2-5 by day at isl. 10/9). Row D51 merged (#182: night 2-5 + L1); l08 picks exist, ingest in 1c.
    1d #522 merged-main + pushed 4th, CI running. C1 merged (#526; bayrams: 2027 only,
-   Diyanet). 1c art/station-levels running; 2a+2b brief ready (starts after #522: disk).
+   Diyanet). 173-176 not cuttable (whole re-renders): 1c = pond (batch 134) + l08
+   pick; Codex plot ladders for 5 stations being queued; 2a+2b brief ready (starts after #522: disk).
 
 1. Old threads: #503 (voyage ADR draft; 2a replaces it), #490, #507 docs open;
    concept rounds 1-3 done (fi 43: simpler art). Superseded by plan #519.
