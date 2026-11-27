@@ -100,8 +100,9 @@ public struct WorldHome: View {
 
             // New Year's night: soft fireworks in the sky above the island, drawn by code (C3).
             GeometryReader { proxy in
-                SkyFireworksLayer(band: proxy.size.height * 0.34, isOn: fireworksOn)
+                SkyFireworksLayer(band: proxy.size.height * SkyFireworks.bandShare, isOn: fireworksOn)
             }
+            .ignoresSafeArea()
             .allowsHitTesting(false)
 
             chrome

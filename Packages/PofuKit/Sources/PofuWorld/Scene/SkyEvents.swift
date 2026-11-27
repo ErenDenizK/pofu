@@ -18,6 +18,11 @@ public enum SkyFireworks {
     public static let sparks = 20
     /// The slots' phases in seconds: the left slot's bursts start at `period * n - 0.2`, the right's at
     /// `period * n + 1.0`, so the stills at 0.0 to 2.0 s hold the left burst opening and fading and the right one opening.
+    /// The sky band the bursts live in, as a share of the screen's height from its top (the layer ignores the safe area, so the
+    /// band starts at the very top). The highest far island's top is at about 0.196 of the height in the Home frames, the moon
+    /// stands left of x 0.2 and the gear right of x 0.84; the ring must stay clear of all three.
+    public static let bandShare = 0.34
+
     static let phases = [-0.2, 1.0]
 
     /// One burst at a time `t`.
@@ -48,10 +53,10 @@ public enum SkyFireworks {
             var seed = SplitMix(seed: UInt64(bitPattern: Int64(n)) &* 2 &+ UInt64(slot) &+ 0x51ED)
             // The left slot keeps to the left of the sky's middle and the right to the right, so two never overlap.
             // The sky's clear part: left of the middle and right of it, short of the moon and of the gear.
-            let x = (slot == 0 ? 0.30 : 0.54) + seed.unit() * 0.12
+            let x = (slot == 0 ? 0.36 : 0.54) + seed.unit() * 0.10
             alive.append(Burst(
-                slot: slot, x: x, y: 0.26 + seed.unit() * 0.10, age: age,
-                radius: 0.12 + seed.unit() * 0.03, tone: Int(seed.unit() * 2), turn: seed.unit() * .pi
+                slot: slot, x: x, y: 0.22 + seed.unit() * 0.07, age: age,
+                radius: 0.12 + seed.unit() * 0.02, tone: Int(seed.unit() * 2), turn: seed.unit() * .pi
             ))
         }
         return alive
@@ -73,7 +78,7 @@ public enum SkyFireworks {
     /// The still glow under Reduce Motion: where each of its blooms sits (share of width and band height) and its
     /// radius (share of width).
     public static let stillBlooms: [(x: Double, y: Double, radius: Double, tone: Int)] = [
-        (0.38, 0.30, 0.14, 0), (0.62, 0.30, 0.14, 1)
+        (0.40, 0.25, 0.14, 0), (0.60, 0.27, 0.13, 1)
     ]
 
     /// SplitMix64: a tiny seeded generator, so a burst is the same every time it is asked for.

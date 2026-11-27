@@ -10,6 +10,7 @@ import XCTest
 /// - `path-newyear-i3`, `path-newyear-i10`: Home at noon with the kit standing (island 3 and island 10);
 /// - `path-newyear-night`: island 10 at 21:00, the kit lit, before the fireworks;
 /// - `path-newyear-fireworks-0.0` ... `-2.0`: island 10 at 23:00 with the fireworks pinned to 0.0, 0.5, 1.0, 1.5 and 2.0 s;
+/// - `path-newyear-night-i3`: island 3 at 21:00, all four props standing, the pine and the star lit;
 /// - `path-newyear-quiet`: 1 January at noon: the kit stands, the sky is quiet.
 final class PlayerPathNewYearScreenshotTests: PlayerPathFrameCase {
     @MainActor
@@ -43,6 +44,7 @@ final class PlayerPathNewYearScreenshotTests: PlayerPathFrameCase {
         try await frame(try world(island: 3, day: eve, hour: 12), hour: 12, name: "path-newyear-i3", scene: scene, folder: folder)
         try await frame(try world(island: 10, day: eve, hour: 12), hour: 12, name: "path-newyear-i10", scene: scene, folder: folder)
         try await frame(try world(island: 10, day: eve, hour: 21), hour: 21, name: "path-newyear-night", scene: scene, folder: folder)
+        try await frame(try world(island: 3, day: eve, hour: 21), hour: 21, name: "path-newyear-night-i3", scene: scene, folder: folder)
         try await frame(try world(island: 10, day: (2027, 1, 1), hour: 12), hour: 12, name: "path-newyear-quiet", scene: scene, folder: folder)
         let night = try world(island: 10, day: eve, hour: 23)
         for t in [0.0, 0.5, 1.0, 1.5, 2.0] {

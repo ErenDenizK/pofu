@@ -11,8 +11,15 @@ struct SkyFireworksTests {
             #expect(bursts.count <= 2)
             #expect(Set(bursts.map(\.slot)).count == bursts.count)
             for burst in bursts {
-                #expect(burst.y >= 0.26 && burst.y <= 0.36, "bursts stay in the sky above the island")
-                #expect(burst.x >= 0.30 && burst.x <= 0.66)
+                #expect(burst.y >= 0.22 && burst.y <= 0.29, "bursts stay in the sky above the island")
+                #expect(burst.x >= 0.36 && burst.x <= 0.64)
+                // The ring, with its fall, stays under the screen's top and above the highest far island (0.196 of the height) on a
+                // 402 x 874 pt screen, and its sides clear the moon (x 0.2) and the gear (x 0.84).
+                let h = 874.0, w = 402.0
+                let reach = burst.radius * w
+                #expect(burst.y * SkyFireworks.bandShare * h + reach * 1.3 <= 0.19 * h, "the ring's bottom is above the far islands")
+                #expect(burst.y * SkyFireworks.bandShare * h - reach >= 0, "the ring's top is on screen")
+                #expect(burst.x * w - reach >= 0.2 * w && burst.x * w + reach <= 0.84 * w - 10)
                 peak = max(peak, SkyFireworks.strength(age: burst.age))
             }
         }
