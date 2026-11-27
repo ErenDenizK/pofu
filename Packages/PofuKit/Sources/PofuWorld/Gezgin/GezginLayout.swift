@@ -79,9 +79,30 @@ public struct GezginData: Decodable, Sendable, Equatable {
         /// The control point of the slack line from the post's `tie` to her `bow` (a quadratic curve): under the
         /// middle of the chord by `sag` of its length, so it hangs in a soft curve like a rope, never a taut strap.
         public static func control(tie: WorldPoint, bow: WorldPoint, sag: Double) -> WorldPoint {
-            let length = ((bow.x - tie.x) * (bow.x - tie.x) + (bow.y - tie.y) * (bow.y - tie.y)).squareRoot()
-            let toward = bow.x >= tie.x ? 1.0 : -1.0
-            return WorldPoint(x: (tie.x + bow.x) / 2 + toward * bulge * length, y: (tie.y + bow.y) / 2 + sag * length)
+            let dx = bow.x - tie.x, dy = bow.y - tie.y
+            let length = max((dx * dx + dy * dy).squareRoot(), 1e-9)
+            let mid = WorldPoint(x: (tie.x + bow.x) / 2, y: (tie.y + bow.y) / 2)
+            if slope(tie: tie, bow: bow) > steep {
+                // A steep chord: the line hangs from the post and bellies out toward her.
+                return WorldPoint(x: mid.x + (dx >= 0 ? 1 : -1) * bulge * length, y: mid.y + sag * length)
+            }
+            // A shallow chord: it sags perpendicular to it, downward, so the drop is obvious.
+            var nx = -dy / length, ny = dx / length
+            if ny < 0 { nx = -nx; ny = -ny }
+            return WorldPoint(x: mid.x + nx * sag * length, y: mid.y + ny * sag * length)
+        }
+
+        /// A chord steeper than this (degrees) takes the bulge instead of the perpendicular sag.
+        public static let steep = 55.0
+
+        /// How far the midpoint of the quadratic line lies from its chord, in lengths of the chord.
+        public static func drop(tie: WorldPoint, bow: WorldPoint, sag: Double) -> Double {
+            let c = control(tie: tie, bow: bow, sag: sag)
+            let mx = 0.25 * tie.x + 0.5 * c.x + 0.25 * bow.x, my = 0.25 * tie.y + 0.5 * c.y + 0.25 * bow.y
+            let dx = bow.x - tie.x, dy = bow.y - tie.y
+            let length = max((dx * dx + dy * dy).squareRoot(), 1e-9)
+            // Perpendicular distance of the curve's midpoint from the chord.
+            return abs((mx - tie.x) * dy - (my - tie.y) * dx) / length / length
         }
 
         /// How steep the line runs from the post's tie to her bow, in degrees from the horizontal (0 is level,

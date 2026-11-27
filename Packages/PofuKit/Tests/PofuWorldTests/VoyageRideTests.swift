@@ -248,14 +248,17 @@ struct VoyageRideTests {
     }
 
     @Test func theRopeIsVisiblySlackAndNoTwoHomesShowAtOnce() {
-        // The midpoint of the quadratic line drops 0.5 * sag of the chord below it: at least a tenth, obvious at device size.
-        let rope = GezginData.Rope.standard
-        #expect(0.5 * rope.sag >= 0.12)
-        let tie = WorldPoint(x: 0, y: 0), bow = WorldPoint(x: 40, y: 10)
-        let c = GezginData.Rope.control(tie: tie, bow: bow, sag: rope.sag)
-        let midY = 0.25 * tie.y + 0.5 * c.y + 0.25 * bow.y
-        let chord = (40.0 * 40 + 10 * 10).squareRoot()
-        #expect(midY - 5 >= 0.10 * chord)
+        // Every real berth (Home's from the plate, Köke's and Çağlayan's from the data): the line's midpoint lies
+        // at least a tenth of its chord from the chord, so the slack is obvious at device size.
+        let data = GezginData.shipped!
+        for island in [IslandID.home, .koke, .caglayan] {
+            let berth = Gezgin.berth(at: island, data: data, home: HomePlate.shipped)!
+            let drop = GezginData.Rope.drop(tie: berth.tie, bow: berth.bow, sag: berth.rope.sag)
+            #expect(drop >= 0.10, "\(island): the rope's slack is \(drop) of its chord")
+            // And the curve hangs below the higher end: never above both.
+            let c = GezginData.Rope.control(tie: berth.tie, bow: berth.bow, sag: berth.rope.sag)
+            #expect(c.y >= min(berth.tie.y, berth.bow.y))
+        }
         // The row and the scene's Home are never both visible: the row is gone before the scene's islands start.
         let row = VoyageRide(from: .home, to: .koke, data: .fallback)
         for t in stride(from: 0.0, through: row.duration, by: 1.0 / 30) {
