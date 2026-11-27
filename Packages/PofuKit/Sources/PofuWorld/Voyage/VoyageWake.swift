@@ -21,13 +21,13 @@ public enum VoyageWake {
 
     /// Where the wake ends after the flight, as a share of the moor beat: it has died by then, well before
     /// she is moored.
-    static let dyingShare = 0.5
+    static let dyingShare = 0.4
     private static func smooth(_ x: Double, _ a: Double, _ b: Double) -> Double {
         let u = min(max((x - a) / (b - a), 0), 1)
         return u * u * (3 - 2 * u)
     }
 
-    /// Her flight phase `s` at `seconds`: 0 to 1 over the flight beat, then 1 to 1.5 over the first half of the
+    /// Her flight phase `s` at `seconds`: 0 to 1 over the flight beat, then 1 to 1.4 over the first 40 % of the
     /// moor beat, while the wake dies; `nil` while she boards, once the wake has died, and for a ride under Reduce Motion.
     static func phase(_ ride: VoyageRide, at seconds: Double) -> Double? {
         guard !ride.reduced else { return nil }
@@ -46,7 +46,7 @@ public enum VoyageWake {
         switch piece {
         case .short:
             let takeOff = smooth(s, 0, 0.1) * (1 - smooth(s, 0.14, 0.34))
-            let landing = smooth(s, 0.7, 0.9) * (1 - smooth(s, 1.1, 1.5))
+            let landing = smooth(s, 0.7, 0.9) * (1 - smooth(s, 1.05, 1 + dyingShare))
             return max(takeOff, landing)
         case .long:
             return smooth(s, 0.12, 0.32) * (1 - smooth(s, 0.7, 0.92))

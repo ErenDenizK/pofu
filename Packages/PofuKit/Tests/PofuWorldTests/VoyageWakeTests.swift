@@ -22,7 +22,7 @@ struct VoyageWakeTests {
             #expect(total(ride, at: ride.duration) == 0)
             #expect(total(ride, at: ride.duration + 5) == 0)
             #expect(total(ride, at: ride.board - 0.001) == 0)
-            #expect(total(ride, at: ride.board + ride.fly + ride.moor * 0.5) == 0)
+            #expect(total(ride, at: ride.board + ride.fly + ride.moor * 0.4) == 0)
             #expect(total(ride, at: ride.duration - 0.01) == 0)
             #expect(!VoyageWake.isVisible(ride: ride, at: 0))
         }
