@@ -1456,7 +1456,7 @@ private struct WorldCanvas: View {
         case .plateOccluder(let occluder):
             if let plate {
                 let box = plate.occluderBox(occluder)
-                Image(plate.plate.occluderArt(id: occluder.id, light: plate.light, stage: plate.stage), bundle: .module)
+                Image(plate.plate.occluderArt(id: occluder.id, light: plate.key, stage: plate.stage), bundle: .module)
                     .resizable()
                     .interpolation(.high)
                     .frame(width: CGFloat(box.width), height: CGFloat(box.height))

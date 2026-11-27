@@ -212,7 +212,7 @@ private struct VoyageIsle: View {
     /// station looks included), the same picture as mid, never the old Map cut.
     private var farHome: HomePlate? {
         guard stop.island == .home, stop.status != .locked, let plate = model.homePlate,
-              plate.plate.plateCrop(light: plate.light, stage: plate.stage) != nil else { return nil }
+              plate.plate.plateCrop(light: plate.key, stage: plate.stage) != nil else { return nil }
         return plate
     }
 
@@ -289,12 +289,12 @@ private struct VoyageIsle: View {
         case .home:
             if let plate = model.homePlate {
                 let box = plate.islandBox
-                return (plate.plate.mapIslandArt(light: plate.light, stage: plate.stage), box.height / max(box.width, 1), true)
+                return (plate.plate.mapIslandArt(light: plate.key, stage: plate.stage), box.height / max(box.width, 1), true)
             }
         case .caglayan:
             if let plate = model.caglayanPlate {
                 let box = plate.islandBox
-                return (plate.plate.mapIslandArt(light: plate.light, stage: plate.stage), box.height / max(box.width, 1), true)
+                return (plate.plate.mapIslandArt(light: plate.key, stage: plate.stage), box.height / max(box.width, 1), true)
             }
         case .koke:
             let size = KokeLayout.plateSize
