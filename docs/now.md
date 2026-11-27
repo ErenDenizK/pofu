@@ -30,7 +30,8 @@ six vertical steps, each done when he plays it on his phone.
    draft (approved fi 49). Card 4 (Caglayan) when batch 185 lands.
 0a. Plan #519 step 1: merged 1a #520, windmill 1b #521, golden 1d #522, C1 #526.
    1c pond PR #528 PARKED (9 MB texture budget forced pond 0.8 px/pt, mill 1.7->1.45;
-   defects listed). Spec agent on the texture budget; 2a+2b Gezgin moored running.
+   defects listed). Budget spec #533 (rule v1: drawn px x 4 B, 12 M px/state,
+   looks 2.0 px/pt): wave A builders on PR 1 (tools) and PR 5 (Today header bug); 2a+2b Gezgin moored running.
    173-176 not cuttable (whole re-renders); plot ladders D52-D55 first in Demand
    (#185); pier D56 BLOCKED (bare crop fills the islet gap). Night: D51 (#182).
 1. Old threads: #503 (voyage ADR draft; 2a replaces it), #490, #507 docs open;
