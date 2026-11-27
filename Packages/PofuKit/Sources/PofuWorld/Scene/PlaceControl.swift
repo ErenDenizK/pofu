@@ -28,13 +28,13 @@ struct PlaceControl: View {
         let glyph = stop.controlGlyph
         Menu {
             Button {
-                model.go(to: .mid)
+                model.goHome()
             } label: {
                 Text(verbatim: WorldStrings.placePofu)
             }
             ForEach(islands, id: \.self) { island in
                 Button {
-                    model.fly(to: island)
+                    model.rideTo(island)
                 } label: {
                     Text(verbatim: WorldStrings.islandName(island))
                 }

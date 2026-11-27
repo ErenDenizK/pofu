@@ -85,7 +85,7 @@ extension HomePlateCrop: View {
             // stations the player built: the same composite Home draws (`PlateCompositor`).
             let drawn = HomePlate(plate: plate.plate, light: state.light, stage: state.stage)
             let compositor = PlateCompositor(plate: drawn, levels: stationLevels)
-            let baseName = plate.plate.drawnPlateArt(light: state.light, stage: state.stage)
+            let baseName = plate.plate.drawnPlateArt(light: drawn.key, stage: state.stage)
             GeometryReader { proxy in
                 let full = plate.plate.plateSize
                 let fit = Self.fill(plateWidth: full.width, plateHeight: full.height, in: proxy.size)

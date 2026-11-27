@@ -59,7 +59,7 @@ public struct VoyageData: Decodable, Sendable, Equatable {
     public static let fallback = VoyageData(
         order: ["home", "koke", "caglayan"], islandWidth: 0.7, pitch: 0.62, neighbourScale: 0.86,
         neighbourLift: 26, centreY: 0.47, barLift: 72, glideSeconds: 0.42, flick: 1.6,
-        ride: Ride(board: 0.9, fly: 2.2, moor: 0.9, reduced: 0.5)
+        ride: Ride(board: 1.4, fly: 2.2, moor: 0.9, reduced: 0.5)
     )
 }
 

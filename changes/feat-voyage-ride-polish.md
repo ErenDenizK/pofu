@@ -1,0 +1,1 @@
+The ride is made flawless: the row glides back to the island she leaves so you see them hop aboard, she keeps the islands' scale in the air, the island's plaque and bubble wait until you have landed, her rope is tied to a post on the rim, and a tap on a far island or the place control is the same ride.

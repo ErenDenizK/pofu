@@ -14,7 +14,10 @@ and why.
 
 1. Set the git identity (`CLAUDE.md`). Make your own worktree and branch
    from the base commit in the brief:
-   `git worktree add ../wt-<name> -b <branch> <base>`.
+   `git worktree add ../wt-<name> -b <branch> <base>`, at a path that
+   does not exist yet. Never check out your branch in a worktree you
+   did not create: other agents and the lead test in theirs, and a
+   switch under a running test makes its result a lie.
 2. Open every fact in the brief at its `file:line`. If one is false, stop
    and hand back what is true. That is a good result: it saves the build.
    A project word the brief does not define is defined by the code:

@@ -1317,6 +1317,14 @@ def build_json(island: str, hand: dict, mattes: dict, maps: dict, harmony: dict 
     return data
 
 
+def keep_hand_keys(data: dict, old: dict) -> dict:
+    """`data` (what this tool owns) plus every key of the shipped file that the tool does not write: `props` (written by
+    `tools/plate/props_slice.py`), `camera` and `near` (the lens, WP11), `water` (the region shaders, WP13), `mooring`
+    (the Gezgin's berth) and `spots` (where the cast stands) are edited by hand or by another tool, so a re-ingest
+    must not drop them, and a key added later is kept without anyone listing it here. A key the tool owns is the tool's."""
+    return {**data, **{k: v for k, v in old.items() if k not in data}}
+
+
 def cmd_json(island: str) -> Path:
     hand = load_hand(island)
     mattes, maps = {}, {}
@@ -1327,12 +1335,8 @@ def cmd_json(island: str) -> Path:
     data = build_json(island, hand, mattes, maps, harmony_all(hand, mattes))
     JSON_DIR.mkdir(parents=True, exist_ok=True)
     out = JSON_DIR / f"plate-{island}.json"
-    # `props` is written by `tools/plate/props_slice.py`, and `camera` and `near` (the lens, WP11) and `water` (the region shaders, WP13) by hand, not here:
-    # carry them over so a re-ingest keeps them.
     old = json.loads(out.read_text()) if out.exists() else {}
-    for key in ("props", "camera", "near", "water"):
-        if key in old:
-            data[key] = old[key]
+    data = keep_hand_keys(data, old)
     out.write_text(json.dumps(data, separators=(",", ":")) + "\n")
     print(f"json: {out.relative_to(REPO)} ({data['textureBytes']:,} texture bytes)")
     return out

@@ -112,4 +112,79 @@ struct VoyageRideTests {
         #expect(night.blue > night.red && night.brightness < 0 && night.saturation < 1)
         #expect(VoyageGrade.grade(light: "golden").red > VoyageGrade.grade(light: "golden").blue)
     }
+
+    @Test func theRowGlidesBackToTheIslandSheLeavesBeforeTheyHop() {
+        // The player chose Köke (stop 1); she waits at Home (stop 0): the row comes back to Home in the first
+        // part of the board beat, and nobody hops until it has.
+        #expect(ride.rowPosition(at: 0, selected: 1, origin: 0) == 1)
+        #expect(ride.rowPosition(at: ride.board * VoyageRide.glideShare, selected: 1, origin: 0) == 0)
+        #expect(ride.rowPosition(at: ride.board, selected: 1, origin: 0) == 0)
+        #expect(ride.rowPosition(at: ride.board + 1, selected: 1, origin: 0) == 0)
+        #expect(VoyageRide.boardProgress(VoyageRide.glideShare) == 0)
+        #expect(VoyageRide.boardProgress(1) == 1)
+        #expect(ride.board * VoyageRide.glideShare >= 0.3)
+    }
+
+    @Test func sheAndTheIslandsShareOneWorldScale() {
+        // Moored, her body is the share of the island's width; in the air she is the same share of the
+        // camera's island, whatever the camera's scale: her width follows the camera.
+        let row = 80.0
+        #expect(ride.whaleWidth(at: 0, row: row, world: 30) == row)
+        let flight = ride.board
+        #expect(ride.whaleWidth(at: flight + ride.fly, row: row, world: 30) == 30)
+        #expect(ride.whaleWidth(at: ride.board + ride.fly + 0.2, row: row, world: 55) == 55)
+        // Over the whole flight she never changes faster than the world does: at a fixed world width the
+        // only change is the hand-over from the row's scale, in the first fifth.
+        var last = ride.whaleWidth(at: flight + ride.fly * 0.2, row: row, world: 30)
+        var t = flight + ride.fly * 0.2
+        while t < flight + ride.fly {
+            t += 0.05
+            let now = ride.whaleWidth(at: t, row: row, world: 30)
+            #expect(now == last)
+            last = now
+        }
+        #expect(abs(VoyageRide.islandShare - 1.0 / 3.0) < 0.05)
+    }
+
+    @Test func everyTripIsOneRide() {
+        // From the row: she waits moored and they hop aboard.
+        let row = VoyageRide.trip(from: .home, to: .koke, atMap: true, focusOpen: false, reduceMotion: false)
+        #expect(row?.fromRow == true && (row?.board ?? 0) > 0)
+        // A tap on a far island or the place control from anywhere else: the same ride, with no boarding.
+        let near = VoyageRide.trip(from: .home, to: .koke, atMap: false, focusOpen: false, reduceMotion: false)
+        #expect(near?.fromRow == false && near?.board == 0)
+        #expect(near?.fly == row?.fly && near?.moor == row?.moor)
+        let back = VoyageRide.trip(from: .koke, to: .home, atMap: false, focusOpen: false, reduceMotion: false)
+        #expect(back != nil && back?.toTheRight == false)
+        // Focus open, or no motion: no boarding either; no trip to where the camera already is.
+        #expect(VoyageRide.trip(from: .home, to: .koke, atMap: true, focusOpen: true, reduceMotion: false)?.fromRow == false)
+        #expect(VoyageRide.trip(from: .home, to: .koke, atMap: true, focusOpen: false, reduceMotion: true)?.reduced == true)
+        #expect(VoyageRide.trip(from: .koke, to: .koke, atMap: false, focusOpen: false, reduceMotion: false) == nil)
+        // She fades in when she did not lift off a mooring.
+        #expect((near?.whaleOpacity(at: (near?.duration ?? 0) * 0 + 0.001) ?? 1) < 1)
+    }
+
+    @Test func theFocusUIStaysHiddenForTheWholeRide() {
+        #expect(!VoyageRide.hidesFocusUI(nil))
+        for t in stride(from: 0.0, through: ride.duration, by: 0.25) {
+            #expect(VoyageRide.hidesFocusUI(ride), "the plaque stays away at \(t) s")
+        }
+        // The ride is over once the passengers are off: their last hop ends with the moor beat.
+        let end = ride.beat(at: ride.duration - 0.001)
+        #expect(end.beat == .moor && end.progress > 0.99)
+        #expect(VoyageRide.hopProgress(index: 1, count: 2, beatProgress: 1) == 1)
+    }
+
+    @Test func theRidesAreStillThreeToFiveSecondsWithTheLongerBoarding() {
+        #expect(ride.board >= 1.2)
+        #expect((3.0 ... 5.0).contains(ride.duration))
+    }
+
+    @Test func theMooringPostStandsOnTheRimAndTheLineIsTiedToIt() {
+        let rope = GezginData.Rope.standard
+        #expect(rope.tieY < rope.postY && rope.tieY > rope.postY - rope.postHeight)
+        #expect(rope.thickness >= 0.035)
+        // The line is tied above her bow, to the post's neck, never to a point in the air.
+        #expect(rope.tieY < rope.bowY)
+    }
 }
