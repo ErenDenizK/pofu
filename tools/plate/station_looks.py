@@ -294,11 +294,11 @@ LIGHTHOUSE = {
     "scale": 0.5104,
     "density": 2.0,
     "anchor": (752.0, 946.0),
-    "foot": (895.0, 737.0),
+    "foot": (895.0, 743.0),
     "footStage": 1,
     "bases": {s: {"job": JOB.format(10 - s), "window": (1716, 1150, 2048, 1476), "ceiling": False,
                   "interior": False, "lighter": False, "brightRing": True} for s in (1, 2)},
-    "place": {s: {"foot": (895.0, 737.0), "scale": 0.93} for s in (1, 2)},
+    "place": {s: {"foot": (895.0, 743.0), "scale": 0.93} for s in (1, 2)},
 }
 # The garden is cut and based (above) but not shipped: its levels 3 to 5 stand where the pond's level 3 to 5 islet does (plate
 # [64,746,211,853] against [99,743,230,846]), and levels 1 and 2 collide with a pond at level 5, so it waits for a re-take whose crop
