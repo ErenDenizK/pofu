@@ -272,7 +272,8 @@ season's music; shrinking the bundle with on-demand resources; the
 - No season take exists. M1 to M5 are measured on relights, level edits
   and an erase take. Batch 194 is the test of the real thing.
 - That a relight of a plot crop keeps the look's outline (batch 188, the
-  windmill's night, is not delivered).
+  windmill's night, is delivered but not yet reviewed by the lead; batch
+  197, the pond's night, is picked).
 - The characters' tint on snow: `harmony_state` and `harmony_check.py`
   are calibrated on a green lawn. If a winter frame fails
   `harmony_check`, winter takes spring's tint for the same light and

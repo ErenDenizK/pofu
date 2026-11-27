@@ -1,5 +1,9 @@
 # Texture budget v1: what a Home state may hold, and how sharp a look ships
 
+> Status (2026-11-27): rule v1 is in force: 12,000,000 drawn px per state
+> (`texture-budget.json` `statePixels`). Section 2 records the 9,000,000
+> rule as it stood before.
+
 **In three lines.** The "9 MB" is not a memory figure. It counts pixels at
 one byte each, as if the textures were ASTC, but they ship as HEIC and
 decode to 4 bytes a pixel. It also counts layers that never draw and leaves
