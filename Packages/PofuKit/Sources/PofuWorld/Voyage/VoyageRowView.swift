@@ -16,14 +16,17 @@ struct VoyageRowOverlay: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
-        let shown = model.projectedFraming == .map && model.island == .home && model.focus == nil
+        // A ride from the row keeps the row up for the whole ride; its own time fades it (`rowOpacity`), so no
+        // animated removal can catch it half-way in a frame.
+        let riding = model.ride?.fromRow == true
+        let shown = (model.projectedFraming == .map && model.island == .home && model.focus == nil) || riding
         ZStack {
             if shown {
                 VoyageRow(model: model, state: model.voyage, world: world, look: look)
                     .transition(.opacity)
             }
         }
-        .animation(reduceMotion ? nil : .easeInOut(duration: 0.35), value: shown)
+        .animation(reduceMotion || riding ? nil : .easeInOut(duration: 0.35), value: shown)
     }
 }
 
@@ -72,6 +75,7 @@ private struct VoyageRow: View {
                         layout: layout, stops: stops, selected: selected, size: size,
                         position: ride.rowPosition(at: t, selected: Double(selected), origin: Double(origin))
                     )
+                    .opacity(ride.rowOpacity(at: t))
                 }
             } else {
                 content(layout: layout, stops: stops, selected: selected, size: size, position: state.held ?? Double(selected))
