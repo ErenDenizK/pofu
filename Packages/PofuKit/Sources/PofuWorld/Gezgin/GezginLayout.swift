@@ -70,7 +70,7 @@ public struct GezginData: Decodable, Sendable, Equatable {
         public var tieY: Double { postY - postHeight * Self.tieShare }
 
         /// Home's: the post at the bridge's end on the rim (the pier's own painted post stands there).
-        public static let standard = Rope(bowX: -0.40, bowY: -0.10, postX: -0.60, postY: -0.85, sag: 0.15, thickness: 0.025, postHeight: 0.18)
+        public static let standard = Rope(bowX: -0.40, bowY: -0.10, postX: -0.60, postY: -0.85, sag: 0.28, thickness: 0.025, postHeight: 0.18)
 
         /// How far the slack line bellies out toward her, in lengths of the chord: on a steep chord it leaves the
         /// post and swings out to her, so it reads as a rope hanging in a curve, never a plumb strap.

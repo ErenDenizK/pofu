@@ -570,7 +570,11 @@ private struct SceneFrame<Bubble: View>: View {
         // does), never at the flight's first frame.
         let plateFade: Double = {
             guard let plate else { return 0 }
-            if model.island == .home { return PlateHomeLayer.opacity(z: z) }
+            if model.island == .home {
+                // Under the row (a ride from it) Home's own plate waits too: the row draws Home.
+                let share = model.ride.flatMap { ride in model.rideElapsed(at: clock).map { ride.sceneIslandOpacity(at: $0) } } ?? 1
+                return PlateHomeLayer.opacity(z: z) * share
+            }
             guard mapSky != nil else { return 0 }
             return HomePlate.isleFade(pose: pose, box: plate.islandBox, closeScale: plate.islandStop.scale, viewportWidth: Double(size.width))
         }()
@@ -1262,7 +1266,8 @@ private struct WorldCanvas: View {
                 objects.append(Object(id: "build-moment", kind: .plateBuild(build, lift: 0.4 * box.height), anchor: foot, depth: Self.plateEffectsDepth))
             }
         }
-        if z >= WorldHitTest.archipelagoZ, let data = GezginData.shipped, let mooring = plate.plate.mooring {
+        // While a ride is under way the ride's own view draws her (the island's scene takes her over when it ends).
+        if z >= WorldHitTest.archipelagoZ, model.ride == nil, let data = GezginData.shipped, let mooring = plate.plate.mooring {
             switch Gezgin.presence(koke: world.koke, caglayan: world.caglayan, data: data) {
             case .absent:
                 break
