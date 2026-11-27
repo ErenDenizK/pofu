@@ -61,4 +61,20 @@ struct SpecialDaysTests {
         let today = LocalDay(containing: Date(), in: Calendar(identifier: .gregorian))
         #expect(last >= today, "special-days.json has no bayram left: add the next years from Diyanet")
     }
+
+    @Test func fireworksAreOnlyOnNewYearsNightFrom22To01() {
+        let eve = LocalDay(year: 2026, month: 12, day: 31), day = LocalDay(year: 2027, month: 1, day: 1)
+        #expect(!table.fireworks(on: eve, at: 21 * 60 + 59))
+        #expect(table.fireworks(on: eve, at: 22 * 60))
+        #expect(table.fireworks(on: eve, at: 23 * 60 + 59))
+        #expect(table.fireworks(on: day, at: 0))
+        #expect(table.fireworks(on: day, at: 59))
+        #expect(!table.fireworks(on: day, at: 60))
+        #expect(!table.fireworks(on: day, at: 12 * 60))
+        // The kit shows from the evening of 30 December, the fireworks do not.
+        let before = LocalDay(year: 2026, month: 12, day: 30)
+        #expect(table.active(on: before, at: 19 * 60).contains(.newYear))
+        #expect(!table.fireworks(on: before, at: 23 * 60))
+        #expect(!table.fireworks(on: LocalDay(year: 2026, month: 10, day: 31), at: 23 * 60))
+    }
 }

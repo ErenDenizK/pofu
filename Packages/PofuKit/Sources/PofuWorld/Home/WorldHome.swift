@@ -98,6 +98,13 @@ public struct WorldHome: View {
                 bubble: { bubble }
             )
 
+            // New Year's night: soft fireworks in the sky above the island, drawn by code (C3).
+            GeometryReader { proxy in
+                SkyFireworksLayer(band: proxy.size.height * SkyFireworks.bandShare, isOn: fireworksOn)
+            }
+            .ignoresSafeArea()
+            .allowsHitTesting(false)
+
             chrome
 
             CollectFlight(home: home)
@@ -344,6 +351,31 @@ public struct WorldHome: View {
         return AnyView(spriteProps(frame))
     }
 
+    /// Whether New Year's fireworks are on: the kit's night itself (`SpecialDays.fireworks`), by the world's clock.
+    private var fireworksOn: Bool {
+        guard world.specialDay == .newYear, let clock = world.clock else { return false }
+        let calendar = Calendar.current
+        let parts = calendar.dateComponents([.hour, .minute], from: clock)
+        return SpecialDays.fireworks(on: LocalDay(containing: clock, in: calendar), at: (parts.hour ?? 0) * 60 + (parts.minute ?? 0))
+    }
+
+    /// One kit prop standing on its slot (C3): in the plate's light like the jar, lit at night when it has the state.
+    private func kitPlaced(_ spec: PlateProp, _ frame: WorldPropsFrame, _ plate: HomePlate) -> some View {
+        Group {
+            if let foot = plate.kitSlot(spec) {
+                let p = frame.point(of: foot)
+                let k = CGFloat(frame.pose.scale * plate.unitsPerPixel)
+                let light = plate.characterLight(
+                    at: foot, width: spec.width * plate.unitsPerPixel, height: spec.height * plate.unitsPerPixel, id: spec.id
+                )
+                PlateKitPropView(spec: spec, isNight: isNight, light: light)
+                    .frame(width: CGFloat(spec.span(stage: plate.stage)), height: CGFloat(spec.height))
+                    .scaleEffect(k)
+                    .position(x: p.x, y: p.y - CGFloat(spec.height) * k / 2)
+            }
+        }
+    }
+
     /// The painted props at the plate's slots (WP5): the jar, the pots and the lantern in the plate's own light.
     private func plateProps(_ frame: WorldPropsFrame, _ plate: HomePlate) -> some View {
         ZStack(alignment: .topLeading) {
@@ -372,6 +404,9 @@ public struct WorldHome: View {
             }
             platePlaced(.jar, frame, plate) { spec, light in
                 PlateJarView(jar: world.jar.units, home: home, light: light, width: spec.width, height: spec.height)
+            }
+            ForEach(plate.kitProps(for: world.specialDay), id: \.id) { spec in
+                kitPlaced(spec, frame, plate)
             }
         }
         .frame(width: frame.size.width, height: frame.size.height, alignment: .topLeading)

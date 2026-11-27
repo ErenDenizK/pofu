@@ -347,6 +347,8 @@ enum WorldStrings {
         case .giftArrived: String(localized: "A gift reached the island today. Spot it?", bundle: .module)
         case .letGo(let count): String(localized: "We let \(count) go today. Mostly your doing.", bundle: .module)
         case .guest: String(localized: "We've got a guest. Say hi?", bundle: .module)
+        case .newYear:
+            String(localized: "newyear.line", defaultValue: "New year, new me? Same hamster, thanks. You be as new as you like.", bundle: .module)
         case .morning(variant: 0): String(localized: "Morning. Tea's brewing, the island's up.", bundle: .module)
         case .morning: String(localized: "Buried a seed. Forgot where. Classic hamster.", bundle: .module)
         case .midday(variant: 0): String(localized: "The sunflowers watch the sun. I watch you.", bundle: .module)
