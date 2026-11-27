@@ -262,7 +262,7 @@ class IngestTests(unittest.TestCase):
         data = self._data(
             objects=[{"id": "far", "polygon": [[2, 2], [10, 2], [10, 10]], "occluder": True}],
             characters={"pofu": [5, 95]},
-            textureBytes=10_000_000,
+            textureBytes=13_000_000,
         )
         found = ingest.problems(data, a, set(), tolerance=4)
         text = "\n".join(found)
@@ -523,6 +523,92 @@ class ColorFitTests(unittest.TestCase):
         self.assertLess(np.hypot(lab_out[..., 1], lab_out[..., 2]).mean(), 0.8 * np.hypot(lab_in[..., 1], lab_in[..., 2]).mean())
         self.assertAlmostEqual(float(lab_out[..., 0].mean()), float(lab_in[..., 0].mean()), delta=1.5)
         np.testing.assert_allclose(ingest.color_fit(sky, fit), sky, atol=0.01)
+
+
+class TextureBudgetTests(unittest.TestCase):
+    """Rule v1 (docs/design/texture-budget-v1.md) on synthetic islands: the tools' folders are patched to a temp tree."""
+
+    def setUp(self):
+        import json
+        import tempfile
+        import unittest.mock as mock
+
+        self.json = json
+        self.tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.tmp.cleanup)
+        root = Path(self.tmp.name)
+        self.plates, self.assets, self.jsons = root / "plates", root / "assets", root / "json"
+        for d in (self.plates / "t", self.assets, self.jsons):
+            d.mkdir(parents=True)
+        for name, value in (("PLATES", self.plates), ("ASSETS", self.assets), ("JSON_DIR", self.jsons)):
+            patcher = mock.patch.object(ingest, name, value)
+            patcher.start()
+            self.addCleanup(patcher.stop)
+        self.hand = {"plates": {"day": {"0": "x.png"}}}
+        patcher = mock.patch.object(ingest, "plates", lambda hand: [("day", 0, "x.png")])
+        patcher.start()
+        self.addCleanup(patcher.stop)
+        self.crop = None
+        patcher = mock.patch.object(ingest, "plate_crop_points", lambda *a: self.crop)
+        patcher.start()
+        self.addCleanup(patcher.stop)
+
+    def layer(self, kind: str, w: int, h: int, name: str = "") -> None:
+        from PIL import Image
+
+        folder = self.assets / f"world-t-{kind}-{name + '-' if name else ''}day-0.imageset"
+        folder.mkdir()
+        Image.new("RGBA", (w, h)).save(folder / "x.png")
+
+    def stations(self, stations: dict) -> None:
+        (self.plates / "t" / "stations.json").write_text(self.json.dumps({"stations": stations}))
+
+    def total(self) -> int:
+        return ingest.state_texture_bytes("t", self.hand)[("day", 0)]
+
+    def test_a_matted_state_does_not_count_its_island_cut(self):
+        self.layer("plate", 10, 10)
+        self.layer("island", 10, 10)
+        self.crop = [0, 0, 5, 4]
+        self.assertEqual(self.total(), 100 + 20)               # the plate and the far picture, no island cut
+        self.crop = None
+        self.assertEqual(self.total(), 200)                    # a whole-plate state keeps its island cut
+
+    def test_a_station_on_its_base_retires_its_painted_occluder(self):
+        self.layer("plate", 10, 10)
+        self.layer("occ", 6, 6, "hut")
+        self.layer("occ", 3, 3, "tree")
+        self.stations({"hut": {"light": "day", "baseStages": [0], "baseBytes": {"0": 90}, "lookBytes": [10]}})
+        # base 90 replaces the plate; the look counts twice (drawn, one reveal); the hut's occluder is retired.
+        self.assertEqual(self.total(), 90 + 10 + 10 + 9)
+
+    def test_one_reveal_counts_one_extra_look(self):
+        self.layer("plate", 10, 10)
+        self.stations({
+            "a": {"light": "day", "baseStages": [0], "baseBytes": {"0": 1000}, "lookBytes": [100]},
+            "b": {"light": "day", "baseStages": [0], "baseBytes": {"0": 1000}, "lookBytes": [60]},
+        })
+        self.assertEqual(ingest.station_bytes("t", "day", 0), 1000 + 100 + 60 + 100)
+        self.assertEqual(ingest.station_bytes("t", "night", 0), 0)
+
+    def test_props_worst_frame_and_far_picture_are_counted(self):
+        self.layer("plate", 10, 10)
+        (self.jsons / "plate-t.json").write_text(self.json.dumps({"props": [
+            {"id": "jar", "states": ["a", "b", "c", "d"], "bytes": 400},
+            {"id": "pots", "states": ["a", "b"], "bytes": 300},
+        ]}))
+        self.assertEqual(ingest.props_pixels("t"), 400 // 4 + 300)
+        self.assertEqual(ingest.props_pixels("missing"), 0)
+        self.crop = [10, 20, 30, 60]                           # a matted state: the far picture is w x h
+        self.assertEqual(self.total(), 100 + 400 + 800)
+
+    def test_the_limit_comes_from_texture_budget_json(self):
+        budget = self.json.loads((Path(__file__).resolve().parents[2] / "Packages" / "PofuKit" / "Sources" / "PofuWorld"
+                                  / "Resources" / "Plates" / "texture-budget.json").read_text())
+        self.assertEqual(ingest.BUDGET, budget["statePixels"])
+        self.assertEqual(budget["bytesPerPixel"], 4)
+        import skyset_export
+        self.assertEqual(skyset_export.BUDGET, budget["statePixels"])
 
 
 if __name__ == "__main__":
