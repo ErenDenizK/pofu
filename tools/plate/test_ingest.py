@@ -209,14 +209,26 @@ class IngestTests(unittest.TestCase):
             self.assertLess(float(np.abs(alpha - matte).mean()), 0.004, f"{light}:{stage}")
             self.assertEqual(float(shipped[0].max()), 0.0)  # clear room above the island
 
+    def test_a_season_state_is_cut_with_its_spring_states_matte_and_spring_comes_first(self):
+        hand = ingest.load_hand("home")
+        order = [(l, s) for l, s, _ in ingest.plates(hand)]
+        firsts = [i for i, (l, _) in enumerate(order) if ingest.split_light(l)[0]]
+        self.assertEqual(order[0], ("day", 0), "the island's root, the harmony reference, stays the first plate")
+        self.assertTrue(all(not ingest.split_light(l)[0] for l, _ in order[:firsts[0]]) and firsts, "seasons follow spring")
+        self.assertEqual(ingest.split_light("autumn-day"), ("autumn", "day"))
+        self.assertEqual(ingest.split_light("golden"), (None, "golden"))
+        self.assertEqual(ingest.matte_path("home", "autumn-night", 0), ingest.matte_path("home", "night", 0))
+        self.assertTrue(np.array_equal(ingest.load_matte_full("home", "autumn-day", 0), ingest.load_matte_full("home", "day", 0)))
+
     def test_no_state_reads_level_10s_matte(self):
         import unittest.mock as mock
         hand = ingest.load_hand("home")
-        masters = [ingest.matte_path("home", light, stage) for light, stage, _ in ingest.plates(hand)]
+        spring = [(l, s, p) for l, s, p in ingest.plates(hand) if not ingest.split_light(l)[0]]
+        masters = [ingest.matte_path("home", light, stage) for light, stage, _ in spring]
         self.assertEqual(len(masters), 26)
         self.assertTrue(all(p.exists() for p in masters))
         # every state that is not listed as legacy has its own solve (the three lights of a stage are one drawing)
-        own = {m.name for m, (light, stage, _) in zip(masters, ingest.plates(hand)) if not ingest.is_legacy(hand, light, stage)}
+        own = {m.name for m, (light, stage, _) in zip(masters, spring) if not ingest.is_legacy(hand, light, stage)}
         self.assertEqual(len(own), 26 - len(hand.get("legacyStates", [])))
         self.assertFalse(np.array_equal(ingest.load_matte_full("home", "day", 5), ingest.load_matte_full("home", "day", 0)))
         # a state without its own matte is an error, not the level-10 one
