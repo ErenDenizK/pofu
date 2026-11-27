@@ -1,0 +1,1 @@
+D6: render-server offset animation, body evaluations over 3 s: 0 (limit 3: free); PofuTimeline at drift (15.0 Hz), content evaluations over 3 s: 0
