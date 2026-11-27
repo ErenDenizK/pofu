@@ -45,11 +45,11 @@ public enum VoyageWake {
         guard let s = phase(ride, at: seconds) else { return 0 }
         switch piece {
         case .short:
-            let takeOff = smooth(s, 0, 0.1) * (1 - smooth(s, 0.14, 0.34))
-            let landing = smooth(s, 0.7, 0.9) * (1 - smooth(s, 1.05, 1 + dyingShare))
+            let takeOff = smooth(s, 0, 0.18) * (1 - smooth(s, 0.2, 0.4))
+            let landing = smooth(s, 0.7, 0.9) * (1 - smooth(s, 0.9, 1 + dyingShare))
             return max(takeOff, landing)
         case .long:
-            return smooth(s, 0.12, 0.32) * (1 - smooth(s, 0.7, 0.92))
+            return smooth(s, 0.16, 0.38) * (1 - smooth(s, 0.7, 0.92))
         }
     }
 

@@ -35,13 +35,13 @@ struct VoyageWakeTests {
             var t = 0.0
             while t <= ride.duration {
                 let now = total(ride, at: t)
-                #expect(abs(now - last) < 0.2, "the wake steps from \(last) to \(now) at \(t)")
+                #expect(abs(now - last) < 0.12, "the wake steps from \(last) to \(now) at \(t)")
                 last = now; peak = max(peak, now)
-                t += 0.02
+                t += 1.0 / 60
             }
             #expect(peak > 0.9)
             // It has started within a hair of lift-off, and it is there at the half way.
-            #expect(total(ride, at: ride.board + ride.fly * 0.05) < 0.55)
+            #expect(total(ride, at: ride.board + ride.fly * 0.05) < 0.3)
             #expect(total(ride, at: ride.board + ride.fly * 0.5) > 0.9)
         }
     }
