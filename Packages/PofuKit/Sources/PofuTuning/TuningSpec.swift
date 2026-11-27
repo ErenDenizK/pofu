@@ -97,6 +97,16 @@ extension TuningSpec {
         specs += ["master", "seeds", "pieces", "pofu"].map { (name: String) -> TuningSpec in
             TuningSpec("sound.\(name)", 0...1, step: 0.05)
         }
+        specs += [
+            TuningSpec("sound.music", 0...1, step: 0.05),
+            TuningSpec("sound.musicFirstMin", 0...30, step: 0.5),
+            TuningSpec("sound.musicFirstMax", 0...30, step: 0.5),
+            TuningSpec("sound.musicPauseMin", 0...30, step: 0.5),
+            TuningSpec("sound.musicPauseMax", 0...30, step: 0.5),
+            TuningSpec("sound.musicLeadStage", 1...10, step: 1),
+            TuningSpec("sound.musicPulseStage", 1...10, step: 1),
+            TuningSpec("sound.musicHazeLead", 0...1, step: 0.05),
+        ]
         return specs
     }()
 

@@ -217,6 +217,20 @@ public struct TuningValues: Codable, Hashable, Sendable {
         public var pieces: Double
         /// Pofu's own sounds: hop, gulp, cheeks, collect, chimes.
         public var pofu: Double
+        /// The island's music under the master (the tune is mastered at -20 LUFS).
+        public var music: Double
+        /// Seconds before Home's first phrase after the app opens: from, to.
+        public var musicFirstMin: Double
+        public var musicFirstMax: Double
+        /// Seconds of the island's own air between two cells: from, to.
+        public var musicPauseMin: Double
+        public var musicPauseMax: Double
+        /// The island level at which the lead joins the bed.
+        public var musicLeadStage: Double
+        /// The island level at which the pulse joins (the island is healed).
+        public var musicPulseStage: Double
+        /// The lead's relative level under golden haze (0...1).
+        public var musicHazeLead: Double
     }
 }
 

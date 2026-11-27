@@ -77,6 +77,19 @@ enum WorldSound {
         }
     }
 
+    /// The island as the music director needs it. Home is the only island with a tune; the island
+    /// is named here, not read from the world, until a second island has one (docs/design/music-system-v1.md).
+    static func musicState(of world: WorldSnapshot, hour: Int, weather: AmbienceWeather) -> MusicState {
+        MusicState(
+            island: .home,
+            hour: hour,
+            weather: weather,
+            season: MusicSeason(rawValue: world.season?.rawValue ?? "") ?? .spring,
+            stage: world.islandLevel,
+            wellbeing: world.wellbeing
+        )
+    }
+
     /// Once at launch: the breath room's phases drive the pad.
     static func install() {
         FarBellStage.shared.onPlay = { WorldSound.play($0) }
@@ -166,6 +179,7 @@ extension AppModel {
         }
         guard active else {
             AmbienceConductor.shared.update(scene: nil, isActive: false)
+            MusicPlayer.shared.update(state: nil, isActive: false)
             return
         }
         let calendar = Calendar.current
@@ -179,10 +193,12 @@ extension AppModel {
             hour: Double(hour) + Double(parts.minute ?? 0) / 60,
             calendar: calendar
         ).weather
+        let ambienceWeather = AmbienceWeather(weatherName: weather.rawValue)
         AmbienceConductor.shared.update(
-            scene: AmbienceScene(hour: hour, weather: AmbienceWeather(weatherName: weather.rawValue), islandLevel: snapshot.islandLevel),
+            scene: AmbienceScene(hour: hour, weather: ambienceWeather, islandLevel: snapshot.islandLevel),
             isActive: true
         )
+        MusicPlayer.shared.update(state: WorldSound.musicState(of: snapshot, hour: hour, weather: ambienceWeather), isActive: true)
         let tea = snapshot.stations.first { $0.id == .teaStall }?.level ?? 0
         WorldSound.whistleKettleIfOwed(hour: hour, teaStallLevel: tea, now: date, calendar: calendar)
     }

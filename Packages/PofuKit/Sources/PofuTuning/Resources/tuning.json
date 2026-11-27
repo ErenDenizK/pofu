@@ -101,6 +101,14 @@
   },
   "sound" : {
     "master" : 0.8,
+    "music" : 0.5,
+    "musicFirstMax" : 8,
+    "musicFirstMin" : 3,
+    "musicHazeLead" : 0.7,
+    "musicLeadStage" : 4,
+    "musicPauseMax" : 12,
+    "musicPauseMin" : 4,
+    "musicPulseStage" : 10,
     "pieces" : 0.7,
     "pofu" : 0.9,
     "seeds" : 0.85
