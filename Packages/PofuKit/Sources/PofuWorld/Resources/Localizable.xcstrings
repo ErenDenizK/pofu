@@ -934,13 +934,13 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Archipelago"
+            "value": "The voyage"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Takımada"
+            "value": "Yolculuk"
           }
         }
       }
@@ -2241,6 +2241,166 @@
           "stringUnit": {
             "state": "translated",
             "value": "Şş… hâlâ gece. Yarın taşırım seni."
+          }
+        }
+      }
+    },
+    "voyage.verb": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set sail"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yola çık"
+          }
+        }
+      }
+    },
+    "voyage.here": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You are here"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buradasın"
+          }
+        }
+      }
+    },
+    "voyage.line.home.home": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your own island, and the pier is here."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kendi adan; iskele burada."
+          }
+        }
+      }
+    },
+    "voyage.line.koke.open": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Köke is waiting for you."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Köke seni bekliyor."
+          }
+        }
+      }
+    },
+    "voyage.line.koke.healed": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Köke is well again."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Köke yine iyi."
+          }
+        }
+      }
+    },
+    "voyage.line.koke.locked": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Behind the clouds. No way there yet."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bulutların ardında. Henüz yol yok."
+          }
+        }
+      }
+    },
+    "voyage.line.caglayan.open": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Çağlayan is waiting for you."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Çağlayan seni bekliyor."
+          }
+        }
+      }
+    },
+    "voyage.line.caglayan.healed": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Çağlayan is well again."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Çağlayan yine iyi."
+          }
+        }
+      }
+    },
+    "voyage.line.caglayan.locked": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Behind the clouds. No way there yet."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bulutların ardında. Henüz yol yok."
+          }
+        }
+      }
+    },
+    "voyage.label": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose an island. Swipe to change it."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ada seç. Değiştirmek için kaydır."
           }
         }
       }

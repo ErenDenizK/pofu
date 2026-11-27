@@ -65,5 +65,17 @@
     "awakeSeconds": 7,
     "lineSeconds": 4.5,
     "shadow": { "y": 1320, "seconds": 46, "opacity": 0.85 }
+  },
+  "voyage": {
+    "note": "The voyage row (ADR-0028, plan row 2c): the far view is a row of islands along the route, one at islandWidth of the screen's width, neighbours pitch away and cut by the edges. An island keeps its slot in order; a new island needs a slot and nothing else.",
+    "order": ["home", "koke", "caglayan"],
+    "islandWidth": 0.7,
+    "pitch": 0.70,
+    "neighbourScale": 0.86,
+    "neighbourLift": 26,
+    "centreY": 0.47,
+    "barLift": 72,
+    "glideSeconds": 0.42,
+    "flick": 1.6
   }
 }

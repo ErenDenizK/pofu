@@ -280,6 +280,7 @@ public struct IslandScene<Bubble: View>: View {
         .task {
             model.power.startObservingSystem()
         }
+        .overlay { VoyageRowOverlay(model: model, world: world) }
         .overlay { KokeBubbleOverlay(state: model.koke) }
         .overlay { GezginBubbleOverlay(state: model.gezgin) }
         .overlay { CaglayanBubbleOverlay(state: model.caglayan) }
@@ -745,50 +746,8 @@ private struct SceneFrame<Bubble: View>: View {
                     PaintedSkyLayer(plate: entry.plate, pose: pose, reference: PaintedSky.reference(for: entry.island, width: Double(size.width), height: Double(size.height)) ?? entry.plate.skyReference(width: Double(size.width), height: Double(size.height)), size: size, offset: offset, fade: entry.fade, cleanSea: entry.island == .koke)
                 }
 
-                // Over the cloud sea's horizon on the Map, a soft haze until WP9's cloud beds: no ruler
-                // edge, and the wonder islands' feet stand in it.
-                if let mapSky, z < 0.8, let horizon = MapSlots.horizonRow(plate: mapSky, camera: pose, width: Double(size.width), height: Double(size.height)) {
-                    MapHazeLayer(horizon: horizon, size: size, offset: offset)
-                        .tinted(tint, isEnabled: !(look.grade && WorldShaders.isAvailable))
-                        .modifier(GradeEffect(grade: grade.withoutVignette, isEnabled: look.grade))
-                        .opacity(max(0, 1 - max(z, 0) / 0.8))
-                }
-
-                // The cloud floor (WP9): a bed under each island, puffs, the horizon's mound and wisps, behind them.
-                if let mapSky, z < 0.8 {
-                    CloudFloorLayer(
-                        pieces: CloudFloor.pieces(
-                            homeBox: mapSky.islandBox,
-                            slots: MapSlots.slots(stage: MapSlots.stage(koke: world.koke, caglayan: world.caglayan), tier: plate?.mapTier ?? MapSlots.tier(koke: world.koke, caglayan: world.caglayan)),
-                            stop: CameraPose(scale: mapSky.mapStop.scale, look: mapSky.mapStop.look, anchorY: mapSky.mapStop.anchorY),
-                            reference: mapSky.skyReference(width: CameraRail.referenceWidth, height: CameraRail.referenceHeight)
-                        ),
-                        pose: pose,
-                        reference: mapSky.skyReference(width: Double(size.width), height: Double(size.height)),
-                        size: size,
-                        offset: offset
-                    )
-                    .tinted(tint, isEnabled: !(look.grade && WorldShaders.isAvailable))
-                    .modifier(GradeEffect(grade: grade.withoutVignette, isEnabled: look.grade))
-                    .opacity(max(0, 1 - max(z, 0) / 0.8))
-                }
-
-                // The next island's slot: a cloud tower (`MapSlots`, Map order A), gone as
-                // the camera leaves the Map as the wonder islands are. The next-to-open slot's reveal is WP12's.
-                if z < 0.8, model.focus == nil {
-                    MapSlotsLayer(
-                        slots: MapSlots.slots(stage: MapSlots.stage(koke: world.koke, caglayan: world.caglayan), tier: plate?.mapTier ?? MapSlots.tier(koke: world.koke, caglayan: world.caglayan)),
-                        pose: pose,
-                        size: size,
-                        offset: offset,
-                        time: life.isAmbient ? life.time : nil,
-                        z: z
-                    )
-                    // In the hour's light, as the wonder islands beside them are.
-                    .tinted(tint, isEnabled: !(look.grade && WorldShaders.isAvailable))
-                    .modifier(GradeEffect(grade: grade.withoutVignette, isEnabled: look.grade))
-                    .opacity(max(0, 1 - max(z, 0) / 0.8))
-                }
+                // The Map's haze, cloud beds and cloud towers are gone: the far stop is the voyage row
+                // (`VoyageRowOverlay`, ADR-0028), which draws its own islands over this sky.
 
                 if !painted, codeFade < 0.999 {
                     // The rainbow, soft and pastel, behind the island and its fog.
