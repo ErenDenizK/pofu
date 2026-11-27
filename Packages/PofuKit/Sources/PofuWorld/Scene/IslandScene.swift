@@ -1064,6 +1064,7 @@ private struct WorldCanvas: View {
         ZStack(alignment: .topLeading) {
             if layer == .characters {
                 caglayanDamla
+                wonderBerth
             }
             if layer == .environment {
                 otherIsles
@@ -1390,11 +1391,17 @@ private struct WorldCanvas: View {
                 }
             }
         case .gezgin(let level):
-            if let plate, let data = GezginData.shipped, let mooring = plate.plate.mooring {
+            if let plate, let data = GezginData.shipped, let berth = Gezgin.berth(at: .home, data: data, home: plate) {
                 let wakeAge = model.gezgin.heldAge ?? model.gezgin.wokeAt.map { clock.timeIntervalSince($0) }
+                let unit = berth.width / max(data.art.body[2] - data.art.body[0], 1)
+                let light = plate.characterLight(
+                    at: plate.world(plate.plate.characters["findik"] ?? plate.plate.mooring?.feet ?? PlatePoint(x: 0, y: 0)),
+                    width: data.art.canvas[0] * unit, height: data.art.canvas[1] * unit, id: "gezgin"
+                )
                 GezginMooredView(
-                    data: data, plate: plate, mooring: mooring, level: level,
+                    data: data, berth: berth, level: level,
                     pose: Gezgin.pose(light: plate.light, wakeAge: wakeAge, data: data),
+                    tint: GezginTint(saturation: light.saturation, red: light.paint.red, green: light.paint.green, blue: light.paint.blue),
                     point: point, time: life.isAmbient ? life.time : 0, wakeAge: wakeAge
                 )
                 .accessibilityElement()
@@ -1619,13 +1626,41 @@ private struct WorldCanvas: View {
         }
     }
 
+    /// How much of the wonder islands the ride lets show: none while the row (its own islands) is still up.
+    private var rideShare: Double {
+        guard let ride = model.ride, let seconds = model.rideElapsed(at: clock) else { return 1 }
+        return ride.sceneIslandOpacity(at: seconds)
+    }
+
+    /// The Gezgin at the berth of the wonder island the camera is on (row 2e): moored beside it, her post on its
+    /// rim, a slack line to her bow. While a ride is under way the ride's own view draws her, so she is not drawn
+    /// twice; the ride hands her over here when the passengers are off.
+    @ViewBuilder
+    private var wonderBerth: some View {
+        let island = model.island
+        if model.ride == nil, island == .koke || island == .caglayan, let data = GezginData.shipped,
+           island == .koke ? world.koke.isArrived : world.caglayan.isArrived,
+           case .moored(let level) = Gezgin.presence(koke: world.koke, caglayan: world.caglayan, data: data),
+           let berth = Gezgin.berth(at: island, data: data, home: nil) {
+            let light = (island == .caglayan ? model.caglayanPlate?.light : model.homePlate?.light) ?? "day"
+            GezginMooredView(
+                data: data, berth: berth, level: level,
+                pose: Gezgin.pose(light: light, wakeAge: nil, data: data),
+                tint: GezginTint.of(VoyageGrade.whale(light: light)),
+                point: canvasPoint(berth.feet, depth: island == .koke ? KokeLayout.focusDepth : CaglayanLayout.focusDepth),
+                time: life.isAmbient ? life.time : 0, wakeAge: nil
+            )
+            .accessibilityHidden(true)
+        }
+    }
+
     /// Koke's island, once it can be visited: the same fade as the other
     /// isles, desaturated on the Map by how healed it is.
     @ViewBuilder
     private var kokeIsle: some View {
         if world.koke.isArrived, z < 1.7 || model.island != .home {
             let here = model.island == .koke
-            let fade = here ? 1 : max(0, 1 - max(z, 0) / 0.8) * (model.focus == nil ? 1 : 0)
+            let fade = (here ? 1 : max(0, 1 - max(z, 0) / 0.8) * (model.focus == nil ? 1 : 0)) * rideShare
             KokeIsleView(
                 stage: world.koke.stage,
                 swellAge: model.koke.swellStart.map { clock.timeIntervalSince($0) },
@@ -1651,7 +1686,7 @@ private struct WorldCanvas: View {
     private var caglayanIsle: some View {
         if world.caglayan.isArrived, z < 1.7 || model.island != .home {
             let here = model.island == .caglayan
-            let fade = here ? 1 : max(0, 1 - max(z, 0) / 0.8) * (model.focus == nil ? 1 : 0)
+            let fade = (here ? 1 : max(0, 1 - max(z, 0) / 0.8) * (model.focus == nil ? 1 : 0)) * rideShare
             CaglayanIsleView(
                 painted: model.caglayanPlate != nil,
                 stage: world.caglayan.stage,
@@ -1671,7 +1706,7 @@ private struct WorldCanvas: View {
     private var caglayanDamla: some View {
         if world.caglayan.isArrived, z < 1.7 || model.island != .home {
             let here = model.island == .caglayan
-            let fade = here ? 1 : max(0, 1 - max(z, 0) / 0.8) * (model.focus == nil ? 1 : 0)
+            let fade = (here ? 1 : max(0, 1 - max(z, 0) / 0.8) * (model.focus == nil ? 1 : 0)) * rideShare
             if let isle = model.caglayanPlate, let damla = isle.damla(stage: world.caglayan.stage),
                let sprite = WorldArt.sprite(damla.art)?.sharp {
                 // On the painted plate she stands at her spot, at the plate's scale and in its
@@ -2089,7 +2124,7 @@ private struct PofuLayer<Bubble: View>: View {
         let weights = DepthWeights(level: level)
         // The painted body above z 0.55, the pin below 0.25 (§1.6).
         let painted = min(max((z - 0.25) / 0.3, 0), 1)
-        let bubbleOpacity = model.focus == nil && plate == nil ? min(max((z - 1.6) / 0.3, 0), 1) : 0
+        let bubbleOpacity = model.focus == nil && plate == nil && !model.hidesFocusUI ? min(max((z - 1.6) / 0.3, 0), 1) : 0
         // On the plate he is drawn at its scale, in its light.
         let drawn = s * (plate?.characterScale ?? 1)
         let airborne = CGPoint(x: feet.x, y: feet.y - CGFloat(moveLift * s))
@@ -2278,7 +2313,7 @@ private struct ScreenOverlays: View {
     var body: some View {
         let labels = 1 - min(max((z - 0.2) / 0.25, 0), 1)
         ZStack(alignment: .topLeading) {
-            if labels > 0.01 {
+            if labels > 0.01, !model.hidesFocusUI {
                 // On the painted Map every name hangs under its island's painting, clear of its rim, and
                 // Home's carries Pofu's paw (the pin no longer stands on the painted lawn).
                 if let plate {

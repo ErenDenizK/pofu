@@ -183,8 +183,67 @@ struct VoyageRideTests {
     @Test func theMooringPostStandsOnTheRimAndTheLineIsTiedToIt() {
         let rope = GezginData.Rope.standard
         #expect(rope.tieY < rope.postY && rope.tieY > rope.postY - rope.postHeight)
-        #expect(rope.thickness >= 0.035)
+        #expect(rope.thickness >= 0.02)
         // The line is tied above her bow, to the post's neck, never to a point in the air.
         #expect(rope.tieY < rope.bowY)
+    }
+
+    // MARK: - Row 2e: her place at every island
+
+    @Test func everyMainIslandHasAMooringWithItsPostOnTheRim() throws {
+        let data = try #require(GezginData.shipped)
+        for island in [IslandID.koke, .caglayan] {
+            let berth = try #require(Gezgin.berth(at: island, data: data, home: nil), "\(island) has a berth")
+            // The post stands on the island's side of her, level with or above her feet, and the line slopes down to her bow.
+            #expect(berth.post.x < berth.feet.x)
+            #expect(berth.tie.y <= berth.bow.y + 1e-9)
+            #expect(berth.slope < 50, "\(island): the line is a slack rope, not a strap down a cliff (\(berth.slope) degrees)")
+            #expect(!berth.landing.isEmpty, "\(island): the passengers land on the island")
+            for spot in berth.landing { #expect(spot.x < berth.post.x + berth.width) }
+        }
+        #expect(Gezgin.berth(at: .home, data: data, home: HomePlate.shipped) != nil)
+    }
+
+    @Test func anIslandWithoutAMooringHasHerHoverBeside() throws {
+        let data = try #require(GezginData.shipped)
+        #expect(Gezgin.berth(at: IslandID("revontuli"), data: data, home: nil) == nil)
+        let end = ride.whale(at: ride.duration - 0.001, start: start, berth: nil)
+        let hover = VoyageRide.hover(toTheRight: true)
+        #expect(abs(end.x - hover.x) < 0.01 && abs(end.y - hover.y) < 0.01)
+        // With a berth she glides to it, stays whole and has turned to face the island.
+        let berth = VoyageRide.Spot(x: 0.6, y: 0.5, width: 0.3)
+        let at = ride.whale(at: ride.duration - 0.001, start: start, berth: berth)
+        #expect(abs(at.x - 0.6) < 0.01 && abs(at.y - 0.5) < 0.01)
+        #expect(ride.whaleOpacity(at: ride.duration - 0.01, berthed: true) == 1)
+        #expect(ride.whaleOpacity(at: ride.duration - 0.01, berthed: false) < 1)
+        #expect(ride.facing(at: ride.duration - 0.001, berthed: true) == 1)
+        #expect(ride.facing(at: ride.board + 1, berthed: true) == -1)
+    }
+
+    @Test func theSlackLineHangsBelowTheChordAndNeverRunsPlumb() {
+        let tie = WorldPoint(x: 0, y: 0), bow = WorldPoint(x: 40, y: 10)
+        let control = GezginData.Rope.control(tie: tie, bow: bow, sag: 0.15)
+        #expect(control.y > 5)
+        #expect(GezginData.Rope.slope(tie: tie, bow: bow) < 20)
+        #expect(GezginData.Rope.slope(tie: tie, bow: WorldPoint(x: 0, y: 40)) > 89)
+    }
+
+    @Test func theRowAndTheSceneNeverShowTheSameIslandTogether() {
+        let row = VoyageRide(from: .home, to: .koke, data: .fallback)
+        for t in stride(from: 0.0, through: row.duration, by: 0.05) {
+            let shown = row.rowOpacity(at: t) * row.sceneIslandOpacity(at: t)
+            #expect(shown == 0, "no ghost at \(t) s")
+        }
+        #expect(row.sceneIslandOpacity(at: row.duration) == 1)
+        let near = VoyageRide(from: .home, to: .koke, data: .fallback, fromRow: false)
+        #expect(near.sceneIslandOpacity(at: 0.5) == 1)
+    }
+
+    @Test func theFocusUIStaysHiddenOnTheWayBackToo() {
+        let back = VoyageRide(from: .koke, to: .home, data: .fallback)
+        for t in stride(from: 0.0, through: back.duration + 0.5, by: 0.25) {
+            #expect(VoyageRide.hidesFocusUI(back), "hidden at \(t) s")
+        }
+        #expect(!VoyageRide.hidesFocusUI(nil), "it returns when the ride is over and the passengers are off")
     }
 }

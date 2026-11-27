@@ -153,7 +153,9 @@ public struct VoyageRide: Equatable, Sendable {
     }
 
     /// Her body's spot `seconds` into the ride, from where she is moored at the start (`start`, from the row).
-    public func whale(at seconds: Double, start: Spot) -> Spot {
+    /// `berth` is her place at the island she goes to (the centre of her cut-out and its width, as shares of
+    /// the screen); without one she glides to the hover beside it.
+    public func whale(at seconds: Double, start: Spot, berth: Spot? = nil) -> Spot {
         let (beat, progress) = beat(at: seconds)
         switch beat {
         case .board:
@@ -162,18 +164,46 @@ public struct VoyageRide: Equatable, Sendable {
             // She lifts off the mooring and settles into the cruise in the first quarter of the flight.
             return .mix(start, Self.cruise, Self.ease(progress / 0.28))
         case .moor, .done:
-            return .mix(Self.cruise, Self.hover(toTheRight: toTheRight), Self.ease(progress / 0.8))
+            return .mix(Self.cruise, berth ?? Self.hover(toTheRight: toTheRight), Self.ease(progress / 0.8))
         }
     }
 
     /// Her opacity: whole until she has moored, then she fades out as the island takes over the frame.
-    public func whaleOpacity(at seconds: Double) -> Double {
+    /// With a `berthed` island she stays whole to the end: the island's own scene draws her at the same place
+    /// the moment the ride is over.
+    public func whaleOpacity(at seconds: Double, berthed: Bool = false) -> Double {
         let (beat, progress) = beat(at: seconds)
         switch beat {
         case .board: return 1
         case .fly: return fromRow ? 1 : Self.ease(progress / 0.15)
-        case .moor: return progress < 0.7 ? 1 : 1 - Self.ease((progress - 0.7) / 0.3)
+        case .moor: return berthed || progress < 0.7 ? 1 : 1 - Self.ease((progress - 0.7) / 0.3)
         case .done: return 0
+        }
+    }
+
+    /// Which way she faces, as the horizontal scale of her art (painted facing left: 1; mirrored going right: -1).
+    /// At a berth she turns to face the island in the first half of the moor beat, since she lies beside it.
+    public func facing(at seconds: Double, berthed: Bool) -> Double {
+        let way = toTheRight ? -1.0 : 1.0
+        guard berthed else { return way }
+        let (beat, progress) = beat(at: seconds)
+        switch beat {
+        case .board, .fly: return way
+        case .moor: return way + (1 - way) * Self.ease(progress / 0.5)
+        case .done: return 1
+        }
+    }
+
+    /// How much of the scene's wonder islands shows: when the ride starts from the row, none until the row has
+    /// faded away entirely (the row's own island and the scene's never show together, no ghost), then they come
+    /// in as the camera rises; otherwise whole.
+    public func sceneIslandOpacity(at seconds: Double) -> Double {
+        guard fromRow else { return 1 }
+        let (beat, progress) = beat(at: seconds)
+        switch beat {
+        case .board: return 0
+        case .fly: return Self.ease((progress - 0.22) / 0.18)
+        case .moor, .done: return 1
         }
     }
 
@@ -229,6 +259,11 @@ public struct VoyageRide: Equatable, Sendable {
 
     /// Where a passenger waits on the pier (boarding) or lands on the island's shore (leaving): beside her,
     /// on the side the island is (behind her as she goes), in shares of her body's width from her body's centre.
+    /// Where a passenger lands at a berth with landing spots (absolute world points), else beside her.
+    public static func landing(index: Int, in spots: [WorldPoint]) -> WorldPoint? {
+        spots.isEmpty ? nil : spots[min(index, spots.count - 1)]
+    }
+
     public static func shore(index: Int, toTheRight: Bool) -> (dx: Double, feetY: Double) {
         let side = toTheRight ? -1.0 : 1.0
         return (side * (0.66 + 0.10 * Double(index)), 0.62)

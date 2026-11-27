@@ -54,7 +54,7 @@ public struct GezginData: Decodable, Sendable, Equatable {
         public var thickness: Double
         /// The post's height, in widths of her body; the line is tied `tieShare` of the way up it.
         public var postHeight: Double
-        public static let tieShare = 0.72
+        public static let tieShare = 0.46
 
         public init(bowX: Double, bowY: Double, postX: Double, postY: Double, sag: Double, thickness: Double, postHeight: Double = 0.22) {
             self.bowX = bowX
@@ -69,7 +69,36 @@ public struct GezginData: Decodable, Sendable, Equatable {
         /// Where the line is tied to the post: part of the way up it.
         public var tieY: Double { postY - postHeight * Self.tieShare }
 
-        public static let standard = Rope(bowX: -0.40, bowY: -0.10, postX: -0.60, postY: -0.85, sag: 0.16, thickness: 0.04, postHeight: 0.18)
+        /// Home's: the post at the bridge's end on the rim (the pier's own painted post stands there).
+        public static let standard = Rope(bowX: -0.40, bowY: -0.10, postX: -0.60, postY: -0.85, sag: 0.15, thickness: 0.025, postHeight: 0.18)
+
+        /// How far the slack line bellies out toward her, in lengths of the chord: on a steep chord it leaves the
+        /// post and swings out to her, so it reads as a rope hanging in a curve, never a plumb strap.
+        public static let bulge = 0.45
+
+        /// The control point of the slack line from the post's `tie` to her `bow` (a quadratic curve): under the
+        /// middle of the chord by `sag` of its length, so it hangs in a soft curve like a rope, never a taut strap.
+        public static func control(tie: WorldPoint, bow: WorldPoint, sag: Double) -> WorldPoint {
+            let length = ((bow.x - tie.x) * (bow.x - tie.x) + (bow.y - tie.y) * (bow.y - tie.y)).squareRoot()
+            let toward = bow.x >= tie.x ? 1.0 : -1.0
+            return WorldPoint(x: (tie.x + bow.x) / 2 + toward * bulge * length, y: (tie.y + bow.y) / 2 + sag * length)
+        }
+
+        /// How steep the line runs from the post's tie to her bow, in degrees from the horizontal (0 is level,
+        /// 90 a plumb line). A line that reads as a rope, not a strap down a cliff, stays well under 45.
+        public static func slope(tie: WorldPoint, bow: WorldPoint) -> Double {
+            let dx = abs(bow.x - tie.x), dy = abs(bow.y - tie.y)
+            return atan2(dy, max(dx, 1e-9)) * 180 / .pi
+        }
+    }
+
+    /// Where she lies at a wonder island, in world units from the island's centre (`moorings` in the data): her
+    /// body's bottom centre, her body's width, the post's foot on the island's rim, and where the passengers land.
+    public struct IslandMooring: Decodable, Sendable, Equatable {
+        public var feet: [Double]
+        public var width: Double
+        public var post: [Double]
+        public var landing: [[Double]]
     }
 
     /// The Koke phase at which she is a shadow on the cloud (`rumoured`) and at which she is moored (`arrived`).
@@ -90,6 +119,8 @@ public struct GezginData: Decodable, Sendable, Equatable {
     public var shadow: Shadow
     /// Her mooring line; the standard one when the data has none.
     public var rope: Rope?
+    /// Her place at the islands that are not Home (`koke`, `caglayan`); an island without one has her hover beside it.
+    public var moorings: [String: IslandMooring]?
 
     /// The data shipped in the package (`world-map.json`'s `gezgin`).
     public static let shipped: GezginData? = {
@@ -238,5 +269,105 @@ public enum Gezgin {
     /// The asset names of her art at a level.
     public static func art(level: Int, _ part: String) -> String {
         "world-gezgin-l\(min(max(level, 1), maxLevel))-\(part)"
+    }
+}
+
+/// The mooring post's cut-out (`tools/art/gezgin_post.py`, batch 160 `x4-gez-mooring-post`): where its pole stands
+/// in it, as shares of its size, measured on the cut.
+public enum GezginPost {
+    /// Height over width.
+    public static let aspect = 479.0 / 400.0
+    /// The pole's centre across, and its foot down, as shares of the cut-out.
+    public static let footX = 0.43
+    public static let footY = 0.93
+    /// The pole's height (cap to foot) as a share of the cut-out's height.
+    public static let poleShare = 0.89
+    /// Where the line leaves the rope's turns, to the right of the pole's centre, in widths of the cut-out.
+    public static let tieReach = 0.37
+
+    /// The cut-out's width for a pole of `poleHeight`.
+    public static func width(poleHeight: Double) -> Double {
+        poleHeight / poleShare / aspect
+    }
+}
+
+/// Where she lies at an island, in absolute world units: her body, the post on the rim, the line between them
+/// and where the passengers land. One shape for every island, so the ride and the island's own scene draw her
+/// in the same place.
+public struct GezginBerth: Equatable, Sendable {
+    /// Her body's bottom centre.
+    public var feet: WorldPoint
+    /// Her body's width.
+    public var width: Double
+    /// The post's foot on the rim.
+    public var post: WorldPoint
+    /// The line's shape and the post's height (in widths of her body).
+    public var rope: GezginData.Rope
+    /// Where the passengers land when they hop off; empty: beside her, on the side the island is.
+    public var landing: [WorldPoint]
+
+    public init(feet: WorldPoint, width: Double, post: WorldPoint, rope: GezginData.Rope, landing: [WorldPoint] = []) {
+        self.feet = feet
+        self.width = width
+        self.post = post
+        self.rope = rope
+        self.landing = landing
+    }
+
+    /// Her bow, where the line is made fast (at rest).
+    public var bow: WorldPoint {
+        WorldPoint(x: feet.x + rope.bowX * width, y: feet.y + rope.bowY * width)
+    }
+
+    /// Where the line is tied to the post: on the right of the rope's turns round its neck.
+    public var tie: WorldPoint {
+        WorldPoint(x: post.x + GezginPost.tieReach * GezginPost.width(poleHeight: postHeight), y: post.y - postHeight * GezginData.Rope.tieShare)
+    }
+
+    /// The post's pole height in world units.
+    public var postHeight: Double { rope.postHeight * width }
+
+    /// How steep the line runs, in degrees from the horizontal.
+    public var slope: Double { GezginData.Rope.slope(tie: tie, bow: bow) }
+
+    /// The centre of her cut-out on the canvas (her feet are its bottom edge of the body, centred).
+    public func canvasCentre(data: GezginData) -> WorldPoint {
+        let unit = width / max(data.art.body[2] - data.art.body[0], 1)
+        return WorldPoint(x: feet.x, y: feet.y + (data.art.canvas[1] / 2 - data.art.body[3]) * unit)
+    }
+
+    /// The width of her cut-out on the canvas (a little more than her body's).
+    public func canvasWidth(data: GezginData) -> Double {
+        width / max(data.art.body[2] - data.art.body[0], 1) * data.art.canvas[0]
+    }
+}
+
+extension Gezgin {
+    /// Her berth at `island`, or `nil` when it has none (she hovers beside it). Home's comes from the plate's
+    /// `mooring` and the standard line; the wonder islands' from the data, from their centres.
+    public static func berth(at island: IslandID, data: GezginData, home: HomePlate?) -> GezginBerth? {
+        let rope = data.rope ?? GezginData.Rope.standard
+        if island == .home {
+            guard let home, let mooring = home.plate.mooring else { return nil }
+            let feet = home.world(mooring.feet)
+            let width = mooring.width * home.unitsPerPixel
+            return GezginBerth(
+                feet: feet, width: width,
+                post: WorldPoint(x: feet.x + rope.postX * width, y: feet.y + rope.postY * width),
+                rope: rope
+            )
+        }
+        let centre: WorldPoint
+        switch island {
+        case .koke: centre = KokeLayout.center
+        case .caglayan: centre = CaglayanLayout.center
+        default: return nil
+        }
+        guard let own = data.moorings?[island.rawValue], own.feet.count == 2, own.post.count == 2 else { return nil }
+        func at(_ p: [Double]) -> WorldPoint { WorldPoint(x: centre.x + p[0], y: centre.y + p[1]) }
+        return GezginBerth(
+            feet: at(own.feet), width: own.width, post: at(own.post), rope: rope,
+            landing: own.landing.filter { $0.count == 2 }.map(at)
+        )
     }
 }

@@ -59,8 +59,22 @@ private struct VoyageRideScene: View {
         // camera crosses, so her size never steps.
         let (beat, progress) = ride.beat(at: t)
         let u = beat == .board ? 0 : beat == .fly ? VoyageRide.ease(progress) : 1
-        let from = islandWidth(ride.from), to = islandWidth(ride.to)
+        // At a berth her width settles at her cut-out's own width there.
+        let from = islandWidth(ride.from)
+        let to = berth.map { $0.canvasWidth(data: data) / VoyageRide.islandShare } ?? islandWidth(ride.to)
         return (from + (to - from) * u) * VoyageRide.islandShare * model.engine.rig.pose.scale
+    }
+
+    /// Her place at the island she goes to, or `nil`: she hovers beside it.
+    private var berth: GezginBerth? {
+        Gezgin.berth(at: ride.to, data: data, home: model.homePlate)
+    }
+
+    /// A world point on the screen, by the camera as it is now (the scene's own projection).
+    private func screen(_ point: WorldPoint, size: CGSize) -> CGPoint {
+        let rig = model.engine.rig
+        let p = rig.pose.project(point, width: Double(size.width))
+        return CGPoint(x: p.x + Double(rig.offsetX.value), y: p.y + Double(rig.offsetY.value))
     }
 
     /// An island's width in world units.
@@ -78,7 +92,13 @@ private struct VoyageRideScene: View {
 
     @ViewBuilder
     private func rideFrame(at t: Double, start: VoyageRide.Spot, size: CGSize) -> some View {
-        let spot = ride.whale(at: t, start: start)
+        let berth = self.berth
+        let berthSpot = berth.map { b -> VoyageRide.Spot in
+            let c = screen(b.canvasCentre(data: data), size: size)
+            let w = b.canvasWidth(data: data) * model.engine.rig.pose.scale
+            return VoyageRide.Spot(x: Double(c.x) / Double(size.width), y: Double(c.y) / Double(size.height), width: w / Double(size.width))
+        }
+        let spot = ride.whale(at: t, start: start, berth: berthSpot)
         let width = ride.whaleWidth(at: t, row: start.width * Double(size.width), world: worldWidth(at: t))
         let height = width * data.art.canvas[1] / max(data.art.canvas[0], 1)
         let beat = ride.beat(at: t)
@@ -91,15 +111,37 @@ private struct VoyageRideScene: View {
             if flying {
                 CloudWake(centre: centre, width: width, toTheRight: ride.toTheRight, time: t, strength: min(beat.progress / 0.2, (1 - beat.progress) / 0.2, 1))
             }
+            if let berth, beat.beat == .moor {
+                // Her post and the slack line to her bow come in as she nears the berth (the post stands on the
+                // island, the same one the island's own scene draws when the ride hands her over).
+                let near = VoyageRide.ease((beat.progress - 0.3) / 0.4)
+                let scale = model.engine.rig.pose.scale
+                let canvasWidth = berth.canvasWidth(data: data)
+                let k = width / max(canvasWidth * scale, 1)
+                let facing = ride.facing(at: t, berthed: true)
+                let ownCentre = screen(berth.canvasCentre(data: data), size: size)
+                let bowRest = screen(berth.bow, size: size)
+                let post = screen(berth.post, size: size)
+                let tie = screen(berth.tie, size: size)
+                // Her bow follows her body: its rest offset from her centre, scaled and turned with her.
+                let bow = CGPoint(
+                    x: centre.x + (bowRest.x - ownCentre.x) * CGFloat(k * facing),
+                    y: centre.y + (bowRest.y - ownCentre.y) * CGFloat(k)
+                )
+                MooringLine(post: post, tie: tie, bow: bow, poleHeight: CGFloat(berth.postHeight * scale), sag: berth.rope.sag, thickness: CGFloat(max(berth.rope.thickness * berth.width * scale, 0.8)), tint: GezginTint.of(whaleGrade))
+                    .opacity(near)
+            }
             GezginFlyer(
-                data: data, level: level, width: width, flip: ride.toTheRight, time: t, tilt: ride.tilt(at: t)
+                data: data, level: level, width: width, flip: ride.toTheRight,
+                facing: ride.facing(at: t, berthed: berth != nil), time: t, tilt: ride.tilt(at: t)
             )
             .saturation(whaleGrade.saturation)
             .brightness(whaleGrade.brightness)
             .colorMultiply(Color(red: whaleGrade.red, green: whaleGrade.green, blue: whaleGrade.blue))
             .position(centre)
             ForEach(Array(passengers.enumerated()), id: \.offset) { index, passenger in
-                let place = passengerPlace(index: index, beat: beat, centre: centre, width: width, height: height)
+                let landing = VoyageRide.landing(index: index, in: berth?.landing ?? []).map { screen($0, size: size) }
+                let place = passengerPlace(index: index, beat: beat, centre: centre, width: width, height: height, landing: landing)
                 if passenger.art == "pofu" {
                     // Pofu is the companion's own full-body picture (his sprite has no sharp layer: the live
                     // rig draws it).
@@ -124,7 +166,7 @@ private struct VoyageRideScene: View {
             }
         }
         .frame(width: size.width, height: size.height, alignment: .topLeading)
-        .opacity(ride.whaleOpacity(at: t))
+        .opacity(ride.whaleOpacity(at: t, berthed: berth != nil))
     }
 
     /// Who rides: Pofu, and Fındık with him. Their width against her cut-out's.
@@ -134,7 +176,7 @@ private struct VoyageRideScene: View {
 
     /// A passenger's feet and opacity: on the shore while she waits, in the air as he hops aboard, on her back
     /// through the flight, in the air again as he hops off.
-    private func passengerPlace(index: Int, beat: (beat: VoyageRide.Beat, progress: Double), centre: CGPoint, width: Double, height: Double) -> (x: CGFloat, y: CGFloat, opacity: Double) {
+    private func passengerPlace(index: Int, beat: (beat: VoyageRide.Beat, progress: Double), centre: CGPoint, width: Double, height: Double, landing: CGPoint?) -> (x: CGFloat, y: CGFloat, opacity: Double) {
         let count = passengers.count
         let top = Double(centre.y) - height / 2
         let seat = VoyageRide.seat(index: index, count: count, toTheRight: ride.toTheRight)
@@ -142,13 +184,17 @@ private struct VoyageRideScene: View {
         func point(_ p: (dx: Double, feetY: Double)) -> (x: Double, y: Double) {
             (Double(centre.x) + p.dx * width, top + p.feetY * height)
         }
-        let seated = point(seat), onShore = point(shore)
+        let seated = point(seat)
+        // At a berth they land on the island, at its landing spots; otherwise beside her.
+        let onShore = landing.map { (x: Double($0.x), y: Double($0.y)) } ?? point(shore)
         switch beat.beat {
         case .board:
+            // Boarding is from the island she leaves, beside her: never the landing of the island she goes to.
+            let from = point(shore)
             let hop = VoyageRide.hop(VoyageRide.hopProgress(index: index, count: count, beatProgress: VoyageRide.boardProgress(beat.progress)))
             return (
-                CGFloat(onShore.x + (seated.x - onShore.x) * hop.along),
-                CGFloat(onShore.y + (seated.y - onShore.y) * hop.along - hop.lift * width),
+                CGFloat(from.x + (seated.x - from.x) * hop.along),
+                CGFloat(from.y + (seated.y - from.y) * hop.along - hop.lift * width),
                 1
             )
         case .fly:
@@ -172,6 +218,8 @@ struct GezginFlyer: View {
     let level: Int
     let width: Double
     var flip = false
+    /// The horizontal scale of her art when it is not simply `flip` (turning at a berth), or `nil`.
+    var facing: Double?
     /// 0 is a still frame: the rest pose, eyes open, the tail straight.
     var time = 0.0
     var tilt = 0.0
@@ -187,7 +235,7 @@ struct GezginFlyer: View {
                 .rotationEffect(.degrees(Gezgin.swayDegrees(time: time, data: data) * 2.5), anchor: pivot)
         }
         .frame(width: CGFloat(width), height: CGFloat(height))
-        .scaleEffect(x: flip ? -1 : 1, y: 1)
+        .scaleEffect(x: CGFloat(facing ?? (flip ? -1 : 1)), y: 1)
         .rotationEffect(.degrees(tilt))
     }
 }
