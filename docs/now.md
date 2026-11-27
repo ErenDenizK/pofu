@@ -40,8 +40,6 @@ six vertical steps, each done when he plays it on his phone.
    2c voyage row merged (#538); 2d ride running (carries 2b/2c leftovers).
    173-176 not cuttable (whole re-renders); plot ladders D52-D55 first in Demand
    (#185); pier D56 BLOCKED (bare crop fills the islet gap). Night: D51 (#182).
-1. Old threads: #503 (voyage ADR draft; 2a replaces it), #490, #507 docs open;
-   concept rounds 1-3 done (fi 43: simpler art). Superseded by plan #519.
 0. Assessment done: path `docs/design/assessment-2026-11-24-path.md` (#511),
    briefs `docs/studio/briefs/2026-11-24-{0..5}-*.md`. Stage 0 merged (#510,
    pill seen 1:1). Station card merged (#512, Etiket/Hap in Settings, seen).
