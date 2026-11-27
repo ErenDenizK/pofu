@@ -22,8 +22,8 @@ six vertical steps, each done when he plays it on his phone.
 
 0c. Fi 49: cards 1/2/5 on defaults; desks approved (ST1+ST2 to land); auto-merge: yes for
    pofu-art takes (ST4 workflow, next free agent), no for pofu code; self-wake refused
-   twice. Season system: #530 (spec, ADR-0030) CI then merge; pilot batch 194 D57 merged
-   (pofu-art #188). Desks + rules merged (#531; docs/desks/), take
+   twice. Season system merged (#530, ADR-0030); pilot batch 194 D57 (pofu-art #188);
+   S2 season gate builder running; S1 after 2b (same file); S3 after 194 + 1c. Desks + rules merged (#531; docs/desks/), take
    auto-merge workflow merged (pofu-art #189, untested until the next delivery). Look masks: no sky.
 0b. Fi 47: #523 (calendar, motion, music, ADR-0029), MU1 #525 merged; desks #524
    draft (approved fi 49). Card 4 (Caglayan) when batch 185 lands.
