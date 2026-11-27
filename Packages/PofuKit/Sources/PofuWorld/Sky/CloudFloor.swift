@@ -37,7 +37,7 @@ public enum CloudFloor {
         return file.forms
     }()
 
-    /// The form's texture bytes (ASTC, one a pixel), for the budget.
+    /// The form's texture bytes (texture pixels), for the budget.
     public static func textureBytes(_ ids: [String]) -> Int {
         ids.reduce(0) { $0 + (forms[$1].map { $0.width * $0.height } ?? 0) }
     }

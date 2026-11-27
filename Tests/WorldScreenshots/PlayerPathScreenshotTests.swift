@@ -13,6 +13,8 @@ import XCTest
 /// device resolution (1206 x 2622), never reduced:
 ///
 /// - `path-dNN-0900`, `path-dNN-2300`: Home that day at 09:00 and 23:00;
+/// - `path-dNN-1800`: Home at golden hour on days 1, 3, 5, 10, 12 and 21 (islands 1, 3, 4, 5, 6 and 7), day 1 on
+///   the borrowed night plate, the others on their own golden plate;
 /// - `path-d21-bell-0900`: Home on the morning the far bell rings, with
 ///   Pofu's line and its answer (the closing beat);
 /// - `path-dNN-map-0900`: the Map on day 1 and on every day a new island
@@ -38,6 +40,7 @@ import XCTest
 /// scene resolved a painting: a path frame is never the sprite island.
 class PlayerPathFrameCase: XCTestCase {
     static let path = PlayerPath.tester()
+    static let goldenDays: Set<Int> = [1, 3, 5, 10, 12, 21]
 
     // MARK: Frames
 
@@ -51,6 +54,11 @@ class PlayerPathFrameCase: XCTestCase {
             // is bedtime, after the day's reach and its guarded minutes.
             try await home(day.morning, hour: 9, beads: [], name: "path-d\(nn)-0900", scene: scene, folder: folder)
             try await home(day.night, hour: 23, beads: day.beads, name: "path-d\(nn)-2300", scene: scene, folder: folder)
+            if Self.goldenDays.contains(day.day) {
+                // Golden hour: day 1 (IL1) keeps the borrowed night plate, days 3 (IL3), 5 (IL4), 10 (IL5), 12 (IL6)
+                // and 21 (IL7) paint their own golden plate.
+                try await home(day.morning, hour: 18, beads: [], name: "path-d\(nn)-1800", scene: scene, folder: folder)
+            }
             if day.day == 16 {
                 // The skip pots by day: four skips (blooms) and one open (a bud), for the painted bloom.
                 try await home(day.morning, hour: 15, beads: [true, true, false, true, true], name: "path-d\(nn)-pots-1500", scene: scene, folder: folder)

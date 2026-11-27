@@ -47,7 +47,7 @@ islands:
           clear: {painted: "design/art/takes/batch-66-home-flow/x-home-flow-il3/plate__x-home-flow-il3--t1.webp", lead_pick: 1, in_app: true, founder_ok: null}
           rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
         golden:
-          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          clear: {painted: "design/art/takes/batch-87-home-golden/x-home-flow-il3-golden/plate__x-home-flow-il3-golden--t2.webp", lead_pick: 2, in_app: true, founder_ok: null, edited: "design/art/plates/home/derived/plate-il3-golden.webp"}
           rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
         night:
           clear: {painted: "design/art/takes/batch-72-home-night/x-home-flow-il3-night/plate__x-home-flow-il3-night--t2.webp", lead_pick: 2, in_app: true, founder_ok: null}
@@ -57,7 +57,7 @@ islands:
           clear: {painted: "design/art/takes/batch-66-home-flow/x-home-flow-il4/plate__x-home-flow-il4--t2.webp", lead_pick: 2, in_app: true, founder_ok: null}
           rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
         golden:
-          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          clear: {painted: "design/art/takes/batch-87-home-golden/x-home-flow-il4-golden/plate__x-home-flow-il4-golden--t1.webp", lead_pick: 1, in_app: true, founder_ok: null}
           rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
         night:
           clear: {painted: "design/art/takes/batch-72-home-night/x-home-flow-il4-night/plate__x-home-flow-il4-night--t1.webp", lead_pick: 1, in_app: true, founder_ok: null}
@@ -67,7 +67,7 @@ islands:
           clear: {painted: "design/art/takes/batch-66-home-flow/x-home-flow-il5/plate__x-home-flow-il5--t1.webp", lead_pick: 1, in_app: true, founder_ok: null}
           rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
         golden:
-          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          clear: {painted: "design/art/takes/batch-87-home-golden/x-home-flow-il5-golden/plate__x-home-flow-il5-golden--t1.webp", lead_pick: 1, in_app: true, founder_ok: null}
           rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
         night:
           clear: {painted: "design/art/takes/batch-72-home-night/x-home-flow-il5-night/plate__x-home-flow-il5-night--t2.webp", lead_pick: 2, in_app: true, founder_ok: null}
@@ -77,7 +77,7 @@ islands:
           clear: {painted: "design/art/takes/batch-66-home-flow/x-home-flow-il6/plate__x-home-flow-il6--t1.webp", lead_pick: 1, in_app: true, founder_ok: null}
           rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
         golden:
-          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          clear: {painted: "design/art/takes/batch-87-home-golden/x-home-flow-il6-golden/plate__x-home-flow-il6-golden--t2.webp", lead_pick: 2, in_app: true, founder_ok: null}
           rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
         night:
           clear: {painted: "design/art/takes/batch-72-home-night/x-home-flow-il6-night/plate__x-home-flow-il6-night--t1.webp", lead_pick: 1, in_app: true, founder_ok: null}
@@ -87,7 +87,7 @@ islands:
           clear: {painted: "design/art/takes/batch-66-home-flow/x-home-flow-il7/plate__x-home-flow-il7--t1.webp", lead_pick: 1, in_app: true, founder_ok: null}
           rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
         golden:
-          clear: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          clear: {painted: "design/art/takes/batch-87-home-golden/x-home-flow-il7-golden/plate__x-home-flow-il7-golden--t2.webp", lead_pick: 2, in_app: true, founder_ok: null}
           rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
         night:
           clear: {painted: "design/art/takes/batch-72-home-night/x-home-flow-il7-night/plate__x-home-flow-il7-night--t1.webp", lead_pick: 1, in_app: true, founder_ok: null}

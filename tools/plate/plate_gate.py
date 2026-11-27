@@ -46,7 +46,11 @@ M3_NIGHT = 0.25
 #: clean; the test reads pale grass tips against the sky as haze). Day levels 1 and 2, batch 116's cleared takes.
 #: Night level 8 (batch 125's cleared night, its own solve): M4 counts the sky between the bunting's string and the tea
 #: stall's ridge, a real gap that the day of the level shows the same way.
-WAIVED = {"day-8": ("M11",), "day-9": ("M11",), "night-2": ("M4",)}
+#: Golden levels 3, 6 and 7 (batch 87): M11 reads a painted object that is the pink or peach of the sky as haze (the
+#: hydrangea and the path's pink stones by the rim at level 7 and 4, the lawn's lit top at level 3), seen at 1:1 on a
+#: flat sky: all painted, none a band under the earth.
+WAIVED = {"day-8": ("M11",), "day-9": ("M11",), "night-2": ("M4",),
+          "golden-3": ("M11",), "golden-6": ("M11",), "golden-7": ("M11",)}
 #: Texture px per plate point of the shipped plate, and the beam's soft rect (tools/proof/island_matte.py: BEAM_X,
 #: BEAM_LEAD, BEAM_Y, in texture px of the whole plate).
 TEX = 2
@@ -166,9 +170,9 @@ def main(argv: list[str] | None = None) -> int:
             red.append(r["name"])
     per_state = ingest.state_texture_bytes(args.island, hand)
     for (light, stage), b in per_state.items():
-        print(f"  {light}-{stage}: {b:,} texture bytes")
+        print(f"  {light}-{stage}: {b:,} texture px ({b * 4 / 1e6:.1f} MB decoded)")
     size = max(per_state.values(), default=0)
-    print(f"textureBytes {size:,} of {ingest.BUDGET:,}{'' if size <= ingest.BUDGET else '  OVER BUDGET'}")
+    print(f"texture px {size:,} of {ingest.BUDGET:,} ({size * 4 / 1e6:.1f} MB decoded){'' if size <= ingest.BUDGET else '  OVER BUDGET'}")
     print(f"plate gate: {n} state(s) gated, {len(legacy)} legacy ({', '.join(legacy)}), {'red: ' + ', '.join(red) if red else 'all green'}")
     return 1 if red or size > ingest.BUDGET else 0
 

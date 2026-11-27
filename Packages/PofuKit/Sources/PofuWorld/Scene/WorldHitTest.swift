@@ -18,6 +18,8 @@ public struct HitTarget: Hashable, Sendable {
         case caglayan
         /// An object painted into a plate-first home (`HomePlate`), by id.
         case plateObject(String)
+        /// The Gezgin, moored at Home's pier (ADR-0028): a tap wakes her.
+        case gezgin
     }
 
     public var kind: Kind
@@ -143,7 +145,8 @@ public enum WorldHitTest {
         invitationOpen: Bool = false,
         isBedtime: Bool = false,
         koke: KokeReach = .none,
-        caglayan: KokeReach = .none
+        caglayan: KokeReach = .none,
+        gezgin: GezginPresence = .absent
     ) -> [HitTarget] {
         guard z >= archipelagoZ else { return islandTargets(koke: koke != .none, caglayan: caglayan != .none, plate: plate) }
         var targets: [HitTarget] = []
@@ -179,6 +182,13 @@ public enum WorldHitTest {
             targets.append(HitTarget(kind: .prop(prop), worldBox: box, depth: IslandLayout.depth(ofY: foot.y)))
         }
         targets += PlateLife.visitorTargets(plate: plate, visitor: visitor, invitationOpen: invitationOpen, isBedtime: isBedtime)
+        if case .moored = gezgin, let mooring = plate.plate.mooring {
+            targets.append(HitTarget(
+                kind: .gezgin,
+                worldBox: plate.worldBox(Gezgin.tapBox(mooring)),
+                depth: IslandLayout.depth(ofY: plate.world(mooring.feet).y)
+            ))
+        }
         return targets
     }
 

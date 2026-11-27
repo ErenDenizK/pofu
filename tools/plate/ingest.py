@@ -25,7 +25,7 @@ Commands (python3 -I tools/plate/ingest.py <command> <island>):
   objects   the occluder cut-outs
   json      the metadata, light map included
   check     fails (exit 1, one line per problem) on a polygon off the matte, a missing asset or a
-            texture budget past 9 MB
+            texture budget past `texture-budget.json`'s limit
 
 Plate, island and occluder layers are written as HEIC q70 with alpha (heic.py, ADR-0024).
 Plates ship upscaled x2 with a 0.8 / 0.2 blend of `upscale.py` and Lanczos (in-app A/B 2026-11-10,
@@ -64,8 +64,8 @@ DEFAULT_SIZE = (1536, 1024)
 SIZE = DEFAULT_SIZE
 #: Set by --no-upscale.
 SCALE_UP = True
-#: ASTC bytes. Was 8 MB for the original take; the x2 plate alone is 6.3 MB (8.27 MB in all), so 9 MB (PlateMath).
-BUDGET = 9_000_000  # per state (the largest one)
+#: Texture pixels a Home state may hold; each decodes to 4 bytes (8-bit RGBA). Rule v1, docs/design/texture-budget-v1.md
+BUDGET = json.loads((JSON_DIR / "texture-budget.json").read_text())["statePixels"]  # per state (the largest one)
 #: How much of the lawn's colour cast the character tint keeps (the rest is its luminance), per
 #: light: by day half (the sprites are painted for the day plate and the lawn's cast is slight);
 #: at golden hour and night all of it (the cast is the light).
@@ -1164,37 +1164,71 @@ def stations_data(island: str) -> dict:
     return json.loads(f.read_text()).get("stations", {}) if f.exists() else {}
 
 
+def station_stages(st: dict, light: str) -> list[int]:
+    """The stages of `light` a station has an erased base for (`lights` per light, else `baseStages` of its one light)."""
+    if "lights" in st:
+        return st["lights"].get(light, [])
+    return st.get("baseStages", []) if st.get("light") == light else []
+
+
 def base_states(island: str) -> set[tuple[str, int]]:
-    return {(st["light"], s) for st in stations_data(island).values() for s in st.get("baseStages", [])}
+    out = set()
+    for st in stations_data(island).values():
+        lights = st["lights"] if "lights" in st else {st.get("light"): st.get("baseStages", [])}
+        out |= {(light, s) for light, stages in lights.items() for s in stages}
+    return out
 
 
 def station_bytes(island: str, light: str, stage: int) -> int:
-    """Texture px of a state's station layers: the erased base (it replaces the plate; one for all the stations that
-    stand on it) and each station's two largest looks (the one drawn and the one fading out of it when a level changes)."""
-    base, looks = 0, 0
+    """Texture px of a state's station layers: its one erased base (shared by every station on it; it replaces the plate), each station's largest look (the one drawn, at any level), and once more the largest of those (the old look
+    of the one reveal that can run: a build is one station, `BuildMoment.station`)."""
+    base, looks = 0, []
     for st in stations_data(island).values():
-        if st["light"] != light or stage not in st.get("baseStages", []):
+        if stage not in station_stages(st, light):
             continue
-        base = max(base, st.get("baseBytes", {}).get(str(stage), 0))       # stations that share a stage share its one base
-        looks += sum(sorted(st.get("lookBytes", []))[-2:])
-    return base + looks
+        base = max(base, st.get("baseBytes", {}).get(str(stage), 0))
+        looks.append(max(st.get("lookBytes", [0])))
+    return base + sum(looks) + max(looks, default=0)
+
+
+def props_pixels(island: str) -> int:
+    """The props' worst frame in texture px (`plate-<island>.json` `props`): every prop's sprite sheet divided by its
+    states, times all its states, except the jar, which shows one (as `HomePropsTests` counts). 0 without the file."""
+    f = JSON_DIR / f"plate-{island}.json"
+    if not f.exists():
+        return 0
+    total = 0
+    for p in json.loads(f.read_text()).get("props", []):
+        states = max(len(p.get("states", [])), 1)
+        total += p.get("bytes", 0) // states * (1 if p.get("id") == "jar" else states)
+    return total
 
 
 def state_texture_bytes(island: str, hand: dict) -> dict[tuple[str, int], int]:
-    """ASTC 4 x 4, one byte per pixel, per state, of what Home holds for it: the plate, the island cut and the
-    occluders, and behind the plate either its backdrop (a state that ships the whole plate) or the sky set without
-    its island layer (a matted state, `plate_crop_points`). The app holds one state, or two for a crossfade."""
+    """Rule v1 (docs/design/texture-budget-v1.md): the texture pixels one Home state draws or keeps, 4 bytes a pixel
+    decoded (8-bit RGBA, what HEIC decodes to). Per state: the drawn picture (the base where a station has one, else the
+    plate), the occluders that can draw (not those of a station on this base), each station's current look at its
+    largest and one more look for the one reveal, the props' worst frame; a matted state adds the sky set without its
+    island layer and the far picture (the plate crop, w x h), any other the island cut, the Map cut and the backdrop.
+    The app holds one state, or two for a crossfade."""
     out = {}
     for light, stage, _ in plates(hand):
-        matted = plate_crop_points(island, hand, light, stage) is not None
-        kinds = ("plate", "island", "occ") if matted else ("plate", "island", "backdrop", "occ")
+        crop = plate_crop_points(island, hand, light, stage)
+        matted = crop is not None
+        kinds = ("plate", "occ") if matted else ("plate", "island", "mapisle", "backdrop", "occ")
         total = sky_bytes(island, light) if matted else 0
-        total += station_bytes(island, light, stage)
-        if (light, stage) in base_states(island):
+        if matted:
+            total += (crop[2] - crop[0]) * (crop[3] - crop[1])      # the far picture (`FarSnapshot`, 1 px per plate px)
+        total += station_bytes(island, light, stage) + props_pixels(island)
+        on_base = (light, stage) in base_states(island)
+        if on_base:
             kinds = tuple(k for k in kinds if k != "plate")      # the base is the plate there (`station_bytes` counts it)
+        retired = {name for name, st in stations_data(island).items() if stage in station_stages(st, light)}
         for folder in ASSETS.glob(f"world-{island}-*-{light}-{stage}.imageset"):
             # Only this tool's layers: a sky set's own (`world-<island>-sky-*`) are counted above, by `sky_bytes`.
             if not folder.name.startswith(tuple(f"world-{island}-{kind}-" for kind in kinds)):
+                continue
+            if any(folder.name == f"world-{island}-occ-{name}-{light}-{stage}.imageset" for name in retired):
                 continue
             for f in folder.iterdir():
                 if f.suffix in (".png", ".jpg", heic.SUFFIX):
@@ -1270,7 +1304,9 @@ def build_json(island: str, hand: dict, mattes: dict, maps: dict, harmony: dict 
     if island in STRICT_MATTES:
         # Per light, per stage: the box the plate image covers (plate points), or null where the state ships the whole
         # plate over its backdrop (a legacy matte). A matted state draws the sky set behind the cropped plate.
-        data["plateCrop"] = {l: [plate_crop_points(island, hand, l, s) for s in range(stage_count(hand, l))] for l in lights}
+        # (a stage the light does not paint, in a sparse light, has no matte: null)
+        painted = painted_stages(hand)
+        data["plateCrop"] = {l: [plate_crop_points(island, hand, l, s) if s in painted[l] else None for s in range(stage_count(hand, l))] for l in lights}
         # Per stage (the lights of a stage are one drawing, so one matte): the island's contact shadow, drawn by code
         # on the floor layer under the island.
         data["shadow"] = [shadow_params(load_matte_full(island, "day", s)) for s in range(data["stages"])]
@@ -1329,7 +1365,8 @@ def problems(data: dict, a: np.ndarray, assets: set[str], tolerance: float = 32.
         out.append(f"textureBytes {data['textureBytes']:,} > {BUDGET:,}")
     for light in data["lights"]:
         for stage in data.get("painted", {}).get(light, range(data.get("lightStages", {}).get(light, data["stages"]))):
-            for kind in ("plate", "island", "backdrop"):
+            matted = (data.get("plateCrop", {}).get(light) or [None] * (stage + 1))[stage] is not None
+            for kind in ("plate", "island") if matted else ("plate", "island", "backdrop"):
                 if asset_name(island, kind, light, stage) not in assets:
                     out.append(f"missing asset {asset_name(island, kind, light, stage)}")
             for obj in data["objects"]:

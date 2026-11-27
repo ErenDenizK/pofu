@@ -135,6 +135,8 @@ extension AppModel {
             guard let self, !self.canCollectQuietSeeds else { return }
             WorldSound.pofuPoked(isBedtime: self.world.isBedtime)
         }
+        // A tap on the Gezgin at the pier: a soft rising chime, until her own voice is recorded.
+        island.onGezginWake = { SoundEngine.shared.play(.bloom(step: 3)) }
         // The island's growth plays the level-up cue at its bloom ("Ada büyüdü"),
         // not when the level is derived.
         island.onIslandGrew = { SoundEngine.shared.play(.levelUp) }

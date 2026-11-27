@@ -1,0 +1,8 @@
+{
+  "note": "Limits of the season gate (docs/design/season-system-v1.md section 8). A null limit is a printed measure only: its section 3 number did not reproduce (see season_gate.py, FIT_NOTE).",
+  "s1": {"p90": 1.0, "unit": "plate px"},
+  "s2": {"share": 0.01, "band": 4},
+  "s3": {"dE": 4.0},
+  "s4": {"mean_dE": 8.0, "fit_median": null},
+  "s5": {"p90": 1.0, "unit": "plate px"}
+}

@@ -76,11 +76,16 @@ struct PlateMathTests {
         #expect(abs(300 * s - 1.35 * 402) < 1e-9)
     }
 
-    @Test func budgetIsNineMegabytes() throws {
+    @Test func theBudgetComesFromItsConfig() {
+        #expect(TextureBudget.statePixels == 12_000_000)
+        #expect(TextureBudget.bytesPerPixel == 4)
+    }
+
+    @Test func budgetIsTheStateLimit() throws {
         var island = try PlateIsland.decode(Data(PlateIslandTests.example.utf8))
-        island.textureBytes = 9_000_000
+        island.textureBytes = TextureBudget.statePixels
         #expect(PlateMath.budgetOK(island))
-        island.textureBytes = 9_000_001
+        island.textureBytes = TextureBudget.statePixels + 1
         #expect(!PlateMath.budgetOK(island))
     }
 }
@@ -246,7 +251,7 @@ struct HomePlateTests {
         #expect(five.stationBox(.windmill) == nil)
         // Every painted state has what its objects need: occluders only where present.
         for light in plate.lights {
-            for stage in 0..<(plate.lightStages[light] ?? 1) {
+            for stage in 0..<(plate.lightStages[light] ?? 1) where plate.paints(light: light, stage: stage) {
                 let state = HomePlate(plate: plate, light: light, stage: stage)
                 #expect(state.objects.count <= plate.objects.count)
                 #expect(state.objects.contains { $0.id == "door" })

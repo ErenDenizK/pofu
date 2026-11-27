@@ -34,7 +34,7 @@ struct CompositionRulesTests {
         home.mapTier = tier
         for light in ["day", "golden", "night"] {
             let frame = try #require(MapSlots.frame(stage: stage, plate: home, light: light))
-            #expect(frame.features.count == 6, "the five far features and the lip in \(light)")
+            #expect(frame.features.count == 5, "the four far isles and the lip in \(light): the sky paints no whale (ADR-0028)")
             expectAllPass(frame)
         }
     }

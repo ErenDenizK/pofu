@@ -42,7 +42,7 @@ struct HomePlateDataTests {
         let plate = try plate
         let legacy: Set<String> = ["night:8", "night:9"]
         for light in plate.lights {
-            for stage in 0..<(plate.lightStages[light] ?? 0) {
+            for stage in 0..<(plate.lightStages[light] ?? 0) where plate.paints(light: light, stage: stage) {
                 let state = HomePlate(plate: plate, light: light, stage: stage)
                 if legacy.contains("\(light):\(stage)") {
                     #expect(!state.isMatted, "\(light) \(stage)")
@@ -64,14 +64,19 @@ struct HomePlateDataTests {
         #expect(PlateMath.budgetOK(plate))
     }
 
-    /// Golden hour below level 10 shows the night plate (`HomePlate.borrowed`) and with it the night sky: a plate and
-    /// its sky are always the same light.
+    /// Golden hour at a level whose golden plate is not painted (levels 1, 2, 8, 9) shows the night plate
+    /// (`HomePlate.borrowed`) and with it the night sky: a plate and its sky are always the same light. Levels 3 to
+    /// 7 and 10 paint their own golden hour.
     @Test func aBorrowedLightTakesItsOwnSky() throws {
         let plate = try plate
-        let stage = try #require(plate.dayStage(islandLevel: 5))
-        let golden = try #require(HomePlate.state(in: plate, islandLevel: 5, hour: 18.5, weather: WeatherConditions(), isBedtime: false))
+        let stage = try #require(plate.dayStage(islandLevel: 8))
+        let golden = try #require(HomePlate.state(in: plate, islandLevel: 8, hour: 18.5, weather: WeatherConditions(), isBedtime: false))
         #expect(HomePlate.light(hour: 18.5, isBedtime: false) == "golden")
         #expect(golden.light == "night" && golden.stage == stage)
+        for level in 3...7 {
+            let own = try #require(HomePlate.state(in: plate, islandLevel: level, hour: 18.5, weather: WeatherConditions(), isBedtime: false))
+            #expect(own.light == "golden" && own.stage == plate.dayStage(islandLevel: level), "level \(level)")
+        }
         let state = HomePlate(plate: plate, light: golden.light, stage: golden.stage)
         #expect(state.skySet?.light == "night")
         // Level 10 paints its own golden hour, and its sky set is golden.

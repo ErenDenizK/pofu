@@ -1,4 +1,5 @@
 import Foundation
+import PofuCore
 #if canImport(SwiftUI)
 import SwiftUI
 #endif
@@ -11,11 +12,14 @@ public struct HomePlateCrop {
     public let islandLevel: Int
     public let hour: Int
     public let isBedtime: Bool
+    /// The Home stations' levels (`HomePlate.stationLevels`): the looks the player built, drawn over the base.
+    public let stationLevels: [StationID: Int]
 
-    public init(islandLevel: Int, hour: Int, isBedtime: Bool = false) {
+    public init(islandLevel: Int, hour: Int, isBedtime: Bool = false, stationLevels: [StationID: Int] = [:]) {
         self.islandLevel = islandLevel
         self.hour = hour
         self.isBedtime = isBedtime
+        self.stationLevels = stationLevels
     }
 
     /// The painting's asset name for this hour and level, or `nil` below the
@@ -60,9 +64,28 @@ public struct HomePlateCrop {
 
 #if canImport(SwiftUI)
 extension HomePlateCrop: View {
+    /// A look's picture, multiplied by its grade where it is painted in another light.
+    @ViewBuilder
+    private static func lookImage(_ look: PlateCompositor.Look) -> some View {
+        if let grade = look.grade {
+            Image(look.art, bundle: .module).resizable().interpolation(.high)
+                .colorMultiply(Color(red: grade.red, green: grade.green, blue: grade.blue))
+        } else {
+            Image(look.art, bundle: .module).resizable().interpolation(.high)
+        }
+    }
+
     public var body: some View {
         if let plate = HomePlate.shipped,
-           let name = Self.artName(islandLevel: islandLevel, hour: hour, isBedtime: isBedtime, plate: plate) {
+           Self.artName(islandLevel: islandLevel, hour: hour, isBedtime: isBedtime, plate: plate) != nil,
+           let state = HomePlate.state(
+               in: plate.plate, islandLevel: islandLevel, hour: Double(hour), weather: WeatherConditions(), isBedtime: isBedtime
+           ) {
+            // The drawn base (the plate with its stations erased where the state has one), then the looks of the
+            // stations the player built: the same composite Home draws (`PlateCompositor`).
+            let drawn = HomePlate(plate: plate.plate, light: state.light, stage: state.stage)
+            let compositor = PlateCompositor(plate: drawn, levels: stationLevels)
+            let baseName = plate.plate.drawnPlateArt(light: state.light, stage: state.stage)
             GeometryReader { proxy in
                 let full = plate.plate.plateSize
                 let fit = Self.fill(plateWidth: full.width, plateHeight: full.height, in: proxy.size)
@@ -70,16 +93,22 @@ extension HomePlateCrop: View {
                 let box = Self.imageBox(islandLevel: islandLevel, hour: hour, isBedtime: isBedtime, plate: plate)
                 let k = fit.image.width / CGFloat(full.width)
                 let left = (proxy.size.width - fit.image.width) / 2
-                Image(name, bundle: .module)
-                    .resizable()
-                    .interpolation(.high)
-                    .frame(width: CGFloat(box.width) * k, height: CGFloat(box.height) * k)
-                    .position(
-                        x: left + CGFloat(box.minX + box.width / 2) * k,
-                        y: fit.y + CGFloat(box.minY + box.height / 2) * k
-                    )
-                    .frame(width: proxy.size.width, height: proxy.size.height)
-                    .clipped()
+                ZStack(alignment: .topLeading) {
+                    Image(baseName, bundle: .module)
+                        .resizable()
+                        .interpolation(.high)
+                        .frame(width: CGFloat(box.width) * k, height: CGFloat(box.height) * k)
+                        .offset(x: left + CGFloat(box.minX) * k, y: fit.y + CGFloat(box.minY) * k)
+                    ForEach(compositor.looks) { look in
+                        let a = drawn.plate(WorldPoint(x: look.box.minX, y: look.box.minY))
+                        let b = drawn.plate(WorldPoint(x: look.box.maxX, y: look.box.maxY))
+                        Self.lookImage(look)
+                            .frame(width: CGFloat(b.x - a.x) * k, height: CGFloat(b.y - a.y) * k)
+                            .offset(x: left + CGFloat(a.x) * k, y: fit.y + CGFloat(a.y) * k)
+                    }
+                }
+                .frame(width: proxy.size.width, height: proxy.size.height, alignment: .topLeading)
+                .clipped()
             }
             .accessibilityHidden(true)
         }

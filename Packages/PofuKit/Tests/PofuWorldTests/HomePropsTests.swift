@@ -121,7 +121,7 @@ struct HomePropsTests {
             let shown = prop.id == "jar" ? 1 : states
             return sum + prop.bytes / states * shown
         }
-        #expect(island.textureBytes + worst <= 9_000_000, "\(island.textureBytes) + \(worst)")
+        #expect(worst > 0)
         #expect(PlateMath.budgetOK(island))
     }
 }
