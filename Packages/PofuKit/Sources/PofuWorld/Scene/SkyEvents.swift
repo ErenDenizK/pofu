@@ -16,9 +16,9 @@ public enum SkyFireworks {
     public static let peak = 0.8
     /// Sparks in a ring.
     public static let sparks = 14
-    /// The slots' phases in seconds: the left slot's bursts start at `period * n - 1.5`, the right's at
-    /// `period * n + 1.0`, so a frame at time 0 already holds a burst opening and one fading.
-    static let phases = [-1.5, 1.0]
+    /// The slots' phases in seconds: the left slot's bursts start at `period * n - 0.4`, the right's at
+    /// `period * n + 1.2`, so the stills at 0.0 to 2.0 s hold the left burst opening and fading and the right one opening.
+    static let phases = [-0.4, 1.2]
 
     /// One burst at a time `t`.
     public struct Burst: Hashable, Sendable {
@@ -49,8 +49,8 @@ public enum SkyFireworks {
             // The left slot keeps to the left of the sky's middle and the right to the right, so two never overlap.
             let x = (slot == 0 ? 0.16 : 0.54) + seed.unit() * 0.30
             alive.append(Burst(
-                slot: slot, x: x, y: 0.07 + seed.unit() * 0.15, age: age,
-                radius: 0.10 + seed.unit() * 0.05, tone: Int(seed.unit() * 3) % 3, turn: seed.unit() * .pi
+                slot: slot, x: x, y: 0.16 + seed.unit() * 0.30, age: age,
+                radius: 0.13 + seed.unit() * 0.06, tone: Int(seed.unit() * 3) % 3, turn: seed.unit() * .pi
             ))
         }
         return alive
@@ -72,7 +72,7 @@ public enum SkyFireworks {
     /// The still glow under Reduce Motion: where each of its blooms sits (share of width and band height) and its
     /// radius (share of width).
     public static let stillBlooms: [(x: Double, y: Double, radius: Double, tone: Int)] = [
-        (0.30, 0.13, 0.15, 0), (0.70, 0.17, 0.13, 1)
+        (0.30, 0.26, 0.17, 0), (0.70, 0.36, 0.15, 1)
     ]
 
     /// SplitMix64: a tiny seeded generator, so a burst is the same every time it is asked for.
@@ -170,9 +170,9 @@ public struct SkyFireworksLayer: View {
             for step in 0..<3 {
                 let back = 1 - CGFloat(step + 1) * 0.07
                 let q = CGPoint(x: centre.x + (p.x - centre.x) * back, y: centre.y + (p.y - centre.y - droop) * back + droop * back)
-                glow(&gc, at: q, radius: 3.4 - CGFloat(step), tone: burst.tone, opacity: strength * 0.28 / CGFloat(step + 1))
+                glow(&gc, at: q, radius: 4.4 - CGFloat(step), tone: burst.tone, opacity: strength * 0.28 / CGFloat(step + 1))
             }
-            glow(&gc, at: p, radius: 4.2, tone: burst.tone, opacity: strength)
+            glow(&gc, at: p, radius: 5.5, tone: burst.tone, opacity: strength)
         }
     }
 

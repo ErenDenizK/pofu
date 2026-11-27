@@ -11,7 +11,7 @@ struct SkyFireworksTests {
             #expect(bursts.count <= 2)
             #expect(Set(bursts.map(\.slot)).count == bursts.count)
             for burst in bursts {
-                #expect(burst.y >= 0.07 && burst.y <= 0.22, "bursts stay in the sky above the island")
+                #expect(burst.y >= 0.16 && burst.y <= 0.46, "bursts stay in the sky above the island")
                 #expect(burst.x >= 0.16 && burst.x <= 0.84)
                 peak = max(peak, SkyFireworks.strength(age: burst.age))
             }
@@ -33,7 +33,8 @@ struct SkyFireworksTests {
 
     @Test func theStillFramesHoldABurstAtEveryTimeOfTheSheet() {
         for t in [0.0, 0.5, 1.0, 1.5, 2.0] {
-            #expect(!SkyFireworks.bursts(at: t).isEmpty, "the frame at \(t) s shows a burst")
+            let seen = SkyFireworks.bursts(at: t).map { SkyFireworks.strength(age: $0.age) }.max() ?? 0
+            #expect(seen > 0.15, "the frame at \(t) s shows a burst you can see")
         }
     }
 
