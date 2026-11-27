@@ -111,15 +111,15 @@ public enum PlateMath {
         islandWidthUnits > 0 ? widths * screenWidthPoints / islandWidthUnits : 1
     }
 
-    /// The island's textures fit the 9 MB budget (ASTC, one byte a pixel). It was 8 MB for the
-    /// original take; the plate upscaled x2 alone is 6.3 MB (8.27 MB with the rest) (`tools/plate/ingest.py`).
+    /// The island's textures fit the budget: texture pixels of what a state holds (rule v1,
+    /// `docs/design/texture-budget-v1.md`), 4 bytes each decoded. The limit is `TextureBudget.statePixels`.
     public static func budgetOK(_ island: PlateIsland) -> Bool {
-        island.textureBytes <= 9_000_000
+        island.textureBytes <= TextureBudget.statePixels
     }
 
     /// A sky-set state's textures (the set, the island cut for the Map, the occluders) fit the same
     /// budget: while a sky set draws, the plate and its backdrop are not loaded.
     public static func budgetOK(_ sky: SkySet) -> Bool {
-        sky.textureBytes <= 9_000_000
+        sky.textureBytes <= TextureBudget.statePixels
     }
 }
