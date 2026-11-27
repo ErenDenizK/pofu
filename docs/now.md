@@ -34,7 +34,7 @@ six vertical steps, each done when he plays it on his phone.
    PR 5 Today header merged (#534); PR 2 Swift rule merged (#537); PR 3 merged (#536: measured
    34.6 MB vs 37.6 counted; publish job timed out on a slow runner); 1c resumes on #528 at 2.0; Gezgin moored merged (#529;
    left: wake frame clock, faint cloud shadow, no rope, stand-in chime); ADR-0028 merged (#527);
-   2c voyage row running.
+   2c voyage row merged (#538); 2d ride running (carries 2b/2c leftovers).
    173-176 not cuttable (whole re-renders); plot ladders D52-D55 first in Demand
    (#185); pier D56 BLOCKED (bare crop fills the islet gap). Night: D51 (#182).
 1. Old threads: #503 (voyage ADR draft; 2a replaces it), #490, #507 docs open;
