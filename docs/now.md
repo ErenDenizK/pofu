@@ -8,7 +8,7 @@ history: [tracker.md](tracker.md). What changed for the player:
 
 **Goal (fi 46):** the main flow whole and flawless, in big vertical steps.
 
-**Updated:** 2026-11-26. **Founder last played:** 11-14 (main 0cf03ca1).
+**Updated:** 2026-11-27. **Founder last played:** 11-14 (main 0cf03ca1).
 **Route:** the main-flow plan (#519, `docs/design/mainflow-plan-2026-11-26.md`):
 six vertical steps, each done when he plays it on his phone.
 
@@ -32,7 +32,7 @@ six vertical steps, each done when he plays it on his phone.
 0b. Fi 47: #523 (calendar, motion, music, ADR-0029), MU1 #525 merged; desks #524
    draft (approved fi 49). Card 4 (Caglayan) when batch 185 lands.
 0a. Plan #519 step 1: merged 1a #520, windmill 1b #521, golden 1d #522, C1 #526.
-   1c pond #528 resuming at 2.0 under rule v1 with its defects as acceptance. Budget spec #533 (rule v1: drawn px x 4 B, 12 M px/state,
+   1c pond #528 at 2.0: green, 6 defects fixed; lilac smear under the pond blocks (4th push allowed, fixing). Budget spec #533 (rule v1: drawn px x 4 B, 12 M px/state,
    looks 2.0 px/pt): PR 1 tools rule merged (#535, ADR-0031; home 9.46 M px);
    PR 5 Today header merged (#534); PR 2 Swift rule merged (#537); PR 3 merged (#536: measured
    34.6 MB vs 37.6 counted; publish job timed out on a slow runner); 1c resumes on #528 at 2.0; Gezgin moored merged (#529;
@@ -53,7 +53,7 @@ six vertical steps, each done when he plays it on his phone.
 Merged: #475-#520 (not #490, #503, #504, #507); pofu-art #81-#174 (not stale #84-#90, #132).
 
 ## Next (plan #519)
-Pond 1c, then the other 4 stations from D52-D55; 2d ride; S1 season state; 1e reveal. Device days on membership.
+Running: pond fix (#528), 2d ride, S1 season state (`feat/season-state`). Then the other 4 stations from D52-D55; 1e reveal. Device days on membership.
 
 ## Open with the founder
 - Membership ~11-27: Mac 1-2 h, Distribution request same day; #490; N6; device: pinch, pond fps.
