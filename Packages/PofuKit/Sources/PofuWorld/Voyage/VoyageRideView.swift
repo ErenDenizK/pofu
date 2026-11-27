@@ -30,23 +30,33 @@ private struct VoyageRideScene: View {
     var body: some View {
         GeometryReader { proxy in
             let size = proxy.size
-            let start = startSpot(size: size)
             PofuTimeline(hz: PofuFrameRate.direct, paused: model.rideHeld != nil, kind: .essential) { context in
                 let t = model.rideElapsed(at: context.date) ?? ride.duration
-                rideFrame(at: t, start: start, size: size)
+                rideFrame(at: t, start: startSpot(size: size, at: t), size: size)
             }
             .frame(width: size.width, height: size.height, alignment: .topLeading)
         }
         .ignoresSafeArea()
     }
 
-    /// Where she lay in the row: moored at the island the player is leaving, with the row on the island in view.
-    private func startSpot(size: CGSize) -> VoyageRide.Spot {
+    /// Where she lies in the row `t` seconds into the ride: moored at the island the player is leaving, which
+    /// the row has glided to (`VoyageRide.rowPosition`), so the same spot the row's own drawing would give her.
+    private func startSpot(size: CGSize, at t: Double) -> VoyageRide.Spot {
+        // A trip that did not start in the row has no mooring to lift off from: she comes in at the cruise.
+        guard ride.fromRow else { return VoyageRide.cruise }
         let layout = VoyageRowLayout(width: Double(size.width), height: Double(size.height))
         let stops = VoyageRoute.stops(koke: world.koke, caglayan: world.caglayan)
         let from = VoyageRoute.index(of: ride.from, in: stops)
         let shown = VoyageRoute.index(of: model.voyage.island, in: stops)
-        return layout.mooredSpot(at: layout.place(index: from, position: Double(shown)))
+        let position = ride.rowPosition(at: t, selected: Double(shown), origin: Double(from))
+        return layout.mooredSpot(at: layout.place(index: from, position: position))
+    }
+
+    /// Her width on the screen once the world is what is drawn: the same share of an island's width as in the
+    /// row, at the camera's own scale, so she and the islands grow and shrink together.
+    private func worldWidth() -> Double {
+        let island = model.homePlate?.islandBox.width ?? KokeLayout.islandBox.width
+        return island * VoyageRide.islandShare * model.engine.rig.pose.scale
     }
 
     private var level: Int {
@@ -56,7 +66,7 @@ private struct VoyageRideScene: View {
     @ViewBuilder
     private func rideFrame(at t: Double, start: VoyageRide.Spot, size: CGSize) -> some View {
         let spot = ride.whale(at: t, start: start)
-        let width = spot.width * Double(size.width)
+        let width = ride.whaleWidth(at: t, row: start.width * Double(size.width), world: worldWidth())
         let height = width * data.art.canvas[1] / max(data.art.canvas[0], 1)
         let beat = ride.beat(at: t)
         let flying = beat.beat == .fly
@@ -122,7 +132,7 @@ private struct VoyageRideScene: View {
         let seated = point(seat), onShore = point(shore)
         switch beat.beat {
         case .board:
-            let hop = VoyageRide.hop(VoyageRide.hopProgress(index: index, count: count, beatProgress: beat.progress))
+            let hop = VoyageRide.hop(VoyageRide.hopProgress(index: index, count: count, beatProgress: VoyageRide.boardProgress(beat.progress)))
             return (
                 CGFloat(onShore.x + (seated.x - onShore.x) * hop.along),
                 CGFloat(onShore.y + (seated.y - onShore.y) * hop.along - hop.lift * width),

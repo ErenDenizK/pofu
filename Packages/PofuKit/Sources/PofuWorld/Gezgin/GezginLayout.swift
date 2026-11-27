@@ -42,7 +42,8 @@ public struct GezginData: Decodable, Sendable, Equatable {
         public var opacity: Double
     }
 
-    /// The mooring line from her bow to the post on the pier, in widths of her body from her feet.
+    /// The mooring line from her bow to a post standing on the island's rim, in widths of her body from her
+    /// feet (up is negative). `postX`, `postY` are the post's foot on the rim.
     public struct Rope: Decodable, Sendable, Equatable {
         public var bowX: Double
         public var bowY: Double
@@ -51,8 +52,24 @@ public struct GezginData: Decodable, Sendable, Equatable {
         /// How far the line hangs below the straight one.
         public var sag: Double
         public var thickness: Double
+        /// The post's height, in widths of her body; the line is tied `tieShare` of the way up it.
+        public var postHeight: Double
+        public static let tieShare = 0.72
 
-        public static let standard = Rope(bowX: -0.40, bowY: -0.10, postX: -0.52, postY: -0.40, sag: 0.12, thickness: 0.02)
+        public init(bowX: Double, bowY: Double, postX: Double, postY: Double, sag: Double, thickness: Double, postHeight: Double = 0.22) {
+            self.bowX = bowX
+            self.bowY = bowY
+            self.postX = postX
+            self.postY = postY
+            self.sag = sag
+            self.thickness = thickness
+            self.postHeight = postHeight
+        }
+
+        /// Where the line is tied to the post: part of the way up it.
+        public var tieY: Double { postY - postHeight * Self.tieShare }
+
+        public static let standard = Rope(bowX: -0.40, bowY: -0.10, postX: -0.60, postY: -0.72, sag: 0.16, thickness: 0.04, postHeight: 0.22)
     }
 
     /// The Koke phase at which she is a shadow on the cloud (`rumoured`) and at which she is moored (`arrived`).

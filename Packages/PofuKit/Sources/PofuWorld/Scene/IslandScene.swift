@@ -282,10 +282,10 @@ public struct IslandScene<Bubble: View>: View {
         }
         .overlay { VoyageRowOverlay(model: model, world: world) }
         .overlay { VoyageRideOverlay(model: model, world: world) }
-        .overlay { KokeBubbleOverlay(state: model.koke) }
-        .overlay { GezginBubbleOverlay(state: model.gezgin) }
-        .overlay { CaglayanBubbleOverlay(state: model.caglayan) }
-        .overlay { CaglayanPlaque(model: model, state: model.caglayan) }
+        .overlay { if !model.hidesFocusUI { KokeBubbleOverlay(state: model.koke) } }
+        .overlay { if !model.hidesFocusUI { GezginBubbleOverlay(state: model.gezgin) } }
+        .overlay { if !model.hidesFocusUI { CaglayanBubbleOverlay(state: model.caglayan) } }
+        .overlay { if !model.hidesFocusUI { CaglayanPlaque(model: model, state: model.caglayan) } }
         .overlay(alignment: .bottom) {
             // The one control: bottom trailing at the Map and mid, bottom leading at near, where the
             // composition data mirrors the corner (`world-map.json` `chrome.nearBack`; the Today glance
@@ -2305,7 +2305,7 @@ private struct ScreenOverlays: View {
             }
             // At a wonder island's own stop the same pill names it and says how
             // it is: asleep, healing (n of 4) or healed.
-            if labels < 0.99, let wonder = wonderStop {
+            if labels < 0.99, !model.hidesFocusUI, let wonder = wonderStop {
                 mapLabel(wonder.id, at: Self.labelPoint(under: wonder.box), arrived: true, drop: Self.labelDrop, state: wonder.state, today: wonder.today)
                     .opacity(1 - labels)
             }
@@ -2315,7 +2315,7 @@ private struct ScreenOverlays: View {
                     .opacity(tag.opacity)
                     .position(x: top.x, y: top.y - (build.moment.cost == nil ? 22 : 32))
             }
-            if showsHomeLife {
+            if showsHomeLife, !model.hidesFocusUI {
                 let bubbles = homeBubbles
                 if let heart = bubbles.heart {
                     GreetingHeart(tip: heart, screenWidth: size.width)
@@ -2324,11 +2324,11 @@ private struct ScreenOverlays: View {
                     GiftTag(gift: tag.gift, placement: tag.placement, tipX: tag.tipX)
                 }
             }
-            if case .resident(let id) = model.focus, let resident = IslandLayout.resident(id) {
+            if case .resident(let id) = model.focus, !model.hidesFocusUI, let resident = IslandLayout.resident(id) {
                 residentCard(resident)
             }
             // The station's card hangs by it; it is hidden while the build moment runs.
-            if let item = model.card, model.buildFraming == nil, model.island == .home, let rect = stationRect(item.station) {
+            if let item = model.card, !model.hidesFocusUI, model.buildFraming == nil, model.island == .home, let rect = stationRect(item.station) {
                 StationCardPlacement(
                     station: item.station,
                     anchor: rect,

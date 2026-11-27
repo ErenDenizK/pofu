@@ -63,7 +63,26 @@ private struct VoyageRow: View {
             let layout = VoyageRowLayout(width: Double(size.width), height: Double(size.height))
             let stops = stops
             let selected = VoyageRoute.index(of: state.island, in: stops)
-            let position = state.held ?? Double(selected)
+            if let ride = model.ride {
+                // A ride begins with the row gliding back to the island she leaves, so the boarding is seen there.
+                PofuTimeline(hz: PofuFrameRate.direct, paused: model.rideHeld != nil, kind: .essential) { context in
+                    let t = model.rideElapsed(at: context.date) ?? ride.duration
+                    let origin = VoyageRoute.index(of: ride.from, in: stops)
+                    content(
+                        layout: layout, stops: stops, selected: selected, size: size,
+                        position: ride.rowPosition(at: t, selected: Double(selected), origin: Double(origin))
+                    )
+                }
+            } else {
+                content(layout: layout, stops: stops, selected: selected, size: size, position: state.held ?? Double(selected))
+            }
+        }
+        .ignoresSafeArea()
+        .accessibilityIdentifier("voyage-row")
+    }
+
+    private func content(layout: VoyageRowLayout, stops: [VoyageStop], selected: Int, size: CGSize, position: Double) -> some View {
+        Group {
             ZStack(alignment: .topLeading) {
                 VoyageSea(model: model, world: world, look: look, size: size)
                 ForEach(order(stops, position: position), id: \.island) { stop in
@@ -94,8 +113,6 @@ private struct VoyageRow: View {
             .frame(width: size.width, height: size.height, alignment: .topLeading)
             .clipped()
         }
-        .ignoresSafeArea()
-        .accessibilityIdentifier("voyage-row")
     }
 
     /// She lies moored at the island the player stands on, at row scale, while the player chooses. While a ride
