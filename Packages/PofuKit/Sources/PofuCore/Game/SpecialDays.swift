@@ -131,6 +131,25 @@ public struct SpecialDays: Sendable {
         shipped.active(on: day, at: minute, firstDay: firstDay, rules: rules)
     }
 
+    /// Minute of the day from which New Year's night shows its fireworks (22:00) and the minute after midnight they end
+    /// (01:00).
+    public static let fireworksFromMinute = 22 * 60
+    public static let fireworksUntilMinute = 60
+
+    /// Whether New Year's fireworks are on at `minute` of `day`: the kit is on, and it is the night itself, from 22:00 on
+    /// 31 December to 01:00 on 1 January. The rest of the kit's days stay quiet.
+    public func fireworks(on day: LocalDay, at minute: Int) -> Bool {
+        guard active(on: day, at: minute).contains(.newYear) else { return false }
+        if day.month == 12, day.day == 31 { return minute >= Self.fireworksFromMinute }
+        if day.month == 1, day.day == 1 { return minute < Self.fireworksUntilMinute }
+        return false
+    }
+
+    /// `fireworks(on:at:)` on the bundled table.
+    public static func fireworks(on day: LocalDay, at minute: Int) -> Bool {
+        shipped.fireworks(on: day, at: minute)
+    }
+
     private func covers(_ entry: Entry, _ day: LocalDay) -> Bool {
         if entry.yearly?.contains(where: { $0.contains(month: day.month, day: day.day) }) == true { return true }
         return entry.dated?.contains { $0.days?.contains(day) == true } == true

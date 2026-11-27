@@ -409,6 +409,25 @@ public struct HomePlate: Hashable, Sendable {
         propSpec(prop)?.slot(stage: stage).map(world)
     }
 
+    /// The kit props that stand on this state while `special` is on, in the data's order. A prop with no slot at this
+    /// stage is left out: the kit draws without it.
+    public func kitProps(for special: SpecialDay?) -> [PlateProp] {
+        guard let special else { return [] }
+        return plate.props.filter { $0.when == special && $0.slot(stage: stage) != nil }
+    }
+
+    /// Where a kit prop's foot stands on this state's plate, in world units.
+    public func kitSlot(_ spec: PlateProp) -> WorldPoint? {
+        spec.slot(stage: stage).map(world)
+    }
+
+    /// A kit prop's footprint, in world units: its art's width above its foot.
+    public func kitBox(_ spec: PlateProp) -> WorldBox? {
+        guard let foot = kitSlot(spec) else { return nil }
+        let w = spec.span(stage: stage) * unitsPerPixel, h = spec.height * unitsPerPixel
+        return WorldBox(minX: foot.x - w / 2, minY: foot.y - h, maxX: foot.x + w / 2, maxY: foot.y)
+    }
+
     /// A prop's footprint on the plate, in world units: its art's width (the pots' row's span) above its foot.
     public func propBox(_ prop: HomeSlots.Prop) -> WorldBox? {
         guard let spec = propSpec(prop), let foot = propSlot(prop) else { return nil }

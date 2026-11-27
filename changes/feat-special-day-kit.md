@@ -1,0 +1,1 @@
+Added: New Year's kit. From the evening of 30 December to the end of 1 January the island wears a potted pine, parcels, a snowman and a star lantern (the pine and the lantern light up at night), Pofu says his New Year line, and on the night itself, 22:00 to 01:00, a few soft fireworks open in the sky (a still glow under Reduce Motion).

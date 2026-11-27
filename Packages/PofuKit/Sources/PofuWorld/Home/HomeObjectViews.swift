@@ -756,6 +756,65 @@ struct PlateJarView: View {
     }
 }
 
+/// The grade of a prop's lit state: the lamps' rule, not the state's full dusk. The ambient multiply is pulled most of the way
+/// toward white, so a lit bulb or paper star keeps its warmth at night, and the saturation follows the state.
+private struct PlateLitGrade: ViewModifier {
+    let light: HomePlate.CharacterLight
+
+    func body(content: Content) -> some View {
+        let keep = 0.3
+        content
+            .saturation(light.saturation)
+            .colorMultiply(Color(
+                red: 1 - (1 - light.paint.red) * keep,
+                green: 1 - (1 - light.paint.green) * keep,
+                blue: 1 - (1 - light.paint.blue) * keep
+            ))
+    }
+}
+
+/// A special day's painted prop (C3): the day state, and at night the lit one over it, with a soft pool of light on
+/// the grass. The change is a quiet cross-fade, a still switch under Reduce Motion.
+struct PlateKitPropView: View {
+    let spec: PlateProp
+    let isNight: Bool
+    let light: HomePlate.CharacterLight
+
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
+    var body: some View {
+        let lit = isNight && spec.states.contains("lit")
+        ZStack(alignment: .bottom) {
+            PlatePropFoot(width: spec.width, light: light)
+            if lit {
+                Ellipse()
+                    .fill(EllipticalGradient(colors: [PofuPrimitive.honey300.rgb.color.opacity(0.55), PofuPrimitive.honey300.rgb.color.opacity(0)]))
+                    .frame(width: CGFloat(spec.width * 3.2), height: CGFloat(spec.width * 1.1))
+                    .blendMode(.screen)
+                    .offset(y: CGFloat(spec.width * 0.18))
+            }
+            ZStack {
+                Image(spec.asset(state: spec.state(lit: false)), bundle: .module)
+                    .resizable()
+                    .scaledToFit()
+                    .modifier(PlatePropGrade(light: light))
+                if spec.states.contains("lit") {
+                    // Over the graded day state, exempt from the dusk's multiply like a lamp.
+                    Image(spec.asset(state: "lit"), bundle: .module)
+                        .resizable()
+                        .scaledToFit()
+                        .modifier(PlateLitGrade(light: light))
+                        .opacity(lit ? 1 : 0)
+                }
+            }
+        }
+        .frame(width: CGFloat(spec.width), height: CGFloat(spec.height), alignment: .bottom)
+        .animation(PofuMotion.respecting(reduceMotion, .easeInOut(duration: 1.2)), value: lit)
+        .allowsHitTesting(false)
+        .accessibilityHidden(true)
+    }
+}
+
 /// The painted lantern: the unlit paper with the lit one over it at the glow's strength, and at night the
 /// pool of light on the grass.
 struct PlateLanternView: View {
