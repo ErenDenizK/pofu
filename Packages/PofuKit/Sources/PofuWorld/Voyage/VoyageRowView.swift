@@ -202,6 +202,7 @@ private struct VoyageIsle: View {
         }
     }
 
+    @ViewBuilder
     private var plain: some View {
         let art = art
         let w = CGFloat(place.width)
