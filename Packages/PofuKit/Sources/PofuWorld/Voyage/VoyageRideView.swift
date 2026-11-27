@@ -54,9 +54,22 @@ private struct VoyageRideScene: View {
 
     /// Her width on the screen once the world is what is drawn: the same share of an island's width as in the
     /// row, at the camera's own scale, so she and the islands grow and shrink together.
-    private func worldWidth() -> Double {
-        let island = model.homePlate?.islandBox.width ?? KokeLayout.islandBox.width
-        return island * VoyageRide.islandShare * model.engine.rig.pose.scale
+    private func worldWidth(at t: Double) -> Double {
+        // The island her width is a share of: the one she leaves, handed over to the one she goes to as the
+        // camera crosses, so her size never steps.
+        let (beat, progress) = ride.beat(at: t)
+        let u = beat == .board ? 0 : beat == .fly ? VoyageRide.ease(progress) : 1
+        let from = islandWidth(ride.from), to = islandWidth(ride.to)
+        return (from + (to - from) * u) * VoyageRide.islandShare * model.engine.rig.pose.scale
+    }
+
+    /// An island's width in world units.
+    private func islandWidth(_ island: IslandID) -> Double {
+        switch island {
+        case .koke: KokeLayout.islandBox.width
+        case .caglayan: CaglayanLayout.islandBox.width
+        default: model.homePlate?.islandBox.width ?? KokeLayout.islandBox.width
+        }
     }
 
     private var level: Int {
@@ -66,7 +79,7 @@ private struct VoyageRideScene: View {
     @ViewBuilder
     private func rideFrame(at t: Double, start: VoyageRide.Spot, size: CGSize) -> some View {
         let spot = ride.whale(at: t, start: start)
-        let width = ride.whaleWidth(at: t, row: start.width * Double(size.width), world: worldWidth())
+        let width = ride.whaleWidth(at: t, row: start.width * Double(size.width), world: worldWidth(at: t))
         let height = width * data.art.canvas[1] / max(data.art.canvas[0], 1)
         let beat = ride.beat(at: t)
         let flying = beat.beat == .fly

@@ -69,7 +69,7 @@ public struct GezginData: Decodable, Sendable, Equatable {
         /// Where the line is tied to the post: part of the way up it.
         public var tieY: Double { postY - postHeight * Self.tieShare }
 
-        public static let standard = Rope(bowX: -0.40, bowY: -0.10, postX: -0.60, postY: -0.72, sag: 0.16, thickness: 0.04, postHeight: 0.22)
+        public static let standard = Rope(bowX: -0.40, bowY: -0.10, postX: -0.60, postY: -0.85, sag: 0.16, thickness: 0.04, postHeight: 0.18)
     }
 
     /// The Koke phase at which she is a shadow on the cloud (`rumoured`) and at which she is moored (`arrived`).

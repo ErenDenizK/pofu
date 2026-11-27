@@ -178,7 +178,7 @@ struct MooringPost: View {
         let width = height * 0.30
         let wood = Color(red: 0.64, green: 0.46, blue: 0.29)
         let shade = Color(red: 0.46, green: 0.31, blue: 0.19)
-        let cord = Color(red: 0.84, green: 0.70, blue: 0.47)
+        let cord = Color(red: 0.94, green: 0.82, blue: 0.58)
         let tieY = foot.y - height * CGFloat(tieShare)
         ZStack(alignment: .topLeading) {
             // Its small contact shadow on the grass.
@@ -187,8 +187,8 @@ struct MooringPost: View {
                 .frame(width: width * 1.7, height: width * 0.55)
                 .position(x: foot.x + width * 0.1, y: foot.y)
             // The line: a dark underlay, the cord over it.
-            rope.stroke(shade, style: StrokeStyle(lineWidth: line * 1.45, lineCap: .round))
-            rope.stroke(cord, style: StrokeStyle(lineWidth: line, lineCap: .round, dash: [line * 1.6, line * 0.45]))
+            rope.stroke(shade.opacity(0.7), style: StrokeStyle(lineWidth: line * 1.3, lineCap: .round))
+            rope.stroke(cord, style: StrokeStyle(lineWidth: line * 0.85, lineCap: .round))
             RoundedRectangle(cornerRadius: width * 0.28, style: .continuous)
                 .fill(LinearGradient(colors: [wood, shade], startPoint: .leading, endPoint: .trailing))
                 .frame(width: width, height: height)
