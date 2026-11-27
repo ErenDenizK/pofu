@@ -575,6 +575,7 @@ private struct SceneFrame<Bubble: View>: View {
         let homeShare: Double = model.ride.flatMap { ride in model.rideElapsed(at: clock).map { ride.sceneHomeOpacity(at: $0) } } ?? 1
         // The wonder islands come in as the camera comes down on one (`VoyageRide.sceneIslandOpacity`).
         let wonderShare: Double = model.ride.flatMap { ride in model.rideElapsed(at: clock).map { ride.sceneIslandOpacity(at: $0) } } ?? 1
+        let characterShare: Double = model.ride.flatMap { ride in model.rideElapsed(at: clock).map { ride.sceneCharacterOpacity(at: $0) } } ?? 1
         let plateFade: Double = {
             guard let plate else { return 0 }
             if model.island == .home { return PlateHomeLayer.opacity(z: z) * homeShare }
@@ -848,6 +849,7 @@ private struct SceneFrame<Bubble: View>: View {
                 .cameraTransform(pose: pose, viewportWidth: Double(size.width), offset: offset)
                 .tinted(tint, isEnabled: !(look.grade && WorldShaders.isAvailable))
                 .frame(width: size.width, height: size.height, alignment: .topLeading)
+                .opacity(characterShare)
 
                 PofuLayer(
                     world: world,
@@ -870,6 +872,7 @@ private struct SceneFrame<Bubble: View>: View {
                     moveStand: moveStand,
                     moveLift: life.moves["pofu"]?.lift ?? 0
                 )
+                .opacity(characterShare)
 
                 if let props, plate == nil || plate?.propSpec(.jar) != nil {
                     // The jar, the lantern and the pots share the island's

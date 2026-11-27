@@ -339,6 +339,9 @@ struct VoyageRideTests {
             }
             lastWhale = spot
         }
+        // Nobody pops onto the lawn before the handover.
+        #expect(ride.sceneCharacterOpacity(at: ride.handoverSeconds - 0.01) == 0)
+        #expect(ride.sceneCharacterOpacity(at: ride.duration) == 1)
         // The destination comes in only once the camera is coming down on it.
         #expect(ride.sceneIslandOpacity(at: ride.flightStart + ride.fly * 0.5) == 0)
         #expect(ride.sceneIslandOpacity(at: ride.flightStart + ride.fly * VoyageRide.arrivalShare) == 0)

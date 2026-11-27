@@ -211,18 +211,29 @@ public struct VoyageRide: Equatable, Sendable {
     /// (`CameraFlight.riseShare + travelShare`), a little before it, so it is whole as she comes in.
     public static let arrivalShare = 0.6
 
-    /// How much of the departure island Home the row draws (the match cut): all of it while she boards, none from
-    /// the first frame of the flight, when the scene's Home is drawn at the same place and scale
-    /// (`VoyageRowLayout.homePose`). Home is drawn by one of the two at every moment, never both.
+    /// The second the row has given way entirely and the scene's own Home takes over (the end of `rowOpacity`'s
+    /// fade): the match cut. Until then the row draws Home, from the flight's first frame at the camera's own
+    /// pose, above its fading sea, so Home is never veiled and never moves by itself.
+    public var handoverSeconds: Double { board + fly * 0.2 }
+
+    /// How much of the departure island Home the row draws (the match cut): all of it until the handover.
+    /// Home is drawn by one of the two at every moment, never both.
     public func rowHomeOpacity(at seconds: Double) -> Double {
         guard fromRow else { return 0 }
-        return seconds < flightStart ? 1 : 0
+        return seconds < handoverSeconds ? 1 : 0
     }
 
     /// How much of Home the scene draws under a ride: the other half of the match cut.
     public func sceneHomeOpacity(at seconds: Double) -> Double {
         guard fromRow else { return 1 }
-        return seconds < flightStart ? 0 : 1
+        return seconds < handoverSeconds ? 0 : 1
+    }
+
+    /// How much of the scene's characters (Pofu, the residents, the props) show: none until the handover, so
+    /// nobody pops onto Home's lawn as the row lets go, then they come in softly.
+    public func sceneCharacterOpacity(at seconds: Double) -> Double {
+        guard fromRow else { return 1 }
+        return Self.ease((seconds - handoverSeconds) / 0.3)
     }
 
     /// The row's glass bar (the island's name, its state line and the verb) is focus UI: it goes with the tap,
