@@ -9,6 +9,11 @@ struct HomePropsTests {
         try #require(HomePlate.shipped, "the package ships Plates/plate-home.json").plate
     }
 
+    /// The three home props, which always stand; the kits' props are tested apart.
+    private func homeProps() throws -> [PlateProp] {
+        try plate().props.filter { $0.when == nil }
+    }
+
     private func home(stage: Int) throws -> HomePlate {
         HomePlate(plate: try plate(), light: "day", stage: stage)
     }
@@ -21,7 +26,7 @@ struct HomePropsTests {
 
     @Test func everyStageHasThreePropSlots() throws {
         let island = try plate()
-        #expect(Set(island.props.map(\.id)) == ["jar", "pots", "lantern"])
+        #expect(Set(try homeProps().map(\.id)) == ["jar", "pots", "lantern"])
         for prop in island.props {
             #expect(prop.slots.count == island.stages, "\(prop.id) has a slot at every stage")
             for stage in 0..<island.stages {
@@ -35,7 +40,7 @@ struct HomePropsTests {
         let island = try plate()
         for stage in 0..<island.stages {
             for prop in island.props {
-                let slot = try #require(prop.slot(stage: stage))
+                guard let slot = prop.slot(stage: stage) else { continue }
                 let half = prop.span(stage: stage) / 2
                 // Only a prop that stands on the lip, level with the painted feet, can stand on one.
                 guard slot.y > 940 else { continue }
@@ -50,7 +55,8 @@ struct HomePropsTests {
     @Test func propsDoNotOverlapEachOther() throws {
         let island = try plate()
         for stage in 0..<island.stages {
-            let spans = try island.props.map { prop -> (x: ClosedRange<Double>, y: Double) in
+            // Props of different days never stand together; the kit is checked against the home props below.
+            let spans = try island.props.filter { $0.when == nil }.map { prop -> (x: ClosedRange<Double>, y: Double) in
                 let slot = try #require(prop.slot(stage: stage))
                 let half = prop.span(stage: stage) / 2
                 return ((slot.x - half)...(slot.x + half), slot.y)
@@ -123,5 +129,73 @@ struct HomePropsTests {
         }
         #expect(worst > 0)
         #expect(PlateMath.budgetOK(island))
+    }
+
+    // MARK: - The New Year kit (island calendar v1, C3)
+
+    @Test func theKitDrawsOnlyWhileItsDayIsOn() throws {
+        let h = try home(stage: 0)
+        #expect(h.kitProps(for: nil).isEmpty)
+        #expect(h.kitProps(for: .halloween).isEmpty)
+        #expect(Set(h.kitProps(for: .newYear).map(\.id)) == ["ny-tree", "ny-parcels", "ny-snowman", "ny-star"])
+    }
+
+    @Test func aStageWithoutASlotDrawsTheKitWithoutThatProp() throws {
+        var island = try plate()
+        let index = try #require(island.props.firstIndex { $0.id == "ny-snowman" })
+        island.props[index].slots[3] = []
+        let h = HomePlate(plate: island, light: "day", stage: 3)
+        #expect(Set(h.kitProps(for: .newYear).map(\.id)) == ["ny-tree", "ny-parcels", "ny-star"])
+    }
+
+    @Test func theKitIsLitAtNightWhereItHasALitState() throws {
+        let kit = try plate().props.filter { $0.when == .newYear }
+        for prop in kit {
+            #expect(prop.state(lit: false) == prop.states.first)
+            let lit = prop.state(lit: true)
+            #expect(lit == (prop.states.contains("lit") ? "lit" : prop.states.first))
+        }
+        #expect(Set(kit.filter { $0.states.contains("lit") }.map(\.id)) == ["ny-tree", "ny-star"])
+    }
+
+    @Test func everyStageHasASlotForEveryKitPropOnTheLawnClearOfTheHomePropsAndFeet() throws {
+        let island = try plate()
+        let kit = island.props.filter { $0.when == .newYear }
+        for stage in 0..<island.stages {
+            var boxes: [(id: String, x: ClosedRange<Double>, top: Double, foot: Double)] = []
+            for prop in island.props {
+                let slot = try #require(prop.slot(stage: stage), "\(prop.id) has a slot at stage \(stage)")
+                #expect(slot.x > 0 && slot.x < island.plateSize.width && slot.y > 0 && slot.y < island.plateSize.height)
+                let half = prop.span(stage: stage) / 2
+                boxes.append((prop.id, (slot.x - half)...(slot.x + half), slot.y - prop.height, slot.y))
+                if prop.when != nil, slot.y > 940 {
+                    for foot in feet(stage: stage) {
+                        let clear = slot.x + half <= foot.lowerBound - 12 + 0.5 || slot.x - half >= foot.upperBound + 12 - 0.5
+                        #expect(clear, "\(prop.id) at stage \(stage) stands on a painted foot")
+                    }
+                }
+            }
+            for i in boxes.indices {
+                for j in boxes.indices where j > i {
+                    let (a, b) = (boxes[i], boxes[j])
+                    // Two kit props, or a kit prop and a home prop, never share ground. The home props are never on at once with
+                    // each other's kit slot: boxes may not overlap.
+                    let apart = !a.x.overlaps(b.x) || a.top >= b.foot || b.top >= a.foot
+                    #expect(apart, "stage \(stage): \(a.id) and \(b.id) overlap")
+                }
+            }
+        }
+        #expect(kit.count == 4)
+    }
+
+    @Test func noKitPropStandsBehindAPaintedObject() throws {
+        for stage in 0..<10 {
+            let h = try home(stage: stage)
+            for spec in h.kitProps(for: .newYear) {
+                let foot = try #require(h.kitSlot(spec)), box = try #require(h.kitBox(spec))
+                let covering = h.occluders(over: foot, box: box).map(\.id)
+                #expect(covering.isEmpty, "stage \(stage): \(covering) cover \(spec.id)")
+            }
+        }
     }
 }

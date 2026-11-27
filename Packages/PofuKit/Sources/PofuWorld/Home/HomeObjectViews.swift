@@ -756,6 +756,41 @@ struct PlateJarView: View {
     }
 }
 
+/// A special day's painted prop (C3): the day state, and at night the lit one over it, with a soft pool of light on
+/// the grass. The change is a quiet cross-fade, a still switch under Reduce Motion.
+struct PlateKitPropView: View {
+    let spec: PlateProp
+    let isNight: Bool
+    let light: HomePlate.CharacterLight
+
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
+    var body: some View {
+        let lit = isNight && spec.states.contains("lit")
+        ZStack(alignment: .bottom) {
+            PlatePropFoot(width: spec.width, light: light)
+            if lit {
+                Ellipse()
+                    .fill(EllipticalGradient(colors: [PofuPrimitive.honey300.rgb.color.opacity(0.32), PofuPrimitive.honey300.rgb.color.opacity(0)]))
+                    .frame(width: CGFloat(spec.width * 2.6), height: CGFloat(spec.width * 0.9))
+                    .blendMode(.screen)
+                    .offset(y: CGFloat(spec.width * 0.18))
+            }
+            ZStack {
+                Image(spec.asset(state: spec.state(lit: false)), bundle: .module).resizable().scaledToFit()
+                if spec.states.contains("lit") {
+                    Image(spec.asset(state: "lit"), bundle: .module).resizable().scaledToFit().opacity(lit ? 1 : 0)
+                }
+            }
+            .modifier(PlatePropGrade(light: light))
+        }
+        .frame(width: CGFloat(spec.width), height: CGFloat(spec.height), alignment: .bottom)
+        .animation(PofuMotion.respecting(reduceMotion, .easeInOut(duration: 1.2)), value: lit)
+        .allowsHitTesting(false)
+        .accessibilityHidden(true)
+    }
+}
+
 /// The painted lantern: the unlit paper with the lit one over it at the glow's strength, and at night the
 /// pool of light on the grass.
 struct PlateLanternView: View {
