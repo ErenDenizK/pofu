@@ -52,15 +52,38 @@ TAKES = ingest.REPO / "design" / "art" / "takes"
 STATIONS_JSON = ingest.REPO / "design" / "art" / "plates" / ISLAND / "stations.json"
 ASSETS = ingest.ASSETS
 
-# The tea stall. Batch 123's cut-outs are 1254 px canvases drawn for the plate's own stall of level 3 (stage 7): the
-# shared scale and the foot (the bottom centre of look 1's alpha box) put the counter on the plate's counter, so it
-# stays put from level to level.
+# Day stage s is island level 10 - s; its erase job is `x-base-erase-l<level>-day`.
+JOB = "batch-117-station-erase-volume/x-base-erase-l{:02d}-day"
+
+# The tea stall (batch 196, day levels 1 to 5, the lead's picks: t1 of every level). A plot ladder like the workshop's: crops of batch
+# 117's erased level 10 base (plate pts 545,586 to 865,906, enlarged to the takes' 1536 px, so a take px is 320 / 1536 = 0.2083 points),
+# each level painted aligned to it, so a look is where a take differs from the bare crop and is not lawn. The stall's table, lamp post and
+# stools stand apart from it (`pieces`), and the hill's lawn seen between its posts is not the stall (`lawnOut`). Batch 123's cut-outs,
+# which this replaces, were drawn for the plate's own stall of level 3 (stage 7): `scale` puts level 1's awning at the width of that old
+# look's (0.93 of the new take's 128 points against 119) and `foot` (the bottom centre of level 1's cut) on its foot, so the counter
+# stays put from level to level and from the old look to the new.
+PLOT_TEA = "batch-196-plot-ladder-tea-stall/x-plot-tea-stall-{}"
 TEA_STALL = {
     "id": "teaStall",
     "light": "day",
     "levels": 5,
-    "jobs": [f"batch-123-tea-stall-ladder-pilot/x-look-tea-stall-{n}" for n in range(1, 6)],
-    "scale": 0.294,              # of the 1254 px canvas, at TEX px per point
+    "plot": {
+        "kind": "regrade",
+        "size": 1536,
+        "bare": (JOB.format(10), (545, 586, 865, 906)),
+        "takes": {n: (PLOT_TEA.format(n), 1) for n in range(1, 6)},
+        "diff": 16,
+        "notLawn": True,
+        "raw": True,
+        "close": 61,
+        "pieces": 3000,
+        "lawnOut": 3,
+        "clear": {n: [(1105, 1095, 1260, 1150)] for n in range(2, 6)},   # the take's grey-lilac cast shadow right of the lamp post: at the lawn's rim it hangs in the gap
+        "grade": {n: (0.78, 0.99) for n in range(1, 6)},   # to the painted stall's L* 79, C* 29 (the takes: L* 74 to 81, C* 39 to 41)
+    },
+    "scale": 0.3875,             # 0.2083 points per take px x 0.93
+    "density": 2.0,
+    "anchor": (732.5, 1188.0),   # level 1's bottom centre in its take
     "foot": (690.0, 832.0),      # plate points, at stage 7
     "footStage": 7,
 }
@@ -74,14 +97,13 @@ TEA_STALL = {
 # Stage 8 (level 2) has a pick but no clean base: the old drum's cast shadow runs on over the lawn past the window and the
 # take paints mist where it would have to be cut, so its patch shows (a hard shadow edge, a pale wisp): it keeps its stall.
 # Day stage s is island level 10 - s; its erase job is `x-base-erase-l<level>-day`.
-JOB = "batch-117-station-erase-volume/x-base-erase-l{:02d}-day"
 BASES = {
     7: {"job": JOB.format(3), "window": (1246, 1330, 1512, 1664)},
     6: {"job": JOB.format(4), "window": (1232, 1370, 1530, 1672)},
     4: {"job": JOB.format(6), "window": (1252, 1290, 1536, 1692),
-        "exclude": [(1420, 1650, 1700, 1800)]},
-    3: {"job": JOB.format(7), "window": (1252, 1290, 1536, 1692),
-        "exclude": [(1420, 1650, 1700, 1800)]},
+        "exclude": [(1420, 1650, 1700, 1800)], "brightRing": True},
+    3: {"job": JOB.format(7), "window": (1226, 1290, 1536, 1692),      # from x 1226, where the workshop's window stops: a 26 px strip of its wall between the two windows stayed as a grey line up the sky
+        "exclude": [(1420, 1650, 1700, 1800)], "brightRing": True},     # brightRing: the lawn pasted in is the sunlit green, not the lighter half of the ring (it stepped yellow against the lawn below the path)
 }
 
 # Where each stage paints its stall (plate points) and its size against stage 7's: the foot is the bottom centre of the
@@ -448,7 +470,7 @@ def water_masks(plot: dict) -> tuple[dict, dict, dict]:
     job, (x0, y0, x1, y1) = plot["bare"]
     n = pick_of(job)
     path = sorted((TAKES / job).glob(f"*--t{n}.webp"))[0]
-    ref = np.asarray(Image.open(path).convert("RGB").crop((x0, y0, x1, y1)).resize((1254, 1254), Image.LANCZOS), np.float32) / 255
+    ref = np.asarray(Image.open(path).convert("RGB").crop((x0, y0, x1, y1)).resize((plot.get("size", 1254),) * 2, Image.LANCZOS), np.float32) / 255
     ref_lab = _lab_soft(ref)
     rgbs = {n: _take_rgb(t) for n, t in plot["takes"].items()}
     out = {}
@@ -500,9 +522,19 @@ def regrade_masks(plot: dict) -> tuple[dict, dict, dict]:
     job, (x0, y0, x1, y1) = plot["bare"]
     n = pick_of(job)
     path = sorted((TAKES / job).glob(f"*--t{n}.webp"))[0]
-    ref = np.asarray(Image.open(path).convert("RGB").crop((x0, y0, x1, y1)).resize((1254, 1254), Image.LANCZOS), np.float32) / 255
+    ref = np.asarray(Image.open(path).convert("RGB").crop((x0, y0, x1, y1)).resize((plot.get("size", 1254),) * 2, Image.LANCZOS), np.float32) / 255
     ref_lab = _lab_soft(ref)
     masks, rgbs = {}, {}
+
+    def keep(m: np.ndarray) -> np.ndarray:
+        """The biggest piece, or (`pieces`: a minimum area in px) every piece that big: a station with a table or a lamp post
+        standing apart from it."""
+        if not plot.get("pieces"):
+            return _biggest(m)
+        n_, lab_, stat_, _ = cv2.connectedComponentsWithStats(m.astype(np.uint8), connectivity=8)
+        big = [i for i in range(1, n_) if stat_[i, cv2.CC_STAT_AREA] >= plot["pieces"]]
+        return np.isin(lab_, big) if big else _biggest(m)
+
     for n, take in plot["takes"].items():
         rgb = _take_rgb(take)
         lab = _lab_soft(rgb)
@@ -512,16 +544,16 @@ def regrade_masks(plot: dict) -> tuple[dict, dict, dict]:
         if plot.get("notLawn"):
             mask &= (~_lawn(rgb)).astype(np.uint8)
         mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, np.ones((5, 5), np.uint8)) > 0
-        mask = _biggest(ndimage.binary_fill_holes(mask))
+        mask = keep(ndimage.binary_fill_holes(mask))
         mask = cv2.morphologyEx(mask.astype(np.uint8), cv2.MORPH_CLOSE, _ellipse(plot["close"].get(n, 41) if isinstance(plot.get("close"), dict) else plot.get("close", 25))) > 0
-        mask = _biggest(ndimage.binary_fill_holes(mask))
+        mask = keep(ndimage.binary_fill_holes(mask))
         if plot.get("smooth"):                                            # a smooth rim, no bites, no grey fragments between the leaves
             mask = cv2.GaussianBlur(mask.astype(np.float32), (0, 0), plot["smooth"]) > 0.5
-            mask = _biggest(ndimage.binary_fill_holes(cv2.morphologyEx(mask.astype(np.uint8), cv2.MORPH_OPEN, _ellipse(13)) > 0))
+            mask = keep(ndimage.binary_fill_holes(cv2.morphologyEx(mask.astype(np.uint8), cv2.MORPH_OPEN, _ellipse(13)) > 0))
         if plot.get("sky"):                                               # the take's sky seen through the arch or between the leaves is not the station
-            mask = _biggest(ndimage.binary_fill_holes(cv2.morphologyEx((mask & (sky_alpha(rgb) >= 0.5)).astype(np.uint8), cv2.MORPH_OPEN, _ellipse(7)) > 0))
+            mask = keep(ndimage.binary_fill_holes(cv2.morphologyEx((mask & (sky_alpha(rgb) >= 0.5)).astype(np.uint8), cv2.MORPH_OPEN, _ellipse(7)) > 0))
         if plot.get("notLawn"):                                           # the sky seen between the gear, the chimney and the roof is not the house
-            mask = _biggest(cv2.morphologyEx((mask & (sky_alpha(rgb) >= 0.5)).astype(np.uint8), cv2.MORPH_OPEN, _ellipse(7)) > 0)
+            mask = keep(cv2.morphologyEx((mask & (sky_alpha(rgb) >= 0.5)).astype(np.uint8), cv2.MORPH_OPEN, _ellipse(7)) > 0)
         fb = plot.get("flatBottom")
         if fb:                                                            # the doorstep's pale stones match the bare crop's: close the bites in the bottom edge
             h, w = mask.shape
@@ -532,11 +564,14 @@ def regrade_masks(plot: dict) -> tuple[dict, dict, dict]:
             yy = np.arange(h)[:, None]
             fill = (yy >= np.maximum(top[None, :], bottom[None, :] - 70)) & (yy <= bottom[None, :]) & (bottom[None, :] >= 0) & has[None, :]
             mask |= fill & (sky_alpha(rgb) >= 0.5) & ~_lawn(rgb)           # only the step's own pixels, never sky or grass
-            mask = _biggest(cv2.morphologyEx(mask.astype(np.uint8), cv2.MORPH_OPEN, _ellipse(11)) > 0)
+            mask = keep(cv2.morphologyEx(mask.astype(np.uint8), cv2.MORPH_OPEN, _ellipse(11)) > 0)
+        if plot.get("lawnOut"):                                           # the hill's lawn seen through the stall (between the posts, over the counter) is not the stall
+            lawn = cv2.morphologyEx(_lawn(rgb).astype(np.uint8), cv2.MORPH_OPEN, _ellipse(3)) > 0
+            mask = keep(cv2.morphologyEx((mask & ~(cv2.dilate(lawn.astype(np.uint8), _ellipse(plot["lawnOut"])) > 0)).astype(np.uint8), cv2.MORPH_OPEN, _ellipse(5)) > 0)
         for bx0, by0, bx1, by1 in plot.get("clear", {}).get(n, []):       # a string or stub the take hangs across the neighbouring station
             mask[by0:by1, bx0:bx1] = False
         if plot.get("clear", {}).get(n):
-            mask = _biggest(mask)
+            mask = keep(mask)
         masks[n] = mask
         full = srgb_lab(rgb)                                              # the take in the plate's own colours: the inverse map
         inv = np.linalg.pinv(m[:3])
