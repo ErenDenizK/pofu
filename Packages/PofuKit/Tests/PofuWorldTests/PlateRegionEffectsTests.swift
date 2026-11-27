@@ -121,7 +121,7 @@ struct PlateRegionEffectsTests {
     @Test func theWaterFollowsThePondsLevel() throws {
         let island = try plate
         let looks = try #require(island.stations["pond"])
-        let frame = try #require(looks.box)
+        let frame = looks.box
         for state in try states() where island.stationLooks(light: state.key, stage: state.stage)["pond"] != nil {
             // Unbuilt: the base is grass, so no water.
             #expect(PlateRegionEffects.water(of: state, levels: ["pond": 0]).isEmpty, "\(state.light) \(state.stage) level 0")
