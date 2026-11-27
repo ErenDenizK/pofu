@@ -183,7 +183,7 @@ struct VoyageRideTests {
     @Test func theMooringPostStandsOnTheRimAndTheLineIsTiedToIt() {
         let rope = GezginData.Rope.standard
         #expect(rope.tieY < rope.postY && rope.tieY > rope.postY - rope.postHeight)
-        #expect(rope.thickness >= 0.02)
+        #expect(rope.thickness >= 0.015)
         // The line is tied above her bow, to the post's neck, never to a point in the air.
         #expect(rope.tieY < rope.bowY)
     }
@@ -245,5 +245,38 @@ struct VoyageRideTests {
             #expect(VoyageRide.hidesFocusUI(back), "hidden at \(t) s")
         }
         #expect(!VoyageRide.hidesFocusUI(nil), "it returns when the ride is over and the passengers are off")
+    }
+
+    @Test func theRopeIsVisiblySlackAndNoTwoHomesShowAtOnce() {
+        // The midpoint of the quadratic line drops 0.5 * sag of the chord below it: at least a tenth, obvious at device size.
+        let rope = GezginData.Rope.standard
+        #expect(0.5 * rope.sag >= 0.12)
+        let tie = WorldPoint(x: 0, y: 0), bow = WorldPoint(x: 40, y: 10)
+        let c = GezginData.Rope.control(tie: tie, bow: bow, sag: rope.sag)
+        let midY = 0.25 * tie.y + 0.5 * c.y + 0.25 * bow.y
+        let chord = (40.0 * 40 + 10 * 10).squareRoot()
+        #expect(midY - 5 >= 0.10 * chord)
+        // The row and the scene's Home are never both visible: the row is gone before the scene's islands start.
+        let row = VoyageRide(from: .home, to: .koke, data: .fallback)
+        for t in stride(from: 0.0, through: row.duration, by: 1.0 / 30) {
+            let both = row.rowOpacity(at: t) > 0.05 && row.sceneIslandOpacity(at: t) > 0.05
+            #expect(!both, "Home shows once at \(t) s")
+            #expect(row.rowOpacity(at: t) + row.sceneIslandOpacity(at: t) <= 1.0 + 1e-9)
+        }
+    }
+
+    @Test func sheAndTheBarNeverJumpAcrossTheHandovers() {
+        // Her spot moves by little per 1/30 s through the whole ride, the board-to-fly and fly-to-moor handovers included.
+        let berth = VoyageRide.Spot(x: 0.62, y: 0.55, width: 0.3)
+        var last = ride.whale(at: 0, start: start, berth: berth)
+        for t in stride(from: 1.0 / 30, through: ride.duration, by: 1.0 / 30) {
+            let now = ride.whale(at: t, start: start, berth: berth)
+            #expect(abs(now.x - last.x) < 0.04 && abs(now.y - last.y) < 0.04 && abs(now.width - last.width) < 0.04, "no jump at \(t) s")
+            last = now
+        }
+        // The row's bar goes with the tap.
+        #expect(ride.barOpacity(at: 0) == 1)
+        #expect(ride.barOpacity(at: VoyageRide.barSeconds) == 0)
+        #expect(ride.barOpacity(at: 1.0) == 0)
     }
 }

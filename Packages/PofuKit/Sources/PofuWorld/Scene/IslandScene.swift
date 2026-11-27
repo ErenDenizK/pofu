@@ -570,13 +570,12 @@ private struct SceneFrame<Bubble: View>: View {
         // does), never at the flight's first frame.
         let plateFade: Double = {
             guard let plate else { return 0 }
-            if model.island == .home {
-                // Under the row (a ride from it) Home's own plate waits too: the row draws Home.
-                let share = model.ride.flatMap { ride in model.rideElapsed(at: clock).map { ride.sceneIslandOpacity(at: $0) } } ?? 1
-                return PlateHomeLayer.opacity(z: z) * share
-            }
+            // Under the row (a ride from it) Home's own plate waits until the row's Home has faded out, so Home
+            // never shows twice: the row draws Home until then.
+            let share = model.ride.flatMap { ride in model.rideElapsed(at: clock).map { ride.sceneIslandOpacity(at: $0) } } ?? 1
+            if model.island == .home { return PlateHomeLayer.opacity(z: z) * share }
             guard mapSky != nil else { return 0 }
-            return HomePlate.isleFade(pose: pose, box: plate.islandBox, closeScale: plate.islandStop.scale, viewportWidth: Double(size.width))
+            return HomePlate.isleFade(pose: pose, box: plate.islandBox, closeScale: plate.islandStop.scale, viewportWidth: Double(size.width)) * share
         }()
         let isleFade = isle != nil && model.island == .caglayan
             ? HomePlate.caglayanFade(pose: pose, viewportWidth: Double(size.width))

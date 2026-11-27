@@ -1,1 +1,1 @@
-Her place at every island: Nazlı moors beside Köke and Çağlayan with her post on the rim and a slack rope to her bow, the passengers land on the island, the focus UI stays hidden for the whole return ride, and the leaving ride shows no ghost of the row's Köke.
+[world] Her place at every island: Nazlı moors beside Köke and Çağlayan with her post on the rim and a slack rope to her bow, the passengers land on the island, the focus UI stays hidden for the whole return ride, and the leaving ride shows no ghost of the row's Köke.

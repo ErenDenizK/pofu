@@ -207,6 +207,14 @@ public struct VoyageRide: Equatable, Sendable {
         }
     }
 
+    /// The row's glass bar (the island's name, its state line and the verb) is focus UI: it goes with the tap,
+    /// gone `barSeconds` into the ride.
+    public static let barSeconds = 0.3
+
+    public func barOpacity(at seconds: Double) -> Double {
+        1 - Self.ease(seconds / Self.barSeconds)
+    }
+
     /// The row's opacity over the ride: whole while boarding, gone as the flight lifts off.
     public func rowOpacity(at seconds: Double) -> Double {
         let (beat, progress) = beat(at: seconds)

@@ -185,12 +185,14 @@ struct MooringLine: View {
             path.move(to: tie)
             path.addQuadCurve(to: bow, control: CGPoint(x: control.x, y: control.y))
         }
-        let shade = Color(red: 0.55, green: 0.38, blue: 0.22)
+        let shade = Color(red: 0.45, green: 0.30, blue: 0.17)
         let cord = Color(red: 0.95, green: 0.84, blue: 0.62)
         ZStack(alignment: .topLeading) {
             // A darker line under a lighter one, so it reads as a twisted rope at the picture's own size.
-            curve.stroke(shade.opacity(0.75), style: StrokeStyle(lineWidth: thickness * 1.35, lineCap: .round))
-            curve.stroke(cord, style: StrokeStyle(lineWidth: thickness * 0.85, lineCap: .round))
+            curve.stroke(shade.opacity(0.85), style: StrokeStyle(lineWidth: thickness * 1.5, lineCap: .round))
+            curve.stroke(cord, style: StrokeStyle(lineWidth: thickness * 1.0, lineCap: .round))
+            // The twist: short darker dashes slanting along the cord.
+            curve.stroke(shade.opacity(0.55), style: StrokeStyle(lineWidth: thickness * 0.8, lineCap: .butt, dash: [thickness * 0.5, thickness * 1.1]))
             // Its small contact shadow on the grass.
             Ellipse()
                 .fill(Color.black.opacity(0.18))
