@@ -636,6 +636,8 @@ class KeepHandKeysTests(unittest.TestCase):
         import json
         shipped = json.loads((Path(__file__).resolve().parents[2] / "Packages" / "PofuKit" / "Sources" / "PofuWorld"
                               / "Resources" / "Plates" / "plate-home.json").read_text())
+        size, fit = ingest.SIZE, dict(ingest.COLOR_FIT)            # `load_hand` sets the island's; other tests expect their own
+        self.addCleanup(lambda: (setattr(ingest, "SIZE", size), ingest.COLOR_FIT.clear(), ingest.COLOR_FIT.update(fit)))
         hand = ingest.load_hand("home")
         self.assertEqual({k: v for k, v in shipped["characters"].items()},
                          {k: v for k, v in sorted(zip(hand["characters"], ingest.pct_to_px(list(hand["characters"].values()))))})
