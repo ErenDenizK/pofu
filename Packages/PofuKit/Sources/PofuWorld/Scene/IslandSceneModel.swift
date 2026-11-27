@@ -225,6 +225,8 @@ public final class IslandSceneModel {
     public let koke = KokeBeatState()
     /// The Gezgin moored at the pier: her tap, her line and the moment she woke (ADR-0028).
     public let gezgin = GezginBeatState()
+    /// The voyage row's choice: the island in view and the finger's drag (ADR-0028).
+    public let voyage = VoyageRowState()
     /// She was woken: the app plays her cue. Home sets it.
     @ObservationIgnored public var onGezginWake: (@MainActor () -> Void)?
     /// Çağlayan's bubble, swell and haptic (the second wonder island).
@@ -552,6 +554,8 @@ public final class IslandSceneModel {
 
     public func go(to target: WorldFraming, animated: Bool = true) {
         closeSurfaces()
+        // The far stop is the voyage row: it opens on the island the camera is at.
+        if target == .map, projectedFraming != .map { voyage.open(on: island) }
         if island != .home {
             // From another island every move is a flight to the home rail.
             island = .home
@@ -679,6 +683,11 @@ public final class IslandSceneModel {
     public func placeControlTapped() {
         let stop = PlaceStop(framing: projectedFraming)
         go(to: stop.controlTarget.framing)
+    }
+
+    /// The verb of the voyage row: sails to the island in view ("Yola çık"); Home is reached the same way.
+    public func voyageSail() {
+        fly(to: voyage.island)
     }
 
     /// Flies to another island's Island stop (§1.2): up, across the sea,
@@ -1003,6 +1012,8 @@ public final class IslandSceneModel {
         koke wonder: WonderStatus = WonderStatus(),
         caglayan flowIsland: WonderStatus = WonderStatus()
     ) {
+        // The voyage row takes its own taps (a neighbour glides, the verb sails).
+        guard projectedFraming != .map else { return }
         let rig = engine.rig
         // On Koke's island only Koke answers; elsewhere its island answers
         // on the Map once it can be visited.
@@ -1080,6 +1091,8 @@ public final class IslandSceneModel {
                 asleep = Gezgin.pose(light: plate.light, wakeAge: age, data: data) == .asleep
             }
             gezgin.tapped(asleep: asleep, in: self)
+            // Tapping her opens the island choice (fi 44); the bottom-right control opens it too.
+            go(to: .map)
         case .plateObject(let id):
             pulse("plate-\(id)")
             if onPlateTap?(id) == true { return }
@@ -1173,7 +1186,7 @@ public final class IslandSceneModel {
     }
 
     func peekChanged(dx: Double, dy: Double) {
-        guard engine.rig.pinchStart == nil, !engine.thumb.isZooming else { return }
+        guard engine.rig.pinchStart == nil, !engine.thumb.isZooming, projectedFraming != .map else { return }
         if pansIsland {
             engine.rig.freeDrag(dx: dx, dy: dy)
         } else {
