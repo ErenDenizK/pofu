@@ -20,9 +20,9 @@ six vertical steps, each done when he plays it on his phone.
 
 ## In flight
 
-0d. Take auto-merge works (#190-#194). Batches 184 (rotor) + 185 (Caglayan, card 4)
-   merged CORRUPT (17 WebPs of noise, cause unknown): guard merged (pofu-art #195,
-   check_takes.py + workflow signature check); redo rows R1/R2 first in Demand.
+0d. 184/185 redelivered and decode clean (pofu-art #197, #198); also delivered: 171, 177, 178,
+   180, 181, 183, 189-192 (plot ladders), 194 (season pilot). Card 4 (Caglayan A-F, default D,
+   rim fall) sent 11-27 morning. Queue upkeep agent: log delivered rows, pier gap crop, refill 2 days.
 0c. Fi 49: cards 1/2/5 on defaults; desks approved (ST1+ST2 to land); auto-merge: yes for
    pofu-art takes (ST4 workflow, next free agent), no for pofu code; self-wake refused
    twice. Season system merged (#530, ADR-0030); pilot batch 194 D57 (pofu-art #188);
