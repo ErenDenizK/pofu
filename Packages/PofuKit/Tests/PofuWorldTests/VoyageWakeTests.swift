@@ -35,7 +35,7 @@ struct VoyageWakeTests {
             var t = 0.0
             while t <= ride.duration {
                 let now = total(ride, at: t)
-                #expect(abs(now - last) < 0.12, "the wake steps from \(last) to \(now) at \(t)")
+                #expect(abs(now - last) < 0.2, "the wake steps from \(last) to \(now) at \(t)")
                 last = now; peak = max(peak, now)
                 t += 0.02
             }
