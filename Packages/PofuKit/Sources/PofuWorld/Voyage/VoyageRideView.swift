@@ -62,7 +62,7 @@ private struct VoyageRideScene: View {
         let bobSeconds = 2.4
         let bob = sin(2 * .pi * t / bobSeconds) * 0.014 * width * (flying ? 1 : 0.35)
         let centre = CGPoint(x: spot.x * Double(size.width), y: spot.y * Double(size.height) + bob)
-        let grade = VoyageGrade.grade(light: model.homePlate?.light ?? "day")
+        let whaleGrade = VoyageGrade.whale(light: model.homePlate?.light ?? "day")
         ZStack(alignment: .topLeading) {
             if flying {
                 CloudWake(centre: centre, width: width, toTheRight: ride.toTheRight, time: t, strength: min(beat.progress / 0.2, (1 - beat.progress) / 0.2, 1))
@@ -70,27 +70,27 @@ private struct VoyageRideScene: View {
             GezginFlyer(
                 data: data, level: level, width: width, flip: ride.toTheRight, time: t, tilt: ride.tilt(at: t)
             )
-            .saturation(grade.saturation)
-            .brightness(grade.brightness)
-            .colorMultiply(Color(red: grade.red, green: grade.green, blue: grade.blue))
+            .saturation(whaleGrade.saturation)
+            .brightness(whaleGrade.brightness)
+            .colorMultiply(Color(red: whaleGrade.red, green: whaleGrade.green, blue: whaleGrade.blue))
             .position(centre)
             ForEach(Array(passengers.enumerated()), id: \.offset) { index, passenger in
                 let place = passengerPlace(index: index, beat: beat, centre: centre, width: width, height: height)
-                Image(passenger.art, bundle: .module)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: CGFloat(width * passenger.share))
-                    .opacity(place.opacity)
-                    .position(x: place.x, y: place.y - CGFloat(width * passenger.share * passenger.aspect / 2))
+                if let sprite = WorldArt.sprite(passenger.art), let box = sprite.sharp {
+                    DepthImage(
+                        name: passenger.art, sprite: sprite, level: 0, anchor: CGPoint(x: place.x, y: place.y),
+                        scale: CGFloat(width * passenger.share) / CGFloat(max(box.width, 1)), opacity: place.opacity
+                    )
+                }
             }
         }
         .frame(width: size.width, height: size.height, alignment: .topLeading)
         .opacity(ride.whaleOpacity(at: t))
     }
 
-    /// Who rides: Pofu, and Fındık with him. Their width against her cut-out's and their art's height over width.
-    private var passengers: [(art: String, share: Double, aspect: Double)] {
-        [("world-pofu--normal", 0.15, 248.0 / 261.0), ("world-findik--normal", 0.11, 102.0 / 108.0)]
+    /// Who rides: Pofu, and Fındık with him. Their width against her cut-out's.
+    private var passengers: [(art: String, share: Double)] {
+        [("pofu", 0.15), ("findik", 0.11)]
     }
 
     /// A passenger's feet and opacity: on the shore while she waits, in the air as he hops aboard, on her back
@@ -196,19 +196,21 @@ struct VoyageBed: View {
     var body: some View {
         let tint = Color(red: min(grade.red + 0.04, 1), green: min(grade.green + 0.04, 1), blue: min(grade.blue + 0.02, 1))
         let puffs: [(dx: Double, dy: Double, size: Double)] = front
-            ? [(-0.34, 0.015, 0.26), (-0.08, 0.03, 0.30), (0.2, 0.02, 0.28), (0.42, 0.005, 0.2)]
+            ? [(-0.40, -0.02, 0.34), (-0.14, 0.01, 0.42), (0.14, 0.0, 0.40), (0.40, -0.02, 0.34), (0.0, 0.06, 0.48)]
             : [(-0.52, -0.02, 0.30), (-0.26, -0.05, 0.36), (0.02, -0.06, 0.40), (0.3, -0.05, 0.36), (0.54, -0.02, 0.30)]
         ZStack {
             if !front {
-                Ellipse()
-                    .fill(RadialGradient(colors: [tint.opacity(0.85), tint.opacity(0)], center: .center, startRadius: 0, endRadius: CGFloat(width * 0.62)))
-                    .frame(width: CGFloat(width * 1.3), height: CGFloat(width * 0.34))
+                // A wide soft bank: a circle squashed flat, so its gradient fades before any edge.
+                Circle()
+                    .fill(RadialGradient(colors: [tint.opacity(0.9), tint.opacity(0)], center: .center, startRadius: 0, endRadius: CGFloat(width * 0.65)))
+                    .frame(width: CGFloat(width * 1.3), height: CGFloat(width * 1.3))
+                    .scaleEffect(x: 1, y: 0.26)
                     .position(x: CGFloat(x), y: CGFloat(foot))
             }
             ForEach(Array(puffs.enumerated()), id: \.offset) { _, puff in
                 Circle()
                     .fill(RadialGradient(
-                        colors: [tint.opacity(front ? 0.8 : 0.9), tint.opacity(0)],
+                        colors: [tint.opacity(front ? 0.95 : 0.9), tint.opacity(front ? 0.6 : 0.4), tint.opacity(0)],
                         center: .center, startRadius: 0, endRadius: CGFloat(width * puff.size / 2)
                     ))
                     .frame(width: CGFloat(width * puff.size), height: CGFloat(width * puff.size))

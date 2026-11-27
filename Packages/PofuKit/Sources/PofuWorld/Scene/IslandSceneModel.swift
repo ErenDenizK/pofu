@@ -779,8 +779,19 @@ public final class IslandSceneModel {
         projectedFraming = .mid
         travel { $0.startFlight(to: pose, landing: .pose(pose), seconds: seconds) }
         kick()
-        koke.landed(on: target, model: self)
-        caglayan.landed(on: target, model: self)
+        guard let seconds else {
+            koke.landed(on: target, model: self)
+            caglayan.landed(on: target, model: self)
+            return
+        }
+        // A ride is the arrival: the island's bubble waits until she has come in (a held frame has none).
+        guard rideHeld == nil else { return }
+        Task { @MainActor [weak self] in
+            try? await Task.sleep(for: .seconds(seconds))
+            guard let self, self.island == target else { return }
+            self.koke.landed(on: target, model: self)
+            self.caglayan.landed(on: target, model: self)
+        }
     }
 
     /// Holds the camera on another island's Island stop, still

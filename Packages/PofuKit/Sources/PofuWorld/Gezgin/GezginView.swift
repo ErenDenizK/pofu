@@ -141,7 +141,7 @@ struct GezginMooredView: View {
             // The line goes down behind her, the figure over it.
             Path { path in
                 path.move(to: bow)
-                path.addQuadCurve(to: post, control: CGPoint(x: (bow.x + post.x) / 2, y: max(bow.y, post.y) + CGFloat(rope.sag * unit2)))
+                path.addQuadCurve(to: post, control: CGPoint(x: (bow.x + post.x) / 2 - CGFloat(rope.sag * unit2 * 0.8), y: (bow.y + post.y) / 2 + CGFloat(rope.sag * unit2 * 0.6)))
             }
             .stroke(Color(red: 0.80, green: 0.66, blue: 0.44), style: StrokeStyle(lineWidth: CGFloat(max(rope.thickness * unit2, 0.8)), lineCap: .round))
             Circle()
@@ -168,9 +168,13 @@ struct GezginShadowView: View {
         let unit = mooring.width * plate.unitsPerPixel / bodyPixels
         let width = data.art.canvas[0] * unit
         let height = data.art.canvas[1] * unit
+        // Darker and a little larger than the art: on the pale cloud the painted shade alone is faint (2b
+        // review), and she flies high, so her shadow is wide.
         Image(Gezgin.art(level: 1, "cloudshade"), bundle: .module)
             .resizable()
             .frame(width: CGFloat(width), height: CGFloat(height))
+            .colorMultiply(Color(red: 0.52, green: 0.55, blue: 0.80))
+            .scaleEffect(1.3)
             .opacity(data.shadow.opacity)
             .position(x: point.x, y: point.y)
             .allowsHitTesting(false)

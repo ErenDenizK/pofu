@@ -106,7 +106,7 @@ private struct VoyageRow: View {
            let level = Gezgin.presence(koke: world.koke, caglayan: world.caglayan, data: data).level,
            let index = stops.firstIndex(where: { $0.island == state.origin }) {
             let spot = layout.mooredSpot(at: layout.place(index: index, position: position))
-            let grade = VoyageGrade.grade(light: model.homePlate?.light ?? "day")
+            let grade = VoyageGrade.whale(light: model.homePlate?.light ?? "day")
             GezginFlyer(data: data, level: level, width: spot.width * Double(size.width))
                 .saturation(grade.saturation)
                 .brightness(grade.brightness)
@@ -213,13 +213,13 @@ private struct VoyageIsle: View {
             // The island's foot: the painted island's lowest row, in the picture's own scale.
             let foot = place.y + (plate.islandBox.maxY - box.midY) * scale
             ZStack(alignment: .topLeading) {
-                VoyageBed(x: place.x, foot: foot - 0.03 * place.width, width: place.width, weight: place.weight, grade: grade)
+                VoyageBed(x: place.x, foot: foot - 0.04 * place.width, width: place.width, weight: place.weight, grade: grade)
                 FarPicture(
                     compositor: PlateCompositor(plate: plate, levels: HomePlate.stationLevels(world)),
                     pose: pose, size: size, offset: CGSize(width: place.x - Double(size.width) / 2, height: 0)
                 )
                 .frame(width: size.width, height: size.height, alignment: .topLeading)
-                VoyageBed(x: place.x, foot: foot - 0.03 * place.width, width: place.width, weight: place.weight, grade: grade, front: true)
+                VoyageBed(x: place.x, foot: foot - 0.04 * place.width, width: place.width, weight: place.weight, grade: grade, front: true)
             }
             .frame(width: size.width, height: size.height, alignment: .topLeading)
             .saturation(0.8 + 0.2 * place.weight)
@@ -238,7 +238,7 @@ private struct VoyageIsle: View {
         let h = w * CGFloat(art.aspect)
         // A plate island (Çağlayan) is painted in the hour's light already; the rest is graded to it.
         let g = art.lit ? VoyageGrade.day : grade
-        let foot = place.y + Double(h) * 0.4
+        let foot = place.y + Double(h) * 0.4 - 0.04 * place.width
         ZStack(alignment: .topLeading) {
             VoyageBed(x: place.x, foot: foot, width: place.width, weight: place.weight, grade: grade)
             Image(art.name, bundle: .module)

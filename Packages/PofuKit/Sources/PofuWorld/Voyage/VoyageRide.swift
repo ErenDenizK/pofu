@@ -207,6 +207,16 @@ public struct VoyageGrade: Equatable, Sendable {
 
     public static let day = VoyageGrade(saturation: 1, brightness: 0, red: 1, green: 1, blue: 1)
 
+    /// The Gezgin's: lighter than the islands' (she is a pale cloud animal; at night she must not go to a
+    /// silhouette).
+    public static func whale(light: String) -> VoyageGrade {
+        switch light {
+        case "night": VoyageGrade(saturation: 0.85, brightness: -0.03, red: 0.74, green: 0.78, blue: 0.96)
+        case "golden": VoyageGrade(saturation: 1.0, brightness: 0, red: 1.0, green: 0.94, blue: 0.86)
+        default: .day
+        }
+    }
+
     public static func grade(light: String) -> VoyageGrade {
         switch light {
         case "night": VoyageGrade(saturation: 0.72, brightness: -0.10, red: 0.50, green: 0.58, blue: 0.86)
