@@ -34,7 +34,7 @@ six vertical steps, each done when he plays it on his phone.
 0b. Fi 47: #523 (calendar, motion, music, ADR-0029), MU1 #525 merged; desks #524
    draft (approved fi 49). Card 4 (Caglayan) when batch 185 lands.
 0a. Plan #519 step 1: merged 1a #520, windmill 1b #521, golden 1d #522, C1 #526.
-   1c pond #528 at 2.0: green, 6 defects fixed; lilac smear under the pond blocks (4th push allowed, fixing). Budget spec #533 (rule v1: drawn px x 4 B, 12 M px/state,
+   1c pond merged (#528, all looks 2.0, worst state 9.83 M px; leftovers: 1-px specks L1, mill left wall edge). Budget spec #533 (rule v1: drawn px x 4 B, 12 M px/state,
    looks 2.0 px/pt): PR 1 tools rule merged (#535, ADR-0031; home 9.46 M px);
    PR 5 Today header merged (#534); PR 2 Swift rule merged (#537); PR 3 merged (#536: measured
    34.6 MB vs 37.6 counted; publish job timed out on a slow runner); 1c resumes on #528 at 2.0; Gezgin moored merged (#529;
@@ -53,7 +53,7 @@ six vertical steps, each done when he plays it on his phone.
 Merged: #475-#538 (not #490, #503, #504, #507); pofu-art #81-#203 (not stale #84-#90, #132).
 
 ## Next (plan #519)
-Running: pond fix (#528), 2d-2 ride polish; S1 #540 in CI (after the ride: VoyageRowView 178/244/249, IslandScene 1458, HomePlateCrop Map path read plate.key, not light). Then the other 4 stations from D52-D55; 1e reveal. Device days on membership.
+Running: 2d-2 ride polish; 1c-2 garden+workshop (`art/station-levels-2`, also fixes ingest/bases traps); 1e reveal; S1 #540 in CI (then VoyageRowView/IslandScene/HomePlateCrop read plate.key). Next: 1c-3 bagel, lighthouse, tea stall (196), pier (195->193); V1 rotor; S3.
 
 ## Open with the founder
 - Membership ~11-27: Mac 1-2 h, Distribution request same day; #490; N6; device: pinch, pond fps.
