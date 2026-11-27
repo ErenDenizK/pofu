@@ -31,8 +31,8 @@ six vertical steps, each done when he plays it on his phone.
 0a. Plan #519 step 1: merged 1a #520, windmill 1b #521, golden 1d #522, C1 #526.
    1c pond #528 resuming at 2.0 under rule v1 with its defects as acceptance. Budget spec #533 (rule v1: drawn px x 4 B, 12 M px/state,
    looks 2.0 px/pt): PR 1 tools rule merged (#535, ADR-0031; home 9.46 M px);
-   PR 5 Today header merged (#534); PR 2 Swift rule merged (#537); PR 3 #536 (measured
-   34.6 MB vs 37.6 counted) re-running a cancelled publish job; 1c resumes on #528 at 2.0; Gezgin moored merged (#529;
+   PR 5 Today header merged (#534); PR 2 Swift rule merged (#537); PR 3 merged (#536: measured
+   34.6 MB vs 37.6 counted; publish job timed out on a slow runner); 1c resumes on #528 at 2.0; Gezgin moored merged (#529;
    left: wake frame clock, faint cloud shadow, no rope, stand-in chime); ADR-0028 merged (#527);
    2c voyage row running.
    173-176 not cuttable (whole re-renders); plot ladders D52-D55 first in Demand
