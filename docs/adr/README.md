@@ -44,6 +44,7 @@ Tunable values (breath seconds, thresholds, seed amounts, names) live in
 | [0028](0028-the-far-view-is-a-voyage.md) | The far view is a voyage row: one island large, the Gezgin moored while the player chooses, "Yola çık" starts the ride | Accepted (supersedes 0027's Map stop) |
 | [0029](0029-music-is-a-score.md) | Music is a score in the repository (ABC), rendered offline by one synthesized band into short cells, played by a small director | Proposed |
 | [0030](0030-a-season-is-an-edit-of-spring.md) | A season is an edit of spring in the same frame, cut with spring's shapes; the painted state is (season, light, stage); a state shows a season whole or not at all | Proposed |
+| [0031](0031-texture-budget-counts-what-draws.md) | The texture budget counts what a Home state draws or keeps, in pixels (4 bytes decoded), against one limit (12 M) in one config file; looks at 2.0 texture px per plate point | Proposed |
 
 **Read an ADR's status line and this table first; do not load ADR bodies
 you do not need.** A status here that says "amended" or "superseded" means

@@ -170,9 +170,9 @@ def main(argv: list[str] | None = None) -> int:
             red.append(r["name"])
     per_state = ingest.state_texture_bytes(args.island, hand)
     for (light, stage), b in per_state.items():
-        print(f"  {light}-{stage}: {b:,} texture bytes")
+        print(f"  {light}-{stage}: {b:,} texture px ({b * 4 / 1e6:.1f} MB decoded)")
     size = max(per_state.values(), default=0)
-    print(f"textureBytes {size:,} of {ingest.BUDGET:,}{'' if size <= ingest.BUDGET else '  OVER BUDGET'}")
+    print(f"texture px {size:,} of {ingest.BUDGET:,} ({size * 4 / 1e6:.1f} MB decoded){'' if size <= ingest.BUDGET else '  OVER BUDGET'}")
     print(f"plate gate: {n} state(s) gated, {len(legacy)} legacy ({', '.join(legacy)}), {'red: ' + ', '.join(red) if red else 'all green'}")
     return 1 if red or size > ingest.BUDGET else 0
 
