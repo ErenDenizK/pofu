@@ -234,6 +234,7 @@ def test_stations_that_share_a_stage_share_one_base_that_has_both_erased():
     cx, cy = info["crop"][0] * sl.TEX, info["crop"][1] * sl.TEX
     px0, py0, px1, py1 = sl.POND["bases"][stage]["window"]
     tx0, ty0, tx1, ty1 = sl.TEA_STALL["bases"][stage]["window"]
+    tx0 = max(tx0, 1252)       # the window starts at 1226, where the workshop's stops: the workshop's feather leaks into the first columns
     pond_win = (slice(py0 - cy, py1 - cy), slice(px0 - cx, px1 - cx))
     tea_win = (slice(ty0 - cy, ty1 - cy), slice(tx0 - cx, tx1 - cx))
     # the tea stall's window is the tea-only base's, the pond's window is no longer the plate's
