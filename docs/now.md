@@ -53,7 +53,7 @@ six vertical steps, each done when he plays it on his phone.
 Merged: #475-#538 (not #490, #503, #504, #507); pofu-art #81-#203 (not stale #84-#90, #132).
 
 ## Next (plan #519)
-Running: C3 New Year kit (`feat/special-day-kit`, owns plate-home `props`); 2d-2 ride polish (+ plate.key reads); 1c-2 #543 garden+workshop (CI red: iOS-only compile error l.525 + fixture; fixing with composite defects). NEXT SLOT: pond water ghosts (#528, in-app only; static layers clean) + water polygons still the old small pond: own PR, needs CI frames with the water effect / far picture toggled. Merged: S1 #540, 1e reveal #542 (sound per kind; card mark waits on a batch 159 pick, lead's call). Next: 1c-3 bagel, lighthouse, tea stall (196), pier (195->193); V1 rotor; S3 after 1c-2.
+Running: C3 New Year kit (`feat/special-day-kit`, owns plate-home `props`); 2d-2 ride polish (+ plate.key reads); 1c-2 #543 garden+workshop (push 1 green, garden/workshop clean at 1:1, but lead's frame diff found pond-l5 regressions: garden bed over the pond's L5 gazebo, workshop hole when unbuilt; push 2 fixing + full frame-to-frame list; stall matte wedge and lawn step go to 1c-3's brief). NEXT SLOT: pond water ghosts (#528, in-app only; static layers clean) + water polygons still the old small pond: own PR, needs CI frames with the water effect / far picture toggled. Merged: S1 #540, 1e reveal #542 (sound per kind; card mark waits on a batch 159 pick, lead's call). Next: 1c-3 bagel, lighthouse, tea stall (196), pier (195->193); V1 rotor; S3 after 1c-2.
 
 ## Open with the founder
 - Membership ~11-27: Mac 1-2 h, Distribution request same day; #490; N6; device: pinch, pond fps.
