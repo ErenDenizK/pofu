@@ -223,7 +223,7 @@ def test_stations_that_share_a_stage_share_one_base_that_has_both_erased():
     import ingest
     import heic
     stage = 3
-    assert [sp["id"] for sp in sl.stage_specs(stage)] == ["teaStall", "pond"]
+    assert [sp["id"] for sp in sl.stage_specs(stage)] == ["teaStall", "pond", "workshop"]
     both, info, _ = sl.accumulate_base(stage)
     tea_only, _ = sl.build_base(stage, sl.TEA_STALL["bases"][stage])
     p = f"world-home-plate-day-{stage}"
@@ -235,18 +235,18 @@ def test_stations_that_share_a_stage_share_one_base_that_has_both_erased():
     pond_win = (slice(py0 - cy, py1 - cy), slice(px0 - cx, px1 - cx))
     tea_win = (slice(ty0 - cy, ty1 - cy), slice(tx0 - cx, tx1 - cx))
     # the tea stall's window is the tea-only base's, the pond's window is no longer the plate's
-    assert np.abs(both[tea_win] - tea_only[tea_win]).max() < 1e-6
+    assert np.abs(both[tea_win] - tea_only[tea_win]).max() < 0.01      # the workshop window stops short of it (its feather leaks under 3 levels)
     assert np.abs(both[pond_win] - plate[pond_win]).max() > 0.2
     assert np.abs(tea_only[pond_win] - plate[pond_win]).max() < 1e-6    # alone, the tea stall leaves the pond painted
     assert (both[..., 3] <= plate[..., 3] + 1e-6).all()                 # the alpha only shrinks
-    assert [r[0] for r in info["regions"]] == ["teaStall", "pond"]
+    assert [r[0] for r in info["regions"]] == ["teaStall", "pond", "workshop"]
 
 
 def test_a_shared_stage_counts_its_base_once_in_the_texture_budget():
     import ingest
     stations = ingest.stations_data("home")
     shared = {k: v["baseBytes"]["3"] for k, v in stations.items() if "3" in v.get("baseBytes", {})}
-    assert set(shared) == {"teaStall", "pond"}
+    assert set(shared) == {"teaStall", "pond", "workshop"}
     largest = [max(stations[k]["lookBytes"]) for k in shared]               # rule v1: each station's one drawn look, and once more the largest (the one reveal)
     assert ingest.station_bytes("home", "day", 3) == max(shared.values()) + sum(largest) + max(largest)
 

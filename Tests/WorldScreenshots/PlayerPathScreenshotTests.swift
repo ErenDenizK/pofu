@@ -502,15 +502,15 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
         }
     }
 
-    /// The garden's and the workshop's looks on Home (plan row 1c): island 10 at levels 1 to 5 of each (`path-garden-l<level>`,
+    /// The workshop's looks on Home (plan row 1c): island 10 at levels 1 to 5 of each (`path-garden-l<level>`,
     /// `path-workshop-l<level>`), at noon, and at 22:00 for the night control (the looks are day art, the night keeps its painted
     /// stations). The other stations stay at level 3. Level 5 on island 10 is not a state the player reaches; the frames are for the looks.
     @MainActor
-    func testRenderTheGardenAndWorkshopLooks() async throws {
+    func testRenderTheWorkshopLooks() async throws {
         let scene = try windowScene()
         let folder = try outputFolder()
         let day = try XCTUnwrap(Self.path.first { $0.morning.islandLevel == 3 }, "the path has a level 3 island")
-        for (id, name) in [(StationID.garden, "garden"), (StationID.workshop, "workshop")] {
+        for (id, name) in [(StationID.workshop, "workshop")] {
             for level in 1...5 {
                 for (hour, suffix) in [(12.0, ""), (22.0, "-night")] where level == 3 || hour == 12 {
                     var world = day.morning
@@ -541,8 +541,8 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
         let folder = try outputFolder()
         let day = try XCTUnwrap(Self.path.first { $0.morning.islandLevel == 3 }, "the path has a level 3 island")
         let frames: [(island: Int, levels: [StationID: Int])] = [
-            (10, [.windmill: 3, .pond: 2, .garden: 4, .workshop: 1]), (9, [.windmill: 4, .pond: 3, .garden: 2, .workshop: 5]),
-            (8, [.windmill: 2, .pond: 4, .garden: 5, .workshop: 3]), (7, [.teaStall: 3, .pond: 1, .workshop: 4]),
+            (10, [.windmill: 3, .pond: 2, .workshop: 1]), (9, [.windmill: 4, .pond: 3, .workshop: 5]),
+            (8, [.windmill: 2, .pond: 4, .workshop: 3]), (7, [.teaStall: 3, .pond: 1, .workshop: 4]),
         ]
         for (islandLevel, levels) in frames {
             var world = day.morning

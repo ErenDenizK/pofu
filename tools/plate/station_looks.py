@@ -234,10 +234,14 @@ WORKSHOP = {
     "anchor": (668.0, 985.0),
     "foot": (557.3, 776.0),
     "footStage": 0,
-    "bases": {s: {"job": JOB.format(10 - s), "window": (860, 1150, 1300, 1580), "excludeOccluders": ("teaStall",), "excludeGrow": 2, "exclude": [(1070, 1526, 1200, 1620)], "shrinkAbove": 1500, "interior": False, "lighter": False} for s in (0, 1, 2, 3)},
+    "bases": {s: {"job": JOB.format(10 - s), "window": (860, 1150, 1300 if s < 3 else 1226, 1580), "excludeOccluders": ("teaStall",), "excludeGrow": 2, "exclude": [(1070, 1526, 1200, 1620), (860, 1470, 965, 1545)],   # stage 3: the window stops at 1226, the tea stall's own window (from 1252) erases the rest
+                  "interior": False, "lighter": False} for s in (0, 1, 2, 3)},
     "place": {s: {"foot": (557.3, 776.0), "scale": 1.0} for s in (0, 1, 2, 3)},
 }
-STATIONS = [TEA_STALL, WINDMILL, POND, GARDEN, WORKSHOP]
+# The garden is cut and based (above) but not shipped: its levels 3 to 5 stand where the pond's level 3 to 5 islet does (plate
+# [64,746,211,853] against [99,743,230,846]), and levels 1 and 2 collide with a pond at level 5, so it waits for a re-take whose crop
+# keeps the islet. Its spot keeps the plate's own painted bed.
+STATIONS = [TEA_STALL, WINDMILL, POND, WORKSHOP]
 
 
 # ---------------------------------------------------------------- looks

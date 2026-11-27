@@ -1,1 +1,1 @@
-The garden's and the workshop's levels 1 to 5 now show on Home at island levels 10 to 8 (workshop also 7), day only: the sunflower bed grows from three flowers to an arched garden and the workshop gains its gear, shed, ladder and lights, each on a clean erased base.
+The workshop's levels 1 to 5 now show on Home at island levels 10 to 7 (day only): it gains its gear, shed, ladder and lights on a clean erased base, and unbuilt it leaves a clean hill; the garden keeps its painted bed until a re-take.
