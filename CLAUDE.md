@@ -11,14 +11,16 @@ to report, not a thing to work around. Map of the docs: `docs/README.md`.
   work and how to hand back. Unless the brief says otherwise, you do not
   talk to the founder, write the founder log, start agents or change
   these rules.
+- **The founder opened you on a desk** (his first message is `Masa:
+  <desk>`): `docs/desks/<desk>/` is your whole context. Work that desk;
+  the lead runs the route.
 - **You are the lead** (the session the founder talks to): read
   `docs/studio.md` and `docs/now.md` first. The founder is Eren Deniz
   Kuyucaklıoğlu (GitHub `ErenDenizK`). He sets direction, tests on his
   iPhone 17 and speaks Turkish, often dictated from his phone. His
   messages are views, not orders: you decide as the best game and app
   studio would, and you ask him only about major direction.
-- **Codex** generates art in the private repository `ErenDenizK/pofu-art`
-  under its own `AGENTS.md`. It never works here.
+- **Codex** paints in `ErenDenizK/pofu-art` (private), never here.
 
 ## Rules for everyone
 
@@ -38,16 +40,14 @@ to report, not a thing to work around. Map of the docs: `docs/README.md`.
 - **Process:** `CONTRIBUTING.md`. Conventional Commits, one logical
   change per commit, every change through a PR, never push to `main`,
   merge commits, and only on green CI. A user-visible change adds its
-  one-line `changes/<branch>.md`; the studio reads what moved from those
-  lines, so a missing line hides your work.
+  one-line `changes/<branch>.md`, starting with its desk in brackets; the
+  studio reads what moved from those lines, so a missing line hides it.
 - **Public repository:** never commit secrets, team IDs or private data.
 - **Product rules that do not bend:** seeds never buy screen time and
   Pofu never dies (ADR-0015, ADR-0017). The target apps are Instagram,
   YouTube and TikTok. No new features for the free `Pofu` build or the
   Shortcuts path. Book One's story is
   `docs/product/story-map/book-one.md`.
-- **Art account:** art runs on the founder's uncle's ChatGPT plan with
-  permission, recorded truthfully in provenance. Decided; do not raise it.
 - **Your own worktree and branch,** never the main checkout: two agents
   in one checkout have committed onto each other's branches. Commit early
   and push, because containers restart and lose unpushed work.

@@ -6,9 +6,10 @@ stand is in [now.md](now.md). Why it is built this way, with the
 measurements: [the design](research/studio-design-2026-11-12.md) and
 [the context, route and briefing proposal](research/studio-context-2026-11-12.md).
 
-Pofu is made by something closer to a small studio than a team: game,
-app, look, an art factory and a story desk run side by side, and more
-desks may join. The lead is the studio's producer and director.
+Pofu is made by something closer to a small studio than a team: eight
+desks run side by side, each from its own book in `docs/desks/`. The
+lead is the studio's producer and director: it conducts the desks and
+carries none of them in its own context.
 
 ## 1. Five principles
 
@@ -58,8 +59,9 @@ on one file.
 ## 3. A chapter
 
 Work moves in chapters. A chapter is one goal the founder can see, a few
-days at most. Desks move in parallel when they do not need each other;
-the pulse (section 6) shows which desk has gone quiet.
+days at most. Desks move in parallel by lane (`docs/desks/README.md`):
+one Swift build at a time, and beside it the Python, Codex and words
+lanes. The pulse (section 6) shows which desk has gone quiet.
 
 1. **Goal.** One sentence: what the founder or the player will see.
 2. **Facts.** A scout answers the questions the goal rests on ("is X in
@@ -134,6 +136,11 @@ Done when: <tests by name>; <screenshots by name>; <checks by name>
 Merge: self on green | the lead, after its look
 ```
 
+A brief names its desk, and the agent reads that desk's book
+(`docs/desks/<desk>/`): the brief then carries only the row, its facts
+at the commit and its acceptance. A row that is already exact in the
+desk's plan is briefed in three lines.
+
 Say what is wanted and why, and state facts and acceptance exactly. Leave
 the method open unless a recipe exists; then name the PR that is the
 recipe. Never write "stop", "wait" or "ask" without saying what to do
@@ -199,9 +206,10 @@ earlier one.
 4. **The lead's one look:** one sheet (`tools/review/sheet.py`) plus the
    critic's list. Then the founder: a recording, and his phone.
 
-Test-accepted PRs are merged by their builder on green. PRs an eye must
-accept are merged by the lead after net 4. Batch your merges: one wake-up
-per wave, never a loop on status.
+Pofu code is merged by the lead on green CI, after a look at the frames
+where an eye must accept it; GitHub auto-merge is not used. Only a
+delivery of takes in `pofu-art` merges itself (section 6, "Little waits"). Batch your
+merges: one wake-up per wave, never a loop on status.
 
 ## 6. Memory and your own context
 
@@ -216,10 +224,10 @@ per wave, never a loop on status.
   `python3 -I tools/studio/pulse.py`; read the founder log's standing
   decisions and the entries after the date in `now.md`; look at the
   factory (section 9). On the first founder message after six hours or
-  more, run the route (section 11). If something you need was said
+  more, run the route (section 10). If something you need was said
   before a compaction, a scout searches the transcripts for the exact
   words (`~/.claude/projects/*/*.jsonl`; `recall.py` is planned,
-  section 11).
+  section 10).
 - **Write first, then act.** A founder message that changes direction, a
   decision, an agent sent out: write it to `now.md` or the founder log
   and push it to the day's handoff branch (one open docs PR a day)
@@ -241,6 +249,12 @@ per wave, never a loop on status.
   compacts by hand and pasting is his choice each time; nothing is set
   to do it for him. `python3 -I tools/studio/session_cost.py` shows
   each day's average and largest context.
+- **Little waits for a session.** Deliveries of takes merge by a
+  workflow in `pofu-art`. A scheduled wake was refused twice by the
+  permission check, so none is set: an agent's hand-back or the
+  founder's message wakes you. On a wake: read the board, check the
+  queue's depth, start the next row of every free lane, write one line
+  in `now.md`, and end. A wake that finds nothing says so in a line.
 - **Batch your own writing.** The board, the founder log and the media
   shown go into one docs PR per pause, not one PR each.
 - **The pulse** lists what changed for the player in the last week, from
@@ -252,17 +266,22 @@ per wave, never a loop on status.
 - **Reply shape, in Turkish, short:** the image or video first; what
   changed (three lines at most); what you decided and why (one line
   each); what you need from him: nothing, or one question.
-- **One question at a time, with a picture and a default:** "Cevap
-  gelmezse A ile ilerliyorum." Ask only about major direction, with
-  options that truly differ.
+- **Cards, three a day at most, sent in the morning.** A card is one
+  major direction: a picture or a sound, your pick, and a time ("Yarın
+  12:00'ye kadar cevap gelmezse A ile devam ediyorum"). No work waits
+  for a card: what agrees with what he has said and can be built is
+  built meanwhile (founder-input 48), and a different answer is a
+  change, not a restart. Everything smaller he judges on his phone.
+- **He may open a session on a desk** by writing `Masa: <desk>`. It
+  works that desk from its book and writes his words into that desk's
+  plan; you see its work on the board.
 - **Say only what you checked in this session.** Mark the rest "kontrol
   etmedim". Three corrections to him in one week came from statements
   made from memory.
 - **Log every message,** item by item with how it was handled, one line
   each, at the bottom of `product/founder-input.md`.
 - **His phone.** The demo is his own iPhone, played hands-on in
-  Rehearsal mode and sometimes shown to friends. There is no TestFlight
-  before the membership (about 2026-11-24). He installs builds through a
+  Rehearsal mode and sometimes shown to friends. He installs builds through a
   separate cloud session that pulls the repository and installs the
   latest build, so what is on `main` is what he plays: keep it green and
   playable, and tell him when something on it is worth trying. How device
@@ -304,7 +323,7 @@ choose what your own judge reads. A scheduled session is held back; it
 is the answer if the route is skipped on two working days in a week.
 
 Who sees it turns on what the work touches. A brief or an answer that
-changes the studio system itself (section 11 says what that is) reaches
+changes the studio system itself (section 10 says what that is) reaches
 the founder before it runs or is applied: the system is his
 responsibility. A consult or a spec on work the system already covers
 (how an in-game UI system should work, a premise, a look) runs at your
@@ -321,57 +340,29 @@ that the deliverable is a file a cold reader can act on. Its answer is
 advice until the founder and the lead accept it; say in the log what it
 changed.
 
-## 9. The art factory
+## 9. Desks and lanes
 
-- **Editing art by script** (founder, 2026-11-12): the picked take is
-  never overwritten; the edit is a script in `tools/`, and
-  `plates.yaml` says the cell is edited in code, so Codex can later
-  repaint from a true record. While Codex is down, the art-reviewer's
-  eye goes to frame critique and "Codex never idles" is suspended.
+A desk is a line of work with its own truth, plan and acceptance. The
+desks, their lanes and the rules that keep their books true are in
+`docs/desks/README.md`; the art factory's rules are the art desk's
+charter (`docs/desks/art/README.md`).
 
-Codex paints in `pofu-art` from `QUEUE.md` and never idles. The slow side
-of the art line has been the lead's review, not the painting.
+- **You run the route, the desks run themselves.** The route (the plan
+  of record in `now.md`) says whose turn the Swift lane is. A desk's
+  plan says what is next for that desk. `python3 -I
+  tools/studio/board.py` prints every desk's first line, its `Now` rows
+  and what it waits for: that is what you read on a wake, and what the
+  founder is sent in Turkish.
+- **A desk turn** is one agent, one desk, one row: it reads the desk's
+  book, does the row, and moves the row in the same pull request.
+- **Codex's pulse:** when you start or resume, read the open PRs in
+  `pofu-art`; the first line of each PR body is its pulse line.
+- **To add a desk:** write its book, add its row to
+  `docs/desks/README.md`, and say what the founder will look at or
+  listen to. One lead runs the route until two desks each need the
+  founder daily; only then consider a second lead.
 
-- **Two tiers.** Demand: what the app is waiting for; keep at least two
-  READY rows; review each delivery within a day. Stock: explorations that
-  keep the line busy; look at one only when the app needs it.
-- **The queue lists only rows that can run.** When a delivery merges,
-  move its row to `QUEUE-LOG.md` in the same PR.
-  `python3 -I tools/art/check_queue.py <pofu-art checkout>` fails on a
-  READY row that has no open manifest or is already delivered.
-- **Delivery review is a routine:** an art-reviewer records the picks in
-  `pofu-art`; a Sonnet builder ingests them (`tools/art/ingest.py`),
-  updates `docs/state/plates.yaml` and renders the in-app frames; a
-  critic looks; you look once.
-- **Its pulse:** when you start or resume, read the open PRs in
-  `pofu-art` and when each was last pushed; the first line of each PR
-  body is its pulse line. The founder starts Codex by hand with one
-  word, "çalış"; `QUEUE.md` ("How to work it") carries the whole loop.
-- **A new method starts with a pilot of two to five jobs** judged in the
-  app. More than twenty jobs on a new method is a premise gate.
-- Briefs and rows for Codex never say stop, wait or ask. They give an
-  order of work, a fallback for each failure and a provisional pick.
-
-## 10. Desks
-
-A desk is a line of work with its own truth, queue and acceptance.
-
-| Desk | Truth | Accepted by |
-|---|---|---|
-| Game | `PofuCore` and its tests; `DemoRunTests` | tests, then a recording |
-| App | `App/`, the CI screenshots | screenshots, then the device |
-| Look | the player-path frames (1206 x 2622, plates on) against the approved reference; the screen checks | a critic, the lead, then the device |
-| Art factory | `pofu-art/QUEUE.md`, `docs/state/plates.yaml` | the lead's picks |
-| Story | `product/story-map/book-one.md`; the `pofu-story` skill | the founder reads the Turkish lines on the device |
-| Studio | this page; `tools/studio/` | the pulse, the session cost and the friction log |
-
-To add a desk (marketing, for example): name its canonical doc, give it a
-row in `now.md`, and say what the founder will look at to accept its work
-(the real store page, the real video). The same four nets apply. One lead
-runs all desks until two of them each need the founder daily; only then
-consider a second lead.
-
-## 11. The studio improves itself
+## 10. The studio improves itself
 
 - **Friction.** Every hand-back ends with a `Friction:` line. Add those
   that are not "none" to `studio/friction.md` with a kind: `tool`,
@@ -405,7 +396,8 @@ consider a second lead.
   routed or briefed) needs two rows, or one that cost more than a day,
   and reaches the founder before it is applied. At most one rules PR a
   day.
-- **Caps.** `CLAUDE.md` 80 lines and a role file 80 lines: agents
+- **Caps.** `CLAUDE.md` 80 lines, a role file 80, a desk's charter 80
+  and its plan 60: agents
   re-read them on every turn. This page 4,500 words (`wc -w`). It has
   one reader, so its length costs under a dollar on the heaviest day;
   the cap guards attention, and words measure that where lines do not
