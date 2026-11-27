@@ -191,11 +191,15 @@ extension AppModel {
             clock: snapshot.clock,
             firstDay: snapshot.firstDay,
             hour: Double(hour) + Double(parts.minute ?? 0) / 60,
-            calendar: calendar
+            calendar: calendar,
+            season: snapshot.season
         ).weather
         let ambienceWeather = AmbienceWeather(weatherName: weather.rawValue)
         AmbienceConductor.shared.update(
-            scene: AmbienceScene(hour: hour, weather: ambienceWeather, islandLevel: snapshot.islandLevel),
+            scene: AmbienceScene(
+                hour: hour, weather: ambienceWeather, islandLevel: snapshot.islandLevel,
+                season: AmbienceSeason(seasonName: snapshot.season?.rawValue), snowing: weather.isSnowing
+            ),
             isActive: true
         )
         MusicPlayer.shared.update(state: WorldSound.musicState(of: snapshot, hour: hour, weather: ambienceWeather), isActive: true)

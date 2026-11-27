@@ -194,7 +194,8 @@ struct AmbienceTests {
     @Test func weatherNamesMapAndUnknownIsClear() {
         #expect(AmbienceWeather(weatherName: "lightRain") == .lightRain)
         #expect(AmbienceWeather(weatherName: "goldenHaze") == .goldenHaze)
-        #expect(AmbienceWeather(weatherName: "snow") == .clear)
+        #expect(AmbienceWeather(weatherName: "snow") == .overcast)
+        #expect(AmbienceWeather(weatherName: "fog") == .clear)
         #expect(AmbienceScene(hour: 26, weather: .clear, islandLevel: 1).hour == 2)
     }
 

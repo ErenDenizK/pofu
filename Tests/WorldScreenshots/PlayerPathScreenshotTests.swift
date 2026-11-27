@@ -30,6 +30,10 @@ import XCTest
 ///   Rehearsal season override: the season is not complete), by day over the windmill's level 2 and 5 looks and by night;
 ///   `path-season-turn-0000`, `-0750`, `-1000`, `-1250`, `-1500`: spring turning to autumn (the painting's cross-fade, 0.8 s
 ///   long, seen 0, 750, 1000, 1250 and 1500 ms after the season changes; the first 750 ms are still spring on the CI runner). The level 3 autumn state is not painted yet, so it has no frame;
+/// - `path-season-<autumn|winter|summer>-i3`, `-i10`, `-i3-night`, `-i10-night`: Home in the island's season at island level 3 and 10
+///   with the season's air (C2: leaves, snow, the summer fireflies; the Rehearsal override, so a stage without that season's
+///   painting shows the shipped one under the air); `path-season-<autumn|winter>-air-0.0`, `-2.5`, `-5.0` and
+///   `path-season-summer-air-night-0.0`, `-2.5`, `-5.0`: the moving layer (leaves, snow, fireflies) still at three moments;
 /// - `path-d03-grew-0900`: the overnight landing on the old painting, Pofu's news line and its button;
 ///   `path-d03-grew-live-1800`: the same morning, 1.8 s after the button, through the live timers;
 /// - `path-d04-build-focus`, `path-d04-build-burst`: a build's camera through the real `focusStation`
@@ -99,11 +103,16 @@ class PlayerPathFrameCase: XCTestCase {
     @MainActor
     func homeView(
         _ world: WorldSnapshot, hour: Double, island: IslandSceneModel, beads: [Bool] = [], settled: Bool = false,
-        beats: [VisitBeat]? = nil, model: WorldHomeModel? = nil, pofuStand: WorldPoint? = nil, season: Season? = nil
+        beats: [VisitBeat]? = nil, model: WorldHomeModel? = nil, pofuStand: WorldPoint? = nil, season: Season? = nil,
+        air: Bool = false, weather: WeatherConditions? = nil, airTime: Double? = nil
     ) -> some View {
         var look = WorldLook.playerPath(hour: hour)
         look.pofuStand = pofuStand
         look.seasonOverride = season
+        // The season's air (C2) is judged by its own frames: the autumn painting's (S3) and every other path frame
+        // keep the island without it, byte for byte.
+        look.seasonAir = air
+        look.weatherOverride = weather
         XCTAssertTrue(look.homePlates, "a path frame is never the sprite island")
         let now = world.clock ?? Date()
         let home = model ?? WorldHomeModel(now: { now }, schedulesCues: false, cheekLineHistory: cheekHistory(before: world))
@@ -126,6 +135,7 @@ class PlayerPathFrameCase: XCTestCase {
         )
         .environment(\.worldLook, look)
         .environment(\.worldStillFrame, true)
+        .environment(\.seasonAirTime, airTime)
     }
 
     @MainActor
@@ -540,6 +550,48 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
             }
             try await capture(AnyView(view), name: "path-season-turn-\(name)", scene: scene, folder: folder, settle: 2100, flip: PathFlip(waiting: ms) { dial.season = .autumn }) {
                 XCTAssertNotNil(island.homePlate, "path-season-turn-\(name): Home is its painting")
+            }
+        }
+    }
+
+    /// Home in the island's other seasons with their air (island calendar v1, C2): autumn's leaves, winter's snow and summer's
+    /// fireflies at island levels 3 and 10, by day and by night, then each moving layer still at three moments (0, 2.5 and 5 s).
+    /// The season is the Rehearsal override and the weather is pinned (clear, or snow in winter), so the frames show the air alone.
+    @MainActor
+    func testRenderTheSeasonAir() async throws {
+        let scene = try windowScene()
+        let folder = try outputFolder()
+        let day = try XCTUnwrap(Self.path.first { $0.morning.islandLevel == 3 }, "the path has a level 3 island")
+        func world(level: Int) -> WorldSnapshot {
+            var world = day.morning
+            world.islandLevel = level
+            return world
+        }
+        let snow = WeatherConditions(weather: .snow)
+        let skies: [(season: Season, weather: WeatherConditions)] = [(.autumn, .clear), (.winter, snow), (.summer, .clear)]
+        for (season, weather) in skies {
+            for level in [3, 10] {
+                for (suffix, hour) in [("", 10.0), ("-night", 23.0)] {
+                    let name = "path-season-\(season.rawValue)-i\(level)\(suffix)"
+                    let island = IslandSceneModel(framing: .mid)
+                    let view = homeView(world(level: level), hour: hour, island: island, settled: true, season: season, air: true, weather: weather)
+                    try await capture(AnyView(view), name: name, scene: scene, folder: folder, settle: 2100) {
+                        XCTAssertNotNil(island.homePlate, "\(name): Home is its painting")
+                    }
+                }
+            }
+        }
+        let moving: [(label: String, season: Season, weather: WeatherConditions, hour: Double)] = [
+            ("autumn-air", .autumn, .clear, 10), ("winter-air", .winter, snow, 10), ("summer-air-night", .summer, .clear, 23),
+        ]
+        for (label, season, weather, hour) in moving {
+            for time in [0.0, 2.5, 5.0] {
+                let name = "path-season-\(label)-\(time)"
+                let island = IslandSceneModel(framing: .mid)
+                let view = homeView(world(level: 10), hour: hour, island: island, settled: true, season: season, air: true, weather: weather, airTime: time)
+                try await capture(AnyView(view), name: name, scene: scene, folder: folder, settle: 2100) {
+                    XCTAssertNotNil(island.homePlate, "\(name): Home is its painting")
+                }
             }
         }
     }

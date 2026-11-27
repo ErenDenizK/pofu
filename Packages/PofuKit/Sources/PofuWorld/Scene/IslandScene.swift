@@ -597,7 +597,7 @@ private struct SceneFrame<Bubble: View>: View {
         // The world's weather (the date's seeded bag, or the screenshot's) and
         // the player's screen haze (wellbeing only): two skies that never mix.
         let conditions = look.weatherOverride
-            ?? WeatherForecast.conditions(clock: world.clock, firstDay: world.firstDay, hour: minute / 60, calendar: .current)
+            ?? WeatherForecast.conditions(clock: world.clock, firstDay: world.firstDay, hour: minute / 60, calendar: .current, season: look.airSeason(world))
         let rawHaze = look.grade ? ScreenHaze.amount(wellbeing: world.wellbeing) : 0
         let atmosphere = look.grade
             ? Atmosphere(conditions: conditions, haze: ScreenHaze.parted(rawHaze, parting: hazeClearing?.partingTarget(at: Date()) ?? 0))
@@ -607,7 +607,9 @@ private struct SceneFrame<Bubble: View>: View {
             wellbeing: world.wellbeing,
             calm: world.calm,
             isBedtime: world.isBedtime
-        ).withAtmosphere(atmosphere)
+        ).withAtmosphere(atmosphere).withSeason(look.grade ? look.airSeason(world) : nil)
+        // The season's air: leaves, or the flakes of a snowfall (C2).
+        let airPlan = SeasonAir.plan(season: look.airSeason(world), weather: atmosphere.conditions.weather)
         // The colour script's sky, overcast when Pofu is unwell, then the
         // weather's and the haze's.
         let palette = SkyModel.palette(minuteOfDay: minute, isBedtime: world.isBedtime, unwell: look.grade ? baseLight.unwell : 0)
@@ -904,6 +906,11 @@ private struct SceneFrame<Bubble: View>: View {
                     // glints or splash ticks; the painting is the only light there is.
                     WeatherRain(atmosphere: atmosphere, pose: pose, offset: offset, size: size, horizon: sky.horizon, groundMarks: false)
                         .environment(\.worldAmbientPaused, ambientPaused)
+                    SeasonAirLayer(
+                        plan: airPlan, night: light.night, pose: pose, offset: offset, size: size,
+                        fireflies: SeasonAir.paintedFireflies(look.airSeason(world)) * light.fireflies
+                    )
+                    .environment(\.worldAmbientPaused, ambientPaused)
                 }
 
                 if !painted {
@@ -928,6 +935,8 @@ private struct SceneFrame<Bubble: View>: View {
 
                     // Rain, splash ticks and puddle glints in front of the island.
                     WeatherRain(atmosphere: atmosphere, pose: pose, offset: offset, size: size, horizon: sky.horizon, groundMarks: codeFade < 0.5)
+                        .environment(\.worldAmbientPaused, ambientPaused)
+                    SeasonAirLayer(plan: airPlan, night: light.night, pose: pose, offset: offset, size: size)
                         .environment(\.worldAmbientPaused, ambientPaused)
 
                     // The screen haze (the player's sky): from the harbor side.
