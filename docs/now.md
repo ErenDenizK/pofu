@@ -39,7 +39,7 @@ six vertical steps, each done when he plays it on his phone.
    PR 5 Today header merged (#534); PR 2 Swift rule merged (#537); PR 3 merged (#536: measured
    34.6 MB vs 37.6 counted; publish job timed out on a slow runner); 1c resumes on #528 at 2.0; Gezgin moored merged (#529;
    left: wake frame clock, faint cloud shadow, no rope, stand-in chime); ADR-0028 merged (#527);
-   2c voyage row merged (#538); 2d ride running (carries 2b/2c leftovers).
+   2c voyage row merged (#538); 2d ride merged (#539, leftovers fixed); 2d-2 polish running (board off stage, scale jump, plaque, rope to air).
    173-176 not cuttable (whole re-renders); plot ladders D52-D55 first in Demand
    (#185); pier D56 BLOCKED (bare crop fills the islet gap). Night: D51 (#182).
 0. Assessment done: path `docs/design/assessment-2026-11-24-path.md` (#511),
@@ -53,7 +53,7 @@ six vertical steps, each done when he plays it on his phone.
 Merged: #475-#538 (not #490, #503, #504, #507); pofu-art #81-#203 (not stale #84-#90, #132).
 
 ## Next (plan #519)
-Running: pond fix (#528), 2d ride; S1 #540 in CI (after the ride: VoyageRowView 178/244/249, IslandScene 1458, HomePlateCrop Map path read plate.key, not light). Then the other 4 stations from D52-D55; 1e reveal. Device days on membership.
+Running: pond fix (#528), 2d-2 ride polish; S1 #540 in CI (after the ride: VoyageRowView 178/244/249, IslandScene 1458, HomePlateCrop Map path read plate.key, not light). Then the other 4 stations from D52-D55; 1e reveal. Device days on membership.
 
 ## Open with the founder
 - Membership ~11-27: Mac 1-2 h, Distribution request same day; #490; N6; device: pinch, pond fps.
