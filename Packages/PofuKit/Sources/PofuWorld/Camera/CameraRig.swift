@@ -238,8 +238,10 @@ public struct CameraRig: Hashable, Sendable {
 
     /// Flies to `target` (§1.2): up over the sea, across, and down. It lasts
     /// `CameraFlight.duration`; under Reduce Motion the camera jumps.
-    public mutating func startFlight(to target: CameraPose, landing: FlightLanding, seconds: Double? = nil) {
-        let start = pose
+    /// `from` starts the flight at a pose other than the camera's own (the voyage ride's match cut: the first
+    /// frame frames Home where the row has it).
+    public mutating func startFlight(to target: CameraPose, landing: FlightLanding, seconds: Double? = nil, from: CameraPose? = nil) {
+        let start = from ?? pose
         flightLanding = landing
         focusAmount.jump(to: 0)
         lensAmount.jump(to: 0)

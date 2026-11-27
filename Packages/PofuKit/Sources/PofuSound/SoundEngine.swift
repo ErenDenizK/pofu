@@ -23,6 +23,7 @@ public final class SoundEngine {
             policy.settings = newValue
             newValue.save()
             AmbienceConductor.shared.refresh()
+            MusicPlayer.shared.refresh()
         }
     }
 
@@ -69,6 +70,7 @@ public final class SoundEngine {
         if !player.isPlaying { player.play() }
         scheduleIdleStop()
         AmbienceConductor.shared.noteCue()
+        MusicPlayer.shared.noteCue()
     }
 
     /// Stops the engine and releases the audio session; the next cue

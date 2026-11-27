@@ -1,0 +1,1 @@
+[world] The ride's handover is a match cut: Home keeps its place and size as the camera lifts off, no second Home, the far island comes in only as the camera descends on it, and the place control hides during every ride.

@@ -22,6 +22,11 @@
   "night:9"
  ],
  "minLevel": 1,
+ "seasons": {
+  "autumn": {
+   "complete": false
+  }
+ },
  "plates": {
   "day": {
    "0": "design/art/takes/batch-66-home-flow/x-home-flow-final-rich/plate__x-home-flow-final-rich--t1.webp",
@@ -54,6 +59,12 @@
    "7": "design/art/takes/batch-72-home-night/x-home-flow-il3-night/plate__x-home-flow-il3-night--t2.webp",
    "8": "design/art/takes/batch-74-redo-states/x-home-flow-il2-night-v2/plate__x-home-flow-il2-night-v2--t2.webp",
    "9": "design/art/plates/home/derived/plate-il1-night.webp"
+  },
+  "autumn-day": {
+   "0": "design/art/takes/batch-194-season-slice-pilot/x-season-autumn-l10-day/plate__x-season-autumn-l10-day--t1.webp"
+  },
+  "autumn-night": {
+   "0": "design/art/takes/batch-194-season-slice-pilot/x-season-autumn-l10-night/plate__x-season-autumn-l10-night--t1.webp"
   }
  },
  "trace": [

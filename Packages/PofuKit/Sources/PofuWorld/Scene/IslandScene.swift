@@ -291,7 +291,8 @@ public struct IslandScene<Bubble: View>: View {
             // composition data mirrors the corner (`world-map.json` `chrome.nearBack`; the Today glance
             // has faded by then, so the left corner is free). Thumb zone.
             let atNear = model.projectedFraming == .near
-            let showsControl = model.focus == nil && !model.hasSheet
+            // Hidden with the rest of the focus UI for every ride, back when the passengers are off.
+            let showsControl = model.focus == nil && !model.hasSheet && !model.hidesFocusUI
             PlaceControl(model: model, islands: arrivedIslands)
                 .padding(atNear ? .leading : .trailing, atNear ? CGFloat(WorldMap.shipped?.nearBack.box.minX ?? Double(PofuSpacing.screen)) : PofuSpacing.screen)
                 .padding(.bottom, PofuSpacing.s)
@@ -568,14 +569,18 @@ private struct SceneFrame<Bubble: View>: View {
         // the Map only the island cut stays, among the other islands.
         // Leaving Home for another island the painting fades as the camera rises off it (as Çağlayan's
         // does), never at the flight's first frame.
+        // Under the row (a ride from it) Home's own picture, sky and island, waits for the match cut: the row draws
+        // Home until the flight's first frame, the scene from then on at the same place and scale, so Home never
+        // shows twice and never jumps.
+        let homeShare: Double = model.ride.flatMap { ride in model.rideElapsed(at: clock).map { ride.sceneHomeOpacity(at: $0) } } ?? 1
+        // The wonder islands come in as the camera comes down on one (`VoyageRide.sceneIslandOpacity`).
+        let wonderShare: Double = model.ride.flatMap { ride in model.rideElapsed(at: clock).map { ride.sceneIslandOpacity(at: $0) } } ?? 1
+        let characterShare: Double = model.ride.flatMap { ride in model.rideElapsed(at: clock).map { ride.sceneCharacterOpacity(at: $0) } } ?? 1
         let plateFade: Double = {
             guard let plate else { return 0 }
-            // Under the row (a ride from it) Home's own plate waits until the row's Home has faded out, so Home
-            // never shows twice: the row draws Home until then.
-            let share = model.ride.flatMap { ride in model.rideElapsed(at: clock).map { ride.sceneIslandOpacity(at: $0) } } ?? 1
-            if model.island == .home { return PlateHomeLayer.opacity(z: z) * share }
+            if model.island == .home { return PlateHomeLayer.opacity(z: z) * homeShare }
             guard mapSky != nil else { return 0 }
-            return HomePlate.isleFade(pose: pose, box: plate.islandBox, closeScale: plate.islandStop.scale, viewportWidth: Double(size.width)) * share
+            return HomePlate.isleFade(pose: pose, box: plate.islandBox, closeScale: plate.islandStop.scale, viewportWidth: Double(size.width)) * homeShare
         }()
         let isleFade = isle != nil && model.island == .caglayan
             ? HomePlate.caglayanFade(pose: pose, viewportWidth: Double(size.width))
@@ -798,7 +803,7 @@ private struct SceneFrame<Bubble: View>: View {
                 if let plate {
                     // The painted plate, never graded: its backdrop, the
                     // plate and, toward the Map, the island cut alone.
-                    PlateHomeLayer(plate: plate, pose: pose, size: size, offset: offset, fade: plateFade, stationLevels: HomePlate.stationLevels(world), build: build, nearLens: nearLens, water: water)
+                    PlateHomeLayer(plate: plate, pose: pose, size: size, offset: offset, fade: plateFade, stationLevels: HomePlate.stationLevels(world), build: build, nearLens: nearLens, water: water, islandOpacity: homeShare)
                     FarBellSkyLayer(plate: plate, world: world, pose: pose, size: size, offset: offset).opacity(plateFade)
                 } else {
                     // Today's resist seals on the earth beside Pofu's door: an
@@ -814,7 +819,7 @@ private struct SceneFrame<Bubble: View>: View {
                     // drawn while its state is painted). Its sky is never graded; its island takes the
                     // hour's light under the sky behind it (its own at its stop, Home's on the Map).
                     PlateHomeLayer(plate: isle, pose: pose, size: size, offset: offset, fade: isleFade, islandGrade: isleGrade)
-                        .opacity(model.island == .caglayan ? 1 : max(0, 1 - max(z, 0) / 0.8) * (model.focus == nil ? 1 : 0))
+                        .opacity(model.island == .caglayan ? 1 : max(0, 1 - max(z, 0) / 0.8) * (model.focus == nil ? 1 : 0) * wonderShare)
                         .offset(y: model.island == .caglayan ? 0 : CGFloat(MapSlots.bob(IslandID.caglayan.rawValue, time: life.isAmbient ? life.time : nil, z: z)))
                 }
 
@@ -844,6 +849,7 @@ private struct SceneFrame<Bubble: View>: View {
                 .cameraTransform(pose: pose, viewportWidth: Double(size.width), offset: offset)
                 .tinted(tint, isEnabled: !(look.grade && WorldShaders.isAvailable))
                 .frame(width: size.width, height: size.height, alignment: .topLeading)
+                .opacity(characterShare)
 
                 PofuLayer(
                     world: world,
@@ -866,6 +872,7 @@ private struct SceneFrame<Bubble: View>: View {
                     moveStand: moveStand,
                     moveLift: life.moves["pofu"]?.lift ?? 0
                 )
+                .opacity(characterShare)
 
                 if let props, plate == nil || plate?.propSpec(.jar) != nil {
                     // The jar, the lantern and the pots share the island's

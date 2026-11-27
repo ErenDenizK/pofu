@@ -71,12 +71,22 @@ private struct VoyageRow: View {
                 PofuTimeline(hz: PofuFrameRate.direct, paused: model.rideHeld != nil, kind: .essential) { context in
                     let t = model.rideElapsed(at: context.date) ?? ride.duration
                     let origin = VoyageRoute.index(of: ride.from, in: stops)
-                    content(
-                        layout: layout, stops: stops, selected: selected, size: size,
-                        position: ride.rowPosition(at: t, selected: Double(selected), origin: Double(origin)),
-                        bar: ride.barOpacity(at: t)
-                    )
-                    .opacity(ride.rowOpacity(at: t))
+                    // The match cut: from the flight's first frame Home is drawn apart from the row, at the scene's own
+                    // camera, above the row's fading sea (never veiled by it, never moving by itself), until the
+                    // row has given way and the scene's Home takes over at the same place.
+                    let flying = t >= ride.flightStart
+                    ZStack(alignment: .topLeading) {
+                        content(
+                            layout: layout, stops: stops, selected: selected, size: size,
+                            position: ride.rowPosition(at: t, selected: Double(selected), origin: Double(origin)),
+                            bar: ride.barOpacity(at: t),
+                            home: flying ? 0 : ride.rowHomeOpacity(at: t)
+                        )
+                        .opacity(ride.rowOpacity(at: t))
+                        if flying, ride.rowHomeOpacity(at: t) > 0 {
+                            VoyageRiseHome(model: model, world: world, size: size)
+                        }
+                    }
                 }
             } else {
                 content(layout: layout, stops: stops, selected: selected, size: size, position: state.held ?? Double(selected))
@@ -86,13 +96,13 @@ private struct VoyageRow: View {
         .accessibilityIdentifier("voyage-row")
     }
 
-    private func content(layout: VoyageRowLayout, stops: [VoyageStop], selected: Int, size: CGSize, position: Double, bar: Double = 1) -> some View {
+    private func content(layout: VoyageRowLayout, stops: [VoyageStop], selected: Int, size: CGSize, position: Double, bar: Double = 1, home: Double = 1) -> some View {
         Group {
             ZStack(alignment: .topLeading) {
                 VoyageSea(model: model, world: world, look: look, size: size)
                 ForEach(order(stops, position: position), id: \.island) { stop in
                     if let index = stops.firstIndex(of: stop) {
-                        VoyageIsle(model: model, stop: stop, world: world, place: layout.place(index: index, position: position), size: size)
+                        VoyageIsle(model: model, stop: stop, world: world, place: layout.place(index: index, position: position), size: size, island: stop.island == .home ? home : 1)
                     }
                 }
                 moored(layout: layout, stops: stops, position: position, size: size)
@@ -206,6 +216,32 @@ private struct VoyageSea: View {
     }
 }
 
+/// Home as the scene's camera has it, drawn by the row for the part of the flight where the row's sea is still
+/// fading (`VoyageRide.handoverSeconds`): the same picture the scene draws from then on.
+private struct VoyageRiseHome: View {
+    let model: IslandSceneModel
+    let world: WorldSnapshot
+    let size: CGSize
+
+    var body: some View {
+        if let plate = model.homePlate {
+            let rig = model.engine.rig
+            let pose = rig.pose
+            let offset = CGSize(width: Double(rig.offsetX.value), height: Double(rig.offsetY.value))
+            Group {
+                if plate.isMatted {
+                    FarPicture(compositor: PlateCompositor(plate: plate, levels: HomePlate.stationLevels(world)), pose: pose, size: size, offset: offset)
+                } else {
+                    PlateImage(name: plate.plate.mapIslandArt(light: plate.key, stage: plate.stage), box: plate.islandBox, pose: pose, size: size, offset: offset)
+                }
+            }
+            .frame(width: size.width, height: size.height, alignment: .topLeading)
+            .allowsHitTesting(false)
+            .accessibilityHidden(true)
+        }
+    }
+}
+
 /// One island of the row: its art on a soft bed of cloud, or a cloud tower where it is not yet open.
 private struct VoyageIsle: View {
     let model: IslandSceneModel
@@ -213,6 +249,9 @@ private struct VoyageIsle: View {
     let world: WorldSnapshot
     let place: VoyageRowLayout.Place
     let size: CGSize
+    /// How much of the island's picture is drawn (its bed fades with the row): Home's goes at the match cut,
+    /// the frame the scene draws it at the same place.
+    var island = 1.0
 
     /// Home's painting is matted: its island is the far snapshot of the live composite (the player's own
     /// station looks included), the same picture as mid, never the old Map cut.
@@ -242,6 +281,7 @@ private struct VoyageIsle: View {
                     pose: pose, size: size, offset: CGSize(width: place.x - Double(size.width) / 2, height: 0)
                 )
                 .frame(width: size.width, height: size.height, alignment: .topLeading)
+                .opacity(island)
                 VoyageBed(x: place.x, foot: foot - 0.04 * place.width, width: place.width, weight: place.weight, grade: grade, front: true)
             }
             .frame(width: size.width, height: size.height, alignment: .topLeading)
@@ -274,6 +314,7 @@ private struct VoyageIsle: View {
                 .brightness(g.brightness)
                 .colorMultiply(Color(red: g.red, green: g.green, blue: g.blue))
                 .position(x: CGFloat(place.x), y: CGFloat(place.y))
+                .opacity(island)
             VoyageBed(x: place.x, foot: foot, width: place.width, weight: place.weight, grade: grade, front: true)
         }
         .frame(width: size.width, height: size.height, alignment: .topLeading)

@@ -123,6 +123,8 @@ class CompleteTests(unittest.TestCase):
         names += [f"{isl}-look-windmill-{n}-{self.key}" for n in range(2, 6)]
         names += [f"{isl}-look-pond-{n}-{self.key}" for n in range(1, 6)]
         names += [f"{isl}-look-workshop-{n}-{self.key}" for n in range(1, 6)]
+        names += [f"{isl}-look-bagelCart-{n}-{self.key}" for n in range(1, 6)]
+        names += [f"{isl}-look-lighthouse-{n}-{self.key}" for n in range(1, 6)]
         for n in names:
             if n != skip:
                 self.put(n)
@@ -160,6 +162,27 @@ class CompleteTests(unittest.TestCase):
 
     def test_the_shipped_spring_day_state_is_complete(self):
         self.assertEqual(sg.s8_missing(DATA, "spring", "day", 0), [])
+
+
+class SeasonSliceTests(unittest.TestCase):
+    def test_the_relative_outline_check_passes_a_picture_against_itself_and_counts_paint_grown_past_the_outline(self):
+        alpha = DAY[..., 3]
+        pic = over_sky(DAY, alpha)
+        self.assertTrue(sg.s2_outline_held(pic, alpha, parent=pic)["ok"])
+        k = np.ones((17, 17), np.uint8)
+        grown = np.where((cv2.dilate(alpha, k) > 0.5)[..., None] & (alpha <= 0.5)[..., None], cv2.dilate(DAY[..., :3], k), pic)
+        r = sg.s2_outline_held(grown, alpha, parent=pic)
+        self.assertGreater(r["paint_outside"], 0)
+        self.assertGreater(r["share"], sg.s2_outline_held(pic, alpha, parent=pic)["share"])
+
+    def test_the_shipped_autumn_slice_meets_every_limit(self):
+        if "autumn" not in DATA.get("seasons", {}):
+            self.skipTest("no autumn is listed")
+        self.assertEqual(sg.season_report(DATA, "autumn"), 0)
+
+    def test_s8_asks_for_looks_only_where_a_state_stands_a_station_over_a_base(self):
+        # night has no base: no look is needed there, as in spring
+        self.assertEqual(sg.s8_missing(DATA, "spring", "night", 0), [])
 
 
 if __name__ == "__main__":

@@ -13,6 +13,11 @@ Each island also has sky_sets (ADR-0025): a cell per light in SKY_LIGHTS, same r
 `skyset-<island>.json`, read as `PlateIsland` reads them). A hand-kept flag went stale
 within days (ten shipped Home states read `false` on 2026-11-12), so the check derives it.
 
+Each island may also have `seasons` (season-system-v1): `<season>: {complete, states: {<time>: {<stage key>: cell}}}`, the
+painted seasons of the island, with the same cell rules; `complete` and each cell's `in_app` must equal what
+`plate-<island>.json` lists under `seasons` (`seasons.<season>.complete` and `.states`). A season take's `review.yaml` is a
+per-job fragment (`job`, `selection.pick`, batch 194) rather than a batch's `jobs` map: either form is read.
+
 Usage: python3 -I tools/state/check_plates.py [plates.yaml] [repo_root]
 """
 import json
@@ -61,6 +66,29 @@ def shipped_states(root: Path, island: str, stage_keys) -> set:
     return cells
 
 
+def shipped_seasons(root: Path, island: str, stage_keys) -> dict:
+    """`{season: (complete, {(stage key, time)})}` the plate file lists under `seasons`: the stages each season paints per light,
+    keyed like `shipped_states` (the highest level is `final`, level N is `il<N>`)."""
+    f = root / PLATES_DIR / f"plate-{island}.json"
+    if not f.is_file():
+        return {}
+    plate = json.loads(f.read_text())
+    levels = plate.get("stageLevels") or []
+    out = {}
+    for season, entry in (plate.get("seasons") or {}).items():
+        cells = set()
+        for time, stages in (entry.get("states") or {}).items():
+            for stage in stages:
+                if len(levels) > 1:                    # as `shipped_states`: Home is keyed by island level, any other plate by stage
+                    level = levels[stage]
+                    key = "final" if level == max(levels) and "final" in stage_keys else f"il{level}"
+                else:
+                    key = stage
+                cells.add((key, time))
+        out[season] = (bool(entry.get("complete")), cells)
+    return out
+
+
 def shipped_sky_lights(root: Path, island: str) -> set:
     """The lights whose sky set the app ships (the keys of `lights` in `skyset-<island>.json`)."""
     f = root / PLATES_DIR / f"skyset-{island}.json"
@@ -93,6 +121,7 @@ def check(plates_file: Path, root: Path) -> list[str]:
                         errors.append(f"{where}: missing cell")
                         continue
                     errors += _cell(where, c, root) or _in_app(where, c, (stage, t, w) in shipped)
+        errors += _seasons(island, body, stages, root)
         sky = body.get("sky_sets")
         if not isinstance(sky, dict):
             errors.append(f"{island}/sky_sets: missing section")
@@ -107,6 +136,39 @@ def check(plates_file: Path, root: Path) -> list[str]:
                 continue
             errors += _cell(where, c, root) or _in_app(where, c, light in sky_shipped)
     return errors
+
+
+def _seasons(island: str, body: dict, stages: dict, root: Path) -> list[str]:
+    errors: list[str] = []
+    shipped = shipped_seasons(root, island, set(stages))
+    table = body.get("seasons") or {}
+    for season in sorted(set(shipped) - set(table)):
+        errors.append(f"{island}/seasons/{season}: the app ships this season but the table does not list it")
+    for season, entry in table.items():
+        where = f"{island}/seasons/{season}"
+        complete, cells = shipped.get(season, (False, set()))
+        if "complete" not in entry or bool(entry["complete"]) != complete:
+            errors.append(f"{where}: complete is {entry.get('complete')} but the app's plate file says {complete}")
+        listed = set()
+        for time, per_stage in (entry.get("states") or {}).items():
+            if time not in TIMES:
+                errors.append(f"{where}/{time}: unknown light")
+                continue
+            for key, c in (per_stage or {}).items():
+                cell_where = f"{where}/{key}/{time}"
+                errors += _cell(cell_where, c, root) or _in_app(cell_where, c, (key, time) in cells)
+                listed.add((key, time))
+        for key, time in sorted(cells - listed):
+            errors.append(f"{where}/{key}/{time}: the app ships this state but the table has no cell")
+    return errors
+
+
+def _pick_of(review: dict, job: str):
+    """The pick a review names for `job`: a batch's `jobs.<job>.pick`, or a per-job fragment's `selection.pick`."""
+    got = (review.get("jobs") or {}).get(job, {}).get("pick")
+    if got is None and review.get("job") == job:
+        got = (review.get("selection") or {}).get("pick")
+    return got
 
 
 def _cell(where: str, c: dict, root: Path) -> list[str]:
@@ -132,7 +194,7 @@ def _cell(where: str, c: dict, root: Path) -> list[str]:
     review = path.parent / "review.yaml"
     if not review.is_file():
         return [f"{where}: no review.yaml beside {painted}"]
-    got = ((yaml.safe_load(review.read_text()) or {}).get("jobs") or {}).get(m["job"], {}).get("pick")
+    got = _pick_of(yaml.safe_load(review.read_text()) or {}, m["job"])
     if got != pick:
         return [f"{where}: review.yaml pick is {got}, table says {pick}"]
     return []

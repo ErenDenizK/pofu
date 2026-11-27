@@ -107,8 +107,39 @@ struct SeasonStateTests {
         #expect(try #require(HomePlate.resolve(complete, world: w, look: look(.spring))).season == .spring)
     }
 
-    @Test func theDataDecodesSeasonsAndShipsNone() throws {
-        #expect(try home.seasons.isEmpty)
+    /// The autumn slice (S3): level 10 by day and by night, listed but not complete, so only Rehearsal and the screenshot tests
+    /// draw it, and every asset a listed state can ask for ships (the tea stall waits for its level 3 re-take).
+    @Test func theShippedDataListsTheAutumnSliceAsIncomplete() throws {
+        let plate = try home
+        let autumn = try #require(plate.seasons["autumn"])
+        #expect(!autumn.complete && autumn.states == ["day": [0], "night": [0]])
+        #expect(plate.season(.autumn, light: "day", stage: 0) == .spring, "not complete: spring unless forced")
+        #expect(plate.season(.autumn, light: "day", stage: 0, forced: true) == .autumn)
+        #expect(plate.season(.autumn, light: "day", stage: 7, forced: true) == .spring, "stage 7 is not listed")
+        #expect(plate.season(.autumn, light: "golden", stage: 0, forced: true) == .spring, "golden is not listed")
+        for light in ["day", "night"] {
+            let key = PlateIsland.key(season: .autumn, light: light)
+            var names = [plate.plateArt(light: key, stage: 0), plate.islandArt(light: key, stage: 0), plate.mapIslandArt(light: key, stage: 0)]
+            names += plate.objects.filter(\.occluder).map { plate.occluderArt(id: $0.id, light: key, stage: 0) }
+            for name in names {
+                #expect(assetExists(name), "\(name)")
+            }
+        }
+        #expect(plate.stations["windmill"]?.lookLevels["autumn-day"] == [2, 3, 4, 5])
+        #expect(plate.lookArt(station: "windmill", level: 5, light: "autumn-day", stage: 0) == "world-home-look-windmill-5-autumn-day")
+        #expect(plate.drawnPlateArt(light: "autumn-day", stage: 0) == "world-home-base-autumn-day-0")
+        #expect(plate.drawnPlateArt(light: "autumn-night", stage: 0) == "world-home-plate-autumn-night-0")
+        #expect(plate.stations["teaStall"]?.lights["autumn-day"] == nil, "the tea stall has no autumn state yet")
+    }
+
+    private func assetExists(_ name: String) -> Bool {
+        let assets = URL(fileURLWithPath: #filePath)
+            .deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
+            .appendingPathComponent("Sources/PofuWorld/Resources/World.xcassets")
+        return FileManager.default.fileExists(atPath: assets.appendingPathComponent("\(name).imageset/Contents.json").path)
+    }
+
+    @Test func theDataDecodesSeasons() throws {
         let json = """
         {"island":"s","lights":["day"],"islandBox":[0,0,10,10],"objects":[],"plateSize":[10,10],
          "seasons":{"autumn":{"complete":false,"states":{"day":[0,7]}},"winter":{"states":{}}}}
