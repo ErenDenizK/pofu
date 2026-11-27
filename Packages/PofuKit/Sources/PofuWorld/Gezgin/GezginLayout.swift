@@ -143,9 +143,10 @@ public enum Gezgin {
         return .asleep
     }
 
-    /// Whether her eyes are shut this instant in a blink (awake only).
+    /// Whether her eyes are shut this instant in a blink (awake only). A still frame (`time` 0) is the
+    /// rest pose, eyes open.
     public static func blinking(time: Double, data: GezginData) -> Bool {
-        guard data.blink.every > 0 else { return false }
+        guard data.blink.every > 0, time > 0 else { return false }
         return time.truncatingRemainder(dividingBy: data.blink.every) < data.blink.seconds
     }
 

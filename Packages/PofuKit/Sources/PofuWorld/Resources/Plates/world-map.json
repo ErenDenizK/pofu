@@ -64,6 +64,6 @@
     "blink": { "every": 6.3, "seconds": 0.16 },
     "awakeSeconds": 7,
     "lineSeconds": 4.5,
-    "shadow": { "y": 1320, "seconds": 46, "opacity": 0.55 }
+    "shadow": { "y": 1320, "seconds": 46, "opacity": 0.85 }
   }
 }

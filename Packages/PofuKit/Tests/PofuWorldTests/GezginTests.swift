@@ -66,6 +66,7 @@ struct GezginTests {
             #expect(abs(Gezgin.swayDegrees(time: t, data: data)) <= 1.5)
         }
         #expect(Gezgin.blinking(time: 0.05, data: data))
+        #expect(!Gezgin.blinking(time: 0, data: data), "a still frame is the rest pose, eyes open")
         #expect(!Gezgin.blinking(time: 1, data: data))
     }
 
