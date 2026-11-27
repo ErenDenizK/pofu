@@ -21,7 +21,8 @@ six vertical steps, each done when he plays it on his phone.
 ## In flight
 
 0d. Take auto-merge works (#190-#194). Batches 184 (rotor) + 185 (Caglayan, card 4)
-   merged CORRUPT (WebPs are noise): guard + redo builder running.
+   merged CORRUPT (17 WebPs of noise, cause unknown): guard merged (pofu-art #195,
+   check_takes.py + workflow signature check); redo rows R1/R2 first in Demand.
 0c. Fi 49: cards 1/2/5 on defaults; desks approved (ST1+ST2 to land); auto-merge: yes for
    pofu-art takes (ST4 workflow, next free agent), no for pofu code; self-wake refused
    twice. Season system merged (#530, ADR-0030); pilot batch 194 D57 (pofu-art #188);
