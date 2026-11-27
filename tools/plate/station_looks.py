@@ -180,7 +180,62 @@ POND = {
                   "excludeOccluders": ("mailbox", "westBush"), "flowersOnly": ("westBush",), "interior": True, "lighter": False, "brightRing": True} for s in (0, 1, 2, 3)},
     "place": {s: {"foot": (216.0, 737.0), "scale": 1.0} for s in (0, 1, 2, 3)},
 }
-STATIONS = [TEA_STALL, WINDMILL, POND]
+# The garden (batch 189) and the workshop (batch 191): plot ladders painted like the pond's, into a crop of batch 117's erased
+# level 10 base (garden plate pts 0,594 to 320,914; workshop 381,516 to 712,847, resized to the take's 1254 px, so a take px is
+# 320 / 1254 and 331 / 1254 plate points). The takes regrade the whole picture, the lawn and the sky included, and the
+# stations are as green as the lawn (leaves, vines), so neither a lawn test nor a plain difference cuts them: `regrade` fits one
+# affine map in CIELAB from the bare crop to each take (robustly, the lawn and sky being most of the picture), takes the
+# pixels that still differ (`diff`), and gives the look its colours back through the inverse map, so the look is in the plate's
+# own colours (no yellow lawn tint at the edge). Picks: t1 of every level, the take each next level edits (the one unbroken ladder).
+PLOT_GARDEN = "batch-189-plot-ladder-garden/x-plot-garden-{}"
+GARDEN = {
+    "id": "garden",
+    "light": "day",
+    "levels": 5,
+    "plot": {
+        "kind": "regrade",
+        "bare": (JOB.format(10), (0, 594, 320, 914)),
+        "takes": {n: (PLOT_GARDEN.format(n), 1) for n in range(1, 6)},
+        "diff": 16,
+        "close": 41,
+        "grade": {n: (1.0, 1.0) for n in range(1, 6)},
+    },
+    "scale": 0.5104,             # of a take px, at TEX px per point (0.2552 points per px)
+    "density": 2.0,
+    "anchor": (529.0, 988.0),    # the bed's bottom centre in the take (level 3's), where the garden's foot stands
+    "foot": (135.0, 846.0),
+    "footStage": 0,
+    # Stage 3 (island level 7) is not wired: its plate paints the level 4 arch up into the hill's mist and the erase take paints cloud
+    # there, so the base shows a pale ghost over the hill. Stages 0 to 2 are clean.
+    # The old garden: the big sunflower, the bed, its flowers and the fence, left of the gate (plate x 20 to 235, y 660 to 846);
+    # the pond's ring starts below the fence (y 846), where the pond's window takes over.
+    "bases": {s: {"job": JOB.format(10 - s), "window": (40, 1320, 470, 1692), "shapes": [("e", 250, 1535, 235, 190)], "exclude": [(40, 1400, 110, 1530)], "interior": True, "lighter": False, "brightRing": True} for s in (0, 1, 2)},
+    "place": {s: {"foot": (135.0, 846.0), "scale": 1.0} for s in (0, 1, 2)},
+}
+PLOT_WORKSHOP = "batch-191-plot-ladder-workshop/x-plot-workshop-{}"
+WORKSHOP = {
+    "id": "workshop",
+    "light": "day",
+    "levels": 5,
+    "plot": {
+        "kind": "regrade",
+        "bare": (JOB.format(10), (381, 516, 712, 847)),
+        "takes": {n: (PLOT_WORKSHOP.format(n), 1) for n in range(1, 6)},
+        "diff": 16,
+        "notLawn": True,
+        "close": 61,
+        "flatBottom": 40,
+        "grade": {n: (1.0, 1.0) for n in range(1, 6)},
+    },
+    "scale": 0.5279,             # 0.2640 points per take px
+    "density": 2.0,
+    "anchor": (668.0, 985.0),
+    "foot": (557.3, 776.0),
+    "footStage": 0,
+    "bases": {s: {"job": JOB.format(10 - s), "window": (860, 1150, 1300, 1580), "excludeOccluders": ("teaStall",), "shrinkAbove": 1500, "interior": False, "lighter": True} for s in (0, 1, 2, 3)},
+    "place": {s: {"foot": (557.3, 776.0), "scale": 1.0} for s in (0, 1, 2, 3)},
+}
+STATIONS = [TEA_STALL, WINDMILL, POND, GARDEN, WORKSHOP]
 
 
 # ---------------------------------------------------------------- looks
@@ -355,6 +410,82 @@ def water_masks(plot: dict) -> tuple[dict, dict, dict]:
     return out, rgbs, dict(out)
 
 
+def regrade_fit(ref_lab: np.ndarray, take_lab: np.ndarray) -> np.ndarray:
+    """The affine map (4 x 3, rows: L a b 1) from the bare crop's CIELAB to the take's, fitted robustly: the 70 percent of pixels
+    that agree best, six times over (the station is a small part of the picture)."""
+    a = np.c_[ref_lab.reshape(-1, 3), np.ones(ref_lab.shape[0] * ref_lab.shape[1])]
+    t = take_lab.reshape(-1, 3)
+    keep = np.ones(len(t), bool)
+    m = np.zeros((4, 3))
+    for _ in range(6):
+        idx = np.nonzero(keep)[0][::7]
+        m = np.linalg.lstsq(a[idx], t[idx], rcond=None)[0]
+        d = np.abs(t - a @ m).max(1)
+        keep = d < np.percentile(d, 70)
+    return m
+
+
+def regrade_masks(plot: dict) -> tuple[dict, dict, dict]:
+    """The plot ladder's masks (the garden, the workshop): where a take still differs from the bare crop after the affine
+    regrade of its lawn and sky (`regrade_fit`), opened, holes filled, the biggest piece, closed. `notLawn` also drops the lawn
+    tuft at the foot. The returned colours are the take's mapped back through the inverse regrade, so they are the plate's own."""
+    job, (x0, y0, x1, y1) = plot["bare"]
+    n = pick_of(job)
+    path = sorted((TAKES / job).glob(f"*--t{n}.webp"))[0]
+    ref = np.asarray(Image.open(path).convert("RGB").crop((x0, y0, x1, y1)).resize((1254, 1254), Image.LANCZOS), np.float32) / 255
+    ref_lab = _lab_soft(ref)
+    masks, rgbs = {}, {}
+    for n, take in plot["takes"].items():
+        rgb = _take_rgb(take)
+        lab = _lab_soft(rgb)
+        m = regrade_fit(ref_lab, lab)
+        d = np.abs(lab - (np.c_[ref_lab.reshape(-1, 3), np.ones(ref_lab.shape[0] * ref_lab.shape[1])] @ m).reshape(lab.shape)).max(-1)
+        mask = (d > plot["diff"]).astype(np.uint8)
+        if plot.get("notLawn"):
+            mask &= (~_lawn(rgb)).astype(np.uint8)
+        mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, np.ones((5, 5), np.uint8)) > 0
+        mask = _biggest(ndimage.binary_fill_holes(mask))
+        mask = cv2.morphologyEx(mask.astype(np.uint8), cv2.MORPH_CLOSE, _ellipse(plot.get("close", 25))) > 0
+        mask = _biggest(ndimage.binary_fill_holes(mask))
+        if plot.get("notLawn"):                                           # the sky seen between the gear, the chimney and the roof is not the house
+            mask = _biggest(cv2.morphologyEx((mask & (sky_alpha(rgb) >= 0.5)).astype(np.uint8), cv2.MORPH_OPEN, _ellipse(7)) > 0)
+        fb = plot.get("flatBottom")
+        if fb:                                                            # the doorstep's pale stones match the bare crop's: close the bites in the bottom edge
+            h, w = mask.shape
+            has = mask.sum(0) > 120
+            top = np.where(has, np.argmax(mask, 0), h)
+            bottom = np.where(has, h - 1 - np.argmax(mask[::-1], 0), -1).astype(np.float32)
+            bottom = ndimage.maximum_filter1d(bottom, 2 * fb + 1)
+            yy = np.arange(h)[:, None]
+            mask |= (yy >= np.maximum(top[None, :], bottom[None, :] - 70)) & (yy <= bottom[None, :]) & (bottom[None, :] >= 0) & has[None, :]
+        masks[n] = mask
+        full = srgb_lab(rgb)                                              # the take in the plate's own colours: the inverse map
+        inv = np.linalg.pinv(m[:3])
+        back = (full - m[3]) @ inv
+        rgbs[n] = lab_srgb(back)
+    # Every take has its own regrade, so the same roof comes back a little redder or yellower from take to take. The levels
+    # share what the previous level already had: each one's mean colour over the part it shares with the lowest level (eroded)
+    # is moved to that level's own, in L* and in chroma, so a level up never recolours the station.
+    low = min(masks)
+    ref_lab = srgb_lab(rgbs[low])
+    for n in sorted(masks):
+        if n == low:
+            continue
+        both = cv2.erode((masks[n] & masks[low]).astype(np.uint8), _ellipse(31)) > 0
+        if both.sum() < 2000:
+            continue
+        lab = srgb_lab(rgbs[n])
+        mt, mr = lab[both].mean(0), ref_lab[both].mean(0)
+        lab[..., 0] += mr[0] - mt[0]
+        ratio = np.hypot(mr[1], mr[2]) / max(np.hypot(mt[1], mt[2]), 1e-3)
+        c = lab[..., 1:] * ratio
+        ang = np.arctan2(mr[2], mr[1]) - np.arctan2(mt[2], mt[1])           # and the hue
+        lab[..., 1] = c[..., 0] * np.cos(ang) - c[..., 1] * np.sin(ang)
+        lab[..., 2] = c[..., 0] * np.sin(ang) + c[..., 1] * np.cos(ang)
+        rgbs[n] = lab_srgb(lab)
+    return masks, rgbs, dict(masks)
+
+
 def plot_masks(plot: dict) -> tuple[dict, dict, dict]:
     """({level: bool mask of the mill in the take}, {level: the take's rgb}, {level: the mask's pixels whose colour is the
     mill's own: no wing roof}): where the take differs from level 1's (the empty
@@ -362,6 +493,8 @@ def plot_masks(plot: dict) -> tuple[dict, dict, dict]:
     the bakery wing (right of the tower's wall, its roof where it meets the sail's tip) and the paved yard."""
     if plot.get("kind") == "water":
         return water_masks(plot)
+    if plot.get("kind") == "regrade":
+        return regrade_masks(plot)
     ref = _take_rgb(plot["ref"])
     ref_lab = _lab_soft(ref)
     rgbs = {n: _take_rgb(t) for n, t in plot["takes"].items()}
@@ -636,6 +769,8 @@ def build_base(stage: int, spec: dict, plate: np.ndarray | None = None) -> tuple
     grass = ((pr[..., 1] > pr[..., 0] + 0.03) & (pr[..., 1] > pr[..., 2] + 0.10)).astype(np.float32)
     grass = cv2.GaussianBlur(cv2.erode(grass, np.ones((3, 3), np.uint8)), (0, 0), 1.5)
     m_shrink = m_alpha * (1 - grass)
+    if spec.get("shrinkAbove"):                           # below the hill line the take's blue flowers are not sky: the alpha stays
+        m_shrink[max(spec["shrinkAbove"] - cy, 0):] = 0
     new_a = p_a * (1 - m_shrink) + np.minimum(p_a, t_a) * m_shrink
     if spec.get("interior"):                           # inside the island: the take's flowers are not sky, the alpha stays
         new_a = p_a
@@ -715,7 +850,7 @@ def clear_alpha(alpha: np.ndarray, part: np.ndarray) -> np.ndarray:
     return np.minimum(alpha, 1 - part).astype(np.float32)
 
 
-def clear_occluders(stage: int, hard_full: np.ndarray, station: str = TEA_STALL["id"], keep: tuple = ()) -> None:
+def clear_occluders(stage: int, hard_full: np.ndarray, station: str = TEA_STALL["id"], keep: tuple = (), skip: tuple = ()) -> None:
     """Another object's occluder cut-out that reaches into the erased stall (the workshop's polygon runs on to the stall's
     left pole) would draw the old stall again over the base: its alpha is cleared inside the erased region."""
     hand = ingest.load_hand(ISLAND)
@@ -723,7 +858,7 @@ def clear_occluders(stage: int, hard_full: np.ndarray, station: str = TEA_STALL[
     a1 = ingest.load_matte(ISLAND, "day", stage)
     region = cv2.GaussianBlur(cv2.dilate(hard_full, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (13, 13))).astype(np.float32), (0, 0), 2.0)
     for obj in hand["objects"]:
-        if not obj.get("occluder") or not ingest.present(obj, "day", stage) or obj["id"] == station:
+        if not obj.get("occluder") or not ingest.present(obj, "day", stage) or obj["id"] == station or obj["id"] in skip:
             continue
         _, box = ingest.occluder_cut(np.zeros(a1.shape + (3,)), a1, ingest.pct_to_px(obj["points"]))
         x0, y0, x1, y1 = (v * k for v in box)
@@ -825,8 +960,10 @@ def cmd_bases(station: dict | None = None) -> dict:
             alpha = np.minimum(old[..., 3:], a) if kind == "mapisle" else a
             write_or_keep(name, to_img(np.dstack([rgb, alpha])))
         for station_id, region in info["regions"]:                  # each station's own erased region, its own occluder kept
-            keep = next(sp for sp in STATIONS if sp["id"] == station_id).get("keepOccluders", ())
-            clear_occluders(stage, region, station_id, keep)
+            sp = next(sp for sp in STATIONS if sp["id"] == station_id)
+            keep = sp.get("keepOccluders", ())
+            skip = tuple(o for o in sp["bases"][stage].get("excludeOccluders", ()) if o not in keep)    # an occluder whose pixels the base keeps
+            clear_occluders(stage, region, station_id, keep, skip)
         out[stage] = x.shape[:2]
         print(f"base day {stage}: {x.shape[1]} x {x.shape[0]} px ({', '.join(sp['id'] for sp in stage_specs(stage))})")
     return out
