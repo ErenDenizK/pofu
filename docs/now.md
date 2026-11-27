@@ -53,7 +53,7 @@ six vertical steps, each done when he plays it on his phone.
 Merged: #475-#538 (not #490, #503, #504, #507); pofu-art #81-#203 (not stale #84-#90, #132).
 
 ## Next (plan #519)
-Running: pond fix (#528), 2d ride, S1 season state (`feat/season-state`). Then the other 4 stations from D52-D55; 1e reveal. Device days on membership.
+Running: pond fix (#528), 2d ride; S1 #540 in CI (after the ride: VoyageRowView 178/244/249, IslandScene 1458, HomePlateCrop Map path read plate.key, not light). Then the other 4 stations from D52-D55; 1e reveal. Device days on membership.
 
 ## Open with the founder
 - Membership ~11-27: Mac 1-2 h, Distribution request same day; #490; N6; device: pinch, pond fps.
