@@ -40,7 +40,7 @@ final class FarSnapshotCache {
         let key = compositor.snapshotKey
         if let image = images[key] { return image }
         let plate = compositor.plate
-        guard let crop = plate.plate.plateCrop(light: plate.light, stage: plate.stage) else { return nil }
+        guard let crop = plate.plate.plateCrop(light: plate.key, stage: plate.stage) else { return nil }
         let start = CFAbsoluteTimeGetCurrent()
         let renderer = ImageRenderer(content: FarComposite(compositor: compositor, crop: crop))
         renderer.scale = FarSnapshot.pixelsPerPlatePixel
@@ -66,7 +66,7 @@ private struct FarComposite: View {
     var body: some View {
         let plate = compositor.plate
         ZStack(alignment: .topLeading) {
-            Image(plate.plate.drawnPlateArt(light: plate.light, stage: plate.stage), bundle: .module)
+            Image(plate.plate.drawnPlateArt(light: plate.key, stage: plate.stage), bundle: .module)
                 .resizable().interpolation(.high)
                 .frame(width: crop.width, height: crop.height)
             ForEach(compositor.looks) { look in
@@ -133,7 +133,7 @@ struct CompositeIsland: View {
     var body: some View {
         let plate = compositor.plate
         ZStack(alignment: .topLeading) {
-            PlateImage(name: plate.plate.drawnPlateArt(light: plate.light, stage: plate.stage), box: plate.plateImageBox, pose: pose, size: size, offset: offset)
+            PlateImage(name: plate.plate.drawnPlateArt(light: plate.key, stage: plate.stage), box: plate.plateImageBox, pose: pose, size: size, offset: offset)
             if let water, WorldShaders.isAvailable {
                 ForEach(PlateRegionEffects.water(of: plate), id: \.id) { region in
                     PlateWaterPatch(plate: plate, water: region, frame: water, pose: pose, size: size, offset: offset)

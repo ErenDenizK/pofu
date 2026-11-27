@@ -55,7 +55,7 @@ public struct PlateCompositor: Hashable, Sendable {
 
     /// The stations this state has an erased base for, by id, sorted.
     public var stationsOnBase: [String] {
-        plate.plate.stationLooks(light: plate.light, stage: plate.stage).keys.sorted()
+        plate.plate.stationLooks(light: plate.key, stage: plate.stage).keys.sorted()
     }
 
     /// The stations on this state's base, back to front by their foot (the order the composite draws them in, built or
@@ -84,11 +84,11 @@ public struct PlateCompositor: Hashable, Sendable {
 
     /// The look a station at `level` draws in this state, or `nil`: no base here, or unbuilt.
     public func look(_ station: String, level: Int) -> Look? {
-        guard let art = plate.plate.lookArt(station: station, level: level, light: plate.light, stage: plate.stage),
-              let looks = plate.plate.stations[station], let n = looks.lookLevel(stationLevel: level, light: plate.light),
+        guard let art = plate.plate.lookArt(station: station, level: level, light: plate.key, stage: plate.stage),
+              let looks = plate.plate.stations[station], let n = looks.lookLevel(stationLevel: level, light: plate.key),
               let frame = plate.lookFrame(station) else { return nil }
         return Look(station: station, look: n, art: art, box: frame.box, foot: frame.foot, footY: looks.place(stage: plate.stage).foot.y,
-                    grade: StationLooks.lookLight(for: plate.light) == plate.light ? nil : plate.harmony.tint)
+                    grade: StationLooks.lookLight(for: plate.key) == plate.key ? nil : plate.harmony.tint)
     }
 
     /// The looks standing on this state's base, back to front by `footY` (ties by station id).
@@ -129,7 +129,7 @@ public struct PlateCompositor: Hashable, Sendable {
     /// The far picture's key (`FarSnapshot`): the state and the looks it draws. A build that changes no look (a
     /// station without a base here, or a level past the last look) keeps the picture.
     public var snapshotKey: SnapshotKey {
-        SnapshotKey(light: plate.light, stage: plate.stage, looks: looks.map { "\($0.station):\($0.look)" })
+        SnapshotKey(light: plate.key, stage: plate.stage, looks: looks.map { "\($0.station):\($0.look)" })
     }
 
     /// The far picture's identity: stage, light and the built looks.

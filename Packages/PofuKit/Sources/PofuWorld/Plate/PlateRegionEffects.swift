@@ -187,7 +187,7 @@ struct PlateWaterPatch: View {
         if let rect = PlateRegionEffects.patch(of: water, origin: origin, pointsPerPixel: ppp, screen: (Double(size.width), Double(size.height))) {
             let reach = CGFloat((water.reach * ppp).rounded(.up)) + 1
             ZStack(alignment: .topLeading) {
-                PlateImage(name: plate.plate.drawnPlateArt(light: plate.light, stage: plate.stage), box: plate.plateImageBox, pose: pose, size: size, offset: offset)
+                PlateImage(name: plate.plate.drawnPlateArt(light: plate.key, stage: plate.stage), box: plate.plateImageBox, pose: pose, size: size, offset: offset)
             }
             .frame(width: size.width, height: size.height, alignment: .topLeading)
             .offset(x: CGFloat(-rect.minX), y: CGFloat(-rect.minY))

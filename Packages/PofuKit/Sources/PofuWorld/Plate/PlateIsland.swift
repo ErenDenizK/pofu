@@ -202,6 +202,24 @@ public struct PlateIsland: Hashable, Sendable {
     /// Where the Gezgin lies moored beside the island (`mooring`, ADR-0028): her body's bottom centre and
     /// her body's width, in plate pixels. `nil` for a plate she does not visit.
     public var mooring: PlateMooring?
+    /// The seasons other than spring that this plate paints (`seasons` in the data, season-system-v1 D3 and D4), by season
+    /// name. Absent: none, and every state is spring's.
+    public var seasons: [String: SeasonStates] = [:]
+
+    /// The key of a painted state (D3): `light` in spring, so every shipped asset name and table entry is unchanged,
+    /// and `<season>-<light>` in another season. Every asset-name function and per-light table below is read through it
+    /// (their `light` parameter is a key).
+    public static func key(season: Season, light: String) -> String {
+        season == .spring ? light : "\(season.rawValue)-\(light)"
+    }
+
+    /// The season a state is drawn in when `wanted` is asked for (D4): `wanted` only if the data lists the state and its
+    /// season is `complete` (or `forced`: Rehearsal and the screenshot tests), else spring.
+    public func season(_ wanted: Season, light: String, stage: Int, forced: Bool = false) -> Season {
+        guard wanted != .spring, let data = seasons[wanted.rawValue], data.complete || forced,
+              data.states[light]?.contains(stage) == true else { return .spring }
+        return wanted
+    }
 
     /// The cropped plate's box for a state, or `nil` where the state ships the whole plate (see `plateCrops`).
     public func plateCrop(light: String, stage: Int) -> PlateRect? {
@@ -318,6 +336,19 @@ public struct PlateIsland: Hashable, Sendable {
     }
 }
 
+/// The states a season is painted for: `states` lists, per light, the stages that have the season's own plate, base, cuts,
+/// occluders, tint, maps and looks (`tools/plate/season_gate.py` S8). `complete` switches the season on for players, only
+/// once every state spring paints is listed; until then only Rehearsal and the screenshot tests can show it.
+public struct SeasonStates: Hashable, Sendable {
+    public var complete: Bool
+    public var states: [String: [Int]]
+
+    public init(complete: Bool = false, states: [String: [Int]] = [:]) {
+        self.complete = complete
+        self.states = states
+    }
+}
+
 /// One station's looks (`tools/plate/station_looks.py`): level 1 to `levels`, one asset each, every look on one canvas
 /// (`box`, plate points) with one foot anchor, over the erased base each light has at its stages (`lights`).
 public struct StationLooks: Hashable, Sendable {
@@ -362,7 +393,9 @@ public struct StationLooks: Hashable, Sendable {
 
     /// The light whose looks a state in `light` draws: golden draws the day look (under its grade), the others their own.
     public static func lookLight(for light: String) -> String {
-        light == "golden" ? "day" : light
+        if light == "golden" { return "day" }
+        if light.hasSuffix("-golden") { return String(light.dropLast("golden".count)) + "day" }
+        return light
     }
 
     /// The look a station level draws: level to look 1 to 1, `nil` while unbuilt (level 0), a level above the
@@ -440,7 +473,7 @@ public struct PlateShadow: Decodable, Hashable, Sendable {
 extension PlateIsland: Decodable {
     private enum Keys: String, CodingKey {
         case island, version, standIn, minLevel, plateSize, stages, lights, lightStages, painted, stageLevels, harmony, islandBox, backdropBox, objects
-        case walkable, characters, spots, pofuWidth, residentBoost, residentBoosts, lamps, lampHeight, framing, lightDirection, lightMap, shadowMap, textureBytes, shadow, plateCrop, props, stations, camera, near, water, mooring
+        case walkable, characters, spots, pofuWidth, residentBoost, residentBoosts, lamps, lampHeight, framing, lightDirection, lightMap, shadowMap, textureBytes, shadow, plateCrop, props, stations, camera, near, water, mooring, seasons
     }
 
     public init(from decoder: Decoder) throws {
@@ -496,10 +529,16 @@ extension PlateIsland: Decodable {
         elevationDeg = try c.decodeIfPresent(PlateCamera.self, forKey: .camera)?.elevationDeg
         near = try c.decodeIfPresent(PlateNear.self, forKey: .near)
         water = try c.decodeIfPresent([PlateWater].self, forKey: .water) ?? []
+        seasons = try (c.decodeIfPresent([String: RawSeason].self, forKey: .seasons) ?? [:]).mapValues { SeasonStates(complete: $0.complete ?? false, states: $0.states ?? [:]) }
         stations = try (c.decodeIfPresent([String: RawStation].self, forKey: .stations) ?? [:]).compactMapValues(\.looks)
         plateCrops = try (c.decodeIfPresent([String: [[Double]?]].self, forKey: .plateCrop) ?? [:]).mapValues { boxes in
             try boxes.map { try $0.map(Self.rect) }
         }
+    }
+
+    private struct RawSeason: Decodable {
+        var complete: Bool?
+        var states: [String: [Int]]?
     }
 
     private struct RawHarmony: Decodable {
