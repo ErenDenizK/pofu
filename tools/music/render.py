@@ -194,14 +194,38 @@ def write_auditions(paths: list[Path], out: Path) -> int:
     return 1 if failed else 0
 
 
+def tune_id(tune: abc.Tune) -> str:
+    """The tune's name in `music.json`: its island and time of day, e.g. home-day."""
+    return f"{tune.pofu['island']}-{tune.pofu.get('time', 'day')}"
+
+
 def write_stems(path: Path, out: Path) -> int:
-    """The cells of one tune as mono AAC stems: <cell>-<stem>.m4a (MU2 reads these)."""
+    """The cells of one tune as mono AAC stems, `<tune>-<cell>-<stem>.m4a`, and its row in `music.json`.
+
+    `music.json` is the cells' index the app's director reads (MU2). Rows of other tunes
+    already in the folder are kept; the row of this tune is replaced.
+    """
     tune = abc.load(path)
     out.mkdir(parents=True, exist_ok=True)
-    for name in dict.fromkeys(tune.order):
-        stems, _ = render_cell(tune, tune.cell(name))
+    name = tune_id(tune)
+    cells = {}
+    for cell in dict.fromkeys(tune.order):
+        stems, _ = render_cell(tune, tune.cell(cell))
+        files = {}
         for stem, x in stems.items():
-            encode_m4a(x, out / f"{name.lower()}-{stem}.m4a")
+            files[stem] = f"{name}-{cell.lower()}-{stem}.m4a"
+            encode_m4a(x, out / files[stem])
+        cells[cell] = {"seconds": round(len(next(iter(stems.values()))) / SR, 3), "stems": files}
+    index_path = out / "music.json"
+    index = json.loads(index_path.read_text(encoding="utf-8")) if index_path.exists() else {"tunes": {}}
+    lead = next(v.instrument for v in tune.voices if v.stem == "lead")
+    index["tunes"][name] = {
+        "island": tune.pofu["island"], "time": tune.pofu.get("time", "day"), "lead": lead,
+        "bpm": tune.bpm, "order": list(tune.order), "score": str(path.resolve().relative_to(ROOT)),
+        "cells": cells,
+    }
+    index["tunes"] = dict(sorted(index["tunes"].items()))
+    index_path.write_text(json.dumps(index, indent=2) + "\n", encoding="utf-8")
     return 0
 
 

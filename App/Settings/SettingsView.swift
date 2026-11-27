@@ -109,6 +109,7 @@ struct SettingsView: View {
 private struct SoundSettingsSection: View {
     @State private var isOn = !SoundEngine.shared.settings.isMuted
     @State private var ambience = SoundEngine.shared.settings.isAmbienceOn
+    @State private var music = SoundEngine.shared.settings.isMusicOn
 
     var body: some View {
         Section {
@@ -133,6 +134,17 @@ private struct SoundSettingsSection: View {
                 }
             )) {
                 SettingsLabel("Island ambience", systemName: "wind", tone: .honey, paint: .duoWind)
+            }
+            Toggle(isOn: Binding(
+                get: { music },
+                set: { value in
+                    music = value
+                    var settings = SoundEngine.shared.settings
+                    settings.isMusicOn = value
+                    SoundEngine.shared.settings = settings
+                }
+            )) {
+                SettingsLabel("Island music", systemName: "music.note", tone: .honey, paint: .duoSound)
             }
         } header: {
             Text("Sounds")

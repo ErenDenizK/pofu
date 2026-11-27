@@ -9,21 +9,32 @@ public struct SoundSettings: Equatable, Sendable {
     /// never chose (founder input 44); a stored "off" stays off.
     public var isAmbienceOn: Bool
 
-    public init(isMuted: Bool = false, isAmbienceOn: Bool = true) {
+    /// The island's music (music-system-v1 D7): on by default and quiet,
+    /// with its own switch. The mute and the Silent switch still win.
+    public var isMusicOn: Bool
+
+    public init(isMuted: Bool = false, isAmbienceOn: Bool = true, isMusicOn: Bool = true) {
         self.isMuted = isMuted
         self.isAmbienceOn = isAmbienceOn
+        self.isMusicOn = isMusicOn
     }
 
     public static let mutedKey = "pofu.sound.muted"
     public static let ambienceKey = "pofu.sound.ambience"
+    public static let musicKey = "pofu.sound.music"
 
     public static func load(from defaults: UserDefaults = .standard) -> SoundSettings {
-        SoundSettings(isMuted: defaults.bool(forKey: mutedKey), isAmbienceOn: (defaults.object(forKey: ambienceKey) as? Bool) ?? true)
+        SoundSettings(
+            isMuted: defaults.bool(forKey: mutedKey),
+            isAmbienceOn: (defaults.object(forKey: ambienceKey) as? Bool) ?? true,
+            isMusicOn: (defaults.object(forKey: musicKey) as? Bool) ?? true
+        )
     }
 
     public func save(to defaults: UserDefaults = .standard) {
         defaults.set(isMuted, forKey: Self.mutedKey)
         defaults.set(isAmbienceOn, forKey: Self.ambienceKey)
+        defaults.set(isMusicOn, forKey: Self.musicKey)
     }
 }
 

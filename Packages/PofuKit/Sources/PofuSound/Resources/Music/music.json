@@ -1,0 +1,51 @@
+{
+  "tunes": {
+    "home-day": {
+      "island": "home",
+      "time": "day",
+      "lead": "kalimba",
+      "bpm": 96,
+      "order": [
+        "A",
+        "A2",
+        "B",
+        "END"
+      ],
+      "score": "design/music/score/home/day-a.abc",
+      "cells": {
+        "A": {
+          "seconds": 12.5,
+          "stems": {
+            "lead": "home-day-a-lead.m4a",
+            "bed": "home-day-a-bed.m4a",
+            "pulse": "home-day-a-pulse.m4a"
+          }
+        },
+        "A2": {
+          "seconds": 12.5,
+          "stems": {
+            "lead": "home-day-a2-lead.m4a",
+            "bed": "home-day-a2-bed.m4a",
+            "pulse": "home-day-a2-pulse.m4a"
+          }
+        },
+        "B": {
+          "seconds": 12.5,
+          "stems": {
+            "lead": "home-day-b-lead.m4a",
+            "bed": "home-day-b-bed.m4a",
+            "pulse": "home-day-b-pulse.m4a"
+          }
+        },
+        "END": {
+          "seconds": 12.5,
+          "stems": {
+            "lead": "home-day-end-lead.m4a",
+            "bed": "home-day-end-bed.m4a",
+            "pulse": "home-day-end-pulse.m4a"
+          }
+        }
+      }
+    }
+  }
+}
