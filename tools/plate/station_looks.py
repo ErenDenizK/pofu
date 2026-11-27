@@ -677,7 +677,8 @@ def clear_occluders(stage: int, hard_full: np.ndarray, station: str = TEA_STALL[
         if obj["id"] in keep:
             lab = srgb_lab(old[..., :3])
             stone = (lab[..., 2] > 8) & (lab[..., 1] > 0) & (np.hypot(lab[..., 1], lab[..., 2]) < 32) & (lab[..., 0] > 62)
-            water = cv2.dilate(((lab[..., 2] < -3) & (lab[..., 1] < 4)).astype(np.uint8), np.ones((3, 3), np.uint8)) > 0        # the old pond's water the occluder's polygon took in (lilac has a* over 4)
+            stone |= (lab[..., 1] > 3) & (lab[..., 2] > 3) & (np.hypot(lab[..., 1], lab[..., 2]) < 22) & (lab[..., 0] > 40) & (lab[..., 0] < 78)   # the ring stones' shaded brown
+            water = cv2.dilate(((lab[..., 2] < -3) & (lab[..., 1] < 4) & (lab[..., 0] < 72)).astype(np.uint8), np.ones((3, 3), np.uint8)) > 0        # the old pond's water the occluder's polygon took in (lilac has a* over 4 or is lighter than L* 72)
             wide = cv2.GaussianBlur(cv2.dilate(hard_full, _ellipse(61)).astype(np.float32), (0, 0), 2.0)[y0:y1, x0:x1][: old.shape[0], : old.shape[1]]
             part = np.maximum(part * stone, wide * water).astype(np.float32)   # water also beside the mailbox, whose own pixels the region skips
         old[..., 3] *= 1 - part
