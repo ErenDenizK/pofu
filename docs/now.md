@@ -54,8 +54,7 @@ six vertical steps, each done when he plays it on his phone.
 Merged: #475-#520 (not #490, #503, #504, #507); pofu-art #81-#174 (not stale #84-#90, #132).
 
 ## Next (plan #519)
-Step 1 PRs 1b-1e, then step 2 (2a ADR, 2b+2c together). Device days when membership opens.
+Pond 1c, then the other 4 stations from D52-D55; 2d ride; S1 season state; 1e reveal. Device days on membership.
 
 ## Open with the founder
-
 - Membership ~11-27: Mac 1-2 h, Distribution request same day; #490; N6; device: pinch, pond fps.
