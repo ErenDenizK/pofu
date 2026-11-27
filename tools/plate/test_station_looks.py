@@ -247,5 +247,5 @@ def test_a_shared_stage_counts_its_base_once_in_the_texture_budget():
     stations = ingest.stations_data("home")
     shared = {k: v["baseBytes"]["3"] for k, v in stations.items() if "3" in v.get("baseBytes", {})}
     assert set(shared) == {"teaStall", "pond"}
-    looks = sum(sum(sorted(stations[k]["lookBytes"])[-2:]) for k in shared)
-    assert ingest.station_bytes("home", "day", 3) == max(shared.values()) + looks
+    largest = [max(stations[k]["lookBytes"]) for k in shared]               # rule v1: each station's one drawn look, and once more the largest (the one reveal)
+    assert ingest.station_bytes("home", "day", 3) == max(shared.values()) + sum(largest) + max(largest)

@@ -118,7 +118,7 @@ WINDMILL = {
         "bush": (0, 380, 336, 620),
     },
     "scale": 0.60,               # of a take px, at TEX px per point (0.30 points per px)
-    "density": 1.45,             # the windmill and the pond share Home's largest state: both fit 9 MB with its props at these densities
+    "density": 2.0,
     "anchor": (655.0, 988.0),
     "foot": (345.0, 759.0),
     "footStage": 0,
@@ -152,16 +152,22 @@ POND = {
                   4: (PLOT_POND.format(4), 2), 5: (PLOT_POND.format(5), 1)},
         "diff": 14,
         "reeds": {2: [(380, 280, 680, 800)]},   # level 2's reeds are lawn-green but darker than the lawn
-        "clear": {},
+        "clear": {1: [(0, 690, 112, 840)],        # level 1's lawn tuft left of the ring
+                  3: [(1085, 600, 1260, 740), (1156, 540, 1260, 600)],      # the take's path stones beside the deck
+                  4: [(1085, 600, 1260, 740), (1156, 540, 1260, 600)],
+                  5: [(1085, 600, 1260, 740), (1156, 540, 1260, 600)]},
+        "fill": {3: [(76, 575, 150, 630)], 4: [(76, 575, 150, 630)], 5: [(76, 575, 150, 630)]},     # the lily pad at the left rim
+        "clamp": {1: [(0, 700), (112, 718), (135, 735), (160, 746), (191, 750), (250, 752), (310, 768), (360, 786), (420, 800), (900, 820)],
+                  3: [(0, 715), (150, 716), (230, 730), (300, 748), (350, 764), (420, 778), (470, 782), (560, 790), (620, 806), (700, 818), (780, 822)], 4: [(0, 715), (150, 716), (230, 730), (300, 748), (350, 764), (420, 778), (470, 782), (560, 790), (620, 806), (700, 818), (780, 822)], 5: [(0, 715), (150, 716), (230, 730), (300, 748), (350, 764), (420, 778), (470, 782), (560, 790), (620, 806), (700, 818), (780, 822)]},     # the flower bush the takes paint over the water's lower edge
         "grade": {1: (0.57, 1.067), 2: (0.60, 1.11), 3: (0.61, 1.086), 4: (0.67, 1.104), 5: (0.88, 1.058)},
     },
     # The mailbox and the flower bush stand in front of the pond: their occluders are the plate's flowers, which the lake
     # (a look drawn under them) must stay behind, so they are not cleared inside the erased ring.
     "keepOccluders": ("mailbox", "westBush"),
     "scale": 0.689,              # of a take px, at TEX px per point (0.3445 points per px)
-    "density": 0.8,              # Home's largest state plus its props fit 9 MB with room for two stations only at this density
-    "anchor": (627.0, 218.0),    # a point at the top of the water, not at its foot: a pond is ground, so its look's foot
-    "foot": (216.0, 735.1),      # (its depth) sits behind every character that can stand on it, and covers none
+    "density": 2.0,
+    "anchor": (627.0, 223.5),    # a point at the top of the water, not at its foot: a pond is ground, so its look's foot
+    "foot": (216.0, 737.0),      # (its depth) sits behind every character that can stand on it, and covers none
     "footStage": 0,
     # The window is the shipped pond (ring, deck, boat, lanterns, lily): an ellipse round the ring and a box round the deck
     # (the takes regrade the whole lawn), its top left is the garden's fence, which stays, and the mailbox is an occluder of
@@ -170,8 +176,8 @@ POND = {
     "bases": {s: {"job": JOB.format(10 - s), "window": (110, 1600, 730, 1890),
                   "shapes": [("e", 420, 1775, 322, 132), ("r", 400, 1610, 600, 1700)],       # the ring and the deck
                   "exclude": [(130, 1600, 400, 1692)],                                       # the garden's fence stays
-                  "excludeOccluders": ("mailbox",), "interior": True, "lighter": False} for s in (0, 1, 2, 3)},
-    "place": {s: {"foot": (216.0, 735.1), "scale": 1.0} for s in (0, 1, 2, 3)},
+                  "excludeOccluders": ("mailbox",), "interior": True, "lighter": False, "brightRing": True} for s in (0, 1, 2, 3)},
+    "place": {s: {"foot": (216.0, 737.0), "scale": 1.0} for s in (0, 1, 2, 3)},
 }
 STATIONS = [TEA_STALL, WINDMILL, POND]
 
@@ -333,9 +339,17 @@ def water_masks(plot: dict) -> tuple[dict, dict, dict]:
         m = _biggest(ndimage.binary_fill_holes(m))
         m = cv2.morphologyEx(m.astype(np.uint8), cv2.MORPH_CLOSE, _ellipse(plot.get("close", {}).get(n, 25))) > 0
         m = _biggest(ndimage.binary_fill_holes(m))
-        for bx0, by0, bx1, by1 in plot.get("clear", {}).get(n, []):      # a lawn tuft the take paints beside the pond
+        for bx0, by0, bx1, by1 in plot.get("fill", {}).get(n, []):       # a pad the lawn-green test cut out of the rim
+            m[by0:by1, bx0:bx1] = True
+        for bx0, by0, bx1, by1 in plot.get("clear", {}).get(n, []):      # a lawn tuft or path stones the take paints beside the pond
             m[by0:by1, bx0:bx1] = False
+        pts = plot.get("clamp", {}).get(n)                              # the water's lower edge where the take's flower bush covers it
+        if pts:
+            h, w = m.shape
+            yy, xx = np.mgrid[0:h, 0:w]
+            m &= yy <= np.interp(xx, [p[0] for p in pts], [p[1] for p in pts], left=1e9, right=1e9)
         m = cv2.morphologyEx(m.astype(np.uint8), cv2.MORPH_OPEN, _ellipse(9)) > 0
+        m = cv2.GaussianBlur(m.astype(np.float32), (0, 0), plot.get("smooth", 3.0)) > 0.5      # a smooth rim, no bites
         out[n] = _biggest(m)
     return out, rgbs, dict(out)
 
@@ -501,14 +515,20 @@ def paste_masks(parent: np.ndarray, take: np.ndarray, window: tuple[int, int, in
     return cv2.dilate(raw, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (17, 17)))
 
 
-def match_to_parent(take_rgb: np.ndarray, parent_rgb: np.ndarray, parent_alpha: np.ndarray, hard: np.ndarray, lighter: bool = True) -> np.ndarray:
-    """The take's colours moved so that the mean Lab colour of a ring of lawn round the region is the parent's."""
+def match_to_parent(take_rgb: np.ndarray, parent_rgb: np.ndarray, parent_alpha: np.ndarray, hard: np.ndarray, lighter: bool = True, bright: bool = False) -> np.ndarray:
+    """The take's colours moved so that the mean Lab colour of a ring of lawn round the region is the parent's. `bright`: the
+    ring is the sunlit green lawn only (no flower, leaf, stone or shade), so the match does not pull the lawn olive."""
     near = cv2.dilate(hard, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (81, 81))) > 0
     close = cv2.dilate(hard, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (21, 21))) > 0
     ring = near & ~close & (parent_alpha > 0.95) & (parent_rgb[..., 1] > parent_rgb[..., 2] + 0.05)
     if ring.sum() < 200:
         return take_rgb
     lab_ring = srgb_lab(parent_rgb)[..., 0]
+    if bright:
+        lab_p = srgb_lab(parent_rgb)
+        ring &= (lab_p[..., 2] > 45) & (lab_p[..., 1] < -8)
+        if ring.sum() < 200:
+            return take_rgb
     if lighter:
         ring &= lab_ring >= np.median(lab_ring[ring])       # lighter half: the lawn in light, not in a building's shade
     lp, lt = srgb_lab(parent_rgb), srgb_lab(take_rgb)
@@ -591,7 +611,7 @@ def build_base(stage: int, spec: dict, plate: np.ndarray | None = None) -> tuple
     sure = t_a > 0.97
     _, (iy, ix) = ndimage.distance_transform_edt(~sure, return_indices=True)
     t_rgb = np.where((t_a < 0.97)[..., None], t_rgb[iy, ix], t_rgb)
-    t_rgb = match_to_parent(t_rgb, parent[sl], p_a, hard, spec.get("lighter", True))
+    t_rgb = match_to_parent(t_rgb, parent[sl], p_a, hard, spec.get("lighter", True), spec.get("brightRing", False))
     m_alpha = cv2.GaussianBlur(cv2.dilate(hard, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (9, 9))).astype(np.float32), (0, 0), 3.0)
     m_rgb = cv2.GaussianBlur(cv2.dilate(hard, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (25, 25))).astype(np.float32), (0, 0), FEATHER_TEX / 3)
     # the plate's alpha only shrinks in the region (the old counter hung over the sky); never grows
@@ -645,7 +665,7 @@ def clear_occluders(stage: int, hard_full: np.ndarray, station: str = TEA_STALL[
         _, box = ingest.occluder_cut(np.zeros(a1.shape + (3,)), a1, ingest.pct_to_px(obj["points"]))
         x0, y0, x1, y1 = (v * k for v in box)
         part = region[y0:y1, x0:x1]
-        if obj["id"] in keep:                 # scenery that stands in front (flowers): only the old stall's pale stones go
+        if obj["id"] in keep:                 # scenery that stands in front (flowers): only the old stall's pale stones and water go
             inner = cv2.GaussianBlur(cv2.erode(hard_full, _ellipse(29)).astype(np.float32), (0, 0), 2.0)[y0:y1, x0:x1]
             part = inner
         if part.max() <= 0.01:
@@ -656,7 +676,10 @@ def clear_occluders(stage: int, hard_full: np.ndarray, station: str = TEA_STALL[
         part = part[: old.shape[0], : old.shape[1]]
         if obj["id"] in keep:
             lab = srgb_lab(old[..., :3])
-            part = part * ((lab[..., 2] > 8) & (lab[..., 1] > 0) & (np.hypot(lab[..., 1], lab[..., 2]) < 32) & (lab[..., 0] > 62)).astype(np.float32)
+            stone = (lab[..., 2] > 8) & (lab[..., 1] > 0) & (np.hypot(lab[..., 1], lab[..., 2]) < 32) & (lab[..., 0] > 62)
+            water = cv2.dilate(((lab[..., 2] < -3) & (lab[..., 1] < 4)).astype(np.uint8), np.ones((3, 3), np.uint8)) > 0        # the old pond's water the occluder's polygon took in (lilac has a* over 4)
+            wide = cv2.GaussianBlur(cv2.dilate(hard_full, _ellipse(61)).astype(np.float32), (0, 0), 2.0)[y0:y1, x0:x1][: old.shape[0], : old.shape[1]]
+            part = np.maximum(part * stone, wide * water).astype(np.float32)   # water also beside the mailbox, whose own pixels the region skips
         old[..., 3] *= 1 - part
         ingest.write_imageset(name, to_img(old))
         print(f"  occluder {obj['id']} {stage}: cleared {int((part > 0.5).sum())} px of the erased stall")
