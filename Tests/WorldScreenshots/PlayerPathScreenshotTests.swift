@@ -502,6 +502,32 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
         }
     }
 
+    /// DIAGNOSTIC (removed before the last push): the pond at levels 1, 3 and 5 with the water off (a still frame),
+    /// and at two instants of the water's loop (`worldWaterClock`), to see which layer the ghosts come from and
+    /// that the water moves while nothing solid does. `path-pond-l<level>-dry`, `-t0`, `-t1`.
+    @MainActor
+    func testRenderThePondWaterDiagnostics() async throws {
+        let scene = try windowScene()
+        let folder = try outputFolder()
+        let day = try XCTUnwrap(Self.path.first { $0.morning.islandLevel == 3 }, "the path has a level 3 island")
+        for level in [1, 3, 5] {
+            for (suffix, clock, still) in [("dry", Double?.none, true), ("t0", 0.0, false), ("t1", 1.5, false)] {
+                var world = day.morning
+                world.islandLevel = 10
+                world.stations = world.stations.map { status in
+                    var status = status
+                    if status.id == .pond { status.level = level }
+                    return status
+                }
+                let island = IslandSceneModel(framing: .mid)
+                let view = homeView(world, hour: 12, island: island, settled: true)
+                    .environment(\.worldStillFrame, still)
+                    .environment(\.worldWaterClock, clock)
+                try await capture(AnyView(view), name: "path-pond-l\(level)-\(suffix)", scene: scene, folder: folder, settle: 2100) {}
+            }
+        }
+    }
+
     /// The whole island at mixed station levels, one frame per island stage that has looks (plan row 1c,
     /// `path-levels-i<island level>`): judged whole, no station takes over the island. Island 10: windmill 3, pond 2;
     /// island 9: windmill 4, pond 3; island 8: windmill 2, pond 4; island 7: tea stall 3, pond 1; at noon.

@@ -1,5 +1,6 @@
 import Foundation
 import Testing
+import PofuCore
 @testable import PofuWorld
 
 @Suite("Plate region effects (WP13)")
@@ -22,12 +23,14 @@ struct PlateRegionEffectsTests {
 
     @Test func homeCarriesItsWater() throws {
         let island = try plate
-        #expect(island.water.map(\.id) == ["pond", "pond-small"])
-        // The pond is painted at stages 0 to 5 and the small one at 6; no state has two bodies, and
-        // none past 6 has any (the pond is not there).
+        #expect(island.water.map(\.id) == ["pond", "pond-small", "pond-look-1", "pond-look-2", "pond-look-3", "pond-look-4", "pond-look-5", "pond-look-5-2"])
+        // The pond is painted at stages 0 to 5 and the small one at 6; none past 6 has any. Where the pond's look
+        // stands over an erased base (stages 0 to 3 by day) the plate's own pond is not drawn: with the pond unbuilt
+        // there is no water, and a built one has its look's outline (`theWaterFollowsThePondsLevel`).
         for state in try states() {
             let count = PlateRegionEffects.water(of: state).count
-            #expect(count == (state.stage <= 6 ? 1 : 0), "\(state.light) stage \(state.stage)")
+            let onBase = island.stationLooks(light: state.key, stage: state.stage)["pond"] != nil
+            #expect(count == (state.stage <= 6 && !onBase ? 1 : 0), "\(state.light) stage \(state.stage)")
         }
         for body in island.water {
             #expect(body.polygon.count >= 3)
@@ -47,16 +50,24 @@ struct PlateRegionEffectsTests {
     }
 
     @Test func regionsCoverUnder5PercentOfThePixels() throws {
+        // At every pond level (0 to 5, past the last look too), the worst of them reported by the test log.
+        var worst = 0.0
         for state in try states() {
-            let share = PlateRegionEffects.coverage(of: state)
-            #expect(share < 0.05, "\(state.light) stage \(state.stage): \(share)")
+            for level in 0...6 {
+                let share = PlateRegionEffects.coverage(of: state, levels: ["pond": level])
+                worst = max(worst, share)
+                #expect(share < 0.05, "\(state.light) stage \(state.stage) pond level \(level): \(share)")
+            }
         }
+        print("worst water coverage at any pond level: \(worst)")
         // On the screen at Home's mid framing (the island 1.15 screens wide on a 402 x 874 pt phone).
         let island = try plate
         let ppp = island.framing.homeWidths * 402 / island.islandBox.width
         for state in try states() {
-            let area = PlateRegionEffects.water(of: state).reduce(0) { $0 + $1.area }
-            #expect(area * ppp * ppp / (402 * 874) < 0.05, "\(state.light) stage \(state.stage)")
+            for level in 0...6 {
+                let area = PlateRegionEffects.water(of: state, levels: ["pond": level]).reduce(0) { $0 + $1.area }
+                #expect(area * ppp * ppp / (402 * 874) < 0.05, "\(state.light) stage \(state.stage) pond level \(level)")
+            }
         }
     }
 
@@ -105,5 +116,50 @@ struct PlateRegionEffectsTests {
         let body = try #require(try plate.water.first)
         let d = body.direction
         #expect(abs(d.x * d.x + d.y * d.y - 1) < 1e-9)
+    }
+
+    @Test func theWaterFollowsThePondsLevel() throws {
+        let island = try plate
+        let looks = try #require(island.stations["pond"])
+        let frame = try #require(looks.box)
+        for state in try states() where island.stationLooks(light: state.key, stage: state.stage)["pond"] != nil {
+            // Unbuilt: the base is grass, so no water.
+            #expect(PlateRegionEffects.water(of: state, levels: ["pond": 0]).isEmpty, "\(state.light) \(state.stage) level 0")
+            for level in 1...looks.levels {
+                let n = try #require(looks.lookLevel(stationLevel: level, light: state.key))
+                let bodies = PlateRegionEffects.water(of: state, levels: ["pond": level])
+                #expect(!bodies.isEmpty, "\(state.light) \(state.stage) level \(level) has water")
+                for body in bodies {
+                    #expect(body.look == n && body.station == "pond")
+                    // Inside the look's canvas: the outline is fitted to the look's water, not the old pond's.
+                    let box = try #require(body.box)
+                    #expect(box.minX >= frame.minX && box.maxX <= frame.maxX && box.minY >= frame.minY && box.maxY <= frame.maxY)
+                }
+            }
+        }
+        // The levels differ: a bigger pond has a bigger outline.
+        let day = try #require(try states().first { $0.key == "day" && island.stationLooks(light: "day", stage: $0.stage)["pond"] != nil })
+        let small = PlateRegionEffects.water(of: day, levels: ["pond": 1]).reduce(0) { $0 + $1.area }
+        let big = PlateRegionEffects.water(of: day, levels: ["pond": 3]).reduce(0) { $0 + $1.area }
+        #expect(small > 0 && big > small)
+        // Where the state keeps the painted pond, its own outline stays at every level.
+        for state in try states() where island.stationLooks(light: state.key, stage: state.stage)["pond"] == nil && state.stage <= 5 {
+            #expect(PlateRegionEffects.water(of: state, levels: ["pond": 3]).map(\.id) == ["pond"])
+        }
+    }
+
+    @Test func thePatchSamplesTheDrawnLook() throws {
+        let island = try plate
+        for state in try states() where island.stationLooks(light: state.key, stage: state.stage)["pond"] != nil {
+            for level in 1...5 {
+                let levels: [StationID: Int] = ["pond": level]
+                let compositor = PlateCompositor(plate: state, levels: levels)
+                let drawn = compositor.stationsBackToFront.compactMap { compositor.look($0, level: levels[StationID(rawValue: $0)] ?? 0) }
+                // The patch draws the base and these looks (`PlateWaterPatch`): the pond's look of the level is one.
+                for body in PlateRegionEffects.water(of: state, levels: levels) {
+                    #expect(drawn.contains { $0.station == "pond" && $0.look == body.look }, "\(state.key) \(state.stage) level \(level)")
+                }
+            }
+        }
     }
 }
