@@ -71,6 +71,7 @@ private struct VoyageRow: View {
                         VoyageIsle(model: model, stop: stop, world: world, place: layout.place(index: index, position: position), size: size)
                     }
                 }
+                moored(layout: layout, stops: stops, position: position, size: size)
                 Color.clear
                     .contentShape(Rectangle())
                     .simultaneousGesture(drag(layout: layout, stops: stops, selected: selected))
@@ -95,6 +96,25 @@ private struct VoyageRow: View {
         }
         .ignoresSafeArea()
         .accessibilityIdentifier("voyage-row")
+    }
+
+    /// She lies moored at the island the player stands on, at row scale, while the player chooses. While a ride
+    /// is under way the ride's own view draws her (from this same spot), so she is not drawn twice.
+    @ViewBuilder
+    private func moored(layout: VoyageRowLayout, stops: [VoyageStop], position: Double, size: CGSize) -> some View {
+        if model.ride == nil, let data = GezginData.shipped,
+           let level = Gezgin.presence(koke: world.koke, caglayan: world.caglayan, data: data).level,
+           let index = stops.firstIndex(where: { $0.island == state.origin }) {
+            let spot = layout.mooredSpot(at: layout.place(index: index, position: position))
+            let grade = VoyageGrade.whale(light: model.homePlate?.light ?? "day")
+            GezginFlyer(data: data, level: level, width: spot.width * Double(size.width))
+                .saturation(grade.saturation)
+                .brightness(grade.brightness)
+                .colorMultiply(Color(red: grade.red, green: grade.green, blue: grade.blue))
+                .position(x: CGFloat(spot.x) * size.width, y: CGFloat(spot.y) * size.height)
+                .allowsHitTesting(false)
+                .accessibilityHidden(true)
+        }
     }
 
     /// Far to near: the island in view is drawn last.
@@ -179,19 +199,28 @@ private struct VoyageIsle: View {
         return plate
     }
 
+    /// The hour's light on what has no night of its own.
+    private var grade: VoyageGrade {
+        VoyageGrade.grade(light: model.homePlate?.light ?? "day")
+    }
+
     @ViewBuilder
     var body: some View {
         if let plate = farHome {
             let box = plate.plateImageBox
-            let pose = CameraPose(
-                scale: place.width / max(plate.islandBox.width, 1),
-                look: WorldPoint(x: box.midX, y: box.midY),
-                anchorY: place.y
-            )
-            FarPicture(
-                compositor: PlateCompositor(plate: plate, levels: HomePlate.stationLevels(world)),
-                pose: pose, size: size, offset: CGSize(width: place.x - Double(size.width) / 2, height: 0)
-            )
+            let scale = place.width / max(plate.islandBox.width, 1)
+            let pose = CameraPose(scale: scale, look: WorldPoint(x: box.midX, y: box.midY), anchorY: place.y)
+            // The island's foot: the painted island's lowest row, in the picture's own scale.
+            let foot = place.y + (plate.islandBox.maxY - box.midY) * scale
+            ZStack(alignment: .topLeading) {
+                VoyageBed(x: place.x, foot: foot - 0.04 * place.width, width: place.width, weight: place.weight, grade: grade)
+                FarPicture(
+                    compositor: PlateCompositor(plate: plate, levels: HomePlate.stationLevels(world)),
+                    pose: pose, size: size, offset: CGSize(width: place.x - Double(size.width) / 2, height: 0)
+                )
+                .frame(width: size.width, height: size.height, alignment: .topLeading)
+                VoyageBed(x: place.x, foot: foot - 0.04 * place.width, width: place.width, weight: place.weight, grade: grade, front: true)
+            }
             .frame(width: size.width, height: size.height, alignment: .topLeading)
             .saturation(0.8 + 0.2 * place.weight)
             .brightness(-0.05 * (1 - place.weight))
@@ -207,33 +236,35 @@ private struct VoyageIsle: View {
         let art = art
         let w = CGFloat(place.width)
         let h = w * CGFloat(art.aspect)
-        ZStack {
-            // The cloud bed under its foot.
-            Ellipse()
-                .fill(Color.white.opacity(0.5 * place.weight + 0.2))
-                .frame(width: w * 1.05, height: w * 0.2)
-                .blur(radius: 12)
-                .offset(y: h * 0.36)
+        // A plate island (Çağlayan) is painted in the hour's light already; the rest is graded to it.
+        let g = art.lit ? VoyageGrade.day : grade
+        let foot = place.y + Double(h) * 0.4 - 0.04 * place.width
+        ZStack(alignment: .topLeading) {
+            VoyageBed(x: place.x, foot: foot, width: place.width, weight: place.weight, grade: grade)
             Image(art.name, bundle: .module)
                 .resizable()
                 .interpolation(.high)
                 .scaledToFit()
                 .frame(width: w, height: h)
                 .mask { VoyageFoot(fade: stop.status == .locked) }
+                .saturation(g.saturation)
+                .brightness(g.brightness)
+                .colorMultiply(Color(red: g.red, green: g.green, blue: g.blue))
+                .position(x: CGFloat(place.x), y: CGFloat(place.y))
+            VoyageBed(x: place.x, foot: foot, width: place.width, weight: place.weight, grade: grade, front: true)
         }
-        .frame(width: w, height: h)
+        .frame(width: size.width, height: size.height, alignment: .topLeading)
         .saturation(0.8 + 0.2 * place.weight)
         .brightness(-0.05 * (1 - place.weight))
-        .position(x: CGFloat(place.x), y: CGFloat(place.y))
         .allowsHitTesting(false)
         .accessibilityHidden(true)
     }
 
     /// The picture, and its height over its width.
-    private var art: (name: String, aspect: Double) {
+    private var art: (name: String, aspect: Double, lit: Bool) {
         switch stop.status {
         case .locked:
-            return (MapSlots.towerArt(for: stop.island.rawValue), 1.3)
+            return (MapSlots.towerArt(for: stop.island.rawValue), 1.3, false)
         default:
             break
         }
@@ -241,20 +272,20 @@ private struct VoyageIsle: View {
         case .home:
             if let plate = model.homePlate {
                 let box = plate.islandBox
-                return (plate.plate.mapIslandArt(light: plate.light, stage: plate.stage), box.height / max(box.width, 1))
+                return (plate.plate.mapIslandArt(light: plate.light, stage: plate.stage), box.height / max(box.width, 1), true)
             }
         case .caglayan:
             if let plate = model.caglayanPlate {
                 let box = plate.islandBox
-                return (plate.plate.mapIslandArt(light: plate.light, stage: plate.stage), box.height / max(box.width, 1))
+                return (plate.plate.mapIslandArt(light: plate.light, stage: plate.stage), box.height / max(box.width, 1), true)
             }
         case .koke:
             let size = KokeLayout.plateSize
-            return (KokeLayout.islandArt(stage: world.koke.stage), size.height / size.width)
+            return (KokeLayout.islandArt(stage: world.koke.stage), size.height / size.width, false)
         default:
             break
         }
-        return (MapSlots.towerArt(for: stop.island.rawValue), 1.3)
+        return (MapSlots.towerArt(for: stop.island.rawValue), 1.3, false)
     }
 }
 
@@ -290,7 +321,7 @@ private struct VoyageBar: View {
 
     var body: some View {
         let here = stop.island == state.origin
-        let live = stop.canSail && !here
+        let live = stop.canSail && !here && model.ride == nil
         HStack(alignment: .center, spacing: PofuSpacing.m) {
             VStack(alignment: .leading, spacing: PofuSpacing.xxs) {
                 Text(verbatim: WorldStrings.islandName(stop.island))

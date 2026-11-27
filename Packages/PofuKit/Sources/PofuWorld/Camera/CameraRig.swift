@@ -238,7 +238,7 @@ public struct CameraRig: Hashable, Sendable {
 
     /// Flies to `target` (§1.2): up over the sea, across, and down. It lasts
     /// `CameraFlight.duration`; under Reduce Motion the camera jumps.
-    public mutating func startFlight(to target: CameraPose, landing: FlightLanding) {
+    public mutating func startFlight(to target: CameraPose, landing: FlightLanding, seconds: Double? = nil) {
         let start = pose
         flightLanding = landing
         focusAmount.jump(to: 0)
@@ -250,7 +250,7 @@ public struct CameraRig: Hashable, Sendable {
             finishFlight()
             return
         }
-        flight = CameraFlight(from: start, to: target, apexLogScale: rail.pose(z: CameraFlight.apexZ).logScale)
+        flight = CameraFlight(from: start, to: target, apexLogScale: rail.pose(z: CameraFlight.apexZ).logScale, seconds: seconds)
         flightTime = 0
     }
 

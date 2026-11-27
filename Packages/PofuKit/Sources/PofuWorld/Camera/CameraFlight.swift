@@ -20,11 +20,13 @@ public struct CameraFlight: Hashable, Sendable {
     public let apexLogScale: Double
     public let duration: Double
 
-    public init(from: CameraPose, to: CameraPose, apexLogScale: Double) {
+    /// A flight of its own length: the voyage ride (`VoyageRide`) sets it so the camera arrives as she moors.
+    /// Without `seconds` the length follows the distance.
+    public init(from: CameraPose, to: CameraPose, apexLogScale: Double, seconds: Double? = nil) {
         self.from = from
         self.to = to
         self.apexLogScale = min(apexLogScale, from.logScale, to.logScale)
-        duration = Self.duration(distance: Self.distance(from: from, to: to))
+        duration = seconds.map { max($0, 0.1) } ?? Self.duration(distance: Self.distance(from: from, to: to))
     }
 
     /// The flight's length, in seconds: `0.9 + 0.25·log2(1 + d/1000)`,

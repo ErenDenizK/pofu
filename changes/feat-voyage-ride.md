@@ -1,0 +1,1 @@
+The voyage row's verb is a ride: Pofu and Fındık hop aboard the Gezgin, she flies with the camera on her over the cloud sea, and she moors; the row is bedded in cloud, graded by the hour, its neighbours show a third of themselves, and she lies moored at the island you stand on.

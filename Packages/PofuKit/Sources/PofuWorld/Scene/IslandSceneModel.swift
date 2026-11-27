@@ -227,6 +227,13 @@ public final class IslandSceneModel {
     public let gezgin = GezginBeatState()
     /// The voyage row's choice: the island in view and the finger's drag (ADR-0028).
     public let voyage = VoyageRowState()
+    /// The ride in progress (the verb of the row, plan row 2d), or `nil`.
+    public private(set) var ride: VoyageRide?
+    /// When the ride began, or `nil` when it is held at a moment (screenshots) or none is under way.
+    public private(set) var rideStart: Date?
+    /// The moment a held ride stands at, in seconds (screenshots).
+    public private(set) var rideHeld: Double?
+    @ObservationIgnored private var rideTask: Task<Void, Never>?
     /// She was woken: the app plays her cue. Home sets it.
     @ObservationIgnored public var onGezginWake: (@MainActor () -> Void)?
     /// Çağlayan's bubble, swell and haptic (the second wonder island).
@@ -685,14 +692,80 @@ public final class IslandSceneModel {
         go(to: stop.controlTarget.framing)
     }
 
-    /// The verb of the voyage row: sails to the island in view ("Yola çık"); Home is reached the same way.
+    /// The verb of the voyage row: the ride to the island in view ("Yola çık"); Home is reached the same way.
+    /// The characters hop aboard while the row waits, then the camera flies with her and she moors.
     public func voyageSail() {
-        fly(to: voyage.island)
+        guard ride == nil else { return }
+        let target = voyage.island
+        guard target != voyage.origin else { return }
+        let ride = VoyageRide(from: voyage.origin, to: target, reduceMotion: reduceMotion)
+        self.ride = ride
+        rideStart = Date()
+        rideHeld = nil
+        rideTask?.cancel()
+        rideTask = Task { @MainActor [weak self] in
+            if ride.board > 0 { try? await Task.sleep(for: .seconds(ride.board)) }
+            guard !Task.isCancelled, let self else { return }
+            self.sail(ride)
+            try? await Task.sleep(for: .seconds(max(ride.duration - ride.board, 0)))
+            guard !Task.isCancelled else { return }
+            self.ride = nil
+            self.rideStart = nil
+        }
+        revision &+= 1
+    }
+
+    /// The seconds into the ride now, or `nil` when none is under way (a held ride stands at its moment).
+    public func rideElapsed(at date: Date) -> Double? {
+        guard ride != nil else { return nil }
+        if let rideHeld { return rideHeld }
+        return rideStart.map { date.timeIntervalSince($0) }
+    }
+
+    /// The camera's flight of a ride: its length is the ride's flight beat, so the camera arrives as she moors.
+    private func sail(_ ride: VoyageRide) {
+        if ride.to == .home {
+            closeSurfaces()
+            island = .home
+            let pose = engine.rig.rail.pose(of: .mid)
+            travel { $0.startFlight(to: pose, landing: .rail(.mid), seconds: ride.fly) }
+            framing = .mid
+            projectedFraming = .mid
+            kick()
+        } else {
+            fly(to: ride.to, seconds: ride.fly)
+        }
+    }
+
+    /// Holds a ride from `origin` to `target` still at `seconds` into it (screenshots): the row while she is
+    /// boarding, then the camera's flight at the matching moment.
+    public func holdRide(from origin: IslandID, to target: IslandID, at seconds: Double) {
+        closeSurfaces()
+        rideTask?.cancel()
+        island = .home
+        engine.rig.jump(to: .map)
+        engine.rig.snapToTargets()
+        framing = .map
+        projectedFraming = .map
+        voyage.open(on: origin)
+        voyage.choose(target)
+        let ride = VoyageRide(from: origin, to: target)
+        self.ride = ride
+        rideStart = nil
+        rideHeld = seconds
+        if seconds >= ride.flightStart {
+            sail(ride)
+            engine.rig.holdFlight(at: min((seconds - ride.flightStart) / max(ride.fly, 0.1), 1))
+        }
+        engine.isHeld = true
+        engine.lastDate = nil
+        revision &+= 1
     }
 
     /// Flies to another island's Island stop (§1.2): up, across the sea,
-    /// down. The home island is reached the same way from another island.
-    public func fly(to target: IslandID) {
+    /// down. The home island is reached the same way from another island. `seconds` sets the flight's
+    /// length (the ride's); without it the length follows the distance.
+    public func fly(to target: IslandID, seconds: Double? = nil) {
         if target == .home {
             go(to: .mid)
             return
@@ -704,10 +777,21 @@ public final class IslandSceneModel {
         island = target
         framing = .mid
         projectedFraming = .mid
-        travel { $0.startFlight(to: pose, landing: .pose(pose)) }
+        travel { $0.startFlight(to: pose, landing: .pose(pose), seconds: seconds) }
         kick()
-        koke.landed(on: target, model: self)
-        caglayan.landed(on: target, model: self)
+        guard let seconds else {
+            koke.landed(on: target, model: self)
+            caglayan.landed(on: target, model: self)
+            return
+        }
+        // A ride is the arrival: the island's bubble waits until she has come in (a held frame has none).
+        guard rideHeld == nil else { return }
+        Task { @MainActor [weak self] in
+            try? await Task.sleep(for: .seconds(seconds))
+            guard let self, self.island == target else { return }
+            self.koke.landed(on: target, model: self)
+            self.caglayan.landed(on: target, model: self)
+        }
     }
 
     /// Holds the camera on another island's Island stop, still

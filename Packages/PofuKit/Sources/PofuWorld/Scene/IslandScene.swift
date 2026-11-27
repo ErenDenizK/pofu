@@ -281,6 +281,7 @@ public struct IslandScene<Bubble: View>: View {
             model.power.startObservingSystem()
         }
         .overlay { VoyageRowOverlay(model: model, world: world) }
+        .overlay { VoyageRideOverlay(model: model, world: world) }
         .overlay { KokeBubbleOverlay(state: model.koke) }
         .overlay { GezginBubbleOverlay(state: model.gezgin) }
         .overlay { CaglayanBubbleOverlay(state: model.caglayan) }
@@ -1390,7 +1391,7 @@ private struct WorldCanvas: View {
             }
         case .gezgin(let level):
             if let plate, let data = GezginData.shipped, let mooring = plate.plate.mooring {
-                let wakeAge = model.gezgin.wokeAt.map { clock.timeIntervalSince($0) }
+                let wakeAge = model.gezgin.heldAge ?? model.gezgin.wokeAt.map { clock.timeIntervalSince($0) }
                 GezginMooredView(
                     data: data, plate: plate, mooring: mooring, level: level,
                     pose: Gezgin.pose(light: plate.light, wakeAge: wakeAge, data: data),
