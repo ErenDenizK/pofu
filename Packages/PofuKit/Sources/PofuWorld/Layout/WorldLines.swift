@@ -73,6 +73,8 @@ public enum HomeDailyLine: Hashable, Sendable {
     case giftArrived
     case letGo(count: Int)
     case guest
+    /// New Year (T-01 of the voice doc), on the kit's days.
+    case newYear
     case morning(variant: Int)
     case midday(variant: Int)
     case evening(variant: Int)
@@ -124,6 +126,7 @@ public enum HomeDailyLine: Hashable, Sendable {
         let now = world.clock ?? Date()
         let hour = calendar.component(.hour, from: now)
         let day = calendar.ordinality(of: .day, in: .era, for: now) ?? 0
+        if world.specialDay == .newYear, !world.isBedtime { return .newYear }
         let guest = world.visitor.map { $0.state == .arriving || $0.state == .present } ?? false
         return choose(
             hour: hour,

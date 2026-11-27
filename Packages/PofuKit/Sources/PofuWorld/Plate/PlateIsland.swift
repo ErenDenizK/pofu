@@ -432,6 +432,18 @@ public struct PlateProp: Decodable, Hashable, Sendable {
     /// The art's bytes over every state (one byte a pixel), for the texture budget.
     public var bytes: Int
     public var slots: [[Double]]
+    /// The special day whose kit this prop belongs to; `nil` for the three home props, which always stand. A kit prop
+    /// draws only while `SpecialDays` names its day (island calendar v1, C3).
+    public var when: SpecialDay?
+
+    /// The painted state to draw: the lit one at night when the prop has it, else its first.
+    public func state(lit: Bool) -> String {
+        if lit, states.contains("lit") { return "lit" }
+        return states.first ?? ""
+    }
+
+    /// The asset name of `state`.
+    public func asset(state: String) -> String { "world-home-prop-\(id)-\(state)" }
 
     /// The foot's centre at `stage`, or `nil` when the plate has no slot for it.
     public func slot(stage: Int) -> PlatePoint? {

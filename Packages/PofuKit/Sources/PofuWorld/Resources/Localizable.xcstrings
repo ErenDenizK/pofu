@@ -2404,6 +2404,22 @@
           }
         }
       }
+    },
+    "newyear.line": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New year, new me? Same hamster, thanks. You be as new as you like."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yeni yıl, yeni ben. Ben aynı hamsterım. Sen istediğin kadar yeni ol."
+          }
+        }
+      }
     }
   },
   "version": "1.0"
