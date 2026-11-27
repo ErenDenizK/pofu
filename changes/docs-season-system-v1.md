@@ -1,0 +1,1 @@
+Changed: nothing in the app; the season system is specified in docs/design/season-system-v1.md (every season picture is an edit of its spring counterpart; ADR-0030 proposed; the pilot is pofu-art batch 194).
