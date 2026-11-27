@@ -469,7 +469,8 @@ public struct HomePlate: Hashable, Sendable {
 
     /// The levels of the Home island's stations in a world, what the looks are drawn from.
     public static func stationLevels(_ world: WorldSnapshot) -> [StationID: Int] {
-        Dictionary(world.stations.filter { $0.island == .home }.map { ($0.id, $0.level) }, uniquingKeysWith: max)
+        // The harbour islet (the bagel cart, the pier, the lighthouse) is part of Home's painting, so its stations' levels count here.
+        Dictionary(world.stations.filter { $0.island == .home || $0.island == .harbor }.map { ($0.id, $0.level) }, uniquingKeysWith: max)
     }
 
     /// A station's look canvas and foot, in world units, or `nil` for a station without looks.
