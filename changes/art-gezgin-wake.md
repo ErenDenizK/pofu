@@ -1,0 +1,1 @@
+[world] Nazlı now leaves a cloud wake on the ride: a short cluster of puffs at take-off and landing and a long chain between, drifting behind her tail, born softly as she lifts off and gone before she moors (none under Reduce Motion).
