@@ -194,17 +194,46 @@ public struct VoyageRide: Equatable, Sendable {
         }
     }
 
-    /// How much of the scene's wonder islands shows: when the ride starts from the row, none until the row has
-    /// faded away entirely (the row's own island and the scene's never show together, no ghost), then they come
-    /// in as the camera rises; otherwise whole.
+    /// How much of the scene's wonder islands shows: when the ride starts from the row, none until the camera
+    /// is coming down on one (it is the camera's subject then, never a ghost in the sky as the camera rises),
+    /// and whole after; otherwise whole.
     public func sceneIslandOpacity(at seconds: Double) -> Double {
         guard fromRow else { return 1 }
         let (beat, progress) = beat(at: seconds)
         switch beat {
         case .board: return 0
-        case .fly: return Self.ease((progress - 0.22) / 0.18)
+        case .fly: return Self.ease((progress - Self.arrivalShare) / 0.2)
         case .moor, .done: return 1
         }
+    }
+
+    /// The share of the flight where the destination begins to come in: the descent has started
+    /// (`CameraFlight.riseShare + travelShare`), a little before it, so it is whole as she comes in.
+    public static let arrivalShare = 0.6
+
+    /// The second the row has given way entirely and the scene's own Home takes over (the end of `rowOpacity`'s
+    /// fade): the match cut. Until then the row draws Home, from the flight's first frame at the camera's own
+    /// pose, above its fading sea, so Home is never veiled and never moves by itself.
+    public var handoverSeconds: Double { board + fly * 0.2 }
+
+    /// How much of the departure island Home the row draws (the match cut): all of it until the handover.
+    /// Home is drawn by one of the two at every moment, never both.
+    public func rowHomeOpacity(at seconds: Double) -> Double {
+        guard fromRow else { return 0 }
+        return seconds < handoverSeconds ? 1 : 0
+    }
+
+    /// How much of Home the scene draws under a ride: the other half of the match cut.
+    public func sceneHomeOpacity(at seconds: Double) -> Double {
+        guard fromRow else { return 1 }
+        return seconds < handoverSeconds ? 0 : 1
+    }
+
+    /// How much of the scene's characters (Pofu, the residents, the props) show: none until the handover, so
+    /// nobody pops onto Home's lawn as the row lets go, then they come in softly.
+    public func sceneCharacterOpacity(at seconds: Double) -> Double {
+        guard fromRow else { return 1 }
+        return Self.ease((seconds - handoverSeconds) / 0.3)
     }
 
     /// The row's glass bar (the island's name, its state line and the verb) is focus UI: it goes with the tap,
@@ -279,6 +308,16 @@ public struct VoyageRide: Equatable, Sendable {
 }
 
 extension VoyageRowLayout {
+    /// The camera that frames Home's painting in the scene exactly as the row draws it (the island in view:
+    /// `VoyageIsle`'s pose), so the ride's flight starts from the row's own picture: the same screen position and
+    /// scale, never a second Home somewhere else.
+    public func homePose(plate: HomePlate) -> CameraPose {
+        let place = place(index: 0, position: 0)
+        let scale = place.width / max(plate.islandBox.width, 1)
+        let look = plate.isMatted ? WorldPoint(x: plate.plateImageBox.midX, y: plate.plateImageBox.midY) : WorldPoint(x: plate.islandBox.midX, y: plate.islandBox.midY)
+        return CameraPose(scale: scale, look: look, anchorY: place.y)
+    }
+
     /// Where the Gezgin lies moored at the island drawn at `place`, at row scale: at the foot of the side
     /// that faces the middle of the screen (an island cut by the edge keeps her in sight), her cut-out's
     /// width a third of the island's. For the ride's start and the row's own drawing,

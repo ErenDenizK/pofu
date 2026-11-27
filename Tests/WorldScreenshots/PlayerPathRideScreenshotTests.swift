@@ -39,23 +39,28 @@ final class PlayerPathRideScreenshotTests: PlayerPathFrameCase {
         }
     }
 
+    /// Every half second, and every quarter second through the handover from the row to the world (0.5 to 2.5).
+    private static let moments: [Double] = (0 ... 16).map { Double($0) / 4 }.filter { $0 < 0.5 || $0 > 2.5 ? $0.truncatingRemainder(dividingBy: 0.5) == 0 : true }
+
+    private static func label(_ seconds: Double) -> String {
+        seconds.truncatingRemainder(dividingBy: 0.5) == 0 ? String(format: "%.1f", seconds) : String(format: "%.2f", seconds)
+    }
+
     @MainActor
     func testRenderTheRide() async throws {
         let scene = try windowScene()
         let folder = try outputFolder()
         let world = try world(level: 5)
-        for tenths in stride(from: 0, through: 40, by: 5) {
-            let seconds = Double(tenths) / 10
+        for seconds in Self.moments {
             try await frame(
                 world, hour: 12, from: .home, to: .koke, at: seconds,
-                name: String(format: "voyage-%.1f", seconds), scene: scene, folder: folder
+                name: "voyage-" + Self.label(seconds), scene: scene, folder: folder
             )
         }
-        for tenths in stride(from: 0, through: 40, by: 5) {
-            let seconds = Double(tenths) / 10
+        for seconds in Self.moments {
             try await frame(
                 world, hour: 12, from: .koke, to: .home, at: seconds,
-                name: String(format: "voyage-back-%.1f", seconds), scene: scene, folder: folder
+                name: "voyage-back-" + Self.label(seconds), scene: scene, folder: folder
             )
         }
     }
