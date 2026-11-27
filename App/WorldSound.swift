@@ -90,6 +90,11 @@ enum WorldSound {
         )
     }
 
+    /// Where the music room starts: the island as it is at `date`, in clear weather.
+    static func musicRoomSeed(of world: WorldSnapshot, at date: Date) -> MusicState {
+        musicState(of: world, hour: Calendar.current.component(.hour, from: date), weather: .clear)
+    }
+
     /// Once at launch: the breath room's phases drive the pad.
     static func install() {
         FarBellStage.shared.onPlay = { WorldSound.play($0) }
