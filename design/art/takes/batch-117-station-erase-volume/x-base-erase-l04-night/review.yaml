@@ -1,0 +1,51 @@
+batch: batch-117-station-erase-volume
+job: x-base-erase-l04-night
+status: warn
+pick: 2
+lead_review: "Pick t2 for paste-back (checked at 1:1): all four stations gone with the bridge whole, where t1 leaves a green smear on the bridge's back post."
+note: "Exploration only; retain both unpromoted whole-plate takes for the lead to paste back. Judge the erased region and feathered seam only; whole-frame drift is expected. Preserve the left-rim daisy border, hilltop flowers, and non-station path lantern; trim any dangling workshop light string where applicable. Station boxes are in the manifest job notes."
+source: codex-cloud
+account:
+  owner: "Founder's uncle's ChatGPT plan, used by the founder with permission"
+  kind: chatgpt-plan
+takes:
+- n: 1
+  file: plate__x-base-erase-l04-night--t1.webp
+  qa: warn
+  size_bytes: 104184
+  dimensions: 1024x1536
+  lock_load: 0.0
+  warnings:
+  - check: light_values
+    status: warn
+    message: "night/subject: L p5 42 (at least 45: darks stay a light mid-tone), p98 93 (at least 85)"
+  - check: light_median
+    status: warn
+    message: "night/subject: median L 62 (band 66-88)"
+  - check: palette_drift
+    status: warn
+    message: "mean dE 7.0, p95 15.0, off-palette 20.1% (top: #445599 (5.2%), #335599 (4.7%)) (advisory in an exploration)"
+  source_file: /workspace/generated_images/exec-e761b254-aa42-410e-86cc-56a2c3413007.png
+  source_sha256: e89085e580b2bd8e864bf455b67b2a2298e31e4f91d2f62b0f012b8c851e82cb
+  generated_at: 2026-11-15T15:54:30+00:00
+- n: 2
+  file: plate__x-base-erase-l04-night--t2.webp
+  qa: warn
+  size_bytes: 103642
+  dimensions: 1024x1536
+  lock_load: 0.0
+  warnings:
+  - check: light_values
+    status: warn
+    message: "night/subject: L p5 42 (at least 45: darks stay a light mid-tone), p98 93 (at least 85)"
+  - check: light_median
+    status: warn
+    message: "night/subject: median L 62 (band 66-88)"
+  - check: palette_drift
+    status: warn
+    message: "mean dE 7.0, p95 15.0, off-palette 20.3% (top: #445599 (5.2%), #335599 (4.7%)) (advisory in an exploration)"
+  source_file: /workspace/generated_images/exec-2fc35564-555d-45bd-9994-48b659acdf37.png
+  source_sha256: 16318a84144042f5c68db54e58d2086f00c055e2995f9ce3be4dd4295cb2da15
+  generated_at: 2026-11-15T15:54:30+00:00
+references:
+- design/art/takes/batch-72-home-night/x-home-flow-il4-night/plate__x-home-flow-il4-night--t1.webp

@@ -1,0 +1,51 @@
+batch: batch-117-station-erase-volume
+job: x-base-erase-l06-night
+status: warn
+pick: 2
+lead_review: "Pick t2 for paste-back: all six stations gone and t2 keeps the whole rope bridge, where t1 erases it and fills the gap; paste the path lantern by the old pond back, whose glow both leave lying on the grass without it."
+note: "Exploration only; retain both unpromoted whole-plate takes for the lead to paste back. Judge the erased region and feathered seam only; whole-frame drift is expected. Preserve the left-rim daisy border, hilltop flowers, and non-station path lantern; trim any dangling workshop light string where applicable. Station boxes are in the manifest job notes."
+source: codex-cloud
+account:
+  owner: "Founder's uncle's ChatGPT plan, used by the founder with permission"
+  kind: chatgpt-plan
+takes:
+- n: 1
+  file: plate__x-base-erase-l06-night--t1.webp
+  qa: warn
+  size_bytes: 114110
+  dimensions: 1024x1536
+  lock_load: 0.0
+  warnings:
+  - check: light_values
+    status: warn
+    message: "night/subject: L p5 42 (at least 45: darks stay a light mid-tone), p98 92 (at least 85)"
+  - check: light_median
+    status: warn
+    message: "night/subject: median L 57 (band 66-88) (warn-only until the founder has seen the light pilot)"
+  - check: palette_drift
+    status: warn
+    message: "mean dE 7.8, p95 16.0, off-palette 30.5% (top: #4455AA (8.1%), #335599 (7.9%)) (advisory in an exploration)"
+  source_file: /workspace/generated_images/exec-7d03003e-7686-4022-9b9a-f983c6c172c1.png
+  source_sha256: 16d78d57b6df0a4cc0c25a2297872987711b30c8c7f31fa39fa926f0f8c43593
+  generated_at: 2026-11-15T15:53:10+00:00
+- n: 2
+  file: plate__x-base-erase-l06-night--t2.webp
+  qa: warn
+  size_bytes: 109156
+  dimensions: 1024x1536
+  lock_load: 0.0
+  warnings:
+  - check: light_values
+    status: warn
+    message: "night/subject: L p5 43 (at least 45: darks stay a light mid-tone), p98 92 (at least 85)"
+  - check: light_median
+    status: warn
+    message: "night/subject: median L 57 (band 66-88) (warn-only until the founder has seen the light pilot)"
+  - check: palette_drift
+    status: warn
+    message: "mean dE 7.3, p95 15.2, off-palette 28.8% (top: #445599 (6.5%), #4455AA (5.7%)) (advisory in an exploration)"
+  source_file: /workspace/generated_images/exec-13e53602-719a-4445-b371-f10b57ea23c0.png
+  source_sha256: 98b82eb4884550ea8c0705ec54db76abc662513790cd560ba745fc289bbf1f37
+  generated_at: 2026-11-15T15:53:10+00:00
+references:
+- design/art/takes/batch-72-home-night/x-home-flow-il6-night/plate__x-home-flow-il6-night--t1.webp
