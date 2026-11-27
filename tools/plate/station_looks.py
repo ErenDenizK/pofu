@@ -248,7 +248,7 @@ STATIONS = [TEA_STALL, WINDMILL, POND, WORKSHOP]
 
 def pick_of(job: str) -> int:
     text = (TAKES / job / "review.yaml").read_text()
-    m = re.search(r"^pick:\s*(\d+)", text, re.M)
+    m = re.search(r"^\s*pick:\s*(\d+)", text, re.M)       # top level (batches 117 to 191) or under `selection:` (batch 194)
     if not m:
         raise SystemExit(f"{job}: review.yaml has no pick")
     return int(m.group(1))
@@ -559,6 +559,10 @@ def plot_looks(plot: dict) -> dict:
     every pixel outside the mill's inside (3 px in) taken from its nearest inside pixel, so no sky or lawn tints the edge,
     then the level's grade."""
     masks, rgbs, trust = plot_masks(plot)
+    if plot.get("paint"):
+        # A season's look (D2): the spring take's shape, the season take's colours. The takes are aligned edits of the spring
+        # takes (the season gate holds the frame), so the spring mask cuts them and nothing is cut by difference.
+        rgbs = {n: _take_rgb(t) for n, t in plot["paint"].items()}
     out = {}
     for n, m in masks.items():
         inside = cv2.erode(trust[n].astype(np.uint8), _ellipse(7)) > 0
@@ -736,11 +740,11 @@ def old_pond_pixels(rgb: np.ndarray) -> np.ndarray:
     return stone | water
 
 
-def build_base(stage: int, spec: dict, plate: np.ndarray | None = None) -> tuple[np.ndarray, dict]:
+def build_base(stage: int, spec: dict, plate: np.ndarray | None = None, light: str = "day", erase: Path | None = None) -> tuple[np.ndarray, dict]:
     """The shipped plate of a day stage with the station erased: RGBA floats, the plate's crop. `plate` is a base that
     already has other stations erased (the same size): this station's window is taken out of it, so two stations that
-    stand on one stage accumulate in one base."""
-    light = "day"
+    stand on one stage accumulate in one base. `light` is the state's key (`autumn-day` for a season's: its plate is the
+    parent and `erase` the season's own erase take, from which the station's window is taken, as in spring)."""
     hand = ingest.load_hand(ISLAND)
     crop = ingest.plate_crop_points(ISLAND, hand, light, stage)
     cx, cy = crop[0] * TEX, crop[1] * TEX
@@ -751,15 +755,15 @@ def build_base(stage: int, spec: dict, plate: np.ndarray | None = None) -> tuple
     h, w = plate.shape[:2]
     parent = ingest.source_plate(ingest.REPO / hand["plates"][light][str(stage)])[0].astype(np.float32)
     job = ingest.REPO / "design" / "art" / "takes" / spec["job"]
-    take = np.asarray(Image.open(take_path(spec["job"])).convert("RGB").resize((parent.shape[1], parent.shape[0]), Image.LANCZOS), np.float32) / 255
+    take = np.asarray(Image.open(erase or take_path(spec["job"])).convert("RGB").resize((parent.shape[1], parent.shape[0]), Image.LANCZOS), np.float32) / 255
     hard_full = paste_masks(parent, take, spec["window"], spec.get("shapes"))
     for ex0, ey0, ex1, ey1 in spec.get("exclude", []):
         hard_full[ey0:ey1, ex0:ex1] = 0
     for oid in spec.get("excludeOccluders", ()):         # an occluder's opaque pixels stay the plate's (the mailbox)
-        x0, y0, x1, y1, alpha = occluder_pixels(stage, oid)
+        x0, y0, x1, y1, alpha = occluder_pixels(stage, oid, light)
         solid = alpha > (0.02 if spec.get("excludeGrow") else 0.4)
         if oid in spec.get("flowersOnly", ()):           # the plate's flowers stay; the old pond's stones and water under the polygon still go
-            name = ingest.asset_name(ISLAND, "occ", "day", stage, oid)
+            name = ingest.asset_name(ISLAND, "occ", light, stage, oid)
             with open_source_asset(name) as im:
                 solid &= ~old_pond_pixels(np.asarray(im.convert("RGB"), np.float32)[: solid.shape[0], : solid.shape[1]] / 255)
         hard_full[y0:y1, x0:x1][cv2.dilate(solid.astype(np.uint8), _ellipse(7 + spec.get("excludeGrow", 0))) > 0] = 0
@@ -839,15 +843,15 @@ def keep_source(name: str) -> None:
 
 
 
-def occluder_pixels(stage: int, oid: str) -> tuple[int, int, int, int, np.ndarray]:
+def occluder_pixels(stage: int, oid: str, light: str = "day") -> tuple[int, int, int, int, np.ndarray]:
     """An occluder's box in the plate's texture px and its alpha."""
     hand = ingest.load_hand(ISLAND)
-    _, k = ingest.source_plate(ingest.REPO / hand["plates"]["day"][str(stage)])
-    a1 = ingest.load_matte(ISLAND, "day", stage)
+    _, k = ingest.source_plate(ingest.REPO / hand["plates"][light][str(stage)])
+    a1 = ingest.load_matte(ISLAND, light, stage)
     obj = next(o for o in hand["objects"] if o["id"] == oid)
     _, box = ingest.occluder_cut(np.zeros(a1.shape + (3,)), a1, ingest.pct_to_px(obj["points"]))
     x0, y0, x1, y1 = (v * k for v in box)
-    name = ingest.asset_name(ISLAND, "occ", "day", stage, oid)
+    name = ingest.asset_name(ISLAND, "occ", light, stage, oid)
     with open_source_asset(name) as im:
         alpha = np.asarray(im.convert("RGBA"), np.float32)[..., 3] / 255
     return x0, y0, x0 + alpha.shape[1], y0 + alpha.shape[0], alpha
@@ -863,15 +867,15 @@ def clear_alpha(alpha: np.ndarray, part: np.ndarray) -> np.ndarray:
     return np.minimum(alpha, 1 - part).astype(np.float32)
 
 
-def clear_occluders(stage: int, hard_full: np.ndarray, station: str = TEA_STALL["id"], keep: tuple = (), skip: tuple = ()) -> None:
+def clear_occluders(stage: int, hard_full: np.ndarray, station: str = TEA_STALL["id"], keep: tuple = (), skip: tuple = (), light: str = "day") -> None:
     """Another object's occluder cut-out that reaches into the erased stall (the workshop's polygon runs on to the stall's
     left pole) would draw the old stall again over the base: its alpha is cleared inside the erased region."""
     hand = ingest.load_hand(ISLAND)
-    rgb, k = ingest.source_plate(ingest.REPO / hand["plates"]["day"][str(stage)])
-    a1 = ingest.load_matte(ISLAND, "day", stage)
+    rgb, k = ingest.source_plate(ingest.REPO / hand["plates"][light][str(stage)])
+    a1 = ingest.load_matte(ISLAND, light, stage)
     region = cv2.GaussianBlur(cv2.dilate(hard_full, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (13, 13))).astype(np.float32), (0, 0), 2.0)
     for obj in hand["objects"]:
-        if not obj.get("occluder") or not ingest.present(obj, "day", stage) or obj["id"] == station or obj["id"] in skip:
+        if not obj.get("occluder") or not ingest.present(obj, light, stage) or obj["id"] == station or obj["id"] in skip:
             continue
         _, box = ingest.occluder_cut(np.zeros(a1.shape + (3,)), a1, ingest.pct_to_px(obj["points"]))
         x0, y0, x1, y1 = (v * k for v in box)
@@ -881,7 +885,7 @@ def clear_occluders(stage: int, hard_full: np.ndarray, station: str = TEA_STALL[
             part = inner
         if part.max() <= 0.01:
             continue
-        name = ingest.asset_name(ISLAND, "occ", "day", stage, obj["id"])
+        name = ingest.asset_name(ISLAND, "occ", light, stage, obj["id"])
         with open_source_asset(name) as im:
             old = np.asarray(im.convert("RGBA"), np.float32) / 255
         part = part[: old.shape[0], : old.shape[1]]
@@ -906,13 +910,13 @@ def stage_specs(stage: int, specs: list[dict] | None = None) -> list[dict]:
     return [sp for sp in (specs or STATIONS) if stage in sp["bases"]]
 
 
-def accumulate_base(stage: int, specs: list[dict] | None = None) -> tuple[np.ndarray, dict, np.ndarray]:
+def accumulate_base(stage: int, specs: list[dict] | None = None, light: str = "day", erase: Path | None = None) -> tuple[np.ndarray, dict, np.ndarray]:
     """The base of a stage with every station that has one there erased: each station's window is taken out of what the
     stations before it left. Returns the base, the plate crop (`info`, with each station's erased region in
     `info["regions"]`) and the union of the erased regions (texture px)."""
     x, info, union, regions = None, None, None, []
     for spec in stage_specs(stage, specs):
-        x, info = build_base(stage, spec["bases"][stage], x)
+        x, info = build_base(stage, spec["bases"][stage], x, light, erase)
         hf = info["hard_full"]
         union = hf if union is None else np.maximum(union, hf)
         regions.append((spec["id"], hf))
@@ -982,6 +986,147 @@ def cmd_bases(station: dict | None = None) -> dict:
     return out
 
 
+# ---------------------------------------------------------------- seasons (season-system-v1 D5, D6)
+
+SEASON_BATCH = "batch-194-season-slice-pilot"
+#: What a painted season ships, per season: the states (key `<season>-<light>` -> stage -> the season's erase take, the base's
+#: source), the stations painted per level (`paint`: station -> level -> the season's take of that level, graded in place to
+#: the season plate's mill) and the stations derived (the spring look through the colour fit of the stage-0 pair).
+#: Autumn at the pilot: level 10 by day (stage 0, the master) and its night; the level 3 picks fail the gate (S1: Codex redrew
+#: the adult island, `review.yaml`), so the tea stall (its looks stand on stage 7 and below) waits for a re-take.
+SEASON_SLICE = {
+    "autumn": {
+        "states": {"autumn-day": {0: f"{SEASON_BATCH}/x-season-autumn-l10-bare-day"}, "autumn-night": {0: None}},
+        "paint": {"windmill": {n: f"{SEASON_BATCH}/x-plot-windmill-{n}-autumn" for n in range(2, 6)}},
+        "derive": ["pond", "workshop"],
+    },
+}
+
+
+def season_stage_stations(season: str, key: str, stage: int) -> list[dict]:
+    """The stations that stand over a base in a season's state: the ones with a spring base at the stage, when the season
+    has an erase take for it (night has no bases, as in spring)."""
+    return stage_specs(stage) if SEASON_SLICE[season]["states"][key].get(stage) else []
+
+
+def season_paint_spec(season: str, sid: str, grade: dict | None = None) -> dict:
+    spec = next(sp for sp in STATIONS if sp["id"] == sid)
+    paint = SEASON_SLICE[season]["paint"][sid]
+    plot = {**spec["plot"], "paint": {n: (job, pick_of(job)) for n, job in paint.items()},
+            "grade": grade or {n: (1.0, 1.0) for n in paint}}
+    plot["takes"] = {n: t for n, t in plot["takes"].items() if n in paint}
+    return {**spec, "plot": plot}
+
+
+def _lab_mean(rgb: np.ndarray, m: np.ndarray) -> np.ndarray:
+    return srgb_lab(rgb.astype(np.float32).reshape(-1, 1, 3))[m.reshape(-1)].reshape(-1, 3).mean(0)
+
+
+def mill_target(season: str, key: str, stage: int, sid: str) -> tuple[float, float]:
+    """The station's colour on the season's own plate: mean L* and chroma of the pixels of the station's object polygon that
+    its spring look level 3 covers (the mill as painted), the target the season's looks are graded to ("measured in place")."""
+    import season_gate as sg
+    data = json.loads(ingest.JSON_DIR.joinpath("plate-home.json").read_text())
+    obj = next(o for o in data["objects"] if o.get("station") == sid)
+    plate = sg.load_asset(ingest.asset_name(ISLAND, "plate", key, stage))
+    spring = sg.load_asset(f"{look_name(sid, 3, 'day')}")
+    st = data["stations"][sid]
+    pos = st["stages"][str(stage)]
+    x0, y0 = round((pos["box"][0] - 2) * TEX), round((pos["box"][1] - 434) * TEX)
+    w, h = round((pos["box"][2] - pos["box"][0]) * TEX), round((pos["box"][3] - pos["box"][1]) * TEX)
+    foot = cv2.resize(spring[..., 3], (w, h), interpolation=cv2.INTER_AREA) > 0.5
+    cover = np.zeros(plate.shape[:2], bool)
+    ys, xs = slice(max(y0, 0), min(y0 + h, plate.shape[0])), slice(max(x0, 0), min(x0 + w, plate.shape[1]))
+    cover[ys, xs] = foot[ys.start - y0:ys.stop - y0, xs.start - x0:xs.stop - x0]
+    mask = cover & sg.poly_mask(plate.shape[:2], obj["polygon"]) & (plate[..., 3] > 0.99)
+    lab = srgb_lab(plate[mask][:, :3].reshape(-1, 1, 3)).reshape(-1, 3).mean(0)
+    return float(lab[0]), float(np.hypot(lab[1], lab[2]))
+
+
+def season_looks(season: str, key: str, stage: int = 0) -> dict:
+    """The season's station looks, as `world-home-look-<station>-<level>-<key>`: painted ones (the spring shape, the season
+    take's colours, graded in place) and derived ones (the spring look through the stage-0 colour fit, learned on the
+    station's own pixels in the spring and season plates). Returns `{station: [levels]}`."""
+    import season_gate as sg
+    out = {}
+    data = json.loads(ingest.JSON_DIR.joinpath("plate-home.json").read_text())
+    plate_a = sg.load_asset(ingest.asset_name(ISLAND, "plate", key, stage))
+    plate_s = sg.load_asset(ingest.asset_name(ISLAND, "plate", "day", stage))
+    for sid in SEASON_SLICE[season]["paint"]:
+        spec = season_paint_spec(season, sid)
+        raw = build_looks(spec)                                   # ungraded: the mean colour of each level, as the season painted it
+        want_l, want_c = mill_target(season, key, stage, sid)
+        grade = {}
+        for n, x in raw["looks"].items():
+            keep = x[..., 3] > 0.9
+            lab = srgb_lab(x[..., :3])[keep]
+            grade[n] = (round(want_c / float(np.hypot(lab[:, 1], lab[:, 2]).mean()), 3), round(want_l / float(lab[:, 0].mean()), 3))
+        spec = season_paint_spec(season, sid, grade)
+        built = build_looks(spec)
+        for n, x in built["looks"].items():
+            ingest.write_imageset(look_name(sid, n, key), to_img(x))
+        out[sid] = sorted(built["looks"])
+        print(f"looks {sid} {key}: painted levels {out[sid]}, grade {grade}")
+    for sid in SEASON_SLICE[season]["derive"]:
+        # The fit is learned per level, where that spring look stands on the two plates (its alpha, eroded, at the stage's place):
+        # the pond's polygon holds the lawn and flowers round the water, which autumn changes and the water does not.
+        pos = data["stations"][sid]["stages"][str(stage)]["box"]
+        x0, y0 = round((pos[0] - 2) * TEX), round((pos[1] - 434) * TEX)
+        w, h = round((pos[2] - pos[0]) * TEX), round((pos[3] - pos[1]) * TEX)
+        n_levels = data["stations"][sid]["levels"]
+        for n in range(1, n_levels + 1):
+            with heic.open_image(ASSETS / f"{look_name(sid, n, 'day')}.imageset" / f"{look_name(sid, n, 'day')}{heic.SUFFIX}") as im:
+                look = np.asarray(im.convert("RGBA"), np.float32) / 255
+            foot = cv2.erode((cv2.resize(look[..., 3], (w, h), interpolation=cv2.INTER_AREA) > 0.9).astype(np.uint8), _ellipse(9)) > 0
+            m = np.zeros(plate_a.shape[:2], bool)
+            ys, xs = slice(max(y0, 0), min(y0 + h, m.shape[0])), slice(max(x0, 0), min(x0 + w, m.shape[1]))
+            m[ys, xs] = foot[ys.start - y0:ys.stop - y0, xs.start - x0:xs.stop - x0]
+            m &= (plate_a[..., 3] > 0.99) & (plate_s[..., 3] > 0.99)
+            fit = sg.colour_fit(plate_s[m][:, :3], plate_a[m][:, :3])
+            look[..., :3] = sg.apply_fit(fit, look[..., :3].reshape(-1, 3)).reshape(look.shape[:2] + (3,))
+            ingest.write_imageset(look_name(sid, n, key), to_img(look))
+        out[sid] = list(range(1, n_levels + 1))
+        print(f"looks {sid} {key}: derived levels {out[sid]} by the stage-{stage} fit, per level")
+    return out
+
+
+def cmd_season(season: str) -> None:
+    """Delivers a season's states (`ingest.py deliver` and `objects` for each), builds the erased bases from the season's own
+    erase takes (the stations' windows, cuts and occluders, as `bases` does in spring) and the looks. Run `ingest.py json`
+    and `station_looks.py json` after."""
+    for key, stages in SEASON_SLICE[season]["states"].items():
+        for stage, erase in stages.items():
+            state = f"{key}:{stage}"
+            ingest.cmd_deliver(ISLAND, state)
+            ingest.cmd_objects(ISLAND, state)
+            if not erase:
+                continue
+            take = take_path(erase)
+            x, info, _ = accumulate_base(stage, None, key, take)
+            ingest.write_imageset(base_name(key, stage), to_img(x))
+            crop = info["crop"]
+            full = np.zeros((SIZE_TEX[1], SIZE_TEX[0], 4), np.float32)
+            full[crop[1] * TEX:crop[1] * TEX + x.shape[0], crop[0] * TEX:crop[0] * TEX + x.shape[1]] = x
+            ix0, iy0, ix1, iy1 = ingest.bbox(ingest.load_matte(ISLAND, key, stage), 0.02)
+            for kind in ("island", "mapisle"):
+                name = ingest.asset_name(ISLAND, kind, key, stage)
+                with open_source_asset(name) as im:
+                    old = np.asarray(im.convert("RGBA"), np.float32) / 255
+                cut = resize_rgba(full[iy0 * TEX:iy1 * TEX, ix0 * TEX:ix1 * TEX], 1.0)
+                cut = cv2.resize(np.dstack([cut[..., :3] * cut[..., 3:], cut[..., 3:]]), (old.shape[1], old.shape[0]), interpolation=cv2.INTER_AREA)
+                a = cut[..., 3:]
+                rgb = np.where(a > 1e-4, cut[..., :3] / np.maximum(a, 1e-4), old[..., :3])
+                alpha = np.minimum(old[..., 3:], a) if kind == "mapisle" else a
+                ingest.write_imageset(name, to_img(np.dstack([rgb, alpha])))
+            for station_id, region in info["regions"]:
+                sp = next(sp for sp in STATIONS if sp["id"] == station_id)
+                keep = sp.get("keepOccluders", ())
+                skip = tuple(o for o in sp["bases"][stage].get("excludeOccluders", ()) if o not in keep)
+                clear_occluders(stage, region, station_id, keep, skip, key)
+            print(f"base {key} {stage}: {x.shape[1]} x {x.shape[0]} px ({', '.join(sp['id'] for sp in stage_specs(stage))})")
+            season_looks(season, key, stage)
+
+
 # ---------------------------------------------------------------- data
 
 def asset_pixels(name: str) -> int:
@@ -1006,6 +1151,13 @@ def stations_data(spec: dict = TEA_STALL) -> dict:
     }
     if levels != list(range(1, spec["levels"] + 1)):          # a level whose look is missing draws the nearest lower one
         data["lookLevels"] = {spec["light"]: levels}
+    for season, entry in SEASON_SLICE.items():                # a season's states that stand this station over a base
+        for key, stages in entry["states"].items():
+            on = sorted(st for st, erase in stages.items() if erase and st in spec["bases"])
+            if on:
+                data.setdefault("lights", {spec["light"]: data["baseStages"]})[key] = on
+                if "lookLevels" in data:
+                    data["lookLevels"][key] = levels
     return {spec["id"]: data}
 
 
@@ -1028,10 +1180,14 @@ def cmd_json() -> None:
 
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("command", choices=["looks", "bases", "json", "all"])
+    ap.add_argument("command", choices=["looks", "bases", "json", "all", "season"])
+    ap.add_argument("--season", default="autumn", choices=sorted(SEASON_SLICE), help="season: the season to deliver (default autumn)")
     ap.add_argument("--station", choices=[sp["id"] for sp in STATIONS], help="one station (default: every station)")
     args = ap.parse_args(argv)
     heic.require()
+    if args.command == "season":
+        cmd_season(args.season)
+        return 0
     chosen = [sp for sp in STATIONS if args.station in (None, sp["id"])]
     for spec in chosen:
         if args.command in ("looks", "all"):
