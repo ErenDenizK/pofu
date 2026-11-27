@@ -309,6 +309,7 @@ jobs:
             -skip-testing:PofuWorldScreenshots/PlayerPathWeek2ScreenshotTests \
             -skip-testing:PofuWorldScreenshots/PlayerPathWeek3ScreenshotTests \
             -skip-testing:PofuWorldScreenshots/PlayerPathScreensScreenshotTests \
+            -skip-testing:PofuWorldScreenshots/TextureMemoryTests \
             -resultBundlePath "$RUNNER_TEMP/world-screenshots.xcresult" \
             CODE_SIGNING_ALLOWED=NO \
             SWIFT_TREAT_WARNINGS_AS_ERRORS=YES
@@ -320,6 +321,31 @@ jobs:
               --output-path "$out"
           fi
           ls -la "$out"
+
+      # Texture budget PR 3 (docs/design/texture-budget-v1.md): the memory Home
+      # really holds, measured alone in a fresh test run so no earlier test has
+      # decoded a Home image, and how the catalog stores the plate.
+      - name: Measure the texture memory
+        if: needs.changes.outputs.screens == 'true'
+        run: |
+          set -euo pipefail
+          xcodebuild test \
+            -project Pofu.xcodeproj \
+            -scheme PofuWorldScreenshots \
+            -destination "id=$SIM_UDID" \
+            -only-testing:PofuWorldScreenshots/TextureMemoryTests \
+            -resultBundlePath "$RUNNER_TEMP/texture-memory.xcresult" \
+            CODE_SIGNING_ALLOWED=NO \
+            SWIFT_TREAT_WARNINGS_AS_ERRORS=YES 2>&1 | tee "$RUNNER_TEMP/texture-memory.log" | tail -n 60
+          grep -h "texture-memory" "$RUNNER_TEMP/texture-memory.log" || true
+          car="$(find "$HOME/Library/Developer/Xcode/DerivedData" -name Assets.car -path '*PofuWorld*' | head -1)"
+          echo "Assets.car: $car"
+          xcrun assetutil --info "$car" | python3 -I -c '
+          import json, sys
+          for r in json.load(sys.stdin):
+              if r.get("Name") == "world-home-plate-day-0":
+                  print("rendition:", json.dumps(r))
+          '
 
       - name: Upload the world screenshots
         if: always() && needs.changes.outputs.screens == 'true'
