@@ -149,7 +149,7 @@ struct GezginShadowView: View {
         let unit = mooring.width * plate.unitsPerPixel / bodyPixels
         let width = data.art.canvas[0] * unit
         let height = data.art.canvas[1] * unit
-        Image(Gezgin.art(level: 1, "shadow"), bundle: .module)
+        Image(Gezgin.art(level: 1, "cloudshade"), bundle: .module)
             .resizable()
             .frame(width: CGFloat(width), height: CGFloat(height))
             .opacity(data.shadow.opacity)

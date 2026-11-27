@@ -21,7 +21,7 @@ Data: `world-map.json` `gezgin` (when she is a shadow, when moored, her level, h
 ## Art and picks
 
 Cut-outs by `tools/art/gezgin_cutouts.py` from pofu-art batches 160 (bodies: `x4-gez-lv1..3-awake`,
-`-cut` = eyes shut) and 180 (`x8-gez-lv1..3-tail`, `-shadow`), the QA auto-picks recorded in each
+`-cut` = eyes shut) and 180 (`x8-gez-lv1..3-tail`, `-shadow` ingested as `cloudshade`), the QA auto-picks recorded in each
 `review.yaml`: bodies lv1 t1, lv2 t2, lv3 t2; tails lv1 t1, lv2 t1, lv3 t2; shadows lv1 t3, lv2 t2, lv3 t2.
 All were drawn on the founder's uncle's ChatGPT plan, used with permission. Every piece is cut to one shared
 box (760 x 583 px) so code stacks them without registration data. The row's reference for placement is

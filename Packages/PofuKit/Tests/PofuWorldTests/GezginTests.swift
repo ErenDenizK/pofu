@@ -137,7 +137,7 @@ struct GezginTests {
             .deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
             .appendingPathComponent("Sources/PofuWorld/Resources/World.xcassets")
         for level in 1...Gezgin.maxLevel {
-            for part in ["awake", "asleep", "tail", "shadow"] {
+            for part in ["awake", "asleep", "tail", "cloudshade"] {
                 let name = Gezgin.art(level: level, part)
                 let png = assets.appendingPathComponent("\(name).imageset/\(name).png")
                 #expect(FileManager.default.fileExists(atPath: png.path), "\(name)")

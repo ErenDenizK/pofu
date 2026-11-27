@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Ingest the Gezgin's moored cut-outs (pofu-art batches 160, 180) into World.xcassets.
 
-One cut-out per level and state (asleep, awake), one tail piece and one shadow per level, all cut to
+One cut-out per level and state (asleep, awake), one tail piece and one cloud shade (her shadow on the cloud, `cloudshade`) per level, all cut to
 one shared box of the 1536 x 1024 take canvas so that code can stack them without registration data
 (`PofuWorld/Gezgin`). The picks are the QA auto-picks recorded in each take's review.yaml.
 
@@ -19,7 +19,7 @@ JOBS = {
     **{("awake", n): (f"batch-160-gezgin-source", f"x4-gez-lv{n}-awake") for n in (1, 2, 3)},
     **{("asleep", n): (f"batch-160-gezgin-source", f"x4-gez-lv{n}-cut") for n in (1, 2, 3)},
     **{("tail", n): ("batch-180-gezgin-tail-shadow", f"x8-gez-lv{n}-tail") for n in (1, 2, 3)},
-    **{("shadow", n): ("batch-180-gezgin-tail-shadow", f"x8-gez-lv{n}-shadow") for n in (1, 2, 3)},
+    **{("cloudshade", n): ("batch-180-gezgin-tail-shadow", f"x8-gez-lv{n}-shadow") for n in (1, 2, 3)},
 }
 
 

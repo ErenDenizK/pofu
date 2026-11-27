@@ -44,6 +44,9 @@ SUFFIX = "-shadow"
 EXCLUDE = re.compile(
     r"(^world-(island-|isle-|far-isle|cloud|harbor-island|fog-card|rain-tile|rainbow-arc|puddle-glint|light-shaft|lut-))|-standin|-glow|__|--"
     r"|^world-[a-z]+-(plate|island|backdrop)-(day|night|golden|rain)-\d+$|^world-[a-z]+-occ-|^world-[a-z]+-sky-"
+    # The Gezgin floats beside the island and flies (ADR-0028): her cut-outs cast no ground shadow, and her own
+    # shadow on the cloud is a painted piece (`world-gezgin-l<n>-shadow`), not a contact shadow of the pipeline.
+    r"|^world-gezgin-"
 )
 # Home props from the UI catalog that stand on the lawn.
 EXTRA_CASTERS = ("ui-jar-empty", "ui-lantern-off")
