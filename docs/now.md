@@ -53,7 +53,7 @@ six vertical steps, each done when he plays it on his phone.
 Merged: #475-#538 (not #490, #503, #504, #507); pofu-art #81-#203 (not stale #84-#90, #132).
 
 ## Next (plan #519)
-Running: 2d-2 ride polish; 1c-2 garden+workshop (`art/station-levels-2`, also fixes ingest/bases traps); 1e reveal; S1 #540 in CI (then VoyageRowView/IslandScene/HomePlateCrop read plate.key). Next: 1c-3 bagel, lighthouse, tea stall (196), pier (195->193); V1 rotor; S3.
+Running: 2d-2 ride polish (+ plate.key reads after S1); 1c-2 garden+workshop (`art/station-levels-2`, also fixes ingest/bases traps); 1e reveal. S1 merged (#540; frames: only UI noise). Next: 1c-3 bagel, lighthouse, tea stall (196), pier (195->193); V1 rotor; S3 after 1c-2 (same files).
 
 ## Open with the founder
 - Membership ~11-27: Mac 1-2 h, Distribution request same day; #490; N6; device: pinch, pond fps.
