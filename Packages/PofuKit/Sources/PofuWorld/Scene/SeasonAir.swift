@@ -145,6 +145,12 @@ public enum SeasonAir {
         return Double(g.next() >> 11) / 9_007_199_254_740_992.0
     }
 
+    /// `value` wrapped into 0..<span, never negative.
+    static func wrap(_ value: Double, span: Double) -> Double {
+        let r = value.truncatingRemainder(dividingBy: span)
+        return r < 0 ? r + span : r
+    }
+
     /// A low-discrepancy spread (the R2 sequence): even, never a grid.
     static func spread(_ i: Int) -> (Double, Double) {
         func frac(_ v: Double) -> Double { v - v.rounded(.down) }
@@ -169,7 +175,7 @@ public enum SeasonAir {
         let speed = 11 + 7 * radius
         let span = height + 2 * margin
         let fall = (sy + jy) * span + speed * time
-        let y = fall.truncatingRemainder(dividingBy: span) - margin
+        let y = wrap(fall, span: span) - margin
         let sway = (5 + 9 * unit(i, 4)) * sin(time * (0.25 + 0.3 * unit(i, 5)) + 6.28 * unit(i, 6))
         let x = (sx + jx) * width + sway
         // Big flakes are the soft, near ones: fainter.
@@ -184,7 +190,7 @@ public enum SeasonAir {
         let speed = 9 + 7 * unit(i, 13)
         let span = height + 2 * margin
         let fall = (sy + jy) * span + speed * time
-        let y = fall.truncatingRemainder(dividingBy: span) - margin
+        let y = wrap(fall, span: span) - margin
         let swayAmp = 16 + 16 * unit(i, 14)
         let phase = 6.28 * unit(i, 16)
         let x = (sx + jx) * width + swayAmp * sin(time * (0.35 + 0.3 * unit(i, 15)) + phase)
@@ -237,11 +243,11 @@ enum SeasonAirArt {
         let image = UIGraphicsImageRenderer(size: CGSize(width: side, height: side), format: format).image { renderer in
             let colours = [
                 UIColor(red: 1, green: 1, blue: 1, alpha: 1).cgColor,
-                UIColor(red: 1, green: 1, blue: 1, alpha: 0.7).cgColor,
-                UIColor(red: 1, green: 1, blue: 1, alpha: 0.18).cgColor,
+                UIColor(red: 1, green: 1, blue: 1, alpha: 0.85).cgColor,
+                UIColor(red: 1, green: 1, blue: 1, alpha: 0.3).cgColor,
                 UIColor(red: 1, green: 1, blue: 1, alpha: 0).cgColor,
             ]
-            guard let gradient = CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: colours as CFArray, locations: [0, 0.35, 0.7, 1]) else { return }
+            guard let gradient = CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: colours as CFArray, locations: [0, 0.4, 0.75, 1]) else { return }
             let centre = CGPoint(x: side / 2, y: side / 2)
             renderer.cgContext.drawRadialGradient(gradient, startCenter: centre, startRadius: 0, endCenter: centre, endRadius: side / 2, options: [])
         }
@@ -331,7 +337,7 @@ struct SeasonAirLayer: View {
                         guard f.opacity > 0.01 else { continue }
                         var layer = gc
                         layer.opacity = f.opacity
-                        let r = CGFloat(f.radius * 1.6)
+                        let r = CGFloat(f.radius * 2.0)
                         layer.draw(dot, in: CGRect(x: CGFloat(f.x + parallax) - r, y: CGFloat(f.y) - r, width: r * 2, height: r * 2))
                     }
                 }
