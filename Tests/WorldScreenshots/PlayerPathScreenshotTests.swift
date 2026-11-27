@@ -28,8 +28,8 @@ import XCTest
 ///   (the old painting whole and held, mid cross-fade with the bloom, the new painting with the "Ada n" card);
 /// - `path-season-autumn-i10-0900-mill-l2`, `-mill-l5`, `path-season-autumn-i10-2300`: Home in autumn at island level 10 (the
 ///   Rehearsal season override: the season is not complete), by day over the windmill's level 2 and 5 looks and by night;
-///   `path-season-turn-0000`, `-0750`, `-1500`: spring turning to autumn (the painting's cross-fade, 0.8 s long, begun at
-///   0 ms and seen 0, 750 and 1500 ms after). The level 3 autumn state is not painted yet, so it has no frame;
+///   `path-season-turn-0000`, `-0750`, `-1000`, `-1250`, `-1500`: spring turning to autumn (the painting's cross-fade, 0.8 s
+///   long, seen 0, 750, 1000, 1250 and 1500 ms after the season changes; the first 750 ms are still spring on the CI runner). The level 3 autumn state is not painted yet, so it has no frame;
 /// - `path-d03-grew-0900`: the overnight landing on the old painting, Pofu's news line and its button;
 ///   `path-d03-grew-live-1800`: the same morning, 1.8 s after the button, through the live timers;
 /// - `path-d04-build-focus`, `path-d04-build-burst`: a build's camera through the real `focusStation`
@@ -504,7 +504,7 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
                 XCTAssertEqual(island.homePlate?.season, .autumn, "\(name): the state is autumn's own painting")
             }
         }
-        for (name, ms) in [("0000", 0), ("0750", 750), ("1500", 1500)] {
+        for (name, ms) in [("0000", 0), ("0750", 750), ("1000", 1000), ("1250", 1250), ("1500", 1500)] {
             let dial = PathSeasonDial()
             let island = IslandSceneModel(framing: .mid)
             let shown = world(windmill: 3)
