@@ -29,6 +29,18 @@ enum WorldSound {
         UserDefaults.standard.removeObject(forKey: preludeKey)
     }
 
+    /// The cue a station's level lands with, one per station kind, from the sounds that exist: the tea stall's kettle,
+    /// the windmill's wheel, the pond's splash; every other station the Pofu motif of a level rising. New sounds for
+    /// the rest are the sound desk's.
+    static func levelUpCue(of station: StationID) -> SoundCue {
+        switch station {
+        case .teaStall: .kettle
+        case .windmill: .waterWheel
+        case .pond: .waterSplash
+        default: .levelUp
+        }
+    }
+
     private static var voice = PofuVoice()
 
     /// Pofu's voice for a tap on him: the poke, the giggle of a second tap,
@@ -149,6 +161,7 @@ extension AppModel {
                 // He chews once the gulp (0.18 s) is down.
                 WorldSound.play(.pofuChew, after: 0.3)
             case .hop: SoundEngine.shared.play(.pofuHop)
+            case .levelUp(let station): SoundEngine.shared.play(WorldSound.levelUpCue(of: station))
             }
         }
         guard active else {

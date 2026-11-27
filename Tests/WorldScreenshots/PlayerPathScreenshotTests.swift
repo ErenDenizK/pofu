@@ -693,33 +693,47 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
     /// `path-stall-reveal-<ms>`.
     @MainActor
     func testRenderTheStallReveal() async throws {
+        try await renderReveal(.teaStall, name: "stall", islandLevel: 3, from: 2, times: [0.45, 0.74, 1.0, 1.6, 2.4])
+    }
+
+    /// The windmill's and the pond's reveals, level 2 to 3 on island level 8 (stage 2, where both stand as looks):
+    /// `path-windmill-reveal-<ms>`, `path-pond-reveal-<ms>` at the dip (0.74 s), the ring's peak (1.0 s) and the
+    /// settle (1.6 s).
+    @MainActor
+    func testRenderTheWindmillAndPondReveals() async throws {
+        try await renderReveal(.windmill, name: "windmill", islandLevel: 8, from: 2, times: [0.74, 1.0, 1.6])
+        try await renderReveal(.pond, name: "pond", islandLevel: 8, from: 2, times: [0.74, 1.0, 1.6])
+    }
+
+    @MainActor
+    private func renderReveal(_ station: StationID, name: String, islandLevel: Int, from: Int, times: [Double]) async throws {
         let scene = try windowScene()
         let folder = try outputFolder()
         let day = try XCTUnwrap(Self.path.first { $0.morning.islandLevel == 3 }, "the path has a level 3 island")
         func world(_ level: Int) -> WorldSnapshot {
             var world = day.morning
-            world.islandLevel = 3
+            world.islandLevel = islandLevel
             world.stations = world.stations.map { status in
                 var status = status
-                if status.id == .teaStall { status.level = level }
+                if status.id == station { status.level = level }
                 return status
             }
             return world
         }
-        let after = world(3)
-        let maxLevel = after.stations.first { $0.id == .teaStall }?.maxLevel ?? 10
-        for t in [0.45, 0.74, 1.0, 1.6, 2.4] {
+        let after = world(from + 1)
+        let maxLevel = after.stations.first { $0.id == station }?.maxLevel ?? 10
+        for t in times {
             let island = IslandSceneModel(framing: .mid)
-            island.setHomePlate(paintedAs(after, level: 3, hour: 12))
-            island.focusStation(.teaStall, animated: false)
+            island.setHomePlate(paintedAs(after, level: islandLevel, hour: 12))
+            island.focusStation(station, animated: false)
             let now = after.clock ?? Date()
             let home = WorldHomeModel(now: { now }, schedulesCues: false)
             home.camera = island
-            home.buildStation(.teaStall, maxLevel: maxLevel) { _ in BuildReceipt(station: .teaStall, level: 3, cost: Energy(10)) }
-            XCTAssertTrue(home.build?.moment.reveal ?? false, "the stall's build plays the look's reveal")
+            home.buildStation(station, maxLevel: maxLevel) { _ in BuildReceipt(station: station, level: from + 1, cost: Energy(10)) }
+            XCTAssertTrue(home.build?.moment.reveal ?? false, "the \(name)'s build plays the look's reveal")
             home.freeze(at: t)
             let view = homeView(after, hour: 12, island: island, settled: true, model: home)
-            try await capture(AnyView(view), name: "path-stall-reveal-\(Int(t * 1000))", scene: scene, folder: folder, settle: 2100) {}
+            try await capture(AnyView(view), name: "path-\(name)-reveal-\(Int(t * 1000))", scene: scene, folder: folder, settle: 2100) {}
         }
     }
 
