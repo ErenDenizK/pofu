@@ -1,0 +1,1 @@
+[world] Added: Home has an autumn in Rehearsal. The season stepper at island level 10 turns the island to autumn by day and by night, the windmill's levels 2 to 5 stand over an autumn base, and the pond and the workshop are autumn too; the player's island stays spring until the season is complete.
