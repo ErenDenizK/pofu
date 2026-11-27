@@ -143,6 +143,23 @@ struct WorldHomeModelTests {
         #expect(camera.calls.isEmpty)
     }
 
+    @Test func aBuildSoundsOnceAtItsSwapForItsStation() {
+        let home = model()
+        var heard: [WorldHomeModel.Sound] = []
+        home.onSound = { heard.append($0) }
+        home.buildStation(.windmill, maxLevel: 5) { station in BuildReceipt(station: station, level: 3, cost: Energy(194)) }
+        clock.advance(0.3)
+        home.advance(to: clock.now)
+        #expect(heard.isEmpty)
+        clock.advance(0.2)
+        home.advance(to: clock.now)
+        #expect(heard.contains { if case .levelUp(.windmill) = $0 { true } else { false } })
+        let count = heard.filter { if case .levelUp = $0 { true } else { false } }.count
+        #expect(count == 1)
+        home.advance(to: clock.now)
+        #expect(heard.filter { if case .levelUp = $0 { true } else { false } }.count == 1)
+    }
+
     @Test func theLastLevelCelebratesDifferently() {
         let home = model()
         home.buildStation(.teaStall, maxLevel: 5) { station in BuildReceipt(station: station, level: 5, cost: Energy(937)) }

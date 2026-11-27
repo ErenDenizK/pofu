@@ -75,7 +75,11 @@ public final class WorldHomeModel {
 
     // Haptic triggers (interaction spec §6.1). Each counts its events.
     /// A sound the moments call for (the app plays it, under its settings).
-    public enum Sound: Sendable { case gulp, hop }
+    public enum Sound: Sendable {
+        case gulp, hop
+        /// A station's level lands (the build moment's swap: the ring's start in a reveal): one cue per station kind.
+        case levelUp(StationID)
+    }
     @ObservationIgnored public var onSound: (@MainActor (Sound) -> Void)?
     public private(set) var collectTaps = 0
     public private(set) var collectTicks = 0
@@ -401,6 +405,7 @@ public final class WorldHomeModel {
             camera?.beginBuildFraming(moment.station)
         case .swap:
             buildSwaps += 1
+            onSound?(.levelUp(moment.station))
         case .pofuHop:
             celebrations += 1
             onSound?(.hop)

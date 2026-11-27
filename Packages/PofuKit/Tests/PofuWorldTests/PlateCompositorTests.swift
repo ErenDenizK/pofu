@@ -97,6 +97,32 @@ struct PlateCompositorTests {
         #expect(plot.worldBox != look.box)
     }
 
+    // MARK: The reveal on every station with looks
+
+    private func compositor(stage: Int, levels: [StationID: Int]) throws -> PlateCompositor {
+        try PlateCompositor(plate: HomePlate(plate: plate, light: "day", stage: stage), levels: levels)
+    }
+
+    @Test func theWindmillAndThePondReveal() throws {
+        // Island level 8 is stage 2: both have a base and their looks there.
+        let c = try compositor(stage: 2, levels: [.windmill: 3, .pond: 3])
+        #expect(c.stationsOnBase.contains("windmill") && c.stationsOnBase.contains("pond"))
+        #expect(c.reveals(.windmill, from: 2, to: 3))
+        #expect(c.reveals(.windmill, from: 1, to: 2))
+        #expect(c.reveals(.windmill, from: 4, to: 5))
+        #expect(!c.reveals(.windmill, from: 5, to: 6))
+        #expect(c.reveals(.pond, from: 0, to: 1))
+        #expect(c.reveals(.pond, from: 2, to: 3))
+        #expect(c.reveals(.pond, from: 4, to: 5))
+        // the windmill's level 1 has no look of its own: the plot's base stays, so level 0 to 1 plays no reveal
+        #expect(!c.reveals(.windmill, from: 0, to: 1))
+        // every look has a frame the ring can open from
+        for id in ["windmill", "pond"] {
+            let from = try #require(c.look(id, level: 2)), to = try #require(c.look(id, level: 3))
+            #expect(from.art != to.art && from.foot == to.foot)
+        }
+    }
+
     // MARK: The reveal (v2 §9.2)
 
     @Test func theRevealFollowsTheSequenceInAtMost3_2Seconds() throws {
