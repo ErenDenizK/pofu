@@ -73,7 +73,8 @@ private struct VoyageRow: View {
                     let origin = VoyageRoute.index(of: ride.from, in: stops)
                     content(
                         layout: layout, stops: stops, selected: selected, size: size,
-                        position: ride.rowPosition(at: t, selected: Double(selected), origin: Double(origin))
+                        position: ride.rowPosition(at: t, selected: Double(selected), origin: Double(origin)),
+                        bar: ride.barOpacity(at: t)
                     )
                     .opacity(ride.rowOpacity(at: t))
                 }
@@ -85,7 +86,7 @@ private struct VoyageRow: View {
         .accessibilityIdentifier("voyage-row")
     }
 
-    private func content(layout: VoyageRowLayout, stops: [VoyageStop], selected: Int, size: CGSize, position: Double) -> some View {
+    private func content(layout: VoyageRowLayout, stops: [VoyageStop], selected: Int, size: CGSize, position: Double, bar: Double = 1) -> some View {
         Group {
             ZStack(alignment: .topLeading) {
                 VoyageSea(model: model, world: world, look: look, size: size)
@@ -113,6 +114,7 @@ private struct VoyageRow: View {
                         withAnimation(glide) { state.choose(stops[next].island) }
                     }
                 VoyageBar(model: model, state: state, stop: stops[min(selected, stops.count - 1)], size: size)
+                    .opacity(bar)
             }
             .frame(width: size.width, height: size.height, alignment: .topLeading)
             .clipped()
