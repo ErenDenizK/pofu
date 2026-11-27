@@ -309,8 +309,10 @@ struct VoyageRideTests {
         let place = layout.place(index: 0, position: 0)
         let first = homeOnScreen(ride, plate: plate, rail: rail, at: ride.flightStart)
         let rowBox = plate.isMatted ? plate.plateImageBox : plate.islandBox
-        let rowCentre = place.y + (plate.islandBox.midY - rowBox.midY) * (place.width / plate.islandBox.width)
-        #expect(abs(first.x - place.x) < 1e-6 && abs(first.y - rowCentre) < 1e-6 && abs(first.width - place.width) < 1e-6)
+        let k = place.width / plate.islandBox.width
+        let rowCentre = place.y + (plate.islandBox.midY - rowBox.midY) * k
+        let rowX = place.x + (plate.islandBox.midX - rowBox.midX) * k
+        #expect(abs(first.x - rowX) < 1e-6 && abs(first.y - rowCentre) < 1e-6 && abs(first.width - place.width) < 1e-6, "first frame \(first), the row's Home at (\(rowX), \(rowCentre), \(place.width))")
 
         var last: (x: Double, y: Double, width: Double)?
         var lastWhale: VoyageRide.Spot?
@@ -325,8 +327,9 @@ struct VoyageRideTests {
             // Home's screen place and size, by whichever draws it, moves by little per frame (about 28 points a second
             // at the flight's start, the camera's rise): no teleport.
             let home = homeOnScreen(ride, plate: plate, rail: rail, at: t)
-            if let last {
-                #expect(abs(home.x - last.x) < 12 && abs(home.y - last.y) < 12 && abs(home.width - last.width) < 12, "Home jumps at \(t) s")
+            // (Through the handover: the flight's rise. Later Home sweeps off the screen as the camera crosses the sea.)
+            if let last, t < ride.flightStart + 0.5 {
+                #expect(abs(home.x - last.x) < 12 && abs(home.y - last.y) < 12 && abs(home.width - last.width) < 12, "Home jumps at \(t) s: \(last) to \(home)")
             }
             last = home
             // And she, from the row's mooring beside it.
