@@ -77,7 +77,7 @@ extension HomePlateCrop: View {
 
     public var body: some View {
         if let plate = HomePlate.shipped,
-           let name = Self.artName(islandLevel: islandLevel, hour: hour, isBedtime: isBedtime, plate: plate),
+           Self.artName(islandLevel: islandLevel, hour: hour, isBedtime: isBedtime, plate: plate) != nil,
            let state = HomePlate.state(
                in: plate.plate, islandLevel: islandLevel, hour: Double(hour), weather: WeatherConditions(), isBedtime: isBedtime
            ) {
