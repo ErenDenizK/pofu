@@ -36,6 +36,12 @@ struct MusicDirectorTests {
         MusicDirector(index: index, tuning: tuning, seed: seed)
     }
 
+    /// The first phrase a fresh director gives for `state`.
+    static func first(_ state: MusicState) -> MusicPhrase? {
+        var d = director()
+        return d.next(for: state, isMusicOn: true)
+    }
+
     @Test func theSameInputsAndSeedGiveTheSameSequence() {
         func run(_ seed: UInt64) -> [MusicPhrase?] {
             var d = Self.director(seed: seed)
@@ -117,7 +123,8 @@ struct MusicDirectorTests {
     @Test func musicOffReturnsNothing() {
         var d = Self.director()
         for hour in 0..<24 {
-            #expect(d.next(for: Self.state(hour: hour), isMusicOn: false) == nil)
+            let phrase = d.next(for: Self.state(hour: hour), isMusicOn: false)
+            #expect(phrase == nil)
         }
         #expect(d.silence(for: Self.state(), isMusicOn: false) == .off)
     }
@@ -125,11 +132,14 @@ struct MusicDirectorTests {
     @Test func theBedtimeWindowIsSilent() {
         var d = Self.director()
         for hour in [23, 0, 1, 3, 5] {
-            #expect(d.next(for: Self.state(hour: hour), isMusicOn: true) == nil)
+            let phrase = d.next(for: Self.state(hour: hour), isMusicOn: true)
+            #expect(phrase == nil)
             #expect(d.silence(for: Self.state(hour: hour), isMusicOn: true) == .bedtime)
         }
-        #expect(d.next(for: Self.state(hour: 6), isMusicOn: true) != nil)
-        #expect(d.next(for: Self.state(hour: 16), isMusicOn: true) != nil)
+        let morning = d.next(for: Self.state(hour: 6), isMusicOn: true)
+        #expect(morning != nil)
+        let afternoon = d.next(for: Self.state(hour: 16), isMusicOn: true)
+        #expect(afternoon != nil)
     }
 
     @Test func everyOtherIslandHourWeatherAndSeasonFallsBackAndNeverPlaysAWrongTune() {
@@ -158,8 +168,7 @@ struct MusicDirectorTests {
 
     @Test func weatherThinsTheStems() throws {
         func stems(_ weather: AmbienceWeather, stage: Int = 10) throws -> [MusicStem: Double] {
-            var d = Self.director()
-            let phrase = try #require(d.next(for: Self.state(weather: weather, stage: stage), isMusicOn: true))
+            let phrase = try #require(Self.first(Self.state(weather: weather, stage: stage)))
             return Dictionary(uniqueKeysWithValues: phrase.stems.map { ($0.stem, $0.gain) })
         }
         #expect(try stems(.clear) == [.lead: 1, .bed: 1, .pulse: 1])
@@ -173,8 +182,7 @@ struct MusicDirectorTests {
 
     @Test func aHealingIslandGainsStems() throws {
         func stems(_ stage: Int) throws -> Set<MusicStem> {
-            var d = Self.director()
-            return Set(try #require(d.next(for: Self.state(stage: stage), isMusicOn: true)).stems.map(\.stem))
+            Set(try #require(Self.first(Self.state(stage: stage))).stems.map(\.stem))
         }
         #expect(try stems(1) == [.bed])
         #expect(try stems(3) == [.bed])
@@ -185,8 +193,7 @@ struct MusicDirectorTests {
 
     @Test func wellbeingChangesOnlyThePauses() throws {
         func phrase(_ wellbeing: Double) throws -> MusicPhrase {
-            var d = Self.director()
-            return try #require(d.next(for: Self.state(wellbeing: wellbeing), isMusicOn: true))
+            try #require(Self.first(Self.state(wellbeing: wellbeing)))
         }
         var tired = try phrase(5), rested = try phrase(95)
         #expect(tired.pause >= rested.pause)
