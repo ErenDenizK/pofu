@@ -32,7 +32,7 @@ six vertical steps, each done when he plays it on his phone.
    1c pond PR #528 PARKED (9 MB texture budget forced pond 0.8 px/pt, mill 1.7->1.45;
    defects listed). Budget spec #533 (rule v1: drawn px x 4 B, 12 M px/state,
    looks 2.0 px/pt): PR 1 tools rule merged (#535, ADR-0031; home 9.46 M px);
-   PR 5 Today header #534 in CI; PR 3+2 builder running; Gezgin moored merged (#529;
+   PR 5 Today header merged (#534: header draws built looks); PR 3+2 builder running; Gezgin moored merged (#529;
    left: wake frame clock, faint cloud shadow, no rope, stand-in chime); ADR-0028 merged (#527);
    2c voyage row running.
    173-176 not cuttable (whole re-renders); plot ladders D52-D55 first in Demand
