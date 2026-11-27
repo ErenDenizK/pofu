@@ -18,6 +18,8 @@ struct RehearsalPanel: View {
     @AppStorage("PofuSkin") private var skinOverride = ""
     /// The frame meter over the world, to see stutter on the phone.
     @AppStorage(RehearsalFrameMeter.key) private var frameMeter = false
+    /// The season Rehearsal shows the island in; empty follows the island year (`RehearsalFrameMeter.seasonKey`).
+    @AppStorage(RehearsalFrameMeter.seasonKey) private var seasonOverride = ""
     @State private var drag: CGSize = .zero
     @State private var confirmsReset = false
     @State private var isBusy = false
@@ -131,6 +133,16 @@ struct RehearsalPanel: View {
                 }
                 .frame(minHeight: 36)
                 .foregroundStyle(PofuColor.textPrimary)
+                // The season the plate is drawn in, where its data lists the state; otherwise spring.
+                Picker(selection: $seasonOverride) {
+                    Text(verbatim: "Auto").tag("")
+                    ForEach(Season.allCases, id: \.rawValue) { season in
+                        Text(verbatim: season.rawValue.prefix(3).capitalized).tag(season.rawValue)
+                    }
+                } label: {
+                    Text(verbatim: "Season")
+                }
+                .pickerStyle(.segmented)
             }
             Divider()
             // Rounds are earned (two a day, one per resisted reach) and

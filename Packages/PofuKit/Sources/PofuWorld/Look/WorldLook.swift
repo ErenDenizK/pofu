@@ -1,4 +1,5 @@
 import Foundation
+import PofuCore
 
 /// The world scene's look features, as flags (look-dev A, B). They
 /// default to on in the world scene only; the UI around it never reads
@@ -57,6 +58,9 @@ public struct WorldLook: Hashable, Sendable {
     /// front of and behind a station); `nil` is his spot (`IslandLayout.pofu`). Only his drawn body and what stands
     /// over him follow it.
     public var pofuStand: WorldPoint?
+    /// A fixed season (Rehearsal, screenshots) shown at every state the plate's data lists for it, even before the season
+    /// is `complete`; `nil` follows the island year (`WorldSnapshot.season`).
+    public var seasonOverride: Season?
     /// The frame-time counter in a corner (debug).
     public var frameMeter: Bool
     /// The feel numbers the tuning lab panel tunes live (look round 4).

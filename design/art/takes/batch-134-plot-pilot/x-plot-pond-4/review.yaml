@@ -1,0 +1,97 @@
+batch: batch-134-plot-pilot
+job: x-plot-pond-4
+status: warn
+pick: 2
+lead_review: "Ships t2 with a note: t2's bridge crosses the pond's narrow top end and lands on lawn at both sides, where t1's runs from the deck into open water; deck and boat unmoved (0 px), but the water has gone deeper cyan (station chroma 1.18x, past 15%), so calm the water in a plate edit."
+note: 'QA auto-pick; founder review pending. Both takes passed QA as warn with lock_load
+  0.0; the plate preset emits no harmony score, so t1 wins the tie by tool order.
+  T1 edit_stability is 82.70% (t2 81.21%). T2 is retained as an alternate: its bridge
+  looks better positioned across the narrow end, but it is not the QA provisional
+  parent. Visual check: t1 removes pavilion/islet and edge waterfall; deck and boat
+  remain. Surroundings were re-rendered outside the pond region; lead should judge
+  the masked composite. Output 1254x1254 was scaled/cropped to 1536.'
+source: codex-cloud
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+takes:
+- n: 1
+  file: plate__x-plot-pond-4--t1.webp
+  qa: warn
+  size_bytes: 225462
+  lock_load: 0.0
+  warnings:
+  - check: canvas
+    status: warn
+    message: 1254x1254 scaled x1.225 and center-cropped to 1536x1536
+  - check: chroma_ceiling
+    status: warn
+    message: chroma p95 78 (R1 51) (advisory in an exploration)
+  - check: light_values
+    status: warn
+    message: 'day/subject: L p5 45 (at least 50: darks stay a light mid-tone), p98
+      94 (at least 90)'
+  - check: light_median
+    status: warn
+    message: 'day/subject: median L 66 (band 74-92)'
+  - check: light_contrast
+    status: warn
+    message: 'day/subject: p75 local contrast 8.7 (band 2.5-6.5; above it reads too
+      contrasty) (warn-only until the founder has seen the light pilot)'
+  - check: light_sea
+    status: warn
+    message: 'day: cloud sea L 77 (at least 82: the sea is the reflector)'
+  - check: detail_budget
+    status: warn
+    message: detail at display size 6.8 (R1 5.3)
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 12.5, p95 28.4, off-palette 45.2% (top: #CCCC33 (3.7%), #DDDD33
+      (3.4%)) (advisory in an exploration)'
+  source_file: /workspace/pofu-art/.worktrees/batch134-pond/design/art/inbox/batch-134-plot-pilot/plate__x-plot-pond-4--t1.png
+  source_sha256: 39e12ad1e897596bac2c929d7540636f2cadca027bf26d8da41fbfc155a78035
+  generated_at: '2026-11-16T16:05:44+00:00'
+  tool_output_size: 1254x1254; pipeline scaled and center-cropped to 1536x1536
+- n: 2
+  file: plate__x-plot-pond-4--t2.webp
+  qa: warn
+  size_bytes: 220322
+  lock_load: 0.0
+  warnings:
+  - check: canvas
+    status: warn
+    message: 1254x1254 scaled x1.225 and center-cropped to 1536x1536
+  - check: chroma_ceiling
+    status: warn
+    message: chroma p95 76 (R1 51) (advisory in an exploration)
+  - check: light_values
+    status: warn
+    message: 'day/subject: L p5 46 (at least 50: darks stay a light mid-tone), p98
+      94 (at least 90)'
+  - check: light_median
+    status: warn
+    message: 'day/subject: median L 65 (band 74-92) (warn-only until the founder has
+      seen the light pilot)'
+  - check: light_contrast
+    status: warn
+    message: 'day/subject: p75 local contrast 8.3 (band 2.5-6.5; above it reads too
+      contrasty) (warn-only until the founder has seen the light pilot)'
+  - check: light_sea
+    status: warn
+    message: 'day: cloud sea L 78 (at least 82: the sea is the reflector)'
+  - check: detail_budget
+    status: warn
+    message: detail at display size 6.7 (R1 5.3)
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 11.8, p95 26.9, off-palette 44.0% (top: #CCCC33 (3.5%), #DDDD33
+      (2.7%)) (advisory in an exploration)'
+  source_file: /workspace/pofu-art/.worktrees/batch134-pond/design/art/inbox/batch-134-plot-pilot/plate__x-plot-pond-4--t2.png
+  source_sha256: d4d83537bea4cde1e6f9aa68e329c6b6973de59064883995fa3121694a4643aa
+  generated_at: '2026-11-16T16:05:44+00:00'
+  tool_output_size: 1254x1254; pipeline scaled and center-cropped to 1536x1536
+references:
+- design/art/inbox/batch-134-plot-pilot/plate__x-plot-pond-5--t1.png
+provisional_parent: x-plot-pond-5 t1 (auto-pick, lead review pending)
+generation_prompt_note: The built-in image tool received the manifest-composed prompt
+  from run.py prompt; ingest sidecars preserve the composed prompt.

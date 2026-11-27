@@ -33,6 +33,9 @@ public struct HomePlate: Hashable, Sendable {
     public let plate: PlateIsland
     public let light: String
     public let stage: Int
+    /// The season the state is painted in (`PlateIsland.seasons`); `.spring` for every state without season data. `light`
+    /// stays `day`, `golden` or `night`: the places that compare it never see a season.
+    public let season: Season
     /// World units per plate pixel.
     public let unitsPerPixel: Double
     /// The plate pixel at the world's origin.
@@ -50,10 +53,15 @@ public struct HomePlate: Hashable, Sendable {
     /// Pofu's art is 64 units wide (`PofuLayer.artWidth`).
     public static let pofuArtWidth = 64.0
 
-    public init(plate: PlateIsland, light: String = "day", stage: Int = 0, placement: Placement = .home) {
+    /// The painted state's key (`PlateIsland.key(season:light:)`): `light` in spring, `<season>-<light>` otherwise. Every
+    /// asset name and per-light table of the plate is read through it.
+    public var key: String { PlateIsland.key(season: season, light: light) }
+
+    public init(plate: PlateIsland, light: String = "day", stage: Int = 0, placement: Placement = .home, season: Season = .spring) {
         self.plate = plate
         self.light = light
         self.stage = stage
+        self.season = season
         self.placement = placement
         let islandPixels = max(plate.islandBox.width, 1)
         let box = plate.islandBox
@@ -69,8 +77,9 @@ public struct HomePlate: Hashable, Sendable {
             unitsPerPixel = u
             origin = PlatePoint(x: middle.x - centre.x / u, y: middle.y - centre.y / u)
         }
-        referenceLight = Self.reference(plate: plate, light: light, stage: stage)
-        harmony = plate.harmony(light: light, stage: stage)
+        let key = PlateIsland.key(season: season, light: light)
+        referenceLight = Self.reference(plate: plate, light: key, stage: stage)
+        harmony = plate.harmony(light: key, stage: stage)
     }
 
     /// The home plate shipped in the package, if any.
@@ -151,7 +160,10 @@ public struct HomePlate: Hashable, Sendable {
         let weather = look.weatherOverride
             ?? WeatherForecast.conditions(clock: world.clock, firstDay: world.firstDay, hour: minute / 60, calendar: calendar)
         guard let state = state(in: plate.plate, islandLevel: world.islandLevel, hour: minute / 60, weather: weather, isBedtime: world.isBedtime) else { return nil }
-        var resolved = HomePlate(plate: plate.plate, light: state.light, stage: state.stage)
+        // A season is drawn at a state only if its data lists it (all or nothing, D4); else the whole state is spring's.
+        let wanted = look.seasonOverride ?? world.season ?? .spring
+        let season = plate.plate.season(wanted, light: state.light, stage: state.stage, forced: look.seasonOverride != nil)
+        var resolved = HomePlate(plate: plate.plate, light: state.light, stage: state.stage, season: season)
         resolved.mapTier = MapSlots.tier(koke: world.koke, caglayan: world.caglayan)
         return resolved
     }
@@ -186,12 +198,12 @@ public struct HomePlate: Hashable, Sendable {
     /// Whether this state's plate is matted to its island and shipped cropped to it (`PlateIsland.plateCrop`):
     /// the sky set draws behind it without its own island layer, and no backdrop is drawn.
     public var isMatted: Bool {
-        plate.plateCrop(light: light, stage: stage) != nil
+        plate.plateCrop(light: key, stage: stage) != nil
     }
 
     /// The box the plate's image covers, in world units: its crop for a matted state, else the whole plate.
     public var plateImageBox: WorldBox {
-        plate.plateCrop(light: light, stage: stage).map { worldBox($0) } ?? plateBox
+        plate.plateCrop(light: key, stage: stage).map { worldBox($0) } ?? plateBox
     }
 
     /// A rectangle in the sky set's master pixels, in world units. The master is the plate at its own
@@ -256,7 +268,7 @@ public struct HomePlate: Hashable, Sendable {
     // MARK: - Light
 
     private func map(_ maps: [String: [[[String]]]]) -> [[String]] {
-        let stages = maps[light] ?? []
+        let stages = maps[key] ?? []
         return stage < stages.count ? stages[stage] : (stages.first ?? [])
     }
 
@@ -429,7 +441,7 @@ public struct HomePlate: Hashable, Sendable {
     /// the character instead (`PlateCompositor.looks(over:box:)`).
     public func occluders(over feet: WorldPoint, box: WorldBox) -> [PlateIsland.Object] {
         let a = plate(WorldPoint(x: box.minX, y: box.minY)), b = plate(WorldPoint(x: box.maxX, y: box.maxY))
-        let onBase = plate.stationLooks(light: light, stage: stage)
+        let onBase = plate.stationLooks(light: key, stage: stage)
         return PlateMath.occluders(
             over: (footY: plate(feet).y, box: PlateRect(minX: a.x, minY: a.y, maxX: b.x, maxY: b.y)),
             in: plate, light: light, stage: stage
@@ -559,7 +571,7 @@ public struct HomePlate: Hashable, Sendable {
         let box = islandBox
         let scale = CameraRail.midFitWidth / max(box.width, 1)
         let anchorY = CameraRail.midCentreY
-        if let crop = plate.plateCrop(light: light, stage: stage).map({ worldBox($0) }),
+        if let crop = plate.plateCrop(light: key, stage: stage).map({ worldBox($0) }),
            crop.width * scale < CameraRail.youngFill * CameraRail.referenceWidth {
             let young = CameraRail.youngFill * CameraRail.referenceWidth / max(crop.width, 1)
             return CameraRail.Stop(scale: young, look: WorldPoint(x: crop.midX, y: box.midY), anchorY: anchorY)
