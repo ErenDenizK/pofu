@@ -102,7 +102,8 @@ BASES = {
     6: {"job": JOB.format(4), "window": (1232, 1370, 1530, 1672)},
     4: {"job": JOB.format(6), "window": (1252, 1290, 1536, 1692),
         "exclude": [(1420, 1650, 1700, 1800)], "brightRing": True},
-    3: {"job": JOB.format(7), "window": (1226, 1290, 1536, 1692),      # from x 1226, where the workshop's window stops: a 26 px strip of its wall between the two windows stayed as a grey line up the sky
+    3: {"job": JOB.format(7), "window": (1226, 1290, 1536, 1692),      # from x 1226 above y 1500, where the workshop's window stops: a 26 px strip of its wall between the two windows stayed as a grey line up the sky; below, the plate's own lamp (x 1190, y 1580 to 1690) stays whole
+        "shapes": [("r", 1226, 1290, 1536, 1500), ("r", 1252, 1500, 1536, 1692)],
         "exclude": [(1420, 1650, 1700, 1800)], "brightRing": True},     # brightRing: the lawn pasted in is the sunlit green, not the lighter half of the ring (it stepped yellow against the lawn below the path)
 }
 
@@ -111,8 +112,12 @@ BASES = {
 PLACE = {
     7: {"foot": (690.0, 832.0), "scale": 1.0},
     6: {"foot": (690.0, 838.0), "scale": 0.95},
-    4: {"foot": (698.0, 839.0), "scale": 1.10},
-    3: {"foot": (697.0, 839.0), "scale": 1.09},
+    # Stages 4 and 3: the plate's own lamp stands at x 606 (head 593 to 620, foot y 845) left of the old stall, and the rim runs in
+    # close right of it. The level 2 table stands 105 points left of the foot and the lamp post 65 right, so the stall is smaller
+    # (0.81) and 13 points right: the table clears the lamp, the post's foot stands on lawn (the base is erased, so the old stall's
+    # place binds nothing).
+    4: {"foot": (711.0, 839.0), "scale": 0.81},
+    3: {"foot": (711.0, 839.0), "scale": 0.81},
 }
 TEA_STALL["bases"] = BASES
 TEA_STALL["place"] = PLACE
