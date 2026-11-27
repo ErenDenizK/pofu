@@ -176,7 +176,7 @@ POND = {
     "bases": {s: {"job": JOB.format(10 - s), "window": (110, 1600, 730, 1890),
                   "shapes": [("e", 420, 1775, 322, 132), ("r", 400, 1610, 600, 1700)],       # the ring and the deck
                   "exclude": [(130, 1600, 400, 1692)],                                       # the garden's fence stays
-                  "excludeOccluders": ("mailbox",), "interior": True, "lighter": False, "brightRing": True} for s in (0, 1, 2, 3)},
+                  "excludeOccluders": ("mailbox", "westBush"), "flowersOnly": ("westBush",), "interior": True, "lighter": False, "brightRing": True} for s in (0, 1, 2, 3)},
     "place": {s: {"foot": (216.0, 737.0), "scale": 1.0} for s in (0, 1, 2, 3)},
 }
 STATIONS = [TEA_STALL, WINDMILL, POND]
@@ -580,6 +580,15 @@ def drop_specks(alpha: np.ndarray, window: tuple, crop_tex: tuple, margin: int =
     return np.where(region & ~keep, 0.0, alpha)
 
 
+def old_pond_pixels(rgb: np.ndarray) -> np.ndarray:
+    """Where an occluder's pixels are the old pond's: the ring stones (pale, and their shaded brown) and its water."""
+    lab = srgb_lab(rgb)
+    stone = (lab[..., 2] > 8) & (lab[..., 1] > 0) & (np.hypot(lab[..., 1], lab[..., 2]) < 32) & (lab[..., 0] > 62)
+    stone |= (lab[..., 1] > 3) & (lab[..., 2] > 3) & (np.hypot(lab[..., 1], lab[..., 2]) < 22) & (lab[..., 0] > 40) & (lab[..., 0] < 78)   # the ring stones' shaded brown
+    water = cv2.dilate(((lab[..., 2] < -3) & (lab[..., 1] < 4) & (lab[..., 0] < 72)).astype(np.uint8), np.ones((3, 3), np.uint8)) > 0   # (lilac has a* over 4 or is lighter than L* 72)
+    return stone | water
+
+
 def build_base(stage: int, spec: dict, plate: np.ndarray | None = None) -> tuple[np.ndarray, dict]:
     """The shipped plate of a day stage with the station erased: RGBA floats, the plate's crop. `plate` is a base that
     already has other stations erased (the same size): this station's window is taken out of it, so two stations that
@@ -601,7 +610,12 @@ def build_base(stage: int, spec: dict, plate: np.ndarray | None = None) -> tuple
         hard_full[ey0:ey1, ex0:ex1] = 0
     for oid in spec.get("excludeOccluders", ()):         # an occluder's opaque pixels stay the plate's (the mailbox)
         x0, y0, x1, y1, alpha = occluder_pixels(stage, oid)
-        hard_full[y0:y1, x0:x1][cv2.dilate((alpha > 0.4).astype(np.uint8), _ellipse(7)) > 0] = 0
+        solid = alpha > 0.4
+        if oid in spec.get("flowersOnly", ()):           # the plate's flowers stay; the old pond's stones and water under the polygon still go
+            name = ingest.asset_name(ISLAND, "occ", "day", stage, oid)
+            with heic.open_image(ASSETS / f"{name}.imageset" / f"{name}{heic.SUFFIX}") as im:
+                solid &= ~old_pond_pixels(np.asarray(im.convert("RGB"), np.float32)[: solid.shape[0], : solid.shape[1]] / 255)
+        hard_full[y0:y1, x0:x1][cv2.dilate(solid.astype(np.uint8), _ellipse(7)) > 0] = 0
     sl = (slice(cy, cy + h), slice(cx, cx + w))
     hard = hard_full[sl]
     p_rgb, p_a = plate[..., :3], plate[..., 3]
@@ -676,9 +690,8 @@ def clear_occluders(stage: int, hard_full: np.ndarray, station: str = TEA_STALL[
         part = part[: old.shape[0], : old.shape[1]]
         if obj["id"] in keep:
             lab = srgb_lab(old[..., :3])
-            stone = (lab[..., 2] > 8) & (lab[..., 1] > 0) & (np.hypot(lab[..., 1], lab[..., 2]) < 32) & (lab[..., 0] > 62)
-            stone |= (lab[..., 1] > 3) & (lab[..., 2] > 3) & (np.hypot(lab[..., 1], lab[..., 2]) < 22) & (lab[..., 0] > 40) & (lab[..., 0] < 78)   # the ring stones' shaded brown
-            water = cv2.dilate(((lab[..., 2] < -3) & (lab[..., 1] < 4) & (lab[..., 0] < 72)).astype(np.uint8), np.ones((3, 3), np.uint8)) > 0        # the old pond's water the occluder's polygon took in (lilac has a* over 4 or is lighter than L* 72)
+            stone = old_pond_pixels(old[..., :3])
+            water = stone
             wide = cv2.GaussianBlur(cv2.dilate(hard_full, _ellipse(61)).astype(np.float32), (0, 0), 2.0)[y0:y1, x0:x1][: old.shape[0], : old.shape[1]]
             part = np.maximum(part * stone, wide * water).astype(np.float32)   # water also beside the mailbox, whose own pixels the region skips
         old[..., 3] *= 1 - part
