@@ -1391,7 +1391,7 @@ private struct WorldCanvas: View {
             }
         case .gezgin(let level):
             if let plate, let data = GezginData.shipped, let mooring = plate.plate.mooring {
-                let wakeAge = model.gezgin.wokeAt.map { clock.timeIntervalSince($0) }
+                let wakeAge = model.gezgin.heldAge ?? model.gezgin.wokeAt.map { clock.timeIntervalSince($0) }
                 GezginMooredView(
                     data: data, plate: plate, mooring: mooring, level: level,
                     pose: Gezgin.pose(light: plate.light, wakeAge: wakeAge, data: data),

@@ -52,7 +52,7 @@ public struct GezginData: Decodable, Sendable, Equatable {
         public var sag: Double
         public var thickness: Double
 
-        public static let standard = Rope(bowX: -0.40, bowY: -0.10, postX: -0.52, postY: -0.40, sag: 0.12, thickness: 0.012)
+        public static let standard = Rope(bowX: -0.40, bowY: -0.10, postX: -0.52, postY: -0.40, sag: 0.12, thickness: 0.02)
     }
 
     /// The Koke phase at which she is a shadow on the cloud (`rumoured`) and at which she is moored (`arrived`).

@@ -1,4 +1,5 @@
 #if os(iOS)
+import PofuCompanion
 import PofuCore
 import PofuDesignSystem
 import SwiftUI
@@ -76,7 +77,22 @@ private struct VoyageRideScene: View {
             .position(centre)
             ForEach(Array(passengers.enumerated()), id: \.offset) { index, passenger in
                 let place = passengerPlace(index: index, beat: beat, centre: centre, width: width, height: height)
-                if let sprite = WorldArt.sprite(passenger.art), let box = sprite.sharp {
+                if passenger.art == "pofu" {
+                    // Pofu is the companion's own full-body picture (his sprite has no sharp layer: the live
+                    // rig draws it).
+                    if let art = CompanionArt.placeholder {
+                        let rig = art.rig
+                        let w = width * passenger.share, h = w / rig.aspectRatio
+                        Image(decorative: art.base, scale: 1)
+                            .resizable()
+                            .frame(width: CGFloat(w), height: CGFloat(h))
+                            .opacity(place.opacity)
+                            .position(
+                                x: place.x - CGFloat(w * rig.ground.x) + CGFloat(w / 2),
+                                y: place.y - CGFloat(h * rig.ground.y) + CGFloat(h / 2)
+                            )
+                    }
+                } else if let sprite = WorldArt.sprite(passenger.art), let box = sprite.sharp {
                     DepthImage(
                         name: passenger.art, sprite: sprite, level: 0, anchor: CGPoint(x: place.x, y: place.y),
                         scale: CGFloat(width * passenger.share) / CGFloat(max(box.width, 1)), opacity: place.opacity
@@ -90,7 +106,7 @@ private struct VoyageRideScene: View {
 
     /// Who rides: Pofu, and Fındık with him. Their width against her cut-out's.
     private var passengers: [(art: String, share: Double)] {
-        [("pofu", 0.15), ("findik", 0.11)]
+        [("pofu", 0.2), ("findik", 0.13)]
     }
 
     /// A passenger's feet and opacity: on the shore while she waits, in the air as he hops aboard, on her back

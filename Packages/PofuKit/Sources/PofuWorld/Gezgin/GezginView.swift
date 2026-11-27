@@ -20,6 +20,9 @@ public final class GezginBeatState {
     private(set) var line: GezginLine?
     /// When the last tap woke her; `nil` before the first one.
     public private(set) var wokeAt: Date?
+    /// A held age of the tap, in seconds (screenshots): the frame's clock is real time, so a still frame
+    /// states how old the tap is instead of when it was.
+    public private(set) var heldAge: Double?
 
     @ObservationIgnored private var taps = 0
     @ObservationIgnored private var dismissTask: Task<Void, Never>?
@@ -32,6 +35,7 @@ public final class GezginBeatState {
         let data = GezginData.shipped
         taps += 1
         wokeAt = now
+        heldAge = nil
         show(key: Gezgin.lineKey(asleep: asleep, taps: taps - 1), seconds: data?.lineSeconds ?? 4.5)
         model.holdMoment(seconds: asleep ? (data?.awakeSeconds ?? 7) + 0.5 : 1.2, from: now)
         PofuHaptics.shared.play(.land)
@@ -54,6 +58,12 @@ public final class GezginBeatState {
     /// Wakes her at `date` without a line (screenshots hold a frame of it).
     public func wake(at date: Date) {
         wokeAt = date
+    }
+
+    /// Wakes her with the tap held at `age` seconds old (a still frame of the stretch).
+    public func wake(heldAge age: Double) {
+        heldAge = age
+        wokeAt = Date()
     }
 
     /// Keeps one of her lines up, by its catalog key (`Gezgin.lineKey`), for a screenshot.
@@ -173,7 +183,7 @@ struct GezginShadowView: View {
         Image(Gezgin.art(level: 1, "cloudshade"), bundle: .module)
             .resizable()
             .frame(width: CGFloat(width), height: CGFloat(height))
-            .colorMultiply(Color(red: 0.52, green: 0.55, blue: 0.80))
+            .colorMultiply(Color(red: 0.60, green: 0.63, blue: 0.84))
             .scaleEffect(1.3)
             .opacity(data.shadow.opacity)
             .position(x: point.x, y: point.y)

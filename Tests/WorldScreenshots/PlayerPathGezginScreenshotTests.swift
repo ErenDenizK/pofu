@@ -58,9 +58,8 @@ final class PlayerPathGezginScreenshotTests: PlayerPathFrameCase {
         let night = try world(level: 5, night: true, koke: healed)
         try await frame(night, hour: 23, name: "path-gezgin-night", scene: scene, folder: folder)
         try await frame(night, hour: 23, name: "path-gezgin-wake", scene: scene, folder: folder) { island in
-            // The frame's clock is real time (the capture waits 2.1 s to settle), so the tap lies that far
-            // ahead: 0.15 s old when the frame is taken.
-            island.gezgin.wake(at: Date().addingTimeInterval(2.1 - 0.15))
+            // The frame's clock is real time, so the frame states the tap's age: 0.15 s.
+            island.gezgin.wake(heldAge: 0.15)
             island.gezgin.hold(lineKey: Gezgin.lineKey(asleep: true, taps: 1))
         }
     }
