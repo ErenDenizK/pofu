@@ -153,6 +153,10 @@ struct RehearsalPanel: View {
                 model.playGarden()
             }
             .disabled(rounds == 0)
+            control(Text("Music room"), symbol: "music.note.house.fill") {
+                rehearsal.isPanelExpanded = false
+                rehearsal.isMusicRoomOpen = true
+            }
             Divider()
             #if DEBUG
             // tuning lab: the live tuning panel (debug builds with the developer flag).

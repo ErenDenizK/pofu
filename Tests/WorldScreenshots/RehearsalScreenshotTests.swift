@@ -61,6 +61,28 @@ final class RehearsalScreenshotTests: XCTestCase {
                     }
                 )
             ),
+            (
+                "09-music-room-light",
+                AnyView(
+                    ZStack {
+                        IslandScene(world: IslandSamples.dayThree(), model: IslandSceneModel(framing: .mid)) {
+                            EmptyView()
+                        }
+                        MusicRoomPanel(model: model, rehearsal: rehearsal)
+                    }
+                )
+            ),
+            (
+                "10-music-room-stingers-light",
+                AnyView(
+                    ZStack {
+                        IslandScene(world: IslandSamples.dayThree(), model: IslandSceneModel(framing: .mid)) {
+                            EmptyView()
+                        }
+                        MusicRoomPanel(model: model, rehearsal: rehearsal, startsAtStingers: true)
+                    }
+                )
+            ),
         ]
 
         for (name, view) in shots {

@@ -26,6 +26,8 @@ public final class MusicPlayer {
     private var format: AVAudioFormat?
     private var director: MusicDirector?
     private var state: MusicState?
+    /// A state the music room picked: it plays in place of the world's until the room lets go.
+    private var auditionState: MusicState?
     private var isActive = false
     private var loopTask: Task<Void, Never>?
     private var duckTask: Task<Void, Never>?
@@ -57,6 +59,19 @@ public final class MusicPlayer {
         evaluate()
     }
 
+    /// The music room plays `state` in place of the world's own, from a director
+    /// seeded `MusicRoom.seed`, so its first cell is the one the room shows; `nil`
+    /// lets the world's state play again. The settings and the policy still apply.
+    public func audition(_ state: MusicState?) {
+        auditionState = state
+        director = nil
+        stopPlayback()
+        evaluate()
+    }
+
+    /// Whether the music room's state is the one in charge.
+    public var isAuditioning: Bool { auditionState != nil }
+
     /// A setting changed.
     public func refresh() {
         evaluate()
@@ -69,6 +84,10 @@ public final class MusicPlayer {
 
     /// Stops everything now (backgrounding, a changed setting).
     public func stop() {
+        stopPlayback()
+    }
+
+    private func stopPlayback() {
         loopTask?.cancel()
         loopTask = nil
         duckTask?.cancel()
@@ -94,7 +113,7 @@ public final class MusicPlayer {
         #endif
         return MusicPolicy(
             settings: SoundEngine.shared.settings, volumes: SoundEngine.shared.volumes,
-            isActive: isActive && state != nil, otherAudioPlaying: otherAudio, voiceOverRunning: voiceOver
+            isActive: (isActive || auditionState != nil) && (auditionState ?? state) != nil, otherAudioPlaying: otherAudio, voiceOverRunning: voiceOver
         )
     }
 
@@ -108,9 +127,9 @@ public final class MusicPlayer {
 
     private func startLoop() {
         guard let index = try? MusicIndex.bundled() else { return }
-        var director = self.director ?? MusicDirector(index: index, tuning: SoundEngine.shared.volumes, seed: seed)
+        var director = self.director ?? MusicDirector(index: index, tuning: SoundEngine.shared.volumes, seed: auditionState == nil ? seed : MusicRoom.seed)
         director.tuning = SoundEngine.shared.volumes
-        let opening = self.director == nil ? director.openingDelay() : 0
+        let opening = self.director == nil && auditionState == nil ? director.openingDelay() : 0
         self.director = director
         loopTask = Task { [weak self] in
             try? await Task.sleep(for: .seconds(opening))
@@ -124,7 +143,7 @@ public final class MusicPlayer {
 
     /// Plays the next phrase if the state has one, and returns the seconds to wait before asking again.
     private func playNextPhrase() -> Double {
-        guard let state, policy.mayPlay, var director else { return 30 }
+        guard let state = auditionState ?? state, policy.mayPlay, var director else { return 30 }
         defer { self.director = director }
         director.tuning = SoundEngine.shared.volumes
         guard let phrase = director.next(for: state, isMusicOn: SoundEngine.shared.settings.isMusicOn) else {
@@ -230,6 +249,7 @@ public final class MusicPlayer {
         center.addObserver(forName: UIApplication.didEnterBackgroundNotification, object: nil, queue: .main) { [weak self] _ in
             MainActor.assumeIsolated {
                 self?.isActive = false
+                self?.auditionState = nil
                 self?.stop()
             }
         }

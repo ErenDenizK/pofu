@@ -155,12 +155,19 @@ public struct MusicDirector: Sendable {
 
     /// 4 to 12 seconds. Rain and a tired Pofu raise the floor; nothing leaves the range.
     private mutating func pause(for state: MusicState) -> Double {
+        let range = pauseRange(for: state)
+        return range.lowerBound + (range.upperBound - range.lowerBound) * random.unit()
+    }
+
+    /// The seconds of the island's own air that may follow a cell in `state`:
+    /// the floor rises with rain and a tired Pofu, the ceiling stays.
+    public func pauseRange(for state: MusicState) -> ClosedRange<Double> {
         let low = tuning.musicPauseMin
         let high = max(tuning.musicPauseMax, low)
         let tired = min(max((Self.tiredBelow - state.wellbeing) / Self.tiredSpan, 0), 1)
         let lift = min(tired * 0.6 + (state.weather == .lightRain ? 0.4 : 0), 1)
         let floor = low + (high - low) * 0.5 * lift
-        return floor + (high - floor) * random.unit()
+        return floor...high
     }
 
     /// Which stems sound (section 6): the island's stage decides first, the

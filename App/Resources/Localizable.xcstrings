@@ -2752,6 +2752,326 @@
           }
         }
       }
+    },
+    "Music room" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Müzik odası"
+          }
+        }
+      }
+    },
+    "Island music is off in Settings, so nothing plays here." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ada müziği Ayarlar'da kapalı, o yüzden burada bir şey çalmaz."
+          }
+        }
+      }
+    },
+    "Island" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ada"
+          }
+        }
+      }
+    },
+    "Hour" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saat"
+          }
+        }
+      }
+    },
+    "Weather" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hava"
+          }
+        }
+      }
+    },
+    "Season" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mevsim"
+          }
+        }
+      }
+    },
+    "Island stage" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ada aşaması"
+          }
+        }
+      }
+    },
+    "Pofu's wellbeing" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pofu'nun keyfi"
+          }
+        }
+      }
+    },
+    "The director plays" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yönetmen şunu çalar"
+          }
+        }
+      }
+    },
+    "Then %lld to %lld seconds of the island's own air" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sonra %lld ile %lld saniye adanın kendi havası"
+          }
+        }
+      }
+    },
+    "Play" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Çal"
+          }
+        }
+      }
+    },
+    "Stop" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Durdur"
+          }
+        }
+      }
+    },
+    "Stingers" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kısa ezgiler"
+          }
+        }
+      }
+    },
+    "They are written for the next music update. The buttons wake then." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bunlar bir sonraki müzik güncellemesi için yazılıyor. Düğmeler o zaman uyanır."
+          }
+        }
+      }
+    },
+    "Home" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ev"
+          }
+        }
+      }
+    },
+    "Clear" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Açık"
+          }
+        }
+      }
+    },
+    "Overcast" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kapalı"
+          }
+        }
+      }
+    },
+    "Light rain" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hafif yağmur"
+          }
+        }
+      }
+    },
+    "Mist" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sis"
+          }
+        }
+      }
+    },
+    "Golden haze" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Altın pus"
+          }
+        }
+      }
+    },
+    "Spring" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bahar"
+          }
+        }
+      }
+    },
+    "Summer" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yaz"
+          }
+        }
+      }
+    },
+    "Autumn" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sonbahar"
+          }
+        }
+      }
+    },
+    "Winter" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kış"
+          }
+        }
+      }
+    },
+    "Lead" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ezgi"
+          }
+        }
+      }
+    },
+    "Bed" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zemin"
+          }
+        }
+      }
+    },
+    "Pulse" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ritim"
+          }
+        }
+      }
+    },
+    "A station built" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bir yapı bitti"
+          }
+        }
+      }
+    },
+    "The island grows" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ada büyüdü"
+          }
+        }
+      }
+    },
+    "Nothing: island music is off." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Çalacak bir şey yok: ada müziği kapalı."
+          }
+        }
+      }
+    },
+    "Nothing: bedtime. The islands are silent from 23:00 to 06:00." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Çalacak bir şey yok: uyku vakti. Adalar 23.00 ile 06.00 arası sessiz."
+          }
+        }
+      }
+    },
+    "Nothing yet: no tune is written for this island at this hour." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Henüz bir şey yok: bu ada için bu saatte yazılmış bir ezgi yok."
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

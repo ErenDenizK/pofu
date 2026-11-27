@@ -25,6 +25,8 @@ final class RehearsalStage {
     /// The panel shows its controls rather than its pill. It starts as the pill
     /// (critique N1), so Pofu's bubble is never covered.
     var isPanelExpanded = false
+    /// The music room (MU3) is open over the island.
+    var isMusicRoomOpen = false
     /// Counts the clock's jumps, so the panel's clock readout follows.
     private(set) var jumps = 0
 

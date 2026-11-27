@@ -1,0 +1,1 @@
+[music] Rehearsal mode has a "Müzik odası" (music room): pick the island, hour, weather, season, stage and Pofu's wellbeing, see what the director would play (the cell, its stems and pause, or the silence and why), and play it; the stingers show as coming.
