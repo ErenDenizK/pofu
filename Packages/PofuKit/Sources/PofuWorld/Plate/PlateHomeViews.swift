@@ -120,7 +120,7 @@ struct PlateHomeLayer: View {
                             SkySetLayers(sky: PaintedSky.homeSet(sky), plate: plate, pose: pose, reference: plate.skyReference(width: Double(size.width), height: Double(size.height)), size: size, offset: offset, start: start, drawsIsland: false)
                                 .skyLensBlur(nearLens?.skyRadius ?? 0)
                         } else {
-                            PlateImage(name: plate.plate.backdropArt(light: plate.light, stage: plate.stage), box: plate.backdropBox, pose: pose, size: size, offset: offset)
+                            PlateImage(name: plate.plate.backdropArt(light: plate.key, stage: plate.stage), box: plate.backdropBox, pose: pose, size: size, offset: offset)
                         }
                     }
                     .fading(fade)
@@ -147,7 +147,7 @@ struct PlateHomeLayer: View {
                 // A state that keeps the whole painting (its old matte, or another island): its island cut toward the
                 // Map, the painting over its backdrop fading in.
                 if fade < 0.999 {
-                    PlateImage(name: plate.plate.mapIslandArt(light: plate.light, stage: plate.stage), box: plate.islandBox, pose: pose, size: size, offset: offset)
+                    PlateImage(name: plate.plate.mapIslandArt(light: plate.key, stage: plate.stage), box: plate.islandBox, pose: pose, size: size, offset: offset)
                         .islandGraded(islandGrade)
                 }
                 if fade > 0.001 {
@@ -155,11 +155,11 @@ struct PlateHomeLayer: View {
                         if let sky = plate.skySet {
                             SkySetLayers(sky: PaintedSky.homeSet(sky), plate: plate, pose: pose, reference: plate.skyReference(width: Double(size.width), height: Double(size.height)), size: size, offset: offset, start: start, drawsIsland: true)
                         } else {
-                            PlateImage(name: plate.plate.backdropArt(light: plate.light, stage: plate.stage), box: plate.backdropBox, pose: pose, size: size, offset: offset)
+                            PlateImage(name: plate.plate.backdropArt(light: plate.key, stage: plate.stage), box: plate.backdropBox, pose: pose, size: size, offset: offset)
                             CompositeIsland(compositor: compositor, build: build, pose: pose, size: size, offset: offset)
                         }
                         if !islandGrade.isNeutral {
-                            PlateImage(name: plate.plate.islandArt(light: plate.light, stage: plate.stage), box: plate.islandBox, pose: pose, size: size, offset: offset)
+                            PlateImage(name: plate.plate.islandArt(light: plate.key, stage: plate.stage), box: plate.islandBox, pose: pose, size: size, offset: offset)
                                 .islandGraded(islandGrade)
                         }
                     }
@@ -174,7 +174,7 @@ extension PlateHomeLayer {
     /// Whether the far picture has at least a pixel for every screen pixel the island covers: from there toward the Map
     /// it stands in for the live composite (the same picture, cheaper); closer, the composite draws.
     func farPictureIsSharp(_ plate: HomePlate) -> Bool {
-        guard let crop = plate.plate.plateCrop(light: plate.light, stage: plate.stage) else { return false }
+        guard let crop = plate.plate.plateCrop(light: plate.key, stage: plate.stage) else { return false }
         let screenPixels = plate.plateImageBox.width * pose.scale * Double(displayScale)
         return screenPixels <= crop.width * FarSnapshot.pixelsPerPlatePixel
     }
@@ -306,7 +306,7 @@ struct PlateOccluders: View {
                 switch entry {
                 case .painted(let object):
                     PlateImage(
-                        name: plate.plate.occluderArt(id: object.id, light: plate.light, stage: plate.stage),
+                        name: plate.plate.occluderArt(id: object.id, light: plate.key, stage: plate.stage),
                         box: plate.occluderBox(object),
                         pose: pose,
                         size: size,
