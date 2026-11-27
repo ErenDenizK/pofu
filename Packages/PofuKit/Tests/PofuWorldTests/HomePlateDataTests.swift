@@ -366,7 +366,7 @@ struct HomePlateDataTests {
     }
 
     @Test func theOldLightKeyStillDecodesAsOneLight() throws {
-        let old = try #require(plate.stations["teaStall"])
+        let old = try decodedStation { tea in tea["lights"] = nil }       // the shipped file has the new key; the old one is `light` and `baseStages`
         #expect(old.lights == ["day": [3, 4, 6, 7]])
         #expect(old.baseStages == [3, 4, 6, 7])
         #expect(old.lookLevels.isEmpty)
