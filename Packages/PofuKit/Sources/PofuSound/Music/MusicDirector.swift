@@ -64,6 +64,8 @@ public struct MusicDirector: Sendable {
     /// Hours of the day tune, and the bedtime window that stays silent.
     public static let dayHours: Range<Int> = 6..<17
     public static let nightHours: Range<Int> = 17..<23
+    /// 23:00 to 06:00 is silent (music-system-v1 D7); the ambience's own window ends an hour earlier.
+    public static let bedtime: [Int] = [23, 0, 1, 2, 3, 4, 5]
     /// A cell is not played again while this many cells came after it.
     public static let noRepeatWindow = 3
     /// Pofu's wellbeing below `tiredBelow` begins to lengthen the pauses; at
@@ -89,7 +91,7 @@ public struct MusicDirector: Sendable {
     /// Why `state` has no music, or `nil` when a tune can play.
     public func silence(for state: MusicState, isMusicOn: Bool) -> MusicSilence? {
         guard isMusicOn else { return .off }
-        guard !AmbienceMixer.bedtimeHours.contains(state.hour) else { return .bedtime }
+        guard !Self.bedtime.contains(state.hour) else { return .bedtime }
         guard resolve(state) != nil else { return .noTune }
         return nil
     }

@@ -158,7 +158,7 @@ struct MusicDirectorTests {
                         } else {
                             #expect(phrase == nil)
                             let silence = d.silence(for: state, isMusicOn: true)
-                            #expect(silence == (AmbienceMixer.bedtimeHours.contains(hour) ? .bedtime : .noTune))
+                            #expect(silence == (MusicDirector.bedtime.contains(hour) ? .bedtime : .noTune))
                         }
                     }
                 }
