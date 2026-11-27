@@ -1,0 +1,1 @@
+[world] The bagel cart and the lighthouse now grow level by level on Home at island levels 10 to 8 (day), each on a clean erased plot, and the pond no longer cuts across the flowers and hydrangeas in front of it.

@@ -120,7 +120,7 @@ def test_no_base_without_a_pick_and_the_other_stages_keep_their_stall():
 
 # ---------------------------------------------------------------- the windmill (plan row 1b)
 
-def test_the_windmill_has_looks_2_to_5_over_bases_at_stages_0_to_2():
+def test_the_windmill_has_looks_2_to_5_over_bases_at_stages_1_and_2():
     data = sl.stations_data(sl.WINDMILL)["windmill"]
     assert data["levels"] == 5
     assert data["baseStages"] == [0, 1, 2]
@@ -309,3 +309,46 @@ def test_same_picture_ignores_an_encode_and_a_clear_pixels_colour_but_not_a_real
     moved[20:40, 20:40, :3] = 0                                # a 5 percent patch
     assert not sl.same_picture(a, moved)
     assert not sl.same_picture(a, a[:50])
+
+
+# ---------------------------------------------------------------- the bagel cart and the lighthouse (plan row 1c, PR 3)
+
+@pytest.mark.parametrize("spec", [sl.BAGEL_CART, sl.LIGHTHOUSE], ids=lambda s: s["id"])
+def test_the_bagel_cart_and_the_lighthouse_have_five_looks_over_bases_at_stages_1_and_2(spec):
+    assert spec in sl.STATIONS
+    assert spec["levels"] == 5 and sorted(spec["bases"]) == [1, 2] and sorted(spec["place"]) == [1, 2]
+    for stage, base in spec["bases"].items():
+        assert sl.pick_of(base["job"]) >= 1
+        x0, y0, x1, y1 = base["window"]
+        assert x1 - x0 < 400 and y1 - y0 < 400, "a tight box round the old station: the erase takes fill the islet gap with lawn"
+        assert not base.get("interior"), "the old station's pixels over sky must go"
+    assert all(pick == 1 for _, pick in spec["plot"]["takes"].values())
+    assert [sp["id"] for sp in sl.stage_specs(1)][-2:] == ["bagelCart", "lighthouse"]
+    assert 0 not in spec["bases"] and 3 not in spec["bases"], "stages 0 and 3 keep the painted cart and tower"
+
+
+@pytest.mark.parametrize("spec", [sl.BAGEL_CART, sl.LIGHTHOUSE], ids=lambda s: s["id"])
+def test_a_ladder_look_is_in_the_plates_colours_and_carries_no_sky_or_lawn(spec):
+    masks, rgbs, _ = sl.plot_masks(spec["plot"])
+    assert sorted(masks) == [1, 2, 3, 4, 5]
+    for n, m in masks.items():
+        assert m.sum() > 8000, f"level {n}: a look"
+        assert (m & sl._lawn(rgbs[n])).sum() < 0.25 * m.sum(), f"level {n}: the lawn is in the cut"
+        assert (sl.sky_alpha(rgbs[n])[m] < 0.5).mean() < 0.02, f"level {n}: sky is in the cut"
+    # the cart stands where the plate paints it at every level (one foot): the bottom of each cut is within 40 take px
+    bottoms = [np.nonzero(m.any(1))[0].max() for m in masks.values()]
+    assert max(bottoms) - min(bottoms) < 80
+
+
+def test_the_ponds_look_leaves_the_plates_foreground_flowers_showing():
+    import ingest
+    import heic
+    name = sl.look_name("pond", 3, "day")
+    with heic.open_image(ingest.ASSETS / f"{name}.imageset" / f"{name}{heic.SUFFIX}") as im:
+        look = np.asarray(im.convert("RGBA"), np.float32) / 255
+    box = ingest.stations_data("home")["pond"]["box"]
+    def a(x, y):
+        return look[round((y - box[1]) * 2), round((x - box[0]) * 2), 3]
+    assert a(200, 870) > 0.9                         # water
+    assert a(75, 908) < 0.1                          # the pink flower's top (plate point), once under the look's lower edge
+    assert a(160, 930) < 0.1                         # a hydrangea's top
