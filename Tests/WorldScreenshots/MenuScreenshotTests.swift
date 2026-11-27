@@ -36,6 +36,25 @@ final class MenuScreenshotTests: XCTestCase {
         }
     }
 
+    /// The Today header draws the composite the player built (`HomePlateCrop`): island level 10 at noon with the windmill
+    /// at level 2, the state of Home's own `path-mill-l2` frame (`PlayerPathScreenshotTests.testRenderTheWindmillLooks`).
+    @MainActor
+    func testRenderTheTodayHeaderWithABuiltWindmill() async throws {
+        let day = try XCTUnwrap(PlayerPath.tester().first { $0.morning.islandLevel == 3 }, "the path has a level 3 island")
+        var world = day.morning
+        world.islandLevel = 10
+        world.stations = world.stations.map { status in
+            var status = status
+            if status.id == .windmill { status.level = 2 }
+            return status
+        }
+        let view = TodaySheet(model: AppModel.shared, hourOverride: 12, worldOverride: world)
+        let window = try makeWindow(AnyView(view.dynamicTypeSize(.large)), style: .light)
+        try await Task.sleep(for: .milliseconds(900))
+        try capture(window, name: "path-today-header-mill-l2")
+        tearDown(window)
+    }
+
     /// The shield replica in the four palettes of the colour script's sky.
     @MainActor
     func testRenderTheShieldInFourPalettes() async throws {
