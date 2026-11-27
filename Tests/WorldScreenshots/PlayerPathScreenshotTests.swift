@@ -575,8 +575,38 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
         }
     }
 
+    /// The bagel cart's and the lighthouse's looks on Home (plan row 1c, PR 3): island 9 at levels 1 to 5 of each
+    /// (`path-bagel-cart-l<level>`, `path-lighthouse-l<level>`), at noon, and at 22:00 for the night control (the looks are day art, the
+    /// night keeps its painted stations). The other stations stay at level 3. Level 5 on island 9 is not a state the player reaches.
+    @MainActor
+    func testRenderTheBagelCartAndLighthouseLooks() async throws {
+        let scene = try windowScene()
+        let folder = try outputFolder()
+        let day = try XCTUnwrap(Self.path.first { $0.morning.islandLevel == 3 }, "the path has a level 3 island")
+        for (id, name) in [(StationID.bagelCart, "bagel-cart"), (StationID.lighthouse, "lighthouse")] {
+            for level in 1...5 {
+                for (hour, suffix) in [(12.0, ""), (22.0, "-night")] where level == 3 || hour == 12 {
+                    var world = day.morning
+                    world.islandLevel = 9
+                    XCTAssertTrue(world.stations.contains { $0.id == id }, "\(name) is a station of the world")
+                    world.stations = world.stations.map { status in
+                        var status = status
+                        if status.id == id { status.level = level }
+                        return status
+                    }
+                    let island = IslandSceneModel(framing: .mid)
+                    let view = homeView(world, hour: hour, island: island, settled: true)
+                    let frame = "path-\(name)-l\(level)\(suffix)"
+                    try await capture(AnyView(view), name: frame, scene: scene, folder: folder, settle: 2100) {
+                        XCTAssertNotNil(island.homePlate, "\(frame): Home is its painting")
+                    }
+                }
+            }
+        }
+    }
+
     /// The whole island at mixed station levels, one frame per island stage that has looks (plan row 1c,
-    /// `path-levels-i<island level>`): judged whole, no station takes over the island. Island 10: windmill 3, pond 2;
+    /// `path-levels-i<island level>`): judged whole, no station takes over the island. Island 10: windmill 3, pond 2 (island 9 adds bagel cart 5 and lighthouse 2, island 8 bagel cart 3 and lighthouse 5);
     /// island 9: windmill 4, pond 3; island 8: windmill 2, pond 4; island 7: tea stall 3, pond 1; at noon.
     @MainActor
     func testRenderTheMixedLevels() async throws {
@@ -584,8 +614,9 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
         let folder = try outputFolder()
         let day = try XCTUnwrap(Self.path.first { $0.morning.islandLevel == 3 }, "the path has a level 3 island")
         let frames: [(island: Int, levels: [StationID: Int])] = [
-            (10, [.windmill: 3, .pond: 2, .workshop: 1]), (9, [.windmill: 4, .pond: 3, .workshop: 5]),
-            (8, [.windmill: 2, .pond: 4, .workshop: 3]), (7, [.teaStall: 3, .pond: 1, .workshop: 4]),
+            (10, [.windmill: 3, .pond: 2, .workshop: 1]),
+            (9, [.windmill: 4, .pond: 3, .workshop: 5, .bagelCart: 5, .lighthouse: 2]),
+            (8, [.windmill: 2, .pond: 4, .workshop: 3, .bagelCart: 3, .lighthouse: 5]), (7, [.teaStall: 3, .pond: 1, .workshop: 4]),
         ]
         for (islandLevel, levels) in frames {
             var world = day.morning

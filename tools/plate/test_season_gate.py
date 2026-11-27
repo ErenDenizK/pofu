@@ -123,6 +123,8 @@ class CompleteTests(unittest.TestCase):
         names += [f"{isl}-look-windmill-{n}-{self.key}" for n in range(2, 6)]
         names += [f"{isl}-look-pond-{n}-{self.key}" for n in range(1, 6)]
         names += [f"{isl}-look-workshop-{n}-{self.key}" for n in range(1, 6)]
+        names += [f"{isl}-look-bagelCart-{n}-{self.key}" for n in range(1, 6)]
+        names += [f"{isl}-look-lighthouse-{n}-{self.key}" for n in range(1, 6)]
         for n in names:
             if n != skip:
                 self.put(n)
