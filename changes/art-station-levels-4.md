@@ -1,0 +1,1 @@
+[world] The tea stall now grows level by level on Home from the new plot ladder (a tiled roof, a lean-to with a copper urn, string lights and a flower pot at the top), and a grey line and a yellow lawn step beside it on the youngest islands are gone.
