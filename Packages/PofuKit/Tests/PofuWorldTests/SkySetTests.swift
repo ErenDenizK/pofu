@@ -62,8 +62,9 @@ struct SkySetTests {
             let ids = set.layers.map(\.id)
             #expect(Set(ids).count == ids.count)
             let far = try #require(ids.firstIndex(of: "far")), mid = try #require(ids.firstIndex(of: "mid")), sea = try #require(ids.firstIndex(of: "sea"))
-            let whale = try #require(ids.firstIndex(of: "whale"))
-            #expect(far < whale && whale < mid && mid < sea)
+            #expect(far < mid && mid < sea)
+            // The baked whale is gone: the Gezgin is a character moored at the pier (ADR-0028).
+            #expect(!ids.contains("whale"), "\(light)")
             // The island stands still: no drift, no bob.
             let island = try #require(set.layers.last)
             #expect(island.drift == 0 && island.bob == nil && island.twinkle == nil)
@@ -85,7 +86,6 @@ struct SkySetTests {
             let layer = try #require(set.layers.first { $0.id == id })
             #expect(layer.bob?.amp == 2 && layer.drift == 0, "\(id) bobs and does not drift")
         }
-        #expect(set.layers.first { $0.id == "whale" }?.drift == 5)
     }
 
     @Test func onlyNightHasStarsAndTheyAreThePaintedOnesOwnLight() throws {
@@ -290,7 +290,7 @@ struct SkySetTests {
         for light in Self.lights {
             let set = try sky(light)
             let withDetail = set.layers.filter { !$0.details.isEmpty }
-            #expect(Set(withDetail.map(\.id)) == ["isle_falls", "whale"], "\(light)")
+            #expect(Set(withDetail.map(\.id)) == ["isle_falls"], "\(light)")
             for layer in set.layers where layer.role != .sprite && layer.role != .whale {
                 #expect(layer.details.isEmpty, "\(layer.id): the island and the clouds carry none")
             }

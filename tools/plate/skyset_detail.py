@@ -147,6 +147,8 @@ def build_masks(island: str, light: str, hand: dict, layers: dict, *, force: boo
     """Every entry's mask (a box-sized float array) and its region, rebuilt only when `force` or missing."""
     out = {}
     for sprite, entries in hand.get(light, {}).items():
+        if sprite not in layers:        # a sprite the export does not ship (the whale, ADR-0028)
+            continue
         a = load_sprite(layers[sprite])
         for e in entries:
             p = mask_path(island, light, sprite, e["id"])
@@ -251,6 +253,8 @@ def export_light(island: str, light: str, spec: dict, hand: dict, force: bool) -
     rng = np.random.default_rng(SEED)
     pixels = 0
     for sprite, entries in hand.get(light, {}).items():
+        if sprite not in layers:
+            continue
         layer = layers[sprite]
         a = load_sprite(layer)
         sh, sw = a.shape[:2]

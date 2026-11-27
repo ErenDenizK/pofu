@@ -1,0 +1,1 @@
+Nazlı, the cloud whale, is moored at Home's pier at her level, asleep at night; a tap wakes her with a line and a chime, and before she arrives her shadow drifts across the clouds. The painted whale in Home's sky is gone.

@@ -2,6 +2,17 @@ import Foundation
 import PofuCore
 import PofuDesignSystem
 
+/// Where the Gezgin lies moored on a plate: her body's bottom centre and its width, in plate pixels.
+public struct PlateMooring: Hashable, Sendable {
+    public var feet: PlatePoint
+    public var width: Double
+
+    public init(feet: PlatePoint, width: Double) {
+        self.feet = feet
+        self.width = width
+    }
+}
+
 /// A point in a plate's pixels (the full 1536 x 1024 plate).
 public struct PlatePoint: Hashable, Sendable {
     public var x: Double
@@ -188,6 +199,9 @@ public struct PlateIsland: Hashable, Sendable {
     public var near: PlateNear?
     /// The bodies of water the region shaders move (`water`, WP13); empty for a plate with none.
     public var water: [PlateWater] = []
+    /// Where the Gezgin lies moored beside the island (`mooring`, ADR-0028): her body's bottom centre and
+    /// her body's width, in plate pixels. `nil` for a plate she does not visit.
+    public var mooring: PlateMooring?
 
     /// The cropped plate's box for a state, or `nil` where the state ships the whole plate (see `plateCrops`).
     public func plateCrop(light: String, stage: Int) -> PlateRect? {
@@ -426,7 +440,7 @@ public struct PlateShadow: Decodable, Hashable, Sendable {
 extension PlateIsland: Decodable {
     private enum Keys: String, CodingKey {
         case island, version, standIn, minLevel, plateSize, stages, lights, lightStages, painted, stageLevels, harmony, islandBox, backdropBox, objects
-        case walkable, characters, spots, pofuWidth, residentBoost, residentBoosts, lamps, lampHeight, framing, lightDirection, lightMap, shadowMap, textureBytes, shadow, plateCrop, props, stations, camera, near, water
+        case walkable, characters, spots, pofuWidth, residentBoost, residentBoosts, lamps, lampHeight, framing, lightDirection, lightMap, shadowMap, textureBytes, shadow, plateCrop, props, stations, camera, near, water, mooring
     }
 
     public init(from decoder: Decoder) throws {
@@ -460,6 +474,7 @@ extension PlateIsland: Decodable {
         characters = try (c.decodeIfPresent([String: [Double]].self, forKey: .characters) ?? [:]).mapValues(Self.point)
         spots = try (c.decodeIfPresent([String: [[Double]]].self, forKey: .spots) ?? [:]).mapValues { try $0.map(Self.point) }
         pofuWidth = try c.decodeIfPresent(Double.self, forKey: .pofuWidth) ?? 100
+        mooring = try c.decodeIfPresent(RawMooring.self, forKey: .mooring).map { try PlateMooring(feet: Self.point($0.feet), width: $0.width) }
         residentBoost = try c.decodeIfPresent(Double.self, forKey: .residentBoost) ?? 1
         residentBoosts = try c.decodeIfPresent([String: Double].self, forKey: .residentBoosts) ?? [:]
         lamps = try (c.decodeIfPresent([[Double]].self, forKey: .lamps) ?? []).map(Self.point)
@@ -582,6 +597,11 @@ extension PlateIsland: Decodable {
     private static func rect(_ v: [Double]) throws -> PlateRect {
         guard v.count == 4 else { throw DecodingError.dataCorrupted(.init(codingPath: [], debugDescription: "a box has four numbers")) }
         return PlateRect(minX: v[0], minY: v[1], maxX: v[2], maxY: v[3])
+    }
+
+    private struct RawMooring: Decodable {
+        var feet: [Double]
+        var width: Double
     }
 
     private static func point(_ v: [Double]) throws -> PlatePoint {

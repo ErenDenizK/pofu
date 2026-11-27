@@ -126,6 +126,14 @@ class RenderTests(unittest.TestCase):
             cover = np.zeros(master.shape[:2], bool)
             c = 1 / fr["k"]
             cover[max(int(round(-fr["y0"] * c)), 0): min(int(round((man["size"][1] - fr["y0"]) * c)), master.shape[0])] = True
+            # The painting's baked whale is not shipped (ADR-0028: the Gezgin is a character), so the frame
+            # is the painting without it: leave its box out of the comparison.
+            for lay in man["layers"]:
+                if lay["id"] in ex.DROPPED:
+                    (lx, ly), (lw, lh) = lay["pos"], lay["size"]
+                    r0, r1 = int((ly - fr["y0"]) * c) - 8, int((ly + lh - fr["y0"]) * c) + 8
+                    c0, c1 = int((lx - fr["x0"]) * c) - 8, int((lx + lw - fr["x0"]) * c) + 8
+                    cover[max(r0, 0): max(r1, 0), max(c0, 0): max(c1, 0)] = False
             r = sc.check_identity(rd.render(s, 0, fr, snap=True), master, cover, sc.THRESHOLDS["identity"])
             self.assertTrue(r["ok"], f"{light}: {r}")
 
@@ -400,7 +408,7 @@ class DetailTests(unittest.TestCase):
         for light in LIGHTS:
             spec = DATA["lights"][light]
             falls = {l["id"] for l, d in _details(light) if d["kind"] == "fall"}
-            self.assertEqual(falls, {"isle_falls", "whale"}, light)
+            self.assertEqual(falls, {"isle_falls"}, light)  # the whale is not shipped (ADR-0028)
             pixels = 0
             for _, d in _details(light):
                 for key in ("mask", "flow", "crop", "asset"):

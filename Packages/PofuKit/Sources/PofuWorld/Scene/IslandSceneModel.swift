@@ -223,6 +223,10 @@ public final class IslandSceneModel {
     public var isInviting = false
     /// Koke's bubble, swell and haptic (the first wonder island).
     public let koke = KokeBeatState()
+    /// The Gezgin moored at the pier: her tap, her line and the moment she woke (ADR-0028).
+    public let gezgin = GezginBeatState()
+    /// She was woken: the app plays her cue. Home sets it.
+    @ObservationIgnored public var onGezginWake: (@MainActor () -> Void)?
     /// Çağlayan's bubble, swell and haptic (the second wonder island).
     public let caglayan = CaglayanBeatState()
     /// Opens the flow round for a stage (1 to 4) of Çağlayan; the app sets
@@ -1011,7 +1015,8 @@ public final class IslandSceneModel {
                     plate, stations: stations, z: rig.layerPosition, stands: plateStands,
                     visitor: visitor, invitationOpen: invitationOpen, isBedtime: isBedtime,
                     koke: wonder.isArrived ? .arrived : .none,
-                    caglayan: flowIsland.isArrived ? .arrived : .none
+                    caglayan: flowIsland.isArrived ? .arrived : .none,
+                    gezgin: GezginData.shipped.map { Gezgin.presence(koke: wonder, caglayan: flowIsland, data: $0) } ?? .absent
                 )
             } ?? WorldHitTest.targets(
                 stations: stations, z: rig.layerPosition, visitor: visitor, invitationOpen: invitationOpen, isBedtime: isBedtime,
@@ -1067,6 +1072,14 @@ public final class IslandSceneModel {
         case .caglayan:
             pulse("caglayan")
             caglayan.tapped(in: self)
+        case .gezgin:
+            pulse("gezgin")
+            var asleep = false
+            if let data = GezginData.shipped, let plate = homePlate {
+                let age = gezgin.wokeAt.map { Date().timeIntervalSince($0) }
+                asleep = Gezgin.pose(light: plate.light, wakeAge: age, data: data) == .asleep
+            }
+            gezgin.tapped(asleep: asleep, in: self)
         case .plateObject(let id):
             pulse("plate-\(id)")
             if onPlateTap?(id) == true { return }

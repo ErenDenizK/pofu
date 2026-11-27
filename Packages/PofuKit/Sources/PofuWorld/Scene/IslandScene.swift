@@ -281,6 +281,7 @@ public struct IslandScene<Bubble: View>: View {
             model.power.startObservingSystem()
         }
         .overlay { KokeBubbleOverlay(state: model.koke) }
+        .overlay { GezginBubbleOverlay(state: model.gezgin) }
         .overlay { CaglayanBubbleOverlay(state: model.caglayan) }
         .overlay { CaglayanPlaque(model: model, state: model.caglayan) }
         .overlay(alignment: .bottom) {
@@ -1192,6 +1193,10 @@ private struct WorldCanvas: View {
             case plateFountain
             /// A build moment's dust, light and sparkles around the station's painted object.
             case plateBuild(BuildFrame, lift: Double)
+            /// The Gezgin moored at the pier, at her level (ADR-0028).
+            case gezgin(level: Int)
+            /// Her shadow crossing the cloud before she arrives.
+            case gezginShadow
         }
 
         var id: String
@@ -1267,6 +1272,8 @@ private struct WorldCanvas: View {
 
     /// Above every character: the build moment's effects.
     private static let plateEffectsDepth = 10_000.0
+    /// Under every object, over the plate: the Gezgin's shadow on the cloud.
+    private static let gezginShadowDepth = -10_000.0
 
     /// On the plate: the residents, where they stand on it, and the painted
     /// objects they stand behind; today's visit on the lawn, Koke's moss and
@@ -1292,6 +1299,18 @@ private struct WorldCanvas: View {
                let box = plate.stationBox(build.moment.station) {
                 // The soft light blooms from the middle of the painted object, not its foot.
                 objects.append(Object(id: "build-moment", kind: .plateBuild(build, lift: 0.4 * box.height), anchor: foot, depth: Self.plateEffectsDepth))
+            }
+        }
+        if z >= WorldHitTest.archipelagoZ, let data = GezginData.shipped, let mooring = plate.plate.mooring {
+            switch Gezgin.presence(koke: world.koke, caglayan: world.caglayan, data: data) {
+            case .absent:
+                break
+            case .shadow:
+                let at = Gezgin.shadowCentre(time: life.time, data: data, mooring: mooring, plateWidth: plate.plate.plateSize.maxX)
+                objects.append(Object(id: "gezgin-shadow", kind: .gezginShadow, anchor: plate.world(at), depth: Self.gezginShadowDepth))
+            case .moored(let level):
+                let feet = plate.world(mooring.feet)
+                objects.append(Object(id: "gezgin", kind: .gezgin(level: level), anchor: feet, depth: IslandLayout.depth(ofY: feet.y)))
             }
         }
         var behind: [String: PlateIsland.Object] = [:]
@@ -1409,6 +1428,24 @@ private struct WorldCanvas: View {
                         activate: { model.visitorTapped(placed.part, visitor: life.visitor) }
                     )
                 }
+            }
+        case .gezgin(let level):
+            if let plate, let data = GezginData.shipped, let mooring = plate.plate.mooring {
+                let wakeAge = model.gezgin.wokeAt.map { clock.timeIntervalSince($0) }
+                GezginMooredView(
+                    data: data, plate: plate, mooring: mooring, level: level,
+                    pose: Gezgin.pose(light: plate.light, wakeAge: wakeAge, data: data),
+                    point: point, time: life.isAmbient ? life.time : 0, wakeAge: wakeAge
+                )
+                .accessibilityElement()
+                .accessibilityLabel(Text(verbatim: WorldStrings.gezginLabel))
+                .accessibilityHint(Text(verbatim: WorldStrings.gezginHint))
+                .accessibilityAddTraits(.isButton)
+                .accessibilityAction { model.gezgin.tapped(asleep: Gezgin.pose(light: plate.light, wakeAge: wakeAge, data: data) == .asleep, in: model) }
+            }
+        case .gezginShadow:
+            if let plate, let data = GezginData.shipped, let mooring = plate.plate.mooring {
+                GezginShadowView(data: data, plate: plate, mooring: mooring, point: point)
             }
         case .plateMoss:
             if let plate {

@@ -2132,6 +2132,118 @@
           }
         }
       }
+    },
+    "gezgin.name": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nazlı"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nazlı"
+          }
+        }
+      }
+    },
+    "gezgin.label": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nazlı, the cloud whale, moored at the pier"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nazlı, iskelede yanaşmış bulut-balina"
+          }
+        }
+      }
+    },
+    "gezgin.hint": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wake her"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dokun, uyansın"
+          }
+        }
+      }
+    },
+    "gezgin.line.0": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mm. Not yet. Let me stay a little longer."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mm… Daha değil. Biraz daha durayım."
+          }
+        }
+      }
+    },
+    "gezgin.line.1": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "When you breathe slowly, I do too."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sen yavaş nefes alınca ben de yavaşlıyorum."
+          }
+        }
+      }
+    },
+    "gezgin.line.2": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Whenever you are ready. I know the way."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hazır olunca söyle. Yolu bilirim."
+          }
+        }
+      }
+    },
+    "gezgin.line.night": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shh. It is still night. I will carry you tomorrow."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Şş… hâlâ gece. Yarın taşırım seni."
+          }
+        }
+      }
     }
   },
   "version": "1.0"
