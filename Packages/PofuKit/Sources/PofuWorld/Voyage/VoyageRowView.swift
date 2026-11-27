@@ -74,7 +74,8 @@ private struct VoyageRow: View {
                     content(
                         layout: layout, stops: stops, selected: selected, size: size,
                         position: ride.rowPosition(at: t, selected: Double(selected), origin: Double(origin)),
-                        bar: ride.barOpacity(at: t)
+                        bar: ride.barOpacity(at: t),
+                        home: ride.rowHomeOpacity(at: t)
                     )
                     .opacity(ride.rowOpacity(at: t))
                 }
@@ -86,13 +87,13 @@ private struct VoyageRow: View {
         .accessibilityIdentifier("voyage-row")
     }
 
-    private func content(layout: VoyageRowLayout, stops: [VoyageStop], selected: Int, size: CGSize, position: Double, bar: Double = 1) -> some View {
+    private func content(layout: VoyageRowLayout, stops: [VoyageStop], selected: Int, size: CGSize, position: Double, bar: Double = 1, home: Double = 1) -> some View {
         Group {
             ZStack(alignment: .topLeading) {
                 VoyageSea(model: model, world: world, look: look, size: size)
                 ForEach(order(stops, position: position), id: \.island) { stop in
                     if let index = stops.firstIndex(of: stop) {
-                        VoyageIsle(model: model, stop: stop, world: world, place: layout.place(index: index, position: position), size: size)
+                        VoyageIsle(model: model, stop: stop, world: world, place: layout.place(index: index, position: position), size: size, island: stop.island == .home ? home : 1)
                     }
                 }
                 moored(layout: layout, stops: stops, position: position, size: size)
@@ -213,6 +214,9 @@ private struct VoyageIsle: View {
     let world: WorldSnapshot
     let place: VoyageRowLayout.Place
     let size: CGSize
+    /// How much of the island's picture is drawn (its bed fades with the row): Home's goes at the match cut,
+    /// the frame the scene draws it at the same place.
+    var island = 1.0
 
     /// Home's painting is matted: its island is the far snapshot of the live composite (the player's own
     /// station looks included), the same picture as mid, never the old Map cut.
@@ -242,6 +246,7 @@ private struct VoyageIsle: View {
                     pose: pose, size: size, offset: CGSize(width: place.x - Double(size.width) / 2, height: 0)
                 )
                 .frame(width: size.width, height: size.height, alignment: .topLeading)
+                .opacity(island)
                 VoyageBed(x: place.x, foot: foot - 0.04 * place.width, width: place.width, weight: place.weight, grade: grade, front: true)
             }
             .frame(width: size.width, height: size.height, alignment: .topLeading)
@@ -274,6 +279,7 @@ private struct VoyageIsle: View {
                 .brightness(g.brightness)
                 .colorMultiply(Color(red: g.red, green: g.green, blue: g.blue))
                 .position(x: CGFloat(place.x), y: CGFloat(place.y))
+                .opacity(island)
             VoyageBed(x: place.x, foot: foot, width: place.width, weight: place.weight, grade: grade, front: true)
         }
         .frame(width: size.width, height: size.height, alignment: .topLeading)

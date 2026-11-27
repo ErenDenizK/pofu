@@ -760,8 +760,16 @@ public final class IslandSceneModel {
             projectedFraming = .mid
             kick()
         } else {
-            fly(to: ride.to, seconds: ride.fly)
+            fly(to: ride.to, seconds: ride.fly, from: matchedStart(of: ride))
         }
+    }
+
+    /// The camera the flight of a ride from the row starts at: Home's island where the row draws it, at the
+    /// row's scale (the match cut), or `nil` to start where the camera is.
+    private func matchedStart(of ride: VoyageRide) -> CameraPose? {
+        guard ride.fromRow, ride.from == .home, let plate = homePlate else { return nil }
+        let rail = engine.rig.rail
+        return VoyageRowLayout(width: rail.width, height: rail.height).homePose(plate: plate)
     }
 
     /// Holds a ride from `origin` to `target` still at `seconds` into it (screenshots): the row while she is
@@ -793,7 +801,7 @@ public final class IslandSceneModel {
     /// Flies to another island's Island stop (§1.2): up, across the sea,
     /// down. The home island is reached the same way from another island. `seconds` sets the flight's
     /// length (the ride's); without it the length follows the distance.
-    public func fly(to target: IslandID, seconds: Double? = nil) {
+    public func fly(to target: IslandID, seconds: Double? = nil, from start: CameraPose? = nil) {
         if target == .home {
             go(to: .mid)
             return
@@ -805,7 +813,7 @@ public final class IslandSceneModel {
         island = target
         framing = .mid
         projectedFraming = .mid
-        travel { $0.startFlight(to: pose, landing: .pose(pose), seconds: seconds) }
+        travel { $0.startFlight(to: pose, landing: .pose(pose), seconds: seconds, from: start) }
         kick()
         guard let seconds else {
             koke.landed(on: target, model: self)

@@ -36,6 +36,9 @@ struct PlateHomeLayer: View {
     var nearLens: NearLensFrame?
     /// The water's moment (WP13): its time in the loop while the island is at Ambient, else `nil`.
     var water: WaterFrame?
+    /// How much of the island's own picture is drawn, apart from the sky set's `fade`: the voyage ride's match
+    /// cut draws Home from the flight's first frame and not before (the row draws it until then).
+    var islandOpacity = 1.0
 
     /// A stage, a level or an hour change is a crossfade between two whole
     /// paintings (the plain form of the spec's diff-mask reveal: every pixel
@@ -51,7 +54,8 @@ struct PlateHomeLayer: View {
     @Environment(\.displayScale) private var displayScale
     @State private var incomingStart = Date()
 
-    init(plate: HomePlate, pose: CameraPose, size: CGSize, offset: CGSize, fade: Double, islandGrade: WorldGrade = .neutral, stationLevels: [StationID: Int] = [:], build: BuildFrame? = nil, nearLens: NearLensFrame? = nil, water: WaterFrame? = nil) {
+    init(plate: HomePlate, pose: CameraPose, size: CGSize, offset: CGSize, fade: Double, islandGrade: WorldGrade = .neutral, stationLevels: [StationID: Int] = [:], build: BuildFrame? = nil, nearLens: NearLensFrame? = nil, water: WaterFrame? = nil, islandOpacity: Double = 1) {
+        self.islandOpacity = islandOpacity
         self.water = water
         self.build = build
         self.nearLens = nearLens
@@ -143,12 +147,14 @@ struct PlateHomeLayer: View {
                     }
                 }
                 .islandGraded(islandGrade)
+                .opacity(islandOpacity)
             } else {
                 // A state that keeps the whole painting (its old matte, or another island): its island cut toward the
                 // Map, the painting over its backdrop fading in.
                 if fade < 0.999 {
                     PlateImage(name: plate.plate.mapIslandArt(light: plate.key, stage: plate.stage), box: plate.islandBox, pose: pose, size: size, offset: offset)
                         .islandGraded(islandGrade)
+                        .opacity(islandOpacity)
                 }
                 if fade > 0.001 {
                     ZStack(alignment: .topLeading) {

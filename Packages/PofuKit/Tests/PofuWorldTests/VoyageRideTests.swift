@@ -282,4 +282,72 @@ struct VoyageRideTests {
         #expect(ride.barOpacity(at: VoyageRide.barSeconds) == 0)
         #expect(ride.barOpacity(at: 1.0) == 0)
     }
+
+    // MARK: - The match cut
+
+    /// Home as the scene's camera frames it `t` seconds into a ride from the row: the screen point and the width
+    /// (in points) of its island box, by the row's place before the flight and by the flight's pose after it.
+    private func homeOnScreen(_ ride: VoyageRide, plate: HomePlate, rail: CameraRail, at t: Double) -> (x: Double, y: Double, width: Double) {
+        let layout = VoyageRowLayout(width: rail.width, height: rail.height)
+        let box = plate.islandBox
+        let start = layout.homePose(plate: plate)
+        let stop = IslandFraming.isleStop(.koke, width: rail.width, height: rail.height)!
+        let to = CameraPose(scale: stop.scale, look: stop.look, anchorY: stop.anchorY)
+        let flight = CameraFlight(from: start, to: to, apexLogScale: rail.pose(z: CameraFlight.apexZ).logScale, seconds: ride.fly)
+        let pose = flight.pose(at: max(t - ride.flightStart, 0))
+        let p = pose.project(WorldPoint(x: box.midX, y: box.midY), width: rail.width)
+        return (p.x, p.y, box.width * pose.scale)
+    }
+
+    @Test func homeIsDrawnByOneAtEveryMomentAndNeverJumps() throws {
+        let plate = try #require(HomePlate.shipped)
+        let rail = CameraRail(width: 402, height: 874)
+        let ride = VoyageRide(from: .home, to: .koke, data: try #require(VoyageData.shipped))
+        let layout = VoyageRowLayout(width: 402, height: 874)
+
+        // The cut: the flight's first frame has Home where the row has it, to the pixel.
+        let place = layout.place(index: 0, position: 0)
+        let first = homeOnScreen(ride, plate: plate, rail: rail, at: ride.flightStart)
+        let rowBox = plate.isMatted ? plate.plateImageBox : plate.islandBox
+        let rowCentre = place.y + (plate.islandBox.midY - rowBox.midY) * (place.width / plate.islandBox.width)
+        #expect(abs(first.x - place.x) < 1e-6 && abs(first.y - rowCentre) < 1e-6 && abs(first.width - place.width) < 1e-6)
+
+        var last: (x: Double, y: Double, width: Double)?
+        var lastWhale: VoyageRide.Spot?
+        let berth = VoyageRide.Spot(x: 0.62, y: 0.55, width: 0.3)
+        for t in stride(from: 0.0, through: ride.duration, by: 1.0 / 30) {
+            // Home is drawn by the row or by the scene, never by both and never by neither.
+            let both = ride.rowHomeOpacity(at: t) > 0.05 && ride.sceneHomeOpacity(at: t) > 0.05
+            #expect(!both, "Home shows twice at \(t) s")
+            #expect(ride.rowHomeOpacity(at: t) + ride.sceneHomeOpacity(at: t) == 1, "Home is drawn once at \(t) s")
+            // Wonders and the row's neighbours never show together either.
+            #expect(!(ride.rowOpacity(at: t) > 0.05 && ride.sceneIslandOpacity(at: t) > 0.05), "an island shows twice at \(t) s")
+            // Home's screen place and size, by whichever draws it, moves by little per frame (about 28 points a second
+            // at the flight's start, the camera's rise): no teleport.
+            let home = homeOnScreen(ride, plate: plate, rail: rail, at: t)
+            if let last {
+                #expect(abs(home.x - last.x) < 12 && abs(home.y - last.y) < 12 && abs(home.width - last.width) < 12, "Home jumps at \(t) s")
+            }
+            last = home
+            // And she, from the row's mooring beside it.
+            let spot = ride.whale(at: t, start: layout.mooredSpot(at: place), berth: berth)
+            if let lastWhale {
+                #expect(abs(spot.x - lastWhale.x) < 0.04 && abs(spot.y - lastWhale.y) < 0.04 && abs(spot.width - lastWhale.width) < 0.04, "she jumps at \(t) s")
+            }
+            lastWhale = spot
+        }
+        // The destination comes in only once the camera is coming down on it.
+        #expect(ride.sceneIslandOpacity(at: ride.flightStart + ride.fly * 0.5) == 0)
+        #expect(ride.sceneIslandOpacity(at: ride.flightStart + ride.fly * VoyageRide.arrivalShare) == 0)
+        #expect(ride.sceneIslandOpacity(at: ride.duration) == 1)
+    }
+
+    @Test func theRowsHomeSitsInTheRailsRange() throws {
+        let plate = try #require(HomePlate.shipped)
+        let rail = CameraRail(width: 402, height: 874)
+        let pose = VoyageRowLayout(width: 402, height: 874).homePose(plate: plate)
+        let z = rail.z(logScale: pose.logScale)
+        print("MATCH z=\(z) scale=\(pose.scale) map=\(rail.pose(of: .map).scale) apex=\(rail.pose(z: CameraFlight.apexZ).scale)")
+        #expect(z > -0.5 && z < 0.6)
+    }
 }
