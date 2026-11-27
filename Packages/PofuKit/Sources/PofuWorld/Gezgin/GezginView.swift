@@ -191,8 +191,9 @@ struct MooringLine: View {
             // A darker line under a lighter one, so it reads as a twisted rope at the picture's own size.
             curve.stroke(shade.opacity(0.85), style: StrokeStyle(lineWidth: thickness * 1.5, lineCap: .round))
             curve.stroke(cord, style: StrokeStyle(lineWidth: thickness * 1.0, lineCap: .round))
-            // The twist: short darker dashes slanting along the cord.
-            curve.stroke(shade.opacity(0.55), style: StrokeStyle(lineWidth: thickness * 0.8, lineCap: .butt, dash: [thickness * 0.5, thickness * 1.1]))
+            // A lighter line along the top, for roundness.
+            curve.stroke(Color.white.opacity(0.35), style: StrokeStyle(lineWidth: thickness * 0.35, lineCap: .round))
+                .offset(y: -thickness * 0.2)
             // Its small contact shadow on the grass.
             Ellipse()
                 .fill(Color.black.opacity(0.18))

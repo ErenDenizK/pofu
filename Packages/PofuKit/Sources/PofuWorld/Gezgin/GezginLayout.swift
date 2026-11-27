@@ -72,9 +72,9 @@ public struct GezginData: Decodable, Sendable, Equatable {
         /// Home's: the post at the bridge's end on the rim (the pier's own painted post stands there).
         public static let standard = Rope(bowX: -0.40, bowY: -0.10, postX: -0.60, postY: -0.85, sag: 0.40, thickness: 0.016, postHeight: 0.18)
 
-        /// How far the slack line bellies out toward her, in lengths of the chord: on a steep chord it leaves the
-        /// post and swings out to her, so it reads as a rope hanging in a curve, never a plumb strap.
-        public static let bulge = 0.45
+        /// How far the control point of a steep line lies outward from its chord, in lengths of the chord (the
+        /// curve's midpoint is half of it off the chord).
+        public static let belly = 0.34
 
         /// The control point of the slack line from the post's `tie` to her `bow` (a quadratic curve): under the
         /// middle of the chord by `sag` of its length, so it hangs in a soft curve like a rope, never a taut strap.
@@ -83,8 +83,11 @@ public struct GezginData: Decodable, Sendable, Equatable {
             let length = max((dx * dx + dy * dy).squareRoot(), 1e-9)
             let mid = WorldPoint(x: (tie.x + bow.x) / 2, y: (tie.y + bow.y) / 2)
             if slope(tie: tie, bow: bow) > steep {
-                // A steep chord: the line hangs from the post and bellies out toward her.
-                return WorldPoint(x: mid.x + (dx >= 0 ? 1 : -1) * bulge * length, y: mid.y + sag * length)
+                // A steep chord: the line hangs from the post and bellies outward, away from the cliff, to her
+                // side, perpendicular to the chord, so the curve is obvious.
+                var nx = dy / length, ny = -dx / length
+                if (dx >= 0 && nx < 0) || (dx < 0 && nx > 0) { nx = -nx; ny = -ny }
+                return WorldPoint(x: mid.x + nx * belly * length, y: mid.y + ny * belly * length)
             }
             // A shallow chord: it sags perpendicular to it, downward, so the drop is obvious.
             var nx = -dy / length, ny = dx / length
@@ -92,7 +95,7 @@ public struct GezginData: Decodable, Sendable, Equatable {
             return WorldPoint(x: mid.x + nx * sag * length, y: mid.y + ny * sag * length)
         }
 
-        /// A chord steeper than this (degrees) takes the bulge instead of the perpendicular sag.
+        /// A chord steeper than this (degrees) bellies outward instead of sagging down.
         public static let steep = 55.0
 
         /// How far the midpoint of the quadratic line lies from its chord, in lengths of the chord.
