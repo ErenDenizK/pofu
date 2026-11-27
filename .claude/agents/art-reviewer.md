@@ -25,6 +25,10 @@ one the app will ship, so judge the picture, not the numbers.
      positions of objects, the story's elements?
    - Does it belong to the same world as the root: colour richness,
      light, grounding?
+   - For a place, a prop or a character: name each thing a viewer
+     expects to move and check it against the manifest's motion sheet
+     (`docs/design/motion-vocabulary.md`); a take with painted motion, or
+     a turning part seen at an angle, is noted as such.
    - The defect list in `.claude/agents/critic.md`, item 6.
 5. Record your verdict in the job's `review.yaml`: `pick: <take number>`
    and a `lead_review:` line that says why in one sentence a painter
