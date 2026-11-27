@@ -512,7 +512,7 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
         let day = try XCTUnwrap(Self.path.first { $0.morning.islandLevel == 3 }, "the path has a level 3 island")
         for (id, name) in [(StationID.garden, "garden"), (StationID.workshop, "workshop")] {
             for level in 1...5 {
-                for (hour, suffix) in [(12, ""), (22, "-night")] where level == 3 || hour == 12 {
+                for (hour, suffix) in [(12.0, ""), (22.0, "-night")] where level == 3 || hour == 12 {
                     var world = day.morning
                     world.islandLevel = 10
                     XCTAssertTrue(world.stations.contains { $0.id == id }, "\(name) is a station of the world")

@@ -197,7 +197,9 @@ GARDEN = {
         "bare": (JOB.format(10), (0, 594, 320, 914)),
         "takes": {n: (PLOT_GARDEN.format(n), 1) for n in range(1, 6)},
         "diff": 16,
-        "close": 41,
+        "close": {1: 41, 2: 41, 3: 41, 4: 61, 5: 81},
+        "smooth": 6,
+        "sky": True,
         "grade": {n: (1.0, 1.0) for n in range(1, 6)},
     },
     "scale": 0.5104,             # of a take px, at TEX px per point (0.2552 points per px)
@@ -232,7 +234,7 @@ WORKSHOP = {
     "anchor": (668.0, 985.0),
     "foot": (557.3, 776.0),
     "footStage": 0,
-    "bases": {s: {"job": JOB.format(10 - s), "window": (860, 1150, 1300, 1580), "excludeOccluders": ("teaStall",), "shrinkAbove": 1500, "interior": False, "lighter": True} for s in (0, 1, 2, 3)},
+    "bases": {s: {"job": JOB.format(10 - s), "window": (860, 1150, 1300, 1580), "excludeOccluders": ("teaStall",), "excludeGrow": 2, "exclude": [(1070, 1526, 1200, 1620)], "shrinkAbove": 1500, "interior": False, "lighter": False} for s in (0, 1, 2, 3)},
     "place": {s: {"foot": (557.3, 776.0), "scale": 1.0} for s in (0, 1, 2, 3)},
 }
 STATIONS = [TEA_STALL, WINDMILL, POND, GARDEN, WORKSHOP]
@@ -445,8 +447,13 @@ def regrade_masks(plot: dict) -> tuple[dict, dict, dict]:
             mask &= (~_lawn(rgb)).astype(np.uint8)
         mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, np.ones((5, 5), np.uint8)) > 0
         mask = _biggest(ndimage.binary_fill_holes(mask))
-        mask = cv2.morphologyEx(mask.astype(np.uint8), cv2.MORPH_CLOSE, _ellipse(plot.get("close", 25))) > 0
+        mask = cv2.morphologyEx(mask.astype(np.uint8), cv2.MORPH_CLOSE, _ellipse(plot["close"].get(n, 41) if isinstance(plot.get("close"), dict) else plot.get("close", 25))) > 0
         mask = _biggest(ndimage.binary_fill_holes(mask))
+        if plot.get("smooth"):                                            # a smooth rim, no bites, no grey fragments between the leaves
+            mask = cv2.GaussianBlur(mask.astype(np.float32), (0, 0), plot["smooth"]) > 0.5
+            mask = _biggest(ndimage.binary_fill_holes(cv2.morphologyEx(mask.astype(np.uint8), cv2.MORPH_OPEN, _ellipse(13)) > 0))
+        if plot.get("sky"):                                               # the take's sky seen through the arch or between the leaves is not the station
+            mask = _biggest(ndimage.binary_fill_holes(cv2.morphologyEx((mask & (sky_alpha(rgb) >= 0.5)).astype(np.uint8), cv2.MORPH_OPEN, _ellipse(7)) > 0))
         if plot.get("notLawn"):                                           # the sky seen between the gear, the chimney and the roof is not the house
             mask = _biggest(cv2.morphologyEx((mask & (sky_alpha(rgb) >= 0.5)).astype(np.uint8), cv2.MORPH_OPEN, _ellipse(7)) > 0)
         fb = plot.get("flatBottom")
@@ -457,7 +464,9 @@ def regrade_masks(plot: dict) -> tuple[dict, dict, dict]:
             bottom = np.where(has, h - 1 - np.argmax(mask[::-1], 0), -1).astype(np.float32)
             bottom = ndimage.maximum_filter1d(bottom, 2 * fb + 1)
             yy = np.arange(h)[:, None]
-            mask |= (yy >= np.maximum(top[None, :], bottom[None, :] - 70)) & (yy <= bottom[None, :]) & (bottom[None, :] >= 0) & has[None, :]
+            fill = (yy >= np.maximum(top[None, :], bottom[None, :] - 70)) & (yy <= bottom[None, :]) & (bottom[None, :] >= 0) & has[None, :]
+            mask |= fill & (sky_alpha(rgb) >= 0.5) & ~_lawn(rgb)           # only the step's own pixels, never sky or grass
+            mask = _biggest(cv2.morphologyEx(mask.astype(np.uint8), cv2.MORPH_OPEN, _ellipse(11)) > 0)
         masks[n] = mask
         full = srgb_lab(rgb)                                              # the take in the plate's own colours: the inverse map
         inv = np.linalg.pinv(m[:3])
@@ -744,12 +753,12 @@ def build_base(stage: int, spec: dict, plate: np.ndarray | None = None) -> tuple
         hard_full[ey0:ey1, ex0:ex1] = 0
     for oid in spec.get("excludeOccluders", ()):         # an occluder's opaque pixels stay the plate's (the mailbox)
         x0, y0, x1, y1, alpha = occluder_pixels(stage, oid)
-        solid = alpha > 0.4
+        solid = alpha > (0.02 if spec.get("excludeGrow") else 0.4)
         if oid in spec.get("flowersOnly", ()):           # the plate's flowers stay; the old pond's stones and water under the polygon still go
             name = ingest.asset_name(ISLAND, "occ", "day", stage, oid)
             with open_source_asset(name) as im:
                 solid &= ~old_pond_pixels(np.asarray(im.convert("RGB"), np.float32)[: solid.shape[0], : solid.shape[1]] / 255)
-        hard_full[y0:y1, x0:x1][cv2.dilate(solid.astype(np.uint8), _ellipse(7)) > 0] = 0
+        hard_full[y0:y1, x0:x1][cv2.dilate(solid.astype(np.uint8), _ellipse(7 + spec.get("excludeGrow", 0))) > 0] = 0
     sl = (slice(cy, cy + h), slice(cx, cx + w))
     hard = hard_full[sl]
     p_rgb, p_a = plate[..., :3], plate[..., 3]
