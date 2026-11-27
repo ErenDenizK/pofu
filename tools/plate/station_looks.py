@@ -27,6 +27,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import sys
 from pathlib import Path
@@ -613,7 +614,7 @@ def build_base(stage: int, spec: dict, plate: np.ndarray | None = None) -> tuple
         solid = alpha > 0.4
         if oid in spec.get("flowersOnly", ()):           # the plate's flowers stay; the old pond's stones and water under the polygon still go
             name = ingest.asset_name(ISLAND, "occ", "day", stage, oid)
-            with heic.open_image(ASSETS / f"{name}.imageset" / f"{name}{heic.SUFFIX}") as im:
+            with open_source_asset(name) as im:
                 solid &= ~old_pond_pixels(np.asarray(im.convert("RGB"), np.float32)[: solid.shape[0], : solid.shape[1]] / 255)
         hard_full[y0:y1, x0:x1][cv2.dilate(solid.astype(np.uint8), _ellipse(7)) > 0] = 0
     sl = (slice(cy, cy + h), slice(cx, cx + w))
@@ -651,6 +652,44 @@ def build_base(stage: int, spec: dict, plate: np.ndarray | None = None) -> tuple
 
 SIZE_TEX = (2048, 3072)
 
+SOURCE_REF = os.environ.get("STATION_LOOKS_FROM", "origin/main")
+
+
+def open_source_asset(name: str, ref: str | None = None, repo: Path | None = None, assets: Path | None = None):
+    """The asset `name` as it is on `ref` (default `origin/main`, or $STATION_LOOKS_FROM), not as the working tree has it. The
+    tool rewrites the island cut, the Map cut and the occluders in place; a run that read its own earlier output would clear
+    twice and draw its base from occluders it had already cut, so every run would drift (three runs gave three different
+    bases). Reading the layers it modifies from the ref makes `bases` a function of the ref and the takes: run it as often
+    as you like. Falls back to the working tree for an asset the ref does not have (a new one). Returns an open image."""
+    import tempfile
+    data = source_bytes(name, ref, repo, assets)
+    if data is None:
+        return heic.open_image((assets or ASSETS) / f"{name}.imageset" / f"{name}{heic.SUFFIX}")
+    tmp = tempfile.NamedTemporaryFile(suffix=heic.SUFFIX, delete=False)
+    tmp.write(data)
+    tmp.close()
+    im = heic.open_image(Path(tmp.name))
+    im.load()
+    os.unlink(tmp.name)
+    return im
+
+
+def source_bytes(name: str, ref: str | None = None, repo: Path | None = None, assets: Path | None = None) -> bytes | None:
+    """The HEIC bytes of asset `name` on the ref, None where the ref does not have it."""
+    import subprocess
+    repo = repo or ingest.REPO
+    path = (assets or ASSETS) / f"{name}.imageset" / f"{name}{heic.SUFFIX}"
+    got = subprocess.run(["git", "-C", str(repo), "show", f"{ref or SOURCE_REF}:{path.relative_to(repo).as_posix()}"], capture_output=True)
+    return got.stdout if got.returncode == 0 else None
+
+
+def keep_source(name: str) -> None:
+    """A layer this run leaves alone goes back to the ref's bytes (an earlier run may have rewritten it)."""
+    data = source_bytes(name)
+    if data is not None:
+        (ASSETS / f"{name}.imageset" / f"{name}{heic.SUFFIX}").write_bytes(data)
+
+
 
 def occluder_pixels(stage: int, oid: str) -> tuple[int, int, int, int, np.ndarray]:
     """An occluder's box in the plate's texture px and its alpha."""
@@ -661,9 +700,19 @@ def occluder_pixels(stage: int, oid: str) -> tuple[int, int, int, int, np.ndarra
     _, box = ingest.occluder_cut(np.zeros(a1.shape + (3,)), a1, ingest.pct_to_px(obj["points"]))
     x0, y0, x1, y1 = (v * k for v in box)
     name = ingest.asset_name(ISLAND, "occ", "day", stage, oid)
-    with heic.open_image(ASSETS / f"{name}.imageset" / f"{name}{heic.SUFFIX}") as im:
+    with open_source_asset(name) as im:
         alpha = np.asarray(im.convert("RGBA"), np.float32)[..., 3] / 255
     return x0, y0, x0 + alpha.shape[1], y0 + alpha.shape[0], alpha
+
+
+ALPHA_STABLE = 3                  # an occluder whose alpha moves by no more than this many 8-bit levels, in no more than
+ALPHA_NOISE = 0.003               # this share of its pixels (a decoded HEIC flips a few stone tests), is left as it is
+
+
+def clear_alpha(alpha: np.ndarray, part: np.ndarray) -> np.ndarray:
+    """An occluder's alpha with `part` (0 to 1) taken out of it: the smaller of what it is and what `part` leaves, so
+    clearing the same region twice (or on top of an earlier run's result) changes nothing the second time."""
+    return np.minimum(alpha, 1 - part).astype(np.float32)
 
 
 def clear_occluders(stage: int, hard_full: np.ndarray, station: str = TEA_STALL["id"], keep: tuple = ()) -> None:
@@ -685,7 +734,7 @@ def clear_occluders(stage: int, hard_full: np.ndarray, station: str = TEA_STALL[
         if part.max() <= 0.01:
             continue
         name = ingest.asset_name(ISLAND, "occ", "day", stage, obj["id"])
-        with heic.open_image(ASSETS / f"{name}.imageset" / f"{name}{heic.SUFFIX}") as im:
+        with open_source_asset(name) as im:
             old = np.asarray(im.convert("RGBA"), np.float32) / 255
         part = part[: old.shape[0], : old.shape[1]]
         if obj["id"] in keep:
@@ -694,8 +743,13 @@ def clear_occluders(stage: int, hard_full: np.ndarray, station: str = TEA_STALL[
             water = stone
             wide = cv2.GaussianBlur(cv2.dilate(hard_full, _ellipse(61)).astype(np.float32), (0, 0), 2.0)[y0:y1, x0:x1][: old.shape[0], : old.shape[1]]
             part = np.maximum(part * stone, wide * water).astype(np.float32)   # water also beside the mailbox, whose own pixels the region skips
-        old[..., 3] *= 1 - part
-        ingest.write_imageset(name, to_img(old))
+        new = old.copy()
+        new[..., 3] = clear_alpha(old[..., 3], part)
+        if (np.abs(new[..., 3] - old[..., 3]) * 255 > ALPHA_STABLE).mean() <= ALPHA_NOISE:     # already cleared: no second lossy encode
+            keep_source(name)
+            print(f"  occluder {obj['id']} {stage}: already clear")
+            continue
+        ingest.write_imageset(name, to_img(new))
         print(f"  occluder {obj['id']} {stage}: cleared {int((part > 0.5).sum())} px of the erased stall")
 
 
@@ -720,6 +774,32 @@ def accumulate_base(stage: int, specs: list[dict] | None = None) -> tuple[np.nda
     return x, info, union
 
 
+def same_picture(old: np.ndarray, new: np.ndarray) -> bool:
+    """Whether `new` is `old` up to a HEIC encode: same size, premultiplied, the mean difference under 1.6 of 256 levels and
+    at most 0.1 percent of the pixels off by more than 12."""
+    if old.shape != new.shape:
+        return False
+    po, pn = old[..., :3] * old[..., 3:] / 255, new[..., :3] * new[..., 3:] / 255
+    d = np.maximum(np.abs(po - pn).max(-1), np.abs(old[..., 3] - new[..., 3]))
+    return bool(d.mean() < 1.6 and (d > 12).mean() <= 0.001)
+
+
+def write_or_keep(name: str, img: Image.Image) -> bool:
+    """Write the layer unless the ref's already is this picture (up to an encode): then the ref's bytes stay, so a run that
+    changes nothing for a stage leaves its files alone (no noise in the diff, no new frame to check). Returns whether it wrote."""
+    data = source_bytes(name)
+    if data is not None:
+        import tempfile
+        with tempfile.TemporaryDirectory() as tmp:                     # the new picture as it would ship: same encode as the ref's
+            heic.save(img, Path(tmp) / f"x{heic.SUFFIX}")
+            with heic.open_image(Path(tmp) / f"x{heic.SUFFIX}") as shipped, open_source_asset(name) as old:
+                if same_picture(np.asarray(old.convert("RGBA"), np.float32), np.asarray(shipped.convert("RGBA"), np.float32)):
+                    keep_source(name)
+                    return False
+    ingest.write_imageset(name, img)
+    return True
+
+
 def cmd_bases(station: dict | None = None) -> dict:
     """Every base of the stages `station` stands on (all stations when None), each with all the stations that share it."""
     chosen = [station] if station else STATIONS
@@ -727,7 +807,7 @@ def cmd_bases(station: dict | None = None) -> dict:
     out = {}
     for stage in stages:
         x, info, _ = accumulate_base(stage)
-        ingest.write_imageset(base_name("day", stage), to_img(x))
+        write_or_keep(base_name("day", stage), to_img(x))
         # The Map's island cut (and the graded island layer) is the same picture: it must not paint the stall either.
         crop = info["crop"]
         full = np.zeros((SIZE_TEX[1], SIZE_TEX[0], 4), np.float32)
@@ -736,14 +816,14 @@ def cmd_bases(station: dict | None = None) -> dict:
         ix0, iy0, ix1, iy1 = ingest.bbox(ingest.load_matte(ISLAND, "day", stage), 0.02)
         for kind in ("island", "mapisle"):
             name = ingest.asset_name(ISLAND, kind, "day", stage)
-            with heic.open_image(ASSETS / f"{name}.imageset" / f"{name}{heic.SUFFIX}") as im:
+            with open_source_asset(name) as im:
                 old = np.asarray(im.convert("RGBA"), np.float32) / 255
             cut = resize_rgba(full[iy0 * TEX:iy1 * TEX, ix0 * TEX:ix1 * TEX], 1.0)
             cut = cv2.resize(np.dstack([cut[..., :3] * cut[..., 3:], cut[..., 3:]]), (old.shape[1], old.shape[0]), interpolation=cv2.INTER_AREA)
             a = cut[..., 3:]
             rgb = np.where(a > 1e-4, cut[..., :3] / np.maximum(a, 1e-4), old[..., :3])
             alpha = np.minimum(old[..., 3:], a) if kind == "mapisle" else a
-            ingest.write_imageset(name, to_img(np.dstack([rgb, alpha])))
+            write_or_keep(name, to_img(np.dstack([rgb, alpha])))
         for station_id, region in info["regions"]:                  # each station's own erased region, its own occluder kept
             keep = next(sp for sp in STATIONS if sp["id"] == station_id).get("keepOccluders", ())
             clear_occluders(stage, region, station_id, keep)

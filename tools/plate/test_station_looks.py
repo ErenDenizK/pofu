@@ -249,3 +249,63 @@ def test_a_shared_stage_counts_its_base_once_in_the_texture_budget():
     assert set(shared) == {"teaStall", "pond"}
     largest = [max(stations[k]["lookBytes"]) for k in shared]               # rule v1: each station's one drawn look, and once more the largest (the one reveal)
     assert ingest.station_bytes("home", "day", 3) == max(shared.values()) + sum(largest) + max(largest)
+
+
+def test_clearing_an_occluder_twice_changes_nothing_the_second_time():
+    rng = np.random.default_rng(3)
+    alpha = rng.random((40, 50)).astype(np.float32)
+    part = np.clip(rng.random((40, 50)).astype(np.float32) * 1.4 - 0.2, 0, 1)      # a soft region with a hard core
+    once = sl.clear_alpha(alpha, part)
+    twice = sl.clear_alpha(once, part)
+    assert np.array_equal(once, twice)
+    assert (once <= alpha).all() and (once <= 1 - part + 1e-6).all()           # it only ever clears
+    # a product (the old rule) would shrink a soft edge on every run
+    assert (alpha * (1 - part) * (1 - part) < once).any()
+
+
+def test_a_run_over_an_already_cleared_occluder_stays_inside_the_write_threshold():
+    """The alpha that comes back from an 8-bit encode is within `ALPHA_STABLE` levels of what clearing it again gives."""
+    rng = np.random.default_rng(4)
+    alpha = rng.random((30, 30)).astype(np.float32)
+    part = rng.random((30, 30)).astype(np.float32)
+    first = np.round(sl.clear_alpha(alpha, part) * 255) / 255                 # written and read back
+    again = sl.clear_alpha(first, part)
+    assert np.abs(again - first).max() * 255 <= sl.ALPHA_STABLE
+
+
+def test_the_layers_the_tool_rewrites_are_read_from_the_ref_not_the_working_tree(tmp_path):
+    """`bases` is a function of the ref and the takes: what an earlier run wrote into the working tree is not read back."""
+    import subprocess
+
+    from PIL import Image
+    repo = tmp_path / "r"
+    assets = repo / "assets"
+    folder = assets / "a-1.imageset"
+    folder.mkdir(parents=True)
+    git = lambda *a: subprocess.run(["git", "-C", str(repo), *a], check=True, capture_output=True)  # noqa: E731
+    git("init", "-q")
+    git("config", "user.email", "t@t")
+    git("config", "user.name", "t")
+    import heic
+    heic.save(Image.new("RGBA", (16, 16), (200, 20, 20, 255)), folder / f"a-1{heic.SUFFIX}")
+    git("add", ".")
+    git("commit", "-qm", "x")
+    heic.save(Image.new("RGBA", (16, 16), (0, 0, 0, 0)), folder / f"a-1{heic.SUFFIX}")      # an earlier run's output
+    with sl.open_source_asset("a-1", ref="HEAD", repo=repo, assets=assets) as im:
+        assert np.asarray(im.convert("RGBA"))[8, 8, 3] == 255
+    with sl.open_source_asset("a-1", ref="no-such-ref", repo=repo, assets=assets) as im:
+        assert np.asarray(im.convert("RGBA"))[8, 8, 3] == 0      # no such ref: the working tree
+
+
+def test_same_picture_ignores_an_encode_and_a_clear_pixels_colour_but_not_a_real_change():
+    rng = np.random.default_rng(5)
+    a = np.dstack([rng.random((60, 60, 3)) * 255, np.full((60, 60), 255.0)]).astype(np.float32)
+    a[:10, :, 3] = 0
+    noisy = a.copy()
+    noisy[..., :3] += rng.normal(0, 1.0, (60, 60, 3)).astype(np.float32)
+    noisy[:10, :, :3] = 99                                     # the colour under alpha 0 is whatever the encoder left
+    assert sl.same_picture(a, noisy)
+    moved = a.copy()
+    moved[20:40, 20:40, :3] = 0                                # a 5 percent patch
+    assert not sl.same_picture(a, moved)
+    assert not sl.same_picture(a, a[:50])

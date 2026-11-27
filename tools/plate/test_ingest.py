@@ -613,3 +613,29 @@ class TextureBudgetTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class KeepHandKeysTests(unittest.TestCase):
+    """`ingest.py json` must not drop what other tools or hands wrote into the shipped plate file."""
+
+    def test_keys_the_tool_does_not_write_are_kept_and_the_tools_own_win(self):
+        old = {"island": "home", "version": 1, "characters": {"findik": [1, 2]}, "mooring": {"feet": [890.0, 1100.0], "width": 250.0},
+               "spots": {"pofu": [[1, 2]]}, "props": [{"id": "jar"}], "camera": {"a": 1}, "somethingNew": 7}
+        new = {"island": "home", "version": 2, "characters": {"findik": [3, 4]}}
+        out = ingest.keep_hand_keys(new, old)
+        self.assertEqual(out["version"], 2)
+        self.assertEqual(out["characters"], {"findik": [3, 4]})
+        for key in ("mooring", "spots", "props", "camera", "somethingNew"):
+            self.assertEqual(out[key], old[key], key)
+        self.assertEqual(list(out)[:3], ["island", "version", "characters"])      # the tool's keys keep their place
+
+    def test_a_first_run_has_nothing_to_keep(self):
+        self.assertEqual(ingest.keep_hand_keys({"a": 1}, {}), {"a": 1})
+
+    def test_the_shipped_hand_characters_are_what_the_tool_writes(self):
+        import json
+        shipped = json.loads((Path(__file__).resolve().parents[2] / "Packages" / "PofuKit" / "Sources" / "PofuWorld"
+                              / "Resources" / "Plates" / "plate-home.json").read_text())
+        hand = ingest.load_hand("home")
+        self.assertEqual({k: v for k, v in shipped["characters"].items()},
+                         {k: v for k, v in sorted(zip(hand["characters"], ingest.pct_to_px(list(hand["characters"].values()))))})
