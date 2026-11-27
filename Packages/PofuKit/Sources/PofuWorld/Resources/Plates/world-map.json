@@ -77,6 +77,6 @@
     "barLift": 72,
     "glideSeconds": 0.42,
     "flick": 1.6,
-    "ride": {"board": 0.9, "fly": 2.2, "moor": 0.9, "reduced": 0.5}
+    "ride": {"board": 1.4, "fly": 2.2, "moor": 0.9, "reduced": 0.5}
   }
 }

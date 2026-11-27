@@ -16,14 +16,17 @@ struct VoyageRowOverlay: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
-        let shown = model.projectedFraming == .map && model.island == .home && model.focus == nil
+        // A ride from the row keeps the row up for the whole ride; its own time fades it (`rowOpacity`), so no
+        // animated removal can catch it half-way in a frame.
+        let riding = model.ride?.fromRow == true
+        let shown = (model.projectedFraming == .map && model.island == .home && model.focus == nil) || riding
         ZStack {
             if shown {
                 VoyageRow(model: model, state: model.voyage, world: world, look: look)
                     .transition(.opacity)
             }
         }
-        .animation(reduceMotion ? nil : .easeInOut(duration: 0.35), value: shown)
+        .animation(reduceMotion || riding ? nil : .easeInOut(duration: 0.35), value: shown)
     }
 }
 
@@ -63,7 +66,27 @@ private struct VoyageRow: View {
             let layout = VoyageRowLayout(width: Double(size.width), height: Double(size.height))
             let stops = stops
             let selected = VoyageRoute.index(of: state.island, in: stops)
-            let position = state.held ?? Double(selected)
+            if let ride = model.ride {
+                // A ride begins with the row gliding back to the island she leaves, so the boarding is seen there.
+                PofuTimeline(hz: PofuFrameRate.direct, paused: model.rideHeld != nil, kind: .essential) { context in
+                    let t = model.rideElapsed(at: context.date) ?? ride.duration
+                    let origin = VoyageRoute.index(of: ride.from, in: stops)
+                    content(
+                        layout: layout, stops: stops, selected: selected, size: size,
+                        position: ride.rowPosition(at: t, selected: Double(selected), origin: Double(origin))
+                    )
+                    .opacity(ride.rowOpacity(at: t))
+                }
+            } else {
+                content(layout: layout, stops: stops, selected: selected, size: size, position: state.held ?? Double(selected))
+            }
+        }
+        .ignoresSafeArea()
+        .accessibilityIdentifier("voyage-row")
+    }
+
+    private func content(layout: VoyageRowLayout, stops: [VoyageStop], selected: Int, size: CGSize, position: Double) -> some View {
+        Group {
             ZStack(alignment: .topLeading) {
                 VoyageSea(model: model, world: world, look: look, size: size)
                 ForEach(order(stops, position: position), id: \.island) { stop in
@@ -94,8 +117,6 @@ private struct VoyageRow: View {
             .frame(width: size.width, height: size.height, alignment: .topLeading)
             .clipped()
         }
-        .ignoresSafeArea()
-        .accessibilityIdentifier("voyage-row")
     }
 
     /// She lies moored at the island the player stands on, at row scale, while the player chooses. While a ride
@@ -195,7 +216,7 @@ private struct VoyageIsle: View {
     /// station looks included), the same picture as mid, never the old Map cut.
     private var farHome: HomePlate? {
         guard stop.island == .home, stop.status != .locked, let plate = model.homePlate,
-              plate.plate.plateCrop(light: plate.light, stage: plate.stage) != nil else { return nil }
+              plate.plate.plateCrop(light: plate.key, stage: plate.stage) != nil else { return nil }
         return plate
     }
 
@@ -272,12 +293,12 @@ private struct VoyageIsle: View {
         case .home:
             if let plate = model.homePlate {
                 let box = plate.islandBox
-                return (plate.plate.mapIslandArt(light: plate.light, stage: plate.stage), box.height / max(box.width, 1), true)
+                return (plate.plate.mapIslandArt(light: plate.key, stage: plate.stage), box.height / max(box.width, 1), true)
             }
         case .caglayan:
             if let plate = model.caglayanPlate {
                 let box = plate.islandBox
-                return (plate.plate.mapIslandArt(light: plate.light, stage: plate.stage), box.height / max(box.width, 1), true)
+                return (plate.plate.mapIslandArt(light: plate.key, stage: plate.stage), box.height / max(box.width, 1), true)
             }
         case .koke:
             let size = KokeLayout.plateSize

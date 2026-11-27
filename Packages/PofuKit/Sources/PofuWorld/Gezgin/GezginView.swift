@@ -142,25 +142,70 @@ struct GezginMooredView: View {
         .scaleEffect(x: CGFloat(2 - answer.squash), y: CGFloat(answer.squash), anchor: UnitPoint(x: 0.5, y: CGFloat(feetRow / height)))
         .position(x: point.x, y: point.y - CGFloat(feetRow) + CGFloat(height) / 2 + CGFloat(bob - lift))
         .allowsHitTesting(false)
-        // The mooring line: from her bow to the post on the pier, slack, so she can bob.
+        // The mooring line: from her bow up to a post on the island's rim, slack, so she can bob.
         let rope = data.rope ?? GezginData.Rope.standard
         let unit2 = mooring.width * plate.unitsPerPixel
         let bow = CGPoint(x: point.x + CGFloat(rope.bowX * unit2), y: point.y + CGFloat((rope.bowY * unit2) + bob - lift))
-        let post = CGPoint(x: point.x + CGFloat(rope.postX * unit2), y: point.y + CGFloat(rope.postY * unit2))
+        let foot = CGPoint(x: point.x + CGFloat(rope.postX * unit2), y: point.y + CGFloat(rope.postY * unit2))
+        let tie = CGPoint(x: foot.x, y: point.y + CGFloat(rope.tieY * unit2))
+        let line = CGFloat(max(rope.thickness * unit2, 1.2))
         ZStack(alignment: .topLeading) {
-            // The line goes down behind her, the figure over it.
-            Path { path in
+            // The line goes down behind her, the figure over it. A darker line under a lighter one, so it
+            // reads as a twisted rope at the picture's own size, not a gold hair.
+            let curve = Path { path in
                 path.move(to: bow)
-                path.addQuadCurve(to: post, control: CGPoint(x: (bow.x + post.x) / 2 - CGFloat(rope.sag * unit2 * 0.8), y: (bow.y + post.y) / 2 + CGFloat(rope.sag * unit2 * 0.6)))
+                path.addQuadCurve(to: tie, control: CGPoint(x: (bow.x + tie.x) / 2 - CGFloat(rope.sag * unit2 * 0.8), y: (bow.y + tie.y) / 2 + CGFloat(rope.sag * unit2 * 0.6)))
             }
-            .stroke(Color(red: 0.80, green: 0.66, blue: 0.44), style: StrokeStyle(lineWidth: CGFloat(max(rope.thickness * unit2, 0.8)), lineCap: .round))
-            Circle()
-                .fill(Color(red: 0.62, green: 0.48, blue: 0.30))
-                .frame(width: CGFloat(rope.thickness * unit2 * 2.2), height: CGFloat(rope.thickness * unit2 * 2.2))
-                .position(post)
+            MooringPost(foot: foot, height: CGFloat(rope.postHeight * unit2), tieShare: GezginData.Rope.tieShare, rope: curve, line: line)
+                .saturation(light.saturation)
+                .colorMultiply(Color(red: light.paint.red, green: light.paint.green, blue: light.paint.blue))
             figure
         }
         .allowsHitTesting(false)
+    }
+}
+
+/// The post the Gezgin is tied to, standing on the island's rim: a plain wooden post with a rounded cap and the
+/// rope's turns round its neck, in the plate's pier posts' wood. The line is drawn under the turns.
+struct MooringPost: View {
+    let foot: CGPoint
+    let height: CGFloat
+    let tieShare: Double
+    let rope: Path
+    let line: CGFloat
+
+    var body: some View {
+        let width = height * 0.30
+        let wood = Color(red: 0.64, green: 0.46, blue: 0.29)
+        let shade = Color(red: 0.46, green: 0.31, blue: 0.19)
+        let cord = Color(red: 0.94, green: 0.82, blue: 0.58)
+        let tieY = foot.y - height * CGFloat(tieShare)
+        ZStack(alignment: .topLeading) {
+            // Its small contact shadow on the grass.
+            Ellipse()
+                .fill(Color.black.opacity(0.22))
+                .frame(width: width * 1.7, height: width * 0.55)
+                .position(x: foot.x + width * 0.1, y: foot.y)
+            // The line: a dark underlay, the cord over it.
+            rope.stroke(shade.opacity(0.7), style: StrokeStyle(lineWidth: line * 1.3, lineCap: .round))
+            rope.stroke(cord, style: StrokeStyle(lineWidth: line * 0.85, lineCap: .round))
+            RoundedRectangle(cornerRadius: width * 0.28, style: .continuous)
+                .fill(LinearGradient(colors: [wood, shade], startPoint: .leading, endPoint: .trailing))
+                .frame(width: width, height: height)
+                .position(x: foot.x, y: foot.y - height / 2)
+            Capsule()
+                .fill(wood)
+                .frame(width: width * 1.25, height: width * 0.5)
+                .position(x: foot.x, y: foot.y - height)
+            // The turns of the rope round the post's neck.
+            ForEach(0 ..< 3, id: \.self) { turn in
+                Capsule()
+                    .fill(cord)
+                    .overlay(Capsule().stroke(shade, lineWidth: max(line * 0.3, 0.6)))
+                    .frame(width: width * 1.12, height: line * 0.95)
+                    .position(x: foot.x, y: tieY + CGFloat(turn) * line * 0.95 - line * 0.8)
+            }
+        }
     }
 }
 

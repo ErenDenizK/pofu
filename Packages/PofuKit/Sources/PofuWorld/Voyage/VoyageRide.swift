@@ -30,17 +30,22 @@ public struct VoyageRide: Equatable, Sendable {
     public let reduced: Bool
     /// Whether the way goes to the right along the row (she faces the way she goes).
     public let toTheRight: Bool
+    /// Whether the ride starts from the voyage row (she moored beside the island, the passengers hopping aboard).
+    /// A trip from anywhere else (a tap on a far island, the place control) has no boarding: she comes in
+    /// already carrying them.
+    public let fromRow: Bool
 
-    public init(from: IslandID, to: IslandID, data: VoyageData = VoyageData.shipped ?? .fallback, reduceMotion: Bool = false) {
+    public init(from: IslandID, to: IslandID, data: VoyageData = VoyageData.shipped ?? .fallback, reduceMotion: Bool = false, fromRow: Bool = true) {
         self.from = from
         self.to = to
+        self.fromRow = fromRow
         reduced = reduceMotion
         if reduceMotion {
             board = 0
             fly = max(data.ride.reduced, 0.1)
             moor = 0
         } else {
-            board = max(data.ride.board, 0)
+            board = fromRow ? max(data.ride.board, 0) : 0
             fly = max(data.ride.fly, 0.5)
             moor = max(data.ride.moor, 0)
         }
@@ -60,6 +65,19 @@ public struct VoyageRide: Equatable, Sendable {
         if t < duration { return (.moor, moor > 0 ? (t - board - fly) / moor : 1) }
         return (.done, 1)
     }
+
+    /// How a trip to `target` starts when the camera is on `island`, or `nil` when there is no trip (the camera is
+    /// already there). Every trip is one ride: from the row (the camera at the Map of Home, nothing focused,
+    /// motion allowed) she waits moored and they hop aboard; from anywhere else she comes in carrying them.
+    public static func trip(from island: IslandID, to target: IslandID, atMap: Bool, focusOpen: Bool, reduceMotion: Bool) -> VoyageRide? {
+        guard target != island else { return nil }
+        let fromRow = atMap && island == .home && !focusOpen && !reduceMotion
+        return VoyageRide(from: island, to: target, reduceMotion: reduceMotion, fromRow: fromRow)
+    }
+
+    /// Whether the scene's focus UI (an island's plaque, a bubble, a card, Home's tags) stays hidden: for the
+    /// whole ride, until the passengers are off and the ride is over.
+    public static func hidesFocusUI(_ ride: VoyageRide?) -> Bool { ride != nil }
 
     /// The seconds from the start of the ride to the start of the camera's flight.
     public var flightStart: Double { board }
@@ -93,6 +111,41 @@ public struct VoyageRide: Equatable, Sendable {
         Spot(x: toTheRight ? 0.70 : 0.30, y: 0.70, width: 0.42)
     }
 
+    /// Her body's width as a share of the island's art width, moored and in the air alike: she and the islands
+    /// share one world scale.
+    public static let islandShare = 0.36
+
+    /// The share of the board beat in which the row glides to the island she leaves; the hops start after.
+    public static let glideShare = 0.35
+
+    /// Where the row's position (in stops) stands `seconds` into the ride: the player's choice (`selected`)
+    /// glides back to the island she leaves (`origin`) in the first part of the board beat, so the hop aboard
+    /// is seen on that island, whole and centred; the flight starts from there.
+    public func rowPosition(at seconds: Double, selected: Double, origin: Double) -> Double {
+        let (beat, progress) = beat(at: seconds)
+        guard beat == .board, board > 0 else { return origin }
+        let u = Self.ease(progress / Self.glideShare)
+        return selected + (origin - selected) * u
+    }
+
+    /// A passenger's hop on the board beat: it begins once the row has settled on the island she leaves.
+    public static func boardProgress(_ beatProgress: Double) -> Double {
+        min(max((beatProgress - glideShare) / (1 - glideShare), 0), 1)
+    }
+
+    /// Her body's width on the screen in points: at the row's scale while the row is there, at the camera's
+    /// (`world`, the same share of the island's width as in the row) once the world is. The row gives way to
+    /// the world in the first fifth of the flight, and she changes scale with it; after that her size is the
+    /// camera's own, never her own.
+    public func whaleWidth(at seconds: Double, row: Double, world: Double) -> Double {
+        let (beat, progress) = beat(at: seconds)
+        switch beat {
+        case .board: return row
+        case .fly: return row + (world - row) * Self.ease(progress / 0.2)
+        case .moor, .done: return world
+        }
+    }
+
     /// Smoothstep.
     static func ease(_ t: Double) -> Double {
         let u = min(max(t, 0), 1)
@@ -117,7 +170,8 @@ public struct VoyageRide: Equatable, Sendable {
     public func whaleOpacity(at seconds: Double) -> Double {
         let (beat, progress) = beat(at: seconds)
         switch beat {
-        case .board, .fly: return 1
+        case .board: return 1
+        case .fly: return fromRow ? 1 : Self.ease(progress / 0.15)
         case .moor: return progress < 0.7 ? 1 : 1 - Self.ease((progress - 0.7) / 0.3)
         case .done: return 0
         }
@@ -190,7 +244,7 @@ extension VoyageRowLayout {
         VoyageRide.Spot(
             x: (place.x + (place.x > width / 2 + 1 ? -0.34 : 0.34) * place.width) / max(width, 1),
             y: (place.y + place.width * 0.33) / max(height, 1),
-            width: place.width * 0.36 / max(width, 1)
+            width: place.width * VoyageRide.islandShare / max(width, 1)
         )
     }
 }
