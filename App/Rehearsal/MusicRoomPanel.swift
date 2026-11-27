@@ -13,14 +13,18 @@ import SwiftUI
 struct MusicRoomPanel: View {
     let rehearsal: RehearsalStage
 
+    /// Opens scrolled to the stingers (the screenshot test uses it to show that section).
+    private let startsAtStingers: Bool
+
     @State private var state: MusicState
     @State private var isPlaying = false
     @State private var isMusicOn = SoundEngine.shared.settings.isMusicOn
     @State private var index = (try? MusicIndex.bundled()) ?? .empty
 
     /// Opens on the island as it is now (`model`'s world at the rehearsed time), in clear weather.
-    init(model: AppModel, rehearsal: RehearsalStage) {
+    init(model: AppModel, rehearsal: RehearsalStage, startsAtStingers: Bool = false) {
         self.rehearsal = rehearsal
+        self.startsAtStingers = startsAtStingers
         _state = State(initialValue: WorldSound.musicRoomSeed(of: model.world, at: rehearsal.clock.now))
     }
 
@@ -38,6 +42,7 @@ struct MusicRoomPanel: View {
             VStack(spacing: 0) {
                 header
                 Divider()
+                ScrollViewReader { reader in
                 ScrollView {
                     VStack(alignment: .leading, spacing: PofuSpacing.m) {
                         if !isMusicOn {
@@ -52,12 +57,21 @@ struct MusicRoomPanel: View {
                         playButton
                         Divider()
                         stingers
+                            .id("stingers")
                     }
                     .padding(PofuSpacing.m)
                 }
                 .scrollIndicators(.hidden)
+                .onAppear {
+                    if startsAtStingers { reader.scrollTo("stingers", anchor: .bottom) }
+                }
+                }
             }
             .frame(height: min(proxy.size.height * 0.62, 560))
+            // The content scrolls inside the card's own shape, and a tint under the glass
+            // keeps the island's chrome from showing through as ghost shapes.
+            .clipShape(RoundedRectangle(cornerRadius: 28, style: .continuous))
+            .background(PofuColor.card.opacity(0.88), in: RoundedRectangle(cornerRadius: 28, style: .continuous))
             .glassEffect(.regular, in: RoundedRectangle(cornerRadius: 28, style: .continuous))
             .padding(.horizontal, PofuSpacing.xs)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
