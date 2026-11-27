@@ -1,0 +1,84 @@
+batch: batch-134-plot-pilot
+job: x-plot-pond-1
+status: warn
+pick: 1
+lead_review: "Ships with a note: a clean stone-ringed pool in place, but it is the same size as form 2 and its built ring reads richer than form 2's wild reed pond, so the step 1 to 2 is a touch in the wrong direction (a premise of the ladder, not of this take); chroma 1.17x and the rim greens are neon."
+note: 'QA auto-pick; founder review pending. Both takes passed QA as warn with lock_load
+  0.0; the plate preset emits no harmony score, so t1 wins the tie by tool order.
+  T1 edit_stability is 92.32% (t2 92.03%) and edit_chroma is slightly closer to its
+  parent. Visual check: reeds are removed and a small pale-stone ring surrounds clear
+  water in the same plot; lawn, island rim and sky appear retained. The image tool
+  re-rendered surrounding details outside the pond region, so the lead should judge
+  the masked in-place composite. The tool returned 1254x1254; pipeline QA scaled and
+  center-cropped to 1536x1536.'
+source: codex-cloud
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+takes:
+- n: 1
+  file: plate__x-plot-pond-1--t1.webp
+  qa: warn
+  size_bytes: 220068
+  lock_load: 0.0
+  warnings:
+  - check: canvas
+    status: warn
+    message: 1254x1254 scaled x1.225 and center-cropped to 1536x1536
+  - check: chroma_ceiling
+    status: warn
+    message: chroma p95 86 (R1 51) (advisory in an exploration)
+  - check: light_contrast
+    status: warn
+    message: 'day/subject: p75 local contrast 7.0 (band 2.5-6.5; above it reads too
+      contrasty)'
+  - check: light_sea
+    status: warn
+    message: 'day: cloud sea L 77 (at least 82: the sea is the reflector)'
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 16.5, p95 36.3, off-palette 50.2% (top: #DDDD22 (7.7%), #CCDD22
+      (5.6%)) (advisory in an exploration)'
+  source_file: /workspace/pofu-art/.worktrees/batch134-pond/design/art/inbox/batch-134-plot-pilot/plate__x-plot-pond-1--t1.png
+  source_sha256: 7dbe02f9d8177771dcef9d8274666c83e1121a2669438494885a86295b5b8bb2
+  generated_at: '2026-11-16T16:28:48+00:00'
+  tool_output_size: 1254x1254; pipeline scaled and center-cropped to 1536x1536
+- n: 2
+  file: plate__x-plot-pond-1--t2.webp
+  qa: warn
+  size_bytes: 226286
+  lock_load: 0.0
+  warnings:
+  - check: canvas
+    status: warn
+    message: 1254x1254 scaled x1.225 and center-cropped to 1536x1536
+  - check: chroma_ceiling
+    status: warn
+    message: chroma p95 86 (R1 51) (advisory in an exploration)
+  - check: light_values
+    status: warn
+    message: 'day/subject: L p5 49 (at least 50: darks stay a light mid-tone), p98
+      93 (at least 90)'
+  - check: light_contrast
+    status: warn
+    message: 'day/subject: p75 local contrast 7.2 (band 2.5-6.5; above it reads too
+      contrasty) (warn-only until the founder has seen the light pilot)'
+  - check: light_sea
+    status: warn
+    message: 'day: cloud sea L 78 (at least 82: the sea is the reflector)'
+  - check: detail_budget
+    status: warn
+    message: detail at display size 6.0 (R1 5.3)
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 16.0, p95 35.2, off-palette 49.8% (top: #DDDD22 (8.5%), #EEEE22
+      (3.6%)) (advisory in an exploration)'
+  source_file: /workspace/pofu-art/.worktrees/batch134-pond/design/art/inbox/batch-134-plot-pilot/plate__x-plot-pond-1--t2.png
+  source_sha256: 490791b3bcdeb41cf930c09163a34da7075d1604208993e7b1a70a06d81e9c47
+  generated_at: '2026-11-16T16:28:49+00:00'
+  tool_output_size: 1254x1254; pipeline scaled and center-cropped to 1536x1536
+references:
+- design/art/takes/batch-134-plot-pilot/x-plot-pond-2/plate__x-plot-pond-2--t1.webp
+provisional_parent: x-plot-pond-2 t1 (auto-pick, lead review pending)
+generation_prompt_note: The built-in image tool received the manifest-composed prompt
+  from run.py prompt; ingest sidecars preserve the composed prompt.
