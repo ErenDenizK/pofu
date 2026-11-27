@@ -95,6 +95,23 @@ class CheckPlates(unittest.TestCase):
             f.write_text(table(painted % "true").replace("      s:\n", "      0:\n"))
             self.assertEqual(check_plates.check(f, root), [])
 
+    def test_a_season_must_match_the_plate_file(self):
+        painted = '{painted: "t/job/plate__job--t1.webp", lead_pick: 1, in_app: %s, founder_ok: null}'
+        plate = {"lights": ["day"], "stages": 1, "painted": {"day": [0]}, "seasons": {"autumn": {"complete": False, "states": {"day": [0]}}}}
+        text = table(painted % "true").replace("      s:\n", "      0:\n")
+        with tempfile.TemporaryDirectory() as d:
+            root = self.plate_root(d, plate)
+            f = root / "plates.yaml"
+            f.write_text(text)
+            self.assertEqual(check_plates.check(f, root), ["x/seasons/autumn: the app ships this season but the table does not list it"])
+            with_season = text.replace("    sky_sets:", "    seasons:\n      autumn:\n        complete: false\n        states:\n          day:\n            0: " + painted % "true" + "\n    sky_sets:")
+            f.write_text(with_season)
+            self.assertEqual(check_plates.check(f, root), [])
+            f.write_text(with_season.replace("complete: false", "complete: true"))
+            self.assertEqual(len(check_plates.check(f, root)), 1)
+            f.write_text(with_season.replace("in_app: true, founder_ok: null}\n    sky", "in_app: false, founder_ok: null}\n    sky"))
+            self.assertEqual(check_plates.check(f, root), ["x/seasons/autumn/0/day: the app ships this state but in_app is false"])
+
     def test_in_app_without_a_shipped_state(self):
         cell = '{painted: "t/job/plate__job--t1.webp", lead_pick: 1, in_app: true, founder_ok: null}'
         errors = self.run_table(cell)

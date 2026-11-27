@@ -1,0 +1,160 @@
+# Per-job review fragment; exploration only, auto-pick is provisional pending lead review.
+batch: batch-194-season-slice-pilot
+manifest: tools/imagegen/manifest/batch-194-season-slice-pilot.yaml
+manifest_sha256: 63b30549140c00ca94e8eb0ea94436b5ba4696c43017ccc7bb4a4da05996b201
+job: x-season-autumn-l10-bare-day
+contact_sheet: design/art/takes/batch-194-season-slice-pilot/x-season-autumn-l10-bare-day/contact.jpg
+source: codex-cloud
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+status: picked
+selection:
+  method: 'QA auto-pick: passing QA first, then lowest lock_load, then highest harmony; both takes retained
+    for lead review'
+  pick: 1
+  note: QA auto-pick t1 is provisional; it erases the named stations and keeps the island outline, buildings
+    outside those stations, paths, bridge and sky. A few cut-outs read as very flat ground with some patch-like
+    edges, and chroma/palette warnings remain; lead review pending.
+provisional_parent: x-season-autumn-l10-day t1 (auto-pick, lead review pending)
+takes:
+- take: 1
+  file: plate__x-season-autumn-l10-bare-day--t1.webp
+  source_file: /tmp/b194-x-season-autumn-l10-bare-day-t1.png
+  source_sha256: 6a52919e3f87648c9d4624f4a64bcfdb4f06db0544247e0b801a8a7d6c36b6bd
+  source_dimensions: &id001
+  - 1024
+  - 1536
+  output_dimensions: *id001
+  backend: codex-cloud
+  generated_at: '2026-11-27T03:22:19+00:00'
+  qa: warn
+  lock_load: 0.0
+  harmony: null
+  warnings:
+  - check: chroma_ceiling
+    message: chroma p95 71 (R1 51) (advisory in an exploration)
+  - check: palette_drift
+    message: 'mean dE 7.4, p95 17.9, off-palette 24.2% (top: #88BBFF (7.3%), #99BBFF (2.4%)) (advisory
+      in an exploration)'
+  prompt: "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level).\
+    \ Edit it; do not redraw it.\n\nEdit the attached painting of a floating island in autumn. Remove\
+    \ these\nstations, each painted out to bare ground:\n- the small red-tiled-roof tea stall with its\
+    \ teapot, glasses, stools, flags and lamps;\n- the larger workshop with the gear sign, its roof, walls,\
+    \ door, signs and the string of lights on it;\n- the windmill with its sails, tower and base;\n- the\
+    \ sunflower and flower-bed corner at the left edge: the tall sunflower, the low white picket fence,\
+    \ the\n  flower borders and the lamp globe by the fence;\n- the pond with its sailboat, its reeds\
+    \ and its stone rim (the water or ice becomes ground);\n- the bagel cart (the small harbor-side stall)\
+    \ with its awning and wares;\n- the wooden pier on the right rim with its posts, ropes and any boat\
+    \ tied to it;\n- the lighthouse with its lamp room.\nPaint bare ground in each place: the same autumn\
+    \ lawn with its few fallen leaves, in the same colour, light and painting as the ground around it,\n\
+    running over the whole place and joining it with no seam, no patch and no colour step. Where a station\
+    \ stood\nat the island's rim, the rim stays a whole, continuous, rounded edge with the same earth\
+    \ below it, and the sky\nand clouds behind it stay as they are. Nothing that belonged to a station\
+    \ stays: no roof, post, flag, string of\nlights, lamp, fence, sign or rope. Everything else stays\
+    \ as it is: the hamster wheel, the mailbox, the bushes,\nthe round doors, the stone path, the rope\
+    \ bridge, the islet, the hilltop and its tree, the island's earth, the\nsky and every cloud, in the\
+    \ same season. Add nothing: no new object, no bush, no flower, no stone, no\ndecoration.\n\nKEEP:\
+    \ everything not named above stays exactly the same as in the\nattached image: every existing part,\
+    \ its shape, color, position and size,\nthe canvas, the camera, the light and the painting style.\
+    \ Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing\
+    \ ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\
+    \nSTYLE: a finished painted illustration for a premium cozy mobile game, like\na page from a beloved\
+    \ picture book: soft painterly 2D with gentle airbrushed\nshading, rounded chunky forms, no outlines,\
+    \ no hard edges, matte surfaces\nwith at most one soft highlight per object. COLOUR: vivid, saturated\
+    \ and\njewel-like, as in the key art of a high-end animated film: intense grass\ngreens, glowing sunflower\
+    \ yellow, deep sky blue, warm peach earth, crisp\nwhite petals; strong contrast between warm lit colour\
+    \ and cool shadow\ncolour; every material keeps its own true colour. VALUES: a full range, from\n\
+    bright sunlit tops to deep warm shadows under eaves, inside foliage, beneath\nthe lawn rim and around\
+    \ doors, so every object separates clearly from what\nis behind it and the picture reads at a glance\
+    \ on a small phone screen.\nShadows are coloured (warm brown, plum, deep teal), never black or grey.\n\
+    Light direction and shadow hue follow the LIGHT block of this prompt.\nColourful but never neon, never\
+    \ HDR, never glossy. No text, no letters, no\nnumbers, no logos, no watermark, no border, no frame.\n\
+    \nAVOID: any remnant, ghost, pale arc, smear, post or lamp globe of a station, a string of lights\
+    \ ending in mid-air, a new object of any kind, a flat sky-coloured wedge or a notch in the island's\
+    \ rim, a bare patch of earth or sand, a blurred or smudged area, a colour step or edge around an edited\
+    \ place, a change to anything that is not a station, a change of season, light or colour, a reframed\
+    \ or zoomed picture, text\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nKey light\
+    \ #FFF6EC from the upper left; fill #BFD6EE; rim #FFE9C9 along the edge facing away from the key.\
+    \ Shadows are tinted #A99BC4 (never grey or black), short and soft, falling toward the lower right;\
+    \ every object sits on a soft occlusion pad in that hue where it touches the ground or another form.\n\
+    VALUES (the reference envelope): a high-key picture inside one envelope of soft, milky air. Every\
+    \ value sits between light mid-tone and cream-white; the darkest recesses (door holes, gaps, pond\
+    \ rims) are a mid-value tinted with the shadow hue, never black. Form turns in small value steps.\
+    \ Colour lives in the halftones; lights bleach to cream. No dark outlines: edges are found by value\
+    \ and hue. The cloud sea below is the brightest large surface and lights the island's underside with\
+    \ a warm bounce.\nThis is the SUBJECT plane: the clearest forms and the crispest edges in the picture,\
+    \ still inside the envelope.\n\nOutput: one image, opaque, full bleed, portrait 1024 x 1536.\n"
+  attachments:
+  - path: build/imagegen/batch-194-season-slice-pilot/locked/plate__x-season-autumn-l10-day--t1.png
+    role: The image to edit (the approved previous level). Edit it; do not redraw it.
+- take: 2
+  file: plate__x-season-autumn-l10-bare-day--t2.webp
+  source_file: /tmp/b194-x-season-autumn-l10-bare-day-t2.png
+  source_sha256: bf956155463bfb52475299e5b9ee2136f94feb9ba26644460a3af57d41767e28
+  source_dimensions: &id002
+  - 1024
+  - 1536
+  output_dimensions: *id002
+  backend: codex-cloud
+  generated_at: '2026-11-27T03:22:19+00:00'
+  qa: warn
+  lock_load: 0.0
+  harmony: null
+  warnings:
+  - check: chroma_ceiling
+    message: chroma p95 70 (R1 51) (advisory in an exploration)
+  - check: palette_drift
+    message: 'mean dE 7.3, p95 17.6, off-palette 24.5% (top: #88BBFF (6.2%), #99BBFF (2.7%)) (advisory
+      in an exploration)'
+  prompt: "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level).\
+    \ Edit it; do not redraw it.\n\nEdit the attached painting of a floating island in autumn. Remove\
+    \ these\nstations, each painted out to bare ground:\n- the small red-tiled-roof tea stall with its\
+    \ teapot, glasses, stools, flags and lamps;\n- the larger workshop with the gear sign, its roof, walls,\
+    \ door, signs and the string of lights on it;\n- the windmill with its sails, tower and base;\n- the\
+    \ sunflower and flower-bed corner at the left edge: the tall sunflower, the low white picket fence,\
+    \ the\n  flower borders and the lamp globe by the fence;\n- the pond with its sailboat, its reeds\
+    \ and its stone rim (the water or ice becomes ground);\n- the bagel cart (the small harbor-side stall)\
+    \ with its awning and wares;\n- the wooden pier on the right rim with its posts, ropes and any boat\
+    \ tied to it;\n- the lighthouse with its lamp room.\nPaint bare ground in each place: the same autumn\
+    \ lawn with its few fallen leaves, in the same colour, light and painting as the ground around it,\n\
+    running over the whole place and joining it with no seam, no patch and no colour step. Where a station\
+    \ stood\nat the island's rim, the rim stays a whole, continuous, rounded edge with the same earth\
+    \ below it, and the sky\nand clouds behind it stay as they are. Nothing that belonged to a station\
+    \ stays: no roof, post, flag, string of\nlights, lamp, fence, sign or rope. Everything else stays\
+    \ as it is: the hamster wheel, the mailbox, the bushes,\nthe round doors, the stone path, the rope\
+    \ bridge, the islet, the hilltop and its tree, the island's earth, the\nsky and every cloud, in the\
+    \ same season. Add nothing: no new object, no bush, no flower, no stone, no\ndecoration.\n\nKEEP:\
+    \ everything not named above stays exactly the same as in the\nattached image: every existing part,\
+    \ its shape, color, position and size,\nthe canvas, the camera, the light and the painting style.\
+    \ Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing\
+    \ ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\
+    \nSTYLE: a finished painted illustration for a premium cozy mobile game, like\na page from a beloved\
+    \ picture book: soft painterly 2D with gentle airbrushed\nshading, rounded chunky forms, no outlines,\
+    \ no hard edges, matte surfaces\nwith at most one soft highlight per object. COLOUR: vivid, saturated\
+    \ and\njewel-like, as in the key art of a high-end animated film: intense grass\ngreens, glowing sunflower\
+    \ yellow, deep sky blue, warm peach earth, crisp\nwhite petals; strong contrast between warm lit colour\
+    \ and cool shadow\ncolour; every material keeps its own true colour. VALUES: a full range, from\n\
+    bright sunlit tops to deep warm shadows under eaves, inside foliage, beneath\nthe lawn rim and around\
+    \ doors, so every object separates clearly from what\nis behind it and the picture reads at a glance\
+    \ on a small phone screen.\nShadows are coloured (warm brown, plum, deep teal), never black or grey.\n\
+    Light direction and shadow hue follow the LIGHT block of this prompt.\nColourful but never neon, never\
+    \ HDR, never glossy. No text, no letters, no\nnumbers, no logos, no watermark, no border, no frame.\n\
+    \nAVOID: any remnant, ghost, pale arc, smear, post or lamp globe of a station, a string of lights\
+    \ ending in mid-air, a new object of any kind, a flat sky-coloured wedge or a notch in the island's\
+    \ rim, a bare patch of earth or sand, a blurred or smudged area, a colour step or edge around an edited\
+    \ place, a change to anything that is not a station, a change of season, light or colour, a reframed\
+    \ or zoomed picture, text\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nKey light\
+    \ #FFF6EC from the upper left; fill #BFD6EE; rim #FFE9C9 along the edge facing away from the key.\
+    \ Shadows are tinted #A99BC4 (never grey or black), short and soft, falling toward the lower right;\
+    \ every object sits on a soft occlusion pad in that hue where it touches the ground or another form.\n\
+    VALUES (the reference envelope): a high-key picture inside one envelope of soft, milky air. Every\
+    \ value sits between light mid-tone and cream-white; the darkest recesses (door holes, gaps, pond\
+    \ rims) are a mid-value tinted with the shadow hue, never black. Form turns in small value steps.\
+    \ Colour lives in the halftones; lights bleach to cream. No dark outlines: edges are found by value\
+    \ and hue. The cloud sea below is the brightest large surface and lights the island's underside with\
+    \ a warm bounce.\nThis is the SUBJECT plane: the clearest forms and the crispest edges in the picture,\
+    \ still inside the envelope.\n\nOutput: one image, opaque, full bleed, portrait 1024 x 1536.\n"
+  attachments:
+  - path: build/imagegen/batch-194-season-slice-pilot/locked/plate__x-season-autumn-l10-day--t1.png
+    role: The image to edit (the approved previous level). Edit it; do not redraw it.

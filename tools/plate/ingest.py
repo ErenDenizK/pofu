@@ -107,6 +107,21 @@ SHADOW = {"opacity": 0.34, "drop": 0.9, "squash": 0.22, "reach": 0.92, "blur": 0
 
 # ---------------------------------------------------------------- basics
 
+#: The painted seasons other than spring (season-system-v1 D3): a state's key is `<season>-<light>` in them.
+SEASONS = ("autumn", "winter")
+
+
+def split_light(light: str) -> tuple[str | None, str]:
+    """`("autumn", "day")` for the key `autumn-day`, `(None, "day")` for a spring light."""
+    season, _, rest = light.partition("-")
+    return (season, rest) if season in SEASONS and rest else (None, light)
+
+
+def base_light(light: str) -> str:
+    """The light a key paints (`day`, `golden`, `night`): every table keyed by a light name reads a season's key through this."""
+    return split_light(light)[1]
+
+
 def load_hand(island: str) -> dict:
     """The hand data; its optional `size` ([w, h], default 1536 x 1024) sets the plate size every
     percent in it refers to (the home master is a 1024 x 1536 portrait)."""
@@ -251,8 +266,9 @@ def smooth(a, b, x):
 
 
 def plates(hand: dict):
-    """(light, stage, path) for every plate in the hand data."""
-    for light, stages in sorted(hand["plates"].items()):
+    """(light, stage, path) for every plate in the hand data: spring's lights first (the first plate is the island's root,
+    the harmony reference), then each season's (`<season>-<light>`)."""
+    for light, stages in sorted(hand["plates"].items(), key=lambda kv: (split_light(kv[0])[0] or "", kv[0])):
         for stage, rel in sorted(stages.items(), key=lambda kv: int(kv[0])):
             yield light, int(stage), REPO / rel
 
@@ -324,13 +340,15 @@ def matte(rgb: np.ndarray, trace_px, water_px=()) -> np.ndarray:
 
 
 def matte_path(island: str, light: str, stage: int) -> Path:
-    return PLATES / island / f"matte-{light}-{stage}.png"
+    """The state's matte file. A season state has none of its own (D2): it is cut with its spring state's shape, never by
+    difference, so it reads the matte of the same light and stage in spring."""
+    return PLATES / island / f"matte-{base_light(light)}-{stage}.png"
 
 
 def is_legacy(hand: dict, light: str, stage: int) -> bool:
     """A state that keeps its pre-r3b assets and matte (hand data `legacyStates`, "<light>:<stage>"): the cut cannot be
     solved there yet. `matte`, `deliver` and `objects` leave it as it is."""
-    return f"{light}:{stage}" in hand.get("legacyStates", [])
+    return f"{base_light(light)}:{stage}" in hand.get("legacyStates", [])
 
 
 def load_matte_full(island: str, light: str, stage: int) -> np.ndarray:
@@ -513,7 +531,8 @@ def cmd_matte(island: str, state: str | None = None) -> None:
     `POFU_BIREFNET`, and its edge solve), one per state at plate size x `MATTE_TEX`. It reads the plates as shipped, so
     run it before `deliver` rewrites them; every state is solved before the first master is written."""
     hand = load_hand(island)
-    wanted = [(light, stage, path) for light, stage, path in plates(hand) if state is None or f"{light}:{stage}" == state]
+    wanted = [(light, stage, path) for light, stage, path in plates(hand)
+              if (state is None or f"{light}:{stage}" == state) and not split_light(light)[0]]    # a season has no matte of its own
     if island in STRICT_MATTES:
         wanted = [w for w in wanted if not is_legacy(hand, w[0], w[1])]
         sys.path.insert(0, str(REPO / "tools" / "proof"))
@@ -695,7 +714,14 @@ def feathered_plate(rgb: np.ndarray, a: np.ndarray, feather: int = FEATHER) -> I
 def decontaminated(rgb: np.ndarray, a: np.ndarray, light: str, stage: int) -> np.ndarray:
     """The plate's colours with the edge pixels of the r3b layer (`island_matte.island_layer`): a half-transparent pixel
     carries the island's colour, not the sky's, so nothing pale is left to show round the rim. Pixels the solve left
-    alone are the plate's own. Needs the layer (the matting network's weights, or its cache from `matte`)."""
+    alone are the plate's own. Needs the layer (the matting network's weights, or its cache from `matte`).
+
+    A season state has no solve (its matte is its spring state's, D2): the pixels the matte holds less than whole take
+    the colour of the nearest whole one, so the take's own sky does not tint the rim."""
+    if split_light(light)[0]:
+        deep = a >= 0.98
+        _, (iy, ix) = ndimage.distance_transform_edt(~deep, return_indices=True)
+        return np.where((deep | (a <= 0.0))[..., None], rgb, rgb[iy, ix])
     sys.path.insert(0, str(REPO / "tools" / "proof"))
     import island_matte  # noqa: PLC0415
 
@@ -759,10 +785,15 @@ def plate_crop_points(island: str, hand: dict, light: str, stage: int) -> list[i
     return [v // MATTE_TEX for v in plate_crop(load_matte_full(island, light, stage))]
 
 
-def cmd_deliver(island: str) -> None:
+def wanted_plates(hand: dict, state: str | None):
+    """`plates(hand)`, or the one state `LIGHT:STAGE` (a season's: `autumn-day:0`) when `state` is given."""
+    return [(l, s_, p) for l, s_, p in plates(hand) if state is None or f"{l}:{s_}" == state]
+
+
+def cmd_deliver(island: str, state: str | None = None) -> None:
     hand = load_hand(island)
     strict = island in STRICT_MATTES
-    for light, stage, path in plates(hand):
+    for light, stage, path in wanted_plates(hand, state):
         if strict and is_legacy(hand, light, stage):
             print(f"deliver {light} {stage}: legacy matte, assets left as they are")
             continue
@@ -817,9 +848,9 @@ def _occluder_cut(rgb, a, pts_px, pad, box=None):
     return np.dstack([rgb, m])[y0:y1, x0:x1], (x0, y0, x1, y1)
 
 
-def cmd_objects(island: str) -> None:
+def cmd_objects(island: str, state: str | None = None) -> None:
     hand = load_hand(island)
-    for light, stage, path in plates(hand):
+    for light, stage, path in wanted_plates(hand, state):
         if island in STRICT_MATTES and is_legacy(hand, light, stage):
             continue
         rgb, k = source_plate(path)
@@ -1011,6 +1042,7 @@ def harmony_state(rgb: np.ndarray, hand: dict, ref: dict | None, light: str = "d
             least `lampsFromLevel`: the lamps are not lit below it), `bounce` the lawn-colour
             bounce on the lower third
     """
+    bl = base_light(light)              # a season's key (`autumn-day`) takes its light's tables
     walk = poly_mask(rgb.shape[:2], pct_to_px(hand["walkable"]))
     spots = list(pct_to_px_pts(hand))
     s = lawn_samples(rgb, walk, spots, hand["pofuWidth"] * SIZE[0] / 100 * 0.9)
@@ -1021,7 +1053,7 @@ def harmony_state(rgb: np.ndarray, hand: dict, ref: dict | None, light: str = "d
         return {"tint": [1.0, 1.0, 1.0], "contact": 1.0, "bounce": cl["bounce"], "_a": a, "_depth": s["depth"], "_chroma": chroma}
     ratio = np.clip(a / np.maximum(ref["_a"], 1e-4), 0.25, 1.0)
     luma = float(ratio @ LUMA)
-    cast = TINT_CAST.get(light, 0.5)
+    cast = TINT_CAST.get(bl, 0.5)
     # The lawn's light sets the lightness in full and the colour cast by TINT_CAST.
     ratio = np.clip(luma + (ratio - luma) * cast, 0.25, 1.0)
     if cast_from is not None:
@@ -1033,12 +1065,12 @@ def harmony_state(rgb: np.ndarray, hand: dict, ref: dict | None, light: str = "d
     tint = linear_to_srgb(ratio)
     scales: dict[str, float] = {}
     margins = {**STONE_MARGIN, **cl.get("stoneMargin", {})}
-    if light in margins:
+    if bl in margins:
         # The brightest stone around each character caps its own top; the shared tint is capped by
         # the brightest of them and each darker neighbourhood scales its character down from it.
         stones = stone_levels(rgb, hand, walk)
         def cap(stone: float) -> float:
-            return lstar_to_srgb(stone - margins[light]) / (lstar_to_srgb(SPRITE_L) * float(tint.mean()))
+            return lstar_to_srgb(stone - margins[bl]) / (lstar_to_srgb(SPRITE_L) * float(tint.mean()))
         tint = np.clip(tint * min(1.0, max(cap(v) for v in stones.values())), 0.25, 1.0)
         top = max(cap(v) for v in stones.values())
         scales = {k: round(min(1.0, cap(v) / top), 3) for k, v in stones.items()}
@@ -1050,12 +1082,12 @@ def harmony_state(rgb: np.ndarray, hand: dict, ref: dict | None, light: str = "d
         sat = float(np.clip((chroma / max(ref["_chroma"], 1e-4)) ** SATURATION_POWER, SATURATION_FLOOR, 1.0))
         if sat < 0.995:
             out["saturation"] = round(sat, 3)
-    rim = cl["rim"].get(light, 0.0)
+    rim = cl["rim"].get(bl, 0.0)
     if rim > 0:
-        out["key"] = cast_from["key"] if cast_from is not None else key_colour(rgb, hand, walk, light)
+        out["key"] = cast_from["key"] if cast_from is not None else key_colour(rgb, hand, walk, bl)
         out["rim"] = rim
-        out["fill"] = cl["fill"].get(light, 0.0)
-    pool = cl["pool"].get(light, 0.0)
+        out["fill"] = cl["fill"].get(bl, 0.0)
+    pool = cl["pool"].get(bl, 0.0)
     if pool > 0 and hand.get("lamps") and lamps_lit(hand, stage):
         out["pool"] = pool
     out["bounce"] = cl["bounce"]
@@ -1143,6 +1175,7 @@ def harmony_all(hand: dict, mattes: dict) -> dict:
 def sky_bytes(island: str, light: str) -> int:
     """The textures of the island's sky set for `light` without its island layer (`Plates/skyset-<island>.json`, the
     set at stage 0): what a matted state draws behind its plate. 0 when the island has no sky set for the light."""
+    light = base_light(light)                       # one sky set for every season
     f = JSON_DIR / f"skyset-{island}.json"
     if not f.exists():
         return 0
@@ -1228,6 +1261,8 @@ def state_texture_bytes(island: str, hand: dict) -> dict[tuple[str, int], int]:
             # Only this tool's layers: a sky set's own (`world-<island>-sky-*`) are counted above, by `sky_bytes`.
             if not folder.name.startswith(tuple(f"world-{island}-{kind}-" for kind in kinds)):
                 continue
+            if not split_light(light)[0] and any(f"-{season}-{light}-{stage}.imageset" in folder.name for season in SEASONS):
+                continue                                  # `world-home-plate-autumn-day-0` is autumn's, not day's
             if any(folder.name == f"world-{island}-occ-{name}-{light}-{stage}.imageset" for name in retired):
                 continue
             for f in folder.iterdir():
@@ -1241,6 +1276,18 @@ def state_texture_bytes(island: str, hand: dict) -> dict[tuple[str, int], int]:
 def texture_bytes(island: str, hand: dict) -> int:
     """The largest state's textures (`state_texture_bytes`)."""
     return max(state_texture_bytes(island, hand).values(), default=0)
+
+
+def season_states(hand: dict) -> dict:
+    """`{season: {"complete": bool, "states": {light: [stage, ...]}}}` from the hand data's `plates` keyed `<season>-<light>`
+    and `seasons.<season>.complete` (absent: false, the season is Rehearsal's until its last commit)."""
+    out: dict[str, dict] = {}
+    for key, stages in hand["plates"].items():
+        season, light = split_light(key)
+        if season:
+            out.setdefault(season, {"complete": bool(hand.get("seasons", {}).get(season, {}).get("complete", False)), "states": {}})
+            out[season]["states"][light] = sorted(int(s) for s in stages)
+    return dict(sorted(out.items()))
 
 
 def build_json(island: str, hand: dict, mattes: dict, maps: dict, harmony: dict | None = None) -> dict:
@@ -1267,14 +1314,15 @@ def build_json(island: str, hand: dict, mattes: dict, maps: dict, harmony: dict 
             _, box = occluder_cut(np.zeros(a.shape + (3,)), a, poly)
             entry["box"] = list(box)
         objects.append(entry)
-    lights = sorted(hand["plates"])
+    every = sorted(hand["plates"], key=lambda l: (split_light(l)[0] or "", l))     # spring's lights, then each season's
+    lights = [l for l in every if not split_light(l)[0]]
     data = {
         "island": island,
         "version": 1,
         "standIn": bool(hand.get("standIn", False)),
         "minLevel": hand.get("minLevel", 1),
         "plateSize": list(SIZE),
-        "stages": max(int(s) for st in hand["plates"].values() for s in st) + 1,
+        "stages": max(int(s) for l in lights for s in hand["plates"][l]) + 1,
         "lights": lights,
         "lightStages": {l: stage_count(hand, l) for l in lights},
         "stageLevels": hand.get("stageLevels", [hand.get("minLevel", 1)]),
@@ -1292,8 +1340,8 @@ def build_json(island: str, hand: dict, mattes: dict, maps: dict, harmony: dict 
         "lamps": pct_to_px(hand.get("lamps", [])),
         "lampHeight": LAMP_HEIGHT,
         "lightDirection": hand.get("lightDirection", [0.5, 0.3]),
-        "lightMap": {l: [maps[(l, s)][0] if (l, s) in maps else [] for s in range(stage_count(hand, l))] for l in lights},
-        "shadowMap": {l: [maps[(l, s)][1] if (l, s) in maps else [] for s in range(stage_count(hand, l))] for l in lights},
+        "lightMap": {l: [maps[(l, s)][0] if (l, s) in maps else [] for s in range(stage_count(hand, l))] for l in every},
+        "shadowMap": {l: [maps[(l, s)][1] if (l, s) in maps else [] for s in range(stage_count(hand, l))] for l in every},
         "textureBytes": texture_bytes(island, hand),
     }
     stations = stations_data(island)
@@ -1306,12 +1354,16 @@ def build_json(island: str, hand: dict, mattes: dict, maps: dict, harmony: dict 
         # plate over its backdrop (a legacy matte). A matted state draws the sky set behind the cropped plate.
         # (a stage the light does not paint, in a sparse light, has no matte: null)
         painted = painted_stages(hand)
-        data["plateCrop"] = {l: [plate_crop_points(island, hand, l, s) if s in painted[l] else None for s in range(stage_count(hand, l))] for l in lights}
+        data["plateCrop"] = {l: [plate_crop_points(island, hand, l, s) if s in painted[l] else None for s in range(stage_count(hand, l))] for l in every}
         # Per stage (the lights of a stage are one drawing, so one matte): the island's contact shadow, drawn by code
         # on the floor layer under the island.
         data["shadow"] = [shadow_params(load_matte_full(island, "day", s)) for s in range(data["stages"])]
     if is_sparse(hand):
-        data["painted"] = painted_stages(hand)
+        data["painted"] = {l: v for l, v in painted_stages(hand).items() if l in lights}
+    seasons = season_states(hand)
+    if seasons:
+        # The states each season paints (`seasons` in the player's data, season-system-v1 D4); `complete` is hand data.
+        data["seasons"] = seasons
     if hand.get("backdrop"):
         data["backdropStyle"] = hand["backdrop"]
     return data
@@ -1378,6 +1430,18 @@ def problems(data: dict, a: np.ndarray, assets: set[str], tolerance: float = 32.
                     continue
                 if obj["occluder"] and asset_name(island, "occ", light, stage, obj["id"]) not in assets:
                     out.append(f"missing asset {asset_name(island, 'occ', light, stage, obj['id'])}")
+    for season, entry in data.get("seasons", {}).items():
+        for light, stages in entry["states"].items():
+            for stage in stages:
+                key = f"{season}-{light}"
+                for kind in ("plate", "island", "mapisle"):
+                    if asset_name(island, kind, key, stage) not in assets:
+                        out.append(f"missing asset {asset_name(island, kind, key, stage)}")
+                for obj in data["objects"]:
+                    if "stages" in obj and stage not in obj["stages"]:
+                        continue
+                    if obj["occluder"] and asset_name(island, "occ", key, stage, obj["id"]) not in assets:
+                        out.append(f"missing asset {asset_name(island, 'occ', key, stage, obj['id'])}")
     return out
 
 
@@ -1398,7 +1462,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("command", choices=["matte", "deliver", "objects", "json", "check", "all"])
     ap.add_argument("island")
     ap.add_argument("--state", metavar="LIGHT:STAGE",
-                    help="matte only: write the matte of this state only (e.g. day:9)")
+                    help="matte, deliver and objects: this state only (e.g. day:9, or a season's: autumn-day:0)")
     ap.add_argument("--no-upscale", action="store_true",
                     help="ship the original take (only when the model is unavailable; loud on purpose)")
     args = ap.parse_args(argv)
@@ -1408,9 +1472,9 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "matte":
         cmd_matte(args.island, args.state)
     elif args.command == "deliver":
-        cmd_deliver(args.island)
+        cmd_deliver(args.island, args.state)
     elif args.command == "objects":
-        cmd_objects(args.island)
+        cmd_objects(args.island, args.state)
     elif args.command == "json":
         cmd_json(args.island)
     elif args.command == "check":

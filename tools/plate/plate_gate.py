@@ -133,10 +133,10 @@ def check_state(island: str, hand: dict, data: dict, light: str, stage: int, tak
         soft = [np.array([[bx0 - x0, by0 - y0], [bx1 - x0, by0 - y0], [bx1 - x0, by1 - y0], [bx0 - x0, by1 - y0]], np.float32)]
     # The destination is what the app draws behind the plate: the sky set for a matted state, else its backdrop.
     if box:
-        dest = placed_sky(island, light, crop.shape[:2], (x0, y0))
+        dest = placed_sky(island, ingest.base_light(light), crop.shape[:2], (x0, y0))   # one sky set for every season
     else:
         dest = placed_backdrop(island, light, stage, data, crop.shape[:2], (x0, y0))
-    return mc.check_matte(crop, source=src, soft=soft, dests={light: dest}, name=f"{light}-{stage}", out=out)
+    return mc.check_matte(crop, source=src, soft=soft, dests={ingest.base_light(light): dest}, name=f"{light}-{stage}", out=out)
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -162,7 +162,7 @@ def main(argv: list[str] | None = None) -> int:
                 r[k]["pass"] = True
                 r[k]["waived"] = True
         r["pass"] = all(r[k]["pass"] is not False for k in ("M1", "M2", "M3", "M4", "M5", "M6", "M11") if k in r)
-        if light == "night" and r["M3"]["pass"] is False and r["M3"]["value"] <= M3_NIGHT:
+        if ingest.base_light(light) == "night" and r["M3"]["pass"] is False and r["M3"]["value"] <= M3_NIGHT:
             r["M3"]["pass"] = True
             r["pass"] = all(r[k]["pass"] is not False for k in ("M1", "M2", "M3", "M4", "M5", "M6", "M11") if k in r)
         print(mc.one_line(r), flush=True)

@@ -573,6 +573,8 @@ def state_bytes(island: str, light: str, sky_pixels: int, stage: int = 0) -> int
     for folder in ASSETS.glob(f"world-{island}-*-{light}-{stage}.imageset"):
         if re.match(rf"world-{island}-(plate|backdrop|base|sky-)", folder.name):
             continue
+        if re.search(rf"-(autumn|winter)-{light}-{stage}\.imageset$", folder.name):
+            continue                    # `world-home-occ-x-autumn-day-0` is autumn's layer, not day's (its own state)
         if mapisle and folder.name.startswith(f"world-{island}-island-"):
             continue
         for f in folder.iterdir():

@@ -26,6 +26,10 @@ import XCTest
 ///   the station card by the tea stall (day 5), in both variants and its edge cases;
 /// - `path-d04-grow-0000`, `-1500`, `-2400`: "Ada büyüdü" by a build, at 0.0, 1.5 and 2.4 s of its moment
 ///   (the old painting whole and held, mid cross-fade with the bloom, the new painting with the "Ada n" card);
+/// - `path-season-autumn-i10-0900-mill-l2`, `-mill-l5`, `path-season-autumn-i10-2300`: Home in autumn at island level 10 (the
+///   Rehearsal season override: the season is not complete), by day over the windmill's level 2 and 5 looks and by night;
+///   `path-season-turn-0000`, `-0750`, `-1000`, `-1250`, `-1500`: spring turning to autumn (the painting's cross-fade, 0.8 s
+///   long, seen 0, 750, 1000, 1250 and 1500 ms after the season changes; the first 750 ms are still spring on the CI runner). The level 3 autumn state is not painted yet, so it has no frame;
 /// - `path-d03-grew-0900`: the overnight landing on the old painting, Pofu's news line and its button;
 ///   `path-d03-grew-live-1800`: the same morning, 1.8 s after the button, through the live timers;
 /// - `path-d04-build-focus`, `path-d04-build-burst`: a build's camera through the real `focusStation`
@@ -95,10 +99,11 @@ class PlayerPathFrameCase: XCTestCase {
     @MainActor
     func homeView(
         _ world: WorldSnapshot, hour: Double, island: IslandSceneModel, beads: [Bool] = [], settled: Bool = false,
-        beats: [VisitBeat]? = nil, model: WorldHomeModel? = nil, pofuStand: WorldPoint? = nil
+        beats: [VisitBeat]? = nil, model: WorldHomeModel? = nil, pofuStand: WorldPoint? = nil, season: Season? = nil
     ) -> some View {
         var look = WorldLook.playerPath(hour: hour)
         look.pofuStand = pofuStand
+        look.seasonOverride = season
         XCTAssertTrue(look.homePlates, "a path frame is never the sprite island")
         let now = world.clock ?? Date()
         let home = model ?? WorldHomeModel(now: { now }, schedulesCues: false, cheekLineHistory: cheekHistory(before: world))
@@ -470,6 +475,44 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
             let name = islandLevel == 10 ? "path-mill-l\(level)" : "path-mill-i\(islandLevel)-l\(level)"
             try await capture(AnyView(view), name: name, scene: scene, folder: folder, settle: 2100) {
                 XCTAssertNotNil(island.homePlate, "\(name): Home is its painting")
+            }
+        }
+    }
+
+    /// Home in autumn at island level 10 (season-system-v1 S3): by day over the windmill's levels 2 and 5, by night, and the
+    /// turn from spring (a season change is a cross-fade of two whole paintings, like a level's). The season is the Rehearsal
+    /// override, because autumn is not `complete`: the frames show what the stepper shows on the phone.
+    @MainActor
+    func testRenderTheAutumnSlice() async throws {
+        let scene = try windowScene()
+        let folder = try outputFolder()
+        let day = try XCTUnwrap(Self.path.first { $0.morning.islandLevel == 3 }, "the path has a level 3 island")
+        func world(windmill level: Int) -> WorldSnapshot {
+            var world = day.morning
+            world.islandLevel = 10
+            world.stations = world.stations.map { status in
+                var status = status
+                if status.id == .windmill { status.level = level }
+                return status
+            }
+            return world
+        }
+        for (name, level, hour) in [("path-season-autumn-i10-0900-mill-l2", 2, 9.0), ("path-season-autumn-i10-0900-mill-l5", 5, 9.0), ("path-season-autumn-i10-2300", 3, 23.0)] {
+            let island = IslandSceneModel(framing: .mid)
+            let view = homeView(world(windmill: level), hour: hour, island: island, settled: true, season: .autumn)
+            try await capture(AnyView(view), name: name, scene: scene, folder: folder, settle: 2100) {
+                XCTAssertEqual(island.homePlate?.season, .autumn, "\(name): the state is autumn's own painting")
+            }
+        }
+        for (name, ms) in [("0000", 0), ("0750", 750), ("1000", 1000), ("1250", 1250), ("1500", 1500)] {
+            let dial = PathSeasonDial()
+            let island = IslandSceneModel(framing: .mid)
+            let shown = world(windmill: 3)
+            let view = PathSeasonFrame(dial: dial) { season in
+                AnyView(self.homeView(shown, hour: 9, island: island, settled: true, season: season))
+            }
+            try await capture(AnyView(view), name: "path-season-turn-\(name)", scene: scene, folder: folder, settle: 2100, flip: PathFlip(waiting: ms) { dial.season = .autumn }) {
+                XCTAssertNotNil(island.homePlate, "path-season-turn-\(name): Home is its painting")
             }
         }
     }
@@ -894,6 +937,20 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
 
 /// Something that changes after a frame's first paint (a painting begins its cross-fade, the news button is
 /// taken) and the frame waits `milliseconds` for it before it is taken.
+/// The season a frame is drawn in, changed after the first paint (`PlayerPathFrameCase.testRenderTheAutumnSlice`: the turn).
+@MainActor
+final class PathSeasonDial: ObservableObject {
+    @Published var season: Season?
+}
+
+/// A view that reads its season from a `PathSeasonDial`, so a frame can start in spring and turn.
+struct PathSeasonFrame: View {
+    @ObservedObject var dial: PathSeasonDial
+    let content: (Season?) -> AnyView
+
+    var body: some View { content(dial.season) }
+}
+
 struct PathFlip {
     let milliseconds: Int
     let action: () -> Void

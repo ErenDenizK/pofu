@@ -124,7 +124,9 @@ def test_the_windmill_has_looks_2_to_5_over_bases_at_stages_1_and_2():
     data = sl.stations_data(sl.WINDMILL)["windmill"]
     assert data["levels"] == 5
     assert data["baseStages"] == [0, 1, 2]
-    assert data["lookLevels"] == {"day": [2, 3, 4, 5]}      # level 1 has no pick: it draws nothing, not a made-up look
+    # level 1 has no pick: it draws nothing, not a made-up look; autumn's windmill has the same four (painted over the spring shape)
+    assert data["lookLevels"] == {"day": [2, 3, 4, 5], "autumn-day": [2, 3, 4, 5]}
+    assert data["lights"] == {"day": [0, 1, 2], "autumn-day": [0]}
     ref = data["box"]
     rx, ry = sl.WINDMILL["foot"]
     for stage, place in data["stages"].items():
