@@ -76,11 +76,16 @@ struct PlateMathTests {
         #expect(abs(300 * s - 1.35 * 402) < 1e-9)
     }
 
-    @Test func budgetIsNineMegabytes() throws {
+    @Test func theBudgetComesFromItsConfig() {
+        #expect(TextureBudget.statePixels == 12_000_000)
+        #expect(TextureBudget.bytesPerPixel == 4)
+    }
+
+    @Test func budgetIsTheStateLimit() throws {
         var island = try PlateIsland.decode(Data(PlateIslandTests.example.utf8))
-        island.textureBytes = 9_000_000
+        island.textureBytes = TextureBudget.statePixels
         #expect(PlateMath.budgetOK(island))
-        island.textureBytes = 9_000_001
+        island.textureBytes = TextureBudget.statePixels + 1
         #expect(!PlateMath.budgetOK(island))
     }
 }
