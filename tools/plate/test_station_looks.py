@@ -223,7 +223,7 @@ def test_stations_that_share_a_stage_share_one_base_that_has_both_erased():
     import ingest
     import heic
     stage = 3
-    assert [sp["id"] for sp in sl.stage_specs(stage)] == ["teaStall", "pond"]
+    assert [sp["id"] for sp in sl.stage_specs(stage)] == ["teaStall", "pond", "workshop"]
     both, info, _ = sl.accumulate_base(stage)
     tea_only, _ = sl.build_base(stage, sl.TEA_STALL["bases"][stage])
     p = f"world-home-plate-day-{stage}"
@@ -235,17 +235,77 @@ def test_stations_that_share_a_stage_share_one_base_that_has_both_erased():
     pond_win = (slice(py0 - cy, py1 - cy), slice(px0 - cx, px1 - cx))
     tea_win = (slice(ty0 - cy, ty1 - cy), slice(tx0 - cx, tx1 - cx))
     # the tea stall's window is the tea-only base's, the pond's window is no longer the plate's
-    assert np.abs(both[tea_win] - tea_only[tea_win]).max() < 1e-6
+    assert np.abs(both[tea_win] - tea_only[tea_win]).max() < 0.01      # the workshop window stops short of it (its feather leaks under 3 levels)
     assert np.abs(both[pond_win] - plate[pond_win]).max() > 0.2
     assert np.abs(tea_only[pond_win] - plate[pond_win]).max() < 1e-6    # alone, the tea stall leaves the pond painted
     assert (both[..., 3] <= plate[..., 3] + 1e-6).all()                 # the alpha only shrinks
-    assert [r[0] for r in info["regions"]] == ["teaStall", "pond"]
+    assert [r[0] for r in info["regions"]] == ["teaStall", "pond", "workshop"]
 
 
 def test_a_shared_stage_counts_its_base_once_in_the_texture_budget():
     import ingest
     stations = ingest.stations_data("home")
     shared = {k: v["baseBytes"]["3"] for k, v in stations.items() if "3" in v.get("baseBytes", {})}
-    assert set(shared) == {"teaStall", "pond"}
+    assert set(shared) == {"teaStall", "pond", "workshop"}
     largest = [max(stations[k]["lookBytes"]) for k in shared]               # rule v1: each station's one drawn look, and once more the largest (the one reveal)
     assert ingest.station_bytes("home", "day", 3) == max(shared.values()) + sum(largest) + max(largest)
+
+
+def test_clearing_an_occluder_twice_changes_nothing_the_second_time():
+    rng = np.random.default_rng(3)
+    alpha = rng.random((40, 50)).astype(np.float32)
+    part = np.clip(rng.random((40, 50)).astype(np.float32) * 1.4 - 0.2, 0, 1)      # a soft region with a hard core
+    once = sl.clear_alpha(alpha, part)
+    twice = sl.clear_alpha(once, part)
+    assert np.array_equal(once, twice)
+    assert (once <= alpha).all() and (once <= 1 - part + 1e-6).all()           # it only ever clears
+    # a product (the old rule) would shrink a soft edge on every run
+    assert (alpha * (1 - part) * (1 - part) < once).any()
+
+
+def test_a_run_over_an_already_cleared_occluder_stays_inside_the_write_threshold():
+    """The alpha that comes back from an 8-bit encode is within `ALPHA_STABLE` levels of what clearing it again gives."""
+    rng = np.random.default_rng(4)
+    alpha = rng.random((30, 30)).astype(np.float32)
+    part = rng.random((30, 30)).astype(np.float32)
+    first = np.round(sl.clear_alpha(alpha, part) * 255) / 255                 # written and read back
+    again = sl.clear_alpha(first, part)
+    assert np.abs(again - first).max() * 255 <= sl.ALPHA_STABLE
+
+
+def test_the_layers_the_tool_rewrites_are_read_from_the_ref_not_the_working_tree(tmp_path):
+    """`bases` is a function of the ref and the takes: what an earlier run wrote into the working tree is not read back."""
+    import subprocess
+
+    from PIL import Image
+    repo = tmp_path / "r"
+    assets = repo / "assets"
+    folder = assets / "a-1.imageset"
+    folder.mkdir(parents=True)
+    git = lambda *a: subprocess.run(["git", "-C", str(repo), *a], check=True, capture_output=True)  # noqa: E731
+    git("init", "-q")
+    git("config", "user.email", "t@t")
+    git("config", "user.name", "t")
+    import heic
+    heic.save(Image.new("RGBA", (16, 16), (200, 20, 20, 255)), folder / f"a-1{heic.SUFFIX}")
+    git("add", ".")
+    git("commit", "-qm", "x")
+    heic.save(Image.new("RGBA", (16, 16), (0, 0, 0, 0)), folder / f"a-1{heic.SUFFIX}")      # an earlier run's output
+    with sl.open_source_asset("a-1", ref="HEAD", repo=repo, assets=assets) as im:
+        assert np.asarray(im.convert("RGBA"))[8, 8, 3] == 255
+    with sl.open_source_asset("a-1", ref="no-such-ref", repo=repo, assets=assets) as im:
+        assert np.asarray(im.convert("RGBA"))[8, 8, 3] == 0      # no such ref: the working tree
+
+
+def test_same_picture_ignores_an_encode_and_a_clear_pixels_colour_but_not_a_real_change():
+    rng = np.random.default_rng(5)
+    a = np.dstack([rng.random((60, 60, 3)) * 255, np.full((60, 60), 255.0)]).astype(np.float32)
+    a[:10, :, 3] = 0
+    noisy = a.copy()
+    noisy[..., :3] += rng.normal(0, 1.0, (60, 60, 3)).astype(np.float32)
+    noisy[:10, :, :3] = 99                                     # the colour under alpha 0 is whatever the encoder left
+    assert sl.same_picture(a, noisy)
+    moved = a.copy()
+    moved[20:40, 20:40, :3] = 0                                # a 5 percent patch
+    assert not sl.same_picture(a, moved)
+    assert not sl.same_picture(a, a[:50])

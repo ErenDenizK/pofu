@@ -689,7 +689,25 @@ public final class IslandSceneModel {
     /// home to Pofu.
     public func placeControlTapped() {
         let stop = PlaceStop(framing: projectedFraming)
-        go(to: stop.controlTarget.framing)
+        let target = stop.controlTarget.framing
+        if target == .mid { goHome() } else { go(to: target) }
+    }
+
+    /// To Pofu's island: a ride from another island, the Island stop itself from Home.
+    public func goHome() {
+        if island == .home { go(to: .mid) } else { rideTo(.home) }
+    }
+
+    /// A trip to another island from wherever the camera is (a tap on a far island, the place control's menu):
+    /// the same ride as the row's verb. From the row she waits moored and they hop aboard; from anywhere else
+    /// she comes in carrying them.
+    public func rideTo(_ target: IslandID) {
+        guard ride == nil,
+              let trip = VoyageRide.trip(from: island, to: target, atMap: projectedFraming == .map, focusOpen: focus != nil, reduceMotion: reduceMotion)
+        else { return }
+        voyage.open(on: island)
+        voyage.choose(target)
+        startRide(trip)
     }
 
     /// The verb of the voyage row: the ride to the island in view ("Yola çık"); Home is reached the same way.
@@ -698,7 +716,11 @@ public final class IslandSceneModel {
         guard ride == nil else { return }
         let target = voyage.island
         guard target != voyage.origin else { return }
-        let ride = VoyageRide(from: voyage.origin, to: target, reduceMotion: reduceMotion)
+        startRide(VoyageRide(from: voyage.origin, to: target, reduceMotion: reduceMotion))
+    }
+
+    private func startRide(_ ride: VoyageRide) {
+        if !ride.fromRow { closeSurfaces() }
         self.ride = ride
         rideStart = Date()
         rideHeld = nil
@@ -714,6 +736,11 @@ public final class IslandSceneModel {
         }
         revision &+= 1
     }
+
+    /// Whether the scene's focus UI (an island's plaque and bubble, a resident's card, a station's card, Home's
+    /// tags) stays hidden: for the whole ride, so nothing hangs under her or in the passengers' way. It
+    /// returns once the passengers are off and the ride is over.
+    public var hidesFocusUI: Bool { VoyageRide.hidesFocusUI(ride) }
 
     /// The seconds into the ride now, or `nil` when none is under way (a held ride stands at its moment).
     public func rideElapsed(at date: Date) -> Double? {
@@ -1190,9 +1217,9 @@ public final class IslandSceneModel {
             }
             pulse("island-\(id.rawValue)")
             if id == .home {
-                go(to: .mid)
+                goHome()
             } else {
-                fly(to: id)
+                rideTo(id)
             }
         }
     }

@@ -27,6 +27,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import sys
 from pathlib import Path
@@ -179,7 +180,68 @@ POND = {
                   "excludeOccluders": ("mailbox", "westBush"), "flowersOnly": ("westBush",), "interior": True, "lighter": False, "brightRing": True} for s in (0, 1, 2, 3)},
     "place": {s: {"foot": (216.0, 737.0), "scale": 1.0} for s in (0, 1, 2, 3)},
 }
-STATIONS = [TEA_STALL, WINDMILL, POND]
+# The garden (batch 189) and the workshop (batch 191): plot ladders painted like the pond's, into a crop of batch 117's erased
+# level 10 base (garden plate pts 0,594 to 320,914; workshop 381,516 to 712,847, resized to the take's 1254 px, so a take px is
+# 320 / 1254 and 331 / 1254 plate points). The takes regrade the whole picture, the lawn and the sky included, and the
+# stations are as green as the lawn (leaves, vines), so neither a lawn test nor a plain difference cuts them: `regrade` fits one
+# affine map in CIELAB from the bare crop to each take (robustly, the lawn and sky being most of the picture), takes the
+# pixels that still differ (`diff`), and gives the look its colours back through the inverse map, so the look is in the plate's
+# own colours (no yellow lawn tint at the edge). Picks: t1 of every level, the take each next level edits (the one unbroken ladder).
+PLOT_GARDEN = "batch-189-plot-ladder-garden/x-plot-garden-{}"
+GARDEN = {
+    "id": "garden",
+    "light": "day",
+    "levels": 5,
+    "plot": {
+        "kind": "regrade",
+        "bare": (JOB.format(10), (0, 594, 320, 914)),
+        "takes": {n: (PLOT_GARDEN.format(n), 1) for n in range(1, 6)},
+        "diff": 16,
+        "close": {1: 41, 2: 41, 3: 41, 4: 61, 5: 81},
+        "smooth": 6,
+        "sky": True,
+        "grade": {n: (1.0, 1.0) for n in range(1, 6)},
+    },
+    "scale": 0.5104,             # of a take px, at TEX px per point (0.2552 points per px)
+    "density": 2.0,
+    "anchor": (529.0, 988.0),    # the bed's bottom centre in the take (level 3's), where the garden's foot stands
+    "foot": (135.0, 846.0),
+    "footStage": 0,
+    # Stage 3 (island level 7) is not wired: its plate paints the level 4 arch up into the hill's mist and the erase take paints cloud
+    # there, so the base shows a pale ghost over the hill. Stages 0 to 2 are clean.
+    # The old garden: the big sunflower, the bed, its flowers and the fence, left of the gate (plate x 20 to 235, y 660 to 846);
+    # the pond's ring starts below the fence (y 846), where the pond's window takes over.
+    "bases": {s: {"job": JOB.format(10 - s), "window": (40, 1320, 470, 1692), "shapes": [("e", 250, 1535, 235, 190)], "exclude": [(40, 1400, 110, 1530)], "interior": True, "lighter": False, "brightRing": True} for s in (0, 1, 2)},
+    "place": {s: {"foot": (135.0, 846.0), "scale": 1.0} for s in (0, 1, 2)},
+}
+PLOT_WORKSHOP = "batch-191-plot-ladder-workshop/x-plot-workshop-{}"
+WORKSHOP = {
+    "id": "workshop",
+    "light": "day",
+    "levels": 5,
+    "plot": {
+        "kind": "regrade",
+        "bare": (JOB.format(10), (381, 516, 712, 847)),
+        "takes": {n: (PLOT_WORKSHOP.format(n), 1) for n in range(1, 6)},
+        "diff": 16,
+        "notLawn": True,
+        "close": 61,
+        "flatBottom": 40,
+        "grade": {n: (1.0, 1.0) for n in range(1, 6)},
+    },
+    "scale": 0.5279,             # 0.2640 points per take px
+    "density": 2.0,
+    "anchor": (668.0, 985.0),
+    "foot": (557.3, 776.0),
+    "footStage": 0,
+    "bases": {s: {"job": JOB.format(10 - s), "window": (860, 1150, 1300 if s < 3 else 1226, 1580), "excludeOccluders": ("teaStall",), "excludeGrow": 2, "exclude": [(1070, 1526, 1200, 1620), (860, 1470, 965, 1545)],   # stage 3: the window stops at 1226, the tea stall's own window (from 1252) erases the rest
+                  "interior": False, "lighter": False} for s in (0, 1, 2, 3)},
+    "place": {s: {"foot": (557.3, 776.0), "scale": 1.0} for s in (0, 1, 2, 3)},
+}
+# The garden is cut and based (above) but not shipped: its levels 3 to 5 stand where the pond's level 3 to 5 islet does (plate
+# [64,746,211,853] against [99,743,230,846]), and levels 1 and 2 collide with a pond at level 5, so it waits for a re-take whose crop
+# keeps the islet. Its spot keeps the plate's own painted bed.
+STATIONS = [TEA_STALL, WINDMILL, POND, WORKSHOP]
 
 
 # ---------------------------------------------------------------- looks
@@ -354,6 +416,89 @@ def water_masks(plot: dict) -> tuple[dict, dict, dict]:
     return out, rgbs, dict(out)
 
 
+def regrade_fit(ref_lab: np.ndarray, take_lab: np.ndarray) -> np.ndarray:
+    """The affine map (4 x 3, rows: L a b 1) from the bare crop's CIELAB to the take's, fitted robustly: the 70 percent of pixels
+    that agree best, six times over (the station is a small part of the picture)."""
+    a = np.c_[ref_lab.reshape(-1, 3), np.ones(ref_lab.shape[0] * ref_lab.shape[1])]
+    t = take_lab.reshape(-1, 3)
+    keep = np.ones(len(t), bool)
+    m = np.zeros((4, 3))
+    for _ in range(6):
+        idx = np.nonzero(keep)[0][::7]
+        m = np.linalg.lstsq(a[idx], t[idx], rcond=None)[0]
+        d = np.abs(t - a @ m).max(1)
+        keep = d < np.percentile(d, 70)
+    return m
+
+
+def regrade_masks(plot: dict) -> tuple[dict, dict, dict]:
+    """The plot ladder's masks (the garden, the workshop): where a take still differs from the bare crop after the affine
+    regrade of its lawn and sky (`regrade_fit`), opened, holes filled, the biggest piece, closed. `notLawn` also drops the lawn
+    tuft at the foot. The returned colours are the take's mapped back through the inverse regrade, so they are the plate's own."""
+    job, (x0, y0, x1, y1) = plot["bare"]
+    n = pick_of(job)
+    path = sorted((TAKES / job).glob(f"*--t{n}.webp"))[0]
+    ref = np.asarray(Image.open(path).convert("RGB").crop((x0, y0, x1, y1)).resize((1254, 1254), Image.LANCZOS), np.float32) / 255
+    ref_lab = _lab_soft(ref)
+    masks, rgbs = {}, {}
+    for n, take in plot["takes"].items():
+        rgb = _take_rgb(take)
+        lab = _lab_soft(rgb)
+        m = regrade_fit(ref_lab, lab)
+        d = np.abs(lab - (np.c_[ref_lab.reshape(-1, 3), np.ones(ref_lab.shape[0] * ref_lab.shape[1])] @ m).reshape(lab.shape)).max(-1)
+        mask = (d > plot["diff"]).astype(np.uint8)
+        if plot.get("notLawn"):
+            mask &= (~_lawn(rgb)).astype(np.uint8)
+        mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, np.ones((5, 5), np.uint8)) > 0
+        mask = _biggest(ndimage.binary_fill_holes(mask))
+        mask = cv2.morphologyEx(mask.astype(np.uint8), cv2.MORPH_CLOSE, _ellipse(plot["close"].get(n, 41) if isinstance(plot.get("close"), dict) else plot.get("close", 25))) > 0
+        mask = _biggest(ndimage.binary_fill_holes(mask))
+        if plot.get("smooth"):                                            # a smooth rim, no bites, no grey fragments between the leaves
+            mask = cv2.GaussianBlur(mask.astype(np.float32), (0, 0), plot["smooth"]) > 0.5
+            mask = _biggest(ndimage.binary_fill_holes(cv2.morphologyEx(mask.astype(np.uint8), cv2.MORPH_OPEN, _ellipse(13)) > 0))
+        if plot.get("sky"):                                               # the take's sky seen through the arch or between the leaves is not the station
+            mask = _biggest(ndimage.binary_fill_holes(cv2.morphologyEx((mask & (sky_alpha(rgb) >= 0.5)).astype(np.uint8), cv2.MORPH_OPEN, _ellipse(7)) > 0))
+        if plot.get("notLawn"):                                           # the sky seen between the gear, the chimney and the roof is not the house
+            mask = _biggest(cv2.morphologyEx((mask & (sky_alpha(rgb) >= 0.5)).astype(np.uint8), cv2.MORPH_OPEN, _ellipse(7)) > 0)
+        fb = plot.get("flatBottom")
+        if fb:                                                            # the doorstep's pale stones match the bare crop's: close the bites in the bottom edge
+            h, w = mask.shape
+            has = mask.sum(0) > 120
+            top = np.where(has, np.argmax(mask, 0), h)
+            bottom = np.where(has, h - 1 - np.argmax(mask[::-1], 0), -1).astype(np.float32)
+            bottom = ndimage.maximum_filter1d(bottom, 2 * fb + 1)
+            yy = np.arange(h)[:, None]
+            fill = (yy >= np.maximum(top[None, :], bottom[None, :] - 70)) & (yy <= bottom[None, :]) & (bottom[None, :] >= 0) & has[None, :]
+            mask |= fill & (sky_alpha(rgb) >= 0.5) & ~_lawn(rgb)           # only the step's own pixels, never sky or grass
+            mask = _biggest(cv2.morphologyEx(mask.astype(np.uint8), cv2.MORPH_OPEN, _ellipse(11)) > 0)
+        masks[n] = mask
+        full = srgb_lab(rgb)                                              # the take in the plate's own colours: the inverse map
+        inv = np.linalg.pinv(m[:3])
+        back = (full - m[3]) @ inv
+        rgbs[n] = lab_srgb(back)
+    # Every take has its own regrade, so the same roof comes back a little redder or yellower from take to take. The levels
+    # share what the previous level already had: each one's mean colour over the part it shares with the lowest level (eroded)
+    # is moved to that level's own, in L* and in chroma, so a level up never recolours the station.
+    low = min(masks)
+    ref_lab = srgb_lab(rgbs[low])
+    for n in sorted(masks):
+        if n == low:
+            continue
+        both = cv2.erode((masks[n] & masks[low]).astype(np.uint8), _ellipse(31)) > 0
+        if both.sum() < 2000:
+            continue
+        lab = srgb_lab(rgbs[n])
+        mt, mr = lab[both].mean(0), ref_lab[both].mean(0)
+        lab[..., 0] += mr[0] - mt[0]
+        ratio = np.hypot(mr[1], mr[2]) / max(np.hypot(mt[1], mt[2]), 1e-3)
+        c = lab[..., 1:] * ratio
+        ang = np.arctan2(mr[2], mr[1]) - np.arctan2(mt[2], mt[1])           # and the hue
+        lab[..., 1] = c[..., 0] * np.cos(ang) - c[..., 1] * np.sin(ang)
+        lab[..., 2] = c[..., 0] * np.sin(ang) + c[..., 1] * np.cos(ang)
+        rgbs[n] = lab_srgb(lab)
+    return masks, rgbs, dict(masks)
+
+
 def plot_masks(plot: dict) -> tuple[dict, dict, dict]:
     """({level: bool mask of the mill in the take}, {level: the take's rgb}, {level: the mask's pixels whose colour is the
     mill's own: no wing roof}): where the take differs from level 1's (the empty
@@ -361,6 +506,8 @@ def plot_masks(plot: dict) -> tuple[dict, dict, dict]:
     the bakery wing (right of the tower's wall, its roof where it meets the sail's tip) and the paved yard."""
     if plot.get("kind") == "water":
         return water_masks(plot)
+    if plot.get("kind") == "regrade":
+        return regrade_masks(plot)
     ref = _take_rgb(plot["ref"])
     ref_lab = _lab_soft(ref)
     rgbs = {n: _take_rgb(t) for n, t in plot["takes"].items()}
@@ -610,12 +757,12 @@ def build_base(stage: int, spec: dict, plate: np.ndarray | None = None) -> tuple
         hard_full[ey0:ey1, ex0:ex1] = 0
     for oid in spec.get("excludeOccluders", ()):         # an occluder's opaque pixels stay the plate's (the mailbox)
         x0, y0, x1, y1, alpha = occluder_pixels(stage, oid)
-        solid = alpha > 0.4
+        solid = alpha > (0.02 if spec.get("excludeGrow") else 0.4)
         if oid in spec.get("flowersOnly", ()):           # the plate's flowers stay; the old pond's stones and water under the polygon still go
             name = ingest.asset_name(ISLAND, "occ", "day", stage, oid)
-            with heic.open_image(ASSETS / f"{name}.imageset" / f"{name}{heic.SUFFIX}") as im:
+            with open_source_asset(name) as im:
                 solid &= ~old_pond_pixels(np.asarray(im.convert("RGB"), np.float32)[: solid.shape[0], : solid.shape[1]] / 255)
-        hard_full[y0:y1, x0:x1][cv2.dilate(solid.astype(np.uint8), _ellipse(7)) > 0] = 0
+        hard_full[y0:y1, x0:x1][cv2.dilate(solid.astype(np.uint8), _ellipse(7 + spec.get("excludeGrow", 0))) > 0] = 0
     sl = (slice(cy, cy + h), slice(cx, cx + w))
     hard = hard_full[sl]
     p_rgb, p_a = plate[..., :3], plate[..., 3]
@@ -635,6 +782,8 @@ def build_base(stage: int, spec: dict, plate: np.ndarray | None = None) -> tuple
     grass = ((pr[..., 1] > pr[..., 0] + 0.03) & (pr[..., 1] > pr[..., 2] + 0.10)).astype(np.float32)
     grass = cv2.GaussianBlur(cv2.erode(grass, np.ones((3, 3), np.uint8)), (0, 0), 1.5)
     m_shrink = m_alpha * (1 - grass)
+    if spec.get("shrinkAbove"):                           # below the hill line the take's blue flowers are not sky: the alpha stays
+        m_shrink[max(spec["shrinkAbove"] - cy, 0):] = 0
     new_a = p_a * (1 - m_shrink) + np.minimum(p_a, t_a) * m_shrink
     if spec.get("interior"):                           # inside the island: the take's flowers are not sky, the alpha stays
         new_a = p_a
@@ -651,6 +800,44 @@ def build_base(stage: int, spec: dict, plate: np.ndarray | None = None) -> tuple
 
 SIZE_TEX = (2048, 3072)
 
+SOURCE_REF = os.environ.get("STATION_LOOKS_FROM", "origin/main")
+
+
+def open_source_asset(name: str, ref: str | None = None, repo: Path | None = None, assets: Path | None = None):
+    """The asset `name` as it is on `ref` (default `origin/main`, or $STATION_LOOKS_FROM), not as the working tree has it. The
+    tool rewrites the island cut, the Map cut and the occluders in place; a run that read its own earlier output would clear
+    twice and draw its base from occluders it had already cut, so every run would drift (three runs gave three different
+    bases). Reading the layers it modifies from the ref makes `bases` a function of the ref and the takes: run it as often
+    as you like. Falls back to the working tree for an asset the ref does not have (a new one). Returns an open image."""
+    import tempfile
+    data = source_bytes(name, ref, repo, assets)
+    if data is None:
+        return heic.open_image((assets or ASSETS) / f"{name}.imageset" / f"{name}{heic.SUFFIX}")
+    tmp = tempfile.NamedTemporaryFile(suffix=heic.SUFFIX, delete=False)
+    tmp.write(data)
+    tmp.close()
+    im = heic.open_image(Path(tmp.name))
+    im.load()
+    os.unlink(tmp.name)
+    return im
+
+
+def source_bytes(name: str, ref: str | None = None, repo: Path | None = None, assets: Path | None = None) -> bytes | None:
+    """The HEIC bytes of asset `name` on the ref, None where the ref does not have it."""
+    import subprocess
+    repo = repo or ingest.REPO
+    path = (assets or ASSETS) / f"{name}.imageset" / f"{name}{heic.SUFFIX}"
+    got = subprocess.run(["git", "-C", str(repo), "show", f"{ref or SOURCE_REF}:{path.relative_to(repo).as_posix()}"], capture_output=True)
+    return got.stdout if got.returncode == 0 else None
+
+
+def keep_source(name: str) -> None:
+    """A layer this run leaves alone goes back to the ref's bytes (an earlier run may have rewritten it)."""
+    data = source_bytes(name)
+    if data is not None:
+        (ASSETS / f"{name}.imageset" / f"{name}{heic.SUFFIX}").write_bytes(data)
+
+
 
 def occluder_pixels(stage: int, oid: str) -> tuple[int, int, int, int, np.ndarray]:
     """An occluder's box in the plate's texture px and its alpha."""
@@ -661,12 +848,22 @@ def occluder_pixels(stage: int, oid: str) -> tuple[int, int, int, int, np.ndarra
     _, box = ingest.occluder_cut(np.zeros(a1.shape + (3,)), a1, ingest.pct_to_px(obj["points"]))
     x0, y0, x1, y1 = (v * k for v in box)
     name = ingest.asset_name(ISLAND, "occ", "day", stage, oid)
-    with heic.open_image(ASSETS / f"{name}.imageset" / f"{name}{heic.SUFFIX}") as im:
+    with open_source_asset(name) as im:
         alpha = np.asarray(im.convert("RGBA"), np.float32)[..., 3] / 255
     return x0, y0, x0 + alpha.shape[1], y0 + alpha.shape[0], alpha
 
 
-def clear_occluders(stage: int, hard_full: np.ndarray, station: str = TEA_STALL["id"], keep: tuple = ()) -> None:
+ALPHA_STABLE = 3                  # an occluder whose alpha moves by no more than this many 8-bit levels, in no more than
+ALPHA_NOISE = 0.003               # this share of its pixels (a decoded HEIC flips a few stone tests), is left as it is
+
+
+def clear_alpha(alpha: np.ndarray, part: np.ndarray) -> np.ndarray:
+    """An occluder's alpha with `part` (0 to 1) taken out of it: the smaller of what it is and what `part` leaves, so
+    clearing the same region twice (or on top of an earlier run's result) changes nothing the second time."""
+    return np.minimum(alpha, 1 - part).astype(np.float32)
+
+
+def clear_occluders(stage: int, hard_full: np.ndarray, station: str = TEA_STALL["id"], keep: tuple = (), skip: tuple = ()) -> None:
     """Another object's occluder cut-out that reaches into the erased stall (the workshop's polygon runs on to the stall's
     left pole) would draw the old stall again over the base: its alpha is cleared inside the erased region."""
     hand = ingest.load_hand(ISLAND)
@@ -674,7 +871,7 @@ def clear_occluders(stage: int, hard_full: np.ndarray, station: str = TEA_STALL[
     a1 = ingest.load_matte(ISLAND, "day", stage)
     region = cv2.GaussianBlur(cv2.dilate(hard_full, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (13, 13))).astype(np.float32), (0, 0), 2.0)
     for obj in hand["objects"]:
-        if not obj.get("occluder") or not ingest.present(obj, "day", stage) or obj["id"] == station:
+        if not obj.get("occluder") or not ingest.present(obj, "day", stage) or obj["id"] == station or obj["id"] in skip:
             continue
         _, box = ingest.occluder_cut(np.zeros(a1.shape + (3,)), a1, ingest.pct_to_px(obj["points"]))
         x0, y0, x1, y1 = (v * k for v in box)
@@ -685,7 +882,7 @@ def clear_occluders(stage: int, hard_full: np.ndarray, station: str = TEA_STALL[
         if part.max() <= 0.01:
             continue
         name = ingest.asset_name(ISLAND, "occ", "day", stage, obj["id"])
-        with heic.open_image(ASSETS / f"{name}.imageset" / f"{name}{heic.SUFFIX}") as im:
+        with open_source_asset(name) as im:
             old = np.asarray(im.convert("RGBA"), np.float32) / 255
         part = part[: old.shape[0], : old.shape[1]]
         if obj["id"] in keep:
@@ -694,8 +891,13 @@ def clear_occluders(stage: int, hard_full: np.ndarray, station: str = TEA_STALL[
             water = stone
             wide = cv2.GaussianBlur(cv2.dilate(hard_full, _ellipse(61)).astype(np.float32), (0, 0), 2.0)[y0:y1, x0:x1][: old.shape[0], : old.shape[1]]
             part = np.maximum(part * stone, wide * water).astype(np.float32)   # water also beside the mailbox, whose own pixels the region skips
-        old[..., 3] *= 1 - part
-        ingest.write_imageset(name, to_img(old))
+        new = old.copy()
+        new[..., 3] = clear_alpha(old[..., 3], part)
+        if (np.abs(new[..., 3] - old[..., 3]) * 255 > ALPHA_STABLE).mean() <= ALPHA_NOISE:     # already cleared: no second lossy encode
+            keep_source(name)
+            print(f"  occluder {obj['id']} {stage}: already clear")
+            continue
+        ingest.write_imageset(name, to_img(new))
         print(f"  occluder {obj['id']} {stage}: cleared {int((part > 0.5).sum())} px of the erased stall")
 
 
@@ -720,6 +922,32 @@ def accumulate_base(stage: int, specs: list[dict] | None = None) -> tuple[np.nda
     return x, info, union
 
 
+def same_picture(old: np.ndarray, new: np.ndarray) -> bool:
+    """Whether `new` is `old` up to a HEIC encode: same size, premultiplied, the mean difference under 1.6 of 256 levels and
+    at most 0.1 percent of the pixels off by more than 12."""
+    if old.shape != new.shape:
+        return False
+    po, pn = old[..., :3] * old[..., 3:] / 255, new[..., :3] * new[..., 3:] / 255
+    d = np.maximum(np.abs(po - pn).max(-1), np.abs(old[..., 3] - new[..., 3]))
+    return bool(d.mean() < 1.6 and (d > 12).mean() <= 0.001)
+
+
+def write_or_keep(name: str, img: Image.Image) -> bool:
+    """Write the layer unless the ref's already is this picture (up to an encode): then the ref's bytes stay, so a run that
+    changes nothing for a stage leaves its files alone (no noise in the diff, no new frame to check). Returns whether it wrote."""
+    data = source_bytes(name)
+    if data is not None:
+        import tempfile
+        with tempfile.TemporaryDirectory() as tmp:                     # the new picture as it would ship: same encode as the ref's
+            heic.save(img, Path(tmp) / f"x{heic.SUFFIX}")
+            with heic.open_image(Path(tmp) / f"x{heic.SUFFIX}") as shipped, open_source_asset(name) as old:
+                if same_picture(np.asarray(old.convert("RGBA"), np.float32), np.asarray(shipped.convert("RGBA"), np.float32)):
+                    keep_source(name)
+                    return False
+    ingest.write_imageset(name, img)
+    return True
+
+
 def cmd_bases(station: dict | None = None) -> dict:
     """Every base of the stages `station` stands on (all stations when None), each with all the stations that share it."""
     chosen = [station] if station else STATIONS
@@ -727,7 +955,7 @@ def cmd_bases(station: dict | None = None) -> dict:
     out = {}
     for stage in stages:
         x, info, _ = accumulate_base(stage)
-        ingest.write_imageset(base_name("day", stage), to_img(x))
+        write_or_keep(base_name("day", stage), to_img(x))
         # The Map's island cut (and the graded island layer) is the same picture: it must not paint the stall either.
         crop = info["crop"]
         full = np.zeros((SIZE_TEX[1], SIZE_TEX[0], 4), np.float32)
@@ -736,17 +964,19 @@ def cmd_bases(station: dict | None = None) -> dict:
         ix0, iy0, ix1, iy1 = ingest.bbox(ingest.load_matte(ISLAND, "day", stage), 0.02)
         for kind in ("island", "mapisle"):
             name = ingest.asset_name(ISLAND, kind, "day", stage)
-            with heic.open_image(ASSETS / f"{name}.imageset" / f"{name}{heic.SUFFIX}") as im:
+            with open_source_asset(name) as im:
                 old = np.asarray(im.convert("RGBA"), np.float32) / 255
             cut = resize_rgba(full[iy0 * TEX:iy1 * TEX, ix0 * TEX:ix1 * TEX], 1.0)
             cut = cv2.resize(np.dstack([cut[..., :3] * cut[..., 3:], cut[..., 3:]]), (old.shape[1], old.shape[0]), interpolation=cv2.INTER_AREA)
             a = cut[..., 3:]
             rgb = np.where(a > 1e-4, cut[..., :3] / np.maximum(a, 1e-4), old[..., :3])
             alpha = np.minimum(old[..., 3:], a) if kind == "mapisle" else a
-            ingest.write_imageset(name, to_img(np.dstack([rgb, alpha])))
+            write_or_keep(name, to_img(np.dstack([rgb, alpha])))
         for station_id, region in info["regions"]:                  # each station's own erased region, its own occluder kept
-            keep = next(sp for sp in STATIONS if sp["id"] == station_id).get("keepOccluders", ())
-            clear_occluders(stage, region, station_id, keep)
+            sp = next(sp for sp in STATIONS if sp["id"] == station_id)
+            keep = sp.get("keepOccluders", ())
+            skip = tuple(o for o in sp["bases"][stage].get("excludeOccluders", ()) if o not in keep)    # an occluder whose pixels the base keeps
+            clear_occluders(stage, region, station_id, keep, skip)
         out[stage] = x.shape[:2]
         print(f"base day {stage}: {x.shape[1]} x {x.shape[0]} px ({', '.join(sp['id'] for sp in stage_specs(stage))})")
     return out

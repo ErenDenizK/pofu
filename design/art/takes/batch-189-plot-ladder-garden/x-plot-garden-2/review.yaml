@@ -1,0 +1,254 @@
+batch: batch-189-plot-ladder-garden
+manifest: tools/imagegen/manifest/batch-189-plot-ladder-garden.yaml
+manifest_sha256: b711bddf91158119e80bb970b5e7b39b69cdc4654c19ca6a5e8eb9c7b3c9684d
+job: x-plot-garden-2
+contact_sheet: design/art/takes/batch-189-plot-ladder-garden/x-plot-garden-2/contact.jpg
+source: codex-cloud
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+status: picked
+selection:
+  method: 'QA auto-pick: passing QA first, then lowest lock_load, then highest harmony; both takes retained
+    for lead review'
+  pick: 1
+  note: 'The stone border, added back-right sunflower, and small watering can are present; the existing
+    garden plot and stair scene remain recognizable, though details were re-rendered and the lawn/garden
+    colors are more vivid than the reference. QA has canvas-scaling, chroma, light-value and palette warnings,
+    with no hard failure. Provisional parent: x-plot-garden-1 t1 (QA auto-pick; lead review pending).'
+provisional_parent: x-plot-garden-1 t1 (auto-pick, lead review pending)
+takes:
+- take: 1
+  file: plate__x-plot-garden-2--t1.webp
+  source_file: /tmp/x-plot-garden-2-t1.png
+  source_sha256: 3b06ae78e90d434bece6553e60f2d7c108eb6cc3dd7bd84ba41afba0739cb9ff
+  source_dimensions:
+  - 1254
+  - 1254
+  output_dimensions:
+  - 1254
+  - 1254
+  backend: codex-cloud
+  generated_at: '2026-11-27T00:52:34+00:00'
+  qa: warn
+  lock_load: 0.0
+  harmony: null
+  warnings:
+  - check: canvas
+    message: 1254x1254 scaled x1.225 and center-cropped to 1536x1536
+  - check: chroma_ceiling
+    message: chroma p95 80 (R1 51) (advisory in an exploration)
+  - check: light_values
+    message: 'day/subject: L p5 47 (at least 50: darks stay a light mid-tone), p98 92 (at least 90)'
+  - check: palette_drift
+    message: 'mean dE 13.9, p95 28.9, off-palette 49.3% (top: #DDDD33 (9.5%), #DDDD44 (5.5%)) (advisory
+      in an exploration)'
+  prompt: 'REFERENCES (attached, in this order):
+
+    1. The image to edit (the approved previous level). Edit it; do not redraw it.
+
+
+    Edit the attached picture of the sunflower garden on its plot of lawn. Make this change only: add
+    a border of
+
+    small pale rounded stones round the bed, one more sunflower at the back right as tall as the big one,
+    and a
+
+    little tin watering can at the edge of the bed. The new parts are painted in exactly the same style,
+    light and
+
+    colours as the rest and sit naturally on it. The lawn, the rim, the sky and every part that is already
+    there
+
+    stay exactly where they are, at the same size, with the same shapes and colours, and the bed''s front
+    edge
+
+    stays where it is.
+
+
+    KEEP: everything not named above stays exactly the same as in the
+
+    attached image: every existing part, its shape, color, position and size,
+
+    the canvas, the camera, the light and the painting style. Do not zoom out
+
+    or reframe: if a new part does not fit, make the new part smaller, never
+
+    the existing ones. Outside the new parts, the result must line up with
+
+    the attached image pixel for pixel.
+
+
+    STYLE: a finished painted illustration for a premium cozy mobile game, like
+
+    a page from a beloved picture book: soft painterly 2D with gentle airbrushed
+
+    shading, rounded chunky forms, no outlines, no hard edges, matte surfaces
+
+    with at most one soft highlight per object. COLOUR: vivid, saturated and
+
+    jewel-like, as in the key art of a high-end animated film: intense grass
+
+    greens, glowing sunflower yellow, deep sky blue, warm peach earth, crisp
+
+    white petals; strong contrast between warm lit colour and cool shadow
+
+    colour; every material keeps its own true colour. VALUES: a full range, from
+
+    bright sunlit tops to deep warm shadows under eaves, inside foliage, beneath
+
+    the lawn rim and around doors, so every object separates clearly from what
+
+    is behind it and the picture reads at a glance on a small phone screen.
+
+    Shadows are coloured (warm brown, plum, deep teal), never black or grey.
+
+    Light direction and shadow hue follow the LIGHT block of this prompt.
+
+    Colourful but never neon, never HDR, never glossy. No text, no letters, no
+
+    numbers, no logos, no watermark, no border, no frame.
+
+
+    AVOID: a change to anything the prompt does not name, a moved, resized or redrawn part, a removed
+    part that was not named, a reframed, zoomed or recoloured picture, a new object, bush, flower, stone
+    or decoration the prompt does not name, a ground patch, a colour step or edge in the grass, brighter
+    or more saturated colours, a change of light, text, letters
+
+
+    LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+    Key light #FFF6EC from the upper left; fill #BFD6EE; rim #FFE9C9 along the edge facing away from the
+    key. Shadows are tinted #A99BC4 (never grey or black), short and soft, falling toward the lower right;
+    every object sits on a soft occlusion pad in that hue where it touches the ground or another form.
+
+    VALUES (the reference envelope): a high-key picture inside one envelope of soft, milky air. Every
+    value sits between light mid-tone and cream-white; the darkest recesses (door holes, gaps, pond rims)
+    are a mid-value tinted with the shadow hue, never black. Form turns in small value steps. Colour lives
+    in the halftones; lights bleach to cream. No dark outlines: edges are found by value and hue. The
+    cloud sea below is the brightest large surface and lights the island''s underside with a warm bounce.
+
+    This is the SUBJECT plane: the clearest forms and the crispest edges in the picture, still inside
+    the envelope.
+
+
+    Output: one image, opaque, full bleed, square 1536 x 1536.
+
+    '
+- take: 2
+  file: plate__x-plot-garden-2--t2.webp
+  source_file: /tmp/x-plot-garden-2-t2.png
+  source_sha256: f1eaf8c15ac50cd8da5b26c84e165acafb3a9a03133a701289a52265a01d72dc
+  source_dimensions:
+  - 1254
+  - 1254
+  output_dimensions:
+  - 1254
+  - 1254
+  backend: codex-cloud
+  generated_at: '2026-11-27T00:52:35+00:00'
+  qa: warn
+  lock_load: 0.0
+  harmony: null
+  warnings:
+  - check: canvas
+    message: 1254x1254 scaled x1.225 and center-cropped to 1536x1536
+  - check: chroma_ceiling
+    message: chroma p95 82 (R1 51) (advisory in an exploration)
+  - check: light_values
+    message: 'day/subject: L p5 47 (at least 50: darks stay a light mid-tone), p98 92 (at least 90)'
+  - check: palette_drift
+    message: 'mean dE 15.6, p95 31.5, off-palette 52.1% (top: #DDDD33 (13.0%), #CCDD33 (6.6%)) (advisory
+      in an exploration)'
+  prompt: 'REFERENCES (attached, in this order):
+
+    1. The image to edit (the approved previous level). Edit it; do not redraw it.
+
+
+    Edit the attached picture of the sunflower garden on its plot of lawn. Make this change only: add
+    a border of
+
+    small pale rounded stones round the bed, one more sunflower at the back right as tall as the big one,
+    and a
+
+    little tin watering can at the edge of the bed. The new parts are painted in exactly the same style,
+    light and
+
+    colours as the rest and sit naturally on it. The lawn, the rim, the sky and every part that is already
+    there
+
+    stay exactly where they are, at the same size, with the same shapes and colours, and the bed''s front
+    edge
+
+    stays where it is.
+
+
+    KEEP: everything not named above stays exactly the same as in the
+
+    attached image: every existing part, its shape, color, position and size,
+
+    the canvas, the camera, the light and the painting style. Do not zoom out
+
+    or reframe: if a new part does not fit, make the new part smaller, never
+
+    the existing ones. Outside the new parts, the result must line up with
+
+    the attached image pixel for pixel.
+
+
+    STYLE: a finished painted illustration for a premium cozy mobile game, like
+
+    a page from a beloved picture book: soft painterly 2D with gentle airbrushed
+
+    shading, rounded chunky forms, no outlines, no hard edges, matte surfaces
+
+    with at most one soft highlight per object. COLOUR: vivid, saturated and
+
+    jewel-like, as in the key art of a high-end animated film: intense grass
+
+    greens, glowing sunflower yellow, deep sky blue, warm peach earth, crisp
+
+    white petals; strong contrast between warm lit colour and cool shadow
+
+    colour; every material keeps its own true colour. VALUES: a full range, from
+
+    bright sunlit tops to deep warm shadows under eaves, inside foliage, beneath
+
+    the lawn rim and around doors, so every object separates clearly from what
+
+    is behind it and the picture reads at a glance on a small phone screen.
+
+    Shadows are coloured (warm brown, plum, deep teal), never black or grey.
+
+    Light direction and shadow hue follow the LIGHT block of this prompt.
+
+    Colourful but never neon, never HDR, never glossy. No text, no letters, no
+
+    numbers, no logos, no watermark, no border, no frame.
+
+
+    AVOID: a change to anything the prompt does not name, a moved, resized or redrawn part, a removed
+    part that was not named, a reframed, zoomed or recoloured picture, a new object, bush, flower, stone
+    or decoration the prompt does not name, a ground patch, a colour step or edge in the grass, brighter
+    or more saturated colours, a change of light, text, letters
+
+
+    LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+    Key light #FFF6EC from the upper left; fill #BFD6EE; rim #FFE9C9 along the edge facing away from the
+    key. Shadows are tinted #A99BC4 (never grey or black), short and soft, falling toward the lower right;
+    every object sits on a soft occlusion pad in that hue where it touches the ground or another form.
+
+    VALUES (the reference envelope): a high-key picture inside one envelope of soft, milky air. Every
+    value sits between light mid-tone and cream-white; the darkest recesses (door holes, gaps, pond rims)
+    are a mid-value tinted with the shadow hue, never black. Form turns in small value steps. Colour lives
+    in the halftones; lights bleach to cream. No dark outlines: edges are found by value and hue. The
+    cloud sea below is the brightest large surface and lights the island''s underside with a warm bounce.
+
+    This is the SUBJECT plane: the clearest forms and the crispest edges in the picture, still inside
+    the envelope.
+
+
+    Output: one image, opaque, full bleed, square 1536 x 1536.
+
+    '
