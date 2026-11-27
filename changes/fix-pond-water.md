@@ -1,1 +1,1 @@
-The pond's water now moves over the pond look of its level, with its own outline per level, and the ghosts in the pond are gone.
+[world] The pond's water now moves over the pond's look at each level, inside an outline fitted to that level.
