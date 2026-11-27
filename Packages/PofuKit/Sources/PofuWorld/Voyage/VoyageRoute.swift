@@ -29,6 +29,16 @@ public struct VoyageData: Decodable, Sendable, Equatable {
     public var glideSeconds: Double
     /// A swipe of at least this many islands per second carries to the next one, whatever its length.
     public var flick: Double
+    /// The ride (row 2d): seconds of boarding, of flight and of mooring. Their sum is the ride's length.
+    public var ride: Ride
+
+    public struct Ride: Decodable, Sendable, Equatable {
+        public var board: Double
+        public var fly: Double
+        public var moor: Double
+        /// Seconds the cross-fade takes under Reduce Motion.
+        public var reduced: Double
+    }
 
     public static let shipped: VoyageData? = {
         let url = Bundle.module.url(forResource: "world-map", withExtension: "json")
@@ -47,8 +57,9 @@ public struct VoyageData: Decodable, Sendable, Equatable {
 
     /// The numbers when the package carries none (the same as `world-map.json`).
     public static let fallback = VoyageData(
-        order: ["home", "koke", "caglayan"], islandWidth: 0.7, pitch: 0.70, neighbourScale: 0.86,
-        neighbourLift: 26, centreY: 0.47, barLift: 72, glideSeconds: 0.42, flick: 1.6
+        order: ["home", "koke", "caglayan"], islandWidth: 0.7, pitch: 0.62, neighbourScale: 0.86,
+        neighbourLift: 26, centreY: 0.47, barLift: 72, glideSeconds: 0.42, flick: 1.6,
+        ride: Ride(board: 0.9, fly: 2.2, moor: 0.9, reduced: 0.5)
     )
 }
 

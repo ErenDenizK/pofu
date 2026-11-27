@@ -51,6 +51,12 @@ struct CameraFlightTests {
         #expect(abs(CameraFlight.riseShare + CameraFlight.travelShare + CameraFlight.descendShare - 1) < 1e-9)
     }
 
+    @Test func aFlightCanHaveALengthOfItsOwn() {
+        let from = pose(x: 0, y: 0, scale: 1), to = pose(x: 400, y: 0, scale: 1)
+        #expect(CameraFlight(from: from, to: to, apexLogScale: -1, seconds: 2.2).duration == 2.2)
+        #expect(CameraFlight(from: from, to: to, apexLogScale: -1).duration == CameraFlight.duration(distance: 400))
+    }
+
     @Test func aRigFlightLandsOnTheTargetAndSettles() {
         var rig = CameraRig(framing: .mid)
         let target = pose(x: 395, y: 14, scale: rig.pose.scale)

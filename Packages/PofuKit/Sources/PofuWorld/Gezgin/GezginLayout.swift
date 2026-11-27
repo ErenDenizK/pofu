@@ -42,6 +42,19 @@ public struct GezginData: Decodable, Sendable, Equatable {
         public var opacity: Double
     }
 
+    /// The mooring line from her bow to the post on the pier, in widths of her body from her feet.
+    public struct Rope: Decodable, Sendable, Equatable {
+        public var bowX: Double
+        public var bowY: Double
+        public var postX: Double
+        public var postY: Double
+        /// How far the line hangs below the straight one.
+        public var sag: Double
+        public var thickness: Double
+
+        public static let standard = Rope(bowX: -0.42, bowY: -0.16, postX: -0.62, postY: 0.04, sag: 0.06, thickness: 0.012)
+    }
+
     /// The Koke phase at which she is a shadow on the cloud (`rumoured`) and at which she is moored (`arrived`).
     public var shadowWhen: String
     public var mooredWhen: String
@@ -58,6 +71,8 @@ public struct GezginData: Decodable, Sendable, Equatable {
     /// How long her line stays up.
     public var lineSeconds: Double
     public var shadow: Shadow
+    /// Her mooring line; the standard one when the data has none.
+    public var rope: Rope?
 
     /// The data shipped in the package (`world-map.json`'s `gezgin`).
     public static let shipped: GezginData? = {

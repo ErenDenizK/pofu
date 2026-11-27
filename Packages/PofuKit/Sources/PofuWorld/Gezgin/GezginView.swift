@@ -121,7 +121,7 @@ struct GezginMooredView: View {
         let bodyArt = Image(Gezgin.art(level: level, blinking ? "asleep" : pose.rawValue), bundle: .module)
         let tailArt = Image(Gezgin.art(level: level, "tail"), bundle: .module)
         let pivot = UnitPoint(x: CGFloat(data.art.tailPivot[0] / data.art.canvas[0]), y: CGFloat(data.art.tailPivot[1] / data.art.canvas[1]))
-        ZStack {
+        let figure = ZStack {
             bodyArt.resizable()
             tailArt.resizable()
                 .rotationEffect(.degrees(Gezgin.swayDegrees(time: time, data: data)), anchor: pivot)
@@ -131,6 +131,25 @@ struct GezginMooredView: View {
         .colorMultiply(Color(red: light.paint.red, green: light.paint.green, blue: light.paint.blue))
         .scaleEffect(x: CGFloat(2 - answer.squash), y: CGFloat(answer.squash), anchor: UnitPoint(x: 0.5, y: CGFloat(feetRow / height)))
         .position(x: point.x, y: point.y - CGFloat(feetRow) + CGFloat(height) / 2 + CGFloat(bob - lift))
+        .allowsHitTesting(false)
+        // The mooring line: from her bow to the post on the pier, slack, so she can bob.
+        let rope = data.rope ?? GezginData.Rope.standard
+        let unit2 = mooring.width * plate.unitsPerPixel
+        let bow = CGPoint(x: point.x + CGFloat(rope.bowX * unit2), y: point.y + CGFloat((rope.bowY * unit2) + bob - lift))
+        let post = CGPoint(x: point.x + CGFloat(rope.postX * unit2), y: point.y + CGFloat(rope.postY * unit2))
+        ZStack(alignment: .topLeading) {
+            // The line goes down behind her, the figure over it.
+            Path { path in
+                path.move(to: bow)
+                path.addQuadCurve(to: post, control: CGPoint(x: (bow.x + post.x) / 2, y: max(bow.y, post.y) + CGFloat(rope.sag * unit2)))
+            }
+            .stroke(Color(red: 0.80, green: 0.66, blue: 0.44), style: StrokeStyle(lineWidth: CGFloat(max(rope.thickness * unit2, 0.8)), lineCap: .round))
+            Circle()
+                .fill(Color(red: 0.62, green: 0.48, blue: 0.30))
+                .frame(width: CGFloat(rope.thickness * unit2 * 2.2), height: CGFloat(rope.thickness * unit2 * 2.2))
+                .position(post)
+            figure
+        }
         .allowsHitTesting(false)
     }
 }

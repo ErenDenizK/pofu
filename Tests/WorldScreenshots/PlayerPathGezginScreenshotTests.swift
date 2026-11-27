@@ -57,9 +57,10 @@ final class PlayerPathGezginScreenshotTests: PlayerPathFrameCase {
         let healed = WonderStatus(phase: .arrived, stage: WonderIslands.healedStage)
         let night = try world(level: 5, night: true, koke: healed)
         try await frame(night, hour: 23, name: "path-gezgin-night", scene: scene, folder: folder)
-        let clock = night.clock ?? Date()
         try await frame(night, hour: 23, name: "path-gezgin-wake", scene: scene, folder: folder) { island in
-            island.gezgin.wake(at: clock.addingTimeInterval(-0.15))
+            // The frame's clock is real time (the capture waits 2.1 s to settle), so the tap lies that far
+            // ahead: 0.15 s old when the frame is taken.
+            island.gezgin.wake(at: Date().addingTimeInterval(2.1 - 0.15))
             island.gezgin.hold(lineKey: Gezgin.lineKey(asleep: true, taps: 1))
         }
     }

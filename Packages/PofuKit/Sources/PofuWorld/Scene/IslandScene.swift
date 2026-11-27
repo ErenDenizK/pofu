@@ -281,6 +281,7 @@ public struct IslandScene<Bubble: View>: View {
             model.power.startObservingSystem()
         }
         .overlay { VoyageRowOverlay(model: model, world: world) }
+        .overlay { VoyageRideOverlay(model: model, world: world) }
         .overlay { KokeBubbleOverlay(state: model.koke) }
         .overlay { GezginBubbleOverlay(state: model.gezgin) }
         .overlay { CaglayanBubbleOverlay(state: model.caglayan) }
