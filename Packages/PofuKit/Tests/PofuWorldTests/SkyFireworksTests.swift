@@ -11,8 +11,8 @@ struct SkyFireworksTests {
             #expect(bursts.count <= 2)
             #expect(Set(bursts.map(\.slot)).count == bursts.count)
             for burst in bursts {
-                #expect(burst.y >= 0.16 && burst.y <= 0.46, "bursts stay in the sky above the island")
-                #expect(burst.x >= 0.16 && burst.x <= 0.84)
+                #expect(burst.y >= 0.26 && burst.y <= 0.36, "bursts stay in the sky above the island")
+                #expect(burst.x >= 0.30 && burst.x <= 0.66)
                 peak = max(peak, SkyFireworks.strength(age: burst.age))
             }
         }

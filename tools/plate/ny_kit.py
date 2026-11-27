@@ -84,14 +84,12 @@ def lawn(stage: int) -> tuple[np.ndarray, list[float]]:
     return ps.lawn_mask(stage, crops[stage]), crops[stage]
 
 
-#: Hand-set slots for stages 0 to 3 (levels 10 to 7), whose lawn the search cannot read: the front lip is flowers with a
-#: bush in front of anything on it, and the open lawn is where Pofu, Mochi and Findik stand. Every foot is on the line y 868, just above the wheel's and
-#: the east bush's boxes (which begin at 870 and 874), so nothing is drawn over a kit prop: the tree between Pofu and the
-#: east lamp, the star and the parcels toward the bridge, the snowman by the pond's path.
-DECLARED = {
-    "ny-tree": (548.0, 868.0), "ny-parcels": (694.0, 868.0), "ny-snowman": (392.0, 860.0), "ny-star": (631.0, 868.0),
-}
-COLUMN = 34.0      # half a character's width plus a margin, plate pts
+#: Stages 0 to 3 (levels 10 to 7) have one gap between Pofu's and Findik's columns, x 541 to 602 at y 868, and only the pine
+#: fits it (the guest's spot, which is in the gap, is left out there: a guest comes and goes). The parcels, the snowman and the
+#: star are left out of those four stages: the lawn is full, and a prop must keep half a character's width from every spot.
+STAGE_FULL = 4
+PINE_GAP = (562.0, 868.0)
+COLUMN = 56.0      # half a character's width plus half a width of margin, plate pts
 CHAR_HEIGHT = 70.0
 MIN_FOOT = 880
 MAX_X = 770         # the main island's east edge; the lawn beyond it is the next island's      # no kit prop stands up the hill behind the stones
@@ -124,19 +122,20 @@ def slots_for(plate: dict, overlay: Path | None) -> dict[str, list[list[float]]]
             taken.append((sx - span / 2 - 10, sx + span / 2 + 10, sy - p["height"] - 6, sy + 6))
         # Props are drawn over Pofu, so every character's column is kept clear, at every spot he stands on.
         for name, pts in chars.items():
-            if stage < 4 and name != "pofu":
-                continue       # the crowded lawns of stages 0 to 3: only Pofu's column is kept clear (residents come and go)
+            if stage < STAGE_FULL and name == "visitor":
+                continue
             for sx, sy in pts:
                 taken.append((sx - COLUMN, sx + COLUMN, sy - CHAR_HEIGHT, sy))
+        for lx, ly in plate["lamps"]:
+            taken.append((lx - 36, lx + 36, ly - 70, ly))      # a lamp post's own ground: no prop beside it
         feet = [v for k, v in ps.FEET.items() if k != "mailbox" or level == 10]
         for a, b in feet:
             taken.append((a - 14, b + 14, -1000, 2000))
         covers = occluder_masks(plate, stage, crop, mask.shape)
         for pid, (height, _) in KIT.items():
             width = _INFO[pid]["width"]
-            if stage < 4:
-                out[pid].append(list(DECLARED[pid]))
-                taken.append((DECLARED[pid][0] - width / 2 - 8, DECLARED[pid][0] + width / 2 + 8, DECLARED[pid][1] - height - 6, DECLARED[pid][1] + 6))
+            if stage < STAGE_FULL:
+                out[pid].append(list(PINE_GAP) if pid == "ny-tree" else [])
                 continue
             best, cost0 = None, 1e18
             dx, dy = DEFAULTS[pid]
@@ -148,7 +147,7 @@ def slots_for(plate: dict, overlay: Path | None) -> dict[str, list[list[float]]]
                 for fy in range(max(int(y0 + 20), MIN_FOOT), int(y0 + h), 3):
                     xa, xb = int(cx - width * 0.38 - x0), int(cx + width * 0.38 - x0)
                     ya, yb = int(fy - DEPTH[pid] - y0), int(fy - y0)
-                    if xa < 0 or xb >= wd or yb >= h or ya < 0 or hit(cx, fy):
+                    if xa < 0 or xb >= wd or yb >= h or ya < 0 or hit(cx, fy - 4):
                         continue
                     full = (ii[yb, xb] - ii[ya, xb] - ii[yb, xa] + ii[ya, xa]) / max((xb - xa) * (yb - ya), 1)
                     if full < 0.9:

@@ -30,6 +30,8 @@ struct HomePropsTests {
         for prop in island.props {
             #expect(prop.slots.count == island.stages, "\(prop.id) has a slot at every stage")
             for stage in 0..<island.stages {
+                // A kit prop may have no slot on a full stage (stages 0 to 3 keep only the pine).
+                guard prop.when == nil || prop.slot(stage: stage) != nil else { continue }
                 let slot = try #require(prop.slot(stage: stage))
                 #expect(slot.x > 0 && slot.x < island.plateSize.width && slot.y > 0 && slot.y < island.plateSize.height)
             }
@@ -134,18 +136,20 @@ struct HomePropsTests {
     // MARK: - The New Year kit (island calendar v1, C3)
 
     @Test func theKitDrawsOnlyWhileItsDayIsOn() throws {
-        let h = try home(stage: 0)
+        let h = try home(stage: 5)
         #expect(h.kitProps(for: nil).isEmpty)
         #expect(h.kitProps(for: .halloween).isEmpty)
         #expect(Set(h.kitProps(for: .newYear).map(\.id)) == ["ny-tree", "ny-parcels", "ny-snowman", "ny-star"])
     }
 
-    @Test func aStageWithoutASlotDrawsTheKitWithoutThatProp() throws {
-        var island = try plate()
-        let index = try #require(island.props.firstIndex { $0.id == "ny-snowman" })
-        island.props[index].slots[3] = []
-        let h = HomePlate(plate: island, light: "day", stage: 3)
-        #expect(Set(h.kitProps(for: .newYear).map(\.id)) == ["ny-tree", "ny-parcels", "ny-star"])
+    @Test func stagesZeroToThreeDrawTheKitWithOnlyThePine() throws {
+        // Their lawn is full: the parcels, the snowman and the star are left out there (an empty slot), the pine fits the one gap.
+        for stage in 0..<4 {
+            #expect(try home(stage: stage).kitProps(for: .newYear).map(\.id) == ["ny-tree"], "stage \(stage)")
+        }
+        for stage in 4..<10 {
+            #expect(try home(stage: stage).kitProps(for: .newYear).count == 4, "stage \(stage)")
+        }
     }
 
     @Test func theKitIsLitAtNightWhereItHasALitState() throws {
@@ -158,34 +162,43 @@ struct HomePropsTests {
         #expect(Set(kit.filter { $0.states.contains("lit") }.map(\.id)) == ["ny-tree", "ny-star"])
     }
 
-    @Test func everyStageHasASlotForEveryKitPropOnTheLawnClearOfTheHomePropsAndFeet() throws {
+    @Test func theKitStaysClearOfHomePropsFeetAndEveryCharactersSpot() throws {
         let island = try plate()
-        let kit = island.props.filter { $0.when == .newYear }
         for stage in 0..<island.stages {
-            var boxes: [(id: String, x: ClosedRange<Double>, top: Double, foot: Double)] = []
-            for prop in island.props {
-                let slot = try #require(prop.slot(stage: stage), "\(prop.id) has a slot at stage \(stage)")
-                #expect(slot.x > 0 && slot.x < island.plateSize.width && slot.y > 0 && slot.y < island.plateSize.height)
+            let home = island.props.filter { $0.when == nil }
+            for prop in island.props where prop.when != nil {
+                guard let slot = prop.slot(stage: stage) else { continue }
                 let half = prop.span(stage: stage) / 2
-                boxes.append((prop.id, (slot.x - half)...(slot.x + half), slot.y - prop.height, slot.y))
-                if prop.when != nil, slot.y > 940 {
+                let x = (slot.x - half)...(slot.x + half)
+                #expect(slot.x > 0 && slot.x < island.plateSize.width && slot.y > 0 && slot.y < island.plateSize.height)
+                if slot.y > 940 {
                     for foot in feet(stage: stage) {
                         let clear = slot.x + half <= foot.lowerBound - 12 + 0.5 || slot.x - half >= foot.upperBound + 12 - 0.5
                         #expect(clear, "\(prop.id) at stage \(stage) stands on a painted foot")
                     }
                 }
-            }
-            for i in boxes.indices {
-                for j in boxes.indices where j > i {
-                    let (a, b) = (boxes[i], boxes[j])
-                    // Two kit props, or a kit prop and a home prop, never share ground. The home props are never on at once with
-                    // each other's kit slot: boxes may not overlap.
-                    let apart = !a.x.overlaps(b.x) || a.top >= b.foot || b.top >= a.foot
-                    #expect(apart, "stage \(stage): \(a.id) and \(b.id) overlap")
+                for other in home {
+                    guard let o = other.slot(stage: stage) else { continue }
+                    let oh = other.span(stage: stage) / 2
+                    let apart = !x.overlaps((o.x - oh)...(o.x + oh)) || slot.y - prop.height >= o.y || o.y - other.height >= slot.y
+                    #expect(apart, "stage \(stage): \(prop.id) and \(other.id) overlap")
+                }
+                // Every character's spot keeps half a character's width (28 plate pts) clear of the prop's edge where they share
+                // a height. A guest (a visitor) comes and goes and is left out on the full stages 0 to 3.
+                for (name, spots) in island.spots where !(name == "visitor" && stage < 4) {
+                    for spot in spots {
+                        let shares = slot.y > spot.y - 70 && slot.y - prop.height < spot.y
+                        let gap = max(x.lowerBound - spot.x, spot.x - x.upperBound)
+                        #expect(!shares || gap >= 28 - 0.5, "stage \(stage): \(prop.id) crowds \(name) at \(spot.x), \(spot.y)")
+                    }
+                }
+                for k in island.props where k.when != nil && k.id < prop.id {
+                    guard let o = k.slot(stage: stage) else { continue }
+                    let oh = k.span(stage: stage) / 2
+                    #expect(!x.overlaps((o.x - oh)...(o.x + oh)) || slot.y - prop.height >= o.y || o.y - k.height >= slot.y, "stage \(stage): \(prop.id) and \(k.id) overlap")
                 }
             }
         }
-        #expect(kit.count == 4)
     }
 
     @Test func noKitPropStandsBehindAPaintedObject() throws {
