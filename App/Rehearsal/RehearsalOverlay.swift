@@ -29,20 +29,33 @@ struct RehearsalOverlay: View {
                 if TuningLab.session.isOpen {
                     TuningLabPanel(model: model, store: TuningLab.store, session: TuningLab.session)
                         .transition(.move(edge: .bottom).combined(with: .opacity))
+                } else if rehearsal.isMusicRoomOpen {
+                    musicRoom
                 } else {
                     RehearsalPanel(model: model, rehearsal: rehearsal)
                 }
                 #else
-                RehearsalPanel(model: model, rehearsal: rehearsal)
+                if rehearsal.isMusicRoomOpen {
+                    musicRoom
+                } else {
+                    RehearsalPanel(model: model, rehearsal: rehearsal)
+                }
                 #endif
             }
         }
         .animation(PofuMotion.respecting(reduceMotion, PofuMotion.snappy), value: rehearsal.screen)
+        .animation(PofuMotion.respecting(reduceMotion, PofuMotion.snappy), value: rehearsal.isMusicRoomOpen)
         #if DEBUG
         .onChange(of: TuningLab.store.values.sound, initial: true) { _, volumes in
             SoundEngine.shared.volumes = volumes
         }
         .animation(PofuMotion.respecting(reduceMotion, PofuMotion.snappy), value: TuningLab.session.isOpen)
         #endif
+    }
+
+    /// The music room, opened on the island as it is now.
+    private var musicRoom: some View {
+        MusicRoomPanel(model: model, rehearsal: rehearsal)
+            .transition(.move(edge: .bottom).combined(with: .opacity))
     }
 }

@@ -61,6 +61,17 @@ final class RehearsalScreenshotTests: XCTestCase {
                     }
                 )
             ),
+            (
+                "09-music-room-light",
+                AnyView(
+                    ZStack {
+                        IslandScene(world: IslandSamples.dayThree(), model: IslandSceneModel(framing: .mid)) {
+                            EmptyView()
+                        }
+                        MusicRoomPanel(model: model, rehearsal: rehearsal)
+                    }
+                )
+            ),
         ]
 
         for (name, view) in shots {
