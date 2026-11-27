@@ -51,7 +51,13 @@ final class PlayerPathRideScreenshotTests: PlayerPathFrameCase {
                 name: String(format: "voyage-%.1f", seconds), scene: scene, folder: folder
             )
         }
-        try await frame(world, hour: 12, from: .koke, to: .home, at: 2.0, name: "voyage-back-2.0", scene: scene, folder: folder)
+        for tenths in stride(from: 0, through: 40, by: 5) {
+            let seconds = Double(tenths) / 10
+            try await frame(
+                world, hour: 12, from: .koke, to: .home, at: seconds,
+                name: String(format: "voyage-back-%.1f", seconds), scene: scene, folder: folder
+            )
+        }
     }
 
     @MainActor

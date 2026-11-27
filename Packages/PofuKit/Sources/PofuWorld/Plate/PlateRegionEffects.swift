@@ -1,4 +1,5 @@
 import Foundation
+import PofuCore
 #if canImport(SwiftUI)
 import SwiftUI
 #endif
@@ -12,6 +13,12 @@ public struct PlateWater: Decodable, Hashable, Sendable {
     public var id: String
     /// The stages that paint this water (every light); `nil`: all.
     public var stages: [Int]?
+    /// The station whose pond this is (`"pond"`), or `nil`: water that belongs to no station. With `look` nil it is the
+    /// water the plate paints itself, there where the station has no look over an erased base; with `look` set it is the
+    /// outline fitted to that look's water (`tools/plate/pond_water.py`), there where that look is drawn.
+    public var station: String?
+    /// The station look (`StationLooks.lookLevel`, 1...) this outline is fitted to.
+    public var look: Int?
     /// The surface, in plate pixels.
     public var polygon: [PlatePoint]
     /// How far in from the outline the water is fully in motion, in plate pixels.
@@ -27,12 +34,14 @@ public struct PlateWater: Decodable, Hashable, Sendable {
     /// How much light plays on the surface (0...1).
     public var glint: Double
 
-    private enum Keys: String, CodingKey { case id, stages, polygon, feather, flow, speed, ripple, period, glint }
+    private enum Keys: String, CodingKey { case id, stages, station, look, polygon, feather, flow, speed, ripple, period, glint }
 
     public init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: Keys.self)
         id = try c.decode(String.self, forKey: .id)
         stages = try c.decodeIfPresent([Int].self, forKey: .stages)
+        station = try c.decodeIfPresent(String.self, forKey: .station)
+        look = try c.decodeIfPresent(Int.self, forKey: .look)
         polygon = try c.decode([[Double]].self, forKey: .polygon).map { PlatePoint(x: $0[0], y: $0[1]) }
         feather = try c.decodeIfPresent(Double.self, forKey: .feather) ?? 3
         flow = try (c.decodeIfPresent([[Double]].self, forKey: .flow) ?? []).map { PlatePoint(x: $0[0], y: $0[1]) }
@@ -108,17 +117,26 @@ public enum PlateRegionEffects {
         return m < 0 ? m + loop : m
     }
 
-    /// The water a painted state has.
-    public static func water(of plate: HomePlate) -> [PlateWater] {
-        plate.plate.water.filter { $0.isPresent(stage: plate.stage) }
+    /// The water a painted state has, with the stations at `levels`. A station's water follows what is drawn: where its
+    /// look stands over an erased base, the outline fitted to the look of its level (none while it is unbuilt: the base's
+    /// plot is grass); where the state keeps the painted station, the plate's own water.
+    public static func water(of plate: HomePlate, levels: [StationID: Int] = [:]) -> [PlateWater] {
+        plate.plate.water.filter { body in
+            guard body.isPresent(stage: plate.stage) else { return false }
+            guard let station = body.station else { return true }
+            let drawn = plate.plate.stationLooks(light: plate.key, stage: plate.stage)[station]
+            guard let drawn else { return body.look == nil }
+            guard let wanted = body.look else { return false }
+            return drawn.lookLevel(stationLevel: levels[StationID(rawValue: station)] ?? 0, light: plate.key) == wanted
+        }
     }
 
     /// The share of the island's pixels the water covers (the plate's budget: at most 5 %).
-    public static func coverage(of plate: HomePlate) -> Double {
+    public static func coverage(of plate: HomePlate, levels: [StationID: Int] = [:]) -> Double {
         let island = plate.plate.islandBox
         let total = island.width * island.height
         guard total > 0 else { return 0 }
-        return water(of: plate).reduce(0) { $0 + $1.area } / total
+        return water(of: plate, levels: levels).reduce(0) { $0 + $1.area } / total
     }
 
     /// The patch a body's shader draws, in screen points: its box and what the shader reaches past
@@ -167,12 +185,14 @@ extension WorldShaders {
     }
 }
 
-/// A body of water drawn again over the plate, moving (`pofuWaterPatch`): a copy of the plate's
-/// pixels round the water, cut to the screen, that the shader displaces inside the feathered
-/// outline. Where the shader's alpha is 0 the plate under it shows, so outside the water every
+/// A body of water drawn again over the plate, moving (`pofuWaterPatch`): a copy of the picture the
+/// island draws there (the base and the looks standing on it, so the pond look of the level and
+/// never the plate under it) round the water, cut to the screen, that the shader displaces inside
+/// the feathered outline. It is drawn after the looks. Where the shader's alpha is 0 the plate under it shows, so outside the water every
 /// pixel is the plate's own. It sits in the island's content, so the lens's blur levels take it
 /// like the rest of the island and the water moves at every distance.
 struct PlateWaterPatch: View {
+    let compositor: PlateCompositor
     let plate: HomePlate
     let water: PlateWater
     let frame: WaterFrame
@@ -188,6 +208,9 @@ struct PlateWaterPatch: View {
             let reach = CGFloat((water.reach * ppp).rounded(.up)) + 1
             ZStack(alignment: .topLeading) {
                 PlateImage(name: plate.plate.drawnPlateArt(light: plate.key, stage: plate.stage), box: plate.plateImageBox, pose: pose, size: size, offset: offset)
+                ForEach(compositor.stationsBackToFront, id: \.self) { station in
+                    PlateLookPiece(compositor: compositor, station: station, build: nil, pose: pose, size: size, offset: offset)
+                }
             }
             .frame(width: size.width, height: size.height, alignment: .topLeading)
             .offset(x: CGFloat(-rect.minX), y: CGFloat(-rect.minY))
