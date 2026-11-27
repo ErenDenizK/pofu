@@ -22,7 +22,9 @@ six vertical steps, each done when he plays it on his phone.
 
 0d. 184/185 redelivered and decode clean (pofu-art #197, #198); also delivered: 171, 177, 178,
    180, 181, 183, 189-192 (plot ladders), 194 (season pilot). Card 4 (Caglayan A-F, default D,
-   rim fall) sent 11-27 morning. Queue upkeep agent: log delivered rows, pier gap crop, refill 2 days.
+   rim fall) sent 11-27 morning. Queue upkeep merged (pofu-art #203): 19 rows logged, 0 bad;
+   D58 pier gap crop -> D56; refill D59-D63 (33 jobs; ~71 in Demand). FINDING for 1c others: batch 117's
+   base fills the islet gap, so the bagel cart, lighthouse and tea stall crops show lawn where the app has none: cut looks inside the gap line.
 0c. Fi 49: cards 1/2/5 on defaults; desks approved (ST1+ST2 to land); auto-merge: yes for
    pofu-art takes (ST4 workflow, next free agent), no for pofu code; self-wake refused
    twice. Season system merged (#530, ADR-0030); pilot batch 194 D57 (pofu-art #188);
@@ -47,10 +49,8 @@ six vertical steps, each done when he plays it on his phone.
    Board merged (#514) + ring and 161 pieces (#518). Open: water ribbon from
    ring to cell edge has no banks; his play-test decides. Life merged (#517: hops, visitor spot, no overlap;
    moves are small, 24-30 px; Fındık's painted spot now 658,864).
-2. WP10 compositor (#500), WP11 near lens (#502), WP13 water (#505) merged;
-   their leftovers fold into the plan's steps 1-3 (device checks: pinch, pond).
-4. Codex: D29-D33 merged 11-26; queue D34-D45 (#170, #172, #174; D40-42 blocked); delivered 182, 172-174 (#175-#178 merged); 126 v3 (#132) to review.
-Merged: #475-#520 (not #490, #503, #504, #507); pofu-art #81-#174 (not stale #84-#90, #132).
+2. WP10/11/13 merged (#500, #502, #505); leftovers in plan steps 1-3 (device: pinch, pond).
+Merged: #475-#538 (not #490, #503, #504, #507); pofu-art #81-#203 (not stale #84-#90, #132).
 
 ## Next (plan #519)
 Running: pond fix (#528), 2d ride, S1 season state (`feat/season-state`). Then the other 4 stations from D52-D55; 1e reveal. Device days on membership.
