@@ -68,7 +68,7 @@ private struct VoyageRow: View {
                 VoyageSea(model: model, world: world, look: look, size: size)
                 ForEach(order(stops, position: position), id: \.island) { stop in
                     if let index = stops.firstIndex(of: stop) {
-                        VoyageIsle(model: model, stop: stop, world: world, place: layout.place(index: index, position: position), sleeps: false)
+                        VoyageIsle(model: model, stop: stop, world: world, place: layout.place(index: index, position: position), size: size)
                     }
                 }
                 Color.clear
@@ -169,9 +169,40 @@ private struct VoyageIsle: View {
     let stop: VoyageStop
     let world: WorldSnapshot
     let place: VoyageRowLayout.Place
-    let sleeps: Bool
+    let size: CGSize
 
+    /// Home's painting is matted: its island is the far snapshot of the live composite (the player's own
+    /// station looks included), the same picture as mid, never the old Map cut.
+    private var farHome: HomePlate? {
+        guard stop.island == .home, stop.status != .locked, let plate = model.homePlate,
+              plate.plate.plateCrop(light: plate.light, stage: plate.stage) != nil else { return nil }
+        return plate
+    }
+
+    @ViewBuilder
     var body: some View {
+        if let plate = farHome {
+            let box = plate.plateImageBox
+            let pose = CameraPose(
+                scale: place.width / max(plate.islandBox.width, 1),
+                look: WorldPoint(x: box.midX, y: box.midY),
+                anchorY: place.y
+            )
+            FarPicture(
+                compositor: PlateCompositor(plate: plate, levels: HomePlate.stationLevels(world)),
+                pose: pose, size: size, offset: CGSize(width: place.x - Double(size.width) / 2, height: 0)
+            )
+            .frame(width: size.width, height: size.height, alignment: .topLeading)
+            .saturation(0.8 + 0.2 * place.weight)
+            .brightness(-0.05 * (1 - place.weight))
+            .allowsHitTesting(false)
+            .accessibilityHidden(true)
+        } else {
+            plain
+        }
+    }
+
+    private var plain: some View {
         let art = art
         let w = CGFloat(place.width)
         let h = w * CGFloat(art.aspect)

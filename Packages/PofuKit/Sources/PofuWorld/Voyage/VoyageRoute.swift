@@ -48,7 +48,7 @@ public struct VoyageData: Decodable, Sendable, Equatable {
     /// The numbers when the package carries none (the same as `world-map.json`).
     public static let fallback = VoyageData(
         order: ["home", "koke", "caglayan"], islandWidth: 0.7, pitch: 0.70, neighbourScale: 0.86,
-        neighbourLift: 26, centreY: 0.43, barLift: 72, glideSeconds: 0.42, flick: 1.6
+        neighbourLift: 26, centreY: 0.47, barLift: 72, glideSeconds: 0.42, flick: 1.6
     )
 }
 
