@@ -50,6 +50,19 @@ final class PlayerPathGezginScreenshotTests: PlayerPathFrameCase {
         }
     }
 
+    /// Her place at Köke and at Çağlayan (row 2e): moored beside the island, her post on its rim, a slack line.
+    @MainActor
+    func testRenderTheGezginAtTheWonderIslands() async throws {
+        let scene = try windowScene()
+        let folder = try outputFolder()
+        let arrived = WonderStatus(phase: .arrived, stage: 0)
+        let healed = WonderStatus(phase: .arrived, stage: WonderIslands.healedStage)
+        try await frame(try world(level: 5, koke: arrived), hour: 12, name: "path-gezgin-koke", scene: scene, folder: folder) { $0.holdIsle(.koke) }
+        try await frame(try world(level: 5, koke: healed, caglayan: arrived), hour: 12, name: "path-gezgin-caglayan", scene: scene, folder: folder) { $0.holdIsle(.caglayan) }
+        try await frame(try world(level: 7, koke: healed, caglayan: healed), hour: 12, name: "path-gezgin-caglayan-l3", scene: scene, folder: folder) { $0.holdIsle(.caglayan) }
+        try await frame(try world(level: 5, koke: healed), hour: 12, name: "path-gezgin-koke-l2", scene: scene, folder: folder) { $0.holdIsle(.koke) }
+    }
+
     @MainActor
     func testRenderTheGezginAsleepAndWoken() async throws {
         let scene = try windowScene()

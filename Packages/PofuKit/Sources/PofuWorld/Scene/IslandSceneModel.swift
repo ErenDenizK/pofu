@@ -776,7 +776,8 @@ public final class IslandSceneModel {
         projectedFraming = .map
         voyage.open(on: origin)
         voyage.choose(target)
-        let ride = VoyageRide(from: origin, to: target)
+        // Only a ride from Home starts at the row; the way back (from another island) has no boarding.
+        let ride = VoyageRide(from: origin, to: target, fromRow: origin == .home)
         self.ride = ride
         rideStart = nil
         rideHeld = seconds

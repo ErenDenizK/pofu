@@ -203,12 +203,12 @@ public struct WorldHome: View {
     /// near (`chromeOpacity`), so it is gone before near begins.
     private var showsHomeChrome: Bool {
         scene.island == .home && scene.projectedFraming != .map && scene.chromeOpacity > 0
-            && scene.focus == nil && !scene.hasSheet && !scene.isGrowing
+            && scene.focus == nil && !scene.hasSheet && !scene.isGrowing && !scene.hidesFocusUI
     }
 
     /// Another island's name at its stop (Home's stop carries the chrome instead).
     private var showsIslandName: Bool {
-        scene.projectedFraming == .mid && scene.island != .home && scene.focus == nil
+        scene.projectedFraming == .mid && scene.island != .home && scene.focus == nil && !scene.hidesFocusUI
     }
 
     private var chrome: some View {
