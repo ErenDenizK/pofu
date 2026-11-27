@@ -108,8 +108,8 @@ private struct VoyageRideScene: View {
         let centre = CGPoint(x: spot.x * Double(size.width), y: spot.y * Double(size.height) + bob)
         let whaleGrade = VoyageGrade.whale(light: model.homePlate?.light ?? "day")
         ZStack(alignment: .topLeading) {
-            if flying {
-                CloudWake(centre: centre, width: width, toTheRight: ride.toTheRight, time: t, strength: min(beat.progress / 0.2, (1 - beat.progress) / 0.2, 1))
+            if VoyageWake.isVisible(ride: ride, at: t) {
+                CloudWake(ride: ride, time: t, centre: centre, width: width, grade: whaleGrade)
             }
             if let berth, beat.beat == .moor {
                 // Her post and the slack line to her bow come in as she nears the berth (the post stands on the
@@ -240,30 +240,36 @@ struct GezginFlyer: View {
     }
 }
 
-/// A few soft puffs of cloud streaming off her tail while she flies. The first thing to go if the ride drops
-/// frames: nothing else depends on it.
+/// The cloud wake streaming off her tail while she flies (`VoyageWake`): the short cluster at take-off and
+/// landing, the long chain between. Two cut-outs, no masks or blurs at draw time (the far end's fade is in the
+/// art), so it is the cheap thing to cut if the ride drops frames.
 private struct CloudWake: View {
+    let ride: VoyageRide
+    let time: Double
     let centre: CGPoint
     let width: Double
-    let toTheRight: Bool
-    let time: Double
-    let strength: Double
+    let grade: VoyageGrade
 
     var body: some View {
-        let behind = toTheRight ? -1.0 : 1.0
         ZStack {
-            ForEach(0..<5, id: \.self) { i in
-                let phase = (time * 0.55 + Double(i) * 0.2).truncatingRemainder(dividingBy: 1)
-                let d = width * (0.42 + 0.9 * phase)
-                let diameter = width * (0.16 + 0.12 * phase)
-                Circle()
-                    .fill(RadialGradient(colors: [.white.opacity(0.7), .white.opacity(0)], center: .center, startRadius: 0, endRadius: CGFloat(diameter / 2)))
-                    .frame(width: CGFloat(diameter), height: CGFloat(diameter))
-                    .opacity(strength * (1 - phase))
-                    .position(
-                        x: centre.x + CGFloat(behind * d),
-                        y: centre.y + CGFloat(width * (0.02 + 0.05 * sin(Double(i) * 1.7 + time)))
-                    )
+            ForEach(VoyageWake.Piece.allCases, id: \.self) { piece in
+                let opacity = VoyageWake.opacity(piece, ride: ride, at: time)
+                if opacity > 0.001 {
+                    let w = width * piece.share
+                    let offset = VoyageWake.offset(piece, ride: ride, at: time)
+                    // Painted with the big puff on the left; going right the wake trails to the left.
+                    Image(piece.asset, bundle: .module).resizable()
+                        .frame(width: CGFloat(w), height: CGFloat(w * piece.aspect))
+                        .scaleEffect(x: ride.toTheRight ? -1 : 1, y: 1)
+                        .saturation(grade.saturation)
+                        .brightness(grade.brightness)
+                        .colorMultiply(Color(red: grade.red, green: grade.green, blue: grade.blue))
+                        .opacity(opacity)
+                        .position(
+                            x: centre.x + CGFloat((offset.dx + (ride.toTheRight ? -0.5 : 0.5) * piece.share) * width),
+                            y: centre.y + CGFloat(offset.dy * width)
+                        )
+                }
             }
         }
     }
