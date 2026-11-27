@@ -1,5 +1,6 @@
 #if os(iOS)
 import PofuCore
+import PofuDesignSystem
 import SwiftUI
 
 /// The ride's views (plan row 2d): the Gezgin over the world, the passengers on her back, and the soft wake
@@ -29,7 +30,7 @@ private struct VoyageRideScene: View {
         GeometryReader { proxy in
             let size = proxy.size
             let start = startSpot(size: size)
-            TimelineView(.animation(minimumInterval: nil, paused: model.rideHeld != nil)) { context in
+            PofuTimeline(hz: PofuFrameRate.direct, paused: model.rideHeld != nil, kind: .essential) { context in
                 let t = model.rideElapsed(at: context.date) ?? ride.duration
                 rideFrame(at: t, start: start, size: size)
             }
