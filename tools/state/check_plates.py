@@ -79,8 +79,12 @@ def shipped_seasons(root: Path, island: str, stage_keys) -> dict:
         cells = set()
         for time, stages in (entry.get("states") or {}).items():
             for stage in stages:
-                level = levels[stage] if stage < len(levels) else stage
-                cells.add(("final" if level == max(levels, default=level) and "final" in stage_keys else f"il{level}", time))
+                if len(levels) > 1:                    # as `shipped_states`: Home is keyed by island level, any other plate by stage
+                    level = levels[stage]
+                    key = "final" if level == max(levels) and "final" in stage_keys else f"il{level}"
+                else:
+                    key = stage
+                cells.add((key, time))
         out[season] = (bool(entry.get("complete")), cells)
     return out
 

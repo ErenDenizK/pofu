@@ -210,6 +210,8 @@ class IngestTests(unittest.TestCase):
             self.assertEqual(float(shipped[0].max()), 0.0)  # clear room above the island
 
     def test_a_season_state_is_cut_with_its_spring_states_matte_and_spring_comes_first(self):
+        size = ingest.SIZE
+        self.addCleanup(setattr, ingest, "SIZE", size)  # load_hand sets the module's plate size
         hand = ingest.load_hand("home")
         order = [(l, s) for l, s, _ in ingest.plates(hand)]
         firsts = [i for i, (l, _) in enumerate(order) if ingest.split_light(l)[0]]
