@@ -43,6 +43,7 @@ Tunable values (breath seconds, thresholds, seed amounts, names) live in
 | [0027](0027-one-camera-free-near.md) | One camera: the Map, mid (Home whole, with the chrome) and a free near; a pinch zooms about the fingers | Accepted (supersedes 0018's framing names and 0019's "no free camera"; its Map stop is superseded by 0028) |
 | [0028](0028-the-far-view-is-a-voyage.md) | The far view is a voyage row: one island large, the Gezgin moored while the player chooses, "Yola çık" starts the ride | Accepted (supersedes 0027's Map stop) |
 | [0029](0029-music-is-a-score.md) | Music is a score in the repository (ABC), rendered offline by one synthesized band into short cells, played by a small director | Proposed |
+| [0030](0030-a-season-is-an-edit-of-spring.md) | A season is an edit of spring in the same frame, cut with spring's shapes; the painted state is (season, light, stage); a state shows a season whole or not at all | Proposed |
 
 **Read an ADR's status line and this table first; do not load ADR bodies
 you do not need.** A status here that says "amended" or "superseded" means
