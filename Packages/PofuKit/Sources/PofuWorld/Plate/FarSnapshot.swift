@@ -134,13 +134,17 @@ struct CompositeIsland: View {
         let plate = compositor.plate
         ZStack(alignment: .topLeading) {
             PlateImage(name: plate.plate.drawnPlateArt(light: plate.key, stage: plate.stage), box: plate.plateImageBox, pose: pose, size: size, offset: offset)
-            if let water, WorldShaders.isAvailable {
-                ForEach(PlateRegionEffects.water(of: plate), id: \.id) { region in
-                    PlateWaterPatch(plate: plate, water: region, frame: water, pose: pose, size: size, offset: offset)
-                }
-            }
             ForEach(compositor.stationsBackToFront, id: \.self) { station in
                 PlateLookPiece(compositor: compositor, station: station, build: build, pose: pose, size: size, offset: offset)
+            }
+            // The water moves over the looks: it takes the picture the island draws, so the pond's own look.
+            if let water, WorldShaders.isAvailable {
+                ForEach(PlateRegionEffects.water(of: plate, levels: compositor.levels), id: \.id) { region in
+                    // Not while its station's look is being built: the reveal plays alone.
+                    if region.station == nil || build?.moment.station.rawValue != region.station {
+                        PlateWaterPatch(compositor: compositor, plate: plate, water: region, frame: water, pose: pose, size: size, offset: offset)
+                    }
+                }
             }
         }
         .frame(width: size.width, height: size.height, alignment: .topLeading)
