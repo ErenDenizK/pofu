@@ -57,7 +57,7 @@ Stay out of files other open PRs own: `PofuWorld/Voyage/*`,
   `/tmp/pofu-swift-build.lock`. If `test-linux.sh` waits on it for more
   than 10 minutes, do not kill anything: say so in your hand-back and
   lean on CI.
-- A `changes/feat-music-director.md` line starting with `[sound]`.
+- A `changes/feat-music-director.md` line starting with `[music]`.
 
 ## Process
 

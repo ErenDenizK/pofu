@@ -66,8 +66,7 @@ beside you and owns `App/WorldSound.swift`.
 - **The local Swift lock:** a stale process may hold
   `/tmp/pofu-swift-build.lock`. If `test-linux.sh` waits on it for more
   than 10 minutes, do not kill anything: say so and lean on CI.
-- A `changes/art-gezgin-wake.md` line starting with `[gezgin]`. Use
-  the desk tag that other Gezgin change lines use, if it differs.
+- A `changes/art-gezgin-wake.md` line starting with `[world]`.
 
 ## Process
 
