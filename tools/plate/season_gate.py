@@ -151,10 +151,15 @@ def local_sky(rgb: np.ndarray, matte: np.ndarray, band: float, sigma: float = 48
     return num / np.maximum(den[..., None], 1e-6), den
 
 
-def s2_outline_held(picture, matte, limit: float | None = None, band: float | None = None, sky_dE: float = 6.0) -> dict:
+def s2_outline_held(picture, matte, limit: float | None = None, band: float | None = None, sky_dE: float = 6.0, parent=None, ignore=None) -> dict:
     """S2: the share of the matte's (or a look alpha's) edge band where the picture is sky on the inside or paint on
     the outside. `picture` is the season picture with its sky; `matte` the spring alpha, same size, 0..1. Sky is what
-    lies within `sky_dE` of the picture's own sky colour nearby, so a cloud edge or a gradient does not count."""
+    lies within `sky_dE` of the picture's own sky colour nearby, so a cloud edge or a gradient does not count.
+
+    `parent` (the spring picture with its sky, the matte's own): the band is then judged by what the season changed. A band
+    pixel counts only where the season picture's sky-or-paint differs from the parent's. Without it the cloud sea that
+    stands against an island's rim reads as paint outside the outline and even the spring takes score 0.36 to 0.39
+    (measured on the three spring takes of day 0, night 0 and day 7), so the 1 % limit holds only relative to the parent."""
     pic = as_rgba(picture)[..., :3]
     m = np.asarray(matte, np.float32)
     if m.ndim == 3:
@@ -162,14 +167,22 @@ def s2_outline_held(picture, matte, limit: float | None = None, band: float | No
     if m.shape != pic.shape[:2]:
         raise ValueError(f"the matte is {m.shape}, the picture {pic.shape[:2]}")
     band = LIMITS["s2"]["band"] if band is None else band
-    limit = LIMITS["s2"]["share"] if limit is None else limit
+    limit = (LIMITS["s2"]["relative_share"] if parent is not None else LIMITS["s2"]["share"]) if limit is None else limit
     inside, outside = edge_bands(m, band)
+    if ignore is not None:                       # a region meant to be soft (the lighthouse's beam), as `plate_gate.py` skips it
+        inside, outside = inside & ~ignore, outside & ~ignore
     outside &= m <= 0.02  # the matte's own soft fringe is the outline, not paint outside it
     sky, wt = local_sky(pic, m, band)
     ok_sky = wt > 0.05
     is_sky = de(pic.reshape(-1, 3), sky.reshape(-1, 3)).reshape(m.shape) < sky_dE
     bad_in = inside & ok_sky & is_sky
     bad_out = outside & ok_sky & ~is_sky
+    if parent is not None:
+        par = as_rgba(parent)[..., :3]
+        psky, pwt = local_sky(par, m, band)
+        p_is_sky = de(par.reshape(-1, 3), psky.reshape(-1, 3)).reshape(m.shape) < sky_dE
+        bad_in &= ~(inside & p_is_sky)          # the parent had sky there too: not the season's cut
+        bad_out &= ~(outside & ~p_is_sky)       # the parent had paint there too: not the season's growth
     n = int((inside & ok_sky).sum() + (outside & ok_sky).sum())
     if not n:
         return {"check": "S2", "ok": False, "why": "no edge band has a sky to compare with"}
@@ -304,11 +317,12 @@ def s8_missing(data: dict, season: str, light: str, stage: int, assets: Path | N
 
     miss += [f"{t}[{key}][{stage}]" for t in ("harmony", "lightMap", "shadowMap", "plateCrop") if not table(t)]
     for sid, st in data.get("stations", {}).items():
-        if st.get("light", "day") != light:
-            continue
-        if stage in st.get("baseStages", []) and not has_asset(name("base"), assets):
+        stages = st["lights"].get(key, []) if "lights" in st else (st.get("baseStages", []) if st.get("light", "day") == key else [])
+        if stage not in stages:
+            continue                                 # a look is drawn only over a base: the station stays painted in the plate
+        if not has_asset(name("base"), assets):
             miss.append(name("base"))
-        levels = st.get("lookLevels", {}).get(light) or range(1, st["levels"] + 1)
+        levels = st.get("lookLevels", {}).get(key) or range(1, st["levels"] + 1)
         for lv in levels:
             n = f"world-{isl}-look-{sid}-{lv}-{key}"
             if not has_asset(n, assets):
@@ -328,6 +342,93 @@ def s8_complete(data: dict, season: str, assets: Path | None = None) -> dict:
             if m:
                 miss[f"{light}-{s}"] = m
     return {"check": "S8", "ok": not miss, "missing": miss}
+
+
+# ---------------------------------------------------------------- a season's states
+
+def season_take(key: str, stage: int):
+    """The take a state was ingested from, as the picture the gate reads: RGBA at the shipped plate's crop and texture size
+    (Lanczos x2 of the take over the state's matte). The sky is the take's own."""
+    hand = ingest.load_hand("home")
+    path = ingest.REPO / hand["plates"][key][str(stage)]
+    m = ingest.load_matte_full("home", key, stage)
+    cx0, cy0, cx1, cy1 = ingest.plate_crop(m)
+    rgb = np.asarray(Image.open(path).convert("RGB").resize((m.shape[1], m.shape[0]), Image.LANCZOS), np.float32) / 255
+    return np.dstack([rgb, m.astype(np.float32)])[cy0:cy1, cx0:cx1]
+
+
+def s6_seam(base, plate, stage: int, margin: int = 80) -> dict:
+    """S6: a base is its plate everywhere but the stations' windows (and `margin` texture px round them), and its alpha only
+    shrinks: what the paste-back ring test (`test_station_looks.py`) holds for spring."""
+    import station_looks as sl
+    b, p = as_rgba(base), as_rgba(plate)
+    boxes = [sp["bases"][stage]["window"] for sp in sl.stage_specs(stage)]
+    x0, y0 = min(w[0] for w in boxes), min(w[1] for w in boxes)
+    x1, y1 = max(w[2] for w in boxes), max(w[3] for w in boxes)
+    cx, cy = (ingest.plate_crop_points("home", ingest.load_hand("home"), "day", stage)[i] * TEX for i in (0, 1))
+    far = np.ones(p.shape[:2], bool)
+    far[max(y0 - cy - margin, 0):y1 - cy + margin, max(x0 - cx - margin, 0):x1 - cx + margin] = False
+    seen = far & ((p[..., 3] > 0.01) | (b[..., 3] > 0.01))
+    # The shipped layers are HEIC: a plate and the base cut from its decode differ by the codec's noise (spring's own base
+    # reads 3e-5 of the pixels beyond 0.04, its alpha 1e-6 beyond 0.02), so the test counts a share, not the worst pixel.
+    off = float((np.abs(b[seen][:, :4] - p[seen][:, :4]).max(-1) > 0.04).mean()) if seen.any() else 0.0
+    grew = float(((b[..., 3] - p[..., 3])[seen] > 0.05).mean()) if seen.any() else 0.0
+    return {"check": "S6", "ok": off <= 1e-3 and grew <= 1e-4, "off_window_share": round(off, 6), "alpha_grew_share": round(grew, 6), "limit": "1e-3, 1e-4 (spring 3e-5, 0)"}
+
+
+def season_report(data: dict, season: str) -> int:
+    """Measure and limit per picture of a season's listed states: S1 against the spring state, S2 against the spring take
+    (relative, see `s2_outline_held`), S5 of the night against the day, S3 of each base against its plate, S4 of each look on
+    its season plate, S6 and S8; S7 is `plate_gate.py`'s. Returns the number of failures."""
+    fails = 0
+    entry = data["seasons"][season]
+    states = [(f"{season}-{light}", light, st) for light, stages in entry["states"].items() for st in stages]
+    print(f"{season}: states {', '.join(f'{l}-{s}' for _, l, s in states)}; complete {entry['complete']}")
+    plates = {}
+    for key, light, stage in [(k, l, s) for k, l, s in states]:
+        plates[(key, stage)] = load_asset(ingest.asset_name("home", "plate", key, stage))
+        spring = load_asset(ingest.asset_name("home", "plate", light, stage))
+        rows = [("S1", f"{key}-{stage} against {light}-{stage}", s1_frame_held(spring, plates[(key, stage)]))]
+        hand = ingest.load_hand("home")
+        cx, cy = (v for v in ingest.plate_crop(ingest.load_matte_full("home", key, stage))[:2])
+        beam = np.zeros(spring.shape[:2], bool)
+        if stage == 0:
+            import plate_gate
+            bx0, by0, bx1, by1 = plate_gate.BEAM
+            beam[max(by0 - cy, 0):max(by1 - cy, 0), max(bx0 - cx, 0):max(bx1 - cx, 0)] = True
+        r2 = s2_outline_held(season_take(key, stage), spring[..., 3], parent=season_take(light, stage), ignore=beam)
+        rows.append(("S2", f"{key}-{stage} against the spring take", r2))
+        if light == "night" and (f"{season}-day", stage) in plates:
+            rows.append(("S5", f"{key}-{stage} against {season}-day-{stage}", s5_night_is_the_days(plates[(f"{season}-day", stage)], plates[(key, stage)])))
+        for sid, st in data["stations"].items():
+            if stage not in st.get("lights", {}).get(key, []):
+                continue
+            if not any(r[0] == "S6" for r in rows):
+                base = load_asset(ingest.asset_name("home", "base", key, stage))
+                lawn = lawn_mask(base.shape[:2], data)
+                rows.append(("S3", f"base {key}-{stage} lawn against its plate", s3_one_palette(base, plates[(key, stage)], lawn)))
+                rows.append(("S6", f"base {key}-{stage} against its plate outside the windows", s6_seam(base, plates[(key, stage)], stage)))
+            levels = st.get("lookLevels", {}).get(key) or range(1, st["levels"] + 1)
+            for lv in levels:
+                look = load_asset(f"world-home-look-{sid}-{lv}-{key}")
+                box = st["stages"][str(stage)]["box"]
+                r4 = s4_look_sits(plates[(key, stage)], look, box)
+                # A station whose spring look already misses the limit on the spring plate (the pond's and the workshop's
+                # are other paintings than the plate's own stations: spring measures 5 to 31) is held to the spring's measure
+                # plus `s4.over_spring`: derived, it must sit no worse than the look it came from (the fit is linear).
+                r_spring = s4_look_sits(load_asset(ingest.asset_name("home", "plate", light, stage)), load_asset(f"world-home-look-{sid}-{lv}-{light}"), box)
+                if not r_spring["ok"]:
+                    r4 = {**r4, "spring": r_spring["mean_dE"], "limit": round(r_spring["mean_dE"] + LIMITS["s4"]["over_spring"], 2), "ok": r4["mean_dE"] <= r_spring["mean_dE"] + LIMITS["s4"]["over_spring"]}
+                rows.append(("S4", f"look {sid} {lv} on {key}-{stage}", r4))
+        for _, label, r in rows:
+            print(f"{label}\n{_line(r)}")
+            fails += not r["ok"]
+    r = s8_complete(data, season)
+    print("every listed state has every piece (S8)")
+    print(_line(r))
+    for k, m in r["missing"].items():
+        print(f"    {k}: {', '.join(m)}")
+    return fails
 
 
 # ---------------------------------------------------------------- report
@@ -364,11 +465,7 @@ def report(season: str | None = None) -> int:
     seasons = [season] if season else list(data.get("seasons", {}))
     print("seasons: " + (", ".join(seasons) if seasons else NO_SEASONS))
     for s in seasons:
-        r = s8_complete(data, s)
-        print(_line(r))
-        for k, m in r["missing"].items():
-            print(f"    {k}: {', '.join(m)}")
-        fails += not r["ok"]
+        fails += season_report(data, s) + (not s8_complete(data, s)["ok"])
     return 1 if fails else 0
 
 

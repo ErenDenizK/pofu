@@ -122,6 +122,19 @@ islands:
         night:
           clear: {painted: "design/art/takes/batch-66-home-flow/x-home-flow-night/plate__x-home-flow-night--t1.webp", lead_pick: 1, in_app: true, founder_ok: null}
           rain: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+    # seasons (season-system-v1): the painted seasons of Home, per light and stage key (`final` is level 10, stage 0). A season is
+    # switched on for players when `complete` is true (its last PR); until then Rehearsal and the screenshot tests show it. The
+    # autumn pilot (S3, batch 194) ships level 10 by day and night. Level 3 by day (`il3`) has a pick that fails the gate (S1 p90
+    # 42 plate px: Codex redrew the adult island, see the take's review.yaml), so it is not painted here and stays spring.
+    seasons:
+      autumn:
+        complete: false
+        states:
+          day:
+            final: {painted: "design/art/takes/batch-194-season-slice-pilot/x-season-autumn-l10-day/plate__x-season-autumn-l10-day--t1.webp", lead_pick: 1, in_app: true, founder_ok: null}
+            il3: {painted: null, lead_pick: null, in_app: false, founder_ok: null}
+          night:
+            final: {painted: "design/art/takes/batch-194-season-slice-pilot/x-season-autumn-l10-night/plate__x-season-autumn-l10-night--t1.webp", lead_pick: 1, in_app: true, founder_ok: null}
     sky_sets:
       day: {painted: "design/art/takes/batch-66-home-flow/x-home-flow-final-rich/plate__x-home-flow-final-rich--t1.webp", lead_pick: 1, in_app: true, founder_ok: null}
       golden: {painted: "design/art/takes/batch-66-home-flow/x-home-flow-golden/plate__x-home-flow-golden--t1.webp", lead_pick: 1, in_app: true, founder_ok: null}
