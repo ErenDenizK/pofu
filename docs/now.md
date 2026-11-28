@@ -26,7 +26,7 @@ and the art pass (`docs/design/art-pass-2026-11-28.md`, 9 PRs, merge order 1-9).
 
 ## In flight
 
-- PR 2 `fix/pofu-ground` (art pass: one shadow, two hands, pads): builder, in CI.
+- PR 4 `art/near-lens` (front cap 3 pt, isles hazed not blurred, stall in focus): builder.
 - `art/nights-round-2` (tea stall 208 + windmill 3 207; brief 2026-11-28-nights-round-2): builder.
 - PR 3 `art/golden-sky-set` (golden sky to #E2ADC7, no mirrored wrap, ADR-0033): builder.
 - Codex: D74 N1 night pilot (batch 209), D75 B1 beam (211), D76 P0 Pofu master
@@ -40,13 +40,14 @@ and the art pass (`docs/design/art-pass-2026-11-28.md`, 9 PRs, merge order 1-9).
 - #568 pier levels 1-5 day/night/golden at stage 0 only (stages 1, 2, 5 paint
   their own pier and need bare crops: Codex row to write); Gezgin's post stands;
   worst state night-0 11.33 M px of 12.
-- #565 stable frames + `tools/review/screens_diff.py` (still unstable: games, resident-moved,
+- #569 Pofu on the ground (no third paw; pads up; Home pad 2.0 < 4 fails: Pofu stands on the
+  lantern post, PR 7 moves the slot). #565 stable frames + `tools/review/screens_diff.py` (still unstable: games, resident-moved,
   season-turn 1000-1500, d04-grow-1500). #570 publish 30 min (screenshots/main was stuck at 302b8c2).
 - #567 docs; pofu-art #232 picks, #233 art line, #234 D74-D76.
 
 ## Next
 
-1. As slots free: PR 4 `art/near-lens`, PR 5 `feat/pofu-pose-set`.
+1. As slots free: PR 5 `feat/pofu-pose-set`.
 2. Wave C after N1/N2 land: PR 6 home night relight, 7, 8, 9.
 3. Codex rows: pier bare crops at stages 1, 2, 5; keep the queue full under the art line.
 4. Docs PR for the lead branch (briefs, assessment, spec, fi 50-51, this page).
