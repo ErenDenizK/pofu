@@ -1,0 +1,75 @@
+{
+  "_doc": "Boxes are x0,y0,x1,y1 in frame px (1206 x 2622). A null limit prints its measure only. 'pending' names the PR that closes the gap; a pending check never fails. Measured on screenshots/main at 2f3973da2 (docs/design/art-pass-2026-11-28.md section 5).",
+  "plate_json": "Packages/PofuKit/Sources/PofuWorld/Resources/Plates/plate-home.json",
+  "night.lawn": {
+    "frame": "path-d21-2300",
+    "boxes": [[260, 1130, 300, 1160], [1040, 1190, 1080, 1220], [600, 1250, 640, 1280], [1060, 1230, 1100, 1260]],
+    "L": [50, 62], "C_min": 20, "h": [95, 180], "pending": null
+  },
+  "night.near": {
+    "frame": "path-near-pofu-night",
+    "ground": [[660, 1490, 820, 1570], [140, 1510, 260, 1580]],
+    "band": [0, 1900, 1206, 2622],
+    "ground_C_min": 16, "band_C_min": 14, "pending": null
+  },
+  "night.pofu": {
+    "frame": "path-near-pofu-night",
+    "pofu": [300, 1300, 620, 1540],
+    "ground": [[660, 1490, 820, 1570], [140, 1510, 260, 1580]],
+    "dL_max": 6, "pending": null
+  },
+  "season.band": {
+    "seasons": ["spring", "autumn", "winter"],
+    "baseline": "summer",
+    "box": [0, 800, 1206, 1700],
+    "mean_abs_min": 5
+  },
+  "sky.golden": {
+    "frame": "path-d21-1800", "box": [200, 150, 1000, 450],
+    "target_hex": "#E2ADC7", "dE_max": 6, "pending": null
+  },
+  "sky.day": {
+    "frame": "path-d21-0900", "box": [200, 150, 1000, 450],
+    "target_lch": [66, 46, 278], "dE_max": 3, "pending": null
+  },
+  "sky.mirror": {
+    "frames": ["path-d21-0900", "path-d21-1800"],
+    "left": [0, 600, 120, 830], "right": [1086, 600, 1206, 830],
+    "sigma": 8, "corr_max": null, "_target": 0.30,
+    "why": "spec value 0.56 did not reproduce (0.40 and 0.27 here, method of the assessment unknown): measure only until PR 3 sets the limit", "pending": null
+  },
+  "sky.contour": {
+    "frame": "path-d21-1800", "box": [0, 560, 1206, 880],
+    "sigma": 24, "levels": 3, "share_max": null, "pending": null
+  },
+  "near.blur": {
+    "frames": ["path-near-pofu", "path-near-pofu-golden", "path-near-pofu-night", "path-near-stall"],
+    "band_px": 8, "lap_var_min": 5, "share_max": 0.25, "pending": null
+  },
+  "near.subject": {
+    "subjects": [
+      {"frame": "path-near-pofu", "box": [300, 1300, 620, 1540]},
+      {"frame": "path-near-stall", "box": [600, 1000, 900, 1300]}
+    ],
+    "band_px": 8, "ratio_min": 0.5, "pending": null
+  },
+  "pofu.separation": {
+    "frame": "path-near-pofu",
+    "pofu": [300, 1300, 620, 1540],
+    "ground": [[660, 1490, 820, 1570], [140, 1510, 260, 1580]],
+    "dL_min": 10, "pending": "P0"
+  },
+  "pofu.peach": {
+    "frame": "path-near-pofu",
+    "pofu": [300, 1300, 620, 1540],
+    "h": [50, 90], "C_p90_min": null, "_target": 42,
+    "why": "spec value 38.3 did not reproduce (36.6 for h 50-90, 36.5-37.1 for nearby hue windows): measure only until PR 8 sets the limit", "pending": "P0"
+  },
+  "pofu.pad": {
+    "near": {"frame": "path-near-pofu", "under": [380, 1570, 540, 1600],
+             "beside": [[660, 1490, 820, 1570], [140, 1510, 260, 1580]], "dL_min": 6},
+    "home": {"frame": "path-d21-0900", "under": [505, 1268, 575, 1280],
+             "beside": [[430, 1268, 490, 1280], [590, 1268, 650, 1280]], "dL_min": 4},
+    "pending": null
+  }
+}
