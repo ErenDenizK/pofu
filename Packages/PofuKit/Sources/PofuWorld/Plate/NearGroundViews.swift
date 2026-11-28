@@ -83,33 +83,42 @@ struct NearGround: View {
         .opacity(share * strength)
     }
 
-    /// The lawn's alpha: the mask's own, times the depth band (full at Pofu's row, gone above and below),
-    /// minus every object of the state (the wheel, the mailbox, a built station).
+    /// The lawn's alpha: the mask's own (a stage's, or autumn's own painting's, whose leaf piles it leaves out), times the
+    /// depth band (full at Pofu's row, gone above and below), minus every object of the state (the wheel, the mailbox, a
+    /// built station) with its edge feathered, so the sharp lawn fades into a blurred object and is never cut off at it.
     private func lawnMask(_ patch: PlateNear.Patch, frame f: Frame) -> some View {
-        Canvas { ctx, _ in
-            guard patch.maskBox.count == 4, patch.rows.count == 4 else { return }
-            let box = f.rect(patch.maskBox[0], patch.maskBox[1], patch.maskBox[2], patch.maskBox[3])
-            let y0 = f.oy + patch.rows[0] * f.ppp, y3 = f.oy + patch.rows[3] * f.ppp
-            guard y3 > y0 else { return }
-            let stops: [Gradient.Stop] = [
-                .init(color: .black.opacity(0), location: 0),
-                .init(color: .black, location: (patch.rows[1] - patch.rows[0]) / (patch.rows[3] - patch.rows[0])),
-                .init(color: .black, location: (patch.rows[2] - patch.rows[0]) / (patch.rows[3] - patch.rows[0])),
-                .init(color: .black.opacity(0), location: 1),
-            ]
-            ctx.fill(Path(box), with: .linearGradient(Gradient(stops: stops), startPoint: CGPoint(x: 0, y: y0), endPoint: CGPoint(x: 0, y: y3)))
-            ctx.blendMode = .destinationIn
-            ctx.draw(ctx.resolve(Image("\(patch.mask)-\(plate.stage)", bundle: .module)), in: box)
-            ctx.blendMode = .destinationOut
-            for object in plate.objects where object.polygon.count >= 3 {
-                var path = Path()
-                path.move(to: f.point(object.polygon[0].x, object.polygon[0].y))
-                for p in object.polygon.dropFirst() { path.addLine(to: f.point(p.x, p.y)) }
-                path.closeSubpath()
-                ctx.fill(path, with: .color(.black))
+        let name = "\(patch.mask)-\(plate.season == .autumn ? "autumn-" : "")\(plate.stage)"
+        return ZStack(alignment: .topLeading) {
+            Canvas { ctx, _ in
+                guard patch.maskBox.count == 4, patch.rows.count == 4 else { return }
+                let box = f.rect(patch.maskBox[0], patch.maskBox[1], patch.maskBox[2], patch.maskBox[3])
+                let y0 = f.oy + patch.rows[0] * f.ppp, y3 = f.oy + patch.rows[3] * f.ppp
+                guard y3 > y0 else { return }
+                let stops: [Gradient.Stop] = [
+                    .init(color: .black.opacity(0), location: 0),
+                    .init(color: .black, location: (patch.rows[1] - patch.rows[0]) / (patch.rows[3] - patch.rows[0])),
+                    .init(color: .black, location: (patch.rows[2] - patch.rows[0]) / (patch.rows[3] - patch.rows[0])),
+                    .init(color: .black.opacity(0), location: 1),
+                ]
+                ctx.fill(Path(box), with: .linearGradient(Gradient(stops: stops), startPoint: CGPoint(x: 0, y: y0), endPoint: CGPoint(x: 0, y: y3)))
+                ctx.blendMode = .destinationIn
+                ctx.draw(ctx.resolve(Image(name, bundle: .module)), in: box)
             }
+            // The objects, blurred about 6 points (18 device px), taken out of the lawn.
+            Canvas { ctx, _ in
+                for object in plate.objects where object.polygon.count >= 3 {
+                    var path = Path()
+                    path.move(to: f.point(object.polygon[0].x, object.polygon[0].y))
+                    for p in object.polygon.dropFirst() { path.addLine(to: f.point(p.x, p.y)) }
+                    path.closeSubpath()
+                    ctx.fill(path, with: .color(.black))
+                }
+            }
+            .blur(radius: 6)
+            .blendMode(.destinationOut)
         }
-        .frame(width: size.width, height: size.height)
+        .frame(width: size.width, height: size.height, alignment: .topLeading)
+        .compositingGroup()
     }
 
     // MARK: The dressing
@@ -157,14 +166,17 @@ struct NearGround: View {
                     .resizable()
                     .interpolation(.high)
                     .frame(width: strip.width * f.ppp, height: strip.height * f.ppp)
-                    // Each copy mirrors its neighbour, so their edges meet in the same pixels.
-                    .scaleEffect(x: i % 2 == 0 ? 1 : -1, y: 1)
+                    // The art repeats sideways by itself (its two edges are crossfaded), so no copy is mirrored.
                     .saturation(light.saturation)
                     .colorMultiply(Color(red: light.paint.red, green: light.paint.green, blue: light.paint.blue))
                     .position(x: centre.x, y: centre.y)
             }
         }
         .frame(width: size.width, height: size.height, alignment: .topLeading)
+        // Only over the island: the plate's own picture is the clip, so the strip never bands over the sky.
+        .mask {
+            PlateImage(name: plate.plate.drawnPlateArt(light: plate.key, stage: plate.stage), box: plate.plateImageBox, pose: pose, size: size, offset: offset)
+        }
         .opacity(share)
     }
 }

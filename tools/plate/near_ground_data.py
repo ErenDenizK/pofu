@@ -1,4 +1,4 @@
-"""Writes the `near` ground keys of plate-home.json (patch, foreground, dressing) from the built layers.
+"""Writes (or rewrites) the `near` ground keys of plate-home.json (patch, foreground, dressing) from the built layers.
 
     python3 -I tools/plate/near_ground_data.py <World.xcassets> <plate-home.json>
 
@@ -47,15 +47,15 @@ def main(assets: Path, plate_json: Path) -> None:
         out.append(piece)
     out.sort(key=lambda d: (d["at"][1], d["at"][0]))
     new = {
-        "patch": {"detail": "world-near-lawn-detail", "mask": "world-near-lawn-mask", "maskBox": [0, 790, 1024, 1010], "tile": 200, "rows": [795, 825, 905, 960], "fadeIn": [3.2, 4.2], "night": 0.8},
-        "foreground": {"art": "world-near-foreground", "x": -80, "count": 3, "width": 400, "height": 345, "top": 920, "fadeIn": [3.2, 4.2]},
+        "patch": {"detail": "world-near-lawn-detail", "mask": "world-near-lawn-mask", "maskBox": [0, 790, 1024, 1010], "tile": 200, "rows": [795, 825, 905, 960], "fadeIn": [3.2, 4.2], "night": 0.5},
+        "foreground": {"art": "world-near-foreground", "x": -80, "count": 4, "width": 320, "height": 345, "top": 920, "fadeIn": [3.2, 4.2]},
         "dressing": out,
     }
     s = plate_json.read_text()
-    old = '"flat":["pond","pier","door"],"dressing":[]}'
-    if s.count(old) != 1:
-        raise SystemExit("plate-home.json `near` is not in its empty form")
-    s = s.replace(old, '"flat":["pond","pier","door"],' + json.dumps(new, separators=(",", ":"))[1:-1] + "}")
+    start = s.index('"near":') + len('"near":')
+    near, end = json.JSONDecoder().raw_decode(s, start)
+    near.update(new)
+    s = s[:start] + json.dumps(near, separators=(",", ":")) + s[end:]
     json.loads(s)
     plate_json.write_text(s)
     for d in out:

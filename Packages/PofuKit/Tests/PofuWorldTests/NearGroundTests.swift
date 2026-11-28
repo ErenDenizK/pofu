@@ -52,7 +52,7 @@ struct NearGroundTests {
         let near = try near
         let assets = URL(fileURLWithPath: #filePath).deletingLastPathComponent().appendingPathComponent("../../Sources/PofuWorld/Resources/World.xcassets").standardized
         var names = [near.patch?.detail, near.foreground?.art].compactMap { $0 } + near.dressing.map(\.art)
-        names += (0..<10).map { "\(near.patch?.mask ?? "")-\($0)" }
+        names += (0..<10).map { "\(near.patch?.mask ?? "")-\($0)" } + ["\(near.patch?.mask ?? "")-autumn-0"]
         for name in names {
             let heic = assets.appendingPathComponent("\(name).imageset/\(name).heic")
             #expect(FileManager.default.fileExists(atPath: heic.path), "\(name) is in World.xcassets")

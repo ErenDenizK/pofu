@@ -90,10 +90,11 @@ MASK_ROWS = (790, 1010)  # plate rows the mask covers
 MASK_W = 512  # plate columns 0..1024 at half resolution
 
 
-def lawn_mask(plate_path: Path, crop: list[int]) -> Image.Image:
-    """`near-lawn-mask-<stage>`: white, its alpha 1 on grass only. Stones are beige (blue near half of green), flowers
-    and water have more blue still, soil is red; lawn, lit or shaded, is none of them. `crop` is the plate's
-    `plateCrop` box [x0, y0, x1, y1] of the stage: the image is that box at 2 px per plate pixel."""
+def lawn_pixels(plate_path: Path, crop: list[int]) -> tuple[np.ndarray, np.ndarray]:
+    """The plate (float RGB) and a boolean field, True on grass: no stone, flower, water, soil or autumn leaf pile.
+    Stones are beige (blue near half of green), flowers and water have more blue still, soil and leaves are red;
+    lawn, lit or shaded, is none of them. `crop` is the plate's `plateCrop` box [x0, y0, x1, y1] of the state: the
+    image is that box at 2 px per plate pixel."""
     from PIL import ImageDraw
     import pillow_heif
 
@@ -105,6 +106,13 @@ def lawn_mask(plate_path: Path, crop: list[int]) -> Image.Image:
     ImageDraw.Draw(poly).polygon([((x - cx) * 2, (y - cy) * 2) for x, y in LAWN], fill=255)
     stone = ndi.binary_dilation(ndi.binary_opening((b > 0.5 * g) | (r > g * 1.3), iterations=2), iterations=5)
     lawn = ndi.binary_erosion(ndi.binary_opening((np.asarray(poly) > 0) & ~stone, iterations=3), iterations=3)
+    return p, lawn
+
+
+def lawn_mask(plate_path: Path, crop: list[int]) -> Image.Image:
+    """`near-lawn-mask-<stage>` (`-autumn-<stage>` for autumn's own painting): white, its alpha 1 on grass."""
+    cx, cy = crop[0], crop[1]
+    _, lawn = lawn_pixels(plate_path, crop)
     # Place the crop's rows and columns into a full-plate field (rows 790..1010, columns 0..1024) at 2 px per plate pixel.
     full = np.zeros(((MASK_ROWS[1] - MASK_ROWS[0]) * 2, 2048), np.float32)
     blurred = ndi.gaussian_filter(lawn.astype(np.float32), 2.0)
@@ -119,12 +127,15 @@ def lawn_mask(plate_path: Path, crop: list[int]) -> Image.Image:
     return out
 
 
-STRIP_W, STRIP_H = 480, 345
+STRIP_W, STRIP_H = 480, 345  # before the seam crossfade cuts SEAM texels of width
 
 
-def foreground(art: Path) -> Image.Image:
-    """The soft strip from its ramp down to where it is fully opaque, reduced; below that its own last rows, blurred
-    sideways, fill the rest, so one image covers the whole earth face."""
+SEAM = 96  # texels the strip's two edges are crossfaded over, so unflipped copies repeat without a seam or a mirror axis
+
+
+def foreground(art: Path, lawn_rgb: np.ndarray) -> Image.Image:
+    """The soft strip from its ramp down to where it is fully opaque, reduced and made to repeat sideways; below that
+    its own last rows, blurred sideways, relax to the plate's lawn colour, so one image covers the whole earth face."""
     im = load(art, STRIP)
     arr = np.asarray(im).astype(np.float32)
     alpha = arr[..., 3]
@@ -140,18 +151,23 @@ def foreground(art: Path) -> Image.Image:
     last = ndi.gaussian_filter(small[-8:, :, :3].mean(axis=0), (6, 0))
     out = np.zeros((STRIP_H, STRIP_W, 4), np.float32)
     out[:rows] = small
-    # Below the body the colour relaxes from the last rows' to a wide blur of them to their mean, so no column streaks.
+    # Below the body the colour relaxes from the last rows' to a wide blur of them to the lawn's own colour.
     raw = small[-8:, :, :3].mean(axis=0)
-    wide, mean = ndi.gaussian_filter(raw, (60, 0), mode="nearest"), raw.mean(axis=0)
+    wide = ndi.gaussian_filter(raw, (60, 0), mode="nearest")
     n = STRIP_H - rows
     k = np.clip(np.arange(n) / 40.0, 0, 1)[:, None, None]
     k2 = np.clip((np.arange(n) - 40) / 120.0, 0, 1)[:, None, None]
-    out[rows:, :, :3] = (last[None] * (1 - k) + wide[None] * k) * (1 - k2) + mean[None, None] * k2
+    out[rows:, :, :3] = (last[None] * (1 - k) + wide[None] * k) * (1 - k2) + lawn_rgb[None, None] * k2
     blend = min(24, rows)
     t = np.linspace(0, 1, blend)[:, None, None]
     out[rows - blend : rows, :, :3] = small[-blend:, :, :3] * (1 - t) + last[None] * t
     out[rows - blend :, :, 3] = 255
-    return Image.fromarray(np.clip(out, 0, 255).astype(np.uint8), "RGBA")
+    # Repeatable: the first SEAM texels crossfade into the last SEAM texels of the source, then those are cut.
+    w = STRIP_W - SEAM
+    t = np.linspace(0, 1, SEAM)[None, :, None]
+    seamless = out[:, :w].copy()
+    seamless[:, :SEAM] = out[:, :SEAM] * t + out[:, w : w + SEAM] * (1 - t)
+    return Image.fromarray(np.clip(seamless, 0, 255).astype(np.uint8), "RGBA")
 
 
 def trim(im: Image.Image, scale: float) -> Image.Image:
@@ -202,12 +218,16 @@ def main() -> None:
     ap.add_argument("--xcassets", type=Path, help="also write each layer as world-<name>.imageset here")
     a = ap.parse_args()
     a.out.mkdir(parents=True, exist_ok=True)
-    layers: dict[str, Image.Image] = {"near-lawn-detail": detail_tile(a.art).convert("RGB"), "near-foreground": foreground(a.art)}
+    crops = json.loads(a.plate_json.read_text())["plateCrop"]
+    day0 = a.plates / "world-home-plate-day-0.imageset/world-home-plate-day-0.heic"
+    plate0, lawn0 = lawn_pixels(day0, crops["day"][0])
+    layers: dict[str, Image.Image] = {"near-lawn-detail": detail_tile(a.art).convert("RGB"), "near-foreground": foreground(a.art, plate0[lawn0].mean(axis=0))}
     layers.update(dressing(a.art))
-    crops = json.loads(a.plate_json.read_text())["plateCrop"]["day"]
-    for stage, crop in enumerate(crops):
+    for stage, crop in enumerate(crops["day"]):
         if crop is not None:
             layers[f"near-lawn-mask-{stage}"] = lawn_mask(a.plates / f"world-home-plate-day-{stage}.imageset/world-home-plate-day-{stage}.heic", crop)
+    # Autumn's own painting (stage 0) keeps its leaf piles soft.
+    layers["near-lawn-mask-autumn-0"] = lawn_mask(a.plates / "world-home-plate-autumn-day-0.imageset/world-home-plate-autumn-day-0.heic", crops["autumn-day"][0])
     total = 0
     for name, im in layers.items():
         save_heic(im, a.out / f"{name}.heic", 85 if name == "near-lawn-detail" else 80)
