@@ -44,7 +44,6 @@ below (1:1 first); Codex D74-D76, D74 and D76 to him as pictures; then Next.
 ## Merged today
 
 - #563/#566 painted nights (workshop, lighthouse, bagel cart). #571 art gate (6 of 15 fail on main).
-  #567 docs; pofu-art #232 picks, #233 art line, #234 D74-D76.
 - #568 pier 1-5 day/night/golden, stage 0 only (1, 2, 5 need bare crops); worst night-0 11.33 M px.
 - #569 Pofu on the ground (no third paw; Home pad 2.0 < 4: he stands on the lantern post, PR 7).
   #565 stable frames + `screens_diff.py`; #570 publish 30 min (screenshots/main was stale).
