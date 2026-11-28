@@ -168,6 +168,19 @@ struct SeasonAirTests {
         #expect(SeasonAir.ramp(height / 2, height: height) == 1)
     }
 
+    @Test func firefliesStayLowAndOutOfTheCharacters() {
+        for time in stride(from: 0.0, to: 60, by: 1.5) {
+            for i in 0 ..< SeasonAir.fireflyCount {
+                let f = SeasonAir.firefly(i, time: time)
+                #expect(f.blink >= 0.09 && f.blink <= 1.001)
+                #expect(f.y > -25 && f.y < 70)
+                for foot in SeasonAir.keepOut {
+                    #expect(!(abs(f.x - foot.x) < 40 && f.y > foot.y - 60 && f.y < foot.y + 4), "firefly \(i) at \(time)")
+                }
+            }
+        }
+    }
+
     // MARK: The light
 
     @Test func springAndNoSeasonAreReturnedAsTheyAre() {

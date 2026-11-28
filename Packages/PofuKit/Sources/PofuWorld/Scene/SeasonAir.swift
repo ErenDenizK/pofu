@@ -120,7 +120,7 @@ public enum SeasonAir {
     }
 
     /// One firefly in the world's units (where `HD2DLayer`'s fly), its blink
-    /// 0.25...1 and the way it faces.
+    /// 0.1...1 (a slow pulse) and the way it faces.
     public struct Firefly: Hashable, Sendable {
         public var x: Double
         public var y: Double
@@ -128,12 +128,21 @@ public enum SeasonAir {
         public var faces: Double
     }
 
+    /// Where the characters stand (feet, world units): Pofu, the two residents and the
+    /// plate's companions either side of Pofu. A firefly never drifts across their bodies.
+    static let keepOut: [(x: Double, y: Double)] = [(22, 27), (-53, 27), (97, 27), (108, 29), (76, 20)]
+
     public static func firefly(_ i: Int, time: Double) -> Firefly {
         let phase = unit(i, 31)
-        let x = -190 + 380 * unit(i, 32) + sin(time * 0.5 + phase * 5) * 10
-        let y = -120 + 170 * unit(i, 33) + cos(time * 0.43 + phase * 3) * 7
-        let blink = max(0, sin(time * 1.6 + phase * 9)) * 0.75 + 0.25
-        return Firefly(x: x, y: y, blink: blink, faces: cos(time * 0.5 + phase * 5) < 0 ? -1 : 1)
+        let x = -190 + 380 * unit(i, 32) + sin(time * 0.3 + phase * 5) * 8
+        var y = -15 + 60 * unit(i, 33) + cos(time * 0.25 + phase * 3) * 4
+        for foot in keepOut where abs(x - foot.x) < 40 && y > foot.y - 60 && y < foot.y + 4 {
+            // Below the feet, on the lawn in front of them, never across a face.
+            y = foot.y + 6 + 8 * unit(i, 34)
+        }
+        // A slow pulse, never a flash.
+        let blink = 0.55 + 0.45 * sin(time * 0.9 + phase * 9)
+        return Firefly(x: x, y: y, blink: blink, faces: 1)
     }
 
     /// How far above and below the screen a particle lives, so it never
@@ -357,32 +366,32 @@ struct SeasonAirLayer: View {
                     }
                 }
                 if glow {
-                    let tint = Color(red: 0.92, green: 1, blue: 0.55)
-                    let frames = (1 ... 4).map { gc.resolve(Image("firefly-\($0)", bundle: .module)) }
+                    // A soft warm glow only: a small core and a wide faint halo, no body.
+                    let tint = Color(red: 0.95, green: 1, blue: 0.6)
                     for i in 0 ..< SeasonAir.fireflyCount {
                         let f = SeasonAir.firefly(i, time: time)
                         let p = CGPoint(
                             x: canvas.width / 2 + CGFloat((f.x - pose.lookX) * pose.scale) + offset.width,
                             y: CGFloat(pose.anchorY + (f.y - pose.lookY) * pose.scale) + offset.height
                         )
-                        let radius = max(CGFloat(LookTuning.fireflyHaloRadius) * scale, 4)
                         var halo = gc
                         halo.blendMode = .plusLighter
+                        let outer = max(CGFloat(6) * scale, 5)
                         halo.fill(
-                            Path(ellipseIn: CGRect(x: p.x - radius, y: p.y - radius, width: radius * 2, height: radius * 2)),
+                            Path(ellipseIn: CGRect(x: p.x - outer, y: p.y - outer, width: outer * 2, height: outer * 2)),
                             with: .radialGradient(
-                                Gradient(colors: [tint.opacity(0.5 * fireflies * f.blink), tint.opacity(0)]),
-                                center: p, startRadius: 0, endRadius: radius
+                                Gradient(colors: [tint.opacity(0.35 * fireflies * f.blink), tint.opacity(0)]),
+                                center: p, startRadius: 0, endRadius: outer
                             )
                         )
-                        let width = max(CGFloat(LookTuning.fireflyWidth) * scale, 5)
-                        let height = width * 0.92
-                        var bug = gc
-                        bug.opacity = min(fireflies, 1) * (0.55 + 0.45 * f.blink)
-                        bug.translateBy(x: p.x, y: p.y)
-                        bug.scaleBy(x: CGFloat(f.faces), y: 1)
-                        bug.translateBy(x: -p.x, y: -p.y)
-                        bug.draw(frames[LookTuning.fireflyFrame(blink: f.blink)], in: CGRect(x: p.x - width / 2, y: p.y - height / 2, width: width, height: height))
+                        let core = max(CGFloat(1.3) * scale, 1.2)
+                        halo.fill(
+                            Path(ellipseIn: CGRect(x: p.x - core, y: p.y - core, width: core * 2, height: core * 2)),
+                            with: .radialGradient(
+                                Gradient(colors: [Color.white.opacity(0.95 * fireflies * f.blink), tint.opacity(0)]),
+                                center: p, startRadius: 0, endRadius: core
+                            )
+                        )
                     }
                 }
             }
