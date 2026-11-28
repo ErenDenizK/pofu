@@ -4,7 +4,7 @@ import PofuDesignSystem
 import SwiftUI
 
 extension EnvironmentValues {
-    /// Screenshots: Pofu's idle breath and the glow's breath stay at their first frame, so a frame never
+    /// Screenshots: the postcard's drift, Pofu's idle breath and the glow's breath stay at their first frame, so a frame never
     /// catches them mid-breath. The app never sets it.
     @Entry var hopBreathHeld: Bool = false
 }

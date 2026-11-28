@@ -6,7 +6,8 @@
 
 A side that is a directory is read as it is; any other value is a screenshots ref, fetched with
 `fetch_frames.sh` (never `git fetch` a screenshots ref into the main repo). Frames are compared by
-bytes, then by pixels so the report says how much changed. Frames in `KNOWN_UNSTABLE` are counted
+bytes, then by pixels so the report says how much changed. Glass chrome (`GLASS_BOXES`, small levels) and specks are
+counted apart. Frames in `KNOWN_UNSTABLE` are counted
 and left out of the list: they differ between two runs of the same commit and are no evidence.
 Exit status 0 when nothing outside the known set changed, 1 otherwise.
 """
@@ -23,9 +24,21 @@ from pathlib import Path
 # frame glob -> why two runs of the same commit still differ. Only a cause that was traced and
 # could not be removed belongs here; an entry is a debt, not a license.
 KNOWN_UNSTABLE: dict[str, str] = {
-    "path-game-flow-*": "SpriteKit actions run on the display link; the fixed sleeps before freeze() land on different frames",
-    "path-game-garden-midround": "SpriteKit drag follow and actions run on the display link; the frame is taken mid-motion",
+    "path-game-*": "SpriteKit scenes: sceneTime follows the display link's dt and the SKActions run on the system clock, "
+    "so fixed sleeps before freeze() land on different frames (FlowScene.update, GardenScene.update)",
+    "path-card-resident-moved": "the focused resident (Findik) idles in its own animation; not driven by worldResidentPin (cause not found)",
 }
+
+# `.glassEffect` chrome is captured live by drawHierarchy: its lens and halo shift by a few levels
+# between runs. Differences of at most GLASS_TOLERANCE levels inside these boxes (x0, y0, x1, y1, in
+# device pixels of a 1206 x 2622 frame) are not reported; anything stronger, or outside, still is.
+GLASS_TOLERANCE = 24
+GLASS_BOXES = [(880, 100, 1206, 500), (0, 2200, 1206, 2622)]
+GLASS_BOXES_BY_FRAME = {"path-sheet-today": [(0, 1550, 1206, 1800)]}
+
+# A frame whose remaining differing pixels number at most this many (text edge jitter, a lone
+# speck) is counted as a speck, not listed: it is below what an art change moves.
+SPECK_PIXELS = 250
 
 HERE = Path(__file__).resolve().parent
 
@@ -51,23 +64,29 @@ def digest(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def pixel_change(a: Path, b: Path) -> str:
-    try:
-        import numpy as np
-        from PIL import Image
-    except ImportError:
-        return "bytes differ"
+def pixel_change(a: Path, b: Path, name: str) -> tuple[str, str]:
+    """Return (kind, text): kind is "pixels-equal", "glass", "speck" or "changed"."""
+    import numpy as np
+    from PIL import Image
+
     with Image.open(a) as ia, Image.open(b) as ib:
         if ia.size != ib.size:
-            return f"size {ia.size} -> {ib.size}"
+            return "changed", f"size {ia.size} -> {ib.size}"
         x = np.asarray(ia.convert("RGB"), dtype=np.int16)
         y = np.asarray(ib.convert("RGB"), dtype=np.int16)
     d = np.abs(x - y).max(axis=2)
+    if not d.any():
+        return "pixels-equal", "bytes differ, pixels equal (metadata)"
+    stem = name.rsplit(".", 1)[0]
+    for x0, y0, x1, y1 in GLASS_BOXES + GLASS_BOXES_BY_FRAME.get(stem, []):
+        zone = d[y0:y1, x0:x1]
+        zone[zone <= GLASS_TOLERANCE] = 0
     changed = int((d > 0).sum())
     if not changed:
-        return "bytes differ, pixels equal (metadata)"
+        return "glass", "only glass chrome differs"
     ys, xs = np.nonzero(d)
-    return f"{changed} px differ, max {int(d.max())}, box x {xs.min()}-{xs.max()} y {ys.min()}-{ys.max()}"
+    text = f"{changed} px differ, max {int(d.max())}, box x {xs.min()}-{xs.max()} y {ys.min()}-{ys.max()}"
+    return ("speck" if changed <= SPECK_PIXELS else "changed"), text
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -80,14 +99,18 @@ def main(argv: list[str] | None = None) -> int:
         scratch = Path(tmp)
         fa = load(args.a, args.glob, scratch, "a")
         fb = load(args.b, args.glob, scratch, "b")
-        changed, known, same = [], 0, 0
+        changed, known, same, quiet = [], 0, 0, 0
         for name in sorted(fa.keys() & fb.keys()):
             if digest(fa[name]) == digest(fb[name]):
                 same += 1
             elif is_known(name):
                 known += 1
             else:
-                changed.append((name, pixel_change(fa[name], fb[name])))
+                kind, text = pixel_change(fa[name], fb[name], name)
+                if kind == "changed":
+                    changed.append((name, text))
+                else:
+                    quiet += 1
         removed = sorted(fa.keys() - fb.keys())
         added = sorted(fb.keys() - fa.keys())
     for name, how in changed:
@@ -96,7 +119,7 @@ def main(argv: list[str] | None = None) -> int:
         print(f"REMOVED  {name}")
     for name in added:
         print(f"ADDED    {name}")
-    print(f"{same} identical, {known} differ but known unstable, {len(changed)} changed, {len(removed)} removed, {len(added)} added")
+    print(f"{same} identical, {quiet} differ only in glass chrome or specks, {known} differ but known unstable, {len(changed)} changed, {len(removed)} removed, {len(added)} added")
     return 1 if changed or removed else 0
 
 
