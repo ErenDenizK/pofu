@@ -5,6 +5,7 @@
   2048,
   3072
  ],
+ "fitScript": {"lights": ["golden"], "rows": 120, "dropShadeLobes": true},
  "seaTop": 1700,
  "seaSolid": 2250,
  "farMaxY": 900,

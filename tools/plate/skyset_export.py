@@ -7,7 +7,8 @@ The split writes full-size layers under `design/art/plates/<island>/sky/<light>/
 at the Home framing (1206 px wide screen, the island 1.15 screens wide, so about 0.68 screen px per
 master px), so the soft cloud layers are stored smaller than the master (`SCALES`) to fit the texture
 budget (texture pixels, 4 bytes each decoded, per state, `PlateMath.budgetOK`); the island, which carries the
-detail, keeps its full size. The layer pixels are never graded, only resampled:
+detail, keeps its full size. The layer pixels are never graded, only resampled (one exception, ADR-0033: the gradient field of a light listed in
+the island's `fitScript` is refit to the colour script's zenith and horizon; it has no painted detail):
 
   sky     a smooth field fitted to the master's sky pixels (stars and the moon left out), at 1/8 size
           plus 32 source pixels of replicated edge on every side, so the picture runs past the plate;
@@ -51,6 +52,7 @@ PLATES = ROOT / "design" / "art" / "plates"
 RESOURCES = ROOT / "Packages" / "PofuKit" / "Sources" / "PofuWorld" / "Resources"
 ASSETS = RESOURCES / "World.xcassets"
 JSON_DIR = RESOURCES / "Plates"
+COLOUR_SCRIPT = ROOT / "design" / "art" / "colour-script.json"
 BUDGET = json.loads((JSON_DIR / "texture-budget.json").read_text())["statePixels"]
 
 #: Layers of the painted master that are not shipped: the baked whale is the Gezgin now, a character that is
@@ -145,6 +147,52 @@ def fit_field(sky: np.ndarray, exclude: np.ndarray, rows: int = SKY_FIT_ROWS, de
         coef, *_ = np.linalg.lstsq(basis[use], sky[..., c][use], rcond=None)
         out[..., c] = basis @ coef
     return np.clip(out, 0, 1)
+
+
+def _hex_rgb(code: str) -> np.ndarray:
+    return np.array([int(code[i: i + 2], 16) for i in (1, 3, 5)], np.float32) / 255
+
+
+def _lab(rgb: np.ndarray) -> np.ndarray:
+    return cv2.cvtColor(np.ascontiguousarray(rgb, np.float32), cv2.COLOR_RGB2Lab)
+
+
+def _unlab(lab: np.ndarray) -> np.ndarray:
+    return np.clip(cv2.cvtColor(np.ascontiguousarray(lab, np.float32), cv2.COLOR_Lab2RGB), 0, 1)
+
+
+def fit_script(field: np.ndarray, zenith: str, horizon: str, rows: int) -> np.ndarray:
+    """The smooth sky field refit to the colour script's light (ADR-0033): in CIELAB, row by row, the field moves by
+    the gap between its own median at that row and the line from `zenith` (the top row) to `horizon` (row `rows - 1`,
+    the lowest row that shows), linearly by row. Each row keeps its own variation along x; rows past `rows - 1` hold
+    the horizon's shift (they are hidden). Only a smooth, detail-free field is ever graded; layers with painted
+    detail are only resampled."""
+    lab = _lab(field)
+    med = np.median(lab, axis=1)                                    # (H, 3): the field's median per row
+    r = np.minimum(np.arange(field.shape[0]), rows - 1) / max(rows - 1, 1)
+    z, hz = (_lab(_hex_rgb(c)[None, None])[0, 0] for c in (zenith, horizon))
+    want = z[None] * (1 - r)[:, None] + hz[None] * r[:, None]
+    have = med[:1] * (1 - r)[:, None] + med[min(rows, len(med)) - 1][None] * r[:, None]
+    return _unlab(lab + (want - have)[:, None, :])
+
+
+def drop_shade_lobes(far: np.ndarray, pos: tuple[int, int], field: np.ndarray, alpha_max: float = 0.6,
+                     dL: float = 2.0) -> np.ndarray:
+    """The golden far tile (straight RGBA at master `pos`) without its shade lobes: a pixel whose alpha is under
+    `alpha_max` and whose lightness is more than `dL` L* below the gradient behind it takes alpha 0, so the dark,
+    hard-edged cloud shapes go and the lit cloud bodies stay. `field` is the gradient at master size."""
+    x, y = pos
+    h, w = far.shape[:2]
+    behind = field[y: y + h, x: x + w]
+    if behind.shape[:2] != (h, w):
+        behind = np.pad(behind, ((0, h - behind.shape[0]), (0, w - behind.shape[1]), (0, 0)), mode="edge")
+    # the gradient's row median, not its own column: the tile wraps, so its first and last columns must be judged
+    # against the same sky or the cut would show a seam
+    sky_L = np.median(_lab(behind)[..., 0], axis=1)[:, None]
+    dark = (far[..., 3] < alpha_max) & (_lab(far[..., :3])[..., 0] < sky_L - dL)
+    out = far.copy()
+    out[..., 3][dark] = 0
+    return out
 
 
 def moon_sprite(plate: np.ndarray, field_up: np.ndarray) -> tuple[np.ndarray, tuple[int, int]]:
@@ -393,7 +441,15 @@ def export_light(island: str, light: str, hand: dict) -> dict:
         yy, xx = np.mgrid[0:sky0.shape[0], 0:sky0.shape[1]]
         exclude |= np.hypot(yy * k + k / 2 - cy, xx * k + k / 2 - cx) < MOON_R_HALO + 24
     field = sky0 if cfg.get("splitSky") else fit_field(sky0, exclude)   # Çağlayan: the one smooth field the clouds were unmixed against
+    fit = hand.get("fitScript", {})          # a light refit to the colour script (Home's golden); not `export`, whose presence selects the Çağlayan paths
+    scripted = light in fit.get("lights", [])
     sky_arr = field.copy()
+    # ADR-0033: the gradient that is shipped follows the colour script. The layers are still unmixed against the
+    # painting's own field (`sky_arr`), so a sprite's soft edge carries no painted air of the old colour.
+    shown = sky_arr
+    if scripted:
+        cell = json.loads(COLOUR_SCRIPT.read_text())["cells"][light]["sky"]
+        shown = fit_script(sky_arr, cell["zenith"], cell["horizon"], fit["rows"])
     if stars_on:                                              # the painted stars, put back
         for blob in blobs:
             ring = ndimage.binary_dilation(blob, iterations=1)
@@ -472,7 +528,7 @@ def export_light(island: str, light: str, hand: dict) -> dict:
                 padded = np.pad(up, ((0, bottom), (side, side), (0, 0)), mode="edge")
                 origin = [-side * k, -top * k]
             else:
-                padded = np.pad(sky_arr, ((SKY_PAD, SKY_PAD), (SKY_PAD, SKY_PAD), (0, 0)), mode="edge")
+                padded = np.pad(shown, ((SKY_PAD, SKY_PAD), (SKY_PAD, SKY_PAD), (0, 0)), mode="edge")
                 origin = [-SKY_PAD * k, -SKY_PAD * k]
             padded = np.concatenate([padded, np.ones(padded.shape[:2] + (1,), np.float32)], -1)
             entry.update(pos=origin, size=[padded.shape[1] * k, padded.shape[0] * k])
@@ -502,6 +558,8 @@ def export_light(island: str, light: str, hand: dict) -> dict:
             continue
         if lid == "far":
             arr = far_arr
+            if scripted and fit.get("dropShadeLobes"):
+                arr = drop_shade_lobes(arr, (x, y), cv2.resize(shown, (w, h), interpolation=cv2.INTER_LINEAR))
         if lid == "mid" and centres:                          # the stars' residue belongs to the still sky
             yy, xx = np.mgrid[0:arr.shape[0], 0:arr.shape[1]]
             for cx_, cy_ in centres:
