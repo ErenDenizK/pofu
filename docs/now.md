@@ -28,7 +28,7 @@ and the art pass (`docs/design/art-pass-2026-11-28.md`, 9 PRs, merge order 1-9).
 
 - PR 2 `fix/pofu-ground` (art pass: one shadow, two hands, pads): builder, in CI.
 - `art/nights-round-2` (tea stall 208 + windmill 3 207; brief 2026-11-28-nights-round-2): builder.
-- PR 1 `test/art-gate` (`tools/plate/art_gate.py`): builder.
+- PR 3 `art/golden-sky-set` (golden sky to #E2ADC7, no mirrored wrap, ADR-0033): builder.
 - #565 byte-stable screenshots (`test/screens-stable`): CI on push 3; merge on green.
   Known unstable: games, resident-moved, season-turn 1000-1500, d04-grow-1500.
 - #570 publish job 10 -> 30 min: `screenshots/main` stuck at 302b8c2 since
@@ -43,11 +43,12 @@ and the art pass (`docs/design/art-pass-2026-11-28.md`, 9 PRs, merge order 1-9).
 - #568 pier levels 1-5 day/night/golden at stage 0 only (stages 1, 2, 5 paint
   their own pier and need bare crops: Codex row to write); Gezgin's post stands;
   worst state night-0 11.33 M px of 12.
+- #571 art gate (`art_gate.py report <folder>`; on main 6 of 15 fail, as expected).
 - #567 docs; pofu-art #232 picks, #233 art line, #234 D74-D76.
 
 ## Next
 
-1. As slots free: PR 3 `art/golden-sky-set`, PR 4 `art/near-lens`, PR 5 `feat/pofu-pose-set`.
+1. As slots free: PR 4 `art/near-lens`, PR 5 `feat/pofu-pose-set`.
 2. Wave C after N1/N2 land: PR 6 home night relight, 7, 8, 9.
 3. Codex rows: pier bare crops at stages 1, 2, 5; keep the queue full under the art line.
 4. Docs PR for the lead branch (briefs, assessment, spec, fi 50-51, this page).
