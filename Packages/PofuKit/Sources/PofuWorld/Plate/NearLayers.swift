@@ -39,8 +39,8 @@ public struct PlateNear: Decodable, Hashable, Sendable {
         public var fadeIn: [Double]
         /// The detail's strength at night (1 elsewhere).
         public var night: Double
-        /// How far the tile is darkened toward black at night (its mean grey drops, so the soft light lowers the lawn a little).
-        public var nightDark: Double?
+        /// At night, how much black a multiply over the band adds (the band's lawn then sits at the plate's own tone).
+        public var nightTone: Double?
     }
 
     public struct Foreground: Decodable, Hashable, Sendable {

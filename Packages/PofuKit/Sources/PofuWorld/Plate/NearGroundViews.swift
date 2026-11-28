@@ -64,8 +64,8 @@ struct NearGround: View {
     private func detail(_ patch: PlateNear.Patch, frame f: Frame, share: Double) -> some View {
         let night = plate.light == "night"
         let strength = night ? patch.night : 1
-        let dark = night ? (patch.nightDark ?? 0) : 0
-        return Canvas { ctx, canvas in
+        let tone = night ? (patch.nightTone ?? 0) : 0
+        let blades = Canvas { ctx, canvas in
             let tile = ctx.resolve(Image(patch.detail, bundle: .module))
             let side = patch.tile * f.ppp
             guard side > 1 else { return }
@@ -78,13 +78,22 @@ struct NearGround: View {
                     ctx.draw(tile, in: CGRect(x: f.ox + Double(i) * side - 0.5, y: f.oy + Double(j) * side - 0.5, width: side + 1, height: side + 1))
                 }
             }
-            // At night the soft light over a pale tile would lift the lawn above the plate's: a little black lowers the tile's mean grey.
-            if dark > 0 { ctx.fill(Path(CGRect(origin: .zero, size: canvas)), with: .color(.black.opacity(dark))) }
         }
         .frame(width: size.width, height: size.height)
         .mask { lawnMask(patch, frame: f) }
         .blendMode(.softLight)
         .opacity(share * strength)
+        return ZStack(alignment: .topLeading) {
+            blades
+            // At night the band's pale blades would sit above the plate's own lawn: a multiply lowers it to the plate's tone.
+            if tone > 0 {
+                Color.black
+                    .frame(width: size.width, height: size.height)
+                    .mask { lawnMask(patch, frame: f) }
+                    .blendMode(.multiply)
+                    .opacity(share * tone)
+            }
+        }
     }
 
     /// The lawn's alpha: the mask's own (a stage's, or autumn's own painting's, whose leaf piles it leaves out), times the

@@ -141,7 +141,7 @@ STRIP_W, STRIP_H = 480, 345  # before the seam crossfade cuts SEAM texels of wid
 SEAM = 96  # texels the strip's two edges are crossfaded over, so unflipped copies repeat without a seam or a mirror axis
 
 
-STRIP_BASE = (0.84, 0.86, 0.40)  # the strip is neutral lawn at this colour; the app multiplies it by each state's own lawn (near_ground_data.py)
+STRIP_BASE = (0.95, 0.95, 0.50)  # the strip is neutral lawn at this colour; the app multiplies it by each state's own lawn (near_ground_data.py)
 
 
 def foreground(art: Path) -> Image.Image:
