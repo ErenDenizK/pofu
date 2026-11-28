@@ -26,10 +26,17 @@ public struct ThinLens: Hashable, Sendable {
 
     /// Blur never grows past this, in points.
     public static let cap = 14.0
-    /// In front of the focal plane blur stops at the 6 pt level: a tilt-shift wants a soft front,
-    /// not a smear (the thin lens alone puts everything about 115 rows in front of Pofu at 14 pt,
-    /// and a wheel there read as a grey blob). The 14 pt level is the back's and the sky's.
-    public static let frontCap = 6.0
+    /// In front of the focal plane blur stops at 3 pt: a tilt-shift wants a soft front, not a
+    /// smear (the thin lens alone puts everything about 115 rows in front of Pofu at 14 pt, and a
+    /// wheel there read as a grey blob; at 6 pt a third of the near screen was still blur, the art
+    /// gate's `near.blur`). The 14 pt level is the back's and the sky's.
+    public static let frontCap = 3.0
+    /// The painted isles and the whale in the sky set never blur past this, in points: far isles
+    /// are faint, not rainbow blobs (the sky's own gradient, tiles and sea still take the full radius).
+    public static let isleCap = 1.5
+    /// The share of the sky set's horizon colour mixed into the isles and the whale at 4 pt of
+    /// sky blur or more (`isleHazeShare`): a blurred far thing is a hazier one.
+    public static let isleHaze = 0.30
     /// At or under this radius a thing reads as sharp.
     public static let sharp = 0.5
     /// Under this radius a layer skips its blur altogether.
@@ -82,6 +89,17 @@ public struct ThinLens: Hashable, Sendable {
     /// The sky's radius (`delta` infinite): `N * s`, capped.
     public var skyRadius: Double {
         radius(delta: .infinity)
+    }
+
+    /// The blur an isle or the whale takes for a sky radius: the radius, never past `isleCap`.
+    public static func isleBlur(_ r: Double) -> Double {
+        min(max(r, 0), isleCap)
+    }
+
+    /// The share of the horizon colour mixed into an isle or the whale for a sky radius:
+    /// `isleHaze` at 4 pt and more, in proportion under it.
+    public static func isleHazeShare(_ r: Double) -> Double {
+        isleHaze * min(max(r, 0) / 4, 1)
     }
 
     /// A radius a layer applies: zero under `skip`.

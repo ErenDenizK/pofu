@@ -135,8 +135,7 @@ struct PlateHomeLayer: View {
                 if fade > 0.001 {
                     Group {
                         if let sky = plate.skySet {
-                            SkySetLayers(sky: PaintedSky.homeSet(sky), plate: plate, pose: pose, reference: plate.skyReference(width: Double(size.width), height: Double(size.height)), size: size, offset: offset, start: start, drawsIsland: false)
-                                .skyLensBlur(nearLens?.skyRadius ?? 0)
+                            SkySetLayers(sky: PaintedSky.homeSet(sky), plate: plate, pose: pose, reference: plate.skyReference(width: Double(size.width), height: Double(size.height)), size: size, offset: offset, start: start, drawsIsland: false, lensRadius: nearLens?.skyRadius ?? 0)
                         } else {
                             PlateImage(name: plate.plate.backdropArt(light: plate.key, stage: plate.stage), box: plate.backdropBox, pose: pose, size: size, offset: offset)
                         }
@@ -226,17 +225,6 @@ extension View {
 }
 
 private extension View {
-    /// The sky set's plain lens blur (v2 §5.4): the sky is opaque, so its edges clamp and never
-    /// thin at the screen's border.
-    @ViewBuilder
-    func skyLensBlur(_ radius: Double) -> some View {
-        if radius >= ThinLens.skip {
-            blur(radius: CGFloat(radius), opaque: true)
-        } else {
-            self
-        }
-    }
-
     /// Opacity applied to the layers as one picture (a group), only while it is below 1: a settled
     /// sky set is never flattened into an offscreen pass.
     @ViewBuilder

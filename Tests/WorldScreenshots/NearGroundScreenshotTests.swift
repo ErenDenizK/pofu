@@ -40,7 +40,7 @@ final class NearGroundScreenshotTests: PlayerPathFrameCase {
             island.setHomePlate(plate)
             switch frame.shot {
             case .pofu: island.holdNearRest()
-            case .stall: island.holdNearRest(on: plate.world(PlatePoint(x: 640, y: 860)))
+            case .stall: island.holdNearRest(on: plate.world(PlatePoint(x: 640, y: 860)), focusing: .teaStall)
             }
             let view = homeView(world, hour: frame.hour, island: island, settled: true, season: frame.season, weather: .clear)
             try await capture(AnyView(view), name: frame.name, scene: scene, folder: folder, settle: 2100) {
