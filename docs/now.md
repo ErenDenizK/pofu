@@ -14,9 +14,8 @@ and the art pass (`docs/design/art-pass-2026-11-28.md`, 9 PRs, merge order 1-9).
 
 ## PAUSED (fi 52, 2026-11-28 12:54 UTC)
 
-The founder's Claude limit is spent: no new work, agents or Fable until he is back.
-On return: merge whatever the three builders below left green (look at 1:1 first);
-review Codex D74-D76 and send him D74 and D76 as pictures; then Next.
+No new work, agents or Fable until he is back (his Claude limit). On return: #574, #573, #572
+below (1:1 first); Codex D74-D76, D74 and D76 to him as pictures; then Next.
 
 ## Decided this session
 
@@ -29,14 +28,16 @@ review Codex D74-D76 and send him D74 and D76 as pictures; then Next.
 
 ## In flight
 
-- PR 4 #574 `art/near-lens` (head 5d4e6156, worktree /home/user/wt/art-near-lens): built, Linux
-  tests pass; agent stopped (fi 52). Left: CI result, after-frames, art gate after, 1:1 crops
-  (review `SkySetView.swift` first).
+- #574 near lens (head 5d4e6156): Linux tests pass; not seen: CI, frames, gate after, 1:1 crops
+  (read `SkySetView.swift` first). All three agents stopped; worktrees under /home/user/wt.
 - #572 `art/nights-round-2` (head 62d095d6): DO NOT MERGE as is. Brief premise false: the derived
   tea look's warm hue is 39-53, not 66-72, so LOOK_MATCH gave peach/salmon awnings. Lead's call:
   keep the raw picks' hue (~68, yellow, day 73-77), awning hue check against the pick; windmill 3
   night (`path-mill-night-l3`) is fine to keep. Tea 4-5 stay derived (stripe gate 0.59/0.64 < 0.70).
-- PR 3 `art/golden-sky-set` (golden sky to #E2ADC7, no mirrored wrap, ADR-0033): builder.
+- #573 golden sky (head 188a3b34, CI green): sky.golden 16.4 -> 2.0; violet -> soft peach-pink, shade
+  lobes gone (lead saw the 1:1 crop). Check before merge: small clouds read faint; edge glow
+  y 380-480; violet base under isles. Spec false: Home's mirror is split.py close_wrap (needs a
+  re-split with tileBridge); sky.mirror/contour limits left null (contour after 0.206).
 - Codex: D74 N1 night (209), D75 B1 beam (211), D76 P0 Pofu master (212), pofu-art #234.
   On delivery: review, send him D74 and D76 as pictures, then write N2 (210) and P1.
 
