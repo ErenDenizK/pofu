@@ -686,7 +686,7 @@ def plot_looks(plot: dict) -> dict:
     if plot.get("paint"):
         # A season's look (D2): the spring take's shape, the season take's colours. The takes are aligned edits of the spring
         # takes (the season gate holds the frame), so the spring mask cuts them and nothing is cut by difference.
-        rgbs = {n: _take_rgb(t) for n, t in plot["paint"].items()}
+        rgbs = {n: t if isinstance(t, np.ndarray) else _take_rgb(t) for n, t in plot["paint"].items()}
         rgbs = {n: x if x.shape[:2] == masks[n].shape else cv2.resize(x, masks[n].shape[::-1], interpolation=cv2.INTER_AREA) for n, x in rgbs.items()}     # a relight is 1536 px, its parent plot 1254
     out = {}
     for n, m in masks.items():
@@ -1320,6 +1320,42 @@ NIGHT_PAINT = {
     "pond": {n: (PLOT_POND_NIGHT.format(n), t) for n, t in POND_NIGHT_PICKS.items()},
     "windmill": {2: (PLOT_MILL_NIGHT.format(2), 2), 4: (PLOT_MILL_NIGHT.format(4), 2), 5: (PLOT_MILL_NIGHT.format(5), 1)},
 }
+#: The bagel cart's, workshop's, lighthouse's and tea stall's painted nights (N1b; batches 190, 191, 192 and 196, the lead's picks of
+#: levels 1 to 5, recorded in their `review.yaml`): relights of the day plots, cut with the day look's outline and graded in CIELAB by
+#: the lead's reviews (`station_grade`): level -> (light multiplier, darks lift in L*, chroma multiplier). The reviews give the first
+#: three stations' numbers; the tea stall's were measured on the cut looks against the day look under the night fit (`TEA_NIGHT_GRADE`).
+PLOT_NIGHT = {"bagelCart": "batch-190-plot-ladder-bagel-cart/x-plot-bagel-cart-{}-night", "workshop": "batch-191-plot-ladder-workshop/x-plot-workshop-{}-night",
+              "lighthouse": "batch-192-plot-ladder-lighthouse/x-plot-lighthouse-{}-night", "teaStall": "batch-196-plot-ladder-tea-stall/x-plot-tea-stall-{}-night"}
+STATION_NIGHT_PICKS = {"bagelCart": [1, 1, 1, 1, 1], "workshop": [1, 1, 1, 1, 1], "lighthouse": [2, 1, 2, 1, 1], "teaStall": [2, 2, 2, 2, 1]}
+#: The tea stall's grade is measured, as the lead measured the others (pofu-art #228): its look's pixels in the day and the night plate of
+#: its foot stage (7; levels 1 to 3 stand where the plate's own stall does) give the day-to-night ratio of the mean L*, the 5th
+#: percentile of L* and the mean chroma C*; each level's cut take is graded so that its mean L*, p5 and C* are the day look's times these.
+TEA_NIGHT_RATIO = {"light": 0.80, "p5": 0.76, "chroma": 0.65}
+TEA_NIGHT_GRADE = None
+STATION_NIGHT_GRADE = {
+    "bagelCart": {n: (1.15, 11.0, 0.5) for n in range(1, 6)},
+    "workshop": {1: (1.17, 11.0, 0.9), 2: (1.17, 11.0, 0.9), 3: (1.07, 6.0, 0.8), 4: (1.07, 6.0, 0.8), 5: (1.07, 6.0, 0.8)},
+    "lighthouse": {n: (1.25, 19.0, 0.65) for n in range(1, 6)},
+    "teaStall": TEA_NIGHT_GRADE,                  # None: measured (`measured_grade`)
+}
+#: The workshop's night takes drop lit lamps (the lead's reviews): the bulb hanging in the opening at levels 1 and 2 and the two wall
+#: lamps at level 2, take px (x0, y0, x1, y1). The bulb is pasted from the day take through the night fit, the wall lamps from level 1's.
+WORKSHOP_BULB = (540, 590, 610, 700)
+WORKSHOP_LAMPS = [(270, 625, 310, 695), (785, 625, 820, 695)]
+#: The workshop's window panes at levels 1 and 2 (take px): the day form's are warm and lit, the night takes' blue. Their glow is pasted back
+#: from the day take through the night fit, where it is warm and bright, soft-edged.
+#: The workshop's cog on the roof (the look's px, x0 y0 x1 y1): it takes the chroma cap in full.
+GEAR = (188, 18, 312, 146)
+WORKSHOP_WINDOWS = [(362, 630, 442, 762), (846, 638, 884, 760)]
+#: What the night plate's own station measures (pofu-art #228, `stats.json`: mean L*, mean C* over the il8 night plate's station): the painted
+#: nights are graded to it (`fit_grade`). The tea stall's is measured per level (`measured_grade`).
+PLATE_NIGHT_TARGET = {"workshop": (55.5, 24.3), "bagelCart": (58.1, 18.3), "lighthouse": (71.7, 23.7)}
+#: The tea stall and the bagel cart keep the derived (N1) night looks at every level: batches 196 and 190 sit 15 to 20 degrees greener than the
+#: plate's warm hue after the grade (their awnings and the tea stall's body read lime or lilac at 1:1), so the painted nights are not shipped; redo
+#: pending. Their picks, grades and hue restore stay below for that redo.
+DERIVED_NIGHT = ("teaStall", "bagelCart")
+for _sid, _picks in STATION_NIGHT_PICKS.items():
+    NIGHT_PAINT[_sid] = {n: (PLOT_NIGHT[_sid].format(n), t) for n, t in enumerate(_picks, start=1)}
 
 
 def night_fit(sid: str, stage: int, level: int, look: np.ndarray, data: dict, light: str = "night") -> np.ndarray:
@@ -1348,30 +1384,214 @@ def night_fit(sid: str, stage: int, level: int, look: np.ndarray, data: dict, li
     return sg.colour_fit(d[m][:, :3], plate_n[m][:, :3])
 
 
-def night_looks() -> dict:
-    """The night looks, `world-home-look-<station>-<level>-night`: the pond's painted (batch 197) and graded to its day look under the
-    night fit, every other station's its day look through that fit (the colour fit of #549's season derive, learned per level on the
-    station's own pixels in the day and the night plate of its foot stage). No window or lantern is lit (D51, D68)."""
+def night_looks(only: str | None = None) -> dict:
+    """The night looks, `world-home-look-<station>-<level>-night`: the painted ones (the pond's, batch 197, graded to its day look
+    under the night fit; the windmill's levels 2, 4, 5; the bagel cart's, workshop's, lighthouse's and tea stall's, `station_night_looks`,
+    graded by the lead's reviews) and, for every other level, the day look through that fit (the colour fit of #549's season derive,
+    learned per level on the station's own pixels in the day and the night plate of its foot stage). Where the painted take has
+    a lantern or window lit, it stays lit (N1b); the derived looks light nothing (D51, D68). `only`: one station."""
     import season_gate as sg
     data = json.loads(ingest.JSON_DIR.joinpath("plate-home.json").read_text())
     out = {}
     for spec in STATIONS:
         sid = spec["id"]
+        if only not in (None, sid):
+            continue
         stage = spec.get("footStage", min(spec["bases"]))
         levels = data["stations"][sid].get("lookLevels", {}).get("day") or list(range(1, spec["levels"] + 1))
-        fits = {}
+        fits, days = {}, {}
         for n in levels:
             with heic.open_image(ASSETS / f"{look_name(sid, n, 'day')}.imageset" / f"{look_name(sid, n, 'day')}{heic.SUFFIX}") as im:
                 day = np.asarray(im.convert("RGBA"), np.float32) / 255
-            fit = night_fit(sid, stage, n, day, data)
-            fits[n] = fit
+            fits[n], days[n] = night_fit(sid, stage, n, day, data), day
+        painted = station_night_looks(spec, days, fits) if sid in STATION_NIGHT_GRADE and sid not in DERIVED_NIGHT else {}
+        for n in levels:
+            day, fit = days[n], fits[n]
             look = day.copy()
             look[..., :3] = sg.apply_fit(fit, day[..., :3].reshape(-1, 3)).reshape(day.shape[:2] + (3,))
-            if n in NIGHT_PAINT.get(sid, {}):
+            if n in painted:
+                look = painted[n]
+            elif n in NIGHT_PAINT.get(sid, {}) and sid not in DERIVED_NIGHT:
                 look = painted_night_look(spec, n, day, look)
             ingest.write_imageset(look_name(sid, n, "night"), to_img(look))
         out[sid] = levels
-        print(f"night looks {sid}: levels {levels} by the stage-{stage} fit" + (f", painted at levels {sorted(NIGHT_PAINT[sid])}, the rest derived" if sid in NIGHT_PAINT else ", derived"))
+        print(f"night looks {sid}: levels {levels} by the stage-{stage} fit" + (f", painted at levels {sorted(NIGHT_PAINT[sid])}, the rest derived" if sid in NIGHT_PAINT and sid not in DERIVED_NIGHT else ", derived"))
+    return out
+
+
+def station_grade(rgb: np.ndarray, mask: np.ndarray, light: float, darks: float, chroma: float) -> np.ndarray:
+    """A night take graded by the lead's review (light x`light`, the darks lifted by `darks` L* in all, chroma x`chroma`), in CIELAB. The
+    multiply lifts the darkest 5 percent of the cut (`mask`) by (light - 1) of their L*; a toe curve adds the rest, most at the
+    darkest and nothing from L* 60 up, so the lights are the multiply's."""
+    lab = srgb_lab(rgb)
+    L = lab[..., 0]
+    p5 = float(np.percentile(L[mask], 5))
+    extra = max(darks - (light - 1) * p5, 0.0)
+    knee = 60.0
+    toe = np.clip((knee - L * light) / max(knee - p5 * light, 1e-3), 0, 1)
+    lab[..., 0] = np.clip(L * light + extra * toe, 0, 100)
+    lab[..., 1:] *= chroma
+    return lab_srgb(lab)
+
+
+def measured_grade(rgb: np.ndarray, cut: np.ndarray, day: np.ndarray) -> tuple[float, float, float]:
+    """(light, darks, chroma) that put a night take's cut (`cut`, a mask of the take) on the day look's mean L*, p5 and mean C* times
+    `TEA_NIGHT_RATIO`."""
+    k = day[..., 3] > 0.9
+    d = srgb_lab(day[..., :3])[k]
+    t = srgb_lab(rgb)[cut]
+    mean_t, p5_t, c_t = float(d[:, 0].mean()) * TEA_NIGHT_RATIO["light"], float(np.percentile(d[:, 0], 5)) * TEA_NIGHT_RATIO["p5"], float(np.hypot(d[:, 1], d[:, 2]).mean()) * TEA_NIGHT_RATIO["chroma"]
+    light = mean_t / float(t[:, 0].mean())
+    darks = p5_t - float(np.percentile(t[:, 0], 5))
+    return round(light, 3), round(max(darks, 0.0), 1), round(c_t / float(np.hypot(t[:, 1], t[:, 2]).mean()), 3)
+
+
+def fit_grade(rgb: np.ndarray, cut: np.ndarray, darks: float, mean_l: float, mean_c: float) -> tuple[float, float, float]:
+    """(light, darks, chroma) that put the cut of a night take on `mean_l` and `mean_c` (the plate's own at the station), the darks lifted by `darks`
+    as in `station_grade`: the light is found by bisection (the toe makes it not a plain ratio)."""
+    lo, hi = 0.5, 1.8
+    for _ in range(30):
+        mid = (lo + hi) / 2
+        lab = srgb_lab(station_grade(rgb, cut, mid, darks, 1.0))
+        if lab[..., 0][cut].mean() < mean_l:
+            lo = mid
+        else:
+            hi = mid
+    light = (lo + hi) / 2
+    lab = srgb_lab(station_grade(rgb, cut, light, darks, 1.0))
+    c = float(np.hypot(lab[..., 1], lab[..., 2])[cut].mean())
+    return round(light, 3), darks, round(mean_c / c, 3)
+
+
+#: The awnings of the tea stall and the bagel cart (the look's px, x0 y0 x1 y1: the front awning, levels 1 to 5): the painted nights turn their
+#: yellow olive or khaki and flatten their stripes.
+AWNING = {"teaStall": (100, 172, 345, 218), "bagelCart": (20, 130, 205, 200)}
+AWNING_HUE_TOL, AWNING_CONTRAST_MIN = 5.0, 0.70
+
+
+def awning_set(day: np.ndarray, sid: str) -> np.ndarray:
+    """The awning's pixels in the day look's outline: inside `AWNING`, solid, light (L* over 65)."""
+    x0, y0, x1, y1 = AWNING[sid]
+    m = np.zeros(day.shape[:2], bool)
+    m[y0:y1, x0:x1] = (day[y0:y1, x0:x1, 3] > 0.9) & (srgb_lab(day[y0:y1, x0:x1, :3])[..., 0] > 65)
+    return m
+
+
+def awning_measure(look: np.ndarray, day: np.ndarray, sid: str) -> tuple[float, float]:
+    """(hue angle difference in degrees of the awning's warm pixels, stripe contrast as a share of the day look's): the chroma-weighted mean hue of
+    the pixels the day look has yellow, and the L* gap between the 85th and 15th percentile of the awning's pixels."""
+    m = awning_set(day, sid)
+    dl, nl = srgb_lab(day[..., :3]), srgb_lab(look[..., :3])
+    ang = lambda x, k: np.degrees(np.arctan2((x[..., 2] * np.hypot(x[..., 1], x[..., 2]))[k].sum(), (x[..., 1] * np.hypot(x[..., 1], x[..., 2]))[k].sum()))
+    warm = m & (np.hypot(dl[..., 1], dl[..., 2]) > 25)
+    gap = lambda x: float(np.percentile(x[..., 0][m], 85) - np.percentile(x[..., 0][m], 15))
+    return float(abs((ang(nl, warm) - ang(dl, warm) + 180) % 360 - 180)), gap(nl) / gap(dl)
+
+
+def restore_awning(look: np.ndarray, fitted: np.ndarray, day: np.ndarray, sid: str) -> np.ndarray:
+    """The awning of a painted night on the day look's hue (no rotation) and the day look's stripes: inside the awning's pixels the a* and b* take the day
+    look's hue at the largest of the derived look's, the painted night's and half the day look's chroma (a cream stripe keeps its warmth), and the lightness the derived look's relief
+    (stripes, scallops) at the painted night's mean."""
+    m = awning_set(day, sid)
+    lab, ref, dl = srgb_lab(look[..., :3]), srgb_lab(fitted), srgb_lab(day[..., :3])
+    cd, cr, cl = (np.hypot(x[..., 1], x[..., 2]) for x in (dl, ref, lab))
+    w = cv2.GaussianBlur(m.astype(np.float32), (0, 0), 1.0)[..., None]
+    out = lab.copy()
+    hued = dl[..., 1:] / np.maximum(cd, 1e-3)[..., None] * np.maximum(np.maximum(cr, cl), 0.5 * cd)[..., None]
+    out[..., 1:] = lab[..., 1:] * (1 - w) + hued * w
+    light = ref[..., 0] + (lab[..., 0][m].mean() - ref[..., 0][m].mean())
+    out[..., 0] = lab[..., 0] * (1 - w[..., 0]) + light * w[..., 0]
+    return np.dstack([lab_srgb(out), look[..., 3:]])
+
+
+def cap_chroma(look: np.ndarray, fitted: np.ndarray, day: np.ndarray, k: float = 1.25) -> np.ndarray:
+    """No pixel of the painted night more chromatic than `k` times the derived look's (the cog and the roof of the workshop: the relight's gold and
+    pink run hotter than the plate around them), except the lit sources: the day look's own small bright spots (L* over 88, not a solid body), dilated."""
+    lab, ref, dl = srgb_lab(look[..., :3]), srgb_lab(fitted), srgb_lab(day[..., :3])
+    c, cr = np.hypot(lab[..., 1], lab[..., 2]), np.hypot(ref[..., 1], ref[..., 2])
+    bright = (dl[..., 0] > 88).astype(np.uint8)
+    big = cv2.dilate(cv2.morphologyEx(bright, cv2.MORPH_OPEN, _ellipse(21)), _ellipse(9))      # a solid bright body (the cog), not a lamp
+    lit = cv2.GaussianBlur(cv2.dilate(bright & (1 - big), _ellipse(11)).astype(np.float32), (0, 0), 3)
+    lit[GEAR[1]:GEAR[3], GEAR[0]:GEAR[2]] = 0                                      # the cog is a body, not a lamp
+    f = np.minimum(1.0, k * cr / np.maximum(c, 1e-3))
+    f = 1 - (1 - f) * (1 - lit)
+    lab[..., 1:] *= f[..., None]
+    return np.dstack([lab_srgb(lab), look[..., 3:]])
+
+
+def paste_glow(dst: np.ndarray, day: np.ndarray, box: tuple[int, int, int, int]) -> None:
+    """The lit pane of the day take `day` inside `box` (its bright warm pixels) over `dst`, soft-edged, at lightness x0.92 and chroma x0.75: the
+    colour fit greys a glow (b* 12 to 15 on a pane that is 55 to 70 by day), the night plate's windows are warm."""
+    x0, y0, x1, y1 = box
+    lab = srgb_lab(day)
+    lit = ((lab[..., 0] > 70) & (lab[..., 2] > 25)).astype(np.uint8)
+    m = np.zeros_like(lit)
+    m[y0:y1, x0:x1] = cv2.morphologyEx(lit, cv2.MORPH_CLOSE, _ellipse(15))[y0:y1, x0:x1]
+    w = cv2.GaussianBlur(cv2.dilate(m, _ellipse(5)).astype(np.float32), (0, 0), 2.5)[..., None]
+    lab[..., 0] *= 0.92
+    lab[..., 1:] *= 0.75
+    dst[:] = dst * (1 - w) + lab_srgb(lab) * w
+
+
+def paste_box(dst: np.ndarray, src: np.ndarray, box: tuple[int, int, int, int], feather: float = 3.0) -> None:
+    """`src` over `dst` inside `box` (px, x0 y0 x1 y1), the edge softened by `feather` px."""
+    x0, y0, x1, y1 = box
+    a = np.zeros(dst.shape[:2], np.float32)
+    a[y0 + 2:y1 - 2, x0 + 2:x1 - 2] = 1
+    a = cv2.GaussianBlur(a, (0, 0), feather)[..., None]
+    dst[:] = dst * (1 - a) + src * a
+
+
+def station_night_looks(spec: dict, days: dict, fits: dict) -> dict:
+    """{level: the painted night look} of a station of `STATION_NIGHT_GRADE`: the night take graded (`station_grade`), the lit
+    sources the take dropped pasted back (the workshop's), then cut with the day look's outline on the day look's canvas (the box,
+    foot and size unchanged). Prints the cut's light, darks and chroma against the day look under the night fit."""
+    import season_gate as sg
+    sid = spec["id"]
+    masks, day_rgbs, _ = plot_masks(spec["plot"])
+    grade = STATION_NIGHT_GRADE[sid]
+    painted = {}
+    for n, take in NIGHT_PAINT[sid].items():
+        rgb = _take_rgb(take)
+        cut = cv2.erode(masks[n].astype(np.uint8), _ellipse(3)) > 0
+        if sid in PLATE_NIGHT_TARGET:
+            g = fit_grade(rgb, cut, grade[n][1], *PLATE_NIGHT_TARGET[sid])
+        else:
+            g = grade[n] if grade else measured_grade(rgb, cut, days[n])
+        painted[n] = station_grade(rgb, cut, *g)
+        print(f"  {sid} {n}: grade light x{g[0]:.3f}, darks +{g[1]:.1f}, chroma x{g[2]:.3f}")
+    if sid == "workshop":
+        first = painted[1].copy()
+        for n in (1, 2):
+            dayfit = sg.apply_fit(fits[n], day_rgbs[n].reshape(-1, 3)).reshape(day_rgbs[n].shape)
+            paste_box(painted[n], dayfit, WORKSHOP_BULB)
+            for box in WORKSHOP_WINDOWS:
+                paste_glow(painted[n], day_rgbs[n], box)
+            if n == 2:
+                for box in WORKSHOP_LAMPS:
+                    paste_box(painted[n], first, box)
+    plot = {**spec["plot"], "grade": {k: (1.0, 1.0) for k in spec["plot"]["takes"]}, "paint": painted}
+    built = build_looks({**spec, "plot": plot})["looks"]
+    out = {}
+    for n, look in built.items():
+        day = days[n]
+        assert look.shape == day.shape, (sid, n, look.shape, day.shape)
+        look = np.dstack([look[..., :3], day[..., 3:]])           # the day look's own alpha: the same outline in both lights
+        fitted = sg.apply_fit(fits[n], day[..., :3].reshape(-1, 3)).reshape(day.shape[:2] + (3,))
+        if sid in AWNING:
+            look = restore_awning(look, fitted, day, sid)
+            hue, contrast = awning_measure(look, day, sid)
+            ok = hue <= AWNING_HUE_TOL and contrast >= AWNING_CONTRAST_MIN
+            print(f"  {sid} {n}: awning hue off by {hue:.1f} degrees, stripe contrast {contrast:.2f} of the day look's" + ("" if ok else ", fails: derived look"))
+            if not ok:
+                look = np.dstack([fitted, day[..., 3:]])
+        if sid == "workshop":
+            look = cap_chroma(look, fitted, day)
+        keep = (day[..., 3] > 0.9) & (look[..., 3] > 0.9)
+        want, got = srgb_lab(fitted)[keep], srgb_lab(look[..., :3])[keep]
+        cm = lambda x: float(np.hypot(x[:, 1], x[:, 2]).mean())
+        print(f"  {sid} {n}: L p5/p50/mean {np.percentile(got[:, 0], 5):.1f}/{np.median(got[:, 0]):.1f}/{got[:, 0].mean():.1f} (derived {np.percentile(want[:, 0], 5):.1f}/{np.median(want[:, 0]):.1f}/{want[:, 0].mean():.1f}), C* {cm(got):.1f} (derived {cm(want):.1f})")
+        out[n] = look
     return out
 
 
@@ -1395,10 +1615,12 @@ def painted_night_look(spec: dict, n: int, day: np.ndarray, fitted: np.ndarray) 
     return np.dstack([lab_srgb(lab), day[..., 3:]])           # the day look's own alpha: the same outline in both lights
 
 
-def cmd_night() -> None:
-    """The night bases (every stage a station stands on) and looks. Run `ingest.py json` and `station_looks.py json` after."""
-    cmd_bases(None, "night")
-    night_looks()
+def cmd_night(station: str | None = None) -> None:
+    """The night bases (every stage a station stands on) and looks; with `station`, that station's looks only. Run `ingest.py json` and
+    `station_looks.py json` after."""
+    if station is None:
+        cmd_bases(None, "night")
+    night_looks(station)
 
 
 # ---------------------------------------------------------------- golden (N2)
@@ -1575,7 +1797,7 @@ def main(argv: list[str] | None = None) -> int:
         cmd_season(args.season)
         return 0
     if args.command == "night":
-        cmd_night()
+        cmd_night(args.station)
         return 0
     if args.command == "golden":
         cmd_golden()

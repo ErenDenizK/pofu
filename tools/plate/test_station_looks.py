@@ -379,3 +379,21 @@ def test_golden_bases_stand_on_the_stages_the_golden_plates_paint_a_station_on()
     assert data["windmill"]["lights"]["golden"] == [0]
     assert data["pond"]["lights"]["golden"] == [0, 3] == data["workshop"]["lights"]["golden"]
     assert set(data["pond"]["lightBaseBytes"]["golden"]) == {"0", "3"}
+
+
+def test_the_painted_station_nights_are_the_leads_picks_and_the_grades_lift_the_darks():
+    for sid, picks in sl.STATION_NIGHT_PICKS.items():
+        assert len(picks) == 5
+        for n, (job, take) in sl.NIGHT_PAINT[sid].items():
+            assert sl.pick_of(job) == take, (job, take)
+    assert sl.NIGHT_PAINT["lighthouse"][3][1] == 2 and sl.NIGHT_PAINT["teaStall"][5][1] == 1
+    rng = np.random.default_rng(3)
+    rgb = np.clip(rng.normal(0.35, 0.12, (64, 64, 3)).astype(np.float32), 0.02, 0.9)
+    mask = np.ones((64, 64), bool)
+    lab = sl.srgb_lab(rgb)
+    for light, darks, chroma in ((1.15, 11.0, 0.5), (1.25, 19.0, 0.65), (1.07, 6.0, 0.8)):
+        out = sl.srgb_lab(sl.station_grade(rgb, mask, light, darks, chroma))
+        p5_in, p5_out = np.percentile(lab[..., 0], 5), np.percentile(out[..., 0], 5)
+        assert abs((p5_out - p5_in) - darks) < 1.5                      # the darks gain the review's lift
+        assert np.hypot(out[..., 1], out[..., 2]).mean() < np.hypot(lab[..., 1], lab[..., 2]).mean() * (chroma + 0.05)
+        assert np.all(out[..., 0] >= lab[..., 0] * light - 0.6)         # never darker than the multiply

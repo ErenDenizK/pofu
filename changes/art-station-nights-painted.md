@@ -1,0 +1,1 @@
+[world] At night the workshop and the lighthouse stand in painted night looks graded to the plate, the workshop with its bulb and windows lit and the lighthouse with its windows and lantern lit; the tea stall and the bagel cart keep their derived night looks (painted redo pending).
