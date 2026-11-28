@@ -39,6 +39,8 @@ public struct PlateNear: Decodable, Hashable, Sendable {
         public var fadeIn: [Double]
         /// The detail's strength at night (1 elsewhere).
         public var night: Double
+        /// At night, how much black a multiply over the band adds (the band's lawn then sits at the plate's own tone).
+        public var nightTone: Double?
     }
 
     public struct Foreground: Decodable, Hashable, Sendable {
@@ -51,6 +53,9 @@ public struct PlateNear: Decodable, Hashable, Sendable {
         /// The plate row of the first copy's top.
         public var top: Double
         public var fadeIn: [Double]
+        /// Per painted state (`HomePlate.key`), the multiply that takes the strip's neutral lawn to that state's lawn above the
+        /// front lip: red, green, blue. A state without one keeps the character grade.
+        public var tint: [String: [Double]]?
     }
 
     public struct Dressing: Decodable, Hashable, Sendable {
