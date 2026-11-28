@@ -1369,8 +1369,10 @@ public final class IslandSceneModel {
 
     /// Holds near's rest on Pofu, still (screenshots): his feet at 0.60 of the height, moved
     /// 0.12 of the width away from the side he faces. `point` rests the shot on another place of the
-    /// island instead (a station's foot, the pond's edge: the near frames of row 3a).
-    public func holdNearRest(on point: WorldPoint? = nil) {
+    /// island instead (a station's foot, the pond's edge: the near frames of row 3a). `station` rests the
+    /// lens's focus on that station's foot, as a tap would (`IslandScene.lensFocus`), without its card or a
+    /// camera move.
+    public func holdNearRest(on point: WorldPoint? = nil, focusing station: StationID? = nil) {
         closeSurfaces()
         island = .home
         engine.rig.jump(to: .mid)
@@ -1380,6 +1382,7 @@ public final class IslandSceneModel {
         engine.rig.snapToTargets()
         framing = .near
         projectedFraming = .near
+        focus = station.map { .station($0) }
         syncChrome()
         engine.isHeld = true
         engine.lastDate = nil

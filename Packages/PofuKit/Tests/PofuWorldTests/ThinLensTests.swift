@@ -94,11 +94,11 @@ struct ThinLensTests {
         }
     }
 
-    @Test func frontIsCappedAt6() throws {
+    @Test func frontIsCappedAt3() throws {
         let plate = try home
         let pofu = try #require(plate.plate.characters["pofu"])
         let rest = try lens(s: 4.5, N: 1.6)
-        // The wheel's foot (row 1000) and everything nearer: the 6 pt level at most, never 14.
+        // The wheel's foot (row 1000) and everything nearer: 3 pt at most, never 14.
         #expect(rest.radius(row: 1000) == ThinLens.frontCap)
         #expect(rest.radius(delta: -300) == ThinLens.frontCap)
         #expect(rest.radius(delta: -1000) == ThinLens.frontCap)
@@ -108,7 +108,22 @@ struct ThinLensTests {
         // It still grows smoothly up to the cap: a stone 20 rows in front is soft, not capped.
         #expect(rest.radius(row: pofu.y + 20) > ThinLens.sharp && rest.radius(row: pofu.y + 20) < ThinLens.frontCap)
         // Behind, the back keeps the 14 pt level.
+        #expect(ThinLens.frontCap == 3)
         #expect(try lens(s: 7.4, N: 3).radius(delta: 5000) > ThinLens.frontCap)
+    }
+
+    @Test func isleBlurAndHazeAreCapped() {
+        #expect(ThinLens.isleCap == 1.5 && ThinLens.isleHaze == 0.30)
+        // The sky's radius up to the isle cap, never past it; the sky itself keeps up to 14.
+        #expect(ThinLens.isleBlur(0.8) == 0.8)
+        #expect(ThinLens.isleBlur(1.5) == 1.5)
+        #expect(ThinLens.isleBlur(14) == ThinLens.isleCap)
+        #expect(ThinLens.isleBlur(-1) == 0)
+        // Haze: 0.30 x min(r / 4, 1).
+        #expect(ThinLens.isleHazeShare(0) == 0)
+        #expect(abs(ThinLens.isleHazeShare(2) - 0.15) < 1e-12)
+        #expect(ThinLens.isleHazeShare(4) == 0.30)
+        #expect(ThinLens.isleHazeShare(14) == 0.30)
     }
 
     @Test func skippingNeverSteps() {

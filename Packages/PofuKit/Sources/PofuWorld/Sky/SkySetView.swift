@@ -32,6 +32,11 @@ struct SkySetLayers: View {
     var drawsIsland = true
     /// Whether the bank under Home's island (`SkySet.isBank`) is drawn: at Home only, never behind another island.
     var drawsBank = true
+    /// The lens's sky radius in points (`ThinLens.skyRadius`), 0 when sharp. The set blurs itself, so its
+    /// isles and whale can take less than the sky does: they blur at `ThinLens.isleBlur` and are mixed
+    /// `ThinLens.isleHazeShare` toward the sky's horizon colour; the gradient, the tiles and the sea blur at
+    /// the full radius, the gradient's edges clamped so they never thin at the screen's border.
+    var lensRadius = 0.0
 
     @Environment(\.displayScale) private var displayScale
     @Environment(\.worldStillFrame) private var still
@@ -43,21 +48,66 @@ struct SkySetLayers: View {
 
     var body: some View {
         if isStatic {
-            canvas(time: 0)
+            lensed(time: 0)
         } else {
             PofuTimeline(hz: SkyMotion.frameRate) { context in
-                canvas(time: max(context.date.timeIntervalSince(start), 0))
+                lensed(time: max(context.date.timeIntervalSince(start), 0))
             }
         }
+    }
+
+    private var shown: [SkySet.Layer] {
+        sky.layers.filter { (drawsIsland || $0.role != .island) && (drawsBank || !SkySet.isBank($0)) }
+    }
+
+    private static func isIsle(_ layer: SkySet.Layer) -> Bool {
+        layer.role == .sprite || layer.role == .whale
+    }
+
+    /// Sharp: one canvas. Under the lens: the layers in runs of isles (and the whale) and of everything
+    /// else, back to front, one canvas each, so the isles take their own, smaller blur and their haze.
+    @ViewBuilder
+    private func lensed(time: Double) -> some View {
+        if lensRadius >= ThinLens.skip {
+            let runs = Self.runs(of: shown)
+            let horizon = shown.first { $0.role == .sky }.map { HorizonColour.of(asset: $0.asset) }
+            ZStack(alignment: .topLeading) {
+                ForEach(runs.indices, id: \.self) { n in
+                    let run = runs[n]
+                    if run.isles {
+                        canvas(time: time, layers: run.layers, haze: horizon.map { ($0, ThinLens.isleHazeShare(lensRadius)) })
+                            .blur(radius: CGFloat(ThinLens.isleBlur(lensRadius)))
+                    } else {
+                        canvas(time: time, layers: run.layers, haze: nil)
+                            .blur(radius: CGFloat(lensRadius), opaque: run.layers.contains { $0.role == .sky })
+                    }
+                }
+            }
+            .frame(width: size.width, height: size.height, alignment: .topLeading)
+        } else {
+            canvas(time: time, layers: shown, haze: nil)
+        }
+    }
+
+    private static func runs(of layers: [SkySet.Layer]) -> [(isles: Bool, layers: [SkySet.Layer])] {
+        var runs: [(isles: Bool, layers: [SkySet.Layer])] = []
+        for layer in layers {
+            if let last = runs.last, last.isles == isIsle(layer) {
+                runs[runs.count - 1].layers.append(layer)
+            } else {
+                runs.append((isIsle(layer), [layer]))
+            }
+        }
+        return runs
     }
 
     /// One `Canvas` draws every layer at its exact fractional place: SwiftUI's image views would snap each
     /// layer's frame to the pixel grid on its own, shifting the island layer a fraction of a pixel against
     /// the layers behind it (and against the painting it was cut from).
-    private func canvas(time: Double) -> some View {
+    private func canvas(time: Double, layers: [SkySet.Layer], haze: (colour: Color, share: Double)?) -> some View {
         let scale = SkyMotion.scale(width: Double(size.width), referenceWidth: sky.referenceWidth)
         return Canvas(opaque: false, colorMode: .nonLinear, rendersAsynchronously: false) { context, _ in
-            for layer in sky.layers where (drawsIsland || layer.role != .island) && (drawsBank || !SkySet.isBank(layer)) {
+            for layer in layers {
                 if let window = layer.window {
                     // A band of the layer (the Map's sky, `PaintedSky.mapSet`): drawn through a mask that
                     // fades in and out across the band's rows.
@@ -68,6 +118,13 @@ struct SkySetLayers: View {
                         Self.fill(window, in: r.offsetBy(dx: 0, dy: dy), width: size.width, into: &mask)
                     }
                     draw(layer, in: &band, time: time, scale: scale)
+                } else if let haze, haze.share > 0.001 {
+                    // Toward the horizon colour, over the layer's own pixels only.
+                    context.drawLayer { hazed in
+                        draw(layer, in: &hazed, time: time, scale: scale)
+                        hazed.blendMode = .sourceAtop
+                        hazed.fill(Path(CGRect(origin: .zero, size: size)), with: .color(haze.colour.opacity(haze.share)))
+                    }
                 } else {
                     draw(layer, in: &context, time: time, scale: scale)
                 }
@@ -265,6 +322,39 @@ struct SkySetLayers: View {
     private func pieceSpan(_ name: String, _ span: SkyTiling.Span, y: Double, height: Double, in context: inout GraphicsContext) {
         let image = context.resolve(Image(name, bundle: .module).interpolation(.high))
         context.draw(image, in: CGRect(x: span.x, y: y, width: span.width, height: height))
+    }
+}
+
+/// The sky gradient's horizon colour: the mean of its image's bottom row, read once per image.
+@MainActor
+private enum HorizonColour {
+    private static var cache: [String: Color] = [:]
+
+    static func of(asset: String) -> Color {
+        if let known = cache[asset] { return known }
+        let colour = read(asset) ?? Color(red: 0.8, green: 0.8, blue: 0.85)
+        cache[asset] = colour
+        return colour
+    }
+
+    private static func read(_ asset: String) -> Color? {
+        guard let image = UIImage(named: asset, in: .module, compatibleWith: nil)?.cgImage,
+              let row = image.cropping(to: CGRect(x: 0, y: image.height - 1, width: image.width, height: 1)),
+              let space = CGColorSpace(name: CGColorSpace.sRGB)
+        else { return nil }
+        var pixel = [UInt8](repeating: 0, count: 4)
+        let drawn = pixel.withUnsafeMutableBytes { raw -> Bool in
+            guard let context = CGContext(
+                data: raw.baseAddress, width: 1, height: 1, bitsPerComponent: 8, bytesPerRow: 4, space: space,
+                bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue
+            ) else { return false }
+            context.interpolationQuality = .medium
+            context.draw(row, in: CGRect(x: 0, y: 0, width: 1, height: 1))
+            return true
+        }
+        guard drawn, pixel[3] > 0 else { return nil }
+        let a = Double(pixel[3])
+        return Color(red: Double(pixel[0]) / a, green: Double(pixel[1]) / a, blue: Double(pixel[2]) / a)
     }
 }
 #endif
