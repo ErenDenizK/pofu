@@ -1,0 +1,1 @@
+[world] The tea stall's painted nights (levels 1 to 3) and the windmill's form 3 night are back on, graded onto the derived look's hue and the night plate's mill; levels 4 and 5 keep the derived night.
