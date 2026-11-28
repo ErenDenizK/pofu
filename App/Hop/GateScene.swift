@@ -104,12 +104,14 @@ struct GatePostcard: View {
     let hour: GateHour
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.hopBreathHeld) private var held
     @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
         GeometryReader { proxy in
-            TimelineView(.animation(minimumInterval: 1.0 / 30, paused: reduceMotion || scenePhase != .active)) { timeline in
-                let t = timeline.date.timeIntervalSinceReferenceDate
+            TimelineView(.animation(minimumInterval: 1.0 / 30, paused: reduceMotion || held || scenePhase != .active)) { timeline in
+                // Screenshots hold the drift at its zero, so the frame never depends on the clock.
+                let t = held ? 0 : timeline.date.timeIntervalSinceReferenceDate
                 let drift = reduceMotion ? CGSize.zero : CGSize(
                     width: sin(t * 2 * .pi / 26) * Self.driftPoints,
                     height: cos(t * 2 * .pi / 34) * Self.driftPoints * 0.6

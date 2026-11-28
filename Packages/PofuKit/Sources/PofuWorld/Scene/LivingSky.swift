@@ -6,6 +6,9 @@ extension EnvironmentValues {
     /// Still-frame rendering, for screenshots: the sky's clouds stop at
     /// their time-zero places, so every run draws the same frame.
     @Entry public var worldStillFrame: Bool = false
+    /// Screenshots: a painting change (a season turning) cross-fades to this share at once and stays there,
+    /// 1 or more being the finished swap, instead of running on the wall clock. The app never sets it.
+    @Entry public var worldPlateFadeHold: Double?
     /// Screenshots: pins the residents' loop to a day and a time into a visit.
     @Entry public var worldResidentPin: ResidentLife.Pin?
     /// The world is settled under the look (look-dev B): the drift holds

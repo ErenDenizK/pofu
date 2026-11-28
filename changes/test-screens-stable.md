@@ -1,0 +1,1 @@
+[world] Screenshot frames no longer move between two runs of the same commit: the Door, the season turn and the diff tool (`tools/review/screens_diff.py`) that lists only frames outside the known-unstable set.

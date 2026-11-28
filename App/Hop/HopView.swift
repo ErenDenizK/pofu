@@ -3,6 +3,12 @@ import PofuCore
 import PofuDesignSystem
 import SwiftUI
 
+extension EnvironmentValues {
+    /// Screenshots: the postcard's drift, Pofu's idle breath and the glow's breath stay at their first frame, so a frame never
+    /// catches them mid-breath. The app never sets it.
+    @Entry var hopBreathHeld: Bool = false
+}
+
 /// Hop!: the soft gate's intervention (user flows, section 2).
 ///
 /// Every rung shares one layout so the eye and thumb never re-learn it:
@@ -280,6 +286,7 @@ private struct HopCompanion: View {
     let breathes: Bool
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.hopBreathHeld) private var breathHeld
     @Environment(\.scenePhase) private var scenePhase
     @State private var inhale = false
     @State private var idle = false
@@ -299,7 +306,7 @@ private struct HopCompanion: View {
                     .offset(y: 8)
             }
             .task {
-                guard !reduceMotion else { return }
+                guard !reduceMotion, !breathHeld else { return }
                 // A 4 s idle breath: 2 s in, 2 s out.
                 withAnimation(.easeInOut(duration: 2).repeatForever(autoreverses: true)) { idle = true }
                 guard breathes else { return }

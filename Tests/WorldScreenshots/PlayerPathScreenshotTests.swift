@@ -345,7 +345,7 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
         let model = AppModel.shared
         model.startHop(for: .instagram)
         defer { model.dismissHop() }
-        try await capture(AnyView(HopView(model: model, hourOverride: .day)), name: "path-hop-instagram-1200", scene: scene, folder: folder, settle: 1200)
+        try await capture(AnyView(HopView(model: model, hourOverride: .day).environment(\.hopBreathHeld, true)), name: "path-hop-instagram-1200", scene: scene, folder: folder, settle: 1200)
     }
 
     // MARK: Ada büyüdü
@@ -541,14 +541,21 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
                 XCTAssertEqual(island.homePlate?.season, .autumn, "\(name): the state is autumn's own painting")
             }
         }
+        // The cross-fade is held at its share at that moment (0.8 s, smoothstep) and never run on the clock, so each
+        // frame is the same bytes in every run; the wait after the flip is nil.
         for (name, ms) in [("0000", 0), ("0750", 750), ("1000", 1000), ("1250", 1250), ("1500", 1500)] {
+            let p = min(Double(ms) / 800, 1)
+            let share = p * p * (3 - 2 * p)
             let dial = PathSeasonDial()
             let island = IslandSceneModel(framing: .mid)
             let shown = world(windmill: 3)
             let view = PathSeasonFrame(dial: dial) { season in
                 AnyView(self.homeView(shown, hour: 9, island: island, settled: true, season: season))
             }
-            try await capture(AnyView(view), name: "path-season-turn-\(name)", scene: scene, folder: folder, settle: 2100, flip: PathFlip(waiting: ms) { dial.season = .autumn }) {
+            try await capture(AnyView(view), name: "path-season-turn-\(name)", scene: scene, folder: folder, settle: 2100, flip: PathFlip(waiting: 600) {
+                dial.fadeHold = share
+                dial.season = .autumn
+            }) {
                 XCTAssertNotNil(island.homePlate, "path-season-turn-\(name): Home is its painting")
             }
         }
@@ -1163,6 +1170,8 @@ final class PlayerPathScreensScreenshotTests: PlayerPathFrameCase {
 @MainActor
 final class PathSeasonDial: ObservableObject {
     @Published var season: Season?
+    /// The share of the painting cross-fade a frame shows (`worldPlateFadeHold`), set with the season.
+    @Published var fadeHold: Double?
 }
 
 /// A view that reads its season from a `PathSeasonDial`, so a frame can start in spring and turn.
@@ -1170,7 +1179,7 @@ struct PathSeasonFrame: View {
     @ObservedObject var dial: PathSeasonDial
     let content: (Season?) -> AnyView
 
-    var body: some View { content(dial.season) }
+    var body: some View { content(dial.season).environment(\.worldPlateFadeHold, dial.fadeHold) }
 }
 
 struct PathFlip {
