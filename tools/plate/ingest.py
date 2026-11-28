@@ -1219,7 +1219,7 @@ def station_bytes(island: str, light: str, stage: int) -> int:
     for st in stations_data(island).values():
         if stage not in station_stages(st, light):
             continue
-        base = max(base, st.get("baseBytes", {}).get(str(stage), 0))
+        base = max(base, st.get("lightBaseBytes", {}).get(light, {}).get(str(stage), st.get("baseBytes", {}).get(str(stage), 0)))
         looks.append(max(st.get("lookBytes", [0])))
     return base + sum(looks) + max(looks, default=0)
 

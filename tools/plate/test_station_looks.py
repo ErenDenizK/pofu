@@ -125,8 +125,8 @@ def test_the_windmill_has_looks_2_to_5_over_bases_at_stages_1_and_2():
     assert data["levels"] == 5
     assert data["baseStages"] == [0, 1, 2]
     # level 1 has no pick: it draws nothing, not a made-up look; autumn's windmill has the same four (painted over the spring shape)
-    assert data["lookLevels"] == {"day": [2, 3, 4, 5], "autumn-day": [2, 3, 4, 5]}
-    assert data["lights"] == {"day": [0, 1, 2], "autumn-day": [0]}
+    assert data["lookLevels"] == {"day": [2, 3, 4, 5], "night": [2, 3, 4, 5], "autumn-day": [2, 3, 4, 5]}
+    assert data["lights"] == {"day": [0, 1, 2], "night": [0, 1, 2], "autumn-day": [0]}
     ref = data["box"]
     rx, ry = sl.WINDMILL["foot"]
     for stage, place in data["stages"].items():
@@ -355,3 +355,14 @@ def test_the_ponds_look_leaves_the_plates_foreground_flowers_showing():
     assert a(200, 870) > 0.9                         # water
     assert a(75, 908) < 0.1                          # the pink flower's top (plate point), once under the look's lower edge
     assert a(160, 930) < 0.1                         # a hydrangea's top
+
+
+def test_a_night_base_is_erased_by_batch_117s_night_take_of_its_level():
+    assert sl.job_for(sl.JOB.format(10), "night") == "batch-117-station-erase-volume/x-base-erase-l10-night"
+    assert sl.job_for(sl.JOB.format(10), "day") == sl.JOB.format(10)
+    assert sl.job_for("batch-194-season-slice-pilot/x", "autumn-day") == "batch-194-season-slice-pilot/x"
+    # every stage a station stands on has a night base, and each of its night erase takes is picked
+    stages = {s for sp in sl.STATIONS for s in sp["bases"]}
+    assert stages == set(sl.NIGHT_STAGES)
+    for stage in stages:
+        assert sl.pick_of(sl.job_for(sl.JOB.format(10 - stage), "night")) in (1, 2)

@@ -199,7 +199,8 @@ struct HomePlateDataTests {
 
     @Test func aStateWithoutABaseKeepsItsPaintedStall() throws {
         let plate = try plate
-        #expect(plate.lookArt(station: "teaStall", level: 3, light: "night", stage: 7) == nil)
+        #expect(plate.lookArt(station: "teaStall", level: 3, light: "night", stage: 7) == "world-home-look-teaStall-3-night")
+        #expect(plate.lookArt(station: "teaStall", level: 3, light: "night", stage: 8) == nil, "night's stage 8 has no base: its painted stall")
         #expect(plate.lookArt(station: "teaStall", level: 3, light: "day", stage: 0) == nil)
         // stage 8 (island level 2) has no base for any station: the plate is drawn as painted
         #expect(plate.drawnPlateArt(light: "day", stage: 8) == plate.plateArt(light: "day", stage: 8))
@@ -215,7 +216,8 @@ struct HomePlateDataTests {
         let mill = try #require(plate.stations["windmill"])
         #expect(mill.levels == 5)
         #expect(mill.baseStages == [0, 1, 2])
-        #expect(mill.lights["night"] == nil, "the night windmill stays painted until the relights (plan row C5)")
+        #expect(mill.lights["night"] == [0, 1, 2], "the night windmill stands over its night bases (N1)")
+        #expect(mill.lookLevels["night"] == [2, 3, 4, 5])
         for stage in [0, 1, 2] {
             #expect(plate.drawnPlateArt(light: "day", stage: stage) == "world-home-base-day-\(stage)")
             // level 1 has no take that ships: it draws nothing (the empty plot); the others their own look
@@ -231,7 +233,9 @@ struct HomePlateDataTests {
         for stage in 3...9 {
             #expect(plate.lookArt(station: "windmill", level: 3, light: "day", stage: stage) == nil)
         }
-        #expect(plate.lookArt(station: "windmill", level: 3, light: "night", stage: 0) == nil)
+        #expect(plate.lookArt(station: "windmill", level: 3, light: "night", stage: 0) == "world-home-look-windmill-3-night")
+        #expect(plate.lookArt(station: "windmill", level: 1, light: "night", stage: 0) == nil)
+        #expect(plate.drawnPlateArt(light: "night", stage: 0) == "world-home-base-night-0")
     }
 
     // MARK: The pond (plan row 1c)
@@ -261,7 +265,9 @@ struct HomePlateDataTests {
         for stage in 4...9 {
             #expect(plate.lookArt(station: "pond", level: 3, light: "day", stage: stage) == nil)
         }
-        #expect(plate.lookArt(station: "pond", level: 3, light: "night", stage: 0) == nil)
+        #expect(plate.lookArt(station: "pond", level: 3, light: "night", stage: 0) == "world-home-look-pond-3-night")
+        #expect(plate.stationLooks(light: "night", stage: 3).keys.sorted() == ["pond", "teaStall", "workshop"])
+        #expect(plate.lookArt(station: "pond", level: 3, light: "night", stage: 4) == nil)
     }
 
     // MARK: The workshop (plan row 1c); the garden waits for a re-take (its beds collide with the pond's islet)
@@ -285,7 +291,7 @@ struct HomePlateDataTests {
             for stage in 4...9 {
                 #expect(plate.lookArt(station: id, level: 3, light: "day", stage: stage) == nil)
             }
-            #expect(plate.lookArt(station: id, level: 3, light: "night", stage: 0) == nil)
+            #expect(plate.lookArt(station: id, level: 3, light: "night", stage: 0) == "world-home-look-\(id)-3-night")
         }
         #expect(plate.stations["garden"] == nil, "the garden keeps its painted bed")
     }
@@ -311,7 +317,8 @@ struct HomePlateDataTests {
             for stage in [0] + Array(3...9) {
                 #expect(plate.lookArt(station: id, level: 3, light: "day", stage: stage) == nil, "\(id) keeps its painted self at stage \(stage)")
             }
-            #expect(plate.lookArt(station: id, level: 3, light: "night", stage: 0) == nil)
+            #expect(plate.lookArt(station: id, level: 3, light: "night", stage: 0) == nil, "stage 0 keeps the painted \(id) by night too")
+            #expect(plate.lookArt(station: id, level: 3, light: "night", stage: 1) == "world-home-look-\(id)-3-night")
         }
     }
 
@@ -359,7 +366,7 @@ struct HomePlateDataTests {
     }
 
     @Test func theOldLightKeyStillDecodesAsOneLight() throws {
-        let old = try #require(plate.stations["teaStall"])
+        let old = try decodedStation { tea in tea["lights"] = nil }       // the shipped file has the new key; the old one is `light` and `baseStages`
         #expect(old.lights == ["day": [3, 4, 6, 7]])
         #expect(old.baseStages == [3, 4, 6, 7])
         #expect(old.lookLevels.isEmpty)

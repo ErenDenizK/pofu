@@ -1,0 +1,51 @@
+batch: batch-117-station-erase-volume
+job: x-base-erase-l03-night
+status: warn
+pick: 2
+lead_review: "Pick t2 for paste-back: stall and cart gone and the rope bridge whole, where t1 cuts it to one post; also paste t2's islet top, which clears the faint mist the shipped IL3 night plate paints over the harbour islet; a small green tuft on the bridge's back post is a plate fix."
+note: "Exploration only; retain both unpromoted whole-plate takes for the lead to paste back. Judge the erased region and feathered seam only; whole-frame drift is expected. Preserve the left-rim daisy border, hilltop flowers, and non-station path lantern; trim any dangling workshop light string where applicable. Station boxes are in the manifest job notes."
+source: codex-cloud
+account:
+  owner: "Founder's uncle's ChatGPT plan, used by the founder with permission"
+  kind: chatgpt-plan
+takes:
+- n: 1
+  file: plate__x-base-erase-l03-night--t1.webp
+  qa: warn
+  size_bytes: 116838
+  dimensions: 1024x1536
+  lock_load: 0.0
+  warnings:
+  - check: light_values
+    status: warn
+    message: "night/subject: L p5 42 (at least 45: darks stay a light mid-tone), p98 91 (at least 85)"
+  - check: light_median
+    status: warn
+    message: "night/subject: median L 59 (band 66-88)"
+  - check: palette_drift
+    status: warn
+    message: "mean dE 7.2, p95 15.8, off-palette 28.8% (top: #334499 (7.4%), #335599 (7.0%)) (advisory in an exploration)"
+  source_file: /workspace/generated_images/exec-17ab9dcd-b26f-4034-b57b-346378464f75.png
+  source_sha256: 7ec14ead44ccf63f8f9ed95b628c6faad2a1e510e862a3f4531a5a697019c4cf
+  generated_at: 2026-11-15T15:54:58+00:00
+- n: 2
+  file: plate__x-base-erase-l03-night--t2.webp
+  qa: warn
+  size_bytes: 114426
+  dimensions: 1024x1536
+  lock_load: 0.0
+  warnings:
+  - check: light_values
+    status: warn
+    message: "night/subject: L p5 42 (at least 45: darks stay a light mid-tone), p98 91 (at least 85)"
+  - check: light_median
+    status: warn
+    message: "night/subject: median L 59 (band 66-88)"
+  - check: palette_drift
+    status: warn
+    message: "mean dE 7.3, p95 16.2, off-palette 29.4% (top: #334499 (7.5%), #335599 (6.4%)) (advisory in an exploration)"
+  source_file: /workspace/generated_images/exec-ceec15a7-e4c0-408b-b48f-2d0ab02a892c.png
+  source_sha256: a5fda9017c5114c24e192aa7bd584165201b339719a7242d62aa4aed06b963cc
+  generated_at: 2026-11-15T15:54:58+00:00
+references:
+- design/art/takes/batch-72-home-night/x-home-flow-il3-night/plate__x-home-flow-il3-night--t2.webp
