@@ -1394,25 +1394,30 @@ POND_NIGHT_PICKS = {1: 2, 2: 1, 3: 1, 4: 2, 5: 2}
 PLOT_MILL_NIGHT = "batch-188-windmill-night/x-plot-windmill-{}-night"
 NIGHT_PAINT = {
     "pond": {n: (PLOT_POND_NIGHT.format(n), t) for n, t in POND_NIGHT_PICKS.items()},
-    "windmill": {2: (PLOT_MILL_NIGHT.format(2), 2), 4: (PLOT_MILL_NIGHT.format(4), 2), 5: (PLOT_MILL_NIGHT.format(5), 1)},
+    "windmill": {2: (PLOT_MILL_NIGHT.format(2), 2), 4: (PLOT_MILL_NIGHT.format(4), 2), 5: (PLOT_MILL_NIGHT.format(5), 1),
+                 3: ("batch-207-windmill-3-night-redo/x-plot-windmill-3-night-v2", 1)},
 }
 #: The bagel cart's, workshop's, lighthouse's and tea stall's painted nights (N1b; batches 190, 191, 192 and 196, the lead's picks of
 #: levels 1 to 5, recorded in their `review.yaml`): relights of the day plots, cut with the day look's outline and graded in CIELAB by
 #: the lead's reviews (`station_grade`): level -> (light multiplier, darks lift in L*, chroma multiplier). The reviews give the first
 #: three stations' numbers; the tea stall's were measured on the cut looks against the day look under the night fit (`TEA_NIGHT_GRADE`).
 PLOT_NIGHT = {"bagelCart": "batch-190-plot-ladder-bagel-cart/x-plot-bagel-cart-{}-night", "workshop": "batch-191-plot-ladder-workshop/x-plot-workshop-{}-night",
-              "lighthouse": "batch-192-plot-ladder-lighthouse/x-plot-lighthouse-{}-night", "teaStall": "batch-196-plot-ladder-tea-stall/x-plot-tea-stall-{}-night"}
-STATION_NIGHT_PICKS = {"bagelCart": [1, 1, 1, 1, 1], "workshop": [1, 1, 1, 1, 1], "lighthouse": [2, 1, 2, 1, 1], "teaStall": [2, 2, 2, 2, 1]}
+              "lighthouse": "batch-192-plot-ladder-lighthouse/x-plot-lighthouse-{}-night", "teaStall": "batch-208-tea-stall-night-redo/x-plot-tea-stall-{}-night-v2"}
+STATION_NIGHT_PICKS = {"bagelCart": [1, 1, 1, 1, 1], "workshop": [1, 1, 1, 1, 1], "lighthouse": [2, 1, 2, 1, 1], "teaStall": [1, 1, 2, 2, 1]}
 #: The tea stall's grade is measured, as the lead measured the others (pofu-art #228): its look's pixels in the day and the night plate of
 #: its foot stage (7; levels 1 to 3 stand where the plate's own stall does) give the day-to-night ratio of the mean L*, the 5th
 #: percentile of L* and the mean chroma C*; each level's cut take is graded so that its mean L*, p5 and C* are the day look's times these.
 TEA_NIGHT_RATIO = {"light": 0.80, "p5": 0.76, "chroma": 0.65}
 TEA_NIGHT_GRADE = None
+#: Darks lift of the tea stall's and windmill 3's painted nights, L* (the windmill's: the review, p5 30.6 against the plate mill's 42.2).
+TEA_DARKS = 3.0
+WINDMILL3_DARKS = 10.0
 STATION_NIGHT_GRADE = {
     "bagelCart": {n: (1.15, 11.0, 0.5) for n in range(1, 6)},
     "workshop": {1: (1.17, 11.0, 0.9), 2: (1.17, 11.0, 0.9), 3: (1.07, 6.0, 0.8), 4: (1.07, 6.0, 0.8), 5: (1.07, 6.0, 0.8)},
     "lighthouse": {n: (1.25, 19.0, 0.65) for n in range(1, 6)},
-    "teaStall": TEA_NIGHT_GRADE,                  # None: measured (`measured_grade`)
+    "teaStall": {n: (1.0, TEA_DARKS, 1.0) for n in range(1, 6)},     # `LOOK_MATCH`: light and chroma are fitted to the derived look's
+    "windmill": {3: (1.0, WINDMILL3_DARKS, 1.0)},                  # level 3 only (`PLATE_NIGHT_TARGET`); levels 2, 4 and 5 stay on `painted_night_look`
 }
 #: The workshop's night takes drop lit lamps (the lead's reviews): the bulb hanging in the opening at levels 1 and 2 and the two wall
 #: lamps at level 2, take px (x0, y0, x1, y1). The bulb is pasted from the day take through the night fit, the wall lamps from level 1's.
@@ -1427,14 +1432,15 @@ WORKSHOP_WINDOWS = [(362, 630, 442, 762), (846, 638, 884, 760)]
 #: nights are graded to it (`fit_grade`). The tea stall's is measured per level (`measured_grade`).
 #: Stations whose painted night is matched to the derived look of the same level: mean L* and C* (x the factor) are the derived look's rather than
 #: the plate's own station, and the warm pixels' median hue is turned onto the derived look's (`turn_hue`, a plain rotation of a* b*).
-LOOK_MATCH = {"bagelCart": 1.0}
+LOOK_MATCH = {"bagelCart": 1.0, "teaStall": 1.0}
 WARM_C, WARM_L, WARM_H = 12.0, 55.0, (30.0, 150.0)
-PLATE_NIGHT_TARGET = {"workshop": (55.5, 24.3), "bagelCart": (58.1, 18.3), "lighthouse": (71.7, 23.7)}
-#: The tea stall keeps the derived (N1) night looks at every level: batch 196 sits 15 to 20 degrees greener than the plate's warm hue after the
-#: grade (its body reads lime or lilac at 1:1), so its painted nights are not shipped; redo pending. Its picks, grade and hue restore stay below.
+PLATE_NIGHT_TARGET = {"workshop": (55.5, 24.3), "bagelCart": (58.1, 18.3), "lighthouse": (71.7, 23.7), "windmill": (56.3, 27.0)}
+#: The tea stall's painted nights are batch 208's redo (`-v2`, the lead's picks 1, 1, 2, 2, 1), matched to the derived look like the bagel cart's. The
+#: derived look's warm hue is 39 to 53 degrees (the day's 73 to 77; the raw picks' 62 to 73): the match follows the derived look. Levels 4 and 5 fail
+#: the awning gate (the derived look's own stripe contrast is 0.59 and 0.64 of the day's, under `AWNING_CONTRAST_MIN`), so they keep the derived night.
 #: The bagel cart's painted nights (batch 190) are back on with `LOOK_MATCH`: the raw takes' warm pixels sit 11 to 18 degrees greener than the
 #: derived look's (median hue 66 to 71 against 52 to 56) and the build adds 2 to 3 more, so the hue is turned back onto the derived look's.
-DERIVED_NIGHT = ("teaStall",)
+DERIVED_NIGHT = ()
 for _sid, _picks in STATION_NIGHT_PICKS.items():
     NIGHT_PAINT[_sid] = {n: (PLOT_NIGHT[_sid].format(n), t) for n, t in enumerate(_picks, start=1)}
 #: The pier's painted nights (batch 193, the lead's picks: t2 of every level). The il8 night plate's pier window is L* 58.0, C* 18.6 (the lead's
@@ -1771,7 +1777,11 @@ def station_night_looks(spec: dict, days: dict, fits: dict) -> dict:
     grade = STATION_NIGHT_GRADE[sid]
     painted = {}
     for n, take in NIGHT_PAINT[sid].items():
+        if grade and n not in grade:
+            continue
         rgb = _take_rgb(take)
+        if rgb.shape[:2] != masks[n].shape:                     # a take is 1254 px or 1536 normalised from it; the mask is the day plot's size
+            rgb = cv2.resize(rgb, masks[n].shape[::-1], interpolation=cv2.INTER_AREA if rgb.shape[0] > masks[n].shape[0] else cv2.INTER_CUBIC).clip(0, 1)
         if sid == "pier" and n == 3:
             rgb = pier_night3_edit(rgb)
         cut = cv2.erode(masks[n].astype(np.uint8), _ellipse(3)) > 0
@@ -1794,10 +1804,12 @@ def station_night_looks(spec: dict, days: dict, fits: dict) -> dict:
             if n == 2:
                 for box in WORKSHOP_LAMPS:
                     paste_box(painted[n], first, box)
-    plot = {**spec["plot"], "grade": {k: (1.0, 1.0) for k in spec["plot"]["takes"]}, "paint": painted}
+    plot = {**spec["plot"], "grade": {k: (1.0, 1.0) for k in spec["plot"]["takes"]}, "paint": {k: painted.get(k, spec["plot"]["takes"][k]) for k in spec["plot"]["takes"]}}      # a level not graded here keeps its day take: cut, then dropped
     built = build_looks({**spec, "plot": plot})["looks"]
     out = {}
     for n, look in built.items():
+        if n not in painted:
+            continue
         day = days[n]
         assert look.shape == day.shape, (sid, n, look.shape, day.shape)
         look = np.dstack([look[..., :3], day[..., 3:]])           # the day look's own alpha: the same outline in both lights
