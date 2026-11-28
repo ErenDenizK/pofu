@@ -58,8 +58,8 @@ public enum ShadowTuning {
 
     /// The floors of a character's contact pad (ContactPad): its multiply is
     /// at most this per channel, so a pad reads on a sunlit lawn.
-    public static let contactPadMaxRatio = 0.80
-    public static let contactCoreMaxRatio = 0.62
+    public static let contactPadMaxRatio = 0.75
+    public static let contactCoreMaxRatio = 0.57
 
     // MARK: Shadows from night light sources
 
