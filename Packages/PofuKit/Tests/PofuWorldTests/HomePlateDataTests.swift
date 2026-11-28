@@ -244,7 +244,7 @@ struct HomePlateDataTests {
         let plate = try plate
         // The golden plates are painted at stages 0 and 3 to 7; the bagel cart and the lighthouse stand on stages 1 and 2 only,
         // where golden hour draws the night plate and so the night bases (`HomePlate.borrowed`).
-        #expect(plate.stationLooks(light: "golden", stage: 0).keys.sorted() == ["pond", "windmill", "workshop"])
+        #expect(plate.stationLooks(light: "golden", stage: 0).keys.sorted() == ["pier", "pond", "windmill", "workshop"])
         #expect(plate.stationLooks(light: "golden", stage: 3).keys.sorted() == ["pond", "teaStall", "workshop"])
         for stage in [4, 6, 7] {
             #expect(plate.stationLooks(light: "golden", stage: stage).keys.sorted() == ["teaStall"], "stage \(stage)")
@@ -282,7 +282,7 @@ struct HomePlateDataTests {
         // stage 3's base is the tea stall's too
         #expect(try #require(plate.stations["teaStall"]).hasBase(light: "day", stage: 3))
         #expect(plate.stationLooks(light: "day", stage: 3).keys.sorted() == ["pond", "teaStall", "workshop"])
-        #expect(plate.stationLooks(light: "day", stage: 0).keys.sorted() == ["pond", "windmill", "workshop"])
+        #expect(plate.stationLooks(light: "day", stage: 0).keys.sorted() == ["pier", "pond", "windmill", "workshop"])
         #expect(plate.stationLooks(light: "day", stage: 1).keys.sorted() == ["bagelCart", "lighthouse", "pond", "windmill", "workshop"])
         // the stages that keep the painted pond
         for stage in 4...9 {
@@ -345,6 +345,32 @@ struct HomePlateDataTests {
         }
     }
 
+    // MARK: The pier (plan row 1c, PR 5): island level 10 (stage 0) only, the one painting the picked bare crop fits
+
+    @Test func thePierStandsOverTheErasedPlateAtIslandLevel10WithAllFiveLooksInEveryLight() throws {
+        let plate = try plate
+        let station = try #require(plate.stations["pier"])
+        #expect(station.levels == 5)
+        // Stages 1 and 2 paint another bridge end and dock, stage 5 another islet, stage 3 a lamp and bell: they keep the painted pier.
+        #expect(station.baseStages == [0])
+        #expect(station.lookLevels["day"] == nil, "every level 1 to 5 has a look")
+        for light in ["day", "night", "golden"] {
+            for level in 1...5 {
+                #expect(plate.lookArt(station: "pier", level: level, light: light, stage: 0) == "world-home-look-pier-\(level)-\(light)")
+            }
+            #expect(plate.stations["pier"]?.lights[light] == [0], "\(light)")
+        }
+        let place = station.place(stage: 0)
+        #expect(place.box.minX < place.foot.x && place.foot.x < place.box.maxX)
+        #expect(place.box.minY < place.foot.y && place.foot.y < place.box.maxY)
+        for stage in 1...9 {
+            #expect(plate.lookArt(station: "pier", level: 3, light: "day", stage: stage) == nil, "the pier keeps its painted self at stage \(stage)")
+        }
+        // The autumn state keeps its painted pier: batch 194's erase does not clear it.
+        #expect(plate.stations["pier"]?.lights["autumn-day"] == nil)
+        #expect(plate.stationLooks(light: "autumn-day", stage: 0)["pier"] == nil)
+    }
+
     @Test func theLooksAndTheBaseAreShippedAndWithinTheBudget() throws {
         let plate = try plate
         #expect(PlateMath.budgetOK(plate))
@@ -359,6 +385,10 @@ struct HomePlateDataTests {
         names += (1...5).map { "world-home-look-workshop-\($0)-day" }
         names += (1...5).map { "world-home-look-bagelCart-\($0)-day" }
         names += (1...5).map { "world-home-look-lighthouse-\($0)-day" }
+        for light in ["day", "night", "golden"] {
+            names += (1...5).map { "world-home-look-pier-\($0)-\(light)" }
+            names.append("world-home-base-\(light)-0")
+        }
         for name in names {
             #expect(fm.fileExists(atPath: assets.appendingPathComponent("\(name).imageset/Contents.json").path), "\(name)")
         }

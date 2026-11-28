@@ -1,0 +1,1 @@
+[world] The pier now stands on Home's harbour islet at island level 10: bare lawn at level 0, then the jetty, the bell post, the ferry afloat in its pool, the lamp post and the bunting at levels 1 to 5, by day, at golden hour and in painted nights (the ferry's portholes light from level 4).
