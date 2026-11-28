@@ -154,3 +154,11 @@ the base: **do not run `map_cut.py` over day stage 7 afterwards** without `stati
 Only day stage 7 (island level 3) has a base so far: other stages paint a different stall (position, size, a tile roof
 at levels 6 to 10), their erase takes also remove the workshop, the beehive and the garden, and level 8's job has no pick.
 Those states keep their painted stall; night and golden have no looks yet.
+
+## Near ground (plan row 3a)
+
+`near_ground.py build --art <pofu-art checkout> --plates <World.xcassets> --plate-json <plate-home.json> --out <dir> --xcassets <World.xcassets>`
+cuts the picked takes (batch 206 tile t2, batch 119 tufts t2 and strip t2, batch 107 pebbles t1 and tea stool t1) into the
+`world-near-*` imagesets: the lawn detail tile (grid daisies and clover painted out, luminance only, drawn in soft light so it
+takes every light's colour), a lawn mask per stage, the foreground strip and the dressing. `near_ground_data.py` writes the
+`near` keys of plate-home.json (patch, foreground, dressing with their stages). Drawn by `PofuWorld/Plate/NearGroundViews.swift`.
