@@ -474,8 +474,10 @@ struct ContactPad: View {
     var near = 0.0
 
     var body: some View {
-        let pad = Color(red: light.pad.red, green: light.pad.green, blue: light.pad.blue)
-        let core = Color(red: light.core.red, green: light.core.green, blue: light.core.blue)
+        let padMax = ShadowTuning.contactPadMaxRatio
+        let coreMax = ShadowTuning.contactCoreMaxRatio
+        let pad = Color(red: min(light.pad.red, padMax), green: min(light.pad.green, padMax), blue: min(light.pad.blue, padMax))
+        let core = Color(red: min(light.core.red, coreMax), green: min(light.core.green, coreMax), blue: min(light.core.blue, coreMax))
         ZStack {
             Ellipse()
                 .fill(EllipticalGradient(colors: [pad, pad.opacity(0)]))
