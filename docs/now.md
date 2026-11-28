@@ -52,8 +52,7 @@ and the art pass (`docs/design/art-pass-2026-11-28.md`, 9 PRs, merge order 1-9).
 2. Wave C after N1/N2 land: PR 6 home night relight, 7, 8, 9.
 3. Codex rows: pier bare crops at stages 1, 2, 5; keep the queue full under the art line.
 4. Docs PR for the lead branch (briefs, assessment, spec, fi 50-51, this page).
-5. Older open threads (V1 rotor art D65, garden D64, stage 0/3 erase D66,
-   tea stall autumn D67): tracker.md, last section.
+5. Older threads (V1 rotor D65, garden D64, erase D66, stall autumn D67): tracker.md end.
 
 ## Open with the founder
 
