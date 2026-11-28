@@ -39,11 +39,11 @@ and the art pass (`docs/design/art-pass-2026-11-28.md`, 9 PRs, merge order 1-9).
 
 ## Merged today
 
-- #563 painted nights (workshop, lighthouse); #566 bagel cart nights (LOOK_MATCH).
+- #563 painted nights (workshop, lighthouse); #566 bagel cart nights (LOOK_MATCH). #571 art
+  gate (`art_gate.py report <folder>`; on main 6 of 15 fail, as expected).
 - #568 pier levels 1-5 day/night/golden at stage 0 only (stages 1, 2, 5 paint
   their own pier and need bare crops: Codex row to write); Gezgin's post stands;
   worst state night-0 11.33 M px of 12.
-- #571 art gate (`art_gate.py report <folder>`; on main 6 of 15 fail, as expected).
 - #567 docs; pofu-art #232 picks, #233 art line, #234 D74-D76.
 
 ## Next
