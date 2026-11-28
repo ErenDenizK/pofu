@@ -1350,6 +1350,10 @@ WORKSHOP_WINDOWS = [(362, 630, 442, 762), (846, 638, 884, 760)]
 #: What the night plate's own station measures (pofu-art #228, `stats.json`: mean L*, mean C* over the il8 night plate's station): the painted
 #: nights are graded to it (`fit_grade`). The tea stall's is measured per level (`measured_grade`).
 PLATE_NIGHT_TARGET = {"workshop": (55.5, 24.3), "bagelCart": (58.1, 18.3), "lighthouse": (71.7, 23.7)}
+#: The tea stall and the bagel cart keep the derived (N1) night looks at every level: batches 196 and 190 sit 15 to 20 degrees greener than the
+#: plate's warm hue after the grade (their awnings and the tea stall's body read lime or lilac at 1:1), so the painted nights are not shipped; redo
+#: pending. Their picks, grades and hue restore stay below for that redo.
+DERIVED_NIGHT = ("teaStall", "bagelCart")
 for _sid, _picks in STATION_NIGHT_PICKS.items():
     NIGHT_PAINT[_sid] = {n: (PLOT_NIGHT[_sid].format(n), t) for n, t in enumerate(_picks, start=1)}
 
@@ -1400,18 +1404,18 @@ def night_looks(only: str | None = None) -> dict:
             with heic.open_image(ASSETS / f"{look_name(sid, n, 'day')}.imageset" / f"{look_name(sid, n, 'day')}{heic.SUFFIX}") as im:
                 day = np.asarray(im.convert("RGBA"), np.float32) / 255
             fits[n], days[n] = night_fit(sid, stage, n, day, data), day
-        painted = station_night_looks(spec, days, fits) if sid in STATION_NIGHT_GRADE else {}
+        painted = station_night_looks(spec, days, fits) if sid in STATION_NIGHT_GRADE and sid not in DERIVED_NIGHT else {}
         for n in levels:
             day, fit = days[n], fits[n]
             look = day.copy()
             look[..., :3] = sg.apply_fit(fit, day[..., :3].reshape(-1, 3)).reshape(day.shape[:2] + (3,))
             if n in painted:
                 look = painted[n]
-            elif n in NIGHT_PAINT.get(sid, {}):
+            elif n in NIGHT_PAINT.get(sid, {}) and sid not in DERIVED_NIGHT:
                 look = painted_night_look(spec, n, day, look)
             ingest.write_imageset(look_name(sid, n, "night"), to_img(look))
         out[sid] = levels
-        print(f"night looks {sid}: levels {levels} by the stage-{stage} fit" + (f", painted at levels {sorted(NIGHT_PAINT[sid])}, the rest derived" if sid in NIGHT_PAINT else ", derived"))
+        print(f"night looks {sid}: levels {levels} by the stage-{stage} fit" + (f", painted at levels {sorted(NIGHT_PAINT[sid])}, the rest derived" if sid in NIGHT_PAINT and sid not in DERIVED_NIGHT else ", derived"))
     return out
 
 
