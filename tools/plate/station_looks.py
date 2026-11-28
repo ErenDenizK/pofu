@@ -1350,9 +1350,6 @@ WORKSHOP_WINDOWS = [(362, 630, 442, 762), (846, 638, 884, 760)]
 #: What the night plate's own station measures (pofu-art #228, `stats.json`: mean L*, mean C* over the il8 night plate's station): the painted
 #: nights are graded to it (`fit_grade`). The tea stall's is measured per level (`measured_grade`).
 PLATE_NIGHT_TARGET = {"workshop": (55.5, 24.3), "bagelCart": (58.1, 18.3), "lighthouse": (71.7, 23.7)}
-#: Stations whose take repainted warm yellow and cream (an awning) in a cold hue or in none: their pixels the day look has warm, where the
-#: painted night is off the derived look's hue or flatter, take the derived look's hue and chroma (`restore_warm`).
-RESTORE_WARM = ("teaStall", "bagelCart")
 for _sid, _picks in STATION_NIGHT_PICKS.items():
     NIGHT_PAINT[_sid] = {n: (PLOT_NIGHT[_sid].format(n), t) for n, t in enumerate(_picks, start=1)}
 
@@ -1462,21 +1459,44 @@ def fit_grade(rgb: np.ndarray, cut: np.ndarray, darks: float, mean_l: float, mea
     return round(light, 3), darks, round(mean_c / c, 3)
 
 
-def restore_warm(look: np.ndarray, fitted: np.ndarray, day: np.ndarray) -> np.ndarray:
-    """Where the day look is warm (hue 40 to 115 degrees, chroma over 10: an awning's yellow and cream) and the painted night is off the day
-    look's hue by over 35 degrees or under 0.8 of the derived look's chroma, the day look's hue, 14 degrees warmer (the colour fit turns a yellow olive and a cream
-    pink, the relight turns it lilac) at the larger of the derived look's and the painted night's chroma, the painted night's lightness."""
+#: The awnings of the tea stall and the bagel cart (the look's px, x0 y0 x1 y1: the front awning, levels 1 to 5): the painted nights turn their
+#: yellow olive or khaki and flatten their stripes.
+AWNING = {"teaStall": (100, 172, 345, 218), "bagelCart": (20, 130, 205, 200)}
+AWNING_HUE_TOL, AWNING_CONTRAST_MIN = 5.0, 0.70
+
+
+def awning_set(day: np.ndarray, sid: str) -> np.ndarray:
+    """The awning's pixels in the day look's outline: inside `AWNING`, solid, light (L* over 65)."""
+    x0, y0, x1, y1 = AWNING[sid]
+    m = np.zeros(day.shape[:2], bool)
+    m[y0:y1, x0:x1] = (day[y0:y1, x0:x1, 3] > 0.9) & (srgb_lab(day[y0:y1, x0:x1, :3])[..., 0] > 65)
+    return m
+
+
+def awning_measure(look: np.ndarray, day: np.ndarray, sid: str) -> tuple[float, float]:
+    """(hue angle difference in degrees of the awning's warm pixels, stripe contrast as a share of the day look's): the chroma-weighted mean hue of
+    the pixels the day look has yellow, and the L* gap between the 85th and 15th percentile of the awning's pixels."""
+    m = awning_set(day, sid)
+    dl, nl = srgb_lab(day[..., :3]), srgb_lab(look[..., :3])
+    ang = lambda x, k: np.degrees(np.arctan2((x[..., 2] * np.hypot(x[..., 1], x[..., 2]))[k].sum(), (x[..., 1] * np.hypot(x[..., 1], x[..., 2]))[k].sum()))
+    warm = m & (np.hypot(dl[..., 1], dl[..., 2]) > 25)
+    gap = lambda x: float(np.percentile(x[..., 0][m], 85) - np.percentile(x[..., 0][m], 15))
+    return float(abs((ang(nl, warm) - ang(dl, warm) + 180) % 360 - 180)), gap(nl) / gap(dl)
+
+
+def restore_awning(look: np.ndarray, fitted: np.ndarray, day: np.ndarray, sid: str) -> np.ndarray:
+    """The awning of a painted night on the day look's hue (no rotation) and the day look's stripes: inside the awning's pixels the a* and b* take the day
+    look's hue at the largest of the derived look's, the painted night's and half the day look's chroma (a cream stripe keeps its warmth), and the lightness the derived look's relief
+    (stripes, scallops) at the painted night's mean."""
+    m = awning_set(day, sid)
     lab, ref, dl = srgb_lab(look[..., :3]), srgb_lab(fitted), srgb_lab(day[..., :3])
-    hue = lambda x: np.degrees(np.arctan2(x[..., 2], x[..., 1])) % 360
     cd, cr, cl = (np.hypot(x[..., 1], x[..., 2]) for x in (dl, ref, lab))
-    dh = np.abs((hue(lab) - hue(dl) + 180) % 360 - 180)
-    warm = (hue(dl) > 40) & (hue(dl) < 115) & (cd > 10) & (day[..., 3] > 0.9)
-    bad = warm & ((dh > 35) | (cl < 0.8 * cr))
-    w = cv2.GaussianBlur(cv2.dilate(bad.astype(np.uint8), _ellipse(3)).astype(np.float32), (0, 0), 1.2)[..., None] * (day[..., 3:] > 0.9)
+    w = cv2.GaussianBlur(m.astype(np.float32), (0, 0), 1.0)[..., None]
     out = lab.copy()
-    th = np.radians(hue(dl) - 14)                       # a yellow under a cold sky reads olive: 14 degrees toward orange, as the plate's awning
-    hued = np.stack([np.cos(th), np.sin(th)], -1) * np.maximum(cr, cl)[..., None]
+    hued = dl[..., 1:] / np.maximum(cd, 1e-3)[..., None] * np.maximum(np.maximum(cr, cl), 0.5 * cd)[..., None]
     out[..., 1:] = lab[..., 1:] * (1 - w) + hued * w
+    light = ref[..., 0] + (lab[..., 0][m].mean() - ref[..., 0][m].mean())
+    out[..., 0] = lab[..., 0] * (1 - w[..., 0]) + light * w[..., 0]
     return np.dstack([lab_srgb(out), look[..., 3:]])
 
 
@@ -1554,8 +1574,13 @@ def station_night_looks(spec: dict, days: dict, fits: dict) -> dict:
         assert look.shape == day.shape, (sid, n, look.shape, day.shape)
         look = np.dstack([look[..., :3], day[..., 3:]])           # the day look's own alpha: the same outline in both lights
         fitted = sg.apply_fit(fits[n], day[..., :3].reshape(-1, 3)).reshape(day.shape[:2] + (3,))
-        if sid in RESTORE_WARM:
-            look = restore_warm(look, fitted, day)
+        if sid in AWNING:
+            look = restore_awning(look, fitted, day, sid)
+            hue, contrast = awning_measure(look, day, sid)
+            ok = hue <= AWNING_HUE_TOL and contrast >= AWNING_CONTRAST_MIN
+            print(f"  {sid} {n}: awning hue off by {hue:.1f} degrees, stripe contrast {contrast:.2f} of the day look's" + ("" if ok else ", fails: derived look"))
+            if not ok:
+                look = np.dstack([fitted, day[..., 3:]])
         if sid == "workshop":
             look = cap_chroma(look, fitted, day)
         keep = (day[..., 3] > 0.9) & (look[..., 3] > 0.9)
