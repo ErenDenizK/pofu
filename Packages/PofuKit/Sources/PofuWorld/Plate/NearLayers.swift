@@ -6,9 +6,9 @@ public struct PlateCamera: Decodable, Hashable, Sendable {
 }
 
 /// `plate-<island>.json` `near` (v2 §6.1, build spec WP11): the lens's shots and what the depth
-/// rows need that the plate's objects do not say. The focal patch, the near dressing and the
-/// foreground strip are art that is not in yet (batches 110, 107 and 119): their keys stay empty
-/// and nothing draws for them.
+/// rows need that the plate's objects do not say, and the near camera's ground (mainflow plan row 3a):
+/// the focal lawn, the strip over the earth face and the dressing. All of them draw only at the near
+/// framing and fade in with the camera's scale (`fadeIn`).
 public struct PlateNear: Decodable, Hashable, Sendable {
     public var shots: ThinLens.Shots
     /// The lawn's front lip, a plate row: the earth face under it takes this row (v2 §5.1), and
@@ -17,28 +17,72 @@ public struct PlateNear: Decodable, Hashable, Sendable {
     /// The objects that lie flat on the ground (a pond, a deck): their pixels keep their own rows.
     /// Every other object stands, and all its pixels take its `footY`.
     public var flat: [String]
-    /// The focal ground patch's art, when it is in (batch 110).
-    public var patch: String?
-    /// The near dressing, when it is in (batch 107's picks are references, not masters).
+    /// The focal ground: a lawn detail tile drawn over the plate (soft light, so it takes the plate's
+    /// own colour in every light), clipped to the walkable lawn by a mask, fading out in depth.
+    public var patch: Patch?
+    /// The soft strip over the front lip that covers the whole earth face.
+    public var foreground: Foreground?
+    /// The near dressing: tufts, pebbles, clover, daisies and the tea stool, each with its contact shadow.
     public var dressing: [Dressing]
+
+    public struct Patch: Decodable, Hashable, Sendable {
+        /// The seamless detail tile (mid grey is neutral) and the lawn mask (its alpha), asset names.
+        public var detail: String
+        public var mask: String
+        /// The mask's extent in plate pixels: x0, y0, x1, y1.
+        public var maskBox: [Double]
+        /// Plate pixels one tile covers.
+        public var tile: Double
+        /// Plate rows where the band starts, is full, stops being full and ends.
+        public var rows: [Double]
+        /// The camera scales where the layer starts to show and is fully shown.
+        public var fadeIn: [Double]
+        /// The detail's strength at night (1 elsewhere).
+        public var night: Double
+    }
+
+    public struct Foreground: Decodable, Hashable, Sendable {
+        public var art: String
+        /// The first copy's left edge, the copies (each mirrored from its neighbour) and their size, in plate pixels.
+        public var x: Double
+        public var count: Int
+        public var width: Double
+        public var height: Double
+        /// The plate row of the first copy's top.
+        public var top: Double
+        public var fadeIn: [Double]
+    }
 
     public struct Dressing: Decodable, Hashable, Sendable {
         public var art: String
+        /// The foot (the image's bottom centre), width and height, plate pixels.
         public var at: [Double]
         public var footY: Double
+        public var width: Double
+        public var height: Double
+        /// The contact shadow's strength.
+        public var shadow: Double
         public var stages: [Int]?
     }
 
-    private enum Keys: String, CodingKey { case shots, lipRow, flat, patch, dressing }
+    private enum Keys: String, CodingKey { case shots, lipRow, flat, patch, foreground, dressing }
 
     public init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: Keys.self)
         shots = try c.decodeIfPresent(ThinLens.Shots.self, forKey: .shots) ?? .standard
         lipRow = try c.decode(Double.self, forKey: .lipRow)
         flat = try c.decodeIfPresent([String].self, forKey: .flat) ?? []
-        patch = try c.decodeIfPresent(String.self, forKey: .patch)
+        patch = try c.decodeIfPresent(Patch.self, forKey: .patch)
+        foreground = try c.decodeIfPresent(Foreground.self, forKey: .foreground)
         dressing = try c.decodeIfPresent([Dressing].self, forKey: .dressing) ?? []
     }
+}
+
+/// How much of the near ground shows at a camera scale: 0 below `from`, 1 above `to`, smooth between.
+public func nearGroundShare(scale: Double, fadeIn: [Double]) -> Double {
+    guard fadeIn.count == 2, fadeIn[1] > fadeIn[0] else { return 0 }
+    let t = min(max((scale - fadeIn[0]) / (fadeIn[1] - fadeIn[0]), 0), 1)
+    return t * t * (3 - 2 * t)
 }
 
 /// The near layers (build spec WP11) in plate terms, pure: the depth row of every island pixel

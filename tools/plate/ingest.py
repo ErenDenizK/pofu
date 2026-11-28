@@ -1237,11 +1237,28 @@ def props_pixels(island: str) -> int:
     return total
 
 
+def near_pixels(island: str, light: str, stage: int) -> int:
+    """The near camera's ground (plan row 3a, `tools/plate/near_ground.py`): the detail tile, the strip and the dressing
+    that every Home state holds, and the one lawn mask of this state (autumn's own for an autumn state)."""
+    if island != "home":
+        return 0
+    mask = f"world-near-lawn-mask-{'autumn-' if light.startswith('autumn') else ''}{stage}.imageset"
+    total = 0
+    for folder in ASSETS.glob("world-near-*.imageset"):
+        if "lawn-mask" in folder.name and folder.name != mask:
+            continue
+        for f in folder.iterdir():
+            if f.suffix == heic.SUFFIX:
+                with heic.open_image(f) as im:
+                    total += im.width * im.height
+    return total
+
+
 def state_texture_bytes(island: str, hand: dict) -> dict[tuple[str, int], int]:
     """Rule v1 (docs/design/texture-budget-v1.md): the texture pixels one Home state draws or keeps, 4 bytes a pixel
     decoded (8-bit RGBA, what HEIC decodes to). Per state: the drawn picture (the base where a station has one, else the
     plate), the occluders that can draw (not those of a station on this base), each station's current look at its
-    largest and one more look for the one reveal, the props' worst frame; a matted state adds the sky set without its
+    largest and one more look for the one reveal, the props' worst frame, the near ground (`near_pixels`); a matted state adds the sky set without its
     island layer and the far picture (the plate crop, w x h), any other the island cut, the Map cut and the backdrop.
     The app holds one state, or two for a crossfade."""
     out = {}
@@ -1252,7 +1269,7 @@ def state_texture_bytes(island: str, hand: dict) -> dict[tuple[str, int], int]:
         total = sky_bytes(island, light) if matted else 0
         if matted:
             total += (crop[2] - crop[0]) * (crop[3] - crop[1])      # the far picture (`FarSnapshot`, 1 px per plate px)
-        total += station_bytes(island, light, stage) + props_pixels(island)
+        total += station_bytes(island, light, stage) + props_pixels(island) + near_pixels(island, light, stage)
         on_base = (light, stage) in base_states(island)
         if on_base:
             kinds = tuple(k for k in kinds if k != "plate")      # the base is the plate there (`station_bytes` counts it)
