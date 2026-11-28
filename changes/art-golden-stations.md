@@ -1,0 +1,1 @@
+[world] In golden hour the stations keep their level: the windmill, pond, workshop and tea stall stand over golden bases in golden looks of the player's levels, instead of jumping to the painted stations of the island's stage at 17:30 and again at 20:00.

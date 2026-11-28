@@ -238,6 +238,29 @@ struct HomePlateDataTests {
         #expect(plate.drawnPlateArt(light: "night", stage: 0) == "world-home-base-night-0")
     }
 
+    // MARK: Golden hour keeps the stations' levels (N2)
+
+    @Test func goldenHourStandsTheStationsOverGoldenBasesInTheirOwnGoldenLooks() throws {
+        let plate = try plate
+        // The golden plates are painted at stages 0 and 3 to 7; the bagel cart and the lighthouse stand on stages 1 and 2 only,
+        // where golden hour draws the night plate and so the night bases (`HomePlate.borrowed`).
+        #expect(plate.stationLooks(light: "golden", stage: 0).keys.sorted() == ["pond", "windmill", "workshop"])
+        #expect(plate.stationLooks(light: "golden", stage: 3).keys.sorted() == ["pond", "teaStall", "workshop"])
+        for stage in [4, 6, 7] {
+            #expect(plate.stationLooks(light: "golden", stage: stage).keys.sorted() == ["teaStall"], "stage \(stage)")
+        }
+        #expect(plate.stationLooks(light: "golden", stage: 5).isEmpty, "stage 5 has no station")
+        #expect(plate.stations["bagelCart"]?.lights["golden"] == nil && plate.stations["lighthouse"]?.lights["golden"] == nil)
+        #expect(plate.lookArt(station: "windmill", level: 3, light: "golden", stage: 0) == "world-home-look-windmill-3-golden")
+        #expect(plate.lookArt(station: "windmill", level: 1, light: "golden", stage: 0) == nil)
+        #expect(plate.lookArt(station: "teaStall", level: 5, light: "golden", stage: 7) == "world-home-look-teaStall-5-golden")
+        #expect(plate.drawnPlateArt(light: "golden", stage: 0) == "world-home-base-golden-0")
+        #expect(plate.drawnPlateArt(light: "golden", stage: 5) == plate.plateArt(light: "golden", stage: 5))
+        #expect(StationLooks.lookLight(for: "golden") == "golden")
+        // a golden look is the day look's own canvas: the same box and foot
+        #expect(plate.stations["windmill"]?.lookLevels["golden"] == [2, 3, 4, 5])
+    }
+
     // MARK: The pond (plan row 1c)
 
     @Test func thePondStandsOverTheErasedPlateAtIslandLevels10To7WithAllFiveLooksAndSharesTheBase() throws {
