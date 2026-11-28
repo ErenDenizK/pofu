@@ -1,0 +1,1 @@
+[world] At night the workshop, tea stall, bagel cart and lighthouse stand in painted night looks, graded to the plate: the tea stall's string lights and lantern, the lighthouse's windows and the bagel cart's lantern are lit, small, with no halo.
